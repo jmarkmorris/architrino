@@ -15,6 +15,7 @@ import {
   createBorgFrameSetsFromRows,
 } from "./BorgFrameRows.js";
 import {
+  borgRecordReplayDisplayOversampleFactor,
   BORG_EOM_RECORD_REPLAY_RUN_SOURCE,
   createBorgEomRecordReplayRunner,
 } from "./BorgEomRecordReplayRunner.js";
@@ -86,8 +87,9 @@ import {
 
 const TARGET_ENVELOPE_WORLD_DIAMETER = 6.2;
 const BORG_LIVE_RUN_BUDGET_VERSION = "borg-live-run-budget.v1";
-const CAMERA_MIN_DISTANCE = 4.8;
-const CAMERA_MAX_DISTANCE = 28;
+const CAMERA_ORTHOGRAPHIC_DISTANCE = 12;
+const CAMERA_MIN_VIEW_HALF_HEIGHT = 0.8;
+const CAMERA_MAX_VIEW_HALF_HEIGHT = 24;
 const DEFAULT_CAMERA_FIT_MARGIN = 1.43;
 const DEFAULT_PATH_TRAIL_DURATION = 30;
 const PATH_TRAIL_DURATIONS = Object.freeze([30, 60, 90, 180, 360]);
@@ -219,6 +221,8 @@ const PARTICLE_POLARITY_STYLES = Object.freeze({
   }),
 });
 
+export const BORG_PRESCRIBED_PATH_TRAIL_COLOR = 0xc6b6ff;
+
 export function mountBorgApp(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
@@ -327,10 +331,8 @@ export function mountBorgApp(options = {}) {
   // leaves the prescribed paths with no matching visible architrinos.
   let currentFrames = replayActive ? [] : [...initialDisplayRows];
   let frameSets = createBorgFrameSetsFromRows(currentFrames);
-  const worldUnitsPerSolverUnit =
-    TARGET_ENVELOPE_WORLD_DIAMETER / (2 * manifest.simulationEnvelope.outerRadius);
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(38, 1, 0.05, 100);
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.05, 100);
   const renderer = new THREE.WebGLRenderer({
     canvas: dom.canvas,
     antialias: true,
@@ -369,7 +371,9 @@ export function mountBorgApp(options = {}) {
   const particleObjects = new Map();
   const velocityLines = new Map();
   const architrinoPointTexture = createArchitrinoPointTexture(documentLike);
-  const particleStyles = createParticleStyles(currentFrames);
+  const particleStyles = createBorgParticleStyles(currentFrames, {
+    prescribedGeometry: replayActive,
+  });
   const pathTrails = createBorgPathTrails({
     group: pathGroup,
     renderOrder: PATH_RENDER_ORDER,
@@ -386,7 +390,8 @@ export function mountBorgApp(options = {}) {
         .filter((layer) => layer.state === "on-locked")
         .map((layer) => layer.layer),
     ]),
-    cameraDistance: CAMERA_MIN_DISTANCE,
+    cameraAspect: 1,
+    cameraViewHalfHeight: 1,
     cameraFitMargin: DEFAULT_CAMERA_FIT_MARGIN,
     selectedPathKey: null,
     dragging: false,
@@ -504,11 +509,9 @@ export function mountBorgApp(options = {}) {
     replayDisplayMode: activeReplayEntry?.dataset.provenance.claimGrade === "chart-hypothesis"
       ? "chart-pose"
       : "animated",
-    pathTrailDuration: normalizePathTrailDuration(
-      activeReplayEntry
-        ? resolveBorgAssemblyViewTrail(activeReplayEntry).duration
-        : DEFAULT_PATH_TRAIL_DURATION,
-    ),
+    pathTrailDuration: activeReplayEntry
+      ? resolveBorgAssemblyViewTrail(activeReplayEntry).duration
+      : normalizePathTrailDuration(DEFAULT_PATH_TRAIL_DURATION),
   };
 
   if (replayActive && initialEomSeed) {
@@ -609,7 +612,7 @@ export function mountBorgApp(options = {}) {
     });
     boundaryShellGroup.add(
       createBoundaryShellPoints({
-        radius: borgEnvelopeRadius(manifest),
+        radius: activeEnvelopeRadius(),
         color: ENVELOPE_GUIDE_COLOR,
         opacity: ENVELOPE_GUIDE_OPACITY,
       }),
@@ -619,7 +622,9 @@ export function mountBorgApp(options = {}) {
   function rebuildParticleObjects() {
     disposeParticleObjects();
     particleStyles.clear();
-    createParticleStyles(currentFrames).forEach((style, pathKey) => {
+    createBorgParticleStyles(currentFrames, {
+      prescribedGeometry: replayActive,
+    }).forEach((style, pathKey) => {
       particleStyles.set(pathKey, style);
     });
 
@@ -682,7 +687,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function createBoundaryShellPoints({ radius, color, opacity }) {
-    const worldRadius = radius * worldUnitsPerSolverUnit;
+    const worldRadius = radius * activeWorldUnitsPerSolverUnit();
     const points = [];
     for (let latIndex = 0; latIndex < BOUNDARY_SHELL_LATITUDE_COUNT; latIndex += 1) {
       const theta = (latIndex / (BOUNDARY_SHELL_LATITUDE_COUNT - 1)) * Math.PI;
@@ -760,8 +765,8 @@ export function mountBorgApp(options = {}) {
       return;
     }
     polarityEscapeLedger.appendFrameRows(frameRows, {
-      center: manifest.simulationEnvelope.center,
-      radius: borgEnvelopeRadius(manifest),
+      center: activeEnvelopeCenter(),
+      radius: activeEnvelopeRadius(),
     });
   }
 
@@ -777,10 +782,10 @@ export function mountBorgApp(options = {}) {
     if (state.polarityDiagnosticFrameIndex === rawFrameSet.frameIndex) {
       return;
     }
-    const sphereRadius = borgEnvelopeRadius(manifest);
+    const sphereRadius = activeEnvelopeRadius();
     state.polarityDiagnostics = calculateBorgPolarityDiagnostics({
       frames: rawFrameSet.frames,
-      center: manifest.simulationEnvelope.center,
+      center: activeEnvelopeCenter(),
       radius: sphereRadius,
       coreScale: state.eomCoreScale,
       escapeLedger: polarityEscapeLedger,
@@ -903,7 +908,7 @@ export function mountBorgApp(options = {}) {
     );
     const runtimeWakeHorizon = manifest.simulationEnvelope.fieldSpeed * runtimeHistoryDepth;
     renderFieldRows(dom.envelopeFields, [
-      ["outerRadius", borgEnvelopeRadius(manifest)],
+      ["outerRadius", activeEnvelopeRadius()],
       ["sampleInterval", activeSampleInterval()],
       ["seedHistoryDepth", runtimeHistoryDepth],
       ["fieldSpeed", manifest.simulationEnvelope.fieldSpeed],
@@ -1203,11 +1208,23 @@ export function mountBorgApp(options = {}) {
       label: "Random architrinos",
     });
     const entries = navigation?.catalog?.entries ?? [];
+    const familyGroups = new Map();
     entries.forEach((catalogEntry) => {
-      appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
-        name: "borg-starting-geometry",
-        value: catalogEntry.id,
-        label: catalogEntry.label,
+      const group = familyGroups.get(catalogEntry.familyId) ?? [];
+      group.push(catalogEntry);
+      familyGroups.set(catalogEntry.familyId, group);
+    });
+    familyGroups.forEach((familyEntries) => {
+      const heading = documentLike.createElement("div");
+      heading.className = "borg-radio-heading";
+      heading.textContent = familyEntries[0].familyLabel;
+      dom.startingGeometryOptions.append(heading);
+      familyEntries.forEach((catalogEntry) => {
+        appendBorgRadioChoice(documentLike, dom.startingGeometryOptions, {
+          name: "borg-starting-geometry",
+          value: catalogEntry.id,
+          label: catalogEntry.label,
+        });
       });
     });
     if (activeStartingGeometryId !== "random" &&
@@ -1331,6 +1348,7 @@ export function mountBorgApp(options = {}) {
       }
       const record = await navigation.load(nextId);
       enterPrescribedReplay(nextId, createBorgAssemblyViewSession([record]));
+      navigation.persistSelection?.(nextId);
     } catch (error) {
       dom.prescribedBranchFeedback.value = error?.message ?? String(error);
       dom.prescribedBranchFeedback.textContent = dom.prescribedBranchFeedback.value;
@@ -1403,6 +1421,7 @@ export function mountBorgApp(options = {}) {
     state.sourceMode = "recorded-eom-dataset-chunks";
     state.eomDisplayStarted = false;
     state.compactedPathHistory = Object.freeze({});
+    state.pathTrailDuration = resolveBorgAssemblyViewTrail(activeReplayEntry).duration;
     state.liveRunRetention = createBorgLiveRunRetentionSnapshot({ frameRows: [] });
     state.replayDisplayMode = activeReplayEntry.dataset.provenance.claimGrade === "chart-hypothesis"
       ? "chart-pose"
@@ -2190,12 +2209,13 @@ export function mountBorgApp(options = {}) {
     event.preventDefault();
     const direction = event.deltaY > 0 ? 1 : -1;
     state.cameraFitMargin = null;
-    state.cameraDistance = clamp(
-      state.cameraDistance * (direction > 0 ? 1.08 : 0.92),
-      CAMERA_MIN_DISTANCE,
-      CAMERA_MAX_DISTANCE,
+    state.cameraViewHalfHeight = clamp(
+      state.cameraViewHalfHeight * (direction > 0 ? 1.08 : 0.92),
+      CAMERA_MIN_VIEW_HALF_HEIGHT,
+      CAMERA_MAX_VIEW_HALF_HEIGHT,
     );
-    camera.position.set(0, 0, state.cameraDistance);
+    updateOrthographicProjection();
+    camera.position.set(0, 0, CAMERA_ORTHOGRAPHIC_DISTANCE);
     camera.lookAt(0, 0, 0);
     render();
   }
@@ -2239,10 +2259,11 @@ export function mountBorgApp(options = {}) {
     const height = Math.max(1, Math.floor(rect.height));
     renderer.setPixelRatio(Math.min(2, windowLike.devicePixelRatio || 1));
     renderer.setSize(width, height, false);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+    state.cameraAspect = width / height;
     if (state.cameraFitMargin != null) {
       fitCameraToEnvelope(state.cameraFitMargin);
+    } else {
+      updateOrthographicProjection();
     }
     render();
   }
@@ -2276,12 +2297,30 @@ export function mountBorgApp(options = {}) {
 
   /** Write solver coordinates into an existing {x,y,z} target; no allocation. */
   function writeSolverPositionToWorld(position, target) {
-    const center = activeReplayEntry?.dataset.provenance.prescribedGeometry?.responseCenter ??
-      manifest.simulationEnvelope.center;
-    target.x = (position.x - center.x) * worldUnitsPerSolverUnit;
-    target.y = (position.y - center.y) * worldUnitsPerSolverUnit;
-    target.z = (position.z - center.z) * worldUnitsPerSolverUnit;
+    const center = activeEnvelopeCenter();
+    const scale = activeWorldUnitsPerSolverUnit();
+    target.x = (position.x - center.x) * scale;
+    target.y = (position.y - center.y) * scale;
+    target.z = (position.z - center.z) * scale;
     return target;
+  }
+
+  function activeEnvelopeCenter() {
+    return activeReplayEntry?.dataset.provenance.prescribedGeometry?.responseCenter ??
+      manifest.simulationEnvelope.center;
+  }
+
+  function activeEnvelopeRadius() {
+    const prescribedRadius = Number(
+      activeReplayEntry?.dataset.provenance.prescribedGeometry?.sphericalEnvelopeRadius,
+    );
+    return Number.isFinite(prescribedRadius) && prescribedRadius > 0
+      ? prescribedRadius
+      : borgEnvelopeRadius(manifest);
+  }
+
+  function activeWorldUnitsPerSolverUnit() {
+    return TARGET_ENVELOPE_WORLD_DIAMETER / (2 * activeEnvelopeRadius());
   }
 
   function activeFrameTime() {
@@ -2291,26 +2330,51 @@ export function mountBorgApp(options = {}) {
   }
 
   function activeSampleInterval() {
-    return replayActive
-      ? activeReplayEntry?.dataset.window.sampleInterval ?? manifest.simulationEnvelope.sampleInterval
-      : activeEomRunnerOptions?.sampleInterval ??
+    if (replayActive) {
+      const configuredInterval = Number(options.eomRecordReplay?.sampleInterval);
+      if (Number.isFinite(configuredInterval) && configuredInterval > 0) {
+        return configuredInterval;
+      }
+      const recordInterval = Number(activeReplayEntry?.dataset.window.sampleInterval);
+      return Number.isFinite(recordInterval) && recordInterval > 0
+        ? recordInterval / borgRecordReplayDisplayOversampleFactor(activeReplayEntry?.dataset)
+        : manifest.simulationEnvelope.sampleInterval;
+    }
+    return activeEomRunnerOptions?.sampleInterval ??
       manifest.simulationEnvelope.sampleInterval;
   }
 
   function fitCameraToEnvelope(margin) {
     const envelopeWorldRadius =
-      borgEnvelopeRadius(manifest) *
-      worldUnitsPerSolverUnit;
-    const verticalHalfFov = THREE.MathUtils.degToRad(camera.fov * 0.5);
-    const horizontalHalfFov = Math.atan(Math.tan(verticalHalfFov) * Math.max(0.1, camera.aspect));
-    const limitingHalfFov = Math.min(verticalHalfFov, horizontalHalfFov);
-    state.cameraDistance = clamp(
-      (envelopeWorldRadius / Math.sin(limitingHalfFov)) * margin,
-      CAMERA_MIN_DISTANCE,
-      CAMERA_MAX_DISTANCE,
-    );
-    camera.position.set(0, 0, state.cameraDistance);
+      activeEnvelopeRadius() *
+      activeWorldUnitsPerSolverUnit();
+    const frustum = calculateBorgOrthographicFrustum({
+      envelopeWorldRadius,
+      margin,
+      aspect: state.cameraAspect,
+    });
+    state.cameraViewHalfHeight = frustum.top;
+    applyOrthographicFrustum(frustum);
+    camera.position.set(0, 0, CAMERA_ORTHOGRAPHIC_DISTANCE);
     camera.lookAt(0, 0, 0);
+  }
+
+  function updateOrthographicProjection() {
+    const halfWidth = state.cameraViewHalfHeight * state.cameraAspect;
+    applyOrthographicFrustum({
+      left: -halfWidth,
+      right: halfWidth,
+      top: state.cameraViewHalfHeight,
+      bottom: -state.cameraViewHalfHeight,
+    });
+  }
+
+  function applyOrthographicFrustum({ left, right, top, bottom }) {
+    camera.left = left;
+    camera.right = right;
+    camera.top = top;
+    camera.bottom = bottom;
+    camera.updateProjectionMatrix();
   }
 
   function getFrameSetIndex(frameIndex) {
@@ -2426,7 +2490,7 @@ export function mountBorgApp(options = {}) {
             minimumStep: state.eomMinimumStep,
             runGrade: state.eomRunGrade,
             simulationOuterRadius:
-              activeEomRunnerOptions?.simulationOuterRadius ?? borgEnvelopeRadius(manifest),
+              activeEomRunnerOptions?.simulationOuterRadius ?? activeEnvelopeRadius(),
           },
         );
     const replayOptions = replayActive
@@ -3116,7 +3180,7 @@ function queryRequiredElement(documentLike, selector) {
   return element;
 }
 
-function createParticleStyles(frames) {
+export function createBorgParticleStyles(frames, { prescribedGeometry = false } = {}) {
   const styles = new Map();
   frames.forEach((frame) => {
     if (styles.has(frame.pathKey)) {
@@ -3126,6 +3190,9 @@ function createParticleStyles(frames) {
       frame.stateFlags === 1 ? PARTICLE_POLARITY_STYLES.positrino : PARTICLE_POLARITY_STYLES.electrino;
     styles.set(frame.pathKey, {
       ...baseStyle,
+      pathColor: prescribedGeometry
+        ? BORG_PRESCRIBED_PATH_TRAIL_COLOR
+        : baseStyle.pathColor,
       label: String(frame.pathKey),
     });
   });
@@ -3289,6 +3356,34 @@ export function createDefaultEomShadowRunnerOptions(
     chunkDuration: configured.chunkDuration ?? preset.effectiveChunkDuration ?? preset.chunkDuration,
     initialFrameRows: configured.initialFrameRows ?? initialFrameRows ?? undefined,
   };
+}
+
+export function calculateBorgOrthographicFrustum({
+  envelopeWorldRadius,
+  margin,
+  aspect,
+}) {
+  const numericRadius = Number(envelopeWorldRadius);
+  const numericMargin = Number(margin);
+  const numericAspect = Number(aspect);
+  if (!Number.isFinite(numericRadius) || numericRadius <= 0) {
+    throw new TypeError("Borg orthographic envelope radius must be positive and finite.");
+  }
+  if (!Number.isFinite(numericMargin) || numericMargin <= 0) {
+    throw new TypeError("Borg orthographic camera-fit margin must be positive and finite.");
+  }
+  if (!Number.isFinite(numericAspect) || numericAspect <= 0) {
+    throw new TypeError("Borg orthographic viewport aspect must be positive and finite.");
+  }
+  const limitingDimensionScale = Math.min(1, numericAspect);
+  const halfHeight = (numericRadius * numericMargin) / limitingDimensionScale;
+  const halfWidth = halfHeight * numericAspect;
+  return Object.freeze({
+    left: -halfWidth,
+    right: halfWidth,
+    top: halfHeight,
+    bottom: -halfHeight,
+  });
 }
 
 export function getBorgVelocityRayLength(speed) {

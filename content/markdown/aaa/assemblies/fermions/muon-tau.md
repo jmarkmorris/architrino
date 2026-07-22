@@ -12,11 +12,11 @@ The reader-facing rule is simple: electron, muon, and tau belong to one charged-
 
 ## Axial Inventory and Shielding-Coherence Classes
 
-Muon and tau branches do not introduce new charged-lepton axial inventories. They keep the charged-lepton six-site axial layer and move along the shielding-coherence classes of the charged-lepton generation ladder. The class tuple is ordered $(H,M,L)$, the same inner/middle/outer support order used by the shielding-quotient definition in [Quantum Number Mapping](./quantum-number-mapping.md#candidate-generation-operator): $1$ means that support tier remains coherently active, while $0$ means that tier is depleted on the branch lifetime window.
+Muon and tau branches do not introduce new charged-lepton axial inventories. They keep the charged-lepton six-site axial layer and move along the shielding-coherence classes of the charged-lepton generation ladder. The class tuple is ordered by the persistent binary indices $a\in\{1,2,3\}$ used by the shielding-quotient definition in [Quantum Number Mapping](./quantum-number-mapping.md#candidate-generation-operator): $1$ means that indexed support remains coherently active, while $0$ means that support is depleted on the branch lifetime window.
 
-| Branch | Shielding-coherence class (ordered $H,M,L$) | Core readout | Charged axial inventory | Claim status |
+| Branch | Shielding-coherence class (persistent indices $1,2,3$) | Core readout | Charged axial inventory | Claim status |
 | --- | --- | --- | --- | --- |
-| $e^-$ | $(1,1,1)$ | nested shell braid shielding branch | $6\epsilon_-$ | reference charged-lepton branch |
+| $e^-$ | $(1,1,1)$ | full-shielding candidate braid | $6\epsilon_-$ | reference charged-lepton hypothesis; taxonomy member unassigned |
 | $\mu^-$ | $(1,1,0)$ | Generation-II shielding branch | $6\epsilon_-$ | Generation-II charged-lepton target |
 | $\tau^-$ | $(1,0,0)$ | Generation-III shielding branch | $6\epsilon_-$ | Generation-III charged-lepton target |
 

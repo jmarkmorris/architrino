@@ -24,7 +24,7 @@ $$
 \theta_{\mathrm{inc}}=\frac{\pi}{6}=30^\circ
 $$
 
-This is intentionally narrower than a claim that the H/M/L axes themselves tilt or precess into new orientations. The nested shell braid scaffold remains the kinematic frame. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
+This is intentionally narrower than a claim that the three indexed binary axes themselves tilt or precess into new orientations. The candidate braid scaffold remains the kinematic frame; no taxonomy member is assigned by this weak-sector construction. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
 
 ---
 
@@ -34,11 +34,11 @@ We separate two structures that are often spoken about together but should not b
 
 ### 1. Core frame
 
-The [Noether braid](../../noether-braid/noether-braid.md) is the neutral nested shell braid scaffold. It defines:
+The [Noether braid](../../noether-braid/noether-braid.md) is the neutral six-architrino scaffold. It defines:
 
 - generation via shielding level,
 - the retained matter-versus-polarity-conjugate branch relation,
-- the three reference axes $(H,M,L)$,
+- the three persistently indexed reference axes $(1,2,3)$,
 - the geometric seat of spinor behavior.
 
 In this idea, the core frame is **not** allowed to undergo a new quark-specific axial distortion. Its role is to provide the reference triad
@@ -171,7 +171,7 @@ The following are allowed to rotate relative to the fixed core frame:
 
 The following are **not** rotating in this note:
 
-- the H/M/L Noether braid scaffold itself,
+- the indexed Noether braid scaffold itself,
 - the binary nesting order that defines generation,
 - the retained matter-versus-polarity-conjugate branch relation,
 - the topological structure used to motivate spin-$\tfrac{1}{2}$ behavior.
@@ -191,7 +191,7 @@ Those should be kept distinct unless a later derivation proves they collapse to 
 A minimal way to encode the hypothesis is by one angle $\alpha$ and one discrete color label $c$.
 
 - $\alpha$: polar misalignment of the axial frame relative to the core frame,
-- $c \in \{H,M,L\}$: the exceptional-axis label selecting the quark color sector.
+- $c \in \{1,2,3\}$: the persistent exceptional-axis index selecting the quark color sector.
 
 Then a first-pass rotation may be written as
 $$
@@ -318,7 +318,7 @@ Color picture:
 
 - one axis is exceptional,
 - color labels which exceptional-axis sector the quark occupies,
-- baryon color neutrality arises from H/M/L singlet closure.
+- baryon color neutrality arises from indexed-sector singlet closure.
 
 Extended picture proposed here:
 

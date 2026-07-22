@@ -493,7 +493,7 @@ marked compact-box only unless a local noncompact replacement is supplied.
 
 ## What This Does Not Yet Prove
 
-- It does not certify an eigen-braid.
+- It does not certify a braid.
 - It does not prove stable self-hit assemblies.
 - It does not derive Noether sea response, mass, Lorentz behavior, quantum
   weights, or Standard Model coefficients.

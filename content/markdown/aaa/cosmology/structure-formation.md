@@ -25,7 +25,7 @@ Define a spatially averaged Noether sea state at absolute time $T$:
 - $u_{\text{sea}}(T)$: mean energy density of the Noether sea, distinct from the Noether braid number/mass-density proxy $\rho_{\text{NS}}(\mathbf X,T)$,
 - $\rho_m(T)$: mean energy density of matter assemblies (baryonic + neutral/dark),
 - $\bar{\rho}_{\text{NS}}(T)$: mean Noether braid density in physical units,
-- $\bar{R}_{\text{braid}}(T)$: mean outer-binary radius of Noether braid assemblies in the Noether sea.
+- $\bar{R}_{\text{braid}}(T)$: declared mean binary-radius statistic for Noether braid assemblies in the Noether sea.
 
 An effective Hubble-like parameter $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ is defined operationally through the rate of change of the Noether sea's bulk properties as read by observer clocks. Specifically, if one defines an effective scale variable $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ via the photon redshift relation (the ratio of photon assembly frequencies at emission and reception), then $H_{\mathrm{eff}}=d\ln a_{\mathrm{eff}}/dt_{\mathrm{eff}}$ summarizes how inter-assembly separations evolve as the Noether sea relaxes and dissipates energy. This $H_{\mathrm{eff}}$ is not the expansion rate of space but a bookkeeping variable for the Noether sea's thermodynamic and mechanical evolution.
 
@@ -46,11 +46,11 @@ $$
 
 Each symbol carries a specific medium-level meaning:
 
-- **$H_{\mathrm{eff}}(t_{\mathrm{eff}})$**: the effective damping term arising from Noether sea bulk evolution. As Noether braids in the Noether sea relax energetically (outer binaries expanding, frequencies decreasing), inter-assembly separations grow, diluting the gravitational transmitter-emission density. This acts as a friction-like term on the growth of perturbations, matching the role of the Hubble-like damping term in standard cosmology without identifying ordinary dissipative drag as the mass mechanism.
+- **$H_{\mathrm{eff}}(t_{\mathrm{eff}})$**: the effective damping term arising from Noether sea bulk evolution. As Noether braids in the Noether sea relax energetically (their declared binary-radius statistic increasing while frequencies decrease), inter-assembly separations grow, diluting the gravitational transmitter-emission density. This acts as a friction-like term on the growth of perturbations, matching the role of the Hubble-like damping term in standard cosmology without identifying ordinary dissipative drag as the mass mechanism.
 
 - **$G_{\text{eff}}(t_{\mathrm{eff}}, k)$**: the effective gravitational coupling, set by how efficiently a local matter overdensity perturbs the surrounding Noether sea and how that perturbation propagates to attract more matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $G_{\text{eff}}$ depends on:
   - the local Noether braid density $\bar{\rho}_{\text{NS}}(T)$, which sets Noether sea stiffness,
-  - the outer-binary radius $\bar{R}_{\text{braid}}(T)$, which controls the compliance of Noether sea assemblies to deformation,
+- the declared binary-radius statistic $\bar{R}_{\text{braid}}(T)$, which parameterizes the compliance of Noether sea assemblies to deformation,
   - potentially the wavenumber $k$, if the Noether sea response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes.
   The weak-field constitutive map behind this is the same one organized in [Emergent Metric](../spacetime/emergent-metric.md).
 
@@ -226,7 +226,7 @@ The effective growth equation accommodates both CDM-like and self-interacting sc
 
 ### Medium Energy (Dark-Energy Role)
 
-The baseline energy density of the Noether sea ($u_{\text{sea}}$) is the candidate carrier for an effective cosmological-constant or dark-energy role. Its contribution enters the effective Hubble-like term $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ only after the same Noether sea constitutive record supplies the pressure and coupling rows. If the projected equation of state satisfies $w_{\text{sea}} \approx -1$, with the slowly varying outer-binary tension sector reading out as effective negative pressure, the observer-level expansion history accelerates. Any evolution of $w_{\text{sea}}(T)$ from slow Noether sea thermodynamic relaxation would produce a dynamical dark-energy signature testable against supernova and BAO data.
+The baseline energy density of the Noether sea ($u_{\text{sea}}$) is the candidate carrier for an effective cosmological-constant or dark-energy role. Its contribution enters the effective Hubble-like term $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ only after the same Noether sea constitutive record supplies the pressure and coupling rows. If the projected equation of state satisfies $w_{\text{sea}} \approx -1$, with the slowly varying indexed-binary tension sector reading out as effective negative pressure, the observer-level expansion history accelerates. Any evolution of $w_{\text{sea}}(T)$ from slow Noether sea thermodynamic relaxation would produce a dynamical dark-energy signature testable against supernova and BAO data.
 
 ---
 
@@ -517,7 +517,7 @@ $$
 $$
 Cosmological deviations are viable only when the same coefficient record also fits BAO, CMB lensing, supernova distances, and $f\sigma_8$ growth without retuning $S_{\mathrm{loc}}$ by observational channel.
 
-A concrete prediction: if Noether sea compliance decreases as it cools (outer binaries expand, lowering the energy density and stiffening the Noether sea response), then $\mu < 0$ at late times, suppressing growth and lowering $S_8$. This is a falsifiable, quantitative claim.
+A concrete prediction: if Noether sea compliance decreases as it cools (the declared binary-radius statistic increases, lowering the energy density and stiffening the Noether sea response), then $\mu < 0$ at late times, suppressing growth and lowering $S_8$. This is a falsifiable, quantitative claim.
 
 ---
 

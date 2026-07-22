@@ -477,6 +477,8 @@ label {
 }
 
 .greek-match-center {
+  container-name: greek-match-center;
+  container-type: inline-size;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -627,6 +629,12 @@ label {
   font-size: clamp(6px, calc(var(--ring-size) * 0.013), 10px);
   line-height: 1;
   white-space: nowrap;
+}
+
+@container greek-match-center (max-width: 128px) {
+  .greek-match-center-value[data-representation="teaching"] + .greek-match-center-status {
+    display: none;
+  }
 }
 
 .greek-match-pronunciation {

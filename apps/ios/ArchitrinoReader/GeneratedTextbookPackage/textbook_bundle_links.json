@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-22T02:33:12.736Z",
+  "generated_at": "2026-07-22T18:07:16.051Z",
   "total_links": 1792,
   "links": [
     {
@@ -1974,10 +1974,10 @@
     {
       "sourceChapterId": "cosmology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
     },
     {
       "sourceChapterId": "cosmology",
@@ -2582,22 +2582,6 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2610,6 +2594,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -4678,38 +4678,6 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md#assumption-2-exact-integer-phase-closure",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4834,6 +4802,38 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md#assumption-2-exact-integer-phase-closure",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -4990,14 +4990,6 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md#a1-constrained-variants",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md#a2",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5007,6 +4999,14 @@
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md#a2",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-family-a.md#a3-constrained-variants",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-a.md"
@@ -5694,18 +5694,18 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -7238,14 +7238,6 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -7274,6 +7266,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -7950,10 +7950,10 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -7966,10 +7966,10 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -8006,10 +8006,10 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -10822,18 +10822,18 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
     },
     {
       "sourceChapterId": "spacetime",
@@ -11774,6 +11774,22 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "#a1-adiabatic-decoupling-bound",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "#a1-adiabatic-decoupling-bound",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "#algebraic-effective-metric-map-from-the-handoff-tuple",
       "kind": "anchor",
       "status": "skip_anchor",
@@ -11783,22 +11799,6 @@
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "#clock-channel-expansion-and-minimal-closure-solution",
-      "kind": "anchor",
-      "status": "skip_anchor",
-      "targetBundlePath": ""
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "#nested-shell-braid-adiabatic-decoupling-bound",
-      "kind": "anchor",
-      "status": "skip_anchor",
-      "targetBundlePath": ""
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "#nested-shell-braid-adiabatic-decoupling-bound",
       "kind": "anchor",
       "status": "skip_anchor",
       "targetBundlePath": ""
@@ -12622,14 +12622,6 @@
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md"
-    },
-    {
-      "sourceChapterId": "validation",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "target": "../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -12682,6 +12674,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md"
     },
     {
       "sourceChapterId": "validation",
@@ -12846,66 +12846,66 @@
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md"
-    },
-    {
-      "sourceChapterId": "validation",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
-    },
-    {
-      "sourceChapterId": "validation",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
-    },
-    {
-      "sourceChapterId": "validation",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
-    },
-    {
-      "sourceChapterId": "validation",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
-    },
-    {
-      "sourceChapterId": "validation",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
-    },
-    {
-      "sourceChapterId": "validation",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
-    },
-    {
-      "sourceChapterId": "validation",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
     },
     {
       "sourceChapterId": "validation",
@@ -14150,6 +14150,14 @@
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "target": "../../../../markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -14242,14 +14250,6 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md"
-    },
-    {
-      "sourceChapterId": "validation",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md"
     },
     {
       "sourceChapterId": "validation",

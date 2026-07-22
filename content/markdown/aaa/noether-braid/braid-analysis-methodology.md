@@ -277,6 +277,11 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | Prescribed-path equation mismatch | Peak, RMS, mean, phase-resolved, and per-binary rows of $\mathbf R_i^{\mathrm{path}}$ | Pointwise compatibility between the prescribed kinematics and the evaluated acceleration contributions |
 | External signed exposure | $\mathcal W$ on $S_R$ through the complete cycle | Net polarity-signed wake exposure |
 | External raw exposure | $\mathcal W_{\mathrm{abs}}$ on $S_R$ through the complete cycle | Wake strength before signed cancellation |
+| Complete-cycle signed normal wake flux | $F_{\mathrm{signed}}(R)$ from the outward-normal projection of the signed causal-wake contributions | The global signed crossing total, which vanishes for a polarity-neutral assembly and is therefore not a cancellation score |
+| Complete-cycle raw normal wake flux | $F_{\mathrm{raw}}(R)$ with transmitter and root identities retained before absolute aggregation | The emitted wake measure crossing $S_R$ before polarity cancellation; its source-normalized reference is $T_{\mathrm{ret}}\sum_j|q_j|$ |
+| Complete-cycle residual normal wake flux | $F_{\mathrm{res}}(R)$ from the absolute locally superposed signed normal flux | How much local signed wake survives cancellation over the complete cycle |
+| Complete-cycle normal wake-flux cancellation | $\eta_{\mathcal W,\mathrm{flux}}(R)=F_{\mathrm{res}}(R)/F_{\mathrm{raw}}(R)$ | Linear wake cancellation under the declared enclosing-surface convention, not energy or work |
+| Frequency-resolved normal wake-flux cancellation | $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$ from transmitter-root-tagged complex coefficients | Which temporal harmonics and angular modes survive phase-sensitive signed superposition at each enclosing radius |
 | Directional response | $\mathbf A_p$ for both probe polarities on $S_R$ | Vector exposure and polarity dependence |
 | Angular ledger | Cycle-resolved isotropic and higher angular coefficients | Which external angular channels survive cancellation |
 | Anisotropy | Non-isotropic far-field ledger relative to the naive constituent ledger | Whether a scalar cancellation summary is adequate |
@@ -317,20 +322,188 @@ $$
 
 is a geometry-response exposure fraction. It measures external cancellation under a declared probe and surface convention. It is analytically computable from a prescribed record and is not the apparent-energy fraction.
 
+### Complete-Cycle Normal Causal-Wake Flux
+
+The causal-wake map also supports a linear complete-cycle surface diagnostic. It is distinct from the acceleration-squared exposure fraction and from every energy construction. A plain surface integral of $\mathcal W$ is insufficient because it omits the direction in which each causal wake crosses the surface.
+
+For a retained simple root emitted by transmitter $j$, define its outward-normal wake-flux density on $S_R$ by
+
+$$
+f_{j,T_t}(T,\mathbf X)
+=
+\frac{q_jc_f}{4\pi r_j^2|D_{t,j}|}
+\widehat{\mathbf r}_j\cdot\widehat{\mathbf n}
+$$
+
+where $\widehat{\mathbf n}$ is the outward unit normal. The signed, raw, and residual complete-cycle measures are
+
+$$
+F_{\mathrm{signed}}(R)
+=
+\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\int_{S_R}
+\sum_j\sum_{T_t\in\mathcal C_j(T,\mathbf X)}
+f_{j,T_t}(T,\mathbf X)
+\,dA\,dT
+$$
+
+$$
+F_{\mathrm{raw}}(R)
+=
+\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\int_{S_R}
+\sum_j\sum_{T_t\in\mathcal C_j(T,\mathbf X)}
+\left|f_{j,T_t}(T,\mathbf X)\right|
+\,dA\,dT
+$$
+
+and
+
+$$
+F_{\mathrm{res}}(R)
+=
+\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\int_{S_R}
+\left|
+\sum_j\sum_{T_t\in\mathcal C_j(T,\mathbf X)}
+f_{j,T_t}(T,\mathbf X)
+\right|
+\,dA\,dT
+$$
+
+The raw measure takes absolute values before transmitter contributions are superposed. The residual measure superposes the signed contributions first and then takes the absolute value. Their ratio
+
+$$
+\eta_{\mathcal W,\mathrm{flux}}(R)
+=
+\frac{F_{\mathrm{res}}(R)}{F_{\mathrm{raw}}(R)}
+$$
+
+is admitted only when $F_{\mathrm{raw}}(R)$ exceeds the predeclared positive floor. The triangle inequality then gives $0 \le \eta_{\mathcal W,\mathrm{flux}}(R) \le 1$. Values near zero indicate strong local signed cancellation over the complete cycle; values near one indicate that little of the raw normal wake flux cancels.
+
+The instantaneous normal fluxes on two enclosing spheres need not agree. At the same absolute time, the inner and outer spheres are crossed by wake surfaces emitted at different transmitter phases. No individual wake front stalls: the difference is the time derivative of the integrated wake measure currently in transit between the spheres. For nested fixed volumes $V_1\subset V_2$ containing every transmitter path,
+
+$$
+\Phi_{\mathrm{raw}}(R_2,T)
+-
+\Phi_{\mathrm{raw}}(R_1,T)
+=
+-\frac{d}{dT}
+N_{\mathrm{raw}}(V_2\setminus V_1,T)
+$$
+
+If the prescribed paths, retained history, and in-transit wake measure all return after $T_{\mathrm{ret}}$, integration over the complete cycle removes this storage difference. For fixed convex enclosing surfaces,
+
+$$
+F_{\mathrm{raw}}(R)
+=
+T_{\mathrm{ret}}\sum_j|q_j|.
+$$
+
+This identity is both the source-normalized reference and an independent implementation check. The signed global integral similarly equals $T_{\mathrm{ret}}\sum_jq_j$ and therefore vanishes for a polarity-neutral braid. The residual $F_{\mathrm{res}}(R)$ and its ratio may still depend on radius because the signed contributions superpose differently after different causal travel delays. A far-field plateau is a measured radial result, not an assumed invariance.
+
+These quantities measure causal-wake crossings only. They are not energy, potential, realized work, braid depletion, intrinsic leakage, or stability. A packet must reject the accepted wake-flux measures when roots or history are incomplete, a transmitter leaves an enclosing surface, the raw cycle integral fails its source-normalized reference after refinement, or the primary and refined time-and-surface quadratures fail their declared tolerance.
+
+#### Frequency-Resolved Normal Wake-Flux Cancellation
+
+The complete-cycle scalar $\eta_{\mathcal W,\mathrm{flux}}(R)$ combines every temporal frequency and angular pattern. It therefore cannot show whether one wake harmonic cancels strongly while another survives. The phase-sensitive reduction must occur before any absolute aggregation.
+
+Let $a$ identify a retained transmitter-root branch, let $Y_{\ell m}$ be the declared real orthonormal spherical-harmonic basis, and let $\Omega_0=2\pi/T_{\mathrm{ret}}$. Define
+
+$$
+\widetilde f_{a,\ell mn}(R)
+=
+\frac{1}{T_{\mathrm{ret}}}
+\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+e^{-in\Omega_0(T-T_0)}
+\int_{S_R}
+f_a(T,\mathbf X)Y_{\ell m}(\widehat{\mathbf X})
+\,dA\,dT.
+$$
+
+The coefficient retains temporal phase, angular mode, enclosing radius, transmitter identity, and root ordinal. Form the raw and net coefficient magnitudes only after every transmitter-root coefficient exists:
+
+$$
+A_{\mathrm{raw},\ell mn}(R)
+=
+\sum_a\left|\widetilde f_{a,\ell mn}(R)\right|,
+\qquad
+A_{\mathrm{net},\ell mn}(R)
+=
+\left|\sum_a\widetilde f_{a,\ell mn}(R)\right|.
+$$
+
+For $A_{\mathrm{raw},\ell mn}$ above the declared effective coefficient floor, define
+
+$$
+\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)
+=
+\frac{A_{\mathrm{net},\ell mn}(R)}
+{A_{\mathrm{raw},\ell mn}(R)}.
+$$
+
+The triangle inequality gives $0 \le \eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R) \le 1$. A value near zero identifies strong phase-sensitive cancellation in one temporal-harmonic and angular-mode channel. A value near one identifies little cancellation in that channel. The reducer also reports the Euclidean norm over the retained angular modes for each temporal harmonic and evaluates those rows across the declared enclosing radii.
+
+The effective coefficient floor is the larger of a declared absolute floor and a declared fraction of the largest raw coefficient on that enclosing surface. Source-root coefficients below that floor remain available as diagnostic rows, but they do not receive accepted cancellation ratios. A logarithmic radial fit for a net coefficient or cancellation ratio additionally requires the net magnitude to exceed the same floor at every fitted radius. This prevents numerical zero from acquiring an arbitrary radial exponent.
+
+The frequency ledger must report retained-band coverage. A coefficient is accepted only when transmitter-root tags reconstruct the sampled signed normal flux, primary and refined grids agree within tolerance, and the transmitter-tagged signal outside the retained harmonic band remains below its declared RMS fraction. A Fourier transform of the rectified trace $\int_{S_R}|\sum_a f_a|\,dA$ is a different diagnostic: rectification creates sum, difference, and multiple frequencies. Those created frequencies must not be reported as transmitter-emission frequencies.
+
+These complex coefficients, coefficient magnitudes, and cancellation ratios are signal-processing wake diagnostics. They are not spectral energy, energy transport, or realized work.
+
 ## Analytical Claim Boundary
 
-The signed wake $\mathcal W$, unsigned wake $\mathcal W_{\mathrm{abs}}$, virtual-probe response $\mathbf A_p$, angular coefficients, and exposure fraction $\eta_{\mathrm{ext}}$ are the available analytical ledgers. None is an energy quantity. This method therefore does not report total energy, apparent energy, apparent-energy fractions, or stability scores. It also does not include a Noether-sea response. Introducing any such quantity requires a separate definition and cannot be accomplished by relabeling a wake-exposure measure.
+The signed wake $\mathcal W$, unsigned wake $\mathcal W_{\mathrm{abs}}$, virtual-probe response $\mathbf A_p$, angular coefficients, exposure fraction $\eta_{\mathrm{ext}}$, and complete-cycle normal wake-flux measures are the available analytical ledgers. None is an energy quantity. This method therefore does not report total energy, apparent energy, apparent-energy fractions, escaping energy, intrinsic leakage, or stability scores. It also does not include a Noether-sea response. Introducing any such quantity requires a separate definition and cannot be accomplished by relabeling a wake-exposure measure.
 
-## Parameter Sampling
+## Analytical Evaluation Programs
+
+The measures in this chapter require analytical programs that evaluate the declared formulas for an exact source record. These programs are not assembly-evolution simulations. They hold the prescribed paths fixed and calculate their consequences at the requested absolute-coordinate events.
+
+The analytical program suite should have separable components for:
+
+1. validating and evaluating the source paths, velocities, accelerations, periods, and taxonomy coordinates;
+2. enumerating every retained causal root and recording its identity, topology, and $D_t$ margin;
+3. evaluating $\mathcal W$, $\mathcal W_{\mathrm{abs}}$, $\chi_{\mathcal W}$, and $\mathbf A_p$ at internal and external probes;
+4. reducing the event-level results into the separation, root, mismatch, exposure, complete-cycle normal wake-flux, angular, spectral, radial-scaling, symmetry, and sensitivity measures defined above; and
+5. emitting a result packet keyed by the exact source hash and protocol hash.
+
+Each component must expose numerical tolerances and convergence checks. Where a closed-form, symmetry-protected, static, or other independently known analytical case exists, it should be used as an independent check. Replaying output from the same program establishes reproducibility, not correctness.
+
+Only after these programs can calculate the common measure set should a broad parameter campaign begin. Otherwise a sampling run merely produces many configurations without a controlled basis for comparing them.
+
+## Monte Carlo Configuration-Space Analysis
 
 Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group-translation speed, phase origin, and any permitted prescribed-history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
 
-The analytical campaign has two stages:
+For a family/member candidate $M$, define its admissible configuration space by
 
-1. **Random coverage.** Draw a reproducible, seeded sample from each declared measure over $\Theta$. Use stratification so narrow coordinate regions are not lost by chance.
-2. **Directed refinement.** Refine around strong external cancellation, admissible root margins, and boundaries where root topology or prescribed-period closure changes. Include deliberately adverse directions so the method does not optimize only one favorable projection.
+$$
+\Theta_M
+=
+\left\{
+\boldsymbol\theta:
+\boldsymbol\theta\text{ satisfies the taxonomy relations and declared analysis gates for }M
+\right\}.
+$$
+
+A Monte Carlo campaign draws prescribed instantiations $\boldsymbol\theta^{(k)}\in\Theta_M$, builds the exact source record $S(\boldsymbol\theta^{(k)})$, and runs the analytical programs to obtain
+
+$$
+\mathbf G^{(k)}
+=
+\mathbf G\!\left[S(\boldsymbol\theta^{(k)});P\right].
+$$
+
+The common protocol $P$ must remain fixed across the compared sample. A changed source definition, measure, probe set, history depth, root policy, boundary, or normalization requires an impact review and invalidates every affected score. The campaign must recompute those scores before they re-enter the comparison population.
+
+The analytical campaign has three stages:
+
+1. **Monte Carlo coverage.** Draw a reproducible, seeded sample from each declared measure over $\Theta_M$. Use stratification so narrow coordinate regions are not lost by chance.
+2. **Directed refinement.** Add targeted samples around strong external cancellation, admissible root margins, candidate optima, and boundaries where root topology or prescribed-period closure changes. Include deliberately adverse directions so the method does not optimize only one favorable projection.
+3. **Robustness and sensitivity analysis.** Resample neighborhoods around leading instantiations, vary one declared coordinate at a time where useful, and report whether the apparent advantage survives small changes in coordinates, sampling measure, and numerical resolution.
 
 Every result row must include the family/member identifier, full parameter vector, source grade, sampling measure, seed or directed-selection rule, root status, numerical resolution, and metric uncertainty.
+
+The campaign output should include the distribution of every objective and gate, parameter-to-measure sensitivity, correlations that may reveal redundant coordinates, the non-dominated set under $\mathbf G_{\mathrm{an}}$, and the location and width of robust favorable regions. A single best sampled point is not enough: the central question is whether a candidate has a reproducible favorable region in configuration space or only a narrowly tuned instantiation.
 
 ## Candidate Grading
 
@@ -339,48 +512,15 @@ The prescribed-record analytical grade is fail-closed and occurs in this order:
 1. **Record validity:** complete provenance, finite values, legal coordinates, reproducible paths, and a current score for the exact source hash.
 2. **Geometric admissibility:** no undeclared collision or coincidence, a complete declared period, and converged geometric extraction.
 3. **Causal admissibility:** complete retained roots, declared self-hit treatment, resolved fold events, and converged root sums.
-4. **Analytical wake comparison:** signed and raw exposure, cancellation, anisotropy, spectra, peak response, and source-parameter sensitivity under one common protocol.
+4. **Analytical wake comparison:** signed and raw exposure, complete-cycle normal wake flux and cancellation, anisotropy, spectra, peak response, and source-parameter sensitivity under one common protocol.
 
 A prescribed chart receives only an analytical prescribed-record grade. Stability and energy are outside the method and outside its score.
 
-### Initial Prescribed-Candidate Cohort
+### Candidate Summary Publication
 
-The initial comparison cohort contains four prescribed instantiations of `B1`. These candidate names describe their taxonomy coordinates; they do not create additional taxonomy members. All four use one common midpoint, the common axis $\hat{\mathbf n}_B=(0,0,1)$, group translation speed $s_{\mathrm{grp}}=0$, radii
+Candidate-specific coordinates, source hashes, protocol hashes, gate results, and metric values enter this chapter only from a complete accepted generation of the analytical database. A fresh generation must cover the entire registered candidate cohort under one declared protocol before any comparison row is published. Regeneration replaces the table as one unit; values from different database generations must not be mixed.
 
-$$
-(R_1,R_2,R_3)=(0.22,0.32,0.44),
-$$
-
-common frequency $f=0.25$, and phases $(\phi_1,\phi_2,\phi_3)=(0,2\pi/3,4\pi/3)$. Their distinguishing coordinates are:
-
-| Candidate name | $(h_1,h_2,h_3)$ | $(\rho_1,\rho_2,\rho_3)$ | Coordinate status |
-| --- | --- | --- | --- |
-| `B1 interior-coordinate reference` | $(0.075244432,0.205692035,0.398775426)$ | $(0.206732377,0.245134222,0.185952035)$ | Interior for all three binaries |
-| `B1 high-axial-fraction interior` | $(0.206732377,0.315138481,0.438325667)$ | $(0.075244432,0.055567417,0.038348527)$ | Interior for all three binaries, with $h_a/R_a$ near the axial boundary |
-| `B1 all-equatorial boundary` | $(0,0,0)$ | $(0.22,0.32,0.44)$ | $h_a=0$ for all three binaries |
-| `B1 all-axial boundary` | $(0.22,0.32,0.44)$ | $(0,0,0)$ | $\rho_a=0$ for all three binaries |
-
-The derived $h_a$ and $\rho_a$ values are shown to nine decimal places for identification; they are not analytical results. The complete source record $S$ remains authoritative for exact coordinates, endpoint identities, and polarities. Every scored row also depends on one common analysis protocol $P$.
-
-### Candidate Comparison Table
-
-The comparison table uses candidates as columns and metrics as rows. `Pending` means that the candidate has not yet been evaluated under the shared source-and-protocol declaration printed with the table. `NA` is reserved for a measure whose definition does not apply; it must not be used merely because a value has not been computed.
-
-| Metric or gate | `B1 interior-coordinate reference` | `B1 high-axial-fraction interior` | `B1 all-equatorial boundary` | `B1 all-axial boundary` |
-| --- | --- | --- | --- | --- |
-| Source-record hash | Pending | Pending | Pending | Pending |
-| Common protocol hash | Pending | Pending | Pending | Pending |
-| Prescribed-period closure | Pending | Pending | Pending | Pending |
-| Minimum separation $d_{\min}$ | Pending | Pending | Pending | Pending |
-| Root-transversality margin $\min|D_t|$ | Pending | Pending | Pending | Pending |
-| Root-topology completeness | Pending | Pending | Pending | Pending |
-| Numerical convergence | Pending | Pending | Pending | Pending |
-| External-exposure fraction $\eta_{\mathrm{ext}}(R)$ | Pending | Pending | Pending | Pending |
-| Anisotropy $\epsilon_{\mathrm{aniso}}(R)$ | Pending | Pending | Pending | Pending |
-| Peak external response $A_{\mathrm{ext,peak}}(R)$ | Pending | Pending | Pending | Pending |
-| Peak signed-cancellation ratio $\chi_{\mathcal W,\mathrm{peak}}(R)$ | Pending | Pending | Pending | Pending |
-| Source-parameter sensitivity $S_{\boldsymbol\theta}$ | Pending | Pending | Pending | Pending |
-| Dominance status | Pending | Pending | Pending | Pending |
+The reader-facing summary should remain compact. It may show named reference cases, the leader under an explicitly named measure, and operator-selected cases of analytical interest. Each row must carry its source hash, protocol hash, database-generation hash, acceptance state, and the reason it is included. A rejected case may be shown only when its failed gate is explicit. An undeclared combined score or global braid ranking is not permitted.
 
 Each published table must state the enclosing radius or radius sequence, surface and time reductions, probe polarity, normalization, tolerance, and uncertainty attached to every scalar row. A cell may link to a fuller ledger when a scalar would hide root transitions, angular structure, or phase dependence.
 
@@ -391,6 +531,7 @@ $$
 =
 \left(
 \eta_{\mathrm{ext}},
+\eta_{\mathcal W,\mathrm{flux}},
 \epsilon_{\mathrm{aniso}},
 A_{\mathrm{ext,peak}},
 \chi_{\mathcal W,\mathrm{peak}},
@@ -413,7 +554,9 @@ Borg should expose this method as a record-derived analysis surface. A user shou
 - individual transmitter contributions and their vector sum;
 - root count, root identity, $D_t$, and fold events;
 - time graphs over the full return cycle;
-- spatial slices, enclosing-surface maps, spectra, and angular coefficients; and
+- spatial slices, enclosing-surface maps, spectra, and angular coefficients;
+- complete-cycle signed, raw, and residual normal wake flux together with $\eta_{\mathcal W,\mathrm{flux}}(R)$ and the raw emission-reference residual;
+- transmitter-root-tagged complex normal wake-flux coefficients and $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$ across the declared enclosing radii; and
 - source-parameter sensitivity, invalidated-score status, and the exact source and protocol hashes.
 
 The graph must remain synchronized with animation time and preserve source-record provenance. Borg may also present a teaching sequence that highlights selected binaries, axes, wakes, envelopes, roots, or probes while explanatory text appears on the canvas. Teaching cues are annotations on the record; they are not evidence generated by the record.
@@ -430,7 +573,7 @@ A publishable candidate analysis contains:
 4. the probe geometry and raw time-dependent curves;
 5. prescribed-period closure, root, separation, cancellation, anisotropy, spectral, and source-sensitivity metrics;
 6. an explicit analytical claim boundary that excludes energy and stability conclusions;
-7. the random and directed sampling declarations;
+7. the Monte Carlo, directed-refinement, and robustness sampling declarations;
 8. the gate result and multi-objective comparison vector; and
 9. the exact observation that would falsify each promoted claim.
 

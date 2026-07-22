@@ -4,7 +4,7 @@ This chapter reconstructs the discovery path by which the current $\mathbb{A}\ma
 
 Read this as a record of how the architecture learned to name itself. The early archive matters because it shows recurring pressures and motifs, but the proof burden lives in the present equations, branch certificates, simulations, and validation gates.
 
-The history does not look like a finished core being uncovered by stripping away outer layers. It is closer to a crystal being grown and annealed. Small seed structures appeared first: two polarities, Euclidean void, emitted potential histories, physical medium, binaries, and assembly grammar. Later passes bonded those seeds into larger patterns: nested neutral assemblies, axial attachments, generation mapping, strong-sector links, path-history dynamics, and Noether sea response. The mature theory then reheated those rough bonds under stricter proof pressure, replacing legacy vocabulary with controlled terms and separating discovery intuition from derivation.
+The history does not look like a finished core being uncovered by stripping away outer layers. It is closer to a crystal being grown and annealed. Small seed structures appeared first: two polarities, Euclidean void, emitted potential histories, physical medium, binaries, and assembly grammar. Later passes bonded those seeds into larger patterns: coupled neutral assemblies, axial attachments, generation mapping, strong-sector links, path-history dynamics, and Noether sea response. The mature theory then reheated those rough bonds under stricter proof pressure, using controlled vocabulary and separating discovery intuition from derivation.
 
 ## 2018: Search Frame And Medium Intuition
 
@@ -28,15 +28,15 @@ The early Noether-braid grammar matured when the neutral-braid scaffold was pair
 
 This was one of the seminal nonlinear moments. Three motifs that had been only loosely related began to lock together:
 
-- nested shell support could provide a neutral retained carrier,
+- indexed Family-A support could provide a neutral retained carrier,
 - axial attachments could differentiate fermion-like assemblies,
-- and generation structure might arise from how nested shell support and axial-layer persistence survive stripping, exposure, energy shifts, or branch changes.
+- and generation structure might arise from how indexed support and axial-layer persistence survive stripping, exposure, energy shifts, or branch changes.
 
 The present theory still owes the exact derivation. The historical point is narrower and stronger: the source archive repeatedly returned to the same assembly grammar before the current terms existed.
 
 ## 2021: Noether Naming, Clock And Ruler Roles, And Strong-Sector Linkage
 
-The Noether-braid idea sharpened when inner, middle, and outer support roles were treated as distinct retained roles rather than generic subcomponents. The binary also began to carry clock-and-ruler significance: a variable assembly whose frequency, radius, and energy could become a route toward effective measurement rather than a mere particle ingredient.
+The source-era Noether-braid idea sharpened when it assigned distinct inner, middle, and outer support roles rather than generic subcomponents. The current taxonomy retires those labels as fixed identities: records begin with persistent binary indices $1,2,3$, and any radius or support role must be derived on a retained branch. The binary also began to carry clock-and-ruler significance: a variable assembly whose frequency, radius, and energy could become a route toward effective measurement rather than a mere particle ingredient.
 
 The same stage produced an important strong-sector lead. Quark-like Noether braids, polar vortices, binary couplings, apparent energy, shielded energy, and color-like bookkeeping began to be discussed together. In current language, this is not a claim that gluons have already been derived as binaries. It is a historical source signal for a precise recovery problem: recover SU(3)-like generator structure, confinement, gluon-like transport, proton spin accounting, and color neutrality from accepted $\mathbb{A}\mathbb{A}\mathbb{A}$ carriers.
 
@@ -65,7 +65,7 @@ The Noether sea also became a stronger bridge. Instead of treating vacuum as emp
 - define the Noether sea as a material population of neutral assemblies in the Euclidean void,
 - derive its constitutive response, effective metric behavior, clock/ruler recovery, redshift accounting, and interaction with ordinary assemblies.
 
-The same period extended generation and binary ideas toward spacetime assembly and Higgs/graviton-like bridges. Those links remain priority-sensitive and proof-burdened. Their historical value is that the same nested-shell and medium-response motifs kept reappearing under new comparison pressure.
+The same period extended generation and binary ideas toward spacetime assembly and Higgs/graviton-like bridges. Those links remain priority-sensitive and proof-burdened. Their historical value is that the same indexed-support and medium-response motifs kept reappearing under new comparison pressure.
 
 ## 2025-2026: Effective-Theory Framing And Closure Work
 
@@ -81,9 +81,9 @@ The mature theory is therefore less exuberant than the early archive but more am
 | --- | --- | --- | --- | --- |
 | 2018 | Noether sea | A physical spacetime medium made from neutral source-era assemblies. | Noether sea as a material population of neutral assemblies in Euclidean void. | Constitutive response, effective-metric recovery, redshift tax, density and delay variables. |
 | 2019 | Binary recognition | Opposite-polarity pair with scalable radius, frequency, energy, and stability. | Primary two-architrino assembly and first retained return-cycle carrier. | Branch geometry, self-hit admissibility, energy/action accounting, Planck-scale limit. |
-| 2019-2021 | Noether braid recognition | A neutral-braid scaffold with nested shell support as a conservation and shielding signal. | Noether braid or nested shell braid candidate, with topology protected only where proven. | Retained causal-root ledger, stability, neutralization, link/framing theorems. |
+| 2019-2021 | Noether braid recognition | A neutral-braid scaffold with indexed Family-A support as a conservation and shielding signal. | Noether braid or Family-A candidate, with topology protected only where proven. | Retained causal-root ledger, stability, neutralization, link/framing theorems. |
 | 2020 | Axial layer | Additional polar-site constituents around fermion-like assemblies. | Axial architrinos, axial layer, axial pattern, axial inventory, and polar-site binding. | Exact charge bookkeeping, weak/hypercharge/electric recovery, axial persistence. |
-| 2020-2024 | Fermion generations | Generation differences tied to nested shell support, exposure, stripping, or energy state. | Mass-map and branch-geometry target across three generations. | Generation ladder, decay provenance, mass ratios, accepted carrier evidence. |
+| 2020-2024 | Fermion generations | Generation differences tied to indexed support, exposure, stripping, or energy state. | Mass-map and branch-geometry target across three generations. | Generation ladder, decay provenance, mass ratios, accepted carrier evidence. |
 | 2021-2023 | Strong-sector linkage | Quark braids, binary couplings, polar vortices, color-like bookkeeping, and proton spin linked together. | Strong-sector recovery from Noether-braid geometry and axial-layer bookkeeping. | SU(3)-like algebra, confinement, gluon-like transport, spin accounting, color neutrality. |
 | 2022-2026 | Causal wake | Continuously emitted potential histories and present interaction with path history. | Causal wake, path-history support, same-record binding, and master-equation closure. | Accepted equation of motion, causal-root support, finite-memory conditions, conservation accounting. |
 

@@ -27,6 +27,7 @@ export async function bootBorgApp({
   manifest = BORG_DATASET_MANIFEST_V1,
   fetchLike = globalThis.fetch,
   locationLike = globalThis.location,
+  historyLike = globalThis.history,
   braidRecordCatalog = BORG_BRAID_RECORD_CATALOG,
   startupSeedIndex = createBorgStartupSeedIndex(),
 } = {}) {
@@ -36,6 +37,7 @@ export async function bootBorgApp({
     catalog: braidRecordCatalog,
     selectedRecordUrls: query.getAll("eomRecord"),
     locationLike,
+    historyLike,
     fetchLike,
   });
   let assemblyViewSession = null;
@@ -142,6 +144,7 @@ export function createBorgBraidRecordNavigation({
   catalog = BORG_BRAID_RECORD_CATALOG,
   selectedRecordUrls = [],
   locationLike = globalThis.location,
+  historyLike = globalThis.history,
   fetchLike = globalThis.fetch,
 } = {}) {
   const entries = catalog?.entries;
@@ -186,12 +189,22 @@ export function createBorgBraidRecordNavigation({
     return response.json();
   }
 
+  function persistSelection(recordId) {
+    const url = buildUrl(recordId);
+    if (typeof historyLike?.replaceState !== "function") {
+      return false;
+    }
+    historyLike.replaceState(null, "", url);
+    return true;
+  }
+
   return Object.freeze({
     catalog,
     selectedRecordId,
     buildUrl,
     navigate,
     load,
+    persistSelection,
   });
 }
 

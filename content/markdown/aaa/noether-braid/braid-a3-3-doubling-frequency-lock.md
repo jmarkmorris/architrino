@@ -1,8 +1,8 @@
-# A1.3 Doubling-Frequency Resonance Lock
+# A3.3 Doubling-Frequency Resonance Lock
 
-This chapter owns the specialized A1.3 doubling-frequency $4{:}2{:}1$ lock study inside the broader [Noether Braid Configuration Space](noether-braid-configuration-space.md). The persistent indices $a\in\{1,2,3\}$ identify the three A1 binaries, with $f_1:f_2:f_3=4:2:1$ in A1.3. The candidate is definitionally frequency-separated and tests that chart under explicit support, field-speed-carrier, phase-return, and stability assumptions. It does not order the radii, make doubling frequency the default Noether braid frequency, certify A1 dynamics from kinematics, or generalize to B1, whose iso-frequency common-axis structure has no doubling ladder to lock.
+This chapter owns the specialized A3.3 doubling-frequency $4{:}2{:}1$ lock study inside the broader [Noether Braid Configuration Space](noether-braid-configuration-space.md). The persistent indices $a\in\{1,2,3\}$ identify the three A3 binaries, with $f_1:f_2:f_3=4:2:1$ in A3.3. The zero-axial-offset A1.3 member is the $h_1=h_2=h_3=0$ locus of the same frequency chart. The candidate is definitionally frequency-separated and tests that chart under explicit support, field-speed-carrier, phase-return, and stability assumptions. It does not order the radii, make doubling frequency the default Noether braid frequency, certify A3 dynamics from kinematics, or generalize to B1, whose iso-frequency common-axis structure has no doubling ladder to lock.
 
-It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md), [A1.3](braid-family-a.md#a1-constrained-variants), [A1 Dynamics](braid-a1-dynamics.md#a1-dynamics), and [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), which provide the assembly scaffold, geometry, and scale-setting context for the lock relations derived here.
+It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md), [A3.3](braid-family-a.md#a3-constrained-variants), [A1 Dynamics](braid-a1-dynamics.md#a1-dynamics), and [Mapping the Planck Scale](../philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md), which provide the assembly scaffold, zero-offset subset, geometry, and scale-setting context for the lock relations derived here.
 
 The level distinctions matter throughout. Ontologically, the three indexed binaries are assembly components built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. As a derivation target, an integer lock is selected only after the phase-return degree/holonomy, cancellation score, and stability gap all favor the same branch.
 
@@ -47,7 +47,7 @@ Everything before Assumption 2 is topology-free kinematics. Everything after Ass
 
 ## Assumption 1 (Candidate Caustic-Grazing Carrier)
 
-For a reduced exterior or horizon-transition comparison chart, choose a candidate carrier index $h\in\{1,2,3\}$. The index $h$ is an analysis parameter to be compared across all admissible choices, not an A1.3 taxonomy assignment. The candidate is not pinned exactly on an infinite-acceleration surface. It is modeled as a caustic-grazing carrier whose cycle-averaged value is the field speed:
+For a reduced exterior or horizon-transition comparison chart, choose a candidate carrier index $h\in\{1,2,3\}$. The index $h$ is an analysis parameter to be compared across all admissible choices, not an A3.3 taxonomy assignment. The candidate is not pinned exactly on an infinite-acceleration surface. It is modeled as a caustic-grazing carrier whose cycle-averaged value is the field speed:
 $$
 v_h^{\mathrm{car}}=c_f,
 \qquad
@@ -96,7 +96,7 @@ $$
 
 Therefore the indexed frequency triplet is $f_1:f_2:f_3=n:m:1$, with $f_2=m f_3$ and $f_1=n f_3$.
 
-Plain language: after one binary-3 revolution, binaries 2 and 1 have completed whole numbers of revolutions as well, so the three-binary pattern closes exactly. Binary 3 is the phase reference because the A1.3 row assigns it the base frequency, not because it is geometrically outer.
+Plain language: after one binary-3 revolution, binaries 2 and 1 have completed whole numbers of revolutions as well, so the three-binary pattern closes exactly. Binary 3 is the phase reference because the A3.3 row assigns it the base frequency, not because it is geometrically outer.
 
 This is the reduced constant-frequency carrier model. It is a branch-level closure assumption, not a statement that the assembly has only three degrees of freedom. In the full Noether braid closure problem, the simple phases $\theta_a(T)=q_a\omega_3 T+\phi_a$, with $(q_1,q_2,q_3)=(n,m,1)$ and $\omega_3=2\pi f_3$, are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
 

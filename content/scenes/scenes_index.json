@@ -167,7 +167,7 @@
     },
     {
       "id": "archie__ideal_braid",
-      "name": "Ideal Noether Braid: Lorentz Geometry App",
+      "name": "A1 Lorentz Geometry",
       "path": "content/scenes/archie/ideal_braid.json"
     },
     {
@@ -1914,6 +1914,11 @@
       "id": "noether_braid__braid_taxonomy",
       "name": "Braid Taxonomy",
       "path": "content/scenes/noether-braid/braid_taxonomy.json"
+    },
+    {
+      "id": "noether_braid__braid_family_a_overview",
+      "name": "Braid Family A",
+      "path": "content/scenes/noether-braid/braid_family_a_overview.json"
     }
   ]
 }

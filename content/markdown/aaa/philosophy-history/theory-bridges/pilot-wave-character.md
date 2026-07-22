@@ -164,7 +164,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration at time $t$ depends on the
 This path-history dependence enriches the guidance dynamics beyond the Markovian structure of dBB. It provides a natural mechanism for:
 
 - **Hysteresis**: an assembly's response to a perturbation depends on which attractor it previously occupied.
-- **Discrete stable modes**: the self-hit feedback loop admits a countable set of phase-locked configurations (the resonance bands of the outer binary), producing the quantization of energy levels without imposing it by hand.
+- **Discrete stable modes**: the self-hit feedback loop admits a countable set of phase-locked configurations (resonance bands of one or more indexed binaries), producing the quantization of energy levels without imposing it by hand.
 - **Measurement back-action**: the apparatus wake permanently alters the target assembly's self-hit geometry, making the measurement interaction irreversible at the micro-dynamic level.
 
 ---

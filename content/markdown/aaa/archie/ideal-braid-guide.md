@@ -1,6 +1,6 @@
-# Ideal Braid Guide
+# A1 Lorentz Geometry Guide
 
-Ideal Braid is an app-facing guide for the standalone Noether braid Lorentz lesson. It explains what the application is trying to make visible, how its controls map to the equations, and where the displayed geometry fits relative to the surrounding $\mathbb{A}\mathbb{A}\mathbb{A}$ documents.
+A1 Lorentz Geometry is the app-facing guide for the standalone prescribed A1 Lorentz lesson. It explains what the application is trying to make visible, how its controls map to the equations, and where the displayed geometry fits relative to the surrounding $\mathbb{A}\mathbb{A}\mathbb{A}$ documents.
 
 The app is useful because Lorentz factors can become too abstract too quickly. This lesson puts $\beta$, $\gamma$, length contraction, relative-time behavior, and oblate spheroidal envelope geometry into one inspectable picture.
 
@@ -15,7 +15,7 @@ Read this alongside:
 
 ## Purpose
 
-The app shows a nested Noether braid whose velocity-dependent boundary is treated as an oblate spheroidal envelope. The user changes the velocity fraction $\beta = v/c_f$ and sees the same factor appear in four linked places:
+The app shows an A1 Noether braid whose velocity-dependent boundary is treated as an oblate spheroidal envelope. The user changes the velocity fraction $\beta = v/c_f$ and sees the same factor appear in four linked places:
 
 1. the geometry of the flattened braid envelope,
 2. the relative-time readout,
@@ -37,7 +37,7 @@ The app therefore uses geometry as a dictionary for the Lorentz kinematics, whil
 
 ## What the App Shows
 
-At $\beta=0$, the braid is displayed in its rest geometry. The inner, middle, and outer binary angular-momentum vectors begin as mutually orthogonal reference directions, like the positive coordinate axes of a Cartesian frame.
+At $\beta=0$, the braid is displayed in its rest geometry. The angular-momentum vectors of binaries $a\in\{1,2,3\}$ begin as mutually orthogonal reference directions, like the positive coordinate axes of a Cartesian frame.
 
 As $\beta$ increases, the app uses a shared assembly momentum direction. The current lesson surface uses
 $$
@@ -77,7 +77,7 @@ $$
 
 In ordinary geometry language, $\beta$ is the eccentricity of the oblate spheroidal envelope in this simplified display. The physical claim is narrower: if the Noether braid realizes Lorentz-compatible closure with no additional scale channel, then the measured semiaxes determine $\beta$, $\gamma$, and $\xi$ through the equations above.
 
-The visible oblate spheroidal envelope should be read as the outer-binary envelope exposed by the full nested Noether braid, not as a solid body filled only by the outer binary. In the no-extra-scale lesson state,
+The visible oblate spheroidal envelope should be read as the assembly-level envelope exposed by the full Noether braid, not as a solid body filled by any one indexed binary. In the no-extra-scale lesson state,
 $$
 R_{\perp}=R_0
 \qquad
@@ -165,7 +165,7 @@ falls in lockstep with the length-contraction factor because the denominator is 
 | `Axes` | Toggles momentum-frame guides: a short bulk-motion contraction guide along $\hat{\mathbf{n}}$ plus two transverse axes perpendicular to it. |
 | `Pause` / `Resume` | Pauses or resumes the animation. |
 | Home icon | Returns from the standalone lesson to the main webapp. |
-| `Outer orbit` | Sets the reference transverse scale for the outer binary and rescales the displayed nested shell braid from that reference. |
+| `Reference orbit` | Sets the reference transverse scale and rescales the displayed Family-A braid from that reference. |
 | $\beta=v/c_f$ | Sets the displayed velocity fraction, from rest to the formal field-speed limit. |
 | `Cycle` | Changes animation phase speed only. It does not change $\beta$, $\gamma$, or the physical factors. |
 | `Reset` | Restores the view orientation and default phase. |
@@ -181,7 +181,7 @@ $$
 v_{\mathrm{path}} = 2\pi R f
 $$
 
-The path-speed ratio row divides that path speed by the app's field-speed reference. In the current normalized display, $c_f$ is set by the middle binary's current path speed, so the middle binary reads $1.00$ by definition while the inner and outer values are derived from their radii and frequencies.
+The path-speed ratio row divides that path speed by the app's field-speed reference. In the current normalized display, the source record declares binary 2 as the reference channel and sets $c_f$ to its current path speed, so binary 2 reads $1.00$ by definition while the values for binaries 1 and 3 are derived from their radii and frequencies. This is a display normalization, not a taxonomy-assigned role.
 
 ## Claim Level
 

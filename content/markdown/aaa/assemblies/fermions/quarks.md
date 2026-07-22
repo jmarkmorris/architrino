@@ -4,9 +4,9 @@
 
 This chapter collects the quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. A quark is treated as a color-exposed fermion assembly: a neutral Noether braid scaffold plus a six-site axial layer whose pattern exposes charge, weak bookkeeping, and one exceptional color axis.
 
-The aim is narrower than a full QCD derivation. This page states, in a single canonical reference, how the six quark flavors are built from the nested shell braid program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state. The catalog is the bookkeeping target; confinement, running couplings, hadron spectra, and nonperturbative QCD recovery remain downstream closure problems.
+The aim is narrower than a full QCD derivation. This page states, in a single canonical reference, the candidate shielding program for the six quark flavors, how their axial patterns would encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state. The catalog is a bookkeeping target; the particle-to-braid assignment, confinement, running couplings, hadron spectra, and nonperturbative QCD recovery remain downstream closure problems.
 
-The useful first picture is a layered object. The Noether braid scaffold carries the neutral branch and generation tier. Whole-branch polarity conjugation distinguishes matter from antimatter, while pro/anti ordered orientation is a separate parity-facing label. The axial layer carries the exposed polarity pattern. Color appears when one H/M/L axis is exceptional relative to the other two. The quark catalog is the table of those allowed exposed patterns.
+The useful first picture is a layered object. The Noether braid scaffold carries the neutral branch and generation tier. Whole-branch polarity conjugation distinguishes matter from antimatter, while pro/anti ordered orientation is a separate parity-facing label. The axial layer carries the exposed polarity pattern. Color appears when one indexed axis is exceptional relative to the other two. The quark catalog is the table of those allowed exposed patterns.
 
 At the substrate level, a quark is a Noether braid assembly with an axial layer. The braid scaffold fixes generation tier, and the retained polarity-conjugation record fixes its matter/antimatter relation. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
@@ -23,11 +23,11 @@ The quark construction used here follows the same Noether braid-plus-axial split
 
 For matter quarks, the braid scaffold is a **matter branch**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame. The matter branch may carry either pro or anti ordered orientation; polarity conjugation preserves that orientation while producing the corresponding antimatter branch:
 
-- **Generation I:** nested shell braid shielding branch, 6 coherent scaffold architrinos.
-- **Generation II:** Generation-II shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
-- **Generation III:** Generation-III shielding branch, 2 coherent scaffold architrinos; the outer and middle support tiers are depleted on the branch lifetime window.
+- **Generation I:** full-shielding candidate braid, 6 coherent scaffold architrinos; taxonomy member unassigned.
+- **Generation II:** Generation-II shielding branch, 4 coherent scaffold architrinos; support index 3 is depleted on the candidate branch lifetime window.
+- **Generation III:** Generation-III shielding branch, 2 coherent scaffold architrinos; support indices 3 and 2 are depleted on the candidate branch lifetime window. These source-record roles do not encode a radius order.
 
-The axial layer stays six sites wide in all three generations. Each site is occupied by either an electrino $(-\epsilon)$ or a positrino $(+\epsilon)$, with $\epsilon = |e|/6$. The H/M/L axial dyads remain the branch-level record that color and electroweak bookkeeping read, even when one or more shielding tiers no longer supply coherent support.
+The axial layer stays six sites wide in all three generations. Each site is occupied by either an electrino $(-\epsilon)$ or a positrino $(+\epsilon)$, with $\epsilon = |e|/6$. The indexed axial dyads remain the branch-level record that color and electroweak bookkeeping read, even when one or more shielding tiers no longer supply coherent support.
 
 ### Counting rule
 
@@ -47,7 +47,7 @@ for Generations I, II, and III respectively. Here $N_{\text{braid}}$ counts cohe
 
 ### Axis notation
 
-To describe color and axial geometry compactly, use the three Noether braid axes $(H,M,L)$ and the following polarity-dyad classes:
+To describe color and axial geometry compactly, use the three persistently indexed Noether braid axes $(1,2,3)$ and the following polarity-dyad classes:
 
 - $(\epsilon_+,\epsilon_+)$: an axis whose two polar sites are both positive-polarity.
 - $(\epsilon_-,\epsilon_-)$: an axis whose two polar sites are both negative-polarity.
@@ -58,7 +58,7 @@ In the fully shielded implementation picture, each axis contains:
 - one neutral source binary, with one orbiting electrino and one orbiting positrino,
 - plus one polar dyad attached to that binary axis.
 
-The polarity-dyad labels refer only to that one polar dyad. They do not mean that the underlying source binary stops being neutral. In higher-generation branches, a depleted shielding tier may no longer act as a coherent source binary, but the polar dyad and its H/M/L branch label remain the gauge-facing color record until the quark branch dissociates.
+The polarity-dyad labels refer only to that one polar dyad. They do not mean that the underlying source binary stops being neutral. In higher-generation branches, a depleted shielding tier may no longer act as a coherent source binary, but the polar dyad and its persistent index remain the gauge-facing color record until the quark branch dissociates.
 
 Colorless fermions keep the three axes equivalent. Quarks do not. A quark becomes color-charged when exactly one axis is exceptional relative to the other two.
 
@@ -270,8 +270,8 @@ This should still be treated cautiously. The table supports a candidate mapping 
 
 | Flavor | Type | Generation | Braid scaffold | Braid architrinos | Axial pattern | Net charge | Total architrinos | Axis template |
 | --- | --- | --- | --- | ---: | --- | ---: | ---: | --- |
-| $u$ | up-type | I | pro nested shell braid | 6 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 12 | one mixed dyad, two positive-polarity dyads |
-| $d$ | down-type | I | pro nested shell braid | 6 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 12 | selected family $F_\star$: one positive-polarity dyad with two negative-polarity dyads if $F_\star=I$, or one negative-polarity dyad with two mixed dyads if $F_\star=II$ |
+| $u$ | up-type | I | pro-oriented candidate braid | 6 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 12 | one mixed dyad, two positive-polarity dyads |
+| $d$ | down-type | I | pro-oriented candidate braid | 6 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 12 | selected family $F_\star$: one positive-polarity dyad with two negative-polarity dyads if $F_\star=I$, or one negative-polarity dyad with two mixed dyads if $F_\star=II$ |
 | $c$ | up-type | II | pro Generation-II shielding branch | 4 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 10 | same up-type color template on a Generation-II braid scaffold |
 | $s$ | down-type | II | pro Generation-II shielding branch | 4 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 10 | same selected-family rule on a Generation-II braid scaffold |
 | $t$ | up-type | III | pro Generation-III shielding branch | 2 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 8 | same up-type color template on a Generation-III braid scaffold |
@@ -281,11 +281,11 @@ This should still be treated cautiously. The table supports a candidate mapping 
 
 #### Up quark
 
-The up quark is the ground-state up-type quark. It uses the full pro nested shell braid scaffold and the $5\epsilon_+,1\epsilon_-$ axial layer. Its defining axis geometry is one mixed axis against two positive-polarity-rich axes.
+The up quark is the ground-state up-type quark. The working assignment gives it a full pro-oriented candidate scaffold and the $5\epsilon_+,1\epsilon_-$ axial layer. Its defining axis geometry is one mixed axis against two positive-polarity-rich axes; no taxonomy-member assignment is established.
 
 #### Down quark
 
-The down quark is the ground-state down-type quark. It also uses the full pro nested shell braid scaffold, but with the $2\epsilon_+,4\epsilon_-$ axial layer. Its color structure comes from a single exceptional axis within the selected Family-I or Family-II sector, not from both families appearing as independent down-like species.
+The down quark is the ground-state down-type quark. The working assignment gives it a full pro-oriented candidate scaffold, but with the $2\epsilon_+,4\epsilon_-$ axial layer. Its color structure comes from a single exceptional axis within the selected Family-I or Family-II sector, not from both families appearing as independent down-like species.
 
 #### Charm quark
 
@@ -293,7 +293,7 @@ The charm quark keeps the up-type axial pattern but sheds the outer shielding su
 
 #### Strange quark
 
-The strange quark is the Generation-II down-type partner of charm. It keeps the $2\epsilon_+,4\epsilon_-$ axial pattern but lives on a Generation-II braid scaffold rather than a nested shell braid scaffold, with the same selected-family branch rule applied after the shielding tier is fixed.
+The strange quark is the Generation-II down-type partner of charm. It keeps the $2\epsilon_+,4\epsilon_-$ axial pattern but lives on a Generation-II candidate braid scaffold rather than the full-shielding candidate, with the same selected-family branch rule applied after the shielding tier is fixed.
 
 #### Top quark
 
@@ -309,30 +309,30 @@ The bottom quark is the Generation-III down-type branch. It carries the down-typ
 
 For any quark flavor $q$, the color space is the ordered basis
 $$
-\mathcal{H}^{\text{color}}_q = \mathrm{span}\{|q_H\rangle, |q_M\rangle, |q_L\rangle\}
+\mathcal{H}^{\text{color}}_q = \mathrm{span}\{|q_1\rangle, |q_2\rangle, |q_3\rangle\}
 $$
-where $|q_H\rangle$, $|q_M\rangle$, and $|q_L\rangle$ mean that the exceptional axis sits on $H$, $M$, or $L$ respectively.
+where $|q_1\rangle$, $|q_2\rangle$, and $|q_3\rangle$ mean that the exceptional axis sits on indexed axis 1, 2, or 3 respectively.
 
 This basis may be identified with the conventional color labels by the fixed phase convention
 $$
-|q_H\rangle \leftrightarrow \text{Red} \leftrightarrow 0^\circ
+|q_1\rangle \leftrightarrow \text{Red} \leftrightarrow 0^\circ
 $$
 $$
-|q_M\rangle \leftrightarrow \text{Green} \leftrightarrow 120^\circ
+|q_2\rangle \leftrightarrow \text{Green} \leftrightarrow 120^\circ
 $$
 $$
-|q_L\rangle \leftrightarrow \text{Blue} \leftrightarrow 240^\circ
+|q_3\rangle \leftrightarrow \text{Blue} \leftrightarrow 240^\circ
 $$
 
 The exact angular labels are conventional. What matters geometrically is that the three states are separated by the three-way axis choice and behave as the triplet basis of the color sector.
 
 ### Up-type color table
 
-| Color | Ordered axis pattern $(H,M,L)$ | Interpretation |
+| Color | Ordered axis pattern $(1,2,3)$ | Interpretation |
 | --- | --- | --- |
-| Red | mixed dyad, positive-polarity dyad, positive-polarity dyad | H-axis exceptional |
-| Green | positive-polarity dyad, mixed dyad, positive-polarity dyad | M-axis exceptional |
-| Blue | positive-polarity dyad, positive-polarity dyad, mixed dyad | L-axis exceptional |
+| Red | mixed dyad, positive-polarity dyad, positive-polarity dyad | axis 1 exceptional |
+| Green | positive-polarity dyad, mixed dyad, positive-polarity dyad | axis 2 exceptional |
+| Blue | positive-polarity dyad, positive-polarity dyad, mixed dyad | axis 3 exceptional |
 
 This table applies directly to $u$, and by generation lifting also to $c$ and $t$.
 
@@ -347,9 +347,9 @@ The most concrete current implementation candidate is:
 
 So for an up quark:
 
-- **Red** means the H-axis is the mixed axis and the other two axes are $(\epsilon_+,\epsilon_+)$,
-- **Green** means the M-axis is the mixed axis,
-- **Blue** means the L-axis is the mixed axis.
+- **Red** means axis 1 is the mixed axis and the other two axes are $(\epsilon_+,\epsilon_+)$,
+- **Green** means axis 2 is the mixed axis,
+- **Blue** means axis 3 is the mixed axis.
 
 This matches the intuitive “minority carrier” language already used elsewhere in the repo, but it sharpens it: the minority electrino is most naturally understood as living on one of the two polar sites of the exceptional axis's polar dyad, not as replacing one member of the neutral source binary itself.
 
@@ -365,19 +365,19 @@ The corresponding antiquark is obtained by the charged-sector conjugate axial pa
 
 Family I:
 
-| Color | Ordered axis pattern $(H,M,L)$ | Interpretation |
+| Color | Ordered axis pattern $(1,2,3)$ | Interpretation |
 | --- | --- | --- |
-| Red | positive-polarity dyad, negative-polarity dyad, negative-polarity dyad | H-axis exceptional |
-| Green | negative-polarity dyad, positive-polarity dyad, negative-polarity dyad | M-axis exceptional |
-| Blue | negative-polarity dyad, negative-polarity dyad, positive-polarity dyad | L-axis exceptional |
+| Red | positive-polarity dyad, negative-polarity dyad, negative-polarity dyad | axis 1 exceptional |
+| Green | negative-polarity dyad, positive-polarity dyad, negative-polarity dyad | axis 2 exceptional |
+| Blue | negative-polarity dyad, negative-polarity dyad, positive-polarity dyad | axis 3 exceptional |
 
 Family II:
 
-| Color | Ordered axis pattern $(H,M,L)$ | Interpretation |
+| Color | Ordered axis pattern $(1,2,3)$ | Interpretation |
 | --- | --- | --- |
-| Red | negative-polarity dyad, mixed dyad, mixed dyad | H-axis exceptional |
-| Green | mixed dyad, negative-polarity dyad, mixed dyad | M-axis exceptional |
-| Blue | mixed dyad, mixed dyad, negative-polarity dyad | L-axis exceptional |
+| Red | negative-polarity dyad, mixed dyad, mixed dyad | axis 1 exceptional |
+| Green | mixed dyad, negative-polarity dyad, mixed dyad | axis 2 exceptional |
+| Blue | mixed dyad, mixed dyad, negative-polarity dyad | axis 3 exceptional |
 
 These are candidate-sector tables. For any realized $d$, $s$, or $b$ branch, one selected family $F_\star$ supplies the three color states; the other family is not counted as an additional long-lived down-type particle. A branch that leaves both tables comparably stable in the same low-energy window over-predicts down-type species and fails the selection target.
 
@@ -388,7 +388,7 @@ A single quark is never colorless. Color neutrality appears only in composite st
 - **Mesons:** $3 \otimes \bar 3 \supset 1$.
 - **Baryons:** $3 \otimes 3 \otimes 3 \supset 1$.
 
-In the baryon picture used elsewhere in the repo, a color singlet is a closed 9-axis braid in which $H$, $M$, and $L$ exceptionality each appear once across the three Noether braids.
+In the baryon picture used elsewhere in the repo, a color singlet is a closed 9-axis braid in which axis-1, axis-2, and axis-3 exceptionality each appear once across the three Noether braids.
 
 ## Coupling rules to gluons
 
@@ -414,7 +414,7 @@ This remains a structural hypothesis, not yet a closed derivation. It is include
 
 At the quark level, a pure gluon coupling is allowed to do the following:
 
-1. Rotate or swap axis exceptionality within the ordered basis $(H,M,L)$.
+1. Rotate or swap axis exceptionality within the ordered basis $(1,2,3)$.
 2. Transfer color phase between quarks connected by a flux tube.
 3. Preserve the total six-site axial inventory of each flavor class.
 4. Preserve electric charge.
@@ -423,16 +423,16 @@ At the quark level, a pure gluon coupling is allowed to do the following:
 
 In practical terms, a gluon may change
 $$
-|u_H\rangle \leftrightarrow |u_M\rangle,\qquad
-|u_M\rangle \leftrightarrow |u_L\rangle,\qquad
-|u_H\rangle \leftrightarrow |u_L\rangle
+|u_1\rangle \leftrightarrow |u_2\rangle,\qquad
+|u_2\rangle \leftrightarrow |u_3\rangle,\qquad
+|u_1\rangle \leftrightarrow |u_3\rangle
 $$
 and likewise for down-type states, without changing $u \leftrightarrow d$ or Generation I $\leftrightarrow$ II $\leftrightarrow$ III. Strong couplings move quarks around inside color space; they do not perform weak flavor conversion.
-For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate H/M/L exceptionality, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
+For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate exceptionality among indexed axes 1, 2, and 3, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
 
 ### Generator picture
 
-With the ordered basis $(H,M,L)$ fixed, the color action is represented by
+With the ordered basis $(1,2,3)$ fixed, the color action is represented by
 $$
 U \in SU(3)
 $$
@@ -440,7 +440,7 @@ because the transformation must preserve norm, remain within the one-axis-except
 
 The eight gluon modes are then the eight traceless generators of this action. In axis language:
 
-- off-diagonal generators move exceptionality between the pairs $(H,M)$, $(H,L)$, and $(M,L)$;
+- off-diagonal generators move exceptionality between the pairs $(1,2)$, $(1,3)$, and $(2,3)$;
 - diagonal generators compare the relative color weights of those three axes;
 - the fully symmetric singlet combination is removed, leaving the familiar octet rather than a non-confining ninth long-range mode.
 
@@ -501,7 +501,7 @@ The following parts of the quark catalog are fixed strongly enough to be treated
 - down-type axial count $2\epsilon_+,4\epsilon_-$,
 - generation as Noether braid shielding level,
 - architrino counts $12$, $10$, and $8$ for Generations I, II, and III,
-- color as axis exceptionality in the three-state $(H,M,L)$ basis,
+- color as axis exceptionality in the three-state $(1,2,3)$ basis,
 - gluon action as an $SU(3)$ color reconfiguration that preserves flavor inventory.
 
 ### Still open

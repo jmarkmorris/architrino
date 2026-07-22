@@ -6,11 +6,11 @@ The photon app is an inspection workbench, not a proof document. It lets a reade
 
 The photon app is an exploratory diagnostic for a candidate photon modeled as two contra-rotating flat Noether braids. It is meant to help inspect the candidate geometry, Virtual Observer field readouts, and derived polarization diagnostics. It is not a proof of photon closure.
 
-The left braid is the trailing braid and rotates counter-clockwise. The right braid is the leading braid and rotates clockwise. The app shows the braids face-on so the I/M/O binary motion is visible; in the candidate geometry, the planar braids are perpendicular to the line of translation.
+The left braid is the trailing braid and rotates counter-clockwise. The right braid is the leading braid and rotates clockwise. The app shows the braids face-on so the binary 1/2/3 motion is visible; in the candidate geometry, the planar braids are perpendicular to the line of translation.
 
 ## Main View
 
-The upper stage shows the two face-on braids on the left and an edge-on side view on the right. Each active I/M/O binary contributes one blue electrino marker and one red positrino marker. The face-on markers, orbit paths, and path-history trails follow the Ideal Braid visual grammar.
+The upper stage shows the two face-on braids on the left and an edge-on side view on the right. Each active indexed binary contributes one blue electrino marker and one red positrino marker. The face-on markers, orbit paths, and path-history trails follow the A1 Lorentz Geometry visual grammar.
 
 The side view shows the same pair along the line of translation. Each planar braid appears as a vertical glowing trace with the same height as the diameter of the largest enabled binary. The red and blue side-view markers move up and down along those traces, as they would when the orbit is viewed from the side.
 
@@ -19,7 +19,7 @@ The lower stage contains two observer-level readouts:
 - Electric Field: the transverse electric-field readout reconstructed from the branch-weighted causal hits at the current Virtual Observer coordinate.
 - Polarization: the transverse $E_y/E_z$ curve fitted from the actual branch-sum field over one reference cycle, with the current field vector, analyzer axis, and optional raw one-cycle points.
 
-The plot covers three full middle-layer cycles. The white now line moves left to right, and the app leaves only a short forward gap ahead of that line blank so the waveform stays visible when time wraps around. For an ideal plane-wave comparison moving along $+\hat{\mathbf x}$, $\mathbf B$ is recovered from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$, so it is not plotted as a separate graph.
+The plot covers three full reference-channel cycles. The white now line moves left to right, and the app leaves only a short forward gap ahead of that line blank so the waveform stays visible when time wraps around. For an ideal plane-wave comparison moving along $+\hat{\mathbf x}$, $\mathbf B$ is recovered from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$, so it is not plotted as a separate graph.
 
 ## Basic Controls
 
@@ -31,7 +31,7 @@ Use Reset preset to return to the last loaded preset after making local edits. U
 
 Use Paths on/off to show or hide orbit paths and path-history trails.
 
-Use Slow/Fast to scale animation time without changing the configured layer frequencies. The default Slow/Fast setting is calibrated to make the default I/M/O orbit rates visible at `0.8`, `0.4`, and `0.2` cycles per real second.
+Use Slow/Fast to scale animation time without changing the configured binary frequencies. The default Slow/Fast setting is calibrated to make the default binary 1/2/3 orbit rates visible at `0.8`, `0.4`, and `0.2` cycles per real second.
 
 Each of the six binaries has an enabled checkbox. When a binary is unchecked, it is removed from the braid display and its two architrinos are removed from the Virtual Observer E field sum.
 
@@ -41,16 +41,16 @@ Presets are starting points for inspection, not certified photon branches. They 
 
 | Preset | What it sets up | How to read it |
 |---|---|---|
-| Balanced pair | All binaries enabled, I/M/O frequencies `4`, `2`, `1`, speed-matched default radii, and all phases at `0` degrees. | Baseline contra-rotating pair for comparing later edits. |
+| Balanced pair | All binaries enabled, indexed frequencies `4`, `2`, `1`, speed-matched default radii, and all phases at `0` degrees. | Baseline contra-rotating pair for comparing later edits. |
 | Linear candidate | Only the O binaries enabled, with both braids phase-aligned. | A simple one-axis transverse readout candidate. |
 | Right circular candidate | All binaries enabled with a handed leading/trailing phase pattern. | A handed phase-lock candidate; it is not a certified circular photon branch. |
 | Left circular candidate | The mirror handed phase pattern of the right-circular candidate. | A comparison state for reversing the fitted handed component. |
 | Phase-offset stress | All binaries enabled, nonzero observer position, small $\Delta x$, and nontrivial phase offsets. | A stress test for the causal-root solver and polarization fit. |
-| Layer-radius stress | All binaries enabled with deliberately uneven I/M/O radii. | A stress test for radius sensitivity and side-view scaling. |
+| Binary-radius stress | All binaries enabled with deliberately uneven indexed radii. | A stress test for radius sensitivity and side-view scaling. |
 
 ## Configuration Search
 
-The Search configurations button looks for photon settings that are worth inspecting more closely. It starts from the current app settings, then tries nearby or systematic variations of the enabled binaries, I/M/O frequency powers, radius lanes, phase offsets, $\Delta x$, Virtual Observer position, Analyzer angle, and speed mode. The search includes a small set of `Lorentz factor` local-$c$ candidates so the results can expose configurations where derived $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ materially change the moving-apparatus solve.
+The Search configurations button looks for photon settings that are worth inspecting more closely. It starts from the current app settings, then tries nearby or systematic variations of the enabled binaries, indexed frequency powers, radius lanes, phase offsets, $\Delta x$, Virtual Observer position, Analyzer angle, and speed mode. The search includes a small set of `Lorentz factor` local-$c$ candidates so the results can expose configurations where derived $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ materially change the moving-apparatus solve.
 
 The search generates a results list for the current session. The interactive search is intentionally bounded: it samples representative configuration families rather than trying every possible combination. Each result should include a short name, the full settings snapshot, the main plot and polarization summary, the diagnostics that made it stand out, and a plain-language reason to inspect it. When the absolute-history solver path is available, top results also record a compact comparison between the co-moving diagnostic and the absolute-history moving-apparatus diagnostic, including helical same-transmitter phase-family counts when those records are computed. Loading a result applies its settings to the app so it can be viewed, played, edited, or compared against a named preset.
 
@@ -73,13 +73,13 @@ The search should mark numerically suspect cases as suspect rather than good. Mi
 
 The $\Delta x$ control changes the center-to-center distance between the two vertical traces in the side view as a ratio relative to the current reference radius $r_{\mathrm{ref}}$. The reference radius is the largest enabled binary radius, or the largest configured binary radius if every binary is disabled. The range is $10^{-10}r$ to $10^5r$, with selectable `1` through `9` coefficients in each decade. The absolute separation is $s = r_{\mathrm{ref}} 10^q$, where $q$ is the selected log value. The braid centers sit at $x = -s/2$ and $x = +s/2$. The control does not change the spacing between the two face-on circular braid views.
 
-Each braid has independent I/M/O controls:
+Each braid has independent binary 1/2/3 controls:
 
 - frequency sets the layer cadence as powers of two, from $2^0$ through $2^5$;
 - radius sets the layer orbit size;
 - phase sets the starting angle in degrees.
 
-The default I/M/O phases are all `0` degrees. The default I/M/O frequencies are `4`, `2`, and `1`. The default radii are chosen from $v=2\pi r f$ so the I layer is super-$c_f$, the M layer is at $c_f$, and the O layer is below $c_f$.
+The default indexed phases are all `0` degrees. The default indexed frequencies are `4`, `2`, and `1`. The default radii are chosen from $v=2\pi r f$ so binary 1 is super-$c_f$, binary 2 is at $c_f$, and binary 3 is below $c_f$. These speed roles belong to the displayed source record, not to the taxonomy.
 
 ## Virtual Observer Controls
 
@@ -273,8 +273,8 @@ The live Diagnostics panel includes a quality word when a readout has a useful d
 | 22 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
 | 23 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
 | 24 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
-| 25 | Left&nbsp;phase&nbsp;spread | How evenly the left braid's I/M/O phases are spaced. |
-| 26 | Right&nbsp;phase&nbsp;spread | How evenly the right braid's I/M/O phases are spaced. |
+| 25 | Left&nbsp;phase&nbsp;spread | How evenly the left braid's indexed phases are spaced. |
+| 26 | Right&nbsp;phase&nbsp;spread | How evenly the right braid's indexed phases are spaced. |
 | 27 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
 | 28 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
 

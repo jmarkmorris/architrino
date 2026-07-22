@@ -67,7 +67,7 @@ test("permutation canonical key is stable for equivalent ledger key order", () =
 
 test("assembly explorer keeps unquotiented layer ordering even when a packet asks for another label", () => {
   const dataset = normalizeExplorerDataset({
-    schema: "assembly-configuration-explorer.dataset.v1",
+    schema: "assembly-configuration-explorer.dataset.v2",
     datasetId: "ordering",
     fieldSpeed: 1,
     searchSemantics: {
@@ -114,7 +114,7 @@ test("assembly explorer keeps group velocity as a branch-level transport row", (
   assert.equal(branch.seaRecord.regime, "weak-drift-diagnostic");
 });
 
-test("assembly explorer keeps eigen-braid status out of the S3 layer key", () => {
+test("assembly explorer keeps braid-certification status out of the S3 layer key", () => {
   const layers = [
     { layerId: "a", frequency: 3, radius: 1, energy: 1, phase: 0, normal: { x: 1, y: 0, z: 0 } },
     { layerId: "b", frequency: 1, radius: 1, energy: 1, phase: 0, normal: { x: 0, y: 1, z: 0 } },
@@ -122,8 +122,8 @@ test("assembly explorer keeps eigen-braid status out of the S3 layer key", () =>
   ];
   const candidate = normalizeBranchRecord(
     {
-      branchId: "eigen-candidate",
-      eigenBraid: {
+      branchId: "certification-candidate",
+      braidCertification: {
         status: "candidate",
         returnResidual: 0.01,
         floquetGap: 0.2,
@@ -136,8 +136,8 @@ test("assembly explorer keeps eigen-braid status out of the S3 layer key", () =>
   );
   const rejected = normalizeBranchRecord(
     {
-      branchId: "eigen-rejected",
-      eigenBraid: {
+      branchId: "certification-rejected",
+      braidCertification: {
         status: "rejected",
         returnResidual: 1.4,
         lorentzExportStatus: "failed",
@@ -146,9 +146,9 @@ test("assembly explorer keeps eigen-braid status out of the S3 layer key", () =>
     },
     1
   );
-  assert.equal(candidate.eigenBraid.status, "candidate");
-  assert.equal(candidate.eigenBraid.returnResidual, 0.01);
-  assert.deepEqual(candidate.eigenBraid.allowedSymmetries, ["phase-shift", "translation"]);
+  assert.equal(candidate.braidCertification.status, "candidate");
+  assert.equal(candidate.braidCertification.returnResidual, 0.01);
+  assert.deepEqual(candidate.braidCertification.allowedSymmetries, ["phase-shift", "translation"]);
   assert.equal(candidate.permutationCanonicalKey, rejected.permutationCanonicalKey);
 });
 
@@ -208,7 +208,7 @@ test("assembly explorer rejects datasets without exactly three layers per branch
   assert.throws(
     () =>
       normalizeExplorerDataset({
-        schema: "assembly-configuration-explorer.dataset.v1",
+        schema: "assembly-configuration-explorer.dataset.v2",
         datasetId: "bad",
         fieldSpeed: 1,
         searchSemantics: {

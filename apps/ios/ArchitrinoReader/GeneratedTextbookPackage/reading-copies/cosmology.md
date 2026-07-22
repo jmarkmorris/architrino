@@ -1992,11 +1992,11 @@ In the modular cosmology map, this page provides:
 
 ## Inflation Model
 
-This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), and the strong-field pages [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
+This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), and the strong-field pages [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md).
 
 ### Core Idea
 
-The early rapid-expansion phase is modeled as an emergent high-curvature regime of nested shell braid dynamics, not as a fundamental standalone inflaton ontology.
+The early rapid-expansion phase is hypothesized to arise from a high-curvature continuation of the prescribed Family-A response, not from a fundamental standalone inflaton ontology. Here Family A means only the one-braid chart whose three binary axes are mutually orthogonal at $\lambda_A=0$ and converge toward the group-translation direction as $\lambda_A\to1$; the cosmological assignment, dynamics, stability, and retention do not follow from that geometry.
 
 ### Local-Process Commitment
 
@@ -2022,7 +2022,7 @@ This keeps conceptual overlap with cyclical-universe intuitions while preserving
 
 In the broader recycling picture, SMBH-core dynamics provide the persistent source architecture:
 
-- high-curvature interior dynamics load energy into middle-layer/horizon channels,
+- candidate high-curvature dynamics load energy into the source-record binary-2 and horizon-interface channels,
 - outbound disturbances seed expansion-like phases in the surrounding Noether sea,
 - inflation-like behavior is therefore a regime of core-driven release and relaxation, not a separate scalar field ontology.
 
@@ -2247,11 +2247,11 @@ $$
 
 where $\Omega_{\text{eff}}(a)$ encodes the emergent high-curvature phase and its relaxation.
 
-As a toy kinematic decomposition, one can also track the expansion-rate profile by assigning separate qualitative roles to the three nested branches:
+As a toy kinematic decomposition, one can also track the expansion-rate profile by assigning separate qualitative roles to two declared indexed channels:
 $$
-\dot{R}(t) = v_I(t) + c_f + v_O(t)
+\dot{R}(t) = v_1(t) + c_f + v_3(t)
 $$
-Here the inner contribution $v_I(t)$ plays the role of a decaying high-curvature release term, the constant $c_f$ marks the transport/horizon channel, and the outer contribution $v_O(t)$ captures slower volumetric rebound. This is not a closed cosmological derivation, but it is a compact way to encode the intuition that inflation-like release, horizon-scale transport, and late-time expansion can all be read as different branches of the same nested shell braid process.
+Here the source record assigns $v_1(t)$ to a decaying high-curvature release term and $v_3(t)$ to slower volumetric rebound, while the constant $c_f$ marks the transport/horizon channel. These roles belong to this toy record and are not assigned by the taxonomy. This is not a closed cosmological derivation, but it is a compact way to encode the conjecture that inflation-like release, horizon-scale transport, and late-time expansion could be different channels of one candidate continuation of the Family-A response.
 
 ### Expansion-Module Interface
 
@@ -4289,7 +4289,7 @@ The Euclidean void $\mathbb{R}^3$ with metric $h_{ij} = \delta_{ij}$ is static, 
 
 #### The Noether Sea Carries the Dynamics
 
-The Noether sea is the constitutive substrate from which effective spacetime behavior is reconstructed: a dense coupled population of neutral pro/anti Noether braids. Each Noether braid has internal energy stored across three nested shell binaries operating in distinct field-speed regimes. The collective state of the Noether sea—its local Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$, normalized density $n(\mathbf X,T)$, internal energy spectrum, delay response $\chi_{\text{sea}}(\mathbf X,T)$, and anisotropy—defines the effective metric experienced by all embedded assemblies.
+The Noether sea is the constitutive substrate from which effective spacetime behavior is reconstructed: a dense coupled population of neutral pro/anti Noether braids. Each Noether braid has internal energy stored across three indexed binaries whose field-speed regimes must be derived from its retained record. The collective state of the Noether sea—its local Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$, normalized density $n(\mathbf X,T)$, internal energy spectrum, delay response $\chi_{\text{sea}}(\mathbf X,T)$, and anisotropy—defines the effective metric experienced by all embedded assemblies.
 
 Late-time cosmological acceleration, in this picture, is a statement about how the aggregate properties of the Noether sea evolve on Hubble timescales, not about the container expanding.
 
@@ -4297,11 +4297,11 @@ Late-time cosmological acceleration, in this picture, is a statement about how t
 
 #### Baseline Energy of the Noether Sea
 
-In the nested shell case, each Noether braid in the Noether sea carries internal binding energy distributed across its three support tiers:
+In the candidate three-support-row case, each Noether braid in the Noether sea carries hypothesized internal binding energy distributed across its three persistent indices. This constitutive model does not identify a taxonomy member:
 
-- **Inner binary** ($v > c_f$, self-hit regime): highest energy density, tightest orbit, contributes to the gravitational charge and inertial mass of the assembly.
-- **Middle binary** ($v = c_f$): defines the effective causal speed; carries intermediate energy.
-- **Outer binary** ($v < c_f$): lowest energy density, largest radius; couples most directly to cosmological-scale dynamics through expansion/contraction modes.
+- **binary 1** ($v > c_f$, self-hit regime): highest energy density, tightest orbit, contributes to the gravitational charge and inertial mass of the assembly.
+- **binary 2** ($v = c_f$): defines the effective causal speed; carries intermediate energy.
+- **binary 3** ($v < c_f$): lowest energy density, largest radius; couples most directly to cosmological-scale dynamics through expansion/contraction modes.
 
 The baseline energy density of the Noether sea is
 
@@ -4312,7 +4312,7 @@ $$
 where $\rho_{\text{NS}}$ is the canonical Noether braid density field and $\langle E_{\mathrm{braid}} \rangle$ is the mean energy per Noether braid. This quantity sets the scale of the effective dark-energy density:
 
 $$
-\rho_{\mathrm{DE,eff}} \sim u_{\mathrm{sea}}\,f(\text{outer-binary state})
+\rho_{\mathrm{DE,eff}} \sim u_{\mathrm{sea}}\,f(\text{binary-3 state})
 $$
 
 where $f$ encodes what fraction of the baseline energy acts as an effective negative pressure on cosmological scales.
@@ -4321,40 +4321,40 @@ where $f$ encodes what fraction of the baseline energy acts as an effective nega
 
 In standard thermodynamics, a system with equation of state $w = p/\rho < -1/3$ drives acceleration of the scale factor. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the candidate Noether sea pressure law would read out effective negative pressure through the following mechanism:
 
-**Outer-binary tension.** Each Noether braid's outer binary is a bound oscillator in the $v < c_f$ regime. The outer binary has a natural equilibrium radius set by the balance between partner attraction and coupling to the Noether sea. When the retained Noether sea state places outer-binary radii above the same-window equilibrium branch, the slowly varying outer-binary tension sector stores elastic energy and produces a restoring stress. The effective negative pressure appears only after that tensile stress is projected into the observer-level cosmology row.
+**binary-3 tension.** Each Noether braid's binary 3 is a bound oscillator in the $v < c_f$ regime. The binary 3 has a natural equilibrium radius set by the balance between partner attraction and coupling to the Noether sea. When the retained Noether sea state places binary-3 radii above the same-window equilibrium branch, the slowly varying binary-3 tension sector stores elastic energy and produces a restoring stress. The effective negative pressure appears only after that tensile stress is projected into the observer-level cosmology row.
 
 A uniform effective medium under projected tension has the thermodynamic signature $p < 0$. If the magnitude of the projected tension exceeds $\rho c^2/3$, the effective equation of state satisfies $w < -1/3$, which drives acceleration in the observer-level comparison.
 
-**Self-consistency requirement.** The tension must be nearly constant in time (slowly varying) to produce $w \approx -1$ rather than a rapidly oscillating or decaying equation of state. This requires that the outer-binary relaxation timescale is comparable to or longer than the Hubble time:
+**Self-consistency requirement.** The tension must be nearly constant in time (slowly varying) to produce $w \approx -1$ rather than a rapidly oscillating or decaying equation of state. This requires that the binary-3 relaxation timescale is comparable to or longer than the Hubble time:
 
 $$
 \tau_{\mathrm{relax}}^{\mathrm{outer}} \gtrsim H_0^{-1} \approx 1.4 \times 10^{10}\;\mathrm{yr}
 $$
 
-This sets a strong dynamical condition on outer-binary relaxation.
+This sets a strong dynamical condition on binary-3 relaxation.
 
 #### Quasi-Equilibrium and Release Channels
 
-The phrase "stretched beyond equilibrium" should be read as a local Noether sea state claim, not as a claim that the Euclidean void is stretched. For a representative Noether braid, let $R_{\mathrm{outer}}(t)$ be the outer-binary radius and let $R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]$ be the radius selected by the surrounding Noether sea state record. A useful first strain variable is
+The phrase "stretched beyond equilibrium" should be read as a local Noether sea state claim, not as a claim that the Euclidean void is stretched. For a representative Noether braid, let $R_3(t)$ be the binary-3 radius in the declared source record and let $R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]$ be the radius selected by the surrounding Noether sea state record. A useful first strain variable is
 
 $$
 \epsilon_O
 =
 \frac{
-R_{\mathrm{outer}}-R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]
+R_3-R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]
 }{
 R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]
 }
 $$
 
-This strain is not enough by itself to define pressure. The outer-binary sector must also say whether stored energy has an available release channel. If neighbouring Noether braids share the same diffused or slowly relaxing state, the local energy current can be nearly zero even when $\epsilon_O$ is nonzero. The medium is then in a quasi-equilibrium: not necessarily at the lowest available branch energy, but at a no-current balance point because no neighbouring state or boundary channel is able to accept the energy on the relevant timescale.
+This strain is not enough by itself to define pressure. The binary-3 sector must also say whether stored energy has an available release channel. If neighbouring Noether braids share the same diffused or slowly relaxing state, the local energy current can be nearly zero even when $\epsilon_O$ is nonzero. The medium is then in a quasi-equilibrium: not necessarily at the lowest available branch energy, but at a no-current balance point because no neighbouring state or boundary channel is able to accept the energy on the relevant timescale.
 
-The dark-energy pressure target is therefore a two-part constitutive statement. First, the retained Noether sea record must define stored strain energy in the outer-binary sector. Second, it must define the release or transfer rate that turns that stored energy into medium relaxation:
+The dark-energy pressure target is therefore a two-part constitutive statement. First, the retained Noether sea record must define stored strain energy in the binary-3 sector. Second, it must define the release or transfer rate that turns that stored energy into medium relaxation:
 
 $$
 \dot u_{O,\mathrm{rel}}
 =
--\mathcal R_O\!\left(
+-\mathcal R_3\!\left(
 \epsilon_O,
 \theta_{\mathrm{sea}},
 \mathcal A_{\downarrow}
@@ -4362,23 +4362,23 @@ $$
 +\mathcal S_O
 $$
 
-Here $\mathcal A_{\downarrow}$ denotes the availability of lower-energy or accepting channels, and $\mathcal S_O$ denotes incoming source or neighbour loading. When $\mathcal A_{\downarrow}$ is small, stored outer-binary stress can persist and read out as slowly varying negative pressure. When an accepting channel opens, the same ledger can release energy into neighbouring Noether sea states or outward transport. A cascading relaxation claim is admissible only if the event ledger shows where that energy goes and the same $\theta_{\mathrm{sea}}$ still passes the redshift, CMB, lensing, growth, and calibration gates.
+Here $\mathcal A_{\downarrow}$ denotes the availability of lower-energy or accepting channels, and $\mathcal S_O$ denotes incoming source or neighbour loading. When $\mathcal A_{\downarrow}$ is small, stored binary-3 stress can persist and read out as slowly varying negative pressure. When an accepting channel opens, the same ledger can release energy into neighbouring Noether sea states or outward transport. A cascading relaxation claim is admissible only if the event ledger shows where that energy goes and the same $\theta_{\mathrm{sea}}$ still passes the redshift, CMB, lensing, growth, and calibration gates.
 
 #### Medium Relaxation and the Expansion History
 
 The evolution of $\rho_{\mathrm{DE,eff}}(t)$ is governed by the collective relaxation of the Noether sea state. Schematically:
 
-- At early times ($z \gg 1$), the Noether sea is dense and hot; outer binaries are contracted, and the effective dark-energy contribution is subdominant relative to matter and radiation energy densities.
-- As the Noether sea cools and dilutes through structure formation and radiation escape, outer binaries relax toward larger radii. The associated tension becomes dynamically significant when $\rho_{\mathrm{DE,eff}} \sim \rho_m$, which occurs at $z \sim 0.3$–$0.7$ (the onset of acceleration).
+- At early times ($z \gg 1$), the Noether sea is dense and hot; binaries 3 are contracted, and the effective dark-energy contribution is subdominant relative to matter and radiation energy densities.
+- As the Noether sea cools and dilutes through structure formation and radiation escape, binaries 3 relax toward larger radii. The associated tension becomes dynamically significant when $\rho_{\mathrm{DE,eff}} \sim \rho_m$, which occurs at $z \sim 0.3$–$0.7$ (the onset of acceleration).
 - At late times ($z \to 0$), the Noether sea approaches a quasi-equilibrium state with slowly evolving tension, producing an approximately constant $\rho_{\mathrm{DE,eff}}$ and $w \approx -1$.
 
 This narrative must be made quantitative through a constitutive relation linking the Noether sea state variables to an effective pressure. The minimal parameterization is:
 
 $$
-p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\text{NS}},\;d\rho_{\text{NS}}/dT,\;n,\;\chi_{\text{sea}},\;\langle R_{\mathrm{outer}} \rangle,\;T_{\mathrm{sea}}^{\mathrm{th}}\bigr)
+p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\text{NS}},\;d\rho_{\text{NS}}/dT,\;n,\;\chi_{\text{sea}},\;\langle R_3 \rangle,\;T_{\mathrm{sea}}^{\mathrm{th}}\bigr)
 $$
 
-where $\langle R_{\mathrm{outer}} \rangle$ is the mean outer-binary radius and $T_{\mathrm{sea}}^{\mathrm{th}}$ is an effective temperature characterizing internal mode excitation. Deriving this relation from the master equation applied to coupled Noether braid populations is a primary simulation target.
+where $\langle R_3 \rangle$ is the mean binary-3 radius for the declared source record and $T_{\mathrm{sea}}^{\mathrm{th}}$ is an effective temperature characterizing internal mode excitation. Deriving this relation from the master equation applied to coupled Noether braid populations is a primary simulation target. Index 3 identifies the record row; it does not encode the exposed or largest-radius role in the taxonomy.
 
 ### Inference Dependency and Calibration Gates
 
@@ -4513,7 +4513,7 @@ $$
 \rho_{\mathrm{zf}}+\rho_{\mathrm{ew}}+\rho_{\mathrm{qcd}}+\cdots
 $$
 
-This estimate is not a measurement of energy in the Euclidean void. In this chapter it is a stress test for the Noether sea coupling-selection theorem target: a viable constitutive law must explain why high-frequency internal energy is shielded from the observer-level cosmological channel while the slow outer-binary and transport sectors remain exposed.
+This estimate is not a measurement of energy in the Euclidean void. In this chapter it is a stress test for the Noether sea coupling-selection theorem target: a viable constitutive law must explain why high-frequency internal energy is shielded from the observer-level cosmological channel while the slow binary-3 and transport sectors remain exposed.
 
 The same point separates void language from packed-phase language. A very large energy density may be meaningful inside a packed maximum-curvature or Noether sea phase, where constituents, exclusion geometry, and interface exposure are part of the state. That does not make the Euclidean void itself a reservoir with the same energy density. Dark-energy comparison should therefore ask which fraction of a dense internal or packed-phase inventory projects into homogeneous cosmological stress:
 $$
@@ -4543,7 +4543,7 @@ u_{\mathrm{sea}}^{\mathrm{outer}},
 \theta_{\mathrm{transport}}
 \right],
 $$
-where $\Pi_{\mathrm{cos}}$ is the observer-level cosmology projection. The closure burden is to derive why $\Pi_{\mathrm{cos}}$ exposes the slow stress, transport, and outer-binary response while suppressing the high-frequency internal inventory, not to deny that the suppressed inventory exists.
+where $\Pi_{\mathrm{cos}}$ is the observer-level cosmology projection. The closure burden is to derive why $\Pi_{\mathrm{cos}}$ exposes the slow stress, transport, and binary-3 response while suppressing the high-frequency internal inventory, not to deny that the suppressed inventory exists.
 
 Fourth, the native closure target is the effective constant reconstructed from a shared Noether sea state:
 
@@ -4777,7 +4777,7 @@ d_H\!\left(H_{\mathrm{eff}}^{\theta},H_{\mathrm{obs}}\right)
 $$
 The distances here are comparison metrics fixed by the data product being tested, not new ontological variables. The residual passes only when the same $\theta_{\mathrm{sea}}$ accounts for the effective Hubble history, equation-of-state fit, curvature bound, horizon-access entropy, and SN/BAO/CMB/growth records. This keeps de Sitter language as an observer-level benchmark rather than a boundary theory imported into the Euclidean void.
 
-A fitted value $w_{\mathrm{eff}} < -1$ requires special care. In standard perfect-fluid language, persistent phantom behavior threatens the energy-condition and causality assumptions that also protect ordinary horizon and wormhole results. In this framework, such a fit is admissible only if it is an effective transfer signature, for example energy being routed between matter, radiation, black-hole recycling channels, and the slowly varying outer-binary tension sector. It should not be read as permission for acausal propagation or unaccounted energy creation.
+A fitted value $w_{\mathrm{eff}} < -1$ requires special care. In standard perfect-fluid language, persistent phantom behavior threatens the energy-condition and causality assumptions that also protect ordinary horizon and wormhole results. In this framework, such a fit is admissible only if it is an effective transfer signature, for example energy being routed between matter, radiation, black-hole recycling channels, and the slowly varying binary-3 tension sector. It should not be read as permission for acausal propagation or unaccounted energy creation.
 
 The practical inference rule is stronger than a verbal caution. A $w_{\mathrm{eff}} < -1$ preference must be rechecked against the theory space allowed in the fit: scalar-tensor drift in $G_{\mathrm{eff}}$, environment-dependent coupling, source-history loading, and changes in the projection from $\theta_{\mathrm{sea}}$ to the fitted density can all make a restricted comparison model report phantom-like behavior. The promoted object is therefore the shared SN/BAO/CMB/lensing/growth data product and its covariance record, not the phantom label itself.
 
@@ -4798,8 +4798,8 @@ The comparison should be stated carefully. A single harmonic oscillator's zero-p
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the problem is reframed as an ontology mismatch:
 
 - QFT zero-point energies are not physical observables of the Euclidean void (which carries no energy). They are artifacts of the continuum-field approximation applied to a substrate that is fundamentally discrete (point architrinos) and finite (a definite number of Noether braid assemblies per unit volume).
-- In the nested shell case, the inner and middle binaries of each Noether braid in the Noether sea store enormous energy densities locally (self-hit regime, $v > c_f$ and $v = c_f$), but this energy is locked into stable, high-frequency orbital modes that do not gravitate as a cosmological constant. Only the slowly varying, large-scale stress from the outer-binary sector contributes to $\rho_{\mathrm{DE,eff}}$.
-- The observed smallness of $\rho_\Lambda$ relative to naïve QFT estimates reflects the fact that most internal Noether braid energy is dynamically inert on Hubble timescales—it is shielded by the nested-binary hierarchy, not canceled by fine-tuning.
+- In the candidate source record used here, binaries 1 and 2 are hypothesized to store large local energy densities (self-hit regime, $v > c_f$ and $v = c_f$), but this energy would be locked into high-frequency orbital modes rather than exported as a cosmological constant. Only the slowly varying, large-scale stress provisionally assigned to binary 3 contributes to $\rho_{\mathrm{DE,eff}}$ in this candidate map. None of these roles is a meaning of the persistent indices.
+- The observed smallness of $\rho_\Lambda$ relative to naïve QFT estimates reflects the fact that most internal Noether braid energy is dynamically inert on Hubble timescales—it is shielded by the source record indexed-support hierarchy, not canceled by fine-tuning.
 
 #### Coupling-Selection Target
 
@@ -4825,11 +4825,11 @@ $$
 O(\epsilon_{\mathrm{shield}}\rho_{\mathrm{locked}}^{\mathrm{inner+middle}})
 $$
 
-This separates two claims that are often conflated. The first claim is a shielding claim: large internal energies do not automatically enter the effective cosmological constant. The second is an exposure claim: outer-binary stress, transport history, and validated recycling channels can still contribute to the effective dark-energy sector. Both must be derived from one Noether sea response law; otherwise the proposal merely moves the cosmological-constant fine-tuning into an unaccounted coupling rule.
+This separates two claims that are often conflated. The first claim is a shielding claim: large internal energies do not automatically enter the effective cosmological constant. The second is an exposure claim: binary-3 stress, transport history, and validated recycling channels can still contribute to the effective dark-energy sector. Both must be derived from one Noether sea response law; otherwise the proposal merely moves the cosmological-constant fine-tuning into an unaccounted coupling rule.
 
 #### Comparison to Sequestering and Degravitation Proposals
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism is structurally similar to vacuum-energy sequestering proposals (Kaloper & Padilla 2014) in which high-energy modes are dynamically decoupled from the gravitational sector. The key difference is that $\mathbb{A}\mathbb{A}\mathbb{A}$ provides a concrete physical mechanism for the decoupling (nested-binary shielding) rather than imposing it through a global constraint or modified variational principle.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism is structurally similar to vacuum-energy sequestering proposals (Kaloper & Padilla 2014) in which high-energy modes are dynamically decoupled from the gravitational sector. The key difference is that $\mathbb{A}\mathbb{A}\mathbb{A}$ provides a concrete physical mechanism for the decoupling (indexed-support shielding) rather than imposing it through a global constraint or modified variational principle.
 
 Finite-range gravity and massive-gravity programs are useful here only as comparison frameworks. Their durable lesson is not that the Noether sea should contain a massive graviton, but that any large-scale weakening of gravity must pass a local-recovery gate: solar-system, binary-pulsar, lensing, and gravitational-wave regimes must remain GR-like while a cosmological-scale response is allowed to differ. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that burden belongs to the same Noether sea constitutive map that sets $G_{\text{eff}}$, $\chi_{\text{sea}}$, clock-rate response, and growth history. A degravitation-like dark-energy channel is admissible only if the shielding residual is suppressed at the effective cosmological scale without weakening the already validated weak-field and gravitational-wave channels.
 
@@ -4841,7 +4841,7 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, cosmological redshift is not 
 
 - A photon-mode assembly emitted at effective cosmic time $\tau_{c,e}$, corresponding to substrate time $t_e$ in the exact record, carries a frequency set by the Noether braid oscillation rates of the source assembly at that epoch.
 - At the reception epoch $\tau_{c,o}$, corresponding to substrate time $t_o$, the observer's local clock rate is set by the current Noether sea state.
-- If the Noether sea state has evolved between $t_e$ and $t_o$—specifically, if outer-binary radii have increased and internal frequencies have decreased—then the received frequency can be lower than the emitted frequency after endpoint cadence, launch, source-branch, and path-history factors are separated. This is the operational content of $1 + z = \nu_e/\nu_o$.
+- If the Noether sea state has evolved between $t_e$ and $t_o$—specifically, if binary-3 radii have increased and internal frequencies have decreased—then the received frequency can be lower than the emitted frequency after endpoint cadence, launch, source-branch, and path-history factors are separated. This is the operational content of $1 + z = \nu_e/\nu_o$.
 
 The redshift-distance relation $z(d_L)$ encodes the entire history of Noether sea state evolution along the photon's path. In the effective Friedmann description, this is captured by:
 
@@ -5031,10 +5031,10 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism does not involve untracked photon
 
 Supermassive black holes process matter and radiation through their high-energy interiors. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ picture, this recycling has implications for the dark-energy sector:
 
-- **Energy input to the Noether sea.** Jets and radiative outflows from SMBHs inject energy into the surrounding medium, locally exciting outer-binary modes and increasing the Noether sea internal temperature. On galactic and cluster scales, this injection is a source of heating that counteracts the natural cosmological cooling of the medium.
+- **Energy input to the Noether sea.** Jets and radiative outflows from SMBHs inject energy into the surrounding medium, locally exciting binary-3 modes and increasing the Noether sea internal temperature. On galactic and cluster scales, this injection is a source of heating that counteracts the natural cosmological cooling of the medium.
 - **Feedback on $w_{\mathrm{eff}}$.** If SMBH energy injection is correlated with structure formation, the effective dark-energy equation of state can carry weak environmental dependence.
 - **Backreaction rather than isolation.** The relevant cosmological question is not whether a black hole is an isolated object with a fixed bookkeeping mass, but whether the recycling zone and the ambient Noether sea remain coupled strongly enough for the surrounding Noether sea state to alter what the object contributes at late times.
-- **No perpetual motion.** The recycling process does not create energy; it redistributes it. The total energy budget (matter + radiation + medium baseline) is conserved in absolute time. What changes is the partition between locked internal modes and the slowly varying outer-binary tension sector.
+- **No perpetual motion.** The recycling process does not create energy; it redistributes it. The total energy budget (matter + radiation + medium baseline) is conserved in absolute time. What changes is the partition between locked internal modes and the slowly varying binary-3 tension sector.
 
 The canonical strong-field and recycling picture is developed in [../spacetime/black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md). This chapter keeps only the cosmological consequence: whether black-hole processing contributes a measurable source term to the late-time expansion history.
 
@@ -5076,7 +5076,7 @@ The DESI DR2 matter-conversion comparison sharpens the source-history side of th
 
 #### How $\mathbb{A}\mathbb{A}\mathbb{A}$ Would Read Such a Signal
 
-From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, a positive coupling of this kind would not be read as black holes creating energy from nothing or as the Euclidean void itself driving mass growth. The relevant interpretation would instead be constitutive: black holes are regions where the Noether sea is driven into the strongest known alignment, compression, and recycling regimes, so they are natural places for energy partition between inner, middle, and outer nested shell braid layers to become macroscopically visible.
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, a positive coupling of this kind would not be read as black holes creating energy from nothing or as the Euclidean void itself driving mass growth. The relevant interpretation would instead be constitutive: black holes are candidate regions where the Noether sea enters extreme alignment, compression, and recycling regimes, so they are natural places for an indexed energy partition among binaries 1, 2, and 3 to become macroscopically visible. This is an inferred source-record role, not a taxonomy assignment.
 
 That yields a disciplined three-layer reading:
 
@@ -5110,7 +5110,7 @@ $$
 \mathcal{S}_{\mathrm{BH}}
 $$
 
-where $\mathcal{S}_{\mathrm{BH}}$ captures the net transfer from SMBH recycling zones into the slowly varying outer-binary tension sector. The sign and magnitude of $\mathcal{S}_{\mathrm{BH}}$ are empirical questions, not inputs fixed by ontology alone.
+where $\mathcal{S}_{\mathrm{BH}}$ captures the net transfer from SMBH recycling zones into the slowly varying binary-3 tension sector. The sign and magnitude of $\mathcal{S}_{\mathrm{BH}}$ are empirical questions, not inputs fixed by ontology alone.
 
 This decomposition also clarifies why an effective phantom crossing does not by itself force acausal physics in the local framework. If the dark-energy-like sector is being fed by transfer from another component, then $w_{\mathrm{eff}} < -1$ can appear at the level of the fit while the underlying substrate dynamics remain causal and energy-accounted.
 
@@ -5148,13 +5148,13 @@ Until those conditions are met, cosmological coupling should be treated as a can
 
 | Epoch | Noether sea state | Effective $w$ | Dominant mechanism |
 |:---|:---|:---|:---|
-| Radiation era ($z > 3400$) | Hot, dense; outer binaries contracted | $w_{\mathrm{eff}} \to 0$ (subdominant) | Radiation pressure dominates |
-| Matter era ($3400 > z > 0.7$) | Cooling; outer binaries relaxing | $w_{\mathrm{eff}}$ transitions toward $-1$ | Matter density dominates; tension grows |
+| Radiation era ($z > 3400$) | Hot, dense; binaries 3 contracted | $w_{\mathrm{eff}} \to 0$ (subdominant) | Radiation pressure dominates |
+| Matter era ($3400 > z > 0.7$) | Cooling; binaries 3 relaxing | $w_{\mathrm{eff}}$ transitions toward $-1$ | Matter density dominates; tension grows |
 | Acceleration onset ($z \sim 0.7$) | $\rho_{\mathrm{DE,eff}} \sim \rho_m$ | $w_{\mathrm{eff}} \approx -1$ | Tension becomes dynamically significant; SMBH channel may become non-negligible |
 | Present ($z = 0$) | Quasi-equilibrium tension | $w_{\mathrm{eff}} \approx -1$ with possible mild drift | Acceleration established; coupling tests become survey-limited |
 | Far future ($z \to -1$) | Full relaxation | $w_{\mathrm{eff}} \to -1$ or evolves | Depends on relaxation endpoint |
 
-The acceleration onset redshift $z \sim 0.7$ is treated as the characteristic crossover of this relaxation model, with timescale set by assembly-scale physics (outer-binary binding energy and Noether sea coupling).
+The acceleration onset redshift $z \sim 0.7$ is treated as the characteristic crossover of this relaxation model, with timescale set by assembly-scale physics (binary-3 binding energy and Noether sea coupling).
 
 ### Expansion-Module Interface
 
@@ -5167,7 +5167,7 @@ In the modular cosmology architecture, this chapter provides:
 - **Input from [dark-matter.md](../../../../markdown/aaa/cosmology/dark-matter.md):** $\Omega_m(z)$ and $G_{\mathrm{eff}}(a,k)$ for consistent Friedmann integration.
 - **Input from [BBN-constraints.md](../../../../markdown/aaa/cosmology/BBN-constraints.md):** early-universe constraints ensuring $\rho_{\mathrm{DE,eff}}(z_{\mathrm{BBN}})$ is negligible relative to radiation density.
 - **Frame and calibration checks:** supernova directionality, standardization drift, BAO anisotropy, CMB/matter dipole consistency, and local bulk-flow residuals.
-- **Ontic variables passed:** $\rho_{\text{NS}}(z)$, $n(z)$, $\chi_{\text{sea}}(z)$, $\langle R_{\mathrm{outer}} \rangle(z)$, $\tau_{\mathrm{relax}}^{\mathrm{outer}}$, $\mathcal{S}_{\mathrm{sea}}(z)$, $\mathcal{S}_{\mathrm{BH}}(z)$.
+- **Ontic variables passed:** $\rho_{\text{NS}}(z)$, $n(z)$, $\chi_{\text{sea}}(z)$, $\langle R_3 \rangle(z)$, $\tau_{\mathrm{relax}}^{(3)}$, $\mathcal{S}_{\mathrm{sea}}(z)$, $\mathcal{S}_{\mathrm{BH}}(z)$.
 - **Effective outputs returned:** $w_{\mathrm{eff}}(z)$, $u_{\mathrm{sea,relax}}(z)$, $\rho_{\mathrm{BH,coup}}(z)$, $\rho_{\mathrm{DE,eff}}(z)$, $H(z)$.
 
 All interfaces use the same absolute-time / Euclidean-void substrate and Noether sea state variables, ensuring ontological consistency with other cosmology modules.
@@ -5177,13 +5177,13 @@ All interfaces use the same absolute-time / Euclidean-void substrate and Noether
 Late-time accelerated expansion, conventionally attributed to dark energy or a cosmological constant, is interpreted in the architrino assembly architecture as a macroscopic signature of Noether sea relaxation within a fixed Euclidean void:
 
 - The Noether sea carries a baseline energy density set by the binding and oscillation energies of its constituent Noether braids.
-- The outer-binary sector of these Noether braids is the candidate carrier for a slowly varying tensile-stress row whose observer-level projection can read out as effective negative pressure.
+- The binary-3 sector of these Noether braids is the candidate carrier for a slowly varying tensile-stress row whose observer-level projection can read out as effective negative pressure.
 - Supermassive black holes may supply a secondary transport channel that feeds or modulates that tension sector, but only if the inferred population-level coupling survives ordinary astrophysical explanations.
 - When this projected pressure satisfies $w < -1/3$, the effective expansion history shows acceleration.
-- The cosmological-constant hierarchy problem is reframed: high-energy internal modes are dynamically shielded from the tension sector by the nested-binary architecture, so the natural scale of $\rho_{\mathrm{DE,eff}}$ is set by outer-binary physics, not by summing all zero-point modes.
+- The cosmological-constant hierarchy problem is reframed: high-energy internal modes are dynamically shielded from the tension sector by the source record indexed-support architecture, so the natural scale of $\rho_{\mathrm{DE,eff}}$ is set by binary-3 physics, not by summing all zero-point modes.
 - Any acceleration claim must pass frame and calibration gates: direction-dependent supernova residuals, BAO anisotropy, CMB/matter dipole consistency, and host-environment evolution must be either negligible or produced by the same Noether sea response law.
 
-The parameters $w$ and $\Lambda$ remain useful effective descriptors of expansion history, while the mechanistic content resides in the Noether sea constitutive relation, outer-binary dynamics, and any validated SMBH recycling channel. Deriving that constitutive relation from the master equation is the critical open program.
+The parameters $w$ and $\Lambda$ remain useful effective descriptors of expansion history, while the mechanistic content resides in the Noether sea constitutive relation, binary-3 dynamics, and any validated SMBH recycling channel. Deriving that constitutive relation from the master equation is the critical open program.
 
 ## Structure Formation
 
@@ -5212,7 +5212,7 @@ Define a spatially averaged Noether sea state at absolute time $T$:
 - $u_{\text{sea}}(T)$: mean energy density of the Noether sea, distinct from the Noether braid number/mass-density proxy $\rho_{\text{NS}}(\mathbf X,T)$,
 - $\rho_m(T)$: mean energy density of matter assemblies (baryonic + neutral/dark),
 - $\bar{\rho}_{\text{NS}}(T)$: mean Noether braid density in physical units,
-- $\bar{R}_{\text{braid}}(T)$: mean outer-binary radius of Noether braid assemblies in the Noether sea.
+- $\bar{R}_{\text{braid}}(T)$: declared mean binary-radius statistic for Noether braid assemblies in the Noether sea.
 
 An effective Hubble-like parameter $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ is defined operationally through the rate of change of the Noether sea's bulk properties as read by observer clocks. Specifically, if one defines an effective scale variable $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ via the photon redshift relation (the ratio of photon assembly frequencies at emission and reception), then $H_{\mathrm{eff}}=d\ln a_{\mathrm{eff}}/dt_{\mathrm{eff}}$ summarizes how inter-assembly separations evolve as the Noether sea relaxes and dissipates energy. This $H_{\mathrm{eff}}$ is not the expansion rate of space but a bookkeeping variable for the Noether sea's thermodynamic and mechanical evolution.
 
@@ -5233,11 +5233,11 @@ $$
 
 Each symbol carries a specific medium-level meaning:
 
-- **$H_{\mathrm{eff}}(t_{\mathrm{eff}})$**: the effective damping term arising from Noether sea bulk evolution. As Noether braids in the Noether sea relax energetically (outer binaries expanding, frequencies decreasing), inter-assembly separations grow, diluting the gravitational transmitter-emission density. This acts as a friction-like term on the growth of perturbations, matching the role of the Hubble-like damping term in standard cosmology without identifying ordinary dissipative drag as the mass mechanism.
+- **$H_{\mathrm{eff}}(t_{\mathrm{eff}})$**: the effective damping term arising from Noether sea bulk evolution. As Noether braids in the Noether sea relax energetically (their declared binary-radius statistic increasing while frequencies decrease), inter-assembly separations grow, diluting the gravitational transmitter-emission density. This acts as a friction-like term on the growth of perturbations, matching the role of the Hubble-like damping term in standard cosmology without identifying ordinary dissipative drag as the mass mechanism.
 
 - **$G_{\text{eff}}(t_{\mathrm{eff}}, k)$**: the effective gravitational coupling, set by how efficiently a local matter overdensity perturbs the surrounding Noether sea and how that perturbation propagates to attract more matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $G_{\text{eff}}$ depends on:
   - the local Noether braid density $\bar{\rho}_{\text{NS}}(T)$, which sets Noether sea stiffness,
-  - the outer-binary radius $\bar{R}_{\text{braid}}(T)$, which controls the compliance of Noether sea assemblies to deformation,
+- the declared binary-radius statistic $\bar{R}_{\text{braid}}(T)$, which parameterizes the compliance of Noether sea assemblies to deformation,
   - potentially the wavenumber $k$, if the Noether sea response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes.
   The weak-field constitutive map behind this is the same one organized in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
@@ -5413,7 +5413,7 @@ The effective growth equation accommodates both CDM-like and self-interacting sc
 
 #### Medium Energy (Dark-Energy Role)
 
-The baseline energy density of the Noether sea ($u_{\text{sea}}$) is the candidate carrier for an effective cosmological-constant or dark-energy role. Its contribution enters the effective Hubble-like term $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ only after the same Noether sea constitutive record supplies the pressure and coupling rows. If the projected equation of state satisfies $w_{\text{sea}} \approx -1$, with the slowly varying outer-binary tension sector reading out as effective negative pressure, the observer-level expansion history accelerates. Any evolution of $w_{\text{sea}}(T)$ from slow Noether sea thermodynamic relaxation would produce a dynamical dark-energy signature testable against supernova and BAO data.
+The baseline energy density of the Noether sea ($u_{\text{sea}}$) is the candidate carrier for an effective cosmological-constant or dark-energy role. Its contribution enters the effective Hubble-like term $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ only after the same Noether sea constitutive record supplies the pressure and coupling rows. If the projected equation of state satisfies $w_{\text{sea}} \approx -1$, with the slowly varying indexed-binary tension sector reading out as effective negative pressure, the observer-level expansion history accelerates. Any evolution of $w_{\text{sea}}(T)$ from slow Noether sea thermodynamic relaxation would produce a dynamical dark-energy signature testable against supernova and BAO data.
 
 ---
 
@@ -5704,7 +5704,7 @@ $$
 $$
 Cosmological deviations are viable only when the same coefficient record also fits BAO, CMB lensing, supernova distances, and $f\sigma_8$ growth without retuning $S_{\mathrm{loc}}$ by observational channel.
 
-A concrete prediction: if Noether sea compliance decreases as it cools (outer binaries expand, lowering the energy density and stiffening the Noether sea response), then $\mu < 0$ at late times, suppressing growth and lowering $S_8$. This is a falsifiable, quantitative claim.
+A concrete prediction: if Noether sea compliance decreases as it cools (the declared binary-radius statistic increases, lowering the energy density and stiffening the Noether sea response), then $\mu < 0$ at late times, suppressing growth and lowering $S_8$. This is a falsifiable, quantitative claim.
 
 ---
 

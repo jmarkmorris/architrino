@@ -107,7 +107,7 @@ Only when both conditions are met is photon output allowed. If the closure resid
 
 ### Wake Shock Definition (Channel Specialization)
 
-In this document, a **wake shock** is the bremsstrahlung name for the inherited radiation closure residual when it is produced by strong target-induced deceleration of the electron Noether braid assembly. It is not merely a descriptive label for radiation. Operationally, it is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in the middle binary (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether sea.
+In this document, a **wake shock** is the bremsstrahlung name for the inherited radiation closure residual when it is produced by strong target-induced deceleration of the electron Noether braid assembly. It is not merely a descriptive label for radiation. Operationally, it is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in a declared binary channel (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether sea.
 
 A minimal trigger condition is written as
 

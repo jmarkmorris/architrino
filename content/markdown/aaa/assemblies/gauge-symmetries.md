@@ -318,7 +318,7 @@ Here $\epsilon^{abc}$ is the $SU(2)$ Levi-Civita structure constant; it is unrel
 ## SU(3) Color Sector
 
 **Theorem 3 (Color algebra closure in axis-exceptionality basis).**  
-In the ordered basis $(H,M,L)$, the eight generators built from axis mixers and two diagonal traceless operators close a Lie algebra isomorphic to $\mathfrak{su}(3)$.
+In the persistently indexed basis $(1,2,3)$, the eight generators built from axis mixers and two diagonal traceless operators close a Lie algebra isomorphic to $\mathfrak{su}(3)$.
 
 This is the rigorous closure result already proven in [color-charge-su3](fermions/color-charge-su3.md#algebra-closure-rigorous-statement). Therefore effective color transport acts through
 $$

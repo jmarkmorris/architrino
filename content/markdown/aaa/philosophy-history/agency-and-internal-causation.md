@@ -37,7 +37,7 @@ This also separates physics from legal or moral personhood. $\mathbb{A}\mathbb{A
 
 ## Primitive Metastability
 
-The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether braid](../noether-braid/noether-braid.md) architecture, every Noether braid contains a middle binary at the field-speed hinge $v=c_f$, while [Nested Shell Braid Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
+The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether braid](../noether-braid/noether-braid.md) architecture, a declared binary channel may approach the field-speed fold $v=c_f$. [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics) treats a controlled crossing of that fold as a candidate discrete action transaction, but the taxonomy assigns no fixed binary to the role and no retained mechanism has yet established ordinary assembly metastability.
 
 This does not make every Noether braid an agent. A bare Noether braid has a threshold-sensitive internal hinge, but it has not yet been shown to set its own threshold, hold a bias, or reuse feedback. The philosophical ladder is:
 
@@ -48,7 +48,7 @@ This does not make every Noether braid an agent. A bare Noether braid has a thre
 | Decider | Functional decision exists when an assembly can set, hold, update, and reuse bias states that change later basin weights. |
 | Mature agent | Compatibilist agency exists when many such controlled thresholds are integrated with memory, feedback, and record-making action. |
 
-The most primitive assembly that can make a decision is therefore not the first metastable assembly. It is the first assembly whose internal preparation changes the later basin distribution under the same external boundary context. A metastable middle binary supplies the possibility of alternatives; controlled threshold placement supplies the decision.
+The most primitive assembly that can make a decision is therefore not the first metastable assembly. It is the first assembly whose internal preparation changes the later basin distribution under the same external boundary context. A metastable indexed binary channel could supply the possibility of alternatives; controlled threshold placement would supply the decision.
 
 Reaction-channel multiplicity belongs one rung lower. A reactant configuration may have many possible exits because binary energies and phases, causal-wake phase history, Noether braid state, photon paths, thermal state, and Noether sea conditions vary across events. That is reaction provenance, not a decision, unless an assembly prepares and holds an internal bias that changes the basin distribution under the same $c_\Omega(T)$.
 
@@ -116,7 +116,7 @@ The He-Rb-He example supplies a minimal worked foothold for threshold tuning. It
 | **Compatibilist Agency** | Allowed when complex assemblies navigate deterministic dynamics through internal state and feedback |
 | **Mechanism of "Decision"** | Threshold tuning + feedback + memory in networked assemblies |
 | **Origin-of-Life Language** | Primitive responsiveness and reaction-channel multiplicity are not agency; the technical boundary is internally maintained basin control under fixed external context |
-| **Metastability Substrate** | Field-speed middle binary in the Noether braid supplies a primitive threshold resource, but not agency by itself |
+| **Metastability Substrate** | A declared binary channel near the field-speed fold supplies a candidate threshold resource, but not agency by itself |
 | **Validation Target** | Fixed boundary context plus different internal preparations must produce a measurable basin-weight shift with work, dissipation, and hold time recorded |
 | **Switch** | Bias-to-state mechanism; computed example currently uses He-Rb-He |
 | **Decider** | Candidate bias-setting architecture built from controlled thresholds, feedback, and memory |

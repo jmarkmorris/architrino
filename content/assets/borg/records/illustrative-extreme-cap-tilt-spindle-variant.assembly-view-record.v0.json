@@ -1,17 +1,18 @@
 {
   "schema": "assembly-view-record.v0",
   "sourceId": "illustrative-extreme-cap-tilt-spindle-variant-v0",
+  "title": "B1 — high-axial interior",
   "provenance": {
     "engineId": "prescribed-geometry",
-    "engineVersion": "prescribed-spindle-chart-record-emitter.v0",
+    "engineVersion": "prescribed-braid-record-emitter.v1",
     "runId": "illustrative-extreme-cap-tilt-spindle-variant-v0",
     "claimGrade": "chart-hypothesis",
     "evidenceStatus": "display-only",
     "generatingSpec": "reference/priorities/braid-program/configurations/illustrative-extreme-cap-tilt-spindle-variant.v0.json",
-    "date": "2026-07-21",
+    "date": "2026-07-22",
     "prescribedGeometry": {
-      "emitterId": "prescribed-spindle-chart-record-emitter.v0",
-      "sourceSchema": "spindle-braid-chart-spec.v0",
+      "emitterId": "prescribed-braid-record-emitter.v1",
+      "sourceSchema": "prescribed-braid-spec.v1",
       "interpolation": "piecewise-cubic-hermite/v0",
       "errorMethod": "fourth-derivative-hermite-envelope/v1",
       "physicsInvoked": false,
@@ -22,14 +23,204 @@
       },
       "sphericalEnvelopeRadius": 0.5,
       "displayTrailPeriods": 1,
+      "prescribedReturnPeriod": 4,
+      "description": "Exact B1 prescribed display paths at high axial fractions while remaining inside the B1 coordinate interior; the legacy source identity is retained only for stable machine compatibility.",
       "taxonomy": {
-        "family": "spindle-braid",
-        "familyLabel": "Spindle braid",
-        "classification": "parameter-variant",
-        "classificationLabel": "Parameter variant",
-        "variant": "extreme-cap-tilt",
-        "variantLabel": "Extreme cap-tilt inspection member",
-        "canonSource": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md#definition-and-geometry"
+        "familyId": "B",
+        "familyLabel": "Family B",
+        "memberId": "B1",
+        "memberLabel": "rigid common-frequency",
+        "instantiationLabel": "high-axial interior",
+        "displayLabel": "B1 — high-axial interior",
+        "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#coordinate-boundaries"
+      },
+      "coordinates": {
+        "group": {
+          "centerAtEpoch": [
+            0,
+            0,
+            0
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ]
+        },
+        "prescribedReturnPeriod": 4,
+        "braids": [
+          {
+            "braidId": "b1-high-axial-interior-braid-1",
+            "centerOffset": [
+              0,
+              0,
+              0
+            ],
+            "phaseOffset": 0,
+            "circulationSense": 1,
+            "frameDefinition": {
+              "type": "orthonormal.v1",
+              "e1": [
+                1,
+                0,
+                0
+              ],
+              "e2": [
+                0,
+                1,
+                0
+              ],
+              "axis": [
+                0,
+                0,
+                1
+              ]
+            },
+            "binaries": [
+              {
+                "binaryIndex": 1,
+                "binaryId": "extreme-cap-spindle-binary-1",
+                "worldlineIds": [
+                  "extreme-cap-spindle-1-0",
+                  "extreme-cap-spindle-1-1"
+                ],
+                "centerOffset": [
+                  0,
+                  0,
+                  0
+                ],
+                "radius": 0.22,
+                "axialHalfSeparation": 0.20673237657289983,
+                "transverseOrbitRadius": 0.07524443153164714,
+                "frequency": 0.25,
+                "phase": 0,
+                "circulationSense": 1,
+                "polarityAssignment": 1,
+                "axis": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 1
+                },
+                "transverseFrame": [
+                  {
+                    "x": 1,
+                    "y": 0,
+                    "z": 0
+                  },
+                  {
+                    "x": 0,
+                    "y": 1,
+                    "z": 0
+                  }
+                ]
+              },
+              {
+                "binaryIndex": 2,
+                "binaryId": "extreme-cap-spindle-binary-2",
+                "worldlineIds": [
+                  "extreme-cap-spindle-2-0",
+                  "extreme-cap-spindle-2-1"
+                ],
+                "centerOffset": [
+                  0,
+                  0,
+                  0
+                ],
+                "radius": 0.32,
+                "axialHalfSeparation": 0.31513848096390656,
+                "transverseOrbitRadius": 0.055567416853417734,
+                "frequency": 0.25,
+                "phase": 2.0943951023931953,
+                "circulationSense": 1,
+                "polarityAssignment": -1,
+                "axis": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 1
+                },
+                "transverseFrame": [
+                  {
+                    "x": 1,
+                    "y": 0,
+                    "z": 0
+                  },
+                  {
+                    "x": 0,
+                    "y": 1,
+                    "z": 0
+                  }
+                ]
+              },
+              {
+                "binaryIndex": 3,
+                "binaryId": "extreme-cap-spindle-binary-3",
+                "worldlineIds": [
+                  "extreme-cap-spindle-3-0",
+                  "extreme-cap-spindle-3-1"
+                ],
+                "centerOffset": [
+                  0,
+                  0,
+                  0
+                ],
+                "radius": 0.44,
+                "axialHalfSeparation": 0.438325667160368,
+                "transverseOrbitRadius": 0.03834852680896958,
+                "frequency": 0.25,
+                "phase": 4.1887902047863905,
+                "circulationSense": 1,
+                "polarityAssignment": 1,
+                "axis": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 1
+                },
+                "transverseFrame": [
+                  {
+                    "x": 1,
+                    "y": 0,
+                    "z": 0
+                  },
+                  {
+                    "x": 0,
+                    "y": 1,
+                    "z": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "illustrativeCoordinates": {
+          "status": "prescribed-display-coordinates",
+          "choices": [
+            "The center, common axis, radii, common frequency, phases, polarity assignments, and high-axial interior decomposition are prescribed display coordinates inherited from the verified legacy record."
+          ]
+        },
+        "compatibility": {
+          "retainedIdentifiers": [
+            {
+              "kind": "source-spec-id",
+              "value": "illustrative-extreme-cap-tilt-spindle-variant-v0",
+              "reason": "Stable source identity consumed by existing record links."
+            },
+            {
+              "kind": "source-filename",
+              "value": "illustrative-extreme-cap-tilt-spindle-variant.v0.json",
+              "reason": "Stable configuration path."
+            },
+            {
+              "kind": "record-url",
+              "value": "content/assets/borg/records/illustrative-extreme-cap-tilt-spindle-variant.assembly-view-record.v0.json",
+              "reason": "Stable Borg query URL."
+            },
+            {
+              "kind": "binary-and-worldline-id-set",
+              "value": "extreme-cap-spindle-binary-1..3; extreme-cap-spindle-1-0..extreme-cap-spindle-3-1",
+              "reason": "Stable endpoint identities inside the sealed display record."
+            }
+          ]
+        }
       }
     }
   },
@@ -25076,6 +25267,8 @@
   "binaries": [
     {
       "id": "extreme-cap-spindle-binary-1",
+      "braidId": "b1-high-axial-interior-braid-1",
+      "binaryIndex": 1,
       "members": [
         "extreme-cap-spindle-1-0",
         "extreme-cap-spindle-1-1"
@@ -25083,6 +25276,7 @@
       "frequency": 0.25,
       "angularFrequency": 1.5707963267948966,
       "phase": 0,
+      "circulationSense": 1,
       "planeOrientation": {
         "normal": {
           "x": 0,
@@ -25110,14 +25304,18 @@
       "axisDisplayHalfLength": 0.45,
       "separation": 0.41346475314579967,
       "planarOffset": 0.41346475314579967,
+      "radius": 0.22,
       "layerRadius": 0.22,
-      "capAngle": 1.2217304763960306,
+      "axialHalfSeparation": 0.20673237657289983,
+      "transverseOrbitRadius": 0.07524443153164714,
       "transverseRadius": 0.07524443153164714,
       "carrierSpeed": 0.11819367666168143,
       "polarityAssignment": 1
     },
     {
       "id": "extreme-cap-spindle-binary-2",
+      "braidId": "b1-high-axial-interior-braid-1",
+      "binaryIndex": 2,
       "members": [
         "extreme-cap-spindle-2-0",
         "extreme-cap-spindle-2-1"
@@ -25125,6 +25323,7 @@
       "frequency": 0.25,
       "angularFrequency": 1.5707963267948966,
       "phase": 2.0943951023931953,
+      "circulationSense": 1,
       "planeOrientation": {
         "normal": {
           "x": 0,
@@ -25152,14 +25351,18 @@
       "axisDisplayHalfLength": 0.45,
       "separation": 0.6302769619278131,
       "planarOffset": 0.6302769619278131,
+      "radius": 0.32,
       "layerRadius": 0.32,
-      "capAngle": 1.3962634015954636,
+      "axialHalfSeparation": 0.31513848096390656,
+      "transverseOrbitRadius": 0.055567416853417734,
       "transverseRadius": 0.055567416853417734,
       "carrierSpeed": 0.0872850942828294,
       "polarityAssignment": -1
     },
     {
       "id": "extreme-cap-spindle-binary-3",
+      "braidId": "b1-high-axial-interior-braid-1",
+      "binaryIndex": 3,
       "members": [
         "extreme-cap-spindle-3-0",
         "extreme-cap-spindle-3-1"
@@ -25167,6 +25370,7 @@
       "frequency": 0.25,
       "angularFrequency": 1.5707963267948966,
       "phase": 4.1887902047863905,
+      "circulationSense": 1,
       "planeOrientation": {
         "normal": {
           "x": 0,
@@ -25194,8 +25398,10 @@
       "axisDisplayHalfLength": 0.45,
       "separation": 0.876651334320736,
       "planarOffset": 0.876651334320736,
+      "radius": 0.44,
       "layerRadius": 0.44,
-      "capAngle": 1.4835298641951802,
+      "axialHalfSeparation": 0.438325667160368,
+      "transverseOrbitRadius": 0.03834852680896958,
       "transverseRadius": 0.03834852680896958,
       "carrierSpeed": 0.06023772504952503,
       "polarityAssignment": 1
@@ -25203,9 +25409,9 @@
   ],
   "ansatz": [
     {
-      "id": "extreme-cap-spindle-1-0-static-chart-curve",
+      "id": "extreme-cap-spindle-1-0-prescribed-return-cycle",
       "worldlineId": "extreme-cap-spindle-1-0",
-      "label": "extreme-cap-spindle-1-0 prescribed circular chart path",
+      "label": "B1 — high-axial interior, extreme-cap-spindle-binary-1, endpoint 1",
       "points": [
         {
           "x": 0.07524443153164714,
@@ -25695,9 +25901,9 @@
       ]
     },
     {
-      "id": "extreme-cap-spindle-1-1-static-chart-curve",
+      "id": "extreme-cap-spindle-1-1-prescribed-return-cycle",
       "worldlineId": "extreme-cap-spindle-1-1",
-      "label": "extreme-cap-spindle-1-1 prescribed circular chart path",
+      "label": "B1 — high-axial interior, extreme-cap-spindle-binary-1, endpoint 2",
       "points": [
         {
           "x": -0.07524443153164714,
@@ -26187,9 +26393,9 @@
       ]
     },
     {
-      "id": "extreme-cap-spindle-2-0-static-chart-curve",
+      "id": "extreme-cap-spindle-2-0-prescribed-return-cycle",
       "worldlineId": "extreme-cap-spindle-2-0",
-      "label": "extreme-cap-spindle-2-0 prescribed circular chart path",
+      "label": "B1 — high-axial interior, extreme-cap-spindle-binary-2, endpoint 1",
       "points": [
         {
           "x": -0.027783708426708853,
@@ -26679,9 +26885,9 @@
       ]
     },
     {
-      "id": "extreme-cap-spindle-2-1-static-chart-curve",
+      "id": "extreme-cap-spindle-2-1-prescribed-return-cycle",
       "worldlineId": "extreme-cap-spindle-2-1",
-      "label": "extreme-cap-spindle-2-1 prescribed circular chart path",
+      "label": "B1 — high-axial interior, extreme-cap-spindle-binary-2, endpoint 2",
       "points": [
         {
           "x": 0.027783708426708853,
@@ -27171,9 +27377,9 @@
       ]
     },
     {
-      "id": "extreme-cap-spindle-3-0-static-chart-curve",
+      "id": "extreme-cap-spindle-3-0-prescribed-return-cycle",
       "worldlineId": "extreme-cap-spindle-3-0",
-      "label": "extreme-cap-spindle-3-0 prescribed circular chart path",
+      "label": "B1 — high-axial interior, extreme-cap-spindle-binary-3, endpoint 1",
       "points": [
         {
           "x": -0.019174263404484807,
@@ -27663,9 +27869,9 @@
       ]
     },
     {
-      "id": "extreme-cap-spindle-3-1-static-chart-curve",
+      "id": "extreme-cap-spindle-3-1-prescribed-return-cycle",
       "worldlineId": "extreme-cap-spindle-3-1",
-      "label": "extreme-cap-spindle-3-1 prescribed circular chart path",
+      "label": "B1 — high-axial interior, extreme-cap-spindle-binary-3, endpoint 2",
       "points": [
         {
           "x": 0.019174263404484807,

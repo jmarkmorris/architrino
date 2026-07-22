@@ -1,25 +1,27 @@
-# Mapping the Planck Scale to the Nested Shell Braid Geometry
+# Mapping the Planck Scale to the A1 Geometry
 
-This chapter treats the Planck scale as an exploratory alignment-horizon problem for the nested shell braid rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed nested shell braid sector, then test which parts survive once full closure conditions are imposed.
+This chapter treats the Planck scale as an exploratory alignment-horizon problem for the A1 rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed A1 sector, then test which parts survive once full closure conditions are imposed.
 
-Its closest companions are [Nested Shell Braid Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), [Noether Braid Doubling-Frequency Resonance Lock](../../noether-braid/braid-a1-3-doubling-frequency-lock.md), [Angular Momentum and Spin](./angular-momentum-and-spin.md), [Horizon Chirality](../../spacetime/horizon-chirality.md), [Black Holes](../../spacetime/black-holes.md), and [Effective Lagrangian](../../dynamics/effective-lagrangian.md).
+Its closest companions are [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), [A3.3 Doubling-Frequency Resonance Lock](../../noether-braid/braid-a3-3-doubling-frequency-lock.md), [Angular Momentum and Spin](./angular-momentum-and-spin.md), [Horizon Chirality](../../spacetime/horizon-chirality.md), [Black Holes](../../spacetime/black-holes.md), and [Effective Lagrangian](../../dynamics/effective-lagrangian.md).
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 
-The simple way to read the chapter is this: ordinary Planck formulas are not being used as standalone constants that already explain the world. They are being used as hard clues. If a nested shell braid really supplies the deepest stable clock-and-ruler standard, then the familiar Planck combinations should reappear as consequences of one extreme alignment branch, one action ledger, and one observer-export channel. If the constants can be fitted only one at a time, the mapping has failed.
+Here `A1` has only its prescribed taxonomy meaning: one complete Family-A braid with persistent binary indices $a\in\{1,2,3\}$, independently assignable positive radii $R_a$ and frequencies $f_a$, mutually orthogonal binary axes at $\lambda_A=0$, and axes that converge toward the group-translation direction as $\lambda_A\to1$. The axial half-separations $h_a$, transverse orbit radii $\rho_a$, phases $\phi_a$, and circulation rows remain binary coordinates; no equality, radius order, particle identity, stability, or retained branch follows from the member label. Every Planck, fermion, black-hole, and constant assignment below is therefore a conjecture about this prescribed chart. A same-record EOM-solver evolution that cannot retain the declared coordinate relations would falsify the physical A1 assignment.
+
+The simple way to read the chapter is this: ordinary Planck formulas are not being used as standalone constants that already explain the world. They are being used as hard clues. If an A1 really supplies the deepest stable clock-and-ruler standard, then the familiar Planck combinations should reappear as consequences of one extreme alignment branch, one action ledger, and one observer-export channel. If the constants can be fitted only one at a time, the mapping has failed.
 
 This keeps the claim level honest. The chapter preserves what Planck-unit reasoning gets right: it marks the point where localization, action, gravity, and signal speed stop being separable bookkeeping problems. The $\mathbb{A}\mathbb{A}\mathbb{A}$ addition is the recovery target: identify the physical branch whose delayed causal geometry makes those bookkeeping limits show up.
 
 ## Thesis
 
-This chapter maps the Planck scale into nested shell braid geometry and dynamics. The inherited Planck formulas are used as constraints and comparison targets, not as settled ontology. The immediate aim is to identify which geometric quantities, delay-feedback conditions, and alignment variables would have to be derived before the Planck scale can be claimed as a nested shell braid closure result.
+This chapter maps the Planck scale into A1 geometry and dynamics. The inherited Planck formulas are used as constraints and comparison targets, not as settled ontology. The immediate aim is to identify which geometric quantities, delay-feedback conditions, and alignment variables would have to be derived before the Planck scale can be claimed as an A1 closure result.
 
-We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of nested shell braid assemblies in the Noether sea:
+We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of A1 assemblies in the Noether sea:
 
 > 
 > **Working Thesis (Planck Alignment Horizon).**
 > 
-> A nested shell braid reaches the Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
+> An A1 reaches the proposed Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
 > 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving new one-way causal updates ahead of the forward edge (local horizon behavior).
 > 2. The geometry collapses from a 3D precessing oblate spheroidal envelope (fermion-like) to a 2D, co-planar disk (boson-like).
 > 3. In the planar limit, the combined in-plane motion outruns $c_f$, so the emission history forms a Mach-wedge causal wake with half-angle
@@ -42,7 +44,7 @@ These identifications are **conjectured mappings**, not definitions. They must e
 
 In plain terms, the Planck scale is a **dynamic alignment horizon**, not a minimal length by fiat: under extreme stress the assembly’s internal geometry snaps into a universal, planar lock, forward-sector updates are starved, and no smaller stable mode remains.
 
-This also fixes how Planck-unit language should be read. The Planck relations are benchmark natural measures, not evidence that the Euclidean void is pixelated or that substrate motion is discontinuous. They become physically meaningful only when a stable assembly supplies the clock, ruler, and closed-cycle action channel that can instantiate the corresponding cadence, radius, and action. The Planck-alignment program therefore has to derive those quantities from one retained nested shell braid branch, rather than treating $\ell_P$, $t_P$, or $h$ as primitive measuring devices.
+This also fixes how Planck-unit language should be read. The Planck relations are benchmark natural measures, not evidence that the Euclidean void is pixelated or that substrate motion is discontinuous. They become physically meaningful only when a stable assembly supplies the clock, ruler, and closed-cycle action channel that can instantiate the corresponding cadence, radius, and action. The Planck-alignment program therefore has to derive those quantities from one retained A1 branch, rather than treating $\ell_P$, $t_P$, or $h$ as primitive measuring devices.
 
 ## Operational Probing Limit
 
@@ -65,9 +67,9 @@ E_{\mathrm{cross}}^2 \sim \frac{\hbar c_f^5}{2G},
 \ell_{\mathrm{probe,min}} \sim O(\ell_P)
 $$
 
-Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This supports the interpretation of $\ell_P$ as the observed trace of a nested shell braid alignment horizon rather than as proof that spacetime is made of smaller static beads.
+Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This motivates testing $\ell_P$ as the observed trace of an A1 alignment horizon rather than treating it as proof that spacetime is made of smaller static beads.
 
-In plain terms, the probe argument says that "looking smaller" is not a neutral act. A higher-energy probe both sharpens the wavelength and loads more stress into the region being probed. The observed lower bound is therefore a joint readout of resolution, energy loading, and horizon-facing response. In this chapter that joint readout becomes a branch test: the nested shell braid account must explain why the same attempted compression becomes alignment or horizon behavior instead of an ordinary smaller ruler.
+In plain terms, the probe argument says that "looking smaller" is not a neutral act. A higher-energy probe both sharpens the wavelength and loads more stress into the region being probed. The observed lower bound is therefore a joint readout of resolution, energy loading, and horizon-facing response. In this chapter that joint readout becomes a branch test: the A1 account must explain why the same attempted compression becomes alignment or horizon behavior instead of an ordinary smaller ruler.
 
 The same operational limit can be written as a generalized-uncertainty comparison. A probe with momentum uncertainty $\Delta p$ carries an ordinary localization term and a gravitational back-action term:
 $$
@@ -120,22 +122,22 @@ approaches $c^5/G$ when $M$ is estimated by the Planck mass, but that substituti
 - In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are component-speed saturation statements in the terminal alignment regime.
 - The statement "$v_{\text{eff}} > c_f$" refers to a **combined in-plane effective motion** used for Mach-wedge causal geometry, not a claim that either component speed is individually $> c_f$.
 - The local one-way starvation condition begins when a forward component approaches $c_f$; the Mach-wedge condition is the stronger combined-speed condition $v_{\text{eff}}>c_f$.
-- The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [Nested Shell Braid Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics)).
+- The CFT-exterior role label "binary 3 $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics)).
 
 ---
 
-## What Planck Units Imply About the Outer Binary
+## What Planck Units Imply About the binary 3
 
 We treat the Planck relations as constraints on a **specific alignment geometry**, not as abstract dimensional coincidences. Using $f_P \ell_P = c$ with $c \approx c_f$ and the circular orbit relation $v = 2\pi R f$, the aligned state ($v_{\text{align}} = c_f$, $f_{\text{align}} = f_P$) gives:
 $$
 2\pi R_{\text{align}} f_P = c_f \quad \Rightarrow \quad 2\pi R_{\text{align}} = \ell_P
 $$
-So the Planck length maps to the **outer circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
+So the Planck length maps to the **declared alignment circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
 
 With $E = h f$, the action per cycle is $S = E/f = h$; here $h$ is the action increment per unit frequency (per cycle), so the $2\pi$ factor belongs to the geometry (circumference), not the constant.
 Outside the alignment point, the $R$–$f$ mapping is not fixed by kinematics alone; it requires the full delay-feedback dynamics (i.e., $v(R)$ from the equations of motion).
 
-**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the outer orbit ($R_{\text{align}}^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
+**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the declared reference orbit ($R_{\text{align}}^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
 $$
 G \propto \frac{c_f^3 (\text{alignment geometry})}{h}
 $$
@@ -148,19 +150,19 @@ This leaves three coherent origin stories to keep in view:
 3. **Three-constant ontology:** $c_f$, $h$, and $G$ are independent; the proportional form is a dimensional coincidence or a near-alignment approximation.
 We keep these as open threads while we test whether alignment alone can lock the scale.
 
-### Planck Units as Outer-Binary Mappings (Alignment State)
+### Planck Units as binary-3 Mappings (Alignment State)
 
-| Planck Unit | Expression | Cascade | Outer-binary mapping (alignment interpretation) |
+| Planck Unit | Expression | Cascade | binary-3 mapping (alignment interpretation) |
 | --- | --- | --- | --- |
 | Frequency $f_P$ | $f_P$ | Start from measurable cadence; sets the clock | Alignment orbital cadence in Hz (cycles per second). |
 | Energy $E_P$ | $E_P = h f_P$ | Energy from Planck frequency | Action-per-cycle scale at alignment. |
-| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | Outer-binary **circumference** at alignment ($R_{\text{align}} = \ell_P / 2\pi$). |
-| Radius $R_{\text{align}}$ | $R_{\text{align}} = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the outer binary. |
+| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | binary-3 **circumference** at alignment ($R_{\text{align}} = \ell_P / 2\pi$). |
+| Radius $R_{\text{align}}$ | $R_{\text{align}} = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the binary 3. |
 | Alignment geometry $A_{\text{align}}$ | $A_{\text{align}} = R_{\text{align}}^2$ | Square of the alignment radius | Planar alignment area scale. |
 | Gravitation $G$ | $G \propto c_f^3 A_{\text{align}} / h$ | Express in terms of $A_{\text{align}}$ and $h$ | Medium compliance tied to the alignment geometry scale ($A_{\text{align}}$). |
 | Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether sea. |
 | Luminosity $L_P$ | $L_P = c^5 / G$ | Power scale from crossing time plus collapse bound; equivalently $F_P c$. | Maximum power-output recovery target for strong-field release, not a claim of continuous Planck-scale radiation. |
-| Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
+| Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned binary-3 motion at $c_f$. |
 | Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Corner case: an energy-equivalent scale for alignment, not a rest-mass of the planar, field-speed state. |
 | Time $t_P$ | $t_P = 1/f_P$ | Invert the cadence to get period | One orbital **period** at alignment if $f_{\text{align}} = f_P$. |
 | Temperature $T_P$ | $T_P = E_P / k_B$ | Convert energy to temperature | Effective temperature of alignment-scale excitations. |
@@ -173,7 +175,7 @@ We keep these as open threads while we test whether alignment alone can lock the
 
 ### Effective Forward Speed (Necessary Condition)
 
-For an architrino on the forward edge of the Outer binary, define
+For an architrino on the forward edge of the binary 3, define
 
 $$
 v_{\text{eff}}(\theta) \;=\; \bigl|\mathbf{v}_{\text{trans}} + \mathbf{v}_{\text{orb}}^{\text{tan}}(\theta)\bigr|
@@ -209,7 +211,7 @@ $$
 \Phi_n \equiv \omega_n \Delta t_{\text{rt}} + \phi_{\text{geom}}(n) = 2\pi k_n
 $$
 
-for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip delay and $\phi_{\text{geom}}$ encodes geometric phase due to nested shell braid structure.
+for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip delay and $\phi_{\text{geom}}$ encodes geometric phase due to A1 structure.
 
 > **Working hypothesis (Terminal Mode):**  
 > There exists a final mode $n_{\text{max}}$ in which:
@@ -252,13 +254,13 @@ In this causal-wake framing:
 ## Discrete Ladder and Phase-Slip Dynamics (Hypothesis)
 
 > **Working Hypothesis (Discrete Ladder).**  
-> The nested shell braid supports a discrete set of delay-locked modes indexed by $n$, each with characteristic radius $r_n$, frequency $\omega_n$, and delay $\Delta t_n = r_n/c_f$. Stability requires a phase-closure condition between orbital motion and causal wake.
+> The A1 supports a discrete set of delay-locked modes indexed by $n$, each with characteristic radius $r_n$, frequency $\omega_n$, and delay $\Delta t_n = r_n/c_f$. Stability requires a phase-closure condition between orbital motion and causal wake.
 
 Under increasing translational stress or deepening gravitational potential:
 
 1. External stress or medium loading shifts the effective delay geometry, inducing a **phase lag** $\delta\phi$.
 2. When $\delta\phi > \delta\phi_{\text{crit}}(n)$, mode $n$ loses stability.
-3. The Outer binary **falls inward**; by angular-momentum conservation, $\omega$ rises.
+3. The binary 3 **falls inward**; by angular-momentum conservation, $\omega$ rises.
 4. The assembly **re-locks** onto a new mode $n+1$ with smaller $r_{n+1}$, higher $\omega_{n+1}$.
 
 This “ratchet” yields a **staircase** of quasi-stable plateaus in radius/frequency space.
@@ -277,19 +279,19 @@ then the “single top rung” picture must be modified or abandoned.
 
 We propose an effective spin/statistics mapping via a reduction in configuration-space structure.
 
-### Fermionic Regime: 3D Precessing Nested Shell Braid
+### Fermionic Regime: 3D Precessing A1
 
 In the low-energy / weak-alignment regime:
 
-- Inner, Middle, and Outer binaries occupy **non-coplanar planes**.
+- Binaries 1, 2, and 3 occupy **non-coplanar planes**.
 - Total angular momentum **J** is fixed (no external torque), but the normals of the three support-row planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
 - The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
 
-> **Hypothesis:** The effective orientation space of such a nested shell braid behaves like an $SU(2)$-type double cover of spatial rotations:
+> **Hypothesis:** The effective orientation space of such an A1 behaves like an $SU(2)$-type double cover of spatial rotations:
 > a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.  
 > This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
 
-A rigorous mapping from the detailed nested shell braid phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
+A rigorous mapping from the detailed A1 phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
 
 ### Bosonic Regime: Fully Aligned Planar Disk
 
@@ -322,9 +324,9 @@ Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to 
 
 ### Minimal Cycle Action: $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text{align}}$, and $h$
 
-Let $I$ denote the radian-normalized total rotational action of a nested shell braid assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
+Let $I$ denote the radian-normalized total rotational action of an A1 assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
 
-Because a nested shell braid can carry several internal frequency rows, $\mathcal{A}_{\text{cycle}}$ is defined on a closed return of the retained branch ledger, not on one chosen component frequency by itself. Component frequencies may coincide, lock in rational ratios, or remain distinct inside the branch. The $h$ mapping asks whether the recordable closed return exports one universal action increment after the full phase, causal-root, energy, and wake rows close.
+Because an A1 can carry several internal frequency rows, $\mathcal{A}_{\text{cycle}}$ is defined on a closed return of the retained branch ledger, not on one chosen component frequency by itself. Component frequencies may coincide, lock in rational ratios, or remain distinct inside the branch. The $h$ mapping asks whether the recordable closed return exports one universal action increment after the full phase, causal-root, energy, and wake rows close.
 
 - For generic modes $n$, $I(n)$ and $\mathcal{A}_{\text{cycle}}(n)$ depend on axial structure and environment.
 - For the Planck alignment state $n_{\text{max}}$, we expect a **universal attractor** dominated by:
@@ -355,7 +357,7 @@ Let
 $$
 Q_{\mathrm{align}}
 $$
-denote the retained topological and phase-lock data of the aligned nested shell braid branch: winding class, layer-lock integers, chirality sign if retained, and the active causal-root ledger over one cycle. A useful theorem target is a bound of the form
+denote the retained topological and phase-lock data of the aligned A1 branch: winding class, layer-lock integers, chirality sign if retained, and the active causal-root ledger over one cycle. A useful theorem target is a bound of the form
 $$
 \mathcal{A}_{\text{cycle}}[\Gamma]
 \ge
@@ -388,7 +390,7 @@ remains only a dimensional and operational mapping rather than a dynamical deriv
 Define
 
 $$
-R_{\text{align}} \equiv r_{\text{Outer}}(n_{\text{max}})
+R_{\text{align}} \equiv r_3(n_{\text{max}})
 $$
 
 Let $\ell_P^{\text{(emp)}}$ be the standard Planck length defined operationally by GR/QM constants (using $h = 2\pi\hbar$ with $f$):
@@ -417,7 +419,7 @@ Our program is to compute $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text
 Qualitatively, gravitational coupling strength reflects the **elastic response of the Noether sea**:
 
 > **Heuristic View:**  
-> $G$ is inversely related to the **stiffness** of nested shell braid assemblies in the Noether sea against being driven toward the alignment phase. High energy density in aligned braids deforms the surrounding Noether sea, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
+> $G$ is inversely related to the **stiffness** of A1 assemblies in the Noether sea against being driven toward the alignment phase. High energy density in aligned braids deforms the surrounding Noether sea, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
 
 A full derivation of $G$ from medium compliance is still to be done; the formula above gives a target relationship.
 
@@ -427,11 +429,11 @@ A full derivation of $G$ from medium compliance is still to be done; the formula
 
 With Planck alignment as an endpoint rather than a point singularity:
 
-- Black-hole-like objects are interpreted as regions where large numbers of nested shell braids are **driven close to or into** the alignment state.
+- Black-hole-like objects are interpreted as regions where large numbers of A1 braids are **driven close to or into** the alignment state.
 - The horizon-adjacent interface is then modeled by patches whose characteristic scale is $R_{\text{align}}$, while any core-volume packing interpretation remains a separate conjecture.
 
 > **Conjecture (Condensate-Like Aligned Phase).**  
-> We conjecture that black-hole cores correspond to a **condensate-like phase** dominated by planar-aligned, effectively bosonic nested shell braids. This analogy is structural:
+> We conjecture that black-hole cores correspond to a **condensate-like phase** dominated by planar-aligned, effectively bosonic A1 braids. This analogy is structural:
 > - Many nearly identical aligned assemblies occupy a low-dimensional configuration manifold (planar disk orientation).
 > - Entropy and area scaling would have to emerge from counting alignment-compatible boundary labels on horizon-adjacent surfaces, not from arbitrary volume packing.
 
@@ -453,11 +455,11 @@ a_{\theta}
 \longrightarrow
 \frac{1}{4}
 $$
-where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $A_{\mathrm{eff}}(U)\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal nested shell braid alignment supplies a universal local entropy density, the associated patch-area normalization, and correlations between neighboring patches that do not restore volume or arbitrary history-length scaling.
+where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $A_{\mathrm{eff}}(U)\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal A1 alignment supplies a universal local entropy density, the associated patch-area normalization, and correlations between neighboring patches that do not restore volume or arbitrary history-length scaling.
 
 We deliberately use “condensate-like” here; a full condensate claim would require:
 
-- a derived many-body Hamiltonian for aligned nested shell braids,
+- a derived many-body Hamiltonian for aligned A1 braids,
 - demonstration of macroscopic occupation of a single mode,
 - consistent thermodynamic treatment (BH entropy, specific heat, etc.).
 
@@ -474,7 +476,7 @@ Those steps remain open.
 
 2. **Universality of $R_{\text{align}}$.**  
    The alignment radius must be a property of the **medium**:
-   - Different nested shell braid assembly variants (electron-like, muon-like, quark-like) driven to alignment should converge to the same $R_{\text{align}}$ within small tolerances.
+   - Different A1 assembly variants (electron-like, muon-like, quark-like) driven to alignment should converge to the same $R_{\text{align}}$ within small tolerances.
    - Large species-dependence would undermine the identification with a universal $\ell_P$.
 
 3. **Uniqueness of Aligned Mode.**  

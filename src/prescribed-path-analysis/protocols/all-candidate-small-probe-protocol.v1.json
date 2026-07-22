@@ -1,0 +1,52 @@
+{
+  "schema": "prescribed-path-analysis/analysis-protocol.v1",
+  "protocolId": "all-candidate-small-probe-v1",
+  "fieldSpeed": 4,
+  "coupling": 1,
+  "history": {
+    "start": 0,
+    "end": 8,
+    "minimumDelay": 1e-12
+  },
+  "returnWindow": {
+    "start": 0,
+    "period": 4
+  },
+  "rootPolicy": {
+    "id": "all-retained-simple-roots/sub-field-speed-certified.v1",
+    "tolerance": 1e-12,
+    "maxIterations": 128
+  },
+  "tolerances": {
+    "cancellationFloor": 1e-30,
+    "rootTransversalityFloor": 1e-8,
+    "minimumSeparationFloor": 1e-12,
+    "convergenceAbsolute": 1e-9
+  },
+  "geometry": {
+    "minimumSeparationSamples": 128
+  },
+  "convergence": {
+    "rootTolerance": 1e-14,
+    "maxIterations": 192,
+    "minimumSeparationSamples": 256
+  },
+  "probes": [
+    {
+      "id": "all-candidate-reference-probe",
+      "kind": "stationary-coordinate-probe.v1",
+      "position": {
+        "x": 2,
+        "y": 0.5,
+        "z": 0.2
+      },
+      "observationTimes": [
+        4
+      ],
+      "polarities": [
+        1,
+        -1
+      ]
+    }
+  ]
+}

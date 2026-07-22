@@ -90,12 +90,12 @@ test("optional S3 navigation grouping requires source-carried keys and never rep
 
 test("collection filters consume only source-carried values and preserve source order", () => {
   const session = createBorgAssemblyViewSession([
-    record("first", { navigation: { filters: { eigenBraidStatus: "candidate" } } }),
-    record("second", { navigation: { filters: { eigenBraidStatus: "rejected" } } }),
+    record("first", { navigation: { filters: { braidCertificationStatus: "candidate" } } }),
+    record("second", { navigation: { filters: { braidCertificationStatus: "rejected" } } }),
     record("third"),
   ]);
   assert.deepEqual(
-    session.setFilters({ eigenBraidStatus: "candidate" }).map((entry) => entry.sourceId),
+    session.setFilters({ braidCertificationStatus: "candidate" }).map((entry) => entry.sourceId),
     ["first"],
   );
   assert.throws(() => session.setFilters({ computedResidual: "small" }), /not source-carried/);
@@ -139,6 +139,7 @@ test("prescribed chart trails use the source-defined number of full rotations", 
     physicsInvoked: false,
     responseCenter: { x: 0, y: 0, z: 0 },
     sphericalEnvelopeRadius: 1,
+    prescribedReturnPeriod: 4,
     displayTrailPeriods: 2,
   };
   const entry = createBorgAssemblyViewSession([raw]).selected;

@@ -37,7 +37,7 @@ The taxonomy remains compact. A family document explains inherited geometry once
 | `braid-families.md` | A2 sea-embedding material | `braid-a2-symmetry-and-return-response.md` | Migrated as an open member-specific environmental return-response route; population-selection burdens remain with the Noether sea. |
 | `braid-families.md` | Legacy accessory and apparent-energy interpretations | `braid-mathematics.md`, downstream assembly documents, and priority-only material | Migrated or triaged. Accessory Configuration is now a declared six-architrino record; the incompatible four-site/two-site quark shortcut is priority-only pending a six-site moment ledger. |
 | `braid-families.md` | “Nested Shell Braid,” its relation to the symmetric member, and its ordered-radius/frequency descriptions | `braid-family-a.md`, A1 and A1.x subsections | Migrated. The durable three-radius, hinge, frequency-variant, and symmetry-boundary content is in A1 coordinates; the prior definition block was deleted. |
-| `braid-families.md` | Integer phase-closure states | `braid-a1-dynamics.md`, with A1.3 specialization in `braid-a1-3-doubling-frequency-lock.md` | Migrated with exact periodicity kept separate from dynamical selection. |
+| `braid-families.md` | Integer phase-closure states | `braid-a1-dynamics.md`, with A3.3 specialization in `braid-a3-3-doubling-frequency-lock.md` and A1.3 as its zero-axial-offset locus | Migrated with exact periodicity kept separate from dynamical selection. |
 | `braid-families.md` | Cadence retuning, scaling curves, reduced closure labels, and dynamics | `braid-a1-dynamics.md` | Migrated into an A1 specialist chapter; no retained EOM-solver branch is asserted. |
 | `braid-families.md` | Geometry and exclusion-envelope material | `braid-envelope-geometry.md` | Migrated and re-indexed by A1/B1 member ID. |
 | `braid-families.md` | Generation and fermion-architecture interpretations | `braid-a1-dynamics.md` as a compact hypothesis interface plus downstream assembly documents | Migrated without making the mapping part of the A1 definition. |
@@ -45,7 +45,7 @@ The taxonomy remains compact. A family document explains inherited geometry once
 | `spindle-braid.md` | Planar and axial boundary members | `braid-family-b.md`, B1 coordinate-boundary section | Migrated as equatorial and axial coordinate loci. No decimal member IDs were introduced. |
 | `spindle-braid.md` | Harmonic-matching hypothesis | `braid-b1-symmetry.md` | Migrated with hypothesis grade; it is not part of the B1 definition. |
 | `spindle-braid.md` | B1-specific discrete-symmetry structure | `braid-b1-symmetry.md` | Migrated as derivation-grade kernel covariance and open observer-recovery targets. |
-| `doubling-frequency-lock.md` | $4{:}2{:}1$ assumptions, identities, propositions, and diagnostics | `braid-a1-3-doubling-frequency-lock.md` | Migrated and explicitly scoped to A1.3. |
+| `doubling-frequency-lock.md` | $4{:}2{:}1$ assumptions, identities, propositions, and diagnostics | `braid-a3-3-doubling-frequency-lock.md` | Migrated and explicitly scoped to A3.3, with A1.3 retained as its zero-axial-offset locus. |
 | `noether-braid-configuration-space.md` | Classification axes and frequency families | `braid-taxonomy.md` | Completed. Accepted coordinates are in the taxonomy; polarity-placement and old support classifiers were removed, while noncanonical frame and speed diagnostics remain explicitly supplementary. |
 | `noether-braid-configuration-space.md` | General branch state, group velocity, frame conditioning, and unordered-label mathematics | `braid-mathematics.md` or another shared mathematical owner | Keep shared mathematics outside family definitions. |
 | `noether-braid-configuration-space.md` | Evidence levels, certification, stability, and Noether sea burdens | `braid-recovery-requirements.md` and the Noether sea owner | Do not mix proof status into the coordinate taxonomy. |
@@ -144,7 +144,7 @@ Migration is complete. The next pass should decide, one current source at a time
 | `braid-a1-dynamics.md` | A1 closure, retuning, scaling, alignment, and interpretations | Should this remain one specialist chapter or split into dynamics and downstream interpretation? |
 | `braid-a2-symmetry-and-return-response.md` | A2 symmetry, exact fixture geometry, and return-response analysis | Are the invariant-channel theorem and open retention routes now self-contained without leaking back into the Family-A definition? |
 | `braid-analysis-methodology.md` | Common candidate-analysis method | Do the wake, probe, energy, sampling, and grading interfaces remain family-general as implementations mature? |
-| `braid-a1-3-doubling-frequency-lock.md` | A1.3 lock mathematics | Is the 611-line specialist still internally coherent, or should shared mathematics move out? |
+| `braid-a3-3-doubling-frequency-lock.md` | A3.3 lock mathematics, including the A1.3 zero-axial-offset locus | Is the specialist still internally coherent, or should shared mathematics move out? |
 | `braid-b1-symmetry.md` | B1 harmonic matching and discrete symmetry | Is this small specialist worth keeping separate from Family B? |
 | `braid-mathematics.md` | Shared exact and hypothesis-level machinery | Does every retained result now apply across more than one family or member? |
 | `noether-braid-configuration-space.md` | Supplementary branch diagnostics | Does this remain useful after the canonical taxonomy, or should its durable mathematics be distributed? |
@@ -153,6 +153,19 @@ Migration is complete. The next pass should decide, one current source at a time
 | `noether-braid-topological-charge.md` | Candidate cross-member topological labels | Which definitions are mature enough to retain in reader-facing prose? |
 
 No legacy source remains to migrate. The approved persistent-index batch has also removed inner/middle/outer and preassigned-hinge semantics from the taxonomy stack and its controlled Archie terminology. Downstream reader chapters, chapter titles, runtime identifiers, and generated artifacts remain separate follow-up scopes; they are not hidden remnants of the source migration.
+
+## 2026-07-22 Borg Prescribed-Record Integration
+
+Borg now routes one family-neutral prescribed-record generator through the complete A/B/C candidate cohort. The four pre-existing B1 records preserve their stable machine identities and endpoint paths while their source titles, catalog labels, displayed titles, taxonomy metadata, and provenance descriptions use the canonical coordinate names.
+
+| Retained source and record ID | Retained source filename | Retained record filename | Prior source title | Prior catalog label | Canonical Borg label |
+| --- | --- | --- | --- | --- | --- |
+| `illustrative-spindle-chart-hypothesis-v0` | `illustrative-spindle-chart-hypothesis.v0.json` | `illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json` | Illustrative spindle chart hypothesis | Illustrative spindle prescribed geometry | `B1 — interior reference` |
+| `illustrative-extreme-cap-tilt-spindle-variant-v0` | `illustrative-extreme-cap-tilt-spindle-variant.v0.json` | `illustrative-extreme-cap-tilt-spindle-variant.assembly-view-record.v0.json` | Illustrative extreme cap-tilt spindle variant | Spindle variant — extreme cap tilt | `B1 — high-axial interior` |
+| `illustrative-planar-tri-binary-spindle-boundary-v0` | `illustrative-planar-tri-binary-spindle-boundary.v0.json` | `illustrative-planar-tri-binary-spindle-boundary.assembly-view-record.v0.json` | Illustrative planar tri-binary spindle boundary | Spindle boundary — planar tri-binary | `B1 — all-equatorial boundary` |
+| `illustrative-full-cap-axial-spindle-boundary-v0` | `illustrative-full-cap-axial-spindle-boundary.v0.json` | `illustrative-full-cap-axial-spindle-boundary.assembly-view-record.v0.json` | Illustrative full-cap axial spindle boundary | Not previously catalogued | `B1 — all-axial boundary` |
+
+All four rows are Family B, member B1. They retain the common axis $(0,0,1)$, radii $(0.22,0.32,0.44)$, frequencies $(0.25,0.25,0.25)$, phases $(0,2\pi/3,4\pi/3)$, and the exact prior endpoint identifiers and paths. Their respective $(h_1,h_2,h_3)$ and $(\rho_1,\rho_2,\rho_3)$ rows are interior reference, high-axial interior, all-equatorial, and all-axial as recorded in the candidate analysis methodology. The compatibility names remain only in stable IDs, filenames, record URLs, endpoint IDs, the compatibility wrapper path, and this migration ledger.
 
 ## Wider-Corpus Taxonomy Audit
 

@@ -16,6 +16,6 @@ An architrino can intersect an expanding causal isochron that it emitted earlier
   - For like-on-like (self) interaction, $\sigma_{q_a q_a}=+1$ ensures the self-contribution points outward along $+\hat{\mathbf{r}}$, opposing further collapse.
 
 - Stabilization and scale selection:
-  - In binaries and nested assemblies, delayed attraction competes with self-repulsion. On a closed branch chart, that balance is the candidate mechanism that can set a minimal sustainable radius $d_0$ and a fastest natural frequency $2\pi/t_0$.
+  - In binaries and multi-binary assemblies, delayed attraction competes with self-repulsion. On a closed branch chart, that balance is the candidate mechanism that can set a minimal sustainable radius $d_0$ and a fastest natural frequency $2\pi/t_0$.
 
 Plain language: A fast interval can make self-hit possible, but the code must still solve the same-transmitter root equation and weight each accepted hit by its transmitter-side acceleration weight; only actual same-transmitter hits push outward and help set the smallest sizes and fastest rhythms of stable structures.

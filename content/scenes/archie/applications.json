@@ -69,10 +69,10 @@
   "objects": [
     {
       "id": "ideal_braid",
-      "title": "Ideal Noether Braid",
+      "title": "A1 Lorentz Geometry",
       "radius": 2.2,
       "color": "#0f766e",
-      "labelTitle": "Ideal Noether Braid",
+      "labelTitle": "A1 Lorentz Geometry",
       "labelBadge": ""
     },
     {

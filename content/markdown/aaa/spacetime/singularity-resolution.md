@@ -1,6 +1,6 @@
 # Singularity Resolution
 
-This chapter explains what replaces a singularity in the strong-field part of the model. The guiding idea is not that an infinite-density point is hidden behind better coordinates. It is that compact Noether braid assemblies enter a finite maximum-curvature or horizon-interface regime whose boundary data must close. This is the canonical strong-field bridge for [Noether Braid](../noether-braid/noether-braid.md), [Nested Shell Braid Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Black Holes](./black-holes.md).
+This chapter explains what replaces a singularity in the strong-field part of the model. The guiding idea is not that an infinite-density point is hidden behind better coordinates. It is that compact Noether braid assemblies enter a finite maximum-curvature or horizon-interface regime whose boundary data must close. This is the canonical strong-field bridge for [Noether Braid](../noether-braid/noether-braid.md), [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics), and [Black Holes](./black-holes.md).
 
 The important conversion is from an infinite-endpoint question to a finite-boundary-data question. The strong-field model must say what assembly state is packed, what exterior records remain readable, what boundary data determine continuation, and why no zero-volume or arbitrary branch endpoint is required.
 
@@ -10,9 +10,9 @@ This chapter is the canonical source for the strong-field event-horizon alignmen
 
 Use the following regime definition near the horizon:
 $$
-v_M=c_f,\qquad v_O\to c_f
+v_2=c_f,\qquad v_3\to c_f
 $$
-The arrow records approach from ordinary exterior coupling. At terminal alignment, the outer binary reaches the same field-speed threshold, with middle/outer binaries becoming coplanar and co-linear with the inner binary and precession ceasing in that limit.
+The arrow records approach from ordinary exterior coupling in this declared source record. At terminal alignment, binary 3 reaches the same field-speed threshold as binary 2, all three indexed binary axes become coplanar and co-linear, and precession ceases in that limit. These speed assignments are source-record constraints, not taxonomy-assigned roles.
 
 This condition is a constitutive boundary condition on Noether sea state, not an isolated metric ansatz imported from an asymptotically flat solution. The horizon is therefore treated as an interface problem: what packed assembly state is allowed, what boundary data reach the exterior, and which continuation labels remain finite? In schematic form, the horizon-interface closure problem is
 $$
@@ -25,7 +25,7 @@ F_H\!\left[
 \right]
 =0,
 \qquad
-v_M=c_f,\quad v_O\to c_f
+v_2=c_f,\quad v_3\to c_f
 $$
 The boundary data $\partial\Omega$ record the surrounding Noether sea state and effective exterior state, and $\{\Lambda_{\text{NS}}\}$ is the finite set of retained strong-field continuation labels selected by the record. Specific chapters instantiate this label slot with their own ensembles; for example, [Black Holes](./black-holes.md) uses its horizon-interface label ensemble $\{\lambda_i^H\}$. This display is the canonical statement of the horizon-interface closure problem: other chapters should cite this section and write the shorthand $F_H=0$ rather than restating the argument list. A viable singularity replacement must solve the alignment condition with finite boundary data in embedded, non-isolated settings, rather than relying on asymptotic flatness as an implicit support.
 
@@ -188,10 +188,10 @@ Recent regular-horizon cosmological-coupling constructions sharpen this warning.
 
 ## Maximal Curvature vs Planck Scale
 
-The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), with **scale and cadence retuning**; it serves as the **energy-storage fulcrum** for transfers across the nested shell braid.
+In the working indexed chart, **binary 1** is assigned the maximal-curvature self-hit regime as a proposed stabilization outcome of wake dynamics. **Binary 2** is constrained to the field-speed row ($v_2=c_f$), with **scale and cadence retuning**, as a candidate energy-storage channel for transfers across the candidate braid record. Neither role selects a taxonomy member or is established as a retained mechanism.
 
-In strong-field conditions (e.g., near an event horizon), the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary** remains at $v=c_f$ as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
+In the same working source record, strong-field conditions increase **binary 3's frequency** and drive $v_3$ toward field speed, while **binary 2** remains at $v_2=c_f$ as its radius and frequency shift. At the horizon-interface limit, binaries 2 and 3 reach $c_f$, all three indexed axes align, and precession ceases. This is a prescribed closure target, not a retained-branch result.
 
-One preserved intuition, to be read only as a heuristic, is that this alignment limit may correspond to a temporary **planar horizon state** rather than to the final interior shape. In that picture, the horizon is the point of strongest flattening, while deeper interior self-hit pressure can reopen the suppressed polar degree of freedom so the nested shell braid returns to a finite 3D configuration instead of terminating in a zero-volume endpoint. This is compatible with the maximum-curvature replacement logic, but it is not yet a derived mechanism; compare [Horizon Chirality and Planar Spin](./horizon-chirality.md).
+One preserved intuition, to be read only as a heuristic, is that this alignment limit may correspond to a temporary **planar horizon state** rather than to the final interior shape. In that picture, the horizon is the point of strongest flattening, while deeper interior self-hit response can reopen the suppressed polar degree of freedom so the Family-A braid returns to a finite 3D configuration instead of terminating in a zero-volume endpoint. This is compatible with the maximum-curvature replacement logic, but it is not yet a derived mechanism; compare [Horizon Chirality and Planar Spin](./horizon-chirality.md).
 
-**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (nested shell braid coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale. The field-speed rows in this mapping are necessary alignment indicators, not a self-hit proof by themselves; the admitted branch still needs same-transmitter root existence, transversality/Jacobian control, transmitter-side acceleration weight, and retained ledger closure.
+**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (Family-A axis convergence in the declared field-speed chart), unless an explicit derivation links them to another scale. The field-speed rows in this mapping are necessary alignment indicators, not a self-hit proof by themselves; the admitted branch still needs same-transmitter root existence, transversality/Jacobian control, transmitter-side acceleration weight, and retained ledger closure.

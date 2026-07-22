@@ -65,7 +65,7 @@ $$
 The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing.
 Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at nested shell braid (IMO), Generation-II shielding (IM-), and Generation-III shielding (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at support vectors $(1,1,1)$, $(1,1,0)$, and $(1,0,0)$. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch. The component order follows the persistent binary indices and does not encode a radius order.
 
 So each row should be read as a routing ledger. The weak interaction opens a charged corridor in one exposed basis, but the detector names the outgoing assembly in the mass basis. CKM entries measure how much of the exposed corridor lands in each mass-basis channel. That is why a high-value $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation cannot stop at the matrix values; it must also explain the two bases whose mismatch the matrix records.
 
@@ -82,7 +82,7 @@ So each row should be read as a routing ledger. The weak interaction opens a cha
   - So: it is a transient, bound excitation of the Noether sea from reconfiguration of participants' wakes and axial structure, not from a standing background field.
 
 ## Minimal premises
-- **Generations = shielding level:** Gen I nested shell braid (u,d), Gen II shielding branch (c,s), Gen III shielding branch (t,b).
+- **Generations = candidate shielding level:** Gen I uses support vector $(1,1,1)$ for $(u,d)$, Gen II uses $(1,1,0)$ for $(c,s)$, and Gen III uses $(1,0,0)$ for $(t,b)$. These vectors record occupancy of persistent indices and do not assign a braid-taxonomy member or a radius order.
 - **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../assemblies/fermions/weak-mixing-angle.md).
 - **Mass basis = shielding eigenstates:** Noether braid shielding, a closed internal causal-history ledger, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../assemblies/particle-masses.md).
 
@@ -201,13 +201,13 @@ with later simulations allowed to replace this hard zero by a bounded suppressio
 For the active left-handed branch, write the down-like and up-like states as
 $$
 \lvert d_L;c,\alpha\rangle
-=\lvert C_{\mathrm{IMO}};\ A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-),\ A_{\Sigma}=3\epsilon_-;\ c,\alpha\rangle
+=\lvert C_{(1,1,1)};\ A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-),\ A_{\Sigma}=3\epsilon_-;\ c,\alpha\rangle
 $$
 $$
 \lvert u_L;c,\alpha\rangle
-=\lvert C_{\mathrm{IMO}};\ A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-),\ A_{\Sigma}=3\epsilon_+;\ c,\alpha\rangle
+=\lvert C_{(1,1,1)};\ A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-),\ A_{\Sigma}=3\epsilon_+;\ c,\alpha\rangle
 $$
-Here $C_{\mathrm{IMO}}$ is the generation-I Noether braid, $A_{\mathrm{sh}}$ is the shielded axial inventory outside the exposed triad, and $(c,\alpha)$ records the color-sector branch and axial-frame offset inherited from the weak-mixing-angle program.
+Here $C_{(1,1,1)}$ is the candidate generation-I Noether-braid record with all three persistent support indices occupied, $A_{\mathrm{sh}}$ is the shielded axial inventory outside the exposed triad, and $(c,\alpha)$ records the color-sector branch and axial-frame offset inherited from the weak-mixing-angle program. The support vector does not identify a taxonomy member.
 
 The first beta exposure operator is
 $$
@@ -217,7 +217,7 @@ $$
 \otimes
 \lvert W^-;\Delta A_W=3(\epsilon_- - \epsilon_+)\rangle
 $$
-Here $g_{\mathrm W}$ is the effective charged-corridor coupling normalization. The factor $\eta_L$ is $1$ when the finite-state gate above is open and $0$ otherwise. $V_{ud}$ is the same weak-basis to shielding-eigenstate overlap used by the CKM section; it is near unity here because both the incoming $d$ and outgoing $u$ occupy the generation-I nested shell braid shielding tier. The $W^-$ state records the opposite transaction to the quark-side $3\epsilon_-\to3\epsilon_+$ change:
+Here $g_{\mathrm W}$ is the effective charged-corridor coupling normalization. The factor $\eta_L$ is $1$ when the finite-state gate above is open and $0$ otherwise. $V_{ud}$ is the same weak-basis to shielding-eigenstate overlap used by the CKM section; it is near unity here because both the incoming $d$ and outgoing $u$ occupy the candidate Generation-I support vector $(1,1,1)$. The $W^-$ state records the opposite transaction to the quark-side $3\epsilon_-\to3\epsilon_+$ change:
 $$
 \Delta Q_q=3(\epsilon_+-\epsilon_-)=6\epsilon=e,\qquad
 \Delta Q_{W^-}=3(\epsilon_- - \epsilon_+)=-6\epsilon=-e
@@ -254,7 +254,7 @@ $$
 ### Charged $W$ corridor (architrino budget, descriptive)
 
 Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether braids ($3\epsilon_+ + 3\epsilon_-$ each)** plus a **six-charge excess** that carries net charge $\pm e$:
-- $W^+$ payload: $9\epsilon_+ + 3\epsilon_-$ (net $+6(e/6)=+e$) on the outer sites of the two cores.
+- $W^+$ payload: $9\epsilon_+ + 3\epsilon_-$ (net $+6(e/6)=+e$) on the declared exposed sites of the two cores.
 - $W^-$ payload: $3\epsilon_+ + 9\epsilon_-$ (net $-6(e/6)=-e$).
 
 The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget.
@@ -273,21 +273,21 @@ t & 0.0087 & 0.040 & 0.999
 $$
 The values are rounded for readability and serve as a compact benchmark for the shielding-tier mapping. Uncertainty handling and global-fit ranges belong in the validation data layer rather than in this reader-facing comparison table.
 
-### $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding-tier view (IMO = Inner/Middle/Outer present)
+### $\mathbb{A}\mathbb{A}\mathbb{A}$ indexed shielding-support view
 
 Interpretation (hypothesis): overlaps fall with shielding mismatch. Rows = up-type cores, cols = down-type cores. What “overlap” means here: the projection of a weak-basis state (weak-coupling-triad configuration) onto a mass eigenstate (shielding geometry). In practice it is an inner product of their wavefunctions/configurations; $\lvert\langle \text{mass} | \text{weak} \rangle\rvert^2$ gives the CKM entry’s probability weight. A concrete minimal functional is defined in the next section.
 
 $$
 \begin{array}{c|ccc}
-V_{ij} & \text{d (IMO)} & \text{s (IM-)} & \text{b (I--)}\\
+V_{ij} & \text{d }(1,1,1) & \text{s }(1,1,0) & \text{b }(1,0,0)\\
 \hline
-\text{u (IMO)} & \text{high overlap} & \text{medium} & \text{tiny}\\
-\text{c (IM-)} & \text{medium} & \text{high} & \text{medium-low}\\
-\text{t (I--)} & \text{tiny} & \text{medium-low} & \text{high}
+\text{u }(1,1,1) & \text{high overlap} & \text{medium} & \text{tiny}\\
+\text{c }(1,1,0) & \text{medium} & \text{high} & \text{medium-low}\\
+\text{t }(1,0,0) & \text{tiny} & \text{medium-low} & \text{high}
 \end{array}
 $$
 
-Legend: IMO = Inner+Middle+Outer; IM- = Inner+Middle; I-- = Inner only. Qualitative “high/medium/tiny” encodes the shielding-match hypothesis; actual values must be derived from overlap integrals.
+Legend: $(1,1,1)$, $(1,1,0)$, and $(1,0,0)$ are candidate occupancy vectors on persistent support indices $1,2,3$. They do not encode inner/middle/outer radius roles. Qualitative “high/medium/tiny” encodes the shielding-match hypothesis; actual values must be derived from overlap integrals.
 
 Quantitative target (heuristic): “high” should land near 0.2–1, “medium” ~10⁻²–10⁻¹, “tiny” ~10⁻³–10⁻² to match PDG magnitudes (e.g., $\lvert V_{ud}\rvert$, $\lvert V_{us}\rvert$, $\lvert V_{ub}\rvert$).
 
@@ -368,9 +368,9 @@ $$
 The residual accepts a candidate only when the same shielding-tier record gives unitary mixing, the observed CKM hierarchy and CP invariant, unchanged Standard Model gauge representation across the three charged-fermion tiers, and no added-channel leakage. A comparison framework that reproduces one angle, one phase, or the number three is not yet a $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
 
 Assumptions introduced in this section ($\mathbb{A}\mathbb{A}\mathbb{A}$ side):
-- **A1:** Generation transport is represented by a three-node chain $(1\leftrightarrow2\leftrightarrow3)$.
-- **A2:** Mixing-angle magnitudes follow exponential transport-action suppression.
-- **A3:** The CP phase is constrained by holonomy closure $\cos\delta=s_{13}/(s_{12}s_{23})$.
+- **H1:** Generation transport is represented by a three-node chain $(1\leftrightarrow2\leftrightarrow3)$.
+- **H2:** Mixing-angle magnitudes follow exponential transport-action suppression.
+- **H3:** The CP phase is constrained by holonomy closure $\cos\delta=s_{13}/(s_{12}s_{23})$.
 
 Minimal geometric reduction: the generation manifold is the three-node chain $(1\leftrightarrow2\leftrightarrow3)$ with two edge actions $(\kappa_{12},\kappa_{23})$ and one nonlocal torsion penalty $\sigma$ for direct $1\leftrightarrow3$ transport. Define
 $$
@@ -566,7 +566,7 @@ _Status: accepted closure route, not a completed derivation. The chapter treats 
 The conjectural weak-provenance material below is an illustration of what a future $\mathbb{A}\mathbb{A}\mathbb{A}$ reaction ledger should be able to record. It is not a claim that the listed rows are correct. Several rows may be replaced once weak-coupling-triad exposure, corridor sourcing, spin/helicity closure, and event-level residual routing are derived from the same substrate record.
 
 - **Goal:** build a ledger to track weak transmutation events, ensuring charge, shielding, corridor payload, Noether braid sourcing, and architrino counts close. Mark allowed vs. unseen channels and why.
-- **Forward axial sites:** weak-coupling triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
+- **Forward axial sites:** the weak-coupling triad uses one forward pole from each indexed polar dyad. Pro/anti is the retained orientation sign $o_{\mathrm{PA}}$, not a radius, energy, or precession ordering and not a matter/antimatter label.
 - **Environmental partners:**
   - Photon: a coaxial contra-rotating polarity-conjugate planar pair.
   - Noether sea: hypothesized as paired pro/anti Noether braids; a local interaction could draw neutral braid content to participate while preserving recorded provenance.
@@ -575,19 +575,19 @@ The conjectural weak-provenance material below is an illustration of what a futu
 
 ### Illustrative Candidate Ledger Rows
 
-| Reactant set | Noether braid shielding (IMO/HML) | weak-coupling-triad polarity | Noether sea braids tapped? | Candidate products | Corridor(s) | Illustrative status | Reason/constraint |
+| Reactant set | Noether braid support vector | weak-coupling-triad polarity | Noether sea braids tapped? | Candidate products | Corridor(s) | Illustrative status | Reason/constraint |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| $d$ (IMO) → $u$ (IMO) + $W^-$ | tri → tri | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | likely | Matches $V_{ud}$; charge quantized |
-| $s$ (IM-) → $u$ (IMO) + $W^-$ | bi → tri | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{us}\rvert$ |
-| $b$ (I--) → $c$ (IM-) + $W^-$ | uni → bi | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $c + \,\, \ell^- + \bar\nu$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{cb}\rvert$ |
-| $t$ (I--) → $b$ (I--) + $W^+$ | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0 | $b + W^+$ | $W^+$ | allowed (dominant) | minimal mismatch; $\lvert V_{tb}\rvert\approx1$ |
-| $d$ (IMO) + Sea (4 cores) → $u$ (IMO) + $W^-$ | tri + sea | $\epsilon_-\to\epsilon_+$ triad transition | 4 | $u + W^-$ | $W^-$ | speculative | Sea supplies corridor, check energy budget |
+| $d$ $(1,1,1)$ → $u$ $(1,1,1)$ + $W^-$ | tri → tri | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | likely | Matches $V_{ud}$; charge quantized |
+| $s$ $(1,1,0)$ → $u$ $(1,1,1)$ + $W^-$ | bi → tri | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{us}\rvert$ |
+| $b$ $(1,0,0)$ → $c$ $(1,1,0)$ + $W^-$ | uni → bi | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $c + \,\, \ell^- + \bar\nu$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{cb}\rvert$ |
+| $t$ $(1,0,0)$ → $b$ $(1,0,0)$ + $W^+$ | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0 | $b + W^+$ | $W^+$ | allowed (dominant) | minimal mismatch; $\lvert V_{tb}\rvert\approx1$ |
+| $d$ $(1,1,1)$ + Sea (4 cores) → $u$ $(1,1,1)$ + $W^-$ | tri + sea | $\epsilon_-\to\epsilon_+$ triad transition | 4 | $u + W^-$ | $W^-$ | speculative | Sea supplies corridor, check energy budget |
 | $q$ + Sea → $q$ (same) + $Z$ | any | none | 4 | $Z$ | $Z$ | speculative | Neutral corridor, no flavor change |
-| $d$ (IMO) → $u$ (IMO) without $W$ | tri → tri | $\epsilon_-\to\epsilon_+$ transition | 0 | forbidden | — | no | Need $W$ to carry charge/spin |
-| $t$ (I--; weak-active sites $5\epsilon_+ + 1\epsilon_-$) → $b$ (I--; weak-active $2\epsilon_+ + 4\epsilon_-$) + $W^+$ → $b + e^+ + \nu_e$ | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0–4 (corridor draw) | $b + e^+ + \nu_e$ | $W^+$ forward corridor | allowed (dominant) | CKM $\lvert V_{tb}\rvert\approx1$; forward Sea braids assemble $W^+$; lepton leg is weak singlet ($6\epsilon_+ + 0\epsilon_-$) |
-| $t$ (I--; $5\epsilon_+ + 1\epsilon_-$) → $b$ (I--; $2\epsilon_+ + 4\epsilon_-$) + $W^+$ → $b + q\bar q$ (e.g., $u\bar d$ or $c\bar s$) | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0–4 | $b + q\bar q$ | $W^+$ forward corridor | allowed (dominant; SM $W\to q\bar q$ branching $\sim67\%$) | CKM $\lvert V_{tb}\rvert\approx1$; $q\bar q$ from $W^+$ (anti-down weak-active $4\epsilon_+ + 2\epsilon_-$, up $5\epsilon_+ + 1\epsilon_-$); charge hand-off via corridor. Branching fraction note is an SM reference point, not an $\mathbb{A}\mathbb{A}\mathbb{A}$-derived output. |
+| $d$ $(1,1,1)$ → $u$ $(1,1,1)$ without $W$ | tri → tri | $\epsilon_-\to\epsilon_+$ transition | 0 | forbidden | — | no | Need $W$ to carry charge/spin |
+| $t$ $(1,0,0)$; weak-active sites $5\epsilon_+ + 1\epsilon_-$ → $b$ $(1,0,0)$; weak-active $2\epsilon_+ + 4\epsilon_-$ + $W^+$ → $b + e^+ + \nu_e$ | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0–4 (corridor draw) | $b + e^+ + \nu_e$ | $W^+$ forward corridor | allowed (dominant) | CKM $\lvert V_{tb}\rvert\approx1$; forward Sea braids assemble $W^+$; lepton leg is weak singlet ($6\epsilon_+ + 0\epsilon_-$) |
+| $t$ $(1,0,0)$; $5\epsilon_+ + 1\epsilon_-$ → $b$ $(1,0,0)$; $2\epsilon_+ + 4\epsilon_-$ + $W^+$ → $b + q\bar q$ (e.g., $u\bar d$ or $c\bar s$) | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0–4 | $b + q\bar q$ | $W^+$ forward corridor | allowed (dominant; SM $W\to q\bar q$ branching $\sim67\%$) | CKM $\lvert V_{tb}\rvert\approx1$; $q\bar q$ from $W^+$ (anti-down weak-active $4\epsilon_+ + 2\epsilon_-$, up $5\epsilon_+ + 1\epsilon_-$); charge hand-off via corridor. Branching fraction note is an SM reference point, not an $\mathbb{A}\mathbb{A}\mathbb{A}$-derived output. |
 | $e^- (0\epsilon_+ + 6\epsilon_-)$ + $e^+ (6\epsilon_+ + 0\epsilon_-)$ → $Z$ → $\nu_\mu + \bar\nu_\mu$ | leptons | WK: $e^-$ has $0\epsilon_+ + 6\epsilon_-$; $e^+$ has $6\epsilon_+ + 0\epsilon_-$ | 0–4 | $\nu_\mu + \bar\nu_\mu$ | neutral corridor ($Z$) | allowed (NC) | $Z$ neutral; couples to L/R leptons; final $\nu,\bar\nu$ weak-active triads are $3\epsilon_-$ and $3\epsilon_+$ |
-| $\mu^-$ (Gen II, $0\epsilon_+ + 6\epsilon_-$) → $e^-$ (Gen I, $0\epsilon_+ + 6\epsilon_-$) + $\bar\nu_e + \nu_\mu$ | bi → tri | $\epsilon_-\to\epsilon_+$ transition on weak-coupling triad; shed outer binary | 0–4 | $e^- + \bar\nu_e + \nu_\mu$ | $W^-$ corridor | allowed (leptonic) | Shielding drop (Gen II→I); forward $W^-$ transfers charge; stripped core re-emerges as $\nu_\mu$, Sea/anti-sea absorbs balance ($\bar\nu_e$) |
+| $\mu^-$ (Gen II, $0\epsilon_+ + 6\epsilon_-$) → $e^-$ (Gen I, $0\epsilon_+ + 6\epsilon_-$) + $\bar\nu_e + \nu_\mu$ | $(1,1,0)\to(1,1,1)$ | $\epsilon_-\to\epsilon_+$ transition on weak-coupling triad; restore indexed support 3 | 0–4 | $e^- + \bar\nu_e + \nu_\mu$ | $W^-$ corridor | allowed (leptonic) | Shielding change (Gen II→I); forward $W^-$ transfers charge; stripped core re-emerges as $\nu_\mu$, Sea/anti-sea absorbs balance ($\bar\nu_e$) |
 | Neutron $n(udd)$ → Proton $p(uud)$ + $e^- + \bar\nu_e$ | tri → tri (one $d\to u$; two spectators) | $\epsilon_-\to\epsilon_+$ transition on one $d$ | 0–4 | $p + e^- + \bar\nu_e$ | $W^-$ forward corridor | allowed (`beta reaction`; SM label: `beta decay`) | spectators intact; $d\to u$ transition; lepton leg weak-active ($0\epsilon_+ + 6\epsilon_-$), $\bar\nu_e$ weak singlet ($3\epsilon_+$) |
 | $W$ corridor budget (generic) | — | — | 2 neutral braids + 6 excess decorations | returns neutral braids to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 neutral braids + ($9\epsilon_+ + 3\epsilon_-$) → +e; $W^-$: 2 neutral braids + ($3\epsilon_+ + 9\epsilon_-$) → –e; braids end neutral |
 
@@ -598,7 +598,7 @@ Notes:
 ### Provenance
 
 - The target is **provenance**, not only bookkeeping: track every architrino's path through a reaction, so simulations can reproduce PDG observables from first principles.
-- Beyond individual architrinos, track **sub-assembly provenance**: entire Noether braids may transfer intact, detach outer binaries, dissociate, reassociate, or relock into different groupings while their architrino identities persist. Knowing which Noether braids move as units vs fragment gives insight into allowed channels and lifetimes.
+- Beyond individual architrinos, track **sub-assembly provenance**: entire Noether braids may transfer intact, detach declared indexed binary subassemblies, dissociate, reassociate, or relock into different groupings while their architrino identities persist. Knowing which Noether braids move as units versus fragment gives insight into allowed channels and lifetimes.
 - Conservation requires Electrino count in to equal Electrino count out, and likewise for Positrino count. A completed transmutation map must identify each architrino path from reactants to products.
 - The remaining spare-polarity question is where an unincorporated Electrino-Positrino pair goes after a reaction: neutral relock, maximal-curvature inward spiral, local photon-mode release, or another declared channel.
 

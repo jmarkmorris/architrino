@@ -1,6 +1,6 @@
 # Noether Braid Configuration Space
 
-This chapter gives the analysis space surrounding the canonical braid taxonomy: the evidence-level vocabulary and the rank-three angular-momentum-frame variables used to test a candidate record. It comes after the family map in [Noether Braid](noether-braid.md), the prescribed coordinates in [Braid Taxonomy](braid-taxonomy.md), and the retention contract of [Braid Recovery Requirements](braid-recovery-requirements.md). The analyzed regions include [Family A](braid-family-a.md), the A1.3 $4{:}2{:}1$ lock, iso-frequency candidates, and field-speed hinge-occupancy candidates. Within the rank-three sublocus, a branch candidate is a three-row state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
+This chapter gives the analysis space surrounding the canonical braid taxonomy: the evidence-level vocabulary and the rank-three angular-momentum-frame variables used to test a candidate record. It comes after the family map in [Noether Braid](noether-braid.md), the prescribed coordinates in [Braid Taxonomy](braid-taxonomy.md), and the retention contract of [Braid Recovery Requirements](braid-recovery-requirements.md). The analyzed regions include [Family A](braid-family-a.md), the A3.3 $4{:}2{:}1$ lock and its A1.3 zero-axial-offset locus, iso-frequency candidates, and field-speed hinge-occupancy candidates. Within the rank-three sublocus, a branch candidate is a three-row state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
 
 This is a search architecture and theorem target, not a completed classification theorem. The goal is to find which regions of the Noether braid configuration space support stable retained branches in a Noether sea populated by like assemblies, identify which branches remain candidate braids and which can be promoted to certified braids, and then use those branches as the entry point for assembly topological charge, energy differentials, shielding, and accessory-architrino capture.
 
@@ -137,7 +137,7 @@ The frequency-ratio family records return or winding-frequency relations. The ma
 | --- | --- |
 | iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The rigid common-axis member is [B1](braid-family-b.md#b1). |
 | integer-ratio `3:2:1` | Candidate family with integer return rates but no repeated-doubling assumption. |
-| doubling-frequency $4{:}2{:}1$ | The A1.3 member with indexed ratio $f_1:f_2:f_3=4:2:1$, studied in [A1.3 Doubling-Frequency Resonance Lock](braid-a1-3-doubling-frequency-lock.md). The ratio does not imply a radius order. |
+| doubling-frequency $4{:}2{:}1$ | The A3.3 member with indexed ratio $f_1:f_2:f_3=4:2:1$, studied in [A3.3 Doubling-Frequency Resonance Lock](braid-a3-3-doubling-frequency-lock.md). A1.3 is its zero-axial-offset locus. The ratio does not imply a radius order. |
 
 Frequency-ratio labels are candidate-family labels until the phase-return degree, causal-root ledger, finite-memory gluing, and stability rows close on the same branch. Hinge labels require their own speed and causal-root rows; they are not frequency-ratio names.
 
@@ -596,7 +596,7 @@ while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing aniso
 
 ## Relation To The Doubling-frequency Chapter
 
-[A1.3 Doubling-Frequency Resonance Lock](braid-a1-3-doubling-frequency-lock.md) studies one restricted member inside this broader configuration space. It asks whether the indexed A1 frequency triplet, especially the A1.3 relation $f_1:f_2:f_3=4:2:1$, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior.
+[A3.3 Doubling-Frequency Resonance Lock](braid-a3-3-doubling-frequency-lock.md) studies one restricted member inside this broader configuration space. It asks whether the indexed A3 frequency triplet, especially the A3.3 relation $f_1:f_2:f_3=4:2:1$, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior. The A1.3 chart inherits the same frequency relation on the zero-axial-offset locus.
 
 The doubling-frequency chapter should therefore be read as a specialized search row:
 $$

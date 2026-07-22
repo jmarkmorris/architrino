@@ -24,7 +24,7 @@ The chapter keeps a clean separation between:
 At the absolute level, any local neighborhood is crowded:
 
 - Architrinos and assemblies are:
-  - Rotating in internal binaries (inner/middle/outer),
+- Rotating in indexed internal binaries $a\in\{1,2,3\}$,
   - Translating through the void,
   - Continuously emitting spherically expanding **causal wakes** at speed $c_f$.
 
@@ -32,7 +32,7 @@ At the absolute level, any local neighborhood is crowded:
   - Wakes from local Noether braid assemblies in the Noether sea,
   - Wakes from bound matter in the vicinity,
   - Wakes from distant assemblies whose emission fronts are just arriving,
-  - Self-hit structures from $v>c_f$ inner-binary motion.
+- Self-hit structures from $v>c_f$ motion in a declared indexed binary.
 
 - **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a globally neutral mix of electrinos ($q=-$) and positrinos ($q=+$); exact 50/50 balance is a cosmological neutrality postulate carried by [Noether Sea](../spacetime/noether-sea.md), not a derived result, and local inventories are routinely unbalanced. Consequently, the potential contributions from distant regions statistically cancel out (effective screening). More precisely: in a statistically homogeneous 50/50 mixture the mean far-field cancels, while potential fluctuations and local charge imbalances remain and dominate the dynamics on finite scales. Screening is therefore statistical and scale-dependent, not an exact cancellation theorem. The observer-level summary is a local unresolved fluctuation floor, not an infinite static wake background.
 
@@ -84,11 +84,11 @@ From the viewpoint of an embedded assembly:
 
 1. **Near-field-speed assemblies ("Stealth" vs. "Reactive" Modes)**
    - **Near-$c_f$ Linear Fragility (Self-Hit Resonance):** Approaching $c_f$ from below does **not** produce self-hit on a strictly sub-field-speed interval; the triangle inequality forbids the same-transmitter root. At exactly $v = c_f$, straight-line motion gives a degenerate tangent family rather than a clean simple branch. Self-hit resonance is admitted only when the same-transmitter root set is nonempty and passes the transversality/Jacobian floor and the same-record transmitter-side acceleration-weight floor. A super-field-speed curved interval is therefore a candidate source of self-hit, not a speed-only acceptance test. In that regime small perturbations are strongly amplified or damped depending on phase. The wake amplitude does **not** diverge; "pileup" here means coherent reinforcement of a finite wake, not a singularity. Linear near-$c_f$ states are therefore **fragile** and short-lived unless the system actively de-phases the feedback.
-   - **The Curvature Target (Stable Stealth):** Candidate stable assemblies near $v \approx c_f$ (such as the middle-binary regime) may use curvature, phase rotation, or internal modulation to de-phase their self-hit geometry. The closure target is to show that this mechanism can keep a hard potential front externally while preserving a Jacobian floor, a retained transmitter-side acceleration weight, bounded energy, and deterministic multistability rather than permitting runaway self-reinforcement.
+- **The Curvature Target (Stable Stealth):** Candidate stable assemblies with a declared indexed channel near $v\approx c_f$ may use curvature, phase rotation, or internal modulation to de-phase their self-hit geometry. The closure target is to show that this mechanism can keep a hard potential front externally while preserving a Jacobian floor, a retained transmitter-side acceleration weight, bounded energy, and deterministic multistability rather than permitting runaway self-reinforcement.
    - **Operational Effect:** A receiver sees little change until the corkscrewing assembly is very close, then feels a rapid, modulated potential surge—a "digital" shockwave delivered without warning.
 
-2. **$v>c_f$ inner-binary motion**
-   - Inner binaries routinely have $v>c_f$ relative to the wake speed.
+2. **$v>c_f$ indexed-binary motion**
+- Candidate source records may assign $v>c_f$ to one or more indexed binaries relative to the wake speed.
    - Their self-hit geometry (intersections with their own wakes) creates nontrivial potential patterns that:
      - Are fully causal in absolute time,
      - Can look like "out-of-nowhere" structure from the emergent perspective, because the effective light-cone built from $c_{\text{eff}}$ does not capture the full wake history.
@@ -112,11 +112,11 @@ At the assembly level (Noether braids, atoms, etc.):
   - Remains in its current attractor (no transition), or
   - Crosses into a neighboring attractor (discrete energy change, change of configuration).
 
-- The **outer binary** can be modeled as such a metastable subsystem:
+- A **declared indexed binary** can be modeled as such a metastable subsystem:
   - It supports discrete resonance bands labeled by an integer index $f$ (linked to a characteristic frequency).
   - A transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E \approx h \nu$, and pushes the system across the boundary between resonance bands (the $f \to f \pm 1$ boundary). Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
 
-- The **middle binary**, near $v = c_f$, likely sits near a **self-hit threshold** (see [Self-Hit Threshold Analogy](#self-hit-threshold-analogy)):
+- A **declared indexed channel** near $v=c_f$ may sit near a **self-hit threshold** (see [Self-Hit Threshold Analogy](#self-hit-threshold-analogy)):
   - Slightly below $c_f$: one regime (e.g., a response on the order of an $h$-scale action increment per cycle, phenomenological).
   - Slightly above $c_f$: another regime (e.g., a response on the order of a $2h$-scale action increment per cycle, phenomenological; self-hit-amplified).
   - Small differences in forcing near this manifold can switch which $f$-band is selected and send trajectories to qualitatively different long-term behavior.
@@ -153,7 +153,7 @@ Here $B_k$ is the basin of initial path-history states that resolve to outcome b
 Because:
 
 - The input signal, namely the sum of causal wakes from the Noether sea and nearby assemblies, is **high-dimensional** and **history-dependent**,
-- The local assembly is sitting near a **threshold boundary** (e.g., a resonance-band boundary in the outer binary or a self-hit onset in the middle binary; see [Threshold Structure Guide](#threshold-structure-guide-plain-language-labels)),
+- The local assembly is sitting near a **threshold boundary** (e.g., a resonance-band boundary in one indexed binary or a self-hit onset in another declared channel; see [Threshold Structure Guide](#threshold-structure-guide-plain-language-labels)),
 
 we get classic deterministic chaos:
 
@@ -278,7 +278,7 @@ Concretely:
 
 - Parameters could include:
   - Effective coupling strengths between sub-assemblies (networks of coupled binaries),
-  - Orientation/phase relationships among middle binaries (near $v\approx c_f$),
+- Orientation/phase relationships among declared indexed channels near $v\approx c_f$,
   - Local Noether sea-coupling "stiffness" (how strongly sub-assemblies respond to given wake amplitudes).
 - These parameters must be **slow variables** relative to the fast threshold dynamics, so that:
   - The assembly can hold a "configuration of sensitivity" over many incoming wake peaks,
@@ -389,7 +389,7 @@ These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard q
 > Crucially, the transition itself is not an observable steady state. Attempting to probe the in-between injects action and **forces a resolution to one side**, which is why continuous photon sampling cannot leave the bifurcation unresolved.
 
 > ### **Uncertainty Brackets the Integer Step (Phenomenological + Toy Dynamics)**
-> The outer binary occupies discrete **resonance bands** labeled by an integer index $f$ (or $n$). A transition occurs when the **action per cycle** crosses the $h$-scale threshold. In absolute dynamics the step is clean: $f \to f \pm 1$.
+> A declared indexed binary occupies discrete **resonance bands** labeled by an integer index $f$ (or $n$). A transition occurs when the **action per cycle** crosses the $h$-scale threshold. In absolute dynamics the step is clean: $f \to f \pm 1$.
 >
 > Operationally, the uncertainty principle and measurement back-action limit how precisely an observer can place the system relative to the basin boundary. This creates a **finite bracket** around the threshold. The step is real; the bracket is epistemic.
 >
@@ -410,7 +410,7 @@ The following **operational dictionary** links the QM formal step to architrino 
 **1) Collapse**
 - **QM formalism:** $\rho \rightarrow |n\rangle\langle n|$ (projection onto an eigenstate).
 - **Architrino micro-dynamics:** The full microstate $\Gamma(T)$ evolves continuously. A discrete label (e.g., band index $f$) changes only when an action-like variable $J$ crosses a basin boundary.
-- **Coarse-graining map:** Define $C[\Gamma] = f$ and $\rho_{\mathrm{eff}}(f)$ as an average over fast phases (inner/middle binaries). "Collapse" corresponds to conditioning on a realized basin label.
+- **Coarse-graining map:** Define $C[\Gamma]=f$ and $\rho_{\mathrm{eff}}(f)$ as an average over the declared fast indexed-binary phases. "Collapse" corresponds to conditioning on a realized basin label.
 - **Difference (in principle):** Transition time is finite and tied to threshold crossing / Lyapunov time, not instantaneous; near threshold, history-dependent hysteresis is expected.
 
 **2) Uncertainty**

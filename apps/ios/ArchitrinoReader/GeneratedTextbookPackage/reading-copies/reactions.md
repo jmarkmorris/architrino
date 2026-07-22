@@ -447,7 +447,7 @@ Thus gamma rays and X-rays differ mainly by source mechanism and frequency band,
 
 ### Foundation-Up Mechanism
 
-The foundation-up radiation question is whether rapid transport changes can leave a Noether braid internally mismatched relative to its nearest stable closure class. A moving Noether braid has a velocity-deformed causal envelope, while a gravitational gradient skews its delay loops and phase closure. If a reaction suddenly decelerates the assembly, if curved transport changes too quickly, or if the assembly crosses a sharp Noether sea gradient, the external transport state can change faster than the inner, middle, and outer binary ledgers can adiabatically retune.
+The foundation-up radiation question is whether rapid transport changes can leave a Noether braid internally mismatched relative to its nearest stable closure class. A moving Noether braid has a velocity-deformed causal envelope, while a gravitational gradient skews its delay loops and phase closure. If a reaction suddenly decelerates the assembly, if curved transport changes too quickly, or if the assembly crosses a sharp Noether sea gradient, the external transport state can change faster than the three indexed binary ledgers can adiabatically retune.
 
 The resulting residual is first a closure mismatch, not yet a photon. For layer $a\in\{I,M,O\}$,
 
@@ -459,7 +459,7 @@ $$
 \Theta_a(T;\mathbf{V}_{\text{after}},G_{\text{grad}})
 $$
 
-Here $\Theta_a$ denotes the layer's phase-closure ledger over the comparison interval $T$ — distinct from the coarse Noether sea response record $\Theta_E^{(\ell)}$ used in the material sections below — $\mathbf{V}$ denotes the transport state being retuned, and $G_{\text{grad}}$ denotes the local gradient data that modifies the delay loops. The notation $\{I,M,O\}$ refers to the same inner, middle, and outer nested shell braid roles that ordered-axis chapters often write as $(H,M,L)$.
+Here $\Theta_a$ denotes binary $a$'s phase-closure ledger over the comparison interval $T$ — distinct from the coarse Noether sea response record $\Theta_E^{(\ell)}$ used in the material sections below — $\mathbf{V}$ denotes the transport state being retuned, and $G_{\text{grad}}$ denotes the local gradient data that modifies the delay loops. The index is persistent, $a\in\{1,2,3\}$, and does not encode radius order or a fixed dynamical role.
 
 A compact residual magnitude can be treated as a derivation target:
 
@@ -510,7 +510,7 @@ The residual ledger should track at least four quantities:
 
 | Ledger entry | Required meaning |
 | --- | --- |
-| $\delta\Theta_a$ | phase-closure mismatch of each nested shell braid layer |
+| $\delta\Theta_a$ | phase-closure mismatch of each persistent binary index in the candidate source record; no taxonomy member is implied |
 | $\Delta E_{\text{int}}$ | excess internal energy above the nearest stable rung |
 | $\Delta \mathbf{p}_{\text{asm}}$ | change in assembly momentum during the drive |
 | $\Delta \mathcal{J}_{\text{wake}}$ | angular-momentum and causal-wake ledger imbalance to be closed |
@@ -658,7 +658,7 @@ The signs of the $\Delta E$ terms are ledger signs. A frequency boost has $h(\nu
 
 This distinction is cosmologically important. A redshift or blueshift accumulated along a path is not an unexplained energy loss or gain if the path-frequency exchange ledger closes. It is also not automatically evidence of geometric expansion. The corresponding cosmology pages must consume this radiation record before promoting redshift-distance, CMB temperature, or SZ/kSZ data products into expansion, dark-energy, or growth claims.
 
-The strong-field version of the same rule occurs near a black-hole horizon interface. A photon-channel packet, or a photon-channel-adjacent mode, may be processed close to the nested shell braid symmetry-breaking threshold, where planar lock and high local energy exchange are part of the strong-field record. Interior segments can blueshift the packet; exterior or transport segments can redshift it; either case remains a frequency-exchange row only while the packet keeps its photon Gate A and Gate B handoffs. If the handoffs fail, the event must be reclassified as capture, re-emission, pair production, medium excitation, or another release-channel reaction.
+The strong-field version of the same rule occurs near a black-hole horizon interface. A photon-channel packet, or a photon-channel-adjacent mode, may be processed close to the Family-A symmetry-breaking point, where planar lock and high local energy exchange are part of the strong-field record. Interior segments can blueshift the packet; exterior or transport segments can redshift it; either case remains a frequency-exchange row only while the packet keeps its photon Gate A and Gate B handoffs. If the handoffs fail, the event must be reclassified as capture, re-emission, pair production, medium excitation, or another release-channel reaction.
 
 Curved photon transport adds a transverse version of the same discipline. In ordinary weak lensing, the outgoing path direction changes coherently through the Noether sea response while the photon remains one Gate A/B packet. Let $\hat{\mathbf{k}}(\ell)$ be the path tangent and
 $$
@@ -1894,7 +1894,7 @@ Only when both conditions are met is photon output allowed. If the closure resid
 
 #### Wake Shock Definition (Channel Specialization)
 
-In this document, a **wake shock** is the bremsstrahlung name for the inherited radiation closure residual when it is produced by strong target-induced deceleration of the electron Noether braid assembly. It is not merely a descriptive label for radiation. Operationally, it is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in the middle binary (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether sea.
+In this document, a **wake shock** is the bremsstrahlung name for the inherited radiation closure residual when it is produced by strong target-induced deceleration of the electron Noether braid assembly. It is not merely a descriptive label for radiation. Operationally, it is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in a declared binary channel (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether sea.
 
 A minimal trigger condition is written as
 

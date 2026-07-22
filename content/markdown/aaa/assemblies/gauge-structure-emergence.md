@@ -237,7 +237,7 @@ c_i+c_j+c_k=0
 \quad\Longrightarrow\quad
 n_i^\theta+n_j^\theta+n_k^\theta\to0
 $$
-The native value of this test is not the formal identity by itself. The value is whether the existing H/M/L color-exceptionality relation $Q_H+Q_M+Q_L=0$ and the scattering numerator ledger can be derived as two projections of the same branch geometry.
+The native value of this test is not the formal identity by itself. The value is whether the indexed color-exceptionality relation $Q_1+Q_2+Q_3=0$ and the scattering numerator ledger can be derived as two projections of the same branch geometry.
 
 Positive-geometry amplitude work adds one more useful guardrail. If an amplitude is represented by a positive-coordinate auxiliary geometry, then physical boundaries should carry the factorization residues above, while spurious cell boundaries should cancel in the sum. In native terms, a positive-geometry chart is admissible only as a certificate for boundary factorization, spurious-pole cancellation, and record-domain consistency. It does not replace the causal-wake and assembly derivation.
 
@@ -267,7 +267,7 @@ Quantum field theory for uniformly accelerated, Rindler observers predicts that 
 Why do observer-level electric charges appear in units of $e/3$?
 *   The Standard Model asserts this; $\mathbb{A}\mathbb{A}\mathbb{A}$ treats it as a stability-selection closure target grounded first in a protected six-unit polarity inventory, with the six-site axial layer as the current charged-fermion working realization.
 *   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $\epsilon$ polarity units are likely unstable. They either collapse into an unstable self-hit branch or disperse.
-*   **The Survivors:** Specific geometric configurations of six sign-carrying units are candidate stable resonances where attractive and repulsive forces balance through the assembly branch. In the axial-layer realization these appear as six-pole axial patterns supported by the nested shell braid structure. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
+*   **The Survivors:** Specific geometric configurations of six sign-carrying units are candidate stable resonances where attractive and repulsive accelerations balance through the assembly branch. In the axial-layer realization these appear as six-pole axial patterns supported by a candidate Noether braid; this construction does not assign a taxonomy member. The local combinatorics reproduce the observed charge set; dynamical exclusion of non-SM stable assemblies remains part of the closure burden.
 
 **SM Charge Quantization ($\mathbb{A}\mathbb{A}\mathbb{A}$: Six $\epsilon$ Polarity Slots)**
 
@@ -366,7 +366,7 @@ S_{\text{fund}}
 \right]
 $$
 Here $\Delta_{ij}=T-T_{t,ij}$ is the causal travel delay on the active branch, $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant, and $W_{ij}^{\mathrm{acc}}$ is the transmitter-side acceleration weight on the active branch, so the electroweak closure map starts from the same receiver-side causal geometry as the master equation rather than from a stripped inverse-square surrogate.
-After fast-mode averaging of inner and middle binary phases (Lie-Deprit/Hamiltonian averaging) and coarse-graining to $q^2\ll \omega_M^2$, the minimal observer-level action is written as
+After fast-mode averaging of the declared fast binary phases (Lie-Deprit/Hamiltonian averaging) and coarse-graining to $q^2\ll \omega_{\mathrm{fast}}^2$, the minimal observer-level action is written as
 $$
 \mathcal{L}_{\text{eff}}
 =
@@ -383,10 +383,10 @@ The leading composite correction is modeled as
 $$
 \mathcal{L}_{\text{comp}}
 =
-\frac{R_L^2}{2}\,\bar{\Psi}\gamma^\mu D^\nu\mathcal{F}_{\mu\nu}\Psi
-+O(R_L^4)
+\frac{R_{\mathrm{comp}}^2}{2}\,\bar{\Psi}\gamma^\mu D^\nu\mathcal{F}_{\mu\nu}\Psi
++O(R_{\mathrm{comp}}^4)
 $$
-where $R_L$ is the outer-binary scale.
+where $R_{\mathrm{comp}}$ is the declared composite scale extracted from the indexed binary record.
 
 For the formal closure layer beneath this working map, see [Gauge Symmetries](./gauge-symmetries.md) and [Effective Lagrangian](../dynamics/effective-lagrangian.md).
 
@@ -440,21 +440,21 @@ $$
 a_\ell^{\text{model}}
 =
 a_\ell^{\text{SM,ref}}
-+\mathcal{C}_\ell\,(m_\ell R_L)^2
-+O(R_L^4)
++\mathcal{C}_\ell\,(m_\ell R_{\mathrm{comp}})^2
++O(R_{\mathrm{comp}}^4)
 $$
 
 In natural units ($\hbar=c=1$), the leading form factor correction for lepton-pair production is
 $$
-F(s)=1-\frac{sR_L^2}{4},
+F(s)=1-\frac{sR_{\mathrm{comp}}^2}{4},
 \qquad
 \sigma_{\text{model}}(s)=\sigma_{\text{SM}}(s)\,|F(s)|^2
 $$
-For $R_L\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at $\sqrt{s}=10.58\,\text{GeV}$ but a marginal Gate 1-level deviation near the $Z$ pole at $\sqrt{s}=91.19\,\text{GeV}$. Calling the $Z$-pole shift negligible requires a substantially smaller outer-binary scale, for example $R_L\lesssim3\times10^{-20}\,\text{m}$.
+For $R_{\mathrm{comp}}\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at $\sqrt{s}=10.58\,\text{GeV}$ but a marginal Gate 1-level deviation near the $Z$ pole at $\sqrt{s}=91.19\,\text{GeV}$. Calling the $Z$-pole shift negligible requires a substantially smaller composite scale, for example $R_{\mathrm{comp}}\lesssim3\times10^{-20}\,\text{m}$.
 
 ### Falsification Gates for This Map
 
-1. If the $R_L$ needed to fit $\Delta a_\mu$ implies $|\Delta\sigma/\sigma|>10^{-3}$ near the LEP $Z$ pole, the composite correction map is ruled out.
+1. If the $R_{\mathrm{comp}}$ needed to fit $\Delta a_\mu$ implies $|\Delta\sigma/\sigma|>10^{-3}$ near the LEP $Z$ pole, the composite correction map is ruled out.
 2. If the required hierarchy violates nonresonance and destabilizes closure in the kinematic sector, the electroweak map is not self-consistent with Lorentz closure.
 3. If charge reconstruction from six-pole averaging acquires drift-dependent leakage (non-integer multiples of $e/3$), the quantization map fails.
 4. If the map predicts additional stable charged fermions, unsuppressed partner channels, proton-instability corridors, extra gauge modes, or other non-baseline observables above null-result bounds, the added structure is not a closed unification result.

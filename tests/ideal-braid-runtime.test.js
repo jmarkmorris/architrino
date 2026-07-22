@@ -24,7 +24,7 @@ import {
   solveFlightTimeWithPrescribedPathAnalysis,
 } from "../src/apps/ideal-braid/IdealBraidRuntime.js";
 
-test("Ideal Braid model reuses three animator circular binaries", () => {
+test("A1 Lorentz Geometry model preserves stable ids and exposes indexed labels", () => {
   const model = createIdealBraidModel({ THREE });
 
   assert.equal(model.binaries.length, 3);
@@ -32,6 +32,10 @@ test("Ideal Braid model reuses three animator circular binaries", () => {
   assert.deepEqual(
     model.binaries.map((binary) => binary.id),
     ["inner", "middle", "outer"]
+  );
+  assert.deepEqual(
+    model.binaries.map((binary) => binary.label),
+    ["Binary 1", "Binary 2", "Binary 3"]
   );
   assert.deepEqual(
     model.binaries.map((binary) => binary.fieldSpeedRegime),
@@ -49,7 +53,7 @@ test("Ideal Braid model reuses three animator circular binaries", () => {
   );
 });
 
-test("standalone Ideal Braid home navigation returns to the main webapp", () => {
+test("standalone A1 Lorentz Geometry home navigation returns to the main webapp", () => {
   const assigned = [];
   const locationLike = {
     assign: (href) => assigned.push(href),
@@ -185,7 +189,7 @@ test("prescribed-path flight-time analysis returns a positive emission delay", a
   assert.equal(tau, expectedTau);
 });
 
-test("Ideal Braid flight time can be routed through the prescribed-path analysis for a linear transmitter", async () => {
+test("A1 Lorentz Geometry flight time can be routed through the prescribed-path analysis for a linear transmitter", async () => {
   const transmitterStart = new THREE.Vector3(1, -0.5, 0.25);
   const transmitterVelocity = new THREE.Vector3(0.2, 0.1, -0.05);
   const architrino = {
@@ -297,7 +301,7 @@ test("super-field profile expands the path-history span from prescribed circular
   assert.equal(bridgeProfile.analysisId, "prescribed-path-analysis");
 });
 
-test("Ideal Braid circular self-hit span can be routed through the prescribed-path analysis", async () => {
+test("A1 Lorentz Geometry circular self-hit span can be routed through the prescribed-path analysis", async () => {
   const runRequest = createIdealBraidCircularSelfHitSpanRunRequest(1.2, {
     requestId: "ideal_self_hit_bridge_request",
     runId: "ideal_self_hit_bridge_run",
@@ -333,7 +337,7 @@ test("Ideal Braid circular self-hit span can be routed through the prescribed-pa
   assert.ok(Math.abs(span - expectedSpan) < 1e-12);
 });
 
-test("Ideal Braid circular self-hit spans can be batched through the prescribed-path analysis", async () => {
+test("A1 Lorentz Geometry circular self-hit spans can be batched through the prescribed-path analysis", async () => {
   const ratios = [1.2, 1.01, 0.8];
   const spans = [2.0534765827345125, 0, 0];
   const rows = await solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis(ratios, {

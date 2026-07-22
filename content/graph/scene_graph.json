@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 599,
-      "edges": 1364,
-      "scenes": 383,
+      "nodes": 600,
+      "edges": 1365,
+      "scenes": 384,
       "markdownIndexes": 0,
       "markdownDocs": 199,
       "runtimeEdges": 476,
@@ -348,7 +348,7 @@
     },
     {
       "id": "archie__ideal_braid",
-      "name": "Ideal Noether Braid: Lorentz Geometry App",
+      "name": "A1 Lorentz Geometry",
       "path": "content/scenes/archie/ideal_braid.json",
       "nodeType": "scene"
     },
@@ -2447,6 +2447,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "noether_braid__braid_family_a_overview",
+      "name": "Braid Family A",
+      "path": "content/scenes/noether-braid/braid_family_a_overview.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2604,7 +2610,7 @@
     },
     {
       "id": "content/markdown/aaa/archie/ideal-braid-guide.md",
-      "name": "Ideal Braid Guide",
+      "name": "A1 Lorentz Geometry Guide",
       "path": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "nodeType": "markdown_doc"
     },
@@ -2921,12 +2927,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "name": "A1.3 Doubling-Frequency Resonance Lock",
-      "path": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
       "name": "Braid A1 Dynamics and Interpretation",
       "path": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
@@ -2936,6 +2936,12 @@
       "id": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
       "name": "A2 Symmetry and Return Response",
       "path": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "name": "A3.3 Doubling-Frequency Resonance Lock",
+      "path": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3161,6 +3167,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "name": "Mapping the Planck Scale to the A1 Geometry",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
       "name": "Measurement Problem and Collapse",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
@@ -3170,12 +3182,6 @@
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
       "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "name": "Mapping the Planck Scale to the Nested Shell Braid Geometry",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3455,6 +3461,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "name": "A1 Action-Increment Protocol",
+      "path": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "name": "Action Model Comparison",
       "path": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
@@ -3578,12 +3590,6 @@
       "id": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
       "name": "Hydrogen $\\Gamma_N$ Spectral Coefficient Row Toy Scan",
       "path": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
-      "name": "Nested Shell Braid Action-Increment Protocol",
-      "path": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3952,7 +3958,7 @@
       "nodeId": "scene:content/scenes/archie/ideal_braid.json",
       "nodeType": "scene",
       "id": "archie__ideal_braid",
-      "name": "Ideal Noether Braid: Lorentz Geometry App",
+      "name": "A1 Lorentz Geometry",
       "path": "content/scenes/archie/ideal_braid.json",
       "searchTarget": "content/scenes/archie/ideal_braid.json",
       "implicit": false
@@ -5731,6 +5737,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/noether-braid/braid_family_a_overview.json",
+      "nodeType": "scene",
+      "id": "noether_braid__braid_family_a_overview",
+      "name": "Braid Family A",
+      "path": "content/scenes/noether-braid/braid_family_a_overview.json",
+      "searchTarget": "content/scenes/noether-braid/braid_family_a_overview.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/noether-braid/braid_family_a.json",
       "nodeType": "scene",
       "id": "noether_braid__braid_family_a",
@@ -7327,7 +7342,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-braid-guide.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/ideal-braid-guide.md",
-      "name": "Ideal Braid Guide",
+      "name": "A1 Lorentz Geometry Guide",
       "path": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "searchTarget": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "implicit": false
@@ -7801,15 +7816,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "name": "A1.3 Doubling-Frequency Resonance Lock",
-      "path": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
@@ -7825,6 +7831,15 @@
       "name": "A2 Symmetry and Return Response",
       "path": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
       "searchTarget": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "name": "A3.3 Doubling-Frequency Resonance Lock",
+      "path": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
       "implicit": false
     },
     {
@@ -8161,6 +8176,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "name": "Mapping the Planck Scale to the A1 Geometry",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
@@ -8176,15 +8200,6 @@
       "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "name": "Mapping the Planck Scale to the Nested Shell Braid Geometry",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "implicit": false
     },
     {
@@ -8602,6 +8617,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "name": "A1 Action-Increment Protocol",
+      "path": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
@@ -8788,15 +8812,6 @@
       "name": "Hydrogen $\\Gamma_N$ Spectral Coefficient Row Toy Scan",
       "path": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
-      "name": "Nested Shell Braid Action-Increment Protocol",
-      "path": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
-      "searchTarget": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "implicit": false
     },
     {
@@ -12494,25 +12509,46 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "from": "scene:content/scenes/noether-braid/braid_family_a.json",
       "to": "scene:content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json",
       "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[8]"
+      "source": "content/scenes/noether-braid/braid_family_a.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/braid_family_a.json",
+      "to": "scene:content/scenes/noether-braid/braid_family_a_overview.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-braid/braid_family_a.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/braid_family_a.json",
+      "to": "scene:content/scenes/noether-braid/doubling_frequency_lock.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-braid/braid_family_a.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/braid_family_a.json",
+      "to": "scene:content/scenes/noether-braid/explored_braid_geometries.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-braid/braid_family_a.json",
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/braid_analysis_methodology.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/braid_envelope_geometry.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[13]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
@@ -12540,7 +12576,7 @@
       "to": "scene:content/scenes/noether-braid/braid_mathematics.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
@@ -12555,20 +12591,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/doubling_frequency_lock.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[12]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/explored_braid_geometries.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
@@ -12589,14 +12611,14 @@
       "to": "scene:content/scenes/noether-braid/noether_braid_topological_charge.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[14]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/spindle_braid.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -14300,10 +14322,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-braid/braid_family_a.json",
+      "from": "scene:content/scenes/noether-braid/braid_family_a_overview.json",
       "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-family-a.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/braid_family_a.json",
+      "source": "content/scenes/noether-braid/braid_family_a_overview.json",
       "field": "scene.source.path"
     },
     {
@@ -14343,7 +14365,7 @@
     },
     {
       "from": "scene:content/scenes/noether-braid/doubling_frequency_lock.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/noether-braid/doubling_frequency_lock.json",
       "field": "scene.source.path"
@@ -14560,7 +14582,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
       "field": "scene.source.path"
@@ -15043,7 +15065,7 @@
     },
     {
       "from": "scene:content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "field": "scene.source.path"

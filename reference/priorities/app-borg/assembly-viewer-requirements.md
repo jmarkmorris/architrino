@@ -76,7 +76,7 @@ Collection navigation preserves configuration-space identity without importing a
 - Load one record directly, then add local-file and manifest/packet intake for collections of records when Borg's deferred import workflow opens.
 - Preserve source ids, source order, and raw record access. The viewer must not silently sort or relabel worldlines, binaries, branches, or layers.
 - For tri-binary configuration-search collections, preserve `unquotiented-labeled` rows. An optional $S_3$-equivalence grouping may reduce navigation clutter only when the source carries a permutation-canonical key; grouping hides no underlying record and never changes the selected raw record.
-- Provide collection filters for source-carried claim grade, evidence status, campaign/run id, speed regime, eigen-braid status, axis-alignment status, assembly topological charge, and accessory-architrino capture status when those fields exist. Missing fields remain visibly unavailable rather than being inferred.
+- Provide collection filters for source-carried claim grade, evidence status, campaign/run id, speed regime, braid-certification status, axis-alignment status, assembly topological charge, and accessory-architrino capture status when those fields exist. Missing fields remain visibly unavailable rather than being inferred.
 - A stable-sector atlas may plot source-carried coordinates such as energy differentials, speed regime, $D_{\mathrm{plane}}$, and assembly topological charge. The viewer does not calculate those diagnostics. Their producer and provenance must be named, and selecting a point must open the underlying raw record.
 - Comparison mode synchronizes only records with compatible declared time and unit transforms. Otherwise it fails closed and explains the mismatch.
 
@@ -91,7 +91,7 @@ Collection navigation preserves configuration-space identity without importing a
 
 ## Overlays
 
-Polarity coloring; speed color-mapped against $c_f$ with explicit field-speed-crossing markers; per-binary frequency labels; planar-offset separation; spin and polarity-dipole glyphs with the $\chi=\operatorname{sign}(\mathbf p\cdot\mathbf S)$ sign where the record's metadata supports them; event markers from the record's event list; and source-carried branch, eigen-braid, axis-alignment, topological-charge, or capture status. Overlays render only record-carried or declared-arithmetic display quantities.
+Polarity coloring; speed color-mapped against $c_f$ with explicit field-speed-crossing markers; per-binary frequency labels; planar-offset separation; spin and polarity-dipole glyphs with the $\chi=\operatorname{sign}(\mathbf p\cdot\mathbf S)$ sign where the record's metadata supports them; event markers from the record's event list; and source-carried branch, braid-certification, axis-alignment, topological-charge, or capture status. Overlays render only record-carried or declared-arithmetic display quantities.
 
 ## Borg Integration Rule
 

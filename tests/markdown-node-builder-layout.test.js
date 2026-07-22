@@ -158,7 +158,7 @@ test("markdown split palette assignment is deterministic by source order", async
 
 test("markdown split nodes derive title and date labels from dated headings", async () => {
   const builder = createBuilder({
-    "content/markdown/example.md": "## 2026-06-10: Ideal Noether Braid Lorentz Geometry\n\nBody",
+    "content/markdown/example.md": "## 2026-06-10: A1 Lorentz Geometry Interactive App\n\nBody",
   });
 
   const [node] = await builder(
@@ -172,9 +172,9 @@ test("markdown split nodes derive title and date labels from dated headings", as
     []
   );
 
-  assert.equal(node.labelTitle, "Ideal Noether Braid Lorentz Geometry");
+  assert.equal(node.labelTitle, "A1 Lorentz Geometry Interactive App");
   assert.equal(node.labelSubtitle, "2026-06-10");
-  assert.equal(node.shortName, "Ideal Noether Braid Lorentz…");
+  assert.equal(node.shortName, "A1 Lorentz Geometry Interactive…");
 });
 
 test("explicit markdown layoutColumns still override grid autolayout", async () => {

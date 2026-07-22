@@ -72,7 +72,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
 | [AGENTS.md](../../AGENTS.md) | 261 | `86df69ca83e59a3d` |
-| [README.md](../../README.md) | 229 | `42c8276cfdbd6ea0` |
+| [README.md](../../README.md) | 229 | `9586b2bb3becaec3` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 26 | `5331ab8c7d197f5b` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 8 | `a7c833e57b9fced6` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 95 | `0c8b0952d33d0d9c` |
@@ -93,6 +93,6 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/entourage/archie/prompts/priority-lane-resume.md](../entourage/archie/prompts/priority-lane-resume.md) | 71 | `434d7a791d81c766` |
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 383 | `afc7b450bf43bee2` |
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 307 | `db1ec8a9a86ceeb4` |
-| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 139 | `6e92a0167242f855` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 520 | `ff54013f4df6f35a` |
-| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 170 | `f2048673f7abe082` |
+| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 140 | `75782c0c8caadb35` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 521 | `8d8beff646b7d475` |
+| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 171 | `3826ee68278f5a6e` |

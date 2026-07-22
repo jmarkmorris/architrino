@@ -82,7 +82,7 @@ content/scenes/archie/applications.json
 
 Current application and application-like surfaces include:
 
-- Ideal Noether Braid: `ideal-braid.html`
+- A1 Lorentz Geometry: `ideal-braid.html`
 - Photon and Polarization Visualization App: `photon.html`
 - Causal Delay Feedback: `causal-delay-feedback.html`
 - Equation Mapping: `equation-mapping.html`

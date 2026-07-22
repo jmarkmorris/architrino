@@ -21,7 +21,7 @@ That statement keeps the mathematics and the hardware tied together. The compari
 - **Wake superposition:** The physical sum of delayed causal-wake contributions within the macroscopic assembly — the reconstructed potential $\Phi_\eta$ assembled by summing over the active causal roots $T_t\in\mathcal{C}_{ij}(T_r)$ that reach the receiver at reception time $T_r$.
 - **Destructive interference:** Cancellation of opposing electrino/positrino causal-wake contributions for non-periodic path histories, suppressing the corresponding dynamical trajectories.
 - **Constructive interference:** Phase alignment for periodic path histories, producing deep macroscopic basins of attraction.
-- **Amplification:** A possible role for $v > c_f$ inner-binary self-hit mechanics, which remains a closure target until the register-scale stability calculation is done.
+- **Amplification:** A possible role for $v > c_f$ self-hit mechanics in one or more indexed binaries, which remains a closure target until the register-scale stability calculation is done.
 
 ## Modular Exponentiation and Physical Coupling
 

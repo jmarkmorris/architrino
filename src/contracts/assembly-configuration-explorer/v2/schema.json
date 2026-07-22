@@ -1,13 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://architrino.local/contracts/assembly-configuration-explorer/v1/schema.json",
+  "$id": "https://architrino.local/contracts/assembly-configuration-explorer/v2/schema.json",
   "title": "Assembly Configuration Explorer Dataset",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema", "datasetId", "fieldSpeed", "searchSemantics", "branches"],
   "properties": {
     "schema": {
-      "const": "assembly-configuration-explorer.dataset.v1"
+      "const": "assembly-configuration-explorer.dataset.v2"
     },
     "datasetId": {
       "type": "string",
@@ -100,13 +100,13 @@
         "sea": { "type": "string" }
       }
     },
-    "eigenBraid": {
+    "braidCertification": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "status": {
           "type": "string",
-          "enum": ["not-evaluated", "candidate", "relative-return-passed", "retained-eigen-braid", "rejected"]
+          "enum": ["not-evaluated", "candidate", "relative-return-passed", "certified-braid", "rejected"]
         },
         "period": {
           "type": "number",
@@ -198,8 +198,8 @@
           "type": "object",
           "additionalProperties": true
         },
-        "eigenBraid": {
-          "$ref": "#/$defs/eigenBraid"
+        "braidCertification": {
+          "$ref": "#/$defs/braidCertification"
         },
         "axisAlignment": {
           "$ref": "#/$defs/axisAlignment"

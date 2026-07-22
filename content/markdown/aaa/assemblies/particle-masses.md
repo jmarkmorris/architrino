@@ -435,9 +435,9 @@ This does not mean dense matter stops responding to pressure. It means the scala
 
 ### The Noether Braid as Causal Ledger Closure
 
-A Noether braid can be read as a stable closure of delayed path-history relations. The inner, middle, and outer binaries continually exchange partner-hit, self-hit, and inter-layer wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.
+A Noether braid can be read as a stable closure of delayed path-history relations. The three indexed binaries continually exchange partner-hit, self-hit, and inter-binary wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.
 
-When the braid moves or is placed under a gradient, the closure does not remain a static set of circular binaries. The inner, middle, and outer binary planes are drawn into a coupled spiral-helical pattern: pitch, radius, phase, and inter-layer timing retune together so delayed wakes still return to the correct partners and layers. This spiral-helical relocking is the geometric carrier of inertia in the present thesis.
+When the braid moves or is placed under a gradient, the closure does not remain a static set of circular binaries. The planes of binaries $a\in\{1,2,3\}$ are drawn into a coupled spiral-helical pattern: pitch, radius, phase, and inter-binary timing retune together so delayed wakes still return to the correct partners and binary records. This spiral-helical relocking is the geometric carrier of inertia in the present thesis.
 
 In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the braid is accelerated, perturbed, or placed in a Noether sea gradient. Shielding determines how much of the internal closure couples to the far field.
 
@@ -461,7 +461,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
   $$
   m_{\text{apparent}}c_{\text{eff}}^2 \sim \zeta(A)\,E_{\text{internal}}(A)
   $$
-- **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because outer or middle shielding tiers are depleted on the branch lifetime window. With fewer coherent support layers, more of the inner high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement, not a deletion of the H/M/L axial frame that carries color and electroweak bookkeeping.
+- **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because one or two declared indexed supports are depleted on the branch lifetime window. With fewer coherent supports, more of the high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement over the persistent binary indices, not a deletion of the axial frame that carries color and electroweak bookkeeping.
 
 #### Medium-Dressed Inertial Response
 - **The Medium:** The Noether sea is not empty space; it is a dynamic population of neutral Noether braid assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to the Noether sea.
@@ -770,7 +770,7 @@ $$
 \frac{(r_e+r_\mu+r_\tau)^2}{r_e^2+r_\mu^2+r_\tau^2}=\frac{3}{2}
 $$
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same braid-scaffold-plus-axial-layer architecture viewed through three shielding tiers, then a mass-root relation may be an external clue that the exposure map from nested shell braid, Generation-II shielding, and Generation-III shielding branches is more constrained than a generic monotone hierarchy.
+Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same candidate braid-scaffold-plus-axial-layer architecture viewed through three shielding-support vectors, then a mass-root relation may be an external clue that the exposure map from full, Generation-II, and Generation-III shielding branches is more constrained than a generic monotone hierarchy. This particle map does not assign a braid-taxonomy member.
 
 The conservative use of Koide here is therefore:
 
@@ -799,7 +799,7 @@ That means a Koide-like benchmark, if it is useful at all, belongs first to the 
 
 To advance from qualitative thesis to quantitative mass prediction, the active mass program must close five linked steps.
 
-1. **Stable nested shell braid attractor:** derive one robust Noether braid attractor family with radii, frequencies, branch data, and stability diagnostics.
+1. **Stable A1 attractor target:** derive one robust Noether braid attractor family whose three persistent binaries have independently assignable positive radii and frequencies, mutually orthogonal axes at the Family-A near-rest endpoint, and axes that converge toward the group-translation direction along the prescribed flattening coordinate; record the remaining binary coordinates, branch data, and stability diagnostics. The `A1` label fixes this prescribed chart but does not prejudge retention.
 2. **Internal energy ledger:** compute the dimensionless internal energy stored in that attractor without assuming the particle mass being derived.
 3. **Shielding extraction:** derive $\zeta(A)$ from far-field wake cancellation and exposed coupling geometry.
 4. **Medium-dressed response:** derive the response tensor that turns shielded internal energy into inertial and gravitational response in the weak-field regime.
@@ -807,17 +807,17 @@ To advance from qualitative thesis to quantitative mass prediction, the active m
 
 ### Reference Attractor Gate
 
-The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral, rest-branch nested shell braid in a weak homogeneous Noether sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation.
+The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral rest-branch candidate constrained to the A1 prescribed coordinates in a weak homogeneous Noether sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation. Failure to retain the A1 coordinate relations on the same evolved record rejects this candidate before any mass comparison.
 
-This attractor should not be pictured as three independent circular binaries. The inner, middle, and outer binaries occupy different causal-speed regimes: the inner binary is self-hit and super-field-speed on the active branch, the middle binary sits near the $v = c_f$ separator, and the outer binary remains sub-field-speed as the shielding and boundary-coupling interface. Circular or elliptic pictures can still be useful as carrier charts, but only after the coupled root ledger, phase lock, and stability diagnostics are respected.
+This attractor should not be pictured as three independent circular binaries. Its source record assigns different causal-speed regimes to the persistent indices: binary 1 is self-hit and super-field-speed on the active branch, binary 2 sits near the $v=c_f$ fold, and binary 3 remains sub-field-speed as the shielding and boundary-coupling channel. These assignments define the $A_0$ candidate record; they are not taxonomy-assigned roles. Circular or elliptic pictures can still be useful as carrier charts, but only after the coupled root ledger, phase lock, and stability diagnostics are respected.
 
-For the mass program, this distinction controls which internal corrections matter. Nonresonant fast structure in the inner layer may average out of the leading far-field shielding estimate, especially when the layer scales differ strongly. Resonant corrections, near-separator corrections, and small leakage asymmetries cannot be discarded in the same way, because they can change the accepted branch, the Floquet gap, or the extracted $\zeta(A_0)$ itself.
+For the mass program, this distinction controls which internal corrections matter. Nonresonant fast structure in source-record binary 1 may average out of the leading far-field shielding estimate, especially when the binary scales differ strongly. Resonant corrections, near-separator corrections, and small leakage asymmetries cannot be discarded in the same way, because they can change the accepted branch, the Floquet gap, or the extracted $\zeta(A_0)$ itself. The fast role is measured on the record and is not a meaning of index 1.
 
 The minimal $A_0$ output contract is:
 
 | Output class | Required content | Why it matters |
 | --- | --- | --- |
-| Geometry and winding | $R_I,R_M,R_O$, binary-plane normals, handedness, phase offsets, layer windings, and inter-layer closure integers | fixes the attractor as an integer-labeled Noether braid state rather than a loose configuration sketch |
+| Geometry and winding | $R_1,R_2,R_3$, binary-plane normals, handedness, phase offsets, binary windings, and inter-binary closure integers | fixes the attractor as an integer-labeled Noether braid state rather than a loose configuration sketch |
 | Root ledger and stability | partner-hit counts, self-hit counts, inter-layer hit channels, closure residuals, return-map residuals, and the non-symmetry Floquet gap $\Delta_{\mathbf{k}}$ | separates stable closed cycles from integer-looking but dynamically unstable candidates |
 | Internal energy ledger | $E_I,E_M,E_O$, interaction and wake terms, total $E_{\text{internal}}(A_0)$, and action per closed cycle | supplies the unshielded reservoir in the mass-map roadmap formula |
 | Group-velocity anisotropy | declared $\mathbf{V}_{\text{cm}}$, causal speed $c_\star$, $\beta_\star$, envelope ratio, forward/backward delay ratio, and anisotropy tensor $\mathcal{A}_{\mathrm{gv}}^{ij}$ | keeps motion-induced deformation separate from far-field shielding leakage |

@@ -9,6 +9,7 @@ import { createEomHistoryDataset } from "../shared/EomHistoryDataset.mjs";
 
 export const BORG_EOM_RECORD_REPLAY_RUNNER_VERSION = "borg-eom-record-replay-runner.v0";
 export const BORG_EOM_RECORD_REPLAY_RUN_SOURCE = "recorded-eom-dataset-chunks";
+export const BORG_PRESCRIBED_DISPLAY_OVERSAMPLE_FACTOR = 4;
 
 const DEFAULT_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const DEFAULT_SAMPLE_INTERVAL = 0.2;
@@ -19,9 +20,14 @@ export function createBorgEomRecordReplayRunner(record, options = {}) {
     : createEomHistoryDataset(record);
   const windowStart = historyDataset.window.start;
   const windowEnd = historyDataset.window.end;
+  const recordSampleInterval = positiveNumber(
+    historyDataset.window.sampleInterval,
+    DEFAULT_SAMPLE_INTERVAL,
+  );
+  const displayOversampleFactor = borgRecordReplayDisplayOversampleFactor(historyDataset);
   const sampleInterval = positiveNumber(
     options.sampleInterval,
-    positiveNumber(historyDataset.window.sampleInterval, DEFAULT_SAMPLE_INTERVAL),
+    recordSampleInterval / displayOversampleFactor,
   );
   const config = Object.freeze({
     schema: BORG_EOM_RECORD_REPLAY_RUNNER_VERSION,
@@ -37,6 +43,8 @@ export function createBorgEomRecordReplayRunner(record, options = {}) {
     // Recorded coverage is a hard ceiling: replay can be shortened but never
     // extended past what the engine actually evolved.
     recordEndTime: windowEnd,
+    recordSampleInterval,
+    displayOversampleFactor,
     targetDuration: clampToWindow(options.targetDuration, windowStart, windowEnd),
     chunkDuration: positiveNumber(options.chunkDuration, Math.max(sampleInterval, (windowEnd - windowStart) / 8)),
     sampleInterval,
@@ -110,6 +118,14 @@ export function createBorgEomRecordReplayRunner(record, options = {}) {
       disposed = true;
     },
   });
+}
+
+export function borgRecordReplayDisplayOversampleFactor(historyDataset) {
+  return historyDataset?.provenance?.engineId === "prescribed-geometry" &&
+    historyDataset?.provenance?.claimGrade === "chart-hypothesis" &&
+    historyDataset?.provenance?.evidenceStatus === "display-only"
+    ? BORG_PRESCRIBED_DISPLAY_OVERSAMPLE_FACTOR
+    : 1;
 }
 
 function createChunk(config, chunkIndex, startTime, endTime, frames, statusCode) {

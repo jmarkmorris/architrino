@@ -3,7 +3,7 @@ import {
   createEomHistoryDataset,
 } from "../shared/EomHistoryDataset.mjs";
 
-export const BORG_ASSEMBLY_VIEW_SESSION_SCHEMA = "borg-assembly-view-session.v0";
+export const BORG_ASSEMBLY_VIEW_SESSION_SCHEMA = "borg-assembly-view-session.v1";
 export const BORG_ASSEMBLY_VIEW_MODE = "assembly-view-replay";
 export const BORG_SIMULATION_WORKSPACE_MODE = "simulation-workspace";
 
@@ -25,7 +25,7 @@ const FILTER_FIELDS = Object.freeze([
   "evidenceStatus",
   "campaignRunId",
   "speedRegime",
-  "eigenBraidStatus",
+  "braidCertificationStatus",
   "axisAlignmentStatus",
   "assemblyTopologicalCharge",
   "accessoryCaptureStatus",
@@ -231,6 +231,18 @@ export function createBorgAssemblyViewPresentation(entry, { time } = {}) {
 }
 
 function resolveSourcePeriod(entry) {
+  const prescribedReturnPeriod = Number(
+    entry?.dataset?.provenance?.prescribedGeometry?.prescribedReturnPeriod,
+  );
+  if (Number.isFinite(prescribedReturnPeriod) && prescribedReturnPeriod > 0) {
+    return Object.freeze({
+      available: true,
+      period: prescribedReturnPeriod,
+      frequency: null,
+      sourceBinaryIndex: null,
+      source: "prescribed-return-period",
+    });
+  }
   const frequencies = entry.dataset.binaries
     .map((binary) => Number(binary?.frequency))
     .filter((frequency) => Number.isFinite(frequency) && frequency > 0);
@@ -307,7 +319,8 @@ function readFilterValues(record, dataset) {
     evidenceStatus: dataset.provenance.evidenceStatus,
     campaignRunId: metadata.campaignRunId ?? dataset.provenance.runId,
     speedRegime: metadata.speedRegime ?? null,
-    eigenBraidStatus: metadata.eigenBraidStatus ?? record.eigenBraid?.status ?? null,
+    braidCertificationStatus:
+      metadata.braidCertificationStatus ?? record.braidCertification?.status ?? null,
     axisAlignmentStatus: metadata.axisAlignmentStatus ?? record.axisAlignment?.status ?? null,
     assemblyTopologicalCharge:
       metadata.assemblyTopologicalCharge ?? record.assemblyTopologicalCharge ?? null,
@@ -319,7 +332,10 @@ function readFilterValues(record, dataset) {
 function readSourceStatuses(record) {
   return Object.freeze({
     branch: record.branch?.status ?? record.navigation?.filters?.branchStatus ?? null,
-    eigenBraid: record.eigenBraid?.status ?? record.navigation?.filters?.eigenBraidStatus ?? null,
+    braidCertification:
+      record.braidCertification?.status ??
+      record.navigation?.filters?.braidCertificationStatus ??
+      null,
     axisAlignment:
       record.axisAlignment?.status ?? record.navigation?.filters?.axisAlignmentStatus ?? null,
     topologicalCharge:

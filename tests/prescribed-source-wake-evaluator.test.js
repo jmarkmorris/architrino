@@ -3,10 +3,18 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  ALL_RETAINED_SIMPLE_ROOTS_POLICY,
   EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA,
+  PRESCRIBED_RECORD_ANALYSIS_PROTOCOL_SCHEMA,
   evaluateExactPrescribedSourceState,
+  evaluatePrescribedRecordAnalysis,
   evaluatePrescribedSourceWake,
 } from "../src/prescribed-path-analysis/index.mjs";
+import {
+  DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
+  evaluateSpindleAnalysisFromFiles,
+  serializePrescribedRecordAnalysis,
+} from "../scripts/eom/evaluate-prescribed-source-wake.mjs";
 import {
   createSpindleExactSourceRecord,
   evaluateSpindleSite,
@@ -26,14 +34,19 @@ function sourceRecord(sources, history = { start: 0, end: 4 }) {
   };
 }
 
-function linearSource(id, charge, velocity = { x: 0, y: 0, z: 0 }) {
+function linearSource(
+  id,
+  charge,
+  velocity = { x: 0, y: 0, z: 0 },
+  centerAtEpoch = { x: 0, y: 0, z: 0 },
+) {
   return {
     id,
     charge,
     trajectory: {
       kind: "moving-circular.v1",
       epochTime: 0,
-      centerAtEpoch: { x: 0, y: 0, z: 0 },
+      centerAtEpoch,
       centerVelocity: velocity,
       radiusU: { x: 0, y: 0, z: 0 },
       radiusV: { x: 0, y: 0, z: 0 },
@@ -41,6 +54,47 @@ function linearSource(id, charge, velocity = { x: 0, y: 0, z: 0 }) {
       angularAcceleration: 0,
       phaseAtEpoch: 0,
     },
+  };
+}
+
+function analysisProtocol({
+  observationTime = 2,
+  position = { x: 1, y: 0, z: 0 },
+  fieldSpeed = 2,
+  returnPeriod = 2,
+  minimumSeparationFloor = 0,
+} = {}) {
+  return {
+    schema: PRESCRIBED_RECORD_ANALYSIS_PROTOCOL_SCHEMA,
+    protocolId: "independent-analytical-test-protocol-v1",
+    fieldSpeed,
+    coupling: 1,
+    history: { start: 0, end: 4, minimumDelay: 1e-12 },
+    returnWindow: { start: 0, period: returnPeriod },
+    rootPolicy: {
+      id: ALL_RETAINED_SIMPLE_ROOTS_POLICY,
+      tolerance: 1e-12,
+      maxIterations: 128,
+    },
+    tolerances: {
+      cancellationFloor: 1e-30,
+      rootTransversalityFloor: 1e-10,
+      minimumSeparationFloor,
+      convergenceAbsolute: 1e-9,
+    },
+    geometry: { minimumSeparationSamples: 32 },
+    convergence: {
+      rootTolerance: 1e-14,
+      maxIterations: 192,
+      minimumSeparationSamples: 64,
+    },
+    probes: [{
+      id: "independent-static-probe",
+      kind: "stationary-coordinate-probe.v1",
+      position,
+      observationTimes: [observationTime],
+      polarities: [1, -1],
+    }],
   };
 }
 
@@ -115,7 +169,7 @@ test("uniformly translating closed form exercises the transmitter-side causal fa
   assertNear(result.virtualProbeAcceleration.x, 12 / 25);
 });
 
-test("spindle adapter preserves every exact source path and supports a six-source evaluation", () => {
+test("compatibility adapter preserves every exact B1 source path and supports a six-source evaluation", () => {
   const spec = JSON.parse(fs.readFileSync(
     new URL(
       "../reference/priorities/braid-program/configurations/illustrative-spindle-chart-hypothesis.v0.json",
@@ -129,11 +183,11 @@ test("spindle adapter preserves every exact source path and supports a six-sourc
   assert.equal(exactRecord.sources.length, 6);
 
   const testTime = 1.2345;
-  spec.layers.forEach((layer, layerIndex) => {
-    layer.worldlineIds.forEach((worldlineId, endpointIndex) => {
+  spec.braids[0].binaries.forEach((binary, binaryIndex) => {
+    binary.worldlineIds.forEach((worldlineId, endpointIndex) => {
       const source = exactRecord.sources.find((row) => row.id === worldlineId);
       const actual = evaluateExactPrescribedSourceState(source, testTime);
-      const expected = evaluateSpindleSite(spec, layerIndex, endpointIndex, testTime);
+      const expected = evaluateSpindleSite(spec, binaryIndex, endpointIndex, testTime);
       assertNear(actual.position.x, expected.position[0], 1e-12);
       assertNear(actual.position.y, expected.position[1], 1e-12);
       assertNear(actual.position.z, expected.position[2], 1e-12);
@@ -169,4 +223,122 @@ test("first evaluator fails closed outside the certified unique-root speed domai
     probeCharge: 1,
     fieldSpeed: 1,
   }), /speed bound .* must remain below fieldSpeed/);
+});
+
+test("canonical evaluator matches a separately derived static root, wake, and both probe polarities", () => {
+  const result = evaluatePrescribedRecordAnalysis({
+    sourceRecord: sourceRecord([
+      linearSource("positive-static", 1),
+      linearSource("far-static", 1, { x: 0, y: 0, z: 0 }, { x: 100, y: 0, z: 0 }),
+    ]),
+    protocol: analysisProtocol(),
+  });
+
+  assert.equal(result.schema, "prescribed-path-analysis/result-packet.v1");
+  assert.equal(result.evaluator.eomSolverInvoked, false);
+  assert.match(result.source.sourceHash, /^[0-9a-f]{64}$/);
+  assert.match(result.protocolHash, /^[0-9a-f]{64}$/);
+  assert.match(result.resultHash, /^[0-9a-f]{64}$/);
+  const event = result.rawLedgers.causalRoots[0];
+  assert.equal(event.rootCount, 1);
+  assert.equal(event.noRootCount, 1);
+  assert.equal(event.rootCompletenessCertification.complete, true);
+  const [root] = event.roots;
+  assertNear(root.emissionTime, 1.5);
+  assertNear(root.distance, 1);
+  assertNear(root.transmitterSideFactorDt, 2);
+  const reduced = result.reducedMeasures.events[0];
+  assertNear(reduced.signedWake, 1 / (8 * Math.PI));
+  assertNear(reduced.unsignedWake, 1 / (8 * Math.PI));
+  assertNear(reduced.probeResponses[0].acceleration.x, 1);
+  assertNear(reduced.probeResponses[1].acceleration.x, -1);
+  assert.equal(result.reducedMeasures.numericalConvergence.passed, true);
+});
+
+test("symmetry-protected coincident opposite sources cancel signed wake and both responses", () => {
+  const result = evaluatePrescribedRecordAnalysis({
+    sourceRecord: sourceRecord([
+      linearSource("positive-static", 1),
+      linearSource("negative-static", -1),
+    ]),
+    protocol: analysisProtocol(),
+  });
+
+  const reduced = result.reducedMeasures.events[0];
+  assertNear(reduced.signedWake, 0);
+  assertNear(reduced.unsignedWake, 1 / (4 * Math.PI));
+  assertNear(reduced.signedCancellationRatio, 0);
+  reduced.probeResponses.forEach(({ acceleration }) => {
+    assertNear(acceleration.x, 0);
+    assertNear(acceleration.y, 0);
+    assertNear(acceleration.z, 0);
+  });
+});
+
+test("static separated sources independently fix period closure and minimum separation", () => {
+  const result = evaluatePrescribedRecordAnalysis({
+    sourceRecord: sourceRecord([
+      linearSource("left-static", 1, { x: 0, y: 0, z: 0 }, { x: -2, y: 0, z: 0 }),
+      linearSource("right-static", -1, { x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }),
+    ]),
+    protocol: analysisProtocol({
+      observationTime: 3,
+      position: { x: 10, y: 0, z: 0 },
+    }),
+  });
+
+  const closure = result.reducedMeasures.prescribedPeriodClosure;
+  assertNear(closure.maximumPositionResidual, 0);
+  assertNear(closure.maximumVelocityResidual, 0);
+  assertNear(closure.maximumPhaseResidual, 0);
+  assertNear(result.reducedMeasures.minimumSeparation.value, 4);
+});
+
+test("canonical translating-source case independently exercises the transmitter-side margin", () => {
+  const result = evaluatePrescribedRecordAnalysis({
+    sourceRecord: sourceRecord([
+      linearSource("moving-positive", 1, { x: 0.25, y: 0, z: 0 }),
+      linearSource("far-static", 1, { x: 0, y: 0, z: 0 }, { x: 100, y: 0, z: 0 }),
+    ]),
+    protocol: analysisProtocol({
+      observationTime: 3,
+      position: { x: 2, y: 0, z: 0 },
+      fieldSpeed: 1,
+    }),
+  });
+
+  const root = result.rawLedgers.causalRoots[0].roots.find(
+    (row) => row.transmitterId === "moving-positive",
+  );
+  assertNear(root.emissionTime, 4 / 3);
+  assertNear(root.distance, 5 / 3);
+  assertNear(root.transmitterSideFactorDt, 3 / 4);
+  assertNear(result.reducedMeasures.events[0].signedWake, 3 / (25 * Math.PI));
+  assertNear(result.reducedMeasures.events[0].probeResponses[0].acceleration.x, 12 / 25);
+});
+
+test("canonical protocol fails closed when convergence inputs are incomplete", () => {
+  const protocol = analysisProtocol();
+  delete protocol.convergence.rootTolerance;
+  assert.throws(() => evaluatePrescribedRecordAnalysis({
+    sourceRecord: sourceRecord([
+      linearSource("left-static", 1, { x: 0, y: 0, z: 0 }, { x: -1, y: 0, z: 0 }),
+      linearSource("right-static", -1, { x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }),
+    ]),
+    protocol,
+  }), /protocol\.convergence\.rootTolerance must be finite/);
+});
+
+test("identical B1 source and protocol inputs produce deterministic packet bytes", () => {
+  const first = serializePrescribedRecordAnalysis(evaluateSpindleAnalysisFromFiles({
+    protocolPath: DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
+  }));
+  const second = serializePrescribedRecordAnalysis(evaluateSpindleAnalysisFromFiles({
+    protocolPath: DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
+  }));
+  assert.equal(first, second);
+  const parsed = JSON.parse(first);
+  assert.equal(parsed.source.recordId, "illustrative-spindle-chart-hypothesis-v0");
+  assert.equal(parsed.reducedMeasures.events[0].rootCount, 6);
+  assert.equal(parsed.reducedMeasures.validity.passed, true);
 });

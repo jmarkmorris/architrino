@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 181,
-      "sections": 1454
+      "entries": 182,
+      "sections": 1456
     }
   },
   "tocRoot": {
@@ -1920,50 +1920,297 @@
           {
             "id": "noether_braid__braid_family_a",
             "title": "Braid Family A",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
+            "kind": "scene-index",
+            "sceneType": "Scene-Index",
             "scenePath": "content/scenes/noether-braid/braid_family_a.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
-            "sections": [
+            "children": [
               {
-                "kind": "markdown-section",
-                "title": "Shared Family-A Geometry",
+                "id": "noether_braid__braid_family_a_overview",
+                "title": "Braid Family A",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/noether-braid/braid_family_a_overview.json",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
-                "markdownSection": "Shared Family-A Geometry",
-                "sectionKey": "shared family a geometry",
-                "headingLevel": 2
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Shared Family-A Geometry",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
+                    "markdownSection": "Shared Family-A Geometry",
+                    "sectionKey": "shared family a geometry",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "A1",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
+                    "markdownSection": "A1",
+                    "sectionKey": "a1",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "A2",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
+                    "markdownSection": "A2",
+                    "sectionKey": "a2",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "A3",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
+                    "markdownSection": "A3",
+                    "sectionKey": "a3",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "A1, A2, and A3 Relations",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
+                    "markdownSection": "A1, A2, and A3 Relations",
+                    "sectionKey": "a1 a2 and a3 relations",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Claim Boundary",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
+                    "markdownSection": "Claim Boundary",
+                    "sectionKey": "claim boundary",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
-                "kind": "markdown-section",
-                "title": "A1",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
-                "markdownSection": "A1",
-                "sectionKey": "a1",
-                "headingLevel": 2
+                "id": "noether_braid__explored_braid_geometries",
+                "title": "Braid A1 Dynamics and Interpretation",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Claim-Ownership Classification",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
+                    "markdownSection": "Claim-Ownership Classification",
+                    "sectionKey": "claim ownership classification",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Retention and Interpretation",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
+                    "markdownSection": "Retention and Interpretation",
+                    "sectionKey": "retention and interpretation",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
-                "kind": "markdown-section",
-                "title": "A2",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
-                "markdownSection": "A2",
-                "sectionKey": "a2",
-                "headingLevel": 2
+                "id": "noether_braid__braid_a2_symmetry_and_return_response",
+                "title": "A2 Symmetry and Return Response",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Invariant Channels and Equivariant Reductions",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                    "markdownSection": "Invariant Channels and Equivariant Reductions",
+                    "sectionKey": "invariant channels and equivariant reductions",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "A2 Two-Ring Geometry",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                    "markdownSection": "A2 Two-Ring Geometry",
+                    "sectionKey": "a2 two ring geometry",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Moments and the Axial Polarity Dipole",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                    "markdownSection": "Moments and the Axial Polarity Dipole",
+                    "sectionKey": "moments and the axial polarity dipole",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Momentum Screw and Helicity",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                    "markdownSection": "Momentum Screw and Helicity",
+                    "sectionKey": "momentum screw and helicity",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Retention and Return Response",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                    "markdownSection": "Retention and Return Response",
+                    "sectionKey": "retention and return response",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Claim Boundary",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+                    "markdownSection": "Claim Boundary",
+                    "sectionKey": "claim boundary",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
-                "kind": "markdown-section",
-                "title": "A1 and A2 Boundary",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
-                "markdownSection": "A1 and A2 Boundary",
-                "sectionKey": "a1 and a2 boundary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Claim Boundary",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-a.md",
-                "markdownSection": "Claim Boundary",
-                "sectionKey": "claim boundary",
-                "headingLevel": 2
+                "id": "noether_braid__doubling_frequency_lock",
+                "title": "A3.3 Doubling-Frequency Resonance Lock",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/noether-braid/doubling_frequency_lock.json",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Status and Assumptions",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Status and Assumptions",
+                    "sectionKey": "status and assumptions",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Exact Kinematic Identity",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Exact Kinematic Identity",
+                    "sectionKey": "exact kinematic identity",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Assumption 1 (Candidate Caustic-Grazing Carrier)",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Assumption 1 (Candidate Caustic-Grazing Carrier)",
+                    "sectionKey": "assumption 1 candidate caustic grazing carrier",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Assumption 2 (Exact Integer Phase Closure)",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Assumption 2 (Exact Integer Phase Closure)",
+                    "sectionKey": "assumption 2 exact integer phase closure",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Assumption 3 (Fixed Relative Phase Lock)",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Assumption 3 (Fixed Relative Phase Lock)",
+                    "sectionKey": "assumption 3 fixed relative phase lock",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Bundle Holonomy Reading",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Bundle Holonomy Reading",
+                    "sectionKey": "bundle holonomy reading",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
+                    "sectionKey": "assumption 4 bundle flatness and cancellation selection principle",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Non-Assumptions",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Non-Assumptions",
+                    "sectionKey": "non assumptions",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Immediate Consequences",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Immediate Consequences",
+                    "sectionKey": "immediate consequences",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Proposition 1 (Exterior Integer Lock Formulas)",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
+                    "sectionKey": "proposition 1 exterior integer lock formulas",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Could $1{:}2{:}4$ Be a Solution?",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
+                    "sectionKey": "could 1 2 4 be a solution",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "What Exact Periodicity Gives, and What It Does Not",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
+                    "sectionKey": "what exact periodicity gives and what it does not",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Interpreting the Cancellation Principle",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Interpreting the Cancellation Principle",
+                    "sectionKey": "interpreting the cancellation principle",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "RG-Style Truncation Test",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "RG-Style Truncation Test",
+                    "sectionKey": "rg style truncation test",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Reduced-Theorem Target",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Reduced-Theorem Target",
+                    "sectionKey": "reduced theorem target",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Recurrence Diagnostic",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Recurrence Diagnostic",
+                    "sectionKey": "recurrence diagnostic",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Ancillary Symmetry Check",
+                    "markdownPath": "content/markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md",
+                    "markdownSection": "Ancillary Symmetry Check",
+                    "sectionKey": "ancillary symmetry check",
+                    "headingLevel": 2
+                  }
+                ]
               }
             ]
           },
@@ -2262,90 +2509,6 @@
             ]
           },
           {
-            "id": "noether_braid__explored_braid_geometries",
-            "title": "Braid A1 Dynamics and Interpretation",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Claim-Ownership Classification",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
-                "markdownSection": "Claim-Ownership Classification",
-                "sectionKey": "claim ownership classification",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Retention and Interpretation",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-dynamics.md",
-                "markdownSection": "Retention and Interpretation",
-                "sectionKey": "retention and interpretation",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "noether_braid__braid_a2_symmetry_and_return_response",
-            "title": "A2 Symmetry and Return Response",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Invariant Channels and Equivariant Reductions",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
-                "markdownSection": "Invariant Channels and Equivariant Reductions",
-                "sectionKey": "invariant channels and equivariant reductions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "A2 Two-Ring Geometry",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
-                "markdownSection": "A2 Two-Ring Geometry",
-                "sectionKey": "a2 two ring geometry",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Moments and the Axial Polarity Dipole",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
-                "markdownSection": "Moments and the Axial Polarity Dipole",
-                "sectionKey": "moments and the axial polarity dipole",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Momentum Screw and Helicity",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
-                "markdownSection": "Momentum Screw and Helicity",
-                "sectionKey": "momentum screw and helicity",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Retention and Return Response",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
-                "markdownSection": "Retention and Return Response",
-                "sectionKey": "retention and return response",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Claim Boundary",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
-                "markdownSection": "Claim Boundary",
-                "sectionKey": "claim boundary",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "noether_braid__spindle_braid",
             "title": "B1 Hypotheses and Discrete Symmetry",
             "kind": "markdown-view",
@@ -2535,10 +2698,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Parameter Sampling",
+                "title": "Analytical Evaluation Programs",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-                "markdownSection": "Parameter Sampling",
-                "sectionKey": "parameter sampling",
+                "markdownSection": "Analytical Evaluation Programs",
+                "sectionKey": "analytical evaluation programs",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Monte Carlo Configuration-Space Analysis",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
+                "markdownSection": "Monte Carlo Configuration-Space Analysis",
+                "sectionKey": "monte carlo configuration space analysis",
                 "headingLevel": 2
               },
               {
@@ -2563,152 +2734,6 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
                 "markdownSection": "Minimum Publication Packet",
                 "sectionKey": "minimum publication packet",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "noether_braid__doubling_frequency_lock",
-            "title": "A1.3 Doubling-Frequency Resonance Lock",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/doubling_frequency_lock.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Status and Assumptions",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Status and Assumptions",
-                "sectionKey": "status and assumptions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Exact Kinematic Identity",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Exact Kinematic Identity",
-                "sectionKey": "exact kinematic identity",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Assumption 1 (Candidate Caustic-Grazing Carrier)",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Assumption 1 (Candidate Caustic-Grazing Carrier)",
-                "sectionKey": "assumption 1 candidate caustic grazing carrier",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Assumption 2 (Exact Integer Phase Closure)",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Assumption 2 (Exact Integer Phase Closure)",
-                "sectionKey": "assumption 2 exact integer phase closure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Assumption 3 (Fixed Relative Phase Lock)",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Assumption 3 (Fixed Relative Phase Lock)",
-                "sectionKey": "assumption 3 fixed relative phase lock",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Bundle Holonomy Reading",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Bundle Holonomy Reading",
-                "sectionKey": "bundle holonomy reading",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
-                "sectionKey": "assumption 4 bundle flatness and cancellation selection principle",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Non-Assumptions",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Non-Assumptions",
-                "sectionKey": "non assumptions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Immediate Consequences",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Immediate Consequences",
-                "sectionKey": "immediate consequences",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proposition 1 (Exterior Integer Lock Formulas)",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
-                "sectionKey": "proposition 1 exterior integer lock formulas",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Could $1{:}2{:}4$ Be a Solution?",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
-                "sectionKey": "could 1 2 4 be a solution",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "What Exact Periodicity Gives, and What It Does Not",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
-                "sectionKey": "what exact periodicity gives and what it does not",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Interpreting the Cancellation Principle",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Interpreting the Cancellation Principle",
-                "sectionKey": "interpreting the cancellation principle",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "RG-Style Truncation Test",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "RG-Style Truncation Test",
-                "sectionKey": "rg style truncation test",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Reduced-Theorem Target",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Reduced-Theorem Target",
-                "sectionKey": "reduced theorem target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Recurrence Diagnostic",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Recurrence Diagnostic",
-                "sectionKey": "recurrence diagnostic",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Ancillary Symmetry Check",
-                "markdownPath": "content/markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md",
-                "markdownSection": "Ancillary Symmetry Check",
-                "sectionKey": "ancillary symmetry check",
                 "headingLevel": 2
               }
             ]
@@ -3920,10 +3945,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Canonical Horizon Condition",
+                "title": "Source-Record Horizon Condition",
                 "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Canonical Horizon Condition",
-                "sectionKey": "canonical horizon condition",
+                "markdownSection": "Source-Record Horizon Condition",
+                "sectionKey": "source record horizon condition",
                 "headingLevel": 2
               },
               {
@@ -8255,10 +8280,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Assembly grammar -> nested shell braid and flux tubes",
+                    "title": "Assembly Grammar to Candidate Braids and Flux Tubes",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Assembly grammar -> nested shell braid and flux tubes",
-                    "sectionKey": "assembly grammar nested shell braid and flux tubes",
+                    "markdownSection": "Assembly Grammar to Candidate Braids and Flux Tubes",
+                    "sectionKey": "assembly grammar to candidate braids and flux tubes",
                     "headingLevel": 2
                   },
                   {
@@ -8716,16 +8741,16 @@
                   },
                   {
                     "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_braid_action_increment_protocol",
-                    "title": "Nested Shell Braid Action-Increment Protocol",
+                    "title": "A1 Action-Increment Protocol",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Closure Question",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Closure Question",
                         "sectionKey": "closure question",
                         "headingLevel": 2
@@ -8733,7 +8758,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Accepted Transition Class",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Accepted Transition Class",
                         "sectionKey": "accepted transition class",
                         "headingLevel": 2
@@ -8741,7 +8766,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Master-Equation Increment",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Master-Equation Increment",
                         "sectionKey": "master equation increment",
                         "headingLevel": 2
@@ -8749,7 +8774,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Branch-Chart Conservation Pullback",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Branch-Chart Conservation Pullback",
                         "sectionKey": "branch chart conservation pullback",
                         "headingLevel": 2
@@ -8757,7 +8782,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Cluster and Stability Residuals",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Cluster and Stability Residuals",
                         "sectionKey": "cluster and stability residuals",
                         "headingLevel": 2
@@ -8765,7 +8790,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Field-Speed Approach Scan",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Field-Speed Approach Scan",
                         "sectionKey": "field speed approach scan",
                         "headingLevel": 2
@@ -8773,7 +8798,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Required Packet Files",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Required Packet Files",
                         "sectionKey": "required packet files",
                         "headingLevel": 2
@@ -8781,7 +8806,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Promotion Gates",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Promotion Gates",
                         "sectionKey": "promotion gates",
                         "headingLevel": 2
@@ -8789,7 +8814,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Failure-Code Enum",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Failure-Code Enum",
                         "sectionKey": "failure code enum",
                         "headingLevel": 2
@@ -8797,7 +8822,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Interpretation",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
                         "markdownSection": "Interpretation",
                         "sectionKey": "interpretation",
                         "headingLevel": 2
@@ -10983,10 +11008,10 @@
                     "sections": [
                       {
                         "kind": "markdown-section",
-                        "title": "The Nested Shell Braid Qubit and Phase Space",
+                        "title": "Candidate Noether-Braid Qubit and Phase Space",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
-                        "markdownSection": "The Nested Shell Braid Qubit and Phase Space",
-                        "sectionKey": "the nested shell braid qubit and phase space",
+                        "markdownSection": "Candidate Noether-Braid Qubit and Phase Space",
+                        "sectionKey": "candidate noether braid qubit and phase space",
                         "headingLevel": 2
                       },
                       {
@@ -11763,10 +11788,10 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "All-Layer Closure Burden",
+                        "title": "All-Binary Closure Burden",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
-                        "markdownSection": "All-Layer Closure Burden",
-                        "sectionKey": "all layer closure burden",
+                        "markdownSection": "All-Binary Closure Burden",
+                        "sectionKey": "all binary closure burden",
                         "headingLevel": 2
                       },
                       {
@@ -12091,16 +12116,16 @@
                   },
                   {
                     "id": "theory_bridges__planck_scale_nested_shell_braid_alignment",
-                    "title": "Planck Scale Nested Shell Braid Alignment",
+                    "title": "Mapping the Planck Scale to the A1 Geometry",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Thesis",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Thesis",
                         "sectionKey": "thesis",
                         "headingLevel": 2
@@ -12108,23 +12133,23 @@
                       {
                         "kind": "markdown-section",
                         "title": "Operational Probing Limit",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Operational Probing Limit",
                         "sectionKey": "operational probing limit",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "What Planck Units Imply About the Outer Binary",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-                        "markdownSection": "What Planck Units Imply About the Outer Binary",
-                        "sectionKey": "what planck units imply about the outer binary",
+                        "title": "What Planck Units Imply About the binary 3",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+                        "markdownSection": "What Planck Units Imply About the binary 3",
+                        "sectionKey": "what planck units imply about the binary 3",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
                         "title": "Kinematic and Dynamical Alignment Conditions",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Kinematic and Dynamical Alignment Conditions",
                         "sectionKey": "kinematic and dynamical alignment conditions",
                         "headingLevel": 2
@@ -12132,7 +12157,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Energy as Causal-Wake Interaction History",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Energy as Causal-Wake Interaction History",
                         "sectionKey": "energy as causal wake interaction history",
                         "headingLevel": 2
@@ -12140,7 +12165,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
                         "sectionKey": "discrete ladder and phase slip dynamics hypothesis",
                         "headingLevel": 2
@@ -12148,7 +12173,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Spin Transition and Configuration-Space Topology (Hypothesis)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Spin Transition and Configuration-Space Topology (Hypothesis)",
                         "sectionKey": "spin transition and configuration space topology hypothesis",
                         "headingLevel": 2
@@ -12156,7 +12181,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
                         "sectionKey": "emergent constants hbar ell p and g",
                         "headingLevel": 2
@@ -12164,7 +12189,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
                         "sectionKey": "horizon microstructure and condensate like phases conjecture",
                         "headingLevel": 2
@@ -12172,7 +12197,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Constraints, Assumptions, and Failure Modes",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
                         "markdownSection": "Constraints, Assumptions, and Failure Modes",
                         "sectionKey": "constraints assumptions and failure modes",
                         "headingLevel": 2

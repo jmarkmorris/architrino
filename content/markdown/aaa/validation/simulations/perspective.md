@@ -62,10 +62,10 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 ---
 
-## Assembly grammar -> nested shell braid and flux tubes
+## Assembly Grammar to Candidate Braids and Flux Tubes
 
 - What we assume:
-  - Binary orbits are the base motif; binaries can nest with wide scale separation; a nested shell braid is dynamically robust.
+  - Binary orbits are the base motif; binaries can occupy widely separated radii; a three-binary candidate is hypothesized to be dynamically robust, but this statement does not assign a taxonomy member.
   - Polar regions of fast binaries host persistent axial structures (vortex-like loci in the delayed wake geometry), which couple between assemblies.
 
 - Why it matters:

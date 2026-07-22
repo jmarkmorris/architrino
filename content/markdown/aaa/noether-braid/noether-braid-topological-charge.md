@@ -1,6 +1,6 @@
 # Noether Braid Topological Charge
 
-This chapter gives a first-class home to the candidate topological label of a Noether braid assembly. The label combines the causal-root ledger of the delayed dynamics with the phase-return degree data of a resonance-locked A1 member. Its purpose is to state what can be computed from a retained branch chart, what is invariant inside a nondegenerate branch domain, and what remains a theorem target before the label can serve as a topological periodic table of assemblies. The general search domain that emits candidate Noether braid branch charts is developed in [Noether Braid Configuration Space](noether-braid-configuration-space.md).
+This chapter gives a first-class home to the candidate topological label of a Noether braid assembly. The label combines the causal-root ledger of the delayed dynamics with the phase-return degree data of a resonance-locked Family-A member. Its purpose is to state what can be computed from a retained branch chart, what is invariant inside a nondegenerate branch domain, and what remains a theorem target before the label can serve as a topological periodic table of assemblies. The general search domain that emits candidate Noether braid branch charts is developed in [Noether Braid Configuration Space](noether-braid-configuration-space.md).
 
 The reader-facing idea is that a topological charge is not a decorative name for a braid. It is a proposed invariant label carried by one retained branch chart. Root counts tell which self-hit and partner-hit channels are active; signed degrees say what survives fold-pair surgery; phase-return degree data say how the locked branch winds over one cycle. Only the combination can become a stable assembly label.
 
@@ -153,7 +153,7 @@ $$
 $$
 with flat relative-phase recurrence on the retained return chart. If a later chart supplies a genuine two-torus curvature form, its first Chern number can be compared with this degree pair. Until then, $c_1=(m,n)$ means return-map degree data, not a curvature integral.
 
-The doubling-frequency data $(m,n)=(2,4)$ belong specifically to the frequency-separated A1.3 member. They are not generic Noether braid data. In particular, [B1](braid-family-b.md#b1) is common-frequency on one common-axis phase chart: its three path families do not supply three independent orbital-plane normals, so the rank-three phase entry defined here is suspended rather than assigned $(1,1)$ or $(2,4)$. A B1 branch may still report the partial charge $(N_s,M_p)$; a B1 lower-rank return invariant would require a separate definition and certificate.
+The doubling-frequency data $(m,n)=(2,4)$ belong specifically to the frequency-separated A3.3 member and its A1.3 zero-axial-offset locus. They are not generic Noether braid data. In particular, [B1](braid-family-b.md#b1) is common-frequency on one common-axis phase chart: its three path families do not supply three independent orbital-plane normals, so the rank-three phase entry defined here is suspended rather than assigned $(1,1)$ or $(2,4)$. A B1 branch may still report the partial charge $(N_s,M_p)$; a B1 lower-rank return invariant would require a separate definition and certificate.
 
 The phase entry is also conditional on the three support-row planes remaining independent. If $\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3$ are the retained orbital-plane normals, define
 $$
@@ -258,7 +258,7 @@ together with its stability margins, energy/wake ledger, and gluing status.
 The intended use is constrained:
 
 - $(N_s,M_p)$ records the binding-channel census: self-hit channels, partner-hit channels, and their signed degrees.
-- $c_1=(m,n)$ records the resonance-lock return-map degree pair of a promoted rank-three branch; $(2,4)$ is the A1.3 doubling-frequency candidate, not a family-general value.
+- $c_1=(m,n)$ records the resonance-lock return-map degree pair of a promoted rank-three branch; $(2,4)$ is the A3.3 doubling-frequency candidate, including its A1.3 zero-axial-offset locus, not a family-general value.
 - $\chi_{\mathrm{fr}}$ records handedness only after a framed handed marker is certified.
 - Physical particle identity, generation structure, spin-statistics, exclusion, and Standard Model quantum numbers are downstream mappings, not consequences of the notation alone.
 
@@ -291,7 +291,7 @@ The established pieces are local:
 - The delay-map theorem pack in [Master Equation](../dynamics/master-equation.md#delay-map-theorem-pack-formalized) proves signed degree invariance on regular families and the generic opposite-sign fold-pair law.
 - The signed causal-root complex in [Master Equation](../dynamics/master-equation.md#signed-causal-root-complex) supplies the local chain-complex reading of active roots.
 - [Binary Dynamics](../dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock) supplies the self-hit and partner-hit ledger notation used by $(N_s,M_p)$.
-- [A1.3 Doubling-Frequency Resonance Lock](braid-a1-3-doubling-frequency-lock.md#assumption-2-exact-integer-phase-closure) supplies the A1.3 integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$; B1 does not inherit that rank-three entry.
+- [A3.3 Doubling-Frequency Resonance Lock](braid-a3-3-doubling-frequency-lock.md#assumption-2-exact-integer-phase-closure) supplies the A3.3 integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$; A1.3 is its zero-axial-offset locus, and B1 does not inherit that rank-three entry.
 - [Effective Lagrangian](../dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability) uses the same topological sector in the action and mass-gap theorem target.
 
 The open proof burden is global:

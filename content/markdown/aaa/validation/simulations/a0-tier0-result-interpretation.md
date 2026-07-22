@@ -6,7 +6,7 @@ Tier 0 asks one deliberately small question: is this reduced branch chart organi
 
 That boundary is the point of the document. A candidate row can be useful without being promoted. The artifact must make that difference machine-readable so a diagnostic success does not turn into an accidental theory claim.
 
-The Tier 0 artifact is not an attractor proof. It is a certificate-facing filter that decides whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Its output should be read together with the mass thesis in [Particle Masses](../../assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../dynamics/energy.md), the dynamics baseline in [Nested Shell Braid Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), and the closure bookkeeping in [Parameter Ledger](../parameter-ledger.md).
+The Tier 0 artifact is not an attractor proof. It is a certificate-facing filter that decides whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Its output should be read together with the mass thesis in [Particle Masses](../../assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../dynamics/energy.md), the dynamics baseline in [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), and the closure bookkeeping in [Parameter Ledger](../parameter-ledger.md).
 
 ## Output Status
 
@@ -34,7 +34,7 @@ The emitted `z_lambda` object is the row-level representation of $z_\Lambda$. It
 | `schema` | version marker for the quotient-coordinate row |
 | `radius_ratios` | $\varepsilon_{IM}$ and $\varepsilon_{MO}$ |
 | `period_ratios` | $T_I/T_M$ and $T_M/T_O$, so time-scale separation is checked alongside radius separation |
-| `delta_M` | middle-layer speed offset $(s_M-c_f)/c_f$ |
+| `delta_M` | compatibility field for the source-record binary-2 speed offset $(s_2-c_f)/c_f$; the stable field name is not a taxonomy identity |
 | `ellipticity` and `ellipticity_status` | layer ellipticity data and whether Tier 0 used a shared scalar chart |
 | `plane_gram` | $G_{\ell m}$ values for the quotient-reduced binary-plane normals |
 | `orientation_class` | $\chi_N$, the triple product, and a nondegenerate or degenerate status |

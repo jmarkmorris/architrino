@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import * as THREE from "../vendor/three/three.module.js";
 import { createBorgAssemblyViewScene } from "../src/apps/borg/BorgAssemblyViewScene.js";
+import { createEomHistoryDataset } from "../src/apps/shared/EomHistoryDataset.mjs";
 
 test("Borg merges coincident binary axes and renders light-purple chart curves", () => {
   const root = new THREE.Group();
@@ -83,4 +85,33 @@ test("Borg merges coincident binary axes and renders light-purple chart curves",
   assert.ok(renderCount >= 3);
   scene.dispose();
   assert.equal(root.children.length, 0);
+});
+
+test("canonical prescribed records render one axis per distinct geometric line", () => {
+  const cases = [
+    ["family-a-a1-general.assembly-view-record.v0.json", 3],
+    ["illustrative-spindle-chart-hypothesis.assembly-view-record.v0.json", 1],
+    ["family-c-c1-co-rotating-b1-pair.assembly-view-record.v0.json", 2],
+    ["family-c-c2-counter-rotating-b1-pair.assembly-view-record.v0.json", 2],
+  ];
+  for (const [filename, expectedAxisCount] of cases) {
+    const record = JSON.parse(readFileSync(new URL(
+      `../content/assets/borg/records/${filename}`,
+      import.meta.url,
+    )));
+    const root = new THREE.Group();
+    const scene = createBorgAssemblyViewScene({
+      group: root,
+      toWorld(source, target) {
+        return target.set(Number(source.x), Number(source.y), Number(source.z));
+      },
+      render() {},
+    });
+    scene.setRecord({ dataset: createEomHistoryDataset(record) });
+    const axisGroup = root.children.find((child) =>
+      child.userData.kind === "source-carried-binary-axes"
+    );
+    assert.equal(axisGroup.children.length, expectedAxisCount, filename);
+    scene.dispose();
+  }
 });

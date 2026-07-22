@@ -1187,7 +1187,7 @@ Stabilizes the Higgs mass and enables unification in some models.
 $$
 \{Q_\alpha, \bar Q_{\dot\beta}\} = 2\sigma^\mu_{\alpha\dot\beta} P_\mu
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally relates fermionic 3D oblate spheroidal envelope configurations and bosonic 2D planar nested shell braid configurations of similar topological content. A full SUSY algebra would correspond to an approximate symmetry exchanging these geometric realizations of assemblies. Whether exact SUSY emerges depends on additional symmetry structure in the architrino dynamics; $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require it but can mimic SUSY-like pairings as approximate assembly symmetries.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally relates fermionic 3D oblate spheroidal envelope configurations and bosonic 2D planar Noether braid configurations of similar topological content. A full SUSY algebra would correspond to an approximate symmetry exchanging these geometric realizations of assemblies. Whether exact SUSY emerges depends on additional symmetry structure in the architrino dynamics; $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require it but can mimic SUSY-like pairings as approximate assembly symmetries.
 
 **What Still Works:** Supersymmetry (SUSY) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -1287,7 +1287,7 @@ Equivalent invariant relation (mass shell):
 $$
 E^2 = (pc)^2 + (mc^2)^2
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” are theorem targets for assemblies moving through an approximately homogeneous and isotropic Noether sea. Proper time corresponds to internal cycle count relative to absolute time, while time dilation and length contraction must be derived from moving-assembly deformation, clock-law retuning, two-way signal synchronization, and bounded preferred-frame leakage. The middle-binary $v=c_f$ regime supplies a candidate signal-scale mechanism, not a completed proof by itself.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” are theorem targets for assemblies moving through an approximately homogeneous and isotropic Noether sea. Proper time corresponds to internal cycle count relative to absolute time, while time dilation and length contraction must be derived from moving-assembly deformation, clock-law retuning, two-way signal synchronization, and bounded preferred-frame leakage. A declared binary channel near the $v=c_f$ fold supplies a candidate signal-scale mechanism, not a completed proof by itself.
 For the assembly-level closure used in this program, see [Effective Energy-Momentum Closure](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure). For a detailed side-by-side bridge between SR language and the deformable Noether braid implementation story, see [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md).
 
 **What Still Works:** Special Relativity (SR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
@@ -1477,7 +1477,7 @@ $$
 \right)^2
 \ll1.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An inflationary phase can be interpreted as a high-energy regime where inner nested shell braid components operate in the $v>c_f$ self-hit domain, driving rapid effective expansion/deflation of the Noether braid assembly-density record. The “inflaton” is a coarse-grained scalar describing the average state of this regime; its potential $V$ encodes how nested shell braid configurations relax toward lower-curvature, more equilibrated states.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An inflationary phase is conjectured to be a high-energy regime where one or more persistent binary indices of candidate Noether braids enter a $v>c_f$ self-hit domain, driving rapid effective expansion or contraction of the assembly-density record. This source-record role does not identify a taxonomy family. The “inflaton” is a coarse-grained scalar describing the average state of this candidate regime; its potential $V$ would encode relaxation toward lower-curvature, more equilibrated states.
 
 **What Still Works:** Inflationary Cosmology remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -7614,7 +7614,7 @@ Each mature bridge should include:
 - [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)
 - [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md)
 - [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
-- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md)
+- [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md)
 - [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md)
 - [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md)
@@ -7624,15 +7624,15 @@ Each mature bridge should include:
 
 #### Quantum Operator Mapping
 
-The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document establishes the formal mapping between abstract quantum operators and the topological torques acting on nested shell braid assemblies, bounded by the causal-delay master equation.
+The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document states a candidate mapping between abstract quantum operators and assembly-level rotational response in candidate Noether braids, bounded by the causal-delay master equation. The qubit proposal does not assign a braid-taxonomy member.
 
 The reader should treat an operator as a recovered record-channel map unless the local derivation says otherwise. Hilbert-space algebra is the target language that experiments already validate; the implementation question is which branch records, apparatus kernels, path-history ledgers, and coarse-grainings make that algebra emerge.
 
-##### The Nested Shell Braid Qubit and Phase Space
+##### Candidate Noether-Braid Qubit and Phase Space
 
-A physical qubit corresponds to the stable orientational states of a nested shell braid assembly. Let $\hat{\mathbf{n}}_{\text{in}}$, $\hat{\mathbf{n}}_{\text{mid}}$, and $\hat{\mathbf{n}}_{\text{out}}$ denote the normal vectors of the inner ($v > c_f$), middle ($v = c_f$), and outer ($v < c_f$) binary orbital planes, respectively.
+A physical qubit is provisionally mapped to stable orientational states of a candidate Noether-braid assembly. Let $\hat{\mathbf{n}}_1$, $\hat{\mathbf{n}}_2$, and $\hat{\mathbf{n}}_3$ denote the orbital-plane normals of its persistently indexed binaries. The reduced source record considered here assigns the speed classes $v_1>c_f$, $v_2=c_f$, and $v_3<c_f$; those assignments are record constraints, not meanings carried by the indices and not evidence for A1 or another taxonomy member.
 
-The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ relative to the middle binary fulcrum $\hat{\mathbf{n}}_{\text{mid}}$.
+The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_1$ and $\hat{\mathbf{n}}_3$ relative to the source record's binary-2 reference normal $\hat{\mathbf{n}}_2$.
 
 The abstract Hilbert space $\mathcal{H}$ serves as an effective description of the continuous non-Markovian phase space $\Gamma$. The dynamics of the constituent architrinos are governed by the delayed, line-of-action, receiver-side causal-root sum defined in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). This page uses that law as the substrate dynamics and treats Hilbert operators as recovered record-channel maps, not as primitive generators.
 
@@ -8044,8 +8044,8 @@ $$
 =
 \sup_{O\in\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T_W}}
 D_{\mathrm{TV}}\!\left(
-P_{D_1}(R_O\,|\,\mathcal{Q},\mathcal{K},W,T_W),
-P_{D_2}(R_O\,|\,\mathcal{Q},\mathcal{K},W,T_W)
+P_{D_1}(\mathcal R[O]\,|\,\mathcal{Q},\mathcal{K},W,T_W),
+P_{D_2}(\mathcal R[O]\,|\,\mathcal{Q},\mathcal{K},W,T_W)
 \right)
 $$
 Here $D_{\mathrm{TV}}$ is total-variation distance between the two induced record distributions. If this residual is small, the two descriptions are equivalent only for that record channel and window. A claim about hidden dimensions, auxiliary spaces, or a different continuum field description still requires an $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping from assembly state, causal-wake history, apparatus kernel, and retained boundary data. If the equivalence disappears when the observable set is enlarged, the extra structure was a comparison chart, not a substrate discovery.
@@ -8192,19 +8192,19 @@ Here $X$ ranges over declared critical assemblies or branch critical points and 
 
 ##### Unitary Evolution and Topological Torques
 
-Quantum gates correspond to continuous, energy-conserving topological torques applied to the nested shell braid orbital planes.
+Quantum gates are hypothesized to correspond to continuous, energy-conserving assembly rotations applied to the candidate braid's orbital planes.
 
-* **Pauli Operators ($X, Y, Z$):** These map to discrete $\pi$-rotations of the nested shell braid orientation axes. The torque $\boldsymbol{\tau} = \int \mathbf{r} \times \mathbf{F}_{\text{hist}} d^3x$ is applied via external causal wakes, smoothly rotating $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ while the middle binary maintains the $v = c_f$ stability threshold.
+* **Pauli Operators ($X, Y, Z$):** These are candidate maps to discrete $\pi$-rotations of the braid orientation axes. An assembly-level rotational response is supplied by external causal wakes, smoothly rotating $\hat{\mathbf{n}}_1$ and $\hat{\mathbf{n}}_3$ while source-record binary 2 remains on its declared $v_2=c_f$ threshold row. The response must ultimately be derived from the acceleration-first master equation rather than inserted as a primitive force law.
 * **Hadamard Operator ($H$):** This operation is modeled as a critical bifurcation. The applied torque should drive the assembly into a controlled neighborhood of the saddle separating the $|0\rangle$ and $|1\rangle$ attractors, with an equiprobable meta-stable precessional state as the closure target rather than an assumed result.
 
-To prevent ionization or irreversible symmetry breaking during these operations, the total action $S = \int (T - V) dt$ must remain bounded. We define an ionization threshold $\Delta S_{\text{ionize}}$; any gate operation must satisfy $\Delta S \ll \Delta S_{\text{ionize}}$ to maintain the factorization of the nested shell braid structure.
+To prevent ionization or irreversible symmetry breaking during these operations, the candidate effective action $S = \int (T - V) dt$ must remain bounded. We define an ionization threshold $\Delta S_{\text{ionize}}$; any gate operation must satisfy $\Delta S \ll \Delta S_{\text{ionize}}$ to maintain the factorization of the candidate braid structure. This is an effective assembly target, not an architrino-level premise.
 
 ##### Entanglement via Path-History Potentials
 
 Entanglement-like behavior must separate newly established causal coupling from correlations inherited from a shared preparation event. New gates and near-range phase-locking require delayed causal-wake exchange. Ordinary separated Bell-pair tests instead use a pair-provenance ledger that was fixed at preparation and later read out by local apparatus interactions. There is no instantaneous action at a distance and no newly transmitted setting information during spacelike-separated measurement.
 
 * **Causal phase-locking:** As the causal wakes of nearby or deliberately coupled assemblies intersect, the continuous $1/r^2$ path-history potentials can force their orbital phases into coupled attractors. This is a finite-speed interaction and must obey the latency and fidelity bounds below.
-* **Controlled-NOT (CNOT) Gate:** This represents conditional logic where the target assembly's allowable phase space is dynamically bounded by the causal wake of the control assembly. The $v=c_f$ middle binary of the target assembly acts as a resonant receiver, only permitting a bit-flip torque if the control assembly's wake possesses the specific polarization geometry of the $|1\rangle$ state.
+* **Controlled-NOT (CNOT) Gate:** This represents conditional logic where the target assembly's allowable phase space is dynamically bounded by the causal wake of the control assembly. Source-record binary 2 of the target assembly, on its declared $v_2=c_f$ row, acts as a resonant receiver and permits a bit-flip torque only if the control assembly's wake possesses the specific polarization geometry of the $|1\rangle$ state.
 * **Bell-pair preparation:** Bell-state language is observer-level shorthand for a nonseparable pair-provenance record produced by a shared preparation event. After the pair is separated beyond causal contact for the measurement window, the Bell gate is not maintained by continuous bidirectional flux between detectors. The closure target is to derive the pair-provenance measure and the two local apparatus-response maps, then show that their compression reproduces the tested Bell correlations while preserving no-signaling and measurement independence.
 
 ##### Measurement and Dynamical Collapse
@@ -8289,7 +8289,7 @@ The continuous loss of path-history coherence must be formalized as a transport 
 
 ##### Statistical Falsifiability and Observables
 * **Finite-Time Born Rule Deviations:** If the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires the local invariant-measure approximation to settle over the apparatus record window, ultra-fast sequential measurements approaching the local path-history delay timescale $d/c_f$ become the natural place to search for deviations from standard $|\psi|^2$ statistics.
-* **Non-Markovian Memory Tails:** Autocorrelation functions of sequential measurements on a single qubit are a candidate place to search for heavy-tailed decay rather than simple exponential decay. The proposed source is persistent self-hit memory in the inner binary, but this remains a simulation and experimental-signature target.
+* **Non-Markovian Memory Tails:** Autocorrelation functions of sequential measurements on a single qubit are a candidate place to search for heavy-tailed decay rather than simple exponential decay. The proposed source is persistent self-hit memory in whichever indexed binary the retained branch identifies as the self-hit carrier; this remains a simulation and experimental-signature target.
 
 #### Angular Momentum and Spin
 
@@ -8569,7 +8569,7 @@ with the axial cost of a binary inclination only second order — tilting stores
 2. **The cadence is an open coordinate.** Nothing established fixes $\Delta\omega$. Whether any mechanism holds a B1 member at a fixed cadence or speed budget is an open question for the validated engine; until one is established, $\Delta\omega$ enters the partition map as a free coordinate.
 3. **One energy price.** In the reduced action-angle chart the Family-A companion ledger reads $\Delta E=\sum_{a=1}^{3}\omega_a\Delta I_a+\Delta E_{\text{wake}}$, so the energy cost of an accepted increment can depend on which indexed binary receives it. At one cadence that dependence vanishes: $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ at first order, however the allocation falls. For the accepted quantum $\Delta I=\hbar$ this is $\Delta E=\hbar\omega$ appearing as a ledger identity of B1 rather than an imported relation. The actual allocation must therefore be decided by the constraint structure, stiffness spectrum, and causal-root admissibility.
 
-The tilts are the map's distinctive channel — transverse storage at zero first-order axial cost — and therefore the natural candidate storage channel for accepted increments; whether the coupled relative-tilt modes are in fact soft is a stiffness measurement the validated engine has yet to supply. As in the nested case, writing the map is not solving it: the partition among radii, tilts, cadence, and wake remains a dynamics problem in conservation, admissibility, phase rigidity, and branch stability. Claim level: the increment identities are exact kinematics of the prescribed rigid family; the energy-price statement is a reduced action-angle statement at the same grade as the Family-A companion ledger; the allocation dynamics — and any cadence- or speed-holding mechanism — is open.
+The tilts are the map's distinctive channel — transverse storage at zero first-order axial cost — and therefore the natural candidate storage channel for accepted increments; whether the coupled relative-tilt modes are in fact soft is a stiffness measurement the validated engine has yet to supply. As in the Family-A case, writing the map is not solving it: the partition among radii, tilts, cadence, and wake remains a dynamics problem in conservation, admissibility, phase rigidity, and branch stability. Claim level: the increment identities are exact kinematics of the prescribed rigid family; the energy-price statement is a reduced action-angle statement at the same grade as the Family-A companion ledger; the allocation dynamics — and any cadence- or speed-holding mechanism — is open.
 
 ###### Quotient-Spectrum Discipline
 
@@ -8607,7 +8607,7 @@ Everything beyond this chart is open. $M$ and $G$ follow from the exact kinemati
 
 ##### A1 Spin Scaffold
 
-The A1 scaffold carries three persistent binary indices $a\in\{1,2,3\}$ with independently assignable radii, frequencies, phases, and plane normals. No index has a fixed radius order or dynamical role. Self-hit activity, proximity to a causal-root fold, external exposure, and wake-ledger dominance are branch-derived diagnostics measured on a particular record.
+The A1 scaffold carries three persistent binary indices $a\in\{1,2,3\}$ with independently assignable positive radii and frequencies. Its binary axes are mutually orthogonal at the Family-A near-rest endpoint and converge toward the group-translation direction along the prescribed flattening coordinate $\lambda_A$; phases, axial half-separations, transverse orbit radii, and circulation remain binary coordinates. No index has a fixed radius order or dynamical role. Self-hit activity, proximity to a causal-root fold, external exposure, and wake-ledger dominance are branch-derived diagnostics measured on a particular record. These coordinates define prescribed geometry only; an EOM-solver-retained A1 spin scaffold remains unproved.
 
 In a reduced action-angle chart define
 
@@ -10422,7 +10422,7 @@ Whether the transacted unit is constant under drift has not been established. Th
 
 The closure route below is written in the A1 per-frequency chart: its integer ledger counts three per-binary windings, and its holonomy object is the normal triad. In B1, one common cadence collapses the winding triple and the locked frame replaces the normal triad, so B1 needs its own derivation of the route. The orbital lesson should be used as a method, not merely as a dictionary. In ordinary atomic-orbital theory, one chooses the angular configuration space, imposes single-valuedness and finite angular behavior, and then reads the surviving labels as quantum numbers. The clean generalization is that ordinary orbital labels come from closure and regularity on an effective angular envelope, while A1 labels should come from closure, root-ledger admissibility, normal-triad holonomy, and stability of the three indexed binaries. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this style of reasoning begins one layer lower: first classify the stable A1 closures, then ask which causal-wake envelopes and observer-level orbital labels they support.
 
-For a A1, the first closure object is the three-binary phase and root ledger over a stable return period $T$. A useful theorem-target form is
+For an A1, the first closure object is the three-binary phase and root ledger over a stable return period $T$. A useful theorem-target form is
 
 $$
 \Theta_a(T)
@@ -12061,7 +12061,7 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 2. Validate that functional on B1 — where the kinematic half is exact and the open burden is the wake row, including its possible tilt-sector asymmetry — and on an A1 branch whose indexed binaries have measured radii, frequencies, plane normals, phases, active root branches, external-exposure rows, fold proximity, and self-hit history.
 3. Populate the finite candidate set $\mathcal A_N(B^-,\Gamma_{\text{coupl}},W)$, evaluate $\mathcal R_{\mathrm{sel}}$ on each retained branch candidate, and test whether $\operatorname{Sel}_{B,N}$ is chart-invariant, stable under retained-budget refinement $N\preceq N'$, unique, or a physical tie for an accepted $\Delta A_{\text{cycle}}=h$ transaction.
 4. Generalize the solved four-substep branch by deriving or fitting $a$, $b$, $w$, $\Delta R_\ell$, $\Delta\omega_\ell$, and $\Delta E_{\ell,\text{root}}$ from the master equation for non-minimal branches.
-5. Determine whether the partition is unique or branch-dependent — on the iso-frequency allocation map (radii, tilts, shared cadence, wake) as the primary form, and for the nested per-frequency layers as comparison.
+5. Determine whether the partition is unique or branch-dependent — on the iso-frequency allocation map (radii, tilts, shared cadence, wake) as the primary form, and for the indexed per-frequency rows as comparison.
 6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift on B1's locked frame — the non-coplanar chart does not apply to B1, so the lift question must be posed on the locked triple's history rows — and separately on the ordered non-coplanar A1 frame, then test whether either lifted response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.
 7. Evaluate the Master-Equation apparatus branch-sum impulse rate $d\mathbf J_{C}^{\text{app}}/dT$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal Noether braid apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
 8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
@@ -12243,7 +12243,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration at time $t$ depends on the
 This path-history dependence enriches the guidance dynamics beyond the Markovian structure of dBB. It provides a natural mechanism for:
 
 - **Hysteresis**: an assembly's response to a perturbation depends on which attractor it previously occupied.
-- **Discrete stable modes**: the self-hit feedback loop admits a countable set of phase-locked configurations (the resonance bands of the outer binary), producing the quantization of energy levels without imposing it by hand.
+- **Discrete stable modes**: the self-hit feedback loop admits a countable set of phase-locked configurations (resonance bands of one or more indexed binaries), producing the quantization of energy levels without imposing it by hand.
 - **Measurement back-action**: the apparatus wake permanently alters the target assembly's self-hit geometry, making the measurement interaction irreversible at the micro-dynamic level.
 
 ---
@@ -12596,7 +12596,7 @@ Because a Physical Observer lacks access to the complete microstate and the exac
 The correspondence between the quantum formalism and architrino micro-dynamics is defined as follows:
 
 *   **The Wavefunction ($|\psi\rangle$)**: A coarse-grained, effective representation of the local superposed causal-wake structure and the corresponding informational ambiguity of the receiver's phase state.
-*   **Basis States ($|n\rangle$)**: Distinct, dynamically stable attractor basins of the Noether braid assembly. For example, these correspond to integer-indexed resonance bands or specific locked-phase geometries of the outer binary.
+*   **Basis States ($|n\rangle$)**: Distinct, dynamically stable attractor basins of the Noether braid assembly. For example, these correspond to integer-indexed resonance bands or specific locked-phase geometries of one or more indexed binaries.
 *   **Linear Combination**: The direct physical consequence of the superposition of expanding causal wake surfaces. Distinct sources contribute additive radial accelerations without mutual interference.
 *   **Probability Amplitudes ($c_n$)**: A measure of the geometric basin of attraction (the fractional phase-space volume) leading to outcome $n$, mapped over the operational uncertainty bracket of the system's microstate.
 *   **Wavefunction Collapse**: The deterministic crossing of a phase-space separatrix triggered by an interaction (measurement). The measurement apparatus (itself an assembly) injects a targeted potential gradient that breaks the metastability, forcing the assembly into one specific attractor and leaving a permanent macroscopic record in the surrounding Noether sea.
@@ -13627,7 +13627,7 @@ $$
 \mathbf{J}_A+\mathbf{J}_B=\mathbf{0}
 $$
 
-That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter nested shell braids redistribute action across inner, middle, and outer binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
+That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter Noether braids redistribute action across all three indexed binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
 
 A source-level pair-provenance record should therefore replace the generic $\lambda$ placeholder before any Bell calculation is called physical. For a singlet-like source, write
 
@@ -13992,7 +13992,7 @@ Special relativity gives the observer-level invariant bookkeeping for clocks, ru
 
 The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether sea dynamics.
 
-The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether braid assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether braid realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three support layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
+The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether braid assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether braid realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three indexed binaries and then projects its observable ruler behavior through the assembly-level exclusion envelope.
 
 ##### Ownership Boundary
 
@@ -14015,7 +14015,7 @@ This chapter does not own:
 
 | Special relativity story | Deformable Noether braid story |
 | --- | --- |
-| Physical clocks measure proper time $\tau$, and moving clocks satisfy $d\tau/dt = 1/\gamma$. | A physical clock is an assembly with a countable internal cycle. When a Noether braid clock moves through the Noether sea, delayed wake paths must still close across the inner, middle, and outer binaries, so fewer stable internal cycles occur per unit absolute time $t$. |
+| Physical clocks measure proper time $\tau$, and moving clocks satisfy $d\tau/dt = 1/\gamma$. | A physical clock is an assembly with a countable internal cycle. When a Noether braid clock moves through the Noether sea, delayed wake paths must still close across all three indexed binaries, so fewer stable internal cycles occur per unit absolute time $t$. |
 | Length contraction follows from Lorentz geometry: $L_{\parallel}=L_0/\gamma$. | The braid's effective exclusion envelope deforms along the direction of translation. Stable delayed closure requires a longitudinal/transverse retuning of orbital paths, with the Lorentz-compatible target $R_{\parallel}=R_{\perp}/\gamma$ in the weak-field homogeneous limit. |
 | Rest energy is $E_0=m_0c^2$. | Rest energy is the observer-facing value of shielded internal causal history: the part of the closed Noether braid energy ledger exposed through far-field coupling and Noether sea response. |
 | Momentum is $p=\gamma m_0v$. | Momentum is the medium-dressed response of a moving assembly: the internal path-history ledger must relock under translation, and the Noether sea supplies the effective response tensor that Physical Observers summarize as relativistic momentum. |
@@ -14083,7 +14083,7 @@ $$
 \frac{1}{\sqrt{1-\|\mathbf{w}\|^2/c_{\text{eff}}^2}}
 $$
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $T$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, a natural clock channel is the middle binary or a transition built from the coupled nested shell braid ledger. The native clock-map row is therefore an extracted frequency ratio:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $T$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, the source record must declare the indexed clock channel or a transition built from the coupled Family-A ledger. The native clock-map row is therefore an extracted frequency ratio:
 $$
 \frac{d\tau}{dT}
 =
@@ -14137,9 +14137,9 @@ In the Noether braid implementation story, rods are made from bound assemblies w
 $$
 \mathcal{E}_{\text{excl}}
 =
-\mathcal{E}_{\text{excl}}(\mathbf{w},\mathbf{A}_i,\mathbf{A}_m,\mathbf{A}_o,R_i,R_m,R_o,n,\chi_{\text{sea}})
+\mathcal{E}_{\text{excl}}(\mathbf{w},(\mathbf{A}_a,R_a)_{a=1}^{3},n,\chi_{\text{sea}})
 $$
-Here the subscripts $i,m,o$ refer to the inner, middle, and outer binary layers. The Lorentz-compatible weak-field target is the envelope-axis relation
+Here $a\in\{1,2,3\}$ is the persistent binary index. The Lorentz-compatible weak-field target is the envelope-axis relation
 $$
 \frac{R_{\parallel}}{R_{\perp}}
 \to
@@ -14242,20 +14242,18 @@ $$
 $$
 In the observer-level theory this is the correct continuous kinematic envelope. The Noether braid implementation adds a deeper condition: the braid can realize this envelope only by moving through admissible branch classes of the Noether braid causal-root ledger.
 
-For a stable Noether braid branch $q$, define the layer state
+For a stable Noether braid branch $q$, define the indexed-binary state
 $$
 B_q(v)
 =
 \left(
-R_I,R_M,R_O;\,
-\omega_I,\omega_M,\omega_O;\,
-s_I,s_M,s_O;\,
+(R_a,\omega_a,s_a)_{a=1}^{3};\,
 \mathcal{L}_{\mathrm{root}};\,
-\mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O;\,
+(\mathbf{A}_a)_{a=1}^{3};\,
 \mathcal{L}_{\mathrm{wake}}
 \right)_q
 $$
-Here $R_\ell$ are layer radii, $\omega_\ell$ are layer angular frequencies, $s_\ell$ are characteristic layer speeds, $\mathbf{A}_\ell$ are layer axes, $\mathcal{L}_{\mathrm{root}}$ is the active causal-root ledger, and $\mathcal{L}_{\mathrm{wake}}$ records the causal-wake exchange needed for conservation. The branch index $q$ is not an added particle label. It names a stable admissible closure class.
+Here $R_a$ are binary radii, $\omega_a$ are binary angular frequencies, $s_a$ are characteristic binary speeds, $\mathbf{A}_a$ are binary axes, $\mathcal{L}_{\mathrm{root}}$ is the active causal-root ledger, and $\mathcal{L}_{\mathrm{wake}}$ records the causal-wake exchange needed for conservation. The branch index $q$ is not an added particle label. It names a stable admissible closure class.
 
 A one-$h$ full-cycle action transaction should therefore be treated as a branch update,
 $$
@@ -14263,30 +14261,30 @@ B_q(v)
 \longrightarrow
 B_{q'}(v+\Delta v)
 $$
-not as an outer-binary-only energy deposit. The scalar action condition is
+not as a one-binary-only energy deposit. The scalar action condition is
 $$
 \Delta A_{\text{cycle}}=\sigma h,
 \qquad
-\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}=\sigma\hbar
+\sum_{a=1}^{3}\Delta I_a+\Delta I_{\text{wake}}=\sigma\hbar
 $$
 and the energy condition is the all-layer action-angle ledger
 $$
-\sum_{\ell\in\{I,M,O\}}
-\int_{B_q\to B_{q'}}\omega_\ell\,dI_\ell
+\sum_{a=1}^{3}
+\int_{B_q\to B_{q'}}\omega_a\,dI_a
 +
 \Delta E_{\text{wake}}
 =
 \Delta E_{\text{coupl}}
 $$
-Thus all three radii, all three frequencies, and all three characteristic speeds are allowed to change. The outer binary is special because it sets the leading exclusion-envelope boundary, not because the other layers are spectators.
+Thus all three radii, all three frequencies, and all three characteristic speeds are allowed to change. The leading exclusion-envelope boundary is an assembly-level projection, not a taxonomy-assigned role of one binary.
 
 The bridge to Lorentz behavior is then:
 $$
 \text{one-}h\text{ action transaction}
 \longrightarrow
-\text{nested shell braid branch update}
+\text{Family-A branch update}
 \longrightarrow
-\text{outer-envelope oblation}
+\text{assembly-envelope oblation}
 \longrightarrow
 \text{effective }\gamma_{\text{eff}}(v)
 $$
@@ -14310,7 +14308,7 @@ $$
 $$
 for every branch class admitted as a stable clock/ruler material. This is the sense in which the Lorentz response is branch-quantized: the substrate realizes a continuous observer law through discrete admissible ledger classes, and any residual deviation should carry the signature of a branch transition, separator approach, inter-layer resonance, or incomplete wake ledger.
 
-This target also clarifies which part of the Noether braid should be modeled. The full branch solve must include inner, middle, and outer binaries because clock rate, action storage, separator sensitivity, and conservation all live in the coupled nested shell braid ledger. The outer binary then supplies the leading geometric projection:
+This target also clarifies which part of the Noether braid should be modeled. The full branch solve must include all three indexed binaries because clock rate, action storage, fold sensitivity, and conservation all live in the coupled Family-A ledger. The complete record then supplies the leading geometric projection:
 $$
 \xi_q(v)
 \equiv
@@ -14318,7 +14316,7 @@ $$
 \to
 \frac{1}{\gamma_{\text{eff}}(v)}
 $$
-An outer-only model can be useful as a first observable projection or reduced diagnostic, but it cannot prove Lorentz closure unless the inner and middle ledgers have already been shown to retune consistently and stay hidden below the preferred-frame leakage bound.
+A binary-3-only model can be useful as a first observable projection or reduced diagnostic when a source record explicitly assigns that boundary role, but it cannot prove Lorentz closure unless the binary-1 and binary-2 ledgers have already been shown to retune consistently and stay hidden below the preferred-frame leakage bound. These roles are provisional and do not redefine the persistent indices.
 
 ##### Mass-Energy Channel
 
@@ -14428,14 +14426,14 @@ The sum-and-difference identities are exact. Identifying $\delta\tau$ with obser
 The proposed common source is:
 
 1. finite field speed for causal wake transfer,
-2. stable phase closure across nested shell braid support rows,
+2. stable phase closure across indexed Family-A support rows,
 3. deformation of the dynamic exclusion envelope,
 4. clock-frequency extraction from internal cycles,
 5. and medium-dressed response to acceleration.
 
 If these are solved separately, the theory risks producing unrelated correction factors. If they are solved as one closure problem, then the repeated appearance of $\gamma$ becomes a success signal rather than a coincidence.
 
-The branch-quantized version of this statement is stricter. The same branch update $B_q\to B_{q'}$ must account for the clock factor, the ruler factor, the momentum response, and the exposed energy response. If the outer envelope gives the right contraction while the middle-binary clock channel gives a different factor, the bridge has failed rather than found a new Lorentz law.
+The branch-quantized version of this statement is stricter. The same branch update $B_q\to B_{q'}$ must account for the clock factor, the ruler factor, the momentum response, and the exposed energy response. If the assembly envelope gives the right contraction while the declared indexed clock channel gives a different factor, the bridge has failed rather than found a new Lorentz law.
 
 ##### Domain Of Validity
 
@@ -14462,17 +14460,17 @@ To promote this bridge from mapping to derivation, the following targets must cl
 7. Show that clock, ruler, momentum, and energy channels share the same $\gamma_{\text{eff}}$ to the required order.
 8. Bound preferred-frame leakage and identify the leading measurable correction terms.
 9. Derive the branch-quantized Lorentz response: for each stable admissible causal-root ledger class $q$, compute $B_q(v)$, extract $\gamma_{\mathrm{clk}}^{(q)}$ and $\gamma_{\mathrm{rul}}^{(q)}$, and show that all accepted clock/ruler branches collapse to the same effective $\gamma_{\text{eff}}$ within $O(\epsilon_{\mathrm{LV}})$.
-10. Prove that the outer-envelope oblation is the observable projection of a whole-braid branch update, not an independently assigned deformation law.
+10. Prove that the exclusion-envelope oblation is the observable projection of a whole-braid branch update, not an independently assigned deformation law.
 
 ##### Summary Commitment
 
-> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether braids preserve finite-speed causal wake closure by retuning internal phase, all three support layers, outer-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.
+> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether braids preserve finite-speed causal wake closure by retuning internal phase, all three persistently indexed support rows, exclusion-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.
 
 #### Return-Cycle Lorentz Quantization
 
 This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether braid chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether braid causal-root ledger.
 
-The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the interactive geometry surface, open [Ideal Noether Braid: Lorentz Geometry App](../../../../../ideal-braid.html).
+The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the interactive geometry surface, open [A1 Lorentz Geometry App](../../../../../ideal-braid.html).
 
 The key point is easy to lose: the smooth Lorentz formula remains the effective observer law. The discrete object is the material route by which an assembly realizes that law. A Noether braid cannot choose an arbitrary continuous internal return state; it must close through admissible causal-root ledger classes that project to the smooth envelope in the observer limit.
 
@@ -14510,8 +14508,8 @@ The bridge separates four levels:
 | Level | Role |
 | --- | --- |
 | Substrate ontology | Architrinos evolve in the Euclidean void under absolute time and delayed causal wakes. |
-| Assembly dynamics | A Noether braid must close inner, middle, and outer binary return cycles through a causal-root ledger. |
-| Geometry projection | The outer-binary exclusion envelope exposes an oblate spheroidal envelope with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
+| Assembly dynamics | A Noether braid must close all three indexed binary return cycles through one causal-root ledger. |
+| Geometry projection | The assembly-level exclusion envelope exposes an oblate spheroidal envelope with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
 | Observer law | Physical Observers infer Lorentz contraction, clock dilation, and two-way signal invariance after branch averaging and Noether sea dressing. |
 
 This level separation is essential. The Lorentz equation is not being promoted to substrate ontology. It is an observer-level envelope that must be implemented by closed assembly dynamics.
@@ -14669,7 +14667,7 @@ t_+
 $$
 so $t_+\to\infty$ as $\beta_\star\to1$. The rear leg tends to zero, but the closed period diverges. Thus the clock does not diverge because the envelope is large; it diverges because the forward causal update has almost no catch-up margin left.
 
-The outer binary is special because it supplies the leading visible envelope. It is not sufficient by itself. A Lorentz-admissible branch must also retune the hidden inner and middle ledgers so that clock closure, action conservation, and leakage bounds are solved by the same branch.
+The visible assembly envelope is not supplied by one taxonomy-designated binary. A Lorentz-admissible branch must retune all three indexed binary ledgers so that the geometry projection, clock closure, action conservation, and leakage bounds are solved by the same branch.
 
 ##### Simultaneity From the Leg Difference
 
@@ -14747,17 +14745,14 @@ for every branch class admitted as stable clock/ruler material.
 
 This is the precise sense in which the Lorentz equation is quantized. The smooth curve remains the observer-level envelope. The Noether braid implementation is discrete because each accepted material realization must be a closed causal-root ledger class.
 
-##### All-Layer Closure Burden
+##### All-Binary Closure Burden
 
-The full branch state is not just the outer oblate spheroidal envelope. For branch $q$, use the all-layer state
+The full branch state is not just the visible oblate spheroidal envelope. For branch $q$, use the indexed-binary state
 $$
 B_q(v)
 =
 \left(
-R_I,R_M,R_O;\,
-\omega_I,\omega_M,\omega_O;\,
-s_I,s_M,s_O;\,
-\mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O;\,
+\left(R_a,\omega_a,s_a,\mathbf{A}_a\right)_{a=1}^{3};\,
 \mathcal{L}_{\mathrm{root}};\,
 \mathcal{L}_{\mathrm{wake}}
 \right)_q
@@ -14768,11 +14763,11 @@ B_q(v)
 \longrightarrow
 B_{q'}(v+\Delta v)
 $$
-For each binary layer $\ell\in\{I,M,O\}$, the branch ledger can expose a layer-level phase and action row:
+For each persistent binary index $a\in\{1,2,3\}$, the branch ledger can expose a binary-level phase and action row:
 $$
-\Delta\phi_\ell=2\pi n_\ell
+\Delta\phi_a=2\pi n_a
 \qquad
-n_\ell\in\mathbb{Z}
+n_a\in\mathbb{Z}
 $$
 $$
 \Delta A_\ell=n_\ell h+\epsilon_\ell^{\mathrm{leak}}
@@ -14792,7 +14787,7 @@ $$
 and the all-layer energy ledger
 $$
 \sum_{\ell\in\{I,M,O\}}
-\int_{B_q\to B_{q'}}\omega_\ell\,dI_\ell
+\int_{B_q\to B_{q'}}\omega_a\,dI_a
 +
 \Delta E_{\text{wake}}
 =
@@ -14802,14 +14797,14 @@ The geometry projection is then the visible part of the sequence
 $$
 \text{one-}h\text{ action transaction}
 \longrightarrow
-\text{nested shell braid branch update}
+\text{Family-A branch update}
 \longrightarrow
-\text{outer-envelope oblation}
+\text{assembly-envelope oblation}
 \longrightarrow
 \text{effective }\gamma_\star(v)
 $$
 
-This sequence is the main reason the term `return-cycle` is preferred. The breakthrough is not simply that the outer envelope becomes oblate. The stronger claim is that the oblate spheroidal envelope is the visible projection of a closed all-layer branch ledger.
+This sequence is the main reason the term `return-cycle` is preferred. The breakthrough is not simply that the assembly envelope becomes oblate. The stronger claim is that the oblate spheroidal envelope is the visible projection of a closed all-binary branch ledger.
 
 ##### Prediction And Failure Mode
 
@@ -14826,7 +14821,7 @@ B_r\,\mathcal{W}_r(\beta)\cos(2m_r\theta+\varphi_r)
 $$
 where each residual label $r$ must be traceable to a named branch-chart feature. A residual with no branch source is not a successful prediction; it is fitting error or an incomplete closure model.
 
-The failure mode is equally sharp. If the outer envelope gives
+The failure mode is equally sharp. If the declared exclusion envelope gives
 $$
 \xi_q(v)
 \approx
@@ -15542,7 +15537,7 @@ $$
 The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing.
 Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at nested shell braid (IMO), Generation-II shielding (IM-), and Generation-III shielding (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at support vectors $(1,1,1)$, $(1,1,0)$, and $(1,0,0)$. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch. The component order follows the persistent binary indices and does not encode a radius order.
 
 So each row should be read as a routing ledger. The weak interaction opens a charged corridor in one exposed basis, but the detector names the outgoing assembly in the mass basis. CKM entries measure how much of the exposed corridor lands in each mass-basis channel. That is why a high-value $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation cannot stop at the matrix values; it must also explain the two bases whose mismatch the matrix records.
 
@@ -15559,7 +15554,7 @@ So each row should be read as a routing ledger. The weak interaction opens a cha
   - So: it is a transient, bound excitation of the Noether sea from reconfiguration of participants' wakes and axial structure, not from a standing background field.
 
 ##### Minimal premises
-- **Generations = shielding level:** Gen I nested shell braid (u,d), Gen II shielding branch (c,s), Gen III shielding branch (t,b).
+- **Generations = candidate shielding level:** Gen I uses support vector $(1,1,1)$ for $(u,d)$, Gen II uses $(1,1,0)$ for $(c,s)$, and Gen III uses $(1,0,0)$ for $(t,b)$. These vectors record occupancy of persistent indices and do not assign a braid-taxonomy member or a radius order.
 - **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
 - **Mass basis = shielding eigenstates:** Noether braid shielding, a closed internal causal-history ledger, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 
@@ -15678,13 +15673,13 @@ with later simulations allowed to replace this hard zero by a bounded suppressio
 For the active left-handed branch, write the down-like and up-like states as
 $$
 \lvert d_L;c,\alpha\rangle
-=\lvert C_{\mathrm{IMO}};\ A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-),\ A_{\Sigma}=3\epsilon_-;\ c,\alpha\rangle
+=\lvert C_{(1,1,1)};\ A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-),\ A_{\Sigma}=3\epsilon_-;\ c,\alpha\rangle
 $$
 $$
 \lvert u_L;c,\alpha\rangle
-=\lvert C_{\mathrm{IMO}};\ A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-),\ A_{\Sigma}=3\epsilon_+;\ c,\alpha\rangle
+=\lvert C_{(1,1,1)};\ A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-),\ A_{\Sigma}=3\epsilon_+;\ c,\alpha\rangle
 $$
-Here $C_{\mathrm{IMO}}$ is the generation-I Noether braid, $A_{\mathrm{sh}}$ is the shielded axial inventory outside the exposed triad, and $(c,\alpha)$ records the color-sector branch and axial-frame offset inherited from the weak-mixing-angle program.
+Here $C_{(1,1,1)}$ is the candidate generation-I Noether-braid record with all three persistent support indices occupied, $A_{\mathrm{sh}}$ is the shielded axial inventory outside the exposed triad, and $(c,\alpha)$ records the color-sector branch and axial-frame offset inherited from the weak-mixing-angle program. The support vector does not identify a taxonomy member.
 
 The first beta exposure operator is
 $$
@@ -15694,7 +15689,7 @@ $$
 \otimes
 \lvert W^-;\Delta A_W=3(\epsilon_- - \epsilon_+)\rangle
 $$
-Here $g_{\mathrm W}$ is the effective charged-corridor coupling normalization. The factor $\eta_L$ is $1$ when the finite-state gate above is open and $0$ otherwise. $V_{ud}$ is the same weak-basis to shielding-eigenstate overlap used by the CKM section; it is near unity here because both the incoming $d$ and outgoing $u$ occupy the generation-I nested shell braid shielding tier. The $W^-$ state records the opposite transaction to the quark-side $3\epsilon_-\to3\epsilon_+$ change:
+Here $g_{\mathrm W}$ is the effective charged-corridor coupling normalization. The factor $\eta_L$ is $1$ when the finite-state gate above is open and $0$ otherwise. $V_{ud}$ is the same weak-basis to shielding-eigenstate overlap used by the CKM section; it is near unity here because both the incoming $d$ and outgoing $u$ occupy the candidate Generation-I support vector $(1,1,1)$. The $W^-$ state records the opposite transaction to the quark-side $3\epsilon_-\to3\epsilon_+$ change:
 $$
 \Delta Q_q=3(\epsilon_+-\epsilon_-)=6\epsilon=e,\qquad
 \Delta Q_{W^-}=3(\epsilon_- - \epsilon_+)=-6\epsilon=-e
@@ -15731,7 +15726,7 @@ $$
 ###### Charged $W$ corridor (architrino budget, descriptive)
 
 Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether braids ($3\epsilon_+ + 3\epsilon_-$ each)** plus a **six-charge excess** that carries net charge $\pm e$:
-- $W^+$ payload: $9\epsilon_+ + 3\epsilon_-$ (net $+6(e/6)=+e$) on the outer sites of the two cores.
+- $W^+$ payload: $9\epsilon_+ + 3\epsilon_-$ (net $+6(e/6)=+e$) on the declared exposed sites of the two cores.
 - $W^-$ payload: $3\epsilon_+ + 9\epsilon_-$ (net $-6(e/6)=-e$).
 
 The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget.
@@ -15750,21 +15745,21 @@ t & 0.0087 & 0.040 & 0.999
 $$
 The values are rounded for readability and serve as a compact benchmark for the shielding-tier mapping. Uncertainty handling and global-fit ranges belong in the validation data layer rather than in this reader-facing comparison table.
 
-###### $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding-tier view (IMO = Inner/Middle/Outer present)
+###### $\mathbb{A}\mathbb{A}\mathbb{A}$ indexed shielding-support view
 
 Interpretation (hypothesis): overlaps fall with shielding mismatch. Rows = up-type cores, cols = down-type cores. What “overlap” means here: the projection of a weak-basis state (weak-coupling-triad configuration) onto a mass eigenstate (shielding geometry). In practice it is an inner product of their wavefunctions/configurations; $\lvert\langle \text{mass} | \text{weak} \rangle\rvert^2$ gives the CKM entry’s probability weight. A concrete minimal functional is defined in the next section.
 
 $$
 \begin{array}{c|ccc}
-V_{ij} & \text{d (IMO)} & \text{s (IM-)} & \text{b (I--)}\\
+V_{ij} & \text{d }(1,1,1) & \text{s }(1,1,0) & \text{b }(1,0,0)\\
 \hline
-\text{u (IMO)} & \text{high overlap} & \text{medium} & \text{tiny}\\
-\text{c (IM-)} & \text{medium} & \text{high} & \text{medium-low}\\
-\text{t (I--)} & \text{tiny} & \text{medium-low} & \text{high}
+\text{u }(1,1,1) & \text{high overlap} & \text{medium} & \text{tiny}\\
+\text{c }(1,1,0) & \text{medium} & \text{high} & \text{medium-low}\\
+\text{t }(1,0,0) & \text{tiny} & \text{medium-low} & \text{high}
 \end{array}
 $$
 
-Legend: IMO = Inner+Middle+Outer; IM- = Inner+Middle; I-- = Inner only. Qualitative “high/medium/tiny” encodes the shielding-match hypothesis; actual values must be derived from overlap integrals.
+Legend: $(1,1,1)$, $(1,1,0)$, and $(1,0,0)$ are candidate occupancy vectors on persistent support indices $1,2,3$. They do not encode inner/middle/outer radius roles. Qualitative “high/medium/tiny” encodes the shielding-match hypothesis; actual values must be derived from overlap integrals.
 
 Quantitative target (heuristic): “high” should land near 0.2–1, “medium” ~10⁻²–10⁻¹, “tiny” ~10⁻³–10⁻² to match PDG magnitudes (e.g., $\lvert V_{ud}\rvert$, $\lvert V_{us}\rvert$, $\lvert V_{ub}\rvert$).
 
@@ -15845,9 +15840,9 @@ $$
 The residual accepts a candidate only when the same shielding-tier record gives unitary mixing, the observed CKM hierarchy and CP invariant, unchanged Standard Model gauge representation across the three charged-fermion tiers, and no added-channel leakage. A comparison framework that reproduces one angle, one phase, or the number three is not yet a $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
 
 Assumptions introduced in this section ($\mathbb{A}\mathbb{A}\mathbb{A}$ side):
-- **A1:** Generation transport is represented by a three-node chain $(1\leftrightarrow2\leftrightarrow3)$.
-- **A2:** Mixing-angle magnitudes follow exponential transport-action suppression.
-- **A3:** The CP phase is constrained by holonomy closure $\cos\delta=s_{13}/(s_{12}s_{23})$.
+- **H1:** Generation transport is represented by a three-node chain $(1\leftrightarrow2\leftrightarrow3)$.
+- **H2:** Mixing-angle magnitudes follow exponential transport-action suppression.
+- **H3:** The CP phase is constrained by holonomy closure $\cos\delta=s_{13}/(s_{12}s_{23})$.
 
 Minimal geometric reduction: the generation manifold is the three-node chain $(1\leftrightarrow2\leftrightarrow3)$ with two edge actions $(\kappa_{12},\kappa_{23})$ and one nonlocal torsion penalty $\sigma$ for direct $1\leftrightarrow3$ transport. Define
 $$
@@ -16043,7 +16038,7 @@ _Status: accepted closure route, not a completed derivation. The chapter treats 
 The conjectural weak-provenance material below is an illustration of what a future $\mathbb{A}\mathbb{A}\mathbb{A}$ reaction ledger should be able to record. It is not a claim that the listed rows are correct. Several rows may be replaced once weak-coupling-triad exposure, corridor sourcing, spin/helicity closure, and event-level residual routing are derived from the same substrate record.
 
 - **Goal:** build a ledger to track weak transmutation events, ensuring charge, shielding, corridor payload, Noether braid sourcing, and architrino counts close. Mark allowed vs. unseen channels and why.
-- **Forward axial sites:** weak-coupling triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
+- **Forward axial sites:** the weak-coupling triad uses one forward pole from each indexed polar dyad. Pro/anti is the retained orientation sign $o_{\mathrm{PA}}$, not a radius, energy, or precession ordering and not a matter/antimatter label.
 - **Environmental partners:**
   - Photon: a coaxial contra-rotating polarity-conjugate planar pair.
   - Noether sea: hypothesized as paired pro/anti Noether braids; a local interaction could draw neutral braid content to participate while preserving recorded provenance.
@@ -16052,19 +16047,19 @@ The conjectural weak-provenance material below is an illustration of what a futu
 
 ###### Illustrative Candidate Ledger Rows
 
-| Reactant set | Noether braid shielding (IMO/HML) | weak-coupling-triad polarity | Noether sea braids tapped? | Candidate products | Corridor(s) | Illustrative status | Reason/constraint |
+| Reactant set | Noether braid support vector | weak-coupling-triad polarity | Noether sea braids tapped? | Candidate products | Corridor(s) | Illustrative status | Reason/constraint |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| $d$ (IMO) → $u$ (IMO) + $W^-$ | tri → tri | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | likely | Matches $V_{ud}$; charge quantized |
-| $s$ (IM-) → $u$ (IMO) + $W^-$ | bi → tri | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{us}\rvert$ |
-| $b$ (I--) → $c$ (IM-) + $W^-$ | uni → bi | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $c + \,\, \ell^- + \bar\nu$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{cb}\rvert$ |
-| $t$ (I--) → $b$ (I--) + $W^+$ | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0 | $b + W^+$ | $W^+$ | allowed (dominant) | minimal mismatch; $\lvert V_{tb}\rvert\approx1$ |
-| $d$ (IMO) + Sea (4 cores) → $u$ (IMO) + $W^-$ | tri + sea | $\epsilon_-\to\epsilon_+$ triad transition | 4 | $u + W^-$ | $W^-$ | speculative | Sea supplies corridor, check energy budget |
+| $d$ $(1,1,1)$ → $u$ $(1,1,1)$ + $W^-$ | tri → tri | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | likely | Matches $V_{ud}$; charge quantized |
+| $s$ $(1,1,0)$ → $u$ $(1,1,1)$ + $W^-$ | bi → tri | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{us}\rvert$ |
+| $b$ $(1,0,0)$ → $c$ $(1,1,0)$ + $W^-$ | uni → bi | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $c + \,\, \ell^- + \bar\nu$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{cb}\rvert$ |
+| $t$ $(1,0,0)$ → $b$ $(1,0,0)$ + $W^+$ | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0 | $b + W^+$ | $W^+$ | allowed (dominant) | minimal mismatch; $\lvert V_{tb}\rvert\approx1$ |
+| $d$ $(1,1,1)$ + Sea (4 cores) → $u$ $(1,1,1)$ + $W^-$ | tri + sea | $\epsilon_-\to\epsilon_+$ triad transition | 4 | $u + W^-$ | $W^-$ | speculative | Sea supplies corridor, check energy budget |
 | $q$ + Sea → $q$ (same) + $Z$ | any | none | 4 | $Z$ | $Z$ | speculative | Neutral corridor, no flavor change |
-| $d$ (IMO) → $u$ (IMO) without $W$ | tri → tri | $\epsilon_-\to\epsilon_+$ transition | 0 | forbidden | — | no | Need $W$ to carry charge/spin |
-| $t$ (I--; weak-active sites $5\epsilon_+ + 1\epsilon_-$) → $b$ (I--; weak-active $2\epsilon_+ + 4\epsilon_-$) + $W^+$ → $b + e^+ + \nu_e$ | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0–4 (corridor draw) | $b + e^+ + \nu_e$ | $W^+$ forward corridor | allowed (dominant) | CKM $\lvert V_{tb}\rvert\approx1$; forward Sea braids assemble $W^+$; lepton leg is weak singlet ($6\epsilon_+ + 0\epsilon_-$) |
-| $t$ (I--; $5\epsilon_+ + 1\epsilon_-$) → $b$ (I--; $2\epsilon_+ + 4\epsilon_-$) + $W^+$ → $b + q\bar q$ (e.g., $u\bar d$ or $c\bar s$) | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0–4 | $b + q\bar q$ | $W^+$ forward corridor | allowed (dominant; SM $W\to q\bar q$ branching $\sim67\%$) | CKM $\lvert V_{tb}\rvert\approx1$; $q\bar q$ from $W^+$ (anti-down weak-active $4\epsilon_+ + 2\epsilon_-$, up $5\epsilon_+ + 1\epsilon_-$); charge hand-off via corridor. Branching fraction note is an SM reference point, not an $\mathbb{A}\mathbb{A}\mathbb{A}$-derived output. |
+| $d$ $(1,1,1)$ → $u$ $(1,1,1)$ without $W$ | tri → tri | $\epsilon_-\to\epsilon_+$ transition | 0 | forbidden | — | no | Need $W$ to carry charge/spin |
+| $t$ $(1,0,0)$; weak-active sites $5\epsilon_+ + 1\epsilon_-$ → $b$ $(1,0,0)$; weak-active $2\epsilon_+ + 4\epsilon_-$ + $W^+$ → $b + e^+ + \nu_e$ | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0–4 (corridor draw) | $b + e^+ + \nu_e$ | $W^+$ forward corridor | allowed (dominant) | CKM $\lvert V_{tb}\rvert\approx1$; forward Sea braids assemble $W^+$; lepton leg is weak singlet ($6\epsilon_+ + 0\epsilon_-$) |
+| $t$ $(1,0,0)$; $5\epsilon_+ + 1\epsilon_-$ → $b$ $(1,0,0)$; $2\epsilon_+ + 4\epsilon_-$ + $W^+$ → $b + q\bar q$ (e.g., $u\bar d$ or $c\bar s$) | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0–4 | $b + q\bar q$ | $W^+$ forward corridor | allowed (dominant; SM $W\to q\bar q$ branching $\sim67\%$) | CKM $\lvert V_{tb}\rvert\approx1$; $q\bar q$ from $W^+$ (anti-down weak-active $4\epsilon_+ + 2\epsilon_-$, up $5\epsilon_+ + 1\epsilon_-$); charge hand-off via corridor. Branching fraction note is an SM reference point, not an $\mathbb{A}\mathbb{A}\mathbb{A}$-derived output. |
 | $e^- (0\epsilon_+ + 6\epsilon_-)$ + $e^+ (6\epsilon_+ + 0\epsilon_-)$ → $Z$ → $\nu_\mu + \bar\nu_\mu$ | leptons | WK: $e^-$ has $0\epsilon_+ + 6\epsilon_-$; $e^+$ has $6\epsilon_+ + 0\epsilon_-$ | 0–4 | $\nu_\mu + \bar\nu_\mu$ | neutral corridor ($Z$) | allowed (NC) | $Z$ neutral; couples to L/R leptons; final $\nu,\bar\nu$ weak-active triads are $3\epsilon_-$ and $3\epsilon_+$ |
-| $\mu^-$ (Gen II, $0\epsilon_+ + 6\epsilon_-$) → $e^-$ (Gen I, $0\epsilon_+ + 6\epsilon_-$) + $\bar\nu_e + \nu_\mu$ | bi → tri | $\epsilon_-\to\epsilon_+$ transition on weak-coupling triad; shed outer binary | 0–4 | $e^- + \bar\nu_e + \nu_\mu$ | $W^-$ corridor | allowed (leptonic) | Shielding drop (Gen II→I); forward $W^-$ transfers charge; stripped core re-emerges as $\nu_\mu$, Sea/anti-sea absorbs balance ($\bar\nu_e$) |
+| $\mu^-$ (Gen II, $0\epsilon_+ + 6\epsilon_-$) → $e^-$ (Gen I, $0\epsilon_+ + 6\epsilon_-$) + $\bar\nu_e + \nu_\mu$ | $(1,1,0)\to(1,1,1)$ | $\epsilon_-\to\epsilon_+$ transition on weak-coupling triad; restore indexed support 3 | 0–4 | $e^- + \bar\nu_e + \nu_\mu$ | $W^-$ corridor | allowed (leptonic) | Shielding change (Gen II→I); forward $W^-$ transfers charge; stripped core re-emerges as $\nu_\mu$, Sea/anti-sea absorbs balance ($\bar\nu_e$) |
 | Neutron $n(udd)$ → Proton $p(uud)$ + $e^- + \bar\nu_e$ | tri → tri (one $d\to u$; two spectators) | $\epsilon_-\to\epsilon_+$ transition on one $d$ | 0–4 | $p + e^- + \bar\nu_e$ | $W^-$ forward corridor | allowed (`beta reaction`; SM label: `beta decay`) | spectators intact; $d\to u$ transition; lepton leg weak-active ($0\epsilon_+ + 6\epsilon_-$), $\bar\nu_e$ weak singlet ($3\epsilon_+$) |
 | $W$ corridor budget (generic) | — | — | 2 neutral braids + 6 excess decorations | returns neutral braids to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 neutral braids + ($9\epsilon_+ + 3\epsilon_-$) → +e; $W^-$: 2 neutral braids + ($3\epsilon_+ + 9\epsilon_-$) → –e; braids end neutral |
 
@@ -16075,7 +16070,7 @@ Notes:
 ###### Provenance
 
 - The target is **provenance**, not only bookkeeping: track every architrino's path through a reaction, so simulations can reproduce PDG observables from first principles.
-- Beyond individual architrinos, track **sub-assembly provenance**: entire Noether braids may transfer intact, detach outer binaries, dissociate, reassociate, or relock into different groupings while their architrino identities persist. Knowing which Noether braids move as units vs fragment gives insight into allowed channels and lifetimes.
+- Beyond individual architrinos, track **sub-assembly provenance**: entire Noether braids may transfer intact, detach declared indexed binary subassemblies, dissociate, reassociate, or relock into different groupings while their architrino identities persist. Knowing which Noether braids move as units versus fragment gives insight into allowed channels and lifetimes.
 - Conservation requires Electrino count in to equal Electrino count out, and likewise for Positrino count. A completed transmutation map must identify each architrino path from reactants to products.
 - The remaining spare-polarity question is where an unincorporated Electrino-Positrino pair goes after a reaction: neutral relock, maximal-curvature inward spiral, local photon-mode release, or another declared channel.
 
@@ -16139,28 +16134,30 @@ to satisfy $Z_{\mathrm{closure}}\le z_p$ at the chosen confidence level.
 Use the same overlap/holonomy machinery in the lepton-neutral sector with a different internal Hamiltonian and weaker exterior coupling. The detailed lepton closure model is integrated in:
 - [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md)
 
-#### Planck Scale Nested Shell Braid Alignment
+#### Mapping the Planck Scale to the A1 Geometry
 
-This chapter treats the Planck scale as an exploratory alignment-horizon problem for the nested shell braid rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed nested shell braid sector, then test which parts survive once full closure conditions are imposed.
+This chapter treats the Planck scale as an exploratory alignment-horizon problem for the A1 rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed A1 sector, then test which parts survive once full closure conditions are imposed.
 
-Its closest companions are [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/braid-a1-3-doubling-frequency-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md), [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
+Its closest companions are [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [A3.3 Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/braid-a3-3-doubling-frequency-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md), [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 
-The simple way to read the chapter is this: ordinary Planck formulas are not being used as standalone constants that already explain the world. They are being used as hard clues. If a nested shell braid really supplies the deepest stable clock-and-ruler standard, then the familiar Planck combinations should reappear as consequences of one extreme alignment branch, one action ledger, and one observer-export channel. If the constants can be fitted only one at a time, the mapping has failed.
+Here `A1` has only its prescribed taxonomy meaning: one complete Family-A braid with persistent binary indices $a\in\{1,2,3\}$, independently assignable positive radii $R_a$ and frequencies $f_a$, mutually orthogonal binary axes at $\lambda_A=0$, and axes that converge toward the group-translation direction as $\lambda_A\to1$. The axial half-separations $h_a$, transverse orbit radii $\rho_a$, phases $\phi_a$, and circulation rows remain binary coordinates; no equality, radius order, particle identity, stability, or retained branch follows from the member label. Every Planck, fermion, black-hole, and constant assignment below is therefore a conjecture about this prescribed chart. A same-record EOM-solver evolution that cannot retain the declared coordinate relations would falsify the physical A1 assignment.
+
+The simple way to read the chapter is this: ordinary Planck formulas are not being used as standalone constants that already explain the world. They are being used as hard clues. If an A1 really supplies the deepest stable clock-and-ruler standard, then the familiar Planck combinations should reappear as consequences of one extreme alignment branch, one action ledger, and one observer-export channel. If the constants can be fitted only one at a time, the mapping has failed.
 
 This keeps the claim level honest. The chapter preserves what Planck-unit reasoning gets right: it marks the point where localization, action, gravity, and signal speed stop being separable bookkeeping problems. The $\mathbb{A}\mathbb{A}\mathbb{A}$ addition is the recovery target: identify the physical branch whose delayed causal geometry makes those bookkeeping limits show up.
 
 ##### Thesis
 
-This chapter maps the Planck scale into nested shell braid geometry and dynamics. The inherited Planck formulas are used as constraints and comparison targets, not as settled ontology. The immediate aim is to identify which geometric quantities, delay-feedback conditions, and alignment variables would have to be derived before the Planck scale can be claimed as a nested shell braid closure result.
+This chapter maps the Planck scale into A1 geometry and dynamics. The inherited Planck formulas are used as constraints and comparison targets, not as settled ontology. The immediate aim is to identify which geometric quantities, delay-feedback conditions, and alignment variables would have to be derived before the Planck scale can be claimed as an A1 closure result.
 
-We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of nested shell braid assemblies in the Noether sea:
+We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of A1 assemblies in the Noether sea:
 
 >
 > **Working Thesis (Planck Alignment Horizon).**
 >
-> A nested shell braid reaches the Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
+> An A1 reaches the proposed Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
 > 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving new one-way causal updates ahead of the forward edge (local horizon behavior).
 > 2. The geometry collapses from a 3D precessing oblate spheroidal envelope (fermion-like) to a 2D, co-planar disk (boson-like).
 > 3. In the planar limit, the combined in-plane motion outruns $c_f$, so the emission history forms a Mach-wedge causal wake with half-angle
@@ -16183,7 +16180,7 @@ These identifications are **conjectured mappings**, not definitions. They must e
 
 In plain terms, the Planck scale is a **dynamic alignment horizon**, not a minimal length by fiat: under extreme stress the assembly’s internal geometry snaps into a universal, planar lock, forward-sector updates are starved, and no smaller stable mode remains.
 
-This also fixes how Planck-unit language should be read. The Planck relations are benchmark natural measures, not evidence that the Euclidean void is pixelated or that substrate motion is discontinuous. They become physically meaningful only when a stable assembly supplies the clock, ruler, and closed-cycle action channel that can instantiate the corresponding cadence, radius, and action. The Planck-alignment program therefore has to derive those quantities from one retained nested shell braid branch, rather than treating $\ell_P$, $t_P$, or $h$ as primitive measuring devices.
+This also fixes how Planck-unit language should be read. The Planck relations are benchmark natural measures, not evidence that the Euclidean void is pixelated or that substrate motion is discontinuous. They become physically meaningful only when a stable assembly supplies the clock, ruler, and closed-cycle action channel that can instantiate the corresponding cadence, radius, and action. The Planck-alignment program therefore has to derive those quantities from one retained A1 branch, rather than treating $\ell_P$, $t_P$, or $h$ as primitive measuring devices.
 
 ##### Operational Probing Limit
 
@@ -16206,9 +16203,9 @@ E_{\mathrm{cross}}^2 \sim \frac{\hbar c_f^5}{2G},
 \ell_{\mathrm{probe,min}} \sim O(\ell_P)
 $$
 
-Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This supports the interpretation of $\ell_P$ as the observed trace of a nested shell braid alignment horizon rather than as proof that spacetime is made of smaller static beads.
+Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This motivates testing $\ell_P$ as the observed trace of an A1 alignment horizon rather than treating it as proof that spacetime is made of smaller static beads.
 
-In plain terms, the probe argument says that "looking smaller" is not a neutral act. A higher-energy probe both sharpens the wavelength and loads more stress into the region being probed. The observed lower bound is therefore a joint readout of resolution, energy loading, and horizon-facing response. In this chapter that joint readout becomes a branch test: the nested shell braid account must explain why the same attempted compression becomes alignment or horizon behavior instead of an ordinary smaller ruler.
+In plain terms, the probe argument says that "looking smaller" is not a neutral act. A higher-energy probe both sharpens the wavelength and loads more stress into the region being probed. The observed lower bound is therefore a joint readout of resolution, energy loading, and horizon-facing response. In this chapter that joint readout becomes a branch test: the A1 account must explain why the same attempted compression becomes alignment or horizon behavior instead of an ordinary smaller ruler.
 
 The same operational limit can be written as a generalized-uncertainty comparison. A probe with momentum uncertainty $\Delta p$ carries an ordinary localization term and a gravitational back-action term:
 $$
@@ -16261,22 +16258,22 @@ approaches $c^5/G$ when $M$ is estimated by the Planck mass, but that substituti
 - In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are component-speed saturation statements in the terminal alignment regime.
 - The statement "$v_{\text{eff}} > c_f$" refers to a **combined in-plane effective motion** used for Mach-wedge causal geometry, not a claim that either component speed is individually $> c_f$.
 - The local one-way starvation condition begins when a forward component approaches $c_f$; the Mach-wedge condition is the stronger combined-speed condition $v_{\text{eff}}>c_f$.
-- The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics)).
+- The CFT-exterior role label "binary 3 $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics)).
 
 ---
 
-##### What Planck Units Imply About the Outer Binary
+##### What Planck Units Imply About the binary 3
 
 We treat the Planck relations as constraints on a **specific alignment geometry**, not as abstract dimensional coincidences. Using $f_P \ell_P = c$ with $c \approx c_f$ and the circular orbit relation $v = 2\pi R f$, the aligned state ($v_{\text{align}} = c_f$, $f_{\text{align}} = f_P$) gives:
 $$
 2\pi R_{\text{align}} f_P = c_f \quad \Rightarrow \quad 2\pi R_{\text{align}} = \ell_P
 $$
-So the Planck length maps to the **outer circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
+So the Planck length maps to the **declared alignment circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
 
 With $E = h f$, the action per cycle is $S = E/f = h$; here $h$ is the action increment per unit frequency (per cycle), so the $2\pi$ factor belongs to the geometry (circumference), not the constant.
 Outside the alignment point, the $R$–$f$ mapping is not fixed by kinematics alone; it requires the full delay-feedback dynamics (i.e., $v(R)$ from the equations of motion).
 
-**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the outer orbit ($R_{\text{align}}^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
+**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the declared reference orbit ($R_{\text{align}}^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
 $$
 G \propto \frac{c_f^3 (\text{alignment geometry})}{h}
 $$
@@ -16289,19 +16286,19 @@ This leaves three coherent origin stories to keep in view:
 3. **Three-constant ontology:** $c_f$, $h$, and $G$ are independent; the proportional form is a dimensional coincidence or a near-alignment approximation.
 We keep these as open threads while we test whether alignment alone can lock the scale.
 
-###### Planck Units as Outer-Binary Mappings (Alignment State)
+###### Planck Units as binary-3 Mappings (Alignment State)
 
-| Planck Unit | Expression | Cascade | Outer-binary mapping (alignment interpretation) |
+| Planck Unit | Expression | Cascade | binary-3 mapping (alignment interpretation) |
 | --- | --- | --- | --- |
 | Frequency $f_P$ | $f_P$ | Start from measurable cadence; sets the clock | Alignment orbital cadence in Hz (cycles per second). |
 | Energy $E_P$ | $E_P = h f_P$ | Energy from Planck frequency | Action-per-cycle scale at alignment. |
-| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | Outer-binary **circumference** at alignment ($R_{\text{align}} = \ell_P / 2\pi$). |
-| Radius $R_{\text{align}}$ | $R_{\text{align}} = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the outer binary. |
+| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | binary-3 **circumference** at alignment ($R_{\text{align}} = \ell_P / 2\pi$). |
+| Radius $R_{\text{align}}$ | $R_{\text{align}} = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the binary 3. |
 | Alignment geometry $A_{\text{align}}$ | $A_{\text{align}} = R_{\text{align}}^2$ | Square of the alignment radius | Planar alignment area scale. |
 | Gravitation $G$ | $G \propto c_f^3 A_{\text{align}} / h$ | Express in terms of $A_{\text{align}}$ and $h$ | Medium compliance tied to the alignment geometry scale ($A_{\text{align}}$). |
 | Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether sea. |
 | Luminosity $L_P$ | $L_P = c^5 / G$ | Power scale from crossing time plus collapse bound; equivalently $F_P c$. | Maximum power-output recovery target for strong-field release, not a claim of continuous Planck-scale radiation. |
-| Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
+| Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned binary-3 motion at $c_f$. |
 | Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Corner case: an energy-equivalent scale for alignment, not a rest-mass of the planar, field-speed state. |
 | Time $t_P$ | $t_P = 1/f_P$ | Invert the cadence to get period | One orbital **period** at alignment if $f_{\text{align}} = f_P$. |
 | Temperature $T_P$ | $T_P = E_P / k_B$ | Convert energy to temperature | Effective temperature of alignment-scale excitations. |
@@ -16312,7 +16309,7 @@ We keep these as open threads while we test whether alignment alone can lock the
 
 ###### Effective Forward Speed (Necessary Condition)
 
-For an architrino on the forward edge of the Outer binary, define
+For an architrino on the forward edge of the binary 3, define
 
 $$
 v_{\text{eff}}(\theta) \;=\; \bigl|\mathbf{v}_{\text{trans}} + \mathbf{v}_{\text{orb}}^{\text{tan}}(\theta)\bigr|
@@ -16348,7 +16345,7 @@ $$
 \Phi_n \equiv \omega_n \Delta t_{\text{rt}} + \phi_{\text{geom}}(n) = 2\pi k_n
 $$
 
-for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip delay and $\phi_{\text{geom}}$ encodes geometric phase due to nested shell braid structure.
+for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip delay and $\phi_{\text{geom}}$ encodes geometric phase due to A1 structure.
 
 > **Working hypothesis (Terminal Mode):**
 > There exists a final mode $n_{\text{max}}$ in which:
@@ -16391,13 +16388,13 @@ In this causal-wake framing:
 ##### Discrete Ladder and Phase-Slip Dynamics (Hypothesis)
 
 > **Working Hypothesis (Discrete Ladder).**
-> The nested shell braid supports a discrete set of delay-locked modes indexed by $n$, each with characteristic radius $r_n$, frequency $\omega_n$, and delay $\Delta t_n = r_n/c_f$. Stability requires a phase-closure condition between orbital motion and causal wake.
+> The A1 supports a discrete set of delay-locked modes indexed by $n$, each with characteristic radius $r_n$, frequency $\omega_n$, and delay $\Delta t_n = r_n/c_f$. Stability requires a phase-closure condition between orbital motion and causal wake.
 
 Under increasing translational stress or deepening gravitational potential:
 
 1. External stress or medium loading shifts the effective delay geometry, inducing a **phase lag** $\delta\phi$.
 2. When $\delta\phi > \delta\phi_{\text{crit}}(n)$, mode $n$ loses stability.
-3. The Outer binary **falls inward**; by angular-momentum conservation, $\omega$ rises.
+3. The binary 3 **falls inward**; by angular-momentum conservation, $\omega$ rises.
 4. The assembly **re-locks** onto a new mode $n+1$ with smaller $r_{n+1}$, higher $\omega_{n+1}$.
 
 This “ratchet” yields a **staircase** of quasi-stable plateaus in radius/frequency space.
@@ -16416,19 +16413,19 @@ then the “single top rung” picture must be modified or abandoned.
 
 We propose an effective spin/statistics mapping via a reduction in configuration-space structure.
 
-###### Fermionic Regime: 3D Precessing Nested Shell Braid
+###### Fermionic Regime: 3D Precessing A1
 
 In the low-energy / weak-alignment regime:
 
-- Inner, Middle, and Outer binaries occupy **non-coplanar planes**.
+- Binaries 1, 2, and 3 occupy **non-coplanar planes**.
 - Total angular momentum **J** is fixed (no external torque), but the normals of the three support-row planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
 - The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
 
-> **Hypothesis:** The effective orientation space of such a nested shell braid behaves like an $SU(2)$-type double cover of spatial rotations:
+> **Hypothesis:** The effective orientation space of such an A1 behaves like an $SU(2)$-type double cover of spatial rotations:
 > a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.
 > This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
 
-A rigorous mapping from the detailed nested shell braid phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
+A rigorous mapping from the detailed A1 phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
 
 ###### Bosonic Regime: Fully Aligned Planar Disk
 
@@ -16461,9 +16458,9 @@ Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to 
 
 ###### Minimal Cycle Action: $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text{align}}$, and $h$
 
-Let $I$ denote the radian-normalized total rotational action of a nested shell braid assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
+Let $I$ denote the radian-normalized total rotational action of an A1 assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
 
-Because a nested shell braid can carry several internal frequency rows, $\mathcal{A}_{\text{cycle}}$ is defined on a closed return of the retained branch ledger, not on one chosen component frequency by itself. Component frequencies may coincide, lock in rational ratios, or remain distinct inside the branch. The $h$ mapping asks whether the recordable closed return exports one universal action increment after the full phase, causal-root, energy, and wake rows close.
+Because an A1 can carry several internal frequency rows, $\mathcal{A}_{\text{cycle}}$ is defined on a closed return of the retained branch ledger, not on one chosen component frequency by itself. Component frequencies may coincide, lock in rational ratios, or remain distinct inside the branch. The $h$ mapping asks whether the recordable closed return exports one universal action increment after the full phase, causal-root, energy, and wake rows close.
 
 - For generic modes $n$, $I(n)$ and $\mathcal{A}_{\text{cycle}}(n)$ depend on axial structure and environment.
 - For the Planck alignment state $n_{\text{max}}$, we expect a **universal attractor** dominated by:
@@ -16494,7 +16491,7 @@ Let
 $$
 Q_{\mathrm{align}}
 $$
-denote the retained topological and phase-lock data of the aligned nested shell braid branch: winding class, layer-lock integers, chirality sign if retained, and the active causal-root ledger over one cycle. A useful theorem target is a bound of the form
+denote the retained topological and phase-lock data of the aligned A1 branch: winding class, layer-lock integers, chirality sign if retained, and the active causal-root ledger over one cycle. A useful theorem target is a bound of the form
 $$
 \mathcal{A}_{\text{cycle}}[\Gamma]
 \ge
@@ -16527,7 +16524,7 @@ remains only a dimensional and operational mapping rather than a dynamical deriv
 Define
 
 $$
-R_{\text{align}} \equiv r_{\text{Outer}}(n_{\text{max}})
+R_{\text{align}} \equiv r_3(n_{\text{max}})
 $$
 
 Let $\ell_P^{\text{(emp)}}$ be the standard Planck length defined operationally by GR/QM constants (using $h = 2\pi\hbar$ with $f$):
@@ -16556,7 +16553,7 @@ Our program is to compute $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text
 Qualitatively, gravitational coupling strength reflects the **elastic response of the Noether sea**:
 
 > **Heuristic View:**
-> $G$ is inversely related to the **stiffness** of nested shell braid assemblies in the Noether sea against being driven toward the alignment phase. High energy density in aligned braids deforms the surrounding Noether sea, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
+> $G$ is inversely related to the **stiffness** of A1 assemblies in the Noether sea against being driven toward the alignment phase. High energy density in aligned braids deforms the surrounding Noether sea, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
 
 A full derivation of $G$ from medium compliance is still to be done; the formula above gives a target relationship.
 
@@ -16566,11 +16563,11 @@ A full derivation of $G$ from medium compliance is still to be done; the formula
 
 With Planck alignment as an endpoint rather than a point singularity:
 
-- Black-hole-like objects are interpreted as regions where large numbers of nested shell braids are **driven close to or into** the alignment state.
+- Black-hole-like objects are interpreted as regions where large numbers of A1 braids are **driven close to or into** the alignment state.
 - The horizon-adjacent interface is then modeled by patches whose characteristic scale is $R_{\text{align}}$, while any core-volume packing interpretation remains a separate conjecture.
 
 > **Conjecture (Condensate-Like Aligned Phase).**
-> We conjecture that black-hole cores correspond to a **condensate-like phase** dominated by planar-aligned, effectively bosonic nested shell braids. This analogy is structural:
+> We conjecture that black-hole cores correspond to a **condensate-like phase** dominated by planar-aligned, effectively bosonic A1 braids. This analogy is structural:
 > - Many nearly identical aligned assemblies occupy a low-dimensional configuration manifold (planar disk orientation).
 > - Entropy and area scaling would have to emerge from counting alignment-compatible boundary labels on horizon-adjacent surfaces, not from arbitrary volume packing.
 
@@ -16592,11 +16589,11 @@ a_{\theta}
 \longrightarrow
 \frac{1}{4}
 $$
-where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $A_{\mathrm{eff}}(U)\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal nested shell braid alignment supplies a universal local entropy density, the associated patch-area normalization, and correlations between neighboring patches that do not restore volume or arbitrary history-length scaling.
+where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $A_{\mathrm{eff}}(U)\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal A1 alignment supplies a universal local entropy density, the associated patch-area normalization, and correlations between neighboring patches that do not restore volume or arbitrary history-length scaling.
 
 We deliberately use “condensate-like” here; a full condensate claim would require:
 
-- a derived many-body Hamiltonian for aligned nested shell braids,
+- a derived many-body Hamiltonian for aligned A1 braids,
 - demonstration of macroscopic occupation of a single mode,
 - consistent thermodynamic treatment (BH entropy, specific heat, etc.).
 
@@ -16613,7 +16610,7 @@ Those steps remain open.
 
 2. **Universality of $R_{\text{align}}$.**
    The alignment radius must be a property of the **medium**:
-   - Different nested shell braid assembly variants (electron-like, muon-like, quark-like) driven to alignment should converge to the same $R_{\text{align}}$ within small tolerances.
+   - Different A1 assembly variants (electron-like, muon-like, quark-like) driven to alignment should converge to the same $R_{\text{align}}$ within small tolerances.
    - Large species-dependence would undermine the identification with a universal $\ell_P$.
 
 3. **Uniqueness of Aligned Mode.**
@@ -19123,7 +19120,7 @@ This also separates physics from legal or moral personhood. $\mathbb{A}\mathbb{A
 
 ### Primitive Metastability
 
-The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) architecture, every Noether braid contains a middle binary at the field-speed hinge $v=c_f$, while [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
+The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) architecture, a declared binary channel may approach the field-speed fold $v=c_f$. [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics) treats a controlled crossing of that fold as a candidate discrete action transaction, but the taxonomy assigns no fixed binary to the role and no retained mechanism has yet established ordinary assembly metastability.
 
 This does not make every Noether braid an agent. A bare Noether braid has a threshold-sensitive internal hinge, but it has not yet been shown to set its own threshold, hold a bias, or reuse feedback. The philosophical ladder is:
 
@@ -19134,7 +19131,7 @@ This does not make every Noether braid an agent. A bare Noether braid has a thre
 | Decider | Functional decision exists when an assembly can set, hold, update, and reuse bias states that change later basin weights. |
 | Mature agent | Compatibilist agency exists when many such controlled thresholds are integrated with memory, feedback, and record-making action. |
 
-The most primitive assembly that can make a decision is therefore not the first metastable assembly. It is the first assembly whose internal preparation changes the later basin distribution under the same external boundary context. A metastable middle binary supplies the possibility of alternatives; controlled threshold placement supplies the decision.
+The most primitive assembly that can make a decision is therefore not the first metastable assembly. It is the first assembly whose internal preparation changes the later basin distribution under the same external boundary context. A metastable indexed binary channel could supply the possibility of alternatives; controlled threshold placement would supply the decision.
 
 Reaction-channel multiplicity belongs one rung lower. A reactant configuration may have many possible exits because binary energies and phases, causal-wake phase history, Noether braid state, photon paths, thermal state, and Noether sea conditions vary across events. That is reaction provenance, not a decision, unless an assembly prepares and holds an internal bias that changes the basin distribution under the same $c_\Omega(T)$.
 
@@ -19202,7 +19199,7 @@ The He-Rb-He example supplies a minimal worked foothold for threshold tuning. It
 | **Compatibilist Agency** | Allowed when complex assemblies navigate deterministic dynamics through internal state and feedback |
 | **Mechanism of "Decision"** | Threshold tuning + feedback + memory in networked assemblies |
 | **Origin-of-Life Language** | Primitive responsiveness and reaction-channel multiplicity are not agency; the technical boundary is internally maintained basin control under fixed external context |
-| **Metastability Substrate** | Field-speed middle binary in the Noether braid supplies a primitive threshold resource, but not agency by itself |
+| **Metastability Substrate** | A declared binary channel near the field-speed fold supplies a candidate threshold resource, but not agency by itself |
 | **Validation Target** | Fixed boundary context plus different internal preparations must produce a measurable basin-weight shift with work, dissipation, and hold time recorded |
 | **Switch** | Bias-to-state mechanism; computed example currently uses He-Rb-He |
 | **Decider** | Candidate bias-setting architecture built from controlled thresholds, feedback, and memory |
@@ -20638,7 +20635,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The architectural move is not to quantize an independent spacetime manifold. The native layer is assembly dynamics with path history, causal roots, event ledgers, causal wakes, and Noether sea response. The metric is a recovered observer-level object. Quantum behavior is routed through basin measures, detector response, and path-history phase over the same underlying dynamics. The quantum-gravity problem becomes a recovery problem: one substrate must recover both effective metric behavior and quantum benchmark records.
 
-**Detailed architecture route.** The $\mathbb{A}\mathbb{A}\mathbb{A}$ route would relocate quantum-gravity and renormalizability pressure by denying that the Euclidean void is a continuum field that must itself be quantized. The effective metric called General Relativity would instead be a coarse-grained description of Noether sea middle and outer binary behavior, while gravitons would be collective deformation-wave excitations in an effective limit. That move only becomes closure if it derives the GR limit, recovers the controlled long-distance quantum correction to Newtonian gravity, identifies the ultraviolet cutoff from maximal-curvature assembly structure, and shows how singularity and high-frequency gravitational-wave behavior are replaced by finite substrate dynamics. Concrete falsifiers remain appropriate: data requiring independent degrees of freedom above the self-hit threshold, or preferred-frame tests inconsistent with the allowed leakage scale, would rule out this gravity-as-assembly-mechanics path.
+**Detailed architecture route.** The $\mathbb{A}\mathbb{A}\mathbb{A}$ route would relocate quantum-gravity and renormalizability pressure by denying that the Euclidean void is a continuum field that must itself be quantized. The effective metric called General Relativity would instead be a coarse-grained description of Noether sea response across indexed binary rows and externally exposed assembly envelopes, while gravitons would be collective deformation-wave excitations in an effective limit. That move only becomes closure if it derives the GR limit, recovers the controlled long-distance quantum correction to Newtonian gravity, identifies the ultraviolet cutoff from maximal-curvature assembly structure, and shows how singularity and high-frequency gravitational-wave behavior are replaced by finite substrate dynamics. Concrete falsifiers remain appropriate: data requiring independent degrees of freedom above the self-hit threshold, or preferred-frame tests inconsistent with the allowed leakage scale, would rule out this gravity-as-assembly-mechanics path.
 
 **Resolution tests.** Demand one shared closure record for gravitational redshift, Shapiro delay, lensing, perihelion precession, gravitational-wave propagation, quantum phase, detector records, and the controlled low-energy quantum correction to Newtonian gravity. Data requiring independent degrees of freedom above the self-hit threshold, or preferred-frame tests inconsistent with the allowed leakage scale, would falsify this route.
 
@@ -20764,7 +20761,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Information is not stored in an abstract wavefunction outside the event ledger. It is carried by path history, causal roots, horizon-scale boundary states, terminal alignment classes, radiation events, Noether sea updates, and release-channel ledgers. Entropy is a count of admissible records or alignments at the relevant boundary, not proof of fundamental information loss.
 
-**Detailed architecture route.** The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ closure is that black-hole information is stored and released through structured nested shell braid flows rather than erased. The event-horizon region would correspond to middle-binary behavior near $v=c_f$, while core microstate storage would involve maximal-curvature self-hit structures. Possible dark-photon or deformation-wave cascades should be treated as a mechanism proposal until their provenance, energy budget, and visible-sector handoff are derived. Under the closure-target discipline, island, replica-wormhole, and boundary-unitarity results are comparison mathematics and high-value consistency pressure, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. They show the kind of Page-curve or boundary-access recovery a mature black-hole account must match, but they do not decide the native mechanism. The Page curve would have to be recovered by showing how emitted assemblies preserve enough phase and axial-pattern information through declared Physical Observer records, finite boundary wake data, and release-channel ledgers, without invoking firewalls or hiding the mechanism in formal duality. The proposed zero-entropy limiting state is a separate high-risk closure target, not an established result.
+**Detailed architecture route.** The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ closure is that black-hole information is stored and released through structured Family-A flows rather than erased. The event-horizon region would correspond to a branch-derived indexed speed row near $v=c_f$, while core microstate storage would involve maximal-curvature self-hit structures. Possible dark-photon or deformation-wave cascades should be treated as a mechanism proposal until their provenance, energy budget, and visible-sector handoff are derived. Under the closure-target discipline, island, replica-wormhole, and boundary-unitarity results are comparison mathematics and high-value consistency pressure, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. They show the kind of Page-curve or boundary-access recovery a mature black-hole account must match, but they do not decide the native mechanism. The Page curve would have to be recovered by showing how emitted assemblies preserve enough phase and axial-pattern information through declared Physical Observer records, finite boundary wake data, and release-channel ledgers, without invoking firewalls or hiding the mechanism in formal duality. The proposed zero-entropy limiting state is a separate high-risk closure target, not an established result.
 
 **Resolution tests.** Resolution requires a counting scheme, a release-channel grammar, and a Page-curve-compatible or Page-curve-replacing observable story. It must track energy, momentum, angular momentum, recoil, and record provenance in the same ledger. Island and replica-wormhole results remain comparison pressure, not native ontology.
 
@@ -20854,7 +20851,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Late acceleration becomes a question about redshift, clock transport, Noether sea evolution, source history, Noether braid relaxation, and distance inference. The Euclidean void does not expand. The observer-facing quantities $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, and $w(z)$ are effective summaries of medium evolution, transport, and clock-rate comparison.
 
-**Detailed architecture route.** A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ reading treats dark-energy phenomenology as an effective summary of Noether sea evolution, clock-rate comparison, and relaxation of Noether braid assemblies in the Noether sea rather than as proof that the Euclidean void expands. On this path, high-curvature self-hit cores, source history, and outer-layer relaxation would have to generate the observed distance-redshift and growth signatures without introducing an unconstrained dark-pressure term. The strong version of this proposal remains a closure target: it must derive the measured near-$w=-1$ behavior, specify how local relaxation histories average into observer-facing cosmological parameters, and show which deviations in $w(z)$, supernova directionality, BAO anisotropy, and CMB/matter dipole consistency would diagnose medium evolution rather than a separate dark-energy substance.
+**Detailed architecture route.** A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ reading treats dark-energy phenomenology as an effective summary of Noether sea evolution, clock-rate comparison, and relaxation of Noether braid assemblies in the Noether sea rather than as proof that the Euclidean void expands. On this path, high-curvature self-hit cores, source history, and exterior-region relaxation would have to generate the observed distance-redshift and growth signatures without introducing an unconstrained dark-pressure term. The strong version of this proposal remains a closure target: it must derive the measured near-$w=-1$ behavior, specify how local relaxation histories average into observer-facing cosmological parameters, and show which deviations in $w(z)$, supernova directionality, BAO anisotropy, and CMB/matter dipole consistency would diagnose medium evolution rather than a separate dark-energy substance.
 
 **Resolution tests.** Use supernova light-curve time dilation, BAO, CMB distance priors, cosmic chronometers, weak lensing, growth data, supernova directionality, BAO anisotropy, and CMB/matter dipole consistency. The architecture must preserve the successful distance ladder while offering discriminating residuals.
 
@@ -20880,9 +20877,9 @@ Current physics already gets something important right here: the survey pipeline
 
 Standard repairs include supersymmetric cancellations, sequestering, unimodular gravity, anthropic landscape arguments, and modified-gravity decoupling schemes. These reduce parts of the pressure, but none is widely accepted as a clean mechanism rather than a relocation of the fine-tuning.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The architectural answer is level separation. Mode bookkeeping, continuum excess, boundary-sensitive effects, and observer-level vacuum language should not be promoted into a literal gravitating substrate energy density. The Noether sea response is a constitutive object, not a naive sum over field modes. The hierarchy becomes a quantitative shielding target: inner and middle binary structure must suppress effective large-scale exposure while preserving successful low-energy field calculations.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The architectural answer is level separation. Mode bookkeeping, continuum excess, boundary-sensitive effects, and observer-level vacuum language should not be promoted into a literal gravitating substrate energy density. The Noether sea response is a constitutive object, not a naive sum over field modes. The hierarchy becomes a quantitative shielding target: indexed binary structure must suppress effective large-scale exposure while preserving successful low-energy field calculations.
 
-**Detailed architecture route.** A possible $\mathbb{A}\mathbb{A}\mathbb{A}$ reframing treats the cosmological constant problem as a mismatch between QFT zero-point bookkeeping and the actual degrees of freedom available in the Noether sea. Space is not an empty stage in this ontology; the relevant question is how Noether braid assemblies in the Noether sea store, shield, recycle, and expose energy at the effective metric level. Absolute time, global polarity balance, and the field-speed limit $v=c_f$ may constrain how vacuum-like contributions enter outer-layer deformation, but this is not yet a completed solution. The hierarchy problem is reformulated as a quantitative shielding target: the theory must show whether inner and middle binary structure can suppress the effective large-scale energy density by the required $10^{120}$ factor while preserving successful low-energy field calculations. It must also supply an exposure rule for the slow sector, so that shielding does not erase the observed late-time stress signal.
+**Detailed architecture route.** A possible $\mathbb{A}\mathbb{A}\mathbb{A}$ reframing treats the cosmological constant problem as a mismatch between QFT zero-point bookkeeping and the actual degrees of freedom available in the Noether sea. Space is not an empty stage in this ontology; the relevant question is how Noether braid assemblies in the Noether sea store, shield, recycle, and expose energy at the effective metric level. Absolute time, global polarity balance, and the field-speed limit $v=c_f$ may constrain how vacuum-like contributions enter the exposed assembly envelope, but this is not yet a completed solution. The hierarchy problem is reformulated as a quantitative shielding target: the theory must show whether the indexed binary structure of a retained branch can suppress the effective large-scale energy density by the required $10^{120}$ factor while preserving successful low-energy field calculations. It must also supply an exposure rule for the slow sector, so that shielding does not erase the observed late-time stress signal.
 
 **Resolution tests.** Use Casimir-style boundary effects, radiative corrections, cosmological expansion constraints, weak-field gravity, and any derived exposure rule for the slow sector. Resolution must distinguish measured boundary phenomena from unrestricted vacuum-energy ontology.
 
@@ -20906,9 +20903,9 @@ Current physics already gets something important right here: the survey pipeline
 
 **Standard repairs.** Standard repairs include early dark energy, extra relativistic species, interacting dark sectors, modified recombination histories, and recalibration of the distance ladder. None has yet achieved broad acceptance without generating fresh tension elsewhere.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The Hubble tension is a possible comparison between sampling methods that probe different Noether sea environments and clock-rate histories, rather than immediate evidence for two literal expansion rates of the Euclidean void. Early-universe inferences could average over a denser or less-relaxed Noether sea state, while local distance ladders sample different outer-layer relaxation and clock calibration.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The Hubble tension is a possible comparison between sampling methods that probe different Noether sea environments and clock-rate histories, rather than immediate evidence for two literal expansion rates of the Euclidean void. Early-universe inferences could average over a denser or less-relaxed Noether sea state, while local distance ladders sample different exterior-region relaxation and clock calibration.
 
-**Detailed architecture route.** The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure path treats the Hubble tension as a possible comparison between sampling methods that probe different Noether sea environments and clock-rate histories, rather than as immediate evidence for two literal expansion rates of the Euclidean void. Early-universe inferences could average over a denser or less-relaxed Noether sea state, while local distance ladders could sample regions with different outer-layer relaxation and clock calibration. The required derivation is precise: the same Noether sea evolution model must reproduce the sound horizon, BAO ladder, supernova calibration, CMB-frame correction, bulk-flow residuals, and environment dependence without tuning each dataset independently. A useful falsifier would be the absence of the predicted environment-linked bifurcation and directional residuals after controlling for known survey systematics.
+**Detailed architecture route.** The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure path treats the Hubble tension as a possible comparison between sampling methods that probe different Noether sea environments and clock-rate histories, rather than as immediate evidence for two literal expansion rates of the Euclidean void. Early-universe inferences could average over a denser or less-relaxed Noether sea state, while local distance ladders could sample regions with different exterior-region relaxation and clock calibration. The required derivation is precise: the same Noether sea evolution model must reproduce the sound horizon, BAO ladder, supernova calibration, CMB-frame correction, bulk-flow residuals, and environment dependence without tuning each dataset independently. A useful falsifier would be the absence of the predicted environment-linked bifurcation and directional residuals after controlling for known survey systematics.
 
 **Resolution tests.** Use Cepheids, TRGB, strong-lens time delays, megamasers, supernovae, BAO, CMB, cosmic chronometers, local-flow maps, and environment-linked residuals. The same Noether sea evolution model must reproduce the sound horizon, BAO ladder, supernova calibration, CMB-frame correction, and bulk-flow residuals without tuning each dataset independently.
 
@@ -20960,7 +20957,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Inflation can be treated as an effective comparison framework rather than a required ontology. Horizon and flatness become early-state connectivity, thermalization, causal-history, and Noether sea transition problems. A candidate stronger route interprets inflation-like behavior as rapid Noether sea disturbance and relaxation driven by maximal-curvature cores, but that mechanism remains a proof target until it recovers the perturbation spectrum and reheating record.
 
-**Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, “inflation” is not driven by a separate inflaton field but by the dynamics of Noether braid assemblies inside supermassive black-hole cores. The interior of an SMBH maps naturally to an AdS-like region populated by maximal-curvature (self-hit) binaries; the event horizon is the AdS/CFT boundary where the middle binary layer locks to $v=c_f$ and mediates energy exchange with the exterior conformal spacetime. As infalling matter feeds the core, the inner binaries are compressed toward the smallest radii they can reach, pumping energy into the middle layer and forcing its radius to grow. Inside the black hole this manifests as coupled inflation/deflation cycles: outbound self-hit energy (inflation) paired with inbound partner energy (deflation), whereas outside the horizon the same energy release shows up as expansion versus contraction of ordinary Noether braid assembly distributions. Primordial inflation is therefore interpreted as the rapid outward propagation of Noether braid disturbances triggered when early-universe Planck cores were driven near their minimal size and then bled energy through the horizon, setting up the near-flat, homogeneous initial conditions without invoking a separate scalar potential $V(\phi)$. Gravitational-wave B-modes or non-Gaussian signatures would then trace back to episodic bursts of self-hit energy escaping the AdS core, providing a falsifiable handle on this black-hole-driven inflationary mechanism.
+**Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, “inflation” is not driven by a separate inflaton field but by the dynamics of Noether braid assemblies inside supermassive black-hole cores. The interior of an SMBH maps naturally to an AdS-like region populated by maximal-curvature self-hit binaries; the event horizon is the AdS/CFT boundary where a branch-derived indexed speed row locks to $v=c_f$ and mediates energy exchange with the exterior conformal spacetime. As infalling matter feeds the core, the indexed binaries carrying the self-hit role are compressed toward the smallest radii they can reach, routing energy into the branch-derived closure channel and changing its radius. Inside the black hole this manifests as coupled inflation/deflation cycles: outbound self-hit energy (inflation) paired with inbound partner energy (deflation), whereas outside the horizon the same energy release shows up as expansion versus contraction of ordinary Noether braid assembly distributions. Primordial inflation is therefore interpreted as the rapid outward propagation of Noether braid disturbances triggered when early-universe Planck cores were driven near their minimal size and then bled energy through the horizon, setting up the near-flat, homogeneous initial conditions without invoking a separate scalar potential $V(\phi)$. Gravitational-wave B-modes or non-Gaussian signatures would then trace back to episodic bursts of self-hit energy escaping the AdS core, providing a falsifiable handle on this black-hole-driven inflationary mechanism.
 
 **Resolution tests.** Use CMB acoustic peaks, scalar spectral index, non-Gaussianity, tensor bounds, spatial curvature, reheating constraints, and large-angle anomalies. Inflation is not refuted by this route unless the native early-state model recovers the same data.
 
@@ -21132,9 +21129,9 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Standard repairs.** Standard repairs begin with Planck quantization and continue through quantum field-theoretic regularization and renormalization. These succeed operationally, but they leave open whether the cutoff behavior is a mathematical prescription or evidence of underlying microstructure.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The UV catastrophe is evidence that continuum mode counting has exceeded its substrate-valid domain. Noether braid assemblies should impose a geometric cutoff at the maximal-curvature scale, with high-frequency excitations mapping to finite inner-binary configurations rather than arbitrarily small wavelengths.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The UV catastrophe is evidence that continuum mode counting has exceeded its substrate-valid domain. Noether braid assemblies should impose a geometric cutoff at the maximal-curvature scale, with high-frequency excitations mapping to finite maximal-curvature binary configurations rather than arbitrarily small wavelengths.
 
-**Detailed architecture route.** The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure path treats the UV catastrophe as evidence that continuum mode counting has exceeded its substrate-valid domain. Noether braid assemblies would have to impose a geometric cutoff at the maximal curvature radius $R_{\text{minlimit}}$, with high-frequency excitations mapping to finite inner-binary configurations rather than arbitrarily small wavelengths. This remains a derivation target: the theory must recover the Planck spectrum and show why finite-mode geometry supplies the correct saturation without becoming a post hoc quantization rule.
+**Detailed architecture route.** The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure path treats the UV catastrophe as evidence that continuum mode counting has exceeded its substrate-valid domain. Noether braid assemblies would have to impose a geometric cutoff at the maximal curvature radius $R_{\text{minlimit}}$, with high-frequency excitations mapping to finite maximal-curvature binary configurations rather than arbitrarily small wavelengths. This remains a derivation target: the theory must recover the Planck spectrum and show why finite-mode geometry supplies the correct saturation without becoming a post hoc quantization rule.
 
 **Resolution tests.** A successful derivation must recover the Planck spectrum and show why finite-mode geometry supplies the correct saturation without becoming a post hoc quantization rule. It must also connect the blackbody lesson to QFT regularization and vacuum-energy exposure without erasing low-energy successes.
 
@@ -21162,7 +21159,7 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Mass is an assembly response, not a primitive property of architrino primitives. The route is branch geometry, exposure maps, Noether sea response, shielding, and energy-ledger accounting. Standard Model point particles become effective labels for Noether braid assemblies and their axial structures. The Higgs is treated as a recovered sector-level mechanism that must be matched, not as final ontology.
 
-**Detailed architecture route.** From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the Hierarchy Problem is read as a scale-separation pressure created by extending point-particle, continuum-field integrals down to the Planck scale ($10^{-35}$ m). Standard Model point-particle labels are treated as effective descriptions of Noether braid assemblies and their axial structures, so the loop integrals of QFT must be recovered as finite assembly couplings with the background rather than accepted as literal infinite ontology. The candidate cutoff is the maximal-curvature radius (inner binary radius, $r_{inner}$), together with finite Noether braid density $\rho_{\text{NS}}$ and local energy-ledger saturation. In short, the Standard Model expectation $\delta m_H^2 \propto \Lambda^2$ would need to be replaced by a finite assembly cutoff fixed by geometry.
+**Detailed architecture route.** From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the Hierarchy Problem is read as a scale-separation pressure created by extending point-particle, continuum-field integrals down to the Planck scale ($10^{-35}$ m). Standard Model point-particle labels are treated as effective descriptions of Noether braid assemblies and their axial structures, so the loop integrals of QFT must be recovered as finite assembly couplings with the background rather than accepted as literal infinite ontology. The candidate cutoff is the maximal-curvature radius $R_{\text{minlimit}}$, together with finite Noether braid density $\rho_{\text{NS}}$ and local energy-ledger saturation. In short, the Standard Model expectation $\delta m_H^2 \propto \Lambda^2$ would need to be replaced by a finite assembly cutoff fixed by geometry.
 
 **Resolution tests.** Use known particle masses, Higgs couplings, electroweak precision tests, weak mixing, collider bounds, and parameter-ledger constraints. Mass-map closure cannot be claimed before branch constants and exposure maps are certified.
 
@@ -21188,9 +21185,9 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 Standard repairs include horizontal symmetries, Froggatt-Nielsen textures, texture-zero ansatze, GUT relations, and compositeness ideas. They organize possibilities, but none has yet produced an accepted, parameter-economical derivation of the observed spectrum.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Generations and mixing are routed to branch families, internal geometry, overlap integrals, axial-frame relations, weak-corridor exposure, and detector-level reconstruction. Three generations are candidate stable assembly attractor families, with mass hierarchy arising from different coupling to the middle binary layer. CKM versus PMNS structure should follow from geometric overlap in quark versus lepton assemblies, not from arbitrary matrix insertion.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Generations and mixing are routed to branch families, internal geometry, overlap integrals, axial-frame relations, weak-corridor exposure, and detector-level reconstruction. Three generations are candidate stable assembly attractor families, with mass hierarchy arising from different coupling to branch-derived support rows. CKM versus PMNS structure should follow from geometric overlap in quark versus lepton assemblies, not from arbitrary matrix insertion.
 
-**Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, flavor is attributed to **resonant harmonics** of the nested shell braid structure. Three generations arise as three stable assembly attractor families (Ground State, First Excited, Second Excited) with distinct internal phase-windings. The observed mass hierarchy reflects how strongly each family couples to the middle support layer. CKM versus PMNS structure follows from the **geometric overlap** between these harmonic shapes in quark versus lepton composites. Crucially, the CP-violating phase ($\delta_{CP}$) arises not from an arbitrary parameter but from the **interference of internal winding modes** (spirograph-like patterns), which generates a complex phase factor in the effective Hamiltonian. The falsifier is direct: if precision flavor data and mixing angles can be derived from the geometric ratios of nested shell braid radii (e.g., $m_\mu/m_e$) without free parameters, $\mathbb{A}\mathbb{A}\mathbb{A}$ is validated.
+**Detailed architecture route.** The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ flavor program asks whether **resonant harmonics** of a retained Noether-braid scaffold can supply three stable assembly-attractor families with distinct internal phase windings. This particle mapping does not assign A1 or any other taxonomy member. The observed mass hierarchy would reflect how strongly each family couples to its branch-derived support rows, while CKM versus PMNS structure would have to follow from the **geometric overlap** between derived harmonic states in quark versus lepton composites. The CP-violating phase ($\delta_{CP}$) is hypothesized to arise from interference of internal winding modes rather than an arbitrary primitive parameter. The falsifier is direct: if no retained scaffold yields the observed flavor and mixing data with a common, independently constrained parameter record, this harmonic route fails; a fit to an indexed radius tuple alone would not validate the theory.
 
 **Resolution tests.** Use quark masses, lepton masses, CKM/PMNS data, CP violation, neutrino oscillations, rare decays, and collider flavor constraints. The falsifier is an arbitrary matrix relabeling without branch-derived structure.
 
@@ -21300,7 +21297,7 @@ Standard repairs include raising the unification scale, adding protective symmet
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Proton stability is a topological and assembly-stability constraint. Baryon number corresponds to a Noether braid assembly motif whose axial ordering and cross-layer bonding are conserved under low-energy interactions in the Noether sea. Proton dissociation would require wholesale rethreading across the self-hit barrier, which should be energetically forbidden outside extreme core conditions.
 
-**Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, proton stability is a topological constraint: baryon number corresponds to a Noether braid assembly motif whose axial ordering and cross-layer bonding are conserved under all low-energy interactions in the Noether sea. Proton dissociation would require a wholesale re-threading of the inner and middle binaries across the self-hit barrier, a process energetically forbidden except in extreme core conditions. This makes the standard `proton decay` channels effectively absent in normal spacetime while allowing baryon number violation only inside maximal-curvature assemblies (e.g., black-hole cores). A falsifier is unambiguous: a confirmed `proton decay` channel under ordinary experimental conditions with a lifetime within reach of GUT expectations would contradict the $\mathbb{A}\mathbb{A}\mathbb{A}$ stability claim.
+**Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, proton stability is a topological constraint: baryon number corresponds to a Noether braid assembly motif whose axial ordering and cross-layer bonding are conserved under all low-energy interactions in the Noether sea. Proton dissociation would require a wholesale re-threading of the indexed binaries carrying the self-hit and closure roles in the declared branch record, across the self-hit barrier, a process energetically forbidden except in extreme core conditions. This makes the standard `proton decay` channels effectively absent in normal spacetime while allowing baryon number violation only inside maximal-curvature assemblies (e.g., black-hole cores). A falsifier is unambiguous: a confirmed `proton decay` channel under ordinary experimental conditions with a lifetime within reach of GUT expectations would contradict the $\mathbb{A}\mathbb{A}\mathbb{A}$ stability claim.
 
 **Resolution tests.** A confirmed ordinary-regime proton dissociation channel with a lifetime within reach of GUT expectations would contradict the stability claim. A successful theory would instead derive structural protection across accessible ordinary-spacetime regimes while allowing only declared extreme-core exceptions.
 
@@ -21328,7 +21325,7 @@ Standard repairs include improved top-mass extraction, new heavy states that sta
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Vacuum instability is treated as a warning against extrapolating a continuum Higgs potential beyond its domain. The Noether sea and assembly cores impose bounded energy density and a hard microphysical cutoff. What appears as a negative high-energy potential in an effective field theory may instead be a phase-transition boundary between assembly configurations, not a catastrophic lower vacuum of the Euclidean void.
 
-**Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, "vacuum instability" is an artifact of extrapolating a continuum Higgs potential beyond its domain: the Noether sea has a hard microphysical cutoff at the self-hit scale, and assembly cores enforce a bounded energy density so the effective quartic never runs past the stability envelope. What appears as a negative high-energy potential in the EFT is reinterpreted as a phase-transition boundary between assembly configurations rather than a true catastrophic vacuum. Bubble nucleation is thus suppressed if the Noether sea cannot support a lower-energy phase disconnected from the coupled nested shell braid configuration; transitions require coherent rethreading across layers that is dynamically forbidden outside extreme cores. A falsifier would be unambiguous evidence of metastable vacuum decay or Higgs-field fluctuations inconsistent with a bounded assembly cutoff.
+**Detailed architecture route.** The $\mathbb{A}\mathbb{A}\mathbb{A}$ candidate interpretation is that "vacuum instability" may reflect extrapolation of a continuum Higgs potential beyond its domain. The required mechanism is a derived microphysical cutoff and bounded assembly energy density; neither is established by a braid-taxonomy label. What appears as a negative high-energy potential in the EFT would instead mark a phase-transition boundary between retained assembly configurations. Bubble nucleation would be suppressed only if the Noether sea cannot support a lower-energy phase disconnected from the coupled candidate braid record and if coherent rethreading across persistent support indices is dynamically excluded outside extreme cores. A falsifier would be unambiguous evidence of metastable vacuum decay or Higgs-field fluctuations inconsistent with a bounded assembly cutoff.
 
 **Resolution tests.** Evidence of metastable vacuum transition or Higgs-field fluctuations inconsistent with a bounded assembly cutoff would falsify the route. A successful account would derive the cutoff and reproduce the measured Higgs/top constraints.
 
@@ -21382,9 +21379,9 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 Standard repairs are not so much competing theories as competing analytic tools: lattice gauge theory, effective string pictures, large-$N$ reasoning, dual-superconductor models, and various nonperturbative continuum truncations. These illuminate the structure, but none yet counts as the accepted closed proof.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Confinement is routed to branch topology, color exposure, allowed assemblies, energy ledgers, and residual-routing constraints. Quark-like decorations are partial nested shell braid fragments that exist as shared boundary conditions inside larger assemblies. Separating them should stretch middle-binary alignment response and generate a restoring tension. The mass gap follows, if the route succeeds, from the minimum energy required to excite a stable closed nested shell braid loop in the Noether sea.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Confinement is routed to branch topology, color exposure, allowed assemblies, energy ledgers, and residual-routing constraints. Quark-like decorations are candidate partial braid subassemblies that would exist as shared boundary conditions inside larger assemblies; no taxonomy member is assigned. Separating them should stretch a derived alignment-response channel and generate a restoring tension. The mass gap follows, if the route succeeds, from the minimum energy required to excite a stable closed Noether-braid loop in the Noether sea.
 
-**Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, confinement is a mechanical constraint: quark-like decorations are partial nested shell braid fragments that only exist as shared boundary conditions within a larger assembly, so separating them forces the Noether sea to stretch the middle-binary alignment response and generates a linear restoring tension. The mass gap follows from the minimum energy required to excite a stable, closed nested shell braid loop in the Noether sea, so there are no arbitrarily soft gluonic modes in isolation. This recasts confinement and the gap as consequences of assembly geometry rather than gauge-field topology. A falsifier would be a confirmed observation of free, asymptotic color charge or a glueball spectrum with no finite gap in the pure-gauge limit.
+**Detailed architecture route.** The candidate confinement mechanism is an assembly constraint: quark-like decorations would be partial braid subassemblies that exist only as shared boundary conditions within a larger assembly, so separation would stretch a branch-derived alignment-response channel and generate a linear restoring tension. The mass gap would follow from the minimum energy required to excite a stable, closed Noether-braid loop in the Noether sea, leaving no arbitrarily soft gluonic modes in isolation. This is an unproved assembly-geometry route, not a consequence of A1 coordinates. A falsifier would be a confirmed observation of free, asymptotic color charge or a glueball spectrum with no finite gap in the pure-gauge limit.
 
 **Resolution tests.** Use lattice benchmarks, hadron spectra, form factors, parton distribution functions, jets, nuclear binding, glueball searches, and exotic-hadron data. The falsifier is confirmed free asymptotic color charge or a pure-gauge spectrum with no finite gap.
 
@@ -21619,11 +21616,11 @@ The thermal clue was concrete. Energy exchange could not be treated as a smooth 
 
 The broader warning was that unbounded extrapolation can turn a good effective formula into a false ontology. Rayleigh-Jeans reasoning failed when a continuum count was extended without the physical action carrier that cuts off the ultraviolet side of the spectrum. The same pattern later reappears in field-theory divergences and curvature singularities: a mathematical description that works in its domain is pushed beyond the carrier conditions that made it meaningful. The Architrino architecture response is not to discard successful formulas. It is to ask which finite branch record, causal-wake regularization, or maximum-curvature regime replaces the divergent extrapolation.
 
-The Planck scale sharpens the same point. In this reading it is a dynamic alignment-horizon problem, not evidence that the Euclidean void is pixelated. Planck-unit relations become physically meaningful only when a stable assembly supplies the clock, ruler, and closed-cycle action channel that can instantiate the cadence, radius, and action. The target is therefore a retained nested shell braid branch whose delay-feedback loop reaches a marginally stable alignment and exports $h$, $\ell_P$, and the corresponding probing limit as one record, not three primitive measuring devices.
+The Planck scale sharpens the same point. In this reading it is a dynamic alignment-horizon problem, not evidence that the Euclidean void is pixelated. Planck-unit relations become physically meaningful only when a stable assembly supplies the clock, ruler, and closed-cycle action channel that can instantiate the cadence, radius, and action. The target is therefore a retained candidate constrained to the prescribed Family-A response—mutually orthogonal binary axes at $\lambda_A=0$ converging toward the group-translation direction as $\lambda_A\to1$—whose delay-feedback loop reaches a marginally stable alignment and exports $h$, $\ell_P$, and the corresponding probing limit as one record, not three primitive measuring devices. The physical assignment and retention do not follow from the taxonomy.
 
 That distinction should be stated carefully. A deeper mechanism need not choose between continuous source-level evolution and discrete observer-level quantum records. The stronger theorem target is sharper than discreteness: define an action-cycle update on retained path history, show which stable cycles become recordable exchanges, and recover a uniform action scale in the relevant regime. In the language of the Architrino architecture, Planck's clue is not that motion itself must be discontinuous; it is that any accepted quantum of action must be derived from retained action bookkeeping, a stable branch condition, and a physical record channel.
 
-In the nested shell braid setting, that is not a single-frequency oscillator problem. A retained braid can carry several internal frequency rows; those rows may coincide, lock in rational ratios, or remain distinct while still closing one physical record cycle.
+In the Family-A setting, that is not a single-frequency oscillator problem. A retained braid can carry several internal frequency rows; those rows may coincide, lock in rational ratios, or remain distinct while still closing one physical record cycle.
 
 The object to account for is the full closed-return ledger: over the recordable branch cycle, the integrated action must recover $h$ as a uniform adjacent increment across the accepted branch classes. The existence of multiple internal cadences is therefore not a defect in the architecture. It is the mechanism by which the architecture has to earn Planck's constant from branch closure rather than assume it as an external quantum postulate.
 
@@ -22191,7 +22188,7 @@ After electroweak unification fixed the gauge-facing grammar, the generation pro
 
 The standard account explains many effects after the masses and mixing parameters are supplied. A muon, tau, strange quark, charm quark, bottom quark, or top quark has reaction channels whose rates can be calculated from couplings, matrix elements, and available phase space. That is an enormous achievement. But it is not a derivation of generation. The rest-energy hierarchy and the Yukawa pattern enter as empirical structure rather than as a visible assembly mechanism.
 
-The proposed generation map is direct. It treats a generation as a shielding-coherence class. Generation I would keep the full nested shell braid shielding record, meaning the Noether braid's three ordered radial support bands remain intact. Generation II would have depleted outer shielding. Generation III would have depleted outer and middle shielding, leaving the deepest core energy most exposed while the same six-site axial layer continues to carry the gauge-facing record. Higher rest energy and shorter lifetime would then be two faces of the same shielding loss rather than separate mysteries.
+The proposed generation map treats a generation as a shielding-coherence class over the persistent binary indices. Generation I would carry support vector $(1,1,1)$. Generation II would deplete one declared indexed support, and Generation III would deplete two, while the same six-site axial layer continues to carry the gauge-facing record. The source record must state which indexed supports are depleted; the taxonomy does not infer that assignment from radius order. Higher rest energy and shorter lifetime would then be two faces of the same shielding loss rather than separate mysteries.
 
 The dissociation intuition should be stated carefully. The heavier branch does not dissociate merely because it is "high energy." It dissociates because the shielding support that lets the assembly remain locked is depleted. Perturbations reach the weak-coupling triad faster, relocking becomes harder, and reaction corridors open more readily. The observed reaction is then the relaxation of a metastable assembly into lower-generation products plus neutral or weak-sector provenance products that carry away the conserved balance.
 
@@ -22588,7 +22585,7 @@ The Architrino architecture comparison is direct. Holography found compression; 
 
 In that candidate map, the exterior side remains observer-facing volumetric behavior; the horizon interface is the symmetry-breaking threshold; and the interior is modeled as a possible self-hit branch regime with altered clock export. That identification is not free: if the strong-field interior is governed by self-hit dynamics, it inherits the same Jacobian-floor, transversality, regularization, and a priori energy-bound condition stated in the front-matter wall. The inward/outward inflation and deflation analogy, along with CFT-like and AdS-like language, is bridge language for the transition rather than the ontology itself.
 
-The restraint applies to the strongest entropy tools as well. Ryu-Takayanagi surfaces, islands, replica wormholes, and Page-curve constructions are comparison mathematics showing how controlled holographic settings organize information recovery. They should not be imported as horizon ontology. The native target is narrower: derive the horizon-interface regime from nested shell braid alignment and Noether sea dynamics, then test which boundary-encoding and Page-compatible accounting laws survive as downstream consistency requirements.
+The restraint applies to the strongest entropy tools as well. Ryu-Takayanagi surfaces, islands, replica wormholes, and Page-curve constructions are comparison mathematics showing how controlled holographic settings organize information recovery. They should not be imported as horizon ontology. The native target is narrower: derive the horizon-interface regime from Family-A alignment and Noether sea dynamics, then test which boundary-encoding and Page-compatible accounting laws survive as downstream consistency requirements.
 
 The rational miss is that holography became mathematically strongest as duality. In controlled settings, especially AdS/CFT, the boundary description could be made exact without specifying a physical mechanism underneath it. That success pushed the field toward boundary geometry, quantum information, and dual descriptions. It did not require asking what physical assembly process makes a horizon into an encoding interface in the first place.
 

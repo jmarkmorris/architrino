@@ -1,8 +1,10 @@
-# Nested Shell Braid Action-Increment Protocol
+# A1 Action-Increment Protocol
 
-This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](run-protocols.md) and [Convergence Tests](convergence-tests.md) to the question left open by [Nested Shell Braid Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), [Noether Braid Doubling-Frequency Resonance Lock](../../noether-braid/braid-a1-3-doubling-frequency-lock.md), [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
+This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](run-protocols.md) and [Convergence Tests](convergence-tests.md) to the question left open by [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), [A3.3 Doubling-Frequency Resonance Lock](../../noether-braid/braid-a3-3-doubling-frequency-lock.md), [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md).
 
-The target is narrow. The run must compute the smallest accepted Master-Equation projected action increment from candidate nested shell braid branch transitions whose stability rows pass. It may compare the resulting scale to the observer-level `$h,\hbar$` benchmark after the computation. It may not insert $\hbar$ as an input step size.
+Here an A1 candidate must carry the complete prescribed coordinate ownership: persistent indices $a\in\{1,2,3\}$, independently assignable positive radii and frequencies, mutually orthogonal axes at the Family-A near-rest endpoint, axes converging toward the group-translation direction along $\lambda_A$, and explicit axial-half-separation, transverse-orbit-radius, phase, and circulation rows. A1.3 additionally requires $f_1:f_2:f_3=4:2:1$. Neither label supplies stability, retention, or a universal action increment; failure of the same evolved record to preserve the coordinate and ledger rows rejects the candidate.
+
+The target is narrow. The run must compute the smallest accepted Master-Equation projected action increment from candidate A1 branch transitions whose stability rows pass. It may compare the resulting scale to the observer-level `$h,\hbar$` benchmark after the computation. It may not insert $\hbar$ as an input step size.
 
 ## Closure Question
 
@@ -12,7 +14,7 @@ $$
 \quad\Longrightarrow\quad
 \Delta\Gamma_{\text{cell}}=h^n
 $$
-for $n$ record-facing action-angle channels. This protocol tests the missing premise. It asks whether accepted nested shell braid dynamics select a positive increment $\Delta I_*$ such that
+for $n$ record-facing action-angle channels. This protocol tests the missing premise. It asks whether accepted A1 dynamics select a positive increment $\Delta I_*$ such that
 $$
 h_{\mathbb{A}\mathbb{A}\mathbb{A}}=2\pi\Delta I_*
 $$
@@ -22,7 +24,7 @@ Passing this protocol would not complete quantum theory. It would only promote t
 
 ## Accepted Transition Class
 
-Let $B_q$ and $B_{q'}$ denote candidate nested shell braid branch states with passed stability rows, layer radii, frequencies, speeds, plane normals, active causal-root ledger, and wake ledger. A candidate accepted transition belongs to
+Let $B_q$ and $B_{q'}$ denote candidate A1 branch states with passed stability rows, indexed binary radii, frequencies, speeds, plane normals, active causal-root ledger, and wake ledger. A candidate accepted transition belongs to
 
 $$
 \mathcal{T}_{\mathrm{acc}}=\varnothing
@@ -138,7 +140,7 @@ This scan is the minimal numerical artifact for the paired action-spacing and se
 
 For each declared scan family, report rows approaching the field speed from below, at the boundary when the continuation reaches it, and from above when the branch chart admits a super-field-speed interval. Each row must record the layer speed ratios, active partner-root count, active self-root count, active inter-layer-root count, minimum accepted Jacobian floor, minimum accepted transmitter-side acceleration weight, separator status, root-ledger identity, accepted/rejected status, and stable-cycle $\Delta I_{\mathrm{ME}}$ cluster assignment.
 
-The scan has a simple discipline. A packet may not promote `candidate_h_recovery` if the accepted near-boundary rows lose their Jacobian floor, change active-root identity under refinement, or split into non-uniform stable action increments without a derived branch-class reason. In that case the packet may still report a useful diagnostic, but it has not recovered the Planck benchmark from a well-posed nested shell braid action scale.
+The scan has a simple discipline. A packet may not promote `candidate_h_recovery` if the accepted near-boundary rows lose their Jacobian floor, change active-root identity under refinement, or split into non-uniform stable action increments without a derived branch-class reason. In that case the packet may still report a useful diagnostic, but it has not recovered the Planck benchmark from a well-posed A1 action scale.
 
 ## Required Packet Files
 
