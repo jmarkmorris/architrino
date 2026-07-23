@@ -1,6 +1,6 @@
 {
   "schema": "prescribed-path-analysis/complete-cycle-probe-protocol.v1",
-  "protocolId": "all-borg-candidates-complete-cycle-v1",
+  "protocolId": "generalized-family-b-prescribed-train-pilot-v1",
   "claimGrade": "derived",
   "claimBoundary": {
     "prescribedPathAnalyticsOnly": true,
@@ -11,15 +11,23 @@
       "energy",
       "retention",
       "physical-realization"
+    ],
+    "additionalExcludedClaims": [
+      "self-stabilization",
+      "binding",
+      "photon-identity",
+      "quantization",
+      "EOM-solver-compatibility"
     ]
   },
   "applicability": {
-    "registryId": "all-borg-braid-candidates.v1",
-    "familyIds": ["A", "B", "C"],
-    "sourceCounts": [6, 12],
-    "maximumSourceEnvelopeRadius": 0.99,
+    "campaignClass": "generalized-family-b-prescribed-train.v1",
+    "registryId": "generalized-family-b-pilot.v1",
+    "familyIds": ["B"],
+    "sourceCounts": [6, 9, 12, 18],
+    "maximumSourceEnvelopeRadius": 2.8,
     "requiredPrescribedReturnPeriod": 4,
-    "requiredCenterVelocity": [0, 0, 0]
+    "requiredCenterVelocity": [0.1, 0, 0]
   },
   "eventEvaluator": {
     "fieldSpeed": 4,
@@ -37,16 +45,16 @@
     "tolerances": {
       "cancellationFloor": 1e-30,
       "rootTransversalityFloor": 1e-8,
-      "minimumSeparationFloor": 1e-8,
-      "convergenceAbsolute": 1e-9
+      "minimumSeparationFloor": 0.02,
+      "convergenceAbsolute": 1e-8
     },
     "geometry": {
-      "minimumSeparationSamples": 128
+      "minimumSeparationSamples": 96
     },
     "convergence": {
       "rootTolerance": 1e-14,
       "maxIterations": 192,
-      "minimumSeparationSamples": 256
+      "minimumSeparationSamples": 192
     }
   },
   "completeCycle": {
@@ -56,24 +64,24 @@
     "endpointConvention": "include-start/exclude-return-end.v1",
     "timeQuadrature": "equal-weight-periodic-trapezoid.v1",
     "primary": {
-      "timeSamples": 24,
-      "polarOrder": 12,
-      "azimuthCount": 24
+      "timeSamples": 8,
+      "polarOrder": 4,
+      "azimuthCount": 8
     },
     "refined": {
-      "timeSamples": 48,
-      "polarOrder": 16,
-      "azimuthCount": 32
+      "timeSamples": 16,
+      "polarOrder": 6,
+      "azimuthCount": 12
     }
   },
   "internalProbes": {
     "fixedCartesianGrid": {
       "kind": "stationary-coordinate-probe-grid.v1",
-      "axisCoordinates": [-1.0, 0, 1.0],
+      "axisCoordinates": [-2.8, 0, 2.8],
       "probePolarities": [1, -1],
       "identitySubsets": {
-        "braidCenter": [[0, 0, 0]],
-        "declaredAxis": "candidate source record"
+        "trainCenter": [[0, 0, 0]],
+        "declaredAxis": "source-record frame.n"
       },
       "deduplication": "one event per coordinate with all semantic identities retained.v1"
     },
@@ -86,24 +94,25 @@
         "per-transmitter acceleration contribution",
         "net acceleration response",
         "prescribed-path acceleration",
-        "partial prescribed-path equation mismatch",
+        "declared-inventory prescribed-path residual",
+        "axial radial and tangential residual projections",
         "receiver-side factor D_r",
         "root playback derivative D_r/D_t"
       ],
-      "mismatchBoundary": "partial because self-hit and other possible acceleration contributions are omitted"
+      "mismatchBoundary": "complete over the declared source inventory when the strict sub-field-speed self-root exclusion is certified; Noether-sea and undeclared contributions remain outside scope"
     }
   },
   "enclosingSurfaces": {
     "kind": "centered-sphere-sequence.v1",
     "center": [0, 0, 0],
-    "radii": [1, 1.25, 1.5, 2],
+    "radii": [3.2, 4],
     "probePolarities": [1, -1],
     "angularRule": "gauss-legendre-cos-theta/uniform-azimuth-product.v1",
     "surfaceWeight": "R^2 times solid-angle weight",
     "coordinateConvention": {
-      "cosThetaAxis": [0, 0, 1],
-      "phiZeroAxis": [1, 0, 0],
-      "positivePhiToward": [0, 1, 0]
+      "cosThetaAxis": [1, 0, 0],
+      "phiZeroAxis": [0, 1, 0],
+      "positivePhiToward": [0, 0, 1]
     }
   },
   "externalExposureReduction": {
@@ -161,7 +170,7 @@
   "angularReduction": {
     "basis": "real-orthonormal-spherical-harmonics/condon-shortley.v1",
     "realForm": "m-negative=sqrt(2)Im(Y_l_abs(m));m-zero=Y_l_0;m-positive=sqrt(2)Re(Y_l_m).v1",
-    "maximumDegree": 4,
+    "maximumDegree": 2,
     "channels": [
       "signedWake",
       "unsignedWake",
@@ -172,15 +181,15 @@
     ],
     "powerByDegree": "sum-of-squared-real-coefficients.v1",
     "anisotropy": {
-      "nonMonopolePowerFraction": "sum(l=1..4 power_l)/(sum(l=0..4 power_l)+floor)",
-      "rawNormalizedNonMonopoleAmplitude": "sqrt(sum(l=1..4 net_power_l)/(raw_constituent_power+floor))",
+      "nonMonopolePowerFraction": "sum(l=1..2 power_l)/(sum(l=0..2 power_l)+floor)",
+      "rawNormalizedNonMonopoleAmplitude": "sqrt(sum(l=1..2 net_power_l)/(raw_constituent_power+floor))",
       "floor": 1e-30
     }
   },
   "spectralReduction": {
     "basis": "complete-cycle-complex-dft.v1",
     "normalization": "one-over-time-sample-count.v1",
-    "maximumHarmonic": 4,
+    "maximumHarmonic": 2,
     "channels": [
       "internal endpoint net acceleration components",
       "surface signedWake angular coefficients",
@@ -216,13 +225,13 @@
     "claimBoundary": "report measured scaling only; do not preassign a far-field exponent"
   },
   "localSourceSensitivity": {
-    "coordinates": ["declared-primary-braid-phase-offset"],
-    "domain": [0, 6.283185307179586],
-    "coordinateSelection": "first declared binary phase in the canonical source specification",
-    "primaryStep": 0.02454369260617026,
-    "refinedStep": 0.01227184630308513,
-    "interiorStencil": "three-point-centered-periodic.v1",
-    "derivative": "measure difference per radian.v1",
+    "coordinates": ["central-spacing-scale"],
+    "domain": [0.85, 1.15],
+    "coordinateSelection": "multiply every spacing about the fixed train midpoint",
+    "primaryStep": 0.02,
+    "refinedStep": 0.01,
+    "interiorStencil": "three-point-centered.v1",
+    "derivative": "measure difference per unit spacing scale.v1",
     "convergence": "per-measure dimensionless difference between primary-step and refined-step derivatives",
     "normalization": {
       "rule": "per-measure-dimensionless-stencil-settling.v1",
@@ -250,22 +259,36 @@
     "sourceSpeed": "every source speed bound is strictly below field speed",
     "rootCompleteness": "every retained event has the certified complete root ledger",
     "rootTransversality": "minimum absolute D_t is at least 1e-8",
-    "minimumSeparation": "minimum source-source separation is at least 1e-8",
-    "eventConvergence": "maximum event-level change is at most 1e-9",
+    "minimumSeparation": "minimum source-source separation is at least 0.02",
+    "eventConvergence": "maximum event-level change is at most 1e-8",
     "quadratureConvergence": {
-      "exposureRelative": 0.01,
-      "anisotropyAbsolute": 0.01,
-      "retainedSpectralPowerRelative": 0.02,
-      "radialExponentAbsolute": 0.05,
-      "causalWakeFluxRelativeOrAbsolute": 0.01,
-      "frequencyResolvedWakeFluxRelativeOrAbsolute": 0.05,
-      "sourceSensitivityRelativeOrAbsolute": 0.02
+      "exposureRelative": 0.08,
+      "anisotropyAbsolute": 0.08,
+      "retainedSpectralPowerRelative": 0.1,
+      "radialExponentAbsolute": 0.2,
+      "causalWakeFluxRelativeOrAbsolute": 0.08,
+      "frequencyResolvedWakeFluxRelativeOrAbsolute": 0.12,
+      "sourceSensitivityRelativeOrAbsolute": 0.1
     },
     "causalWakeFlux": {
-      "rawEmissionReferenceRelative": 0.01,
-      "signedEmissionReferenceRelativeOrAbsolute": 0.01,
-      "frequencyResolvedOutOfBandRmsFraction": 0.02
+      "rawEmissionReferenceRelative": 0.02,
+      "signedEmissionReferenceRelativeOrAbsolute": 0.02,
+      "frequencyResolvedOutOfBandRmsFraction": 0.08
     },
     "failurePolicy": "reject affected source result; emit diagnostic ledger but no accepted reduced-measure row.v1"
+  },
+  "monteCarlo": {
+    "seed": 20210102,
+    "pilotSamplesPerReference": 1,
+    "samplingMeasures": {
+      "spacingMultiplier": "uniform[0.96,1.04]",
+      "radiusMultiplier": "uniform[0.97,1.03]",
+      "phaseOffset": "uniform[-pi/32,pi/32]",
+      "frequencyStrata": "common-frequency or declared rational-frequency only",
+      "circulation": "predeclared categorical strata",
+      "payloadPlacement": "predeclared midpoint, axial-offset, transverse-offset, or admissible randomized stratum"
+    },
+    "heldOutSeed": 20210103,
+    "undeclaredGlobalScore": false
   }
 }

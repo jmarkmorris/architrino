@@ -292,6 +292,57 @@ test("static separated sources independently fix period closure and minimum sepa
   assertNear(closure.maximumVelocityResidual, 0);
   assertNear(closure.maximumPhaseResidual, 0);
   assertNear(result.reducedMeasures.minimumSeparation.value, 4);
+  assertNear(result.reducedMeasures.minimumSeparation.certifiedContinuousLowerBound, 4);
+  assert.equal(
+    result.reducedMeasures.minimumSeparation.certificateRule,
+    "periodic-sample-lipschitz-lower-bound.v1",
+  );
+  assert.equal(result.reducedMeasures.numericalConvergence.passed, true);
+});
+
+test("minimum-separation grid refinement is diagnostic while the continuous lower bound gates", () => {
+  const rotatingSource = (id, phaseAtEpoch) => ({
+    id,
+    charge: 1,
+    trajectory: {
+      kind: "moving-circular.v1",
+      epochTime: 0,
+      centerAtEpoch: { x: 0, y: 0, z: 0 },
+      centerVelocity: { x: 0, y: 0, z: 0 },
+      radiusU: { x: 1, y: 0, z: 0 },
+      radiusV: { x: 0, y: 1, z: 0 },
+      angularVelocity: Math.PI,
+      angularAcceleration: 0,
+      phaseAtEpoch,
+    },
+  });
+  const result = evaluatePrescribedRecordAnalysis({
+    sourceRecord: sourceRecord([
+      rotatingSource("phase-zero", 0),
+      rotatingSource("phase-offset", 0.3),
+    ]),
+    protocol: analysisProtocol({
+      fieldSpeed: 4,
+      returnPeriod: 2,
+      minimumSeparationFloor: 0.2,
+    }),
+  });
+
+  const convergence = result.reducedMeasures.numericalConvergence;
+  assert.equal(
+    convergence.passed,
+    convergence.eventConvergence.rootIdentitiesMatch &&
+      convergence.eventConvergence.maximumChange <= convergence.absoluteTolerance,
+  );
+  assert.equal(
+    convergence.maximumReportedChange,
+    convergence.eventConvergence.maximumChange,
+  );
+  assert.equal(result.reducedMeasures.validity.minimumSeparationPassed, false);
+  assert.ok(result.reducedMeasures.minimumSeparation.value > 0.2);
+  assert.ok(
+    result.reducedMeasures.minimumSeparation.certifiedContinuousLowerBound < 0.2,
+  );
 });
 
 test("canonical translating-source case independently exercises the transmitter-side margin", () => {
@@ -315,6 +366,12 @@ test("canonical translating-source case independently exercises the transmitter-
   assertNear(root.transmitterSideFactorDt, 3 / 4);
   assertNear(result.reducedMeasures.events[0].signedWake, 3 / (25 * Math.PI));
   assertNear(result.reducedMeasures.events[0].probeResponses[0].acceleration.x, 12 / 25);
+  const [separationRow] = result.rawLedgers.minimumSeparation;
+  assert.equal(separationRow.relativePeriodClosed, false);
+  assertNear(
+    separationRow.sampleCoveringRadius,
+    result.protocol.returnWindow.period / result.protocol.geometry.minimumSeparationSamples,
+  );
 });
 
 test("moving endpoint receiver independently fixes D_r without changing instantaneous acceleration", () => {

@@ -47,6 +47,10 @@ function norm(vector) {
   return Math.hypot(vector.x, vector.y, vector.z);
 }
 
+function dot(left, right) {
+  return left.x * right.x + left.y * right.y + left.z * right.z;
+}
+
 function finite(value, label) {
   const normalized = Number(value);
   if (!Number.isFinite(normalized)) throw new TypeError(`${label} must be finite.`);
@@ -79,7 +83,7 @@ function writePacket(onRawPacket, packet, context) {
   };
 }
 
-function accelerationAt(source, time) {
+export function evaluatePrescribedCircularAcceleration(source, time) {
   const trajectory = source.trajectory;
   const dt = time - trajectory.epochTime;
   const phase = trajectory.phaseAtEpoch +
@@ -100,6 +104,44 @@ function accelerationAt(source, time) {
   );
 }
 
+function projectionBasisAt(source, time, fallbackFrame = null) {
+  const trajectory = source.trajectory;
+  const dt = time - trajectory.epochTime;
+  const phase = trajectory.phaseAtEpoch +
+    trajectory.angularVelocity * dt +
+    0.5 * trajectory.angularAcceleration * dt * dt;
+  const radius = norm(trajectory.radiusU);
+  if (radius === 0) {
+    return {
+      axial: fallbackFrame?.n ?? { x: 1, y: 0, z: 0 },
+      radial: fallbackFrame?.e1 ?? { x: 0, y: 1, z: 0 },
+      tangential: fallbackFrame?.e2 ?? { x: 0, y: 0, z: 1 },
+      radialFrameDisposition: "declared-fallback-frame-for-zero-radius-source",
+    };
+  }
+  return {
+    axial: fallbackFrame?.n ?? { x: 1, y: 0, z: 0 },
+    radial: scale(add(
+      scale(trajectory.radiusU, Math.cos(phase)),
+      scale(trajectory.radiusV, Math.sin(phase)),
+    ), 1 / radius),
+    tangential: scale(add(
+      scale(trajectory.radiusU, -Math.sin(phase)),
+      scale(trajectory.radiusV, Math.cos(phase)),
+    ), 1 / radius),
+    radialFrameDisposition: "instantaneous-prescribed-orbit-frame",
+  };
+}
+
+function reduceScalarSeries(rows) {
+  const mean = rows.reduce((sum, value) => sum + value, 0) / rows.length;
+  return {
+    signedCycleAverage: mean,
+    rms: Math.sqrt(rows.reduce((sum, value) => sum + value * value, 0) / rows.length),
+    maximumAbsolute: Math.max(...rows.map(Math.abs)),
+  };
+}
+
 function reduceVectorSeries(rows, period) {
   const count = rows.length;
   const mean = scale(rows.reduce((sum, row) => add(sum, row), { x: 0, y: 0, z: 0 }), 1 / count);
@@ -116,8 +158,16 @@ function reduceVectorSeries(rows, period) {
   };
 }
 
-function reduceEndpointPacket(packet, sourceRecord, period) {
+export function reduceCompleteCycleEndpointPacket(packet, sourceRecord, period, {
+  fieldSpeed = null,
+} = {}) {
   const eventsBySource = new Map(sourceRecord.sources.map((source) => [source.id, []]));
+  const declaredFrame = sourceRecord.parameterVector?.frame ?? null;
+  const allSourcesStrictlySubField = fieldSpeed !== null &&
+    sourceRecord.sources.every((source) =>
+      norm(source.trajectory.centerVelocity) +
+        Math.abs(source.trajectory.angularVelocity) * norm(source.trajectory.radiusU) <
+      fieldSpeed);
   for (const event of packet.rawLedgers.causalRoots) {
     const source = sourceRecord.sources.find((row) => row.id === event.receiverSourceId);
     if (!source) fail(`endpoint event ${event.eventId} lacks its receiver source.`);
@@ -125,8 +175,12 @@ function reduceEndpointPacket(packet, sourceRecord, period) {
       (row) => row.probePolarity === source.charge,
     );
     if (!response) fail(`endpoint event ${event.eventId} lacks its receiver-polarity response.`);
-    const prescribedAcceleration = accelerationAt(source, event.observationTime);
+    const prescribedAcceleration = evaluatePrescribedCircularAcceleration(
+      source,
+      event.observationTime,
+    );
     const mismatch = subtract(prescribedAcceleration, response.acceleration);
+    const basis = projectionBasisAt(source, event.observationTime, declaredFrame);
     eventsBySource.get(source.id).push({
       eventId: event.eventId,
       observationTime: event.observationTime,
@@ -135,6 +189,13 @@ function reduceEndpointPacket(packet, sourceRecord, period) {
       netAccelerationFromOtherSources: response.acceleration,
       prescribedPathAcceleration: prescribedAcceleration,
       partialPrescribedPathMismatch: mismatch,
+      declaredInventoryPrescribedPathResidual: mismatch,
+      residualProjections: {
+        axial: dot(mismatch, basis.axial),
+        radial: dot(mismatch, basis.radial),
+        tangential: dot(mismatch, basis.tangential),
+      },
+      projectionBasis: basis,
       roots: event.roots.map((root) => ({
         transmitterId: root.transmitterId,
         rootId: root.rootId,
@@ -159,13 +220,26 @@ function reduceEndpointPacket(packet, sourceRecord, period) {
       events.map((row) => row.partialPrescribedPathMismatch),
       period,
     ),
+    declaredInventoryPrescribedPathResidual: reduceVectorSeries(
+      events.map((row) => row.declaredInventoryPrescribedPathResidual),
+      period,
+    ),
+    residualProjections: {
+      axial: reduceScalarSeries(events.map((row) => row.residualProjections.axial)),
+      radial: reduceScalarSeries(events.map((row) => row.residualProjections.radial)),
+      tangential: reduceScalarSeries(events.map((row) => row.residualProjections.tangential)),
+    },
     events,
   }));
   return {
     selfHitPolicy: "exclude-same-source-id.v1",
     implementedContributions: ["acceleration from every other prescribed source"],
+    sameSourceRootDisposition: allSourcesStrictlySubField
+      ? "no-positive-delay-root-by-strict-sub-field-speed-path-length-bound"
+      : "not-certified-by-this-reducer",
+    completeDeclaredSourceInventory: allSourcesStrictlySubField,
     omittedContributions: [
-      "same-source self-hit acceleration",
+      ...(allSourcesStrictlySubField ? [] : ["same-source self-hit acceleration"]),
       "Noether-sea response",
       "any other acceleration contribution not present in the prescribed-source evaluator",
     ],
@@ -338,6 +412,77 @@ export function centeredSensitivityDerivative(minus, plus, denominator) {
   return derivative;
 }
 
+export function adjudicateSourceSensitivityConvergence({
+  primaryDerivative,
+  refinedDerivative,
+  endpointRmsDerivatives,
+  baseEndpointRmsBySource,
+  threshold,
+  normalization = {},
+}) {
+  const ratioScale = finite(
+    normalization.surfaceRatioScale ?? 1,
+    "source sensitivity surfaceRatioScale",
+  );
+  const endpointFloor = finite(
+    normalization.endpointRmsRelativeFloor ?? 1e-12,
+    "source sensitivity endpointRmsRelativeFloor",
+  );
+  if (!(ratioScale > 0) || !(endpointFloor > 0) || !(threshold > 0)) {
+    throw new RangeError("source sensitivity normalization scales and threshold must be positive.");
+  }
+  const surface = Object.fromEntries(Object.keys(primaryDerivative).map((measureId) => {
+    const primary = primaryDerivative[measureId];
+    const refined = refinedDerivative[measureId];
+    const absoluteUncertainty = Math.abs(primary - refined);
+    const comparisonScale = Math.max(
+      Math.abs(primary),
+      Math.abs(refined),
+      ratioScale,
+    );
+    return [measureId, {
+      primary,
+      refined,
+      absoluteUncertainty,
+      comparisonScale,
+      normalizedUncertainty: absoluteUncertainty / comparisonScale,
+      scaleRule: "max-derivative-magnitude-or-declared-surface-ratio-scale.v1",
+    }];
+  }));
+  const endpoints = Object.fromEntries(Object.keys(endpointRmsDerivatives).map((sourceId) => {
+    const derivative = endpointRmsDerivatives[sourceId];
+    const absoluteUncertainty = Math.abs(derivative.primary - derivative.refined);
+    const comparisonScale = Math.max(
+      Math.abs(derivative.primary),
+      Math.abs(derivative.refined),
+      Math.abs(baseEndpointRmsBySource[sourceId] ?? 0),
+      endpointFloor,
+    );
+    return [sourceId, {
+      primary: derivative.primary,
+      refined: derivative.refined,
+      absoluteUncertainty,
+      comparisonScale,
+      normalizedUncertainty: absoluteUncertainty / comparisonScale,
+      scaleRule:
+        "max-derivative-magnitude-base-endpoint-rms-or-declared-floor.v1",
+    }];
+  }));
+  const maximumNormalizedUncertainty = Math.max(
+    0,
+    ...Object.values(surface).map((row) => row.normalizedUncertainty),
+    ...Object.values(endpoints).map((row) => row.normalizedUncertainty),
+  );
+  return {
+    rule: "per-measure-dimensionless-stencil-settling.v1",
+    threshold,
+    surface,
+    endpoints,
+    maximumNormalizedUncertainty,
+    passed: maximumNormalizedUncertainty <= threshold,
+  };
+}
+
 function evaluateSensitivity({
   baseSpec,
   baseSource,
@@ -347,19 +492,27 @@ function evaluateSensitivity({
   protocol,
   onRawPacket,
   sourceOptions,
+  sensitivityAdapter,
 }) {
   const primaryStep = protocol.localSourceSensitivity.primaryStep;
   const refinedStep = protocol.localSourceSensitivity.refinedStep;
   const rows = new Map();
   const rawArtifactInventory = [];
+  const coordinateId = sensitivityAdapter?.coordinateId ??
+    "declared-primary-braid-phase-offset";
+  const coordinatePath = sensitivityAdapter?.coordinatePath ?? "braids[0].phaseOffset";
+  const perturbSpec = sensitivityAdapter?.perturbSpec ??
+    perturbDeclaredPrimaryBraidPhaseOffset;
+  const createSourceRecord = sensitivityAdapter?.createSourceRecord ??
+    ((spec, options) => createPrescribedBraidExactSourceRecord(spec, options));
   for (const delta of [-primaryStep, primaryStep, -refinedStep, refinedStep]) {
-    const perturbedSpec = perturbDeclaredPrimaryBraidPhaseOffset(baseSpec, delta);
+    const perturbedSpec = perturbSpec(baseSpec, delta);
     const sourceRecord = validateExactPrescribedSourceRecord(
-      createPrescribedBraidExactSourceRecord(perturbedSpec, sourceOptions),
+      createSourceRecord(perturbedSpec, sourceOptions),
     );
     const exactSourceArtifact = writePacket(onRawPacket, sourceRecord, {
       stage: "source-sensitivity-exact-source",
-      coordinate: "declared-primary-braid-phase-offset",
+      coordinate: coordinateId,
       delta,
       artifactKind: "exact-source-record",
     });
@@ -373,7 +526,7 @@ function evaluateSensitivity({
         const artifact = writePacket(onRawPacket, packet, {
           ...context,
           stage: "source-sensitivity-surface",
-          coordinate: "declared-primary-braid-phase-offset",
+          coordinate: coordinateId,
           delta,
         });
         rawArtifactInventory.push(artifact);
@@ -387,7 +540,7 @@ function evaluateSensitivity({
     });
     const endpointArtifact = writePacket(onRawPacket, endpointPacket, {
       stage: "source-sensitivity-endpoint",
-      coordinate: "declared-primary-braid-phase-offset",
+      coordinate: coordinateId,
       delta,
       refinement: "primary",
     });
@@ -405,7 +558,12 @@ function evaluateSensitivity({
       metric: {
         ...surfaceMetricVector(surface),
         endpointRmsBySource: endpointRmsVector(
-          reduceEndpointPacket(endpointPacket, sourceRecord, protocol.completeCycle.period),
+          reduceCompleteCycleEndpointPacket(
+            endpointPacket,
+            sourceRecord,
+            protocol.completeCycle.period,
+            { fieldSpeed: protocol.eventEvaluator.fieldSpeed },
+          ),
         ),
       },
       accepted: surface.status.acceptedReducedMeasures &&
@@ -456,10 +614,18 @@ function evaluateSensitivity({
   );
   const threshold =
     protocol.failClosedGates.quadratureConvergence.sourceSensitivityRelativeOrAbsolute;
-  const accepted = allAccepted && topologyMatch && maximumUncertainty <= threshold;
+  const convergenceAdjudication = adjudicateSourceSensitivityConvergence({
+    primaryDerivative: primarySurface,
+    refinedDerivative: refinedSurface,
+    endpointRmsDerivatives: endpointDerivatives,
+    baseEndpointRmsBySource: endpointRmsVector(baseEndpoint),
+    threshold,
+    normalization: protocol.localSourceSensitivity.normalization,
+  });
+  const accepted = allAccepted && topologyMatch && convergenceAdjudication.passed;
   return {
-    coordinateId: "declared-primary-braid-phase-offset",
-    coordinatePath: "braids[0].phaseOffset",
+    coordinateId,
+    coordinatePath,
     unit: "radian",
     baseSourceHash: sha256Canonical(baseSource),
     baseSurfaceResultHash: baseSurface.resultHash,
@@ -481,6 +647,9 @@ function evaluateSensitivity({
     endpointRmsDerivatives: endpointDerivatives,
     derivativeUncertainty: uncertainty,
     maximumUncertainty,
+    maximumNormalizedUncertainty:
+      convergenceAdjudication.maximumNormalizedUncertainty,
+    convergenceAdjudication,
     threshold,
     accepted,
     disposition: accepted ? "accepted" : "diagnostic-only",
@@ -540,6 +709,7 @@ export function evaluateCompleteCycleCandidate({
   onRawPacket = null,
   includeSensitivity = true,
   sourceOptions = {},
+  sensitivityAdapter = null,
   onProgress = null,
 } = {}) {
   const sourceRecord = validateExactPrescribedSourceRecord(rawSourceRecord);
@@ -588,7 +758,12 @@ export function evaluateCompleteCycleCandidate({
         stage: "complete-cycle-moving-receivers",
         refinement: resolution,
       }),
-      reduction: reduceEndpointPacket(packet, sourceRecord, protocol.completeCycle.period),
+      reduction: reduceCompleteCycleEndpointPacket(
+        packet,
+        sourceRecord,
+        protocol.completeCycle.period,
+        { fieldSpeed: protocol.eventEvaluator.fieldSpeed },
+      ),
       validity: packet.reducedMeasures.validity,
       resultHash: packet.resultHash,
     };
@@ -606,6 +781,7 @@ export function evaluateCompleteCycleCandidate({
         protocol,
         onRawPacket,
         sourceOptions,
+        sensitivityAdapter,
       })
     : {
         accepted: false,

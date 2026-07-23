@@ -4,8 +4,9 @@
   "requiredMeasureCount": 29,
   "methodology": {
     "path": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-    "sha256": "4591ea52af9d507be735d28b3d08d9b9118adb789301214b0a41c40e182050fd",
-    "impactReview": "reviewed-for-complete-cycle-campaign-v1"
+    "sha256": "a23c5eea775c4365f725a0ef1e0c4f36d7852adefcbd30d3bfccfc9e2a13b026",
+    "impactReview": "reviewed-for-complete-cycle-campaign-v1",
+    "impactNote": "The common-axis orbital-train chart is evaluated by its specialized generalized Family-B campaign; it changes no existing all-candidate measure, gate, producer, or publication disposition."
   },
   "reductionVersions": [
     "prescribed-record-analytics/complete-cycle-campaign-reducer.v1",

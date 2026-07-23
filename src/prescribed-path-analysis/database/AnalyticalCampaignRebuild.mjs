@@ -184,6 +184,53 @@ function deterministicExportCheck(databasePath, importResults, exportRoot, optio
   return exports;
 }
 
+function summarizeRuntimeTimings(runtimeTimings = [], rebuildPhaseTimings = []) {
+  const stageTotals = new Map();
+  const candidateTotals = [];
+  for (const timing of runtimeTimings) {
+    if (timing.stage === "candidate-total") {
+      candidateTotals.push({
+        candidateId: timing.candidateId,
+        wallSeconds: timing.wallSeconds,
+      });
+      continue;
+    }
+    const current = stageTotals.get(timing.stage) ?? {
+      stage: timing.stage,
+      candidateCount: 0,
+      wallSeconds: 0,
+      maximumCandidateWallSeconds: 0,
+    };
+    current.candidateCount += 1;
+    current.wallSeconds += timing.wallSeconds;
+    current.maximumCandidateWallSeconds = Math.max(
+      current.maximumCandidateWallSeconds,
+      timing.wallSeconds,
+    );
+    stageTotals.set(timing.stage, current);
+  }
+  return {
+    measurement: "serial-candidate-stage-wall-clock.v1",
+    measuredRebuildWallSeconds: rebuildPhaseTimings.reduce(
+      (sum, row) => sum + row.wallSeconds,
+      0,
+    ),
+    rebuildPhaseTimings: [...rebuildPhaseTimings].sort(
+      (left, right) => right.wallSeconds - left.wallSeconds,
+    ),
+    totalCandidateWallSeconds: candidateTotals.reduce(
+      (sum, row) => sum + row.wallSeconds,
+      0,
+    ),
+    candidateTotals: candidateTotals.sort(
+      (left, right) => right.wallSeconds - left.wallSeconds,
+    ),
+    stageTotals: [...stageTotals.values()].sort(
+      (left, right) => right.wallSeconds - left.wallSeconds,
+    ),
+  };
+}
+
 export async function rebuildAllCandidateAnalyticalDatabase(options = {}) {
   const mode = options.mode ?? "check";
   if (mode !== "check" && mode !== "publish") {
@@ -211,16 +258,28 @@ export async function rebuildAllCandidateAnalyticalDatabase(options = {}) {
   const exportDirectory = path.join(stagingDirectory, "exports");
   let published = false;
   try {
+    const rebuildPhaseTimings = [];
+    let phaseStartedAt = Date.now();
+    function completePhase(stage) {
+      const now = Date.now();
+      rebuildPhaseTimings.push({
+        stage,
+        wallSeconds: (now - phaseStartedAt) / 1000,
+      });
+      phaseStartedAt = now;
+    }
     const campaign = buildAllCandidateAnalyticalCampaign(registryPath, {
       outputDirectory: generatedCampaignDirectory,
       evaluationMode: options.evaluationMode,
       includeSensitivity: options.includeSensitivity !== false,
       onProgress: options.onProgress,
     });
+    completePhase("campaign-computation");
     const generatedPaths = writeAllCandidateAnalyticalCampaign(
       campaign,
       generatedCampaignDirectory,
     );
+    completePhase("campaign-manifest-write");
     options.onProgress?.({
       stage: "catalog-campaign-generated",
       candidateCount: campaign.candidates.length,
@@ -246,6 +305,7 @@ export async function rebuildAllCandidateAnalyticalDatabase(options = {}) {
         campaignId: checkedCampaign.campaignId,
       });
     }
+    completePhase("database-import");
 
     const initialCompleteness = assertStagedCompleteness(
       stagedDatabasePath,
@@ -253,12 +313,14 @@ export async function rebuildAllCandidateAnalyticalDatabase(options = {}) {
       importResults,
       options,
     );
+    completePhase("staged-completeness-verification");
     const exports = deterministicExportCheck(
       stagedDatabasePath,
       importResults,
       exportDirectory,
       options,
     );
+    completePhase("deterministic-export");
     const generationEvidence = {
       schema: "prescribed-record-analytics/database-generation-evidence.v1",
       registryId: campaign.registry.registryId,
@@ -295,10 +357,12 @@ export async function rebuildAllCandidateAnalyticalDatabase(options = {}) {
       rebuildInstrumentVersion: ANALYTICAL_CAMPAIGN_REBUILD_VERSION,
       evidence: generationEvidence,
     });
+    completePhase("generation-record");
     const stagedVerification = verifyAnalyticalCampaignDatabase(
       stagedDatabasePath,
       options,
     );
+    completePhase("staged-integrity-verification");
     if (stagedVerification.generationCount !== 1) {
       fail("staged database generation record is missing.");
     }
@@ -312,6 +376,7 @@ export async function rebuildAllCandidateAnalyticalDatabase(options = {}) {
         options,
       );
       published = true;
+      completePhase("atomic-publish-and-verification");
     }
     const report = {
       schema: "prescribed-record-analytics/all-candidate-rebuild-report.v1",
@@ -331,6 +396,10 @@ export async function rebuildAllCandidateAnalyticalDatabase(options = {}) {
       rejectedCaseCount: finalVerification.rejectedCaseCount,
       artifactCount: finalVerification.artifactCount,
       integrity: finalVerification.integrity,
+      runtimeProfile: summarizeRuntimeTimings(
+        campaign.runtimeTimings,
+        rebuildPhaseTimings,
+      ),
       slowestMeasuredStages: [...(campaign.runtimeTimings ?? [])]
         .sort((left, right) => right.wallSeconds - left.wallSeconds)
         .slice(0, 10),

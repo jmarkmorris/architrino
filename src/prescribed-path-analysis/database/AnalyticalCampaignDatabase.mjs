@@ -1049,7 +1049,8 @@ function insertConfiguration(database, row) {
   const vectorBytes = canonicalBytes(packet.source.parameterVector);
   const coordinateDefinition = row.summaryCase.coordinates?.capAngles
     ? "b1-cap-angles-radians/v1"
-    : "prescribed-braid-parameter-vector/v1";
+    : packet.source.parameterVector?.coordinateDefinition ??
+      "prescribed-braid-parameter-vector/v1";
   insertOrVerify(database, {
     insertSql: `
       INSERT INTO configuration(
@@ -1295,6 +1296,70 @@ function completeCycleMultidimensionalRows(packet, summaryCase) {
         stencil: sensitivity.stencil?.refined?.kind,
         numericalUncertainty: sensitivity.derivativeUncertainty?.[measureId] ?? null,
         details: sensitivity,
+      });
+    }
+  }
+  const generalized = packet.diagnosticReductions.generalizedFamilyB;
+  if (generalized?.schema ===
+      "prescribed-path-analysis/generalized-family-b-reduction.v1") {
+    for (const resolution of ["primary", "refined"]) {
+      const disposition = resolution === "primary"
+        ? acceptedDisposition
+        : "diagnostic-only";
+      for (const [projection, summary] of Object.entries(
+        generalized.residuals[resolution],
+      )) {
+        for (const receiver of summary.receivers) {
+          for (const [measure, scalarValue] of [
+            ["rms", receiver.rms],
+            ["maximum-absolute", receiver.maximumAbsolute],
+            ["signed-cycle-average", receiver.signedCycleAverage],
+          ]) {
+            rows.push({
+              measureId: `generalized-family-b/residual/${projection}/${measure}`,
+              reductionVersion: generalized.reducerVersion,
+              disposition,
+              scalarValue,
+              unit: "acceleration",
+              resolution,
+              transmitterId: receiver.sourceId,
+              details: receiver,
+            });
+          }
+        }
+      }
+    }
+    rows.push({
+      measureId: "generalized-family-b/residual-convergence/maximum-change",
+      reductionVersion: generalized.reducerVersion,
+      disposition: generalized.residuals.convergence.passed
+        ? acceptedDisposition
+        : "diagnostic-only",
+      scalarValue: generalized.residuals.convergence.maximumChange,
+      unit: "relative-or-absolute",
+      numericalUncertainty: generalized.residuals.convergence.maximumChange,
+      normalization: generalized.residuals.convergence.comparison,
+      details: generalized.residuals.convergence,
+    });
+    for (const resolution of ["primary", "refined"]) {
+      rows.push({
+        measureId: "generalized-family-b/root-transversality-margin",
+        reductionVersion: generalized.reducerVersion,
+        disposition: resolution === "primary" ? acceptedDisposition : "diagnostic-only",
+        scalarValue: generalized.minimumRootTransversalityMargin[resolution],
+        unit: "speed",
+        resolution,
+        details: generalized.minimumRootTransversalityMargin,
+      });
+      rows.push({
+        measureId: "generalized-family-b/axial-angular-momentum/rms-about-mean",
+        reductionVersion: generalized.reducerVersion,
+        disposition: "diagnostic-only",
+        scalarValue:
+          generalized.axialAngularMomentumDiagnostic[resolution].cycle.rmsAboutMean,
+        unit: "angular-momentum-per-unit-mu_arch",
+        resolution,
+        details: generalized.axialAngularMomentumDiagnostic[resolution],
       });
     }
   }

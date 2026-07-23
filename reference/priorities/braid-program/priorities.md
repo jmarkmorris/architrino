@@ -35,6 +35,10 @@ Walk up from the smallest object, certifying dynamical behavior at each rung bef
 4. **Six architrinos: braid candidates.** Screening over the configuration chart nominates candidates; evolution decides them.
 5. **Assembly mapping.** Photon-carrier and charged-lepton campaigns open only after a persistent object exists to map.
 
+## Parallel Analytical Lanes
+
+- [`generalized_family_b_common_axis_train_analytics`](b-family-binary-train-analytics.md) — Operator-directed prescribed-path lane for six-core single and twelve-core dual common-axis orbital trains, with an optional six-payload dual stratum. The bounded twelve-row pilot is complete: zero rows passed independent acceptance; midpoint payloads improved exterior cancellation while sharply worsening all three internal residual projections; no hinge, action, angular-momentum organization, stability, retention, or photon claim was booked. Retain the single central-envelope, dual equal-radius, and dual central-envelope no-payload generators as diagnostic strata. Final assignment to Family B remains `discussion-scoped` because canonical B1 and Family C are unchanged.
+
 ## Queue
 
 1. Operator ratifies charter ([README.md](README.md)), this strategy, and [method.md](method.md). The [instrument gate](campaigns/instrument-gate.md) is ratified as of 2026-07-16: accepted/barred capabilities with evidence pointers, per-campaign booking checklist, and the adopted `assembly-view-record.v0` schema.

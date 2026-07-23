@@ -92,3 +92,43 @@ The ansatz is consistent with the live relative-periodic-orbit target of radial 
 **What would confirm or kill a derived assignment.** A role assignment survives only if the same retained branch record supplies the declared speed statistic, causal-root rows, exposure or support functional, and refinement stability. It fails if the maximizer changes without being recorded, if another index gives the same diagnostic within tolerance, or if the role was inferred only from a frequency or radius label.
 
 **Promotion routing.** The persistent-index rule and branch-derived diagnostics are promoted to the taxonomy, Family A, A1 dynamics, A1.3 lock, envelope, configuration-space, topological-charge, and controlled terminology sources. Downstream reader chapters that still encode fixed inner/middle/outer roles require a separate bounded migration and claim-level review.
+
+## Entry 6 — generalized Family-B common-axis orbital train (2026-07-22, operator discussion, source drawing dated 2021-01-02)
+
+**The idea (grade: idea, unproven lead).** A generalized single train contains six ordered core orbital worldlines paired into three neutral binaries. A generalized dual train contains two single components, twelve ordered core orbitals, and six neutral binaries. Axial spacings are primary coordinates because they change causal delays and wake-arrival phase. The source-inspired dual stratum also tests one explicitly declared payload architrino per adjacent orbital pair, for six payload worldlines and eighteen declared sources in total.
+
+**Source geometry.** The supplied drawing contains twelve ordered orbit traces with a radius envelope increasing toward the center and decreasing toward the ends. The drawing supports the ordered train and central radius envelope only. Its colors and visible markers do not declare polarity, counterpart pairing, payload placement, phase, circulation, or frequency. `Payload architrino` is a working source-chart term and does not identify an Accessory Configuration, captured architrino, axial layer, or another established component.
+
+**Exact reduction.** For any core or payload path written as
+
+$$
+\mathbf Z_a(T)
+=
+\mathbf C_0
++s_{\mathrm{grp}}T\hat{\mathbf n}
++\zeta_a\hat{\mathbf n}
++\boldsymbol\delta_a(T),
+$$
+
+the positive delay $u$ from transmitter $a$ to receiver $b$ obeys
+
+$$
+\left\|
+\left(
+\zeta_b-\zeta_a+s_{\mathrm{grp}}u
+\right)\hat{\mathbf n}
++\boldsymbol\delta_b(T)
+-\boldsymbol\delta_a(T-u)
+\right\|
+=c_fu.
+$$
+
+The equation is exact and generally transcendental. Certified all-retained-root enumeration supplies rotating sectors. Full-period axial, radial, and tangential acceleration residuals are separate required objectives.
+
+**Measured bounded result (grade: prescribed-path analytics).** Twelve rows were evaluated: six references and one seeded neighborhood row around each. All twelve are rejected. The six-core single central-envelope reference and its seeded neighbor have converged residual reductions but nonzero residuals and failed exterior/sensitivity gates. Every dual row fails residual refinement. Six midpoint payloads improve exterior cancellation ratios but worsen axial, radial, and tangential residual RMS in the exact matched comparison. A changed binary map with unchanged paths produces identical acceleration rows, so pairing labels alone have no analytical effect.
+
+**Claim boundaries.** Canonical B1 and Family C are unchanged. No measured row supports stability, self-stabilization, retention, binding, photon identity, energy closure, quantization, physical realization, or EOM-solver compatibility. The pilot cannot establish a hinge because it does not contain the full coordinate Jacobian. It reports no action organization and no $h$ or $\hbar$ recovery.
+
+**What would confirm or kill the remaining analytical lead.** The six-core lead advances only if a predeclared refinement search finds a finite-width region that reduces all three residual projections while passing root, separation, exterior, spacing-sensitivity, refinement, and independent-acceptance gates. It closes negative on the searched domain if no such region survives held-out seeds and alternative sampling measures.
+
+**Promotion routing.** The exact chart, measured rows, falsifiers, and implementation links are in [Generalized Family-B Common-Axis Train Analytics](b-family-binary-train-analytics.md). The general exact-delay reduction is promoted into the reader-facing analysis methodology; the measured candidate result remains priority-only.

@@ -236,7 +236,12 @@
     "interiorStencil": "three-point-centered.v1",
     "boundaryStencil": "three-point-second-order-one-sided.v1",
     "derivative": "measure difference per radian.v1",
-    "convergence": "absolute difference between primary-step and refined-step derivative",
+    "convergence": "per-measure dimensionless difference between primary-step and refined-step derivatives",
+    "normalization": {
+      "rule": "per-measure-dimensionless-stencil-settling.v1",
+      "surfaceRatioScale": 1,
+      "endpointRmsRelativeFloor": 1e-12
+    },
     "measures": [
       "L_ext and eta_ext at every radius",
       "anisotropy rows at every radius",

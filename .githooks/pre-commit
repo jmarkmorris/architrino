@@ -9,17 +9,9 @@ if [[ "${ALLOW_MAIN_COMMIT:-}" != "1" && "$current_branch" == "main" ]]; then
   exit 1
 fi
 
-echo "[pre-commit] validating content indexes and references..."
-node scripts/validate-content.mjs --check --strict
-echo "[pre-commit] validating scene graph manifest..."
-node scripts/build-scene-graph.mjs --check --strict
-echo "[pre-commit] checking foundational impact routing..."
-node scripts/check-foundational-impact.mjs --staged --warn-only
-echo "[pre-commit] checking receiver-normal Master EOM clean slate..."
-node scripts/check-transmitter-factor-clean-slate.mjs
-echo "[pre-commit] checking frequency-triplet notation drift..."
-node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
-echo "[pre-commit] checking polarity notation drift..."
-node scripts/check-polarity-notation-drift.mjs
-echo "[pre-commit] auditing animator runtime wiring..."
-node scripts/check-animator-runtime-wiring.mjs
+if node scripts/pr-validation-receipt.mjs verify --base origin/main; then
+  echo "[pre-commit] reusing exact-state validation receipt."
+else
+  echo "[pre-commit] validation receipt unavailable; running full PR gate."
+  node scripts/pr-validation-receipt.mjs run --base origin/main
+fi

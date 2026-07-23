@@ -507,6 +507,111 @@ Every result row must include the family/member identifier, full parameter vecto
 
 The campaign output should include the distribution of every objective and gate, parameter-to-measure sensitivity, correlations that may reveal redundant coordinates, the non-dominated set under $\mathbf G_{\mathrm{an}}$, and the location and width of robust favorable regions. A single best sampled point is not enough: the central question is whether a candidate has a reproducible favorable region in configuration space or only a narrowly tuned instantiation.
 
+### Common-Axis Orbital-Train Chart
+
+A generalized common-axis train is an analytical candidate chart rather than a change to the braid taxonomy. Let $\hat{\mathbf n}$ be the oriented translation axis, with transverse orthonormal vectors $\hat{\mathbf e}_1,\hat{\mathbf e}_2$. Assign persistent orbital indices $m=1,\ldots,N_o$, ordered axial coordinates
+
+$$
+\xi_1<\xi_2<\cdots<\xi_{N_o},
+$$
+
+and spacings
+
+$$
+d_m=\xi_{m+1}-\xi_m>0.
+$$
+
+For group-translation speed $0\le s_{\mathrm{grp}}<c_f$, core orbital $m$ is
+
+$$
+\mathbf X_m(T)
+=
+\mathbf C_0
++s_{\mathrm{grp}}T\hat{\mathbf n}
++\xi_m\hat{\mathbf n}
++\rho_m
+\left[
+\cos\theta_m(T)\hat{\mathbf e}_1
++\sin\theta_m(T)\hat{\mathbf e}_2
+\right],
+$$
+
+$$
+\theta_m(T)=q_m\omega_mT+\phi_m,
+\qquad
+q_m\in\{+1,-1\}.
+$$
+
+The binary-counterpart map $\pi$ must be a fixed-point-free involution,
+
+$$
+\pi(\pi(m))=m,
+\qquad
+\pi(m)\ne m,
+$$
+
+and every pair must declare its polarities, radii, frequencies, phases, circulation relation, axial midpoint, axial separation, and exact constraint. A pairing label has no analytical effect unless it changes a declared path or polarity.
+
+For an even ordered train, adjacent-pair payload slots may be declared as
+
+$$
+P_k=(2k-1,2k),
+\qquad
+\mu_k=\frac{\xi_{2k-1}+\xi_{2k}}{2}.
+$$
+
+Here `payload architrino` means one explicitly declared prescribed architrino worldline associated with one adjacent core-orbital pair. The term does not identify an Accessory Configuration, captured architrino, axial layer, or another established assembly component. A payload path has the form
+
+$$
+\mathbf Y_k(T)
+=
+\mathbf C_0
++s_{\mathrm{grp}}T\hat{\mathbf n}
++(\mu_k+\epsilon_k)\hat{\mathbf n}
++\boldsymbol\delta_k(T),
+$$
+
+where the axial offset $\epsilon_k$ and transverse path $\boldsymbol\delta_k(T)$ are exact source coordinates. The payload-slot map and binary-counterpart map remain separate.
+
+Write either a core or payload path as
+
+$$
+\mathbf Z_a(T)
+=
+\mathbf C_0
++s_{\mathrm{grp}}T\hat{\mathbf n}
++\zeta_a\hat{\mathbf n}
++\boldsymbol\delta_a(T).
+$$
+
+Every retained positive causal delay from transmitter $a$ to receiver $b$ satisfies
+
+$$
+\left\|
+\left(
+\zeta_b-\zeta_a+s_{\mathrm{grp}}u
+\right)\hat{\mathbf n}
++\boldsymbol\delta_b(T)
+-\boldsymbol\delta_a(T-u)
+\right\|
+=c_fu,
+\qquad
+u>0.
+$$
+
+This equation covers core-core, core-payload, payload-core, and payload-payload interactions. It is generally transcendental because the retarded transmitter phase contains $u$. A stationary transverse transmitter reduces the squared equation to a quadratic in $u$. Equal frequency, equal radius, rational frequency ratios, or reflection symmetry can reduce the number of distinct equations or pair contribution rows, but they do not generally remove the retarded phase. Rotating sectors therefore require certified retained-root enumeration.
+
+For each declared worldline, compare prescribed acceleration with the master-equation acceleration from the complete declared source inventory:
+
+$$
+\mathbf R_a(T)
+=
+\ddot{\mathbf Z}^{\mathrm{prescribed}}_a(T)
+-\mathbf A^{\mathrm{ME}}_a(T).
+$$
+
+Report axial, radial, and tangential projections separately over the complete return period. Pointwise rows, signed cycle averages, RMS values, maxima, primary/refined differences, and source-resolved contributions are all required. Cancellation in one projection cannot conceal failure in another. A converged residual remains a prescribed-path analytical result; it is not stability, retention, binding, or physical realization.
+
 ## Candidate Grading
 
 The prescribed-record analytical grade is fail-closed and occurs in this order:

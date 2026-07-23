@@ -633,12 +633,48 @@ function evaluateMinimumSeparation(sourceRecord, protocol, sampleCount) {
           minimumTime = time;
         }
       }
+      const relativeSpeedUpperBound =
+        maximumTrajectorySpeed(left.trajectory, start, start + period) +
+        maximumTrajectorySpeed(right.trajectory, start, start + period);
+      const startRelativePosition = subtract(
+        evaluateExactPrescribedSourceState(left, start).position,
+        evaluateExactPrescribedSourceState(right, start).position,
+      );
+      const endRelativePosition = subtract(
+        evaluateExactPrescribedSourceState(left, start + period).position,
+        evaluateExactPrescribedSourceState(right, start + period).position,
+      );
+      const relativePeriodClosureResidual = magnitude(subtract(
+        endRelativePosition,
+        startRelativePosition,
+      ));
+      const relativePeriodClosureTolerance = 64 * Number.EPSILON * Math.max(
+        1,
+        magnitude(startRelativePosition),
+        magnitude(endRelativePosition),
+      );
+      const relativePeriodClosed =
+        relativePeriodClosureResidual <= relativePeriodClosureTolerance;
+      const sampleCoveringRadius = relativePeriodClosed
+        ? period / (2 * sampleCount)
+        : period / sampleCount;
+      const continuousLowerBound = Math.max(
+        0,
+        minimum - relativeSpeedUpperBound * sampleCoveringRadius,
+      );
       pairRows.push({
         pairId: `${left.id}<->${right.id}`,
         leftTransmitterId: left.id,
         rightTransmitterId: right.id,
         minimumSeparation: minimum,
         firstMinimumSampleTime: minimumTime,
+        relativeSpeedUpperBound,
+        relativePeriodClosed,
+        relativePeriodClosureResidual,
+        relativePeriodClosureTolerance,
+        sampleCoveringRadius,
+        continuousLowerBound,
+        certificateRule: "periodic-sample-lipschitz-lower-bound.v1",
       });
     }
   }
@@ -646,15 +682,23 @@ function evaluateMinimumSeparation(sourceRecord, protocol, sampleCount) {
     (best, row) => row.minimumSeparation < best.minimumSeparation ? row : best,
     pairRows[0],
   );
+  const certificateRow = pairRows.reduce(
+    (best, row) => row.continuousLowerBound < best.continuousLowerBound ? row : best,
+    pairRows[0],
+  );
   return {
     samplingRule: protocol.geometry.samplingRule,
+    certificateRule: "periodic-sample-lipschitz-lower-bound.v1",
     start,
     period,
     sampleCount,
+    sampleCoveringRadius: certificateRow.sampleCoveringRadius,
     pairRows,
     minimumSeparation: minimumRow.minimumSeparation,
     minimumPairId: minimumRow.pairId,
     firstMinimumSampleTime: minimumRow.firstMinimumSampleTime,
+    certifiedContinuousLowerBound: certificateRow.continuousLowerBound,
+    certificatePairId: certificateRow.pairId,
   };
 }
 
@@ -783,26 +827,27 @@ export function evaluatePrescribedRecordAnalysis(request = {}) {
   const minimumSeparationChange = Math.abs(
     minimumSeparation.minimumSeparation - refinedMinimumSeparation.minimumSeparation,
   );
-  const convergenceMaximumChange = Math.max(
-    eventConvergence.maximumChange,
-    minimumSeparationChange,
-  );
+  const convergenceMaximumChange = eventConvergence.maximumChange;
   const numericalConvergence = {
-    comparisonRule: "primary-versus-tighter-root-and-denser-periodic-grid.v1",
+    comparisonRule: "primary-versus-tighter-root-event-ledger.v2",
     absoluteTolerance: protocol.tolerances.convergenceAbsolute,
     eventConvergence,
     minimumSeparation: {
+      disposition: "separate-continuous-separation-certificate-not-a-convergence-gate",
       primarySampleCount: minimumSeparation.sampleCount,
       refinedSampleCount: refinedMinimumSeparation.sampleCount,
       primaryValue: minimumSeparation.minimumSeparation,
       refinedValue: refinedMinimumSeparation.minimumSeparation,
       absoluteChange: minimumSeparationChange,
+      primaryCertifiedContinuousLowerBound:
+        minimumSeparation.certifiedContinuousLowerBound,
+      refinedCertifiedContinuousLowerBound:
+        refinedMinimumSeparation.certifiedContinuousLowerBound,
       minimumPairIdentityMatch:
         minimumSeparation.minimumPairId === refinedMinimumSeparation.minimumPairId,
     },
     maximumReportedChange: convergenceMaximumChange,
     passed: eventConvergence.rootIdentitiesMatch &&
-      minimumSeparation.minimumPairId === refinedMinimumSeparation.minimumPairId &&
       convergenceMaximumChange <= protocol.tolerances.convergenceAbsolute,
   };
   const rootTransversalityMargin = events.flatMap((event) => event.roots).reduce(
@@ -819,7 +864,8 @@ export function evaluatePrescribedRecordAnalysis(request = {}) {
     rootTransversalityPassed: finiteRootTransversalityMargin === null ||
       finiteRootTransversalityMargin >= protocol.tolerances.rootTransversalityFloor,
     minimumSeparationPassed:
-      minimumSeparation.minimumSeparation >= protocol.tolerances.minimumSeparationFloor,
+      minimumSeparation.certifiedContinuousLowerBound >=
+        protocol.tolerances.minimumSeparationFloor,
     numericalConvergencePassed: numericalConvergence.passed,
   };
   validity.passed = Object.values(validity).every(Boolean);
@@ -828,7 +874,7 @@ export function evaluatePrescribedRecordAnalysis(request = {}) {
     schema: PRESCRIBED_RECORD_ANALYSIS_RESULT_SCHEMA,
     evaluator: {
       id: "prescribed-record-analytical-braid-evaluator",
-      version: "v1",
+      version: "v2",
       pathEvolutionInvoked: false,
       eomSolverInvoked: false,
     },
@@ -887,6 +933,11 @@ export function evaluatePrescribedRecordAnalysis(request = {}) {
         firstMinimumSampleTime: minimumSeparation.firstMinimumSampleTime,
         sampleCount: minimumSeparation.sampleCount,
         samplingRule: minimumSeparation.samplingRule,
+        certifiedContinuousLowerBound:
+          minimumSeparation.certifiedContinuousLowerBound,
+        certificatePairId: minimumSeparation.certificatePairId,
+        certificateRule: minimumSeparation.certificateRule,
+        sampleCoveringRadius: minimumSeparation.sampleCoveringRadius,
       },
       rootTransversalityMargin: finiteRootTransversalityMargin,
       numericalConvergence,

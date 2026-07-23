@@ -167,12 +167,18 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
   }
   const protocolId = string(raw.protocolId, "protocol.protocolId");
   const applicability = object(raw.applicability, "protocol.applicability");
+  const generalizedFamilyB =
+    applicability.campaignClass === "generalized-family-b-prescribed-train.v1";
   if (isB1 && (applicability.familyId !== "B" || applicability.memberId !== "B1")) {
     throw new TypeError("B1 protocol applicability must be Family B member B1.");
   }
-  if (!isB1 && (!Array.isArray(applicability.familyIds) ||
+  if (!isB1 && !generalizedFamilyB && (!Array.isArray(applicability.familyIds) ||
       applicability.familyIds.join(",") !== "A,B,C")) {
     throw new TypeError("cohort protocol applicability.familyIds must be [A, B, C].");
+  }
+  if (generalizedFamilyB && (!Array.isArray(applicability.familyIds) ||
+      applicability.familyIds.join(",") !== "B")) {
+    throw new TypeError("generalized Family-B train protocol familyIds must be [B].");
   }
   const sourceEnvelopeRadius = positive(
     applicability.maximumSourceEnvelopeRadius,
@@ -183,8 +189,13 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
     : numericArray(applicability.sourceCounts, "protocol.applicability.sourceCounts")
       .map((value, index) => positiveInteger(value, `protocol.applicability.sourceCounts[${index}]`));
   if (isB1 && sourceCounts[0] !== 6) throw new RangeError("B1 protocol sourceCount must be 6.");
-  if (!isB1 && sourceCounts.join(",") !== "6,12") {
+  if (!isB1 && !generalizedFamilyB && sourceCounts.join(",") !== "6,12") {
     throw new RangeError("cohort protocol sourceCounts must be [6, 12].");
+  }
+  if (generalizedFamilyB && sourceCounts.join(",") !== "6,9,12,18") {
+    throw new RangeError(
+      "generalized Family-B train protocol sourceCounts must be [6, 9, 12, 18].",
+    );
   }
 
   const eventEvaluator = object(raw.eventEvaluator, "protocol.eventEvaluator");
@@ -380,10 +391,15 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
     if (!Array.isArray(coordinates) || coordinates.join(",") !== "alpha_1,alpha_2,alpha_3") {
       throw new TypeError("B1 local sensitivity coordinates must be alpha_1, alpha_2, alpha_3.");
     }
-  } else if (!Array.isArray(coordinates) ||
-      coordinates.join(",") !== "declared-primary-braid-phase-offset") {
+  } else if (!generalizedFamilyB && (!Array.isArray(coordinates) ||
+      coordinates.join(",") !== "declared-primary-braid-phase-offset")) {
     throw new TypeError(
       "cohort local sensitivity coordinates must be [declared-primary-braid-phase-offset].",
+    );
+  } else if (generalizedFamilyB && (!Array.isArray(coordinates) ||
+      coordinates.join(",") !== "central-spacing-scale")) {
+    throw new TypeError(
+      "generalized Family-B train local sensitivity coordinates must be [central-spacing-scale].",
     );
   }
   const step = positive(sensitivity.primaryStep, "localSourceSensitivity.primaryStep");
@@ -391,6 +407,24 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
   if (Math.abs(refinedStep * 2 - step) > 1e-15) {
     throw new RangeError("refined sensitivity step must be one half the primary step.");
   }
+  const sensitivityNormalization = object(
+    sensitivity.normalization,
+    "protocol.localSourceSensitivity.normalization",
+  );
+  if (sensitivityNormalization.rule !==
+      "per-measure-dimensionless-stencil-settling.v1") {
+    throw new TypeError(
+      "localSourceSensitivity.normalization.rule must bind the declared per-measure rule.",
+    );
+  }
+  positive(
+    sensitivityNormalization.surfaceRatioScale,
+    "localSourceSensitivity.normalization.surfaceRatioScale",
+  );
+  positive(
+    sensitivityNormalization.endpointRmsRelativeFloor,
+    "localSourceSensitivity.normalization.endpointRmsRelativeFloor",
+  );
 
   validatePrescribedRecordAnalysisProtocol({
     schema: PRESCRIBED_RECORD_ANALYSIS_PROTOCOL_SCHEMA,

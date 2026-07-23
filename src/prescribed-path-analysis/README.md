@@ -78,6 +78,18 @@ node scripts/eom/evaluate-prescribed-source-wake.mjs \
 
 Use `--write .tmp/prescribed-path-analysis/<name>.result-packet.v1.json` for a disposable local packet. Retained campaign results belong in the analytical database and deterministic exports, not in checked-in result JSON.
 
+Run the solver-free gate-adjudication and targeted resolution ladders with:
+
+```bash
+node scripts/eom/adjudicate-analytical-gates.mjs
+```
+
+The default report is
+`.local-data/braid-analysis/gate-adjudication/targeted-resolution-ladders.v1.json`.
+The harness retains all four declared surface radii for the B1.3, B1.1, and C1
+surface ladders, uses an outer-radius sensitivity pilot for A1.2 and A2, and
+emits progress heartbeats without invoking path evolution or the EOM solver.
+
 ## Independent Checks
 
 `tests/prescribed-source-wake-evaluator.test.js` fixes expected values without replaying evaluator output:
@@ -131,6 +143,22 @@ node scripts/eom/analytical-campaign-database.mjs backup \
 The exporter writes exact manifest, summary, result-packet, and compressed raw-ledger bytes plus deterministic source-envelope, exact-source, protocol, acceptance-evidence, and hash-inventory files. The generated all-candidate campaign stores and verifies each exact source-record preimage and both the compressed and uncompressed hashes of every streamed raw artifact.
 
 Independent database acceptance is a separately authored verification of the retained analytical record. It is not a fresh numerical evaluation of the prescribed paths and does not establish the evaluator's mathematical correctness. Import, acceptance, query, export, or backup does not call the EOM solver or imply stability, energy, retention, physical realization, or completed braid-family grading.
+
+## Generalized Family-B Common-Axis Pilot
+
+`GeneralizedFamilyBTrain.mjs` defines exact six-core single, twelve-core dual, and optional payload source records in one common-axis coordinate system. The source contract retains ordered spacings, train length, exact components, a fixed-point-free binary-counterpart map, a separate adjacent-pair payload map, and every core or payload trajectory coordinate. `payload architrino` is defined only by that source contract and is not mapped to another assembly component.
+
+`GeneralizedFamilyBPilot.mjs` supplies six predeclared references and one seeded neighborhood sample around each. `GeneralizedFamilyBCampaign.mjs` evaluates complete-cycle source-endpoint residuals in axial, local radial, and local tangential coordinates, retains exterior surface reductions, runs a grouped spacing sensitivity, records diagnostic axial angular-momentum rows without inserting $h$ or $\hbar$, and writes a compatible complete-cycle campaign for independent SQLite acceptance.
+
+Run the bounded campaign with:
+
+```bash
+node scripts/eom/run-generalized-family-b-pilot.mjs
+```
+
+The default outputs are `.local-data/braid-analysis/generalized-family-b-pilot/` and `.local-data/braid-analysis/generalized-family-b-pilot.sqlite`. Use `--references-only` for the six reference rows, `--no-import` to stop after campaign generation, and `--output`, `--database`, or `--protocol` to select explicit paths.
+
+The pilot is prescribed-path analytics only. It imports no EOM-solver module, evolves no path, creates no handoff packet, and makes no stability, self-stabilization, retention, binding, photon-identity, energy-closure, quantization, physical-realization, or EOM-solver-compatibility claim.
 
 ## Smallest B1 Campaign Follow-Up
 

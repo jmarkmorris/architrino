@@ -6,7 +6,7 @@ import {
 } from "../AnalyticalBraidEvaluator.mjs";
 
 export const INDEPENDENT_ACCEPTANCE_INSTRUMENT_VERSION =
-  "prescribed-record-independent-acceptance/v1";
+  "prescribed-record-independent-acceptance/v2";
 
 const RESULT_PACKET_SCHEMA = "prescribed-path-analysis/result-packet.v1";
 const PROTOCOL_SCHEMA = "prescribed-path-analysis/analysis-protocol.v1";
@@ -245,6 +245,8 @@ function minimumLedger(rows, expectedIds) {
   }
   let minimum = Number.POSITIVE_INFINITY;
   let minimumRow = null;
+  let certifiedContinuousLowerBound = Number.POSITIVE_INFINITY;
+  let certificateRow = null;
   for (const row of rows) {
     const pairKey = [row?.leftTransmitterId, row?.rightTransmitterId]
       .sort().join("\u0000");
@@ -254,7 +256,26 @@ function minimumLedger(rows, expectedIds) {
         !expectedIds.includes(row.rightTransmitterId) ||
         row.leftTransmitterId === row.rightTransmitterId ||
         !finite(row.minimumSeparation) || row.minimumSeparation < 0 ||
-        !finite(row.firstMinimumSampleTime)) {
+        !finite(row.firstMinimumSampleTime) ||
+        !finite(row.relativeSpeedUpperBound) || row.relativeSpeedUpperBound < 0 ||
+        typeof row.relativePeriodClosed !== "boolean" ||
+        !finite(row.relativePeriodClosureResidual) ||
+        row.relativePeriodClosureResidual < 0 ||
+        !finite(row.relativePeriodClosureTolerance) ||
+        row.relativePeriodClosureTolerance < 0 ||
+        row.relativePeriodClosed !==
+          (row.relativePeriodClosureResidual <= row.relativePeriodClosureTolerance) ||
+        !finite(row.sampleCoveringRadius) || row.sampleCoveringRadius < 0 ||
+        !finite(row.continuousLowerBound) || row.continuousLowerBound < 0 ||
+        row.certificateRule !== "periodic-sample-lipschitz-lower-bound.v1" ||
+        !closeEnough(
+          row.continuousLowerBound,
+          Math.max(
+            0,
+            row.minimumSeparation -
+              row.relativeSpeedUpperBound * row.sampleCoveringRadius,
+          ),
+        )) {
       return null;
     }
     pairIds.add(row.pairId);
@@ -263,17 +284,26 @@ function minimumLedger(rows, expectedIds) {
       minimum = row.minimumSeparation;
       minimumRow = row;
     }
+    if (row.continuousLowerBound < certifiedContinuousLowerBound) {
+      certifiedContinuousLowerBound = row.continuousLowerBound;
+      certificateRow = row;
+    }
   }
   if (observedPairs.size !== expectedPairs.size) return null;
-  return { minimum, minimumRow, rowCount: rows.length };
+  return {
+    minimum,
+    minimumRow,
+    certifiedContinuousLowerBound,
+    certificateRow,
+    rowCount: rows.length,
+  };
 }
 
-function convergenceMaximum(packet, primaryMinimum, refinedMinimum) {
+function convergenceMaximum(packet) {
   const rows = packet.rawLedgers?.numericalConvergence;
   if (!Array.isArray(rows)) return null;
-  let maximum = Math.abs(primaryMinimum.minimum - refinedMinimum.minimum);
-  let identitiesMatch = primaryMinimum.minimumRow.pairId ===
-    refinedMinimum.minimumRow.pairId;
+  let maximum = 0;
+  let identitiesMatch = true;
   for (const row of rows) {
     const scalars = [
       row.maximumEmissionTimeChange,
@@ -618,11 +648,12 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
     ? minimumLedger(packet.rawLedgers?.refinedMinimumSeparation, expectedIds)
     : null;
   const minimumSeparationPassed = Boolean(primaryMinimum) &&
-    primaryMinimum.minimum >= packet.protocol?.tolerances?.minimumSeparationFloor;
+    primaryMinimum.certifiedContinuousLowerBound >=
+      packet.protocol?.tolerances?.minimumSeparationFloor;
   if (!minimumSeparationPassed) addIssue("minimum-separation-gate-failed");
 
   const convergence = primaryMinimum && refinedMinimum
-    ? convergenceMaximum(packet, primaryMinimum, refinedMinimum)
+    ? convergenceMaximum(packet)
     : null;
   const numericalConvergencePassed = Boolean(convergence) &&
     convergence.identitiesMatch &&
@@ -644,7 +675,14 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
       packet.reducedMeasures?.minimumSeparation?.value,
       primaryMinimum.minimum,
     ) && packet.reducedMeasures?.minimumSeparation?.pairId ===
-      primaryMinimum.minimumRow.pairId;
+      primaryMinimum.minimumRow.pairId &&
+    closeEnough(
+      packet.reducedMeasures?.minimumSeparation?.certifiedContinuousLowerBound,
+      primaryMinimum.certifiedContinuousLowerBound,
+    ) && packet.reducedMeasures?.minimumSeparation?.certificatePairId ===
+      primaryMinimum.certificateRow.pairId &&
+    packet.reducedMeasures?.minimumSeparation?.certificateRule ===
+      "periodic-sample-lipschitz-lower-bound.v1";
   const convergenceProjectionPassed = Boolean(convergence) &&
     closeEnough(
       packet.reducedMeasures?.numericalConvergence?.maximumReportedChange,
@@ -710,10 +748,14 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
     makeGate({
       gateId: "minimum-separation",
       passed: minimumSeparationPassed,
-      measuredValue: primaryMinimum?.minimum ?? null,
+      measuredValue: primaryMinimum?.certifiedContinuousLowerBound ?? null,
       comparator: ">=",
       thresholdValue: packet.protocol?.tolerances?.minimumSeparationFloor ?? null,
       failureCode: "minimum-separation-gate-failed",
+      details: {
+        sampledMinimum: primaryMinimum?.minimum ?? null,
+        certificateRule: "periodic-sample-lipschitz-lower-bound.v1",
+      },
     }),
     makeGate({
       gateId: "numerical-convergence",

@@ -2,6 +2,7 @@
 
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { writeFileSync } from "node:fs";
 
 import {
   backupAndVerifyAnalyticalCampaignDatabase,
@@ -97,7 +98,7 @@ async function runCli() {
     const check = values.has("--check");
     const publish = values.has("--publish");
     if (check === publish) fail("rebuild-all requires exactly one of --check or --publish.");
-    printResult(await rebuildAllCandidateAnalyticalDatabase({
+    const report = await rebuildAllCandidateAnalyticalDatabase({
       databasePath,
       mode: publish ? "publish" : "check",
       ...(values.has("--registry")
@@ -109,7 +110,12 @@ async function runCli() {
           ...progress,
         })}\n`);
       },
-    }));
+    });
+    if (values.has("--profile-output")) {
+      const profilePath = path.resolve(values.get("--profile-output"));
+      writeFileSync(profilePath, `${JSON.stringify(report, null, 2)}\n`);
+    }
+    printResult(report);
     return;
   }
   if (command === "export-campaign") {

@@ -859,6 +859,8 @@ function batchProtocol(fullEventProtocol, timeIndex) {
 export function validateCompleteCycleSourceApplicability(sourceRecord, protocol) {
   const isB1 = protocol.schema ===
     "prescribed-path-analysis/b1-complete-cycle-probe-protocol.v1";
+  const generalizedFamilyB =
+    protocol.applicability?.campaignClass === "generalized-family-b-prescribed-train.v1";
   if (isB1 && (sourceRecord?.taxonomy?.familyId !== "B" ||
       !["B1", "B1.1", "B1.2", "B1.3", "B1.4"].includes(sourceRecord.taxonomy?.memberId))) {
     throw new Error("B1 complete-cycle reduction requires an exact Family B B1 source record.");
@@ -875,6 +877,13 @@ export function validateCompleteCycleSourceApplicability(sourceRecord, protocol)
   }
   const period = protocol.completeCycle.period;
   const envelope = protocol.applicability.maximumSourceEnvelopeRadius;
+  const requiredCenterVelocity = generalizedFamilyB
+    ? {
+        x: protocol.applicability.requiredCenterVelocity[0],
+        y: protocol.applicability.requiredCenterVelocity[1],
+        z: protocol.applicability.requiredCenterVelocity[2],
+      }
+    : { x: 0, y: 0, z: 0 };
   const centerSum = { x: 0, y: 0, z: 0 };
   for (const source of sourceRecord.sources) {
     const trajectory = source.trajectory;
@@ -890,17 +899,35 @@ export function validateCompleteCycleSourceApplicability(sourceRecord, protocol)
     const radiusVNorm = vectorNorm(radiusV);
     const geometryScale = Math.max(1, centerNorm, radiusUNorm, radiusVNorm);
     const orthogonalityTolerance = 1e-12 * geometryScale * geometryScale;
-    if (vectorNorm(centerVelocity) > 1e-12 ||
+    if (vectorNorm({
+      x: centerVelocity.x - requiredCenterVelocity.x,
+      y: centerVelocity.y - requiredCenterVelocity.y,
+      z: centerVelocity.z - requiredCenterVelocity.z,
+    }) > 1e-12 ||
         Math.abs(finite(trajectory.angularAcceleration, `${source.id}.angularAcceleration`)) > 1e-12 ||
         Math.abs(radiusUNorm - radiusVNorm) > 1e-12 * geometryScale ||
         Math.abs(dot(radiusU, radiusV)) > orthogonalityTolerance ||
         (isB1 && Math.abs(dot(center, radiusU)) > orthogonalityTolerance) ||
         (isB1 && Math.abs(dot(center, radiusV)) > orthogonalityTolerance)) {
       throw new Error(
-        `source ${source.id} violates the stationary orthogonal-circle applicability gate.`,
+        `source ${source.id} violates the declared common-translation orthogonal-circle applicability gate.`,
       );
     }
-    const maximumRadius = isB1
+    const cycleStartCenter = {
+      x: center.x + centerVelocity.x * protocol.completeCycle.start,
+      y: center.y + centerVelocity.y * protocol.completeCycle.start,
+      z: center.z + centerVelocity.z * protocol.completeCycle.start,
+    };
+    const cycleEndTime = protocol.completeCycle.start + protocol.completeCycle.period;
+    const cycleEndCenter = {
+      x: center.x + centerVelocity.x * cycleEndTime,
+      y: center.y + centerVelocity.y * cycleEndTime,
+      z: center.z + centerVelocity.z * cycleEndTime,
+    };
+    const maximumRadius = generalizedFamilyB
+      ? Math.max(vectorNorm(cycleStartCenter), vectorNorm(cycleEndCenter)) +
+        Math.max(radiusUNorm, radiusVNorm)
+      : isB1
       ? Math.hypot(centerNorm, Math.max(radiusUNorm, radiusVNorm))
       : centerNorm + Math.max(radiusUNorm, radiusVNorm);
     if (maximumRadius > envelope + 1e-12) {
@@ -1412,11 +1439,15 @@ export function evaluateB1StreamingSurfaceReductions({
   completeCycleProtocol: rawProtocol,
   evaluate = evaluatePrescribedRecordAnalysis,
   onSurfacePacket = null,
+  onProgress = null,
 } = {}) {
   const protocol = validateB1CompleteCycleProbeProtocol(rawProtocol);
   if (typeof evaluate !== "function") throw new TypeError("evaluate must be a function.");
   if (onSurfacePacket !== null && typeof onSurfacePacket !== "function") {
     throw new TypeError("onSurfacePacket must be a function when supplied.");
+  }
+  if (onProgress !== null && typeof onProgress !== "function") {
+    throw new TypeError("onProgress must be a function when supplied.");
   }
   validateCompleteCycleSourceApplicability(sourceRecord, protocol);
   const sourceAbsolutePolaritySum = sourceRecord.sources.reduce(
@@ -1454,6 +1485,16 @@ export function evaluateB1StreamingSurfaceReductions({
         })),
       });
       for (let timeIndex = 0; timeIndex < resolutionGrid.timeSamples; timeIndex += 1) {
+        const progressStride = Math.max(1, Math.ceil(resolutionGrid.timeSamples / 8));
+        if (timeIndex % progressStride === 0) {
+          onProgress?.({
+            stage: "surface-time-batch",
+            radius,
+            resolution,
+            completedTimeSamples: timeIndex,
+            totalTimeSamples: resolutionGrid.timeSamples,
+          });
+        }
         const eventProtocol = batchProtocol(fullProtocol, timeIndex);
         const eventPacket = evaluate({ sourceRecord, protocol: eventProtocol });
         const events = independentlyCheckEventPacket(
@@ -1500,6 +1541,13 @@ export function evaluateB1StreamingSurfaceReductions({
         accumulator.ingestTimeSamples(timeIndex, samples, descriptor);
         surfaceEvaluations.push(descriptor);
       }
+      onProgress?.({
+        stage: "surface-radius-complete",
+        radius,
+        resolution,
+        completedTimeSamples: resolutionGrid.timeSamples,
+        totalTimeSamples: resolutionGrid.timeSamples,
+      });
       surfaceReductions[resolution].push(accumulator.finalize());
     }
   }

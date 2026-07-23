@@ -175,7 +175,7 @@ test("versioned migrations are checksummed and idempotent", () => {
              tool_version
       FROM schema_migration ORDER BY migration_ordinal
     `).all();
-    assert.equal(Number(first.prepare("PRAGMA user_version").get().user_version), 3);
+    assert.equal(Number(first.prepare("PRAGMA user_version").get().user_version), 4);
     first.close();
 
     const second = openAnalyticalCampaignDatabase(databasePath, {
@@ -188,7 +188,7 @@ test("versioned migrations are checksummed and idempotent", () => {
     `).all();
     second.close();
     assert.deepEqual(secondRows, firstRows);
-    assert.deepEqual(firstRows.map((row) => row.checksum_bytes), [32, 32, 32]);
+    assert.deepEqual(firstRows.map((row) => row.checksum_bytes), [32, 32, 32, 32]);
   } finally {
     rmSync(directory, { recursive: true, force: true });
   }

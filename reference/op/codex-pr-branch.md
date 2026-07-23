@@ -48,6 +48,102 @@ The canonical series index, counts, registry status, and concrete registry files
 - If a git command in the cleanup or rollover sequence fails, stop and resolve that exact failure before continuing to the next git step.
 - In sandboxed environments, some local ref-updating commands may require escalation because Git needs to create lockfiles under `.git/refs`.
 
+## Two-Handoff Invocation Contract
+
+This procedure is designed to run with two operator/developer handoffs and no
+routine confirmation prompts between them.
+
+### First handoff: publish a ready PR
+
+The explicit instruction `run codex-pr-branch.md`, including the equivalent
+linked-file instruction, is standing authorization to execute the complete
+guarded publication path in this document:
+
+- inspect the current working branch and separate its intended scope from
+  unrelated ambient worktree state;
+- run the required regeneration and validation steps;
+- repair branch-scoped mechanical drift when the repair is determined by an
+  existing generator, validator, schema, index, path, or established
+  terminology contract;
+- stage only the intended files;
+- create an intentional commit;
+- push the current working branch without force;
+- create or update its PR with an intentional title and body;
+- move an intentionally complete draft PR to ready status;
+- wait for required remote checks and verify mergeability; and
+- capture the PR number, URL, branch name, `headRefOid`, base SHA, and final
+  validation state as the publish handoff receipt; and
+- return to the operator/developer only when the PR is ready for review or a
+  stop condition has been reached.
+
+This authorization covers routine retry after a transient, non-semantic
+failure, such as refreshing stale remote refs and repeating a check against the
+new refs. It does not authorize changing theory, EOM solver semantics, evidence
+authority, canon policy, or product design merely to make a check pass.
+
+The operator/developer remains the merge gate. This invocation does not
+authorize the agent to merge, close, or abandon the PR.
+
+### Second handoff: verify, clean up, and roll over
+
+After the operator/developer merges the PR, either explicit instruction
+`merged, continue` or `merged, complete` is standing authorization to execute
+the complete guarded post-merge and rollover path in this document:
+
+- verify the PR state, merge time, merged head, and absence of post-merge
+  branch commits;
+- fast-forward local `main` to current `origin/main` and verify equality;
+- delete the exact verified merged working branch locally;
+- delete that same branch remotely, or accept its confirmed prior absence;
+- select the next unused token from the live branch-series registry;
+- create the successor branch from the verified synchronized `main`;
+- publish the successor branch without force and establish its upstream; and
+- return the final cleanup, synchronization, and rollover state.
+
+The conditional `git branch -D` fallback is included in this standing
+authorization only when GitHub confirms that the exact branch PR is merged,
+the post-merge commit scan is clean, local `main` equals `origin/main`, and
+ordinary `git branch -d` refused solely because the merge strategy did not
+preserve ancestry. No other local or remote branch deletion is authorized.
+
+### No intermediate permission prompts on the healthy path
+
+Do not ask the operator/developer to confirm each authorized step above.
+Provide concise progress updates while continuing, and pause only at a stop
+condition. A repository procedure can grant semantic authorization, but it
+cannot bypass a host application's filesystem or command sandbox. When the
+host requires approval, request the narrow reusable command prefix needed for
+this procedure rather than a one-off exact command whenever the host supports
+that choice. Shape routine commands consistently so previously approved narrow
+prefixes can be reused.
+
+Do not introduce a repository-local wrapper whose approval would indirectly
+authorize arbitrary future script contents. The permitted authority is the
+documented guarded lifecycle, not a general shell or script execution
+capability.
+
+### Mandatory pause boundary
+
+Standing authorization ends and the agent must stop with an exact blocker map
+if any of the following occurs:
+
+- intended scope is ambiguous, or ambient edits overlap the files, staging
+  area, validation result, or branch checkout needed by this procedure;
+- a merge conflict appears or local `main` cannot fast-forward;
+- a branch has post-merge commits or its local, remote, and PR identities do
+  not agree;
+- a required repair needs theory, EOM solver, evidence-authority, canon-policy,
+  architecture, or product-design judgment;
+- a required check remains failing after deterministic branch-scoped
+  mechanical repair;
+- the next registry token is ambiguous or the active branch series is
+  exhausted without a configured successor;
+- authentication, connectivity, or GitHub state prevents verification;
+- completing the path would require force push, rebase, reset, stash,
+  restoration or discarding of work, broad deletion, or deletion of any branch
+  other than the exact verified merged PR branch; or
+- any action would exceed the explicit publication or post-merge scope above.
+
 ## Standard End-of-Session Process
 
 Use this process whenever a work session is being wrapped up and the work is intended to leave the local machine.
@@ -65,25 +161,7 @@ git status -sb
 git diff --stat
 ```
 
-### 2. Run the required repo checks
-
-These are mandatory before commit and before PR publication.
-- Treat the local pre-push checklist as a mirror of the current required repo workflow, not as a smaller convenience subset.
-- If GitHub Actions runs an additional repo-owned validation step, add and run that same step locally before opening a ready PR.
-
-```bash
-node scripts/validate-content.mjs --check --strict
-node scripts/build-scene-graph.mjs --check --strict
-node scripts/check-foundational-impact.mjs --base origin/main --run
-node scripts/build-agent-startup-orientation.mjs --check
-node scripts/build-textbook-md-pdf.mjs --check
-node scripts/check-transmitter-factor-clean-slate.mjs
-node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
-node scripts/check-polarity-notation-drift.mjs
-node scripts/check-animator-runtime-wiring.mjs
-node scripts/check-content-integrity.mjs
-node scripts/smoke-option3.mjs
-```
+### 2. Resolve required generated drift
 
 Textbook regeneration has two generated layers:
 
@@ -100,7 +178,12 @@ Use a full regeneration checkpoint when the operator/developer requests `regener
 Closure goal: Regenerate.
 ```
 
-A full regeneration checkpoint means running the write commands above, then the check pass below. Do not run the write commands after every small code or documentation edit. For priority-only mathematics packets, stay in the targeted edit/check loop unless the packet is promoted into textbook-facing corpus material, changes scene/TOC inputs, or the operator/developer asks for a full regeneration checkpoint.
+A full regeneration checkpoint means running the write commands above, staging
+the intended outputs, then running the exact-state PR gate in step 4. Do not
+run the write commands after every small code or documentation edit. For
+priority-only mathematics packets, stay in the targeted edit/check loop unless
+the packet is promoted into textbook-facing corpus material, changes scene/TOC
+inputs, or the operator/developer asks for a full regeneration checkpoint.
 
 Outside this final branch/PR process, a generator `--check` drift report should be handed back with the exact `--write` command needed unless the operator/developer has explicitly requested regeneration or a fix-drift pass.
 
@@ -111,31 +194,26 @@ Regenerate both layers before the final check pass whenever a PR touches any sou
 - textbook TOC generation inputs or outputs, including `content/graph/textbook_toc.json` and `content/generated/markdown/textbook/toc.md`,
 - existing textbook reading-copy outputs under `content/generated/markdown/textbook/reading-copies/`.
 
-The local browser PDF made from a reading-copy view is not a committed repo artifact.
+The local browser PDF made from a reading-copy view is not a committed repo
+artifact.
 
-During this final branch/PR process, if scene-graph, agent startup orientation, or textbook reading-copy drift is reported, regenerate and re-check:
+During this final branch/PR process, if scene-graph, agent startup orientation,
+or textbook reading-copy drift is reported, regenerate before staging:
 
 ```bash
 node scripts/build-scene-graph.mjs --write --strict
 node scripts/build-agent-startup-orientation.mjs --write
 node scripts/build-textbook-md-pdf.mjs --write
-node scripts/validate-content.mjs --check --strict
-node scripts/build-scene-graph.mjs --check --strict
-node scripts/check-foundational-impact.mjs --base origin/main --run
-node scripts/build-agent-startup-orientation.mjs --check
-node scripts/build-textbook-md-pdf.mjs --check
-node scripts/check-transmitter-factor-clean-slate.mjs
-node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
-node scripts/check-polarity-notation-drift.mjs
-node scripts/check-animator-runtime-wiring.mjs
-node scripts/check-content-integrity.mjs
-node scripts/smoke-option3.mjs
 ```
 
 ### 3. Stage only the intended files
 
 - Prefer explicit file paths when there is any doubt.
 - Use `git add -A` only when the whole worktree is in scope.
+- After any generator write, inspect and stage the intended generated outputs
+  before running the exact-state gate.
+- The staging area is part of the validation identity. Any later staging change
+  invalidates the receipt and requires the gate again.
 
 Commands:
 
@@ -149,18 +227,69 @@ or, when the whole worktree is intentionally in scope:
 git add -A
 ```
 
-### 4. Commit with a terse intentional message
+### 4. Run the exact-state PR gate
 
-- The commit should describe the actual completed unit of work, not a vague session summary.
+This gate is mandatory after final staging and before commit. It runs:
 
-Commands:
+- foundational-impact routing against the exact current `origin/main`;
+- the canonical content-integrity aggregate, including generated-artifact,
+  terminology, taxonomy, package, runtime-smoke, and process-conformance
+  checks; and
+- animator runtime-wiring validation.
+
+Command:
 
 ```bash
-git add <paths...>
+node scripts/pr-validation-receipt.mjs run --base origin/main
+```
+
+The runner captures the repository state before and after validation and
+refuses to write a receipt if the state changes during the checks. The local
+receipt records:
+
+- a hash of every staged index entry;
+- a hash of the complete unstaged binary diff and every non-ignored untracked
+  file;
+- the literal current branch name, base-ref label, and resolved `origin/main`
+  object ID;
+- the validation command-contract hash;
+- Node and Git versions; and
+- operating-system platform and architecture.
+
+The receipt is local runtime state under
+`.local-data/pr-validation/receipt.v1.json` and is ignored by Git. It is
+evidence only that this exact local state already passed the named checks; it
+does not add evidence authority to any theory or computation.
+
+The pre-commit and pre-push hooks verify all receipt fields. An exact match
+reuses the result. A missing, unreadable, mismatched, or stale receipt runs the
+complete gate and replaces the receipt only after success.
+
+The pre-push hook may bypass both receipt verification and the full gate only
+when its separate fail-closed policy classifier proves that every ref update
+is one of these no-content cases:
+
+- deletion of a remote ref; or
+- creation of a `codex/*` branch whose local object ID exactly equals the
+  current `origin/main` object ID.
+
+Mixed updates, malformed input, an unavailable `origin/main`, an existing
+remote branch update, a non-`codex/*` ref, or any different object ID must
+verify a receipt or run the full gate.
+
+### 5. Commit with a terse intentional message
+
+- The commit should describe the actual completed unit of work, not a vague session summary.
+- Do not alter the staging area after the exact-state gate. The pre-commit hook
+  will reuse a matching receipt or run the full gate again.
+
+Command:
+
+```bash
 git commit -m "Short intentional summary"
 ```
 
-### 5. Push the working branch
+### 6. Push the working branch
 
 - If the branch is new, push with upstream tracking.
 - If the branch already exists remotely, push normally.
@@ -168,7 +297,8 @@ git commit -m "Short intentional summary"
 Commands:
 
 ```bash
-git push -u origin <branch>
+git push origin <branch>
+git branch --set-upstream-to=origin/<branch> <branch>
 ```
 
 or
@@ -177,7 +307,7 @@ or
 git push origin <branch>
 ```
 
-### 6. Open or update a pull request
+### 7. Open or update a pull request
 
 - Default to a ready PR when the branch is coherent enough for real review.
 - Use draft only when the branch is intentionally incomplete and not yet ready for review.
@@ -194,8 +324,13 @@ git push origin <branch>
 Commands:
 
 ```bash
-gh pr list --head "$(git branch --show-current)" --state all --json state,isDraft,url
+git branch --show-current
+gh pr list --head "<current-branch>" --state all --json state,isDraft,url
 ```
+
+Resolve and verify the exact branch token with the first command, then use that
+literal token in later commands. Do not embed command substitution in a
+mutating or remote command.
 
 Interpretation:
 
@@ -221,7 +356,7 @@ If an existing PR is draft and is now ready for review:
 gh pr ready
 ```
 
-### 7. End the session in a scoped clean state
+### 8. End the session in a scoped clean state
 
 - Leave the files owned by this working branch clean: committed, intentionally staged, or intentionally carried into the next session.
 - Do not promise a globally clean checkout when concurrent agents may have unrelated dirty files in the same repo.
@@ -276,7 +411,7 @@ git fetch origin
 git branch --show-current
 git status -sb
 git rev-parse HEAD
-git rev-parse origin/$(git branch --show-current)
+git rev-parse origin/<current-branch>
 git rev-list --count origin/main..HEAD
 git log --oneline origin/main..HEAD
 git diff --stat origin/main..HEAD
@@ -285,7 +420,11 @@ git diff --stat origin/main..HEAD
 Interpretation:
 
 - if the current branch is `main`, stop and create or switch to a working branch first;
-- if `git status -sb` is not clean, stop and either commit or intentionally discard/stash the remaining edits before PR work;
+- if any PR-owned file has uncommitted work, or the staging area contains
+  unrelated work, stop and resolve that scope before PR work;
+- unrelated ambient files do not fail this gate by themselves when the
+  branch-owned diff and staging scope can be verified independently and no
+  later checkout would endanger them;
 - if the two SHAs do not match, stop and push the branch tip you actually want reviewed before touching the PR.
 - if `git rev-list --count origin/main..HEAD` is `0`, the branch currently has no commits beyond the base branch, so there is nothing to publish yet;
 - if `git rev-list --count origin/main..HEAD` is greater than `0`, the branch contains reviewable work relative to base even if it is already pushed cleanly.
@@ -303,12 +442,15 @@ Suggested local preflight:
 
 ```bash
 git fetch origin
-git merge-tree $(git merge-base HEAD origin/main) HEAD origin/main
+git merge-tree --write-tree HEAD origin/main
 ```
 
 Interpretation:
 
-- if the merge-tree output shows conflict markers or `changed in both` conflict sections for files that need manual resolution, stop and reconcile the branch with current `origin/main` before PR publication;
+- if `git merge-tree --write-tree` exits successfully, the local mergeability
+  preflight passed;
+- if it exits nonzero or reports conflicts, stop and reconcile the branch with
+  current `origin/main` before PR publication;
 - if the branch was already known to be recently rebased or merged with current `origin/main`, you may treat that as satisfying the local mergeability preflight;
 - do not assume passing CI implies mergeability.
 
@@ -330,7 +472,7 @@ Suggested checks:
 git branch --show-current
 git rev-parse HEAD
 git rev-list --count origin/main..HEAD
-gh pr list --head "$(git branch --show-current)" --state all --json state,mergedAt,headRefOid,headRefName,url
+gh pr list --head "<current-branch>" --state all --json number,state,mergedAt,headRefOid,headRefName,url
 ```
 
 Interpretation:
@@ -349,7 +491,10 @@ This check should happen even if you believe you are "just updating the PR," bec
 - The minimum bar for a ready PR is:
   - the full local validation set that mirrors current hooks and repo CI passed, including `node scripts/smoke-option3.mjs`;
   - the branch tip intended for review is committed and pushed;
-  - the worktree is clean;
+  - the PR-owned files are committed and the staging area contains no
+    unrelated work;
+  - any remaining ambient edits are outside PR scope and will not be
+    endangered by the remaining branch operations;
   - the branch is mergeable into the current base branch;
   - the diff represents one logically complete reviewable unit;
   - the PR title and body are intentionally written rather than left to default autofill;
@@ -379,13 +524,15 @@ gh pr ready
 After creating or updating the PR, wait for the remote checks:
 
 ```bash
-gh pr checks --watch
+gh pr checks <pr-number> --watch
 ```
 
 Then confirm GitHub mergeability:
 
 ```bash
-gh pr view --json mergeStateStatus
+git rev-parse HEAD
+git rev-parse origin/main
+gh pr view <pr-number> --json number,url,state,isDraft,mergeStateStatus,headRefName,headRefOid,baseRefName
 ```
 
 Interpretation:
@@ -396,7 +543,22 @@ Interpretation:
 - in that conflicted case, close or convert the PR to draft as appropriate, reconcile the branch with current `origin/main`, rerun validation, push, and repeat the publish gate;
 - if GitHub connectivity or authentication is broken, treat the ready-PR publish step as incomplete and resolve that before declaring success.
 
-### 7. Respond to review on the same branch
+### 7. Record the publish handoff receipt
+
+Before returning the ready PR for operator/developer review, record:
+
+- PR number and URL;
+- `headRefName` and `headRefOid`;
+- base branch name and the current `origin/main` SHA;
+- ready/draft state and `mergeStateStatus`;
+- local validation commands and their final pass state; and
+- remote check state.
+
+The second handoff should use the exact PR number from this receipt. A later
+thread may fall back to branch-name discovery only when the receipt is
+unavailable, and it must stop if that discovery is not unique.
+
+### 8. Respond to review on the same branch
 
 - Keep follow-up fixes on the PR branch until the PR is merged.
 - Do not branch from an unmerged feature branch to start the next line of work unless that dependency is intentional and explicitly accepted.
@@ -405,8 +567,8 @@ Commands:
 
 ```bash
 git branch --show-current
-gh pr view --json state,headRefName,url
-git push origin $(git branch --show-current)
+gh pr view <pr-number> --json state,headRefName,headRefOid,url
+git push origin <current-branch>
 ```
 
 ## Standard Post-Merge Synchronization Process
@@ -416,8 +578,13 @@ Use this process after the PR has been merged successfully.
 Precondition:
 
 - Before leaving the just-merged branch, run `git status -sb`.
-- Continue only if the worktree is clean, or if any remaining edits have been intentionally committed or stashed.
-- Do not carry stray edits onto `main` during rollover.
+- Continue only if the files owned by the merged branch are clean and the
+  staging area contains no unrelated work.
+- Unrelated ambient edits may remain when branch switching preserves them and
+  they do not overlap this procedure's files or affect its validation. Do not
+  stash, discard, restore, or commit those edits as part of rollover.
+- If branch switching would overwrite or otherwise endanger any ambient edit,
+  stop before leaving the merged branch.
 
 ### 1. Verify the PR is merged
 
@@ -426,35 +593,64 @@ Precondition:
 Command:
 
 ```bash
-gh pr list --head "$(git branch --show-current)" --state merged --json state,mergedAt,url
+gh pr view <pr-number> --json number,state,mergedAt,headRefOid,headRefName,baseRefName,url
 ```
 
 Interpretation:
 
-- if this returns an empty array, the branch does not yet have a merged PR, so stop cleanup;
-- if this returns one merged PR, use its `mergedAt` time for the post-merge commit check in the next step.
+- if `state` is not `MERGED` or `mergedAt` is absent, stop cleanup;
+- require `headRefName` to equal the literal current branch name and
+  `baseRefName` to equal `main`;
+- retain `headRefOid` as the exact branch tip that entered operator review.
+
+If the publish handoff receipt is unavailable, use the literal branch token as
+a fallback:
+
+```bash
+gh pr list --head "codex/<previous-topic>" --state all --json number,state,mergedAt,headRefOid,headRefName,baseRefName,url
+```
+
+Continue only when this fallback returns exactly one matching merged PR.
 
 ### 2. Check for post-merge commits on the branch before cleanup
 
 - This is the disaster-prevention gate for the case where you accidentally kept working on the branch after its PR merged.
 - Do this check before deleting the branch locally or remotely.
-- If the branch contains commits authored after the PR merge time, those commits were not part of the merged PR and must be recovered onto a fresh branch before cleanup continues.
+- If the local branch tip differs from the PR's `headRefOid`, treat the
+  difference as branch work that was not part of the reviewed PR until an
+  explicit commit-graph check accounts for it.
 - If needed, preserve the branch tip under a recovery branch name before any deletion.
-- This check intentionally uses the PR's `mergedAt` time rather than `origin/main..HEAD`, because squash merges or rebased merge strategies can make already-merged branch commits appear unmerged by ancestry.
+- Use commit identity rather than timestamps. `headRefOid` is the exact reviewed
+  branch tip and is not sensitive to clock skew, backdated commits, or merge
+  strategy.
 
 Suggested checks:
 
 ```bash
 git branch --show-current
-gh pr list --head "$(git branch --show-current)" --state all --json state,mergedAt,headRefName,url
-git log --oneline --decorate --since="<mergedAt>" HEAD
+git rev-parse HEAD
+gh pr view <pr-number> --json state,headRefOid,headRefName,url
 ```
 
 Interpretation:
 
 - if the PR state is not `MERGED`, stop; this is not post-merge cleanup;
-- if the final `git log` command prints no commits after the merge time, continue with normal cleanup;
-- if the final `git log` command prints branch commits after the merge time, stop cleanup and recover them first.
+- if `headRefName` does not equal the current branch name, stop; the branch
+  identity is not verified;
+- if local `HEAD` equals `headRefOid`, the branch has no post-review local
+  commits and cleanup may continue;
+- if the SHAs differ, stop normal cleanup and run the commit-graph checks below.
+
+```bash
+git merge-base --is-ancestor <headRefOid> HEAD
+git log --oneline --decorate <headRefOid>..HEAD
+```
+
+- if `headRefOid` is an ancestor of local `HEAD`, every commit printed by the
+  range is post-review branch work and must be recovered;
+- if `headRefOid` is not an ancestor, the branch diverged from the reviewed tip;
+  preserve the current tip and resolve the divergence before cleanup;
+- never infer safety from an empty timestamp window.
 
 Suggested immediate recovery move when post-merge commits are present:
 
@@ -557,7 +753,8 @@ git checkout -b codex/<next-series-item>
 Command:
 
 ```bash
-git push -u origin codex/<next-series-item>
+git push origin codex/<next-series-item>
+git branch --set-upstream-to=origin/codex/<next-series-item> codex/<next-series-item>
 ```
 
 This makes the next branch the new canonical branch in the series.
@@ -576,55 +773,30 @@ git branch --show-current
 git status -sb
 ```
 
-## Full Series Example
+## Full Lifecycle State Sequence
 
-This is the standard sequence for one completed branch rolling into the next:
+The detailed sections above own the commands. This table defines the allowed
+state transitions without duplicating an executable script that can drift from
+those commands.
 
-```bash
-# finish the current branch
-git status -sb
-node scripts/validate-content.mjs --check --strict
-node scripts/build-scene-graph.mjs --check --strict
-node scripts/check-foundational-impact.mjs --base origin/main --run
-node scripts/build-agent-startup-orientation.mjs --check
-node scripts/build-textbook-md-pdf.mjs --check
-node scripts/check-transmitter-factor-clean-slate.mjs
-node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
-node scripts/check-polarity-notation-drift.mjs
-node scripts/check-animator-runtime-wiring.mjs
-node scripts/check-content-integrity.mjs
-node scripts/smoke-option3.mjs
-git add <paths...>
-git commit -m "Finish current unit of work"
-git push origin codex/hydrogen
-git status -sb
-git rev-parse HEAD
-git rev-parse origin/codex/hydrogen
-gh pr list --head "codex/hydrogen" --state all --json state,mergedAt,headRefOid,url
-gh pr create --fill
+| Current state | Required evidence | Authorized transition |
+| --- | --- | --- |
+| Scoped working branch | Intended files identified; ambient edits isolated; required local gate passes | Stage intended paths, commit, and push the literal branch |
+| Published branch tip | Local `HEAD` equals `origin/<current-branch>`; branch has commits beyond `origin/main`; `git merge-tree --write-tree` passes | Create or update the intentionally titled and described PR |
+| Ready review handoff | Remote checks pass; GitHub reports mergeable; publish handoff receipt is recorded | Return the exact PR to the operator/developer for the sole merge decision |
+| Verified merged PR | Exact PR reports `MERGED`; branch name and base match; local branch tip equals `headRefOid` | Fast-forward and verify local `main` |
+| Synchronized `main` | Local `main` equals `origin/main`; exact merged branch identity remains verified | Delete only that local and remote branch |
+| Retired merged branch | Previous branch is absent locally and remotely; next registry token is unambiguous | Create the successor from synchronized `main`, publish it, and set its upstream |
 
-# after the PR merges
-gh pr list --head "codex/hydrogen" --state merged --json state,mergedAt,url
-git checkout codex/hydrogen
-git log --oneline --decorate --since="<mergedAt>" HEAD
-git checkout main
-git fetch origin
-git merge --ff-only origin/main
-git rev-parse --short main
-git rev-parse --short origin/main
-git branch -d codex/hydrogen || git branch -D codex/hydrogen
-git push origin --delete codex/hydrogen
-
-# start the next branch
-git checkout -b codex/helium
-git push -u origin codex/helium
-```
+Any missing evidence leaves the process in its current state and activates the
+applicable stop condition. Do not skip forward to a later transition.
 
 ## Stop Conditions
 
 Stop and resolve deliberately rather than pushing ahead if any of these are true:
 
-- the worktree contains unrelated edits,
+- unrelated worktree edits overlap the intended scope, occupy the staging area,
+  affect required validation, or would be endangered by branch switching,
 - the required validation commands fail,
 - you are about to open or update a PR but have not yet verified that the branch is clean and that local `HEAD` matches `origin/<current-branch>`,
 - you are about to open or update a PR from `main`,
@@ -632,7 +804,8 @@ Stop and resolve deliberately rather than pushing ahead if any of these are true
 - the branch already has a merged PR and you have not yet compared the merged PR head commit with the current local branch tip,
 - the PR has not actually merged yet,
 - the branch PR is already merged but you have not yet checked for post-merge local commits on that branch,
-- the branch contains commits authored after the PR merge time and you have not yet recovered them onto a safe branch,
+- local branch `HEAD` differs from the reviewed `headRefOid` and the divergent
+  or post-review commits have not yet been recovered onto a safe branch,
 - `git fetch origin` succeeded but local `main` was not actually fast-forwarded and verified,
 - local `main` cannot fast-forward to `origin/main`,
 - the next branch name breaks the active branch sequence without an explicit reason,
@@ -644,6 +817,12 @@ Stop and resolve deliberately rather than pushing ahead if any of these are true
 When this procedure is executed, the final response should not stop at generic git status reporting.
 
 - Summarize the branch/PR outcome, cleanup state, and next-branch rollover state clearly enough that the operator/developer can verify the procedure actually completed.
+- At the ready-PR handoff, report the publish handoff receipt: PR number and
+  URL, `headRefName`, `headRefOid`, base SHA, local validation state, remote
+  check state, and mergeability state.
+- At the post-merge handoff, identify the exact PR number used for verification
+  and state whether local `HEAD` matched its reviewed `headRefOid` before
+  deletion.
 - If a new branch was created, include the exact new branch name and whether it was published to `origin`.
 - If a new branch was created from a named branch series, include one substantive paragraph about the item named by that branch.
 - For a periodic-table branch, that element paragraph should include, when applicable and known:
@@ -659,10 +838,17 @@ When this procedure is executed, the final response should not stop at generic g
 
 ## Expected Outcome
 
-After a healthy wrap-up cycle:
+After a healthy first handoff:
 
-- the completed work is committed and pushed,
-- the PR is open in ready mode or merged intentionally,
-- local `main` and remote `main` are synchronized after merge,
-- the previous branch has been deleted locally and remotely,
-- and the next branch exists and is published from clean `main`.
+- the completed work is committed and pushed;
+- the PR is open in ready mode with passing remote checks and verified
+  mergeability; and
+- the publish handoff receipt gives the operator/developer an exact review
+  target.
+
+After a healthy second handoff:
+
+- the exact PR merge and reviewed branch tip have been verified;
+- local `main` and remote `main` are synchronized;
+- the previous branch has been deleted locally and remotely; and
+- the next branch exists and is published from synchronized `main`.

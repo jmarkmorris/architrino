@@ -18,6 +18,7 @@ import {
   validateMethodologyCoverageContract,
 } from "../src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs";
 import {
+  adjudicateSourceSensitivityConvergence,
   centeredSensitivityDerivative,
   differentiateMatchedRootBranches,
   perturbDeclaredPrimaryBraidPhaseOffset,
@@ -116,6 +117,25 @@ test("centered stencil matches a cubic derivative and topology mismatch rejects 
     differentiateMatchedRootBranches(event("left"), event("right"), 2 * step, "x").status,
     "rejected-root-topology-discontinuity",
   );
+});
+
+test("source-sensitivity convergence compares dimensionless per-measure uncertainty", () => {
+  const adjudication = adjudicateSourceSensitivityConvergence({
+    primaryDerivative: { etaExtPositive: 0.1, etaWakeFlux: 0.2 },
+    refinedDerivative: { etaExtPositive: 0.11, etaWakeFlux: 0.205 },
+    endpointRmsDerivatives: {
+      sourceA: { primary: 100, refined: 101 },
+    },
+    baseEndpointRmsBySource: { sourceA: 80 },
+    threshold: 0.02,
+    normalization: {
+      surfaceRatioScale: 1,
+      endpointRmsRelativeFloor: 1e-12,
+    },
+  });
+  assert.equal(adjudication.passed, true);
+  assert.ok(adjudication.maximumNormalizedUncertainty < 0.02);
+  assert.equal(adjudication.endpoints.sourceA.absoluteUncertainty, 1);
 });
 
 test("cohort sensitivity varies the declared braid phase offset without breaking A1.2", () => {

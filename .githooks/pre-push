@@ -1,7 +1,31 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "[pre-push] running Content Integrity gate..."
-node scripts/check-content-integrity.mjs
-echo "[pre-push] auditing animator runtime wiring..."
-node scripts/check-animator-runtime-wiring.mjs
+origin_main_oid="$(git rev-parse --verify refs/remotes/origin/main 2>/dev/null || true)"
+policy_output=""
+if policy_output="$(
+  node scripts/pre-push-gate-policy.mjs --origin-main-oid "$origin_main_oid"
+)"; then
+  policy_action="${policy_output%%$'\t'*}"
+  policy_reason="${policy_output#*$'\t'}"
+else
+  policy_action="run"
+  policy_reason="policy classifier failed"
+fi
+
+if [[ "$policy_action" == "skip" ]]; then
+  echo "[pre-push] skipping content gates: $policy_reason."
+  exit 0
+fi
+
+if [[ "$policy_action" != "run" ]]; then
+  policy_reason="policy classifier returned an unknown action"
+fi
+
+echo "[pre-push] running content gates: $policy_reason."
+if node scripts/pr-validation-receipt.mjs verify --base origin/main; then
+  echo "[pre-push] reusing exact-state validation receipt."
+else
+  echo "[pre-push] validation receipt unavailable; running full PR gate."
+  node scripts/pr-validation-receipt.mjs run --base origin/main
+fi
