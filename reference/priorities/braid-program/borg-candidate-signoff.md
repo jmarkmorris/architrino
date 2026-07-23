@@ -4,6 +4,12 @@ This ledger follows the live order in `src/apps/borg/BorgBraidRecordCatalog.js`.
 
 The canonical member definitions below are routing summaries from the braid taxonomy. A `pending` row has not yet received candidate-specific numerical, visual, discrepancy, or invalidation review. A mechanically updated later candidate remains `pending` until its own catalog turn.
 
+## Current Analytical Campaign State
+
+On 2026-07-22 the complete prescribed-path analytical campaign was atomically published to the Git-ignored SQLite runtime database. The generation hash is `d4eb19851bb7587e153d5049af797d602cd105a30c8b650f1c4f8fb8e4efa9ed`, the database fingerprint is `b2957d1733b4dda32e65e6884338c3926ba1142fea1bb9e5b5ee7bbeef3301f8`, and the candidate-cohort digest hash is `2f01fa7a451ddd85b84ef118d929facc8721792f501787a9a048bbbb9f653079`. All 19 live candidates have complete stored packets. Independent analytical acceptance retained B1.1, B1.2, and B1.4 as accepted and retained the other 16 as complete rejected diagnostic records.
+
+Analytical acceptance does not change this ledger's display-geometry sign-off state. It means only that a fixed prescribed-path packet passed every declared gate under the common protocol. It does not establish EOM-solver retention, stability, energy, binding, physical realization, or a completed braid-family grade. The result would be falsified by any source, protocol, methodology, artifact, generation, or digest hash mismatch; any missing live candidate; any accepted row whose independent gate failed; or any non-reproducible published database fingerprint.
+
 ## Catalog Review State
 
 | Ordinal | Candidate id and label | Status | Canonical member definition | Operator sign-off date | Discrepancies corrected | Affected analytical packets or database artifacts | Replacement or invalidation disposition |
@@ -30,7 +36,7 @@ The canonical member definitions below are routing summaries from the braid taxo
 
 All 19 live catalog entries are signed off at their accepted hashes. The C1.1/C2.1 extension did not reopen or reinterpret ordinals 1–17.
 
-The all-candidate analytical registry changed from SHA-256 `cdbaa7649fa18fb41885dbd5f3de916af007543eafff9a52cf8a3fc24ec77709` to `92471ced87a6412c6ae6212f8cb23e1bbd64a2d8e2b5a173dd823e681a62a2c6` when the two new catalog rows were added. Any analytical packet or database generation that claims complete live-catalog coverage while referencing the former registry must be superseded or quarantined because it omits C1.1 and C2.1. The new candidates do not change any prior specification or exact prescribed source, so they do not invalidate candidate-local analytical results for ordinals 1–17. Repository search found no checked JSON result packet naming either new candidate. Read-only inspection of `.local-data/braid-analysis/analytical-campaigns.sqlite3` found zero artifact, accepted-case, case-result, and campaign-manifest rows. No analytical campaign was run during this definition batch.
+The all-candidate analytical registry changed from SHA-256 `cdbaa7649fa18fb41885dbd5f3de916af007543eafff9a52cf8a3fc24ec77709` to file SHA-256 `92471ced87a6412c6ae6212f8cb23e1bbd64a2d8e2b5a173dd823e681a62a2c6` when the two new catalog rows were added. Its canonical registry hash in the published campaign is `0bb7310b6aff69272341e4fc8548a68412f2dc5a81c0a8ea4db91ea83130ceb7`. Any analytical packet or database generation that claims complete live-catalog coverage while referencing the former registry must be superseded or quarantined because it omits C1.1 and C2.1. The published database now contains 19 campaign cases, 13,968 artifacts, three independently accepted cases, sixteen independently rejected cases, and one verified generation; no checked JSON result packet is added to the repository.
 
 ## Shared Display Runtime Corrections
 

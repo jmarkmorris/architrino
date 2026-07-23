@@ -1,6 +1,6 @@
 # Prescribed-Record Analytical Campaign Database Requirements
 
-Status: priority-only architecture requirements, version `v0.7`, 2026-07-22. SQLite is selected. The versioned schema, all-candidate registry, acceptance instrument, importer, fresh-database rebuild-and-swap command, exporter, and backup verifier are implemented. Retired analytical campaign outputs are not repository fixtures; benchmark acceptance must be refreshed against the next complete database generation.
+Status: priority-only architecture requirements, version `v0.8`, 2026-07-22. SQLite is selected. The versioned schema, all-candidate registry, coverage contract, acceptance instrument, importer, fresh-database rebuild-and-swap command, exporter, and backup verifier are implemented. One complete live-catalog generation is published and independently verified below. The remaining open benchmark work concerns performance, recovery, and synthetic scale behavior rather than generation completeness or stored-artifact integrity.
 
 ## 1. Purpose and scope
 
@@ -26,7 +26,7 @@ This packet is `priority-only`. It does not promote a database choice into reade
 
 ### 2.1 Evidence boundary
 
-The packet-size measurements below remain architecture-sizing evidence only. Their analytical campaign outputs have been removed because the candidate geometries and measure set are being regenerated. They must not be cited as current candidate results, acceptance evidence, or corpus measurements. Current implementation checks use temporary campaigns generated from the live all-candidate registry and delete them after each test.
+The retired packet-size measurements below remain architecture-sizing evidence only. Their analytical campaign outputs have been removed and must not be cited as current candidate results, acceptance evidence, or corpus measurements. The current live-catalog generation is separately identified by exact registry, methodology, protocol, manifest, generation, fingerprint, and digest hashes.
 
 The active contracts are:
 
@@ -38,7 +38,32 @@ The active contracts are:
 
 The retired sizing set contained 260 cases: 256 seeded samples and four anchors. Its row shapes remain useful for capacity formulas, while current tests independently exercise accepted and rejected current-catalog cases, a one-root/one-no-root case, exact-source retention, and fail-closed campaign acceptance.
 
-### 2.2 Direct footprint measurement
+### 2.2 Current complete generation measurement
+
+On 2026-07-22, `rebuild-all --check` and then `rebuild-all --publish` generated the same complete live-catalog identity. Post-publication inspection recomputed SQLite integrity, artifact hashes, raw compressed and uncompressed hashes, exact-source preimages, generation evidence, and the candidate-cohort digest from the published file.
+
+| Item | Measured value |
+| --- | ---: |
+| Canonical registry hash | `0bb7310b6aff69272341e4fc8548a68412f2dc5a81c0a8ea4db91ea83130ceb7` |
+| Registry file SHA-256 | `92471ced87a6412c6ae6212f8cb23e1bbd64a2d8e2b5a173dd823e681a62a2c6` |
+| Methodology SHA-256 | `4591ea52af9d507be735d28b3d08d9b9118adb789301214b0a41c40e182050fd` |
+| Canonical protocol hash | `5bbf27bac8811b624eac8d39a325bfe1d8a6d16414bc8ba2e8a3323755b5def4` |
+| Campaign manifest hash | `3b10278238d54fa18cd279f8ee83cadef42e831ebef846057d5761bc2cd4019d` |
+| Database generation hash | `d4eb19851bb7587e153d5049af797d602cd105a30c8b650f1c4f8fb8e4efa9ed` |
+| Database fingerprint | `b2957d1733b4dda32e65e6884338c3926ba1142fea1bb9e5b5ee7bbeef3301f8` |
+| Candidate-cohort digest hash | `2f01fa7a451ddd85b84ef118d929facc8721792f501787a9a048bbbb9f653079` |
+| Campaigns / candidates | 1 / 19 |
+| Independently accepted / rejected candidates | 3 / 16 |
+| Raw analytical artifacts / all artifacts | 13,927 / 13,968 |
+| Raw analytical bytes / gzip-stored bytes | 77,106,540,648 B / 9,148,969,914 B |
+| Published SQLite bytes | 9,677,225,984 B |
+| Multidimensional / validity-gate / case-reduced rows | 278,824 / 228 / 190 |
+| Failed-gate distribution | 6 `complete-cycle/fixedInternalPrimary`; 1 `complete-cycle/movingReceiverRefined`; 9 `complete-cycle/sourceSensitivity` |
+| Coverage contract | 29 obligations: 20 `implemented`, 7 `newly-implemented`, 2 `inapplicable-with-reason` |
+
+The three accepted analytical packets are B1.1, B1.2, and B1.4. Acceptance means only that each complete prescribed-path packet passed the declared analytical gates under the common protocol. The sixteen rejected packets remain complete, queryable diagnostic records. Neither outcome establishes EOM-solver retention, stability, energy, binding, physical realization, or a completed braid-family grade.
+
+### 2.3 Retired direct footprint measurement
 
 All byte counts below were measured from the retired 2026-07-22 sizing set. `MB` is decimal; `MiB` uses powers of 1024. The next complete generation must replace these calibration values before they govern a scale decision.
 
@@ -60,7 +85,7 @@ All byte counts below were measured from the retired 2026-07-22 sizing set. `MB`
 
 Compression results are measured on JSON bytes, not promises for a database implementation. They do show that repeated field names, identities, and protocol data are highly compressible. Cross-packet gzip is 23% of compact packet bytes, while the measured Brotli stream is 7.7%.
 
-### 2.3 Packet decomposition
+### 2.4 Retired packet decomposition
 
 The following decomposition serializes non-overlapping packet components as compact JSON. Reduced measures are counted separately because the current packet deliberately repeats selected raw-ledger values in query-ready form.
 
@@ -85,7 +110,7 @@ The coverage packet itself does not carry a complete campaign-case row. The summ
 
 Current refinement storage has a further boundary: the packet retains primary root rows, primary and refined separation ledgers, and comparison rows for the tighter root evaluation. It does not retain a second complete refined-root ledger. Import must preserve that V1 fact exactly; it must not invent unrecorded refined roots. A future schema may retain every declared refinement level as its own analysis evaluation.
 
-### 2.4 Repeated versus case-unique data
+### 2.5 Repeated versus case-unique data
 
 The measured repetition pattern supports normalization and ordinary lossless compression:
 
@@ -488,12 +513,13 @@ The implementation contains:
 8. a runtime guard that verifies `.local-data/braid-analysis/` is ignored by Git; and
 9. repository-owned schema, migrations, tools, fixtures, benchmark definitions, and candidate Markdown without Git-owned database files.
 
-No production database is built in this requirements thread. The benchmark fixes gzip, the existing Node `node:sqlite` binding, WAL mode, `synchronous=FULL`, one writer, a 32-case maximum transaction, and controlled checkpoints. Page size and any additional promoted parameter columns remain implementation measurements.
+The complete current generation is published at the Git-ignored runtime path `.local-data/braid-analysis/analytical-campaigns.sqlite3`. Its measured identity and footprint are recorded in Section 2.2. This publication establishes complete, internally consistent, independently gate-checked storage for the declared prescribed-path campaign; it does not by itself close the Section 14 performance, recovery, concurrency, or synthetic scale benchmark. Page size and any additional promoted parameter columns remain implementation measurements.
 
 ### 12.3 Implemented components and verification boundary
 
 - [migration `001-initial.sql`](../../../src/prescribed-path-analysis/database/migrations/001-initial.sql) defines strict tables, first-class 32-byte hashes, foreign keys, query indexes, acceptance tables, ingest journal, and the accepted-only view;
 - [migration `002-database-generation.sql`](../../../src/prescribed-path-analysis/database/migrations/002-database-generation.sql) records the registry-bound identity and completeness evidence for a fully rebuilt database generation;
+- [migration `003-complete-cycle-measures.sql`](../../../src/prescribed-path-analysis/database/migrations/003-complete-cycle-measures.sql) stores coverage identity, raw analytical artifacts, multidimensional measures, and generation-case inventory for complete-cycle campaigns;
 - [IndependentAnalyticalAcceptance.mjs](../../../src/prescribed-path-analysis/database/IndependentAnalyticalAcceptance.mjs) derives the required gates and rebuilds reduced projections from retained packet ledgers without treating producer booleans as sufficient evidence;
 - [AnalyticalCampaignDatabase.mjs](../../../src/prescribed-path-analysis/database/AnalyticalCampaignDatabase.mjs) implements complete preflight, bounded idempotent ingestion, interruption resume, deterministic export, integrity verification, and verified online backup;
 - [the all-candidate registry](../../../src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v1.json) owns the exact catalog, generated baseline, imported campaign, and intentional-exclusion inventory;
@@ -540,7 +566,7 @@ The benchmark must cover:
 
 Required gates remain: first import at most 10 seconds for the representative generation, idempotent retry at most 5 seconds, Q1 exact lookup p95 at most 50 milliseconds, Q2 10,000-case enumeration at most 500 milliseconds, Q3/Q4 million-row filters at most 2 seconds, Q5 distribution/correlation at most 10 seconds, Q6 one-event packet-root inspection p95 at most 100 milliseconds, primary storage at most `2.5` times compact retained bytes, WAL at most five times checkpointed primary growth, zero accepted partial rows after crash injection, and exact restored exports.
 
-Run this benchmark before production publication and after any change to:
+Run this benchmark before treating the published generation as a performance or scale benchmark, and after any change to:
 
 - the Node or embedded SQLite version;
 - canonicalization or hash code;
