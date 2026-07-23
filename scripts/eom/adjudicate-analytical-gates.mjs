@@ -123,9 +123,10 @@ function sensitivityLevelProtocol(baseProtocol, levelIndex) {
     baseProtocol,
     `sensitivity-step-ladder-${levelIndex}`,
   );
-  const primaryStep = baseProtocol.localSourceSensitivity.primaryStep / (2 ** levelIndex);
-  protocol.localSourceSensitivity.primaryStep = primaryStep;
-  protocol.localSourceSensitivity.refinedStep = primaryStep / 2;
+  const primaryStep =
+    baseProtocol.localTransmitterSensitivity.primaryStep / (2 ** levelIndex);
+  protocol.localTransmitterSensitivity.primaryStep = primaryStep;
+  protocol.localTransmitterSensitivity.refinedStep = primaryStep / 2;
   return protocol;
 }
 
@@ -220,7 +221,7 @@ function runSensitivityLadder(loaded, memberId, levelCount, campaignStart) {
       level: levelIndex + 1,
       totalLevels: levelCount,
       state: "started",
-      primaryStep: protocol.localSourceSensitivity.primaryStep,
+      primaryStep: protocol.localTransmitterSensitivity.primaryStep,
       wallSeconds: (started - campaignStart) / 1000,
     });
     const result = evaluateCompleteCycleCandidate({
@@ -231,7 +232,7 @@ function runSensitivityLadder(loaded, memberId, levelCount, campaignStart) {
       includeSensitivity: true,
     });
     const ended = performance.now();
-    const sensitivity = result.diagnosticReductions.sourceSensitivity;
+    const sensitivity = result.diagnosticReductions.transmitterSensitivity;
     levels.push({
       primaryStep: sensitivity.stencil.primary.step,
       refinedStep: sensitivity.stencil.refined.step,
@@ -293,7 +294,7 @@ export function runAnalyticalGateAdjudication(options = {}) {
         replacement:
           "continuous separation floor certified by a periodic-sample Lipschitz lower bound; sampled refinement remains diagnostic",
       },
-      sourceSensitivity: {
+      transmitterSensitivity: {
         priorProblem:
           "one absolute threshold mixed ratio derivatives with endpoint RMS acceleration derivatives",
         replacement:

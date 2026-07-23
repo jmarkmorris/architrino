@@ -379,7 +379,7 @@ function validateManifestAndSummary(manifest, summary) {
     "movingReceiverPrimary",
     "movingReceiverRefined",
     "branchContinuity",
-    "sourceSensitivity",
+    "transmitterSensitivity",
   ];
   const completeCycleCampaign =
     required.id === COMPLETE_CYCLE_CANDIDATE_INVENTORY_POLICY;
@@ -1413,13 +1413,13 @@ function completeCycleMultidimensionalRows(packet, summaryCase) {
       }
     }
   }
-  const sensitivity = packet.diagnosticReductions.sourceSensitivity;
+  const sensitivity = packet.diagnosticReductions.transmitterSensitivity;
   if (sensitivity?.coordinateId) {
     for (const [measureId, scalarValue] of Object.entries(
       sensitivity.refinedDerivative ?? {},
     )) {
       rows.push({
-        measureId: `source-sensitivity/${measureId}`,
+        measureId: `transmitter-sensitivity/${measureId}`,
         reductionVersion: packet.reducer.id,
         disposition: sensitivity.accepted ? acceptedDisposition : "diagnostic-only",
         scalarValue,
@@ -1454,7 +1454,7 @@ function completeCycleMultidimensionalRows(packet, summaryCase) {
               scalarValue,
               unit: "acceleration",
               resolution,
-              transmitterId: receiver.sourceId,
+              transmitterId: receiver.transmitterId,
               details: receiver,
             });
           }

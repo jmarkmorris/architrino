@@ -221,12 +221,12 @@ C5 retains the common-circulation relation. C6 retains the opposite-component-ci
 
 ## Exact Causal-Delay Relation
 
-For transmitter worldline $a$ at time $T-u$ and receiver worldline $b$ at time $T$, every retained positive causal delay solves
+For transmitter worldline $a$ at time $T_r-u$ and receiver worldline $b$ at reception time $T_r$, every retained positive causal delay solves
 
 $$
 \left\|
 \left(\xi_b-\xi_a+s_{\mathrm{grp}}u\right)\hat{\mathbf n}_C
-+\mathbf r_b(T)-\mathbf r_a(T-u)
++\mathbf r_b(T_r)-\mathbf r_a(T_r-u)
 \right\|
 =
 c_fu,

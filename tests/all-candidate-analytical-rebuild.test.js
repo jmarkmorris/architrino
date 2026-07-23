@@ -18,7 +18,7 @@ import {
   validateMethodologyCoverageContract,
 } from "../src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs";
 import {
-  adjudicateSourceSensitivityConvergence,
+  adjudicateTransmitterSensitivityConvergence,
   centeredSensitivityDerivative,
   differentiateMatchedRootBranches,
   perturbDeclaredPrimaryBraidPhaseOffset,
@@ -119,8 +119,8 @@ test("centered stencil matches a cubic derivative and topology mismatch rejects 
   );
 });
 
-test("source-sensitivity convergence compares dimensionless per-measure uncertainty", () => {
-  const adjudication = adjudicateSourceSensitivityConvergence({
+test("transmitter-sensitivity convergence compares dimensionless per-measure uncertainty", () => {
+  const adjudication = adjudicateTransmitterSensitivityConvergence({
     primaryDerivative: { etaExtPositive: 0.1, etaWakeFlux: 0.2 },
     refinedDerivative: { etaExtPositive: 0.11, etaWakeFlux: 0.205 },
     endpointRmsDerivatives: {

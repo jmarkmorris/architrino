@@ -403,7 +403,7 @@
       "requiredFields": ["legal declared coordinate", "base spec", "perturbed specs", "source hashes", "common protocol", "stencil"],
       "applicability": "first declared braid phaseOffset for every registered candidate",
       "producer": "canonical generator plus complete-cycle campaign reducer",
-      "resultPacketLocation": "diagnosticReductions.sourceSensitivity",
+      "resultPacketLocation": "diagnosticReductions.transmitterSensitivity",
       "sqliteProjection": "source_sensitivity_projection",
       "validityGates": ["perturbed-source-validity", "topology-identity", "stencil-convergence"],
       "convergence": "central step and half-step derivative comparison",

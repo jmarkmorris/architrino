@@ -645,7 +645,7 @@ export function compactCandidateScore(packet) {
   const quadrature = packet.convergenceComparisons.surface.quadrature;
   const evaluatedGates = Object.fromEntries(
     Object.entries(packet.gates).filter(([gateId]) =>
-      gateId !== "sourceSensitivity"),
+      gateId !== "transmitterSensitivity"),
   );
   const coveragePassed = Object.values(evaluatedGates).every(Boolean);
   return {
@@ -670,7 +670,7 @@ export function compactCandidateScore(packet) {
     gates: {
       evaluated: evaluatedGates,
       skipped: {
-        sourceSensitivity:
+        transmitterSensitivity:
           "not evaluated in the compact coverage lane",
       },
     },

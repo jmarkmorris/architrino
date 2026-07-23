@@ -34,7 +34,7 @@ const COMPLETE_CYCLE_REQUIRED_GATES = Object.freeze([
   "movingReceiverPrimary",
   "movingReceiverRefined",
   "branchContinuity",
-  "sourceSensitivity",
+  "transmitterSensitivity",
 ]);
 const RESIDUAL_CONVERGENCE_THRESHOLD = 0.02;
 
@@ -51,7 +51,7 @@ function residualSummary(reduction) {
   const byProjection = {};
   for (const projection of projections) {
     const rows = reduction.receivers.map((receiver) => ({
-      sourceId: receiver.sourceId,
+      transmitterId: receiver.transmitterId,
       ...receiver.residualProjections[projection],
     }));
     byProjection[projection] = {
@@ -121,7 +121,7 @@ function axialAngularMomentumDiagnostic(reduction, sourceRecord, period) {
     let time = null;
     for (const receiver of reduction.receivers) {
       const event = receiver.events[timeIndex];
-      const source = sourceById.get(receiver.sourceId);
+      const source = sourceById.get(receiver.transmitterId);
       time = event.observationTime;
       mechanical += dot(
         vectorCross(event.receiverPosition, event.receiverVelocity),
@@ -131,7 +131,7 @@ function axialAngularMomentumDiagnostic(reduction, sourceRecord, period) {
         vectorCross(event.receiverPosition, event.netAccelerationFromOtherSources),
         axis,
       );
-      if (!source) throw new Error(`missing source ${receiver.sourceId}.`);
+      if (!source) throw new Error(`missing transmitter ${receiver.transmitterId}.`);
     }
     if (timeIndex > 0) {
       wakeAxialPerUnitMu -= torque * period / eventCount;
@@ -267,7 +267,7 @@ function augmentCommonAxisPacket(packet, sourceRecord) {
     COMMON_AXIS_BRAID_CAMPAIGN_REDUCER_VERSION;
   modified.diagnosticReductions.commonAxisBraid = generalized;
   modified.convergenceComparisons.commonAxisBraidResiduals = convergence;
-  modified.gates.sourceSensitivity = modified.gates.sourceSensitivity &&
+  modified.gates.transmitterSensitivity = modified.gates.transmitterSensitivity &&
     convergence.passed && completeInventory;
   const accepted = Object.values(modified.gates).every(Boolean);
   modified.status = {

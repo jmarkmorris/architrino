@@ -160,13 +160,13 @@ test("compact Monte Carlo campaign retains exact rerun rows and no raw packets",
   assert.equal(campaign.caseRows[0].sourceSpeed.belowFieldSpeed, true);
   assert.equal(campaign.caseRows[0].evaluationStatus.code, "evaluated");
   assert.equal(
-    campaign.caseRows[0].score.gates.skipped.sourceSensitivity,
+    campaign.caseRows[0].score.gates.skipped.transmitterSensitivity,
     "not evaluated in the compact coverage lane",
   );
   assert.equal(
     Object.hasOwn(
       campaign.caseRows[0].score.gates.evaluated,
-      "sourceSensitivity",
+      "transmitterSensitivity",
     ),
     false,
   );
@@ -267,7 +267,7 @@ test("resolution calibration identifies coverage false negatives on identical dr
       },
       gates: {
         quadratureConvergence: !coverage,
-        sourceSensitivity: false,
+        transmitterSensitivity: false,
       },
     };
   }

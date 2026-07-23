@@ -270,7 +270,7 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
     "internalProbes.sourceEndpointReceivers",
   );
   if (endpointReceivers.kind !== "prescribed-source-endpoint-probe.v1" ||
-      endpointReceivers.selfHitPolicy !== "exclude-same-source-id.v1") {
+      endpointReceivers.selfHitPolicy !== "exclude-same-transmitter-id.v1") {
     throw new TypeError("endpoint receivers must exclude the same source id.");
   }
 
@@ -367,7 +367,10 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
   if (2 * maximumHarmonic >= primary.timeSamples) {
     throw new RangeError("primary time grid violates the retained spectral Nyquist margin.");
   }
-  const sensitivity = object(raw.localSourceSensitivity, "protocol.localSourceSensitivity");
+  const sensitivity = object(
+    raw.localTransmitterSensitivity,
+    "protocol.localTransmitterSensitivity",
+  );
   const radialScaling = object(raw.radialScalingReduction, "protocol.radialScalingReduction");
   positive(
     radialScaling.positiveMeasureRelativeFloor,
@@ -410,8 +413,8 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
     throw new RangeError("frequency-resolved out-of-band RMS threshold cannot exceed one.");
   }
   positive(
-    gates.quadratureConvergence?.sourceSensitivityRelativeOrAbsolute,
-    "failClosedGates.quadratureConvergence.sourceSensitivityRelativeOrAbsolute",
+    gates.quadratureConvergence?.transmitterSensitivityRelativeOrAbsolute,
+    "failClosedGates.quadratureConvergence.transmitterSensitivityRelativeOrAbsolute",
   );
   const coordinates = sensitivity.coordinates;
   if (isB1) {
@@ -429,28 +432,31 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
       "common-axis braid local sensitivity coordinates must be [central-spacing-scale].",
     );
   }
-  const step = positive(sensitivity.primaryStep, "localSourceSensitivity.primaryStep");
-  const refinedStep = positive(sensitivity.refinedStep, "localSourceSensitivity.refinedStep");
+  const step = positive(sensitivity.primaryStep, "localTransmitterSensitivity.primaryStep");
+  const refinedStep = positive(
+    sensitivity.refinedStep,
+    "localTransmitterSensitivity.refinedStep",
+  );
   if (Math.abs(refinedStep * 2 - step) > 1e-15) {
     throw new RangeError("refined sensitivity step must be one half the primary step.");
   }
   const sensitivityNormalization = object(
     sensitivity.normalization,
-    "protocol.localSourceSensitivity.normalization",
+    "protocol.localTransmitterSensitivity.normalization",
   );
   if (sensitivityNormalization.rule !==
       "per-measure-dimensionless-stencil-settling.v1") {
     throw new TypeError(
-      "localSourceSensitivity.normalization.rule must bind the declared per-measure rule.",
+      "localTransmitterSensitivity.normalization.rule must bind the declared per-measure rule.",
     );
   }
   positive(
     sensitivityNormalization.surfaceRatioScale,
-    "localSourceSensitivity.normalization.surfaceRatioScale",
+    "localTransmitterSensitivity.normalization.surfaceRatioScale",
   );
   positive(
     sensitivityNormalization.endpointRmsRelativeFloor,
-    "localSourceSensitivity.normalization.endpointRmsRelativeFloor",
+    "localTransmitterSensitivity.normalization.endpointRmsRelativeFloor",
   );
 
   validatePrescribedRecordAnalysisProtocol({
@@ -513,7 +519,7 @@ export function summarizeB1CompleteCycleProbeProtocol(rawProtocol) {
       surfaceAngularSpectralRadialReductions: true,
       fullCycleCausalWakeFluxReduction: true,
       frequencyResolvedCausalWakeFluxReduction: true,
-      localSourceSensitivityReduction: false,
+      localTransmitterSensitivityReduction: false,
     },
   };
 }

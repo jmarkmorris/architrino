@@ -835,7 +835,7 @@ function buildCompleteCycleAllCandidateCampaign(registryPath, options) {
       "movingReceiverPrimary",
       "movingReceiverRefined",
       "branchContinuity",
-      "sourceSensitivity",
+      "transmitterSensitivity",
     ],
     candidateValidityDisposition: "retain-complete-rejected-cases-as-diagnostic-only",
     failureDisposition: "reject-incomplete-generation-and-publish-no-database",

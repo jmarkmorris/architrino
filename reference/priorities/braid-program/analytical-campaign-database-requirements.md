@@ -58,7 +58,7 @@ On 2026-07-22, `rebuild-all --check` and then `rebuild-all --publish` generated 
 | Raw analytical bytes / gzip-stored bytes | 77,106,540,648 B / 9,148,969,914 B |
 | Published SQLite bytes | 9,677,225,984 B |
 | Multidimensional / validity-gate / case-reduced rows | 278,824 / 228 / 190 |
-| Failed-gate distribution | 6 `complete-cycle/fixedInternalPrimary`; 1 `complete-cycle/movingReceiverRefined`; 9 `complete-cycle/sourceSensitivity` |
+| Failed-gate distribution | 6 `complete-cycle/fixedInternalPrimary`; 1 `complete-cycle/movingReceiverRefined`; 9 `complete-cycle/transmitterSensitivity` |
 | Coverage contract | 29 obligations: 20 `implemented`, 7 `newly-implemented`, 2 `inapplicable-with-reason` |
 
 The three accepted analytical packets are B1.1, B1.2, and B1.4. Acceptance means only that each complete prescribed-path packet passed the declared analytical gates under the common protocol. The sixteen rejected packets remain complete, queryable diagnostic records. Neither outcome establishes EOM-solver retention, stability, energy, binding, physical realization, or a completed braid-family grade.

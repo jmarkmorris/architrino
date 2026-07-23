@@ -223,8 +223,8 @@ export function reduceCompleteCycleEndpointPacket(packet, sourceRecord, period, 
       })),
     });
   }
-  const receivers = [...eventsBySource.entries()].map(([sourceId, events]) => ({
-    sourceId,
+  const receivers = [...eventsBySource.entries()].map(([transmitterId, events]) => ({
+    transmitterId,
     eventCount: events.length,
     accelerationFromOtherSources: reduceVectorSeries(
       events.map((row) => row.netAccelerationFromOtherSources),
@@ -246,9 +246,9 @@ export function reduceCompleteCycleEndpointPacket(packet, sourceRecord, period, 
     events,
   }));
   return {
-    selfHitPolicy: "exclude-same-source-id.v1",
+    selfHitPolicy: "exclude-same-transmitter-id.v1",
     implementedContributions: ["acceleration from every other prescribed source"],
-    sameSourceRootDisposition: allSourcesStrictlySubField
+    sameTransmitterRootDisposition: allSourcesStrictlySubField
       ? "no-positive-delay-root-by-strict-sub-field-speed-path-length-bound"
       : "not-certified-by-this-reducer",
     completeDeclaredSourceInventory: allSourcesStrictlySubField,
@@ -274,8 +274,8 @@ function buildEndpointProtocol(protocol, sourceRecord, resolution) {
     sourceRecord.sources.map((source) => ({
       id: `moving-endpoint-${source.id}`,
       kind: "prescribed-source-endpoint-probe.v1",
-      sourceId: source.id,
-      selfHitPolicy: "exclude-same-source-id.v1",
+      transmitterId: source.id,
+      selfHitPolicy: "exclude-same-transmitter-id.v1",
       observationTimes: times,
       polarities: [source.charge],
     })),
@@ -421,7 +421,7 @@ function surfaceMetricVector(reduction) {
 
 function endpointRmsVector(endpointReduction) {
   return Object.fromEntries(endpointReduction.receivers.map((row) => [
-    row.sourceId,
+    row.transmitterId,
     row.accelerationFromOtherSources.rms,
   ]));
 }
@@ -443,7 +443,7 @@ export function centeredSensitivityDerivative(minus, plus, denominator) {
   return derivative;
 }
 
-export function adjudicateSourceSensitivityConvergence({
+export function adjudicateTransmitterSensitivityConvergence({
   primaryDerivative,
   refinedDerivative,
   endpointRmsDerivatives,
@@ -480,16 +480,16 @@ export function adjudicateSourceSensitivityConvergence({
       scaleRule: "max-derivative-magnitude-or-declared-surface-ratio-scale.v1",
     }];
   }));
-  const endpoints = Object.fromEntries(Object.keys(endpointRmsDerivatives).map((sourceId) => {
-    const derivative = endpointRmsDerivatives[sourceId];
+  const endpoints = Object.fromEntries(Object.keys(endpointRmsDerivatives).map((transmitterId) => {
+    const derivative = endpointRmsDerivatives[transmitterId];
     const absoluteUncertainty = Math.abs(derivative.primary - derivative.refined);
     const comparisonScale = Math.max(
       Math.abs(derivative.primary),
       Math.abs(derivative.refined),
-      Math.abs(baseEndpointRmsBySource[sourceId] ?? 0),
+      Math.abs(baseEndpointRmsBySource[transmitterId] ?? 0),
       endpointFloor,
     );
-    return [sourceId, {
+    return [transmitterId, {
       primary: derivative.primary,
       refined: derivative.refined,
       absoluteUncertainty,
@@ -525,8 +525,8 @@ function evaluateSensitivity({
   sourceOptions,
   sensitivityAdapter,
 }) {
-  const primaryStep = protocol.localSourceSensitivity.primaryStep;
-  const refinedStep = protocol.localSourceSensitivity.refinedStep;
+  const primaryStep = protocol.localTransmitterSensitivity.primaryStep;
+  const refinedStep = protocol.localTransmitterSensitivity.refinedStep;
   const rows = new Map();
   const rawArtifactInventory = [];
   const coordinateId = sensitivityAdapter?.coordinateId ??
@@ -619,19 +619,19 @@ function evaluateSensitivity({
     2 * refinedStep,
   );
   const endpointDerivatives = {};
-  for (const sourceId of Object.keys(primaryMinus.metric.endpointRmsBySource)) {
-    endpointDerivatives[sourceId] = {
+  for (const transmitterId of Object.keys(primaryMinus.metric.endpointRmsBySource)) {
+    endpointDerivatives[transmitterId] = {
       primary: (
-        primaryPlus.metric.endpointRmsBySource[sourceId] -
-        primaryMinus.metric.endpointRmsBySource[sourceId]
+        primaryPlus.metric.endpointRmsBySource[transmitterId] -
+        primaryMinus.metric.endpointRmsBySource[transmitterId]
       ) / (2 * primaryStep),
       refined: (
-        refinedPlus.metric.endpointRmsBySource[sourceId] -
-        refinedMinus.metric.endpointRmsBySource[sourceId]
+        refinedPlus.metric.endpointRmsBySource[transmitterId] -
+        refinedMinus.metric.endpointRmsBySource[transmitterId]
       ) / (2 * refinedStep),
     };
-    endpointDerivatives[sourceId].uncertainty = Math.abs(
-      endpointDerivatives[sourceId].primary - endpointDerivatives[sourceId].refined,
+    endpointDerivatives[transmitterId].uncertainty = Math.abs(
+      endpointDerivatives[transmitterId].primary - endpointDerivatives[transmitterId].refined,
     );
   }
   const uncertainty = Object.fromEntries(Object.keys(primarySurface).map((key) => [
@@ -644,14 +644,14 @@ function evaluateSensitivity({
     ...Object.values(endpointDerivatives).map((row) => row.uncertainty),
   );
   const threshold =
-    protocol.failClosedGates.quadratureConvergence.sourceSensitivityRelativeOrAbsolute;
-  const convergenceAdjudication = adjudicateSourceSensitivityConvergence({
+    protocol.failClosedGates.quadratureConvergence.transmitterSensitivityRelativeOrAbsolute;
+  const convergenceAdjudication = adjudicateTransmitterSensitivityConvergence({
     primaryDerivative: primarySurface,
     refinedDerivative: refinedSurface,
     endpointRmsDerivatives: endpointDerivatives,
     baseEndpointRmsBySource: endpointRmsVector(baseEndpoint),
     threshold,
-    normalization: protocol.localSourceSensitivity.normalization,
+    normalization: protocol.localTransmitterSensitivity.normalization,
   });
   const accepted = allAccepted && topologyMatch && convergenceAdjudication.passed;
   return {
@@ -884,7 +884,7 @@ export function evaluateCompleteCycleCandidate({
       ...branchDiagnostics.spatialGradient,
       branchDiagnostics.temporalVariation,
     ].every((row) => row.status === "accepted-continuous-root-branches"),
-    sourceSensitivity: sensitivity.accepted,
+    transmitterSensitivity: sensitivity.accepted,
   };
   const accepted = Object.values(gates).every(Boolean);
   const packetWithoutHash = {
@@ -926,7 +926,7 @@ export function evaluateCompleteCycleCandidate({
       internalReceivers,
       branchDiagnostics,
       rootTopology: topologyLedger(surface),
-      sourceSensitivity: sensitivity,
+      transmitterSensitivity: sensitivity,
       symmetryResiduals: {
         status: "inapplicable-with-reason",
         reason:
@@ -935,7 +935,7 @@ export function evaluateCompleteCycleCandidate({
     },
     convergenceComparisons: {
       surface: surface.convergenceComparisons,
-      sourceSensitivity: sensitivity,
+      transmitterSensitivity: sensitivity,
     },
     reducedMeasures: accepted
       ? {
@@ -943,7 +943,7 @@ export function evaluateCompleteCycleCandidate({
           internalReceiverWakeAndAcceleration: internalReceivers.primary.reduction,
           branchDiagnostics,
           rootTopology: topologyLedger(surface),
-          sourceSensitivity: sensitivity,
+          transmitterSensitivity: sensitivity,
         }
       : null,
     gates,

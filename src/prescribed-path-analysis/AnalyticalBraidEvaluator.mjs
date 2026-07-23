@@ -167,15 +167,15 @@ function normalizeProbe(rawProbe, index) {
       position: vector(rawProbe.position, `${label}.position`),
     };
   }
-  const sourceId = concreteString(rawProbe.sourceId, `${label}.sourceId`);
-  if (rawProbe.selfHitPolicy !== "exclude-same-source-id.v1") {
+  const transmitterId = concreteString(rawProbe.transmitterId, `${label}.transmitterId`);
+  if (rawProbe.selfHitPolicy !== "exclude-same-transmitter-id.v1") {
     throw new TypeError(
-      `${label}.selfHitPolicy must be exclude-same-source-id.v1 for a moving endpoint receiver.`,
+      `${label}.selfHitPolicy must be exclude-same-transmitter-id.v1 for a moving endpoint receiver.`,
     );
   }
   return {
     ...common,
-    sourceId,
+    transmitterId,
     selfHitPolicy: rawProbe.selfHitPolicy,
   };
 }
@@ -782,10 +782,12 @@ function solveCertifiedRetainedRoots({
 
 function evaluateEvent({ sourceRecord, protocol, probe, observationTime, rootTolerance, maxIterations }) {
   const receiverSource = probe.kind === "prescribed-source-endpoint-probe.v1"
-    ? sourceRecord.sources.find((source) => source.id === probe.sourceId)
+    ? sourceRecord.sources.find((source) => source.id === probe.transmitterId)
     : null;
   if (probe.kind === "prescribed-source-endpoint-probe.v1" && !receiverSource) {
-    throw new Error(`moving endpoint probe ${probe.id} names absent source ${probe.sourceId}.`);
+    throw new Error(
+      `moving endpoint probe ${probe.id} names absent transmitter ${probe.transmitterId}.`,
+    );
   }
   const receiverState = receiverSource
     ? evaluateValidatedExactPrescribedSourceState(receiverSource, observationTime)

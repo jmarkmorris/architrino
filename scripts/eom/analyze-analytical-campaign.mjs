@@ -226,7 +226,7 @@ export function analyzeAnalyticalCampaignDatabase(databasePath, options = {}) {
       if (candidate.acceptance_state === "accepted") continue;
       const surfaceGates = candidate.packet.convergenceComparisons
         .surface.quadrature.gates;
-      const sensitivity = candidate.packet.diagnosticReductions.sourceSensitivity;
+      const sensitivity = candidate.packet.diagnosticReductions.transmitterSensitivity;
       rejectionDetails.push({
         candidateId: candidate.case_id,
         familyId: candidate.family_id,

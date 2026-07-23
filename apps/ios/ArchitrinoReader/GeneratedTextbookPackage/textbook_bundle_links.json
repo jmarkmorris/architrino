@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-22T18:07:16.051Z",
-  "total_links": 1792,
+  "generated_at": "2026-07-23T20:07:32.572Z",
+  "total_links": 1796,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -5174,6 +5174,14 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-family-c.md#shared-family-c-coordinate-chart",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-family-c.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5470,7 +5478,7 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-taxonomy.md#family-c-two-braid-composition",
+      "target": "../../../../markdown/aaa/noether-braid/braid-taxonomy.md#family-c-coaxial-twelve-architrino-geometry",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/braid-taxonomy.md"
@@ -5985,6 +5993,30 @@
       "target": "#retuning-projection-to-envelope-variables",
       "kind": "anchor",
       "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "https://cloud.google.com/products/compute/pricing/general-purpose",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "https://cloud.google.com/solutions/spot-vms",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "https://docs.cloud.google.com/compute/docs/general-purpose-machines#c4a_machine_series",
+      "kind": "external",
+      "status": "external",
       "targetBundlePath": ""
     },
     {

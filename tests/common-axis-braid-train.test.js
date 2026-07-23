@@ -42,8 +42,8 @@ function endpointProtocol(sourceRecord, observationTimes) {
     probes: sourceRecord.sources.map((source) => ({
       id: `endpoint-${source.id}`,
       kind: "prescribed-source-endpoint-probe.v1",
-      sourceId: source.id,
-      selfHitPolicy: "exclude-same-source-id.v1",
+      transmitterId: source.id,
+      selfHitPolicy: "exclude-same-transmitter-id.v1",
       observationTimes,
       polarities: [source.charge],
     })),

@@ -31,7 +31,7 @@ function caseRow({
             rootCompleteness: passed,
           },
           skipped: {
-            sourceSensitivity: "not evaluated in compact test fixture",
+            transmitterSensitivity: "not evaluated in compact test fixture",
           },
         },
         status: {

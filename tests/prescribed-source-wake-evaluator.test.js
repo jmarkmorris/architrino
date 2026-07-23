@@ -592,8 +592,8 @@ test("moving endpoint receiver independently fixes D_r without changing instanta
   protocol.probes = [{
     id: "moving-endpoint",
     kind: "prescribed-source-endpoint-probe.v1",
-    sourceId: receiver.id,
-    selfHitPolicy: "exclude-same-source-id.v1",
+    transmitterId: receiver.id,
+    selfHitPolicy: "exclude-same-transmitter-id.v1",
     observationTimes: [observationTime],
     polarities: [1],
   }];

@@ -253,6 +253,7 @@ Sentence guidance:
 - Avoid: `Noether-Sea`. Do not hyphenate the canonical term in prose or titles.
 - Prefer: "Use `spacetime medium` when easing the reader from effective spacetime language to constitutive substrate language."
 - Avoid by default: "vacuum" as the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology term.
+- Use analogy-heavy medium terms such as `superfluid` only when the local document supplies a concrete mathematical analogue: a defined order parameter, transport equation, quantized-vorticity analogue, critical-velocity criterion, two-fluid model, or comparable mechanism. Without that support, use neutral medium-response or transport language.
 
 Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space or ground-state associations; `aether` imports a historical debate that is not quite the same as the present ontology; `medium` is often too generic to do the constitutive work by itself. `Noether sea` is therefore valuable not because novelty is desirable, but because it is specific enough to name the ontological substrate contents without silently borrowing the wrong metaphysics from neighboring frameworks.
 
@@ -262,8 +263,10 @@ Use `Noether braid` as the canonical reader-facing term for the neutral six-arch
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
-| the broad six-architrino neutral assembly class | `Noether braid` | legacy neutral-scaffold labels or treating the scaffold as the whole particle | "The Noether braid supplies the neutral scaffold." |
-| six additional architrinos associated with a braid, with each site's polarity and position declared | `Accessory Configuration` | `dressing`, an unspecified accessory count, or language that assumes the sites surround the braid | "The Accessory Configuration crosses the braid envelope in this record." |
+| the broad neutral braided-assembly class | `Noether braid` | legacy neutral-scaffold labels or treating one inventory size as universal | "The Noether braid supplies the neutral scaffold." |
+| a Family-A or Family-B defining inventory | `six architrino worldlines in three neutral binaries` | `core orbitals` or an unspecified six-site inventory | "The B1 record declares six architrino worldlines in three neutral binaries." |
+| a Family-C defining inventory | `twelve architrino worldlines in six neutral binaries` | `twelve-core`, `dual core`, or treating the two ordered index subsets as B1 components without declaring that constraint | "The C2 record declares twelve coaxial architrino worldlines in six neutral binaries." |
+| six additional architrinos associated with a braid, with each site's polarity and position declared | `Accessory Configuration` | `payload`, `dressing`, an unspecified accessory count, or language that assumes the sites surround the braid | "The Accessory Configuration crosses the braid envelope in this record." |
 | a proposed branch or branch family before all certificate ledgers close | `candidate braid` | treating the branch as retained or certified before the same-ledger evidence closes | "The iso-frequency braid remains a candidate braid until its phase, support, energy, and stability ledgers close." |
 | a retained branch promoted through return-map, stability, alignment, and observer-export closure | `certified braid` | linear-operator status labels or using `retained branch` when Lorentz export and stability ledgers are still missing | "A certified braid must reproduce Lorentz clock and ruler deformation at observer export." |
 | the base six-body case before an exact binary decomposition | `Noether braid` or `candidate braid`, according to evidence level | assigning a family member before its coordinate relations are present | "The candidate braid does not yet have a certified binary partition." |
@@ -376,6 +379,21 @@ This yields a cleaner translation rule:
 Use `particle` when doing Standard Model comparison, detector language, cross-section language, or historical discussion of quantum mechanics. Use `assembly` when stating $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology directly.
 
 Use `wave` when discussing standard QM language, experimental narratives, or intentionally effective descriptions. Use `wake` when naming the emitted substrate-level causal structure in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+### Wake Equation, Map, Pattern, and Spectrum
+
+Use `wake equation` for the $\mathbb{A}\mathbb{A}\mathbb{A}$-native source-history construction that superposes the causal wakes emitted by the constituent architrinos in a declared source record. The wake equation is a construction rule, not the structure it produces. For a fixed source record and analysis protocol, the evaluated scalar over $(T,\mathbf X)$ is the `wake map`; its spatial or temporal structure is the `wake pattern`; and a frequency or angular-mode decomposition is the `wake spectrum`.
+
+This distinction keeps two nearby equations separate. The `Master Equation` is the acceleration law: it maps received causal-root hits to the acceleration of a receiving architrino. A standard or effective `wave equation` is a continuum comparison or recovery equation. Neither term is a synonym for `wake equation`. Likewise, an `assembly wake` is shorthand for the superposition of the constituent architrino wakes; the assembly is not treated as one transmitter.
+
+| When you mean... | Prefer | Avoid by default |
+| --- | --- | --- |
+| the native source-history construction of a superposed causal wake | `wake equation` | `wave equation` |
+| the evaluated scalar for one declared source record and protocol | `wake map` | `wake equation` when the result rather than the rule is meant |
+| the visible spatial or temporal structure of that map | `wake pattern` | `wave pattern` in substrate-level prose |
+| its frequency or angular-mode decomposition | `wake spectrum` | `wave spectrum` in substrate-level prose |
+| the received-hit acceleration law | `Master Equation` | `wake equation` |
+| a genuine continuum or quantum recovery equation | `wave equation`, qualified by level | `wake equation` |
 
 Sentence guidance:
 

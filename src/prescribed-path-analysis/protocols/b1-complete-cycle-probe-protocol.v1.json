@@ -95,7 +95,7 @@
       "kind": "prescribed-source-endpoint-probe.v1",
       "receiverPosition": "exact source position at each observation time",
       "receiverPolarity": "source charge",
-      "selfHitPolicy": "exclude-same-source-id.v1",
+      "selfHitPolicy": "exclude-same-transmitter-id.v1",
       "reportedRows": [
         "per-transmitter acceleration contribution",
         "net acceleration response",
@@ -227,7 +227,7 @@
     ],
     "claimBoundary": "report measured scaling only; do not preassign a far-field exponent"
   },
-  "localSourceSensitivity": {
+  "localTransmitterSensitivity": {
     "coordinates": ["alpha_1", "alpha_2", "alpha_3"],
     "domain": [0, 1.5707963267948966],
     "coordinateTransform": {
@@ -267,7 +267,7 @@
       "radialExponentAbsolute": 0.05,
       "causalWakeFluxRelativeOrAbsolute": 0.01,
       "frequencyResolvedWakeFluxRelativeOrAbsolute": 0.05,
-      "sourceSensitivityRelativeOrAbsolute": 0.02
+      "transmitterSensitivityRelativeOrAbsolute": 0.02
     },
     "causalWakeFlux": {
       "rawEmissionReferenceRelative": 0.01,
