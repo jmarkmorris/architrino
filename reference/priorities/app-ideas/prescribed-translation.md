@@ -1,4 +1,4 @@
-Closure goal: Implement Borg's solver-free prescribed-translation and causal-history-tube feature so a user can inspect a translating B-family braid, its finite path history, and certified causal-root arrivals without evolving the paths, duplicating the analytical evaluator, or implying stability, energy, photon identity, or physical realization.
+Closure goal: Implement Borg's solver-free prescribed-translation and causal-history-tube feature so a user can inspect Family-A, Family-B, and Family-C prescribed records that carry the required translation and analysis identities, their finite path histories, and certified causal-root arrivals without evolving the paths, duplicating the analytical evaluator, or implying stability, energy, photon identity, or physical realization.
 
 # Objective
 
@@ -41,6 +41,7 @@ Read these live sources before editing:
 - `src/apps/borg/BorgAppRuntime.js`
 - `src/apps/borg/BorgAssemblyViewSession.js`
 - `src/apps/borg/BorgEomRecordReplayRunner.js`
+- `src/apps/borg/BorgBraidRecordCatalog.js`
 - `src/apps/shared/EomHistoryDataset.mjs`
 - `src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs`
 - `src/prescribed-path-analysis/CompactMonteCarloCampaign.mjs`
@@ -162,6 +163,15 @@ Provide:
 
 Render an optional translucent display tube around each selected prescribed
 path strand.
+
+Keep three visual objects explicitly distinct:
+
+1. a **display tube** is a translucent display-only envelope around recorded
+   path samples;
+2. an **analytical wake-arrival link** joins a producer-carried emission event
+   to its receiver event; and
+3. an **EOM-retained wake stream** is available only when an EOM record carries
+   the retained wake rows.
 
 The tube:
 
@@ -316,11 +326,86 @@ translation and binary-train intuition are the feature's initial purpose.
 
 Do not hardcode the implementation to catalog labels such as `B1` or `B1.3`.
 Build against sealed worldline identities, declared group translation, and
-canonical analytical packets so the same display layer can later accept A- and
-C-family records when their source carriers satisfy the same contract.
+canonical analytical packets so the same display layer accepts Family-A,
+Family-B, and Family-C records whenever their source carriers satisfy the same
+contract.
 
 If a B-family record lacks a field required by the design, show the missing
 carrier and fail closed. Do not add per-candidate browser constants.
+
+The current Borg catalog contains twenty-one sealed prescribed records:
+eleven Family-A members, four Family-B members, and six Family-C members.
+The current Family-C source specifications, generated records, catalog labels,
+and analytical routing are synchronized on the C1 through C6 identities.
+Account explicitly for those identities:
+
+- C1 and C2 are the general co-rotating and counter-rotating coaxial
+  twelve-worldline records and are not required to decompose into B1
+  components;
+- C3 and C4 are the constrained coaxial two-B1 loci;
+- C5 and C6 are the constrained coaxial two-B1.3 loci; and
+- C1 through C6 retain their sealed record identities and source order.
+
+Use C1 and C2 as cross-family contract checks after the first B-family
+translation fixture. Do not make their scheduled visual QA part of this task
+while task `019f90d2-36df-7d01-aa6d-5ad5ecb1cdee` remains active.
+
+B1 midpoint-dimension or train exploration and further coaxial Family-C
+extensions are source-producing research lanes. Borg may replay sealed records
+they later emit, but it must not author those geometries, add browser-side
+candidate coordinates, or treat background analyzer output as app authority.
+
+# Capability Staging
+
+Prescribed Translation and Causal-History Tubes is the first Borg enhancement
+slice. Keep these later capability stages out of its critical path unless they
+can be implemented without diluting or delaying the first slice:
+
+1. Assembly Taxonomy Morph Lab;
+2. Braid Harmonics Studio; and
+3. Family-A Exclusion Geometry.
+
+If any later-stage display is included, it must reuse the same sealed-record,
+stable-worldline, display-transform, and claim-boundary architecture. Do not
+create a separate geometry producer or candidate-specific branch.
+
+# Allowed Edit Scope
+
+Inspect broadly, but keep implementation edits to this exact surface:
+
+- `borg.html`;
+- `src/apps/borg/BorgAppRuntime.js`;
+- `src/apps/borg/BorgAssemblyViewControls.js`;
+- `src/apps/borg/BorgAssemblyViewScene.js`;
+- `src/apps/borg/BorgAssemblyViewSession.js`;
+- new focused modules
+  `src/apps/borg/BorgPrescribedTranslation.js`,
+  `src/apps/borg/BorgPrescribedAnalysisProjection.js`,
+  `src/apps/borg/BorgPrescribedAnalysisProvider.js`, and
+  `src/apps/borg/BorgPrescribedAnalysisScene.js`;
+- `tests/borg-assembly-view-scene.test.js`;
+- `tests/borg-assembly-view-session.test.js`;
+- `tests/borg-path-trails.test.js`;
+- new focused tests
+  `tests/borg-prescribed-translation.test.js` and
+  `tests/borg-prescribed-analysis-projection.test.js`.
+
+Do not edit `BorgEomRecordReplayRunner.js`, `EomHistoryDataset.mjs`,
+`AnalyticalBraidEvaluator.mjs`, the compact database, prescribed records,
+record generators, schemas, protocols, or the braid catalog merely to make the
+feature convenient. If the live architecture proves that one of those owners
+requires a change, stop and report the exact missing contract rather than
+expanding scope.
+
+# Coordination
+
+- Before any C1/C2 browser pass, determine whether task
+  `019f90d2-36df-7d01-aa6d-5ad5ecb1cdee` is still active. Do not duplicate its
+  assigned visual QA while it is active.
+- Background tasks may produce analyzer tooling, A1.3/C5 calibration, or
+  Family-B/Family-C train findings. Their outputs are not app authority unless
+  the completed artifacts are inspected and their evidence boundaries remain
+  explicit.
 
 # Implementation Sequence
 

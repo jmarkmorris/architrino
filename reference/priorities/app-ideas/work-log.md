@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-23 - Learner-Value Portfolio Audit And Execution Packets
+
+- Reconciled the portfolio against the live production Applications manifest, `StandaloneAppLaunchRuntime.js`, public routes, standalone entry points, and the active app priority folders. The complete deployed set is twelve Applications-scene entries plus the Navigator and the two public off-manifest standalone routes, Assembly Configuration Explorer and Website Stats; every checked public URL returned HTTP 200.
+- Recounted every nonzero backlog against the numbered capability bank: Causal Delay Feedback `5`, Borg `4`, Standard Model `2`, Interaction Ledger Lab `2`, Emergence and Measurement Lab `4`, Lorentz Recovery Lab `2`, and Noether Sea Response Lab `3`. The status blocks remain correctly ordered as deployed, started, not started, and deferred.
+- Kept Gell-Mann Pattern Atlas active because its learner journey now explicitly moves from classification, to pattern completion, to a classification-versus-open-mechanism contrast. A decorative diagram without that sequence is not an active app concept.
+- Classified Causal Delay Feedback Story and Prediction and Borg Prescribed Translation and Causal-History Tubes as `promote now`; retained Standard Model and Interaction Ledger Lab as `priority-only`; retained the three recovery- or constitutive-dependent labs as `defer with blocker`.
+- Added separate execution packets for the Causal Delay Feedback learner progression and Borg prescribed translation. The packets do not implement either app and do not change their trackers, schemas, evaluators, records, or claim authority.
+
 ### 2026-07-02 - Public Applications Scene Launch Resume
 
 - Resumed the paused public Applications scene work after the priority-directory partition cleanup. Current branch `codex/galatea` already exposes [Assembly Configuration Explorer](../../../assembly-explorer.html), [Causal Delay Feedback](../../../causal-delay-feedback.html), [Animator](../../../animator.html), and [Borg](../../../borg.html) through [applications.json](../../../content/scenes/archie/applications.json) wrapper-scene entries and [StandaloneAppLaunchRuntime.js](../../../src/apps/navigator/StandaloneAppLaunchRuntime.js) standalone launch mappings; [Equation Mapping](../../../equation-mapping.html) is also present in the same public app-launch path.

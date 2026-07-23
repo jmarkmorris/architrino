@@ -34,6 +34,30 @@ Portfolio scope includes the public Navigator, every reader-facing app on the pr
 | Lorentz Recovery Lab | deferred | 2 | M |
 | Noether Sea Response Lab | deferred | 3 | L |
 
+### Audit Basis And Backlog Reconciliation
+
+The 2026-07-23 audit reconciled the table against the live production Applications manifest, the standalone launch runtime, the public routes, and the active app priority folders.
+
+- The production Applications manifest contains twelve reader-facing entries.
+- The Navigator is the public host surface rather than a child of its own Applications scene.
+- Assembly Configuration Explorer and Website Stats remain public standalone routes with HTTP 200 responses but are intentionally absent from the Applications manifest.
+- Architrino Reader has an implemented in-repo app and is in release preparation, so it remains `started` until public release.
+- Archie Interface has extensive planning contracts but no user-facing implementation, so it remains `not started`.
+
+Every nonzero backlog reconciles to the numbered capabilities assigned below:
+
+| App or lab | Counted capabilities | Backlog | Disposition |
+| --- | ---: | ---: | --- |
+| Causal Delay Feedback | 5 | 5 | promote now — Story and Prediction is the first implementation slice |
+| Borg | 4 | 4 | promote now — Prescribed Translation and Causal-History Tubes is the first implementation slice |
+| Standard Model | 2 | 2 | priority-only — retain the paired classification and bookkeeping journey |
+| Interaction Ledger Lab | 2 | 2 | priority-only — preserve as one proposed accounting app |
+| Emergence and Measurement Lab | 4 | 4 | defer with blocker — record-backed basin and preparation-measure rows are missing |
+| Lorentz Recovery Lab | 2 | 2 | defer with blocker — one accepted clock, ruler, and two-way-signal record is missing |
+| Noether Sea Response Lab | 3 | 3 | defer with blocker — independently accepted constitutive and mass-map rows are missing |
+
+The remaining table rows have no capabilities assigned by this idea bank and therefore retain backlog `0`.
+
 ## Portfolio Rules
 
 - Prefer capabilities inside an existing app when they share its data, visual grammar, or teaching sequence.
@@ -50,6 +74,7 @@ Portfolio scope includes the public Navigator, every reader-facing app on the pr
 - Status: `deployed`
 - Backlog: `5`
 - Backlog value: `H`
+- Disposition: `promote now`; execute [Causal Delay Feedback learner progression](causal-delay-feedback-advancement.md) with Story and Prediction first.
 
 These capabilities form one progressive learning suite over a shared source, receiver, retained-history model, causal-root evaluator, and wake renderer. They should become modes of Causal Delay Feedback rather than separate apps.
 
@@ -105,6 +130,7 @@ Shared acceptance boundary:
 - Status: `deployed`
 - Backlog: `4`
 - Backlog value: `H`
+- Disposition: `promote now`; execute [Prescribed Translation and Causal-History Tubes](prescribed-translation.md) before the later Borg capability stages.
 
 These capabilities extend Borg's sealed-record prescribed-assembly replay. They must reuse source-carried coordinates and preserve the distinction between prescribed chart geometry and EOM-solver-retained motion.
 
@@ -113,7 +139,7 @@ These capabilities extend Borg's sealed-record prescribed-assembly replay. They 
 Implementation prompt: [Prescribed Translation And Causal-History Tubes](prescribed-translation.md).
 
 - Add fixed-frame and co-translating-frame views of the same prescribed record.
-- Let declared group translation turn periodic internal paths into extended spiral strands in the fixed frame.
+- Let declared group translation turn periodic internal paths into extended spiral or braided strands in the fixed frame.
 - Offer a translucent display tube around each strand, trail-depth control, freeze control, and split compact-orbit/translated view.
 - When a source-matched prescribed-analysis result is available, let the user select an architrino receiver or declared virtual probe and display every certified causal root, emission point, arrival direction, root ordinal, $D_t$, and root-specific acceleration contribution at the selected observation time.
 - Keep root-free, unresolved, invalidated, and drawn-not-evaluated cases visible with their producer-carried status and reason.
@@ -156,15 +182,17 @@ Shared acceptance boundary:
 - Status: `deployed`
 - Backlog: `2`
 - Backlog value: `H`
+- Disposition: `priority-only`; keep both capabilities in this idea bank until an implementation packet is selected.
 
 These two capabilities belong together because both teach the difference between observer-level particle bookkeeping and an underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
 
 #### 1. Gell-Mann Pattern Atlas
 
 - Recreate the baryon octet and decuplet as interactive diagrams organized by $I_3$, $Y$, $S$, and $Q$.
-- Add octet, decuplet, quark-content, and charge-axis views.
-- Include a pattern-completion game in which a learner reconstructs one hidden node or label from neighboring states.
-- Use a `classification / mechanism` switch: the first side teaches the observed organization; the second reveals the still-open assembly, confinement, mass, and reaction rows.
+- Teach classification first: let the learner switch among octet, decuplet, quark-content, and charge-axis views and read how neighboring nodes relate.
+- Test pattern understanding second: hide one node or label and ask the learner to reconstruct it from neighboring states and the active quantum-number axes.
+- Contrast mechanism third: a `classification / mechanism` switch preserves the observed organization on one side and reveals the still-open assembly, confinement, mass, and reaction rows on the other.
+- Keep the capability active only while this three-stage sequence remains intact; a decorative diagram without the pattern-completion and open-mechanism contrast should be deferred.
 - Keep flavor-octet classification distinct from color $SU(3)$.
 
 #### 2. Polarity Ledger Builder
@@ -187,6 +215,7 @@ Shared acceptance boundary:
 - Status: `not started`
 - Backlog: `2`
 - Backlog value: `H`
+- Disposition: `priority-only`; do not promote it ahead of the selected Causal Delay Feedback and Borg slices.
 
 This app would make interaction accounting into a visual puzzle. It is a better home for surface routing than adding another dense mode to Photon.
 
@@ -218,6 +247,7 @@ These ideas remain worth preserving, but their current learner journey depends t
 - Status: `deferred`
 - Backlog: `4`
 - Backlog value: `M`
+- Disposition: `defer with blocker`.
 
 Deferred capabilities:
 
@@ -235,6 +265,7 @@ Deferral reason:
 - Status: `deferred`
 - Backlog: `2`
 - Backlog value: `M`
+- Disposition: `defer with blocker`.
 
 Deferred capabilities:
 
@@ -250,6 +281,7 @@ Deferral reason:
 - Status: `deferred`
 - Backlog: `3`
 - Backlog value: `L`
+- Disposition: `defer with blocker`.
 
 Deferred capabilities:
 
@@ -266,7 +298,7 @@ Deferral reason:
 | Prior ideas | Owning app | Disposition |
 | --- | --- | --- |
 | Path-History Ledger; Self-Hit Near $c_f$; Branch Geometry Explorer; Roots; Causal Delay Prediction Game | Causal Delay Feedback | active backlog |
-| Family-A Exclusion Geometry; Prescribed Translation and Spiral Tubes; Braid Harmonics Studio; Assembly Taxonomy Morph Lab | Borg | active backlog |
+| Family-A Exclusion Geometry; Prescribed Translation and Causal-History Tubes; Braid Harmonics Studio; Assembly Taxonomy Morph Lab | Borg | active backlog |
 | Gell-Mann Pattern Atlas; Polarity Ledger Builder | Standard Model | active backlog |
 | Action Ledger Conservation; Photon Surface Routing | Interaction Ledger Lab | not started |
 | Threshold Crossing Map; Born Rule As Basin Measure; Record Autonomy And Restartability; Emergence Layer Lens | Emergence and Measurement Lab | deferred |
@@ -276,7 +308,7 @@ Deferral reason:
 ## Recommended Build Order
 
 1. Causal Delay Feedback: Story and Prediction, then Path-History Ledger, then Roots.
-2. Borg: Prescribed Translation and Spiral Tubes, then Taxonomy Morph Lab.
+2. Borg: Prescribed Translation and Causal-History Tubes, then Taxonomy Morph Lab.
 3. Standard Model: Gell-Mann Pattern Atlas paired with the Polarity Ledger Builder.
 4. Interaction Ledger Lab: Conservation Flow Board before Material Surface Routing.
 
