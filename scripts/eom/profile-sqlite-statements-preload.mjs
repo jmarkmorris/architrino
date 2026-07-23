@@ -5,6 +5,18 @@ import { DatabaseSync } from "node:sqlite";
 const outputPath = process.env.ANALYTICAL_SQL_PROFILE_OUTPUT
   ? path.resolve(process.env.ANALYTICAL_SQL_PROFILE_OUTPUT)
   : null;
+const processWallStartedAt = process.hrtime.bigint();
+const processCpuStartedAt = process.cpuUsage();
+let peakRssBytes = process.memoryUsage.rss();
+let firstSqlAtSeconds = null;
+let lastSqlAtSeconds = null;
+const databaseStates = new WeakMap();
+const completedTransactions = [];
+const activeTransactions = new Set();
+const rssSampler = setInterval(() => {
+  peakRssBytes = Math.max(peakRssBytes, process.memoryUsage.rss());
+}, 25);
+rssSampler.unref();
 
 function elapsedSeconds(startedAt) {
   return Number(process.hrtime.bigint() - startedAt) / 1e9;
@@ -103,8 +115,15 @@ const profile = {
     approximateStatementCount: 0,
     wallSeconds: 0,
     logicalSqlBytes: 0,
+    byClass: new Map(),
   },
 };
+
+function markSqlActivity() {
+  const seconds = elapsedSeconds(processWallStartedAt);
+  if (firstSqlAtSeconds === null) firstSqlAtSeconds = seconds;
+  lastSqlAtSeconds = seconds;
+}
 
 function aggregateFor(meta) {
   const key = `${meta.statementClass}\0${meta.object}`;
@@ -114,38 +133,110 @@ function aggregateFor(meta) {
   return profile.aggregate.get(key);
 }
 
-function wrapImmediateMethod(statement, method, aggregate) {
+function databaseState(database) {
+  if (!databaseStates.has(database)) {
+    databaseStates.set(database, { activeTransaction: null });
+  }
+  return databaseStates.get(database);
+}
+
+function beginProfiledTransaction(database, sql) {
+  const state = databaseState(database);
+  if (state.activeTransaction !== null) return;
+  state.activeTransaction = {
+    ordinal: completedTransactions.length + 1,
+    beginSql: String(sql).trim().replace(/\s+/g, " "),
+    startedAtSeconds: elapsedSeconds(processWallStartedAt),
+    outcome: null,
+    executionCalls: 0,
+    changedRows: 0,
+    logicalParameterBytes: 0,
+    byStatement: new Map(),
+  };
+  activeTransactions.add(state.activeTransaction);
+}
+
+function recordTransactionExecution(database, aggregate, changes, parameterBytes) {
+  const transaction = databaseState(database).activeTransaction;
+  if (transaction === null) return;
+  transaction.executionCalls += 1;
+  transaction.changedRows += changes;
+  transaction.logicalParameterBytes += parameterBytes;
+  const key = `${aggregate.statementClass}\0${aggregate.object}`;
+  const current = transaction.byStatement.get(key) ?? {
+    statementClass: aggregate.statementClass,
+    object: aggregate.object,
+    executionCalls: 0,
+    changedRows: 0,
+    logicalParameterBytes: 0,
+  };
+  current.executionCalls += 1;
+  current.changedRows += changes;
+  current.logicalParameterBytes += parameterBytes;
+  transaction.byStatement.set(key, current);
+}
+
+function finishProfiledTransaction(database, outcome) {
+  const state = databaseState(database);
+  const transaction = state.activeTransaction;
+  if (transaction === null) return;
+  transaction.outcome = outcome;
+  transaction.endedAtSeconds = elapsedSeconds(processWallStartedAt);
+  transaction.wallSeconds =
+    transaction.endedAtSeconds - transaction.startedAtSeconds;
+  transaction.byStatement = [...transaction.byStatement.values()].sort(
+    (left, right) =>
+      right.executionCalls - left.executionCalls ||
+      left.statementClass.localeCompare(right.statementClass) ||
+      left.object.localeCompare(right.object),
+  );
+  completedTransactions.push(transaction);
+  activeTransactions.delete(transaction);
+  state.activeTransaction = null;
+}
+
+function wrapImmediateMethod(statement, method, aggregate, database) {
   if (typeof statement[method] !== "function") return;
   const original = statement[method].bind(statement);
   statement[method] = (...parameters) => {
+    markSqlActivity();
     const startedAt = process.hrtime.bigint();
     const result = original(...parameters);
     const seconds = elapsedSeconds(startedAt);
+    markSqlActivity();
     aggregate.executionCalls += 1;
     aggregate.executionWallSeconds += seconds;
-    aggregate.logicalParameterBytes += logicalBytes(parameters);
-    if (method === "run" && Number.isSafeInteger(result?.changes)) {
-      aggregate.changedRows += Number(result.changes);
-    }
+    const parameterBytes = logicalBytes(parameters);
+    aggregate.logicalParameterBytes += parameterBytes;
+    const changes = method === "run" && Number.isSafeInteger(result?.changes)
+      ? Number(result.changes)
+      : 0;
+    aggregate.changedRows += changes;
+    recordTransactionExecution(database, aggregate, changes, parameterBytes);
     return result;
   };
 }
 
-function wrapIteratorMethod(statement, aggregate) {
+function wrapIteratorMethod(statement, aggregate, database) {
   if (typeof statement.iterate !== "function") return;
   const original = statement.iterate.bind(statement);
   statement.iterate = (...parameters) => {
+    markSqlActivity();
     const iterator = original(...parameters);
     aggregate.executionCalls += 1;
-    aggregate.logicalParameterBytes += logicalBytes(parameters);
+    const parameterBytes = logicalBytes(parameters);
+    aggregate.logicalParameterBytes += parameterBytes;
+    recordTransactionExecution(database, aggregate, 0, parameterBytes);
     return {
       [Symbol.iterator]() {
         return this;
       },
       next() {
+        markSqlActivity();
         const startedAt = process.hrtime.bigint();
         const result = iterator.next();
         aggregate.executionWallSeconds += elapsedSeconds(startedAt);
+        markSqlActivity();
         if (!result.done) aggregate.iteratorRows += 1;
         return result;
       },
@@ -163,28 +254,67 @@ if (outputPath) {
   const originalExec = DatabaseSync.prototype.exec;
 
   DatabaseSync.prototype.prepare = function profiledPrepare(sql) {
+    markSqlActivity();
     const meta = classify(sql);
     const aggregate = aggregateFor(meta);
     const startedAt = process.hrtime.bigint();
     const statement = originalPrepare.call(this, sql);
     aggregate.prepareCalls += 1;
     aggregate.prepareWallSeconds += elapsedSeconds(startedAt);
-    wrapImmediateMethod(statement, "run", aggregate);
-    wrapImmediateMethod(statement, "get", aggregate);
-    wrapImmediateMethod(statement, "all", aggregate);
-    wrapIteratorMethod(statement, aggregate);
+    wrapImmediateMethod(statement, "run", aggregate, this);
+    wrapImmediateMethod(statement, "get", aggregate, this);
+    wrapImmediateMethod(statement, "all", aggregate, this);
+    wrapIteratorMethod(statement, aggregate, this);
     return statement;
   };
 
   DatabaseSync.prototype.exec = function profiledExec(sql) {
+    markSqlActivity();
+    const meta = classify(sql);
+    if (meta.statementClass === "transaction" && meta.object === "begin") {
+      beginProfiledTransaction(this, sql);
+    }
     const startedAt = process.hrtime.bigint();
-    const result = originalExec.call(this, sql);
+    let result;
+    try {
+      result = originalExec.call(this, sql);
+    } catch (error) {
+      if (meta.statementClass === "transaction") {
+        if (meta.object === "begin") {
+          finishProfiledTransaction(this, "begin-failed");
+        } else if (meta.object === "commit" ||
+                   meta.object === "rollback") {
+          finishProfiledTransaction(this, `${meta.object}-failed`);
+        }
+      }
+      throw error;
+    }
+    const seconds = elapsedSeconds(startedAt);
+    if (meta.statementClass === "transaction" &&
+        (meta.object === "commit" || meta.object === "rollback")) {
+      finishProfiledTransaction(this, meta.object);
+    }
     profile.exec.calls += 1;
-    profile.exec.wallSeconds += elapsedSeconds(startedAt);
+    profile.exec.wallSeconds += seconds;
     profile.exec.logicalSqlBytes += Buffer.byteLength(String(sql));
-    profile.exec.approximateStatementCount += String(sql)
+    const approximateStatementCount = String(sql)
       .split(";")
       .filter((statement) => statement.trim().length > 0).length;
+    profile.exec.approximateStatementCount += approximateStatementCount;
+    const key = `${meta.statementClass}\0${meta.object}`;
+    const current = profile.exec.byClass.get(key) ?? {
+      statementClass: meta.statementClass,
+      object: meta.object,
+      calls: 0,
+      approximateStatementCount: 0,
+      wallSeconds: 0,
+      logicalSqlBytes: 0,
+    };
+    current.calls += 1;
+    current.approximateStatementCount += approximateStatementCount;
+    current.wallSeconds += seconds;
+    current.logicalSqlBytes += Buffer.byteLength(String(sql));
+    profile.exec.byClass.set(key, current);
     return result;
   };
 }
@@ -193,15 +323,53 @@ let written = false;
 function writeProfile() {
   if (!outputPath || written) return;
   written = true;
+  clearInterval(rssSampler);
+  peakRssBytes = Math.max(peakRssBytes, process.memoryUsage.rss());
+  const processWallSeconds = elapsedSeconds(processWallStartedAt);
+  const cpu = process.cpuUsage(processCpuStartedAt);
   const completed = {
     ...profile,
     completedAt: new Date().toISOString(),
+    processMeasurements: {
+      wallSeconds: processWallSeconds,
+      userCpuSeconds: cpu.user / 1_000_000,
+      systemCpuSeconds: cpu.system / 1_000_000,
+      cpuCoreEquivalent:
+        (cpu.user + cpu.system) / 1_000_000 / processWallSeconds,
+      peakRssBytes,
+      secondsBeforeFirstSql: firstSqlAtSeconds,
+      secondsFromFirstToLastSql: firstSqlAtSeconds === null ||
+          lastSqlAtSeconds === null
+        ? null
+        : lastSqlAtSeconds - firstSqlAtSeconds,
+      secondsAfterLastSql: lastSqlAtSeconds === null
+        ? null
+        : processWallSeconds - lastSqlAtSeconds,
+      preSqlBoundary:
+        "process startup, module loading, and importer preflight before the first profiled SQLite operation",
+    },
     aggregate: [...profile.aggregate.values()].sort(
       (left, right) =>
         right.executionWallSeconds - left.executionWallSeconds ||
         left.statementClass.localeCompare(right.statementClass) ||
         left.object.localeCompare(right.object),
     ),
+    exec: {
+      ...profile.exec,
+      byClass: [...profile.exec.byClass.values()].sort(
+        (left, right) =>
+          right.wallSeconds - left.wallSeconds ||
+          left.statementClass.localeCompare(right.statementClass) ||
+          left.object.localeCompare(right.object),
+      ),
+    },
+    transactions: {
+      completed: completedTransactions,
+      incomplete: [...activeTransactions].map((transaction) => ({
+        ...transaction,
+        byStatement: [...transaction.byStatement.values()],
+      })),
+    },
   };
   const partialPath = `${outputPath}.partial-${process.pid}`;
   mkdirSync(path.dirname(outputPath), { recursive: true });

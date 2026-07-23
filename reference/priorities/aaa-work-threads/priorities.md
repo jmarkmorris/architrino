@@ -37,7 +37,7 @@ The central change since the prior full ranking is the EOM and campaign-ownershi
 | Rank | ID | Decision | Owning tracker task | Status | Last surfaced |
 | ---: | --- | --- | --- | --- | --- |
 | 1 | `BP-01` | Ratify the Braid Program charter and evolution-first N-ladder while preserving the already-ratified instrument gate. | [`braid-program` queue item 1](../braid-program/priorities.md#queue) | `discussion-scoped` | 2026-07-16 |
-| 2 | `BP-02` | Decide whether the measured six-core and twelve-core common-axis train charts remain generalized Family-B analytical candidates or require a separate taxonomy location; do not register either chart as B1 or silently replace Family C. | [`generalized Family-B common-axis train lane`](../braid-program/b-family-binary-train-analytics.md) | `discussion-scoped` | 2026-07-22 |
+| 2 | `BP-02` | Decide the taxonomy boundary for the common-axis train chart: the fixed-pairing six-core chart contains B1 as its common-midpoint submanifold and adds two relative-midpoint dimensions, while a fixed-component twelve-core chart extends the same coordinates componentwise; keep payload inventory changes separate. | [`generalized Family-B common-axis train lane`](../braid-program/b-family-binary-train-analytics.md) | `discussion-scoped` | 2026-07-23 |
 | 3 | `DF-01` | Decide whether Information Relay Machines and record-preserving transduction chains should become controlled reader-facing terminology. | [`information-relay-machines` queue](../information-relay-machines/priorities.md#queue) | `discussion-scoped` | 2026-07-11 |
 
 ## Unified Priority Table

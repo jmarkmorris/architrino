@@ -8,7 +8,15 @@ Read the smallest set that can ground the current claim. Do not bulk-load the en
 
 Before any physics reasoning, apply the Theory Layer Discipline section of [AGENTS.md](../../AGENTS.md): standard physics is emergent output to recover, never input to assume at the architrino level.
 
-For active corpus advancement, use the shared [corpus advancement pass](../entourage/archie/prompts/corpus-advancement-pass.md). For external sources, use the [source-mining best-practice guide](source-mining-best-practice.md).
+For active corpus convergence, use the shared [convergence campaign](../entourage/archie/prompts/convergence-campaign.md). For external sources, use the [source-mining best-practice guide](source-mining-best-practice.md).
+
+## Current Convergence Frontier
+
+The current frontier is core geometrical theory closure: master-equation closure, potential/action proof programs, certified branch geometry, executable simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell braid causal closure, Lorentz/effective-metric recovery, photon closure, and Noether sea constitutive response.
+
+- Bias substantial theory sessions toward one hard mathematical artifact: a definition, equation, lemma, invariant, proof route, branch certificate, simulation target with variables, or falsifiable closure condition.
+- Treat broad prose coverage, cross-linking, app/UI work, presentation work, and new infrastructure as secondary unless the operator/developer explicitly selects them or they directly unblock the current core geometry target.
+- When possible improvements compete, choose the one that most reduces mathematical uncertainty in the current proof stack.
 
 ## Startup Path
 
@@ -41,3 +49,13 @@ For active corpus advancement, use the shared [corpus advancement pass](../entou
 ## Claim-Level Discipline
 
 Before editing or reporting, classify the claim as ontology, derivation or closure target, effective summary, or speculation. Promote only corpus-solid material into `content/markdown/aaa`; stage provisional material in the owning priority workstream or sibling `brainstorming.md` with claim level, assumptions, proof burden, and intended corpus destination.
+
+## Durable Capture
+
+At startup, identify the likely durable home for any successful theory work: a direct corpus destination, the owning priority workstream, or that workstream's `brainstorming.md`.
+
+- Do not leave a substantive derivation, equation, invariant, mechanism, simulation target, proof route, terminology decision, or corrected claim level only in chat.
+- During operator brainstorming, capture worthwhile insights as they emerge rather than waiting for closeout.
+- Promote corpus-solid material directly into `content/markdown/aaa` with its assumptions and remaining obligations.
+- Stage valuable but provisional material in the owning priority workstream with its claim level, assumptions, proof burden, and intended corpus destination.
+- If no durable capture is warranted, state why in the handoff.

@@ -560,6 +560,11 @@ export function preflightAnalyticalCampaignImport(options) {
   const manifestDirectory = path.dirname(manifestPath);
   const rawArtifactDescriptors = manifest.rawArtifacts ?? [];
   const rawArtifacts = [];
+  options.onProgress?.({
+    stage: "import-preflight-raw-artifacts",
+    completedWork: 0,
+    totalWork: rawArtifactDescriptors.length,
+  });
   for (let rawArtifactIndex = 0; rawArtifactIndex < rawArtifactDescriptors.length;
     rawArtifactIndex += 1) {
     const descriptor = rawArtifactDescriptors[rawArtifactIndex];
@@ -589,6 +594,11 @@ export function preflightAnalyticalCampaignImport(options) {
     }
   }
   const cases = [];
+  options.onProgress?.({
+    stage: "import-preflight-case",
+    completedWork: 0,
+    totalWork: summary.cases.length,
+  });
   for (let caseOrdinal = 0; caseOrdinal < summary.cases.length; caseOrdinal += 1) {
     const summaryCase = summary.cases[caseOrdinal];
     const absolutePacketPath = packetPathForCase(summaryCase, options);
@@ -714,6 +724,57 @@ function insertArtifact(database, {
   return { artifactHash, artifactHashHex, payload };
 }
 
+function insertVerifiedEncodedArtifact(database, {
+  artifactHashHex,
+  rawBytesLength,
+  payload,
+  artifactKind,
+  mediaType,
+  codec,
+  createdBy,
+}) {
+  if (codec !== "gzip") {
+    fail("verified encoded artifact insertion currently requires gzip.");
+  }
+  const artifactHash = hashBuffer(artifactHashHex);
+  insertOrVerify(database, {
+    insertSql: `
+      INSERT INTO artifact(
+        artifact_hash, artifact_kind, media_type, codec,
+        raw_bytes, stored_bytes, payload, created_by
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(artifact_hash) DO NOTHING
+    `,
+    insertParameters: [
+      artifactHash,
+      artifactKind,
+      mediaType,
+      codec,
+      rawBytesLength,
+      payload.length,
+      payload,
+      createdBy,
+    ],
+    selectSql: `
+      SELECT artifact_kind, media_type, codec, raw_bytes, stored_bytes, payload,
+             created_by
+      FROM artifact WHERE artifact_hash = ?
+    `,
+    selectParameters: [artifactHash],
+    expected: {
+      artifact_kind: artifactKind,
+      media_type: mediaType,
+      codec,
+      raw_bytes: rawBytesLength,
+      stored_bytes: payload.length,
+      payload,
+      created_by: createdBy,
+    },
+    label: `artifact ${artifactHashHex}`,
+  });
+  return { artifactHash, artifactHashHex, payload };
+}
+
 function insertProtocol(database, packet) {
   const protocol = packet.protocol ?? packet.completeCycleProtocol;
   const eventSettings = protocol.eventEvaluator ?? protocol;
@@ -770,6 +831,13 @@ function insertProtocol(database, packet) {
 }
 
 function insertCampaignEnvelope(database, preflight, options = {}) {
+  const rawArtifactImportMode =
+    options.experimentalRawArtifactImportMode ?? "recompress";
+  if (!["recompress", "verified-compressed"].includes(rawArtifactImportMode)) {
+    fail(
+      "experimentalRawArtifactImportMode must be recompress or verified-compressed.",
+    );
+  }
   const packet = preflight.cases[0].acceptance.packet;
   insertProtocol(database, packet);
   const manifestArtifact = insertArtifact(database, {
@@ -912,21 +980,38 @@ function insertCampaignEnvelope(database, preflight, options = {}) {
       canonicalBytes(coverage),
     );
   }
+  options.onProgress?.({
+    stage: "import-raw-artifacts",
+    completedWork: 0,
+    totalWork: preflight.rawArtifacts.length,
+  });
   for (let rawArtifactIndex = 0;
     rawArtifactIndex < preflight.rawArtifacts.length;
     rawArtifactIndex += 1) {
     const rawArtifact = preflight.rawArtifacts[rawArtifactIndex];
     const compressedBytes = readFileSync(rawArtifact.absolutePath);
-    const rawBytes = gunzipSync(compressedBytes);
-    const stored = insertArtifact(database, {
-      rawBytes,
-      artifactKind: rawArtifact.descriptor.artifactKind,
-      mediaType: rawArtifact.descriptor.mediaType,
-      codec: "gzip",
-      createdBy: ANALYTICAL_CAMPAIGN_IMPORTER_VERSION,
-    });
-    if (sha256Bytes(stored.payload) !== rawArtifact.descriptor.compressedSha256 ||
-        !stored.payload.equals(compressedBytes)) {
+    if (compressedBytes.length !== rawArtifact.descriptor.storedBytes ||
+        sha256Bytes(compressedBytes) !== rawArtifact.descriptor.compressedSha256) {
+      fail(`raw artifact ${rawArtifact.descriptor.path} changed after preflight.`);
+    }
+    const stored = rawArtifactImportMode === "verified-compressed"
+      ? insertVerifiedEncodedArtifact(database, {
+          artifactHashHex: rawArtifact.descriptor.rawSha256,
+          rawBytesLength: rawArtifact.descriptor.rawBytes,
+          payload: compressedBytes,
+          artifactKind: rawArtifact.descriptor.artifactKind,
+          mediaType: rawArtifact.descriptor.mediaType,
+          codec: "gzip",
+          createdBy: ANALYTICAL_CAMPAIGN_IMPORTER_VERSION,
+        })
+      : insertArtifact(database, {
+          rawBytes: gunzipSync(compressedBytes),
+          artifactKind: rawArtifact.descriptor.artifactKind,
+          mediaType: rawArtifact.descriptor.mediaType,
+          codec: "gzip",
+          createdBy: ANALYTICAL_CAMPAIGN_IMPORTER_VERSION,
+        });
+    if (!stored.payload.equals(compressedBytes)) {
       fail(`raw artifact ${rawArtifact.descriptor.path} gzip bytes are not deterministic.`);
     }
     database.prepare(`
@@ -2274,6 +2359,11 @@ export function exportAnalyticalCampaign(databasePath, options) {
         ORDER BY analytical_raw_artifact.relative_path
       `).iterate(manifestHash);
       let rawArtifactIndex = 0;
+      options.onProgress?.({
+        stage: "export-raw-artifacts",
+        completedWork: 0,
+        totalWork: rawArtifactTotal,
+      });
       for (const row of rawArtifacts) {
         if (row.codec !== "gzip" ||
             sha256Bytes(row.payload) !== hashHex(row.compressed_hash) ||
@@ -2450,6 +2540,11 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
       FROM artifact ORDER BY artifact_hash
     `).iterate();
     let artifactIndex = 0;
+    options.onProgress?.({
+      stage: "verify-artifacts",
+      completedWork: 0,
+      totalWork: artifactTotal,
+    });
     for (const row of artifacts) {
       const rawBytes = decodeArtifact(row);
       if (rawBytes.length !== row.raw_bytes || row.payload.length !== row.stored_bytes ||
@@ -2510,6 +2605,11 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
         ORDER BY compressed_hash
       `).iterate();
       let rawArtifactIndex = 0;
+      options.onProgress?.({
+        stage: "verify-raw-artifacts",
+        completedWork: 0,
+        totalWork: rawArtifactTotal,
+      });
       for (const row of rawArtifacts) {
         const rawBytes = gunzipSync(row.payload);
         if (row.codec !== "gzip" || row.payload.length !== row.stored_bytes ||

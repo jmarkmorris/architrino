@@ -47,7 +47,7 @@ const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const REPORT_SCHEMA =
   "prescribed-record-analytics/analytical-campaign-pipeline-benchmark.v1";
 const HARNESS_VERSION =
-  "prescribed-record-analytics/analytical-campaign-pipeline-benchmark.v1";
+  "prescribed-record-analytics/analytical-campaign-pipeline-benchmark.v2";
 const DEFAULT_WORK_ROOT =
   "/private/tmp/architrino-analytical-campaign-pipeline-benchmarks";
 const REPOSITORY_ROOT = path.resolve(import.meta.dirname, "../..");
@@ -90,6 +90,7 @@ const VARIANTS = Object.freeze({
     singleTransaction: false,
     measureInsertMode: "single-row",
     measureStaging: false,
+    extraMetricOrderIndex: false,
   },
   prepared: {
     description: "Current behavior with persistent prepared statements.",
@@ -106,6 +107,12 @@ const VARIANTS = Object.freeze({
     description: "Current behavior with nonessential indexes created after the load.",
     base: "current",
     indexMode: "after-load",
+  },
+  "metric-order-index": {
+    description:
+      "Current behavior plus a measure_id/scalar_value/result_hash index for ordered metric-distribution queries.",
+    base: "current",
+    extraMetricOrderIndex: true,
   },
   "bounded-32": {
     description: "Current behavior with commits every 32 data rows.",
@@ -134,10 +141,20 @@ const VARIANTS = Object.freeze({
     base: "current",
     foreignKeys: "deferred-check",
   },
-  "larger-cache-memory-temp": {
-    description: "Current behavior with a 256 MiB page cache and in-memory temp store.",
+  "larger-cache": {
+    description: "Current behavior with a 256 MiB page cache.",
     base: "current",
     cacheSize: -262_144,
+  },
+  "memory-temp": {
+    description: "Current behavior with SQLite temporary storage in memory.",
+    base: "current",
+    tempStore: "MEMORY",
+  },
+  "larger-cache-memory-temp": {
+    description:
+      "Interaction test combining the individually measured larger-cache and memory-temp settings.",
+    base: "larger-cache",
     tempStore: "MEMORY",
   },
   "mmap-256mb": {
@@ -152,7 +169,7 @@ const VARIANTS = Object.freeze({
   },
   "single-transaction": {
     description:
-      "Raw packets and multidimensional measures loaded in one transaction.",
+      "Raw packets, multidimensional measures, and validity gates loaded in one transaction.",
     base: "current",
     singleTransaction: true,
   },
@@ -177,9 +194,8 @@ const VARIANTS = Object.freeze({
   },
   "external-artifacts": {
     description:
-      "Verified immutable gzip packets stored externally by compressed hash; SQLite retains artifact identity, metadata, and normalized measures.",
+      "Verified immutable gzip packets stored externally by compressed hash; SQLite retains artifact identity, metadata, normalized measures, and validity gates.",
     base: "direct-compressed",
-    prepareMode: "persistent",
     externalArtifacts: true,
   },
   "compressed-hash-only-unsafe": {
@@ -270,6 +286,34 @@ const MEASURE_INSERT_SQL = `
   ) VALUES (${MEASURE_COLUMNS.map(() => "?").join(", ")})
 `;
 
+const GATE_COLUMNS = Object.freeze([
+  "result_hash",
+  "gate_id",
+  "gate_instrument_version",
+  "measured_value",
+  "comparator",
+  "threshold_value",
+  "independent_pass",
+  "evidence_hash",
+  "failure_code",
+  "evidence_json",
+]);
+
+const GATE_SELECT_SQL = `
+  SELECT ${GATE_COLUMNS.map((column) =>
+    column.endsWith("_hash")
+      ? `lower(hex(${column})) AS ${column}`
+      : column).join(", ")}
+  FROM validity_gate_result
+  ORDER BY result_hash, gate_id, gate_instrument_version
+`;
+
+const GATE_INSERT_SQL = `
+  INSERT INTO validity_gate_result(
+    ${GATE_COLUMNS.join(", ")}
+  ) VALUES (${GATE_COLUMNS.map(() => "?").join(", ")})
+`;
+
 function fail(message) {
   throw new Error(message);
 }
@@ -315,6 +359,11 @@ function parseArguments(args) {
   if (!FIXTURE_LIMITS[fixture]) {
     fail(`--fixture must be one of ${Object.keys(FIXTURE_LIMITS).join(", ")}.`);
   }
+  const inventoryMode = values.get("--inventory-mode") ??
+    (command === "inventory" ? "full" : command === "compute" ? "none" : "summary");
+  if (!["none", "summary", "full"].includes(inventoryMode)) {
+    fail("--inventory-mode must be none, summary, or full.");
+  }
   return {
     command,
     sourceDatabase: path.resolve(
@@ -339,6 +388,12 @@ function parseArguments(args) {
       4,
     ),
     includeSensitivity: values.get("--include-sensitivity") === "true",
+    artifactMode: values.get("--artifact-mode") ?? "files",
+    inventoryMode,
+    variantName: values.get("--variant") ?? null,
+    runLabel: values.get("--label") ?? null,
+    includeExport: values.get("--include-export") === "true",
+    expectedFixtureHash: values.get("--expected-fixture-hash") ?? null,
     registryPath: path.resolve(
       values.get("--registry") ?? DEFAULT_ALL_CANDIDATE_CAMPAIGN_REGISTRY_PATH,
     ),
@@ -474,6 +529,27 @@ function buildFixtureInventory(databasePath, fixtureName) {
       }
       measureIndex += 1;
     }
+    const selectedResultHashes = new Set(
+      measures.map((row) => row.resultHash),
+    );
+    const gates = [];
+    for (const row of database.prepare(`
+      SELECT lower(hex(result_hash)) AS result_hash,
+             gate_id, gate_instrument_version,
+             lower(hex(evidence_hash)) AS evidence_hash,
+             length(evidence_json) AS evidence_bytes
+      FROM validity_gate_result
+      ORDER BY result_hash, gate_id, gate_instrument_version
+    `).iterate()) {
+      if (!selectedResultHashes.has(row.result_hash)) continue;
+      gates.push({
+        resultHash: row.result_hash,
+        gateId: row.gate_id,
+        gateInstrumentVersion: row.gate_instrument_version,
+        evidenceHash: row.evidence_hash,
+        evidenceBytes: Number(row.evidence_bytes),
+      });
+    }
     const digest = createHash("sha256");
     digest.update(`${REPORT_SCHEMA}\0${fixtureName}\0`);
     for (const row of selectedRaw) {
@@ -481,6 +557,12 @@ function buildFixtureInventory(databasePath, fixtureName) {
     }
     for (const row of measures) {
       digest.update(`measure\0${row.rowHash}\0${row.resultHash}\0`);
+    }
+    for (const row of gates) {
+      digest.update(
+        `gate\0${row.resultHash}\0${row.gateId}\0` +
+        `${row.gateInstrumentVersion}\0${row.evidenceHash}\0`,
+      );
     }
     const byStage = new Map();
     for (const row of selectedRaw) {
@@ -506,12 +588,15 @@ function buildFixtureInventory(databasePath, fixtureName) {
         selectedRaw.reduce((sum, row) => sum + row.rawBytes, 0),
       measureCount: measures.length,
       measureDetailsBytes: measures.reduce((sum, row) => sum + row.detailsBytes, 0),
+      validityGateCount: gates.length,
+      gateEvidenceBytes: gates.reduce((sum, row) => sum + row.evidenceBytes, 0),
       candidateCount: new Set(selectedRaw.map((row) => row.candidateId)).size,
       byStage: [...byStage.values()].sort(
         (left, right) => right.storedBytes - left.storedBytes,
       ),
       rawArtifacts: selectedRaw,
       measures,
+      gates,
     };
   } finally {
     database.close();
@@ -523,6 +608,7 @@ function beginMeasurement() {
     wallStarted: performance.now(),
     cpuStarted: process.cpuUsage(),
     peakRssBytes: process.memoryUsage.rss(),
+    loadAverageStarted: os.loadavg(),
   };
 }
 
@@ -540,6 +626,8 @@ function endMeasurement(measurement) {
     userCpuSeconds: cpu.user / 1_000_000,
     systemCpuSeconds: cpu.system / 1_000_000,
     peakRssBytes: measurement.peakRssBytes,
+    loadAverageStarted: measurement.loadAverageStarted,
+    loadAverageEnded: os.loadavg(),
   };
 }
 
@@ -699,6 +787,19 @@ function createTargetSchema(database, variant, stats) {
       numerical_uncertainty REAL,
       details_json BLOB NOT NULL
     ) STRICT, WITHOUT ROWID;
+    CREATE TABLE validity_gate_result (
+      result_hash BLOB NOT NULL REFERENCES result_parent(result_hash),
+      gate_id TEXT NOT NULL,
+      gate_instrument_version TEXT NOT NULL,
+      measured_value REAL,
+      comparator TEXT NOT NULL,
+      threshold_value REAL,
+      independent_pass INTEGER NOT NULL CHECK (independent_pass IN (0, 1)),
+      evidence_hash BLOB NOT NULL CHECK (length(evidence_hash) = 32),
+      failure_code TEXT,
+      evidence_json BLOB NOT NULL,
+      PRIMARY KEY (result_hash, gate_id, gate_instrument_version)
+    ) STRICT, WITHOUT ROWID;
   `);
   if (variant.measureStaging) {
     database.exec(`
@@ -706,13 +807,14 @@ function createTargetSchema(database, variant, stats) {
       SELECT * FROM multidimensional_measure WHERE 0
     `);
   }
-  if (variant.indexMode === "during-load") createTargetIndexes(database);
+  if (variant.indexMode === "during-load") createTargetIndexes(database, variant);
   stats.statements.ddl +=
-    (variant.indexMode === "during-load" ? 10 : 5) +
-    (variant.measureStaging ? 1 : 0);
+    (variant.indexMode === "during-load" ? 12 : 6) +
+    (variant.measureStaging ? 1 : 0) +
+    (variant.indexMode === "during-load" && variant.extraMetricOrderIndex ? 1 : 0);
 }
 
-function createTargetIndexes(database) {
+function createTargetIndexes(database, variant) {
   database.exec(`
     CREATE INDEX raw_artifact_candidate
       ON analytical_raw_artifact(candidate_id, artifact_kind);
@@ -734,7 +836,17 @@ function createTargetIndexes(database) {
       ON multidimensional_measure(
         sensitivity_coordinate, stencil, measure_id, result_hash
       );
+    CREATE INDEX marginal_gate
+      ON validity_gate_result(
+        gate_id, independent_pass, measured_value, result_hash
+      );
   `);
+  if (variant.extraMetricOrderIndex) {
+    database.exec(`
+      CREATE INDEX multidimensional_measure_metric_order
+        ON multidimensional_measure(measure_id, scalar_value, result_hash)
+    `);
+  }
 }
 
 function transactionController(database, stats, variant, databasePath) {
@@ -780,6 +892,7 @@ function preparedTargetStatements(database, variant, stats) {
     external: executePrepare(database, EXTERNAL_ARTIFACT_INSERT_SQL, stats, "insert"),
     raw: executePrepare(database, RAW_INSERT_SQL, stats, "insert"),
     measure: executePrepare(database, MEASURE_INSERT_SQL, stats, "insert"),
+    gate: executePrepare(database, GATE_INSERT_SQL, stats, "insert"),
     parent: executePrepare(
       database,
       "INSERT OR IGNORE INTO result_parent(result_hash) VALUES (?)",
@@ -1203,6 +1316,60 @@ function materializeMeasureRows({
   }
 }
 
+function gateParameters(row) {
+  return GATE_COLUMNS.map((column) => {
+    const value = row[column];
+    return column.endsWith("_hash") ? hashBytes(value) : value;
+  });
+}
+
+function materializeGateRows({
+  source,
+  target,
+  fixture,
+  persistent,
+  transaction,
+  stats,
+  measurement,
+  commitAtEnd = true,
+}) {
+  const selected = new Set(fixture.gates.map(
+    (row) =>
+      `${row.resultHash}\0${row.gateId}\0${row.gateInstrumentVersion}`,
+  ));
+  const sourceStatement = source.prepare(GATE_SELECT_SQL);
+  stats.statements.prepare += 1;
+  stats.statements.select += 1;
+  const inputDigest = createHash("sha256");
+  let inserted = 0;
+  for (const row of sourceStatement.iterate()) {
+    const key =
+      `${row.result_hash}\0${row.gate_id}\0${row.gate_instrument_version}`;
+    if (!selected.has(key)) continue;
+    updateLogicalRowDigest(inputDigest, GATE_COLUMNS, row);
+    transaction.row();
+    const operationStarted = performance.now();
+    runTargetInsert(
+      target,
+      persistent,
+      "gate",
+      GATE_INSERT_SQL,
+      gateParameters(row),
+      stats,
+    );
+    addWallTime(stats, "validity-gate-row-insert", operationStarted);
+    inserted += 1;
+    if (inserted % 64 === 0 || inserted === selected.size) {
+      sampleRss(measurement);
+    }
+  }
+  stats.gateInputDigest = inputDigest.digest("hex");
+  if (commitAtEnd) transaction.commit();
+  if (inserted !== selected.size) {
+    fail(`inserted ${inserted} validity-gate rows; expected ${selected.size}.`);
+  }
+}
+
 function verifyRun({
   database,
   databasePath,
@@ -1230,9 +1397,17 @@ function verifyRun({
   const measureCount = Number(database.prepare(
     "SELECT COUNT(*) AS count FROM multidimensional_measure",
   ).get().count);
-  stats.statements.select += 2;
-  if (rawCount !== fixture.rawArtifactCount || measureCount !== fixture.measureCount) {
-    fail(`sandbox row counts ${rawCount}/${measureCount} differ from fixture.`);
+  const gateCount = Number(database.prepare(
+    "SELECT COUNT(*) AS count FROM validity_gate_result",
+  ).get().count);
+  stats.statements.select += 3;
+  if (rawCount !== fixture.rawArtifactCount ||
+      measureCount !== fixture.measureCount ||
+      gateCount !== fixture.validityGateCount) {
+    fail(
+      `sandbox row counts ${rawCount}/${measureCount}/${gateCount} ` +
+      `differ from fixture.`,
+    );
   }
   operationStarted = performance.now();
   const measureDigest = createHash("sha256");
@@ -1251,6 +1426,21 @@ function verifyRun({
     fail(
       `measure logical digest ${measureOutputDigest} differs from input ` +
       `${stats.measureInputDigest}.`,
+    );
+  }
+  operationStarted = performance.now();
+  const gateDigest = createHash("sha256");
+  for (const row of database.prepare(GATE_SELECT_SQL).iterate()) {
+    updateLogicalRowDigest(gateDigest, GATE_COLUMNS, row);
+  }
+  const gateOutputDigest = gateDigest.digest("hex");
+  addWallTime(stats, "verification-gate-logical-digest", operationStarted);
+  stats.statements.select += 1;
+  stats.statements.prepare += 1;
+  if (gateOutputDigest !== stats.gateInputDigest) {
+    fail(
+      `gate logical digest ${gateOutputDigest} differs from input ` +
+      `${stats.gateInputDigest}.`,
     );
   }
   const rows = database.prepare(`
@@ -1297,7 +1487,9 @@ function verifyRun({
     foreignKeyFailureCount: 0,
     rawCount,
     measureCount,
+    gateCount,
     measureLogicalDigest: measureOutputDigest,
+    gateLogicalDigest: gateOutputDigest,
   };
 }
 
@@ -1386,6 +1578,9 @@ function queryLatency(database, sql, parameters, repetitions = 25) {
     medianMicroseconds: median(samples),
     minimumMicroseconds: Math.min(...samples),
     maximumMicroseconds: Math.max(...samples),
+    plan: database.prepare(`EXPLAIN QUERY PLAN ${sql}`).all(...parameters).map(
+      (row) => row.detail,
+    ),
   };
 }
 
@@ -1393,6 +1588,7 @@ function benchmarkQueries(database, fixture) {
   const candidateId = fixture.rawArtifacts[0]?.candidateId;
   const compressedHash = fixture.rawArtifacts[0]?.compressedHash;
   const metric = fixture.measures[0]?.measureId;
+  const gateId = fixture.gates[0]?.gateId;
   return {
     candidateArtifacts: queryLatency(
       database,
@@ -1404,6 +1600,14 @@ function benchmarkQueries(database, fixture) {
       database,
       "SELECT * FROM analytical_raw_artifact WHERE compressed_hash = ?",
       [hashBytes(compressedHash)],
+    ),
+    gate: queryLatency(
+      database,
+      `SELECT result_hash, measured_value, independent_pass
+       FROM validity_gate_result
+       WHERE gate_id = ?
+       ORDER BY independent_pass, measured_value, result_hash`,
+      [gateId],
     ),
     metric: queryLatency(
       database,
@@ -1499,11 +1703,25 @@ function runIngestOnce({
       runDirectory,
     });
     addPhase(stats, "multidimensional-measure-ingestion", phase);
+
+    phase = beginMeasurement();
+    materializeGateRows({
+      source,
+      target,
+      fixture,
+      persistent,
+      transaction,
+      stats,
+      measurement: phase,
+      commitAtEnd: !variant.singleTransaction,
+    });
+    addPhase(stats, "validity-gate-ingestion", phase);
     if (variant.singleTransaction) transaction.commit();
 
     if (variant.indexMode === "after-load") {
       phase = beginMeasurement();
-      createTargetIndexes(target);
+      createTargetIndexes(target, variant);
+      stats.statements.ddl += 6 + (variant.extraMetricOrderIndex ? 1 : 0);
       addPhase(stats, "post-load-index-build", phase);
     }
 
@@ -1546,6 +1764,11 @@ function runIngestOnce({
       fixture: fixture.fixture,
       fixtureHash: fixture.fixtureHash,
       warmCache: true,
+      process: {
+        pid: process.pid,
+        isolatedRepetition:
+          process.env.ANALYTICAL_BENCHMARK_ISOLATED_REPETITION === "1",
+      },
       measurements: endMeasurement(total),
       phases: stats.phases,
       wallAttribution: stats.wallAttribution ?? {},
@@ -1561,6 +1784,8 @@ function runIngestOnce({
         storedBytes: fixture.storedBytes,
         measureCount: fixture.measureCount,
         measureDetailsBytes: fixture.measureDetailsBytes,
+        validityGateCount: fixture.validityGateCount,
+        gateEvidenceBytes: fixture.gateEvidenceBytes,
       },
       throughput: {
         rawRowsPerSecond: fixture.rawArtifactCount /
@@ -1570,6 +1795,8 @@ function runIngestOnce({
           stats.phases["raw-artifact-ingestion"].wallSeconds,
         measureRowsPerSecond: fixture.measureCount /
           stats.phases["multidimensional-measure-ingestion"].wallSeconds,
+        validityGateRowsPerSecond: fixture.validityGateCount /
+          stats.phases["validity-gate-ingestion"].wallSeconds,
       },
       output: {
         databaseBytes: fileSize(databasePath),
@@ -1658,6 +1885,60 @@ function emitHeartbeat(values) {
   })}\n`);
 }
 
+function runIngestOnceIsolated({
+  options,
+  fixture,
+  variantName,
+  label,
+  keepArtifacts,
+  includeExport,
+}) {
+  const args = [
+    SCRIPT_PATH,
+    "ingest-once-internal",
+    "--source-database",
+    options.sourceDatabase,
+    "--fixture",
+    fixture.fixture,
+    "--variant",
+    variantName,
+    "--label",
+    label,
+    "--work-root",
+    options.workRoot,
+    "--expected-fixture-hash",
+    fixture.fixtureHash,
+    "--include-export",
+    includeExport ? "true" : "false",
+    "--inventory-mode",
+    "none",
+  ];
+  if (keepArtifacts) args.push("--keep-artifacts");
+  const child = spawnSync(process.execPath, args, {
+    cwd: REPOSITORY_ROOT,
+    env: {
+      ...process.env,
+      ANALYTICAL_BENCHMARK_ISOLATED_REPETITION: "1",
+    },
+    encoding: "utf8",
+    maxBuffer: 32 * 1024 * 1024,
+  });
+  if (child.status !== 0) {
+    fail(
+      `isolated ingest run ${label} failed (${child.status}): ` +
+      `${child.stderr || child.stdout}`,
+    );
+  }
+  const result = JSON.parse(child.stdout);
+  if (result.fixtureHash !== fixture.fixtureHash) {
+    fail(
+      `isolated ingest fixture ${result.fixtureHash} differs from ` +
+      `${fixture.fixtureHash}.`,
+    );
+  }
+  return result;
+}
+
 function benchmarkIngestMatrix(options, fixture) {
   const experiments = [];
   const totalRuns = options.variants.length * (options.warmups + options.repetitions);
@@ -1667,11 +1948,10 @@ function benchmarkIngestMatrix(options, fixture) {
     const variant = resolvedVariant(variantName);
     const warmups = [];
     for (let index = 0; index < options.warmups; index += 1) {
-      warmups.push(runIngestOnce({
-        sourceDatabase: options.sourceDatabase,
+      warmups.push(runIngestOnceIsolated({
+        options,
         fixture,
-        variant,
-        workRoot: options.workRoot,
+        variantName,
         label: `${variantName}-warmup-${index + 1}`,
         keepArtifacts: false,
         includeExport: false,
@@ -1689,11 +1969,10 @@ function benchmarkIngestMatrix(options, fixture) {
     }
     const runs = [];
     for (let index = 0; index < options.repetitions; index += 1) {
-      runs.push(runIngestOnce({
-        sourceDatabase: options.sourceDatabase,
+      runs.push(runIngestOnceIsolated({
+        options,
         fixture,
-        variant,
-        workRoot: options.workRoot,
+        variantName,
         label: `${variantName}-run-${index + 1}`,
         keepArtifacts: options.keepArtifacts,
         includeExport: fixture.fixture !== "representative-large" &&
@@ -1713,6 +1992,8 @@ function benchmarkIngestMatrix(options, fixture) {
     experiments.push({
       variant: variantName,
       configuration: variant,
+      processIsolation:
+        "one fresh Node process per warm-up and measured repetition",
       warmupCount: warmups.length,
       summary: summarizeRuns(runs),
       runs,
@@ -1760,6 +2041,103 @@ function jsonSafeRow(row) {
       ? { $hex: Buffer.from(value).toString("hex") }
       : value,
   ]));
+}
+
+function parseCsvRecord(line) {
+  const cells = [];
+  let cell = "";
+  let quoted = false;
+  for (let index = 0; index < line.length; index += 1) {
+    const character = line[index];
+    if (quoted && character === "\"" && line[index + 1] === "\"") {
+      cell += "\"";
+      index += 1;
+    } else if (character === "\"") {
+      quoted = !quoted;
+    } else if (character === "," && !quoted) {
+      cells.push(cell);
+      cell = "";
+    } else {
+      cell += character;
+    }
+  }
+  if (quoted) fail("CSV verification found an unterminated quoted field.");
+  cells.push(cell);
+  return cells;
+}
+
+function decodeCsvCell(text, expected) {
+  if (expected === null || expected === undefined) return null;
+  if (typeof expected === "number") return Number(text);
+  if (typeof expected === "boolean") return text === "true";
+  if (typeof expected === "object") return JSON.parse(text);
+  return text;
+}
+
+function exactLogicalEqual(left, right) {
+  if (typeof left === "number" || typeof right === "number") {
+    return typeof left === "number" && typeof right === "number" &&
+      Object.is(left, right);
+  }
+  if (left === null || right === null || typeof left !== "object" ||
+      typeof right !== "object") {
+    return left === right;
+  }
+  if (Array.isArray(left) || Array.isArray(right)) {
+    return Array.isArray(left) && Array.isArray(right) &&
+      left.length === right.length &&
+      left.every((value, index) => exactLogicalEqual(value, right[index]));
+  }
+  const leftKeys = Object.keys(left);
+  const rightKeys = Object.keys(right);
+  return leftKeys.length === rightKeys.length &&
+    leftKeys.every((key, index) =>
+      key === rightKeys[index] && exactLogicalEqual(left[key], right[key]));
+}
+
+function verifyExternalTableRoundTrip(filePath, format, expectedRows, keys) {
+  const text = gunzipSync(readFileSync(filePath)).toString("utf8");
+  const lines = text.endsWith("\n")
+    ? text.slice(0, -1).split("\n")
+    : text.split("\n");
+  let decoded;
+  if (format === "ndjson") {
+    decoded = lines.filter((line) => line.length > 0).map((line) => JSON.parse(line));
+  } else {
+    if (expectedRows.length === 0) {
+      decoded = [];
+    } else {
+      const header = parseCsvRecord(lines[0]);
+      if (JSON.stringify(header) !== JSON.stringify(keys)) {
+        fail(`CSV header round trip failed for ${filePath}.`);
+      }
+      decoded = lines.slice(1).filter((line) => line.length > 0).map(
+        (line, rowIndex) => {
+          const cells = parseCsvRecord(line);
+          if (cells.length !== keys.length) {
+            fail(`CSV column count failed for ${filePath} row ${rowIndex}.`);
+          }
+          return Object.fromEntries(keys.map((key, columnIndex) => [
+            key,
+            decodeCsvCell(cells[columnIndex], expectedRows[rowIndex][key]),
+          ]));
+        },
+      );
+    }
+  }
+  if (!exactLogicalEqual(decoded, expectedRows)) {
+    fail(`${format} exact logical round trip failed for ${filePath}.`);
+  }
+  return {
+    rowCount: decoded.length,
+    logicalHash: sha256(Buffer.from(JSON.stringify(decoded))),
+    exactLogicalRoundTrip: true,
+    numericCellCount: decoded.reduce(
+      (sum, row) =>
+        sum + Object.values(row).filter((value) => typeof value === "number").length,
+      0,
+    ),
+  };
 }
 
 function compressedTextScanLatency(filePath, needle, repetitions = 5) {
@@ -1817,18 +2195,31 @@ async function benchmarkFormats(options, fixture) {
     for (const row of source.prepare(MEASURE_SELECT_SQL).iterate()) {
       if (selectedMeasures.has(row.row_hash)) measures.push(jsonSafeRow(row));
     }
+    const selectedResultHashes = new Set(
+      fixture.measures.map((row) => row.resultHash),
+    );
+    const gates = source.prepare(`
+      SELECT * FROM validity_gate_result
+      ORDER BY result_hash, gate_id, gate_instrument_version
+    `).all().filter(
+      (row) => selectedResultHashes.has(
+        Buffer.from(row.result_hash).toString("hex"),
+      ),
+    ).map(jsonSafeRow);
     const preparation = endMeasurement(preparationStarted);
     const formatRuns = {};
     for (const format of ["ndjson", "csv"]) {
       const formatStarted = beginMeasurement();
       const rawPath = path.join(runDirectory, `raw-artifacts.${format}.gz`);
       const measurePath = path.join(runDirectory, `multidimensional-measures.${format}.gz`);
+      const gatePath = path.join(runDirectory, `validity-gates.${format}.gz`);
+      const rawKeys = Object.keys(rawMetadata[0] ?? {});
+      const gateKeys = Object.keys(gates[0] ?? {});
       const rawReport = await writeCompressedLines(rawPath, async (write) => {
         if (format === "csv") {
-          const keys = Object.keys(rawMetadata[0]);
-          await write(`${keys.map(csvCell).join(",")}\n`);
+          await write(`${rawKeys.map(csvCell).join(",")}\n`);
           for (const row of rawMetadata) {
-            await write(`${keys.map((key) => csvCell(
+            await write(`${rawKeys.map((key) => csvCell(
               typeof row[key] === "object" ? JSON.stringify(row[key]) : row[key],
             )).join(",")}\n`);
           }
@@ -1848,6 +2239,40 @@ async function benchmarkFormats(options, fixture) {
           for (const row of measures) await write(`${JSON.stringify(row)}\n`);
         }
       });
+      const gateReport = await writeCompressedLines(gatePath, async (write) => {
+        if (format === "csv") {
+          if (gateKeys.length > 0) {
+            await write(`${gateKeys.map(csvCell).join(",")}\n`);
+          }
+          for (const row of gates) {
+            await write(`${gateKeys.map((key) => csvCell(
+              typeof row[key] === "object" ? JSON.stringify(row[key]) : row[key],
+            )).join(",")}\n`);
+          }
+        } else {
+          for (const row of gates) await write(`${JSON.stringify(row)}\n`);
+        }
+      });
+      const roundTrip = {
+        rawMetadata: verifyExternalTableRoundTrip(
+          rawPath,
+          format,
+          rawMetadata,
+          rawKeys,
+        ),
+        measures: verifyExternalTableRoundTrip(
+          measurePath,
+          format,
+          measures,
+          MEASURE_COLUMNS,
+        ),
+        validityGates: verifyExternalTableRoundTrip(
+          gatePath,
+          format,
+          gates,
+          gateKeys,
+        ),
+      };
       const manifestWithoutHash = {
         schema: "prescribed-record-analytics/external-format-benchmark-manifest.v1",
         fixtureHash: fixture.fixtureHash,
@@ -1855,6 +2280,8 @@ async function benchmarkFormats(options, fixture) {
         externalArtifactBytes: externalBytes,
         rawMetadata: rawReport,
         measures: measureReport,
+        validityGates: gateReport,
+        roundTrip,
       };
       const manifest = {
         ...manifestWithoutHash,
@@ -1870,6 +2297,14 @@ async function benchmarkFormats(options, fixture) {
           rawPath,
           fixture.rawArtifacts[0]?.candidateId ?? "",
         ),
+        artifact: compressedTextScanLatency(
+          rawPath,
+          fixture.rawArtifacts[0]?.compressedHash ?? "",
+        ),
+        gate: compressedTextScanLatency(
+          gatePath,
+          gates[0]?.gate_id ?? "",
+        ),
         metric: compressedTextScanLatency(
           measurePath,
           fixture.measures[0]?.measureId ?? "",
@@ -1884,11 +2319,19 @@ async function benchmarkFormats(options, fixture) {
         measurements: encodingMeasurements,
         rawMetadata: rawReport,
         measures: measureReport,
+        validityGates: gateReport,
+        roundTrip,
         externalArtifactBytes: externalBytes,
         totalStoredBytes:
-          externalBytes + rawReport.storedBytes + measureReport.storedBytes,
+          externalBytes + rawReport.storedBytes + measureReport.storedBytes +
+          gateReport.storedBytes,
         queryLatency,
         exactness: {
+          coverage:
+            "sampled raw-artifact metadata, multidimensional measures, and validity gates; remaining campaign control-plane tables are not encoded by this component benchmark",
+          exactLogicalRoundTripVerified: Object.values(roundTrip).every(
+            (row) => row.exactLogicalRoundTrip,
+          ),
           binaryHashesEncodedAsHex: true,
           floatingPointEncoding:
             format === "csv"
@@ -1980,16 +2423,50 @@ async function benchmarkFormatMatrix(options, fixture) {
         )),
         metadataStoredBytes: median(runs.map((run) =>
           run.formats[format].rawMetadata.storedBytes +
-          run.formats[format].measures.storedBytes)),
+          run.formats[format].measures.storedBytes +
+          run.formats[format].validityGates.storedBytes)),
+        queryLatency: Object.fromEntries(
+          [
+            "candidate",
+            "artifact",
+            "gate",
+            "metric",
+            "root",
+            "sensitivity",
+          ].map((query) => {
+            const samples = runs.flatMap(
+              (run) =>
+                run.formats[format].queryLatency[query].individualSeconds,
+            );
+            return [query, {
+              instrument:
+                runs[0].formats[format].queryLatency[query].instrument,
+              medianSeconds: median(samples),
+              minimumSeconds: Math.min(...samples),
+              maximumSeconds: Math.max(...samples),
+              individualSeconds: samples,
+              warmCacheOnly: true,
+            }];
+          }),
+        ),
+        roundTrip: runs[0].formats[format].roundTrip,
         exactness: runs[0].formats[format].exactness,
       },
     ])),
   };
 }
 
-function workerRawArtifactWriter(outputDirectory, candidateId, onArtifact) {
+function workerRawArtifactWriter(
+  outputDirectory,
+  candidateId,
+  artifactMode,
+  onArtifact,
+) {
+  if (artifactMode !== "files" && artifactMode !== "memory") {
+    fail("--artifact-mode must be files or memory.");
+  }
   const rawDirectory = path.join(outputDirectory, "raw-artifacts");
-  mkdirSync(rawDirectory, { recursive: true });
+  if (artifactMode === "files") mkdirSync(rawDirectory, { recursive: true });
   return (value, context = {}) => {
     const rawBytes = Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
     const rawHash = sha256(rawBytes);
@@ -1997,7 +2474,9 @@ function workerRawArtifactWriter(outputDirectory, candidateId, onArtifact) {
     const compressedHash = sha256(compressedBytes);
     const relativePath = `raw-artifacts/${compressedHash}.json.gz`;
     const absolutePath = path.join(outputDirectory, relativePath);
-    if (!existsSync(absolutePath)) writeFileSync(absolutePath, compressedBytes);
+    if (artifactMode === "files" && !existsSync(absolutePath)) {
+      writeFileSync(absolutePath, compressedBytes);
+    }
     const descriptor = {
       artifactKind: context.artifactKind ?? "raw-analytical-result-packet",
       mediaType: "application/json",
@@ -2072,6 +2551,7 @@ function candidateWorkerRun(data) {
     const onRawPacket = workerRawArtifactWriter(
       candidateDirectory,
       candidateId,
+      data.artifactMode,
       (descriptor) => {
         rawArtifacts.push(descriptor);
         if (rawArtifacts.length === 1 || rawArtifacts.length % 12 === 0) {
@@ -2141,6 +2621,7 @@ function candidateWorkerRun(data) {
       rawBytes: rawArtifacts.reduce((sum, row) => sum + row.rawBytes, 0),
       storedBytes: rawArtifacts.reduce((sum, row) => sum + row.storedBytes, 0),
       rawInventoryHash: inventoryDigest.digest("hex"),
+      rawArtifacts,
       packetSha256: sha256(packetBytes),
       stageTimings,
       measurements: endMeasurement(candidateStarted),
@@ -2148,6 +2629,7 @@ function candidateWorkerRun(data) {
   }
   return {
     workerIndex: data.workerIndex,
+    artifactMode: data.artifactMode,
     candidateCount: results.length,
     results,
     measurements: endMeasurement(workerStarted),
@@ -2214,7 +2696,105 @@ function candidateOutputDigest(workerResults) {
   }
   return {
     outputHash: digest.digest("hex"),
-    candidates: rows,
+    candidates: rows.map(({ rawArtifacts: omitted, ...row }) => {
+      void omitted;
+      return row;
+    }),
+  };
+}
+
+function deterministicMergeWorkerOutputs(runDirectory, workerResults, artifactMode) {
+  if (artifactMode === "memory") {
+    return {
+      mode: "not-applicable-memory-artifact-mode",
+      wallSeconds: 0,
+      rawSourceBytesRead: 0,
+      mergedBytesWritten: 0,
+      uniqueRawArtifactCount: 0,
+      candidatePacketCount: 0,
+      mergeInventoryHash: null,
+    };
+  }
+  const startedAt = performance.now();
+  const mergedDirectory = path.join(runDirectory, "deterministic-merge");
+  const mergedRawDirectory = path.join(mergedDirectory, "raw-artifacts");
+  const mergedPacketDirectory = path.join(mergedDirectory, "packets");
+  mkdirSync(mergedRawDirectory, { recursive: true });
+  mkdirSync(mergedPacketDirectory, { recursive: true });
+  const inventoryDigest = createHash("sha256");
+  let rawSourceBytesRead = 0;
+  let mergedBytesWritten = 0;
+  let uniqueRawArtifactCount = 0;
+  let candidatePacketCount = 0;
+  const rows = workerResults.flatMap((worker) =>
+    worker.results.map((result) => ({
+      workerIndex: worker.workerIndex,
+      result,
+    })),
+  ).sort(
+    (left, right) => left.result.candidateIndex - right.result.candidateIndex,
+  );
+  for (const { workerIndex, result } of rows) {
+    const candidateDirectory = path.join(
+      runDirectory,
+      `worker-${workerIndex}`,
+      result.candidateId,
+    );
+    const packetBytes = readFileSync(
+      path.join(candidateDirectory, "candidate-result.json"),
+    );
+    if (sha256(packetBytes) !== result.packetSha256) {
+      fail(`candidate packet ${result.candidateId} changed before merge.`);
+    }
+    const packetPath = path.join(
+      mergedPacketDirectory,
+      `${String(result.candidateIndex).padStart(4, "0")}-${result.candidateId}.json`,
+    );
+    writeFileSync(packetPath, packetBytes, { flag: "wx" });
+    mergedBytesWritten += packetBytes.length;
+    candidatePacketCount += 1;
+    inventoryDigest.update(
+      `packet\0${result.candidateIndex}\0${result.candidateId}\0` +
+      `${result.packetSha256}\0${packetBytes.length}\0`,
+    );
+    for (const descriptor of [...result.rawArtifacts].sort(
+      (left, right) =>
+        left.compressedSha256.localeCompare(right.compressedSha256),
+    )) {
+      const sourcePath = path.join(candidateDirectory, descriptor.path);
+      const bytes = readFileSync(sourcePath);
+      rawSourceBytesRead += bytes.length;
+      if (bytes.length !== descriptor.storedBytes ||
+          sha256(bytes) !== descriptor.compressedSha256) {
+        fail(`raw artifact ${descriptor.compressedSha256} changed before merge.`);
+      }
+      const destinationPath = path.join(
+        mergedRawDirectory,
+        `${descriptor.compressedSha256}.json.gz`,
+      );
+      if (existsSync(destinationPath)) {
+        if (!readFileSync(destinationPath).equals(bytes)) {
+          fail(`raw artifact collision ${descriptor.compressedSha256}.`);
+        }
+      } else {
+        writeFileSync(destinationPath, bytes, { flag: "wx" });
+        mergedBytesWritten += bytes.length;
+        uniqueRawArtifactCount += 1;
+      }
+      inventoryDigest.update(
+        `raw\0${descriptor.compressedSha256}\0${descriptor.rawSha256}\0` +
+        `${descriptor.storedBytes}\0`,
+      );
+    }
+  }
+  return {
+    mode: "registry-ordered-byte-verified-copy",
+    wallSeconds: (performance.now() - startedAt) / 1_000,
+    rawSourceBytesRead,
+    mergedBytesWritten,
+    uniqueRawArtifactCount,
+    candidatePacketCount,
+    mergeInventoryHash: inventoryDigest.digest("hex"),
   };
 }
 
@@ -2245,6 +2825,7 @@ async function candidateComputeOnce(options, fixture, workerCount, label) {
           protocol: fixture.protocol,
           outputDirectory: path.join(runDirectory, `worker-${workerIndex}`),
           includeSensitivity: options.includeSensitivity,
+          artifactMode: options.artifactMode,
         },
       });
       worker.on("message", (message) => {
@@ -2274,6 +2855,11 @@ async function candidateComputeOnce(options, fixture, workerCount, label) {
       ...rssSamples,
     );
     const output = candidateOutputDigest(workerResults);
+    const deterministicMerge = deterministicMergeWorkerOutputs(
+      runDirectory,
+      workerResults,
+      options.artifactMode,
+    );
     const implementationAfter = computeImplementationInventory();
     if (implementationAfter.implementationHash !== fixture.implementationHash) {
       fail(
@@ -2286,12 +2872,20 @@ async function candidateComputeOnce(options, fixture, workerCount, label) {
       workerCount: partitions.length,
       requestedWorkerCount: workerCount,
       includeSensitivity: options.includeSensitivity,
+      artifactMode: options.artifactMode,
       measurements: measured,
       cpuCoreEquivalent:
         (measured.userCpuSeconds + measured.systemCpuSeconds) / measured.wallSeconds,
       outputHash: output.outputHash,
       candidates: output.candidates,
-      workerResults,
+      deterministicMerge,
+      workerResults: workerResults.map((worker) => ({
+        ...worker,
+        results: worker.results.map(({ rawArtifacts: omitted, ...result }) => {
+          void omitted;
+          return result;
+        }),
+      })),
       runDirectory: options.keepArtifacts ? runDirectory : null,
     };
   } finally {
@@ -2307,6 +2901,10 @@ function summarizeCandidateRuns(runs, serialMedian) {
   );
   const cores = runs.map((run) => run.cpuCoreEquivalent);
   const peak = runs.map((run) => run.measurements.peakRssBytes);
+  const mergeWall = runs.map((run) => run.deterministicMerge.wallSeconds);
+  const mergedBytes = runs.map(
+    (run) => run.deterministicMerge.mergedBytesWritten,
+  );
   const wallMedian = median(wall);
   return {
     repetitions: runs.length,
@@ -2334,6 +2932,19 @@ function summarizeCandidateRuns(runs, serialMedian) {
       maximum: Math.max(...peak),
       individual: peak,
     },
+    deterministicMerge: {
+      wallSeconds: {
+        median: median(mergeWall),
+        minimum: Math.min(...mergeWall),
+        maximum: Math.max(...mergeWall),
+        individual: mergeWall,
+      },
+      mergedBytesWritten: {
+        median: median(mergedBytes),
+        individual: mergedBytes,
+      },
+      mode: runs[0].deterministicMerge.mode,
+    },
     speedupVsSerialMedian: serialMedian == null ? 1 : serialMedian / wallMedian,
     efficiency: serialMedian == null
       ? 1
@@ -2355,6 +2966,7 @@ async function benchmarkCandidateWorkers(options) {
   let completed = 0;
   const experiments = [];
   let referenceOutputHash = null;
+  let referenceMergeInventoryHash = null;
   let serialMedian = null;
   for (const workerCount of options.workerCounts) {
     for (let index = 0; index < options.warmups; index += 1) {
@@ -2389,6 +3001,21 @@ async function benchmarkCandidateWorkers(options) {
           `candidate-worker output ${run.outputHash} differs from ` +
           `serial reference ${referenceOutputHash}.`,
         );
+      }
+      if (run.deterministicMerge.mergeInventoryHash !== null) {
+        if (referenceMergeInventoryHash === null) {
+          referenceMergeInventoryHash =
+            run.deterministicMerge.mergeInventoryHash;
+        } else if (
+          run.deterministicMerge.mergeInventoryHash !==
+          referenceMergeInventoryHash
+        ) {
+          fail(
+            `candidate-worker merged artifact inventory ` +
+            `${run.deterministicMerge.mergeInventoryHash} differs from ` +
+            `reference ${referenceMergeInventoryHash}.`,
+          );
+        }
       }
       runs.push(run);
       completed += 1;
@@ -2428,15 +3055,79 @@ async function benchmarkCandidateWorkers(options) {
       selection: fixture.selection,
     },
     includeSensitivity: options.includeSensitivity,
+    artifactMode: options.artifactMode,
     equivalenceBoundary: options.includeSensitivity
       ? "full configured candidate packets compared across worker counts"
       : "source-sensitivity intentionally omitted for a lower-cost scalability fixture; outputs are compared only within this fixture",
     outputHash: referenceOutputHash,
+    mergeInventoryHash: referenceMergeInventoryHash,
     experiments,
   };
 }
 
-function productionInventory(databasePath) {
+function profiledProductionQuery(database, sql, parameters) {
+  return queryLatency(database, sql, parameters);
+}
+
+function productionQueryProfile(database) {
+  const raw = database.prepare(`
+    SELECT manifest_hash, candidate_id, compressed_hash
+    FROM analytical_raw_artifact ORDER BY compressed_hash LIMIT 1
+  `).get();
+  const gate = database.prepare(`
+    SELECT result_hash, gate_id, gate_instrument_version
+    FROM validity_gate_result
+    ORDER BY result_hash, gate_id, gate_instrument_version LIMIT 1
+  `).get();
+  const metric = database.prepare(`
+    SELECT measure_id FROM multidimensional_measure
+    ORDER BY measure_id LIMIT 1
+  `).get();
+  return {
+    candidate: profiledProductionQuery(
+      database,
+      `SELECT compressed_hash FROM analytical_raw_artifact
+       WHERE manifest_hash = ? AND candidate_id = ?
+       ORDER BY artifact_kind, compressed_hash`,
+      [raw.manifest_hash, raw.candidate_id],
+    ),
+    artifact: profiledProductionQuery(
+      database,
+      "SELECT * FROM analytical_raw_artifact WHERE compressed_hash = ?",
+      [raw.compressed_hash],
+    ),
+    gate: profiledProductionQuery(
+      database,
+      `SELECT * FROM validity_gate_result
+       WHERE result_hash = ? AND gate_id = ? AND gate_instrument_version = ?`,
+      [gate.result_hash, gate.gate_id, gate.gate_instrument_version],
+    ),
+    metric: profiledProductionQuery(
+      database,
+      `SELECT row_hash, scalar_value FROM multidimensional_measure
+       WHERE measure_id = ? ORDER BY scalar_value`,
+      [metric.measure_id],
+    ),
+    root: profiledProductionQuery(
+      database,
+      `SELECT row_hash, scalar_value FROM multidimensional_measure
+       WHERE transmitter_id IS NOT NULL AND root_ordinal IS NOT NULL
+       ORDER BY transmitter_id, root_ordinal LIMIT 32`,
+      [],
+    ),
+    sensitivity: profiledProductionQuery(
+      database,
+      `SELECT row_hash, scalar_value FROM multidimensional_measure
+       WHERE sensitivity_coordinate IS NOT NULL
+       ORDER BY sensitivity_coordinate, stencil LIMIT 32`,
+      [],
+    ),
+  };
+}
+
+function productionInventory(databasePath, options = {}) {
+  const includeColumnLogicalBytes = options.includeColumnLogicalBytes !== false;
+  const includeQueryProfile = options.includeQueryProfile !== false;
   const database = openReadOnly(databasePath);
   try {
     const objects = databaseObjectSizes(database);
@@ -2446,29 +3137,51 @@ function productionInventory(databasePath) {
       ORDER BY name
     `).all().map((row) => {
       const columns = database.prepare(`PRAGMA table_info("${row.name}")`).all();
-      const logicalExpression = columns.map((column) => {
+      const columnExpressions = columns.map((column, index) => {
         const identifier = `"${String(column.name).replaceAll("\"", "\"\"")}"`;
         const type = String(column.type).toUpperCase();
-        if (type.includes("INT") || type.includes("REAL") ||
+        const logicalExpression = type.includes("INT") || type.includes("REAL") ||
             type.includes("NUM") || type.includes("FLOA") ||
-            type.includes("DOUB")) {
-          return `CASE WHEN ${identifier} IS NULL THEN 0 ELSE 8 END`;
-        }
-        return `COALESCE(length(${identifier}), 0)`;
-      }).join(" + ");
+            type.includes("DOUB")
+          ? `CASE WHEN ${identifier} IS NULL THEN 0 ELSE 8 END`
+          : `COALESCE(length(${identifier}), 0)`;
+        return {
+          name: column.name,
+          logicalAlias: `logical_${index}`,
+          nullAlias: `null_${index}`,
+          logicalExpression,
+          identifier,
+        };
+      });
       const count = Number(database.prepare(
         `SELECT COUNT(*) AS count FROM "${row.name}"`,
       ).get().count);
-      const logicalBytes = logicalExpression.length === 0
-        ? 0
-        : Number(database.prepare(
-          `SELECT COALESCE(SUM(${logicalExpression}), 0) AS bytes FROM "${row.name}"`,
-        ).get().bytes);
+      const columnStats = !includeColumnLogicalBytes || columnExpressions.length === 0
+        ? {}
+        : database.prepare(`
+          SELECT ${columnExpressions.flatMap((column) => [
+            `COALESCE(SUM(${column.logicalExpression}), 0) AS "${column.logicalAlias}"`,
+            `COALESCE(SUM(CASE WHEN ${column.identifier} IS NULL THEN 1 ELSE 0 END), 0) AS "${column.nullAlias}"`,
+          ]).join(", ")}
+          FROM "${row.name}"
+        `).get();
+      const columnLogicalBytes = includeColumnLogicalBytes
+        ? columnExpressions.map((column) => ({
+            column: column.name,
+            logicalBytes: Number(columnStats[column.logicalAlias] ?? 0),
+            nullCount: Number(columnStats[column.nullAlias] ?? 0),
+          }))
+        : null;
+      const logicalBytes = columnLogicalBytes?.reduce(
+        (sum, column) => sum + column.logicalBytes,
+        0,
+      ) ?? null;
       return {
         table: row.name,
         rowCount: count,
         logicalBytes,
         storedBytes: objects.find((entry) => entry.name === row.name)?.bytes ?? null,
+        columns: columnLogicalBytes,
       };
     });
     const indexes = objects.filter((entry) =>
@@ -2561,6 +3274,9 @@ function productionInventory(databasePath) {
         compressionRatio: Number(raw.stored_bytes) / Number(raw.raw_bytes),
       },
       statementModel,
+      queryProfile: includeQueryProfile
+        ? productionQueryProfile(database)
+        : null,
     };
   } finally {
     database.close();
@@ -2582,6 +3298,7 @@ function writeReport(report, outputPath) {
             fixtureHash: report.fixture.fixtureHash,
             rawArtifactCount: report.fixture.rawArtifactCount,
             measureCount: report.fixture.measureCount,
+            validityGateCount: report.fixture.validityGateCount,
           }
         : null,
       experimentCount: report.experiments?.length ?? 0,
@@ -2597,7 +3314,7 @@ function writeReport(report, outputPath) {
 function help() {
   return {
     usage: [
-      "node scripts/eom/benchmark-analytical-campaign-pipeline.mjs inventory [--fixture small|medium|representative-large|full] [--output report.json]",
+      "node scripts/eom/benchmark-analytical-campaign-pipeline.mjs inventory [--fixture small|medium|representative-large|full] [--inventory-mode full] [--output report.json]",
       "node scripts/eom/benchmark-analytical-campaign-pipeline.mjs ingest --fixture small --variants current,direct-compressed,prepared,post-index [--warmups 1] [--repetitions 3] [--output report.json]",
       "node scripts/eom/benchmark-analytical-campaign-pipeline.mjs formats --fixture medium [--output report.json]",
       "node scripts/eom/benchmark-analytical-campaign-pipeline.mjs compute --candidate-limit 4 --workers 1,2,4 --include-sensitivity false [--warmups 1] [--repetitions 3] [--output report.json]",
@@ -2605,6 +3322,11 @@ function help() {
     ],
     safety:
       "The source database is opened read-only. All writes go to unique directories under --work-root, which defaults to /private/tmp.",
+    inventoryModes: {
+      full: "Row counts, SQLite object bytes, one-scan per-column logical-byte/null inventory, and indexed query latency/plans.",
+      summary: "Row counts and SQLite object bytes without scanning payload columns.",
+      none: "Skip production inventory; compute uses this by default to avoid cache pollution.",
+    },
     fixtures: FIXTURE_LIMITS,
     variants: Object.fromEntries(Object.keys(VARIANTS).map((name) => [
       name,
@@ -2631,6 +3353,29 @@ async function runCli() {
   if (!existsSync(options.sourceDatabase)) {
     fail(`source database does not exist: ${options.sourceDatabase}`);
   }
+  if (options.command === "ingest-once-internal") {
+    if (!options.variantName || !options.runLabel) {
+      fail("ingest-once-internal requires --variant and --label.");
+    }
+    const fixture = buildFixtureInventory(options.sourceDatabase, options.fixture);
+    if (options.expectedFixtureHash &&
+        fixture.fixtureHash !== options.expectedFixtureHash) {
+      fail(
+        `internal fixture ${fixture.fixtureHash} differs from expected ` +
+        `${options.expectedFixtureHash}.`,
+      );
+    }
+    writeReport(runIngestOnce({
+      sourceDatabase: options.sourceDatabase,
+      fixture,
+      variant: resolvedVariant(options.variantName),
+      workRoot: options.workRoot,
+      label: options.runLabel,
+      keepArtifacts: options.keepArtifacts,
+      includeExport: options.includeExport,
+    }), null);
+    return;
+  }
   const startedAt = new Date().toISOString();
   const fixture = options.command === "compute"
     ? null
@@ -2652,7 +3397,12 @@ async function runCli() {
       sqlite: process.versions.sqlite,
       zlib: process.versions.zlib,
     },
-    productionInventory: productionInventory(options.sourceDatabase),
+    productionInventory: options.inventoryMode === "none"
+      ? null
+      : productionInventory(options.sourceDatabase, {
+          includeColumnLogicalBytes: options.inventoryMode === "full",
+          includeQueryProfile: options.inventoryMode === "full",
+        }),
     fixture: fixture
       ? {
         ...fixture,

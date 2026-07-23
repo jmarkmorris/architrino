@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, rmSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -46,9 +47,13 @@ test("variant inheritance changes one declared primary variable", () => {
   assert.equal(direct.prepareMode, current.prepareMode);
   assert.equal(direct.journalMode, current.journalMode);
   assert.equal(direct.synchronous, current.synchronous);
+  const external = resolvedVariant("external-artifacts");
+  assert.equal(external.prepareMode, direct.prepareMode);
+  assert.equal(external.compressionMode, direct.compressionMode);
+  assert.equal(external.externalArtifacts, true);
 });
 
-test("fixture inventory is repeatable and hash-bound to raw and measure rows", () => {
+test("fixture inventory is repeatable and hash-bound to raw, measure, and gate rows", () => {
   const directory = mkdtempSync(path.join(os.tmpdir(), "campaign-benchmark-test-"));
   const databasePath = path.join(directory, "fixture.sqlite3");
   const database = new DatabaseSync(databasePath);
@@ -70,6 +75,19 @@ test("fixture inventory is repeatable and hash-bound to raw and measure rows", (
         measure_id TEXT NOT NULL,
         disposition TEXT NOT NULL,
         details_json BLOB NOT NULL
+      ) STRICT, WITHOUT ROWID;
+      CREATE TABLE validity_gate_result (
+        result_hash BLOB NOT NULL,
+        gate_id TEXT NOT NULL,
+        gate_instrument_version TEXT NOT NULL,
+        measured_value REAL,
+        comparator TEXT NOT NULL,
+        threshold_value REAL,
+        independent_pass INTEGER NOT NULL,
+        evidence_hash BLOB NOT NULL,
+        failure_code TEXT,
+        evidence_json BLOB NOT NULL,
+        PRIMARY KEY (result_hash, gate_id, gate_instrument_version)
       ) STRICT, WITHOUT ROWID;
     `);
     const rawInsert = database.prepare(`
@@ -104,6 +122,27 @@ test("fixture inventory is repeatable and hash-bound to raw and measure rows", (
         Buffer.from(JSON.stringify({ index })),
       );
     }
+    const gateInsert = database.prepare(`
+      INSERT INTO validity_gate_result(
+        result_hash, gate_id, gate_instrument_version,
+        measured_value, comparator, threshold_value, independent_pass,
+        evidence_hash, failure_code, evidence_json
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+    for (let index = 0; index < 4; index += 1) {
+      gateInsert.run(
+        hash(`result-${index}`),
+        `gate-${index}`,
+        "independent-test.v1",
+        index / 4,
+        "<=",
+        1,
+        1,
+        hash(`gate-evidence-${index}`),
+        null,
+        Buffer.from(JSON.stringify({ index })),
+      );
+    }
   } finally {
     database.close();
   }
@@ -113,7 +152,55 @@ test("fixture inventory is repeatable and hash-bound to raw and measure rows", (
     assert.equal(first.fixtureHash, second.fixtureHash);
     assert.equal(first.rawArtifactCount, 14);
     assert.equal(first.measureCount, 20);
+    assert.equal(first.validityGateCount, 4);
     assert.equal(first.byStage.length, 7);
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test("SQLite preload profiler distinguishes insert attempts from changed rows", () => {
+  const directory = mkdtempSync(path.join(os.tmpdir(), "sql-profile-test-"));
+  const outputPath = path.join(directory, "profile.json");
+  const profilerPath = path.resolve(
+    "scripts/eom/profile-sqlite-statements-preload.mjs",
+  );
+  const program = `
+    import { DatabaseSync } from "node:sqlite";
+    const database = new DatabaseSync(":memory:");
+    database.exec("CREATE TABLE t(x INTEGER PRIMARY KEY)");
+    const insert = database.prepare("INSERT OR IGNORE INTO t VALUES (?)");
+    database.exec("BEGIN IMMEDIATE");
+    insert.run(1);
+    insert.run(2);
+    insert.run(2);
+    database.exec("COMMIT");
+    database.close();
+  `;
+  try {
+    const child = spawnSync(
+      process.execPath,
+      ["--import", profilerPath, "--input-type=module", "-e", program],
+      {
+        encoding: "utf8",
+        env: {
+          ...process.env,
+          ANALYTICAL_SQL_PROFILE_OUTPUT: outputPath,
+        },
+      },
+    );
+    assert.equal(child.status, 0, child.stderr || child.stdout);
+    const profile = JSON.parse(readFileSync(outputPath, "utf8"));
+    const inserts = profile.aggregate.find(
+      (row) => row.statementClass === "insert" && row.object === "t",
+    );
+    assert.equal(inserts.executionCalls, 3);
+    assert.equal(inserts.changedRows, 2);
+    assert.equal(profile.transactions.completed.length, 1);
+    assert.equal(profile.transactions.completed[0].executionCalls, 3);
+    assert.equal(profile.transactions.completed[0].changedRows, 2);
+    assert.equal(profile.transactions.completed[0].outcome, "commit");
+    assert.deepEqual(profile.transactions.incomplete, []);
   } finally {
     rmSync(directory, { recursive: true, force: true });
   }

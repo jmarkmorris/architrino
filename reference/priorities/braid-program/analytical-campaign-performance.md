@@ -48,6 +48,25 @@ Measured from the published generation completed at
 The older 17-candidate, 11-accepted snapshot is not the current performance
 fixture.
 
+### Next-rebuild protocol drift
+
+Grade: derived from the live protocol and evaluator loops.
+
+During this investigation, the next-rebuild protocol changed from file hash
+`289190df392fc090c9e0135abffb2428091752f999564f15e62aac4f6f5b5824`
+to
+`2e23c6ace6d5284380a7847b77a7613e835ca5421847fbe194c1c09431b2c5d8`.
+The current protocol retains four radii but uses 24 primary and 48 refined
+cycle times, rather than the published generation's smaller grid. It therefore
+writes 288 base surface packets, 293 no-sensitivity packets, and 1,453
+full-sensitivity packets per candidate: 27,607 packet-write events for 19
+candidates before any exact-hash coincidence.
+
+The published 13,927-packet database remains the read-only production baseline.
+The in-progress full rebuild measures the expanded next-rebuild workload. Its
+wall time must not be compared directly with the earlier 41/70-minute
+observations as if the logical input were unchanged.
+
 ## Exact end-to-end call graph
 
 The live `rebuild-all` path is:
@@ -260,14 +279,32 @@ large duplicate *storage* has not been established.
 - one-variable variants for recompression, persistent statements, transaction
   bounds, index timing, journal mode, synchronous mode, foreign-key timing,
   cache/temp settings, mmap, page size, single-transaction loading, multi-row
-  SQL, measure staging, SQLite CLI CSV staging, external packets, and an
-  explicitly unsafe lower bound;
+  SQL, measure staging, SQLite CLI CSV staging, a metric-order query index,
+  external packets, and an explicitly unsafe lower bound;
 - warm-ups, repeated runs, individual values, median, range, CPU time, peak
   process RSS, input/output bytes, row counts, statement counts, transaction
   counts, per-phase wall time, WAL size, SQLite object size, verification,
   export, query throughput, and fixture hashes;
+- each ingestion warm-up and measured repetition now runs in a fresh Node
+  process, preventing earlier variants' retained heaps from contaminating peak
+  RSS;
+- full inventory mode records one-scan per-column logical bytes and null counts;
+  it also records query plans and warm-cache latency for candidate, artifact,
+  gate, metric, root, and sensitivity lookups. Summary mode avoids payload
+  scans, and compute mode skips the production inventory by default so it does
+  not pre-warm the database cache;
+- CSV and NDJSON fixtures now decode after write and require exact logical row
+  and binary64 round trips; their same lookups are measured as compressed
+  full-scan lower bounds rather than treated as indexed queries;
 - heartbeat output containing phase, completed work, total work, wall seconds,
   and output path.
+
+Harness version 2 adds the selected results' complete
+`validity_gate_result` rows to every ingestion fixture, fixture hash, logical
+round-trip check, foreign-key/integrity check, per-phase timing, and indexed
+gate query. The v1 reports below predate that addition and therefore remain
+historical raw-artifact-plus-multidimensional-measure measurements; their
+fixture hashes and timings must not be mixed with v2 repetitions.
 
 The source database is always opened read-only. All writes use unique disposable
 directories under `/private/tmp` unless an explicit work root is supplied.
@@ -275,10 +312,27 @@ directories under `/private/tmp` unless an explicit work root is supplied.
 `scripts/eom/profile-sqlite-statements-preload.mjs` instruments the actual
 `node:sqlite` calls without changing importer control flow. It records prepare
 and execution wall time, statement counts, changed rows, iterator rows, and
-logical parameter bytes by statement class and table. A two-insert/two-select
-smoke test produced exactly those counts. This instrument adds timing calls and
-therefore reports an instrumented baseline; its overhead must be bounded against
-an uninstrumented run before using small timing differences.
+logical parameter bytes by statement class and table. It also records process
+wall/CPU time, peak RSS, time before the first SQL operation, the profiled SQL
+window, and transaction/DDL `exec` calls. It now attributes execution attempts,
+retained changed rows, logical parameter bytes, wall time, and per-table work to
+each completed transaction, and exposes any transaction still open at process
+exit. A three-attempt transaction smoke with one uniqueness no-op reported
+three executions, two changed rows, and one committed transaction exactly.
+This instrument adds timing calls and therefore reports an instrumented
+baseline; its overhead must be bounded against an uninstrumented run before
+using small timing differences.
+
+A focused campaign test under the preload confirmed table-level accounting:
+304 `validity_gate_result` inserts, 304 `case_reduced_measure` inserts, 82
+artifact inserts, 14 transaction begins, and 14 commits were counted across the
+test's two imports and verifications. The counts match the test control flow;
+the retained full campaign remains the timing target.
+
+The import, export, and verification CLI paths now emit monotonic heartbeats
+from zero completed work through each raw/case phase. This supplies exact phase
+boundaries around preflight, ingestion, raw export, artifact verification, and
+raw-artifact verification without changing their default data path.
 
 ## Experiment ledger
 
@@ -328,9 +382,18 @@ Machine context for the current measurements:
 | External packets + SQLite | 2.335 | 2.313–2.498 | 0.478 | 1.423 | 0.351 |
 | Unsafe compressed-hash-only lower bound | 2.275 | 2.242–2.311 | 0.297 | 1.441 | 0.418 |
 
-The transaction, journal, synchronous, foreign-key, cache, and index hypotheses
-are killed at this fixture scale: their changes are within or worse than the
-observed range.
+The transaction, journal, synchronous, foreign-key, post-load-index, and
+combined cache-plus-memory-temp hypotheses are killed at this fixture scale:
+their changes are within or worse than the observed range. Cache size and
+temporary-store location still require isolated one-variable runs.
+
+The current small replay used two transactions containing 64 raw logical rows
+and 4,000 measure rows, 4,147 insert executions, and 4,133 preparations.
+Persistent statements reduced preparations to 9 without reducing wall time.
+Thirty-two-row transactions increased the transaction count to 127 and reduced
+peak WAL from 38,686,832 to 19,528,832 bytes, but did not improve wall time.
+This makes bounded transactions a possible WAL-cap control, not a speed
+optimization.
 
 ### EXP-DB-003: medium ingestion matrix
 
@@ -361,7 +424,92 @@ measure fixture replay, export, and query checks explain the balance.
 Avoiding recompression reduced the median complete sampled run by 59.0% while
 preserving compressed hash, raw hash, row inventory, final integrity, and
 foreign-key results. This is a measured sampled-fixture result, not yet a full
-rebuild speedup.
+rebuild speedup. Median user CPU fell from 31.757 s to 11.258 s and total
+user-plus-system CPU fell from 36.702 s to 16.026 s. Database and peak WAL bytes
+were identical: 383,463,424 and 337,011,912 bytes. The old matrix ran variants
+sequentially in one Node process, so its monotonically increasing absolute RSS
+readings are order-contaminated and do not support a memory comparison. The
+harness now launches a fresh process per warm-up and measured repetition; peak
+RSS must be remeasured.
+
+### EXP-DB-004: production-compatible verified-gzip safety fixture
+
+- Question: can the importer retain supplied gzip bytes without recompression
+  while preserving its fail-closed identity boundary?
+- Baseline: default recompress-and-byte-compare importer.
+- Changed variable: opt-in
+  `experimentalRawArtifactImportMode: "verified-compressed"`.
+- Fixture: baseline all-candidate campaign plus one deterministic gzip raw
+  artifact bound by raw and compressed SHA-256.
+- Command: focused Node test pattern `verified compressed raw import`.
+- Machine/runtime: current machine context; two tests completed in 518 ms.
+- Repetitions: one correctness run per test; this is not a timing benchmark.
+- Measurements: baseline and variant match stored gzip bytes, raw/compressed
+  hashes, manifest/summary hashes, independent acceptance evidence, row
+  inventory, database fingerprint, and `integrity: ok`.
+- Correctness comparison: pass. A second test changed the gzip file after
+  preflight; ingestion rejected it before any artifact or raw-artifact row
+  committed.
+- Result grade: measured local conformance, not full-campaign performance.
+- Conclusion: recompression is not required to preserve the current
+  preflight-to-insert mutation check.
+- Falsifier: any full fixture mismatch in artifact bytes, normalized rows,
+  acceptance, fingerprint, export inventory, or final verification.
+- Next: run both modes against the retained full generated campaign.
+
+### Controlled ingestion matrix status
+
+| Primary variable | Baseline/variant | Current evidence | Status |
+| --- | --- | --- | --- |
+| Gzip validation | recompress / verify supplied gzip | three small and three medium repetitions; exact safety fixture | leading measured improvement; full replay pending |
+| Prepared statements | per-row prepare / persistent | small and medium | killed as leading total-wall cause |
+| Transaction bound | two large transactions / 32 / 512 rows | small | no speed gain; 32 rows halves peak WAL |
+| Single transaction | raw plus measures separate / one transaction | v2 functional pass | repeated timing pending |
+| Row SQL shape | one measure row / 64-row SQL | v2 functional pass; 4,375 to 438 insert executions | repeated timing pending |
+| Measure staging | direct indexed target / unindexed stage then ordered transfer | v2 functional pass; dropped-stage pages remain allocated | repeated timing pending |
+| SQLite CLI staging | Node loop / CSV `.import` plus strict transfer | v2 functional pass; local CLI 3.51.0 | repeated timing pending |
+| Index timing | maintain / create after load | small and medium | no speed gain |
+| Metric query index | current index / `(measure_id, scalar_value, result_hash)` | v2 functional pass; live baseline plan shows temporary sort | repeated load/storage/query matrix pending |
+| Foreign keys | immediate / final deferred check | small | no speed gain; final check retained |
+| Journal | WAL / rollback journal | small | no speed gain |
+| Synchronous policy | FULL / NORMAL | small sandbox only | no speed gain; unsafe mode not recommended |
+| Page cache | current / 256 MiB | v2 functional pass | timing/memory run pending |
+| Temporary store | default / memory | v2 functional pass | timing/memory run pending |
+| Cache/temp interaction | both changes together | old small run | no speed gain; not a one-variable result |
+| Memory mapping | none / 256 MiB | v2 functional pass | timing run pending |
+| Page size | 4 KiB / 8 KiB | v2 functional pass | timing/storage run pending |
+| Payload location | SQLite BLOB / external immutable gzip | old small/medium run changed location and statement lifetime together | storage/DB/WAL result valid; isolated timing rerun pending |
+
+### EXP-DB-005: v2 variant conformance smoke
+
+- Question: do the newly implemented single-transaction, multi-row, staging,
+  SQLite CLI, metric-index, cache, mmap, page-size, and isolated external-store
+  paths preserve the expanded v2 fixture contract?
+- Fixture hash:
+  `93397fb194f6919b9d3e2a4a2b3a6ba97f96b86d7019b04208a9e288b9a39084`;
+  64 raw artifacts, 4,000 multidimensional measures, and 228 complete validity
+  gates.
+- Repetitions: one functional run per variant, performed during the already
+  excluded candidate-8 full-rebuild window.
+- Correctness comparison: all ten variants produced `integrity: ok`, zero
+  foreign-key failures, identical measure logical digest
+  `2b3cf93791755a2742565afadb1dded75f3c61d1240efda386e3f79533658587`,
+  and identical gate logical digest
+  `867d1a76b1355e0a204a71b100d4958da9265075463996564304df2b10bdf910`.
+- Result grade: measured functional conformance; all wall/CPU results are
+  rejected because the expanded full rebuild was running concurrently.
+- Statement-shape check: multi-row SQL reduced insert executions from 4,375 to
+  438; SQLite CLI staging used one CLI import and 376 Node insert executions.
+  This is a measured statement-count change, not a speedup.
+- Storage observation: dropping the staging table does not reclaim its pages.
+  The single-row/multi-row database was 43,245,568 bytes, in-process staging was
+  46,014,464 bytes, and CLI staging was 47,951,872 bytes. Any production
+  staging proposal therefore needs an explicit compaction or fresh-file
+  publication model.
+- Falsifier: an uncontended repeated run fails a logical digest, final
+  integrity, foreign key, export, or exact packet check.
+- Next: repeat the matrix uncontended and use medians before accepting any
+  timing claim.
 
 ### EXP-FMT-001: external formats
 
@@ -370,6 +518,12 @@ rebuild speedup.
   `.local-data/braid-analysis/performance/formats-medium-matrix.v1.json`.
 - Result grade: measured creation/storage; semantic tradeoffs derived from the
   live contracts.
+- Scope: this v1 component benchmark encodes sampled raw-artifact metadata and
+  multidimensional measures, with exact gzip payloads externalized. It does not
+  encode the remaining campaign control-plane tables and therefore supplies a
+  data-plane size/time lower bound, not an independently reconstructable
+  primary representation. Harness v2 adds complete validity gates; full
+  source/protocol/result/acceptance/generation coverage remains a decision gate.
 
 | Representation | Median creation s | Total bytes | Metadata bytes |
 | --- | ---: | ---: | ---: |
@@ -382,6 +536,28 @@ CSV and NDJSON save normalized/index storage on this fixture, but they do not
 replace SQLite semantics. Reconstructing schema enforcement, foreign keys,
 indexed candidate/gate/metric/root/sensitivity lookups, partial-write
 protection, and atomic publication would require a validation/index layer.
+
+The external-packet SQLite variant reduced the SQLite file from 383,463,424 to
+50,937,856 bytes and peak WAL from 337,011,912 to 51,405,272 bytes, while
+retaining 331,510,499 exact gzip bytes externally. Total storage fell only
+1,015,069 bytes (0.26%). This makes smaller database copying/checkpointing a
+plausible operational benefit, not a meaningful payload-elimination result.
+Its historical timing run also switched to persistent statements, so the
+14.640-second median is not an accepted one-variable payload-location timing.
+The harness now keeps statement preparation unchanged between
+direct-compressed and external-artifact variants.
+
+Warm-cache SQLite lookup medians across the three direct-compressed runs were
+about 11 microseconds for candidate artifacts, 7–8 microseconds for an artifact
+hash, 27 microseconds for the first root rows, and 139–144 microseconds for the
+first sensitivity rows. The metric-distribution query took 42.5–45.6
+milliseconds because it orders matching rows by `scalar_value`; the current
+multidimensional index does not supply that complete ordering. Whether a new
+metric-distribution index is worth its load/storage cost remains an explicit
+query-versus-ingestion tradeoff. SQLite's live query plan confirms that
+`multidimensional_measure_query` finds the metric rows and then uses a temporary
+B-tree for the ordering; the root and sensitivity plans use their dedicated
+indexes without that extra sort.
 
 No local Apache Arrow, Parquet, or DuckDB dependency or executable was
 available at inspection. A columnar dependency is therefore deferred until a
@@ -403,6 +579,92 @@ measured query bottleneck justifies its inclusion and operational cost.
   being run from immutable snapshot `0bb7310b`.
 - Next: finish three exact-output repetitions at one, two, and four workers.
 
+A serial OS sample of the frozen fixture measured the benchmark at 119.6%
+macOS CPU (approximately one fully occupied core) and 503 MB RSS. The same
+sample found Bitdefender at 86.8%, WindowServer at 33.0%, and `syspolicyd` at
+32.6%. A later two-worker sample measured the benchmark at 225.1% CPU and
+811 MB RSS. These are measured utilization facts; they also make the interrupted
+wall-time matrix a contended-machine diagnostic rather than an optimization
+result.
+
+### EXP-COMP-001: live expanded-rebuild stack sample
+
+- Question: what work occupies the serial rebuild process during raw packet
+  generation?
+- Fixture: the retained 19-candidate check-mode rebuild under current protocol
+  file hash
+  `2e23c6ace6d5284380a7847b77a7613e835ca5421847fbe194c1c09431b2c5d8`.
+- Instrument: `/usr/bin/sample`, one-millisecond interval for five seconds,
+  taken while 1,098 distinct raw packets and 1.1 GB of generated-campaign data
+  had been staged.
+- Result grade: measured point sample, not a whole-campaign attribution.
+- Result: the process used approximately 111.7% macOS CPU before the sample and
+  had a 1.0 GB peak physical footprint in the sample report. Of 3,868 sampled
+  main-thread stacks, 928 were inside zlib `deflate` (24.0% of sampled active
+  main-thread stacks). The collapsed stacks also exposed SHA-256, JSON
+  stringification, UTF-8 encoding, sorting, floating-point conversion, and
+  garbage collection.
+- Repeated window: immediately after four result packets were retained, the raw
+  count was 48 beyond the exact four-candidate packet total, locating the
+  process early in candidate 5's base surface work. Of 3,779 sampled active
+  main-thread stacks, 894 were inside zlib `deflate` (23.7%). The sample reported
+  626 MB current and 1.2 GB peak physical footprint.
+- Conclusion: packet compression is material during computation as well as
+  import, and the observed process is approximately single-core at these
+  points. Similar compression shares appeared in early base-surface and later
+  sensitivity windows. The samples do not separate event evaluation from
+  packet serialization over the whole campaign.
+- Falsifier: a phase-stratified CPU profile or repeated stack samples assign
+  materially different shares over the complete workload.
+- Next: use the retained full rebuild profile for stage wall time, then compare
+  file-backed and in-memory raw-packet modes on an immutable candidate fixture.
+
+### EXP-E2E-001: retained expanded-protocol full rebuild
+
+- Question: what is the measured end-to-end phase attribution for the current
+  19-candidate protocol, and can its generated artifacts be reused for exact
+  importer experiments?
+- Baseline: unchanged live `rebuildAllCandidateAnalyticalDatabase()` behavior in
+  check mode.
+- Changed variable: none; `keepStaging: true` changes cleanup only, not
+  computation, import, verification, export, generation, or database bytes.
+- Fixture: live 19-candidate registry and protocol file hash
+  `2e23c6ace6d5284380a7847b77a7613e835ca5421847fbe194c1c09431b2c5d8`;
+  the process launched after commit
+  `2fed88c342d595b1e63cceff56fe35aa7a0529c9`. A commit-relative audit while
+  the process was running found no changes in the evaluator, reducer,
+  all-candidate builder, exact-source generator, or catalog; only the database
+  module changed after process launch for the opt-in importer experiment. Final
+  manifest/source/protocol/result inventories are pending completion.
+- Command: Node module invocation of
+  `rebuildAllCandidateAnalyticalDatabase({ mode: "check", keepStaging: true })`
+  with progress heartbeats and final report path
+  `.local-data/braid-analysis/complete-19-candidate-nonpublishing-rebuild-profile.v1.json`.
+- Machine/runtime: the machine context recorded above; Node v26.3.0 and embedded
+  SQLite 3.53.2.
+- Repetitions: one full-scale run because the expanded artifact set is expected
+  to require hours and can be replayed for database repetitions.
+- Current measurements: at 58:47 wall, nine candidates were retained, 13,130
+  distinct raw gzip files existed, and the process used approximately 109%
+  macOS CPU with 1.17 GB current RSS. The first nine result-file completion
+  intervals were 473.190, 398.227, 378.142, 376.519, 376.832, 376.898,
+  378.109, 378.891, and 375.000 seconds; the first interval includes process
+  warm-up and may also differ by candidate geometry. Two five-second point
+  samples are recorded in EXP-COMP-001.
+- Contention note: during candidate 8, an attempted SHA-256 inventory of the
+  9.68 GB read-only production database was stopped after 10 seconds to avoid
+  further disk/cache interference. The database inode, size, and modification
+  time remained `174404791`, `9,677,225,984`, and
+  `2026-07-22 20:55:22 -0400`. Treat candidate 8's interval as potentially
+  contaminated and do not use it alone for a per-candidate cost claim.
+- Correctness comparison: pending final independent acceptance, export,
+  generation fingerprint, and `integrity: ok`.
+- Result grade: in-progress measurement; no final timing conclusion.
+- Falsifier: any final hash, acceptance, completeness, export, or integrity
+  failure rejects the run as a reusable fixture.
+- Next: profile the retained generated campaign through current and
+  verified-compressed import paths without recomputing candidates.
+
 ## Current bottleneck ranking
 
 Measured on the medium ingestion fixture:
@@ -418,6 +680,47 @@ Measured on the medium ingestion fixture:
 
 This ranking supersedes the unmeasured story that index maintenance, WAL,
 foreign keys, or statement reconstruction explain ingestion.
+
+## Computational scalability map
+
+Grade: derived from live control flow, except for the explicitly measured
+utilization samples.
+
+| Boundary | Independence | Determinism requirement | Resource risk | Current disposition |
+| --- | --- | --- | --- | --- |
+| Candidate evaluation | candidates share only immutable registry/protocol inputs; current serial loop carries no mathematical state between candidates | retain registry order for manifest/summary; compare source, protocol, result, packet-byte, and raw-inventory hashes | each worker holds a candidate packet/reductions and writes large gzip files | strongest parallel target; exact 1/2/4 matrix pending |
+| Radius/time surface packets | evaluations are logically independent before ordered streaming reductions | reduction order must remain fixed to avoid binary64 reassociation and hash drift | dispatching individual packets can multiply retained intermediate memory and scheduler overhead | possible second-level target only after candidate scaling |
+| Fixed probes and moving receivers | individual event protocols are independent before result assembly | preserve declared probe/event ordering | small task count; worker overhead may dominate | lower priority |
+| Branch diagnostics | local to one candidate and source | preserve branch/root ordering | limited absolute work until profiled | do not isolate yet |
+| Source-sensitivity coordinates | four perturbed sources are independent before the centered-difference reduction | merge by declared coordinate/stencil order and verify exact perturbed-source hashes | roughly four additional surface campaigns per candidate; high disk and memory amplification | promising inside a single expensive candidate, but candidate workers come first |
+| JSON/SHA/gzip packet materialization | each raw packet is content-addressed independently | canonical JSON and exact gzip bytes must remain byte-identical | concurrent gzip can saturate CPUs and increase write queue/RSS | compare computation workers with a bounded compression pool |
+| SQLite ingestion | statements are logically serial in the current single database | transaction order and final rows must match; SQLite permits one writer | multiple writers add lock contention and nondeterministic commit order | keep one writer; parallelize upstream work |
+| Deterministic export and full verification | artifact rows can be decoded independently, but output order and final inventory are ordered | identical exported bytes and inventory hash | parallel decompression increases RSS/read bandwidth | consider bounded read workers only after import changes |
+
+Measured utilization anchors:
+
+- one frozen no-sensitivity candidate consumed 0.999 CPU-core equivalent;
+- an OS point sample of the expanded full rebuild measured approximately 1.1
+  macOS CPU cores;
+- a two-worker diagnostic sample measured approximately 2.25 cores and 811 MB
+  RSS, but its wall time was rejected because the machine was contended.
+
+These measurements verify available CPU parallelism; they do not yet establish
+a wall-time speedup. The benchmark harness now implements the accepted worker
+design: worker-local artifact directories followed by a serial,
+registry-ordered merge that re-hashes every candidate packet and compressed raw
+artifact, records read/write amplification and merge time, and requires the
+merged inventory hash to match across repetitions and worker counts. The
+uncontended 1/2/4 measurement remains pending.
+The first steady expanded-rebuild candidates completed in about 371–378
+seconds, but candidate 15 completed in 314 seconds. Static equal-count worker
+partitions can therefore be load-imbalanced even when candidate counts match.
+Any production design must measure per-worker settling time and compare a
+bounded dynamic queue or measured-weight partition against the current
+round-robin benchmark while retaining registry-ordered merge.
+Changing gzip level, implementation, or metadata is outside the optimization
+boundary because it changes compressed artifact hashes. Compression parallelism
+must run the same deterministic encoder and reproduce every gzip byte.
 
 ## Storage-necessity audit
 
@@ -443,6 +746,59 @@ No raw ledger is approved for removal. The largest safe opportunity currently
 identified is to change how already-generated gzip bytes are validated and
 where they are stored, not to discard them.
 
+### Schema-field retention audit
+
+Grade: derived from migrations plus live importer, verifier, exporter,
+generation-fingerprint, and query code. A `derivable cache` classification is
+not removal authority; exact consumers and compatibility still have to be
+measured before a schema change.
+
+| Table | Field group | Exact live consumer or obligation | Classification |
+| --- | --- | --- | --- |
+| `schema_migration` | migration ID, ordinal, checksum, tool version, timestamps | migration application and schema audit | required operational provenance |
+| `artifact` | artifact hash, kind, media type, codec, raw/stored sizes, payload, producer | full byte/hash verification, result/manifest/summary/source/registry reconstruction, deterministic export | required byte identity and provenance; payload location negotiable |
+| `source_record` | source identity/schema/engine/family/member, canonical envelope, exact-source artifact link, verification state | exact source preimage verification, campaign export, generation candidate joins | required source/protocol provenance |
+| `analysis_protocol` | protocol hash/ID/schema/canonical JSON | protocol identity, result link, deterministic export | required protocol provenance |
+| `analysis_protocol` | parsed speed, coupling, root tolerances, separation and convergence floors | indexed/queryable protocol inspection and conflict checks | derivable cache from canonical JSON |
+| `campaign_manifest` | manifest identity/artifact, campaign ID/schema, filenames, packet directory, counts, common protocol, acceptance policy | import completeness, deterministic export paths/order, campaign acceptance | required campaign identity and export |
+| `campaign_manifest` | normalized path/count/seed/stage columns | fast validation and export without reparsing manifest | derivable cache with active consumers |
+| `campaign_summary` | summary identity/artifact and manifest link | exact summary export and campaign identity | required deterministic export |
+| `campaign_summary` | producer status and producer acceptance JSON | producer-versus-independent audit | useful diagnostic; not independent acceptance |
+| `configuration` | configuration hash, family/member, parameter vector, coordinate definition, alpha coordinates | candidate/configuration query and campaign case link | query cache reconstructible from retained source/spec; compatibility consumer |
+| `case_result` | result/source/protocol/artifact identities, evaluator/schema/refinement, completeness | result hash provenance, acceptance boundary, export, completeness checks | required result identity |
+| `case_result` | producer status code/JSON | producer-versus-independent audit | useful diagnostic; not independent acceptance |
+| `campaign_case` | manifest/order/case/type and source/configuration/result links, packet filename | deterministic campaign enumeration, completeness, export, generation joins | required campaign inventory |
+| `campaign_case` | summary case JSON | conflict detection and retained manifest case context | redundant representation with an active compatibility check |
+| `campaign_case` | sample index, strata, unit coordinates | seeded-campaign sampling contracts | required for campaigns that use sampling; currently null for the all-candidate cohort |
+| `observation_event` | event identity, probe/time/root counts and reduced wake/root fields | legacy normalized event queries and completeness-compatible schema | currently zero rows in the published all-candidate cohort; ownership must be audited across checked campaigns |
+| `case_reduced_measure` | scalar reduction identity/value/unit/source count | hot scalar distribution query | derivable query cache from result/raw packets |
+| `validity_gate_result` | gate identity/instrument, measurement/comparator/threshold/pass, evidence hash/JSON, failure code | independent case acceptance and failure audit | required independent acceptance |
+| `case_acceptance` | result/instrument/accepted/evidence hash/JSON | `accepted_case`, export, fingerprint, rejected count | required independent acceptance |
+| `campaign_acceptance` | campaign/instrument/accepted/counts/evidence hash/JSON | accepted campaign export and `accepted_case` | required independent acceptance |
+| `ingest_batch` | batch ID, manifest/importer, state/progress/counts/error/timestamps | transactional progress and completed-ingest proof | required operational audit; timestamp bytes are not result evidence |
+| `methodology_coverage` | identity/path/file hash/impact/reduction versions/canonical JSON | preflight method coverage and provenance | required methodology provenance |
+| `analytical_raw_artifact` | compressed/raw/artifact/manifest identities, candidate/kind/path, dimensions, sizes, context | raw byte verification, candidate/stage lookup, deterministic raw export | required raw-ledger index/provenance |
+| `multidimensional_measure` | row/result/measure/reducer identities, disposition/value/unit and dimensions | metric/root/sensitivity queries, cohort digest, normalized-row completeness | derivable query cache with required current query consumers |
+| `multidimensional_measure` | `details_json` | row-specific diagnostic reconstruction | mixed diagnostic/derivable representation; field-level equality audit pending |
+| `database_generation` | generation/registry/artifact/instrument/counts/evidence/timestamp | publication cohort completeness, registry hash verification, fingerprint | required generation provenance; completion time is operational metadata |
+| `database_generation_case` | generation/campaign/result/case/family/member/source/protocol/acceptance/failed-gate | exact published cohort inventory and candidate digest | required generation provenance and query index |
+
+Current removal verdicts:
+
+- No artifact payload, raw-artifact row, acceptance evidence, identity hash, or
+  generation row is removable on current evidence.
+- Parsed protocol scalars, configuration rows, scalar reduced measures, and
+  multidimensional rows are genuine normalized caches, but they provide the
+  present query contract. Removing them would move parse/reduction cost into
+  every query and independent comparison.
+- `campaign_case.summary_case_json`, producer status JSON, and
+  `multidimensional_measure.details_json` are the strongest redundancy-audit
+  candidates. Their exact byte share, consumers, and reconstruction cost remain
+  unmeasured, so no deletion or externalization is recommended.
+- `observation_event` is empty for the published all-candidate generation. That
+  is not proof the table is globally unused because the database contract also
+  imports checked campaigns.
+
 ## Representation decision matrix
 
 | Representation | Exact bytes and hashes | Schema/FK | Query behavior | Incremental load | Atomicity/corruption | Current verdict |
@@ -454,6 +810,51 @@ where they are stored, not to discard them.
 | Gzip CSV | exact binary64 possible only with specified decimal/hex encodings | application-enforced | full scan without auxiliary index | appendable but relationship checks external | staged multi-file manifest | export/staging format, not primary |
 | Columnar | not tested; no justified local dependency selected | format-dependent | potentially good analytical scans | format-dependent | format-dependent | defer until measured query need justifies dependency |
 
+### External-artifact failure and migration model
+
+The exact consumer of each externalized payload would remain
+`readStoredArtifact()`, raw verification, deterministic export, backup, and
+independent reconstruction. Only the byte location changes.
+
+Required design before production use:
+
+1. Store each immutable gzip object at a hash-derived relative path inside a
+   generation staging directory; keep raw hash, compressed hash, sizes, codec,
+   and relative path in SQLite.
+2. Add a store manifest that binds every expected object path/hash/size plus the
+   SQLite file hash. Verify the entire manifest before declaring the generation
+   complete.
+3. Publish the database and object tree as one same-volume directory rename, or
+   publish an immutable generation directory followed by one atomically replaced
+   pointer. A separately swapped database and object directory is not
+   fail-closed.
+4. Make verification fail on a missing, extra, renamed, size-mismatched, or
+   hash-mismatched object. Backup and recovery must copy and verify the whole
+   generation directory, not SQLite alone.
+5. Introduce an artifact-storage discriminator so readers support both existing
+   inline BLOBs and external objects during migration. Copy objects out by hash,
+   build and verify the new index/store manifest, reproduce deterministic export
+   and independent acceptance, then retain the inline database as rollback
+   until the new generation passes the full completion gate.
+
+New failure modes are directory/SQLite skew, missing objects, partial backup,
+orphaned objects, cross-volume non-atomic moves, and garbage collection of a
+still-referenced hash. The measured medium result saves only 0.26% total bytes;
+the design is justified only if full-scale publication, checkpoint, copy,
+backup, or recovery time improves enough to pay for those new obligations.
+
+The more aggressive “metadata plus accepted summaries only” design is not
+equivalent to externalizing payloads. It would remove rejected-case normalized
+diagnostics and most multidimensional query rows while retaining raw packets,
+result packets, acceptance evidence, case-reduced summaries, identities, and
+generation provenance. In principle, those raw/result packets can reconstruct
+the removed rows; in the live contract, however, verification requires
+multidimensional-row presence and query consumers read those rows directly.
+Acceptance therefore requires a separately versioned schema, a deterministic
+row-reconstruction tool, byte/row equality against the current database, and
+measured reconstruction/query cost. No such removal is approved by the current
+storage numbers alone.
+
 ## Ranked optimization plan
 
 1. **Stop deterministic gzip recompression during import.**
@@ -462,6 +863,16 @@ where they are stored, not to discard them.
    - Preserve: hash the supplied gzip bytes, decompress once, verify raw size and
      raw SHA-256, insert the exact supplied bytes, and retain the final full
      verifier.
+   - Reversible implementation: `experimentalRawArtifactImportMode:
+     "verified-compressed"` is an opt-in path; the default remains
+     `"recompress"`. Preflight verifies compressed and raw identities, ingestion
+     re-reads and compressed-hashes the file to close the preflight-to-insert
+     mutation window, and final verification still decompresses and verifies
+     both identities.
+   - Focused tests use a real gzip raw-artifact row: baseline and experimental
+     imports match manifest, summary, acceptance-evidence, database fingerprint,
+     stored gzip bytes, raw/compressed hashes, and `integrity: ok`. A deliberate
+     post-preflight file mutation is rejected before any artifact row commits.
    - Risk: a producer could change gzip parameters while preserving raw JSON;
      compressed SHA-256 identity detects and records that change.
    - Rollback: restore the recompression/byte-compare path.
@@ -471,7 +882,9 @@ where they are stored, not to discard them.
    - Serial no-sensitivity smoke: 41.135 s wall, 41.110 CPU seconds,
      0.999 CPU-core equivalent; surface work was 39.715 s.
    - This verifies the earlier one-core observation for one candidate fixture.
-   - Full 1/2/4-worker matrix is in progress.
+   - The first full matrix was rejected for code drift and the frozen rerun was
+     stopped when a competing full rebuild made wall time invalid. The
+     uncontended 1/2/4 rerun remains pending.
 3. **Evaluate external immutable packets plus a smaller SQLite database.**
    - Measured medium storage: 331.5 MB packet store plus 50.9 MB SQLite versus
      383.5 MB current SQLite.

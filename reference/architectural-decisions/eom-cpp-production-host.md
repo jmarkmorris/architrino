@@ -36,6 +36,21 @@ precision, parity, performance, or migration gate.
    cancellation, checkpoint, and progress contracts.
 7. EOM is the endorsed solver and sole forward production target. New
    solver-dependent work must use or extend EOM.
+8. No other production solver may be introduced, restored from history, or
+   used to create authoritative motion, causal-root, path-history, coupled-
+   evolution, or solver-owned geometry output.
+9. Producer-asserted evidence flags do not create authority. EOM output gains
+   authority only through the declared acceptance and migration gates backed by
+   independent oracles.
+10. JavaScript solver code may exist only as explicitly named reference,
+    fallback, test, fixture, or comparison code. It cannot become the production
+    path or bypass a missing EOM capability.
+11. When EOM lacks a required capability, dependent application, simulation,
+    or research-instrument work remains blocked, quarantined, or explicitly
+    non-authoritative.
+12. Topology, EOM solver and ABI, versioned record contracts, interaction law,
+    path-history storage, wake-history and event rows, output datasets, and
+    visualization remain separate responsibilities.
 
 ## Consequences
 

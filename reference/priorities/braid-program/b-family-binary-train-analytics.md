@@ -1,8 +1,8 @@
 # Generalized Family-B Common-Axis Train Analytics
 
-Status: bounded prescribed-path pilot implemented and measured 2026-07-22. All twelve pilot rows are rejected and remain diagnostic-only. No configuration from this pilot is recommended for the accepted braid candidate inventory.
+Status: exact train chart implemented. The bounded prescribed-path pilot measured on 2026-07-22 is historical diagnostic evidence only: it instantiated $c_f=4$, whereas current workspace policy requires $c_f=1$. Its twelve rejected rows characterize those twelve protocol rows and do not close, rank, or negatively adjudicate the generalized train configuration space.
 
-Claim grade: the coordinate and causal-delay reductions are derived from the declared exact paths. Numerical rows are measured by the prescribed-path evaluator. Comparisons and recommendations below are inferred from that bounded sample only.
+Claim grade: the coordinate, dimension-extension, and causal-delay reductions are derived from the declared exact paths. The numerical rows are measured historical diagnostics from the prescribed-path evaluator. Comparisons below apply only to that bounded legacy sample and cannot support a current Family-B recommendation before a $c_f=1$ rerun.
 
 ## Scope And Taxonomy Boundary
 
@@ -13,14 +13,79 @@ The operator supplied a drawing dated 2021-01-02 with twelve ordered orbital tra
 
 The drawing does not determine polarity, phase, circulation, frequency, binary counterpart pairing, or payload placement. Red and blue drawing colors and the visible point locations do not carry those declarations.
 
-This lane is an operator-directed generalization of Family B. It does not change the canonical taxonomy:
+This lane is an operator-directed generalization of Family B. The six-orbital chart contains canonical B1 as an exact coordinate submanifold and, in its nearest generalization, adds relative binary-midpoint dimensions without changing the three-binary inventory or common-axis relation. This priority packet does not itself change the canonical taxonomy:
 
 - canonical B1 remains three neutral binaries about one common midpoint;
-- the six-orbital single train is a noncanonical generalized Family-B analytical candidate;
-- the twelve-orbital train is composed analytically from two six-orbital components without relabeling canonical Family C;
+- the six-orbital single train is a generalized Family-B coordinate chart whose common-midpoint locus is B1;
+- the twelve-orbital train is composed analytically from two six-orbital components and may be a componentwise coordinate extension of Family C when pairings remain internal;
 - `payload architrino` means one explicitly declared prescribed architrino worldline associated with one adjacent core-orbital pair. It does not mean an Accessory Configuration, captured architrino, axial layer, or another established assembly component.
 
 The campaign evaluates fixed worldlines only. It does not invoke path evolution, the EOM solver, perturbation evolution, stability linearization, or a retained-history handoff.
+
+## B1 Submanifold And Midpoint-Dimension Extension
+
+Fix the three neutral binary pairs and label their two orbital paths by $(a,+)$ and $(a,-)$ for $a\in\{1,2,3\}$. Every pair of axial coordinates has the exact decomposition
+
+$$
+b_a=\frac{\xi_{a,+}+\xi_{a,-}}{2},
+\qquad
+h_a=\frac{\xi_{a,+}-\xi_{a,-}}{2},
+$$
+
+so that
+
+$$
+\xi_{a,+}=b_a+h_a,
+\qquad
+\xi_{a,-}=b_a-h_a.
+$$
+
+When the two paths also obey the B1 polarity-conjugate, antipodal, common-frequency, and common-circulation relations, they may be written
+
+$$
+\mathbf X_{a,+}(T)
+=
+\mathbf C(T)
++b_a\hat{\mathbf n}_B
++h_a\hat{\mathbf n}_B
++\rho_a\mathbf u_a(T),
+$$
+
+$$
+\mathbf X_{a,-}(T)
+=
+\mathbf C(T)
++b_a\hat{\mathbf n}_B
+-h_a\hat{\mathbf n}_B
+-\rho_a\mathbf u_a(T),
+$$
+
+where
+
+$$
+\mathbf u_a(T)
+=
+\cos\theta_a(T)\hat{\mathbf e}_1
++\sin\theta_a(T)\hat{\mathbf e}_2.
+$$
+
+Canonical B1 is the exact locus
+
+$$
+b_1=b_2=b_3=0.
+$$
+
+If $b_1=b_2=b_3=b$, the common value is absorbed into the braid center by $\mathbf C(T)\mapsto\mathbf C(T)+b\hat{\mathbf n}_B$, so this also represents the same intrinsic B1 geometry. After quotienting out that common translation, allowing independent binary midpoints adds only two intrinsic continuous coordinates, for example
+
+$$
+\beta_1=b_2-b_1,
+\qquad
+\beta_2=b_3-b_1.
+$$
+
+Equivalently, six ordered axial coordinates modulo one common shift contain five intrinsic axial coordinates: the three B1 half-separations $(h_1,h_2,h_3)$ plus two relative-midpoint coordinates $(\beta_1,\beta_2)$. This nearest train generalization is therefore a dimension extension of B1, not evidence for a new topological family.
+
+For a twelve-core train with fixed internal pairings, the same decomposition applies independently to each six-core component. Relative component displacement already belongs to the Family-C composition chart; relaxing the three common-midpoint equalities inside each component adds two intrinsic midpoint coordinates per component. Payload worldlines are different: adding them changes the declared source inventory and is not merely a dimension extension.
 
 ## Exact Common Coordinate System
 
@@ -359,6 +424,8 @@ The analytical objective vector contains root completeness, root margin, minimum
 
 Instrument: `evaluatePrescribedRecordAnalysis({ sourceRecord, protocol })` through the generalized Family-B complete-cycle campaign reducer. Grade: measured prescribed-path analytics.
 
+Current disposition: historical diagnostic only. The protocol used $c_f=4$, fixed $s_{\mathrm{grp}}/c_f=0.025$, stationary exterior probe surfaces, six reference rows, and one seeded neighbor per reference. It did not sweep $c_f=1$ translation speeds, absolute train-to-probe offsets, the full independent spacing vector, the full phase-radius-frequency chart, or the legal discrete pairing sectors. Twelve rows in this space are not an exhaustive search, a representative Monte Carlo census, or evidence that the generalized train idea is unfavorable.
+
 The campaign evaluated six references and one seeded neighborhood sample around each reference:
 
 - total rows: 12;
@@ -425,17 +492,17 @@ The separately implemented axial angular-momentum diagnostic evaluates the per-u
 
 ## Recommendation
 
-Do not add any measured pilot configuration to the accepted braid candidate Family B.
+Do not use the legacy pilot to accept or reject the generalized train idea, rank its configuration classes, or decide its taxonomy location. No measured pilot row passed its historical protocol, but that local result is not a negative Family-B finding.
 
-Retain exactly three configuration classes as diagnostic generator strata:
+Retain at least these three configuration classes as regression anchors inside a much larger $c_f=1$ search:
 
 1. the six-core single central-envelope reference, because its residual projections and its seeded neighbor reproduce under time refinement;
 2. the twelve-core equal-radius no-payload control, because it defeats the central envelope on axial and radial residual RMS and therefore remains a necessary falsifier;
 3. the twelve-core central-envelope no-payload reference, as the matched baseline for future spacing and payload studies.
 
-Do not retain the six midpoint-payload geometry as a favorable candidate. Keep it only as an adverse payload control. Do not retain the crossed pairing as a distinct acceleration geometry until the paired path relations differ.
+Keep the six midpoint-payload geometry as a matched payload control rather than treating its one historical comparison as a general payload verdict. Do not treat the crossed pairing as a distinct acceleration geometry until the paired path relations differ.
 
-The next analytical search, if authorized, should refine the six-core spacing-radius-phase domain first. Its falsifier is direct: if no row reduces all three residual projections while passing exterior quadrature, spacing sensitivity, root, separation, and independent-acceptance gates, the searched generalized single-train domain closes negative.
+The next analytical search should first establish the B1-submanifold embedding at $c_f=1$, then open the two relative-midpoint dimensions $(\beta_1,\beta_2)$ while retaining the existing B1 coordinates $(h_a,\rho_a,\phi_a,\omega_a)$. Only a predeclared bounded domain with adequate space-filling coverage, held-out samples, co-translating exterior probes, and refinement may close that searched domain negative.
 
 ## Explicit Falsifiers
 
@@ -446,4 +513,4 @@ The next analytical search, if authorized, should refine the six-core spacing-ra
 
 ## Promotion Routing
 
-The exact common-axis source and delay equations may be promoted into the reader-facing analysis methodology without changing canonical Family-B taxonomy. The measured campaign remains priority-only because it contains no accepted prescribed-path acceleration-balance candidate.
+The exact common-axis source and delay equations may be promoted into the reader-facing analysis methodology without changing canonical Family-B taxonomy. The B1-submanifold and midpoint-dimension reduction remains priority-only pending operator disposition of the taxonomy boundary. The legacy measured campaign remains historical priority evidence and cannot support a current candidate verdict.

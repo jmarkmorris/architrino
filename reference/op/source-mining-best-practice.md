@@ -8,16 +8,16 @@ The goal is high-quality extraction of insights, linkages, mappings, and theory 
 
 ## Authority Map
 
-- The [corpus advancement pass](../entourage/archie/prompts/corpus-advancement-pass.md) is the shared protocol authority for advancement behavior: mode selection, edit authority, promotion triage, mathematics-first discipline, closure-goal prompt structure, follow-up prompt format, and handoff fields.
+- The [convergence campaign](../entourage/archie/prompts/convergence-campaign.md) is the shared protocol authority for convergence behavior: mode selection, edit authority, promotion triage, mathematics-first discipline, closure-goal prompt structure, follow-up prompt format, and handoff fields.
 - This guide is the source-intake specialization. It owns source-family acquisition, traceability, source maps, source-specific prompt addenda, mining-history routing, creative reframing, and external technique anchors.
-- The installed `aaa-corpus-advancement` skill is a thin router. It should point source-mining work here after loading the shared corpus advancement protocol.
+- The compatibility-identifier `aaa-corpus-advancement` skill is a thin router. It should point source-mining work here after loading the shared convergence campaign protocol.
 - Source-mining history remains in [source-mining-history.md](../priorities/source-mining/source-mining-history.md). This guide describes process; the history file records completed sources.
 
-If instructions overlap, apply workspace policy first, then the shared corpus advancement protocol, then this source-intake guide.
+If instructions overlap, apply workspace policy first, then the shared convergence campaign protocol, then this source-intake guide.
 
 ## Inherited Protocol
 
-Source mining inherits the shared corpus advancement protocol instead of redefining it here. In practice, that means:
+Source mining inherits the shared convergence campaign protocol instead of redefining it here. In practice, that means:
 
 - generated prompts and follow-up prompts begin with `Closure goal:`;
 - active source-mining threads default to safe scoped edits unless the operator/developer explicitly requests audit/report mode;
@@ -40,9 +40,9 @@ This file should not duplicate those formats. It supplies the source-family step
 
 ## Relationship To Other AAA Processes
 
-This guide is a source-intake and source-processing practice. It is not another gate system, not a certificate system, and not a competing corpus-advancement protocol.
+This guide is a source-intake and source-processing practice. It is not another gate system, not a certificate system, and not a competing convergence protocol.
 
-- The shared corpus advancement protocol decides whether mined material should be promoted into `content/markdown/aaa`, deferred with a blocker, staged as a discussion prompt, or rejected.
+- The shared convergence campaign protocol decides whether mined material should be promoted into `content/markdown/aaa`, deferred with a blocker, staged as a discussion prompt, or rejected.
 - The Archie canon remains the authority for terminology, notation, and reader-facing style. Source mining translates external vocabulary into established project terminology; it does not update canon by itself.
 - Priority workstreams remain the staging area for unresolved source material, backlog rows, report packets, and follow-up prompts. A source-mining report is working memory and traceability, not reader-facing doctrine.
 - Existing validation, gate, certificate, residual, and ledger processes remain separate. Source mining may identify benchmark pressure or an existing recovery target, but it should not create new hurdle artifacts by default.
@@ -61,7 +61,7 @@ Use this skeleton for every source family. Add one source-family prompt addendum
 Closure goal:
 Mine the supplied source for high-quality AAA insights, linkages, mappings, source leads, and theory-advancement candidates, then make safe scoped corpus edits when authorized.
 
-Use the AAA corpus advancement skill in edit-batch mode.
+Use the compatibility-identifier `aaa-corpus-advancement` skill in edit-batch mode.
 
 Source:
 [PASTE LINK, FILE PATH, ARCHIVE ROOT, IDENTIFIER, OR ATTACHMENT DESCRIPTION]
@@ -70,7 +70,7 @@ Source-family addendum:
 [PASTE OR SUMMARIZE THE RELEVANT SOURCE-FAMILY ADDENDUM BELOW]
 
 Required method:
-1. Read `reference/entourage/archie/prompts/corpus-advancement-pass.md`.
+1. Read `reference/entourage/archie/prompts/convergence-campaign.md`.
 2. Read `reference/op/source-mining-best-practice.md`.
 3. Identify the source type or mixed source types.
 4. Apply the relevant source-family acquisition steps and traceability rules.

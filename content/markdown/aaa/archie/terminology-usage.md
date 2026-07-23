@@ -253,6 +253,7 @@ Sentence guidance:
 - Avoid: `Noether-Sea`. Do not hyphenate the canonical term in prose or titles.
 - Prefer: "Use `spacetime medium` when easing the reader from effective spacetime language to constitutive substrate language."
 - Avoid by default: "vacuum" as the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology term.
+- Use analogy-heavy medium terms such as `superfluid` only when the local document supplies a concrete mathematical analogue: a defined order parameter, transport equation, quantized-vorticity analogue, critical-velocity criterion, two-fluid model, or comparable mechanism. Without that support, use neutral medium-response or transport language.
 
 Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space or ground-state associations; `aether` imports a historical debate that is not quite the same as the present ontology; `medium` is often too generic to do the constitutive work by itself. `Noether sea` is therefore valuable not because novelty is desirable, but because it is specific enough to name the ontological substrate contents without silently borrowing the wrong metaphysics from neighboring frameworks.
 

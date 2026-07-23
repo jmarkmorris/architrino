@@ -1,29 +1,29 @@
-# Corpus Advancement Pass
+# Convergence Campaign
 
 Starter prompt to paste into a new thread:
 
 ```text
 Closure goal:
-Advance the AAA corpus by turning priority, source, or corpus signals into concrete mathematical artifacts, safe scoped edits, and clear follow-up goals.
+Converge the AAA corpus by turning priority, source, or corpus signals into concrete mathematical artifacts, safe scoped edits, and clear follow-up goals.
 
-Use the AAA corpus advancement skill in self-running mode.
+Use the compatibility-identifier `aaa-corpus-advancement` skill in self-running mode.
 ```
 
 Optionally follow it with a specific lane, shard, priority area, or edit-batch instruction.
 
-Use this prompt when the AAA corpus needs active advancement: a recent batch may contain a newer theoretical signal, the priority ledgers may identify open issues that should be turned into mathematics, an external source may contain AAA-relevant physics that should be mined, or the corpus itself may contain underdeveloped proof routes, mathematical closure targets, newly visible insights, notation fixes, or occasional terminology corrections. Cross-linking and general cleanup are secondary unless they directly support a concrete mathematical advance.
+Use this prompt when the AAA corpus needs an active convergence campaign: a recent batch may contain a newer theoretical signal, the priority ledgers may identify open issues that should be turned into mathematics, an external source may contain AAA-relevant physics that should be mined, or the corpus itself may contain underdeveloped proof routes, mathematical closure targets, newly visible insights, notation fixes, or occasional terminology corrections. Cross-linking and general cleanup are secondary unless they directly support a concrete mathematical advance.
 
-The highest-value use of this prompt is not mere phrase cleanup, a skimmed highlight list, or another paragraph saying work remains. Use the review to make concrete mathematical progress: propose definitions, equations, lemmas, invariants, estimates, closure conditions, proof sketches, toy models, counterexamples, or simulation hooks. Each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation, but that sorting is a launch point for work, not the final product. When the current user request grants advancement, integration, cleanup, source mining, or self-running authority, perform safe, low-risk, canon-conforming edits instead of withholding them for approval. Reserve approval or discussion for new theory leaps, terminology policy, Archie canon changes, broad scope expansion, or ambiguous operator intent. The final response should identify what was edited now, what mathematical object was attempted now, what valuable source material was intentionally deferred or rejected, what intuition deserves disciplined discussion with Op, and what should become a concrete priority action item.
+The highest-value use of this prompt is not mere phrase cleanup, a skimmed highlight list, or another paragraph saying work remains. Use the review to make concrete mathematical progress: propose definitions, equations, lemmas, invariants, estimates, closure conditions, proof sketches, toy models, counterexamples, or simulation hooks. Each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation, but that sorting is a launch point for work, not the final product. When the current user request grants convergence, integration, cleanup, source mining, or self-running authority, perform safe, low-risk, canon-conforming edits instead of withholding them for approval. Reserve approval or discussion for new theory leaps, terminology policy, Archie canon changes, broad scope expansion, or ambiguous operator intent. The final response should identify what was edited now, what mathematical object was attempted now, what valuable source material was intentionally deferred or rejected, what intuition deserves disciplined discussion with Op, and what should become a concrete priority action item.
 
 ## Authority Map
 
-This file is the shared protocol authority for AAA corpus advancement. It owns the common rules for mode selection, default edit authority, promotion triage, mathematics-first discipline, `Closure goal:` prompt structure, Priority Action Menu format, thread-state handoffs, self-running exploration, and team-agent coordination.
+This file is the shared protocol authority for AAA corpus convergence. It owns the common rules for mode selection, default edit authority, promotion triage, mathematics-first discipline, `Closure goal:` prompt structure, Priority Action Menu format, thread-state handoffs, self-running exploration, and team-agent coordination.
 
 The installed `aaa-corpus-advancement` skill is only a router. It should trigger this protocol, choose the relevant mode, perform the required start, and preserve non-negotiable reminders without duplicating this file's detailed handoff, Priority Action Menu, math-first, or source-mining text.
 
 The [source-mining best-practice guide](../../../op/source-mining-best-practice.md) is the source-intake specialization. It owns acquisition workflows, source-family templates, traceability expectations, mining history routing, creative reframing, and external technique anchors. When source mining is in scope, apply this shared protocol first, then apply the source-family specialization from that guide.
 
-If the documents overlap, use this order: workspace policy in `AGENTS.md`, then this corpus advancement protocol for shared advancement behavior, then the source-mining guide for source acquisition and source-family details, then the installed skill as trigger and routing glue.
+If the documents overlap, use this order: workspace policy in `AGENTS.md`, then this convergence campaign protocol for shared convergence behavior, then the source-mining guide for source acquisition and source-family details, then the installed skill as trigger and routing glue.
 
 ## Closure-Goal Prompt And Closure Goal Standard
 
@@ -44,19 +44,19 @@ When a source document, paper, lecture note, accepted observation list, or prior
 
 The pass is complete only when the valuable material has been exhaustively triaged and the safe portion has advanced the AAA textbook corpus. Do not stop after one or two high-leverage edits if additional source signals can safely strengthen core geometry, dynamics, closure mathematics, branch certification, Lorentz/effective-metric recovery, photon closure, mass-map work, or executable validation targets.
 
-For acquisition details, source-family prompt addenda, traceability, mining-history updates, and external technique anchors, use [source-mining-best-practice.md](../../../op/source-mining-best-practice.md). This protocol governs shared triage and advancement behavior; the source-mining guide governs how each source family is collected, inspected, and mapped.
+For acquisition details, source-family prompt addenda, traceability, mining-history updates, and external technique anchors, use [source-mining-best-practice.md](../../../op/source-mining-best-practice.md). This protocol governs shared triage and convergence behavior; the source-mining guide governs how each source family is collected, inspected, and mapped.
 
-High-priority autonomous method: when no more specific lane is supplied, inspect `reference/priorities/aaa-work-threads/priorities.md` and the relevant files under `reference/priorities/` early in the pass. Treat those files as an operator-maintained issue ledger, not as authored AAA content. Use them to identify concrete corpus-advancement opportunities, proof routes, missing derivations, validation ledgers, and safe edit batches. Do not link from authored `content/markdown/aaa` files to priority files; if priority material belongs in the AAA corpus, restate or promote the needed substance inside the relevant AAA document.
+High-priority autonomous method: when no more specific lane is supplied, inspect `reference/priorities/aaa-work-threads/priorities.md` and the relevant files under `reference/priorities/` early in the campaign. Treat those files as an operator-maintained issue ledger, not as authored AAA content. Use them to identify concrete convergence targets, proof routes, missing derivations, validation ledgers, and safe edit batches. Do not link from authored `content/markdown/aaa` files to priority files; if priority material belongs in the AAA corpus, restate or promote the needed substance inside the relevant AAA document.
 
 ## Current Core Geometrical Theory Bias
 
-The default target for corpus advancement is now hard mathematical progress on the core geometry-dynamics stack. When no narrower lane is supplied, prefer source signals tied to master-equation closure, potential/action proof programs, certified branch geometry, simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell braid causal closure, Lorentz/effective-metric recovery, photon closure, or Noether sea constitutive response.
+The default target for corpus convergence is hard mathematical progress on the core geometry-dynamics stack. When no narrower lane is supplied, prefer source signals tied to master-equation closure, potential/action proof programs, certified branch geometry, simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell braid causal closure, Lorentz/effective-metric recovery, photon closure, or Noether sea constitutive response.
 
 Do not spend a self-running pass mainly on prose polish, broad coverage, linking, app surfaces, or new infrastructure unless the operator explicitly requested that mode or the work directly unblocks a core mathematical artifact.
 
 ## Mathematics-First Discipline
 
-The default posture is aggressive mathematical advancement. Do not stop at "this should be developed later" when a local definition, equation, lemma, proof scaffold, calculation, or falsifiable simulation target can be written now.
+The default posture is aggressive mathematical progress. Do not stop at "this should be developed later" when a local definition, equation, lemma, proof scaffold, calculation, or falsifiable simulation target can be written now.
 
 Rules:
 
@@ -66,7 +66,7 @@ Rules:
 - Leaps of intuition are welcome. For each leap, give the trigger, the candidate claim, the mathematical form it would take, the first calculation or proof step, and a failure mode that could disprove or discipline it.
 - Every actionable leap of intuition must also appear as a detailed, paste-ready prompt whose first line is `Closure goal:` in the end-of-response Priority Action Menu unless it was already discussed and authorized in the current task. Use `Recommendation: discuss first` when canonization is not yet safe.
 - Future-only work belongs in the Priority Action Menu or in `reference/priorities` as a concrete action item. Do not leave vague future-work prose in authored AAA content or final reports.
-- Cross-links are not advancement by themselves. Add or recommend links only when they make an accepted mathematical claim easier to verify, compare, or read.
+- Cross-links do not constitute convergence by themselves. Add or recommend links only when they make an accepted mathematical claim easier to verify, compare, or read.
 - Infrastructure recommendations are secondary. Include them only when a specific recurring failure pattern has a concrete check, script, ledger, or priority item.
 - Gate, checker, fixture, and requirement proliferation is a known failure mode, but concrete successes should still accumulate. Separate obligation artifacts from success markers: a new requirement, gate, checker, fixture, or standalone ledger row creates future maintenance load, while a success marker records a recovery, benchmark pass, worked example, derivation milestone, or validation win under an existing proof route or gate. Before recommending or adding another obligation artifact, assess its incremental value against the already large set of AAA gates: name the tested observable, mathematical consistency condition, or active proof route it protects; identify whether it strengthens or replaces an existing gate; and explain why improving the native derivation would not capture the same value. If the value is not reasonable, defer the artifact and spend the pass on the theory. Prefer recording low-maintenance success markers under existing validation families over creating a new gate.
 
@@ -81,7 +81,7 @@ Use this priority order:
 - **Comparison frameworks:** AdS/CFT, Ryu-Takayanagi, islands, replica wormholes, inflation models, MOND-like fits, string-theoretic programs, loop-quantum-gravity programs, and similar frameworks. Use these as measuring sticks or bridge language, not as AAA ontology, unless the local source material shows that a specific result has become a hard consistency condition.
 - **Defer or ignore:** weak alternate theories, fashionable conjectures, vague analogies, or models that add obligations without controlled derivation or empirical pressure.
 
-Do not call a requirement card a theory advance by itself. It becomes advancement only if the pass supplies an AAA-native derivation, equation, invariant, mechanism, simulation target with concrete variables, or proof route tied to existing ontology.
+Do not call a requirement card theory progress by itself. It contributes to theory progress only if the campaign supplies an AAA-native derivation, equation, invariant, mechanism, simulation target with concrete variables, or proof route tied to existing ontology.
 
 ## Thread State Handoff
 
@@ -107,7 +107,7 @@ Use the status words strictly:
 
 For self-running exploration, distinguish claim-card writes from AAA prose edits. If only a claim card was created, use `Authority used: claim-card-only`; if no AAA content changed, say so directly in `Files changed`.
 
-Use one natural work packet per thread, but do not create an artificial stop just because the first pass produced a next action. If the current prompt grants broad advancement, integration, self-running, or team-agent authority, finish the first pass and continue into the highest-value direct follow-on task while it remains safe, scoped to the same workstream, and does not require Op discussion or a theory/canon/terminology decision. Do not ask Op to approve safe edits that are already low-risk and canon-conforming. Package only work outside current authority, risky edits, major scope expansions, new theory leaps, canon/terminology decisions, blocked tasks, or separate long-running packets as detailed prompt options. Ask for approval in the current thread only when the decision is required to complete the current task.
+Use one natural work packet per thread, but do not create an artificial stop just because the first pass produced a next action. If the current prompt grants broad convergence, integration, self-running, or team-agent authority, finish the first pass and continue into the highest-value direct follow-on task while it remains safe, scoped to the same workstream, and does not require Op discussion or a theory/canon/terminology decision. Do not ask Op to approve safe edits that are already low-risk and canon-conforming. Package only work outside current authority, risky edits, major scope expansions, new theory leaps, canon/terminology decisions, blocked tasks, or separate long-running packets as detailed prompt options. Ask for approval in the current thread only when the decision is required to complete the current task.
 
 ## Priority Action And Continuation Prompt Format
 
@@ -126,7 +126,7 @@ Use this format for numbered next-action options:
    Closure goal:
    State the concrete objective for this follow-up in one or two sentences.
 
-   Use the AAA corpus advancement skill in <mode>.
+   Use the compatibility-identifier `aaa-corpus-advancement` skill in <mode>.
 
    Context:
    - Relevant source signal, finding, or accepted decision.
@@ -160,11 +160,11 @@ When Op replies with selected numbers, treat each selected detailed prompt as th
 
 ```text
 Closure goal:
-Autonomously identify the strongest current theory signals and turn at least one of them into concrete mathematics. Start with recent AAA changes, the priority ledgers under `reference/priorities/`, and then targeted searches through `content/markdown/aaa`. Extract major advancements or open issues, including new definitions, stronger claims, refined distinctions, notation changes, derivations, terminology, missing proof routes, and implications. Then compare those signals against the rest of the relevant markdown corpus, especially `content/markdown/aaa`, to find places where the corpus should be mathematically elevated or corrected.
+Autonomously identify the strongest current theory signals and turn at least one of them into concrete mathematics. Start with recent AAA changes, the priority ledgers under `reference/priorities/`, and then targeted searches through `content/markdown/aaa`. Extract major advances or open issues, including new definitions, stronger claims, refined distinctions, notation changes, derivations, terminology, missing proof routes, and implications. Then compare those signals against the rest of the relevant markdown corpus, especially `content/markdown/aaa`, to find places where the corpus should be mathematically elevated or corrected.
 
-Perform a corpus advancement pass for the AAA markdown corpus.
+Run a convergence campaign for the AAA markdown corpus.
 
-Maximum-advancement lens:
+Maximum-progress lens:
 Do not treat this as a simple search-and-replace pass. Classify each recurring claim into one of four buckets:
 - Ontology: what the theory says exists or is fundamental.
 - Derivation/closure target: what must be proven from dynamics, symmetry, simulation, or constitutive closure.
@@ -176,13 +176,13 @@ High-leverage review targets:
 - Notation drift: inconsistent symbols for the same object, especially density, delay, metric, mass, and closure quantities.
 - Overclaiming: theorem targets or speculative programs stated as established results.
 - Underclaiming: genuine source-signal advances left too timid, disconnected, or buried.
-- Priority-ledger advancement: operator-maintained priorities that point to missing AAA proofs, derivations, examples, ledgers, simulations, or bridge sections.
-- Missing implications: nearby documents that should inherit a source advancement but currently do not.
+- Priority-ledger convergence: operator-maintained priorities that point to missing AAA proofs, derivations, examples, ledgers, simulations, or bridge sections.
+- Missing implications: nearby documents that should inherit a source signal but currently do not.
 - Leaps of intuition: new synthesis, analogy, proof route, mechanism, or unifying idea that emerges from comparing documents but is not yet established in canon. Surface these for discussion with Op (the operator/developer) before treating them as settled content.
 - Cross-link opportunities: secondary reader-useful links among AAA documents only, with relative paths from the current document, when the link supports a concrete mathematical claim or proof path.
 - Infrastructure opportunities: recurring drift patterns that should become a specific automated corpus-audit script, validation rule, closure ledger entry, or priority action item.
 
-Standing advancement programs to watch for when relevant:
+Standing theory programs to watch for when relevant:
 - Noether sea / Noether sea usage: use `Noether sea` as the standalone noun and `Noether sea` only as a compound modifier.
 - Density and delay notation: use `\rho_{\text{NS}}(\mathbf{x},t)` for physical Noether braid density, reserve `n(\mathbf{x},t)` for normalized Noether braid density, and use `\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)` only for the Noether sea delay factor.
 - Photon ontology: use the canonical description `coaxial contra-rotating polarity-conjugate planar pair`; avoid weaker variants such as `photon planar-pair`, `photon planar pair`, or `photon-like planar pair` unless quoted as a stale phrase to fix.
@@ -204,11 +204,11 @@ Required method:
    - content/markdown/aaa/archie/mathematics-style-guide.md
    - content/markdown/aaa/archie/mathematics-terminology.md
    - content/markdown/aaa/archie/comparative-glossary.md
-4. Build a concise list of the selected source signals' theory advancements or priority-ledger issues.
+4. Build a concise list of the selected source signals' theory advances or priority-ledger issues.
 5. For source-mining tasks, continue until every AAA-relevant source signal has an outcome: edited now, converted into a concrete mathematical target, staged for Op discussion, or rejected with a short reason.
 6. Convert that list into a claim map using the four buckets: ontology, derivation/closure target, effective summary, speculation.
 7. Attempt concrete mathematical advances for all safe high-value signals in scope, not just the top one or two: candidate definitions, lemmas, closure equations, invariants, proof scaffolds, scale estimates, provenance equations, validation criteria, or minimal simulation targets.
-8. Search the corpus for related claims, older terminology, weaker formulations, missing implications, inconsistent notation, and documents that would benefit from the advancement.
+8. Search the corpus for related claims, older terminology, weaker formulations, missing implications, inconsistent notation, and documents that would benefit from the source signal.
 9. Search for exact stale phrases first, then broaden to conceptual neighbors. Prefer `rg` searches and include search patterns only when they seed a concrete follow-on prompt.
 10. If this request is report-only, do not edit. Otherwise, apply safe, low-risk, canon-conforming edits discovered inside the current pass. Do not edit to canonize a new theory leap, change terminology policy, update Archie canon, or make a broad scope expansion without Op discussion or an explicit prompt granting that authority.
 11. Produce a report organized by mathematical advance first, then by affected document.
@@ -216,7 +216,7 @@ Required method:
 For each affected document, report:
 - Path
 - Current issue or opportunity
-- Source advancement that affects it
+- Source signal that affects it
 - Recommended update
 - Whether the safe update was made now, deferred as a prompt, or requires Op discussion
 - Priority: required / high-value / optional
@@ -257,16 +257,16 @@ End with:
 
 ## Edit-Batch Variant
 
-Use this version when the advancement has already been accepted and the operator wants direct implementation. Keep batches small enough to verify carefully, usually 8 affected AAA markdown documents at a time.
+Use this version when the convergence work has already been accepted and the operator wants direct implementation. Keep batches small enough to verify carefully, usually 8 affected AAA markdown documents at a time.
 
 ```text
 Closure goal:
-Apply the accepted corpus advancement to a small verified batch of AAA markdown documents, preserving TeX and canonical terminology while producing safe scoped edits.
+Apply the accepted convergence work to a small verified batch of AAA markdown documents, preserving TeX and canonical terminology while producing safe scoped edits.
 
-Start a fresh AAA markdown corpus advancement integration pass.
+Start a fresh AAA markdown convergence integration batch.
 
 Context:
-[PASTE ACCEPTED ADVANCEMENT SUMMARY HERE]
+[PASTE ACCEPTED CONVERGENCE SUMMARY HERE]
 
 Task:
 Do the selected batch of up to 8 affected AAA markdown documents. Search first, then edit. Preserve TeX carefully and keep edits scoped.
@@ -286,7 +286,7 @@ Search strategy:
 3. For each candidate file, inspect surrounding context before editing.
 4. Search within the selected batch for nearby density, delay, mass, photon, Lorentz, and bridge-ontology wording so related local drift is handled together.
 
-Advancement priorities:
+Convergence priorities:
 - Normalize terminology and notation only where the local context supports it.
 - Convert theorem-target claims into concrete theorem-target language with the strongest available definitions, equations, assumptions, and first proof steps rather than overclaiming completed derivations.
 - Preserve strong source insights, but name their scope.
@@ -324,16 +324,16 @@ Briefly list the files touched, summarize the main cleanup, mention generated ar
 
 ## Self-Running Exploration Variant
 
-Use this version when there is no single source document and the agent should actively look for the next high-value corpus advancement opportunity. This is an autonomous mathematical exploration mode, not a license to silently canonize new theory. It should explore priority ledgers, recent changes, corpus gaps, synthesize, follow promising intuition, make safe low-risk canon-conforming edits when the current request grants advancement authority, and return concrete mathematical advances or detailed prompt options for work outside that authority.
+Use this version when there is no single source document and the agent should actively look for the next high-value convergence target. This is an autonomous mathematical exploration mode, not a license to silently canonize new theory. It should explore priority ledgers, recent changes, corpus gaps, synthesize, follow promising intuition, make safe low-risk canon-conforming edits when the current request grants convergence authority, and return concrete mathematical advances or detailed prompt options for work outside that authority.
 
 ```text
 Closure goal:
-Find the next highest-leverage theory advancement opportunity without being given a specific source document, then push it as far as the current authority responsibly allows. Start with the priority ledgers unless Op supplied a different lane, then explore the idea space through recent changes, random deep dives, proof-target scans, missing-material scans, and occasional drift scans. Produce a ranked advancement report with concrete candidate definitions, equations, lemmas, proof or derivation targets, disciplined leaps of intuition, safe edits made now when authorized, safe edit candidates outside scope, and priority action items.
+Find the next highest-leverage theory-progress target without being given a specific source document, then push it as far as the current authority responsibly allows. Start with the priority ledgers unless Op supplied a different lane, then explore the idea space through recent changes, random deep dives, proof-target scans, missing-material scans, and occasional drift scans. Produce a ranked convergence report with concrete candidate definitions, equations, lemmas, proof or derivation targets, disciplined leaps of intuition, safe edits made now when authorized, safe edit candidates outside scope, and priority action items.
 
-Run a self-directed AAA corpus advancement exploration pass.
+Run a self-directed AAA convergence exploration campaign.
 
 Operating principle:
-This pass should behave like an active research scout doing real mathematical work. It should not merely clean phrases, collect links, or narrate that something should happen later. Ideas are welcome: surface promising syntheses, analogies, proof routes, and unifying mechanisms even when they are not ready for canon. Label them by evidential status instead of suppressing them. The center of gravity is mathematical advancement in theory and proofs: sharpen definitions, name lemmas, start derivations, write closure targets explicitly, and turn speculative mechanisms into testable theorem or simulation programs.
+This campaign should behave like an active research scout doing real mathematical work. It should not merely clean phrases, collect links, or narrate that something should happen later. Ideas are welcome: surface promising syntheses, analogies, proof routes, and unifying mechanisms even when they are not ready for canon. Label them by evidential status instead of suppressing them. The center of gravity is mathematical progress in theory and proofs: sharpen definitions, name lemmas, start derivations, write closure targets explicitly, and turn speculative mechanisms into testable theorem or simulation programs.
 
 Hygiene posture:
 Terminology, notation, cross-linking, and cleanup still matter, but they are secondary in this variant. Let them appear when they block mathematical clarity or provide a cheap safe edit candidate. Do not let a self-running exploration collapse into a terminology sweep, link-gardening pass, or vague future-work inventory unless Op explicitly asks for that.
@@ -374,24 +374,24 @@ Default path shards:
 - Shard 6: `reference/priorities`, other reference material, app/scene/user-facing language, and non-AAA surfaces that echo AAA terms.
 
 Default lane distribution:
-- If few or no active claims exist, choose the priority-ledger advancement posture or Lane H as the primary lane unless Op supplied a different focus; choose one secondary lane from A-G to test and enrich the priority signal.
+- If few or no active claims exist, choose the priority-ledger convergence posture or Lane H as the primary lane unless Op supplied a different focus; choose one secondary lane from A-G to test and enrich the priority signal.
 - If a priority-ledger pass was just completed by another active claim, choose one primary lane from A-G and use Lane H only as a cross-check.
 - If several claims exist, choose the least-covered lane and least-covered path shard.
 - Avoid doing a broad all-corpus scan unless the active claims show no one else is currently covering the corpus.
-- During the current core theory push, choose Closure lab, Proof-route forge, Priority-ledger advancement, or Recent-change propagator before reader-completeness, cross-link, or hygiene postures unless Op explicitly requested those support modes.
+- During the current core theory push, choose Closure lab, Proof-route forge, Priority-ledger convergence, or Recent-change propagator before reader-completeness, cross-link, or hygiene postures unless Op explicitly requested those support modes.
 
 Internal exploration palette:
 If Op does not specify a lane, shard, or posture, choose one or two of these postures before choosing lanes. Give high priority to postures that can produce a concrete mathematical artifact now, bias away from active claim cards and recently covered territory, and keep hygiene postures as occasional secondary passes. State the selected posture in the claim card and final report.
 
-- **Priority-ledger advancement:** go through `reference/priorities/aaa-work-threads/priorities.md` and the relevant files under `reference/priorities/` to find operator-maintained issues that can be advanced in the AAA corpus. Convert priority items into present mathematical work: proof routes, definitions, equations, missing derivations, worked examples, validation ledgers, cross-document integration, or safe edit batches. Do not link from authored AAA prose to priority files; promote the substance into `content/markdown/aaa` when it belongs there.
+- **Priority-ledger convergence:** go through `reference/priorities/aaa-work-threads/priorities.md` and the relevant files under `reference/priorities/` to find operator-maintained issues that can move the AAA corpus toward canon. Convert priority items into present mathematical work: proof routes, definitions, equations, missing derivations, worked examples, validation ledgers, cross-document integration, or safe edit batches. Do not link from authored AAA prose to priority files; promote the substance into `content/markdown/aaa` when it belongs there.
 - **Idea factory:** maximize new syntheses, proof routes, unifying mechanisms, mathematical conjectures, and leaps of intuition. Do not edit speculative ideas into AAA prose; return disciplined theory cards with a candidate mathematical statement, assumptions, first calculation, failure mode, and detailed discussion or implementation prompt.
 - **Closure lab:** focus on theorem/closure targets such as Lorentz behavior, mass/inertia, photon stability, reaction provenance, emergent metric closure, and cosmology observer variables.
 - **Proof-route forge:** choose one important claim and outline the objects, assumptions, lemmas, equations, invariants, simulations, or counterexamples needed to turn it into a defensible derivation.
-- **Recent-change propagator:** mine recent git changes for theory advancements and sweep related documents for integration opportunities.
-- **Random document advancement:** choose one AAA markdown file and ask what serious improvement it can support now; include sibling/context checks.
+- **Recent-change propagator:** mine recent git changes for theory advances and sweep related documents for integration opportunities.
+- **Random document deep dive:** choose one AAA markdown file and ask what serious improvement it can support now; include sibling/context checks.
 - **Particular document deepener:** if Op names one file, advance that file first, then identify its nearest integration targets.
 - **Missing-material architect:** look for implied but unwritten pages, sections, derivations, ledgers, worked examples, or bridge documents, then draft the smallest useful mathematical nucleus rather than only naming the absence.
-- **Issue troll:** secondary hygiene posture; hunt for stale terminology, weak formulations, overclaims, TODOs, broken self-containment, missing definitions, thin sections, and corpus drift when those issues obstruct advancement or the random choice lands here.
+- **Issue troll:** secondary hygiene posture; hunt for stale terminology, weak formulations, overclaims, TODOs, broken self-containment, missing definitions, thin sections, and corpus drift when those issues obstruct convergence or the random choice lands here.
 - **Canon/drift sweeper:** secondary hygiene posture; compare local prose against Archie canon and identify patterns suitable for automated validation when drift materially affects theory clarity.
 - **Reader-completeness pass:** identify places where a reader needs a local definition, example, derivation step, or distinction to make the document self-contained.
 - **Cross-link gardener:** low-priority support posture; use only when Op asks for linking or when a link directly supports a concrete mathematical claim, proof path, or reader-critical comparison.
@@ -407,7 +407,7 @@ Lane selection bias:
 - Rank mathematical advances above wording-only cleanup, linking, and infrastructure in the final report.
 
 Lane A: Recent-change theory harvest
-- Inspect recent changes for possible theory advancements using git history and current diffs.
+- Inspect recent changes for possible theory advances using git history and current diffs.
 - Useful commands include:
   - `git diff --name-only`
   - `git diff -- content/markdown/aaa`
@@ -417,7 +417,7 @@ Lane A: Recent-change theory harvest
 - Attempt one concrete mathematical propagation: a candidate definition, equation, lemma, proof-route paragraph, or exact edit that carries the new signal into a nearby document.
 
 Lane B: Random serious-document deep dive
-- Choose one AAA markdown document at random and attempt a serious advancement audit.
+- Choose one AAA markdown document at random and attempt a serious convergence audit.
 - Useful command: `rg --files content/markdown/aaa | sort | shuf -n 1`
 - If `shuf` is unavailable, choose a document by another reproducible method and state how it was chosen.
 - Read the chosen document, then inspect sibling documents, incoming/outgoing links where practical, and relevant canon.
@@ -464,12 +464,12 @@ Lane G: Intuition-to-proof synthesis
   - failure modes or counterexamples that would discipline the idea.
 - Treat the output as an Op-discussion theory card, not as settled doctrine.
 
-Lane H: Priority-ledger advancement
+Lane H: Priority-ledger convergence
 - Read `reference/priorities/aaa-work-threads/priorities.md` first, then inspect the specific priority files that look most actionable.
 - Treat priority files as a backlog of operator-maintained problems, not as source text to quote into authored AAA prose.
 - For each promising item, identify:
   - the priority issue and its target closure,
-  - the AAA documents that should carry the advancement,
+  - the AAA documents that should carry the advance,
   - the smallest mathematical object, definition, lemma, equation, worked example, validation ledger, or simulation hook that can be attempted now,
   - whether the work can be done as a safe edit batch or requires Op discussion,
   - and the first concrete corpus change that would reduce the priority rather than merely restate it.
@@ -494,7 +494,7 @@ Report format:
    - recommended next action,
    - priority: required / high-value / optional,
    - risk: low / medium / high.
-6. Mathematical advancement targets:
+6. Mathematical progress targets:
    - claim or conjecture,
    - objects and definitions needed,
    - candidate lemmas, equations, invariants, simulations, or proof route,
@@ -535,7 +535,7 @@ Guardrails:
 - Do not reference entourage material inside content/markdown/aaa.
 - Preserve TeX exactly in any quoted or proposed edit.
 - Keep foundational insights strong, but name their scope and what still requires separate argument.
-- If the pass discovers a likely major theory advancement, stop at a discussion-ready proposal unless Op has explicitly requested direct drafting.
+- If the campaign discovers a likely major theory breakthrough, stop at a discussion-ready proposal unless Op has explicitly requested direct drafting.
 ```
 
 ## Team-Agent Variant
@@ -544,9 +544,9 @@ Use this version when the corpus is large enough that the comparison should be s
 
 ```text
 Closure goal:
-Coordinate a non-overlapping team-agent corpus advancement pass that extracts concrete mathematical advances, resolves findings against canon, and returns closure-goal follow-up prompts for any work outside current edit authority.
+Coordinate a non-overlapping team-agent convergence campaign that extracts concrete mathematical advances, resolves findings against canon, and returns closure-goal follow-up prompts for any work outside current edit authority.
 
-Perform a team-agent corpus advancement pass for the AAA markdown corpus.
+Run a team-agent convergence campaign for the AAA markdown corpus.
 
 Coordinator:
 1. Run `git status --short` before any edit-oriented work. Do not revert existing changes.
@@ -556,7 +556,7 @@ Coordinator:
    - content/markdown/aaa/archie/mathematics-style-guide.md
    - content/markdown/aaa/archie/mathematics-terminology.md
    - content/markdown/aaa/archie/comparative-glossary.md
-4. Extract the selected source signals' major advancements or priority-ledger issues:
+4. Extract the selected source signals' major advances or priority-ledger issues:
    - new or refined definitions
    - stronger claims
    - corrected distinctions
@@ -564,12 +564,12 @@ Coordinator:
    - derivations
    - terminology implications
    - cross-document consequences
-5. Convert the strongest advancements into at least one concrete mathematical artifact before broad cataloging:
+5. Convert the strongest advances into at least one concrete mathematical artifact before broad cataloging:
    - candidate definition
    - candidate lemma or conjecture
    - equation, closure condition, invariant, or estimate
    - proof scaffold, validation criterion, or simulation hook
-6. Convert the advancements into a claim map:
+6. Convert the advances into a claim map:
    - ontology
    - derivation/closure target
    - effective summary
@@ -608,7 +608,7 @@ The coordinator must then:
 4. Flag any canon-policy conflict before recommending edits.
 5. Identify recurring drift patterns for automation only when a concrete rule can be stated.
 6. Identify theorem targets that should enter a closure-target ledger, with candidate statement, objects, and first proof step.
-7. Produce one ranked corpus advancement report.
+7. Produce one ranked convergence report.
 8. Make safe, non-overlapping edits only when Op explicitly granted team-agent edit authority; otherwise return detailed prompt options for coordinator-led edit batches.
 
 Important constraints:

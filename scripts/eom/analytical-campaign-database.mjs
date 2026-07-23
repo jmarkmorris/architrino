@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import path from "node:path";
+import { performance } from "node:perf_hooks";
 import { fileURLToPath } from "node:url";
 import { writeFileSync } from "node:fs";
 
@@ -75,6 +76,7 @@ async function runCli() {
     return;
   }
   if (command === "import-campaign") {
+    const importStartedAt = performance.now();
     const batchSize = values.has("--batch-size")
       ? Number(values.get("--batch-size"))
       : undefined;
@@ -84,11 +86,25 @@ async function runCli() {
       ...(values.has("--packet-directory")
         ? { packetDirectory: values.get("--packet-directory") }
         : {}),
+      ...(values.has("--experimental-raw-artifact-import-mode")
+        ? {
+            experimentalRawArtifactImportMode:
+              values.get("--experimental-raw-artifact-import-mode"),
+          }
+        : {}),
       ...(batchSize == null ? {} : { batchSize }),
+      onProgress(progress) {
+        process.stderr.write(`${JSON.stringify({
+          heartbeat: "analytical-campaign-import",
+          ...progress,
+          wallSeconds: (performance.now() - importStartedAt) / 1_000,
+        })}\n`);
+      },
       onBatchCommitted(progress) {
         process.stderr.write(`${JSON.stringify({
           heartbeat: "analytical-campaign-ingest",
           ...progress,
+          wallSeconds: (performance.now() - importStartedAt) / 1_000,
         })}\n`);
       },
     }));
@@ -119,14 +135,31 @@ async function runCli() {
     return;
   }
   if (command === "export-campaign") {
+    const exportStartedAt = performance.now();
     printResult(exportAnalyticalCampaign(databasePath, {
       manifestHash: required(values, "--manifest-hash"),
       outputDirectory: required(values, "--output-directory"),
+      onProgress(progress) {
+        process.stderr.write(`${JSON.stringify({
+          heartbeat: "analytical-campaign-export",
+          ...progress,
+          wallSeconds: (performance.now() - exportStartedAt) / 1_000,
+        })}\n`);
+      },
     }));
     return;
   }
   if (command === "verify") {
-    printResult(verifyAnalyticalCampaignDatabase(databasePath));
+    const verifyStartedAt = performance.now();
+    printResult(verifyAnalyticalCampaignDatabase(databasePath, {
+      onProgress(progress) {
+        process.stderr.write(`${JSON.stringify({
+          heartbeat: "analytical-campaign-verify",
+          ...progress,
+          wallSeconds: (performance.now() - verifyStartedAt) / 1_000,
+        })}\n`);
+      },
+    }));
     return;
   }
   if (command === "inspect") {

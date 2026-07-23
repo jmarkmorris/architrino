@@ -3199,7 +3199,7 @@ Current executable reducer guardrail: `scripts/equation-mapping/check-emit-02-04
 Closure goal:
 Run a multi-agent equation-mapping closure pass that assigns one standard physics or cosmology equation group to each worker and advances each assigned map toward a concrete AAA closure packet.
 
-Use the AAA corpus advancement skill in team-agent mode.
+Use the compatibility-identifier `aaa-corpus-advancement` skill in team-agent mode.
 
 Context:
 - Priority folder: `reference/priorities/equation-mapping/`.

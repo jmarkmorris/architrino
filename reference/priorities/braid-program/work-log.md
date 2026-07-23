@@ -323,12 +323,17 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 - Captured the operator's 2021-01-02 twelve-trace drawing as an idea-grade source for an ordered common-axis orbital train and central radius envelope. The drawing does not declare polarity, phase, circulation, frequency, counterpart pairing, or payload placement. Opened [Generalized Family-B Common-Axis Train Analytics](b-family-binary-train-analytics.md) for exact six-core single, twelve-core dual, and twelve-core-plus-six-payload prescribed charts.
 - Final Family-B assignment remains discussion-scoped because canonical B1 and Family C are unchanged.
 
-## 2026-07-22 — generalized Family-B prescribed-path pilot completed negative
+## 2026-07-22 — generalized Family-B bounded prescribed-path pilot completed
 
 - Implemented exact 6-, 12-, and 18-worldline source generation, separate binary and adjacent-payload maps, common-axis spacings, complete-cycle axial/radial/tangential residuals, spacing sensitivity, raw-ledger retention, independent acceptance, SQLite import, database generation, and deterministic export. The implementation invokes no path evolution or EOM-solver module.
 - Measured twelve rows under the fixed pilot protocol: six references plus one seeded neighborhood row around each. Independent acceptance retained zero accepted rows and twelve diagnostic-only rejections. The database integrity check returned `ok`; manifest hash `1a8b5c951fe843530eebf16c3ef4432adeee5b5d106b059e582f68beaa7073df`; database-generation hash `eeddf19f84b29b78a84b21a775e3a907ea1f4f011f8855ff3d1aa46913183216`; two deterministic exports reproduced inventory hash `b84c8d6cda6395ea24f7244dc33decf81306f5d980066c7f514f9b0a5681bbcc`.
 - The single central-envelope reference and its seeded neighbor reproduce the residual reduction under time refinement but retain nonzero residuals and fail exterior/sensitivity gates. Every dual row fails residual refinement. The exact matched six-payload comparison improves exterior cancellation but worsens axial, radial, and tangential residual RMS. Changing only the binary map leaves the source paths unchanged and therefore produces identical acceleration rows.
-- No pilot row is added to the accepted braid candidate inventory. Retain the single central-envelope, dual equal-radius no-payload, and dual central-envelope no-payload generators as diagnostic strata; keep midpoint payload and crossed-map rows only as adverse or identity controls. No stability, self-stabilization, retention, binding, photon, energy, quantization, physical-realization, or EOM-solver-compatibility claim follows.
+- No pilot row was added to the accepted braid candidate inventory. The pilot used $c_f=4$ and is now historical diagnostic evidence under the workspace-wide $c_f=1$ normalization rule. Twelve rows do not close or negatively rank the generalized train configuration space.
+
+## 2026-07-23 — Family-B train dimension-extension correction
+
+- Derived the fixed-pairing decomposition $\xi_{a,\pm}=b_a\pm h_a$. Canonical B1 is the common-midpoint locus $b_1=b_2=b_3$; after absorbing the common midpoint into the braid center, the nearest six-orbital train generalization adds two intrinsic relative-midpoint dimensions. A fixed-component twelve-core train carries the same extension componentwise, while payload worldlines change the inventory rather than merely extending coordinates.
+- Corrected the pilot disposition from a negative Family-B result to a historical twelve-row protocol result. A current search must use $c_f=1$, co-translating exterior probes for intrinsic cancellation, explicit translation controls, and adequate space-filling coverage before any bounded-domain negative conclusion.
 
 ## 2026-07-22 — C1.1 prescribed-display candidate signed off
 

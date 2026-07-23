@@ -4,7 +4,7 @@
 Closure goal:
 Advance the least-closed equation-mapping rows toward their smallest accepted retained evidence objects while preserving score-neutral boundaries for every diagnostic, source contract, attempt, and negative control.
 
-Use the AAA corpus advancement skill in team-agent mode.
+Use the compatibility-identifier `aaa-corpus-advancement` skill in team-agent mode.
 
 Context:
 - Resolve the live queue from:

@@ -18,11 +18,12 @@ const SOURCE_PATHS = [
   "reference/op/codex-goal-seeking-prompt-template.md",
   "reference/op/codex-multiprompt.md",
   "reference/op/theory-orientation.md",
+  "reference/op/long-running-test-heartbeats.md",
   "reference/op/source-mining-best-practice.md",
   "reference/op/codex-pr-branch.md",
   "reference/priorities/README.md",
   "reference/entourage/archie/prompts/README.md",
-  "reference/entourage/archie/prompts/corpus-advancement-pass.md",
+  "reference/entourage/archie/prompts/convergence-campaign.md",
   "reference/entourage/archie/prompts/corpus-reviewer.md",
   "reference/entourage/archie/prompts/integrator-reviewer.md",
   "reference/entourage/archie/prompts/review-comment-assessor.md",
@@ -48,20 +49,20 @@ const WORKFLOWS = [
     live: "Use the live source files when the task asks about policy, exact command order, branch state, validation, or source authority.",
   },
   {
-    name: "Corpus advancement",
-    use: "Turn corpus, priority, or source signals into concrete mathematical artifacts and safe scoped edits when authority allows.",
+    name: "Corpus convergence",
+    use: "Move the corpus toward current canon by turning priority, source, or corpus signals into concrete mathematical artifacts and safe scoped edits when authority allows.",
     read: [
-      "reference/entourage/archie/prompts/corpus-advancement-pass.md",
+      "reference/entourage/archie/prompts/convergence-campaign.md",
       "reference/op/theory-orientation.md",
       "relevant priority or corpus files",
     ],
-    live: "Read the full protocol before running advancement, because it owns modes, edit authority, handoff shape, and priority action prompts.",
+    live: "Read the full protocol before running a campaign, because it owns modes, edit authority, handoff shape, and priority action prompts.",
   },
   {
     name: "Source mining",
     use: "Acquire and map source material into current AAA terminology, claim levels, proof routes, and corpus or priority destinations.",
     read: [
-      "reference/entourage/archie/prompts/corpus-advancement-pass.md",
+      "reference/entourage/archie/prompts/convergence-campaign.md",
       "reference/op/source-mining-best-practice.md",
       "source-family addendum",
     ],
@@ -117,12 +118,21 @@ const WORKFLOWS = [
     ],
     live: "Always re-read the live procedure before publishing or regenerating; command order and required checks are policy.",
   },
+  {
+    name: "Long-running job",
+    use: "Run, detach, monitor, resume, or hand off a long test, simulation, rebuild, or analytical campaign.",
+    read: [
+      "reference/op/long-running-test-heartbeats.md",
+      "the exact build and run entrypoints",
+    ],
+    live: "Rebuild first, keep the job watched or observably detached, and verify that its fixed-cadence heartbeat advances.",
+  },
 ];
 
 const PROMPT_INDEX = [
   {
-    path: "reference/entourage/archie/prompts/corpus-advancement-pass.md",
-    use: "Shared AAA corpus advancement protocol.",
+    path: "reference/entourage/archie/prompts/convergence-campaign.md",
+    use: "Shared AAA corpus convergence protocol.",
   },
   {
     path: "reference/entourage/archie/prompts/corpus-reviewer.md",

@@ -31,7 +31,7 @@ Closure is the destination; convergence is the process. As understanding advance
 
 | Vocabulary | Existing structure |
 | --- | --- |
-| Convergence Campaign | A run of [corpus-advancement-pass.md](../entourage/archie/prompts/corpus-advancement-pass.md) (to be renamed `convergence-campaign.md`). |
+| Convergence Campaign | A run of [convergence-campaign.md](../entourage/archie/prompts/convergence-campaign.md). |
 | Convergence Target | A priority item in `reference/priorities`. |
 | Convergence Debt | The priority ledgers, collectively. |
 | Convergence Frontier | [closure-join-matrix.md](../priorities/aaa-work-threads/closure-join-matrix.md) and the current core geometry focus. |

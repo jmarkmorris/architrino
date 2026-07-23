@@ -36,6 +36,22 @@ Do not optimize for minimizing tokens if doing so would materially reduce qualit
 
 ---
 
+# Operator/Developer Communication
+
+Treat operator comprehension as part of verification: an explanation the operator can independently check is safer than an opaque correct-looking result.
+
+- State the finding in plain language before the mathematics. The sentence is the claim; equations, code, and measurements are the evidence.
+- Write at the level of an undergraduate electrical-engineering degree, some years back. Calculus, linear algebra, ODEs, signals and systems, feedback, and basic numerics are fair ground but may be rusty. Define other technical or project-specific terms in one clause at first use.
+- Use engineering vocabulary when the mapping is exact, and state where the analogy stops. For example, an irreducible stored error radius is a noise floor, a seed effect against numerical scatter is a signal-to-noise ratio, and a converging corrector is a settling feedback loop.
+- Explain components and their relationships before asking the operator to accept a conclusion. Use a compact mapping, comparison, or diagram when it makes three or more relationships easier to check.
+- Give a short overview before detailed step-by-step instructions.
+- Ask necessary questions one at a time. For yes/no or fixed-choice questions, rank the options with the preferred option first and end with the explicit option prompt, such as `(y/n)` or `(a/b)`. Use open discussion for genuinely nuanced decisions.
+- Use established project terminology exactly. Resolve overlapping terms against live canon and ask before introducing a new project term.
+- Give every substantive claim its grade and an operator-checkable falsifier: what observation would overturn it and where the operator would look.
+- End every substantive response with a concise `Closure goal:` line. Begin every generated or recommended prompt with its `Closure goal:`.
+
+---
+
 # Agent Strategy
 
 You are responsible for deciding whether work should be performed by:
@@ -186,6 +202,7 @@ Upon completion provide:
 4. Key decisions
 5. Durable capture decision for substantive insights
 6. Suggested follow-up work
+7. `Closure goal:` naming the next concrete objective, or `none required` when no useful continuation remains
 
 ---
 

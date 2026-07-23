@@ -18,13 +18,14 @@ This file is not the authority. If this file conflicts with a source file, the s
 | Workflow | Use When | Minimal Live Read | Live Re-Read Trigger |
 | --- | --- | --- | --- |
 | Default thread startup | Choose the smallest live procedure that fits the requested work, then read only the linked files needed for that procedure. | [reference/op/README.md](README.md)<br>[reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md)<br>selected specialized procedure | Use the live source files when the task asks about policy, exact command order, branch state, validation, or source authority. |
-| Corpus advancement | Turn corpus, priority, or source signals into concrete mathematical artifacts and safe scoped edits when authority allows. | [reference/entourage/archie/prompts/corpus-advancement-pass.md](../entourage/archie/prompts/corpus-advancement-pass.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>relevant priority or corpus files | Read the full protocol before running advancement, because it owns modes, edit authority, handoff shape, and priority action prompts. |
-| Source mining | Acquire and map source material into current AAA terminology, claim levels, proof routes, and corpus or priority destinations. | [reference/entourage/archie/prompts/corpus-advancement-pass.md](../entourage/archie/prompts/corpus-advancement-pass.md)<br>[reference/op/source-mining-best-practice.md](source-mining-best-practice.md)<br>source-family addendum | Use the guide for acquisition details, traceability, mining history, and source-family rules. |
+| Corpus convergence | Move the corpus toward current canon by turning priority, source, or corpus signals into concrete mathematical artifacts and safe scoped edits when authority allows. | [reference/entourage/archie/prompts/convergence-campaign.md](../entourage/archie/prompts/convergence-campaign.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>relevant priority or corpus files | Read the full protocol before running a campaign, because it owns modes, edit authority, handoff shape, and priority action prompts. |
+| Source mining | Acquire and map source material into current AAA terminology, claim levels, proof routes, and corpus or priority destinations. | [reference/entourage/archie/prompts/convergence-campaign.md](../entourage/archie/prompts/convergence-campaign.md)<br>[reference/op/source-mining-best-practice.md](source-mining-best-practice.md)<br>source-family addendum | Use the guide for acquisition details, traceability, mining history, and source-family rules. |
 | Fable corpus review | Prepare a review-only pass across a directory in scene or textbook order, one file per turn. | [reference/entourage/archie/prompts/corpus-reviewer.md](../entourage/archie/prompts/corpus-reviewer.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>style and terminology guides listed by the prompt | Read the live target file and nearby canon before raising file-specific findings. |
 | Fable comment integration | Classify review comments, integrate the valid ones, run an independent closure-quality review, and stage larger issues in priorities. | [reference/entourage/archie/prompts/integrator-reviewer.md](../entourage/archie/prompts/integrator-reviewer.md)<br>target document<br>nearby corpus and style authorities | Review comments are input, not authority; verify against live canon before editing. |
 | Priority lane resume | Resume a named priority workstream from live state and make the next scoped progress step. | [reference/entourage/archie/prompts/priority-lane-resume.md](../entourage/archie/prompts/priority-lane-resume.md)<br>[reference/priorities/README.md](../priorities/README.md)<br>lane tracker, brainstorming.md, and work-log.md | Do not rely on memory for queue state; read the lane tracker and owning packet. |
 | Core geometry theorem review | Request concentrated mathematical review of one theorem target, equation stack, branch certificate, or proof gap. | [reference/entourage/archie/prompts/core-geometry-theorem-reviewer.md](../entourage/archie/prompts/core-geometry-theorem-reviewer.md)<br>the exact theorem or packet under review<br>nearby foundation, dynamics, and terminology files | Use live equations and local notation before making proof or closure claims. |
 | Branch, commit, push, and PR | Run the explicit branch/PR process, including validation, scoped staging, push, PR state checks, and rollover when requested. | [reference/op/codex-pr-branch.md](codex-pr-branch.md)<br>[.githooks/pre-commit](../../.githooks/pre-commit)<br>[.githooks/pre-push](../../.githooks/pre-push) | Always re-read the live procedure before publishing or regenerating; command order and required checks are policy. |
+| Long-running job | Run, detach, monitor, resume, or hand off a long test, simulation, rebuild, or analytical campaign. | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md)<br>the exact build and run entrypoints | Rebuild first, keep the job watched or observably detached, and verify that its fixed-cadence heartbeat advances. |
 
 ## Standing Rules
 
@@ -41,7 +42,7 @@ This file is not the authority. If this file conflicts with a source file, the s
 
 | Prompt | Use |
 | --- | --- |
-| [reference/entourage/archie/prompts/corpus-advancement-pass.md](../entourage/archie/prompts/corpus-advancement-pass.md) | Shared AAA corpus advancement protocol. |
+| [reference/entourage/archie/prompts/convergence-campaign.md](../entourage/archie/prompts/convergence-campaign.md) | Shared AAA corpus convergence protocol. |
 | [reference/entourage/archie/prompts/corpus-reviewer.md](../entourage/archie/prompts/corpus-reviewer.md) | Review an operator-provided corpus directory, one file per turn. |
 | [reference/entourage/archie/prompts/integrator-reviewer.md](../entourage/archie/prompts/integrator-reviewer.md) | Integrate Fable review comments and perform a full target-document closure review. |
 | [reference/entourage/archie/prompts/review-comment-assessor.md](../entourage/archie/prompts/review-comment-assessor.md) | Assess pasted review comments against current repo canon without editing. |
@@ -71,20 +72,21 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 261 | `86df69ca83e59a3d` |
+| [AGENTS.md](../../AGENTS.md) | 140 | `c3052136793cf533` |
 | [README.md](../../README.md) | 229 | `9586b2bb3becaec3` |
-| [.githooks/pre-commit](../../.githooks/pre-commit) | 26 | `5331ab8c7d197f5b` |
-| [.githooks/pre-push](../../.githooks/pre-push) | 8 | `a7c833e57b9fced6` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 95 | `0c8b0952d33d0d9c` |
-| [reference/op/README.md](README.md) | 28 | `28671b225e029ae3` |
-| [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 197 | `00a79efd8882c06f` |
+| [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
+| [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 107 | `f2602a1b9cc6636f` |
+| [reference/op/README.md](README.md) | 30 | `32273c7813cc853e` |
+| [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 214 | `740f8e2639dbbc7b` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `d15ca9c97840ca90` |
-| [reference/op/theory-orientation.md](theory-orientation.md) | 44 | `293f0dccd565a8b9` |
-| [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 495 | `a0613465356e98a5` |
-| [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 669 | `885e0f6d893a4635` |
+| [reference/op/theory-orientation.md](theory-orientation.md) | 62 | `ad55c85f6e3d30b1` |
+| [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 29 | `12a8261ec8f772bb` |
+| [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 495 | `0b0669fe21e5ea1e` |
+| [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 855 | `77965284bd17bcf7` |
 | [reference/priorities/README.md](../priorities/README.md) | 44 | `1fc23f4be2b4bc12` |
-| [reference/entourage/archie/prompts/README.md](../entourage/archie/prompts/README.md) | 42 | `8322492fa93db454` |
-| [reference/entourage/archie/prompts/corpus-advancement-pass.md](../entourage/archie/prompts/corpus-advancement-pass.md) | 637 | `bbbc5d6fe1df6081` |
+| [reference/entourage/archie/prompts/README.md](../entourage/archie/prompts/README.md) | 42 | `d9fbf2eb6d3bd20e` |
+| [reference/entourage/archie/prompts/convergence-campaign.md](../entourage/archie/prompts/convergence-campaign.md) | 637 | `ffd10e662df89d76` |
 | [reference/entourage/archie/prompts/corpus-reviewer.md](../entourage/archie/prompts/corpus-reviewer.md) | 110 | `84c14fd56a711ba2` |
 | [reference/entourage/archie/prompts/integrator-reviewer.md](../entourage/archie/prompts/integrator-reviewer.md) | 123 | `b66dcb069b27c7ee` |
 | [reference/entourage/archie/prompts/review-comment-assessor.md](../entourage/archie/prompts/review-comment-assessor.md) | 66 | `c7bc649dd4a09f9c` |
@@ -93,6 +95,6 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/entourage/archie/prompts/priority-lane-resume.md](../entourage/archie/prompts/priority-lane-resume.md) | 71 | `434d7a791d81c766` |
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 383 | `afc7b450bf43bee2` |
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 307 | `db1ec8a9a86ceeb4` |
-| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 140 | `75782c0c8caadb35` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 521 | `8d8beff646b7d475` |
-| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 171 | `3826ee68278f5a6e` |
+| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 141 | `ebb9fe0d7a64f91b` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 536 | `cf39c89a7b5a3f45` |
+| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 172 | `2da69809b5d5f6c1` |
