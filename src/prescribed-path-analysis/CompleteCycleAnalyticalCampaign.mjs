@@ -1,5 +1,6 @@
 import {
   canonicalJson,
+  createPrescribedRecordAnalysisSession,
   evaluatePrescribedRecordAnalysis,
   sha256Canonical,
   validatePrescribedRecordAnalysisProtocol,
@@ -81,6 +82,19 @@ function writePacket(onRawPacket, packet, context) {
     rawBytes: Buffer.byteLength(JSON.stringify(packet)),
     resultHash: packet.resultHash,
   };
+}
+
+function retainPacket(onRawPacket, packet, context, evidenceMode) {
+  if (evidenceMode === "compact") {
+    return {
+      artifactKind: context.artifactKind ?? "raw-analytical-result-packet",
+      retention: "not-retained-compact-diagnostic",
+      context,
+      resultHash: null,
+      rawBytes: null,
+    };
+  }
+  return writePacket(onRawPacket, packet, context);
 }
 
 export function evaluatePrescribedCircularAcceleration(source, time) {
@@ -315,7 +329,13 @@ export function differentiateMatchedRootBranches(minus, plus, denominator, field
   };
 }
 
-function evaluateBranchDiagnostics(sourceRecord, protocol, onRawPacket) {
+function evaluateBranchDiagnostics(
+  sourceRecord,
+  protocol,
+  onRawPacket,
+  evidenceMode,
+  analysisSession,
+) {
   const coordinateStep = protocol.branchDiagnostics.coordinateStep;
   const timeStep = protocol.branchDiagnostics.timeStep;
   const [x, y, z] = protocol.branchDiagnostics.probePosition;
@@ -341,11 +361,22 @@ function evaluateBranchDiagnostics(sourceRecord, protocol, onRawPacket) {
       polarities: [1, -1],
     })),
   );
-  const packet = evaluatePrescribedRecordAnalysis({ sourceRecord, protocol: diagnosticProtocol });
-  const artifact = writePacket(onRawPacket, packet, {
-    stage: "branch-diagnostics",
-    refinement: "primary",
+  const packet = evaluatePrescribedRecordAnalysis({
+    sourceRecord,
+    protocol: diagnosticProtocol,
+    session: analysisSession,
+    resultMode:
+      evidenceMode === "compact" ? "compact-event-batch" : "full",
   });
+  const artifact = retainPacket(
+    onRawPacket,
+    packet,
+    {
+      stage: "branch-diagnostics",
+      refinement: "primary",
+    },
+    evidenceMode,
+  );
   const events = new Map(packet.rawLedgers.causalRoots.map((event) => [event.probeId, event]));
   return {
     artifact,
@@ -691,13 +722,17 @@ function topologyLedger(surfaceReduction) {
       }
     }
   }
+  const rootPolicy =
+    surfaceReduction.completeCycleProtocol.eventEvaluator.rootPolicy.id;
   return {
-    rootPolicy: "all-retained-simple-roots/sub-field-speed-certified.v1",
+    rootPolicy,
     topologyIdentity: "transmitter-id plus root ordinal",
     transitions,
     foldEvents: [],
-    foldDisposition:
-      "inapplicable inside the certified strictly sub-field-speed simple-root domain; fail before evaluation if the domain is crossed",
+    foldDisposition: rootPolicy ===
+      "all-retained-roots/event-specific-isolation-certified.v2"
+      ? "possible non-transverse folds remain unevaluated unless every retained interval is certified root-free or monotonic"
+      : "inapplicable inside the certified strictly sub-field-speed simple-root domain; fail before evaluation if the domain is crossed",
   };
 }
 
@@ -711,9 +746,20 @@ export function evaluateCompleteCycleCandidate({
   sourceOptions = {},
   sensitivityAdapter = null,
   onProgress = null,
+  evidenceMode = "full",
 } = {}) {
   const sourceRecord = validateExactPrescribedSourceRecord(rawSourceRecord);
   const protocol = validateB1CompleteCycleProbeProtocol(rawProtocol);
+  if (evidenceMode !== "full" && evidenceMode !== "compact") {
+    throw new TypeError("evidenceMode must be full or compact.");
+  }
+  if (evidenceMode === "compact" && includeSensitivity) {
+    throw new Error(
+      "compact evidence mode does not evaluate source sensitivity; " +
+      "use includeSensitivity=false or the full-adjudication lane.",
+    );
+  }
+  const analysisSession = createPrescribedRecordAnalysisSession(sourceRecord);
   const completeCycleProtocolHash = sha256Canonical(protocol);
   const sourceHash = sha256Canonical(sourceRecord);
   const surfaceTopology = [];
@@ -721,14 +767,26 @@ export function evaluateCompleteCycleCandidate({
   const surface = evaluateB1StreamingSurfaceReductions({
     sourceRecord,
     completeCycleProtocol: protocol,
+    evidenceMode,
+    analysisSession,
+    onProgress(progress) {
+      onProgress?.({ candidateId, ...progress });
+    },
     onSurfacePacket(packet, context) {
-      const signature = topologySignature(packet);
-      const topologyHash = sha256Canonical(signature);
-      surfaceTopology.push(...signature);
-      const artifact = writePacket(onRawPacket, packet, {
-        ...context,
-        stage: "complete-cycle-surface",
-      });
+      const signature =
+        evidenceMode === "full" ? topologySignature(packet) : null;
+      const topologyHash =
+        signature === null ? null : sha256Canonical(signature);
+      if (signature !== null) surfaceTopology.push(...signature);
+      const artifact = retainPacket(
+        onRawPacket,
+        packet,
+        {
+          ...context,
+          stage: "complete-cycle-surface",
+        },
+        evidenceMode,
+      );
       return { ...artifact, topologyHash };
     },
   });
@@ -739,25 +797,47 @@ export function evaluateCompleteCycleCandidate({
   const internalFixed = {};
   for (const resolution of ["primary", "refined"]) {
     const fixedProtocol = buildB1FixedInternalEventAnalysisProtocol(protocol, { resolution });
-    const packet = evaluatePrescribedRecordAnalysis({ sourceRecord, protocol: fixedProtocol });
+    const packet = evaluatePrescribedRecordAnalysis({
+      sourceRecord,
+      protocol: fixedProtocol,
+      session: analysisSession,
+      resultMode:
+        evidenceMode === "compact" ? "compact-event-batch" : "full",
+    });
     internalFixed[resolution] = {
       packet,
-      artifact: writePacket(onRawPacket, packet, {
-        stage: "complete-cycle-internal-fixed",
-        refinement: resolution,
-      }),
+      artifact: retainPacket(
+        onRawPacket,
+        packet,
+        {
+          stage: "complete-cycle-internal-fixed",
+          refinement: resolution,
+        },
+        evidenceMode,
+      ),
     };
   }
   onProgress?.({ candidateId, stage: "moving-receivers-start" });
   const internalReceivers = {};
   for (const resolution of ["primary", "refined"]) {
     const endpointProtocol = buildEndpointProtocol(protocol, sourceRecord, resolution);
-    const packet = evaluatePrescribedRecordAnalysis({ sourceRecord, protocol: endpointProtocol });
+    const packet = evaluatePrescribedRecordAnalysis({
+      sourceRecord,
+      protocol: endpointProtocol,
+      session: analysisSession,
+      resultMode:
+        evidenceMode === "compact" ? "compact-event-batch" : "full",
+    });
     internalReceivers[resolution] = {
-      artifact: writePacket(onRawPacket, packet, {
-        stage: "complete-cycle-moving-receivers",
-        refinement: resolution,
-      }),
+      artifact: retainPacket(
+        onRawPacket,
+        packet,
+        {
+          stage: "complete-cycle-moving-receivers",
+          refinement: resolution,
+        },
+        evidenceMode,
+      ),
       reduction: reduceCompleteCycleEndpointPacket(
         packet,
         sourceRecord,
@@ -765,11 +845,17 @@ export function evaluateCompleteCycleCandidate({
         { fieldSpeed: protocol.eventEvaluator.fieldSpeed },
       ),
       validity: packet.reducedMeasures.validity,
-      resultHash: packet.resultHash,
+      resultHash: packet.resultHash ?? null,
     };
   }
   onProgress?.({ candidateId, stage: "branch-diagnostics-start" });
-  const branchDiagnostics = evaluateBranchDiagnostics(sourceRecord, protocol, onRawPacket);
+  const branchDiagnostics = evaluateBranchDiagnostics(
+    sourceRecord,
+    protocol,
+    onRawPacket,
+    evidenceMode,
+    analysisSession,
+  );
   onProgress?.({ candidateId, stage: "source-sensitivity-start" });
   const sensitivity = includeSensitivity
     ? evaluateSensitivity({
@@ -807,6 +893,7 @@ export function evaluateCompleteCycleCandidate({
       id: COMPLETE_CYCLE_CAMPAIGN_REDUCER_VERSION,
       eventEvaluator: "evaluatePrescribedRecordAnalysis({ sourceRecord, protocol })",
       surfaceReducer: surface.reducer,
+      ...(evidenceMode === "compact" ? { evidenceMode } : {}),
       pathEvolutionInvoked: false,
       eomSolverInvoked: false,
     },
@@ -833,8 +920,8 @@ export function evaluateCompleteCycleCandidate({
     diagnosticReductions: {
       surface: surface.diagnosticReductions,
       internalFixed: {
-        primaryResultHash: internalFixed.primary.packet.resultHash,
-        refinedResultHash: internalFixed.refined.packet.resultHash,
+        primaryResultHash: internalFixed.primary.packet.resultHash ?? null,
+        refinedResultHash: internalFixed.refined.packet.resultHash ?? null,
       },
       internalReceivers,
       branchDiagnostics,

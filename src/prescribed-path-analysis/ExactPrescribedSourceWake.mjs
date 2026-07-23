@@ -179,6 +179,13 @@ export function evaluateExactPrescribedSourceState(source, time) {
   return evaluateMovingCircularTransmitterHistory(normalized.trajectory, finiteNumber(time, "time"));
 }
 
+export function evaluateValidatedExactPrescribedSourceState(source, time) {
+  return evaluateMovingCircularTransmitterHistory(
+    source.trajectory,
+    finiteNumber(time, "time"),
+  );
+}
+
 function maximumTrajectorySpeed(trajectory, startTime, endTime) {
   const startRate = trajectory.angularVelocity +
     trajectory.angularAcceleration * (startTime - trajectory.epochTime);

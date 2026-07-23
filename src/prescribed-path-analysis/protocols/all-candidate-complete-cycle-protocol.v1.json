@@ -19,10 +19,11 @@
     "sourceCounts": [6, 12],
     "maximumSourceEnvelopeRadius": 0.99,
     "requiredPrescribedReturnPeriod": 4,
-    "requiredCenterVelocity": [0, 0, 0]
+    "centerVelocityPolicy": "common-bounded-translation.v1",
+    "maximumCenterSpeed": 0.05
   },
   "eventEvaluator": {
-    "fieldSpeed": 4,
+    "fieldSpeed": 1,
     "coupling": 1,
     "history": {
       "start": 0,
@@ -30,9 +31,12 @@
       "minimumDelay": 1e-12
     },
     "rootPolicy": {
-      "id": "all-retained-simple-roots/sub-field-speed-certified.v1",
+      "id": "all-retained-roots/event-specific-isolation-certified.v2",
       "tolerance": 1e-12,
-      "maxIterations": 128
+      "maxIterations": 128,
+      "initialSubdivisionCount": 16,
+      "maximumSubdivisionDepth": 20,
+      "maximumCandidateIntervals": 100000
     },
     "tolerances": {
       "cancellationFloor": 1e-30,

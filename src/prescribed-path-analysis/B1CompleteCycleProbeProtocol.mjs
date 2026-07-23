@@ -1,4 +1,5 @@
 import {
+  ALL_RETAINED_ROOTS_POLICY,
   ALL_RETAINED_SIMPLE_ROOTS_POLICY,
   PRESCRIBED_RECORD_ANALYSIS_PROTOCOL_SCHEMA,
   sha256Canonical,
@@ -197,10 +198,36 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
       "common-axis braid protocol sourceCounts must be [6, 9, 12, 18].",
     );
   }
+  const centerVelocityPolicy =
+    applicability.centerVelocityPolicy ?? "required-vector.v1";
+  if (!["required-vector.v1", "common-bounded-translation.v1"].includes(
+    centerVelocityPolicy,
+  )) {
+    throw new TypeError(
+      "protocol.applicability.centerVelocityPolicy is not recognized.",
+    );
+  }
+  if (centerVelocityPolicy === "common-bounded-translation.v1") {
+    positive(
+      applicability.maximumCenterSpeed,
+      "protocol.applicability.maximumCenterSpeed",
+    );
+  } else if (!Array.isArray(applicability.requiredCenterVelocity) ||
+      applicability.requiredCenterVelocity.length !== 3 ||
+      applicability.requiredCenterVelocity.some((value) =>
+        typeof value !== "number" || !Number.isFinite(value))) {
+    throw new TypeError(
+      "required-vector center velocity policy requires a finite three-vector.",
+    );
+  }
 
   const eventEvaluator = object(raw.eventEvaluator, "protocol.eventEvaluator");
-  if (eventEvaluator.rootPolicy?.id !== ALL_RETAINED_SIMPLE_ROOTS_POLICY) {
-    throw new TypeError(`eventEvaluator.rootPolicy.id must be ${ALL_RETAINED_SIMPLE_ROOTS_POLICY}.`);
+  if (eventEvaluator.rootPolicy?.id !== ALL_RETAINED_SIMPLE_ROOTS_POLICY &&
+      eventEvaluator.rootPolicy?.id !== ALL_RETAINED_ROOTS_POLICY) {
+    throw new TypeError(
+      `eventEvaluator.rootPolicy.id must be ${ALL_RETAINED_SIMPLE_ROOTS_POLICY} or ` +
+      `${ALL_RETAINED_ROOTS_POLICY}.`,
+    );
   }
   const historyStart = number(eventEvaluator.history?.start, "eventEvaluator.history.start");
   const historyEnd = number(eventEvaluator.history?.end, "eventEvaluator.history.end");

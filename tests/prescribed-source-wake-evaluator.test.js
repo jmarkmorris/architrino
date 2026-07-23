@@ -3,12 +3,18 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  ALL_RETAINED_ROOTS_POLICY,
   ALL_RETAINED_SIMPLE_ROOTS_POLICY,
+  CausalRootEnumerationError,
   EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA,
   PRESCRIBED_RECORD_ANALYSIS_PROTOCOL_SCHEMA,
+  PRESCRIBED_RECORD_COMPACT_EVENT_BATCH_SCHEMA,
+  createPrescribedRecordAnalysisSession,
   evaluateExactPrescribedSourceState,
   evaluatePrescribedRecordAnalysis,
   evaluatePrescribedSourceWake,
+  getPrescribedRecordAnalysisSessionStats,
+  verifyIndependentCaseAcceptance,
 } from "../src/prescribed-path-analysis/index.mjs";
 import {
   DEFAULT_B1_ANALYSIS_PROTOCOL_PATH,
@@ -96,6 +102,78 @@ function analysisProtocol({
       polarities: [1, -1],
     }],
   };
+}
+
+function multipleRootProtocol(options = {}) {
+  const protocol = analysisProtocol(options);
+  protocol.rootPolicy = {
+    id: ALL_RETAINED_ROOTS_POLICY,
+    tolerance: 1e-12,
+    maxIterations: 128,
+    initialSubdivisionCount: 16,
+    maximumSubdivisionDepth: 20,
+    maximumCandidateIntervals: 100000,
+  };
+  return protocol;
+}
+
+function circularSource(id, charge, angularVelocity) {
+  return {
+    id,
+    charge,
+    trajectory: {
+      kind: "moving-circular.v1",
+      epochTime: 0,
+      centerAtEpoch: { x: 0, y: 0, z: 0 },
+      centerVelocity: { x: 0, y: 0, z: 0 },
+      radiusU: { x: 1, y: 0, z: 0 },
+      radiusV: { x: 0, y: 1, z: 0 },
+      angularVelocity,
+      angularAcceleration: 0,
+      phaseAtEpoch: 0,
+    },
+  };
+}
+
+function independentlyBracketCircularRoots({
+  angularVelocity,
+  observationTime,
+  probePosition,
+  fieldSpeed,
+  sampleCount = 200000,
+}) {
+  const residual = (time) => {
+    const x = Math.cos(angularVelocity * time);
+    const y = Math.sin(angularVelocity * time);
+    return Math.hypot(probePosition.x - x, probePosition.y - y, probePosition.z) -
+      fieldSpeed * (observationTime - time);
+  };
+  const roots = [];
+  let leftTime = 0;
+  let leftValue = residual(leftTime);
+  const retainedEnd = observationTime - 1e-12;
+  for (let index = 1; index <= sampleCount; index += 1) {
+    let rightTime = retainedEnd * index / sampleCount;
+    let rightValue = residual(rightTime);
+    if (leftValue * rightValue < 0) {
+      let low = leftTime;
+      let high = rightTime;
+      let lowValue = leftValue;
+      for (let iteration = 0; iteration < 80; iteration += 1) {
+        const middle = (low + high) / 2;
+        const middleValue = residual(middle);
+        if (lowValue * middleValue < 0) high = middle;
+        else {
+          low = middle;
+          lowValue = middleValue;
+        }
+      }
+      roots.push((low + high) / 2);
+    }
+    leftTime = rightTime;
+    leftValue = rightValue;
+  }
+  return roots;
 }
 
 function assertNear(actual, expected, tolerance = 1e-11) {
@@ -223,6 +301,110 @@ test("first evaluator fails closed outside the certified unique-root speed domai
     probeCharge: 1,
     fieldSpeed: 1,
   }), /speed bound .* must remain below fieldSpeed/);
+});
+
+test("event-specific isolation enumerates every independently bracketed super-wake-speed root", () => {
+  const observationTime = 3;
+  const probePosition = { x: 2, y: 0, z: 0 };
+  const angularVelocity = 4;
+  const expectedRoots = independentlyBracketCircularRoots({
+    angularVelocity,
+    observationTime,
+    probePosition,
+    fieldSpeed: 1,
+  });
+  assert.equal(expectedRoots.length, 3);
+
+  const result = evaluatePrescribedRecordAnalysis({
+    sourceRecord: sourceRecord([
+      circularSource("super-wake-speed", 1, angularVelocity),
+      linearSource(
+        "far-static",
+        -1,
+        { x: 0, y: 0, z: 0 },
+        { x: 100, y: 0, z: 0 },
+      ),
+    ]),
+    protocol: multipleRootProtocol({
+      observationTime,
+      position: probePosition,
+      fieldSpeed: 1,
+      returnPeriod: Math.PI / 2,
+    }),
+  });
+
+  const event = result.rawLedgers.causalRoots[0];
+  const actualRoots = event.roots.filter(
+    (root) => root.transmitterId === "super-wake-speed",
+  );
+  assert.equal(event.rootCompletenessCertification.policy, ALL_RETAINED_ROOTS_POLICY);
+  assert.equal(event.rootCompletenessCertification.complete, true);
+  assert.equal(actualRoots.length, expectedRoots.length);
+  actualRoots.forEach((root, index) => {
+    assertNear(root.emissionTime, expectedRoots[index], 1e-10);
+    assert.equal(root.rootOrdinal, index);
+    assert.equal(root.rootIsolationCertificate.method,
+      "event-specific-derivative-isolation.v2");
+    assert.ok(Math.abs(root.transmitterSideFactorDt) > 1e-8);
+  });
+  assert.ok(
+    actualRoots.some((root) => root.transmitterSideFactorDt < 0),
+    "the fixture must retain a descending causal branch",
+  );
+  const acceptance = verifyIndependentCaseAcceptance(
+    Buffer.from(JSON.stringify(result)),
+  );
+  assert.equal(acceptance.accepted, true);
+  assert.equal(
+    acceptance.gates.some((gate) =>
+      gate.gateId === "causal-root-domain" && gate.passed),
+    true,
+  );
+  assert.equal(
+    acceptance.gates.some((gate) => gate.gateId === "source-speed"),
+    false,
+  );
+});
+
+test("event-specific enumeration reports unresolved possible roots or folds structurally", () => {
+  const protocol = multipleRootProtocol({
+    observationTime: 3,
+    position: { x: 2, y: 0, z: 0 },
+    fieldSpeed: 1,
+    returnPeriod: Math.PI / 2,
+  });
+  protocol.rootPolicy.initialSubdivisionCount = 1;
+  protocol.rootPolicy.maximumSubdivisionDepth = 1;
+  protocol.rootPolicy.maximumCandidateIntervals = 8;
+  assert.throws(
+    () => evaluatePrescribedRecordAnalysis({
+      sourceRecord: sourceRecord([
+        circularSource("unresolved-super-wake-speed", 1, 4),
+        linearSource(
+          "far-static",
+          -1,
+          { x: 0, y: 0, z: 0 },
+          { x: 100, y: 0, z: 0 },
+        ),
+      ]),
+      protocol,
+    }),
+    (error) => {
+      assert.equal(error instanceof CausalRootEnumerationError, true);
+      assert.equal(error.code, "causal_root_enumeration_incomplete");
+      assert.equal(
+        error.details.transmitterId,
+        "unresolved-super-wake-speed",
+      );
+      assert.equal(Array.isArray(error.details.unresolvedIntervals), true);
+      assert.equal(error.details.unresolvedIntervals.length > 0, true);
+      assert.equal(
+        error.details.unresolvedIntervals[0].reason,
+        "possible-root-or-fold-not-isolated",
+      );
+      return true;
+    },
+  );
 });
 
 test("canonical evaluator matches a separately derived static root, wake, and both probe polarities", () => {
@@ -443,6 +625,58 @@ test("canonical protocol fails closed when convergence inputs are incomplete", (
     ]),
     protocol,
   }), /protocol\.convergence\.rootTolerance must be finite/);
+});
+
+test("analysis sessions preserve full packets and reuse source-invariant geometry", () => {
+  const record = sourceRecord([
+    linearSource("left-static", 1, undefined, { x: -2, y: 0, z: 0 }),
+    linearSource("right-static", -1, undefined, { x: 2, y: 0, z: 0 }),
+  ]);
+  const protocol = analysisProtocol({
+    observationTime: 3,
+    position: { x: 10, y: 0, z: 0 },
+  });
+  const baseline = evaluatePrescribedRecordAnalysis({
+    sourceRecord: record,
+    protocol,
+  });
+  const session = createPrescribedRecordAnalysisSession(record);
+  const sessionFull = evaluatePrescribedRecordAnalysis({
+    sourceRecord: record,
+    protocol,
+    session,
+  });
+  const compact = evaluatePrescribedRecordAnalysis({
+    sourceRecord: record,
+    protocol,
+    session,
+    resultMode: "compact-event-batch",
+  });
+
+  assert.deepEqual(sessionFull, baseline);
+  assert.equal(compact.schema, PRESCRIBED_RECORD_COMPACT_EVENT_BATCH_SCHEMA);
+  assert.deepEqual(
+    compact.rawLedgers.causalRoots,
+    baseline.rawLedgers.causalRoots,
+  );
+  assert.deepEqual(
+    compact.rawLedgers.numericalConvergence,
+    baseline.rawLedgers.numericalConvergence,
+  );
+  assert.deepEqual(
+    compact.reducedMeasures.validity,
+    baseline.reducedMeasures.validity,
+  );
+  assert.equal("resultHash" in compact, false);
+  assert.equal("protocol" in compact, false);
+  assert.equal("parameterVector" in compact.source, false);
+  assert.deepEqual(getPrescribedRecordAnalysisSessionStats(session), {
+    sourceHash: baseline.source.sourceHash,
+    sourceCount: 2,
+    invariantCacheEntryCount: 1,
+    invariantEvaluationCount: 1,
+    invariantCacheHitCount: 1,
+  });
 });
 
 test("identical B1 source and protocol inputs produce deterministic packet bytes", () => {

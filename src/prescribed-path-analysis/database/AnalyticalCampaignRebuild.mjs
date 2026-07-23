@@ -21,7 +21,6 @@ import {
 } from "../AllCandidateAnalyticalCampaign.mjs";
 import {
   assertAnalyticalCampaignDatabasePath,
-  defaultAnalyticalCampaignDatabasePath,
   exportAnalyticalCampaign,
   importAnalyticalCampaign,
   inspectAnalyticalCampaignDatabase,
@@ -239,8 +238,14 @@ export async function rebuildAllCandidateAnalyticalDatabase(options = {}) {
   const registryPath = path.resolve(
     options.registryPath ?? DEFAULT_ALL_CANDIDATE_CAMPAIGN_REGISTRY_PATH,
   );
+  if (!options.databasePath) {
+    fail(
+      "the legacy raw-artifact rebuild requires an explicit databasePath; " +
+      "the BLOB-backed database is no longer the default local storage path.",
+    );
+  }
   const targetDatabasePath = assertAnalyticalCampaignDatabasePath(
-    path.resolve(options.databasePath ?? defaultAnalyticalCampaignDatabasePath()),
+    path.resolve(options.databasePath),
     options,
   );
   const runtimeDirectory = path.dirname(targetDatabasePath);

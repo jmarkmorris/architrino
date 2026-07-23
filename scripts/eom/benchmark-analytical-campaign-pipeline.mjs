@@ -131,16 +131,88 @@ const VARIANTS = Object.freeze({
     base: "direct-compressed",
     transactionRows: 512,
   },
+  "direct-raw-bounded-512": {
+    description:
+      "Verified supplied gzip bytes with commits every 512 raw-artifact rows while normalized measures and gates retain their current transaction envelopes.",
+    base: "direct-compressed",
+    rawTransactionRows: 512,
+  },
   "rollback-journal": {
     description: "Current behavior using rollback journal instead of WAL.",
     base: "current",
     journalMode: "DELETE",
+  },
+  "journal-off": {
+    description:
+      "Disposable-sandbox test with SQLite rollback journaling disabled; final logical and integrity verification remain mandatory.",
+    base: "current",
+    journalMode: "OFF",
+    durabilityBoundary: "disposable-staging-only",
   },
   "synchronous-normal": {
     description: "Disposable-sandbox test of WAL plus synchronous NORMAL.",
     base: "current",
     synchronous: "NORMAL",
     durabilityBoundary: "sandbox-only",
+  },
+  "synchronous-off": {
+    description:
+      "Disposable-sandbox test with SQLite filesystem synchronization disabled during load.",
+    base: "current",
+    synchronous: "OFF",
+    durabilityBoundary: "disposable-staging-only",
+  },
+  "disposable-fast": {
+    description:
+      "Interaction test with both rollback journaling and filesystem synchronization disabled during disposable staging.",
+    base: "current",
+    journalMode: "OFF",
+    synchronous: "OFF",
+    durabilityBoundary: "disposable-staging-only",
+  },
+  "direct-bounded-disposable": {
+    description:
+      "Verified supplied gzip bytes, 512-row commits, and journaling/synchronization disabled in a disposable staging database.",
+    base: "direct-bounded-512",
+    journalMode: "OFF",
+    synchronous: "OFF",
+    durabilityBoundary: "disposable-staging-only",
+  },
+  "direct-raw-bounded-disposable": {
+    description:
+      "Verified supplied gzip bytes, 512-row raw-artifact commits, and journaling/synchronization disabled in disposable staging; normalized rows retain current transaction envelopes.",
+    base: "direct-raw-bounded-512",
+    journalMode: "OFF",
+    synchronous: "OFF",
+    durabilityBoundary: "disposable-staging-only",
+  },
+  "direct-bounded-journal-off": {
+    description:
+      "Verified supplied gzip bytes and 512-row commits with only rollback journaling disabled.",
+    base: "direct-bounded-512",
+    journalMode: "OFF",
+    durabilityBoundary: "disposable-staging-only",
+  },
+  "direct-raw-bounded-journal-off": {
+    description:
+      "Verified supplied gzip bytes and 512-row raw-artifact commits with only rollback journaling disabled.",
+    base: "direct-raw-bounded-512",
+    journalMode: "OFF",
+    durabilityBoundary: "disposable-staging-only",
+  },
+  "direct-bounded-synchronous-off": {
+    description:
+      "Verified supplied gzip bytes and 512-row commits with only filesystem synchronization disabled.",
+    base: "direct-bounded-512",
+    synchronous: "OFF",
+    durabilityBoundary: "disposable-staging-only",
+  },
+  "direct-raw-bounded-synchronous-off": {
+    description:
+      "Verified supplied gzip bytes and 512-row raw-artifact commits with only filesystem synchronization disabled.",
+    base: "direct-raw-bounded-512",
+    synchronous: "OFF",
+    durabilityBoundary: "disposable-staging-only",
   },
   "deferred-foreign-keys": {
     description:
@@ -180,6 +252,12 @@ const VARIANTS = Object.freeze({
     base: "current",
     artifactTableMode: "rowid",
   },
+  "direct-artifact-rowid": {
+    description:
+      "Verified supplied gzip bytes in a rowid payload table with a separate skinny UNIQUE artifact-hash index.",
+    base: "direct-compressed",
+    artifactTableMode: "rowid",
+  },
   "single-transaction": {
     description:
       "Raw packets, multidimensional measures, and validity gates loaded in one transaction.",
@@ -210,6 +288,14 @@ const VARIANTS = Object.freeze({
       "Verified immutable gzip packets stored externally by compressed hash; SQLite retains artifact identity, metadata, normalized measures, and validity gates.",
     base: "direct-compressed",
     externalArtifacts: true,
+  },
+  "metadata-only-recomputable": {
+    description:
+      "Verified raw packets are treated as a disposable derivable cache; SQLite retains identities, raw-artifact inventory metadata, normalized measures, and validity gates but no payload bytes.",
+    base: "direct-compressed",
+    externalArtifacts: true,
+    retainExternalPayloads: false,
+    durabilityBoundary: "replay-recipe-contract-required",
   },
   "compressed-hash-only-unsafe": {
     description:
@@ -359,7 +445,8 @@ function parseArguments(args) {
   for (let index = 1; index < args.length; index += 1) {
     const key = args[index];
     if (!key.startsWith("--")) fail(`unexpected argument ${key}.`);
-    if (key === "--keep-artifacts") {
+    if (key === "--keep-artifacts" ||
+        key === "--allow-unreviewed-methodology-performance-fixture") {
       flags.add(key);
       continue;
     }
@@ -391,6 +478,9 @@ function parseArguments(args) {
     workRoot: path.resolve(values.get("--work-root") ?? DEFAULT_WORK_ROOT),
     output: values.has("--output") ? path.resolve(values.get("--output")) : null,
     keepArtifacts: flags.has("--keep-artifacts"),
+    allowUnreviewedMethodologyPerformanceFixture: flags.has(
+      "--allow-unreviewed-methodology-performance-fixture",
+    ),
     workerCounts: (values.get("--workers") ?? "1,2,4")
       .split(",")
       .map((value) => parsePositiveInteger(value, "--workers", null))
@@ -400,6 +490,7 @@ function parseArguments(args) {
       "--candidate-limit",
       4,
     ),
+    candidateSelection: values.get("--candidate-selection") ?? "evenly-spaced",
     includeSensitivity: values.get("--include-sensitivity") === "true",
     artifactMode: values.get("--artifact-mode") ?? "files",
     inventoryMode,
@@ -982,13 +1073,17 @@ function materializeRawRows({
     }
     transaction.row();
     if (variant.externalArtifacts) {
-      const externalPath = artifactStorePath(externalRoot, row.compressed_hash);
-      operationStarted = performance.now();
-      mkdirSync(path.dirname(externalPath), { recursive: true });
-      writeFileSync(externalPath, payload, { flag: "wx" });
-      addWallTime(stats, "external-artifact-filesystem-write", operationStarted);
-      stats.filesystemWriteBytes += payload.length;
-      stats.filesystemWriteCount += 1;
+      const externalPath = variant.retainExternalPayloads === false
+        ? null
+        : artifactStorePath(externalRoot, row.compressed_hash);
+      if (externalPath) {
+        operationStarted = performance.now();
+        mkdirSync(path.dirname(externalPath), { recursive: true });
+        writeFileSync(externalPath, payload, { flag: "wx" });
+        addWallTime(stats, "external-artifact-filesystem-write", operationStarted);
+        stats.filesystemWriteBytes += payload.length;
+        stats.filesystemWriteCount += 1;
+      }
       operationStarted = performance.now();
       runTargetInsert(
         target,
@@ -999,7 +1094,9 @@ function materializeRawRows({
           hashBytes(row.artifact_hash),
           hashBytes(row.compressed_hash),
           hashBytes(row.raw_hash),
-          path.relative(runDirectory, externalPath),
+          externalPath
+            ? path.relative(runDirectory, externalPath)
+            : `recompute/${row.compressed_hash}.json.gz`,
           row.artifact_kind,
           row.media_type,
           row.codec,
@@ -1462,6 +1559,7 @@ function verifyRun({
     SELECT lower(hex(r.compressed_hash)) AS compressed_hash,
            lower(hex(r.raw_hash)) AS raw_hash,
            lower(hex(r.artifact_hash)) AS artifact_hash,
+           r.stored_bytes,
            ${variant.externalArtifacts
              ? "e.relative_path, NULL AS payload"
              : "NULL AS relative_path, a.payload"}
@@ -1474,7 +1572,21 @@ function verifyRun({
   stats.statements.select += 1;
   stats.statements.prepare += 1;
   let checked = 0;
+  const expectedRaw = new Map(
+    fixture.rawArtifacts.map((row) => [row.compressedHash, row]),
+  );
   for (const row of rows) {
+    if (variant.retainExternalPayloads === false) {
+      const expected = expectedRaw.get(row.compressed_hash);
+      if (!expected || row.raw_hash !== expected.rawHash ||
+          row.artifact_hash !== expected.artifactHash ||
+          Number(row.stored_bytes) !== expected.storedBytes) {
+        fail(`recomputable artifact inventory mismatch ${row.compressed_hash}.`);
+      }
+      checked += 1;
+      if (checked % 16 === 0 || checked === rawCount) sampleRss(measurement);
+      continue;
+    }
     operationStarted = performance.now();
     const payload = variant.externalArtifacts
       ? readFileSync(path.join(runDirectory, row.relative_path))
@@ -1522,6 +1634,7 @@ function exportRun({
   const rows = database.prepare(`
     SELECT lower(hex(r.compressed_hash)) AS compressed_hash,
            lower(hex(r.raw_hash)) AS raw_hash,
+           r.stored_bytes,
            ${variant.externalArtifacts
              ? "e.relative_path, NULL AS payload"
              : "NULL AS relative_path, a.payload"}
@@ -1535,24 +1648,34 @@ function exportRun({
   stats.statements.select += 1;
   let exported = 0;
   for (const row of rows) {
-    const payload = variant.externalArtifacts
-      ? readFileSync(path.join(runDirectory, row.relative_path))
-      : Buffer.from(row.payload);
     const relativePath = path.join(
       "raw-artifacts",
       `${row.compressed_hash}.json.gz`,
     );
-    const outputPath = path.join(exportRoot, relativePath);
-    mkdirSync(path.dirname(outputPath), { recursive: true });
-    writeFileSync(outputPath, payload);
-    stats.filesystemWriteBytes += payload.length;
-    stats.filesystemWriteCount += 1;
-    inventory.push({
-      path: relativePath,
-      compressedHash: row.compressed_hash,
-      rawHash: row.raw_hash,
-      bytes: payload.length,
-    });
+    if (variant.retainExternalPayloads === false) {
+      inventory.push({
+        path: relativePath,
+        compressedHash: row.compressed_hash,
+        rawHash: row.raw_hash,
+        bytes: Number(row.stored_bytes),
+        replayRequired: true,
+      });
+    } else {
+      const payload = variant.externalArtifacts
+        ? readFileSync(path.join(runDirectory, row.relative_path))
+        : Buffer.from(row.payload);
+      const outputPath = path.join(exportRoot, relativePath);
+      mkdirSync(path.dirname(outputPath), { recursive: true });
+      writeFileSync(outputPath, payload);
+      stats.filesystemWriteBytes += payload.length;
+      stats.filesystemWriteCount += 1;
+      inventory.push({
+        path: relativePath,
+        compressedHash: row.compressed_hash,
+        rawHash: row.raw_hash,
+        bytes: payload.length,
+      });
+    }
     exported += 1;
     if (exported % 16 === 0 || exported === fixture.rawArtifactCount) {
       sampleRss(measurement);
@@ -1563,10 +1686,17 @@ function exportRun({
   stats.filesystemWriteBytes += inventoryBytes.length;
   stats.filesystemWriteCount += 1;
   return {
-    fileCount: inventory.length + 1,
+    fileCount: variant.retainExternalPayloads === false
+      ? 1
+      : inventory.length + 1,
     inventoryHash: sha256(inventoryBytes),
-    bytes: inventory.reduce((sum, row) => sum + row.bytes, 0) +
-      inventoryBytes.length,
+    bytes: (variant.retainExternalPayloads === false
+      ? 0
+      : inventory.reduce((sum, row) => sum + row.bytes, 0)) +
+        inventoryBytes.length,
+    replayRequiredCount: variant.retainExternalPayloads === false
+      ? inventory.length
+      : 0,
   };
 }
 
@@ -1685,17 +1815,34 @@ function runIngestOnce({
     addPhase(stats, "open-migrate-schema", phase);
 
     const persistent = preparedTargetStatements(target, variant, stats);
-    const transaction = transactionController(target, stats, variant, databasePath);
-    if (variant.singleTransaction) transaction.begin();
+    const sharedTransaction = transactionController(
+      target,
+      stats,
+      variant,
+      databasePath,
+    );
+    if (variant.singleTransaction) sharedTransaction.begin();
+    const phaseTransaction = (rowLimit) =>
+      variant.singleTransaction
+        ? sharedTransaction
+        : transactionController(
+            target,
+            stats,
+            { ...variant, transactionRows: rowLimit },
+            databasePath,
+          );
 
     phase = beginMeasurement();
+    const rawTransaction = phaseTransaction(
+      variant.rawTransactionRows ?? variant.transactionRows,
+    );
     materializeRawRows({
       source,
       target,
       fixture,
       variant,
       persistent,
-      transaction,
+      transaction: rawTransaction,
       stats,
       runDirectory,
       measurement: phase,
@@ -1704,12 +1851,15 @@ function runIngestOnce({
     addPhase(stats, "raw-artifact-ingestion", phase);
 
     phase = beginMeasurement();
+    const measureTransaction = phaseTransaction(
+      variant.measureTransactionRows ?? variant.transactionRows,
+    );
     materializeMeasureRows({
       source,
       target,
       fixture,
       persistent,
-      transaction,
+      transaction: measureTransaction,
       stats,
       measurement: phase,
       variant,
@@ -1720,18 +1870,21 @@ function runIngestOnce({
     addPhase(stats, "multidimensional-measure-ingestion", phase);
 
     phase = beginMeasurement();
+    const gateTransaction = phaseTransaction(
+      variant.gateTransactionRows ?? variant.transactionRows,
+    );
     materializeGateRows({
       source,
       target,
       fixture,
       persistent,
-      transaction,
+      transaction: gateTransaction,
       stats,
       measurement: phase,
       commitAtEnd: !variant.singleTransaction,
     });
     addPhase(stats, "validity-gate-ingestion", phase);
-    if (variant.singleTransaction) transaction.commit();
+    if (variant.singleTransaction) sharedTransaction.commit();
 
     if (variant.indexMode === "after-load") {
       phase = beginMeasurement();
@@ -1819,7 +1972,10 @@ function runIngestOnce({
         sharedMemoryBytes: fileSize(`${databasePath}-shm`),
         peakWalBytes: stats.peakWalBytes,
         peakTemporaryBytes: stats.peakTemporaryBytes,
-        externalArtifactBytes: variant.externalArtifacts ? fixture.storedBytes : 0,
+        externalArtifactBytes:
+          variant.externalArtifacts && variant.retainExternalPayloads !== false
+            ? fixture.storedBytes
+            : 0,
         filesystemWriteBytes: stats.filesystemWriteBytes,
         filesystemWriteCount: stats.filesystemWriteCount,
         objectSizes,
@@ -2651,8 +2807,71 @@ function candidateWorkerRun(data) {
   };
 }
 
-function loadCandidateComputeFixture(registryPath, candidateLimit) {
-  const loaded = loadAllCandidateCampaignRegistry(registryPath);
+function loadUnreviewedMethodologyPerformanceFixture(registryPath) {
+  const registryBytes = readFileSync(registryPath);
+  const registry = JSON.parse(registryBytes.toString("utf8"));
+  if (!Array.isArray(registry.candidates) ||
+      typeof registry.generatedCampaign?.protocolPath !== "string" ||
+      typeof registry.generatedCampaign?.methodologyCoveragePath !== "string") {
+    fail("unreviewed methodology performance registry is incomplete.");
+  }
+  const coveragePath = path.resolve(
+    REPOSITORY_ROOT,
+    registry.generatedCampaign.methodologyCoveragePath,
+  );
+  const coverageBytes = readFileSync(coveragePath);
+  const coverage = JSON.parse(coverageBytes.toString("utf8"));
+  const methodologyPath = path.resolve(
+    REPOSITORY_ROOT,
+    coverage.methodology?.path ?? "",
+  );
+  const methodologyBytes = readFileSync(methodologyPath);
+  const protocolPath = path.resolve(
+    REPOSITORY_ROOT,
+    registry.generatedCampaign.protocolPath,
+  );
+  const protocolBytes = readFileSync(protocolPath);
+  const protocol = JSON.parse(protocolBytes.toString("utf8"));
+  const candidates = registry.candidates.map((declaration) => {
+    const specPath = path.resolve(REPOSITORY_ROOT, declaration.specPath);
+    const specBytes = readFileSync(specPath);
+    return {
+      declaration,
+      spec: JSON.parse(specBytes.toString("utf8")),
+      specBytes,
+    };
+  });
+  return {
+    registryBytes,
+    registryHash: sha256(registryBytes),
+    coverageBytes,
+    coverageFileSha256: sha256(coverageBytes),
+    methodologySha256: sha256(methodologyBytes),
+    protocolBytes,
+    protocol,
+    candidates,
+    methodologyCoverageStatus:
+      "unreviewed-methodology-performance-fixture-only",
+  };
+}
+
+function loadCandidateComputeFixture(
+  registryPath,
+  candidateLimit,
+  allowUnreviewedMethodologyPerformanceFixture,
+  candidateSelection,
+) {
+  let loaded;
+  try {
+    loaded = loadAllCandidateCampaignRegistry(registryPath);
+    loaded.methodologyCoverageStatus = "reviewed-production-contract";
+  } catch (error) {
+    if (!allowUnreviewedMethodologyPerformanceFixture ||
+        !String(error?.message).includes("requires an explicit analytical coverage impact review")) {
+      throw error;
+    }
+    loaded = loadUnreviewedMethodologyPerformanceFixture(registryPath);
+  }
   const candidates = loaded.candidates.map((candidate, index) => ({
     index,
     candidateId: candidate.declaration.candidateId,
@@ -2660,10 +2879,12 @@ function loadCandidateComputeFixture(registryPath, candidateLimit) {
     spec: candidate.spec,
     specBytes: Buffer.from(candidate.specBytes),
   }));
-  const selectedCandidates = evenlySpaced(
-    candidates,
-    Math.min(candidateLimit, candidates.length),
-  );
+  if (!["evenly-spaced", "first"].includes(candidateSelection)) {
+    fail("--candidate-selection must be evenly-spaced or first.");
+  }
+  const selectedCandidates = candidateSelection === "first"
+    ? candidates.slice(0, Math.min(candidateLimit, candidates.length))
+    : evenlySpaced(candidates, Math.min(candidateLimit, candidates.length));
   const digest = createHash("sha256");
   digest.update(loaded.registryBytes);
   digest.update(loaded.coverageBytes);
@@ -2675,7 +2896,11 @@ function loadCandidateComputeFixture(registryPath, candidateLimit) {
   return {
     fixtureHash: digest.digest("hex"),
     registryHash: loaded.registryHash,
+    coverageFileSha256:
+      loaded.coverageFileSha256 ?? sha256(loaded.coverageBytes),
     methodologySha256: loaded.methodologySha256,
+    methodologyCoverageStatus: loaded.methodologyCoverageStatus,
+    candidateSelection,
     protocolFileSha256: sha256(loaded.protocolBytes),
     selectedCandidates,
     selection: selectedCandidates.map(({ index, candidateId, specBytes }) => ({
@@ -2971,6 +3196,8 @@ async function benchmarkCandidateWorkers(options) {
   const fixture = loadCandidateComputeFixture(
     options.registryPath,
     options.candidateLimit,
+    options.allowUnreviewedMethodologyPerformanceFixture,
+    options.candidateSelection,
   );
   const implementation = computeImplementationInventory();
   fixture.implementationHash = implementation.implementationHash;
@@ -3063,7 +3290,10 @@ async function benchmarkCandidateWorkers(options) {
     fixture: {
       fixtureHash: fixture.fixtureHash,
       registryHash: fixture.registryHash,
+      coverageFileSha256: fixture.coverageFileSha256,
       methodologySha256: fixture.methodologySha256,
+      methodologyCoverageStatus: fixture.methodologyCoverageStatus,
+      candidateSelection: fixture.candidateSelection,
       protocolFileSha256: fixture.protocolFileSha256,
       implementationHash: fixture.implementationHash,
       implementationFiles: fixture.implementationFiles,
@@ -3339,7 +3569,7 @@ function help() {
       "node scripts/eom/benchmark-analytical-campaign-pipeline.mjs inventory [--fixture small|medium|representative-large|full] [--inventory-mode full] [--output report.json]",
       "node scripts/eom/benchmark-analytical-campaign-pipeline.mjs ingest --fixture small --variants current,direct-compressed,prepared,post-index [--warmups 1] [--repetitions 3] [--output report.json]",
       "node scripts/eom/benchmark-analytical-campaign-pipeline.mjs formats --fixture medium [--output report.json]",
-      "node scripts/eom/benchmark-analytical-campaign-pipeline.mjs compute --candidate-limit 4 --workers 1,2,4 --include-sensitivity false [--warmups 1] [--repetitions 3] [--output report.json]",
+      "node scripts/eom/benchmark-analytical-campaign-pipeline.mjs compute --candidate-limit 4 --candidate-selection evenly-spaced|first --workers 1,2,4 --include-sensitivity false [--warmups 1] [--repetitions 3] [--allow-unreviewed-methodology-performance-fixture] [--output report.json]",
       "node scripts/eom/benchmark-analytical-campaign-pipeline.mjs all --fixture small [--output report.json]",
     ],
     safety:

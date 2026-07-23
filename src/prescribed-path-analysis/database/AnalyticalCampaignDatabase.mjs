@@ -154,20 +154,46 @@ function tableExists(database, tableName) {
   ).get(tableName));
 }
 
-function configureDatabase(database, { writable }) {
+function configureDatabase(database, {
+  writable,
+  experimentalJournalMode = "WAL",
+  experimentalSynchronous = "FULL",
+}) {
   database.exec("PRAGMA foreign_keys = ON");
   database.exec("PRAGMA busy_timeout = 5000");
   if (writable) {
-    database.prepare("PRAGMA journal_mode = WAL").get();
-    database.exec("PRAGMA synchronous = FULL");
+    const journalMode = String(experimentalJournalMode).toUpperCase();
+    const synchronous = String(experimentalSynchronous).toUpperCase();
+    if (!["WAL", "DELETE", "OFF"].includes(journalMode)) {
+      fail("experimentalJournalMode must be WAL, DELETE, or OFF.");
+    }
+    if (!["FULL", "NORMAL", "OFF"].includes(synchronous)) {
+      fail("experimentalSynchronous must be FULL, NORMAL, or OFF.");
+    }
+    if (journalMode === "OFF") database.enableDefensive(false);
+    const appliedJournalMode = String(
+      database.prepare(`PRAGMA journal_mode = ${journalMode}`).get().journal_mode,
+    ).toUpperCase();
+    if (journalMode === "OFF") database.enableDefensive(true);
+    if (appliedJournalMode !== journalMode) {
+      fail(
+        `SQLite refused journal mode ${journalMode}; applied ${appliedJournalMode}.`,
+      );
+    }
+    database.exec(`PRAGMA synchronous = ${synchronous}`);
   }
 }
 
-export function defaultAnalyticalCampaignDatabasePath(
+export function defaultLegacyAnalyticalCampaignDatabasePath(
   repositoryRoot = REPOSITORY_ROOT,
 ) {
   return path.join(repositoryRoot, ".local-data/braid-analysis/analytical-campaigns.sqlite3");
 }
+
+// Compatibility-only name for read-only analysis and explicit legacy tools.
+// New local campaign storage uses defaultCompactAnalyticalCampaignDatabasePath.
+export const defaultAnalyticalCampaignDatabasePath =
+  defaultLegacyAnalyticalCampaignDatabasePath;
 
 export function assertAnalyticalCampaignDatabasePath(databasePath, options = {}) {
   const repositoryRoot = path.resolve(options.repositoryRoot ?? REPOSITORY_ROOT);
@@ -250,7 +276,11 @@ export function openAnalyticalCampaignDatabase(databasePath, options = {}) {
   const readOnly = options.readOnly === true;
   if (!readOnly) mkdirSync(path.dirname(absolutePath), { recursive: true });
   const database = new DatabaseSync(absolutePath, { readOnly });
-  configureDatabase(database, { writable: !readOnly });
+  configureDatabase(database, {
+    writable: !readOnly,
+    experimentalJournalMode: options.experimentalJournalMode,
+    experimentalSynchronous: options.experimentalSynchronous,
+  });
   if (!readOnly && options.migrate !== false) {
     migrateAnalyticalCampaignDatabase(database, options);
   }
@@ -2671,7 +2701,9 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
             rawBytes.length !== row.raw_bytes ||
             row.raw_bytes !== row.artifact_raw_bytes ||
             row.stored_bytes !== row.artifact_stored_bytes ||
-            !row.raw_hash.equals(row.stored_artifact_hash) ||
+            !Buffer.from(row.raw_hash).equals(
+              Buffer.from(row.stored_artifact_hash),
+            ) ||
             sha256Bytes(row.payload) !== hashHex(row.compressed_hash) ||
             sha256Bytes(rawBytes) !== hashHex(row.raw_hash)) {
           fail(`raw analytical artifact ${row.relative_path} failed hash/size verification.`);

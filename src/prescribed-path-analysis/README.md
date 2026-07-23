@@ -19,9 +19,23 @@ The older observer-field and path-display APIs remain labeled `display-only-visu
 
 ## Current Root Domain
 
-The V1 root policy is `all-retained-simple-roots/sub-field-speed-certified.v1`. For every transmitter and probe event, the evaluator computes a path-speed upper bound over the retained interval. When that bound is below the declared field speed, the causal residual is strictly increasing. The interval therefore contains at most one root, and an endpoint sign check plus bisection certifies whether that root exists. The packet records the retained root or the exact no-root reason.
+The active policy is
+`all-retained-roots/event-specific-isolation-certified.v2`. It partitions each
+transmitter/event retained interval and uses residual and derivative bounds to
+certify every partition as root-free or monotonic. Every sign-changing
+monotonic partition is bisected, so a super-field-speed path may contribute
+multiple roots and may include transverse branches with either derivative
+sign. Total path speed is diagnostic under this policy, not an acceptance
+gate.
 
-This is an all-root certificate for the current four B1 prescribed records because their path speeds remain below the fixture field speed. The evaluator fails closed when the speed bound reaches the field speed. It does not yet claim complete multiple-root or fold enumeration for a super-field-speed source.
+The event fails closed when the subdivision depth or candidate-interval bound
+is exhausted with a possible root or fold unresolved. The thrown
+`CausalRootEnumerationError` carries
+`code: "causal_root_enumeration_incomplete"` plus transmitter, event, retained
+interval, and unresolved-partition details. The legacy
+`all-retained-simple-roots/sub-field-speed-certified.v1` policy remains
+supported for provenance-bound fixtures and retains its strict sub-field-speed
+precondition.
 
 ## Complete Protocol Schema
 
@@ -89,6 +103,49 @@ The default report is
 The harness retains all four declared surface radii for the B1.3, B1.1, and C1
 surface ladders, uses an outer-radius sensitivity pilot for A1.2 and A2, and
 emits progress heartbeats without invoking path evolution or the EOM solver.
+
+## Compact Monte Carlo Coverage
+
+Run a seeded compact campaign with:
+
+```bash
+node scripts/eom/run-compact-monte-carlo.mjs \
+  --seed compact-coverage-v1 \
+  --cases-per-member 64 \
+  --sampler full-taxonomy \
+  --resolution coverage \
+  --output .local-data/braid-analysis/compact-monte-carlo/coverage-v1.json
+```
+
+Use `--families A,B,C` or `--members A1.2,B1.3,C5` to select a bounded matrix.
+The default coverage grid uses 12 primary and 24 refined cycle samples with
+$8\times16$ and $12\times24$ angular grids. `--resolution full` uses the
+checked-in complete-cycle protocol. Both lanes require `fieldSpeed: 1`.
+
+The runner validates and hashes each sampled exact source, evaluates one shared
+source-analysis session, and records the sampled specification, protocol hash,
+implementation hashes, compact score, measured stage costs, and exact rerun
+instruction. It does not construct or serialize full result packets, recompute
+source-invariant period-closure and separation rows for every event batch,
+evaluate source sensitivity, retain raw event ledgers, invoke the EOM solver,
+perform independent acceptance, or publish a database generation.
+
+The default `full-taxonomy` sampler varies every permitted coordinate type
+through a declared bounded measure while constructing each member directly on
+its constraint manifold. This includes coupled and independent radii and
+frequencies, axial/transverse decompositions, phases, Family-A flattening,
+Family-C spacing and order, circulation, polarity, and bounded common
+translation. Use `--sampler local-reference` only for compatibility with the
+earlier pipeline-performance fixture.
+
+Every valid draw produces a row. If analytical evaluation cannot certify a
+possible root or fold, the row remains in the table with its exact sampled
+source, null score, `drawn-not-evaluated` status, reason code, and structured
+failure details. Run `--calibrate` to evaluate identical full-taxonomy draws at
+the coverage and full numerical resolutions and report false negatives, false
+positives, inconclusive rows, and per-gate disagreements. These rows remain
+diagnostic coverage only; selected cases must be rerun through the raw-evidence
+and independent-acceptance lane before any catalog acceptance claim.
 
 ## Independent Checks
 

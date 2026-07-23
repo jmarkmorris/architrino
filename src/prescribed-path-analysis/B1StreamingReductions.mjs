@@ -1,6 +1,8 @@
 import {
   canonicalJson,
+  createPrescribedRecordAnalysisSession,
   evaluatePrescribedRecordAnalysis,
+  PRESCRIBED_RECORD_COMPACT_EVENT_BATCH_SCHEMA,
   sha256Canonical,
 } from "./AnalyticalBraidEvaluator.mjs";
 import {
@@ -788,32 +790,90 @@ function independentlyCheckEventPacket(
   completeProtocol,
   expectedSourceCount = completeProtocol.applicability.sourceCount,
 ) {
-  if (packet.protocolHash !== sha256Canonical(expectedProtocol) ||
-      canonicalJson(packet.protocol) !== canonicalJson(expectedProtocol)) {
-    throw new Error("surface event packet protocol hash or body mismatch.");
-  }
-  if (packet.resultHash !== packetHashWithoutResultHash(packet)) {
-    throw new Error(`surface event packet ${packet.resultHash ?? "without-hash"} failed its result hash.`);
+  const compact = packet.schema === PRESCRIBED_RECORD_COMPACT_EVENT_BATCH_SCHEMA;
+  if (compact) {
+    if (packet.protocolId !== expectedProtocol.protocolId) {
+      throw new Error("compact surface event batch protocol identity mismatch.");
+    }
+  } else {
+    if (packet.protocolHash !== sha256Canonical(expectedProtocol) ||
+        canonicalJson(packet.protocol) !== canonicalJson(expectedProtocol)) {
+      throw new Error("surface event packet protocol hash or body mismatch.");
+    }
+    if (packet.resultHash !== packetHashWithoutResultHash(packet)) {
+      throw new Error(
+        `surface event packet ${packet.resultHash ?? "without-hash"} failed its result hash.`,
+      );
+    }
   }
   const events = packet.rawLedgers?.causalRoots;
   if (!Array.isArray(events) || events.length === 0) {
     throw new Error("surface event packet lacks its raw causal-root ledger.");
   }
+  if (compact) {
+    const expectedEvents = expectedProtocol.probes.flatMap((probe) =>
+      probe.observationTimes.map((observationTime) => ({
+        eventId: `${probe.id}@${observationTime}`,
+        probeId: probe.id,
+        observationTime,
+      })));
+    if (events.length !== expectedEvents.length ||
+        expectedEvents.some((expected, index) =>
+          events[index]?.eventId !== expected.eventId ||
+          events[index]?.probeId !== expected.probeId ||
+          events[index]?.observationTime !== expected.observationTime)) {
+      throw new Error("compact surface event batch differs from its requested event inventory.");
+    }
+  }
   const convergenceByEvent = new Map(
     (packet.rawLedgers.numericalConvergence ?? []).map((row) => [row.eventId, row]),
   );
-  const fieldSpeed = completeProtocol.eventEvaluator.fieldSpeed;
   const transversalityFloor = completeProtocol.eventEvaluator.tolerances.rootTransversalityFloor;
   const convergenceTolerance = completeProtocol.eventEvaluator.tolerances.convergenceAbsolute;
   const sourceCount = expectedSourceCount;
   for (const event of events) {
+    const rootsByTransmitter = new Map();
+    for (const root of event.roots) {
+      const rows = rootsByTransmitter.get(root.transmitterId) ?? [];
+      rows.push(root);
+      rootsByTransmitter.set(root.transmitterId, rows);
+    }
+    const noRootIds = event.noRootTransmitters.map(
+      (row) => row.transmitterId,
+    );
+    const representedTransmitters = new Set([
+      ...event.roots.map((root) => root.transmitterId),
+      ...noRootIds,
+    ]);
     if (!event.rootCompletenessCertification?.complete ||
-        event.rootCount + event.noRootCount !== sourceCount) {
+        event.rootCompletenessCertification.policy !==
+          expectedProtocol.rootPolicy.id ||
+        new Set(noRootIds).size !== noRootIds.length ||
+        noRootIds.some((id) => rootsByTransmitter.has(id)) ||
+        [...rootsByTransmitter.values()].some((rows) =>
+          rows.map((root) => root.rootOrdinal)
+            .sort((left, right) => left - right)
+            .some((ordinal, index) => ordinal !== index)) ||
+        representedTransmitters.size !== sourceCount) {
       throw new Error(`event ${event.eventId} failed independent root-completeness inspection.`);
     }
-    for (const row of [...event.roots, ...event.noRootTransmitters]) {
-      if (!(row.certifiedSpeedBound < fieldSpeed)) {
-        throw new Error(`event ${event.eventId} failed the source-speed gate.`);
+    if (expectedProtocol.rootPolicy.id ===
+        "all-retained-roots/event-specific-isolation-certified.v2") {
+      const certificates =
+        event.rootCompletenessCertification.transmitterCertificates;
+      const certificateIds = Array.isArray(certificates)
+        ? certificates.map((row) => row.transmitterId)
+        : [];
+      if (!Array.isArray(certificates) ||
+          certificates.length !== sourceCount ||
+          new Set(certificateIds).size !== sourceCount ||
+          certificates.some((certificate) =>
+            certificate.complete !== true ||
+            certificate.rootCount !==
+              (rootsByTransmitter.get(certificate.transmitterId)?.length ?? 0))) {
+        throw new Error(
+          `event ${event.eventId} failed independent causal-root-domain inspection.`,
+        );
       }
     }
     for (const root of event.roots) {
@@ -835,11 +895,17 @@ function independentlyCheckEventPacket(
     }
   }
   const separationFloor = completeProtocol.eventEvaluator.tolerances.minimumSeparationFloor;
-  for (const ledgerName of ["minimumSeparation", "refinedMinimumSeparation"]) {
-    const ledger = packet.rawLedgers[ledgerName];
-    if (!Array.isArray(ledger) || ledger.length === 0 ||
-        ledger.some((row) => !(row.minimumSeparation >= separationFloor))) {
-      throw new Error(`surface event packet failed the ${ledgerName} gate.`);
+  if (compact) {
+    if (packet.reducedMeasures?.validity?.minimumSeparationPassed !== true) {
+      throw new Error("compact surface event batch failed the minimum-separation gate.");
+    }
+  } else {
+    for (const ledgerName of ["minimumSeparation", "refinedMinimumSeparation"]) {
+      const ledger = packet.rawLedgers[ledgerName];
+      if (!Array.isArray(ledger) || ledger.length === 0 ||
+          ledger.some((row) => !(row.minimumSeparation >= separationFloor))) {
+        throw new Error(`surface event packet failed the ${ledgerName} gate.`);
+      }
     }
   }
   return events;
@@ -877,7 +943,23 @@ export function validateCompleteCycleSourceApplicability(sourceRecord, protocol)
   }
   const period = protocol.completeCycle.period;
   const envelope = protocol.applicability.maximumSourceEnvelopeRadius;
-  const requiredCenterVelocity = commonAxisBraid
+  const boundedCommonTranslation =
+    protocol.applicability.centerVelocityPolicy ===
+      "common-bounded-translation.v1";
+  const firstCenterVelocity = sourceRecord.sources[0]?.trajectory?.centerVelocity;
+  if (boundedCommonTranslation &&
+      (!(firstCenterVelocity &&
+        ["x", "y", "z"].every((key) =>
+          Number.isFinite(firstCenterVelocity[key]))) ||
+        vectorNorm(firstCenterVelocity) >
+          protocol.applicability.maximumCenterSpeed + 1e-12)) {
+    throw new Error(
+      "source common translation exceeds the declared center-speed bound.",
+    );
+  }
+  const requiredCenterVelocity = boundedCommonTranslation
+    ? firstCenterVelocity
+    : commonAxisBraid
     ? {
         x: protocol.applicability.requiredCenterVelocity[0],
         y: protocol.applicability.requiredCenterVelocity[1],
@@ -924,7 +1006,7 @@ export function validateCompleteCycleSourceApplicability(sourceRecord, protocol)
       y: center.y + centerVelocity.y * cycleEndTime,
       z: center.z + centerVelocity.z * cycleEndTime,
     };
-    const maximumRadius = commonAxisBraid
+    const maximumRadius = boundedCommonTranslation || commonAxisBraid
       ? Math.max(vectorNorm(cycleStartCenter), vectorNorm(cycleEndCenter)) +
         Math.max(radiusUNorm, radiusVNorm)
       : isB1
@@ -1440,6 +1522,8 @@ export function evaluateB1StreamingSurfaceReductions({
   evaluate = evaluatePrescribedRecordAnalysis,
   onSurfacePacket = null,
   onProgress = null,
+  evidenceMode = "full",
+  analysisSession = null,
 } = {}) {
   const protocol = validateB1CompleteCycleProbeProtocol(rawProtocol);
   if (typeof evaluate !== "function") throw new TypeError("evaluate must be a function.");
@@ -1449,6 +1533,13 @@ export function evaluateB1StreamingSurfaceReductions({
   if (onProgress !== null && typeof onProgress !== "function") {
     throw new TypeError("onProgress must be a function when supplied.");
   }
+  if (evidenceMode !== "full" && evidenceMode !== "compact") {
+    throw new TypeError("evidenceMode must be full or compact.");
+  }
+  const session = analysisSession ??
+    (evaluate === evaluatePrescribedRecordAnalysis
+      ? createPrescribedRecordAnalysisSession(sourceRecord)
+      : null);
   validateCompleteCycleSourceApplicability(sourceRecord, protocol);
   const sourceAbsolutePolaritySum = sourceRecord.sources.reduce(
     (sum, sourceRow) => sum + Math.abs(finite(sourceRow.charge, `${sourceRow.id}.charge`)),
@@ -1496,7 +1587,13 @@ export function evaluateB1StreamingSurfaceReductions({
           });
         }
         const eventProtocol = batchProtocol(fullProtocol, timeIndex);
-        const eventPacket = evaluate({ sourceRecord, protocol: eventProtocol });
+        const eventPacket = evaluate({
+          sourceRecord,
+          protocol: eventProtocol,
+          session,
+          resultMode:
+            evidenceMode === "compact" ? "compact-event-batch" : "full",
+        });
         const events = independentlyCheckEventPacket(
           eventPacket,
           eventProtocol,
@@ -1513,14 +1610,17 @@ export function evaluateB1StreamingSurfaceReductions({
           timeIndex,
           observationTime: accumulator.times[timeIndex],
           sourceHash: eventPacket.source.sourceHash,
-          eventProtocolHash: eventPacket.protocolHash,
-          eventResultHash: eventPacket.resultHash,
-          rawCausalRootLedgerHash: sha256Canonical(events),
+          eventProtocolHash: eventPacket.protocolHash ?? null,
+          eventResultHash: eventPacket.resultHash ?? null,
+          rawCausalRootLedgerHash:
+            evidenceMode === "compact" ? null : sha256Canonical(events),
           rawCausalRootEventCount: events.length,
           rawCausalRootCount: events.reduce((sum, event) => sum + event.rootCount, 0),
-          numericalConvergenceLedgerHash: sha256Canonical(
-            eventPacket.rawLedgers.numericalConvergence,
-          ),
+          numericalConvergenceLedgerHash:
+            evidenceMode === "compact"
+              ? null
+              : sha256Canonical(eventPacket.rawLedgers.numericalConvergence),
+          ...(evidenceMode === "compact" ? { evidenceMode } : {}),
         };
         if (onSurfacePacket) {
           descriptor.artifact = onSurfacePacket(eventPacket, { ...descriptor });
@@ -1584,6 +1684,7 @@ export function evaluateB1StreamingSurfaceReductions({
       version: "v1",
       streamingOrder: "resolution-then-radius-then-time.v1",
       eventEvaluator: "evaluatePrescribedRecordAnalysis",
+      ...(evidenceMode === "compact" ? { evidenceMode } : {}),
       pathEvolutionInvoked: false,
       eomSolverInvoked: false,
     },
@@ -1613,7 +1714,7 @@ export function evaluateB1StreamingSurfaceReductions({
       acceptedReducedMeasures: quadratureConvergence.passed,
     },
     falsifier:
-      "Reject the reduced rows if any independently recomputed source-speed, root-completeness, separation, transversality, event-convergence, quadrature-convergence, symmetry, closed-form, hash, or deterministic-repeat check fails.",
+      "Reject the reduced rows if any independently recomputed causal-root-domain, root-completeness, separation, transversality, event-convergence, quadrature-convergence, symmetry, closed-form, hash, or deterministic-repeat check fails.",
   };
   return finalizeB1StreamingReductionPacket(packetWithoutHash);
 }

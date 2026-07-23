@@ -100,9 +100,9 @@ the full table/column/index inventory is
 `.local-data/braid-analysis/performance/expanded-full-inventory.v2.json`.
 The check did not publish or replace the production database.
 
-## Exact end-to-end call graph
+## Exact legacy raw-artifact end-to-end call graph
 
-The live `rebuild-all` path is:
+The explicitly selected `legacy-rebuild-all` path is:
 
 1. `scripts/eom/analytical-campaign-database.mjs`
    - `runCli()`
@@ -312,6 +312,11 @@ On the expanded retained database, the concentration increases:
 | Raw-artifact indexes | 15,020,032 | 0.043% |
 | All remaining objects | about 1 MB | about 0.003% |
 
+The exact expanded database size minus the `artifact` table is 514,531,328
+bytes. That is a measured object-accounting bound, not yet a measured
+production-schema metadata-only build; page packing, a replay-recipe table, and
+selectively retained full-adjudication packets will change the final number.
+
 `multidimensional_measure.details_json` is 111,313,332 logical bytes
 (0.322% of the database), raw `context_json` is 18,715,551 bytes (0.054%),
 and `campaign_case.summary_case_json` is 98,570 bytes (0.0003%). Even removing
@@ -515,22 +520,22 @@ RSS must be remeasured.
 | Gzip validation | recompress / verify supplied gzip | three small and three medium repetitions; exact safety fixture | leading measured improvement; full replay pending |
 | Prepared statements | per-row prepare / persistent | small and medium | killed as leading total-wall cause |
 | Transaction bound | two large transactions / 32 / 512 rows | small | no speed gain; 32 rows halves peak WAL |
-| Single transaction | raw plus measures separate / one transaction | v2 functional pass | repeated timing pending |
-| Row SQL shape | one measure row / 64-row SQL | v2 functional pass; 4,375 to 438 insert executions | repeated timing pending |
-| Measure staging | direct indexed target / unindexed stage then ordered transfer | v2 functional pass; dropped-stage pages remain allocated | repeated timing pending |
-| SQLite CLI staging | Node loop / CSV `.import` plus strict transfer | v2 functional pass; local CLI 3.51.0 | repeated timing pending |
+| Single transaction | raw plus measures separate / one transaction | three small repetitions | 1.7% lower median, within the small-fixture range; WAL 12.6% larger |
+| Row SQL shape | one measure row / 64-row SQL | three small repetitions; 4,375 to 438 insert executions | 3.0% slower median; statement count is not the bottleneck |
+| Measure staging | direct indexed target / unindexed stage then ordered transfer | three small repetitions; dropped-stage pages remain allocated | 20.4% slower median and 6.4% larger database |
+| SQLite CLI staging | Node loop / CSV `.import` plus strict transfer | three small repetitions; local CLI 3.51.0 | 2.6% slower median and 10.9% larger database |
 | Index timing | maintain / create after load | small and medium | no speed gain |
-| Metric query index | current index / `(measure_id, scalar_value, result_hash)` | v2 functional pass; live baseline plan shows temporary sort | repeated load/storage/query matrix pending |
+| Metric query index | current index / `(measure_id, scalar_value, result_hash)` | three small repetitions; temporary sort removed | metric query 55.6% faster; total load/verify/export 6.4% slower and database 1.4% larger |
 | Foreign keys | immediate / final deferred check | small | no speed gain; final check retained |
 | Journal | WAL / rollback journal | small | no speed gain |
 | Synchronous policy | FULL / NORMAL | small sandbox only | no speed gain; unsafe mode not recommended |
-| Page cache | current / 256 MiB | v2 functional pass | timing/memory run pending |
-| Temporary store | default / memory | v2 functional pass | timing/memory run pending |
-| Cache/temp interaction | both changes together | old small run | no speed gain; not a one-variable result |
-| Memory mapping | none / 256 MiB | v2 functional pass | timing run pending |
-| Page size | 4 KiB / 8 KiB | v2 functional pass | timing/storage run pending |
-| Artifact table shape | payload-bearing `WITHOUT ROWID` primary B-tree / rowid payload table plus skinny unique hash index | live schema and late WAL sample identify a plausible interaction | functional and repeated timing pending |
-| Payload location | SQLite BLOB / external immutable gzip | old small/medium run changed location and statement lifetime together | storage/DB/WAL result valid; isolated timing rerun pending |
+| Page cache | current / 256 MiB | three small repetitions | 19.5% slower median; no RSS benefit |
+| Temporary store | default / memory | three small repetitions | 10.4% slower median with a 36.5% high outlier |
+| Cache/temp interaction | both changes together | three small repetitions | 23.4% slower median |
+| Memory mapping | none / 256 MiB | three small repetitions | 1.3% slower median; no material benefit |
+| Page size | 4 KiB / 8 KiB | three small repetitions | 0.9% slower median; 0.06% smaller database |
+| Artifact table shape | payload-bearing `WITHOUT ROWID` primary B-tree / rowid payload table plus skinny unique hash index | three small and three medium repetitions | 6.3% faster than recompressing current schema at medium; still much slower than external/no payload |
+| Payload location | SQLite BLOB / external immutable gzip | isolated direct-gzip small and medium repetitions | external is 19.0% faster at medium and cuts SQLite/WAL working set 86.7%; retained total bytes nearly unchanged |
 
 ### EXP-DB-005: v2 variant conformance smoke
 
@@ -608,9 +613,13 @@ RSS must be remeasured.
   wall-time reduction from the unchanged 5,661.056 s baseline is provisional,
   because the variant was statement-profiled and the baseline was not. It is
   not yet the accepted production speedup.
-- Correctness status: import preflight and independent acceptance passed with
-  8 accepted and 11 rejected cases. Exact generation recording and the final
-  full verifier are running as the remaining equivalence gates.
+- Correctness comparison: pass. Exact generation recording reproduced
+  `5cbb5765d9b5e327240227d09b722c1d23e22a3c3c03435878025bbcfb78f084`;
+  the full verifier returned `integrity: ok`, fingerprint
+  `68a90e6ee4277aed1dcb752d76c79337139de596c331e2cd1e677a31b9373506`,
+  27,648 artifacts, and the unchanged 8 accepted/11 rejected inventory. The
+  database has the same 34,555,154,432-byte size, 8,436,317-page count, zero
+  free pages, and schema version as the retained unchanged staging database.
 - Conclusion: the full-scale importer is not a bulk loader. It performs one
   prepared `INSERT` execution per artifact row and per normalized row. More
   importantly, it holds all 27,607 large BLOB rows and their index maintenance
@@ -623,10 +632,179 @@ RSS must be remeasured.
   is an additional controlled schema hypothesis. Recompression alone does not
   explain the remaining time.
 - Falsifier: bounded commits do not remove the late-stage rate collapse under
-  identical input and final hashes, or the pending full verifier rejects the
-  direct-gzip database.
-- Next: finish full verification, then compare unprofiled direct-gzip imports
-  with the same importer using bounded raw-artifact commits.
+  identical input and final hashes, or an independent repetition fails the
+  exact full verifier and export comparisons.
+- Next: compare the verified direct-gzip importer with raw-only bounded
+  transactions and external immutable payloads at increasing scale.
+
+### EXP-DB-007: durability, payload-table, and external-object matrices
+
+- Question: are WAL, filesystem synchronization, payload-table shape, or
+  external payload placement material before the 32 GB full-scale regime?
+- Small fixture: 64 raw artifacts, 4,000 multidimensional measures, 228 gates,
+  fixture hash
+  `93397fb194f6919b9d3e2a4a2b3a6ba97f96b86d7019b04208a9e288b9a39084`.
+  Three measured runs followed one warm-up per variant.
+- Small medians: current 4.914 s; direct verified gzip 2.574 s;
+  journal-off 4.948 s; synchronous-off 5.214 s; both off 4.953 s; rowid
+  payload table 5.248 s; external payloads 2.700 s. The external variant used
+  a 5.21 MB SQLite database plus 37.92 MB external packets versus 43.25 MB
+  all-SQLite.
+- Medium fixture: 512 raw artifacts, 40,000 measures, 228 gates, fixture hash
+  `8659cddb727554ce3831e504ecb9e3a22219041e99633157f3f6c7932c2a35e3`.
+  Three measured runs followed one warm-up per variant.
+- Medium medians: current 35.905 s; direct verified gzip 14.766 s; bounded
+  direct 15.708 s; bounded plus journal-off 15.480 s; bounded plus
+  synchronous-off 15.107 s; bounded plus both off 15.008 s; rowid payload
+  table 33.655 s; external payloads 11.961 s.
+- Medium storage: current/direct SQLite 383.62 MB with a 337.04 MB peak WAL;
+  external payloads used a 51.09 MB SQLite database plus 331.51 MB immutable
+  packets and a 51.36 MB peak WAL. Total retained bytes are nearly unchanged;
+  the database working set is 86.7% smaller.
+- Correctness comparison: every measured variant returned `integrity: ok`,
+  zero foreign-key failures, raw compressed/raw hash verification, identical
+  measure digest
+  `ef601280a039ceafb1f9722d6567c41b054c9c481170b30569a88f0e79f7a5f6`,
+  gate digest
+  `867d1a76b1355e0a204a71b100d4958da9265075463996564304df2b10bdf910`,
+  and export inventory
+  `886378a63055efdeef74ca89f739b4574e675e6bed7ce089ba52a3b88f358441`.
+- Result grade: measured repeated data-plane creation, verification, export,
+  and query benchmark. The external variant does not yet implement the full
+  production control-plane and atomic generation-directory contract.
+- Conclusion: disabling durability is not a general speed lever at small or
+  medium scale. Avoiding recompression is large. External payloads are 19.0%
+  faster than direct SQLite BLOBs at medium scale and sharply reduce the
+  SQLite/WAL working set without reducing total retained packet bytes. The
+  rowid table is a modest 6.3% improvement over the recompressing current
+  schema at medium scale but does not approach externalization.
+- Falsifier: raw-only bounded transactions fail to cap WAL or improve the
+  representative-large/full tail, or the full external-object workflow loses
+  atomicity, reconstruction, exact export, or any final verification.
+- Next: repeat at 2,048 raw artifacts with a raw-only transaction bound, then
+  run the exact retained campaign only for variants that survive.
+
+### EXP-DB-008: recomputable Monte Carlo retention
+
+- Question: if every sampled configuration is exactly replayable, what is the
+  cost of retaining the replay recipe, packet identities, normalized
+  measurements, and screening-gate evidence while discarding the raw packet
+  payloads for diagnostic coverage rows?
+- Baseline: verified supplied-gzip bytes embedded in SQLite.
+- Changed variable: payload location only. The external variant stores the
+  supplied gzip bytes by hash outside SQLite. The recomputable variant writes no
+  packet payload and exports a deterministic replay-required inventory.
+- Fixture: medium, 512 raw artifacts, 40,000 multidimensional measures, 228
+  validity gates, fixture hash
+  `8659cddb727554ce3831e504ecb9e3a22219041e99633157f3f6c7932c2a35e3`.
+- Command:
+  `node scripts/eom/benchmark-analytical-campaign-pipeline.mjs ingest --fixture medium --variants direct-compressed,external-artifacts,metadata-only-recomputable --warmups 1 --repetitions 3 --output .local-data/braid-analysis/performance/ingest-medium-metadata-only-v1.json`
+- Instrument: fresh Node process per run, monotonic phase timers, process CPU
+  usage, peak RSS, filesystem sizes, SQLite integrity and foreign-key checks,
+  raw/compressed source-packet hash verification, normalized-measure digest,
+  validity-gate digest, and deterministic export inventory.
+- Warm-cache results after one warm-up:
+
+| Representation | Median wall (s) | Range (s) | SQLite bytes | External packet bytes | Export bytes |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Supplied gzip embedded in SQLite | 14.733 | 14.730–15.033 | 383,619,072 | 0 | 331,650,841 |
+| Supplied gzip external by hash | 11.920 | 11.776–12.303 | 51,093,504 | 331,510,499 | 331,650,841 |
+| Recomputable metadata/results only | 8.679 | 8.271–8.992 | 51,089,408 | 0 | 151,606 |
+
+- CPU and memory: median user/system CPU seconds were 11.561/4.379,
+  10.969/2.251, and 7.395/1.915 respectively; median peak RSS was
+  195.9 MB, 196.4 MB, and 195.9 MB.
+- Correctness: all nine measured runs verified every supplied compressed and
+  raw packet hash before ingestion, produced the same 40,000-row logical
+  measure digest
+  `ef601280a039ceafb1f9722d6567c41b054c9c481170b30569a88f0e79f7a5f6`,
+  the same 228-row validity-gate digest
+  `867d1a76b1355e0a204a71b100d4958da9265075463996564304df2b10bdf910`,
+  zero foreign-key failures, and `integrity: ok`.
+- The recomputable export records all 512 packet identities as
+  `replayRequired`; it does not claim byte equivalence with an export that
+  contains the packet payloads.
+- Result grade: measured data-plane lower bound. It proves the load, storage,
+  verification, and export effect after the packets exist. It does not yet
+  prove that the production replay recipe captures every source, software,
+  runtime, and sampling dependency needed to regenerate those identities, and
+  it does not make the metadata-only rows independently accepted.
+- Measured conclusion: compared with embedded packet BLOBs, the recomputable
+  variant reduced this path's median wall time by 41.1%, SQLite size by 86.7%,
+  retained payload bytes by 100%, and deterministic export bytes by 99.95%.
+  Compared with external retention it reduced median wall time by 27.2% and
+  retained bytes by 86.6%.
+- Falsifier: replay a retained recipe in the pinned runtime. Any source,
+  protocol, result, raw-packet inventory, normalized-measure, validity-gate, or
+  acceptance mismatch invalidates the claim that the discarded payload was a
+  derivable cache.
+- Next: specify and test the production replay-recipe schema, then apply
+  tiered retention to canonical anchors, failures, near-threshold results,
+  anomalies, and an audit sample.
+
+### EXP-DB-009: complete small ingestion hypothesis matrix
+
+- Question: after payload strategy is separated, do transaction shape,
+  multi-row SQL, staging, CLI import, index timing, foreign-key timing, cache,
+  temporary storage, memory mapping, or page size materially improve the
+  current data plane?
+- Fixture: 64 exact raw artifacts, 4,000 multidimensional measures, 228 validity
+  gates, fixture hash
+  `93397fb194f6919b9d3e2a4a2b3a6ba97f96b86d7019b04208a9e288b9a39084`.
+- Command:
+  `node scripts/eom/benchmark-analytical-campaign-pipeline.mjs ingest --fixture small --variants current,prepared,direct-compressed,post-index,single-transaction,multi-row-64,measure-staging,sqlite-cli-measure-staging,metric-order-index,deferred-foreign-keys,larger-cache,memory-temp,larger-cache-memory-temp,mmap-256mb,page-size-8192 --warmups 1 --repetitions 3 --output .local-data/braid-analysis/performance/ingest-small-comprehensive-v3.json`
+- Method: one warm-up and three fresh-process measured runs per variant, 60
+  total runs. One primary variable changed per named variant except the
+  explicitly labeled cache/temporary-store interaction.
+
+| Variant | Median wall (s) | Range (s) | Change from current | Database bytes | Peak WAL bytes |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Current | 4.885 | 4.856–4.936 | baseline | 43,245,568 | 38,715,672 |
+| Persistent prepared statements | 4.846 | 4.803–4.968 | -0.8% | 43,245,568 | 38,715,672 |
+| Verify supplied gzip | 2.489 | 2.471–2.516 | -49.1% | 43,245,568 | 38,715,672 |
+| Build nonessential indexes after load | 4.798 | 4.788–4.818 | -1.8% | 43,053,056 | 38,612,672 |
+| One transaction | 4.802 | 4.765–4.812 | -1.7% | 43,245,568 | 43,610,232 |
+| 64-row measure SQL | 5.031 | 4.698–5.312 | +3.0% | 43,245,568 | 38,715,672 |
+| Node staging table | 5.882 | 4.928–5.892 | +20.4% | 46,014,464 | 38,732,152 |
+| SQLite CLI CSV staging | 5.012 | 4.945–5.118 | +2.6% | 47,951,872 | 38,732,152 |
+| Metric-order index | 5.199 | 4.894–5.256 | +6.4% | 43,847,680 | 38,728,032 |
+| Deferred foreign keys | 5.293 | 4.943–5.876 | +8.3% | 43,245,568 | 38,715,672 |
+| 256 MiB cache | 5.837 | 5.211–5.936 | +19.5% | 43,245,568 | 38,715,672 |
+| Memory temporary store | 5.395 | 5.287–7.257 | +10.4% | 43,245,568 | 38,715,672 |
+| Cache plus memory temporary store | 6.026 | 5.199–6.121 | +23.4% | 43,245,568 | 38,715,672 |
+| 256 MiB memory map | 4.949 | 4.931–5.087 | +1.3% | 43,245,568 | 38,715,672 |
+| 8 KiB pages | 4.931 | 4.894–5.626 | +0.9% | 43,220,992 | 38,623,448 |
+
+- Statement result: 64-row SQL reduced insert executions from 4,375 to 438
+  and insert preparations from 4,357 to 420, but total wall time did not
+  improve. SQLite CLI staging used one CLI import and 376 Node insert
+  executions, but its extra CSV/staging/transfer work also did not improve wall
+  time.
+- Query tradeoff: the metric-order index removed the temporary sort and reduced
+  the sampled ordered metric query median from 1,640.9 to 728.5 microseconds
+  (55.6%) while adding 602,112 database bytes and increasing total median wall
+  time 6.4%. Other lookup plans were unchanged.
+- Correctness: all 45 measured runs had `integrity: ok`, zero foreign-key
+  failures, verified raw and compressed hashes, one common measure digest
+  `2b3cf93791755a2742565afadb1dded75f3c61d1240efda386e3f79533658587`,
+  one common gate digest
+  `867d1a76b1355e0a204a71b100d4958da9265075463996564304df2b10bdf910`,
+  and one common deterministic export inventory
+  `ec4f20c4dbe7cb23f584173e8a58119fbe2ef438810c7efe62f40949fe130b40`.
+- Result grade: measured small-fixture result. Later variants ran during a
+  somewhat slower machine interval, so small differences near the run range are
+  not accepted as speedups; large regressions and the supplied-gzip result are
+  consistent with earlier independent matrices.
+- Conclusion: the loader is row-oriented, but SQL statement count is not its
+  leading cost. None of the transaction, staging, CLI, cache, temporary-store,
+  mapping, page-size, or foreign-key changes merits production adoption.
+  The metric-order index is a query-policy tradeoff, not a rebuild optimization.
+- Falsifier: a medium or full logically identical run shows a material,
+  repeatable improvement outside these ranges without increasing storage,
+  memory, or verification cost.
+- Next: only measure the metric-order index at larger scale if ordered metric
+  distributions become an operationally important query; do not expand the
+  ingestion tuning search before removing universal packet payloads.
 
 ### EXP-FMT-001: external formats
 
@@ -714,6 +892,247 @@ sample found Bitdefender at 86.8%, WindowServer at 33.0%, and `syspolicyd` at
 wall-time matrix a contended-machine diagnostic rather than an optimization
 result.
 
+### EXP-PAR-001: rejected live Monte Carlo-aligned worker fixture
+
+- Question: can a sandbox-only frozen-input fixture measure worker scaling
+  while the methodology coverage review is being updated in another thread?
+- Baseline: first four registered candidates, current protocol, sensitivity
+  omitted, one worker, file artifacts plus deterministic merge.
+- Harness boundary: production registry validation remained fail-closed. The
+  explicit
+  `--allow-unreviewed-methodology-performance-fixture` mode recorded registry,
+  methodology, coverage, protocol, candidate-spec, and implementation hashes
+  and labeled the fixture nonpublishable.
+- Attempt 1: rejected before timing because the unreviewed methodology hash was
+  not yet covered by the production contract.
+- Attempt 2: rejected when the evenly spaced fourth candidate exceeded the
+  current protocol source envelope. No applicability constraint was relaxed.
+- Attempt 3: all four first-candidate computations completed in the one-worker
+  warm-up, but the executing implementation inventory changed from
+  `624db3dcd5c9cda58ed3c2309c73a88cce0feeb1c20c63ca383a207b04d03ca4`
+  to
+  `afe3060b87dfd2779cecaec0012a5fcc53865e92ae25f5d2f3c3973d26d0e7e2`
+  during the run. The harness rejected the warm-up and wrote no timing report.
+- Result grade: rejected measurement; no speedup claim.
+- Conclusion: the active Monte Carlo methodology/evaluator work is changing the
+  exact compute path faster than this roughly five-minute fixture can finish.
+- Falsifier: a run from one immutable implementation hash completes one warm-up
+  plus three measured repetitions at 1, 2, and 4 workers with identical source,
+  protocol, result, packet, and deterministic-merge inventory hashes.
+- Next: rerun after the Monte Carlo implementation changes settle or export an
+  explicit immutable sandbox snapshot. Do not spend another live-checkout run
+  until then.
+
+### EXP-PAR-002: immutable compact Monte Carlo worker matrix
+
+- Question: how does the compact coverage evaluator scale at one, two, and four
+  worker threads when the sampled cases and executing implementation are held
+  fixed?
+- Fixture: nine exact cases, three samples each from A1.2, B1.3, and C5, seed
+  `compact-worker-matrix-snapshot-20260723-v1`; fixture hash
+  `1e8e82849984ca14ab36e5dc4f640dbbcd11038b4302c2a3ae4500688dc54cd8`.
+- Execution boundary: immutable sandbox snapshot tar hash
+  `15d81b436bd9495f13cb15d81b6ca6b6855cb15d81b6ca9ae2afa5264a8dc2a`;
+  implementation hash
+  `2b03bbb0e5280d30483f5e85021477834f2f1f800659bd65309e851ada847535`;
+  eight logical CPUs; no production database access, path evolution, EOM
+  solver, independent acceptance, or publication.
+- Method: one warm-up followed by three measured repetitions at each worker
+  count. Tasks were assigned in seeded order to static round-robin worker
+  partitions. Results were merged in case order.
+- Result grade: measured diagnostic performance and deterministic equivalence,
+  not mathematical correctness or catalog acceptance.
+
+| Workers | Wall median (s) | Range (s) | Speedup | Efficiency | Median CPU-core equivalent | Peak RSS median |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 30.443 | 29.044–30.784 | 1.000x | 100.0% | 1.297 | 400.7 MB |
+| 2 | 22.242 | 19.619–49.055 | 1.369x | 68.4% | 2.622 | 551.7 MB |
+| 4 | 20.706 | 18.328–21.245 | 1.470x | 36.8% | 3.912 | 911.3 MB |
+
+- Correctness comparison: pass for determinism. Every warm-up, repetition, and
+  worker count reproduced output hash
+  `ef2d1066b3498f8f3f935564c10b5abd4d201fd24332d169dd2eeb223ed30c80`
+  across case ID, sampled-spec hash, exact-source hash, protocol hash, score
+  hash, and case hash.
+- Observations: the one-worker process already consumed 1.30 CPU-core
+  equivalents, so the earlier “one core” observation is approximately, not
+  exactly, true for this compact path. Four workers kept about 3.91 cores busy
+  but each case slowed enough that wall speedup stopped at 1.47x. Peak RSS rose
+  2.27x from one to four workers. The 49.055-second two-worker run is retained
+  as a contention outlier; the median and full range are both reported.
+- Amdahl interpretation: fitting the measured medians gives an apparent serial
+  fraction of 0.46 at two workers and 0.57 at four. The disagreement means this
+  is not a fixed serial fraction: worker overhead, task imbalance, and shared
+  CPU or memory contention grow with worker count. The observed four-worker
+  result therefore does not support extrapolating one candidate per core.
+- Conclusion: bounded candidate/sample parallelism is useful, but four workers
+  buy only another 6.9% wall reduction over the two-worker median while adding
+  about 360 MB median peak RSS. Two workers are the current conservative
+  operating point; a dynamic scheduler and larger representative fixture must
+  beat this result before a higher default is recommended.
+- Falsifier: a larger frozen 21-family fixture with the same exact-output checks
+  shows materially better four-worker efficiency and bounded memory/disk
+  amplification.
+- Next: compare static round-robin with a bounded dynamic queue on a
+  representative cross-family fixture, then isolate whether compression or
+  analytical evaluation causes the shared-resource slowdown.
+
+### EXP-PAR-003: six- and eight-worker throughput extension
+
+- Question: does increasing compact test-point concurrency to all eight logical
+  CPUs increase completed tests per hour?
+- Fixture and implementation: exactly the immutable EXP-PAR-002 snapshot, seed,
+  nine cases, fixture hash
+  `1e8e82849984ca14ab36e5dc4f640dbbcd11038b4302c2a3ae4500688dc54cd8`,
+  and implementation hash
+  `2b03bbb0e5280d30483f5e85021477834f2f1f800659bd65309e851ada847535`.
+- Method: one warm-up and three measured repetitions at one, six, and eight
+  workers. Throughput is `9 cases * 3,600 / run wall seconds`.
+- Result grade: measured throughput for this three-member, nine-case diagnostic
+  fixture. It is an estimate for future all-family sampling because family
+  costs are not yet known to have the same distribution.
+
+| Workers | Wall median (s) | Range (s) | Tests/hour median | Range from individual runs | Median CPU-core equivalent | Peak RSS median |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 28.915 | 28.656–29.297 | 1,121 | 1,106–1,131 | 1.292 | 402.7 MB |
+| 6 | 12.972 | 12.859–14.080 | 2,498 | 2,301–2,520 | 5.060 | 1,194.1 MB |
+| 8 | 13.814 | 13.679–14.302 | 2,346 | 2,265–2,369 | 5.145 | 1,542.4 MB |
+
+- Correctness comparison: pass. Every run reproduced output hash
+  `ef2d1066b3498f8f3f935564c10b5abd4d201fd24332d169dd2eeb223ed30c80`
+  across the same exact identity fields as EXP-PAR-002.
+- Conclusion: six workers are the measured throughput maximum in the tested
+  set. Eight workers increased median CPU use by only 0.085 core equivalent,
+  reduced throughput by 6.1%, and increased median peak RSS by 29.2% relative
+  to six. “Use all logical CPUs” is therefore not the same as “finish the most
+  test points.” Run a bounded six-worker pool by default on this machine.
+- Bottleneck change: this supersedes the earlier two-worker conservative
+  recommendation. The earlier 1/2/4 matrix stopped before the scheduling shape
+  improved at six workers; it also contained a severe two-worker contention
+  outlier. Six-worker repetitions were tight enough to support the updated
+  throughput recommendation.
+- Falsifier: a larger frozen 21-family fixture or dynamic queue moves the
+  throughput maximum to another worker count.
+- Next: use dynamic work stealing with a six-worker cap and repeat on a
+  representative 21-family inventory; compare throughput per family as well as
+  aggregate throughput.
+
+### EXP-MC-001: production-shaped compact coverage packet
+
+- Question: how much durable data does the new replayable coverage result retain
+  before any database representation is chosen?
+- Fixture: nine exact A/B/C local-neighborhood cases in
+  `compact-monte-carlo-abc-coverage-v3.json`, seed
+  `compact-abc-benchmark-20260723-v3`.
+- Result grade: one measured production-shaped diagnostic run, not a repeated
+  timing benchmark and not complete 21-family coverage.
+- Result: 37.160 s campaign wall; 37.143 s analytical evaluation across
+  37.156 s summed case wall, or 99.965% of measured case time. The nine compact
+  rows retain 79,878 bytes in their row-size accounting. The complete
+  deterministic JSON is 155,609 bytes and deterministic gzip is 16,682 bytes.
+  File SHA-256 is
+  `44f4e9dd3f5247487bdff12df1d9087ab1459475a040b937bd679ca2aad36042`.
+- Correctness boundary: the packet retains exact rerun instructions,
+  sampled-spec/source/protocol/score/case identities, normalized scores and
+  gates, implementation identity, and the diagnostic claim boundary. It
+  performs no independent acceptance and retains no raw ledgers.
+- Conclusion: for replayable coverage, storage and database work are already
+  negligible beside computation. A universal raw-artifact database would
+  reintroduce the wrong cost center.
+- Falsifier: a full 21-family schema adds a currently omitted consumer whose
+  independent result cannot be reconstructed or promoted through a separately
+  retained full-adjudication packet.
+- Next: scale the bound compact indexed SQLite control plane and a selective
+  full-adjudication exception store; do not import raw packet BLOBs for ordinary
+  coverage rows.
+
+### EXP-MC-002: production-shaped compact storage control plane
+
+- Question: after raw ledgers are omitted from ordinary coverage, is SQLite
+  still too slow or too large for the actual compact row contract?
+- Fixture: the exact nine-row EXP-MC-001 packet, input SHA-256
+  `44f4e9dd3f5247487bdff12df1d9087ab1459475a040b937bd679ca2aad36042`;
+  one warm-up and three measured repetitions per format.
+- Representations: the production compact SQLite campaign/case schema with
+  family/member, status, source, and score indexes under rollback journal
+  (`journal_mode=DELETE`) plus `synchronous=NORMAL`; gzip NDJSON; and gzip CSV
+  with each typed nested row encoded as base64 JSON so the comparison does not
+  silently lose types or exact rerun data.
+- Result grade: measured production-shaped diagnostic storage result. The
+  fixture is intentionally small, so these are overhead measurements, not
+  large-scale throughput claims.
+
+| Representation | Median create/verify/query wall | Range | Stored bytes | Transient WAL | Exact logical inventory |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Production compact SQLite | 31.803 ms | 30.025–47.604 ms | 196,608 | 0 | yes; integrity ok, zero FK failures, zero BLOB columns |
+| gzip NDJSON | 3.121 ms | 2.992–3.278 ms | 13,912 | 0 | yes |
+| gzip CSV + base64 JSON | 3.662 ms | 3.623–3.737 ms | 27,514 | 0 | yes |
+
+- SQLite warm query medians were 11.145 microseconds for exact case lookup,
+  4.833 microseconds for member samples, and 6.000 microseconds for status
+  lookup.
+  NDJSON/CSV query timings apply only after the entire compressed file has been
+  decoded into memory; they are not disk random-access measurements.
+- Correctness comparison: every run reproduced logical inventory hash
+  `69e0d4361b7c4359456b51e543be1ff646d8e9acb21cfa4e77de5044f3e7047d`.
+- Conclusion: SQLite is not the problem when used as the compact control plane.
+  Its complete measured overhead was 0.086% of the 37.160-second campaign
+  compute wall. NDJSON is an excellent deterministic compact export, but it
+  gives up indexed incremental queries, schema checks, relationships, and
+  transactional updates. CSV is a poor native fit: preserving nested typed
+  rerun instructions required wrapping JSON in base64 and produced twice the
+  NDJSON bytes.
+- Journal conclusion: the production compact path now uses a rollback journal,
+  so a completed build leaves no WAL or shared-memory sidecar. `NORMAL`
+  synchronization is appropriate because this local index is deterministically
+  rebuildable from a hash-bound compact campaign. Transaction atomicity,
+  foreign keys, canonical hash verification, and final `integrity_check`
+  remain mandatory.
+- Import shape: the nine-row fixture used one campaign insert plus nine
+  persistent prepared case inserts inside one transaction. This is row-oriented
+  loading, not a native bulk loader, but 10 total executions are immaterial
+  beside analytical computation.
+- Report:
+  `.local-data/braid-analysis/performance/compact-monte-carlo-storage-control-plane-v2.json`.
+- Falsifier: a representative all-family compact database makes SQLite
+  load/query/export time material relative to analysis or exposes unacceptable
+  append/checkpoint behavior.
+- Next: scale the same schema across the declared 21-family sampling inventory
+  and add the selective full-adjudication exception references.
+
+### Compact control-plane implementation decision
+
+Grade: implemented and measured local conformance; this is not independent
+acceptance or mathematical correctness evidence.
+
+The default database command now addresses
+`.local-data/braid-analysis/compact-campaigns.sqlite3` and accepts serialized
+`compact-monte-carlo-campaign.v1` / `compact-monte-carlo-case.v1` packets.
+The schema retains:
+
+- the complete exact rerun instruction, including sampled specification and
+  sampled-spec, exact-source, protocol, and implementation hashes;
+- score and case hashes, compact score/gate JSON, status, and measured cost;
+- diagnostic claim boundaries and any compact verification receipt included in
+  the serialized row; and
+- `drawn-not-evaluated` rows with null score/hash and a structured reason.
+
+The schema has no BLOB-typed column and no artifact, raw-artifact,
+multidimensional-measure, observation-event, or raw causal-root-ledger table.
+Import validates campaign, protocol, score, case, and row hashes before one
+transaction. Verification reconstructs every serialized campaign, reruns those
+hash checks, runs SQLite integrity and foreign-key checks, and rejects any
+legacy payload table or BLOB column. Re-import is idempotent; deterministic
+exports from two reads were byte-identical in the focused test.
+
+The former commands are available only as explicit `legacy-*` operations and
+require an explicit `--database` path. `rebuild-all` without the `legacy-`
+prefix fails before creating a database. The deleted
+`.local-data/braid-analysis/analytical-campaigns.sqlite3` is therefore not
+recreated by the default command or benchmark. The compact opener rejects that
+legacy filename, and legacy CLI operations reject the compact default filename,
+preventing either schema from being created at the other's reserved path.
+
 ### EXP-COMP-001: live expanded-rebuild stack sample
 
 - Question: what work occupies the serial rebuild process during raw packet
@@ -800,6 +1219,56 @@ result.
   lightweight structural completeness query plus one final full verification
   against the current duplicate full-verification sequence.
 
+### EXP-VERIFY-001: full verification attribution and single raw pass
+
+- Question: where does a 34.56 GB full verification spend time, and can raw
+  packets be verified once without weakening any check?
+- Baseline: the default verifier over the exact database produced by
+  EXP-DB-006. Variant: an opt-in verifier excludes raw-artifact payloads from
+  the generic artifact decode/hash pass, then checks the artifact/raw-hash
+  identity, both recorded sizes, compressed SHA-256, raw SHA-256, and gzip
+  decode exactly once in the raw-artifact pass.
+- Instruments: Node SQLite statement profiler, monotonic stage heartbeats, two
+  default runs bracketing one variant run, and five-second OS point samples.
+- Default run 1: 1,295.47 s wall, 868.20 s user CPU, 217.50 s system CPU,
+  0.838 lifetime CPU-core equivalent, and 512 MB peak RSS. Integrity plus
+  foreign-key checks ended at 302.01 s; the general artifact pass ended at
+  675.21 s; the raw pass ended at 1,294.09 s.
+- Default warm control: 1,275.68 s wall, 862.87 s user CPU, 209.80 s system
+  CPU, 0.841 CPU-core equivalent, and 515 MB peak RSS. Its corresponding
+  boundaries were 287.52 s and 653.05 s.
+- Single-pass warm variant: 1,013.83 s wall, 522.55 s user CPU, 253.19 s
+  system CPU, 0.765 CPU-core equivalent, and 519 MB peak RSS. It was 261.85 s
+  (20.53%) faster than the following warm default control.
+- SQL attribution in the warm default: `foreign_key_check` took 189.36 s,
+  `integrity_check` 97.87 s, the raw-artifact cursor 301.72 s, the generic
+  artifact cursor 65.86 s, and the normalized-measure completeness query
+  0.85 s. The remaining 620.0 s is principally JavaScript gzip decode,
+  SHA-256, result-packet checks, and loop/memory work around those cursors.
+- Point samples: the initial check window was storage-read-bound; 4,241 of
+  4,266 active-main-thread top frames were `pread`. In the raw pass, sampled
+  work included database reads, SHA-256, gzip inflate, and memory management.
+  Point samples are diagnostic, not whole-run percentages.
+- Correctness comparison: all three runs returned the identical fingerprint
+  `68a90e6ee4277aed1dcb752d76c79337139de596c331e2cd1e677a31b9373506`,
+  `integrity: ok`, the same generation, artifact count, and 8/11 acceptance
+  inventory. Focused tests also corrupt a raw gzip payload and require the
+  single-pass path to fail.
+- Result grade: measured full-scale warm-cache speedup with a bracketing warm
+  control; no production-default change.
+- Conclusion: full SQLite integrity and foreign-key checks are material and
+  remain required once before publication. Decompressing every raw payload
+  twice is not required. More importantly, the current rebuild invokes the
+  entire verifier twice before publication; eliminating that duplicate
+  invocation is worth about 1,320 s on the retained baseline, before the
+  additional measured 20.53% single-pass verifier improvement.
+- Falsifier: a mutation accepted by the single-pass path but rejected by the
+  default path, or any mismatch in fingerprint, generation, acceptance,
+  artifact identity, or integrity.
+- Next: test bounded/non-WAL staging and retain one single-pass full verifier
+  immediately before atomic publication plus the existing post-publication
+  verification.
+
 ## Current bottleneck ranking
 
 Measured end to end on the retained expanded-protocol baseline:
@@ -829,6 +1298,15 @@ assumption that one verification pass dominated. The workflow currently runs
 two prepublication full database verifications; publish mode would then run a
 third post-swap verification.
 
+For the new compact Monte Carlo coverage lane, the bottleneck ranking changes
+explicitly. In the first production-shaped nine-case packet, analytical
+evaluation consumed 37.143 of 37.156 summed case seconds, or 99.965%. The
+complete durable result was only 155,609 bytes uncompressed and 16,682 bytes as
+deterministic gzip. Database ingestion, WAL, payload compression, and
+publication are therefore not plausible leading costs for ordinary coverage
+rows unless the storage design unnecessarily restores the raw ledgers. The
+archival ranking above continues to govern promoted full-adjudication cases.
+
 ## Computational scalability map
 
 Grade: derived from live control flow, except for the explicitly measured
@@ -836,7 +1314,7 @@ utilization samples.
 
 | Boundary | Independence | Determinism requirement | Resource risk | Current disposition |
 | --- | --- | --- | --- | --- |
-| Candidate evaluation | candidates share only immutable registry/protocol inputs; current serial loop carries no mathematical state between candidates | retain registry order for manifest/summary; compare source, protocol, result, packet-byte, and raw-inventory hashes | each worker holds a candidate packet/reductions and writes large gzip files | strongest parallel target; exact 1/2/4 matrix pending |
+| Candidate evaluation | candidates share only immutable registry/protocol inputs; current serial loop carries no mathematical state between candidates | retain registry order for manifest/summary; compare source, protocol, result, packet-byte, and raw-inventory hashes | each worker holds a candidate packet/reductions and writes large gzip files | useful but sublinear: compact six-worker throughput is 2.23x serial; eight workers regress |
 | Radius/time surface packets | evaluations are logically independent before ordered streaming reductions | reduction order must remain fixed to avoid binary64 reassociation and hash drift | dispatching individual packets can multiply retained intermediate memory and scheduler overhead | possible second-level target only after candidate scaling |
 | Fixed probes and moving receivers | individual event protocols are independent before result assembly | preserve declared probe/event ordering | small task count; worker overhead may dominate | lower priority |
 | Branch diagnostics | local to one candidate and source | preserve branch/root ordering | limited absolute work until profiled | do not isolate yet |
@@ -850,16 +1328,23 @@ Measured utilization anchors:
 - one frozen no-sensitivity candidate consumed 0.999 CPU-core equivalent;
 - an OS point sample of the expanded full rebuild measured approximately 1.1
   macOS CPU cores;
-- a two-worker diagnostic sample measured approximately 2.25 cores and 811 MB
-  RSS, but its wall time was rejected because the machine was contended.
+- the accepted compact Monte Carlo matrix measured 1.297, 2.622, and 3.912
+  median CPU-core equivalents at one, two, and four workers, respectively;
+- the same matrix measured only 1.369x and 1.470x median wall speedup at two and
+  four workers, while median peak RSS rose from 400.7 MB to 911.3 MB.
+- the extension measured 5.060 and 5.145 median CPU-core equivalents at six and
+  eight workers; throughput peaked at 2,498 tests/hour with six workers and
+  regressed to 2,346 tests/hour with eight, while RSS rose from 1.19 to 1.54 GB.
 
-These measurements verify available CPU parallelism; they do not yet establish
-a wall-time speedup. The benchmark harness now implements the accepted worker
-design: worker-local artifact directories followed by a serial,
-registry-ordered merge that re-hashes every candidate packet and compressed raw
-artifact, records read/write amplification and merge time, and requires the
-merged inventory hash to match across repetitions and worker counts. The
-uncontended 1/2/4 measurement remains pending.
+These measurements verify available CPU parallelism and a real but strongly
+sublinear wall-time speedup for compact coverage. Six workers are the current
+measured operating point. They also falsify a simple one-candidate-per-core
+projection: useful CPU work plateaus before eight logical workers because
+overhead, scheduling imbalance, and shared-resource contention are not
+constant.
+The raw-artifact campaign harness retains the stronger worker-local directory
+and deterministic merge checks, but its full 1/2/4 archival matrix remains a
+separate experiment; compact coverage does not exercise that disk path.
 The first steady expanded-rebuild candidates completed in about 371–378
 seconds, but candidate 15 completed in 314 seconds. Static equal-count worker
 partitions can therefore be load-imbalanced even when candidate counts match.
@@ -872,27 +1357,79 @@ must run the same deterministic encoder and reproduce every gzip byte.
 
 ## Storage-necessity audit
 
+The retention obligation depends on campaign purpose. The published
+all-candidate database is an archival evidence package, while a Monte Carlo
+campaign over all families and degrees of freedom can use two storage lanes.
+Broad coverage can be a reproducible diagnostic result index if its exact
+sampled configurations are durable. Full adjudication remains an archival
+evidence package with the raw ledgers required by its gates. Under that split,
+raw packet payloads are derivable caches for coverage rows, not for stored
+full-acceptance claims.
+
 | Representation | Current consumer and obligation | Classification | Candidate action |
 | --- | --- | --- | --- |
 | Exact source record artifact | source-hash preimage verification, reconstruction | required provenance | retain |
 | Analysis protocol canonical JSON | protocol identity and reconstruction | required provenance | retain |
 | Result packet artifact | result-hash identity, deterministic export, acceptance reconstruction | required acceptance and export | retain |
-| Raw surface packets | independent event checks, root ledger, angular/spectral/wake-flux reconstruction | required reconstruction and root audit | retain until a field-level consumer proof says otherwise |
-| Raw fixed-probe packets | independent validity and convergence checks | required acceptance | retain |
-| Raw moving-receiver packets | endpoint reduction and validity reconstruction | required acceptance | retain |
-| Branch-diagnostic packet | branch continuity audit | required root/continuity audit | retain |
+| Raw surface packets | independent event checks, root ledger, angular/spectral/wake-flux reconstruction | full-adjudication rows: required reconstruction; coverage rows: derivable cache | omit for coverage; retain for full adjudication |
+| Raw fixed-probe packets | independent validity and convergence checks | full-adjudication rows: required acceptance; coverage rows: derivable cache | omit for coverage; retain for full adjudication |
+| Raw moving-receiver packets | endpoint reduction and validity reconstruction | full-adjudication rows: required acceptance; coverage rows: derivable cache | omit for coverage; retain for full adjudication |
+| Branch-diagnostic packet | branch continuity audit | full-adjudication rows: required root/continuity audit; coverage rows: derivable cache | retain for full adjudication |
 | Sensitivity exact sources | perturbed source identity | required sensitivity provenance | retain |
-| Sensitivity surface/endpoint packets | derivative, topology, and perturbed-gate reconstruction | required sensitivity acceptance | retain |
-| `artifact.payload` for raw packets | authoritative packet bytes | required, but location is negotiable | candidate for immutable externalization |
-| `analytical_raw_artifact` dimensions/context | candidate and event lookup, deterministic export | required index/provenance | retain |
+| Sensitivity surface/endpoint packets | derivative, topology, and perturbed-gate reconstruction | full-adjudication rows: required sensitivity acceptance; coverage rows: omit sensitivity unless explicitly required | retain only where full protocol requires it |
+| `artifact.payload` for raw packets | exact packet bytes | full-adjudication rows: required; coverage rows: derivable cache | omit from coverage storage |
+| `analytical_raw_artifact` hashes, sizes, dimensions, and context | replay target, candidate/stage lookup, deterministic inventory | required replay index/provenance | retain without the payload |
 | `multidimensional_measure.details_json` | row reconstruction and diagnostic context | mixed; many rows may repeat larger structures | field-level consumer audit required |
 | `case_reduced_measure` plus summary multidimensional rows | hot scalar queries and compatibility | possible redundant representation | audit exact consumers before removal |
 | Three multidimensional indexes | metric/root/sensitivity queries | required for current query contract, not acceptance | retain unless query benchmarks justify redesign |
 | Deterministic export files | generated from authoritative database during rebuild | derivable cache | do not retain after check; current staging cleanup already removes them |
 
-No raw ledger is approved for removal. The largest safe opportunity currently
-identified is to change how already-generated gzip bytes are validated and
-where they are stored, not to discard them.
+For the existing archival generation, no raw ledger removal is approved. For a
+new explicitly replayable Monte Carlo coverage lane, raw payload omission is
+approved for continued sandbox design and measurement, not yet for production
+storage. A coverage row cannot receive an acceptance grade whose reconstruction
+requires an omitted ledger.
+
+### Recomputable campaign contract
+
+The phrase “run that configuration again” is exact only if the retained recipe
+contains:
+
+1. family/member identity, every degree-of-freedom value, sample ordinal,
+   sampling algorithm and version, random seed and derived random stream;
+2. exact source record or a source preimage with its source hash;
+3. canonical protocol JSON and protocol hash;
+4. evaluator, reducer, independent-acceptance, and serialization schema
+   versions, plus repository revision and dirty-source identity when applicable;
+5. runtime identity sufficient to reproduce deterministic floating-point and
+   gzip behavior where those byte identities remain in the contract;
+6. result hash, acceptance result and evidence, normalized measurements, gates,
+   raw-packet inventory hashes/sizes/stages, and generation fingerprint.
+
+The broad generation path may compute screening gates from ephemeral packets,
+but it records a diagnostic coverage disposition rather than full independent
+acceptance. A later replay is a determinism check; it is not an independent
+mathematical correctness proof. Promotion requires a full-adjudication rerun
+whose independent-acceptance instrument remains separate and whose required raw
+ledgers are retained.
+
+Tiered payload retention:
+
+- retain all payloads for canonical anchors and every full-adjudication row;
+- promote favorable points, failed or near-threshold gates, anomalies,
+  interrupted or replay-mismatched samples, a declared false-negative sample,
+  and a deterministic audit sample to full adjudication;
+- omit coverage-lane payloads only after recipe durability, compact-row commit,
+  integrity checks, and packet-inventory recording succeed.
+
+New failure mode: the stored recipe survives while its exact evaluator,
+runtime, dependency graph, or source preimage does not. Mitigation requires
+content-addressed source/protocol inputs, versioned instruments, a reproducible
+runtime manifest, periodic sampled replay, and promotion of any replay mismatch
+to retained archival payloads. Compatibility requires a versioned
+`artifact_storage`/retention policy so readers can distinguish inline,
+external, and replay-required artifacts. Existing inline generations remain a
+rollback reference and need no destructive migration.
 
 ### Schema-field retention audit
 
@@ -904,7 +1441,7 @@ measured before a schema change.
 | Table | Field group | Exact live consumer or obligation | Classification |
 | --- | --- | --- | --- |
 | `schema_migration` | migration ID, ordinal, checksum, tool version, timestamps | migration application and schema audit | required operational provenance |
-| `artifact` | artifact hash, kind, media type, codec, raw/stored sizes, payload, producer | full byte/hash verification, result/manifest/summary/source/registry reconstruction, deterministic export | required byte identity and provenance; payload location negotiable |
+| `artifact` | artifact hash, kind, media type, codec, raw/stored sizes, payload, producer | full byte/hash verification, result/manifest/summary/source/registry reconstruction, deterministic export | identity/provenance required; raw payload is a derivable cache only in a replayable campaign |
 | `source_record` | source identity/schema/engine/family/member, canonical envelope, exact-source artifact link, verification state | exact source preimage verification, campaign export, generation candidate joins | required source/protocol provenance |
 | `analysis_protocol` | protocol hash/ID/schema/canonical JSON | protocol identity, result link, deterministic export | required protocol provenance |
 | `analysis_protocol` | parsed speed, coupling, root tolerances, separation and convergence floors | indexed/queryable protocol inspection and conflict checks | derivable cache from canonical JSON |
@@ -925,7 +1462,7 @@ measured before a schema change.
 | `campaign_acceptance` | campaign/instrument/accepted/counts/evidence hash/JSON | accepted campaign export and `accepted_case` | required independent acceptance |
 | `ingest_batch` | batch ID, manifest/importer, state/progress/counts/error/timestamps | transactional progress and completed-ingest proof | required operational audit; timestamp bytes are not result evidence |
 | `methodology_coverage` | identity/path/file hash/impact/reduction versions/canonical JSON | preflight method coverage and provenance | required methodology provenance |
-| `analytical_raw_artifact` | compressed/raw/artifact/manifest identities, candidate/kind/path, dimensions, sizes, context | raw byte verification, candidate/stage lookup, deterministic raw export | required raw-ledger index/provenance |
+| `analytical_raw_artifact` | compressed/raw/artifact/manifest identities, candidate/kind/path, dimensions, sizes, context | raw byte verification or replay comparison, candidate/stage lookup, deterministic inventory | required raw-ledger index/provenance; payload retention is policy-controlled |
 | `multidimensional_measure` | row/result/measure/reducer identities, disposition/value/unit and dimensions | metric/root/sensitivity queries, cohort digest, normalized-row completeness | derivable query cache with required current query consumers |
 | `multidimensional_measure` | `details_json` | row-specific diagnostic reconstruction | mixed diagnostic/derivable representation; field-level equality audit pending |
 | `database_generation` | generation/registry/artifact/instrument/counts/evidence/timestamp | publication cohort completeness, registry hash verification, fingerprint | required generation provenance; completion time is operational metadata |
@@ -933,8 +1470,11 @@ measured before a schema change.
 
 Current removal verdicts:
 
-- No artifact payload, raw-artifact row, acceptance evidence, identity hash, or
+- No acceptance evidence, identity hash, raw-artifact inventory row, or
   generation row is removable on current evidence.
+- Raw packet payloads remain required for archival generations. They are a
+  measured high-value removal candidate for new replayable Monte Carlo
+  generations after the recomputable campaign contract passes replay tests.
 - Parsed protocol scalars, configuration rows, scalar reduced measures, and
   multidimensional rows are genuine normalized caches, but they provide the
   present query contract. Removing them would move parse/reduction cost into
@@ -951,8 +1491,9 @@ Current removal verdicts:
 
 | Representation | Exact bytes and hashes | Schema/FK | Query behavior | Incremental load | Atomicity/corruption | Current verdict |
 | --- | --- | --- | --- | --- | --- | --- |
-| Current SQLite BLOBs | strong | strong | indexed | transactional | single-file staged swap plus verification | retain as baseline |
+| Legacy SQLite BLOB archive | strong | strong | indexed | transactional | single-file staged swap plus verification | explicit legacy only; no default rebuild or automatic recreation |
 | External immutable gzip + SQLite index/measures | strong if directory manifest and raw/compressed hashes are mandatory | strong for metadata | same metadata queries; one file open for payload | appendable by hash | requires staged directory publication and missing-file audit | promising, decision pending full workflow measurement |
+| Compact SQLite replay recipes, identities, scores/gates, measured cost, and compact receipts | exact retained hashes; omitted raw ledgers require replay | strict schema and foreign keys | indexed case/member/status/source/score queries | natural append by campaign | one transaction plus full hash/integrity verification; replay availability is a new dependency | default local Monte Carlo control plane; production-shaped nine-row overhead is 31.8 ms, all-family scale gate pending |
 | SQLite metadata and accepted summaries only + external raw store | raw exactness can remain | strong metadata | loses rejected diagnostic measures unless retained externally | appendable | more reconstruction joins | not yet justified |
 | Gzip NDJSON | exact with explicit encodings and manifest | application-enforced | full scan without auxiliary index | concatenation/rewrite policy needed | staged multi-file manifest | export/interop format, not primary |
 | Gzip CSV | exact binary64 possible only with specified decimal/hex encodings | application-enforced | full scan without auxiliary index | appendable but relationship checks external | staged multi-file manifest | export/staging format, not primary |
@@ -991,21 +1532,39 @@ still-referenced hash. The measured medium result saves only 0.26% total bytes;
 the design is justified only if full-scale publication, checkpoint, copy,
 backup, or recovery time improves enough to pay for those new obligations.
 
-The more aggressive “metadata plus accepted summaries only” design is not
-equivalent to externalizing payloads. It would remove rejected-case normalized
-diagnostics and most multidimensional query rows while retaining raw packets,
-result packets, acceptance evidence, case-reduced summaries, identities, and
-generation provenance. In principle, those raw/result packets can reconstruct
-the removed rows; in the live contract, however, verification requires
-multidimensional-row presence and query consumers read those rows directly.
-Acceptance therefore requires a separately versioned schema, a deterministic
-row-reconstruction tool, byte/row equality against the current database, and
-measured reconstruction/query cost. No such removal is approved by the current
-storage numbers alone.
+The tested recomputable design is not “accepted summaries only.” It retains
+normalized measurements for accepted and rejected samples, gate evidence,
+acceptance, and packet identities; it omits only the bulky raw packet payload.
+Removing normalized diagnostics as well is a separate optimization and is not
+approved by these measurements.
 
 ## Ranked optimization plan
 
-1. **Stop deterministic gzip recompression during import.**
+1. **Use the implemented versioned compact SQLite control plane for the new
+   Monte Carlo campaign.**
+   - Measured medium benefit versus embedded packet BLOBs: 41.1% lower median
+     load/verify/export wall time, 86.7% smaller SQLite database, no retained
+     packet payload bytes, and 99.95% smaller deterministic export.
+   - Coverage lane: preserve the exact sample recipe, source/protocol/result
+     identities, normalized measurements, screening gates, packet identity
+     inventory, and generation fingerprint; grade the row diagnostic.
+   - Full-adjudication lane: retain complete packets and independent acceptance
+     for canonical anchors, favorable points, failures, marginal results,
+     anomalies, replay mismatches, a false-negative sample, and a deterministic
+     audit sample.
+   - Risk: an old sample may become unreplayable because software, runtime, or
+     source preimages were not durably captured.
+   - Rollback: the storage-policy discriminator permits inline/external packet
+     retention; existing archival databases remain unchanged.
+   - Production gate: coverage replay reproduces source, protocol, result,
+     packet inventory, measurements, screening gates, and generation identity;
+     full-adjudication rows additionally reproduce independent acceptance from
+     retained ledgers in a pinned runtime.
+   - Production-shaped anchor: the production compact SQLite schema imported,
+     hash-verified, integrity-checked, and exercised indexed queries in
+     31.803 ms median for nine rows, versus 37.160 s to compute the packet.
+     It stored 196,608 bytes and left no WAL.
+2. **Stop deterministic gzip recompression when a packet is retained.**
    - Measured sampled benefit: 59.0% median total reduction on the medium
      ingestion fixture.
    - Preserve: hash the supplied gzip bytes, decompress once, verify raw size and
@@ -1025,15 +1584,26 @@ storage numbers alone.
      compressed SHA-256 identity detects and records that change.
    - Rollback: restore the recompression/byte-compare path.
    - Production gate: exact full import and rebuild equivalence.
-2. **Measure candidate-level worker parallelism with worker-local artifact
-   directories and deterministic merge.**
-   - Serial no-sensitivity smoke: 41.135 s wall, 41.110 CPU seconds,
-     0.999 CPU-core equivalent; surface work was 39.715 s.
-   - This verifies the earlier one-core observation for one candidate fixture.
-   - The first full matrix was rejected for code drift and the frozen rerun was
-     stopped when a competing full rebuild made wall time invalid. The
-     uncontended 1/2/4 rerun remains pending.
-3. **Evaluate external immutable packets plus a smaller SQLite database.**
+3. **Use a bounded six-worker pool for compact Monte Carlo evaluation on this
+   machine.**
+   - The six-worker extension measured 2,498 test points/hour median
+     (2,301–2,520 across runs), 2.229x serial throughput, and 1.19 GB median
+     peak RSS.
+   - Eight workers regressed to 2,346 tests/hour while median peak RSS rose to
+     1.54 GB. Median CPU use barely changed from 5.060 to 5.145 core
+     equivalents, identifying a practical saturation point before all eight
+     logical CPUs.
+   - Preserve deterministic task definitions and sorted merge. Add a bounded
+     dynamic queue because static round-robin partitions contain unequal case
+     costs.
+   - Risk: the three-member fixture may not represent the cost distribution
+     across all 21 families; background contention can also create severe
+     outliers.
+   - Rollback: `--workers 1` is the exact-output serial path.
+   - Production gate: repeat on representative samples from all 21 families
+     and retain individual runs, not just a median.
+4. **Use external immutable packets for selectively retained Monte Carlo
+   exceptions, not for every ordinary accepted sample.**
    - Measured medium storage: 331.5 MB packet store plus 50.9 MB SQLite versus
      383.5 MB current SQLite.
    - Immediate size saving is small because packets remain required; operational
@@ -1041,38 +1611,53 @@ storage numbers alone.
    - New failure mode: missing, renamed, partially published, or mismatched
      external file. Mandatory manifest/hash coverage and atomic directory
      publication are required.
-4. **Profile exact multidimensional-row construction and hashing.**
+5. **Profile exact multidimensional-row construction and hashing.**
    - Persistent statements alone did not improve total sampled time.
    - The harness replay does not include production
      `completeCycleMultidimensionalRows()` construction,
      `sha256Canonical(identity)`, or `canonicalBytes(details)`.
-5. **Do not change durability pragmas, foreign-key timing, journal mode, batch
-   size, or index timing on current evidence.**
-   - The controlled small matrix found no benefit outside noise.
-6. **Keep CSV/NDJSON as deterministic export or staging formats.**
+6. **Use rollback journal for the compact build-once control plane; keep WAL
+   experimental rather than default.**
+   - WAL became pathological because a single transaction inserted tens of
+     gigabytes of BLOBs. The recomputable medium database had a 51.36 MB peak
+     WAL rather than 337.04 MB.
+   - Keep final integrity and atomic publication. Revisit journal mode only
+     after the payload-free production-shaped load is measured.
+   - The production compact control plane now uses rollback journal and left
+     zero WAL bytes in every measured repetition. This is operational
+     simplification, not a claimed speedup.
+7. **Do not change foreign-key timing, batch size, or index timing on current
+   evidence.**
+   - The controlled small and medium matrices found no material benefit.
+8. **Keep CSV/NDJSON as deterministic export or staging formats.**
    - Their write/storage advantage does not compensate for reconstructing the
      database contract.
 
 ## Open experiments
 
-1. Finish the 1/2/4 candidate-worker matrix and calculate serial fraction and
-   Amdahl upper bounds.
-2. Run a representative-large direct-gzip versus current ingestion comparison.
+1. Compare static round-robin with a bounded dynamic worker queue on a frozen,
+   representative 21-family compact fixture and isolate analytical versus
+   compression contention.
+2. Scale the production compact SQLite schema across a representative
+   all-family inventory and measure append, verification, export, and query
+   behavior.
 3. Build an exact one-candidate import fixture from the published generation to
    include preflight JSON parsing, independent acceptance, normalized-row
    construction, and result hashing.
-4. Run the unchanged full `rebuild-all --check` with `runtimeProfile`, Node CPU
-   profile, and OS resource measurements.
+4. Run another full legacy archival rebuild only if a remaining archival
+   question justifies its cost, using explicit
+   `legacy-rebuild-all --database <sandbox-path> --check` with `runtimeProfile`,
+   a Node CPU profile, and OS resource measurements.
 5. Compare a production-compatible direct-gzip experimental importer against
    current output: source hashes, protocol hashes, result hashes, acceptance,
    metric rows, generation fingerprint, deterministic export inventory, and
    `integrity: ok`.
-6. Measure full-scale external-packet publication, missing-file audit, backup,
-   recovery, and query latency before changing the storage contract.
+6. Measure a production-shaped recomputable database plus selectively retained
+   exceptions before changing the storage contract.
 
 ## Completion gate
 
-No production recommendation is accepted until:
+No legacy archival-database optimization is accepted until:
 
 - the full unchanged baseline explains nearly all wall time;
 - the variant processes logically identical inputs;
@@ -1082,3 +1667,12 @@ No production recommendation is accepted until:
 - peak memory, WAL, temporary files, and disk amplification are measured;
 - the failure and rollback models are explicit; and
 - no production database or artifact is deleted or overwritten.
+
+The compact Monte Carlo control plane has a separate gate: the serialized
+campaign and case hashes validate; exact rerun instructions and compact
+scores/gates survive deterministic import/query/export; null-score rejected
+draws survive with their structured reason; SQLite reports `integrity: ok` and
+zero foreign-key failures; and the schema contains no BLOB or raw-artifact
+storage. The focused tests satisfy that local-conformance gate. Independent
+acceptance still requires a separately retained full-adjudication packet and is
+not implied by compact replay.

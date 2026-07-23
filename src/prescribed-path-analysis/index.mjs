@@ -4,6 +4,7 @@ export * from "./AnalyticalBraidEvaluator.mjs";
 export * from "./B1CompleteCycleProbeProtocol.mjs";
 export * from "./B1StreamingReductions.mjs";
 export * from "./CompleteCycleAnalyticalCampaign.mjs";
+export * from "./CompactMonteCarloCampaign.mjs";
 export * from "./CommonAxisBraidTrain.mjs";
 export * from "./CommonAxisBraidPilot.mjs";
 export * from "./CommonAxisBraidCampaign.mjs";

@@ -4,9 +4,9 @@
   "requiredMeasureCount": 29,
   "methodology": {
     "path": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-    "sha256": "5139c308c175b00efc6c3b6acf45e592491f7921468a725d90854a7b9271fda6",
+    "sha256": "2311dd032c50800e284579a5901d659af77f37cdbab17dc6dc14eafa50c3ab57",
     "impactReview": "reviewed-for-complete-cycle-campaign-v1",
-    "impactNote": "Reviewed after the Family-C general coaxial chart and common-axis campaign protocol were made explicit. C1 and C2 add exact prescribed sources to the live catalog, while the specialized common-axis campaign remains separate; no existing all-candidate measure, gate, producer, or publication disposition changes."
+    "impactNote": "Reviewed after event-specific multiple-root isolation, drawn-not-evaluated rows, translating-center closure, the full bounded taxonomy sampler, compact resolution calibration, and the N=64 production boundary were made explicit. The existing 29 complete-cycle analytical measures and their full-adjudication publication dispositions remain unchanged. Compact Monte Carlo rows are diagnostic, omit acceptance-bearing raw evidence, and cannot enter accepted_case until rerun through the full independently checked protocol."
   },
   "reductionVersions": [
     "prescribed-record-analytics/complete-cycle-campaign-reducer.v1",
@@ -45,7 +45,7 @@
       "producer": "evaluatePrescribedRecordAnalysis",
       "resultPacketLocation": "rawLedgers.causalRoots",
       "sqliteProjection": "raw analytical artifact; causal_root_projection",
-      "validityGates": ["source-speed", "root-completeness"],
+      "validityGates": ["causal-root-domain", "root-completeness"],
       "convergence": "primary versus tighter root tolerance with identity equality",
       "independentEvidence": "static and uniform-collinear closed forms",
       "status": "implemented",
@@ -146,11 +146,11 @@
       "obligation": "root topology plus births, deaths, and folds",
       "methodologyLocation": "Root-topology ledger; branch-by-branch derivative rule",
       "requiredFields": ["transmitter id", "root ordinal", "time order", "root status"],
-      "applicability": "all streamed events; folds are excluded by the certified simple-root domain",
+      "applicability": "all streamed events; unresolved possible folds remain drawn but not evaluated",
       "producer": "complete-cycle campaign reducer",
       "resultPacketLocation": "diagnosticReductions.rootTopology",
       "sqliteProjection": "root_topology_projection",
-      "validityGates": ["root-completeness", "sub-field-speed-domain"],
+      "validityGates": ["root-completeness", "causal-root-domain"],
       "convergence": "primary and refined topology identity",
       "independentEvidence": "deliberate topology-change fixture rejects cross-branch differencing",
       "status": "newly-implemented",

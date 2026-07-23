@@ -256,6 +256,35 @@ test("versioned migrations are checksummed and idempotent", () => {
   }
 });
 
+test("disposable staging pragmas are explicit opt-in settings", () => {
+  const directory = temporaryDirectory("aaa-analytical-db-pragmas");
+  try {
+    const databasePath = path.join(directory, "campaign.sqlite3");
+    const database = openAnalyticalCampaignDatabase(databasePath, {
+      experimentalJournalMode: "OFF",
+      experimentalSynchronous: "OFF",
+    });
+    assert.equal(
+      String(database.prepare("PRAGMA journal_mode").get().journal_mode).toLowerCase(),
+      "off",
+    );
+    assert.equal(
+      Number(database.prepare("PRAGMA synchronous").get().synchronous),
+      0,
+    );
+    database.close();
+    assert.throws(
+      () => openAnalyticalCampaignDatabase(
+        path.join(directory, "invalid.sqlite3"),
+        { experimentalJournalMode: "invalid" },
+      ),
+      /experimentalJournalMode/,
+    );
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
 test("failed independent preflight writes no campaign artifacts", () => {
   const directory = temporaryDirectory("aaa-analytical-db-reject");
   try {
