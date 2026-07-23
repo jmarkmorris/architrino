@@ -49,7 +49,7 @@ test("braid taxonomy scanner detects each retired terminology class", () => {
 
 test("braid taxonomy scanner audits member and family labels while enforcing the approved public app name", () => {
   const source = [
-    "The A1 candidate is compared with B1, C1, C2, and Family-A geometry.",
+    "The A1 candidate is compared with B1, C1, C4, and Family-A geometry.",
     "The Ideal Noether Braid app displays a prescribed path.",
   ].join("\n");
   const reportFindings = scanTextForBraidTaxonomyTerminology(source, "synthetic.md");

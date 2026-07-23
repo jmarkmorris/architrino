@@ -1,12 +1,12 @@
 {
   "schema": "prescribed-braid-spec.v1",
   "specId": "illustrative-full-cap-axial-spindle-boundary-v0",
-  "label": "B1 — all-axial boundary",
-  "provenanceDescription": "Exact B1 prescribed display paths with zero transverse orbit radius for all three binaries; the legacy source identity is retained only for stable machine compatibility.",
+  "label": "B1.4 — all-axial boundary",
+  "provenanceDescription": "Exact B1.4 prescribed display paths with zero transverse orbit radius for all three binaries; the legacy source identity is retained only for stable machine compatibility.",
   "claimGrade": "chart-hypothesis",
   "evidenceStatus": "display-only",
   "date": "2026-07-22",
-  "taxonomy": { "familyId": "B", "familyLabel": "Family B", "memberId": "B1", "memberLabel": "rigid common-frequency", "instantiationLabel": "all-axial boundary", "displayLabel": "B1 — all-axial boundary", "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#coordinate-boundaries" },
+  "taxonomy": { "familyId": "B", "familyLabel": "Family B", "memberId": "B1.4", "memberLabel": "all-axial boundary", "displayLabel": "B1.4 — all-axial boundary", "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#b1-catalog-members" },
   "illustrativeCoordinates": { "status": "prescribed-display-coordinates", "choices": ["The center, common axis, radii, common frequency, phases, polarity assignments, and all-axial coordinate boundary are prescribed display coordinates inherited from the verified legacy record."] },
   "compatibility": { "retainedIdentifiers": [
     { "kind": "source-spec-id", "value": "illustrative-full-cap-axial-spindle-boundary-v0", "reason": "Stable source identity consumed by existing record links." },

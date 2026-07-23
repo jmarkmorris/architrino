@@ -104,7 +104,7 @@ Ordered by marginal ROI on 2026-07-17. The external `theory_closure_first` depen
 Closure goal:
 Design the long-term Archie service platform so the eventual question interface is deployed correctly instead of becoming a static/local-source UI prototype.
 
-Use the `aaa-corpus-advancement` skill in edit-batch mode.
+Use the compatibility-identifier `aaa-corpus-advancement` skill in edit-batch mode.
 
 Context:
 - The main-ring sphere now routes to `content/scenes/archie/archie.json`.

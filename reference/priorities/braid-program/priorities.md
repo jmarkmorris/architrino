@@ -35,6 +35,10 @@ Walk up from the smallest object, certifying dynamical behavior at each rung bef
 4. **Six architrinos: braid candidates.** Screening over the configuration chart nominates candidates; evolution decides them.
 5. **Assembly mapping.** Photon-carrier and charged-lepton campaigns open only after a persistent object exists to map.
 
+## Parallel Analytical Lanes
+
+- [`common_axis_braid_train_analytics`](common-axis-braid-train-analytics.md) — Operator-directed prescribed-path lane for the six-architrino Family-B dimension extension and the general twelve-architrino coaxial Family-C chart, with an optional six-worldline Accessory Configuration. C1/C2 are the general co-/counter-rotating members; C3/C4 are the coaxial two-B1 loci; C5/C6 are their all-equatorial loci. The prior twelve-row $c_f=4$ pilot is historical diagnostic evidence only and cannot negatively rank the enormous common-axis space. A current campaign must use $c_f=1$, co-translating exterior probes, translation controls, and space-filling coverage.
+
 ## Queue
 
 1. Operator ratifies charter ([README.md](README.md)), this strategy, and [method.md](method.md). The [instrument gate](campaigns/instrument-gate.md) is ratified as of 2026-07-16: accepted/barred capabilities with evidence pointers, per-campaign booking checklist, and the adopted `assembly-view-record.v0` schema.

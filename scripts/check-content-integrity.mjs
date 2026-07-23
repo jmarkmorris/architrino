@@ -56,6 +56,18 @@ const CHECKS = [
     name: "Smoke test manifest runtime routes/search",
     args: ["scripts/smoke-option3.mjs"],
   },
+  {
+    name: "Test fail-closed pre-push gate policy",
+    args: ["--test", "tests/pre-push-gate-policy.test.js"],
+  },
+  {
+    name: "Test PR procedure and gate conformance",
+    args: ["--test", "tests/pr-branch-process-conformance.test.js"],
+  },
+  {
+    name: "Test exact-state PR validation receipts",
+    args: ["--test", "tests/pr-validation-receipt.test.js"],
+  },
 ];
 
 function formatDuration(ms) {

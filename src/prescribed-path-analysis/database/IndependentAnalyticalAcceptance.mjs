@@ -6,19 +6,37 @@ import {
 } from "../AnalyticalBraidEvaluator.mjs";
 
 export const INDEPENDENT_ACCEPTANCE_INSTRUMENT_VERSION =
-  "prescribed-record-independent-acceptance/v1";
+  "prescribed-record-independent-acceptance/v2";
 
 const RESULT_PACKET_SCHEMA = "prescribed-path-analysis/result-packet.v1";
 const PROTOCOL_SCHEMA = "prescribed-path-analysis/analysis-protocol.v1";
-const ROOT_POLICY = "all-retained-simple-roots/sub-field-speed-certified.v1";
+const COMPLETE_CYCLE_RESULT_SCHEMA =
+  "prescribed-path-analysis/complete-cycle-candidate-result.v1";
+const COMPLETE_CYCLE_PROTOCOL_SCHEMA =
+  "prescribed-path-analysis/complete-cycle-probe-protocol.v1";
+const LEGACY_ROOT_POLICY =
+  "all-retained-simple-roots/sub-field-speed-certified.v1";
+const EVENT_SPECIFIC_ROOT_POLICY =
+  "all-retained-roots/event-specific-isolation-certified.v2";
+const ROOT_POLICIES = new Set([
+  LEGACY_ROOT_POLICY,
+  EVENT_SPECIFIC_ROOT_POLICY,
+]);
 const REQUIRED_EXCLUDED_CLAIMS = Object.freeze([
   "stability",
   "energy",
   "retention",
   "physical-realization",
 ]);
-const CORE_GATE_IDS = Object.freeze([
+const LEGACY_CORE_GATE_IDS = Object.freeze([
   "source-speed",
+  "root-completeness",
+  "root-transversality",
+  "minimum-separation",
+  "numerical-convergence",
+]);
+const EVENT_SPECIFIC_CORE_GATE_IDS = Object.freeze([
+  "causal-root-domain",
   "root-completeness",
   "root-transversality",
   "minimum-separation",
@@ -67,6 +85,37 @@ function uniqueStrings(values) {
   return Array.isArray(values) && values.every(
     (value) => typeof value === "string" && value.length > 0,
   ) && new Set(values).size === values.length;
+}
+
+function completeOrdinalSequence(values) {
+  return Array.isArray(values) &&
+    values.every((value) => Number.isSafeInteger(value) && value >= 0) &&
+    new Set(values).size === values.length &&
+    values.slice().sort((left, right) => left - right)
+      .every((value, index) => value === index);
+}
+
+function eventSpecificIsolationCertificatePassed(root) {
+  const certificate = root?.rootIsolationCertificate;
+  return certificate?.method === "event-specific-derivative-isolation.v2" &&
+    Array.isArray(certificate.isolatedInterval) &&
+    certificate.isolatedInterval.length === 2 &&
+    certificate.isolatedInterval.every(finite) &&
+    certificate.isolatedInterval[1] >= certificate.isolatedInterval[0] &&
+    Array.isArray(certificate.residualRange) &&
+    certificate.residualRange.length === 2 &&
+    certificate.residualRange.every(finite) &&
+    Array.isArray(certificate.derivativeRange) &&
+    certificate.derivativeRange.length === 2 &&
+    certificate.derivativeRange.every(finite) &&
+    (certificate.derivativeRange[0] > 0 ||
+      certificate.derivativeRange[1] < 0) &&
+    finite(certificate.distanceLowerBound) &&
+    certificate.distanceLowerBound > 0 &&
+    finite(certificate.secondDerivativeBound) &&
+    certificate.secondDerivativeBound >= 0 &&
+    Number.isSafeInteger(certificate.subdivisionDepth) &&
+    certificate.subdivisionDepth >= 0;
 }
 
 function expectedTransmitterIds(packet) {
@@ -241,6 +290,8 @@ function minimumLedger(rows, expectedIds) {
   }
   let minimum = Number.POSITIVE_INFINITY;
   let minimumRow = null;
+  let certifiedContinuousLowerBound = Number.POSITIVE_INFINITY;
+  let certificateRow = null;
   for (const row of rows) {
     const pairKey = [row?.leftTransmitterId, row?.rightTransmitterId]
       .sort().join("\u0000");
@@ -250,7 +301,26 @@ function minimumLedger(rows, expectedIds) {
         !expectedIds.includes(row.rightTransmitterId) ||
         row.leftTransmitterId === row.rightTransmitterId ||
         !finite(row.minimumSeparation) || row.minimumSeparation < 0 ||
-        !finite(row.firstMinimumSampleTime)) {
+        !finite(row.firstMinimumSampleTime) ||
+        !finite(row.relativeSpeedUpperBound) || row.relativeSpeedUpperBound < 0 ||
+        typeof row.relativePeriodClosed !== "boolean" ||
+        !finite(row.relativePeriodClosureResidual) ||
+        row.relativePeriodClosureResidual < 0 ||
+        !finite(row.relativePeriodClosureTolerance) ||
+        row.relativePeriodClosureTolerance < 0 ||
+        row.relativePeriodClosed !==
+          (row.relativePeriodClosureResidual <= row.relativePeriodClosureTolerance) ||
+        !finite(row.sampleCoveringRadius) || row.sampleCoveringRadius < 0 ||
+        !finite(row.continuousLowerBound) || row.continuousLowerBound < 0 ||
+        row.certificateRule !== "periodic-sample-lipschitz-lower-bound.v1" ||
+        !closeEnough(
+          row.continuousLowerBound,
+          Math.max(
+            0,
+            row.minimumSeparation -
+              row.relativeSpeedUpperBound * row.sampleCoveringRadius,
+          ),
+        )) {
       return null;
     }
     pairIds.add(row.pairId);
@@ -259,17 +329,26 @@ function minimumLedger(rows, expectedIds) {
       minimum = row.minimumSeparation;
       minimumRow = row;
     }
+    if (row.continuousLowerBound < certifiedContinuousLowerBound) {
+      certifiedContinuousLowerBound = row.continuousLowerBound;
+      certificateRow = row;
+    }
   }
   if (observedPairs.size !== expectedPairs.size) return null;
-  return { minimum, minimumRow, rowCount: rows.length };
+  return {
+    minimum,
+    minimumRow,
+    certifiedContinuousLowerBound,
+    certificateRow,
+    rowCount: rows.length,
+  };
 }
 
-function convergenceMaximum(packet, primaryMinimum, refinedMinimum) {
+function convergenceMaximum(packet) {
   const rows = packet.rawLedgers?.numericalConvergence;
   if (!Array.isArray(rows)) return null;
-  let maximum = Math.abs(primaryMinimum.minimum - refinedMinimum.minimum);
-  let identitiesMatch = primaryMinimum.minimumRow.pairId ===
-    refinedMinimum.minimumRow.pairId;
+  let maximum = 0;
+  let identitiesMatch = true;
   for (const row of rows) {
     const scalars = [
       row.maximumEmissionTimeChange,
@@ -316,6 +395,141 @@ function closureProjectionMatches(packet, expectedIds) {
     closeEnough(reduced.maximumPhaseResidual, maximumPhase);
 }
 
+function verifyCompleteCyclePacketAcceptance(packet, rawBytes, options) {
+  const artifactHash = sha256Bytes(rawBytes);
+  const claimedResultHash = packet.resultHash;
+  const computedResultHash = sha256Canonical(withoutField(packet, "resultHash"));
+  const computedProtocolHash = sha256Canonical(packet.completeCycleProtocol);
+  const eventSpecificRootPolicy =
+    packet.completeCycleProtocol?.eventEvaluator?.rootPolicy?.id ===
+      EVENT_SPECIFIC_ROOT_POLICY;
+  const identityPassed = hashLooksValid(claimedResultHash) &&
+    claimedResultHash === computedResultHash &&
+    hashLooksValid(packet.source?.sourceHash) &&
+    packet.source.sourceHash === packet.source.exactSourceRecordHash &&
+    hashLooksValid(packet.completeCycleProtocolHash) &&
+    packet.completeCycleProtocolHash === computedProtocolHash &&
+    (!options.expectedProtocolHash ||
+      packet.completeCycleProtocolHash === options.expectedProtocolHash);
+  const boundaryPassed = packet.schema === COMPLETE_CYCLE_RESULT_SCHEMA &&
+    packet.completeCycleProtocol?.schema === COMPLETE_CYCLE_PROTOCOL_SCHEMA &&
+    ROOT_POLICIES.has(
+      packet.completeCycleProtocol?.eventEvaluator?.rootPolicy?.id,
+    ) &&
+    packet.reducer?.pathEvolutionInvoked === false &&
+    packet.reducer?.eomSolverInvoked === false &&
+    packet.claimGrade === "derived" &&
+    canonicalEqual(packet.excludedClaims, REQUIRED_EXCLUDED_CLAIMS);
+  const gateEntries = Object.entries(packet.gates ?? {});
+  const gateInventoryPassed = gateEntries.length === 7 &&
+    gateEntries.every(([id, passed]) => typeof id === "string" && typeof passed === "boolean");
+  const derivedAccepted = gateInventoryPassed && gateEntries.every(([, passed]) => passed);
+  const producerStatusConsistencyPassed =
+    packet.status?.accepted === derivedAccepted &&
+    packet.status?.disposition === (derivedAccepted ? "accepted" : "diagnostic-only") &&
+    canonicalEqual(
+      packet.status?.failedGates,
+      gateEntries.filter(([, passed]) => !passed).map(([id]) => id),
+    ) &&
+    (derivedAccepted ? packet.reducedMeasures !== null : packet.reducedMeasures === null);
+  const rawArtifacts = packet.rawArtifactInventory;
+  const rawArtifactInventoryPassed = Array.isArray(rawArtifacts) &&
+    rawArtifacts.length > 0 &&
+    rawArtifacts.every((row) =>
+      hashLooksValid(row?.rawSha256) &&
+      hashLooksValid(row?.compressedSha256) &&
+      row.codec === "gzip" &&
+      typeof row.path === "string" &&
+      Number.isSafeInteger(row.rawBytes) && row.rawBytes > 0 &&
+      Number.isSafeInteger(row.storedBytes) && row.storedBytes > 0);
+  const surface = packet.diagnosticReductions?.surface?.surface;
+  const surfaceProjectionPassed = ["primary", "refined"].every((resolution) =>
+    Array.isArray(surface?.[resolution]) &&
+    surface[resolution].length === packet.completeCycleProtocol.enclosingSurfaces.radii.length &&
+    surface[resolution].every((row) =>
+      row.wakeFlux?.rawEmissionReference?.passed === true &&
+      row.wakeFlux?.signedEmissionReference?.passed === true));
+  const projectionConsistencyPassed = gateInventoryPassed &&
+    rawArtifactInventoryPassed && surfaceProjectionPassed;
+  const structuralPassed = identityPassed && boundaryPassed &&
+    projectionConsistencyPassed && producerStatusConsistencyPassed;
+  const gates = [
+    makeGate({
+      gateId: "identity-and-boundary",
+      passed: identityPassed && boundaryPassed,
+      comparator: "all-contract-checks-pass",
+      failureCode: "identity-or-boundary-invalid",
+      details: { artifactHash, claimedResultHash, computedResultHash },
+    }),
+    makeGate({
+      gateId: eventSpecificRootPolicy
+        ? "causal-root-domain"
+        : "source-speed",
+      passed: structuralPassed,
+      comparator: "retained-raw-artifact-and-producer-gate",
+      failureCode: eventSpecificRootPolicy
+        ? "causal-root-domain-evidence-invalid"
+        : "source-speed-evidence-invalid",
+    }),
+    makeGate({
+      gateId: "root-completeness",
+      passed: structuralPassed,
+      comparator: "retained-raw-artifact-and-producer-gate",
+      failureCode: "root-completeness-evidence-invalid",
+    }),
+    makeGate({
+      gateId: "projection-consistency",
+      passed: projectionConsistencyPassed,
+      comparator: "raw-artifact-inventory-and-reference-projections-complete",
+      failureCode: "projection-consistency-failed",
+    }),
+    makeGate({
+      gateId: "producer-status-consistency",
+      passed: producerStatusConsistencyPassed,
+      comparator: "status-equals-derived-complete-cycle-gates",
+      failureCode: "producer-status-inconsistent",
+    }),
+    ...gateEntries.map(([gateId, passed]) => makeGate({
+      gateId: `complete-cycle/${gateId}`,
+      passed,
+      comparator: "producer-gate-pass",
+      failureCode: `complete-cycle-${gateId}-failed`,
+    })),
+  ];
+  const accepted = structuralPassed && derivedAccepted;
+  const failureCodes = gates.filter((gate) => !gate.passed)
+    .map((gate) => gate.failureCode).sort();
+  const evidenceWithoutHash = {
+    schema: "prescribed-record-analytics/independent-case-acceptance.v1",
+    instrumentVersion: INDEPENDENT_ACCEPTANCE_INSTRUMENT_VERSION,
+    evidenceScope:
+      "structural acceptance; mathematical correctness is supplied by separately authored closed-form tests",
+    resultHash: claimedResultHash ?? null,
+    artifactHash,
+    protocolHash: packet.completeCycleProtocolHash ?? null,
+    sourceHash: packet.source?.sourceHash ?? null,
+    accepted,
+    coreGateIds: eventSpecificRootPolicy
+      ? EVENT_SPECIFIC_CORE_GATE_IDS
+      : LEGACY_CORE_GATE_IDS,
+    gates,
+    failureCodes,
+  };
+  const evidenceHash = sha256Canonical(evidenceWithoutHash);
+  return {
+    packet,
+    artifactHash,
+    resultHash: claimedResultHash,
+    protocolHash: packet.completeCycleProtocolHash,
+    sourceHash: packet.source?.sourceHash,
+    accepted,
+    gates,
+    failureCodes,
+    evidenceHash,
+    evidence: { ...evidenceWithoutHash, evidenceHash },
+  };
+}
+
 export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
   const rawBytes = Buffer.isBuffer(packetBytes)
     ? packetBytes
@@ -326,6 +540,9 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
   } catch (error) {
     throw new TypeError(`result packet is not valid JSON: ${error.message}`);
   }
+  if (packet.schema === COMPLETE_CYCLE_RESULT_SCHEMA) {
+    return verifyCompleteCyclePacketAcceptance(packet, rawBytes, options);
+  }
 
   const issues = [];
   const addIssue = (code) => {
@@ -335,6 +552,8 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
   const claimedResultHash = packet.resultHash;
   const computedResultHash = sha256Canonical(withoutField(packet, "resultHash"));
   const computedProtocolHash = sha256Canonical(packet.protocol);
+  const eventSpecificRootPolicy =
+    packet.protocol?.rootPolicy?.id === EVENT_SPECIFIC_ROOT_POLICY;
   const identityPassed = hashLooksValid(claimedResultHash) &&
     claimedResultHash === computedResultHash &&
     hashLooksValid(packet.source?.sourceHash) &&
@@ -345,7 +564,7 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
 
   const boundaryPassed = packet.schema === RESULT_PACKET_SCHEMA &&
     packet.protocol?.schema === PROTOCOL_SCHEMA &&
-    packet.protocol?.rootPolicy?.id === ROOT_POLICY &&
+    ROOT_POLICIES.has(packet.protocol?.rootPolicy?.id) &&
     packet.evaluator?.pathEvolutionInvoked === false &&
     packet.evaluator?.eomSolverInvoked === false &&
     packet.claimGrade === "derived" &&
@@ -378,33 +597,82 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
       const noRoots = Array.isArray(event?.noRootTransmitters)
         ? event.noRootTransmitters
         : [];
-      const observedIds = [
-        ...roots.map((root) => root.transmitterId),
-        ...noRoots.map((row) => row.transmitterId),
-      ];
+      const rootedIds = roots.map((root) => root.transmitterId);
+      const noRootIds = noRoots.map((row) => row.transmitterId);
+      const representedIds = new Set([...rootedIds, ...noRootIds]);
       const eventIdentityPassed = event?.eventId === definition.eventId &&
         event?.probeId === definition.probeId &&
         closeEnough(event?.observationTime, definition.observationTime) &&
         reducedEvent?.eventId === definition.eventId;
-      const coveragePassed = uniqueStrings(observedIds) &&
-        canonicalEqual([...observedIds].sort(), [...expectedIds].sort()) &&
+      const transmitterCertificates =
+        event?.rootCompletenessCertification?.transmitterCertificates;
+      const certificateIds = Array.isArray(transmitterCertificates)
+        ? transmitterCertificates.map((row) => row?.transmitterId)
+        : [];
+      const rootsByTransmitter = new Map(expectedIds.map((id) => [id, []]));
+      for (const root of roots) {
+        rootsByTransmitter.get(root?.transmitterId)?.push(root);
+      }
+      const ordinalsPassed = expectedIds.every((id) =>
+        completeOrdinalSequence(
+          rootsByTransmitter.get(id).map((root) => root.rootOrdinal),
+        ));
+      const certificateCoveragePassed = eventSpecificRootPolicy
+        ? uniqueStrings(certificateIds) &&
+          canonicalEqual([...certificateIds].sort(), [...expectedIds].sort()) &&
+          transmitterCertificates.every((certificate) =>
+            certificate?.complete === true &&
+            Number.isSafeInteger(certificate.rootCount) &&
+            certificate.rootCount >= 0 &&
+            certificate.rootCount ===
+              rootsByTransmitter.get(certificate.transmitterId)?.length &&
+            Array.isArray(certificate.retainedInterval) &&
+            certificate.retainedInterval.length === 2 &&
+            certificate.retainedInterval.every(finite) &&
+            finite(certificate.certifiedSpeedBound) &&
+            certificate.certifiedSpeedBound >= 0 &&
+            finite(certificate.certifiedAccelerationBound) &&
+            certificate.certifiedAccelerationBound >= 0 &&
+            Number.isSafeInteger(certificate.intervalCount) &&
+            certificate.intervalCount > 0 &&
+            Number.isSafeInteger(certificate.maximumSubdivisionDepthReached) &&
+            certificate.maximumSubdivisionDepthReached >= 0)
+        : true;
+      const coveragePassed =
+        rootedIds.every((id) => expectedIds.includes(id)) &&
+        uniqueStrings(noRootIds) &&
+        noRootIds.every((id) => expectedIds.includes(id)) &&
+        noRootIds.every((id) => !rootsByTransmitter.get(id)?.length) &&
+        representedIds.size === expectedIds.length &&
+        expectedIds.every((id) => representedIds.has(id)) &&
+        ordinalsPassed && certificateCoveragePassed &&
         event.rootCount === roots.length && event.noRootCount === noRoots.length;
       rootCompletenessPassed = rootCompletenessPassed && eventIdentityPassed &&
         coveragePassed;
 
       for (const root of roots) {
         const rootNumbersPassed = root.rootStatus === "retained-simple-root" &&
-          root.rootOrdinal === 0 && finite(root.residual) &&
+          Number.isSafeInteger(root.rootOrdinal) && root.rootOrdinal >= 0 &&
+          finite(root.residual) &&
           Math.abs(root.residual) <= packet.protocol.rootPolicy.tolerance &&
           finite(root.certifiedSpeedBound) &&
-          finite(root.certifiedMonotonicityMargin) &&
-          finite(root.transmitterSideFactorDt) && root.transmitterSideFactorDt > 0 &&
+          root.certifiedSpeedBound >= 0 &&
+          finite(root.transmitterSideFactorDt) &&
+          (eventSpecificRootPolicy
+            ? root.transmitterSideFactorDt !== 0
+            : root.transmitterSideFactorDt > 0) &&
           finite(root.rootTransversalityMargin) &&
           closeEnough(
             root.rootTransversalityMargin,
             Math.abs(root.transmitterSideFactorDt),
           ) && finite(root.signedWakeContribution) &&
-          finite(root.unsignedWakeContribution) && root.unsignedWakeContribution >= 0;
+          finite(root.unsignedWakeContribution) &&
+          root.unsignedWakeContribution >= 0 &&
+          (eventSpecificRootPolicy
+            ? finite(root.certifiedAccelerationBound) &&
+              root.certifiedAccelerationBound >= 0 &&
+              eventSpecificIsolationCertificatePassed(root)
+            : finite(root.certifiedMonotonicityMargin));
         if (!rootNumbersPassed) {
           sourceSpeedPassed = false;
           rootCompletenessPassed = false;
@@ -412,14 +680,16 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
           continue;
         }
         const margin = packet.protocol.fieldSpeed - root.certifiedSpeedBound;
-        sourceSpeedMargin = Math.min(
-          sourceSpeedMargin,
-          margin,
-          root.certifiedMonotonicityMargin,
-        );
-        sourceSpeedPassed = sourceSpeedPassed && margin > 0 &&
-          root.certifiedMonotonicityMargin > 0 &&
-          closeEnough(root.certifiedMonotonicityMargin, margin);
+        if (!eventSpecificRootPolicy) {
+          sourceSpeedMargin = Math.min(
+            sourceSpeedMargin,
+            margin,
+            root.certifiedMonotonicityMargin,
+          );
+          sourceSpeedPassed = sourceSpeedPassed && margin > 0 &&
+            root.certifiedMonotonicityMargin > 0 &&
+            closeEnough(root.certifiedMonotonicityMargin, margin);
+        }
         rootTransversalityMargin = Math.min(
           rootTransversalityMargin,
           root.rootTransversalityMargin,
@@ -437,26 +707,35 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
       }
       for (const noRoot of noRoots) {
         const margin = packet.protocol.fieldSpeed - noRoot.certifiedSpeedBound;
-        const reasonMatchesEndpointSigns =
-          (noRoot.reason === "root_precedes_retained_history" &&
-            noRoot.endpointResiduals?.[0] > packet.protocol.rootPolicy.tolerance) ||
-          (noRoot.reason === "root_follows_retained_history" &&
-            noRoot.endpointResiduals?.[1] < -packet.protocol.rootPolicy.tolerance);
+        const reasonMatchesEndpointSigns = eventSpecificRootPolicy
+          ? noRoot.reason === "certified_no_retained_root"
+          : (noRoot.reason === "root_precedes_retained_history" &&
+              noRoot.endpointResiduals?.[0] >
+                packet.protocol.rootPolicy.tolerance) ||
+            (noRoot.reason === "root_follows_retained_history" &&
+              noRoot.endpointResiduals?.[1] <
+                -packet.protocol.rootPolicy.tolerance);
         const rowPassed = noRoot.rootCount === 0 &&
           typeof noRoot.reason === "string" &&
           Array.isArray(noRoot.endpointResiduals) &&
           noRoot.endpointResiduals.length === 2 &&
           noRoot.endpointResiduals.every(finite) &&
           finite(noRoot.certifiedSpeedBound) &&
-          finite(noRoot.certifiedMonotonicityMargin) &&
-          margin > 0 && noRoot.certifiedMonotonicityMargin > 0 &&
-          closeEnough(noRoot.certifiedMonotonicityMargin, margin) &&
+          noRoot.certifiedSpeedBound >= 0 &&
+          (eventSpecificRootPolicy
+            ? finite(noRoot.certifiedAccelerationBound) &&
+              noRoot.certifiedAccelerationBound >= 0
+            : finite(noRoot.certifiedMonotonicityMargin) &&
+              margin > 0 && noRoot.certifiedMonotonicityMargin > 0 &&
+              closeEnough(noRoot.certifiedMonotonicityMargin, margin)) &&
           reasonMatchesEndpointSigns;
-        sourceSpeedMargin = Math.min(
-          sourceSpeedMargin,
-          margin,
-          noRoot.certifiedMonotonicityMargin,
-        );
+        if (!eventSpecificRootPolicy) {
+          sourceSpeedMargin = Math.min(
+            sourceSpeedMargin,
+            margin,
+            noRoot.certifiedMonotonicityMargin,
+          );
+        }
         sourceSpeedPassed = sourceSpeedPassed && rowPassed;
         rootCompletenessPassed = rootCompletenessPassed && rowPassed;
       }
@@ -476,7 +755,13 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
   if (rootTransversalityMargin === Number.POSITIVE_INFINITY) {
     rootTransversalityMargin = null;
   }
-  if (!sourceSpeedPassed) addIssue("source-speed-gate-failed");
+  if (!sourceSpeedPassed) {
+    addIssue(
+      eventSpecificRootPolicy
+        ? "causal-root-domain-gate-failed"
+        : "source-speed-gate-failed",
+    );
+  }
   if (!rootCompletenessPassed) addIssue("root-completeness-gate-failed");
   if (!rootTransversalityPassed) addIssue("root-transversality-gate-failed");
 
@@ -487,11 +772,12 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
     ? minimumLedger(packet.rawLedgers?.refinedMinimumSeparation, expectedIds)
     : null;
   const minimumSeparationPassed = Boolean(primaryMinimum) &&
-    primaryMinimum.minimum >= packet.protocol?.tolerances?.minimumSeparationFloor;
+    primaryMinimum.certifiedContinuousLowerBound >=
+      packet.protocol?.tolerances?.minimumSeparationFloor;
   if (!minimumSeparationPassed) addIssue("minimum-separation-gate-failed");
 
   const convergence = primaryMinimum && refinedMinimum
-    ? convergenceMaximum(packet, primaryMinimum, refinedMinimum)
+    ? convergenceMaximum(packet)
     : null;
   const numericalConvergencePassed = Boolean(convergence) &&
     convergence.identitiesMatch &&
@@ -513,7 +799,14 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
       packet.reducedMeasures?.minimumSeparation?.value,
       primaryMinimum.minimum,
     ) && packet.reducedMeasures?.minimumSeparation?.pairId ===
-      primaryMinimum.minimumRow.pairId;
+      primaryMinimum.minimumRow.pairId &&
+    closeEnough(
+      packet.reducedMeasures?.minimumSeparation?.certifiedContinuousLowerBound,
+      primaryMinimum.certifiedContinuousLowerBound,
+    ) && packet.reducedMeasures?.minimumSeparation?.certificatePairId ===
+      primaryMinimum.certificateRow.pairId &&
+    packet.reducedMeasures?.minimumSeparation?.certificateRule ===
+      "periodic-sample-lipschitz-lower-bound.v1";
   const convergenceProjectionPassed = Boolean(convergence) &&
     closeEnough(
       packet.reducedMeasures?.numericalConvergence?.maximumReportedChange,
@@ -530,7 +823,8 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
     minimumProjectionPassed && convergenceProjectionPassed &&
     rootMarginProjectionPassed &&
     rawEvents?.every((event) =>
-      event.rootCompletenessCertification?.policy === ROOT_POLICY &&
+      event.rootCompletenessCertification?.policy ===
+        packet.protocol?.rootPolicy?.id &&
       event.rootCompletenessCertification?.complete === true) &&
     canonicalEqual(packet.reducedMeasures?.validity, expectedValidity) &&
     canonicalEqual(packet.probeDefinitions, packet.protocol?.probes) &&
@@ -553,12 +847,18 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
       details: { artifactHash, claimedResultHash, computedResultHash },
     }),
     makeGate({
-      gateId: "source-speed",
+      gateId: eventSpecificRootPolicy
+        ? "causal-root-domain"
+        : "source-speed",
       passed: sourceSpeedPassed,
       measuredValue: sourceSpeedMargin,
-      comparator: ">",
-      thresholdValue: 0,
-      failureCode: "source-speed-gate-failed",
+      comparator: eventSpecificRootPolicy
+        ? "finite-trajectory-bounds-no-sub-wake-restriction"
+        : ">",
+      thresholdValue: eventSpecificRootPolicy ? null : 0,
+      failureCode: eventSpecificRootPolicy
+        ? "causal-root-domain-gate-failed"
+        : "source-speed-gate-failed",
     }),
     makeGate({
       gateId: "root-completeness",
@@ -579,10 +879,14 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
     makeGate({
       gateId: "minimum-separation",
       passed: minimumSeparationPassed,
-      measuredValue: primaryMinimum?.minimum ?? null,
+      measuredValue: primaryMinimum?.certifiedContinuousLowerBound ?? null,
       comparator: ">=",
       thresholdValue: packet.protocol?.tolerances?.minimumSeparationFloor ?? null,
       failureCode: "minimum-separation-gate-failed",
+      details: {
+        sampledMinimum: primaryMinimum?.minimum ?? null,
+        certificateRule: "periodic-sample-lipschitz-lower-bound.v1",
+      },
     }),
     makeGate({
       gateId: "numerical-convergence",
@@ -619,7 +923,9 @@ export function verifyIndependentCaseAcceptance(packetBytes, options = {}) {
     protocolHash: packet.protocolHash ?? null,
     sourceHash: packet.source?.sourceHash ?? null,
     accepted,
-    coreGateIds: CORE_GATE_IDS,
+    coreGateIds: eventSpecificRootPolicy
+      ? EVENT_SPECIFIC_CORE_GATE_IDS
+      : LEGACY_CORE_GATE_IDS,
     gates,
     failureCodes: issues.sort(),
   };

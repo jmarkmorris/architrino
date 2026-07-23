@@ -2,7 +2,7 @@
 
 This chapter describes prescribed Noether braid geometries through explicit coordinates. The taxonomy has three levels: assembly composition, individual braid, and individual binary.
 
-Each taxonomy member receives a neutral identifier consisting of a family letter and a member number, such as `A1`, `A2`, `A3`, or `B1`. A decimal suffix identifies a constrained variant of a member, such as `A1.1`. The identifier carries no geometric meaning. The member's table entries and Borg depiction define the geometry. Family and member names are optional aliases.
+Each taxonomy member receives a neutral identifier consisting of a family letter and a member number, such as `A1`, `A2`, `A3`, or `B1`. A decimal suffix identifies a constrained variant of a member, such as `A1.1` or `B1.1`. The identifier carries no geometric meaning. The member's table entries and Borg depiction define the geometry. Family and member names are optional aliases.
 
 This is a geometry-and-motion taxonomy. It does not establish that a prescribed configuration is generated, retained, or stable under the EOM solver.
 
@@ -222,13 +222,29 @@ $$
 
 `B1` is the rigid common-frequency member. Its binaries may have different radii, axial half-separations, transverse orbit radii, and phases, but share one midpoint, one axis, one frequency, and one circulation sense. The coincident-axis relation distinguishes Family B from Family A; the family identifier does not assert that either geometry is dynamically retained.
 
+The four current Borg selections are `B1.1`, the interior reference with $h_a>0$ and $\rho_a>0$; `B1.2`, the high-axial interior selection with $h_a>\rho_a>0$; `B1.3`, the all-equatorial boundary with $h_a=0$ and $\rho_a=R_a$; and `B1.4`, the all-axial boundary with $\rho_a=0$ and $h_a=R_a$. Each inherits every other B1 relation.
+
 Family A and Family B meet on a boundary. Every Family-A member reaches the coincident-axis relation at $\lambda_A=1$; a common-frequency Family-A variant with one common circulation sense and coincident binary midpoints also occupies the B1 coordinate locus at that endpoint. This geometric coincidence does not identify the two families away from the boundary.
 
-## Family C: Two-Braid Composition
+## Family C: Coaxial Twelve-Architrino Geometry
 
-Family C contains assemblies made from two complete `B1` braids. Its exact composition chart, twelve endpoint paths, derived axis offset, and physical-mapping boundary are developed in [Braid Family C](braid-family-c.md). The relative braid-center displacement, relative orientation, and relative phase remain explicit assembly coordinates.
+Family C contains twelve architrino worldlines grouped into six neutral binaries on one common oriented axis. Its exact ordered path chart, binary-counterpart map, causal-delay relation, constrained component loci, and physical-mapping boundary are developed in [Braid Family C](braid-family-c.md).
 
-`C1` is the co-rotating member: the two component braids have the same circulation sense. `C2` is the counter-rotating member: the two component braids have opposite circulation senses. These members define prescribed composition classes only; they do not assert a binding or retention mechanism.
+The parent coordinates are the ordered axial positions $\xi_m$, spacing vector $\mathbf d_C$, total length $L_C$, radii $\rho_m$, angular frequencies $\omega_m$, phases $\phi_m$, circulation senses $q_m$, and fixed-point-free neutral-binary map $\pi$. Family C does not require its twelve worldlines to decompose into two B1 braids.
+
+`C1` is the general co-rotating member: all twelve worldlines share one circulation sense. `C2` is the general counter-rotating member: worldlines $1$ through $6$ have one circulation sense and worldlines $7$ through $12$ have the opposite sense. Both retain the complete spacing, radius, frequency, phase, and binary-pairing coordinates.
+
+`C3` and `C4` are the constrained loci in which the twelve worldlines decompose into two complete coaxial B1 components. C3 is co-rotating and C4 is counter-rotating. `C5` and `C6` further constrain those components to B1.3, so every binary in both components lies on the all-equatorial boundary $h_{ba}=0$ and $\rho_{ba}=R_{ba}$. For C3 through C6, the component centers are separated along the common oriented axis by the positive coordinate $d_C$:
+
+$$
+\hat{\mathbf n}_2=\hat{\mathbf n}_1=\hat{\mathbf n}_C,
+\qquad
+\Delta\mathbf C=d_C\hat{\mathbf n}_C,
+\qquad
+d_C>0.
+$$
+
+An optional six-architrino Accessory Configuration is separate declared inventory and does not change the C1 through C6 identifier. These members define prescribed geometry classes only; they do not assert a binding or retention mechanism.
 
 ## Master Tables
 
@@ -242,8 +258,12 @@ The first three tables carry the geometry. The fourth table supplies optional na
 | `A2` | 1 | NA | NA | NA | NA |
 | `A3` | 1 | NA | NA | NA | NA |
 | `B1` | 1 | NA | NA | NA | NA |
-| `C1` | 2 | $\Delta\mathbf C$ | $Q_{21}$ | $\Delta\phi$ | Same |
-| `C2` | 2 | $\Delta\mathbf C$ | $Q_{21}$ | $\Delta\phi$ | Opposite |
+| `C1` | 1 | NA | One common oriented axis | NA | Same across all twelve worldlines |
+| `C2` | 1 | NA | One common oriented axis | Relative phase remains worldline-resolved | Opposite between ordered index subsets $\mathcal I_1$ and $\mathcal I_2$ |
+| `C3` | 1, with two B1 components | $d_C\hat{\mathbf n}_C$, $d_C>0$ | Coaxial oriented axes | $\Delta\phi$ | Same |
+| `C4` | 1, with two B1 components | $d_C\hat{\mathbf n}_C$, $d_C>0$ | Coaxial oriented axes | $\Delta\phi$ | Opposite |
+| `C5` | 1, with two B1.3 components | $d_C\hat{\mathbf n}_C$, $d_C>0$ | Coaxial oriented axes | $\Delta\phi$ | Same |
+| `C6` | 1, with two B1.3 components | $d_C\hat{\mathbf n}_C$, $d_C>0$ | Coaxial oriented axes | $\Delta\phi$ | Opposite |
 
 ### Individual Braid Master Table
 
@@ -253,14 +273,20 @@ The first three tables carry the geometry. The fourth table supplies optional na
 | `A2` | 1 | A2 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | $T=0$ | One common sense |
 | `A3` | 1 | A3 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | $T=0$ | Not yet specified |
 | `B1` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf n}_B$ | $\hat{\mathbf n}_B$ | $T=0$ | One common sense |
-| `C1` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Inherited from B1 | Inherited from B1 | $T=0$ | Common sense $q$ |
-| `C1` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Inherited from B1 | Inherited from B1 | $T=0$ | Common sense $q$ |
-| `C2` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Inherited from B1 | Inherited from B1 | $T=0$ | Sense $q$ |
-| `C2` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Inherited from B1 | Inherited from B1 | $T=0$ | Sense $-q$ |
+| `C1` | 1 | General Family C | Variable $s_{\mathrm{grp}}$ | Twelve ordered coordinates $\xi_m$ | One common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q_C$ |
+| `C2` | 1 | General Family C | Variable $s_{\mathrm{grp}}$ | Twelve ordered coordinates $\xi_m$ | One common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $q_C$ on $\mathcal I_1$ and $-q_C$ on $\mathcal I_2$ |
+| `C3` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q$ |
+| `C3` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q$ |
+| `C4` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $q$ |
+| `C4` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $-q$ |
+| `C5` | 1 | B1.3 | Variable $s_{\mathrm{grp}}$ | Inherited from B1.3 within component 1 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q$ |
+| `C5` | 2 | B1.3 | Variable $s_{\mathrm{grp}}$ | Inherited from B1.3 within component 2 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q$ |
+| `C6` | 1 | B1.3 | Variable $s_{\mathrm{grp}}$ | Inherited from B1.3 within component 1 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $q$ |
+| `C6` | 2 | B1.3 | Variable $s_{\mathrm{grp}}$ | Inherited from B1.3 within component 2 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $-q$ |
 
 ### Individual Binary Master Table
 
-Within A1 and A3, the symbols $R_1,R_2,R_3$ are independent positive coordinates attached to persistent binary indices. They do not encode a size order, and equality is permitted unless a constrained row says otherwise. A repeated symbol $R$ or $f$ declares equality across the corresponding rows. Unconstrained phases remain $\phi_1,\phi_2,\phi_3$. A1 fixes $h_a=0$ and $\rho_a=R_a$; A3 carries the general axial and transverse decomposition of $R_a$ defined above. Family-C members inherit the individual-binary rows of their two B1 components.
+Within A1 and A3, the symbols $R_1,R_2,R_3$ are independent positive coordinates attached to persistent binary indices. They do not encode a size order, and equality is permitted unless a constrained row says otherwise. A repeated symbol $R$ or $f$ declares equality across the corresponding rows. Unconstrained phases remain $\phi_1,\phi_2,\phi_3$. A1 fixes $h_a=0$ and $\rho_a=R_a$; A3 carries the general axial and transverse decomposition of $R_a$ defined above. C3 through C6 inherit the individual-binary rows of their declared B1 or B1.3 components. C1 and C2 instead use the twelve-worldline coordinates and explicit counterpart map defined in [Braid Family C](braid-family-c.md#shared-family-c-coordinate-chart).
 
 | Member ID | Braid index | Binary index | Radius | Axial half-separation | Transverse orbit radius | Frequency | Phase |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -300,6 +326,18 @@ Within A1 and A3, the symbols $R_1,R_2,R_3$ are independent positive coordinates
 | `B1` | 1 | 1 | $R_1$ | $h_1$ | $\rho_1$ | $f$ | $\phi_1$ |
 | `B1` | 1 | 2 | $R_2$ | $h_2$ | $\rho_2$ | $f$ | $\phi_2$ |
 | `B1` | 1 | 3 | $R_3$ | $h_3$ | $\rho_3$ | $f$ | $\phi_3$ |
+| `B1.1` | 1 | 1 | $R_1$ | $h_1>0$ | $\rho_1>0$ | $f$ | $\phi_1$ |
+| `B1.1` | 1 | 2 | $R_2$ | $h_2>0$ | $\rho_2>0$ | $f$ | $\phi_2$ |
+| `B1.1` | 1 | 3 | $R_3$ | $h_3>0$ | $\rho_3>0$ | $f$ | $\phi_3$ |
+| `B1.2` | 1 | 1 | $R_1$ | $h_1>\rho_1$ | $\rho_1>0$ | $f$ | $\phi_1$ |
+| `B1.2` | 1 | 2 | $R_2$ | $h_2>\rho_2$ | $\rho_2>0$ | $f$ | $\phi_2$ |
+| `B1.2` | 1 | 3 | $R_3$ | $h_3>\rho_3$ | $\rho_3>0$ | $f$ | $\phi_3$ |
+| `B1.3` | 1 | 1 | $R_1$ | $0$ | $R_1$ | $f$ | $\phi_1$ |
+| `B1.3` | 1 | 2 | $R_2$ | $0$ | $R_2$ | $f$ | $\phi_2$ |
+| `B1.3` | 1 | 3 | $R_3$ | $0$ | $R_3$ | $f$ | $\phi_3$ |
+| `B1.4` | 1 | 1 | $R_1$ | $R_1$ | $0$ | $f$ | $\phi_1$ |
+| `B1.4` | 1 | 2 | $R_2$ | $R_2$ | $0$ | $f$ | $\phi_2$ |
+| `B1.4` | 1 | 3 | $R_3$ | $R_3$ | $0$ | $f$ | $\phi_3$ |
 
 ### Naming and Navigation Master Table
 
@@ -320,6 +358,13 @@ Every Family-A Borg depiction in this table selects the near-rest endpoint $\lam
 | `A3.2` | Noether core | Equal-frequency equal-radius axial decomposition | `family-a-a3-2-equal-frequency-equal-radius-v1` | `A3.2 — equal frequency, equal radius` | A3 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
 | `A3.3` | Noether core | 4:2:1-frequency axial decomposition | `family-a-a3-3-4-2-1-frequency-v1` | `A3.3 — 4:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
 | `A3.4` | Noether core | 3:2:1-frequency axial decomposition | `family-a-a3-4-3-2-1-frequency-v1` | `A3.4 — 3:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
-| `B1` | Coincident binary axes | Rigid common-frequency | Four source records: interior, high-axial, all-equatorial, and all-axial | Four `B1` coordinate labels in Borg | One braid with one common binary midpoint, coincident binary axes, one common frequency, and one common circulation sense. |
-| `C1` | Two-braid composition | Co-rotating B1 pair | `family-c-c1-co-rotating-b1-pair-v1` | `C1 — co-rotating B1 pair` | Two complete B1 braids with a common circulation sense and explicit relative placement, orientation, and phase. |
-| `C2` | Two-braid composition | Counter-rotating B1 pair | `family-c-c2-counter-rotating-b1-pair-v1` | `C2 — counter-rotating B1 pair` | Two complete B1 braids with opposite circulation senses and explicit relative placement, orientation, and phase. |
+| `B1.1` | Coincident binary axes | Interior reference | `illustrative-spindle-chart-hypothesis-v0` | `B1.1 — interior reference` | B1 with $h_a>0$ and $\rho_a>0$ for all three binaries. |
+| `B1.2` | Coincident binary axes | High-axial interior | `illustrative-extreme-cap-tilt-spindle-variant-v0` | `B1.2 — high-axial interior` | B1 with $h_a>\rho_a>0$ for all three binaries. |
+| `B1.3` | Coincident binary axes | All-equatorial boundary | `illustrative-planar-tri-binary-spindle-boundary-v0` | `B1.3 — all-equatorial boundary` | B1 with $h_a=0$ and $\rho_a=R_a$ for all three binaries. |
+| `B1.4` | Coincident binary axes | All-axial boundary | `illustrative-full-cap-axial-spindle-boundary-v0` | `B1.4 — all-axial boundary` | B1 with $\rho_a=0$ and $h_a=R_a$ for all three binaries. |
+| `C1` | Coaxial twelve-architrino geometry | Co-rotating | `family-c-c1-co-rotating-general-v1` | `C1 — co-rotating` | Twelve ordered coaxial architrino worldlines with one common circulation sense and an explicit neutral-binary counterpart map. |
+| `C2` | Coaxial twelve-architrino geometry | Counter-rotating | `family-c-c2-counter-rotating-general-v1` | `C2 — counter-rotating` | Twelve ordered coaxial architrino worldlines with opposite circulation senses on the two declared index subsets and an explicit neutral-binary counterpart map. |
+| `C3` | Coaxial twelve-architrino geometry | Co-rotating B1 pair | `family-c-c1-co-rotating-b1-pair-v1` | `C3 — co-rotating B1 pair` | C1 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
+| `C4` | Coaxial twelve-architrino geometry | Counter-rotating B1 pair | `family-c-c2-counter-rotating-b1-pair-v1` | `C4 — counter-rotating B1 pair` | C2 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
+| `C5` | Coaxial twelve-architrino geometry | Co-rotating B1.3 pair | `family-c-c1-1-co-rotating-b1-3-pair-v1` | `C5 — co-rotating B1.3 pair` | C3 constrained to two all-equatorial B1.3 components. |
+| `C6` | Coaxial twelve-architrino geometry | Counter-rotating B1.3 pair | `family-c-c2-1-counter-rotating-b1-3-pair-v1` | `C6 — counter-rotating B1.3 pair` | C4 constrained to two all-equatorial B1.3 components. |

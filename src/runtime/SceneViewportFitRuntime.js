@@ -1,5 +1,48 @@
 export const DEFAULT_SCENE_VIEWPORT_FIT_MARGIN = 0.94;
 
+export function isPointWithinSceneInteractionBounds({
+  clientX,
+  clientY,
+  paddingPx = 0,
+  fitMode = "focus",
+  canvasRect,
+  focusMetrics,
+} = {}) {
+  const x = Number(clientX);
+  const y = Number(clientY);
+  const padding = Math.max(0, Number(paddingPx) || 0);
+  if (!Number.isFinite(x) || !Number.isFinite(y)) {
+    return false;
+  }
+
+  if (fitMode === "viewport") {
+    const left = Number(canvasRect?.left) + padding;
+    const right = Number(canvasRect?.right) - padding;
+    const top = Number(canvasRect?.top) + padding;
+    const bottom = Number(canvasRect?.bottom) - padding;
+    return (
+      Number.isFinite(left) &&
+      Number.isFinite(right) &&
+      Number.isFinite(top) &&
+      Number.isFinite(bottom) &&
+      x >= left &&
+      x <= right &&
+      y >= top &&
+      y <= bottom
+    );
+  }
+
+  const centerX = Number(focusMetrics?.centerX);
+  const centerY = Number(focusMetrics?.centerY);
+  const radius = Math.max(0, Number(focusMetrics?.radius) - padding);
+  if (!Number.isFinite(centerX) || !Number.isFinite(centerY) || !Number.isFinite(radius)) {
+    return false;
+  }
+  const dx = x - centerX;
+  const dy = y - centerY;
+  return dx * dx + dy * dy <= radius * radius;
+}
+
 export function resolveSceneViewportFitMargin(value, fallback = DEFAULT_SCENE_VIEWPORT_FIT_MARGIN) {
   const numeric = Number(value);
   if (!Number.isFinite(numeric) || numeric <= 0) {

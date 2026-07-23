@@ -92,3 +92,47 @@ The ansatz is consistent with the live relative-periodic-orbit target of radial 
 **What would confirm or kill a derived assignment.** A role assignment survives only if the same retained branch record supplies the declared speed statistic, causal-root rows, exposure or support functional, and refinement stability. It fails if the maximizer changes without being recorded, if another index gives the same diagnostic within tolerance, or if the role was inferred only from a frequency or radius label.
 
 **Promotion routing.** The persistent-index rule and branch-derived diagnostics are promoted to the taxonomy, Family A, A1 dynamics, A1.3 lock, envelope, configuration-space, topological-charge, and controlled terminology sources. Downstream reader chapters that still encode fixed inner/middle/outer roles require a separate bounded migration and claim-level review.
+
+## Entry 6 — common-axis braid train (2026-07-22, operator discussion, source drawing dated 2021-01-02; taxonomy disposed 2026-07-23)
+
+**The idea (grade: idea, unproven lead).** A generalized Family-B train contains six ordered architrino worldlines paired into three neutral binaries. A Family-C train contains twelve coaxial architrino worldlines and six neutral binaries without requiring decomposition into two B1 components. Axial spacings are primary coordinates because they change causal delays and wake-arrival phase. The source-inspired Family-C stratum also tests a separately declared six-worldline Accessory Configuration, for eighteen declared architrino worldlines in total.
+
+**Dimension-extension relation (grade: derived coordinate identity).** For binary $a$, any paired axial coordinates decompose as $\xi_{a,\pm}=b_a\pm h_a$. Canonical B1 is the common-midpoint locus $b_1=b_2=b_3$, with the common value absorbed into the braid center. Modulo that common translation, the nearest six-worldline train generalization adds only two relative-midpoint coordinates, such as $(b_2-b_1,b_3-b_1)$, to the existing B1 half-separations. C3 through C6 impose a two-B1 decomposition inside the more general twelve-worldline Family-C chart. Accessory worldlines change the assembly inventory and are not merely extra coordinates of that defining chart.
+
+**Source geometry.** The supplied drawing contains twelve ordered orbit traces with a radius envelope increasing toward the center and decreasing toward the ends. The drawing supports the ordered train and central radius envelope only. Its colors and visible markers do not declare polarity, counterpart pairing, Accessory Configuration placement, phase, circulation, or frequency.
+
+**Exact reduction.** For any defining or accessory architrino path written as
+
+$$
+\mathbf Z_a(T)
+=
+\mathbf C_0
++s_{\mathrm{grp}}T\hat{\mathbf n}
++\zeta_a\hat{\mathbf n}
++\boldsymbol\delta_a(T),
+$$
+
+the positive delay $u$ from transmitter $a$ to receiver $b$ obeys
+
+$$
+\left\|
+\left(
+\zeta_b-\zeta_a+s_{\mathrm{grp}}u
+\right)\hat{\mathbf n}
++\boldsymbol\delta_b(T)
+-\boldsymbol\delta_a(T-u)
+\right\|
+=c_fu.
+$$
+
+The equation is exact and generally transcendental. Certified all-retained-root enumeration supplies rotating sectors. Full-period axial, radial, and tangential acceleration residuals are separate required objectives.
+
+**Measured bounded result (grade: historical prescribed-path analytics).** Twelve rows were evaluated: six references and one seeded neighborhood row around each. All twelve were rejected by that fixed protocol. The protocol instantiated $c_f=4$ and stationary exterior probes, so current policy makes it non-current evidence. The rows establish only what those exact records and gates returned; they do not sample enough of the continuous or discrete train space to support a negative Family-B or Family-C inference. A changed binary map with unchanged paths produces identical acceleration rows, so pairing labels alone have no analytical effect.
+
+**Taxonomy disposition (operator decision).** Family C is the general coaxial twelve-architrino family. C1/C2 are the general co-/counter-rotating members; C3/C4 are the coaxial two-B1 loci formerly numbered C1/C2; C5/C6 are the all-equatorial loci formerly numbered C1.1/C2.1. An optional Accessory Configuration does not change the member identifier.
+
+**Claim boundaries.** No measured row supports stability, self-stabilization, retention, binding, photon identity, energy closure, quantization, physical realization, or EOM-solver compatibility. The pilot cannot establish a hinge because it does not contain the full coordinate Jacobian. It reports no action organization and no $h$ or $\hbar$ recovery.
+
+**What would confirm or kill the remaining analytical lead.** Start from the exact B1 submanifold at $c_f=1$, then open the two relative-midpoint dimensions and the existing spacing-radius-phase-frequency coordinates under a predeclared space-filling measure. The lead advances if a finite-width region reduces all three residual projections while passing root, separation, co-translating exterior, sensitivity, refinement, and independent-acceptance gates. Only the explicitly sampled bounded domain closes negative if no such region survives held-out seeds and alternative sampling measures.
+
+**Promotion routing.** The exact chart, taxonomy disposition, measured rows, falsifiers, and implementation links are in [Common-Axis Braid-Train Analytics](common-axis-braid-train-analytics.md). The general Family-C chart and exact-delay reduction are promoted into the reader-facing taxonomy and analysis methodology; the measured candidate result remains priority-only.

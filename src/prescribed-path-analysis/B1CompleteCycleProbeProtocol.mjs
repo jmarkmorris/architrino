@@ -1,4 +1,5 @@
 import {
+  ALL_RETAINED_ROOTS_POLICY,
   ALL_RETAINED_SIMPLE_ROOTS_POLICY,
   PRESCRIBED_RECORD_ANALYSIS_PROTOCOL_SCHEMA,
   sha256Canonical,
@@ -7,6 +8,8 @@ import {
 
 export const B1_COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA =
   "prescribed-path-analysis/b1-complete-cycle-probe-protocol.v1";
+export const COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA =
+  "prescribed-path-analysis/complete-cycle-probe-protocol.v1";
 
 const TWO_PI = 2 * Math.PI;
 
@@ -156,24 +159,75 @@ function validateResolution(raw, label) {
 
 export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
   const raw = object(rawProtocol, "complete-cycle probe protocol");
-  if (raw.schema !== B1_COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA) {
-    throw new TypeError(`protocol requires schema ${B1_COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA}.`);
+  const isB1 = raw.schema === B1_COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA;
+  if (!isB1 && raw.schema !== COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA) {
+    throw new TypeError(
+      `protocol requires schema ${B1_COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA} or ` +
+      `${COMPLETE_CYCLE_PROBE_PROTOCOL_SCHEMA}.`,
+    );
   }
   const protocolId = string(raw.protocolId, "protocol.protocolId");
   const applicability = object(raw.applicability, "protocol.applicability");
-  if (applicability.familyId !== "B" || applicability.memberId !== "B1") {
-    throw new TypeError("protocol applicability must be Family B member B1.");
+  const commonAxisBraid =
+    applicability.campaignClass === "common-axis-braid-prescribed-path.v2";
+  if (isB1 && (applicability.familyId !== "B" || applicability.memberId !== "B1")) {
+    throw new TypeError("B1 protocol applicability must be Family B member B1.");
+  }
+  if (!isB1 && !commonAxisBraid && (!Array.isArray(applicability.familyIds) ||
+      applicability.familyIds.join(",") !== "A,B,C")) {
+    throw new TypeError("cohort protocol applicability.familyIds must be [A, B, C].");
+  }
+  if (commonAxisBraid && (!Array.isArray(applicability.familyIds) ||
+      applicability.familyIds.join(",") !== "B,C")) {
+    throw new TypeError("common-axis braid protocol familyIds must be [B, C].");
   }
   const sourceEnvelopeRadius = positive(
     applicability.maximumSourceEnvelopeRadius,
     "protocol.applicability.maximumSourceEnvelopeRadius",
   );
-  const sourceCount = positiveInteger(applicability.sourceCount, "protocol.applicability.sourceCount");
-  if (sourceCount !== 6) throw new RangeError("B1 protocol sourceCount must be 6.");
+  const sourceCounts = isB1
+    ? [positiveInteger(applicability.sourceCount, "protocol.applicability.sourceCount")]
+    : numericArray(applicability.sourceCounts, "protocol.applicability.sourceCounts")
+      .map((value, index) => positiveInteger(value, `protocol.applicability.sourceCounts[${index}]`));
+  if (isB1 && sourceCounts[0] !== 6) throw new RangeError("B1 protocol sourceCount must be 6.");
+  if (!isB1 && !commonAxisBraid && sourceCounts.join(",") !== "6,12") {
+    throw new RangeError("cohort protocol sourceCounts must be [6, 12].");
+  }
+  if (commonAxisBraid && sourceCounts.join(",") !== "6,9,12,18") {
+    throw new RangeError(
+      "common-axis braid protocol sourceCounts must be [6, 9, 12, 18].",
+    );
+  }
+  const centerVelocityPolicy =
+    applicability.centerVelocityPolicy ?? "required-vector.v1";
+  if (!["required-vector.v1", "common-bounded-translation.v1"].includes(
+    centerVelocityPolicy,
+  )) {
+    throw new TypeError(
+      "protocol.applicability.centerVelocityPolicy is not recognized.",
+    );
+  }
+  if (centerVelocityPolicy === "common-bounded-translation.v1") {
+    positive(
+      applicability.maximumCenterSpeed,
+      "protocol.applicability.maximumCenterSpeed",
+    );
+  } else if (!Array.isArray(applicability.requiredCenterVelocity) ||
+      applicability.requiredCenterVelocity.length !== 3 ||
+      applicability.requiredCenterVelocity.some((value) =>
+        typeof value !== "number" || !Number.isFinite(value))) {
+    throw new TypeError(
+      "required-vector center velocity policy requires a finite three-vector.",
+    );
+  }
 
   const eventEvaluator = object(raw.eventEvaluator, "protocol.eventEvaluator");
-  if (eventEvaluator.rootPolicy?.id !== ALL_RETAINED_SIMPLE_ROOTS_POLICY) {
-    throw new TypeError(`eventEvaluator.rootPolicy.id must be ${ALL_RETAINED_SIMPLE_ROOTS_POLICY}.`);
+  if (eventEvaluator.rootPolicy?.id !== ALL_RETAINED_SIMPLE_ROOTS_POLICY &&
+      eventEvaluator.rootPolicy?.id !== ALL_RETAINED_ROOTS_POLICY) {
+    throw new TypeError(
+      `eventEvaluator.rootPolicy.id must be ${ALL_RETAINED_SIMPLE_ROOTS_POLICY} or ` +
+      `${ALL_RETAINED_ROOTS_POLICY}.`,
+    );
   }
   const historyStart = number(eventEvaluator.history?.start, "eventEvaluator.history.start");
   const historyEnd = number(eventEvaluator.history?.end, "eventEvaluator.history.end");
@@ -187,7 +241,7 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
     applicability.requiredPrescribedReturnPeriod,
     "protocol.applicability.requiredPrescribedReturnPeriod",
   ) !== cyclePeriod) {
-    throw new RangeError("complete-cycle period must equal the required B1 prescribed return period.");
+    throw new RangeError("complete-cycle period must equal the required prescribed return period.");
   }
   if (cycle.samplingRule !== "uniform-left-closed-periodic-grid.v1") {
     throw new TypeError("completeCycle.samplingRule must be uniform-left-closed-periodic-grid.v1.");
@@ -216,7 +270,7 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
     "internalProbes.sourceEndpointReceivers",
   );
   if (endpointReceivers.kind !== "prescribed-source-endpoint-probe.v1" ||
-      endpointReceivers.selfHitPolicy !== "exclude-same-source-id.v1") {
+      endpointReceivers.selfHitPolicy !== "exclude-same-transmitter-id.v1") {
     throw new TypeError("endpoint receivers must exclude the same source id.");
   }
 
@@ -236,7 +290,7 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
   const latestRetardedReach = cycleStart -
     (radii.at(-1) + sourceEnvelopeRadius) / fieldSpeed;
   if (latestRetardedReach < historyStart) {
-    throw new RangeError("history does not cover the conservative outer-surface retarded reach.");
+    throw new RangeError("history does not cover the conservative outer-surface causal-delay reach.");
   }
   if (cycleStart + cyclePeriod > historyEnd) {
     throw new RangeError("complete cycle must lie inside the exact source history interval.");
@@ -313,7 +367,10 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
   if (2 * maximumHarmonic >= primary.timeSamples) {
     throw new RangeError("primary time grid violates the retained spectral Nyquist margin.");
   }
-  const sensitivity = object(raw.localSourceSensitivity, "protocol.localSourceSensitivity");
+  const sensitivity = object(
+    raw.localTransmitterSensitivity,
+    "protocol.localTransmitterSensitivity",
+  );
   const radialScaling = object(raw.radialScalingReduction, "protocol.radialScalingReduction");
   positive(
     radialScaling.positiveMeasureRelativeFloor,
@@ -356,18 +413,51 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
     throw new RangeError("frequency-resolved out-of-band RMS threshold cannot exceed one.");
   }
   positive(
-    gates.quadratureConvergence?.sourceSensitivityRelativeOrAbsolute,
-    "failClosedGates.quadratureConvergence.sourceSensitivityRelativeOrAbsolute",
+    gates.quadratureConvergence?.transmitterSensitivityRelativeOrAbsolute,
+    "failClosedGates.quadratureConvergence.transmitterSensitivityRelativeOrAbsolute",
   );
   const coordinates = sensitivity.coordinates;
-  if (!Array.isArray(coordinates) || coordinates.join(",") !== "alpha_1,alpha_2,alpha_3") {
-    throw new TypeError("local sensitivity coordinates must be alpha_1, alpha_2, alpha_3.");
+  if (isB1) {
+    if (!Array.isArray(coordinates) || coordinates.join(",") !== "alpha_1,alpha_2,alpha_3") {
+      throw new TypeError("B1 local sensitivity coordinates must be alpha_1, alpha_2, alpha_3.");
+    }
+  } else if (!commonAxisBraid && (!Array.isArray(coordinates) ||
+      coordinates.join(",") !== "declared-primary-braid-phase-offset")) {
+    throw new TypeError(
+      "cohort local sensitivity coordinates must be [declared-primary-braid-phase-offset].",
+    );
+  } else if (commonAxisBraid && (!Array.isArray(coordinates) ||
+      coordinates.join(",") !== "central-spacing-scale")) {
+    throw new TypeError(
+      "common-axis braid local sensitivity coordinates must be [central-spacing-scale].",
+    );
   }
-  const step = positive(sensitivity.primaryStep, "localSourceSensitivity.primaryStep");
-  const refinedStep = positive(sensitivity.refinedStep, "localSourceSensitivity.refinedStep");
+  const step = positive(sensitivity.primaryStep, "localTransmitterSensitivity.primaryStep");
+  const refinedStep = positive(
+    sensitivity.refinedStep,
+    "localTransmitterSensitivity.refinedStep",
+  );
   if (Math.abs(refinedStep * 2 - step) > 1e-15) {
     throw new RangeError("refined sensitivity step must be one half the primary step.");
   }
+  const sensitivityNormalization = object(
+    sensitivity.normalization,
+    "protocol.localTransmitterSensitivity.normalization",
+  );
+  if (sensitivityNormalization.rule !==
+      "per-measure-dimensionless-stencil-settling.v1") {
+    throw new TypeError(
+      "localTransmitterSensitivity.normalization.rule must bind the declared per-measure rule.",
+    );
+  }
+  positive(
+    sensitivityNormalization.surfaceRatioScale,
+    "localTransmitterSensitivity.normalization.surfaceRatioScale",
+  );
+  positive(
+    sensitivityNormalization.endpointRmsRelativeFloor,
+    "localTransmitterSensitivity.normalization.endpointRmsRelativeFloor",
+  );
 
   validatePrescribedRecordAnalysisProtocol({
     schema: PRESCRIBED_RECORD_ANALYSIS_PROTOCOL_SCHEMA,
@@ -407,7 +497,8 @@ export function summarizeB1CompleteCycleProbeProtocol(rawProtocol) {
     primary: {
       timeSamples: primary.timeSamples,
       internalFixedProbeCount: gridSide ** 3,
-      endpointReceiverCount: protocol.applicability.sourceCount,
+      endpointReceiverCount: protocol.applicability.sourceCount ??
+        Math.max(...protocol.applicability.sourceCounts),
       surfaceRadiusCount: radiusCount,
       surfaceDirectionCount,
       surfaceEventCount: radiusCount * surfaceDirectionCount * primary.timeSamples,
@@ -428,7 +519,7 @@ export function summarizeB1CompleteCycleProbeProtocol(rawProtocol) {
       surfaceAngularSpectralRadialReductions: true,
       fullCycleCausalWakeFluxReduction: true,
       frequencyResolvedCausalWakeFluxReduction: true,
-      localSourceSensitivityReduction: false,
+      localTransmitterSensitivityReduction: false,
     },
   };
 }

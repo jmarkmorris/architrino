@@ -43,6 +43,10 @@ const ALL_CANDIDATE_SUMMARY_SCHEMA =
 const ALL_CASES_POLICY = "all-cases-all-gates/fail-closed.v1";
 const COMPLETE_CANDIDATE_INVENTORY_POLICY =
   "complete-candidate-inventory/fail-closed.v1";
+const COMPLETE_CYCLE_CANDIDATE_INVENTORY_POLICY =
+  "complete-cycle-candidate-inventory/fail-closed.v1";
+const COMPLETE_CYCLE_RESULT_SCHEMA =
+  "prescribed-path-analysis/complete-cycle-candidate-result.v1";
 const REPOSITORY_ROOT = path.resolve(import.meta.dirname, "../../..");
 const MIGRATION_DIRECTORY = new URL("./migrations/", import.meta.url);
 
@@ -150,20 +154,46 @@ function tableExists(database, tableName) {
   ).get(tableName));
 }
 
-function configureDatabase(database, { writable }) {
+function configureDatabase(database, {
+  writable,
+  experimentalJournalMode = "WAL",
+  experimentalSynchronous = "FULL",
+}) {
   database.exec("PRAGMA foreign_keys = ON");
   database.exec("PRAGMA busy_timeout = 5000");
   if (writable) {
-    database.prepare("PRAGMA journal_mode = WAL").get();
-    database.exec("PRAGMA synchronous = FULL");
+    const journalMode = String(experimentalJournalMode).toUpperCase();
+    const synchronous = String(experimentalSynchronous).toUpperCase();
+    if (!["WAL", "DELETE", "OFF"].includes(journalMode)) {
+      fail("experimentalJournalMode must be WAL, DELETE, or OFF.");
+    }
+    if (!["FULL", "NORMAL", "OFF"].includes(synchronous)) {
+      fail("experimentalSynchronous must be FULL, NORMAL, or OFF.");
+    }
+    if (journalMode === "OFF") database.enableDefensive(false);
+    const appliedJournalMode = String(
+      database.prepare(`PRAGMA journal_mode = ${journalMode}`).get().journal_mode,
+    ).toUpperCase();
+    if (journalMode === "OFF") database.enableDefensive(true);
+    if (appliedJournalMode !== journalMode) {
+      fail(
+        `SQLite refused journal mode ${journalMode}; applied ${appliedJournalMode}.`,
+      );
+    }
+    database.exec(`PRAGMA synchronous = ${synchronous}`);
   }
 }
 
-export function defaultAnalyticalCampaignDatabasePath(
+export function defaultLegacyAnalyticalCampaignDatabasePath(
   repositoryRoot = REPOSITORY_ROOT,
 ) {
   return path.join(repositoryRoot, ".local-data/braid-analysis/analytical-campaigns.sqlite3");
 }
+
+// Compatibility-only name for read-only analysis and explicit legacy tools.
+// New local campaign storage uses defaultCompactAnalyticalCampaignDatabasePath.
+export const defaultAnalyticalCampaignDatabasePath =
+  defaultLegacyAnalyticalCampaignDatabasePath;
 
 export function assertAnalyticalCampaignDatabasePath(databasePath, options = {}) {
   const repositoryRoot = path.resolve(options.repositoryRoot ?? REPOSITORY_ROOT);
@@ -246,7 +276,11 @@ export function openAnalyticalCampaignDatabase(databasePath, options = {}) {
   const readOnly = options.readOnly === true;
   if (!readOnly) mkdirSync(path.dirname(absolutePath), { recursive: true });
   const database = new DatabaseSync(absolutePath, { readOnly });
-  configureDatabase(database, { writable: !readOnly });
+  configureDatabase(database, {
+    writable: !readOnly,
+    experimentalJournalMode: options.experimentalJournalMode,
+    experimentalSynchronous: options.experimentalSynchronous,
+  });
   if (!readOnly && options.migrate !== false) {
     migrateAnalyticalCampaignDatabase(database, options);
   }
@@ -331,13 +365,27 @@ function validateManifestAndSummary(manifest, summary) {
       required.requiredSeededSampleCount !== seededSampleCount) {
     fail("campaign acceptance counts do not match the manifest inventory.");
   }
-  const requiredGateIds = [
+  const basicRequiredGateIds = [
     "source-speed",
     "root-completeness",
     "root-transversality",
     "minimum-separation",
     "numerical-convergence",
   ];
+  const completeCycleRequiredGateIds = [
+    "surfaceQuadrature",
+    "fixedInternalPrimary",
+    "fixedInternalRefined",
+    "movingReceiverPrimary",
+    "movingReceiverRefined",
+    "branchContinuity",
+    "transmitterSensitivity",
+  ];
+  const completeCycleCampaign =
+    required.id === COMPLETE_CYCLE_CANDIDATE_INVENTORY_POLICY;
+  const requiredGateIds = completeCycleCampaign
+    ? completeCycleRequiredGateIds
+    : basicRequiredGateIds;
   if (canonicalJson(required.requiredGates) !== canonicalJson(requiredGateIds)) {
     fail("campaign acceptance gate inventory is unsupported or incomplete.");
   }
@@ -346,9 +394,13 @@ function validateManifestAndSummary(manifest, summary) {
     ? policyId === ALL_CASES_POLICY &&
       required.failureDisposition ===
         "reject-campaign-and-write-no-artifacts"
-    : policyId === COMPLETE_CANDIDATE_INVENTORY_POLICY &&
-      manifest.acceptancePolicy.candidateValidityDisposition ===
-        "retain-complete-rejected-cases" &&
+    : (policyId === COMPLETE_CANDIDATE_INVENTORY_POLICY ||
+        policyId === COMPLETE_CYCLE_CANDIDATE_INVENTORY_POLICY) &&
+      manifest.acceptancePolicy.candidateValidityDisposition === (
+        completeCycleCampaign
+          ? "retain-complete-rejected-cases-as-diagnostic-only"
+          : "retain-complete-rejected-cases"
+      ) &&
       manifest.acceptancePolicy.failureDisposition ===
         "reject-incomplete-generation-and-publish-no-database";
   const producerPolicyMatches = manifest.acceptancePolicy
@@ -363,7 +415,11 @@ function validateManifestAndSummary(manifest, summary) {
     summaryHash,
     expected,
     required,
-    campaignKind: b1Campaign ? "b1-cap-angle" : "all-candidate",
+    campaignKind: b1Campaign
+      ? "b1-cap-angle"
+      : completeCycleCampaign
+        ? "all-candidate-complete-cycle"
+        : "all-candidate",
     retainCompleteRejectedCases: allCandidateCampaign,
   };
 }
@@ -388,6 +444,19 @@ function closeEnough(left, right) {
 
 function validateSummaryCase(summaryCase, acceptance, campaignKind) {
   const packet = acceptance.packet;
+  if (packet.schema === COMPLETE_CYCLE_RESULT_SCHEMA) {
+    if (summaryCase.sourceHash !== packet.source.sourceHash ||
+        summaryCase.sourceRecordId !== packet.source.recordId ||
+        summaryCase.resultHash !== packet.resultHash ||
+        summaryCase.protocolHash !== packet.completeCycleProtocolHash ||
+        canonicalJson(summaryCase.taxonomy) !== canonicalJson(packet.source.taxonomy) ||
+        summaryCase.acceptanceState !==
+          (packet.status.accepted ? "accepted" : "rejected") ||
+        canonicalJson(summaryCase.gates) !== canonicalJson(packet.gates)) {
+      fail(`${summaryCase.caseId} complete-cycle summary differs from its packet.`);
+    }
+    return;
+  }
   if (summaryCase.sourceHash !== packet.source.sourceHash ||
       summaryCase.sourceRecordId !== packet.source.recordId ||
       summaryCase.resultHash !== packet.resultHash ||
@@ -460,7 +529,8 @@ function exactSourceRecordForCase(summaryCase, summaryPath, packet) {
 
 function packetPathForCase(summaryCase, options) {
   const filename = path.basename(summaryCase.packetPath);
-  if (!filename.endsWith(".result-packet.v1.json")) {
+  if (!filename.endsWith(".result-packet.v1.json") &&
+      !filename.endsWith(".complete-cycle-result.v1.json")) {
     fail(`${summaryCase.caseId} packet filename is invalid.`);
   }
   if (options.packetDirectory) {
@@ -517,7 +587,50 @@ export function preflightAnalyticalCampaignImport(options) {
   const manifest = parseJsonBytes(manifestBytes, "campaign manifest");
   const summary = parseJsonBytes(summaryBytes, "campaign summary");
   const validated = validateManifestAndSummary(manifest, summary);
-  const cases = summary.cases.map((summaryCase, caseOrdinal) => {
+  const manifestDirectory = path.dirname(manifestPath);
+  const rawArtifactDescriptors = manifest.rawArtifacts ?? [];
+  const rawArtifacts = [];
+  options.onProgress?.({
+    stage: "import-preflight-raw-artifacts",
+    completedWork: 0,
+    totalWork: rawArtifactDescriptors.length,
+  });
+  for (let rawArtifactIndex = 0; rawArtifactIndex < rawArtifactDescriptors.length;
+    rawArtifactIndex += 1) {
+    const descriptor = rawArtifactDescriptors[rawArtifactIndex];
+    const relativePath = safeRelativePath(descriptor.path, "raw artifact path");
+    const absolutePath = path.resolve(manifestDirectory, relativePath);
+    if (!absolutePath.startsWith(`${manifestDirectory}${path.sep}`)) {
+      fail(`raw artifact ${relativePath} escapes its campaign directory.`);
+    }
+    const compressedBytes = readFileSync(absolutePath);
+    if (compressedBytes.length !== descriptor.storedBytes ||
+        sha256Bytes(compressedBytes) !== descriptor.compressedSha256) {
+      fail(`raw artifact ${relativePath} compressed identity is invalid.`);
+    }
+    const rawBytes = gunzipSync(compressedBytes);
+    if (rawBytes.length !== descriptor.rawBytes ||
+        sha256Bytes(rawBytes) !== descriptor.rawSha256) {
+      fail(`raw artifact ${relativePath} uncompressed identity is invalid.`);
+    }
+    rawArtifacts.push({ descriptor, absolutePath });
+    if ((rawArtifactIndex + 1) % 64 === 0 ||
+        rawArtifactIndex + 1 === rawArtifactDescriptors.length) {
+      options.onProgress?.({
+        stage: "import-preflight-raw-artifacts",
+        completedWork: rawArtifactIndex + 1,
+        totalWork: rawArtifactDescriptors.length,
+      });
+    }
+  }
+  const cases = [];
+  options.onProgress?.({
+    stage: "import-preflight-case",
+    completedWork: 0,
+    totalWork: summary.cases.length,
+  });
+  for (let caseOrdinal = 0; caseOrdinal < summary.cases.length; caseOrdinal += 1) {
+    const summaryCase = summary.cases[caseOrdinal];
     const absolutePacketPath = packetPathForCase(summaryCase, options);
     const packetBytes = readFileSync(absolutePacketPath);
     const acceptance = verifyIndependentCaseAcceptance(packetBytes, {
@@ -536,7 +649,7 @@ export function preflightAnalyticalCampaignImport(options) {
       summaryPath,
       acceptance.packet,
     );
-    return {
+    cases.push({
       caseOrdinal,
       summaryCase,
       packetBytes,
@@ -551,8 +664,14 @@ export function preflightAnalyticalCampaignImport(options) {
           memberId: acceptance.packet.source.taxonomy?.memberId ?? null,
           parameterVector: acceptance.packet.source.parameterVector,
         }),
-    };
-  });
+    });
+    options.onProgress?.({
+      stage: "import-preflight-case",
+      candidateId: summaryCase.caseId,
+      completedWork: caseOrdinal + 1,
+      totalWork: summary.cases.length,
+    });
+  }
   const preflight = {
     manifestPath,
     summaryPath,
@@ -561,6 +680,7 @@ export function preflightAnalyticalCampaignImport(options) {
     manifest,
     summary,
     cases,
+    rawArtifacts,
     ...validated,
   };
   const campaignAcceptance = campaignAcceptanceEvidence(preflight);
@@ -575,7 +695,7 @@ export function preflightAnalyticalCampaignImport(options) {
 
 function encodeArtifact(rawBytes, codec) {
   if (codec === "identity") return Buffer.from(rawBytes);
-  if (codec === "gzip") return gzipSync(rawBytes, { level: 9 });
+  if (codec === "gzip") return gzipSync(rawBytes, { level: 6 });
   fail(`unsupported artifact codec ${codec}.`);
 }
 
@@ -634,9 +754,62 @@ function insertArtifact(database, {
   return { artifactHash, artifactHashHex, payload };
 }
 
+function insertVerifiedEncodedArtifact(database, {
+  artifactHashHex,
+  rawBytesLength,
+  payload,
+  artifactKind,
+  mediaType,
+  codec,
+  createdBy,
+}) {
+  if (codec !== "gzip") {
+    fail("verified encoded artifact insertion currently requires gzip.");
+  }
+  const artifactHash = hashBuffer(artifactHashHex);
+  insertOrVerify(database, {
+    insertSql: `
+      INSERT INTO artifact(
+        artifact_hash, artifact_kind, media_type, codec,
+        raw_bytes, stored_bytes, payload, created_by
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(artifact_hash) DO NOTHING
+    `,
+    insertParameters: [
+      artifactHash,
+      artifactKind,
+      mediaType,
+      codec,
+      rawBytesLength,
+      payload.length,
+      payload,
+      createdBy,
+    ],
+    selectSql: `
+      SELECT artifact_kind, media_type, codec, raw_bytes, stored_bytes, payload,
+             created_by
+      FROM artifact WHERE artifact_hash = ?
+    `,
+    selectParameters: [artifactHash],
+    expected: {
+      artifact_kind: artifactKind,
+      media_type: mediaType,
+      codec,
+      raw_bytes: rawBytesLength,
+      stored_bytes: payload.length,
+      payload,
+      created_by: createdBy,
+    },
+    label: `artifact ${artifactHashHex}`,
+  });
+  return { artifactHash, artifactHashHex, payload };
+}
+
 function insertProtocol(database, packet) {
-  const protocol = packet.protocol;
-  const protocolHash = hashBuffer(packet.protocolHash, "protocol hash");
+  const protocol = packet.protocol ?? packet.completeCycleProtocol;
+  const eventSettings = protocol.eventEvaluator ?? protocol;
+  const protocolHashHex = packet.protocolHash ?? packet.completeCycleProtocolHash;
+  const protocolHash = hashBuffer(protocolHashHex, "protocol hash");
   const bytes = canonicalBytes(protocol);
   insertOrVerify(database, {
     insertSql: `
@@ -653,14 +826,14 @@ function insertProtocol(database, packet) {
       protocol.protocolId,
       protocol.schema,
       bytes,
-      protocol.fieldSpeed,
-      protocol.coupling,
-      protocol.rootPolicy.id,
-      protocol.rootPolicy.tolerance,
-      protocol.convergence.rootTolerance,
-      protocol.tolerances.rootTransversalityFloor,
-      protocol.tolerances.minimumSeparationFloor,
-      protocol.tolerances.convergenceAbsolute,
+      eventSettings.fieldSpeed,
+      eventSettings.coupling,
+      eventSettings.rootPolicy.id,
+      eventSettings.rootPolicy.tolerance,
+      eventSettings.convergence.rootTolerance,
+      eventSettings.tolerances.rootTransversalityFloor,
+      eventSettings.tolerances.minimumSeparationFloor,
+      eventSettings.tolerances.convergenceAbsolute,
     ],
     selectSql: `
       SELECT protocol_id, schema_id, canonical_json, field_speed, coupling,
@@ -674,20 +847,34 @@ function insertProtocol(database, packet) {
       protocol_id: protocol.protocolId,
       schema_id: protocol.schema,
       canonical_json: bytes,
-      field_speed: protocol.fieldSpeed,
-      coupling: protocol.coupling,
-      root_policy_id: protocol.rootPolicy.id,
-      primary_root_tolerance: protocol.rootPolicy.tolerance,
-      refined_root_tolerance: protocol.convergence.rootTolerance,
-      root_transversality_floor: protocol.tolerances.rootTransversalityFloor,
-      minimum_separation_floor: protocol.tolerances.minimumSeparationFloor,
-      convergence_absolute: protocol.tolerances.convergenceAbsolute,
+      field_speed: eventSettings.fieldSpeed,
+      coupling: eventSettings.coupling,
+      root_policy_id: eventSettings.rootPolicy.id,
+      primary_root_tolerance: eventSettings.rootPolicy.tolerance,
+      refined_root_tolerance: eventSettings.convergence.rootTolerance,
+      root_transversality_floor: eventSettings.tolerances.rootTransversalityFloor,
+      minimum_separation_floor: eventSettings.tolerances.minimumSeparationFloor,
+      convergence_absolute: eventSettings.tolerances.convergenceAbsolute,
     },
-    label: `protocol ${packet.protocolHash}`,
+    label: `protocol ${protocolHashHex}`,
   });
 }
 
-function insertCampaignEnvelope(database, preflight) {
+function insertCampaignEnvelope(database, preflight, options = {}) {
+  const rawArtifactImportMode =
+    options.experimentalRawArtifactImportMode ?? "recompress";
+  if (!["recompress", "verified-compressed"].includes(rawArtifactImportMode)) {
+    fail(
+      "experimentalRawArtifactImportMode must be recompress or verified-compressed.",
+    );
+  }
+  const rawArtifactTransactionBatchSize =
+    options.experimentalRawArtifactTransactionBatchSize == null
+      ? null
+      : positiveInteger(
+          options.experimentalRawArtifactTransactionBatchSize,
+          "experimentalRawArtifactTransactionBatchSize",
+        );
   const packet = preflight.cases[0].acceptance.packet;
   insertProtocol(database, packet);
   const manifestArtifact = insertArtifact(database, {
@@ -806,6 +993,111 @@ function insertCampaignEnvelope(database, preflight) {
     },
     label: `summary ${preflight.summaryHash}`,
   });
+  if (preflight.manifest.methodologyCoverage) {
+    const declaration = preflight.manifest.methodologyCoverage;
+    const coveragePath = path.resolve(REPOSITORY_ROOT, declaration.path);
+    const coverage = parseJsonBytes(readFileSync(coveragePath), "methodology coverage");
+    if (sha256Canonical(coverage) !== declaration.coverageHash ||
+        coverage.methodology?.sha256 !== declaration.methodologySha256) {
+      fail("methodology coverage artifact differs from the campaign binding.");
+    }
+    database.prepare(`
+      INSERT INTO methodology_coverage(
+        coverage_hash, coverage_id, methodology_path, methodology_sha256,
+        impact_review, reduction_versions_json, canonical_json
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(coverage_hash) DO NOTHING
+    `).run(
+      hashBuffer(declaration.coverageHash),
+      coverage.coverageId,
+      coverage.methodology.path,
+      hashBuffer(coverage.methodology.sha256),
+      coverage.methodology.impactReview,
+      canonicalBytes(coverage.reductionVersions),
+      canonicalBytes(coverage),
+    );
+  }
+  options.onProgress?.({
+    stage: "import-raw-artifacts",
+    completedWork: 0,
+    totalWork: preflight.rawArtifacts.length,
+  });
+  for (let rawArtifactIndex = 0;
+    rawArtifactIndex < preflight.rawArtifacts.length;
+    rawArtifactIndex += 1) {
+    const rawArtifact = preflight.rawArtifacts[rawArtifactIndex];
+    const compressedBytes = readFileSync(rawArtifact.absolutePath);
+    if (compressedBytes.length !== rawArtifact.descriptor.storedBytes ||
+        sha256Bytes(compressedBytes) !== rawArtifact.descriptor.compressedSha256) {
+      fail(`raw artifact ${rawArtifact.descriptor.path} changed after preflight.`);
+    }
+    const stored = rawArtifactImportMode === "verified-compressed"
+      ? insertVerifiedEncodedArtifact(database, {
+          artifactHashHex: rawArtifact.descriptor.rawSha256,
+          rawBytesLength: rawArtifact.descriptor.rawBytes,
+          payload: compressedBytes,
+          artifactKind: rawArtifact.descriptor.artifactKind,
+          mediaType: rawArtifact.descriptor.mediaType,
+          codec: "gzip",
+          createdBy: ANALYTICAL_CAMPAIGN_IMPORTER_VERSION,
+        })
+      : insertArtifact(database, {
+          rawBytes: gunzipSync(compressedBytes),
+          artifactKind: rawArtifact.descriptor.artifactKind,
+          mediaType: rawArtifact.descriptor.mediaType,
+          codec: "gzip",
+          createdBy: ANALYTICAL_CAMPAIGN_IMPORTER_VERSION,
+        });
+    if (!stored.payload.equals(compressedBytes)) {
+      fail(`raw artifact ${rawArtifact.descriptor.path} gzip bytes are not deterministic.`);
+    }
+    database.prepare(`
+      INSERT INTO analytical_raw_artifact(
+        compressed_hash, raw_hash, artifact_hash, manifest_hash, candidate_id,
+        artifact_kind, relative_path, enclosing_radius, resolution, time_sample,
+        sensitivity_coordinate, stencil, raw_bytes, stored_bytes, context_json
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(compressed_hash) DO NOTHING
+    `).run(
+      hashBuffer(rawArtifact.descriptor.compressedSha256),
+      hashBuffer(rawArtifact.descriptor.rawSha256),
+      stored.artifactHash,
+      manifestHash,
+      rawArtifact.descriptor.candidateId,
+      rawArtifact.descriptor.artifactKind,
+      rawArtifact.descriptor.path,
+      rawArtifact.descriptor.context.radius ?? null,
+      rawArtifact.descriptor.context.resolution ??
+        rawArtifact.descriptor.context.refinement ?? null,
+      rawArtifact.descriptor.context.timeIndex ?? null,
+      rawArtifact.descriptor.context.coordinate ?? null,
+      rawArtifact.descriptor.context.delta == null
+        ? null
+        : `delta:${rawArtifact.descriptor.context.delta}`,
+      rawArtifact.descriptor.rawBytes,
+      rawArtifact.descriptor.storedBytes,
+      canonicalBytes(rawArtifact.descriptor.context),
+    );
+    if ((rawArtifactIndex + 1) % 64 === 0 ||
+        rawArtifactIndex + 1 === preflight.rawArtifacts.length) {
+      options.onProgress?.({
+        stage: "import-raw-artifacts",
+        candidateId: rawArtifact.descriptor.candidateId,
+        completedWork: rawArtifactIndex + 1,
+        totalWork: preflight.rawArtifacts.length,
+      });
+    }
+    if (rawArtifactTransactionBatchSize != null &&
+        (rawArtifactIndex + 1) % rawArtifactTransactionBatchSize === 0) {
+      database.exec("COMMIT");
+      database.exec("BEGIN IMMEDIATE");
+      options.onRawArtifactBatchCommitted?.({
+        completedWork: rawArtifactIndex + 1,
+        totalWork: preflight.rawArtifacts.length,
+        transactionBatchSize: rawArtifactTransactionBatchSize,
+      });
+    }
+  }
 }
 
 function insertSource(database, packet, exactSourceRecord = null) {
@@ -889,7 +1181,8 @@ function insertConfiguration(database, row) {
   const vectorBytes = canonicalBytes(packet.source.parameterVector);
   const coordinateDefinition = row.summaryCase.coordinates?.capAngles
     ? "b1-cap-angles-radians/v1"
-    : "prescribed-braid-parameter-vector/v1";
+    : packet.source.parameterVector?.coordinateDefinition ??
+      "prescribed-braid-parameter-vector/v1";
   insertOrVerify(database, {
     insertSql: `
       INSERT INTO configuration(
@@ -927,7 +1220,20 @@ function insertConfiguration(database, row) {
   });
 }
 
-function caseMeasures(packet) {
+function caseMeasures(packet, summaryCase = null) {
+  if (packet.schema === COMPLETE_CYCLE_RESULT_SCHEMA) {
+    return (summaryCase?.measures ?? []).map((row) => [
+      [
+        row.measureId,
+        row.enclosingRadius ?? row.radius ?? "none",
+        row.probePolarity ?? "none",
+      ].join("/"),
+      row.scalarValue,
+      row.unit,
+      1,
+      row.reductionVersion,
+    ]);
+  }
   if (packet.reducedMeasures.events.length !== 1) {
     fail("the V1 campaign importer requires one declared event per case.");
   }
@@ -955,6 +1261,292 @@ function caseMeasures(packet) {
   ];
 }
 
+function completeCycleMultidimensionalRows(packet, summaryCase) {
+  if (packet.schema !== COMPLETE_CYCLE_RESULT_SCHEMA) return [];
+  const acceptedDisposition = packet.status.accepted ? "accepted" : "diagnostic-only";
+  const rows = (summaryCase.measures ?? []).map((row) => ({
+    measureId: row.measureId,
+    reductionVersion: row.reductionVersion,
+    disposition: acceptedDisposition,
+    scalarValue: row.scalarValue,
+    unit: row.unit,
+    probePolarity: row.probePolarity,
+    enclosingRadius: row.radius,
+    normalization: row.normalization,
+    numericalUncertainty: row.numericalUncertainty,
+    details: row,
+  }));
+  for (const resolution of ["primary", "refined"]) {
+    const disposition = resolution === "primary" ? acceptedDisposition : "diagnostic-only";
+    for (const surface of packet.diagnosticReductions.surface.surface[resolution]) {
+      for (const row of surface.angularPowerRows) {
+        rows.push({
+          measureId: `angular-power/${row.channel}`,
+          reductionVersion: packet.reducer.id,
+          disposition,
+          scalarValue: row.power,
+          unit: "squared-angular-coefficient",
+          probeId: row.channel,
+          enclosingRadius: surface.radius,
+          resolution,
+          angularDegree: row.degree,
+          details: row,
+        });
+      }
+      for (const row of surface.anisotropyRows) {
+        rows.push({
+          measureId: `anisotropy/${row.channel}`,
+          reductionVersion: packet.reducer.id,
+          disposition,
+          scalarValue: row.nonMonopolePowerFraction,
+          unit: "ratio",
+          probeId: row.channel,
+          enclosingRadius: surface.radius,
+          resolution,
+          details: row,
+        });
+      }
+      for (const row of surface.spectralCoefficientRows) {
+        rows.push({
+          measureId: `spectral-coefficient/${row.channel}`,
+          reductionVersion: packet.reducer.id,
+          disposition,
+          scalarValue: row.magnitude,
+          unit: "modal-coefficient",
+          probeId: row.channel,
+          enclosingRadius: surface.radius,
+          resolution,
+          temporalHarmonic: row.harmonic,
+          angularDegree: row.degree,
+          angularOrder: row.order,
+          realPart: row.real,
+          imaginaryPart: row.imaginary,
+          magnitude: row.magnitude,
+          normalization: packet.completeCycleProtocol.spectralReduction.normalization,
+          details: row,
+        });
+      }
+      for (const row of surface.transmitterTaggedWakeFluxSpectralRows) {
+        rows.push({
+          measureId: "normal-wake-flux/transmitter-root-complex-coefficient",
+          reductionVersion: packet.reducer.id,
+          disposition,
+          scalarValue: row.magnitude,
+          unit: "source-normalized-wake-crossing-coefficient",
+          enclosingRadius: surface.radius,
+          resolution,
+          temporalHarmonic: row.harmonic,
+          angularDegree: row.degree,
+          angularOrder: row.order,
+          transmitterId: row.transmitterId,
+          rootOrdinal: row.rootOrdinal,
+          realPart: row.real,
+          imaginaryPart: row.imaginary,
+          magnitude: row.magnitude,
+          normalization: "complete-cycle-complex-dft.v1",
+          coefficientFloor:
+            surface.transmitterTaggedWakeFluxBandCoverage.effectiveCoefficientFloor,
+          details: row,
+        });
+      }
+      for (const row of surface.wakeFluxSpectralCancellationRows) {
+        rows.push({
+          measureId: "normal-wake-flux/frequency-angular-cancellation",
+          reductionVersion: packet.reducer.id,
+          disposition: row.status === "admissible" ? disposition : "below-floor",
+          scalarValue: row.etaWakeFlux,
+          unit: "ratio",
+          enclosingRadius: surface.radius,
+          resolution,
+          temporalHarmonic: row.harmonic,
+          angularDegree: row.degree,
+          angularOrder: row.order,
+          realPart: row.netReal,
+          imaginaryPart: row.netImaginary,
+          magnitude: row.netMagnitude,
+          normalization: "net-magnitude-over-raw-magnitude.v1",
+          coefficientFloor:
+            surface.transmitterTaggedWakeFluxBandCoverage.effectiveCoefficientFloor,
+          details: row,
+        });
+      }
+    }
+    for (const radial of packet.diagnosticReductions.surface.radialScaling[resolution]) {
+      if (radial.status !== "ok") continue;
+      rows.push({
+        measureId: `radial-scaling/${radial.measureId}`,
+        reductionVersion: packet.reducer.id,
+        disposition,
+        scalarValue: radial.global.exponent,
+        unit: "radial-exponent",
+        resolution,
+        numericalUncertainty: radial.global.logSpaceRmsResidual,
+        normalization: "negative-log-slope-over-enclosing-radius.v1",
+        details: radial,
+      });
+    }
+  }
+  for (const resolution of ["primary", "refined"]) {
+    for (const surface of packet.diagnosticReductions.surface.surface[resolution]) {
+      const references = [
+        ["raw-emission-reference-residual", surface.wakeFlux.rawEmissionReference?.relativeResidual],
+        ["signed-emission-reference-residual",
+          surface.wakeFlux.signedEmissionReference?.relativeOrAbsoluteResidual],
+        ["frequency-resolved-out-of-band-rms-fraction",
+          surface.transmitterTaggedWakeFluxBandCoverage.outOfBandRmsFraction],
+      ];
+      for (const [suffix, value] of references) {
+        rows.push({
+          measureId: `normal-wake-flux/${suffix}`,
+          reductionVersion: packet.reducer.id,
+          disposition: resolution === "primary" ? acceptedDisposition : "diagnostic-only",
+          scalarValue: value,
+          unit: "ratio",
+          enclosingRadius: surface.radius,
+          resolution,
+          details: {
+            rawEmissionReference: surface.wakeFlux.rawEmissionReference,
+            signedEmissionReference: surface.wakeFlux.signedEmissionReference,
+            bandCoverage: surface.transmitterTaggedWakeFluxBandCoverage,
+          },
+        });
+      }
+    }
+  }
+  const sensitivity = packet.diagnosticReductions.transmitterSensitivity;
+  if (sensitivity?.coordinateId) {
+    for (const [measureId, scalarValue] of Object.entries(
+      sensitivity.refinedDerivative ?? {},
+    )) {
+      rows.push({
+        measureId: `transmitter-sensitivity/${measureId}`,
+        reductionVersion: packet.reducer.id,
+        disposition: sensitivity.accepted ? acceptedDisposition : "diagnostic-only",
+        scalarValue,
+        unit: "measure-per-radian",
+        sensitivityCoordinate: sensitivity.coordinateId,
+        stencil: sensitivity.stencil?.refined?.kind,
+        numericalUncertainty: sensitivity.derivativeUncertainty?.[measureId] ?? null,
+        details: sensitivity,
+      });
+    }
+  }
+  const commonAxis = packet.diagnosticReductions.commonAxisBraid;
+  if (commonAxis?.schema ===
+      "prescribed-path-analysis/common-axis-braid-reduction.v2") {
+    for (const resolution of ["primary", "refined"]) {
+      const disposition = resolution === "primary"
+        ? acceptedDisposition
+        : "diagnostic-only";
+      for (const [projection, summary] of Object.entries(
+        commonAxis.residuals[resolution],
+      )) {
+        for (const receiver of summary.receivers) {
+          for (const [measure, scalarValue] of [
+            ["rms", receiver.rms],
+            ["maximum-absolute", receiver.maximumAbsolute],
+            ["signed-cycle-average", receiver.signedCycleAverage],
+          ]) {
+            rows.push({
+              measureId: `common-axis-braid/residual/${projection}/${measure}`,
+              reductionVersion: commonAxis.reducerVersion,
+              disposition,
+              scalarValue,
+              unit: "acceleration",
+              resolution,
+              transmitterId: receiver.transmitterId,
+              details: receiver,
+            });
+          }
+        }
+      }
+    }
+    rows.push({
+      measureId: "common-axis-braid/residual-convergence/maximum-change",
+      reductionVersion: commonAxis.reducerVersion,
+      disposition: commonAxis.residuals.convergence.passed
+        ? acceptedDisposition
+        : "diagnostic-only",
+      scalarValue: commonAxis.residuals.convergence.maximumChange,
+      unit: "relative-or-absolute",
+      numericalUncertainty: commonAxis.residuals.convergence.maximumChange,
+      normalization: commonAxis.residuals.convergence.comparison,
+      details: commonAxis.residuals.convergence,
+    });
+    for (const resolution of ["primary", "refined"]) {
+      rows.push({
+        measureId: "common-axis-braid/root-transversality-margin",
+        reductionVersion: commonAxis.reducerVersion,
+        disposition: resolution === "primary" ? acceptedDisposition : "diagnostic-only",
+        scalarValue: commonAxis.minimumRootTransversalityMargin[resolution],
+        unit: "speed",
+        resolution,
+        details: commonAxis.minimumRootTransversalityMargin,
+      });
+      rows.push({
+        measureId: "common-axis-braid/axial-angular-momentum/rms-about-mean",
+        reductionVersion: commonAxis.reducerVersion,
+        disposition: "diagnostic-only",
+        scalarValue:
+          commonAxis.axialAngularMomentumDiagnostic[resolution].cycle.rmsAboutMean,
+        unit: "angular-momentum-per-unit-mu_arch",
+        resolution,
+        details: commonAxis.axialAngularMomentumDiagnostic[resolution],
+      });
+    }
+  }
+  return rows;
+}
+
+function insertMultidimensionalMeasures(database, packet, summaryCase) {
+  const resultHash = hashBuffer(packet.resultHash);
+  for (const row of completeCycleMultidimensionalRows(packet, summaryCase)) {
+    const identity = {
+      resultHash: packet.resultHash,
+      ...row,
+    };
+    const details = canonicalBytes(row.details ?? {});
+    database.prepare(`
+      INSERT INTO multidimensional_measure(
+        row_hash, result_hash, measure_id, reduction_version, disposition,
+        scalar_value, unit, probe_id, probe_polarity, enclosing_radius,
+        resolution, time_sample, temporal_harmonic, angular_degree,
+        angular_order, transmitter_id, root_ordinal, sensitivity_coordinate,
+        stencil, real_part, imaginary_part, magnitude, normalization,
+        coefficient_floor, numerical_uncertainty, details_json
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(row_hash) DO NOTHING
+    `).run(
+      hashBuffer(sha256Canonical(identity)),
+      resultHash,
+      row.measureId,
+      row.reductionVersion,
+      row.disposition,
+      row.scalarValue ?? null,
+      row.unit,
+      row.probeId ?? null,
+      row.probePolarity ?? null,
+      row.enclosingRadius ?? null,
+      row.resolution ?? null,
+      row.timeSample ?? null,
+      row.temporalHarmonic ?? null,
+      row.angularDegree ?? null,
+      row.angularOrder ?? null,
+      row.transmitterId ?? null,
+      row.rootOrdinal ?? null,
+      row.sensitivityCoordinate ?? null,
+      row.stencil ?? null,
+      row.realPart ?? null,
+      row.imaginaryPart ?? null,
+      row.magnitude ?? null,
+      row.normalization ?? null,
+      row.coefficientFloor ?? null,
+      row.numericalUncertainty ?? null,
+      details,
+    );
+  }
+}
+
 function insertCase(database, preflight, row) {
   const packet = row.acceptance.packet;
   insertProtocol(database, packet);
@@ -969,7 +1561,12 @@ function insertCase(database, preflight, row) {
   });
   const resultHash = hashBuffer(packet.resultHash);
   const sourceHash = hashBuffer(packet.source.sourceHash);
-  const protocolHash = hashBuffer(packet.protocolHash);
+  const protocolHash = hashBuffer(
+    packet.protocolHash ?? packet.completeCycleProtocolHash,
+  );
+  const evaluatorId = packet.evaluator?.id ?? packet.reducer?.id;
+  const evaluatorVersion = packet.evaluator?.version ??
+    packet.reducer?.surfaceReducer?.version ?? "v1";
   const producerStatusBytes = canonicalBytes(packet.status);
   insertOrVerify(database, {
     insertSql: `
@@ -984,8 +1581,8 @@ function insertCase(database, preflight, row) {
       resultHash,
       sourceHash,
       protocolHash,
-      packet.evaluator.id,
-      packet.evaluator.version,
+      evaluatorId,
+      evaluatorVersion,
       packet.schema,
       artifact.artifactHash,
       packet.status?.code ?? null,
@@ -1001,8 +1598,8 @@ function insertCase(database, preflight, row) {
     expected: {
       source_hash: sourceHash,
       protocol_hash: protocolHash,
-      evaluator_id: packet.evaluator.id,
-      evaluator_version: packet.evaluator.version,
+      evaluator_id: evaluatorId,
+      evaluator_version: evaluatorVersion,
       packet_schema: packet.schema,
       refinement_id: "primary",
       artifact_hash: artifact.artifactHash,
@@ -1012,9 +1609,10 @@ function insertCase(database, preflight, row) {
     },
     label: `result ${packet.resultHash}`,
   });
-  for (let eventOrdinal = 0; eventOrdinal < packet.reducedMeasures.events.length;
+  const observationEvents = packet.reducedMeasures?.events ?? [];
+  for (let eventOrdinal = 0; eventOrdinal < observationEvents.length;
     eventOrdinal += 1) {
-    const event = packet.reducedMeasures.events[eventOrdinal];
+    const event = observationEvents[eventOrdinal];
     insertOrVerify(database, {
       insertSql: `
         INSERT INTO observation_event(
@@ -1061,18 +1659,25 @@ function insertCase(database, preflight, row) {
       label: `event ${event.eventId}`,
     });
   }
-  for (const [measureId, scalarValue, unit, sourceRowCount] of caseMeasures(packet)) {
+  for (const [
+    measureId,
+    scalarValue,
+    unit,
+    sourceRowCount,
+    reductionVersion = "result-packet.v1",
+  ] of caseMeasures(packet, row.summaryCase)) {
     insertOrVerify(database, {
       insertSql: `
         INSERT INTO case_reduced_measure(
           result_hash, measure_id, reduction_version, scalar_value,
           unit, source_row_count
-        ) VALUES (?, ?, 'result-packet.v1', ?, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?)
         ON CONFLICT(result_hash, measure_id, reduction_version) DO NOTHING
       `,
       insertParameters: [
         resultHash,
         measureId,
+        reductionVersion,
         scalarValue,
         unit,
         sourceRowCount,
@@ -1081,9 +1686,9 @@ function insertCase(database, preflight, row) {
         SELECT scalar_value, unit, source_row_count
         FROM case_reduced_measure
         WHERE result_hash = ? AND measure_id = ?
-          AND reduction_version = 'result-packet.v1'
+          AND reduction_version = ?
       `,
-      selectParameters: [resultHash, measureId],
+      selectParameters: [resultHash, measureId, reductionVersion],
       expected: {
         scalar_value: scalarValue,
         unit,
@@ -1092,6 +1697,7 @@ function insertCase(database, preflight, row) {
       label: `measure ${packet.resultHash}:${measureId}`,
     });
   }
+  insertMultidimensionalMeasures(database, packet, row.summaryCase);
   for (const gate of row.acceptance.gates) {
     const evidenceBytes = canonicalBytes(gate);
     insertOrVerify(database, {
@@ -1314,7 +1920,7 @@ export function importAnalyticalCampaign(databasePath, options) {
   try {
     database.exec("BEGIN IMMEDIATE");
     try {
-      insertCampaignEnvelope(database, preflight);
+      insertCampaignEnvelope(database, preflight, options);
       const existingBatch = database.prepare(`
         SELECT state, last_committed_ordinal, committed_case_count, started_at
         FROM ingest_batch WHERE ingest_batch_id = ?
@@ -1392,6 +1998,8 @@ export function importAnalyticalCampaign(databasePath, options) {
       acceptedCaseCount: acceptedCount,
       rejectedCaseCount: preflight.cases.length - acceptedCount,
       batchSize,
+      rawArtifactTransactionBatchSize:
+        options.experimentalRawArtifactTransactionBatchSize ?? null,
       campaignEvidenceHash: preflight.campaignAcceptance.evidenceHash,
       resumedFromOrdinal: resumeOffset,
     };
@@ -1513,6 +2121,51 @@ export function recordAnalyticalDatabaseGeneration(databasePath, options) {
         },
         label: `database generation ${generationHash}`,
       });
+      for (const campaign of options.evidence.campaigns) {
+        const manifestHash = hashBuffer(campaign.manifestHash, "generation campaign manifestHash");
+        const cases = database.prepare(`
+          SELECT campaign_case.result_hash, campaign_case.case_id,
+                 source_record.family_id, source_record.member_id,
+                 campaign_case.source_hash, case_result.protocol_hash,
+                 case_acceptance.accepted
+          FROM campaign_case
+          JOIN source_record USING (source_hash)
+          JOIN case_result USING (result_hash)
+          JOIN case_acceptance USING (result_hash)
+          WHERE campaign_case.manifest_hash = ?
+            AND case_acceptance.acceptance_instrument_version = ?
+          ORDER BY campaign_case.case_ordinal
+        `).all(manifestHash, INDEPENDENT_ACCEPTANCE_INSTRUMENT_VERSION);
+        if (cases.length !== campaign.caseCount) {
+          fail(`database generation campaign ${campaign.manifestHash} case inventory is incomplete.`);
+        }
+        for (const row of cases) {
+          const failedGate = database.prepare(`
+            SELECT gate_id FROM validity_gate_result
+            WHERE result_hash = ? AND independent_pass = 0
+            ORDER BY gate_id LIMIT 1
+          `).get(row.result_hash)?.gate_id ?? null;
+          database.prepare(`
+            INSERT INTO database_generation_case(
+              generation_hash, manifest_hash, result_hash, case_id,
+              family_id, member_id, source_hash, protocol_hash,
+              acceptance_state, failed_gate
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(generation_hash, result_hash) DO NOTHING
+          `).run(
+            hashBuffer(generationHash),
+            manifestHash,
+            row.result_hash,
+            row.case_id,
+            row.family_id,
+            row.member_id,
+            row.source_hash,
+            row.protocol_hash,
+            row.accepted === 1 ? "accepted" : "rejected",
+            failedGate,
+          );
+        }
+      }
       database.exec("COMMIT");
       return { generationHash, registryHash, evidenceHash };
     } catch (error) {
@@ -1742,6 +2395,48 @@ export function exportAnalyticalCampaign(databasePath, options) {
         { resultHash },
       ));
     }
+    if (tableExists(database, "analytical_raw_artifact")) {
+      const rawArtifactTotal = Number(database.prepare(`
+        SELECT COUNT(*) AS count FROM analytical_raw_artifact
+        WHERE manifest_hash = ?
+      `).get(manifestHash).count);
+      const rawArtifacts = database.prepare(`
+        SELECT analytical_raw_artifact.*, artifact.payload, artifact.codec
+        FROM analytical_raw_artifact
+        JOIN artifact USING (artifact_hash)
+        WHERE analytical_raw_artifact.manifest_hash = ?
+        ORDER BY analytical_raw_artifact.relative_path
+      `).iterate(manifestHash);
+      let rawArtifactIndex = 0;
+      options.onProgress?.({
+        stage: "export-raw-artifacts",
+        completedWork: 0,
+        totalWork: rawArtifactTotal,
+      });
+      for (const row of rawArtifacts) {
+        if (row.codec !== "gzip" ||
+            sha256Bytes(row.payload) !== hashHex(row.compressed_hash) ||
+            row.payload.length !== row.stored_bytes) {
+          fail(`raw analytical artifact ${row.relative_path} failed compressed-byte verification.`);
+        }
+        const relativePath = safeRelativePath(row.relative_path, "raw artifact export path");
+        writeExactFile(path.join(outputDirectory, relativePath), row.payload);
+        inventory.push(inventoryRow(relativePath, row.artifact_kind, row.payload, {
+          candidateId: row.candidate_id,
+          rawSha256: hashHex(row.raw_hash),
+          compressedSha256: hashHex(row.compressed_hash),
+        }));
+        rawArtifactIndex += 1;
+        if (rawArtifactIndex % 64 === 0 || rawArtifactIndex === rawArtifactTotal) {
+          options.onProgress?.({
+            stage: "export-raw-artifacts",
+            candidateId: row.candidate_id,
+            completedWork: rawArtifactIndex,
+            totalWork: rawArtifactTotal,
+          });
+        }
+      }
+    }
     const campaignAcceptanceRelativePath = path.join(
       "acceptance",
       `${manifestHashHex}.campaign-acceptance.v1.json`,
@@ -1826,6 +2521,14 @@ function databaseFingerprint(database) {
   if (tableExists(database, "database_generation")) {
     tables.push("database_generation");
   }
+  for (const table of [
+    "methodology_coverage",
+    "analytical_raw_artifact",
+    "multidimensional_measure",
+    "database_generation_case",
+  ]) {
+    if (tableExists(database, table)) tables.push(table);
+  }
   const counts = Object.fromEntries(tables.map((table) => [
     table,
     Number(database.prepare(`SELECT COUNT(*) AS count FROM ${table}`).get().count),
@@ -1871,13 +2574,50 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
   try {
     const integrity = database.prepare("PRAGMA integrity_check").get().integrity_check;
     if (integrity !== "ok") fail(`SQLite integrity check failed: ${integrity}`);
+    const foreignKeyFailures = database.prepare("PRAGMA foreign_key_check").all();
+    if (foreignKeyFailures.length !== 0) {
+      fail(`SQLite foreign-key check failed for ${foreignKeyFailures.length} row(s).`);
+    }
     if (!tableExists(database, "schema_migration")) {
       fail("database has no analytical campaign schema migrations.");
     }
+    const hasRawArtifactTable = tableExists(
+      database,
+      "analytical_raw_artifact",
+    );
+    const singlePassRawArtifactVerification =
+      options.experimentalSinglePassRawArtifactVerification === true &&
+      hasRawArtifactTable;
+    const artifactTotal = Number(database.prepare(
+      "SELECT COUNT(*) AS count FROM artifact",
+    ).get().count);
+    const firstPassArtifactTotal = singlePassRawArtifactVerification
+      ? Number(database.prepare(`
+          SELECT COUNT(*) AS count
+          FROM artifact
+          WHERE NOT EXISTS (
+            SELECT 1 FROM analytical_raw_artifact
+            WHERE analytical_raw_artifact.artifact_hash = artifact.artifact_hash
+          )
+        `).get().count)
+      : artifactTotal;
     const artifacts = database.prepare(`
       SELECT artifact_hash, artifact_kind, codec, raw_bytes, stored_bytes, payload
-      FROM artifact ORDER BY artifact_hash
-    `).all();
+      FROM artifact
+      ${singlePassRawArtifactVerification
+        ? `WHERE NOT EXISTS (
+            SELECT 1 FROM analytical_raw_artifact
+            WHERE analytical_raw_artifact.artifact_hash = artifact.artifact_hash
+          )`
+        : ""}
+      ORDER BY artifact_hash
+    `).iterate();
+    let artifactIndex = 0;
+    options.onProgress?.({
+      stage: "verify-artifacts",
+      completedWork: 0,
+      totalWork: firstPassArtifactTotal,
+    });
     for (const row of artifacts) {
       const rawBytes = decodeArtifact(row);
       if (rawBytes.length !== row.raw_bytes || row.payload.length !== row.stored_bytes ||
@@ -1900,6 +2640,14 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
         const hash = sha256Canonical(withoutField(summary, "summaryHash"));
         if (hash !== summary.summaryHash) fail("stored campaign summary hash is invalid.");
       }
+      artifactIndex += 1;
+      if (artifactIndex % 64 === 0 || artifactIndex === firstPassArtifactTotal) {
+        options.onProgress?.({
+          stage: "verify-artifacts",
+          completedWork: artifactIndex,
+          totalWork: firstPassArtifactTotal,
+        });
+      }
     }
     const exactSources = database.prepare(`
       SELECT source_hash, exact_source_artifact_hash
@@ -1918,6 +2666,74 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
       ));
       if (sha256Canonical(exactSource) !== hashHex(row.source_hash)) {
         fail(`exact source ${hashHex(row.source_hash)} failed canonical verification.`);
+      }
+    }
+    if (hasRawArtifactTable) {
+      if (singlePassRawArtifactVerification) {
+        const rawArtifactReferenceCount = Number(database.prepare(`
+          SELECT COUNT(DISTINCT artifact_hash) AS count
+          FROM analytical_raw_artifact
+        `).get().count);
+        if (firstPassArtifactTotal + rawArtifactReferenceCount !== artifactTotal) {
+          fail("single-pass artifact verification coverage is incomplete.");
+        }
+      }
+      const rawArtifactTotal = Number(database.prepare(
+        "SELECT COUNT(*) AS count FROM analytical_raw_artifact",
+      ).get().count);
+      const rawArtifacts = database.prepare(`
+        SELECT analytical_raw_artifact.*, artifact.payload, artifact.codec,
+               artifact.artifact_hash AS stored_artifact_hash,
+               artifact.raw_bytes AS artifact_raw_bytes,
+               artifact.stored_bytes AS artifact_stored_bytes
+        FROM analytical_raw_artifact JOIN artifact USING (artifact_hash)
+        ORDER BY compressed_hash
+      `).iterate();
+      let rawArtifactIndex = 0;
+      options.onProgress?.({
+        stage: "verify-raw-artifacts",
+        completedWork: 0,
+        totalWork: rawArtifactTotal,
+      });
+      for (const row of rawArtifacts) {
+        const rawBytes = gunzipSync(row.payload);
+        if (row.codec !== "gzip" || row.payload.length !== row.stored_bytes ||
+            rawBytes.length !== row.raw_bytes ||
+            row.raw_bytes !== row.artifact_raw_bytes ||
+            row.stored_bytes !== row.artifact_stored_bytes ||
+            !Buffer.from(row.raw_hash).equals(
+              Buffer.from(row.stored_artifact_hash),
+            ) ||
+            sha256Bytes(row.payload) !== hashHex(row.compressed_hash) ||
+            sha256Bytes(rawBytes) !== hashHex(row.raw_hash)) {
+          fail(`raw analytical artifact ${row.relative_path} failed hash/size verification.`);
+        }
+        rawArtifactIndex += 1;
+        if (rawArtifactIndex % 64 === 0 || rawArtifactIndex === rawArtifactTotal) {
+          options.onProgress?.({
+            stage: "verify-raw-artifacts",
+            candidateId: row.candidate_id,
+            completedWork: rawArtifactIndex,
+            totalWork: rawArtifactTotal,
+          });
+        }
+      }
+      const incompleteCompleteCycleCases = Number(database.prepare(`
+        SELECT COUNT(*) AS count FROM case_result
+        WHERE packet_schema = ? AND (
+          NOT EXISTS (
+            SELECT 1 FROM multidimensional_measure
+            WHERE multidimensional_measure.result_hash = case_result.result_hash
+          ) OR NOT EXISTS (
+            SELECT 1 FROM analytical_raw_artifact
+            JOIN campaign_case USING (manifest_hash)
+            WHERE campaign_case.result_hash = case_result.result_hash
+              AND analytical_raw_artifact.candidate_id = campaign_case.case_id
+          )
+        )
+      `).get(COMPLETE_CYCLE_RESULT_SCHEMA).count);
+      if (incompleteCompleteCycleCases !== 0) {
+        fail(`${incompleteCompleteCycleCases} complete-cycle case(s) lack normalized measures or raw artifacts.`);
       }
     }
     const rejectedAcceptedRows = Number(database.prepare(`
@@ -1959,12 +2775,21 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
           evidence.generationHash !== hashHex(generation.generation_hash)) {
         fail(`database generation ${hashHex(generation.generation_hash)} evidence is invalid.`);
       }
+      if (tableExists(database, "database_generation_case")) {
+        const generationCaseCount = Number(database.prepare(`
+          SELECT COUNT(*) AS count FROM database_generation_case
+          WHERE generation_hash = ?
+        `).get(generation.generation_hash).count);
+        if (generationCaseCount !== generation.observed_candidate_count) {
+          fail(`database generation ${hashHex(generation.generation_hash)} candidate cohort is incomplete.`);
+        }
+      }
     }
     return {
       schema: ANALYTICAL_CAMPAIGN_DATABASE_SCHEMA,
       integrity,
       fingerprint: databaseFingerprint(database),
-      artifactCount: artifacts.length,
+      artifactCount: artifactTotal,
       acceptedCaseCount: Number(
         database.prepare("SELECT COUNT(*) AS count FROM accepted_case").get().count,
       ),
@@ -1977,6 +2802,157 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
   } finally {
     database.close();
   }
+}
+
+function generationCandidateDigest(database, generation) {
+  const generationHash = hashHex(generation.generation_hash);
+  const candidates = database.prepare(`
+    SELECT database_generation_case.*,
+           lower(hex(database_generation_case.source_hash)) AS source_hash_hex,
+           lower(hex(database_generation_case.protocol_hash)) AS protocol_hash_hex,
+           lower(hex(database_generation_case.result_hash)) AS result_hash_hex
+    FROM database_generation_case
+    WHERE generation_hash = ?
+    ORDER BY family_id, member_id, case_id
+  `).all(generation.generation_hash).map((row) => {
+    const summaryMeasures = database.prepare(`
+      SELECT measure_id, reduction_version, disposition, scalar_value, unit,
+             probe_polarity, enclosing_radius, normalization,
+             numerical_uncertainty
+      FROM multidimensional_measure
+      WHERE result_hash = ? AND resolution IS NULL
+        AND measure_id IN (
+          'external-exposure/L_ext',
+          'external-exposure/L_raw',
+          'external-exposure/eta_ext',
+          'normal-wake-flux/signed-cycle-integral',
+          'normal-wake-flux/raw-cycle-integral',
+          'normal-wake-flux/residual-cycle-integral',
+          'normal-wake-flux/eta'
+        )
+      ORDER BY measure_id, enclosing_radius, probe_polarity
+    `).all(row.result_hash);
+    return {
+      candidateId: row.case_id,
+      familyId: row.family_id,
+      memberId: row.member_id,
+      referenceCase: row.member_id === "B1.1",
+      sourceHash: row.source_hash_hex,
+      protocolHash: row.protocol_hash_hex,
+      resultHash: row.result_hash_hex,
+      acceptance: row.acceptance_state,
+      failedGate: row.failed_gate,
+      summaryMeasures,
+    };
+  });
+  const leaderGroups = new Map();
+  for (const candidate of candidates.filter((row) => row.acceptance === "accepted")) {
+    for (const measure of candidate.summaryMeasures.filter(
+      (row) => row.disposition === "accepted" && Number.isFinite(row.scalar_value),
+    )) {
+      const key = [
+        measure.measure_id,
+        measure.unit,
+        measure.enclosing_radius ?? "none",
+        measure.probe_polarity ?? "none",
+        measure.normalization ?? "none",
+      ].join("|");
+      const current = leaderGroups.get(key);
+      const displayed = {
+        candidateId: candidate.candidateId,
+        familyId: candidate.familyId,
+        memberId: candidate.memberId,
+        sourceHash: candidate.sourceHash,
+        protocolHash: candidate.protocolHash,
+        databaseGenerationHash: generationHash,
+        acceptanceState: candidate.acceptance,
+        failedGate: null,
+          measureId: measure.measure_id,
+          unit: measure.unit,
+          radius: measure.enclosing_radius,
+        radiusSequence: null,
+        reduction: measure.reduction_version,
+          probePolarity: measure.probe_polarity,
+          normalization: measure.normalization,
+          scalarValue: measure.scalar_value,
+        numericalUncertainty: measure.numerical_uncertainty,
+        inclusionReason: "accepted-leader-for-separately-named-measure",
+      };
+      if (!current || measure.scalar_value > current.scalarValue ||
+          (measure.scalar_value === current.scalarValue &&
+            candidate.candidateId.localeCompare(current.candidateId) < 0)) {
+        leaderGroups.set(key, displayed);
+      }
+    }
+  }
+  const referenceRows = candidates
+    .filter((candidate) => candidate.referenceCase && candidate.acceptance === "accepted")
+    .flatMap((candidate) => candidate.summaryMeasures.map((measure) => ({
+      candidateId: candidate.candidateId,
+      familyId: candidate.familyId,
+      memberId: candidate.memberId,
+      sourceHash: candidate.sourceHash,
+      protocolHash: candidate.protocolHash,
+      databaseGenerationHash: generationHash,
+      acceptanceState: candidate.acceptance,
+      failedGate: null,
+      measureId: measure.measure_id,
+      unit: measure.unit,
+      radius: measure.enclosing_radius,
+      radiusSequence: null,
+      reduction: measure.reduction_version,
+      normalization: measure.normalization,
+      numericalUncertainty: measure.numerical_uncertainty,
+      probePolarity: measure.probe_polarity,
+      scalarValue: measure.scalar_value,
+      inclusionReason: "explicit-reference-case-B1.1",
+    })));
+  const rejectedRows = candidates
+    .filter((candidate) => candidate.acceptance === "rejected")
+    .map((candidate) => ({
+      candidateId: candidate.candidateId,
+      familyId: candidate.familyId,
+      memberId: candidate.memberId,
+      sourceHash: candidate.sourceHash,
+      protocolHash: candidate.protocolHash,
+      databaseGenerationHash: generationHash,
+      acceptanceState: candidate.acceptance,
+      failedGate: candidate.failedGate,
+      measureId: `acceptance-gate/${candidate.failedGate ?? "unknown"}`,
+      unit: "boolean",
+      radius: null,
+      radiusSequence: null,
+      reduction: INDEPENDENT_ACCEPTANCE_INSTRUMENT_VERSION,
+      normalization: "not-applicable",
+      numericalUncertainty: null,
+      probePolarity: null,
+      scalarValue: 0,
+      inclusionReason: "independently-rejected-case-with-failed-gate",
+    }));
+  const displayedRows = [
+    ...referenceRows,
+    ...leaderGroups.values(),
+    ...rejectedRows,
+  ].sort((left, right) => [
+    left.inclusionReason,
+    left.measureId,
+    left.candidateId,
+    left.probePolarity ?? "none",
+  ].join("|").localeCompare([
+    right.inclusionReason,
+    right.measureId,
+    right.candidateId,
+    right.probePolarity ?? "none",
+  ].join("|")));
+  const withoutHash = {
+    schema: "prescribed-record-analytics/candidate-cohort-digest.v1",
+    generationHash,
+    claimBoundary:
+      "conditional prescribed-path analytical measures only; no stability, energy, retention, or physical-realization ranking",
+    candidateInventory: candidates.map(({ summaryMeasures, ...candidate }) => candidate),
+    displayedRows,
+  };
+  return { ...withoutHash, digestHash: sha256Canonical(withoutHash) };
 }
 
 export async function backupAndVerifyAnalyticalCampaignDatabase(
@@ -2046,7 +3022,12 @@ export function inspectAnalyticalCampaignDatabase(databasePath, options = {}) {
       LEFT JOIN campaign_acceptance USING (manifest_hash)
       ORDER BY campaign_manifest.campaign_id, manifest_hash
     `).all();
-    return { ...verification, campaigns };
+    const generationDigests = tableExists(database, "database_generation_case")
+      ? database.prepare(`
+          SELECT * FROM database_generation ORDER BY generation_hash
+        `).all().map((generation) => generationCandidateDigest(database, generation))
+      : [];
+    return { ...verification, campaigns, generationDigests };
   } finally {
     database.close();
   }

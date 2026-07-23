@@ -36,9 +36,12 @@
       "minimumDelay": 1e-12
     },
     "rootPolicy": {
-      "id": "all-retained-simple-roots/sub-field-speed-certified.v1",
+      "id": "all-retained-roots/event-specific-isolation-certified.v2",
       "tolerance": 1e-12,
-      "maxIterations": 128
+      "maxIterations": 128,
+      "initialSubdivisionCount": 16,
+      "maximumSubdivisionDepth": 20,
+      "maximumCandidateIntervals": 100000
     },
     "tolerances": {
       "cancellationFloor": 1e-30,
@@ -92,7 +95,7 @@
       "kind": "prescribed-source-endpoint-probe.v1",
       "receiverPosition": "exact source position at each observation time",
       "receiverPolarity": "source charge",
-      "selfHitPolicy": "exclude-same-source-id.v1",
+      "selfHitPolicy": "exclude-same-transmitter-id.v1",
       "reportedRows": [
         "per-transmitter acceleration contribution",
         "net acceleration response",
@@ -224,7 +227,7 @@
     ],
     "claimBoundary": "report measured scaling only; do not preassign a far-field exponent"
   },
-  "localSourceSensitivity": {
+  "localTransmitterSensitivity": {
     "coordinates": ["alpha_1", "alpha_2", "alpha_3"],
     "domain": [0, 1.5707963267948966],
     "coordinateTransform": {
@@ -236,7 +239,12 @@
     "interiorStencil": "three-point-centered.v1",
     "boundaryStencil": "three-point-second-order-one-sided.v1",
     "derivative": "measure difference per radian.v1",
-    "convergence": "absolute difference between primary-step and refined-step derivative",
+    "convergence": "per-measure dimensionless difference between primary-step and refined-step derivatives",
+    "normalization": {
+      "rule": "per-measure-dimensionless-stencil-settling.v1",
+      "surfaceRatioScale": 1,
+      "endpointRmsRelativeFloor": 1e-12
+    },
     "measures": [
       "L_ext and eta_ext at every radius",
       "anisotropy rows at every radius",
@@ -259,7 +267,7 @@
       "radialExponentAbsolute": 0.05,
       "causalWakeFluxRelativeOrAbsolute": 0.01,
       "frequencyResolvedWakeFluxRelativeOrAbsolute": 0.05,
-      "sourceSensitivityRelativeOrAbsolute": 0.02
+      "transmitterSensitivityRelativeOrAbsolute": 0.02
     },
     "causalWakeFlux": {
       "rawEmissionReferenceRelative": 0.01,

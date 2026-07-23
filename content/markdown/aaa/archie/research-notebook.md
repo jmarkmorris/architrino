@@ -10,6 +10,56 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 Entries are maintained in descending date order, with the newest `##` section first.
 
+## 2026-07-22: Braid Geometry Campaign: From Direct Evolution to an Analytical Atlas
+
+Relevant files:
+
+- [Noether Braid](../noether-braid/noether-braid.md)
+- [Braid Taxonomy](../noether-braid/braid-taxonomy.md)
+- [Braid Family A](../noether-braid/braid-family-a.md)
+- [Braid Family B](../noether-braid/braid-family-b.md)
+- [Braid Family C](../noether-braid/braid-family-c.md)
+- [Braid Mathematics](../noether-braid/braid-mathematics.md)
+- [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md)
+- [Braid Recovery Requirements](../noether-braid/braid-recovery-requirements.md)
+- [Candidate Braid Analysis Methodology](../noether-braid/braid-analysis-methodology.md)
+- [EOM Solver](../../../../src/eom/README.md)
+- [Prescribed-Path Analysis](../../../../src/prescribed-path-analysis/README.md)
+
+The campaign to determine the geometry of the Noether braid reached a strategic turning point. The first ambition was direct: begin with six architrinos, evolve them under the Master Equation, and let the EOM solver reveal which geometries survive. That route produced an extraordinarily precise fail-closed solver. It certifies causal-root completeness, acceleration enclosures, local error, and retained-history state before publishing an accepted step. Its precision is a genuine achievement, but that same precision exposed how severe the braid problem is.
+
+The architecture permits architrino trajectories below, at, and above the field speed $c_f$. Near the exact-field-speed boundary, the transmitter-side factor
+
+$$
+D_t=c_f-\widehat{\mathbf r}_t\mathbin{\cdot}\mathbf V_t(T_t)
+$$
+
+can approach zero. The canonical per-hit acceleration weight $c_f/|D_t|$ then becomes extremely large, causal roots can approach a fold, and a small uncertainty in the retained state can be amplified into a much larger uncertainty in the next candidate state. The practical problem is therefore not that the solver casually loses precision. It is that the solver correctly refuses to certify a next position when the root set, acceleration, or state enclosure no longer closes under the declared error budget.
+
+The measured current-binary result was stark. In the six-path endurance matrix that motivated this entry, with no modeled Noether-sea response, most runs halted within roughly ten wall-clock seconds; the two longer difficult routes lasted about thirty and forty-five seconds. The accepted solver histories reached only about $T=5$ to $T=11.5$, and no preset survived one wall-clock minute on all four declared seeds. That is woefully inadequate for discovering a braid by long-horizon evolution. This is a campaign-specific performance result, not a theorem that every braid evolution must fail. It would be overturned by a same-binary, same-budget run that retains complete roots and bounded numerical error across a useful long horizon.
+
+A parallel effort reorganized the entire Noether Braid section of the textbook so that the document structure matches the new research program. Large overlapping treatments were replaced by a layered architecture: the Noether Braid entry point, a coordinate taxonomy, separate Family A, B, and C definitions, shared braid mathematics, configuration space, recovery requirements, and focused dynamics and symmetry chapters. The former omnibus family and spindle treatments were removed after their durable material was reassigned to those owners. This was not merely editorial cleanup. It separates exact prescribed geometry from analytical consequences, EOM-solver retention, Noether-sea support, and downstream recovery claims, so each document now states one evidence level without borrowing authority from another.
+
+The campaign therefore added a complementary route: prescribe exact braid geometries first, then analyze them without asking the EOM solver to evolve them. Families A, B, and C now provide coordinate-defined classes ranging from one-braid orthogonal-axis and coincident-axis geometries to two-braid compositions. These are imposed paths, not retained physical braids. Their value is that every position, velocity, phase, period, and family coordinate is known exactly enough to support a controlled analytical comparison.
+
+The prescribed-path analysis program computes causal roots, internal and external wake exposure, virtual-probe acceleration response, prescribed-path equation mismatch, cancellation, angular structure, spectra, radial behavior, and source-parameter sensitivity under one declared protocol. The data path is
+
+$$
+\boldsymbol\theta^{(k)}\in\Theta_M
+\longmapsto
+S\!\left(\boldsymbol\theta^{(k)}\right)
+\longmapsto
+\mathbf G\!\left[S\!\left(\boldsymbol\theta^{(k)}\right);P\right],
+$$
+
+where $\Theta_M$ is the admissible configuration space of family member $M$, $S$ is the exact prescribed source record, $P$ is the fixed analysis protocol, and $\mathbf G$ is the resulting analytical measure vector. Result packets, raw ledgers, source and protocol hashes, acceptance state, and indexed measures are stored in a versioned SQLite analytical database so that large campaigns can be queried without separating a result from the exact record that produced it.
+
+The search begins with basic prescribed geometries. Reproducible Monte Carlo campaigns will vary the allowed coordinates of each family and measure points across its configuration space. A single attractive point will not be treated as a solution. Interesting points will receive directed refinement and local differential analysis: small declared coordinate changes will measure gradients, sensitivities, root-topology boundaries, numerical convergence, and the width of any favorable neighborhood. The useful object is a robust region that remains favorable under small perturbations and a fixed common protocol, not a narrowly tuned sample or a hidden weighted score.
+
+The hope is that this analytical atlas will identify geometries worth the much more expensive dynamical and Noether-sea work. $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover tested aspects of general relativity and quantum theory as effective output; neither framework may be inserted as an architrino-level premise. A promising prescribed geometry may guide the analytical program toward measures that bear on those recovery targets, but the prescribed-path results alone cannot establish stability, energy, retention, physical realization, a Noether-sea response, or recovery of either theory. Those claims still require independent instruments and realized-branch evidence.
+
+This strategy has a clear failure condition. If apparently favorable regions disappear under higher resolution, change when the common protocol is held fixed, collapse under local coordinate perturbations, or fail subsequent EOM-solver and Noether-sea tests, then the atlas has not found a promising braid geometry. If robust regions survive those challenges, the campaign will have converted an almost intractable blind evolution problem into a disciplined sequence of increasingly selective tests.
+
 ## 2026-07-18: It's Greek to Me! Alphabet Game
 
 Relevant files:

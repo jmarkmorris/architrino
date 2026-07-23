@@ -1263,7 +1263,7 @@ Allowed spatial isometries are exactly the transformations that preserve the Euc
 - Spatial rotations.
 - Spatial reflections.
 
-At the product-background level, absolute timespace may also be described in coordinate systems related by time translations or Galilean boosts that preserve the foliation by constant-$T$ slices. Those transformations describe the product structure. They are not spatial isometries of one void slice. On a fixed slice $\Sigma_{T_\ast}$, a Galilean boost reduces to the translation $\mathbf X\mapsto\mathbf X+\mathbf V_0T_\ast$; its boost content appears only when different slices are compared. The wake law still selects the preferred rest frame in which $c_f$ is isotropic, and [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md) carries the dynamical non-invariance of the primitive wake equation under boosted coordinates.
+At the product-background level, absolute timespace may also be described in coordinate systems related by time translations or Galilean boosts that preserve the foliation by constant-$T$ slices. Those transformations describe the product structure. They are not spatial isometries of one void slice. On a fixed slice $\Sigma_{T_\ast}$, a Galilean boost reduces to the translation $\mathbf X\mapsto\mathbf X+\mathbf V_0T_\ast$; its boost content appears only when different slices are compared. The wake equation still selects the preferred rest frame in which $c_f$ is isotropic, and [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md) carries the corresponding dynamical non-invariance under boosted coordinates.
 
 Forbidden as substrate symmetries:
 

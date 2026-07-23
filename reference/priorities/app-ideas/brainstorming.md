@@ -367,6 +367,228 @@ Requirements:
 - Support side-by-side comparison of two branch candidates.
 - Mark unresolved rows as candidate diagnostics rather than accepted mass derivations.
 
+### 18. [Roots: Causal-Residual Zero Crossing And Root Birth](../app-roots/priorities.md)
+
+Status:
+
+- `proposed` in a dedicated packet; no implementation has been dispatched.
+- Preferred product direction: preserve the dedicated mathematical packet, but consider delivering it as an advanced `Roots` story or lab inside [Causal Delay Feedback](../app-causal-delay-feedback/priorities.md) so both experiences share one source, receiver, retained-history model, and wake renderer.
+
+Description:
+
+- Show how the delay-map function changes as a control parameter passes through a generic fold: a tangent zero becomes two zero-crossings, so a pair of active causal roots is born.
+- Synchronize the algebraic event with its geometry: each zero is an old source event whose expanding causal wake reaches the receiver now.
+- Teach the difference between the pointwise acceleration spike and the finite accumulated velocity change through an ordinary interior fold.
+- Resolve the operator's provisional $c(\cdot)$ label against the existing packet's $g(T_r;T_t)$ notation before writing end-user copy; do not expose two names for the same function.
+
+Visualization:
+
+- Begin with the simple Causal Delay Feedback scene, then open a linked graph of the delay-map function against emission time.
+- Mark the zero line prominently. Slow the animation as the curve touches zero, then show the two intersection markers separating.
+- Keep matching colors across the function graph, wake intersections, source-history points, and root-count ledger.
+- Add an optional fourth view in which the pointwise acceleration grows near the fold while the accumulated velocity change remains bounded.
+
+Requirements:
+
+- Reuse the linked-view equations and acceptance conditions in [app-roots/requirements-and-design.md](../app-roots/requirements-and-design.md).
+- Keep the graph's zero-crossing count exactly equal to the active-root ledger at the same receiver time.
+- Identify the fold through $D_s=0$ and the local line-of-sight source motion, not through total speed alone.
+- Keep the ordinary interior-fold result separate from coincident same-source root birth, which remains fail closed under the current sharp equation.
+- Use acceleration language, never force language.
+
+### 19. Prescribed Translation And Spiral Tubes In Borg
+
+Status:
+
+- `feature candidate` for prescribed-assembly replay in [app-borg](../app-borg/priorities.md).
+
+Description:
+
+- Let a prescribed assembly translate while its internal paths continue to orbit, making the fixed-frame worldlines form visible spiral strands.
+- Show that the same record looks like closed or nearly closed internal paths in a co-translating frame and like extended helical paths in the fixed frame.
+- Use the contrast to teach the difference between internal prescribed geometry, group translation, display frame, and physical retention.
+
+Visualization:
+
+- Provide fixed-frame and co-translating-frame camera toggles that preserve the same underlying record.
+- Add a translation-vector control only when the source specification declares that coordinate.
+- Draw each architrino worldline as a polarity-colored spiral strand and optionally render a translucent display tube around the strand.
+- Allow the user to shorten or lengthen the visible trail, freeze the assembly, and rotate the camera to inspect the phase relation among strands.
+- Include a split view that shows the compact orbit chart beside the translating spiral structure.
+
+Requirements:
+
+- Generate the display from sealed prescribed-geometry records or exact source formulas; do not infer missing coordinates.
+- Label spiral strands and swept tubes as display geometry, not EOM-solver-retained motion, stability, binding, or physical realization.
+- Do not call the tubes wake streams. A wake layer remains unavailable until the record carries native wake rows with the required provenance.
+- Keep source-carried polarity, path ids, phases, frequencies, group translation, and time coverage unchanged.
+- A frame toggle must change only the display transform, never the source record or its evidence status.
+
+### 20. Gell-Mann Pattern Atlas And AAA Derivation Gap
+
+Status:
+
+- `comparison/recovery candidate`.
+
+Description:
+
+- Recreate the baryon octet and decuplet diagrams as an interactive pattern atlas organized by observer-level labels such as $I_3$, $Y$, $S$, and $Q$.
+- Teach what the diagrams do exceptionally well: compress a family of observed particles into a geometric classification, expose neighbor relations, and make a missing member visually predictable.
+- Teach what they do not do: derive the underlying assembly, confinement, mass, or reaction mechanism.
+- Make the $\mathbb{A}\mathbb{A}\mathbb{A}$ learning goal the gap between classification and explanation. The app should ask which native assembly record, polarity ledger, color-singlet closure, and mass-map output would be needed to earn each displayed observer-level label.
+
+Visualization:
+
+- Let users switch among octet, decuplet, quark-content, and charge-axis views.
+- Clicking a node opens its observed classification rows, quark-content bookkeeping, and any available candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping in separate authority-labeled columns.
+- Include a pattern-completion game in which one node or label is hidden and the user reconstructs it from the lattice coordinates and neighboring states.
+- Add a `classification / mechanism` toggle: classification keeps the familiar diagram; mechanism reveals the still-open native derivation rows beneath each node.
+- Show unavailable or unproved AAA rows explicitly rather than filling them with illustrative guesses.
+
+Requirements:
+
+- Use [Color Charge and $SU(3)$](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) for the Eightfold-Way recovery boundary and [Quantum Number Mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md) for effective charge-label bookkeeping.
+- Keep flavor-octet classification distinct from color $SU(3)$; visual similarity must not imply identity.
+- Treat the Gell-Mann diagram as observer-level organization and a recovery constraint, never as architrino-level ontology or dynamics.
+- Do not show an AAA assembly overlay as established unless one same-record derivation supplies the relevant geometry, ledger, stability, and mass rows.
+- If built before those rows exist, position the app as a pattern game plus a visible closure map, not as an AAA explanation of the hadrons.
+
+### 21. Braid Harmonics Studio
+
+Status:
+
+- `candidate`.
+
+Description:
+
+- Turn prescribed binary frequency ratios into an audiovisual instrument.
+- Let users hear and see when several periodic paths close together, drift in and out of phase, or require a longer common return period.
+- Use the constrained $4:2:1$ rows as named examples while allowing other declared integer ratios for mathematical comparison.
+
+Visualization:
+
+- Show three orbit traces, three phase rings, a combined return-period clock, and a simple waveform or pulse lane for each binary.
+- Sonify each declared frequency with a soft tone whose phase follows the displayed path.
+- Flash a closure marker only when the declared paths return to their starting position, velocity, and phase under the selected prescribed chart.
+- Offer short challenges such as `make all three paths close together` or `find the smallest common return period`.
+
+Requirements:
+
+- Keep frequency ratios attached to persistent binary indices and do not infer a radius ordering from them.
+- Label closure as prescribed-period closure, not dynamical stability or physical resonance selection.
+- Use exact declared ratios and phases; any free-play ratio remains a mathematical display preset.
+- Make sound optional and preserve a complete visual equivalent for accessibility.
+
+### 22. Assembly Taxonomy Morph Lab
+
+Status:
+
+- `candidate`; possible focused learning mode beside Borg rather than a second assembly viewer.
+
+Description:
+
+- Make the Family A, B, and C prescribed coordinate charts tangible through direct manipulation.
+- Let the user move one valid coordinate at a time and see exactly which paths, axes, offsets, phases, or circulation rows change.
+- Teach the difference between a family definition, a constrained member, a parameter variant, and an EOM-solver-retained assembly.
+
+Visualization:
+
+- Use one large 3D assembly view with a compact family/member selector and a coordinate table that updates live.
+- Animate the declared Family-A flattening coordinate, B-family cap or axial coordinates, and C-family counterpart relations only where the selected source chart defines them.
+- Pin the before and after coordinate tables beside the animation so the visual morph remains auditable.
+- Provide `show changed rows only` and `return to canonical preset` controls.
+
+Requirements:
+
+- Drive every preset from the canonical taxonomy or a sealed prescribed record.
+- Disable coordinates that the selected chart does not own and never invent missing numerical values.
+- Mark all morphed geometry as prescribed-chart exploration unless an evolved record independently supplies retention evidence.
+- Reuse Borg's record navigation and provenance grammar where practical.
+
+### 23. Polarity Ledger Builder
+
+Status:
+
+- `candidate`.
+
+Description:
+
+- Create a puzzle game in which users place electrino and positrino units into candidate axial or assembly sites and watch the exact polarity inventory update.
+- Use the game to show how integer primitive polarity bookkeeping can underlie fractional observer-level charge labels without treating those labels as primitive architrino charges.
+- Separate inventory success from the harder burdens of geometry, stability, confinement, mass, and reaction closure.
+
+Visualization:
+
+- Present a clean board of available sites, a tray of polarity units, and a live inventory ledger.
+- Color legal bookkeeping matches clearly while keeping geometrically or dynamically unproved rows in a separate `still needed` column.
+- Offer graduated puzzles for neutral pairs, charged-lepton candidates, and quark charge-bookkeeping patterns.
+- On completion, unfold the arithmetic that connects the primitive inventory to the observer-level charge label.
+
+Requirements:
+
+- Use only candidate mappings already present in the assembly corpus; do not invent a new particle assignment.
+- Never mark a bookkeeping match as a retained or stable particle.
+- Keep polarity inventory, observer-level charge, weak-isospin exposure, hypercharge bookkeeping, and color closure as distinct rows.
+- Make every puzzle solvable from information visible in the app rather than requiring Standard Model memorization.
+
+### 24. Causal Delay Prediction Game
+
+Status:
+
+- `candidate feature` for the Story mode of [Causal Delay Feedback](../app-causal-delay-feedback/priorities.md).
+
+Description:
+
+- Turn the simplest causal-delay lesson into a repeatable game: pause just before a wake reaches the receiver and ask the user which old source position is responsible.
+- Reward predictions based on travel time and path history, then reveal the actual emission event and causal path.
+- Provide the same satisfying short-round structure as the Greek-letter game while teaching one central $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism.
+
+Visualization:
+
+- Show three to five candidate old source positions along a bright path trail.
+- Let the user tap one candidate before the wake reaches the receiver.
+- Reveal the expanding wake, the matched emission point, the receiver event, and a short plain-language explanation.
+- Increase difficulty by moving both source and receiver, changing the path shape, or hiding the wake until after the prediction.
+
+Requirements:
+
+- Generate every answer from the same causal-root calculation used by the visualization.
+- Begin with one unambiguous root; introduce multiple-root rounds only after the single-root lesson is mastered.
+- Keep scoring lightweight and never penalize exploration.
+- Offer age-layered explanations without changing the underlying geometry.
+
+### 25. Emergence Layer Lens
+
+Status:
+
+- `candidate`, dependent on a suitable record-backed example.
+
+Description:
+
+- Let users move a lens between architrino paths, assembly-level summaries, and observer-level labels.
+- Teach that a coarse-grained field, particle label, or probability summary is a compressed description of lower-layer records, not an additional substrate object.
+- Show what information is discarded at each layer and which effective claims still require recovery.
+
+Visualization:
+
+- Use one scene with a zoom or resolution slider rather than three unrelated animations.
+- At the finest level, show path-history and causal-root events; at the middle level, show assembly geometry and retained ledger rows; at the widest level, show a small set of effective observables.
+- Add an `information retained` drawer listing which rows survive each coarse-graining step.
+- Let users compare two micro-records that look identical at one coarse resolution but diverge when more path history is restored.
+
+Requirements:
+
+- Use a declared record-backed example; do not manufacture an apparent emergence result from arbitrary visual averaging.
+- Label each displayed claim as derived, measured, inferred, or illustrative.
+- Never use the observer-level display as a premise for the architrino-level animation.
+- Treat missing recovery maps as visible open rows, not silently assumed transformations.
+
+## Consolidation Directions
+
+1. **Causal Delay learning suite:** combine Causal Delay Feedback, Path-History Ledger, Roots, and Causal Delay Prediction Game as `Story`, `Prediction`, `Roots`, and `Sandbox` modes over one shared causal-history engine. Keep the existing `app-roots` packet as the mathematical and acceptance authority for the Roots mode.
+2. **Borg prescribed-geometry suite:** add Prescribed Translation and Spiral Tubes, Assembly Taxonomy Morph Lab, and possibly Braid Harmonics Studio as record-driven learning modes or adjacent tools. Reuse the sealed-record consumer and keep all prescribed geometry at display-only or chart-hypothesis authority.
+3. **Particle-pattern suite:** pair the Gell-Mann Pattern Atlas with the Polarity Ledger Builder only when the UI can keep observer-level classification, candidate bookkeeping, and missing native derivation visibly separate.
+
 ## Immediate Next Build Candidates
 
 1. [Causal Delay Feedback Depth](../app-causal-delay-feedback/priorities.md) - Best teaching bridge from causal-delay intuition into active path-history mechanics.

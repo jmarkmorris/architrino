@@ -178,6 +178,8 @@ test("independent static-source evaluation fixes the full-cycle raw wake flux at
     near(surface.wakeFlux.signedCycleIntegral, 0, 2e-10);
     assert.equal(surface.wakeFlux.rawEmissionReference.expectedCycleIntegral, 24);
     assert.equal(surface.wakeFlux.rawEmissionReference.passed, true);
+    assert.equal(surface.wakeFlux.signedEmissionReference.expectedCycleIntegral, 0);
+    assert.equal(surface.wakeFlux.signedEmissionReference.passed, true);
     assert.match(surface.wakeFlux.claimBoundary, /not energy/);
   }
   assert.equal(
@@ -196,6 +198,43 @@ test("independent static-source evaluation fixes the full-cycle raw wake flux at
     packet.convergenceComparisons.quadrature.gates.frequencyResolvedWakeFluxBandCoverage.passed,
     true,
   );
+});
+
+test("compact surface evidence preserves reduced scores without raw packet identities", () => {
+  const protocol = compactProtocol();
+  const sourceRecord = staticSixSourceRecord();
+  const full = evaluateB1StreamingSurfaceReductions({
+    sourceRecord,
+    completeCycleProtocol: protocol,
+  });
+  const compact = evaluateB1StreamingSurfaceReductions({
+    sourceRecord,
+    completeCycleProtocol: protocol,
+    evidenceMode: "compact",
+  });
+
+  const metricOnly = (value) => JSON.parse(JSON.stringify(value, (key, row) =>
+    [
+      "eventProtocolHash",
+      "eventResultHash",
+      "rawCausalRootLedgerHash",
+      "numericalConvergenceLedgerHash",
+      "evidenceMode",
+    ].includes(key)
+      ? undefined
+      : row));
+  assert.deepEqual(
+    metricOnly(compact.diagnosticReductions),
+    metricOnly(full.diagnosticReductions),
+  );
+  assert.deepEqual(compact.convergenceComparisons, full.convergenceComparisons);
+  assert.deepEqual(compact.reducedMeasures, full.reducedMeasures);
+  assert.equal(compact.reducer.evidenceMode, "compact");
+  assert.ok(compact.surfaceEvaluations.every((row) =>
+    row.eventProtocolHash === null &&
+    row.eventResultHash === null &&
+    row.rawCausalRootLedgerHash === null &&
+    row.numericalConvergenceLedgerHash === null));
 });
 
 test("symmetry-protected dipole occupies only the real l=1,m=0 angular channel", () => {
@@ -344,10 +383,12 @@ test("streaming acceptance independently fails closed on every event-level valid
   const sourceRecord = staticSixSourceRecord();
   const defects = [
     {
-      label: "source speed",
-      pattern: /source-speed gate/,
+      label: "causal root domain",
+      pattern: /causal-root-domain inspection/,
       mutate(packet) {
-        packet.rawLedgers.causalRoots[0].roots[0].certifiedSpeedBound = 1;
+        packet.rawLedgers.causalRoots[0]
+          .rootCompletenessCertification.transmitterCertificates[0]
+          .rootCount += 1;
       },
     },
     {

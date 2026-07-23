@@ -31,7 +31,7 @@ Closure is the destination; convergence is the process. As understanding advance
 
 | Vocabulary | Existing structure |
 | --- | --- |
-| Convergence Campaign | A run of [corpus-advancement-pass.md](../entourage/archie/prompts/corpus-advancement-pass.md) (to be renamed `convergence-campaign.md`). |
+| Convergence Campaign | A run of [convergence-campaign.md](../entourage/archie/prompts/convergence-campaign.md). |
 | Convergence Target | A priority item in `reference/priorities`. |
 | Convergence Debt | The priority ledgers, collectively. |
 | Convergence Frontier | [closure-join-matrix.md](../priorities/aaa-work-threads/closure-join-matrix.md) and the current core geometry focus. |
@@ -44,7 +44,7 @@ Convergence vocabulary is operator/agent-facing workflow terminology. It belongs
 ## Constraints Carried Forward
 
 - A Convergence Metric is named vocabulary only. Metric tooling is built only when it has a concrete consumer, per the anti-gate-proliferation policy in `AGENTS.md`. Until then the working metric is qualitative: each campaign must leave the corpus measurably closer to canonical — debt items retired, targets closed.
-- The installed `aaa-corpus-advancement` skill is managed outside this repo. Its in-repo protocol text is updated with the rename; the skill identifier itself is renamed separately when convenient.
+- The installed skill retains the literal identifier `aaa-corpus-advancement` as a compatibility contract. Its display name, description, body, and canonical in-repo protocol use convergence terminology. The compatibility identifier is not an alternative process name for prose.
 
 ## Alternatives Considered
 

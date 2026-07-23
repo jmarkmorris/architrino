@@ -49,7 +49,11 @@ import {
   summarizeAnimatorAssemblyStructure,
 } from "../../runtime/AnimatorAssemblyStructureBridgeRuntime.js";
 import { splitAnimatorAssemblyGroup as splitAnimatorAssemblyGroupRuntime } from "../../runtime/AnimatorAssemblyStructureMutationRuntime.js";
-import { createInteractionRuntime } from "../../runtime/InteractionRuntime.js";
+import {
+  createInteractionRuntime,
+  findPointerCircleNode,
+  findPointerLabelNode,
+} from "../../runtime/InteractionRuntime.js";
 import { createPeriodicOverlayRuntime } from "../../runtime/PeriodicOverlayRuntime.js";
 import { createSceneSearchRuntime } from "../../runtime/SceneSearchRuntime.js";
 import { createElementNavigationChromeRuntime } from "../../runtime/ElementNavigationChromeRuntime.js";
@@ -75,6 +79,7 @@ import {
   DEFAULT_SCENE_VIEWPORT_FIT_MARGIN,
   computeBoundsSceneFitZoom,
   computeCenteredSceneFitZoom,
+  isPointWithinSceneInteractionBounds,
 } from "../../runtime/SceneViewportFitRuntime.js";
 import {
   estimateLabelLineCount,
@@ -6555,6 +6560,9 @@ const transitionEngine = createTransitionEngine(transitionState, {
 const zoomLimits = { min: 0.35, max: 6 };
 const raycaster = new THREE.Raycaster();
 const pointerNdc = new THREE.Vector2();
+const pointerNodeWorldPosition = new THREE.Vector3();
+const pointerNodeWorldScale = new THREE.Vector3();
+const pointerNodeProjectedPosition = new THREE.Vector3();
 let lastZoomGestureTime = 0;
 const detailFieldOrder = [
   { key: "temperature", label: "Typical temperature/energy" },
@@ -6600,7 +6608,42 @@ function clearSphereHover() {
   setSphereHoverNode(null);
 }
 
-function getPointerSphereNode(clientX, clientY) {
+function getNodeScreenHitCircle(node) {
+  if (!node?.mesh || !currentLevel) {
+    return null;
+  }
+  const rect = canvas.getBoundingClientRect();
+  if (rect.width <= 0 || rect.height <= 0 || !Number.isFinite(camera.zoom) || camera.zoom <= 0) {
+    return null;
+  }
+
+  node.mesh.getWorldPosition(pointerNodeWorldPosition);
+  node.mesh.getWorldScale(pointerNodeWorldScale);
+  pointerNodeProjectedPosition.copy(pointerNodeWorldPosition).project(camera);
+
+  const baseRadius = Number(node.data?.radius ?? node.mesh.geometry?.parameters?.radius);
+  const worldScale = Math.max(
+    Math.abs(pointerNodeWorldScale.x),
+    Math.abs(pointerNodeWorldScale.y),
+    Math.abs(pointerNodeWorldScale.z)
+  );
+  const worldHeight = (camera.top - camera.bottom) / camera.zoom;
+  const worldPerPixel = worldHeight / rect.height;
+  if (!Number.isFinite(baseRadius) || baseRadius <= 0 || worldPerPixel <= 0) {
+    return null;
+  }
+
+  const ringScale = Number(node.data?.glowRingScale) || 1;
+  const ringThickness = Number(node.data?.glowRingThickness) || 0;
+  const visibleScale = Math.max(1, ringScale + ringThickness / baseRadius);
+  return {
+    centerX: rect.left + ((pointerNodeProjectedPosition.x + 1) / 2) * rect.width,
+    centerY: rect.top + ((1 - pointerNodeProjectedPosition.y) / 2) * rect.height,
+    radius: (baseRadius * worldScale * visibleScale) / worldPerPixel,
+  };
+}
+
+function getPointerSceneNode(clientX, clientY) {
   if (!currentLevel) {
     return null;
   }
@@ -6612,11 +6655,23 @@ function getPointerSphereNode(clientX, clientY) {
     currentLevel.nodes.map((node) => node.mesh),
     false
   );
-  if (!intersections.length) {
-    return null;
+  if (intersections.length) {
+    const hit = intersections[0].object;
+    const sphereNode = currentLevel.nodes.find((node) => node.mesh === hit) ?? null;
+    if (sphereNode) {
+      return sphereNode;
+    }
   }
-  const hit = intersections[0].object;
-  return currentLevel.nodes.find((node) => node.mesh === hit) ?? null;
+  const circleNode = findPointerCircleNode(
+    currentLevel.nodes,
+    clientX,
+    clientY,
+    getNodeScreenHitCircle
+  );
+  if (circleNode) {
+    return circleNode;
+  }
+  return findPointerLabelNode(currentLevel.nodes, clientX, clientY);
 }
 
 function closeDetailPanel() {
@@ -7446,11 +7501,14 @@ function getFocusSphereMetrics() {
 }
 
 function isPointerWithinInteractiveViewport(clientX, clientY, paddingPx = 0) {
-  const { centerX, centerY, radius } = getFocusSphereMetrics();
-  const effectiveRadius = Math.max(0, radius - paddingPx);
-  const dx = clientX - centerX;
-  const dy = clientY - centerY;
-  return dx * dx + dy * dy <= effectiveRadius * effectiveRadius;
+  return isPointWithinSceneInteractionBounds({
+    clientX,
+    clientY,
+    paddingPx,
+    fitMode: currentLevel?.viewportFit === "viewport" ? "viewport" : "focus",
+    canvasRect: canvas.getBoundingClientRect(),
+    focusMetrics: getFocusSphereMetrics(),
+  });
 }
 
 function getSafeViewportWorld(fitMode = "focus") {
@@ -8909,19 +8967,7 @@ function focusOnPointer(clientX, clientY) {
       }
     }
   }
-  const rect = canvas.getBoundingClientRect();
-  pointerNdc.x = ((clientX - rect.left) / rect.width) * 2 - 1;
-  pointerNdc.y = -((clientY - rect.top) / rect.height) * 2 + 1;
-  raycaster.setFromCamera(pointerNdc, camera);
-  const intersections = raycaster.intersectObjects(
-    currentLevel.nodes.map((node) => node.mesh),
-    false
-  );
-  if (!intersections.length) {
-    return false;
-  }
-  const hit = intersections[0].object;
-  const targetNode = currentLevel.nodes.find((node) => node.mesh === hit);
+  const targetNode = getPointerSceneNode(clientX, clientY);
   if (!targetNode) {
     return false;
   }
@@ -9024,7 +9070,7 @@ function updateDetailHover(clientX, clientY) {
     clearSphereHover();
     return;
   }
-  const targetNode = getPointerSphereNode(clientX, clientY);
+  const targetNode = getPointerSceneNode(clientX, clientY);
   if (!targetNode) {
     clearSphereHover();
     return;

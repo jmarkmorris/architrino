@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 
 import {
-  evaluateExactPrescribedSourceState,
+  evaluateValidatedExactPrescribedSourceState,
   validateExactPrescribedSourceRecord,
 } from "./ExactPrescribedSourceWake.mjs";
 
@@ -9,11 +9,27 @@ export const PRESCRIBED_RECORD_ANALYSIS_PROTOCOL_SCHEMA =
   "prescribed-path-analysis/analysis-protocol.v1";
 export const PRESCRIBED_RECORD_ANALYSIS_RESULT_SCHEMA =
   "prescribed-path-analysis/result-packet.v1";
+export const PRESCRIBED_RECORD_COMPACT_EVENT_BATCH_SCHEMA =
+  "prescribed-path-analysis/compact-event-batch.v1";
+export const PRESCRIBED_RECORD_ANALYSIS_SESSION_SCHEMA =
+  "prescribed-path-analysis/evaluation-session.v1";
 export const ALL_RETAINED_SIMPLE_ROOTS_POLICY =
   "all-retained-simple-roots/sub-field-speed-certified.v1";
+export const ALL_RETAINED_ROOTS_POLICY =
+  "all-retained-roots/event-specific-isolation-certified.v2";
 
 const FOUR_PI = 4 * Math.PI;
 const TWO_PI = 2 * Math.PI;
+const analysisSessionStates = new WeakMap();
+
+export class CausalRootEnumerationError extends Error {
+  constructor(message, details) {
+    super(message);
+    this.name = "CausalRootEnumerationError";
+    this.code = "causal_root_enumeration_incomplete";
+    this.details = details;
+  }
+}
 
 function finiteNumber(value, label) {
   const number = Number(value);
@@ -113,8 +129,12 @@ export function sha256Canonical(value) {
 function normalizeProbe(rawProbe, index) {
   const label = `protocol.probes[${index}]`;
   const id = concreteString(rawProbe?.id, `${label}.id`);
-  if (rawProbe?.kind !== "stationary-coordinate-probe.v1") {
-    throw new TypeError(`${label}.kind must be stationary-coordinate-probe.v1.`);
+  if (rawProbe?.kind !== "stationary-coordinate-probe.v1" &&
+      rawProbe?.kind !== "prescribed-source-endpoint-probe.v1") {
+    throw new TypeError(
+      `${label}.kind must be stationary-coordinate-probe.v1 or ` +
+      "prescribed-source-endpoint-probe.v1.",
+    );
   }
   if (!Array.isArray(rawProbe.observationTimes) || rawProbe.observationTimes.length === 0) {
     throw new TypeError(`${label}.observationTimes must be nonempty.`);
@@ -135,12 +155,28 @@ function normalizeProbe(rawProbe, index) {
   if (new Set(polarities).size !== polarities.length) {
     throw new TypeError(`${label}.polarities must be unique.`);
   }
-  return {
+  const common = {
     id,
     kind: rawProbe.kind,
-    position: vector(rawProbe.position, `${label}.position`),
     observationTimes,
     polarities,
+  };
+  if (rawProbe.kind === "stationary-coordinate-probe.v1") {
+    return {
+      ...common,
+      position: vector(rawProbe.position, `${label}.position`),
+    };
+  }
+  const transmitterId = concreteString(rawProbe.transmitterId, `${label}.transmitterId`);
+  if (rawProbe.selfHitPolicy !== "exclude-same-transmitter-id.v1") {
+    throw new TypeError(
+      `${label}.selfHitPolicy must be exclude-same-transmitter-id.v1 for a moving endpoint receiver.`,
+    );
+  }
+  return {
+    ...common,
+    transmitterId,
+    selfHitPolicy: rawProbe.selfHitPolicy,
   };
 }
 
@@ -173,8 +209,13 @@ export function validatePrescribedRecordAnalysisProtocol(rawProtocol) {
     rawProtocol.returnWindow?.period,
     "protocol.returnWindow.period",
   );
-  if (rawProtocol.rootPolicy?.id !== ALL_RETAINED_SIMPLE_ROOTS_POLICY) {
-    throw new TypeError(`protocol.rootPolicy.id must be ${ALL_RETAINED_SIMPLE_ROOTS_POLICY}.`);
+  const rootPolicyId = rawProtocol.rootPolicy?.id;
+  if (rootPolicyId !== ALL_RETAINED_SIMPLE_ROOTS_POLICY &&
+      rootPolicyId !== ALL_RETAINED_ROOTS_POLICY) {
+    throw new TypeError(
+      `protocol.rootPolicy.id must be ${ALL_RETAINED_SIMPLE_ROOTS_POLICY} or ` +
+      `${ALL_RETAINED_ROOTS_POLICY}.`,
+    );
   }
   const rootTolerance = positiveNumber(
     rawProtocol.rootPolicy?.tolerance,
@@ -252,11 +293,29 @@ export function validatePrescribedRecordAnalysisProtocol(rawProtocol) {
     coupling,
     history: { start: historyStart, end: historyEnd, minimumDelay },
     returnWindow: { start: returnStart, period: returnPeriod },
-    rootPolicy: {
-      id: ALL_RETAINED_SIMPLE_ROOTS_POLICY,
-      tolerance: rootTolerance,
-      maxIterations,
-    },
+    rootPolicy: rootPolicyId === ALL_RETAINED_ROOTS_POLICY
+      ? {
+          id: rootPolicyId,
+          tolerance: rootTolerance,
+          maxIterations,
+          initialSubdivisionCount: positiveInteger(
+            rawProtocol.rootPolicy?.initialSubdivisionCount,
+            "protocol.rootPolicy.initialSubdivisionCount",
+          ),
+          maximumSubdivisionDepth: positiveInteger(
+            rawProtocol.rootPolicy?.maximumSubdivisionDepth,
+            "protocol.rootPolicy.maximumSubdivisionDepth",
+          ),
+          maximumCandidateIntervals: positiveInteger(
+            rawProtocol.rootPolicy?.maximumCandidateIntervals,
+            "protocol.rootPolicy.maximumCandidateIntervals",
+          ),
+        }
+      : {
+          id: rootPolicyId,
+          tolerance: rootTolerance,
+          maxIterations,
+        },
     tolerances: {
       cancellationFloor,
       rootTransversalityFloor,
@@ -287,7 +346,7 @@ function maximumTrajectorySpeed(trajectory, startTime, endTime) {
 }
 
 function residualAt(source, emissionTime, observationTime, probePosition, fieldSpeed) {
-  const state = evaluateExactPrescribedSourceState(source, emissionTime);
+  const state = evaluateValidatedExactPrescribedSourceState(source, emissionTime);
   const displacement = subtract(probePosition, state.position);
   const distance = magnitude(displacement);
   return {
@@ -299,7 +358,7 @@ function residualAt(source, emissionTime, observationTime, probePosition, fieldS
   };
 }
 
-function solveCertifiedRetainedRoot({
+function solveCertifiedSubFieldRoot({
   source,
   retainedStart,
   retainedEnd,
@@ -398,7 +457,343 @@ function solveCertifiedRetainedRoot({
   };
 }
 
+function maximumTrajectoryAcceleration(trajectory, startTime, endTime) {
+  const startRate = trajectory.angularVelocity +
+    trajectory.angularAcceleration * (startTime - trajectory.epochTime);
+  const endRate = trajectory.angularVelocity +
+    trajectory.angularAcceleration * (endTime - trajectory.epochTime);
+  const maximumAngularRate = Math.max(Math.abs(startRate), Math.abs(endRate));
+  const radius = magnitude(trajectory.radiusU);
+  return radius * (
+    Math.abs(trajectory.angularAcceleration) +
+    maximumAngularRate * maximumAngularRate
+  );
+}
+
+function residualDerivative(row, fieldSpeed) {
+  if (!(row.distance > 0)) return Number.NaN;
+  return fieldSpeed - dot(
+    row.state.velocity,
+    scale(row.displacement, 1 / row.distance),
+  );
+}
+
+function bisectCertifiedSimpleRoot({
+  source,
+  left,
+  right,
+  observationTime,
+  probePosition,
+  fieldSpeed,
+  tolerance,
+  maxIterations,
+}) {
+  let low = left;
+  let high = right;
+  let best = Math.abs(low.residual) <= Math.abs(high.residual) ? low : high;
+  if (Math.abs(low.residual) <= tolerance) {
+    return {
+      root: low,
+      iterations: 0,
+      finalBracket: [low.emissionTime, low.emissionTime],
+    };
+  }
+  if (Math.abs(high.residual) <= tolerance) {
+    return {
+      root: high,
+      iterations: 0,
+      finalBracket: [high.emissionTime, high.emissionTime],
+    };
+  }
+  if (!(low.residual * high.residual < 0)) {
+    throw new Error("certified simple-root bracket must have opposite residual signs.");
+  }
+  let iterations = 0;
+  for (; iterations < maxIterations; iterations += 1) {
+    const middle = residualAt(
+      source,
+      (low.emissionTime + high.emissionTime) / 2,
+      observationTime,
+      probePosition,
+      fieldSpeed,
+    );
+    if (Math.abs(middle.residual) < Math.abs(best.residual)) best = middle;
+    if (Math.abs(middle.residual) <= tolerance) {
+      best = middle;
+      low = middle;
+      high = middle;
+      break;
+    }
+    if (low.residual * middle.residual < 0) high = middle;
+    else low = middle;
+  }
+  if (Math.abs(best.residual) > tolerance) {
+    throw new Error(
+      `causal root for ${source.id} did not converge within ${maxIterations} iterations; ` +
+      `residual=${best.residual}.`,
+    );
+  }
+  return {
+    root: best,
+    iterations,
+    finalBracket: [low.emissionTime, high.emissionTime],
+  };
+}
+
+function solveCertifiedRetainedRoots({
+  source,
+  retainedStart,
+  retainedEnd,
+  observationTime,
+  probePosition,
+  fieldSpeed,
+  tolerance,
+  maxIterations,
+  rootPolicy,
+}) {
+  if (rootPolicy.id === ALL_RETAINED_SIMPLE_ROOTS_POLICY) {
+    const solved = solveCertifiedSubFieldRoot({
+      source,
+      retainedStart,
+      retainedEnd,
+      observationTime,
+      probePosition,
+      fieldSpeed,
+      tolerance,
+      maxIterations,
+    });
+    return {
+      roots: solved.root ? [{
+        ...solved,
+        certificate: {
+          method: "global-speed-monotonicity.v1",
+          isolatedInterval: [retainedStart, retainedEnd],
+          derivativeRange: [solved.monotonicityMargin, Number.POSITIVE_INFINITY],
+          subdivisionDepth: 0,
+        },
+      }] : [],
+      noRootReason: solved.root ? null : solved.reason,
+      endpointResiduals: solved.endpointResiduals,
+      retainedInterval: solved.retainedInterval ?? [retainedStart, retainedEnd],
+      speedBound: solved.speedBound,
+      accelerationBound: maximumTrajectoryAcceleration(
+        source.trajectory,
+        retainedStart,
+        retainedEnd,
+      ),
+      intervalCount: 1,
+      certifiedNoRootIntervalCount: solved.root ? 0 : 1,
+      certifiedMonotonicIntervalCount: 1,
+      maximumSubdivisionDepthReached: 0,
+    };
+  }
+
+  const speedBound = maximumTrajectorySpeed(
+    source.trajectory,
+    retainedStart,
+    retainedEnd,
+  );
+  const accelerationBound = maximumTrajectoryAcceleration(
+    source.trajectory,
+    retainedStart,
+    retainedEnd,
+  );
+  const residualLipschitzBound = fieldSpeed + speedBound;
+  const evaluations = new Map();
+  const at = (time) => {
+    const cached = evaluations.get(time);
+    if (cached) return cached;
+    const row = residualAt(
+      source,
+      time,
+      observationTime,
+      probePosition,
+      fieldSpeed,
+    );
+    evaluations.set(time, row);
+    return row;
+  };
+  const initialCount = rootPolicy.initialSubdivisionCount;
+  const stack = Array.from({ length: initialCount }, (_, index) => ({
+    leftTime:
+      retainedStart + (retainedEnd - retainedStart) * index / initialCount,
+    rightTime:
+      retainedStart + (retainedEnd - retainedStart) * (index + 1) / initialCount,
+    depth: 0,
+  })).reverse();
+  const isolatedRoots = [];
+  const unresolvedIntervals = [];
+  let intervalCount = 0;
+  let certifiedNoRootIntervalCount = 0;
+  let certifiedMonotonicIntervalCount = 0;
+  let maximumSubdivisionDepthReached = 0;
+
+  while (stack.length > 0) {
+    if (intervalCount >= rootPolicy.maximumCandidateIntervals) {
+      unresolvedIntervals.push({
+        reason: "maximum-candidate-intervals-reached",
+        pendingIntervalCount: stack.length,
+      });
+      break;
+    }
+    const interval = stack.pop();
+    intervalCount += 1;
+    maximumSubdivisionDepthReached = Math.max(
+      maximumSubdivisionDepthReached,
+      interval.depth,
+    );
+    const midpoint = (interval.leftTime + interval.rightTime) / 2;
+    const halfWidth = (interval.rightTime - interval.leftTime) / 2;
+    const middle = at(midpoint);
+    const residualRadius = residualLipschitzBound * halfWidth;
+    const residualRange = [
+      middle.residual - residualRadius,
+      middle.residual + residualRadius,
+    ];
+    if (residualRange[0] > tolerance || residualRange[1] < -tolerance) {
+      certifiedNoRootIntervalCount += 1;
+      continue;
+    }
+
+    const distanceLowerBound = middle.distance - speedBound * halfWidth;
+    const middleDerivative = residualDerivative(middle, fieldSpeed);
+    const secondDerivativeBound = distanceLowerBound > 0
+      ? accelerationBound + speedBound * speedBound / distanceLowerBound
+      : Number.POSITIVE_INFINITY;
+    const derivativeRadius = secondDerivativeBound * halfWidth;
+    const derivativeRange = [
+      middleDerivative - derivativeRadius,
+      middleDerivative + derivativeRadius,
+    ];
+    const monotonic =
+      derivativeRange[0] > 0 || derivativeRange[1] < 0;
+    if (monotonic) {
+      certifiedMonotonicIntervalCount += 1;
+      const left = at(interval.leftTime);
+      const right = at(interval.rightTime);
+      if (Math.abs(left.residual) <= tolerance ||
+          Math.abs(right.residual) <= tolerance ||
+          left.residual * right.residual < 0) {
+        const solved = bisectCertifiedSimpleRoot({
+          source,
+          left,
+          right,
+          observationTime,
+          probePosition,
+          fieldSpeed,
+          tolerance,
+          maxIterations,
+        });
+        isolatedRoots.push({
+          ...solved,
+          certificate: {
+            method: "event-specific-derivative-isolation.v2",
+            isolatedInterval: [interval.leftTime, interval.rightTime],
+            residualRange,
+            derivativeRange,
+            distanceLowerBound,
+            secondDerivativeBound,
+            subdivisionDepth: interval.depth,
+          },
+        });
+      } else {
+        certifiedNoRootIntervalCount += 1;
+      }
+      continue;
+    }
+
+    if (interval.depth >= rootPolicy.maximumSubdivisionDepth) {
+      unresolvedIntervals.push({
+        reason: "possible-root-or-fold-not-isolated",
+        interval: [interval.leftTime, interval.rightTime],
+        residualRange,
+        derivativeRange,
+        midpointResidual: middle.residual,
+        midpointDerivative: middleDerivative,
+        distanceLowerBound,
+        subdivisionDepth: interval.depth,
+      });
+      continue;
+    }
+    stack.push({
+      leftTime: midpoint,
+      rightTime: interval.rightTime,
+      depth: interval.depth + 1,
+    });
+    stack.push({
+      leftTime: interval.leftTime,
+      rightTime: midpoint,
+      depth: interval.depth + 1,
+    });
+  }
+
+  if (unresolvedIntervals.length > 0) {
+    throw new CausalRootEnumerationError(
+      `causal-root enumeration for ${source.id} could not certify every retained interval.`,
+      {
+        transmitterId: source.id,
+        observationTime,
+        probePosition,
+        retainedInterval: [retainedStart, retainedEnd],
+        fieldSpeed,
+        speedBound,
+        accelerationBound,
+        intervalCount,
+        maximumSubdivisionDepthReached,
+        unresolvedIntervals,
+      },
+    );
+  }
+
+  isolatedRoots.sort((left, right) =>
+    left.root.emissionTime - right.root.emissionTime);
+  const deduplicatedRoots = [];
+  const timeIdentityTolerance =
+    tolerance + 64 * Number.EPSILON *
+      Math.max(1, Math.abs(retainedStart), Math.abs(retainedEnd));
+  for (const row of isolatedRoots) {
+    const previous = deduplicatedRoots.at(-1);
+    if (previous &&
+        Math.abs(previous.root.emissionTime - row.root.emissionTime) <=
+          timeIdentityTolerance) {
+      if (Math.abs(row.root.residual) < Math.abs(previous.root.residual)) {
+        deduplicatedRoots[deduplicatedRoots.length - 1] = row;
+      }
+    } else {
+      deduplicatedRoots.push(row);
+    }
+  }
+  const start = at(retainedStart);
+  const end = at(retainedEnd);
+  return {
+    roots: deduplicatedRoots,
+    noRootReason:
+      deduplicatedRoots.length === 0 ? "certified_no_retained_root" : null,
+    endpointResiduals: [start.residual, end.residual],
+    retainedInterval: [retainedStart, retainedEnd],
+    speedBound,
+    accelerationBound,
+    intervalCount,
+    certifiedNoRootIntervalCount,
+    certifiedMonotonicIntervalCount,
+    maximumSubdivisionDepthReached,
+  };
+}
+
 function evaluateEvent({ sourceRecord, protocol, probe, observationTime, rootTolerance, maxIterations }) {
+  const receiverSource = probe.kind === "prescribed-source-endpoint-probe.v1"
+    ? sourceRecord.sources.find((source) => source.id === probe.transmitterId)
+    : null;
+  if (probe.kind === "prescribed-source-endpoint-probe.v1" && !receiverSource) {
+    throw new Error(
+      `moving endpoint probe ${probe.id} names absent transmitter ${probe.transmitterId}.`,
+    );
+  }
+  const receiverState = receiverSource
+    ? evaluateValidatedExactPrescribedSourceState(receiverSource, observationTime)
+    : null;
+  const probePosition = receiverState?.position ?? probe.position;
+  const probeVelocity = receiverState?.velocity ?? { x: 0, y: 0, z: 0 };
   const retainedStart = Math.max(sourceRecord.history.start, protocol.history.start);
   const retainedEnd = Math.min(
     sourceRecord.history.end,
@@ -412,73 +807,121 @@ function evaluateEvent({ sourceRecord, protocol, probe, observationTime, rootTol
   }
   const roots = [];
   const noRootTransmitters = [];
+  const transmitterCertificates = [];
   for (const source of sourceRecord.sources) {
-    const solved = solveCertifiedRetainedRoot({
+    if (receiverSource && source.id === receiverSource.id) continue;
+    const solved = solveCertifiedRetainedRoots({
       source,
       retainedStart,
       retainedEnd,
       observationTime,
-      probePosition: probe.position,
+      probePosition,
       fieldSpeed: protocol.fieldSpeed,
       tolerance: rootTolerance,
       maxIterations,
+      rootPolicy: protocol.rootPolicy,
     });
-    if (!solved.root) {
+    transmitterCertificates.push({
+      transmitterId: source.id,
+      rootCount: solved.roots.length,
+      retainedInterval: solved.retainedInterval,
+      certifiedSpeedBound: solved.speedBound,
+      certifiedAccelerationBound: solved.accelerationBound,
+      intervalCount: solved.intervalCount,
+      certifiedNoRootIntervalCount: solved.certifiedNoRootIntervalCount,
+      certifiedMonotonicIntervalCount: solved.certifiedMonotonicIntervalCount,
+      maximumSubdivisionDepthReached: solved.maximumSubdivisionDepthReached,
+      complete: true,
+    });
+    if (solved.roots.length === 0) {
       noRootTransmitters.push({
         transmitterId: source.id,
         rootCount: 0,
-        reason: solved.reason,
+        reason: solved.noRootReason,
         retainedInterval: solved.retainedInterval,
         endpointResiduals: solved.endpointResiduals,
         certifiedSpeedBound: solved.speedBound,
-        certifiedMonotonicityMargin: solved.monotonicityMargin,
+        certifiedAccelerationBound: solved.accelerationBound,
+        globalSubFieldMonotonicityMargin:
+          protocol.fieldSpeed - solved.speedBound,
+        certifiedMonotonicityMargin:
+          protocol.rootPolicy.id === ALL_RETAINED_ROOTS_POLICY
+            ? null
+            : protocol.fieldSpeed - solved.speedBound,
       });
       continue;
     }
-    const root = solved.root;
-    if (!(root.distance > 0)) {
-      throw new RangeError(`causal root for ${source.id} has zero distance.`);
-    }
-    const direction = scale(root.displacement, 1 / root.distance);
-    const transmitterRadialSpeed = dot(root.state.velocity, direction);
-    const transmitterSideFactorDt = protocol.fieldSpeed - transmitterRadialSpeed;
-    if (!(transmitterSideFactorDt > 0)) {
-      throw new RangeError(`causal root for ${source.id} is not a retained simple root.`);
-    }
-    const denominator = FOUR_PI * root.distance * root.distance * Math.abs(transmitterSideFactorDt);
-    const accelerationBaseScale = protocol.coupling * source.charge *
-      protocol.fieldSpeed / Math.abs(transmitterSideFactorDt) /
-      (root.distance * root.distance);
-    roots.push({
-      rootId: `${probe.id}<-${source.id}:simple:0`,
-      rootOrdinal: 0,
-      rootStatus: "retained-simple-root",
-      transmitterId: source.id,
-      transmitterCharge: source.charge,
-      emissionTime: root.emissionTime,
-      receptionTime: observationTime,
-      delay: observationTime - root.emissionTime,
-      transmitterPosition: root.state.position,
-      transmitterVelocity: root.state.velocity,
-      displacement: root.displacement,
-      direction,
-      distance: root.distance,
-      residual: root.residual,
-      transmitterRadialSpeed,
-      transmitterSideFactorDt,
-      rootTransversalityMargin: Math.abs(transmitterSideFactorDt),
-      accelerationWeight: protocol.fieldSpeed / Math.abs(transmitterSideFactorDt),
-      signedWakeContribution: source.charge / denominator,
-      unsignedWakeContribution: Math.abs(source.charge) / denominator,
-      probeAccelerationContributions: probe.polarities.map((probePolarity) => ({
-        probePolarity,
-        acceleration: scale(direction, accelerationBaseScale * probePolarity),
-      })),
-      rootIterations: solved.iterations,
-      finalBracket: solved.finalBracket,
-      endpointResiduals: solved.endpointResiduals,
-      certifiedSpeedBound: solved.speedBound,
-      certifiedMonotonicityMargin: solved.monotonicityMargin,
+    solved.roots.forEach((isolated, rootOrdinal) => {
+      const root = isolated.root;
+      if (!(root.distance > 0)) {
+        throw new RangeError(`causal root for ${source.id} has zero distance.`);
+      }
+      const direction = scale(root.displacement, 1 / root.distance);
+      const transmitterRadialSpeed = dot(root.state.velocity, direction);
+      const transmitterSideFactorDt = protocol.fieldSpeed - transmitterRadialSpeed;
+      if (transmitterSideFactorDt === 0) {
+        throw new CausalRootEnumerationError(
+          `causal root for ${source.id} is a non-transverse fold.`,
+          {
+            transmitterId: source.id,
+            observationTime,
+            emissionTime: root.emissionTime,
+            transmitterSideFactorDt,
+            reason: "non-transverse-fold-root",
+          },
+        );
+      }
+      const receiverRadialSpeed = dot(probeVelocity, direction);
+      const receiverSideFactorDr = protocol.fieldSpeed - receiverRadialSpeed;
+      const denominator =
+        FOUR_PI * root.distance * root.distance * Math.abs(transmitterSideFactorDt);
+      const accelerationBaseScale = protocol.coupling * source.charge *
+        protocol.fieldSpeed / Math.abs(transmitterSideFactorDt) /
+        (root.distance * root.distance);
+      roots.push({
+        rootId: `${probe.id}<-${source.id}:simple:${rootOrdinal}`,
+        rootOrdinal,
+        rootStatus: "retained-simple-root",
+        transmitterId: source.id,
+        transmitterCharge: source.charge,
+        emissionTime: root.emissionTime,
+        receptionTime: observationTime,
+        delay: observationTime - root.emissionTime,
+        transmitterPosition: root.state.position,
+        transmitterVelocity: root.state.velocity,
+        displacement: root.displacement,
+        direction,
+        distance: root.distance,
+        residual: root.residual,
+        transmitterRadialSpeed,
+        transmitterSideFactorDt,
+        receiverRadialSpeed,
+        receiverSideFactorDr,
+        rootPlaybackDerivative: receiverSideFactorDr / transmitterSideFactorDt,
+        rootTransversalityMargin: Math.abs(transmitterSideFactorDt),
+        accelerationWeight: protocol.fieldSpeed / Math.abs(transmitterSideFactorDt),
+        signedWakeContribution: source.charge / denominator,
+        unsignedWakeContribution: Math.abs(source.charge) / denominator,
+        probeAccelerationContributions: probe.polarities.map((probePolarity) => ({
+          probePolarity,
+          acceleration: scale(direction, accelerationBaseScale * probePolarity),
+        })),
+        rootIterations: isolated.iterations,
+        finalBracket: isolated.finalBracket,
+        endpointResiduals: solved.endpointResiduals,
+        certifiedSpeedBound: solved.speedBound,
+        certifiedAccelerationBound: solved.accelerationBound,
+        globalSubFieldMonotonicityMargin:
+          protocol.fieldSpeed - solved.speedBound,
+        certifiedMonotonicityMargin:
+          protocol.rootPolicy.id === ALL_RETAINED_ROOTS_POLICY
+            ? Math.min(
+              Math.abs(isolated.certificate.derivativeRange[0]),
+              Math.abs(isolated.certificate.derivativeRange[1]),
+            )
+            : protocol.fieldSpeed - solved.speedBound,
+        rootIsolationCertificate: isolated.certificate,
+      });
     });
   }
   const signedWake = roots.reduce((sum, root) => sum + root.signedWakeContribution, 0);
@@ -496,14 +939,21 @@ function evaluateEvent({ sourceRecord, protocol, probe, observationTime, rootTol
     eventId: `${probe.id}@${observationTime}`,
     probeId: probe.id,
     observationTime,
-    probePosition: probe.position,
+    probeKind: probe.kind,
+    receiverSourceId: receiverSource?.id ?? null,
+    selfHitPolicy: receiverSource ? probe.selfHitPolicy : "not-applicable",
+    probePosition,
+    probeVelocity,
     retainedHistory: { start: retainedStart, end: retainedEnd },
     rootCompletenessCertification: {
-      policy: ALL_RETAINED_SIMPLE_ROOTS_POLICY,
+      policy: protocol.rootPolicy.id,
       complete: true,
-      reason:
-        "Each transmitter residual is strictly increasing because its certified speed bound is below fieldSpeed; therefore the retained interval contains at most one root.",
+      reason: protocol.rootPolicy.id === ALL_RETAINED_ROOTS_POLICY
+        ? "Every retained-time interval was certified root-free or monotonic; every sign-changing monotonic interval was isolated to one simple root."
+        : "Each transmitter residual is strictly increasing because its certified speed bound is below fieldSpeed; therefore the retained interval contains at most one root.",
+      transmitterCertificates,
     },
+    expectedTransmitterCount: sourceRecord.sources.length - (receiverSource ? 1 : 0),
     rootCount: roots.length,
     noRootCount: noRootTransmitters.length,
     roots,
@@ -541,9 +991,18 @@ function evaluatePeriodClosure(sourceRecord, protocol) {
   const start = protocol.returnWindow.start;
   const end = start + protocol.returnWindow.period;
   const entries = sourceRecord.sources.map((source) => {
-    const startState = evaluateExactPrescribedSourceState(source, start);
-    const endState = evaluateExactPrescribedSourceState(source, end);
-    const positionResidual = subtract(endState.position, startState.position);
+    const startState = evaluateValidatedExactPrescribedSourceState(source, start);
+    const endState = evaluateValidatedExactPrescribedSourceState(source, end);
+    const translatingCenterDisplacement = scale(
+      source.trajectory.centerVelocity,
+      protocol.returnWindow.period,
+    );
+    const absolutePositionDisplacement =
+      subtract(endState.position, startState.position);
+    const positionResidual = subtract(
+      absolutePositionDisplacement,
+      translatingCenterDisplacement,
+    );
     const velocityResidual = subtract(endState.velocity, startState.velocity);
     const phaseResidual = wrappedPhaseDifference(
       startState.phase.rawRadians,
@@ -553,6 +1012,9 @@ function evaluatePeriodClosure(sourceRecord, protocol) {
       transmitterId: source.id,
       startTime: start,
       endTime: end,
+      closureFrame: "declared-common-translating-center.v1",
+      absolutePositionDisplacement,
+      translatingCenterDisplacement,
       positionResidual,
       positionResidualNorm: magnitude(positionResidual),
       velocityResidual,
@@ -583,20 +1045,56 @@ function evaluateMinimumSeparation(sourceRecord, protocol, sampleCount) {
       let minimumTime = start;
       for (let sampleIndex = 0; sampleIndex < sampleCount; sampleIndex += 1) {
         const time = start + period * sampleIndex / sampleCount;
-        const leftState = evaluateExactPrescribedSourceState(left, time);
-        const rightState = evaluateExactPrescribedSourceState(right, time);
+        const leftState = evaluateValidatedExactPrescribedSourceState(left, time);
+        const rightState = evaluateValidatedExactPrescribedSourceState(right, time);
         const separation = magnitude(subtract(leftState.position, rightState.position));
         if (separation < minimum) {
           minimum = separation;
           minimumTime = time;
         }
       }
+      const relativeSpeedUpperBound =
+        maximumTrajectorySpeed(left.trajectory, start, start + period) +
+        maximumTrajectorySpeed(right.trajectory, start, start + period);
+      const startRelativePosition = subtract(
+        evaluateValidatedExactPrescribedSourceState(left, start).position,
+        evaluateValidatedExactPrescribedSourceState(right, start).position,
+      );
+      const endRelativePosition = subtract(
+        evaluateValidatedExactPrescribedSourceState(left, start + period).position,
+        evaluateValidatedExactPrescribedSourceState(right, start + period).position,
+      );
+      const relativePeriodClosureResidual = magnitude(subtract(
+        endRelativePosition,
+        startRelativePosition,
+      ));
+      const relativePeriodClosureTolerance = 64 * Number.EPSILON * Math.max(
+        1,
+        magnitude(startRelativePosition),
+        magnitude(endRelativePosition),
+      );
+      const relativePeriodClosed =
+        relativePeriodClosureResidual <= relativePeriodClosureTolerance;
+      const sampleCoveringRadius = relativePeriodClosed
+        ? period / (2 * sampleCount)
+        : period / sampleCount;
+      const continuousLowerBound = Math.max(
+        0,
+        minimum - relativeSpeedUpperBound * sampleCoveringRadius,
+      );
       pairRows.push({
         pairId: `${left.id}<->${right.id}`,
         leftTransmitterId: left.id,
         rightTransmitterId: right.id,
         minimumSeparation: minimum,
         firstMinimumSampleTime: minimumTime,
+        relativeSpeedUpperBound,
+        relativePeriodClosed,
+        relativePeriodClosureResidual,
+        relativePeriodClosureTolerance,
+        sampleCoveringRadius,
+        continuousLowerBound,
+        certificateRule: "periodic-sample-lipschitz-lower-bound.v1",
       });
     }
   }
@@ -604,15 +1102,23 @@ function evaluateMinimumSeparation(sourceRecord, protocol, sampleCount) {
     (best, row) => row.minimumSeparation < best.minimumSeparation ? row : best,
     pairRows[0],
   );
+  const certificateRow = pairRows.reduce(
+    (best, row) => row.continuousLowerBound < best.continuousLowerBound ? row : best,
+    pairRows[0],
+  );
   return {
     samplingRule: protocol.geometry.samplingRule,
+    certificateRule: "periodic-sample-lipschitz-lower-bound.v1",
     start,
     period,
     sampleCount,
+    sampleCoveringRadius: certificateRow.sampleCoveringRadius,
     pairRows,
     minimumSeparation: minimumRow.minimumSeparation,
     minimumPairId: minimumRow.pairId,
     firstMinimumSampleTime: minimumRow.firstMinimumSampleTime,
+    certifiedContinuousLowerBound: certificateRow.continuousLowerBound,
+    certificatePairId: certificateRow.pairId,
   };
 }
 
@@ -697,23 +1203,126 @@ function exactParameterVector(sourceRecord) {
   };
 }
 
-export function evaluatePrescribedRecordAnalysis(request = {}) {
-  const sourceRecord = validateExactPrescribedSourceRecord(request.sourceRecord);
-  const protocol = validatePrescribedRecordAnalysisProtocol(request.protocol);
+export function createPrescribedRecordAnalysisSession(rawSourceRecord) {
+  const sourceRecord = validateExactPrescribedSourceRecord(rawSourceRecord);
   if (sourceRecord.sources.length < 2) {
     throw new RangeError("analytical braid evaluation requires at least two prescribed sources.");
   }
+  const sourceHash = sha256Canonical(sourceRecord);
+  const session = Object.freeze({
+    schema: PRESCRIBED_RECORD_ANALYSIS_SESSION_SCHEMA,
+    sourceHash,
+    sourceCount: sourceRecord.sources.length,
+  });
+  analysisSessionStates.set(session, {
+    rawSourceRecord,
+    sourceRecord,
+    sourceHash,
+    invariantCache: new Map(),
+    invariantEvaluationCount: 0,
+    invariantCacheHitCount: 0,
+  });
+  return session;
+}
+
+export function getPrescribedRecordAnalysisSessionStats(session) {
+  const state = analysisSessionStates.get(session);
+  if (!state) {
+    throw new TypeError("analysis session was not created by createPrescribedRecordAnalysisSession.");
+  }
+  return {
+    sourceHash: state.sourceHash,
+    sourceCount: state.sourceRecord.sources.length,
+    invariantCacheEntryCount: state.invariantCache.size,
+    invariantEvaluationCount: state.invariantEvaluationCount,
+    invariantCacheHitCount: state.invariantCacheHitCount,
+  };
+}
+
+function resolveAnalysisSession(request) {
+  if (request.session == null) {
+    const session = createPrescribedRecordAnalysisSession(request.sourceRecord);
+    return {
+      session,
+      state: analysisSessionStates.get(session),
+    };
+  }
+  const state = analysisSessionStates.get(request.session);
+  if (!state) {
+    throw new TypeError("analysis session was not created by createPrescribedRecordAnalysisSession.");
+  }
+  if (request.sourceRecord != null &&
+      request.sourceRecord !== state.rawSourceRecord &&
+      request.sourceRecord !== state.sourceRecord) {
+    throw new Error("analysis session source record differs from the requested source record.");
+  }
+  return { session: request.session, state };
+}
+
+function validateProtocolSpan(sourceRecord, protocol) {
   if (protocol.history.start < sourceRecord.history.start ||
       protocol.history.end > sourceRecord.history.end) {
     throw new RangeError("protocol history must lie within the exact source-record history.");
   }
   const returnEnd = protocol.returnWindow.start + protocol.returnWindow.period;
-  if (protocol.returnWindow.start < sourceRecord.history.start || returnEnd > sourceRecord.history.end) {
+  if (protocol.returnWindow.start < sourceRecord.history.start ||
+      returnEnd > sourceRecord.history.end) {
     throw new RangeError("protocol return window must lie within the exact source-record history.");
   }
+}
 
-  const sourceHash = sha256Canonical(sourceRecord);
-  const protocolHash = sha256Canonical(protocol);
+function sourceInvariantKey(protocol) {
+  return canonicalJson({
+    returnWindow: protocol.returnWindow,
+    primaryMinimumSeparationSamples: protocol.geometry.minimumSeparationSamples,
+    refinedMinimumSeparationSamples:
+      protocol.convergence.minimumSeparationSamples,
+  });
+}
+
+function sourceInvariants(state, protocol) {
+  const key = sourceInvariantKey(protocol);
+  const cached = state.invariantCache.get(key);
+  if (cached) {
+    state.invariantCacheHitCount += 1;
+    return cached;
+  }
+  const prescribedPeriodClosure = evaluatePeriodClosure(
+    state.sourceRecord,
+    protocol,
+  );
+  const minimumSeparation = evaluateMinimumSeparation(
+    state.sourceRecord,
+    protocol,
+    protocol.geometry.minimumSeparationSamples,
+  );
+  const refinedMinimumSeparation = evaluateMinimumSeparation(
+    state.sourceRecord,
+    protocol,
+    protocol.convergence.minimumSeparationSamples,
+  );
+  const invariants = Object.freeze({
+    prescribedPeriodClosure,
+    minimumSeparation,
+    refinedMinimumSeparation,
+  });
+  state.invariantCache.set(key, invariants);
+  state.invariantEvaluationCount += 1;
+  return invariants;
+}
+
+export function evaluatePrescribedRecordAnalysis(request = {}) {
+  const { state } = resolveAnalysisSession(request);
+  const sourceRecord = state.sourceRecord;
+  const protocol = validatePrescribedRecordAnalysisProtocol(request.protocol);
+  validateProtocolSpan(sourceRecord, protocol);
+  const resultMode = request.resultMode ?? "full";
+  if (resultMode !== "full" && resultMode !== "compact-event-batch") {
+    throw new TypeError("resultMode must be full or compact-event-batch.");
+  }
+
+  const sourceHash = state.sourceHash;
+  const protocolHash = resultMode === "full" ? sha256Canonical(protocol) : null;
   const events = evaluateAllEvents(
     sourceRecord,
     protocol,
@@ -726,41 +1335,36 @@ export function evaluatePrescribedRecordAnalysis(request = {}) {
     protocol.convergence.rootTolerance,
     protocol.convergence.maxIterations,
   );
-  const prescribedPeriodClosure = evaluatePeriodClosure(sourceRecord, protocol);
-  const minimumSeparation = evaluateMinimumSeparation(
-    sourceRecord,
-    protocol,
-    protocol.geometry.minimumSeparationSamples,
-  );
-  const refinedMinimumSeparation = evaluateMinimumSeparation(
-    sourceRecord,
-    protocol,
-    protocol.convergence.minimumSeparationSamples,
-  );
+  const {
+    prescribedPeriodClosure,
+    minimumSeparation,
+    refinedMinimumSeparation,
+  } = sourceInvariants(state, protocol);
   const eventConvergence = compareEventLedgers(events, refinedEvents, protocol);
   const minimumSeparationChange = Math.abs(
     minimumSeparation.minimumSeparation - refinedMinimumSeparation.minimumSeparation,
   );
-  const convergenceMaximumChange = Math.max(
-    eventConvergence.maximumChange,
-    minimumSeparationChange,
-  );
+  const convergenceMaximumChange = eventConvergence.maximumChange;
   const numericalConvergence = {
-    comparisonRule: "primary-versus-tighter-root-and-denser-periodic-grid.v1",
+    comparisonRule: "primary-versus-tighter-root-event-ledger.v2",
     absoluteTolerance: protocol.tolerances.convergenceAbsolute,
     eventConvergence,
     minimumSeparation: {
+      disposition: "separate-continuous-separation-certificate-not-a-convergence-gate",
       primarySampleCount: minimumSeparation.sampleCount,
       refinedSampleCount: refinedMinimumSeparation.sampleCount,
       primaryValue: minimumSeparation.minimumSeparation,
       refinedValue: refinedMinimumSeparation.minimumSeparation,
       absoluteChange: minimumSeparationChange,
+      primaryCertifiedContinuousLowerBound:
+        minimumSeparation.certifiedContinuousLowerBound,
+      refinedCertifiedContinuousLowerBound:
+        refinedMinimumSeparation.certifiedContinuousLowerBound,
       minimumPairIdentityMatch:
         minimumSeparation.minimumPairId === refinedMinimumSeparation.minimumPairId,
     },
     maximumReportedChange: convergenceMaximumChange,
     passed: eventConvergence.rootIdentitiesMatch &&
-      minimumSeparation.minimumPairId === refinedMinimumSeparation.minimumPairId &&
       convergenceMaximumChange <= protocol.tolerances.convergenceAbsolute,
   };
   const rootTransversalityMargin = events.flatMap((event) => event.roots).reduce(
@@ -777,16 +1381,61 @@ export function evaluatePrescribedRecordAnalysis(request = {}) {
     rootTransversalityPassed: finiteRootTransversalityMargin === null ||
       finiteRootTransversalityMargin >= protocol.tolerances.rootTransversalityFloor,
     minimumSeparationPassed:
-      minimumSeparation.minimumSeparation >= protocol.tolerances.minimumSeparationFloor,
+      minimumSeparation.certifiedContinuousLowerBound >=
+        protocol.tolerances.minimumSeparationFloor,
     numericalConvergencePassed: numericalConvergence.passed,
   };
   validity.passed = Object.values(validity).every(Boolean);
+
+  if (resultMode === "compact-event-batch") {
+    return {
+      schema: PRESCRIBED_RECORD_COMPACT_EVENT_BATCH_SCHEMA,
+      evaluator: {
+        id: "prescribed-record-analytical-braid-evaluator",
+        version: "v2",
+        resultMode,
+        pathEvolutionInvoked: false,
+        eomSolverInvoked: false,
+      },
+      claimGrade: "derived",
+      claimScope:
+        "diagnostic event batch for compact prescribed-path reduction",
+      excludedClaims: [
+        "independent-acceptance",
+        "stability",
+        "energy",
+        "retention",
+        "physical-realization",
+      ],
+      source: {
+        recordId: sourceRecord.recordId,
+        sourceHash,
+      },
+      protocolId: protocol.protocolId,
+      rawLedgers: {
+        causalRoots: events,
+        numericalConvergence: eventConvergence.entries,
+      },
+      reducedMeasures: {
+        rootTransversalityMargin: finiteRootTransversalityMargin,
+        numericalConvergence,
+        validity,
+      },
+      status: {
+        code: validity.passed ? "ok" : "analytical_validity_gate_failed",
+        severity: validity.passed ? "ok" : "error",
+        message: validity.passed
+          ? "compact prescribed-record event batch evaluated"
+          : "one or more declared analytical validity gates failed",
+      },
+    };
+  }
 
   const packetWithoutHash = {
     schema: PRESCRIBED_RECORD_ANALYSIS_RESULT_SCHEMA,
     evaluator: {
       id: "prescribed-record-analytical-braid-evaluator",
-      version: "v1",
+      version: "v2",
       pathEvolutionInvoked: false,
       eomSolverInvoked: false,
     },
@@ -845,6 +1494,11 @@ export function evaluatePrescribedRecordAnalysis(request = {}) {
         firstMinimumSampleTime: minimumSeparation.firstMinimumSampleTime,
         sampleCount: minimumSeparation.sampleCount,
         samplingRule: minimumSeparation.samplingRule,
+        certifiedContinuousLowerBound:
+          minimumSeparation.certifiedContinuousLowerBound,
+        certificatePairId: minimumSeparation.certificatePairId,
+        certificateRule: minimumSeparation.certificateRule,
+        sampleCoveringRadius: minimumSeparation.sampleCoveringRadius,
       },
       rootTransversalityMargin: finiteRootTransversalityMargin,
       numericalConvergence,

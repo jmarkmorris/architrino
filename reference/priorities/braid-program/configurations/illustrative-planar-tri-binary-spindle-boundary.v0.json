@@ -1,12 +1,12 @@
 {
   "schema": "prescribed-braid-spec.v1",
   "specId": "illustrative-planar-tri-binary-spindle-boundary-v0",
-  "label": "B1 — all-equatorial boundary",
-  "provenanceDescription": "Exact B1 prescribed display paths with zero axial half-separation for all three binaries; the legacy source identity is retained only for stable machine compatibility.",
+  "label": "B1.3 — all-equatorial boundary",
+  "provenanceDescription": "Exact B1.3 prescribed display paths with zero axial half-separation for all three binaries; the legacy source identity is retained only for stable machine compatibility.",
   "claimGrade": "chart-hypothesis",
   "evidenceStatus": "display-only",
   "date": "2026-07-22",
-  "taxonomy": { "familyId": "B", "familyLabel": "Family B", "memberId": "B1", "memberLabel": "rigid common-frequency", "instantiationLabel": "all-equatorial boundary", "displayLabel": "B1 — all-equatorial boundary", "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#coordinate-boundaries" },
+  "taxonomy": { "familyId": "B", "familyLabel": "Family B", "memberId": "B1.3", "memberLabel": "all-equatorial boundary", "displayLabel": "B1.3 — all-equatorial boundary", "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#b1-catalog-members" },
   "illustrativeCoordinates": { "status": "prescribed-display-coordinates", "choices": ["The center, common axis, radii, common frequency, phases, polarity assignments, and all-equatorial coordinate boundary are prescribed display coordinates inherited from the verified legacy record."] },
   "compatibility": { "retainedIdentifiers": [
     { "kind": "source-spec-id", "value": "illustrative-planar-tri-binary-spindle-boundary-v0", "reason": "Stable source identity consumed by existing record links." },

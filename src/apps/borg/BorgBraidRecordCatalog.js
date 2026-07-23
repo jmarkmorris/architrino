@@ -82,7 +82,7 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
   },
   {
     id: "illustrative-spindle-chart-hypothesis-v0",
-    label: "B1 — interior reference",
+    label: "B1.1 — interior reference",
     familyId: "B",
     familyLabel: "Family B",
     recordUrl:
@@ -90,7 +90,7 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
   },
   {
     id: "illustrative-extreme-cap-tilt-spindle-variant-v0",
-    label: "B1 — high-axial interior",
+    label: "B1.2 — high-axial interior",
     familyId: "B",
     familyLabel: "Family B",
     recordUrl:
@@ -98,7 +98,7 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
   },
   {
     id: "illustrative-planar-tri-binary-spindle-boundary-v0",
-    label: "B1 — all-equatorial boundary",
+    label: "B1.3 — all-equatorial boundary",
     familyId: "B",
     familyLabel: "Family B",
     recordUrl:
@@ -106,15 +106,31 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
   },
   {
     id: "illustrative-full-cap-axial-spindle-boundary-v0",
-    label: "B1 — all-axial boundary",
+    label: "B1.4 — all-axial boundary",
     familyId: "B",
     familyLabel: "Family B",
     recordUrl:
       "content/assets/borg/records/illustrative-full-cap-axial-spindle-boundary.assembly-view-record.v0.json",
   },
   {
+    id: "family-c-c1-co-rotating-general-v1",
+    label: "C1 — co-rotating",
+    familyId: "C",
+    familyLabel: "Family C",
+    recordUrl:
+      "content/assets/borg/records/family-c-c1-co-rotating-general.assembly-view-record.v0.json",
+  },
+  {
+    id: "family-c-c2-counter-rotating-general-v1",
+    label: "C2 — counter-rotating",
+    familyId: "C",
+    familyLabel: "Family C",
+    recordUrl:
+      "content/assets/borg/records/family-c-c2-counter-rotating-general.assembly-view-record.v0.json",
+  },
+  {
     id: "family-c-c1-co-rotating-b1-pair-v1",
-    label: "C1 — co-rotating B1 pair",
+    label: "C3 — co-rotating B1 pair",
     familyId: "C",
     familyLabel: "Family C",
     recordUrl:
@@ -122,11 +138,27 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
   },
   {
     id: "family-c-c2-counter-rotating-b1-pair-v1",
-    label: "C2 — counter-rotating B1 pair",
+    label: "C4 — counter-rotating B1 pair",
     familyId: "C",
     familyLabel: "Family C",
     recordUrl:
       "content/assets/borg/records/family-c-c2-counter-rotating-b1-pair.assembly-view-record.v0.json",
+  },
+  {
+    id: "family-c-c1-1-co-rotating-b1-3-pair-v1",
+    label: "C5 — co-rotating B1.3 pair",
+    familyId: "C",
+    familyLabel: "Family C",
+    recordUrl:
+      "content/assets/borg/records/family-c-c1-1-co-rotating-b1-3-pair.assembly-view-record.v0.json",
+  },
+  {
+    id: "family-c-c2-1-counter-rotating-b1-3-pair-v1",
+    label: "C6 — counter-rotating B1.3 pair",
+    familyId: "C",
+    familyLabel: "Family C",
+    recordUrl:
+      "content/assets/borg/records/family-c-c2-1-counter-rotating-b1-3-pair.assembly-view-record.v0.json",
   },
 ]);
 

@@ -5,6 +5,7 @@ import {
   DEFAULT_SCENE_VIEWPORT_FIT_MARGIN,
   computeBoundsSceneFitZoom,
   computeCenteredSceneFitZoom,
+  isPointWithinSceneInteractionBounds,
   resolveSceneViewportFitMargin,
 } from "../src/runtime/SceneViewportFitRuntime.js";
 import { createTransitionEngine } from "../src/runtime/TransitionEngine.js";
@@ -44,6 +45,45 @@ test("scene viewport bounds fit applies the same margin on the limiting axis", (
       fallbackZoom: 1.7,
     }),
     1.7
+  );
+});
+
+test("viewport-fitted scenes accept visible canvas corners outside the focus circle", () => {
+  const point = { clientX: 80, clientY: 80 };
+  const canvasRect = { left: 0, right: 2560, top: 0, bottom: 1440 };
+  const focusMetrics = { centerX: 1280, centerY: 720, radius: 705 };
+
+  assert.equal(
+    isPointWithinSceneInteractionBounds({
+      ...point,
+      fitMode: "viewport",
+      canvasRect,
+      focusMetrics,
+    }),
+    true
+  );
+  assert.equal(
+    isPointWithinSceneInteractionBounds({
+      ...point,
+      fitMode: "focus",
+      canvasRect,
+      focusMetrics,
+    }),
+    false
+  );
+});
+
+test("viewport interaction bounds honor canvas edges and padding", () => {
+  const canvasRect = { left: 10, right: 1010, top: 20, bottom: 820 };
+  const common = { fitMode: "viewport", canvasRect, paddingPx: 12 };
+
+  assert.equal(
+    isPointWithinSceneInteractionBounds({ ...common, clientX: 22, clientY: 32 }),
+    true
+  );
+  assert.equal(
+    isPointWithinSceneInteractionBounds({ ...common, clientX: 21.9, clientY: 32 }),
+    false
   );
 });
 

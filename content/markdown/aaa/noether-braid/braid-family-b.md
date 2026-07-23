@@ -68,6 +68,19 @@ B1 is the rigid common-frequency member of Family B. Its member-level constraint
 
 Rigid here means that the declared $R_a$, $h_a$, $\rho_a$, $f$, $\phi_a$, frame, and circulation sense do not change during the prescribed record. It is a kinematic restriction, not an EOM-solver rigidity result.
 
+### B1 Catalog Members
+
+The live Borg catalog assigns decimal member identifiers to four prescribed B1 coordinate selections. All four inherit the B1 common midpoint, coincident axis, common frequency, and common circulation relations:
+
+| Member ID | Coordinate selection |
+| --- | --- |
+| `B1.1` | Interior reference: $h_a>0$ and $\rho_a>0$ for every binary. |
+| `B1.2` | High-axial interior: $h_a>\rho_a>0$ for every binary. |
+| `B1.3` | All-equatorial boundary: $h_a=0$ and $\rho_a=R_a$ for every binary. |
+| `B1.4` | All-axial boundary: $\rho_a=0$ and $h_a=R_a$ for every binary. |
+
+These identifiers distinguish the catalog records; they do not replace B1 as the parent member inherited by Family-C component braids.
+
 ## Coordinate Boundaries
 
 The equatorial and axial depictions are coordinate boundaries of B1, not separately identified braid families. Each binary can reach either boundary independently:
@@ -78,7 +91,7 @@ The equatorial and axial depictions are coordinate boundaries of B1, not separat
 | Axial | $\rho_a=0$, $h_a=R_a$ | The endpoints remain on the common axis and have zero internal orbital speed. |
 | Interior | $h_a>0$, $\rho_a>0$ | The endpoints traverse separated transverse circles on opposite sides of the braid center. |
 
-The all-equatorial display sets $h_a=0$ for all three binaries. The all-axial display sets $\rho_a=0$ for all three binaries. Mixed boundary records are also permitted by the B1 coordinates. These loci do not carry decimal member IDs.
+The B1.3 all-equatorial display sets $h_a=0$ for all three binaries. The B1.4 all-axial display sets $\rho_a=0$ for all three binaries. Mixed boundary records are also permitted by the B1 coordinates, but they are not among the four current decimal catalog members.
 
 At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but no longer change that binary's endpoint positions because its transverse orbit radius is zero. Two axial records that differ only in those labels therefore depict the same path geometry unless another retained record gives the labels an independent dynamical role.
 

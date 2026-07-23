@@ -1,6 +1,8 @@
 import {
   canonicalJson,
+  createPrescribedRecordAnalysisSession,
   evaluatePrescribedRecordAnalysis,
+  PRESCRIBED_RECORD_COMPACT_EVENT_BATCH_SCHEMA,
   sha256Canonical,
 } from "./AnalyticalBraidEvaluator.mjs";
 import {
@@ -12,6 +14,8 @@ import {
 
 export const B1_STREAMING_REDUCTION_RESULT_SCHEMA =
   "prescribed-path-analysis/b1-streaming-reduction-result.v1";
+export const COMPLETE_CYCLE_STREAMING_REDUCTION_RESULT_SCHEMA =
+  "prescribed-path-analysis/complete-cycle-streaming-reduction-result.v1";
 
 const REQUIRED_EXCLUDED_CLAIMS = Object.freeze([
   "stability",
@@ -188,6 +192,7 @@ function sampleChannels(sample, direction) {
 
 function createSurfaceAccumulator(protocol, radius, resolution, {
   sourceAbsolutePolaritySum = null,
+  sourceSignedPolaritySum = null,
   transmitterRootIdentities = [],
 } = {}) {
   const grid = protocol.completeCycle[resolution];
@@ -230,6 +235,9 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
   const normalizedSourceAbsolutePolaritySum = sourceAbsolutePolaritySum === null
     ? null
     : positive(sourceAbsolutePolaritySum, "source absolute-polarity sum");
+  const normalizedSourceSignedPolaritySum = sourceSignedPolaritySum === null
+    ? null
+    : finite(sourceSignedPolaritySum, "source signed-polarity sum");
   const ingestedTimes = new Set();
   const batchDescriptors = [];
 
@@ -428,6 +436,30 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
       rawEmissionReference.passed =
         rawEmissionReference.relativeResidual <= rawEmissionReference.threshold;
     }
+    const expectedSignedCycleIntegral = normalizedSourceSignedPolaritySum === null
+      ? null
+      : protocol.completeCycle.period * normalizedSourceSignedPolaritySum;
+    const signedEmissionReference = expectedSignedCycleIntegral === null
+      ? null
+      : {
+          expectedCycleIntegral: expectedSignedCycleIntegral,
+          absoluteResidual: signedCycleIntegral - expectedSignedCycleIntegral,
+          relativeOrAbsoluteResidual: Math.abs(
+            signedCycleIntegral - expectedSignedCycleIntegral,
+          ) / Math.max(
+            1,
+            Math.abs(expectedSignedCycleIntegral),
+            expectedRawCycleIntegral ?? 0,
+          ),
+          threshold:
+            protocol.failClosedGates.causalWakeFlux.signedEmissionReferenceRelativeOrAbsolute ??
+            protocol.failClosedGates.causalWakeFlux.rawEmissionReferenceRelative,
+        };
+    if (signedEmissionReference) {
+      signedEmissionReference.passed =
+        signedEmissionReference.relativeOrAbsoluteResidual <=
+          signedEmissionReference.threshold;
+    }
     const wakeFlux = {
       integrationWindow: {
         start: protocol.completeCycle.start,
@@ -439,6 +471,7 @@ function createSurfaceAccumulator(protocol, radius, resolution, {
       residualCycleIntegral,
       etaWakeFlux,
       rawEmissionReference,
+      signedEmissionReference,
       claimBoundary:
         "cycle-integrated causal-wake measure; not energy, potential, work, or leakage",
     };
@@ -751,33 +784,96 @@ function extractSample(event, polarityValues, surfaceNormal, fieldSpeed) {
   };
 }
 
-function independentlyCheckEventPacket(packet, expectedProtocol, completeProtocol) {
-  if (packet.protocolHash !== sha256Canonical(expectedProtocol) ||
-      canonicalJson(packet.protocol) !== canonicalJson(expectedProtocol)) {
-    throw new Error("surface event packet protocol hash or body mismatch.");
-  }
-  if (packet.resultHash !== packetHashWithoutResultHash(packet)) {
-    throw new Error(`surface event packet ${packet.resultHash ?? "without-hash"} failed its result hash.`);
+function independentlyCheckEventPacket(
+  packet,
+  expectedProtocol,
+  completeProtocol,
+  expectedSourceCount = completeProtocol.applicability.sourceCount,
+) {
+  const compact = packet.schema === PRESCRIBED_RECORD_COMPACT_EVENT_BATCH_SCHEMA;
+  if (compact) {
+    if (packet.protocolId !== expectedProtocol.protocolId) {
+      throw new Error("compact surface event batch protocol identity mismatch.");
+    }
+  } else {
+    if (packet.protocolHash !== sha256Canonical(expectedProtocol) ||
+        canonicalJson(packet.protocol) !== canonicalJson(expectedProtocol)) {
+      throw new Error("surface event packet protocol hash or body mismatch.");
+    }
+    if (packet.resultHash !== packetHashWithoutResultHash(packet)) {
+      throw new Error(
+        `surface event packet ${packet.resultHash ?? "without-hash"} failed its result hash.`,
+      );
+    }
   }
   const events = packet.rawLedgers?.causalRoots;
   if (!Array.isArray(events) || events.length === 0) {
     throw new Error("surface event packet lacks its raw causal-root ledger.");
   }
+  if (compact) {
+    const expectedEvents = expectedProtocol.probes.flatMap((probe) =>
+      probe.observationTimes.map((observationTime) => ({
+        eventId: `${probe.id}@${observationTime}`,
+        probeId: probe.id,
+        observationTime,
+      })));
+    if (events.length !== expectedEvents.length ||
+        expectedEvents.some((expected, index) =>
+          events[index]?.eventId !== expected.eventId ||
+          events[index]?.probeId !== expected.probeId ||
+          events[index]?.observationTime !== expected.observationTime)) {
+      throw new Error("compact surface event batch differs from its requested event inventory.");
+    }
+  }
   const convergenceByEvent = new Map(
     (packet.rawLedgers.numericalConvergence ?? []).map((row) => [row.eventId, row]),
   );
-  const fieldSpeed = completeProtocol.eventEvaluator.fieldSpeed;
   const transversalityFloor = completeProtocol.eventEvaluator.tolerances.rootTransversalityFloor;
   const convergenceTolerance = completeProtocol.eventEvaluator.tolerances.convergenceAbsolute;
-  const sourceCount = completeProtocol.applicability.sourceCount;
+  const sourceCount = expectedSourceCount;
   for (const event of events) {
+    const rootsByTransmitter = new Map();
+    for (const root of event.roots) {
+      const rows = rootsByTransmitter.get(root.transmitterId) ?? [];
+      rows.push(root);
+      rootsByTransmitter.set(root.transmitterId, rows);
+    }
+    const noRootIds = event.noRootTransmitters.map(
+      (row) => row.transmitterId,
+    );
+    const representedTransmitters = new Set([
+      ...event.roots.map((root) => root.transmitterId),
+      ...noRootIds,
+    ]);
     if (!event.rootCompletenessCertification?.complete ||
-        event.rootCount + event.noRootCount !== sourceCount) {
+        event.rootCompletenessCertification.policy !==
+          expectedProtocol.rootPolicy.id ||
+        new Set(noRootIds).size !== noRootIds.length ||
+        noRootIds.some((id) => rootsByTransmitter.has(id)) ||
+        [...rootsByTransmitter.values()].some((rows) =>
+          rows.map((root) => root.rootOrdinal)
+            .sort((left, right) => left - right)
+            .some((ordinal, index) => ordinal !== index)) ||
+        representedTransmitters.size !== sourceCount) {
       throw new Error(`event ${event.eventId} failed independent root-completeness inspection.`);
     }
-    for (const row of [...event.roots, ...event.noRootTransmitters]) {
-      if (!(row.certifiedSpeedBound < fieldSpeed)) {
-        throw new Error(`event ${event.eventId} failed the source-speed gate.`);
+    if (expectedProtocol.rootPolicy.id ===
+        "all-retained-roots/event-specific-isolation-certified.v2") {
+      const certificates =
+        event.rootCompletenessCertification.transmitterCertificates;
+      const certificateIds = Array.isArray(certificates)
+        ? certificates.map((row) => row.transmitterId)
+        : [];
+      if (!Array.isArray(certificates) ||
+          certificates.length !== sourceCount ||
+          new Set(certificateIds).size !== sourceCount ||
+          certificates.some((certificate) =>
+            certificate.complete !== true ||
+            certificate.rootCount !==
+              (rootsByTransmitter.get(certificate.transmitterId)?.length ?? 0))) {
+        throw new Error(
+          `event ${event.eventId} failed independent causal-root-domain inspection.`,
+        );
       }
     }
     for (const root of event.roots) {
@@ -799,11 +895,17 @@ function independentlyCheckEventPacket(packet, expectedProtocol, completeProtoco
     }
   }
   const separationFloor = completeProtocol.eventEvaluator.tolerances.minimumSeparationFloor;
-  for (const ledgerName of ["minimumSeparation", "refinedMinimumSeparation"]) {
-    const ledger = packet.rawLedgers[ledgerName];
-    if (!Array.isArray(ledger) || ledger.length === 0 ||
-        ledger.some((row) => !(row.minimumSeparation >= separationFloor))) {
-      throw new Error(`surface event packet failed the ${ledgerName} gate.`);
+  if (compact) {
+    if (packet.reducedMeasures?.validity?.minimumSeparationPassed !== true) {
+      throw new Error("compact surface event batch failed the minimum-separation gate.");
+    }
+  } else {
+    for (const ledgerName of ["minimumSeparation", "refinedMinimumSeparation"]) {
+      const ledger = packet.rawLedgers[ledgerName];
+      if (!Array.isArray(ledger) || ledger.length === 0 ||
+          ledger.some((row) => !(row.minimumSeparation >= separationFloor))) {
+        throw new Error(`surface event packet failed the ${ledgerName} gate.`);
+      }
     }
   }
   return events;
@@ -820,21 +922,55 @@ function batchProtocol(fullEventProtocol, timeIndex) {
   };
 }
 
-function independentlyCheckB1SourceApplicability(sourceRecord, protocol) {
-  if (sourceRecord?.taxonomy?.familyId !== "B" || sourceRecord.taxonomy?.memberId !== "B1") {
-    throw new Error("complete-cycle reduction requires an exact Family B member B1 source record.");
+export function validateCompleteCycleSourceApplicability(sourceRecord, protocol) {
+  const isB1 = protocol.schema ===
+    "prescribed-path-analysis/b1-complete-cycle-probe-protocol.v1";
+  const commonAxisBraid =
+    protocol.applicability?.campaignClass === "common-axis-braid-prescribed-path.v2";
+  if (isB1 && (sourceRecord?.taxonomy?.familyId !== "B" ||
+      !["B1", "B1.1", "B1.2", "B1.3", "B1.4"].includes(sourceRecord.taxonomy?.memberId))) {
+    throw new Error("B1 complete-cycle reduction requires an exact Family B B1 source record.");
   }
+  if (!isB1 && !protocol.applicability.familyIds.includes(sourceRecord?.taxonomy?.familyId)) {
+    throw new Error("complete-cycle reduction source family is outside cohort applicability.");
+  }
+  const permittedSourceCounts = isB1
+    ? [protocol.applicability.sourceCount]
+    : protocol.applicability.sourceCounts;
   if (!Array.isArray(sourceRecord.sources) ||
-      sourceRecord.sources.length !== protocol.applicability.sourceCount) {
-    throw new Error("exact B1 source count does not match the complete-cycle protocol.");
+      !permittedSourceCounts.includes(sourceRecord.sources.length)) {
+    throw new Error("exact source count does not match the complete-cycle protocol.");
   }
   const period = protocol.completeCycle.period;
   const envelope = protocol.applicability.maximumSourceEnvelopeRadius;
+  const boundedCommonTranslation =
+    protocol.applicability.centerVelocityPolicy ===
+      "common-bounded-translation.v1";
+  const firstCenterVelocity = sourceRecord.sources[0]?.trajectory?.centerVelocity;
+  if (boundedCommonTranslation &&
+      (!(firstCenterVelocity &&
+        ["x", "y", "z"].every((key) =>
+          Number.isFinite(firstCenterVelocity[key]))) ||
+        vectorNorm(firstCenterVelocity) >
+          protocol.applicability.maximumCenterSpeed + 1e-12)) {
+    throw new Error(
+      "source common translation exceeds the declared center-speed bound.",
+    );
+  }
+  const requiredCenterVelocity = boundedCommonTranslation
+    ? firstCenterVelocity
+    : commonAxisBraid
+    ? {
+        x: protocol.applicability.requiredCenterVelocity[0],
+        y: protocol.applicability.requiredCenterVelocity[1],
+        z: protocol.applicability.requiredCenterVelocity[2],
+      }
+    : { x: 0, y: 0, z: 0 };
   const centerSum = { x: 0, y: 0, z: 0 };
   for (const source of sourceRecord.sources) {
     const trajectory = source.trajectory;
     if (trajectory?.kind !== "moving-circular.v1") {
-      throw new Error(`B1 source ${source.id} is not an exact moving-circular path.`);
+      throw new Error(`source ${source.id} is not an exact moving-circular path.`);
     }
     const center = trajectory.centerAtEpoch;
     const radiusU = trajectory.radiusU;
@@ -845,24 +981,46 @@ function independentlyCheckB1SourceApplicability(sourceRecord, protocol) {
     const radiusVNorm = vectorNorm(radiusV);
     const geometryScale = Math.max(1, centerNorm, radiusUNorm, radiusVNorm);
     const orthogonalityTolerance = 1e-12 * geometryScale * geometryScale;
-    if (vectorNorm(centerVelocity) > 1e-12 ||
+    if (vectorNorm({
+      x: centerVelocity.x - requiredCenterVelocity.x,
+      y: centerVelocity.y - requiredCenterVelocity.y,
+      z: centerVelocity.z - requiredCenterVelocity.z,
+    }) > 1e-12 ||
         Math.abs(finite(trajectory.angularAcceleration, `${source.id}.angularAcceleration`)) > 1e-12 ||
         Math.abs(radiusUNorm - radiusVNorm) > 1e-12 * geometryScale ||
         Math.abs(dot(radiusU, radiusV)) > orthogonalityTolerance ||
-        Math.abs(dot(center, radiusU)) > orthogonalityTolerance ||
-        Math.abs(dot(center, radiusV)) > orthogonalityTolerance) {
-      throw new Error(`B1 source ${source.id} violates the stationary orthogonal-circle applicability gate.`);
+        (isB1 && Math.abs(dot(center, radiusU)) > orthogonalityTolerance) ||
+        (isB1 && Math.abs(dot(center, radiusV)) > orthogonalityTolerance)) {
+      throw new Error(
+        `source ${source.id} violates the declared common-translation orthogonal-circle applicability gate.`,
+      );
     }
-    const maximumRadius = Math.hypot(centerNorm, radiusUNorm);
+    const cycleStartCenter = {
+      x: center.x + centerVelocity.x * protocol.completeCycle.start,
+      y: center.y + centerVelocity.y * protocol.completeCycle.start,
+      z: center.z + centerVelocity.z * protocol.completeCycle.start,
+    };
+    const cycleEndTime = protocol.completeCycle.start + protocol.completeCycle.period;
+    const cycleEndCenter = {
+      x: center.x + centerVelocity.x * cycleEndTime,
+      y: center.y + centerVelocity.y * cycleEndTime,
+      z: center.z + centerVelocity.z * cycleEndTime,
+    };
+    const maximumRadius = boundedCommonTranslation || commonAxisBraid
+      ? Math.max(vectorNorm(cycleStartCenter), vectorNorm(cycleEndCenter)) +
+        Math.max(radiusUNorm, radiusVNorm)
+      : isB1
+      ? Math.hypot(centerNorm, Math.max(radiusUNorm, radiusVNorm))
+      : centerNorm + Math.max(radiusUNorm, radiusVNorm);
     if (maximumRadius > envelope + 1e-12) {
-      throw new Error(`B1 source ${source.id} exceeds the declared source envelope.`);
+      throw new Error(`source ${source.id} exceeds the declared source envelope.`);
     }
     const completedTurns = finite(
       trajectory.angularVelocity,
       `${source.id}.angularVelocity`,
     ) * period / (2 * Math.PI);
     if (Math.abs(completedTurns - Math.round(completedTurns)) > 1e-12) {
-      throw new Error(`B1 source ${source.id} does not close over the declared return period.`);
+      throw new Error(`source ${source.id} does not close over the declared return period.`);
     }
     centerSum.x += center.x;
     centerSum.y += center.y;
@@ -874,7 +1032,7 @@ function independentlyCheckB1SourceApplicability(sourceRecord, protocol) {
     y: centerSum.y / sourceCount,
     z: centerSum.z / sourceCount,
   };
-  if (vectorNorm(meanCenter) > 1e-12) {
+  if (isB1 && vectorNorm(meanCenter) > 1e-12) {
     throw new Error("B1 source center at epoch differs from the protocol center.");
   }
 }
@@ -990,6 +1148,7 @@ function compareReductions(primarySurfaces, refinedSurfaces, primaryRadial, refi
   const spectralEntries = [];
   const wakeFluxEntries = [];
   const rawEmissionReferenceEntries = [];
+  const signedEmissionReferenceEntries = [];
   const frequencyResolvedWakeFluxEntries = [];
   const frequencyResolvedBandEntries = [];
   for (const primary of primarySurfaces) {
@@ -1083,6 +1242,16 @@ function compareReductions(primarySurfaces, refinedSurfaces, primaryRadial, refi
         measured: surface.wakeFlux.rawCycleIntegral,
         relativeResidual: reference?.relativeResidual ?? Number.POSITIVE_INFINITY,
         passed: reference?.passed === true,
+      });
+      const signedReference = surface.wakeFlux.signedEmissionReference;
+      signedEmissionReferenceEntries.push({
+        radius: surface.radius,
+        resolution: surface.resolution,
+        expected: signedReference?.expectedCycleIntegral ?? null,
+        measured: surface.wakeFlux.signedCycleIntegral,
+        relativeOrAbsoluteResidual:
+          signedReference?.relativeOrAbsoluteResidual ?? Number.POSITIVE_INFINITY,
+        passed: signedReference?.passed === true,
       });
     }
     const frequencyConfig = protocol.causalWakeFluxReduction.frequencyResolved;
@@ -1266,6 +1435,17 @@ function compareReductions(primarySurfaces, refinedSurfaces, primaryRadial, refi
       entries: rawEmissionReferenceEntries,
       identityMatch: rawEmissionReferenceEntries.every((row) => row.passed),
     },
+    signedEmissionReference: {
+      threshold:
+        protocol.failClosedGates.causalWakeFlux.signedEmissionReferenceRelativeOrAbsolute ??
+        protocol.failClosedGates.causalWakeFlux.rawEmissionReferenceRelative,
+      maximumChange: Math.max(
+        ...signedEmissionReferenceEntries.map((row) => row.relativeOrAbsoluteResidual),
+        0,
+      ),
+      entries: signedEmissionReferenceEntries,
+      identityMatch: signedEmissionReferenceEntries.every((row) => row.passed),
+    },
     frequencyResolvedWakeFlux: {
       threshold: thresholds.frequencyResolvedWakeFluxRelativeOrAbsolute,
       maximumChange: Math.max(
@@ -1341,15 +1521,32 @@ export function evaluateB1StreamingSurfaceReductions({
   completeCycleProtocol: rawProtocol,
   evaluate = evaluatePrescribedRecordAnalysis,
   onSurfacePacket = null,
+  onProgress = null,
+  evidenceMode = "full",
+  analysisSession = null,
 } = {}) {
   const protocol = validateB1CompleteCycleProbeProtocol(rawProtocol);
   if (typeof evaluate !== "function") throw new TypeError("evaluate must be a function.");
   if (onSurfacePacket !== null && typeof onSurfacePacket !== "function") {
     throw new TypeError("onSurfacePacket must be a function when supplied.");
   }
-  independentlyCheckB1SourceApplicability(sourceRecord, protocol);
+  if (onProgress !== null && typeof onProgress !== "function") {
+    throw new TypeError("onProgress must be a function when supplied.");
+  }
+  if (evidenceMode !== "full" && evidenceMode !== "compact") {
+    throw new TypeError("evidenceMode must be full or compact.");
+  }
+  const session = analysisSession ??
+    (evaluate === evaluatePrescribedRecordAnalysis
+      ? createPrescribedRecordAnalysisSession(sourceRecord)
+      : null);
+  validateCompleteCycleSourceApplicability(sourceRecord, protocol);
   const sourceAbsolutePolaritySum = sourceRecord.sources.reduce(
     (sum, sourceRow) => sum + Math.abs(finite(sourceRow.charge, `${sourceRow.id}.charge`)),
+    0,
+  );
+  const sourceSignedPolaritySum = sourceRecord.sources.reduce(
+    (sum, sourceRow) => sum + finite(sourceRow.charge, `${sourceRow.id}.charge`),
     0,
   );
   const completeCycleProtocolHash = sha256Canonical(protocol);
@@ -1372,15 +1569,37 @@ export function evaluateB1StreamingSurfaceReductions({
       const fullProtocol = buildB1SurfaceEventAnalysisProtocol(protocol, { radius, resolution });
       const accumulator = createSurfaceAccumulator(protocol, radius, resolution, {
         sourceAbsolutePolaritySum,
+        sourceSignedPolaritySum,
         transmitterRootIdentities: sourceRecord.sources.map((sourceRow) => ({
           transmitterId: sourceRow.id,
           rootOrdinal: 0,
         })),
       });
       for (let timeIndex = 0; timeIndex < resolutionGrid.timeSamples; timeIndex += 1) {
+        const progressStride = Math.max(1, Math.ceil(resolutionGrid.timeSamples / 8));
+        if (timeIndex % progressStride === 0) {
+          onProgress?.({
+            stage: "surface-time-batch",
+            radius,
+            resolution,
+            completedTimeSamples: timeIndex,
+            totalTimeSamples: resolutionGrid.timeSamples,
+          });
+        }
         const eventProtocol = batchProtocol(fullProtocol, timeIndex);
-        const eventPacket = evaluate({ sourceRecord, protocol: eventProtocol });
-        const events = independentlyCheckEventPacket(eventPacket, eventProtocol, protocol);
+        const eventPacket = evaluate({
+          sourceRecord,
+          protocol: eventProtocol,
+          session,
+          resultMode:
+            evidenceMode === "compact" ? "compact-event-batch" : "full",
+        });
+        const events = independentlyCheckEventPacket(
+          eventPacket,
+          eventProtocol,
+          protocol,
+          sourceRecord.sources.length,
+        );
         if (source === null) source = eventPacket.source;
         else if (source.sourceHash !== eventPacket.source.sourceHash) {
           throw new Error("surface batch source hash changed during streaming reduction.");
@@ -1391,14 +1610,17 @@ export function evaluateB1StreamingSurfaceReductions({
           timeIndex,
           observationTime: accumulator.times[timeIndex],
           sourceHash: eventPacket.source.sourceHash,
-          eventProtocolHash: eventPacket.protocolHash,
-          eventResultHash: eventPacket.resultHash,
-          rawCausalRootLedgerHash: sha256Canonical(events),
+          eventProtocolHash: eventPacket.protocolHash ?? null,
+          eventResultHash: eventPacket.resultHash ?? null,
+          rawCausalRootLedgerHash:
+            evidenceMode === "compact" ? null : sha256Canonical(events),
           rawCausalRootEventCount: events.length,
           rawCausalRootCount: events.reduce((sum, event) => sum + event.rootCount, 0),
-          numericalConvergenceLedgerHash: sha256Canonical(
-            eventPacket.rawLedgers.numericalConvergence,
-          ),
+          numericalConvergenceLedgerHash:
+            evidenceMode === "compact"
+              ? null
+              : sha256Canonical(eventPacket.rawLedgers.numericalConvergence),
+          ...(evidenceMode === "compact" ? { evidenceMode } : {}),
         };
         if (onSurfacePacket) {
           descriptor.artifact = onSurfacePacket(eventPacket, { ...descriptor });
@@ -1419,6 +1641,13 @@ export function evaluateB1StreamingSurfaceReductions({
         accumulator.ingestTimeSamples(timeIndex, samples, descriptor);
         surfaceEvaluations.push(descriptor);
       }
+      onProgress?.({
+        stage: "surface-radius-complete",
+        radius,
+        resolution,
+        completedTimeSamples: resolutionGrid.timeSamples,
+        totalTimeSamples: resolutionGrid.timeSamples,
+      });
       surfaceReductions[resolution].push(accumulator.finalize());
     }
   }
@@ -1443,18 +1672,25 @@ export function evaluateB1StreamingSurfaceReductions({
     protocol,
   );
   const packetWithoutHash = {
-    schema: B1_STREAMING_REDUCTION_RESULT_SCHEMA,
+    schema: protocol.schema ===
+      "prescribed-path-analysis/b1-complete-cycle-probe-protocol.v1"
+      ? B1_STREAMING_REDUCTION_RESULT_SCHEMA
+      : COMPLETE_CYCLE_STREAMING_REDUCTION_RESULT_SCHEMA,
     reducer: {
-      id: "b1-complete-cycle-streaming-surface-reducer",
+      id: protocol.schema ===
+        "prescribed-path-analysis/b1-complete-cycle-probe-protocol.v1"
+        ? "b1-complete-cycle-streaming-surface-reducer"
+        : "complete-cycle-streaming-surface-reducer",
       version: "v1",
       streamingOrder: "resolution-then-radius-then-time.v1",
       eventEvaluator: "evaluatePrescribedRecordAnalysis",
+      ...(evidenceMode === "compact" ? { evidenceMode } : {}),
       pathEvolutionInvoked: false,
       eomSolverInvoked: false,
     },
     claimGrade: "derived",
     claimScope:
-      "conditional complete-cycle reductions of the exact prescribed B1 source record",
+      "conditional complete-cycle reductions of the exact prescribed source record",
     excludedClaims: [...REQUIRED_EXCLUDED_CLAIMS],
     source,
     completeCycleProtocolHash,
@@ -1478,7 +1714,7 @@ export function evaluateB1StreamingSurfaceReductions({
       acceptedReducedMeasures: quadratureConvergence.passed,
     },
     falsifier:
-      "Reject the reduced rows if any independently recomputed source-speed, root-completeness, separation, transversality, event-convergence, quadrature-convergence, symmetry, closed-form, hash, or deterministic-repeat check fails.",
+      "Reject the reduced rows if any independently recomputed causal-root-domain, root-completeness, separation, transversality, event-convergence, quadrature-convergence, symmetry, closed-form, hash, or deterministic-repeat check fails.",
   };
   return finalizeB1StreamingReductionPacket(packetWithoutHash);
 }

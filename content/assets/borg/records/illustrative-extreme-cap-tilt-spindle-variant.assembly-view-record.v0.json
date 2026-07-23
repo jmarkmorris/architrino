@@ -1,7 +1,7 @@
 {
   "schema": "assembly-view-record.v0",
   "sourceId": "illustrative-extreme-cap-tilt-spindle-variant-v0",
-  "title": "B1 — high-axial interior",
+  "title": "B1.2 — high-axial interior",
   "provenance": {
     "engineId": "prescribed-geometry",
     "engineVersion": "prescribed-braid-record-emitter.v1",
@@ -24,15 +24,14 @@
       "sphericalEnvelopeRadius": 0.5,
       "displayTrailPeriods": 1,
       "prescribedReturnPeriod": 4,
-      "description": "Exact B1 prescribed display paths at high axial fractions while remaining inside the B1 coordinate interior; the legacy source identity is retained only for stable machine compatibility.",
+      "description": "Exact B1.2 prescribed display paths at high axial fractions while remaining inside the B1 coordinate interior; the legacy source identity is retained only for stable machine compatibility.",
       "taxonomy": {
         "familyId": "B",
         "familyLabel": "Family B",
-        "memberId": "B1",
-        "memberLabel": "rigid common-frequency",
-        "instantiationLabel": "high-axial interior",
-        "displayLabel": "B1 — high-axial interior",
-        "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#coordinate-boundaries"
+        "memberId": "B1.2",
+        "memberLabel": "high-axial interior",
+        "displayLabel": "B1.2 — high-axial interior",
+        "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#b1-catalog-members"
       },
       "coordinates": {
         "group": {
@@ -25411,7 +25410,7 @@
     {
       "id": "extreme-cap-spindle-1-0-prescribed-return-cycle",
       "worldlineId": "extreme-cap-spindle-1-0",
-      "label": "B1 — high-axial interior, extreme-cap-spindle-binary-1, endpoint 1",
+      "label": "B1.2 — high-axial interior, extreme-cap-spindle-binary-1, endpoint 1",
       "points": [
         {
           "x": 0.07524443153164714,
@@ -25903,7 +25902,7 @@
     {
       "id": "extreme-cap-spindle-1-1-prescribed-return-cycle",
       "worldlineId": "extreme-cap-spindle-1-1",
-      "label": "B1 — high-axial interior, extreme-cap-spindle-binary-1, endpoint 2",
+      "label": "B1.2 — high-axial interior, extreme-cap-spindle-binary-1, endpoint 2",
       "points": [
         {
           "x": -0.07524443153164714,
@@ -26395,7 +26394,7 @@
     {
       "id": "extreme-cap-spindle-2-0-prescribed-return-cycle",
       "worldlineId": "extreme-cap-spindle-2-0",
-      "label": "B1 — high-axial interior, extreme-cap-spindle-binary-2, endpoint 1",
+      "label": "B1.2 — high-axial interior, extreme-cap-spindle-binary-2, endpoint 1",
       "points": [
         {
           "x": -0.027783708426708853,
@@ -26887,7 +26886,7 @@
     {
       "id": "extreme-cap-spindle-2-1-prescribed-return-cycle",
       "worldlineId": "extreme-cap-spindle-2-1",
-      "label": "B1 — high-axial interior, extreme-cap-spindle-binary-2, endpoint 2",
+      "label": "B1.2 — high-axial interior, extreme-cap-spindle-binary-2, endpoint 2",
       "points": [
         {
           "x": 0.027783708426708853,
@@ -27379,7 +27378,7 @@
     {
       "id": "extreme-cap-spindle-3-0-prescribed-return-cycle",
       "worldlineId": "extreme-cap-spindle-3-0",
-      "label": "B1 — high-axial interior, extreme-cap-spindle-binary-3, endpoint 1",
+      "label": "B1.2 — high-axial interior, extreme-cap-spindle-binary-3, endpoint 1",
       "points": [
         {
           "x": -0.019174263404484807,
@@ -27871,7 +27870,7 @@
     {
       "id": "extreme-cap-spindle-3-1-prescribed-return-cycle",
       "worldlineId": "extreme-cap-spindle-3-1",
-      "label": "B1 — high-axial interior, extreme-cap-spindle-binary-3, endpoint 2",
+      "label": "B1.2 — high-axial interior, extreme-cap-spindle-binary-3, endpoint 2",
       "points": [
         {
           "x": 0.019174263404484807,

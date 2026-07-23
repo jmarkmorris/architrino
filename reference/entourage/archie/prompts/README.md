@@ -10,7 +10,7 @@ The compact cross-agent startup map is generated at [../../../op/agent-startup-o
 
 | Prompt | Use |
 | --- | --- |
-| [corpus-advancement-pass.md](corpus-advancement-pass.md) | Shared AAA corpus advancement protocol, including audit/report, edit-batch, self-running exploration, and team-agent variants. |
+| [convergence-campaign.md](convergence-campaign.md) | Shared AAA corpus convergence protocol, including audit/report, edit-batch, self-running exploration, and team-agent variants. |
 | [corpus-reviewer.md](corpus-reviewer.md) | Review every file in an Op-provided directory in scene/textbook reading order, one file per turn. Current reviewer label: Claude Fable. |
 | [integrator-reviewer.md](integrator-reviewer.md) | Integrate Fable review comments, then perform a full document closure review and improve the target as needed. |
 | [review-comment-assessor.md](review-comment-assessor.md) | Assess pasted review comments against current repo canon without editing files. |

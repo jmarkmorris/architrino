@@ -19,9 +19,23 @@ The older observer-field and path-display APIs remain labeled `display-only-visu
 
 ## Current Root Domain
 
-The V1 root policy is `all-retained-simple-roots/sub-field-speed-certified.v1`. For every transmitter and probe event, the evaluator computes a path-speed upper bound over the retained interval. When that bound is below the declared field speed, the causal residual is strictly increasing. The interval therefore contains at most one root, and an endpoint sign check plus bisection certifies whether that root exists. The packet records the retained root or the exact no-root reason.
+The active policy is
+`all-retained-roots/event-specific-isolation-certified.v2`. It partitions each
+transmitter/event retained interval and uses residual and derivative bounds to
+certify every partition as root-free or monotonic. Every sign-changing
+monotonic partition is bisected, so a super-field-speed path may contribute
+multiple roots and may include transverse branches with either derivative
+sign. Total path speed is diagnostic under this policy, not an acceptance
+gate.
 
-This is an all-root certificate for the current four B1 prescribed records because their path speeds remain below the fixture field speed. The evaluator fails closed when the speed bound reaches the field speed. It does not yet claim complete multiple-root or fold enumeration for a super-field-speed source.
+The event fails closed when the subdivision depth or candidate-interval bound
+is exhausted with a possible root or fold unresolved. The thrown
+`CausalRootEnumerationError` carries
+`code: "causal_root_enumeration_incomplete"` plus transmitter, event, retained
+interval, and unresolved-partition details. The legacy
+`all-retained-simple-roots/sub-field-speed-certified.v1` policy remains
+supported for provenance-bound fixtures and retains its strict sub-field-speed
+precondition.
 
 ## Complete Protocol Schema
 
@@ -78,6 +92,61 @@ node scripts/eom/evaluate-prescribed-source-wake.mjs \
 
 Use `--write .tmp/prescribed-path-analysis/<name>.result-packet.v1.json` for a disposable local packet. Retained campaign results belong in the analytical database and deterministic exports, not in checked-in result JSON.
 
+Run the solver-free gate-adjudication and targeted resolution ladders with:
+
+```bash
+node scripts/eom/adjudicate-analytical-gates.mjs
+```
+
+The default report is
+`.local-data/braid-analysis/gate-adjudication/targeted-resolution-ladders.v1.json`.
+The harness retains all four declared surface radii for the B1.3, B1.1, and C1
+surface ladders, uses an outer-radius sensitivity pilot for A1.2 and A2, and
+emits progress heartbeats without invoking path evolution or the EOM solver.
+
+## Compact Monte Carlo Coverage
+
+Run a seeded compact campaign with:
+
+```bash
+node scripts/eom/run-compact-monte-carlo.mjs \
+  --seed compact-coverage-v1 \
+  --cases-per-member 64 \
+  --sampler full-taxonomy \
+  --resolution coverage \
+  --output .local-data/braid-analysis/compact-monte-carlo/coverage-v1.json
+```
+
+Use `--families A,B,C` or `--members A1.2,B1.3,C5` to select a bounded matrix.
+The default coverage grid uses 12 primary and 24 refined cycle samples with
+$8\times16$ and $12\times24$ angular grids. `--resolution full` uses the
+checked-in complete-cycle protocol. Both lanes require `fieldSpeed: 1`.
+
+The runner validates and hashes each sampled exact source, evaluates one shared
+source-analysis session, and records the sampled specification, protocol hash,
+implementation hashes, compact score, measured stage costs, and exact rerun
+instruction. It does not construct or serialize full result packets, recompute
+source-invariant period-closure and separation rows for every event batch,
+evaluate source sensitivity, retain raw event ledgers, invoke the EOM solver,
+perform independent acceptance, or publish a database generation.
+
+The default `full-taxonomy` sampler varies every permitted coordinate type
+through a declared bounded measure while constructing each member directly on
+its constraint manifold. This includes coupled and independent radii and
+frequencies, axial/transverse decompositions, phases, Family-A flattening,
+Family-C spacing and order, circulation, polarity, and bounded common
+translation. Use `--sampler local-reference` only for compatibility with the
+earlier pipeline-performance fixture.
+
+Every valid draw produces a row. If analytical evaluation cannot certify a
+possible root or fold, the row remains in the table with its exact sampled
+source, null score, `drawn-not-evaluated` status, reason code, and structured
+failure details. Run `--calibrate` to evaluate identical full-taxonomy draws at
+the coverage and full numerical resolutions and report false negatives, false
+positives, inconclusive rows, and per-gate disagreements. These rows remain
+diagnostic coverage only; selected cases must be rerun through the raw-evidence
+and independent-acceptance lane before any catalog acceptance claim.
+
 ## Independent Checks
 
 `tests/prescribed-source-wake-evaluator.test.js` fixes expected values without replaying evaluator output:
@@ -107,7 +176,9 @@ When that check passes, publish the same registry contract by atomically replaci
 node scripts/eom/analytical-campaign-database.mjs rebuild-all --publish
 ```
 
-The versioned [all-candidate registry](campaigns/all-candidate-analytical-campaign.registry.v1.json) must match the live Borg catalog and prescribed-record target map exactly. It also requires every checked campaign manifest to be either imported or explicitly excluded with a reason. The command evaluates the registered exact prescribed source records under one declared protocol, imports all registered checked campaigns, retains complete independently rejected candidate cases outside `accepted_case`, verifies exact source coverage, regenerates deterministic exports, records one database-generation hash, and only then swaps the fresh SQLite file into place. A missing candidate, undeclared manifest, hash mismatch, incomplete case, export failure, or post-swap verification failure leaves or restores the prior database. `--check` is always nonpublishing.
+The versioned [all-candidate registry](campaigns/all-candidate-analytical-campaign.registry.v1.json) must match the live Borg catalog and prescribed-record target map exactly. It also requires every checked campaign manifest to be either imported or explicitly excluded with a reason. The command evaluates every registered exact prescribed source record under the common [complete-cycle protocol](protocols/all-candidate-complete-cycle-protocol.v1.json), imports all registered checked campaigns, retains complete independently rejected candidate cases outside `accepted_case`, verifies exact source and raw-ledger coverage, regenerates deterministic exports, records one database-generation hash, and only then swaps the fresh SQLite file into place. A missing candidate, undeclared methodology obligation, changed unreviewed methodology hash, undeclared manifest, hash mismatch, incomplete case, export failure, or post-swap verification failure leaves or restores the prior database. `--check` is always nonpublishing.
+
+The versioned [methodology coverage contract](analytical-measure-coverage.v1.json) maps each methodology obligation to its source fields, applicability, producer, result-packet location, SQLite projection, gates, convergence rule, independent evidence, and publication disposition. Every generation binds the contract, the exact methodology-file SHA-256, the common protocol hash, and the reduction versions. The reusable complete-cycle campaign extends the same canonical event evaluator and surface reducer with fixed internal probes, actual moving endpoint receivers with same-source exclusion, separately retained receiver-side playback derivative $D_r$, branch-by-branch spatial and temporal diagnostics, and legal declared source-phase sensitivity stencils. $D_r$ is not an instantaneous-acceleration multiplier.
 
 This is the one-operation development reset path. Do not delete or empty the live database first: the fresh database is built beside it, and the prior generation remains the recoverable live copy until verification and the atomic swap succeed.
 
@@ -126,9 +197,25 @@ node scripts/eom/analytical-campaign-database.mjs backup \
   --output /separately-administered/backup/analytical-campaigns.sqlite3
 ```
 
-The exporter writes exact manifest, summary, and result-packet bytes plus deterministic source-envelope, exact-source, protocol, acceptance-evidence, and hash-inventory files. The generated all-candidate campaign stores and verifies each exact source-record preimage.
+The exporter writes exact manifest, summary, result-packet, and compressed raw-ledger bytes plus deterministic source-envelope, exact-source, protocol, acceptance-evidence, and hash-inventory files. The generated all-candidate campaign stores and verifies each exact source-record preimage and both the compressed and uncompressed hashes of every streamed raw artifact.
 
 Independent database acceptance is a separately authored verification of the retained analytical record. It is not a fresh numerical evaluation of the prescribed paths and does not establish the evaluator's mathematical correctness. Import, acceptance, query, export, or backup does not call the EOM solver or imply stability, energy, retention, physical realization, or completed braid-family grading.
+
+## Common-Axis Braid Pilot
+
+`CommonAxisBraidTrain.mjs` defines exact six-architrino Family-B extensions, twelve-architrino Family-C records, and optional additional worldlines in one common-axis coordinate system. The source contract retains ordered spacings, train length, ordered index subsets, a fixed-point-free binary-counterpart map, a separate adjacent-pair accessory-association map, and every defining or accessory architrino trajectory coordinate. In a twelve-worldline geometry, six declared additional worldlines form one Accessory Configuration outside the twelve defining Family-C worldlines.
+
+`CommonAxisBraidPilot.mjs` supplies six predeclared references and one seeded neighborhood sample around each. `CommonAxisBraidCampaign.mjs` evaluates complete-cycle source-endpoint residuals in axial, local radial, and local tangential coordinates, retains exterior surface reductions, runs a grouped spacing sensitivity, records diagnostic axial angular-momentum rows without inserting $h$ or $\hbar$, and writes a compatible complete-cycle campaign for independent SQLite acceptance.
+
+Run the bounded campaign with:
+
+```bash
+node scripts/eom/run-common-axis-braid-pilot.mjs
+```
+
+The default outputs are `.local-data/braid-analysis/common-axis-braid-pilot/` and `.local-data/braid-analysis/common-axis-braid-pilot.sqlite`. Use `--references-only` for the six reference rows, `--no-import` to stop after campaign generation, and `--output`, `--database`, or `--protocol` to select explicit paths.
+
+The pilot is prescribed-path analytics only. It imports no EOM-solver module, evolves no path, creates no handoff packet, and makes no stability, self-stabilization, retention, binding, photon-identity, energy-closure, quantization, physical-realization, or EOM-solver-compatibility claim.
 
 ## Smallest B1 Campaign Follow-Up
 
@@ -148,7 +235,7 @@ The protocol also predeclares:
 - pairwise and global log-radius scaling rows without assuming an expected exponent; and
 - cap-angle sensitivities in $\alpha_1,\alpha_2,\alpha_3$ using a central step $\pi/512$, a half-step convergence check, and second-order one-sided stencils at domain boundaries.
 
-`buildB1SurfaceEventAnalysisProtocol` expands any declared radius and resolution into a canonical `analysis-protocol.v1` accepted by `evaluatePrescribedRecordAnalysis`. `evaluateB1StreamingSurfaceReductions` evaluates one stationary surface time batch at a time, independently rechecks the event validity obligations, passes each complete raw result packet to the configured analytical-data-store callback, and retains only reduction accumulators between batches. It emits the external-exposure, complete-cycle normal causal-wake flux, angular-power, anisotropy, complete-cycle spectral, transmitter-root-tagged normal wake-flux spectral, frequency-and-angular-mode cancellation, and radial-scaling entries. The frequency-resolved wake-flux rows retain each transmitter and root ordinal until the raw complex-magnitude sum and net complex sum have both been formed. The wake-flux entries remain causal-wake measures and are explicitly excluded from energy, potential, work, leakage, stability, retention, and physical-realization claims. Moving endpoint receivers and local source-sensitivity stencils remain outside this reduction result.
+`buildB1SurfaceEventAnalysisProtocol` expands any declared radius and resolution into a canonical `analysis-protocol.v1` accepted by `evaluatePrescribedRecordAnalysis`. `evaluateB1StreamingSurfaceReductions` evaluates one stationary surface time batch at a time, independently rechecks the event validity obligations, passes each complete raw result packet to the configured analytical-data-store callback, and retains only reduction accumulators between batches. It emits the external-exposure, complete-cycle normal causal-wake flux, angular-power, anisotropy, complete-cycle spectral, transmitter-root-tagged normal wake-flux spectral, frequency-and-angular-mode cancellation, and radial-scaling entries. The frequency-resolved wake-flux rows retain each transmitter and root ordinal until the raw complex-magnitude sum and net complex sum have both been formed. The wake-flux entries remain causal-wake measures and are explicitly excluded from energy, potential, work, leakage, stability, retention, and physical-realization claims. Moving endpoint receivers and local source-sensitivity stencils are composed by `CompleteCycleAnalyticalCampaign.mjs`; they remain outside the narrower surface-reduction packet.
 
 Validate the declaration and its independent quadrature, symmetry, Fourier, causal-reach, and fail-closed checks with:
 
@@ -176,6 +263,6 @@ node scripts/eom/run-b1-complete-cycle-streaming-reduction.mjs \
   --check .tmp/prescribed-path-analysis/b1-interior-complete-cycle-reduction.result-packet.v1.json
 ```
 
-Add `--verify-raw-store` when the local raw store is present and should also be byte-hash checked. Moving endpoint probes and cap-angle stencil evaluation can use the same streaming boundary, but they are not implemented or inferred by this surface result.
+Add `--verify-raw-store` when the local raw store is present and should also be byte-hash checked. The B1-only command still writes the narrower surface result; use `rebuild-all` for the moving endpoint, branch-diagnostic, source-sensitivity, full-registry, and SQLite generation contract.
 
 Use `--replay-raw-store` to recompute the reductions from the preserved packets without repeating the causal-root evaluations. Replay still independently verifies every packet, ledger hash, event gate, and compressed artifact hash before using its samples.
