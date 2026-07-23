@@ -34,6 +34,7 @@ Ordered by marginal ROI on 2026-07-17.
 1. [Causal Delay Feedback Depth](../app-causal-delay-feedback/priorities.md). Status: `promoted`.
 2. [Assembly Viewer](../app-borg/assembly-viewer-requirements.md). Status: `consolidated into app-borg`.
 3. [Equation Mapping App](../app-equation-mapping/priorities.md). Status: `promoted`.
+4. [Roots](../app-roots/priorities.md). Status: `proposed`; integration with Causal Delay Feedback is staged in [brainstorming.md](brainstorming.md).
 
 ## Brainstorming
 
