@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 182,
-      "sections": 1457
+      "sections": 1460
     }
   },
   "tocRoot": {
@@ -1901,10 +1901,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Family C: Two-Braid Composition",
+                "title": "Family C: Coaxial Twelve-Architrino Geometry",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
-                "markdownSection": "Family C: Two-Braid Composition",
-                "sectionKey": "family c two braid composition",
+                "markdownSection": "Family C: Coaxial Twelve-Architrino Geometry",
+                "sectionKey": "family c coaxial twelve architrino geometry",
                 "headingLevel": 2
               },
               {
@@ -2282,18 +2282,26 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Shared Family-C Composition",
+                "title": "Shared Family-C Coordinate Chart",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
-                "markdownSection": "Shared Family-C Composition",
-                "sectionKey": "shared family c composition",
+                "markdownSection": "Shared Family-C Coordinate Chart",
+                "sectionKey": "shared family c coordinate chart",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Center Displacement and Axis Offset",
+                "title": "Neutral-Binary Pairing",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
-                "markdownSection": "Center Displacement and Axis Offset",
-                "sectionKey": "center displacement and axis offset",
+                "markdownSection": "Neutral-Binary Pairing",
+                "sectionKey": "neutral binary pairing",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Optional Accessory Configuration",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownSection": "Optional Accessory Configuration",
+                "sectionKey": "optional accessory configuration",
                 "headingLevel": 2
               },
               {
@@ -2314,18 +2322,34 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "C1.1 and C2.1",
+                "title": "C3 and C4",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
-                "markdownSection": "C1.1 and C2.1",
-                "sectionKey": "c1 1 and c2 1",
+                "markdownSection": "C3 and C4",
+                "sectionKey": "c3 and c4",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Interface With Two-Braid Physical Hypotheses",
+                "title": "C5 and C6",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
-                "markdownSection": "Interface With Two-Braid Physical Hypotheses",
-                "sectionKey": "interface with two braid physical hypotheses",
+                "markdownSection": "C5 and C6",
+                "sectionKey": "c5 and c6",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact Causal-Delay Relation",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownSection": "Exact Causal-Delay Relation",
+                "sectionKey": "exact causal delay relation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interface With Physical Hypotheses",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-family-c.md",
+                "markdownSection": "Interface With Physical Hypotheses",
+                "sectionKey": "interface with physical hypotheses",
                 "headingLevel": 2
               },
               {

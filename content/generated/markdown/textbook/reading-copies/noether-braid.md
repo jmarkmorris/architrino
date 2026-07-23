@@ -557,11 +557,15 @@ The four current Borg selections are `B1.1`, the interior reference with $h_a>0$
 
 Family A and Family B meet on a boundary. Every Family-A member reaches the coincident-axis relation at $\lambda_A=1$; a common-frequency Family-A variant with one common circulation sense and coincident binary midpoints also occupies the B1 coordinate locus at that endpoint. This geometric coincidence does not identify the two families away from the boundary.
 
-### Family C: Two-Braid Composition
+### Family C: Coaxial Twelve-Architrino Geometry
 
-Family C contains assemblies made from two complete `B1` braids. Its exact composition chart, twelve endpoint paths, derived axis offset, and physical-mapping boundary are developed in [Braid Family C](../../../../markdown/aaa/noether-braid/braid-family-c.md). The relative braid-center displacement, relative orientation, and relative phase remain explicit assembly coordinates.
+Family C contains twelve architrino worldlines grouped into six neutral binaries on one common oriented axis. Its exact ordered path chart, binary-counterpart map, causal-delay relation, constrained component loci, and physical-mapping boundary are developed in [Braid Family C](../../../../markdown/aaa/noether-braid/braid-family-c.md).
 
-`C1` is the co-rotating member: the two component braids have the same circulation sense. `C2` is the counter-rotating member: the two component braids have opposite circulation senses. `C1.1` and `C2.1` constrain both component braids to B1.3, so every binary in both components lies on the all-equatorial boundary $h_{ba}=0$ and $\rho_{ba}=R_{ba}$. Their component axes are coaxial, and their centers are separated along the common oriented axis by the positive coordinate $d_C$:
+The parent coordinates are the ordered axial positions $\xi_m$, spacing vector $\mathbf d_C$, total length $L_C$, radii $\rho_m$, angular frequencies $\omega_m$, phases $\phi_m$, circulation senses $q_m$, and fixed-point-free neutral-binary map $\pi$. Family C does not require its twelve worldlines to decompose into two B1 braids.
+
+`C1` is the general co-rotating member: all twelve worldlines share one circulation sense. `C2` is the general counter-rotating member: worldlines $1$ through $6$ have one circulation sense and worldlines $7$ through $12$ have the opposite sense. Both retain the complete spacing, radius, frequency, phase, and binary-pairing coordinates.
+
+`C3` and `C4` are the constrained loci in which the twelve worldlines decompose into two complete coaxial B1 components. C3 is co-rotating and C4 is counter-rotating. `C5` and `C6` further constrain those components to B1.3, so every binary in both components lies on the all-equatorial boundary $h_{ba}=0$ and $\rho_{ba}=R_{ba}$. For C3 through C6, the component centers are separated along the common oriented axis by the positive coordinate $d_C$:
 
 $$
 \hat{\mathbf n}_2=\hat{\mathbf n}_1=\hat{\mathbf n}_C,
@@ -571,7 +575,7 @@ $$
 d_C>0.
 $$
 
-These members define prescribed composition classes only; they do not assert a binding or retention mechanism.
+An optional six-architrino Accessory Configuration is separate declared inventory and does not change the C1 through C6 identifier. These members define prescribed geometry classes only; they do not assert a binding or retention mechanism.
 
 ### Master Tables
 
@@ -585,10 +589,12 @@ The first three tables carry the geometry. The fourth table supplies optional na
 | `A2` | 1 | NA | NA | NA | NA |
 | `A3` | 1 | NA | NA | NA | NA |
 | `B1` | 1 | NA | NA | NA | NA |
-| `C1` | 2 | $\Delta\mathbf C$ | $Q_{21}$ | $\Delta\phi$ | Same |
-| `C2` | 2 | $\Delta\mathbf C$ | $Q_{21}$ | $\Delta\phi$ | Opposite |
-| `C1.1` | 2 | $d_C\hat{\mathbf n}_C$, $d_C>0$ | Coaxial oriented axes | $\Delta\phi$ | Same |
-| `C2.1` | 2 | $d_C\hat{\mathbf n}_C$, $d_C>0$ | Coaxial oriented axes | $\Delta\phi$ | Opposite |
+| `C1` | 1 | NA | One common oriented axis | NA | Same across all twelve worldlines |
+| `C2` | 1 | NA | One common oriented axis | Relative phase remains worldline-resolved | Opposite between ordered index subsets $\mathcal I_1$ and $\mathcal I_2$ |
+| `C3` | 1, with two B1 components | $d_C\hat{\mathbf n}_C$, $d_C>0$ | Coaxial oriented axes | $\Delta\phi$ | Same |
+| `C4` | 1, with two B1 components | $d_C\hat{\mathbf n}_C$, $d_C>0$ | Coaxial oriented axes | $\Delta\phi$ | Opposite |
+| `C5` | 1, with two B1.3 components | $d_C\hat{\mathbf n}_C$, $d_C>0$ | Coaxial oriented axes | $\Delta\phi$ | Same |
+| `C6` | 1, with two B1.3 components | $d_C\hat{\mathbf n}_C$, $d_C>0$ | Coaxial oriented axes | $\Delta\phi$ | Opposite |
 
 #### Individual Braid Master Table
 
@@ -598,18 +604,20 @@ The first three tables carry the geometry. The fourth table supplies optional na
 | `A2` | 1 | A2 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | $T=0$ | One common sense |
 | `A3` | 1 | A3 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | $T=0$ | Not yet specified |
 | `B1` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf n}_B$ | $\hat{\mathbf n}_B$ | $T=0$ | One common sense |
-| `C1` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Inherited from B1 | Inherited from B1 | $T=0$ | Common sense $q$ |
-| `C1` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Inherited from B1 | Inherited from B1 | $T=0$ | Common sense $q$ |
-| `C2` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Inherited from B1 | Inherited from B1 | $T=0$ | Sense $q$ |
-| `C2` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Inherited from B1 | Inherited from B1 | $T=0$ | Sense $-q$ |
-| `C1.1` | 1 | B1.3 | Variable $s_{\mathrm{grp}}$ | Inherited from B1.3 within component 1 | Inherited from B1.3 | Inherited from B1.3 | $T=0$ | Common sense $q$ |
-| `C1.1` | 2 | B1.3 | Variable $s_{\mathrm{grp}}$ | Inherited from B1.3 within component 2 | Inherited from B1.3 | Inherited from B1.3 | $T=0$ | Common sense $q$ |
-| `C2.1` | 1 | B1.3 | Variable $s_{\mathrm{grp}}$ | Inherited from B1.3 within component 1 | Inherited from B1.3 | Inherited from B1.3 | $T=0$ | Sense $q$ |
-| `C2.1` | 2 | B1.3 | Variable $s_{\mathrm{grp}}$ | Inherited from B1.3 within component 2 | Inherited from B1.3 | Inherited from B1.3 | $T=0$ | Sense $-q$ |
+| `C1` | 1 | General Family C | Variable $s_{\mathrm{grp}}$ | Twelve ordered coordinates $\xi_m$ | One common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q_C$ |
+| `C2` | 1 | General Family C | Variable $s_{\mathrm{grp}}$ | Twelve ordered coordinates $\xi_m$ | One common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $q_C$ on $\mathcal I_1$ and $-q_C$ on $\mathcal I_2$ |
+| `C3` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q$ |
+| `C3` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q$ |
+| `C4` | 1 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 1 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $q$ |
+| `C4` | 2 | B1 | Variable $s_{\mathrm{grp}}$ | Inherited from B1 within component 2 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $-q$ |
+| `C5` | 1 | B1.3 | Variable $s_{\mathrm{grp}}$ | Inherited from B1.3 within component 1 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q$ |
+| `C5` | 2 | B1.3 | Variable $s_{\mathrm{grp}}$ | Inherited from B1.3 within component 2 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Common sense $q$ |
+| `C6` | 1 | B1.3 | Variable $s_{\mathrm{grp}}$ | Inherited from B1.3 within component 1 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $q$ |
+| `C6` | 2 | B1.3 | Variable $s_{\mathrm{grp}}$ | Inherited from B1.3 within component 2 | Common axis $\hat{\mathbf n}_C$ | $\hat{\mathbf n}_C$ | $T=0$ | Sense $-q$ |
 
 #### Individual Binary Master Table
 
-Within A1 and A3, the symbols $R_1,R_2,R_3$ are independent positive coordinates attached to persistent binary indices. They do not encode a size order, and equality is permitted unless a constrained row says otherwise. A repeated symbol $R$ or $f$ declares equality across the corresponding rows. Unconstrained phases remain $\phi_1,\phi_2,\phi_3$. A1 fixes $h_a=0$ and $\rho_a=R_a$; A3 carries the general axial and transverse decomposition of $R_a$ defined above. Family-C members inherit the individual-binary rows of their two B1 components.
+Within A1 and A3, the symbols $R_1,R_2,R_3$ are independent positive coordinates attached to persistent binary indices. They do not encode a size order, and equality is permitted unless a constrained row says otherwise. A repeated symbol $R$ or $f$ declares equality across the corresponding rows. Unconstrained phases remain $\phi_1,\phi_2,\phi_3$. A1 fixes $h_a=0$ and $\rho_a=R_a$; A3 carries the general axial and transverse decomposition of $R_a$ defined above. C3 through C6 inherit the individual-binary rows of their declared B1 or B1.3 components. C1 and C2 instead use the twelve-worldline coordinates and explicit counterpart map defined in [Braid Family C](../../../../markdown/aaa/noether-braid/braid-family-c.md#shared-family-c-coordinate-chart).
 
 | Member ID | Braid index | Binary index | Radius | Axial half-separation | Transverse orbit radius | Frequency | Phase |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -685,10 +693,12 @@ Every Family-A Borg depiction in this table selects the near-rest endpoint $\lam
 | `B1.2` | Coincident binary axes | High-axial interior | `illustrative-extreme-cap-tilt-spindle-variant-v0` | `B1.2 — high-axial interior` | B1 with $h_a>\rho_a>0$ for all three binaries. |
 | `B1.3` | Coincident binary axes | All-equatorial boundary | `illustrative-planar-tri-binary-spindle-boundary-v0` | `B1.3 — all-equatorial boundary` | B1 with $h_a=0$ and $\rho_a=R_a$ for all three binaries. |
 | `B1.4` | Coincident binary axes | All-axial boundary | `illustrative-full-cap-axial-spindle-boundary-v0` | `B1.4 — all-axial boundary` | B1 with $\rho_a=0$ and $h_a=R_a$ for all three binaries. |
-| `C1` | Two-braid composition | Co-rotating B1 pair | `family-c-c1-co-rotating-b1-pair-v1` | `C1 — co-rotating B1 pair` | Two complete B1 braids with a common circulation sense and explicit relative placement, orientation, and phase. |
-| `C2` | Two-braid composition | Counter-rotating B1 pair | `family-c-c2-counter-rotating-b1-pair-v1` | `C2 — counter-rotating B1 pair` | Two complete B1 braids with opposite circulation senses and explicit relative placement, orientation, and phase. |
-| `C1.1` | Two-braid composition | Co-rotating B1.3 pair | `family-c-c1-1-co-rotating-b1-3-pair-v1` | `C1.1 — co-rotating B1.3 pair` | C1 constrained to two coaxial all-equatorial B1.3 components with axial center offset $d_C$. |
-| `C2.1` | Two-braid composition | Counter-rotating B1.3 pair | `family-c-c2-1-counter-rotating-b1-3-pair-v1` | `C2.1 — counter-rotating B1.3 pair` | C2 constrained to two coaxial all-equatorial B1.3 components with axial center offset $d_C$. |
+| `C1` | Coaxial twelve-architrino geometry | Co-rotating | `family-c-c1-co-rotating-general-v1` | `C1 — co-rotating` | Twelve ordered coaxial architrino worldlines with one common circulation sense and an explicit neutral-binary counterpart map. |
+| `C2` | Coaxial twelve-architrino geometry | Counter-rotating | `family-c-c2-counter-rotating-general-v1` | `C2 — counter-rotating` | Twelve ordered coaxial architrino worldlines with opposite circulation senses on the two declared index subsets and an explicit neutral-binary counterpart map. |
+| `C3` | Coaxial twelve-architrino geometry | Co-rotating B1 pair | `family-c-c1-co-rotating-b1-pair-v1` | `C3 — co-rotating B1 pair` | C1 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
+| `C4` | Coaxial twelve-architrino geometry | Counter-rotating B1 pair | `family-c-c2-counter-rotating-b1-pair-v1` | `C4 — counter-rotating B1 pair` | C2 constrained to two complete coaxial B1 components with axial center offset $d_C$. |
+| `C5` | Coaxial twelve-architrino geometry | Co-rotating B1.3 pair | `family-c-c1-1-co-rotating-b1-3-pair-v1` | `C5 — co-rotating B1.3 pair` | C3 constrained to two all-equatorial B1.3 components. |
+| `C6` | Coaxial twelve-architrino geometry | Counter-rotating B1.3 pair | `family-c-c2-1-counter-rotating-b1-3-pair-v1` | `C6 — counter-rotating B1.3 pair` | C4 constrained to two all-equatorial B1.3 components. |
 
 ## Braid Family A
 
@@ -2153,198 +2163,212 @@ The B1 equations define prescribed paths exactly. They would be falsified as EOM
 
 ## Braid Family C
 
-Family C contains prescribed assemblies composed of two complete B1 braids. The canonical assembly coordinates and master-table rows are defined in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md#family-c-two-braid-composition). This chapter gives the exact two-braid path chart, distinguishes braid-center displacement from axis offset, and defines C1, C1.1, C2, and C2.1.
+Family C contains prescribed twelve-architrino geometries whose twelve architrino worldlines are coaxial. The canonical assembly coordinates and master-table rows are defined in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md#family-c-coaxial-twelve-architrino-geometry). This chapter gives the exact common-axis path chart, the neutral-binary pairing contract, and the constrained members C1 through C6.
 
-Family C is a geometry-and-motion definition. It does not establish that a C1, C1.1, C2, or C2.1 record is generated, bound, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md).
+Family C is a geometry-and-motion definition. It does not establish that a Family-C record is generated, bound, retained, stable, or physically realized under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md).
 
-### Shared Family-C Composition
+### Shared Family-C Coordinate Chart
 
-Index the two component braids by $b\in\{1,2\}$ and the three binaries within each component by $a\in\{1,2,3\}$. A Family-C assembly therefore contains twelve architrinos on twelve prescribed paths.
+Choose one oriented orthonormal frame
 
-Let $\mathbf C_b(T)$ be the center of component braid $b$. Define the complete assembly center and the relative braid-center displacement by
+$$
+\mathcal F_C
+=
+\left(
+\hat{\mathbf e}_1,
+\hat{\mathbf e}_2,
+\hat{\mathbf n}_C
+\right)
+$$
+
+where $\hat{\mathbf n}_C$ is the common axis of all twelve architrino worldlines. Assign persistent indices
+
+$$
+m\in\{1,\ldots,12\}
+$$
+
+and strictly ordered axial coordinates
+
+$$
+\xi_1<\xi_2<\cdots<\xi_{12}.
+$$
+
+The adjacent spacings and total train length are
+
+$$
+d_m=\xi_{m+1}-\xi_m>0,
+\qquad
+m\in\{1,\ldots,11\}
+$$
+
+and
+
+$$
+L_C=\xi_{12}-\xi_1=\sum_{m=1}^{11}d_m.
+$$
+
+The spacing vector
+
+$$
+\mathbf d_C=(d_1,\ldots,d_{11})
+$$
+
+is a primary Family-C coordinate because it changes the exact causal delays between architrino worldlines. A common shift of every $\xi_m$ is absorbed into the assembly center and does not create a thirteenth axial coordinate.
+
+Let $\mathbf X_{\mathrm{grp}}(T)$ be the prescribed assembly center. For rigid translation at group speed $s_{\mathrm{grp}}$,
 
 $$
 \mathbf X_{\mathrm{grp}}(T)
 =
-\frac{\mathbf C_1(T)+\mathbf C_2(T)}{2}
+\mathbf C_0+s_{\mathrm{grp}}T\hat{\mathbf n}_C.
 $$
 
-and
+Worldline $m$ is
 
 $$
-\Delta\mathbf C
+\mathbf X_m(T)
 =
-\mathbf C_2(T)-\mathbf C_1(T).
-$$
-
-The current rigid Family-C chart holds $\Delta\mathbf C$, $Q_{21}$, and $\Delta\phi$ constant. The component centers are therefore
-
-$$
-\mathbf C_1(T)
-=
-\mathbf X_{\mathrm{grp}}(T)-\frac12\Delta\mathbf C,
-\qquad
-\mathbf C_2(T)
-=
-\mathbf X_{\mathrm{grp}}(T)+\frac12\Delta\mathbf C.
-$$
-
-This is a geometric midpoint definition. It does not assign mass or another dynamical weight to either component. Both component centers have the group velocity $d\mathbf X_{\mathrm{grp}}/dT$ and the group translation speed $s_{\mathrm{grp}}$ defined in the taxonomy.
-
-Choose an oriented orthonormal frame
-
-$$
-\mathcal F_b
-=
-\left(
-\hat{\mathbf e}_{b1},
-\hat{\mathbf e}_{b2},
-\hat{\mathbf n}_b
-\right)
-$$
-
-for each component braid. The relative orientation $Q_{21}\in SO(3)$, where $SO(3)$ is the set of proper three-dimensional rotations, maps the complete oriented frame of component 1 into the frame of component 2:
-
-$$
-\hat{\mathbf e}_{21}=Q_{21}\hat{\mathbf e}_{11},
-\qquad
-\hat{\mathbf e}_{22}=Q_{21}\hat{\mathbf e}_{12},
-\qquad
-\hat{\mathbf n}_2=Q_{21}\hat{\mathbf n}_1.
-$$
-
-For a circular B1 record, a rotation of the transverse basis about $\hat{\mathbf n}_b$ can be compensated by an equal and opposite shift of all three binary phases. The source record must therefore declare one reference meridian in each transverse frame if $Q_{21}$ and $\Delta\phi$ are to be stored as separate coordinates. Without that convention, the two fields contain a representation redundancy: changing the transverse-frame meridian and compensating the phase offset describes the same twelve paths.
-
-For component $b$, let $f_b$ be its B1 common frequency, let $q_b\in\{+1,-1\}$ be its B1 common circulation sense, and let $(R_{ba},h_{ba},\rho_{ba},\phi_{ba})$ be the inherited binary coordinates. Set the component phase offsets to
-
-$$
-\delta_1=0,
-\qquad
-\delta_2=\Delta\phi.
-$$
-
-The angle and half-separation vector of binary $(b,a)$ are
-
-$$
-\theta_{ba}(T)
-=
-q_b\,2\pi f_bT+\phi_{ba}+\delta_b
-$$
-
-and
-
-$$
-\mathbf d_{ba}(T)
-=
-h_{ba}\hat{\mathbf n}_b
-+
-\rho_{ba}
+\mathbf X_{\mathrm{grp}}(T)
++\xi_m\hat{\mathbf n}_C
++\rho_m
 \left[
-\cos\theta_{ba}(T)\hat{\mathbf e}_{b1}
-+
-\sin\theta_{ba}(T)\hat{\mathbf e}_{b2}
-\right],
+\cos\theta_m(T)\hat{\mathbf e}_1
++\sin\theta_m(T)\hat{\mathbf e}_2
+\right]
 $$
 
 with
 
 $$
-R_{ba}^2=h_{ba}^2+\rho_{ba}^2.
-$$
-
-The twelve endpoint paths are
-
-$$
-\mathbf X_{ba1}(T)=\mathbf C_b(T)+\mathbf d_{ba}(T),
+\theta_m(T)
+=
+q_m\omega_mT+\phi_m,
 \qquad
-\mathbf X_{ba2}(T)=\mathbf C_b(T)-\mathbf d_{ba}(T).
+q_m\in\{+1,-1\}.
 $$
 
-These equations inherit the complete B1 definition separately within each component. Family C does not require the two components to have equal radii, equal axial half-separations, equal transverse orbit radii, equal frequencies, or equal internal phase patterns. Such equalities define constrained loci inside C1 or C2 and must be stated explicitly by a source record.
-
-The relative phase $\Delta\phi$ is the offset between the two braid-level phase zeros at $T=0$; it is not by itself a frequency lock. For C1, the signed angular difference of corresponding binary records changes at rate
+The twelve radii $\rho_m>0$, angular frequencies $\omega_m>0$, phases $\phi_m$, and circulation senses $q_m$ are independently declared unless a member row constrains them. A complete-return record must declare a period $P_C>0$ satisfying
 
 $$
-\frac{d}{dT}\left(\theta_{2a}-\theta_{1a}\right)
-=
-2\pi q_1(f_2-f_1).
+\frac{\omega_mP_C}{2\pi}\in\mathbb Z
 $$
 
-It is constant only when the two component frequencies are equal. For C2, the contra-rotating phase sum changes at rate
+for every $m$.
+
+### Neutral-Binary Pairing
+
+Every Family-C source record declares a fixed-point-free involution
 
 $$
-\frac{d}{dT}\left(\theta_{2a}+\theta_{1a}\right)
-=
-2\pi q_1(f_1-f_2),
+\pi:\{1,\ldots,12\}\to\{1,\ldots,12\}
 $$
 
-so equal component frequencies preserve the corresponding contra-rotating phase relation. The member identifiers do not impose either frequency equality.
-
-### Center Displacement and Axis Offset
-
-The two oriented component axes are the lines
+satisfying
 
 $$
-L_b(T)
-=
-\left\{
-\mathbf C_b(T)+s\hat{\mathbf n}_b:s\in\mathbb R
-\right\}.
+\pi(\pi(m))=m,
+\qquad
+\pi(m)\ne m.
 $$
 
-The axis offset is derived from $\Delta\mathbf C$ and $Q_{21}$; it is not an additional independent Family-C coordinate. When the axes are not parallel, their shortest separation is
+The six unordered pairs $\{m,\pi(m)\}$ are the six neutral binaries. For each pair, the record declares opposite endpoint polarities and explicitly states the radius, frequency, phase, circulation, axial-midpoint, and axial-separation relations. The binary map is not inferred from axial adjacency, drawing color, or an optional Accessory Configuration.
 
-$$
-d_{\mathrm{axis}}
-=
-\frac{
-\left|\Delta\mathbf C\mathbin{\cdot}
-\left(\hat{\mathbf n}_1\mathbin{\times}\hat{\mathbf n}_2\right)\right|
-}{
-\left\|\hat{\mathbf n}_1\mathbin{\times}\hat{\mathbf n}_2\right\|
-}.
-$$
+The Family-C parent chart does not require the six binaries to divide into two complete B1 braids. A source may declare such a decomposition, but it is an additional constrained relation rather than the Family-C definition.
 
-When the axes are parallel, it is
+### Optional Accessory Configuration
 
-$$
-d_{\mathrm{axis}}
-=
-\left\|
-\Delta\mathbf C
--
-\left(\Delta\mathbf C\mathbin{\cdot}\hat{\mathbf n}_1\right)
-\hat{\mathbf n}_1
-\right\|.
-$$
+A Family-C assembly may also declare an Accessory Configuration containing six additional architrino worldlines. Those six sites are separate assembly inventory: their polarity and complete prescribed paths must be declared, and they are not counted among the twelve defining Family-C architrino worldlines.
 
-The axes are coaxial exactly when they are parallel and $d_{\mathrm{axis}}=0$. Coaxiality does not require the two braid centers to coincide: $\Delta\mathbf C$ may be nonzero along the common axis. This distinction separates the axial spacing of two component braids from a transverse displacement between their axes.
-
-Circulation comparison uses the oriented frames after $Q_{21}$ places both records in the assembly frame. This removes the sign ambiguity that would arise if one silently reversed an axis direction while continuing to call clockwise and counter-clockwise the same thing.
+Adding or removing an Accessory Configuration does not change the Family-C member identifier. It changes the declared assembly inventory and therefore changes the source record and its hash.
 
 ### C1
 
-C1 is the same-circulation Family-C member:
+C1 is the co-rotating Family-C member:
 
 $$
-q_2=q_1.
+q_m=q_C,
+\qquad
+m\in\{1,\ldots,12\},
+\qquad
+q_C\in\{+1,-1\}.
 $$
 
-It inherits the full shared composition chart, including independently assignable component geometry, center displacement, relative orientation, and relative phase. Same circulation does not by itself require coaxial axes, equal frequencies, phase lock, binding, or retention.
+C1 retains the full ordered-spacing, radius, frequency, phase, and binary-pairing coordinates. It does not require equal radii, equal spacings, equal frequencies, reflection symmetry, or decomposition into two B1 components.
 
 ### C2
 
-C2 is the opposite-circulation Family-C member:
+C2 is the counter-rotating Family-C member. The source record declares the two ordered index subsets
 
 $$
-q_2=-q_1.
+\mathcal I_1=\{1,\ldots,6\},
+\qquad
+\mathcal I_2=\{7,\ldots,12\}
 $$
 
-It inherits the same independent composition coordinates as C1. Opposite circulation does not by itself require coaxial axes, equal frequencies, phase lock, polarity conjugation, binding, or retention.
+and imposes
 
-### C1.1 and C2.1
+$$
+q_m=q_C
+\quad\text{for }m\in\mathcal I_1,
+\qquad
+q_m=-q_C
+\quad\text{for }m\in\mathcal I_2.
+$$
 
-C1.1 is the all-equatorial constrained variant of C1, and C2.1 is the all-equatorial constrained variant of C2. Both component braids are B1.3 members:
+The subsets define the circulation relation only. Neither subset is required to be a complete B1 braid, and binary counterparts may remain within one subset or cross between them when the source record declares the map exactly.
+
+### C3 and C4
+
+C3 is the two-B1 constrained locus of C1. C4 is the two-B1 constrained locus of C2. In both members, the twelve worldlines can be partitioned into two complete B1 components indexed by $b\in\{1,2\}$, with three neutral binaries $a\in\{1,2,3\}$ in each component.
+
+Both component axes coincide with $\hat{\mathbf n}_C$, and their centers are separated only along that axis:
+
+$$
+\mathbf C_1(T)
+=
+\mathbf X_{\mathrm{grp}}(T)-\frac{d_C}{2}\hat{\mathbf n}_C,
+\qquad
+\mathbf C_2(T)
+=
+\mathbf X_{\mathrm{grp}}(T)+\frac{d_C}{2}\hat{\mathbf n}_C,
+\qquad
+d_C>0.
+$$
+
+For each component, let $(R_{ba},h_{ba},\rho_{ba},\phi_{ba})$ be its B1 binary coordinates, with
+
+$$
+R_{ba}^2=h_{ba}^2+\rho_{ba}^2.
+$$
+
+The half-separation vector is
+
+$$
+\mathbf s_{ba}(T)
+=
+h_{ba}\hat{\mathbf n}_C
++\rho_{ba}
+\left[
+\cos\theta_{ba}(T)\hat{\mathbf e}_1
++\sin\theta_{ba}(T)\hat{\mathbf e}_2
+\right]
+$$
+
+and the endpoint worldlines are
+
+$$
+\mathbf X_{ba+}(T)=\mathbf C_b(T)+\mathbf s_{ba}(T),
+\qquad
+\mathbf X_{ba-}(T)=\mathbf C_b(T)-\mathbf s_{ba}(T).
+$$
+
+Each component separately inherits the complete B1 common-midpoint, common-axis, common-frequency, common-circulation, antipodality, and polarity-conjugacy relations. The source record declares the bijection between these twelve endpoint labels and the persistent Family-C indices $m$.
+
+C3 imposes one common circulation sense across both components. C4 imposes opposite component circulation senses. Neither member requires the two components to have equal radii, equal frequencies, equal internal phases, or a phase lock.
+
+### C5 and C6
+
+C5 is the all-equatorial two-B1.3 constrained locus of C3. C6 is the all-equatorial two-B1.3 constrained locus of C4. Both members impose
 
 $$
 h_{ba}=0,
@@ -2356,27 +2380,46 @@ b\in\{1,2\},
 a\in\{1,2,3\}.
 $$
 
-C1.1 and C2.1 also require one common oriented axis and a nonzero center displacement along that axis:
+C5 retains the common-circulation relation. C6 retains the opposite-component-circulation relation. The axial center separation $d_C$, component frequencies, internal phases, and relative phase remain declared coordinates unless a source record constrains them.
+
+### Exact Causal-Delay Relation
+
+For transmitter worldline $a$ at time $T-u$ and receiver worldline $b$ at time $T$, every retained positive causal delay solves
 
 $$
-\hat{\mathbf n}_2=\hat{\mathbf n}_1=\hat{\mathbf n}_C,
+\left\|
+\left(\xi_b-\xi_a+s_{\mathrm{grp}}u\right)\hat{\mathbf n}_C
++\mathbf r_b(T)-\mathbf r_a(T-u)
+\right\|
+=
+c_fu,
 \qquad
-\Delta\mathbf C=d_C\hat{\mathbf n}_C,
-\qquad
-d_C>0.
+u>0
 $$
 
-The derived axis offset is therefore zero even though the braid centers are distinct. C1.1 retains the same-circulation relation $q_2=q_1$. C2.1 retains the opposite-circulation relation $q_2=-q_1$. The coordinate $d_C$ does not fix the relative phase or common-frequency values. The Borg representatives select $d_C=1.10$, centers at $(0,0,-0.55)$ and $(0,0,0.55)$, common z-axis frames, equal component frequencies $f_1=f_2=0.25$, and relative phase $\Delta\phi=\pi/3$ so that the circulation change is isolated in a directly comparable prescribed display.
+where
 
-### Interface With Two-Braid Physical Hypotheses
+$$
+\mathbf r_m(T)
+=
+\rho_m
+\left[
+\cos\theta_m(T)\hat{\mathbf e}_1
++\sin\theta_m(T)\hat{\mathbf e}_2
+\right].
+$$
 
-Family C supplies a generic prescribed coordinate chart for two complete B1 records. A particle or transport hypothesis may occupy a constrained locus of this chart only after its extra relations are stated explicitly.
+This equation is exact for the prescribed chart and generally transcendental because $u$ appears inside the transmitter phase. Closed-form reduction is available only on separately demonstrated symmetric boundaries. Otherwise, prescribed-path analysis must enumerate every retained positive root without evolving any path.
 
-In particular, the photon-channel hypothesis is a **coaxial contra-rotating polarity-conjugate planar pair**. C2 supplies the opposite-circulation coordinate relation only if both photon-side planar records are established as B1 components. Planarization, coaxial placement, propagation-axis alignment, polarity conjugation, pair spacing, null propagation, polarization, and helicity remain owned by [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#the-photon-gamma-coaxial-contra-rotating-polarity-conjugate-planar-pair) and its closure gates. The current taxonomy does not yet assign the photon, meson, or neutrino two-braid hypotheses to C1 or C2, because their component-member and relative-configuration mappings have not been established.
+### Interface With Physical Hypotheses
+
+Family C supplies a generic prescribed coordinate chart for twelve coaxial architrino worldlines. A particle or transport hypothesis occupies a constrained locus only after its extra polarity, phase, frequency, accessory, propagation, action, and angular-momentum relations are stated explicitly.
+
+In particular, the photon-channel hypothesis is a **coaxial contra-rotating polarity-conjugate planar pair**. C2 supplies only a twelve-worldline counter-rotation chart. It does not by itself establish the photon-side planar decomposition, polarity conjugation, propagation-axis relation, null propagation, polarization, helicity, action target, binding, retention, or physical realization. Those obligations remain owned by [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#the-photon-gamma-coaxial-contra-rotating-polarity-conjugate-planar-pair) and its closure gates.
 
 ### Claim Boundary
 
-The Family-C equations are exact prescribed paths. They would be falsified as EOM-solver branch claims by a same-record evolution showing that either component loses its B1 relations or that the declared inter-component coordinates fail the required causal-root, acceleration, action, and stability rows. Until such a record exists, C1, C1.1, C2, and C2.1 define display and comparison geometry rather than bound physical assemblies.
+The Family-C equations are exact prescribed paths. A prescribed-path residual candidate is falsified when its declared causal-root, minimum-separation, speed, complete-cycle acceleration-balance, refinement, or independent-reconstruction requirements fail. Such a result remains analytical: it does not establish or refute stability, retention, binding, photon identity, quantization, or physical realization.
 
 ## Noether Braid Configuration Space
 
@@ -3348,7 +3391,7 @@ Comparing $\mathbf G[S;P]$ directly with $\mathbf G[S';P']$ is uncontrolled unle
 
 ### Superimposed Causal-Wake Map
 
-The requested wave formula is not an imported wave-equation partial differential equation. It is the superposition of the same delayed causal isochrons used by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#path-history-sum-and-integral-representation).
+The $\mathbb{A}\mathbb{A}\mathbb{A}$-native wake equation used here is not an imported wave-equation partial differential equation. It constructs the superimposed causal-wake map from the same delayed causal isochrons used by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#path-history-sum-and-integral-representation). The equation is the construction rule. For one declared source record and analysis protocol, its evaluated scalar is the wake map; the map's spatial or temporal structure is its wake pattern, and a frequency or angular-mode decomposition is its wake spectrum. An assembly's wake is shorthand for the superposition of its constituent architrino wakes, not emission by the assembly as a single transmitter.
 
 For source $j$, emission time $T_t<T$, and coordinate probe $\mathbf X$, define
 
@@ -3380,7 +3423,7 @@ T_t<T:g_j(T,\mathbf X;T_t)=0
 \right\}.
 $$
 
-A source-normalized signed causal-wake map is then
+The source-normalized signed wake equation is
 
 $$
 \boxed{
@@ -3395,7 +3438,7 @@ $$
 }
 $$
 
-for the declared retained-history start $T_{\min}$. This scalar records signed causal-wake exposure under the declared source normalization. It is not by itself energy, potential, or acceleration.
+for the declared retained-history start $T_{\min}$. For fixed source record $S$ and protocol $P$, the resulting scalar $\mathcal W(T,\mathbf X)$ is the causal-wake map. It records signed causal-wake exposure under the declared source normalization. It is not by itself energy, potential, or acceleration.
 
 For simple roots, define the transmitter-side factor
 
@@ -3787,7 +3830,56 @@ Only after these programs can calculate the common measure set should a broad pa
 
 Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group-translation speed, phase origin, and any permitted prescribed-history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
 
-For C1.1 and C2.1, the axial braid-center separation $d_C$ is a required Monte Carlo coordinate in $\boldsymbol\theta$. Each sampled source must retain the coaxial constraint $\Delta\mathbf C=d_C\hat{\mathbf n}_C$ while varying $d_C$ under the campaign's declared positive domain and sampling measure. The canonical display value $d_C=1.10$ is one reference point, not a fixed sampling value. A campaign must publish the minimum, maximum, units, and probability measure for $d_C$ before drawing samples.
+#### Degrees of Freedom by Braid Class
+
+A degree of freedom is an independently variable source coordinate whose change can alter at least one prescribed worldline or its polarity-tagged contribution after the selected member's constraints are imposed. A derived quantity is not counted again. In particular, only two coordinates in
+
+$$
+R_a^2=h_a^2+\rho_a^2
+$$
+
+are independent. Here $R_a$ is the endpoint distance from the binary midpoint, $h_a$ is the axial half-separation, and $\rho_a$ is the transverse orbit radius measured from the binary axis. The phrase “orbit radius from the axis” therefore means $\rho_a$, not $R_a$, except on a zero-axial-offset locus where $h_a=0$ and $\rho_a=R_a$.
+
+The coordinate types recur across the taxonomy, but they are not all independently free in every member:
+
+| Coordinate type | Status across Families A, B, and C | Constraint or interpretation |
+| --- | --- | --- |
+| Binary radius $R_a$ and transverse orbit radius $\rho_a$ | Present in every binary record | $R_a$ and $\rho_a$ coincide only when $h_a=0$. An axial binary with $\rho_a=0$ has no circular path even if $R_a>0$. |
+| Binary frequency $f_a$ | Present in every binary record | The two endpoints of one neutral binary share a frequency. Equal-frequency and fixed-ratio members reduce several frequency coordinates to one scale. At $\rho_a=0$, frequency remains a record label but does not change the path. |
+| Binary phase $\phi_a$ | Present in every binary record and required in addition to radius and frequency | Phase is measured relative to the common braid-level zero point. Some members fix the relative phases. At $\rho_a=0$, phase does not change the path. |
+| Binary midpoint and axis data | Present in every braid record | Family A constrains three axes through $\lambda_A$; B1 makes the three axes and midpoints coincide; Family C orders twelve architrino worldlines on one common axis. |
+| Group velocity $\mathbf V_{\mathrm{grp}}$ | Present at assembly level | The common scalar taxonomy coordinate is $s_{\mathrm{grp}}=\|\mathbf V_{\mathrm{grp}}\|$. Family A fixes its direction to $\hat{\mathbf u}_A$; axial B1 is a specialization rather than the whole B1 class. |
+| Circulation sense and endpoint polarity assignment | Required discrete source choices | A member may lock circulation within or between braids. Neutrality fixes one electrino and one positrino per binary, but which persistent endpoint carries each polarity still changes the signed source record. |
+| Architrino worldline count and binary grouping | Member-defining discrete choices | Families A and B contain six architrino worldlines in three neutral binaries. Family C contains twelve architrino worldlines in six neutral binaries and requires an explicit fixed-point-free counterpart map. |
+| Axial spacing | Not universal | A3 and B1 use binary axial half-separations $h_a$ along their respective binary axes. Family C carries the complete ordered spacing vector $\mathbf d_C$; C3 through C6 additionally carry the B1-component center separation $d_C$. General Family A has no single common axis on which all orbits can be spaced. |
+| Orbit order along one axis | Not an independent universal coordinate | In a coaxial chart, order is derived by sorting the signed axial positions. Persistent binary indices do not change when two radii, frequencies, or axial positions cross. Order becomes a separate discrete choice only when assigning different path or polarity data to the ordered sites changes the source record. |
+
+Thus radius, frequency, phase, and group translation are the common kinematic coordinate types. Axis and midpoint data, circulation, and endpoint polarity assignment are also required source coordinates. Axial spacing and axial order belong only to charts that actually have a common axis; they must not be imposed on all A, B, and C candidates.
+
+The member-level inventory below describes the admissible taxonomy space, not the single display coordinate selected by a catalog source record. In particular, the current Family-A Borg reference records select $\lambda_A=0$; varying $\lambda_A$ requires a campaign that explicitly includes the wider Family-A coordinate.
+
+| Braid class or catalog members | Independent continuous coordinates beyond the common radius, frequency, phase, and group-translation columns | Relations that add or remove freedom |
+| --- | --- | --- |
+| `A1` | Family-A flattening $\lambda_A$ | $h_a=0$ for all three binaries; $R_a$, $f_a$, and $\phi_a$ may otherwise differ. |
+| `A1.1` | $\lambda_A$ | One common frequency; radii and phases remain independently assignable. |
+| `A1.2` | $\lambda_A$ | One radius, one frequency, fixed phases $0$, $2\pi/3$, and $4\pi/3$. |
+| `A1.3`, `A1.4` | $\lambda_A$ | One base frequency with the indexed ratio $4{:}2{:}1$ or $3{:}2{:}1$; radii and phases remain independently assignable. |
+| `A2` | $\lambda_A$ and one common axial/transverse decomposition coordinate in addition to the common radius | All three binaries share $R$, $h$, $\rho$, $f$, and circulation; phases are fixed $120^\circ$ apart. |
+| `A3` | $\lambda_A$ and one axial/transverse decomposition coordinate per binary in addition to $R_a$ | Each binary may independently choose its geometry, frequency, and phase subject to $R_a^2=h_a^2+\rho_a^2$. |
+| `A3.1` | The `A3` decomposition coordinates and $\lambda_A$ | One common frequency; radii, decompositions, and phases remain independently assignable. |
+| `A3.2` | The `A3` decomposition coordinates and $\lambda_A$ | One common radius and frequency with fixed $120^\circ$ phase spacing; the three decompositions may still differ. |
+| `A3.3`, `A3.4` | The `A3` decomposition coordinates and $\lambda_A$ | One base frequency with the indexed ratio $4{:}2{:}1$ or $3{:}2{:}1$; radii, decompositions, and phases remain independently assignable. |
+| `B1.1` | One axial/transverse decomposition coordinate per binary in addition to $R_a$ | One common midpoint, axis, frequency, and circulation; $h_a>0$ and $\rho_a>0$. Axial orbit-plane order is derived from the resulting signed offsets. |
+| `B1.2` | The same B1 decomposition coordinates | The high-axial inequalities $h_a>\rho_a>0$ further restrict the domain. |
+| `B1.3` | No additional continuous internal coordinate beyond the common columns | The all-equatorial boundary fixes $h_a=0$ and $\rho_a=R_a$; frequency and circulation are common. |
+| `B1.4` | No additional continuous orbital coordinate beyond the radii | The all-axial boundary fixes $\rho_a=0$ and $h_a=R_a$; frequency and phase labels do not change the endpoint paths. |
+| `C1`, `C2` | Eleven positive spacings after fixing the common axial origin, twelve radii, twelve frequencies, twelve phases, and an explicit six-binary counterpart map | `C1` fixes one circulation sense across all twelve worldlines. `C2` fixes opposite senses on the two ordered six-index subsets. Equal radii, equal spacings, reflection symmetry, and B1 decomposition are additional strata rather than member relations. |
+| `C3`, `C4` | Two inherited B1 coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial. `C3` fixes equal component circulation senses and `C4` fixes opposite senses; equality of the two component frequencies is not required. |
+| `C5`, `C6` | Two inherited B1.3 coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial and all-equatorial. `C5` fixes equal component circulation senses and `C6` fixes opposite senses; equality of the two component frequencies is not required. |
+
+An overall shift of absolute-time origin changes the stored phase coordinates, and an overall rigid spatial placement changes the stored centers and frames. Whether those are sampled coordinates or fixed frame conventions depends on the probe and environment protocol. A campaign must state that convention before reporting a numerical degree-of-freedom count.
+
+For C3 through C6, the axial component-center separation $d_C$ is a required Monte Carlo coordinate in $\boldsymbol\theta$. Each sampled source must retain the coaxial constraint $\Delta\mathbf C=d_C\hat{\mathbf n}_C$ while varying $d_C$ under the campaign's declared positive domain and sampling measure. The canonical constrained-display value $d_C=1.10$ is one reference point, not a fixed sampling value. A campaign must publish the minimum, maximum, units, and probability measure for $d_C$ before drawing samples.
 
 For a family/member candidate $M$, define its admissible configuration space by
 
@@ -3819,6 +3911,111 @@ The analytical campaign has three stages:
 Every result row must include the family/member identifier, full parameter vector, source grade, sampling measure, seed or directed-selection rule, root status, numerical resolution, and metric uncertainty.
 
 The campaign output should include the distribution of every objective and gate, parameter-to-measure sensitivity, correlations that may reveal redundant coordinates, the non-dominated set under $\mathbf G_{\mathrm{an}}$, and the location and width of robust favorable regions. A single best sampled point is not enough: the central question is whether a candidate has a reproducible favorable region in configuration space or only a narrowly tuned instantiation.
+
+#### Common-Axis Architrino-Worldline Chart
+
+The common-axis chart supplies a six-worldline Family-B dimension extension and the twelve-worldline Family-C parent geometry. Let $\hat{\mathbf n}$ be the oriented translation axis, with transverse orthonormal vectors $\hat{\mathbf e}_1,\hat{\mathbf e}_2$. Assign persistent architrino-worldline indices $m=1,\ldots,N_w$, ordered axial coordinates
+
+$$
+\xi_1<\xi_2<\cdots<\xi_{N_w},
+$$
+
+and spacings
+
+$$
+d_m=\xi_{m+1}-\xi_m>0.
+$$
+
+For group-translation speed $0\le s_{\mathrm{grp}}<c_f$, architrino worldline $m$ is
+
+$$
+\mathbf X_m(T)
+=
+\mathbf C_0
++s_{\mathrm{grp}}T\hat{\mathbf n}
++\xi_m\hat{\mathbf n}
++\rho_m
+\left[
+\cos\theta_m(T)\hat{\mathbf e}_1
++\sin\theta_m(T)\hat{\mathbf e}_2
+\right],
+$$
+
+$$
+\theta_m(T)=q_m\omega_mT+\phi_m,
+\qquad
+q_m\in\{+1,-1\}.
+$$
+
+The binary-counterpart map $\pi$ must be a fixed-point-free involution,
+
+$$
+\pi(\pi(m))=m,
+\qquad
+\pi(m)\ne m,
+$$
+
+and every pair must declare its polarities, radii, frequencies, phases, circulation relation, axial midpoint, axial separation, and exact constraint. A pairing label has no analytical effect unless it changes a declared path or polarity.
+
+For an even ordered chart, adjacent-pair association slots may be declared as
+
+$$
+P_k=(2k-1,2k),
+\qquad
+\mu_k=\frac{\xi_{2k-1}+\xi_{2k}}{2}.
+$$
+
+For a twelve-worldline Family-C source, six additional architrino worldlines may be declared as an Accessory Configuration only when all six polarities and complete paths are supplied. A three-worldline Family-B scaling control is not an Accessory Configuration. An additional path associated with slot $P_k$ has the form
+
+$$
+\mathbf Y_k(T)
+=
+\mathbf C_0
++s_{\mathrm{grp}}T\hat{\mathbf n}
++(\mu_k+\epsilon_k)\hat{\mathbf n}
++\boldsymbol\delta_k(T),
+$$
+
+where the axial offset $\epsilon_k$ and transverse path $\boldsymbol\delta_k(T)$ are exact source coordinates. The adjacent-pair association map and binary-counterpart map remain separate.
+
+Write any declared architrino worldline as
+
+$$
+\mathbf Z_a(T)
+=
+\mathbf C_0
++s_{\mathrm{grp}}T\hat{\mathbf n}
++\zeta_a\hat{\mathbf n}
++\boldsymbol\delta_a(T).
+$$
+
+Every retained positive causal delay from transmitter $a$ to receiver $b$ satisfies
+
+$$
+\left\|
+\left(
+\zeta_b-\zeta_a+s_{\mathrm{grp}}u
+\right)\hat{\mathbf n}
++\boldsymbol\delta_b(T)
+-\boldsymbol\delta_a(T-u)
+\right\|
+=c_fu,
+\qquad
+u>0.
+$$
+
+This equation covers every ordered transmitter-receiver pair in the declared source inventory, including Accessory Configuration sites when present. It is generally transcendental because the causally delayed transmitter phase contains $u$. A stationary transverse transmitter reduces the squared equation to a quadratic in $u$. Equal frequency, equal radius, rational frequency ratios, or reflection symmetry can reduce the number of distinct equations or pair contribution rows, but they do not generally remove the delayed phase. Rotating sectors therefore require certified retained-root enumeration.
+
+For each declared worldline, compare prescribed acceleration with the master-equation acceleration from the complete declared source inventory:
+
+$$
+\mathbf R_a(T)
+=
+\ddot{\mathbf Z}^{\mathrm{prescribed}}_a(T)
+-\mathbf A^{\mathrm{ME}}_a(T).
+$$
+
+Report axial, radial, and tangential projections separately over the complete return period. Pointwise rows, signed cycle averages, RMS values, maxima, primary/refined differences, and source-resolved contributions are all required. Cancellation in one projection cannot conceal failure in another. A converged residual remains a prescribed-path analytical result; it is not stability, retention, binding, or physical realization.
 
 ### Candidate Grading
 
