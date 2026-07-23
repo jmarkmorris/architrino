@@ -86,6 +86,7 @@ const VARIANTS = Object.freeze({
     mmapSize: 0,
     tempStore: "DEFAULT",
     externalArtifacts: false,
+    artifactTableMode: "without-rowid",
     pageSize: 4_096,
     singleTransaction: false,
     measureInsertMode: "single-row",
@@ -122,6 +123,12 @@ const VARIANTS = Object.freeze({
   "bounded-512": {
     description: "Current behavior with commits every 512 data rows.",
     base: "current",
+    transactionRows: 512,
+  },
+  "direct-bounded-512": {
+    description:
+      "Verified supplied gzip bytes with commits every 512 data rows; differs from direct-compressed only in the transaction bound.",
+    base: "direct-compressed",
     transactionRows: 512,
   },
   "rollback-journal": {
@@ -166,6 +173,12 @@ const VARIANTS = Object.freeze({
     description: "Current behavior with an 8 KiB SQLite database page.",
     base: "current",
     pageSize: 8_192,
+  },
+  "artifact-rowid": {
+    description:
+      "SQLite-resident payloads stored in a rowid table with a separate skinny UNIQUE artifact-hash index instead of a payload-bearing WITHOUT ROWID primary B-tree.",
+    base: "current",
+    artifactTableMode: "rowid",
   },
   "single-transaction": {
     description:
@@ -713,7 +726,9 @@ function configureTarget(database, variant, stats) {
 function createTargetSchema(database, variant, stats) {
   database.exec(`
     CREATE TABLE artifact (
-      artifact_hash BLOB PRIMARY KEY CHECK (length(artifact_hash) = 32),
+      artifact_hash BLOB ${
+        variant.artifactTableMode === "rowid" ? "NOT NULL UNIQUE" : "PRIMARY KEY"
+      } CHECK (length(artifact_hash) = 32),
       artifact_kind TEXT NOT NULL,
       media_type TEXT NOT NULL,
       codec TEXT NOT NULL CHECK (codec IN ('identity', 'gzip')),
@@ -721,7 +736,7 @@ function createTargetSchema(database, variant, stats) {
       stored_bytes INTEGER NOT NULL CHECK (stored_bytes >= 0),
       payload BLOB NOT NULL,
       created_by TEXT NOT NULL
-    ) STRICT, WITHOUT ROWID;
+    ) STRICT${variant.artifactTableMode === "rowid" ? "" : ", WITHOUT ROWID"};
     CREATE TABLE external_artifact (
       artifact_hash BLOB PRIMARY KEY CHECK (length(artifact_hash) = 32),
       compressed_hash BLOB NOT NULL UNIQUE CHECK (length(compressed_hash) = 32),
@@ -3080,8 +3095,11 @@ function productionQueryProfile(database) {
     ORDER BY result_hash, gate_id, gate_instrument_version LIMIT 1
   `).get();
   const metric = database.prepare(`
-    SELECT measure_id FROM multidimensional_measure
-    ORDER BY measure_id LIMIT 1
+    SELECT measure_id, COUNT(*) AS matching_row_count
+    FROM multidimensional_measure
+    GROUP BY measure_id
+    ORDER BY matching_row_count DESC, measure_id
+    LIMIT 1
   `).get();
   return {
     candidate: profiledProductionQuery(
@@ -3102,12 +3120,16 @@ function productionQueryProfile(database) {
        WHERE result_hash = ? AND gate_id = ? AND gate_instrument_version = ?`,
       [gate.result_hash, gate.gate_id, gate.gate_instrument_version],
     ),
-    metric: profiledProductionQuery(
-      database,
-      `SELECT row_hash, scalar_value FROM multidimensional_measure
-       WHERE measure_id = ? ORDER BY scalar_value`,
-      [metric.measure_id],
-    ),
+    metric: {
+      measureId: metric.measure_id,
+      matchingRowCount: Number(metric.matching_row_count),
+      ...profiledProductionQuery(
+        database,
+        `SELECT row_hash, scalar_value FROM multidimensional_measure
+         WHERE measure_id = ? ORDER BY scalar_value`,
+        [metric.measure_id],
+      ),
+    },
     root: profiledProductionQuery(
       database,
       `SELECT row_hash, scalar_value FROM multidimensional_measure

@@ -115,30 +115,44 @@
       "recordPath": "content/assets/borg/records/illustrative-full-cap-axial-spindle-boundary.assembly-view-record.v0.json"
     },
     {
-      "candidateId": "family-c-c1-co-rotating-b1-pair-v1",
+      "candidateId": "family-c-c1-co-rotating-general-v1",
       "familyId": "C",
       "memberId": "C1",
+      "specPath": "reference/priorities/braid-program/configurations/family-c-c1-co-rotating-general.v1.json",
+      "recordPath": "content/assets/borg/records/family-c-c1-co-rotating-general.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-c-c2-counter-rotating-general-v1",
+      "familyId": "C",
+      "memberId": "C2",
+      "specPath": "reference/priorities/braid-program/configurations/family-c-c2-counter-rotating-general.v1.json",
+      "recordPath": "content/assets/borg/records/family-c-c2-counter-rotating-general.assembly-view-record.v0.json"
+    },
+    {
+      "candidateId": "family-c-c1-co-rotating-b1-pair-v1",
+      "familyId": "C",
+      "memberId": "C3",
       "specPath": "reference/priorities/braid-program/configurations/family-c-c1-co-rotating-b1-pair.v1.json",
       "recordPath": "content/assets/borg/records/family-c-c1-co-rotating-b1-pair.assembly-view-record.v0.json"
     },
     {
       "candidateId": "family-c-c2-counter-rotating-b1-pair-v1",
       "familyId": "C",
-      "memberId": "C2",
+      "memberId": "C4",
       "specPath": "reference/priorities/braid-program/configurations/family-c-c2-counter-rotating-b1-pair.v1.json",
       "recordPath": "content/assets/borg/records/family-c-c2-counter-rotating-b1-pair.assembly-view-record.v0.json"
     },
     {
       "candidateId": "family-c-c1-1-co-rotating-b1-3-pair-v1",
       "familyId": "C",
-      "memberId": "C1.1",
+      "memberId": "C5",
       "specPath": "reference/priorities/braid-program/configurations/family-c-c1-1-co-rotating-b1-3-pair.v1.json",
       "recordPath": "content/assets/borg/records/family-c-c1-1-co-rotating-b1-3-pair.assembly-view-record.v0.json"
     },
     {
       "candidateId": "family-c-c2-1-counter-rotating-b1-3-pair-v1",
       "familyId": "C",
-      "memberId": "C2.1",
+      "memberId": "C6",
       "specPath": "reference/priorities/braid-program/configurations/family-c-c2-1-counter-rotating-b1-3-pair.v1.json",
       "recordPath": "content/assets/borg/records/family-c-c2-1-counter-rotating-b1-3-pair.assembly-view-record.v0.json"
     }

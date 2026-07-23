@@ -474,7 +474,56 @@ Only after these programs can calculate the common measure set should a broad pa
 
 Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group-translation speed, phase origin, and any permitted prescribed-history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
 
-For C1.1 and C2.1, the axial braid-center separation $d_C$ is a required Monte Carlo coordinate in $\boldsymbol\theta$. Each sampled source must retain the coaxial constraint $\Delta\mathbf C=d_C\hat{\mathbf n}_C$ while varying $d_C$ under the campaign's declared positive domain and sampling measure. The canonical display value $d_C=1.10$ is one reference point, not a fixed sampling value. A campaign must publish the minimum, maximum, units, and probability measure for $d_C$ before drawing samples.
+### Degrees of Freedom by Braid Class
+
+A degree of freedom is an independently variable source coordinate whose change can alter at least one prescribed worldline or its polarity-tagged contribution after the selected member's constraints are imposed. A derived quantity is not counted again. In particular, only two coordinates in
+
+$$
+R_a^2=h_a^2+\rho_a^2
+$$
+
+are independent. Here $R_a$ is the endpoint distance from the binary midpoint, $h_a$ is the axial half-separation, and $\rho_a$ is the transverse orbit radius measured from the binary axis. The phrase “orbit radius from the axis” therefore means $\rho_a$, not $R_a$, except on a zero-axial-offset locus where $h_a=0$ and $\rho_a=R_a$.
+
+The coordinate types recur across the taxonomy, but they are not all independently free in every member:
+
+| Coordinate type | Status across Families A, B, and C | Constraint or interpretation |
+| --- | --- | --- |
+| Binary radius $R_a$ and transverse orbit radius $\rho_a$ | Present in every binary record | $R_a$ and $\rho_a$ coincide only when $h_a=0$. An axial binary with $\rho_a=0$ has no circular path even if $R_a>0$. |
+| Binary frequency $f_a$ | Present in every binary record | The two endpoints of one neutral binary share a frequency. Equal-frequency and fixed-ratio members reduce several frequency coordinates to one scale. At $\rho_a=0$, frequency remains a record label but does not change the path. |
+| Binary phase $\phi_a$ | Present in every binary record and required in addition to radius and frequency | Phase is measured relative to the common braid-level zero point. Some members fix the relative phases. At $\rho_a=0$, phase does not change the path. |
+| Binary midpoint and axis data | Present in every braid record | Family A constrains three axes through $\lambda_A$; B1 makes the three axes and midpoints coincide; Family C orders twelve architrino worldlines on one common axis. |
+| Group velocity $\mathbf V_{\mathrm{grp}}$ | Present at assembly level | The common scalar taxonomy coordinate is $s_{\mathrm{grp}}=\|\mathbf V_{\mathrm{grp}}\|$. Family A fixes its direction to $\hat{\mathbf u}_A$; axial B1 is a specialization rather than the whole B1 class. |
+| Circulation sense and endpoint polarity assignment | Required discrete source choices | A member may lock circulation within or between braids. Neutrality fixes one electrino and one positrino per binary, but which persistent endpoint carries each polarity still changes the signed source record. |
+| Architrino worldline count and binary grouping | Member-defining discrete choices | Families A and B contain six architrino worldlines in three neutral binaries. Family C contains twelve architrino worldlines in six neutral binaries and requires an explicit fixed-point-free counterpart map. |
+| Axial spacing | Not universal | A3 and B1 use binary axial half-separations $h_a$ along their respective binary axes. Family C carries the complete ordered spacing vector $\mathbf d_C$; C3 through C6 additionally carry the B1-component center separation $d_C$. General Family A has no single common axis on which all orbits can be spaced. |
+| Orbit order along one axis | Not an independent universal coordinate | In a coaxial chart, order is derived by sorting the signed axial positions. Persistent binary indices do not change when two radii, frequencies, or axial positions cross. Order becomes a separate discrete choice only when assigning different path or polarity data to the ordered sites changes the source record. |
+
+Thus radius, frequency, phase, and group translation are the common kinematic coordinate types. Axis and midpoint data, circulation, and endpoint polarity assignment are also required source coordinates. Axial spacing and axial order belong only to charts that actually have a common axis; they must not be imposed on all A, B, and C candidates.
+
+The member-level inventory below describes the admissible taxonomy space, not the single display coordinate selected by a catalog source record. In particular, the current Family-A Borg reference records select $\lambda_A=0$; varying $\lambda_A$ requires a campaign that explicitly includes the wider Family-A coordinate.
+
+| Braid class or catalog members | Independent continuous coordinates beyond the common radius, frequency, phase, and group-translation columns | Relations that add or remove freedom |
+| --- | --- | --- |
+| `A1` | Family-A flattening $\lambda_A$ | $h_a=0$ for all three binaries; $R_a$, $f_a$, and $\phi_a$ may otherwise differ. |
+| `A1.1` | $\lambda_A$ | One common frequency; radii and phases remain independently assignable. |
+| `A1.2` | $\lambda_A$ | One radius, one frequency, fixed phases $0$, $2\pi/3$, and $4\pi/3$. |
+| `A1.3`, `A1.4` | $\lambda_A$ | One base frequency with the indexed ratio $4{:}2{:}1$ or $3{:}2{:}1$; radii and phases remain independently assignable. |
+| `A2` | $\lambda_A$ and one common axial/transverse decomposition coordinate in addition to the common radius | All three binaries share $R$, $h$, $\rho$, $f$, and circulation; phases are fixed $120^\circ$ apart. |
+| `A3` | $\lambda_A$ and one axial/transverse decomposition coordinate per binary in addition to $R_a$ | Each binary may independently choose its geometry, frequency, and phase subject to $R_a^2=h_a^2+\rho_a^2$. |
+| `A3.1` | The `A3` decomposition coordinates and $\lambda_A$ | One common frequency; radii, decompositions, and phases remain independently assignable. |
+| `A3.2` | The `A3` decomposition coordinates and $\lambda_A$ | One common radius and frequency with fixed $120^\circ$ phase spacing; the three decompositions may still differ. |
+| `A3.3`, `A3.4` | The `A3` decomposition coordinates and $\lambda_A$ | One base frequency with the indexed ratio $4{:}2{:}1$ or $3{:}2{:}1$; radii, decompositions, and phases remain independently assignable. |
+| `B1.1` | One axial/transverse decomposition coordinate per binary in addition to $R_a$ | One common midpoint, axis, frequency, and circulation; $h_a>0$ and $\rho_a>0$. Axial orbit-plane order is derived from the resulting signed offsets. |
+| `B1.2` | The same B1 decomposition coordinates | The high-axial inequalities $h_a>\rho_a>0$ further restrict the domain. |
+| `B1.3` | No additional continuous internal coordinate beyond the common columns | The all-equatorial boundary fixes $h_a=0$ and $\rho_a=R_a$; frequency and circulation are common. |
+| `B1.4` | No additional continuous orbital coordinate beyond the radii | The all-axial boundary fixes $\rho_a=0$ and $h_a=R_a$; frequency and phase labels do not change the endpoint paths. |
+| `C1`, `C2` | Eleven positive spacings after fixing the common axial origin, twelve radii, twelve frequencies, twelve phases, and an explicit six-binary counterpart map | `C1` fixes one circulation sense across all twelve worldlines. `C2` fixes opposite senses on the two ordered six-index subsets. Equal radii, equal spacings, reflection symmetry, and B1 decomposition are additional strata rather than member relations. |
+| `C3`, `C4` | Two inherited B1 coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial. `C3` fixes equal component circulation senses and `C4` fixes opposite senses; equality of the two component frequencies is not required. |
+| `C5`, `C6` | Two inherited B1.3 coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial and all-equatorial. `C5` fixes equal component circulation senses and `C6` fixes opposite senses; equality of the two component frequencies is not required. |
+
+An overall shift of absolute-time origin changes the stored phase coordinates, and an overall rigid spatial placement changes the stored centers and frames. Whether those are sampled coordinates or fixed frame conventions depends on the probe and environment protocol. A campaign must state that convention before reporting a numerical degree-of-freedom count.
+
+For C3 through C6, the axial component-center separation $d_C$ is a required Monte Carlo coordinate in $\boldsymbol\theta$. Each sampled source must retain the coaxial constraint $\Delta\mathbf C=d_C\hat{\mathbf n}_C$ while varying $d_C$ under the campaign's declared positive domain and sampling measure. The canonical constrained-display value $d_C=1.10$ is one reference point, not a fixed sampling value. A campaign must publish the minimum, maximum, units, and probability measure for $d_C$ before drawing samples.
 
 For a family/member candidate $M$, define its admissible configuration space by
 
@@ -507,12 +556,12 @@ Every result row must include the family/member identifier, full parameter vecto
 
 The campaign output should include the distribution of every objective and gate, parameter-to-measure sensitivity, correlations that may reveal redundant coordinates, the non-dominated set under $\mathbf G_{\mathrm{an}}$, and the location and width of robust favorable regions. A single best sampled point is not enough: the central question is whether a candidate has a reproducible favorable region in configuration space or only a narrowly tuned instantiation.
 
-### Common-Axis Orbital-Train Chart
+### Common-Axis Architrino-Worldline Chart
 
-A generalized common-axis train is an analytical candidate chart rather than a change to the braid taxonomy. Let $\hat{\mathbf n}$ be the oriented translation axis, with transverse orthonormal vectors $\hat{\mathbf e}_1,\hat{\mathbf e}_2$. Assign persistent orbital indices $m=1,\ldots,N_o$, ordered axial coordinates
+The common-axis chart supplies a six-worldline Family-B dimension extension and the twelve-worldline Family-C parent geometry. Let $\hat{\mathbf n}$ be the oriented translation axis, with transverse orthonormal vectors $\hat{\mathbf e}_1,\hat{\mathbf e}_2$. Assign persistent architrino-worldline indices $m=1,\ldots,N_w$, ordered axial coordinates
 
 $$
-\xi_1<\xi_2<\cdots<\xi_{N_o},
+\xi_1<\xi_2<\cdots<\xi_{N_w},
 $$
 
 and spacings
@@ -521,7 +570,7 @@ $$
 d_m=\xi_{m+1}-\xi_m>0.
 $$
 
-For group-translation speed $0\le s_{\mathrm{grp}}<c_f$, core orbital $m$ is
+For group-translation speed $0\le s_{\mathrm{grp}}<c_f$, architrino worldline $m$ is
 
 $$
 \mathbf X_m(T)
@@ -552,7 +601,7 @@ $$
 
 and every pair must declare its polarities, radii, frequencies, phases, circulation relation, axial midpoint, axial separation, and exact constraint. A pairing label has no analytical effect unless it changes a declared path or polarity.
 
-For an even ordered train, adjacent-pair payload slots may be declared as
+For an even ordered chart, adjacent-pair association slots may be declared as
 
 $$
 P_k=(2k-1,2k),
@@ -560,7 +609,7 @@ P_k=(2k-1,2k),
 \mu_k=\frac{\xi_{2k-1}+\xi_{2k}}{2}.
 $$
 
-Here `payload architrino` means one explicitly declared prescribed architrino worldline associated with one adjacent core-orbital pair. The term does not identify an Accessory Configuration, captured architrino, axial layer, or another established assembly component. A payload path has the form
+For a twelve-worldline Family-C source, six additional architrino worldlines may be declared as an Accessory Configuration only when all six polarities and complete paths are supplied. A three-worldline Family-B scaling control is not an Accessory Configuration. An additional path associated with slot $P_k$ has the form
 
 $$
 \mathbf Y_k(T)
@@ -571,9 +620,9 @@ $$
 +\boldsymbol\delta_k(T),
 $$
 
-where the axial offset $\epsilon_k$ and transverse path $\boldsymbol\delta_k(T)$ are exact source coordinates. The payload-slot map and binary-counterpart map remain separate.
+where the axial offset $\epsilon_k$ and transverse path $\boldsymbol\delta_k(T)$ are exact source coordinates. The adjacent-pair association map and binary-counterpart map remain separate.
 
-Write either a core or payload path as
+Write any declared architrino worldline as
 
 $$
 \mathbf Z_a(T)
@@ -599,7 +648,7 @@ $$
 u>0.
 $$
 
-This equation covers core-core, core-payload, payload-core, and payload-payload interactions. It is generally transcendental because the retarded transmitter phase contains $u$. A stationary transverse transmitter reduces the squared equation to a quadratic in $u$. Equal frequency, equal radius, rational frequency ratios, or reflection symmetry can reduce the number of distinct equations or pair contribution rows, but they do not generally remove the retarded phase. Rotating sectors therefore require certified retained-root enumeration.
+This equation covers every ordered transmitter-receiver pair in the declared source inventory, including Accessory Configuration sites when present. It is generally transcendental because the causally delayed transmitter phase contains $u$. A stationary transverse transmitter reduces the squared equation to a quadratic in $u$. Equal frequency, equal radius, rational frequency ratios, or reflection symmetry can reduce the number of distinct equations or pair contribution rows, but they do not generally remove the delayed phase. Rotating sectors therefore require certified retained-root enumeration.
 
 For each declared worldline, compare prescribed acceleration with the master-equation acceleration from the complete declared source inventory:
 

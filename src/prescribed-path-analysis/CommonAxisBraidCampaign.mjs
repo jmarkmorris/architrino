@@ -16,14 +16,14 @@ import {
   evaluateCompleteCycleCandidate,
 } from "./CompleteCycleAnalyticalCampaign.mjs";
 import {
-  GENERALIZED_FAMILY_B_SPACING_SENSITIVITY_ADAPTER,
-  createGeneralizedFamilyBPilotInventory,
-} from "./GeneralizedFamilyBPilot.mjs";
+  COMMON_AXIS_BRAID_SPACING_SENSITIVITY_ADAPTER,
+  createCommonAxisBraidPilotInventory,
+} from "./CommonAxisBraidPilot.mjs";
 
-export const GENERALIZED_FAMILY_B_CAMPAIGN_REDUCER_VERSION =
-  "prescribed-record-analytics/generalized-family-b-pilot-reducer/v1";
-export const GENERALIZED_FAMILY_B_CAMPAIGN_ID =
-  "generalized-family-b-prescribed-train-pilot.v1";
+export const COMMON_AXIS_BRAID_CAMPAIGN_REDUCER_VERSION =
+  "prescribed-record-analytics/common-axis-braid-pilot-reducer/v2";
+export const COMMON_AXIS_BRAID_CAMPAIGN_ID =
+  "common-axis-braid-prescribed-path-pilot.v2";
 
 const MANIFEST_SCHEMA = "prescribed-path-analysis/all-candidate-campaign-manifest.v1";
 const SUMMARY_SCHEMA = "prescribed-path-analysis/all-candidate-campaign-summary.v1";
@@ -193,7 +193,7 @@ function exteriorSummary(packet) {
   };
 }
 
-function augmentGeneralizedPacket(packet, sourceRecord) {
+function augmentCommonAxisPacket(packet, sourceRecord) {
   const primaryReduction =
     packet.diagnosticReductions.internalReceivers.primary.reduction;
   const refinedReduction =
@@ -204,12 +204,14 @@ function augmentGeneralizedPacket(packet, sourceRecord) {
   const completeInventory = primaryReduction.completeDeclaredSourceInventory &&
     refinedReduction.completeDeclaredSourceInventory;
   const generalized = {
-    schema: "prescribed-path-analysis/generalized-family-b-reduction.v1",
-    reducerVersion: GENERALIZED_FAMILY_B_CAMPAIGN_REDUCER_VERSION,
+    schema: "prescribed-path-analysis/common-axis-braid-reduction.v2",
+    reducerVersion: COMMON_AXIS_BRAID_CAMPAIGN_REDUCER_VERSION,
     coordinateDefinition: sourceRecord.parameterVector.coordinateDefinition,
     binaryCounterpartMap: sourceRecord.parameterVector.binaryCounterpartMap,
-    payloadPairingMap: sourceRecord.parameterVector.payloadPairingMap,
-    payloadDefinition: sourceRecord.parameterVector.payloadDefinition,
+    additionalWorldlineAssociationMap:
+      sourceRecord.parameterVector.additionalWorldlineAssociationMap,
+    additionalWorldlineDefinition:
+      sourceRecord.parameterVector.additionalWorldlineDefinition,
     residuals: {
       primary: primaryResidual,
       refined: refinedResidual,
@@ -226,7 +228,7 @@ function augmentGeneralizedPacket(packet, sourceRecord) {
       status: "rejected-insufficient-coordinate-jacobian",
       grade: "diagnostic-only",
       reason:
-        "the bounded pilot differentiates one grouped spacing coordinate and cannot establish a coordinate-robust orbital, binary, adjacent-pair, or payload hinge",
+        "the bounded pilot differentiates one grouped spacing coordinate and cannot establish a coordinate-robust architrino-worldline, binary, adjacent-pair, or Accessory-Configuration hinge",
       arbitraryOrderingUsed: false,
     },
     actionDiagnostic: {
@@ -261,10 +263,10 @@ function augmentGeneralizedPacket(packet, sourceRecord) {
   };
   const modified = structuredClone(packet);
   delete modified.resultHash;
-  modified.reducer.generalizedFamilyBReducer =
-    GENERALIZED_FAMILY_B_CAMPAIGN_REDUCER_VERSION;
-  modified.diagnosticReductions.generalizedFamilyB = generalized;
-  modified.convergenceComparisons.generalizedFamilyBResiduals = convergence;
+  modified.reducer.commonAxisBraidReducer =
+    COMMON_AXIS_BRAID_CAMPAIGN_REDUCER_VERSION;
+  modified.diagnosticReductions.commonAxisBraid = generalized;
+  modified.convergenceComparisons.commonAxisBraidResiduals = convergence;
   modified.gates.sourceSensitivity = modified.gates.sourceSensitivity &&
     convergence.passed && completeInventory;
   const accepted = Object.values(modified.gates).every(Boolean);
@@ -277,9 +279,9 @@ function augmentGeneralizedPacket(packet, sourceRecord) {
       .map(([gateId]) => gateId),
   };
   if (!accepted) modified.reducedMeasures = null;
-  else modified.reducedMeasures.generalizedFamilyB = generalized;
-  modified.methodologyBoundary.generalizedFamilyB =
-    "complete over the declared core-plus-payload source inventory only; no path evolution, Noether-sea closure, stability, retention, photon, or quantization inference";
+  else modified.reducedMeasures.commonAxisBraid = generalized;
+  modified.methodologyBoundary.commonAxisBraid =
+    "complete over the declared architrino-worldline inventory only; no path evolution, Noether-sea closure, stability, retention, photon, or quantization inference";
   return { ...modified, resultHash: sha256Canonical(modified) };
 }
 
@@ -311,7 +313,7 @@ function createRawArtifactWriter(outputDirectory, inventory, candidateId) {
 }
 
 function compactMeasures(packet) {
-  const generalized = packet.diagnosticReductions.generalizedFamilyB;
+  const generalized = packet.diagnosticReductions.commonAxisBraid;
   return {
     residuals: generalized.residuals.primary,
     residualConvergence: generalized.residuals.convergence,
@@ -326,7 +328,7 @@ function compactMeasures(packet) {
   };
 }
 
-export function buildGeneralizedFamilyBPilotCampaign({
+export function buildCommonAxisBraidPilotCampaign({
   outputDirectory,
   protocolPath,
   seed = 20210102,
@@ -338,7 +340,7 @@ export function buildGeneralizedFamilyBPilotCampaign({
   const protocolBytes = readFileSync(path.resolve(protocolPath));
   const protocol = JSON.parse(protocolBytes.toString("utf8"));
   const protocolHash = sha256Canonical(protocol);
-  const inventory = createGeneralizedFamilyBPilotInventory({
+  const inventory = createCommonAxisBraidPilotInventory({
     seed,
     includeNeighborhoodSamples,
   });
@@ -360,14 +362,14 @@ export function buildGeneralizedFamilyBPilotCampaign({
       completedCandidates: index,
       totalCandidates: inventory.length,
     });
-    const packet = augmentGeneralizedPacket(
+    const packet = augmentCommonAxisPacket(
       evaluateCompleteCycleCandidate({
         candidateId: row.spec.specId,
         sourceRecord: row.sourceRecord,
         sourceSpec: row.spec,
         completeCycleProtocol: protocol,
         onRawPacket,
-        sensitivityAdapter: GENERALIZED_FAMILY_B_SPACING_SENSITIVITY_ADAPTER,
+        sensitivityAdapter: COMMON_AXIS_BRAID_SPACING_SENSITIVITY_ADAPTER,
         onProgress(progress) {
           onProgress?.({
             ...progress,
@@ -378,9 +380,9 @@ export function buildGeneralizedFamilyBPilotCampaign({
       }),
       row.sourceRecord,
     );
-    const packetRelativePath = `packets/${row.spec.specId}.complete-cycle-result.v1.json`;
+    const packetRelativePath = `packets/${row.spec.specId}.complete-cycle-result.v2.json`;
     const sourceRelativePath = `exact-sources/${row.spec.specId}.exact-source-record.v1.json`;
-    const specRelativePath = `specs/${row.spec.specId}.generalized-family-b-spec.v1.json`;
+    const specRelativePath = `specs/${row.spec.specId}.common-axis-braid-spec.v2.json`;
     const packetBytes = prettyBytes(packet);
     const sourceBytes = prettyBytes(row.sourceRecord);
     const specBytes = prettyBytes(row.spec);
@@ -397,7 +399,7 @@ export function buildGeneralizedFamilyBPilotCampaign({
       caseId: row.spec.specId,
       label: row.spec.label,
       caseType: row.caseType,
-      familyId: "B",
+      familyId: row.sourceRecord.taxonomy.familyId,
       memberId: row.sourceRecord.taxonomy.memberId,
       seed: row.seed ?? null,
       packetPath: packetRelativePath,
@@ -411,7 +413,7 @@ export function buildGeneralizedFamilyBPilotCampaign({
       failedGates: packet.status.failedGates,
       gates: packet.gates,
       measures: [],
-      generalizedMeasures: compactMeasures(packet),
+      commonAxisMeasures: compactMeasures(packet),
       sourceSpec: {
         path: specRelativePath,
         sha256: sha256Bytes(specBytes),
@@ -455,17 +457,17 @@ export function buildGeneralizedFamilyBPilotCampaign({
   };
   const manifest = {
     schema: MANIFEST_SCHEMA,
-    campaignId: GENERALIZED_FAMILY_B_CAMPAIGN_ID,
-    campaignStage: "generalized-family-b-complete-cycle-prescribed-path-pilot",
+    campaignId: COMMON_AXIS_BRAID_CAMPAIGN_ID,
+    campaignStage: "common-axis-braid-complete-cycle-prescribed-path-pilot",
     registry: {
-      registryId: "generalized-family-b-pilot.v1",
+      registryId: "common-axis-braid-pilot.v2",
       registryHash: sha256Canonical({
         caseIds: cases.map((row) => row.caseId),
         seed,
       }),
     },
     catalog: {
-      catalogId: "operator-directed-generalized-family-b-pilot.v1",
+      catalogId: "operator-directed-common-axis-braid-pilot.v2",
       catalogHash: sha256Canonical(manifestCases),
     },
     commonProtocol: {
@@ -474,7 +476,7 @@ export function buildGeneralizedFamilyBPilotCampaign({
       protocolHash,
     },
     reducer: {
-      version: GENERALIZED_FAMILY_B_CAMPAIGN_REDUCER_VERSION,
+      version: COMMON_AXIS_BRAID_CAMPAIGN_REDUCER_VERSION,
       baseVersion: COMPLETE_CYCLE_CAMPAIGN_REDUCER_VERSION,
     },
     cases: manifestCases,
@@ -496,7 +498,7 @@ export function buildGeneralizedFamilyBPilotCampaign({
     outputs: {
       directory: ".",
       packetDirectory: "packets",
-      summaryFilename: "generalized-family-b-pilot.summary.v1.json",
+      summaryFilename: "common-axis-braid-pilot.summary.v2.json",
     },
   };
   const manifestHash = sha256Canonical(manifest);
@@ -533,7 +535,7 @@ export function buildGeneralizedFamilyBPilotCampaign({
       code: "ok",
       severity: "ok",
       message:
-        "every bounded generalized Family-B pilot row received complete-cycle prescribed-path analysis",
+        "every bounded common-axis braid pilot row received complete-cycle prescribed-path analysis",
     },
     claimBoundary: {
       pathEvolutionInvoked: false,
@@ -559,7 +561,7 @@ export function buildGeneralizedFamilyBPilotCampaign({
   const summaryBytes = prettyBytes(summary);
   const manifestPath = path.join(
     absoluteOutput,
-    "generalized-family-b-pilot.manifest.v1.json",
+    "common-axis-braid-pilot.manifest.v2.json",
   );
   const summaryPath = path.join(absoluteOutput, manifest.outputs.summaryFilename);
   writeFileSync(manifestPath, manifestBytes);
@@ -572,94 +574,95 @@ export function buildGeneralizedFamilyBPilotCampaign({
     summaryPath,
     packetDirectory: path.join(absoluteOutput, "packets"),
     outputDirectory: absoluteOutput,
-    report: compareGeneralizedFamilyBPilotCases(cases),
+    report: compareCommonAxisBraidPilotCases(cases),
   };
 }
 
 function dominates(left, right) {
   const leftVector = [
-    left.generalizedMeasures.residuals.axial.maximumReceiverRms,
-    left.generalizedMeasures.residuals.radial.maximumReceiverRms,
-    left.generalizedMeasures.residuals.tangential.maximumReceiverRms,
-    left.generalizedMeasures.exterior.eta_ext,
-    left.generalizedMeasures.exterior.wakeFluxEta,
+    left.commonAxisMeasures.residuals.axial.maximumReceiverRms,
+    left.commonAxisMeasures.residuals.radial.maximumReceiverRms,
+    left.commonAxisMeasures.residuals.tangential.maximumReceiverRms,
+    left.commonAxisMeasures.exterior.eta_ext,
+    left.commonAxisMeasures.exterior.wakeFluxEta,
   ];
   const rightVector = [
-    right.generalizedMeasures.residuals.axial.maximumReceiverRms,
-    right.generalizedMeasures.residuals.radial.maximumReceiverRms,
-    right.generalizedMeasures.residuals.tangential.maximumReceiverRms,
-    right.generalizedMeasures.exterior.eta_ext,
-    right.generalizedMeasures.exterior.wakeFluxEta,
+    right.commonAxisMeasures.residuals.axial.maximumReceiverRms,
+    right.commonAxisMeasures.residuals.radial.maximumReceiverRms,
+    right.commonAxisMeasures.residuals.tangential.maximumReceiverRms,
+    right.commonAxisMeasures.exterior.eta_ext,
+    right.commonAxisMeasures.exterior.wakeFluxEta,
   ];
   return leftVector.every((value, index) => value <= rightVector[index]) &&
     leftVector.some((value, index) => value < rightVector[index]);
 }
 
-function matchedPayloadBenefit(cases) {
-  const withoutPayload = cases.find(
-    (row) => row.caseId === "generalized-b-dual-central-no-payload",
+function matchedAccessoryBenefit(cases) {
+  const withoutAccessory = cases.find(
+    (row) => row.caseId === "family-c-c2-central-no-accessory",
   );
-  const withPayload = cases.find(
-    (row) => row.caseId === "generalized-b-dual-central-six-payload",
+  const withAccessory = cases.find(
+    (row) => row.caseId === "family-c-c2-central-six-accessory",
   );
-  if (!withoutPayload || !withPayload) return null;
+  if (!withoutAccessory || !withAccessory) return null;
   const measures = [
     ["axialResidualRms",
-      (row) => row.generalizedMeasures.residuals.axial.maximumReceiverRms],
+      (row) => row.commonAxisMeasures.residuals.axial.maximumReceiverRms],
     ["radialResidualRms",
-      (row) => row.generalizedMeasures.residuals.radial.maximumReceiverRms],
+      (row) => row.commonAxisMeasures.residuals.radial.maximumReceiverRms],
     ["tangentialResidualRms",
-      (row) => row.generalizedMeasures.residuals.tangential.maximumReceiverRms],
+      (row) => row.commonAxisMeasures.residuals.tangential.maximumReceiverRms],
     ["minimumRootTransversalityMargin",
-      (row) => row.generalizedMeasures.minimumRootTransversalityMargin],
-    ["exteriorEta", (row) => row.generalizedMeasures.exterior.eta_ext],
-    ["wakeFluxEta", (row) => row.generalizedMeasures.exterior.wakeFluxEta],
+      (row) => row.commonAxisMeasures.minimumRootTransversalityMargin],
+    ["exteriorEta", (row) => row.commonAxisMeasures.exterior.eta_ext],
+    ["wakeFluxEta", (row) => row.commonAxisMeasures.exterior.wakeFluxEta],
   ];
   return {
-    definition: "six-payload row minus its exact matching no-payload reference",
+    definition:
+      "six-architrino Accessory Configuration row minus its exact matching no-accessory reference",
     rows: measures.map(([measureId, extract]) => ({
       measureId,
-      noPayload: extract(withoutPayload),
-      sixPayload: extract(withPayload),
-      delta: extract(withPayload) - extract(withoutPayload),
+      noAccessory: extract(withoutAccessory),
+      sixAccessory: extract(withAccessory),
+      delta: extract(withAccessory) - extract(withoutAccessory),
     })),
   };
 }
 
-export function compareGeneralizedFamilyBPilotCases(cases) {
+export function compareCommonAxisBraidPilotCases(cases) {
   const nondominated = cases.filter(
     (candidate) => !cases.some(
       (other) => other.caseId !== candidate.caseId && dominates(other, candidate),
     ),
   ).map((row) => row.caseId);
   return {
-    schema: "prescribed-path-analysis/generalized-family-b-pilot-report.v1",
+    schema: "prescribed-path-analysis/common-axis-braid-pilot-report.v2",
     claimGrade: "measured",
     candidateCount: cases.length,
     acceptedCount: cases.filter((row) => row.acceptanceState === "accepted").length,
     rejectedCount: cases.filter((row) => row.acceptanceState === "rejected").length,
     nondominatedDiagnosticCaseIds: nondominated,
-    payloadBenefit: matchedPayloadBenefit(cases),
+    accessoryBenefit: matchedAccessoryBenefit(cases),
     cases: cases.map((row) => ({
       caseId: row.caseId,
       caseType: row.caseType,
       acceptanceState: row.acceptanceState,
       failedGates: row.failedGates,
       objectiveVector: {
-        rootMargin: row.generalizedMeasures.minimumRootTransversalityMargin,
-        axialResidualRms: row.generalizedMeasures.residuals.axial.maximumReceiverRms,
-        radialResidualRms: row.generalizedMeasures.residuals.radial.maximumReceiverRms,
+        rootMargin: row.commonAxisMeasures.minimumRootTransversalityMargin,
+        axialResidualRms: row.commonAxisMeasures.residuals.axial.maximumReceiverRms,
+        radialResidualRms: row.commonAxisMeasures.residuals.radial.maximumReceiverRms,
         tangentialResidualRms:
-          row.generalizedMeasures.residuals.tangential.maximumReceiverRms,
-        exteriorEta: row.generalizedMeasures.exterior.eta_ext,
-        wakeFluxEta: row.generalizedMeasures.exterior.wakeFluxEta,
+          row.commonAxisMeasures.residuals.tangential.maximumReceiverRms,
+        exteriorEta: row.commonAxisMeasures.exterior.eta_ext,
+        wakeFluxEta: row.commonAxisMeasures.exterior.wakeFluxEta,
       },
     })),
     falsifiers: {
       spacingDependentWakeBalance:
         "falsified on the declared pilot domain if spacing perturbations fail convergence or no finite-width neighborhood improves every required residual projection",
-      payloadBenefit:
-        "falsified if the exact matched six-payload minus no-payload vector does not improve a predeclared objective without degrading another required gate",
+      accessoryBenefit:
+        "falsified if the exact matched six-accessory minus no-accessory vector does not improve a predeclared objective without degrading another required gate",
       hinge:
         "not testable until a full coordinate Jacobian survives refinement and reparameterization",
       actionOrAngularMomentumOrganization:
@@ -670,6 +673,6 @@ export function compareGeneralizedFamilyBPilotCases(cases) {
   };
 }
 
-export function serializeGeneralizedFamilyBPilotReport(report) {
+export function serializeCommonAxisBraidPilotReport(report) {
   return `${canonicalJson(report)}\n`;
 }

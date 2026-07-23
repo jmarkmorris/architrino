@@ -838,6 +838,13 @@ function insertCampaignEnvelope(database, preflight, options = {}) {
       "experimentalRawArtifactImportMode must be recompress or verified-compressed.",
     );
   }
+  const rawArtifactTransactionBatchSize =
+    options.experimentalRawArtifactTransactionBatchSize == null
+      ? null
+      : positiveInteger(
+          options.experimentalRawArtifactTransactionBatchSize,
+          "experimentalRawArtifactTransactionBatchSize",
+        );
   const packet = preflight.cases[0].acceptance.packet;
   insertProtocol(database, packet);
   const manifestArtifact = insertArtifact(database, {
@@ -1048,6 +1055,16 @@ function insertCampaignEnvelope(database, preflight, options = {}) {
         candidateId: rawArtifact.descriptor.candidateId,
         completedWork: rawArtifactIndex + 1,
         totalWork: preflight.rawArtifacts.length,
+      });
+    }
+    if (rawArtifactTransactionBatchSize != null &&
+        (rawArtifactIndex + 1) % rawArtifactTransactionBatchSize === 0) {
+      database.exec("COMMIT");
+      database.exec("BEGIN IMMEDIATE");
+      options.onRawArtifactBatchCommitted?.({
+        completedWork: rawArtifactIndex + 1,
+        totalWork: preflight.rawArtifacts.length,
+        transactionBatchSize: rawArtifactTransactionBatchSize,
       });
     }
   }
@@ -1384,15 +1401,15 @@ function completeCycleMultidimensionalRows(packet, summaryCase) {
       });
     }
   }
-  const generalized = packet.diagnosticReductions.generalizedFamilyB;
-  if (generalized?.schema ===
-      "prescribed-path-analysis/generalized-family-b-reduction.v1") {
+  const commonAxis = packet.diagnosticReductions.commonAxisBraid;
+  if (commonAxis?.schema ===
+      "prescribed-path-analysis/common-axis-braid-reduction.v2") {
     for (const resolution of ["primary", "refined"]) {
       const disposition = resolution === "primary"
         ? acceptedDisposition
         : "diagnostic-only";
       for (const [projection, summary] of Object.entries(
-        generalized.residuals[resolution],
+        commonAxis.residuals[resolution],
       )) {
         for (const receiver of summary.receivers) {
           for (const [measure, scalarValue] of [
@@ -1401,8 +1418,8 @@ function completeCycleMultidimensionalRows(packet, summaryCase) {
             ["signed-cycle-average", receiver.signedCycleAverage],
           ]) {
             rows.push({
-              measureId: `generalized-family-b/residual/${projection}/${measure}`,
-              reductionVersion: generalized.reducerVersion,
+              measureId: `common-axis-braid/residual/${projection}/${measure}`,
+              reductionVersion: commonAxis.reducerVersion,
               disposition,
               scalarValue,
               unit: "acceleration",
@@ -1415,36 +1432,36 @@ function completeCycleMultidimensionalRows(packet, summaryCase) {
       }
     }
     rows.push({
-      measureId: "generalized-family-b/residual-convergence/maximum-change",
-      reductionVersion: generalized.reducerVersion,
-      disposition: generalized.residuals.convergence.passed
+      measureId: "common-axis-braid/residual-convergence/maximum-change",
+      reductionVersion: commonAxis.reducerVersion,
+      disposition: commonAxis.residuals.convergence.passed
         ? acceptedDisposition
         : "diagnostic-only",
-      scalarValue: generalized.residuals.convergence.maximumChange,
+      scalarValue: commonAxis.residuals.convergence.maximumChange,
       unit: "relative-or-absolute",
-      numericalUncertainty: generalized.residuals.convergence.maximumChange,
-      normalization: generalized.residuals.convergence.comparison,
-      details: generalized.residuals.convergence,
+      numericalUncertainty: commonAxis.residuals.convergence.maximumChange,
+      normalization: commonAxis.residuals.convergence.comparison,
+      details: commonAxis.residuals.convergence,
     });
     for (const resolution of ["primary", "refined"]) {
       rows.push({
-        measureId: "generalized-family-b/root-transversality-margin",
-        reductionVersion: generalized.reducerVersion,
+        measureId: "common-axis-braid/root-transversality-margin",
+        reductionVersion: commonAxis.reducerVersion,
         disposition: resolution === "primary" ? acceptedDisposition : "diagnostic-only",
-        scalarValue: generalized.minimumRootTransversalityMargin[resolution],
+        scalarValue: commonAxis.minimumRootTransversalityMargin[resolution],
         unit: "speed",
         resolution,
-        details: generalized.minimumRootTransversalityMargin,
+        details: commonAxis.minimumRootTransversalityMargin,
       });
       rows.push({
-        measureId: "generalized-family-b/axial-angular-momentum/rms-about-mean",
-        reductionVersion: generalized.reducerVersion,
+        measureId: "common-axis-braid/axial-angular-momentum/rms-about-mean",
+        reductionVersion: commonAxis.reducerVersion,
         disposition: "diagnostic-only",
         scalarValue:
-          generalized.axialAngularMomentumDiagnostic[resolution].cycle.rmsAboutMean,
+          commonAxis.axialAngularMomentumDiagnostic[resolution].cycle.rmsAboutMean,
         unit: "angular-momentum-per-unit-mu_arch",
         resolution,
-        details: generalized.axialAngularMomentumDiagnostic[resolution],
+        details: commonAxis.axialAngularMomentumDiagnostic[resolution],
       });
     }
   }
@@ -1951,6 +1968,8 @@ export function importAnalyticalCampaign(databasePath, options) {
       acceptedCaseCount: acceptedCount,
       rejectedCaseCount: preflight.cases.length - acceptedCount,
       batchSize,
+      rawArtifactTransactionBatchSize:
+        options.experimentalRawArtifactTransactionBatchSize ?? null,
       campaignEvidenceHash: preflight.campaignAcceptance.evidenceHash,
       resumedFromOrdinal: resumeOffset,
     };
@@ -2532,18 +2551,42 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
     if (!tableExists(database, "schema_migration")) {
       fail("database has no analytical campaign schema migrations.");
     }
+    const hasRawArtifactTable = tableExists(
+      database,
+      "analytical_raw_artifact",
+    );
+    const singlePassRawArtifactVerification =
+      options.experimentalSinglePassRawArtifactVerification === true &&
+      hasRawArtifactTable;
     const artifactTotal = Number(database.prepare(
       "SELECT COUNT(*) AS count FROM artifact",
     ).get().count);
+    const firstPassArtifactTotal = singlePassRawArtifactVerification
+      ? Number(database.prepare(`
+          SELECT COUNT(*) AS count
+          FROM artifact
+          WHERE NOT EXISTS (
+            SELECT 1 FROM analytical_raw_artifact
+            WHERE analytical_raw_artifact.artifact_hash = artifact.artifact_hash
+          )
+        `).get().count)
+      : artifactTotal;
     const artifacts = database.prepare(`
       SELECT artifact_hash, artifact_kind, codec, raw_bytes, stored_bytes, payload
-      FROM artifact ORDER BY artifact_hash
+      FROM artifact
+      ${singlePassRawArtifactVerification
+        ? `WHERE NOT EXISTS (
+            SELECT 1 FROM analytical_raw_artifact
+            WHERE analytical_raw_artifact.artifact_hash = artifact.artifact_hash
+          )`
+        : ""}
+      ORDER BY artifact_hash
     `).iterate();
     let artifactIndex = 0;
     options.onProgress?.({
       stage: "verify-artifacts",
       completedWork: 0,
-      totalWork: artifactTotal,
+      totalWork: firstPassArtifactTotal,
     });
     for (const row of artifacts) {
       const rawBytes = decodeArtifact(row);
@@ -2568,11 +2611,11 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
         if (hash !== summary.summaryHash) fail("stored campaign summary hash is invalid.");
       }
       artifactIndex += 1;
-      if (artifactIndex % 64 === 0 || artifactIndex === artifactTotal) {
+      if (artifactIndex % 64 === 0 || artifactIndex === firstPassArtifactTotal) {
         options.onProgress?.({
           stage: "verify-artifacts",
           completedWork: artifactIndex,
-          totalWork: artifactTotal,
+          totalWork: firstPassArtifactTotal,
         });
       }
     }
@@ -2595,12 +2638,24 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
         fail(`exact source ${hashHex(row.source_hash)} failed canonical verification.`);
       }
     }
-    if (tableExists(database, "analytical_raw_artifact")) {
+    if (hasRawArtifactTable) {
+      if (singlePassRawArtifactVerification) {
+        const rawArtifactReferenceCount = Number(database.prepare(`
+          SELECT COUNT(DISTINCT artifact_hash) AS count
+          FROM analytical_raw_artifact
+        `).get().count);
+        if (firstPassArtifactTotal + rawArtifactReferenceCount !== artifactTotal) {
+          fail("single-pass artifact verification coverage is incomplete.");
+        }
+      }
       const rawArtifactTotal = Number(database.prepare(
         "SELECT COUNT(*) AS count FROM analytical_raw_artifact",
       ).get().count);
       const rawArtifacts = database.prepare(`
-        SELECT analytical_raw_artifact.*, artifact.payload, artifact.codec
+        SELECT analytical_raw_artifact.*, artifact.payload, artifact.codec,
+               artifact.artifact_hash AS stored_artifact_hash,
+               artifact.raw_bytes AS artifact_raw_bytes,
+               artifact.stored_bytes AS artifact_stored_bytes
         FROM analytical_raw_artifact JOIN artifact USING (artifact_hash)
         ORDER BY compressed_hash
       `).iterate();
@@ -2614,6 +2669,9 @@ export function verifyAnalyticalCampaignDatabase(databasePath, options = {}) {
         const rawBytes = gunzipSync(row.payload);
         if (row.codec !== "gzip" || row.payload.length !== row.stored_bytes ||
             rawBytes.length !== row.raw_bytes ||
+            row.raw_bytes !== row.artifact_raw_bytes ||
+            row.stored_bytes !== row.artifact_stored_bytes ||
+            !row.raw_hash.equals(row.stored_artifact_hash) ||
             sha256Bytes(row.payload) !== hashHex(row.compressed_hash) ||
             sha256Bytes(rawBytes) !== hashHex(row.raw_hash)) {
           fail(`raw analytical artifact ${row.relative_path} failed hash/size verification.`);

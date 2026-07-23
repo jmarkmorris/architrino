@@ -31,7 +31,8 @@ function parseArguments(args) {
   for (let index = 1; index < args.length; index += 1) {
     const key = args[index];
     if (!key.startsWith("--")) fail(`unexpected argument ${key}.`);
-    if (key === "--check" || key === "--publish") {
+    if (key === "--check" || key === "--publish" ||
+        key === "--experimental-single-pass-raw-verification") {
       if (values.has(key)) fail(`${key} was supplied more than once.`);
       values.set(key, true);
       continue;
@@ -80,6 +81,10 @@ async function runCli() {
     const batchSize = values.has("--batch-size")
       ? Number(values.get("--batch-size"))
       : undefined;
+    const rawArtifactTransactionBatchSize =
+      values.has("--experimental-raw-artifact-transaction-batch-size")
+        ? Number(values.get("--experimental-raw-artifact-transaction-batch-size"))
+        : undefined;
     printResult(importAnalyticalCampaign(databasePath, {
       manifestPath: required(values, "--manifest"),
       summaryPath: required(values, "--summary"),
@@ -92,6 +97,10 @@ async function runCli() {
               values.get("--experimental-raw-artifact-import-mode"),
           }
         : {}),
+      ...(rawArtifactTransactionBatchSize == null
+        ? {}
+        : { experimentalRawArtifactTransactionBatchSize:
+            rawArtifactTransactionBatchSize }),
       ...(batchSize == null ? {} : { batchSize }),
       onProgress(progress) {
         process.stderr.write(`${JSON.stringify({
@@ -103,6 +112,13 @@ async function runCli() {
       onBatchCommitted(progress) {
         process.stderr.write(`${JSON.stringify({
           heartbeat: "analytical-campaign-ingest",
+          ...progress,
+          wallSeconds: (performance.now() - importStartedAt) / 1_000,
+        })}\n`);
+      },
+      onRawArtifactBatchCommitted(progress) {
+        process.stderr.write(`${JSON.stringify({
+          heartbeat: "analytical-campaign-raw-artifact-commit",
           ...progress,
           wallSeconds: (performance.now() - importStartedAt) / 1_000,
         })}\n`);
@@ -152,6 +168,8 @@ async function runCli() {
   if (command === "verify") {
     const verifyStartedAt = performance.now();
     printResult(verifyAnalyticalCampaignDatabase(databasePath, {
+      experimentalSinglePassRawArtifactVerification:
+        values.has("--experimental-single-pass-raw-verification"),
       onProgress(progress) {
         process.stderr.write(`${JSON.stringify({
           heartbeat: "analytical-campaign-verify",

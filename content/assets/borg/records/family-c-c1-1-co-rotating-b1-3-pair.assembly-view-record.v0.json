@@ -1,7 +1,7 @@
 {
   "schema": "assembly-view-record.v0",
   "sourceId": "family-c-c1-1-co-rotating-b1-3-pair-v1",
-  "title": "C1.1 — co-rotating B1.3 pair",
+  "title": "C5 — co-rotating B1.3 pair",
   "provenance": {
     "engineId": "prescribed-geometry",
     "engineVersion": "prescribed-braid-record-emitter.v1",
@@ -24,14 +24,14 @@
       "sphericalEnvelopeRadius": 1.1,
       "displayTrailPeriods": 1,
       "prescribedReturnPeriod": 4,
-      "description": "Exact C1.1 prescribed display paths formed from two all-equatorial B1.3 components with a common circulation sense; no binding or physical realization is implied.",
+      "description": "Exact C5 prescribed display paths formed from two all-equatorial B1.3 components with a common circulation sense; no binding or physical realization is implied.",
       "taxonomy": {
         "familyId": "C",
         "familyLabel": "Family C",
-        "memberId": "C1.1",
+        "memberId": "C5",
         "memberLabel": "co-rotating B1.3 pair",
-        "displayLabel": "C1.1 — co-rotating B1.3 pair",
-        "canonSource": "content/markdown/aaa/noether-braid/braid-family-c.md#c11-and-c21"
+        "displayLabel": "C5 — co-rotating B1.3 pair",
+        "canonSource": "content/markdown/aaa/noether-braid/braid-family-c.md#c5-and-c6"
       },
       "coordinates": {
         "group": {
@@ -336,7 +336,7 @@
           "choices": [
             "Both components use the B1.3 all-equatorial radii, zero axial half-separations, transverse orbit radii, common frequency, phases, and polarity assignments.",
             "The braid centers at (0,0,-0.55) and (0,0,0.55) lie on the common z axis and select axial center-to-center offset d_C=1.10; identity relative orientation, equal frequencies, and relative phase pi/3 complete the representative.",
-            "The common circulation sign is the C1.1 member relation; the selected sign +1 is an illustrative orientation choice."
+            "The common circulation sign is the C5 member relation; the selected sign +1 is an illustrative orientation choice."
           ]
         },
         "compatibility": {
@@ -50705,7 +50705,7 @@
     {
       "id": "c1-1-braid-1-binary-1-endpoint-1-prescribed-return-cycle",
       "worldlineId": "c1-1-braid-1-binary-1-endpoint-1",
-      "label": "C1.1 — co-rotating B1.3 pair, c1-1-braid-1-binary-1, endpoint 1",
+      "label": "C5 — co-rotating B1.3 pair, c1-1-braid-1-binary-1, endpoint 1",
       "points": [
         {
           "x": 0.22,
@@ -51197,7 +51197,7 @@
     {
       "id": "c1-1-braid-1-binary-1-endpoint-2-prescribed-return-cycle",
       "worldlineId": "c1-1-braid-1-binary-1-endpoint-2",
-      "label": "C1.1 — co-rotating B1.3 pair, c1-1-braid-1-binary-1, endpoint 2",
+      "label": "C5 — co-rotating B1.3 pair, c1-1-braid-1-binary-1, endpoint 2",
       "points": [
         {
           "x": -0.22,
@@ -51689,7 +51689,7 @@
     {
       "id": "c1-1-braid-1-binary-2-endpoint-1-prescribed-return-cycle",
       "worldlineId": "c1-1-braid-1-binary-2-endpoint-1",
-      "label": "C1.1 — co-rotating B1.3 pair, c1-1-braid-1-binary-2, endpoint 1",
+      "label": "C5 — co-rotating B1.3 pair, c1-1-braid-1-binary-2, endpoint 1",
       "points": [
         {
           "x": -0.15999999999999992,
@@ -52181,7 +52181,7 @@
     {
       "id": "c1-1-braid-1-binary-2-endpoint-2-prescribed-return-cycle",
       "worldlineId": "c1-1-braid-1-binary-2-endpoint-2",
-      "label": "C1.1 — co-rotating B1.3 pair, c1-1-braid-1-binary-2, endpoint 2",
+      "label": "C5 — co-rotating B1.3 pair, c1-1-braid-1-binary-2, endpoint 2",
       "points": [
         {
           "x": 0.15999999999999992,
@@ -52673,7 +52673,7 @@
     {
       "id": "c1-1-braid-1-binary-3-endpoint-1-prescribed-return-cycle",
       "worldlineId": "c1-1-braid-1-binary-3-endpoint-1",
-      "label": "C1.1 — co-rotating B1.3 pair, c1-1-braid-1-binary-3, endpoint 1",
+      "label": "C5 — co-rotating B1.3 pair, c1-1-braid-1-binary-3, endpoint 1",
       "points": [
         {
           "x": -0.2200000000000002,
@@ -53165,7 +53165,7 @@
     {
       "id": "c1-1-braid-1-binary-3-endpoint-2-prescribed-return-cycle",
       "worldlineId": "c1-1-braid-1-binary-3-endpoint-2",
-      "label": "C1.1 — co-rotating B1.3 pair, c1-1-braid-1-binary-3, endpoint 2",
+      "label": "C5 — co-rotating B1.3 pair, c1-1-braid-1-binary-3, endpoint 2",
       "points": [
         {
           "x": 0.2200000000000002,
@@ -53657,7 +53657,7 @@
     {
       "id": "c1-1-braid-2-binary-1-endpoint-1-prescribed-return-cycle",
       "worldlineId": "c1-1-braid-2-binary-1-endpoint-1",
-      "label": "C1.1 — co-rotating B1.3 pair, c1-1-braid-2-binary-1, endpoint 1",
+      "label": "C5 — co-rotating B1.3 pair, c1-1-braid-2-binary-1, endpoint 1",
       "points": [
         {
           "x": 0.11000000000000003,
@@ -54149,7 +54149,7 @@
     {
       "id": "c1-1-braid-2-binary-1-endpoint-2-prescribed-return-cycle",
       "worldlineId": "c1-1-braid-2-binary-1-endpoint-2",
-      "label": "C1.1 — co-rotating B1.3 pair, c1-1-braid-2-binary-1, endpoint 2",
+      "label": "C5 — co-rotating B1.3 pair, c1-1-braid-2-binary-1, endpoint 2",
       "points": [
         {
           "x": -0.11000000000000003,
@@ -54641,7 +54641,7 @@
     {
       "id": "c1-1-braid-2-binary-2-endpoint-1-prescribed-return-cycle",
       "worldlineId": "c1-1-braid-2-binary-2-endpoint-1",
-      "label": "C1.1 — co-rotating B1.3 pair, c1-1-braid-2-binary-2, endpoint 1",
+      "label": "C5 — co-rotating B1.3 pair, c1-1-braid-2-binary-2, endpoint 1",
       "points": [
         {
           "x": -0.32,
@@ -55133,7 +55133,7 @@
     {
       "id": "c1-1-braid-2-binary-2-endpoint-2-prescribed-return-cycle",
       "worldlineId": "c1-1-braid-2-binary-2-endpoint-2",
-      "label": "C1.1 — co-rotating B1.3 pair, c1-1-braid-2-binary-2, endpoint 2",
+      "label": "C5 — co-rotating B1.3 pair, c1-1-braid-2-binary-2, endpoint 2",
       "points": [
         {
           "x": 0.32,
@@ -55625,7 +55625,7 @@
     {
       "id": "c1-1-braid-2-binary-3-endpoint-1-prescribed-return-cycle",
       "worldlineId": "c1-1-braid-2-binary-3-endpoint-1",
-      "label": "C1.1 — co-rotating B1.3 pair, c1-1-braid-2-binary-3, endpoint 1",
+      "label": "C5 — co-rotating B1.3 pair, c1-1-braid-2-binary-3, endpoint 1",
       "points": [
         {
           "x": 0.2199999999999997,
@@ -56117,7 +56117,7 @@
     {
       "id": "c1-1-braid-2-binary-3-endpoint-2-prescribed-return-cycle",
       "worldlineId": "c1-1-braid-2-binary-3-endpoint-2",
-      "label": "C1.1 — co-rotating B1.3 pair, c1-1-braid-2-binary-3, endpoint 2",
+      "label": "C5 — co-rotating B1.3 pair, c1-1-braid-2-binary-3, endpoint 2",
       "points": [
         {
           "x": -0.2199999999999997,

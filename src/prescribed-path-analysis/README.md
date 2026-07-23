@@ -144,19 +144,19 @@ The exporter writes exact manifest, summary, result-packet, and compressed raw-l
 
 Independent database acceptance is a separately authored verification of the retained analytical record. It is not a fresh numerical evaluation of the prescribed paths and does not establish the evaluator's mathematical correctness. Import, acceptance, query, export, or backup does not call the EOM solver or imply stability, energy, retention, physical realization, or completed braid-family grading.
 
-## Generalized Family-B Common-Axis Pilot
+## Common-Axis Braid Pilot
 
-`GeneralizedFamilyBTrain.mjs` defines exact six-core single, twelve-core dual, and optional payload source records in one common-axis coordinate system. The source contract retains ordered spacings, train length, exact components, a fixed-point-free binary-counterpart map, a separate adjacent-pair payload map, and every core or payload trajectory coordinate. `payload architrino` is defined only by that source contract and is not mapped to another assembly component.
+`CommonAxisBraidTrain.mjs` defines exact six-architrino Family-B extensions, twelve-architrino Family-C records, and optional additional worldlines in one common-axis coordinate system. The source contract retains ordered spacings, train length, ordered index subsets, a fixed-point-free binary-counterpart map, a separate adjacent-pair accessory-association map, and every defining or accessory architrino trajectory coordinate. In a twelve-worldline geometry, six declared additional worldlines form one Accessory Configuration outside the twelve defining Family-C worldlines.
 
-`GeneralizedFamilyBPilot.mjs` supplies six predeclared references and one seeded neighborhood sample around each. `GeneralizedFamilyBCampaign.mjs` evaluates complete-cycle source-endpoint residuals in axial, local radial, and local tangential coordinates, retains exterior surface reductions, runs a grouped spacing sensitivity, records diagnostic axial angular-momentum rows without inserting $h$ or $\hbar$, and writes a compatible complete-cycle campaign for independent SQLite acceptance.
+`CommonAxisBraidPilot.mjs` supplies six predeclared references and one seeded neighborhood sample around each. `CommonAxisBraidCampaign.mjs` evaluates complete-cycle source-endpoint residuals in axial, local radial, and local tangential coordinates, retains exterior surface reductions, runs a grouped spacing sensitivity, records diagnostic axial angular-momentum rows without inserting $h$ or $\hbar$, and writes a compatible complete-cycle campaign for independent SQLite acceptance.
 
 Run the bounded campaign with:
 
 ```bash
-node scripts/eom/run-generalized-family-b-pilot.mjs
+node scripts/eom/run-common-axis-braid-pilot.mjs
 ```
 
-The default outputs are `.local-data/braid-analysis/generalized-family-b-pilot/` and `.local-data/braid-analysis/generalized-family-b-pilot.sqlite`. Use `--references-only` for the six reference rows, `--no-import` to stop after campaign generation, and `--output`, `--database`, or `--protocol` to select explicit paths.
+The default outputs are `.local-data/braid-analysis/common-axis-braid-pilot/` and `.local-data/braid-analysis/common-axis-braid-pilot.sqlite`. Use `--references-only` for the six reference rows, `--no-import` to stop after campaign generation, and `--output`, `--database`, or `--protocol` to select explicit paths.
 
 The pilot is prescribed-path analytics only. It imports no EOM-solver module, evolves no path, creates no handoff packet, and makes no stability, self-stabilization, retention, binding, photon-identity, energy-closure, quantization, physical-realization, or EOM-solver-compatibility claim.
 

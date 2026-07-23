@@ -44,7 +44,7 @@ Convergence vocabulary is operator/agent-facing workflow terminology. It belongs
 ## Constraints Carried Forward
 
 - A Convergence Metric is named vocabulary only. Metric tooling is built only when it has a concrete consumer, per the anti-gate-proliferation policy in `AGENTS.md`. Until then the working metric is qualitative: each campaign must leave the corpus measurably closer to canonical — debt items retired, targets closed.
-- The installed `aaa-corpus-advancement` skill is managed outside this repo. Its in-repo protocol text is updated with the rename; the skill identifier itself is renamed separately when convenient.
+- The installed skill retains the literal identifier `aaa-corpus-advancement` as a compatibility contract. Its display name, description, body, and canonical in-repo protocol use convergence terminology. The compatibility identifier is not an alternative process name for prose.
 
 ## Alternatives Considered
 

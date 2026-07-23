@@ -57,7 +57,7 @@ export const TERMINOLOGY_RULES = [
   {
     id: "taxonomy-member-identifier",
     label: "taxonomy member identifier requiring local coordinate ownership",
-    pattern: /\b(?:A1(?:\.[1-4])?|A2|A3(?:\.[1-4])?|B1(?:\.[1-4])?|C1(?:\.1)?|C2(?:\.1)?)\b/g,
+    pattern: /\b(?:A1(?:\.[1-4])?|A2|A3(?:\.[1-4])?|B1(?:\.[1-4])?|C[1-6])\b/g,
     replacement:
       "retain only when the local passage states the defining coordinates or explicitly delegates them to the canonical member definition; otherwise use Noether braid, candidate braid, or prescribed braid geometry",
     auditOnly: true,

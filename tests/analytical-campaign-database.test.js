@@ -569,6 +569,14 @@ test("verified compressed raw import preserves baseline bytes and verification",
     });
     const baselineVerification = verifyAnalyticalCampaignDatabase(baselinePath);
     const verifiedVerification = verifyAnalyticalCampaignDatabase(verifiedPath);
+    const singlePassVerification = verifyAnalyticalCampaignDatabase(
+      verifiedPath,
+      { experimentalSinglePassRawArtifactVerification: true },
+    );
+    assert.equal(
+      singlePassVerification.fingerprint,
+      verifiedVerification.fingerprint,
+    );
     assert.deepEqual(
       {
         manifestHash: verifiedImport.manifestHash,
@@ -611,6 +619,109 @@ test("verified compressed raw import preserves baseline bytes and verification",
         database.close();
       }
     }
+    const corrupted = openAnalyticalCampaignDatabase(verifiedPath);
+    const storedPayload = corrupted.prepare(`
+      SELECT artifact.payload
+      FROM analytical_raw_artifact
+      JOIN artifact USING (artifact_hash)
+    `).get().payload;
+    const corruptedPayload = Buffer.from(storedPayload);
+    corruptedPayload[0] ^= 0xff;
+    corrupted.prepare(`
+      UPDATE artifact SET payload = ?
+      WHERE artifact_hash = (
+        SELECT artifact_hash FROM analytical_raw_artifact LIMIT 1
+      )
+    `).run(corruptedPayload);
+    corrupted.close();
+    assert.throws(
+      () => verifyAnalyticalCampaignDatabase(verifiedPath, {
+        experimentalSinglePassRawArtifactVerification: true,
+      }),
+      /incorrect header check|failed hash\/size verification/,
+    );
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test("bounded raw-artifact transactions preserve output and resume after interruption", () => {
+  const directory = temporaryDirectory("aaa-analytical-db-bounded-raw");
+  try {
+    const { paths } = stageBaselineCampaignWithRawArtifact(directory);
+    const baselinePath = path.join(directory, "baseline.sqlite3");
+    const boundedPath = path.join(directory, "bounded.sqlite3");
+    const interruptedPath = path.join(directory, "interrupted.sqlite3");
+    importAnalyticalCampaign(baselinePath, {
+      manifestPath: paths.manifestPath,
+      summaryPath: paths.summaryPath,
+      packetDirectory: paths.packetDirectory,
+      experimentalRawArtifactImportMode: "verified-compressed",
+    });
+    const committed = [];
+    const boundedImport = importAnalyticalCampaign(boundedPath, {
+      manifestPath: paths.manifestPath,
+      summaryPath: paths.summaryPath,
+      packetDirectory: paths.packetDirectory,
+      experimentalRawArtifactImportMode: "verified-compressed",
+      experimentalRawArtifactTransactionBatchSize: 1,
+      onRawArtifactBatchCommitted(progress) {
+        committed.push(progress);
+      },
+    });
+    assert.equal(boundedImport.rawArtifactTransactionBatchSize, 1);
+    assert.deepEqual(
+      committed.map((row) => [row.completedWork, row.totalWork]),
+      [[1, 1]],
+    );
+    assert.equal(
+      verifyAnalyticalCampaignDatabase(boundedPath).fingerprint,
+      verifyAnalyticalCampaignDatabase(baselinePath).fingerprint,
+    );
+
+    let interrupted = false;
+    assert.throws(
+      () => importAnalyticalCampaign(interruptedPath, {
+        manifestPath: paths.manifestPath,
+        summaryPath: paths.summaryPath,
+        packetDirectory: paths.packetDirectory,
+        experimentalRawArtifactImportMode: "verified-compressed",
+        experimentalRawArtifactTransactionBatchSize: 1,
+        onRawArtifactBatchCommitted() {
+          if (!interrupted) {
+            interrupted = true;
+            throw new Error("injected interruption after raw-artifact commit");
+          }
+        },
+      }),
+      /injected interruption/,
+    );
+    const partial = openAnalyticalCampaignDatabase(interruptedPath, {
+      readOnly: true,
+      migrate: false,
+    });
+    assert.equal(
+      Number(partial.prepare(
+        "SELECT COUNT(*) AS count FROM analytical_raw_artifact",
+      ).get().count),
+      1,
+    );
+    assert.equal(
+      Number(partial.prepare("SELECT COUNT(*) AS count FROM campaign_case").get().count),
+      0,
+    );
+    partial.close();
+    importAnalyticalCampaign(interruptedPath, {
+      manifestPath: paths.manifestPath,
+      summaryPath: paths.summaryPath,
+      packetDirectory: paths.packetDirectory,
+      experimentalRawArtifactImportMode: "verified-compressed",
+      experimentalRawArtifactTransactionBatchSize: 1,
+    });
+    assert.equal(
+      verifyAnalyticalCampaignDatabase(interruptedPath).fingerprint,
+      verifyAnalyticalCampaignDatabase(baselinePath).fingerprint,
+    );
   } finally {
     rmSync(directory, { recursive: true, force: true });
   }

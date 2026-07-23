@@ -859,8 +859,8 @@ function batchProtocol(fullEventProtocol, timeIndex) {
 export function validateCompleteCycleSourceApplicability(sourceRecord, protocol) {
   const isB1 = protocol.schema ===
     "prescribed-path-analysis/b1-complete-cycle-probe-protocol.v1";
-  const generalizedFamilyB =
-    protocol.applicability?.campaignClass === "generalized-family-b-prescribed-train.v1";
+  const commonAxisBraid =
+    protocol.applicability?.campaignClass === "common-axis-braid-prescribed-path.v2";
   if (isB1 && (sourceRecord?.taxonomy?.familyId !== "B" ||
       !["B1", "B1.1", "B1.2", "B1.3", "B1.4"].includes(sourceRecord.taxonomy?.memberId))) {
     throw new Error("B1 complete-cycle reduction requires an exact Family B B1 source record.");
@@ -877,7 +877,7 @@ export function validateCompleteCycleSourceApplicability(sourceRecord, protocol)
   }
   const period = protocol.completeCycle.period;
   const envelope = protocol.applicability.maximumSourceEnvelopeRadius;
-  const requiredCenterVelocity = generalizedFamilyB
+  const requiredCenterVelocity = commonAxisBraid
     ? {
         x: protocol.applicability.requiredCenterVelocity[0],
         y: protocol.applicability.requiredCenterVelocity[1],
@@ -924,7 +924,7 @@ export function validateCompleteCycleSourceApplicability(sourceRecord, protocol)
       y: center.y + centerVelocity.y * cycleEndTime,
       z: center.z + centerVelocity.z * cycleEndTime,
     };
-    const maximumRadius = generalizedFamilyB
+    const maximumRadius = commonAxisBraid
       ? Math.max(vectorNorm(cycleStartCenter), vectorNorm(cycleEndCenter)) +
         Math.max(radiusUNorm, radiusVNorm)
       : isB1

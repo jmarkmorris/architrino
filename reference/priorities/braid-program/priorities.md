@@ -37,7 +37,7 @@ Walk up from the smallest object, certifying dynamical behavior at each rung bef
 
 ## Parallel Analytical Lanes
 
-- [`generalized_family_b_common_axis_train_analytics`](b-family-binary-train-analytics.md) — Operator-directed prescribed-path lane for six-core single and twelve-core dual common-axis orbital trains, with an optional six-payload dual stratum. For fixed three-binary pairing, the six-core chart contains B1 as the common-midpoint submanifold and adds two intrinsic relative-midpoint dimensions after quotienting the common translation. The prior twelve-row $c_f=4$ pilot is historical diagnostic evidence only and cannot negatively rank the enormous train space. A current campaign must use $c_f=1$, co-translating exterior probes, translation controls, and space-filling coverage. Final taxonomy assignment remains `discussion-scoped`.
+- [`common_axis_braid_train_analytics`](common-axis-braid-train-analytics.md) — Operator-directed prescribed-path lane for the six-architrino Family-B dimension extension and the general twelve-architrino coaxial Family-C chart, with an optional six-worldline Accessory Configuration. C1/C2 are the general co-/counter-rotating members; C3/C4 are the coaxial two-B1 loci; C5/C6 are their all-equatorial loci. The prior twelve-row $c_f=4$ pilot is historical diagnostic evidence only and cannot negatively rank the enormous common-axis space. A current campaign must use $c_f=1$, co-translating exterior probes, translation controls, and space-filling coverage.
 
 ## Queue
 

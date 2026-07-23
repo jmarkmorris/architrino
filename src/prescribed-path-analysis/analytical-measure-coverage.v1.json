@@ -4,9 +4,9 @@
   "requiredMeasureCount": 29,
   "methodology": {
     "path": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-    "sha256": "a23c5eea775c4365f725a0ef1e0c4f36d7852adefcbd30d3bfccfc9e2a13b026",
+    "sha256": "5139c308c175b00efc6c3b6acf45e592491f7921468a725d90854a7b9271fda6",
     "impactReview": "reviewed-for-complete-cycle-campaign-v1",
-    "impactNote": "The common-axis orbital-train chart is evaluated by its specialized generalized Family-B campaign; it changes no existing all-candidate measure, gate, producer, or publication disposition."
+    "impactNote": "Reviewed after the Family-C general coaxial chart and common-axis campaign protocol were made explicit. C1 and C2 add exact prescribed sources to the live catalog, while the specialized common-axis campaign remains separate; no existing all-candidate measure, gate, producer, or publication disposition changes."
   },
   "reductionVersions": [
     "prescribed-record-analytics/complete-cycle-campaign-reducer.v1",
@@ -412,11 +412,11 @@
       "publicationDisposition": "accepted only when every stencil point passes under the common protocol"
     },
     {
-      "measureId": "c11-c21-axial-center-separation-sampling-coordinate",
-      "obligation": "C1.1 and C2.1 Monte Carlo campaigns must sample axial braid-center separation d_C under a declared positive domain and probability measure while retaining the coaxial constraint",
+      "measureId": "c3-c6-axial-center-separation-sampling-coordinate",
+      "obligation": "C3 through C6 Monte Carlo campaigns must sample axial component-center separation d_C under a declared positive domain and probability measure while retaining the coaxial constraint",
       "methodologyLocation": "Monte Carlo Configuration-Space Analysis",
       "requiredFields": ["d_C", "common axis n_C", "minimum", "maximum", "units", "probability measure"],
-      "applicability": "Monte Carlo campaigns over C1.1 and C2.1; this exact-catalog campaign evaluates the canonical display reference and draws no Monte Carlo samples",
+      "applicability": "Monte Carlo campaigns over C3 through C6; this exact-catalog campaign evaluates the canonical display reference and draws no Monte Carlo samples",
       "producer": "canonical exact-source generator for the fixed reference geometry; a future Monte Carlo sampler must declare and enforce the sampling coordinate",
       "resultPacketLocation": "exactSourceRecord for the fixed reference point; no Monte Carlo sample packet is produced by this campaign",
       "sqliteProjection": "source_record for the fixed exact-source identity; a future sampling campaign requires a declared configuration-space projection",

@@ -3,9 +3,11 @@ import assert from "node:assert/strict";
 
 import {
   ALL_RETAINED_SIMPLE_ROOTS_POLICY,
-  GENERALIZED_FAMILY_B_TRAIN_SPEC_SCHEMA,
+  COMMON_AXIS_BRAID_TRAIN_SPEC_SCHEMA,
   PRESCRIBED_RECORD_ANALYSIS_PROTOCOL_SCHEMA,
-  createGeneralizedFamilyBPilotInventory,
+  createCommonAxisBraidExactSourceRecord,
+  createCommonAxisBraidPilotInventory,
+  createCommonAxisBraidTrainSpec,
   evaluateExactPrescribedSourceState,
   evaluatePrescribedRecordAnalysis,
   reduceCompleteCycleEndpointPacket,
@@ -15,8 +17,8 @@ import {
 function endpointProtocol(sourceRecord, observationTimes) {
   return {
     schema: PRESCRIBED_RECORD_ANALYSIS_PROTOCOL_SCHEMA,
-    protocolId: "generalized-family-b-independent-endpoint-test-v1",
-    fieldSpeed: 4,
+    protocolId: "common-axis-braid-independent-endpoint-test-v2",
+    fieldSpeed: 1,
     coupling: 1,
     history: { start: 0, end: 8, minimumDelay: 1e-12 },
     returnWindow: { start: 4, period: 4 },
@@ -52,43 +54,77 @@ function vectorDistance(left, right) {
   return Math.hypot(left.x - right.x, left.y - right.y, left.z - right.z);
 }
 
-test("generalized Family-B pilot source inventory preserves orbital order and distinct maps", () => {
-  const rows = createGeneralizedFamilyBPilotInventory({
+test("common-axis braid pilot preserves architrino-worldline order and distinct maps", () => {
+  const rows = createCommonAxisBraidPilotInventory({
     includeNeighborhoodSamples: false,
   });
   assert.equal(rows.length, 6);
   assert.deepEqual(rows.map((row) => row.sourceRecord.sources.length), [6, 12, 18, 12, 12, 18]);
 
-  const payload = rows.find(
-    (row) => row.spec.specId === "generalized-b-dual-central-six-payload",
+  const accessory = rows.find(
+    (row) => row.spec.specId === "family-c-c2-central-six-accessory",
   );
-  assert.equal(payload.spec.schema, GENERALIZED_FAMILY_B_TRAIN_SPEC_SCHEMA);
+  assert.equal(accessory.spec.schema, COMMON_AXIS_BRAID_TRAIN_SPEC_SCHEMA);
   assert.deepEqual(
-    payload.spec.coreOrbitals.map((row) => row.index),
+    accessory.spec.architrinoWorldlines.map((row) => row.index),
     Array.from({ length: 12 }, (_, index) => index + 1),
   );
-  assert.ok(payload.spec.spacingVector.every((value) => value > 0));
-  assert.equal(payload.spec.payloads.length, 6);
+  assert.ok(accessory.spec.spacingVector.every((value) => value > 0));
+  assert.equal(accessory.spec.additionalWorldlines.length, 6);
   assert.deepEqual(
-    payload.spec.payloadSlots.map((row) => row.orbitalIndices),
+    accessory.spec.additionalWorldlineSlots.map((row) => row.worldlineIndices),
     [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12]],
   );
   for (const [sourceId, counterpartId] of Object.entries(
-    payload.spec.binaryCounterpartMap,
+    accessory.spec.binaryCounterpartMap,
   )) {
     assert.notEqual(sourceId, counterpartId);
-    assert.equal(payload.spec.binaryCounterpartMap[counterpartId], sourceId);
+    assert.equal(accessory.spec.binaryCounterpartMap[counterpartId], sourceId);
   }
 
   const crossed = rows.find(
-    (row) => row.spec.specId === "generalized-b-dual-crossed-pairing-six-payload",
+    (row) => row.spec.specId === "family-c-c2-crossed-pairing-six-accessory",
   );
-  assert.notDeepEqual(crossed.spec.binaryCounterpartMap, payload.spec.binaryCounterpartMap);
-  assert.deepEqual(crossed.spec.payloadSlots, payload.spec.payloadSlots);
+  assert.notDeepEqual(
+    crossed.spec.binaryCounterpartMap,
+    accessory.spec.binaryCounterpartMap,
+  );
+  assert.deepEqual(
+    crossed.spec.additionalWorldlineSlots,
+    accessory.spec.additionalWorldlineSlots,
+  );
+});
+
+test("twelve-worldline circulation relations route to general C1 and C2", () => {
+  const shared = {
+    geometryClass: "twelve-architrino",
+    radii: Array(12).fill(0.24),
+    spacings: Array(11).fill(0.12),
+  };
+  const coRotating = createCommonAxisBraidTrainSpec({
+    ...shared,
+    specId: "test-family-c-c1",
+    label: "test C1 co-rotating",
+    circulationStratum: "co-rotating",
+  });
+  const counterRotating = createCommonAxisBraidTrainSpec({
+    ...shared,
+    specId: "test-family-c-c2",
+    label: "test C2 counter-rotating",
+    circulationStratum: "counter-rotating",
+  });
+  assert.equal(
+    createCommonAxisBraidExactSourceRecord(coRotating).taxonomy.memberId,
+    "C1",
+  );
+  assert.equal(
+    createCommonAxisBraidExactSourceRecord(counterRotating).taxonomy.memberId,
+    "C2",
+  );
 });
 
 test("every pilot path returns exactly after the declared period while the group translates", () => {
-  const rows = createGeneralizedFamilyBPilotInventory({
+  const rows = createCommonAxisBraidPilotInventory({
     includeNeighborhoodSamples: false,
   });
   for (const { spec, sourceRecord } of rows) {
@@ -114,7 +150,7 @@ test("every pilot path returns exactly after the declared period while the group
 });
 
 test("endpoint evaluation retains one independently checkable causal root per other source", () => {
-  const [single] = createGeneralizedFamilyBPilotInventory({
+  const [single] = createCommonAxisBraidPilotInventory({
     includeNeighborhoodSamples: false,
   });
   const protocol = endpointProtocol(single.sourceRecord, [4]);
@@ -140,14 +176,14 @@ test("endpoint evaluation retains one independently checkable causal root per ot
       );
       const distance = vectorDistance(receiverState.position, transmitterState.position);
       const delay = event.observationTime - root.emissionTime;
-      assert.ok(Math.abs(distance - 4 * delay) <= 2e-11);
+      assert.ok(Math.abs(distance - delay) <= 2e-11);
       assert.ok(root.rootTransversalityMargin > 0);
     }
   }
 });
 
 test("complete-cycle residual projections are deterministic and ledger-backed", () => {
-  const [single] = createGeneralizedFamilyBPilotInventory({
+  const [single] = createCommonAxisBraidPilotInventory({
     includeNeighborhoodSamples: false,
   });
   const times = Array.from({ length: 8 }, (_, index) => 4 + index / 2);
@@ -166,7 +202,7 @@ test("complete-cycle residual projections are deterministic and ledger-backed", 
     first,
     single.sourceRecord,
     4,
-    { fieldSpeed: 4 },
+    { fieldSpeed: 1 },
   );
   assert.equal(reduction.completeDeclaredSourceInventory, true);
   assert.equal(reduction.receivers.length, 6);

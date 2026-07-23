@@ -59,7 +59,7 @@ function rotate120(vector) {
 }
 
 test("canonical target registry contains every requested candidate exactly once", () => {
-  assert.equal(PRESCRIBED_BRAID_TARGETS.length, 19);
+  assert.equal(PRESCRIBED_BRAID_TARGETS.length, 21);
   const labels = fixtures.map(({ spec }) => spec.taxonomy.displayLabel);
   assert.deepEqual(labels, [
     "A1 — coincident endpoint orbits",
@@ -77,14 +77,16 @@ test("canonical target registry contains every requested candidate exactly once"
     "B1.2 — high-axial interior",
     "B1.3 — all-equatorial boundary",
     "B1.4 — all-axial boundary",
-    "C1 — co-rotating B1 pair",
-    "C2 — counter-rotating B1 pair",
-    "C1.1 — co-rotating B1.3 pair",
-    "C2.1 — counter-rotating B1.3 pair",
+    "C1 — co-rotating",
+    "C2 — counter-rotating",
+    "C3 — co-rotating B1 pair",
+    "C4 — counter-rotating B1 pair",
+    "C5 — co-rotating B1.3 pair",
+    "C6 — counter-rotating B1.3 pair",
   ]);
   assert.equal(new Set(labels).size, labels.length);
-  assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.specPath)).size, 19);
-  assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.outPath)).size, 19);
+  assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.specPath)).size, 21);
+  assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.outPath)).size, 21);
 });
 
 test("spec validation fails closed on nonfinite coordinates, broken radii, and incomplete return cycles", () => {
@@ -102,7 +104,7 @@ test("spec validation fails closed on nonfinite coordinates, broken radii, and i
   const wrongMember = structuredClone(fixtures[3].spec);
   wrongMember.braids[0].binaries[0].frequency = 0.75;
   assert.throws(() => validatePrescribedBraidSpec(wrongMember), /4:2:1/);
-  const brokenCComponent = structuredClone(fixtures[15].spec);
+  const brokenCComponent = structuredClone(fixtures[17].spec);
   brokenCComponent.braids[1].binaries[1].frequency = 0.5;
   assert.throws(() => validatePrescribedBraidSpec(brokenCComponent), /common-frequency B1 component/);
 });
@@ -314,23 +316,58 @@ test("the B1.1 through B1.4 records preserve the verified coordinate mapping and
   assert.throws(() => validatePrescribedBraidSpec(invalidAxial), /B1\.4 requires/);
 });
 
-test("C1 and C2 contain two complete B1 components and the declared relative circulation", () => {
+test("C1 and C2 contain twelve ordered coaxial architrino worldlines outside the B1 common-midpoint locus", () => {
   const c1 = fixtures[15].spec;
   const c2 = fixtures[16].spec;
   for (const spec of [c1, c2]) {
-    assert.equal(spec.braids.length, 2);
-    assert.deepEqual(spec.braids.map((braid) => braid.binaries.length), [3, 3]);
-    assert.deepEqual(spec.braids.map((braid) => braid.centerOffset), [[-0.55, 0, 0], [0.55, 0, 0]]);
+    const materialized = materializePrescribedBraidSpec(spec);
     assert.equal(generatePrescribedBraidRecord(spec).worldlines.length, 12);
+    assert.ok(materialized.binaries.every((binary) =>
+      binary.frame.axis[0] === 0 &&
+      binary.frame.axis[1] === 0 &&
+      binary.frame.axis[2] === 1 &&
+      binary.centerOffset[0] === 0 &&
+      binary.centerOffset[1] === 0));
+    vectorNear(
+      materialized.binaries.flatMap((binary) => [
+        binary.centerOffset[2] - binary.axialHalfSeparation,
+        binary.centerOffset[2] + binary.axialHalfSeparation,
+      ]).toSorted((left, right) => left - right),
+      [-0.82, -0.68, -0.52, -0.38, -0.22, -0.08, 0.08, 0.22, 0.38, 0.52, 0.68, 0.82],
+    );
+    assert.ok(spec.braids.every((braid) =>
+      new Set(braid.binaries.map((binary) => binary.centerOffset[2])).size === 3));
   }
   assert.deepEqual(c1.braids.map((braid) => braid.circulationSense), [1, 1]);
   assert.deepEqual(c2.braids.map((braid) => braid.circulationSense), [1, -1]);
+
+  const noncoaxial = structuredClone(c1);
+  noncoaxial.braids[1].binaries[0].centerOffset[0] = 0.01;
+  assert.throws(() => validatePrescribedBraidSpec(noncoaxial), /common axis/);
+
+  const unordered = structuredClone(c1);
+  [unordered.sourceOrder[0], unordered.sourceOrder[1]] =
+    [unordered.sourceOrder[1], unordered.sourceOrder[0]];
+  assert.throws(() => validatePrescribedBraidSpec(unordered), /increasing axial/);
 });
 
-test("C1.1 and C2.1 contain two all-equatorial B1.3 components", () => {
-  const c11 = fixtures[17].spec;
-  const c21 = fixtures[18].spec;
-  for (const spec of [c11, c21]) {
+test("C3 and C4 contain two complete coaxial B1 components and the declared relative circulation", () => {
+  const c3 = fixtures[17].spec;
+  const c4 = fixtures[18].spec;
+  for (const spec of [c3, c4]) {
+    assert.equal(spec.braids.length, 2);
+    assert.deepEqual(spec.braids.map((braid) => braid.binaries.length), [3, 3]);
+    assert.deepEqual(spec.braids.map((braid) => braid.centerOffset), [[0, 0, -0.55], [0, 0, 0.55]]);
+    assert.equal(generatePrescribedBraidRecord(spec).worldlines.length, 12);
+  }
+  assert.deepEqual(c3.braids.map((braid) => braid.circulationSense), [1, 1]);
+  assert.deepEqual(c4.braids.map((braid) => braid.circulationSense), [1, -1]);
+});
+
+test("C5 and C6 contain two all-equatorial B1.3 components", () => {
+  const c5 = fixtures[19].spec;
+  const c6 = fixtures[20].spec;
+  for (const spec of [c5, c6]) {
     assert.equal(spec.braids.length, 2);
     assert.deepEqual(spec.braids.map((braid) => braid.binaries.length), [3, 3]);
     assert.deepEqual(spec.braids.map((braid) => braid.centerOffset), [[0, 0, -0.55], [0, 0, 0.55]]);
@@ -340,20 +377,20 @@ test("C1.1 and C2.1 contain two all-equatorial B1.3 components", () => {
       binary.transverseOrbitRadius === binary.radius)));
     assert.equal(generatePrescribedBraidRecord(spec).worldlines.length, 12);
   }
-  assert.deepEqual(c11.braids.map((braid) => braid.circulationSense), [1, 1]);
-  assert.deepEqual(c21.braids.map((braid) => braid.circulationSense), [1, -1]);
+  assert.deepEqual(c5.braids.map((braid) => braid.circulationSense), [1, 1]);
+  assert.deepEqual(c6.braids.map((braid) => braid.circulationSense), [1, -1]);
 
-  const invalid = structuredClone(c11);
+  const invalid = structuredClone(c5);
   invalid.braids[1].binaries[0].axialHalfSeparation = 0.01;
   invalid.braids[1].binaries[0].transverseOrbitRadius = Math.sqrt(
     invalid.braids[1].binaries[0].radius ** 2 - 0.01 ** 2,
   );
   assert.throws(() => validatePrescribedBraidSpec(invalid), /two all-equatorial B1\.3 components/);
 
-  const noncoaxial = structuredClone(c11);
+  const noncoaxial = structuredClone(c5);
   noncoaxial.braids[0].centerOffset = [-0.55, 0, 0];
   noncoaxial.braids[1].centerOffset = [0.55, 0, 0];
-  assert.throws(() => validatePrescribedBraidSpec(noncoaxial), /coaxial B1\.3 components/);
+  assert.throws(() => validatePrescribedBraidSpec(noncoaxial), /coaxial B1 components/);
 });
 
 test("exact analytical sources reproduce every declared endpoint path", () => {

@@ -150,16 +150,16 @@ test("cohort sensitivity varies the declared braid phase offset without breaking
   );
 });
 
-test("coaxial C1.1 circles satisfy the cohort geometry and exact envelope", () => {
+test("coaxial C5 circles satisfy the cohort geometry and exact envelope", () => {
   const registry = loadAllCandidateCampaignRegistry();
-  const c11 = registry.candidates.find((row) => row.declaration.memberId === "C1.1");
-  const source = createPrescribedBraidExactSourceRecord(c11.spec);
+  const c5 = registry.candidates.find((row) => row.declaration.memberId === "C5");
+  const source = createPrescribedBraidExactSourceRecord(c5.spec);
   assert.doesNotThrow(() => validateCompleteCycleSourceApplicability(source, registry.protocol));
-  assert.deepEqual(c11.spec.braids.map((braid) => braid.centerOffset), [
+  assert.deepEqual(c5.spec.braids.map((braid) => braid.centerOffset), [
     [0, 0, -0.55],
     [0, 0, 0.55],
   ]);
-  assert.deepEqual(c11.spec.braids.map((braid) => braid.frameDefinition.axis), [
+  assert.deepEqual(c5.spec.braids.map((braid) => braid.frameDefinition.axis), [
     [0, 0, 1],
     [0, 0, 1],
   ]);

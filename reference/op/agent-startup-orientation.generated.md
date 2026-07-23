@@ -72,7 +72,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 140 | `c3052136793cf533` |
+| [AGENTS.md](../../AGENTS.md) | 141 | `f0e97d6a359eeec1` |
 | [README.md](../../README.md) | 229 | `9586b2bb3becaec3` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
@@ -96,5 +96,5 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 383 | `afc7b450bf43bee2` |
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 307 | `db1ec8a9a86ceeb4` |
 | [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 141 | `ebb9fe0d7a64f91b` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 536 | `cf39c89a7b5a3f45` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 537 | `ad47f4ab6a9cbe8a` |
 | [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 172 | `2da69809b5d5f6c1` |

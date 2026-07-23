@@ -1,20 +1,20 @@
 {
   "schema": "prescribed-braid-spec.v1",
   "specId": "family-c-c2-counter-rotating-b1-pair-v1",
-  "label": "C2 — counter-rotating B1 pair",
-  "provenanceDescription": "Exact C2 prescribed display paths formed from two complete B1 components with opposite circulation senses; no binding or physical realization is implied.",
+  "label": "C4 — counter-rotating B1 pair",
+  "provenanceDescription": "Exact C4 prescribed display paths formed from two complete coaxial B1 components with opposite circulation senses; no binding or physical realization is implied.",
   "claimGrade": "chart-hypothesis",
   "evidenceStatus": "display-only",
   "date": "2026-07-22",
-  "taxonomy": { "familyId": "C", "familyLabel": "Family C", "memberId": "C2", "memberLabel": "counter-rotating B1 pair", "displayLabel": "C2 — counter-rotating B1 pair", "canonSource": "content/markdown/aaa/noether-braid/braid-family-c.md#c2" },
-  "illustrativeCoordinates": { "status": "prescribed-display-coordinates", "choices": ["Both components use the B1 interior-reference radii and axial/transverse decompositions as a simple complete B1 fixture.", "The braid centers at (-0.55,0,0) and (0.55,0,0), identity relative orientation, equal frequencies, and relative phase pi/3 are illustrative Family-C composition coordinates.", "The opposite circulation signs are the C2 member relation; the selected first-component sign +1 is an illustrative orientation choice."] },
+  "taxonomy": { "familyId": "C", "familyLabel": "Family C", "memberId": "C4", "memberLabel": "counter-rotating B1 pair", "displayLabel": "C4 — counter-rotating B1 pair", "canonSource": "content/markdown/aaa/noether-braid/braid-family-c.md#c3-and-c4" },
+  "illustrativeCoordinates": { "status": "prescribed-display-coordinates", "choices": ["Both components use the B1 interior-reference radii and axial/transverse decompositions as a simple complete B1 fixture.", "The braid centers at (0,0,-0.55) and (0,0,0.55) lie on the common z axis; equal frequencies and relative phase pi/3 complete the representative.", "The opposite circulation signs are the C4 member relation; the selected first-component sign +1 is an illustrative orientation choice."] },
   "sourceOrder": ["c2-braid-1-binary-1", "c2-braid-1-binary-2", "c2-braid-1-binary-3", "c2-braid-2-binary-1", "c2-braid-2-binary-2", "c2-braid-2-binary-3"],
   "group": { "centerAtEpoch": [0, 0, 0], "velocity": [0, 0, 0] },
   "prescribedReturnPeriod": 4,
   "displayTrailPeriods": 1,
   "braids": [
     {
-      "braidId": "c2-braid-1", "centerOffset": [-0.55, 0, 0], "phaseOffset": 0, "circulationSense": 1,
+      "braidId": "c2-braid-1", "centerOffset": [0, 0, -0.55], "phaseOffset": 0, "circulationSense": 1,
       "frameDefinition": { "type": "orthonormal.v1", "e1": [1, 0, 0], "e2": [0, 1, 0], "axis": [0, 0, 1] },
       "binaries": [
         { "binaryIndex": 1, "binaryId": "c2-braid-1-binary-1", "worldlineIds": ["c2-braid-1-binary-1-endpoint-1", "c2-braid-1-binary-1-endpoint-2"], "centerOffset": [0, 0, 0], "radius": 0.22, "axialHalfSeparation": 0.07524443153164712, "transverseOrbitRadius": 0.20673237657289986, "frequency": 0.25, "phase": 0, "polarityAssignment": 1 },
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "braidId": "c2-braid-2", "centerOffset": [0.55, 0, 0], "phaseOffset": 1.0471975511965976, "circulationSense": -1,
+      "braidId": "c2-braid-2", "centerOffset": [0, 0, 0.55], "phaseOffset": 1.0471975511965976, "circulationSense": -1,
       "frameDefinition": { "type": "orthonormal.v1", "e1": [1, 0, 0], "e2": [0, 1, 0], "axis": [0, 0, 1] },
       "binaries": [
         { "binaryIndex": 1, "binaryId": "c2-braid-2-binary-1", "worldlineIds": ["c2-braid-2-binary-1-endpoint-1", "c2-braid-2-binary-1-endpoint-2"], "centerOffset": [0, 0, 0], "radius": 0.22, "axialHalfSeparation": 0.07524443153164712, "transverseOrbitRadius": 0.20673237657289986, "frequency": 0.25, "phase": 0, "polarityAssignment": 1 },

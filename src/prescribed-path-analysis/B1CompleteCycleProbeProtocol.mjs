@@ -167,18 +167,18 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
   }
   const protocolId = string(raw.protocolId, "protocol.protocolId");
   const applicability = object(raw.applicability, "protocol.applicability");
-  const generalizedFamilyB =
-    applicability.campaignClass === "generalized-family-b-prescribed-train.v1";
+  const commonAxisBraid =
+    applicability.campaignClass === "common-axis-braid-prescribed-path.v2";
   if (isB1 && (applicability.familyId !== "B" || applicability.memberId !== "B1")) {
     throw new TypeError("B1 protocol applicability must be Family B member B1.");
   }
-  if (!isB1 && !generalizedFamilyB && (!Array.isArray(applicability.familyIds) ||
+  if (!isB1 && !commonAxisBraid && (!Array.isArray(applicability.familyIds) ||
       applicability.familyIds.join(",") !== "A,B,C")) {
     throw new TypeError("cohort protocol applicability.familyIds must be [A, B, C].");
   }
-  if (generalizedFamilyB && (!Array.isArray(applicability.familyIds) ||
-      applicability.familyIds.join(",") !== "B")) {
-    throw new TypeError("generalized Family-B train protocol familyIds must be [B].");
+  if (commonAxisBraid && (!Array.isArray(applicability.familyIds) ||
+      applicability.familyIds.join(",") !== "B,C")) {
+    throw new TypeError("common-axis braid protocol familyIds must be [B, C].");
   }
   const sourceEnvelopeRadius = positive(
     applicability.maximumSourceEnvelopeRadius,
@@ -189,12 +189,12 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
     : numericArray(applicability.sourceCounts, "protocol.applicability.sourceCounts")
       .map((value, index) => positiveInteger(value, `protocol.applicability.sourceCounts[${index}]`));
   if (isB1 && sourceCounts[0] !== 6) throw new RangeError("B1 protocol sourceCount must be 6.");
-  if (!isB1 && !generalizedFamilyB && sourceCounts.join(",") !== "6,12") {
+  if (!isB1 && !commonAxisBraid && sourceCounts.join(",") !== "6,12") {
     throw new RangeError("cohort protocol sourceCounts must be [6, 12].");
   }
-  if (generalizedFamilyB && sourceCounts.join(",") !== "6,9,12,18") {
+  if (commonAxisBraid && sourceCounts.join(",") !== "6,9,12,18") {
     throw new RangeError(
-      "generalized Family-B train protocol sourceCounts must be [6, 9, 12, 18].",
+      "common-axis braid protocol sourceCounts must be [6, 9, 12, 18].",
     );
   }
 
@@ -263,7 +263,7 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
   const latestRetardedReach = cycleStart -
     (radii.at(-1) + sourceEnvelopeRadius) / fieldSpeed;
   if (latestRetardedReach < historyStart) {
-    throw new RangeError("history does not cover the conservative outer-surface retarded reach.");
+    throw new RangeError("history does not cover the conservative outer-surface causal-delay reach.");
   }
   if (cycleStart + cyclePeriod > historyEnd) {
     throw new RangeError("complete cycle must lie inside the exact source history interval.");
@@ -391,15 +391,15 @@ export function validateB1CompleteCycleProbeProtocol(rawProtocol) {
     if (!Array.isArray(coordinates) || coordinates.join(",") !== "alpha_1,alpha_2,alpha_3") {
       throw new TypeError("B1 local sensitivity coordinates must be alpha_1, alpha_2, alpha_3.");
     }
-  } else if (!generalizedFamilyB && (!Array.isArray(coordinates) ||
+  } else if (!commonAxisBraid && (!Array.isArray(coordinates) ||
       coordinates.join(",") !== "declared-primary-braid-phase-offset")) {
     throw new TypeError(
       "cohort local sensitivity coordinates must be [declared-primary-braid-phase-offset].",
     );
-  } else if (generalizedFamilyB && (!Array.isArray(coordinates) ||
+  } else if (commonAxisBraid && (!Array.isArray(coordinates) ||
       coordinates.join(",") !== "central-spacing-scale")) {
     throw new TypeError(
-      "generalized Family-B train local sensitivity coordinates must be [central-spacing-scale].",
+      "common-axis braid local sensitivity coordinates must be [central-spacing-scale].",
     );
   }
   const step = positive(sensitivity.primaryStep, "localSourceSensitivity.primaryStep");

@@ -1,5 +1,7 @@
 # Complete 19-Candidate Nonpublishing Rebuild
 
+> Historical taxonomy note (2026-07-23): this measured rebuild is provenance-bound to the former Family-C identities C1, C2, C1.1, and C2.1. The current taxonomy renumbers those constrained representatives C3, C4, C5, and C6 and changes the former C1/C2 source centers to be coaxial. The rows below must not be relabeled or combined with current source identities; a current conclusion requires a fresh $c_f=1$ rebuild.
+
 ## Scope and authority
 
 This report records the revised complete prescribed-path analytical rebuild run

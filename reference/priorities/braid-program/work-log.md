@@ -320,7 +320,7 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 
 ## 2026-07-22 — B-family binary-train analytical lane opened
 
-- Captured the operator's 2021-01-02 twelve-trace drawing as an idea-grade source for an ordered common-axis orbital train and central radius envelope. The drawing does not declare polarity, phase, circulation, frequency, counterpart pairing, or payload placement. Opened [Generalized Family-B Common-Axis Train Analytics](b-family-binary-train-analytics.md) for exact six-core single, twelve-core dual, and twelve-core-plus-six-payload prescribed charts.
+- Captured the operator's 2021-01-02 twelve-trace drawing as an idea-grade source for an ordered common-axis orbital train and central radius envelope. The drawing does not declare polarity, phase, circulation, frequency, counterpart pairing, or the placement of additional architrino worldlines. Opened the lane now titled [Common-Axis Braid-Train Analytics](common-axis-braid-train-analytics.md) for exact six-, twelve-, and eighteen-worldline prescribed charts.
 - Final Family-B assignment remains discussion-scoped because canonical B1 and Family C are unchanged.
 
 ## 2026-07-22 — generalized Family-B bounded prescribed-path pilot completed
@@ -342,3 +342,16 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 ## 2026-07-22 — C2.1 prescribed-display candidate and 19-entry catalog review signed off
 
 - The operator explicitly approved catalog ordinal 19, `family-c-c2-1-counter-rotating-b1-3-pair-v1` — `C2.1 — counter-rotating B1.3 pair`. Post-correction numerical checks and full-cycle Borg inspection confirmed two coaxial all-equatorial B1.3 components with axial center separation $d_C=1.10$, zero transverse axis offset, circulation senses $+1$ and $-1$, and relative phase $\pi/3$. Accepted specification SHA-256: `874742737883c0c51db4a24dbb198f576aadf570535046f2b2be1fe10b7fe328`; accepted Borg-record SHA-256: `e25cac06ab3b030798f53eb55cbce71352fd8fa787c97e88490db20c10d7c8db`. All 19 live Borg catalog entries now carry explicit operator sign-off. The approvals cover prescribed display geometry only and establish no EOM-solver retention, stability, energy, binding, or physical realization. No EOM solver or analytical campaign was run.
+
+## 2026-07-23 — Family C generalized and sequentially renumbered
+
+- The operator selected the general coaxial taxonomy option and the defining-inventory term `architrino worldlines`. Family C now contains every prescribed twelve-architrino geometry whose twelve defining worldlines share one axis, whether or not the record decomposes into two B1 components.
+- C1 is the general co-rotating member and C2 is the general counter-rotating member. The previously signed-off two-B1 representatives are constrained loci renumbered C3 and C4. The previously signed-off all-equatorial C1.1 and C2.1 representatives are constrained loci renumbered C5 and C6.
+- Six additional worldlines, when declared, form an Accessory Configuration outside the twelve defining Family-C worldlines. Adding or removing that configuration changes the source identity but not the C member identifier.
+- The canonical coordinate chart, taxonomy, controlled terminology, source specifications, prescribed-record generator inputs, catalog labels, analytical campaign sources, and scoped tests were updated. Stable legacy filenames and `specId` compatibility identifiers were retained where renaming would break record identity; their taxonomy fields and visible labels now carry C3 through C6.
+- This is prescribed-path geometry and source-contract work only. No EOM solver was invoked, no path was evolved, and no stability, retention, binding, photon-identity, energy-closure, quantization, or physical-realization claim was made.
+
+## 2026-07-23 — C1 and C2 Borg records completed
+
+- Added the missing canonical C1 and C2 prescribed-display representatives to the generator, Borg catalog, and all-candidate registry. Each representative contains twelve strictly ordered coaxial architrino worldlines with six explicit neutral-binary counterpart pairs, equal axial spacing, and a central transverse-radius envelope. C1 uses one common circulation sense; C2 uses opposite senses on two declared index subsets. The subsets are storage groupings and do not satisfy the three-common-midpoint constraint of B1 components.
+- Regenerated the 21-record prescribed-display catalog, including synchronized C3 through C6 taxonomy metadata. C1 through C6 remain pending candidate-specific display inspection in the sign-off ledger. The prior 19-candidate analytical database is historical and incomplete for the live catalog; no analytical campaign or EOM solver was run.

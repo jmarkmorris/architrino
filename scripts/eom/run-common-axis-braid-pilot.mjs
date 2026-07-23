@@ -7,29 +7,29 @@ import {
 import path from "node:path";
 
 import {
-  buildGeneralizedFamilyBPilotCampaign,
+  buildCommonAxisBraidPilotCampaign,
   exportAnalyticalCampaign,
   importAnalyticalCampaign,
   recordAnalyticalDatabaseGeneration,
-  serializeGeneralizedFamilyBPilotReport,
+  serializeCommonAxisBraidPilotReport,
   sha256Canonical,
 } from "../../src/prescribed-path-analysis/index.mjs";
 
 const REPOSITORY_ROOT = path.resolve(import.meta.dirname, "../..");
 const DEFAULT_OUTPUT = path.join(
   REPOSITORY_ROOT,
-  ".local-data/braid-analysis/generalized-family-b-pilot",
+  ".local-data/braid-analysis/common-axis-braid-pilot",
 );
 const DEFAULT_DATABASE = path.join(
   REPOSITORY_ROOT,
-  ".local-data/braid-analysis/generalized-family-b-pilot.sqlite",
+  ".local-data/braid-analysis/common-axis-braid-pilot.sqlite",
 );
 const DEFAULT_PROTOCOL = path.join(
   REPOSITORY_ROOT,
-  "src/prescribed-path-analysis/protocols/generalized-family-b-pilot-protocol.v1.json",
+  "src/prescribed-path-analysis/protocols/common-axis-braid-pilot-protocol.v2.json",
 );
 const REBUILD_VERSION =
-  "prescribed-record-analytics/generalized-family-b-pilot-rebuild/v1";
+  "prescribed-record-analytics/common-axis-braid-pilot-rebuild/v2";
 
 function fail(message) {
   throw new Error(message);
@@ -72,11 +72,11 @@ function progressLine(progress) {
     ? ` ${progress.completedCandidates ?? 0}/${progress.totalCandidates}`
     : "";
   const candidate = progress.candidateId ? ` ${progress.candidateId}` : "";
-  return `[generalized-family-b]${count}${candidate} ${progress.stage}`;
+  return `[common-axis-braid]${count}${candidate} ${progress.stage}`;
 }
 
-export function runGeneralizedFamilyBPilot(options = {}) {
-  const campaign = buildGeneralizedFamilyBPilotCampaign({
+export function runCommonAxisBraidPilot(options = {}) {
+  const campaign = buildCommonAxisBraidPilotCampaign({
     outputDirectory: options.outputDirectory ?? DEFAULT_OUTPUT,
     protocolPath: options.protocolPath ?? DEFAULT_PROTOCOL,
     includeNeighborhoodSamples: options.includeNeighborhoodSamples !== false,
@@ -107,8 +107,8 @@ export function runGeneralizedFamilyBPilot(options = {}) {
   let exported = null;
   if (database) {
     const registry = {
-      schema: "prescribed-path-analysis/generalized-family-b-pilot-registry.v1",
-      registryId: "generalized-family-b-pilot.v1",
+      schema: "prescribed-path-analysis/common-axis-braid-pilot-registry.v2",
+      registryId: "common-axis-braid-pilot.v2",
       campaignId: campaign.manifest.campaignId,
       manifestHash: campaign.manifestHash,
       caseIds: campaign.summary.cases.map((row) => row.caseId),
@@ -157,13 +157,13 @@ export function runGeneralizedFamilyBPilot(options = {}) {
     },
   };
   mkdirSync(path.dirname(reportPath), { recursive: true });
-  writeFileSync(reportPath, serializeGeneralizedFamilyBPilotReport(finalReport));
+  writeFileSync(reportPath, serializeCommonAxisBraidPilotReport(finalReport));
   return { campaign, report: finalReport, reportPath };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename)) {
   const options = parseArguments(process.argv.slice(2));
-  const result = runGeneralizedFamilyBPilot({
+  const result = runCommonAxisBraidPilot({
     ...options,
     onProgress(progress) {
       process.stderr.write(`${progressLine(progress)}\n`);

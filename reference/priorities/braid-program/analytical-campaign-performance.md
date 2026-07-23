@@ -63,9 +63,42 @@ full-sensitivity packets per candidate: 27,607 packet-write events for 19
 candidates before any exact-hash coincidence.
 
 The published 13,927-packet database remains the read-only production baseline.
-The in-progress full rebuild measures the expanded next-rebuild workload. Its
+The retained full rebuild measures the expanded next-rebuild workload. Its
 wall time must not be compared directly with the earlier 41/70-minute
 observations as if the logical input were unchanged.
+
+### Retained expanded-protocol baseline
+
+Grade: measured by the completed nonpublishing check-mode rebuild and the
+read-only v2 full inventory.
+
+| Quantity | Value |
+| --- | ---: |
+| End-to-end wall | 17,151.144 s (4 h 45 m 51 s) |
+| Candidates | 19 |
+| Independently accepted/rejected | 8 / 11 |
+| Raw artifacts / distinct raw hashes | 27,607 / 27,607 |
+| Raw JSON bytes | 286,214,744,413 |
+| Exact gzip bytes | 33,862,579,968 |
+| Compression ratio | 0.118312 |
+| SQLite bytes | 34,555,154,432 |
+| Multidimensional rows | 278,826 |
+| Artifact rows | 27,648 |
+| Generation hash | `5cbb5765d9b5e327240227d09b722c1d23e22a3c3c03435878025bbcfb78f084` |
+| Database fingerprint | `68a90e6ee4277aed1dcb752d76c79337139de596c331e2cd1e677a31b9373506` |
+| Integrity | `ok` |
+
+Source-sensitivity surface packets account for 26,973,730,435 stored bytes
+(79.6565% of raw gzip storage), base complete-cycle surfaces account for
+6,736,769,664 bytes (19.8944%), and every other raw stage together accounts
+for 0.4491%. The prior approximate 79%/20% observation therefore reproduces on
+the expanded workload.
+
+The report is
+`.local-data/braid-analysis/complete-19-candidate-nonpublishing-rebuild-profile.v1.json`;
+the full table/column/index inventory is
+`.local-data/braid-analysis/performance/expanded-full-inventory.v2.json`.
+The check did not publish or replace the production database.
 
 ## Exact end-to-end call graph
 
@@ -163,29 +196,29 @@ The live `rebuild-all` path is:
 | Required phase | Live implementation location | Instrument |
 | --- | --- | --- |
 | Candidate source construction | `AllCandidateAnalyticalCampaign.mjs` | full rebuild profile; candidate worker harness |
-| Prescribed-path event evaluation | `AnalyticalBraidEvaluator.mjs` | candidate stage timing; CPU profile pending |
-| Surface reduction | `B1StreamingReductions.mjs` | candidate stage timing |
+| Prescribed-path event evaluation | `AnalyticalBraidEvaluator.mjs` | candidate stage timing plus point stack samples |
+| Surface reduction | `B1StreamingReductions.mjs` | measured candidate stage timing |
 | Fixed internal probes | `CompleteCycleAnalyticalCampaign.mjs` | candidate stage timing |
 | Moving receivers | same | candidate stage timing |
 | Branch diagnostics | same | candidate stage timing |
-| Source sensitivity | same | candidate stage timing |
-| Result reduction | same | candidate stage timing; CPU profile pending |
+| Source sensitivity | same | measured candidate stage timing |
+| Result reduction | same | candidate stage timing; point stack samples |
 | JSON serialization | raw writer and result writer | sampled codec harness; CPU profile pending |
 | SHA-256 | raw writer and importer | sampled subphase wall timing |
 | Gzip | raw writer and importer | sampled subphase wall timing |
 | Raw filesystem writes | raw writer | candidate worker harness |
 | Manifest and summary | all-candidate builder/writer | full rebuild phase timing |
-| Independent preflight | `preflightAnalyticalCampaignImport()` | exact import profile pending |
+| Independent preflight | `preflightAnalyticalCampaignImport()` | included in exact 5,661.056 s import; subphase SQL-preload replay pending |
 | SQLite open and migration | database open/migrations | harness phase timing |
 | Artifact ingestion | `insertCampaignEnvelope()` | sampled subphase wall timing |
 | Normalized rows | `insertCase()` | sampled row timing; exact import profile pending |
 | Multidimensional measures | `insertMultidimensionalMeasures()` | sampled row timing; exact import profile pending |
 | Index and constraints | migrations plus inserts | controlled matrix |
 | Commit and synchronization | explicit transactions, WAL, FULL | controlled matrix |
-| Staged completeness | rebuild verification | full rebuild phase timing pending |
-| Deterministic export | exporter | sampled export and full rebuild timing pending |
-| Generation record | generation writer | full rebuild timing pending |
-| SQLite integrity | verifier | sampled and full rebuild timing |
+| Staged completeness | rebuild verification | measured 1,320.174 s; includes a complete database verification |
+| Deterministic export | exporter | measured 337.614 s |
+| Generation record | generation writer | measured 0.052 s |
+| SQLite integrity | verifier | second measured complete verification: 1,324.939 s |
 | Checkpoint | rebuild/publish helpers | publish-mode timing not authorized |
 | Atomic publication | `publishDatabase()` | code-audited; no production experiment |
 
@@ -267,6 +300,24 @@ The `artifact` payload is the stored gzip packet, not a second uncompressed
 copy. `analytical_raw_artifact` stores identity, dimensions, paths, sizes, and
 context but no second payload. The large duplicate *work* is recompression; the
 large duplicate *storage* has not been established.
+
+On the expanded retained database, the concentration increases:
+
+| Object group | Stored bytes | Share of 34.555 GB |
+| --- | ---: | ---: |
+| `artifact` table | 34,040,623,104 | 98.511% |
+| `multidimensional_measure` table | 269,438,976 | 0.780% |
+| Three multidimensional-measure indexes | 122,048,512 | 0.353% |
+| `analytical_raw_artifact` table | 107,122,688 | 0.310% |
+| Raw-artifact indexes | 15,020,032 | 0.043% |
+| All remaining objects | about 1 MB | about 0.003% |
+
+`multidimensional_measure.details_json` is 111,313,332 logical bytes
+(0.322% of the database), raw `context_json` is 18,715,551 bytes (0.054%),
+and `campaign_case.summary_case_json` is 98,570 bytes (0.0003%). Even removing
+all three without physical overhead would save under 0.38%. Their redundancy
+audit remains useful for contract clarity, but it cannot materially solve
+storage volume.
 
 ## Reusable benchmark harness
 
@@ -478,6 +529,7 @@ RSS must be remeasured.
 | Cache/temp interaction | both changes together | old small run | no speed gain; not a one-variable result |
 | Memory mapping | none / 256 MiB | v2 functional pass | timing run pending |
 | Page size | 4 KiB / 8 KiB | v2 functional pass | timing/storage run pending |
+| Artifact table shape | payload-bearing `WITHOUT ROWID` primary B-tree / rowid payload table plus skinny unique hash index | live schema and late WAL sample identify a plausible interaction | functional and repeated timing pending |
 | Payload location | SQLite BLOB / external immutable gzip | old small/medium run changed location and statement lifetime together | storage/DB/WAL result valid; isolated timing rerun pending |
 
 ### EXP-DB-005: v2 variant conformance smoke
@@ -510,6 +562,71 @@ RSS must be remeasured.
   integrity, foreign key, export, or exact packet check.
 - Next: repeat the matrix uncontended and use medians before accepting any
   timing claim.
+
+### EXP-DB-006: expanded exact verified-gzip import
+
+- Question: when analytical computation is held out and the retained 27,607
+  packet campaign is imported exactly, where does full-scale ingestion time go?
+- Baseline: the unchanged full rebuild imported this generated campaign in
+  5,661.056 s. The variant used the opt-in `verified-compressed` path in a new
+  database under `/private/tmp`; it did not read or write the production
+  database.
+- Fixture: manifest
+  `2d3758e886a51b5d9d890adfdced34ac77e52e73596bf518d842fd8dd32dc2d8`,
+  summary
+  `e582ae0ab6fe4a59b86aedc4a8db870f987ac83812f8f01c827cb64568c4d584`,
+  27,607 raw artifacts, 278,826 multidimensional measures, and 228 validity
+  gates from EXP-E2E-001.
+- Command: `import-campaign` with
+  `--experimental-raw-artifact-import-mode verified-compressed`, the Node
+  SQLite statement profiler, `/usr/bin/time -l`, and monotonic progress
+  heartbeats.
+- Measurements: 3,662.51 s wall, 3,273.52 s user CPU, 309.06 s system CPU,
+  0.978 lifetime CPU-core equivalent, and 1.68 GB peak physical footprint.
+  Importer preflight before the first SQL statement took 352.10 s (9.61%).
+  The SQL window took 3,310.17 s (90.39%).
+- Transaction shape: seven commits were issued: four one-row migration
+  transactions, one envelope/raw-artifact transaction, one all-cases
+  transaction, and one campaign-acceptance transaction. The envelope/raw
+  transaction executed 55,222 statements, changed 55,221 rows, processed
+  33,933,223,842 logical parameter bytes, and took 3,288.74 s (89.79% of
+  complete import wall). Its WAL reached about 32 GB before the single commit.
+  The all-cases transaction, including all 278,826 multidimensional measures,
+  took 21.42 s (0.58%).
+- Table attribution: 27,647 `artifact` inserts took 1,760.24 s (48.06% of
+  complete wall); 27,607 `analytical_raw_artifact` inserts took 1,341.82 s
+  (36.64%); 278,826 `multidimensional_measure` inserts took 8.68 s (0.24%).
+  All commits together took 108.48 s (2.96%). Statement preparation for those
+  three tables took 5.39 s (0.15%), so statement reconstruction is not the
+  leading cause at this scale.
+- Late-stage point sample: after the WAL had grown to about 30 GB, 2,872 of
+  4,189 active-main-thread top frames were in SQLite `walFindFrame` and 877
+  were in `walHashGet`; together they were 89.5%. SHA-256 appeared in seven top
+  frames. This is a five-second measured point sample, not a whole-import CPU
+  attribution.
+- Result grade: measured full-scale variant profile. The apparent 35.3%
+  wall-time reduction from the unchanged 5,661.056 s baseline is provisional,
+  because the variant was statement-profiled and the baseline was not. It is
+  not yet the accepted production speedup.
+- Correctness status: import preflight and independent acceptance passed with
+  8 accepted and 11 rejected cases. Exact generation recording and the final
+  full verifier are running as the remaining equivalence gates.
+- Conclusion: the full-scale importer is not a bulk loader. It performs one
+  prepared `INSERT` execution per artifact row and per normalized row. More
+  importantly, it holds all 27,607 large BLOB rows and their index maintenance
+  in one transaction. The `artifact` table is `WITHOUT ROWID`, so its
+  payload-bearing primary B-tree is also the target of each raw-metadata
+  foreign-key lookup; that is a plausible explanation for the otherwise
+  surprising 1,341.82 s raw-metadata insert total. The measured late-stage WAL
+  lookup concentration and falling row rate make a bounded raw-artifact
+  transaction the leading ingestion hypothesis; a separate skinny hash index
+  is an additional controlled schema hypothesis. Recompression alone does not
+  explain the remaining time.
+- Falsifier: bounded commits do not remove the late-stage rate collapse under
+  identical input and final hashes, or the pending full verifier rejects the
+  direct-gzip database.
+- Next: finish full verification, then compare unprofiled direct-gzip imports
+  with the same importer using bounded raw-artifact commits.
 
 ### EXP-FMT-001: external formats
 
@@ -558,6 +675,16 @@ query-versus-ingestion tradeoff. SQLite's live query plan confirms that
 `multidimensional_measure_query` finds the metric rows and then uses a temporary
 B-tree for the ordering; the root and sensitivity plans use their dedicated
 indexes without that extra sort.
+
+The full expanded inventory exposed a stronger worst-case metric query than the
+earlier first-metric probe. The most common measure,
+`normal-wake-flux/transmitter-root-complex-coefficient`, has 138,000 rows.
+Five warm executions of the current
+`WHERE measure_id = ? ORDER BY scalar_value` query took
+0.932–1.470 s (median 1.138 s); `EXPLAIN QUERY PLAN` confirms an indexed
+measure lookup followed by a temporary B-tree sort. The harness now selects the
+highest-row-count measure for this query so future reports do not hide the
+worst distribution behind an alphabetically early small measure.
 
 No local Apache Arrow, Parquet, or DuckDB dependency or executable was
 available at inspection. A columnar dependency is therefore deferred until a
@@ -634,8 +761,7 @@ result.
   `2fed88c342d595b1e63cceff56fe35aa7a0529c9`. A commit-relative audit while
   the process was running found no changes in the evaluator, reducer,
   all-candidate builder, exact-source generator, or catalog; only the database
-  module changed after process launch for the opt-in importer experiment. Final
-  manifest/source/protocol/result inventories are pending completion.
+  module changed after process launch for the opt-in importer experiment.
 - Command: Node module invocation of
   `rebuildAllCandidateAnalyticalDatabase({ mode: "check", keepStaging: true })`
   with progress heartbeats and final report path
@@ -644,42 +770,64 @@ result.
   SQLite 3.53.2.
 - Repetitions: one full-scale run because the expanded artifact set is expected
   to require hours and can be replayed for database repetitions.
-- Current measurements: at 58:47 wall, nine candidates were retained, 13,130
-  distinct raw gzip files existed, and the process used approximately 109%
-  macOS CPU with 1.17 GB current RSS. The first nine result-file completion
-  intervals were 473.190, 398.227, 378.142, 376.519, 376.832, 376.898,
-  378.109, 378.891, and 375.000 seconds; the first interval includes process
-  warm-up and may also differ by candidate geometry. Two five-second point
-  samples are recorded in EXP-COMP-001.
+- Measurements: 17,151.144 s complete wall; 8,506.956 s computation;
+  5,661.056 s import; 1,320.174 s initial completeness/full verification;
+  337.614 s deterministic export; 0.052 s generation recording; and
+  1,324.939 s final staged full verification. All listed phases explain
+  17,151.144 s to rounding.
+- Candidate stage attribution: source sensitivity consumed 6,770.191 s
+  (79.60% of candidate time; 39.47% of complete wall), base surface reduction
+  1,709.311 s (20.10%; 9.97% of complete wall), and every remaining candidate
+  stage together 25.321 s (0.30%; 0.15% of complete wall).
+- Candidate variation: the fastest candidate took 313.572 s and the four
+  Family-C candidates took 700.980–704.905 s. Equal candidate counts are not
+  equal worker loads.
 - Contention note: during candidate 8, an attempted SHA-256 inventory of the
   9.68 GB read-only production database was stopped after 10 seconds to avoid
   further disk/cache interference. The database inode, size, and modification
   time remained `174404791`, `9,677,225,984`, and
   `2026-07-22 20:55:22 -0400`. Treat candidate 8's interval as potentially
   contaminated and do not use it alone for a per-candidate cost claim.
-- Correctness comparison: pending final independent acceptance, export,
-  generation fingerprint, and `integrity: ok`.
-- Result grade: in-progress measurement; no final timing conclusion.
+- Correctness comparison: pass for source/protocol/result generation,
+  independent acceptance (8 accepted, 11 rejected), deterministic export,
+  generation fingerprint, and `integrity: ok`; 27,607 raw artifacts have
+  27,607 distinct raw hashes.
+- Result grade: measured complete check-mode baseline; no publication claim.
 - Falsifier: any final hash, acceptance, completeness, export, or integrity
   failure rejects the run as a reusable fixture.
-- Next: profile the retained generated campaign through current and
-  verified-compressed import paths without recomputing candidates.
+- Next: profile the retained generated campaign through the
+  verified-compressed import path without recomputing candidates, and test a
+  lightweight structural completeness query plus one final full verification
+  against the current duplicate full-verification sequence.
 
 ## Current bottleneck ranking
 
-Measured on the medium ingestion fixture:
+Measured end to end on the retained expanded-protocol baseline:
 
-1. Gzip recompression during import: 58.2% of sampled total wall.
-2. Mandatory full verification: 11.3%.
-3. Raw source BLOB reads plus first-pass decompression and hashes: 10.8%.
-4. Harness measure-source scan and replay: 7.1%; the source scan is fixture
-   overhead and must not be attributed directly to the production importer.
-5. Packet BLOB and raw-metadata insertion: 4.1%.
-6. SQLite integrity and foreign-key checks: 1.6%.
-7. Remaining open/schema/export/query/bookkeeping: about 6.9%.
+1. Source-sensitivity computation: 39.47% of complete wall.
+2. Database import: 33.01%.
+3. Base complete-cycle surface computation: 9.97%.
+4. Final staged full verification: 7.73%.
+5. The earlier “staged completeness” phase, which calls the same full
+   `verifyAnalyticalCampaignDatabase()` before running two lightweight
+   inventory queries: 7.70%.
+6. Deterministic export: 1.97%.
+7. All fixed-probe, moving-receiver, branch, result-finalization, manifest, and
+   generation work combined: about 0.16%.
 
-This ranking supersedes the unmeasured story that index maintenance, WAL,
-foreign keys, or statement reconstruction explain ingestion.
+The phase timers explain 100% of measured wall to rounding. Within import, the
+medium fixture still assigns 58.2% of total sampled wall to deterministic gzip
+recompression, 10.8% to initial raw reads/decompression/hashes, 11.3% to final
+verification, 4.1% to packet BLOB/metadata insertion, 1.6% to SQLite
+integrity/foreign-key checks, and 7.1% to harness-only measure-source replay.
+The exact full SQL-preload replay remains necessary before projecting the
+sampled recompression share onto the 5,661-second import.
+
+This ranking supersedes both the unmeasured story that index maintenance, WAL,
+foreign keys, or statement reconstruction lead ingestion and the earlier
+assumption that one verification pass dominated. The workflow currently runs
+two prepublication full database verifications; publish mode would then run a
+third post-swap verification.
 
 ## Computational scalability map
 

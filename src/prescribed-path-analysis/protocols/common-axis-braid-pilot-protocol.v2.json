@@ -1,6 +1,6 @@
 {
   "schema": "prescribed-path-analysis/complete-cycle-probe-protocol.v1",
-  "protocolId": "generalized-family-b-prescribed-train-pilot-v1",
+  "protocolId": "common-axis-braid-prescribed-path-pilot-v2",
   "claimGrade": "derived",
   "claimBoundary": {
     "prescribedPathAnalyticsOnly": true,
@@ -21,19 +21,19 @@
     ]
   },
   "applicability": {
-    "campaignClass": "generalized-family-b-prescribed-train.v1",
-    "registryId": "generalized-family-b-pilot.v1",
-    "familyIds": ["B"],
+    "campaignClass": "common-axis-braid-prescribed-path.v2",
+    "registryId": "common-axis-braid-pilot.v2",
+    "familyIds": ["B", "C"],
     "sourceCounts": [6, 9, 12, 18],
     "maximumSourceEnvelopeRadius": 2.8,
     "requiredPrescribedReturnPeriod": 4,
     "requiredCenterVelocity": [0.1, 0, 0]
   },
   "eventEvaluator": {
-    "fieldSpeed": 4,
+    "fieldSpeed": 1,
     "coupling": 1,
     "history": {
-      "start": 0,
+      "start": -4,
       "end": 8,
       "minimumDelay": 1e-12
     },
@@ -286,7 +286,7 @@
       "phaseOffset": "uniform[-pi/32,pi/32]",
       "frequencyStrata": "common-frequency or declared rational-frequency only",
       "circulation": "predeclared categorical strata",
-      "payloadPlacement": "predeclared midpoint, axial-offset, transverse-offset, or admissible randomized stratum"
+      "additionalWorldlinePlacement": "predeclared midpoint, axial-offset, transverse-offset, or admissible randomized stratum; six additional Family-C worldlines form an Accessory Configuration"
     },
     "heldOutSeed": 20210103,
     "undeclaredGlobalScore": false
