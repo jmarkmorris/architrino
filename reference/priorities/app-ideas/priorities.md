@@ -11,13 +11,15 @@
 
 ## Scope
 
-This file is the compact control surface for new single-page animation app concepts that teach critical $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms.
+This file is the compact control surface for the reader-facing app portfolio and grouped app capabilities that teach critical $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms.
 
-Loose app concepts, design notes, and immediate build-candidate discussion live in [brainstorming.md](brainstorming.md). Promote material back here only when a concept becomes a selected app packet, implementation task, or document/app destination.
+The complete portfolio table, grouped capability backlogs, deferred ideas, design notes, and immediate build-candidate discussion live in [brainstorming.md](brainstorming.md). Promote material back here only when a capability group becomes a selected app packet, implementation task, or document/app destination.
 
 ## Prioritization Rules
 
-- Prefer one-page apps with a central animation, a small control panel, and a live diagnostic readout.
+- Prefer capabilities inside an existing app when they share its data, visual grammar, or teaching sequence.
+- Create a new app only when its capability set forms one coherent learner journey that does not fit an existing surface.
+- Prefer a central animation, a small control panel, and a live diagnostic or puzzle readout.
 - Prefer concepts where animation teaches something that prose alone handles poorly.
 - Prefer $\mathbb{A}\mathbb{A}\mathbb{A}$-native mechanisms over standard-physics comparison apps unless the comparison directly exposes an $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target.
 - Keep apps candidate-level unless the underlying corpus already supplies a derivation.
@@ -27,18 +29,17 @@ Loose app concepts, design notes, and immediate build-candidate discussion live 
 
 Ordered by marginal ROI on 2026-07-17.
 
-1. `next_concept_selection` — Select one one-page concept from [brainstorming.md](brainstorming.md) and promote it only when the packet names the teaching mechanism, corpus authority, implementation boundary, acceptance condition, and owner. Status: `queued`.
+1. `next_concept_selection` — Select the next grouped learner capability from [brainstorming.md](brainstorming.md) and promote it into its owning app only when the packet names the teaching mechanism, corpus authority, implementation boundary, acceptance condition, and owner. The current recommended path is Causal Delay Feedback Story and Prediction, followed by its Path-History Ledger and Roots modes. Status: `queued`.
 
 ## Promoted App Packets
 
-1. [Causal Delay Feedback Depth](../app-causal-delay-feedback/priorities.md). Status: `promoted`.
+1. [Causal Delay Feedback Depth](../app-causal-delay-feedback/priorities.md). Status: `promoted`; Path-History Ledger, Roots, Self-Hit, Branch Geometry, and Prediction are consolidated as future capabilities of this app.
 2. [Assembly Viewer](../app-borg/assembly-viewer-requirements.md). Status: `consolidated into app-borg`.
 3. [Equation Mapping App](../app-equation-mapping/priorities.md). Status: `promoted`.
-4. [Roots](../app-roots/priorities.md). Status: `proposed`; integration with Causal Delay Feedback is staged in [brainstorming.md](brainstorming.md).
 
 ## Brainstorming
 
-[brainstorming.md](brainstorming.md) is the idea bank for app concepts that may later become dedicated app packets, implementation tasks, or promotion targets.
+[brainstorming.md](brainstorming.md) is the portfolio and grouped idea bank for capabilities that may later become app-owned packets, implementation tasks, or promotion targets.
 
 ## Related Priorities
 
@@ -46,3 +47,4 @@ Ordered by marginal ROI on 2026-07-17.
 - [app-borg](../app-borg/priorities.md)
 - [app-equation-mapping](../app-equation-mapping/priorities.md)
 - [app-animator](../app-animator/priorities.md)
+- [app-roots technical packet](../app-roots/priorities.md)

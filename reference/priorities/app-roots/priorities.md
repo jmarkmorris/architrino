@@ -1,4 +1,4 @@
-# Roots App
+# Roots Mode
 
 ## Workstream Metadata
 
@@ -7,11 +7,11 @@
 - Value: `tbd`
 - Cost: `tbd`
 - ROI: `tbd`
-- Status: `proposed`
+- Status: `consolidated-into-app-causal-delay-feedback`
 
 ## Current
 
-This folder owns the priority work ledger for a proposed **Roots** visualization app. No code exists yet under `src/apps/` or as a deployed page; this packet stages the concept, its governing equations, and the open design questions before any implementation agent is dispatched.
+This folder preserves the mathematical, linked-view, and acceptance packet for the future **Roots** mode of [Causal Delay Feedback](../app-causal-delay-feedback/priorities.md). It is no longer a proposed standalone app. No Roots-mode code exists yet; implementation belongs inside the Causal Delay Feedback capability suite.
 
 This packet uses $T_r$ for receiver time and $T_t$ for transmit (emission) time, in place of `master-equation.md`'s bare $T$ and $T_{\mathrm{em}}$, so panes and controls can name "receiver" and "transmit" time explicitly without relying on subscript position alone. The two notations refer to the same quantities; cross-reference `master-equation.md` by dropping the `r`/`t` subscripts back to $T$/$T_{\mathrm{em}}$.
 
@@ -25,7 +25,7 @@ is the quantity that must stay away from zero for a root to be simple and legal.
 
 ## Objective
 
-Illustrate, for an operator/developer or reader audience, how causal-root count changes as a source's motion is dialed through and past the fold condition:
+Specify how the Causal Delay Feedback Roots mode illustrates causal-root count changing as a source's motion is dialed through and past the fold condition:
 
 - render the source worldline, the receiver worldline, and the expanding causal-wake surfaces (circles in a 2D scene, spheres in 3D) emitted along the source history;
 - mark each currently active causal root as the wake surface's intersection with the receiver event;
@@ -52,4 +52,4 @@ Still unresolved:
 - Whether the circular-orbit transmitter mode ships in V1 or stays deferred.
 - Whether the numeric readout strip should expose both the transmitter-side acceleration weight $W_{r\leftarrow t}^{\mathrm{acc}}$ and the signed root-playback derivative $D_r/D_t$.
 
-No implementation dispatched.
+No implementation dispatched. The next implementation scope should consume this packet from Causal Delay Feedback rather than create a separate Roots product.
