@@ -29,6 +29,7 @@ All cosmological observables are computed from absolute-state evolution and then
 
 ### Cosmology Document Set
 
+- [cosmology-reconstruction.md](../../../../markdown/aaa/cosmology/cosmology-reconstruction.md): reconstruction of observer-level cosmology products from received records before ontological interpretation.
 - [expansion-mechanism.md](../../../../markdown/aaa/cosmology/expansion-mechanism.md): canonical expansion and redshift mapping in fixed void ontology.
 - [inflation-model.md](../../../../markdown/aaa/cosmology/inflation-model.md): emergent early rapid-expansion model and conceptual inflation framing.
 - [BBN-constraints.md](../../../../markdown/aaa/cosmology/BBN-constraints.md): light-element abundance constraints under emergent $H_{\mathrm{eff}}(t_{\mathrm{eff}})$.
@@ -181,6 +182,87 @@ $$
 $$
 The pass condition is not a preferred external cosmology. It is that $\Delta M_{\mathrm{eff}}$ be supplied by assembly association, dissociation, transport, recycling, or Noether sea exchange in the same absolute record. Otherwise the branch has kept an effective density constant by inserting a source without provenance.
 
+#### Steady-State Thermodynamic Ledger
+
+An eternal or unbounded-age branch must explain why the received sky brightness is finite and why repeated recycling does not create unbounded observer-window entropy. Neither burden is resolved by assigning absorption or processing to SMBHs. Absorbed energy must be re-emitted, stored, transported, or converted on the same record, and any apparent entropy decrease inside a processing region must be balanced by its boundary and environment.
+
+For a receiver event $R$, direction $\hat{\mathbf k}$, and lower absolute-time cutoff $T_-$, let the received specific intensity be
+
+$$
+I_{\nu,R}^{(T_-)}(\hat{\mathbf k})
+=
+\int_{\gamma_R(T_-)}
+j_{\nu_e}\!\left(\mathbf X(s),T(s),\hat{\mathbf k}\right)
+\mathcal T_{\nu_e\to\nu}\!\left(s;\theta_{\mathrm{sea}}\right)
+\,ds,
+$$
+
+where $j_{\nu_e}$ is the source emissivity on the retained photon-channel path and $\mathcal T_{\nu_e\to\nu}$ contains absorption, reprocessing, frequency transfer, and survival to $R$. The all-sky brightness is
+
+$$
+\mathcal B_R(T_-)
+=
+\int_{S^2}d\Omega
+\int_0^\infty
+I_{\nu,R}^{(T_-)}(\hat{\mathbf k})\,d\nu.
+$$
+
+The dark-sky convergence condition is
+
+$$
+\limsup_{T_-\to-\infty}
+\mathcal B_R(T_-)
+<
+\infty
+$$
+
+for each declared receiver class. A branch fails if finite brightness is obtained by deleting absorbed or redshift-transferred energy from the source, Noether sea, remnant, recoil, or boundary ledger.
+
+The entropy burden uses the same windowed record as [Entropy](../../../../markdown/aaa/dynamics/entropy.md#second-law-and-same-record-monotonicity). For recycling pass $c$ through a bounded region $W$, write
+
+$$
+\Delta S_{W,c}
+=
+\Sigma_{\mathrm{int},c}
++
+\Phi_{S,\mathrm{in},c}
+-
+\Phi_{S,\mathrm{out},c}
++
+\mathcal R_{S,c},
+\qquad
+\Sigma_{\mathrm{int},c}\ge0,
+$$
+
+where $\Sigma_{\mathrm{int},c}$ is interior entropy production, $\Phi_{S,\mathrm{in/out},c}$ are entropy-bearing boundary records, and $\mathcal R_{S,c}$ records changes in coarse-graining or retained access. Statistical recurrence requires more than return of the visible matter variables:
+
+$$
+\sup_N
+\left|
+\sum_{c=1}^{N}\Delta S_{W,c}
+\right|
+<
+\infty,
+\qquad
+\sum_{c=1}^{N}
+\left(
+\Phi_{S,\mathrm{out},c}
+-
+\Phi_{S,\mathrm{in},c}
+\right)
+=
+\sum_{c=1}^{N}
+\left(
+\Sigma_{\mathrm{int},c}
++
+\mathcal R_{S,c}
+\right)
++
+\mathcal O(1).
+$$
+
+The Noether sea retuning ratio $\Lambda_{\mathrm{sea}}=T_{\mathrm{retune}}/T_{\mathrm{cycle}}$ determines how the cycle is read. When $\Lambda_{\mathrm{sea}}\ll1$, a state-function entropy comparison may be available. When $\Lambda_{\mathrm{sea}}\gtrsim1$, the hysteresis-loop record must remain in $\mathcal R_{S,c}$ or the interior-production row; resetting the visible macrostate does not reset the path history. SMBH processing closes this ledger only if its captured assemblies, emitted photon and neutrino channels, Noether sea update, remnants, causal wakes, and boundary fluxes satisfy the same balance.
+
 ### Observation-First Component Abstraction
 
 This framework does not treat cosmology as "$\mathbb{A}\mathbb{A}\mathbb{A}$ vs $\Lambda\mathrm{CDM}$" at the bundled-model level. Instead, first abstract $\Lambda\mathrm{CDM}$ into separable observational components with no interpretational linkage baked in:
@@ -298,7 +380,7 @@ d\!\left(\widehat{\mu}_{W_a,t_{\mathrm{eff}}},\widehat{\mu}_{W_b,t_{\mathrm{eff}
 $$
 Large-scale homogeneity is accepted only when this residual remains within the declared tolerance while the same $\theta_{\mathrm{sea}}$ also passes the expansion, CMB, BBN, growth, lensing, and calibration gates. This is a scale-neutral diagnostic over observer-facing data products, not an import of a shape-first cosmology or a replacement for the fixed Euclidean void.
 
-The same rule applies across modules. A promoted cosmology claim must preserve one shared Noether sea state record $\theta_{\mathrm{sea}}$ through expansion, CMB transfer, BBN, growth, lensing, and local calibration. If those modules can be fit only by replacing the state record or projection map per observable family, the result is benchmark fitting rather than cosmology closure. The dark-energy branch states this as a shared residual gate in [dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates).
+The same rule applies across modules. A promoted cosmology claim must preserve one shared Noether sea state record $\theta_{\mathrm{sea}}$ through expansion, CMB transfer, BBN, growth, lensing, and local calibration. If those modules can be fit only by replacing the state record or projection map per observable family, the result is benchmark fitting rather than cosmology closure. The dark-energy branch states this as a shared residual gate in [dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates), while [Cosmology Shared Residual Fit](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md) owns the cross-module packet schema and residual-vector protocol. This page does not duplicate those operational definitions.
 
 #### Prediction Narrowness and Initial-Basin Burden
 
@@ -464,11 +546,422 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ may borrow explanatory motifs from QSSC/cyclica
 - Large-scale homogeneity can be treated as a statistical outcome of repeated local processes governed by the same microphysics, while permitting local fluctuations and anisotropic environments.
 - Large-scale organization can be treated as mostly scale-invariant in architecture while still allowing finite-scale departures from statistical uniformity.
 
+#### Acoustic-Ruler Coherence Burden
+
+A galaxy-local recycling account must recover the near-universality of the baryon acoustic ruler from the same source, release, thermalization, and transfer record used for CMB acoustic structure. The effective scale history $a_{\mathrm{eff}}$ is a stitched observer summary; it is not a literal global separation history unless that map is derived.
+
+For source patch $p$ and observational bin $b$, let $r_{d,pb}^{\theta}$ be the ruler predicted by one shared cosmology record $\theta$, with covariance-projected tolerance $\sigma_{r,pb}$. Define
+
+$$
+\bar r_d^\theta
+=
+\frac{\sum_{p,b}w_{pb}r_{d,pb}^{\theta}}{\sum_{p,b}w_{pb}},
+\qquad
+\mathcal R_{\mathrm{BAO,coh}}(\theta)
+=
+\max_{p,b}
+\frac{|r_{d,pb}^{\theta}-\bar r_d^\theta|}{\sigma_{r,pb}}.
+$$
+
+The branch must satisfy $\mathcal R_{\mathrm{BAO,coh}}\le1$ without tuning the ruler separately by source patch or tracer bin. Failure means local recycling has not recovered the coherent standard-ruler data product, even if it supplies a qualitative thermal-background story.
+
 ### Time Notions (Operational)
 
 - **Absolute Time ($T$):** global linear index for full-state evolution.
 - **Effective Observer Time ($t_{\mathrm{eff}}$):** reconstructed observer-level clocking used for effective observational chronology (the cosmic-time comparison coordinate).
 - **Dynamics:** expansion is encoded as medium-network evolution in $T$, then read out as observer-level history in $t_{\mathrm{eff}}$.
+
+## Cosmology Reconstruction
+
+Start with the thing a telescope actually gives us. It gives us changed light. It gives spectra, colors, line shifts, fluxes, angular images, polarization, arrival times, correlations, and maps. It does not hand us distance, age, expansion, dark energy, or a metric. Those are reconstructions.
+
+This chapter states the reconstruction problem between standard Lambda-CDM cosmology and $\mathbb{A}\mathbb{A}\mathbb{A}$. The data record is not being dismissed. Galaxy spectra, supernova light curves, the CMB, BAO, weak lensing, cluster catalogs, and abundance histories are real observational achievements. The issue is what physical layer gets credit for the pattern.
+
+Lambda-CDM treats the photon record as if it has already been translated into metric expansion, cosmic age, source distance, and dark-sector densities. $\mathbb{A}\mathbb{A}\mathbb{A}$ treats the same record as a transported physical ledger moving through an evolving Noether sea inside a fixed Euclidean void.
+
+The central rule is simple: the Euclidean void does not expand. What evolves is the Noether sea, the assemblies embedded in it, and the path-history records carried by photon-channel packets. Expansion variables may still be recovered as useful effective summaries. They are not the underlying motion.
+
+For surrounding context, see [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md), [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md), [Structure Formation](../../../../markdown/aaa/cosmology/structure-formation.md), [CMB](../../../../markdown/aaa/cosmology/CMB.md), and [Hubble and S8 Tensions](../../../../markdown/aaa/cosmology/hubble-s8-tensions.md).
+
+### The Simple Picture
+
+Imagine receiving a message after it crossed a very large, changing ocean. The paper matters. The sender matters. The receiver matters. But the trip also matters. If the ink is stretched, dimmed, delayed, or distorted, the message is still real; it is just not direct access to the sender.
+
+Cosmology is mostly like that, except the message is a photon record. The record carries information about the emitting source, but it also carries information about the environment near the source, the path through the Noether sea, the receiver clock, and the receiver apparatus.
+
+Standard cosmology is powerful because it found a compact way to organize those records. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not throw that organization away. It asks whether the compact variables are being mistaken for the machinery that produced them.
+
+The difference can be stated as a layer split:
+
+| Layer | What is received or fitted | What must be explained |
+| --- | --- | --- |
+| Photon record | Spectra, flux, polarization, arrival times, angular images, CMB maps, lensing correlations. | How a physical photon-channel packet carries those records through the Noether sea. |
+| Effective variables | Redshift $z$, luminosity distance $d_L$, angular-diameter distance $d_A$, $H(z)$, $\Omega_m$, $\Omega_\Lambda$, $w(z)$. | Why these variables compress the received record so well. |
+| Ontology | Expanding metric space, fundamental spacetime, fundamental photon field, dark energy, dark matter. | Which parts are real assemblies, which parts are Noether sea response, and which parts are reconstruction bookkeeping. |
+
+The first layer is the observation. The second layer is a disciplined map. The third layer is where $\mathbb{A}\mathbb{A}\mathbb{A}$ relocates the physical explanation.
+
+### Why Lambda-CDM Is Strong
+
+Lambda-CDM is strong because it compresses many observation channels into a small effective model. In standard comparison form it uses a homogeneous and isotropic metric background, a scale factor $a_{\mathrm{std}}(t)$, cold dark matter, baryons, radiation, neutrinos, and a dark-energy term close to a cosmological constant. The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ bridge maps that row to $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ only after the observer-era clock map has been declared.
+
+With that package it fits:
+
+- the Hubble redshift-distance relation;
+- supernova dimming and time dilation;
+- the CMB blackbody spectrum and anisotropy peaks;
+- BAO distance ladders;
+- weak-lensing correlations;
+- large-scale structure growth;
+- primordial light-element abundances;
+- cluster and galaxy population histories.
+
+That success is the recovery target. $\mathbb{A}\mathbb{A}\mathbb{A}$ cannot replace Lambda-CDM by refusing its data products. It must explain why the Lambda-CDM compression works over the domains where it works, and where its inferred ontology has gone beyond what the photon record alone establishes.
+
+The clean way to read Lambda-CDM is therefore:
+
+1. It is an excellent effective fit pipeline.
+2. It is not a final implementation of photons.
+3. It is not a final implementation of spacetime.
+4. It uses photons traveling through spacetime to infer source objects and source reactions.
+5. Therefore the physical implementation of photon, effective spacetime, source, and transport cannot be skipped.
+
+This is not a small technical quibble. Precision cosmology is mostly photon-mediated. Supernovae, galaxies, quasars, BAO tracers, the CMB, lensing shear maps, metallicity estimates, reionization histories, and star-formation histories are reconstructed primarily from light received after long propagation.
+
+Lambda-CDM borrows the photon abstraction from quantum field theory and the metric abstraction from general relativity. That is valid as an effective pipeline when the abstractions are stable enough. $\mathbb{A}\mathbb{A}\mathbb{A}$ says the same pipeline becomes incomplete when its borrowed photon and spacetime layers are treated as finished physical implementations.
+
+### What Redshift Is
+
+Redshift is the main handle. A spectral line has a calibrated rest frequency. When we receive it at a lower frequency, the received light is redshifted. In ordinary observational language,
+
+$$
+1+z
+=
+\frac{\lambda_{\mathrm{obs}}}{\lambda_{\mathrm{emit}}}
+=
+\frac{\nu_{\mathrm{emit}}}{\nu_{\mathrm{obs}}}.
+$$
+
+That much is direct bookkeeping. The extra Lambda-CDM step is to identify the same ratio with the scale factor:
+
+$$
+1+z
+=
+\frac{\lambda_{\mathrm{obs}}}{\lambda_{\mathrm{emit}}}
+=
+\frac{\nu_{\mathrm{emit}}}{\nu_{\mathrm{obs}}}
+=
+\frac{a(t_{\mathrm{obs}})}{a(t_{\mathrm{emit}})}.
+$$
+
+This is the big conversion. A frequency ratio becomes a scale-factor ratio. Once that conversion is accepted, $z$ becomes more than a line shift. It becomes the coordinate used to infer distance, lookback time, source volume, population history, matter density, dark energy, curvature, neutrino masses, and the age of the observable universe.
+
+In a standard comparison model,
+
+$$
+H(z)
+=
+H_0
+\left[
+\Omega_m(1+z)^3
++
+\Omega_r(1+z)^4
++
+\Omega_k(1+z)^2
++
+\Omega_\Lambda
+\right]^{1/2},
+$$
+
+with the precise dark-energy term generalized when $w(z)$ is not fixed at $-1$. The comoving radial distance is then modeled by
+
+$$
+\chi(z)
+=
+c_0
+\int_0^z
+\frac{dz'}{H(z')},
+$$
+
+and the lookback time by
+
+$$
+t_L(z)
+=
+\int_0^z
+\frac{dz'}{(1+z')H(z')}.
+$$
+
+In a flat comparison model, luminosity distance is summarized by
+
+$$
+d_L(z)
+=
+(1+z)\chi(z),
+$$
+
+while the flux relation is
+
+$$
+F
+=
+\frac{L}{4\pi d_L^2}.
+$$
+
+This is why redshift is so important. A measured line shift becomes $z$. The model turns $z$ into $H(z)$, $d_L(z)$, $d_A(z)$, lookback time, source volume, and population history. The fitted parameters then support statements about cosmic acceleration, dark energy, matter density, curvature, neutrino masses, and cosmic age.
+
+The power is real. The danger is also real: the same received photon record can be used first to define redshift, then to infer distance, then to infer source luminosity or event class, then to infer the expansion history used to interpret the same source population.
+
+### What Redshift Means In $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, redshift is not first a scale-factor ratio. It is a signed frequency-transfer ledger between an emission event $E$ and a reception event $R$:
+
+$$
+Z_X^{E\to R}
+=
+\ln
+\frac{\nu_{X,0}}{\nu_{\mathrm{obs},X}}.
+$$
+
+Here $X$ labels the calibrated channel: a spectral line, supernova light-curve class, CMB band, or other identifiable photon record. The observed redshift is the exponential of this ledger:
+
+$$
+1+z_X
+=
+\exp Z_X^{E\to R}.
+$$
+
+The useful decomposition is
+
+$$
+Z_X^{E\to R}
+=
+\ln\Gamma_{N,E}
+-
+\ln\Gamma_{N,R}
++
+Y_{X,E\to R}
+-
+\ln B_X(E)
+-
+\ln D_v.
+$$
+
+Each term answers a plain question:
+
+- $\Gamma_{N,E}$ asks how the Noether sea clock rate at emission compares with the reference.
+- $\Gamma_{N,R}$ asks how the Noether sea clock rate at reception compares with the reference.
+- $Y_{X,E\to R}$ asks what the photon-channel packet accumulated along its path.
+- $B_X(E)$ asks whether the emitting source branch was calibrated correctly.
+- $D_v$ asks how relative motion between source and receiver changed the received frequency.
+
+This split is the core difference. Lambda-CDM assigns the redshift to scale-factor history first, then treats other effects as corrections. $\mathbb{A}\mathbb{A}\mathbb{A}$ starts with the measured redshift as a total ledger. The expansion-like part is only whatever remains after endpoint clock rates, source branch, relative motion, and path-history transport have been separated.
+
+The corresponding propagation residual is
+
+$$
+Z_{\mathrm{prop},X}
+=
+Z_X^{E\to R}
+-
+\ln\Gamma_{N,E}
++
+\ln\Gamma_{N,R}
++
+\ln B_X(E)
++
+\ln D_v.
+$$
+
+Only this residual is eligible to define an effective Hubble-like coefficient along a calibrated line of sight:
+
+$$
+H_{\mathrm{eff},X}(R,\hat{\mathbf k})
+=
+c_0\,\partial_R Z_{\mathrm{prop},X}.
+$$
+
+This $H_{\mathrm{eff}}$ is not the expansion rate of the Euclidean void. It is the observer-level slope of the corrected redshift-transfer ledger after the local channel, source, endpoint, and path terms have been separated as far as the data allow.
+
+The short version is: redshift is a receipt, not a ruler by itself. Lambda-CDM reads the receipt as expansion history. $\mathbb{A}\mathbb{A}\mathbb{A}$ first asks what was paid by the source, what was paid by the path, what was paid by motion, and what was paid by the receiver clock.
+
+### Noether Sea Evolution Is Not Universal Expansion
+
+The universe-level container does not stretch in $\mathbb{A}\mathbb{A}\mathbb{A}$. The Euclidean void remains the fixed setting. The Noether sea inside it can still evolve.
+
+That distinction matters because Noether sea assemblies can change their radii, frequencies, coupling stiffness, and local density as they exchange energy with surrounding structures. A relaxing Noether sea region may contain assemblies whose indexed binary radii grow while their characteristic frequencies decrease. That can produce an expansion-like redshift trend without metric expansion of the void.
+
+The cosmos is also not one uniform clock. A galaxy cluster, a low-density void, a filament, a young star-forming region, a strong-field environment, and the line of sight between them can have different Noether sea histories. Many subassemblies can have repeatable motion. Repeatable motion gives phase histories. A photon-channel packet crossing the cosmos samples many such histories before it is received.
+
+When the average is smooth enough, those many histories can project to a simple effective scale factor $a_{\mathrm{eff}}(t_{\mathrm{eff}})$. That is why the Lambda-CDM compression can work. The mistake is to promote the average summary into the primitive motion of space itself.
+
+The effective scale factor is therefore a compression of Noether sea state history, not a fundamental coordinate of the Euclidean void. It is useful when the averaged ledger is close to homogeneous and isotropic. It becomes misleading when source evolution, endpoint clock-rate differences, anisotropic path histories, or late Noether sea relaxation are forced into one global expansion variable.
+
+### Source Claims Are Reconstructed
+
+Every cosmological source claim should be read as a chain:
+
+1. A source reaction or assembly transition emits a photon-channel packet with a channel-dependent initial record.
+2. The source environment modifies the outgoing packet through local fields, plasma, density, motion, composition, and branch history.
+3. The packet propagates through the Noether sea and accumulates path-history response.
+4. The receiver samples the packet through a local Noether sea clock-rate factor, apparatus calibration, and observer motion.
+5. The observer reconstructs a source label, redshift, distance, luminosity, and physical interpretation.
+
+In standard practice, the last step is often described as if the source property has been read directly from the sky. In $\mathbb{A}\mathbb{A}\mathbb{A}$, it is a reconstruction from a transported record.
+
+A spectral line is still a powerful source identifier, but its received frequency is not only a source property. A supernova light curve is still a powerful standardization channel, but its inferred distance depends on source-branch calibration, endpoint clock rates, and path transport. A CMB photon is still a high-value early-state record, but its temperature anisotropy is not automatically a direct photograph of metric scale factor.
+
+The source claim is licensed only after the photon record, effective spacetime assumption, and source calibration have been accounted for.
+
+### Why The Lambda-CDM Age Is Not The Same Question
+
+In Lambda-CDM, the age of the observable universe is tied to the expansion integral:
+
+$$
+t_0
+=
+\int_0^\infty
+\frac{dz}{(1+z)H(z)}.
+$$
+
+This works inside Lambda-CDM because $z$ is interpreted as a scale-factor coordinate and $H(z)$ as the expansion rate of the metric background. The model age is the elapsed effective time along the fitted expansion history.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the same operation does not compute the age of the Euclidean void. It also does not automatically compute the age of the full Noether sea. It computes an effective observer-era interval only after the redshift ledger has been compressed into $H_{\mathrm{eff}}(z)$.
+
+That is why redshift in $\mathbb{A}\mathbb{A}\mathbb{A}$ does not automatically lead to the same age as Lambda-CDM. Lambda-CDM first says, "this redshift is scale-factor history." $\mathbb{A}\mathbb{A}\mathbb{A}$ first says, "this redshift is a total frequency-transfer ledger." Those are different questions.
+
+If redshift contains endpoint clock-rate terms, source-branch terms, relative-motion terms, and path-history transport terms, then the mapping from $z$ to absolute time is not unique without the native ledger. A recovered 13-14 billion year observer-era scale, if recovered, would have a narrower meaning: it would mark the calibrated history of the photon-accessible effective cosmological state. It would not be a primitive creation time for the Euclidean void, and it would not prove that all Noether sea regions share one global expansion clock.
+
+### Distance Is Also A Ledger
+
+Redshift alone is not distance. Lambda-CDM can treat redshift as distance because the model supplies a global relation between $z$, $H(z)$, and metric distance functions. $\mathbb{A}\mathbb{A}\mathbb{A}$ reconstructs distance after the channel budget is declared.
+
+For a source with intrinsic luminosity calibration $L_X(E)$ and received flux $F_X(R)$, the observer can still define an effective luminosity distance:
+
+$$
+d_{L,X}^{\mathrm{eff}}
+=
+\left(
+\frac{L_X(E)}{4\pi F_X(R)}
+\right)^{1/2}.
+$$
+
+But this quantity is not automatically a geometric radius in an expanding metric. It includes source calibration, arrival-rate changes, photon-channel transport, beam geometry, absorption or scattering where present, and receiver calibration.
+
+Standard cosmology packages those effects into $d_L(z)$ and fits an expansion history. $\mathbb{A}\mathbb{A}\mathbb{A}$ asks which parts of $d_{L,X}^{\mathrm{eff}}$ are geometry, which parts are source branch, which parts are Noether sea transport, and which parts are endpoint clock comparison.
+
+The same caution applies to angular-diameter distance, BAO scales, lensing kernels, and inferred comoving volume. They are not discarded. They become cross-checks on whether one Noether sea state history can recover all effective distance ladders without treating the Euclidean void as expanding.
+
+### Redshift And Distance: A Worked Comparison
+
+A useful first table compares the standard Lambda-CDM luminosity distance with the simplest fixed-void $\mathbb{A}\mathbb{A}\mathbb{A}$ benchmark. The Lambda-CDM column below uses a flat Planck-like comparison model with $H_0=67.4\ \mathrm{km\,s^{-1}\,Mpc^{-1}}$, $\Omega_m=0.315$, $\Omega_r=9.2\times10^{-5}$, and $\Omega_\Lambda=1-\Omega_m-\Omega_r$:
+
+$$
+d_L^{\Lambda\mathrm{CDM}}(z)
+=
+(1+z)c_0
+\int_0^z
+\frac{dz'}{H_0\left[\Omega_r(1+z')^4+\Omega_m(1+z')^3+\Omega_\Lambda\right]^{1/2}}.
+$$
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ column is not a completed native prediction. It is the constant corrected-transfer benchmark obtained when endpoint, source, launch, and inhomogeneous path terms have been removed and the remaining propagation residual has a constant local slope $H_{\mathrm{eff},0}=H_0$:
+
+$$
+d_{L,\mathrm{bench}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(z)
+=
+(1+z)\frac{c_0}{H_{\mathrm{eff},0}}\ln(1+z).
+$$
+
+The percent difference is
+
+$$
+\Delta_{\%}
+=
+100\,
+\frac{
+d_{L,\mathrm{bench}}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+-
+d_L^{\Lambda\mathrm{CDM}}
+}{
+d_L^{\Lambda\mathrm{CDM}}
+}.
+$$
+
+| Redshift $z$ | Lambda-CDM $d_L$ (Mpc) | $\mathbb{A}\mathbb{A}\mathbb{A}$ benchmark $d_L$ (Mpc) | $\Delta_{\%}$ |
+| ---: | ---: | ---: | ---: |
+| $0.01$ | $45$ | $45$ | $-0.3\%$ |
+| $0.05$ | $231$ | $228$ | $-1.2\%$ |
+| $0.10$ | $478$ | $466$ | $-2.3\%$ |
+| $0.25$ | $1{,}305$ | $1{,}241$ | $-4.9\%$ |
+| $0.50$ | $2{,}927$ | $2{,}705$ | $-7.6\%$ |
+| $1$ | $6{,}802$ | $6{,}166$ | $-9.3\%$ |
+| $2$ | $15{,}934$ | $14{,}660$ | $-8.0\%$ |
+| $3$ | $26{,}018$ | $24{,}665$ | $-5.2\%$ |
+| $5$ | $47{,}661$ | $47{,}818$ | $0.3\%$ |
+| $10$ | $105{,}922$ | $117{,}323$ | $10.8\%$ |
+| $20$ | $229{,}867$ | $284{,}380$ | $23.7\%$ |
+| $1100$ | $15{,}266{,}752$ | $34{,}299{,}885$ | $124.7\%$ |
+
+This table is a calibration stress test. The first few rows show why a simple fixed-void transfer slope can look close at low redshift. The middle rows show that the difference is not a constant offset. The high-redshift row shows why the CMB regime cannot be handled by a naive constant-slope rule.
+
+The intermediate-redshift mismatch is already decisive for the benchmark form: the ratios at $z=0.5$ and $z=1$ correspond to distance-modulus residuals of about $-0.17$ and $-0.21$ magnitude, respectively. A viable branch therefore needs a nonconstant Noether sea history by the low-to-intermediate-redshift supernova window; high-redshift CMB recovery is not the first point at which the constant-slope benchmark fails.
+
+A mature $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology does not have to keep the constant-slope benchmark. It must replace that row with the integrated Noether sea record, using the same endpoint cadence, source branch, launch geometry, transparent transport, CMB, BAO, lensing, and growth constraints described above. The large high-redshift difference marks how much nonconstant Noether sea history the native redshift ledger must explain if it is to recover the Lambda-CDM-era distance products without metric expansion of the Euclidean void.
+
+### Dark-Sector Reclassification
+
+Once redshift and distance are treated as ledgers, the dark sector changes meaning.
+
+| Lambda-CDM object | Standard role | $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation |
+| --- | --- | --- |
+| $a_{\mathrm{std}}(t)$ | Standard comparison scale factor of the metric universe. | Maps to $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ after the observer-era clock map is declared. |
+| $H(z)$ | Expansion rate at redshift $z$. | Corrected redshift-transfer slope after source, endpoint, motion, and path terms are separated. |
+| $\Omega_\Lambda$ | Dark-energy density fraction, often near a cosmological constant. | Effective pressure and energy projection of Noether sea state and relaxation history. |
+| $w(z)$ | Equation-of-state parameter for dark energy. | Coarse-grained response curve of the Noether sea contribution assigned to the expansion-equivalent ledger. |
+| Cold dark matter | Collisionless matter component sourcing gravity and growth. | Neutral assemblies plus any medium-response split required by lensing, growth, cluster offsets, and matter inventory. |
+| Curvature $k$ | Spatial curvature parameter of the metric background. | Effective geometry coefficient in the observer reconstruction, not curvature of the Euclidean void. |
+| Cosmic age | Integral over the fitted expansion history. | Effective observer-era interval, not primitive age of the Euclidean void or full Noether sea. |
+
+The dark sector is therefore not a list of mysterious substances added to an otherwise known setting. It is a sign that the photon record has been compressed through a spacetime model whose physical implementation was left open.
+
+Some components may correspond to real neutral assemblies. Some may be Noether sea response. Some may be source-history or propagation bookkeeping that was forced into a global expansion fit. The task is to sort those contributions without losing the observational successes that made the Lambda-CDM fit powerful.
+
+### Required Recovery Tests
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ is not free to call every redshift a medium effect. It must recover the constraints that make naive tired-light models fail. In particular, the native ledger must preserve or explain:
+
+- supernova time dilation;
+- spectral-line coherence and line-ratio consistency;
+- image sharpness over cosmological baselines;
+- Tolman surface-brightness scaling after the corrected ledger terms are included;
+- the CMB blackbody spectrum and anisotropy structure;
+- BAO distance-scale consistency;
+- lensing kernels and shear correlations;
+- large-scale growth and $S_8$ behavior;
+- primordial abundance constraints;
+- source-population evolution across galaxy, quasar, and supernova catalogs.
+
+These are not optional patches. They are the reason the standard package became dominant. The reconstruction must show how one Noether sea history, plus real source and receiver ledgers, produces the same organized photon record without assigning expansion to the Euclidean void.
+
+### Summary
+
+Lambda-CDM turns photon redshift into scale-factor history and then uses that history to infer distances, ages, dark-sector densities, and source evolution. $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the photon record but reopens the implementation.
+
+A received photon-channel packet is not direct source access. It is a transported record whose frequency, phase, polarization, intensity, and arrival profile have passed through a changing Noether sea and a receiver clock environment.
+
+The conversion is therefore:
+
+$$
+\text{photon data}
+\to
+\text{redshift-distance-source ledger}
+\to
+\text{effective Lambda-CDM variables}
+\to
+\text{native Noether sea and assembly history}.
+$$
+
+The standard model reads the middle of this chain as expanding spacetime. $\mathbb{A}\mathbb{A}\mathbb{A}$ reads it as a successful effective compression of deeper medium, source, and clock records. The observational burden is to recover every strong Lambda-CDM data product while moving the ontology from metric expansion to ledgers propagating through an evolving Noether sea in a fixed Euclidean void.
 
 ## Expansion Mechanism
 
@@ -492,11 +985,11 @@ a_{\mathrm{eff}}(T)\propto
 {\langle L_{\text{core}}(T_{\mathrm{ref}})\rangle}
 $$
 
-where $L_{\text{core}}$ is a representative assembly-separation scale.
+where $L_{\text{core}}$ is a representative assembly-separation scale in the declared averaging domain.
 
 This $a_{\mathrm{eff}}(T)$ is a summary of medium evolution inside fixed $\mathbf X$, not geometric stretching of the container. When projected into a homogeneous observer comparison, the same row may be reported as $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ after the clock map has been declared.
 
-Equivalent bookkeeping choices can be used in the same ontology:
+Several candidate projections can be tested in the same ontology:
 
 $$
 a_{\mathrm{eff}}(T)\ \leftrightarrow\ \langle R_{\text{braid}}(T)\rangle
@@ -504,7 +997,7 @@ a_{\mathrm{eff}}(T)\ \leftrightarrow\ \langle R_{\text{braid}}(T)\rangle
 a_{\mathrm{eff}}(T)\propto u_{\text{sea}}(T)^{-1/3}
 $$
 
-These are effective parameterizations of Noether sea state, not independent geometric claims.
+These are effective parameterizations of Noether sea state, not interchangeable identities. Their equivalence has to be derived on the same retained record. In particular, a galaxy-local recycling branch cannot interpret a smaller local $L_{\text{core}}$ literally as a smaller global source separation without first deriving the observer-level distance and ruler map.
 
 Quasi-steady and cyclical comparison families may use an oscillatory effective scale history such as
 $$
@@ -621,7 +1114,7 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf X,T)}
 $$
 
-The factor $\Gamma_N$ is not a new time variable. It records how strongly the local Noether sea braid cadence is stretched relative to the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving Noether braid deformation factor; outside that limit it remains a Noether sea state diagnostic to be derived from Noether braid geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the moving Noether braid limit fixes the coefficient of $-\ln\xi$ and the weak-field endpoint limit fixes one isotropic Noether sea response combination.
+The factor $\Gamma_N$ is not a new time variable. The convention is $\Gamma_N>1$ for a local cadence that is slower than the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving Noether braid deformation factor; outside that limit it remains a Noether sea state diagnostic to be derived from Noether braid geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the moving Noether braid limit fixes the coefficient of $-\ln\xi$ and the weak-field endpoint limit fixes one isotropic Noether sea response combination.
 
 For a spectral transition family $X$, the working redshift factorization is
 
@@ -716,6 +1209,16 @@ where $E_{\mathrm{arch}}$ collects architrino kinetic and configuration energy, 
 
 The speed rows must stay separated inside this ledger. The transparent record-bearing bundle propagates as the dressed photon channel at $c_\gamma(\mathbf X,T)$, as used in the path-time integral below. Primitive causal wakes and Noether sea exchange remain constrained by $c_f$ and enter the sink bookkeeping through $E_{\mathrm{wake}}$ and $E_{\mathrm{sea}}$. Observer clock and ruler reconstruction belongs to $c_{\text{eff}}$, while $c_0$ is only the weak homogeneous calibration value. A redshift branch therefore cannot use $c_f$ as the observed photon-channel speed, nor can it let the energy sink induce an unbounded or frequency-dependent $c_\gamma(\omega)$ residual without failing image sharpness and time-of-flight constraints.
 
+The multi-messenger recovery target is especially narrow. The [GW170817/GRB 170817A timing analysis](https://arxiv.org/abs/1710.05834) constrains the observer-level propagation-speed difference to
+$$
+-3\times10^{-15}
+\le
+\frac{c_{\mathrm{GW}}-c_\gamma}{c_\gamma}
+\le
+7\times10^{-16}.
+$$
+This bound constrains the integrated gravitational-wave and photon-channel propagation records for that event; it does not identify either substrate speed with the primitive wake speed $c_f$. Any Noether sea dispersion or clock reconstruction used for cosmological redshift must preserve this near-coincidence on the same path.
+
 The global form also assumes that the total energy on the constant-$T$ leaf is finite or convergently summable. If an unbounded populated Noether sea does not admit that sum, the operational conservation statement is local continuity on bounded regions:
 
 $$
@@ -741,6 +1244,25 @@ E_{\mathrm{emit}}-E_{\mathrm{obs}}
 =
 E_{\mathrm{emit}}\frac{z}{1+z}
 $$
+
+This per-packet identity does not yet license a fixed fraction of present critical density for the integrated deposit. An estimate such as $\rho_{\gamma,0}(a_{\mathrm{dec}}^{-1}-1)$ imports the standard comoving-volume and scale-history map that the fixed-void branch is required to derive. The native calculation must instead integrate retained photon bundles and Noether sea exchange over a bounded constant-$T$ region, with source, remnant, recoil, and boundary terms included. Until that mapping exists, a nominal percent-level deposit is a heuristic comparison, not a measured Noether sea loading.
+
+One conditional negative nevertheless survives. Any branch that recovers the standard CMB temperature, distance, and volume data products must also recover the observer-level comparison
+
+$$
+\left(
+\frac{\Delta\rho_{\mathrm{sea,path}}}{\rho_{\mathrm{crit}}}
+\right)_{\mathrm{cmp}}
+\sim
+\Omega_{\gamma,0}
+\left(
+a_{\mathrm{dec}}^{-1}-1
+\right)
+\sim
+\mathcal O(10^{-2}),
+$$
+
+which is far below the effective dark-energy comparison row $\Omega_{\mathrm{DE}}\approx0.7$. Transparent-path redshift deposition therefore cannot by itself supply the required dark-energy loading on such a recovered branch. The exact native deposit and its destination remain outputs of the bounded constant-$T$ ledger, not imported inputs.
 
 After source-branch, recoil, remnant, and boundary rows have been separated, a pure transparent-path redshift must close
 
@@ -779,27 +1301,62 @@ $$
 \frac{\mathcal{P}_{E\to R}}{B_X(E)D_v}
 $$
 
-Here $D_v$ is the launch or relative-motion frequency factor. In the simple radial comparison limit, let
+Here $D_v$ is the launch or relative-motion frequency factor. In the homogeneous absolute-record replay, let
 
 $$
-v_r
-\equiv
-(\mathbf{v}_R-\mathbf{v}_E)\cdot\hat{\mathbf{k}},
+v_{E,k}\equiv\mathbf v_E\cdot\hat{\mathbf k},
 \qquad
-\beta_r=\frac{v_r}{c_0}
+v_{R,k}\equiv\mathbf v_R\cdot\hat{\mathbf k}
 $$
 
-where $\hat{\mathbf{k}}$ points from emitter to receiver and $v_r > 0$ means the endpoint separation is increasing. The familiar comparison form is
+where $\hat{\mathbf{k}}$ points from emitter to receiver. Adjacent phase markers emitted with absolute-time separation $\Delta T_E$ arrive with
 
 $$
 D_v
-\approx
-\sqrt{\frac{1-\beta_r}{1+\beta_r}}
-\approx
-1-\frac{v_r}{c_0}
-\quad
-\text{for } \lvert v_r\rvert\ll c_0
+=
+\frac{c_0-v_{R,k}}{c_0-v_{E,k}}.
 $$
+
+For a fixed emitter and a receiver receding along $\hat{\mathbf k}$, this gives $D_v=1-v_{R,k}/c_0$. For a fixed receiver and an emitter receding opposite $\hat{\mathbf k}$ with speed $v_r>0$, it gives $D_v=1/(1+v_r/c_0)$. The special-relativistic square-root comparison factor is not inserted here: any moving-clock correction belongs in the independently derived endpoint cadence factor $\Gamma_N$. Multiplying both would count that correction twice.
+
+##### Homogeneous Lorentz-Recovery Product Target
+
+Neither $D_v$ nor the endpoint cadence ratio is separately the special-relativistic frequency factor. In the homogeneous collinear limit, their frequency-side product must satisfy
+
+$$
+\mathcal D_{\mathrm{SR}}^{(\nu)}
+\equiv
+\frac{\Gamma_{N,R}}{\Gamma_{N,E}}D_v
+\longrightarrow
+\sqrt{
+\frac{1-\beta_{\mathrm{rel}}}
+{1+\beta_{\mathrm{rel}}}
+},
+\qquad
+\beta_{\mathrm{rel}}
+=
+\frac{\beta_R-\beta_E}
+{1-\beta_R\beta_E},
+$$
+
+where $\beta_A=v_{A,k}/c_0$. If the endpoint extraction gives $\Gamma_{N,A}\to(1-\beta_A^2)^{-1/2}$, then
+
+$$
+\frac{\Gamma_{N,R}}{\Gamma_{N,E}}
+\frac{1-\beta_R}{1-\beta_E}
+=
+\sqrt{
+\frac{(1-\beta_R)(1+\beta_E)}
+{(1+\beta_R)(1-\beta_E)}
+}
+=
+\sqrt{
+\frac{1-\beta_{\mathrm{rel}}}
+{1+\beta_{\mathrm{rel}}}
+}.
+$$
+
+The reciprocal $(\Gamma_{N,E}/\Gamma_{N,R})/D_v$ is the corresponding redshift factor. This cancellation is the recovery target: the separate preferred-frame endpoint velocities may occur in the absolute record, but the homogeneous observer comparison must depend only on relative velocity. Any residual dependence is bounded preferred-frame leakage, not Lorentz closure.
 
 The receiver-facing photon energy is the local coupling result
 
@@ -905,14 +1462,13 @@ D_v
 \right|_{\theta_{\mathrm{sea}}=\theta_0,\;\Gamma_N=1,\;B_X=1}
 $$
 
-where $N_\phi$ counts adjacent emitted phase markers received in the reference Noether sea state $\theta_0$. This definition isolates source/receiver motion and emission direction from endpoint cadence and path-history propagation. In the simple radial, weak-speed limit it reduces to
+where $N_\phi$ counts adjacent emitted phase markers received in the reference Noether sea state $\theta_0$. This definition isolates source/receiver motion and emission direction from endpoint cadence and path-history propagation. In the homogeneous radial replay it reduces exactly to
 
 $$
 D_v
-\approx
-\sqrt{\frac{1-\beta_r}{1+\beta_r}},
-\qquad
-\beta_r=\frac{(\mathbf{v}_R-\mathbf{v}_E)\cdot\hat{\mathbf{k}}}{c_0}
+=
+\frac{c_0-\mathbf v_R\cdot\hat{\mathbf k}}
+{c_0-\mathbf v_E\cdot\hat{\mathbf k}}.
 $$
 
 Path-history propagation is then the remaining Noether sea transport integral:
@@ -1385,7 +1941,9 @@ $$
 
 These bounds mainly discipline the anisotropic strain term, environmental gradients, and $\mathcal{R}_{\mathrm{prop},X}$. A propagation explanation that accumulates redshift by large stochastic phase loss would violate these inequalities and would fall back into the excluded tired-light class.
 
-Finally, the observed $(1+z)$ time-dilation consistency requires the phase-frequency propagation rate and packet-cadence propagation rate to agree after the same corrections are applied:
+#### Cadence-Frequency Unification Target
+
+The observed $(1+z)$ time-dilation consistency requires the phase-frequency propagation rate and packet-cadence propagation rate to agree after the same corrections are applied:
 
 $$
 \left|
@@ -2321,7 +2879,11 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, what standard cosmology calls "the first mi
 
 Noether braids compress toward maximum-curvature states.
 Proton/neutron assemblies (nucleon Noether braids; see [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients.
-Local "temperature" (kinetic energy distribution) and density mimic BBN conditions ($T_{\mathrm{temp}} \sim 10^9\,\mathrm{K},\ \rho \sim 10^{-3}\,\mathrm{g/cm^3}$).
+At the observer-level benchmark $T_{\mathrm{temp}}\sim10^9\,\mathrm{K}$, the relevant baryon density is
+$$
+\rho_b=\eta_{b\gamma}n_\gamma m_b\sim2\times10^{-5}\,\mathrm{g/cm^3}
+$$
+for $\eta_{b\gamma}\sim6\times10^{-10}$. This is not the total radiation mass-equivalent density. A local-reactor branch must declare which density enters each reaction row and reproduce the coupled temperature-density history rather than matching one nominal point.
 Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
 
 2. **Outward Release and Cooling:**
@@ -2581,6 +3143,7 @@ Standard BBN effectively behaves like a calibrated standard reactor: one paramet
 
 - **Variance consideration:** SMBHs span mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion-state diversity. If $T_{\mathrm{temp}}(t)$ and $\rho(t)$ inherit this variance directly, predicted yields, especially $Y_p$, should broaden.
 - **Observable target:** Keep consistency with tight helium clustering near $Y_p\approx0.245\pm0.003$.
+- **Deuterium target:** The [one-percent quasar-absorption determination](https://arxiv.org/abs/1710.11129) reports $(D/H)_P=(2.527\pm0.030)\times10^{-5}$ from seven high-precision systems. This is an observer-level abundance benchmark and a particularly tight limit on inter-reactor yield dispersion; it does not identify the production mechanism.
 - **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether braid saturation), with universal ceilings $T_{\max}$ and $\rho_{\max}$ and mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
 - **Observable implication:** If this saturation holds, $^4$He yield is intrinsic to Noether sea state convergence and remains weakly dependent on SMBH mass class.
 
@@ -2685,6 +3248,8 @@ The CMB timeline is presented as an effective observer-level chronology map that
 ### Chronology Mapping Note
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is conceptually adjacent to cyclical/recycling cosmology families, but its mechanism is explicitly SMBH-local source architecture in a fixed-void ontology.
+
+The symbol $t_{\mathrm{eff}}=0$ anchors each declared local release or reaction record when an effective epoch window is applied; it is not the origin of absolute time. The stitched observer chronology aligns stages recovered from many such local records.
 
 ### CMB Dipole and Matter-Dipole Gate
 
@@ -3141,17 +3706,38 @@ $$
 +
 \mathcal{R}_{\mathrm{spec}}
 $$
-where $\mu$ and $y$ are the chemical-potential and Compton-distortion parameters of the observer-level spectrum fit. A path-history redshift proposal passes only if it preserves the near-thermal spectrum, image sharpness, and packet time-dilation behavior in the same transport record.
+where $\mu$ and $y$ are the chemical-potential and Compton-distortion parameters of the observer-level spectrum fit. The [COBE/FIRAS full-data analysis](https://arxiv.org/abs/astro-ph/9605054) gives the observer-level 95% bounds $|\mu|<9\times10^{-5}$ and $|y|<1.5\times10^{-5}$. Translating either bound into a generic energy-injection fraction requires a declared thermalization epoch and spectrum; it is not a universal $10^{-4}$ energy-budget shortcut. A path-history redshift proposal passes only if it preserves the near-thermal spectrum, image sharpness, and packet time-dilation behavior in the same transport record.
 
 The last-scattering benchmark should also retain the rate condition that makes the surface sharp. In standard comparison language decoupling occurs when the scattering rate falls through the effective expansion or relaxation rate,
 $$
 \Gamma_T
 =
-n_e\sigma_T c_0
+n_e\sigma_T c_\gamma(\mathbf X_{\mathrm{dec}},T_{\mathrm{dec}})
 \approx
 H_{\mathrm{eff}}
 $$
-with recombination delayed by the high photon-to-baryon loading encoded in the same $\eta$ ledger used by BBN. The native CMB record therefore has to recover a thin enough last-scattering window, not only a plausible source story.
+where $c_\gamma(\mathbf X_{\mathrm{dec}},T_{\mathrm{dec}})$ is the dressed photon-channel speed in the decoupling environment and reduces to $c_0$ only in the weak homogeneous calibration limit. With recombination delayed by the high photon-to-baryon loading encoded in the same $\eta$ ledger used by BBN, the native CMB record has to recover a thin enough last-scattering window, not only a plausible source story.
+
+The same ionization and transfer history must continue through reionization. It has to recover the integrated optical depth $\tau$, the low-$\ell$ $EE$ polarization enhancement, and the quasar Gunn-Peterson and Lyman-$\alpha$ absorption record without changing the source or photon-transport branch per observable.
+
+For a shared history $\theta$, retain the reionization residual
+$$
+\mathcal R_{\mathrm{reion}}(\theta)
+=
+\frac{|\tau^\theta-\tau^{\mathrm{obs}}|^2}{\sigma_\tau^2}
++
+\left\|
+\mathbf C_{EE,\mathrm{low}\text{-}\ell}^{-1/2}
+\left(
+\mathbf C_{EE}^{\theta}
+-
+\mathbf C_{EE}^{\mathrm{obs}}
+\right)
+\right\|^2
++
+\mathcal R_{\mathrm{GP/Ly}\alpha}(\theta).
+$$
+The final term projects the same ionization record into Gunn-Peterson trough and Lyman-$\alpha$ forest observables. The numerical tolerances belong to the declared CMB and quasar data products, not to a separately tuned source model.
 
 ### Consistency Anchors
 
@@ -3421,7 +4007,7 @@ The opening establishes the ontology and the criteria for what counts as dark in
 
 ### Scope and Purpose
 
-Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 27% of the present energy budget to cold dark matter (CDM)—a pressureless, non-baryonic component that clusters gravitationally but couples negligibly to electromagnetic radiation. This chapter maps dark-matter phenomenology onto $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly ontology and identifies candidate substrates.
+Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly one quarter of the present energy budget to cold dark matter (CDM), with a representative comparison value $\Omega_c\approx0.26$. This pressureless, non-baryonic component clusters gravitationally but couples negligibly to electromagnetic radiation. This chapter maps dark-matter phenomenology onto $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly ontology and identifies candidate substrates.
 
 Throughout, "dark matter" refers to the set of phenomena conventionally attributed to CDM: flat galaxy rotation curves, cluster lensing offsets, the third acoustic peak of the CMB, large-scale structure growth, and BBN-consistent $\Omega_b$. The task is to explain this phenomenology within one ontology—Euclidean void, absolute time, architrinos, and Noether braid assemblies—without importing new fundamental fields or ad hoc modifications to gravity.
 
@@ -3608,20 +4194,20 @@ m_b^{\mathrm{obs}}(M_b)
 \frac{M_b}{M_{200}^{\mathrm{obs}}}
 $$
 
-record the observed baryonic mass fraction. A 2026 baryonic mass-halo mass compilation reports that systems from dwarfs through rich clusters are summarized by
+record the observed baryonic mass fraction. A [2026 baryonic mass-halo mass compilation](https://arxiv.org/abs/2603.06479), assembled from kinematic and weak-lensing mass estimates across dwarfs through rich clusters, reports the empirical summary
 
 $$
 m_b^{\mathrm{obs}}(M_b)
 \simeq
 f_b
-\tanh\!\left(\frac{M_b}{M_0}\right)^{1/4},
+\left[\tanh\!\left(\frac{M_b}{M_0}\right)\right]^{1/4},
 \qquad
 f_b \simeq 0.157,
 \quad
 M_0 \simeq 5\times 10^{13}M_\odot.
 $$
 
-Rich clusters approach the cosmic baryon fraction, while lower-mass systems fall below it with a smooth mass dependence. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a reason to import either a MOND ontology or a $\Lambda\mathrm{CDM}$ halo ontology. It is a cross-scale recovery target for the same neutral-assembly and Noether sea record: the branch must recover the galaxy baryonic Tully-Fisher relation, the mass-dependent baryon fraction, and the cluster lensing/gas behavior without changing calibration per regime.
+Rich clusters approach the cosmic baryon fraction, while lower-mass systems fall below it with a smooth mass dependence. The compilation establishes an empirical fit across its heterogeneous inference instruments; it does not establish the mechanism behind the missing condensed baryons. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a reason to import either a MOND ontology or a $\Lambda\mathrm{CDM}$ halo ontology. It is a cross-scale recovery target for the same neutral-assembly and Noether sea record: the branch must recover the galaxy baryonic Tully-Fisher relation, the mass-dependent baryon fraction, and the cluster lensing/gas behavior without changing calibration per regime.
 
 For a candidate shared record, define the local missing-baryon residual as
 
@@ -3636,7 +4222,7 @@ D_{\mathrm{BTFR}}^\theta
 d_m\!\left(
 \frac{M_b}{M_{200}^{\theta}},
 f_b
-\tanh\!\left(\frac{M_b}{M_0}\right)^{1/4}
+\left[\tanh\!\left(\frac{M_b}{M_0}\right)\right]^{1/4}
 \right)
 +
 \lambda_{\mathrm{cl}}\mathcal{R}_{\mathrm{cl\ offset}}(\theta_{\mathrm{sea}},\rho_A)
@@ -3777,7 +4363,7 @@ These difficulties motivate retaining Candidate A as the primary dark-matter sub
 
 #### Candidate C — Hybrid (Working Baseline)
 
-**Definition.** Neutral assemblies carry the dominant non-baryonic gravitating mass ($\Omega_{\mathrm{DM}} \sim 0.25$), while Noether sea response provides scale-dependent corrections that modify effective profiles in low-acceleration environments.
+**Definition.** Neutral assemblies carry the dominant non-baryonic gravitating mass ($\Omega_{\mathrm{DM}}\sim0.26$), while Noether sea response provides scale-dependent corrections that modify effective profiles in low-acceleration environments.
 
 **Rationale.** This hybrid is the working baseline because:
 
@@ -3794,13 +4380,27 @@ These difficulties motivate retaining Candidate A as the primary dark-matter sub
 | Pure medium-response | Captures MOND-like galaxy-scale behavior naturally | Struggles with Bullet-Cluster offsets and full CMB matter-loading closure |
 | Hybrid baseline | Combines cosmology-scale closure with galaxy-scale flexibility | Requires constitutive calibration discipline to avoid over-parameterized tuning |
 
+The hybrid baseline is therefore a scaffold, not a closed prediction. It inherits the [prediction-narrowness and initial-basin burden](../../../../markdown/aaa/cosmology/cosmology-ontology.md#prediction-narrowness-and-initial-basin-burden). Its declared record must include
+$$
+\theta_{\mathrm{hyb}}
+=
+\left(
+\rho_A,\,
+a_\star^\theta(E),\,
+f^\theta(E),\,
+S_{\mathrm{loc}}(\mathcal I_{\mathrm{loc}}),\,
+\mu(a,k)
+\right),
+$$
+with every environment projection derived from one constitutive and assembly history. It earns predictive standing only if the allowed set $\mathcal O_\epsilon(\theta_{\mathrm{hyb}})$ is narrow relative to the nearby comparison family. If $a_\star$, $f$, screening, or $\mu$ can be changed independently by galaxy, cluster, CMB, lensing, and growth channel, Candidate C has widened the fit space rather than closed the dark sector.
+
 **Coupled equations (schematic).** Let $\rho_A(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ denote the observer-level neutral-assembly density and $\rho_{\text{NS}}(\mathbf X,T)$ the native Noether braid density. In the Newtonian limit, the effective Poisson equation becomes:
 
 $$
 \gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}(\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}},\rho_{\text{NS}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{NS}}^{(\mathrm{pert})}\bigr)
 $$
 
-where $\rho_b$ is baryonic density, $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the Noether sea response modification. In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})} \to 0$; in the low-acceleration limit, $G_{\mathrm{eff}}$ stiffens and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
+where $\rho_b$ is baryonic density, $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the Noether sea response modification. In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})} \to 0$; in a positive-response low-acceleration branch, the effective coupling is enhanced above $G_N$ because the Noether sea is more compliant, and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
 
 This coupled system must be solved self-consistently. The neutral-assembly component $\rho_A$ satisfies collisionless Boltzmann transport in the potential $\Phi_{\mathrm{eff}}$; the Noether sea response enters through constitutive relations derived from Noether braid elasticity in the Noether sea.
 
@@ -4170,7 +4770,7 @@ The neutral-assembly candidate must be cosmologically stable: lifetime $\tau \gg
 Neutral assemblies contribute to the total matter density:
 
 $$
-\Omega_m = \Omega_b + \Omega_A, \quad \Omega_A \approx 0.25
+\Omega_m = \Omega_b + \Omega_A, \quad \Omega_A \approx 0.26
 $$
 
 Their gravitational effect on photon-baryon oscillations produces the characteristic signature in the [CMB](../../../../markdown/aaa/cosmology/CMB.md) power spectrum: suppression of odd peaks (baryon loading) with the overall amplitude and peak-height ratios set by $\Omega_A/\Omega_b$.
@@ -4184,6 +4784,8 @@ $$
 $$
 
 where $\rho_m = \rho_b + \rho_A$ and $G_{\mathrm{eff}}$ may carry scale-dependent corrections from Noether sea response. In the high-acceleration (linear) regime, $G_{\mathrm{eff}} \to G_N$ and standard CDM growth is recovered. Deviations from $\Lambda\mathrm{CDM}$ growth appear only when $|\nabla\Phi|/a_0^{\mathrm{MOND}} \lesssim 1$, which on cosmological scales ($k < 0.01\;h\,\mathrm{Mpc}^{-1}$) may be relevant at low redshift and could contribute to resolving the $S_8$ tension.
+
+The species label on the left and total-matter label on the right are intentional: each neutral-assembly contrast $\delta_A$ responds to the total matter source $\rho_m\delta_m$. In a one-fluid comparison limit, set $\delta_A=\delta_m$.
 
 #### BAO and Matter Power Spectrum
 
@@ -4448,7 +5050,7 @@ $$
 
 with $Z_{\mathrm{path},X}$ allowed to be positive or negative only when the corresponding energy and medium-state exchange rows close. The dark-energy residual must not treat all leftover frequency shift as expansion after suppressing endpoint, source, launch, or SZ-like path terms. It must show that the same $\theta_{\mathrm{sea}}$ supplies the redshift-transfer curvature, blackbody preservation, supernova flux factors, BAO ruler projection, and growth response.
 
-As of April 2026, DESI has completed the observations for its originally planned five-year survey, but the first dark-energy results from the full five-year dataset are expected in 2027. Public comparison pressure comes from the 2025 first-three-year BAO analysis: combined with CMB, supernova, and weak-lensing data, it strengthens comparison fits with time-varying $w(a)$ relative to a pure constant-$\Lambda$ description. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ use is therefore a calibration gate: preserve the BAO distance ladder, supernova residual model, CMB anchor, lensing/growth consistency, and parameter-covariance record before promoting any Noether sea relaxation interpretation.
+DESI BAO data products, when combined with CMB, supernova, and weak-lensing records, can strengthen comparison fits with time-varying $w(a)$ relative to a pure constant-$\Lambda$ description. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ use is a release-explicit calibration gate: preserve the BAO distance ladder, supernova residual model, CMB anchor, lensing/growth consistency, and parameter-covariance record before promoting any Noether sea relaxation interpretation. Unreleased or covariance-incomplete products do not count as residual evidence.
 
 The shared calibration gate can be written as a residual criterion. Let
 
@@ -5146,10 +5748,10 @@ Until those conditions are met, cosmological coupling should be treated as a can
 
 ### Regime Map
 
-| Epoch | Noether sea state | Effective $w$ | Dominant mechanism |
+| Epoch | Noether sea state | Effective dark-energy component $w_{\mathrm{eff}}$ | Dominant mechanism |
 |:---|:---|:---|:---|
-| Radiation era ($z > 3400$) | Hot, dense; binaries 3 contracted | $w_{\mathrm{eff}} \to 0$ (subdominant) | Radiation pressure dominates |
-| Matter era ($3400 > z > 0.7$) | Cooling; binaries 3 relaxing | $w_{\mathrm{eff}}$ transitions toward $-1$ | Matter density dominates; tension grows |
+| Radiation era ($z > 3400$) | Hot, dense; binaries 3 contracted | Not fixed by the subdominant limit | Radiation pressure dominates |
+| Matter era ($3400 > z > 0.7$) | Cooling; binaries 3 relaxing | Model-dependent; must evolve toward $-1$ on the retained branch | Matter density dominates; tension grows |
 | Acceleration onset ($z \sim 0.7$) | $\rho_{\mathrm{DE,eff}} \sim \rho_m$ | $w_{\mathrm{eff}} \approx -1$ | Tension becomes dynamically significant; SMBH channel may become non-negligible |
 | Present ($z = 0$) | Quasi-equilibrium tension | $w_{\mathrm{eff}} \approx -1$ with possible mild drift | Acceleration established; coupling tests become survey-limited |
 | Far future ($z \to -1$) | Full relaxation | $w_{\mathrm{eff}} \to -1$ or evolves | Depends on relaxation endpoint |
@@ -5470,7 +6072,7 @@ The growth module provides:
 
 This is an inference interface, not a direct ontology map. ACT/Planck-style CMB-lensing reconstructions first supply a lensing data product, compactly represented by $C_L^{\phi\phi}$. A valid medium-and-assembly growth model must then produce the same $C_L^{\phi\phi}$ from the same matter power spectrum, growth history, neutral-assembly loading, and Noether sea response variables used for galaxy clustering and low-redshift weak lensing. If the CMB-lensing fit requires one growth record while late-time shear or cluster offsets require another, the structure-formation branch has split the shared cosmology state rather than closed it.
 
-The kinematic Sunyaev-Zeldovich effect adds a force-law profile test to the same growth family. The retained observable is not a visual picture of dark matter, but the mean pairwise velocity of massive halos inferred from small CMB temperature shifts produced when CMB photons scatter from moving cluster electrons. In the retained ACT/SDSS-style halo-pair comparison, the fitted large-scale halo acceleration obeys $g(r)\propto r^{-n}$ with $n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales.
+The kinematic Sunyaev-Zeldovich effect adds an acceleration-profile test to the same growth family. The retained observable is not a visual picture of dark matter, but the mean pairwise velocity of massive halos inferred from small CMB temperature shifts produced when CMB photons scatter from moving cluster electrons. The [ACT/SDSS halo-pair analysis](https://arxiv.org/abs/2604.14327) combines ACT microwave maps with an SDSS halo catalogue and reports a fitted large-scale halo acceleration $g(r)\propto r^{-n}$ with $n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales. This establishes an observer-level profile comparison on that catalogue and scale window; it does not independently identify a substrate acceleration law.
 
 For a candidate medium-and-assembly history $\theta$, define the projected halo-pair acceleration profile over that separation window by
 $$
@@ -5495,6 +6097,20 @@ d_{\mathrm{shared}}\!\left(
 \right)
 $$
 This residual protects the level distinction. A Noether sea response may still modify galaxy-scale low-acceleration behavior, but it cannot become a free large-scale modified-gravity law. On the ACT/SDSS halo-pair window the same $\theta_{\mathrm{sea}}$ must recover an approximately inverse-square effective pull while preserving CMB lensing, weak lensing, redshift-space distortions, and the matter power spectrum.
+
+The Lyman-$\alpha$ forest supplies a small-scale transfer gate on the same branch. Let $P_F^\theta(k,z)$ be the transmitted-flux power spectrum projected from the matter, thermal, ionization, and photon-transfer record. Then
+$$
+\mathcal R_{\mathrm{Ly}\alpha}(\theta)
+=
+\sum_z
+\left\|
+\mathbf C_{F,z}^{-1/2}
+\left[
+P_F^\theta(k,z)-P_F^{\mathrm{obs}}(k,z)
+\right]
+\right\|^2.
+$$
+This is an observer-level recovery target, not a direct matter-power measurement. A branch fails if it fits the CMB optical depth with one ionization history while changing the thermal or small-scale growth record for the forest.
 
 Pre-BBN comparison branches enter structure formation only through the transfer record they leave behind. For any branch $X$ retained by [Inflation Model](../../../../markdown/aaa/cosmology/inflation-model.md#pre-bbn-comparison-gate) and [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md#pre-bbn-handoff-gate), the growth-side observable is
 $$
@@ -5636,6 +6252,8 @@ M_L(a)\equiv K(a)+\frac{4}{3}S(a),
 $$
 and $m_L(a)$ is the finite-range restoring scale (equivalently $k_\ast(a)^2=m_L^2/M_L$).
 
+Use the Fourier convention $e^{-i\omega t_{\mathrm{eff}}}$. For a stable static response, $M_Lk^2+m_L^2>0$. Under the displacement convention above, an overdensity $\delta\rho_m>0$ produces compression when $\theta<0$, so the positive-response branch requires $g_m<0$. Then $\delta u_{\mathrm{sea}}=-\bar u_{\mathrm{sea}}\theta>0$ and $\mu_{\mathrm{sea}}>0$, enhancing $G_{\mathrm{eff}}$. Increasing $M_L$ or $m_L$ reduces the response magnitude but cannot reverse its sign.
+
 The induced sea-energy-density perturbation is
 $$
 \delta u_{\text{sea}}(a,k,\omega)
@@ -5704,7 +6322,7 @@ $$
 $$
 Cosmological deviations are viable only when the same coefficient record also fits BAO, CMB lensing, supernova distances, and $f\sigma_8$ growth without retuning $S_{\mathrm{loc}}$ by observational channel.
 
-A concrete prediction: if Noether sea compliance decreases as it cools (the declared binary-radius statistic increases, lowering the energy density and stiffening the Noether sea response), then $\mu < 0$ at late times, suppressing growth and lowering $S_8$. This is a falsifiable, quantitative claim.
+Late-time growth suppression requires $\mu<0$ on the relevant scales. With the conventions and stable denominator above, that sign requires $g_m>0$, which is opposite to the positive-density compression branch, or an additional constitutive term that changes sign with scale or epoch. Cooling or increased stiffness alone reduces $|\mu|$; it does not produce negative $\mu$. Deriving the required sign change from one stable Noether sea constitutive law is therefore an explicit closure burden for any proposed $S_8$ explanation.
 
 ---
 
@@ -5761,29 +6379,29 @@ Operationally, $H_0$ is the present local slope of the corrected redshift-distan
 The Sunyaev-Zeldovich family sharpens why this correction is mandatory. CMB photon frequencies can be shifted by intervening energetic or moving electron populations, so a line-of-sight frequency ratio is not a pure scale-factor readout by itself. The low-redshift slope should therefore be computed from the signed propagation residual
 
 $$
-H_{\mathrm{eff},X}(R,\hat{\mathbf{k}})
+H_{\mathrm{eff},X}(D,\hat{\mathbf{k}})
 =
 c_0\,
-\partial_R Z_{\mathrm{prop},X}(R,\hat{\mathbf{k}})
+\partial_D Z_{\mathrm{prop},X}(D,\hat{\mathbf{k}})
 $$
 
-after endpoint cadence, source-branch changes, and launch geometry are removed. A net positive $\partial_R Z_{\mathrm{prop},X}$ is redward path accumulation; a net negative value is blueward path boosting. Either sign is allowed only when the same Noether sea and photon-exchange ledger also passes the distance, flux, time-dilation, and spectral-coherence checks.
+after endpoint cadence, source-branch changes, and launch geometry are removed, where $D$ is Euclidean path distance and $R$ remains reserved for the reception event. A net positive $\partial_D Z_{\mathrm{prop},X}$ is redward path accumulation; a net negative value is blueward path boosting. Either sign is allowed only when the same Noether sea and photon-exchange ledger also passes the distance, flux, time-dilation, and spectral-coherence checks.
 
 The sharper local object is the directional transfer coefficient
 
 $$
-H_{\mathrm{eff},X}(R,\hat{\mathbf{k}})
+H_{\mathrm{eff},X}(D,\hat{\mathbf{k}})
 =
-c_0\,\alpha_{R,X}(\hat{\mathbf{k}})
+c_0\,\alpha_{D,X}(\hat{\mathbf{k}})
 $$
 
-with the next correction governed by the local curvature $\mathcal{K}_X(R,\hat{\mathbf{k}})$ of the corrected log-redshift curve. The $H_0$ tension is therefore not only a disagreement between two scalar estimates. In this ontology it is a question about whether early-inferred and late-inferred pipelines are sampling the same local transfer coefficient, the same higher-order redshift curvature, and the same environment-conditioned Noether sea state record.
+with the next correction governed by the local curvature $\mathcal{K}_X(D,\hat{\mathbf{k}})$ of the corrected log-redshift curve. The $H_0$ tension is therefore not only a disagreement between two scalar estimates. In this ontology it is a question about whether early-inferred and late-inferred pipelines are sampling the same local transfer coefficient, the same higher-order redshift curvature, and the same environment-conditioned Noether sea state record.
 
 The environment-conditioned version should remain directional until the data justify an isotropic scalar:
 $$
-H_{\mathrm{eff},X}^{E}(R,\hat{\mathbf{k}})
+H_{\mathrm{eff},X}^{E}(D,\hat{\mathbf{k}})
 =
-c_0\,\partial_R Z_{\mathrm{prop},X}^{E}(R,\hat{\mathbf{k}}).
+c_0\,\partial_D Z_{\mathrm{prop},X}^{E}(D,\hat{\mathbf{k}}).
 $$
 Here $E$ denotes the source, host, line-of-sight, and observer-environment class after catalogue corrections. A local ladder can be promoted to a universal $H_0$ coefficient only after the residual scatter in $H_{\mathrm{eff},X}^{E}$ is either bounded or derived from the same Noether sea density, delay, flow, and calibration record used by CMB, BAO, and growth.
 
@@ -5814,12 +6432,48 @@ For $H_0$:
 - early-universe inference samples a comparatively rigid, less-relaxed Noether sea state,
 - local ladders sample more relaxed pockets with different clock-rate environments.
 
+This mechanism has a required sign, not merely a tunable magnitude. Define
+
+$$
+\Delta H_{\mathrm{relax}}
+\equiv
+H_{\mathrm{eff,local}}
+-
+H_{\mathrm{eff,early}}.
+$$
+
+To address the observed direction of the $H_0$ tension, the constitutive and clock map must derive $\Delta H_{\mathrm{relax}}>0$. A branch that gives $\Delta H_{\mathrm{relax}}\le0$ fails as an explanation even if it produces environment-dependent scatter.
+
 For $S_8$:
 
 - baryonic and neutral-assembly sectors do not need to co-evolve identically at late times,
 - mild dark-sector drag and partial coupling can suppress growth amplitude without changing the same degree of early-time background history.
 
 So background and growth are connected through shared Noether sea state evolution rather than separate ad hoc corrections.
+
+#### Chronometer, BAO, and Supernova Discriminator
+
+Differential-age cosmic chronometers provide a comparison route with different calibration sensitivity from BAO rulers and supernova luminosity distances:
+
+$$
+H_{\mathrm{chron}}^{\mathrm{obs}}(z)
+=
+-\frac{1}{1+z}\frac{dz}{dt_{\mathrm{age}}}.
+$$
+
+The stellar-aging interval is local to the source population, but both its population-synthesis calibration and the measured redshift remain photon-mediated. Chronometers are therefore not a path-free measurement. Their value is as a cross-pipeline discriminator. For one shared record, retain
+
+$$
+\mathbf H^\theta(z)
+=
+\left(
+H_{\mathrm{chron}}^\theta,
+H_{\mathrm{BAO}}^\theta,
+H_{\mathrm{SN}}^\theta
+\right)
+$$
+
+and predict the pairwise residual pattern after each pipeline's source, clock, and photon-transfer terms are declared. A branch that explains only one component by changing the Noether sea history has not explained the tension.
 
 ### Coupled Interpretation Channels
 
@@ -5837,9 +6491,9 @@ For $S_8$:
 - scale-dependent medium response and partial sector coupling can reduce late-time growth amplitude,
 - growth suppression mechanisms must remain consistent with CMB-derived early-time loading.
 
-### DESI-Era Data-Product Gate
+### BAO Data-Product Gate
 
-The 2025 DESI first-three-year BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. DESI has also released first-three-year BAO cosmology chains and supporting products in advance of the full public DR2 spectral catalogue, and has since completed the observations for its originally planned five-year survey. First dark-energy results from the full five-year dataset are a stated DESI analysis target rather than a released product. These are data-product signals, not ontology claims. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth.
+DESI-style BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. These are data-product signals, not ontology claims. Every comparison packet must name its public release, likelihood or chain provenance, covariance, tracer bins, and combination rule. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth. The operational release and covariance requirements live in [Cosmology Shared Residual Fit](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md).
 
 Within that packet, Hubble-tension proposals split into two comparison routes. Late-time routes alter the inferred distance to last scattering, but BAO rows anchored by galaxy correlations tend to follow the CMB-inferred expansion record rather than the local ladder. Early-time routes shrink the physical sound horizon through early-dark-energy-like injection, but CMB and galaxy-survey scrutiny has narrowed the allowed model space. A DESI/DES $w(a)$ improvement that leaves $\Lambda\mathrm{CDM}$ acceptable, or that has no clear connection to the Hubble tension, should therefore remain a model-dependent fit comparison rather than a solved expansion mechanism. The neutrino-mass side belongs to the same discipline: DESI-era bounds on $\sum_i m_i$ constrain the joint matter inventory and growth fit, so they must be read with the same BAO, CMB, growth, and source-history record rather than as an isolated neutral-lepton ontology change.
 

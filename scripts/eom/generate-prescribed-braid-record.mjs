@@ -61,8 +61,23 @@ export const PRESCRIBED_BRAID_TARGETS = Object.freeze([
   target("family-c-c2-1-counter-rotating-b1-3-pair.v1.json", "family-c-c2-1-counter-rotating-b1-3-pair.assembly-view-record.v0.json"),
 ]);
 
-export const DEFAULT_PRESCRIBED_BRAID_SPEC_PATH = PRESCRIBED_BRAID_TARGETS[0].specPath;
-export const DEFAULT_PRESCRIBED_BRAID_RECORD_PATH = PRESCRIBED_BRAID_TARGETS[0].outPath;
+const DEPRECATED_AXIAL_CONTROL_SPEC =
+  "illustrative-full-cap-axial-spindle-boundary.v0.json";
+
+export const ACTIVE_PRESCRIBED_BRAID_TARGETS = Object.freeze(
+  PRESCRIBED_BRAID_TARGETS.filter((entry) =>
+    path.basename(entry.specPath) !== DEPRECATED_AXIAL_CONTROL_SPEC),
+);
+
+export const DEPRECATED_PRESCRIBED_BRAID_TARGETS = Object.freeze(
+  PRESCRIBED_BRAID_TARGETS.filter((entry) =>
+    path.basename(entry.specPath) === DEPRECATED_AXIAL_CONTROL_SPEC),
+);
+
+export const DEFAULT_PRESCRIBED_BRAID_SPEC_PATH =
+  ACTIVE_PRESCRIBED_BRAID_TARGETS[0].specPath;
+export const DEFAULT_PRESCRIBED_BRAID_RECORD_PATH =
+  ACTIVE_PRESCRIBED_BRAID_TARGETS[0].outPath;
 
 const FAMILY_MEMBERS = Object.freeze({
   A: Object.freeze([
@@ -951,7 +966,7 @@ function parseArgs(args) {
 export function runPrescribedBraidCli(args = process.argv.slice(2)) {
   const parsed = parseArgs(args);
   const targets = parsed.all
-    ? PRESCRIBED_BRAID_TARGETS
+    ? ACTIVE_PRESCRIBED_BRAID_TARGETS
     : [{ specPath: parsed.specPath, outPath: parsed.outPath }];
   targets.forEach((entry) => processTarget(entry, parsed.mode));
 }

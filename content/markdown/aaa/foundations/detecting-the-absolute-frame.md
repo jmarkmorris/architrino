@@ -12,7 +12,7 @@ The important separation is transmitter-tagged geometry versus summed observatio
 
 ## The Fundamental Challenge
 
-The architrino theory posits the **Euclidean void** and **absolute time** as the fundamental substrate. These are ontological commitments, not coordinate labels. Unlike a laboratory bench with meter sticks and clocks, the void has no inherent origin, no painted grid lines, no axis arrows, and no universal clock reading "$T = 0$."
+The architrino theory posits the **Euclidean void** and **absolute time** as the fundamental substrate. These are ontological commitments, not coordinate labels. Unlike a laboratory bench with meter sticks and clocks, the void has no inherent origin, no painted grid lines, no axis arrows, and no universal clock reading "now = 0."
 
 This presents an apparent paradox:
 - We claim architrinos have **definite positions** $\mathbf X(T)$ and **definite velocities** $\mathbf V(T)$ in the Euclidean void as indexed by absolute time.
@@ -188,7 +188,7 @@ This prevents the preferred-frame claim from being empty inside the formal ontol
 
 ### Conservation-Law Counting as a Frame Diagnostic
 
-The absolute frame also leaves a fingerprint in pure bookkeeping: the number of continuous conservation rows the substrate supports. The substrate symmetry group is time translation plus the Euclidean motions of the void, one time translation, three space translations, and three rotations, yielding exactly seven continuous rows: energy, three of momentum, and three of angular momentum. Newtonian mechanics with Galilean invariance supports ten rows, the boosts supplying the center-of-mass theorem, and relativistic mechanics supports the ten rows of the Poincare group. The substrate count is seven, not ten, because boosts are not substrate symmetries: $c_f$ anchors a preferred frame, and the three missing boost rows are that frame's signature expressed as absent theorems rather than as any measured velocity. Counting conservation laws is therefore a frame-detection diagnostic in its own right, complementary to the concentricity test. The Lorentz-recovery program carries the corresponding obligation: an effective ten-row structure, including effective boost symmetry, must re-emerge at the observer level, as developed in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), with the conservation-accounting side of the seven substrate rows surveyed in [Information and the Wake](../philosophy-history/information-and-the-wake.md).
+The absolute frame also leaves a fingerprint in pure bookkeeping: the number of continuous conservation rows the substrate supports. The [proved invariance group of the Master Equation](../dynamics/master-equation.md#fundamental-symmetry-group) is time translation plus the Euclidean motions of the void, one time translation, three space translations, and three rotations, yielding exactly seven continuous rows: energy, three of momentum, and three of angular momentum. Newtonian mechanics with Galilean invariance supports ten rows, the boosts supplying the center-of-mass theorem, and relativistic mechanics supports the ten rows of the Poincare group. The substrate count is seven, not ten, because boosts are not substrate symmetries: $c_f$ anchors a preferred frame, and the three missing boost rows are that frame's signature expressed as absent theorems rather than as any measured velocity. Counting conservation laws is therefore a frame-detection diagnostic in its own right, complementary to the concentricity test. The Lorentz-recovery program carries the corresponding obligation: the three missing boost rows must re-emerge as part of the effective ten-row structure in [Theorem G](../spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), with the conservation-accounting side of the seven substrate rows surveyed in [Information and the Wake](../philosophy-history/information-and-the-wake.md).
 
 ## Ontological Clarifications
 
@@ -218,13 +218,15 @@ Assembly-based measuring devices are themselves distorted by motion and coupling
 ### The Source-Independence Assumption
 
 The diagnostic relies on a critical physical assumption:
-- **Wake propagation independence from transmitter motion**: once emitted, the potential-bearing wake propagates at $c_f$ relative to the void, independent of the transmitter.s subsequent trajectory.
+- **Wake propagation independence from transmitter motion**: once emitted, the potential-bearing wake propagates at $c_f$ relative to the void, independent of the transmitter's subsequent trajectory.
 
 This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves. The analogy does not by itself answer Michelson-Morley-style null drift results; that burden is owned by the moving-assembly closure ladder, not by this complete-state diagnostic.
 
 The reason is structural rather than rhetorical. The complete-state diagnostic operates on transmitter-tagged wake centers: transmitter identity, emission time, and support geometry are part of its data. A Michelson-Morley-style interferometer samples a summed, untagged received potential through physical clocks, rulers, mirrors, and photon channels. Null drift constrains the observer-level shielding and common-channel closure of that untagged measurement system; it does not falsify the transmitter-tagged center diagnostic unless the complete-state provenance ledger itself is inconsistent.
 
-The complete-state side also carries an injectivity assumption. Let $\mathcal{H}_{\mathrm{tag}}$ denote a tagged transmitter-history record and let $\mathcal{E}_{\mathrm{tag}}(\mathcal{H}_{\mathrm{tag}})$ denote its family of tagged emitted supports $(a,T_t,W_a(T_t;T))$ on the declared time window. The diagnostic assumes
+### Tagged-Emission Injectivity Lemma
+
+Let $\mathcal{H}_{\mathrm{tag}}$ denote an admissible transmitter-history record and let $\mathcal{E}_{\mathrm{tag}}(\mathcal{H}_{\mathrm{tag}})$ denote its family of emitted supports $(a,T_t,W_a(T_t;T))$ on the declared time window. Assume that transmitter and emission-time tags are retained, wake propagation is transmitter-motion independent after emission, the center supports satisfy the declared aperture or center-fit non-degeneracy floor, and the worldlines are absolutely continuous. Then
 $$
 \mathcal{E}_{\mathrm{tag}}(\mathcal{H}_{\mathrm{tag}})
 =
@@ -232,7 +234,10 @@ $$
 \quad\Longrightarrow\quad
 \mathcal{H}_{\mathrm{tag}}=\mathcal{H}'_{\mathrm{tag}}
 $$
-For records expressed directly as tagged supports on absolute slices, no Euclidean quotient survives: equality of tagged supports reconstructs the same center curves and therefore the same worldlines, positions, almost-everywhere velocities, and identity-tagged polarity. Translation, rotation, and time-origin conventions enter only when the same records are presented in convention-relative charts. This is not an observer-accessible decomposition theorem for the summed potential. It is the ontic bookkeeping claim that distinct source histories produce distinct tagged wake records when provenance labels are retained. If this tagged map had a nontrivial kernel on admissible complete-state records, the complete-state diagnostic would fail; if only the later label-erasing observer map has large fibers, the preferred frame remains complete-state real but operationally hidden.
+
+*Proof.* Equality of the nondegenerate tagged supports gives the same unique center for every $(a,T_t)$ and therefore the same center curves. Those curves are the transmitter worldlines; absolute continuity then gives the same velocities almost everywhere, while the retained tags carry identity and polarity. Translation, rotation, and time-origin conventions enter only when the same records are presented in convention-relative charts.
+
+This is not an observer-accessible decomposition theorem for the summed potential. The proof depends on the hypothesis that provenance tags survive in complete-state bookkeeping. If that hypothesis fails, the tagged map is unavailable; if only the later label-erasing observer map has large fibers, the preferred frame remains complete-state real but operationally hidden.
 
 ## Philosophical Context
 
@@ -277,9 +282,11 @@ This places the theory in the tradition of **Lorentz Ether Theory**:
 
 The next chapter, [Constructing the Absolute Frame](constructing-the-absolute-frame.md), uses this preferred-rest diagnostic as the starting point for constructing a complete coordinate frame.
 
+### Tagged Recovery and Observer-Hiding Theorem Target
+
 The risk-bearing claim is two-sided. The preferred-frame program fails at the complete-state level if transmitter-tagged wake centers cannot define one consistent rest-frame structure. It fails at the observer level if physical clocks, rulers, or photon channels retain preferred-frame leakage above the declared cavity, two-way anisotropy, or PPN ceilings after moving-assembly closure is applied. The framework is therefore committed both to a real complete-state preferred frame and to a quantitatively hidden observer-sector leakage row.
 
-In map language, the claim is injectivity plus approximate observer invariance. The tagged-emission map must be injective on complete-state records, while the label-erasure map to summed observer-accessible records must make the preferred-frame orbit diameter small for physical observables across the tested boost or drift family:
+In map language, the theorem target pairs the proved tagged-emission injectivity lemma with approximate observer invariance. The label-erasure map to summed observer-accessible records must make the preferred-frame orbit diameter small for physical observables across the tested boost or drift family:
 $$
 \operatorname{diam}_{\mathrm{obs}}
 \left\{

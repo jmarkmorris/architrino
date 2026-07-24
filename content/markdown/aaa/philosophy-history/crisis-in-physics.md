@@ -10,7 +10,7 @@ Companion bridge chapters for this map are [Theory Mapping](theory-mapping.md), 
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not a complaint about science failing. It is a diagnosis that several domains of modern physics may be mathematically mature while still being ontologically incomplete, mislocated, or over-interpreted.
 
-The sharper accountability claim is that modern physics has often mistaken precision inside narrow measured regimes for authority over ontology itself. That is a methodological failure, not a failure of measurement. The field learned to trust successful closures so strongly that regime-limited equations became standards of admissible explanation, even when those equations openly depended on restricted energy, velocity, curvature, density, coupling, or observer-access conditions. From the $\mathbb{A}\mathbb{A}\mathbb{A}$ standpoint, this delayed recognition of the substrate layer: the inherited stack remained useful as effective theory while blocking the conceptual move needed to reinterpret its variables.
+The sharper accountability question is whether modern physics has sometimes mistaken precision inside bounded measured regimes for authority over ontology itself. That would be a methodological failure, not a failure of measurement. The risk appears when regime-limited equations become standards of admissible explanation even though they depend on restricted energy, velocity, curvature, density, coupling, or observer-access conditions. From the $\mathbb{A}\mathbb{A}\mathbb{A}$ standpoint, the inherited stack remains useful as effective theory while its variables stay open to substrate-level reinterpretation. The proposed substrate account must earn that reinterpretation by recovering the successful records; it cannot treat the diagnosis itself as evidence that its replacement is correct.
 
 This document should map the main crisis-axes rather than collapse them into one slogan. The point is to separate:
 
@@ -19,35 +19,9 @@ This document should map the main crisis-axes rather than collapse them into one
 - where patchwork closure displaced substrate derivation,
 - and where unresolved tensions may indicate missing causal structure rather than merely harder calculation.
 
+The companion methodology chapter defines and [maps six crisis indicators](philosophy-of-science.md#scientific-method-under-crisis-conditions): anomaly load, ontology debt, patch density, progress latency, theory proliferation without convergence, and imbalance between effective success and explanatory integration. The mapping connects them directly to `CR-01` through `CR-11` while keeping them as diagnostic categories rather than automatic numerical verdicts. Each crisis axis below must still preserve the validated data and effective machinery and state what observation would show that ordinary within-framework work is sufficient after all.
+
 Several of the crisis-axes treated below also connect directly to [Measurement Ontology](../quantum/measurement-ontology.md), [Bell Theorem](theory-bridges/bell-theorem.md), [Dark Matter](../cosmology/dark-matter.md), [Parameter Ledger](../validation/parameter-ledger.md), and [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md).
-
-This document also needs one standard coverage template so each crisis-axis is treated systematically rather than rhetorically.
-
-### Crisis-Section Template (Unified)
-
-Use the same fields for every crisis-axis, and write them through the same seven-part prose flow.
-
-- **Crisis Axis**: the full name of the tension or failure mode.
-- **Short Name**: the label used in scene or cross-reference contexts.
-- **Core Tension**: the exact contradiction, non-closure, or mismatch.
-- **Where It Appears**: the theories, domains, or observational pipelines in which it shows up.
-- **What Still Works**: the predictive, computational, or empirical successes that remain intact.
-- **What Is Unsettled**: the ontological, mechanistic, or inferential gap.
-- **Standard Resolution Attempts**: the main ways the field has tried to absorb or reinterpret the problem.
-- **Why Those Attempts Remain Incomplete**: the unresolved residue after the usual repairs.
-- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether the crisis is directly targeted, partially clarified, merely redescribed, or still open.
-- **Transition Relevance**: whether the crisis helps justify ontological replacement during the transition period.
-- **Long-Term Relevance**: whether it survives as a permanent caution, a solved problem, or a signpost to the right substrate layer.
-
-Default prose flow for each crisis section:
-
-1. **Overview**: compact statement of the crisis, including `Crisis Axis` and `Short Name`.
-2. **Where The Tension Comes From**: historical/theoretical source, with explicit `Core Tension` and `Where It Appears`.
-3. **What Current Physics Gets Right**: preserved strengths, matching `What Still Works`.
-4. **What Remains Unresolved**: precise non-closure, matching `What Is Unsettled`.
-5. **Standard Repairs**: accepted fixes plus residual failure, covering `Standard Resolution Attempts` and `Why Those Attempts Remain Incomplete`.
-6. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: classification against `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
-7. **What Would Count As Resolution**: explicit closure condition plus `Long-Term Relevance`.
 
 ### Why This Matters for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -63,7 +37,7 @@ That is the standard the chapter should keep in view. The crisis only matters if
 
 The history of experimental gravity adds a methodological constraint to the crisis map. General relativity did not become secure because one elegant argument or one celebrated measurement was persuasive by itself. It became secure because redshift, light bending, Shapiro timing, orbital precession, equivalence tests, frame-dragging, binary-pulsar timing, gravitational waves, and CMB-era cosmology formed a mutually constraining network with different instruments and different nuisance channels.
 
-The corresponding standard for $\mathbb{A}\mathbb{A}\mathbb{A}$ is a cross-check score rather than a single showcase prediction:
+The corresponding standard for $\mathbb{A}\mathbb{A}\mathbb{A}$ is the following cross-check score rather than a single showcase prediction.
 $$
 \mathcal{S}_{\mathrm{est}}
 =
@@ -75,7 +49,25 @@ N_{\mathrm{shared\ nuisance}}
 -
 N_{\mathrm{posthoc}}
 $$
-where $N_{\mathrm{ind}}$ counts independent successful benchmark families, $N_{\mathrm{free}}$ counts unconstrained parameters, $N_{\mathrm{shared\ nuisance}}$ counts nuisance assumptions reused across supposedly independent rows, and $N_{\mathrm{posthoc}}$ counts repairs introduced after seeing the target data. The formula is not a universal philosophy of science. It is a working discipline for this corpus: a substrate claim should not be treated as established until its effective successes outnumber its adjustable and nuisance-dependent supports across multiple measurement families.
+Here $N_{\mathrm{ind}}$ counts independent successful benchmark families, $N_{\mathrm{free}}$ counts unconstrained parameters, $N_{\mathrm{shared\ nuisance}}$ counts nuisance assumptions reused across supposedly independent rows, and $N_{\mathrm{posthoc}}$ counts repairs introduced after seeing the target data. The formula is not a universal philosophy of science. It is a working discipline for this corpus: a substrate claim should not be treated as established until its effective successes outnumber its adjustable and nuisance-dependent supports across multiple measurement families.
+
+## Crisis-to-Solution Cross-Map
+
+The stable identifiers below connect each diagnosis to the exact response route in [Solving the Crisis](solving-the-crisis.md), the technical document that owns the relevant derivation, the present claim grade, and a failure condition. `Architecture-ready` means that the native mechanism and validation family are stated but the derivation remains open. `Direction-ready` means that even the native route still needs a sharper proof object. Neither label means solved.
+
+| ID | Crisis axis | Primary response | Technical owner | Claim grade | Falsifier or unresolved condition |
+| --- | --- | --- | --- | --- | --- |
+| `CR-01` | Progress vs. Time | [Problem-by-problem accountability](solving-the-crisis.md#overview) | [Theory Inheritance Discipline](theory-inheritance-discipline.md) | `direction-ready` | The architecture fails this row whenever a claimed solution lacks a fixed recovery domain, independent reference, residual, or named technical owner. |
+| `CR-02` | Prediction vs. Ontology | [Emergent Metric and the Nature of Spacetime](solving-the-crisis.md#emergent-metric-and-the-nature-of-spacetime) and the chapter-wide secure-record discipline | [Theory Inheritance Discipline](theory-inheritance-discipline.md) | `architecture-ready` | If the observer projection must be retuned separately for successful benchmark families, predictive success has not been connected to one implementation. |
+| `CR-03` | Quantum Measurement and Outcome Selection | [Quantum Measurement](solving-the-crisis.md#quantum-measurement) | [Measurement Ontology](../quantum/measurement-ontology.md) | `architecture-ready` | Failure to derive finite-time stable records and calibrated outcome frequencies from one preparation-plus-apparatus dynamics defeats the route. |
+| `CR-04` | Nonlocality, Bell, and Causal Structure | [Born Rule, Bell Tests, and No-Signaling](solving-the-crisis.md#born-rule-bell-tests-and-no-signaling) | [Bell's Theorem](theory-bridges/bell-theorem.md) | `direction-ready` | Failure to reproduce the full setting-dependent correlation family while preserving measurement independence and operational no-signaling rules out the proposed deterministic reduction. |
+| `CR-05` | General Relativity and Quantum Theory | [Quantum Gravity and the GR/QM Split](solving-the-crisis.md#quantum-gravity-and-the-grqm-split) | [Emergent Metric](../spacetime/emergent-metric.md) | `architecture-ready` | The route fails if no single substrate record recovers the tested metric family and quantum phase/detector family without independent sector laws. |
+| `CR-06` | AdS Control and de Sitter Reality | [Trans-Planckian Censorship and Swampland Comparisons](solving-the-crisis.md#trans-planckian-censorship-and-swampland-comparisons) and [Dark Energy and Late Cosmic Acceleration](solving-the-crisis.md#dark-energy-and-late-cosmic-acceleration) | [Dark Energy](../cosmology/dark-energy.md) | `direction-ready` | The route fails if its native cutoff and Noether sea history cannot reproduce the observed expansion and perturbation constraints without importing an AdS or scalar-field mechanism. |
+| `CR-07` | Renormalization, UV Completion, and Continuum Excess | [Quantum Gravity and the GR/QM Split](solving-the-crisis.md#quantum-gravity-and-the-grqm-split) and [The UV Catastrophe](solving-the-crisis.md#the-uv-catastrophe-blackbody-divergence) | [Causal Action Functional](../dynamics/causal-action-functional.md) | `architecture-ready` | A finite substrate does not close this row unless its coarse-grained amplitudes, scale dependence, and precision residuals reproduce the inherited continuum results in a declared domain. |
+| `CR-08` | Vacuum, Medium, and the Status of Empty Space | [Emergent Metric and the Nature of Spacetime](solving-the-crisis.md#emergent-metric-and-the-nature-of-spacetime) and [Cosmological Constant and Vacuum Catastrophe](solving-the-crisis.md#cosmological-constant-and-vacuum-catastrophe) | [Noether Sea](../spacetime/noether-sea.md) | `architecture-ready` | The medium interpretation fails if it supplies no independently variable state or if one constitutive response cannot recover propagation, metric, inertia, and boundary-energy benchmarks. |
+| `CR-09` | Dark Matter, Dark Energy, and Cosmological Over-Inference | [Dark Matter and Missing Mass](solving-the-crisis.md#dark-matter-and-missing-mass) and [Dark Energy and Late Cosmic Acceleration](solving-the-crisis.md#dark-energy-and-late-cosmic-acceleration) | [Dark Matter](../cosmology/dark-matter.md) and [Dark Energy](../cosmology/dark-energy.md) | `direction-ready` | The route fails if one parameter-fixed source, transport, lensing, clock, and growth history cannot jointly fit rotation, lensing, clustering, CMB, and distance data. |
+| `CR-10` | Parameter Proliferation and Patchwork Closure | [Spin-Statistics and Exclusion](solving-the-crisis.md#spin-statistics-and-exclusion), [Origin of Mass, Higgs, and the Hierarchy Problem](solving-the-crisis.md#origin-of-mass-higgs-and-the-hierarchy-problem), [Flavor Generations and CKM/PMNS Mixing](solving-the-crisis.md#flavor-generations-and-ckmpmns-mixing), and [Gauge Structure and Coupling Constants](solving-the-crisis.md#gauge-structure-and-coupling-constants) | [Parameter Ledger](../validation/parameter-ledger.md) and [Quantum-Number Mapping](../assemblies/fermions/quantum-number-mapping.md) | `direction-ready` | The route remains patchwork if exchange classes, masses, couplings, mixings, and cosmological response require unrelated inserted rules or parameters rather than common branch-derived quantities. |
+| `CR-11` | Mathematical Control vs. Mechanistic Explanation | [Problem-by-problem architecture and resolution tests](solving-the-crisis.md#overview) | [Causal Action Functional](../dynamics/causal-action-functional.md) and [Theory Inheritance Discipline](theory-inheritance-discipline.md) | `direction-ready` | If the proposed substrate does not generate a unique conserved event/history ledger behind the recovered equations, it has renamed the effective formalism rather than implemented it. |
 
 ---
 
@@ -83,13 +75,15 @@ where $N_{\mathrm{ind}}$ counts independent successful benchmark families, $N_{\
 
 ### Overview
 
-**Crisis Axis:** Progress vs. Time. **Short Name:** Operational Progress. The core tension is that technical and experimental progress can continue for decades while foundational advance remains unusually slow. In fundamental physics, especially from the 1970s onward, precision, computation, and instrumentation have improved enormously, yet many of the deepest architectural questions remain open. The question is whether long duration inside a productive framework should be read as evidence that ontology is converging, or whether it can instead mark a prolonged explanatory delay. This tension appears across quantum foundations, cosmology, and high-energy theory, where practical success often grows faster than consensus on what the central objects mean.
+**Crisis ID:** `CR-01`. **Crisis Axis:** Progress vs. Time. **Short Name:** Operational Progress. The core tension is that technical and experimental progress can continue for decades while foundational advance remains unusually slow. In fundamental physics, especially from the 1970s onward, precision, computation, and instrumentation have improved enormously, yet many of the deepest architectural questions remain open. The question is whether long duration inside a productive framework should be read as evidence that ontology is converging, or whether it can instead mark a prolonged explanatory delay. This tension appears across quantum foundations, cosmology, and high-energy theory, where practical success often grows faster than consensus on what the central objects mean.
 
 ### Where The Tension Comes From
 
 Historically, many physical theories enter a phase in which calculation, instrumentation, and phenomenological refinement become more productive than foundational reconstruction. That pattern is not irrational. Once a framework is effective, whole research programs can flourish inside its equations even if the ontology remains unsettled. The difficulty in modern physics is that this phase has lasted a very long time. Since the 1970s, foundational debate has remained active in quantum theory, cosmology, and high-energy physics without producing a comparably clear new closure at the level of basic architecture.
 
 This should not be described as an absence of progress. The more exact claim is that progress has often taken the form of confirmation, refinement, and extension inside inherited structures rather than the discovery of a new, widely accepted substrate picture. Mature techniques produce extraordinary predictions while deeper questions are often deferred, reclassified as interpretive, or absorbed into long-term research programs. In that situation, duration begins to substitute for explanation.
+
+Neutrino oscillations and mass, established experimentally around the turn of the twenty-first century, and the 1998 discovery of accelerated cosmic expansion are strong counterexamples to any claim that foundational physics simply stopped. Both discoveries changed the accepted physical inventory and opened major research programs. They do not, however, close this crisis axis: each entered the effective framework as a new measured requirement whose deeper mass-generating or cosmic-acceleration mechanism remains unsettled. The relevant distinction is therefore between discovery of a new constraint and closure of the architecture that explains it.
 
 ### What Current Physics Gets Right
 
@@ -123,7 +117,7 @@ Resolution would require more than continued precision inside inherited formalis
 
 ### Overview
 
-**Crisis Axis:** Prediction vs. Ontology. **Short Name:** Predictive Success. The core tension is that several major theories predict extraordinarily well while leaving the ontological status of their central objects unsettled. The issue appears in quantum states, fields, vacuum structure, cosmological sectors, and effective parameters. Prediction is strong; ontology remains underdetermined.
+**Crisis ID:** `CR-02`. **Crisis Axis:** Prediction vs. Ontology. **Short Name:** Predictive Success. The core tension is that several major theories predict extraordinarily well while leaving the ontological status of their central objects unsettled. The issue appears in quantum states, fields, vacuum structure, cosmological sectors, and effective parameters. Prediction is strong; ontology remains underdetermined.
 
 ### Where The Tension Comes From
 
@@ -133,7 +127,7 @@ This pattern becomes especially important when a theory's central symbols can su
 
 There is also an institutional dimension to the drift. Once a formalism becomes pedagogically central and technologically productive, later generations are trained first in its successful use rather than in the open status of its key objects. In that setting, operational mastery can gradually be mistaken for explanatory completion. The same success that should motivate deeper inquiry can instead postpone it.
 
-There is a further scale issue. Predictive success is always established within a tested regime, not across the whole physically possible state space. Modern experiment and accepted theory occupy only a comparatively narrow and highly nonuniform region of the universe's possible phase space, especially with respect to extreme frequency, energy, temperature, density, and curvature. Planck-scale quantities are important as organizing benchmarks, but the empirical reach of present physics samples only a minute fraction of that extreme regime, often many orders of magnitude away from it. In frequency terms alone, the experimentally occupied band is only an exceedingly small sliver of the full range between ordinary scales and Planckian closure. This does not invalidate current theory. It does mean that precision within an accessible shell should not automatically license strong ontological confidence about the deeper or more extreme layers that remain largely unprobed.
+There is a further scale issue. Predictive success is always established within a tested regime, not across the whole physically possible state space. Modern experiment and accepted theory occupy a highly nonuniform region of the universe's possible phase space, especially with respect to extreme frequency, energy, temperature, density, and curvature. Planck-scale quantities are important as organizing benchmarks, but direct empirical reach remains many orders of magnitude away from that regime. This does not invalidate current theory. It does mean that precision within an accessible shell should not automatically license strong ontological confidence about deeper or more extreme layers that remain unprobed.
 
 ### What Current Physics Gets Right
 
@@ -147,7 +141,7 @@ This point becomes stronger once regime coverage is taken seriously. A theory ma
 
 What remains unsettled is the ontological meaning and explanatory location of the objects doing the predictive work. Is a wavefunction a real field, a bookkeeping device, or a summary of hidden dynamics? Is dark energy a substance, a geometric term, or a sign of mislocated inference? Are renormalized fields and vacuum sectors fundamental, or do they summarize deeper constitutive behavior? When the same predictive system permits multiple ontological stories, explanation has not finished.
 
-Quantum theory gives the cleanest version of this crisis. Its statistical predictions are among the most successful in science, but that success does not decide whether the underlying event is intrinsically probabilistic or whether the probability law is the effective pushforward of inaccessible microstate and path-history data. In $\mathbb{A}\mathbb{A}\mathbb{A}$ notation, a quantum prediction has not been ontologically located until the record probability can be read as
+Quantum theory gives the cleanest version of this crisis. Its statistical predictions are among the most successful in science, but that success does not decide whether the underlying event is intrinsically probabilistic or whether the probability law is the effective pushforward of inaccessible microstate and path-history data. In $\mathbb{A}\mathbb{A}\mathbb{A}$ notation, ontological location requires the following record-probability form.
 
 $$
 P_{\mathrm{rec}}(R_n\mid\theta)
@@ -155,7 +149,7 @@ P_{\mathrm{rec}}(R_n\mid\theta)
 \mu_{*,T_W}\!\left(\pi_{T_W}^{-1}(R_n)\right)
 $$
 
-for the same deterministic flow, apparatus kernel, coarse-graining, and record window $\theta$ that also recover the effective wave equation. Predictive success licenses the target distribution; it does not by itself identify the substrate that generates the measure.
+The same deterministic flow, apparatus kernel, coarse-graining, and record window $\theta$ must also recover the effective wave equation. Predictive success licenses the target distribution; it does not by itself identify the substrate that generates the measure.
 
 The unresolved issue is therefore not simply interpretation in a casual sense. It is underdetermination at the level of what exists and at what layer it exists. A variable may be indispensable for calculation and still be misplaced as final ontology. Until there is a principled account of which successful objects are fundamental and which are effective summaries, predictive success remains compatible with deep ontological ambiguity.
 
@@ -181,7 +175,7 @@ This crisis would be resolved if a deeper theory could recover present predictio
 
 ### Overview
 
-**Crisis Axis:** Quantum Measurement and Outcome Selection. **Short Name:** Measurement Problem. The core tension is the gap between the smooth evolution of the formal quantum state and the definite outcomes recorded in experiments. Quantum theory predicts probabilities with extraordinary success, yet the point at which one actual record is produced rather than another remains ontologically unsettled. The crisis appears in quantum mechanics, in all major interpretation families, and in any theory that must explain why one observed result occurs rather than another.
+**Crisis ID:** `CR-03`. **Crisis Axis:** Quantum Measurement and Outcome Selection. **Short Name:** Measurement Problem. The core tension is the gap between the smooth evolution of the formal quantum state and the definite outcomes recorded in experiments. Quantum theory predicts probabilities with extraordinary success, yet the point at which one actual record is produced rather than another remains ontologically unsettled. The crisis appears in quantum mechanics, in all major interpretation families, and in any theory that must explain why one observed result occurs rather than another.
 
 ### Where The Tension Comes From
 
@@ -229,7 +223,7 @@ The long-term relevance of this crisis is likely permanent until such a derivati
 
 ### Overview
 
-**Crisis Axis:** Nonlocality, Bell, and Causal Structure. **Short Name:** Bell Crisis. The core tension is that Bell-type results rule out certain combinations of locality, statistical independence, and hidden-variable structure, while experiments continue to show robust nonclassical correlations. The crisis appears in quantum foundations and in every attempt to specify causal structure beneath observed correlations.
+**Crisis ID:** `CR-04`. **Crisis Axis:** Nonlocality, Bell, and Causal Structure. **Short Name:** Bell Crisis. The core tension is that Bell-type results rule out certain combinations of locality, statistical independence, and hidden-variable structure, while experiments continue to show robust nonclassical correlations. The crisis appears in quantum foundations and in every attempt to specify causal structure beneath observed correlations.
 
 ### Where The Tension Comes From
 
@@ -259,9 +253,17 @@ They remain incomplete because each pays a price. Operationalism lowers the onto
 
 The deterministic lesson retained from 't Hooft-style superdeterminism is narrower than the superdeterminist repair itself. Determinism at all levels is compatible with a substrate program; setting-dependent preparation is not required by determinism. For $\mathbb{A}\mathbb{A}\mathbb{A}$ the crisis should therefore be stated as a product-screening problem: keep measurement independence, keep no-signaling, and derive why the retained pair-provenance variables fail to factor into two independent one-wing response laws.
 
+The excluded factorization is explicit. For outcomes $A$ and $B$, detector settings $a$ and $b$, and a complete candidate common-cause state $\lambda$, the measured Bell-violating regime must exhibit the following nonfactorizable form.
+$$
+P(A,B\mid a,b,\lambda)
+\ne
+P(A\mid a,\lambda)P(B\mid b,\lambda)
+$$
+A shared creation event by itself does not meet this obligation: under measurement independence, an ordinary local common cause is exactly the kind of $\lambda$ for which the product form is tested. The missing derivation must therefore identify a genuinely nonfactorizable dependence in the retained dynamics, show why it is compatible with the observed local marginals, and recover the measured setting-angle correlation.
+
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially clarified** by the project's willingness to consider real substrate-level causal structure not exhausted by relativistic signaling language. The proposed move is to deny Bell locality while preserving realism, forward causal order, and measurement independence. On that picture, correlated pairs inherit joint geometric constraints from a shared creation event, and those constraints are later read out locally during measurement without requiring a new superluminal signal between detectors at measurement time.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directionally constrained**, not yet dynamically resolved. The intended move is to deny Bell factorization while preserving realism, forward causal order, measurement independence, and operational no-signaling. Pair provenance may be part of the required state, but shared provenance followed only by independent local readout remains a Bell-local common-cause model and is insufficient. The Master Equation must supply the nonfactorizable dependence rather than the chapter assigning it by interpretation.
 
 Transition relevance is very high because Bell results are often treated as closing off deterministic or substrate-first programs when they more precisely close off only narrower classes. A careful architrino treatment would need to show not only that such nonlocal dependence is conceptually allowed, but that the Master Equation actually yields the observed correlation law while preserving no-signaling. Until that derivation is complete, the Bell crisis is clarified in direction but not fully closed.
 
@@ -277,7 +279,7 @@ The long-term relevance of this crisis is permanent as a signpost to the right s
 
 ### Overview
 
-**Crisis Axis:** General Relativity and Quantum Theory. **Short Name:** GR-QM Closure. The core tension is the lack of universally accepted closure between the geometric description of gravitation and the quantum description of matter and interaction. Both frameworks are extraordinarily successful in their own domains, yet they appear to assign fundamental status to different kinds of objects and different kinds of law. This tension appears in quantum gravity programs, black-hole theory, early-universe cosmology, and the general question of what spacetime really is.
+**Crisis ID:** `CR-05`. **Crisis Axis:** General Relativity and Quantum Theory. **Short Name:** GR-QM Closure. The core tension is the lack of universally accepted closure between the geometric description of gravitation and the quantum description of matter and interaction. Both frameworks are extraordinarily successful in their own domains, yet they appear to assign fundamental status to different kinds of objects and different kinds of law. This tension appears in quantum gravity programs, black-hole theory, early-universe cosmology, and the general question of what spacetime really is.
 
 ### Where The Tension Comes From
 
@@ -305,7 +307,7 @@ More sharply, the open problem is not merely to place both theories in one mathe
 
 Black-hole horizons, singularity questions, vacuum energy, and early-universe closure intensify this pressure because they are precisely the regimes where the inherited languages are asked to overlap most aggressively. These are the points where the field most wants one final story and where the current stack most visibly resists one.
 
-Black-hole information proposals that identify or fold horizon regions are useful here as comparison pressure, not as ready ontology. Their durable signal is that horizon physics may require a non-naive map between incoming records, outgoing records, entropy, and effective geometry. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the question is whether a horizon-interface map can preserve deterministic record closure,
+Black-hole information proposals that identify or fold horizon regions are useful here as comparison pressure, not as ready ontology. Their durable signal is that horizon physics may require a non-naive map between incoming records, outgoing records, entropy, and effective geometry. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the candidate horizon-interface map has the following form.
 
 $$
 \mathcal{H}_{\mathrm{hor}}:
@@ -314,7 +316,7 @@ $$
 \left(\Gamma_{\mathrm{out}},S_{\mathrm{out}}\right)
 $$
 
-without treating an auxiliary mirror, clone, or second exterior as the substrate object itself. The mathematical burden is a strong-field record map, not the import of a particular diagrammatic identification.
+Its output must preserve deterministic record closure without treating an auxiliary mirror, clone, or second exterior as the substrate object itself. The mathematical burden is a strong-field record map, not the import of a particular diagrammatic identification.
 
 There is also a regime issue. Much of the rhetoric of final unification is aimed at Planck-adjacent closure, yet experiment still probes only a narrow portion of the physically available range. That does not make unification programs irrational. It does mean that confidence about what must be quantized, what must be geometric, or what must survive unchanged into extreme regimes can outrun direct evidential support.
 
@@ -346,13 +348,13 @@ The long-term relevance of this crisis is likely as a signpost rather than a per
 
 ### Overview
 
-**Crisis Axis:** AdS Control and de Sitter Reality. **Short Name:** de Sitter Gap. The core tension is that much of the most precise modern quantum-gravity control comes from anti-de Sitter settings, especially AdS/CFT, while the observed late-time universe is more naturally compared with de Sitter behavior because of its positive dark-energy-like acceleration. The issue is not that AdS mathematics is useless. It is that mathematical control in the wrong asymptotic setting can be mistaken for real-world implementation.
+**Crisis ID:** `CR-06`. **Crisis Axis:** AdS Control and de Sitter Reality. **Short Name:** de Sitter Gap. The core tension is that much of the most precise modern quantum-gravity control comes from anti-de Sitter settings, especially AdS/CFT, while the observed late-time universe is more naturally compared with de Sitter behavior because of its positive dark-energy-like acceleration. The issue is not that AdS mathematics is useless. It is that mathematical control in the wrong asymptotic setting can be mistaken for real-world implementation.
 
 ### Where The Tension Comes From
 
 Anti-de Sitter space has a spatial boundary that makes boundary/bulk duality mathematically sharp. That is why AdS/CFT became such a powerful laboratory for quantum gravity, black-hole entropy, unitarity, and strongly coupled field theory. De Sitter comparison is different. A de Sitter-like universe has observer horizons and future-asymptotic structure, but not the same spatial boundary on which the standard AdS/CFT machinery naturally lives.
 
-The tension becomes sharper in string-theoretic language. The best-controlled versions of string theory depend on special mathematical features, especially supersymmetry and boundary structures, that do not look like the observed low-energy world. Leonard Susskind's recent public distinction is useful here: string theory with a precise capital-S mathematical meaning is a major consistency achievement, but known precise versions do not yet describe the de Sitter-like, non-supersymmetric world in which observations are made. That is a source signal for this crisis axis, not a license to discard every result of the program.
+The tension becomes sharper in string-theoretic language. Many of the best-controlled constructions use supersymmetry, anti-de Sitter asymptotics, or boundary structures that do not directly describe the observed de Sitter-like, non-supersymmetric low-energy world. Their mathematical control is a major consistency achievement, but the real-world projection remains open. That gap is the durable source of pressure for this crisis axis; it is not a license to discard the program's valid mathematical results.
 
 ### What Current Physics Gets Right
 
@@ -376,7 +378,7 @@ The repair space also reveals a methodological danger. A theory can be mathemati
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted as a comparison problem**, not as an imported ontology. The Euclidean void does not expand, and there is no native boundary CFT living at spatial infinity. What observers summarize as de Sitter-like behavior must instead be recovered from Noether sea evolution, clock-rate comparison, redshift transport, horizon-limited access, and finite observer records.
 
-A compact closure target is an observer-accessible de Sitter comparison ledger. For a Physical Observer $O$, let the relevant coarse state be written schematically as
+A compact closure target is an observer-accessible de Sitter comparison ledger. For a Physical Observer $O$, the relevant coarse state has the following schematic form.
 
 $$
 \mathcal{Q}_{\mathrm{dS}}^{(O)}(t_{\mathrm{eff}})
@@ -390,7 +392,7 @@ S_{\mathrm{out}}^{(O)}(t_{\mathrm{eff}})
 \right)
 $$
 
-where $\mathcal{D}_{O}(t_{\mathrm{eff}})$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf X,T)$ is physical Noether braid density, $\chi_{\text{sea}}(\mathbf X,T)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t_{\mathrm{eff}})$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether sea state map
+Here $\mathcal{D}_{O}(t_{\mathrm{eff}})$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf X,T)$ is physical Noether braid density, $\chi_{\text{sea}}(\mathbf X,T)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t_{\mathrm{eff}})$ records accessible outgoing entropy. The de Sitter recovery problem is not "find a boundary CFT." It is to derive the following Noether sea state map.
 
 $$
 \mathcal{F}_{\mathrm{sea}}\!\left[\mathcal{Q}_{\mathrm{dS}}^{(O)}(t_{\mathrm{eff}})\right]
@@ -402,7 +404,7 @@ S_{\mathrm{hor}}^{(O)}(t_{\mathrm{eff}})
 \right)
 $$
 
-that matches late-time expansion, horizon entropy, CMB/BAO/SN/growth benchmarks, and observer clock-rate constraints without promoting the comparison geometry to substrate ontology. Transition relevance is high because this gives $\mathbb{A}\mathbb{A}\mathbb{A}$ a sharper way to absorb holographic and de Sitter pressure without inheriting their boundary assumptions.
+The output must match late-time expansion, horizon entropy, CMB/BAO/SN/growth benchmarks, and observer clock-rate constraints without promoting the comparison geometry to substrate ontology. Transition relevance is high because this gives $\mathbb{A}\mathbb{A}\mathbb{A}$ a sharper way to absorb holographic and de Sitter pressure without inheriting their boundary assumptions.
 
 ### What Would Count As Resolution
 
@@ -414,7 +416,7 @@ Resolution would require a quantum-gravity account of late-time cosmological hor
 
 ### Overview
 
-**Crisis Axis:** Renormalization, UV Completion, and Continuum Excess. **Short Name:** Continuum Excess. The core tension is that renormalized field theory is predictively powerful while still carrying signs that infinite continuum mode structure may exceed physical ontology. The formalism works with extraordinary precision, yet its deepest objects are often embedded in a continuum whose infinite degree count may outrun what the world physically contains. This crisis appears in quantum field theory, vacuum-energy accounting, high-energy extrapolation, and discussions of ultraviolet completion.
+**Crisis ID:** `CR-07`. **Crisis Axis:** Renormalization, UV Completion, and Continuum Excess. **Short Name:** Continuum Excess. The core tension is that renormalized field theory is predictively powerful while still carrying signs that infinite continuum mode structure may exceed physical ontology. The formalism works with extraordinary precision, yet its deepest objects are often embedded in a continuum whose infinite degree count may outrun what the world physically contains. This crisis appears in quantum field theory, vacuum-energy accounting, high-energy extrapolation, and discussions of ultraviolet completion.
 
 ### Where The Tension Comes From
 
@@ -464,7 +466,7 @@ The long-term relevance is likely permanent as a caution against treating succes
 
 ### Overview
 
-**Crisis Axis:** Vacuum, Medium, and the Status of Empty Space. **Short Name:** Vacuum Status. The core tension is that modern physics repeatedly assigns rich, load-bearing structure to what it still calls vacuum or empty space, while often treating questions about carrier, composition, or medium as conceptually suspect. This crisis appears in quantum field theory, cosmology, gravitational background discussion, and every domain in which nominal emptiness behaves as though it stores energy, sets propagation conditions, or participates in large-scale closure.
+**Crisis ID:** `CR-08`. **Crisis Axis:** Vacuum, Medium, and the Status of Empty Space. **Short Name:** Vacuum Status. The core tension is that modern physics repeatedly assigns rich, load-bearing structure to what it still calls vacuum or empty space, while often treating questions about carrier, composition, or medium as conceptually suspect. This crisis appears in quantum field theory, cosmology, gravitational background discussion, and every domain in which nominal emptiness behaves as though it stores energy, sets propagation conditions, or participates in large-scale closure.
 
 ### Where The Tension Comes From
 
@@ -482,7 +484,7 @@ Atomic physics supplies a compact local version of the same lesson. Rutherford s
 
 What is unsettled is what that structure consists in. Are these features purely properties of fields defined on no medium, or are they clues that the underlying ontology includes a constitutive substrate whose organized state is being described in indirect language? The unresolved gap is not merely terminological. It concerns whether modern physics has allowed effective geometry and vacuum structure to become explanatorily active while leaving their physical basis unspecified.
 
-This matters especially when anomaly budgets are inferred in regions already assigned strong spacetime structure. At galactic scales, dark-matter attribution is often concentrated in volumes where the effective gravitational or spacetime contraction is high and increases toward the galactic center, especially toward the supermassive black hole regime. That correlation does not by itself prove that dark-sector phenomenology is really medium structure. It does, however, make it difficult to dismiss constitutive hypotheses in advance. A framework that permits increasingly intense spacetime behavior in precisely those regions cannot simply assume, without argument, that the remaining discrepancy must belong to a separate invisible substance rather than to unmodeled structure or response of the spacetime sector itself.
+This matters especially when anomaly budgets are inferred from extended systems. The classic galactic pressure is not concentrated at the central black hole: rotation curves remain approximately flat into outer regions where the visible matter contribution would predict a decline, and lensing and cluster dynamics also require an extended mass or response account. Central regions can be baryon dominated, while low-surface-density galaxies can display large discrepancies without an extreme central field. None of this proves that dark-sector phenomenology is medium structure. It sets the correct geographic burden on a constitutive hypothesis: reproduce the radial rotation and lensing profiles across inner and outer regimes, not merely associate the discrepancy with strong central contraction.
 
 ### Standard Repairs
 
@@ -502,7 +504,7 @@ Resolution would require a concrete derivation showing how vacuum-like behavior,
 
 ### Overview
 
-**Crisis Axis:** Dark Matter, Dark Energy, and Cosmological Over-Inference. **Short Name:** Dark-Sector Inference. The core tension is that cosmology has achieved remarkable observational reach while relying on ontological components inferred through long model pipelines. The issue is not whether the observations are real. It is whether the dominant ontological reading of those observations is as uniquely fixed as it is often presented. This crisis appears in rotation curves, lensing, structure formation, supernova distance measures, CMB fitting, and expansion-history reconstruction.
+**Crisis ID:** `CR-09`. **Crisis Axis:** Dark Matter, Dark Energy, and Cosmological Over-Inference. **Short Name:** Dark-Sector Inference. The core tension is that cosmology has achieved remarkable observational reach while relying on ontological components inferred through long model pipelines. The issue is not whether the observations are real. It is whether the dominant ontological reading of those observations is as uniquely fixed as it is often presented. This crisis appears in rotation curves, lensing, structure formation, supernova distance measures, CMB fitting, and expansion-history reconstruction.
 
 ### Where The Tension Comes From
 
@@ -550,7 +552,7 @@ The long-term relevance of this crisis is permanent as a caution against conflat
 
 ### Overview
 
-**Crisis Axis:** Parameter Proliferation and Patchwork Closure. **Short Name:** Patchwork Closure. The core tension is that a theory may remain empirically successful while accumulating free parameters, sector-specific repairs, and anomaly-specific add-ons that weaken confidence in common mechanism. The issue is not that every parameter is a defect. It is that a growing burden of inserted structure can signal that a framework is preserving fit faster than it is deepening explanation. This crisis appears in particle physics, cosmology, and beyond-standard-model extension culture.
+**Crisis ID:** `CR-10`. **Crisis Axis:** Parameter Proliferation and Patchwork Closure. **Short Name:** Patchwork Closure. The core tension is that a theory may remain empirically successful while accumulating free parameters, sector-specific repairs, and anomaly-specific add-ons that weaken confidence in common mechanism. The issue is not that every parameter is a defect. It is that a growing burden of inserted structure can signal that a framework is preserving fit faster than it is deepening explanation. This crisis appears in particle physics, cosmology, and beyond-standard-model extension culture.
 
 ### Where The Tension Comes From
 
@@ -600,7 +602,7 @@ The long-term relevance of this crisis is permanent as a program-diagnostic crit
 
 ### Overview
 
-**Crisis Axis:** Mathematical Control vs. Mechanistic Explanation. **Short Name:** Control vs. Mechanism. The core tension is that physics often achieves extraordinary formal control over quantities while lacking an equally strong account of what physically produces them. The issue is not whether the mathematics works. It is whether successful calculation has been mistaken for completed explanation. This crisis appears wherever elegant mathematics outruns causal intelligibility.
+**Crisis ID:** `CR-11`. **Crisis Axis:** Mathematical Control vs. Mechanistic Explanation. **Short Name:** Control vs. Mechanism. The core tension is that physics often achieves extraordinary formal control over quantities while lacking an equally strong account of what physically produces them. The issue is not whether the mathematics works. It is whether successful calculation has been mistaken for completed explanation. This crisis appears wherever elegant mathematics outruns causal intelligibility.
 
 ### Where The Tension Comes From
 

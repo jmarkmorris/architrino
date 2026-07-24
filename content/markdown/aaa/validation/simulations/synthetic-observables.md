@@ -15,7 +15,7 @@ A $\mathbb{U}_{\text{now}}$ is defined by:
 - Access to the full state $S(T) = \{(\mathbf X_i(T), \mathbf V_i(T), q_i, \dots)\}$ for all architrinos
 - Output channels:
   - Local potential $\Phi(\mathbf X_k,T)$
-  - Local gradient $\nabla_{\mathbf X}\Phi(\mathbf X_k,T)$ (force proxy)
+  - Local gradient $\nabla_{\mathbf X}\Phi(\mathbf X_k,T)$ (potential-gradient or acceleration proxy under the declared calibration)
   - Optional local Noether sea state variables (e.g., $\rho_{\text{NS}}$, alignment/orientation metrics)
   - Causal wake surface provenance/event tags: for each received contribution at $(\mathbf X_k,T_r)$, record `transmitter_id` together with $T_t$, satisfying $\| \mathbf X_k - \mathbf X_{\text{transmitter}}(T_t)\| = c_f (T_r - T_t)$
   - Photon packet provenance when a radiation channel is declared: transmitter event, path segment, before/after frequency, recoil or medium-energy exchange, remnant row, and signed exchange residual
@@ -48,9 +48,9 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
   \rho_m \equiv
   \frac{\left|\|\mathbf X_k-\mathbf X_{i_m}(T_{t,m})\|-c_f\,(T_m-T_{t,m})\right|}
-  {\max(c_f\Delta T,\varepsilon_r)},
-  \qquad \varepsilon_r=10^{-12}
+  {\max(c_f\Delta T,\varepsilon_r)}
   $$
+  where $\varepsilon_r>0$ is a predeclared floor with units of length.
   Pass if at least $99.9\%$ of records satisfy $\rho_m\le 10^{-2}$ and
   $\max_m \rho_m \le 5\times 10^{-2}$.
 
@@ -60,41 +60,41 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
   Pass if fraction with $\theta_m>10^{-9}$ is $\le 10^{-6}$.
 
-- **Cross-integrator invariance:**
-  For any channel $Y$ use
+- **Cross-integrator parity:**
+  For any channel $Y$ use a predeclared floor $\varepsilon_{0,Y}$ with the same units as the norm of $Y$:
   $$
   E_{\mathrm{rel}}(Y;A,B)\equiv
-  \frac{\|R(Y_B)-Y_A\|_{L^2}}{\|R(Y_B)\|_{L^2}+10^{-12}}
+  \frac{\|R(Y_B)-Y_A\|_{L^2}}{\|R(Y_B)\|_{L^2}+\varepsilon_{0,Y}}
   $$
   Pass if $E_{\mathrm{rel}}(\Phi)\le 0.03$ and
-  $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.05$.
+  $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.05$. Passing shows implementation parity on the declared channels; it is not an independent correctness oracle.
 
 - **Finite-window Gauss/Stokes residuals:** for any declared reconstructed vector channel $\mathbf{Y}_\eta$ on $\Sigma_T$, use
   $$
-  R_G[V,t;\mathbf{Y}_\eta]\equiv
+  R_G[V,T;\mathbf{Y}_\eta]\equiv
   \frac{\left|\int_{\partial V}\mathbf{Y}_\eta\!\cdot\!\hat{\mathbf{n}}\,dS-\int_V\nabla\!\cdot\!\mathbf{Y}_\eta\,dV\right|}
-  {\int_{\partial V}\left|\mathbf{Y}_\eta\!\cdot\!\hat{\mathbf{n}}\right|\,dS+\int_V\left|\nabla\!\cdot\!\mathbf{Y}_\eta\right|\,dV+10^{-12}}
+  {\int_{\partial V}\left|\mathbf{Y}_\eta\!\cdot\!\hat{\mathbf{n}}\right|\,dS+\int_V\left|\nabla\!\cdot\!\mathbf{Y}_\eta\right|\,dV+\varepsilon_G}
   $$
   and
   $$
-  R_S[S,t;\mathbf{Y}_\eta]\equiv
+  R_S[S,T;\mathbf{Y}_\eta]\equiv
   \frac{\left|\oint_{\partial S}\mathbf{Y}_\eta\!\cdot dX^i-\int_S(\nabla_{\mathbf X}\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\,dS\right|}
-  {\oint_{\partial S}\left|\mathbf{Y}_\eta\!\cdot dX^i\right|+\int_S\left|(\nabla_{\mathbf X}\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\right|\,dS+10^{-12}}
+  {\oint_{\partial S}\left|\mathbf{Y}_\eta\!\cdot dX^i\right|+\int_S\left|(\nabla_{\mathbf X}\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\right|\,dS+\varepsilon_S}
   $$
-  Pass if both residuals are $\le 2\times10^{-2}$ on resolved windows and decrease under spatial refinement. These are diagnostics on reconstructed continuum channels, not claims that the channel is substrate ontology.
+  Here $\varepsilon_G$ and $\varepsilon_S$ are predeclared floors with the units of their respective integral channels. Pass if both residuals are $\le 2\times10^{-2}$ on resolved windows and decrease under spatial refinement. These are diagnostics on reconstructed continuum channels, not claims that the channel is substrate ontology.
 
-- **Distributional wake-surface normalization:** for emitted wake surface $m$ with source strength $q_m$, delay $\tau_m=T-T_{t,m}$, and radial annulus $R_-\le r_m\le R_+$ around the emission point, use
+- **Distributional wake-surface normalization:** for emitted wake surface $m$ with source strength $q_m$, causal delay $\Delta_m=T-T_{t,m}$, and radial annulus $R_-\le r_m\le R_+$ around the emission point, use
   $$
   Q^{\mathrm{ann}}_{m,\eta}=
-  q_mH(\tau_m)\int_{R_-}^{R_+}\delta_\eta(r_m-c_f\tau_m)\,dr_m
+  q_mH(\Delta_m)\int_{R_-}^{R_+}\delta_\eta(r_m-c_f\Delta_m)\,dr_m
   $$
   and
   $$
   R_{N,m}\equiv
   \frac{\left|\int_{R_-\le r_m\le R_+}\rho_{m,\eta}(T,\mathbf X)\,dV-Q^{\mathrm{ann}}_{m,\eta}\right|}
-  {|q_m|+10^{-12}}
+  {|q_m|+\varepsilon_q}
   $$
-  Pass if at least $99.9\%$ of emitted wake surfaces satisfy $R_{N,m}\le 10^{-2}$ and the maximum resolved-window residual is $\le 5\times10^{-2}$.
+  Here $\varepsilon_q$ is a predeclared source-strength floor with the same units as $q_m$. Pass if at least $99.9\%$ of emitted wake surfaces satisfy $R_{N,m}\le 10^{-2}$ and the maximum resolved-window residual is $\le 5\times10^{-2}$.
 
 - **Photon-frequency exchange closure:** when a photon packet changes frequency during transport, the logged before/after frequencies must close with medium, recoil, and remnant rows:
   $$
@@ -102,25 +102,25 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   =
   \frac{
   \left|
-  h(\nu_m^{+}-\nu_m^{-})
+  E_\gamma(\nu_m^{+})-E_\gamma(\nu_m^{-})
   +\Delta E_{\mathrm{med},m}
   +\Delta E_{\mathrm{recoil},m}
   +\Delta E_{\mathrm{rem},m}
   \right|
   }
-  {\epsilon_E}
+  {\varepsilon_{\nu\text{-}\mathrm{ex}}}
   $$
-  A cosmology-facing redshift or blueshift product may consume this row only after the residual is reported with the same photon provenance used for arrival-time, flux, and image-sharpness outputs.
+  Here $E_\gamma(\nu)$ is the declared photon-channel energy map and $\varepsilon_{\nu\text{-}\mathrm{ex}}>0$ is a predeclared photon-exchange tolerance with units of energy; it is distinct from the normalized energy-drift observable $\epsilon_E$ in [Convergence Tests](convergence-tests.md). Pass if $R_{\nu\text{-}\mathrm{ex},m}\le1$. The medium, recoil, and remnant entries use the same signed balance equation and outcome-neutral ledger convention defined in the [Redshift-Budget Toy Model](redshift-budget-toy-model.md#replay-equation). The observer-level comparison $E_\gamma=h\nu$ may be used only as a labeled recovery calibration after the $\mathbb{A}\mathbb{A}\mathbb{A}$ map is declared; it is not an architrino-level premise. A cosmology-facing redshift or blueshift product may consume this row only after the residual is reported with the same photon provenance used for arrival-time, flux, and image-sharpness outputs.
 
 - **Operator consistency across PDE and event-root runs:** after resampling the event-root reconstruction onto the PDE grid, define
   $$
   \Delta\mathbf{Y}_\eta\equiv
   \mathbf{Y}^{\mathrm{PDE}}_\eta-R(\mathbf{Y}^{\mathrm{root}}_\eta),
   \qquad
-  E_{\mathrm{op}}(V,S,t)\equiv
-  \max\!\left\{R_G[V,t;\Delta\mathbf{Y}_\eta],\,R_S[S,t;\Delta\mathbf{Y}_\eta]\right\}
+  E_{\mathrm{op}}(V,S,T)\equiv
+  \max\!\left\{R_G[V,T;\Delta\mathbf{Y}_\eta],\,R_S[S,T;\Delta\mathbf{Y}_\eta]\right\}
   $$
-  Pass if $E_{\mathrm{op}}\le0.03$ on the declared validation windows and decreases under temporal/history/spatial refinement.
+  Pass if $E_{\mathrm{op}}\le0.03$ on the declared validation windows and decreases under temporal/history/spatial refinement. This is a parity check on the common observable map, not independent evidence for that map or the canonical law.
 
 - **Curvilinear-coordinate hygiene:** finite-window residuals must use the coordinate weights and operator formulas of the declared Euclidean scaffold. In spherical coordinates $(r,\theta,\varphi)$,
   $$
@@ -135,7 +135,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
 
 - **Provenance distribution agreement:** for `t_emit` distributions, require
   $$
-  D_W \equiv \frac{W_1(P_A,P_B)}{\mathrm{IQR}(P_B)+10^{-12}} \le 0.08,
+  D_W \equiv \frac{W_1(P_A,P_B)}{\mathrm{IQR}(P_B)+\varepsilon_T} \le 0.08,
   \qquad
   D_{JS}\equiv \mathrm{JSD}(P_A\|P_B)\le 0.03
   $$
@@ -155,7 +155,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   \frac{
   \left\|Y_{\mathrm{cg}}-R(Y_{\mathrm{dir}})\right\|_{L^2(W)}
   }{
-  \left\|R(Y_{\mathrm{dir}})\right\|_{L^2(W)}+10^{-12}
+  \left\|R(Y_{\mathrm{dir}})\right\|_{L^2(W)}+\varepsilon_{0,Y}
   }
   $$
   where $Y$ ranges over the retained density, current, momentum-current, and energy-flux channels. Pass if $R_{\mathrm{mom}}\le0.05$ and the omitted memory-current residual decreases under refinement.
@@ -164,13 +164,13 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
   u^a(z)
   =
-  \lim_{\Delta t\to0}
-  \frac{\langle\Delta z^a\rangle_z}{\Delta t},
+  \lim_{\Delta T\to0}
+  \frac{\langle\Delta z^a\rangle_z}{\Delta T},
   \qquad
   D^{ab}(z)
   =
-  \lim_{\Delta t\to0}
-  \frac{\langle\Delta z^a\Delta z^b\rangle_z}{2\Delta t}
+  \lim_{\Delta T\to0}
+  \frac{\langle\Delta z^a\Delta z^b\rangle_z}{2\Delta T}
   $$
   The synthetic distribution must match direct event-root ensembles in $\langle z\rangle$ and $\operatorname{Cov}(z)$ before higher stochastic claims are trusted. Higher cumulants may differ from the surrogate unless a separate closure row has been declared.
 

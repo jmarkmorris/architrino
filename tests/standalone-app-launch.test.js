@@ -42,6 +42,7 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
   assert.equal(getStandaloneAppPathForScene("greek-letter-match"), "greek-letter-match.html");
   assert.equal(getStandaloneAppPathForScene("animator"), "animator.html");
   assert.equal(getStandaloneAppPathForScene("borg"), "borg.html");
+  assert.equal(getStandaloneAppPathForScene("braid-search"), "braid-search.html");
   assert.equal(
     getStandaloneAppPathForScene("content/scenes/archie/assembly_explorer.json"),
     "assembly-explorer.html"
@@ -60,6 +61,10 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
   );
   assert.equal(getStandaloneAppPathForScene("content/scenes/archie/animator.json"), "animator.html");
   assert.equal(getStandaloneAppPathForScene("content/scenes/archie/borg.json"), "borg.html");
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/archie/braid_search.json"),
+    "braid-search.html"
+  );
   assert.equal(
     resolveStandaloneAppHrefForScene(
       "content/scenes/archie/assembly_explorer.json",
@@ -94,6 +99,13 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
       "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fborg.json"
     ),
     "http://127.0.0.1:5173/borg.html"
+  );
+  assert.equal(
+    resolveStandaloneAppHrefForScene(
+      "content/scenes/archie/braid_search.json",
+      "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fbraid_search.json"
+    ),
+    "http://127.0.0.1:5173/braid-search.html"
   );
 });
 
@@ -163,6 +175,7 @@ test("standalone app home controls avoid bare index navigation", () => {
     "src/apps/molecule/MoleculeRuntime.js",
     "src/apps/website-stats/WebsiteStatsRuntime.js",
     "src/apps/animator/AnimatorAppModeRuntime.js",
+    "src/apps/compact-sweep-dashboard/CompactSweepDashboardRuntime.js",
     "src/apps/pdgedit/PdgeditAppModeRuntime.js",
     "src/apps/pdgedit/PdgeditAppRuntime.js",
     "src/apps/ideal-braid/IdealBraidRuntime.js",
@@ -231,6 +244,34 @@ test("Applications scene exposes It's Greek to Me! as a standalone app scene", (
         object.labelSubtitle === "Alpha to Omega"
     ),
     true
+  );
+});
+
+test("Applications scene exposes Braid Search as a standalone app scene", () => {
+  const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
+  const braidSearchScene = JSON.parse(readRepoFile("content/scenes/archie/braid_search.json"));
+
+  assert.equal(braidSearchScene.scene.id, "braid-search");
+  assert.equal(braidSearchScene.scene.title, "Braid Search");
+  assert.equal(
+    applicationsScene.scene.children.some(
+      (child) =>
+        child.nodeId === "braid_search" &&
+        child.scenePath === "content/scenes/archie/braid_search.json"
+    ),
+    true
+  );
+  assert.equal(
+    applicationsScene.objects.some(
+      (object) =>
+        object.id === "braid_search" &&
+        object.labelTitle === "Braid Search"
+    ),
+    true
+  );
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/archie/braid_search.json"),
+    "braid-search.html"
   );
 });
 

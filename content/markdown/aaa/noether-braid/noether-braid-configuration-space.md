@@ -20,7 +20,7 @@ This chapter uses four evidence-level terms in a controlled way:
 
 | Term | Meaning in this chapter | What it does not claim by itself |
 | --- | --- | --- |
-| branch | A candidate whole six-architrino Noether braid history over a declared finite memory window. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
+| branch | A candidate whole six-architrino Noether braid history over a declared finite memory window; this chapter's analysis space is the six-body base and Family-A/B case, while a twelve-worldline Family-C candidate carries the corresponding rows on its own declared ledger. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
 | retained | Evidential status for a branch, row, or chart whose required data close on the same record under the declared tolerance, event/domain convention, and stability conditions. | `Retained` does not mean assumed, preferred, or merely still under discussion. If the same-record ledgers are missing, the object remains a candidate. |
 | support | The geometric region, envelope, or comparison chart occupied by the branch data. A1 path support, a path-history-derived oblate spheroidal envelope, and an axial comparison chart describe different objects. | Support is not an acceleration law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
 | record | The finite ledger attached to one branch over the declared memory window. It includes only data that can still affect the next delayed update or certificate: inventory, path history, causal-root rows, wake rows, energy/action rows, momentum and angular-momentum rows, phase and plane-orientation rows, support claims, response-center and group-velocity rows, and the local Noether sea row. | A record is not a narrative summary or a loose collection of diagnostics. A proof claim must say which rows close on the same record. |
@@ -45,7 +45,7 @@ These entries are diagnostics that may be computed from a taxonomy member's reco
 
 ## Family-B Example: B1
 
-A reader who wants one concrete configuration to hold in mind while reading the axes below can use [B1](braid-family-b.md#b1). Its three neutral binaries share one midpoint, one axis, one frequency, and one circulation sense. Binary $a$ has internal speed $s_a=2\pi f\rho_a$, so different transverse orbit radii produce different internal speeds even though all three binaries share $f$. The all-equatorial and all-axial depictions are coordinate boundaries of the same member.
+A reader who wants one concrete configuration to hold in mind while reading the axes below can use [B1](braid-family-b.md#b1). Its three neutral binaries share one midpoint, one axis, one frequency, and one circulation sense. Binary $a$ has internal speed $s_a=2\pi f\rho_a$, so different transverse orbit radii produce different internal speeds even though all three binaries share $f$. The all-equatorial and all-axial depictions are coordinate boundaries of the same member. Active B1 candidate records require $\sum_a\rho_a^2>0$; the all-axial endpoint remains a coordinate boundary and deprecated null control rather than an active candidate.
 
 The status discipline binds. B1 is a prescribed member, not a retained branch, and no family ranking is asserted. Its exact geometry does not establish physical formation, retention, or preference over another taxonomy member.
 
@@ -71,13 +71,13 @@ This inventory says only that the candidate has the required polarity count and 
 
 ## Angular-Momentum Frame
 
-The angular-momentum-frame axis asks whether the retained branch emits enough angular-momentum rows to define a full internal 3D frame. The rows are ledger data extracted from the branch, not assumed circular orbits. The three-row or rank-three search region is developed in [Noether Braid Configuration Space](noether-braid-configuration-space.md), but it remains only one region inside the broader Noether braid taxonomy rather than the definition of every Noether braid.
+The angular-momentum-frame axis asks whether the retained branch emits enough angular-momentum rows to define a full internal 3D frame. The rows are ledger data extracted from the branch, not assumed circular orbits. The three-row or rank-three search region is developed below, but it remains only one region inside the broader Noether braid taxonomy rather than the definition of every Noether braid.
 
 | Frame value | Meaning | What it does not prove |
 | --- | --- | --- |
 | not assigned | The branch has not yet supplied retained angular-momentum rows. | It does not reject the branch; it only leaves the frame axis open. |
 | rank-three frame | The branch supplies three retained angular-momentum rows with nonzero frame determinant. | It does not by itself prove shell support, frequency lock, polarity placement, or certification. |
-| planar lower-rank braid (`PL`) | The branch is lower-rank on this axis because $D_{\mathrm{plane}}=0$ (defined below) or because no retained three-row frame exists. | It is not automatically the planar reduced chart and not automatically a terminal A1 boundary. |
+| planar lower-rank braid (`PL`) | The branch is lower-rank on this axis because the determinant defined in this section vanishes or because no retained three-row frame exists. | It is not automatically the planar reduced chart and not automatically a terminal A1 boundary. |
 
 For a rank-three frame, the branch record includes three angular-momentum two-form classes. Here class means a ledger-extracted angular-momentum two-form row up to the declared branch-window equivalence, not a de Rham cohomology class of the Euclidean void:
 
@@ -120,7 +120,7 @@ When $D_{\mathrm{plane}}=0$ or the branch has no retained three-row frame, hande
 
 ## Speed, Hinge, And Frequency Families
 
-The speed regime records how retained speed rows relate to the field speed $c_f$. Sub-field-speed rows satisfy speeds below the local field-speed hinge; field-speed rows sit at the transition scale; super-field-speed rows enter regimes where delayed self-interaction can become available. These diagnostics remain attached to the persistent indices $a\in\{1,2,3\}$; a later branch may distinguish one or more indices without renaming them.
+The speed regime records how retained speed rows relate to the field speed $c_f$. Sub-field-speed rows satisfy speeds below the field-speed hinge; field-speed rows sit at the transition scale; super-field-speed rows enter regimes where delayed self-interaction can become available. These diagnostics remain attached to the persistent indices $a\in\{1,2,3\}$; a later branch may distinguish one or more indices without renaming them.
 
 Field-speed hinge occupancy is a separate axis. It asks which row, if any, operates within a declared tolerance of $c_f$, and it must say which speed statistic is being tested: transverse carrier speed, orbital/circulation speed, or another branch-declared component. A hinge row is not automatically a self-hit row. It is the speed-regime condition at which the branch can transition from the partner-only regime toward a ledger with both partner-hit and self-hit access, provided the same-transmitter causal-root ledger and transversality rows also close.
 
@@ -167,21 +167,7 @@ whenever the numerator is nonzero. The Hodge dual is applied to a representative
 
 The reason to begin with three retained rows is geometric. Euclidean space has three independent spatial directions, and a stable three-dimensional assembly needs enough internal direction data to define an orientation frame rather than only a planar cycle. A single binary row supplies one orbital plane and one plane normal. Two rows can define a relative angle, but they do not by themselves supply a full nondegenerate three-axis frame. Three retained rows can, when their plane normals are independent, define a local three-dimensional frame.
 
-Let the three retained binary planes have unit normals
-$$
-\hat{\mathbf n}_1,\,
-\hat{\mathbf n}_2,\,
-\hat{\mathbf n}_3.
-$$
-The plane-orientation nondegeneracy measure is
-$$
-D_{\mathrm{plane}}
-=
-\det\!\begin{bmatrix}
-\hat{\mathbf n}_1 & \hat{\mathbf n}_2 & \hat{\mathbf n}_3
-\end{bmatrix}.
-$$
-The branch is genuinely three-dimensional only when $D_{\mathrm{plane}}\ne0$. Near $|D_{\mathrm{plane}}|=1$, the three planes are close to mutually orthogonal. Near $D_{\mathrm{plane}}=0$, the rank-three frame degenerates toward a coplanar or lower-dimensional support. This determinant is therefore a natural order parameter for the transition between a volumetric Noether braid branch and a planar or horizon-aligned branch.
+Use the ordered plane normals and canonical determinant defined in [Angular-Momentum Frame](#angular-momentum-frame). The branch is genuinely three-dimensional only when $D_{\mathrm{plane}}\ne0$. Near $|D_{\mathrm{plane}}|=1$, the three planes are close to mutually orthogonal. Near $D_{\mathrm{plane}}=0$, the rank-three frame degenerates toward a coplanar or lower-dimensional support. This determinant is therefore a natural order parameter for the transition between a volumetric Noether braid branch and a planar or horizon-aligned branch.
 
 For promotion work this becomes a nondegeneracy floor:
 $$
@@ -278,7 +264,9 @@ g\cdot B_{3B}
 $$
 on the same retained branch chart $\mathfrak B$, with the non-symmetry return directions carrying a positive stability margin. The metric $d_{\mathfrak B}$ must compare the same branch rows: causal-root ledger, energy/action ledger, angular-momentum rows, phase data, plane-orientation data, response-center motion, group velocity, Noether sea record, and assembly topological charge.
 
-The quotient group $\mathcal G_{\mathrm{sym}}$ is not a convenience list. It must be the neutral group of the retained return map: directions removed from the stability test have zero Floquet exponent because they are declared symmetries of the full branch chart. A direction that is neutral in an isolated sub-row but unstable in the enclosing rank-three Noether braid chart is not quotiented. In that sense, the certified-braid certificate is the branch-symplectic promotion test evaluated on the retained branch chart: the finite-memory return map must recur modulo true neutral symmetries while contracting or bounding every non-symmetry direction, and an action-derived reduced Hamiltonian promotion must also report the return-map symplectic residual $\mathcal R_{\Omega}$ defined in [Master Equation](../dynamics/master-equation.md#return-map-symplectic-residual-for-action-derived-branch-promotion).
+This residual-and-Floquet requirement is the braid instance of the absolute-time clock certificate, not an imported spacetime premise; see [Absolute Time Defense](../foundations/absolute-time-defense.md#absolute-time-global-foliation-and-proper-time).
+
+The quotient group $\mathcal G_{\mathrm{sym}}$ is not a convenience list. It must be the neutral group of the retained return map: directions removed from the stability test have zero Floquet exponent because they are declared symmetries of the full branch chart. A direction that is neutral in an isolated sub-row but unstable in the enclosing rank-three Noether braid chart is not quotiented. In that sense, the certified-braid certificate is the branch-symplectic promotion test evaluated on the retained branch chart: the finite-memory return map must recur modulo true neutral symmetries while contracting or bounding every non-symmetry direction, and an action-derived reduced Hamiltonian promotion must also report the return-map symplectic residual $\mathcal R_{\Omega}$ defined under the [Master Equation closure interface](../dynamics/master-equation.md#closure-interface-coarse-graining-gate-to-effective-quantum-envelope).
 
 The branch-intrinsic conserved record must also export Lorentz-compatible observer rows before certification. In the homogeneous moving-branch regime, the same retained record must recover the ruler and clock deformation laws,
 $$

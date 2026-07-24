@@ -10,7 +10,7 @@ The guiding observation is simple to state. A causal wake is the source-dependen
 
 Strictly, a wake carries nothing material. [Energy](../dynamics/energy.md) states the discipline: a wake is not a hidden fuel, a vacuum reservoir, or a second substance in the Euclidean void. What the wake makes available is fixed by the transmitter path:
 
-- **Potential**: the per-isochron amplitude, available wherever the wake passes, realized as force and work only when an actual receiver trajectory crosses it with its transmitter-side acceleration weight.
+- **Potential**: the per-isochron amplitude, available wherever the wake passes, realized as a per-hit acceleration contribution and, for an assembly-level ledger, work only when an actual receiver trajectory crosses it with its transmitter-side acceleration weight.
 - **Momentum and angular momentum**: conservation bookkeeping values, not cargo. Between emission and delayed reception, the accounting assigns these balances to the in-flight wake segment, and that assignment is computable entirely from the transmitter's path history. This is why internal torques need not cancel instantaneously in a causal-delay theory: between emission and reception, the balance lives in the wake record rather than in any assembly.
 - **Information**: the wake is an encoding of the source's worldline, propagating outward at $c_f$. A receiver sampling the wake is sampling the source's kinematic history at causal delay.
 
@@ -36,7 +36,7 @@ Nothing is lost in transmission; everything is lost in projection. The wake in f
 
 The ambiguity set for a single hit includes at least:
 
-- **Distance versus emission kinematics.** All architrinos share one fixed charge magnitude, so amplitude cannot be traded against charge. But the received amplitude is a product of the distance falloff and velocity-dependent factors of the emission event, so a distant source with one emission kinematics can produce the same hit as a nearer source with another. One number, multiple unknowns.
+- **Distance versus emission kinematics.** All architrinos share one fixed polarity magnitude, so amplitude cannot be traded against a continuously variable source strength. But the received amplitude is a product of the distance falloff and velocity-dependent factors of the emission event, so a distant source with one emission kinematics can produce the same hit as a nearer source with another. One number, multiple unknowns.
 - **Side versus polarity.** An acceleration toward $+\hat{\mathbf x}$ is equally consistent with an opposite-polarity source ahead of the receiver and a same-polarity source behind it. The sign of the interaction and the side of the sky are conflated in a single sample.
 - **Multiplicity.** Hits arrive unlabeled. One acceleration vector may be one source or the coherent sum of many. Emitters cannot be counted from a sample.
 
@@ -81,6 +81,6 @@ The discipline closes on itself. Explanations, theories, observers, and the scie
 - **Ontological**: the wake as causal-isochron record whose content is fixed by transmitter identity, polarity, and path history; no independent wake degrees of freedom.
 - **Derivational, owned elsewhere**: linear superposition of the net potential, the receiver-local hit sum, self-hit structure, and the wake-history energy, momentum, and angular-momentum accounting rows, all owned by [Master Equation](../dynamics/master-equation.md) and [Energy](../dynamics/energy.md).
 - **Elementary but load-bearing**: the single-hit degeneracy and its dimension-counting argument, which supply the mechanism behind the inference limits already enforced in the dynamics and observer chapters.
-- **Closure targets**: the assembly-scale selectivity mechanism behind structured reception; the proposed inheritance of quantum indistinguishability from hit-level unlabeledness, owned by the assembly and quantum chapters; the certified conservation theorem with wake-history rows and controlled residuals, and the active-root census behind universal contact, both owned by the master-equation proof program.
+- **Closure targets**: the assembly-scale selectivity mechanism behind structured reception; the proposed inheritance of quantum indistinguishability from hit-level unlabeledness, owned by the assembly and quantum chapters; the certified conservation theorem with wake-history rows and controlled residuals; the active-root census behind universal contact; and the observer-level reconstruction of three effective boost generators which, together with the seven substrate symmetry rows, must close the Poincare algebra within declared residuals. The last three targets belong to the master-equation and Lorentz-recovery programs rather than this orientation chapter.
 
 When any of these threads needs mathematical closure rather than orientation, the domain chapters above are the owners; this document places the concepts and keeps their levels separate.

@@ -230,7 +230,7 @@ $$
 
 with $Z_{\mathrm{path},X}$ allowed to be positive or negative only when the corresponding energy and medium-state exchange rows close. The dark-energy residual must not treat all leftover frequency shift as expansion after suppressing endpoint, source, launch, or SZ-like path terms. It must show that the same $\theta_{\mathrm{sea}}$ supplies the redshift-transfer curvature, blackbody preservation, supernova flux factors, BAO ruler projection, and growth response.
 
-As of April 2026, DESI has completed the observations for its originally planned five-year survey, but the first dark-energy results from the full five-year dataset are expected in 2027. Public comparison pressure comes from the 2025 first-three-year BAO analysis: combined with CMB, supernova, and weak-lensing data, it strengthens comparison fits with time-varying $w(a)$ relative to a pure constant-$\Lambda$ description. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ use is therefore a calibration gate: preserve the BAO distance ladder, supernova residual model, CMB anchor, lensing/growth consistency, and parameter-covariance record before promoting any Noether sea relaxation interpretation.
+DESI BAO data products, when combined with CMB, supernova, and weak-lensing records, can strengthen comparison fits with time-varying $w(a)$ relative to a pure constant-$\Lambda$ description. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ use is a release-explicit calibration gate: preserve the BAO distance ladder, supernova residual model, CMB anchor, lensing/growth consistency, and parameter-covariance record before promoting any Noether sea relaxation interpretation. Unreleased or covariance-incomplete products do not count as residual evidence.
 
 The shared calibration gate can be written as a residual criterion. Let
 
@@ -928,10 +928,10 @@ Until those conditions are met, cosmological coupling should be treated as a can
 
 ## Regime Map
 
-| Epoch | Noether sea state | Effective $w$ | Dominant mechanism |
+| Epoch | Noether sea state | Effective dark-energy component $w_{\mathrm{eff}}$ | Dominant mechanism |
 |:---|:---|:---|:---|
-| Radiation era ($z > 3400$) | Hot, dense; binaries 3 contracted | $w_{\mathrm{eff}} \to 0$ (subdominant) | Radiation pressure dominates |
-| Matter era ($3400 > z > 0.7$) | Cooling; binaries 3 relaxing | $w_{\mathrm{eff}}$ transitions toward $-1$ | Matter density dominates; tension grows |
+| Radiation era ($z > 3400$) | Hot, dense; binaries 3 contracted | Not fixed by the subdominant limit | Radiation pressure dominates |
+| Matter era ($3400 > z > 0.7$) | Cooling; binaries 3 relaxing | Model-dependent; must evolve toward $-1$ on the retained branch | Matter density dominates; tension grows |
 | Acceleration onset ($z \sim 0.7$) | $\rho_{\mathrm{DE,eff}} \sim \rho_m$ | $w_{\mathrm{eff}} \approx -1$ | Tension becomes dynamically significant; SMBH channel may become non-negligible |
 | Present ($z = 0$) | Quasi-equilibrium tension | $w_{\mathrm{eff}} \approx -1$ with possible mild drift | Acceleration established; coupling tests become survey-limited |
 | Far future ($z \to -1$) | Full relaxation | $w_{\mathrm{eff}} \to -1$ or evolves | Depends on relaxation endpoint |

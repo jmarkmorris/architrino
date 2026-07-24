@@ -4,9 +4,9 @@
   "requiredMeasureCount": 29,
   "methodology": {
     "path": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-    "sha256": "2311dd032c50800e284579a5901d659af77f37cdbab17dc6dc14eafa50c3ab57",
+    "sha256": "86052fb8569285d7a80abdfb2dc20a198df7a1f9b7fffdcb03d4d86deed7041c",
     "impactReview": "reviewed-for-complete-cycle-campaign-v1",
-    "impactNote": "Reviewed after event-specific multiple-root isolation, drawn-not-evaluated rows, translating-center closure, the full bounded taxonomy sampler, compact resolution calibration, and the N=64 production boundary were made explicit. The existing 29 complete-cycle analytical measures and their full-adjudication publication dispositions remain unchanged. Compact Monte Carlo rows are diagnostic, omit acceptance-bearing raw evidence, and cannot enter accepted_case until rerun through the full independently checked protocol."
+    "impactNote": "Reviewed after event-specific multiple-root isolation, drawn-not-evaluated rows, translating-center closure, the full bounded taxonomy sampler, compact resolution calibration, the N=64 production boundary, and retirement of the zero-transverse-motion B1.4 axial-limit control were made explicit. The active campaign now excludes B1.4 from sampling and comparative rankings while preserving its historical records. The existing 29 complete-cycle analytical measures and their full-adjudication publication dispositions remain unchanged. Compact Monte Carlo rows are diagnostic, omit acceptance-bearing raw evidence, and cannot enter accepted_case until rerun through the full independently checked protocol."
   },
   "reductionVersions": [
     "prescribed-record-analytics/complete-cycle-campaign-reducer.v1",

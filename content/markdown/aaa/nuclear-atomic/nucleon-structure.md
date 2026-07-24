@@ -27,6 +27,8 @@ For Generation-I quarks:
 - each quark axial layer contributes 6 axial architrinos,
 - so each Generation-I quark contributes 12 architrinos total.
 
+Each six-architrino Noether braid scaffold contains three electrinos and three positrinos and is therefore polarity-neutral. The axial layer supplies the quark's net observer-level electric charge; the scaffold count contributes no additional net-charge term.
+
 Therefore a nucleon contains $3 \times 12 = 36$ architrinos at the Noether braid bookkeeping level, before adding any effective mesonic or medium-level dressing. This count is inventory, not a mass formula. The observed nucleon mass response is produced only after color closure, corridor terms, cross terms, shielding, and local Noether sea response are included.
 
 The constituent content is:
@@ -51,7 +53,7 @@ $$
 
 ## Color-Singlet Closure
 
-The nucleon is not three independent quarks sitting side by side. It is a closed 9-axis color-singlet baryon assembly, with the strong-sector closure picture matching the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
+The nucleon is not three independent quarks sitting side by side. It is a closed 9-axis color-singlet baryon assembly, with three indexed Noether braid axes contributed by each of the three quark branches. The strong-sector closure picture matches the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
 
 At the bookkeeping level, each constituent quark occupies one of the three color sectors
 $$
@@ -352,7 +354,20 @@ $$
 \frac{d_n^{\max}}{\epsilon R_n}
 $$
 
-with the surviving CP-odd perturbations carried by the same branch record that recovers the neutron magnetic moment and proton-neutron mass splitting. A proof should use the explicit `udd` color-singlet ledger: one $u$ core, two $d$ cores, one $H$, one $M$, and one $L$ exceptional axis across the closed 9-axis braid, with the two down-type branches paired by the same strong-sector closure map. If that quotient leaves a nonzero time-averaged spin-aligned first moment above $d_n^{\max}$, the strong-CP assembly repair fails.
+The tolerance scale shows what kind of proof is required. Using the declared comparison values $d_n^{\max}=1.8\times10^{-26}\,e\cdot\mathrm{cm}$ from the [PSI ultracold-neutron measurement](https://doi.org/10.1103/PhysRevLett.124.081803) and $R_n=0.8\,\mathrm{fm}$ gives
+
+$$
+\vartheta_n^{\mathrm{tol}}
+\approx
+\frac{1.8\times10^{-26}}
+{(1/6)(0.8\times10^{-13})}
+\approx
+1.4\times10^{-12}
+$$
+
+This is a conditional scale estimate, not a fitted assembly parameter. A generic near-cancellation is not an adequate proof route at this tolerance: the leading contribution must vanish by an exact symmetry or quotient identity, with any surviving residual traced to declared perturbations and tested against the same neutron branch record.
+
+The surviving CP-odd perturbations must be carried by the same branch record that recovers the neutron magnetic moment and proton-neutron mass splitting. A proof should use the explicit `udd` color-singlet ledger: one $u$ core, two $d$ cores, one $H$, one $M$, and one $L$ exceptional axis across the closed 9-axis braid, with the two down-type branches paired by the same strong-sector closure map. If that quotient leaves a nonzero time-averaged spin-aligned first moment above $d_n^{\max}$, the strong-CP assembly repair fails.
 
 ## Effective Internal Geometry
 
@@ -403,12 +418,12 @@ Until the terms in $\mathbf J_p(Q)$ are derived quantitatively from the single-a
 
 ### Magnetic moments
 
-Even before a quantitative derivation, the sign structure is already constrained:
+The observer-level sign structure is a recovery constraint:
 
 - the proton should have a positive magnetic moment,
 - the neutron should have a nonzero negative magnetic moment.
 
-Those sign expectations follow naturally from the dominance of up-type positive charge circulation in the proton and the residual uncompensated internal charge circulation in the neutron. A future derivation should turn this into a computed baryon-assembly magnetic moment rather than a qualitative sign check.
+The current axial inventory establishes that internal electric circulation is available, but it does not determine either sign. In particular, residual uncompensated circulation alone cannot fix the neutron's negative sign. The proton and neutron signs must be computed from the same radius-weighted axial circulation, color-corridor angular-momentum, and exposed mass-response ledger used for the magnitudes; otherwise the sign statement remains an unproved benchmark.
 
 ## Proton-Neutron Mass Difference
 
@@ -457,7 +472,9 @@ This chapter is in good enough shape to serve as the canonical nucleon reference
 2. proton spin decomposition from the completed single-assembly angular-momentum ledger and hadron-level color-corridor ledger,
 3. explicit Y-junction or equivalent flux-energy functional,
 4. quantitative proton-neutron mass splitting,
-5. CP-odd neutron electric-dipole cancellation through the same `udd` color-singlet ledger.
+5. CP-odd neutron electric-dipole cancellation through the same `udd` color-singlet ledger,
+6. the nucleon-to-$\Delta$ excitation spectrum from the same color-corridor and angular-momentum ledger, including the $N$-$\Delta$ splitting,
+7. the $\Delta^{++}$ `uuu` branch as a color-occupancy and exchange-statistics stress test.
 
 Those are now downstream derivations, not missing definitions.
 

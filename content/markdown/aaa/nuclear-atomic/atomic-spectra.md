@@ -76,6 +76,8 @@ In the standard Schrödinger calculation, the second condition is enforced by te
 
 The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$, the normalized density $n(\mathbf X,T)$, the Noether sea delay factor $\chi_{\text{sea}}(\mathbf X,T)$, and the local clock/rate response encoded by the native cadence-stretch diagnostic $\Gamma_N(\mathbf X,T)$. The spectral readout below uses the projected channel value $\Gamma_N^{(\ell)}$ after the hydrogen response map has selected an admissible resolution; it is not a separate observer-chart definition of $\Gamma_N$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
 
+Notation guard: the standalone field $n(\mathbf X,T)$ is normalized Noether braid density throughout this chapter, while subscripted integers such as $n_a$ and $n_b$ are recovered principal envelope labels. The notation stays canonical; the argument list and subscripts carry the distinction.
+
 That separation matters because spectra are one of the main ways observers infer the wider cosmos. A line frequency can change because the emitting assembly differs, because the local Noether sea and clock/rate conversion differ, because the photon path changes the received channel, or because the receiver's own clock comparison changes. A spectral model that merges those effects into one fitted number has lost the accounting.
 
 Spectral lines should then be recovered as transitions between effective envelope basins:
@@ -241,6 +243,8 @@ $$
 
 with $m_e$ and $M_p$ read as externally exposed mass responses rather than primitive point-particle masses. The finite-hydrogen benchmark may retain the usual reduced-mass correction as an observer-level comparison, but it must not become an independent fitted constant.
 
+Deuterium supplies the immediate isotope falsifier. With the electron branch and $Z=1$ source class held fixed, the hydrogen/deuterium line ratio must follow from the independently exposed nuclear mass responses and the same envelope functional, with no isotope-specific Rydberg fit. Hydrogen-like ions such as $\mathrm{He}^{+}$ and $\mathrm{Li}^{2+}$ then test the recovered $Z^2$ scaling and its declared finite-size and recoil corrections using the same $\mathcal W_{\text{nuc}}$ machinery.
+
 The line-gap residual is the companion check:
 
 $$
@@ -275,6 +279,38 @@ The coefficient row version of the same benchmark is the [Hydrogen $\Gamma_N$ Sp
 The first executable scaffold for that scan keeps the hydrogen labels theory-facing while the envelope solver remains open. It derives $\Lambda_{ab}$ from recovered principal labels, sets the normalized observer-frequency entries to that line factor, derives the replay envelope gaps from one shared line-inferred cadence stretch, and carries two $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ records with different density/delay/scale/core splits. Those entries are placeholders only where the corpus has not yet supplied the native calculation: the envelope calculation must later replace the scaffolded cadence stretch with computed gap entries, the hydrogen response map must replace the $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ entries, and the static response calculation must replace the declared $(a_n,a_\chi,a_\lambda,a_R)$ row (the static Noether sea response row) without changing the line-by-line clock factor.
 
 The scaffold is therefore a coefficient-row constraint, not a completed hydrogen spectral derivation. The derivation closes only when the hydrogen branch supplies the envelope gaps, $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, observer frequencies, and static response row from the same spectral channel ledger and Noether sea cell.
+
+Two nuclear-corridor-free comparison branches help order that derivation. Positronium tests two polarity-conjugate lepton envelopes with equal exposed mass responses, while muonium tests unequal lepton mass responses without a baryonic color corridor. These systems do not replace hydrogen, because their assembly records differ, but they can falsify an electron-envelope or clock/rate map before the unresolved proton source envelope is introduced.
+
+### Lamb-Shift Recovery Target
+
+The hydrogen Lamb shift is specifically the $2s_{1/2}$-$2p_{1/2}$ splitting. Once the spinor ledger supplies the downstream $j$ labels, the final precision target is
+
+$$
+\Delta E_{\mathrm{Lamb}}^{(\ell)}
+=
+E_{\mathrm{env}}^{(\ell)}(2s_{1/2})
+-
+E_{\mathrm{env}}^{(\ell)}(2p_{1/2}).
+$$
+
+Before those $j$ labels are available, the envelope calculation has only the narrower pre-spin target
+
+$$
+\Delta E_{\ell\text{-}\mathrm{deg}}^{(\ell)}
+=
+\left.
+\left[
+E_{\mathrm{env}}^{(\ell)}(2s)
+-
+E_{\mathrm{env}}^{(\ell)}(2p)
+\right]
+\right|_{\mathrm{spin\text{-}degenerate}},
+$$
+
+which measures deviation from ideal central Coulomb $\ell$-degeneracy and is not yet the complete Lamb-shift observable. The $2p_{3/2}$ branch belongs to the separate fine-structure recovery and must not be folded into $\Delta E_{\mathrm{Lamb}}^{(\ell)}$.
+
+The native calculation must derive the final nonzero $2s_{1/2}$-$2p_{1/2}$ difference from the declared electron envelope, proton-adjacent response, causal-wake dressing, local Noether sea record, photon-channel event ledger, and the same spinor-label pullback that distinguishes the two $2p_j$ branches. Standard radiative and vacuum-response language may supply the observer-level benchmark, but it is not a substrate mechanism. A fit that inserts an independent $2s$ offset, or retunes $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ only for this pair, fails the same-record requirement.
 
 For element comparisons, shell closure should enter through the realized envelope and its stability gap, not through the periodic-table family name. A local shell-closure diagnostic can be written as
 
@@ -356,7 +392,19 @@ $$
 \Omega_B^{\mathrm{orb}}\propto B\,\frac{q}{m_{\mathrm{resp}}}
 $$
 
-Here $m_{\mathrm{resp}}$ is the exposed mass-response readout for the same branch environment; the nearby $m_*$ notation is reserved for the standard material or envelope effective-mass comparison, as in the Landau spacing. The proportionality, polarization basis, and charge-to-mass readout must be recovered from the same magnetic-state map and photon-channel event record. The anomalous Zeeman cases then become the next benchmark: extra components and non-normal spacings must be routed through the completed internal spinor ledger and measurement-response model, not patched by assigning a free line-by-line $g_{\mathrm{eff}}$. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
+In the normal orbital limit the required coefficient is the Larmor value,
+
+$$
+\Omega_B^{\mathrm{orb}}
+\longrightarrow
+\frac{|q|B}{2m_{\mathrm{resp}}},
+\qquad
+\omega_c
+\longrightarrow
+\frac{|q|B}{m_*}
+$$
+
+so the normal-Zeeman side spacing is one half of the corresponding cyclotron coefficient when the same exposed mass response applies. Here $m_{\mathrm{resp}}$ is the exposed mass-response readout for the same branch environment; the nearby $m_*$ notation is reserved for the standard material or envelope effective-mass comparison, as in the Landau spacing. Recovering the factor of two, polarization basis, and charge-to-mass readout from one magnetic-state map and photon-channel event record is part of the benchmark. The anomalous Zeeman cases then become the next benchmark: extra components and non-normal spacings must be routed through the completed internal spinor ledger and measurement-response model, not patched by assigning a free line-by-line $g_{\mathrm{eff}}$. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
 
 Solar and stellar Zeeman observations sharpen this as a source-reconstruction
 benchmark, not merely a laboratory line-splitting example. Hale's 1908 sunspot
@@ -399,7 +447,7 @@ with $V$ the crystal volume and $\Delta N_s(\mathbf k)$ the dimensionless per-mo
 
 ## Spin-Sensitive Spectral Targets
 
-After the base resonance and clock/rate program is stable, the spin-sensitive spectrum should be revisited as a validation surface for the completed angular-momentum ledger. Fine-structure and spin-orbit terms must distinguish observer-level orbital angular momentum from internal Noether braid spinor behavior. Hyperfine terms must add the nuclear spin ledger without treating proton or neutron spin decomposition as already closed. Zeeman and related analyzer-response cases must use the finite-time measurement-response model rather than inserting preassigned spin labels.
+After the base resonance and clock/rate program is stable, the spin-sensitive spectrum should be revisited as a validation surface for the completed angular-momentum ledger. Fine-structure and spin-orbit terms must distinguish observer-level orbital angular momentum from internal Noether braid spinor behavior. Hyperfine terms must add the nuclear spin ledger without treating proton or neutron spin decomposition as already closed. The [21 cm hydrogen-line example](../cosmology/expansion-mechanism.md#21-cm-hydrogen-line-example) is the cosmology-facing same-record test of that handoff. Zeeman and related analyzer-response cases must use the finite-time measurement-response model rather than inserting preassigned spin labels.
 
 The anomalous Zeeman cases make this target concrete. A normal triplet can count as a successful classical-limit recovery of magnetic splitting, but quartets, sextets, and higher multiplets cannot be handled by one universal oscillator response plus per-line labels. The same spectral channel must recover the line-specific splitting pattern, polarization selection, and magnetic-field scaling from one atomic envelope, finite-time analyzer-response model, photon-channel event record, and angular-momentum/spinor ledger. A fit that handles the normal Zeeman effect while assigning anomalous multiplets to separate labels or per-line parameters has not recovered the spin-sensitive spectrum.
 

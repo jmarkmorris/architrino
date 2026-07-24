@@ -101,6 +101,8 @@ $$
 $$
 Here $\theta$ labels the shared candidate record being tested, $A_s$ denotes the branch-resolved wake amplitude from source segment $s$ — defined on the same retained causal root as the branch law and carrying the same-record transmitter-side acceleration weight and inverse-square factor $W^{\mathrm{acc}}_s/r_s^2$, not a bare $1/r$ or root-independent amplitude — and $\mathcal{K}_{\mathrm{sea}}$ is a constitutive response coefficient to be derived, not fitted independently. The route is useful only if the same averaged excitation also supplies the lapse, spatial-compliance, lensing, Shapiro, and PPN rows.
 
+Because the RMS factor is non-negative, the attractive weak-field branch requires a declared negative sign: $\mathcal K_{\mathrm{sea}}<0$ in the convention $\Phi_{\mathrm{eff}}=c_0^2\ln N<0$ near an ordinary mass source. Increasing the shared RMS excitation must then make $\Phi_{\mathrm{eff}}$ more negative monotonically on that branch. Without this sign and monotonicity condition, the candidate does not determine even the direction of the recovered weak-field acceleration.
+
 ## ADM/Cartan Reconstruction Surface
 
 This chapter owns the ADM/Cartan reconstruction surface consumed by the observer-record map in [Observer Framework](observer-framework.md#boundary-wake-covariance-scaffold) and by neighboring dynamics chapters. The observer-level line element target is
@@ -150,7 +152,7 @@ B_{ij}\to\delta_{ij},
 \qquad
 u^i_{\mathrm{sea,eff}}\to0
 $$
-This is a constitutive equation, not a new fundamental four-dimensional metric on absolute timespace.
+This is a constitutive equation, not a new fundamental four-dimensional metric on absolute timespace. Every weak-field expansion about this branch is additionally conditional on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics; that equilibrium predicate is an open closure item of the [Noether sea program](noether-sea.md), and the expansions below inherit it rather than establish it.
 
 As a form-level recovery, the same handoff already has the correct weak-field clock shape once the clock-channel potential has been matched to the Newtonian benchmark. In a weak, slow comparison window,
 $$
@@ -767,7 +769,7 @@ $$
 =
 \xi^{2}\,\partial^i\ln(\Omega\xi)
 =
-\xi^{2}\frac{\partial^i\Phi_{\text{eff}}}{c_f^2}
+\xi^{2}\frac{\partial^i\Phi_{\text{eff}}}{c_0^2}
 $$
 Using $dx_{\mathrm{eff}}^0/dt_{\mathrm{eff}}\approx c_0$, the spatial geodesic equation gives
 $$
@@ -775,15 +777,14 @@ $$
 \approx
 -\Gamma^i_{00}\left(\frac{dx_{\mathrm{eff}}^0}{dt_{\mathrm{eff}}}\right)^2
 =
--\xi^{2}\frac{c_0^2}{c_f^2}\nabla^i\Phi_{\text{eff}}
+-\xi^{2}\nabla^i\Phi_{\text{eff}}
 $$
-Hence, in weak field ($\xi\to 1$) and in the homogeneous observer-channel normalization where $c_0/c_f\to1$,
+Hence, in weak field ($\xi\to 1$),
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
 =-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
 +O\!\left(
-\left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|,
-\left|1-\frac{c_0^2}{c_f^2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|
+\left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|
 \right)
 $$
 which is the Newtonian limit.

@@ -665,6 +665,8 @@
         height: 20px;
         background: transparent;
         cursor: pointer;
+        overscroll-behavior: contain;
+        touch-action: none;
       }
 
       .borg-range::-webkit-slider-runnable-track {
@@ -1020,6 +1022,104 @@
       .borg-binary-table td {
         color: #f2f5ec;
         background: rgba(32, 35, 29, 0.72);
+      }
+
+      .borg-prescribed-controls {
+        display: grid;
+        gap: 8px;
+      }
+
+      .borg-prescribed-controls input[type="range"] {
+        width: 100%;
+        min-width: 0;
+        cursor: ew-resize;
+        overscroll-behavior: contain;
+        touch-action: none;
+      }
+
+      .borg-prescribed-control-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(90px, 0.8fr);
+        gap: 8px;
+        align-items: center;
+        color: #dfe7d6;
+        font-size: 12px;
+      }
+
+      .borg-prescribed-readout,
+      .borg-analysis-status,
+      .borg-receiver-status {
+        display: block;
+        padding: 7px 8px;
+        border: 1px solid rgba(206, 226, 211, 0.14);
+        border-radius: 6px;
+        background: rgba(10, 13, 10, 0.42);
+        color: #dce8df;
+        font: 600 11px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      .borg-analysis-status[data-state="invalidated"],
+      .borg-analysis-status[data-state="error"] {
+        border-color: rgba(255, 139, 124, 0.5);
+        color: #ffc1b8;
+      }
+
+      .borg-analysis-status[data-state="matched"] {
+        border-color: rgba(130, 215, 172, 0.45);
+        color: #bff0d2;
+      }
+
+      .borg-analysis-table {
+        width: 100%;
+        min-width: 900px;
+        border-collapse: collapse;
+        font-size: 11px;
+      }
+
+      .borg-analysis-table th,
+      .borg-analysis-table td {
+        padding: 6px 7px;
+        border: 1px solid rgba(139, 164, 126, 0.18);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .borg-analysis-table tbody tr[tabindex] {
+        cursor: pointer;
+      }
+
+      .borg-analysis-table tbody tr[tabindex]:focus,
+      .borg-analysis-table tbody tr[tabindex]:hover,
+      .borg-analysis-table tbody tr.is-selected {
+        outline: 1px solid rgba(152, 220, 186, 0.66);
+        outline-offset: -1px;
+        background: rgba(111, 181, 147, 0.08);
+      }
+
+      .borg-root-branch-plot {
+        min-height: 64px;
+        color: #aab8ad;
+        font-size: 11px;
+      }
+
+      .borg-root-branch-plot svg {
+        display: block;
+        width: 100%;
+        max-height: 160px;
+        border: 1px solid rgba(206, 226, 211, 0.12);
+        border-radius: 6px;
+        background: rgba(10, 13, 10, 0.35);
+      }
+
+      .borg-root-branch-plot [data-root-id] {
+        cursor: pointer;
+        outline: none;
+      }
+
+      .borg-root-branch-plot [data-root-id]:focus,
+      .borg-root-branch-plot [data-root-id].is-selected {
+        stroke: #f3fff7;
+        stroke-width: 2.5;
       }
 
       .borg-eom-form .borg-run-duration-button {
@@ -1422,6 +1522,83 @@
                 <button id="borg-replay-export" class="borg-replay-action" type="button">Export image</button>
                 <button id="borg-replay-export-animation" class="borg-replay-action" type="button" disabled title="Animation export is not implemented yet.">Export animation</button>
               </div>
+            </div>
+          </details>
+
+          <details id="borg-prescribed-translation-drawer" class="borg-control-drawer">
+            <summary>Prescribed translation and path history</summary>
+            <div class="borg-drawer-content borg-prescribed-controls">
+              <label class="borg-prescribed-control-row">
+                Display frame
+                <select id="borg-prescribed-translation-frame">
+                  <option value="fixed">Fixed frame</option>
+                  <option value="co-translating">Co-translating frame</option>
+                </select>
+              </label>
+              <output id="borg-prescribed-translation-status" class="borg-control-help" role="status"></output>
+              <label class="borg-prescribed-control-row">
+                Path-history depth
+                <span>
+                  <input id="borg-prescribed-history-depth" type="range" min="0.05" max="8" step="0.05" value="4" />
+                  <output id="borg-prescribed-history-depth-output">4 T</output>
+                </span>
+              </label>
+              <label class="borg-prescribed-control-row">
+                Display tube
+                <input id="borg-prescribed-tube-toggle" type="checkbox" />
+              </label>
+              <label class="borg-prescribed-control-row">
+                Tube radius
+                <input id="borg-prescribed-tube-radius" type="range" min="0.004" max="0.08" step="0.002" value="0.018" disabled />
+              </label>
+              <label class="borg-prescribed-control-row">
+                Tube opacity
+                <input id="borg-prescribed-tube-opacity" type="range" min="0.05" max="0.65" step="0.05" value="0.2" disabled />
+              </label>
+              <output id="borg-prescribed-display-readout" class="borg-prescribed-readout" role="status"></output>
+              <p class="borg-control-help">The translucent tube is a display-only envelope around recorded path samples. It is not an analytical wake-arrival link or an EOM-retained wake stream.</p>
+            </div>
+          </details>
+
+          <details id="borg-prescribed-analysis-drawer" class="borg-control-drawer">
+            <summary>Causal-root analysis</summary>
+            <div class="borg-drawer-content borg-prescribed-controls">
+              <output id="borg-prescribed-provider-status" class="borg-control-help" role="status">Analysis provider unavailable.</output>
+              <output id="borg-prescribed-receiver-status" class="borg-receiver-status" role="status">No receiver selected.</output>
+              <button id="borg-prescribed-clear-receiver" class="borg-replay-action" type="button" disabled>Clear receiver event</button>
+              <fieldset id="borg-prescribed-virtual-probe-fields" disabled>
+                <legend>Declared virtual probe</legend>
+                <div class="borg-replay-grid">
+                  <label class="borg-replay-control">Probe
+                    <select id="borg-prescribed-probe-id" disabled>
+                      <option value="">Unavailable</option>
+                    </select>
+                  </label>
+                  <label class="borg-replay-control">X <input id="borg-prescribed-probe-x" type="number" step="0.01" value="0" /></label>
+                  <label class="borg-replay-control">Y <input id="borg-prescribed-probe-y" type="number" step="0.01" value="0" /></label>
+                  <label class="borg-replay-control">Z <input id="borg-prescribed-probe-z" type="number" step="0.01" value="0" /></label>
+                  <label class="borg-replay-control">Polarity
+                    <select id="borg-prescribed-probe-polarity">
+                      <option value="1">+1</option>
+                      <option value="-1">−1</option>
+                    </select>
+                  </label>
+                </div>
+                <button id="borg-prescribed-bind-probe" class="borg-replay-action" type="button" disabled>Bind probe at current T</button>
+              </fieldset>
+              <label class="borg-prescribed-control-row">
+                Acceleration vectors
+                <input id="borg-prescribed-contribution-toggle" type="checkbox" />
+              </label>
+              <output id="borg-prescribed-analysis-status" class="borg-analysis-status" data-state="unavailable" role="status">No receiver selected.</output>
+              <div class="borg-table-scroll">
+                <table id="borg-prescribed-analysis-table" class="borg-analysis-table"></table>
+              </div>
+              <div id="borg-prescribed-root-branch-plot" class="borg-root-branch-plot"></div>
+              <details>
+                <summary>Analysis provenance</summary>
+                <div id="borg-prescribed-analysis-provenance" class="borg-field-list"></div>
+              </details>
             </div>
           </details>
 

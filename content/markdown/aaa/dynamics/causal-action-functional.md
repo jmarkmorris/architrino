@@ -151,33 +151,35 @@ on which $D_t$, $D_r$, and $W^{\mathrm{acc}}$ are available.
 
 The circular branch-count benchmark is topology only. Circular self-hit births,
 Jacobian-null thresholds, and inactive-gap ledgers may classify causal-root
-structure, but they do not imply a circular no-go, force-balance result, action
+structure, but they do not imply a circular no-go, acceleration-balance result, action
 minimum, or mass scale.
 
 The theorem spine is the circular no-proliferation result already used by the
 delayed dynamics stack. In the symmetric circular benchmark, write
 $$
-\beta(T)=\frac{\omega(T)R(T)}{c_f}.
+\beta_f(T)=\frac{\omega(T)R(T)}{c_f}.
 $$
-If $|\beta(T)|\le\beta_\ast<\infty$ uniformly, then the active circular
+If $|\beta_f(T)|\le\beta_{\max}<\infty$ uniformly, then the active circular
 self-hit count is uniformly bounded:
 $$
 N_{\mathrm{self}}(T)
 \le
-\frac{\beta_\ast}{\pi}+C_{\mathrm{circ}},
+\frac{\beta_{\max}}{\pi}+C_{\mathrm{circ}},
 $$
 where $C_{\mathrm{circ}}$ is an absolute endpoint-count constant for the
 circular root equation. On a one-sign subchart this has the sharper asymptotic
 form
 $$
-N_{\mathrm{self}}^{(+)}(\beta)=\frac{\beta}{\pi}+O(1).
+N_{\mathrm{self}}^{(+)}(\beta_f)=\frac{\beta_f}{\pi}+O(1).
 $$
 The branch births occur at tangencies of the circular root equation, so the
 root census, Jacobian-null thresholds, and inactive-gap changes are one
-topological ledger. On the non-translating circular chart,
-$D_r=D_t$ and $W^{\mathrm{acc}}=1$ away from degenerate endpoints, so the
-branch-count theorem uses the root structure and does not certify force
-balance, action closure, or stability. The detailed circular derivations are in
+topological ledger. On the non-translating circular chart, $D_r=D_t$, so the
+playback ratio is one. The acceleration weight is instead
+$W^{\mathrm{acc}}=c_f/|D_t|=1/|J|$ in normalized units and is not generally
+one. The branch-count theorem therefore uses the root structure and does not
+certify acceleration balance, action closure, or stability. The detailed
+circular derivations are in
 [Master Equation](master-equation.md) and the winding-index census in
 [Binary Dynamics](binary-dynamics.md#root-multiplicity-vs-speed).
 

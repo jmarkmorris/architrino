@@ -62,7 +62,43 @@ $$
 
 where $\mathcal{H}$ is the entropy functional appropriate to the retained record measure.
 
+On a continuous record space, the entropy functional also requires a declared reference measure $\lambda_{\mathcal{Q},W}$. When $\nu_{\mathcal{Q},W,T}$ is absolutely continuous with respect to that reference, write
+
+$$
+\mathcal{H}_{\lambda_{\mathcal{Q},W}}
+\!\left(\nu_{\mathcal{Q},W,T}\right)
+=
+-
+\int_{\mathcal{Z}_{\mathcal{Q},W}}
+\log\!\left(
+\frac{d\nu_{\mathcal{Q},W,T}}
+{d\lambda_{\mathcal{Q},W}}
+\right)
+d\nu_{\mathcal{Q},W,T}
+$$
+
+Bare differential entropy is chart-dependent, so neither the coordinate chart nor its volume element may remain implicit in a quantitative entropy claim.
+
 Thus the entropy is evaluated on the composite forgetting map from unresolved preparation history, through deterministic delayed evolution, into the retained record quotient. A quantity is entropy-relevant only when it is not constant on the fibers of this composite map. If two complete histories differ but project to the same retained record, that unresolved fiber contributes to the entropy; if an invariant remains constant across every compatible fiber, it does not create entropy in that coarse-graining.
+
+The exact data-processing statement concerns distinguishability between candidate history measures. For two preparation-conditioned measures $\mu_T$ and $\mu'_T$ satisfying the required absolute-continuity conditions,
+
+$$
+D_{\mathrm{KL}}
+\!\left(
+(\Pi_{\mathcal{Q},W})_*\mu_T
+\mathrel{\|}
+(\Pi_{\mathcal{Q},W})_*\mu'_T
+\right)
+\le
+D_{\mathrm{KL}}
+\!\left(
+\mu_T
+\mathrel{\|}
+\mu'_T
+\right)
+$$
+Projection cannot increase the retained record's ability to distinguish the two candidate history ensembles. This loss of distinguishability is not automatically an increase of Shannon or thermodynamic entropy; an entropy-growth claim still requires the fixed reference measure, coarse-graining, access window, and boundary ledger declared above.
 
 For a discrete coarse partition with probabilities $p_\alpha$, this reduces to the familiar Gibbs/Shannon form
 
@@ -87,6 +123,19 @@ Plain language: entropy is not counted over reality in the abstract. It is count
 The exact-record limit is useful as a guardrail. If the retained partition distinguishes one complete deterministic history from every other complete deterministic history, then the active cell has probability one and the corresponding entropy is zero. That does not mean thermodynamics has disappeared from the world. It means the record has been refined until it no longer asks a thermodynamic question. A thermodynamic macrostate is a physically declared grouping of histories: a pressure, temperature, density, spectral, boundary, apparatus, or control-relevant record that a real system can retain and use.
 
 Equivalently, entropy is a functional on the quotient $\Gamma_T/\!\sim_{\mathcal Q,W}$. Refining the quotient shrinks fibers and cannot increase the active-cell log-fiber measure when the underlying preparation measure is held fixed; coarsening the quotient merges fibers and can increase it. The number therefore has physical content only after the quotient map, measure, access window, and comparison job are declared.
+
+### Measure-Domain and Flow Guardrail
+
+The measure notation above is conditional on a declared delayed-history domain. For a finite retained memory depth $h$ and regularization $\eta>0$, one admissible setting is a path-history space
+$$
+\mathfrak{X}_{h,\eta}
+=
+C\!\left([-h,0];\mathcal{Z}_{\eta}\right)
+$$
+
+where $\mathcal{Z}_{\eta}$ is the declared regularized state space for $\mathsf Z=(\mathbf X,\mathbf V)$; a finite-dimensional Galerkin or return-section chart is another admissible setting when its projection error is included in the record. The preparation measure must be defined on that domain, and the delayed flow must at least be measurable on the retained window.
+
+Conservation of fine-grained entropy requires more. The branch must supply an invariant or suitably quasi-invariant history measure for the declared flow, with its regularization, endpoints, and memory-boundary convention fixed. Determinism alone does not provide a Liouville theorem for a state-dependent or neutral delayed system. Extending a finite-memory or regularized claim to $h\to\infty$ or $\eta\to0$ is therefore a closure target, not a consequence of the entropy definition.
 
 ### Receiver Inference Fibers and Provenance Graphs
 
@@ -498,7 +547,11 @@ s_{\mathcal{Q}}\mathbf{u}_{\partial W}
 \mathcal{R}_{\mathcal{Q}}(T)
 $$
 
-Here $\sigma_W$ is local production inside the retained window, $\mathbf{J}_S$ is entropy flux through the boundary, $s_{\mathcal{Q}}$ is the retained entropy density, $\mathbf{u}_{\partial W}$ is the velocity of a moving window boundary, and $\mathcal{R}_{\mathcal{Q}}$ records changes in the coarse-graining or retained record set. For a fixed window, $\mathbf{u}_{\partial W}=\mathbf{0}$ and the expression reduces to the ordinary boundary-flux form. A monotone entropy statement is therefore conditional:
+Here $\sigma_W$ is local production inside the retained window, $\mathbf{J}_S$ is entropy flux through the boundary, $s_{\mathcal{Q}}$ is the retained entropy density, $\mathbf{u}_{\partial W}$ is the velocity of a moving window boundary, and $\mathcal{R}_{\mathcal{Q}}$ records changes in the coarse-graining or retained record set. For a fixed window, $\mathbf{u}_{\partial W}=\mathbf{0}$ and the expression reduces to the ordinary boundary-flux form.
+
+On a regular observer chart, the projection rank, retained variables, reference measure, and coarse-graining are fixed. When a branch fold, record separator, projection-rank change, or coarse-graining handoff changes that chart, $\mathcal{R}_{\mathcal{Q}}$ is the bookkeeping correction produced by comparing the old and new record maps. It is not a local production term and must not be absorbed into $\sigma_W$ or the boundary flux. A quantitative chart-change row must name both maps and compare them through a declared common refinement; otherwise an apparent entropy jump cannot be assigned uniquely to physical irreversibility rather than changed bookkeeping.
+
+A monotone entropy statement is therefore conditional:
 
 $$
 \frac{dS_{\mathcal{Q},W}}{dT}\ge 0
@@ -616,7 +669,7 @@ The arrow-of-time closure problem is therefore sharper than a generic second-law
 
 The past-hypothesis comparison also depends on the partition. A nearly uniform early matter record can look high entropy under a non-gravitating gas coarse-graining and low entropy under a gravitational coarse-graining, because gravitational clumping, potential-energy release, and horizon labels open far larger compatible records later. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the lesson is not that gravity is entropy. It is that a cosmological entropy statement must name whether its macrostate includes Noether sea state, potential gradients, causal-wake boundary data, and horizon-interface records.
 
-The standard cosmology comparison gives a useful scale check for this distinction. A radiation-only CMB count is often summarized as $S_{\gamma,\mathrm{CMB}}\sim10^{89}k_B$, the present observable universe is often estimated as black-hole dominated with $S_{\mathrm{BH,pop}}\sim10^{104}k_B$, and a rough maximum black-hole-like entropy for the same mass-energy budget is quoted near $S_{\max}\sim10^{123}k_B$. In this chapter those numbers are not treated as substrate entropy of the Euclidean void. They are comparison-scale records: the closure target is to recover the ordering $S_{\gamma,\mathrm{CMB}}\ll S_{\mathrm{BH,pop}}\ll S_{\max}$ only after the radiation, matter, Noether sea, and horizon-interface coarse-grainings are all declared. The corresponding Penrose-style initial-state fraction is a benchmark for the size of the compatible-history fiber,
+The standard cosmology comparison gives a useful scale check for this distinction. Standard-literature estimates often summarize a radiation-only CMB count as $S_{\gamma,\mathrm{CMB}}\sim10^{89}k_B$, the present observable universe as black-hole dominated with $S_{\mathrm{BH,pop}}\sim10^{104}k_B$, and a rough maximum black-hole-like entropy for the same mass-energy budget near $S_{\max}\sim10^{123}k_B$. In this chapter those numbers are not treated as substrate entropy of the Euclidean void. They are comparison-scale records: the closure target is to recover the ordering $S_{\gamma,\mathrm{CMB}}\ll S_{\mathrm{BH,pop}}\ll S_{\max}$ only after the radiation, matter, Noether sea, and horizon-interface coarse-grainings are all declared. The corresponding Penrose-style initial-state fraction is a benchmark for the size of the compatible-history fiber,
 $$
 f_{\mathrm{early}}
 \sim
@@ -628,9 +681,9 @@ not proof that an external random draw selected the universe.
 
 ## Heat Death and Its Escapes
 
-Claim level: the three escapes are standard physics observations stated at effective grade; the cyclic or recycling cosmology that would use them is an open target, not a claim of this chapter.
+Claim level: the first escape is conditional on a measure-preservation certificate for the retained delayed-history flow; the negative-heat-capacity and horizon comparisons are standard physics observations stated at effective grade. A cyclic or recycling cosmology that would use them remains an open target.
 
-A pure relaxation to maximum entropy — classical heat death — is not forced in this framework, and three independent openings keep the arrow from having to terminate. First, the substrate law is reversible and information-preserving: the fine-grained entropy is constant ($dS_{\mathrm{fine}}=0$ by Liouville) and only the coarse-grained observer-window entropy rises, so at the substrate level there is no absolute maximum to saturate; a globally reversible cosmic history is permitted while every finite observer still measures $dS_{\mathrm{coarse}}\ge0$. Second, self-gravitating systems have negative heat capacity and no equilibrium maximum-entropy state — the horizon-labelled records keep growing, as the ordering $S_{\gamma,\mathrm{CMB}}\ll S_{\mathrm{BH,pop}}\ll S_{\max}$ above already shows — so the premise that every gradient equilibrates and all shedding stops may simply be false. Third, a cosmological de Sitter-like horizon carries an entropy that grows with its area, so the accessible ceiling $S_{\max}(T)$ can recede at least as fast as $S(T)$ climbs; the record chases a moving bound rather than reaching a fixed one.
+A pure relaxation to maximum entropy — classical heat death — is not forced in this framework, and three openings keep the arrow from having to terminate. First, on a retained regularized branch for which the delayed flow is invertible and preserves the declared history measure, the fine-grained entropy is constant while coarse-grained observer-window entropy can rise. That is a conditional measure-preservation result, not a consequence of determinism alone; without the certificate, fine-grained entropy conservation remains a closure target and cannot yet support a globally reversible cosmological history. Second, self-gravitating systems have negative heat capacity and no equilibrium maximum-entropy state — the horizon-labelled records keep growing, as the ordering $S_{\gamma,\mathrm{CMB}}\ll S_{\mathrm{BH,pop}}\ll S_{\max}$ above already shows — so the premise that every gradient equilibrates and all shedding stops may simply be false. Third, a cosmological de Sitter-like horizon carries an entropy that grows with its area, so the accessible ceiling $S_{\max}(T)$ can recede at least as fast as $S(T)$ climbs; the record chases a moving bound rather than reaching a fixed one.
 
 These are openings, not a mechanism. Any concrete cyclic or recycling cosmology that would exploit them must still close a global entropy ledger — every local decrease over-paid by disorder exported elsewhere — and that accounting, together with a named substrate driver, remains open work rather than a result asserted here.
 

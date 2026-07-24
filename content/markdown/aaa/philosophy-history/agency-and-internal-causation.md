@@ -29,6 +29,18 @@ The He-Rb-He example is currently best treated as a computed Switch candidate, n
 
 This vocabulary should not be read as branch-choice metaphysics. In quantum comparisons, a Decider does not select an ontic world from a set of already existing worlds. It changes the physical basin partition, threshold placement, and response timing of an assembly before later perturbations are resolved. Any claim that agency changes outcome statistics must therefore report the bias state, work or dissipation ledger, hold time, and measurable basin-weight shift.
 
+For that comparison, the fixed context must exclude the internal preparation being varied. For a candidate complex occupying $\Omega\subset\Sigma_T$, define its external context by
+$$
+c_\Omega^{\mathrm{ext}}(T)
+=
+\left(
+\mathcal{H}_{\bar\Omega\rightarrow\Omega}^{<T},
+\mathcal{B}_{\partial\Omega}(T),
+N_{\mathrm{sea}}|_{\partial\Omega}(T)
+\right)
+$$
+where $\mathcal{H}_{\bar\Omega\rightarrow\Omega}^{<T}$ contains source histories outside $\Omega$ that can contribute incoming wakes, $\mathcal{B}_{\partial\Omega}$ is the boundary-wake record, and the last term is the Noether sea boundary condition. The internal state and internal history belong to the preparation variable, not to the fixed context.
+
 ## Biological and Artificial Embodiments
 
 The agency criteria are substrate-universal, but they are not substrate-sufficient. A biological organism, artificial system, hybrid body, detector network, or robotic apparatus can be evaluated with the same assembly-level questions: does it hold internal state, route feedback, form records, control thresholds, pay the required work and dissipation costs, and change later basin weights under fixed boundary context? Shared architrino substrate membership alone does not answer those questions. A rock, a clock, a cell, a human body, and an artificial system all belong to the same physical ontology, but their organization and record-making capacities differ.
@@ -50,7 +62,7 @@ This does not make every Noether braid an agent. A bare Noether braid has a thre
 
 The most primitive assembly that can make a decision is therefore not the first metastable assembly. It is the first assembly whose internal preparation changes the later basin distribution under the same external boundary context. A metastable indexed binary channel could supply the possibility of alternatives; controlled threshold placement would supply the decision.
 
-Reaction-channel multiplicity belongs one rung lower. A reactant configuration may have many possible exits because binary energies and phases, causal-wake phase history, Noether braid state, photon paths, thermal state, and Noether sea conditions vary across events. That is reaction provenance, not a decision, unless an assembly prepares and holds an internal bias that changes the basin distribution under the same $c_\Omega(T)$.
+Reaction-channel multiplicity belongs one rung lower. A reactant configuration may have many possible exits because binary energies and phases, causal-wake phase history, Noether braid state, photon paths, thermal state, and Noether sea conditions vary across events. That is reaction provenance, not a decision, unless an assembly prepares and holds an internal bias that changes the basin distribution under the same $c_\Omega^{\mathrm{ext}}(T)$.
 
 ## Determinism and Predictability
 
@@ -73,15 +85,11 @@ N_{\text{sea}}|_{\Omega}(T)
 $$
 The basin geometry and threshold control of the subsystem are therefore functions of internal state plus omitted boundary wakes and Noether sea conditions, not of the locally inspected state alone. Local prediction can fail for an open subsystem even when the $\mathbb{U}_{\text{now}}$ universe-state perspective remains globally deterministic, because the global state retains the finite-speed signals and path-history data that the Physical Observer has not resolved.
 
-A sharper validation condition is to hold the external boundary context fixed and ask whether internal preparation changes the basin weights. Let
+A sharper validation condition is to hold the external boundary context fixed and ask whether internal preparation changes the basin weights. For a time window $W_T$, let $P_{c_\Omega^{\mathrm{ext}},x,W_T}(k)$ be the normalized measure of admissible histories that resolve into basin $B_k$ when the internal state and its retained internal history are prepared as $x$. A Switch or Decider claim has measurable internal content only if there are admissible internal preparations $x_a$ and $x_b$ such that
 $$
-c_\Omega(T)=\left(\mathcal{H}_{\Omega}^{<T},\mathcal{B}_{\partial\Omega}(T),N_{\text{sea}}|_{\Omega}(T)\right)
+D\!\left(P_{c_\Omega^{\mathrm{ext}},x_a,W_T},P_{c_\Omega^{\mathrm{ext}},x_b,W_T}\right)\ge\epsilon_I
 $$
-denote that fixed context. For a time window $W_T$, let $P_{c_\Omega,x,W_T}(k)$ be the normalized measure of admissible histories that resolve into basin $B_k$ when the internal state is prepared as $X_\Omega(T)=x$. A Switch or Decider claim has measurable internal content only if there are admissible internal states $x_a$ and $x_b$ such that
-$$
-D\!\left(P_{c_\Omega,x_a,W_T},P_{c_\Omega,x_b,W_T}\right)\ge\epsilon_I
-$$
-where $D$ is a declared distance on outcome distributions and $\epsilon_I$ is the resolution threshold for the experiment or simulation. The same boundary context $c_\Omega(T)$ must be used on both sides, and the work, dissipation, and hold time needed to maintain $x_a$ or $x_b$ must be recorded. If this distance vanishes under fixed boundary context, the behavior is externally driven or observationally equivalent to a fixed-threshold response. If it is nonzero, the system's stored configuration changes the basin partition without breaking deterministic law.
+where $D$ is a declared distance on outcome distributions and $\epsilon_I$ is the resolution threshold for the experiment or simulation. The same external context $c_\Omega^{\mathrm{ext}}(T)$ must be used on both sides, and the work, dissipation, and hold time needed to maintain $x_a$ or $x_b$ must be recorded. If this distance vanishes under fixed external context, the behavior is externally driven or observationally equivalent to a fixed-threshold response. If it is nonzero, the system's stored configuration changes the basin partition without breaking deterministic law.
 
 ## Will as Threshold Setting
 

@@ -77,23 +77,42 @@ export function createBuiltInAnimatorAssemblyDraftRuntime(templateId, position =
     },
     noether_pair: () => {
       const id = getNextAssemblyId("noether_pair");
+      const proBraidMembers = [
+        "positrino_pro_1",
+        "electrino_pro_1",
+        "positrino_pro_2",
+        "electrino_pro_2",
+        "positrino_pro_3",
+        "electrino_pro_3",
+      ];
+      const antiBraidMembers = [
+        "positrino_anti_1",
+        "electrino_anti_1",
+        "positrino_anti_2",
+        "electrino_anti_2",
+        "positrino_anti_3",
+        "electrino_anti_3",
+      ];
       return buildDraft({
         id,
-        name: "Noether Pair",
+        name: "Pro/anti-orientation Noether-braid composite",
         role: "noether_pair",
         sceneRole,
         position: normalizedPosition,
-        members: [
-          "positrino_1",
-          "electrino_1",
-          "positrino_2",
-          "electrino_2",
-          "positrino_3",
-          "electrino_3",
+        members: [...proBraidMembers, ...antiBraidMembers],
+        subassemblies: [
+          {
+            id: "pro_orientation_noether_braid",
+            position: [0, 0, 0],
+            members: proBraidMembers,
+          },
+          {
+            id: "anti_orientation_noether_braid",
+            position: [0, 0, 0],
+            members: antiBraidMembers,
+          },
         ],
-        subassemblies: [],
         pathPoints: createDefaultPathPoints(normalizedPosition),
-        core: createDefaultCoreSpec(id),
       });
     },
     noether_quad: () => {

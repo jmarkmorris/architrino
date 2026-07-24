@@ -136,3 +136,93 @@ The equation is exact and generally transcendental. Certified all-retained-root 
 **What would confirm or kill the remaining analytical lead.** Start from the exact B1 submanifold at $c_f=1$, then open the two relative-midpoint dimensions and the existing spacing-radius-phase-frequency coordinates under a predeclared space-filling measure. The lead advances if a finite-width region reduces all three residual projections while passing root, separation, co-translating exterior, sensitivity, refinement, and independent-acceptance gates. Only the explicitly sampled bounded domain closes negative if no such region survives held-out seeds and alternative sampling measures.
 
 **Promotion routing.** The exact chart, taxonomy disposition, measured rows, falsifiers, and implementation links are in [Common-Axis Braid-Train Analytics](common-axis-braid-train-analytics.md). The general Family-C chart and exact-delay reduction are promoted into the reader-facing taxonomy and analysis methodology; the measured candidate result remains priority-only.
+
+## Entry 7 — alternating axial polarity assignment in B1 searches (2026-07-23, chapter review)
+
+**The idea (grade: hypothesis, unproven search stratum).** The current axial no-balance derivation assumes polarity-segregated two-ring geometry. A B1 chart with an alternating axial polarity assignment may change the signs and axial projections of the cross-ring acceleration rows and therefore lies outside that derivation's scope.
+
+**Proof burden and falsifier.** Declare the full six-worldline polarity and counterpart map, enumerate every retained ordered-pair root at $c_f=1$, and derive the complete axial acceleration sum before any stability calculation. The lead fails if the exact axial sum remains one-signed throughout the admissible noncollision chart, or if the assignment violates the neutral-binary contract. A zero of the axial sum would only open a balance candidate; it would not establish retention or stability.
+
+**Promotion routing.** Add this as a matched polarity stratum to the B1-outward search protocol. Promote reader-facing material only if a family-general identity or independently checked candidate branch is obtained.
+
+## Entry 8 — winding-to-self-degree parity law (2026-07-23, chapter review)
+
+**The idea (grade: theorem target).** For a retained layer with winding $k_a\in\{1,m,n\}$, the signed self-root degree $D_s^{(a)}$ may obey a parity or lower-bound law determined by the circular self-hit fold-birth sequence and the lifted-strip fiber-intersection formula.
+
+**Proof burden and falsifier.** Fix the finite-memory strip, same-transmitter policy, orientation convention, and admissible deformation class. Derive the fold sequence independently of the implementation that counts roots, then compare the resulting degree law with separately generated charts. One admissible chart with the same winding but a different signed degree falsifies a winding-only law and forces additional branch data into the statement.
+
+**Promotion routing.** The current topological-charge chapter retains this as a reachable theorem target. Promote a parity formula only after the deformation domain and independent proof close; until then it must not classify assemblies or move any retention claim.
+
+## Entry 9 — causal-delay second moment controls the leading Family-C angular correction (2026-07-24, prescribed-path campaign)
+
+**Candidate derivation (grade: inferred leading-order relation).** Work in normalized units $c_f=1$. For a neutral prescribed source observed on a sphere of radius $R$, let $T_0=T_r-R$ and define
+
+$$
+\mathbf U(T_0)
+=
+\sum_s q_s\mathbf v_s(T_0)
+$$
+
+and
+
+$$
+\mathbf S(T_0)
+=
+\operatorname{STF}
+\sum_s q_s\,
+\operatorname{sym}
+\left(
+\mathbf x_s(T_0)\otimes\mathbf a_s(T_0)
+\right).
+$$
+
+The leading causal time is direction dependent:
+
+$$
+T_{t,s}
+=
+T_0+\hat{\mathbf n}\mathbin{\cdot}\mathbf x_s(T_0)+\cdots.
+$$
+
+Expanding the transmitter velocity at that time makes the signed radial acceleration pattern contain
+
+$$
+a_r(\hat{\mathbf n},T_r)
+=
+\frac{1}{R^2}
+\left[
+\hat{\mathbf n}\mathbin{\cdot}\mathbf U(T_0)
++
+\hat{\mathbf n}^{\mathsf T}\mathbf S(T_0)\hat{\mathbf n}
+\right]
++\cdots.
+$$
+
+The first displayed term is degree $\ell=1$. The trace-free part of the second is degree $\ell=2$. Spherical integration therefore gives the leading cycle-mean ratio
+
+$$
+\frac{P_{\ell=2}}{P_{\ell=1}}
+\approx
+\frac{2}{5}
+\frac{
+\left\langle\|\mathbf S\|_{\mathrm F}^2\right\rangle
+}{
+\left\langle\|\mathbf U\|^2\right\rangle
+}.
+$$
+
+Here $P_\ell$ is squared angular-coefficient magnitude, not energy or energy per time. The omitted terms include higher speed order, finite-$R$ spatial corrections, and higher causal-time corrections. This relation is not yet a theorem because no uniform remainder bound has been proved.
+
+**Measured diagnostic.** The active $c_f=1$ compact cohort contains $641$ previously evaluated prescribed draws. At $R=3$, degree $\ell=1$ led in $615$, degree $\ell=2$ in $17$, and degree $\ell=3$ in $9$. A targeted $48\times16\times32$ refinement of all $26$ non-$\ell=1$ cases and all $33$ C4 cases preserved every dominant-degree classification. For C4, the refined degree-$2$ share of direct radial-pattern power had minimum $0.0665$, median $0.2722$, and maximum $0.4379$; $\ell=1$ remained dominant in $31$ of $33$ cases.
+
+Across all $197$ Family-C draws, a log-linear fit of the measured $P_{\ell=2}/P_{\ell=1}$ ratio against $\langle\|\mathbf S\|_{\mathrm F}^2\rangle/\langle\|\mathbf U\|^2\rangle$ had slope $1.0067$, multiplicative factor $0.4413$, log-residual RMS $0.1253$, and Spearman correlation $0.9929$. C4 alone had slope $0.9560$, factor $0.4486$, log-residual RMS $0.1126$, and Spearman correlation $0.9836$. The measured factor is close to the leading angular coefficient $2/5$.
+
+**Interpretation boundary.** The result supports a causal-delay mechanism rather than a quadrature accident: axial extent and rotating signed acceleration create a trace-free second moment, while cancellation can reduce the signed velocity dipole without removing that second moment. The result is same-source prescribed-path inference, not independent evidence. It establishes no EOM-solver persistence, binding, stability, energy, retention, shielding, particle identity, or physical realization.
+
+**Artifacts and falsifier.** Local result hashes are `4c938796df305197c707e633d6d591c3840ef137d037c989f76efefa0c92db65` for the all-active angular scan, `9919c95544c656c71d84857435dc27ec2c9c31ed859e7f872bde8d686e88d3e7` for targeted refinement, and `ab86849171583a424513605d3c93d784c99bce337fb0ecb6d6016692c9f42ffc` for mechanism attribution. Reject the proposed leading explanation if an independently implemented expansion does not recover the $2/5$ coefficient, a radius ladder does not approach that coefficient as the source-to-radius ratio decreases, matched controls varying axial extent do not move the delay moment and $\ell=2/\ell=1$ ratio together, or an EOM-evolved retained branch fails to preserve the relation.
+
+**Promotion routing.** Keep this result priority-only until the expansion has a declared small-parameter domain and remainder bound plus an independent implementation or closed-form check. If those close, the mathematical relation belongs in the exterior-analysis portion of the braid-analysis methodology; evolved-branch consequences remain a separate EOM-solver question.
+
+## Entry 10 — the angular approximation has a controlled but non-certifying bound (2026-07-24)
+
+**Disposition (grade: derived bound plus independent prescribed-path measurement).** The compact-source and first causal-delay approximations now have explicit pointwise and harmonic error bounds, and an independent implementation recovered the primary Family-C $\ell=2/\ell=1$ ratios to maximum relative difference $2.06\times10^{-12}$. The $2/5$ coefficient is exact for the first causal-delay approximation. The active speed range makes the uniform remainder too broad to certify individual current draws, so the relationship remains a strong measured prescribed-path regularity rather than a uniformly error-certified coefficient law. The proof, audit hash, numerical scope, and absent-EOM-branch disposition are recorded in [Causal-Delay Angular Approximation Bound and Independent Audit](evidence/2026-07-24-causal-delay-angular-bound.md).

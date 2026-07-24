@@ -121,7 +121,7 @@ Requests should be emitted only from normalized proposal records, never directly
 - contain only explicit assembly-native occurrences in `reactants` and `products`;
 - and preserve unsupported or ambiguous PDG structure in proposal metadata rather than guessing a solver payload.
 
-For v1, `pdgfeed` should also resolve any negative boundary ledger deficit on the request boundary before handoff. If the transformed product side exceeds the transformed reactant side in either electrinos or positrinos, `pdgfeed` should add the minimum number of explicit Noether-pair reactants, each pair being one `h` plus one `ah`, so both reactant-minus-product ledger deltas are nonnegative before the request crosses into `pdgsolve`.
+For v1, `pdgfeed` should also resolve any negative boundary ledger deficit on the request boundary before handoff. If the transformed product side exceeds the transformed reactant side in either electrinos or positrinos, `pdgfeed` should add the minimum number of explicit pro/anti-orientation two-braid reactants, each composite being one `h` plus one `ah`, so both reactant-minus-product ledger deltas are nonnegative before the request crosses into `pdgsolve`. The `noether_pair` token remains a compatibility identifier for that declared recipe.
 
 This boundary balancing rule should be read as an explicit AAA translation policy for incomplete medium provenance, not as a claim that the underlying reaction took place in an empty vacuum. The working interpretation is that PDG gives an effective observed channel, while `pdgfeed` may need to account for omitted ambient Noether sea participation at the solver boundary. `pdgfeed` should still avoid inventing detailed medium microhistories or generic defect species unless and until the repository carries an explicit, ledger-stable upstream rule for them.
 
@@ -180,7 +180,7 @@ Each emitted `pdgsolve-request/v1` candidate should:
 - `source.sourceDocumentId` pointing back to the originating `pdg-proposal:<proposalId>` record;
 - `reactants` and `products` emitted as explicit request occurrences with stable `id`, `assemblyId`, and `title` fields;
 - when boundary completion requires omitted medium-side material, add explicit `pro_noether_braid_I` and `anti_noether_braid_I` rows on the reactant or product side before handoff;
-- when a completed boundary still leaves an explicit primitive residue below one full Noether pair, emit one product-side `Unbound Architrinos` occurrence carrying exact `electrinoCount` and `positrinoCount`;
+- when a completed boundary still leaves an explicit primitive residue below one full pro/anti-orientation two-braid unit, emit one product-side `Unbound Architrinos` occurrence carrying exact `electrinoCount` and `positrinoCount`;
 - set `policy` explicitly;
 - keep `allowedBoundaryAugmentations` at `["none"]` for `pdgfeed`-emitted v1 requests because boundary completion is upstream, not a solver choice;
 - and keep PDG provenance in `source` fields or sidecar proposal metadata.
@@ -290,7 +290,7 @@ Current compact AAA notation:
 | `h`          | Noether braid                     | base core symbol                                                   | `n/a`            |
 | `h2`         | Bi Binary                        | reduced `Noether braid` form                                        | `n/a`            |
 | `h3`         | Uni Binary                       | reduced `Noether braid` form                                        | `n/a`            |
-| `hp`         | Noether Pair or Photon           | mixed-core shorthand for `h.ah`                                    | `gamma`          |
+| `hp`         | pro/anti-orientation braid composite or Photon | mixed-core shorthand for `h.ah`; the distinction is carried by the occurrence record | `gamma`          |
 | `hq`         | Noether Quad (aka Higgs Cluster) | mixed-core shorthand for `h.ah.h.ah`                               | `n/a`            |
 | `e:p@`       | `Unbound Architrinos` ledger     | explicit electrino:positrino count, with both sides always present | `n/a`            |
 
@@ -358,7 +358,7 @@ Current token families:
 | nucleon | `a? P` or `a? N` | anti allowed for nucleons |
 | weak boson | `W+`, `W-`, `Z` | `W+` and `W-` are atomic two-character tokens |
 | core form | `a? h`, `a? h2`, `a? h3` | anti allowed only on these `Noether braid` forms |
-| named core composite | `hp`, `hq` | atomic mixed-core shorthand for Noether Pair and Noether Quad |
+| named core composite | `hp`, `hq` | atomic mixed-core shorthand for the pro/anti-orientation braid composite and Noether Quad |
 | unbound-architrino ledger | `[0-9]+:[0-9]+@` | explicit electrino:positrino ledger, both sides required |
 
 Equivalent EBNF-style sketch:
@@ -384,7 +384,7 @@ Interpretation rules:
 - `a` binds only to the single token immediately following it;
 - `a` is currently valid for fermions, nucleons, and `Noether braid` forms `h`, `h2`, and `h3`;
 - generation digits belong only to the fermion families `e`, `u`, `d`, and `v`;
-- `hp` and `hq` are dedicated atomic tokens for the Noether Pair and Noether Quad, rather than prefix-count variants of `h`;
+- `hp` and `hq` are dedicated atomic tokens for the pro/anti-orientation braid composite and Noether Quad, rather than prefix-count variants of `h`; `noether_pair` remains the compatibility identifier for the former;
 - `Unbound Architrinos` use a dedicated two-sided ledger token `e:p@`;
 - separators are optional for any adjacent token sequence whose left-to-right longest-match tokenization remains unambiguous;
 - and a number must not try to play both a prefix-count role and a suffix-generation or suffix-core-form role on the same token.

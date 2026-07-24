@@ -55,6 +55,18 @@ test("all-candidate registry exactly covers the live Borg catalog", () => {
     BORG_BRAID_RECORD_CATALOG.entries.map((row) => row.id),
   );
   assert.equal(
+    campaign.candidates.some((row) => row.declaration.memberId === "B1.4"),
+    false,
+  );
+  assert.equal(
+    campaign.candidates.filter((row) =>
+      row.declaration.familyId === "B").every((row) =>
+      row.spec.braids.some((braid) => braid.binaries.some(
+        (binary) => binary.transverseOrbitRadius > 0,
+      ))),
+    true,
+  );
+  assert.equal(
     campaign.acceptedCandidateCount + campaign.rejectedCandidateCount,
     campaign.candidates.length,
   );

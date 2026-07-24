@@ -6,7 +6,7 @@ It should be read together with [Parameter Ledger](parameter-ledger.md), [Angula
 
 ## Executive Summary
 
-The **2019 revision of the SI** redefined all seven base units in terms of **fixed fundamental constants**, eliminating physical artifacts. This is structurally aligned with the goal of $\mathbb{A}\mathbb{A}\mathbb{A}$: deriving observable physics from a minimal set of substrate postulates (Euclidean void, absolute time, architrino polarity-unit magnitude $\epsilon=|e|/6$, field speed $c_f$).
+The **2019 revision of the SI** redefined all seven base units in terms of **fixed fundamental constants**, eliminating physical artifacts. This is structurally aligned with the goal of $\mathbb{A}\mathbb{A}\mathbb{A}$: deriving observable physics from a minimal set of substrate postulates (Euclidean void, absolute time, primitive architrino polarity-unit magnitude $\epsilon$, field speed $c_f$). The relation $\epsilon\leftrightarrow|e|/6$ is an observer-level calibration target, not a substrate premise.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ program can potentially:
 1. **Derive** the numerical values of SI-defining constants from architrino geometry
@@ -77,7 +77,7 @@ In this framework, the candidate substrate-level quantities are:
 - **Field propagation speed** $c_f$ (primitive propagation speed for causal wakes)
 
 ### Category B: Fundamental Entity
-- **Architrino polarity-unit magnitude** $\epsilon=|e|/6$
+- **Architrino polarity-unit magnitude** $\epsilon$, with observer calibration target $|e|=6\epsilon$
 - **Causal wake interaction kernel** (inverse-square line-of-action weighting modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}$ over causal wake surfaces, with regularized coincidence handling)
 
 ### Category C: Assembly Geometry (Emergent but Calculable)
@@ -97,7 +97,7 @@ In this section `A1` means only the prescribed Family-A member with persistent b
 
 For the units program, it is useful to distinguish primitive measures from derived ones rather than treating the SI list as a flat catalog.
 
-- **Primitive substrate inputs:** field speed $c_f$, architrino polarity-unit magnitude $\epsilon=|e|/6$, absolute time ordering, and the geometric closure scales that belong to stable assemblies.
+- **Primitive substrate inputs:** field speed $c_f$, architrino polarity-unit magnitude $\epsilon$, absolute time ordering, and the geometric closure scales that belong to stable assemblies. The effective charge convention $|e|=6\epsilon$ belongs to the later observer map.
 - **First-order derived measures:** characteristic time, length, action, and energy scales attached to a single stable closure problem.
 - **Second-order derived measures:** area, volume, velocity ratios, densities, currents, and transport coefficients built from the first-order scales.
 
@@ -134,7 +134,7 @@ $$
 
 **Pathway:**
 1. Calculate the electron source record's binary-2 orbital frequency $\omega_2$ for the Cs ground state
-2. Calculate the magnetic moment $\mu = \frac{\epsilon \cdot \omega_2 \cdot r_2}{2}$ (classical analogue)
+2. Calculate the effective comparison magnetic moment $\mu = \frac{\epsilon\omega_2r_2^2}{2}$ for the declared circular-current analogue
 3. Calculate the nuclear spin coupling via Noether sea-mediated potential exchange
 4. Derive the splitting frequency
 
@@ -187,27 +187,35 @@ via the Kibble balance (relating mechanical power to electromagnetic power).
 
 **Architrino Interpretation:**
 
-The Planck constant $h$ is the observer-level benchmark for a quantum of **closed-cycle action**. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation target is to recover this scale from A1 geometry and the lower recordable basin-measure scale, not to assume it as a primitive input. In the illustrative source record, $h$ is related to the radian-normalized **binary-3 rotational action** by $\hbar=h/(2\pi)$:
+The Planck constant $h$ is the observer-level benchmark for a quantum of **closed-cycle action**. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation target is to recover this scale from A1 geometry and the lower recordable basin-measure scale, not to assume it as a primitive input. Because the Master Equation is acceleration-first, a branch calculation first produces a specific-action scale. The optional universal bookkeeping constant $\mu_{\text{arch}}$ converts that scale to action units without assigning primitive mass to an architrino:
 $$
-L_3 = n \hbar = n \frac{h}{2\pi}
+\mu_{\text{arch}}I_3=n\hbar=n\frac{h}{2\pi}.
 $$
 
-**Hypothesis:**
+The dimensionally admissible hypothesis is
 $$
-\hbar \stackrel{\text{hyp.}}{\approx} \epsilon \cdot c_f \cdot r_3,
+\hbar
+\stackrel{\text{hyp.}}{=}
+\mu_{\text{arch}}\,
+\frac{\kappa\epsilon^2}{c_f}\,
+\mathcal J_3,
 \qquad
 h = 2\pi\hbar
 $$
-where $r_3$ is the characteristic radius assigned to binary 3 in the hydrogen ground-state source record. This is a candidate internal braid action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state. The particle assignment and action role are source-record hypotheses, not meanings of index 3 or of an A1 taxonomy label.
+where $\kappa\epsilon^2/c_f$ has units of specific action and $\mathcal J_3$ is a dimensionless branch output built from the declared indexed geometry and causal-root record. The normalization $\mu_{\text{arch}}$ must be fixed before comparison with $h$. This is a candidate internal braid action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state. The particle assignment and action role are source-record hypotheses, not meanings of index 3 or of an A1 taxonomy label.
 
 **Derivation pathway:**
-1. Calculate $r_3$ for the hydrogen ground-state source record (energy minimization + self-hit constraints).
+1. Compute $\mathcal J_3$ from the retained hydrogen source record, including its indexed geometry, acceleration-moment integral, and wake-boundary contribution.
 2. Show that closed-cycle action quantization ($\oint p\,dq = n h$) and the equivalent radian-normalized relation ($I=n\hbar$) arise from geometric quantization of the internal binary orbit.
-3. Relate $h$ and $\hbar$ to $\epsilon$, $c_f$, and indexed A1 geometry.
+3. Declare $\mu_{\text{arch}}$ and the units of every action-ledger channel before comparing the resulting observer-level action with $h$.
 
 **Target relation:**
 $$
-h \propto \epsilon \cdot c_f \cdot (\text{geometric factor from A1})
+h
+\stackrel{\text{target}}{=}
+2\pi\mu_{\text{arch}}
+\frac{\kappa\epsilon^2}{c_f}
+\mathcal J_3
 $$
 
 
@@ -296,8 +304,11 @@ Avogadro's constant is **not fundamental**. It's a **unit conversion factor** be
 
 **Relation:**
 $$
-N_A = \frac{1 \text{ g}}{1 \text{ amu}} = \frac{1 \text{ g}}{m_{\text{proton}}/12}
+N_A=\frac{M_u}{m_u},
+\qquad
+m_u=\frac{m({}^{12}\mathrm C)}{12}
 $$
+where $m_u$ is the unified atomic mass constant and $M_u$ is the molar-mass constant. The proton mass is not one twelfth of the carbon-12 mass.
 
 **What we must derive:**
 - The proton mass $m_p$ from candidate braid-based assembly geometry (3 candidate quark scaffolds + gluon wake structure + Noether sea coupling)
@@ -347,7 +358,7 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the seven SI-defining constants with:
 
 ### Candidate Substrate Inputs (Architrino SI)
-1. **Architrino polarity-unit magnitude** $\epsilon=|e|/6$ (with observer charge benchmark $|e|=6\epsilon$)
+1. **Architrino polarity-unit magnitude** $\epsilon$ (with observer charge-calibration target $|e|=6\epsilon$)
 2. **Field speed** $c_f$ (replaces $c$)
 3. **A1 geometry parameter** (for example, source-record radius $r_3$ or the maximum-curvature radius) (replaces $h$)
 4. **Neutral Noether braid assembly mass** $m_{\text{NS}}$ (replaces $k_B$ when combined with $c_f$)
@@ -355,7 +366,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 **Everything else is intended to be derived after closure:**
 - $|e| = 6\epsilon$
 - $c_{\text{eff}}\to c_f$ in the low-gradient Noether sea limit
-- $h \stackrel{\text{target}}{=} 2\pi \epsilon \cdot c_f \cdot r_3$ for the declared source record after the action-closure derivation, not by definition
+- $h \stackrel{\text{target}}{=} 2\pi\mu_{\text{arch}}(\kappa\epsilon^2/c_f)\mathcal J_3$ for the declared source record after the action-closure derivation, not by definition
 - $k_B = f(m_{\text{NS}}, c_f)$
 - $N_A = f(m_p / m_{\text{NS}})$
 - $\Delta \nu_{\text{Cs}} = f(\text{candidate Cs braid geometry})$
@@ -364,12 +375,13 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 
 ---
 
+## Closure Priorities
 
 ### Tier 1 (Must Answer)
 1. **Derive $h$ from A1 geometry**
-   - Show that the declared binary-3 action row yields $L_3 = n\hbar$
-   - Calculate $r_3$ for the hydrogen 1s source record
-   - Predict $h$ and compare to SI value
+   - Show that the declared binary-3 row yields $\mu_{\text{arch}}I_3=n\hbar$ with $\mu_{\text{arch}}$ fixed before the run.
+   - Compute $\mathcal J_3$ for the hydrogen $1s$ source record.
+   - Test the same unit map against adjusted action-sensitive rows such as $\alpha$ and $R_\infty$; the exact SI value of $h$ defines the comparison unit and does not supply a zero-uncertainty physical residual.
 
 2. **Confirm $c = c_f$ within bounds**
    - Show photon propagation through the Noether sea matches $c$ to $<10^{-17}$
@@ -384,12 +396,12 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 4. **Calculate $\Delta \nu_{\text{Cs}}$ from first principles**
    - Map Cs atomic structure to Noether braid assemblies
    - Derive hyperfine coupling strength
-   - Compare to 9,192,631,770 Hz
+   - Show that the derived clock row is consistent with adjusted atomic benchmarks under the same second realization; $9{,}192{,}631{,}770\,\mathrm{Hz}$ is the exact SI definition, not an independent fitted datum
 
 5. **Derive $k_B$ from Noether sea thermodynamics**
    - Calculate neutral Noether braid assembly effective mass
    - Show thermal equilibrium reproduces Maxwell-Boltzmann
-   - Predict $k_B$ value
+   - Recover dimensionless and adjusted thermodynamic benchmark rows under the same temperature map; the exact SI value of $k_B$ fixes the kelvin convention
 
 ### Tier 3 (Refinement)
 6. **Map all SM particles to family/member assembly recipes**
@@ -432,7 +444,7 @@ The **architrino revision** completes the journey:
 **The ultimate goal:** A measurement system where every quantity is expressed in terms of:
 - **Lengths** (in units of $c_f \cdot t$)
 - **Times** (in absolute time units)
-- **Polarity units** (in units of $\epsilon=|e|/6$)
+- **Polarity units** (in units of primitive $\epsilon$, with observer calibration target $|e|=6\epsilon$)
 
 No kilograms, no kelvins, no moles—just **geometry, time, and polarity bookkeeping**, with observer units recovered above that layer.
 

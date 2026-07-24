@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 600,
-      "edges": 1365,
-      "scenes": 384,
+      "nodes": 602,
+      "edges": 1368,
+      "scenes": 386,
       "markdownIndexes": 0,
       "markdownDocs": 199,
       "runtimeEdges": 476,
@@ -200,6 +200,12 @@
       "id": "borg",
       "name": "Borg App",
       "path": "content/scenes/archie/borg.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "braid-search",
+      "name": "Braid Search",
+      "path": "content/scenes/archie/braid_search.json",
       "nodeType": "scene"
     },
     {
@@ -596,6 +602,12 @@
       "id": "cosmology__cosmology_ontology",
       "name": "Cosmology Ontology",
       "path": "content/scenes/cosmology/cosmology_ontology.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "cosmology__cosmology_reconstruction",
+      "name": "Cosmology Reconstruction",
+      "path": "content/scenes/cosmology/cosmology_reconstruction.json",
       "nodeType": "scene"
     },
     {
@@ -3456,7 +3468,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-      "name": "$A_0$ Tier 0 Result Interpretation",
+      "name": "$A_0$ Tier 0 Result-Schema Interpretation",
       "path": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "nodeType": "markdown_doc"
     },
@@ -3528,7 +3540,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
-      "name": "Equal-Charge Symmetric Repulsion",
+      "name": "Like-Polarity Symmetric Repulsion",
       "path": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
       "nodeType": "markdown_doc"
     },
@@ -3594,7 +3606,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/perspective.md",
-      "name": "Perspective: Why This Model Maps So Well",
+      "name": "Simulation Perspective and Closure Targets",
       "path": "content/markdown/aaa/validation/simulations/perspective.md",
       "nodeType": "markdown_doc"
     },
@@ -3727,6 +3739,15 @@
       "name": "Borg App",
       "path": "content/scenes/archie/borg.json",
       "searchTarget": "content/scenes/archie/borg.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/braid_search.json",
+      "nodeType": "scene",
+      "id": "braid-search",
+      "name": "Braid Search",
+      "path": "content/scenes/archie/braid_search.json",
+      "searchTarget": "content/scenes/archie/braid_search.json",
       "implicit": false
     },
     {
@@ -4348,6 +4369,15 @@
       "name": "Cosmology Ontology",
       "path": "content/scenes/cosmology/cosmology_ontology.json",
       "searchTarget": "content/scenes/cosmology/cosmology_ontology.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/cosmology/cosmology_reconstruction.json",
+      "nodeType": "scene",
+      "id": "cosmology__cosmology_reconstruction",
+      "name": "Cosmology Reconstruction",
+      "path": "content/scenes/cosmology/cosmology_reconstruction.json",
+      "searchTarget": "content/scenes/cosmology/cosmology_reconstruction.json",
       "implicit": false
     },
     {
@@ -8611,7 +8641,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-      "name": "$A_0$ Tier 0 Result Interpretation",
+      "name": "$A_0$ Tier 0 Result-Schema Interpretation",
       "path": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
       "implicit": false
@@ -8719,7 +8749,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
-      "name": "Equal-Charge Symmetric Repulsion",
+      "name": "Like-Polarity Symmetric Repulsion",
       "path": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
       "implicit": false
@@ -8818,7 +8848,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/perspective.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/perspective.md",
-      "name": "Perspective: Why This Model Maps So Well",
+      "name": "Simulation Perspective and Closure Targets",
       "path": "content/markdown/aaa/validation/simulations/perspective.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/perspective.md",
       "implicit": false
@@ -9063,6 +9093,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[11]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/braid_search.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
@@ -9713,14 +9750,14 @@
       "to": "scene:content/scenes/cosmology/bbn_constraints.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/cmb.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
@@ -9731,45 +9768,52 @@
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
-      "to": "scene:content/scenes/cosmology/dark_energy.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[6]"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
-      "to": "scene:content/scenes/cosmology/dark_matter.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/cosmology.json",
-      "to": "scene:content/scenes/cosmology/expansion_mechanism.json",
+      "to": "scene:content/scenes/cosmology/cosmology_reconstruction.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
       "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
-      "to": "scene:content/scenes/cosmology/hubble_s8_tensions.json",
+      "to": "scene:content/scenes/cosmology/dark_energy.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
-      "to": "scene:content/scenes/cosmology/inflation_model.json",
+      "to": "scene:content/scenes/cosmology/dark_matter.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "scene:content/scenes/cosmology/expansion_mechanism.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
       "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "scene:content/scenes/cosmology/hubble_s8_tensions.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
+      "to": "scene:content/scenes/cosmology/inflation_model.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/cosmology.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology.json",
       "to": "scene:content/scenes/cosmology/structure_formation.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/cosmology.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/cosmology/disk.json",
@@ -14151,6 +14195,13 @@
       "to": "markdown_doc:content/markdown/aaa/cosmology/cosmology-ontology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/cosmology/cosmology_ontology.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/cosmology_reconstruction.json",
+      "to": "markdown_doc:content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/cosmology/cosmology_reconstruction.json",
       "field": "scene.source.path"
     },
     {

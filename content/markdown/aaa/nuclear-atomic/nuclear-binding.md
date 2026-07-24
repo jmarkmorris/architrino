@@ -28,10 +28,12 @@ For that reason, ordinary fission and fusion should not be treated as direct rel
 
 This is the main accounting point. The same final energy can be reported as a mass defect in observer language, but the physical story still has to say where the released ledger difference goes: fragment kinetic energy, photons, recoil, medium excitation, local Noether sea update, or heat.
 
-The same accounting applies to fission. The mass defect is exposed nuclear-assembly energy because the daughter arrangement has a cheaper corridor, Coulomb, shell, deformation, and Noether sea polarization ledger than the parent arrangement. A schematic fission ledger is
+The speed symbol in these energy rows belongs to a declared observer-level branch. Primitive delayed-root calculations use $c_f=1$; $c_{\mathrm{eff}}(\mathbf X,T)$ is the Noether sea dressed assembly-channel speed, $c_\gamma(\mathbf X,T)$ is the photon-channel speed, and $c_0$ is the recovered weak-homogeneous observer normalization. This chapter keeps $c_{\mathrm{eff}}$ symbolic until the branch and environment are declared, following the [speed convention in Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
+
+The same accounting applies to fission. The mass defect is exposed nuclear-assembly energy because the daughter arrangement has a cheaper corridor, Coulomb, shell, deformation, and Noether sea polarization ledger than the parent arrangement. At a prompt event boundary, before prompt product motion thermalizes and before delayed daughter decays add later reaction ledgers, a schematic fission ledger is
 
 $$
-\Delta E_{\mathrm{fis}}
+\Delta E_{\mathrm{fis}}^{\mathrm{prompt}}
 =
 \left(
 M_{\mathrm{parent}}
@@ -40,13 +42,14 @@ M_{\mathrm{parent}}
 \right)c_{\text{eff}}^2
 =
 K_{\mathrm{frag}}
-+E_\gamma
-+\Delta E_{\mathrm{heat}}
-+\Delta E_{\mathrm{recoil}}
++K_n^{\mathrm{prompt}}
++E_\gamma^{\mathrm{prompt}}
++\Delta E_{\mathrm{med}}^{\mathrm{prompt}}
++K_{\mathrm{env-recoil}}^{\mathrm{prompt}}
 +\Delta E_{\mathrm{sea}},
 $$
 
-where the daughter masses $M_d$, emitted product masses $M_b$, fragment kinetic energy, photon output, medium heating, recoil, and local Noether sea update all belong to the exposed nuclear ledger. That accounting is different from claiming that ordinary fission releases the shielded internal branch energy of the surviving nucleons.
+where the daughter masses $M_d$, emitted product masses $M_b$, fragment kinetic energy, prompt-neutron kinetic energy, prompt photon output, medium internal excitation already transferred by the event cutoff, bulk recoil of the surrounding target, lattice, containment, or apparatus, and the local Noether sea update all belong to the exposed nuclear ledger. The fragment and neutron kinetic rows already contain the daughter-product motion; $K_{\mathrm{env-recoil}}^{\mathrm{prompt}}$ is only the momentum transferred outside those products and is zero for an isolated event with no external receiver. Later thermalization is a downstream reclassification of the prompt kinetic and medium-excitation channels, not another sibling energy release. Daughter beta-family reactions and antineutrino output belong to later ledgers or to an explicitly extended observation window. This time boundary prevents prompt kinetic energy from being counted again as asymptotic heat. The accounting is different from claiming that ordinary fission releases the shielded internal branch energy of the surviving nucleons.
 
 ### Fusion Reaction Ledger Benchmark
 
@@ -61,19 +64,19 @@ $$
 In this interpretation, $\Delta E$ is the difference between two nuclear assembly ledgers, not a literal conversion of nucleon substance into energy. The event should be recorded as
 
 $$
-\Delta E_{\mathrm{DT}}
+\Delta E_{\mathrm{DT}}^{\mathrm{prompt}}
 =
 \left(M_D+M_T-M_{\alpha}-M_n\right)c_{\text{eff}}^2
 =
 K_{\alpha}
 +K_n
-+E_{\gamma}
-+\Delta E_{\mathrm{med}}
-+\Delta E_{\mathrm{recoil}}
++E_{\gamma}^{\mathrm{prompt}}
++\Delta E_{\mathrm{med}}^{\mathrm{prompt}}
++K_{\mathrm{env-recoil}}^{\mathrm{prompt}}
 +\Delta E_{\mathrm{sea}},
 $$
 
-after the branch convention for $c_{\text{eff}}$ and the environment is declared. The right side names where the exposed binding-energy difference leaves the event: kinetic energy of the helium and neutron products, possible photon output, medium heating or excitation, recoil, and local Noether sea update. The surviving nucleons still carry their own internal branch histories. A stronger claim that fusion exposes quark-level or architrino-level shielded energy would require a separate particle-level reaction ledger.
+after the branch convention for $c_{\text{eff}}$ and the environment is declared. The right side names where the exposed binding-energy difference leaves the prompt event: kinetic energy of the helium and neutron products, possible prompt photon output, medium excitation transferred by the event cutoff, bulk recoil transferred to the surrounding target, lattice, containment, or apparatus, and the local Noether sea update. The environment-recoil row is zero for an isolated event and must not duplicate motion already counted in $K_{\alpha}$ or $K_n$. These entries must not be silently collapsed into one release value before the prompt ledger closes. Later thermalization is a downstream reclassification of those transferred channels, not another sibling energy release; delayed daughter reactions belong to later ledgers. The surviving nucleons still carry their own internal branch histories. A stronger claim that fusion exposes quark-level or architrino-level shielded energy would require a separate particle-level reaction ledger.
 
 ## Core Claim
 
@@ -111,6 +114,20 @@ Here:
 - $E_{\text{shell}}$ is the nuclear-structure term associated with filling and pairing patterns; its sign is left open because shell and pairing corrections can raise or lower the ledger relative to a smooth baseline,
 - $E_{\text{sea-pol}} < 0$ is the energy gain from local Noether sea polarization and meson-like corridor formation.
 
+The residual-strong term must carry channel composition rather than one composition-blind attraction:
+
+$$
+E_{\text{res-strong}}
+=
+E_{\text{res-strong}}^{pn}
++
+E_{\text{res-strong}}^{pp}
++
+E_{\text{res-strong}}^{nn}
+$$
+
+with each contribution computed from the realized corridor inventory and spin-statistics sector. This corridor-composition response is only one part of the asymmetry recovery: the exclusion and shell ledgers must also supply the occupancy cost of maintaining unequal proton-side and neutron-side filling. After coarse-graining, the combined corridor-composition and occupancy/statistics response must recover a positive asymmetry cost proportional to $(N-Z)^2/A$ in the applicable smooth-nucleus limit. That observer-level dependence is a joint recovery target for the nuclear functional, not a premise inserted into the substrate dynamics or assigned wholly to the residual-strong corridor term.
+
 Then the binding energy is
 $$
 B
@@ -120,6 +137,8 @@ B
 $$
 
 Binding requires the negative medium-plus-residual-strong terms to outweigh the positive Coulomb and exclusion costs.
+
+The first quantitative comparison surface is the semi-empirical mass formula. Its volume, surface, Coulomb, asymmetry, and pairing coefficients should be recovered from the residual-strong saturation, boundary-corridor loss, electric repulsion, combined channel-composition and occupancy/exclusion cost, and shell/pairing entries above. Those coefficients are downstream summaries; fitting them independently would not derive the nuclear ledger.
 
 ## Physical Ingredients
 
@@ -204,7 +223,9 @@ The qualitative reasons this channel is favored are:
 
 This list is not enough without the spin-channel constraint. The $pn$ benchmark must recover a bound triplet channel while the identical-proton $pp$ channel is spin-statistics-restricted to the singlet sector in the s-wave ($L=0$) channel; that singlet channel must remain unbound even before the Coulomb term is added. This dependency is inherited from the spin-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md) and the same-record spinor-label pullback in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback), not solved locally by the nuclear potential shorthand.
 
-If the eventual effective potential cannot bind the deuteron while staying compatible with proton-proton nonbinding, the nuclear branch is in immediate trouble.
+Binding alone is not enough. The same $pn$ corridor functional must recover the deuteron's nonzero electric quadrupole moment and therefore an anisotropic, noncentral response in the observer-level nuclear channel. A purely central potential that binds the deuteron but cannot produce that quadrupole response is a false positive.
+
+If the eventual effective potential cannot bind the deuteron while staying compatible with proton-proton and neutron-neutron nonbinding, or if it misses the deuteron quadrupole response, the nuclear branch is in immediate trouble.
 
 ## Saturation
 
@@ -250,6 +271,8 @@ Here $\nu_{\mathrm{hit}}$ is the effective barrier-sampling frequency of the bou
 
 Polonium-212 is a compact numerical check: the standard comparison channel is ${}^{212}\mathrm{Po}\to{}^{208}\mathrm{Pb}+\alpha$, with outgoing alpha energy near $8.78\,\mathrm{MeV}$ and observed half-life near $0.3\,\mu\mathrm{s}$. A single rectangular-barrier approximation can miss the half-life by many orders of magnitude, while resolving the Coulomb barrier into multiple segments already moves the estimate close to the observed value. The lesson for the nuclear branch is that barrier shape, turning points, and attempt rate are not disposable fitting details; they are the effective observables that a native nuclear assembly model must recover.
 
+The family-level target is the Geiger-Nuttall relation across declared alpha-emitting isotope chains: the same barrier and attempt-rate map must recover the systematic dependence of $\log t_{1/2}$ on inverse square-root release energy without per-isotope barrier retuning. The Polonium-212 point is one check on that curve, not the curve by itself.
+
 ## Radioisotope Metastability
 
 At effective grade, a radioactive material is a material whose isotope inventory contains metastable nuclear assembly branches. A parent isotope can remain in a locally retained basin while one or more lower-energy daughter-and-product routes have nonzero escape rates. The radioactivity belongs first to that nuclear branch structure, not to bulk temperature or ordinary molecular vibration.
@@ -291,17 +314,21 @@ So a realistic nuclear theory here must eventually combine:
 - the electron and neutrino emission channels,
 - and the local Noether sea contribution to the total energy balance.
 
+Mirror nuclei provide a focused electric-sector check on the same decomposition. Tritium and helium-3, followed by heavier mirror pairs, should be computed from exchanged proton/neutron inventories while holding the declared strong-sector approximation fixed; the residual splitting must then be routed through electric, nucleon-mass, and explicitly declared symmetry-breaking entries rather than absorbed into a retuned residual-strong coefficient.
+
 ## Minimal Falsification Gates
 
 This chapter will count as successful only if a later quantitative version can reproduce at least the following:
 
 1. a bound deuteron,
-2. no bound diproton in ordinary conditions, with the singlet channel unbound before Coulomb correction,
+2. no bound diproton in ordinary conditions, with the singlet channel unbound before Coulomb correction, and no bound dineutron in the corresponding neutron-neutron channel,
 3. saturation of binding per nucleon,
 4. special alpha-like stability,
-5. the qualitative valley of beta stability.
+5. the qualitative valley of beta stability from the combined corridor-composition and occupancy/statistics response,
+6. the deuteron quadrupole response,
+7. mirror-nucleus splittings without strong-sector retuning.
 
-If the effective nuclear potential cannot even satisfy the sign structure needed for those five features, the coarse-grained hadronic picture is inadequate.
+If the effective nuclear potential cannot satisfy the sign structure and comparison burdens needed for those seven features, the coarse-grained hadronic picture is inadequate.
 
 ## Relation to Mesons
 

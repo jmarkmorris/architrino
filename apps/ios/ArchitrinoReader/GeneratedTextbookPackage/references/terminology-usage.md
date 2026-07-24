@@ -147,7 +147,7 @@ At the planar limit, precession order ceases and $o_{\mathrm{PA}}$ is not assign
 
 ### Orientation-Antimatter Correspondence Hypothesis
 
-One named working hypothesis connects the two labels. The `orientation-antimatter correspondence hypothesis` holds that matter fermion branches carry the pro-Noether braid orientation, antimatter branches carry the anti-Noether braid orientation, and pair production draws its two products from complementary pro/anti oriented carriers in the Noether sea — the Noether Pair source architecture of [Spontaneous Assembly and Pair Production](#spontaneous-assembly-and-pair-production). Under this hypothesis the two products of pair production are polarity-conjugate **and** orientation-opposite: $CP$-images of one another rather than bare $C$-images.
+One named working hypothesis connects the two labels. The `orientation-antimatter correspondence hypothesis` holds that matter fermion branches carry the pro-Noether braid orientation, antimatter branches carry the anti-Noether braid orientation, and pair production draws its two products from complementary pro/anti oriented carriers in the Noether sea — the explicitly typed two-braid source architecture of [Spontaneous Assembly and Pair Production](#spontaneous-assembly-and-pair-production). Under this hypothesis the two products of pair production are polarity-conjugate **and** orientation-opposite: $CP$-images of one another rather than bare $C$-images.
 
 The two halves of that statement carry different grades. The polarity-conjugate half is the benchmarked half: the observer-level pair-production record — conjugate charge entries, equal masses, conserved lepton number — constrains exactly the $C$-image charged-sector ledgers. Standard physics carries no counterpart of $o_{\mathrm{PA}}$, so the orientation half is hypothesis, not recovery.
 
@@ -406,15 +406,15 @@ This is not a mere relabeling of the old paradox. The explanatory burden is bein
 
 ## Noether Braid and Assembly Usage
 
-Use `Noether braid` for the neutral six-architrino scaffold. Use `particle` mainly at the effective or comparative level.
+Use `Noether braid` for one complete braid record. A base, Family-A, or Family-B record has six architrinos; a Family-C record has twelve worldlines in one top-level record. Use `particle` mainly at the effective or comparative level.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
-| the neutral six-architrino scaffold of a fermion | `Noether braid` | legacy central-scaffold wording when the scaffold itself is meant | "The axial layer is bound to the Noether braid." |
+| one complete neutral braid record | `Noether braid`, with its family or worldline count when needed | language that silently assumes every family has six worldlines | "The axial layer is bound to the six-worldline fermion Noether braid." |
 | $\mathbb{A}\mathbb{A}\mathbb{A}$ compositional object | `assembly` | `particle` as default ontology word | "The assembly remains stable under delayed feedback." |
 | Standard Model or observer-facing language | `particle` | not applicable | "The particle is observed as electrically neutral." |
 
-This distinction prevents a common scale-collapse in exposition. The `Noether braid` is one structural component inside a larger fermion assembly; it is not the whole object. Meanwhile `particle` remains useful for experimental, asymptotic, and Standard Model-facing prose. Keeping these nouns separated lets the text move between internal architecture and observer-level phenomenology without silently conflating scaffold, whole assembly, and measurement label.
+This distinction prevents a common scale-collapse in exposition. In fermion prose, the six-worldline Noether braid is one structural component inside a larger assembly; it is not the whole object. Meanwhile `particle` remains useful for experimental, asymptotic, and Standard Model-facing prose. Keeping these nouns separated lets the text move between internal architecture and observer-level phenomenology without silently conflating scaffold, whole assembly, and measurement label.
 
 ## Spontaneous Assembly and Pair Production
 
@@ -424,13 +424,33 @@ This term is important because $\mathbb{A}\mathbb{A}\mathbb{A}$ should not borro
 
 This wording is especially useful in pair-production prose. Standard quantum language often says that a strong field or unstable vacuum can produce a particle-antiparticle pair "spontaneously." In $\mathbb{A}\mathbb{A}\mathbb{A}$, that should be recast as spontaneous assembly production from a causal local source architecture rather than as uncaused emergence from nothing.
 
-The canonical local source architecture for this phenomenon is a `Noether Pair`. When the local energy and bookkeeping conditions are right, a Noether Pair can furnish the spontaneous assemblies needed for a pro-anti fermion pair. The `pro-anti` label here invokes the [orientation-antimatter correspondence hypothesis](#orientation-antimatter-correspondence-hypothesis): the products' polarity-conjugate relation is the benchmarked half, and their opposite pro/anti orientations — inherited from the complementary sea carriers — are the hypothesis half. The event may look spontaneous at observer level because no incoming particle directly triggers it, but the ontology remains causal: the local Noether-pair state, ambient medium conditions, and energy transfer open the channel.
+Represent the local source architecture as an explicitly declared assembly of two complete Noether-braid records. For a two-braid assembly, use the typed relation record
+
+$$
+\mathcal P_2
+=
+\left(
+\mathfrak B_1,\mathfrak B_2;
+\mathcal L_{\mathrm{pair}},
+R_C,
+R_o,
+R_{\omega},
+R_{\mathrm{axis}},
+R_{\mathrm{plane}}
+\right),
+$$
+
+where $\mathcal L_{\mathrm{pair}}$ identifies the common assembly ledger; $R_C$ declares the polarity-conjugation relation; $R_o$ declares the pro/anti-orientation relation when that orientation exists; $R_{\omega}$ declares relative circulation; $R_{\mathrm{axis}}$ declares the axis relation; and $R_{\mathrm{plane}}$ declares planarity. An omitted row is unknown, not false. This is a relation record, not a new braid family or particle species.
+
+Do not use `Noether Pair` as a canonical ontology term because the name does not say which of these relations is intended. Use `assembly of two Noether braids` when only multiplicity is known, `pro/anti-orientation Noether-braid composite` when $R_o$ alone is the defining relation, and `a braid and its polarity-conjugate braid` when $R_C$ is the defining relation. Use a Family-C identifier only for one shared twelve-worldline top-level record satisfying the applicable Family-C chart; do not infer Family C from two separate six-worldline records. Likewise, do not call the assembly a photon unless the photon-specific planarity, polarity-conjugation, circulation, propagation, helicity, and binding conditions are all declared.
+
+For spontaneous pro-anti fermion pair production, the source record declares both the polarity-conjugate and opposite-orientation relations. The `pro-anti` label invokes the [orientation-antimatter correspondence hypothesis](#orientation-antimatter-correspondence-hypothesis): $R_C$ is the benchmarked half, while opposite $R_o$ values inherited from complementary sea carriers are the hypothesis half. When the local energy and bookkeeping conditions are right, this typed two-braid source can furnish the spontaneous assemblies needed for the channel. The event may look spontaneous at observer level because no incoming particle directly triggers it, but the ontology remains causal: the local two-braid state, ambient medium conditions, and energy transfer open the channel.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
 | an auxiliary assembly entering a channel without being listed as a primary boundary input | `spontaneous assembly` | `support assembly` when the quantum-production linkage matters | "The beta-family law admits two spontaneous assemblies of Noether braid type." |
-| a particle-antiparticle creation event described in $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology | `spontaneous assembly-pair production`, `spontaneous pro-anti fermion pair production` (the `pro-anti` label invokes the [orientation-antimatter correspondence hypothesis](#orientation-antimatter-correspondence-hypothesis)) | bare `vacuum fluctuation` language as ontology | "A Noether Pair can open a spontaneous pro-anti fermion pair-production channel when sufficient energy is supplied." |
-| an observer-level description that keeps the trigger unresolved but not uncaused | `spontaneous` plus explicit causal qualification | wording that implies acausal creation from nothing | "The pair appears spontaneous at observer level, but the local Noether Pair supplies the neutral source architecture." |
+| a particle-antiparticle creation event described in $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology | `spontaneous assembly-pair production`, `spontaneous pro-anti fermion pair production` (the `pro-anti` label invokes the [orientation-antimatter correspondence hypothesis](#orientation-antimatter-correspondence-hypothesis)) | bare `vacuum fluctuation` language as ontology | "A typed two-braid source can open a spontaneous pro-anti fermion pair-production channel when sufficient energy is supplied." |
+| an observer-level description that keeps the trigger unresolved but not uncaused | `spontaneous` plus explicit causal qualification | wording that implies acausal creation from nothing | "The pair appears spontaneous at observer level, but the local two-braid source assembly supplies the neutral architecture." |
 
 ## Association and Dissociation in Reactions
 

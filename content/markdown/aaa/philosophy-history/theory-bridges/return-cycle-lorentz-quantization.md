@@ -302,9 +302,9 @@ $$
 n_a\in\mathbb{Z}
 $$
 $$
-\Delta A_\ell=n_\ell h+\epsilon_\ell^{\mathrm{leak}}
+\Delta A_a=n_a h+\epsilon_a^{\mathrm{leak}}
 $$
-where $\epsilon_\ell^{\mathrm{leak}}$ records unresolved branch leakage or coupling to the wake ledger. A closed branch requires the layer rows to be compatible with the same all-layer action transaction, not tuned independently.
+where $\epsilon_a^{\mathrm{leak}}$ records unresolved branch leakage or coupling to the wake ledger. A closed branch requires the persistently indexed binary rows to be compatible with the same all-binary action transaction, not tuned independently.
 
 subject to the action ledger
 $$
@@ -312,13 +312,13 @@ $$
 =
 \sigma h
 \qquad
-\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}
+\Delta I_1+\Delta I_2+\Delta I_3+\Delta I_{\text{wake}}
 =
 \sigma\hbar
 $$
-and the all-layer energy ledger
+and the all-binary energy ledger
 $$
-\sum_{\ell\in\{I,M,O\}}
+\sum_{a\in\{1,2,3\}}
 \int_{B_q\to B_{q'}}\omega_a\,dI_a
 +
 \Delta E_{\text{wake}}
@@ -344,12 +344,12 @@ The mathematical prediction is not a generic Lorentz-violation coefficient. It i
 
 Schematically, the two-way anisotropy diagnostic should decompose as
 $$
-\Delta_{\mathrm{tw}}(\beta,\theta)
+\Delta_{\mathrm{tw}}(\beta_\star,\theta)
 =
-\Delta_{\mathrm{tw}}^{\mathrm{smooth}}(\beta,\theta)
+\Delta_{\mathrm{tw}}^{\mathrm{smooth}}(\beta_\star,\theta)
 +
 \sum_{r\in\mathcal{R}_{\mathrm{res}}}
-B_r\,\mathcal{W}_r(\beta)\cos(2m_r\theta+\varphi_r)
+B_r\,\mathcal{W}_r(\beta_\star)\cos(2m_r\theta+\varphi_r)
 $$
 where each residual label $r$ must be traceable to a named branch-chart feature. A residual with no branch source is not a successful prediction; it is fitting error or an incomplete closure model.
 

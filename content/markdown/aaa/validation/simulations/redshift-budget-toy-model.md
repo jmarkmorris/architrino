@@ -20,7 +20,7 @@ The script consumes:
 scripts/cosmology/redshift-budget-mock.json
 ```
 
-and emits one result row per scenario. The packet is deliberately dimensionless except for declared line frequencies, Euclidean path distance in megaparsecs, and the comparison constants $c_0$ and $h$.
+and emits one result row per scenario. The packet is deliberately dimensionless except for declared line frequencies, Euclidean path distance in megaparsecs, and the comparison constants $c_0$ and $h$. Here $h$ is the observer-level action benchmark used by the recovered photon energy-frequency map; it is not a substrate input.
 
 ## Replay Equation
 
@@ -86,15 +86,15 @@ R_{\nu\text{-}\mathrm{ex},j}
 =
 \frac{
 \left|
-h(\nu_{X,j}^{+}-\nu_{X,j}^{-})
+E_\gamma(\nu_{X,j}^{+})-E_\gamma(\nu_{X,j}^{-})
 +\Delta E_{\mathrm{med},j}
 +\Delta E_{\mathrm{recoil},j}
 +\Delta E_{\mathrm{rem},j}
 \right|
-}{\epsilon_E}
+}{E_{\mathrm{tol}}}
 $$
 
-The signs of the $\Delta E$ terms are ledger signs, not assumptions about the outcome. A photon boost is allowed only when the intervening medium or target record supplies the energy; a photon depletion is allowed only when the lost photon energy is routed into a named medium, recoil, remnant, or thermalization row.
+Here $E_\gamma(\nu)$ is the declared photon-channel energy map and $E_{\mathrm{tol}}>0$ is a predeclared tolerance with units of energy. The observer-level relation $E_\gamma=h\nu$ is a recovery benchmark, not a substrate input. The signs of the $\Delta E$ terms are ledger signs, not assumptions about the outcome. A photon boost is allowed only when the intervening medium or target record supplies the energy; a photon depletion is allowed only when the lost photon energy is routed into a named medium, recoil, remnant, or thermalization entry.
 
 For cosmology-facing packets, the same replay should expose whether the redshift channel also supplies the standard time-dilation and flux factors. The comparison target is
 $$
@@ -104,7 +104,9 @@ $$
 \qquad
 F
 =
-\frac{L}{4\pi D_A^2(1+z_X)^2},
+\frac{L}{4\pi D_A^2(1+z_X)^4}
+=
+\frac{L}{4\pi d_L^2},
 \qquad
 d_L=(1+z_X)^2D_A
 $$
@@ -159,6 +161,7 @@ D_v
 $$
 
 where $\hat{\mathbf{k}}$ points from emitter to receiver and $v_r>0$ means the endpoint separation is increasing. A packet may provide `beta_r`, `radial_velocity_km_s`, or the triple `emitter_velocity_km_s`, `receiver_velocity_km_s`, and `line_of_sight`. Scalar `D_v` remains the fallback.
+This observer-level launch factor is not either causal-root factor from the Master Equation: it must not be serialized as the transmitter-side $D_t$, the receiver-side $D_r$, or the signed root-playback ratio $D_r/D_t$.
 
 The continuity-transport extension uses the segment packet
 
@@ -264,7 +267,7 @@ In JSON, `lambda_row` supplies the four dimensionless coefficients and `q_DE_per
 
 ## Output Diagnostics
 
-The fixture reports:
+The v1 fixture reports the fields already emitted by `scripts/cosmology/redshift-budget-toy-model.mjs`. Four additional diagnostics remain schema targets and are labeled explicitly below rather than being attributed to the current runtime.
 
 | Output field | Meaning |
 | --- | --- |
@@ -275,10 +278,10 @@ The fixture reports:
 | `diagnostics.chromaticity_residual` | $\left|Y_{X,N}-Y_{Y,N}\right|$ for two clean lines |
 | `diagnostics.image_bundle_variance` | variance of beam-specific $Y$ values |
 | `diagnostics.time_dilation_residual` | split between frequency and packet-cadence propagation |
-| `diagnostics.luminosity_factor_residual` | mismatch between the replayed flux factor and the expected $(1+z)^2$ distance-ladder factor |
-| `diagnostics.distance_reciprocity_residual` | mismatch in the observer-level $d_L=(1+z)^2D_A$ relation |
-| `diagnostics.frequency_exchange_residual` | maximum or norm of the signed exchange energy-ledger residuals $R_{\nu\text{-}\mathrm{ex},j}$ |
-| `diagnostics.path_transfer_sign` | whether the corrected path term is net redward, net blueward, or balanced after endpoint, source, and launch terms are removed |
+| `diagnostics.luminosity_factor_residual` | **Not yet emitted by v1.** Planned mismatch between the replayed flux factor and $F=L/(4\pi D_A^2(1+z_X)^4)=L/(4\pi d_L^2)$ |
+| `diagnostics.distance_reciprocity_residual` | **Not yet emitted by v1.** Planned mismatch in the observer-level $d_L=(1+z_X)^2D_A$ relation |
+| `diagnostics.frequency_exchange_residual` | **Not yet emitted by v1.** Planned maximum or norm of the signed exchange energy-ledger residuals $R_{\nu\text{-}\mathrm{ex},j}$ |
+| `diagnostics.path_transfer_sign` | **Not yet emitted by v1.** Planned classification of whether the corrected path term is net redward, net blueward, or balanced after endpoint, source, and launch terms are removed |
 | `observables.nu_obs_hz` | receiver-facing observed frequency |
 | `observables.E_obs_j` | receiver-facing photon energy |
 | `component_logs` | endpoint, propagation, source-branch, and launch contributions to $Z_X$ |

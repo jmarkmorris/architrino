@@ -361,7 +361,7 @@ These text forms cover row-level prototype tile labels and picker labels, but re
 
 ### Composite Review Groups
 
-Composite labels such as `Photon`, `Pro Proton`, `Positive Pion`, and `Noether Pair` are not standalone four-tile labels in `pdgedit/v1`. They identify row clusters. The canonical review-row recipes for those clusters live in `src/apps/pdgedit/pdgedit-review-groups.json` under `compositeGroups`.
+Composite labels such as `Photon`, `Pro Proton`, `Positive Pion`, and `Pro/anti-orientation Noether-braid composite` are not standalone four-tile labels in `pdgedit/v1`. They identify row clusters. The canonical review-row recipes for those clusters live in `src/apps/pdgedit/pdgedit-review-groups.json` under `compositeGroups`. The last label retains `noether_pair` and `noether-pair-composite` only as compatibility identifiers.
 
 In a concrete `pdgedit/v1` document, the row cluster is represented by ordinary `assemblies` rows plus a `compositeLabels` entry that names the admitted `-composite` type and spans those rows with `rowStart` and `rowEnd`. The `compositeLabels` entry is the instance-level label. The row payloads remain explicit in the `assemblies[].tiles` arrays.
 
@@ -370,7 +370,7 @@ The current composite review groups are:
 | Composite Label | Row Recipe |
 | --------------- | ---------- |
 | `Photon` | `Pro Noether Braid`; `Anti Noether Braid` |
-| `Noether Pair` | `Pro Noether Braid`; `Anti Noether Braid` |
+| `Pro/anti-orientation Noether-braid composite` | `Pro Noether Braid`; `Anti Noether Braid` |
 | `Noether Quad` | `Pro Noether Braid`; `Anti Noether Braid`; `Pro Noether Braid`; `Anti Noether Braid` |
 | `Pro Proton` | `Pro Up Quark`; `Pro Down Quark`; `Pro Up Quark` |
 | `Anti Proton` | `Anti Up Quark`; `Anti Down Quark`; `Anti Up Quark` |

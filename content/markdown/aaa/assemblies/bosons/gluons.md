@@ -30,9 +30,9 @@ A Noether braid also has three persistently indexed axes $(1,2,3)$, each carryin
 - **Composition:** $5\epsilon_+ + 1\epsilon_-$, so $Q=+\frac{2}{3}e$.
 - **Axis pattern:** two positive-polarity dyads and one exceptional mixed dyad.
 - **Color basis:**
-  - Red: $|u_H\rangle$ has the mixed dyad on $H$.
-  - Green: $|u_M\rangle$ has the mixed dyad on $M$.
-  - Blue: $|u_L\rangle$ has the mixed dyad on $L$.
+  - Red: $|u_1\rangle$ has the mixed dyad on axis 1.
+  - Green: $|u_2\rangle$ has the mixed dyad on axis 2.
+  - Blue: $|u_3\rangle$ has the mixed dyad on axis 3.
 
 #### Case B: The Down Quark ($d$)
 
@@ -41,9 +41,9 @@ A Noether braid also has three persistently indexed axes $(1,2,3)$, each carryin
   - Family I: one positive-polarity dyad and two negative-polarity dyads.
   - Family II: one negative-polarity dyad and two mixed dyads.
 - **Color basis:** in either family, color is still the position of the exceptional axis:
-  - Red: exceptional on $H$
-  - Green: exceptional on $M$
-  - Blue: exceptional on $L$
+  - Red: exceptional on axis 1
+  - Green: exceptional on axis 2
+  - Blue: exceptional on axis 3
 
 The conventional labels Red, Green, and Blue are therefore basis names for the three exceptional-axis states, not separate microscopic charges.
 
@@ -67,7 +67,7 @@ This can also be read as the strong-force version of the pole problem. Rotationa
 
 A gluon is a propagating disturbance in the Noether braid assembly network that reconfigures axis exceptionality within the quark color basis.
 
-- **The operator:** when a Red quark $|q_H\rangle$ interacts with a Green quark $|q_M\rangle$, the gluon acts as a bridge that mixes or swaps the exceptional-axis state between $H$ and $M$.
+- **The operator:** when a Red quark $|q_1\rangle$ interacts with a Green quark $|q_2\rangle$, the gluon acts as a bridge that mixes or swaps the exceptional-axis state between axes 1 and 2.
 - **The braid:** geometrically, this is realized as a twisting of the Noether sea flux tube: a braid segment that propagates between the quark braids and carries the topology required to move exceptionality from one axis sector to another.
 
 ### Color-Corridor Provenance Target
@@ -120,7 +120,7 @@ The octet count comes from the color-basis operator space.
 
 - **The basis:** we have 3 color basis states, equivalently the three exceptional-axis sectors $(1,2,3)$.
 - **The matrix:** there are $3 \times 3 = 9$ possible couplings, corresponding to $U(3)$ before the singlet is removed.
-- **Off-diagonal color-changing modes:** six generators move or mix exceptionality between distinct axis sectors: $(HM),(HL),(ML)$, each with two Hermitian components. These are the color-changing corridor modes analogous to entries such as $R\bar{G}$ or $B\bar{R}$.
+- **Off-diagonal color-changing modes:** six generators move or mix exceptionality between distinct axis sectors: $(12),(13),(23)$, each with two Hermitian components. These are the color-changing corridor modes analogous to entries such as $R\bar{G}$ or $B\bar{R}$.
 - **Diagonal traceless modes:** two additional generators are neutral in net color change but still act nontrivially on relative color phase and weighting across the three indexed binary-axis sectors. They are the diagonal traceless directions $H_1$ and $H_2$ described in [Color Charge and SU(3)](../fermions/color-charge-su3.md#generator-basis-from-axis-operations).
 - **The singlet removal:** the equal superposition
   $$
@@ -166,6 +166,8 @@ The validation gate is therefore:
 - **No free color:** an isolated color sector must exceed the free-color bound rather than becoming a long-lived asymptotic object.
 - **Mass-gap recovery:** closed pure strong-sector braids must have a finite lowest excitation scale instead of a continuum of arbitrarily soft color modes.
 - **Shared record:** the same Noether sea state variables must control tension, screening, and closed-braid excitation energy; otherwise the model has only matched separate QCD-looking observables by retuning.
+- **Running-coupling recovery:** that shared record must also produce color antiscreening at short distance while the electromagnetic sector remains screening. Naming vortex self-interaction is not enough; the sign and scale dependence must descend from the declared corridor and Noether sea response without a sector-specific sign choice.
+- **Massless-versus-massive corridor recovery:** the perturbative gluon channel must retain two transverse helicities and no localized rest gap even though an open color corridor carries an extensive separation cost, while the $W/Z$ corridors acquire localized massive-vector response. The same medium record must derive that distinction; confinement tension alone does not make a gluon a massive free particle.
 
 The compact gauge-invariant diagnostic is inherited from the Wilson-loop test in [Color Charge and SU(3)](../fermions/color-charge-su3.md#closure-interface-confinement-energy-scaling). Here $R$ and $T$ are the standard rectangular loop extents, with $T$ kept as a lattice-comparison label rather than the native absolute-time coordinate:
 $$
@@ -179,9 +181,9 @@ in the confining window. At the assembly level, this says that an open color cor
 
 A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md) and [Mesons](../mesons/mesons.md). This fixed assignment is a schematic component of the color-singlet state. The physical singlet is the fully antisymmetrized superposition over the $3!$ assignments to indexed sectors $a\in\{1,2,3\}$, with the Levi-Civita color tensor supplying the color-sector sign pattern.
 
-1. Red: H-exceptional
-2. Green: M-exceptional
-3. Blue: L-exceptional
+1. Red: axis-1 exceptional
+2. Green: axis-2 exceptional
+3. Blue: axis-3 exceptional
 
 - **Closure:** the triad covers the three color sectors exactly once, producing the singlet channel inside
   $$

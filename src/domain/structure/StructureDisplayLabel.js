@@ -16,7 +16,7 @@ const noetherBraidDisplayLabelsByBinaryPresenceKey = Object.freeze({
 
 const displayLabelsBySpecies = Object.freeze({
   noether_braid: "Noether braid",
-  noether_pair: "Noether Pair",
+  noether_pair: "Pro/anti-orientation Noether-braid composite",
   noether_quad: "Noether Quad",
   photon: "Photon",
   proton: "Proton",

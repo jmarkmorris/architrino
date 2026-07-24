@@ -12,7 +12,7 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
   assert.equal(BORG_BRAID_RECORD_CATALOG.id, BORG_BRAID_RECORD_CATALOG_ID);
   assert.equal(Object.isFrozen(BORG_BRAID_RECORD_CATALOG), true);
   assert.equal(Object.isFrozen(BORG_BRAID_RECORD_CATALOG.entries), true);
-  assert.equal(BORG_BRAID_RECORD_CATALOG.entries.length, 21);
+  assert.equal(BORG_BRAID_RECORD_CATALOG.entries.length, 20);
   assert.deepEqual(
     BORG_BRAID_RECORD_CATALOG.entries.map((entry) => entry.id),
     [
@@ -30,7 +30,6 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
       "illustrative-spindle-chart-hypothesis-v0",
       "illustrative-extreme-cap-tilt-spindle-variant-v0",
       "illustrative-planar-tri-binary-spindle-boundary-v0",
-      "illustrative-full-cap-axial-spindle-boundary-v0",
       "family-c-c1-co-rotating-general-v1",
       "family-c-c2-counter-rotating-general-v1",
       "family-c-c1-co-rotating-b1-pair-v1",
@@ -56,7 +55,6 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
       "B1.1 — interior reference",
       "B1.2 — high-axial interior",
       "B1.3 — all-equatorial boundary",
-      "B1.4 — all-axial boundary",
       "C1 — co-rotating",
       "C2 — counter-rotating",
       "C3 — co-rotating B1 pair",
@@ -72,7 +70,7 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
   });
   assert.deepEqual(
     BORG_BRAID_RECORD_CATALOG.entries.map((entry) => entry.familyId),
-    ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "B", "B", "C", "C", "C", "C", "C", "C"],
+    ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "B", "C", "C", "C", "C", "C", "C"],
   );
 });
 
@@ -124,7 +122,7 @@ test("Borg braid selection persists the exact replay URL when history replacemen
   const navigation = createBorgBraidRecordNavigation({
     historyLike: { replaceState(...args) { replaced.push(args); } },
   });
-  const recordId = BORG_BRAID_RECORD_CATALOG.entries[15].id;
+  const recordId = BORG_BRAID_RECORD_CATALOG.entries[14].id;
   const expected = navigation.buildUrl(recordId);
   assert.equal(navigation.persistSelection(recordId), true);
   assert.deepEqual(replaced, [[null, "", expected]]);

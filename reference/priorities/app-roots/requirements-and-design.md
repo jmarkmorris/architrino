@@ -1,8 +1,8 @@
-# Roots App Requirements And Design
+# Roots Mode Requirements And Design
 
 ## Purpose
 
-Roots is a linked-view visualization app for the causal-root fold described in [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse): as a source's velocity component toward a receiver crosses $c_f$, the delay-map function $g$ develops a new pair of zero-crossings (causal roots), the wake surfaces emitted by the source visibly compress on the approach side, the active-root count steps by $\pm2$, and the per-hit acceleration spikes but integrates to a finite velocity change. V1 renders all four of these as one synchronized 2x2 grid driven by a small shared control set, so a reader can watch one physical event (the fold) show up simultaneously as an algebraic fact, a geometric picture, a counting ledger, and a bounded kinematic consequence.
+Roots is a linked-view mode inside Causal Delay Feedback for the causal-root fold described in [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse): as a source's velocity component toward a receiver crosses $c_f$, the delay-map function $g$ develops a new pair of zero-crossings (causal roots), the wake surfaces emitted by the source visibly compress on the approach side, the active-root count steps by $\pm2$, and the per-hit acceleration spikes but integrates to a finite velocity change. V1 renders all four of these as one synchronized 2x2 grid driven by a small shared control set, so a reader can watch one physical event (the fold) show up simultaneously as an algebraic fact, a geometric picture, a counting ledger, and a bounded kinematic consequence.
 
 **Notation.** This packet writes receiver time as $T_r$ and transmit (emission) time as $T_t$, rather than `master-equation.md`'s bare $T$ and $T_{\mathrm{em}}$, so every pane and control can name "receiver" and "transmit" explicitly. Fold instants carry the same subscript pattern: $T_{r,\ast}$ is the receiver-time instant of the fold, $T_{t,\ast}$ the paired transmit-time instant. Drop the `r`/`t` subscripts to recover the `master-equation.md` symbols.
 
@@ -51,8 +51,9 @@ Numeric readout strip (not a fifth pane, a compact status row): current $\beta$,
 
 ## Implementation Boundaries (for when this is scoped for a build)
 
-- Keep route glue thin in a `roots.html` entry point, consistent with the other deployed apps.
-- Put runtime logic under `src/apps/roots/`, with separate modules for the shared kinematics state, Pane A (delay-map), Pane B (wake scene), Pane C (root ledger), Pane D (impulse), and the shared control strip.
+- Implement Roots as a Causal Delay Feedback mode; do not create a separate `roots.html` product by default.
+- Put mode logic behind focused Causal Delay Feedback modules for the shared kinematics state, Pane A (delay-map), Pane B (wake scene), Pane C (root ledger), Pane D (impulse), and the shared control strip.
+- Reuse the app's canonical source, receiver, retained-history state, causal-root evaluator, and wake renderer.
 - Do not add new behavior to root `app.js`.
 - Do not introduce a production solver path or new EOM integrator for this app; the fold quantities needed here (the local normal-form $g$, $D_s$, the $(T_{r,\ast}-T_r)^{-1/2}$ schematic magnitude, and the bounded integral) can be computed directly from the closed forms already derived in `master-equation.md` without dispatching the EOM solver.
 

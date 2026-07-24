@@ -22,7 +22,7 @@ Do not use this lane as the primary home for:
 - assembly definitions; use [Assemblies](../noether-braid/noether-braid.md),
 - dynamical laws; use [Dynamics](../dynamics/master-equation.md),
 - canonical spacetime mechanism chapters; use [Spacetime](../spacetime/observer-framework.md),
-- broad historical orientation; use [Philosophy and History](theory-mapping.md).
+- broad historical orientation; use [Philosophy and History](philosophy-history.md).
 
 ## Bridge Pattern
 
@@ -35,6 +35,9 @@ Each mature bridge should include:
 5. **Mathematical handoff:** equations that are preserved, re-derived, or replaced by a more primitive substrate expression.
 6. **Domain of validity:** the regime where the bridge is expected to match inherited physics.
 7. **Open closure targets:** derivations, simulations, or constraints needed before the bridge can be promoted from mapping to theorem.
+8. **Claim grade and evidence owner:** which statements are derived, measured, inferred, or guessed, and which independent instrument or canonical chapter owns each promoted claim.
+9. **Geometry placement and equivalence test:** which geometry is primitive, generated, or observer-effective, and what result would distinguish the proposed implementation from an empirically equivalent redescription.
+10. **Falsifier:** the operator-checkable observation, residual, or theorem failure that would overturn the bridge's proposed relation.
 
 ## Current Bridges
 

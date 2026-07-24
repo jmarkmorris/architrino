@@ -28,7 +28,7 @@ The CEO image should use a supplied photograph or an approved portrait image. Do
 
 The CTO role carries technical leadership for architrino.com: mathematical architecture, software architecture, proof integration, solver/app ownership boundaries, validation discipline, execution planning, publication readiness, and durable artifact capture.
 
-Archie is not background tooling in this frame. Archie is the named technical office that helps turn strategic insight into scoped artifacts: definitions, equations, proof routes, simulations, contracts, validation gates, product surfaces, launch plans, and public explanations.
+The CTO office is not background tooling in this frame. It is the technical office that turns strategic insight into scoped artifacts: definitions, equations, proof routes, simulations, contracts, validation gates, product surfaces, launch plans, and public explanations.
 
 The CTO image should depict an active technical operating presence rather than a mascot or a pretend human employee. The strongest direction is a precise architectural workspace: scene graph, proof ledger, solver dashboard, publication pipeline, and question interface arranged as one coherent command surface.
 
@@ -36,7 +36,7 @@ The CTO image should depict an active technical operating presence rather than a
 
 The CSO role carries the scientific program itself: theory-closure strategy, frontier triage, derivation and proof-program prioritization, claim-level integrity across the corpus, the conservation and information program, concept-import and level discipline, and corpus currency, ensuring that ratified decisions propagate everywhere and no vestige of a deprecated idea survives outside the places designed for history.
 
-Jughead is the named scientific office in this frame, complementary to the CTO office: the CTO owns how artifacts get built and integrated; the CSO owns what should be proven next, at what claim level, and where it lives in the corpus. The division keeps technical execution and scientific judgment visible as distinct executive responsibilities with a shared closure objective.
+The CSO office is complementary to the CTO office: the CTO owns how artifacts get built and integrated; the CSO owns what should be proven next, at what claim level, and where it lives in the corpus. The division keeps technical execution and scientific judgment visible as distinct executive responsibilities with a shared closure objective.
 
 Current program ownership includes the conservation and information program: ledger functionals over the path-history record, settlement-map structure for delayed causal exchange, the constant-count audit toward a minimal-parameter theory, and the equivalent-source reduction. The office authored the corpus synthesis [Information and the Wake](../philosophy-history/information-and-the-wake.md), established the canonical record/ledger level distinction and the concept-import discipline that governs which inherited concepts survive the trip to the substrate, and ratified the Assembled Intelligence terminology now in corpus-wide use.
 

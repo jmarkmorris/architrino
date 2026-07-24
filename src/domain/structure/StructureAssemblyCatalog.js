@@ -1,14 +1,14 @@
-const NOETHER_PAIR_CORE_POLARITIES = Object.freeze(["pro", "anti"]);
-const NOETHER_QUAD_CORE_POLARITIES = Object.freeze(["pro", "anti", "pro", "anti"]);
+const NOETHER_PAIR_CORE_ORIENTATIONS = Object.freeze(["pro", "anti"]);
+const NOETHER_QUAD_CORE_ORIENTATIONS = Object.freeze(["pro", "anti", "pro", "anti"]);
 
 const noetherAssemblyDisplayLabels = Object.freeze({
-  noether_pair: "Noether Pair",
+  noether_pair: "Pro/anti-orientation Noether-braid composite",
   noether_quad: "Noether Quad",
 });
 
-const noetherAssemblyCorePolarities = Object.freeze({
-  noether_pair: NOETHER_PAIR_CORE_POLARITIES,
-  noether_quad: NOETHER_QUAD_CORE_POLARITIES,
+const noetherAssemblyCoreOrientations = Object.freeze({
+  noether_pair: NOETHER_PAIR_CORE_ORIENTATIONS,
+  noether_quad: NOETHER_QUAD_CORE_ORIENTATIONS,
 });
 
 function normalizeText(value = "") {
@@ -27,15 +27,15 @@ export function getStructureAssemblyDisplayLabel(templateId = "", fallbackLabel 
   );
 }
 
-export function getStructureAssemblyCorePolarities(templateId = "") {
+export function getStructureAssemblyCoreOrientations(templateId = "") {
   return (
-    noetherAssemblyCorePolarities[normalizeText(templateId)] ??
+    noetherAssemblyCoreOrientations[normalizeText(templateId)] ??
     Object.freeze([])
   );
 }
 
 export function isNoetherAssemblyTemplateId(templateId = "") {
-  return getStructureAssemblyCorePolarities(templateId).length > 0;
+  return getStructureAssemblyCoreOrientations(templateId).length > 0;
 }
 
 export function isNoetherQuadTemplateId(templateId = "") {

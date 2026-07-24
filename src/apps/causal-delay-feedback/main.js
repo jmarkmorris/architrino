@@ -96,6 +96,7 @@ export function createCausalDelayFeedbackRuntimeForPage(windowLike = globalThis.
     window: windowLike,
     replayAdapter,
     fallbackReplayAdapter,
+    initialMode: getInitialQueryValue(windowLike, "mode") ?? "story",
     replayRequestOptions: createCausalDelayFeedbackInitialReplayRequestOptions(windowLike),
   });
 }

@@ -27,7 +27,7 @@ $$
 \right)
 $$
 
-Here $\mathbf{V}_{\text{cm}}$ and $\mathbf{a}_{\text{cm}}$ record center-of-mass transport, $\rho_{\text{NS}}$ and $\chi_{\text{sea}}$ record the local Noether sea state, $\mathcal{M}_{\text{sea}}^{ab}$ records the medium-response tensor, and $\Delta_{\mathbf{k}}$ records the relevant assembly non-symmetry stability gap inherited from the branch certificate — despite the subscript, it is not a band gap indexed by the Bloch wavevector $\mathbf k$ used later in this chapter. The equation defines the diagnostic target; it does not yet prove the constitutive form of $\mathcal{R}_{\text{tr}}$.
+Here $\mathbf{V}_{\text{cm}}$ and $\mathbf{a}_{\text{cm}}$ record center-of-mass transport, $\rho_{\text{NS}}$ and $\chi_{\text{sea}}$ record the local Noether sea state, $\mathcal{M}_{\text{sea}}^{ab}$ records the medium-response tensor, and $\Delta_{\mathbf{k}}$ is the canonical assembly non-symmetry Floquet gap inherited from the branch certificate. It is unrelated to the Bloch wavevector $\mathbf k$ used later in this chapter. The equation defines the diagnostic target; it does not yet prove the constitutive form of $\mathcal{R}_{\text{tr}}$.
 
 The critical surface is
 
@@ -102,11 +102,58 @@ p_{\mathrm{rev}}^{a}
 \mathcal{M}_{+}^{ab}V_{\text{cm},b}
 $$
 
-The antisymmetric part drops out because
+The antisymmetric part drops out of the scalar energy because
 
 $$
 V_{\text{cm},a}\mathcal{M}_{-}^{ab}V_{\text{cm},b}=0
 $$
+
+but it need not vanish from the momentum response. Define the branch-preserving gyroscopic contribution by
+
+$$
+p_{\mathrm{gyro}}^{a}
+=
+\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)\,
+\mathcal{M}_{-}^{ab}V_{\text{cm},b},
+\qquad
+V_{\text{cm},a}p_{\mathrm{gyro}}^{a}=0
+$$
+
+This orthogonality proves that $p_{\mathrm{gyro}}^a$ cannot be folded into the scalar quadratic energy or scalar mass. It does not by itself prove zero power during acceleration. Even when the prefactor and $\mathcal M_-^{ab}$ are stationary,
+
+$$
+\mathcal P_{\mathrm{gyro}}
+\equiv
+V_{\text{cm},a}\frac{d p_{\mathrm{gyro}}^a}{dT}
+=
+\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)\,
+V_{\text{cm},a}\mathcal M_-^{ab}
+\frac{dV_{\text{cm},b}}{dT},
+$$
+
+which need not vanish. Over a closed path $C_V$ in velocity space,
+
+$$
+\Delta E_{\mathrm{gyro}}[C_V]
+=
+\oint_{C_V}V_{\text{cm},a}\,d p_{\mathrm{gyro}}^a
+$$
+
+may therefore record a finite reversible exchange with the material-orientation or Noether sea circulation ledger. It must not be classified as dissipation unless the completed cycle leaves an unreturned excitation or heating channel.
+
+A sufficient acceleration-level form for a strictly workless transverse response is instead
+
+$$
+A_{\mathrm{gyro}}^a
+=
+\mathcal G^{ab}V_{\text{cm},b},
+\qquad
+\mathcal G^{ab}=-\mathcal G^{ba},
+\qquad
+V_{\text{cm},a}A_{\mathrm{gyro}}^a=0.
+$$
+
+This row changes direction without changing $V_{\text{cm}}^2$ at that instant. The momentum-response and acceleration-response forms are not interchangeable without the constitutive map that relates $\mathcal M_-^{ab}$, $\mathcal G^{ab}$, and the medium exchange record.
 
 Thus the directional inertial readout below threshold is
 
@@ -117,7 +164,7 @@ m_{\mathrm{eff}}(\hat v;A,\theta_{\mathrm{sea}})
 \hat v_a\mathcal{M}_{+}^{ab}(\theta_{\mathrm{sea}})\hat v_b
 $$
 
-The dimensional convention is fixed by the weak isotropic limit $\mathcal{M}_{\text{sea}}^{ab}\to\delta^{ab}/c_{\text{eff}}^2$, so $m_{\mathrm{eff}}$ reduces to the roadmap scalar $\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)/c_{\text{eff}}^2$ of [Particle Masses](../assemblies/particle-masses.md). This is not a completed derivation of $\mathcal{M}_{+}^{ab}$; it is the reversible-response lemma that any derivation must satisfy. If an antisymmetric response, drag-like coefficient, or nonzero work-loss term appears below $\mathcal{R}_{\text{tr},*}$, it cannot be hidden inside scalar mass. It must either vanish in the branch-preserving limit or be routed to an orientation, excitation, heating, radiation-like, boundary-exchange, or branch-transition channel.
+The dimensional convention is fixed by the weak isotropic limit $\mathcal{M}_{\text{sea}}^{ab}\to\delta^{ab}/c_{\text{eff}}^2$, so $m_{\mathrm{eff}}$ reduces to the roadmap scalar $\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)/c_{\text{eff}}^2$ of [Particle Masses](../assemblies/particle-masses.md). This is not a completed derivation of $\mathcal{M}_{+}^{ab}$, $\mathcal{M}_{-}^{ab}$, or $\mathcal G^{ab}$; it is the reversible-response lemma that any derivation must satisfy. Below $\mathcal{R}_{\text{tr},*}$, a nonzero antisymmetric momentum term is admissible in steady transport or with its acceleration-cycle exchange balanced by the orientation/circulation ledger. A strictly workless transverse term must satisfy the acceleration-level contraction above. Any drag-like coefficient or net work-loss term must instead vanish in the branch-preserving limit or be routed to an excitation, heating, radiation-like, boundary-exchange, or branch-transition channel.
 
 ## Lattice and Band-Response Recovery
 
@@ -413,6 +460,38 @@ C_{\mathrm{filled}}
 $$
 
 Fractional quantum Hall states, anyons, non-Abelian edge sectors, Chern-Simons effective actions, and chiral boundary liquids are valuable comparison material, but they should stay in the recovery/comparison bucket unless a local $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target consumes them directly. The safe present requirement is narrower: recover quantized Hall response, edge robustness, fractional charge/statistics as observer-level collective behavior where experimentally required, and keep every topological field description downstream of the effective material branch rather than treating it as substrate ontology.
+
+### Superconducting Response Benchmark
+
+Superconductivity is the strongest low-loss transport benchmark for the threshold picture. A superconducting material branch must recover persistent current and vanishing longitudinal resistive loss below its declared critical surface while remaining distinct from an ideal normal-metal branch. Crossing a critical temperature, current, magnetic loading, vortex-motion threshold, or material defect must open the corresponding excitation, heating, or branch-transition channel rather than being hidden as Noether sea drag.
+
+The magnetic comparison has two coupled requirements. The same effective U(1) material connection must recover the Meissner response in the applicable branch and the conventional paired-branch flux quantum
+
+$$
+\Phi_0
+=
+\frac{h}{2e}
+$$
+
+as an observer-level benchmark. The factor $2e$ tests the branch's composite pairing and exchange-statistics map; it is not inserted as a new substrate carrier or as proof that every superconducting branch shares one microscopic mechanism. Type-II vortex transport further sharpens the threshold ledger: pinned vortices may preserve a zero-loss branch, while vortex motion must appear as a logged resistive channel.
+
+A minimal same-record residual may be organized as
+
+$$
+\mathcal R_{\mathrm{sc}}
+=
+\mathcal R_{\rho_{xx}\to0}
++
+\mathcal R_{\mathrm{Meissner}}
++
+\mathcal R_{\Phi_0}
++
+\mathcal R_{\mathrm{pair}}
++
+\mathcal R_{\mathrm{crit}}
+$$
+
+where the five entries test zero longitudinal resistance, magnetic expulsion, flux quantization, paired-branch statistics, and the declared critical surface. The benchmark fails if these observables require unrelated material maps or if a persistent current loses energy below threshold without a logged disturbance.
 
 ### Photon-Coupled Surface Transport
 

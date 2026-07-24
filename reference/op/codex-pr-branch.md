@@ -122,6 +122,88 @@ authorize arbitrary future script contents. The permitted authority is the
 documented guarded lifecycle, not a general shell or script execution
 capability.
 
+#### Permission measurement
+
+Measure unattended execution separately from ordinary progress reporting:
+
+- an `operator decision prompt` asks the operator/developer to authorize,
+  choose, or confirm a lifecycle step already covered by this contract;
+- a `host permission prompt` is an interactive approval dialog emitted by the
+  host application for filesystem, command, network, or external-service
+  access;
+- an `escalation invocation` is a tool call that requests elevated execution,
+  whether a persisted narrow prefix resolves it silently or the host displays
+  an approval dialog; and
+- a `progress update` reports state while execution continues and is not a
+  prompt.
+
+Initialize and retain these counters for each handoff:
+
+- `operatorDecisionPromptCount`;
+- `hostPermissionPromptCount`;
+- `escalationInvocationCount`; and
+- `reusedApprovalCount`, for escalation invocations resolved non-interactively
+  by a previously approved narrow prefix.
+
+If the host does not expose whether an escalation produced an interactive
+dialog, report `hostPermissionPromptCount` as `unknown`, not zero. A handoff
+with an unknown count is complete as a Git lifecycle but does not qualify as a
+verified unattended run.
+
+The healthy-path budget for each handoff is:
+
+- `operatorDecisionPromptCount = 0`; and
+- `hostPermissionPromptCount = 0`.
+
+Persisted, non-interactive narrow-prefix reuse is permitted and is measured by
+`escalationInvocationCount` and `reusedApprovalCount`; it does not consume the
+interactive prompt budget.
+
+#### Host-permission execution discipline
+
+Apply these rules before issuing routine commands:
+
+1. Run read-only Git inspection, `gh pr` inspection, and remote-check watching
+   without preemptive escalation.
+2. Do not escalate a command merely because it uses network access.
+3. For a known protected Git write, use a direct command with the narrow,
+   stable command shape already approved for that operation.
+4. Do not wrap protected mutations in an orchestration layer when a direct
+   command is sufficient; direct invocation makes narrow-prefix matching
+   observable and reusable.
+5. Keep read-only verification separate from a mutating command so the
+   verification does not inherit the mutation's permission requirement.
+6. Request escalation only after a real sandbox denial or for a command known
+   to require protected Git metadata writes.
+7. When a new host approval is unavoidable, request one narrow reusable prefix,
+   record the interaction, and continue the authorized lifecycle. Do not
+   replace it with repeated one-off approvals.
+8. Never request a broad `git`, shell, interpreter, or repository-local-wrapper
+   approval as a shortcut around this discipline.
+
+A host permission prompt does not revoke the standing lifecycle authorization,
+but it makes that handoff nonqualifying for unattended-verification purposes.
+Report the event instead of silently claiming the no-prompt objective passed.
+
+#### Three-run closed-loop acceptance
+
+The unattended-execution correction is verified only after three consecutive
+healthy, fully completed two-handoff lifecycles satisfy all of the following:
+
+- both handoffs meet the zero/zero healthy-path prompt budget;
+- both handoff receipts include all four permission counters;
+- PR identity, validation, merge, cleanup, and successor rollover satisfy this
+  procedure; and
+- the observation is recorded in
+  [codex-pr-unattended-verification.md](codex-pr-unattended-verification.md).
+
+A lifecycle stopped by a mandatory safety boundary does not count as a
+qualifying run. An operator decision prompt, host permission prompt, unknown
+host prompt count, missing permission counter, or false unattended claim
+breaks the consecutive sequence and resets the qualifying count to zero.
+Do not mark the corrective action closed before the ledger contains three
+consecutive qualifying runs.
+
 ### Mandatory pause boundary
 
 Standing authorization ends and the agent must stop with an exact blocker map
@@ -552,7 +634,12 @@ Before returning the ready PR for operator/developer review, record:
 - base branch name and the current `origin/main` SHA;
 - ready/draft state and `mergeStateStatus`;
 - local validation commands and their final pass state; and
-- remote check state.
+- remote check state;
+- `operatorDecisionPromptCount`;
+- `hostPermissionPromptCount`;
+- `escalationInvocationCount`;
+- `reusedApprovalCount`; and
+- whether the first handoff qualifies under the zero/zero prompt budget.
 
 The second handoff should use the exact PR number from this receipt. A later
 thread may fall back to branch-name discovery only when the receipt is
@@ -773,6 +860,26 @@ git branch --show-current
 git status -sb
 ```
 
+### 4. Record the post-merge handoff receipt
+
+Before returning the completed rollover state, record:
+
+- the exact merged PR number, URL, `headRefName`, and reviewed `headRefOid`;
+- whether local `HEAD` matched that `headRefOid` before branch deletion;
+- the synchronized local and remote `main` SHA;
+- confirmation that the completed branch is absent locally and remotely;
+- the successor branch name, remote publication state, upstream, and tip SHA;
+- `operatorDecisionPromptCount`;
+- `hostPermissionPromptCount`;
+- `escalationInvocationCount`;
+- `reusedApprovalCount`; and
+- whether the second handoff and the full lifecycle qualify under the
+  zero/zero prompt budget.
+
+Update the unattended-verification ledger only from exact retained receipts and
+operator- or host-observed prompt counts. Never infer an unobserved interactive
+prompt count as zero merely to make a run qualify.
+
 ## Full Lifecycle State Sequence
 
 The detailed sections above own the commands. This table defines the allowed
@@ -819,10 +926,10 @@ When this procedure is executed, the final response should not stop at generic g
 - Summarize the branch/PR outcome, cleanup state, and next-branch rollover state clearly enough that the operator/developer can verify the procedure actually completed.
 - At the ready-PR handoff, report the publish handoff receipt: PR number and
   URL, `headRefName`, `headRefOid`, base SHA, local validation state, remote
-  check state, and mergeability state.
+  check state, mergeability state, and all four permission counters.
 - At the post-merge handoff, identify the exact PR number used for verification
   and state whether local `HEAD` matched its reviewed `headRefOid` before
-  deletion.
+  deletion, then report all four permission counters for the second handoff.
 - If a new branch was created, include the exact new branch name and whether it was published to `origin`.
 - If a new branch was created from a named branch series, include one substantive paragraph about the item named by that branch.
 - For a periodic-table branch, that element paragraph should include, when applicable and known:
@@ -844,11 +951,13 @@ After a healthy first handoff:
 - the PR is open in ready mode with passing remote checks and verified
   mergeability; and
 - the publish handoff receipt gives the operator/developer an exact review
-  target.
+  target and measurable permission counters.
 
 After a healthy second handoff:
 
 - the exact PR merge and reviewed branch tip have been verified;
 - local `main` and remote `main` are synchronized;
 - the previous branch has been deleted locally and remotely; and
-- the next branch exists and is published from synchronized `main`.
+- the next branch exists and is published from synchronized `main`; and
+- the post-merge receipt records the second handoff's measurable permission
+  counters.

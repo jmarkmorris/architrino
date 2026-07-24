@@ -222,7 +222,7 @@ Here $\mu_{\Omega,\theta}$ is a coarse-grained conditional measure over complete
 
 The boundary-wake covariance is then
 $$
-N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
+\mathsf N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
 =
 \int
 \delta Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)\,
@@ -233,7 +233,7 @@ It is positive semidefinite by construction as a channel covariance:
 $$
 \int\!\!\int
 f_A(t_{\mathrm{eff}})\,
-N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)\,
+\mathsf N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)\,
 f_B(t_{\mathrm{eff}}')\,dt_{\mathrm{eff}}\,dt_{\mathrm{eff}}'
 \ge 0
 $$
@@ -241,13 +241,13 @@ for every resolved test channel $f_A(t_{\mathrm{eff}})$ on the observation windo
 
 A detector model may add separately calibrated residuals,
 $$
-N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
+\mathsf N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
 =
-N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
+\mathsf N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
 +
-N^{\mathrm{det}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
+\mathsf N^{\mathrm{det}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
 +
-N^{\mathrm{env}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
+\mathsf N^{\mathrm{env}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
 $$
 The same decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
 
@@ -261,13 +261,13 @@ O_W,
 \mathcal{B}_{\partial\Omega}^{(O)}(W),
 \widehat{\mathcal{B}}_{\partial\Omega}(W),
 \mu_{\Omega,\theta},
-N^{\mathrm{bw}}_{AB},
-N^{\mathrm{det}}_{AB},
-N^{\mathrm{env}}_{AB},
+\mathsf N^{\mathrm{bw}}_{AB},
+\mathsf N^{\mathrm{det}}_{AB},
+\mathsf N^{\mathrm{env}}_{AB},
 \Pi_{\mathrm{ADM}}
 \right)
 $$
-where $\Pi_{\mathrm{ADM}}$ is the observer-level projection, owned by the effective-metric map, to $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},\Phi_{\text{eff}},\chi_{\text{sea}})$. Here the lapse $N$ inside $\Pi_{\mathrm{ADM}}$, the medium-state notation $N_{\text{sea}}$, and the covariance kernels $N^{\mathrm{bw}}_{AB}$, $N^{\mathrm{det}}_{AB}$, and $N^{\mathrm{env}}_{AB}$ are distinct objects despite sharing the same roman letter. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must be read from $\Theta_{\mathrm{weak}}^{(O,W)}$ with the same covariance and boundary-data model. A channel-specific replacement of $\mu_{\Omega,\theta}$, $N^{\mathrm{bw}}_{AB}$, or the imported $\Pi_{\mathrm{ADM}}$ is therefore a retuning residual, not an improved observer model.
+where $\Pi_{\mathrm{ADM}}$ is the observer-level projection, owned by the effective-metric map, to $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},\Phi_{\text{eff}},\chi_{\text{sea}})$. The lapse $N$ inside $\Pi_{\mathrm{ADM}}$ and the medium-state notation $N_{\text{sea}}$ are distinct from the covariance kernels, which consistently use the sans-serif symbol $\mathsf N_{AB}$. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must be read from $\Theta_{\mathrm{weak}}^{(O,W)}$ with the same covariance and boundary-data model. A channel-specific replacement of $\mu_{\Omega,\theta}$, $\mathsf N^{\mathrm{bw}}_{AB}$, or the imported $\Pi_{\mathrm{ADM}}$ is therefore a retuning residual, not an improved observer model.
 
 The same declared-measure discipline applies to observer-level probability tables and ensemble summaries. For a Physical Observer record $\theta$, observation window $W$, readout channel $Y_A$, and event set $B$, the probability assigned to that readout should be a pushforward of the conditional measure already tied to retained boundary data:
 $$

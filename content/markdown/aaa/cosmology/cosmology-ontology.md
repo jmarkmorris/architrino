@@ -27,6 +27,7 @@ All cosmological observables are computed from absolute-state evolution and then
 
 ## Cosmology Document Set
 
+- [cosmology-reconstruction.md](./cosmology-reconstruction.md): reconstruction of observer-level cosmology products from received records before ontological interpretation.
 - [expansion-mechanism.md](./expansion-mechanism.md): canonical expansion and redshift mapping in fixed void ontology.
 - [inflation-model.md](./inflation-model.md): emergent early rapid-expansion model and conceptual inflation framing.
 - [BBN-constraints.md](./BBN-constraints.md): light-element abundance constraints under emergent $H_{\mathrm{eff}}(t_{\mathrm{eff}})$.
@@ -179,6 +180,87 @@ $$
 $$
 The pass condition is not a preferred external cosmology. It is that $\Delta M_{\mathrm{eff}}$ be supplied by assembly association, dissociation, transport, recycling, or Noether sea exchange in the same absolute record. Otherwise the branch has kept an effective density constant by inserting a source without provenance.
 
+### Steady-State Thermodynamic Ledger
+
+An eternal or unbounded-age branch must explain why the received sky brightness is finite and why repeated recycling does not create unbounded observer-window entropy. Neither burden is resolved by assigning absorption or processing to SMBHs. Absorbed energy must be re-emitted, stored, transported, or converted on the same record, and any apparent entropy decrease inside a processing region must be balanced by its boundary and environment.
+
+For a receiver event $R$, direction $\hat{\mathbf k}$, and lower absolute-time cutoff $T_-$, let the received specific intensity be
+
+$$
+I_{\nu,R}^{(T_-)}(\hat{\mathbf k})
+=
+\int_{\gamma_R(T_-)}
+j_{\nu_e}\!\left(\mathbf X(s),T(s),\hat{\mathbf k}\right)
+\mathcal T_{\nu_e\to\nu}\!\left(s;\theta_{\mathrm{sea}}\right)
+\,ds,
+$$
+
+where $j_{\nu_e}$ is the source emissivity on the retained photon-channel path and $\mathcal T_{\nu_e\to\nu}$ contains absorption, reprocessing, frequency transfer, and survival to $R$. The all-sky brightness is
+
+$$
+\mathcal B_R(T_-)
+=
+\int_{S^2}d\Omega
+\int_0^\infty
+I_{\nu,R}^{(T_-)}(\hat{\mathbf k})\,d\nu.
+$$
+
+The dark-sky convergence condition is
+
+$$
+\limsup_{T_-\to-\infty}
+\mathcal B_R(T_-)
+<
+\infty
+$$
+
+for each declared receiver class. A branch fails if finite brightness is obtained by deleting absorbed or redshift-transferred energy from the source, Noether sea, remnant, recoil, or boundary ledger.
+
+The entropy burden uses the same windowed record as [Entropy](../dynamics/entropy.md#second-law-and-same-record-monotonicity). For recycling pass $c$ through a bounded region $W$, write
+
+$$
+\Delta S_{W,c}
+=
+\Sigma_{\mathrm{int},c}
++
+\Phi_{S,\mathrm{in},c}
+-
+\Phi_{S,\mathrm{out},c}
++
+\mathcal R_{S,c},
+\qquad
+\Sigma_{\mathrm{int},c}\ge0,
+$$
+
+where $\Sigma_{\mathrm{int},c}$ is interior entropy production, $\Phi_{S,\mathrm{in/out},c}$ are entropy-bearing boundary records, and $\mathcal R_{S,c}$ records changes in coarse-graining or retained access. Statistical recurrence requires more than return of the visible matter variables:
+
+$$
+\sup_N
+\left|
+\sum_{c=1}^{N}\Delta S_{W,c}
+\right|
+<
+\infty,
+\qquad
+\sum_{c=1}^{N}
+\left(
+\Phi_{S,\mathrm{out},c}
+-
+\Phi_{S,\mathrm{in},c}
+\right)
+=
+\sum_{c=1}^{N}
+\left(
+\Sigma_{\mathrm{int},c}
++
+\mathcal R_{S,c}
+\right)
++
+\mathcal O(1).
+$$
+
+The Noether sea retuning ratio $\Lambda_{\mathrm{sea}}=T_{\mathrm{retune}}/T_{\mathrm{cycle}}$ determines how the cycle is read. When $\Lambda_{\mathrm{sea}}\ll1$, a state-function entropy comparison may be available. When $\Lambda_{\mathrm{sea}}\gtrsim1$, the hysteresis-loop record must remain in $\mathcal R_{S,c}$ or the interior-production row; resetting the visible macrostate does not reset the path history. SMBH processing closes this ledger only if its captured assemblies, emitted photon and neutrino channels, Noether sea update, remnants, causal wakes, and boundary fluxes satisfy the same balance.
+
 ## Observation-First Component Abstraction
 
 This framework does not treat cosmology as "$\mathbb{A}\mathbb{A}\mathbb{A}$ vs $\Lambda\mathrm{CDM}$" at the bundled-model level. Instead, first abstract $\Lambda\mathrm{CDM}$ into separable observational components with no interpretational linkage baked in:
@@ -296,7 +378,7 @@ d\!\left(\widehat{\mu}_{W_a,t_{\mathrm{eff}}},\widehat{\mu}_{W_b,t_{\mathrm{eff}
 $$
 Large-scale homogeneity is accepted only when this residual remains within the declared tolerance while the same $\theta_{\mathrm{sea}}$ also passes the expansion, CMB, BBN, growth, lensing, and calibration gates. This is a scale-neutral diagnostic over observer-facing data products, not an import of a shape-first cosmology or a replacement for the fixed Euclidean void.
 
-The same rule applies across modules. A promoted cosmology claim must preserve one shared Noether sea state record $\theta_{\mathrm{sea}}$ through expansion, CMB transfer, BBN, growth, lensing, and local calibration. If those modules can be fit only by replacing the state record or projection map per observable family, the result is benchmark fitting rather than cosmology closure. The dark-energy branch states this as a shared residual gate in [dark-energy.md](./dark-energy.md#inference-dependency-and-calibration-gates).
+The same rule applies across modules. A promoted cosmology claim must preserve one shared Noether sea state record $\theta_{\mathrm{sea}}$ through expansion, CMB transfer, BBN, growth, lensing, and local calibration. If those modules can be fit only by replacing the state record or projection map per observable family, the result is benchmark fitting rather than cosmology closure. The dark-energy branch states this as a shared residual gate in [dark-energy.md](./dark-energy.md#inference-dependency-and-calibration-gates), while [Cosmology Shared Residual Fit](../validation/simulations/cosmology-shared-residual-fit.md) owns the cross-module packet schema and residual-vector protocol. This page does not duplicate those operational definitions.
 
 ### Prediction Narrowness and Initial-Basin Burden
 
@@ -461,6 +543,25 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ may borrow explanatory motifs from QSSC/cyclica
 - Effective cosmological chronology is therefore a stitched observational map of many local histories, not one literal global launch event.
 - Large-scale homogeneity can be treated as a statistical outcome of repeated local processes governed by the same microphysics, while permitting local fluctuations and anisotropic environments.
 - Large-scale organization can be treated as mostly scale-invariant in architecture while still allowing finite-scale departures from statistical uniformity.
+
+### Acoustic-Ruler Coherence Burden
+
+A galaxy-local recycling account must recover the near-universality of the baryon acoustic ruler from the same source, release, thermalization, and transfer record used for CMB acoustic structure. The effective scale history $a_{\mathrm{eff}}$ is a stitched observer summary; it is not a literal global separation history unless that map is derived.
+
+For source patch $p$ and observational bin $b$, let $r_{d,pb}^{\theta}$ be the ruler predicted by one shared cosmology record $\theta$, with covariance-projected tolerance $\sigma_{r,pb}$. Define
+
+$$
+\bar r_d^\theta
+=
+\frac{\sum_{p,b}w_{pb}r_{d,pb}^{\theta}}{\sum_{p,b}w_{pb}},
+\qquad
+\mathcal R_{\mathrm{BAO,coh}}(\theta)
+=
+\max_{p,b}
+\frac{|r_{d,pb}^{\theta}-\bar r_d^\theta|}{\sigma_{r,pb}}.
+$$
+
+The branch must satisfy $\mathcal R_{\mathrm{BAO,coh}}\le1$ without tuning the ruler separately by source patch or tracer bin. Failure means local recycling has not recovered the coherent standard-ruler data product, even if it supplies a qualitative thermal-background story.
 
 ## Time Notions (Operational)
 

@@ -46,6 +46,19 @@ import { BORG_RELEASE_BUDGET_MANIFEST_V1 } from "./BorgReleaseBudgetManifest.js"
 import { createBorgPathTrails } from "./BorgPathTrails.js";
 import { createBorgAssemblyViewControls } from "./BorgAssemblyViewControls.js";
 import { createBorgAssemblyViewScene } from "./BorgAssemblyViewScene.js";
+import { createBorgPrescribedAnalysisScene } from "./BorgPrescribedAnalysisScene.js";
+import {
+  createBorgPrescribedAnalysisProvider,
+  createBorgPrescribedAnalysisRequestCoordinator,
+} from "./BorgPrescribedAnalysisProvider.js";
+import {
+  BORG_PRESCRIBED_DISPLAY_FRAME_FIXED,
+  applyBorgPrescribedDisplayFrame,
+  applyBorgPrescribedVelocityFrame,
+} from "./BorgPrescribedTranslation.js";
+import {
+  createBorgReceiverEventIdentity,
+} from "./BorgPrescribedAnalysisProjection.js";
 import {
   createBorgAssemblyViewSession,
   resolveBorgAssemblyViewTrail,
@@ -315,6 +328,29 @@ export function mountBorgApp(options = {}) {
     replayOverlayFields: queryRequiredElement(documentLike, "#borg-replay-overlay-fields"),
     replayBinaryGeometryTable: queryRequiredElement(documentLike, "#borg-binary-geometry-table"),
     replayTrailSummary: queryRequiredElement(documentLike, "#borg-replay-trail-summary"),
+    prescribedTranslationFrame: queryRequiredElement(documentLike, "#borg-prescribed-translation-frame"),
+    prescribedTranslationStatus: queryRequiredElement(documentLike, "#borg-prescribed-translation-status"),
+    prescribedHistoryDepth: queryRequiredElement(documentLike, "#borg-prescribed-history-depth"),
+    prescribedHistoryDepthOutput: queryRequiredElement(documentLike, "#borg-prescribed-history-depth-output"),
+    prescribedTubeToggle: queryRequiredElement(documentLike, "#borg-prescribed-tube-toggle"),
+    prescribedTubeRadius: queryRequiredElement(documentLike, "#borg-prescribed-tube-radius"),
+    prescribedTubeOpacity: queryRequiredElement(documentLike, "#borg-prescribed-tube-opacity"),
+    prescribedDisplayReadout: queryRequiredElement(documentLike, "#borg-prescribed-display-readout"),
+    prescribedProviderStatus: queryRequiredElement(documentLike, "#borg-prescribed-provider-status"),
+    prescribedReceiverStatus: queryRequiredElement(documentLike, "#borg-prescribed-receiver-status"),
+    prescribedClearReceiver: queryRequiredElement(documentLike, "#borg-prescribed-clear-receiver"),
+    prescribedVirtualProbeFields: queryRequiredElement(documentLike, "#borg-prescribed-virtual-probe-fields"),
+    prescribedVirtualProbeId: queryRequiredElement(documentLike, "#borg-prescribed-probe-id"),
+    prescribedVirtualProbeX: queryRequiredElement(documentLike, "#borg-prescribed-probe-x"),
+    prescribedVirtualProbeY: queryRequiredElement(documentLike, "#borg-prescribed-probe-y"),
+    prescribedVirtualProbeZ: queryRequiredElement(documentLike, "#borg-prescribed-probe-z"),
+    prescribedVirtualProbePolarity: queryRequiredElement(documentLike, "#borg-prescribed-probe-polarity"),
+    prescribedVirtualProbeBind: queryRequiredElement(documentLike, "#borg-prescribed-bind-probe"),
+    prescribedContributionToggle: queryRequiredElement(documentLike, "#borg-prescribed-contribution-toggle"),
+    prescribedAnalysisStatus: queryRequiredElement(documentLike, "#borg-prescribed-analysis-status"),
+    prescribedAnalysisTable: queryRequiredElement(documentLike, "#borg-prescribed-analysis-table"),
+    prescribedBranchPlot: queryRequiredElement(documentLike, "#borg-prescribed-root-branch-plot"),
+    prescribedAnalysisProvenance: queryRequiredElement(documentLike, "#borg-prescribed-analysis-provenance"),
   };
 
   const initialEomSeed = options.initialEomSeed ?? null;
@@ -348,7 +384,13 @@ export function mountBorgApp(options = {}) {
   const pathGroup = new THREE.Group();
   const velocityGroup = new THREE.Group();
   const pointGroup = new THREE.Group();
-  assemblyContentGroup.add(pathGroup, velocityGroup, pointGroup);
+  const prescribedAnalysisGroup = new THREE.Group();
+  assemblyContentGroup.add(
+    pathGroup,
+    velocityGroup,
+    pointGroup,
+    prescribedAnalysisGroup,
+  );
   rootGroup.add(boundaryShellGroup, assemblyContentGroup);
   scene.add(rootGroup);
 
@@ -509,6 +551,8 @@ export function mountBorgApp(options = {}) {
     replayDisplayMode: activeReplayEntry?.dataset.provenance.claimGrade === "chart-hypothesis"
       ? "chart-pose"
       : "animated",
+    activeDisplayTime: activeReplayEntry?.dataset.window.start ?? 0,
+    prescribedTranslationFrame: BORG_PRESCRIBED_DISPLAY_FRAME_FIXED,
     pathTrailDuration: activeReplayEntry
       ? resolveBorgAssemblyViewTrail(activeReplayEntry).duration
       : normalizePathTrailDuration(DEFAULT_PATH_TRAIL_DURATION),
@@ -542,12 +586,45 @@ export function mountBorgApp(options = {}) {
 
   const assemblyViewScene = createBorgAssemblyViewScene({
     group: assemblyContentGroup,
-    toWorld: writeSolverPositionToWorld,
+    toWorld: writeSourcePositionToWorld,
     render,
   });
   if (activeReplayEntry) {
     assemblyViewScene.setRecord(activeReplayEntry);
   }
+  const prescribedAnalysisScene = createBorgPrescribedAnalysisScene({
+    group: prescribedAnalysisGroup,
+    toWorld: writeSourcePositionToWorld,
+    getDisplayPosition(position, time) {
+      return getPrescribedDisplayPosition(position, time);
+    },
+    render,
+  });
+  const analysisProjectionUrl = options.prescribedAnalysisProjectionUrl ??
+    new URLSearchParams(windowLike.location?.search ?? "")
+      .get("prescribedAnalysis");
+  const prescribedAnalysisProvider = options.prescribedAnalysisProvider ??
+    createBorgPrescribedAnalysisProvider({
+      fetchLike: options.fetchLike ?? windowLike.fetch?.bind(windowLike) ?? globalThis.fetch,
+      projectionUrl: analysisProjectionUrl,
+      projection: options.prescribedAnalysisProjection ?? null,
+      cryptoLike: options.cryptoLike ?? windowLike.crypto ?? globalThis.crypto,
+      expectedProtocolHash: options.prescribedAnalysisProtocolHash ?? null,
+    });
+  let selectedReceiverEvent = null;
+  let selectedReceiverSourceWorldlineId = null;
+  let prescribedReceiverMotionActive = false;
+  let prescribedAnalysisState = Object.freeze({
+    state: "unavailable",
+    projection: null,
+    event: null,
+    message: "No receiver selected.",
+  });
+  const prescribedAnalysisCoordinator =
+    createBorgPrescribedAnalysisRequestCoordinator({
+      provider: prescribedAnalysisProvider,
+      onStateChange: updatePrescribedAnalysisState,
+    });
   let assemblyViewControls = null;
   let initialConditionResetTimer = null;
 
@@ -1302,10 +1379,41 @@ export function mountBorgApp(options = {}) {
         overlayFields: dom.replayOverlayFields,
         binaryGeometryTable: dom.replayBinaryGeometryTable,
         trailSummary: dom.replayTrailSummary,
+        translationFrame: dom.prescribedTranslationFrame,
+        translationStatus: dom.prescribedTranslationStatus,
+        historyDepth: dom.prescribedHistoryDepth,
+        historyDepthOutput: dom.prescribedHistoryDepthOutput,
+        tubeToggle: dom.prescribedTubeToggle,
+        tubeRadius: dom.prescribedTubeRadius,
+        tubeOpacity: dom.prescribedTubeOpacity,
+        displayReadout: dom.prescribedDisplayReadout,
+        providerStatus: dom.prescribedProviderStatus,
+        receiverStatus: dom.prescribedReceiverStatus,
+        clearReceiver: dom.prescribedClearReceiver,
+        virtualProbeFields: dom.prescribedVirtualProbeFields,
+        virtualProbeId: dom.prescribedVirtualProbeId,
+        virtualProbeX: dom.prescribedVirtualProbeX,
+        virtualProbeY: dom.prescribedVirtualProbeY,
+        virtualProbeZ: dom.prescribedVirtualProbeZ,
+        virtualProbePolarity: dom.prescribedVirtualProbePolarity,
+        virtualProbeBind: dom.prescribedVirtualProbeBind,
+        contributionToggle: dom.prescribedContributionToggle,
+        analysisStatus: dom.prescribedAnalysisStatus,
+        analysisTable: dom.prescribedAnalysisTable,
+        branchPlot: dom.prescribedBranchPlot,
+        analysisProvenance: dom.prescribedAnalysisProvenance,
       },
       onRecordChange: switchReplayRecord,
       onCameraModeChange: (mode) => assemblyViewScene.setCameraMode(mode),
       onExport: exportReplayImage,
+      onTranslationFrameChange: setPrescribedTranslationFrame,
+      onHistoryDepthChange: setPrescribedHistoryDepth,
+      onTubeChange: (tubeOptions) => assemblyViewScene.setTubeOptions(tubeOptions),
+      onClearReceiver: clearPrescribedReceiver,
+      onVirtualProbe: bindVirtualProbe,
+      onAnalysisRootSelect: selectPrescribedAnalysisRoot,
+      onContributionVisibleChange: (visible) =>
+        prescribedAnalysisScene.setContributionVisible(visible),
     });
     dom.modeBoundary.dataset.mode = "assembly-view-replay";
     dom.modeLabel.textContent = "Prescribed geometry · display-only";
@@ -1313,6 +1421,7 @@ export function mountBorgApp(options = {}) {
       "The sealed source path is open. Play replays it; the EOM solver is not running.";
     updatePrescribedBranchAction();
     setReplayDisplayMode(state.replayDisplayMode);
+    describePrescribedAnalysisProvider();
   }
 
   async function switchStartingGeometry(geometryId) {
@@ -1404,6 +1513,11 @@ export function mountBorgApp(options = {}) {
   }
 
   function enterPrescribedReplay(geometryId, session) {
+    prescribedAnalysisCoordinator.clear("No receiver selected.");
+    prescribedAnalysisProvider.clearCache?.();
+    selectedReceiverEvent = null;
+    selectedReceiverSourceWorldlineId = null;
+    prescribedReceiverMotionActive = false;
     replayActive = true;
     activeStartingGeometryId = geometryId;
     assemblyViewSession = session;
@@ -1421,6 +1535,7 @@ export function mountBorgApp(options = {}) {
     state.sourceMode = "recorded-eom-dataset-chunks";
     state.eomDisplayStarted = false;
     state.compactedPathHistory = Object.freeze({});
+    state.prescribedTranslationFrame = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
     state.pathTrailDuration = resolveBorgAssemblyViewTrail(activeReplayEntry).duration;
     state.liveRunRetention = createBorgLiveRunRetentionSnapshot({ frameRows: [] });
     state.replayDisplayMode = activeReplayEntry.dataset.provenance.claimGrade === "chart-hypothesis"
@@ -1428,6 +1543,8 @@ export function mountBorgApp(options = {}) {
       : "animated";
     assemblyViewScene.setRecord(activeReplayEntry);
     assemblyViewScene.setDisplayMode(state.replayDisplayMode);
+    assemblyViewScene.setTranslationFrame(state.prescribedTranslationFrame);
+    assemblyViewScene.setHistoryDepth(state.pathTrailDuration);
     setBorgRadioGroupValue(dom.startingGeometry, geometryId);
     configureAssemblyViewControls();
     rebuildBoundaryShell();
@@ -1436,6 +1553,7 @@ export function mountBorgApp(options = {}) {
     updateLayerVisibility();
     updateTimelineBounds();
     renderStaticPanels();
+    describePrescribedAnalysisProvider();
     const firstReplayChunk = startDynamicNativeRunner();
     firstReplayChunk?.then(() => {
       if (replayActive && activeStartingGeometryId === geometryId) {
@@ -1548,12 +1666,20 @@ export function mountBorgApp(options = {}) {
   function switchReplayRecord(entry) {
     stopPlayback();
     disposeDynamicRunner();
+    prescribedAnalysisCoordinator.clear("No receiver selected.");
+    prescribedAnalysisProvider.clearCache?.();
+    selectedReceiverEvent = null;
+    selectedReceiverSourceWorldlineId = null;
+    prescribedReceiverMotionActive = false;
+    state.selectedPathKey = null;
+    state.prescribedTranslationFrame = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
     activeReplayEntry = entry;
     state.replayDisplayMode = entry.dataset.provenance.claimGrade === "chart-hypothesis"
       ? "chart-pose"
       : "animated";
     assemblyViewScene.setRecord(entry);
     assemblyViewScene.setDisplayMode(state.replayDisplayMode);
+    assemblyViewScene.setTranslationFrame(state.prescribedTranslationFrame);
     currentFrames = [];
     frameSets = [];
     state.activeFrameIndex = 0;
@@ -1564,11 +1690,15 @@ export function mountBorgApp(options = {}) {
     state.dynamicRunnerKind = "eom-record-replay";
     state.sourceMode = "recorded-eom-dataset-chunks";
     state.compactedPathHistory = Object.freeze({});
+    state.activeDisplayTime = entry.dataset.window.start;
     state.liveRunRetention = createBorgLiveRunRetentionSnapshot({ frameRows: [] });
+    state.pathTrailDuration = resolveBorgAssemblyViewTrail(entry).duration;
+    assemblyViewScene.setHistoryDepth(state.pathTrailDuration);
     rebuildParticleObjects();
     rebuildPathTrails({ recreateMaterials: true });
     updateTimelineBounds();
     renderStaticPanels();
+    describePrescribedAnalysisProvider();
     startDynamicNativeRunner();
   }
 
@@ -1592,6 +1722,196 @@ export function mountBorgApp(options = {}) {
     assemblyViewControls?.setFeedback(
       `Exported ${activeReplayEntry.sourceId} at recorded time ${activeFrameTime()}.`,
     );
+  }
+
+  function setPrescribedTranslationFrame(frame) {
+    state.prescribedTranslationFrame = frame;
+    assemblyViewScene.setTranslationFrame(frame);
+    prescribedAnalysisScene.rebuild();
+    applyFrameSetAtCurrentTime();
+  }
+
+  function setPrescribedHistoryDepth(depth) {
+    state.pathTrailDuration = Number(depth);
+    assemblyViewScene.setHistoryDepth(state.pathTrailDuration);
+    pathTrails.setVisibleDuration(state.pathTrailDuration);
+  }
+
+  async function describePrescribedAnalysisProvider() {
+    if (!replayActive || !activeReplayEntry) return;
+    const description = await prescribedAnalysisProvider.describe(
+      activeReplayEntry,
+    );
+    if (!replayActive || description == null) return;
+    assemblyViewControls?.setProviderDescription(description);
+  }
+
+  function updatePrescribedAnalysisState(nextState) {
+    prescribedAnalysisState = nextState;
+    prescribedAnalysisScene.setEvent({
+      projection: nextState?.projection ?? null,
+      event: nextState?.event ?? null,
+    });
+    assemblyViewControls?.renderAnalysisState(nextState);
+  }
+
+  function selectPrescribedAnalysisRoot(rootId) {
+    prescribedAnalysisScene.setSelectedRoot(rootId);
+    assemblyViewControls?.setSelectedRoot(rootId);
+  }
+
+  function clearPrescribedReceiver(message = "No receiver selected.") {
+    selectedReceiverEvent = null;
+    selectedReceiverSourceWorldlineId = null;
+    prescribedReceiverMotionActive = false;
+    state.selectedPathKey = null;
+    assemblyViewScene.setSelectedWorldlineId(null);
+    assemblyViewControls?.updateReceiverSelection(null);
+    prescribedAnalysisCoordinator.clear(message);
+    updateSelectedTag();
+    render();
+  }
+
+  function bindVirtualProbe({ id, position, polarity }) {
+    if (!replayActive || !activeReplayEntry) return;
+    const receptionTime = state.activeDisplayTime;
+    const receiver = createReceiverEvent({
+      kind: "virtual-probe",
+      id,
+      sourceWorldlineId: null,
+      position,
+      polarity,
+      receptionTime,
+    });
+    selectedReceiverSourceWorldlineId = null;
+    bindPrescribedReceiver(receiver);
+  }
+
+  function bindSourceReceiver(sourceWorldlineId, receptionTime) {
+    if (!replayActive || !activeReplayEntry) return;
+    const worldline = activeReplayEntry.dataset.worldlines.find(
+      (row) => row.id === String(sourceWorldlineId),
+    );
+    if (!worldline) {
+      clearPrescribedReceiver(
+        `Selected draw object has no stable source worldline ${sourceWorldlineId}.`,
+      );
+      return;
+    }
+    const sourceState = activeReplayEntry.dataset.evaluateWorldline(
+      worldline.id,
+      receptionTime,
+    );
+    selectedReceiverSourceWorldlineId = worldline.id;
+    bindPrescribedReceiver(createReceiverEvent({
+      kind: "source-worldline",
+      id: worldline.id,
+      sourceWorldlineId: worldline.id,
+      position: sourceState.position,
+      polarity: worldline.polarity,
+      receptionTime,
+    }));
+  }
+
+  function createReceiverEvent({
+    kind,
+    id,
+    sourceWorldlineId,
+    position,
+    polarity,
+    receptionTime,
+  }) {
+    return Object.freeze({
+      kind,
+      id: String(id),
+      sourceWorldlineId,
+      position: Object.freeze({
+        x: Number(position.x),
+        y: Number(position.y),
+        z: Number(position.z),
+      }),
+      polarity: Number(polarity),
+      receptionTime: Number(receptionTime),
+      identity: createBorgReceiverEventIdentity({
+        kind,
+        id: String(id),
+        polarity,
+        receptionTime,
+        position,
+      }),
+    });
+  }
+
+  function bindPrescribedReceiver(receiver) {
+    prescribedReceiverMotionActive = false;
+    selectedReceiverEvent = receiver;
+    assemblyViewControls?.updateReceiverSelection(receiver);
+    assemblyViewScene.setSelectedWorldlineId(receiver.sourceWorldlineId);
+    prescribedAnalysisCoordinator.request({
+      entry: activeReplayEntry,
+      receiverIdentity: receiver.identity,
+    });
+  }
+
+  function refreshSelectedReceiverAtTime(
+    time,
+    { request = true, clearAnalysis = true } = {},
+  ) {
+    if (!selectedReceiverEvent || !replayActive) return;
+    if (selectedReceiverSourceWorldlineId) {
+      if (request) {
+        bindSourceReceiver(selectedReceiverSourceWorldlineId, time);
+      } else {
+        const worldline = activeReplayEntry.dataset.worldlines.find(
+          (row) => row.id === selectedReceiverSourceWorldlineId,
+        );
+        const sourceState = activeReplayEntry.dataset.evaluateWorldline(
+          selectedReceiverSourceWorldlineId,
+          time,
+        );
+        selectedReceiverEvent = createReceiverEvent({
+          kind: "source-worldline",
+          id: selectedReceiverSourceWorldlineId,
+          sourceWorldlineId: selectedReceiverSourceWorldlineId,
+          position: sourceState.position,
+          polarity: worldline.polarity,
+          receptionTime: time,
+        });
+        assemblyViewControls?.updateReceiverSelection(selectedReceiverEvent);
+        if (clearAnalysis) {
+          prescribedAnalysisCoordinator.clear(
+            "Timeline is moving. The selected event is drawn but not evaluated at this time.",
+          );
+        }
+      }
+      return;
+    }
+    const nextReceiver = createReceiverEvent({
+      ...selectedReceiverEvent,
+      receptionTime: time,
+    });
+    if (request) bindPrescribedReceiver(nextReceiver);
+    else {
+      selectedReceiverEvent = nextReceiver;
+      assemblyViewControls?.updateReceiverSelection(nextReceiver);
+      if (clearAnalysis) {
+        prescribedAnalysisCoordinator.clear(
+          "Timeline is moving. The selected event is drawn but not evaluated at this time.",
+        );
+      }
+    }
+  }
+
+  function applyFrameSetAtCurrentTime() {
+    const frameSet = frameSets.find(
+      (entry) => entry.frameIndex === state.activeFrameIndex,
+    );
+    if (frameSet) {
+      applyFrameSet(frameSet, {
+        outputLabel: formatActiveTimelineLabel(frameSet.time),
+        rangeValue: frameSet.frameIndex,
+      });
+    }
   }
 
   function updateEomControlPresentation() {
@@ -1687,8 +2007,9 @@ export function mountBorgApp(options = {}) {
 
   function bindEvents() {
     dom.timelineRange.addEventListener("input", () => {
+      const requestedFrameIndex = Number(dom.timelineRange.value);
       stopPlayback();
-      updateFrame(Number(dom.timelineRange.value));
+      updateFrame(requestedFrameIndex);
     });
     dom.playButton.addEventListener("click", () => {
       togglePlayback();
@@ -1771,7 +2092,7 @@ export function mountBorgApp(options = {}) {
     boundaryShellGroup.visible = state.activeLayers.has("simulation-window");
     pointGroup.visible = state.activeLayers.has("architrino-position");
     pathGroup.visible = state.activeLayers.has("path-history");
-    pathTrails.setVisible(pathGroup.visible);
+    pathTrails.setVisible(pathGroup.visible && !replayActive);
     assemblyViewScene.setPathVisible(pathGroup.visible);
     velocityGroup.visible = state.activeLayers.has("velocity-vectors");
     velocityLines.forEach((line) => {
@@ -1805,6 +2126,7 @@ export function mountBorgApp(options = {}) {
   function applyFrameSet(frameSet, { outputLabel, rangeValue }) {
     const previousDiagnosticFrameIndex = state.activeFrameIndex;
     state.activeFrameIndex = frameSet.frameIndex;
+    state.activeDisplayTime = frameSet.time;
     if (dom.timelineRange.dataset.mode !== "live-follow") {
       dom.timelineRange.value = String(rangeValue);
     }
@@ -1824,7 +2146,7 @@ export function mountBorgApp(options = {}) {
         return;
       }
       particle.visible = showPoints;
-      writeSolverPositionToWorld(frame.position, particle.position);
+      writeSolverPositionToWorld(frame.position, particle.position, frameSet.time);
       particle.userData.frame = frame;
       if (showVelocity) {
         updateVelocityLine(frame);
@@ -1839,6 +2161,22 @@ export function mountBorgApp(options = {}) {
       duration: state.pathTrailDuration,
     });
     assemblyViewScene.updateTime(frameSet.time);
+    assemblyViewControls?.updateDisplayReadout(
+      frameSet.time,
+      state.prescribedTranslationFrame,
+    );
+    if (replayActive && selectedReceiverEvent) {
+      if (state.playing && !prescribedReceiverMotionActive) {
+        prescribedReceiverMotionActive = true;
+        prescribedAnalysisCoordinator.clear(
+          "Timeline is moving. The selected event is drawn but not evaluated at this time.",
+        );
+      }
+      refreshSelectedReceiverAtTime(frameSet.time, {
+        request: !state.playing,
+        clearAnalysis: false,
+      });
+    }
     if (replayActive) {
       updatePrescribedBranchAction();
     }
@@ -1866,8 +2204,19 @@ export function mountBorgApp(options = {}) {
     if (!line) {
       return;
     }
-    writeSolverPositionToWorld(frame.position, velocityStart);
-    velocityDirection.set(frame.velocity.x, frame.velocity.y, frame.velocity.z);
+    writeSolverPositionToWorld(frame.position, velocityStart, state.activeDisplayTime);
+    const displayVelocity = replayActive
+      ? applyBorgPrescribedVelocityFrame(
+          frame.velocity,
+          assemblyViewScene.prescribedTranslation,
+          state.prescribedTranslationFrame,
+        )
+      : frame.velocity;
+    velocityDirection.set(
+      displayVelocity.x,
+      displayVelocity.y,
+      displayVelocity.z,
+    );
     const speed = velocityDirection.length();
     if (speed > 0) {
       velocityDirection.normalize();
@@ -1949,6 +2298,7 @@ export function mountBorgApp(options = {}) {
     }
     state.playbackRequested = false;
     state.playing = true;
+    prescribedReceiverMotionActive = false;
     state.playbackBufferRefilling = true;
     setPlayButtonPresentation(true);
     updateTimelineBounds();
@@ -1957,11 +2307,16 @@ export function mountBorgApp(options = {}) {
   }
 
   function stopPlayback() {
+    const wasPlaying = state.playing || state.playbackRequested;
     state.playing = false;
     state.playbackRequested = false;
     setPlayButtonPresentation(false);
     cancelQueuedPlaybackFrame();
     updateTimelineBounds();
+    if (wasPlaying && replayActive && selectedReceiverEvent) {
+      prescribedReceiverMotionActive = false;
+      refreshSelectedReceiverAtTime(state.activeDisplayTime, { request: true });
+    }
   }
 
   function togglePlayback() {
@@ -2225,11 +2580,29 @@ export function mountBorgApp(options = {}) {
     pointerNdc.x = ((event.clientX - rect.left) / Math.max(1, rect.width)) * 2 - 1;
     pointerNdc.y = -(((event.clientY - rect.top) / Math.max(1, rect.height)) * 2 - 1);
     raycaster.setFromCamera(pointerNdc, camera);
+    const rootHits = raycaster.intersectObjects(
+      prescribedAnalysisScene.getPickableObjects(),
+      false,
+    );
+    if (rootHits.length > 0) {
+      selectPrescribedAnalysisRoot(
+        rootHits[0].object.userData.rootId,
+      );
+      return;
+    }
     const hits = raycaster.intersectObjects([...particleObjects.values()], false);
     if (hits.length === 0) {
+      if (replayActive) {
+        clearPrescribedReceiver();
+        return;
+      }
       state.selectedPathKey = null;
     } else {
       state.selectedPathKey = hits[0].object.userData.pathKey;
+      const frame = hits[0].object.userData.frame;
+      if (replayActive && frame?.sourceWorldlineId != null) {
+        bindSourceReceiver(frame.sourceWorldlineId, state.activeDisplayTime);
+      }
     }
     updateSelectedTag();
     render();
@@ -2282,6 +2655,8 @@ export function mountBorgApp(options = {}) {
     windowLike.removeEventListener("resize", resize);
     windowLike.removeEventListener("keydown", handleKeyDown);
     diagnosticsPanelController.dispose();
+    prescribedAnalysisCoordinator.dispose();
+    prescribedAnalysisScene.dispose();
     assemblyViewControls?.dispose?.();
     assemblyViewScene.dispose();
     disposeDynamicRunner();
@@ -2295,14 +2670,41 @@ export function mountBorgApp(options = {}) {
     renderer.dispose();
   }
 
-  /** Write solver coordinates into an existing {x,y,z} target; no allocation. */
-  function writeSolverPositionToWorld(position, target) {
+  /** Write source-frame coordinates into an existing {x,y,z} target. */
+  function writeSourcePositionToWorld(position, target) {
     const center = activeEnvelopeCenter();
     const scale = activeWorldUnitsPerSolverUnit();
     target.x = (position.x - center.x) * scale;
     target.y = (position.y - center.y) * scale;
     target.z = (position.z - center.z) * scale;
     return target;
+  }
+
+  function getPrescribedDisplayPosition(
+    position,
+    time = state.activeDisplayTime,
+  ) {
+    if (!replayActive) {
+      return position;
+    }
+    return applyBorgPrescribedDisplayFrame(
+      position,
+      time,
+      assemblyViewScene.prescribedTranslation,
+      state.prescribedTranslationFrame,
+    );
+  }
+
+  /** Write active display-frame coordinates into an existing target. */
+  function writeSolverPositionToWorld(
+    position,
+    target,
+    time = state.activeDisplayTime,
+  ) {
+    return writeSourcePositionToWorld(
+      getPrescribedDisplayPosition(position, time),
+      target,
+    );
   }
 
   function activeEnvelopeCenter() {

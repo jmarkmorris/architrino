@@ -45,3 +45,55 @@ test("PR procedure, pre-push hook, and CI share the aggregate gate", () => {
   assert.match(aggregate, /tests\/pr-branch-process-conformance\.test\.js/);
   assert.match(aggregate, /tests\/pr-validation-receipt\.test\.js/);
 });
+
+test("PR procedure makes unattended execution measurable and fail closed", () => {
+  const procedure = read("reference/op/codex-pr-branch.md");
+  const verification = read(
+    "reference/op/codex-pr-unattended-verification.md"
+  );
+  const operatorFeedback = read("README-op.md");
+
+  for (const counter of [
+    "operatorDecisionPromptCount",
+    "hostPermissionPromptCount",
+    "escalationInvocationCount",
+    "reusedApprovalCount",
+  ]) {
+    assert.match(procedure, new RegExp(`\\b${counter}\\b`));
+    assert.match(verification, new RegExp(`\\b${counter}\\b`));
+  }
+
+  assert.match(procedure, /operatorDecisionPromptCount = 0/);
+  assert.match(procedure, /hostPermissionPromptCount = 0/);
+  assert.match(procedure, /Run read-only Git inspection, `gh pr` inspection/);
+  assert.match(procedure, /without preemptive escalation/);
+  assert.match(procedure, /three consecutive/);
+  assert.match(procedure, /Record the publish handoff receipt/);
+  assert.match(procedure, /Record the post-merge handoff receipt/);
+  assert.match(
+    procedure,
+    /whether the first handoff qualifies under the zero\/zero prompt budget/
+  );
+  assert.match(
+    procedure,
+    /whether the second handoff and the full lifecycle qualify/
+  );
+  assert.match(
+    procedure,
+    /\[codex-pr-unattended-verification\.md\]\(codex-pr-unattended-verification\.md\)/
+  );
+  assert.match(procedure, /resets the qualifying count to zero/);
+
+  assert.match(verification, /Corrective-action status: `open`/);
+  assert.match(verification, /Required consecutive qualifying runs: `3`/);
+  assert.match(verification, /Current consecutive qualifying runs: `0`/);
+  assert.equal(
+    [...verification.matchAll(/^\| [123] \| pending \|/gm)].length,
+    3
+  );
+  assert.match(verification, /2026-07-23 \| 225 \| `codex\/diamond`/);
+  assert.match(
+    operatorFeedback,
+    /Verify three consecutive `codex-pr-branch\.md` lifecycles/
+  );
+});

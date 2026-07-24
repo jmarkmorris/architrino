@@ -114,7 +114,7 @@ C_{\eta,h}:
 $$
 where $\mathbb{U}_{\text{now}}(T)\equiv S(T)$ is the instantaneous ontic substrate state on the simultaneity slice at absolute time $T$ retained by the model and $U$ records declared apparatus controls or settings.
 
-Two time labels appear in this chapter and must not be conflated. The ontic substrate flow — $\mathbb{U}_{\text{now}}$, its retained history $\mathcal{H}_{\eta,h}$, and the causal-wake background — is always indexed by absolute time $T$. The reduced record-channel coordinates $(\Gamma_{\mathrm{tot}},X,A,Z)$ and every bare record-channel time $t$ below live in the reduced effective chart that this coarse-state map produces; $t$ coincides with $T$ in the laboratory limit and is the effective-chart time inherited by [Wavefunction Ontology](wavefunction-ontology.md). Where an open-system or effective-metric reconstruction carries its own rescaled clock, that time is written $t_{\mathrm{eff}}$.
+Two time labels appear in this chapter and must not be conflated. The ontic substrate flow — $\mathbb{U}_{\text{now}}$, its retained history $\mathcal{H}_{\eta,h}$, and the causal-wake background — is always indexed by absolute time $T$. The reduced record-channel coordinates $(\Gamma_{\mathrm{tot}},X,A,\Xi)$ and every bare record-channel time $t$ below live in the reduced effective chart that this coarse-state map produces; $t$ coincides with $T$ in the laboratory limit and is the effective-chart time inherited by [Wavefunction Ontology](wavefunction-ontology.md). Where an open-system or effective-metric reconstruction carries its own rescaled clock, that time is written $t_{\mathrm{eff}}$.
 
 The measurement transfer operator is first a deterministic pushforward of the retained flow,
 $$
@@ -128,9 +128,9 @@ A reduced Markov kernel is a later compression of this pushforward, not an assum
 
 The rejection of the cut can be stated as a closure condition on the dynamics. Let
 $$
-\Gamma_{\mathrm{tot}}(t)=(X(t),A(t),Z(t),\mathcal{W}(t))
+\Gamma_{\mathrm{tot}}(t)=(X(t),A(t),\Xi(t),\mathcal{W}(t))
 $$
-collect the target coordinates $X$, apparatus coordinates $A$, retained environment coordinates $Z$, and causal-wake history $\mathcal{W}$. A valid measurement model must be the projection of one substrate flow,
+collect the target coordinates $X$, apparatus coordinates $A$, retained environment coordinates $\Xi$, and causal-wake history $\mathcal{W}$. The symbol $\Xi$ keeps $Z$ available for proton number and keeps the incoming spin-ledger state $Z_{\mathrm{in}}$ below distinct from the environment. A valid measurement model must be the projection of one substrate flow,
 $$
 \dot{\Gamma}_{\mathrm{tot}}
 =
@@ -152,7 +152,7 @@ A differential Lindblad comparison is admissible only after the environment corr
 $$
 \partial_{t_{\mathrm{eff}}}\rho
 =
--\frac{i}{\hbar}[H,\rho]
+-\frac{i}{\hbar_{\mathrm{eff}}}[H,\rho]
 +
 \sum_m
 \left(
@@ -201,7 +201,7 @@ This distinction preserves the force of Schrödinger's critique. The cat thought
 
 ## Physical-Record Import Consistency
 
-The same rule applies when one Physical Observer records another Physical Observer's conclusion. A statement such as "observer $O_j$ is certain that record $R_k$ will occur" is not free-standing knowledge. For observer $O_i$, it is a physical communication or memory record inside $O_i$'s retained apparatus and access region. Let $C_{j\to i,k}$ denote that imported-certainty record in the declared channel for $O_i$, and let $\theta_i$ be the corresponding observer model record. With the same finite-time basin measure used for the measurement channel, write
+This is the record-channel response to Wigner's-friend and Frauchiger-Renner comparisons. The same rule applies when one Physical Observer records another Physical Observer's conclusion. A statement such as "observer $O_j$ is certain that record $R_k$ will occur" is not free-standing knowledge. For observer $O_i$, it is a physical communication or memory record inside $O_i$'s retained apparatus and access region. Let $C_{j\to i,k}$ denote that imported-certainty record in the declared channel for $O_i$, and let $\theta_i$ be the corresponding observer model record. With the same finite-time basin measure used for the measurement channel, write
 $$
 p_i(\ell|\theta_i)
 =
@@ -211,28 +211,24 @@ c_{i\leftarrow j}(k|\theta_i)
 =
 \mu_{*,T_W}^{(i)}\!\left(\pi_i^{-1}(C_{j\to i,k})\right)
 $$
-Here $p_i$ is $O_i$'s direct record probability for outcome $R_\ell$, while $c_{i\leftarrow j}$ is the probability that $O_i$ has a valid physical record of $O_j$'s certified conclusion. For mutually exclusive record classes $R_k\cap R_\ell=\varnothing$, define a certainty-threshold residual
+Here $p_i$ is $O_i$'s direct record probability for outcome $R_\ell$, while $c_{i\leftarrow j}$ is the probability that $O_i$ has a valid physical record of $O_j$'s certified conclusion. The imported statement is eligible as a near-certainty claim only when $c_{i\leftarrow j}(k|\theta_i)\ge1-\delta_{\mathrm{cert}}$. For mutually exclusive record classes $R_k\cap R_\ell=\varnothing$, the stronger consistency test is the same-measure joint-occurrence residual
 $$
 \Delta_{\mathrm{cert}}^{ij}
 =
 \max_{k\ne \ell}
-\left[
-c_{i\leftarrow j}(k|\theta_i)
-+
-p_i(\ell|\theta_i)
--
-2(1-\delta_{\mathrm{cert}})
-\right]_+,
-\qquad
-[x]_+\equiv\max(x,0)
+\mu_{*,T_W}^{(i)}\!\left(
+\pi_i^{-1}(C_{j\to i,k})
+\cap
+\pi_i^{-1}(R_\ell)
+\right)
 $$
-Here $\delta_{\mathrm{cert}}$ is the certainty-level gap for this comparison: a record probability counts as near-certain when it is at least $1-\delta_{\mathrm{cert}}$. It is distinct from the residual tolerance $\varepsilon_{\mathrm{cert}}$ below, and from the apparatus-channel resolution tolerance $\varepsilon_C$ of [Wavefunction Ontology](wavefunction-ontology.md), which is a different object. A valid observed-observer measurement model should satisfy
+Here $\delta_{\mathrm{cert}}$ is the eligibility gap for the imported near-certainty claim. It is distinct from the joint-occurrence tolerance $\varepsilon_{\mathrm{cert}}$ below, and from the apparatus-channel resolution tolerance $\varepsilon_C$ of [Wavefunction Ontology](wavefunction-ontology.md), which is a different object. A valid observed-observer measurement model should satisfy
 $$
 \Delta_{\mathrm{cert}}^{ij}
 \le
 \varepsilon_{\mathrm{cert}}
 $$
-on the same declared apparatus kernel, coarse-graining, access region, and persistence window used for the ordinary record tests. This is not a new probability postulate. It is the measurement-cut rejection applied recursively: if $O_i$ can physically record $O_j$'s certified conclusion, that imported record must be part of the same substrate flow as $O_i$'s direct prediction. If the communication record, reference resources, or record-autonomy test fails, the observed-observer setup is an incomplete measurement comparison rather than a contradiction in the ontology.
+on the same declared apparatus kernel, coarse-graining, access region, and persistence window used for the ordinary record tests. The joint bound rules out coexistence of a valid imported certainty record for $k$ with a conflicting direct record $\ell$ at any confidence level; it does not wait for their marginal probabilities to exceed a summed threshold. This is not a new probability postulate. It is the measurement-cut rejection applied recursively: if $O_i$ can physically record $O_j$'s certified conclusion, that imported record must be part of the same substrate flow as $O_i$'s direct prediction. If the communication record, reference resources, or record-autonomy test fails, the observed-observer setup is an incomplete measurement comparison rather than a contradiction in the ontology.
 
 ## Minimal Dynamical Model
 
@@ -547,6 +543,16 @@ $$
 $$
 in the calibrated repeated-record regime. This is not a new probability ontology. It is the ordinary scientific-inference burden stated in measurement language: the same substrate flow, record channel, and basin measure that produce a completed record must also produce the frequencies used to test the theory. If a model changes the measure between record formation, Born weights, thermodynamic summaries, and repeated-record statistics, it has hidden an ensemble retuning inside the measurement account.
 
+The tolerance and confidence sequences must be coupled. In the independent-trial comparison with $K$ record classes, one admissible Hoeffding calibration is
+$$
+\alpha_N=N^{-2},
+\qquad
+\varepsilon_k(N)
+=
+\sqrt{\frac{\log(2K/\alpha_N)}{2N}}
+$$
+so both sequences vanish and the tolerance has the expected square-root sampling scale, with the logarithmic factor required by the shrinking failure probability. Correlated record cycles must replace $N$ by a declared effective sample size derived from the same apparatus return map; writing $\varepsilon_k(N)\sim N^{-1/2}$ while separately sending $\alpha_N\to0$ is not sufficient unless that coupling is supplied.
+
 The same finite-window measure must also survive the Born-window, thermodynamic-ensemble, and energy-ledger checks used elsewhere in the quantum closure chain. For a declared channel $\theta=(\mathcal{K}_A,\mathcal{Q},W,T_W)$, define the same-measure record residual
 $$
 \mathcal{R}_{\mathrm{same}}(\theta)
@@ -559,6 +565,28 @@ $$
 \right)
 $$
 Here the Born-window and thermodynamic-ensemble terms are the residuals defined in [Quantum Operator Mapping](../philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence), while the energy term is the event-ledger residual used below. A completed measurement account requires $\mathcal{R}_{\mathrm{same}}\le1$ on the same retained window. Otherwise the model has fit several observer-level summaries with different hidden ensembles rather than deriving one record-forming channel.
+
+## Quantum-Zeno and Anti-Zeno Benchmark
+
+Repeated record-forming interactions provide a direct benchmark for the basin-update rule. Let $B_s$ be the retained survival basin, let $\delta t=t/N$, and start from the basin-conditioned measure $\mu_0^+=\mu_0(\,\cdot\mid B_s)$. After each free-evolution interval, condition on a newly completed survival record:
+$$
+\widetilde{\mu}_j
+=
+(\Phi_{\delta t})_*\mu_{j-1}^+,
+\qquad
+q_j=\widetilde{\mu}_j(B_s),
+\qquad
+\mu_j^+=\widetilde{\mu}_j(\,\cdot\mid B_s)
+$$
+The survival probability after $N$ completed records is
+$$
+P_{\mathrm{surv}}(N,t)
+=
+\prod_{j=1}^{N}q_j
+$$
+The quantum-Zeno recovery target is the standard frequent-interaction limit $P_{\mathrm{surv}}(N,t)\to1$ in apparatus classes where the short-time survival law is quadratic. The anti-Zeno target is equally important: when $\delta t$ overlaps the separatrix-approach or environment-correlation scale, the same physical coupling may lower $P_{\mathrm{surv}}$ relative to the unprobed channel. Neither behavior follows from the word "conditionalization" alone; the Master-Equation apparatus model must derive $\Phi_{\delta t}$, the record basin, the back-action, and the spacing dependence.
+
+Repeated multi-spin projections have experimentally produced quantum-Zeno subspaces and a measured projection-number scaling law in a diamond platform ([Kalb et al. 2016](https://doi.org/10.1038/ncomms13111)). This is an observer-level benchmark for the record-channel calculation, not evidence that projection is a substrate axiom.
 
 ## Weak-Probe Limit
 
@@ -753,6 +781,12 @@ This is a single-assembly measurement statement. Bell-pair response and photon-p
 
 The important point is that the ontology never changes: different observables correspond to different coarse coordinates and different apparatus couplings, not different laws of collapse.
 
+### Interaction-Free Measurement Benchmark
+
+Elitzur-Vaidman/Kwiat interaction-free measurement is a required stress test because a detector can record the presence of an object even on retained trials in which the probe is not absorbed by that object. The standard experimental benchmark is the single-photon interferometer demonstrated by [Kwiat et al. (1995)](https://doi.org/10.1103/PhysRevLett.74.4763). For $\mathbb{A}\mathbb{A}\mathbb{A}$, the admissible record classes must include at least detected-object, absorbed, and inconclusive outcomes, all derived from one photon-apparatus-object flow and one event ledger.
+
+The native account may use the probe's unresolved causal-wake and apparatus history across the full interferometer even when the localized probe assembly is recorded in the unblocked output channel. That possibility is a mechanism target, not a completed explanation. Closure requires the declared apparatus kernel to reproduce the interaction-free success probability and visibility while the retained detected-object trials show no absorption or target-transit event, and while the photon Gate A/B/C and source-depletion/recoil ledgers remain closed. A statement that "the wake sampled the blocked arm" is not enough without that record and energy accounting.
+
 ## Born-Rule Interface
 
 This chapter does not derive the Born rule by itself. It fixes the ontology that the Born-rule derivation must sit on.
@@ -870,20 +904,20 @@ A measurement model that fits Born weights only by changing the thermodynamic en
 
 Massive-superposition tests also create a second external benchmark: whether the gravitational or effective-metric readout of two branches can carry which-path information. This comparison preserves the observable pressure without adopting a stochastic-metric ontology. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the effective metric is an observer-level reconstruction, so a gravitational readout becomes measurement-relevant only when a Physical Observer apparatus can turn the branch-dependent response into an autonomous record.
 
-Let $\rho_1(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $\rho_2(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ be two alternative branch-level mass-density histories, and let $h_A(t_{\mathrm{eff}};\rho_k,\theta)$ denote the detector response channel $A$ predicted by the same effective-metric constitutive record $\theta$ for branch $k$. Define
+Let $\rho_1(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $\rho_2(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ be two alternative branch-level mass-density histories, and let $s_A(t_{\mathrm{eff}};\rho_k,\theta)$ denote the detector signal channel $A$ predicted by the same effective-metric constitutive record $\theta$ for branch $k$. Define
 $$
-\Delta h_A(t_{\mathrm{eff}})
+\Delta s_A(t_{\mathrm{eff}})
 =
-h_A(t_{\mathrm{eff}};\rho_1,\theta)-h_A(t_{\mathrm{eff}};\rho_2,\theta)
+s_A(t_{\mathrm{eff}};\rho_1,\theta)-s_A(t_{\mathrm{eff}};\rho_2,\theta)
 $$
 If $N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')$ is the covariance of unresolved detector, environmental, and boundary-wake contributions over the coherence window $T_W$, the gravitational distinguishability diagnostic is
 $$
 \mathcal{D}_{\mathrm{grav}}(T_W;\theta)
 =
 \int_0^{T_W}\!\!\int_0^{T_W}
-\Delta h_A(t_{\mathrm{eff}})\,
+\Delta s_A(t_{\mathrm{eff}})\,
 N^{-1}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')\,
-\Delta h_B(t_{\mathrm{eff}}')\,dt_{\mathrm{eff}}\,dt_{\mathrm{eff}}'
+\Delta s_B(t_{\mathrm{eff}}')\,dt_{\mathrm{eff}}\,dt_{\mathrm{eff}}'
 $$
 
 The comparison criterion is:
@@ -912,7 +946,7 @@ M\,\delta_{\eta}\!\left(x_{\mathrm{eff}}^i-x_{\pm,\mathrm{eff}}^i(t_{\mathrm{eff
 $$
 where $\rho_{\mathrm{app}}$ is the shared apparatus and environmental mass density. For a differential gravity readout channel $A$, define
 $$
-h_A(t_{\mathrm{eff}};\rho_{\pm},\theta)
+s_A(t_{\mathrm{eff}};\rho_{\pm},\theta)
 =
 e_A^i
 \left[
@@ -925,7 +959,7 @@ where $y_{A,\mathrm{eff}}^i$ and $y_{0,\mathrm{eff}}^i$ are detector reference p
 
 In the weak, slowly varying limit, the branch difference has the schematic tidal form
 $$
-\Delta h_A(t_{\mathrm{eff}})
+\Delta s_A(t_{\mathrm{eff}})
 \simeq
 G_{\mathrm{eff}}(\theta)M\,e_A^i
 \left[
@@ -939,16 +973,17 @@ with
 $$
 D_{ij}(R_{\mathrm{eff}}^i)
 =
-\frac{3R_{\mathrm{eff},i}R_{\mathrm{eff},j}-\|R_{\mathrm{eff}}^i\|^2 h_{ij}}{\|R_{\mathrm{eff}}^i\|^5}
+\frac{3R_{\mathrm{eff},i}R_{\mathrm{eff},j}-\|R_{\mathrm{eff}}^i\|^2 \gamma_{ij}^{\mathrm{eff}}}{\|R_{\mathrm{eff}}^i\|^5}
 $$
+where $\gamma_{ij}^{\mathrm{eff}}$ is the effective spatial metric of the declared observer chart and reduces to $\delta_{ij}$ in the flat weak-response limit used by this toy model.
 If the unresolved readout noise is approximately stationary over the coherence window, $N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')=S_{AB}\delta(t_{\mathrm{eff}}-t_{\mathrm{eff}}')$, then
 $$
 \mathcal{D}_{\mathrm{grav}}(T_W;\theta)
 \simeq
 \int_0^{T_W}
-\Delta h_A(t_{\mathrm{eff}})\,
+\Delta s_A(t_{\mathrm{eff}})\,
 S^{-1}_{AB}\,
-\Delta h_B(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
+\Delta s_B(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 $$
 
 This toy model turns the benchmark into a simulation target. The required inputs are $M$, $d_{\mathrm{eff}}^i(t_{\mathrm{eff}})$, $x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})$, detector geometry $(y_{A,\mathrm{eff}}^i,y_{0,\mathrm{eff}}^i,e_A)$, noise matrix $S_{AB}$, coherence time $T_W$, and the constitutive weak-field map in $\theta$. An interference-preserving run passes the gravitational which-path gate only if $\mathcal{D}_{\mathrm{grav}}(T_W;\theta)\le\varepsilon_{\mathrm{wp}}$ or if the same apparatus model derives a record-forming separatrix crossing with a persistent record variable.
@@ -973,13 +1008,15 @@ The ontology fails if any of the following occur:
 
 - a genuine measurement record can be shown to form without any finite-time physical branch-selection process,
 - the same apparatus can produce reproducible outcomes while no durable apparatus/environment asymmetry is created,
-- or experiments force strictly instantaneous projection as a fundamental event rather than an effective coarse description.
+- or, for an apparatus class with a derived lower bound $\tau_{\mathrm{meas}}\ge\tau_{\min}>0$, experiment establishes an upper bound $\tau_{\mathrm{meas}}\le\tau_{\max}<\tau_{\min}$.
 
 Equivalently, the theory requires
 $$
 \tau_{\text{meas}} > 0
 $$
 for real record-forming interactions, even if that time becomes extremely short in ordinary laboratory practice.
+
+The last comparison is the operator-checkable form of the finite-time claim. No finite-resolution experiment is required to establish an exactly zero duration; the model must instead expose a positive lower bound that a tighter experimental upper bound can contradict.
 
 ## Related Chapters
 

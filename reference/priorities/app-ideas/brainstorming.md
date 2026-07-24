@@ -1,604 +1,316 @@
 # App Ideas Brainstorming
 
-This file preserves ideas and insights for new single-page animation apps that are working toward promotion to an existing or new document or app.
+This file is the portfolio and idea bank for reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ apps. It groups new ideas as capabilities of existing or proposed apps instead of treating every visualization as a separate product.
+
+## App Portfolio
+
+Portfolio scope includes the public Navigator, every reader-facing app on the production Applications surface, public standalone learning and inspection apps, and planned user-facing reader or question apps. It excludes developer-only tools such as PDG Edit, review exports, the solver GPU harness, the EOM solver, and MCP transport.
+
+`Deployed` means the current production Applications manifest or public standalone route was live on 2026-07-23. `Started` means implementation exists but the product is not publicly released. `Not started` means the concept is scoped but has no implementation. `Deferred` means the concept is intentionally parked.
+
+`Backlog` counts the new learner-facing capabilities grouped in this file, not every engineering ticket in the app's own tracker. `Backlog Value` is the current learner-value assessment: `H`, `M`, or `L`. A zero backlog receives `L` because this idea bank currently assigns it no unclaimed learner-facing feature value.
+
+| Name | Status | Backlog | Backlog Value |
+| --- | --- | ---: | :---: |
+| [$\mathbb{A}\mathbb{A}\mathbb{A}$ Navigator](../../../index.html) | deployed | 0 | L |
+| [A1 Lorentz Geometry](../../../content/scenes/archie/ideal_braid.json) | deployed | 0 | L |
+| [Animator](../app-animator/priorities.md) | deployed | 0 | L |
+| [Assembly Configuration Explorer](../../../assembly-explorer.html) | deployed | 0 | L |
+| [Atom](../../../content/scenes/nuclear/atom.json) | deployed | 0 | L |
+| [Braid Search](../../../braid-search.html) | deployed | 0 | L |
+| [Borg](../app-borg/priorities.md) | deployed | 4 | H |
+| [Causal Delay Feedback](../app-causal-delay-feedback/priorities.md) | deployed | 5 | H |
+| [Equation Mapping](../app-equation-mapping/priorities.md) | deployed | 0 | L |
+| [Hyde Periodic Table](../../../content/scenes/chemistry/hyde_periodic_table_scene.json) | deployed | 0 | L |
+| [It's Greek to Me!](../../../greek-letter-match.html) | deployed | 0 | L |
+| [Molecule Visualization](../../../molecule.html) | deployed | 0 | L |
+| [Periodic Table](../../../content/scenes/chemistry/periodic_table_scene.json) | deployed | 0 | L |
+| [Photon and Polarization Visualization](../app-photon/priorities.md) | deployed | 0 | L |
+| [Standard Model](../../../content/scenes/standard-model-particles/standard_model.json) | deployed | 2 | H |
+| [Website Stats](../../../website-stats.html) | deployed | 0 | L |
+| [Architrino Reader for iOS and iPadOS](../app-ios/priorities.md) | started | 0 | L |
+| [Archie Interface](../app-archie-interface/priorities.md) | not started | 0 | L |
+| Interaction Ledger Lab | not started | 2 | H |
+| Emergence and Measurement Lab | deferred | 4 | M |
+| Lorentz Recovery Lab | deferred | 2 | M |
+| Noether Sea Response Lab | deferred | 3 | L |
+
+### Audit Basis And Backlog Reconciliation
+
+The 2026-07-23 audit reconciled the table against the live production Applications manifest, the standalone launch runtime, the public routes, and the active app priority folders.
+
+- The production Applications manifest contains thirteen reader-facing entries.
+- The Navigator is the public host surface rather than a child of its own Applications scene.
+- Assembly Configuration Explorer and Website Stats remain public standalone routes with HTTP 200 responses but are intentionally absent from the Applications manifest.
+- Architrino Reader has an implemented in-repo app and is in release preparation, so it remains `started` until public release.
+- Archie Interface has extensive planning contracts but no user-facing implementation, so it remains `not started`.
+
+Every nonzero backlog reconciles to the numbered capabilities assigned below:
+
+| App or lab | Counted capabilities | Backlog | Disposition |
+| --- | ---: | ---: | --- |
+| Causal Delay Feedback | 5 | 5 | promote now — Story and Prediction is the first implementation slice |
+| Borg | 4 | 4 | promote now — Prescribed Translation and Causal-History Tubes is the first implementation slice |
+| Standard Model | 2 | 2 | priority-only — retain the paired classification and bookkeeping journey |
+| Interaction Ledger Lab | 2 | 2 | priority-only — preserve as one proposed accounting app |
+| Emergence and Measurement Lab | 4 | 4 | defer with blocker — record-backed basin and preparation-measure rows are missing |
+| Lorentz Recovery Lab | 2 | 2 | defer with blocker — one accepted clock, ruler, and two-way-signal record is missing |
+| Noether Sea Response Lab | 3 | 3 | defer with blocker — independently accepted constitutive and mass-map rows are missing |
+
+The remaining table rows have no capabilities assigned by this idea bank and therefore retain backlog `0`.
+
+## Portfolio Rules
+
+- Prefer capabilities inside an existing app when they share its data, visual grammar, or teaching sequence.
+- Create a new app only when the capability set has one coherent learner journey that does not fit an existing surface.
+- Prefer a central animation, a small control set, and a live diagnostic or puzzle readout.
+- Keep prescribed geometry, display-only records, candidate mappings, measured rows, and derived results at their actual authority levels.
+- Defer concepts whose main lesson depends on a constitutive law, recovery map, or retained physical branch that has not yet been derived.
+- Promote a capability into an app tracker only when it has a teaching mechanism, corpus authority, implementation boundary, acceptance condition, and owner.
+
+## Deployed Apps With New Capability Backlogs
+
+### Causal Delay Feedback
+
+- Status: `deployed`
+- Backlog: `5`
+- Backlog value: `H`
+- Disposition: `promote now`; execute [Causal Delay Feedback learner progression](causal-delay-feedback-advancement.md) with Story and Prediction first.
+
+These capabilities form one progressive learning suite over a shared source, receiver, retained-history model, causal-root evaluator, and wake renderer. They should become modes of Causal Delay Feedback rather than separate apps.
+
+#### 1. Story And Prediction
+
+- Begin with one emitted wake, one reception event, and one visible line back to the old emission point.
+- Pause before reception and ask the learner which earlier source position will matter.
+- Reveal the causal path, explain the travel delay in age-appropriate language, and keep scoring light.
+- Introduce moving-source, moving-receiver, curved-path, and hidden-wake rounds only after the single-root lesson is secure.
+- Generate the answer from the same causal-root calculation used by the animation.
+
+#### 2. Path-History Ledger
+
+- Pair the spatial scene with a horizontal history timeline.
+- Highlight source-history segments as inactive, causally active, selected, or rejected.
+- Let a learner select a ledger row and trace the corresponding emission event, path, receiver event, and contribution.
+- Show that the present readout cannot generally be reconstructed from current positions alone.
+- Keep retained interior samples in diagnostics while the first teaching layer exposes only the history needed for the selected hit.
+
+#### 3. Roots Mode
+
+- Use the existing [Roots requirements](../app-roots/requirements-and-design.md) as the mathematical and acceptance authority for an advanced linked-view mode.
+- Plot the delay-map function against emission time and synchronize its zero-crossings with wake intersections and the active-root count.
+- Slow the scene at a generic fold so a tangent zero becomes two causal roots and the ledger changes by $\Delta N=\pm2$.
+- Keep the pointwise acceleration spike visually separate from the finite accumulated velocity change through an ordinary interior fold.
+- Resolve the provisional $c(\cdot)$ label against the packet's $g(T_r;T_t)$ notation before end-user implementation.
+- Do not generalize the ordinary-fold result to coincident same-source root birth, which remains fail closed under the current sharp equation.
 
-The idea bank favors app concepts that make the theory's native mechanisms visible: causal-delay interaction, path-history dependence, branch geometry, threshold crossing, Noether sea response, nested shell braid structure, observer-level coarse-graining, and ledger closure.
+#### 4. Self-Hit Near $c_f$
 
-## Routing Rules
+- Compare sub-$c_f$, threshold, and super-$c_f$ source paths using the same geometry and scale.
+- Draw earlier causal wakes and mark their intersections with the later source path.
+- Let speed, curvature, and perturbation controls reveal absent roots, tangencies, active branches, and failed Jacobian floors.
+- Plot $D_s=c_f-\mathbf v_s\cdot\mathbf n$ and $D_T=c_f-\mathbf v_r\cdot\mathbf n$ for the selected root.
+- Teach that self-hit is a causal-root geometry question, not a total-speed label.
 
-- Keep loose app concepts here until they have a concrete promotion target, claim level, and owner.
-- Promote material into [priorities.md](priorities.md) only when it becomes a selected app packet, implementation task, or document/app destination.
-- Keep app concepts candidate-level unless the underlying corpus already supplies a derivation.
-- Identify the existing or new document or app each concept may support when that route is known.
+#### 5. Branch Geometry Explorer
 
-## App Ideas
+- Show all accepted and rejected delayed-hit branches for one source-receiver pair.
+- Keep branch colors and labels stable while the user changes the source path or receiver position.
+- Display branch-local acceleration contributions and their vector sum at the receiver.
+- Provide filters for age, contribution magnitude, root kind, and Jacobian floor.
+- Make every acceptance or rejection reason visible rather than presenting a hidden solver verdict.
 
-### 1. [Causal Delay Feedback Depth](../app-causal-delay-feedback/priorities.md)
+Shared acceptance boundary:
 
-- Status: `promoted`.
-- The dedicated app packet owns the description, visualization, controls, diagnostics, and first-build requirements.
-- Summary: one main canvas shows a moving source, Virtual Observer, retained causal-delay paths, arriving pulses, and a contribution stack so users can see how active path-history changes the present Virtual Observer readout.
-
-### 2. [Assembly Viewer](../app-borg/assembly-viewer-requirements.md)
-
-- Status: `consolidated into app-borg`.
-- The Borg requirements packet owns 3D chart-pose and evolved-record replay, while the Braid Program instrument gate owns `assembly-view-record.v0` acceptance.
-- Summary: inspect sealed assembly records without recomputing physics; preserve raw source order and `unquotiented-labeled` tri-binary rows, optionally group source-declared $S_3$ equivalents for navigation, and display stable-sector or accessory-capture diagnostics only when the source carries them with provenance.
-
-### 3. [Equation Mapping App](../app-equation-mapping/priorities.md)
-
-- Status: `promoted`.
-- The dedicated app packet owns the static equation layer, explanatory overlay comments, formula-section pointer lines, collapsible subject index, search menu, home control, and background settings.
-- Summary: compare existing physics equations with candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ mappings in a quiet annotation surface that supports centered equations, comment rectangles with equations, and thin lines pointing to exact formula sections.
-
-### 4. Path-History Ledger
-
-Description:
-
-- Show that the current force or potential is not determined only by current positions.
-- Let the user scrub time and see which old source path segments are causally active at the receiver.
-- Make path-history feel like a live ledger: old data can be irrelevant, active, or decisive depending on the causal-root geometry.
-
-Visualization:
-
-- Split the canvas into a large spatial track on top and a horizontal path-history timeline below.
-- Draw the source trail as a fading ribbon; active causal-root segments glow where old emissions reach the receiver now.
-- Animate a `now` cursor sweeping across the receiver while small hit markers jump from the timeline to the spatial view.
-- Keep inactive history gray, active history bright, and rejected roots dashed with an accept/reject label.
-- Let selecting a row in the ledger table trace the corresponding source segment, causal path, and receiver contribution on the canvas.
-
-Requirements:
-
-- Show source history as a trail with active hit segments highlighted.
-- Provide a time scrubber with `past emission`, `receiver now`, and `future inactive` regions.
-- Display active roots with emission time, hit distance, source velocity, receiver direction, and contribution sign.
-- Include a small table of retained path-history rows and allow selecting one row to highlight it in the animation.
-- Support a simple two-body mode before adding many-source Noether sea background.
-
-### 5. Self-Hit Near $c_f$
-
-Description:
-
-- Teach that self-hit behavior depends on causal-root geometry, not a simple speed label.
-- Compare sub-$c_f$, exactly-$c_f$, and super-$c_f$ regimes using the same source path.
-- Show why a same-source root can be absent, degenerate, unstable, or active depending on path curvature and transversality.
-
-Visualization:
-
-- Use a central path canvas with the source moving along a controllable line or curve.
-- Draw expanding emission shells from earlier source positions and highlight shell intersections with the later source path.
-- Show the three regimes as side-by-side mini panels or as selectable overlays using the same coordinate scale.
-- Animate shell/path tangencies in slow motion so degenerate and accepted branches can be distinguished visually.
-- Add a small Jacobian strip chart under the canvas that moves in sync with the selected root.
-
-Requirements:
-
-- Provide speed, curvature, and perturbation controls.
-- Draw the source path and the candidate emission shells that may intersect later positions.
-- Label each candidate as `no same-source root`, `degenerate tangent family`, `active branch`, or `failed Jacobian floor`.
-- Plot $D_s=c_f-\mathbf v_s\cdot\mathbf n$ and $D_T=c_f-\mathbf v_r\cdot\mathbf n$ for selected roots without treating source-normal denominators as speed-only effects.
-- Include a slow-motion mode around the threshold regime.
-
-### 6. Branch Geometry Explorer
-
-Description:
-
-- Show that one source-receiver pair can have multiple delayed-hit branches.
-- Let users toggle branches and see how the net potential changes.
-- Make branch acceptance visible as geometry plus diagnostics, not a hidden solver result.
-
-Visualization:
-
-- Draw the source path as a continuous curve and the receiver as a probe with a live summed vector.
-- Render each branch as a colored ribbon from emission point to receiver, with thickness proportional to contribution magnitude.
-- Animate branches appearing, splitting, weakening, or failing as source motion and receiver position change.
-- Keep a selected branch pinned with a label, emission dot, hit dot, and contribution vector.
-- Show the net potential as a vector fan that collapses into one summed arrow at the receiver.
-
-Requirements:
-
-- Display source path, receiver point or receiver path, and all candidate causal-root branches in one view.
-- Provide filters for branch age, contribution strength, root kind, and Jacobian floor.
-- Show branch-local contribution vectors and a summed vector at the receiver.
-- Include a branch table with emission time, distance, source-normal $D_s$, receiver-normal $D_T$, branch strength $W^{\mathrm{rec}}$, contribution, and accept/reject reason.
-- Keep branch labels stable while the animation runs so users can track one branch through time.
-
-### 7. Threshold Crossing Map
-
-Description:
-
-- Animate an assembly moving through a basin landscape until delayed wake input pushes it across a separatrix.
-- Show how continuous deterministic motion can produce a fast coarse-grained state change.
-- Connect resonance-band transitions, self-hit onset, and measurement-like threshold behavior as examples of the same structural idea.
-
-Visualization:
-
-- Use a phase-space canvas with basin regions drawn as calm background colors and the separatrix as a crisp boundary curve.
-- Draw the assembly state as a moving point with a short tail showing recent deterministic motion.
-- Animate delayed-wake inputs as arrows or ripples that nudge the moving point toward or away from the separatrix.
-- When the point crosses, transition the coarse-grained label quickly while the underlying point motion remains continuous.
-- In batch mode, draw many faint trajectories so the basin outcome pattern becomes visible.
-
-Requirements:
-
-- Draw basins of attraction with a visible separatrix and moving state point.
-- Let users adjust delayed-wake amplitude, phase, damping, and threshold placement.
-- Show before/after coarse-grained labels without implying an ontic jump.
-- Include repeated trials from near-identical initial states to show sensitive dependence near the threshold.
-- Display the action increment or threshold residual that triggers the crossing.
-
-### 8. Born Rule As Basin Measure
-
-Description:
-
-- Teach outcome frequencies as basin measures of deterministic threshold dynamics.
-- Show many near-identical trajectories entering an unresolved threshold region.
-- Make the observer-level probability emerge from counted basin outcomes rather than from a primitive random choice.
-
-Visualization:
-
-- Use a wide basin canvas where many small trajectory dots stream from a narrow initial packet into colored outcome regions.
-- Draw the initial uncertainty as an adjustable source cloud rather than as a random-choice symbol.
-- Animate trials accumulating into outcome bins at the edge of the canvas.
-- Show a live histogram beside the canvas with basin area estimate, observed count, and convergence trace.
-- Let users zoom into one dot to see that it follows a deterministic path through the same field.
-
-Requirements:
-
-- Support a batch-run mode with hundreds or thousands of small dots entering the same basin field.
-- Let users adjust coarse-graining resolution, initial spread, apparatus kernel, and record window.
-- Show live counts, basin area estimates, and observed outcome frequencies.
-- Distinguish individual deterministic paths from the ensemble summary.
-- Include a warning state when the retained coarse-graining is too poor to claim stable weights.
-
-### 9. Record Autonomy And Restartability
-
-Description:
-
-- Animate why an effective state cannot always be restarted from an intermediate time without retaining path-history.
-- Use a double-slit-like or two-channel setup where unresolved path-history still affects the later record.
-- Show how a durable record changes the retained state and allows a later restart approximation.
-
-Visualization:
-
-- Use a two-channel canvas with source, channel region, optional record device, and final screen.
-- Draw retained variables as solid objects and unresolved path-history influence as translucent wake bands.
-- Animate the same intermediate visible state branching into different later records when hidden history is not retained.
-- When a durable record is inserted, snap the retained record channel into a visibly stable marker.
-- Plot the restartability diagnostic as a line that drops when record autonomy becomes valid.
-
-Requirements:
-
-- Provide modes for `no path record`, `weak path disturbance`, and `durable path record`.
-- Show retained state variables separately from hidden path-history influence.
-- Plot a restartability diagnostic that is large before a valid record and small after record autonomy.
-- Let users insert or remove a record device and watch interference-like structure change.
-- Keep the app language focused on retained records and path-history rather than many-world branching.
-
-### 10. Noether Sea Reversible Retuning
-
-Description:
-
-- Show a stable assembly moving through a responsive Noether sea without ordinary dissipative drag below threshold.
-- Animate medium stress building and returning as reversible retuning.
-- Teach the distinction between inertial response, reversible transport, and logged loss channels.
-
-Visualization:
-
-- Use a canvas filled with a quiet Noether sea field, with the moving assembly passing through it left to right.
-- Draw local medium deformation as elastic contour lines or vector glyphs that bend around the assembly and then relax.
-- Animate stored stress flowing back into the assembly below threshold rather than trailing away as heat.
-- When the transport residual crosses threshold, open explicit visible channels for excitation, heating, radiation-like shedding, or branch transition.
-- Keep a threshold gauge fixed near the canvas so users can connect the visual mode change to $\mathcal{R}_{\text{tr}}$.
-
-Requirements:
-
-- Display a moving assembly, surrounding Noether sea response field, and stored stress.
-- Provide controls for center-of-mass velocity, acceleration, local Noether sea state, and stability gap.
-- Plot the transport residual $\mathcal{R}_{\text{tr}}$ against $\mathcal{R}_{\text{tr},*}$.
-- Below threshold, show stress return with no net heating channel.
-- Above threshold, route energy into visible excitation, heating, radiation-like shedding, or branch transition.
-
-### 11. Nested Shell Braid Exclusion
-
-Description:
-
-- Animate why volumetric nested shell braid assemblies are candidates for exclusion-like behavior.
-- Contrast a 3D nested shell braid envelope with a strongly oblated coherent planar-channel regime.
-- Teach the proposed geometry distinction between fermionic effective exclusion and bosonic effective shared-state behavior.
-
-Visualization:
-
-- Use a central canvas with two nested shell braid assemblies approaching the same effective state from opposite sides.
-- Draw each nested shell as layered orbit traces inside a translucent dynamic exclusion envelope.
-- Animate overlap pressure by brightening the intersection volume and pushing the assemblies apart in volumetric mode.
-- Add an oblation slider that visibly flattens the orbital support toward a coherent planar channel.
-- In planar mode, show shared coherent bands instead of volumetric overlap pressure.
-
-Requirements:
-
-- Show two nested shell braid assemblies approaching the same effective state.
-- Render volumetric exclusion envelopes and overlap pressure in the 3D-support mode.
-- Add an oblation control for the canonical ratio $\xi=R_{\parallel}/R_{\perp}$.
-- Switch into a coherent planar-channel mode when support becomes effectively two-dimensional.
-- Label the transition as a geometry hypothesis unless the app is later backed by a completed spin-statistics derivation.
-
-### 12. Photon Surface Routing
-
-Description:
-
-- Animate photon-like planar-pair ledger interaction with material surfaces.
-- Show that a material surface is not a hard wall; it routes the incoming ledger through available material branches.
-- Compare coherent re-release, capture, scattering, heat, recoil, and retained excitation.
-
-Visualization:
-
-- Use a side-view canvas with an incoming planar-pair object approaching a material surface cell.
-- Draw the material surface as active lattice/electron-envelope components rather than a flat wall.
-- Animate route selection by lighting one or more outgoing channels: coherent re-release, capture, scattering, heat, recoil, retained excitation.
-- Show the incoming and outgoing ledger quantities as small moving bars attached to the planar-pair and material branch.
-- Provide surface presets that visibly change the internal routing geometry, not only the final outcome label.
-
-Requirements:
-
-- Provide surface presets such as high-reflection metal, absorber, transparent medium, rough surface, and high-capture surface.
-- Show incoming planar-pair ledger, selected material branch, outgoing channel, recoil, and heat/excitation channels.
-- Preserve nuclear inventory unless a separate reaction mode is explicitly supplied.
-- Display the local surface residual and selected routing reason.
-- Reuse Photon app visual grammar for planar-pair motion where possible.
-
-### 13. Clock-Cadence Retuning
-
-Description:
-
-- Show identical assemblies placed in different Noether sea states with different local delay and response conditions.
-- Make effective clock readout a consequence of internal cadence retuning rather than an arbitrary visual slowdown.
-- Tie clock behavior to local medium response, branch stability, and path-history effects.
-
-Visualization:
-
-- Use two or three side-by-side clock lanes with identical assembly clocks placed in different local Noether sea backgrounds.
-- Draw each clock as a nested orbit or cycle indicator whose phase advances according to the local cadence.
-- Animate the surrounding medium state with density, strain, and response glyphs so the clock difference has a visible cause.
-- Show accumulated readout difference as aligned tick marks drifting apart over time.
-- If a branch becomes unstable, fade the clock lane into an invalid-state overlay instead of continuing the comparison.
-
-Requirements:
-
-- Animate two or more identical assembly clocks side by side.
-- Provide controls for Noether sea density, response anisotropy, strain, and delay factor.
-- Display internal cycle phase, observer readout, and accumulated proper-time-like difference.
-- Keep the assembly identity fixed while local cadence changes.
-- Include a mode that shows when the branch becomes unstable rather than continuing as a valid clock.
-
-### 14. Two-Way Signal Recovery
-
-Description:
-
-- Teach how observer-level signal behavior can look Lorentz-like even when the substrate has path-history and medium response.
-- Animate one-way and two-way signal timing in a moving apparatus.
-- Show why clock, ruler, and two-way signal recovery must be solved together rather than tuned independently.
-
-Visualization:
-
-- Use a moving-apparatus canvas with an emitter, reflector, receiver, onboard ruler, and onboard clock.
-- Animate outbound and return pulses as colored packets traveling through the apparatus while it moves.
-- Draw one-way timing, return timing, and round-trip timing as synchronized strips below the spatial view.
-- Show clock and ruler retuning with small deformation and cadence markers attached to the apparatus.
-- Highlight mismatched recovery settings by making the timing triangle fail to close cleanly.
-
-Requirements:
-
-- Show emitter, reflector, and receiver on a moving apparatus.
-- Provide controls for apparatus velocity, local signal speed, delay factor, and clock-cadence response.
-- Display outbound time, return time, round-trip time, and inferred two-way signal speed.
-- Include a mismatch warning when clock, ruler, and signal parameters are tuned independently.
-- Keep this as a recovery-target app, not a proof that Lorentz invariance has been derived.
-
-### 15. Action Ledger Conservation
-
-Description:
-
-- Make every interaction close visible energy, momentum, angular momentum, and record channels.
-- Teach that heat, recoil, radiation-like transport, branch transition, and retained excitation are ledger routes, not vague losses.
-- Turn conservation accounting into an interactive animation instead of a table.
-
-Visualization:
-
-- Use a central interaction canvas with incoming objects on the left, outgoing objects on the right, and ledger channels below.
-- Draw ledger channels as colored flow bars that carry energy, momentum, angular momentum, and record state through the event.
-- Animate each preset event by routing the bars into elastic output, heat, recoil, radiation-like transport, retained excitation, or branch transition.
-- Keep an always-visible balance meter that settles to zero only when all channels close.
-- When a channel is missing, leave a red residual block attached to the event center with the missing quantity named.
-
-Requirements:
-
-- Show incoming and outgoing channels as moving ledger bars or flows.
-- Provide presets for elastic event, inelastic event, photon absorption, recoil, and branch transition.
-- Keep a live balance panel for energy, momentum, angular momentum, and record state.
-- Highlight any unbalanced residual in red with the missing channel named.
-- Allow users to click a channel and see its physical interpretation in plain language.
-
-### 16. Noether Sea Response Tensor
-
-Description:
-
-- Animate the Noether sea as a direction-dependent response object rather than a scalar background.
-- Show how anisotropic medium response affects local transport, clock cadence, signal timing, and branch stability.
-- Make tensor-like behavior visible through deformation ellipses, response arrows, and directional probes.
-
-Visualization:
-
-- Use a canvas centered on one local Noether sea region with a rotatable response ellipse or ellipsoid.
-- Draw a movable probe that can push, signal, or oscillate along selectable directions.
-- Animate response arrows whose length, delay, and phase change with direction.
-- Show transport, clock, and branch-stability readouts updating from the same local response object.
-- Let the user rotate the response basis and see the ellipse, arrows, and diagnostics rotate together.
-
-Requirements:
-
-- Provide a probe that can push or signal in different directions through the same local Noether sea state.
-- Display direction-dependent response magnitude and delay.
-- Show a response ellipse or ellipsoid plus local vector readouts.
-- Let users rotate the response basis and watch transport and clock diagnostics change.
-- Keep any tensor notation secondary to the animation and explain symbols in the diagnostics panel.
-
-### 17. Mass-Map Exposure Viewer
-
-Description:
-
-- Animate exposed versus shielded assembly contributions to effective mass response.
-- Show how branch geometry, shielding, Noether sea coupling, and path-history depth can change the exposed response.
-- Give the mass-map workstream a visual diagnostic app for comparing branch candidates.
-
-Visualization:
-
-- Use a side-by-side comparison canvas with two candidate branch assemblies shown as layered component maps.
-- Color exposed components brightly, shielded components dimly, and partially exposed components with a gradient.
-- Animate path-history depth as expanding causal shells or retained-history bands that reveal which components contribute.
-- Show Noether sea coupling as local response halos around exposed components.
-- Keep total exposed response and residual bars beneath each candidate so visual geometry and mass-map readout stay linked.
-
-Requirements:
-
-- Show assembly components with exposed, shielded, and partially exposed contribution states.
-- Provide controls for shielding depth, branch phase, Noether sea coupling, and path-history depth.
-- Display total exposed response, hidden/shielded contribution, and residual.
-- Support side-by-side comparison of two branch candidates.
-- Mark unresolved rows as candidate diagnostics rather than accepted mass derivations.
-
-### 18. [Roots: Causal-Residual Zero Crossing And Root Birth](../app-roots/priorities.md)
-
-Status:
-
-- `proposed` in a dedicated packet; no implementation has been dispatched.
-- Preferred product direction: preserve the dedicated mathematical packet, but consider delivering it as an advanced `Roots` story or lab inside [Causal Delay Feedback](../app-causal-delay-feedback/priorities.md) so both experiences share one source, receiver, retained-history model, and wake renderer.
-
-Description:
-
-- Show how the delay-map function changes as a control parameter passes through a generic fold: a tangent zero becomes two zero-crossings, so a pair of active causal roots is born.
-- Synchronize the algebraic event with its geometry: each zero is an old source event whose expanding causal wake reaches the receiver now.
-- Teach the difference between the pointwise acceleration spike and the finite accumulated velocity change through an ordinary interior fold.
-- Resolve the operator's provisional $c(\cdot)$ label against the existing packet's $g(T_r;T_t)$ notation before writing end-user copy; do not expose two names for the same function.
-
-Visualization:
-
-- Begin with the simple Causal Delay Feedback scene, then open a linked graph of the delay-map function against emission time.
-- Mark the zero line prominently. Slow the animation as the curve touches zero, then show the two intersection markers separating.
-- Keep matching colors across the function graph, wake intersections, source-history points, and root-count ledger.
-- Add an optional fourth view in which the pointwise acceleration grows near the fold while the accumulated velocity change remains bounded.
-
-Requirements:
-
-- Reuse the linked-view equations and acceptance conditions in [app-roots/requirements-and-design.md](../app-roots/requirements-and-design.md).
-- Keep the graph's zero-crossing count exactly equal to the active-root ledger at the same receiver time.
-- Identify the fold through $D_s=0$ and the local line-of-sight source motion, not through total speed alone.
-- Keep the ordinary interior-fold result separate from coincident same-source root birth, which remains fail closed under the current sharp equation.
+- The five modes must use one canonical causal-history state and agree on root identity, root count, emission time, and receiver time.
+- Story mode hides complexity but never substitutes different geometry.
 - Use acceleration language, never force language.
 
-### 19. Prescribed Translation And Spiral Tubes In Borg
+### Borg
 
-Status:
+- Status: `deployed`
+- Backlog: `4`
+- Backlog value: `H`
+- Disposition: `promote now`; execute [Prescribed Translation and Causal-History Tubes](prescribed-translation.md) before the later Borg capability stages.
 
-- `feature candidate` for prescribed-assembly replay in [app-borg](../app-borg/priorities.md).
+These capabilities extend Borg's sealed-record prescribed-assembly replay. They must reuse source-carried coordinates and preserve the distinction between prescribed chart geometry and EOM-solver-retained motion.
 
-Description:
+#### 1. Prescribed Translation And Causal-History Tubes
 
-- Let a prescribed assembly translate while its internal paths continue to orbit, making the fixed-frame worldlines form visible spiral strands.
-- Show that the same record looks like closed or nearly closed internal paths in a co-translating frame and like extended helical paths in the fixed frame.
-- Use the contrast to teach the difference between internal prescribed geometry, group translation, display frame, and physical retention.
+Implementation prompt: [Prescribed Translation And Causal-History Tubes](prescribed-translation.md).
 
-Visualization:
+- Add fixed-frame and co-translating-frame views of the same prescribed record.
+- Let declared group translation turn periodic internal paths into extended spiral or braided strands in the fixed frame.
+- Offer a translucent display tube around each strand, trail-depth control, freeze control, and split compact-orbit/translated view.
+- When a source-matched prescribed-analysis result is available, let the user select an architrino receiver or declared virtual probe and display every certified causal root, emission point, arrival direction, root ordinal, $D_t$, and root-specific acceleration contribution at the selected observation time.
+- Keep root-free, unresolved, invalidated, and drawn-not-evaluated cases visible with their producer-carried status and reason.
+- Obtain analytical rows from the canonical prescribed-path evaluator through one compact provider contract; do not add root solving or analytical acceleration calculation to Borg, the browser replay runner, or the shared history adapter.
+- Change only the display transform when switching frames. Preserve the sealed record, absolute time, path identities, analytical values, and source/protocol/implementation hashes.
+- Do not call display tubes wake streams. Keep them distinct from analytical wake-arrival links and from EOM-retained wake streams, which remain unavailable without source-carried rows.
+- Treat the feature as prescribed geometry plus record-derived analysis. It does not establish stability, binding, energy, retention, quantization, photon identity, or physical realization.
 
-- Provide fixed-frame and co-translating-frame camera toggles that preserve the same underlying record.
-- Add a translation-vector control only when the source specification declares that coordinate.
-- Draw each architrino worldline as a polarity-colored spiral strand and optionally render a translucent display tube around the strand.
-- Allow the user to shorten or lengthen the visible trail, freeze the assembly, and rotate the camera to inspect the phase relation among strands.
-- Include a split view that shows the compact orbit chart beside the translating spiral structure.
+#### 2. Assembly Taxonomy Morph Lab
 
-Requirements:
+- Let learners select Family A, B, or C and move one chart-owned coordinate at a time.
+- Update the 3D paths and coordinate table together.
+- Animate Family-A flattening, Family-B cap or axial coordinates, and Family-C counterpart relations only where the selected canonical chart defines them.
+- Disable coordinates the chart does not own and never infer missing numerical values.
+- Label every morph as prescribed-chart exploration unless an evolved record independently supplies retention evidence.
 
-- Generate the display from sealed prescribed-geometry records or exact source formulas; do not infer missing coordinates.
-- Label spiral strands and swept tubes as display geometry, not EOM-solver-retained motion, stability, binding, or physical realization.
-- Do not call the tubes wake streams. A wake layer remains unavailable until the record carries native wake rows with the required provenance.
-- Keep source-carried polarity, path ids, phases, frequencies, group translation, and time coverage unchanged.
-- A frame toggle must change only the display transform, never the source record or its evidence status.
+#### 3. Braid Harmonics Studio
 
-### 20. Gell-Mann Pattern Atlas And AAA Derivation Gap
+- Combine three orbit traces, phase rings, waveform lanes, and a common-return clock.
+- Sonify declared binary frequencies and provide an equivalent silent visual mode.
+- Use constrained ratios such as $4:2:1$ as named examples and allow declared integer-ratio comparisons.
+- Offer short puzzles such as finding the smallest common return period.
+- Call the result prescribed-period closure, not stability or physical resonance selection.
 
-Status:
+#### 4. Family-A Exclusion Geometry
 
-- `comparison/recovery candidate`.
+- Use the current Family-A chart directly.
+- Show two Family-A A1 candidates approaching with near-spherical exclusion envelopes at the prescribed near-rest endpoint.
+- Let the prescribed flattening coordinate $\lambda_A$ move the displayed envelope toward the oblate flat endpoint.
+- Highlight overlap of the display envelopes and compare volumetric and strongly oblate geometry.
+- Present exclusion behavior as a geometry and closure target; do not claim fermionic exchange, binding, stability, or a physical branch from the display.
 
-Description:
+Shared acceptance boundary:
 
-- Recreate the baryon octet and decuplet diagrams as an interactive pattern atlas organized by observer-level labels such as $I_3$, $Y$, $S$, and $Q$.
-- Teach what the diagrams do exceptionally well: compress a family of observed particles into a geometric classification, expose neighbor relations, and make a missing member visually predictable.
-- Teach what they do not do: derive the underlying assembly, confinement, mass, or reaction mechanism.
-- Make the $\mathbb{A}\mathbb{A}\mathbb{A}$ learning goal the gap between classification and explanation. The app should ask which native assembly record, polarity ledger, color-singlet closure, and mass-map output would be needed to earn each displayed observer-level label.
+- Every value must come from a sealed prescribed record, an exact source formula, or an explicitly labeled display transform.
+- Frame changes, morphs, tubes, harmonics, and exclusion overlays never upgrade record authority.
 
-Visualization:
+### Standard Model
 
-- Let users switch among octet, decuplet, quark-content, and charge-axis views.
-- Clicking a node opens its observed classification rows, quark-content bookkeeping, and any available candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping in separate authority-labeled columns.
-- Include a pattern-completion game in which one node or label is hidden and the user reconstructs it from the lattice coordinates and neighboring states.
-- Add a `classification / mechanism` toggle: classification keeps the familiar diagram; mechanism reveals the still-open native derivation rows beneath each node.
-- Show unavailable or unproved AAA rows explicitly rather than filling them with illustrative guesses.
+- Status: `deployed`
+- Backlog: `2`
+- Backlog value: `H`
+- Disposition: `priority-only`; keep both capabilities in this idea bank until an implementation packet is selected.
 
-Requirements:
+These two capabilities belong together because both teach the difference between observer-level particle bookkeeping and an underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
+
+#### 1. Gell-Mann Pattern Atlas
+
+- Recreate the baryon octet and decuplet as interactive diagrams organized by $I_3$, $Y$, $S$, and $Q$.
+- Teach classification first: let the learner switch among octet, decuplet, quark-content, and charge-axis views and read how neighboring nodes relate.
+- Test pattern understanding second: hide one node or label and ask the learner to reconstruct it from neighboring states and the active quantum-number axes.
+- Contrast mechanism third: a `classification / mechanism` switch preserves the observed organization on one side and reveals the still-open assembly, confinement, mass, and reaction rows on the other.
+- Keep the capability active only while this three-stage sequence remains intact; a decorative diagram without the pattern-completion and open-mechanism contrast should be deferred.
+- Keep flavor-octet classification distinct from color $SU(3)$.
+
+#### 2. Polarity Ledger Builder
+
+- Let learners place electrino and positrino units into corpus-backed candidate axial or assembly sites.
+- Update primitive polarity inventory, observer-level charge, weak-isospin exposure, hypercharge bookkeeping, and color closure as separate rows.
+- Offer puzzles for neutral pairs, charged-lepton candidates, and quark charge-bookkeeping patterns.
+- Reveal the arithmetic connecting integer primitive inventory to the observer-level charge label.
+- Never mark a bookkeeping match as a retained, stable, confined, or massive particle.
+
+Shared acceptance boundary:
 
 - Use [Color Charge and $SU(3)$](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) for the Eightfold-Way recovery boundary and [Quantum Number Mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md) for effective charge-label bookkeeping.
-- Keep flavor-octet classification distinct from color $SU(3)$; visual similarity must not imply identity.
-- Treat the Gell-Mann diagram as observer-level organization and a recovery constraint, never as architrino-level ontology or dynamics.
-- Do not show an AAA assembly overlay as established unless one same-record derivation supplies the relevant geometry, ledger, stability, and mass rows.
-- If built before those rows exist, position the app as a pattern game plus a visible closure map, not as an AAA explanation of the hadrons.
+- Show unavailable AAA rows explicitly rather than filling them with illustrative guesses.
 
-### 21. Braid Harmonics Studio
+## Proposed New App
 
-Status:
+### Interaction Ledger Lab
 
-- `candidate`.
+- Status: `not started`
+- Backlog: `2`
+- Backlog value: `H`
+- Disposition: `priority-only`; do not promote it ahead of the selected Causal Delay Feedback and Borg slices.
 
-Description:
+This app would make interaction accounting into a visual puzzle. It is a better home for surface routing than adding another dense mode to Photon.
 
-- Turn prescribed binary frequency ratios into an audiovisual instrument.
-- Let users hear and see when several periodic paths close together, drift in and out of phase, or require a longer common return period.
-- Use the constrained $4:2:1$ rows as named examples while allowing other declared integer ratios for mathematical comparison.
+#### 1. Conservation Flow Board
 
-Visualization:
+- Place incoming objects on the left, outgoing objects on the right, and ledger channels below.
+- Animate energy, momentum, angular momentum, and record state through elastic output, recoil, heat, radiation-like transport, retained excitation, or branch transition.
+- Keep a balance meter that reaches zero only when every declared channel closes.
+- Turn a missing channel into a named residual block the learner must route.
 
-- Show three orbit traces, three phase rings, a combined return-period clock, and a simple waveform or pulse lane for each binary.
-- Sonify each declared frequency with a soft tone whose phase follows the displayed path.
-- Flash a closure marker only when the declared paths return to their starting position, velocity, and phase under the selected prescribed chart.
-- Offer short challenges such as `make all three paths close together` or `find the smallest common return period`.
+#### 2. Material Surface Routing
 
-Requirements:
+- Show an incoming candidate planar pair meeting active material components rather than a featureless wall.
+- Let surface presets expose coherent re-release, capture, scattering, heat, recoil, and retained-excitation channels.
+- Keep nuclear inventory unchanged unless a separate reaction mode explicitly supplies it.
+- Reuse Photon visual grammar for the incoming pair while keeping the interaction ledger as the app's governing object.
 
-- Keep frequency ratios attached to persistent binary indices and do not infer a radius ordering from them.
-- Label closure as prescribed-period closure, not dynamical stability or physical resonance selection.
-- Use exact declared ratios and phases; any free-play ratio remains a mathematical display preset.
-- Make sound optional and preserve a complete visual equivalent for accessibility.
+Acceptance boundary:
 
-### 22. Assembly Taxonomy Morph Lab
+- Every preset must declare its input and output ledgers.
+- A visual route may illustrate accounting structure without claiming that the material constitutive law has been derived.
 
-Status:
+## Deferred Ideas
 
-- `candidate`; possible focused learning mode beside Borg rather than a second assembly viewer.
+These ideas remain worth preserving, but their current learner journey depends too heavily on unresolved recovery or constitutive work. They should not compete with the high-value causal-delay, Borg, Standard Model, or ledger capabilities.
 
-Description:
+### Emergence And Measurement Lab
 
-- Make the Family A, B, and C prescribed coordinate charts tangible through direct manipulation.
-- Let the user move one valid coordinate at a time and see exactly which paths, axes, offsets, phases, or circulation rows change.
-- Teach the difference between a family definition, a constrained member, a parameter variant, and an EOM-solver-retained assembly.
+- Status: `deferred`
+- Backlog: `4`
+- Backlog value: `M`
+- Disposition: `defer with blocker`.
 
-Visualization:
+Deferred capabilities:
 
-- Use one large 3D assembly view with a compact family/member selector and a coordinate table that updates live.
-- Animate the declared Family-A flattening coordinate, B-family cap or axial coordinates, and C-family counterpart relations only where the selected source chart defines them.
-- Pin the before and after coordinate tables beside the animation so the visual morph remains auditable.
-- Provide `show changed rows only` and `return to canonical preset` controls.
+1. **Threshold Crossing Map** — delayed wake input moves a state across a basin separatrix while the underlying motion remains continuous.
+2. **Born Rule As Basin Measure** — ensemble frequencies are compared with deterministic basin measures.
+3. **Record Autonomy And Restartability** — two visually similar intermediate states diverge because their retained histories differ.
+4. **Emergence Layer Lens** — a resolution control moves among path histories, assembly records, and observer-level summaries.
 
-Requirements:
+Deferral reason:
 
-- Drive every preset from the canonical taxonomy or a sealed prescribed record.
-- Disable coordinates that the selected chart does not own and never invent missing numerical values.
-- Mark all morphed geometry as prescribed-chart exploration unless an evolved record independently supplies retention evidence.
-- Reuse Borg's record navigation and provenance grammar where practical.
+- The four ideas are conceptually related but can easily teach an assumed measurement or probability mechanism as though it were derived. Resume only after a record-backed example supplies the basin, preparation measure, retained variables, and falsifiable recovery rows.
 
-### 23. Polarity Ledger Builder
+### Lorentz Recovery Lab
 
-Status:
+- Status: `deferred`
+- Backlog: `2`
+- Backlog value: `M`
+- Disposition: `defer with blocker`.
 
-- `candidate`.
+Deferred capabilities:
 
-Description:
+1. **Clock-Cadence Retuning** — compare identical assembly clocks in declared Noether sea states.
+2. **Two-Way Signal Recovery** — synchronize moving emitter, reflector, receiver, clock, and ruler readouts.
 
-- Create a puzzle game in which users place electrino and positrino units into candidate axial or assembly sites and watch the exact polarity inventory update.
-- Use the game to show how integer primitive polarity bookkeeping can underlie fractional observer-level charge labels without treating those labels as primitive architrino charges.
-- Separate inventory success from the harder burdens of geometry, stability, confinement, mass, and reaction closure.
+Deferral reason:
 
-Visualization:
+- These would be valuable once clock, ruler, and two-way signal behavior are recovered together from one accepted record. Building them now would risk turning adjustable recovery knobs into apparent derivation.
 
-- Present a clean board of available sites, a tray of polarity units, and a live inventory ledger.
-- Color legal bookkeeping matches clearly while keeping geometrically or dynamically unproved rows in a separate `still needed` column.
-- Offer graduated puzzles for neutral pairs, charged-lepton candidates, and quark charge-bookkeeping patterns.
-- On completion, unfold the arithmetic that connects the primitive inventory to the observer-level charge label.
+### Noether Sea Response Lab
 
-Requirements:
+- Status: `deferred`
+- Backlog: `3`
+- Backlog value: `L`
+- Disposition: `defer with blocker`.
 
-- Use only candidate mappings already present in the assembly corpus; do not invent a new particle assignment.
-- Never mark a bookkeeping match as a retained or stable particle.
-- Keep polarity inventory, observer-level charge, weak-isospin exposure, hypercharge bookkeeping, and color closure as distinct rows.
-- Make every puzzle solvable from information visible in the app rather than requiring Standard Model memorization.
+Deferred capabilities:
 
-### 24. Causal Delay Prediction Game
+1. **Reversible Retuning** — distinguish reversible stored response from explicit excitation, heating, radiation-like shedding, or branch transition.
+2. **Directional Response** — use response ellipses or ellipsoids and directional probes to visualize anisotropic local response.
+3. **Mass-Map Exposure** — compare exposed, shielded, and partially exposed assembly contributions.
 
-Status:
+Deferral reason:
 
-- `candidate feature` for the Story mode of [Causal Delay Feedback](../app-causal-delay-feedback/priorities.md).
+- The learner value is currently limited by missing constitutive and mass-map closure. A parameterized response display would mostly report what its author built into it. Resume only when the app can consume independently accepted response or mass-map rows.
 
-Description:
+## Flat-List Consolidation Map
 
-- Turn the simplest causal-delay lesson into a repeatable game: pause just before a wake reaches the receiver and ask the user which old source position is responsible.
-- Reward predictions based on travel time and path history, then reveal the actual emission event and causal path.
-- Provide the same satisfying short-round structure as the Greek-letter game while teaching one central $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism.
+| Prior ideas | Owning app | Disposition |
+| --- | --- | --- |
+| Path-History Ledger; Self-Hit Near $c_f$; Branch Geometry Explorer; Roots; Causal Delay Prediction Game | Causal Delay Feedback | active backlog |
+| Family-A Exclusion Geometry; Prescribed Translation and Causal-History Tubes; Braid Harmonics Studio; Assembly Taxonomy Morph Lab | Borg | active backlog |
+| Gell-Mann Pattern Atlas; Polarity Ledger Builder | Standard Model | active backlog |
+| Action Ledger Conservation; Photon Surface Routing | Interaction Ledger Lab | not started |
+| Threshold Crossing Map; Born Rule As Basin Measure; Record Autonomy And Restartability; Emergence Layer Lens | Emergence and Measurement Lab | deferred |
+| Clock-Cadence Retuning; Two-Way Signal Recovery | Lorentz Recovery Lab | deferred |
+| Noether Sea Reversible Retuning; Noether Sea Response Tensor; Mass-Map Exposure Viewer | Noether Sea Response Lab | deferred |
 
-Visualization:
+## Recommended Build Order
 
-- Show three to five candidate old source positions along a bright path trail.
-- Let the user tap one candidate before the wake reaches the receiver.
-- Reveal the expanding wake, the matched emission point, the receiver event, and a short plain-language explanation.
-- Increase difficulty by moving both source and receiver, changing the path shape, or hiding the wake until after the prediction.
+1. Causal Delay Feedback: Story and Prediction, then Path-History Ledger, then Roots.
+2. Borg: Prescribed Translation and Causal-History Tubes, then Taxonomy Morph Lab.
+3. Standard Model: Gell-Mann Pattern Atlas paired with the Polarity Ledger Builder.
+4. Interaction Ledger Lab: Conservation Flow Board before Material Surface Routing.
 
-Requirements:
-
-- Generate every answer from the same causal-root calculation used by the visualization.
-- Begin with one unambiguous root; introduce multiple-root rounds only after the single-root lesson is mastered.
-- Keep scoring lightweight and never penalize exploration.
-- Offer age-layered explanations without changing the underlying geometry.
-
-### 25. Emergence Layer Lens
-
-Status:
-
-- `candidate`, dependent on a suitable record-backed example.
-
-Description:
-
-- Let users move a lens between architrino paths, assembly-level summaries, and observer-level labels.
-- Teach that a coarse-grained field, particle label, or probability summary is a compressed description of lower-layer records, not an additional substrate object.
-- Show what information is discarded at each layer and which effective claims still require recovery.
-
-Visualization:
-
-- Use one scene with a zoom or resolution slider rather than three unrelated animations.
-- At the finest level, show path-history and causal-root events; at the middle level, show assembly geometry and retained ledger rows; at the widest level, show a small set of effective observables.
-- Add an `information retained` drawer listing which rows survive each coarse-graining step.
-- Let users compare two micro-records that look identical at one coarse resolution but diverge when more path history is restored.
-
-Requirements:
-
-- Use a declared record-backed example; do not manufacture an apparent emergence result from arbitrary visual averaging.
-- Label each displayed claim as derived, measured, inferred, or illustrative.
-- Never use the observer-level display as a premise for the architrino-level animation.
-- Treat missing recovery maps as visible open rows, not silently assumed transformations.
-
-## Consolidation Directions
-
-1. **Causal Delay learning suite:** combine Causal Delay Feedback, Path-History Ledger, Roots, and Causal Delay Prediction Game as `Story`, `Prediction`, `Roots`, and `Sandbox` modes over one shared causal-history engine. Keep the existing `app-roots` packet as the mathematical and acceptance authority for the Roots mode.
-2. **Borg prescribed-geometry suite:** add Prescribed Translation and Spiral Tubes, Assembly Taxonomy Morph Lab, and possibly Braid Harmonics Studio as record-driven learning modes or adjacent tools. Reuse the sealed-record consumer and keep all prescribed geometry at display-only or chart-hypothesis authority.
-3. **Particle-pattern suite:** pair the Gell-Mann Pattern Atlas with the Polarity Ledger Builder only when the UI can keep observer-level classification, candidate bookkeeping, and missing native derivation visibly separate.
-
-## Immediate Next Build Candidates
-
-1. [Causal Delay Feedback Depth](../app-causal-delay-feedback/priorities.md) - Best teaching bridge from causal-delay intuition into active path-history mechanics.
-2. `path_history_ledger` - Best reusable substrate for later delayed-hit, solver, photon, and self-hit apps.
-3. `self_hit_near_cf` - Best single-page correction for the common misconception that self-hit is decided by speed alone.
-4. `branch_geometry_explorer` - Best bridge from visual teaching into solver diagnostics.
-5. `threshold_crossing_map` - Best conceptual bridge into measurement, resonance changes, and deterministic basin selection.
-
-## Dynamo Team Insights App Notes
-
-- The deferred geometry/dynamics packet reinforces the existing app order rather than adding a new top-priority app. `path_history_ledger`, `self_hit_near_cf`, `branch_geometry_explorer`, `born_rule_basin_measure`, `action_ledger_conservation`, `noether_sea_response_tensor`, and `mass_map_exposure_viewer` already cover the strongest visualizable signals.
-- A later `dynamical_atlas_explorer` may be useful only after the theory side supplies concrete chart labels and gluing maps. Until then, fold atlas visuals into `branch_geometry_explorer` and solver diagnostics rather than creating another app concept.
-- App language should keep every signal candidate-level: visualizations may teach path-history state, multiple roots, basin measures, reactive wake storage, and response tensors, but they must not imply completed Lorentz, Born-rule, mass-map, or effective-metric derivations.
+The deferred labs should remain parked until their stated record or derivation blockers change.

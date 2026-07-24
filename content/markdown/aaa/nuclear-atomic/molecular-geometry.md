@@ -61,6 +61,8 @@ $$
 
 after removing overall translation and rotation modes: linear molecules reduce by five zero modes, nonlinear molecules by six. A rigid stable geometry requires $\mathcal H\succ0$ on the reduced space; the semidefinite boundary case is admitted only when a declared soft mode, such as a near-free torsion, remains. The Hessian $\mathcal H$ is the molecular analogue of the lattice dynamical matrix: its eigenvalues give the local vibrational stiffnesses, while its eigenvectors identify stretching, bending, and torsional response. This supplies a concrete way to test bond lengths and angles without importing an orbital-hybridization template as the cause.
 
+The stationary solution defines the equilibrium geometry, so the first bond-length and bond-angle comparisons should use equilibrium values $r_e$. Vibrationally averaged values such as $r_0$ belong to the small-oscillation calculation below and must not be absorbed into the corridor stiffness as if they were the stationary geometry.
+
 For a stable molecule, the small-oscillation target is
 
 $$
@@ -78,6 +80,24 @@ where $u_{s,Ai}$ are the displacement-eigenvector components of mode $s$ and $M$
 ## Closure Targets
 
 A completed molecular-geometry derivation should recover, at minimum, the familiar qualitative sequence of linear, bent, trigonal-planar, trigonal-pyramidal, and tetrahedral arrangements from assembly geometry rather than imposing them as orbital templates. The first practical benchmark should be a small set of molecules whose standard geometries are sharply constrained: $\mathrm{H}_2$, $\mathrm{H}_2\mathrm{O}$, $\mathrm{CO}_2$, $\mathrm{BF}_3$, $\mathrm{NH}_3$, and $\mathrm{CH}_4$.
+
+Within that set, the sharp qualitative success criterion is the monotone bond-angle compression
+
+$$
+\angle\mathrm{HCH}
+\approx
+109.5^\circ
+>
+\angle\mathrm{HNH}
+\approx
+107^\circ
+>
+\angle\mathrm{HOH}
+\approx
+104.5^\circ
+$$
+
+from methane through ammonia to water. The corridor-plus-exclusion functional must recover this pattern without inserting lone-pair or hybridization templates as substrate causes. Ethane adds the first soft-mode case: the same Hessian and branch functional should recover a finite hindered-rotation barrier and the associated torsional mode rather than classifying the motion as either perfectly rigid or freely rotating.
 
 The immediate derivation target is therefore a corridor-plus-exclusion functional that predicts equilibrium bond length and angle for those cases while remaining compatible with [Atomic Spectra](atomic-spectra.md), [Condensed Matter](condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md).
 

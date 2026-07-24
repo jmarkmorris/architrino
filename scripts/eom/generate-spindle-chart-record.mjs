@@ -16,7 +16,10 @@ import {
   validatePrescribedBraidSpec,
 } from "./generate-prescribed-braid-record.mjs";
 
-export const SPINDLE_CHART_TARGETS = Object.freeze(PRESCRIBED_BRAID_TARGETS.slice(6, 10));
+export const SPINDLE_CHART_TARGETS = Object.freeze(
+  PRESCRIBED_BRAID_TARGETS.filter((entry) =>
+    path.basename(entry.specPath).startsWith("illustrative-")),
+);
 export const validateSpindleChartSpec = validatePrescribedBraidSpec;
 export const createSpindleExactSourceRecord = createPrescribedBraidExactSourceRecord;
 export const generateSpindleChartRecord = generatePrescribedBraidRecord;

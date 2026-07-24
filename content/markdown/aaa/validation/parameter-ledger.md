@@ -41,7 +41,7 @@ The corpus uses both $v$ and $c_f$ for field speed in different chapters. This l
 $$
 c_f
 $$
-as the canonical symbol for the physical field speed, while $v=1$ or $c_f=1$ denotes a chapter-local nondimensionalization convention.
+as the canonical symbol for the physical wake speed. Numerical instantiations use $c_f=1$; a generic velocity symbol must not replace it.
 
 ### Parameter versus field
 
@@ -68,6 +68,23 @@ The following observer-level quantities are closure targets, not primitive input
 - observer-level redshift and expansion summaries such as $Z_X$, $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, and $H_{\mathrm{eff}}$.
 
 If the theory must reset them independently for each chapter, parameter closure has failed.
+
+### Collision-resistant symbol ownership
+
+The same glyph must not silently name unrelated objects inside one validation packet. The canonical disambiguations are:
+
+| Meaning | Canonical notation | Do not reuse as |
+| --- | --- | --- |
+| Planck action benchmark | $h$ or $\hbar$ | path-history horizon |
+| retained history horizon | $H_{\mathrm{hist}}$ | Planck action benchmark |
+| effective metric perturbation | $h_{\mu\nu}^{\mathrm{eff}}$ | scalar history step |
+| wake or smoothing regulator | $\eta$ with a declared local subscript when needed | baryon-to-photon ratio |
+| baryon-to-photon ratio | $\eta_B$ | numerical regulator |
+| energy tolerance | $E_{\mathrm{tol}}$ | an energy-drift observable |
+| normalized energy-drift observable | $\varepsilon_E^{(\eta)}$ | dimensional energy tolerance |
+| physical field speed | $c_f$ | branch speed or generic velocity |
+
+Local loop indices such as $w_a$ are allowed only where their scope is explicit and they cannot be mistaken for an equation-of-state parameter. A packet that needs the cosmological parameter convention must use a descriptive superscript or name rather than relying on context alone.
 
 ### CODATA Benchmark Contract
 
@@ -187,7 +204,7 @@ Here $\Delta p/p$ is the fractional perturbation of a parameter or closure outpu
 
 Status:
 
-- $\epsilon=|e|/6$ is treated as a discrete polarity-unit input and an explanatory target, not as a continuous fit.
+- $\epsilon$ is treated as the discrete primitive polarity-unit magnitude, while the observer-level calibration target is $|e|=6\epsilon$; neither is a continuous per-observable fit.
 - $\kappa$ is the universal coupling in the primitive acceleration law. In the bare two-body scale closure below it combines with $c_f$ and $\epsilon$ to set length and time units rather than an independent dimensionless tuning knob, while its primitive, derived, or normalization-sensitive status in the observer-level unit map remains open.
 - $\rho_{\text{NS},0}$ and related medium-density normalizations remain naturalness risks until energy shielding and cosmological closure are quantified.
 
@@ -320,9 +337,9 @@ This is the substrate-side parameter core. Any exact or numerical closure that c
 
 ### 2. Charge reconstruction
 
-The substrate-to-observer charge map is
+The substrate-to-observer charge bookkeeping map is
 $$
-|e| = 6\epsilon \sqrt{\kappa c_f}\,Z_e
+|e| = 6\epsilon Z_e
 $$
 with canonical normalization choice
 $$
@@ -331,7 +348,7 @@ $$
 
 This relation is important because it shows that the elementary charge magnitude is not presently a primitive input in the architrino ontology. It is a recovered observer-level benchmark.
 
-This equation is a normalization-sensitive substrate-to-observer reconstruction, not a second primitive definition of $\epsilon$. The primitive polarity convention used by the foundation and mathematics-canon pages is $\epsilon=|e|/6$ after the observer-level electric bookkeeping normalization is fixed. If $\sqrt{\kappa c_f}Z_e\ne1$ in a dimensional convention, that factor belongs to the conversion map rather than to a separate architrino charge ontology. Closing this equivalence remains tied to the K3/K5 normalization problem.
+Here $Z_e$ is dimensionless. The coupling $\kappa$ and wake speed $c_f$ do not enter this equality: with the dimensional row for $\kappa$ above, a factor $\sqrt{\kappa c_f}$ would not have charge-conversion units. The equation is therefore an observer bookkeeping normalization, not a second primitive definition of $\epsilon$ and not a dynamical derivation of electric charge. A deeper derivation must explain why the six-site assembly ledger selects $Z_e=1$ without inserting the measured value of $|e|$ into the branch calculation.
 
 ### 3. Medium normalization and clock-channel potential
 
@@ -378,12 +395,13 @@ $$
 \alpha_3=\Xi_1-\Xi_2-\Xi_3
 $$
 
-The zero-leakage closure condition is therefore
+The three displayed PPN coefficients vanish exactly when
 $$
-\Xi_1=\Xi_2=\Xi_3=\Xi_4=0
+\Xi_1=\Xi_2=\Xi_3=0
 \quad\Longleftrightarrow\quad
 \alpha_1=\alpha_2=\alpha_3=0
 $$
+The coefficient $\Xi_4$ is not constrained by this three-parameter map. Full zero-leakage closure additionally requires either the independent condition $\Xi_4=0$ or a separately declared observable that extracts $\Xi_4$.
 
 ### 5. Mass map
 
@@ -461,7 +479,7 @@ The corpus supports the following conservative closure assessment.
 
 ### Closed enough to treat as canonical
 
-- $c_f$ is treated consistently as the substrate propagation speed, even when chapters temporarily write $v=1$.
+- $c_f$ is treated consistently as the substrate wake speed, with $c_f=1$ in numerical instantiations.
 - $\epsilon$ is treated consistently as the potential polarity-unit magnitude.
 - The exact bare two-body kernel admits the canonical nondimensionalization by $R_*=\kappa\epsilon^2/c_f^2$ and $T_*=R_*/c_f$, so branch thresholds and residual equations are parameter-free once a branch chart is declared.
 - $\rho_{\text{NS},0}$ is the reference density symbol for the Noether sea.

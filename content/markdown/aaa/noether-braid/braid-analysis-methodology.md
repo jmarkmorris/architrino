@@ -299,6 +299,7 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | Complete-cycle residual normal wake flux | $F_{\mathrm{res}}(R)$ from the absolute locally superposed signed normal flux | How much local signed wake survives cancellation over the complete cycle |
 | Complete-cycle normal wake-flux cancellation | $\eta_{\mathcal W,\mathrm{flux}}(R)=F_{\mathrm{res}}(R)/F_{\mathrm{raw}}(R)$ | Linear wake cancellation under the declared enclosing-surface convention, not energy or work |
 | Frequency-resolved normal wake-flux cancellation | $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$ from transmitter-root-tagged complex coefficients | Which temporal harmonics and angular modes survive phase-sensitive signed superposition at each enclosing radius |
+| Resonance-block cancellation score | $C_L(m,n;\phi)$ with certified tail bound $\varepsilon_L$ for a declared lock | Whether the leading score gap over every alternative exceeds $2\varepsilon_L$ under the [A3.3 cancellation certificate](braid-a3-3-doubling-frequency-lock.md#rg-style-truncation-test) |
 | Directional response | $\mathbf A_p$ for both probe polarities on $S_R$ | Vector exposure and polarity dependence |
 | Angular ledger | Cycle-resolved isotropic and higher angular coefficients | Which external angular channels survive cancellation |
 | Anisotropy | Non-isotropic far-field ledger relative to the naive constituent ledger | Whether a scalar cancellation summary is adequate |
@@ -533,14 +534,15 @@ The member-level inventory below describes the admissible taxonomy space, not th
 | `B1.1` | One axial/transverse decomposition coordinate per binary in addition to $R_a$ | One common midpoint, axis, frequency, and circulation; $h_a>0$ and $\rho_a>0$. Axial orbit-plane order is derived from the resulting signed offsets. |
 | `B1.2` | The same B1 decomposition coordinates | The high-axial inequalities $h_a>\rho_a>0$ further restrict the domain. |
 | `B1.3` | No additional continuous internal coordinate beyond the common columns | The all-equatorial boundary fixes $h_a=0$ and $\rho_a=R_a$; frequency and circulation are common. |
-| `B1.4` | No additional continuous orbital coordinate beyond the radii | The all-axial boundary fixes $\rho_a=0$ and $h_a=R_a$; frequency and phase labels do not change the endpoint paths. |
 | `C1`, `C2` | Eleven positive spacings after fixing the common axial origin, twelve radii, twelve frequencies, twelve phases, and an explicit six-binary counterpart map | `C1` fixes one circulation sense across all twelve worldlines. `C2` fixes opposite senses on the two ordered six-index subsets. Equal radii, equal spacings, reflection symmetry, and B1 decomposition are additional strata rather than member relations. |
 | `C3`, `C4` | Two inherited B1 coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial. `C3` fixes equal component circulation senses and `C4` fixes opposite senses; equality of the two component frequencies is not required. |
 | `C5`, `C6` | Two inherited B1.3 coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial and all-equatorial. `C5` fixes equal component circulation senses and `C6` fixes opposite senses; equality of the two component frequencies is not required. |
 
 An overall shift of absolute-time origin changes the stored phase coordinates, and an overall rigid spatial placement changes the stored centers and frames. Whether those are sampled coordinates or fixed frame conventions depends on the probe and environment protocol. A campaign must state that convention before reporting a numerical degree-of-freedom count.
 
-For C3 through C6, the axial component-center separation $d_C$ is a required Monte Carlo coordinate in $\boldsymbol\theta$. Each sampled source must retain the coaxial constraint $\Delta\mathbf C=d_C\hat{\mathbf n}_C$ while varying $d_C$ under the campaign's declared positive domain and sampling measure. The canonical constrained-display value $d_C=1.10$ is one reference point, not a fixed sampling value. A campaign must publish the minimum, maximum, units, and probability measure for $d_C$ before drawing samples.
+The active B1 sampling domain requires $\sum_a\rho_a^2>0$. The former `B1.4` source fixes $\rho_a=0$ and $h_a=R_a$ for every binary, so its frequency and phase labels do not change its endpoint paths. Its immutable historical rows remain valid records of the deprecated axial-limit null control, but future active-candidate sampling and comparative rankings exclude it.
+
+For C3 through C6, the axial component-center separation $d_C$ is a required Monte Carlo coordinate in $\boldsymbol\theta$. Each sampled source must retain the coaxial constraint $\Delta\mathbf C=d_C\hat{\mathbf n}_C$ while varying $d_C$ under the campaign's declared positive domain and sampling measure. The constrained display records use a dimensionless catalog length coordinate, so $d_C=1.10$ means $1.10$ catalog length units rather than a dimensional physical length. It is one reference point, not a fixed sampling value. A campaign must publish the minimum, maximum, unit conversion or normalized-unit convention, and probability measure for $d_C$ before drawing samples.
 
 ### Declared Full-Taxonomy Reference Measure
 
@@ -646,7 +648,7 @@ Cost is a measured property of the implementation and machine, not a consequence
 
 Optimization experiments must compare the same exact source and protocol and verify equality of the compact score record when claiming an output-preserving speedup. Lower resolutions, omitted sensitivity rows, or missing evidence artifacts are separate evaluation tiers, not output-preserving optimizations. Campaign-level parallel execution may reduce elapsed campaign time, but it does not reduce the processor cost of one point and must be evaluated under measured memory and storage contention.
 
-### Local and Google Cloud Throughput Supplement
+### Local and Cloud Throughput
 
 One **test point** in this supplement means one exact source-protocol pair evaluated into one compact reproducible case row. Throughput is the number of completed points divided by total elapsed campaign time, including dispatch, retries, merging, and final verification:
 
@@ -658,27 +660,11 @@ $$
 
 where $R_{\mathrm{test}}$ is reported in verified tests per hour. A worker count is an implementation setting, not a throughput prediction. The useful count is the measured maximum before processor scheduling, memory pressure, compression, or storage contention makes another worker counterproductive.
 
-The compact Monte Carlo worker benchmark `scripts/eom/benchmark-compact-monte-carlo-workers.mjs` measured the following local baseline on July 23, 2026, on an eight-core Apple M3 MacBook Air with 24 GB of memory. The immutable fixture contained nine prescribed test points across three catalog members. Each configuration received one warm-up followed by three measured repetitions, and every repetition produced the same source, protocol, case, and aggregate hashes.
-
-| Concurrent workers | Median wall time for nine points | Measured range | Median throughput | Median peak resident memory |
-| ---: | ---: | ---: | ---: | ---: |
-| 1 | 28.915 s | 28.656–29.297 s | 1,121 tests/hour | 402.7 MB |
-| 6 | 12.972 s | 12.859–14.080 s | 2,498 tests/hour | 1,194.1 MB |
-| 8 | 13.814 s | 13.679–14.302 s | 2,346 tests/hour | 1,542.4 MB |
-
-This is a measured result for that fixture and machine, not a universal worker rule. Six workers gave the highest observed throughput; eight workers reduced throughput by about $6.1\%$ while increasing peak memory. The local runner should therefore use a bounded dynamic queue, begin at the measured six-worker setting for comparable compact coverage, and remeasure whenever the protocol, member mix, runtime, or machine changes.
-
-#### Google Compute Engine Qualification Target
-
-Google Compute Engine C4A high-CPU virtual machines are a suitable first cloud target because they use Arm processors and expose each virtual CPU as a complete core rather than as a simultaneous-multithreading thread. Google documents C4A high-CPU sizes from 1 to 72 virtual CPUs at 2 GiB of memory per virtual CPU. The `c4a-highcpu-16` shape supplies 16 cores and 32 GiB of memory. See the [C4A machine-series specification](https://docs.cloud.google.com/compute/docs/general-purpose-machines#c4a_machine_series).
-
-The first qualification should use one `c4a-highcpu-16` instance. Google listed its default on-demand Iowa (`us-central1`) price as USD $0.60608 per hour on July 23, 2026; region, discount, and price-table changes can alter that value. The current value must be captured from the [Google Compute Engine general-purpose pricing table](https://cloud.google.com/products/compute/pricing/general-purpose) in every price-performance report rather than copied forward as a permanent constant.
-
-Google [Spot VMs](https://cloud.google.com/solutions/spot-vms) use the same machine types, options, and performance as regular instances and may cost up to $91\%$ less, but they can be preempted. Google supplies a 30-second shutdown notice. Spot execution is therefore appropriate only after every completed point is checkpointed independently, an interrupted point can be retried without changing its identity, and duplicate results are rejected by their case hash. On-demand and Spot runs must be priced and reported separately; the advertised maximum discount is not the measured cost of a campaign.
+Machine-specific benchmarks and dated price observations belong in operational campaign records rather than this reader-facing method. The portable rule is to use a bounded dynamic queue, measure worker scaling on every selected platform, and remeasure whenever the protocol, member mix, runtime, or machine changes. Interruptible cloud execution is appropriate only after every completed point is checkpointed independently, an interrupted point can be retried without changing its identity, and duplicate results are rejected by case hash. On-demand and interruptible runs must be priced and reported separately.
 
 #### Deterministic Cloud Execution
 
-Monte Carlo points are independent after the campaign declaration and random streams are frozen. The controller should construct the immutable test-point definitions, place them in a deterministic queue, and let each worker claim one point at a time. Each worker returns one compact case row to a single deterministic merger. Workers should not write concurrently into one shared SQLite database. The merger sorts by family/member identifier and case ordinal, rejects conflicting duplicates, records retries, and performs the final hash and inventory checks.
+Monte Carlo points are independent after the campaign declaration and random streams are frozen. The controller should construct the immutable test-point definitions, place them in a deterministic queue, and let each worker claim one point at a time. Each worker returns one compact case row to a single deterministic merger. Workers should not write concurrently into one shared database file. The merger sorts by family/member identifier and case ordinal, rejects conflicting duplicates, records retries, and performs the final hash and inventory checks.
 
 Cloud execution does not change the coverage and full-adjudication distinction:
 
@@ -686,7 +672,7 @@ Cloud execution does not change the coverage and full-adjudication distinction:
 - selected full-adjudication points retain the required content-addressed raw ledgers and independent-check receipts; and
 - a preempted point contributes no result until one complete verified row is committed.
 
-Before cloud results enter a comparison population, freeze the Node.js runtime, dependencies, evaluator implementation, source schema, campaign declaration, and analytical protocol. Run the same qualification fixture locally and on C4A, then require identical sampled-source definitions, source hashes, protocol hashes, compact score-record hashes, case hashes, aggregate hash, and gate inventory. Arm Linux and Apple silicon on macOS are different numerical and compression environments, so byte identity must be tested rather than assumed. If any required identity differs, cloud coverage remains diagnostic-only and selected points must be rerun on the declared canonical platform before promotion. Same-output replay establishes determinism; it does not replace an independent correctness check.
+Before cloud results enter a comparison population, freeze the runtime, dependencies, evaluator implementation, source schema, campaign declaration, and analytical protocol. Run the same qualification fixture locally and on each selected cloud machine type, then require identical sampled-source definitions, source hashes, protocol hashes, compact score-record hashes, case hashes, aggregate hash, and gate inventory. Different processor, operating-system, and compression environments require byte identity to be tested rather than assumed. If any required identity differs, cloud coverage remains diagnostic-only and selected points must be rerun on the declared canonical platform before promotion. Same-output replay establishes determinism; it does not replace an independent correctness check.
 
 #### Price-Performance Measurement
 
@@ -723,7 +709,7 @@ $$
 
 Thus $P_{\mathrm{test}}$ is verified tests per dollar and $C_{\mathrm{million}}$ is dollars per million verified tests. Billed startup time, idle capacity, failed or preempted attempts, retries, compact-output storage, network transfer, deterministic merge, and final verification all remain in the denominator. Quoting core count times a local single-worker rate is only a capacity estimate and must not be reported as measured cloud throughput.
 
-The controlled cloud experiment should first measure 1, 2, 4, 8, and 16 workers on one `c4a-highcpu-16` instance, using one warm-up and at least three repetitions per setting. It should then compare fleets of 1, 2, and 4 identical instances on one fixed logical workload. Every run must report individual and median wall time, tests/hour, processor utilization, peak memory, retries, bytes transferred, total billed cost, tests/dollar, and exact-output comparison. The preferred execution mode is the one with the lowest measured cost per verified test that also meets the desired completion time and every evidence boundary.
+The controlled cloud experiment should sweep worker counts from one through the selected machine's useful concurrency range, using one warm-up and at least three repetitions per setting. It should then compare several fleet sizes of identical instances on one fixed logical workload. Every run must report individual and median wall time, tests/hour, processor utilization, peak memory, retries, bytes transferred, total billed cost, tests/dollar, and exact-output comparison. The preferred execution mode is the one with the lowest measured cost per verified test that also meets the desired completion time and every evidence boundary.
 
 The analytical campaign has three stages:
 

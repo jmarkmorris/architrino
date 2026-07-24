@@ -146,7 +146,7 @@ PDGEDIT_COMPOSITE_LABEL_OCCURRENCE_SPECS = (
     {
         "canonicalId": "noether_pair",
         "type": "noether-pair-composite",
-        "text": "Noether Pair",
+        "text": "Pro/anti-orientation Noether-braid composite",
         "recipeSequence": ("pro_noether_braid", "anti_noether_braid"),
     },
     {

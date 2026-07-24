@@ -6,7 +6,7 @@ This chapter answers four linked questions. What kinetic bookkeeping is allowed 
 
 The chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
-All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Accelerations and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and transmitter-side acceleration weight, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
+All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Accelerations and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and transmitter-side acceleration weight, on this fixed background. Derivations keep $c_f$ symbolic so the primitive-speed dependence remains visible; numerical instantiations use normalized units with $c_f=1$.
 
 The chapter keeps four levels separate. At the substrate level, kinetic and potential terms are architrino and causal-wake records on absolute time and the Euclidean void. At the dynamical level, energy changes through receiver-side causal hits and radial power. At the effective level, assemblies acquire inertia, apparent energy, and effective metric response through Noether sea coupling. At the inference level, scalar masses, thermodynamic records, and cosmological inventories are accepted only after a window, boundary record, and residual are declared.
 
@@ -85,49 +85,49 @@ Here $\mathbf{F}_a$ is the optional force-like bookkeeping quantity associated w
 From the canonical per-hit law
 
 $$
-\mathbf A_{o'\leftarrow j}(T;T_t)
+\mathbf A_{ij}(T;T_t)
 =
-\kappa\,\sigma_{q_j q_{o'}}\,
-\frac{|q_j q_{o'}|}{r_{o'j}^2}
-W_{o'j}^{\mathrm{acc}}(T;T_t)\,\hat{\mathbf{r}}_{o'j}
+\kappa\,\sigma_{ij}\,
+\frac{|q_i q_j|}{r_{ij}^2}
+W_{ij}^{\mathrm{acc}}(T;T_t)\,\hat{\mathbf{r}}_{ij}
 $$
 
 where
 $$
-D_{t,o'j}(T;T_t)
+D_{t,ij}(T;T_t)
 \equiv
-c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}_{o'j},
+c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}_{ij},
 \qquad
-D_{r,o'j}(T;T_t)
+D_{r,ij}(T;T_t)
 \equiv
-c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}_{o'j},
+c_f-\mathbf V_i(T)\cdot\hat{\mathbf{r}}_{ij},
 \qquad
-W_{o'j}^{\mathrm{acc}}(T;T_t)
+W_{ij}^{\mathrm{acc}}(T;T_t)
 \equiv
-\frac{c_f}{|D_{t,o'j}(T;T_t)|}
+\frac{c_f}{|D_{t,ij}(T;T_t)|}
 $$
-is the transmitter-side acceleration weight. Here $r_{o'j}$ and $\hat{\mathbf r}_{o'j}$ are evaluated on the same retained causal branch. The transmitter-side factor $D_t$
+is the transmitter-side acceleration weight. Here $r_{ij}$ and $\hat{\mathbf r}_{ij}$ are evaluated on the same retained causal branch. The transmitter-side factor $D_t$
 sets root transversality and acceleration density; $D_r/D_t$ separately records
 signed root playback.
 
 Decompose the receiver's velocity into radial and transverse components:
 
-$$\mathbf V_{o'} = V_r \hat{\mathbf{r}}_{o'j} + \mathbf V_\perp, \quad V_r=\mathbf V_{o'}\cdot\hat{\mathbf{r}}_{o'j}.$$
+$$\mathbf V_i = V_r \hat{\mathbf{r}}_{ij} + \mathbf V_\perp, \quad V_r=\mathbf V_i\cdot\hat{\mathbf{r}}_{ij}.$$
 
-Because $\mathbf A_{o'\leftarrow j}\parallel\hat{\mathbf{r}}_{o'j}$:
+Because $\mathbf A_{ij}\parallel\hat{\mathbf{r}}_{ij}$:
 
 - The **instantaneous work rate** from this hit is
   
   $$
   \frac{dK_\mu}{dT}\bigg|_{\text{hit}}
   =
-  \mu_{\text{arch}}\mathbf A_{o'\leftarrow j}\cdot\mathbf V_{o'}
+  \mu_{\text{arch}}\mathbf A_{ij}\cdot\mathbf V_i
   =
-  \mu_{\text{arch}}\kappa\,\sigma_{q_j q_{o'}}\,|q_j q_{o'}|
-  \frac{W_{o'j}^{\mathrm{acc}}(T;T_t)}{r_{o'j}^2}\,V_r
+  \mu_{\text{arch}}\kappa\,\sigma_{ij}\,|q_i q_j|
+  \frac{W_{ij}^{\mathrm{acc}}(T;T_t)}{r_{ij}^2}\,V_r
   $$
 
-  Only $V_r$ contributes to instantaneous quadratic-proxy power. For the primitive scalar $K$, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf V_{o'}\|)$.
+  Only $V_r$ contributes to instantaneous quadratic-proxy power. For the primitive scalar $K$, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf V_i\|)$.
 
 - A hit only changes the **along-the-line** component of velocity; sideways motion $\mathbf V_\perp$ is unchanged instantaneously.
 
@@ -152,25 +152,25 @@ The phrase "an architrino emits potential" should not be read as a transmitter c
 Potential energy is therefore relational. It is assigned when a receiver is placed in a transmitter's path-history causal-wake record and its trajectory intersects the relevant causal wake surfaces. The receiver's energy accounting depends on the active causal roots, their inverse-square distance factors, their polarity signs, the transmitter-side root denominator, the transmitter-side acceleration weight, and the receiver's radial motion through the line of action. In the general per-hit law the transmitter-side factor is
 
 $$
-D_{t,o'j}(T;T_t)
+D_{t,ij}(T;T_t)
 =
-c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}_{o'j}
+c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}_{ij}
 $$
 
 and the receiver-side factor is
 
 $$
-D_{r,o'j}(T;T_t)
+D_{r,ij}(T;T_t)
 =
-c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}_{o'j}.
+c_f-\mathbf V_i(T)\cdot\hat{\mathbf{r}}_{ij}.
 $$
 
 The branch strength is $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, while the instantaneous power delivered to the receiver is controlled by
 
 $$
-\mathbf A_{o'\leftarrow j}\cdot\mathbf V_{o'}
+\mathbf A_{ij}\cdot\mathbf V_i
 =
-\|\mathbf A_{o'\leftarrow j}\|\,V_r
+\|\mathbf A_{ij}\|\,V_r
 $$
 
 On an affine partner chart, the transmitter-side factor and receiver-side factor must both be tracked. The simple branch expression $J_p=1+(dX/dT)/c_f$ is only a transmitter-side topology expression unless the receiver-side factor is also present on the same chart.
@@ -179,19 +179,19 @@ Thus the potential to do work is broadly available wherever causal wakes pass, b
 
 ### Potential Energy
 
-For a receiver architrino $o'$ with polarity $q_{o'}$ at position $\mathbf X_{o'}(T)$, the potential energy $U_{o'}(T)$ is the fixed-history bookkeeping value assigned to the current configuration against the causal path-history wake record:
+For a receiver architrino $i$ with polarity $q_i$ at position $\mathbf X_i(T)$, the potential energy $U_i(T)$ is the fixed-history bookkeeping value assigned to the current configuration against the causal path-history wake record:
 
-$$U_{o'}(T) = q_{o'}\,\Phi_{\text{net}}[\text{history}]\big(\mathbf X_{o'}(T),T\big).$$
+$$U_i(T) = q_i\,\Phi_{\text{net}}[\text{history}]\big(\mathbf X_i(T),T\big).$$
 
 The sign of $\Phi_{\text{net}}$ is not a sign on total energy. A negative causal-wake potential contribution from an electrino source is a polarity-signed interaction record; it becomes energy bookkeeping only after the receiver polarity, active causal root, line-of-action geometry, transmitter-side factor, transmitter-side acceleration weight, and receiver radial motion are specified. Work can therefore occur relative to a negative potential without introducing a negative-energy substance or a negative total-energy reservoir.
 
-Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal-wake record of $\mathbf X_{o'}(T)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth continuum field.
+Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal-wake record of $\mathbf X_i(T)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth continuum field.
 
 When we work with the mollified effective potential $\Phi_\eta$, we can also write the fixed-history, force-like relation:
 
-$$\mathbf F_{o'}(T) = -\nabla_{\mathbf X_{o'}}U_{o'}(T) = -q_{o'} \nabla_{\mathbf X_{o'}} \Phi_\eta[\text{history}]\big(\mathbf X_{o'}(T),T\big),$$
+$$\mathbf F_i(T) = -\nabla_{\mathbf X_i}U_i(T) = -q_i \nabla_{\mathbf X_i} \Phi_\eta[\text{history}]\big(\mathbf X_i(T),T\big),$$
 
-and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf F_{o'}=\mu_{\text{arch}}\mathbf A_{o'}$ or the appropriate $\mu_K\mathbf A_{o'}$, has been declared.
+and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf F_i=\mu_{\text{arch}}\mathbf A_i$ or the appropriate $\mu_K\mathbf A_i$, has been declared.
 The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental acceleration law remains the per-hit sum of the Master EOM.
 
 ### Macroscopic Cancellation and Localized Resonance
@@ -325,7 +325,7 @@ This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_T$, nor that a 
 
 In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the acceleration contribution and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
-The finite-$\eta$ pathology theorem target in [Master Equation](./master-equation.md#finite-eta-pathology-quarantine-theorem-target) uses this conservation status in a restricted way. The no-runaway conclusion is available only when the action-derived $E_{\text{wake}}^{(\eta)}$, or a compatible realized-trajectory reconstruction, has a declared lower bound on the same admissible branch chart. If the lower bound is absent, the run is not promoted as a closed solution; it is routed to the continuation boundary where collapse, missing wake-history bookkeeping, regulator dependence, or endpoint leakage must be resolved.
+The finite-$\eta$ pathology theorem target in [Master Equation](./master-equation.md#finite-regulator-pathology-quarantine-theorem-target) uses this conservation status in a restricted way. The no-runaway conclusion is available only when the action-derived $E_{\text{wake}}^{(\eta)}$, or a compatible realized-trajectory reconstruction, has a declared lower bound on the same admissible branch chart. If the lower bound is absent, the run is not promoted as a closed solution; it is routed to the continuation boundary where collapse, missing wake-history bookkeeping, regulator dependence, or endpoint leakage must be resolved.
 
 For reaction or radiation events, energy can leave the source assembly as photon output, recoil, medium excitation, remnant excitation, wake-carried exchange, or handoff terms, but those are named outputs rather than hidden losses. The event-level version is the componentwise ledger closure in [Reaction Ledger](../validation/reaction-ledger.md#residual-routing-event-ledger-contract).
 
@@ -601,7 +601,7 @@ Here $\mathcal F_T$ is the packet's chosen fluctuation-dissipation map, and $\ch
 
 ## Noether Sea, Effective Spacetime, and Energy Storage
 
-At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy Noether braid assemblies**:
+At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy Noether braid assemblies**. The following size and energy statements are hypotheses awaiting a certified Noether braid and scale map:
 
 - These Noether braids are extremely small compared to ordinary particles (electrons, protons, etc.).
 - Each Noether braid is itself a tightly bound architrino assembly with very high internal kinetic and potential energy; A1 is the best-developed Family-A member, not the definition of the sea.
@@ -637,7 +637,7 @@ where:
 - $U_{ij}$ is mutual potential energy of pair $(i,j)$,
 - $E_{\text{coupling to sea}}$ accounts for how the assembly deforms and polarizes the surrounding Noether sea, that is, the local Noether sea environment (or in bridge prose, the local spacetime medium).
 
-This internal energy can be **very large**: accepted high-energy branches may retain Planck-scale or higher internal energy, even when the assembly appears externally as a low-mass effective particle.
+**Hypothesis.** The internal energy can be much larger than the externally exposed energy. Any comparison to the Planck scale or a higher scale remains a benchmark-level possibility until a certified branch fixes the native energy map.
 
 ### Apparent Energy and Shielding
 
@@ -933,13 +933,13 @@ $$
 Here:
 - $M_0$ is the assembly rest/internal invariant extracted at $v_{\text{CM}}=0$ in a locally homogeneous sea.
 - $E_{\text{CM}}$ and $p_{\text{CM}}$ are the total center-of-mass energy and momentum measured from trajectory dynamics.
-- $c_{\text{eff}}$ is the isotropic projection of the local Noether sea response-speed record; in weak-field homogeneous and neutral conditions that also pass the two-moment quietness condition above, $c_{\text{eff}}\to c_f$.
+- $c_{\text{eff}}$ is the isotropic projection of the local Noether sea response-speed record. In weak-field homogeneous and neutral conditions that also pass the two-moment quietness condition above, $c_{\text{eff}}\to c_\infty$, with $c_\infty=c_0$ by observer calibration. The relation between $c_0$ and the primitive wake speed $c_f$ remains the declared hierarchy question in the [speed-role table](../foundations/absolute-timespace.md#speed-symbols-and-their-levels); the active Bell route requires $c_f>c_0$ rather than silently identifying them.
 
 More precisely, the response-speed tensor may be written schematically as
 $$
 \left(c_{\text{eff}}^2\right)^{ab}
 =
-c_f^2
+c_0^2
 \left[
 (1+\delta c_0)h^{ab}
 +
@@ -1008,7 +1008,7 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
   Large internal energies, plus coupling to the Noether sea, generate:
   - Effective inertia (mass),
   - Shielded external wake signatures (tiny apparent energy compared to internal),
-  - Generation dependence through how many outer screening layers still surround the deepest core,
+  - Generation dependence through which declared support rows remain active and how their shielding map changes,
   - An emergent speed scale $c_{\text{eff}}$ and relativistic-like behavior.
   Macroscopic quietness follows from superposition and shielding: incoherent populations cancel statistically, while phase-locked assemblies such as collinear breathers preserve localized, non-canceling wake structure.
 
@@ -1037,7 +1037,7 @@ Because a lower bound exists, the natural reference is **not** "infinite separat
 
 ### The Bookkeeping Convention
 
-We adopt a **singular-boundary gauge**: on a certified branch chart with a declared self-hit lower boundary $r_{\min}$ (the MCB attractor), we fix the potential gauge at this wall.
+We adopt a **singular-boundary gauge**: on a certified branch chart with a declared self-hit lower boundary $r_{\min}$, we fix the potential gauge at this wall. If an MCB branch is later certified, its lower boundary is one candidate realization of this reference.
 
 $$U(r_{\min}) \equiv 0.$$
 
@@ -1133,7 +1133,9 @@ It is useful (as a **bookkeeping analogy**) to think of this candidate braid rec
 
 In this language, a discrete input can **lock in** a new candidate braid configuration: a threshold-triggered, history-dependent update that selects one stable branch over another. This is a **collapse-like** event in the phenomenological sense (a sudden, discrete state update), but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it is treated as a **deterministic, microstate-sensitive bifurcation**, not an intrinsically stochastic collapse.
 
-### Bookkeeping Table: One $h$ of Closed-Cycle Action (Source-Record $v_3 < c_f$)
+### Closed-Cycle Action Bookkeeping Table for the Sub-Field Source Record
+
+This table records one $h$ of closed-cycle action for source-record binary 3 in the sub-field-speed regime $v_3<c_f$.
 
 For the $h$ versus $\hbar$ convention used here, see [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 

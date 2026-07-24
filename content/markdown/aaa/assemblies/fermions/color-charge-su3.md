@@ -87,12 +87,12 @@ In this section, color is defined on the ordered axial frame $\{D_1,D_2,D_3\}$, 
 
 ### Braid orientation and matter/antimatter conjugation
 
-Beyond which binaries are present, their **precession order** defines a pro/anti braid orientation:
+Beyond which binaries are present, the orientation of their persistent indexed frame defines a pro/anti braid orientation:
 
-- **Pro orientation:** precession order $1 \to 2 \to 3$ in time.
-- **Anti orientation:** precession order $1 \to 3 \to 2$ in time.
+- **Pro orientation:** indexed-frame order $1 \to 2 \to 3$.
+- **Anti orientation:** indexed-frame order $1 \to 3 \to 2$.
 
-This is the fermion-sector consumer of the pro/anti orientation basis defined in [Noether Sea Pro/Anti Coupling](../../spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis). The orientation is parity-facing: parity exchanges the two orders. It does not distinguish particles from antiparticles. Matter/antimatter instead follows whole-branch polarity conjugation at fixed worldlines, which preserves the pro/anti order. Color is independent of both binary labels.
+This is the fermion-sector consumer of the pro/anti orientation basis defined in [Noether Sea Pro/Anti Coupling](../../spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis). The retained carrier is the indexed-frame orientation sign $o_{\mathrm{PA}}$, not a frequency or precession ordering. The orientation is parity-facing: parity exchanges the two orders. It does not distinguish particles from antiparticles. Matter/antimatter instead follows whole-branch polarity conjugation at fixed worldlines, which preserves the pro/anti order. Color is independent of both binary labels.
 
 
 
@@ -133,6 +133,8 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 Neutrinos are treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar polarity-conjugate Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
 
+The photon lock used as this comparison point has not been exhibited: the declared planar polarity-conjugate family fails its binding gate. Neutrino residual-mass and oscillation quantities defined as departures from that lock are therefore referent-pending. The color conclusion below does not depend on those residuals; it uses only the absence of a quark-like exceptional-axis inventory in the proposed neutral-pair construction.
+
 This makes the color statement sharper:
 
 - The neutrino has no stable quark-like axial layer on which one 1, 2, or 3 axis can become exceptional.
@@ -157,7 +159,7 @@ A PMNS-level derivation remains a closure target in the [neutrino section](./neu
 
 Quarks are color‑charged because **one axis is in a different axial class than the other two**.
 
-### General “two‑same + one‑different” rule
+### Charged-sector dyad-counting lemma
 
 Let each axis pattern be coarse‑classified as:
 
@@ -165,13 +167,21 @@ Let each axis pattern be coarse‑classified as:
 - **positive-polarity dyad**: two Positrinos, $(\epsilon_+,\epsilon_+)$
 - **mixed dyad**: one Electrino and one Positrino, $(\epsilon_-,\epsilon_+)$ or $(\epsilon_+,\epsilon_-)$, net neutral and dipolar
 
-The key structural rule for **admissible, stable quark‑like Noether braids** is:
+For a six-site inventory, let $n_+$, $n_-$, and $n_m$ count positive-polarity, negative-polarity, and mixed dyads. Then
 
-> Exactly **two axes share the same axial class**, and the third is **different in kind** (negative-polarity dyad vs positive-polarity dyad vs mixed dyad).
+$$
+2n_+ + n_m=N_+,
+\qquad
+2n_- + n_m=N_-,
+\qquad
+n_+ + n_- + n_m=3.
+$$
 
-We **forbid** stable states with all three axes in different classes (for example 1 positive-polarity dyad, 2 negative-polarity dyad, 3 mixed dyad). Those “three-different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the Noether sea and quickly relax or disintegrate.
+For the up-type inventory $(N_+,N_-)=(5,1)$, the unique nonnegative solution is $(n_+,n_-,n_m)=(2,0,1)$. For the down-type inventory $(2,4)$, the solutions are $(1,2,0)$ and $(0,1,2)$. Thus every charged quark inventory forces exactly two axes into one dyad class and one axis into a different class. The pattern is a counting consequence, not an added stability postulate.
 
-Therefore:
+An all-three-different pattern has $(n_+,n_-,n_m)=(1,1,1)$ and therefore $(N_+,N_-)=(3,3)$: it belongs to the neutral inventory, not either charged quark row. Whether any neutral three-different assembly is dynamically retained remains a separate stability question.
+
+Accordingly, the axis-class dictionary is:
 
 - **Colorless**: 1,2,3 all same class, for example all negative-polarity dyads or all mixed dyads.
 - **Colored quark**: 1,2,3 pattern is one of:

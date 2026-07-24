@@ -55,6 +55,20 @@ $$
 
 A low value of the first term alone is insufficient. The second term is the split-ontology guard: it rejects a fit that keeps each observable close to its benchmark only by assigning mutually incompatible projections of $\theta_{\mathrm{sea}}$.
 
+For empirical packets, $\mathcal{R}_X$ is a chi-square statistic only when $C_X$ is the declared covariance of the retained residual vector and its inverse is well defined on that retained subspace. Let $N_X$ be the rank of that covariance after masks and projections, and let $p_X$ be the number of parameters actually estimated from family $X$. The packet must report
+$$
+\nu_X^{\mathrm{dof}}=N_X-p_X
+$$
+and, when $\nu_X^{\mathrm{dof}}>0$, the reduced statistic
+$$
+\overline{\mathcal{R}}_X
+=
+\frac{\mathcal{R}_X}{\nu_X^{\mathrm{dof}}}.
+$$
+The raw $\mathcal{R}_X$ remains the additive packet term; $\overline{\mathcal{R}}_X$ is a scale diagnostic and must not replace a likelihood without a declared statistical derivation.
+
+The nuisance record $\nu_X$ must state, before fitting, whether each nuisance quantity is fixed, profiled, or marginalized and how that choice changes $p_X$ and the effective covariance. The projection weights $w_a$, the penalty coefficient $\lambda$, and all residual and overlap thresholds are likewise frozen before fitting. They may be changed only in a separately identified sensitivity run, never retuned after seeing the shared-state result.
+
 The first empirical packet should keep the leading standard comparison objects visible inside the residual vectors:
 $$
 r_{\mathrm{SN/BAO}}
@@ -107,7 +121,7 @@ The source-mined empirical packet should retain the following benchmark families
 | `WL_RSD_DES` | DES weak-lensing/clustering data vector, shear calibration, photo-$z$ calibration, covariance, DESI RSD rows when present | `S_8`, `f_sigma_8`, `CMB_lensing`, `growth_response`, `noether_sea_coupling` |
 | `EUCLID_PUBLIC` | Public release identifier, image/catalogue/mask/photo-$z$ readiness products, covariance readiness note | `mask_context`, `photo_z_context`, `shape_context`, `future_growth_projection` |
 
-As of 2026-05-19, `EUCLID_PUBLIC` is a readiness row, not a cosmology-constraint row. A packet may use Euclid Q1-style products to test mask, catalogue, image, spectroscopy, and photo-$z$ bookkeeping, but it must not count Euclid as a successful weak-lensing or clustering cosmology residual until a public cosmology release supplies the relevant data vector and covariance.
+`EUCLID_PUBLIC` remains a readiness row whenever the cited public release lacks a cosmology data vector and covariance. Such a packet may test mask, catalogue, image, spectroscopy, and photo-$z$ bookkeeping, but it must not count Euclid as a successful weak-lensing or clustering cosmology residual until its cited release supplies the required data vector and covariance.
 
 For empirical packets, the BAO row should use the explicit anisotropic/isotropic vector
 
@@ -130,7 +144,41 @@ D_V^\theta(z_i)/r_d^\theta
 \right]
 $$
 
-where `kept` means the subset reported by the survey bin. This avoids pretending that isotropic BAO bins contain independent radial and transverse information. The SN/local-ladder row should analogously keep the distance-modulus and local-slope rows separate:
+where `kept` means the subset reported by the survey bin. This avoids pretending that isotropic BAO bins contain independent radial and transverse information.
+
+The acoustic-ruler coherence check is evaluated inside this BAO family rather than as a separate cosmology gate. Partition the catalogue into predeclared sky patches $p$, tracer classes, and redshift bins $b$; fit every subset with the same distance calibration, nuisance model, window-function treatment, and reconstruction procedure. Let
+
+$$
+\ell_{pb}
+\equiv
+\ln r_{d,pb}^{\mathrm{fit}},
+\qquad
+\bar{\ell}_d
+=
+\frac{
+\mathbf 1^T\mathbf C_{\ell}^{-1}\boldsymbol{\ell}
+}{
+\mathbf 1^T\mathbf C_{\ell}^{-1}\mathbf 1
+},
+$$
+
+where $\mathbf C_\ell$ includes cross-patch covariance and survey-window coupling. The dispersion row is
+
+$$
+\mathcal R_{\mathrm{BAO,disp}}
+=
+\left(
+\boldsymbol{\ell}-\bar{\ell}_d\mathbf 1
+\right)^T
+\mathbf C_\ell^{-1}
+\left(
+\boldsymbol{\ell}-\bar{\ell}_d\mathbf 1
+\right).
+$$
+
+Homogeneous comparison mocks determine the noise-only distribution after masks, selection, reconstruction, and shared-distance calibration are applied. A recovered branch passes when its predicted patch and bin dispersion is consistent with that distribution. Because BAO measures distance-to-ruler ratios, $r_{d,pb}^{\mathrm{fit}}$ is not treated as a model-free direct observation; the same declared distance map must be used in every subset.
+
+The SN/local-ladder row should analogously keep the distance-modulus and local-slope rows separate:
 
 $$
 \mathbf r_{\mathrm{SN/H_0}}

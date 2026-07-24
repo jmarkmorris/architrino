@@ -82,12 +82,12 @@ $$
 $$
 with
 $$
-\frac{\|\mathcal{R}_{\mathrm{eq}}^\theta\|_{\mathcal{D}'(\Omega_\theta\times T)}}{\epsilon_{\mathrm{eq}}}
+\frac{\|\mathcal{R}_{\mathrm{eq}}^\theta\|_{\mathrm{BL}^*(\Omega_\theta\times T)}}{\epsilon_{\mathrm{eq}}}
 +
-\frac{\|\mathbf{J}_\theta-\mathbf{J}_{\psi_{\mathrm{eff}}}\|_{W^{-1,1}}}{\epsilon_J}
+\frac{\|\mathbf{J}_\theta-\mathbf{J}_{\psi_{\mathrm{eff}}}\|_{\mathrm{BL}^*}}{\epsilon_J}
 \le 1
 $$
-This is the piece of the Bohmian lesson that can be promoted without adopting particle positions plus a separate configuration-space wave as ontology: the native flow must carry a measure and current whose compression behaves like the quantum continuity law.
+Here $\mathrm{BL}^*$ is the dual bounded-Lipschitz, or flat, norm used for finite signed measure residuals in [Wavefunction Ontology](../../quantum/wavefunction-ontology.md#density-current-closure-target). This is the piece of the Bohmian lesson that can be promoted without adopting particle positions plus a separate configuration-space wave as ontology: the native flow must carry a measure and current whose compression behaves like the quantum continuity law.
 
 ### Ontological Inventory
 

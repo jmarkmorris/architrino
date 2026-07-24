@@ -38,7 +38,7 @@ $$
 \tau^-\to \ell^-+\bar\nu_\ell+\nu_\tau
 $$
 
-Here $\ell\in\{e,\mu\}$ in the tau channel. These observer-level channels should be read as event-ledger targets, not as proof that the heavier lepton simply turns into lighter particles by label replacement. A closed $\mathbb{A}\mathbb{A}\mathbb{A}$ record must identify the incoming heavy charged-lepton branch, the finite $W^-$ corridor transaction, the outgoing charged-lepton axial inventory, the neutral-lepton near-photon weak ledgers, and every recoil or medium row needed for energy, momentum, angular momentum, charge, and identity routing.
+are observer-level event-ledger targets. Here $\ell\in\{e,\mu\}$ in the tau channel. These channels do not prove that a heavier lepton simply turns into lighter particles by label replacement. A closed $\mathbb{A}\mathbb{A}\mathbb{A}$ record must identify the incoming heavy charged-lepton branch, the finite $W^-$ corridor transaction, the outgoing charged-lepton axial inventory, the neutral-lepton near-photon weak ledgers, and every recoil or medium row needed for energy, momentum, angular momentum, charge, and identity routing. The associated generation step must also satisfy the scaffold-count ledger in [Quantum Number Mapping](./quantum-number-mapping.md#generation-step-scaffold-ledger).
 
 The same provenance discipline applies to tau hadronic channels. When a tau branch routes into pions, kaons, or other hadrons, the record must state how the charged-lepton corridor hands off to quark or meson assemblies without treating hadron content as created from nothing. Until those inventories are closed, the muon and tau pages should be read as branch and validation targets rather than completed reaction derivations.
 

@@ -2,9 +2,9 @@
 
 This chapter asks whether the delayed Master EOM can be recovered from an action principle. In ordinary mechanics, a Lagrangian is useful because varying one scalar history functional gives the equations of motion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the target is harder: the functional must remember delayed causal roots, transmitter identities, boundary terms, and transmitter-side acceleration weight.
 
-The restart rule is simple. Any variational scaffold in this chapter that does not produce transmitter-side acceleration weight is invalid as closure evidence. The current target is to vary a path-history functional whose branch-reduced acceleration law carries $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ on the same retained roots as the Master EOM. Transmitter-side factors remain transversality diagnostics until paired with the receiver-side factor and checked by the stated residuals.
+The validity condition is simple. Any variational scaffold in this chapter that does not produce transmitter-side acceleration weight is invalid as closure evidence. The current target is to vary a path-history functional whose branch-reduced acceleration law carries $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ on the same retained roots as the Master EOM. Transmitter-side factors remain transversality diagnostics until paired with the receiver-side factor and checked by the stated residuals.
 
-Variational proof work therefore restarts from this canonical receiver-side target. No prior action stationarity, energy balance, or Noether wake-history verdict is inherited unless the same derivation reproduces the receiver-side branch law on the retained record.
+Variational proof work therefore begins from this canonical receiver-side target. No prior action stationarity, energy balance, or Noether wake-history verdict is inherited unless the same derivation reproduces the receiver-side branch law on the retained record.
 
 The bridge is deliberately conditional. The Master EOM remains the primary dynamics at the substrate level; an action or Lagrangian chart becomes theorem-grade only after its variation, boundary, and conservation residuals close on the retained branch chart. Until then, the effective Lagrangian is a disciplined inference device rather than an independent ontology.
 
@@ -323,7 +323,7 @@ $$
 \frac{\hat{\mathbf{r}}_{ij}(T;T_t)}{r_{ij}(T;T_t)^2}\,
 \phi_\eta\!\big(\tilde g_{ij}(T,T_t)\big)
 $$
-with the understanding that the displayed finite-$\eta$ integral is a branch-selector surrogate. Its weak limit must be redriven so that the retained branch law carries the transmitter-side factor $W^{\mathrm{acc}}$. The derivative term in $\nabla_{\mathbf X_i}\mathcal{K}_{ij}$ is cleared only after the full delayed variation is assembled and the branch reduction is performed. If it survives in the interior, this action candidate fails to derive the Master EOM.
+with the understanding that the displayed finite-$\eta$ integral is a branch-selector surrogate. Its weak limit must be recomputed so that the retained branch law carries the transmitter-side factor $W^{\mathrm{acc}}$. The derivative term in $\nabla_{\mathbf X_i}\mathcal{K}_{ij}$ is cleared only after the full delayed variation is assembled and the branch reduction is performed. If it survives in the interior, this action candidate fails to derive the Master EOM.
 
 A derivation, reduction, or simulation that claims action-derived dynamics must therefore report the variation residual
 $$
@@ -353,7 +353,7 @@ $$
 $$
 The transmitter-side branch target is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. Otherwise the local effective Lagrangian remains a fitted chart. The surviving derivative-of-constraint term is evidence against this action candidate; it does not license a new acceleration term, a vector potential, or a magnetic-like mechanism.
 
-The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [master-equation](./master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. The remaining minimal scale-only repair is the delayed-interior characteristic-tail kernel stated there. With
+The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [master-equation](./master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. The currently minimal known scale-only repair is the delayed-interior characteristic-tail kernel stated there. With
 $$
 u=\tilde g+\frac{r}{c_f}
 $$
@@ -442,25 +442,25 @@ Invariance under absolute time translation yields a conserved total energy only 
 $$
 E_{\text{tot}}(T)=K(T)+E_{\text{wake}}(T)
 $$
-where the action-level nonlocal Noether charge can be written with the weighted causal kernel from [master-equation](./master-equation.md#action-level-wake-energy-functional-at-time-boundary-t). To avoid confusing the receiver-gradient kernel above with the Noether-energy kernel, write
+where the action-level nonlocal Noether charge can be written with the weighted causal kernel from [Master Equation](./master-equation.md#action-level-wake-energy-functional-at-a-time-boundary). To avoid confusing the receiver-gradient kernel above with the Noether-energy kernel, write
 $$
-\mathcal{K}_{ij}^{E}(T_1,T_0)
+\mathcal{K}_{ij}^{E}(T_1,T_t)
 =
 \frac{\kappa\,\sigma_{ij}\,|q_iq_j|}{c_f}
-\Theta(T_1-T_0)
-\frac{\delta\!\big(\tilde g_{ij}(T_1,T_0)\big)}
-{r_{ij}(T_1,T_0)}
+\Theta(T_1-T_t)
+\frac{\delta\!\big(\tilde g_{ij}(T_1,T_t)\big)}
+{r_{ij}(T_1,T_t)}
 $$
 For the delayed-interior characteristic-tail candidate, the Noether-energy kernel must instead be built from the same normalized action kernel,
 $$
-\mathcal{K}_{ij,\mathrm{eff}}^{E}(T_1,T_0)
+\mathcal{K}_{ij,\mathrm{eff}}^{E}(T_1,T_t)
 =
 \frac{\kappa\,\sigma_{ij}\,|q_iq_j|}{c_f}
-\Theta(T_1-T_0)
+\Theta(T_1-T_t)
 K_{\mathrm{eff}}^{(\eta)}
 \!\left(
-r_{ij}(T_1,T_0),
-\tilde g_{ij}(T_1,T_0)
+r_{ij}(T_1,T_t),
+\tilde g_{ij}(T_1,T_t)
 \right)
 $$
 The scalar $1/r$ expression remains the diagnostic scaffold only when this replacement has not been declared for the chart.
@@ -470,9 +470,9 @@ $$
 E_{\text{wake}}(T)
 =
 \frac{1}{2}\sum_{i,j}
-\int_{-\infty}^{T} dT_0
+\int_{-\infty}^{T} dT_t
 \int_{T}^{\infty} dT_1\,
-\partial_{T_1}\mathcal{K}_{ij}^{E}(T_1,T_0)
+\partial_{T_1}\mathcal{K}_{ij}^{E}(T_1,T_t)
 $$
 
 For compatible trajectory reconstruction one may use the work-integral form
@@ -845,13 +845,13 @@ $$
 \left(
 N_s,\,
 M_p,\,
-c_1[\theta^O,\theta^M,\theta^I]
+c_1[\theta_1,\theta_2,\theta_3]
 \right)
 \in
 \mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2
 $$
 
-where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1[\theta^O,\theta^M,\theta^I]$ is the phase-return degree pair of the resonance-locked Noether braid chart. This class is deformation-stable only inside the nondegenerate branch domain: a causal-root fold, reconnection, or loss of phase-bundle closure changes the sector.
+where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1[\theta_1,\theta_2,\theta_3]$ is the phase-return degree pair of the resonance-locked Noether braid chart in persistent-index order. This class is deformation-stable only inside the nondegenerate branch domain: a causal-root fold, reconnection, or loss of phase-bundle closure changes the sector.
 
 The corresponding mass-gap target is therefore native and computable. The gap is the minimum action cost to change $[\mathfrak B]$ by an admissible branch transition, such as a $\Delta N_s=\pm2$ root birth or death under the same Jacobian floor and boundary convention. In a caustic-grazing transition this cost should be estimated from the finite impulse and wake-history increment across the fold. If that minimum vanishes under refinement, the action chart has no protected assembly gap; if it remains positive, the gap is a property of the branch ledger and delayed action, not an imported continuum-defect assumption.
 
@@ -902,7 +902,7 @@ $$
 
 where $N_{\mathrm{wall}}(\gamma)$ is the parity count of enclosed polarity-domain-wall intersections in the retained projection. The memory current is therefore not generic residue in this regime. Its circulation classifies the polarity-domain-wall topology that the nonnegative envelope has forgotten. A spin-$\tfrac12$-like double-valued envelope can be promoted only if this $\mathbb{Z}_2$ sign-sheet circulation is recovered from the same $(\rho_q,\mathbf{j}_q)$ history and persists under branch-preserving deformation.
 
-This is a hard wall for the spinor and exchange-statistics program. The nonnegative envelope forgets an orientation double cover of the signed-density configuration space; the polarity domain walls are the branch locus of that cover. If the parity $N_{\mathrm{wall}}(\gamma)\pmod 2$ can change without crossing a certified fold, reconnection, or declared surgery event in the retained branch record, then the half-integer envelope response has been fitted rather than derived. Conversely, a deformation-stable $\mathbb{Z}_2$ holonomy gives a concrete substrate carrier for the $-1$ sign under an exchange cycle, provided the exchange cycle is computed from the same signed polarity/current history rather than from an imposed quantum label.
+This is a hard wall for the spinor and exchange-statistics program and is the action-side realization of the [exchange-loop hard wall](../foundations/ontology.md#the-fundamental-entity). The nonnegative envelope forgets an orientation double cover of the signed-density configuration space; the polarity domain walls are the branch locus of that cover. If the parity $N_{\mathrm{wall}}(\gamma)\pmod 2$ can change without crossing a certified fold, reconnection, or declared surgery event in the retained branch record, then the half-integer envelope response has been fitted rather than derived. Conversely, a deformation-stable $\mathbb{Z}_2$ holonomy gives a concrete substrate carrier for the $-1$ sign under an exchange cycle, provided the exchange cycle is computed from the same signed polarity/current history rather than from an imposed quantum label.
 
 The handoff must report the continuity residual
 $$

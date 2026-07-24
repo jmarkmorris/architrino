@@ -28,7 +28,7 @@ h_{ij}=\delta_{ij},
 \qquad
 R^i{}_{jkl}(h)=0
 $$
-This geometry gives distance, direction, simultaneity slices, and Euclidean differential operators. It does not bend light, slow clocks, store stress, expand, or respond to matter. Those effects belong to the dynamics of architrinos, causal wakes, assemblies, and the Noether sea, then to the observer-level metric reconstructed from them.
+This geometry gives distance, direction, and Euclidean differential operators on each absolute-time slice. Absolute time $T$, not the spatial metric $h_{ij}$, supplies simultaneity. The spatial metric does not bend light, slow clocks, store stress, expand, or respond to matter. Those effects belong to the dynamics of architrinos, causal wakes, assemblies, and the Noether sea, then to the observer-level metric reconstructed from them.
 
 The inherited spacetime metric belongs at the other end of the stack:
 $$
@@ -37,7 +37,6 @@ g^{\text{eff}}_{\mu\nu}
 \mathcal{G}_{\text{metric}}
 \left(
 h_{ij},
-S(T),
 n,
 \chi_{\text{sea}},
 \sigma^{ab}_{\text{sea}},
@@ -46,7 +45,7 @@ e^a{}_i,
 \Pi_{\text{obs}}
 \right)
 $$
-Here $S(T)$ is the complete ontic universe state with path-history provenance, $n$ is normalized Noether braid density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $\sigma^{ab}_{\text{sea}}$ denotes retained stress response, $u^i_{\mathrm{sea,eff}}$ and $e^a{}_i$ are observer-level drift and frame-field channels, and $\Pi_{\text{obs}}$ denotes the clock, ruler, and signal projections used by Physical Observers. The map $\mathcal{G}_{\text{metric}}$ is not a new primitive. It is the constitutive recovery problem: show how one medium and observer record yields the effective metric that passes GR-level tests.
+Here $n$ is normalized Noether braid density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $\sigma^{ab}_{\text{sea}}$ denotes retained stress response, $u^i_{\mathrm{sea,eff}}$ and $e^a{}_i$ are observer-level drift and frame-field channels, and $\Pi_{\text{obs}}$ denotes the clock, ruler, and signal projections used by Physical Observers. These are reduced constitutive summaries derived from the complete ontic state; the complete state itself is deliberately absent from the displayed map. Otherwise $\mathcal{G}_{\text{metric}}$ could hide an arbitrary state-dependent reconstruction and the claimed reduction would be empty. The constitutive recovery problem is to show that a declared, independently constrained summary is sufficient for the effective metric and passes GR-level tests without benchmark-specific repair terms.
 
 ## Geometry-Layer Map
 
@@ -54,7 +53,7 @@ The useful distinction is not geometric versus non-geometric. It is primitive ge
 
 | Layer | Geometry | Ontological status | What it controls |
 | --- | --- | --- | --- |
-| Euclidean void | Flat metric $h_{ij}=\delta_{ij}$ on $\mathbb{R}^3$ | Fundamental container | Distance, direction, simultaneity-slice spatial operators, fixed location identity |
+| Euclidean void | Flat metric $h_{ij}=\delta_{ij}$ on $\mathbb{R}^3$ | Fundamental container | Distance, direction, spatial operators on each $T$ slice, fixed location identity |
 | Causal wake | Expanding causal isochrons satisfying $r=c_f(T-T_t)$ | Source-provenanced causal structure | Delayed interaction, line of action, branch roots, path-history effects |
 | Assembly | Stable internal organization of architrinos and Noether braids | Emergent bound structure | Particle identity, shielding, mass response, chirality, spin-like and quantum-number mappings |
 | Noether sea | Density, delay, stress, drift, alignment, and compliance response | Emergent medium content | Clock/ruler response, inertia, propagation channels, weak-field gravitational behavior |
@@ -67,6 +66,8 @@ This map prevents two opposite mistakes. One mistake treats General Relativity's
 General Relativity should be treated as a successful effective geometry, not as a strawman. Its central achievement is that many operational records move together. Clocks, rulers, light paths, free-fall trajectories, gravitational redshift, orbital precession, lensing, Shapiro delay, and gravitational waves can be organized by one metric framework with extraordinary precision.
 
 That achievement creates a real recovery burden for $\mathbb{A}\mathbb{A}\mathbb{A}$. The theory cannot merely say that the void is Euclidean. It must derive why Physical Observers, built from assemblies inside a Noether sea, reconstruct a shared effective metric whose benchmark residuals match the tested GR regime. If the clock channel, ruler channel, and signal channel require disconnected tuning, then the metric recovery has failed as a unified explanation.
+
+This burden also answers the conventionalist objection. If a curved-spacetime formulation and a Euclidean-substrate formulation generate exactly the same observable records with equal economy, the observations alone do not choose between their ontologies. The substrate placement earns explanatory priority only by doing additional work: deriving the shared metric from independently fixed constitutive variables, reducing otherwise independent assumptions, or producing a discriminating residual outside the inherited metric model. Without at least one such result, the two descriptions remain empirically equivalent and the ontological preference remains underdetermined.
 
 The philosophical criticism is therefore precise. General Relativity may be correct as the observer-level metric closure while being mislocated as substrate ontology. Its geometry can be real as an effective geometry without being the geometry of the fundamental container.
 

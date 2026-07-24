@@ -4,6 +4,9 @@ import test from "node:test";
 
 import * as THREE from "../vendor/three/three.module.js";
 import { createBorgAssemblyViewScene } from "../src/apps/borg/BorgAssemblyViewScene.js";
+import {
+  BORG_PRESCRIBED_DISPLAY_FRAME_CO_TRANSLATING,
+} from "../src/apps/borg/BorgPrescribedTranslation.js";
 import { createEomHistoryDataset } from "../src/apps/shared/EomHistoryDataset.mjs";
 
 test("Borg merges coincident binary axes and renders light-purple chart curves", () => {
@@ -117,3 +120,120 @@ test("canonical prescribed records render one axis per distinct geometric line",
     scene.dispose();
   }
 });
+
+test("prescribed strands and selected tubes share the finite no-future display window", () => {
+  const root = new THREE.Group();
+  const scene = createBorgAssemblyViewScene({
+    group: root,
+    toWorld(source, target) {
+      return target.set(Number(source.x), Number(source.y), Number(source.z));
+    },
+    render() {},
+  });
+  const dataset = prescribedDataset({
+    group: {
+      centerAtEpoch: [0, 0, 0],
+      velocity: [1, 0, 0],
+    },
+  });
+  scene.setRecord({ sourceId: "translated", dataset });
+  scene.setHistoryDepth(1);
+  scene.updateTime(2);
+
+  const pathGroup = root.children.find((child) =>
+    child.userData.kind === "prescribed-path-history-strands"
+  );
+  const tubeGroup = root.children.find((child) =>
+    child.userData.kind === "display-only-path-history-tubes"
+  );
+  const strand = pathGroup.children[0];
+  assert.deepEqual(strand.geometry.drawRange, { start: 1, count: 2 });
+
+  scene.setTranslationFrame(BORG_PRESCRIBED_DISPLAY_FRAME_CO_TRANSLATING);
+  const coPositions = strand.geometry.getAttribute("position");
+  assert.deepEqual(
+    Array.from({ length: coPositions.count }, (_, index) => coPositions.getX(index)),
+    [0, 0, 0, 0],
+  );
+
+  scene.setSelectedWorldlineId("worldline-0");
+  scene.setTubeOptions({ visible: true, radius: 0.04, opacity: 0.3 });
+  assert.equal(tubeGroup.children.length, 1);
+  assert.equal(tubeGroup.children[0].userData.throughTime, 2);
+  assert.equal(tubeGroup.children[0].userData.historyDepth, 1);
+  assert.equal(tubeGroup.children[0].userData.sourceRadius, 0.04);
+  assert.equal(
+    tubeGroup.children[0].userData.valueAuthority,
+    "display-only-envelope-around-recorded-path-samples",
+  );
+  scene.dispose();
+});
+
+test("missing common translation preserves the fixed strand and rejects only co-translation", () => {
+  const root = new THREE.Group();
+  const scene = createBorgAssemblyViewScene({
+    group: root,
+    toWorld(source, target) {
+      return target.set(Number(source.x), Number(source.y), Number(source.z));
+    },
+    render() {},
+  });
+  scene.setRecord({
+    sourceId: "fixed-only",
+    dataset: prescribedDataset({ group: null }),
+  });
+  const pathGroup = root.children.find((child) =>
+    child.userData.kind === "prescribed-path-history-strands"
+  );
+  assert.equal(pathGroup.children.length, 1);
+  assert.throws(
+    () => scene.setTranslationFrame(
+      BORG_PRESCRIBED_DISPLAY_FRAME_CO_TRANSLATING,
+    ),
+    /Missing carrier/,
+  );
+  scene.dispose();
+});
+
+function prescribedDataset({ group }) {
+  const times = [0, 1, 2, 3];
+  return {
+    provenance: {
+      engineId: "prescribed-geometry",
+      prescribedGeometry: {
+        coordinates: group == null ? {} : { group },
+      },
+    },
+    window: {
+      start: 0,
+      end: 3,
+      sampleInterval: 1,
+    },
+    binaries: [],
+    ansatz: [],
+    worldlines: [{
+      id: "worldline-0",
+      pathKey: "path-0",
+      polarity: 1,
+    }],
+    createFrameSamples() {
+      return times.map((time) => ({
+        time,
+        states: [{
+          worldlineId: "worldline-0",
+          position: { x: time, y: time, z: 0 },
+        }],
+      }));
+    },
+    createTrailSamples({ time, depth, sampleCount }) {
+      return Array.from({ length: sampleCount }, (_, index) => {
+        const sampleTime = time - depth +
+          depth * index / Math.max(1, sampleCount - 1);
+        return {
+          time: sampleTime,
+          position: { x: sampleTime, y: sampleTime, z: 0 },
+        };
+      });
+    },
+  };
+}
