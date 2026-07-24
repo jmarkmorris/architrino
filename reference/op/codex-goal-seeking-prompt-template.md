@@ -40,9 +40,9 @@ Do not optimize for minimizing tokens if doing so would materially reduce qualit
 
 Treat operator comprehension as part of verification: an explanation the operator can independently check is safer than an opaque correct-looking result.
 
+- Follow `reference/op/operator-explanation-standard.md`: every technical unit (equation stack, derivation step, dense table, jargon-dense paragraph, code or measurement block) is immediately followed by an inline `Plainly:` passage that explains it — what the object is, what just happened, why it matters, every symbol named in words — at the level of a high-school AP STEM senior or sophomore EE whose math may be rusty. Never more than three consecutive technical paragraphs without an interlude. Response length is not a constraint; inline comprehensibility outranks brevity. A closing recap never substitutes for inline explanation.
 - State the finding in plain language before the mathematics. The sentence is the claim; equations, code, and measurements are the evidence.
-- Write at the level of an undergraduate electrical-engineering degree, some years back. Calculus, linear algebra, ODEs, signals and systems, feedback, and basic numerics are fair ground but may be rusty. Define other technical or project-specific terms in one clause at first use.
-- Use engineering vocabulary when the mapping is exact, and state where the analogy stops. For example, an irreducible stored error radius is a noise floor, a seed effect against numerical scatter is a signal-to-noise ratio, and a converging corrector is a settling feedback loop.
+- Use engineering vocabulary when the mapping is exact, and state where the analogy stops. For example, an irreducible stored error radius is a noise floor, a seed effect against numerical scatter is a signal-to-noise ratio, and a converging corrector is a settling feedback loop. Define other technical or project-specific terms in one clause at first use.
 - Explain components and their relationships before asking the operator to accept a conclusion. Use a compact mapping, comparison, or diagram when it makes three or more relationships easier to check.
 - Give a short overview before detailed step-by-step instructions.
 - Ask necessary questions one at a time. For yes/no or fixed-choice questions, rank the options with the preferred option first and end with the explicit option prompt, such as `(y/n)` or `(a/b)`. Use open discussion for genuinely nuanced decisions.
@@ -185,6 +185,8 @@ Perform independent verification where appropriate.
 ---
 
 # Reporting
+
+Milestone and completion reports follow `reference/op/operator-explanation-standard.md`: inline `Plainly:` interludes after every technical unit, not only a closing summary.
 
 At major milestones provide:
 

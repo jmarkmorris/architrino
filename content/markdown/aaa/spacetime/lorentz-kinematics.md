@@ -44,7 +44,7 @@ This makes Lorentz recovery the prototype invariant-provenance problem. The inva
 
 Speed convention: primitive delayed-root equations are solved with $c_f$. The declared speed $c_\star$ enters only after the channel has been named: set $c_\star=c_f$ for a primitive wake branch chart, $c_\star=c_{\text{eff}}(\mathbf X,T)$ for Noether sea dressed clocks and rulers, and $c_\star=c_\gamma(\mathbf X,T)$ for photon synchronization. The low-gradient Lorentz limit may identify the measured channel speed with $c_0=c_{\text{eff}}(\infty)$ only after the dressing map is declared.
 
-Notation guardrail: $\chi_{\text{sea}}=c_f/c_{\text{eff}}$ is the Noether sea delay factor, not the Lorentz clock-rate factor. The velocity-sector target is $d\tau/dt_{\mathrm{eff}}\to\sqrt{1-\beta^2}$ only after the clock projection $f_{\tau}$ is extracted from the same Noether sea and assembly record and projected into an effective observer chart. A derivation that writes $\chi_{\text{sea}}\to\sqrt{1-\beta^2}$ has changed notation; the corpus-level target is the map from $(n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{assembly state})$ into $f_{\tau}$ with $R_{\tau v}\to0$.
+Notation guardrail: $\chi_{\text{sea}}=c_f/c_{\text{eff}}$ is the Noether sea delay factor, not the Lorentz clock-rate factor. The velocity-sector target is $d\tau/dt_{\mathrm{eff}}\to\sqrt{1-\beta_{\text{eff}}^2}$ only after the clock projection $f_{\tau}$ is extracted from the same Noether sea and assembly record and projected into an effective observer chart. A derivation that writes $\chi_{\text{sea}}\to\sqrt{1-\beta_{\text{eff}}^2}$ has changed notation; the corpus-level target is the map from $(n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{assembly state})$ into $f_{\tau}$ with $R_{\tau v}\to0$.
 
 A stronger prediction is also available. The Lorentz formulas should not be imported as an independent observer-level rule and then copied onto assemblies. They should be recovered from the same causal-root progression that gives stable assemblies their discrete branch ledgers. In that sense the Lorentz factor is a closure target for the quantum-facing branch structure of the dynamics: the root ledger must generate the contraction, clock-retuning, and residual-leakage coefficients rather than merely coexist with them.
 
@@ -71,27 +71,27 @@ $$
 \frac{d\tau}{dt_{\mathrm{eff}}}
 =
 f_{\tau}\!\left(
-\beta,\,
+\beta_{\text{eff}},\,
 n(\mathbf X,T),\,
 \chi_{\text{sea}}(\mathbf X,T),\,
 \Phi_{\text{eff}}(\mathbf X,T),\,
 \text{assembly state}
 \right),
 \qquad
-\beta\equiv\frac{v}{c_{\text{eff}}}.
+\beta_{\text{eff}}\equiv\frac{v}{c_{\text{eff}}}.
 $$
 The velocity-sector residual is
 $$
-R_{\tau v}(\beta)
+R_{\tau v}(\beta_{\text{eff}})
 \equiv
 \left.\frac{d\tau}{dt_{\mathrm{eff}}}\right|_{\nabla n=0,\ \nabla\Phi_{\text{eff}}=0}
--\sqrt{1-\beta^2},
+-\sqrt{1-\beta_{\text{eff}}^2},
 $$
 and must be bounded by time-dilation tests such as Ives-Stilwell and storage-ring clock comparisons. The weak-field potential-sector residual is
 $$
 R_{\tau\Phi}
 \equiv
-\left.\frac{d\tau}{dt_{\mathrm{eff}}}\right|_{\beta=0}
+\left.\frac{d\tau}{dt_{\mathrm{eff}}}\right|_{\beta_{\text{eff}}=0}
 -\left(1+\frac{\Phi_{\text{eff}}}{c_{\text{eff}}^2}+O\!\left(\frac{\Phi_{\text{eff}}^2}{c_{\text{eff}}^4}\right)\right),
 $$
 with the $\Phi_{\text{eff}}$ sign convention declared, and must recover gravitational-redshift and PPN clock/curvature constraints. Equivalence-principle recovery requires $R_{\tau v}$ and $R_{\tau\Phi}$ to come from the same Noether sea response and assembly-clock map.
@@ -150,7 +150,7 @@ The closure task is to solve for bounded relative motion $\mathbf r_i(T)$ under 
 
 Fix a rest-attractor length scale $a_0$ and period $T_0$, and define
 $$
-\beta\equiv \frac{v}{c_f}\qquad s\equiv \frac{T}{T_0}\qquad
+\beta_f\equiv \frac{v}{c_f}\qquad s\equiv \frac{T}{T_0}\qquad
 \boldsymbol{\rho}_i(s)\equiv \frac{\mathbf r_i(T)}{a_0}\qquad
 \chi_{\mathrm{dd}}\equiv \frac{c_f T_0}{a_0}
 $$
@@ -158,19 +158,19 @@ Then delay closure in co-moving coordinates is
 $$
 \hat{\tau}_{ij}(s)=\frac{1}{\chi_{\mathrm{dd}}}\left\|
 \boldsymbol{\rho}_i(s)-\boldsymbol{\rho}_j\!\left(s-\hat{\tau}_{ij}(s)\right)
-+\chi_{\mathrm{dd}}\beta\,\hat{\mathbf{e}}_{\parallel}\hat{\tau}_{ij}(s)
++\chi_{\mathrm{dd}}\beta_f\,\hat{\mathbf{e}}_{\parallel}\hat{\tau}_{ij}(s)
 \right\|
 $$
 with $\hat{\tau}_{ij}\equiv \tau_{ij}/T_0$.
 The $\mathrm{dd}$ subscript marks this as a local drift-delay scale, not the Noether sea delay factor $\chi_{\text{sea}}$ or the effective coordinate map $\chi_{\mathrm{eff}}$.
 
-Let $\boldsymbol{\rho}^\star(s;\beta)$ be a $P(\beta)$-periodic translating attractor. Linearization gives a delay-Floquet system
+Let $\boldsymbol{\rho}^\star(s;\beta_f)$ be a $P(\beta_f)$-periodic translating attractor. Linearization gives a delay-Floquet system
 $$
-\delta\dot{\mathbf{y}}(s)=A_0(s;\beta)\,\delta\mathbf{y}(s)+\sum_{n=1}^{N_d}A_n(s;\beta)\,\delta\mathbf{y}\!\left(s-\hat{\tau}_n^\star\right)
+\delta\dot{\mathbf{y}}(s)=A_0(s;\beta_f)\,\delta\mathbf{y}(s)+\sum_{n=1}^{N_d}A_n(s;\beta_f)\,\delta\mathbf{y}\!\left(s-\hat{\tau}_n^\star\right)
 $$
 where $\mathbf{y}$ stacks positions and velocities in relative coordinates. Kinematic closure requires:
 
-1. Existence of $\boldsymbol{\rho}^\star(s;\beta)$ for $\beta\in[0,\beta_{\max})$.
+1. Existence of $\boldsymbol{\rho}^\star(s;\beta_f)$ for $\beta_f\in[0,\beta_{\max})$.
 2. Spectral stability of the monodromy operator (all nontrivial Floquet multipliers inside the unit disk).
 3. Smooth coefficient maps for axis and period renormalization extracted from $\boldsymbol{\rho}^\star$.
 
@@ -220,11 +220,11 @@ u\hat{\mathbf e}
 $$
 where $\hat{\mathbf r}_{\sigma\sigma'}$ is the unit vector from the transmitter emission point to the receiver-now point. This is structurally the same transmitter-side factor that appears in Lienard-Wiechert delay geometry. The analogy is useful only at the level of causal-root flux: the canonical Master EOM has the radial inverse-square line of action and transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, but not the full electrodynamic velocity-field and acceleration-field terms. The Lorentz answer therefore cannot be imported from classical electrodynamics; it must be computed on this branch.
 
-The leading/trailing asymmetry in this translating ledger is already visible in the pure drift part of the same Jacobian. For a uniformly moving transmitter with drift ratio $\beta=u/c_f$ and $\theta$ the angle between the drift direction and the transmitter-to-receiver line of action, the simple-root wake-density factor is
+The leading/trailing asymmetry in this translating ledger is already visible in the pure drift part of the same Jacobian. For a uniformly moving transmitter with drift ratio $\beta_f=u/c_f$ and $\theta$ the angle between the drift direction and the transmitter-to-receiver line of action, the simple-root wake-density factor is
 $$
-\mathcal{D}_{\mathrm{wake}}(\theta;\beta)
+\mathcal{D}_{\mathrm{wake}}(\theta;\beta_f)
 =
-\frac{1}{1-\beta\cos\theta}
+\frac{1}{1-\beta_f\cos\theta}
 $$
 before the internal orbital velocity, branch multiplicity, and finite-window energy rows are added. Thus the translating binary calculation is not asking whether anisotropy exists; it is asking whether the full deformed branch ledger converts this microscopic wake-density anisotropy into Lorentzian contraction, clock dilation, and bounded residual leakage.
 
@@ -302,7 +302,7 @@ E_{\text{tot}}
 =
 \sum_i \frac{1}{2}\mu_{\mathrm{arch}}\left\|\frac{d\mathbf X_i}{dT}\right\|^2+E_{\text{wake}}.
 $$
-These are universal-weight bookkeeping proxies for the delayed-Noether closure target, not primitive momentum or mass assignments. Only after the architrino-plus-wake-plus-medium ledger closes does an isolated translating assembly admit a co-moving reduction to a bounded periodic or quasi-periodic branch $\boldsymbol{\rho}^\star(s;\beta)$ with fixed mean drift extracted from the same record.
+These are universal-weight bookkeeping proxies for the delayed-Noether closure target, not primitive momentum or mass assignments. Only after the architrino-plus-wake-plus-medium ledger closes does an isolated translating assembly admit a co-moving reduction to a bounded periodic or quasi-periodic branch $\boldsymbol{\rho}^\star(s;\beta_f)$ with fixed mean drift extracted from the same record.
 
 ## Emergent Kinematics from Delay Anisotropy
 
@@ -312,11 +312,11 @@ For a primitive benchmark drifting binary with instantaneous separation vector $
 $$
 \Delta=\frac{\|\mathbf r+\mathbf V\Delta\|}{c_f}
 $$
-This subsection is deliberately a $c_f$ branch-chart calculation. For operational clock, ruler, or photon tests, repeat the same budget with the declared $c_\star$ after Noether sea dressing. With $\mu\equiv \hat{\mathbf{n}}\cdot\hat{\mathbf{e}}_{\parallel}$ and $\beta=v/c_f$, the two directional roots are
+This subsection is deliberately a $c_f$ branch-chart calculation. For operational clock, ruler, or photon tests, repeat the same budget with the declared $c_\star$ after Noether sea dressing. With $\mu\equiv \hat{\mathbf{n}}\cdot\hat{\mathbf{e}}_{\parallel}$ and $\beta_f=v/c_f$, the two directional roots are
 $$
-\tau_{\pm}(r,\mu;\beta)
+\tau_{\pm}(r,\mu;\beta_f)
 =\frac{r}{c_f}\,
-\frac{\sqrt{1-\beta^2(1-\mu^2)}\pm \beta\mu}{1-\beta^2}
+\frac{\sqrt{1-\beta_f^2(1-\mu^2)}\pm \beta_f\mu}{1-\beta_f^2}
 $$
 Special orientations recover standard forms:
 $$
@@ -330,41 +330,41 @@ $$
 $$
 The symmetric delay channel and associated causal-rate proxy are
 $$
-\bar{\tau}(\mu;\beta)\equiv \frac{\tau_{+}+\tau_{-}}{2}
+\bar{\tau}(\mu;\beta_f)\equiv \frac{\tau_{+}+\tau_{-}}{2}
 =\frac{r}{c_f}\,
-\frac{\sqrt{1-\beta^2(1-\mu^2)}}{1-\beta^2}
+\frac{\sqrt{1-\beta_f^2(1-\mu^2)}}{1-\beta_f^2}
 $$
 $$
-\nu(\mu;\beta)\equiv \frac{1}{\bar{\tau}(\mu;\beta)}
+\nu(\mu;\beta_f)\equiv \frac{1}{\bar{\tau}(\mu;\beta_f)}
 $$
 Since $\bar{\tau}$ depends on $\mu$, interaction response is anisotropic and induces
 $$
 K_{\parallel}(v)\neq K_{\perp}(v)
 $$
 
-### Weak-velocity expansion to $O(\beta^4)$
+### Weak-velocity expansion to $O(\beta_f^4)$
 
 Direct expansion of the symmetric lag gives
 $$
-\bar{\tau}(\mu;\beta)=\frac{r}{c_f}\left[
-1+\frac{1+\mu^2}{2}\beta^2
-+\frac{3+6\mu^2-\mu^4}{8}\beta^4
-+O(\beta^6)
+\bar{\tau}(\mu;\beta_f)=\frac{r}{c_f}\left[
+1+\frac{1+\mu^2}{2}\beta_f^2
++\frac{3+6\mu^2-\mu^4}{8}\beta_f^4
++O(\beta_f^6)
 \right]
 $$
 and thus
 $$
-\nu(\mu;\beta)=\frac{c_f}{r}\left[
-1-\frac{1+\mu^2}{2}\beta^2
-+\frac{-1-2\mu^2+3\mu^4}{8}\beta^4
-+O(\beta^6)
+\nu(\mu;\beta_f)=\frac{c_f}{r}\left[
+1-\frac{1+\mu^2}{2}\beta_f^2
++\frac{-1-2\mu^2+3\mu^4}{8}\beta_f^4
++O(\beta_f^6)
 \right]
 $$
 Two anchor limits are:
 $$
-\mu=1:\ \bar{\tau}=\frac{r}{c_f}\gamma^2,\ \nu=\frac{c_f}{r}(1-\beta^2)
+\mu=1:\ \bar{\tau}=\frac{r}{c_f}\gamma_f^2,\ \nu=\frac{c_f}{r}(1-\beta_f^2)
 \qquad
-\mu=0:\ \bar{\tau}=\frac{r}{c_f}\gamma,\ \nu=\frac{c_f}{r}\frac{1}{\gamma}
+\mu=0:\ \bar{\tau}=\frac{r}{c_f}\gamma_f,\ \nu=\frac{c_f}{r}\frac{1}{\gamma_f}
 $$
 
 ### Closed-return derivation of the Lorentz axis ratio
@@ -634,26 +634,26 @@ $$
 $$
 Write
 $$
-\frac{K_{\parallel}}{K_0}=1+k_2\beta^2+k_4\beta^4+O(\beta^6)+\Delta_{\parallel}^{\text{LV}}
+\frac{K_{\parallel}}{K_0}=1+k_2\beta_f^2+k_4\beta_f^4+O(\beta_f^6)+\Delta_{\parallel}^{\text{LV}}
 $$
 $$
-\frac{K_{\perp}}{K_0}=1+\ell_2\beta^2+\ell_4\beta^4+O(\beta^6)+\Delta_{\perp}^{\text{LV}}
+\frac{K_{\perp}}{K_0}=1+\ell_2\beta_f^2+\ell_4\beta_f^4+O(\beta_f^6)+\Delta_{\perp}^{\text{LV}}
 $$
 with $|\Delta_i^{\text{LV}}|\le C_i\epsilon_{\text{LV}}$. Then
 $$
 \frac{a_{\parallel}}{a_{\perp}}
-=1+\frac{\ell_2-k_2}{2}\beta^2
+=1+\frac{\ell_2-k_2}{2}\beta_f^2
 +\left[
 \frac{\ell_4-k_4}{2}
 +\frac{3k_2^2}{8}
 -\frac{k_2\ell_2}{4}
 -\frac{\ell_2^2}{8}
-\right]\beta^4
-+O(\beta^6)+O(\epsilon_{\text{LV}})
+\right]\beta_f^4
++O(\beta_f^6)+O(\epsilon_{\text{LV}})
 $$
 Matching to
 $$
-\frac{1}{\gamma}=1-\frac{1}{2}\beta^2-\frac{1}{8}\beta^4+O(\beta^6)
+\frac{1}{\gamma_f}=1-\frac{1}{2}\beta_f^2-\frac{1}{8}\beta_f^4+O(\beta_f^6)
 $$
 imposes
 $$
@@ -665,9 +665,9 @@ $$
 
 ### Stiffness tensor from causal-wake surface integrals
 
-To anchor coefficient matching in the microdynamics, define the pairwise causal-wake potential on a translating attractor $\boldsymbol{\rho}^\star(s;\beta)$:
+To anchor coefficient matching in the microdynamics, define the pairwise causal-wake potential on a translating attractor $\boldsymbol{\rho}^\star(s;\beta_f)$:
 $$
-\mathcal{U}_{ij}(T;\beta)\equiv
+\mathcal{U}_{ij}(T;\beta_f)\equiv
 \int_{\Sigma_{ij}^{\text{wake}}(T)}
 \frac{\kappa\,\epsilon^2}{\|\mathbf X_i(T)-\mathbf X_j(T-\Delta)\|^2}\,
 W_{ij}(T,\sigma;\eta)\,d^2\sigma
@@ -675,9 +675,9 @@ $$
 where $W_{ij}$ is the regularized causal kernel weight and $\eta>0$ is the regularization scale.
 Set
 $$
-U_{\text{eff}}(T;\beta)\equiv \sum_{i<j}\mathcal{U}_{ij}(T;\beta)
+U_{\text{eff}}(T;\beta_f)\equiv \sum_{i<j}\mathcal{U}_{ij}(T;\beta_f)
 \qquad
-K_{ab}(\beta)\equiv
+K_{ab}(\beta_f)\equiv
 \left\langle
 \frac{\partial^2 U_{\text{eff}}}{\partial r_a\partial r_b}
 \right\rangle_{\text{cyc}}
@@ -691,26 +691,26 @@ $$
 
 Dimensionless factorization exposes Category A coupling:
 $$
-K_i(\beta)=\frac{\kappa\,\epsilon^2}{a_0^3}\,\mathcal{I}_i(\beta,\chi_{\mathrm{dd}},\eta,\dots)
+K_i(\beta_f)=\frac{\kappa\,\epsilon^2}{a_0^3}\,\mathcal{I}_i(\beta_f,\chi_{\mathrm{dd}},\eta,\dots)
 \qquad i\in\{\parallel,\perp\}
 $$
 Hence
 $$
 k_2=
-\frac{\partial_{\beta}^2\mathcal{I}_{\parallel}\big|_{\beta=0}}
+\frac{\partial_{\beta_f}^2\mathcal{I}_{\parallel}\big|_{\beta_f=0}}
 {2\,\mathcal{I}_{\parallel}(0)}
 \qquad
 \ell_2=
-\frac{\partial_{\beta}^2\mathcal{I}_{\perp}\big|_{\beta=0}}
+\frac{\partial_{\beta_f}^2\mathcal{I}_{\perp}\big|_{\beta_f=0}}
 {2\,\mathcal{I}_{\perp}(0)}
 $$
 $$
 k_4=
-\frac{\partial_{\beta}^4\mathcal{I}_{\parallel}\big|_{\beta=0}}
+\frac{\partial_{\beta_f}^4\mathcal{I}_{\parallel}\big|_{\beta_f=0}}
 {24\,\mathcal{I}_{\parallel}(0)}
 \qquad
 \ell_4=
-\frac{\partial_{\beta}^4\mathcal{I}_{\perp}\big|_{\beta=0}}
+\frac{\partial_{\beta_f}^4\mathcal{I}_{\perp}\big|_{\beta_f=0}}
 {24\,\mathcal{I}_{\perp}(0)}
 $$
 Therefore the Lorentz-matching constraints in [Quadratic Closure and Coefficient Constraints](#quadratic-closure-and-coefficient-constraints) and [Clock-Channel Expansion and Minimal Closure Solution](#clock-channel-expansion-and-minimal-closure-solution) become explicit derivative identities on $\mathcal{I}_{\parallel},\mathcal{I}_{\perp}$ evaluated on the delay-Floquet attractor.
@@ -744,16 +744,16 @@ $$
 Then
 $$
 \frac{T(v)}{T_0}
-=1-\frac{k_2+2\ell_2}{6}\beta^2
+=1-\frac{k_2+2\ell_2}{6}\beta_f^2
 +\left[
 \frac{7}{72}(k_2+2\ell_2)^2
 -\frac{k_4+\ell_2^2+2\ell_4+2k_2\ell_2}{6}
-\right]\beta^4
-+O(\beta^6)+O(\epsilon_{\text{LV}})
+\right]\beta_f^4
++O(\beta_f^6)+O(\epsilon_{\text{LV}})
 $$
 Matching to
 $$
-\gamma=1+\frac{1}{2}\beta^2+\frac{3}{8}\beta^4+O(\beta^6)
+\gamma_f=1+\frac{1}{2}\beta_f^2+\frac{3}{8}\beta_f^4+O(\beta_f^6)
 $$
 gives the clock constraints
 $$
@@ -768,7 +768,7 @@ Combining with shape closure yields a minimal matched coefficient set
 $$
 k_2=-\frac{1}{3}\qquad \ell_2=-\frac{4}{3}
 $$
-and, at $O(\beta^4)$,
+and, at $O(\beta_f^4)$,
 $$
 k_4=-\frac{1}{9}\qquad \ell_4=\frac{2}{9}
 $$
@@ -887,11 +887,11 @@ $$
 \xi(x)=\frac{R_\parallel}{R_\perp}\qquad
 \lambda(x)=\frac{R_\perp(x)}{R_{\perp,0}}
 $$
-with $\xi\in(0,1]$ as shape and $\lambda$ as scale. The Lorentz-closure target is $\xi(x)\to1/\gamma(x)$ in the homogeneous drift regime.
+with $\xi\in(0,1]$ as shape and $\lambda$ as scale. The Lorentz-closure target is $\xi(x)\to1/\gamma_\star(x)$ in the homogeneous drift regime.
 
 Terminology guardrail: $\xi$ is the Noether braid envelope shape ratio, inherited from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
 $$
-\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma}
+\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma_\star}
 $$
 so clock slowing is a derived readout of the geometry-to-clock map.
 
@@ -927,7 +927,7 @@ g_{\text{eff}}^{\mu\nu}(x)=
 +\left(1-\xi^{-2}(x)\right)\hat{u}^{\mu}\hat{u}^{\nu}
 \right]
 $$
-Hence microscopic shape closure, when it yields $\xi\to1/\gamma$, is injected directly into $g_{\mu\nu}^{\text{eff}}$.
+Hence microscopic shape closure, when it yields $\xi\to1/\gamma_\star$, is injected directly into $g_{\mu\nu}^{\text{eff}}$.
 
 In the local Noether sea rest frame ($\hat{u}^\mu=(1,0,0,0)$), with observer-sector coordinate $x_{\mathrm{eff}}^0=c_0 t_{\mathrm{eff}}$:
 $$
@@ -990,7 +990,7 @@ $$
 $$
 Thus the measurable two-way photon-channel speed is $c_\gamma$ even though the two one-way legs were asymmetric in absolute time. Einstein synchronization assigns the remote-clock reading by splitting this round trip; a Reichenbach-style one-way freedom remains, but embedded observers cannot extract the absolute anisotropy unless the clock, ruler, or signal-channel response leaves a residual in the preferred-frame leakage budget.
 
-Slow clock transport supplies an independent synchronization route. A clock carried adiabatically between two endpoints must agree with the Einstein-synchronized endpoint clock in the zero-transport-speed limit, with any surviving $O(\beta)$ discrepancy retained as a clock-law leakage row. Agreement is not guaranteed by two-way optical isotropy alone because the transported clock samples the moving-assembly cadence throughout its path.
+Slow clock transport supplies an independent synchronization route. A clock carried adiabatically between two endpoints must agree with the Einstein-synchronized endpoint clock in the zero-transport-speed limit, with any surviving $O(\beta_\star)$ discrepancy retained as a clock-law leakage row. Agreement is not guaranteed by two-way optical isotropy alone because the transported clock samples the moving-assembly cadence throughout its path.
 
 The conditional lemma applies to a contractible out-and-back path in one synchronization patch. It does not set a rotating closed loop to zero. For a loop with area vector $\mathbf A_{\mathrm{loop}}$ and angular velocity $\boldsymbol\Omega_{\mathrm{rot}}$, the observer-level Sagnac comparison has the nonzero leading target
 $$
@@ -1004,7 +1004,7 @@ The same clock, ruler, and photon record must recover this loop residual while k
 
 This lemma proves only a conditional reabsorption statement: if one branch supplies the square-root ruler law and the square-root clock law, then the two-way optical row self-nulls. It does not prove that the Noether sea response yields those laws. Any deviation in $L_{\parallel}$, $d\tau/dt_{\mathrm{eff}}$, or $c_\gamma$ becomes one of the leakage residuals below.
 
-The same caution applies to speed identification. Let $c_{\mathrm{clk}}$ denote the limiting speed that appears in the moving-assembly clock law and let $c_\gamma$ denote the photon-channel speed used for synchronization. The conditional reabsorption above requires $\gamma_{\mathrm{clk}}=\gamma_\gamma$ in the tested homogeneous branch. If a primitive calculation supplies $\gamma_f(v)$ using $c_f$ while the photon row uses $\gamma_\gamma(v)$ with a different speed, the mismatch appears as an $O(\beta^2)$ two-way residual rather than as Lorentz closure. The accepted target is therefore common-mode dressing: the observer-facing clock, ruler, photon, and effective gravitational channels must share the same homogeneous limiting speed after the Noether sea response is declared. It is not legitimate to collapse $c_f$, $c_\gamma$, $c_{\text{eff}}$, and $c_{\mathrm{GW}}^{\mathrm{eff}}$ by notation before that derivation is supplied.
+The same caution applies to speed identification. Let $c_{\mathrm{clk}}$ denote the limiting speed that appears in the moving-assembly clock law and let $c_\gamma$ denote the photon-channel speed used for synchronization. The conditional reabsorption above requires $\gamma_{\mathrm{clk}}=\gamma_\gamma$ in the tested homogeneous branch. If a primitive calculation supplies $\gamma_f(v)$ using $c_f$ while the photon row uses $\gamma_\gamma(v)$ with a different speed, the mismatch appears as an $O(\beta_\star^2)$ two-way residual rather than as Lorentz closure. The accepted target is therefore common-mode dressing: the observer-facing clock, ruler, photon, and effective gravitational channels must share the same homogeneous limiting speed after the Noether sea response is declared. It is not legitimate to collapse $c_f$, $c_\gamma$, $c_{\text{eff}}$, and $c_{\mathrm{GW}}^{\mathrm{eff}}$ by notation before that derivation is supplied.
 
 The same criterion has a long-baseline photon consequence. If the photon branch uses a frequency-dependent delay factor, then a distant transient comparison accumulates
 $$
@@ -1019,7 +1019,7 @@ $$
 $$
 Operational Lorentz closure therefore requires this residual to vanish, or remain below the declared timing bound, in the same weak homogeneous branch that supplies $c_{2w}(\theta,v)=c_{\text{iso}}+O(\epsilon_{\text{LV}})$. It is not enough to recover local two-way isotropy while leaving cosmological photon timing to a separately tuned channel record.
 
-### Round-trip anisotropy cancellation through $O(\beta^4)$
+### Round-trip anisotropy cancellation through $O(\beta_\star^4)$
 
 Let arm lengths in the preferred frame be written using the declared two-way signal channel speed, with $\beta_\star=v/c_\star$:
 $$
@@ -1071,8 +1071,8 @@ which is precisely $L_{\parallel}=L_0/\gamma_\star+O(\beta_\star^6)$.
 Start with a single causal path-history binary under constant drift $\mathbf V$. Derive:
 
 1. Existence and stability of periodic or quasi-periodic attractors.
-2. Closed-form or asymptotic estimates for $(a_{\parallel}/a_{\perp})(\beta)$.
-3. First nonzero leakage coefficients in the $\beta$ expansion.
+2. Closed-form or asymptotic estimates for $(a_{\parallel}/a_{\perp})(\beta_f)$.
+3. First nonzero leakage coefficients in the $\beta_f$ expansion.
 
 ### Stage B: A1 full closure
 
@@ -1080,7 +1080,7 @@ Promote to an A1 with coupled circulation scales. Establish:
 
 1. Persistence of aligned attractor family under drift.
 2. Factorization or controlled coupling of 1/2/3 period shifts.
-3. Emergent universal $\gamma$-law independent of axial-structure details, within a defined class.
+3. Emergent universal $\gamma_f$-law independent of axial-structure details, within a defined class.
 
 ### Stage C: continuum handoff
 
@@ -1094,7 +1094,7 @@ so local assembly kinematics and macroscopic refractive geometry are mathematica
 
 To connect the two-channel deformation model to observables, use the following sequence:
 
-1. Single-braid constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta)$ from causal path-history A1 dynamics.
+1. Single-braid constitutive closure: derive or fit-test $R_\perp(E)$ and induced $\xi(E,\beta_\star)$ from causal path-history A1 dynamics.
 2. Effective-medium propagation law: construct $n_{\text{eff}}(\xi,\lambda,n)$ for signal transport through deformed Noether braid populations.
 3. Effective metric extraction: build $g_{\mu\nu}^{\text{eff}}$ from medium variables and preferred-frame structure.
 4. Weak-field consistency checks: verify Newtonian limit and required post-Newtonian behavior in the operational observer sector.
@@ -1123,7 +1123,7 @@ For weak drift, slowly varying Noether sea flow, and quasi-static fields in a lo
 $$
 \Phi_{\text{eff}}(x_{\mathrm{eff}}^i)\equiv c_0^2\ln\!\big(\Omega(n,\lambda)\,\xi\big)
 $$
-The $c_0^2$ prefactor marks this as an observer-sector potential calibration; in the weak homogeneous branch, $c_f$ and $c_0$ differ only by $O(\epsilon_{\mathrm{LV}}c_0)$.
+The $c_0^2$ prefactor marks this as an observer-sector potential calibration: $c_0$ is the declared observer-sector speed, and the $c_f\to c_0$ normalization is an obligation of the dressing map, not an input identity. Any residual $c_f$-vs-$c_0$ mismatch in this branch is bounded by the same $\epsilon_{\mathrm{LV}}$ budget that the structural-integrity closure target must drive below the experimental rows above; it is not assumed small here.
 Then the nonrelativistic geodesic limit becomes
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
@@ -1157,53 +1157,53 @@ in the weak-field refractive regime.
 
 ### Coefficient-extraction and closure estimators
 
-For each simulated drift speed, keep the channel label explicit. Primitive branch calculations use $\beta=v/c_f$; dressed observer-channel fits use $\beta_\star=v/c_\star$ after the dressing map is declared. Extract from long-window attractor statistics:
+For each simulated drift speed, keep the channel label explicit. Primitive branch calculations use $\beta_f=v/c_f$; dressed observer-channel fits use $\beta_\star=v/c_\star$ after the dressing map is declared. Extract from long-window attractor statistics:
 $$
 \hat{\alpha}_j\equiv \frac{a_{\parallel,q}(\beta_j)}{a_{\perp,q}(\beta_j)}\qquad
 \hat{\tau}_j\equiv \frac{T_q(\beta_j)}{T_0}
 $$
 Fit even-power truncations
 $$
-\hat{\alpha}(\beta)=1+\hat{\alpha}_2\beta^2+\hat{\alpha}_4\beta^4\qquad
-\hat{\tau}(\beta)=1+\hat{\tau}_2\beta^2+\hat{\tau}_4\beta^4
+\hat{\alpha}(\beta_f)=1+\hat{\alpha}_2\beta_f^2+\hat{\alpha}_4\beta_f^4\qquad
+\hat{\tau}(\beta_f)=1+\hat{\tau}_2\beta_f^2+\hat{\tau}_4\beta_f^4
 $$
 Lorentz closure at this order requires
 $$
 \hat{\alpha}_2=-\frac{1}{2}\quad \hat{\alpha}_4=-\frac{1}{8}\qquad
 \hat{\tau}_2=\frac{1}{2}\quad \hat{\tau}_4=\frac{3}{8}
 $$
-Define closure residuals on a primitive calibration band $0\le\beta\le\beta_{\max}$, or on the dressed band after replacing $\beta$ by $\beta_\star$ and $\gamma$ by $\gamma_\star$:
+Define closure residuals on a primitive calibration band $0\le\beta_f\le\beta_{\max}$, or on the dressed band after replacing $\beta_f$ by $\beta_\star$ and $\gamma_f$ by $\gamma_\star$:
 $$
-R_\xi^{(q)}(\beta)
+R_\xi^{(q)}(\beta_f)
 \equiv
-\hat{\alpha}(\beta)-\frac{1}{\gamma(\beta)}
+\hat{\alpha}(\beta_f)-\frac{1}{\gamma_f(\beta_f)}
 $$
 $$
-R_T^{(q)}(\beta)
+R_T^{(q)}(\beta_f)
 \equiv
-\hat{\tau}(\beta)-\gamma(\beta)
+\hat{\tau}(\beta_f)-\gamma_f(\beta_f)
 $$
 The reported leakage scores are
 $$
 \mathcal{E}_{\text{shape}}
 \equiv
-\sup_{0\le \beta\le \beta_{\max}}
-\left|R_\xi^{(q)}(\beta)\right|
+\sup_{0\le \beta_f\le \beta_{\max}}
+\left|R_\xi^{(q)}(\beta_f)\right|
 $$
 $$
 \mathcal{E}_{\text{clock}}
 \equiv
-\sup_{0\le \beta\le \beta_{\max}}
-\left|R_T^{(q)}(\beta)\right|
+\sup_{0\le \beta_f\le \beta_{\max}}
+\left|R_T^{(q)}(\beta_f)\right|
 $$
 For two-way anisotropy, fit
 $$
-\Delta_{\text{tw}}(\beta,\theta)
-=\sum_{m\ge 1}\mathcal{A}_{2m}(\beta)\cos(2m\theta)
+\Delta_{\text{tw}}(\beta_f,\theta)
+=\sum_{m\ge 1}\mathcal{A}_{2m}(\beta_f)\cos(2m\theta)
 $$
 and enforce
 $$
-\sup_{0\le \beta\le \beta_{\max}}|\mathcal{A}_{2m}(\beta)|\le C_m\epsilon_{\text{LV}}
+\sup_{0\le \beta_f\le \beta_{\max}}|\mathcal{A}_{2m}(\beta_f)|\le C_m\epsilon_{\text{LV}}
 $$
 
 ### Analytic derivation of kinematic closure coefficients
@@ -1214,21 +1214,21 @@ J=\oint \mathbf{p}_{\text{eff}}\cdot d\mathbf{r}
 $$
 For each principal oscillator channel, $J_i\propto \sqrt{K_i}\,A_i^2$, so adiabatic drift retuning implies
 $$
-A_i(\beta)=A_i(0)\left(\frac{K_i(0)}{K_i(\beta)}\right)^{1/4}
+A_i(\beta_f)=A_i(0)\left(\frac{K_i(0)}{K_i(\beta_f)}\right)^{1/4}
 $$
 This provides the fixed-action retuning route from stiffness expansion to the coefficient extraction in [Stiffness Tensor from Causal-Wake Surface Integrals](#stiffness-tensor-from-causal-wake-surface-integrals).
 
-The simplest scalar kernel is useful mainly because it fails in a controlled way. For translation $\mathbf V=v\hat{\mathbf e}_{\parallel}$ with primitive $\beta=v/c_f$, suppose one tries the causal-delay potential form
+The simplest scalar kernel is useful mainly because it fails in a controlled way. For translation $\mathbf V=v\hat{\mathbf e}_{\parallel}$ with primitive $\beta_f=v/c_f$, suppose one tries the causal-delay potential form
 $$
-\mathcal{U}_{\text{eff}}(\mathbf{r};\beta)
+\mathcal{U}_{\text{eff}}(\mathbf{r};\beta_f)
 =
-\frac{\kappa\,\epsilon^2}{r_{\text{cd}}\!\left(1-\boldsymbol{\beta}\cdot \hat{\mathbf{n}}_{\text{cd}}\right)}
+\frac{\kappa\,\epsilon^2}{r_{\text{cd}}\!\left(1-\boldsymbol{\beta}_f\cdot \hat{\mathbf{n}}_{\text{cd}}\right)}
 \qquad
-\boldsymbol{\beta}\equiv \frac{\mathbf V}{c_f}
+\boldsymbol{\beta}_f\equiv \frac{\mathbf V}{c_f}
 $$
-Define stiffness by cycle-averaged Hessian evaluation on $\boldsymbol{\rho}^\star(s;\beta)$:
+Define stiffness by cycle-averaged Hessian evaluation on $\boldsymbol{\rho}^\star(s;\beta_f)$:
 $$
-K_{ab}(\beta)
+K_{ab}(\beta_f)
 =
 \left\langle
 \frac{\partial^2 \mathcal{U}_{\text{eff}}}{\partial r_a\partial r_b}
@@ -1240,36 +1240,36 @@ $$
 $$
 and projecting longitudinal/transverse channels would suggest integrals of the form
 $$
-\mathcal{I}_{\parallel}(\beta)
+\mathcal{I}_{\parallel}(\beta_f)
 =
 \mathcal{I}_0\int_0^{2\pi}\frac{d\theta}{2\pi}
-\frac{\cos^2\theta}{(1-\beta\cos\theta)^3}
+\frac{\cos^2\theta}{(1-\beta_f\cos\theta)^3}
 $$
 $$
-\mathcal{I}_{\perp}(\beta)
+\mathcal{I}_{\perp}(\beta_f)
 =
 \mathcal{I}_0\int_0^{2\pi}\frac{d\theta}{2\pi}
-\frac{\sin^2\theta}{(1-\beta\cos\theta)^3}
+\frac{\sin^2\theta}{(1-\beta_f\cos\theta)^3}
 $$
 This naive block is not a derivation of the Lorentz-matching vector. With the displayed normalization it gives positive normalized stiffness growth rather than the required negative coefficient pattern, and any sign reversal would require an additional channel normalization that is not present in the scalar kernel. The block is therefore a failure diagnostic: the target vector must come from the completed action kernel on the same causal-root ledger, with branch phase closure and fixed-action retuning included before the stiffness derivatives are taken.
 
 The valid theorem target keeps the [Stiffness Tensor from Causal-Wake Surface Integrals](#stiffness-tensor-from-causal-wake-surface-integrals) extraction rules,
 $$
 k_2=
-\frac{\partial_{\beta}^2\mathcal{I}_{\parallel}\big|_{\beta=0}}
+\frac{\partial_{\beta_f}^2\mathcal{I}_{\parallel}\big|_{\beta_f=0}}
 {2\,\mathcal{I}_{\parallel}(0)}
 \quad
 \ell_2=
-\frac{\partial_{\beta}^2\mathcal{I}_{\perp}\big|_{\beta=0}}
+\frac{\partial_{\beta_f}^2\mathcal{I}_{\perp}\big|_{\beta_f=0}}
 {2\,\mathcal{I}_{\perp}(0)}
 $$
 $$
 k_4=
-\frac{\partial_{\beta}^4\mathcal{I}_{\parallel}\big|_{\beta=0}}
+\frac{\partial_{\beta_f}^4\mathcal{I}_{\parallel}\big|_{\beta_f=0}}
 {24\,\mathcal{I}_{\parallel}(0)}
 \quad
 \ell_4=
-\frac{\partial_{\beta}^4\mathcal{I}_{\perp}\big|_{\beta=0}}
+\frac{\partial_{\beta_f}^4\mathcal{I}_{\perp}\big|_{\beta_f=0}}
 {24\,\mathcal{I}_{\perp}(0)}
 $$
 but now requires the branch-action integrals $\mathcal{I}_{\parallel},\mathcal{I}_{\perp}$ to be computed from the completed delayed action and the admitted moving branch chart. The Lorentz-matching closure condition remains
@@ -1288,54 +1288,54 @@ The ordinary version is this: a clock or ruler does not obey Lorentz behavior be
 
 Stated more strongly, the novel claim is a branch-quantized Lorentz response. This does not mean that the algebraic function
 $$
-\gamma(v)=\frac{1}{\sqrt{1-v^2/c_\star^2}}
+\gamma_\star(v)=\frac{1}{\sqrt{1-v^2/c_\star^2}}
 $$
 is replaced everywhere by a step function. It means that a physical clock or ruler can realize Lorentz behavior only through stable branch charts whose causal-root ledgers are integer objects. For a stable branch class $q$, define the realized clock and ruler Lorentz factors by
 $$
-\gamma_{\mathrm{clk}}^{(q)}(\beta)\equiv \frac{T_q(\beta)}{T_0}
+\gamma_{\mathrm{clk}}^{(q)}(\beta_\star)\equiv \frac{T_q(\beta_\star)}{T_0}
 \qquad
-\gamma_{\mathrm{rul}}^{(q)}(\beta)\equiv \frac{R_{\perp,q}(\beta)}{R_{\parallel,q}(\beta)}
+\gamma_{\mathrm{rul}}^{(q)}(\beta_\star)\equiv \frac{R_{\perp,q}(\beta_\star)}{R_{\parallel,q}(\beta_\star)}
 $$
 The branch-quantization claim is that the admissible material responses at fixed background conditions form the ledger-indexed set
 $$
-\Gamma_{\mathrm{adm}}(\beta)
+\Gamma_{\mathrm{adm}}(\beta_\star)
 =
 \left\{
-\big(\gamma_{\mathrm{clk}}^{(q)}(\beta),\gamma_{\mathrm{rul}}^{(q)}(\beta)\big)
+\big(\gamma_{\mathrm{clk}}^{(q)}(\beta_\star),\gamma_{\mathrm{rul}}^{(q)}(\beta_\star)\big)
 :
-q\in\mathcal{Q}_{\mathrm{stable}}(\beta)
+q\in\mathcal{Q}_{\mathrm{stable}}(\beta_\star)
 \right\}
 $$
-where $\mathcal{Q}_{\mathrm{stable}}(\beta)$ is the set of stable causal-root ledger classes. The observer-level Lorentz factor is recovered only when the active branch family, hierarchy averaging, and Noether sea dressing collapse this set to a universal effective value:
+where $\mathcal{Q}_{\mathrm{stable}}(\beta_\star)$ is the set of stable causal-root ledger classes. The observer-level Lorentz factor is recovered only when the active branch family, hierarchy averaging, and Noether sea dressing collapse this set to a universal effective value:
 $$
-\gamma_{\mathrm{clk}}^{(q)}(\beta)
+\gamma_{\mathrm{clk}}^{(q)}(\beta_\star)
 =
-\gamma_{\mathrm{rul}}^{(q)}(\beta)
+\gamma_{\mathrm{rul}}^{(q)}(\beta_\star)
 =
-\gamma(\beta)+O(\epsilon_{\mathrm{LV}})
+\gamma_\star(\beta_\star)+O(\epsilon_{\mathrm{LV}})
 $$
-for all admitted clock/ruler assemblies in the tested homogeneous regime. Thus $\gamma$ remains the continuous effective envelope measured by Physical Observers, while the substrate implementation is quantized by admissible causal-root ledgers. If this is correct, residual deviations from exact Lorentz closure should carry branch-spectrum signatures rather than arbitrary smooth phenomenological drift.
+for all admitted clock/ruler assemblies in the tested homogeneous regime. Thus $\gamma_\star$ remains the continuous effective envelope measured by Physical Observers, while the substrate implementation is quantized by admissible causal-root ledgers. If this is correct, residual deviations from exact Lorentz closure should carry branch-spectrum signatures rather than arbitrary smooth phenomenological drift.
 
-In this chapter, the native formulation of this idea is the progression of the causal-root ledger. This progression is the ordered change, under a control parameter such as drift speed $\beta$, of the active causal-root ledger
+In this chapter, the native formulation of this idea is the progression of the causal-root ledger. This progression is the ordered change, under a control parameter such as drift speed $\beta_f$, of the active causal-root ledger
 $$
-\mathcal{L}_{\mathrm{root}}(\beta)
+\mathcal{L}_{\mathrm{root}}(\beta_f)
 =
 \left\{
 (a,b,m,T,T_{t,m},J_{ab}^{(m)},\sigma_{ab}^{(m)})
 :
-m\in\mathcal{R}^{\mathrm{act}}_{ab}(\beta)
+m\in\mathcal{R}^{\mathrm{act}}_{ab}(\beta_f)
 \right\}
 $$
 Here $a$ is the receiver, $b$ is the source, $m$ labels an active delayed branch, $T_{t,m}$ is the emission time, $J_{ab}^{(m)}$ is the causal Jacobian, and $\sigma_{ab}^{(m)}$ records the interaction sign or channel orientation used by the local branch chart. The ledger is quantum-facing because stable assembly states depend on integer branch counts, separator events, and admissible self-hit / partner-hit histories. It is Lorentz-facing because the same roots determine the cycle-averaged stiffness tensor and clock period.
 
-The local prediction can be stated as a closure condition. There must exist one admissible branch-chart class $\mathfrak{B}_{\mathrm{mov}}(\beta)$ on a drift band $0\le\beta\le\beta_{\max}$ such that
+The local prediction can be stated as a closure condition. There must exist one admissible branch-chart class $\mathfrak{B}_{\mathrm{mov}}(\beta_f)$ on a drift band $0\le\beta_f\le\beta_{\max}$ such that
 $$
-K_{ab}(\beta)
+K_{ab}(\beta_f)
 =
 \left\langle
-\sum_{(a,b,m)\in\mathcal{L}_{\mathrm{root}}(\beta)}
+\sum_{(a,b,m)\in\mathcal{L}_{\mathrm{root}}(\beta_f)}
 \partial_a\partial_b
-\mathcal{U}_{ab}^{(m)}(T;\beta,\eta)
+\mathcal{U}_{ab}^{(m)}(T;\beta_f,\eta)
 \right\rangle_{\mathrm{cyc}}
 $$
 and the extracted coefficient vector
@@ -1351,12 +1351,12 @@ $$
 \left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right)
 +O(\epsilon_{\mathrm{br}}+\epsilon_{\mathrm{hier}}+\epsilon_{\mathrm{reg}})
 $$
-The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, and $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma$ and $T(v)=\gamma T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
+The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, and $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma_f$ and $T(v)=\gamma_f T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
 
 This gives a possible prediction of the framework. If Lorentz behavior is rooted in causal-root progression, then the first nonzero deviations from exact Lorentz closure should not be arbitrary smooth functions of speed. They should inherit the structure of branch charts: smooth even-power drift terms inside a fixed chart, plus localized or resonant leakage near separator events, small-divisor interlayer resonances, or changes in admissible root multiplicity. In a nonresonant chart the leakage should obey
 $$
 \left\|
-\mathbf{c}_{\mathrm{L}}(\beta)
+\mathbf{c}_{\mathrm{L}}(\beta_f)
 -
 \left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right)
 \right\|_W
@@ -1367,16 +1367,16 @@ C_{\mathrm{br}}\epsilon_{\mathrm{br}}
 $$
 while near a chart-changing event the two-way anisotropy diagnostic should decompose into the ordinary Lorentz-canceling part plus a branch-sourced residual:
 $$
-\Delta_{\mathrm{tw}}(\beta,\theta)
+\Delta_{\mathrm{tw}}(\beta_f,\theta)
 =
-\Delta_{\mathrm{tw}}^{\mathrm{smooth}}(\beta,\theta)
+\Delta_{\mathrm{tw}}^{\mathrm{smooth}}(\beta_f,\theta)
 +
 \sum_{r\in\mathcal{R}_{\mathrm{res}}}
-B_r\,\mathcal{W}_r(\beta)\cos(2m_r\theta+\varphi_r)
+B_r\,\mathcal{W}_r(\beta_f)\cos(2m_r\theta+\varphi_r)
 $$
 Here each residual label $r$ must correspond to a named branch-chart feature: a separator approach, a small-divisor relation between layer frequencies, a finite-memory cutoff, a Jacobian-floor loss, or a root-ledger transition. A residual with no branch-chart source is not a successful prediction; it is either ordinary fitting error or an incomplete closure model.
 
-The technology-facing status is therefore conditional. The immediate test is not necessarily a laboratory Lorentz-violation search. The first test is mathematical and computational: solve a controlled translating branch chart, extract $\mathcal{L}_{\mathrm{root}}(\beta)$, compute $K_{\parallel}$, $K_{\perp}$, $T(v)$, and $\Delta_{\mathrm{tw}}$, and verify that the same ledger produces the Lorentz coefficients and any residual sidebands. Only after a nonzero residual survives branch completion, hierarchy averaging, and $\eta\to0$ control does the question become an experimental one. If the predicted residual amplitude lies below existing clock, resonator, matter-interferometer, or photon-channel sensitivity, the theory remains constrained but not yet technology-testable. If a branch-sourced residual survives at an accessible scale, its signature should be more specific than a generic Lorentz-violation coefficient: it should carry the speed, orientation, material-channel, or medium-density dependence of the responsible branch-chart feature.
+The technology-facing status is therefore conditional. The immediate test is not necessarily a laboratory Lorentz-violation search. The first test is mathematical and computational: solve a controlled translating branch chart, extract $\mathcal{L}_{\mathrm{root}}(\beta_f)$, compute $K_{\parallel}$, $K_{\perp}$, $T(v)$, and $\Delta_{\mathrm{tw}}$, and verify that the same ledger produces the Lorentz coefficients and any residual sidebands. Only after a nonzero residual survives branch completion, hierarchy averaging, and $\eta\to0$ control does the question become an experimental one. If the predicted residual amplitude lies below existing clock, resonator, matter-interferometer, or photon-channel sensitivity, the theory remains constrained but not yet technology-testable. If a branch-sourced residual survives at an accessible scale, its signature should be more specific than a generic Lorentz-violation coefficient: it should carry the speed, orientation, material-channel, or medium-density dependence of the responsible branch-chart feature.
 
 This also prevents overclaiming. This chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
 
@@ -1567,7 +1567,7 @@ the drift-response coefficients are locally identifiable from $(a_{\parallel}/a_
 
 ### Theorem F (cross-regime universality of closure coefficients)
 
-If binary and A1 attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
+If binary and A1 attracting branches exist, are smooth in $\beta_f$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
 $$
 \omega_1\gg \omega_2\gg \omega_3\qquad
 |m\omega_3-n\omega_2|
@@ -1608,7 +1608,7 @@ on the same causal-root ledger. The same branch record must then supply the long
 Key outputs to pass into validation and simulation layers:
 
 1. Predicted anisotropy harmonics for resonator-style tests.
-2. Velocity-dependent clock shift coefficients beyond leading $\gamma$ term.
+2. Velocity-dependent clock shift coefficients beyond leading $\gamma_\star$ term.
 3. Orientation-dependent residuals in two-way propagation observables.
 4. Parameter surfaces where leakage remains below target bounds.
 5. Branch-sourced residual labels linking any nonzero $\Delta_{\text{tw}}$ sideband, clock residual, or shape residual to a specific causal-root ledger feature rather than to a free phenomenological coefficient.

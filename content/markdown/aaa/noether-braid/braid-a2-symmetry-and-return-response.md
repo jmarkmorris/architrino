@@ -149,14 +149,14 @@ $$
 \leq
 \varepsilon_{\mathrm{anti}},
 \qquad
-\delta_{\mathrm{anti},i}(T+T_{\mathrm{rec}})
+\delta_{\mathrm{anti},i}(T+T_{\mathrm{recov}})
 \leq
-\theta_{\mathrm{rec}}\,\delta_{\mathrm{anti},i}(T)+\varepsilon_{\mathrm{drive}},
+\theta_{\mathrm{recov}}\,\delta_{\mathrm{anti},i}(T)+\varepsilon_{\mathrm{drive}},
 \qquad
-0\leq\theta_{\mathrm{rec}}<1
+0\leq\theta_{\mathrm{recov}}<1
 $$
 
-for $T,T+T_{\mathrm{rec}}\in J$. Here $T_{\mathrm{rec}}$ is the declared recovery time, $\theta_{\mathrm{rec}}$ is the dimensionless recovery contraction factor, and $\varepsilon_{\mathrm{drive}}$ is the driving residue. This is a certificate target, not an established A2 property.
+for $T,T+T_{\mathrm{recov}}\in J$. Here $T_{\mathrm{recov}}$ is the declared recovery time, $\theta_{\mathrm{recov}}$ is the dimensionless recovery contraction factor, and $\varepsilon_{\mathrm{drive}}$ is the driving residue. This is a certificate target, not an established A2 property.
 
 ### Isolated Release and the Return-Response Question
 

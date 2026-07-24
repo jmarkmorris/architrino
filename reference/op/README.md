@@ -23,6 +23,7 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 - Source mining: [source-mining-best-practice.md](source-mining-best-practice.md).
 - Theory orientation for core geometry and corpus sessions: [theory-orientation.md](theory-orientation.md).
 - Long-running tests, simulations, rebuilds, and analytical campaigns: [long-running-test-heartbeats.md](long-running-test-heartbeats.md).
+- Plain-language explanation in operator-facing output: [operator-explanation-standard.md](operator-explanation-standard.md).
 - Closure curation (milestone corpus reorganization and the volume-split plan): [closure-curation-procedure.md](closure-curation-procedure.md).
 
 Files named `entourage-*` in this directory belong to a separate workflow. Do not treat them as Codex thread-start guidance unless the operator/developer explicitly requests that workflow.

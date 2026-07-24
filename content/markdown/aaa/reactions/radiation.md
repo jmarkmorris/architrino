@@ -30,12 +30,12 @@ t_{\mathrm{prep}}=\frac{d}{c_f-v},
 \delta_\perp\simeq\frac{1}{2}\|\mathbf a_\perp\|t_{\mathrm{prep}}^2.
 $$
 
-With $\beta=v/c_f$ and $1/(1-\beta)\simeq2\gamma^2$ near the field-speed edge,
+With $\beta_f=v/c_f$ and $1/(1-\beta_f)\simeq2\gamma_f^2$ near the field-speed edge,
 
 $$
 \delta_\perp
 \simeq
-\frac{2\|\mathbf a_\perp\|\gamma^4d^2}{c_f^2}.
+\frac{2\|\mathbf a_\perp\|\gamma_f^4d^2}{c_f^2}.
 $$
 
 This is a kinematic candidate, not a power law. At fixed path curvature, the radiation-zone target is the standard $P_{\perp}\propto\gamma^4\|\mathbf a_\perp\|^2$ limit; at fixed $B$, the trajectory response changes with $\gamma$ and the target becomes $P_{\mathrm{syn}}\propto U_B\gamma^2$. A completed derivation must decide whether routed power is linear or nonlinear in $\delta_\perp$ and whether the probe distance $d$ is state dependent. A quadratic fixed-$d$ rule would overproduce a $\gamma^8$ factor and falsify this simplest preparation map.

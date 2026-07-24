@@ -96,7 +96,7 @@ J_{\mathbf Xj}(T;T_t)
 \{T_t<T:g_{\mathbf Xj}(T;T_t)=0\}
 $$
 
-Let $\mathcal{I}_a(T)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(T)$. Let $w_{j,a}^{\mathrm{lock}}(T_t;T)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(T_t;T)$ retain the ambient branches, and let $\alpha_{j,X}(\mathbf X,T;T_t)\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$.
+Let $\mathcal{I}_a(T)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\text{sea}}(\Omega_\ell,T)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(T)$. Let $w_{j,a}^{\mathrm{lock}}(T_t;T)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(T_t;T)$ retain the ambient branches, and let $\alpha_{j,X}(\mathbf X,T;T_t)\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$.
 
 The receiver-side factor needs a declared probe state because the sample event $(\mathbf X,T)$ is not itself an architrino worldline. It is retained for root playback and path-rate diagnostics, not as part of the acceleration weight. For clock, packing, and stationary interface-level scans, use a void-stationary probe, $\mathbf V_{\mathrm{probe},X}(\mathbf X,T)=\mathbf 0$, so $D_{r,\mathbf Xj}^{(X)}=c_f$. For penetration along a declared test path, use $\mathbf V_{\mathrm{probe},\mathrm{penetration}}=v_{\mathrm{path}}\hat{\mathbf{u}}$ at the sample event. A moving reaction-corridor scan must declare its probe velocity before this diagnostic is evaluated. With that channel probe fixed, define
 
@@ -137,7 +137,7 @@ $$
 \mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf X,T;\ell)
 =
 K_\ell *
-\sum_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
+\sum_{j\in\mathcal{I}_{\text{sea}}(\Omega_\ell,T)}
 \sum_{T_t\in\mathcal{C}_{\mathbf Xj}(T)}
 w_j^{\mathrm{sea}}(T_t;T)
 \frac{\alpha_{j,X}(\mathbf X,T;T_t)W_{\mathbf Xj}^{\mathrm{acc},X}(T;T_t)}
@@ -199,7 +199,7 @@ where $d_{\Lambda_a}$ measures closure-label, phase, and branch-provenance misma
 $$
 w_j^{\mathrm{sea}}(T_t;T)
 =
-\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
+\mathbf{1}_{j\in\mathcal{I}_{\text{sea}}(\Omega_\ell,T)}
 \,
 \zeta_{\mathrm{sea}}^{(\ell)}
 \!\left(
@@ -217,7 +217,7 @@ $$
 \mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 =
-\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
+\mathbf{1}_{j\in\mathcal{I}_{\text{sea}}(\Omega_\ell,T)}
 \prod_{a'\in\mathfrak A_{\mathrm{res}}(\Omega_\ell,T)}
 \left[
 1-
@@ -234,10 +234,10 @@ $$
 \left\langle f\right\rangle_{\mathrm{sea},\ell}(\mathbf X,T)
 =
 \frac{
-\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
+\sum_{k\in\mathcal{I}_{\text{sea}}(\Omega_\ell,T)}
 K_\ell(\mathbf X-\mathbf{X}_k(T))f_k(T)
 }{
-\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
+\sum_{k\in\mathcal{I}_{\text{sea}}(\Omega_\ell,T)}
 K_\ell(\mathbf X-\mathbf{X}_k(T))
 }
 $$
@@ -336,14 +336,14 @@ $$
 \left(
 \delta\theta_{\mathrm{clk}}^{(j)},\,
 \delta\omega_{\mathrm{clk}}^{(j)},\,
-\delta\chi_{\mathrm{sea}}^{(\ell,j)},\,
+\delta\chi_{\text{sea}}^{(\ell,j)},\,
 J_{\mathbf Xj},\,
 \Lambda_j,\,
 \mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}
 \right)
 $$
 
-where $\delta\theta_{\mathrm{clk}}^{(j)}$ and $\delta\omega_{\mathrm{clk}}^{(j)}$ are the branch-induced phase and cadence increments of the declared clock functional, and $\delta\chi_{\mathrm{sea}}^{(\ell,j)}$ is the branch contribution to the coarse Noether sea delay factor. The quotient $Q_{\mathrm{clock}}$ may remove phase-origin choices and hidden constituent relabelings only when $\omega_{\mathrm{clk}}/\omega_0$ is unchanged.
+where $\delta\theta_{\mathrm{clk}}^{(j)}$ and $\delta\omega_{\mathrm{clk}}^{(j)}$ are the branch-induced phase and cadence increments of the declared clock functional, and $\delta\chi_{\text{sea}}^{(\ell,j)}$ is the branch contribution to the coarse Noether sea delay factor. The quotient $Q_{\mathrm{clock}}$ may remove phase-origin choices and hidden constituent relabelings only when $\omega_{\mathrm{clk}}/\omega_0$ is unchanged.
 
 For a reaction corridor,
 
@@ -410,7 +410,7 @@ $$
 +
 \frac{\operatorname{dist}_{S^1}^2(\delta\theta_{\mathrm{clk}},0)}{\epsilon_\theta^2}
 +
-\frac{\left(\delta\chi_{\mathrm{sea}}^{(\ell,j)}/\chi_{\mathrm{sea}}^{(\ell)}\right)^2}{\epsilon_\chi^2}
+\frac{\left(\delta\chi_{\text{sea}}^{(\ell,j)}/\chi_{\text{sea}}^{(\ell)}\right)^2}{\epsilon_\chi^2}
 +
 \frac{\left\|
 \mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}

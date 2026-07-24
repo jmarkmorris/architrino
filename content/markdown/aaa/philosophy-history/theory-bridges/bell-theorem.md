@@ -223,15 +223,15 @@ $$
 
 Here $C$ is not a new substrate object; it is the retained common-past or pair-provenance record used by the proposed Bell closure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ route must explain why the declared provenance and apparatus-response compression leaves a nonzero factorization residual while keeping the measurement-independence and no-signaling residuals below tolerance. If $\Delta_{\mathrm{fact}}(C)$ vanishes for the completed hidden-variable record, the closure has not escaped the theorem.
 
-The same point can be stated as a Markov-screening and restartability test. A finite-thickness screening region, common-past record, or pair-provenance ledger screens a Bell experiment only if the retained state at an intermediate time can be used as a restartable effective state for the later detector records. For $T_0<T_s<T_{\mathrm{rec}}$ and a declared Bell coarse-graining $\mathcal{Q}_{AB}$, define
+The same point can be stated as a Markov-screening and restartability test. A finite-thickness screening region, common-past record, or pair-provenance ledger screens a Bell experiment only if the retained state at an intermediate time can be used as a restartable effective state for the later detector records. For $T_0<T_s<T_{\mathrm{fin}}$, with $T_{\mathrm{fin}}$ the absolute time at which both detector records complete, and a declared Bell coarse-graining $\mathcal{Q}_{AB}$, define
 
 $$
-\Delta_{\mathrm{div}}^{AB}(T_0,T_s,T_{\mathrm{rec}};\mathcal{Q}_{AB})
+\Delta_{\mathrm{div}}^{AB}(T_0,T_s,T_{\mathrm{fin}};\mathcal{Q}_{AB})
 =
 \left\|
-\mathcal{T}^{\mathcal{Q}_{AB}}_{T_0\to T_{\mathrm{rec}}}
+\mathcal{T}^{\mathcal{Q}_{AB}}_{T_0\to T_{\mathrm{fin}}}
 -
-\mathcal{T}^{\mathcal{Q}_{AB}}_{T_s\to T_{\mathrm{rec}}}
+\mathcal{T}^{\mathcal{Q}_{AB}}_{T_s\to T_{\mathrm{fin}}}
 \mathcal{T}^{\mathcal{Q}_{AB}}_{T_0\to T_s}
 \right\|_{\mathrm{TV}\to\mathrm{TV}}
 $$
@@ -653,7 +653,7 @@ P_{\mathrm{src}}^{\mathrm{sing}},
 \mathcal{K}_A,
 \mathcal{K}_B,
 W,
-T
+T_W
 \right)
 $$
 

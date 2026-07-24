@@ -33,9 +33,27 @@ The distinction between secure record and non-closure is essential. A successful
 | Strong-field gravity | Turn singularities, horizons, entropy, and compact radiation into boundary, topology, and event-ledger closure problems. | Black-hole singularities, Big Bang singularity, cosmic censorship, black-hole information, gravitational waves, compact stars. |
 | Cosmology and large-scale structure | Treat cosmological tensions as redshift, Noether sea, transfer-function, and structure-growth questions. | Dark matter, galaxy rotation, dark energy, cosmological constant, $H_0$, $S_8$, inflation, CMB, BBN, structure formation, large-scale anisotropy. |
 | Quantum and statistical emergence | Replace collapse and fundamental probability with deterministic basin, path-history, and detector-response structure. | Measurement, Born rule, Bell, no-signaling, entropy, arrow of time, photon ontology, UV cutoff behavior. |
-| Standard Model and particle closure | Explain particle families, masses, mixing, confinement, asymmetry, and precision anomalies through branch geometry and event provenance. | Higgs/origin of mass, hierarchy, neutrinos, flavor, QCD confinement, strong CP, proton stability, vacuum stability, muon $g-2$, matter-antimatter asymmetry. |
+| Standard Model and particle closure | Explain particle families, exchange classes, masses, mixing, confinement, asymmetry, and precision records through branch geometry and event provenance. | Spin-statistics and exclusion, Higgs/origin of mass, hierarchy, neutrinos, flavor, QCD confinement, strong CP, proton stability and radius, vacuum stability, electron and muon $g-2$, matter-antimatter asymmetry. |
 | Astrophysical engines | Apply the same radiation, reaction, and medium-response ledgers to high-energy systems. | Supernovae, nucleosynthesis, jets, outflows, compact-object engines, transients. |
 | Appendix and exclusions | Keep weaker candidates visible without overclaiming. | Coronal heating, solar-cycle puzzles, planetary anomalies, one-off anomalies, Fermi paradox, single-object anomalies. |
+
+## Crisis-Axis Cross-Reference
+
+The stable identifiers are defined in the [Crisis-to-Solution Cross-Map](crisis-in-physics.md#crisis-to-solution-cross-map), where each row also names its technical owner, current claim grade, and falsifier. A response entry may serve more than one crisis axis, but that reuse counts as explanatory compression only when the same native record and fixed parameters pass every linked benchmark.
+
+| Crisis ID | Diagnosis | Primary response entries |
+| --- | --- | --- |
+| `CR-01` | [Progress vs. Time](crisis-in-physics.md#progress-vs-time) | This chapter's problem-by-problem secure-record, architecture, test, and claim-level discipline. |
+| `CR-02` | [Prediction vs. Ontology](crisis-in-physics.md#prediction-vs-ontology) | [Emergent Metric and the Nature of Spacetime](#emergent-metric-and-the-nature-of-spacetime), together with the secure-record discipline applied throughout the chapter. |
+| `CR-03` | [Quantum Measurement and Outcome Selection](crisis-in-physics.md#quantum-measurement-and-outcome-selection) | [Quantum Measurement](#quantum-measurement). |
+| `CR-04` | [Nonlocality, Bell, and Causal Structure](crisis-in-physics.md#nonlocality-bell-and-causal-structure) | [Born Rule, Bell Tests, and No-Signaling](#born-rule-bell-tests-and-no-signaling). |
+| `CR-05` | [General Relativity and Quantum Theory](crisis-in-physics.md#general-relativity-and-quantum-theory) | [Quantum Gravity and the GR/QM Split](#quantum-gravity-and-the-grqm-split). |
+| `CR-06` | [AdS Control and de Sitter Reality](crisis-in-physics.md#ads-control-and-de-sitter-reality) | [Trans-Planckian Censorship and Swampland Comparisons](#trans-planckian-censorship-and-swampland-comparisons) and [Dark Energy and Late Cosmic Acceleration](#dark-energy-and-late-cosmic-acceleration). |
+| `CR-07` | [Renormalization, UV Completion, and Continuum Excess](crisis-in-physics.md#renormalization-uv-completion-and-continuum-excess) | [Quantum Gravity and the GR/QM Split](#quantum-gravity-and-the-grqm-split) and [The UV Catastrophe](#the-uv-catastrophe-blackbody-divergence). |
+| `CR-08` | [Vacuum, Medium, and the Status of Empty Space](crisis-in-physics.md#vacuum-medium-and-the-status-of-empty-space) | [Emergent Metric and the Nature of Spacetime](#emergent-metric-and-the-nature-of-spacetime) and [Cosmological Constant and Vacuum Catastrophe](#cosmological-constant-and-vacuum-catastrophe). |
+| `CR-09` | [Dark Matter, Dark Energy, and Cosmological Over-Inference](crisis-in-physics.md#dark-matter-dark-energy-and-cosmological-over-inference) | [Dark Matter and Missing Mass](#dark-matter-and-missing-mass) and [Dark Energy and Late Cosmic Acceleration](#dark-energy-and-late-cosmic-acceleration). |
+| `CR-10` | [Parameter Proliferation and Patchwork Closure](crisis-in-physics.md#parameter-proliferation-and-patchwork-closure) | [Spin-Statistics and Exclusion](#spin-statistics-and-exclusion), [Origin of Mass, Higgs, and the Hierarchy Problem](#origin-of-mass-higgs-and-the-hierarchy-problem), [Flavor Generations and CKM/PMNS Mixing](#flavor-generations-and-ckmpmns-mixing), and [Gauge Structure and Coupling Constants](#gauge-structure-and-coupling-constants). |
+| `CR-11` | [Mathematical Control vs. Mechanistic Explanation](crisis-in-physics.md#mathematical-control-vs-mechanistic-explanation) | The architecture and resolution-test fields in every entry, with the technical owners named in the paired cross-map. |
 
 ## Foundations And Spacetime
 
@@ -261,7 +279,7 @@ Current physics already gets something important right here: the survey pipeline
 
 Current physics already gets something important right here: the survey pipeline, background expansion fits, lensing structure, and large-scale inference machinery are strong enough to isolate a genuine residual problem rather than a purely speculative gap.
 
-**Problem detail.** The accelerated expansion of the universe implies the existence of a negative-pressure component dominating the energy budget. While the standard $\Lambda$ CDM model parameterizes this as a cosmological constant ($\Lambda$) with a static equation of state $w = -1$, the physical origin of this energy remains unknown. Distinguishing between a static vacuum energy, a dynamical scalar field (quintessence), or a modification of General Relativity on infrared scales is the primary objective of upcoming surveys like Euclid and LSST. If $w$ is found to evolve with time ($w_a \neq 0$) or cross the phantom divide ($w < -1$), it would necessitate a fundamental reconstruction of our gravitational theories.
+**Problem detail.** The accelerated expansion of the universe implies an effective component with negative pressure in the standard reconstruction. The $\Lambda\mathrm{CDM}$ model parameterizes it as a cosmological constant with $w=-1$, but the physical origin remains unknown. The [DESI Data Release 2 cosmology analyses](https://data.desi.lbl.gov/doc/papers/dr2/) released in 2025 strengthened a data-combination-dependent preference for evolving dark energy when BAO was combined with CMB and supernova records. That result is not a discovery of a new substance: its significance and best-fit evolution depend on the supernova compilation and extended-model assumptions. The 2026 DES Year 6 joint analysis remains compatible with $w=-1$ when its low-redshift probes are combined with CMB and DESI BAO. The correct status is therefore an active cross-dataset pressure, not an established measurement of $w_a\neq0$.
 
 **Where it appears.** Observationally, late-time acceleration is inferred from Type Ia supernovae luminosity distances, CMB+BAO distance ladders, and the integrated growth history encoded in large-scale structure. Within the Friedmann equations, acceleration requires an effective component with negative pressure, but the same data can be fit by very different physical mechanisms (vacuum energy, rolling scalar fields, or modified gravity that changes the relationship between geometry and stress-energy). The tension is sharpened by cross-checks of background expansion versus growth rate measurements (redshift-space distortions, weak lensing), which can distinguish a true cosmological constant from evolving dark energy or infrared gravity modifications. A second pressure comes from inference dependence: supernova standardization, BAO standard-ruler extraction, CMB-frame correction, and the Friedmann sum rule all assume a controlled relation between local observations and an effectively homogeneous, isotropic background.
 
@@ -275,7 +293,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Detailed architecture route.** A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ reading treats dark-energy phenomenology as an effective summary of Noether sea evolution, clock-rate comparison, and relaxation of Noether braid assemblies in the Noether sea rather than as proof that the Euclidean void expands. On this path, high-curvature self-hit cores, source history, and exterior-region relaxation would have to generate the observed distance-redshift and growth signatures without introducing an unconstrained dark-pressure term. The strong version of this proposal remains a closure target: it must derive the measured near-$w=-1$ behavior, specify how local relaxation histories average into observer-facing cosmological parameters, and show which deviations in $w(z)$, supernova directionality, BAO anisotropy, and CMB/matter dipole consistency would diagnose medium evolution rather than a separate dark-energy substance.
 
-**Resolution tests.** Use supernova light-curve time dilation, BAO, CMB distance priors, cosmic chronometers, weak lensing, growth data, supernova directionality, BAO anisotropy, and CMB/matter dipole consistency. The architecture must preserve the successful distance ladder while offering discriminating residuals.
+**Resolution tests.** Use supernova light-curve time dilation, BAO, CMB distance priors, cosmic chronometers, weak lensing, growth data, supernova directionality, BAO anisotropy, and CMB/matter dipole consistency. The architecture must reproduce the DESI DR2 and DES Y6 likelihood surfaces with one transfer function rather than fitting only a headline $w_0$-$w_a$ contour. It must preserve the successful distance ladder while offering discriminating residuals.
 
 **Resolution standard.** Resolution would require either a stable observational separation among vacuum energy, dynamical fields, and modified gravity, or a deeper derivation showing why only one of those possibilities can generate the measured expansion and growth history.
 
@@ -335,13 +353,13 @@ Current physics already gets something important right here: the survey pipeline
 
 ### The $S_8$ Structure-Growth Tension
 
-**Secure record.** Weak-lensing and galaxy-clustering surveys often prefer lower late-time structure amplitude than CMB-inferred $\Lambda\mathrm{CDM}$ fits. The signal is modest and survey-sensitive but physically important because it tests growth, not only background expansion.
+**Secure record.** Weak-lensing and galaxy-clustering surveys have often preferred lower late-time structure amplitude than CMB-inferred $\Lambda\mathrm{CDM}$ fits. The [DES Year 6 three-probe analysis](https://arxiv.org/abs/2601.14559), released in January 2026, measured $S_8=0.789\pm0.012$. Its difference from the combined Planck, ACT, and SPT CMB record is $1.8\sigma$ in the full parameter space and $2.6\sigma$ when projected onto $S_8$ alone. The signal is therefore modest, projection-dependent, and still physically important because it tests growth rather than only background expansion.
 
 Current physics already gets something important right here: the survey pipeline, background expansion fits, lensing structure, and large-scale inference machinery are strong enough to isolate a genuine residual problem rather than a purely speculative gap.
 
-**Problem detail.** Distinct from the Hubble tension, this is a discrepancy in the "clumpiness" of the universe. Weak gravitational lensing surveys (like KiDS and DES) measure the parameter $S_8$ (a combination of matter density and amplitude of fluctuations $\sigma_8$) to be lower than the value predicted by Planck CMB data assuming $\Lambda$ CDM. This suggests that structure in the late universe has grown more slowly than expected. This could imply that General Relativity requires modification on cosmological scales, or that dark matter possesses self-interactions or decay channels that suppress structure formation.
+**Problem detail.** Distinct from the Hubble tension, this is a comparison of the late-time "clumpiness" parameter $S_8=\sigma_8(\Omega_m/0.3)^{1/2}$ with the value inferred from early-universe CMB data under $\Lambda\mathrm{CDM}$. The completed DES Y6 analysis still prefers a lower central value, but the joint low-redshift-plus-CMB fit remains viable. The record no longer supports describing one uniform, survey-independent discrepancy. It supports a covariance-sensitive growth comparison that may reflect residual systematics, baryonic modeling, neutrino mass, dark-sector response, or modified gravity.
 
-**Where it appears.** The $S_8$ tension compares late-time structure growth inferred from weak lensing and galaxy clustering with the higher amplitude predicted by CMB-based $\Lambda$ CDM fits. Systematic uncertainties include shear calibration, photometric redshifts, intrinsic alignments, and baryonic feedback in small-scale modeling, but the discrepancy persists across multiple surveys. Physics explanations range from massive neutrinos suppressing growth to modified gravity or dark matter interactions that slow clustering. Because $S_8$ is sensitive to both background expansion and growth, it provides a complementary diagnostic to the Hubble tension.
+**Where it appears.** The $S_8$ comparison joins weak lensing, galaxy clustering, galaxy-galaxy lensing, cluster counts, and CMB inference. Systematic uncertainties include shear calibration, photometric redshifts, intrinsic alignments, and baryonic feedback in small-scale modeling. Different surveys and projections do not return one invariant significance. Physics explanations range from massive neutrinos suppressing growth to modified gravity or dark matter interactions that slow clustering. Because $S_8$ is sensitive to both background expansion and growth, it provides a complementary diagnostic to the Hubble tension.
 
 **Core non-closure.** The missing closure is whether the discrepancy reflects subtle survey systematics, baryonic modeling errors, massive neutrinos, dark-sector interactions, or modified gravity.
 
@@ -561,6 +579,22 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 ## Standard Model And Particle Closure
 
+### Spin-Statistics And Exclusion
+
+**Secure record.** Integer-spin and half-integer-spin sectors obey different exchange statistics in the validated quantum-field regime, and fermionic exclusion is essential to atomic shell structure, degeneracy pressure, chemistry, and matter stability. These are not optional interpretive details; they are a connected observer-level benchmark family.
+
+**Core non-closure.** Standard local Lorentz-covariant quantum field theory proves the spin-statistics connection from assumptions that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not accept as substrate axioms. The missing closure is therefore a replacement derivation: why do finite assemblies separate into bosonic and fermionic exchange classes, why do half-integer records require a $4\pi$ return, and why does the fermionic class enforce exclusion in many-assembly states?
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The candidate route begins with an ordered-frame lift of a closed assembly, its angular-momentum event ledger, and the topology of exchanging two complete assemblies. Observer-level spin labels and symmetric or antisymmetric state bookkeeping are outputs of that construction, not architrino attributes. The topology must distinguish exchange classes without assigning context-independent quantum operators to the substrate.
+
+**Detailed architecture route.** The owning derivation is split across [Angular Momentum and Spin](theory-bridges/angular-momentum-and-spin.md), [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md), and [Quantum-Number Mapping](../assemblies/fermions/quantum-number-mapping.md). A successful record must show that one closed ordered-frame loop returns the assembly only after $4\pi$ for the fermionic class, that a two-assembly exchange carries the required sign or basin-measure transformation, and that repeated occupation of the same effective state is dynamically absent for identical fermionic assemblies. Merely assigning a braid label, importing a spinor, or postulating an antisymmetric wavefunction does not close the route.
+
+**Resolution tests.** Recover bosonic bunching, fermionic antibunching, atomic term structure, shell capacities, degeneracy pressure, and exchange-sensitive scattering with one assembly projection and no species-specific statistics postulate. Failure occurs if the ordered-frame lift cannot separate the two exchange classes, if the $4\pi$ behavior is only drawn rather than generated, or if exclusion must be inserted after the assembly dynamics.
+
+**Resolution standard.** Resolution requires a native topological and dynamical proof whose projected many-assembly records reproduce the validated spin-statistics and exclusion family in the domain where local relativistic quantum field theory succeeds.
+
+**Claim level.** `direction-ready`; the benchmark and owner map are explicit, while the replacement derivation remains open.
+
 ### Origin Of Mass, Higgs, And The Hierarchy Problem
 
 **Secure record.** The Higgs mechanism, Higgs couplings, electroweak precision tests, collider data, and Standard Model mass terms are real constraints. The Higgs mass is measured, not optional.
@@ -717,6 +751,20 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Claim level.** `direction-ready`.
 
+### Proton Radius Precision Record
+
+**Secure record.** The former proton-radius discrepancy is no longer a strong anomaly. A 2026 [hydrogen $2S$-$6P$ measurement](https://doi.org/10.1038/s41586-026-10124-3) obtained $r_p=0.8406(15)\,\mathrm{fm}$, in excellent agreement with muonic hydrogen, while an independent 2026 [hydrogen $2S$-$nS$ measurement](https://doi.org/10.1103/lgl2-6cb8) obtained $r_p=0.8433(31)\,\mathrm{fm}$, consistent with the CODATA 2022 value. The older large-radius-versus-small-radius split has substantially converged.
+
+**Core non-closure.** Resolution of the discrepancy removes a proposed new-physics signal; it does not remove the recovery burden. One proton assembly and one electromagnetic projection must reproduce the same charge form factor and radius across electronic spectroscopy, muonic spectroscopy, and low-momentum electron scattering.
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The proton charge radius is an observer-level slope parameter extracted from scattering or spectral response, not a hard substrate edge. A candidate proton assembly must generate its effective charge distribution, lepton-dependent bound-state response, and scattering form factor from one retained branch record.
+
+**Resolution tests.** Fit no radius separately by probe. Freeze the proton and electromagnetic projection on one calibration family, then predict withheld electronic-hydrogen, muonic-hydrogen, and scattering records with their published covariance. Failure occurs if different probes require different proton geometries or if the derived response cannot reproduce the now-convergent small-radius record.
+
+**Resolution standard.** The historical puzzle is substantially resolved observationally. $\mathbb{A}\mathbb{A}\mathbb{A}$ closure still requires cross-probe recovery from one assembly record.
+
+**Claim level.** `architecture-ready` as a precision benchmark, not as evidence for a present anomaly.
+
 ### Vacuum Instability
 
 **Secure record.** Given measured Higgs and top-quark inputs, Standard Model renormalization-group running can place the electroweak vacuum near a metastability boundary. The calculation is a precise high-scale probe.
@@ -743,15 +791,31 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Claim level.** `appendix-watch` until the Higgs-sector map and cutoff derivation mature.
 
-### The Muon $g-2$ And Lepton Universality Anomalies
+### Electron $g-2$ Precision Recovery
 
-**Secure record.** Muon anomalous magnetic moment measurements and lepton-flavor universality probes are precision tests of QED, electroweak, hadronic, and flavor calculations. Some reported deviations have persisted, weakened, or shifted as theory and data improved.
+**Secure record.** The anomalous electron magnetic moment $a_e=(g_e-2)/2$ is among the most precise tests of the Standard Model. The 2023 [single-electron Penning-trap measurement](https://doi.org/10.1103/PhysRevLett.130.071801) determined $g/2=1.00115965218059(13)$. Interpreting the comparison requires an independently measured fine-structure constant: the 2020 [rubidium-recoil determination](https://doi.org/10.1038/s41586-020-2964-7) differs by more than $5\sigma$ from the earlier cesium-recoil result, so the sign and size of an electron-sector residual cannot be quoted independently of the chosen $\alpha$ record.
+
+**Core non-closure.** The standard calculation is extraordinarily successful, but $\mathbb{A}\mathbb{A}\mathbb{A}$ still owes a native account of the electron assembly's effective magnetic response and the same dimensionless coupling $\alpha$ used in recoil and spectroscopy. Fitting $\alpha$ from $a_e$ and then calling the agreement a prediction would be circular.
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** A candidate electron branch must project its rotation, polarity distribution, deformation response, photon-channel coupling, and Noether sea environment into one effective magnetic-moment record. The projection must be shared with spectroscopy and scattering; it may not import a primitive spin operator, magnetic field, or loop correction into the substrate law.
+
+**Detailed architecture route.** Freeze the electron assembly and electromagnetic projection using records that exclude $a_e$. Evaluate a joint residual containing the measured moment, independently measured $\alpha$, and at least one withheld spectroscopic or recoil family. The effective QED series remains the benchmark representation. Its loop terms are not substrate mechanisms; the native record must recover their summed observable effect within the experimental and theory covariance.
+
+**Resolution tests.** Use the 2023 Penning-trap moment, independent rubidium and cesium recoil determinations of $\alpha$, and precision spectroscopy. Failure occurs if the electron moment requires a separately fitted $\alpha$, if one assembly record cannot match both recoil and moment data, or if the inferred correction conflicts in sign or scale with the muon and tau response map.
+
+**Resolution standard.** Resolution requires a withheld prediction of $a_e$ from an independently calibrated electron and electromagnetic record, with the $\alpha$ discrepancy carried explicitly rather than averaged away.
+
+**Claim level.** `architecture-ready` as a precision target; no stable electron anomaly is asserted.
+
+### Muon $g-2$ And Lepton-Universality Precision Tests
+
+**Secure record.** The Fermilab Muon $g-2$ experiment published its [final 127-parts-per-billion measurement](https://muon-g-2.fnal.gov/publications.html) in 2025, making the experimental value a durable precision benchmark. The [2025 Muon $g-2$ Theory Initiative update](https://arxiv.org/abs/2505.21476) adopted consolidated lattice-QCD estimates for the dominant hadronic contributions and brought the Standard Model prediction into agreement with experiment at about the one-standard-deviation level. The older high-significance anomaly statement is therefore not current, although disagreement between lattice and dispersive hadronic inputs remains an important theory-data problem.
 
 Current physics gets a large surrounding body of laboratory, collider, decay, and nuclear data right. The unresolved issue is therefore a constrained microphysical gap inside an otherwise very successful predictive structure.
 
-**Problem detail.** The experimental muon anomalous magnetic moment is a high-precision target, but the size of any Standard Model discrepancy depends strongly on the hadronic reference calculation; data-driven and lattice-based evaluations do not yet support one invariant significance statement. Several earlier B-meson lepton-universality hints have also weakened as data and analysis improved. These records may still expose new flavor-sensitive physics, but they may instead identify underestimated hadronic or experimental-systematic uncertainty.
+**Problem detail.** The experimental muon anomalous magnetic moment is a high-precision target, but the size of any Standard Model discrepancy depends strongly on the hadronic reference calculation. The 2025 theory consensus no longer supports presenting $g-2$ as established evidence for new physics. In flavor physics, LHCb's [2022 reanalysis of $R_K$ and $R_{K^\ast}$](https://cds.cern.ch/record/2845047) found the principal lepton-universality ratios consistent with the Standard Model. Other flavor observables remain active, but the earlier ratio anomaly has receded.
 
-**Where it appears.** The muon anomalous magnetic moment is computed from QED, electroweak, and hadronic contributions, with the hadronic vacuum polarization and light-by-light terms dominating the uncertainty. Dispersive data from e+e- to hadrons and lattice QCD calculations currently differ at a level that affects the significance of the anomaly. In parallel, LHCb and B-physics experiments have reported hints of lepton universality violation in rare decays, motivating new mediators such as leptoquarks or $Z'$ bosons. Ongoing FNAL, J-PARC, LHCb, and Belle II measurements will determine whether these anomalies persist or fade with improved statistics.
+**Where it appears.** The muon anomalous magnetic moment is computed from QED, electroweak, and hadronic contributions, with hadronic vacuum polarization and light-by-light terms dominating the theory uncertainty. Dispersive data from $e^+e^-\to\mathrm{hadrons}$ and lattice-QCD calculations still differ in ways that matter for the reference value. In parallel, LHCb, Belle II, and other flavor programs continue testing lepton universality, angular observables, and rare decays after the main $R_K$ and $R_{K^\ast}$ ratios returned to Standard Model consistency.
 
 **Core non-closure.** The unresolved issue is whether anomalies are telling us about new mediators or exposing underestimated hadronic and flavor-theory uncertainties in the background calculations.
 
@@ -767,7 +831,7 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Resolution standard.** Resolution would require either convergent experimental confirmation across multiple channels or a calculation-level reconciliation that removes the discrepancy without special pleading.
 
-**Claim level.** `appendix-watch`, with promotion only if the anomaly landscape stabilizes.
+**Claim level.** `architecture-ready` as a precision benchmark; anomaly-driven promotion is not supported by the 2025-2026 record.
 
 ### QCD Confinement, Mass Gap, And Hadron Structure
 

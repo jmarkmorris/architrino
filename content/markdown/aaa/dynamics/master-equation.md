@@ -144,7 +144,7 @@ c_f-\hat{\mathbf r}_t(T_r;T_t)\cdot\mathbf V_t(T_t)
 \ge
 \kappa_{\mathrm{hit}}>0
 $$
-When this floor fails, the active root is caustic-like or degenerate and must be routed to a different branch chart or regularization regime. In special geometries the floor can be computed rather than declared; the principal circular partner branch derives $\kappa_{\mathrm{hit}}^{\mathrm{bin}}=c_f(1+\beta\sin(\phi/2)) > c_f$ in [Binary Dynamics](binary-dynamics.md#principal-partner-root-certificate), where Binary Dynamics uses $\phi/2=\xi$ for the circular delay angle used below.
+When this floor fails, the active root is caustic-like or degenerate and must be routed to a different branch chart or regularization regime. In special geometries the floor can be computed rather than declared; the principal circular partner branch derives $\kappa_{\mathrm{hit}}^{\mathrm{bin}}=c_f(1+\beta_f\sin(\phi/2)) > c_f$ in [Binary Dynamics](binary-dynamics.md#principal-partner-root-certificate), where Binary Dynamics uses $\phi/2=\xi$ for the circular delay angle used below.
 
 #### Caustic Transit and Finite Impulse
 
@@ -864,25 +864,25 @@ This geometry should be read in terms of the transmitter path, the expanding cau
 
 To obtain a nontrivial analytic checkpoint from the same causal constraint, consider a translating phase-locked two-leg internal loop, with one leg parallel to motion and one transverse. Let the loop center translate with speed $v$ through the Euclidean void while every wake still propagates at the primitive field speed $c_f$. Define
 $$
-\beta \equiv \frac{v}{c_f},\qquad C(v)\equiv \frac{L_\parallel(v)}{L_0}
+\beta_f \equiv \frac{v}{c_f},\qquad C(v)\equiv \frac{L_\parallel(v)}{L_0}
 $$
 with rest bond length $L_0$.
 
 Parallel round-trip delay:
 $$
 T_\parallel(v)=\frac{L_\parallel}{c_f-v}+\frac{L_\parallel}{c_f+v}
-=\frac{2L_0}{c_f}\frac{C(v)}{1-\beta^2}
+=\frac{2L_0}{c_f}\frac{C(v)}{1-\beta_f^2}
 $$
 
 Transverse one-way delay satisfies
 $$
 c_f^2\Delta_\perp^2=L_0^2+v^2\Delta_\perp^2
 \;\Rightarrow\;
-\Delta_\perp=\frac{L_0}{c_f\sqrt{1-\beta^2}}
+\Delta_\perp=\frac{L_0}{c_f\sqrt{1-\beta_f^2}}
 $$
 so
 $$
-T_\perp(v)=2\Delta_\perp=\frac{2L_0}{c_f}\frac{1}{\sqrt{1-\beta^2}}
+T_\perp(v)=2\Delta_\perp=\frac{2L_0}{c_f}\frac{1}{\sqrt{1-\beta_f^2}}
 $$
 
 If internal phase locking is operationally isotropic (no orientation-dependent clock leakage),
@@ -891,8 +891,8 @@ T_\parallel(v)=T_\perp(v)
 $$
 then necessarily
 $$
-C(v)=\sqrt{1-\beta^2},\qquad
-T(v)=\frac{T_0}{\sqrt{1-\beta^2}},
+C(v)=\sqrt{1-\beta_f^2},\qquad
+T(v)=\frac{T_0}{\sqrt{1-\beta_f^2}},
 \quad
 T_0=\frac{2L_0}{c_f}
 $$
@@ -1201,7 +1201,7 @@ For a uniformly moving transmitter and a fixed receiver, let
 $$
 \mathbf X_j(T_t)=\mathbf X_{j,0}+\mathbf V_{j,0}T_t,
 \qquad
-\beta=\frac{\|\mathbf V_{j,0}\|}{c_f},
+\beta_f=\frac{\|\mathbf V_{j,0}\|}{c_f},
 \qquad
 \cos\theta=
 \frac{\mathbf V_{j,0}\cdot\hat{\mathbf r}_{ij}}
@@ -1213,7 +1213,7 @@ Then
 $$
 W_{ij}^{\mathrm{acc}}
 =
-\frac{1}{|1-\beta\cos\theta|},
+\frac{1}{|1-\beta_f\cos\theta|},
 $$
 
 so transmitter motion compresses the emitted surface density in forward directions and dilates it in trailing directions. This is a transmitter-history effect, not a receiver-cadence multiplier and not an imported observer-level field law.
@@ -1897,7 +1897,7 @@ $$
 \qquad
 \mathbf X_2(T)=-\mathbf X_1(T),
 \qquad
-\beta\equiv \frac{v}{c_f}=\frac{\omega R}{c_f}\in(0,1)
+\beta_f\equiv \frac{v}{c_f}=\frac{\omega R}{c_f}\in(0,1)
 $$
 Fix receiver $1$ at reception time $T_r$ and let the unique partner emission time be $T_t=T_r-\Delta$, with
 $$
@@ -1910,7 +1910,7 @@ $\mathbf{e}_\theta(T_r)=(-\sin\omega T_r,\cos\omega T_r,0)$ for the receiver pol
 
 In the symmetric sub-$c_f$ circular ansatz, the partner branch is unique and its delay angle $\xi$ is the unique solution of
 $$
-\cos\xi=\frac{\xi}{\beta},
+\cos\xi=\frac{\xi}{\beta_f},
 \qquad
 0<\xi<\frac{\pi}{2}
 $$
@@ -1932,16 +1932,16 @@ The causal condition $r_{12}=c_f\Delta$ therefore becomes
 $$
 2R\cos\xi=c_f\frac{2\xi}{\omega}
 $$
-hence $\cos\xi=\xi/\beta$.
-Define $h_\beta(\xi)=\cos\xi-\xi/\beta$ on $[0,\pi/2]$. Then
+hence $\cos\xi=\xi/\beta_f$.
+Define $h_{\beta_f}(\xi)=\cos\xi-\xi/\beta_f$ on $[0,\pi/2]$. Then
 $$
-h_\beta(0)=1>0,
+h_{\beta_f}(0)=1>0,
 \qquad
-h_\beta\!\left(\frac{\pi}{2}\right)=-\frac{\pi}{2\beta}<0,
+h_{\beta_f}\!\left(\frac{\pi}{2}\right)=-\frac{\pi}{2\beta_f}<0,
 \qquad
-h_\beta'(\xi)=-\sin\xi-\frac{1}{\beta}<0
+h_{\beta_f}'(\xi)=-\sin\xi-\frac{1}{\beta_f}<0
 $$
-So $h_\beta$ is strictly decreasing and has exactly one root on $(0,\pi/2)$. $\square$
+So $h_{\beta_f}$ is strictly decreasing and has exactly one root on $(0,\pi/2)$. $\square$
 
 #### Lemma (Circular root-playback identity)
 
@@ -1970,16 +1970,16 @@ $$
 \qquad
 r_{12}=2R\cos\xi,
 \qquad
-J_{12}^{t}=1+\beta\sin\xi,
+J_{12}^{t}=1+\beta_f\sin\xi,
 \qquad
-W_{12}^{\mathrm{acc}}=\frac{1}{1+\beta\sin\xi}
+W_{12}^{\mathrm{acc}}=\frac{1}{1+\beta_f\sin\xi}
 $$
 Since the charges are opposite, the partner acceleration on receiver $1$ is
 $$
 \mathbf A_{12}
 =
 -\frac{\kappa |q_1q_2|}{4R^2\cos^2\xi}
-\frac{1}{1+\beta\sin\xi}
+\frac{1}{1+\beta_f\sin\xi}
 \left(
 \cos\xi\,\mathbf{e}_r(T)-\sin\xi\,\mathbf{e}_\theta(T)
 \right)
@@ -1989,13 +1989,13 @@ $$
 a_r^{(\mathrm{part})}
 =
 -\frac{\kappa |q_1q_2|}
-{4R^2\cos\xi\,(1+\beta\sin\xi)}<0
+{4R^2\cos\xi\,(1+\beta_f\sin\xi)}<0
 $$
 $$
 a_\theta^{(\mathrm{part})}
 =
 \frac{\kappa |q_1q_2|\,\sin\xi}
-{4R^2\cos^2\xi\,(1+\beta\sin\xi)}
+{4R^2\cos^2\xi\,(1+\beta_f\sin\xi)}
 >0
 $$
 
@@ -2027,16 +2027,16 @@ so
 $$
 \mathbf V_2(T_t)\cdot\hat{\mathbf{r}}_{12}=-v\sin\xi,
 \qquad
-J_{12}^{t}=1-\frac{\mathbf V_2(T_t)\cdot\hat{\mathbf{r}}_{12}}{c_f}=1+\beta\sin\xi
+J_{12}^{t}=1-\frac{\mathbf V_2(T_t)\cdot\hat{\mathbf{r}}_{12}}{c_f}=1+\beta_f\sin\xi
 $$
 The receiver velocity is $\mathbf V_1(T)=v\mathbf e_\theta(T)$, and
 $$
 \mathbf V_1(T)\cdot\hat{\mathbf r}_{12}=-v\sin\xi.
 $$
-Therefore $D_r=D_t=c_f(1+\beta\sin\xi)$ and
-$W_{12}^{\mathrm{acc}}=(1+\beta\sin\xi)^{-1}$ on this uniform circular branch.
+Therefore $D_r=D_t=c_f(1+\beta_f\sin\xi)$ and
+$W_{12}^{\mathrm{acc}}=(1+\beta_f\sin\xi)^{-1}$ on this uniform circular branch.
 Because $\sigma_{12}=-1$ for opposite polarities, the canonical branch acceleration is
-$-\kappa|q_1q_2|\hat{\mathbf{r}}_{12}/[r_{12}^2(1+\beta\sin\xi)]$,
+$-\kappa|q_1q_2|\hat{\mathbf{r}}_{12}/[r_{12}^2(1+\beta_f\sin\xi)]$,
 and projecting onto $\mathbf{e}_r(T)$ and $\mathbf{e}_\theta(T)$ yields the
 stated components. Since $\xi\in(0,\pi/2)$, every denominator is positive and
 $\sin\xi>0$, proving the sign claims. $\square$
@@ -2079,18 +2079,18 @@ $$
 
 Introduce the dimensionless variables
 $$
-\beta=\frac{v}{c_f}=\frac{\omega R}{c_f},
+\beta_f=\frac{v}{c_f}=\frac{\omega R}{c_f},
 \qquad
 \xi=\frac{\omega \Delta}{2}
 $$
 Then the circular self-hit condition becomes
 $$
-\sin\xi=\frac{\xi}{\beta},
-\qquad 0<\xi<\beta
+\sin\xi=\frac{\xi}{\beta_f},
+\qquad 0<\xi<\beta_f
 $$
-For fixed $\beta>1$, the admissible self-hit set is therefore **finite**, not infinite: roots are exactly the intersections of $\sin\xi$ with the line $\xi/\beta$ inside the compact interval $(0,\beta)$.
+For fixed $\beta_f>1$, the admissible self-hit set is therefore **finite**, not infinite: roots are exactly the intersections of $\sin\xi$ with the line $\xi/\beta_f$ inside the compact interval $(0,\beta_f)$.
 
-The principal branch turns on at $\beta=1$. Writing $\beta=1+\mu$ with $\mu>0$ small, the smallest root obeys
+The principal branch turns on at $\beta_f=1$. Writing $\beta_f=1+\mu$ with $\mu>0$ small, the smallest root obeys
 $$
 \xi_0 \sim \sqrt{6\mu},
 \qquad
@@ -2104,7 +2104,7 @@ J_n
 =
 1-\frac{\mathbf V(T-\Delta_n)\cdot\hat{\mathbf{r}}_n}{c_f}
 =
-1-\beta\cos\xi_n
+1-\beta_f\cos\xi_n
 =
 1-\xi_n\cot\xi_n
 $$
@@ -2127,32 +2127,32 @@ impulse and the corresponding conserved accounts.
 
 Higher branches are also tractable. For the circular root function
 $$
-g_\beta(\xi)\equiv \sin\xi-\frac{\xi}{\beta}
+g_{\beta_f}(\xi)\equiv \sin\xi-\frac{\xi}{\beta_f}
 $$
 new admissible roots can appear only at interior tangencies satisfying
 $$
-g_\beta(\xi)=0,
+g_{\beta_f}(\xi)=0,
 \qquad
-g_\beta'(\xi)=0
+g_{\beta_f}'(\xi)=0
 $$
-Eliminating $\beta$ gives the tangency equation
+Eliminating $\beta_f$ gives the tangency equation
 $$
 \tan\xi = \xi
 $$
 and the corresponding threshold speed is
 $$
-\beta^\star = \sec\xi^\star
+\beta_f^\star = \sec\xi^\star
 $$
 At every such tangency,
 $$
-J^\star = 1-\beta^\star \cos\xi^\star = 0
+J^\star = 1-\beta_f^\star \cos\xi^\star = 0
 $$
 So each new circular self branch is born directly on a Jacobian-null boundary: branch creation and null-separatrix contact are the same event in the uniform circular toy model.
 
 > **Proposition (Signed higher-winding circular branch birth).**
 > The circular distance equation should be read branchwise as
 > $$
-> g_{\beta,s}(\xi)\equiv s\sin\xi-\frac{\xi}{\beta}=0,
+> g_{\beta_f,s}(\xi)\equiv s\sin\xi-\frac{\xi}{\beta_f}=0,
 > \qquad
 > s=\operatorname{sign}(\sin\xi)\in\{+1,-1\}.
 > $$
@@ -2186,9 +2186,9 @@ So each new circular self branch is born directly on a Jacobian-null boundary: b
 > \qquad
 > \beta_n^\star=a_n-\frac{1}{2a_n}+O(a_n^{-3}).
 > $$
-> For $\beta=\beta_n^\star+\mu$ with $0<\mu\ll 1$, the two newly active roots satisfy
+> For $\beta_f=\beta_n^\star+\mu$ with $0<\mu\ll 1$, the two newly active roots satisfy
 > $$
-> \xi_{n,\pm}(\beta)
+> \xi_{n,\pm}(\beta_f)
 > =
 > \xi_n^\star
 > \pm
@@ -2199,7 +2199,7 @@ So each new circular self branch is born directly on a Jacobian-null boundary: b
 > $$
 > J_{n,\pm}
 > =
-> 1-\beta s_n\cos\xi_{n,\pm}
+> 1-\beta_f s_n\cos\xi_{n,\pm}
 > =
 > \pm\,\xi_n^\star
 > \sqrt{\frac{2\mu}{\beta_n^\star}}
@@ -2213,30 +2213,30 @@ So each new circular self branch is born directly on a Jacobian-null boundary: b
 > $$
 > The causal-action coarea weight is a separate collapse factor:
 > $$
-> g_{\beta,s_n}'(\xi_{n,\pm})
+> g_{\beta_f,s_n}'(\xi_{n,\pm})
 > =
-> s_n\cos\xi_{n,\pm}-\frac{1}{\beta}
+> s_n\cos\xi_{n,\pm}-\frac{1}{\beta_f}
 > =
-> -\frac{J_{n,\pm}}{\beta},
+> -\frac{J_{n,\pm}}{\beta_f},
 > $$
-> so the action-counting density carries an additional $|g_{\beta,s_n}'|^{-1}$ and scales as $O(\mu^{-1})$ at fixed nonzero $r_n^\star$. Under the transmitter-side law the acceleration weight is already $W^{\mathrm{acc}}=c_f/|D_t|=1/|J^t|$. Action counting remains a separate variational question and may not be inferred by multiplying the acceleration by signed root playback.
+> so the action-counting density carries an additional $|g_{\beta_f,s_n}'|^{-1}$ and scales as $O(\mu^{-1})$ at fixed nonzero $r_n^\star$. Under the transmitter-side law the acceleration weight is already $W^{\mathrm{acc}}=c_f/|D_t|=1/|J^t|$. Action counting remains a separate variational question and may not be inferred by multiplying the acceleration by signed root playback.
 >
-> Consequently the circular self-hit combinatorics remain linearly bounded in $\beta$. A one-sign subchart has
+> Consequently the circular self-hit combinatorics remain linearly bounded in $\beta_f$. A one-sign subchart has
 > $$
-> N_{\text{self}}^{(+)}(\beta)=\frac{\beta}{\pi}+O(1),
+> N_{\text{self}}^{(+)}(\beta_f)=\frac{\beta_f}{\pi}+O(1),
 > $$
 > while the full signed $|\sin\xi|$ chart has the same no-proliferation form with the convention-dependent leading constant.
 
 > **Benchmark Proposition (Circular branch-count bound).**
 > In the symmetric circular benchmark, if the speed ratio obeys
 > $$
-> |\beta(T)|\le \beta_\ast<\infty
+> |\beta_f(T)|\le \beta_{\max}<\infty
 > $$
 > uniformly, then the active circular self-hit count is uniformly bounded:
 > $$
 > N_{\mathrm{self}}(T)
 > \le
-> \frac{\beta_\ast}{\pi}+C_{\mathrm{circ}},
+> \frac{\beta_{\max}}{\pi}+C_{\mathrm{circ}},
 > $$
 > where
 > $$
@@ -2257,7 +2257,7 @@ This circular benchmark already:
 The benchmark does not provide an elementary closed-form sum, but it gives the following controlled inputs:
 
 - the root geometry is explicitly analyzable,
-- At high speed the number of admissible roots grows only linearly with $\beta$ because all roots lie in $(0,\beta)$,
+- At high speed the number of admissible roots grows only linearly with $\beta_f$ because all roots lie in $(0,\beta_f)$,
 - Large‑$n$ roots admit asymptotic expansions,
 - the canonical self-acceleration series can be studied away from circular root-map degeneracies,
 - and the asymptotic radial/tangential components can be recomputed as functions of $v/c_f$.
@@ -2282,11 +2282,11 @@ The circular benchmark is therefore useful for:
 
 The same circular chart also gives a branchwise acceleration decomposition. On the positive-sine self-hit subchart, every active root satisfies
 $$
-\sin\xi=\frac{\xi}{\beta},
+\sin\xi=\frac{\xi}{\beta_f},
 \qquad
-r=2R\sin\xi=2R\frac{\xi}{\beta},
+r=2R\sin\xi=2R\frac{\xi}{\beta_f},
 \qquad
-J=1-\beta\cos\xi=1-\xi\cot\xi
+J=1-\beta_f\cos\xi=1-\xi\cot\xi
 $$
 Resolving the line-of-action direction into the instantaneous circular frame gives
 $$
@@ -2302,39 +2302,39 @@ W_s^{\mathrm{acc}}(\xi)=\frac{c_f}{|D_t(\xi)|}=\frac{1}{|J(\xi)|},
 $$
 the branchwise self-hit projections are therefore
 $$
-a_r(\xi)=C\frac{\beta}{\xi|J(\xi)|},
+a_r(\xi)=C\frac{\beta_f}{\xi|J(\xi)|},
 \qquad
-a_\theta(\xi)=C\frac{\beta^2\cos\xi}{\xi^2|J(\xi)|}
+a_\theta(\xi)=C\frac{\beta_f^2\cos\xi}{\xi^2|J(\xi)|}
 $$
 Thus the radial projection is outward on every active self root, while the tangential projection is controlled entirely by the sign of $\cos\xi$.
 
 The branch sheets have the following one-sign structure:
 
-| Sheet | Root status for $\sin\xi=\xi/\beta$ | Radial projection | Tangential projection |
+| Sheet | Root status for $\sin\xi=\xi/\beta_f$ | Radial projection | Tangential projection |
 | --- | --- | --- | --- |
-| Negative sine lobes | No roots, because $\xi/\beta>0$ | Inactive | Inactive |
-| First positive lobe | One nonzero root for $\beta>1$ | Outward | Forward for $\cos\xi>0$, backward for $\cos\xi<0$ |
+| Negative sine lobes | No roots, because $\xi/\beta_f>0$ | Inactive | Inactive |
+| First positive lobe | One nonzero root for $\beta_f>1$ | Outward | Forward for $\cos\xi>0$, backward for $\cos\xi<0$ |
 | Higher positive left sheets | One root after birth from a Jacobian-null fold | Outward | Forward |
 | Higher positive right sheets | Paired root after the same birth | Outward | Backward |
 
 Away from fold neighborhoods, substituting the canonical transmitter-side weight
-$W_s^{\mathrm{acc}}=1/|J|$ gives the formal large-$\beta$ sums
+$W_s^{\mathrm{acc}}=1/|J|$ gives the formal large-$\beta_f$ sums
 $$
-A_{r,\mathrm{src}}^{\mathrm{diag}}(\beta)
+A_{r,\mathrm{src}}^{\mathrm{diag}}(\beta_f)
 =
-\frac{C}{\pi}\log\beta+O(C)
+\frac{C}{\pi}\log\beta_f+O(C)
 $$
 and
 $$
-A_{\theta,\mathrm{src}}^{\mathrm{diag}}(\beta)
+A_{\theta,\mathrm{src}}^{\mathrm{diag}}(\beta_f)
 =
--\frac{C\beta}{12}+O(C\log\beta)
+-\frac{C\beta_f}{12}+O(C\log\beta_f)
 $$
 The corresponding absolute tangential activity is
 $$
 \sum_{\xi_n}|a_{\theta,\mathrm{src}}^{\mathrm{diag}}(\xi_n)|
 =
-\frac{C\beta}{6}+O(C\log\beta)
+\frac{C\beta_f}{6}+O(C\log\beta_f)
 $$
 These are formal simple-root transmitter-side sums, not accepted global acceleration
 certificates, because their treatment of fold neighborhoods and coincident branch
@@ -2343,25 +2343,25 @@ same regulated event convention before any cancellation estimate is promoted.
 
 The full signed $|\sin\xi|$ circular chart uses $s=\operatorname{sign}(\sin\xi)$ and
 $$
-s\sin\xi=\frac{\xi}{\beta},
+s\sin\xi=\frac{\xi}{\beta_f},
 \qquad
-J=1-\beta s\cos\xi,
+J=1-\beta_f s\cos\xi,
 \qquad
 \hat{\mathbf{r}}(\xi)=|\sin\xi|\,\mathbf{e}_r+s\cos\xi\,\mathbf{e}_\theta
 $$
 Thus the full signed-chart projections, including the canonical transmitter-side weight, are
 $$
-a_r^{|\sin|}(\xi)=C\frac{\beta}{\xi|J(\xi)|},
+a_r^{|\sin|}(\xi)=C\frac{\beta_f}{\xi|J(\xi)|},
 \qquad
-a_\theta^{|\sin|}(\xi)=C\frac{\beta^2s\cos\xi}{\xi^2|J(\xi)|}
+a_\theta^{|\sin|}(\xi)=C\frac{\beta_f^2s\cos\xi}{\xi^2|J(\xi)|}
 $$
 The radial contribution is still outward on every active self root. The tangential contribution is forward on each left sheet and backward on each right sheet, independent of the sine-lobe sign. Pure circular self-hit is therefore not tangentially neutral branchwise; it supplies outward radial support and signed forward/backward tangential activity that must be summed on the retained receiver-side ledger, without by itself proving or disproving full binary closure.
 
 #### High-Speed-Ratio Partner and Self Circular Residual Status
 
-The receiver-side partner branch has a clean high-speed asymptotic form. Let $\xi_p(\beta)$ solve
+The receiver-side partner branch has a clean high-speed asymptotic form. Let $\xi_p(\beta_f)$ solve
 $$
-\cos\xi_p=\frac{\xi_p}{\beta},
+\cos\xi_p=\frac{\xi_p}{\beta_f},
 \qquad
 0<\xi_p<\frac{\pi}{2}
 $$
@@ -2371,34 +2371,34 @@ C=\frac{\kappa q^2}{4R^2}
 $$
 Then
 $$
-\xi_p=\frac{\pi}{2}-\frac{\pi}{2\beta}+O(\beta^{-2})
+\xi_p=\frac{\pi}{2}-\frac{\pi}{2\beta_f}+O(\beta_f^{-2})
 $$
 so the partner projections satisfy
 $$
 a_{\theta}^{(\mathrm{part})}
 =
-\frac{4C}{\pi^2}\beta+O(C),
+\frac{4C}{\pi^2}\beta_f+O(C),
 \qquad
 a_{r}^{(\mathrm{part})}
 =
--\frac{2C}{\pi}+O(C\beta^{-1})
+-\frac{2C}{\pi}+O(C\beta_f^{-1})
 $$
 The older residual constants
 $$
-C\left(\frac{4}{\pi^2}-\frac{1}{12}\right)\beta,
+C\left(\frac{4}{\pi^2}-\frac{1}{12}\right)\beta_f,
 \qquad
-\frac{C}{\pi}\log\beta-\frac{2C}{\pi},
+\frac{C}{\pi}\log\beta_f-\frac{2C}{\pi},
 \qquad
-\frac{4C}{\pi^2}\beta,
+\frac{4C}{\pi^2}\beta_f,
 \qquad
-\frac{2C}{\pi}\log\beta-\frac{2C}{\pi}
+\frac{2C}{\pi}\log\beta_f-\frac{2C}{\pi}
 $$
 belong to the formal simple-root transmitter-side chart. They remain useful for
 comparing root families, but they do not certify a global acceleration residual or
-a large-$\beta$ circular exclusion until fold neighborhoods and coincident births
+a large-$\beta_f$ circular exclusion until fold neighborhoods and coincident births
 share one accepted event convention. The partner and self-hit signed tangential and
 radial sums must therefore be recomputed on that regulated chart before any
-large-$\beta$ residual verdict is promoted.
+large-$\beta_f$ residual verdict is promoted.
 
 Thus the equal-magnitude bare circular chart remains an obstruction benchmark,
 not a closed no-go theorem. A retained constant-radius exclusion still requires
@@ -2464,7 +2464,7 @@ $$
 is an unstable mode.
 
 > **Target Proposition (MCB transverse stability diagnostic).**
-> For any candidate bare two-body maximum-curvature binary, compute the linearized delay operator on radial and tangential perturbations. The null-separatrix self-hit wall may stabilize or block the radial collapse channel; partner branches supply sign-definite forward drive, while circular self branches supply outward radial support and a signed tangential channel whose receiver-side large-$\beta$ sum must be recomputed before cancellation is claimed. Thus a bare MCB should be treated as an uncertified organizing orbit in
+> For any candidate bare two-body maximum-curvature binary, compute the linearized delay operator on radial and tangential perturbations. The null-separatrix self-hit wall may stabilize or block the radial collapse channel; partner branches supply sign-definite forward drive, while circular self branches supply outward radial support and a signed tangential channel whose receiver-side large-$\beta_f$ sum must be recomputed before cancellation is claimed. Thus a bare MCB should be treated as an uncertified organizing orbit in
 > $$
 > (R,v)
 > $$
@@ -2536,7 +2536,7 @@ $$
 \qquad
 b(\theta)\equiv \frac{\Omega r(\theta)}{c_f}
 $$
-which is the non-circular analogue of the circular partner equation $\cos\xi=\xi/\beta$.
+which is the non-circular analogue of the circular partner equation $\cos\xi=\xi/\beta_f$.
 
 The receiver Frenet frame for the variable-pitch spiral is
 $$
@@ -2571,7 +2571,7 @@ J_{12}
 \frac{r(\theta)\rho\,\omega_0}{c_f\,\Lambda_p}
 \Big[\sin\Delta-p_0(\cos\Delta+\rho)\Big]
 $$
-The sign is fixed by the circular limit: when $p_0=0$ and $\rho=1$, this gives $J_{12}=1+\beta\sin(\Delta/2)$.
+The sign is fixed by the circular limit: when $p_0=0$ and $\rho=1$, this gives $J_{12}=1+\beta_f\sin(\Delta/2)$.
 
 ##### Closed Transmitter-Side Spiral Factors
 
@@ -2610,7 +2610,7 @@ $$
 This expression is algebraic once a delayed root $\Delta$ is known. The
 receiver-side expression remains useful for signed root playback but does not
 enter this weight. In the uniform circular limit,
-$W_p^{\mathrm{acc}}=(1+\beta\sin(\Delta/2))^{-1}$.
+$W_p^{\mathrm{acc}}=(1+\beta_f\sin(\Delta/2))^{-1}$.
 
 For opposite polarities, the branch acceleration is
 $$
@@ -2666,7 +2666,7 @@ J_{11}
 \frac{r(\theta)\rho\,\omega_0}{c_f\,\Lambda_s}
 \Big[\sin\Delta+p_0(\rho-\cos\Delta)\Big]
 $$
-Again the circular limit agrees with the uniform circular self-hit formula, $J_{11}=1-\beta\cos(\Delta/2)$.
+Again the circular limit agrees with the uniform circular self-hit formula, $J_{11}=1-\beta_f\cos(\Delta/2)$.
 
 The receiver projection on the same self line of action gives the companion
 closed-form records
@@ -3091,7 +3091,7 @@ This regime is analytically tractable and important for:
 Several analytic checks provide footholds for the remaining closure targets. Root-existence, inactive-gap, and transmitter-side transversality records remain usable as topology inputs; radial/tangential acceleration balance, action, power, and finite-window conservation records must be recomputed with $W_{ij}^{\mathrm{acc}}$ before they can be promoted.
 
 1. **Partner-only circular orbit with causal delay ($v<c_f$)** has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
-2. **Uniform circular self-hit ($v>c_f$)** has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, transmitter-side diagnostic large-$\beta$ estimates, and a same-record acceleration-recomputation target for promoted sums.
+2. **Uniform circular self-hit ($v>c_f$)** has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, transmitter-side diagnostic large-$\beta_f$ estimates, and a same-record acceleration-recomputation target for promoted sums.
 3. **Variable-pitch spiral retained-chart benchmarks** expose both branch-chart records and prescribed-history compatibility records. The fixed retained-spiral constant-$\Omega$ history has active-root, inactive-gap, transmitter-side Jacobian-floor, finite-memory, and root-transport records, but its acceleration-balance and outward-constant records require transmitter-side acceleration-weight intervals on the same branch cells before they can act as closure evidence. The retained spiral is therefore a prescribed-history diagnostic, not an acceleration-balance no-go, until the retained chart is recomputed with $W_{ij}^{\mathrm{acc}}$.
 
 The remaining analytic targets are sharper:

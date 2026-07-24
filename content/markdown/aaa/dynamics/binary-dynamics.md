@@ -336,25 +336,25 @@ $$
 $$
 and the chapter speed ratio as
 $$
-\beta=\frac{\omega R}{c_f}
+\beta_f=\frac{\omega R}{c_f}
 $$
-In this non-translating circular certificate, $\beta$ is the same speed ratio
+In this non-translating circular certificate, $\beta_f$ is the same speed ratio
 denoted $s$ elsewhere in the chapter.
 The principal partner-root equation is
 $$
-2\beta\cos\frac{\phi}{2}=\phi,
+2\beta_f\cos\frac{\phi}{2}=\phi,
 \qquad
 0<\phi<\pi
 $$
-The function $F(\phi)=2\beta\cos(\phi/2)-\phi$ satisfies $F(0)=2\beta>0$, $F(\pi)=-\pi$, and
+The function $F(\phi)=2\beta_f\cos(\phi/2)-\phi$ satisfies $F(0)=2\beta_f>0$, $F(\pi)=-\pi$, and
 $$
-F'(\phi)=-\beta\sin\frac{\phi}{2}-1<0
+F'(\phi)=-\beta_f\sin\frac{\phi}{2}-1<0
 $$
-on $(0,\pi)$. Therefore the principal partner root exists and is unique for every $\beta>0$.
+on $(0,\pi)$. Therefore the principal partner root exists and is unique for every $\beta_f>0$.
 
 The same conclusion gives a derived transversality floor. On the principal partner branch,
 $$
-J_p=1+\beta\sin\frac{\phi}{2}
+J_p=1+\beta_f\sin\frac{\phi}{2}
 $$
 so the dimensional root-transversality quantity is
 $$
@@ -364,7 +364,7 @@ $$
 c_f-\hat{\mathbf r}\cdot\mathbf V_j(T-\Delta)
 \right|
 =
-c_f\left(1+\beta\sin\frac{\phi}{2}\right)
+c_f\left(1+\beta_f\sin\frac{\phi}{2}\right)
 >
 c_f
 $$
@@ -372,7 +372,7 @@ This floor is not an admissibility parameter for the principal branch; it is a c
 
 The instantaneous radial-balance equation is also closed form. Setting the inward partner radial acceleration equal to the required centripetal acceleration gives
 $$
-\frac{\beta^2c_f^2}{R}
+\frac{\beta_f^2c_f^2}{R}
 =
 \frac{\kappa\epsilon^2}
 {4R^2\cos(\phi/2)J_p}
@@ -382,9 +382,9 @@ $$
 \frac{R}{R_*}
 =
 \frac{1}
-{4\beta^2\cos(\phi/2)J_p}
+{4\beta_f^2\cos(\phi/2)J_p}
 $$
-As $\beta\to0$, the root satisfies $\phi\sim2\beta$, and the balance reduces to
+As $\beta_f\to0$, the root satisfies $\phi\sim2\beta_f$, and the balance reduces to
 $$
 \omega^2R^3=\frac{\kappa\epsilon^2}{4}
 $$
@@ -410,7 +410,7 @@ on the retained ledger, or an explicitly retained wake-flux channel in the finit
 
 Additional partner roots are not speculative. The full delay-angle equation is
 $$
-\phi=2\beta\left|\cos\frac{\phi}{2}\right|,
+\phi=2\beta_f\left|\cos\frac{\phi}{2}\right|,
 \qquad
 \phi>0,
 $$
@@ -420,9 +420,9 @@ $$
 $$
 Positive-cosine and negative-cosine windows both contain admissible partner sheets. The principal root lies on the positive sheet in $(0,\pi)$. Higher positive-sheet pairs appear when the corresponding window maximum reaches zero:
 $$
-\sqrt{\beta^2-1}
+\sqrt{\beta_f^2-1}
 +
-\arcsin\frac{1}{\beta}
+\arcsin\frac{1}{\beta_f}
 =
 2\pi k
 $$
@@ -932,7 +932,7 @@ The self-hit root count is therefore a genuine branch-bifurcation diagram for th
 $$
 s=\frac{\|\mathbf V\|}{c_f}
 $$
-is the chapter's speed ratio, equivalent to $\beta$ in the usual notation. Between neighboring branch-birth thresholds, the active self-root ledger $N_s(s)$ is constant and the same root labels can be transported. At the thresholds, the delay equation has a tangency and the newly born circular root lies on a Jacobian-null boundary. Thus the root census, the caustic locations, and the ledger-transition speeds are one computed object rather than three separate assumptions.
+is the chapter's speed ratio, equivalent to $\beta_f$ in the usual notation. Between neighboring branch-birth thresholds, the active self-root ledger $N_s(s)$ is constant and the same root labels can be transported. At the thresholds, the delay equation has a tangency and the newly born circular root lies on a Jacobian-null boundary. Thus the root census, the caustic locations, and the ledger-transition speeds are one computed object rather than three separate assumptions.
 
 #### Root Ledger as a One-Parameter Morse Complex
 

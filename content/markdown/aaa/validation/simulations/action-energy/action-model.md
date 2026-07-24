@@ -186,20 +186,20 @@ If $\mathbf X_t(T_t)=\mathbf X_0$ (transmitter fixed) and $q(T_t)=Q\,\delta(T_t-
 Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing line-of-action per-hit accelerations with transmitter-side acceleration weight at causal intersection times. Numerical instantiations use $c_f=1$; symbolic derivations retain $c_f$ where its dependence matters.
 
 Field representation (transport/continuity form)
-- Source impulse at $(T_t,\mathbf X_0)$ creates a wake surface supported on $r = v(T-T_t)$ with surface density that conserves a constant per-wake surface amplitude $q$:
+- Source impulse at $(T_t,\mathbf X_0)$ creates a wake surface supported on $r = c_f(T-T_t)$ with surface density that conserves a constant per-wake surface amplitude $q$:
   $$
-  \rho(T,\mathbf X) \;=\; \frac{q}{4\pi r^2}\,\delta\!\big(r - v(T-T_t)\big)\,H(T-T_t),\quad r=\|\mathbf X-\mathbf X_0\|
+  \rho(T,\mathbf X) \;=\; \frac{q}{4\pi r^2}\,\delta\!\big(r - c_f(T-T_t)\big)\,H(T-T_t),\quad r=\|\mathbf X-\mathbf X_0\|
   $$
 - This solves the radial continuity (transport) equation
   $$
-  \partial_T \rho + \nabla_{\mathbf X}\!\cdot\!\big(v\,\hat{\mathbf{r}}\,\rho\big) \;=\; q\,\delta(T-T_t)\,\delta^{(3)}(\mathbf X-\mathbf X_0)
+  \partial_T \rho + \nabla_{\mathbf X}\!\cdot\!\big(c_f\,\hat{\mathbf{r}}\,\rho\big) \;=\; q\,\delta(T-T_t)\,\delta^{(3)}(\mathbf X-\mathbf X_0)
   $$
 - A continuous emission density is obtained by integrating these impulse responses over $T_t$ with $q(T_t)\equiv q_0$.
 
 Per-hit equation of motion (EOM)
 - For a receiver $o'$ at reception time $T_r$ and a transmitter $j$, causal emission times satisfy
   $$
-  \|\mathbf X_{o'}(T_r) - \mathbf X_j(T_t)\| = v\,(T_r-T_t),\qquad T_t<T_r
+  \|\mathbf X_{o'}(T_r) - \mathbf X_j(T_t)\| = c_f\,(T_r-T_t),\qquad T_t<T_r
   $$
 - Each root contributes a line-of-action acceleration
   $$
@@ -213,7 +213,7 @@ Per-hit equation of motion (EOM)
   with $W_{o'j}^{\mathrm{acc}}=c_f/\lvert D_{t,o'j}\rvert$, $D_{t,o'j}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}$, and $D_{r,o'j}=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$. Total acceleration is the sum over transmitters and roots. Convention $H(0)=0$ removes the instantaneous self-kick at zero delay. Optional mollification replaces $\delta(\cdot)$ by $\delta_\eta(\cdot)$ to produce smooth acceleration contributions.
 
 Implementation checklist
-- Root finding: solve $F(T_t;T_r)=\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|-v(T_r-T_t)=0$ for all transmitters $j$ (including $j=o'$ for self-hits when kinematics permit).
+- Root finding: solve $F(T_t;T_r)=\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|-c_f(T_r-T_t)=0$ for all transmitters $j$ (including $j=o'$ for self-hits when kinematics permit).
 - Accumulation: compute $r,\hat{\mathbf{r}}$, $D_t$, $D_r$, and $W^{\mathrm{acc}}$, apply $W^{\mathrm{acc}}/r^2$, then superpose.
 - Time stepping: impulsive mode (events) or mollified mode ($\eta>0$) with a delayed-history integrator that retains and interpolates the required path segment.
 - Self-interaction: a super-field-speed history interval nominates the channel, but an admitted self-hit still requires a nonzero-delay same-transmitter root and the declared branch floors; accepted self-hits are repulsive (like-on-like).
@@ -224,7 +224,7 @@ Relation to Methods 1 and 2
 - Numerically, this method targets particle dynamics directly (per-hit ODEs) rather than evolving a full field (Method 1) or evaluating fields at sparse probes (Method 2).
 
 Operator diagnostics (finite-window checks)
-- Use vector-calculus identities only on declared, reconstructed diagnostic channels such as $\nabla\Phi_\eta$ or the mollified transport current $\mathbf{J}_\eta=v\,\hat{\mathbf{r}}\,\rho_\eta$. These channels are validation objects, not new substrate ontology.
+- Use vector-calculus identities only on declared, reconstructed diagnostic channels such as $\nabla\Phi_\eta$ or the mollified transport current $\mathbf{J}_\eta=c_f\,\hat{\mathbf{r}}\,\rho_\eta$. These channels are validation objects, not new substrate ontology.
 - For any finite control volume $V\subset\Sigma_T$ with outward unit normal $\hat{\mathbf{n}}$, define the Gauss residual
   $$
   R_G[V,T;\mathbf{Y}_\eta]\equiv

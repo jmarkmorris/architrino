@@ -12,7 +12,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 - What we assume:
 - Transmitters emit potential on expanding causal isochrons with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-c_f\Delta)$ with $\Delta=T_r-T_t$.
-  - Each causal hit is directed along $\hat{\mathbf{r}}$ from the transmitter's emission point to the receiver, with received magnitude weighted by $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
+  - Each causal hit is directed along $\hat{\mathbf{r}}$ from the transmitter's emission point to the receiver, with received magnitude weighted by $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, where $D_t=c_f-\mathbf V_t(T_t)\cdot\hat{\mathbf r}$ is the transmitter-side wake-spacing factor and $D_r=c_f-\mathbf V_r(T_r)\cdot\hat{\mathbf r}$ is the receiver-side root-playback factor.
 
 - Why it matters:
   - Gauss-like behavior follows immediately ($1/r^2$ on causal wake fronts).
@@ -87,7 +87,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 ## Candidate Consequences and Proof Burdens
 
 - Stability without fine-tuned potentials:
-  - Same-transmitter roots can add an outward channel. A retained operating point still requires force-balance-equivalent acceleration closure, branch floors, and nonlinear stability; $\|\mathbf V\|=c_f$ alone is not a switch or a collapse-prevention theorem.
+  - Same-transmitter roots can add an outward channel. A retained operating point still requires net-acceleration balance, branch floors, and nonlinear stability; $\|\mathbf V\|=c_f$ alone is not a switch or a collapse-prevention theorem.
 - Scale emergence:
   - $d_0$ and $t_0$ are branch-derived targets. They become physical scales only after a retained binary family establishes attraction/self-hit balance, stability, and regulator persistence.
 - Shielding and apparent inertia:
@@ -100,7 +100,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 ## What the model explicitly does not use
 
 - No Lorentzian spacetime metric at the fundamental level (background is absolute time + Euclidean space; emergent cones are effective, not kinematic).
-- No right-hand-rule magnetism or $\mathbf V\times\mathbf B$ force term at the substrate level; every per-hit acceleration is along $\hat{\mathbf{r}}$.
+- No right-hand-rule magnetism or $\mathbf V\times\mathbf B$ acceleration term at the substrate level; every per-hit acceleration is along $\hat{\mathbf{r}}$.
 - No gauge field inventory beyond architrino causal wakes; interaction carriers are the geometry of delayed isochrons and their couplings.
 
 ---
@@ -146,10 +146,10 @@ Plain language summary: radial hits, causal delay, constant per-wavefront amplit
 
 ## Effective observables and states (quantum-like layer)
 
-Premise: single-hit information is sparse. At an instant, a receiver learns only (i) the net magnitude of the push and (ii) an unoriented line of action through its current position. The $\mathbb{U}_{\text{now}}$ universe-state perspective can include the full transmitter-tagged emission ledger as complete-state bookkeeping, but a local receiver or Physical Observer cannot infer that hidden ledger from a single hit.
+Premise: single-hit information is sparse. At an instant, the receiver-local dynamical datum is the signed acceleration vector $\mathbf A$. That vector fixes the net acceleration direction but not the transmitter ray and polarity assignment: attraction from one ray and repulsion from the opposite ray can produce the same $\mathbf A$. The corresponding unoriented axis is therefore an inference quotient over source hypotheses, not the raw received datum. The $\mathbb{U}_{\text{now}}$ universe-state perspective can include the full transmitter-tagged emission ledger as complete-state bookkeeping, but a local receiver or Physical Observer cannot infer that hidden ledger from a single hit.
 
 - Emission ledger (microstate): the set of tuples $(T_t,\mathbf X_j(T_t),\mathbf V_j(T_t),q_j)$ over all transmitters $j$ that causally affect the receiver.
-- Observational map: ledgers map to histories of hits $\{A(T_k),L(T_k)\}$ across one or more receivers and over time.
+- Observational map: ledgers map to histories of receiver-local acceleration vectors $\{\mathbf A(T_k)\}$ across one or more receivers and over time.
 - Observational equivalence: two ledgers are equivalent if they induce indistinguishable hit histories at the chosen resolution (including mollifier width $\eta$, temporal sampling, and receiver geometry).
 
 
@@ -160,14 +160,14 @@ Premise: single-hit information is sparse. At an instant, a receiver learns only
   - Use: these fields are the natural inputs/targets for grid-based PDE runs and for validating event-driven simulations in aggregate.
 
 Observability axioms:
-- A1 Single-hit observables are magnitude $A$ and an unoriented line $L$; orientation along $L$, transmitter identity, distance $r$, and transmitter speed $\|\mathbf{V}_t\|$ are not individually observable at an instant.
+- A1 A single-hit receiver record contains $\mathbf A$. Its magnitude and direction are observable, but transmitter identity, transmitter ray, polarity assignment, distance $r$, and transmitter speed $\|\mathbf{V}_t\|$ are not individually recoverable at an instant. Quotienting the opposite-ray/opposite-polarity hypotheses produces an unoriented inference axis $L$.
 - A2 All practical observables are functionals of hit histories across time and receivers; unique micro inversion is generically impossible.
 - A3 An effective “state” is a probability measure over observationally equivalent ledger classes, updated as new hits arrive.
 
 Bayesian operational stance:
 - State update = conditioning on new hit histories; active interventions (changing receiver geometry/filters) alter future histories and thus the posterior over ledger classes.
 
-Plain language: a receiver never sees the full ledger of who emitted what; it sees only a time series of push magnitudes and lines. The appropriate language is therefore statistical over micro-histories that fit those pushes.
+Plain language: a receiver never sees the full ledger of who emitted what; it sees only a time series of acceleration vectors. The appropriate language is therefore statistical over source and polarity histories that fit those vectors.
 
 ---
 
@@ -176,7 +176,7 @@ Plain language: a receiver never sees the full ledger of who emitted what; it se
 Absolute time and Euclidean frames remove coordinate ambiguity (synchronization and alignment) but not physical ambiguity:
 - Sign/side ambiguity: attraction from +$\epsilon$ on one side vs repulsion from −$\epsilon$ on the opposite side along the same line remain indistinguishable at an instant.
 - Baseline distance scaling and branch geometry: $A\propto W^{\mathrm{acc}}/r^2$; transmitter motion sets $D_t$ and the arriving acceleration weight, while receiver motion enters root playback through $D_r/D_t$ and changes future geometry.
-- Collinear superposition: several transmitters along the same unoriented line can sum to the same instantaneous $A$ and $L$.
+- Collinear superposition: several transmitters on the two rays of one inference axis can sum to the same instantaneous $\mathbf A$.
 - Self-hit aliasing: self-intersections can mimic external transmitters along $L$.
 - Surrogate location recast: any instantaneous hit may be recast to a stationary surrogate transmitter placed somewhere along $L$ with an adjusted emission time; useful for inference and visualization, but it does not resolve the sign/side ambiguity or fix distance without temporal data.
 
@@ -186,7 +186,7 @@ Consequence: embedded observers and synthetic detector records must reason stati
 
 ## Single-transmitter multi-hit nuance vs universal superposition
 
-Even for a single transmitter, the receiver cannot be sure that a given acceleration did not come from multiple distinct emission times $T_t\in\mathcal{C}_{o'j}(T_r)$ on that same transmitter. When the transmitter has a super-field-speed history interval or its trajectory curves, several roots of $r=c_f(T_r-T_t)$ can occur and arrive in close succession along the same unoriented line of action, contributing separate per-hit accelerations that are locally indistinguishable as to origin.
+Even for a single transmitter, the receiver cannot be sure that a given acceleration did not come from multiple distinct emission times $T_t\in\mathcal{C}_{o'j}(T_r)$ on that same transmitter. When the transmitter has a super-field-speed history interval or its trajectory curves, several roots of $r=c_f(T_r-T_t)$ can occur and arrive in close succession along one acceleration axis, contributing separate per-hit accelerations whose emission-time origins are not recoverable from the net vector alone.
 
 However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net acceleration is the linear sum of contributions from all architrinos in the universe whose causal isochrons intersect the receiver now. While inverse-square surface dilution and transmitter-side acceleration weight usually make nearby transmitters dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
 
@@ -196,7 +196,7 @@ However, this is not the dominant practical difficulty. The governing issue is g
 
 Measurement procedures are interventions that condition future hit histories:
 - Let $F,G$ be experimental contexts (e.g., planar-mode analyzers, path blockers, timing gates). Because they modify trajectories and thus the set of future causal roots, their composition generally satisfies $F\circ G\ne G\circ F$ at the level of observed statistics.
-- Contextuality: the distribution over ledger classes that best explains data depends on which filters were applied and in what order; the outcomes are context-dependent without invoking microscopic cross-product forces.
+- Contextuality: the distribution over ledger classes that best explains data depends on which filters were applied and in what order; the outcomes are context-dependent without invoking microscopic cross-product acceleration terms.
 
 Plain language: a present intervention changes which pushes will be recorded later; doing $A$ then $B$ is not generally the same as doing $B$ then $A$.
 
@@ -227,11 +227,11 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 ## Worked micro-to-effective examples
 
 - Two-planar-mode interference:
-  - Setup: two coherent photon planar modes reach a screen. The observed intensity pattern is the squared norm of their geometric overlap along the screen, set by relative phase encoded in path history.
+  - Setup: two coherent photon planar modes reach a screen. Their geometric overlap and path-history phase define a candidate complex-amplitude map. An observed intensity proportional to its squared norm is obtained only if the independently specified detector and ensemble record passes the Born-like closure residual above.
   - Which-way intervention: inserting a context that disrupts one planar mode's coherence changes the ledger classes and removes the overlap term, flattening the pattern.
 
 - Polarization analyzer:
-  - The analyzer projects the planar mode's transverse ledger onto its axis; transmission $\propto \cos^2\theta$ follows immediately from geometric projection.
+  - The analyzer projects the planar mode's transverse ledger onto its axis. Geometric projection supplies the candidate $\cos\theta$ amplitude factor; transmission $\propto\cos^2\theta$ remains a recovery result that requires the same record-forming measure and analyzer residual used by the polarization target above.
 
 - Sequential filters (order matters):
   - Two non-parallel analyzers F($\theta$₁) and G($\theta$₂) applied in different orders yield different transmitted patterns because they recondition future causal roots differently: F∘G ≠ G∘F.
@@ -243,6 +243,6 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 - Context order test: demonstrate order-dependent transmission with sequential analyzers on coherent planar modes; quantify the asymmetry F∘G vs G∘F.
 - Planar-mode interference robustness: map how partial decoherence (deliberate jitter in transmitter paths) suppresses the overlap term; compare to predicted $|A|^2$ decay with coherence length.
 - Multi-receiver triangulation under ambiguity: show that two-sided localization from unoriented lines plus time series reduces, but does not eliminate, sign/side and distance–speed degeneracies—matching Step 9 limits.
-- Bell-type correlation target (open): assess whether planar-mode phase models with absolute time can reproduce observed $\cos(2\theta)$ correlations across separated analyzers without hidden cross-product forces; treat Tsirelson-like bounds as a stringent benchmark.
+- Bell-type correlation target (open): assess whether planar-mode phase models with absolute time can reproduce observed $\cos(2\theta)$ correlations across separated analyzers without hidden cross-product acceleration terms; treat Tsirelson-like bounds as a stringent benchmark.
 
 Plain language: we can test the framework by checking order effects, interference weakening when we scramble coherence, and how much multiple receivers really help; reproducing quantum correlations is the toughest, and we flag it as an explicit target.

@@ -90,15 +90,15 @@ u=\|\mathbf V_{\mathrm{grp}}\|,
 v_{\mathrm{int},i}=\|\mathbf v_i^{\mathrm{int}}\|
 $$
 
-If a branch additionally pins the total site speed to $\|\mathbf V_i\|=\beta_\ast c_f$, the available internal speed is forced to
+If a branch additionally pins the total site speed to $\|\mathbf V_i\|=\beta_{\mathrm{pin}} c_f$, the available internal speed is forced to
 
 $$
 v_{\mathrm{int},i}(u)
 =
-\sqrt{\beta_\ast^2c_f^2-u^2}
+\sqrt{\beta_{\mathrm{pin}}^2c_f^2-u^2}
 $$
 
-The quadrature is exact kinematics under the transverse-motion hypothesis. The pinning of $\beta_\ast$ is a separate branch hypothesis, not an established retention mechanism. The A2 body-diagonal rotating channel and the B1 axial screw chart are two realizations of the transverse geometry; neither realization makes fixed total site speed automatic. A record with $\mathbf V_{\mathrm{grp}}\cdot\mathbf v_i^{\mathrm{int}}\neq0$ falsifies use of the quadrature for that site and must retain the cross term, which generally makes the maximum speed phase dependent.
+The quadrature is exact kinematics under the transverse-motion hypothesis. The pinning of $\beta_{\mathrm{pin}}$ is a separate branch hypothesis, not an established retention mechanism. The A2 body-diagonal rotating channel and the B1 axial screw chart are two realizations of the transverse geometry; neither realization makes fixed total site speed automatic. A record with $\mathbf V_{\mathrm{grp}}\cdot\mathbf v_i^{\mathrm{int}}\neq0$ falsifies use of the quadrature for that site and must retain the cross term, which generally makes the maximum speed phase dependent.
 
 The same pinned-speed hypothesis appears in the retained A1 scaling material of [A1 Dynamics](braid-a1-dynamics.md#retention-and-interpretation): a branch that holds an indexed internal speed fixed while accepting action transactions is forced onto the $R_a f_a\approx\text{constant}$ product law. The shared lemma shows how the hypothesis would also constrain transport; it does not establish that A1, A2, or B1 satisfies the pinning condition.
 

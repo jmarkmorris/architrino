@@ -19,33 +19,6 @@ The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
 
 **Terminology note:** In this document, **"branching"** refers to **deterministic multistability** (microstate-sensitive attractor selection), not Many-Worlds splitting or fundamental randomness.
 
-This layer needs a standard coverage template so that major thinkers and closely coupled program-level subjects are treated systematically rather than biographically or ad hoc.
-
-For each subject, the document should capture:
-
-- **Subject:** full name and dates.
-- **Era / Context**: the scientific and philosophical setting in which the thinker was working.
-- **Primary Domain**: metaphysics, mechanics, epistemology, quantum foundations, cosmology, philosophy of science, or information / computation.
-- **Core Commitments**: the central ontological, methodological, or epistemic claims. In this chapter, that requirement is normally satisfied by the combined `Core Belief`, `Architrino Impact`, and `Legacy Shift` triad rather than by a separate repeated field.
-- **What Problem They Were Trying To Solve**: the pressure, paradox, or conceptual gap driving the work.
-- **What They Got Right**: durable insights that survive in some form.
-- **What They Got Wrong or Overstated**: the main limitation, mislocation, or excess.
-- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether the thinker is vindicated, partially vindicated, reframed, superseded, or directly contradicted.
-- **Transition Relevance**: whether the thinker's framework still helps during a theory transition.
-- **Long-Term Relevance**: whether the thinker remains a live conceptual guide, a partial ancestor, or mainly a historical lesson.
-
-The default prose structure for each thinker should be:
-
-1. **Core Belief**: the compact statement of the thinker's view.
-2. **Architrino Impact**: what $\mathbb{A}\mathbb{A}\mathbb{A}$ retains, rejects, or relocates.
-3. **Legacy Shift**: what survives after the theory stack is rebuilt.
-
-When helpful, the assessment can also note:
-
-- whether the thinker's ontology sits at the substrate, assembly, effective, statistical, or inferential level,
-- whether the thinker is valuable mainly for ontology, method, or conceptual hygiene,
-- and whether a historical position was wrong in content but right in direction.
-
 **The $\mathbb{U}_{\text{now}}$ universe-state perspective: Capabilities and Limits**
 - **What it knows**: The complete substrate state at $T$, including position, velocity, polarity, retained path history, active causal roots, and branch data.
 - **What it predicts**: A unique continuation wherever the native branch rule is well posed. Multistability means that different nearby complete states can lie in different basins of attraction; it does not mean that one exact complete state has several realized futures.
@@ -68,7 +41,34 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-## Classical & Early Modern Metaphysics + Mechanism
+## Metaphysics, Mechanism, And Classical Foundations
+
+### **Parmenides (early 5th century BCE) — persistence beneath change**
+**Subject:** Parmenides of Elea, pre-Socratic philosopher whose poem argued that what is cannot arise from what is not or pass into non-being.
+
+**Era / Context**: Parmenides wrote before mathematical physics, when Greek natural philosophy was separating stable intelligibility from the changing appearances of experience.
+
+**Primary Domain**: Ontology, persistence, change, and the intelligibility of nature.
+
+**What Problem They Were Trying To Solve:** He sought an account of reality that did not make being emerge from non-being or dissolve into contradiction.
+
+**What They Got Right:** Parmenides imposed a durable conservation pressure: explanations of change should identify what persists through transformation rather than treating creation and destruction as primitive words.
+
+**What They Got Wrong or Overstated:** He converted that pressure into a denial of genuine plurality and change, leaving no adequate account of motion, interaction, or emergent structure.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: The persistence demand is retained; the static monism is rejected.
+
+**Transition Relevance**: Parmenides clarifies why no-creation/no-annihilation ontology must be paired with an explicit reconfiguration dynamics rather than presented as a metaphysical slogan.
+
+**Long-Term Relevance**: Long-term relevance is moderate as an ontological boundary condition and low as physical mechanism.
+
+**Core Belief**: Genuine being is ungenerated, imperishable, and not reducible to a succession of coming-to-be and passing-away.
+
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ gives the persistence intuition a plural and dynamical form: architrinos persist while assemblies, observer labels, and effective fields form and dissolve through reconfiguration.
+
+**Legacy Shift**: Parmenidean permanence becomes a conservation-and-identity question inside a changing substrate, not a denial that change occurs.
+
+---
 
 ### **Heraclitus (c. 535–475 BCE)**
 **Subject:** Heraclitus of Ephesus (c. 535–475 BCE), a pre-Socratic philosopher focused on change, opposition, and order in nature.
@@ -394,6 +394,33 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
+### **Alfred North Whitehead (1861–1947)**
+**Subject:** Alfred North Whitehead (1861–1947), process philosopher who prioritized events and relations over static substance metaphysics.
+
+**Era / Context**: Whitehead wrote during early 20th-century upheaval in physics and philosophy, when classical ontology appeared increasingly inadequate.
+
+**Primary Domain**: Metaphysics of process, relational ontology, and philosophical cosmology.
+
+**What Problem They Were Trying To Solve:** He sought to explain novelty, becoming, and relational coherence without reducing reality to static inert building blocks.
+
+**What They Got Right:** Whitehead correctly stressed relational structure and the inadequacy of naive static metaphysics for dynamic physical phenomena. His relativity critique also usefully exposed the measurement-circularity risk in any theory that lets the geometry used by rulers and clocks merge too quickly with the gravitational process being measured.
+
+**What They Got Wrong or Overstated:** He overstated process primacy and experiential language at the foundational level, where $\mathbb{A}\mathbb{A}\mathbb{A}$ posits stable substrate entities with evolving configurations. His alternative relativity remains a comparison framework, not a doctrine to import; empirical GR, PPN, clock, ruler, and signal benchmarks still control metric closure.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially retained and inverted.
+
+**Transition Relevance**: Whitehead is useful in transition for avoiding rigid mechanistic caricatures and preserving relational analysis during substrate reinterpretation. The strongest technical bridge is his ruler-calibration pressure: an emergent-metric account must recover clock, ruler, and signal behavior from one coherent observer-level record rather than by switching calibration assumptions between comparisons.
+
+**Long-Term Relevance**: Long-term relevance is moderate as conceptual supplement and low as primary ontology.
+
+**Core Belief**: Reality is fundamentally processual and relational, with enduring substances treated as abstractions over event structure.
+
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration. It relocates Whitehead's metric worry into a constitutive recovery demand: effective geometry is legitimate only when the same record of the Noether sea and the Physical Observer produces the relevant clocks, rulers, signal paths, and gravitational benchmarks.
+
+**Legacy Shift**: Whitehead remains a relational critic of simplistic substance talk, while final ontology returns to entity-first realism.
+
+---
+
 ## Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)
 
 ### **Ernst Mach (1838–1916) — relationalism**
@@ -447,6 +474,33 @@ If the framework works, the historical result is not that prior thinkers were si
 **Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the relevant substrate as Noether sea response-network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
 
 **Legacy Shift**: Lorentz moves from discarded alternative to core interpretive ancestor, with his ontology formalized by explicit causal delayed substrate mechanics.
+
+---
+
+### **Henri Poincaré (1854–1912) — relativity, convention, and group structure**
+**Subject:** Henri Poincaré (1854–1912), mathematician and physicist who sharpened the relativity principle, Lorentz-group structure, synchronization conventionality, and dynamical stresses in electron models.
+
+**Era / Context**: Poincaré worked at the transition from classical electrodynamics to special relativity, when Lorentz covariance was mathematically visible but its physical interpretation remained unsettled.
+
+**Primary Domain**: Relativity foundations, mathematical physics, conventionalism, and dynamical closure.
+
+**What Problem They Were Trying To Solve:** He sought a coherent relativity principle for electrodynamics while clarifying which parts of geometry and simultaneity were empirical and which depended on convention.
+
+**What They Got Right:** Poincaré recognized the transformation-group structure, treated clock synchronization with unusual conceptual care, and saw that an electromagnetic electron required additional stress bookkeeping rather than a partial energy ledger.
+
+**What They Got Wrong or Overstated:** His conventionalism can understate how a deeper constitutive theory may physically select the operational behavior of clocks, rulers, and synchronization procedures.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly retained as mathematical and methodological pressure, with ontology reassigned.
+
+**Transition Relevance**: Poincaré helps separate three questions that are often collapsed: covariance of the effective equations, operational conventions used by observers, and the substrate dynamics that makes those conventions stable.
+
+**Long-Term Relevance**: Long-term relevance is high for group structure, synchronization analysis, and closure accounting.
+
+**Core Belief**: Relativity is expressed through invariant mathematical structure, while geometry and simultaneity include conventional elements constrained by empirical coherence.
+
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains Lorentz-group behavior and observer synchronization as recovery targets, but requires absolute-time assembly dynamics to generate the clock-ruler-signal regularities rather than choosing them by convention alone.
+
+**Legacy Shift**: Poincaré becomes the principal bridge between effective covariance, operational convention, and the demand for a complete constitutive ledger.
 
 ---
 
@@ -528,6 +582,33 @@ If the framework works, the historical result is not that prior thinkers were si
 **Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains Penrosean realism and formal rigor while treating CCC/twistors as possible effective mappings over architrino-driven assembly dynamics rather than substrate primitives. Penrose-Diosi collapse is retained only as an external massive-superposition benchmark for finite-time threshold resolution.
 
 **Legacy Shift**: Penrose remains a high-value geometric interlocutor whose specific ontological bets are recast as advanced representation schemes, standard-theory benchmarks, and validation pressures.
+
+---
+
+### **Stephen Hawking (1942–2018) — horizons, area, and quantum emission**
+**Subject:** Stephen Hawking (1942–2018), mathematical physicist whose work connected singularity theorems, black-hole area behavior, quantum emission, and cosmology.
+
+**Era / Context**: Hawking worked when general relativity was re-entering mainstream physics and quantum field theory was being applied to curved-background and horizon problems.
+
+**Primary Domain**: Strong-field gravitation, black-hole thermodynamics, quantum fields on curved backgrounds, and cosmology.
+
+**What Problem They Were Trying To Solve:** He sought the generic consequences of gravitational collapse and the relation between horizons, quantum theory, thermodynamics, and cosmic history.
+
+**What They Got Right:** The area theorem and Hawking-radiation calculation created durable benchmark pressure: any replacement must account for horizon-scale area behavior, temperature-like emission, entropy accounting, evaporation, and information transfer in their validated domains.
+
+**What They Got Wrong or Overstated:** Singularities, event horizons, curved-background quantum fields, and thermal interpretation need not be substrate objects; each may be an effective representation whose constitutive implementation remains open.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly retained as a benchmark family and reinterpreted at the ontology layer.
+
+**Transition Relevance**: Hawking is indispensable because compact-object closure cannot stop at reproducing a metric exterior. It must also close formation, area, emission, recoil, remnant or release, and information ledgers.
+
+**Long-Term Relevance**: Long-term relevance is very high for strong-field constraints and moderate for literal horizon ontology.
+
+**Core Belief**: Gravitation, quantum theory, and thermodynamics meet at horizons, where black holes acquire area-entropy and temperature-like behavior.
+
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ treats Hawking's results as observer-level targets for a finite Noether sea and assembly-boundary account, without importing a singularity or quantum field on curved spacetime as substrate dynamics.
+
+**Legacy Shift**: Hawking's horizon thermodynamics becomes a multi-ledger recovery obligation rather than a final statement about what the substrate is made of.
 
 ---
 
@@ -776,6 +857,33 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
+### **Einstein, Podolsky, and Rosen (1935) — completeness and separability**
+**Subject:** Albert Einstein, Boris Podolsky, and Nathan Rosen, treated here through their 1935 argument that the quantum state might not be a complete physical description.
+
+**Era / Context**: The EPR paper appeared after quantum mechanics had achieved predictive maturity but before Bell turned the completeness dispute into experimentally discriminating locality constraints.
+
+**Primary Domain**: Quantum completeness, separability, locality, and elements of physical reality.
+
+**What Problem They Were Trying To Solve:** They asked whether perfect distant correlations, together with a locality or separability premise, implied simultaneous physical properties not represented by one quantum state.
+
+**What They Got Right:** EPR correctly exposed that predictive adequacy does not settle ontological completeness and forced the relation between preparation, distant correlation, and physical state into the open.
+
+**What They Got Wrong or Overstated:** The separability and locality package cannot be retained unchanged after Bell-family experiments; the original criterion of reality does not by itself supply a viable deeper model.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: The completeness challenge is retained, while locally factorizable completion is rejected.
+
+**Transition Relevance**: EPR defines the question that Bell later sharpened: what shared physical record produces the joint statistics, and which independence assumptions does that record satisfy?
+
+**Long-Term Relevance**: Long-term relevance is very high as problem formulation, but low as a sufficient solution.
+
+**Core Belief**: If one can predict a distant quantity with certainty without disturbing the distant system, then the quantum state may omit an element of physical reality.
+
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ must supply preparation provenance and apparatus-dependent joint records without collapsing them into a Bell-local product form or enabling operational signaling.
+
+**Legacy Shift**: EPR becomes the completeness challenge at the entrance to the Bell gate, not evidence that ordinary local hidden variables remain available.
+
+---
+
 ### **Erwin Schrödinger (1887–1961) — wave mechanics**
 **Subject:** Erwin Schrödinger (1887–1961), co-founder of wave mechanics and key critic of unresolved quantum measurement ontology.
 
@@ -935,6 +1043,33 @@ If the framework works, the historical result is not that prior thinkers were si
 **Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps no-collapse dynamics and no special observer ontology but replaces branching with single-history evolution through deterministic multistable branch points.
 
 **Legacy Shift**: Everett's anti-collapse imperative is retained, while many-world ontology is replaced by one-world substrate realism.
+
+---
+
+### **H. Dieter Zeh (1932–2018) and Wojciech Zurek (1951–) — decoherence**
+**Subject:** H. Dieter Zeh and Wojciech Zurek, principal architects of environment-induced decoherence and the study of stable pointer records.
+
+**Era / Context**: Decoherence theory developed from the 1970s onward as quantum foundations increasingly treated apparatuses and environments within the same dynamical formalism as the measured system.
+
+**Primary Domain**: Quantum measurement, open-system dynamics, environment-induced superselection, and record stability.
+
+**What Problem They Were Trying To Solve:** They sought to explain why interference between macroscopically distinct alternatives becomes inaccessible and why particular apparatus records remain stable.
+
+**What They Got Right:** Decoherence identifies a real physical mechanism for suppression of observable interference, basis selection through system-environment coupling, and the robustness of redundant environmental records.
+
+**What They Got Wrong or Overstated:** Decoherence alone does not select one realized outcome or derive the Born weights; it transforms the measurement problem but does not finish it.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Strongly retained as an effective recovery target and incomplete as final ontology.
+
+**Transition Relevance**: Zeh and Zurek supply the minimum environmental record behavior that any single-history substrate account must reproduce before it can claim a solution to measurement.
+
+**Long-Term Relevance**: Long-term relevance is very high for apparatus, environment, and record formation, independent of the final interpretation of the quantum state.
+
+**Core Belief**: Entangling interaction with an uncontrolled environment dynamically suppresses accessible interference and stabilizes preferred record structures.
+
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ must derive decoherence-like suppression and stable pointer records from apparatus-target-Noether sea dynamics, then separately derive basin selection and Born-like measures.
+
+**Legacy Shift**: Decoherence becomes the record-stabilization bridge inside a larger outcome-selection proof, not a synonym for collapse or a completed interpretation.
 
 ---
 
@@ -1184,33 +1319,6 @@ If the framework works, the historical result is not that prior thinkers were si
 ---
 
 ## Philosophy of Science
-
-### **Alfred North Whitehead (1861–1947)**
-**Subject:** Alfred North Whitehead (1861–1947), process philosopher who prioritized events and relations over static substance metaphysics.
-
-**Era / Context**: Whitehead wrote during early 20th-century upheaval in physics and philosophy, when classical ontology appeared increasingly inadequate.
-
-**Primary Domain**: Metaphysics of process, relational ontology, and philosophical cosmology.
-
-**What Problem They Were Trying To Solve:** He sought to explain novelty, becoming, and relational coherence without reducing reality to static inert building blocks.
-
-**What They Got Right:** Whitehead correctly stressed relational structure and the inadequacy of naive static metaphysics for dynamic physical phenomena. His relativity critique also usefully exposed the measurement-circularity risk in any theory that lets the geometry used by rulers and clocks merge too quickly with the gravitational process being measured.
-
-**What They Got Wrong or Overstated:** He overstated process primacy and experiential language at the foundational level, where $\mathbb{A}\mathbb{A}\mathbb{A}$ posits stable substrate entities with evolving configurations. His alternative relativity remains a comparison framework, not a doctrine to import; empirical GR, PPN, clock, ruler, and signal benchmarks still control metric closure.
-
-**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially retained and inverted.
-
-**Transition Relevance**: Whitehead is useful in transition for avoiding rigid mechanistic caricatures and preserving relational analysis during substrate reinterpretation. The strongest technical bridge is his ruler-calibration pressure: an emergent-metric account must recover clock, ruler, and signal behavior from one coherent observer-level record rather than by switching calibration assumptions between comparisons.
-
-**Long-Term Relevance**: Long-term relevance is moderate as conceptual supplement and low as primary ontology.
-
-**Core Belief**: Reality is fundamentally processual and relational, with enduring substances treated as abstractions over event structure.
-
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration. It relocates Whitehead's metric worry into a constitutive recovery demand: effective geometry is legitimate only when the same record of the Noether sea and the Physical Observer produces the relevant clocks, rulers, signal paths, and gravitational benchmarks.
-
-**Legacy Shift**: Whitehead remains a relational critic of simplistic substance talk, while final ontology returns to entity-first realism.
-
----
 
 ### **Bertrand Russell (1872–1970) — Logic, Analysis, and Scientific Clarity**
 **Subject:** Bertrand Russell (1872–1970), analytic philosopher emphasizing logical form, reference discipline, and conceptual precision.

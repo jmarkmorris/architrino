@@ -157,20 +157,20 @@ minimum, or mass scale.
 The theorem spine is the circular no-proliferation result already used by the
 delayed dynamics stack. In the symmetric circular benchmark, write
 $$
-\beta(T)=\frac{\omega(T)R(T)}{c_f}.
+\beta_f(T)=\frac{\omega(T)R(T)}{c_f}.
 $$
-If $|\beta(T)|\le\beta_\ast<\infty$ uniformly, then the active circular
+If $|\beta_f(T)|\le\beta_{\max}<\infty$ uniformly, then the active circular
 self-hit count is uniformly bounded:
 $$
 N_{\mathrm{self}}(T)
 \le
-\frac{\beta_\ast}{\pi}+C_{\mathrm{circ}},
+\frac{\beta_{\max}}{\pi}+C_{\mathrm{circ}},
 $$
 where $C_{\mathrm{circ}}$ is an absolute endpoint-count constant for the
 circular root equation. On a one-sign subchart this has the sharper asymptotic
 form
 $$
-N_{\mathrm{self}}^{(+)}(\beta)=\frac{\beta}{\pi}+O(1).
+N_{\mathrm{self}}^{(+)}(\beta_f)=\frac{\beta_f}{\pi}+O(1).
 $$
 The branch births occur at tangencies of the circular root equation, so the
 root census, Jacobian-null thresholds, and inactive-gap changes are one

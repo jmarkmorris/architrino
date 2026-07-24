@@ -144,7 +144,41 @@ D_V^\theta(z_i)/r_d^\theta
 \right]
 $$
 
-where `kept` means the subset reported by the survey bin. This avoids pretending that isotropic BAO bins contain independent radial and transverse information. The SN/local-ladder row should analogously keep the distance-modulus and local-slope rows separate:
+where `kept` means the subset reported by the survey bin. This avoids pretending that isotropic BAO bins contain independent radial and transverse information.
+
+The acoustic-ruler coherence check is evaluated inside this BAO family rather than as a separate cosmology gate. Partition the catalogue into predeclared sky patches $p$, tracer classes, and redshift bins $b$; fit every subset with the same distance calibration, nuisance model, window-function treatment, and reconstruction procedure. Let
+
+$$
+\ell_{pb}
+\equiv
+\ln r_{d,pb}^{\mathrm{fit}},
+\qquad
+\bar{\ell}_d
+=
+\frac{
+\mathbf 1^T\mathbf C_{\ell}^{-1}\boldsymbol{\ell}
+}{
+\mathbf 1^T\mathbf C_{\ell}^{-1}\mathbf 1
+},
+$$
+
+where $\mathbf C_\ell$ includes cross-patch covariance and survey-window coupling. The dispersion row is
+
+$$
+\mathcal R_{\mathrm{BAO,disp}}
+=
+\left(
+\boldsymbol{\ell}-\bar{\ell}_d\mathbf 1
+\right)^T
+\mathbf C_\ell^{-1}
+\left(
+\boldsymbol{\ell}-\bar{\ell}_d\mathbf 1
+\right).
+$$
+
+Homogeneous comparison mocks determine the noise-only distribution after masks, selection, reconstruction, and shared-distance calibration are applied. A recovered branch passes when its predicted patch and bin dispersion is consistent with that distribution. Because BAO measures distance-to-ruler ratios, $r_{d,pb}^{\mathrm{fit}}$ is not treated as a model-free direct observation; the same declared distance map must be used in every subset.
+
+The SN/local-ladder row should analogously keep the distance-modulus and local-slope rows separate:
 
 $$
 \mathbf r_{\mathrm{SN/H_0}}

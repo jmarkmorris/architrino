@@ -344,12 +344,12 @@ The mathematical prediction is not a generic Lorentz-violation coefficient. It i
 
 Schematically, the two-way anisotropy diagnostic should decompose as
 $$
-\Delta_{\mathrm{tw}}(\beta,\theta)
+\Delta_{\mathrm{tw}}(\beta_\star,\theta)
 =
-\Delta_{\mathrm{tw}}^{\mathrm{smooth}}(\beta,\theta)
+\Delta_{\mathrm{tw}}^{\mathrm{smooth}}(\beta_\star,\theta)
 +
 \sum_{r\in\mathcal{R}_{\mathrm{res}}}
-B_r\,\mathcal{W}_r(\beta)\cos(2m_r\theta+\varphi_r)
+B_r\,\mathcal{W}_r(\beta_\star)\cos(2m_r\theta+\varphi_r)
 $$
 where each residual label $r$ must be traceable to a named branch-chart feature. A residual with no branch source is not a successful prediction; it is fitting error or an incomplete closure model.
 

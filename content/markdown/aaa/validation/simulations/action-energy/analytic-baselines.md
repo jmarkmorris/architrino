@@ -6,7 +6,7 @@ Purpose:
 
 Models:
 - Fixed center (one receiver, one stationary transmitter):
-  - The causal root is explicit and $D_t=c_f$, so $W^{\mathrm{acc}}=1$ independently of receiver velocity. The canonical radial equation is $\ddot r=-K/r^2$ with $K=\kappa |q q'|>0$. This is an exact fixed-transmitter baseline for the corrected delayed law.
+  - For unlike polarities, $\sigma_{qq'}=-1$. The causal root is explicit and $D_t=c_f$, so $W^{\mathrm{acc}}=1$ independently of receiver velocity. The canonical radial equation is $\ddot r=-K/r^2$ with $K=\kappa |q q'|>0$. This is an exact fixed-transmitter attraction baseline for the corrected delayed law.
 - Two-body mutual interaction (opposite or equal charges):
   - Coupled DDEs with causal roots $T_t$ defined by $|X_i(T)-X_j(T_t)|=T-T_t$ ($c_f=1$); accelerations superpose as $\pm \kappa \epsilon^2 W^{\mathrm{acc}}/r^2$ along the line of action.
   - No exact closed-form solutions are presently known for the coupled DDEs in general.

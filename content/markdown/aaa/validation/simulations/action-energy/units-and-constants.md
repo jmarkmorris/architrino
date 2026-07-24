@@ -52,7 +52,7 @@ Core symbols:
     $$
     s=\frac{R\omega}{c_f}
     $$
-    A branch scan must state whether the sampled histories remain below, cross, or remain above the self-hit onset $\beta=1$.
+    A branch scan must state whether the sampled histories remain below, cross, or remain above the self-hit onset $\beta_f=1$.
   - **Delay/window ratio:** use
     $$
     \Theta_{\Delta T}=\frac{\Delta T_{\max}}{T_{\mathrm{win}}}

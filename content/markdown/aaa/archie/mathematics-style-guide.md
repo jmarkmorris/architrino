@@ -259,7 +259,7 @@ Plain language: With slightly thick causal wake surfaces, the optional force-boo
 ## Units and symbols
 
 - Core dynamics chapters often set field speed to $v=1$ (equivalently $c_f=1$).
-- In spacetime closure chapters, keep $c_f$ explicit and use $v$ for drift speed only through $\beta=v/c_f$.
+- In spacetime closure chapters, keep $c_f$ explicit and use $v$ for drift speed only through channel-subscripted ratios such as $\beta_f=v/c_f$, $\beta_{\text{eff}}=v/c_{\text{eff}}$, or $\beta_\star=v/c_\star$; the paired Lorentz factor inherits the same subscript. Reserve bare $\beta$ and $\gamma$ for quoted standard-physics benchmark formulas.
 - $\epsilon = |e|/6$ is the potential polarity-unit magnitude in observer-level electric bookkeeping; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
 - In axial-inventory and weak-coupling-triad counts, write signed polarity units as $\epsilon_+$ and $\epsilon_-$, for example $5\epsilon_+ + 1\epsilon_-$. Do not use initial-letter polarity shorthand for these inventories.
 - $\kappa>0$ universal coupling.
@@ -299,7 +299,7 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
 
 - Notation lint (common mistakes):
   - Use bold for vectors: $\mathbf V$, not plain $V$.
-  - In core dynamics derivations, reserve $v$ for field speed; in spacetime closure derivations, reserve $c_f$ for field speed and use $v$ only as drift magnitude in $\beta=v/c_f$.
+  - In core dynamics derivations, reserve $v$ for field speed; in spacetime closure derivations, reserve $c_f$ for field speed and use $v$ only as drift magnitude in channel-subscripted ratios such as $\beta_f=v/c_f$.
   - Use $\|\mathbf V\|$ for speed magnitude of a vector velocity.
   - Emission cadence and per-wavefront amplitude are constant.
   - Do not write mixed forms like $|V|$ to mean speed; bold the vector and take its norm.

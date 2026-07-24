@@ -152,7 +152,7 @@ B_{ij}\to\delta_{ij},
 \qquad
 u^i_{\mathrm{sea,eff}}\to0
 $$
-This is a constitutive equation, not a new fundamental four-dimensional metric on absolute timespace.
+This is a constitutive equation, not a new fundamental four-dimensional metric on absolute timespace. Every weak-field expansion about this branch is additionally conditional on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics; that equilibrium predicate is an open closure item of the [Noether sea program](noether-sea.md), and the expansions below inherit it rather than establish it.
 
 As a form-level recovery, the same handoff already has the correct weak-field clock shape once the clock-channel potential has been matched to the Newtonian benchmark. In a weak, slow comparison window,
 $$

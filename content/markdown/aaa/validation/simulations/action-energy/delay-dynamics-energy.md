@@ -6,9 +6,9 @@ The core warning is simple: time-translation invariance of a state-dependent del
 
 ## Energy Construction Problem
 
-Fix a finite retained system over a time window $W=[T_a,T_b]$, a spatial window $\Omega\subset\Sigma_T$ when boundary flux is relevant, memory depth $h < \infty$, causal-surface width $\eta > 0$, optional core cutoff $\epsilon_c > 0$, and branch chart
+Fix a finite retained system over a time window $W=[T_a,T_b]$, a spatial window $\Omega\subset\Sigma_T$ when boundary flux is relevant, memory depth $H_{\mathrm{hist}} < \infty$, causal-surface width $\eta > 0$, optional core cutoff $\epsilon_c > 0$, and branch chart
 $$
-\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)
+\mathfrak{B}(\Gamma,\mathcal{S};H_{\mathrm{hist}},\eta,\epsilon_c)
 $$
 for the same active causal-root rows used by the [Master Equation](../../../dynamics/master-equation.md). The retained history at time $T$ is the segment
 $$
@@ -20,7 +20,7 @@ X_T
 q_a
 :
 a\in A_\Omega,\,
--h\le\theta\le0
+-H_{\mathrm{hist}}\le\theta\le0
 \right\}
 $$
 with any excluded rows, endpoint conventions, and boundary crossings recorded explicitly.

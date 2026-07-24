@@ -60,7 +60,7 @@ The webapp also includes non-document surfaces where interaction is primary.
 Current examples include:
 
 - image, reaction-diagram, and animation tools for selected assembly examples, with PDG-derived reaction data used only where provenance is clear enough for curated presentation.
-- the A1 Lorentz Geometry lesson, which links a prescribed A1 oblate spheroidal envelope, $\beta$, $\gamma$, length contraction, time dilation, and the normalized energy ledger in one inspection surface.
+- the A1 Lorentz Geometry lesson, which links a prescribed A1 oblate spheroidal envelope, $\beta_f$, $\gamma_f$, length contraction, time dilation, and the normalized energy ledger in one inspection surface.
 - the Photon and Polarization Visualization App, which exposes a candidate planar pair, Virtual Observer electric-field reconstruction, and derived polarization diagnostics in one inspection surface.
 - periodic-table and element navigation overlays,
 - other domain-specific scene behaviors where the scene is more than a reading panel.

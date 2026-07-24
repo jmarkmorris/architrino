@@ -282,6 +282,23 @@ $$
 
 This per-packet identity does not yet license a fixed fraction of present critical density for the integrated deposit. An estimate such as $\rho_{\gamma,0}(a_{\mathrm{dec}}^{-1}-1)$ imports the standard comoving-volume and scale-history map that the fixed-void branch is required to derive. The native calculation must instead integrate retained photon bundles and Noether sea exchange over a bounded constant-$T$ region, with source, remnant, recoil, and boundary terms included. Until that mapping exists, a nominal percent-level deposit is a heuristic comparison, not a measured Noether sea loading.
 
+One conditional negative nevertheless survives. Any branch that recovers the standard CMB temperature, distance, and volume data products must also recover the observer-level comparison
+
+$$
+\left(
+\frac{\Delta\rho_{\mathrm{sea,path}}}{\rho_{\mathrm{crit}}}
+\right)_{\mathrm{cmp}}
+\sim
+\Omega_{\gamma,0}
+\left(
+a_{\mathrm{dec}}^{-1}-1
+\right)
+\sim
+\mathcal O(10^{-2}),
+$$
+
+which is far below the effective dark-energy comparison row $\Omega_{\mathrm{DE}}\approx0.7$. Transparent-path redshift deposition therefore cannot by itself supply the required dark-energy loading on such a recovered branch. The exact native deposit and its destination remain outputs of the bounded constant-$T$ ledger, not imported inputs.
+
 After source-branch, recoil, remnant, and boundary rows have been separated, a pure transparent-path redshift must close
 
 $$
@@ -336,6 +353,45 @@ D_v
 $$
 
 For a fixed emitter and a receiver receding along $\hat{\mathbf k}$, this gives $D_v=1-v_{R,k}/c_0$. For a fixed receiver and an emitter receding opposite $\hat{\mathbf k}$ with speed $v_r>0$, it gives $D_v=1/(1+v_r/c_0)$. The special-relativistic square-root comparison factor is not inserted here: any moving-clock correction belongs in the independently derived endpoint cadence factor $\Gamma_N$. Multiplying both would count that correction twice.
+
+#### Homogeneous Lorentz-Recovery Product Target
+
+Neither $D_v$ nor the endpoint cadence ratio is separately the special-relativistic frequency factor. In the homogeneous collinear limit, their frequency-side product must satisfy
+
+$$
+\mathcal D_{\mathrm{SR}}^{(\nu)}
+\equiv
+\frac{\Gamma_{N,R}}{\Gamma_{N,E}}D_v
+\longrightarrow
+\sqrt{
+\frac{1-\beta_{\mathrm{rel}}}
+{1+\beta_{\mathrm{rel}}}
+},
+\qquad
+\beta_{\mathrm{rel}}
+=
+\frac{\beta_R-\beta_E}
+{1-\beta_R\beta_E},
+$$
+
+where $\beta_A=v_{A,k}/c_0$. If the endpoint extraction gives $\Gamma_{N,A}\to(1-\beta_A^2)^{-1/2}$, then
+
+$$
+\frac{\Gamma_{N,R}}{\Gamma_{N,E}}
+\frac{1-\beta_R}{1-\beta_E}
+=
+\sqrt{
+\frac{(1-\beta_R)(1+\beta_E)}
+{(1+\beta_R)(1-\beta_E)}
+}
+=
+\sqrt{
+\frac{1-\beta_{\mathrm{rel}}}
+{1+\beta_{\mathrm{rel}}}
+}.
+$$
+
+The reciprocal $(\Gamma_{N,E}/\Gamma_{N,R})/D_v$ is the corresponding redshift factor. This cancellation is the recovery target: the separate preferred-frame endpoint velocities may occur in the absolute record, but the homogeneous observer comparison must depend only on relative velocity. Any residual dependence is bounded preferred-frame leakage, not Lorentz closure.
 
 The receiver-facing photon energy is the local coupling result
 

@@ -37,14 +37,14 @@ D_{JS}\equiv \mathrm{JSD}(P_A\|P_B)
 $$
 where $W_1$ is 1-Wasserstein distance, JSD uses logarithm base $2$, and $\varepsilon_T$ is a predeclared absolute-time floor.
 
-For delayed source-state interpolation, the run must declare an order-$q$ history interpolation operator $I_h^q$. On a fixed analysis window $W$, define
+For delayed source-state interpolation, the run must declare an order-$q$ history interpolation operator $I_{\Delta H_{\mathrm{hist}}}^q$. On a fixed analysis window $W$, define
 $$
-E_{\mathrm{hist}}(S_\eta;\Delta h,\Delta h/2;W)
+E_{\mathrm{hist}}(S_\eta;\Delta H_{\mathrm{hist}},\Delta H_{\mathrm{hist}}/2;W)
 =
 \frac{
-\left(\sum_{m\in W}\|I_{\Delta h/2}^qS_\eta(T_{t,m})-I_{\Delta h}^qS_\eta(T_{t,m})\|^2w_m\right)^{1/2}
+\left(\sum_{m\in W}\|I_{\Delta H_{\mathrm{hist}}/2}^qS_\eta(T_{t,m})-I_{\Delta H_{\mathrm{hist}}}^qS_\eta(T_{t,m})\|^2w_m\right)^{1/2}
 }{
-\left(\sum_{m\in W}\|I_{\Delta h/2}^qS_\eta(T_{t,m})\|^2w_m\right)^{1/2}+\varepsilon_{0,S}
+\left(\sum_{m\in W}\|I_{\Delta H_{\mathrm{hist}}/2}^qS_\eta(T_{t,m})\|^2w_m\right)^{1/2}+\varepsilon_{0,S}
 }
 $$
 The weights $w_m\ge0$ are predeclared quadrature or sample weights normalized by $\sum_{m\in W}w_m=1$, and $\varepsilon_{0,S}$ has the same units as the weighted state norm.
@@ -58,7 +58,7 @@ $$
 R_{\mathrm{jump},a}
 =
 \frac{|T_{0,\ell_a}(\xi_a)-\xi_{\pi(a)}|}
-{\max(\Delta T,\Delta h,\eta/c_f,\varepsilon_T)}
+{\max(\Delta T,\Delta H_{\mathrm{hist}},\eta/c_f,\varepsilon_T)}
 $$
 Here $\xi_a$ is a sampled reception time in the transition window, $k_a$ is the tracked root index, $\ell_a$ is its branch/root-class label, and $\pi(a)$ is the predeclared matching permutation into the comparison run. The map $T_{0,\ell_a}(\xi_a)$ returns the matched transition time for that labeled root. A row is invalid if the matching rule or permutation is chosen after inspecting the residual.
 

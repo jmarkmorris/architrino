@@ -47,7 +47,7 @@ This document distinguishes three audience scopes:
 ### Operator/Developer Communication
 
 - Use [reference/op/codex-goal-seeking-prompt-template.md](reference/op/codex-goal-seeking-prompt-template.md) for the detailed communication and reporting procedure.
-- State the finding in plain language before the mathematics. Write for an operator with an undergraduate electrical-engineering background whose calculus, linear algebra, ODEs, signals and systems, feedback, and basic numerics may be rusty; define other technical terms in one clause at first use.
+- Follow [reference/op/operator-explanation-standard.md](reference/op/operator-explanation-standard.md) for plain-language explanation: every technical unit (equation stack, derivation step, dense table, jargon-dense paragraph, code or measurement block) is immediately followed by an inline `Plainly:` passage at AP-STEM-senior/sophomore-EE level, with never more than three consecutive technical paragraphs between interludes. A closing recap never substitutes for inline explanation. Define other technical terms in one clause at first use.
 - Ask necessary questions one at a time. Put fixed choices in ranked order with the preferred choice first and end with the explicit option prompt, such as `(y/n)` or `(a/b)`.
 - Include a concise `Closure goal:` line near the end of every substantive response and at the start of every generated or recommended prompt.
 - Use established project terminology. Resolve overlapping terms against canon, and ask before introducing a new project term.

@@ -16,42 +16,10 @@ The architrino position is this: physical entities and causal dynamics are prima
 
 At the software-modeling edge of that claim, it also interfaces with [Simulation, Modeling, and Computability Limits](#simulation-modeling-and-computability-limits).
 
-This layer uses a standard coverage template so subjects are treated systematically rather than as slogans.
-
-### Information/Computation Subject Template (Unified)
-
-Use this template for every subject section.
-
-- **Subject**: the full subject name.
-- **Short Name**: the short label used in scene or cross-reference contexts.
-- **Core Question**: the central question being asked about information, computation, encoding, or ontology.
-- **Central Claim**: the main thesis.
-- **Major Thinkers / Programs**: the associated thinkers, schools, or programs.
-- **Primary Ontological Commitment**: what is being treated as basic, such as bits, computation, graph rewriting, symbolic state, or physical medium.
-- **What It Gets Right**: durable insights that should survive.
-- **What It Gets Wrong or Overstates**: the main excess, collapse, or ontological inflation.
-- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether the subject is aligned, partially aligned, useful but mislocated, or incompatible.
-- **Transition Relevance**: whether it remains useful during theory transition.
-- **Long-Term Relevance**: whether it survives as ontology, effective description, modeling language, or caution.
-
-Default prose flow for each subject section:
-
-1. **Overview**: what the subject is claiming, including `Subject` and `Short Name`.
-2. **Historical Motivation**: what problem or pressure produced it, including `Core Question` and `Central Claim`.
-3. **Core Commitments**: what is treated as fundamental, including `Major Thinkers / Programs` and `Primary Ontological Commitment`.
-4. **Internal Tensions**: where the subject overreaches or collapses distinctions, including `What It Gets Right` and `What It Gets Wrong or Overstates`.
-5. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: what is retained, reduced, or rejected, including `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
-6. **What Survives**: durable lesson or tool, including `Long-Term Relevance`.
-
-Template conformance test protocol for each subject section:
-
-1. Confirm all template fields are explicitly addressed in prose.
-2. Confirm all six prose-flow parts are present in order.
-3. Confirm `What It Gets Right` preserves real strengths, not caricatures.
-4. Confirm `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ is classified as aligned, partial, mislocated, incompatible, or open.
-5. Confirm `Long-Term Relevance` states whether the subject remains ontology, effective description, method, or caution.
-
----
+Each subject is assessed by the same substantive questions: what it treats as
+fundamental, which explanatory success survives, where an informational or
+computational description outruns its physical implementation, and what
+$\mathbb{A}\mathbb{A}\mathbb{A}$ must recover at the effective level.
 
 ## Information as Ontology
 
@@ -76,6 +44,28 @@ What this subject gets right is substantial. Physics really does depend on disti
 The strongest technical version of that strength is the coding-theorem reading of Shannon entropy. Once a source distribution, coding alphabet, and decoding rule are declared, entropy gives the lower bound on average code length, and cross-entropy measures the cost of using the wrong predictive model. That is why next-symbol prediction, text compression, and modern cross-entropy training objectives are mathematically connected. The result is a powerful effective-language and model-assessment tool, not evidence that symbols or compression are the substrate of the world.
 
 Quantum-information entropy sharpens the same distinction. A reduced density matrix, von Neumann entropy, or entanglement entropy becomes meaningful only after a factorization, access region, and complement have been declared. The fact that a subsystem can look mixed while the complete comparison state remains closed is a strong access-limit diagnostic. It is not by itself evidence that information has outranked the physical carrier, path history, apparatus record, or medium response.
+
+The strongest modern information-first pressure comes from quantum-reconstruction and it-from-qubit programs, not from the bare slogan that reality is made of bits. Reconstruction programs ask how much of quantum theory follows from operational constraints on preparation, composition, distinguishability, purification, and reversible transformation. It-from-qubit programs add the stronger suggestion that geometry, connectivity, or gravitational behavior may be reconstructed from entanglement and quantum error-correcting structure. These results matter because they can show that a large part of the observer-level formalism follows from compact information-theoretic axioms.
+
+Their success still leaves an implementation question. An operational reconstruction establishes an implication of the form
+
+$$
+\mathcal{A}_{\mathrm{op}}
+\Longrightarrow
+\mathcal{F}_{\mathrm{QM}},
+$$
+
+where $\mathcal{A}_{\mathrm{op}}$ is an operational axiom set and $\mathcal{F}_{\mathrm{QM}}$ the recovered quantum formalism. It does not by itself establish
+
+$$
+\mathcal{A}_{\mathrm{op}}
+\Longrightarrow
+\mathcal{O}_{\mathrm{sub}},
+$$
+
+where $\mathcal{O}_{\mathrm{sub}}$ is a unique substrate ontology. Likewise, an entanglement-to-geometry map can be a required effective reconstruction without making qubits ontologically prior to the physical system whose partitions, interactions, and records define the entanglement. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore constructive: derive the operational axioms and entanglement structure from assembly dynamics and apparatus access, or fail against the same reconstruction constraints.
+
+Black-hole entropy and Ryu-Takayanagi-type relations make this pressure quantitative. An area-scaled entropy and a boundary-entanglement quantity that reconstructs a bulk extremal area are nontrivial effective constraints on any deeper account of horizons, partitions, and accessible records. They do not establish that spacetime is literally made of information. For $\mathbb{A}\mathbb{A}\mathbb{A}$ they are high-value consistency targets: a successful Noether sea and assembly account must explain why the observer-level entropy and geometry obey those relations in their validated domains without importing boundary qubits, an anti-de Sitter bulk, or an information substrate as primitives.
 
 ### Internal Tensions
 
@@ -125,7 +115,7 @@ This subject matters because it sits exactly where information language can eith
 
 ### Historical Motivation
 
-The historical pressure came from Maxwell-demon and Szilard-engine discussions, from molecular-scale computation, and from Landauer-style attempts to connect logical irreversibility with thermodynamic dissipation. The core question was practical as well as foundational: how low can the heat cost of computing be driven, and does information theory itself supply the lower bound?
+The historical pressure came from Maxwell-demon and Szilard-engine discussions, from molecular-scale computation, and from Landauer-style attempts to connect logical irreversibility with thermodynamic dissipation. Bennett's reversible-computation program sharpened the distinction by showing that logically reversible transformations need not inherit the same erasure cost as a logically many-to-one reset. The core question was practical as well as foundational: how low can the heat cost of computing be driven, and which part of that cost belongs to logic, reliable physical implementation, error control, or reset?
 
 The durable insight is that state discrimination, memory reset, and error suppression are not thermodynamically neutral. A reliable bit requires physical separation of alternatives, protection against thermal fluctuations, and a record channel that can be reused. The overstatement appears when the logical description is allowed to replace the device-level analysis. The fact that a formula resembles a Shannon entropy does not by itself make it a thermodynamic entropy.
 
@@ -162,6 +152,8 @@ What this subject gets right is that reliable symbolic update has physical cost.
 What it gets wrong or overstates, when careless, is the inference from logical irreversibility to a universal device-independent cost. The Shannon expression for uncertainty over symbols is not automatically a Clausius, Boltzmann, Gibbs, or device entropy. A Maxwell-demon analysis that counts the target molecule while idealizing away the partition, actuator, sensor, memory, and suppressed fluctuations has not closed the thermodynamic ledger. It has selected one part of the physical record and treated the rest as free.
 
 The demon case has a useful two-way split. If the device never resets, it consumes a low-entropy blank-memory record and turns that record into a pressure, temperature, or sorting resource. No law has been escaped; one resource has been converted into another. If the device must operate cyclically, then the memory, actuator, partition, target system, and environment must all return to the same physical record. In classical comparison language, a cyclic many-to-one sorting map would shrink phase-space volume; in quantum comparison language, it would compress a broad Hilbert-space subspace into a smaller one under isolated evolution. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same mistake is a split-record error: the target record is narrowed while the memory and boundary costs are silently excluded.
+
+Bennett's result prevents the opposite overstatement. A reversible logical circuit may approach arbitrarily low dissipation only in an idealized slow, isolated, and error-controlled limit; that does not make a finite-time physical computer costless. Clocking, barrier control, error suppression, readout, and eventual reuse remain device-level ledger terms. Landauer identifies the pressure associated with many-to-one logical reset, Szilard exposes the thermodynamic value of a recorded distinction, and Bennett shows why neither result licenses a universal cost for every logical step.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -268,6 +260,22 @@ $$
 
 Here the terms represent Born-rule statistics, Standard Model parameter and scattering recovery, relativistic/gravitational benchmarks, black-hole thermodynamic or information constraints, and no-signaling behavior. This residual is not a new gate; it states why continuum criticism alone is insufficient. The proposed substrate must recover the mature effective stack.
 
+The audit applies to $\mathbb{A}\mathbb{A}\mathbb{A}$ itself without exemption:
+
+$$
+\mathcal{R}_{\mathrm{disc}}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+=
+\max\left(
+\mathcal{R}_{\mathrm{Born}}^{\mathbb{A}\mathbb{A}\mathbb{A}},
+\mathcal{R}_{\mathrm{SM}}^{\mathbb{A}\mathbb{A}\mathbb{A}},
+\mathcal{R}_{\mathrm{GR}}^{\mathbb{A}\mathbb{A}\mathbb{A}},
+\mathcal{R}_{\mathrm{BH}}^{\mathbb{A}\mathbb{A}\mathbb{A}},
+\mathcal{R}_{\mathrm{NS}}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+\right).
+$$
+
+If any normalized row exceeds its declared tolerance, the fact that the substrate uses finite entities, finite causal speed, or discrete assembly records supplies no compensating evidence. The discrete critique succeeds only when the same proposed ontology closes the effective stack more tightly than the continuum description it aims to replace.
+
 Another tension concerns empirical recovery. Many discrete programs excel at conceptual resistance to the continuum, but fewer provide a compelling, fully worked derivation of the observed low-energy world. What they get wrong or overstate is sometimes not the discrete hypothesis itself, but the ease with which metric behavior, quantum statistics, relativistic invariance, and cosmological structure are supposed to descend from a chosen microscopic scaffold. Discreteness is a direction of repair, not a completed ontology.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
@@ -357,6 +365,8 @@ The same point applies to scale control. Scientific progress often appears as in
 The main overstatement arises when computational limit is projected directly onto being. A problem may be hard to solve, impossible to solve efficiently, or unstable under available numerical schemes without that implying anything simple about what exists physically. Likewise, the fact that a world can be modeled by simulation does not imply that it is a simulation in ontological fact. Methodological dependence and ontological dependence are different relations.
 
 A second tension is that simulation can create an illusion of mechanistic understanding. One may reproduce data or generate realistic behavior without yet understanding which structures are essential and which are artifacts of parameterization. What this subject gets wrong or overstates, when careless, is the idea that executable reproduction is equivalent to explanatory closure. A model may run beautifully while still mislocating the cause.
+
+The simulation hypothesis makes the ontological leap explicit: an observer may conjecture that the experienced world is an execution inside a more fundamental host system. Computational describability does not establish that conclusion. A discriminating version would need a host-dependent signature—resource saturation, intervention, boundary artifact, or update-law residual—that differs from an autonomous physical law in the observed world. Without such a residual, "the world is simulated" and "the world follows the same executable rule natively" are observationally equivalent descriptions, and the host adds ontology without explanatory gain.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 

@@ -22,9 +22,10 @@ $$
   - The signed instantaneous acceleration-power proxy is
     $\mathbf A\cdot\mathbf V=(\mathbf A\cdot\hat{\mathbf r})V_r$.
     It reduces to $\|\mathbf A\|V_r$ only for a repulsive contribution directed along $+\hat{\mathbf r}$; an attractive contribution carries the opposite sign.
-  - Orthogonal motion does no instantaneous work; only radial motion exchanges kinetic and potential energy at a hit.
+  - For the specific kinetic proxy $K_{\mathrm{spec}}=\tfrac12\|\mathbf V\|^2$, the per-hit rate is $dK_{\mathrm{spec}}/dT=\mathbf A\cdot\mathbf V$. An energy-valued bookkeeping row must instead declare the universal conversion $\mu_{\text{arch}}$ and use $K_\mu=\tfrac12\mu_{\text{arch}}\|\mathbf V\|^2$, so $dK_\mu/dT=\mu_{\text{arch}}\mathbf A\cdot\mathbf V$.
+  - Orthogonal motion contributes no instantaneous acceleration power. A fixed-transmitter benchmark may identify the radial integral with a potential-energy change, but moving-transmitter, self-hit, and open-boundary histories require the constructive wake/history and boundary terms in [Delay Dynamics Energy](delay-dynamics-energy.md).
 
 - Local trend via $1/r^2$:
   - If $V_r<0$ (moving inward), near-future hits tend to be stronger because $r$ shrinks between events; if $V_r>0$, they tend to weaken.
 
-Plain language: Each hit changes only the along-the-line speed at that event; sideways speed is untouched by that contribution. The signed energy transfer depends on both radial motion and whether the contribution points along or against the line-of-action direction.
+Plain language: Each hit changes only the along-the-line speed at that event; sideways speed is untouched by that contribution. The signed specific-power row follows directly from acceleration and velocity, while an energy claim additionally needs the declared bookkeeping conversion and the applicable history-aware energy construction.

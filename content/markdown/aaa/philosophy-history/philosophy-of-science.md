@@ -36,7 +36,7 @@ The current methodological profile of $\mathbb{A}\mathbb{A}\mathbb{A}$ can be su
 
 If $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds, its philosophy of science will not be an afterthought. It will be part of the explanation for why previous theories were simultaneously powerful, partial, and often ontologically mislocated.
 
-One practical distinction is the status of a number or adjustable quantity. A primitive empirical constant is an input until a deeper derivation exists. A branch-derived coefficient is an output of a retained assembly or Noether sea record. A model-control parameter is an explicit coordinate used to explore a family of solutions. A post-hoc retuning is a repair made after comparing to the target data. These roles should not be collapsed. A compact audit row is
+One practical distinction is the status of a number or adjustable quantity. A primitive empirical constant is an input until a deeper derivation exists. A branch-derived coefficient is an output of a retained assembly or Noether sea record. A model-control parameter is an explicit coordinate used to explore a family of solutions. A post-hoc retuning is a repair made after comparing to the target data. These roles should not be collapsed. The following compact row records the distinction.
 $$
 \mathcal{P}_{\mathrm{status}}
 =
@@ -47,9 +47,9 @@ P_{\mathrm{ctrl}},
 P_{\mathrm{retune}}
 \right),
 $$
-where the four entries separate empirical inputs, branch outputs, model controls, and after-the-fact repairs. A replacement theory earns explanatory compression only by moving quantities from $P_{\mathrm{emp}}$ or $P_{\mathrm{ctrl}}$ into $P_{\mathrm{branch}}$ without increasing $P_{\mathrm{retune}}$.
+Here the four entries separate empirical inputs, branch outputs, model controls, and after-the-fact repairs. A replacement theory earns explanatory compression only by moving quantities from $P_{\mathrm{emp}}$ or $P_{\mathrm{ctrl}}$ into $P_{\mathrm{branch}}$ without increasing $P_{\mathrm{retune}}$.
 
-A related constructor-set audit is required whenever inherited theories are recast. Observations and successful formal constraints are retained as evidence and benchmark pressure, while the ontology attached to them must be re-earned. The minimal constructor question is therefore not "which old story is preferred?" but which primitive substrate, branch record, and observer-export map can recover the data with the fewest independent assumptions:
+A related constructor-set audit is required whenever inherited theories are recast. Observations and successful formal constraints are retained as evidence and benchmark pressure, while the ontology attached to them must be re-earned. The following audit asks which primitive substrate, branch record, and observer-export map can recover the data with the fewest independent assumptions.
 $$
 \mathcal{C}_{\mathrm{audit}}
 =
@@ -62,33 +62,6 @@ $$
 \right).
 $$
 Here $\mathcal{O}_{\mathrm{data}}$ records the observation family, $\mathcal{F}_{\mathrm{formal}}$ records inherited mathematical constraints worth preserving, $\mathcal{S}_{\mathrm{sub}}$ is the proposed substrate record, $\Pi_{\mathrm{obs}}$ is the observer export, and $\mathcal{R}_{\mathrm{rec}}$ is the recovery residual. The rule is forward-only: keep the data, recover the successful formalism where it is tested, and let ontology pass only through the constructor and recovery rows.
-
-This layer needs one standard coverage template so subjects are treated systematically rather than ad hoc.
-
-### Philosophy-of-Science Subject Template (Unified)
-
-Use this template for every subject section.
-
-- **Subject**: the full subject name.
-- **Short Name**: the short label used in scene or cross-reference contexts.
-- **Core Question**: the central question the subject is trying to answer.
-- **Central Claim**: the main methodological or epistemic thesis.
-- **Major Thinkers / Schools**: the main figures, schools, or programs associated with it.
-- **What Problem It Was Trying To Solve**: the historical or conceptual pressure that gave rise to it.
-- **What It Gets Right**: durable insights that should survive.
-- **What It Gets Wrong or Overstates**: the main excess, limitation, or category error.
-- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether it is aligned, partially aligned, useful but limited, misapplied, in tension, or open.
-- **Transition Relevance**: whether it helps guide the replacement of current theory during an active transition.
-- **Long-Term Relevance**: whether it remains a permanent methodological principle, a caution, or mainly a historical lesson.
-
-Default prose flow for each subject section:
-
-1. **Overview**: compact statement of the subject, including `Subject` and `Short Name`.
-2. **Historical Motivation**: source pressure and agenda, including `Core Question`, `Central Claim`, and `What Problem It Was Trying To Solve`.
-3. **Core Commitments**: what is taken as methodologically basic, including `Major Thinkers / Schools`.
-4. **Internal Tensions**: preserved strengths and failure modes, including `What It Gets Right` and `What It Gets Wrong or Overstates`.
-5. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: alignment status and transition role, including `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
-6. **What Survives**: durable post-transition lesson, including `Long-Term Relevance`.
 
 ---
 
@@ -232,7 +205,7 @@ A further distinction matters for replacement theory. A model is not scientifica
 
 One practical test of seriousness is whether a model can tolerate being wrong in a specific way. A candidate that names a residual, accepts a rising-significance anomaly as a real threat, and does not immediately convert each null result into a new auxiliary sector is healthier than one that survives by interpretive agility. Falsifiability is therefore not only a yes-or-no property of a claim; it is a stance toward failure during model development.
 
-This is especially important for data-starved domains. A mathematically elaborate framework may be interesting as a comparison tool while still being unready for corpus promotion. A compact promotion guard is
+This is especially important for data-starved domains. A mathematically elaborate framework may be interesting as a comparison tool while still being unready for corpus promotion. The following expression is a compact promotion guard.
 $$
 \operatorname{promote}(\theta)=1
 \Longrightarrow
@@ -363,6 +336,48 @@ The central commitment is that science should contain a recognizable crisis-dete
 
 Relevant indicators include anomaly load, ontology debt, patch density, progress latency, theory proliferation without convergence, and imbalance between effective success and explanatory integration. Anomaly load concerns the number and severity of unresolved tensions, paradoxes, and unexplained sectors. Ontology debt concerns the number of central theoretical objects that remain predictively useful while mechanistically unclear. Patch density concerns the growth of auxiliary sectors, repair layers, and interpretation families needed to preserve the framework. Progress latency concerns the elapsed time since the last widely accepted foundational closure rather than the last confirmation of an inherited prediction. Theory proliferation without convergence concerns the multiplication of interpretations or repair programs without narrowing toward a common architecture. Effective-success imbalance concerns the case in which engineering and prediction remain strong while explanatory unification remains weak.
 
+These indicators become operationally meaningful only when attached to concrete
+diagnoses. For a declared domain and time window $W$, their profile can be
+written as
+
+$$
+\mathbf I_W
+=
+\left(
+A_W,\,
+O_W,\,
+P_W,\,
+L_W,\,
+V_W,\,
+E_W
+\right),
+$$
+
+where the components denote anomaly load, ontology debt, patch density,
+progress latency, theory proliferation, and effective-success imbalance. The
+components are not commensurate by default, so $\mathbf I_W$ is a diagnostic
+profile rather than a scalar crisis score. Summing or ranking them requires a
+measurement rule, normalization, comparison window, and weights fixed before
+the desired verdict is known.
+
+The companion crisis chapter supplies the present many-to-many crosswalk:
+
+| Indicator | Primary crisis axes | What the connection diagnoses |
+| --- | --- | --- |
+| Anomaly load $A_W$ | [`CR-03`](crisis-in-physics.md#quantum-measurement-and-outcome-selection), [`CR-04`](crisis-in-physics.md#nonlocality-bell-and-causal-structure), [`CR-05`](crisis-in-physics.md#general-relativity-and-quantum-theory), and [`CR-09`](crisis-in-physics.md#dark-matter-dark-energy-and-cosmological-over-inference) | Persistent outcome-selection, correlation, framework-compatibility, and cosmological-inference tensions that remain unresolved after their assumptions and data products are separated. |
+| Ontology debt $O_W$ | [`CR-02`](crisis-in-physics.md#prediction-vs-ontology), [`CR-08`](crisis-in-physics.md#vacuum-medium-and-the-status-of-empty-space), and [`CR-11`](crisis-in-physics.md#mathematical-control-vs-mechanistic-explanation) | Predictively successful variables or entities carry explanatory work without an independently closed account of what implements them. |
+| Patch density $P_W$ | [`CR-07`](crisis-in-physics.md#renormalization-uv-completion-and-continuum-excess), [`CR-09`](crisis-in-physics.md#dark-matter-dark-energy-and-cosmological-over-inference), and [`CR-10`](crisis-in-physics.md#parameter-proliferation-and-patchwork-closure) | Scale-specific repairs, inferred sectors, or freely adjusted structures accumulate faster than common-mechanism derivations. |
+| Progress latency $L_W$ | [`CR-01`](crisis-in-physics.md#progress-vs-time), with elapsed closure time read across the other ten axes | Activity and precision continue while the named foundational obligations do not move from diagnosis to independently tested derivation. |
+| Theory proliferation $V_W$ | [`CR-05`](crisis-in-physics.md#general-relativity-and-quantum-theory), [`CR-06`](crisis-in-physics.md#ads-control-and-de-sitter-reality), and [`CR-10`](crisis-in-physics.md#parameter-proliferation-and-patchwork-closure) | Competing unification settings, interpretations, or repair programs multiply without converging on shared discriminating observables. |
+| Effective-success imbalance $E_W$ | [`CR-02`](crisis-in-physics.md#prediction-vs-ontology), [`CR-07`](crisis-in-physics.md#renormalization-uv-completion-and-continuum-excess), and [`CR-11`](crisis-in-physics.md#mathematical-control-vs-mechanistic-explanation) | Prediction and formal control remain strong while substrate implementation and mechanistic integration remain comparatively weak. |
+
+The crosswalk is diagnostic, not accusatory. One crisis axis may bear several
+indicators, and one indicator may arise from several axes. A high profile does
+not confirm $\mathbb{A}\mathbb{A}\mathbb{A}$ or any other replacement. It
+changes the comparative burden: preserve the successful records, expose the
+auxiliary assumptions, and demand a discriminating recovery that the incumbent
+and replacement packages cannot both obtain by retuning.
+
 The same crisis layer should audit false priors directly. A false prior is not merely a wrong numerical guess; it is a starting abstraction that silently defines the permitted architecture. If a community assumes too early that observed particle charge is primitive charge, that measured photon speed is the primitive wake speed, or that an effective metric is substrate geometry, then later mathematics may become rigorous while the theory space has already been narrowed. A crisis-capable method must therefore include primitive-abstraction review: identify the inherited assumptions that decide the search space before any parameter fit begins.
 
 Prediction status also needs a tiered evidence language. A genuinely novel prediction that survives later measurement has the strongest theory-choice value. A postdiction of an already known but unexplained observation is still valuable when it reduces independent assumptions or supplies a mechanism the older framework lacked. A superior reinterpretation is weaker but important when it preserves all measured records while relocating ontology more economically. A reconfirmation of a fact already built into the source theory is the weakest unless it follows from a new derivation with fewer primitives. This taxonomy keeps $\mathbb{A}\mathbb{A}\mathbb{A}$ from treating all successes as equal while preserving the legitimate value of recovery and reinterpretation.
@@ -409,7 +424,7 @@ Public and semi-public discussion surfaces matter for the same reason, but only 
 
 Theory-guided experiment must also be handled explicitly. In data-starved foundational regimes, instruments, reduction variables, and auxiliary hypotheses are usually shaped by the dominant theory. The absence of a single decisive anomaly is therefore not identical to ontological closure. It also does not make every alternative equally live. It raises the burden on a replacement architecture: it must name the preserved data product, the accepted calibration assumptions, the effective model being rederived, the ontological inference being challenged, and the residual that would count against the replacement.
 
-For a crisis review, the minimum inference record is:
+For a crisis review, use the following minimum inference record.
 
 $$
 \left(
@@ -422,13 +437,13 @@ R_{\mathrm{fail}}
 \right)
 $$
 
-where $D$ is the data product, $A_{\mathrm{inst}}$ records apparatus and selection assumptions, $K_{\mathrm{cal}}$ records calibration and nuisance modeling, $M_{\mathrm{eff}}$ is the effective formal model, $O_{\mathrm{ont}}$ is the ontological reading under review, and $R_{\mathrm{fail}}$ is the residual pattern that would reject the proposed reinterpretation. This keeps crisis governance from sliding into either uncritical consensus defense or unconstrained heterodoxy.
+Here $D$ is the data product, $A_{\mathrm{inst}}$ records apparatus and selection assumptions, $K_{\mathrm{cal}}$ records calibration and nuisance modeling, $M_{\mathrm{eff}}$ is the effective formal model, $O_{\mathrm{ont}}$ is the ontological reading under review, and $R_{\mathrm{fail}}$ is the residual pattern that would reject the proposed reinterpretation. This keeps crisis governance from sliding into either uncritical consensus defense or unconstrained heterodoxy.
 
 The data product in this record is always a finite observation record. In practice $D$ should be read as $D_{W,\epsilon}$: measurements gathered over a declared observation window $W$ with an uncertainty or tolerance vector $\epsilon$. Densities, exact symmetries, zero-mass claims, continuum fields, and limiting parameters enter the review only after the finite record has been passed through $A_{\mathrm{inst}}$, $K_{\mathrm{cal}}$, and $M_{\mathrm{eff}}$. This prevents an exact effective variable from being mistaken for the raw observable that originally constrained it.
 
 Probability assignments require the same kind of material warrant. A probability measure used in theory choice, measurement closure, or validation is admissible only after the relevant sampling process, invariant measure, apparatus channel, or empirical pipeline has been stated. Indifference over labels is not enough. If two different measures are used for prediction, thermodynamic cost, and ontological interpretation, then the inference record has split and the promoted interpretation has not yet earned closure.
 
-A staged discovery review can use the same record before an interpretation is treated as settled. Let $\theta$ denote the candidate claim and let $R_i(\theta)$ be the retained residual tests extracted from $R_{\mathrm{fail}}$, with tolerances $\epsilon_i$ fixed before the announcement standard is applied. The claim is mature only when
+A staged discovery review can use the same record before an interpretation is treated as settled. Let $\theta$ denote the candidate claim and let $R_i(\theta)$ be the retained residual tests extracted from $R_{\mathrm{fail}}$, with tolerances $\epsilon_i$ fixed before the announcement standard is applied. The following criterion records maturity.
 
 $$
 \operatorname{mature}(\theta)=1
@@ -441,7 +456,7 @@ $$
 
 Intermediate stages may therefore be reported as live analysis, failed alarms, revised calibrations, or submitted-but-unaccepted claims without pretending that the final interpretation followed immediately from a single reading. The important discipline is that each stage states which part of the inference record has changed and which residuals still block promotion.
 
-A criticism carries weight in this record only when it names the coordinate it changes or the residual it activates. A worry that applies equally to every possible observation, calibration, model, or ontology, while leaving every coordinate and every $R_i$ unchanged, is not a promoted failure condition. It may motivate caution or a comparison run, but it cannot reject $\theta$ until it changes the record:
+A criticism carries weight in this record only when it names the coordinate it changes or the residual it activates. A worry that applies equally to every possible observation, calibration, model, or ontology, while leaving every coordinate and every $R_i$ unchanged, is not a promoted failure condition. It may motivate caution or a comparison run, but it cannot reject $\theta$ until it changes the record. The following condition makes that requirement explicit.
 
 $$
 \left[
@@ -465,25 +480,25 @@ R_{\mathrm{fail}}
 \right]
 $$
 
-where $\Delta C$ denotes a declared change to the corresponding coordinate of the inference record.
+Here $\Delta C$ denotes a declared change to the corresponding coordinate of the inference record.
 
-Large heterogeneous correlation systems sharpen this rule rather than replacing it. A predictor may map the preserved data, apparatus assumptions, and calibration record to a useful forecast,
+Large heterogeneous correlation systems sharpen this rule rather than replacing it. A useful forecast can have the following map.
 
 $$
 P:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}}\right)\mapsto \widehat{D}
 $$
 
-while still failing to state why the forecast works. Under crisis governance, such a system remains an effective predictor until it supplies both a mechanism-facing interpretation map
+Even then, the system may fail to state why the forecast works. Under crisis governance, it remains an effective predictor until it supplies a mechanism-facing interpretation map.
 
 $$
 \pi_{\mathrm{ont}}:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}},M_{\mathrm{eff}}\right)\mapsto O_{\mathrm{ont}}
 $$
 
-and a nonempty residual pattern $R_{\mathrm{fail}}$ that could reject that interpretation. High predictive accuracy therefore improves the status of $M_{\mathrm{eff}}$ but does not, by itself, promote $O_{\mathrm{ont}}$ into settled ontology.
+It must also supply a nonempty residual pattern $R_{\mathrm{fail}}$ that could reject that interpretation. High predictive accuracy therefore improves the status of $M_{\mathrm{eff}}$ but does not, by itself, promote $O_{\mathrm{ont}}$ into settled ontology.
 
 This includes AI-like discovery systems. They may be valuable for reference recovery, algebraic compression, pattern search, and large correlation scans, but they do not become ontology authorities by reproducing the dominant interpretation at scale. Under crisis governance, an AI-assisted result earns only the status its mechanism map and residual record earn.
 
-The same discipline applies to theory-guided quantities. Let $D_{W,\epsilon}$ be the finite data product over window $W$ with tolerance vector $\epsilon$, and let $\widehat D_\theta$ be the data predicted by candidate record $\theta$. Ordinary observational fit first requires
+The same discipline applies to theory-guided quantities. Let $D_{W,\epsilon}$ be the finite data product over window $W$ with tolerance vector $\epsilon$, and let $\widehat D_\theta$ be the data predicted by candidate record $\theta$. The following expression supplies the ordinary observational-fit criterion.
 
 $$
 \Delta_{\mathrm{obs}}(\theta)
@@ -493,7 +508,7 @@ $$
 \le 1
 $$
 
-For any ontological component $o\in O_{\mathrm{ont}}$ promoted by $\theta$, fit alone is not enough. The promoted component must have observable leverage or derivational necessity under the same apparatus and calibration record:
+For any ontological component $o\in O_{\mathrm{ont}}$ promoted by $\theta$, fit alone is not enough. The following guard requires observable leverage or derivational necessity under the same apparatus and calibration record.
 
 $$
 \operatorname{promote}(o;\theta)=1
@@ -635,13 +650,13 @@ Emergence, on this view, is lawful novelty in organized systems, not metaphysica
 
 ### Context as Constraint
 
-The same point can be stated mathematically. A higher-level context is not a second causal substance layered on top of the lower-level system. It is a constraint or boundary condition on the admissible lower-level histories. Let $\mathcal{S}_L$ be the lower-level state space, including the path-history data required by delayed causal dynamics. For a lower-level state $X(T)\in\mathcal{S}_L$, a projection $\Pi_L X$ of the lower-level variables, and a surrounding context $c$, define
+The same point can be stated mathematically. A higher-level context is not a second causal substance layered on top of the lower-level system. It is a constraint or boundary condition on the admissible lower-level histories. Let $\mathcal{S}_L$ be the lower-level state space, including the path-history data required by delayed causal dynamics. For a lower-level state $X(T)\in\mathcal{S}_L$, a projection $\Pi_L X$ of the lower-level variables, and a surrounding context $c$, define the following admissible set.
 
 $$
 K_c=\{\,X\in\mathcal{S}_L\mid G_\alpha(\Pi_L X,c)=0\ \text{for all}\ \alpha\,\}
 $$
 
-The reduced flow then remains a lower-level flow constrained to $K_c$:
+The following equation gives the reduced lower-level flow constrained to $K_c$.
 
 $$
 \frac{dX}{dT}=F_L(X_T),\qquad X(T)\in K_c
@@ -649,13 +664,13 @@ $$
 
 Here $F_L$ represents the lower-level causal-wake dynamics, and $X_T$ denotes the path-history segment needed by the delayed equation. The context $c$ changes the admissible region of state space, not the ontological inventory.
 
-For basin-level emergence, let $B_k$ be the basin of attraction for a higher-level assembly branch $k$, and let $\mu_c$ be a normalized measure on $K_c$. Then
+For basin-level emergence, let $B_k$ be the basin of attraction for a higher-level assembly branch $k$, and let $\mu_c$ be a normalized measure on $K_c$. The following expression gives the resulting branch weight.
 
 $$
 P_c(k)=\mu_c(B_k\cap K_c)
 $$
 
-records how the context shifts the branch weight. Higher-level causal language is therefore acceptable only when it means constraint, boundary condition, basin reshaping, or effective closure on lower-level dynamics. It is not acceptable if it implies that the higher-level description has become a new primitive outside the reduction stack.
+This expression records how the context shifts the branch weight. Higher-level causal language is therefore acceptable only when it means constraint, boundary condition, basin reshaping, or effective closure on lower-level dynamics. It is not acceptable if it implies that the higher-level description has become a new primitive outside the reduction stack.
 
 ### Internal Tensions
 
@@ -767,7 +782,53 @@ What this subject gets right is that evidence moves through layers: observation,
 
 The subject also gets right that theory choice cannot be reduced to one virtue. Simplicity, coherence, fertility, and mechanistic depth matter, but each can mislead when isolated. The demand is therefore for articulated tradeoffs rather than hidden preference.
 
-The Duhem-Quine problem sharpens the audit. A failed comparison confronts a packet, not one isolated law: substrate dynamics, initial and boundary data, apparatus model, observer projection, numerical method, and calibration all contribute to the residual. Write the tested packet as
+[Bayesian confirmation](https://plato.stanford.edu/entries/epistemology-bayesian/)
+supplies one disciplined language for those tradeoffs. Let $Q_i$ and $Q_j$ be
+two complete hypothesis packages, let $D_{\mathrm{new}}$ be evidence not used
+to construct or calibrate either package, and let $\mathcal C$ state the shared
+background conditions. Posterior odds then satisfy
+
+$$
+\frac{P(Q_i\mid D_{\mathrm{new}},\mathcal C)}
+     {P(Q_j\mid D_{\mathrm{new}},\mathcal C)}
+=
+\underbrace{
+\frac{P(D_{\mathrm{new}}\mid Q_i,\mathcal C)}
+     {P(D_{\mathrm{new}}\mid Q_j,\mathcal C)}
+}_{K_{ij}(D_{\mathrm{new}}\mid\mathcal C)}
+\times
+\frac{P(Q_i\mid\mathcal C)}
+     {P(Q_j\mid\mathcal C)}.
+$$
+
+The Bayes factor $K_{ij}$ measures how differently the two packages expose
+themselves to the new record; the prior-odds factor states what was believed
+before that record was opened. If both packages assign the same likelihood to
+the evidence, then $K_{ij}=1$ and the evidence does not discriminate between
+them, however impressive the shared fit may be. If the data were used to
+choose the mechanism, parameters, projection, or likelihood family, they are
+calibration evidence rather than an independent confirmation record.
+
+This use of probability is epistemic and observer-facing. It organizes
+uncertainty over declared hypothesis packages and record channels; it does not
+make probability a substrate substance, a causal agent, or proof of primitive
+randomness. A deterministic complete-state account may still induce a
+likelihood over controlled preparation variation, inaccessible path history,
+apparatus response, and finite observer records. Conversely, fitting a
+probability distribution at the observer level does not establish that the
+underlying dynamics is deterministic.
+
+Priors remain a visible source of judgment. A theory comparison should
+therefore report whether the conclusion survives reasonable prior families,
+whether parameter volume rather than prediction quality drives the result, and
+whether a catch-all alternative has been omitted. Mechanistic economy may
+inform a prior, but it cannot be hidden inside one and then rediscovered as
+evidence. The same discipline applies to old evidence: a theory that derives a
+known result without using it in construction gains more support than a theory
+fitted to that result, but a genuinely withheld linked prediction remains the
+cleaner discriminator.
+
+The Duhem-Quine problem sharpens the audit. A failed comparison confronts a packet, not one isolated law: substrate dynamics, initial and boundary data, apparatus model, observer projection, numerical method, and calibration all contribute to the residual. The tested packet has the following components.
 $$
 \mathcal{H}_{\mathrm{test}}
 =
@@ -781,7 +842,7 @@ $$
 \mathcal{K}
 \right),
 $$
-where $\mathcal{N}$ is the numerical implementation and $\mathcal{K}$ the calibration record. A discrepancy falsifies the packet as tested. Assigning it to one component requires an independent intervention, cross-benchmark comparison, or analytic reference that holds the other components fixed. Without that separation, blaming an auxiliary assumption or rescuing the central law are equally underdetermined moves.
+Here $\mathcal{N}$ is the numerical implementation and $\mathcal{K}$ the calibration record. A discrepancy falsifies the packet as tested. Assigning it to one component requires an independent intervention, cross-benchmark comparison, or analytic reference that holds the other components fixed. Without that separation, blaming an auxiliary assumption or rescuing the central law are equally underdetermined moves.
 
 ### Internal Tensions
 

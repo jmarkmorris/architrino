@@ -29,34 +29,6 @@ The minimal lens used in this chapter is:
 
 ---
 
-### Historical-Episode Template (Unified)
-
-Use this template for every detailed historical episode section so each case is evaluated with the same structure.
-
-- **Episode**: the full name of the historical near-miss or lock-in event.
-- **Short Name**: concise label for scene and cross-reference usage.
-- **Period**: time interval and dominant research context.
-- **Near-Miss Thesis**: the specific $\mathbb{A}\mathbb{A}\mathbb{A}$-adjacent opening that existed.
-- **What Physics Already Had**: empirical/formal assets available at that time.
-- **What Still Works**: predictive/computational achievements that remain valid.
-- **Narrative Lock-In**: the interpretation that became dominant.
-- **What Was Occluded**: the substrate-first path that was deprioritized.
-- **Why The Lock-In Was Rational Then**: local methodological reasons the field chose that path.
-- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: whether the episode is directly supportive, partially suggestive, or mostly cautionary.
-- **Transition Relevance**: whether this episode justifies ontological replacement during the transition period.
-- **Long-Term Relevance**: whether the lesson is permanent process guidance or eventually superseded.
-- **What Would Count As Recovery**: the concrete modern closure target that reopens the missed path.
-
-Default prose flow for each episode section:
-
-1. **Overview**: compact statement with `Episode`, `Short Name`, and `Period`.
-2. **Where The Opening Appeared**: `Near-Miss Thesis` plus `What Physics Already Had`.
-3. **What Current Physics Still Gets Right**: preserved strengths from `What Still Works`.
-4. **Where Interpretation Locked In**: `Narrative Lock-In` and why it dominated.
-5. **What Was Left Unfinished**: `What Was Occluded` and the unresolved residue.
-6. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
-7. **Recovery Target**: `Long-Term Relevance` plus `What Would Count As Recovery`.
-
 ### Timeline of Near Misses
 
 #### Overview
@@ -134,6 +106,70 @@ This also clarifies what should and should not be borrowed from that history. Th
 
 ---
 
+## Kelvin-Tait Vortex Atoms: A Failed Physics With A Durable Topology
+
+### Overview
+
+**Episode:** Kelvin-Tait Vortex Atoms. **Short Name:** Vortex-Topology Near Miss. **Period:** 1867 through the late nineteenth century. Kelvin proposed that persistent vortices in a continuous medium might constitute atoms; Tait then pursued the classification of knots partly because different knot types could label different atomic species. The literal medium model failed, but its mathematical afterlife became modern knot theory.
+
+### Where The Opening Appeared
+
+The opening was the conjunction of three demands that later particle models often separated: a common substrate, finite persistent structure, and species distinguished by topology rather than by a list of primitive substances. Kelvin's 1867 proposal and Tait's later knot tables were empirically premature, but the research question was serious: can one lawful medium support localized structures whose identity survives deformation? Tait's own [1878 discussion of sevenfold knottiness](https://doi.org/10.1017/S0370164600032508) makes the physical motivation for knot classification explicit.
+
+### What Current Physics Still Gets Right
+
+The rejection of vortex atoms was justified. The program did not recover atomic spectra, scattering, charge, mass, or the emerging electron and nuclear records, and its ideal-fluid medium lacked the necessary constitutive dynamics. Modern particle physics and quantum theory supplied far stronger predictive organization.
+
+### Where Interpretation Locked In
+
+The discarded physics was too easily bundled with the discarded question. Once the particular ether-vortex model failed, topological particle identity was treated mainly as mathematical legacy rather than as a live constitutive option. The useful distinction is between Kelvin's medium mechanics, which failed, and the more general possibility that stable species can be topological classes of finite assemblies.
+
+### What Was Left Unfinished
+
+The unfinished burden is not to revive vortex hydrodynamics. It is to derive a finite ordered-frame or braid invariant from native assembly dynamics, prove that the invariant persists under admissible evolution, and show how different invariant classes generate the observed particle dictionary. A knot label without a stability proof, interaction law, and recovery of spectra remains only a picture.
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation is **directionally supportive but not ancestral proof**. $\mathbb{A}\mathbb{A}\mathbb{A}$ shares the demand for finite persistent structures and topological classification, but it does not inherit Kelvin's fluid, vortex equation, or element table. The historical value is that an empirically unsuccessful ontology generated a mathematically durable tool; survival of the tool does not vindicate the ontology that first motivated it.
+
+### Recovery Target
+
+Recovery requires one native branch record to establish assembly persistence, topological class, exchange behavior, and observer-level particle labels. If the topology changes under ordinary admissible evolution, or if the same class must be assigned incompatible species-specific parameters, the comparison fails.
+
+---
+
+## Electromagnetic Mass And The Four-Thirds Warning
+
+### Overview
+
+**Episode:** The Electromagnetic-Mass Program. **Short Name:** Field-Energy Inertia Near Miss. **Period:** roughly 1881-1910. Thomson, Abraham, Lorentz, Poincaré, and others explored whether the inertia of charged matter could arise wholly or partly from electromagnetic energy. The program correctly demanded a mechanism for inertia, then exposed its own incompleteness through the historical $4/3$ mismatch and the need for non-electromagnetic stabilizing stresses.
+
+### Where The Opening Appeared
+
+The opening was the refusal to treat inertial mass as an unexplained intrinsic label. For an extended charged model, field energy and field momentum did not assemble into the naive relation expected for a closed object; the familiar calculation produced an electromagnetic momentum coefficient corresponding to $4E_{\mathrm{em}}/(3c^2)$. Poincaré-type stresses could restore a consistent total ledger, but only by admitting that the electromagnetic sector alone was not a closed material system.
+
+### What Current Physics Still Gets Right
+
+Relativistic energy-momentum accounting and quantum field theory superseded the classical electron models. The measured lepton and hadron records cannot be recovered by a classical charged shell, and the Standard Model's effective mass and self-energy calculations are indispensable benchmark machinery.
+
+### Where Interpretation Locked In
+
+The failure of purely electromagnetic mass helped normalize mass as a parameter in later effective theories. That was pragmatically successful, but it weakened the earlier constitutive demand: identify the complete internal and environmental ledger that produces exposed inertial response. The $4/3$ problem is therefore not evidence for one preferred substrate; it is a warning that a partial energy inventory cannot be promoted into a closed object's inertia.
+
+### What Was Left Unfinished
+
+The unfinished problem is to derive assembly inertia from a complete record that includes internal causal exchange, binding, boundary stress, radiation, and medium response. Any calculation that keeps only one sector can reproduce the historical mistake in a new notation.
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation is **methodologically supportive and technically cautionary**. Architrinos do not carry primitive mass, so the exposed mass of an assembly must be recovered. Yet the historical program forbids identifying one convenient wake-energy or field-energy term with the whole mass map. A successful derivation must close the full assembly and Noether sea ledger.
+
+### Recovery Target
+
+For a common branch record $\theta$, the effective energy and momentum must satisfy the observer-level relativistic relation within tolerance while the inertial response is generated without a primitive architrino mass. Failure occurs if an extra stabilizing contribution is inserted only to cancel the residual, if the response depends on the bookkeeping surface, or if energy and momentum require different internal-state records.
+
+---
+
 ## Lorentz Before Einstein: The Almost-Substrate Moment
 
 ### Overview
@@ -171,7 +207,7 @@ The experiment can be mapped level by level:
 | Question | Historical reading | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
 |:---|:---|:---|
 | What was the apparatus meant to measure? | An orientation-dependent fringe shift from Earth's motion through a luminiferous aether. | A two-way photon-channel timing anisotropy measured by assembly-built clocks, rulers, mirrors, and photon paths. |
-| What was actually being sampled? | The interferometer's optical phase comparison after rotation. | The observer-level residual $\Delta_{\mathrm{tw}}(\beta,\hat{\mathbf n})$ of a physical measurement system whose components are themselves coupled to the Noether sea. |
+| What was actually being sampled? | The interferometer's optical phase comparison after rotation. | The observer-level residual $\Delta_{\mathrm{tw}}(\beta_f,\hat{\mathbf n})$ of a physical measurement system whose components are themselves coupled to the Noether sea. |
 | What was observed? | The expected aether-wind fringe shift did not appear. Later resonator and clock experiments tightened the same isotropy constraint by many orders of magnitude. | In the accessible weak-gradient regime, any preferred-frame leakage must be hidden below the validated bound; the null result is a constraint on the complete clock-ruler-signal closure record. |
 | How was it interpreted? | Lorentz interpreted the result through contraction and local-time machinery; Einstein's 1905 account removed the preferred inertial frame from the kinematic foundations. The successful simplification made "undetectable medium" read as "dispensable medium." | The result does not decide substrate ontology by itself. It rejects crude wind and drag pictures while leaving open a constitutive account in which matter, clocks, rulers, and signal channels co-transform. |
 | How must $\mathbb{A}\mathbb{A}\mathbb{A}$ explain it? | Standard relativity explains the null result by postulating Lorentz-covariant inertial laws with no preferred inertial frame. | The framework must derive longitudinal contraction, clock-period retuning, and two-way photon synchronization from the same delayed causal-root and Noether sea response record. If those rows require separate tuning, or if residual leakage exceeds the bound in [Failure Criteria](../validation/failure-criteria.md#preferred-frame-hiding-stop-condition), the Lorentz bridge fails. |
@@ -197,6 +233,40 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive**. Tra
 ### Recovery Target
 
 The long-term relevance of this episode is permanent. Recovery would require a modern derivation of relativistic observables from substrate assemblies moving in a common causal background, with explicit recovery of Lorentz symmetry in the accessible regime and equally explicit conditions for breakdown. Only that level of closure would convert the historical near miss into a present scientific reopening.
+
+---
+
+## Moving Media And Radiation Boundaries: Correct Laws, Contested Stories
+
+### Overview
+
+**Episode:** Fresnel-Fizeau moving-media optics and the Ritz-Einstein radiation-boundary dispute. **Short Name:** Boundary-Law Fork. **Period:** 1818-1909. These episodes show two different ways an effective rule can succeed without fixing substrate ontology: Fresnel's partial-drag coefficient survived the Fizeau experiment, while Ritz and Einstein disputed whether selecting outward radiation is a fundamental time-directed law or a boundary/statistical condition.
+
+### Where The Opening Appeared
+
+Fizeau's 1851 water-tube experiment found a moving-medium phase shift consistent with the Fresnel coefficient. The original [experiment report](https://doi.org/10.1080/14786445108646934) was a genuine success for a quantitative medium-response rule, but the result did not uniquely select Fresnel's ether interpretation; the same record was later recovered through relativistic velocity composition and dispersive electrodynamics. It is therefore a clean example of empirical survival with ontological reassignment.
+
+The 1909 radiation discussion exposed the complementary boundary issue. Ritz treated the outward, past-to-future radiation condition as lawlike, whereas Einstein argued that time-asymmetric radiation behavior should not be built into the underlying equations in that way. Einstein's [contemporary account](https://sites.pitt.edu/~jdnorton/teaching/Einstein_graduate/2590_Einstein_2015/pdfs/Einstein_On_Present_Status_old.pdf) also emphasized that a causal-delay description requires earlier states to specify the present. The near miss was to keep path history and boundary selection distinct: delayed dependence may be fundamental even when the observed radiation arrow is an ensemble or boundary result.
+
+### What Current Physics Still Gets Right
+
+Relativistic electrodynamics recovers moving-medium optics with high precision, and standard radiation theory correctly distinguishes source solutions, incoming and outgoing conditions, and thermodynamic preparation. Those results are recovery targets, not mistakes.
+
+### Where Interpretation Locked In
+
+The successful effective descriptions encouraged two shortcuts: reading the moving-medium coefficient as proof of a particular medium ontology, or reading the practical success of outgoing solutions as proof that time asymmetry belongs in the local law. The two errors point in opposite directions but share one structure—promoting a successful solution class into ontology.
+
+### What Was Left Unfinished
+
+The unfinished task is a single causal-history account that derives the observer-level moving-medium coefficient and explains why prepared macroscopic records overwhelmingly select outgoing radiation without inserting an untracked future boundary or erasing allowed path history. The medium response, clock/ruler calibration, source record, and absorber or boundary record must remain visible.
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation is **directly useful as inheritance discipline**. Fresnel-Fizeau warns that a correct coefficient does not preserve its first interpretation. Ritz-Einstein warns that a causal-delay law and a radiation arrow are different claims. $\mathbb{A}\mathbb{A}\mathbb{A}$ therefore treats the coefficient and radiation asymmetry as observer-level benchmarks while requiring native delayed dynamics and explicit boundary provenance beneath them.
+
+### Recovery Target
+
+Recovery requires one fixed medium-response and apparatus projection to match moving-dielectric phase records across refractive index, wavelength, and flow direction, and one event ledger to reproduce outward-radiation statistics under ordinary preparation. Failure occurs if each material needs a separately chosen projection, if the drag coefficient is inserted as a substrate law, or if the radiation arrow appears only because disallowed histories were deleted without a physical boundary record.
 
 ---
 
@@ -264,7 +334,7 @@ The de Sitter, Friedmann, and Lemaître responses exposed the weakness of treati
 
 ### What Was Left Unfinished
 
-What was occluded was an explicit promotion rule for global cosmological models. The 1917 episode contains three separable obligations that should not be merged: a boundary obligation, a stability obligation, and an observational obligation. A model may solve one and fail the others. For a candidate effective cosmological branch $\theta$ over an observation window $W$, the lesson can be stated as a residual discipline:
+What was occluded was an explicit promotion rule for global cosmological models. The 1917 episode contains three separable obligations that should not be merged: a boundary obligation, a stability obligation, and an observational obligation. A model may solve one and fail the others. For a candidate effective cosmological branch $\theta$ over an observation window $W$, the following residual supplies the needed discipline.
 $$
 \mathcal{R}_{\mathrm{cos}}(\theta;W)
 =
@@ -272,13 +342,13 @@ $$
 +\mathcal{R}_{\mathrm{stab}}(\theta;W)
 +\mathcal{R}_{\mathrm{src/bdy}}(\theta;W)
 $$
-Here $\mathcal{R}_{\mathrm{obs}}$ measures mismatch to the declared astronomical data packet, $\mathcal{R}_{\mathrm{stab}}$ measures growth of admissible perturbations around the branch, and $\mathcal{R}_{\mathrm{src/bdy}}$ measures whether boundary fluxes and source terms close one shared ledger rather than being inserted independently. In continuity form, the last term has the schematic structure
+Here $\mathcal{R}_{\mathrm{obs}}$ measures mismatch to the declared astronomical data packet, $\mathcal{R}_{\mathrm{stab}}$ measures growth of admissible perturbations around the branch, and $\mathcal{R}_{\mathrm{src/bdy}}$ measures whether boundary fluxes and source terms close one shared ledger rather than being inserted independently. The last term has the following schematic continuity form.
 $$
 \mathcal{R}_{\mathrm{src/bdy}}(\theta;W)
 =
 \frac{\left\|\partial_{t_{\mathrm{eff}}} Q_\theta+\nabla_{\mathrm{eff}}\cdot \mathbf{F}_\theta-\mathcal{S}_\theta\right\|_W}{\epsilon_Q}
 $$
-where $Q_\theta$ is the retained effective quantity, $\mathbf{F}_\theta$ is its boundary flux, $\mathcal{S}_\theta$ is its declared source, and $\epsilon_Q$ is the tolerance fixed by the comparison packet. A global geometry, medium interpretation, or effective scale-factor story should not be promoted unless the three terms are simultaneously small under one branch record.
+Here $Q_\theta$ is the retained effective quantity, $\mathbf{F}_\theta$ is its boundary flux, $\mathcal{S}_\theta$ is its declared source, and $\epsilon_Q$ is the tolerance fixed by the comparison packet. A global geometry, medium interpretation, or effective scale-factor story should not be promoted unless the three terms are simultaneously small under one branch record.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -292,6 +362,38 @@ The long-term relevance of this episode is permanent process control for cosmolo
 
 ---
 
+## Von Neumann, Hermann, Bohm, And Bell: From Premature Exclusion To Exact Constraint
+
+### Overview
+
+**Episode:** The hidden-variable no-go sequence. **Short Name:** No-Go Scope Near Miss. **Period:** 1932-1966. Von Neumann's formal argument was widely read as excluding hidden-variable completion; Grete Hermann identified that its assumptions did not justify that broad conclusion; Bohm supplied an explicit deterministic nonlocal model; Bell then replaced the vague impossibility claim with a precise locality constraint that experiments could test.
+
+### Where The Opening Appeared
+
+The opening was methodological: a no-go theorem excludes models satisfying its assumptions, not every conceivable deeper account. Hermann's 1935 criticism targeted the use of quantum expectation-value additivity in a putative dispersion-free state. Bohm's 1952 construction made the overbreadth concrete by reproducing nonrelativistic quantum predictions with additional variables and nonlocal guidance. Bell's [1966 reassessment](https://doi.org/10.1103/RevModPhys.38.447) then called the crucial axioms of the earlier demonstrations unreasonable for the intended conclusion and redirected attention toward independence of distant systems.
+
+### What Current Physics Still Gets Right
+
+The mature result is stronger than a generic defense of hidden variables. Bell inequalities and their experimental violations rule out broad locally factorizable accounts. Contextuality theorems further constrain context-independent effective value assignments. A deterministic substrate theory does not evade these results merely by declaring more state.
+
+### Where Interpretation Locked In
+
+The first lock-in was authority outrunning theorem scope: the reputation of a formal proof discouraged constructive alternatives before its assumptions were widely audited. The later opposite error is to treat Bohm's counterexample as permission for any deterministic nonlocal story. Bell removed both shortcuts. The issue is the exact joint-probability factorization, setting dependence, preparation assumptions, and no-signaling record—not a slogan about realism.
+
+### What Was Left Unfinished
+
+The unfinished burden is to derive the full setting-dependent correlation family from one physical preparation-and-apparatus record while preserving measurement independence and operational no-signaling. Pair provenance followed by two independent local response functions remains Bell-local and therefore fails. The model must show where nonfactorizability enters and why it cannot be used for controllable signaling.
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation is **permissive only at the first step and restrictive at the decisive step**. Hermann and Bohm keep deterministic completion logically open; Bell specifies what such a completion must not reduce to. $\mathbb{A}\mathbb{A}\mathbb{A}$ inherits no exemption from the theorem. Its retained path history and apparatus kernels must generate the tested joint measure.
+
+### Recovery Target
+
+Recovery is the Bell-family gate owned by [Bell's Theorem](theory-bridges/bell-theorem.md) and [No-Go Theorems](../validation/no-go-theorems.md): CHSH, GHZ, Hardy, measurement-independence, factorization, and no-signaling residuals must all be controlled on the same branch family. Failure of any one cannot be repaired by citing determinism or nonlocality in general.
+
+---
+
 ## Copenhagen: Multistability Lost to Epistemic Minimalism
 
 ### Overview
@@ -302,11 +404,11 @@ The long-term relevance of this episode is permanent process control for cosmolo
 
 What physics already had was particle-wave duality, de Broglie's pilot ideas, matrix and wave mechanics, and the brute empirical pressure of atomic and subatomic phenomena. Deterministic alternatives were not absent. The opening was to ask whether one exact microstate, evolving under hidden but lawful dynamics, could produce probabilistic-looking outcomes through multistability, path-history dependence, and measurement-context sensitivity.
 
-Brownian motion supplied a non-quantum comparison case for the same methodological fork. The data product was visible wandering of suspended particles, not a direct image of molecules. Einstein's 1905 bridge treated that wandering as diffusion, used the one-dimensional mean-square law
+Brownian motion supplied a non-quantum comparison case for the same methodological fork. The data product was visible wandering of suspended particles, not a direct image of molecules. Einstein's 1905 bridge treated that wandering as diffusion. The following expression gives its one-dimensional mean-square law.
 $$
 \langle x^2\rangle = 2Dt
 $$
-and then connected $D$ to temperature, viscosity, particle radius, and $N_A$ by joining van't Hoff's osmotic-pressure analogy, Stokes drag, Fick diffusion, and drift-diffusion equilibrium. Perrin's 1908-1909 measurements then turned the same wandering trajectories into a value for Avogadro's constant. The historical sequence is therefore data product -> stochastic effective law -> transport-coefficient recovery -> hidden-population count -> later statistical lock-in. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is not that Brownian randomness is fundamental. It is that an observer-level statistical law can be a disciplined recovery target for hidden deterministic microstructure when the same record fixes the fluctuation scale, transport coefficient, and population count.
+Einstein then connected $D$ to temperature, viscosity, particle radius, and $N_A$ by joining van't Hoff's osmotic-pressure analogy, Stokes drag, Fick diffusion, and drift-diffusion equilibrium. Perrin's 1908-1909 measurements turned the same wandering trajectories into a value for Avogadro's constant. The historical sequence is therefore data product -> stochastic effective law -> transport-coefficient recovery -> hidden-population count -> later statistical lock-in. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is not that Brownian randomness is fundamental. It is that an observer-level statistical law can be a disciplined recovery target for hidden deterministic microstructure when the same record fixes the fluctuation scale, transport coefficient, and population count.
 
 An earlier bridge came from blackbody radiation. Experiments supplied a robust spectrum for hot objects that classical cavity reasoning could not match. Rayleigh and Jeans treated the cavity as a standing-wave mode inventory and applied equipartition to the allowed modes; that mode count was the right kind of structural data product, but continuous energy sharing made the high-frequency energy density diverge. Planck's move was to preserve the successful low-frequency limit while replacing continuous oscillator energy with discrete packets $\epsilon=h\nu$, giving a frequency-dependent occupation rule that suppressed ultraviolet modes. Historically, the sequence was data product, classical recovery attempt, ultraviolet failure, ad hoc quantum recovery rule, and then later operational lock-in.
 
@@ -369,7 +471,7 @@ The narrative lock-in was epistemic minimalism: stop asking what happens between
 
 What was occluded was the constructive search for deterministic outcome mechanism. The unfinished residue concerns not the probabilities themselves but what physically produces their realized instances. If measurement outcomes are basin captures in a deeper causal system, then the Copenhagen settlement froze inquiry one layer too high. The same basic pressure reappears today in the persistence of the measurement problem.
 
-A narrow pre-Copenhagen residue is the status of the old quantum condition itself. In modernized comparison form, the branch should not be accepted merely because it can be labeled by an integer. For a candidate effective atomic branch $\theta$ over a comparison window $W$, a closed-cycle action residual can be written as
+A narrow pre-Copenhagen residue is the status of the old quantum condition itself. In modernized comparison form, the branch should not be accepted merely because it can be labeled by an integer. For a candidate effective atomic branch $\theta$ over a comparison window $W$, the following expression defines the closed-cycle action residual.
 $$
 \Delta_{\mathrm{cycle}}(\theta;W)
 =
@@ -439,6 +541,38 @@ The long-term relevance of this episode is permanent until a deeper microtheory 
 
 ---
 
+## Schwarzschild, Tetrode, And Fokker: The Direct-Action Lineage
+
+### Overview
+
+**Episode:** The pre-Wheeler direct-action lineage. **Short Name:** Field-Elimination Near Miss. **Period:** 1903-1929. Schwarzschild, Tetrode, and Fokker developed variational descriptions in which charged worldlines interact directly rather than through an independently dynamical electromagnetic field. Wheeler and Feynman later inherited this mathematical line, but the earlier sequence is the source of the field-elimination opening.
+
+### Where The Opening Appeared
+
+Schwarzschild's [1903 action-principle paper](https://eudml.org/doc/58546) began the sequence; Tetrode developed a relativistic interparticle formulation in 1922; Fokker supplied an invariant many-particle variational form in 1929. The common insight was that at least part of classical electrodynamics could be represented through relations among particle histories, so the continuum field need not automatically be read as an independent substance.
+
+### What Current Physics Still Gets Right
+
+Standard field theory won for good reasons. It offers local calculational organization, clean coupling to matter and radiation, and a powerful route to quantum electrodynamics. The direct-action formulations did not by themselves solve absorber boundary conditions, self-interaction, radiation reaction, quantum recovery, or the finite structure of the sources.
+
+### Where Interpretation Locked In
+
+The success of field variables encouraged a slide from indispensable representation to fundamental ontology. Conversely, direct-action advocates could slide from eliminability of one field representation to a completed particle ontology. Neither inference follows. Equivalent effective descriptions can leave the constitutive question open.
+
+### What Was Left Unfinished
+
+The unfinished task is to specify the source history, admissible causal roots, branch weights, endpoint convention, radiation record, and boundary data without importing a Lorentzian worldline action as substrate law. A historical direct-action action is therefore a comparison tool and possible variational scaffold, not authority for the Master EOM.
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+The relation is **structurally suggestive but mathematically non-inherited**. $\mathbb{A}\mathbb{A}\mathbb{A}$ shares the demand that effective fields be recoverable from direct constituent history, but it uses absolute time, Euclidean void, causal-wake surfaces, and acceleration-first dynamics. The Schwarzschild-Tetrode-Fokker action cannot be imported as a premise.
+
+### Recovery Target
+
+Recovery requires a native causal-wake record whose projected impulse, radiation, and conservation ledgers match the effective Maxwell-Lorentz record over a declared domain. Failure occurs if absorber data are hidden, advanced branches are admitted without a physical provenance rule, self-interaction is deleted by convention, or matching the effective field description requires a second state record.
+
+---
+
 ## Wheeler's Tokyo Program: Particles, Fields, and Direct Action
 
 ### Overview
@@ -447,17 +581,17 @@ The long-term relevance of this episode is permanent until a deeper microtheory 
 
 ### Where The Opening Appeared
 
-What physics already had was unusually rich. Wheeler-Feynman electrodynamics had shown that a field-mediated interaction could be reformulated as direct interparticle action under strong boundary assumptions. Wheeler then tried to extend that style of thinking to gravity by replacing independent spacetime and field variables with world lines connected by light-ray relations, which he called liaisons. In the simplest historical notation, a liaison composition such as
+What physics already had was unusually rich. Wheeler-Feynman electrodynamics had shown that a field-mediated interaction could be reformulated as direct interparticle action under strong boundary assumptions. Wheeler then tried to extend that style of thinking to gravity by replacing independent spacetime and field variables with world lines connected by light-ray relations, which he called liaisons. The simplest historical notation used a liaison composition of the following form.
 $$
 \alpha'=\alpha^{-}(\gamma^{+}(\beta^{+}(\alpha)))
 $$
-was meant to recover a geometrical relation from world lines and causal light-ray contact alone. The important opening was not the success of this formula as a theory. It was the attempt to make geometry and field structure answer to observable interparticle connection data rather than treating them as the first layer of ontology.
+This expression was meant to recover a geometrical relation from world lines and causal light-ray contact alone. The important opening was not the success of this formula as a theory. It was the attempt to make geometry and field structure answer to observable interparticle connection data rather than treating them as the first layer of ontology.
 
-The Tokyo lecture added a second opening: inertia and mass were treated as effects that should be generated by interaction rather than inserted by hand. Wheeler's Machian comparison used the condition
+The Tokyo lecture added a second opening: inertia and mass were treated as effects that should be generated by interaction rather than inserted by hand. Wheeler's Machian comparison used the following condition.
 $$
 \frac{G}{c^2}\sum_k\frac{m_k}{r_k}\sim 1
 $$
-as a proof-of-principle scale statement for inertia from cosmic matter, while the field-generated-mass discussion pressed the same question locally for elementary particles. From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the safe lesson is not that Wheeler's formulas should be imported. It is that mass and inertia were already being forced into the form of a ledger problem: if a particle has an exposed inertial response, the response should be derived from its interaction history and the surrounding universe record.
+The condition served as a proof-of-principle scale statement for inertia from cosmic matter, while the field-generated-mass discussion pressed the same question locally for elementary particles. From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the safe lesson is not that Wheeler's formulas should be imported. It is that mass and inertia were already being forced into the form of a ledger problem: if a particle has an exposed inertial response, the response should be derived from its interaction history and the surrounding universe record.
 
 ### What Current Physics Still Gets Right
 
@@ -473,7 +607,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ caution is that this historical failure sho
 
 ### What Was Left Unfinished
 
-What was occluded was a controlled comparison between direct interaction, effective field language, and finite constituent dynamics. In the present corpus, the useful closure target is a direct-action comparison residual over a declared window $W$:
+What was occluded was a controlled comparison between direct interaction, effective field language, and finite constituent dynamics. The following direct-action residual supplies a closure target over a declared window $W$.
 $$
 \mathcal{R}_{\mathrm{DA}}(W)
 =
@@ -505,18 +639,18 @@ The long-term relevance of this episode is permanent until the field/particle di
 
 ### Where The Opening Appeared
 
-What physics already had was unusually concentrated: Hubble's approximately linear redshift-distance relation, the instability of Einstein's static model, de Sitter-style exponential expansion, and the cosmological constant as a mathematical term in the field equations. The opening was to ask whether apparent expansion could be modeled while avoiding a one-time global origin and preserving a large-scale statistical steadiness. In modern comparison language, the relevant effective branch is
+What physics already had was unusually concentrated: Hubble's approximately linear redshift-distance relation, the instability of Einstein's static model, de Sitter-style exponential expansion, and the cosmological constant as a mathematical term in the field equations. The opening was to ask whether apparent expansion could be modeled while avoiding a one-time global origin and preserving a large-scale statistical steadiness. Modern comparison language represents the relevant effective branch as follows.
 $$
 a_{\mathrm{eff}}(t_{\mathrm{eff}})=a_0e^{H_*t_{\mathrm{eff}}},
 \qquad
 \frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}=0
 $$
-The mathematical pressure is immediate. With no source term, dust continuity gives
+The mathematical pressure is immediate. The following expression gives the dust-continuity equation with no source term.
 $$
 \frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_*\rho_{m,\mathrm{eff}}=0
 $$
-so a nonzero constant density requires a provenance source $\mathcal{S}_{m,\mathrm{eff}}=3H_*\rho_{m,\mathrm{eff}}$.
+Consequently, a nonzero constant density requires a provenance source $\mathcal{S}_{m,\mathrm{eff}}=3H_*\rho_{m,\mathrm{eff}}$.
 
 ### What Current Physics Still Gets Right
 

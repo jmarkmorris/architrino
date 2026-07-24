@@ -243,7 +243,7 @@ The routing boundary is:
 
 ## Terminology Discipline
 
-Terminology discipline is controlled by the Archie canon, not by this hub. The relevant references are:
+Terminology discipline is controlled by the style and terminology canon, not by this hub. The relevant references are:
 
 - [Terminology Usage](../archie/terminology-usage.md) for level-aware usage rules and examples.
 - [Comparative Glossary](../archie/comparative-glossary.md) for standard-framework to $\mathbb{A}\mathbb{A}\mathbb{A}$ translation.

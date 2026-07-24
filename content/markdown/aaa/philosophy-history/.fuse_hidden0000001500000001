@@ -271,7 +271,7 @@ Michelson and Morley therefore mark a precision acceptance condition: the null r
 
 The strength of that claim is exactly its restraint. It is not a completed Lorentz-recovery theorem. It is a null-residual test: the two-way anisotropy of embedded apparatus must be self-nulled by the shared constitutive response before a preferred-frame ontology earns standing.
 
-The harder wall is wider than Michelson-Morley: Michelson-Morley and modern cavities constrain the $O(\beta_{\text{eff}}^2)$ round-trip anisotropy row; Kennedy-Thorndike tests constrain boost dependence of that two-way row as the laboratory velocity changes; and Ives-Stilwell plus clock-comparison tests probe the time-dilation and matter-sector energy-level rows at their own $O(\beta_{\text{eff}})$ and $O(\beta_{\text{eff}}^2)$ sensitivities. The same common-mode response must hide velocity, orientation, and internal-energy leakage together.
+The harder wall is wider than Michelson-Morley: Michelson-Morley and modern cavities constrain the $O(\beta^2)$ round-trip anisotropy row; Kennedy-Thorndike tests constrain boost dependence of that two-way row as the laboratory velocity changes; and Ives-Stilwell plus clock-comparison tests probe the time-dilation and matter-sector energy-level rows at their own $O(\beta)$ and $O(\beta^2)$ sensitivities. The same common-mode response must hide velocity, orientation, and internal-energy leakage together.
 
 ### Chapter Thirteen. Hendrik Lorentz: The Preferred Frame Without The Assembly Mechanism
 
@@ -285,13 +285,13 @@ The material Lorentz object is the closed return cycle, not a one-way signal leg
 
 Bounded is doing precise work here. A common-mode response that hides Michelson-Morley at one order is not yet Lorentz recovery. The same retained branch record has to survive the full leakage budget: Michelson-Morley two-way optical isotropy, Kennedy-Thorndike boost dependence, Ives-Stilwell clock-dilation behavior, Hughes-Drever and clock-comparison matter-sector isotropy, sidereal modulation, photon-sector dispersion/birefringence/time-of-flight, weak-field preferred-frame rows, and gravitational-wave-versus-photon speed matching.
 
-Each row must declare its order in $\beta_{\text{eff}}$ or the relevant weak-field variables, its validity domain, and the experimental tolerance it must beat. At the historical level, the important point is that this is a residual vector, not one scalar tolerance: optical isotropy, moving-clock behavior, matter-sector energy levels, photon propagation, weak-field response, and the effective gravitational channel must all be hidden by one constitutive response. If those rows require separately fitted suppression factors, the architecture has not unified the Lorentz sector; it has multiplied hidden compensations.
+Each row must declare its order in $\beta$ or the relevant weak-field variables, its validity domain, and the experimental tolerance it must beat. At the historical level, the important point is that this is a residual vector, not one scalar tolerance: optical isotropy, moving-clock behavior, matter-sector energy levels, photon propagation, weak-field response, and the effective gravitational channel must all be hidden by one constitutive response. If those rows require separately fitted suppression factors, the architecture has not unified the Lorentz sector; it has multiplied hidden compensations.
 
 A compact form of the Lorentz budget is:
 
 | Row | Leading residual | Common-mode demand |
 | --- | --- | --- |
-| Michelson-Morley / cavity | $O(\beta_{\text{eff}}^2)$ two-way anisotropy | material arms, clocks, and photon-channel timing self-null together |
+| Michelson-Morley / cavity | $O(\beta^2)$ two-way anisotropy | material arms, clocks, and photon-channel timing self-null together |
 | Kennedy-Thorndike | boost-dependent two-way drift | changing laboratory velocity does not expose a different clock/ruler/signal response |
 | Ives-Stilwell / moving clocks | velocity-sector $d\tau/dt$ residual | the clock map recovers time dilation without exposing absolute $v$ as a speed meter |
 | Hughes-Drever / clock comparison | matter-sector orientation and sidereal residuals | internal energy levels remain common-mode with the same moving-assembly response |
@@ -326,14 +326,14 @@ $$
 \frac{d\tau}{dt}
 =
 f_{\tau}\!\left(
-\beta_{\text{eff}},\,
+\beta,\,
 n(\mathbf X,T),\,
 \chi_{\text{sea}}(\mathbf X,T),\,
 \Phi_{\text{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}),\,
 \text{assembly state}
 \right),
 \qquad
-\beta_{\text{eff}}\equiv\frac{v}{c_{\text{eff}}}.
+\beta\equiv\frac{v}{c_{\text{eff}}}.
 $$
 Here $v$ is drift speed relative to the Euclidean-void rest frame before observer export, not a speed already measured by Einstein synchronization. Its velocity sector must recover special-relativistic time dilation; its potential sector must recover weak-field gravitational redshift and the PPN limits.
 

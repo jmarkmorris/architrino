@@ -46,7 +46,7 @@ Coherent photon/gravity conversion comparisons belong at this same shared-record
 ## Linear Wave Equation
 
 **Conditional Lemma 1 (linearized propagation equation).**
-Under weak-field, slow-background variation, and linear constitutive response, the transverse-traceless sector obeys
+Under weak-field, slow-background variation, linear constitutive response, and the predicate that the homogeneous isotropic background Noether sea is an equilibrium of the constitutive dynamics — an open dependency carried by the provisional sea-equilibrium packet below — the transverse-traceless sector obeys
 $$
 \Box_{c_{\text{GW}}^{\mathrm{eff}}}\bar h_{\mu\nu}^{\text{TT}}
 =

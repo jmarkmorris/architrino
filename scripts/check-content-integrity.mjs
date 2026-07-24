@@ -53,6 +53,10 @@ const CHECKS = [
     args: ["scripts/check-braid-taxonomy-terminology.mjs"],
   },
   {
+    name: "Check validation-document script paths",
+    args: ["scripts/check-validation-script-paths.mjs"],
+  },
+  {
     name: "Smoke test manifest runtime routes/search",
     args: ["scripts/smoke-option3.mjs"],
   },
