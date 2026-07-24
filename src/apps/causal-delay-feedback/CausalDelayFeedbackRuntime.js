@@ -29,8 +29,34 @@ import {
   TRANSPORT_CONTROL_ICON,
   setTransportControlButtonPresentation,
 } from "../../runtime/TransportControlIcons.js";
+import {
+  NORMALIZED_FIELD_SPEED,
+  createCanonicalLearnerState,
+  evaluateCausalRoots,
+  refreshCanonicalLearnerState,
+  sampleCausalHistoryPath,
+} from "./CausalDelayFeedbackCausalHistory.js";
+import {
+  createCausalDelayFeedbackModeController,
+} from "./CausalDelayFeedbackModeController.js";
+import {
+  createStoryScene,
+} from "./CausalDelayFeedbackStoryMode.js";
+import {
+  createRootsView,
+  createSelfHitScenarios,
+} from "./CausalDelayFeedbackRootsMode.js";
+import {
+  createBranchLabView,
+} from "./CausalDelayFeedbackBranchLabMode.js";
+import {
+  createWakeDisplayGeometry,
+  drawDottedWakeArc,
+  drawWakeDisplayGeometry,
+} from "./CausalDelayFeedbackWakeRenderer.js";
 
 const REPLAY_LOOP_SECONDS = 9;
+const STORY_STAGE_PLAYBACK_SECONDS = 3.2;
 const TIME_EPSILON = 1e-6;
 const INITIAL_VELOCITY_ARROW_SCALE = 0.04;
 const INITIAL_VELOCITY_PREVIEW_RESPONSE = 0.42;
@@ -55,7 +81,6 @@ const WHEEL_ZOOM_SENSITIVITY = 0.0015;
 const WAKE_FRONT_CADENCE_TIME_DIVISIONS = 144;
 const DEFAULT_LIVE_WAKE_FRONT_SPACING = 9;
 const LIVE_WAKE_ROOT_SCAN_STEPS = 96;
-const LIVE_WAKE_ROOT_REFINE_STEPS = 32;
 const DEFAULT_LIVE_WAKE_SIGNAL_SPEED = 3000;
 const PATH_LINE_HIT_RADIUS = 18;
 const PATH_LINE_DRAG_FALLOFF_TIME = 0.32;
@@ -132,6 +157,9 @@ function clamp(value, min, max) {
 }
 
 function colorToCss(color, alpha = color.a ?? 1) {
+  if (typeof color === "string") {
+    return color;
+  }
   return `rgba(${color.r}, ${color.g}, ${color.b}, ${clamp(alpha, 0, 1)})`;
 }
 
@@ -249,6 +277,20 @@ class CausalDelayFeedbackRuntime {
     this.dataset = this.createFallbackReplay(this.presetId);
     this.updateWakeLinkGeometry();
     this.resetArchitrinoVelocityReference();
+    this.learnerState = createCanonicalLearnerState(this.dataset, {
+      receiverTime: 0.62,
+      mode: options.initialMode ?? getInitialQueryValue(this.window, "mode") ?? "sandbox",
+      signalSpeed: NORMALIZED_FIELD_SPEED,
+      distanceScale: 1 / this.getLiveWakeSignalSpeed(),
+      loadState: this.replayLoadState,
+    });
+    if (this.learnerState.mode !== "sandbox") {
+      this.isPlaying = false;
+      this.learnerState.playback.playing = false;
+    }
+    this.elapsedSeconds = this.learnerState.mode === "sandbox"
+      ? 0
+      : this.learnerState.receiverTime * REPLAY_LOOP_SECONDS;
     this.retainedDepthLimit = this.normalizeRetainedDepthLimit(options.retainedDepthLimit);
     this.viewportZoom = VIEWPORT_ZOOM_MIN;
     this.viewport = createViewport(DESIGN_WIDTH, DESIGN_HEIGHT, this.viewportZoom);
@@ -275,8 +317,33 @@ class CausalDelayFeedbackRuntime {
     this.updateNowControl();
     this.updateReplayStatus();
     this.bindEvents();
+    this.modeController = createCausalDelayFeedbackModeController({
+      document: this.document,
+      state: this.learnerState,
+      onModeChange: (mode) => {
+        this.learnerState.mode = mode;
+        if (mode !== "sandbox") {
+          this.selectedItem = null;
+          this.setPlaying(false);
+        }
+        this.render();
+      },
+      onStateChange: () => {
+        this.render();
+      },
+      onPlayToggle: (isPlaying) => {
+        if (isPlaying && this.learnerState.mode === "story") {
+          this.setGuidedReplayCursor(createStoryScene(this.learnerState).startTime);
+        }
+        this.setPlaying(isPlaying);
+      },
+      onReplay: () => {
+        this.setGuidedReplayCursor(createStoryScene(this.learnerState).startTime);
+        this.setPlaying(!this.reducedMotionEnabled);
+      },
+    }).init();
     this.resize();
-    this.render(0);
+    this.render(this.getCurrentReplayTime());
     this.start();
     if (this.autoLoadReplay) {
       void this.loadReplay();
@@ -576,6 +643,9 @@ class CausalDelayFeedbackRuntime {
     this.updateWakeLinkGeometry();
     this.resetArchitrinoVelocityReference();
     this.syncReplayRequestOptionsFromDataset();
+    this.refreshLearnerState({
+      receiverTime: this.learnerState?.receiverTime ?? this.getCurrentReplayTime(),
+    });
     this.updateSpeedControls();
     this.updateReplayStatus();
   }
@@ -863,14 +933,54 @@ class CausalDelayFeedbackRuntime {
   }
 
   refreshAfterReplayDatasetChange() {
+    if (this.learnerState?.mode !== "sandbox" && Number.isFinite(this.learnerState?.receiverTime)) {
+      const [start, end] = this.getReplayTimeRange();
+      const span = end - start;
+      const phase = span > 0 ? clamp((this.learnerState.receiverTime - start) / span, 0, 1) : 0;
+      this.elapsedSeconds = phase * REPLAY_LOOP_SECONDS;
+    }
     this.updateNowControl();
     this.updateReplayStatus();
     if (this.dom?.readout) {
       this.updateReadout();
     }
+    this.modeController?.setState(this.learnerState);
     if (this.context) {
       this.render();
     }
+  }
+
+  refreshLearnerState({ receiverTime = this.getCurrentReplayTime() } = {}) {
+    if (!this.learnerState) {
+      return null;
+    }
+    refreshCanonicalLearnerState(this.learnerState, {
+      dataset: this.dataset,
+      receiverTime,
+      signalSpeed: NORMALIZED_FIELD_SPEED,
+      distanceScale: 1 / this.getLiveWakeSignalSpeed(),
+      loadState: this.replayLoadState,
+      loadError: this.replayLoadError,
+    });
+    this.learnerState.playback.playing = this.isPlaying;
+    this.learnerState.playback.reducedMotion = this.reducedMotionEnabled;
+    this.learnerState.playback.rate = this.fieldSpeedScale;
+    return this.learnerState;
+  }
+
+  setLearnerMode(mode) {
+    return this.modeController?.setMode(mode) ?? false;
+  }
+
+  setGuidedReplayCursor(replayTime) {
+    const [start, end] = this.getReplayTimeRange();
+    const span = end - start;
+    const nextTime = Number.isFinite(Number(replayTime))
+      ? clamp(Number(replayTime), start, end)
+      : start;
+    const phase = span > TIME_EPSILON ? clamp((nextTime - start) / span, 0, 1) : 0;
+    this.elapsedSeconds = phase * REPLAY_LOOP_SECONDS;
+    this.updateNowControl(nextTime);
   }
 
   updateReplayStatus() {
@@ -1324,52 +1434,22 @@ class CausalDelayFeedbackRuntime {
     if (!Number.isFinite(pathStart) || now <= pathStart + TIME_EPSILON) {
       return null;
     }
-    const residualAt = (candidateTime) => {
-      const source = this.getTraversalPathPoint(sourceKind, candidateTime);
-      return getDistance(source, receiver) - speed * Math.max(0, now - candidateTime);
-    };
-    let highT = now;
-    let highResidual = residualAt(highT);
-    if (!Number.isFinite(highResidual)) {
-      return null;
-    }
-    if (Math.abs(highResidual) <= TIME_EPSILON) {
-      const source = this.getTraversalPathPoint(sourceKind, highT);
-      return { source, residual: highResidual };
-    }
-
-    const scanSpan = now - pathStart;
-    let previousT = highT;
-    let previousResidual = highResidual;
-    for (let step = 1; step <= LIVE_WAKE_ROOT_SCAN_STEPS; step += 1) {
-      const candidateT = now - scanSpan * (step / LIVE_WAKE_ROOT_SCAN_STEPS);
-      const candidateResidual = residualAt(candidateT);
-      if (!Number.isFinite(candidateResidual)) {
-        continue;
-      }
-      if (candidateResidual <= 0 && previousResidual >= 0) {
-        let lowT = candidateT;
-        highT = previousT;
-        for (let refine = 0; refine < LIVE_WAKE_ROOT_REFINE_STEPS; refine += 1) {
-          const midT = (lowT + highT) * 0.5;
-          const midResidual = residualAt(midT);
-          if (!Number.isFinite(midResidual)) {
-            break;
-          }
-          if (midResidual <= 0) {
-            lowT = midT;
-          } else {
-            highT = midT;
-          }
-        }
-        const emissionT = (lowT + highT) * 0.5;
-        const source = this.getTraversalPathPoint(sourceKind, emissionT);
-        return { source, residual: residualAt(emissionT) };
-      }
-      previousT = candidateT;
-      previousResidual = candidateResidual;
-    }
-    return null;
+    const receiverKind = this.getOppositeArchitrinoKind(sourceKind) ?? `${sourceKind}-receiver`;
+    const evaluation = evaluateCausalRoots({
+      sourceId: sourceKind,
+      receiverId: receiverKind,
+      sourcePath: this.dataset?.paths?.[sourceKind] ?? [],
+      receiverPath: [
+        { ...receiver, t: pathStart },
+        { ...receiver, t: now },
+      ],
+      receiverTime: now,
+      signalSpeed: NORMALIZED_FIELD_SPEED,
+      distanceScale: 1 / speed,
+      scanSteps: LIVE_WAKE_ROOT_SCAN_STEPS,
+    });
+    const root = evaluation.acceptedRoots.at(-1);
+    return root ? { source: root.emission, residual: root.residual, root } : null;
   }
 
   isSelectionVisible() {
@@ -1405,8 +1485,20 @@ class CausalDelayFeedbackRuntime {
   }
 
   setPlaying(isPlaying) {
+    const wasPlaying = this.isPlaying;
     this.isPlaying = Boolean(isPlaying);
+    if (
+      this.isPlaying &&
+      !wasPlaying &&
+      this.learnerState?.mode === "story"
+    ) {
+      this.storyStageElapsedSeconds = 0;
+    }
+    if (this.learnerState) {
+      this.learnerState.playback.playing = this.isPlaying;
+    }
     this.updatePlayButton();
+    this.modeController?.render();
   }
 
   updatePlayButton() {
@@ -1474,6 +1566,8 @@ class CausalDelayFeedbackRuntime {
     const nextTime = Number.isFinite(numericReplayTime) ? clamp(numericReplayTime, start, end) : start;
     const phase = clamp((nextTime - start) / span, 0, 1);
     this.elapsedSeconds = phase >= 1 ? REPLAY_LOOP_SECONDS - TIME_EPSILON : phase * REPLAY_LOOP_SECONDS;
+    this.refreshLearnerState({ receiverTime: nextTime });
+    this.modeController?.setState(this.learnerState);
   }
 
   updateNowControl(replayTime = this.getCurrentReplayTime()) {
@@ -1592,11 +1686,36 @@ class CausalDelayFeedbackRuntime {
     const deltaSeconds = Math.min(0.06, Math.max(0, (time - this.lastFrameTime) / 1000));
     this.lastFrameTime = time;
     if (this.isPlaying) {
+      if (this.learnerState?.mode === "story") {
+        const scene = createStoryScene(this.learnerState);
+        this.storyStageElapsedSeconds =
+          (this.storyStageElapsedSeconds ?? 0) + deltaSeconds * this.fieldSpeedScale;
+        const progress = clamp(
+          this.storyStageElapsedSeconds / STORY_STAGE_PLAYBACK_SECONDS,
+          0,
+          1,
+        );
+        const replayTime =
+          scene.startTime + (scene.endTime - scene.startTime) * progress;
+        this.render(replayTime);
+        if (progress >= 1) {
+          this.setPlaying(false);
+        }
+        this.animationFrame = this.window.requestAnimationFrame((nextTime) => this.tick(nextTime));
+        return;
+      }
       const previousReplayTime = this.getCurrentReplayTime();
       this.elapsedSeconds += deltaSeconds * this.fieldSpeedScale;
       const replayTime = this.getCurrentReplayTime();
       this.updateNowControl(replayTime);
       this.render(this.getFrameReceptionReplayTime(previousReplayTime, replayTime) ?? replayTime);
+      if (
+        this.learnerState?.mode !== "sandbox" &&
+        time - (this.lastLearnerPanelUpdate ?? 0) >= 120
+      ) {
+        this.lastLearnerPanelUpdate = time;
+        this.modeController?.renderLiveState();
+      }
       if (this.dom?.readout) {
         this.updateReadout();
       }
@@ -1610,6 +1729,7 @@ class CausalDelayFeedbackRuntime {
     }
     this.window.removeEventListener("resize", this.boundResize);
     this.document.removeEventListener("keydown", this.boundKeyDown);
+    this.modeController?.destroy();
   }
 
   worldToScreen(point) {
@@ -1738,13 +1858,317 @@ class CausalDelayFeedbackRuntime {
     ctx.setTransform(this.pixelRatio, 0, 0, this.pixelRatio, 0, 0);
     ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     this.drawBackground(ctx);
+    if (this.learnerState?.mode !== "sandbox") {
+      const sceneId = this.learnerState.mode === "story"
+        ? `story:${createStoryScene(this.learnerState).id}`
+        : this.learnerState.mode;
+      if (this.dom?.canvas) {
+        this.dom.canvas.dataset.causalScene = sceneId;
+      }
+      if (this.learnerState.mode !== "self-hit") {
+        this.drawPathTrail(ctx, "positrino", withAlpha(POSITRINO, 0.76));
+        this.drawPathTrail(ctx, "electrino", withAlpha(ELECTRINO, 0.76));
+      }
+      this.drawGuidedModeScene(ctx, replayTime);
+      return;
+    }
+    if (this.dom?.canvas) {
+      this.dom.canvas.dataset.causalScene = "sandbox";
+    }
     this.drawWakes(ctx, replayTime);
     this.drawPathTrail(ctx, "positrino", POSITRINO);
     this.drawPathTrail(ctx, "electrino", ELECTRINO);
     this.drawForegroundWakeEmissionLines(ctx, replayTime);
     this.drawPathEndpointHandles(ctx);
     this.drawSelection(ctx);
+    this.drawSandboxTransmissionGhost(ctx);
     this.drawLiveMarkers(ctx, replayTime);
+  }
+
+  drawGuidedModeScene(ctx, replayTime = this.getCurrentReplayTime()) {
+    switch (this.learnerState.mode) {
+      case "story":
+        this.drawStoryScene(ctx, replayTime);
+        break;
+      case "roots":
+        this.drawRootsScene(ctx);
+        break;
+      case "self-hit":
+        this.drawSelfHitScene(ctx);
+        break;
+      case "branch-lab":
+        this.drawBranchLabScene(ctx);
+        break;
+      case "prediction":
+      case "history":
+      default:
+        this.drawGuidedCausalHistory(ctx, this.learnerState.receiverTime);
+        this.drawGuidedLiveMarkers(ctx, this.learnerState.receiverTime);
+        break;
+    }
+  }
+
+  drawStoryScene(ctx, replayTime = this.getCurrentReplayTime()) {
+    const scene = createStoryScene(this.learnerState);
+    if (scene.interactions.length === 0) {
+      this.drawGuidedLiveMarkers(ctx, scene.displayTime);
+      return;
+    }
+    const displayTime = this.learnerState.playback.playing
+      ? clamp(replayTime, scene.startTime, scene.endTime)
+      : scene.displayTime;
+    scene.interactions.forEach((interaction) => {
+      const wakeColor = interaction.transmitterId === "positrino"
+        ? "rgba(255,150,166,0.88)"
+        : "rgba(150,170,255,0.9)";
+      const lineColor = interaction.transmitterId === "positrino"
+        ? "rgba(255,195,204,0.86)"
+        : "rgba(190,205,255,0.88)";
+      const geometry = createWakeDisplayGeometry(interaction.root, displayTime);
+      drawWakeDisplayGeometry(ctx, geometry, {
+        worldToScreen: (point) => this.worldToScreen(point),
+        color: wakeColor,
+        lineColor,
+        dotRadius: Math.max(1.1, 1.45 * this.viewport.scale),
+        showWake: scene.showWake,
+        showCausalLine: scene.showCausalLine,
+      });
+      if (scene.showTransmissionGhost) {
+        this.drawTransmissionGhost(
+          ctx,
+          interaction.root.emission,
+          interaction.transmitterId,
+          { label: `${interaction.transmitterId} transmitted here` },
+        );
+      }
+      if (scene.showReceptionMarker) {
+        const receiverColor = interaction.receiverId === "electrino"
+          ? ELECTRINO_WAKE
+          : POSITRINO_WAKE;
+        this.drawCircle(
+          ctx,
+          this.worldToScreen(interaction.root.reception),
+          13,
+          withAlpha(receiverColor, 0.14),
+          withAlpha(WHITE, 0.86),
+          1.4,
+        );
+      }
+    });
+    this.drawGuidedLiveMarkers(ctx, displayTime);
+    this.drawSceneHeading(ctx, `STORY ${scene.id.toUpperCase().replaceAll("-", " ")}`);
+  }
+
+  drawGuidedLiveMarkers(ctx, replayTime) {
+    this.drawLiveMarker(
+      ctx,
+      "positrino",
+      POSITRINO,
+      sampleCausalHistoryPath(this.learnerState.paths.positrino, replayTime),
+      "positrino",
+      { x: 0, y: -36 },
+    );
+    this.drawLiveMarker(
+      ctx,
+      "electrino",
+      ELECTRINO,
+      sampleCausalHistoryPath(this.learnerState.paths.electrino, replayTime),
+      "electrino",
+      { x: 0, y: 36 },
+    );
+  }
+
+  drawGuidedCausalHistory(ctx, replayTime = this.getCurrentReplayTime()) {
+    const root = this.learnerState?.roots?.find(
+      (candidate) => candidate.id === this.learnerState.selectedRootId,
+    );
+    if (!root) {
+      return;
+    }
+    const geometry = createWakeDisplayGeometry(root, replayTime);
+    const predictionHidden =
+      this.learnerState.mode === "prediction" &&
+      this.learnerState.predictionState === "unanswered";
+    const showCausalLine = !predictionHidden || this.learnerState.predictionState === "correct";
+    drawWakeDisplayGeometry(ctx, geometry, {
+      worldToScreen: (point) => this.worldToScreen(point),
+      color: root.accepted ? "rgba(246,247,255,0.78)" : "rgba(255,218,89,0.72)",
+      lineColor: "rgba(127,238,255,0.82)",
+      dotRadius: Math.max(1.1, 1.45 * this.viewport.scale),
+      showWake: !predictionHidden,
+      showCausalLine,
+    });
+    if (!predictionHidden) {
+      this.drawTransmissionGhost(ctx, root.emission, this.learnerState.sourceId);
+    }
+    this.drawCircle(
+      ctx,
+      this.worldToScreen(root.reception),
+      8,
+      withAlpha(ELECTRINO_WAKE, 0.9),
+      WHITE,
+      1.2,
+    );
+  }
+
+  drawRootsScene(ctx) {
+    const view = createRootsView(this.learnerState);
+    view.roots.forEach((root) => {
+      const geometry = createWakeDisplayGeometry(root, view.receiverTime);
+      drawWakeDisplayGeometry(ctx, geometry, {
+        worldToScreen: (point) => this.worldToScreen(point),
+        color: root.accepted ? "rgba(246,247,255,0.8)" : "rgba(255,218,89,0.54)",
+        lineColor: root.accepted ? "rgba(127,238,255,0.78)" : "rgba(255,218,89,0.5)",
+        dotRadius: root.id === this.learnerState.selectedRootId ? 2.2 : 1.35,
+        showWake: true,
+        showCausalLine: true,
+      });
+      this.drawTransmissionGhost(ctx, root.emission, root.sourceId, {
+        label: `root ${root.ordinal} · Tₜ=${root.emissionTime.toFixed(3)}`,
+        emphasized: root.id === this.learnerState.selectedRootId,
+      });
+    });
+    this.drawGuidedLiveMarkers(ctx, view.receiverTime);
+    this.drawSceneHeading(ctx, `ROOTS · ${view.activeRootCount} ACTIVE`);
+  }
+
+  mapSelfHitPoint(point) {
+    return {
+      x: 950 + Number(point?.x ?? 0) * 650,
+      y: 520 + Number(point?.y ?? 0) * 650,
+      t: Number(point?.t ?? 0),
+    };
+  }
+
+  drawSelfHitScene(ctx) {
+    const scenarios = createSelfHitScenarios();
+    const scenario = scenarios.find(
+      (candidate) => candidate.id === this.learnerState.selectedSelfHitScenarioId,
+    ) ?? scenarios.find((candidate) => candidate.id === "super_cf_curved") ?? scenarios[0];
+    if (!scenario) {
+      return;
+    }
+    const path = scenario.path.map((point) => this.worldToScreen(this.mapSelfHitPoint(point)));
+    this.drawSmoothLine(ctx, path, withAlpha({ r: 179, g: 131, b: 255, a: 1 }, 0.84), 5);
+    const root = scenario.roots.find((candidate) => candidate.accepted) ?? scenario.roots[0] ?? null;
+    if (root) {
+      const emission = this.mapSelfHitPoint(root.emission);
+      const reception = this.mapSelfHitPoint(root.reception);
+      const radius = getDistance(emission, reception);
+      drawDottedWakeArc(ctx, {
+        center: emission,
+        radius,
+        color: root.accepted ? "rgba(246,247,255,0.82)" : "rgba(255,218,89,0.66)",
+        dotRadius: 1.8,
+        worldToScreen: (point) => this.worldToScreen(point),
+      });
+      this.drawLine(
+        ctx,
+        [this.worldToScreen(emission), this.worldToScreen(reception)],
+        root.accepted ? withAlpha(ELECTRINO_WAKE, 0.82) : withAlpha({ r: 255, g: 218, b: 89, a: 1 }, 0.72),
+        1.6,
+      );
+      this.drawTransmissionGhost(ctx, emission, "positrino", {
+        label: "same transceiver · earlier",
+        emphasized: true,
+      });
+      this.drawLiveMarker(
+        ctx,
+        "electrino",
+        ELECTRINO,
+        reception,
+        "same transceiver · later",
+        { x: 0, y: 36 },
+      );
+    } else {
+      const reception = this.mapSelfHitPoint(
+        sampleCausalHistoryPath(scenario.path, scenario.receiverTime),
+      );
+      this.drawLiveMarker(
+        ctx,
+        "electrino",
+        ELECTRINO,
+        reception,
+        "same transceiver · later",
+        { x: 0, y: 36 },
+      );
+    }
+    this.drawSceneHeading(
+      ctx,
+      `SELF-HIT · ${scenario.label.toUpperCase()} · ${scenario.state.toUpperCase()}`,
+    );
+  }
+
+  drawBranchLabScene(ctx) {
+    const view = createBranchLabView(this.learnerState);
+    view.rows.forEach((row) => {
+      if (!row.emission || !row.reception) {
+        return;
+      }
+      const lineColor = row.included
+        ? row.accepted ? row.color : "rgba(255,218,89,0.62)"
+        : "rgba(195,198,216,0.22)";
+      const radius = getDistance(row.emission, row.reception);
+      drawDottedWakeArc(ctx, {
+        center: row.emission,
+        radius,
+        color: lineColor,
+        dotRadius: row.included ? 1.75 : 1.1,
+        worldToScreen: (point) => this.worldToScreen(point),
+      });
+      this.drawLine(
+        ctx,
+        [this.worldToScreen(row.emission), this.worldToScreen(row.reception)],
+        lineColor,
+        row.included ? 1.45 : 0.8,
+      );
+      this.drawCircle(
+        ctx,
+        this.worldToScreen(row.emission),
+        row.included ? 6 : 4,
+        lineColor,
+        withAlpha(WHITE, row.included ? 0.72 : 0.22),
+        1,
+      );
+    });
+    const vectorOrigin = { x: 900, y: 790 };
+    const scale = view.vectorMagnitude > TIME_EPSILON
+      ? Math.min(150, 150 / view.vectorMagnitude)
+      : 0;
+    const vectorEnd = {
+      x: vectorOrigin.x + view.vectorSum.x * scale,
+      y: vectorOrigin.y + view.vectorSum.y * scale,
+    };
+    this.drawLine(
+      ctx,
+      [this.worldToScreen(vectorOrigin), this.worldToScreen(vectorEnd)],
+      withAlpha({ r: 124, g: 255, b: 179, a: 1 }, 0.94),
+      5,
+    );
+    this.drawCircle(
+      ctx,
+      this.worldToScreen(vectorEnd),
+      7,
+      { r: 124, g: 255, b: 179, a: 1 },
+      WHITE,
+      1,
+    );
+    this.drawSceneHeading(
+      ctx,
+      `BRANCH LAB · ${view.acceptedRows.length} INCLUDED · ${view.filteredRows.length} FILTERED`,
+    );
+  }
+
+  drawSceneHeading(ctx, text) {
+    this.drawScreenText(
+      ctx,
+      text,
+      { x: this.canvasWidth * 0.5, y: 68 * this.viewport.scale },
+      17,
+      withAlpha(WHITE, 0.82),
+      "center",
+      "bold",
+    );
   }
 
   drawBackground(ctx) {
@@ -1941,8 +2365,11 @@ class CausalDelayFeedbackRuntime {
     const visualWeight = this.getWakeVisualWeight(link);
     const falloffWeight = Math.pow(link.weight, preset.falloffPower);
     const wakeColor = mixColor(link.color, WHITE, visualWeight.desaturation);
-    const alpha = 0.52 * preset.alphaScale * (0.5 + 0.5 * falloffWeight) * visualWeight.alphaScale;
-    const width = preset.dotRadius * 1.18 * visualWeight.radiusScale;
+    const alpha = Math.max(
+      0.34,
+      0.52 * preset.alphaScale * (0.5 + 0.5 * falloffWeight) * visualWeight.alphaScale,
+    );
+    const width = Math.max(1.5, preset.dotRadius * 1.18 * visualWeight.radiusScale);
     this.drawLine(
       ctx,
       [this.worldToScreen(timing.receiver), this.worldToScreen(timing.source)],
@@ -2026,6 +2453,54 @@ class CausalDelayFeedbackRuntime {
     this.drawCircle(ctx, this.worldToScreen(endpoints.receiver), 15, withAlpha(WHITE, 0.04), withAlpha(WHITE, 0.78), 1.1);
   }
 
+  drawSandboxTransmissionGhost(ctx) {
+    if (this.selectedItem?.type === "wake") {
+      const link = this.getVisibleWakeSeries().find(
+        (candidate) => candidate.id === this.selectedItem.linkId,
+      );
+      const endpoints = link ? this.getWakeEndpoints(link) : null;
+      if (link && endpoints?.source) {
+        this.drawTransmissionGhost(ctx, endpoints.source, link.sourceKind);
+        return;
+      }
+    }
+    const root = this.learnerState?.roots?.find(
+      (candidate) => candidate.id === this.learnerState.selectedRootId,
+    );
+    if (root?.emission) {
+      this.drawTransmissionGhost(ctx, root.emission, root.sourceId);
+    }
+  }
+
+  drawTransmissionGhost(ctx, point, kind, {
+    label = "transmitted here",
+    emphasized = false,
+  } = {}) {
+    if (!point) {
+      return;
+    }
+    const baseColor = kind === "electrino" ? ELECTRINO : POSITRINO;
+    const screen = this.worldToScreen(point);
+    this.drawCircle(
+      ctx,
+      screen,
+      emphasized ? 19 : 16,
+      withAlpha(baseColor, emphasized ? 0.16 : 0.1),
+      withAlpha(WHITE, emphasized ? 0.64 : 0.42),
+      1,
+    );
+    this.drawCircle(ctx, screen, 7, withAlpha(baseColor, emphasized ? 0.52 : 0.34));
+    this.drawScreenText(
+      ctx,
+      label,
+      { x: screen.x, y: screen.y - 27 * this.viewport.scale },
+      12,
+      withAlpha(WHITE, emphasized ? 0.82 : 0.62),
+      "center",
+      emphasized ? "bold" : "normal",
+    );
+  }
+
   drawLiveMarkers(ctx, replayTime = this.getCurrentReplayTime()) {
     this.drawLiveMarker(ctx, "positrino", POSITRINO, this.getTraversalPathPoint("positrino", replayTime), "positrino", {
       x: 0,
@@ -2038,6 +2513,9 @@ class CausalDelayFeedbackRuntime {
   }
 
   drawLiveMarker(ctx, kind, color, point, label, labelOffset) {
+    if (!point) {
+      return;
+    }
     const screen = this.worldToScreen(point);
     this.drawCircle(ctx, screen, 20, withAlpha(color, 0.12));
     this.drawCircle(ctx, screen, 9, color, WHITE, 1.4);
@@ -2057,17 +2535,15 @@ class CausalDelayFeedbackRuntime {
   }
 
   drawDottedArc(ctx, center, radius, startDeg, endDeg, color, dotRadius) {
-    const span = Math.abs(endDeg - startDeg);
-    const count = Math.max(16, Math.min(220, Math.round((span / 360) * radius * 1.2)));
-    for (let index = 0; index <= count; index += 1) {
-      const t = index / Math.max(1, count);
-      const angle = ((startDeg + (endDeg - startDeg) * t) * Math.PI) / 180;
-      const point = {
-        x: center.x + radius * Math.cos(angle),
-        y: center.y + radius * Math.sin(angle),
-      };
-      this.drawCircle(ctx, this.worldToScreen(point), dotRadius, color);
-    }
+    drawDottedWakeArc(ctx, {
+      center,
+      radius,
+      startDegrees: startDeg,
+      endDegrees: endDeg,
+      color,
+      dotRadius,
+      worldToScreen: (point) => this.worldToScreen(point),
+    });
   }
 
   drawLine(ctx, points, color, width) {

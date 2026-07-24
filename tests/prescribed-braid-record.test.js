@@ -5,6 +5,8 @@ import test from "node:test";
 import { createEomHistoryDataset } from "../src/apps/shared/EomHistoryDataset.mjs";
 import { evaluateExactPrescribedSourceState } from "../src/prescribed-path-analysis/index.mjs";
 import {
+  ACTIVE_PRESCRIBED_BRAID_TARGETS,
+  DEPRECATED_PRESCRIBED_BRAID_TARGETS,
   PRESCRIBED_BRAID_TARGETS,
   createPrescribedBraidExactSourceRecord,
   evaluatePrescribedBraidSite,
@@ -58,8 +60,14 @@ function rotate120(vector) {
   return [vector[2], vector[0], vector[1]];
 }
 
-test("canonical target registry contains every requested candidate exactly once", () => {
+test("generator retains all records while the active target registry excludes the deprecated axial control", () => {
   assert.equal(PRESCRIBED_BRAID_TARGETS.length, 21);
+  assert.equal(ACTIVE_PRESCRIBED_BRAID_TARGETS.length, 20);
+  assert.equal(DEPRECATED_PRESCRIBED_BRAID_TARGETS.length, 1);
+  assert.match(
+    DEPRECATED_PRESCRIBED_BRAID_TARGETS[0].specPath,
+    /illustrative-full-cap-axial-spindle-boundary\.v0\.json$/u,
+  );
   const labels = fixtures.map(({ spec }) => spec.taxonomy.displayLabel);
   assert.deepEqual(labels, [
     "A1 — coincident endpoint orbits",

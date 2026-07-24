@@ -130,22 +130,22 @@ const HISTORY_POINTS = Object.freeze([
 
 const PATH_ANCHORS = Object.freeze({
   positrino: stretchPathToTimeAxis([
-    Object.freeze({ x: 260, y: 300 }),
-    Object.freeze({ x: 450, y: 350 }),
-    Object.freeze({ x: 650, y: 530 }),
-    Object.freeze({ x: 820, y: 675 }),
-    Object.freeze({ x: 1070, y: 645 }),
-    Object.freeze({ x: 1290, y: 620 }),
-    Object.freeze({ x: 1450, y: 600 }),
+    Object.freeze({ x: 260, y: 650 }),
+    Object.freeze({ x: 450, y: 700 }),
+    Object.freeze({ x: 650, y: 630 }),
+    Object.freeze({ x: 820, y: 680 }),
+    Object.freeze({ x: 1070, y: 610 }),
+    Object.freeze({ x: 1290, y: 665 }),
+    Object.freeze({ x: 1450, y: 625 }),
   ]),
   electrino: stretchPathToTimeAxis([
-    Object.freeze({ x: 250, y: 810 }),
-    Object.freeze({ x: 450, y: 735 }),
-    Object.freeze({ x: 640, y: 595 }),
-    Object.freeze({ x: 830, y: 420 }),
+    Object.freeze({ x: 250, y: 390 }),
+    Object.freeze({ x: 450, y: 330 }),
+    Object.freeze({ x: 640, y: 420 }),
+    Object.freeze({ x: 830, y: 350 }),
     Object.freeze({ x: 1080, y: 430 }),
-    Object.freeze({ x: 1305, y: 440 }),
-    Object.freeze({ x: 1450, y: 470 }),
+    Object.freeze({ x: 1305, y: 360 }),
+    Object.freeze({ x: 1450, y: 410 }),
   ]),
 });
 

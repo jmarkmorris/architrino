@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "braid-search",
+    "title": "Braid Search",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    }
+  },
+  "objects": []
+}

@@ -1,10 +1,10 @@
 # A1.3/C5 Resolution And Coverage-Calibration Protocol
 
-Status: **predeclared priority-only protocol; do not execute until the active
-compact family sweep has ended and its outputs are immutable**.
+Status: **predeclared priority-only protocol bound to the sealed terminal
+compact-family sweep receipt; calibration has not been executed**.
 
 Promotion disposition: **priority-only**. This packet defines a later
-prescribed-path numerical campaign. It does not alter the active sweep, the
+prescribed-path numerical campaign. It does not alter the sealed sweep, the
 checked-in evaluator, the compact runner, the registry, the current protocol,
 the analytical database, or any existing campaign output.
 
@@ -15,7 +15,7 @@ often the compact coverage resolution disagrees with the full resolution,
 without changing a tolerance, row-selection rule, denominator, or stop rule
 after results are visible.
 
-The protocol is bound to the active sweep identities:
+The protocol is bound to the sealed sweep identities:
 
 | Identity | Frozen value |
 | --- | --- |
@@ -67,57 +67,81 @@ but does not erase it or stop unrelated rows.
 The sweep input directory is
 `.local-data/braid-analysis/compact-monte-carlo/family-sweep-v1/`. The
 coordinator owns one pilot and a throughput-adapted sequence of sharded waves.
-Each shard is a distinct compact campaign with its own campaign hash. This
+The sealed manifest contains 24 `shard` files and 21 `member` files. Every
+entry preserves its distinct compact campaign identity and campaign hash. This
 packet does not create, request, or infer a canonical merged campaign.
 
-After the coordinator sweep task reaches a terminal state, run the checked-in
-sweep analyzer once over that settled directory and retain its complete JSON
-output as the final analyzer receipt, $R_{\mathrm{sweep}}$. Calibration may
-begin only after the receipt file itself is immutable and its SHA-256 is
-recorded.
+The canonical analyzer receipt, $R_{\mathrm{sweep}}$, is the sealed file
+`.local-data/braid-analysis/compact-monte-carlo/family-sweep-v1/final-sweep-analyzer-receipt.v1.json`.
+Its required SHA-256 is
+`7ab3eda7a567b72ac073aa23d45e07072d25840d4e9643a25ead65ce791e71f6`.
+Calibration may begin only if that exact receipt and every receipt-named
+campaign file remain immutable and hash-valid.
 
 Let:
 
-- $\mathcal S=R_{\mathrm{sweep}}.\texttt{campaignAndFileManifest.shards}$ be
-  the receipt's ordered manifest of verified, distinct shard campaigns;
-- $N_{\mathrm{sweep}}=R_{\mathrm{sweep}}.\texttt{drawCounts.actual}$ be the
-  total verified census size;
+- $\mathcal S=R_{\mathrm{sweep}}.\texttt{campaignAndFileManifest.campaignFiles}$
+  be the receipt's ordered manifest of 45 verified, distinct campaign files;
+- $N_{\mathrm{sweep}}=R_{\mathrm{sweep}}.\texttt{drawCounts.actual}=693$ be
+  the total verified census size;
 - $N_{\mathrm{A1.3}}$ be the `actualDrawCount` for A1.3 in
-  `perMemberCounts`; and
-- $N_{\mathrm{C5}}$ be the `actualDrawCount` for C5 in `perMemberCounts`.
+  `perMemberCounts`, fixed by this receipt at 33; and
+- $N_{\mathrm{C5}}$ be the `actualDrawCount` for C5 in `perMemberCounts`,
+  fixed by this receipt at 33.
 
-The receipt fixes these values before calibration begins. No early wave-count,
-throughput projection, or draft quota may substitute for them.
+The sealed receipt fixes these values before calibration begins. No early
+wave-count, throughput projection, or draft quota may substitute for them.
 
 The receipt is admissible only if:
 
-- `coordinatorReceipt.status` is `complete-for-discovered-valid-shards`;
+- its file SHA-256 is exactly
+  `7ab3eda7a567b72ac073aa23d45e07072d25840d4e9643a25ead65ce791e71f6`;
+- top-level `status` and `coordinatorReceipt.status` are both
+  `terminal-for-declared-boundary`;
+- `terminalBoundary.declared` and `terminalBoundary.terminal` are true;
+- `terminalBoundary.expectedTotalCampaignFileCount`,
+  `terminalBoundary.discoveredInBoundaryCampaignFileCount`, and
+  `terminalBoundary.validInBoundaryCampaignFileCount` all equal 45;
+- `terminalBoundary.laterThanBoundaryFiles`,
+  `terminalBoundary.unexpectedInBoundaryFiles`, and
+  `terminalBoundary.defects` are empty;
+- `coordinatorReceipt.completedCampaignFileCount` equals 45,
+  `coordinatorReceipt.skippedCampaignFileCount` equals zero,
+  `coordinatorReceipt.terminalBoundaryDeclared` and
+  `coordinatorReceipt.terminalBoundarySatisfied` are true, and
+  `coordinatorReceipt.terminalBoundaryDefectCount` equals zero;
 - `skippedFiles` is empty;
 - `drawCounts.expected`, `drawCounts.actual`,
   `coordinatorReceipt.expectedDrawCount`, and
-  `coordinatorReceipt.actualDrawCount` all equal $N_{\mathrm{sweep}}$;
-- `coordinatorReceipt.completedShardCount` equals
-  `campaignAndFileManifest.distinctCampaignHashCount` and
+  `coordinatorReceipt.actualDrawCount` all equal
+  $N_{\mathrm{sweep}}=693$;
+- `campaignAndFileManifest.campaignFiles` has exactly 45 entries and
+  `coordinatorReceipt.completedCampaignFileCount` equals
   $|\mathcal S|$;
-- every manifest row has `campaignHashVerified: true` and a recorded file
-  SHA-256, campaign hash, protocol hash, and implementation hash;
-- `coordinatorReceipt.distinctShardCampaignsPreserved` is true and
-  `canonicalMergedCampaignCreated` is false;
+- the campaign-file manifest has exactly 24 rows with `fileKind: shard` and 21
+  rows with `fileKind: member`;
+- every campaign-file manifest row has `campaignHashVerified: true` and a
+  recorded `file`, `fileSha256`, `campaignId`, `campaignHash`,
+  `protocolHash`, and `implementationHash`;
+- `coordinatorReceipt.distinctCampaignIdentitiesPreserved` is true and both
+  `coordinatorReceipt.canonicalMergedCampaignCreated` and
+  `campaignAndFileManifest.canonicalMergedCampaignCreated` are false;
 - the frozen identity set contains only the declared sampler, coverage-protocol
   hash, implementation hash, and $c_f=1$ identity; and
-- the frozen identity set contains all 21 registry members, with
-  $N_{\mathrm{A1.3}}>0$ and $N_{\mathrm{C5}}>0$; and
-- the coordinator's terminal handoff identifies this exact analyzer receipt as
-  the complete final shard inventory.
+- the frozen identity set contains all 21 registry members, every
+  `perMemberCounts` row has `expectedDrawCount: 33` and
+  `actualDrawCount: 33`, and in particular
+  $N_{\mathrm{A1.3}}=N_{\mathrm{C5}}=33$.
 
 A newly discovered, skipped, changing, partial, hash-invalid, or
-coordinator-unsealed shard invalidates the receipt and stops calibration until
-a new terminal receipt is generated. Older receipts remain provenance records
-and are not overwritten or silently extended.
+coordinator-unsealed campaign file invalidates this V1 receipt and stops
+calibration. Using a different terminal receipt requires a new versioned
+calibration packet; this sealed receipt is not overwritten or silently
+extended.
 
-The calibration census is every retained case row in every shard named by
-$\mathcal S$, including every null-score or `drawn-not-evaluated` row. Shard
-campaign hashes remain attached to their rows throughout calibration,
+The calibration census is every retained case row in every campaign file named
+by $\mathcal S$, including every null-score or `drawn-not-evaluated` row.
+Source campaign hashes remain attached to their rows throughout calibration,
 classification, full-adjudication selection, and reporting.
 
 The calibration reuses every exact sampled specification; it does not sample a
@@ -217,7 +241,7 @@ These are numerical dispositions only. None is a catalog-acceptance state.
 
 ### Paired design
 
-All $N_{\mathrm{sweep}}$ exact draws are paired by shard campaign hash, case
+All $N_{\mathrm{sweep}}$ exact draws are paired by source campaign hash, case
 identity, and sampled-specification hash:
 
 - the compact side is the already retained result under coverage-protocol hash
@@ -228,9 +252,9 @@ identity, and sampled-specification hash:
   raw acceptance-bearing event packets, database publication, or independent
   acceptance.
 
-The paired result retains the receipt's file SHA-256, shard campaign hash, and
-case hash for each row. It may summarize across shards, but it must not assign
-the collection a synthetic campaign hash or describe it as one merged
+The paired result retains the receipt's file SHA-256, source campaign hash, and
+case hash for each row. It may summarize across campaign files, but it must not
+assign the collection a synthetic campaign hash or describe it as one merged
 campaign.
 
 The full-resolution run must use the frozen implementation. If that exact
@@ -397,7 +421,8 @@ This packet is falsified as an executable V1 protocol if:
 - the analyzer receipt's SHA-256, `analysisHash`, or `manifestHash` does not
   reproduce, or any synthetic merged campaign identity appears;
 - paired rows differ in sampled-specification or exact-source hash;
-- any receipt-named draw or distinct shard campaign disappears from the census;
+- any receipt-named draw or distinct campaign identity disappears from the
+  census;
 - R0/R1 does not reproduce the original A1.3/C5 disposition under the original
   protocol;
 - a purported settled targeted row violates any root identity, event
@@ -429,21 +454,25 @@ acceptance, or physical realization.
 
 ## Future execution interface
 
-No command in this section is authorized while the active sweep is running.
-After the coordinator declares the sweep terminal, create the final immutable
-analyzer receipt without launching evaluations, importing SQLite, or changing
-any shard:
+These are future calibration instructions only. The terminal analyzer receipt
+already exists and must not be regenerated. Before calibration, verify the
+sealed receipt without launching evaluations, importing SQLite, or changing
+any campaign file:
 
 ```bash
-node scripts/eom/analyze-compact-family-sweep.mjs \
-  --input .local-data/braid-analysis/compact-monte-carlo/family-sweep-v1 \
-  > .local-data/braid-analysis/compact-monte-carlo/family-sweep-v1/final-sweep-analyzer-receipt.v1.json
+shasum -a 256 \
+  .local-data/braid-analysis/compact-monte-carlo/family-sweep-v1/final-sweep-analyzer-receipt.v1.json
 ```
+
+The command must print
+`7ab3eda7a567b72ac073aa23d45e07072d25840d4e9643a25ead65ce791e71f6`
+for that path. The receipt-binding checks above must also pass before any
+calibration row is evaluated.
 
 The follow-up implementation must then add one solver-free calibration harness
 that implements this packet literally and does not modify the evaluator,
-compact runner, registry, current protocols, database, shard campaigns, or
-analyzer receipt. Its required interface is:
+compact runner, registry, current protocols, database, source campaign files,
+or analyzer receipt. Its required interface is:
 
 ```bash
 node --test tests/a1-3-c5-resolution-coverage-calibration.test.js

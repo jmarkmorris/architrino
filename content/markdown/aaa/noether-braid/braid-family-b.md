@@ -70,16 +70,33 @@ Rigid here means that the declared $R_a$, $h_a$, $\rho_a$, $f$, $\phi_a$, frame,
 
 ### B1 Catalog Members
 
-The live Borg catalog assigns decimal member identifiers to four prescribed B1 coordinate selections. All four inherit the B1 common midpoint, coincident axis, common frequency, and common circulation relations:
+The live Borg catalog assigns decimal member identifiers to three prescribed B1 coordinate selections. All three inherit the B1 common midpoint, coincident axis, common frequency, and common circulation relations:
 
 | Member ID | Coordinate selection |
 | --- | --- |
 | `B1.1` | Interior reference: $h_a>0$ and $\rho_a>0$ for every binary. |
 | `B1.2` | High-axial interior: $h_a>\rho_a>0$ for every binary. |
 | `B1.3` | All-equatorial boundary: $h_a=0$ and $\rho_a=R_a$ for every binary. |
-| `B1.4` | All-axial boundary: $\rho_a=0$ and $h_a=R_a$ for every binary. |
 
 These identifiers distinguish the catalog records; they do not replace B1 as the parent member inherited by Family-C component braids.
+
+An active B1 candidate must contain nonzero transverse internal motion. Define the transverse-motion magnitude
+
+$$
+\mathcal K_{\perp}
+=
+\sum_{a=1}^{3}s_a^2
+=
+(2\pi f)^2\sum_{a=1}^{3}\rho_a^2
+$$
+
+for the declared common frequency $f>0$. Active-candidate eligibility requires
+
+$$
+\mathcal K_{\perp}>0
+$$
+
+or, equivalently, $\sum_a\rho_a^2>0$. This is a taxonomy nondegeneracy condition: it requires at least one binary to have internal transverse motion. It is not a retention, stability, binding, energy, or physical-realization result.
 
 ## Coordinate Boundaries
 
@@ -91,9 +108,35 @@ The equatorial and axial depictions are coordinate boundaries of B1, not separat
 | Axial | $\rho_a=0$, $h_a=R_a$ | The endpoints remain on the common axis and have zero internal orbital speed. |
 | Interior | $h_a>0$, $\rho_a>0$ | The endpoints traverse separated transverse circles on opposite sides of the braid center. |
 
-The B1.3 all-equatorial display sets $h_a=0$ for all three binaries. The B1.4 all-axial display sets $\rho_a=0$ for all three binaries. Mixed boundary records are also permitted by the B1 coordinates, but they are not among the four current decimal catalog members.
+The B1.3 all-equatorial display sets $h_a=0$ for all three binaries. Mixed boundary records are also permitted by the B1 coordinates and remain active-candidate eligible when at least one $\rho_a$ is nonzero.
 
 At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but no longer change that binary's endpoint positions because its transverse orbit radius is zero. Two axial records that differ only in those labels therefore depict the same path geometry unless another retained record gives the labels an independent dynamical role.
+
+### Deprecated Axial-Limit Control
+
+The former catalog identifier `B1.4` selected the all-axial limit
+
+$$
+\rho_a=0,
+\qquad
+h_a=R_a
+\qquad
+\text{for every }a\in\{1,2,3\}.
+$$
+
+Its endpoint paths remain the exact B1 coordinate-boundary equations
+
+$$
+\mathbf X_{a1}(T)
+=
+\mathbf C(T)+R_a\hat{\mathbf n}_B,
+\qquad
+\mathbf X_{a2}(T)
+=
+\mathbf C(T)-R_a\hat{\mathbf n}_B.
+$$
+
+This limit has $\mathcal K_{\perp}=0$: frequency, phase, and circulation labels do not create internal motion, and translation of $\mathbf C(T)$ only transports the static axial arrangement. The stable `B1.4` identifier and its prescribed source and record remain a deprecated axial-limit null control for historical reproducibility. It is not an active taxonomy member, a Borg catalog selection, a future sweep candidate, or a comparative-ranking participant.
 
 ## Axial Translation
 

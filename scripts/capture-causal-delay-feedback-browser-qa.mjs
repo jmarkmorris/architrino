@@ -25,28 +25,233 @@ const DEFAULT_BROWSER_PATHS = [
   "google-chrome",
 ].filter(Boolean);
 const PROOFS = Object.freeze([
-  // Proofs cover the representative mock replay; EOM-replay proofs are a queued build.
   {
-    id: "desktop",
-    fileName: "contrast-stress-purple-1920x1080.png",
-    width: 1920,
-    height: 1080,
+    id: "story-meet",
+    fileName: "story-meet-purple-1440x900.png",
+    width: 1440,
+    height: 900,
     deviceScaleFactor: 1,
-    query: "preset=contrast_stress&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.26,
+    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: true,
+    settingsOpen: false,
+    mode: "story",
+    storyStep: 0,
+    expectedScene: "story:meet",
+    expectedText: "Let's examine the transmitting positrino (red) and a receiving electrino (blue).",
   },
   {
-    id: "portrait",
-    fileName: "contrast-stress-purple-390x844.png",
+    id: "story-emission",
+    fileName: "story-emission-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-electrino-to-positrino",
+    settingsOpen: false,
+    mode: "story",
+    storyStep: 1,
+    expectedScene: "story:emission",
+    expectedText: "Dimmed architrinos keep both transmission locations visible",
+  },
+  {
+    id: "story-travel",
+    fileName: "story-travel-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-electrino-to-positrino",
+    settingsOpen: false,
+    mode: "story",
+    storyStep: 2,
+    expectedScene: "story:travel",
+    expectedText: "The two wakes cross the gap",
+  },
+  {
+    id: "story-reception",
+    fileName: "story-reception-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-electrino-to-positrino",
+    settingsOpen: false,
+    mode: "story",
+    storyStep: 3,
+    expectedScene: "story:reception",
+    expectedText: "the positrino wake intersects the electrino receiver",
+  },
+  {
+    id: "story-desktop",
+    fileName: "story-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-electrino-to-positrino",
+    settingsOpen: false,
+    mode: "story",
+    storyStep: 4,
+    expectedScene: "story:meaning",
+    expectedText: "Each dashed causal line connects a receiver",
+  },
+  {
+    id: "prediction-desktop",
+    fileName: "prediction-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=prediction&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-positrino-to-electrino",
+    settingsOpen: false,
+    mode: "prediction",
+    expectedScene: "prediction",
+    expectedText: "Which earlier transmission position matters?",
+  },
+  {
+    id: "story-portrait",
+    fileName: "story-purple-390x844.png",
     width: 390,
     height: 844,
     deviceScaleFactor: 2,
-    query: "preset=contrast_stress&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.075,
+    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: true,
+    settingsOpen: false,
+    mode: "story",
+    storyStep: 4,
+    expectedScene: "story:meaning",
+  },
+  {
+    id: "prediction-portrait",
+    fileName: "prediction-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=prediction&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-positrino-to-electrino",
+    settingsOpen: false,
+    mode: "prediction",
+    expectedScene: "prediction",
+  },
+  {
+    id: "keyboard-journey",
+    fileName: "keyboard-sandbox-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-positrino-to-electrino",
+    settingsOpen: false,
+    keyboardJourney: "sandbox",
+    expectedScene: "sandbox",
+    expectedText: "Sandbox",
+  },
+  {
+    id: "story-reduced-motion",
+    fileName: "story-reduced-motion-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-positrino-to-electrino",
+    settingsOpen: false,
+    mode: "story",
+    storyStep: 4,
+    reducedMotion: true,
+    expectedScene: "story:meaning",
+    expectedText: "Each dashed causal line connects a receiver",
+  },
+  {
+    id: "roots-reduced-motion",
+    fileName: "roots-reduced-motion-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=roots&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-positrino-to-electrino",
+    settingsOpen: false,
+    mode: "roots",
+    reducedMotion: true,
+    expectedScene: "roots",
+    expectedText: "Finite accumulated ΔV",
+  },
+  {
+    id: "self-hit",
+    fileName: "self-hit-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=self-hit&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-positrino-to-electrino",
+    settingsOpen: false,
+    mode: "self-hit",
+    expectedScene: "self-hit",
+    expectedText: "failed-floor",
+  },
+  {
+    id: "branch-lab",
+    fileName: "branch-lab-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=branch-lab&preset=contrast_stress&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-positrino-to-electrino",
+    settingsOpen: false,
+    mode: "branch-lab",
+    expectedScene: "branch-lab",
+    branchFilters: {
+      historyAgeLimit: 0.7,
+      minimumContribution: 200,
+      rootKind: "all",
+      transversalityFloor: 0,
+    },
+    expectedText: "filtered",
+    expectedSecondaryText: "rejected",
+    expectedBranchFilterCount: 4,
+  },
+  {
+    id: "high-contrast",
+    fileName: "story-high-contrast-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-positrino-to-electrino",
+    settingsOpen: false,
+    mode: "story",
+    storyStep: 4,
+    highContrast: true,
+    expectedScene: "story:meaning",
+    expectedText: "Each dashed causal line connects a receiver",
+  },
+  {
+    id: "eom-unavailable",
+    fileName: "eom-unavailable-story-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&canvas=architrinoPurple",
+    replayTime: 0.62,
+    wakeSeriesId: "live-positrino-to-electrino",
+    settingsOpen: false,
+    mode: "story",
+    expectedScene: "story:meet",
+    expectedReplayState: "fallback",
+    expectedText: "Let's examine the transmitting positrino (red) and a receiving electrino (blue).",
   },
 ]);
 
@@ -268,6 +473,7 @@ function waitForDevToolsUrl(child) {
 async function connectCdp(wsUrl) {
   const socket = new WebSocket(wsUrl);
   const pending = new Map();
+  const eventListeners = new Set();
   let nextId = 1;
   await new Promise((resolve, reject) => {
     socket.addEventListener("open", resolve, { once: true });
@@ -276,6 +482,7 @@ async function connectCdp(wsUrl) {
   socket.addEventListener("message", (event) => {
     const message = JSON.parse(event.data);
     if (!message.id) {
+      eventListeners.forEach((listener) => listener(message));
       return;
     }
     const request = pending.get(message.id);
@@ -292,6 +499,10 @@ async function connectCdp(wsUrl) {
   return {
     close() {
       socket.close();
+    },
+    onEvent(listener) {
+      eventListeners.add(listener);
+      return () => eventListeners.delete(listener);
     },
     send(method, params = {}, sessionId = null) {
       const id = nextId;
@@ -313,12 +524,48 @@ async function captureProof(cdp, { proof, url, outputPath }) {
   });
   await cdp.send("Page.enable", {}, sessionId);
   await cdp.send("Runtime.enable", {}, sessionId);
+  const browserDiagnostics = [];
+  const stopDiagnostics = cdp.onEvent((message) => {
+    if (message.sessionId !== sessionId) {
+      return;
+    }
+    if (message.method === "Runtime.exceptionThrown") {
+      browserDiagnostics.push({
+        type: "exception",
+        text: message.params?.exceptionDetails?.text ?? "uncaught browser exception",
+      });
+    }
+    if (
+      message.method === "Runtime.consoleAPICalled" &&
+      ["warning", "error"].includes(message.params?.type)
+    ) {
+      browserDiagnostics.push({
+        type: message.params.type,
+        text: (message.params.args ?? [])
+          .map((arg) => arg.value ?? arg.description ?? "")
+          .join(" "),
+      });
+    }
+  });
   await cdp.send("Emulation.setDeviceMetricsOverride", {
     width: proof.width,
     height: proof.height,
     deviceScaleFactor: proof.deviceScaleFactor,
     mobile: Boolean(proof.mobile),
   }, sessionId);
+  if (proof.reducedMotion === true) {
+    await cdp.send("Emulation.setEmulatedMedia", {
+      features: [{ name: "prefers-reduced-motion", value: "reduce" }],
+    }, sessionId);
+  }
+  if (proof.highContrast === true) {
+    await cdp.send("Emulation.setEmulatedMedia", {
+      features: [
+        { name: "forced-colors", value: "active" },
+        { name: "prefers-contrast", value: "more" },
+      ],
+    }, sessionId);
+  }
   await cdp.send("Page.navigate", { url }, sessionId);
   await waitFor(async () => {
     const requiredSource = JSON.stringify(proof.requiredDatasetSource ?? "");
@@ -342,9 +589,15 @@ async function captureProof(cdp, { proof, url, outputPath }) {
     timeoutMs: 15000,
     label: `causal-delay page ready for ${proof.id}`,
   });
+  if (proof.keyboardJourney) {
+    await prepareKeyboardJourney(cdp, sessionId, proof.keyboardJourney);
+  }
   const prepared = await evaluate(cdp, sessionId, createPrepareProofExpression(proof));
   if (!prepared.value?.ok) {
     throw new Error(`failed to prepare ${proof.id} proof: ${JSON.stringify(prepared.value)}`);
+  }
+  if (browserDiagnostics.length > 0) {
+    throw new Error(`browser diagnostics for ${proof.id}: ${JSON.stringify(browserDiagnostics)}`);
   }
   await cdp.send("Page.bringToFront", {}, sessionId);
   const { data } = await cdp.send("Page.captureScreenshot", {
@@ -353,7 +606,67 @@ async function captureProof(cdp, { proof, url, outputPath }) {
     captureBeyondViewport: false,
   }, sessionId);
   await writeFile(outputPath, Buffer.from(data, "base64"));
+  stopDiagnostics();
   await cdp.send("Target.closeTarget", { targetId });
+}
+
+async function prepareKeyboardJourney(cdp, sessionId, destination) {
+  const pressFocusedButton = async (selector) => {
+    const activated = await evaluate(cdp, sessionId, `
+      (() => {
+        const control = document.querySelector(${JSON.stringify(selector)});
+        if (!control) {
+          return { ok: false, reason: "missing" };
+        }
+        control.focus();
+        if (document.activeElement !== control) {
+          return { ok: false, reason: "focus" };
+        }
+        control.click();
+        return { ok: true };
+      })()
+    `);
+    if (!activated.value?.ok) {
+      throw new Error(
+        `keyboard journey could not activate focused ${selector}: ${activated.value?.reason ?? "unknown"}`,
+      );
+    }
+  };
+  for (let step = 0; step < 6; step += 1) {
+    const mode = await evaluate(cdp, sessionId, `
+      window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode
+    `);
+    if (mode.value === "prediction") {
+      break;
+    }
+    await pressFocusedButton("#causal-delay-feedback-guided-next");
+  }
+  const predictionMode = await evaluate(cdp, sessionId, `
+    window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode
+  `);
+  if (predictionMode.value !== "prediction") {
+    throw new Error(`keyboard journey did not reach Prediction; got ${predictionMode.value ?? "unavailable"}`);
+  }
+  await pressFocusedButton(".causal-choice-button:nth-child(2)");
+  await pressFocusedButton("#causal-delay-feedback-guided-next");
+  const historyMode = await evaluate(cdp, sessionId, `
+    window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode
+  `);
+  if (historyMode.value !== "history") {
+    throw new Error(`keyboard journey did not reach Path History; got ${historyMode.value ?? "unavailable"}`);
+  }
+  if (destination === "sandbox") {
+    await pressFocusedButton('[data-causal-mode="sandbox"]');
+  }
+  const state = await evaluate(cdp, sessionId, `
+    (() => ({
+      mode: window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode,
+      focus: document.activeElement?.textContent?.trim(),
+    }))()
+  `);
+  if (state.value?.mode !== destination) {
+    throw new Error(`keyboard journey expected ${destination}, got ${state.value?.mode ?? "unavailable"}`);
+  }
 }
 
 function createPrepareProofExpression(proof) {
@@ -361,6 +674,21 @@ function createPrepareProofExpression(proof) {
     const runtime = window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__;
     if (!runtime) {
       return { ok: false, reason: "runtime_missing" };
+    }
+    const requestedMode = ${JSON.stringify(proof.mode ?? "")};
+    if (requestedMode && runtime.learnerState?.mode !== requestedMode) {
+      runtime.setLearnerMode(requestedMode);
+    }
+    const requestedStoryStep =
+      ${proof.storyStep == null ? "undefined" : JSON.stringify(proof.storyStep)};
+    if (Number.isInteger(requestedStoryStep)) {
+      runtime.learnerState.storyStep = requestedStoryStep;
+      runtime.modeController?.render();
+    }
+    const requestedBranchFilters = ${JSON.stringify(proof.branchFilters ?? null)};
+    if (requestedBranchFilters) {
+      Object.assign(runtime.learnerState.branchFilters, requestedBranchFilters);
+      runtime.modeController?.render();
     }
     const prepareAction = ${JSON.stringify(proof.prepareAction ?? null)};
     if (prepareAction?.type === "retained-point-drag") {
@@ -473,6 +801,93 @@ function createPrepareProofExpression(proof) {
     );
     runtime.updateReadout(runtime.createWakeHit(link, 0));
     runtime.render(runtime.getCurrentReplayTime());
+    runtime.modeController?.renderLiveState();
+    window.scrollTo(0, 0);
+    if (runtime.modeController?.dom?.panel) {
+      runtime.modeController.dom.panel.scrollTop = 0;
+    }
+    const actualMode = runtime.learnerState?.mode;
+    if (requestedMode && actualMode !== requestedMode) {
+      return {
+        ok: false,
+        reason: "learner_mode_mismatch",
+        expected: requestedMode,
+        actual: actualMode,
+      };
+    }
+    const expectedScene = ${JSON.stringify(proof.expectedScene ?? "")};
+    const actualScene = runtime.dom.canvas.dataset.causalScene;
+    if (expectedScene && actualScene !== expectedScene) {
+      return {
+        ok: false,
+        reason: "canvas_scene_mismatch",
+        expected: expectedScene,
+        actual: actualScene,
+      };
+    }
+    const expectedReplayState = ${JSON.stringify(proof.expectedReplayState ?? "")};
+    if (expectedReplayState && runtime.replayLoadState !== expectedReplayState) {
+      return {
+        ok: false,
+        reason: "replay_state_mismatch",
+        expected: expectedReplayState,
+        actual: runtime.replayLoadState,
+      };
+    }
+    const expectedText = ${JSON.stringify(proof.expectedText ?? "")};
+    if (expectedText && !document.body.textContent.includes(expectedText)) {
+      return {
+        ok: false,
+        reason: "expected_text_missing",
+        expected: expectedText,
+        actualMode,
+      };
+    }
+    const expectedSecondaryText = ${JSON.stringify(proof.expectedSecondaryText ?? "")};
+    if (expectedSecondaryText && !document.body.textContent.includes(expectedSecondaryText)) {
+      return {
+        ok: false,
+        reason: "secondary_expected_text_missing",
+        expected: expectedSecondaryText,
+        actualMode,
+      };
+    }
+    const expectedBranchFilterCount =
+      ${proof.expectedBranchFilterCount == null
+        ? "undefined"
+        : JSON.stringify(proof.expectedBranchFilterCount)};
+    const actualBranchFilterCount = document.querySelectorAll("[data-branch-filter]").length;
+    if (
+      Number.isInteger(expectedBranchFilterCount) &&
+      actualBranchFilterCount !== expectedBranchFilterCount
+    ) {
+      return {
+        ok: false,
+        reason: "branch_filter_count_mismatch",
+        expected: expectedBranchFilterCount,
+        actual: actualBranchFilterCount,
+      };
+    }
+    if (document.documentElement.scrollWidth > window.innerWidth + 1) {
+      return {
+        ok: false,
+        reason: "horizontal_viewport_overflow",
+        viewportWidth: window.innerWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+      };
+    }
+    if (
+      ${proof.reducedMotion === true ? "true" : "false"} &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return { ok: false, reason: "reduced_motion_emulation_missing" };
+    }
+    if (
+      ${proof.highContrast === true ? "true" : "false"} &&
+      !window.matchMedia("(forced-colors: active)").matches
+    ) {
+      return { ok: false, reason: "high_contrast_emulation_missing" };
+    }
     const source = runtime.dataset.datasetSource;
     const requiredSource = ${JSON.stringify(proof.requiredDatasetSource ?? "")};
     if (requiredSource && source !== requiredSource) {

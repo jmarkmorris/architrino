@@ -45,7 +45,7 @@ These entries are diagnostics that may be computed from a taxonomy member's reco
 
 ## Family-B Example: B1
 
-A reader who wants one concrete configuration to hold in mind while reading the axes below can use [B1](braid-family-b.md#b1). Its three neutral binaries share one midpoint, one axis, one frequency, and one circulation sense. Binary $a$ has internal speed $s_a=2\pi f\rho_a$, so different transverse orbit radii produce different internal speeds even though all three binaries share $f$. The all-equatorial and all-axial depictions are coordinate boundaries of the same member.
+A reader who wants one concrete configuration to hold in mind while reading the axes below can use [B1](braid-family-b.md#b1). Its three neutral binaries share one midpoint, one axis, one frequency, and one circulation sense. Binary $a$ has internal speed $s_a=2\pi f\rho_a$, so different transverse orbit radii produce different internal speeds even though all three binaries share $f$. The all-equatorial and all-axial depictions are coordinate boundaries of the same member. Active B1 candidate records require $\sum_a\rho_a^2>0$; the all-axial endpoint remains a coordinate boundary and deprecated null control rather than an active candidate.
 
 The status discipline binds. B1 is a prescribed member, not a retained branch, and no family ranking is asserted. Its exact geometry does not establish physical formation, retention, or preference over another taxonomy member.
 

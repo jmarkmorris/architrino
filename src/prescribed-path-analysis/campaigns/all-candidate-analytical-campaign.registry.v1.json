@@ -108,13 +108,6 @@
       "recordPath": "content/assets/borg/records/illustrative-planar-tri-binary-spindle-boundary.assembly-view-record.v0.json"
     },
     {
-      "candidateId": "illustrative-full-cap-axial-spindle-boundary-v0",
-      "familyId": "B",
-      "memberId": "B1.4",
-      "specPath": "reference/priorities/braid-program/configurations/illustrative-full-cap-axial-spindle-boundary.v0.json",
-      "recordPath": "content/assets/borg/records/illustrative-full-cap-axial-spindle-boundary.assembly-view-record.v0.json"
-    },
-    {
       "candidateId": "family-c-c1-co-rotating-general-v1",
       "familyId": "C",
       "memberId": "C1",

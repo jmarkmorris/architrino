@@ -355,3 +355,9 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 
 - Added the missing canonical C1 and C2 prescribed-display representatives to the generator, Borg catalog, and all-candidate registry. Each representative contains twelve strictly ordered coaxial architrino worldlines with six explicit neutral-binary counterpart pairs, equal axial spacing, and a central transverse-radius envelope. C1 uses one common circulation sense; C2 uses opposite senses on two declared index subsets. The subsets are storage groupings and do not satisfy the three-common-midpoint constraint of B1 components.
 - Regenerated the 21-record prescribed-display catalog, including synchronized C3 through C6 taxonomy metadata. C1 through C6 remain pending candidate-specific display inspection in the sign-off ledger. The prior 19-candidate analytical database is historical and incomplete for the live catalog; no analytical campaign or EOM solver was run.
+
+## 2026-07-23 — B1.4 retired to deprecated axial-limit control
+
+- Retired `B1.4` from the active taxonomy, Borg catalog, all-candidate analytical registry, future compact-sweep cohorts, and comparative rankings. The active B1 eligibility condition is $\sum_a\rho_a^2>0$, equivalently nonzero total squared transverse internal speed at the declared common frequency.
+- Preserved the exact all-axial B1 boundary equations and left the `illustrative-full-cap-axial-spindle-boundary-v0` specification, generated Borg record, stable identifiers, historical campaign files, receipts, hashes, and SQLite rows unchanged. Historical dashboard rows remain inspectable as a deprecated control but are not part of active comparisons.
+- This is taxonomy and analysis-cohort governance. It invokes no EOM solver and establishes no retention, stability, binding, energy closure, or physical realization.

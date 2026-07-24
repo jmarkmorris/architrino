@@ -73,7 +73,7 @@ test("local Monte Carlo sampling is deterministic and preserves member relations
 
 test("full taxonomy sampler preserves every declared member constraint", () => {
   const loaded = loadAllCandidateCampaignRegistry();
-  assert.equal(loaded.candidates.length, 21);
+  assert.equal(loaded.candidates.length, 20);
   for (const candidate of loaded.candidates) {
     for (let sampleOrdinal = 0; sampleOrdinal < 4; sampleOrdinal += 1) {
       const sampled = sampleFullConstraintPreservingTaxonomy({

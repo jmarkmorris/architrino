@@ -2,6 +2,11 @@ import {
   createBorgAssemblyViewPresentation,
   resolveBorgAssemblyViewTrail,
 } from "./BorgAssemblyViewSession.js";
+import {
+  BORG_PRESCRIBED_DISPLAY_FRAME_FIXED,
+  borgPrescribedDisplayFrameReadout,
+  resolveBorgPrescribedTranslation,
+} from "./BorgPrescribedTranslation.js";
 
 const FILTER_LABELS = Object.freeze({
   claimGrade: "Claim grade",
@@ -21,8 +26,18 @@ export function createBorgAssemblyViewControls({
   onRecordChange,
   onCameraModeChange,
   onExport,
+  onTranslationFrameChange,
+  onHistoryDepthChange,
+  onTubeChange,
+  onClearReceiver,
+  onVirtualProbe,
+  onAnalysisRootSelect,
+  onContributionVisibleChange,
 }) {
   const listeners = [];
+  let selectedReceiver = null;
+  let analysisState = null;
+  let declaredVirtualProbes = [];
 
   function listen(element, type, handler) {
     element.addEventListener(type, handler);
@@ -32,6 +47,7 @@ export function createBorgAssemblyViewControls({
   function render() {
     const entry = session.selected;
     const presentation = createBorgAssemblyViewPresentation(entry);
+    const translation = resolveBorgPrescribedTranslation(entry);
     dom.controls.hidden = false;
     dom.dateChip.hidden = false;
     dom.dateChip.textContent = presentation.provenance.date;
@@ -71,6 +87,33 @@ export function createBorgAssemblyViewControls({
       "disabled",
       trail.period == null || !hasPlaneNormal(entry),
     );
+    dom.translationFrame.value = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
+    dom.translationFrame.querySelector?.(
+      'option[value="co-translating"]',
+    )?.toggleAttribute?.("disabled", !translation.available);
+    dom.translationFrame.disabled = !translation.available;
+    dom.translationStatus.textContent = translation.message;
+    const recordDuration = entry.dataset.window.end - entry.dataset.window.start;
+    dom.historyDepth.min = String(entry.dataset.window.sampleInterval);
+    dom.historyDepth.max = String(recordDuration);
+    dom.historyDepth.step = String(entry.dataset.window.sampleInterval);
+    dom.historyDepth.value = String(Math.min(trail.duration, recordDuration));
+    dom.historyDepthOutput.value = `${format(Number(dom.historyDepth.value))} T`;
+    dom.tubeToggle.checked = false;
+    dom.tubeRadius.disabled = true;
+    dom.tubeOpacity.disabled = true;
+    updateDisplayReadout(
+      entry.dataset.window.start,
+      BORG_PRESCRIBED_DISPLAY_FRAME_FIXED,
+    );
+    updateReceiverSelection(null);
+    renderAnalysisState({
+      state: "unavailable",
+      projection: null,
+      event: null,
+      message:
+        "No receiver selected. Analytical roots are never computed in Borg.",
+    });
     setFeedback("", "warn");
   }
 
@@ -204,6 +247,59 @@ export function createBorgAssemblyViewControls({
     }
   });
   listen(dom.exportButton, "click", () => onExport?.());
+  listen(dom.translationFrame, "change", () => {
+    try {
+      onTranslationFrameChange?.(dom.translationFrame.value);
+      updateDisplayReadout(
+        Number(dom.displayReadout.dataset.time),
+        dom.translationFrame.value,
+      );
+      setFeedback(`Display frame: ${dom.translationFrame.value}.`, "warn");
+    } catch (error) {
+      dom.translationFrame.value = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
+      setFeedback(error?.message ?? String(error), "bad");
+    }
+  });
+  const updateHistoryDepth = () => {
+    const depth = Number(dom.historyDepth.value);
+    dom.historyDepthOutput.value = `${format(depth)} T`;
+    onHistoryDepthChange?.(depth);
+  };
+  listen(dom.historyDepth, "input", updateHistoryDepth);
+  listen(dom.historyDepth, "change", updateHistoryDepth);
+  const updateTube = () => {
+    dom.tubeRadius.disabled = !dom.tubeToggle.checked;
+    dom.tubeOpacity.disabled = !dom.tubeToggle.checked;
+    onTubeChange?.({
+      visible: dom.tubeToggle.checked,
+      radius: Number(dom.tubeRadius.value),
+      opacity: Number(dom.tubeOpacity.value),
+    });
+  };
+  listen(dom.tubeToggle, "change", updateTube);
+  listen(dom.tubeRadius, "input", updateTube);
+  listen(dom.tubeOpacity, "input", updateTube);
+  listen(dom.clearReceiver, "click", () => onClearReceiver?.());
+  listen(dom.virtualProbeBind, "click", () => onVirtualProbe?.({
+    id: dom.virtualProbeId.value,
+    position: {
+      x: Number(dom.virtualProbeX.value),
+      y: Number(dom.virtualProbeY.value),
+      z: Number(dom.virtualProbeZ.value),
+    },
+    polarity: Number(dom.virtualProbePolarity.value),
+  }));
+  listen(dom.virtualProbeId, "change", () => {
+    const selected = declaredVirtualProbes.find(
+      (probe) => probe.id === dom.virtualProbeId.value,
+    );
+    if (!selected) return;
+    dom.virtualProbeX.value = String(selected.position.x);
+    dom.virtualProbeY.value = String(selected.position.y);
+    dom.virtualProbeZ.value = String(selected.position.z);
+  });
+  listen(dom.contributionToggle, "change", () =>
+    onContributionVisibleChange?.(dom.contributionToggle.checked));
   listen(dom.grouping, "change", () => {
     try {
       session.setGroupingEnabled(dom.grouping.value === "s3");
@@ -245,10 +341,320 @@ export function createBorgAssemblyViewControls({
   return Object.freeze({
     render,
     setFeedback,
+    updateDisplayReadout,
+    updateReceiverSelection,
+    renderAnalysisState,
+    setSelectedRoot(rootId) {
+      const identity = rootId == null ? null : String(rootId);
+      const selectable = [
+        ...(dom.analysisTable.querySelectorAll?.("[data-root-id]") ?? []),
+        ...(dom.branchPlot.querySelectorAll?.("[data-root-id]") ?? []),
+      ];
+      selectable.forEach((element) => {
+        const selected = identity != null && element.dataset.rootId === identity;
+        element.classList.toggle("is-selected", selected);
+        element.setAttribute("aria-selected", selected ? "true" : "false");
+      });
+    },
+    setProviderDescription(description) {
+      dom.providerStatus.textContent = description?.message ??
+        "Analysis provider unavailable.";
+      renderVirtualProbeOptions(description?.virtualProbes ?? []);
+      dom.virtualProbeBind.disabled = !description?.virtualProbe;
+      dom.virtualProbeId.disabled = !description?.virtualProbe;
+      dom.virtualProbeFields.toggleAttribute?.(
+        "disabled",
+        !description?.virtualProbe,
+      );
+    },
     dispose() {
       listeners.splice(0).forEach((remove) => remove());
     },
   });
+
+  function updateDisplayReadout(time, frame = dom.translationFrame.value) {
+    const entry = session.selected;
+    const translation = resolveBorgPrescribedTranslation(entry);
+    const safeTime = Number.isFinite(Number(time))
+      ? Number(time)
+      : entry.dataset.window.start;
+    dom.displayReadout.dataset.time = String(safeTime);
+    dom.displayReadout.value = borgPrescribedDisplayFrameReadout({
+      frame,
+      time: safeTime,
+      translation,
+    });
+    dom.displayReadout.textContent = dom.displayReadout.value;
+  }
+
+  function updateReceiverSelection(receiver) {
+    selectedReceiver = receiver;
+    dom.clearReceiver.disabled = receiver == null;
+    dom.receiverStatus.textContent = receiver == null
+      ? "No receiver selected."
+      : `${receiver.kind}: ${receiver.id} · polarity ${signed(receiver.polarity)} · ` +
+        `T=${format(receiver.receptionTime)} · ` +
+        `(${format(receiver.position.x)}, ${format(receiver.position.y)}, ${format(receiver.position.z)})`;
+  }
+
+  function renderAnalysisState(nextState) {
+    analysisState = nextState;
+    dom.analysisStatus.dataset.state = nextState?.state ?? "unavailable";
+    dom.analysisStatus.textContent = nextState?.message ??
+      "Analysis provider unavailable.";
+    renderAnalysisDiagnostics(
+      documentLike,
+      dom.analysisTable,
+      nextState,
+      onAnalysisRootSelect,
+    );
+    renderRootBranches(
+      documentLike,
+      dom.branchPlot,
+      nextState?.projection,
+      onAnalysisRootSelect,
+    );
+    dom.analysisProvenance.textContent = "";
+    const provenance = nextState?.projection?.provenance;
+    if (provenance) {
+      renderFieldRows(documentLike, dom.analysisProvenance, [
+        ["Source hash", provenance.sourceHash],
+        ["Protocol hash", provenance.protocolHash],
+        ["Implementation hash", provenance.implementationHash],
+        ["Result hash", provenance.resultHash],
+        ["Case hash", provenance.caseHash],
+        ["Campaign hash", provenance.campaignHash],
+      ]);
+    }
+  }
+
+  function renderVirtualProbeOptions(probes) {
+    declaredVirtualProbes = [...probes];
+    dom.virtualProbeId.textContent = "";
+    if (probes.length === 0) {
+      const option = documentLike.createElement("option");
+      option.value = "";
+      option.textContent = "Unavailable";
+      dom.virtualProbeId.append(option);
+      return;
+    }
+    probes.forEach((probe) => {
+      const option = documentLike.createElement("option");
+      option.value = probe.id;
+      option.textContent = probe.id;
+      dom.virtualProbeId.append(option);
+    });
+    const selected = probes[0];
+    dom.virtualProbeId.value = selected.id;
+    dom.virtualProbeX.value = String(selected.position.x);
+    dom.virtualProbeY.value = String(selected.position.y);
+    dom.virtualProbeZ.value = String(selected.position.z);
+  }
+}
+
+function renderAnalysisDiagnostics(
+  documentLike,
+  table,
+  state,
+  onAnalysisRootSelect,
+) {
+  table.textContent = "";
+  const caption = documentLike.createElement("caption");
+  caption.textContent = "Prescribed causal-root diagnostics";
+  const head = documentLike.createElement("thead");
+  const headRow = documentLike.createElement("tr");
+  [
+    "Status",
+    "Source / root",
+    "Emission / delay",
+    "Geometry",
+    "Certification",
+    "Acceleration contribution",
+  ].forEach((label) => {
+    const cell = documentLike.createElement("th");
+    cell.scope = "col";
+    cell.textContent = label;
+    headRow.append(cell);
+  });
+  head.append(headRow);
+  const body = documentLike.createElement("tbody");
+  const event = state?.event;
+  if (!event) {
+    appendAnalysisRow(documentLike, body, [
+      state?.state ?? "unavailable",
+      "—",
+      "—",
+      "—",
+      state?.message ?? "No matching analytical result.",
+      "—",
+    ]);
+  } else {
+    event.roots.forEach((root) => {
+      const row = appendAnalysisRow(documentLike, body, [
+        event.status,
+        `${root.transmitterId} / ${root.binaryId ?? "binary unavailable"} / ` +
+          `root ${root.rootOrdinal} (${root.rootId})`,
+        `Te=${format(root.emissionTime)} · ΔT=${format(root.delay)}`,
+        `r=${format(root.distance)} · n=(${format(root.direction.x)}, ${format(root.direction.y)}, ${format(root.direction.z)})`,
+        `${root.rootCompletenessStatus} · Dt=${format(root.transmitterSideFactorDt)} · [${root.finalBracket.map(format).join(", ")}]`,
+        root.accelerationContribution
+          ? `(${format(root.accelerationContribution.x)}, ${format(root.accelerationContribution.y)}, ${format(root.accelerationContribution.z)})`
+          : "unavailable",
+      ]);
+      row.tabIndex = 0;
+      row.dataset.rootId = root.rootId;
+      row.addEventListener("click", () => onAnalysisRootSelect?.(root.rootId));
+      row.addEventListener("keydown", (eventLike) => {
+        if (eventLike.key === "Enter" || eventLike.key === " ") {
+          eventLike.preventDefault?.();
+          onAnalysisRootSelect?.(root.rootId);
+        }
+      });
+    });
+    event.noRootTransmitters.forEach((row) => {
+      appendAnalysisRow(documentLike, body, [
+        "root-free-certified",
+        `${row.transmitterId} / —`,
+        "—",
+        "—",
+        `${row.reason} · [${row.retainedInterval.map(format).join(", ")}]`,
+        "—",
+      ]);
+    });
+    event.unresolvedIntervals.forEach((row) => {
+      appendAnalysisRow(documentLike, body, [
+        "unresolved",
+        `${row.transmitterId} / ${row.intervalId}`,
+        `[${row.emissionInterval.map(format).join(", ")}]`,
+        "bounded producer-carried history segment",
+        row.reason,
+        "—",
+      ]);
+    });
+    if (event.status === "drawn-not-evaluated") {
+      appendAnalysisRow(documentLike, body, [
+        event.status,
+        event.receiver?.identity ?? "selected event",
+        "—",
+        "—",
+        event.drawnNotEvaluatedReason == null
+          ? "unavailable"
+          : `${event.drawnNotEvaluatedReason.code}: ${event.drawnNotEvaluatedReason.message}`,
+        "—",
+      ]);
+    }
+  }
+  table.append(caption, head, body);
+}
+
+function appendAnalysisRow(documentLike, body, values) {
+  const row = documentLike.createElement("tr");
+  values.forEach((value) => {
+    const cell = documentLike.createElement("td");
+    cell.textContent = String(value ?? "unavailable");
+    row.append(cell);
+  });
+  body.append(row);
+  return row;
+}
+
+function renderRootBranches(
+  documentLike,
+  container,
+  projection,
+  onAnalysisRootSelect,
+) {
+  container.textContent = "";
+  const branches = projection?.branches ?? [];
+  if (branches.length === 0) {
+    container.textContent =
+      "No compatible multi-time root-branch carrier is available.";
+    return;
+  }
+  const width = 320;
+  const height = 150;
+  const svg = documentLike.createElementNS?.("http://www.w3.org/2000/svg", "svg");
+  if (!svg) {
+    container.textContent = "Root-branch plot unavailable in this document runtime.";
+    return;
+  }
+  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+  svg.setAttribute("role", "img");
+  svg.setAttribute(
+    "aria-label",
+    "Receiver time versus emission time; unevaluated intervals are not interpolated.",
+  );
+  const points = branches.flatMap((branch) => branch.points);
+  const receiverTimes = points.map((point) => point.receptionTime);
+  const emissionTimes = points.map((point) => point.emissionTime);
+  const xMin = Math.min(...receiverTimes);
+  const xMax = Math.max(...receiverTimes);
+  const yMin = Math.min(...emissionTimes);
+  const yMax = Math.max(...emissionTimes);
+  branches.forEach((branch, branchIndex) => {
+    const color = `hsl(${(branchIndex * 97) % 360} 72% 66%)`;
+    const mapped = branch.points.map((point) => ({
+      x: 12 + normalized(point.receptionTime, xMin, xMax) * (width - 24),
+      y: height - 12 - normalized(point.emissionTime, yMin, yMax) * (height - 24),
+    }));
+    if (branch.interpolationAuthorized && mapped.length > 1) {
+      const polyline = documentLike.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "polyline",
+      );
+      polyline.setAttribute(
+        "points",
+        mapped.map((point) => `${point.x},${point.y}`).join(" "),
+      );
+      polyline.setAttribute("fill", "none");
+      polyline.setAttribute("stroke", color);
+      polyline.setAttribute("stroke-width", "1.5");
+      svg.append(polyline);
+    }
+    mapped.forEach((point, pointIndex) => {
+      const sourcePoint = branch.points[pointIndex];
+      const sourceEvent = projection.events.find(
+        (event) => event.eventId === sourcePoint.eventId,
+      );
+      const sourceRoot = sourceEvent?.roots.find(
+        (root) => root.transmitterId === branch.transmitterId &&
+          root.rootOrdinal === branch.rootOrdinal,
+      );
+      const circle = documentLike.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle",
+      );
+      circle.setAttribute("cx", String(point.x));
+      circle.setAttribute("cy", String(point.y));
+      circle.setAttribute("r", "3");
+      circle.setAttribute("fill", color);
+      if (sourceRoot) {
+        circle.setAttribute("role", "button");
+        circle.setAttribute("tabindex", "0");
+        circle.setAttribute("data-root-id", sourceRoot.rootId);
+        circle.setAttribute(
+          "aria-label",
+          `${branch.transmitterId} root ${branch.rootOrdinal} at receiver time ${sourcePoint.receptionTime}`,
+        );
+        circle.addEventListener(
+          "click",
+          () => onAnalysisRootSelect?.(sourceRoot.rootId),
+        );
+        circle.addEventListener("keydown", (eventLike) => {
+          if (eventLike.key === "Enter" || eventLike.key === " ") {
+            eventLike.preventDefault?.();
+            onAnalysisRootSelect?.(sourceRoot.rootId);
+          }
+        });
+      }
+      svg.append(circle);
+    });
+  });
+  container.append(svg);
+}
+
+function normalized(value, minimum, maximum) {
+  return maximum === minimum ? 0.5 : (value - minimum) / (maximum - minimum);
 }
 
 function renderFieldRows(documentLike, container, rows) {

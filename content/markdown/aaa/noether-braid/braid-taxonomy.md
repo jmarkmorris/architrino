@@ -222,7 +222,7 @@ $$
 
 `B1` is the rigid common-frequency member. Its binaries may have different radii, axial half-separations, transverse orbit radii, and phases, but share one midpoint, one axis, one frequency, and one circulation sense. The coincident-axis relation distinguishes Family B from Family A; the family identifier does not assert that either geometry is dynamically retained.
 
-The four current Borg selections are `B1.1`, the interior reference with $h_a>0$ and $\rho_a>0$; `B1.2`, the high-axial interior selection with $h_a>\rho_a>0$; `B1.3`, the all-equatorial boundary with $h_a=0$ and $\rho_a=R_a$; and `B1.4`, the all-axial boundary with $\rho_a=0$ and $h_a=R_a$. Each inherits every other B1 relation.
+The three current Borg selections are `B1.1`, the interior reference with $h_a>0$ and $\rho_a>0$; `B1.2`, the high-axial interior selection with $h_a>\rho_a>0$; and `B1.3`, the all-equatorial boundary with $h_a=0$ and $\rho_a=R_a$. Each inherits every other B1 relation. Active B1 candidates additionally satisfy $\sum_a\rho_a^2>0$, equivalently nonzero total squared internal speed for the declared common frequency. The all-axial locus $\rho_a=0$, $h_a=R_a$ remains part of the B1 coordinate boundary, but the former identifier `B1.4` is retained only as a deprecated historical null control.
 
 Family A and Family B meet on a boundary. Every Family-A member reaches the coincident-axis relation at $\lambda_A=1$; a common-frequency Family-A variant with one common circulation sense and coincident binary midpoints also occupies the B1 coordinate locus at that endpoint. This geometric coincidence does not identify the two families away from the boundary.
 
@@ -335,9 +335,8 @@ Within A1 and A3, the symbols $R_1,R_2,R_3$ are independent positive coordinates
 | `B1.3` | 1 | 1 | $R_1$ | $0$ | $R_1$ | $f$ | $\phi_1$ |
 | `B1.3` | 1 | 2 | $R_2$ | $0$ | $R_2$ | $f$ | $\phi_2$ |
 | `B1.3` | 1 | 3 | $R_3$ | $0$ | $R_3$ | $f$ | $\phi_3$ |
-| `B1.4` | 1 | 1 | $R_1$ | $R_1$ | $0$ | $f$ | $\phi_1$ |
-| `B1.4` | 1 | 2 | $R_2$ | $R_2$ | $0$ | $f$ | $\phi_2$ |
-| `B1.4` | 1 | 3 | $R_3$ | $R_3$ | $0$ | $f$ | $\phi_3$ |
+
+The deprecated `B1.4` control is not an active master-table row. Its preserved boundary coordinates are $\rho_a=0$ and $h_a=R_a$ for every binary, so its endpoint paths are the all-axial B1 limit and its internal speeds vanish.
 
 ### Naming and Navigation Master Table
 
@@ -361,7 +360,6 @@ Every Family-A Borg depiction in this table selects the near-rest endpoint $\lam
 | `B1.1` | Coincident binary axes | Interior reference | `illustrative-spindle-chart-hypothesis-v0` | `B1.1 — interior reference` | B1 with $h_a>0$ and $\rho_a>0$ for all three binaries. |
 | `B1.2` | Coincident binary axes | High-axial interior | `illustrative-extreme-cap-tilt-spindle-variant-v0` | `B1.2 — high-axial interior` | B1 with $h_a>\rho_a>0$ for all three binaries. |
 | `B1.3` | Coincident binary axes | All-equatorial boundary | `illustrative-planar-tri-binary-spindle-boundary-v0` | `B1.3 — all-equatorial boundary` | B1 with $h_a=0$ and $\rho_a=R_a$ for all three binaries. |
-| `B1.4` | Coincident binary axes | All-axial boundary | `illustrative-full-cap-axial-spindle-boundary-v0` | `B1.4 — all-axial boundary` | B1 with $\rho_a=0$ and $h_a=R_a$ for all three binaries. |
 | `C1` | Coaxial twelve-architrino geometry | Co-rotating | `family-c-c1-co-rotating-general-v1` | `C1 — co-rotating` | Twelve ordered coaxial architrino worldlines with one common circulation sense and an explicit neutral-binary counterpart map. |
 | `C2` | Coaxial twelve-architrino geometry | Counter-rotating | `family-c-c2-counter-rotating-general-v1` | `C2 — counter-rotating` | Twelve ordered coaxial architrino worldlines with opposite circulation senses on the two declared index subsets and an explicit neutral-binary counterpart map. |
 | `C3` | Coaxial twelve-architrino geometry | Co-rotating B1 pair | `family-c-c1-co-rotating-b1-pair-v1` | `C3 — co-rotating B1 pair` | C1 constrained to two complete coaxial B1 components with axial center offset $d_C$. |

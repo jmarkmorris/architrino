@@ -63,6 +63,10 @@
       {
         "nodeId": "borg",
         "scenePath": "content/scenes/archie/borg.json"
+      },
+      {
+        "nodeId": "braid_search",
+        "scenePath": "content/scenes/archie/braid_search.json"
       }
     ]
   },
@@ -157,6 +161,14 @@
       "radius": 2.2,
       "color": "#5f7a4d",
       "labelTitle": "Borg",
+      "labelBadge": ""
+    },
+    {
+      "id": "braid_search",
+      "title": "Braid Search",
+      "radius": 2.2,
+      "color": "#0e7490",
+      "labelTitle": "Braid Search",
       "labelBadge": ""
     }
   ]

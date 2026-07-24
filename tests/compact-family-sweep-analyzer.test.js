@@ -298,6 +298,47 @@ test("analyzer retains null-score rows but excludes them from every ranking", ()
   );
 });
 
+test("deprecated B1.4 rows remain retained but cannot enter comparative rankings", () => {
+  const directory = mkdtempSync(path.join(os.tmpdir(), "compact-analyzer-"));
+  writeShard(
+    directory,
+    "pilot-shard-01.json",
+    campaign({ seed: "pilot", memberId: "A1", values: [1] }),
+  );
+  writeShard(
+    directory,
+    "pilot-shard-02.json",
+    campaign({ seed: "pilot", memberId: "B1.4", values: [0.01] }),
+  );
+
+  const result = analyzeCompactFamilySweep({
+    inputDirectory: directory,
+    auditSampleSize: 2,
+  });
+
+  assert.equal(result.drawCounts.actual, 2);
+  assert.equal(
+    result.perMemberCounts.some((row) => row.memberId === "B1.4"),
+    true,
+  );
+  assert.deepEqual(result.metricLeaders.exclusions, [{
+    memberId: "B1.4",
+    reason: "deprecated-axial-limit-null-control",
+  }]);
+  assert.equal(
+    result.metricLeaders.metrics.every((metric) =>
+      metric.rankedEvaluatedRowCount === 1 &&
+      metric.topFive.every((row) => row.memberId === "A1")),
+    true,
+  );
+  assert.equal(
+    result.fullAdjudicationQueue.nearBoundaryRows.some(
+      (row) => row.memberId === "B1.4",
+    ),
+    false,
+  );
+});
+
 test("receipt preserves distinct campaign hashes and is deterministic", () => {
   const directory = mkdtempSync(path.join(os.tmpdir(), "compact-analyzer-"));
   writeShard(

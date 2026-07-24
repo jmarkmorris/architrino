@@ -1,10 +1,27 @@
 import * as THREE from "../../../vendor/three/three.module.js";
+import {
+  BORG_PRESCRIBED_DISPLAY_FRAME_CO_TRANSLATING,
+  BORG_PRESCRIBED_DISPLAY_FRAME_FIXED,
+  applyBorgPrescribedDisplayFrame,
+  assertBorgPrescribedDisplayFrame,
+  resolveBorgPrescribedTranslation,
+} from "./BorgPrescribedTranslation.js";
 
 const ANSATZ_COLOR = 0xc6b6ff;
 const AXIS_COLORS = Object.freeze([0x8fdcf2, 0xf0a6d2, 0xb8a8ff]);
 const COINCIDENT_AXIS_COLOR = 0xd6dde3;
 const AXIS_COINCIDENCE_TOLERANCE = 1e-9;
 const SWEPT_ENVELOPE_COLOR = 0x7bd6c2;
+const PRESCRIBED_PATH_COLORS = Object.freeze([
+  0x82c7ff,
+  0xff9b92,
+  0xb7e89b,
+  0xffd37a,
+  0xc6b6ff,
+  0x83e2d1,
+]);
+const DEFAULT_TUBE_RADIUS = 0.018;
+const DEFAULT_TUBE_OPACITY = 0.2;
 
 export function createBorgAssemblyViewScene({
   group,
@@ -20,23 +37,51 @@ export function createBorgAssemblyViewScene({
   ansatzGroup.userData.kind = "source-carried-ansatz-curves";
   const sweptEnvelopeGroup = new THREE.Group();
   sweptEnvelopeGroup.userData.kind = "display-only-swept-envelope";
-  group.add(axisGroup, ansatzGroup, sweptEnvelopeGroup);
+  const prescribedPathGroup = new THREE.Group();
+  prescribedPathGroup.userData.kind = "prescribed-path-history-strands";
+  const prescribedTubeGroup = new THREE.Group();
+  prescribedTubeGroup.userData.kind = "display-only-path-history-tubes";
+  group.add(
+    axisGroup,
+    ansatzGroup,
+    sweptEnvelopeGroup,
+    prescribedPathGroup,
+    prescribedTubeGroup,
+  );
   let entry = null;
   let cameraMode = "free";
   let referenceRotation = null;
   let displayMode = "animated";
   let pathVisible = true;
+  let translation = null;
+  let translationFrame = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
+  let currentTime = 0;
+  let historyDepth = Number.POSITIVE_INFINITY;
+  let selectedWorldlineId = null;
+  let tubeVisible = false;
+  let tubeRadius = DEFAULT_TUBE_RADIUS;
+  let tubeOpacity = DEFAULT_TUBE_OPACITY;
 
   function setRecord(nextEntry) {
     entry = nextEntry;
     clearGroup(axisGroup);
     clearGroup(ansatzGroup);
     clearGroup(sweptEnvelopeGroup);
+    clearGroup(prescribedPathGroup);
+    clearGroup(prescribedTubeGroup);
+    translation = resolveBorgPrescribedTranslation(nextEntry);
+    translationFrame = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
+    currentTime = Number(nextEntry?.dataset?.window?.start ?? 0);
+    historyDepth = Number.POSITIVE_INFINITY;
+    selectedWorldlineId = null;
     buildBinaryAxes(nextEntry?.dataset?.binaries ?? []);
     buildAnsatz(nextEntry?.dataset?.ansatz ?? []);
+    buildPrescribedPathStrands();
     referenceRotation = resolveSourceRotation(nextEntry);
     ansatzGroup.visible = pathVisible && displayMode === "chart-pose";
     sweptEnvelopeGroup.visible = displayMode === "swept-envelope";
+    prescribedPathGroup.visible = pathVisible;
+    prescribedTubeGroup.visible = pathVisible && tubeVisible;
     setCameraMode("free");
   }
 
@@ -53,6 +98,69 @@ export function createBorgAssemblyViewScene({
   function setPathVisible(visible) {
     pathVisible = Boolean(visible);
     ansatzGroup.visible = pathVisible && displayMode === "chart-pose";
+    prescribedPathGroup.visible = pathVisible;
+    prescribedTubeGroup.visible = pathVisible && tubeVisible;
+    render?.();
+  }
+
+  function setTranslationFrame(frame) {
+    const nextFrame = assertBorgPrescribedDisplayFrame(frame);
+    if (nextFrame === BORG_PRESCRIBED_DISPLAY_FRAME_CO_TRANSLATING &&
+        !translation?.available) {
+      throw new TypeError(
+        translation?.message ??
+        "Co-translating display requires a source-carried common translation.",
+      );
+    }
+    translationFrame = nextFrame;
+    prescribedPathGroup.children.forEach((line) => {
+      const positions = line.userData.positionArrays?.[translationFrame];
+      if (positions) {
+        line.geometry.setAttribute(
+          "position",
+          new THREE.Float32BufferAttribute(positions, 3),
+        );
+      }
+    });
+    rebuildSelectedTube();
+    render?.();
+  }
+
+  function setHistoryDepth(depth) {
+    const number = Number(depth);
+    if (!(number > 0) || !Number.isFinite(number)) {
+      throw new TypeError("Borg prescribed path-history depth must be positive and finite.");
+    }
+    historyDepth = number;
+    updatePrescribedPathWindows();
+    rebuildSelectedTube();
+    render?.();
+  }
+
+  function setSelectedWorldlineId(worldlineId) {
+    selectedWorldlineId = worldlineId == null ? null : String(worldlineId);
+    rebuildSelectedTube();
+    render?.();
+  }
+
+  function setTubeOptions({
+    visible = tubeVisible,
+    radius = tubeRadius,
+    opacity = tubeOpacity,
+  } = {}) {
+    const nextRadius = Number(radius);
+    const nextOpacity = Number(opacity);
+    if (!(nextRadius > 0) || !Number.isFinite(nextRadius)) {
+      throw new TypeError("Borg display-tube radius must be positive and finite.");
+    }
+    if (!(nextOpacity > 0 && nextOpacity <= 1) || !Number.isFinite(nextOpacity)) {
+      throw new TypeError("Borg display-tube opacity must lie in (0,1].");
+    }
+    tubeVisible = Boolean(visible);
+    tubeRadius = nextRadius;
+    tubeOpacity = nextOpacity;
+    rebuildSelectedTube();
+    prescribedTubeGroup.visible = pathVisible && tubeVisible;
     render?.();
   }
 
@@ -70,7 +178,11 @@ export function createBorgAssemblyViewScene({
   }
 
   function updateTime(time) {
+    currentTime = Number(time);
+    updatePrescribedPathWindows();
+    rebuildSelectedTube();
     if (cameraMode !== "co-rotating" || !referenceRotation || !entry) {
+      render?.();
       return;
     }
     const elapsed = Number(time) - entry.dataset.window.start;
@@ -78,6 +190,175 @@ export function createBorgAssemblyViewScene({
       referenceRotation.axis,
       -2 * Math.PI * referenceRotation.frequency * elapsed,
     );
+    render?.();
+  }
+
+  function buildPrescribedPathStrands() {
+    if (entry?.dataset?.provenance?.engineId !== "prescribed-geometry") {
+      return;
+    }
+    const dataset = entry.dataset;
+    const frames = dataset.createFrameSamples({
+      start: dataset.window.start,
+      end: dataset.window.end,
+      sampleInterval: dataset.window.sampleInterval,
+    });
+    const binaryIndexByWorldline = binaryMembership(dataset.binaries);
+    dataset.worldlines.forEach((worldline, worldlineIndex) => {
+      const fixed = [];
+      const coTranslating = [];
+      const times = [];
+      frames.forEach((frame) => {
+        const state = frame.states.find((row) => row.worldlineId === worldline.id);
+        if (!state) return;
+        times.push(frame.time);
+        const fixedPosition = toWorld(
+          applyBorgPrescribedDisplayFrame(
+            state.position,
+            frame.time,
+            translation,
+            BORG_PRESCRIBED_DISPLAY_FRAME_FIXED,
+          ),
+          new THREE.Vector3(),
+        );
+        fixed.push(fixedPosition.x, fixedPosition.y, fixedPosition.z);
+        if (translation.available) {
+          const coPosition = toWorld(
+            applyBorgPrescribedDisplayFrame(
+              state.position,
+              frame.time,
+              translation,
+              BORG_PRESCRIBED_DISPLAY_FRAME_CO_TRANSLATING,
+            ),
+            new THREE.Vector3(),
+          );
+          coTranslating.push(coPosition.x, coPosition.y, coPosition.z);
+        }
+      });
+      if (times.length < 2) return;
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(fixed, 3),
+      );
+      const binaryIndex = binaryIndexByWorldline.get(worldline.id) ?? worldlineIndex;
+      const material = new THREE.LineBasicMaterial({
+        color: PRESCRIBED_PATH_COLORS[
+          binaryIndex % PRESCRIBED_PATH_COLORS.length
+        ],
+        transparent: true,
+        opacity: 0.88,
+        depthWrite: false,
+      });
+      const line = new THREE.Line(geometry, material);
+      line.userData = {
+        kind: "prescribed-path-history-strand",
+        worldlineId: worldline.id,
+        pathKey: worldline.pathKey,
+        binaryIndex,
+        times: Object.freeze(times),
+        positionArrays: Object.freeze({
+          [BORG_PRESCRIBED_DISPLAY_FRAME_FIXED]: new Float32Array(fixed),
+          ...(translation.available ? {
+            [BORG_PRESCRIBED_DISPLAY_FRAME_CO_TRANSLATING]:
+              new Float32Array(coTranslating),
+          } : {}),
+        }),
+        valueAuthority: "display-only-declared-interpolation",
+      };
+      prescribedPathGroup.add(line);
+    });
+    updatePrescribedPathWindows();
+  }
+
+  function updatePrescribedPathWindows() {
+    if (!Number.isFinite(currentTime)) return;
+    prescribedPathGroup.children.forEach((line) => {
+      const times = line.userData.times ?? [];
+      const firstTime = currentTime - historyDepth;
+      let start = 0;
+      while (start < times.length && times[start] < firstTime) start += 1;
+      let end = start;
+      while (end < times.length && times[end] <= currentTime + 1e-12) end += 1;
+      line.geometry.setDrawRange(start, Math.max(0, end - start));
+    });
+  }
+
+  function rebuildSelectedTube() {
+    clearGroup(prescribedTubeGroup);
+    if (!tubeVisible || !selectedWorldlineId || !entry ||
+        entry.dataset.provenance.engineId !== "prescribed-geometry" ||
+        !Number.isFinite(currentTime) ||
+        (translationFrame === BORG_PRESCRIBED_DISPLAY_FRAME_CO_TRANSLATING &&
+          !translation?.available)) {
+      return;
+    }
+    const dataset = entry.dataset;
+    const worldline = dataset.worldlines.find(
+      (row) => row.id === selectedWorldlineId ||
+        String(row.pathKey) === selectedWorldlineId,
+    );
+    if (!worldline) return;
+    const depth = Math.min(
+      historyDepth,
+      currentTime - dataset.window.start,
+    );
+    if (!(depth > 0)) return;
+    const sampleCount = Math.max(
+      8,
+      Math.min(160, Math.ceil(depth / dataset.window.sampleInterval) + 1),
+    );
+    const points = dataset.createTrailSamples({
+      worldlineId: worldline.id,
+      time: currentTime,
+      depth,
+      sampleCount,
+    }).map((sample) => toWorld(
+      applyBorgPrescribedDisplayFrame(
+        sample.position,
+        sample.time,
+        translation,
+        translationFrame,
+      ),
+      new THREE.Vector3(),
+    ));
+    if (points.length < 2 || points.every((point) => point.distanceTo(points[0]) < 1e-12)) {
+      return;
+    }
+    const curve = new THREE.CatmullRomCurve3(points, false, "centripetal");
+    const geometry = new THREE.TubeGeometry(
+      curve,
+      Math.max(8, points.length - 1),
+      sourceRadiusToWorld(tubeRadius),
+      8,
+      false,
+    );
+    const strand = prescribedPathGroup.children.find(
+      (line) => line.userData.worldlineId === worldline.id,
+    );
+    const material = new THREE.MeshBasicMaterial({
+      color: strand?.material?.color ?? 0xc6b6ff,
+      transparent: true,
+      opacity: tubeOpacity,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    });
+    const tube = new THREE.Mesh(geometry, material);
+    tube.userData = {
+      kind: "display-only-path-history-tube",
+      worldlineId: worldline.id,
+      throughTime: currentTime,
+      historyDepth: depth,
+      sourceRadius: tubeRadius,
+      valueAuthority: "display-only-envelope-around-recorded-path-samples",
+    };
+    prescribedTubeGroup.add(tube);
+  }
+
+  function sourceRadiusToWorld(radius) {
+    const origin = toWorld({ x: 0, y: 0, z: 0 }, new THREE.Vector3());
+    const endpoint = toWorld({ x: radius, y: 0, z: 0 }, new THREE.Vector3());
+    return Math.max(1e-6, origin.distanceTo(endpoint));
   }
 
   function buildAnsatz(ansatzRows) {
@@ -184,7 +465,15 @@ export function createBorgAssemblyViewScene({
     clearGroup(axisGroup);
     clearGroup(ansatzGroup);
     clearGroup(sweptEnvelopeGroup);
-    group.remove(axisGroup, ansatzGroup, sweptEnvelopeGroup);
+    clearGroup(prescribedPathGroup);
+    clearGroup(prescribedTubeGroup);
+    group.remove(
+      axisGroup,
+      ansatzGroup,
+      sweptEnvelopeGroup,
+      prescribedPathGroup,
+      prescribedTubeGroup,
+    );
   }
 
   return Object.freeze({
@@ -192,6 +481,10 @@ export function createBorgAssemblyViewScene({
     setDisplayMode,
     setPathVisible,
     setCameraMode,
+    setTranslationFrame,
+    setHistoryDepth,
+    setSelectedWorldlineId,
+    setTubeOptions,
     updateTime,
     dispose,
     get cameraMode() {
@@ -200,7 +493,23 @@ export function createBorgAssemblyViewScene({
     get hasCoRotatingCarrier() {
       return referenceRotation != null;
     },
+    get prescribedTranslation() {
+      return translation;
+    },
+    get translationFrame() {
+      return translationFrame;
+    },
   });
+}
+
+function binaryMembership(binaryRows) {
+  const map = new Map();
+  binaryRows.forEach((binary, index) => {
+    const members = binary?.members ?? binary?.worldlineIds;
+    if (!Array.isArray(members)) return;
+    members.forEach((worldlineId) => map.set(String(worldlineId), index));
+  });
+  return map;
 }
 
 function groupCoincidentBinaryAxes(binaryRows) {

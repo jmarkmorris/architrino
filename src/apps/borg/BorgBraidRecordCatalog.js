@@ -105,14 +105,6 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
       "content/assets/borg/records/illustrative-planar-tri-binary-spindle-boundary.assembly-view-record.v0.json",
   },
   {
-    id: "illustrative-full-cap-axial-spindle-boundary-v0",
-    label: "B1.4 — all-axial boundary",
-    familyId: "B",
-    familyLabel: "Family B",
-    recordUrl:
-      "content/assets/borg/records/illustrative-full-cap-axial-spindle-boundary.assembly-view-record.v0.json",
-  },
-  {
     id: "family-c-c1-co-rotating-general-v1",
     label: "C1 — co-rotating",
     familyId: "C",

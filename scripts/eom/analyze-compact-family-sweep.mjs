@@ -22,7 +22,7 @@ const DEFAULT_INPUT_DIRECTORY =
   ".local-data/braid-analysis/compact-monte-carlo/family-sweep-v1";
 const DEFAULT_EXPECTED_PILOT_SHARD_COUNT = 6;
 const DEFAULT_EXPECTED_WAVE_SHARD_COUNT = 6;
-const DEFAULT_EXPECTED_WAVE_3_MEMBER_COUNT = 21;
+const DEFAULT_EXPECTED_WAVE_3_MEMBER_COUNT = 20;
 const SHARD_FILE_PATTERN =
   /^(pilot|wave-(\d+))-shard-(\d+)\.json$/;
 const MEMBER_FILE_PATTERN =
@@ -30,6 +30,9 @@ const MEMBER_FILE_PATTERN =
 const CAMPAIGN_JSON_FILE_PATTERN =
   /^(pilot|wave-(\d+))-(.+)\.json$/;
 const SHA256_PATTERN = /^[0-9a-f]{64}$/;
+const COMPARATIVE_RANKING_EXCLUSIONS = Object.freeze({
+  "B1.4": "deprecated-axial-limit-null-control",
+});
 
 const FIXED_METRICS = Object.freeze([
   {
@@ -429,10 +432,15 @@ function isRankable(row) {
   return row.evaluationStatus?.evaluated === true && row.score !== null;
 }
 
+function isComparativelyRankable(row) {
+  return isRankable(row) &&
+    COMPARATIVE_RANKING_EXCLUSIONS[row.memberId] === undefined;
+}
+
 function buildMetricLeaders(rows, definitions) {
   return definitions.map((definition) => {
     const ranked = rows.flatMap(({ shard, row }) => {
-      if (!isRankable(row)) return [];
+      if (!isComparativelyRankable(row)) return [];
       const value = definition.value(row);
       return value === null
         ? []
@@ -454,7 +462,7 @@ function buildMetricLeaders(rows, definitions) {
 function buildNearBoundaryRows(rows, tolerance) {
   const near = [];
   for (const { shard, row } of rows) {
-    if (!isRankable(row)) continue;
+    if (!isComparativelyRankable(row)) continue;
     for (const [gateId, gate] of Object.entries(
       row.score.quadrature?.gates ?? {},
     )) {
@@ -1268,6 +1276,9 @@ export function analyzeCompactFamilySweep({
     metricLeaders: {
       combinedScoreCreated: false,
       directionsAreMetricSpecific: true,
+      exclusions: Object.entries(COMPARATIVE_RANKING_EXCLUSIONS).map(
+        ([memberId, reason]) => ({ memberId, reason }),
+      ),
       metrics: metricLeaders,
     },
     storageAndWallTime: {
@@ -1302,7 +1313,8 @@ export function analyzeCompactFamilySweep({
     },
     fullAdjudicationQueue: {
       criteria: {
-        metricLeaders: "top five evaluated rows per metric",
+        metricLeaders:
+          "top five evaluated active-candidate rows per metric; deprecated controls excluded",
         nearBoundary:
           `quadrature maximumChange within relative distance ` +
           `${nearBoundaryRelativeTolerance} of its positive threshold`,
@@ -1405,7 +1417,7 @@ function help() {
     "  --through-wave N                         declare terminal wave boundary",
     "  --expected-pilot-shards N                default: 6",
     "  --expected-wave-shards N                 default: 6",
-    "  --expected-wave-3-members N               default: 21",
+    "  --expected-wave-3-members N               default: 20",
     "  --audit-sample-size N                    default: 12",
     "  --near-boundary-relative-tolerance X     default: 0.1",
     "  --help",

@@ -17,6 +17,7 @@ Portfolio scope includes the public Navigator, every reader-facing app on the pr
 | [Animator](../app-animator/priorities.md) | deployed | 0 | L |
 | [Assembly Configuration Explorer](../../../assembly-explorer.html) | deployed | 0 | L |
 | [Atom](../../../content/scenes/nuclear/atom.json) | deployed | 0 | L |
+| [Braid Search](../../../braid-search.html) | deployed | 0 | L |
 | [Borg](../app-borg/priorities.md) | deployed | 4 | H |
 | [Causal Delay Feedback](../app-causal-delay-feedback/priorities.md) | deployed | 5 | H |
 | [Equation Mapping](../app-equation-mapping/priorities.md) | deployed | 0 | L |
@@ -38,7 +39,7 @@ Portfolio scope includes the public Navigator, every reader-facing app on the pr
 
 The 2026-07-23 audit reconciled the table against the live production Applications manifest, the standalone launch runtime, the public routes, and the active app priority folders.
 
-- The production Applications manifest contains twelve reader-facing entries.
+- The production Applications manifest contains thirteen reader-facing entries.
 - The Navigator is the public host surface rather than a child of its own Applications scene.
 - Assembly Configuration Explorer and Website Stats remain public standalone routes with HTTP 200 responses but are intentionally absent from the Applications manifest.
 - Architrino Reader has an implemented in-repo app and is in release preparation, so it remains `started` until public release.

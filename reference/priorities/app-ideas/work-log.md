@@ -6,6 +6,10 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-23 - Braid Search Applications Exposure
+
+- Added the read-only Braid Search compact-campaign dashboard to the canonical Applications scene and standalone launch mapping. The public shell retains its diagnostic-only boundary and does not bundle the ignored 693-row local campaign export; users load the compatible JSON when the deployment host does not provide the default local path.
+
 ### 2026-07-23 - Learner-Value Portfolio Audit And Execution Packets
 
 - Reconciled the portfolio against the live production Applications manifest, `StandaloneAppLaunchRuntime.js`, public routes, standalone entry points, and the active app priority folders. The complete deployed set is twelve Applications-scene entries plus the Navigator and the two public off-manifest standalone routes, Assembly Configuration Explorer and Website Stats; every checked public URL returned HTTP 200.

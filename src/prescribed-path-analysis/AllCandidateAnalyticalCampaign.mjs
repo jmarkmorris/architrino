@@ -14,7 +14,7 @@ import {
   BORG_BRAID_RECORD_CATALOG_ID,
 } from "../apps/borg/BorgBraidRecordCatalog.js";
 import {
-  PRESCRIBED_BRAID_TARGETS,
+  ACTIVE_PRESCRIBED_BRAID_TARGETS,
   createPrescribedBraidExactSourceRecord,
   validatePrescribedBraidSpec,
 } from "../../scripts/eom/generate-prescribed-braid-record.mjs";
@@ -142,7 +142,7 @@ function validateRegistryShape(registry) {
 }
 
 function targetByRecordPath() {
-  return new Map(PRESCRIBED_BRAID_TARGETS.map((target) => [
+  return new Map(ACTIVE_PRESCRIBED_BRAID_TARGETS.map((target) => [
     relativeRepositoryPath(target.outPath),
     target,
   ]));
@@ -182,6 +182,15 @@ function validateCandidateInventory(registry) {
         spec.taxonomy.familyId !== candidate.familyId ||
         spec.taxonomy.memberId !== candidate.memberId) {
       fail(`registry candidate ${candidate.candidateId} differs from its source specification.`);
+    }
+    if (candidate.familyId === "B" &&
+        !spec.braids.some((braid) => braid.binaries.some(
+          (binary) => binary.transverseOrbitRadius > 0,
+        ))) {
+      fail(
+        `active Family-B candidate ${candidate.candidateId} requires ` +
+        "nonzero transverse internal motion.",
+      );
     }
     return {
       ordinal,

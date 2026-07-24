@@ -1480,6 +1480,34 @@ test("causal delay feedback animation speed setting scales the replay clock", ()
   assert.equal(cfSpeedValue.textContent, "1.25x");
 });
 
+test("Story play animates one complete teaching stage for more than three seconds", () => {
+  const scheduledFrames = [];
+  const replayTimes = [];
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: {
+      ...fakeWindow,
+      requestAnimationFrame(callback) {
+        scheduledFrames.push(callback);
+        return scheduledFrames.length;
+      },
+    },
+    initialMode: "story",
+  });
+  runtime.render = (replayTime) => replayTimes.push(replayTime);
+  runtime.lastFrameTime = 0;
+  runtime.setPlaying(true);
+
+  for (let index = 1; index <= 56; index += 1) {
+    runtime.tick(index * 60);
+  }
+
+  assert.equal(runtime.isPlaying, false);
+  assert.ok(replayTimes.length > 50);
+  assert.ok(replayTimes.at(-1) > replayTimes[0]);
+  assert.ok(scheduledFrames.length >= 56);
+});
+
 test("causal delay feedback animation tempo and architrino speed settings keep live wake arcs visible", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -2698,6 +2726,7 @@ test("causal delay feedback full circle emission lines render above path trails"
   runtime.drawForegroundWakeEmissionLines = () => calls.push("emission-lines");
   runtime.drawPathEndpointHandles = () => calls.push("endpoint-handles");
   runtime.drawSelection = () => calls.push("selection");
+  runtime.drawSandboxTransmissionGhost = () => calls.push("transmission-ghost");
   runtime.drawLiveMarkers = () => calls.push("markers");
 
   runtime.render(0.5);
@@ -2710,6 +2739,7 @@ test("causal delay feedback full circle emission lines render above path trails"
     "emission-lines",
     "endpoint-handles",
     "selection",
+    "transmission-ghost",
     "markers",
   ]);
 });
