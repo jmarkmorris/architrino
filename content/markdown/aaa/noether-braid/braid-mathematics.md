@@ -154,6 +154,31 @@ The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ th
 
 The working guess that the self-hit regime may change the effective action-step scale from $\Delta L_c$ to $2\Delta L_c$ is a theorem burden for the broader causal-closure program. This chapter keeps only the local hinge geometry needed to state the dynamical branch condition.
 
+## Bounded-Weight Inverse-Square Escape Lemma
+
+Let $R(T)>0$ be a declared outward scalar coordinate on an interval where $\dot R>0$, and suppose the complete projected acceleration satisfies
+$$
+\ddot R\ge-\frac{K}{R^2}
+$$
+for a constant $K>0$. Then
+$$
+\mathcal E_R=\frac12\dot R^2-\frac{K}{R}
+$$
+is nondecreasing, because
+$$
+\frac{d\mathcal E_R}{dT}
+=
+\dot R\left(\ddot R+\frac{K}{R^2}\right)
+\ge0.
+$$
+If at some $T_\ast$,
+$$
+\dot R(T_\ast)^2>\frac{2K}{R(T_\ast)},
+$$
+then $\mathcal E_R(T_\ast)>0$ and $\dot R$ cannot later reach zero while the hypotheses remain valid. This is an escape certificate for that scalar chart, not a family-general no-binding theorem.
+
+A braid application must derive $R$ and the bound $K$ from the actual retained acceleration ledger. A speed cap, separation floor, acceleration-weight cap, and polarity inventory can supply such a bound only when their projection covers every retained root contribution on the same interval. Failure of any bound suspends the certificate. The A2 isolated-release channel is one conditional application route; see [A2 Symmetry and Return Response](braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
+
 ## Acceleration-Gradient Branch Comparison
 
 The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. A uniformly accelerated assembly and a stationary assembly placed in a matched Noether sea gradient should output compatible delay-geometry records on the same kind of branch packet (the scan packet defined with A1 diagnostics in [A1 Dynamics](braid-a1-dynamics.md#a1-dynamics)):
@@ -175,13 +200,13 @@ A recurring obstruction shapes the whole retention program: in chart after chart
 
 1. **Circular partner-wake binary.** On the uniform circular benchmark, the retained circular row has an inward radial component and a forward tangential work row; the combination accelerates the orbiting motion and prevents a partner-only constant-speed circle. Any sub-field-speed contraction claim must beat this row through non-circular geometry, wake-flux export, recoil, or a later multi-root ledger. The detailed statement lives in [Binary Dynamics](../dynamics/binary-dynamics.md).
 2. **Collinear self-hit reading.** Along a true collinear history, the same-transmitter term is naturally read as an anti-damping or positive-work contribution on the physically relevant post-crossing outbound branch: self-interaction tends to reinforce the current radial motion rather than furnish a centrifugal-style barrier. The open question is therefore whether partner attraction can recapture the motion despite that self-drive.
-3. **Frozen rigid octahedral chart.** The rigid zero-offset octahedral carrier at fixed speed is conjectured to carry a nonzero tangential residual rejecting the narrow fixed-speed branch chart; this conjecture is unverified, and the reading discipline for that chart is recorded in [Noether Braid](noether-braid.md#neutral-braid-base).
+3. **Frozen rigid octahedral chart.** The rigid zero-offset octahedral carrier at fixed speed is conjectured to carry a nonzero tangential residual rejecting the narrow fixed-speed branch chart; this conjecture is unverified, and the reading discipline for that chart is recorded in [Braid Recovery Requirements](braid-recovery-requirements.md#reading-discipline).
 4. **Zero-angular-momentum channel invariance.** The face-opposite seed placed on the zero-angular-momentum channel stays exactly on that channel: the dynamic center holds at zero, all six radii stay equal, and antipodal partners stay exact. This is the invariant-channel theorem, not a statement of the seed's dynamical fate, which is open; the fixture record lives in the [A2 isolated-release analysis](braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
 5. **Rigid rotating-wave family.** The rigid single-frequency A2 rotating wave fails twice, independently. Axially: same-ring contributions have exactly zero axial component, while every opposite-ring contribution pulls the two rings together, and a sum of strictly one-signed terms cannot vanish — so the rigid rotating wave has no axial equilibrium at any two-ring aspect and any sub-field rim speed, and the rigid single-frequency family, if it existed, would be forced planar. This axial no-balance statement is a derivation. Tangentially: on the planar hexagon, the conjectured behavior is a strictly positive tangential residual growing with rim speed while the radial residual stays inward — the delayed kernel pumping the rotation rather than braking it. That tangential conjecture is unverified; the axial derivation stands on its own.
 
 The reading discipline matters as much as the results. Each entry is scoped to the chart and assumptions that produced it; the agreement across charts is qualitative consilience, and no ledger quantity may be consumed across charts. None of these results rejects the neutral braid, A1, A2, B1, and C-family, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
 
-The constructive consequence is a sharpened search. Admissible persistent braids are necessarily non-rigid: the pumped tangential action must be exchanged with another internal channel — radial breathing against rotation, the two-frequency class whose closed figures are the integer phase-closure states — or absorbed by same-transmitter contributions at the field-speed hinge, or exported to a Noether sea environment. The rigid ansatz cannot represent wake exhaust by construction, so its failure was arguably necessary: a retained branch must have somewhere to put the pumped action. The spectrum hunt below is therefore a hunt for relative periodic orbits, not relative equilibria.
+The constructive consequence is a sharpened search. Admissible persistent braids are necessarily non-rigid: the pumped tangential action must be exchanged with another internal channel — radial breathing against rotation, the two-frequency class whose closed figures are the integer phase-closure states — or absorbed by same-transmitter contributions at the field-speed hinge, or exported to a Noether sea environment. The rigid ansatz cannot represent wake exhaust by construction, so its failure was arguably necessary: a retained branch must have somewhere to put the pumped action, with escaped boundary flux recorded by [wake escapement](../dynamics/energy.md#wake-escapement). The spectrum hunt below is therefore a hunt for relative periodic orbits, not relative equilibria.
 
 ## The Eigen-Braid Spectrum
 
@@ -232,7 +257,7 @@ The statistical layer is where familiar physics should emerge. A single braid is
 
 Whether a hinge click can supply a clean, chart-defined transacted amount depends on where on the fold set the crossing is born, and the two singular loci of the point-transceiver ontology separate the cases. [Architrino](../foundations/architrino.md#point-transceiver-status) distinguishes the coincidence stratum $\{r_{ij}=0\}$ — a spatial point-kernel problem that requires a declared spatial regularization — from the caustic stratum $\{\partial_{T_t}F_{ij}=0\}$ — a causal-root fold that requires a fold-resolution chart. A click carries a chart-defined magnitude only when its crossing sits on the second locus while staying clear of the first.
 
-A same-transmitter (self-hit) crossing on a smooth strand is born on the coincidence stratum. As the causal lag $\Delta\to 0$ the separation is $\lVert\mathbf X(T)-\mathbf X(T-\Delta)\rVert=\lvert\mathbf v\rvert\,\Delta+O(\Delta^2)$, so the same-transmitter root nucleates exactly at the field-speed crossing with a vanishing chord, $r_{ij}\to 0$ as the root opens. On the symmetric one-band channel this onset is a cusp rather than a generic fold, and the transacted amount is not fixed by the fold chart; it is set instead by the point-transceiver short-distance self-regularization scale $d_0$ — of order the near-field two-body scale $\kappa\epsilon^2/c_f^2$ of [Binary Dynamics](../dynamics/binary-dynamics.md) (with $\epsilon$ the architrino polarity-charge magnitude), and in the minimum-circular-binary reading the collapse-arresting radius itself, whose derivation from $\kappa$, $\epsilon$, and $c_f$ remains an open question noted in [Particle Masses](../assemblies/particle-masses.md). This is a scoped negative for any single-site absorber picture: the symmetric single-site self-hit cannot supply a chart-defined transacted amount, because its magnitude is a property of $d_0$ rather than of the branch geometry. Same-transmitter rows remain in the ontology and are what set $d_0$; they simply do not fix a clean click on their own.
+A same-transmitter (self-hit) crossing on a smooth strand is born on the coincidence stratum. As the causal lag $\Delta\to 0$ the separation is $\lVert\mathbf X(T)-\mathbf X(T-\Delta)\rVert=\lvert\mathbf v\rvert\,\Delta+O(\Delta^2)$, so the same-transmitter root nucleates exactly at the field-speed crossing with a vanishing chord, $r_{ij}\to 0$ as the root opens. On the symmetric one-band channel this onset is a cusp rather than a generic fold, and the transacted amount is not fixed by the fold chart; it is set by the declared spatial regularization scale $\epsilon_c$. Identifying the physical value of $\epsilon_c$ with a conditional minimum-circular-binary or near-field two-body scale is a separate hypothesis, not part of the substrate regularization definition. This is a scoped negative for any single-site absorber picture: the symmetric single-site self-hit cannot supply a chart-defined transacted amount, because its magnitude is a property of $\epsilon_c$ rather than of the branch geometry. Same-transmitter rows remain in the ontology; they simply do not fix a clean click on their own.
 
 A cross-hit crossing between two distinct strands can instead be born at finite chord. When the transmitter-side alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ holds at finite separation, the crossing sits on the caustic stratum with $r_{ij}\neq 0$: a generic (Whitney $A_2$) fold of nonzero curvature whose transacted impulse is finite and independent of the short-distance regularization. This is the surviving route to a chart-clean click magnitude, and it is a theorem target rather than a result. It is contingent on a hinge geometry that sustains the alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ across a click window — the same dynamic-alignment and formation-history condition that gates the [A2 return-response question](braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question). Whether a braid's own formation and recycling dynamics hold that alignment long enough to transact is the open question on which the clean click magnitude, and with it the whole hinge-absorber route, depends.
 

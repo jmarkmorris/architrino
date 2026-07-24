@@ -2,7 +2,7 @@
 
 This chapter describes prescribed Noether braid geometries through explicit coordinates. The taxonomy has three levels: assembly composition, individual braid, and individual binary.
 
-Each taxonomy member receives a neutral identifier consisting of a family letter and a member number, such as `A1`, `A2`, `A3`, or `B1`. A decimal suffix identifies a constrained variant of a member, such as `A1.1` or `B1.1`. The identifier carries no geometric meaning. The member's table entries and Borg depiction define the geometry. Family and member names are optional aliases.
+Each taxonomy member receives a neutral identifier consisting of a family letter and a member number, such as `A1`, `A2`, `A3`, or `B1`. A decimal suffix identifies a constrained variant of a member, such as `A1.1` or `B1.1`. The identifier carries no geometric meaning. The first three master tables together with the source record define the geometry; the Borg depiction renders that declared record. Family and member names are optional aliases.
 
 This is a geometry-and-motion taxonomy. It does not establish that a prescribed configuration is generated, retained, or stable under the EOM solver.
 
@@ -12,7 +12,7 @@ Assembly composition describes how complete braid records are combined.
 
 | Coordinate | Meaning |
 | --- | --- |
-| Braid count $N_{\mathcal B}$ | Number of complete braids in the assembly. |
+| Top-level braid count $N_{\mathcal B}$ | Number of complete prescribed Noether braid records in the assembly. A Family-C record counts as one top-level braid even where C3 through C6 expose two exact component-braid rows. |
 | Relative braid-center displacement | Position of each braid center relative to the assembly center when $N_{\mathcal B}>1$. |
 | Relative orientation | Orientation of each braid record relative to the assembly reference frame. |
 | Relative phase | Timing offset between braid records. |
@@ -20,7 +20,7 @@ Assembly composition describes how complete braid records are combined.
 
 ## Individual Braid
 
-One Noether braid consists of three neutral binaries. Each binary contains one electrino and one positrino. Other polarity pairings are outside the present taxonomy.
+A base, Family-A, or Family-B Noether braid consists of three neutral binaries. Family C consists of six neutral binaries in one twelve-worldline top-level record. Each binary contains one electrino and one positrino. Other polarity pairings are outside the present taxonomy.
 
 The overarching translation characteristic is the speed of the complete assembly group. Let $\mathbf X_{\mathrm{grp}}(T)$ be the declared translation center of the prescribed assembly group. Its group velocity and group translation speed are
 
@@ -34,13 +34,13 @@ $$
 s_{\mathrm{grp}}(T)=\left\|\mathbf V_{\mathrm{grp}}(T)\right\|
 $$
 
-For a one-braid member, $\mathbf X_{\mathrm{grp}}$ is the declared center of that braid. For a two-braid member, it is the declared center of the complete two-braid assembly. The group translation speed is distinct from the internal orbital speeds of the six architrinos in each braid.
+For one top-level braid record, including Family C, $\mathbf X_{\mathrm{grp}}$ is the declared center of that record. For an assembly containing several top-level braid records, it is the declared center of the complete assembly. The group translation speed is distinct from the internal orbital speeds of the constituent architrinos.
 
 The braid-level record contains this overarching characteristic and the coordinate collections obtained from its three binaries:
 
 | Coordinate collection | Definition |
 | --- | --- |
-| Group translation speed $s_{\mathrm{grp}}$ | Translation speed of the complete one-braid or two-braid assembly group. |
+| Group translation speed $s_{\mathrm{grp}}$ | Translation speed of the complete top-level braid or multi-braid assembly group. |
 | Binary midpoint data | The ordered midpoint vectors $(\mathbf c_1,\mathbf c_2,\mathbf c_3)$. A member row may constrain their relation without redefining the individual midpoint coordinate. |
 | Axis data | The ordered binary-axis unit vectors $(\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3)$. The vectors are recorded directly without assigning an axis-structure class. |
 | Circulation data | The ordered circulation senses of the three binaries. |
@@ -153,7 +153,7 @@ $$
 \hat{\mathbf u}_A
 $$
 
-The combined binary envelope is nearly spherical at the near-rest endpoint in a weak-gradient deep-space environment. Increasing group translation speed or gravitational gradient increases $\lambda_A$, compresses the envelope along $\hat{\mathbf u}_A$, and makes the envelope increasingly oblate. The event-horizon response endpoint and the photon-channel response endpoint use the flat limit $\lambda_A=1$. These endpoint assignments are prescribed Family-A taxonomy; deriving the response path and either physical channel from an EOM-solver record remains open.
+The combined binary envelope is nearly spherical at the near-rest endpoint in a weak-gradient deep-space environment. Increasing group translation speed or gravitational gradient increases $\lambda_A$, compresses the envelope along $\hat{\mathbf u}_A$, and makes the envelope increasingly oblate. The event-horizon response study and the photon-channel response study use the flat Family-A geometry at $\lambda_A=1$ as prescribed input. These endpoint assignments are geometry-response charts; deriving either physical channel from an EOM-solver record remains open.
 
 `A1` is the zero-axial-offset Family-A member. All three binary midpoints coincide with the braid center, and each binary has
 
@@ -224,7 +224,7 @@ $$
 
 The three current Borg selections are `B1.1`, the interior reference with $h_a>0$ and $\rho_a>0$; `B1.2`, the high-axial interior selection with $h_a>\rho_a>0$; and `B1.3`, the all-equatorial boundary with $h_a=0$ and $\rho_a=R_a$. Each inherits every other B1 relation. Active B1 candidates additionally satisfy $\sum_a\rho_a^2>0$, equivalently nonzero total squared internal speed for the declared common frequency. The all-axial locus $\rho_a=0$, $h_a=R_a$ remains part of the B1 coordinate boundary, but the former identifier `B1.4` is retained only as a deprecated historical null control.
 
-Family A and Family B meet on a boundary. Every Family-A member reaches the coincident-axis relation at $\lambda_A=1$; a common-frequency Family-A variant with one common circulation sense and coincident binary midpoints also occupies the B1 coordinate locus at that endpoint. This geometric coincidence does not identify the two families away from the boundary.
+Family A and Family B meet on a boundary. Every Family-A member reaches the coincident-axis relation at $\lambda_A=1$; a common-frequency Family-A variant with one common circulation sense and coincident binary midpoints also occupies the B1 coordinate locus at that endpoint. The A2 face-opposite seed also admits a distinct body-diagonal rotating-channel chart on the cyclic-symmetric B1 sublocus described in [B1 Hypotheses and Discrete Symmetry](braid-b1-symmetry.md#cyclic-symmetric-a2b1-overlap). This geometric coincidence does not identify the two families away from either overlap.
 
 ## Family C: Coaxial Twelve-Architrino Geometry
 
@@ -252,7 +252,7 @@ The first three tables carry the geometry. The fourth table supplies optional na
 
 ### Assembly Composition Master Table
 
-| Member ID | Braid count | Relative braid-center displacement | Relative orientation | Relative phase | Relative circulation |
+| Member ID | Top-level braid count | Relative braid-center displacement | Relative orientation | Relative phase | Relative circulation |
 | --- | --- | --- | --- | --- | --- |
 | `A1` | 1 | NA | NA | NA | NA |
 | `A2` | 1 | NA | NA | NA | NA |

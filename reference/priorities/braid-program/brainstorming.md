@@ -136,3 +136,19 @@ The equation is exact and generally transcendental. Certified all-retained-root 
 **What would confirm or kill the remaining analytical lead.** Start from the exact B1 submanifold at $c_f=1$, then open the two relative-midpoint dimensions and the existing spacing-radius-phase-frequency coordinates under a predeclared space-filling measure. The lead advances if a finite-width region reduces all three residual projections while passing root, separation, co-translating exterior, sensitivity, refinement, and independent-acceptance gates. Only the explicitly sampled bounded domain closes negative if no such region survives held-out seeds and alternative sampling measures.
 
 **Promotion routing.** The exact chart, taxonomy disposition, measured rows, falsifiers, and implementation links are in [Common-Axis Braid-Train Analytics](common-axis-braid-train-analytics.md). The general Family-C chart and exact-delay reduction are promoted into the reader-facing taxonomy and analysis methodology; the measured candidate result remains priority-only.
+
+## Entry 7 — alternating axial polarity assignment in B1 searches (2026-07-23, chapter review)
+
+**The idea (grade: hypothesis, unproven search stratum).** The current axial no-balance derivation assumes polarity-segregated two-ring geometry. A B1 chart with an alternating axial polarity assignment may change the signs and axial projections of the cross-ring acceleration rows and therefore lies outside that derivation's scope.
+
+**Proof burden and falsifier.** Declare the full six-worldline polarity and counterpart map, enumerate every retained ordered-pair root at $c_f=1$, and derive the complete axial acceleration sum before any stability calculation. The lead fails if the exact axial sum remains one-signed throughout the admissible noncollision chart, or if the assignment violates the neutral-binary contract. A zero of the axial sum would only open a balance candidate; it would not establish retention or stability.
+
+**Promotion routing.** Add this as a matched polarity stratum to the B1-outward search protocol. Promote reader-facing material only if a family-general identity or independently checked candidate branch is obtained.
+
+## Entry 8 — winding-to-self-degree parity law (2026-07-23, chapter review)
+
+**The idea (grade: theorem target).** For a retained layer with winding $k_a\in\{1,m,n\}$, the signed self-root degree $D_s^{(a)}$ may obey a parity or lower-bound law determined by the circular self-hit fold-birth sequence and the lifted-strip fiber-intersection formula.
+
+**Proof burden and falsifier.** Fix the finite-memory strip, same-transmitter policy, orientation convention, and admissible deformation class. Derive the fold sequence independently of the implementation that counts roots, then compare the resulting degree law with separately generated charts. One admissible chart with the same winding but a different signed degree falsifies a winding-only law and forces additional branch data into the statement.
+
+**Promotion routing.** The current topological-charge chapter retains this as a reachable theorem target. Promote a parity formula only after the deformation domain and independent proof close; until then it must not classify assemblies or move any retention claim.

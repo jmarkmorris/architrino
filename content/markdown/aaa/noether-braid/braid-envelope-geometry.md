@@ -57,6 +57,8 @@ This is the Noether braid analogue of the familiar lesson from electron degenera
 
 The dynamic exclusion envelope supplies a spatial approximation to a deeper ledger boundary. At the exact level, an assembly is defined by the architrinos, closure labels, and wake-exchange records phase-locked to that assembly. The surrounding Noether sea is the neighboring neutral braid population and its ambient wake record after the assembly ledger has been excluded.
 
+The bright-first question is operational: at a specified point and response channel, does wake activity tied to the assembly's accepted lock dominate, or does the ambient Noether sea dominate? That comparison locates usable clock corridors, packing boundaries, penetration regions, and interface layers before any sharp surface is inferred.
+
 For an assembly $a$ and a declared response channel $X$, let $\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T)$ denote the local coarse-grained wake/exclusion contribution tied to the assembly's accepted closure label, and let $\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf X,T)$ denote the ambient Noether sea contribution in the same region. A practical interface diagnostic is
 
 $$

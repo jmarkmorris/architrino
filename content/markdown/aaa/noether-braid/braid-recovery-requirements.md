@@ -1,6 +1,6 @@
 # Braid Recovery Requirements
 
-Before any particular braid geometry is featured, the theory owes the reader a contract: what must a candidate braid actually deliver? This chapter states that contract once, independently of which realization — one support band, three ordered bands, or another family member — eventually satisfies it. The requirements come in two layers. The retention layer asks whether a six-architrino branch can persist at all as one coherent causal-return record. The recovery layer asks what a retained branch must then hand to the rest of physics: the clocks, rulers, masses, charges, spectra, statistics, forces, and cosmological histories that general relativity, quantum theory, the Standard Model, and the $\Lambda$CDM-era observations already describe at the observer level.
+Before any particular braid geometry is featured, the theory owes the reader a contract: what must a candidate braid actually deliver? This chapter states that contract once, independently of which realization — one support band, three ordered bands, or another family member — eventually satisfies it. The requirements come in two layers. The retention layer asks whether the family-declared neutral inventory can persist as one coherent causal-return record. The recovery layer asks what a retained branch must then hand to the rest of physics: the clocks, rulers, masses, charges, spectra, statistics, forces, and cosmological histories that general relativity, quantum theory, the Standard Model, and the $\Lambda$CDM-era observations already describe at the observer level.
 
 Stating the requirements realization-independently protects the proof order. A realization chapter may carry beautiful exact structure and still leave every row below open; a recovery chapter may state a sharp observer-level target that no current branch can yet consume. Keeping the contract in one place prevents both failure modes from hiding: every claim in the braid scene can be checked against this chapter's ladder, and every ladder row names the chapter where its detailed burden lives.
 
@@ -14,7 +14,7 @@ A reader should use this chapter the way an engineer uses a requirements specifi
 
 ## The Retained-Branch Certificate
 
-The retention question is the same for every family member. A candidate branch $B$ over a test window $W$ is a claim that six specific architrinos — three electrinos and three positrinos, the polarity inventory $3\epsilon_+ + 3\epsilon_-$ — keep returning to one repeatable causal relationship: same six identities, same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold. The certificate makes that claim auditable by splitting it into rows that must all close on one ledger identity:
+The retention question has the same row structure for every family member. A candidate branch $B$ over a test window $W$ is a claim that the family-declared neutral inventory keeps returning to one repeatable causal relationship: the same identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold. The base and Family-A/B cases use six architrinos with inventory $3\epsilon_+ + 3\epsilon_-$; Family C uses twelve worldlines grouped into six neutral binaries. The certificate makes that claim auditable by splitting it into rows that must all close on one ledger identity:
 
 $$
 \mathsf{R}(B,W)
@@ -28,6 +28,7 @@ $$
 \mathsf{Dynamics}^{\nu},
 \mathsf{Action}_{\Gamma}^{\nu},
 \mathsf{Noether}^{\nu},
+\mathsf{Framing}^{\nu},
 \mathsf{Event}^{\nu},
 \mathsf{Stability}^{\nu},
 \mathsf{Convergence},
@@ -35,7 +36,7 @@ $$
 \right)
 $$
 
-The inventory row fixes which six architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the family member enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, transmitter-side acceleration weights, and lines of action assembled from the true path histories rather than from a compressed acceleration law. The tail, dynamics, action, and Noether rows demand that the delayed accelerations, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The event and stability rows demand that discrete branch events are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
+The inventory row fixes which architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the family member enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, transmitter-side acceleration weights, and lines of action assembled from the true path histories rather than from a compressed acceleration law. The tail, dynamics, action, and Noether rows demand that the delayed accelerations, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The framing row carries the deformation-stable framed-path record, including the declared relation $Lk=\operatorname{Wr}+\operatorname{Tw}$, the framing sign, and its positive conditioning floor. The event and stability rows demand that framing-wall or root-topology crossings are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
 
 Retention is the conjunction, never a partial credit:
 
@@ -58,6 +59,8 @@ P_{\Gamma}
 \wedge
 P_{\mathrm{Noether}}
 \wedge
+P_{\mathrm{framing}}
+\wedge
 P_{\mathrm{event}}
 \wedge
 P_{\mathrm{stab}}
@@ -65,7 +68,7 @@ P_{\mathrm{stab}}
 P_{\mathrm{conv}}
 $$
 
-Every predicate must use the same source-pair policy, same-transmitter policy, memory depth, support descriptor, action convention, event interval, and inventory ledger. If any row changes those conventions, the result is a ledger mismatch, not a retention result. The neutral-braid statement of this certificate, with the base-family notation, is given in [Neutral Braid](braid-recovery-requirements.md#base-family-certificate-instantiation); any prescribed taxonomy member inherits the same rows and may compress the all-pairs ledger only after its reduction map proves how the compressed entries are inherited.
+Every predicate must use the same source-pair policy, same-transmitter policy, memory depth, support descriptor, action convention, framing convention, event interval, and inventory ledger. If any row changes those conventions, the result is a ledger mismatch, not a retention result. The neutral-braid statement of this certificate, with the base-family notation, is given in [Base-Family Certificate Instantiation](#base-family-certificate-instantiation); any prescribed taxonomy member inherits the same rows and may compress the all-pairs ledger only after its reduction map proves how the compressed entries are inherited.
 
 ## The First-Failure Ladder
 
@@ -160,6 +163,7 @@ $$
 \mathsf{Dynamics}^{\nu},
 \mathsf{Action}_{\Gamma}^{\nu},
 \mathsf{Noether}^{\nu},
+\mathsf{Framing}^{\nu},
 \mathsf{Event}^{\nu},
 \mathsf{Stability}^{\nu},
 \mathsf{Convergence},
@@ -188,6 +192,8 @@ P_{\Gamma}
 \wedge
 P_{\mathrm{Noether}}
 \wedge
+P_{\mathrm{framing}}
+\wedge
 P_{\mathrm{event}}
 \wedge
 P_{\mathrm{stab}}
@@ -195,7 +201,7 @@ P_{\mathrm{stab}}
 P_{\mathrm{conv}}
 $$
 
-Every predicate in this conjunction must use the same source-pair policy, same-transmitter policy, memory depth, support descriptor, action convention, event interval, and inventory ledger. If any row changes those conventions, the status is a ledger mismatch rather than a retention result.
+Every predicate in this conjunction must use the same source-pair policy, same-transmitter policy, memory depth, support descriptor, action convention, framing convention, event interval, and inventory ledger. If any row changes those conventions, the status is a ledger mismatch rather than a retention result.
 
 The root row begins with all ordered distinct source pairs. With $I=\{1,\ldots,6\}$,
 
@@ -208,6 +214,16 @@ $$
 $$
 
 Same-transmitter rows $(i,i)$ are governed by the declared same-transmitter policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive transmitter-site counts for each receiver are inventory facts, not a compressed acceleration law. The acceleration contribution must still be assembled from the actual retained causal roots, delays, Jacobian floors, transmitter-side acceleration weights, and line-of-action vectors for these ordered pairs. A prescribed taxonomy member can reduce this ledger only after its reduction map proves how the compressed entries are inherited from the all-pairs ledger.
+
+For Family C, let $I_C=\{1,\ldots,12\}$. Its uncompressed ordered distinct-pair ledger is
+$$
+\Pi_{\mathrm{all}}^{C}
+=
+\{(i,j)\in I_C\times I_C:i\ne j\},
+\qquad
+|\Pi_{\mathrm{all}}^{C}|=132.
+$$
+C3 through C6 may expose two exact B1 or B1.3 component ledgers, but those component rows do not replace the 132-pair Family-C ledger unless a proved reduction map accounts for every cross-component pair. An associated Accessory Configuration remains a separate inventory and certificate input rather than part of these twelve defining worldlines.
 
 The certificate should report the first blocking row as
 
@@ -225,4 +241,6 @@ $$
 
 Rows through convergence block branch retention. Case-reduction and observer-export rows classify downstream structure only after the required neutral rows close. Therefore a favorable Lorentz, photon, topology, mass-map, or shell-geometry diagnostic cannot rescue an open root, tail, dynamics, action, event, stability, or convergence row.
 
-Reading discipline for future diagnostics on this chart, retained from earlier work at method level: a resolved causal-root ledger does not imply force closure; inventory attraction bias does not imply force closure; resolved positive-delay root rows do not imply force closure; and sampled phase or polarity-phase improvements do not imply retention. A negative result for one rigid carrier hypothesis is not a rejection of the neutral braid, any A/B/C member, or the bounded-speed, controlled-self-hit, fold-layer, and medium-response programs. No measured residuals are carried in this chapter: results enter only when established, with instrument and claim level stated.
+### Reading Discipline
+
+Reading discipline for future diagnostics on this chart, retained from earlier work at method level: a resolved causal-root ledger does not imply acceleration-balance closure; inventory attraction bias does not imply acceleration-balance closure; resolved positive-delay root rows do not imply acceleration-balance closure; and sampled phase or polarity-phase improvements do not imply retention. A negative result for one rigid carrier hypothesis is not a rejection of the neutral braid, any A/B/C member, or the bounded-speed, controlled-self-hit, fold-layer, and medium-response programs. No measured residuals are carried in this chapter: results enter only when established, with instrument and claim level stated.

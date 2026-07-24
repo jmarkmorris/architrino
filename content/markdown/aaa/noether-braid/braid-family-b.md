@@ -64,7 +64,6 @@ B1 is the rigid common-frequency member of Family B. Its member-level constraint
 | Axial half-separations | $h_1,h_2,h_3$ independently assignable subject to each radius decomposition |
 | Transverse orbit radii | $\rho_1,\rho_2,\rho_3$ independently assignable subject to each radius decomposition |
 | Phases | $\phi_1,\phi_2,\phi_3$ independently assignable relative to the common zero point |
-| Hinge | None |
 
 Rigid here means that the declared $R_a$, $h_a$, $\rho_a$, $f$, $\phi_a$, frame, and circulation sense do not change during the prescribed record. It is a kinematic restriction, not an EOM-solver rigidity result.
 
@@ -156,7 +155,7 @@ Axial translation is a B1 specialization, not a Family-B requirement. A record w
 
 Family A and Family B share a coordinate boundary. At $\lambda_A=1$, the three Family-A axes coincide with the Family-A translation direction. A common-frequency Family-A record with one common circulation sense then satisfies the B1 axis, frequency, and circulation relations. It reaches the source-defined common-center B1 chart only if its three binary midpoints also coincide with the braid center.
 
-This overlap is a coordinate-locus statement. It does not identify Family A with Family B away from the boundary and does not establish a physical transition between them.
+The A2 face-opposite seed supplies a second exact overlap: rigid rotation about its body diagonal occupies the [cyclic-symmetric A2/B1 sublocus](braid-b1-symmetry.md#cyclic-symmetric-a2b1-overlap), independently of $\lambda_A=1$. These overlaps are coordinate-locus statements. They do not identify Family A with Family B away from the shared loci and do not establish a physical transition between them.
 
 ## Claim Boundary
 

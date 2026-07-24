@@ -155,16 +155,7 @@ $$
 
 Thus the lock is a flat relative-phase connection with integer holonomy, not a literal first Chern class over the binary-3 phase circle. In the language of [Effective Lagrangian](../dynamics/effective-lagrangian.md#ordinary-hamiltonian-orientation), the integers $(m,n)$ are the phase-return degree data that make the reduced action-angle chart globally replayable rather than merely local.
 
-The phase-bundle picture also requires genuine three-dimensional binary-plane independence. Let $\hat{\mathbf{n}}_1,\hat{\mathbf{n}}_2,\hat{\mathbf{n}}_3$ be the orbital-plane normals of the three binaries and define
-
-$$
-D_{\mathrm{plane}}
-=
-\det
-\left[
-\hat{\mathbf{n}}_1,\hat{\mathbf{n}}_2,\hat{\mathbf{n}}_3
-\right]
-$$
+The phase-bundle picture also requires genuine three-dimensional binary-plane independence. Use the canonical ordered-normal determinant $D_{\mathrm{plane}}$ defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md#angular-momentum-frame).
 
 The reduced $T^3$ lock is nondegenerate only while $D_{\mathrm{plane}}\neq0$. Mutual orthogonality gives $|D_{\mathrm{plane}}|=1$, while horizon-alignment or coplanar degeneration drives $D_{\mathrm{plane}}\to0$ and collapses the three-circle bundle to a lower-dimensional projection. The determinant is therefore the natural order parameter for the loss of doubling-frequency precession at alignment.
 For a promoted finite-$\eta$ chart this is a conditioning floor,

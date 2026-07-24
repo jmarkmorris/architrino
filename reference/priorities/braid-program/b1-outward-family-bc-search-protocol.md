@@ -261,6 +261,8 @@ Every pairing comparison has two different controls:
 
 Adjacency and crossed maps remain named regression anchors. No pairing sector advances unless the geometry-active row differs from its semantic null control and the claimed benefit survives matched geometry, held-out samples, and refinement.
 
+Add one matched B1 polarity stratum that alternates polarity along the common axis while preserving the exact neutral-binary contract. This stratum lies outside the polarity-segregated two-ring axial no-balance derivation. It advances only if the complete $c_f=1$ ordered-pair axial acceleration sum admits a zero with positive root, separation, and acceleration-weight floors; such a zero opens a balance candidate but does not establish retention or stability.
+
 ### Phase 6 — Two-Component Family-C Coordinates
 
 Construct C3 and C4 first from two complete, independently declared B1 components on one common oriented axis. Open the Family-C component coordinates in this order:

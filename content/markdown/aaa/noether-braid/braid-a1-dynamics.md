@@ -361,6 +361,21 @@ $$
 
 Here $k_1,k_2,k_3$ are the binary winding counts over the chosen return period. The binary ledgers $\mathcal{G}_1,\mathcal{G}_2,\mathcal{G}_3$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The inter-binary ledgers $\mathcal{G}_{12},\mathcal{G}_{13},\mathcal{G}_{23}$ record delayed exchange roots and phase-lock constraints between binary pairs. The branch label $\chi_c$ records braid chirality derived from the indexed path record, for example through $\operatorname{Wr}_c$ or a multi-component causal-writhe parity; it must not be inferred from a high/middle/low radius ordering.
 
+The assembly counts are explicit aggregations of those ledgers:
+$$
+N_s(\Lambda_{A1})
+=
+\sum_{a=1}^{3}N_s(\mathcal G_a),
+$$
+$$
+M_p(\Lambda_{A1})
+=
+\sum_{a=1}^{3}M_p^{\mathrm{intra}}(\mathcal G_a)
++
+\sum_{1\le a<b\le3}M_p^{\mathrm{inter}}(\mathcal G_{ab}).
+$$
+Here $\mathcal G_a$ carries the within-binary self and partner roots, while $\mathcal G_{ab}$ carries the directed cross-binary roots. Any compressed count must reproduce these source-identity partitions.
+
 This label is reduced because it omits the full architrino trajectories and retains only the closure data needed for branch comparison. It is useful only under a theorem-target burden: smooth branch-preserving deformations should keep $\Lambda_{A1}$ fixed, while a change of label should be tied to a causal-root bifurcation, separator crossing, or causal-locus reconnection. The chirality entry $\chi_c$ is not yet proved by this definition; it names the entry that the later causal-writhe or ordered-frame proof must fill.
 
 The quantum-number generalization begins at this level. Generation, spin, chirality, and later observer-level orbital labels should be read as downstream coarse-grainings or measurement labels derived from admissible A1 closure labels and their emitted causal-wake envelopes. They should not be imposed as primitive particle labels before the closure, wake-envelope, and apparatus-coupling maps have been derived.
