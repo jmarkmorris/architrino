@@ -213,12 +213,13 @@ $$
 \frac{d^2\mathbf X}{dT^2}
 $$
 
-The usual 3-vector expressions follow:
+At the observer level, the usual low-velocity bookkeeping forms are
 $$
 \mathbf p=m\mathbf V,
 \qquad
 K=\frac{1}{2}m\|\mathbf V\|^2
 $$
+Here $m$ is an effective assembly-response coefficient, not substrate data; its derivation and possible anisotropy are stated below.
 
 Causal-root hits produce accelerations in the Euclidean void. Time supplies the universal evolution parameter; it does not supply curvature, acceleration, or clock dilation by itself.
 
@@ -253,7 +254,15 @@ Q_A^{ij}
 $$
 where the average is taken over the retained framed trajectory bundle or declared axial frame of the assembly. The Hughes-Drever row below is therefore a direct constraint on residual orientational symmetry breaking in the assembly framing.
 
-The same $Q_A^{ij}$ should feed the matter Hughes-Drever projection, the clock-orientation leakage row $\Delta^{\mathrm{ori}}$, and the ruler or metric-handoff anisotropy carried by $B_{ij}$. This does not prove those rows vanish. It states the economy target: one branch certificate bounding $\|Q_A\|$ should bound all three $\ell=2$ preferred-axis leakages, while $Q_A=0$ marks the limit in which the retained framed trajectory bundle has no preferred quadrupole axis at the tested scale.
+### Framing-Quadrupole Economy Theorem Target
+
+One branch certificate bounding $\|Q_A\|$ should control all three leading $\ell=2$ preferred-axis projections:
+
+1. the matter-sector Hughes-Drever residual $\epsilon_M^{\mathrm{HD}}$;
+2. the clock-orientation residual $\Delta^{\mathrm{ori}}$;
+3. the ruler or metric-handoff anisotropy carried by the trace-free part of $B_{ij}$.
+
+This target does not prove that any row vanishes. It requires the three projections to descend from the same retained framing tensor rather than from independently fitted anisotropies. The limit $Q_A=0$ marks a retained framed trajectory bundle with no preferred quadrupole axis at the tested scale.
 
 The isotropic limit is not merely a simplifying convention. Hughes-Drever-type clock-comparison tests constrain orientation-dependent matter-sector response, so the residual attached to $\mathcal{M}^{\mathrm{resp}}_{ij}$ must be declared alongside clock and photon anisotropy bounds. A representative matter-anisotropy row should track a projected residual such as
 $$
@@ -336,7 +345,7 @@ The foundation stack keeps primitive, channel, branch, and calibrated speeds dis
 | $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether sea state and direction | derived |
 | $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
 | $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
-| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration |
+| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration and dressing-flow fixed-point target |
 
 The symbols $c_f$, $c_\gamma$, $c_{\text{eff}}$, $c_\star$, and $c_0$ must not be identified unless the local document states the regime and derivation. In particular, $c_f$ belongs to primitive causal-root equations, while $c_0$ belongs to weak homogeneous observer calibration.
 
@@ -453,7 +462,7 @@ c_\gamma
 c_0
 \left[1+O(\epsilon_{\mathrm{LV}})\right]
 $$
-The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger.
+The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost rows missing from the substrate symmetry group, so the seven substrate conservation rows extend to the ten-row observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget.
 It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
 $$
 \frac{R_{\parallel}}{R_{\perp}}
@@ -638,5 +647,7 @@ Absolute timespace is the formal product background in which all architrino dyna
 - Proper time is a functional of physical observer dynamics, not a fundamental interval of $\mathcal{M}$.
 
 ## Summary Postulate
+
+Postulate 3 fails if any accepted substrate-level interaction requires breaking the constant-$T$ foliation, for example through a substrate time coordinate of the form $T'=T+f(\mathbf X)$, or requires a fundamental nondegenerate four-metric. Effective clock synchronization, proper time, and metric reconstruction may mix observer coordinates after recovery; they cannot replace the substrate product structure without replacing this postulate.
 
 > **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are recovery targets: when the assembly and Noether sea closure programs succeed, they are emergent descriptions within absolute timespace, not properties of the background itself.

@@ -21,6 +21,33 @@ It defines six foundation routes:
 5. **Terminology Discipline**: [canonical level-aware terminology](../archie/terminology-usage.md).
 6. **Parameter Ledger**: [fundamental postulates versus derived quantities](../validation/parameter-ledger.md).
 
+The nine foundation chapters have distinct ownership:
+
+| Chapter | Document role |
+|:---|:---|
+| [Ontology](./ontology.md) | Hub for layer assignments, postulate ownership, and navigation. |
+| [Absolute Time](./absolute-time.md) | Canonical owner of Postulate 1, temporal ordering, affine normalization, and delayed-only support. |
+| [Euclidean Void](./euclidean-void.md) | Canonical owner of Postulate 2, the fixed spatial metric, and container symmetries. |
+| [Absolute Timespace](./absolute-timespace.md) | Canonical owner of Postulate 3, the product foliation, causal-wake geometry, and the observer-metric handoff boundary. |
+| [Architrino](./architrino.md) | Canonical owner of Postulate 4, primitive identity, polarity, provenance, and point-transceiver status. |
+| [Emergence of Structure](./emergence-of-structure.md) | Owner of the bottom-up assembly ladder, context-to-branch selection, and emergence claim discipline. |
+| [Absolute Time Defense](./absolute-time-defense.md) | Argumentative and falsifiability companion for clock, ruler, and preferred-frame recovery. |
+| [Detecting the Absolute Frame](./detecting-the-absolute-frame.md) | Owner of the complete-state rest diagnostic and tagged-wake center reconstruction. |
+| [Constructing the Absolute Frame](./constructing-the-absolute-frame.md) | Owner of coordinate-frame reconstruction from nondegenerate complete-state data. |
+
+Read the substrate owners first, then Architrino and Emergence. The preferred-frame sequence is Detecting, Constructing, and Absolute Time Defense; it moves from complete-state identifiability to coordinates and then to the observer-level hiding burden.
+
+### Canonical Postulate Ownership
+
+The Summary Postulate in each owning chapter is the single canonical wording. The shorter blocks in this hub are abridged routing statements, not competing formulations.
+
+| Postulate | Canonical owner |
+|:---|:---|
+| Postulate 1: Absolute Time | [Absolute Time](./absolute-time.md#summary-postulate) |
+| Postulate 2: Euclidean Void | [Euclidean Void](./euclidean-void.md#summary-postulate) |
+| Postulate 3: Absolute Timespace | [Absolute Timespace](./absolute-timespace.md#summary-postulate) |
+| Postulate 4: Architrino | [Architrino](./architrino.md#summary-postulate) |
+
 The point is not to make every later result true by definition. The point is to keep the starting inventory clean. Dynamics, assembly mappings, particle families, effective spacetime, and cosmology all depend on these foundations. If the level assignment is wrong here, the error propagates everywhere else.
 
 The teaching order uses four levels:
@@ -41,7 +68,7 @@ The same level discipline can be read through the canonical symbol map:
 | Level | Canonical variables or records | Owning chapters |
 |:---|:---|:---|
 | Substrate ontology | $T$, $\Sigma_T$, $h_{ij}$, $\mathbf X_a(T)$, $q_a$, causal-wake support | [Absolute Time](./absolute-time.md), [Euclidean Void](./euclidean-void.md), [Absolute Timespace](./absolute-timespace.md), [Architrino](./architrino.md) |
-| Assembly and medium behavior | assembly branch records, $\Lambda_{\text{NS}}$, $\rho_{\text{NS}}(\mathbf X,T)$, $\Sigma_{\text{sea}}(\mathbf X,T)$, $\mathbf u_{\text{sea}}(\mathbf X,T)$ | [Noether Braid](../noether-braid/noether-braid.md), [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md), [Noether sea](../spacetime/noether-sea.md) |
+| Assembly and medium behavior | assembly closure labels, including the current concrete $\Lambda_{A1}$ instance, plus $\rho_{\text{NS}}(\mathbf X,T)$, $\Sigma_{\text{sea}}(\mathbf X,T)$, $\mathbf u_{\text{sea}}(\mathbf X,T)$ | [Noether Braid](../noether-braid/noether-braid.md), [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics), [Noether sea](../spacetime/noether-sea.md) |
 | Effective description | $A(\mathcal{N}_{\mathrm{sea}})$, $B_{ij}(\mathcal{N}_{\mathrm{sea}})$, $u^i_{\mathrm{sea,eff}}$, $g^{\text{eff}}_{\mu\nu}$, $\Phi_{\text{eff}}$ | [Emergent Metric](../spacetime/emergent-metric.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), [Particle Masses](../assemblies/particle-masses.md) |
 | Observer inference | $\Pi_{\mathrm{obs}}:S(T)\to\bar S(T)$, Physical Observer records $\Theta_A^{(O,W)}$, detector and measurement records | [Observer Framework](../spacetime/observer-framework.md), [Wavefunction Ontology](../quantum/wavefunction-ontology.md), [Measurement Ontology](../quantum/measurement-ontology.md) |
 
@@ -55,11 +82,19 @@ S(T)
 \xrightarrow{\Pi_{\mathrm{record}}}
 \bar S(T).
 $$
-Here $\mathfrak B(T)$ denotes the retained assembly and branch records and $\Pi_{\mathrm{record}}$ is the final record-extraction arrow. The canonical observer projection is the composite $\Pi_{\mathrm{obs}}=\Pi_{\mathrm{record}}\circ\Pi_{\mathrm{eff}}\circ\Pi_{\mathrm{assembly}}:S(T)\to\bar S(T)$, matching the definition in [Architrino](./architrino.md#provenance-and-persistence). Pullback of retained information along the tower induces a decreasing filtration on $S(T)$. Each arrow keeps some information and discards some information. Individual provenance labels, path-history depth, inactive branch alternatives, fine assembly coordinates, medium microstate, and apparatus-inaccessible records may be lost at different stages.
+Here $\mathfrak B(T)$ denotes the retained assembly and branch records and $\Pi_{\mathrm{record}}$ is the final record-extraction arrow. The canonical observer projection is the composite $\Pi_{\mathrm{obs}}=\Pi_{\mathrm{record}}\circ\Pi_{\mathrm{eff}}\circ\Pi_{\mathrm{assembly}}:S(T)\to\bar S(T)$, refining the monolithic definition in [Architrino](./architrino.md#provenance-and-persistence). Pullback of retained information along the tower induces a decreasing filtration on $S(T)$. Each arrow keeps some information and discards some information. Individual provenance labels, path-history depth, inactive branch alternatives, fine assembly coordinates, medium microstate, and apparatus-inaccessible records may be lost at different stages.
 
 A quantity is well-defined at a level only if it survives the corresponding forgetting map. A residual measures failure to survive that quotient. Examples include provenance leakage $\epsilon_{\mathrm{prov}}$, branch or record residuals $\mathcal R_{\mathcal Q}$, clock-composition residuals $\Delta^{\mathrm{comp}}$, and clock-universality residuals $\epsilon_{\mathrm{univ}}$. This is why level discipline is not only vocabulary discipline. It decides which invariants remain meaningful after a projection.
 
-Many projections also need regularity. A reconstruction or projection map is locally usable only where its active inverse has a declared non-degeneracy floor. The root chart uses $|\partial_{T_t} F|\ge\kappa_{\mathrm{hit}}>0$, where $F$ is the causal-root function defined in The Fundamental Entity below and owned by [Master Equation](../dynamics/master-equation.md); frame construction uses a basis-conditioning floor such as $\sin\theta_{\min}>0$; wake-center reconstruction uses a finite solid-angle floor; basin partitions use separatrix regularity; and clock extraction requires a retained hyperbolic limit cycle with a unique rotation number.
+Many projections also need regularity. A reconstruction or projection map is locally usable only where its active inverse has a declared non-degeneracy floor:
+
+| Floor | Guarded map | Failure meaning | Owner |
+|:---|:---|:---|:---|
+| $\kappa_{\mathrm{hit}}>0$ | causal-root chart | fold, caustic, or root-count transition | [Master Equation](../dynamics/master-equation.md#causal-time-map-and-root-topology) |
+| $\sin\theta_{\min}>0$ | ordered-tuple frame construction | collinear or ill-conditioned basis | [Constructing the Absolute Frame](./constructing-the-absolute-frame.md#reconstruction-existence-lemma) |
+| $\omega_{\min}>0$ or $\lambda_{\min}(G_a)\ge\lambda_{\min}^{\mathrm{ctr}}>0$ | wake-center inverse | insufficient aperture or rank-deficient center fit | [Detecting the Absolute Frame](./detecting-the-absolute-frame.md#detecting-absolute-rest-the-causal-wake-diagnostic) |
+| $\kappa_{\mathrm{sep}}>0$ | basin separator | unstable, riddled, or unresolved branch partition | [Emergence of Structure](./emergence-of-structure.md#context-as-constraint-on-basin-selection) |
+| $\sigma_{\mathrm{cr}}>0$ | clock/ruler handoff | rank loss or locally multivalued metric export | [Absolute Time Defense](./absolute-time-defense.md#absolute-time-global-foliation-and-proper-time) |
 
 The shared theorem target is a reconstruction-regularity lemma: away from the generically codimension-1 floor-failure locus, the relevant map has controlled local inverse behavior. At the floor failure, the theory must report a residual, branch jump, or reconfiguration event rather than silently reusing a smooth chart.
 
@@ -79,9 +114,9 @@ The substrate is what $\mathbb{A}\mathbb{A}\mathbb{A}$ treats as fundamental. It
 
 [Absolute Time](./absolute-time.md) is the canonical substrate-level specification of the universal time parameter $T$. It defines time as a one-dimensional, continuous, oriented, non-dynamical continuum $\mathbb{R}$ with absolute event ordering, no kinematic time dilation, no relativity of simultaneity, and no reparametrization freedom beyond unit choice and origin choice: constancy of $c_f$ and form-invariance of the receiving law pin $T$ to its affine class.
 
-In this ontology hub, the key commitment is:
+The abridged routing statement is:
 
-> **Postulate 1 (Absolute Time):** Time is an absolute, universal, one-dimensional continuum $\mathbb{R}$ with fixed orientation, a scale anchored by the constant primitive wake speed $c_f$ and the receiving law, frame-independent duration, non-dynamical status, and no substrate-level time dilation or relativity of simultaneity. Dynamics occur through finite-speed causal-wake propagation ($c_f$) in absolute time, with all interactions routed through path history rather than instantaneous action-at-a-distance or advanced effects; worldlines are parametrized directly by $T$, with no reparametrization freedom beyond unit choice and origin choice.
+> **Abridged Postulate 1 (Absolute Time):** Time is an absolute, universal, one-dimensional continuum $\mathbb{R}$ with fixed orientation, a scale anchored by the constant primitive wake speed $c_f$ and the receiving law, frame-independent duration, non-dynamical status, and no substrate-level time dilation or relativity of simultaneity. Dynamics occur through finite-speed causal-wake propagation ($c_f$) in absolute time, with all interactions routed through path history rather than instantaneous action-at-a-distance or advanced effects; worldlines are parametrized directly by $T$, with no reparametrization freedom beyond unit choice and origin choice.
 
 This postulate is not a claim that embedded clocks all read the same rate. Clock slowing, synchronization offsets, and proper-time readings belong to assembly and Noether sea dynamics at the observer-accessible level.
 
@@ -91,9 +126,9 @@ For the argumentative case, see [Absolute Time Defense](./absolute-time-defense.
 
 [Euclidean Void](./euclidean-void.md) is the canonical substrate-level specification of the fixed spatial container. It defines three-dimensional space as flat, homogeneous, isotropic, non-dynamical $\mathbb{R}^3$ with metric $h_{ij}=\delta_{ij}$, fixed coordinate identity, Euclidean distance, spatial operators, and Euclidean symmetry group $E(3)$.
 
-In this ontology hub, the key commitment is:
+The abridged routing statement is:
 
-> **Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.
+> **Abridged Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.
 
 This is a container claim. It does not deny that observers can reconstruct curved effective geometry. The Noether sea is physical content within the void, not the void itself. For the Noether sea branch, see [Noether sea](../spacetime/noether-sea.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../spacetime/emergent-metric.md).
 
@@ -101,9 +136,9 @@ This is a container claim. It does not deny that observers can reconstruct curve
 
 [Absolute Timespace](./absolute-timespace.md) is the canonical product-structure specification for the background arena $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$. It owns the foliation into simultaneous Euclidean slices, the separated clock-form/spatial-metric data $(dT,h)$, Galilean kinematic structure, product measures and spatial operators, and causal wake geometry.
 
-In this ontology hub, the key commitment is:
+The abridged routing statement is:
 
-> **Postulate 3 (Absolute Timespace):** The background arena is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$, foliated by absolute-time slices $\Sigma_T$. The background is non-dynamical and non-curved; causality is ordered by $T$ and constrained by finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame.
+> **Abridged Postulate 3 (Absolute Timespace):** The background arena is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$, foliated by absolute-time slices $\Sigma_T$. The background is non-dynamical and non-curved; causality is ordered by $T$ and constrained by finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame.
 
 The product notation packages the substrate clock and the spatial container. It does not introduce a non-degenerate four-dimensional metric as primitive ontology. Relativistic spacetime language enters only after medium response, clock/ruler behavior, and signal reconstruction have been derived or modeled.
 
@@ -117,7 +152,7 @@ For the factor-level specifications, see [Absolute Time](./absolute-time.md) and
 
 The architrino is the sole primitive material substance of the theory. That does not make an isolated architrino a matter particle. Rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties.
 
-The same caution applies to exchange behavior. Fermion and boson exchange labels are assembly-level recovery targets, not inserted projector postulates. Any effective antisymmetric or symmetric exchange label must be routed through a retained branch record, currently the ordered-frame spinor program and the Noether braid closure label $\Lambda_{\text{NS}}$.
+The same caution applies to exchange behavior. Fermion and boson exchange labels are assembly-level recovery targets, not inserted projector postulates. Any effective antisymmetric or symmetric exchange label must be routed through a retained assembly closure label and the ordered-frame spinor program. The current concrete braid instance is $\Lambda_{A1}$; no separate generic `NS` taxonomy is introduced.
 
 The hard wall is the two-assembly exchange loop. An exchange of two identical braids is a loop in the configuration space of retained assembly configurations, not in the topology of the ambient void. The ambient quotient does supply a candidate loop class: for two identical centers in $\mathbb{R}^3$, the unordered coincidence-free configuration space has fundamental group $\mathbb{Z}_2$ generated by the exchange loop, the Leinaas-Myrheim/Laidlaw-DeWitt class. What the void does not supply is superselection: nothing forces a recovered effective state to transform nontrivially around that loop. The fermionic route must therefore establish two facts about the retained dynamics. The dynamically retained framed two-assembly component must not trivialize the exchange class after the allowed quotient, and the recovered effective state bundle must carry holonomy $-1$ around it. If either fails, whether the class dies in the retained component or the holonomy is trivial, the antisymmetric projector has not been recovered from assembly dynamics and would have to be inserted at the effective level. The generic failure mode is trivial holonomy, not a missing loop class.
 
@@ -125,27 +160,11 @@ The architrino's intrinsic polarity is also not the full observer-level charge r
 
 The emitted causal wake is not another primitive substance, but it is real. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
 
-For an architrino $a$ with worldline $\mathbf X_a(T)$ on time domain $I_a$ and polarity $q_a$, the wake may be read schematically as a functional of that transmitter history:
-$$
-\mathcal{W}_a(\mathbf X,T)
-=
-\int_{\{T_t\in I_a:\ T_t<T\}}
-q_a\,
-K\!\left(\mathbf X,T;\mathbf X_a(T_t),T_t\right)
-\,dT_t,
-\qquad
-\operatorname{supp}K
-\subseteq
-\left\{\|\mathbf X-\mathbf X_a(T_t)\|=c_f(T-T_t)\right\}
-$$
+The load-bearing ontology claim is a dependency claim: once transmitter identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains. The schematic transmitter-history functional and its point-transceiver regularity boundary are owned by [Architrino](./architrino.md#point-transceiver-status); the causal-root sum, Jacobian, transversality floor, and acceleration weight are owned by [Master Equation](../dynamics/master-equation.md). Effective field language may summarize many wake contributions, but the substrate account remains source-provenanced causal-wake history.
 
-The $dT_t$ integral is schematic because the support condition selects causal roots of $F_a(\mathbf X,T;T_t)=\|\mathbf X-\mathbf X_a(T_t)\|-c_f(T-T_t)$ rather than an ordinary interval of source times. In the Master Equation this is implemented by a surface-delta or root-sum expression with the simple-root transversality floor $\lvert\partial_{T_t}F_a\rvert \ge \kappa_{\mathrm{hit}} > 0$; if that floor fails, the contribution belongs to branch-chart or regularization analysis rather than to this ontology-level functional. The floor has a direct physical reading: on the wake support, $\partial_{T_t}F_a = c_f-\hat{\mathbf r}\cdot\mathbf V_a(T_t)$, the transmitter-side factor derived in [Absolute Timespace](./absolute-timespace.md#causal-wake-geometry), so floor failure is the caustic condition in which the source closes on the receiver at the wake speed along the line of sight: the same zero that makes the Lienard-Wiechert delayed-potential denominator diverge in classical electrodynamics, and a generic occurrence for super-wake-speed sources. In this ontology-level wake functional the kernel's source dependence is written through the emission-time position $\mathbf X_a(T_t)$ only; transmitter emission-velocity dependence enters through the root-sum Jacobian $1/\lvert\partial_{T_t}F_a\rvert$, i.e. the inverse transmitter-side factor, not through additional kernel arguments. The full transceiver acceleration law separately carries the transmitter-side acceleration weight $W_{ij}^{\mathrm{acc}}$; both factors are owned by the [Master Equation](../dynamics/master-equation.md).
+The abridged routing statement is:
 
-This formula is a level assignment, not a replacement for the Master Equation. It states the dependency: once transmitter identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains. Effective field language may summarize many wake contributions, but the substrate account remains source-provenanced causal-wake history.
-
-In this ontology hub, the key commitment is:
-
-> **Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\mathbb{A}\mathbb{A}\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.
+> **Abridged Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\mathbb{A}\mathbb{A}\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.
 
 For the full primitive-entity page, see [Architrino](./architrino.md). For the receiving-law derivation, see [Master Equation](../dynamics/master-equation.md). For assembly emergence, see [Emergence](./emergence-of-structure.md) and [Noether Braid](../noether-braid/noether-braid.md).
 

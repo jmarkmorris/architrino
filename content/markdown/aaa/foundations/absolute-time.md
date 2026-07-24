@@ -8,7 +8,7 @@ The safest way to read the chapter is to keep three uses of time separate. Absol
 
 ## Core Concept
 
-Absolute time is the one universal ordering parameter. It is **one-dimensional, continuous, and oriented**, and it advances independently of space, matter, energy, or any physical process. In substrate ontology, it is **non-dynamical**: time does not curve, dilate, accelerate, or respond to forces.
+Absolute time is the one universal ordering parameter. It is **one-dimensional, continuous, and oriented**, and it advances uniformly and independently of space, matter, energy, or any physical process. In substrate ontology, it is **non-dynamical**: time does not curve, dilate, accelerate, or respond to forces.
 
 Physical clocks are different. A clock is an assembly with repeatable internal cycles. The clock can speed up or slow down as an assembly, but the cycles are compared against the absolute parameter; they do not generate it.
 
@@ -24,17 +24,21 @@ Ordinary language uses the word "time" for several different things. $\mathbb{A}
 
 1. **Substrate ordering:** Absolute time $T$ orders universe states. It is not directly measured by a physical clock and has no natural origin; its affine scale is fixed only after the causal-wake law and unit convention are declared.
 2. **Causal-wake implementation:** Architrino worldlines and emissions make the ordering physically operative. A transmitter event at emission time $T_t$ contributes at a receiver time $T_r$ only when the causal wake support satisfies
-$$
-r_{ij}(T_r,T_t)=c_f(T_r-T_t),
-$$
-where $r_{ij}(T_r,T_t)=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the receiver-transmitter separation. In this layer, temporal separation and Euclidean distance become a receiver-local interaction condition.
+
+   $$
+   r_{ij}(T_r,T_t)=c_f(T_r-T_t),
+   $$
+
+   where $r_{ij}(T_r,T_t)=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the receiver-transmitter separation. In this layer, temporal separation and Euclidean distance become a receiver-local interaction condition.
 3. **Assembly clock readout:** Physical clock time is an assembly-level phase extraction. A stable binary or Noether braid branch supplies repeatable internal cycles, and observer clock time is the count of those cycles relative to a reference branch, not another substrate parameter. In the notation of [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), with $\varphi_{\mathcal A}$ the counted clock phase and $\Omega_{\mathcal A}^{(0)}$ its rest-branch reference rate,
-$$
-d\tau_{\mathcal A}
-=
-\frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}.
-$$
-Motion through the Euclidean void and coupling to the Noether sea can retune the internal cycle, so derived clock time changes even though absolute time does not.
+
+   $$
+   d\tau_{\mathcal A}
+   =
+   \frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}.
+   $$
+
+   Motion through the Euclidean void and coupling to the Noether sea can retune the internal cycle, so derived clock time changes even though absolute time does not.
 
 This ladder preserves the useful intuition that cycles make clocks while preventing cycles from being confused with time itself. A moving assembly may trace a helical history through absolute timespace, and its internal cycle may slow or speed relative to $T$; the substrate ordering parameter remains the same line.
 
@@ -90,6 +94,8 @@ $$
 
 Choosing $T_0$ fixes the affine scale of $T$ for the declared model. Setting $c_f=1$ is the special unit convention $L_0/T_0=\hat c_f$; keeping $c_f$ explicit leaves the physical anchor visible.
 
+Symbolic derivations may retain $c_f$ when its dependence matters, but every new numerical instantiation, fixture, simulation, tolerance, and worked numerical example uses normalized wake-speed units with $c_f=1$. A provenance-bound legacy artifact recorded with another value must be rerun at $c_f=1$ before it supports a current conclusion.
+
 > **Plain language:** We pick a standard unit of duration, such as one second or one maximum-curvature binary orbit time, and measure all times as pure numbers of that unit, keeping equations dimensionally clean.
 
 ## Duration and Linear Advancement
@@ -128,57 +134,7 @@ Causal influence is stricter than temporal precedence. Event A can influence eve
 
 The causal arrow is therefore a law-level feature of the master-equation support convention. Thermodynamic, biological, and cosmological arrows are emergent finite-window properties built on that oriented dynamics, initial and boundary conditions, and the records retained by a finite observer. This differs from time-symmetric absorber formulations, where past- and future-supported solutions are treated as part of one law. The law-level asymmetry also carries a recovery burden of the same family as preferred-frame leakage: effective observer-level dynamics must recover microreversibility and detailed-balance behavior in the validated equilibrium and weak-interaction regimes up to known $T$-violation bounds, with the derivation owned by the theory-bridge layer.
 
-The entropy arrow is therefore a finite-window statement, not a definition of time itself. For a chosen coarse-graining $\mathcal{Q}$ and observer-accessible window $W(T)$, an entropy summary has the schematic form
-$$
-S_{\mathcal{Q},W}(T)=k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(T)}\right)
-$$
-where $\Gamma_{\mathcal{Q},W(T)}$ is the set of microstates compatible with the retained macroscopic records in that window. This expression is meaningful only after the measure, coarse-graining, and access window are specified.
-
-The same statement can be written as a projection of complete deterministic histories into the records retained by a Physical Observer. Let $\mu_T$ be a measure on the complete-state and path-history ensemble compatible with the declared preparation, and let $\Pi_{\mathcal{Q},W}$ map those histories to the variables retained by the coarse-graining $\mathcal{Q}$ on the window $W$. Then the observer-window entropy has the form
-$$
-S_{\Pi,W}(T)
-=
-k_B\,\mathcal{H}\!\left((\Pi_{\mathcal{Q},W})_*\mu_T\right)
-$$
-where $\mathcal{H}$ is the entropy functional taken relative to a declared reference measure on the record space; on continuous record spaces the bare entropy of a measure is chart-dependent, so the reference measure is part of the record-space declaration. Even if the complete dynamics preserve the underlying measure, $S_{\Pi,W}$ can increase when $\Pi_{\mathcal{Q},W}$ discards path-history, boundary-wake, or apparatus-record information. In information terms this is the data-processing inequality for the record channel: relative entropy between candidate history ensembles, taken against the declared reference measure, cannot increase under $\Pi_{\mathcal{Q},W}$, and the distinguishability lost to the record channel is what appears as entropy growth in the retained description. This is an observer-window projection effect, not evidence that absolute time itself is generated by entropy.
-
-The measure statement is an admissibility assumption, not a free infinite-dimensional Liouville theorem. For delayed dynamics the natural history space is a path-history space, such as a finite-memory regularized section of $C([-h,0];\mathbb{R}^{3N})$ or a finite Galerkin chart after the mollifier $\eta$ and memory horizon $h$ have been declared. Entropy claims in this chapter therefore apply on a stated finite or regularized history chart carrying a quasi-invariant preparation measure. Extending the same notation to an infinite-history limit is a closure target, not something supplied by the definition of absolute time.
-
-In cosmology or other unbounded settings, the relevant bookkeeping must also expose boundary flux:
-$$
-\frac{dS_{\mathcal{Q},W}}{dT}
-=
-\sigma_W(T)
--
-\int_{\partial W(T)}
-\left(
-\mathbf{J}_S
--
-s_{\mathcal{Q}}\mathbf{u}_{\partial W}
-\right)
-\cdot\hat{\mathbf{n}}\,dA
-+
-\mathcal{R}_{\mathcal{Q}}(T)
-$$
-with $\sigma_W$ the local production term, $\mathbf{J}_S$ the entropy flux through the boundary in the fixed substrate chart, $s_{\mathcal{Q}}$ the retained entropy density, $\mathbf{u}_{\partial W}$ the velocity of the moving window boundary, and $\mathcal{R}_{\mathcal{Q}}$ the residual created by changing the coarse-graining or record set. For a fixed window, $\mathbf{u}_{\partial W}=\mathbf{0}$ and the expression reduces to the ordinary flux balance. Plain language: entropy can diagnose an emergent arrow inside a stated physical and inferential window, but it does not supply the absolute ordering parameter $T$.
-
-The residual $\mathcal{R}_{\mathcal{Q}}$ has the same structural role as other chart-change terms in the foundation stack. On a regular observer chart the projection rank, record set, and coarse-graining are fixed, so the functional is single-valued. When the observer projection changes rank, for example at a branch fold, record separator, or coarse-graining handoff, $\mathcal{R}_{\mathcal{Q}}$ records the entropy jump introduced by the changed chart rather than a force acting on time itself.
-
-A monotone entropy arrow in that window is therefore a conditional balance statement:
-$$
-\frac{dS_{\mathcal{Q},W}}{dT}\ge 0
-\quad\Longleftrightarrow\quad
-\sigma_W(T)+\mathcal{R}_{\mathcal{Q}}(T)
-\ge
-\int_{\partial W(T)}
-\left(
-\mathbf{J}_S
--
-s_{\mathcal{Q}}\mathbf{u}_{\partial W}
-\right)
-\cdot\hat{\mathbf{n}}\,dA
-$$
-for the declared coarse-graining and record set. Without those window data, the theory does not promote entropy increase into a definition of time.
+The entropy arrow is therefore a finite-window statement, not a definition of time itself. A valid entropy claim must declare its preparation measure, coarse-graining, observer-accessible window, boundary flux, and any record-change residual. Projection can discard path-history, boundary-wake, or apparatus information and thereby create an increasing retained entropy even when the complete dynamics remain deterministic. The full definitions, data-processing argument, boundary-flux balance, and chart-change residual $\mathcal{R}_{\mathcal Q}$ are owned by [Entropy](../dynamics/entropy.md#mapping-out-to-effective-physics). Their load-bearing conclusion here is simple: entropy diagnoses an emergent arrow inside a stated physical and inferential window; it does not supply the absolute ordering parameter $T$.
 
 ## Absolute and Universal Nature
 
@@ -263,7 +219,7 @@ The foundation stack keeps the relevant speed symbols distinct:
 | $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether sea state and direction | derived |
 | $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
 | $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
-| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration |
+| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration and dressing-flow fixed-point target |
 
 These symbols must not be identified unless the local regime and derivation have been stated.
 
@@ -359,7 +315,7 @@ The architrino-specific identity claim is developed further in [Architrino](arch
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, time itself has no internal structure or dynamics. It does not encode forces, curvature, or acceleration of any kind.
 
 - The **flow of time** is trivial: the parameter advances uniformly, and there is no geodesic equation to solve because no metric or connection is declared on the bare time line.
-- All **forces and accelerations** arise from:
+- All **accelerations** (and any assembly-level effective forces) arise from:
   - **Causal wakes** acting within the fixed Euclidean void.
   - **Self-interaction** of extended assemblies, such as the self-hit regime of binaries.
 

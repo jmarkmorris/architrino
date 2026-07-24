@@ -291,7 +291,7 @@ Homogeneity and isotropy give the container-level consequences:
 - Translation symmetry supplies the kinematic basis for momentum conservation when the delayed action and wake-ledger channels preserve the same symmetry.
 - Rotation symmetry supplies the kinematic basis for angular momentum conservation when the delayed action and wake-ledger channels preserve the same symmetry.
 
-Reflections are container symmetries, and the primitive wake law is parity-even: causal isochrons are spheres and the received acceleration follows $\hat{\mathbf{r}}_{ij}/r_{ij}^2$. Chirality bookkeeping such as writhe and linking signs is therefore conventional at the container level, and physical parity violation must be recovered as assembly and branch-level selection; see [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md).
+Reflections are container symmetries, and the primitive wake law is parity-even: causal isochrons are spheres and the received acceleration follows $\hat{\mathbf{r}}_{ij}/r_{ij}^2$. This parity-evenness is proved for the declared causal kernel in [B1 Symmetry](../noether-braid/braid-b1-symmetry.md#discrete-symmetry-structure). Chirality bookkeeping such as writhe and linking signs is therefore conventional at the container level, and physical parity violation must be recovered as assembly and branch-level selection; see [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md).
 
 Any preferred-frame effect, anisotropy, or effective Lorentz behavior must therefore come from dynamics, Noether sea response, or observer construction. It cannot come from an anisotropy of the Euclidean void.
 
@@ -410,5 +410,7 @@ The comparison with curved space preserves the operational success of curved-spa
 The phrase `curved space` should not be used for the fundamental ontology. Use `effective metric`, `effective spacetime`, or `refractive gravity` when describing observer-level curvature-like behavior.
 
 ## Summary Postulate
+
+Postulate 2 fails if an accepted result requires the substrate container itself to carry a dynamical curvature, expansion, contraction, or anisotropy row after contributions from matter content, wake transport, Noether sea response, and observer reconstruction have been exhausted. An effective curved metric may remain a valid observer description; promoting that metric response to the Euclidean void would replace this postulate.
 
 > **Postulate 2 (Euclidean Void):** Three-dimensional space is the Euclidean void: an absolute, static, flat container $\mathbb{R}^3$ equipped with fixed metric $h_{ij}=\delta_{ij}$. It is homogeneous, isotropic, non-dynamical, and does not curve, expand, contract, or respond to matter and energy. All spatial displacements, distances, volumes, and spatial differential operators are defined by the fixed Euclidean metric. Curvature-like observations, effective scale histories, and observer-level redshift summaries arise from trajectories, assemblies, wakes, and Noether sea response within the void, not from curvature or expansion of the void itself.
