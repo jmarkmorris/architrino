@@ -208,7 +208,7 @@ $$
 
 **Summary:** Wheeler-Feynman electrodynamics removes an independently existing electromagnetic field from the ontology and formulates charged-particle interaction through time-symmetric direct relations plus absorber conditions.
 
-**Conceptual View:** The theory is historically close to a path-history interaction program because source and receiver worldlines, rather than a field substance, carry the explanatory burden. Its defining time symmetry and cosmological absorber condition, however, differ from a purely causal-past interaction law.
+**Conceptual View:** The theory is historically close to a path-history interaction program because transmitter and receiver worldlines, rather than a field substance, carry the explanatory burden. Its defining time symmetry and cosmological absorber condition, however, differ from a purely causal-past interaction law.
 
 **Key Equation:** A schematic time-symmetric potential is
 $$

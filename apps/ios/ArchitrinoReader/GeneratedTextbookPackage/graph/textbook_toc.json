@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 182,
-      "sections": 1460
+      "entries": 183,
+      "sections": 1523
     }
   },
   "tocRoot": {
@@ -1119,14 +1119,6 @@
                     "markdownSection": "Recommendation",
                     "sectionKey": "recommendation",
                     "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Layered penetration diagram (molecules → cores)",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                    "markdownSection": "Layered penetration diagram (molecules → cores)",
-                    "sectionKey": "layered penetration diagram molecules cores",
-                    "headingLevel": 2
                   }
                 ]
               },
@@ -1596,10 +1588,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Spiral Binary Symmetry-Breaking Point ($\\|\\mathbf V\\| = c_f$)",
+                "title": "Spiral Binary Field-Speed Symmetry-Breaking Point",
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Spiral Binary Symmetry-Breaking Point ($\\|\\mathbf V\\| = c_f$)",
-                "sectionKey": "spiral binary symmetry breaking point mathbf v c f",
+                "markdownSection": "Spiral Binary Field-Speed Symmetry-Breaking Point",
+                "sectionKey": "spiral binary field speed symmetry breaking point",
                 "headingLevel": 2
               },
               {
@@ -1640,6 +1632,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
                 "markdownSection": "Symmetry, Conservation, and Lyapunov Functionals",
                 "sectionKey": "symmetry conservation and lyapunov functionals",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary",
+                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
+                "markdownSection": "Summary",
+                "sectionKey": "summary",
                 "headingLevel": 2
               }
             ]
@@ -2558,6 +2558,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Cyclic-Symmetric A2/B1 Overlap",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
+                "markdownSection": "Cyclic-Symmetric A2/B1 Overlap",
+                "sectionKey": "cyclic symmetric a2 b1 overlap",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Discrete-Symmetry Structure",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-b1-symmetry.md",
                 "markdownSection": "Discrete-Symmetry Structure",
@@ -2628,6 +2636,14 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-mathematics.md",
                 "markdownSection": "Hinge Equation Sketch",
                 "sectionKey": "hinge equation sketch",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Bounded-Weight Inverse-Square Escape Lemma",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+                "markdownSection": "Bounded-Weight Inverse-Square Escape Lemma",
+                "sectionKey": "bounded weight inverse square escape lemma",
                 "headingLevel": 2
               },
               {
@@ -4908,6 +4924,14 @@
             "sections": [
               {
                 "kind": "markdown-section",
+                "title": "Photon Referent Status",
+                "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+                "markdownSection": "Photon Referent Status",
+                "sectionKey": "photon referent status",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "The Photon ($\\gamma$): Coaxial Contra-Rotating Polarity-Conjugate Planar Pair",
                 "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
                 "markdownSection": "The Photon ($\\gamma$): Coaxial Contra-Rotating Polarity-Conjugate Planar Pair",
@@ -6407,6 +6431,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Quantum-Zeno and Anti-Zeno Benchmark",
+                "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
+                "markdownSection": "Quantum-Zeno and Anti-Zeno Benchmark",
+                "sectionKey": "quantum zeno and anti zeno benchmark",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Weak-Probe Limit",
                 "markdownPath": "content/markdown/aaa/quantum/measurement-ontology.md",
                 "markdownSection": "Weak-Probe Limit",
@@ -6563,10 +6595,26 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Bose-Einstein Regime: 2D Coherence",
+                "title": "Candidate Elementary Bose Route: 2D Coherence",
                 "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
-                "markdownSection": "Bose-Einstein Regime: 2D Coherence",
-                "sectionKey": "bose einstein regime 2d coherence",
+                "markdownSection": "Candidate Elementary Bose Route: 2D Coherence",
+                "sectionKey": "candidate elementary bose route 2d coherence",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Composite Assemblies and Exchange-Sign Composition",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "Composite Assemblies and Exchange-Sign Composition",
+                "sectionKey": "composite assemblies and exchange sign composition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Two-Dimensional Exchange and Anyonic Constraint",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "Two-Dimensional Exchange and Anyonic Constraint",
+                "sectionKey": "two dimensional exchange and anyonic constraint",
                 "headingLevel": 2
               },
               {
@@ -6583,6 +6631,14 @@
                 "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
                 "markdownSection": "Effective Exchange-State Contract",
                 "sectionKey": "effective exchange state contract",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "From Exchange Symmetry to Occupation Laws",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "From Exchange Symmetry to Occupation Laws",
+                "sectionKey": "from exchange symmetry to occupation laws",
                 "headingLevel": 2
               },
               {
@@ -6722,6 +6778,112 @@
                 "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
                 "markdownSection": "Time Notions (Operational)",
                 "sectionKey": "time notions operational",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "cosmology__cosmology_reconstruction",
+            "title": "Cosmology Reconstruction",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/cosmology/cosmology_reconstruction.json",
+            "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "The Simple Picture",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "The Simple Picture",
+                "sectionKey": "the simple picture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why Lambda-CDM Is Strong",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "Why Lambda-CDM Is Strong",
+                "sectionKey": "why lambda cdm is strong",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Redshift Is",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "What Redshift Is",
+                "sectionKey": "what redshift is",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Redshift Means In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "What Redshift Means In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
+                "sectionKey": "what redshift means in mathbb a mathbb a mathbb a",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Noether Sea Evolution Is Not Universal Expansion",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "Noether Sea Evolution Is Not Universal Expansion",
+                "sectionKey": "noether sea evolution is not universal expansion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Source Claims Are Reconstructed",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "Source Claims Are Reconstructed",
+                "sectionKey": "source claims are reconstructed",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why The Lambda-CDM Age Is Not The Same Question",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "Why The Lambda-CDM Age Is Not The Same Question",
+                "sectionKey": "why the lambda cdm age is not the same question",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Distance Is Also A Ledger",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "Distance Is Also A Ledger",
+                "sectionKey": "distance is also a ledger",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Redshift And Distance: A Worked Comparison",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "Redshift And Distance: A Worked Comparison",
+                "sectionKey": "redshift and distance a worked comparison",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dark-Sector Reclassification",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "Dark-Sector Reclassification",
+                "sectionKey": "dark sector reclassification",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Required Recovery Tests",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "Required Recovery Tests",
+                "sectionKey": "required recovery tests",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "Summary",
+                "sectionKey": "summary",
                 "headingLevel": 2
               }
             ]
@@ -7534,10 +7696,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "DESI-Era Data-Product Gate",
+                "title": "BAO Data-Product Gate",
                 "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
-                "markdownSection": "DESI-Era Data-Product Gate",
-                "sectionKey": "desi era data product gate",
+                "markdownSection": "BAO Data-Product Gate",
+                "sectionKey": "bao data product gate",
                 "headingLevel": 2
               },
               {
@@ -7601,10 +7763,34 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Validation Protocols: Preferred-Frame Leakage and Frame Proxies",
+                "title": "Chapter Map",
                 "markdownPath": "content/markdown/aaa/validation/validation-protocols.md",
-                "markdownSection": "Validation Protocols: Preferred-Frame Leakage and Frame Proxies",
-                "sectionKey": "validation protocols preferred frame leakage and frame proxies",
+                "markdownSection": "Chapter Map",
+                "sectionKey": "chapter map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Promotion Standard",
+                "markdownPath": "content/markdown/aaa/validation/validation-protocols.md",
+                "markdownSection": "Promotion Standard",
+                "sectionKey": "promotion standard",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Preferred-Frame Leakage as One Protocol Family",
+                "markdownPath": "content/markdown/aaa/validation/validation-protocols.md",
+                "markdownSection": "Preferred-Frame Leakage as One Protocol Family",
+                "sectionKey": "preferred frame leakage as one protocol family",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reading a Null Result",
+                "markdownPath": "content/markdown/aaa/validation/validation-protocols.md",
+                "markdownSection": "Reading a Null Result",
+                "sectionKey": "reading a null result",
                 "headingLevel": 2
               }
             ]
@@ -7663,6 +7849,14 @@
                 "markdownPath": "content/markdown/aaa/validation/architrino-si-base-units.md",
                 "markdownSection": "Implications: Reducing the SI to Architrino Postulates",
                 "sectionKey": "implications reducing the si to architrino postulates",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Priorities",
+                "markdownPath": "content/markdown/aaa/validation/architrino-si-base-units.md",
+                "markdownSection": "Closure Priorities",
+                "sectionKey": "closure priorities",
                 "headingLevel": 2
               },
               {
@@ -8320,18 +8514,18 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Charge quantization at $\\epsilon$=|e/6|",
+                    "title": "Observer Charge Calibration",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Charge quantization at $\\epsilon$=|e/6|",
-                    "sectionKey": "charge quantization at epsilon e 6",
+                    "markdownSection": "Observer Charge Calibration",
+                    "sectionKey": "observer charge calibration",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Consequences that explain the “fit”",
+                    "title": "Candidate Consequences and Proof Burdens",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Consequences that explain the “fit”",
-                    "sectionKey": "consequences that explain the fit",
+                    "markdownSection": "Candidate Consequences and Proof Burdens",
+                    "sectionKey": "candidate consequences and proof burdens",
                     "headingLevel": 2
                   },
                   {
@@ -8400,10 +8594,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Interference and amplitude-squared from planar-mode overlap",
+                    "title": "Planar-Mode Interference Closure Target",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Interference and amplitude-squared from planar-mode overlap",
-                    "sectionKey": "interference and amplitude squared from planar mode overlap",
+                    "markdownSection": "Planar-Mode Interference Closure Target",
+                    "sectionKey": "planar mode interference closure target",
                     "headingLevel": 2
                   },
                   {
@@ -8540,10 +8734,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Run Protocol: Absolute-Frame + $\\mathbb{U}_{\\text{now}}$ Logging",
+                    "title": "Runtime Instantiation",
                     "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
-                    "markdownSection": "Run Protocol: Absolute-Frame + $\\mathbb{U}_{\\text{now}}$ Logging",
-                    "sectionKey": "run protocol absolute frame mathbb u text now logging",
+                    "markdownSection": "Runtime Instantiation",
+                    "sectionKey": "runtime instantiation",
                     "headingLevel": 2
                   }
                 ]
@@ -8606,10 +8800,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Runtime Artifact",
+                    "title": "Planned Runtime Artifacts",
                     "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
-                    "markdownSection": "Runtime Artifact",
-                    "sectionKey": "runtime artifact",
+                    "markdownSection": "Planned Runtime Artifacts",
+                    "sectionKey": "planned runtime artifacts",
                     "headingLevel": 2
                   },
                   {
@@ -8903,10 +9097,10 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Expected Mock Behavior",
+                        "title": "Required Mock Behavior",
                         "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
-                        "markdownSection": "Expected Mock Behavior",
-                        "sectionKey": "expected mock behavior",
+                        "markdownSection": "Required Mock Behavior",
+                        "sectionKey": "required mock behavior",
                         "headingLevel": 2
                       },
                       {
@@ -9647,6 +9841,22 @@
                       },
                       {
                         "kind": "markdown-section",
+                        "title": "Classical Electromagnetism (Maxwell-Faraday)",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                        "markdownSection": "Classical Electromagnetism (Maxwell-Faraday)",
+                        "sectionKey": "classical electromagnetism maxwell faraday",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Wheeler-Feynman Direct-Action Electrodynamics",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                        "markdownSection": "Wheeler-Feynman Direct-Action Electrodynamics",
+                        "sectionKey": "wheeler feynman direct action electrodynamics",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
                         "title": "Quantum Electrodynamics (QED)",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
                         "markdownSection": "Quantum Electrodynamics (QED)",
@@ -9909,6 +10119,14 @@
                     "children": [
                       {
                         "kind": "markdown-section",
+                        "title": "Bell Constraints",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                        "markdownSection": "Bell Constraints",
+                        "sectionKey": "bell constraints",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
                         "title": "Quantum Mechanics (QM)",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
                         "markdownSection": "Quantum Mechanics (QM)",
@@ -9945,6 +10163,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
                         "markdownSection": "Copenhagen Interpretation",
                         "sectionKey": "copenhagen interpretation",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Objective Collapse Theory (GRW / CSL)",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                        "markdownSection": "Objective Collapse Theory (GRW / CSL)",
+                        "sectionKey": "objective collapse theory grw csl",
                         "headingLevel": 3
                       },
                       {
@@ -10009,6 +10235,14 @@
                       },
                       {
                         "kind": "markdown-section",
+                        "title": "Relativistic Scalar Fields / Klein-Gordon Equation - Klein-Gordon",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Relativistic Scalar Fields / Klein-Gordon Equation - Klein-Gordon",
+                        "sectionKey": "relativistic scalar fields klein gordon equation klein gordon",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
                         "title": "Standard Model - SM",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
                         "markdownSection": "Standard Model - SM",
@@ -10021,6 +10255,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
                         "markdownSection": "Quantum Electrodynamics - QED",
                         "sectionKey": "quantum electrodynamics qed",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Classical Electromagnetism - Maxwell-Faraday",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Classical Electromagnetism - Maxwell-Faraday",
+                        "sectionKey": "classical electromagnetism maxwell faraday",
                         "headingLevel": 3
                       },
                       {
@@ -10147,10 +10389,26 @@
                       },
                       {
                         "kind": "markdown-section",
+                        "title": "Schrödinger Equation - Schrödinger",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Schrödinger Equation - Schrödinger",
+                        "sectionKey": "schrodinger equation schrodinger",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
                         "title": "Copenhagen Interpretation - Copenhagen",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
                         "markdownSection": "Copenhagen Interpretation - Copenhagen",
                         "sectionKey": "copenhagen interpretation copenhagen",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Transactional Interpretation - Transactional",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Transactional Interpretation - Transactional",
+                        "sectionKey": "transactional interpretation transactional",
                         "headingLevel": 3
                       },
                       {
@@ -10200,6 +10458,14 @@
                         "markdownSection": "Decoherence Program - Decoherence",
                         "sectionKey": "decoherence program decoherence",
                         "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Bell Theorem and Bell-Test Constraints - Bell",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Bell Theorem and Bell-Test Constraints - Bell",
+                        "sectionKey": "bell theorem and bell test constraints bell",
+                        "headingLevel": 3
                       }
                     ]
                   },
@@ -10221,6 +10487,14 @@
                       },
                       {
                         "kind": "markdown-section",
+                        "title": "Wheeler-Feynman Direct-Action Electrodynamics",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Wheeler-Feynman Direct-Action Electrodynamics",
+                        "sectionKey": "wheeler feynman direct action electrodynamics",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
                         "title": "Special Relativity - SR",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
                         "markdownSection": "Special Relativity - SR",
@@ -10233,6 +10507,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
                         "markdownSection": "General Relativity - GR",
                         "sectionKey": "general relativity gr",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Perturbative Quantum Gravity / General Relativity Effective Field Theory - GR-EFT",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Perturbative Quantum Gravity / General Relativity Effective Field Theory - GR-EFT",
+                        "sectionKey": "perturbative quantum gravity general relativity effective field theory gr eft",
                         "headingLevel": 3
                       },
                       {
@@ -10435,6 +10717,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
                         "markdownSection": "Dark Energy / Quintessence",
                         "sectionKey": "dark energy quintessence",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Holographic Dark Energy",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Holographic Dark Energy",
+                        "sectionKey": "holographic dark energy",
                         "headingLevel": 3
                       },
                       {
@@ -10679,10 +10969,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Additional Programs",
+                    "title": "Additional Major Academic Programs",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Additional Major Academic Programs To Consider",
-                    "sectionKey": "additional major academic programs to consider",
+                    "markdownSection": "Additional Major Academic Programs",
+                    "sectionKey": "additional major academic programs",
                     "headingLevel": 2,
                     "children": [
                       {
@@ -10787,6 +11077,32 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
                         "markdownSection": "Swampland Program",
                         "sectionKey": "swampland program",
+                        "headingLevel": 3
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Cross-Cutting Mathematical and Variational Structures",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                    "markdownSection": "Cross-Cutting Mathematical and Variational Structures",
+                    "sectionKey": "cross cutting mathematical and variational structures",
+                    "headingLevel": 2,
+                    "children": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Least-Action and Lagrangian Formalism",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Least-Action and Lagrangian Formalism",
+                        "sectionKey": "least action and lagrangian formalism",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Noether's Theorem",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Noether's Theorem",
+                        "sectionKey": "noether s theorem",
                         "headingLevel": 3
                       }
                     ]
@@ -12398,12 +12714,20 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Classical / Early Modern",
+                "title": "Metaphysics, Mechanism, And Classical Foundations",
                 "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                "markdownSection": "Classical & Early Modern Metaphysics + Mechanism",
-                "sectionKey": "classical early modern metaphysics mechanism",
+                "markdownSection": "Metaphysics, Mechanism, And Classical Foundations",
+                "sectionKey": "metaphysics mechanism and classical foundations",
                 "headingLevel": 2,
                 "children": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Parmenides (early 5th century BCE) — persistence beneath change",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+                    "markdownSection": "Parmenides (early 5th century BCE) — persistence beneath change",
+                    "sectionKey": "parmenides early 5th century bce persistence beneath change",
+                    "headingLevel": 3
+                  },
                   {
                     "kind": "markdown-section",
                     "title": "Heraclitus (c. 535–475 BCE)",
@@ -12499,6 +12823,14 @@
                     "markdownSection": "Pierre-Simon Laplace (1749–1827)",
                     "sectionKey": "pierre simon laplace 1749 1827",
                     "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Alfred North Whitehead (1861–1947)",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+                    "markdownSection": "Alfred North Whitehead (1861–1947)",
+                    "sectionKey": "alfred north whitehead 1861 1947",
+                    "headingLevel": 3
                   }
                 ]
               },
@@ -12528,6 +12860,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Henri Poincaré (1854–1912) — relativity, convention, and group structure",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+                    "markdownSection": "Henri Poincaré (1854–1912) — relativity, convention, and group structure",
+                    "sectionKey": "henri poincare 1854 1912 relativity convention and group structure",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Albert Einstein (1879–1955) — relativity",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
                     "markdownSection": "Albert Einstein (1879–1955) — relativity",
@@ -12548,6 +12888,14 @@
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
                     "markdownSection": "Roger Penrose (1931–) — Conformal Cyclic Cosmology",
                     "sectionKey": "roger penrose 1931 conformal cyclic cosmology",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Stephen Hawking (1942–2018) — horizons, area, and quantum emission",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+                    "markdownSection": "Stephen Hawking (1942–2018) — horizons, area, and quantum emission",
+                    "sectionKey": "stephen hawking 1942 2018 horizons area and quantum emission",
                     "headingLevel": 3
                   },
                   {
@@ -12634,6 +12982,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Einstein, Podolsky, and Rosen (1935) — completeness and separability",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+                    "markdownSection": "Einstein, Podolsky, and Rosen (1935) — completeness and separability",
+                    "sectionKey": "einstein podolsky and rosen 1935 completeness and separability",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Erwin Schrödinger (1887–1961) — wave mechanics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
                     "markdownSection": "Erwin Schrödinger (1887–1961) — wave mechanics",
@@ -12682,6 +13038,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "H. Dieter Zeh (1932–2018) and Wojciech Zurek (1951–) — decoherence",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+                    "markdownSection": "H. Dieter Zeh (1932–2018) and Wojciech Zurek (1951–) — decoherence",
+                    "sectionKey": "h dieter zeh 1932 2018 and wojciech zurek 1951 decoherence",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Antony Valentini (1965–) — Quantum Nonequilibrium",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
                     "markdownSection": "Antony Valentini (1965–) — Quantum Nonequilibrium",
@@ -12706,6 +13070,22 @@
                 "sectionKey": "qft standard model architecture foundations renormalization gauge structure",
                 "headingLevel": 2,
                 "children": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Michael Faraday (1791–1867) and James Clerk Maxwell (1831–1879) — Field and Electromagnetic Unification",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+                    "markdownSection": "Michael Faraday (1791–1867) and James Clerk Maxwell (1831–1879) — Field and Electromagnetic Unification",
+                    "sectionKey": "michael faraday 1791 1867 and james clerk maxwell 1831 1879 field and electromagnetic unification",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Emmy Noether (1882–1935) — Symmetry and Conservation",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+                    "markdownSection": "Emmy Noether (1882–1935) — Symmetry and Conservation",
+                    "sectionKey": "emmy noether 1882 1935 symmetry and conservation",
+                    "headingLevel": 3
+                  },
                   {
                     "kind": "markdown-section",
                     "title": "Paul Dirac (1902–1984)",
@@ -12756,14 +13136,6 @@
                 "sectionKey": "philosophy of science",
                 "headingLevel": 2,
                 "children": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Alfred North Whitehead (1861–1947)",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Alfred North Whitehead (1861–1947)",
-                    "sectionKey": "alfred north whitehead 1861 1947",
-                    "headingLevel": 3
-                  },
                   {
                     "kind": "markdown-section",
                     "title": "Bertrand Russell (1872–1970) — Logic, Analysis, and Scientific Clarity",
@@ -12837,7 +13209,17 @@
                     "markdownSection": "John Archibald Wheeler (1911–2008) — \"It from Bit\"",
                     "sectionKey": "john archibald wheeler 1911 2008 it from bit",
                     "headingLevel": 3
-                  },
+                  }
+                ]
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Philosophy of Scientific Change",
+                "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+                "markdownSection": "Philosophy of Scientific Change",
+                "sectionKey": "philosophy of scientific change",
+                "headingLevel": 2,
+                "children": [
                   {
                     "kind": "markdown-section",
                     "title": "Thomas Kuhn (1922–1996) — Paradigm Shifts",
@@ -12929,6 +13311,14 @@
                     "markdownSection": "Islam",
                     "sectionKey": "islam",
                     "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Kalam Cosmological Argument",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Kalam Cosmological Argument",
+                    "sectionKey": "kalam cosmological argument",
+                    "headingLevel": 3
                   }
                 ]
               },
@@ -12942,10 +13332,26 @@
                 "children": [
                   {
                     "kind": "markdown-section",
+                    "title": "Vaisheshika Atomism",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Vaisheshika Atomism",
+                    "sectionKey": "vaisheshika atomism",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Hinduism",
                     "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
                     "markdownSection": "Hinduism",
                     "sectionKey": "hinduism",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Jainism",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Jainism",
+                    "sectionKey": "jainism",
                     "headingLevel": 3
                   },
                   {
@@ -12972,6 +13378,64 @@
                     "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
                     "markdownSection": "Daoism (Taoism)",
                     "sectionKey": "daoism taoism",
+                    "headingLevel": 3
+                  }
+                ]
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Comparative Synthesis",
+                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                "markdownSection": "Comparative Synthesis",
+                "sectionKey": "comparative synthesis",
+                "headingLevel": 2,
+                "children": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Comparative Summary Table",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Comparative Summary Table",
+                    "sectionKey": "comparative summary table",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Creator, Cause, and Self-Grounding Process",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Creator, Cause, and Self-Grounding Process",
+                    "sectionKey": "creator cause and self grounding process",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Linear, Cyclic, and Open-Ended Time",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Linear, Cyclic, and Open-Ended Time",
+                    "sectionKey": "linear cyclic and open ended time",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Substance, Process, and Persistence",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Substance, Process, and Persistence",
+                    "sectionKey": "substance process and persistence",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Eschatology, Liberation, and Constituent Persistence",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Eschatology, Liberation, and Constituent Persistence",
+                    "sectionKey": "eschatology liberation and constituent persistence",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Comparative Verdict",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Comparative Verdict",
+                    "sectionKey": "comparative verdict",
                     "headingLevel": 3
                   }
                 ]
@@ -13144,10 +13608,34 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Kelvin-Tait Vortex Atoms: A Failed Physics With A Durable Topology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Kelvin-Tait Vortex Atoms: A Failed Physics With A Durable Topology",
+                "sectionKey": "kelvin tait vortex atoms a failed physics with a durable topology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Electromagnetic Mass And The Four-Thirds Warning",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Electromagnetic Mass And The Four-Thirds Warning",
+                "sectionKey": "electromagnetic mass and the four thirds warning",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Lorentz Before Einstein: The Almost-Substrate Moment",
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
                 "markdownSection": "Lorentz Before Einstein: The Almost-Substrate Moment",
                 "sectionKey": "lorentz before einstein the almost substrate moment",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Moving Media And Radiation Boundaries: Correct Laws, Contested Stories",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Moving Media And Radiation Boundaries: Correct Laws, Contested Stories",
+                "sectionKey": "moving media and radiation boundaries correct laws contested stories",
                 "headingLevel": 2
               },
               {
@@ -13168,6 +13656,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Von Neumann, Hermann, Bohm, And Bell: From Premature Exclusion To Exact Constraint",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Von Neumann, Hermann, Bohm, And Bell: From Premature Exclusion To Exact Constraint",
+                "sectionKey": "von neumann hermann bohm and bell from premature exclusion to exact constraint",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Copenhagen: Multistability Lost to Epistemic Minimalism",
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
                 "markdownSection": "Copenhagen: Multistability Lost to Epistemic Minimalism",
@@ -13180,6 +13676,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
                 "markdownSection": "Renormalization Era: Warnings Reframed",
                 "sectionKey": "renormalization era warnings reframed",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Schwarzschild, Tetrode, And Fokker: The Direct-Action Lineage",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Schwarzschild, Tetrode, And Fokker: The Direct-Action Lineage",
+                "sectionKey": "schwarzschild tetrode and fokker the direct action lineage",
                 "headingLevel": 2
               },
               {
@@ -13254,6 +13758,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
                 "markdownSection": "Overview",
                 "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Crisis-to-Solution Cross-Map",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Crisis-to-Solution Cross-Map",
+                "sectionKey": "crisis to solution cross map",
                 "headingLevel": 2
               },
               {
@@ -13360,6 +13872,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
                 "markdownSection": "Overview",
                 "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Crisis-Axis Cross-Reference",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Crisis-Axis Cross-Reference",
+                "sectionKey": "crisis axis cross reference",
                 "headingLevel": 2
               },
               {

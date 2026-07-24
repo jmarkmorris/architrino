@@ -27,12 +27,12 @@ $$
 [\mathfrak B]_{\mathrm{deg}}
 =
 \left(
-D_s,\,
+D_{\mathrm{self}},\,
 D_p,\,
 c_1
 \right),
 $$
-where $D_s$ and $D_p$ are signed root degrees. The unsigned counts $N_s$ and $M_p$ can change by opposite-sign fold-pair birth or death, while $D_s$ and $D_p$ are the degree-like data preserved by generic fold surgery. A promoted report should therefore carry both the compact assembly topological charge and its signed-degree refinement.
+where $D_{\mathrm{self}}$ and $D_p$ are signed root degrees. The unsigned counts $N_s$ and $M_p$ can change by opposite-sign fold-pair birth or death, while $D_{\mathrm{self}}$ and $D_p$ are the degree-like data preserved by generic fold surgery. A promoted report should therefore carry both the compact assembly topological charge and its signed-degree refinement.
 
 This is a definition and closure target, not a completed classification theorem. It becomes a physical assembly label only after the same retained branch chart supplies positive root floors, finite memory, finite local-to-global gluing, stable return data, and a closed wake-history boundary ledger.
 
@@ -78,7 +78,7 @@ M_p
 $$
 The signed degrees
 $$
-D_s
+D_{\mathrm{self}}
 =
 \operatorname{rank}_{\mathbb{Z}} C_{s,+}-\operatorname{rank}_{\mathbb{Z}} C_{s,-},
 \qquad
@@ -118,7 +118,7 @@ $$
 \left\langle[\mathcal L_\sigma(\mu)],[F_{T_\ast}]\right\rangle
 =0.
 $$
-Fold-pair births and deaths appear as null-homologous bigons with local contributions $+1-1=0$. Summing oriented intersections in the self and partner sectors gives $D_s$ and $D_p$; summing their absolute values gives $N_s$ and $M_p$. This sector restriction is $D_\sigma=\left.\chi_{\mathrm{root}}\right|_\sigma=\chi(C_{\sigma,\bullet})$ for $\sigma\in\{s,p\}$, the self and partner parts of the causal-root ledger in [Absolute Timespace](../foundations/absolute-timespace.md#causal-wake-geometry). This is also the bridge to [Causal Action Functional](../dynamics/causal-action-functional.md#geometrictopological-framework): the same causal-locus components that carry action-counting weight supply the signed root degrees used by the assembly topological charge.
+Fold-pair births and deaths appear as null-homologous bigons with local contributions $+1-1=0$. Summing oriented intersections in the self and partner sectors gives $D_{\mathrm{self}}$ and $D_p$; summing their absolute values gives $N_s$ and $M_p$. This sector restriction is $D_\sigma=\left.\chi_{\mathrm{root}}\right|_\sigma=\chi(C_{\sigma,\bullet})$ for $\sigma\in\{s,p\}$, the self and partner parts of the causal-root ledger in [Absolute Timespace](../foundations/absolute-timespace.md#causal-wake-geometry). This is also the bridge to [Causal Action Functional](../dynamics/causal-action-functional.md#geometrictopological-framework): the same causal-locus components that carry action-counting weight supply the signed root degrees used by the assembly topological charge.
 
 The third entry comes from the phase-return chart of a resonance-locked Noether braid. Let $\theta_1,\theta_2,\theta_3$ be the phase coordinates attached to the persistent binary indices. Exact integer closure over one binary-3 reference period $P_3$ means
 $$
@@ -197,11 +197,11 @@ The richer ordered-braid chirality label $\chi_c$ is introduced in [Reduced A1 C
 
 ## Invariance And Allowed Transitions
 
-The assembly topological charge is designed to be locally invariant. Between branch boundaries, the implicit-function theorem transports each simple active root continuously, so $N_s$, $M_p$, $D_s$, and $D_p$ remain constant. At a generic fold, one positive and one negative root are created or annihilated. Therefore
+The assembly topological charge is designed to be locally invariant. Between branch boundaries, the implicit-function theorem transports each simple active root continuously, so $N_s$, $M_p$, $D_{\mathrm{self}}$, and $D_p$ remain constant. At a generic fold, one positive and one negative root are created or annihilated. Therefore
 $$
 \left(\Delta N_s,\Delta M_p\right)\in\{(\pm2,0),(0,\pm2)\},
 \qquad
-\Delta D_s=\Delta D_p=0
+\Delta D_{\mathrm{self}}=\Delta D_p=0
 $$
 for an ordinary fold-pair event. In the sector where the fold occurs, the unsigned count changes by $\pm2$ while both signed degrees remain unchanged.
 
@@ -223,8 +223,8 @@ The transition catalogue therefore has a native form:
 
 | Event | Codimension | Assembly topological charge effect | Required certificate |
 | --- | --- | --- | --- |
-| Branch-preserving deformation | 0 on the retained chart | No change to $(N_s,M_p,c_1)$ or $(D_s,D_p,c_1)$ | Positive floors, finite memory, stable gluing |
-| Self-root fold | 1 generically | $\Delta N_s=\pm2$, $\Delta D_s=0$ generically | Fold normal form and post-transit chart |
+| Branch-preserving deformation | 0 on the retained chart | No change to $(N_s,M_p,c_1)$ or $(D_{\mathrm{self}},D_p,c_1)$ | Positive floors, finite memory, stable gluing |
+| Self-root fold | 1 generically | $\Delta N_s=\pm2$, $\Delta D_{\mathrm{self}}=0$ generically | Fold normal form and post-transit chart |
 | Partner-root fold | 1 generically | $\Delta M_p=\pm2$, $\Delta D_p=0$ generically | Fold normal form and post-transit chart |
 | Phase-lock jump | 1 for a resonance crossing | $\Delta c_1\ne0$ | Degree/holonomy change and return-map transition |
 | Plane-degeneracy transition | 1 generically, higher with imposed symmetry | Phase-return chart may lose rank before $c_1$ can be compared | Orbital-plane determinant and return-chart continuation |
@@ -256,7 +256,7 @@ The intended use is constrained:
 - Physical particle identity, generation structure, spin-statistics, exclusion, and Standard Model quantum numbers are downstream mappings, not consequences of the notation alone.
 
 Thus $(N_s,M_p,c_1)$ is the candidate conserved label that says when two assemblies occupy the same topological sector. It is not yet a proof that a given sector is an electron analogue, photon analogue, or quark analogue.
-Strictly, the compact count triple is locally conserved only inside one nondegenerate branch domain. Across generic fold-pair surgery the degree-refined data $(D_s,D_p,c_1)$ are the conserved part, while $N_s$ and $M_p$ record how many live channels the retained branch currently carries.
+Strictly, the compact count triple is locally conserved only inside one nondegenerate branch domain. Across generic fold-pair surgery the degree-refined data $(D_{\mathrm{self}},D_p,c_1)$ are the conserved part, while $N_s$ and $M_p$ record how many live channels the retained branch currently carries.
 
 ## Simulation Extraction
 
@@ -266,8 +266,8 @@ A branch solver should extract the assembly topological charge in this order:
 2. Find active causal roots on the same retained row set.
 3. Label each root by transmitter identity: self or partner.
 4. Record the Jacobian sign and compute $C_{s,+},C_{s,-},C_{p,+},C_{p,-}$.
-5. Compute $N_s$, $M_p$, $D_s$, and $D_p$.
-6. Compute the lifted-strip fiber-intersection degrees that realize $D_s$ and $D_p$ whenever the causal-locus chart is available.
+5. Compute $N_s$, $M_p$, $D_{\mathrm{self}}$, and $D_p$.
+6. Compute the lifted-strip fiber-intersection degrees that realize $D_{\mathrm{self}}$ and $D_p$ whenever the causal-locus chart is available.
 7. Track fold, caustic, cusp, or inactive-gap transition metadata.
 8. For branches with a Noether braid phase-return chart, compute phase degree/holonomy $(m,n)$ from the returned phase chart, verify the floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$, and show that $(m,n)$ comes from the return map rather than from frequency ratios alone.
 9. If a caustic-grazing carrier $h$ is used, test that the signed degrees and phase-return entry are stable under the declared $\eta$ refinement.
@@ -292,7 +292,7 @@ The open proof burden is global:
 - prove that a stable assembly realizes a fixed assembly topological charge over a finite branch domain;
 - prove gluing of the local causal-root charts into a finite labeled continuation family;
 - prove a positive stability gap for the assembly topological charge sector;
-- determine whether the entries are independent or constrained by radial balance, phase flatness, and Noether sea response, starting with the reachable theorem target that for a layer winding $k_a\in\{1,m,n\}$ the layerwise self-hit degree obeys a parity or lower-bound law $D_s^{(a)}\equiv f(k_a)\pmod 2$ derived from the circular self-hit fold-birth sequence and the lifted-strip fiber-intersection formula;
+- determine whether the entries are independent or constrained by radial balance, phase flatness, and Noether sea response, starting with the reachable theorem target that for a layer winding $k_a\in\{1,m,n\}$ the layerwise self-hit degree obeys a parity or lower-bound law $D_{\mathrm{self}}^{(a)}\equiv f(k_a)\pmod 2$ derived from the circular self-hit fold-birth sequence and the lifted-strip fiber-intersection formula;
 - prove that any caustic-grazing carrier rows have regulator-stable signed degrees and phase-return entries, so the assembly topological charge does not depend on the finite-$\eta$ convention used to regularize the field-speed transition;
 - map any certified sectors to observer-level particle quantum numbers without fitting the labels afterward.
 

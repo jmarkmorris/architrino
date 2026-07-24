@@ -46,6 +46,11 @@
       "path": "content/scenes/archie/borg.json"
     },
     {
+      "id": "braid-search",
+      "name": "Braid Search",
+      "path": "content/scenes/archie/braid_search.json"
+    },
+    {
       "id": "causal-delay-feedback",
       "name": "Causal Delay Feedback",
       "path": "content/scenes/archie/causal_delay_feedback.json"
@@ -374,6 +379,11 @@
       "id": "cosmology__cosmology_ontology",
       "name": "Cosmology Ontology",
       "path": "content/scenes/cosmology/cosmology_ontology.json"
+    },
+    {
+      "id": "cosmology__cosmology_reconstruction",
+      "name": "Cosmology Reconstruction",
+      "path": "content/scenes/cosmology/cosmology_reconstruction.json"
     },
     {
       "id": "cosmology",
