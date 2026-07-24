@@ -20,11 +20,11 @@ a_{\mathrm{eff}}(T)\propto
 {\langle L_{\text{core}}(T_{\mathrm{ref}})\rangle}
 $$
 
-where $L_{\text{core}}$ is a representative assembly-separation scale.
+where $L_{\text{core}}$ is a representative assembly-separation scale in the declared averaging domain.
 
 This $a_{\mathrm{eff}}(T)$ is a summary of medium evolution inside fixed $\mathbf X$, not geometric stretching of the container. When projected into a homogeneous observer comparison, the same row may be reported as $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ after the clock map has been declared.
 
-Equivalent bookkeeping choices can be used in the same ontology:
+Several candidate projections can be tested in the same ontology:
 
 $$
 a_{\mathrm{eff}}(T)\ \leftrightarrow\ \langle R_{\text{braid}}(T)\rangle
@@ -32,7 +32,7 @@ a_{\mathrm{eff}}(T)\ \leftrightarrow\ \langle R_{\text{braid}}(T)\rangle
 a_{\mathrm{eff}}(T)\propto u_{\text{sea}}(T)^{-1/3}
 $$
 
-These are effective parameterizations of Noether sea state, not independent geometric claims.
+These are effective parameterizations of Noether sea state, not interchangeable identities. Their equivalence has to be derived on the same retained record. In particular, a galaxy-local recycling branch cannot interpret a smaller local $L_{\text{core}}$ literally as a smaller global source separation without first deriving the observer-level distance and ruler map.
 
 Quasi-steady and cyclical comparison families may use an oscillatory effective scale history such as
 $$
@@ -149,7 +149,7 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf X,T)}
 $$
 
-The factor $\Gamma_N$ is not a new time variable. It records how strongly the local Noether sea braid cadence is stretched relative to the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving Noether braid deformation factor; outside that limit it remains a Noether sea state diagnostic to be derived from Noether braid geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the moving Noether braid limit fixes the coefficient of $-\ln\xi$ and the weak-field endpoint limit fixes one isotropic Noether sea response combination.
+The factor $\Gamma_N$ is not a new time variable. The convention is $\Gamma_N>1$ for a local cadence that is slower than the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving Noether braid deformation factor; outside that limit it remains a Noether sea state diagnostic to be derived from Noether braid geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the moving Noether braid limit fixes the coefficient of $-\ln\xi$ and the weak-field endpoint limit fixes one isotropic Noether sea response combination.
 
 For a spectral transition family $X$, the working redshift factorization is
 
@@ -244,6 +244,16 @@ where $E_{\mathrm{arch}}$ collects architrino kinetic and configuration energy, 
 
 The speed rows must stay separated inside this ledger. The transparent record-bearing bundle propagates as the dressed photon channel at $c_\gamma(\mathbf X,T)$, as used in the path-time integral below. Primitive causal wakes and Noether sea exchange remain constrained by $c_f$ and enter the sink bookkeeping through $E_{\mathrm{wake}}$ and $E_{\mathrm{sea}}$. Observer clock and ruler reconstruction belongs to $c_{\text{eff}}$, while $c_0$ is only the weak homogeneous calibration value. A redshift branch therefore cannot use $c_f$ as the observed photon-channel speed, nor can it let the energy sink induce an unbounded or frequency-dependent $c_\gamma(\omega)$ residual without failing image sharpness and time-of-flight constraints.
 
+The multi-messenger recovery target is especially narrow. The [GW170817/GRB 170817A timing analysis](https://arxiv.org/abs/1710.05834) constrains the observer-level propagation-speed difference to
+$$
+-3\times10^{-15}
+\le
+\frac{c_{\mathrm{GW}}-c_\gamma}{c_\gamma}
+\le
+7\times10^{-16}.
+$$
+This bound constrains the integrated gravitational-wave and photon-channel propagation records for that event; it does not identify either substrate speed with the primitive wake speed $c_f$. Any Noether sea dispersion or clock reconstruction used for cosmological redshift must preserve this near-coincidence on the same path.
+
 The global form also assumes that the total energy on the constant-$T$ leaf is finite or convergently summable. If an unbounded populated Noether sea does not admit that sum, the operational conservation statement is local continuity on bounded regions:
 
 $$
@@ -269,6 +279,8 @@ E_{\mathrm{emit}}-E_{\mathrm{obs}}
 =
 E_{\mathrm{emit}}\frac{z}{1+z}
 $$
+
+This per-packet identity does not yet license a fixed fraction of present critical density for the integrated deposit. An estimate such as $\rho_{\gamma,0}(a_{\mathrm{dec}}^{-1}-1)$ imports the standard comoving-volume and scale-history map that the fixed-void branch is required to derive. The native calculation must instead integrate retained photon bundles and Noether sea exchange over a bounded constant-$T$ region, with source, remnant, recoil, and boundary terms included. Until that mapping exists, a nominal percent-level deposit is a heuristic comparison, not a measured Noether sea loading.
 
 After source-branch, recoil, remnant, and boundary rows have been separated, a pure transparent-path redshift must close
 
@@ -307,27 +319,23 @@ $$
 \frac{\mathcal{P}_{E\to R}}{B_X(E)D_v}
 $$
 
-Here $D_v$ is the launch or relative-motion frequency factor. In the simple radial comparison limit, let
+Here $D_v$ is the launch or relative-motion frequency factor. In the homogeneous absolute-record replay, let
 
 $$
-v_r
-\equiv
-(\mathbf{v}_R-\mathbf{v}_E)\cdot\hat{\mathbf{k}},
+v_{E,k}\equiv\mathbf v_E\cdot\hat{\mathbf k},
 \qquad
-\beta_r=\frac{v_r}{c_0}
+v_{R,k}\equiv\mathbf v_R\cdot\hat{\mathbf k}
 $$
 
-where $\hat{\mathbf{k}}$ points from emitter to receiver and $v_r > 0$ means the endpoint separation is increasing. The familiar comparison form is
+where $\hat{\mathbf{k}}$ points from emitter to receiver. Adjacent phase markers emitted with absolute-time separation $\Delta T_E$ arrive with
 
 $$
 D_v
-\approx
-\sqrt{\frac{1-\beta_r}{1+\beta_r}}
-\approx
-1-\frac{v_r}{c_0}
-\quad
-\text{for } \lvert v_r\rvert\ll c_0
+=
+\frac{c_0-v_{R,k}}{c_0-v_{E,k}}.
 $$
+
+For a fixed emitter and a receiver receding along $\hat{\mathbf k}$, this gives $D_v=1-v_{R,k}/c_0$. For a fixed receiver and an emitter receding opposite $\hat{\mathbf k}$ with speed $v_r>0$, it gives $D_v=1/(1+v_r/c_0)$. The special-relativistic square-root comparison factor is not inserted here: any moving-clock correction belongs in the independently derived endpoint cadence factor $\Gamma_N$. Multiplying both would count that correction twice.
 
 The receiver-facing photon energy is the local coupling result
 
@@ -433,14 +441,13 @@ D_v
 \right|_{\theta_{\mathrm{sea}}=\theta_0,\;\Gamma_N=1,\;B_X=1}
 $$
 
-where $N_\phi$ counts adjacent emitted phase markers received in the reference Noether sea state $\theta_0$. This definition isolates source/receiver motion and emission direction from endpoint cadence and path-history propagation. In the simple radial, weak-speed limit it reduces to
+where $N_\phi$ counts adjacent emitted phase markers received in the reference Noether sea state $\theta_0$. This definition isolates source/receiver motion and emission direction from endpoint cadence and path-history propagation. In the homogeneous radial replay it reduces exactly to
 
 $$
 D_v
-\approx
-\sqrt{\frac{1-\beta_r}{1+\beta_r}},
-\qquad
-\beta_r=\frac{(\mathbf{v}_R-\mathbf{v}_E)\cdot\hat{\mathbf{k}}}{c_0}
+=
+\frac{c_0-\mathbf v_R\cdot\hat{\mathbf k}}
+{c_0-\mathbf v_E\cdot\hat{\mathbf k}}.
 $$
 
 Path-history propagation is then the remaining Noether sea transport integral:
@@ -913,7 +920,9 @@ $$
 
 These bounds mainly discipline the anisotropic strain term, environmental gradients, and $\mathcal{R}_{\mathrm{prop},X}$. A propagation explanation that accumulates redshift by large stochastic phase loss would violate these inequalities and would fall back into the excluded tired-light class.
 
-Finally, the observed $(1+z)$ time-dilation consistency requires the phase-frequency propagation rate and packet-cadence propagation rate to agree after the same corrections are applied:
+### Cadence-Frequency Unification Target
+
+The observed $(1+z)$ time-dilation consistency requires the phase-frequency propagation rate and packet-cadence propagation rate to agree after the same corrections are applied:
 
 $$
 \left|

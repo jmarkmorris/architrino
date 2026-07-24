@@ -72,7 +72,7 @@ $$
 1-\chi_C E_\theta(C)
 \right]_+
 $$
-where $E_\theta(C)$ is the product expectation for the declared apparatus context and $[x]_+\equiv\max(x,0)$. For a Hardy setup with binary observables $U_i,D_i$, use the zero-probability constraints and positive Hardy event as a margin:
+where $E_\theta(C)$ is the product expectation for the declared apparatus context and $[x]_+\equiv\max(x,0)$. For a Hardy setup, $U_i$ and $D_i$ are the two calibrated binary measurement settings on wing $i\in\{1,2\}$, and the displayed probabilities come from four distinct setting pairs: $(D_1,D_2)$, $(U_1,U_2)$, $(D_1,U_2)$, and $(U_1,D_2)$. They must therefore be assembled from those four declared apparatus contexts rather than treated as one joint context. Use the zero-probability constraints and positive Hardy event as a margin:
 $$
 \Delta_{\mathrm{Hardy}}
 =

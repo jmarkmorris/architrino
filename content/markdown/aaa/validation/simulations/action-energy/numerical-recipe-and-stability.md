@@ -18,7 +18,7 @@ Event-aware integration (practical algorithm):
 
 3. Time stepping:
    - Impulsive mode: advance velocities with jumps at hit times (measure-driven ODE with velocity of bounded variation).
-   - Mollified mode: replace $\delta(\cdot)$ by $\delta_\eta(\cdot)$ and integrate with a standard ODE solver; choose $\eta$ small relative to local geometric scales.
+   - Mollified mode: replace $\delta(\cdot)$ by $\delta_\eta(\cdot)$ and integrate with a delayed-history solver or an augmented-state method that retains the required path segment; choose $\eta$ small relative to local geometric scales.
 
 4. Stability tips:
    - Use event bracketing or root trackers for continuity of $T_t(T)$ across steps.
@@ -26,26 +26,10 @@ Event-aware integration (practical algorithm):
    - Monitor invariants over resolved windows (work–energy balance with $\Phi_\eta$) to validate settings.
 
 5. Units:
-   - Use $v=1$ nondimensionalization throughout. Remember: emission cadence and per-wavefront amplitude are constant; receiver speed enters signed root playback through $D_r/D_t$ and instantaneous power through $v_r$, not the acceleration weight.
+   - Use $c_f=1$ nondimensionalization throughout. Remember: emission cadence and per-wavefront amplitude are constant; receiver speed enters signed root playback through $D_r/D_t$ and instantaneous power through $v_r$, not the acceleration weight.
 
 6. Two-body closure run packet:
-   - For a candidate electrino:positrino binary, emit the signed branch ledger $b$, regulator $\eta$, step or collocation scale $h$, candidate period $P_b$, and the residual tuple
-     $$
-     \mathsf{Run}_{2\mathrm{B}}^{(\eta)}
-     =
-     \left(
-     \mathcal{R}_{\mathrm{EOM}}^{2\mathrm{B}},
-     \mathcal{R}_{\mathrm{per}}^{2\mathrm{B}},
-     \mathcal{R}_{\mathrm{bal}}^{2\mathrm{B}},
-     \nu_J^{2\mathrm{B}},
-     \nu_{\mathrm{rec}}^{2\mathrm{B}},
-     \Delta_{\mathrm{gap}}^{2\mathrm{B}},
-     \lambda_{\mathrm{sec}}^{2\mathrm{B}},
-     \epsilon_E^{(\eta)},
-     \Delta_{\mathrm{E,cross}}^{(\eta)},
-     \mathcal{R}_{\omega}^{2\mathrm{B}}
-     \right).
-     $$
+   - For a candidate electrino:positrino binary, emit the signed branch ledger $b$, regulator $\eta$, step or collocation scale $\Delta T_{\mathrm{step}}$, candidate period $P_b$, and the canonical residual tuple owned by [Binary Dynamics](../../../dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target). This recipe does not define a second tuple or field order.
    - Fail closed if the signed ledger changes during the reported period, an active transmitter-side Jacobian floor or inactive-root gap vanishes, the transmitter-side acceleration weight leaves its certified interval or its floor $\nu_{\mathrm{rec}}^{2\mathrm{B}}$ vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
    - Treat a visually periodic orbit without these entries as a search hit only. It is not a binary closure certificate.
 

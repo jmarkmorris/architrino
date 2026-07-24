@@ -5,7 +5,7 @@ export const animatorSceneRoleOptions = [
 export const animatorAssemblyTemplateMenuRows = [
   [
     { template: "noether_braid", label: "Pro Noether braid" },
-    { template: "noether_pair", label: "Noether Pair" },
+    { template: "noether_pair", label: "Pro/anti-orientation Noether-braid composite" },
     { template: "noether_quad", label: "Noether Quad" },
   ],
   [

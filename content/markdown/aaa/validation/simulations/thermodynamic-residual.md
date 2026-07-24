@@ -55,7 +55,13 @@ $$
 \mathcal{B}_{U}^{(O)}(\theta;W)
 \right|
 $$
-where $U$ is the declared connected patch block and $\mathcal{B}_{U}^{(O)}$ retains only labels accessible to the same observer record. The large-block target is $\widehat{s}_{U}^{(O)}\to1/4$ after boundary corrections, not a literal one-patch cardinality.
+where $U$ is the declared connected patch block and $\mathcal{B}_{U}^{(O)}$ retains only labels accessible to the same observer record. When $|U|$ is physical patch area, $\widehat{s}_{U}^{(O)}$ has inverse-area units and the large-block target is
+$$
+\widehat{s}_{U}^{(O)}
+\longrightarrow
+\frac{1}{4A_{\text{align}}}
+$$
+after boundary corrections. The dimensionless value $1/4$ applies only when the packet has explicitly normalized $A_{\text{align}}=1$; it is not a literal one-patch cardinality.
 
 Area scaling is a recovery target, not a definition. Compare neighboring patches or refinements with the same observer and record:
 $$
@@ -76,6 +82,8 @@ $$
 Passing this subgate means the retained logarithmic label count has the target area slope in the relevant equilibrium regime. It does not yet prove Page-curve recovery or black-hole endpoint closure.
 
 ## Temperature and Flux
+
+In the temperature comparison below, $\hbar$ and $k_B$ are observer-level SI action and energy-temperature benchmarks. They test the recovered unit and thermodynamic maps; neither is a substrate input.
 
 The local temperature comparison must be derived from the observer-channel acceleration:
 $$

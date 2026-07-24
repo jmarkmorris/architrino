@@ -38,7 +38,7 @@ e^-
 \left(uud\right)_{\mathrm{color\ singlet}}
 $$
 
-Each of those four fermions carries a Noether braid plus an axial layer. The proton's three Noether braids should not be read as three free objects floating independently in the Noether sea; they are joined by the color-singlet strong-sector closure of the proton. The electron assembly is external to that proton closure and occupies an atomic resonance envelope determined by the nuclear causal-wake envelope, local Noether sea state, and its own assembly ledger.
+Each of those four fermions carries a Noether braid plus an axial layer. The proton is one color-singlet assembly of three quark fermions, not three independent atomic sources: its three Noether braids and their strong-sector corridor close into one proton source envelope. The electron assembly is external to that proton closure and occupies an atomic resonance envelope determined by the nuclear causal-wake envelope, local Noether sea state, and its own assembly ledger.
 
 This is why hydrogen is a boundary test rather than only a spectrum test. The model must decide what belongs to the proton, what belongs to the electron, what belongs to the local Noether sea, and which coarse-grained variables an observer is allowed to use after that separation is declared.
 
@@ -59,7 +59,7 @@ $$
 
 where the convolution averages ambient Noether sea variables over the coarse-graining kernel $K_\ell$ inherited from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic), and $\Sigma_{\text{sea},ij}$ denotes the component form of the canonical Noether sea stress $\Sigma_{\text{sea}}$, not a separate entropy or action variable. Throughout this chapter, lowercase $\theta$ denotes a generic coarse-grained windowed response tuple or decomposition slot, while uppercase $\Theta$ denotes an assembled response record consumed by channel readout functionals and constitutive maps. For atomic orbital recovery, $\ell$ should be large enough to average many ambient Noether sea braids and small enough not to erase the electron resonance envelope. For proton-internal work, $\ell$ must be reduced and the three quark assemblies must be treated as resolved color-sector constituents rather than as a point proton.
 
-On the outskirts of the solar system, the useful weak-gradient decomposition is
+For clock and spectral comparisons, first choose a declared weak-background reference cell. The solar-system outskirts provide one useful example because they anchor a weak-gradient comparison against a localized hydrogen disturbance. In that example the decomposition is
 
 $$
 \theta_{\mathrm{sea}}^{(\ell)}(\mathbf X,T)
@@ -71,9 +71,9 @@ $$
 \delta\theta_{\mathrm{H}}^{(\ell)}(\mathbf X,T)
 $$
 
-where $\theta_0$ is the weak homogeneous reference state, $\delta\theta_{\odot}^{(\ell)}$ is the gentle solar-system background bias, and $\delta\theta_{\mathrm{H}}^{(\ell)}$ is the localized hydrogen disturbance. This is the sense in which local effective-spacetime behavior is reconstructed from Noether sea response, not the four matter Noether braids themselves.
+where $\theta_0$ is the declared weak homogeneous reference state, $\delta\theta_{\odot}^{(\ell)}$ is the gentle solar-system background bias relative to that reference, and $\delta\theta_{\mathrm{H}}^{(\ell)}$ is the localized hydrogen disturbance. Another environment may replace the solar term with its own declared weak-background contribution. This is the sense in which local effective-spacetime behavior is reconstructed from Noether sea response, not the four matter Noether braids themselves.
 
-The exact boundary between a fermion and the Noether sea is a closure-ledger boundary before it is a surface in space. Let $\Lambda_f(T)$ denote the reduced closure label of a fermion assembly and let $\mathcal{A}_f(T)$ denote the architrinos and bound wake-exchange records phase-locked to that label. The exact inventory boundary is
+The exact boundary between a fermion and the Noether sea is a closure-ledger boundary before it is a surface in space. Let $\Lambda_f(T)$ denote the reduced closure label of a fermion assembly and let $\mathcal{A}_f(T)$ denote the architrinos and bound wake-exchange records phase-locked to that label. All unions and complements below are taken in the typed state-record space: architrino entries and bound corridor or wake-exchange records are distinct entry types inside one inventory, not interchangeable physical objects. The exact inventory boundary is
 
 $$
 \mathcal{A}_f(T)
@@ -137,29 +137,25 @@ $$
 
 with $0 < D_X < 1$ fixed by the stability criterion being tested. This is not a hard material wall. It is a stability interface between a bound assembly ledger and the surrounding Noether sea response, and it counts as a stable interface only where $D_{f,X}$ varies regularly across the level set; where that regularity fails, the scan reports a residual or branch event under the reconstruction-regularity discipline of [Ontology](../foundations/ontology.md) rather than a smooth surface.
 
-Hydrogen therefore has no single all-purpose fermion radius. Clock-coupling, spectral readout, reaction corridors, packing, transport, and penetration sample the same locked-versus-ambient wake ledger at different strength levels:
+Hydrogen therefore has no single all-purpose fermion radius. Clock-coupling, spectral readout, reaction corridors, packing, transport, and penetration sample the same locked-versus-ambient wake ledger through channel-specific norms and tolerances. Their thresholds are declared separately:
 
 $$
-0
-<
-D_{\mathrm{clock}}
-\le
-D_{\mathrm{spec}}
-\le
-D_{\mathrm{corridor}}
-\le
-D_{\mathrm{packing}}
-\le
-D_{\mathrm{transport}}
-\le
-D_{\mathrm{penetration}}
-<
-1
+D_X\in(0,1),
+\qquad
+X\in
+\{
+\mathrm{clock},
+\mathrm{spec},
+\mathrm{corridor},
+\mathrm{packing},
+\mathrm{transport},
+\mathrm{penetration}
+\}
 $$
 
-The clock threshold marks where weak locked-wake tails can bias local rates. The spectral threshold marks where the same locked-wake record resolves the electron-envelope gaps read by line comparisons. The corridor threshold marks where an oriented exchange path can remain coherent. The packing threshold marks where a neighboring Noether braid or assembly can remain stably adjacent without persistent phase disruption. The transport threshold marks where ambient flow and stress response past the envelope is materially reorganized rather than weakly perturbed. The penetration threshold marks where a trajectory enters wake dominance strong enough to destabilize transit through the fermion envelope. These are different cuts through one diagnostic, not six different definitions of a fermion. The positions of the spectral and transport entries relative to their neighbors are a declared first-pass convention fixed by the readouts being protected, not derived inequalities.
+The clock threshold marks where weak locked-wake tails can bias local rates. The spectral threshold marks where the same locked-wake record resolves the electron-envelope gaps read by line comparisons. The corridor threshold marks where an oriented exchange path can remain coherent. The packing threshold marks where a neighboring Noether braid or assembly can remain stably adjacent without persistent phase disruption. The transport threshold marks where ambient flow and stress response past the envelope is materially reorganized rather than weakly perturbed. The penetration threshold marks where a trajectory enters wake dominance strong enough to destabilize transit through the fermion envelope. These are different cuts through one ledger, not six different definitions of a fermion. No cross-channel ordering is implied unless a later derivation supplies one common normalization and proves that the corresponding level sets are comparable.
 
-In the hydrogen case, the branch weights are therefore ledger projectors rather than electron-envelope probabilities or fitted radial profiles:
+In the hydrogen case, the branch weights are therefore ledger projectors rather than electron-envelope probabilities or fitted radial profiles. Each $\zeta_f$ and $\zeta_{\mathrm{strong}}^{uud}$ is a dimensionless membership strength in $[0,1]$, so every complement factor $1-\zeta$ is well formed:
 
 $$
 w_{j,f}^{\mathrm{lock}}(T_t;T)
@@ -270,7 +266,7 @@ $$
 
 so the clock, corridor, packing, and penetration cuts differ by the retained branch-ledger channel $\Pi_X$, not by replacing the causal-root flux law or by redefining the matter/Noether sea complement. As in the parent kernel, $\alpha_{j,X}$ is dimensionless because the channel norms are tolerance ratios; the dimensional coupling $\kappa$ enters only through retained channel entries that already require it, such as the signed acceleration used by penetration.
 
-At hydrogen resolution the four first projectors have distinct jobs:
+At hydrogen resolution the four parent-kernel projectors have distinct jobs:
 
 | Channel | Retained branch-ledger content | Hydrogen use |
 | --- | --- | --- |
@@ -279,7 +275,7 @@ At hydrogen resolution the four first projectors have distinct jobs:
 | $\Pi_{\mathrm{packing}}$ | Exclusion magnitude, exclusion-stress tensor, and envelope scale/shape entries | Determines stable adjacency and coarse excluded volume without treating signs of force as a packing criterion |
 | $\Pi_{\mathrm{penetration}}$ | Signed branch acceleration, path-tangent acceleration, and phase-disruption entries | Determines whether a trial path through the fermion envelope remains dynamically stable |
 
-The spectral and transport channels carry their own cuts $D_{\mathrm{spec}}$ and $D_{\mathrm{transport}}$ in the chain above. Their retained branch-ledger entries are the ones named by the $F_{\mathrm{spec}}$ and $F_{\mathrm{transport}}$ readout functionals in the channel-scan section below, extending the parent kernel's four-channel projector family at hydrogen scope.
+The spectral and transport channels carry their own cuts $D_{\mathrm{spec}}$ and $D_{\mathrm{transport}}$ in the channel set above. Their retained branch-ledger entries are the ones named by the $F_{\mathrm{spec}}$ and $F_{\mathrm{transport}}$ readout functionals in the channel-scan section below, extending the parent kernel's four-channel projector family at hydrogen scope.
 
 The corresponding first norm packet for hydrogen is inherited from the channel norms in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic). In an atomic window, define the channel exposure scan
 
@@ -389,6 +385,8 @@ $$
 d_N\ll \ell_{\mathrm{proton}}\ll R_p
 $$
 
+The proton-sensitive window is admissible only if this interval is nonempty. It therefore carries a strong scale-separation assumption: ambient Noether sea braid spacing, together with the exclusion-envelope scale needed for local averaging, must be well below $R_p$. If the Noether sea branch does not establish that hierarchy, the proton-window scan is unavailable rather than approximately valid.
+
 ## Hydrogen Boundary Theorem Target
 
 The hydrogen boundary claim is a theorem target about the relation between exact assembly ledgers, effective spatial envelopes, and local Noether sea response. The target is not that hydrogen has a literal material surface. The target is that the exact matter ledger $\mathcal A_{\mathrm H}(T)$ and the complementary medium record $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(T)$ determine the channel-specific interface diagnostics $D_{f,X}$ and the atom-local response variables used by clocks, spectra, transport, and reaction corridors.
@@ -450,6 +448,37 @@ D_{p,X},D_{e,X}
 $$
 
 remains stable under refinement up to the declared sensitivity of the channel. The theorem target fails if a matter Noether braid is counted as ambient Noether sea, if the three proton quark assemblies are treated as free Noether braids, if the electron resonance envelope is treated as the electron's braid boundary, if $n$ and $\chi_{\text{sea}}$ are merged, or if different response maps must be fitted independently for the same hydrogen branch.
+
+Muonic and electronic hydrogen sharpen this boundary target because they probe the same proton source ledger through different lepton-envelope branches. For $q\in\{e,\mu\}$, the comparison must have the form
+
+$$
+\mathcal A_{p,q}(T)
+=
+\mathcal A_q(T)
+\cup
+\mathcal A_{u_1}(T)
+\cup
+\mathcal A_{u_2}(T)
+\cup
+\mathcal A_d(T)
+\cup
+\mathcal L_{\mathrm{strong}}^{uud}(T).
+$$
+
+For $q=e$, this is the stable Generation-I electronic-hydrogen inventory $\mathcal A_{\mathrm H}$. For $q=\mu$, the Generation-II muon branch replaces the electron, and the comparison is defined only over a declared muon-branch retention window $W_\mu$ on which $\mathcal A_\mu(T)$ remains an admitted assembly. The transient branch does not silently enlarge the Generation-I hydrogen ledger.
+
+$$
+\mathcal O_{p,q,X}
+=
+F_{q,X}
+\!\left[
+\mathcal W_{p,X}^{\mathrm{locked}},
+\Theta_{p,q,X}^{(\ell)},
+\mathcal B_q
+\right]
+$$
+
+with one $\mathcal W_{p,X}^{\mathrm{locked}}$ and one declared proton matter/medium split. Here $\Theta_{p,q,X}^{(\ell)}$ is built from the same background and proton records with only the admitted lepton branch changed. The two probe maps may weight the proton-adjacent region differently, but they may not fit different proton ledgers. The observer-level recovery target is to reproduce the electronic- and muonic-hydrogen determinations within their declared uncertainties; a persistent probe-dependent proton property is not allowed unless the measurement record itself requires it.
 
 ## Hydrogen Channel-Scan Proof Target
 
@@ -770,4 +799,4 @@ $$
 }
 $$
 
-tests azimuthal single-valuedness, $\Delta_{\Omega}$ tests the angular operator against $\ell(\ell+1)$ and $m$, $\Delta_{\ell m}$ enforces $\ell\in\mathbb N_0$, $m\in\mathbb Z$, and $|m|\le\ell$, and $\Delta_{\mathrm{int}}$ checks that the observer-level orbital envelope has not been mistaken for the internal Noether braid spin ledger. The orbital row is promotable only when all five residuals pass for the same envelope branch.
+tests azimuthal single-valuedness, $\Delta_{\Omega}$ tests the angular operator against $\ell(\ell+1)$ and $m$, $\Delta_{\ell m}$ enforces $\ell\in\mathbb N_0$, $m\in\mathbb Z$, and $|m|\le\ell$, and $\Delta_{\mathrm{int}}$ checks that the observer-level orbital envelope has not been mistaken for the internal Noether braid spin ledger. The orbital packet is promotable only when all five entries pass for the same envelope branch, with $\mathcal R_{\mathrm{env}}$ understood as the bundled first entry rather than one scalar residual.

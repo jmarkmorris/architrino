@@ -18,6 +18,8 @@ The CMB timeline is presented as an effective observer-level chronology map that
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ uses an effective chronology map that is conceptually adjacent to cyclical/recycling cosmology families, but its mechanism is explicitly SMBH-local source architecture in a fixed-void ontology.
 
+The symbol $t_{\mathrm{eff}}=0$ anchors each declared local release or reaction record when an effective epoch window is applied; it is not the origin of absolute time. The stitched observer chronology aligns stages recovered from many such local records.
+
 ## CMB Dipole and Matter-Dipole Gate
 
 The CMB dipole remains a central calibration object because the standard interpretation treats it mainly as a kinematic signal from local motion. If that interpretation is complete, then distant source catalogues should show the corresponding aberration and Doppler dipole after allowing for each catalogue's number-count slope and spectral response. For a catalogue $X$, use the residual
@@ -473,17 +475,38 @@ $$
 +
 \mathcal{R}_{\mathrm{spec}}
 $$
-where $\mu$ and $y$ are the chemical-potential and Compton-distortion parameters of the observer-level spectrum fit. A path-history redshift proposal passes only if it preserves the near-thermal spectrum, image sharpness, and packet time-dilation behavior in the same transport record.
+where $\mu$ and $y$ are the chemical-potential and Compton-distortion parameters of the observer-level spectrum fit. The [COBE/FIRAS full-data analysis](https://arxiv.org/abs/astro-ph/9605054) gives the observer-level 95% bounds $|\mu|<9\times10^{-5}$ and $|y|<1.5\times10^{-5}$. Translating either bound into a generic energy-injection fraction requires a declared thermalization epoch and spectrum; it is not a universal $10^{-4}$ energy-budget shortcut. A path-history redshift proposal passes only if it preserves the near-thermal spectrum, image sharpness, and packet time-dilation behavior in the same transport record.
 
 The last-scattering benchmark should also retain the rate condition that makes the surface sharp. In standard comparison language decoupling occurs when the scattering rate falls through the effective expansion or relaxation rate,
 $$
 \Gamma_T
 =
-n_e\sigma_T c_0
+n_e\sigma_T c_\gamma(\mathbf X_{\mathrm{dec}},T_{\mathrm{dec}})
 \approx
 H_{\mathrm{eff}}
 $$
-with recombination delayed by the high photon-to-baryon loading encoded in the same $\eta$ ledger used by BBN. The native CMB record therefore has to recover a thin enough last-scattering window, not only a plausible source story.
+where $c_\gamma(\mathbf X_{\mathrm{dec}},T_{\mathrm{dec}})$ is the dressed photon-channel speed in the decoupling environment and reduces to $c_0$ only in the weak homogeneous calibration limit. With recombination delayed by the high photon-to-baryon loading encoded in the same $\eta$ ledger used by BBN, the native CMB record has to recover a thin enough last-scattering window, not only a plausible source story.
+
+The same ionization and transfer history must continue through reionization. It has to recover the integrated optical depth $\tau$, the low-$\ell$ $EE$ polarization enhancement, and the quasar Gunn-Peterson and Lyman-$\alpha$ absorption record without changing the source or photon-transport branch per observable.
+
+For a shared history $\theta$, retain the reionization residual
+$$
+\mathcal R_{\mathrm{reion}}(\theta)
+=
+\frac{|\tau^\theta-\tau^{\mathrm{obs}}|^2}{\sigma_\tau^2}
++
+\left\|
+\mathbf C_{EE,\mathrm{low}\text{-}\ell}^{-1/2}
+\left(
+\mathbf C_{EE}^{\theta}
+-
+\mathbf C_{EE}^{\mathrm{obs}}
+\right)
+\right\|^2
++
+\mathcal R_{\mathrm{GP/Ly}\alpha}(\theta).
+$$
+The final term projects the same ionization record into Gunn-Peterson trough and Lyman-$\alpha$ forest observables. The numerical tolerances belong to the declared CMB and quasar data products, not to a separately tuned source model.
 
 ## Consistency Anchors
 

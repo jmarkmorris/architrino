@@ -2,7 +2,7 @@
 
 This chapter groups three closely connected ideas about gravitational extremality and informational closure: cosmic censorship, holography, and AdS/CFT. Cosmic censorship concerns whether singular behavior is hidden behind horizons. Holography concerns whether bulk physics admits lower-dimensional encoding. AdS/CFT provides the strongest formal realization of that idea by relating a gravitational bulk theory to a non-gravitational boundary theory.
 
-The chapter treats these ideas as comparison pressure, not as imported ontology. They are valuable because they show how horizons, boundaries, and information accounting can become mathematically strict. They become $\mathbb{A}\mathbb{A}\mathbb{A}$ claims only after a horizon-interface regime is derived from candidate braid alignment, Noether sea response, and finite boundary data; no taxonomy label supplies that derivation.
+The chapter treats these ideas as comparison pressure, not as imported ontology. They are valuable because they show how horizons, boundaries, and information accounting can become mathematically strict. They become $\mathbb{A}\mathbb{A}\mathbb{A}$ claims only after a horizon-interface regime is derived from candidate braid alignment, Noether sea response, and finite boundary data; no taxonomy label supplies that derivation. The mechanism owners are [Black Holes](../spacetime/black-holes.md), [Horizon Chirality](../spacetime/horizon-chirality.md), and [Mapping the Planck Scale to Family-A Alignment Geometry](theory-bridges/mapping-planck-scale-a1-geometry.md). This chapter owns only the comparison and proof-pressure map.
 
 ## Conceptual View
 
@@ -54,7 +54,7 @@ Time follows the same rule. Absolute time remains the substrate parameter. Exter
 
 ## Status
 
-**What Still Works:** Cosmic censorship, holography, and AdS/CFT remain indispensable as standard predictive and organizational frameworks for the phenomena they were built to model, and any replacement must recover their empirical successes in the regime where practitioners currently use them.
+**What Still Works:** Cosmic censorship supplies conjectural predictability conditions for gravitational collapse; it is not an empirically closed framework with a generic list of successes to inherit. Holographic entropy bounds and AdS/CFT supply mathematically controlled comparison structures in their stated domains, while black-hole thermodynamics and Page-curve calculations supply consistency targets. The retained obligation is therefore theorem- and regime-specific rather than a blanket requirement to reproduce one combined framework's "empirical successes."
 
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 

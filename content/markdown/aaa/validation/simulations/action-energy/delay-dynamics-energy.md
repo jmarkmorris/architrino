@@ -57,7 +57,7 @@ E_{\text{wake},\mathfrak{B}}^{(\eta)}(T)
 \partial_{T_1}
 \mathcal{K}_{ij,\mathfrak{B}}^{E,\eta}(T_1,T_t)
 $$
-is the candidate in-flight causal-history charge. This is the route developed in [Master Equation](../../../dynamics/master-equation.md#action-level-wake-energy-functional-at-time-boundary-t) and [Effective Lagrangian](../../../dynamics/effective-lagrangian.md#symmetries-and-history-aware-conservation-laws). It becomes theorem-level only when the same action also gives the accepted acceleration law and the endpoint leakage residual vanishes.
+is the candidate in-flight causal-history charge. This is the route developed in [Master Equation](../../../dynamics/master-equation.md#action-level-wake-energy-functional-at-a-time-boundary) and [Effective Lagrangian](../../../dynamics/effective-lagrangian.md#symmetries-and-history-aware-conservation-laws). It becomes theorem-level only when the same action also gives the accepted acceleration law and the endpoint leakage residual vanishes.
 
 ### Work-Integral Route
 
@@ -107,7 +107,7 @@ P_{b,\mathrm{work}}^{(\eta)}(T)
 P_{i\leftarrow j,T_t}^{(\eta)}(T)
 $$
 on the same active causal-root ledger. This root-resolved form is the accounting guardrail: transmitter identity, polarity, emission time, Jacobian, and receiver radial power are retained before the net branch work is collapsed to one scalar.
-and reconstruct the compatible causal-history interaction contribution by
+The work-integral route then reconstructs the compatible causal-history interaction contribution by
 $$
 U_{b,\mathrm{work}}^{(\eta)}(T)
 =
@@ -236,7 +236,7 @@ An exact isolated conservation claim requires $\epsilon_E^{(\eta)}\to0$, $\Delta
 
 ## No-Double-Counting Rule
 
-The interaction contribution may be carried by $E_{\text{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../foundations/emergence-of-structure.md#transition-thresholds-and-event-ledgers) and [Energy](../../../dynamics/energy.md#energy-conservation-and-exchange).
+The interaction contribution may be carried by $E_{\mathrm{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../foundations/emergence-of-structure.md#context-changes-and-energy-ledger) and [Energy](../../../dynamics/energy.md#energy-conservation-and-exchange).
 
 ## Promotion and Failure Conditions
 

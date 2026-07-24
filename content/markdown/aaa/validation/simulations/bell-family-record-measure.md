@@ -98,7 +98,7 @@ $$
 \right]_+
 $$
 
-For Hardy, it computes the positive margin
+For Hardy, it consumes the setting and context convention owned by [No-Go Theorems](../no-go-theorems.md#applicability-map): $U_i$ and $D_i$ are the two calibrated binary settings on wing $i$, and the four terms below come from four distinct setting pairs. It computes the positive margin
 
 $$
 \Delta_{\mathrm{Hardy}}

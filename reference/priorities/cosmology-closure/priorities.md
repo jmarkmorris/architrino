@@ -13,7 +13,7 @@
 
 1. `component_interfaces` — Build per-component observable interfaces against LambdaCDM. Status: `deferred`. Depends on: none.
 2. `predictive_pipeline` — Turn the CMB and three-binary cosmology story into a predictive transfer-function pipeline. Status: `deferred`. Depends on: `component_interfaces`.
-3. `age_clock_convergence` — Add an oldest-object and material-clock interface for Hubble-time/time-redshift mapping, globular-cluster turnoff ages, white-dwarf cooling ages, Th/U/Eu radiochronometers, and presolar/interstellar-grain provenance. Status: `deferred`. Depends on: `component_interfaces`.
+3. `age_clock_convergence` — Add an oldest-object and material-clock interface for Hubble-time/time-redshift mapping, differential-age cosmic chronometers, globular-cluster turnoff ages, white-dwarf cooling ages, Th/U/Eu radiochronometers, and presolar/interstellar-grain provenance. Status: `deferred`. Depends on: `component_interfaces`.
 4. `cmb_noether_braid_spectrum_linkage` — Examine whether the observed CMB spectrum has a derivable linkage to Noether braid ensemble modes, photon-channel provenance, Noether sea thermalization, and coherent photon-channel bundle transport, without treating the linkage as established before a spectrum-level residual exists. Status: `deferred`. Depends on: `predictive_pipeline`.
 5. `noether_sea_source_relaxation_balance` — Tie production, recycling, decay, reclassification, capture, and relaxation of Noether sea content to one continuity and energy ledger. Status: `deferred`. Depends on: `component_interfaces`.
 6. `deep_space_inventory_benchmark` — Build a deep-space component inventory for photons, neutrinos, cosmic rays, atoms, dust, and unknown Noether sea carriers before treating any sparse visible inventory as an ontology argument. Status: `deferred`. Depends on: `component_interfaces`.
@@ -386,6 +386,8 @@ The same Noether sea state that preserves blackbody shape and image coherence mu
 
 Long-time stability adds one more required accounting row. The transparent-path sink $\Delta E_{\mathrm{sea,path}}$ may not accumulate as unbounded secular heating of the Noether sea. A viable branch must route that deposited energy through the same source/release, black-hole recycling, Noether sea equilibration, or boundary-flux records used by the cosmology module. In the cadence-transport notation of the expansion mechanism, the $f_N$ current, $S_{\mathrm{BH}}$, and $R_{\mathrm{eq}}[f_N]$ rows must supply a bounded recycling or relaxation balance for the path-energy deposit; otherwise the local redshift ledger conserves energy only by moving a divergence into $E_{\mathrm{sea}}$.
 
+An eternal or unbounded-age branch also inherits two thermodynamic burdens. Its declared source and transfer history must keep the integrated observable sky brightness finite after absorption, reprocessing, and release terms are included, and its coarse-grained entropy ledger must avoid unbounded accumulation in the accessible material and Noether sea record. SMBH processing is not presumed to be a sink for either burden; it must close on the same source-relaxation and ordered-core-recycling entropy ledger.
+
 If the total scalar energy of the unbounded populated Euclidean void is not finite or not convergently summable on a constant-$t$ leaf, this target demotes to a bounded-region flux balance rather than disappearing:
 
 $$
@@ -398,7 +400,7 @@ with boundary flux included on every finite comparison window. The redshift-ener
 
 The legacy-source signal to preserve is not the claim that the horizon problem is already solved. It is the alternative layer assignment: horizon uniformity may be evidence that the observer-level cosmological chart is summarizing recurrent source/release and thermalization history rather than a single global birth event. In that reading, galaxy-local or source-network recycling could contribute to the apparent uniform background while the Euclidean void remains fixed.
 
-This remains priority-only until it is expressed through the existing `component_interfaces`, `predictive_pipeline`, and `cmb_noether_braid_spectrum_linkage` tasks. A viable branch must use one declared Noether sea and source/release record to face CMB monopole isotropy, TT/TE/EE acoustic structure, allowed spectral distortions, BBN yields, BAO distance calibration, redshift-distance data, structure growth, and oldest-object/material-clock convergence. If galaxy-local recycling can explain only qualitative uniformity while breaking any of those shared comparison rows, it remains an analogy rather than a cosmology closure route.
+This remains priority-only until it is expressed through the existing `component_interfaces`, `predictive_pipeline`, and `cmb_noether_braid_spectrum_linkage` tasks. A viable branch must use one declared Noether sea and source/release record to face CMB monopole isotropy, TT/TE/EE acoustic structure, allowed spectral distortions, BBN yields, BAO distance calibration, redshift-distance data, structure growth, and oldest-object/material-clock convergence. The acoustic-ruler coherence residual in [Cosmology Ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md#acoustic-ruler-coherence-burden) must pass across source patches and tracer bins without per-patch ruler tuning. If galaxy-local recycling can explain only qualitative uniformity while breaking any of those shared comparison rows, it remains an analogy rather than a cosmology closure route.
 
 ## Age-Clock Convergence Interface
 
@@ -407,6 +409,7 @@ Oldest-object and material-age observations are not optional background color fo
 The interface should keep these clock families distinct:
 
 - Hubble-time and time-redshift mapping as effective observer chronology, not absolute age of the Euclidean void.
+- Differential-age cosmic chronometers as a distinct calibration pipeline whose stellar-aging interval is local but whose age model and measured redshift remain photon-mediated.
 - Globular-cluster turnoff ages as oldest-surviving stellar-population clocks.
 - White-dwarf cooling ages as remnant cooling clocks plus progenitor formation delay.
 - Th/U/Eu radiochronometers as nucleosynthetic provenance clocks.

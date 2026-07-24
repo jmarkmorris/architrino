@@ -4,7 +4,7 @@ This protocol defines the simulation-facing test for deriving or falsifying the 
 
 Here an A1 candidate must carry the complete prescribed coordinate ownership: persistent indices $a\in\{1,2,3\}$, independently assignable positive radii and frequencies, mutually orthogonal axes at the Family-A near-rest endpoint, axes converging toward the group-translation direction along $\lambda_A$, and explicit axial-half-separation, transverse-orbit-radius, phase, and circulation rows. A1.3 additionally requires $f_1:f_2:f_3=4:2:1$. Neither label supplies stability, retention, or a universal action increment; failure of the same evolved record to preserve the coordinate and ledger rows rejects the candidate.
 
-The target is narrow. The run must compute the smallest accepted Master-Equation projected action increment from candidate A1 branch transitions whose stability rows pass. It may compare the resulting scale to the observer-level `$h,\hbar$` benchmark after the computation. It may not insert $\hbar$ as an input step size.
+The target is narrow. The run must compute the smallest accepted Master-Equation projected action increment from candidate A1 branch transitions whose stability rows pass. It may compare the resulting scale to the observer-level $h,\hbar$ benchmark after the computation. It may not insert $\hbar$ as an input step size.
 
 ## Closure Question
 
@@ -54,19 +54,31 @@ Plain language: only stable, conservation-accounted, root-accounted branch chang
 
 ## Master-Equation Increment
 
-For each candidate transition, compute the layer torque integrals and wake boundary term directly from the delayed dynamics. With transaction axis $\hat{\mathbf a}$, the projected increment is
+For each candidate transition, compute acceleration moments and the wake boundary term directly from the delayed dynamics. For persistent binary index $a\in\{1,2,3\}$, let $\mathcal B_a$ be its constituent set and define the specific acceleration moment
+$$
+\boldsymbol{\tau}^{(A)}_a(T)
+=
+\sum_{i\in\mathcal B_a}
+\big(\mathbf X_i(T)-\mathbf X_C(T)\big)
+\times
+\mathbf A_i(T),
+$$
+which has units of specific torque. The index carries no radius order. With transaction axis $\hat{\mathbf n}_{\mathrm{txn}}$, the action-unit increment is
 $$
 \Delta I_{\mathrm{ME}}
 =
-\hat{\mathbf a}\cdot
+\mu_{\text{arch}}\,
+\hat{\mathbf n}_{\mathrm{txn}}\cdot
 \left(
-\sum_{\ell\in\{I,M,O\}}
-\int_{t_i}^{t_f}\mathbf T_\ell(s)\,ds
+\sum_{a\in\{1,2,3\}}
+\int_{T_i}^{T_f}\boldsymbol{\tau}^{(A)}_a(T)\,dT
 +
-\Delta\mathbf L_{\mathrm{wake},\partial}
-\right)
+\Delta\mathbf L_{\mathrm{wake},\partial}^{\mathrm{spec}}
+\right).
 $$
-Here $\mathbf T_\ell$ is the layer torque reconstructed from causal-wake forces on the architrinos in layer $\ell$, and $\Delta\mathbf L_{\mathrm{wake},\partial}$ is the angular momentum still carried across the chosen braid boundary at the end of the transition window.
+Here $\Delta\mathbf L_{\mathrm{wake},\partial}^{\mathrm{spec}}$ is the specific angular momentum still carried across the chosen braid boundary at the end of the transition window. The universal $\mu_{\text{arch}}$ is an action/energy bookkeeping conversion only; it is not primitive architrino mass.
+
+The packet must declare $\mu_{\text{arch}}$ in `campaign.json`, record units for every action and acceleration-moment column, and keep that normalization fixed across all candidate and control transitions. A packet that omits the conversion may report a specific-action diagnostic, but it may not evaluate $\delta_h$ or promote `candidate_h_recovery`.
 
 ## Branch-Chart Conservation Pullback
 
@@ -117,11 +129,10 @@ $$
 \operatorname{std}_{\mathcal{C}}\!\left(\Delta I_{\mathrm{ME}}\right)
 }{
 \left|\operatorname{mean}_{\mathcal{C}}\!\left(\Delta I_{\mathrm{ME}}\right)\right|
-+\varepsilon_0
++\varepsilon_I
 },
-\qquad
-\varepsilon_0=10^{-12}
 $$
+Here $\varepsilon_I$ is a predeclared action-increment floor with the same units as $\Delta I_{\mathrm{ME}}$.
 Also report the Floquet basin-robustness gap
 $$
 \Delta_{\mathbf{k}}
@@ -152,10 +163,10 @@ The minimum campaign packet contains:
 | `branch_pairs.csv` | each $B_q\to B_{q'}$ row, branch labels, integer windings, inter-layer closure integers, transition window, and inclusion/exclusion status |
 | `state_vectors.json` | pre/post layer radii, frequencies, speeds, plane normals, phase offsets, source channel, transaction axis, and mechanical endpoint charges |
 | `root_ledger_before_after.json` | partner, self, and inter-layer roots before and after transition, with delays, action-level $g$, $u$, Jacobians, separator flags, and $\Delta N_{\mathrm{self}}$ |
-| `torque_integrals.csv` | diagnostic $\int\mathbf T_I\,dt$, $\int\mathbf T_M\,dt$, $\int\mathbf T_O\,dt$, $\Delta\mathbf L_{\mathrm{wake},\partial}$, and projection onto $\hat{\mathbf a}$ |
+| `torque_integrals.csv` | diagnostic $\int\boldsymbol{\tau}^{(A)}_1\,dT$, $\int\boldsymbol{\tau}^{(A)}_2\,dT$, $\int\boldsymbol{\tau}^{(A)}_3\,dT$, $\Delta\mathbf L_{\mathrm{wake},\partial}^{\mathrm{spec}}$, and projection onto $\hat{\mathbf n}_{\mathrm{txn}}$ |
 | `action_increment_rows.csv` | $\Delta I_{\mathrm{ME}}$, absolute value, cluster id, accepted/rejected status, and failure code |
 | `field_speed_approach_scan.csv` | scan-family id, speed-window label, layer speed ratios, active partner/self/inter-layer root counts, minimum accepted $|J|$, separator status, root-ledger stability, $\Delta I_{\mathrm{ME}}$, cluster id, accepted/rejected status, and failure code |
-| `energy_ledger.csv` | $\sum_\ell\int\omega_\ell\,dI_\ell$, $\Delta E_{\mathrm{wake}}$, $\Delta E_{\mathrm{coupl}}$, exact $E_{\mathrm{wake,eff}}^{(\eta)}$, diagnostic $U$ if used, and $\mathcal{R}_E$ |
+| `energy_ledger.csv` | $\sum_{a\in\{1,2,3\}}\int\omega_a\,dI_a$, $\Delta E_{\mathrm{wake}}$, $\Delta E_{\mathrm{coupl}}$, exact $E_{\mathrm{wake,eff}}^{(\eta)}$, diagnostic $U$ if used, and $\mathcal{R}_E$ |
 | `conservation_pullback.csv` | branch-chart id, cut/window id, $\eta$, $\epsilon_c$, $h$, endpoint convention, $\nu_J$, inactive-gap minimum, $h_{\mathrm{mem}}$, $K_{\mu}$, $E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}$, $\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{J}_{\mathrm{mech}}$, $\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathcal{R}_E$, $\mathcal{R}_P$, $\mathcal{R}_J$, and verdict |
 | `phase_closure_residuals.csv` | layer and inter-layer phase closure residuals, winding labels, and tolerance status |
 | `floquet_report.json` | monodromy or finite-difference return map, excluded symmetry modes, multipliers, and $\Delta_{\mathbf{k}}$ |

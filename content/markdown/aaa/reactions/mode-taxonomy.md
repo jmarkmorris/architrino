@@ -2,7 +2,7 @@
 
 This chapter defines the controlled vocabulary for reaction-level assembly transitions. It is the canonical terminology source for `reactions/*.md`.
 
-For concrete channel applications of this vocabulary, see [Bremsstrahlung](bremsstrahlung.md), [Synchrotron](synchrotron.md), [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), [Electron](../assemblies/fermions/electron.md), and [Neutrinos](../assemblies/fermions/neutrinos.md).
+For concrete channel applications of this vocabulary, see [Radiation](radiation.md), [Atomic Transition Radiation](atomic-transition-radiation.md), [Bremsstrahlung](bremsstrahlung.md), [Synchrotron](synchrotron.md), [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), [Electron](../assemblies/fermions/electron.md), and [Neutrinos](../assemblies/fermions/neutrinos.md).
 
 ## Scope
 
@@ -81,7 +81,7 @@ $$
 
 A minimal transverse-channel map is
 $$
-F_{\perp,A}^{i}(T)
+A_{\perp,A}^{i}(T)
 =
 \Pi_{\perp}^{ij}(A)
 \sum_{k}\sum_{T_t\in\mathcal{C}_{Ak}(T)}
@@ -382,5 +382,7 @@ If these are not maintained, standard QED/SM transport language is authoritative
 
 - [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md)
 - [Effective Lagrangian](../dynamics/effective-lagrangian.md)
+- [Radiation](radiation.md)
+- [Atomic Transition Radiation](atomic-transition-radiation.md)
 - [Bremsstrahlung](bremsstrahlung.md)
 - [Synchrotron](synchrotron.md)

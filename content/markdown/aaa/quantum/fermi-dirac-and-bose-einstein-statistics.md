@@ -2,7 +2,7 @@
 
 This chapter states the $\mathbb{A}\mathbb{A}\mathbb{A}$ proof target for Fermi-Dirac and Bose-Einstein statistics. The standard counting rules are not being replaced at the observer level. The question is what physical assembly geometry makes those counting rules appear.
 
-The working hypothesis is direct. Fermi-Dirac behavior belongs to assemblies whose Noether braid support remains a genuine three-dimensional exclusion volume. Bose-Einstein behavior belongs to channels whose support has become strongly oblated into an effectively two-dimensional coherent mode. The same family of geometry is being used in two different regimes: volumetric packing on one side, shared phase-compatible support on the other.
+The working hypothesis has two parts. Fermi-Dirac behavior belongs to elementary assembly channels whose Noether braid support remains a genuine three-dimensional exclusion volume and whose retained ordered-frame row supplies the fermionic exchange sign. Strong oblation into an effectively two-dimensional coherent mode is one candidate route to Bose-Einstein behavior for photon-like channel carriers, not a universal definition of bosons. Composite bosons and other massive bosonic channels require the separate exchange-composition route below.
 
 That is only the geometry half of the story. The fermionic exchange sign still depends on the ordered-frame spinor program in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md). Volume exclusion can explain why same-state packing becomes costly, but it does not by itself derive the exchange phase or the full spin-statistics connection.
 
@@ -57,15 +57,15 @@ and with the corresponding angular-momentum residuals below tolerance. Without t
 
 In the pullback notation of [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback), the exchange sign must be consumed as $\epsilon_{\mathrm{ex}}(r_\star)=(-1)^{\Pi_{W,r_\star}^{2\pi}}$ from the same retained row that supplies spinor closure, gauge control, and angular-momentum balance. A separately selected exchange sign is only observer-level bookkeeping, not a derived spin-statistics mechanism.
 
-## Bose-Einstein Regime: 2D Coherence
+## Candidate Elementary Bose Route: 2D Coherence
 
-Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that a Family-A envelope is somewhat flattened. Family-A candidates can already be oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.
+For the photon-like carrier program, Bose-Einstein behavior is hypothesized to correspond to a regime where the relevant orbital support has been oblated toward an effectively two-dimensional coherent structure. The key transition is not merely that a Family-A envelope is somewhat flattened. Family-A candidates can already be oblate. The proposed statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume and the exchange holonomy is separately shown to be symmetric.
 
 In plain terms, the channel stops acting like many separate volumetric packages and starts acting like a shared coherent support. Multiple excitations can then be counted as occupying the same effective state because the physical support is phase-compatible rather than volume-exclusive.
 
 In that limit, the dominant motion is organized by a shared plane, phase channel, or coaxial sheet-like support. The assembly no longer presents the same volumetric exclusion envelope to nearby same-channel excitations. Multiple excitations can then occupy one coherent effective state because their assembly-level support is phase-compatible rather than volume-exclusive.
 
-This is the proposed substrate basis for Bose-Einstein statistics:
+This is the proposed substrate basis for the planar coherent-channel route:
 
 - dimensional support shifts from 3D volume to 2D coherent surface or plane,
 - exclusion-envelope overlap is replaced by phase-compatible shared support,
@@ -75,6 +75,35 @@ Photon-like channel behavior is the cleanest target for this mechanism. A bosoni
 
 As on the fermionic side, this dimensional reduction is necessary but not sufficient. Collapsing the exclusion envelope toward a 2D coherent support removes the volume obstruction to shared occupation, but genuine symmetric occupation is a statement about exchange phase, not packing: it is licensed by the symmetric exchange projection $P_+$ introduced below, not by the loss of exclusion volume alone.
 
+## Composite Assemblies and Exchange-Sign Composition
+
+Atomic Bose-Einstein condensates rule out any universal identification of bosonic statistics with $\xi\to0$. Bosonic isotopes such as helium-4 and rubidium-87 are three-dimensional composite assemblies in their rest regime, and Cooper pairs are composite channels whose bosonic exchange behavior does not require a planar constituent envelope. Massive bosonic electroweak channels likewise show that bosonic statistics cannot be equated with the null endpoint.
+
+The effective exchange contract already contains the repair. Suppose a retained composite $C$ contains $m$ matched constituent exchange rows $r_a$ and that exchanging two copies of $C$ can be continuously decomposed into exchange of the corresponding constituent rows without changing the internal composite state. The composite exchange sign is then
+$$
+\epsilon_{\mathrm{ex}}(C)
+=
+\prod_{a=1}^{m}\epsilon_{\mathrm{ex}}(r_a).
+$$
+If exactly $f$ of those rows are fermionic and the remaining rows have trivial bosonic sign, then $\epsilon_{\mathrm{ex}}(C)=(-1)^f$. An even number of fermionic rows therefore gives the symmetric composite sign $+1$, while an odd number gives $-1$. This is the observer-level exchange-composition target; it does not assert that the constituents lose identity or that a product sign alone guarantees condensation.
+
+The derivation burden is stricter than parity counting. The same retained composite record must show that whole-composite exchange preserves binding, returns the internal state to the same gauge class, keeps constituent overlap corrections below tolerance, and supplies the effective center-of-assembly state on which $P_+$ acts. At densities where the constituent wave or wake histories overlap strongly enough to expose their internal labels, ideal composite-boson behavior may fail. Atomic condensates, paired-electron channels, and massive bosonic assemblies therefore constrain this composition map independently of the planar photon-like route.
+
+## Two-Dimensional Exchange and Anyonic Constraint
+
+Two-dimensional support does not by itself imply symmetric occupation. For separated excitations confined to two dimensions, exchanges are classified by the braid group $B_N$, not only by the permutation group $S_N$. A one-dimensional exchange representation may assign
+$$
+U(\sigma_a)=e^{i\alpha}
+$$
+to a braid generator $\sigma_a$. The bosonic and fermionic cases are the endpoints $\alpha=0$ and $\alpha=\pi$, while intermediate phases are anyonic. Fractional-quantum-Hall interferometry has directly observed a fractional braiding phase ([Nakamura et al. 2020](https://doi.org/10.1038/s41567-020-1019-1)), so this is an observer-level constraint rather than an optional comparison.
+
+The planar-channel hypothesis must therefore distinguish two physical situations:
+
+- a shared coherent support whose exchange path is contractible in the retained carrier-and-apparatus record and whose exchange holonomy is $+1$;
+- confined, separately addressable two-dimensional excitations whose non-contractible braid history can carry $e^{i\alpha}\ne\pm1$.
+
+For a photon-like planar carrier, $\xi\to0$ removes the volumetric obstruction but Bose closure still requires a trivial retained exchange holonomy and the $P_+$ residual below tolerance. For a confined two-dimensional material channel, the correct target may instead be an anyonic braid representation. Treating every 2D limit as bosonic would fail this benchmark.
+
 ## The 3D-to-2D Transition
 
 The transition can be summarized by the canonical Noether braid shape ratio from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
@@ -83,13 +112,29 @@ $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
 $$
 
-The Fermi-Dirac regime has $\xi$ bounded away from zero. The envelope is oblate but still volumetric. The Bose-Einstein regime is approached as $\xi\to 0$, where the active support becomes effectively two-dimensional.
+For compact notation, let $\xi_{\mathrm{stat}}$ denote the statistics-classifying ratio: $\xi_{\mathrm{stat}}=\xi_q(0)$ when an admissible rest branch exists, and otherwise the direct axis ratio of the retained null-channel support. It never denotes the Lorentz moving-branch projection $\xi_q(v)/\xi_q(0)$. A boosted massive fermion may therefore satisfy $\xi_q(v)/\xi_q(0)\to0$ while its rest-envelope class and fermionic exchange row remain unchanged. A photon-like carrier with no admissible rest branch must instead earn the planar classification from its null-channel support and exchange holonomy.
 
-This same envelope endpoint is reached by two other routes in the corpus. It is the light-speed limit of the Lorentz axis ratio, $\xi=1/\gamma_\star\to0$ as $\beta_\star\to1$, in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio); and it is the dimensional pinch toward a near-planar disk at the alignment interface of a black-hole horizon in [Black Holes](../spacetime/black-holes.md). The coherent-boson limit, the null limit, and the horizon limit are one geometric endpoint of the Noether braid envelope, approached from statistics, kinematics, and strong-field geometry respectively. That a carrier forced to $\xi\to0$ is simultaneously driven toward the bosonic side and toward the null channel is a prediction of this shared endpoint, not a coincidence of three lanes.
+The elementary fermion candidate regime has $\xi_{\mathrm{stat}}$ bounded away from zero. The rest envelope is oblate but still volumetric. The candidate planar coherent-channel regime is approached along an intrinsic carrier-family continuation as $\xi_{\mathrm{stat}}\to 0$, or at a rest-chartless null endpoint whose support is independently shown to be planar. Composite-boson exchange is not classified by this axis ratio.
+
+The same zero-ratio endpoint appears in two other routes in the corpus. It is the light-speed limit of the normalized moving-branch Lorentz ratio, $\xi_q(v)/\xi_q(0)=1/\gamma_\star\to0$ as $\beta_\star\to1$, in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio); and it is the dimensional pinch toward a near-planar disk at the alignment interface of a black-hole horizon in [Black Holes](../spacetime/black-holes.md). Numerical coincidence at zero does not identify these charted limits: boosted massive fermions remain classified by their rest branch. The proposed identification is narrower — a carrier with no admissible rest branch may join the planar coherent, null-channel, and horizon-interface endpoints only if its supported geometry and exchange holonomy close on the same retained record. A rest-chartless null carrier that retains fermionic exchange holonomy, or reaches the null endpoint without the symmetric channel projection, falsifies that identification.
 
 This ratio is not yet a final derivation of spin-statistics. It is a geometric control variable for the proof program. A complete closure must show how stable 3D Noether braid configurations inherit the ordered-frame spinor proof and produce the fermionic exchange sign, and how the 2D coherent channel limit produces symmetric occupation at the observer level.
 
 Neutrality is not enough to make a carrier bosonic. A neutral Noether braid may still have a volumetric exclusion envelope, branch identity, and packing pressure, so it belongs on the Fermi-Dirac side of this geometry hypothesis until a coherent planar or phase-compatible support limit is derived. Conversely, bosonic behavior is licensed by the supported-channel geometry and exchange projection, not by the absence of electric charge. This distinction keeps neutral Noether braid inventory from being mistaken for unlimited Bose occupation.
+
+### Spin-Geometry Co-Variation Target
+
+The missing spin-statistics bridge is the co-variation of exchange character with geometry on one retained deformation family. It is not enough to derive $r_\star$ on one volumetric branch and $\xi_{\mathrm{stat}}\to0$ on a different planar ansatz, and ordinary drift at fixed family member does not count as this continuation. A candidate elementary carrier family $\lambda\mapsto\mathfrak B(\lambda)$ must carry both records through the same rest-branch continuation, with a rest-chartless endpoint interpreted by the limiting family record:
+$$
+\xi_{\mathrm{stat}}(\lambda)\ge\xi_F
+\Longrightarrow
+\epsilon_{\mathrm{ex}}(r_\star(\lambda))=-1,
+\qquad
+\xi_{\mathrm{stat}}(\lambda)\le\xi_B
+\Longrightarrow
+e^{i\alpha_{\mathrm{ex}}(\lambda)}=+1
+$$
+for the claimed fermion-to-planar-boson route, with all gauge-control, angular-momentum, stability, and event-ledger residuals evaluated on that same family. The first implication consumes the retained non-gauge ordered-frame row. The second must show why the ordered-frame obstruction disappears and why the remaining planar braid holonomy is trivial rather than anyonic. This co-variation is the actual geometry-side spin-statistics theorem target.
 
 ## Effective Exchange-State Contract
 
@@ -162,7 +207,7 @@ $$
 $$
 Here $\Delta E_{ab}^{\mathrm{antisym}}$ and $\Delta E_{ab}^{\mathrm{sym}}$ are the $\mathbb{A}\mathbb{A}\mathbb{A}$-predicted antisymmetric-spatial (spin-triplet) and symmetric-spatial (spin-singlet) energies, compared against the standard $J_{ab}-K_{ab}$ and $J_{ab}+K_{ab}$ respectively; the split is by spatial exchange symmetry. This does not replace the ordered-frame spinor proof. It prevents a purely geometric exclusion story from missing the experimentally important exchange-energy splitting that appears before full many-electron Hartree-Fock closure.
 
-The geometry hypothesis in this chapter can now be stated as a recovery residual. Let $\mathcal{E}_{N,\theta}$ be the effective $N$-assembly state extraction map, let $\mu_{\mathrm{3D}}$ be a retained ensemble of volumetric Noether braid configurations with $\xi\ge\xi_F$, and let $\mu_{\mathrm{2D}}$ be a retained ensemble of coherent planar-channel configurations with $\xi\le\xi_B$. The exchange closure target is
+The geometry hypothesis in this chapter can now be stated as a recovery residual. Let $\mathcal{E}_{N,\theta}$ be the effective $N$-assembly state extraction map, let $\mu_{\mathrm{3D}}$ be a retained ensemble of volumetric Noether braid configurations with $\xi_{\mathrm{stat}}\ge\xi_F$, and let $\mu_{\mathrm{2D}}$ be a retained ensemble of coherent planar-channel configurations with $\xi_{\mathrm{stat}}\le\xi_B$. The exchange closure target is
 $$
 \mathcal{R}_{\mathrm{ex}}(\theta)
 =
@@ -176,6 +221,31 @@ $$
 Here $\mathcal{H}^{(N)}_\theta=\mathcal{H}_\theta^{\otimes N}$ and $\mu^{\mathrm{prov}}$ denotes the same retained physical ensemble after a swap of inaccessible provenance labels. The first two terms demand antisymmetric and symmetric state-space recovery in the proposed geometric regimes. The third term checks that the observer-level quotient is legitimate: swapping labels that the apparatus cannot access should not change the retained observable state beyond tolerance. If this residual fails, the proposed Fermi-Dirac or Bose-Einstein rule has been imposed as formal bookkeeping rather than derived from assembly geometry.
 
 For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on records that also satisfy $\Delta_{\mathrm{pull}}(\theta;W,r_\star)\le\varepsilon_{\mathrm{pull}}$ with zero retune penalty in the same-record spinor-label pullback. This ties the effective exchange projection to the same non-gauge ordered-frame row instead of allowing the antisymmetric projector to be fitted after the fact.
+
+## From Exchange Symmetry to Occupation Laws
+
+Exchange symmetry is not yet the Fermi-Dirac or Bose-Einstein occupation distribution. The title-level recovery also requires state counting, an effective energy chart, and a thermal ensemble derived from the same finite-window measure. With $\sigma=+1$ for a bosonic channel and $\sigma=-1$ for a fermionic channel, the observer-level target is
+$$
+\bar n_\sigma(E)
+=
+\frac{1}{
+\exp\!\left(
+\frac{E-\mu_{\mathrm{chem}}}{k_B T_{\mathrm{temp}}}
+\right)
+-\sigma
+}
+$$
+where $T_{\mathrm{temp}}$ is thermodynamic temperature and $\mu_{\mathrm{chem}}$ is the chemical potential. The use of $T_{\mathrm{temp}}$ keeps temperature distinct from absolute time $T$.
+
+Let $N_E$ be the occupation count extracted from many-excitation record basins in an effective energy bin $E$. The native recovery target is not a separately fitted thermodynamic ensemble, but
+$$
+\bar n_\sigma^{\mathbb{A}\mathbb{A}\mathbb{A}}(E)
+=
+\int N_E(\Gamma)\,d\mu_{*,T_W}(\Gamma)
+\longrightarrow
+\bar n_\sigma(E)
+$$
+under the same $\mu_{*,T_W}$ that supplies exchange-state weights, apparatus records, energy accounting, and repeated frequencies. For photons, the $\mu_{\mathrm{chem}}=0$ limit must also join the Gate C Planck-spectrum recovery. A successful projector calculation without this same-measure occupation law closes exchange symmetry but not Fermi-Dirac or Bose-Einstein statistics.
 
 ## Interfaces
 
@@ -193,10 +263,13 @@ It also sets targets for [Quantum Operator Mapping](../philosophy-history/theory
 
 The next proof steps are:
 
-1. Extract $\xi$ from simulated or analytic Noether braid orbit data.
-2. Identify the stability threshold separating volumetric exclusion from coherent 2D support.
-3. Derive how exchange of two 3D Noether braid assemblies produces fermionic antisymmetry at the effective level, using the same retained non-gauge ordered-frame row that passes the $2\pi/4\pi$ spinor, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual).
-4. Derive how phase-compatible 2D-supported channel excitations produce bosonic symmetric occupation.
-5. Check that mixed regimes do not create forbidden intermediate statistics for ordinary low-energy matter.
+1. Continue one elementary carrier family while jointly tracking $\xi_{\mathrm{stat}}$, $r_\star$, exchange holonomy, stability, and event-ledger closure, so the spin-geometry co-variation target is tested on one record.
+2. Extract $\xi_{\mathrm{stat}}$ from simulated or analytic rest-branch data, or from the retained null-channel support when no admissible rest branch exists.
+3. Identify the stability threshold separating volumetric exclusion from coherent 2D support.
+4. Derive how exchange of two 3D Noether braid assemblies produces fermionic antisymmetry at the effective level, using the same retained non-gauge ordered-frame row that passes the $2\pi/4\pi$ spinor, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual).
+5. Derive whole-composite exchange from matched constituent rows and recover the symmetric sign for even-fermion composites without requiring $\xi\to0$.
+6. For a planar carrier, separate a trivial $+1$ exchange holonomy from a nontrivial $B_N$ anyonic representation before assigning $P_+$.
+7. Derive the Fermi-Dirac and Bose-Einstein occupation laws from many-excitation record basins and the same finite-window measure used by the exchange and thermodynamic ledgers.
+8. Check that ordinary low-energy three-dimensional matter does not acquire forbidden intermediate statistics, while confined two-dimensional quasiparticle channels recover the observed anyonic cases.
 
-Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether braid exclusion plus the ordered-frame spinor exchange phase on the same retained row; Bose-Einstein statistics are expected to arise when Family-A orbital support is oblated into an effectively 2D coherent channel.
+Until those steps are complete, the elementary-carrier claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether braid exclusion plus the ordered-frame spinor exchange phase on the same retained row; one photon-like Bose route is expected when Family-A orbital support becomes an effectively 2D coherent channel with trivial exchange holonomy. Composite bosons instead consume the exchange-sign composition target, and confined 2D excitations may be anyonic.

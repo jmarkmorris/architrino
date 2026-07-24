@@ -15,9 +15,10 @@ The conservative status is:
 - W, Z, photon, and pair-production language may be retained at observer level, while the substrate map must identify the transient assembly, exchanged payload, or planar-mode nucleation event being invoked.
 - Radiative, photon-capture, and sub-threshold shedding entries must attach the shared radiation event-record schema: source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status.
 - Any weak-channel ledger that depends on chirality, axial-frame orientation, CKM/PMNS mixing, or antineutrino routing remains provisional until the corresponding geometry is derived.
+- Any charged-fermion generation change must route the scaffold-count difference $\Delta N_{\mathrm{scaffold}}=-2\,\Delta g$: each adjacent heavier step releases one neutral two-architrino support binary, and each adjacent lighter step recruits one. The source or destination Noether sea row must be explicit; see [Quantum Number Mapping](../assemblies/fermions/quantum-number-mapping.md#generation-step-scaffold-ledger).
 - Any reaction-level spin, helicity, polarization, or vector-channel angular-momentum entry is a downstream consumer of the angular-momentum and spin workstream. It should record what must close, not function as a local proof of that closure.
 
-Charge-changing reaction notation is assembly-level shorthand. A weak or high-energy event may change an outgoing assembly's observer-level net charge, but the primitive polarity inventory does not mutate. The ledger must derive the before/after charge from conserved $\epsilon_+/\epsilon_-$ counts, $\epsilon=|e|/6$ axial-layer bookkeeping where applicable, shielding-state changes, Noether sea participation, and outgoing assembly routing. A reaction map that changes a particle label without this constituent and exposure accounting remains an observer-level placeholder.
+Charge-changing reaction notation is assembly-level shorthand. A weak or high-energy event may change an outgoing assembly's observer-level net charge, but the primitive polarity inventory does not mutate. The ledger must derive the before/after charge from conserved $\epsilon_+/\epsilon_-$ counts, the effective calibration target $|e|=6\epsilon$ where applicable, shielding-state changes, Noether sea participation, and outgoing assembly routing. A reaction map that changes a particle label without this constituent and exposure accounting remains an observer-level placeholder.
 
 ## Provenance Protocol
 
@@ -30,7 +31,7 @@ Each reaction record should state:
 5. **Polarity and charge accounting:** how observer-level charge bookkeeping emerges from the conserved $\epsilon_+/\epsilon_-$ routing, axial-layer exposure, shielding state, Noether sea participation, and outgoing assembly routing.
 6. **Energy-momentum and angular-momentum accounting:** where kinetic energy, internal binding energy, photon assemblies, recoil, medium excitation, spin/vector ledger terms, and wake-carried angular momentum enter and exit.
 7. **Path-history provenance:** which emitted causal wakes, source identities, and delayed interactions are needed to make the reaction deterministic in absolute time.
-8. **Weak-corridor record, when applicable:** for $W^\pm$ or $Z^0$ channels, record the axial-inventory payload $\Delta A_W$, any neutral Noether braid scaffold recruited into the corridor, shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, corridor recoil, outgoing-product identity routing, and Noether sea return row.
+8. **Weak-corridor record, when applicable:** for $W^\pm$ or $Z^0$ channels, record the axial-inventory payload $\Delta A_W$, any neutral Noether braid scaffold recruited into the corridor, the generation-step count $\Delta N_{\mathrm{scaffold}}=-2\,\Delta g$ when applicable, shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, corridor recoil, outgoing-product identity routing, and Noether sea return row.
 9. **Radiation event record, when applicable:** for emitted, absorbed, shifted, captured, or failed photon channels, attach the shared event fields from [Radiation](../reactions/radiation.md#radiation-event-record-schema), including $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, and causal-wake ledger.
 10. **Hybrid Standard Model matching, when applicable:** identify the source lane for the observer-level prediction: perturbative electroweak chart, matched weak effective theory, lattice-QCD or nuclear matrix element, infrared-safe QCD observable, QED, kinetic model, or detector functional. Include the scheme, operator or observable definition, matching normalization, CKM/PMNS factor when applicable, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record when one is used.
 11. **Closure status:** baseline, provisional map, derivation target, failed map, or inherited gate.
@@ -44,7 +45,7 @@ Each reaction record should state:
 | Noether sea input/output | Neutral braids, axial material, or medium excitations recruited or returned |
 | Conserved inventory | $\epsilon_+/\epsilon_-$ totals and charge/polarity balance |
 | Energy-momentum and angular-momentum ledger | Internal energy, recoil, emitted assemblies, spin/vector ledger terms, wake-carried angular momentum, and medium excitation |
-| Weak-corridor record, when applicable | $\Delta A_W$, neutral Noether braid scaffold sourcing, shielded-energy exposure, corridor payload, recoil, product identity routing, and Noether sea return row |
+| Weak-corridor record, when applicable | $\Delta A_W$, neutral Noether braid scaffold sourcing, $\Delta N_{\mathrm{scaffold}}=-2\,\Delta g$ for generation changes, shielded-energy exposure, corridor payload, recoil, product identity routing, and Noether sea return row |
 | Radiation event record, when applicable | Source assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, photon Gate B event residual when $E_\gamma\ne0$, and closure status |
 | Provenance data | Transmitter identity, emission time, causal-root branch, and local Noether sea state |
 | Hybrid Standard Model matching, when applicable | Source lane, scheme, operator or observable, matching normalization, CKM/PMNS factor when applicable, matrix-element or factorization source, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record |
@@ -279,6 +280,8 @@ $$
 $$
 
 For a Gate B-admissible photon row, helicity is the projection
+
+In this observer-level normalization, $\hbar$ is the recovered action benchmark from the shared action-alignment map. It is not an independent substrate parameter or an event-local fit.
 
 $$
 \lambda_{\mathrm{hel}}

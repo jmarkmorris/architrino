@@ -331,6 +331,8 @@ $$
 
 This table is a calibration stress test. The first few rows show why a simple fixed-void transfer slope can look close at low redshift. The middle rows show that the difference is not a constant offset. The high-redshift row shows why the CMB regime cannot be handled by a naive constant-slope rule.
 
+The intermediate-redshift mismatch is already decisive for the benchmark form: the ratios at $z=0.5$ and $z=1$ correspond to distance-modulus residuals of about $-0.17$ and $-0.21$ magnitude, respectively. A viable branch therefore needs a nonconstant Noether sea history by the low-to-intermediate-redshift supernova window; high-redshift CMB recovery is not the first point at which the constant-slope benchmark fails.
+
 A mature $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology does not have to keep the constant-slope benchmark. It must replace that row with the integrated Noether sea record, using the same endpoint cadence, source branch, launch geometry, transparent transport, CMB, BAO, lensing, and growth constraints described above. The large high-redshift difference marks how much nonconstant Noether sea history the native redshift ledger must explain if it is to recover the Lambda-CDM-era distance products without metric expansion of the Euclidean void.
 
 ## Dark-Sector Reclassification

@@ -26,6 +26,7 @@ Terminology in this chapter follows [mode-taxonomy.md](mode-taxonomy.md): photon
 - $\mathcal{S}_{\gamma}^{\mathrm{br}}$: bremsstrahlung photon-channel drive inherited from the radiation planar-mode gate.
 - $\mathcal{S}_*$: effective bremsstrahlung proxy for the inherited planar-mode threshold scale.
 - $E_{\gamma,\min}$: hypothesized minimum stable planar-mode energy.
+- $E_{\mathrm{ref}}>0$: declared normalization energy for the provisional nucleation ansatz; it is not itself a photon floor.
 - $\Gamma_{\mathrm{eff}}$: effective-time/proper-time conversion factor; this chapter's working name for the projected cadence-stretch conversion $\Gamma_N$.
 - $\rho_{\text{NS}}(\mathbf X,T)$: local physical Noether braid density.
 
@@ -117,7 +118,7 @@ $$
 
 where $\Xi_e$ denotes electron-assembly internal state variables. In Master Equation language, wake shock onset corresponds to entry into the emission-capable region of state space, with transition kernel weight from non-emissive to emissive microstates increased above baseline.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration generate a wake shock in the electron assembly by increasing $\mathcal{R}_{\Theta}^{\mathrm{br}}$. In the canonical Master EOM, the received interaction is shaped by inverse-square proximity and transmitter-side bunching of delayed causal flux through $D_t$. Receiver motion changes root playback and the subsequent deflected path, but it does not multiply an already arriving acceleration. When the local shock intensity exceeds the inherited planar-mode stability threshold, shed energy nucleates a photon mode modeled as a coaxial contra-rotating polarity-conjugate planar pair in the Noether sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration generate a wake shock in the electron assembly by increasing $\mathcal{R}_{\Theta}^{\mathrm{br}}$. In the canonical Master EOM, the received interaction is shaped by inverse-square proximity and the transmitter-side root-density bunching already carried by the $W^{\mathrm{acc}}$ family; $D_t$ is not stacked on that weight as another multiplier. Receiver motion changes root playback and the subsequent deflected path, but it does not multiply an already arriving acceleration. When the local shock intensity exceeds the inherited planar-mode stability threshold, shed energy nucleates a photon mode modeled as a coaxial contra-rotating polarity-conjugate planar pair in the Noether sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
 
 A minimal radiation-inherited event ledger starts with the projectile source depletion. For $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$,
 
@@ -167,13 +168,13 @@ $$
 \mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \bigl[\rho_{\text{NS}}(\mathbf X,T)\bigr]^{p_\rho} \left\|\frac{d\mathbf{V}_e}{dT}\right\|^{p_a}
 $$
 
-Conceptual nucleation picture for this ansatz: a photon mode modeled as a coaxial contra-rotating polarity-conjugate planar pair is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents the effective bremsstrahlung proxy for $\mathcal{S}_{\gamma,*}$ and is interpreted as an effective function of Noether sea stiffness plus local Noether braid geometry. The coupling through $E_{\text{exc}}^{\mathrm{br}}/E_{\gamma,\min}$ represents available shed energy relative to minimum stable planar-mode cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
+Conceptual nucleation picture for this ansatz: a photon mode modeled as a coaxial contra-rotating polarity-conjugate planar pair is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents the effective bremsstrahlung proxy for $\mathcal{S}_{\gamma,*}$ and is interpreted as an effective function of Noether sea stiffness plus local Noether braid geometry. The coupling through $E_{\text{exc}}^{\mathrm{br}}/E_{\mathrm{ref}}$ normalizes the available shed energy without deciding whether a minimum photon energy exists. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
 
 $$
-P_{\mathrm{nuc}} = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{E_{\text{exc}}^{\mathrm{br}}}{E_{\gamma,\min}}\right)\right]
+P_{\mathrm{nuc}} = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{E_{\text{exc}}^{\mathrm{br}}}{E_{\mathrm{ref}}}\right)\right]
 $$
 
-with $(x)_+ \equiv \max(x,0)$. The probability carries no per-photon-energy argument at this stage; a spectral decomposition of $P_{\mathrm{nuc}}$ over $E_\gamma$ is part of the pending derivation, not of this ansatz. Here $A_{\mathrm{tb}},p_\rho,p_a,\mathcal{S}_*$ are effective Noether sea response parameters. This is explicitly a mapping goal, not yet a closed derivation.
+with $(x)_+ \equiv \max(x,0)$. The probability carries no per-photon-energy argument at this stage; a spectral decomposition of $P_{\mathrm{nuc}}$ over $E_\gamma$ is part of the pending derivation, not of this ansatz. Here $A_{\mathrm{tb}},p_\rho,p_a,\mathcal{S}_*$ are effective Noether sea response parameters. A nonzero-floor branch may set $E_{\mathrm{ref}}=E_{\gamma,\min}$ after deriving that floor; a zero-floor branch must derive another finite reference scale. Thus $E_{\gamma,\min}\to0$ does not make the ansatz singular. This is explicitly a mapping goal, not yet a closed derivation.
 
 Interpretation of coefficients:
 
@@ -181,6 +182,7 @@ Interpretation of coefficients:
 - $p_\rho$: sensitivity exponent to local Noether sea density (subscripted to avoid the fine-structure constant $\alpha$).
 - $p_a$: sensitivity exponent to deceleration magnitude (subscripted to avoid the kinematic $\beta=\|\mathbf v\|/c$ used below).
 - $\mathcal{S}_*$: effective bremsstrahlung proxy for the inherited planar-mode onset scale $\mathcal{S}_{\gamma,*}$.
+- $E_{\mathrm{ref}}$: finite normalization scale used only by the provisional response ansatz; its derivation and relation, if any, to $E_{\gamma,\min}$ remain open.
 
 Status and handling:
 
@@ -200,7 +202,7 @@ This section states the mechanism-level emergence claim explicitly:
 
 1. **Mechanism:** deceleration-driven internal reconfiguration in the electron assembly produces a closure mismatch $\mathcal{R}_{\Theta}^{\mathrm{br}}$ and excitation energy $E_{\text{exc}}^{\mathrm{br}}$; if the inherited planar-mode threshold is crossed, a planar mode is nucleated and propagates as a photon assembly.
 2. **Microstate mapping:** non-emissive states satisfy $\mathcal{I}_e < \mathcal{I}_{\mathrm{crit}}$; emissive states satisfy $\mathcal{I}_e \ge \mathcal{I}_{\mathrm{crit}}$ and admit planar-mode nucleation probability $P_{\mathrm{nuc}} > 0$.
-3. **Classical-limit recovery:** for many emissions over smooth trajectories, coarse-grained power recovers the standard acceleration-radiation scaling (Larmor/Lienard class) in weak-coupling validated regimes.
+3. **Classical-limit recovery:** for many emissions over smooth trajectories, coarse-grained power recovers the standard acceleration-radiation scaling (Larmor/Liénard class) in weak-coupling validated regimes.
 4. **Declared breakdown regime:** near unresolved ultra-strong-field or ultra-high-energy domains, this effective mapping is not assumed complete and requires direct Master Equation treatment.
 
 ## Core Equations (Observer-Level Baselines)
@@ -216,12 +218,22 @@ $$
 where $Z$ is ion charge, $n_e$ and $n_i$ are number densities, and $g_{\mathrm{ff}}$ is the Gaunt factor (quantum correction). In dense plasma or condensed regimes, screening-length limits (Debye/collective shielding) modify both the effective interaction range and the integration limits folded into $g_{\mathrm{ff}}$. Frequency-integrated thermal emissivity scales approximately as
 
 $$
-\epsilon_{\mathrm{ff}} \propto Z^2 n_e n_i T^{1/2}
+\epsilon_{\mathrm{ff}} \propto Z^2 n_e n_i T_{\mathrm{temp}}^{1/2}
 $$
 
 For high-energy scattering language, the differential yield is tracked with $d\sigma/dk$ (photon energy $k$), including screening and Coulomb corrections in the target.
 
 Baseline takeaway: these equations are the standard observer-level scaffold that $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping is built to recover in its low-energy continuum limit. The wake-shock model does not replace the validated formulas; it supplies the proposed closure-residual provenance that must reduce to them before any Noether sea-dependent deviation is treated as physical.
+
+Free-free absorption is the inverse-bremsstrahlung partner of this emissivity. In local thermodynamic equilibrium, with emissivity and absorption coefficient declared in matching transfer conventions, the observer-level Kirchhoff target is
+
+$$
+\alpha_\nu^{\mathrm{ff}}
+=
+\frac{\epsilon_\nu^{\mathrm{ff}}}{B_\nu(T_{\mathrm{temp}})}.
+$$
+
+After frequency and ensemble integration, the corresponding Kramers-opacity target has the familiar scaling $\kappa_{\mathrm{ff}}\propto\rho T_{\mathrm{temp}}^{-7/2}$ up to composition and Gaunt-factor corrections. Emission and absorption must project from the same charged-encounter event family run in opposite transfer directions; fitting $\epsilon_\nu^{\mathrm{ff}}$ and $\alpha_\nu^{\mathrm{ff}}$ with unrelated Noether sea variables fails the detailed-balance test.
 
 ### Shock-Cooling Ledger in Outflows
 
@@ -254,6 +266,7 @@ This chapter uses a dominant-channel rule: include reactions/channels that contr
 - $e^- + Z \rightarrow e^- + Z + \gamma$ (electron-ion/nuclear bremsstrahlung baseline channel).
 - $e^+ + Z \rightarrow e^+ + Z + \gamma$ (positron analog in mixed plasmas/beams).
 - Thermal free-free ensemble channel (many-event superposition governing continuum emissivity).
+- Inverse bremsstrahlung/free-free absorption (the same encounter family with incoming photon energy routed into charged and medium motion).
 
 Associated pair/Compton channels are included when they exceed the same contribution threshold in the modeled zone.
 
@@ -262,6 +275,7 @@ Associated pair/Compton channels are included when they exceed the same contribu
 - **Bremsstrahlung channel:** target-induced deceleration drives the inherited closure residual $\mathcal{R}_{\Theta}^{\mathrm{br}}$; above the planar-mode threshold, photon mode nucleation carries emitted energy-momentum.
 - **Positron analog:** same wake-threshold logic with sign-reversed charge trajectory in observer-level kinematics.
 - **Thermal ensemble:** macroscopic free-free emissivity is the aggregate of many local planar-mode nucleation events under screened Coulomb transport.
+- **Free-free absorption:** the inverse event closes the incoming photon ledger into charged-assembly motion, recoil, and medium rows using the same local encounter distribution that supplies emissivity.
 
 ## Shared Photon Event Record
 
@@ -296,7 +310,9 @@ Interpretation split:
 
 Status: this chapter treats the claim as epistemic by default and promotes ontic turnover as a conditional extension.
 
-Connection to the photon closure interface: $E_{\gamma,\min}$ should be read as a candidate expression of the planar-pair stability boundary, not as a free cutoff. The first derivation must decide whether that boundary vanishes, lies below current soft-photon sensitivity, or produces a measurable turnover while preserving inclusive QED observables.
+Connection to the photon closure interface: $E_{\gamma,\min}$ should be read as a candidate expression of the planar-pair stability boundary, not as a free cutoff. The first derivation must decide whether that boundary vanishes, lies below current soft-photon sensitivity, or produces a measurable turnover while preserving inclusive QED observables. Any verified freely propagating photon below the proposed $\nu_{\min}$ falsifies that nonzero floor; propagation and plasma cutoffs must therefore be separated from a source-side turnover before an empirical bound is assigned.
+
+A conditional observer-level ceiling comes from the Voyager 1 and 2 Plasma Wave System detection of outer-heliospheric radio emission at $2$–$3\,\mathrm{kHz}$, reported above the local solar-wind electron plasma frequency whenever supporting density data were available ([Kurth et al. 1984](https://ntrs.nasa.gov/citations/19850032363), NTRS `19850032363`). Since $h(2\,\mathrm{kHz})\simeq8.3\times10^{-12}\,\mathrm{eV}$, any universal source-side floor must satisfy $E_{\gamma,\min}\lesssim10^{-11}\,\mathrm{eV}$ once the observation is classified as a freely propagating photon channel rather than local medium excitation. This bound does not identify the source mechanism or replace the plasma-transport check.
 
 ## $Z^2$ Scaling and Finite-Geometry Resolution
 
@@ -435,7 +451,7 @@ Per the authoring rule in [Mode Taxonomy](mode-taxonomy.md), the closure checks 
 - **Radiated-power closure:** $\Delta_{\mathrm{br,pow}}\to0$ and $\Delta_{\mathrm{br,ang}}(\theta)\to0$ in validated weak-field regimes after screening, recoil, and form-factor corrections are applied through the same event record.
 - **Photon ledger closure:** the emitted photon must pass $\Delta_{\gamma,\mathrm{flux}}=0$ from [Radiation](radiation.md).
 - **Event conservation:** the energy row $E_{\text{exc}}^{\mathrm{br}}=E_\gamma+\Delta E_{\mathrm{recoil}}+\Delta E_{\mathrm{med}}+\Delta E_{\mathrm{rem}}$ and the vertex momentum closure above.
-- **Equilibrium validity:** $\mathcal R_{\mathrm{LTE}}$ decides when the LTE free-free emissivity forms apply.
+- **Equilibrium validity:** $\mathcal R_{\mathrm{LTE}}$ decides when the LTE free-free forms apply, and the same encounter record must recover both $\epsilon_\nu^{\mathrm{ff}}$ and $\alpha_\nu^{\mathrm{ff}}$ through the Kirchhoff relation.
 - **Cross-section recovery:** $d\sigma/dk$ must recover screened standard behavior including the $Z^2\to Z$ coherence transition with form-factor suppression in the validated regime.
 
 ## Photon Ontology Note
@@ -461,3 +477,5 @@ Event-level provenance for cosmology-facing use is tracked in [Reaction-Cosmolog
 ## Standard Interpretation vs $\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation
 
 In standard plasma and astrophysical modeling, bremsstrahlung is treated as a local radiative process inside a given source geometry and transport model. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ program, the same reaction physics is retained at network level, while interpretation changes at background level: bremsstrahlung constrains how assembly transport, compression, and outflow map to observable photon continua.
+
+If that map reproduces standard continua only by retaining independent emissivity and absorption fits, without reducing parameter freedom or adding a cross-channel consistency constraint, it remains an optional interpretive layer rather than a derived improvement.

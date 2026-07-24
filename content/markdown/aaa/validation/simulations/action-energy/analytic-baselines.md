@@ -8,30 +8,14 @@ Models:
 - Fixed center (one receiver, one stationary transmitter):
   - The causal root is explicit and $D_t=c_f$, so $W^{\mathrm{acc}}=1$ independently of receiver velocity. The canonical radial equation is $\ddot r=-K/r^2$ with $K=\kappa |q q'|>0$. This is an exact fixed-transmitter baseline for the corrected delayed law.
 - Two-body mutual interaction (opposite or equal charges):
-  - Coupled DDEs with causal roots $T_t$ defined by $|X_i(T)-X_j(T_t)|=T-T_t$ ($v=1$); accelerations superpose as $\pm \kappa \epsilon^2 W^{\mathrm{acc}}/r^2$ along the line of action.
+  - Coupled DDEs with causal roots $T_t$ defined by $|X_i(T)-X_j(T_t)|=T-T_t$ ($c_f=1$); accelerations superpose as $\pm \kappa \epsilon^2 W^{\mathrm{acc}}/r^2$ along the line of action.
   - No exact closed-form solutions are presently known for the coupled DDEs in general.
 
 Methodological priority:
 - Treat the two-point-potential problem as the canonical first laboratory for the delayed theory.
 - Any proposed energy, momentum, virial-like, or kinetic/potential closure claim should be checked here before being generalized to assemblies or Noether sea response arguments.
 - In practice this means: solve the fixed-center and symmetric two-body cases first, then ask which familiar ODE identities survive, which acquire delay corrections, and which fail outright.
-- For the nontrivial electrino:positrino binary, use the finite-$\eta$ closure packet in [Binary Dynamics](../../../dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) and the constructive residuals in [Delay-Dynamics Energy](delay-dynamics-energy.md). A claimed branch must report
-  $$
-  \mathsf{Res}_{2\mathrm{B}}^{(\eta)}
-  =
-  \left(
-  \mathcal{R}_{\mathrm{EOM}}^{2\mathrm{B}},
-  \mathcal{R}_{\mathrm{per}}^{2\mathrm{B}},
-  \mathcal{R}_{\mathrm{bal}}^{2\mathrm{B}},
-  \nu_J^{2\mathrm{B}},
-  \Delta_{\mathrm{gap}}^{2\mathrm{B}},
-  \lambda_{\mathrm{sec}}^{2\mathrm{B}},
-  \epsilon_E^{(\eta)},
-  \Delta_{\mathrm{E,cross}}^{(\eta)},
-  \mathcal{R}_{\omega}^{2\mathrm{B}}
-  \right).
-  $$
-  Until these entries are computed on the same window, regulator, and branch chart, the binary remains an existence candidate rather than a validated closure result.
+- For the nontrivial electrino:positrino binary, use the finite-$\eta$ closure packet and canonical residual tuple owned by [Binary Dynamics](../../../dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target), together with the constructive residual definitions in [Delay-Dynamics Energy](delay-dynamics-energy.md). This document does not restate the tuple. Until every owned entry is computed on the same window, regulator, and branch chart, the binary remains an existence candidate rather than a validated closure result.
 - The first constructive energy baseline for such a branch is the branch-local work reconstruction
   $$
   U_{b,\mathrm{work}}^{(\eta)}(T)
@@ -170,7 +154,7 @@ Methodological priority:
   - No branch-local potential, scale generator, or homogeneity degree is supplied, so the classical potential virial theorem has not been recovered.
 
 Symmetric two-body on a line (exact DDE; challenges):
-- Let $X_1(T)=+\tfrac{1}{2}r(T)$ and $X_2(T)=-\tfrac{1}{2}r(T)$ with $r(T)>0$ and $v=1$. The causal-time condition implies
+- Let $X_1(T)=+\tfrac{1}{2}r(T)$ and $X_2(T)=-\tfrac{1}{2}r(T)$ with $r(T)>0$ and $c_f=1$. The causal-time condition implies
   $$
   \frac{r(T)+r(T_t)}{2} \;=\; T - T_t,\qquad T_t<T
   $$
@@ -189,11 +173,12 @@ Integral (delta) form selecting the causal root:
 - For particle 1 one may write
   $$
   A_1(T) \;=\; -\,\kappa\,\epsilon^2 \int_{0}^{\infty}
-  \frac{\delta\!\big(\lvert X_1(T)-X_2(T-\Delta)\rvert - \Delta\big)\,
+  \frac{c_f\,\delta\!\big(\lvert X_1(T)-X_2(T-\Delta)\rvert - c_f\Delta\big)\,
   \mathrm{sgn}\!\big(X_1(T)-X_2(T-\Delta)\big)}
   {\lvert X_1(T)-X_2(T-\Delta)\rvert^{2}}\; d\Delta
   $$
-  whose evaluation selects the causal delay $\Delta(T)$. The transmitter-side acceleration weight must then be applied on the selected root to yield the DDE above.
+  whose evaluation selects the causal delay $\Delta(T)$. The delta change of variables contributes
+  $c_f/\lvert c_f-\hat{\mathbf r}\cdot\mathbf V_2(T-\Delta)\rvert=W^{\mathrm{acc}}$ automatically. Multiplying by another $W^{\mathrm{acc}}$ after evaluating the integral would double-count the transmitter-side Jacobian.
 
 Why closed-form solutions are unlikely (even with symmetry):
 - The delay is state-dependent: the unknown $r(T)$ appears both in the right-hand side and in the implicit constraint defining $\Delta(T)$, making the problem a nonlinear functional equation rather than an ODE.

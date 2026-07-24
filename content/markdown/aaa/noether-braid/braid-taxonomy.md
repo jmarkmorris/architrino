@@ -18,6 +18,8 @@ Assembly composition describes how complete braid records are combined.
 | Relative phase | Timing offset between braid records. |
 | Relative circulation | Whether the braid records advance with the same or opposite circulation sense. |
 
+An assembly containing two separate six-worldline braid records does not become Family C merely because it contains twelve worldlines in total. Family C is one shared twelve-worldline top-level record on the applicable common-axis chart. For a multi-braid assembly, record polarity conjugation, pro/anti orientation when defined, relative circulation, axis relation, and planarity as independent relations; no one relation is licensed by the others.
+
 ## Individual Braid
 
 A base, Family-A, or Family-B Noether braid consists of three neutral binaries. Family C consists of six neutral binaries in one twelve-worldline top-level record. Each binary contains one electrino and one positrino. Other polarity pairings are outside the present taxonomy.

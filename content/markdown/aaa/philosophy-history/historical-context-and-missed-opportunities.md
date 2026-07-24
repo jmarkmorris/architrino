@@ -22,7 +22,7 @@ This chapter also treats missed opportunities dynamically rather than as one-tim
 
 The minimal lens used in this chapter is:
 
-- Substrate kinematics: $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with exact absolute-time form $dt$.
+- Substrate kinematics: $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with exact absolute-time form $dT$.
 - Matter and "vacuum" share constituents (assemblies in the Noether sea), not two disjoint ontologies.
 - Relativistic observables are emergent summaries of assembly dynamics.
 - Deterministic microdynamics can yield multistability and attractor-basin outcome sensitivity.
@@ -57,14 +57,6 @@ Default prose flow for each episode section:
 6. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
 7. **Recovery Target**: `Long-Term Relevance` plus `What Would Count As Recovery`.
 
-Template conformance test protocol for each episode section:
-
-1. Confirm all template fields are explicitly addressed in prose.
-2. Confirm all seven prose-flow parts are present in order.
-3. Confirm `What Still Works` preserves accepted empirical success, not strawman failure.
-4. Confirm `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ is classified as direct, partial, cautionary, or open.
-5. Confirm a concrete closure criterion is stated under `What Would Count As Recovery`.
-
 ### Timeline of Near Misses
 
 #### Overview
@@ -90,8 +82,8 @@ Bell's theorem adds a later physical-theorem caution to the same pattern. The EP
 | Period | What physics had in hand | $\mathbb{A}\mathbb{A}\mathbb{A}$-adjacent opening | Narrative lock-in that occluded it |
 |:---|:---|:---|:---|
 | 1676 (Rømer's Io timing) | Repeated eclipse timings of Io, longitude tables, and Earth-Jupiter distance variation | Finite propagation appeared as a measurable clock residual accumulated over many cycles, with the observed event time taking the schematic form $t_{\mathrm{obs}}=t_{\mathrm{src}}+D/c$ | Later "speed of light" framing preserved the result but made the signal look primarily like a light-specific kinematic fact rather than a general causal-delay clue |
-| 1687-1750 (Newton vs Leibniz) | Absolute time + Euclidean space + lawful dynamics | A fixed substrate as ontic scaffold for universal dynamics | "Action at a distance is metaphysically suspect" pushed later programs away from substrate realism rather than toward micro-carrier mechanisms |
-| 1860s-1890s (Maxwell + finite propagation) | Field propagation speed, wave structure of electromagnetism | Physical medium interpretation with finite-speed causal transport | Field formalism was treated as sufficient; ontology of the carrier was deprioritized |
+| 1687-1750 (Newton vs Leibniz) | Absolute time + Euclidean space + lawful dynamics | A fixed substrate as ontic scaffold for universal dynamics | Suspicion of action at a distance helped motivate carrier and medium proposals, but the predictive success of the mathematical law made instrumental use rational even while the micro-carrier question remained unresolved |
+| 1860s-1890s (Maxwell + finite propagation) | Field propagation speed, wave structure of electromagnetism, and intensive mechanical-carrier programs from Maxwell, Kelvin, FitzGerald, Larmor, and others | Physical medium interpretation with finite-speed causal transport | Carrier ontology was pursued rather than ignored, but the failure of the available mechanical implementations was later read too broadly as a reason to retire the constitutive question itself |
 | 1887-1904 (Michelson-Morley + Lorentz) | Null aether-wind result, dynamical contraction/time slowdown models | Emergent Lorentz symmetry from matter-medium interaction | "Undetectable medium = dispensable medium" became the decisive simplification |
 | 1900 (blackbody radiation and Planck's quantum) | Precision blackbody data, cavity standing-wave counting, and thermodynamic equipartition | Spectrum as data product plus mode-counting target, with quantization treated as a recovery rule requiring deeper thermalization mechanism | Planck's successful recovery hardened into quantum postulate before the physical implementation of mode occupation was derived |
 | 1905-1909 (Brownian motion and molecular reality) | Visible wandering of suspended particles, diffusion laws, osmotic-pressure analogy, and Perrin's Avogadro-number measurements | Treat stochastic-looking motion as a recovery target for hidden constituent population, transport coefficients, and unresolved microdynamics | The statistical law could be treated as the final description instead of as a demand to recover apparent randomness from the physical record underneath |
@@ -399,6 +391,8 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive**, tho
 
 The long-term relevance of this episode is permanent until the outcome-selection problem is mechanistically closed. Recovery would require a derivation of quantum-effective behavior from deterministic path-history-sensitive microdynamics together with a concrete explanation of why experimental records stabilize into the Born-like statistics that standard quantum theory encodes so well.
 
+That recovery is constrained by Bell rather than licensed by determinism alone. The candidate basin dynamics must fail the locally factorizable product form in the measured regime, reproduce the full setting-dependent correlation family, and preserve measurement independence and operational no-signaling. The detailed assumption and derivation burden is mapped in [Bell's Theorem](theory-bridges/bell-theorem.md).
+
 The narrower old-quantum recovery target is to show how spectral regularities, action-cycle discreteness, transition timing, line intensities, optical dispersion, indexed transition quantities, noncommutative effective operators, and classical correspondence arise from one branch record rather than from separate postulates. Passing that target would not by itself solve measurement, but it would recover the Rutherford-Bohr-de Broglie-Ladenburg-Heisenberg sequence at the correct level: data, effective rule, stability condition or rate bridge, effective operator algebra, and then substrate derivation.
 
 The parallel blackbody recovery target is to show how a photon bath reaches Planck occupation from mode structure, transition rates, and ensemble thermalization rather than by stipulating the final spectrum. Passing that target would recover the Planck-Rayleigh-Jeans sequence at the correct level: measured spectrum, mode inventory, failed continuous equipartition, discrete recovery rule, and then derived thermalization mechanism.
@@ -414,6 +408,8 @@ A Brownian-style recovery target runs in parallel: apparent randomness should cl
 ### Overview
 
 **Episode:** Renormalization Era: Warnings Reframed. **Short Name:** Renormalization Lock-In. **Period:** roughly the 1930s through the consolidation of renormalized quantum field theory in the postwar era. The near-miss thesis is that ultraviolet divergence, vacuum excess, and scale-dependent closure could have been treated more aggressively as clues to missing microstructure rather than normalized into technique alone.
+
+The claim requires a distinction between two achievements. Counterterms and regulator removal made perturbative predictions finite, while renormalization-group flow and universality explained why large classes of microscopic models share the same long-distance behavior. The latter is positive evidence that low-energy laws can be insensitive to microphysical detail, not merely a device for hiding infinities. Neither achievement establishes continuum fields as final ontology, but neither can be reduced to parameter absorption.
 
 ### Where The Opening Appeared
 

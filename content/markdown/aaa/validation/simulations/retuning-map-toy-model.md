@@ -8,7 +8,7 @@ The purpose is narrow: turn the retuning scaffold into a machine-readable packet
 
 ## Runtime Artifact
 
-Run the default mock packet with:
+**Implementation status:** not implemented. The reserved script and fixture paths below do not currently exist. They specify the intended interface and must not be cited as executed evidence:
 
 ```text
 node scripts/nested-shell-braid/retuning-map-toy-model.mjs --pretty
@@ -20,7 +20,7 @@ The script consumes:
 scripts/nested-shell-braid/retuning-map-mock.json
 ```
 
-and emits one result row per scenario. The packet is dimensionless: action increments are in units of $h$, speeds are compared to the declared $c_f$, and radius/cadence changes are reported as logarithmic increments plus reconstructed component changes.
+The planned runtime must emit one result entry per scenario. The packet is dimensionless: action increments are in units of $h$, speeds are compared to the declared $c_f$, and radius/cadence changes are reported as logarithmic increments plus reconstructed component changes.
 
 ## Replay Equation
 
@@ -69,7 +69,7 @@ $$
 a\in\{1,2,3\}
 $$
 
-The script applies the candidate source-record speed gates below. These branch roles do not assign an A1 or other taxonomy member:
+The specified algorithm applies the candidate source-record speed gates below. These branch roles do not assign an A1 or other taxonomy member:
 
 $$
 s_1'>c_f,
@@ -123,7 +123,7 @@ This fixture intentionally starts with a diagonal compliance matrix. A later bra
 
 ## Output Diagnostics
 
-The fixture reports:
+The planned fixture must report:
 
 | Output field | Meaning |
 | --- | --- |
@@ -136,13 +136,13 @@ The fixture reports:
 | `net_J_nu.value` | sum of transaction contributions in the scenario |
 | `net_J_nu.higher_order_estimate` | magnitude estimate for the omitted $O((\Delta\nu_N)^2\partial_\nu f_N)$ term |
 
-## Expected Mock Behavior
+## Required Mock Behavior
 
-The default mock packet has two rows.
+The reserved mock packet must contain two hand-checkable scenarios. The values below are specification targets, not current runtime outputs.
 
 | Scenario | Expected behavior |
 | --- | --- |
-| `same_branch_plus_minus_balance` | Plus and minus one-$h$ retunings both pass the speed gates. Unequal local rates leave a small signed current, `net_J_nu.value` near `0.0017019`. |
+| `same_branch_plus_minus_balance` | Plus and minus one-$h$ retunings both pass the speed gates. The planned arithmetic fixture must use its declared unequal local rates to produce the specified small signed current, with target `net_J_nu.value` near `0.0017019`. |
 | `middle_hinge_violation_control` | The linear action constraint solves, but source-record binary 2 leaves the declared hinge tolerance. The compatibility ID remains unchanged; the row fails with `middle-hinge-violation`. |
 
 These numbers are fixture expectations only. They validate arithmetic, packet shape, branch-gate reporting, and the current estimate. They do not validate a physical Noether braid branch.

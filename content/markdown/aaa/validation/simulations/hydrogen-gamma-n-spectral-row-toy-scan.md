@@ -255,7 +255,7 @@ $$
 \right)
 $$
 
-predicts a refinement mismatch of $-0.0001$ on record $B$ in the default scaffold. This is the current hydrogen validation result: atom-local refinement can falsify the minimal row when the accepted response record changes component split, but the scaffold does not yet require nonzero gravitational endpoint coefficients $a_n$, $a_\lambda$, or $a_R$ unless a constitutive hydrogen branch derives the same split from the static endpoint response.
+predicts a refinement mismatch of $-0.0001$ on record $B$ in the default scaffold. This is a scan-logic falsification witness, not a hydrogen validation result: atom-local refinement can reject the minimal row when the accepted response record changes component split, but the scaffold does not yet require nonzero gravitational endpoint coefficients $a_n$, $a_\lambda$, or $a_R$ unless a constitutive hydrogen branch derives the same split from the static endpoint response.
 
 ## Input Variables
 
@@ -286,7 +286,7 @@ $$
 \right)^T
 $$
 
-For each line, the packet also forms the line-inferred cadence stretch
+For each line, the packet also forms the line-inferred cadence stretch. Here $h$ is the observer-level action benchmark in the recovered spectroscopic energy-frequency relation; it is not a substrate input and cannot be fitted independently inside this scan.
 
 $$
 \widehat\Gamma_{N,\mathrm H}^{(\ell)}(a,b)

@@ -14,7 +14,24 @@ $$
 $$
 where $W_\ell$ is a smoothing window over Noether braid center variables $\mathbf X_s(T)$. The Noether sea stress, delay factor, and orientation variables then depend on each braid's closure label, orientation, and envelope deformation. The Noether sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether braid geometry, not primitive geometric postulates.
 
-The homogeneous Noether sea also supplies the first constructive convergence case for the infinite many-source wake sum. In a statistically homogeneous, isotropic, locally neutral population with neutrality correlation length $\ell$ and a mixing bound, receiver-centered shell contributions have square-summable fluctuations: a shell of radius $r_n\sim n\ell$ contains $O(n^2)$ neutral cells, signed fluctuations scale as $O(n)$, and inverse-square wake dilution contributes $O(n^{-2})$. The shell variance is therefore $O(n^{-2})$, so the neutral far-population contribution converges in the receiver-centered exhaustion sense. This is a weak homogeneous medium result, not a blanket convergence claim for coherent strong-field regions or unneutralized source populations.
+The homogeneous Noether sea also supplies the first constructive convergence case for the infinite many-source wake sum. In a statistically homogeneous, isotropic, locally neutral population with neutrality correlation length $\ell$, receiver-centered shell contributions have square-summable fluctuations: a shell of radius $r_n\sim n\ell$ contains $O(n^2)$ neutral cells, signed fluctuations scale as $O(n)$, and inverse-square wake dilution contributes $O(n^{-2})$. The shell variance is therefore $O(n^{-2})$. The required mixing condition is summable cross-shell covariance,
+$$
+\sum_{n\ne m}
+\left|
+\operatorname{Cov}(\Delta\mathbf A_n,\Delta\mathbf A_m)
+\right|
+<\infty,
+$$
+where $\Delta\mathbf A_n$ is the signed fluctuation of shell $n$'s wake-acceleration contribution about its neutral ensemble mean. The condition prevents correlations from rebuilding a divergent coherent tail from individually decaying shells. Under that condition the neutral far-population contribution converges in the receiver-centered exhaustion sense. This exhaustion is fixed by the receiver event's causal-root ledger and expanding receiver-centered shells, not by an arbitrary rearrangement of a conditionally convergent spatial series. This is a weak homogeneous medium result, not a blanket convergence claim for coherent strong-field regions or unneutralized source populations.
+
+The spacetime recovery stack depends on four load-bearing hypotheses that must remain visible:
+
+| Hypothesis | Role | Current status |
+| --- | --- | --- |
+| Family-A Lorentz-link | Identifies moving-envelope flattening as the carrier of clock and ruler retuning. | Kinematic closure target; no confirmation from evolved moving branches. |
+| Shared clock/signal delay | Sets $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$ so clocks and Shapiro delay consume one scalar delay response. | Conditional weak-field branch, not a derived identity. |
+| Local clock/sea cadence tracking | Identifies a matter-clock cadence change with the local $C_N=\Gamma_N^{-1}$ readout in the same cell. | Same-record closure target, with mismatch retained explicitly. |
+| Family-A ambient selection | Selects Family-A carriers as the physical Noether sea population. | Comparative selection hypothesis; not established by prescribed geometry alone. |
 
 ## Core Definition
 
@@ -114,7 +131,9 @@ The large-scale Noether sea is modeled as a balanced population of complementary
 
 This pro/anti distinction is the geometric and topological ordered-orientation label, not polarity conjugation, matter/antimatter, or a net electric-charge distinction. Global polarity conjugation leaves a braid's worldlines and therefore its pro/anti orientation unchanged. Both orientations are electrically and polarity neutral at the braid level. Their coupled orientation balance is part of the working explanation for how the Noether sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response; it does not assert a matter/antimatter population balance.
 
-Transparency has a candidate mechanism at the level of a single transiting assembly, offered here at effective grade. A propagating assembly is sub-field-speed, so its wake runs ahead of it and reaches the medium before the body does; the sea assemblies do not move aside like obstacles but re-phase — reorient in response to that advance field, then relax. Transparency is then *elastic parting*: the medium opens ahead through advance-field polarization and closes behind, leaving no net excitation, so no energy or momentum is deposited and the transit is lossless. The field-level statement is that the transiting and ambient wakes simply superpose, while the assembly-level statement is that the medium's response is reversible. Imperfect closure — a residual excitation left downstream — is the microscopic content of the loss, scattering, and preferred-frame-visibility terms the selection residual above bounds: a fully transparent class is one whose parting is elastic to the required tolerance.
+Transparency has a candidate mechanism at the level of a single transiting assembly, offered here at effective grade. A propagating assembly is sub-field-speed, so its wake runs ahead of it and reaches the medium before the body does; the sea assemblies do not move aside like obstacles but re-phase — reorient in response to the forerunning wake, then relax. Transparency is then *elastic parting*: the medium opens ahead through wake-induced polarization and closes behind, leaving no net transit excitation, so no energy or momentum is deposited by the completed passage and the transit is lossless. The wake-level statement is that the transiting and ambient wakes superpose, while the assembly-level statement is that the perturbation produced by passage is reversible. Imperfect closure — a residual excitation left downstream — is the microscopic content of the loss, scattering, and preferred-frame-visibility terms the selection residual above bounds: a fully transparent class is one whose parting is elastic to the required tolerance.
+
+This reversible transit row does not erase persistent gravitational loading. A source assembly that remains in a region supplies a quasi-stationary boundary condition and maintains a polarized Noether sea response; a transiting assembly supplies a time-dependent perturbation about that loaded state. Lossless closure requires the latter perturbation to relax after passage, not the former source-supported polarization to vanish. The constitutive map must derive both responses from the same wake record and distinguish them by source persistence and response timescale rather than by changing the coupling law.
 
 The detailed pro/anti basis, density split, imbalance stability, local coupling law, and candidate cluster motifs belong in [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md). This page only fixes the Noether sea ontology those assembly hypotheses serve.
 
@@ -708,7 +727,7 @@ p_{u,X}\nabla\cdot\mathbf u_{\mathrm{sea}}
 \mathcal R_{\mathrm{coh},X}
 $$
 
-with $\boldsymbol\theta_{\mathrm{sea}}=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi)^T$. The sharper continuity form replaces the isolated current-divergence term with the source-balanced cadence residual. Along a photon path, let
+with $\boldsymbol\theta_{\mathrm{sea}}=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi)^T$. The endpoint-only entry $\ln(R_{\text{braid}}/R_{\text{braid},0})$ is deliberately absent: it is a local assembly-clock readout, not a continuum medium field transported along the photon path. If a future constitutive derivation promotes a path-resolved braid-radius field, it must extend both $\boldsymbol\theta_{\mathrm{sea}}$ and $\mathbf p_X$ explicitly rather than allowing that channel to leak into $p_{\nu,X}$ or $p_{u,X}$. The sharper continuity form replaces the isolated current-divergence term with the source-balanced cadence residual. Along a photon path, let
 
 $$
 D_{\gamma}

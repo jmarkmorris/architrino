@@ -21,7 +21,11 @@ function getBlockLength(block = {}) {
 
 const PDGEDIT_COMPOSITE_LABEL_DEFINITIONS = Object.freeze([
   { type: "photon-composite", tileKey: "photon", text: "Photon" },
-  { type: "noether-pair-composite", tileKey: "noether-pair", text: "Noether Pair" },
+  {
+    type: "noether-pair-composite",
+    tileKey: "noether-pair",
+    text: "Pro/anti-orientation Noether-braid composite",
+  },
   { type: "noether-quad-composite", tileKey: "noether-quad", text: "Noether Quad" },
   { type: "pro-proton-composite", tileKey: "pro-proton", text: "Proton" },
   { type: "anti-proton-composite", tileKey: "anti-proton", text: "Anti Proton" },

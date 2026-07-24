@@ -24,15 +24,15 @@ The chapter keeps a clean separation between:
 At the absolute level, any local neighborhood is crowded:
 
 - Architrinos and assemblies are:
-- Rotating in indexed internal binaries $a\in\{1,2,3\}$,
+  - Rotating in indexed internal binaries $a\in\{1,2,3\}$,
   - Translating through the void,
   - Continuously emitting spherically expanding **causal wakes** at speed $c_f$.
 
-- At a given absolute time $T$, the **net potential** at a point is the **vector sum** of:
+- At a given absolute time $T$, the **net potential** at a point is the scalar superposition of:
   - Wakes from local Noether braid assemblies in the Noether sea,
   - Wakes from bound matter in the vicinity,
   - Wakes from distant assemblies whose emission fronts are just arriving,
-- Self-hit structures from $v>c_f$ motion in a declared indexed binary.
+  - Self-hit structures from $v>c_f$ motion in a declared indexed binary.
 
 - **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a globally neutral mix of electrinos ($q=-$) and positrinos ($q=+$); exact 50/50 balance is a cosmological neutrality postulate carried by [Noether Sea](../spacetime/noether-sea.md), not a derived result, and local inventories are routinely unbalanced. Consequently, the potential contributions from distant regions statistically cancel out (effective screening). More precisely: in a statistically homogeneous 50/50 mixture the mean far-field cancels, while potential fluctuations and local charge imbalances remain and dominate the dynamics on finite scales. Screening is therefore statistical and scale-dependent, not an exact cancellation theorem. The observer-level summary is a local unresolved fluctuation floor, not an infinite static wake background.
 
@@ -69,7 +69,7 @@ At the fundamental level:
   $$
   T_{\text{arrival}} = T_{\text{emission}} + \frac{r}{c_f}
   $$
-- Forces at time $T$ on a given architrino/assembly depend only on:
+- The acceleration at time $T$ of a given architrino depends only on:
   - Its own past trajectory (self-hit),
   - Other architrinos' past trajectories, via wakes that have reached the point by $T$.
 
@@ -84,11 +84,11 @@ From the viewpoint of an embedded assembly:
 
 1. **Near-field-speed assemblies ("Stealth" vs. "Reactive" Modes)**
    - **Near-$c_f$ Linear Fragility (Self-Hit Resonance):** Approaching $c_f$ from below does **not** produce self-hit on a strictly sub-field-speed interval; the triangle inequality forbids the same-transmitter root. At exactly $v = c_f$, straight-line motion gives a degenerate tangent family rather than a clean simple branch. Self-hit resonance is admitted only when the same-transmitter root set is nonempty and passes the transversality/Jacobian floor and the same-record transmitter-side acceleration-weight floor. A super-field-speed curved interval is therefore a candidate source of self-hit, not a speed-only acceptance test. In that regime small perturbations are strongly amplified or damped depending on phase. The wake amplitude does **not** diverge; "pileup" here means coherent reinforcement of a finite wake, not a singularity. Linear near-$c_f$ states are therefore **fragile** and short-lived unless the system actively de-phases the feedback.
-- **The Curvature Target (Stable Stealth):** Candidate stable assemblies with a declared indexed channel near $v\approx c_f$ may use curvature, phase rotation, or internal modulation to de-phase their self-hit geometry. The closure target is to show that this mechanism can keep a hard potential front externally while preserving a Jacobian floor, a retained transmitter-side acceleration weight, bounded energy, and deterministic multistability rather than permitting runaway self-reinforcement.
+   - **The Curvature Target (Stable Stealth):** Candidate stable assemblies with a declared indexed channel near $v\approx c_f$ may use curvature, phase rotation, or internal modulation to de-phase their self-hit geometry. The closure target is to show that this mechanism can keep a hard potential front externally while preserving a Jacobian floor, a retained transmitter-side acceleration weight, bounded energy, and deterministic multistability rather than permitting runaway self-reinforcement.
    - **Operational Effect:** A receiver sees little change until the corkscrewing assembly is very close, then feels a rapid, modulated potential surge—a "digital" shockwave delivered without warning.
 
 2. **$v>c_f$ indexed-binary motion**
-- Candidate source records may assign $v>c_f$ to one or more indexed binaries relative to the wake speed.
+   - Candidate source records may assign $v>c_f$ to one or more indexed binaries relative to the wake speed.
    - Their self-hit geometry (intersections with their own wakes) creates nontrivial potential patterns that:
      - Are fully causal in absolute time,
      - Can look like "out-of-nowhere" structure from the emergent perspective, because the effective light-cone built from $c_{\text{eff}}$ does not capture the full wake history.
@@ -99,6 +99,8 @@ From the viewpoint of an embedded assembly:
 - These changes may be driven by sources that are not in the observer's inferred causal cone (based on $c_{\text{eff}}$), even though they are perfectly causal in the $c_f$ + absolute-time sense.
 
 So causality is **unbroken** at the substrate, but **opaque** and sometimes misleading when inferred from the emergent, coarse-grained picture.
+
+These outside-$c_{\mathrm{eff}}$ but forward-in-$T$ wake channels are a candidate mechanism class for the derived non-product joint response required by the [Bell ledger](../philosophy-history/theory-bridges/bell-theorem.md). They do not close Bell correlations by themselves. Any such construction must still reproduce the full joint law while passing measurement-independence and operational no-signaling audits.
 
 ---
 
@@ -114,7 +116,7 @@ At the assembly level (Noether braids, atoms, etc.):
 
 - A **declared indexed binary** can be modeled as such a metastable subsystem:
   - It supports discrete resonance bands labeled by an integer index $f$ (linked to a characteristic frequency).
-  - A transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E \approx h \nu$, and pushes the system across the boundary between resonance bands (the $f \to f \pm 1$ boundary). Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
+  - In the phenomenological bridge owned by the action-increment protocol, a transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E \approx h \nu$, and pushes the system across the boundary between resonance bands (the $f \to f \pm 1$ boundary). This is a recovery target for the basin dynamics, not a quantization premise at the architrino level. Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
 
 - A **declared indexed channel** near $v=c_f$ may sit near a **self-hit threshold** (see [Self-Hit Threshold Analogy](#self-hit-threshold-analogy)):
   - Slightly below $c_f$: one regime (e.g., a response on the order of an $h$-scale action increment per cycle, phenomenological).
@@ -188,7 +190,7 @@ where $\mathcal{K}_{\mathrm{app}}$ is the apparatus kernel retained for the decl
 
 ## Agency and Decision
 
-This section states the **minimal structural and dynamical conditions** under which an assembly or super-assembly can *decide* its response. In this usage, deciding means either leveraging incoming **large-deviation wake peaks** ($\ge 3\sigma$ constructive interference above the local unresolved fluctuation floor) or effectively ignoring them.
+This section states the **minimal structural and dynamical conditions** under which an assembly or super-assembly can *decide* its response. In this usage, deciding means either leveraging incoming **large-deviation wake peaks** or effectively ignoring them. When the illustrative $3\sigma$ threshold is used below, $\sigma$ is the standard deviation of the no-signal wake-amplitude distribution for one fixed coarse-graining, access region, and record window. It is a working detection convention, not a universal substrate constant.
 
 ### Definition of Decision
 
@@ -278,7 +280,7 @@ Concretely:
 
 - Parameters could include:
   - Effective coupling strengths between sub-assemblies (networks of coupled binaries),
-- Orientation/phase relationships among declared indexed channels near $v\approx c_f$,
+  - Orientation/phase relationships among declared indexed channels near $v\approx c_f$,
   - Local Noether sea-coupling "stiffness" (how strongly sub-assemblies respond to given wake amplitudes).
 - These parameters must be **slow variables** relative to the fast threshold dynamics, so that:
   - The assembly can hold a "configuration of sensitivity" over many incoming wake peaks,
@@ -433,7 +435,7 @@ The following **operational dictionary** links the QM formal step to architrino 
 
 ---
 
-### Historical Note (1875–present): From Operational Success to Ontological Drift
+### Historical Note (Late Nineteenth Century–Present): From Operational Success to Ontological Drift
 
 If $\mathbb{A}\mathbb{A}\mathbb{A}$ is correct, the last 150 years should be read as follows:
 
@@ -471,5 +473,7 @@ P_{c_\Omega,u_b,T_W}
 \epsilon_{\mathrm{sw}}
 $$
 where $D$ is a declared statistical distance — total variation in the first pass — so that $\epsilon_{\mathrm{sw}}$ has definite meaning, while the boundary context $c_\Omega$ is held fixed and the work ledger remains finite. A Decider claim additionally requires a record-sensitive update map $u_{n+1}=G(u_n,r_n,\chi_n)$ whose later basin weights differ above tolerance.
+
+Here $\mu_{c_\Omega,u,T_W}$ is the normalized restriction of the branch-wide finite-window measure $\mu_{*,T_W}$ to the fixed boundary context $c_\Omega$ and preparation $u$. The variable $r_n$ is the retained outcome record from cycle $n$, while $\chi_n$ is the declared coarse environment/context summary supplied to the next feedback update.
 
 Concrete hardware sketches, including the Rydberg-like He-Rb-He Switch worked in [Agency and Internal Causation](../philosophy-history/agency-and-internal-causation.md), are illustrations of what such a future capability might look like. They are not canonized minimal architectures and may be replaced or falsified by later branch-chart, basin-measure, and energy-ledger calculations.

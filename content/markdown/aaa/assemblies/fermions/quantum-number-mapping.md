@@ -33,7 +33,7 @@ This table is an inventory ledger, not a particle list. A row becomes a Standard
 
 That distinction is the main protection against over-reading the table. The seven charge sums show what the six-unit inventory can count; they do not say that every count becomes a stable low-energy particle.
 
-Neutrinos are the exception to this inventory model. They are treated as near-photon neutral polarity-conjugate braid pairings; balanced $3\epsilon_+,3\epsilon_-$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](./neutrinos.md).
+Neutrinos are the exception to this inventory model. They are treated as near-photon neutral polarity-conjugate braid pairings; balanced $3\epsilon_+,3\epsilon_-$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. The photon lock used as their base configuration has not been exhibited, and the declared planar-pair family fails its binding gate, so neutrino quantities defined as departures from that lock remain referent-pending. See [Neutrinos](./neutrinos.md#referent-status).
 
 Note: **Mass is derived**, not a quantum number here; it comes from shielded internal causal history and medium-dressed Noether sea response. See [Particle Masses](../particle-masses.md) for the mass thesis and [Emergent Metric](../../spacetime/emergent-metric.md) for metric-level translation.
 
@@ -343,7 +343,7 @@ At the representation and charge-bookkeeping layer, the dictionary recovers the 
 
 - **$SU(3)_c$ (color):** axis-exceptionality of the Noether braid plus axial layer. Quarks occupy the triplet basis $|q_1\rangle, |q_2\rangle, |q_3\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
 - **$SU(2)_L$ (weak isospin):** polarity of the **weak-coupling triad** (three exposed polar sites, or the effective near-photon weak projection for neutrinos). Left-handed fermions are doublets; right-handed fermions are singlets (weak-coupling triad hidden).
-- **$U(1)_Y$ (weak hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus braid offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
+- **$U(1)_Y$ (weak hypercharge):** posture-dependent weak-exposure bookkeeping. On doublet branches the hidden-triad charge supplies $Y$ after the weak-coupling triad supplies $T_3$; on singlet branches no weak-coupling triad is active, so the whole electric charge enters through $Y=2Q$. It mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
 - **Electromagnetism ($U(1)_{\mathrm{EM}}$):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving weak-coupling-triad charge/phase; see [Electroweak Bosons](../bosons/electroweak-bosons.md).
 
 This is not yet a derivation of local gauge dynamics. The remaining closure targets are:
@@ -370,25 +370,25 @@ This is not yet a derivation of local gauge dynamics. The remaining closure targ
 
 - **Gluons (8):** axis-reconfiguration ribbons on flux tubes; adjoint of SU(3), no net electric bookkeeping charge.
 - **$W^\pm$, $Z$:** transient recoupling corridors moving weak-coupling-triad charge/phase between assemblies (spin-$1$, weak $SU(2)$ triplet).
-- **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
+- **$B_\mu$ (hypercharge):** corridor tracking the posture-dependent charge entry used for $Y$; mixes with $W^3$ to yield photon and $Z$.
 - **Photon:** mixed planar mode aligned to leave Shielded + weak-coupling-triad combination invariant ($Q$-coupling only).
 
 *Boson details:* see [assemblies/bosons/gluons.md](../bosons/gluons.md) (color sector) and [assemblies/bosons/electroweak-bosons.md](../bosons/electroweak-bosons.md) (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions. (Color decoherence suppression remains a hypothesis pending simulation.)
 
-### Hypercharge bookkeeping (Shielded triad → $Y$)
+### Hypercharge bookkeeping (weak-exposure posture $\to Y$)
 
-Hypercharge is set by the net charge on the **Shielded Triad** (three hidden polar sites) plus any braid offset; with $Y = 2(Q - T_3)$ this reduces to $Y = 2\,Q_{\text{shielded}}/e$ for doublets, and for singlets $T_3=0$ so $Y=2Q$.
+Hypercharge is not a second stored charge. It is the observer-level bookkeeping required by $Y=2(Q-T_3)$ after the branch's weak-exposure posture is declared. For a doublet, the exposed weak-coupling triad supplies $T_3$ and the complementary hidden-triad charge supplies $Y$. For a singlet, no weak-coupling triad is active, so $T_3=0$ and the whole electric charge enters through $Y=2Q$.
 
-| Field | Shielded triad charge (e units) | $Y$ from shielded charge | SM $Y$ |
+| Field | Charge entry used for $Y$ (e units) | Hypercharge bookkeeping | SM $Y$ |
 | --- | --- | --- | --- |
-| $q_L = (u_L,d_L)$ | $+1/6$ ($2\epsilon_+,1\epsilon_-$) | $2 \times (+1/6) = +1/3$ | $+1/3$ |
-| $u_R$ | $+2/3$ (axial layer $5\epsilon_+,1\epsilon_-$, shielded=visible here) | $T_3=0 \Rightarrow Y=2Q=+4/3$ | $+4/3$ |
-| $d_R$ | $-1/3$ (axial layer $2\epsilon_+,4\epsilon_-$, shielded=visible here) | $T_3=0 \Rightarrow Y=2Q=-2/3$ | $-2/3$ |
-| $\ell_L = (\nu_L,e_L)$ | $-1/2$ ($3\epsilon_-$) | $2 \times (-1/2) = -1$ | $-1$ |
-| $e_R$ | $-1$ (axial layer $6\epsilon_-$, shielded=visible here) | $T_3=0 \Rightarrow Y=2Q=-2$ | $-2$ |
+| $q_L = (u_L,d_L)$ | $+1/6$ from the hidden triad ($2\epsilon_+,1\epsilon_-$) | $2 \times (+1/6) = +1/3$ | $+1/3$ |
+| $u_R$ | full singlet charge $Q=+2/3$ | $T_3=0 \Rightarrow Y=2Q=+4/3$ | $+4/3$ |
+| $d_R$ | full singlet charge $Q=-1/3$ | $T_3=0 \Rightarrow Y=2Q=-2/3$ | $-2/3$ |
+| $\ell_L = (\nu_L,e_L)$ | $-1/2$ from the hidden triad ($3\epsilon_-$) | $2 \times (-1/2) = -1$ | $-1$ |
+| $e_R$ | full singlet charge $Q=-1$ | $T_3=0 \Rightarrow Y=2Q=-2$ | $-2$ |
 | (optional) $\nu_R$ | none in the minimal near-photon architecture | $Y=0$ only if introduced as a sterile singlet | (not in SM) |
 
-Notes: the shielded charge is common within a doublet; for the neutrino branch this is effective weak bookkeeping rather than a bound axial inventory. Right-handed singlets set $Y$ via $Q$ with $T_3=0$.
+Notes: the hidden-triad charge is common within a doublet; for the neutrino branch this is effective weak bookkeeping rather than a bound axial inventory. Right-handed singlets use the full $Q$ row because their weak-coupling triad is inactive.
 
 ### Universal charged-fermion bookkeeping rule (conjectural synthesis)
 
@@ -727,6 +727,20 @@ with one shared $\theta$ and one shared $M_{\mathrm{sh}}$ across leptons, up-typ
 
 The explicit shared fitting packet lives in [Particle Masses](../particle-masses.md#generation-mass-fitting-packet), where $M_{\mathrm{sh}}$ is treated as a mass-response map rather than a new generation ontology.
 
+### Generation-step scaffold ledger
+
+The three charged-fermion generations carry a simple scaffold count before any dynamics is inferred:
+
+$$
+N_{\mathrm{scaffold}}(g)=8-2g,
+\qquad
+g\in\{1,2,3\},
+\qquad
+\Delta N_{\mathrm{scaffold}}=-2\,\Delta g.
+$$
+
+Thus an adjacent step toward a heavier generation sheds one neutral electrino:positrino support binary, while an adjacent step toward a lighter generation acquires one such binary from the declared event environment. The muon-to-electron direction has $\Delta g=-1$ and therefore requires $\Delta N_{\mathrm{scaffold}}=+2$; the reverse direction releases two scaffold architrinos. This is an inventory constraint on the event ledger, not a proof of the corridor dynamics. Any reaction account that changes generation without routing that neutral pair through the incoming assemblies, outgoing assemblies, or Noether sea record is incomplete.
+
 ### Generation II (Muon, Charm, Strange)
 *   **Architecture:** Outer shielding coherence depleted.
 *   **Braid-support readout:** **Generation-II shielding branch** (Inner, Middle coherently support the branch).
@@ -799,7 +813,7 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | :--- | :---: | :--- | :--- |
 | **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | For charged fermions: net signed count of the protected six-unit polarity inventory, $Q = \epsilon(N_+ - N_-)$; in the axial-layer realization this is the net axial count. For neutrinos: neutral polarity-conjugate near-photon cancellation with an effective weak ledger. |
 | **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the weak-coupling triad.** The net charge state of the 3 exposed polar sites. (+1/2 = positive-polarity dominant, -1/2 = negative-polarity dominant). |
-| **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any braid offset. |
+| **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Posture-dependent weak-exposure bookkeeping.** Doublets read the complementary hidden-triad charge after $T_3$ is assigned; singlets have no active weak triad and use $Y=2Q$. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_1\rangle$, $|q_2\rangle$, or $|q_3\rangle$ for which Noether braid axis is exceptional relative to the other two. |
 | **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Candidate ordered-frame spinor topology.** The proposed scaffold is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The same ordered-frame spinor/exposure record exposes the weak-coupling triad to the ambient Noether sea (interaction allowed).<br>• **Right ($R$):** The same record hides the weak-coupling triad in the particle's wake or shield (interaction blocked). Spin-projection language is observer-level shorthand until the $SU(2)\to SO(3)$ lift and $\Delta_{\mathrm{WCT}}$ row pass. |
@@ -898,6 +912,18 @@ $$
 \sin^2\theta_W(m_Z)=\sin^2\theta_W^{\text{bare}}+\Delta_{\text{wake}}(m_Z)
 $$
 where $\Delta_{\text{wake}}$ is the causal-wake/polarization correction of the Noether sea at the electroweak scale.
+
+Using the representative effective $Z$-pole value $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$, the required dressing is not numerically negligible:
+
+$$
+\Delta_{\text{wake}}(m_Z)
+\simeq
+0.2315-0.2500
+\simeq
+-0.0185.
+$$
+
+This is about a $7.4\%$ downward correction relative to the bare value. The exact comparison must declare its renormalization scheme and observable; the number above fixes the scale and sign of the burden rather than supplying the missing derivation.
 
 ### Charge normalization hook
 

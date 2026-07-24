@@ -12,9 +12,34 @@ When chemists use the **van der Waals (VdW) volume** of a molecule, they mean th
 
 At everyday conditions, about $1\,\mathrm{atm}$ and room temperature, air is extremely sparse. A quick estimate using van der Waals volumes shows why:
 
-- Take nitrogen ($\mathrm{N}_2$) as representative with the declared molecular hard-core estimate $V_{\mathrm{VdW}}\approx 34\,\mathring{\mathrm A}^3$ per molecule. One mole then presents a hard-core volume of about $34 \times 10^{-24}\,\mathrm{cm}^3 \times N_A \approx 20\,\mathrm{cm}^3$.
-- One mole of an ideal gas occupies about $24{,}000\,\mathrm{cm}^3$ at $298\,\mathrm{K}$ and $1\,\mathrm{atm}$.
-- Packing fraction is therefore about $20\,\mathrm{cm}^3 / 24{,}000\,\mathrm{cm}^3 \approx 0.08\%$ to $0.1\%$.
+Take nitrogen ($\mathrm{N}_2$) as representative. Using two equal Bondi
+spheres with radius $r_N=1.55\,\mathring{\mathrm A}$ and center separation
+$d=1.10\,\mathring{\mathrm A}$, the bonded overlap is
+
+$$
+V_{\cap}
+=
+\frac{\pi(4r_N+d)(2r_N-d)^2}{12}
+\approx
+7.64\,\mathring{\mathrm A}^3.
+$$
+
+The declared union rule therefore gives
+
+$$
+V_{\mathrm{VdW}}
+=
+2\frac{4\pi r_N^3}{3}-V_{\cap}
+\approx
+23.6\,\mathring{\mathrm A}^3
+$$
+
+per molecule. One mole then presents a hard-core volume of about
+$23.6 \times 10^{-24}\,\mathrm{cm}^3 \times N_A
+\approx 14.2\,\mathrm{cm}^3$. One mole of an ideal gas occupies about
+$24{,}000\,\mathrm{cm}^3$ at $298\,\mathrm{K}$ and $1\,\mathrm{atm}$.
+The packing fraction is therefore about
+$14.2\,\mathrm{cm}^3 / 24{,}000\,\mathrm{cm}^3 \approx 0.06\%$.
 
 Intuition scales:
 - Average intermolecular spacing is about $3$ to $4\,\mathrm{nm}$.
@@ -32,7 +57,7 @@ Using the ideal gas law, dry air at $1\,\mathrm{atm}$ and $298\,\mathrm{K}$ cont
 Notes:
 - Dry air omits water vapor. At $25^\circ\mathrm{C}$ and $50\%$ relative humidity, $\mathrm{H}_2\mathrm{O}$ is about $1.6\%$ by volume, or about $3.9 \times 10^{17}$ per $\mathrm{cm}^3$. At saturation near $25^\circ\mathrm{C}$, it is about $3.1\%$ by volume.
 - Trace constituents scale by their volume fraction and do not change the packing conclusion.
-- Despite high number densities, the hard-core geometric occupancy is only about $0.08\%$ to $0.1\%$ of the volume. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, ordinary molecular exclusion occupies only a small fraction of the available Euclidean volume, while deeper Noether sea implementation layers remain available for medium-level propagation.
+- Despite high number densities, the hard-core geometric occupancy is only about $0.06\%$ of the volume under the declared $\mathrm N_2$ union-of-spheres rule. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, ordinary molecular exclusion occupies only a small fraction of the available Euclidean volume, while deeper Noether sea implementation layers remain available for medium-level propagation.
 
 This gives a **geometric baseline** for how much space a molecule excludes. In real matter, the effective boundary is also affected by bonding, compression, temperature, pressure, and the channel being probed.
 
@@ -98,4 +123,4 @@ This is the same implementation layer developed in [Emergent Metric](./emergent-
 
 The van der Waals volume is an exclusion region mainly for **ordinary fermionic matter**. At the molecular level it defines exclusion for atoms and molecules; at the material level, boundaries such as air-water, skin-air, and metal-skin are large-scale manifestations of those exclusions. At the cosmic scale and observer level, photons, neutrinos, dark matter candidates, gravitational waves, clock comparisons, and effective metric descriptions interact through different coupling mechanisms. Molecular hard-core exclusion is therefore a matter-channel fact, not a universal medium-availability rule.
 
----
+The worked air estimate makes the chapter's conclusion concrete. A molecular occupancy of only about $6\times10^{-4}$ does not predict a photon, neutrino-like, clock, or gravitational-wave response. Each channel still requires its own $\mathcal C_X$ record; geometric sparsity alone establishes neither transparency nor opacity.

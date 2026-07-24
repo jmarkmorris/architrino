@@ -1,10 +1,10 @@
 # Units and Constants
 
-This note fixes the unit and symbol conventions used by the action-energy simulation notes. We work in units with field speed $v=1$ unless stated otherwise, use $\kappa>0$ for the universal coupling, and use $\eta>0$ as the default regularization thickness for causal isochrons.
+This note fixes the unit and symbol conventions used by the action-energy simulation notes. We work in normalized wake-speed units with $c_f=1$ unless stated otherwise, use $\kappa>0$ for the universal coupling, and use $\eta>0$ as the default regularization thickness for causal isochrons.
 
 Core symbols:
 
-- $v=1$: field speed in normalized units.
+- $c_f=1$: wake speed in normalized units.
 - $\kappa>0$: universal coupling constant.
 - $\eta>0$: causal-isochron thickness.
 - $\epsilon>0$: polarity-unit magnitude; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
@@ -13,9 +13,9 @@ Core symbols:
 
 ## Dynamical Geometry
 
-- Field-speed units ($v=1$):
-  - Choosing $L_0,T_0$ with $v=L_0/T_0=1$ fixes a conversion between spatial and temporal scales so that all speeds are dimensionless ratios to the field speed. This is akin to “setting c=1,” but the reference is the model’s field speed. Kinematics still lives on absolute time × Euclidean space; we have not mixed time and space into a 4D line element.
-  - Consequence: every velocity appears as a pure number $\|\mathbf V\|$; the symmetry point $\|\mathbf V\|=v$ becomes $\|\mathbf V\|=1$. Rescaling $L_0$ and $T_0$ together leaves all dimensionless predictions invariant.
+- Wake-speed units ($c_f=1$):
+  - Choosing $L_0,T_0$ with $c_f=L_0/T_0=1$ fixes a conversion between spatial and temporal scales so that all speeds are dimensionless ratios to the wake speed. Kinematics still lives on absolute time × Euclidean space; no spacetime substrate is introduced.
+  - Consequence: every velocity appears as a pure number $\|\mathbf V\|$; the threshold $\|\mathbf V\|=c_f$ becomes $\|\mathbf V\|=1$. Rescaling $L_0$ and $T_0$ together leaves all dimensionless predictions invariant.
 
 - Coupling constant ($\kappa>0$):
   - $\kappa$ sets the overall scale of per-hit acceleration. In the canonical law,
@@ -26,11 +26,11 @@ Core symbols:
   - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $t_0$ shift accordingly through the dynamical balance that defines them.
 
 - Regularization width ($\eta>0$):
-  - $\eta$ is the width applied to each causal isochron (wake surface) to mollify the surface delta $\delta(r-\Delta)$. It converts impulsive hits into brief, smooth pushes so that standard ODE integration applies and pointwise quantities (like gradients) are well-defined.
+  - $\eta$ is the width applied to each causal isochron (wake surface) to mollify the surface delta $\delta(r-\Delta)$. It converts impulsive hits into brief, smooth pushes so pointwise quantities such as gradients are defined. The evolution remains a delayed-history problem; an ordinary instantaneous-state ODE solver is insufficient unless the retained history and root reconstruction are supplied explicitly.
   - Geometric guidance: choose $\eta$ small relative to local geometric scales (e.g., the receiver's instantaneous curvature radius along its path and the local receiver-transmitter separation) so the regularized dynamics approximate the ideal path-history picture while remaining numerically stable.
 
 - Polarity-unit magnitude ($\epsilon>0$):
-  - $\epsilon$ is the fundamental polarity scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). In this framework $\epsilon$ is often identified with $|e|/6$, making observer-level quark electric charges integer multiples of $\epsilon$.
+  - $\epsilon$ is the fundamental polarity scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). The observer-level calibration target $|e|=6\epsilon$ makes quark electric-charge labels integer multiples of $\epsilon$; it is not an input to the substrate dynamics. The owning conversion convention is in [Parameter Ledger](../../parameter-ledger.md#2-charge-reconstruction).
   - Per-wavefront amplitude and emission cadence are constant at the transmitter. The received acceleration magnitude is modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, where $D_t$ records transmitter-side root transversality and $D_r$ records receiver-side playback geometry.
 
 - Sign of interaction ($\sigma_{q q'}$):

@@ -90,14 +90,6 @@ Default prose flow for each subject section:
 5. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: alignment status and transition role, including `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ and `Transition Relevance`.
 6. **What Survives**: durable post-transition lesson, including `Long-Term Relevance`.
 
-Template conformance test protocol for each subject section:
-
-1. Confirm all template fields are explicitly addressed in prose.
-2. Confirm all six prose-flow parts are present in order.
-3. Confirm `What It Gets Right` preserves genuine strengths, not caricatures.
-4. Confirm `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ is classified as aligned, partial, useful-limited, misapplied, in tension, or open.
-5. Confirm `Long-Term Relevance` states whether the subject persists as principle, method, caution, or historical lesson.
-
 ---
 
 ## Scientific Realism and Anti-Realism
@@ -127,6 +119,10 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ the crucial commitment is layered realism. 
 What realism gets right is explanatory seriousness. It refuses to treat deep theory as mere bookkeeping when theory clearly constrains what can exist. What anti-realism gets right is vigilance against overreach, especially in domains with long inferential chains. What each can overstate is the part it neglects. Realism can become promiscuous and grant too much ontological dignity to inherited representations. Anti-realism can become too thin to support the very explanatory ambitions that make physics more than a catalog of regularities.
 
 The subject therefore contains a built-in tension between explanatory confidence and inferential restraint. That tension is not a defect to be eliminated. It is a governance problem to be managed. The mistake is to resolve it globally instead of by level and evidential role.
+
+The no-miracles argument and the pessimistic meta-induction make this tension exact. The no-miracles argument says the predictive and cross-domain success of mature theories would be difficult to explain if their central structures had no contact with reality. The pessimistic meta-induction replies that many once-successful theories carried entities and mechanisms later abandoned. The reply applies to $\mathbb{A}\mathbb{A}\mathbb{A}$ too: it cannot cite eventual fit, explanatory reach, or the failure of rivals as sufficient warrant for architrino ontology. Its ontological claims must earn support through independent derivations, linked predictions, and recovery maps that do not absorb mismatch after the fact.
+
+Structural realism offers a controlled middle position. What survives theory change may be a stable relation, invariant, or mathematical organization even when the entities used to describe it change. That is useful for inheriting conservation laws, symmetry relations, correlation structures, and effective equations without importing their prior ontology. It is not a complete answer by itself, because a relation still requires a physical bearer and a mechanism if the theory claims substrate closure. For this corpus, structural continuity is evidence about what must be recovered; it is not permission to leave the implementing objects unspecified.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -770,6 +766,22 @@ Major schools include underdetermination arguments, Bayesian and abductive tradi
 What this subject gets right is that evidence moves through layers: observation, reduction, model selection, parameter estimation, and interpretive packaging. Multiple ontologies can often occupy that same ladder. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this means the theory must show not only that a different substrate story is possible, but that it yields stronger unification, cleaner derivation, or tighter linked constraints than the current package.
 
 The subject also gets right that theory choice cannot be reduced to one virtue. Simplicity, coherence, fertility, and mechanistic depth matter, but each can mislead when isolated. The demand is therefore for articulated tradeoffs rather than hidden preference.
+
+The Duhem-Quine problem sharpens the audit. A failed comparison confronts a packet, not one isolated law: substrate dynamics, initial and boundary data, apparatus model, observer projection, numerical method, and calibration all contribute to the residual. Write the tested packet as
+$$
+\mathcal{H}_{\mathrm{test}}
+=
+\left(
+\mathcal{D}_{\mathrm{sub}},
+\mathcal{I},
+\mathcal{B},
+\mathcal{A}_{\mathrm{app}},
+\Pi_{\mathrm{obs}},
+\mathcal{N},
+\mathcal{K}
+\right),
+$$
+where $\mathcal{N}$ is the numerical implementation and $\mathcal{K}$ the calibration record. A discrepancy falsifies the packet as tested. Assigning it to one component requires an independent intervention, cross-benchmark comparison, or analytic reference that holds the other components fixed. Without that separation, blaming an auxiliary assumption or rescuing the central law are equally underdetermined moves.
 
 ### Internal Tensions
 

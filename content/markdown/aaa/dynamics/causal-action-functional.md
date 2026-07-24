@@ -151,7 +151,7 @@ on which $D_t$, $D_r$, and $W^{\mathrm{acc}}$ are available.
 
 The circular branch-count benchmark is topology only. Circular self-hit births,
 Jacobian-null thresholds, and inactive-gap ledgers may classify causal-root
-structure, but they do not imply a circular no-go, force-balance result, action
+structure, but they do not imply a circular no-go, acceleration-balance result, action
 minimum, or mass scale.
 
 The theorem spine is the circular no-proliferation result already used by the

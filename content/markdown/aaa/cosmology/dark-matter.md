@@ -6,7 +6,7 @@ The opening establishes the ontology and the criteria for what counts as dark in
 
 ## Scope and Purpose
 
-Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 27% of the present energy budget to cold dark matter (CDM)—a pressureless, non-baryonic component that clusters gravitationally but couples negligibly to electromagnetic radiation. This chapter maps dark-matter phenomenology onto $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly ontology and identifies candidate substrates.
+Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly one quarter of the present energy budget to cold dark matter (CDM), with a representative comparison value $\Omega_c\approx0.26$. This pressureless, non-baryonic component clusters gravitationally but couples negligibly to electromagnetic radiation. This chapter maps dark-matter phenomenology onto $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly ontology and identifies candidate substrates.
 
 Throughout, "dark matter" refers to the set of phenomena conventionally attributed to CDM: flat galaxy rotation curves, cluster lensing offsets, the third acoustic peak of the CMB, large-scale structure growth, and BBN-consistent $\Omega_b$. The task is to explain this phenomenology within one ontology—Euclidean void, absolute time, architrinos, and Noether braid assemblies—without importing new fundamental fields or ad hoc modifications to gravity.
 
@@ -193,20 +193,20 @@ m_b^{\mathrm{obs}}(M_b)
 \frac{M_b}{M_{200}^{\mathrm{obs}}}
 $$
 
-record the observed baryonic mass fraction. A 2026 baryonic mass-halo mass compilation reports that systems from dwarfs through rich clusters are summarized by
+record the observed baryonic mass fraction. A [2026 baryonic mass-halo mass compilation](https://arxiv.org/abs/2603.06479), assembled from kinematic and weak-lensing mass estimates across dwarfs through rich clusters, reports the empirical summary
 
 $$
 m_b^{\mathrm{obs}}(M_b)
 \simeq
 f_b
-\tanh\!\left(\frac{M_b}{M_0}\right)^{1/4},
+\left[\tanh\!\left(\frac{M_b}{M_0}\right)\right]^{1/4},
 \qquad
 f_b \simeq 0.157,
 \quad
 M_0 \simeq 5\times 10^{13}M_\odot.
 $$
 
-Rich clusters approach the cosmic baryon fraction, while lower-mass systems fall below it with a smooth mass dependence. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a reason to import either a MOND ontology or a $\Lambda\mathrm{CDM}$ halo ontology. It is a cross-scale recovery target for the same neutral-assembly and Noether sea record: the branch must recover the galaxy baryonic Tully-Fisher relation, the mass-dependent baryon fraction, and the cluster lensing/gas behavior without changing calibration per regime.
+Rich clusters approach the cosmic baryon fraction, while lower-mass systems fall below it with a smooth mass dependence. The compilation establishes an empirical fit across its heterogeneous inference instruments; it does not establish the mechanism behind the missing condensed baryons. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a reason to import either a MOND ontology or a $\Lambda\mathrm{CDM}$ halo ontology. It is a cross-scale recovery target for the same neutral-assembly and Noether sea record: the branch must recover the galaxy baryonic Tully-Fisher relation, the mass-dependent baryon fraction, and the cluster lensing/gas behavior without changing calibration per regime.
 
 For a candidate shared record, define the local missing-baryon residual as
 
@@ -221,7 +221,7 @@ D_{\mathrm{BTFR}}^\theta
 d_m\!\left(
 \frac{M_b}{M_{200}^{\theta}},
 f_b
-\tanh\!\left(\frac{M_b}{M_0}\right)^{1/4}
+\left[\tanh\!\left(\frac{M_b}{M_0}\right)\right]^{1/4}
 \right)
 +
 \lambda_{\mathrm{cl}}\mathcal{R}_{\mathrm{cl\ offset}}(\theta_{\mathrm{sea}},\rho_A)
@@ -362,7 +362,7 @@ These difficulties motivate retaining Candidate A as the primary dark-matter sub
 
 ### Candidate C — Hybrid (Working Baseline)
 
-**Definition.** Neutral assemblies carry the dominant non-baryonic gravitating mass ($\Omega_{\mathrm{DM}} \sim 0.25$), while Noether sea response provides scale-dependent corrections that modify effective profiles in low-acceleration environments.
+**Definition.** Neutral assemblies carry the dominant non-baryonic gravitating mass ($\Omega_{\mathrm{DM}}\sim0.26$), while Noether sea response provides scale-dependent corrections that modify effective profiles in low-acceleration environments.
 
 **Rationale.** This hybrid is the working baseline because:
 
@@ -379,13 +379,27 @@ These difficulties motivate retaining Candidate A as the primary dark-matter sub
 | Pure medium-response | Captures MOND-like galaxy-scale behavior naturally | Struggles with Bullet-Cluster offsets and full CMB matter-loading closure |
 | Hybrid baseline | Combines cosmology-scale closure with galaxy-scale flexibility | Requires constitutive calibration discipline to avoid over-parameterized tuning |
 
+The hybrid baseline is therefore a scaffold, not a closed prediction. It inherits the [prediction-narrowness and initial-basin burden](./cosmology-ontology.md#prediction-narrowness-and-initial-basin-burden). Its declared record must include
+$$
+\theta_{\mathrm{hyb}}
+=
+\left(
+\rho_A,\,
+a_\star^\theta(E),\,
+f^\theta(E),\,
+S_{\mathrm{loc}}(\mathcal I_{\mathrm{loc}}),\,
+\mu(a,k)
+\right),
+$$
+with every environment projection derived from one constitutive and assembly history. It earns predictive standing only if the allowed set $\mathcal O_\epsilon(\theta_{\mathrm{hyb}})$ is narrow relative to the nearby comparison family. If $a_\star$, $f$, screening, or $\mu$ can be changed independently by galaxy, cluster, CMB, lensing, and growth channel, Candidate C has widened the fit space rather than closed the dark sector.
+
 **Coupled equations (schematic).** Let $\rho_A(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ denote the observer-level neutral-assembly density and $\rho_{\text{NS}}(\mathbf X,T)$ the native Noether braid density. In the Newtonian limit, the effective Poisson equation becomes:
 
 $$
 \gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}(\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}},\rho_{\text{NS}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{NS}}^{(\mathrm{pert})}\bigr)
 $$
 
-where $\rho_b$ is baryonic density, $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the Noether sea response modification. In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})} \to 0$; in the low-acceleration limit, $G_{\mathrm{eff}}$ stiffens and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
+where $\rho_b$ is baryonic density, $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the Noether sea response modification. In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})} \to 0$; in a positive-response low-acceleration branch, the effective coupling is enhanced above $G_N$ because the Noether sea is more compliant, and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
 
 This coupled system must be solved self-consistently. The neutral-assembly component $\rho_A$ satisfies collisionless Boltzmann transport in the potential $\Phi_{\mathrm{eff}}$; the Noether sea response enters through constitutive relations derived from Noether braid elasticity in the Noether sea.
 
@@ -755,7 +769,7 @@ The neutral-assembly candidate must be cosmologically stable: lifetime $\tau \gg
 Neutral assemblies contribute to the total matter density:
 
 $$
-\Omega_m = \Omega_b + \Omega_A, \quad \Omega_A \approx 0.25
+\Omega_m = \Omega_b + \Omega_A, \quad \Omega_A \approx 0.26
 $$
 
 Their gravitational effect on photon-baryon oscillations produces the characteristic signature in the [CMB](./CMB.md) power spectrum: suppression of odd peaks (baryon loading) with the overall amplitude and peak-height ratios set by $\Omega_A/\Omega_b$.
@@ -769,6 +783,8 @@ $$
 $$
 
 where $\rho_m = \rho_b + \rho_A$ and $G_{\mathrm{eff}}$ may carry scale-dependent corrections from Noether sea response. In the high-acceleration (linear) regime, $G_{\mathrm{eff}} \to G_N$ and standard CDM growth is recovered. Deviations from $\Lambda\mathrm{CDM}$ growth appear only when $|\nabla\Phi|/a_0^{\mathrm{MOND}} \lesssim 1$, which on cosmological scales ($k < 0.01\;h\,\mathrm{Mpc}^{-1}$) may be relevant at low redshift and could contribute to resolving the $S_8$ tension.
+
+The species label on the left and total-matter label on the right are intentional: each neutral-assembly contrast $\delta_A$ responds to the total matter source $\rho_m\delta_m$. In a one-fluid comparison limit, set $\delta_A=\delta_m$.
 
 ### BAO and Matter Power Spectrum
 

@@ -295,6 +295,24 @@ P_{\mathrm{GW}}
 $$
 with $Q_{ij}$ the trace-free mass quadrupole of the effective source record in the validated weak-field limit. A native Noether sea wave model must therefore explain why scalar monopole leakage, vector dipole leakage, and non-TT power remain below detector bounds rather than adding them as free source channels.
 
+Binary-pulsar orbital decay is the generation-side benchmark for this row. The same source ledger must use the recovered $G_{\mathrm{eff}}$, $c_{\mathrm{GW}}$, and quadrupole moment to predict the observed secular period change after independently modeled kinematic and environmental corrections. Define
+$$
+\mathcal R_{\dot P_b}
+\equiv
+\frac{
+\dot P_b^{\mathrm{obs}}
+-\dot P_b^{\mathrm{quad}}(\theta_{\mathrm{src}})
+}{
+\sigma_{\dot P_b}
+},
+\qquad
+\mathcal R_{\mathrm{dip}}
+\equiv
+\frac{P_{\mathrm{dip}}(\theta_{\mathrm{src}})}
+{P_{\mathrm{quad}}(\theta_{\mathrm{src}})+\varepsilon}.
+$$
+The weak-field source branch must fit the orbital-decay row while keeping $\mathcal R_{\mathrm{dip}}$ below the binary-system bound. Composition-dependent Noether sea coupling that produces a leading dipole channel is therefore linked directly to the strong-equivalence-principle burden; it cannot be hidden in the detector-side tensor projection.
+
 **Closure Target 3 (leading-order GW flux).**
 In the same regime, the cycle-averaged flux is
 $$

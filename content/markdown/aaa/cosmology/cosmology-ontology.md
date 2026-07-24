@@ -27,6 +27,7 @@ All cosmological observables are computed from absolute-state evolution and then
 
 ## Cosmology Document Set
 
+- [cosmology-reconstruction.md](./cosmology-reconstruction.md): reconstruction of observer-level cosmology products from received records before ontological interpretation.
 - [expansion-mechanism.md](./expansion-mechanism.md): canonical expansion and redshift mapping in fixed void ontology.
 - [inflation-model.md](./inflation-model.md): emergent early rapid-expansion model and conceptual inflation framing.
 - [BBN-constraints.md](./BBN-constraints.md): light-element abundance constraints under emergent $H_{\mathrm{eff}}(t_{\mathrm{eff}})$.
@@ -296,7 +297,7 @@ d\!\left(\widehat{\mu}_{W_a,t_{\mathrm{eff}}},\widehat{\mu}_{W_b,t_{\mathrm{eff}
 $$
 Large-scale homogeneity is accepted only when this residual remains within the declared tolerance while the same $\theta_{\mathrm{sea}}$ also passes the expansion, CMB, BBN, growth, lensing, and calibration gates. This is a scale-neutral diagnostic over observer-facing data products, not an import of a shape-first cosmology or a replacement for the fixed Euclidean void.
 
-The same rule applies across modules. A promoted cosmology claim must preserve one shared Noether sea state record $\theta_{\mathrm{sea}}$ through expansion, CMB transfer, BBN, growth, lensing, and local calibration. If those modules can be fit only by replacing the state record or projection map per observable family, the result is benchmark fitting rather than cosmology closure. The dark-energy branch states this as a shared residual gate in [dark-energy.md](./dark-energy.md#inference-dependency-and-calibration-gates).
+The same rule applies across modules. A promoted cosmology claim must preserve one shared Noether sea state record $\theta_{\mathrm{sea}}$ through expansion, CMB transfer, BBN, growth, lensing, and local calibration. If those modules can be fit only by replacing the state record or projection map per observable family, the result is benchmark fitting rather than cosmology closure. The dark-energy branch states this as a shared residual gate in [dark-energy.md](./dark-energy.md#inference-dependency-and-calibration-gates), while [Cosmology Shared Residual Fit](../validation/simulations/cosmology-shared-residual-fit.md) owns the cross-module fit protocol. This page does not duplicate that registry.
 
 ### Prediction Narrowness and Initial-Basin Burden
 
@@ -461,6 +462,25 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ may borrow explanatory motifs from QSSC/cyclica
 - Effective cosmological chronology is therefore a stitched observational map of many local histories, not one literal global launch event.
 - Large-scale homogeneity can be treated as a statistical outcome of repeated local processes governed by the same microphysics, while permitting local fluctuations and anisotropic environments.
 - Large-scale organization can be treated as mostly scale-invariant in architecture while still allowing finite-scale departures from statistical uniformity.
+
+### Acoustic-Ruler Coherence Burden
+
+A galaxy-local recycling account must recover the near-universality of the baryon acoustic ruler from the same source, release, thermalization, and transfer record used for CMB acoustic structure. The effective scale history $a_{\mathrm{eff}}$ is a stitched observer summary; it is not a literal global separation history unless that map is derived.
+
+For source patch $p$ and observational bin $b$, let $r_{d,pb}^{\theta}$ be the ruler predicted by one shared cosmology record $\theta$, with covariance-projected tolerance $\sigma_{r,pb}$. Define
+
+$$
+\bar r_d^\theta
+=
+\frac{\sum_{p,b}w_{pb}r_{d,pb}^{\theta}}{\sum_{p,b}w_{pb}},
+\qquad
+\mathcal R_{\mathrm{BAO,coh}}(\theta)
+=
+\max_{p,b}
+\frac{|r_{d,pb}^{\theta}-\bar r_d^\theta|}{\sigma_{r,pb}}.
+$$
+
+The branch must satisfy $\mathcal R_{\mathrm{BAO,coh}}\le1$ without tuning the ruler separately by source patch or tracer bin. Failure means local recycling has not recovered the coherent standard-ruler data product, even if it supplies a qualitative thermal-background story.
 
 ## Time Notions (Operational)
 

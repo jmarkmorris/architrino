@@ -13,7 +13,7 @@ $$
   - With exact surface deltas, dynamics are impulsive: velocities are functions of bounded variation with jump discontinuities at hit times.
 
 - Mollified isochron surfaces:
-  - Replacing $\delta(\cdot)$ by a narrow Gaussian of width $\eta > 0$ spreads each causal surface’s intersection into a short, smooth push, yielding classical $C^1$ trajectories for standard ODE solvers.
+  - Replacing $\delta(\cdot)$ by a narrow Gaussian of width $\eta > 0$ spreads each causal surface’s intersection into a short, smooth push. This can yield classical $C^1$ trajectories on an admitted history chart, but the solver must still retain and reconstruct the delayed path segment.
 
 - Choosing $\eta$:
   - Select $\eta$ small relative to local geometric scales (path curvature radius, inter-source spacing) to approximate the event-driven picture while maintaining numerical stability.
@@ -112,14 +112,14 @@ $$
     R_{\mathrm{jump},a}
     =
     \frac{|t_{0,\ell_a}(\xi_a)-\xi_{\pi(a)}|}
-    {\max(\Delta t,\Delta h,\eta/c_f,\varepsilon_0)}
+    {\max(\Delta T,\Delta h,\eta/c_f,\varepsilon_0)}
     $$
     Unstable jump identity routes to $\mathsf{branch\_root\_instability}$; unresolved jump or interpolation convergence routes to $\mathsf{mesh\_nonconvergence}$.
 
 - Fold-layer status is only a transition classification. A stable fold-layer row may preserve branch identity through $\eta$ refinement, but it does not prove branch-equation balance. When the run claims a corrected one-period carrier, the acceleration-balance residual for that period must also pass before the result can proceed to monodromy, $\Delta_{\mathbf{k}}$, or $\eta$-ladder persistence.
 
 - Energetic consistency:
-  - On resolved intervals, the work–energy relation holds with $\Phi_\eta$; as $\eta\to 0$, interval integrals converge to the impulsive model.
+  - A fixed-transmitter benchmark may verify $\Delta E_k=-\Delta U$ with $U=q'\Phi_\eta$ on resolved intervals. A moving-transmitter, self-hit, or open-boundary branch must instead close the history-aware energy, wake, and boundary terms defined in [Delay Dynamics and Energy](delay-dynamics-energy.md). Convergence of interval integrals as $\eta\to0$ is a separate claim governed by the continuation package below; it is not implied by choosing a Gaussian mollifier.
 
 ## Formal $\eta > 0$ Continuation Package
 
@@ -183,7 +183,7 @@ $$
 $$
 Crossing any component of $\partial\mathcal{A}_\eta$ changes the promotion status to $\mathsf{eta\_continuation\_failure}$ unless a stricter replacement bound is proved in the same artifact packet.
 
-For the finite-$\eta$ pathology theorem target in [Master Equation](../../../dynamics/master-equation.md#finite-eta-pathology-quarantine-theorem-target), a promoted run family must report the same boundary components as observables, not only as solver diagnostics. Divergent self-energy is routed through the $d$ or $\epsilon_c$ row, runaway behavior through the $E_{\text{wake}}^{(\eta)}$ lower-bound row, pre-acceleration through the retained-history and endpoint-convention row, and caustic blow-up through the $\nu$ and transition-status rows. The minimum residual packet is:
+For the finite-$\eta$ pathology theorem target in [Master Equation](../../../dynamics/master-equation.md#finite-regulator-pathology-quarantine-theorem-target), a promoted run family must report the same boundary components as observables, not only as solver diagnostics. Divergent self-energy is routed through the $d$ or $\epsilon_c$ row, runaway behavior through the $E_{\text{wake}}^{(\eta)}$ lower-bound row, pre-acceleration through the retained-history and endpoint-convention row, and caustic blow-up through the $\nu$ and transition-status rows. The minimum residual packet is:
 
 - root residual and root-transport residual for every retained row,
 - active transmitter-side Jacobian floor, transmitter-side acceleration-weight floor or certified interval, and inactive-root gap,
@@ -202,4 +202,4 @@ $$
 $$
 for every promoted observable and active branch ledger. Otherwise the result remains finite-$\eta$ evidence only.
 
-Plain language: The ideal model gives instantaneous kicks; a tiny thickening turns them into brief, smooth nudges that ordinary ODE solvers can integrate. Large-system or zero-width claims have to be earned by convergence, not assumed from the finite calculation.
+Plain language: The ideal model gives instantaneous kicks; a tiny thickening turns them into brief, smooth nudges that a delayed-history solver can integrate. Large-system or zero-width claims have to be earned by convergence, not assumed from the finite calculation.

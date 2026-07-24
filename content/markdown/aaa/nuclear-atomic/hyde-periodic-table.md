@@ -51,6 +51,8 @@ To first order, filling follows the Madelung ($n+\ell$) ordering with known exce
 
 Thus, any alternative representation must still encode $s/p/d/f$ block capacities and resulting periodic recurrences.
 
+The sharper constraint is interleaving, not capacity alone. The recovery must place $4s$ before $3d$ in the relevant neutral-atom sequence, then reproduce the documented chromium- and copper-family exceptions from one energy-ordering rule rather than by relabeling shell totals after the fact. A packing model that yields $2/8/18/32$ capacities but cannot produce cross-tier filling order has not recovered periodic structure.
+
 ---
 
 ## Periodic Patterns in Element Data
@@ -175,15 +177,16 @@ The points below are collected as a framework-internal research program, not as 
 
 ### Predictions and Observables
 
-- If shell structure is a packing phenomenon, ionization-energy trends along Hyde's spiral should show systematic high-$Z$ deviations from idealized Dirac-limit expectations.
-- Candidate mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing core-region candidate braids and driving a declared indexed binary channel toward the field-speed fold.
+- If shell structure is a packing phenomenon, fixed-electron-count isoelectronic sequences should expose any systematic high-$Z$ residual after the declared relativistic, radiative, correlation, recoil, and finite-nuclear-size comparison terms are removed. Holding electron count fixed makes the proposed geometric contribution more discriminating than a raw walk through neutral-element ionization energies.
+- Candidate mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing core-region candidate braids and driving a declared indexed internal binary toward the field-speed threshold $v=c_f$. [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics) supplies the causal-root and stability meaning of that threshold. The taxonomy assigns no permanent binary to the role, so the candidate branch must declare the index and retained root ledger.
 - This proposed core-region geometric strain changes the effective shielding potential seen by candidate valence braids, producing measurable departures from standard relativistic-correction-only trends.
 
 ### Failure Modes and Falsification Criteria
 
 - If multi-body simulations of candidate braids with axial layers do not spontaneously produce discrete 2/8/18/32 packing regimes, the geometric-periodicity derivation fails.
+- If the same energy functional does not recover Madelung interleaving and its declared transition-metal exceptions, matching shell capacities alone is insufficient.
 - If the model collapses into continuous charge distributions with no discrete angular nodes, the orbital-geometry mapping is falsified.
-- If predicted high-$Z$ ionization-energy deviations are absent beyond uncertainty and known correction terms, the proposed finite-volume mechanism is disfavored.
+- If predicted high-$Z$ residuals are absent in fixed-electron-count sequences beyond uncertainty and declared correction terms, the proposed finite-volume mechanism is disfavored.
 
 ### Geometric-Periodicity Closure Program
 

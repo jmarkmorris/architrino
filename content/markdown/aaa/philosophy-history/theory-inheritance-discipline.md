@@ -152,8 +152,9 @@ bookkeeping or proof scaffolds that remain subordinate to the native branch law.
 
 The important correction is the status of the familiar $1/r$ potential. The
 accepted primitive dynamics is not "a static $1/r$ field." The accepted
-primitive dynamics is the causal-root, inverse-square, receiver-side
-acceleration law. A $1/r$ expression appears as a stationary/path-history
+primitive dynamics is the causal-root, inverse-square, receiver-local
+acceleration law with a transmitter-side acceleration weight. A $1/r$
+expression appears as a stationary/path-history
 potential calibration and as a partial Fokker-type variational scaffold, but it
 does not by itself relieve the burden of deriving or certifying the Master EOM.
 
@@ -167,15 +168,15 @@ does not by itself relieve the burden of deriving or certifying the Master EOM.
 | Causal wake support | $\lVert\mathbf X-\mathbf X_{\mathrm{em}}\rVert=c_f(T-T_t)$ with $T>T_t$ | Native causal support rule | A filled light cone, Lorentzian metric cone, or instantaneous action |
 | Causal-root set | $F_{ij}(T,T_t)=\lVert\mathbf X_i(T)-\mathbf X_j(T_t)\rVert-c_f(T-T_t)$ and $\mathcal{C}_{ij}(T)=\{\,T_t<T:F_{ij}(T,T_t)=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
 | Causal surface density | $\rho(T,\mathbf X)=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
-| Heaviside endpoint rule | $H(0)=0$ and $t_0<t$ in the causal-root set | Native endpoint convention | Instantaneous self-kick or zero-delay self-force |
+| Heaviside endpoint rule | $H(0)=0$ and $T_0<T$ in the causal-root set | Native endpoint convention | Instantaneous self-kick or zero-delay self-acceleration |
 | Root Jacobian and transversality | $D_{t,ij}=c_f-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}$ with positive branch floor | Direct transmitter-side branch-analysis tool in the native law | Replacing branch strength by transmitter-side data alone, speed magnitude, or ignoring caustic/fold regimes |
 | Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{acc}}}{r_{ij}^2}\hat{\mathbf{r}}_{ij}$ with $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, transmitter-side-only branch strength, or a mass-based force ontology |
 | Total acceleration | $\dfrac{d^2\mathbf X_i}{dT^2}=\sum_j\sum_{T_t\in\mathcal{C}_{ij}(T)}\mathbf A_{ij}(T;T_t)$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
 | Superposition | Source contributions add linearly on the declared branch chart | Native source-addition rule and effective reconstruction tool | Wake-wake interaction as an independent substance law |
 | Regularized wake surface | $\delta(r-c_f\tau)\to\delta_\eta(r-c_f\tau)$, with optional core scale $\epsilon_c$ in proof models | Formal regularization and simulation/proof tool | A new substrate substance, a hidden fit parameter, or a completed $\eta\to0$ proof |
 | Potential reconstruction | $\Phi_{\text{net}}(\mathbf X,T)=\sum_o\Phi_o(\mathbf X,T)$ and $U_{o'}=q_{o'}\Phi_{\text{net}}[\text{history}]$ | Fixed-history bookkeeping and effective diagnostic | Static electrostatic ontology or source-position-only potential |
-| Gradient force identity | $\mathbf{F}_{o'}=-\nabla_{\mathbf X_{o'}}U_{o'}$ for mollified fixed-history channels | Conditional diagnostic equivalent after normalization and fixed-history convention | Replacement of the Master EOM by an unrestricted potential theory |
-| Work and kinetic bookkeeping | $dK/dt=\mu_K(\lVert\mathbf{v}\rVert)\mathbf{a}\cdot\mathbf{v}$ and optional $\mathbf{F}=\mu_{\text{arch}}\mathbf{a}$ | Energy bookkeeping after a kinetic proxy is declared | Primitive particle-specific mass or universal quadratic kinetic energy by assumption |
+| Potential-gradient bookkeeping identity | $\mathbf{F}_{o'}=-\nabla_{\mathbf X_{o'}}U_{o'}$ for mollified fixed-history channels | Conditional assembly-level bookkeeping equivalent after normalization and fixed-history convention | A substrate force law or replacement of the Master Equation by an unrestricted potential theory |
+| Work and kinetic bookkeeping | $dK/dT=\mu_K(\lVert\mathbf V\rVert)\mathbf A\cdot\mathbf V$ and optional $\mathbf F=\mu_{\text{arch}}\mathbf A$ | Assembly-level energy bookkeeping after a kinetic proxy is declared | A substrate force law, primitive particle-specific mass, or universal quadratic kinetic energy by assumption |
 | $1/r$ potential/action scaffold | $\delta(g_{ij})/r_{ij}$ in path-history or Fokker-type action calculations | Calibration and partial variational scaffold | A universal proof that the scalar $1/r$ action alone derives the Master EOM |
 
 The $1/r$ item therefore belongs below the accepted acceleration law in the
@@ -183,11 +184,12 @@ trust gradient. In a stationary emitter calibration, the path-history potential
 may take the familiar form
 
 $$
-\phi(r,t)=\frac{q_0}{4\pi r}
+\phi(r,T)=\frac{q_0}{4\pi r}
 $$
 
-and taking a spatial gradient connects that amplitude to inverse-square force
-scaling. In the full delayed dynamics, however, the accepted branch law remains
+and taking a spatial gradient connects that amplitude to inverse-square
+acceleration scaling under the declared fixed-history calibration. In the full
+delayed dynamics, however, the accepted branch law remains
 
 $$
 \frac{d^2 \mathbf X_i}{dT^2}
@@ -225,7 +227,7 @@ Risk scores:
 | Formula family | Risk score | Main reliance risk | Required discipline |
 | --- | --- | --- | --- |
 | Absolute timespace: absolute time + Euclidean void | 2 | The fixed absolute time + Euclidean void background is an explicit ontology postulate with total-theory consequences if effective relativistic recovery fails | Keep curvature, expansion, and Lorentz behavior at the recovered-effect layer |
-| Substrate clock and Euclidean metric | 2 | The formulas are stable substrate data, but overuse can turn observer proper time or effective metric behavior into background structure | Keep $dt$ and $h_{ij}$ separate from $\tau$ and $g_{\mu\nu}^{\text{eff}}$ |
+| Substrate clock and Euclidean metric | 2 | The formulas are stable substrate data, but overuse can turn observer proper time or effective metric behavior into background structure | Keep $dT$ and $h_{ij}$ separate from $\tau$ and $g_{\mu\nu}^{\text{eff}}$ |
 | Worldline kinematics | 2 | The definitions are direct, but smoothness assumptions can exceed the branch or mollified regime | State regularity, impulse, and mollification assumptions before differentiating freely |
 | Complete state and path history | 4 | The object is necessary but large; omitting path-history or branch data makes the state falsely Markovian | Specify retained history, provenance ledger, Noether sea sample, and branch chart |
 | Polarity and sign bookkeeping | 3 | Polarity is native, but the observer-level charge normalization $\epsilon=\lvert e\rvert/6$ and gauge labels are not fully derived here | Treat $\epsilon$ and charge labels as observer bookkeeping until assembly closure supplies the map |
@@ -233,13 +235,13 @@ Risk scores:
 | Causal-root set | 4 | Root existence is exact but branch completeness, multiplicity, and fold handling are hard | Record active roots, inactive gaps, memory depth, and branch-chart boundaries |
 | Causal surface density | 4 | The $1/r^2$ surface law can be mistaken for a permanent filled field and does not by itself solve convergence in large populations | Use it as distributional wake support with normalization, screening, or cancellation conditions |
 | Heaviside endpoint rule | 2 | Endpoint exclusion is clear, but regulator choices can reintroduce ambiguous self-contact behavior | Keep $H(0)=0$ and match any mollified endpoint convention to the same branch packet |
-| Transmitter-side transversality and transmitter-side acceleration weight | 4 | The transmitter-side factor is essential and easy to misread as total branch strength; small denominators mark branch failure, not ordinary force amplification | Use $D_t$ for transversality floors, caustic routing, and root diagnostics; use $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ for force/action strength |
+| Transmitter-side transversality and transmitter-side acceleration weight | 4 | The transmitter-side factor is essential and easy to misread as total branch strength; small denominators mark branch failure, not ordinary acceleration amplification | Use $D_t$ for transversality floors, caustic routing, and root diagnostics; use $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ for per-hit acceleration strength |
 | Per-hit acceleration | 4 | This is the accepted native law, but relying on it globally without branch certification overclaims exact closure | Attach use to certified causal roots, Jacobian floors, endpoint rules, and regularization status |
 | Total acceleration | 5 | The branch sum can hide missing roots, divergent far populations, or unproved infinite-system convergence | Declare finite horizons, summation prescriptions, cancellation estimates, or convergence proof targets |
 | Superposition | 4 | Linear source addition is native on a branch chart, but far-field accumulation and incoherent cancellation are nontrivial | Pair superposition with convergence, screening, finite-window, or mean-field controls |
 | Regularized wake surface | 4 | A regulator can stabilize calculations while changing the branch behavior being claimed | State $\eta$, any core scale, refinement behavior, and whether the claim is finite-regulator only |
 | Potential reconstruction | 4 | Potential notation can smuggle in static-field ontology or source-position-only dependence | Treat $\Phi_{\text{net}}$ and $U$ as fixed-history diagnostics unless a stronger action proof is supplied |
-| Gradient force identity | 4 | The identity is conditional and can incorrectly replace the receiver-local Master EOM | Use only on mollified, fixed-history channels with declared normalization |
+| Potential-gradient bookkeeping identity | 4 | The identity is conditional and can incorrectly replace the receiver-local Master Equation or introduce substrate force language | Use only as optional assembly-level bookkeeping on mollified, fixed-history channels with declared normalization |
 | Work and kinetic bookkeeping | 4 | Primitive mass and quadratic kinetic energy are not native; energy bookkeeping depends on the chosen kinetic proxy and wake term | Declare $K$, $\mu_K$, or $\mu_{\text{arch}}$ and keep observer mass as an assembly-level recovery |
 | $1/r$ potential/action scaffold | 5 | It is useful for calibration and variational scaffolding, but the scalar scaffold alone does not generically derive the Master EOM | Treat it as conditional until the receiver-side residual, counterterm, or stationarity condition closes |
 

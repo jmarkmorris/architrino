@@ -220,6 +220,8 @@ $$
 
 with all rows non-negative in the same convention as the emission ledger: the incoming photon must supply the envelope gap plus the recoil kinetic energy and any medium uptake, which is the source of the emission/absorption line offset measured by recoil-sensitive spectroscopy.
 
+All energy rows in both ledgers are non-negative magnitudes. Emission subtracts recoil, medium, and remnant shares from the available gap; absorption adds those required shares to the incoming-photon demand.
+
 This is ordinary photon capture by the same atomic assembly. It changes the assembly's envelope basin and closes the incoming photon ledger, but it is not a general particle-production rule. If the event has different outgoing Standard Model assemblies, the channel must be written as a reaction or pair channel with a separate identity-routing row for the target or Noether sea content that supplies those outgoing inventories.
 
 The same event record must decide whether the photon is absorbed, re-emitted, scattered, reflected, or routed into medium excitation. A failed capture is not an ontology failure; it is a channel-routing outcome whose energy and momentum must still close.
@@ -309,6 +311,9 @@ The benchmark recoveries for this page are:
 - spectral line frequencies after local clock/rate conversion;
 - absorption and emission rates in the Fermi's Golden Rule limit;
 - Einstein coefficient relations and detailed balance in thermalized ensembles;
+- the hydrogen $2s\to1s$ two-photon continuum, with one vertex closing a shared ledger
+  $E_{\gamma,1}+E_{\gamma,2}=\Delta E_{2s\to1s}^{\mathrm{env}}-\Delta E_{\mathrm{recoil}}-\Delta E_{\mathrm{med}}-\Delta E_{\mathrm{rem}}$ and both photons carrying separate Gate A/B rows;
+- Lyman-$\alpha$ resonant trapping and escape as a coupled emission-capture-transport recovery, not as a modified local line gap;
 - natural line widths as a recovery target for transition-time and basin-escape statistics;
 - recoil, Doppler, pressure, Zeeman, Stark, fine-structure, and hyperfine corrections only after the relevant transport, medium, and spin-ledger dependencies are supplied.
 
@@ -320,8 +325,10 @@ Cosmology-facing use of any line should keep source-branch changes separate from
 
 Accepted ontology: a photon emitted or captured in this channel is a coaxial contra-rotating polarity-conjugate planar pair, and atomic line radiation is a routed assembly-level transition rather than excitation of a separate fundamental electromagnetic field.
 
-Derivation targets: compute $\mathcal S_{\gamma}^{\mathrm{at}}$, recover the weak-coupling transition-rate limit, derive selection-rule basin measures, close recoil and medium ledgers, and recover detailed balance without changing the Noether sea state map between emission, absorption, and thermal ensembles.
+Derivation targets: compute $\mathcal S_{\gamma}^{\mathrm{at}}$, recover the weak-coupling transition-rate limit, derive selection-rule basin measures, close recoil and medium ledgers, recover the hydrogen $2s\to1s$ two-photon and Lyman-$\alpha$ escape bottlenecks, and recover detailed balance without changing the Noether sea state map between emission, absorption, and thermal ensembles. The named single-record closure requires frequency, emission and absorption strength, dispersion strength, stimulated coefficients, and continuum inverse channels to project from the same event family.
 
 Effective summaries: orbital labels, line frequencies, Einstein coefficients, oscillator strengths, and effective operators remain useful comparison objects when their closure status is stated.
 
 Speculative extensions: minimum stable photon energy, Noether sea-dependent line deviations, and basin-escape explanations of linewidths should remain provisional until the standard isolated-atom limits are recovered.
+
+If the mapping reproduces standard line data only by preserving the same independent fit inputs and supplies no new cross-channel consistency constraint, its remaining value is interpretive rather than a derived reduction of the atomic-radiation description.

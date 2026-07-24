@@ -1,4 +1,4 @@
-# $A_0$ Tier 0 Result Interpretation
+# $A_0$ Tier 0 Result-Schema Interpretation
 
 This note explains how to read the first reduced $A_0$ branch-search artifact. It is a companion to the [$A_0$ Branch Certificate Protocol](a0-branch-certificate-protocol.md), the general [Simulation Run Protocols](run-protocols.md), and the convergence standards in [Convergence Tests](convergence-tests.md).
 
@@ -6,11 +6,13 @@ Tier 0 asks one deliberately small question: is this reduced branch chart organi
 
 That boundary is the point of the document. A candidate row can be useful without being promoted. The artifact must make that difference machine-readable so a diagnostic success does not turn into an accidental theory claim.
 
-The Tier 0 artifact is not an attractor proof. It is a certificate-facing filter that decides whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Its output should be read together with the mass thesis in [Particle Masses](../../assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../dynamics/energy.md), the dynamics baseline in [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), and the closure bookkeeping in [Parameter Ledger](../parameter-ledger.md).
+The Tier 0 schema is not an attractor proof. It specifies a certificate-facing filter that would decide whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Any future output must be read together with the mass thesis in [Particle Masses](../../assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../dynamics/energy.md), the dynamics baseline in [A1 Dynamics](../../noether-braid/braid-a1-dynamics.md#a1-dynamics), and the closure bookkeeping in [Parameter Ledger](../parameter-ledger.md).
+
+**Implementation status:** not implemented. The specified path `scripts/mass-map/a0-tier0-branch-search.mjs` does not currently exist in the repository. The tables below define the required output contract; they do not report an executed artifact or measured branch result.
 
 ## Output Status
 
-The runtime artifact is `scripts/mass-map/a0-tier0-branch-search.mjs`. It emits rows with six separate layers of interpretation:
+The planned runtime must emit rows with six separate layers of interpretation:
 
 | Output layer | Meaning | Promotion role |
 | --- | --- | --- |
@@ -21,25 +23,31 @@ The runtime artifact is `scripts/mass-map/a0-tier0-branch-search.mjs`. It emits 
 | `certificate_gates` | Pass/fail/not-computed status for the Tier 0 promotion checks | Decides whether the row may seed Tier 1 continuation |
 | `failure_code` | One machine-readable row code, or `candidate` when the row survives Tier 0 | Gives scripts and readers the same rejection reason |
 
-A row with status `tier0_continuation_ready` may seed Tier 1. A row with status `tier0_rejected` does not seed Tier 1 until the failing gate is resolved. Neither status accepts an attractor, computes $\zeta(A_0)$, validates $E_{\text{internal}}(A_0)$, or derives $\mathcal{M}_{\text{sea}}^{ab}$.
+A record with `failure_code: "candidate"` may seed Tier 1. Any other `failure_code` rejects Tier 0 continuation until the named gate is resolved. This is the sole row-level status vocabulary; `certificate_gates.tier0_continuation` is its gate-level mirror. Neither outcome accepts an attractor, computes $\zeta(A_0)$, validates $E_{\text{internal}}(A_0)$, or derives $\mathcal{M}_{\text{sea}}^{ab}$.
 
 The same boundary applies when a compact finite-coordinate chart or coarse branch split fails. Such a failure means the proposed reduced coordinate did not earn a continuation run; it does not by itself falsify the broader $A_0$ branch program. A branch-chart checker can authorize only a new Tier 1 rerun path after the coordinate source, equality map, fit degrees of freedom, held-out residuals, phase-origin handling when relevant, and benchmark exclusions are declared before fitting. It does not create accepted history, and it does not convert Tier 0 readiness into an attractor claim.
 
 ## Quotient-Coordinate Row
 
-The emitted `z_lambda` object is the row-level representation of $z_\Lambda$. It records the reduced coordinate after quotienting away global rotations, the common $S^1_{\mathbf{k}}$ phase gauge, and allowed discrete relabelings $\Gamma_\Lambda$ that preserve polarity assignment, layer roles, speed ordering, and causal-root branch class.
+The specified `z_lambda` object is the row-level representation of $z_\Lambda$. It records the reduced coordinate after quotienting away global rotations, the common $S^1_{\mathbf{k}}$ phase gauge, and allowed discrete relabelings $\Gamma_\Lambda$ that preserve polarity assignment, layer roles, speed ordering, and causal-root branch class.
+
+For this protocol only, the source-record layer aliases map to persistent indices by
+$$
+I\leftrightarrow1,\qquad M\leftrightarrow2,\qquad O\leftrightarrow3.
+$$
+The machine-readable fields use persistent indices. The aliases describe the declared radial role on this one chart and do not relabel the taxonomy.
 
 | `z_lambda` entry | Row semantics |
 | --- | --- |
 | `schema` | version marker for the quotient-coordinate row |
-| `radius_ratios` | $\varepsilon_{IM}$ and $\varepsilon_{MO}$ |
+| `radius_ratios` | $\varepsilon_{12}=R_1/R_2$ and $\varepsilon_{23}=R_2/R_3$; the aliases $\varepsilon_{IM}$ and $\varepsilon_{MO}$ are explanatory only under the declared map above |
 | `period_ratios` | $T_I/T_M$ and $T_M/T_O$, so time-scale separation is checked alongside radius separation |
-| `delta_M` | compatibility field for the source-record binary-2 speed offset $(s_2-c_f)/c_f$; the stable field name is not a taxonomy identity |
+| `delta_2` | source-record binary-2 speed offset $(s_2-c_f)/c_f$; `delta_M` may appear only as a documented input alias and must normalize to `delta_2` before validation |
 | `ellipticity` and `ellipticity_status` | layer ellipticity data and whether Tier 0 used a shared scalar chart |
 | `plane_gram` | $G_{\ell m}$ values for the quotient-reduced binary-plane normals |
 | `orientation_class` | $\chi_N$, the triple product, and a nondegenerate or degenerate status |
-| `handedness` | $H_I,H_M,H_O$ layer handedness labels |
-| `phase_offset_quotient` | $\Phi_{\text{rel}}$ status after removing the common $S^1_{\mathbf{k}}$ phase origin; Tier 0 currently emits a gauge-fixed zero-offset representative and marks the quotient basis `not_computed_in_tier0` |
+| `handedness` | $H_1,H_2,H_3$ persistent-index handedness labels, with $H_I,H_M,H_O$ explanatory aliases only on this chart |
+| `phase_offset_quotient` | $\Phi_{\text{rel}}$ status after removing the common $S^1_{\mathbf{k}}$ phase origin; the planned Tier 0 schema uses a gauge-fixed zero-offset representative and marks the quotient basis `not_computed_in_tier0` |
 | `branch_class` and `branch_class_status` | $[\Lambda]$ data from winding integers, inter-layer closure, active and raw root classes, and excluded roots; Tier 0 marks the representative as not yet a canonical discrete quotient |
 | `removed_gauges` | declared gauge removals: $SO(3)$, $S^1_{\mathbf{k}}$, and $\Gamma_\Lambda$ |
 | `quotient_degenerate` | Boolean failure surface for `quotient-degenerate` |
@@ -52,11 +60,11 @@ The Tier 0 scanner distinguishes raw self-root sightings from active self-hit br
 
 This policy follows the canonical convention $H(0)=0$: an instantaneous self-kick is not an active causal hit. The exclusion is conservative. It does not prove that no nearby regularized fold-layer branch exists; it says only that the diagnostic carrier has not yet supplied a positive-delay self-root branch that can be promoted.
 
-The current fold-layer diagnostic can preserve locked self-root keys as a transition candidate, but it does not by itself accept self-hit closure. A fold-layer row promotes only after a corrected one-period branch-equation attempt passes the declared residual surface; until then, $\Delta_{\mathbf{k}}$ and $\eta$-ladder persistence remain downstream obligations.
+The specified fold-layer diagnostic may preserve locked self-root keys as a transition candidate, but it does not by itself accept self-hit closure. A fold-layer entry promotes only after a corrected one-period branch-equation attempt passes the declared residual surface; until then, $\Delta_{\mathbf{k}}$ and $\eta$-ladder persistence remain downstream obligations.
 
 ## Residual Semantics
 
-The emitted `residuals` object is the complete branch-row residual surface
+The specified `residuals` object is the complete branch-record residual surface
 $$
 \mathcal{R}_{A_0}
 =
@@ -94,7 +102,7 @@ This makes the residual vector complete as an audit surface without pretending t
 
 ## Floquet Handoff
 
-The `Delta_k` object is the Tier 0 handoff for $\Delta_{\mathbf{k}}$. Tier 0 does not construct the monodromy operator, so the emitted value is null, the status is `not_computed_in_tier0`, and the role is `tier1_required`. The reserved failure code is `nonpositive-floquet-gap`, which applies only after Tier 1 computes $\Delta_{\mathbf{k}}\le0$.
+The `Delta_k` object is the Tier 0 handoff for $\Delta_{\mathbf{k}}$. Tier 0 does not construct the monodromy operator, so a conforming packet must use a null value, status `not_computed_in_tier0`, and role `tier1_required`. The reserved failure code is `nonpositive-floquet-gap`, which applies only after Tier 1 computes $\Delta_{\mathbf{k}}\le0$.
 
 The same handoff appears in `certificate_gates.floquet_gap` with status `not_computed_in_tier0`. This is a positive omission rule: Tier 0 must show that Floquet stability remains open, not leave the field absent.
 

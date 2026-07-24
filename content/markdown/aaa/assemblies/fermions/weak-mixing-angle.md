@@ -43,7 +43,7 @@ The [Noether braid](../../noether-braid/noether-braid.md) is the neutral six-arc
 
 In this idea, the core frame is **not** allowed to undergo a new quark-specific axial distortion. Its role is to provide the reference triad
 $$
-\mathcal{F}_{\text{core}} = \{\hat{\mathbf{e}}_H,\hat{\mathbf{e}}_M,\hat{\mathbf{e}}_L\}
+\mathcal{F}_{\text{core}} = \{\hat{\mathbf{e}}_1,\hat{\mathbf{e}}_2,\hat{\mathbf{e}}_3\}
 $$
 
 ### 2. Axial Frame
@@ -53,7 +53,7 @@ $$
 \mathcal{F}_{\text{ax}} = \{\hat{\mathbf{p}}_1,\hat{\mathbf{p}}_2,\hat{\mathbf{p}}_3\}
 $$
 
-For a perfectly symmetric lepton-like axial layer, the axial moment record is isotropic, so no independent axial frame is distinguished; the core frame supplies the natural zero-misalignment convention. For a quark-like axial layer with axis exceptionality, the axial moment record can select a nontrivial axial frame; compare the charge-and-axis bookkeeping in [Quantum Number Mapping](./quantum-number-mapping.md).
+For a perfectly symmetric ideal lepton-like axial layer, the axial moment record is isotropic, so no independent axial frame is distinguished; the core frame supplies the natural zero-misalignment convention. This ideal count does not establish that a dynamically relaxed branch remains isotropic: the accepted record must still show that displacement, wake dressing, and Noether sea response do not generate an anisotropic residue. For a quark-like axial layer with axis exceptionality, the axial moment record can select a nontrivial axial frame; compare the charge-and-axis bookkeeping in [Quantum Number Mapping](./quantum-number-mapping.md).
 
 The geometric object of interest is therefore the relative rotation
 $$
@@ -137,7 +137,17 @@ $$
 \theta_{\mathrm{inc}} = \frac{\pi}{6}=30^\circ
 $$
 
-The present idea is to reuse this as an **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments. The symbol $\theta_W^{\text{bare}}$ should be treated only as a comparison label for this branch-increment hypothesis until the six-pole quotient and electroweak dressing calculation are derived.
+The present idea is to reuse this as an **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments. The symbol $\theta_W^{\text{bare}}$ should be treated only as a comparison label for this branch-increment hypothesis until the six-pole quotient and electroweak dressing calculation are derived. A representative effective $Z$-pole target $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$ would require
+
+$$
+\Delta_{\mathrm{wake}}(m_Z)
+\simeq
+\sin^2\theta_W^{\mathrm{eff}}-\sin^2\theta_W^{\mathrm{bare}}
+\simeq
+-0.0185,
+$$
+
+a downward correction of about $7.4\%$ relative to the bare value. Its exact value is scheme- and observable-dependent, but the sign and scale show that electroweak dressing is a substantive derivation rather than a negligible finishing term.
 
 Define a discrete family of candidate equilibrium misalignment angles
 $$
@@ -155,6 +165,8 @@ with additional identifications made by symmetry.
 This set is explicitly pre-quotient. In particular, the $90^\circ$ entry survives only if pole reversal and axis-flip equivalences do not reduce it to a lower representative.
 
 The electron occupies the $\alpha=0$ branch. Quarks would then occupy one of the nonzero branches.
+
+These internal branch increments are not Cabibbo or CKM angles. Cabibbo and CKM entries are overlaps between weak and mass bases after the branch quotient and dressing have been constructed; a numerical resemblance to $30^\circ$ or its multiples would not identify those observer-level mixing angles.
 
 ---
 

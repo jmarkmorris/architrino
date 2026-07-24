@@ -12,24 +12,24 @@ The file is therefore an implementation-facing checklist rather than a general t
 Implement 1-architrino and 2-architrino setups with $\mathbb{U}_{\text{now}}$ sensors arranged on causal rings:
 - Verify causal isochron propagation at $c_f$
 - Verify correct arrival ordering and phase behavior (per kernel)
-- Verify numerical stability of $t_{\text{emit}}$ inversion as $\Delta t \to \Delta t / 2$
+- Verify numerical stability of $T_t$ inversion as $\Delta T \to \Delta T / 2$
 - Produce provenance tables showing correct `transmitter_id` values and emission times
 
 ### Baseline diagnostics
 - Energy/momentum bookkeeping (as defined by the model) must be stable under refinement
-- Cross-integrator comparison required for the above propagation test
+- Compare the numerical arrival times and surface normalization with an independently authored stationary-transmitter analytic isochron. Cross-integrator agreement is an additional implementation-parity check, not an independent oracle.
 
 
-### Grid-Based History Strategy
+### Grid Cache Boundary
 
-1. **Problem**: Infinite memory cost for particle-based history in self-hit regimes.
-2. **Solution**: Use the $\mathbb{U}_{\text{now}}$ Grid as the history buffer. Store potential magnitude/gradient at grid nodes.
-3. **Algorithm**: When an architrino requires its self-potential from $t-\Delta t$, query the **grid node** closest to where the particle *was*, rather than indexing the particle list.
-4. **Deliverable**: Prove convergence of this grid-based history against analytic causal isochrons.
+1. **Problem**: A finite simulation cannot retain unbounded path history.
+2. **Authoritative record**: Retain bounded, interpolable worldline segments $\mathbf X_i(T)$ and $\mathbf V_i(T)$ with stable transmitter identities over the declared causal horizon.
+3. **Optional cache**: A $\mathbb{U}_{\text{now}}$ grid may cache potential and gradient summaries for visualization or broad-phase search, but a nearest-node lookup cannot replace the transmitter-tagged history needed to solve a self-hit root.
+4. **Deliverable**: Demonstrate convergence against an independently authored analytic isochron and show that grid caching preserves the same root identity, emission time, and acceleration contribution as the authoritative history record.
 
 
 ### Grid-Based History
 
-* **Memory Strategy:** Use the fixed grid to store potential history.
-* **Lookup:** Query grid nodes for history potential values (Order(1) lookup) rather than querying particle history (Order(N)).
-* **Validation:** Verify causal isochron propagation and phase ordering on the grid.
+* **Memory Strategy:** Store finite authoritative worldline history; use the fixed grid only as a derived cache.
+* **Lookup:** Use a grid or spatial index to nominate candidates, then solve the causal-root equation against the retained transmitter history.
+* **Validation:** Verify causal isochron propagation, phase ordering, transmitter identity, and emission time under joint temporal, history, and spatial refinement.

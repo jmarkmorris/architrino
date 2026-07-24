@@ -23,29 +23,29 @@ Operationally, $H_0$ is the present local slope of the corrected redshift-distan
 The Sunyaev-Zeldovich family sharpens why this correction is mandatory. CMB photon frequencies can be shifted by intervening energetic or moving electron populations, so a line-of-sight frequency ratio is not a pure scale-factor readout by itself. The low-redshift slope should therefore be computed from the signed propagation residual
 
 $$
-H_{\mathrm{eff},X}(R,\hat{\mathbf{k}})
+H_{\mathrm{eff},X}(D,\hat{\mathbf{k}})
 =
 c_0\,
-\partial_R Z_{\mathrm{prop},X}(R,\hat{\mathbf{k}})
+\partial_D Z_{\mathrm{prop},X}(D,\hat{\mathbf{k}})
 $$
 
-after endpoint cadence, source-branch changes, and launch geometry are removed. A net positive $\partial_R Z_{\mathrm{prop},X}$ is redward path accumulation; a net negative value is blueward path boosting. Either sign is allowed only when the same Noether sea and photon-exchange ledger also passes the distance, flux, time-dilation, and spectral-coherence checks.
+after endpoint cadence, source-branch changes, and launch geometry are removed, where $D$ is Euclidean path distance and $R$ remains reserved for the reception event. A net positive $\partial_D Z_{\mathrm{prop},X}$ is redward path accumulation; a net negative value is blueward path boosting. Either sign is allowed only when the same Noether sea and photon-exchange ledger also passes the distance, flux, time-dilation, and spectral-coherence checks.
 
 The sharper local object is the directional transfer coefficient
 
 $$
-H_{\mathrm{eff},X}(R,\hat{\mathbf{k}})
+H_{\mathrm{eff},X}(D,\hat{\mathbf{k}})
 =
-c_0\,\alpha_{R,X}(\hat{\mathbf{k}})
+c_0\,\alpha_{D,X}(\hat{\mathbf{k}})
 $$
 
-with the next correction governed by the local curvature $\mathcal{K}_X(R,\hat{\mathbf{k}})$ of the corrected log-redshift curve. The $H_0$ tension is therefore not only a disagreement between two scalar estimates. In this ontology it is a question about whether early-inferred and late-inferred pipelines are sampling the same local transfer coefficient, the same higher-order redshift curvature, and the same environment-conditioned Noether sea state record.
+with the next correction governed by the local curvature $\mathcal{K}_X(D,\hat{\mathbf{k}})$ of the corrected log-redshift curve. The $H_0$ tension is therefore not only a disagreement between two scalar estimates. In this ontology it is a question about whether early-inferred and late-inferred pipelines are sampling the same local transfer coefficient, the same higher-order redshift curvature, and the same environment-conditioned Noether sea state record.
 
 The environment-conditioned version should remain directional until the data justify an isotropic scalar:
 $$
-H_{\mathrm{eff},X}^{E}(R,\hat{\mathbf{k}})
+H_{\mathrm{eff},X}^{E}(D,\hat{\mathbf{k}})
 =
-c_0\,\partial_R Z_{\mathrm{prop},X}^{E}(R,\hat{\mathbf{k}}).
+c_0\,\partial_D Z_{\mathrm{prop},X}^{E}(D,\hat{\mathbf{k}}).
 $$
 Here $E$ denotes the source, host, line-of-sight, and observer-environment class after catalogue corrections. A local ladder can be promoted to a universal $H_0$ coefficient only after the residual scatter in $H_{\mathrm{eff},X}^{E}$ is either bounded or derived from the same Noether sea density, delay, flow, and calibration record used by CMB, BAO, and growth.
 
@@ -76,12 +76,48 @@ For $H_0$:
 - early-universe inference samples a comparatively rigid, less-relaxed Noether sea state,
 - local ladders sample more relaxed pockets with different clock-rate environments.
 
+This mechanism has a required sign, not merely a tunable magnitude. Define
+
+$$
+\Delta H_{\mathrm{relax}}
+\equiv
+H_{\mathrm{eff,local}}
+-
+H_{\mathrm{eff,early}}.
+$$
+
+To address the observed direction of the $H_0$ tension, the constitutive and clock map must derive $\Delta H_{\mathrm{relax}}>0$. A branch that gives $\Delta H_{\mathrm{relax}}\le0$ fails as an explanation even if it produces environment-dependent scatter.
+
 For $S_8$:
 
 - baryonic and neutral-assembly sectors do not need to co-evolve identically at late times,
 - mild dark-sector drag and partial coupling can suppress growth amplitude without changing the same degree of early-time background history.
 
 So background and growth are connected through shared Noether sea state evolution rather than separate ad hoc corrections.
+
+### Chronometer, BAO, and Supernova Discriminator
+
+Differential-age cosmic chronometers provide a comparison route with different calibration sensitivity from BAO rulers and supernova luminosity distances:
+
+$$
+H_{\mathrm{chron}}^{\mathrm{obs}}(z)
+=
+-\frac{1}{1+z}\frac{dz}{dt_{\mathrm{age}}}.
+$$
+
+The stellar-aging interval is local to the source population, but both its population-synthesis calibration and the measured redshift remain photon-mediated. Chronometers are therefore not a path-free measurement. Their value is as a cross-pipeline discriminator. For one shared record, retain
+
+$$
+\mathbf H^\theta(z)
+=
+\left(
+H_{\mathrm{chron}}^\theta,
+H_{\mathrm{BAO}}^\theta,
+H_{\mathrm{SN}}^\theta
+\right)
+$$
+
+and predict the pairwise residual pattern after each pipeline's source, clock, and photon-transfer terms are declared. A branch that explains only one component by changing the Noether sea history has not explained the tension.
 
 ## Coupled Interpretation Channels
 

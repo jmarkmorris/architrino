@@ -1,5 +1,7 @@
 # Mesons
 
+**Scope:** This chapter develops representative light-meson and baryon-resonance assembly records: pions, kaons, rho mesons, and Delta baryons. Charmonium, bottomonium, open-charm, and open-bottom mesons remain extension targets for the same color-corridor, generation-step, spin, and reaction-provenance rules; they are not silently covered by the light-flavor examples below. The minimum heavy-flavor extension must test whether the kaon twist-phase rule scales to $B$-sector $CP$ observables, while the singlet extension must recover the $\eta'$ and the effective $U(1)_A$ anomaly from the same strong-sector topology rather than from an added mass term.
+
 A **hadron** is a **composite particle made of quarks** that is held together by the **strong nuclear force** (the force described by quantum chromodynamics, QCD). Quarks have a characteristic called **color charge** that makes isolated open-color sectors unobservable as free asymptotic states; observed hadrons are overall **color neutral**.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, this page is about transient and stable composite assemblies in the strong sector. A meson is not a new fundamental primitive; it is a quark-antiquark assembly record whose color corridor, flux-tube geometry, lifetime, and dissociation channels must close in the same event ledger.
@@ -61,14 +63,14 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 **Free vs. in-medium pion records:**
 - **Free charged pions:** The measured $\pi^\pm$ lifetime belongs to weak-reaction provenance. A free $\pi^-$ primarily routes through a weak corridor such as $\pi^-\to\mu^-+\bar\nu_\mu$; the charge-conjugate channel applies to $\pi^+$. This lifetime is not the timescale of residual strong exchange inside a nucleus.
 - **In-medium residual strong exchange:** Nuclear binding uses transient, off-shell, effective pion-like flux loops inside the coupled nucleon and Noether sea environment. The loop is a residual-strong exchange record that closes through baryon retuning, recoil, and medium response; it should not be pictured as a free pion with its weak lifetime traveling between nucleons.
-- **Neutral pion route:** The $\pi^0\to\gamma\gamma$ channel is a rapid Gate C radiative reaction. The inverse axial pairing makes a two-photon output channel available, but the event still has to carry incoming meson identity, outgoing photon Gate A/B ledgers, recoil or medium terms when present, and energy-momentum-angular-momentum closure. It is not a simple disappearance of inverse braids.
+- **Neutral pion route:** The $\pi^0\to\gamma\gamma$ channel is a rapid Gate C radiative reaction. The inverse axial pairing makes a two-photon output channel available, but the event still has to carry incoming meson identity, outgoing photon Gate A/B ledgers, recoil or medium terms when present, and energy-momentum-angular-momentum closure. The outgoing photon base lock is referent-pending because the declared planar-pair family does not bind. This route is therefore a target ledger, not a simple disappearance of inverse braids.
 
 ---
 
 ## The Kaons ($K^+, K^-, K^0, \bar{K}^0$): The Generation Mixer
 
 **Standard Model Role:**
-Kaons are the lightest mesons containing a **strange quark** (Generation II). They are critical because they exhibit **CP violation** (matter-antimatter asymmetry) and, in Standard Model language, decay relatively slowly via the Weak interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the assembly dissociates only through comparatively weak reaction corridors, proving that "flavor" is not conserved in weak processes.
+Kaons are the lightest mesons containing a **strange or anti-strange branch** (Generation II). They are critical because they exhibit **CP violation** (matter-antimatter asymmetry) and, in Standard Model language, decay relatively slowly via the Weak interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the assembly dissociates only through comparatively weak reaction corridors, proving that "flavor" is not conserved in weak processes.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
 A Kaon candidate connects a **Generation-I full-shielding braid scaffold** (for example, $u$ or a selected $d$ branch) with a selected **Generation-II shielding branch** (observer-level $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../../philosophy-history/theory-bridges/weak-mixing-ckm.md). The taxonomy member of each scaffold is unassigned. The down-type family-selection target is upstream of this meson shorthand: the kaon label assumes the relevant $d$ or $s$ branch has already survived the branch-selection criterion, rather than adding another observed down-type species.
@@ -84,6 +86,7 @@ Kaons are the primary laboratory for observing how Generation I stability breaks
 ### CP/phase hook (Kaons)
 - The Gen-I to selected Gen-II shielding mismatch is hypothesized to introduce a flux **twist phase**. Denote it $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, defined as the relative axial rotation needed to mate the exposed Gen-II cycle to a declared Gen-I support site.
 - $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ is a candidate geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). The proposed mapping predicts that the CP-violating component of neutral-kaon mixing tracks the size of this twist; setting $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}\to 0$ would suppress the $\epsilon_K$-like asymmetry while the CP-even oscillation channel remains a separate overlap and barrier-height row. In practice, $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ would be estimated by the twist angle (or integer twist count) required to align a Gen-II shielding cycle with a declared Gen-I support site, and the residual unaligned portion would supply the CP-odd acceleration bias on the oscillatory flip.
+- This twist is the candidate geometric realization of the relevant CKM phase combination, not an independent $CP$-odd knob. If a separate strong-sector contribution survives the [strong-$CP$ extraction](../gauge-structure-emergence.md), the event ledger must combine and bound the contributions without fitting the observed kaon asymmetry twice.
 
 ### Transient/effective exchange records ($\mathbb{A}\mathbb{A}\mathbb{A}$ strings)
 - **Nuclear charge swap:** $p(uud)\;\otimes\;\pi^-(d\bar u)\ \rightarrow\ n(udd)$ is an in-medium residual-strong exchange record. The effective pion-like flux loop carries axial-layer charge and phase between coupled baryon assemblies, while the full event ledger keeps baryon identities, recoil, and medium response explicit. The loop relaxes or re-associates into the surrounding nuclear assembly once the charge-state handoff closes; it is not a free pion propagation story.
@@ -121,7 +124,7 @@ These are excited states of the nucleon. At the observer-level Standard Model de
 A Delta baryon is a standard Noether braid assembly (like a proton) but with the three constituent braids treated in a **parallel spin alignment** (spin-$\tfrac{3}{2}$) rather than the Proton's mixed alignment (spin-$\tfrac{1}{2}$); compare the ground-state nucleon picture in [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-frame spinor proof.
 
 *   **Decorations / Pauli:** In the $\Delta^{++}$, three identical candidate $u$-braids occupy the same location. To satisfy the observer-level Pauli constraint without geometric collapse, the hadron-level target is that they occupy the three distinct color sectors, so exceptionality appears once on each indexed axis across the three candidate scaffolds. This is a color-singlet mapping target until the spin-statistics proof supplies the exclusion rule.
-*   **Dissociation:** The Delta dissociates rapidly ($\sim 10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; once compression/spin lifts it off its local minimum, the assembly follows the gradient to the nucleon basin and sheds a pion.
+*   **Dissociation:** The Delta dissociates rapidly ($\sim 5\times10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; once compression/spin lifts it off its local minimum, the assembly follows the gradient to the nucleon basin and sheds a pion.
 
 **Deltas in Dense Matter (EoS)**
 *   **Geometric compression:** In neutron-star cores, the nucleon Fermi energy can exceed the $N\!-\!\Delta$ gap ($\sim 300$ MeV). Noether braid assemblies are forced so close that mixed-spin nucleons become less favorable than parallel-spin Deltas or superpositions.
@@ -156,7 +159,7 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 ### Lifetime vs. geometry ($\mathbb{A}\mathbb{A}\mathbb{A}$ intuition)
 - **Pions:** Free charged $\pi^\pm$ associate as geometrically *non-inverse* braids ($u$ vs. $\bar d$ or $d$ vs. $\bar u$); their axis matrices do not expose the fast inverse-pair radiative route, so dissociation must open a weak $W^\pm$ corridor, giving the longer free lifetime. In nuclei, residual strong exchange is an in-medium effective flux-loop record, not the free weak lifetime. Neutral $\pi^0$ pairs exact inverse matrices ($u\otimes\bar u$ or $d\otimes\bar d$); axis-wise cancellation opens the rapid Gate C route $\pi^0\to\gamma\gamma$. Anti-aligned spins and relaxed flux also make the $\rho\to\pi\pi$ drop steep, keeping ground-state pions light.
 - **Kaons:** Gen-I/Gen-II shielding mismatch introduces a flux twist/phase that couples weakly to flavor; the partial mismatch aligns with their longer weak-scale lifetime and the CP-violating component of neutral-kaon oscillation.
-- **Delta baryons:** Parallel spins on all three constituent braids raise rotational energy and flux tension; the configuration sheds a pion almost immediately ($\sim10^{-24}$ s) to fall back to the mixed-spin nucleon.
+- **Delta baryons:** Parallel spins on all three constituent braids raise rotational energy and flux tension; the configuration sheds a pion almost immediately ($\sim5\times10^{-24}$ s) to fall back to the mixed-spin nucleon.
 - **Rho mesons:** Candidate spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
 
 **Reading SM quantum numbers inside $\mathbb{A}\mathbb{A}\mathbb{A}$**
@@ -177,8 +180,8 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 | $K^0$ | $d\bar s$ | 0 | 0 | +1 | −1/2 | $0^-$ | mixes into $K_S$: $8.95\times10^{-11}$ s; $K_L$: $5.12\times10^{-8}$ s |
 | $K^-$ | $\bar u s$ | −1 | 0 | −1 | −1/2 | $0^-$ | $1.24\times10^{-8}$ s |
 | $\bar K^0$ | $\bar d s$ | 0 | 0 | −1 | +1/2 | $0^-$ | mixes into $K_S$: $8.95\times10^{-11}$ s; $K_L$: $5.12\times10^{-8}$ s |
-| $\rho^+,\,\rho^0,\,\rho^-$ | same as $\pi$ states | +1,0,−1 | 0 | 0 | +1,0,−1 | $1^-$ | $\Gamma \approx 150$ MeV ($\sim10^{-24}$ s) |
-| $\Delta^{++}$ | $uuu$ | +2 | 1 | 0 | +3/2 | $3/2^+$ | $\Gamma \approx 120$ MeV ($\sim10^{-23}$ s) |
+| $\rho^+,\,\rho^0,\,\rho^-$ | same as $\pi$ states | +1,0,−1 | 0 | 0 | +1,0,−1 | $1^-$ | $\Gamma \approx 150$ MeV ($\sim5\times10^{-24}$ s) |
+| $\Delta^{++}$ | $uuu$ | +2 | 1 | 0 | +3/2 | $3/2^+$ | $\Gamma \approx 120$ MeV ($\sim5\times10^{-24}$ s) |
 | $\Delta^{+}$ | $uud$ | +1 | 1 | 0 | +1/2 | $3/2^+$ | same as above |
 | $\Delta^{0}$ | $udd$ | 0 | 1 | 0 | −1/2 | $3/2^+$ | same as above |
 | $\Delta^{-}$ | $ddd$ | −1 | 1 | 0 | −3/2 | $3/2^+$ | same as above |

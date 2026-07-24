@@ -104,7 +104,7 @@ The strip uses a deliberately limited grammar:
 - all normal solve progress moves from reactant side to product side through adjacent semantic stages only;
 - every solver-native assembly in those stages is one explicit admitted $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly corresponding to Standard Model content;
 - `pdgfeed` may already have completed the boundary by adding explicit `pro_noether_braid_I` and `anti_noether_braid_I` rows on the reactant or product side;
-- `pdgfeed` may also emit one explicit counted `Unbound Architrinos` product occurrence for the sub-pair primitive residue that remains after full Noether-pair completion;
+- `pdgfeed` may also emit one explicit counted `Unbound Architrinos` product occurrence for the primitive residue that remains below one complete pro/anti-orientation two-braid unit;
 - the intermediate stage may contain one and only one explicit counted `Unbound Architrinos` assembly, and multiple reactant-side `Dissociate` operators may route counts into that one ledger;
 - that intermediate `Unbound Architrinos` assembly acts as the common Electrino/Positrino ledger for all intermediate-to-product routing;
 - product-side `Associate` and product-side `Pass Thru` may each draw routed counts from that one intermediate ledger;
@@ -178,15 +178,15 @@ Candidate quality should be judged on assembly-native legality, conservation, pr
 
 So the design rule is: the solver core reasons only over explicit admitted assemblies and explicit admitted operators.
 
-### Noether-Pair Boundary Augmentation
+### Pro/Anti-Orientation Two-Braid Boundary Augmentation
 
 `pdgsolve` should model the wildcard-like Noether freedom as a bounded boundary augmentation, not as a solver-native composite, grouping label, dissociation target, or association target.
 
-Define one Noether-pair augmentation unit by the explicit two-assembly multiset $N_{\mathrm{Noether}} = \mathbf{1}_{\mathrm{pro\ Noether\ core}} + \mathbf{1}_{\mathrm{anti\ Noether\ core}}$.
+Define one pro/anti-orientation two-braid augmentation unit by the explicit two-assembly multiset $N_{2\mathcal B} = \mathbf{1}_{\mathrm{pro\ Noether\ braid}} + \mathbf{1}_{\mathrm{anti\ Noether\ braid}}$. The `noether_pair` policy token remains a compatibility identifier for this recipe; it does not establish polarity conjugation, Family C, or photon identity.
 
 A raw request still enters as requested boundary multisets $R_{\mathrm{req}}$ and $T_{\mathrm{req}}$.
 
-If policy permits Noether-pair augmentation, normalization should derive a finite augmentation set $B(\Pi) \subset \mathbb{N} \times \mathbb{N}$, where one choice $b = (\alpha, \beta)$ means $R^{(b)} = R_{\mathrm{req}} + \alpha N_{\mathrm{Noether}}$ and $T^{(b)} = T_{\mathrm{req}} + \beta N_{\mathrm{Noether}}$.
+If policy permits two-braid boundary augmentation, normalization should derive a finite augmentation set $B(\Pi) \subset \mathbb{N} \times \mathbb{N}$, where one choice $b = (\alpha, \beta)$ means $R^{(b)} = R_{\mathrm{req}} + \alpha N_{2\mathcal B}$ and $T^{(b)} = T_{\mathrm{req}} + \beta N_{2\mathcal B}$.
 
 For `pdgsolve` v1, one emitted family should augment at most one boundary side, so $\alpha \beta = 0$. That prevents redundant add-on-both-sides variants that do not add solve meaning.
 
@@ -532,7 +532,7 @@ Normalization should then do the following, in order:
 3. reject any assembly outside $\mathcal{A}_{\mathrm{v1}}$ with `pdgsolve.request.unsupported_assembly`;
 4. freeze the active primitive basis as $\mathcal{P}_{0}$ and the executable law table as `pdgsolve-laws/v1-standard-model`;
 5. build the requested multisets $R_{\mathrm{req}}$ and $T_{\mathrm{req}}$;
-6. normalize the finite Noether-pair boundary augmentation mode set implied by policy, defaulting to the singleton no-augmentation mode when augmentation is not allowed;
+6. normalize the finite two-braid boundary-augmentation mode set implied by policy, defaulting to the singleton no-augmentation mode when augmentation is not allowed;
 7. freeze one deterministic augmentation occurrence order, appending each admitted pair in the order pro Noether braid then anti Noether braid, with pair indices ascending;
 8. emit one solver-native problem record whose content is fully sufficient for search without any presentation lookup, including the requested multisets and the finite augmentation modes to enumerate.
 
@@ -710,7 +710,7 @@ The score model should prefer, in order:
 
 - exact conservation and exact product closure;
 - zero primitive imbalance and zero intermediate-assemblies mismatch;
-- fewer Noether-pair boundary augmentations;
+- fewer two-braid boundary augmentations;
 - fewer non-identity operators;
 - fewer dissociations when a less disruptive exact path exists;
 - stronger provenance clarity;
@@ -752,7 +752,7 @@ That means:
 1. every exact candidate beats every non-exact candidate;
 2. among exact candidates, lower primitive imbalance wins first;
 3. then lower intermediate-assemblies mismatch wins;
-4. then fewer Noether-pair boundary augmentations wins;
+4. then fewer two-braid boundary augmentations wins;
 5. then fewer non-identity operators wins;
 6. then fewer dissociations wins;
 7. then lower ambiguity/provenance penalty wins;
@@ -832,7 +832,7 @@ The v1 set should be:
 | `pdgsolve.request.unsupported_assembly` | request | the request names an assembly outside `pdgsolve` v1 | requested token and attempted canonical id |
 | `pdgsolve.request.unmappable_request` | request | the source request cannot be translated into explicit admitted Standard Model assemblies and therefore should not become a solver-native request | source id or raw token set, attempted role set, and translator note |
 | `pdgsolve.request.invalid_boundary_role` | request | a solver-native assembly was requested in a boundary role where that assembly family is not admitted | assembly id, attempted role, and allowed roles |
-| `pdgsolve.request.unsupported_boundary_augmentation` | request | the request policy asks for a boundary augmentation mode outside the admitted v1 Noether-pair augmentation set | requested augmentation token and allowed augmentation set |
+| `pdgsolve.request.unsupported_boundary_augmentation` | request | the request policy asks for a boundary augmentation mode outside the admitted v1 two-braid augmentation set | requested augmentation token and allowed augmentation set |
 | `pdgsolve.search.primitive_imbalance` | search | $\delta(Q) \neq 0$ for the retained constructed candidate or retained request summary | request id and $(\delta_E, \delta_P)$ |
 | `pdgsolve.search.middle_mismatch` | search | reactant-side-generated and product-side-required middle inventories do not close | request id and canonical mismatch vector |
 | `pdgsolve.search.provenance_failure` | search | no complete provenance witness exists for the retained constructed candidate | retained operator summary and failing witness clause |
@@ -849,7 +849,7 @@ Before `pdgsolve` implementation is considered trustworthy, the core regression 
 | `primitive_imbalance_row_beta_source_to_target` | `2 pro_down_quark_I + pro_up_quark_I -> pro_down_quark_I + 2 pro_up_quark_I` | default | retained diagnostics include `pdgsolve.search.primitive_imbalance` with $(\delta_E, \delta_P) = (3, -3)$; no exact family exists |
 | `pass_thru_row_beta_source` | `2 pro_down_quark_I + pro_up_quark_I -> 2 pro_down_quark_I + pro_up_quark_I` | default | three exact pass-thru assemblies; zero non-identity operators; zero ambiguity penalty |
 | `representative_multi_option_exact` | one mapped PDG request that yields at least two distinct exact solution families | default | at least two exact solution families remain after canonicalization, with stable score order and stable family representatives |
-| `noether_pair_boundary_augmentation_exact` | one curated assembly-native request whose only exact closure requires one Noether pair on one boundary side | `exactClosureRequired=true`, `allowedBoundaryAugmentations=["noether_pair"]`, `maxNoetherPairsPerSide=1` | at least one exact family exists; the emitted family lists the pro Noether braid and anti Noether braid as ordinary assemblies on the chosen boundary side, carries an explicit `boundaryAugmentation` summary, and introduces no composite or wildcard placeholder id |
+| `noether_pair_boundary_augmentation_exact` | one curated assembly-native request whose only exact closure requires one pro/anti-orientation Noether-braid composite on one boundary side | `exactClosureRequired=true`, `allowedBoundaryAugmentations=["noether_pair"]`, `maxNoetherPairsPerSide=1` | at least one exact family exists; the emitted family lists the pro Noether braid and anti Noether braid as ordinary assemblies on the chosen boundary side, carries an explicit `boundaryAugmentation` summary, and introduces no composite or wildcard placeholder id |
 
 Positive regression coverage for PDG-to-assembly translation and un-mappable classification belongs in [pdgfeed](pdgfeed.md), not in `pdgsolve`.
 
@@ -1047,7 +1047,7 @@ The following frozen JSON blocks show the handoff shape that `pdgsolve` should a
 - `requestId`;
 - `source`;
 - `reactants` and `products`, each as both ordered occurrence lists and multiset summaries;
-- `boundaryAugmentationModes`, carrying the finite normalized Noether-pair augmentation choices derived from policy;
+- `boundaryAugmentationModes`, carrying the finite normalized two-braid augmentation choices derived from policy;
 - `assemblyAlphabetId: "pdgsolve-assemblies/v1-standard-model"`;
 - `primitiveBasisId: "pdgsolve-primitives/electrino-positrino/v1"`;
 - `lawTableId: "pdgsolve-laws/v1-standard-model"`;
@@ -1066,7 +1066,7 @@ The following frozen JSON blocks show the handoff shape that `pdgsolve` should a
 - accept explicit upstream request data only after successful higher-scale-to-assembly translation;
 - if `pdgfeed` cannot translate a source request into explicit admitted Standard Model assemblies, classify that source request as un-mappable and do not emit a `pdgsolve` request for it;
 - accept higher-scale composite terms only at the boundary adapter, never as solver-native request ids;
-- allow wildcard-like boundary freedom only through explicit Noether-pair augmentation modes derived from policy, never through placeholder wildcard ids or composite boundary terms;
+- allow wildcard-like boundary freedom only through explicit two-braid augmentation modes derived from policy, never through placeholder wildcard ids or composite boundary terms;
 - keep solver-native request content assembly-native, with no presentation-only state;
 - and treat downstream authored documents as downstream artifacts rather than invertible `pdgsolve` requests.
 
@@ -1152,7 +1152,7 @@ When `pdgsolve` emits more than one JSON artifact for a batch run, the preferred
 
 - own solve normalization, search, scoring, and output emission inside the explicit assembly-native ontology;
 - emit exact and no-exact families in explicit admitted assemblies only;
-- when Noether-pair augmentation is used, emit the added Noether braids as explicit assemblies plus an explicit boundary augmentation summary;
+- when two-braid augmentation is used, emit the added Noether braids as explicit assemblies plus an explicit boundary augmentation summary;
 - include the scores and diagnostics for every emitted family;
 - freeze accepted solve structure before publication rather than asking downstream tools to infer it;
 - do not duplicate PDG normalization logic locally;

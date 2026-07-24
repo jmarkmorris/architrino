@@ -10,7 +10,7 @@ Companion bridge chapters for this map are [Theory Mapping](theory-mapping.md), 
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not a complaint about science failing. It is a diagnosis that several domains of modern physics may be mathematically mature while still being ontologically incomplete, mislocated, or over-interpreted.
 
-The sharper accountability claim is that modern physics has often mistaken precision inside narrow measured regimes for authority over ontology itself. That is a methodological failure, not a failure of measurement. The field learned to trust successful closures so strongly that regime-limited equations became standards of admissible explanation, even when those equations openly depended on restricted energy, velocity, curvature, density, coupling, or observer-access conditions. From the $\mathbb{A}\mathbb{A}\mathbb{A}$ standpoint, this delayed recognition of the substrate layer: the inherited stack remained useful as effective theory while blocking the conceptual move needed to reinterpret its variables.
+The sharper accountability question is whether modern physics has sometimes mistaken precision inside bounded measured regimes for authority over ontology itself. That would be a methodological failure, not a failure of measurement. The risk appears when regime-limited equations become standards of admissible explanation even though they depend on restricted energy, velocity, curvature, density, coupling, or observer-access conditions. From the $\mathbb{A}\mathbb{A}\mathbb{A}$ standpoint, the inherited stack remains useful as effective theory while its variables stay open to substrate-level reinterpretation. The proposed substrate account must earn that reinterpretation by recovering the successful records; it cannot treat the diagnosis itself as evidence that its replacement is correct.
 
 This document should map the main crisis-axes rather than collapse them into one slogan. The point is to separate:
 
@@ -18,6 +18,8 @@ This document should map the main crisis-axes rather than collapse them into one
 - where effective success hardened into ontology,
 - where patchwork closure displaced substrate derivation,
 - and where unresolved tensions may indicate missing causal structure rather than merely harder calculation.
+
+The companion methodology chapter names six crisis indicators: anomaly load, ontology debt, patch density, progress latency, theory proliferation without convergence, and imbalance between effective success and explanatory integration. Those are audit categories, not numerical verdicts. Each crisis-axis below should identify which indicators it actually bears, preserve the validated data and effective machinery, and state what observation would show that ordinary within-framework work is sufficient after all.
 
 Several of the crisis-axes treated below also connect directly to [Measurement Ontology](../quantum/measurement-ontology.md), [Bell Theorem](theory-bridges/bell-theorem.md), [Dark Matter](../cosmology/dark-matter.md), [Parameter Ledger](../validation/parameter-ledger.md), and [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md).
 
@@ -259,9 +261,17 @@ They remain incomplete because each pays a price. Operationalism lowers the onto
 
 The deterministic lesson retained from 't Hooft-style superdeterminism is narrower than the superdeterminist repair itself. Determinism at all levels is compatible with a substrate program; setting-dependent preparation is not required by determinism. For $\mathbb{A}\mathbb{A}\mathbb{A}$ the crisis should therefore be stated as a product-screening problem: keep measurement independence, keep no-signaling, and derive why the retained pair-provenance variables fail to factor into two independent one-wing response laws.
 
+The excluded factorization is explicit. For outcomes $A$ and $B$, detector settings $a$ and $b$, and a complete candidate common-cause state $\lambda$,
+$$
+P(A,B\mid a,b,\lambda)
+\ne
+P(A\mid a,\lambda)P(B\mid b,\lambda)
+$$
+must hold in the regime that violates a Bell inequality. A shared creation event by itself does not meet this obligation: under measurement independence, an ordinary local common cause is exactly the kind of $\lambda$ for which the product form is tested. The missing derivation must therefore identify a genuinely nonfactorizable dependence in the retained dynamics, show why it is compatible with the observed local marginals, and recover the measured setting-angle correlation.
+
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially clarified** by the project's willingness to consider real substrate-level causal structure not exhausted by relativistic signaling language. The proposed move is to deny Bell locality while preserving realism, forward causal order, and measurement independence. On that picture, correlated pairs inherit joint geometric constraints from a shared creation event, and those constraints are later read out locally during measurement without requiring a new superluminal signal between detectors at measurement time.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directionally constrained**, not yet dynamically resolved. The intended move is to deny Bell factorization while preserving realism, forward causal order, measurement independence, and operational no-signaling. Pair provenance may be part of the required state, but shared provenance followed only by independent local readout remains a Bell-local common-cause model and is insufficient. The Master Equation must supply the nonfactorizable dependence rather than the chapter assigning it by interpretation.
 
 Transition relevance is very high because Bell results are often treated as closing off deterministic or substrate-first programs when they more precisely close off only narrower classes. A careful architrino treatment would need to show not only that such nonlocal dependence is conceptually allowed, but that the Master Equation actually yields the observed correlation law while preserving no-signaling. Until that derivation is complete, the Bell crisis is clarified in direction but not fully closed.
 
@@ -482,7 +492,7 @@ Atomic physics supplies a compact local version of the same lesson. Rutherford s
 
 What is unsettled is what that structure consists in. Are these features purely properties of fields defined on no medium, or are they clues that the underlying ontology includes a constitutive substrate whose organized state is being described in indirect language? The unresolved gap is not merely terminological. It concerns whether modern physics has allowed effective geometry and vacuum structure to become explanatorily active while leaving their physical basis unspecified.
 
-This matters especially when anomaly budgets are inferred in regions already assigned strong spacetime structure. At galactic scales, dark-matter attribution is often concentrated in volumes where the effective gravitational or spacetime contraction is high and increases toward the galactic center, especially toward the supermassive black hole regime. That correlation does not by itself prove that dark-sector phenomenology is really medium structure. It does, however, make it difficult to dismiss constitutive hypotheses in advance. A framework that permits increasingly intense spacetime behavior in precisely those regions cannot simply assume, without argument, that the remaining discrepancy must belong to a separate invisible substance rather than to unmodeled structure or response of the spacetime sector itself.
+This matters especially when anomaly budgets are inferred from extended systems. The classic galactic pressure is not concentrated at the central black hole: rotation curves remain approximately flat into outer regions where the visible matter contribution would predict a decline, and lensing and cluster dynamics also require an extended mass or response account. Central regions can be baryon dominated, while low-surface-density galaxies can display large discrepancies without an extreme central field. None of this proves that dark-sector phenomenology is medium structure. It sets the correct geographic burden on a constitutive hypothesis: reproduce the radial rotation and lensing profiles across inner and outer regimes, not merely associate the discrepancy with strong central contraction.
 
 ### Standard Repairs
 

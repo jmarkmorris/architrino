@@ -928,10 +928,10 @@ Until those conditions are met, cosmological coupling should be treated as a can
 
 ## Regime Map
 
-| Epoch | Noether sea state | Effective $w$ | Dominant mechanism |
+| Epoch | Noether sea state | Effective dark-energy component $w_{\mathrm{eff}}$ | Dominant mechanism |
 |:---|:---|:---|:---|
-| Radiation era ($z > 3400$) | Hot, dense; binaries 3 contracted | $w_{\mathrm{eff}} \to 0$ (subdominant) | Radiation pressure dominates |
-| Matter era ($3400 > z > 0.7$) | Cooling; binaries 3 relaxing | $w_{\mathrm{eff}}$ transitions toward $-1$ | Matter density dominates; tension grows |
+| Radiation era ($z > 3400$) | Hot, dense; binaries 3 contracted | Not fixed by the subdominant limit | Radiation pressure dominates |
+| Matter era ($3400 > z > 0.7$) | Cooling; binaries 3 relaxing | Model-dependent; must evolve toward $-1$ on the retained branch | Matter density dominates; tension grows |
 | Acceleration onset ($z \sim 0.7$) | $\rho_{\mathrm{DE,eff}} \sim \rho_m$ | $w_{\mathrm{eff}} \approx -1$ | Tension becomes dynamically significant; SMBH channel may become non-negligible |
 | Present ($z = 0$) | Quasi-equilibrium tension | $w_{\mathrm{eff}} \approx -1$ with possible mild drift | Acceleration established; coupling tests become survey-limited |
 | Far future ($z \to -1$) | Full relaxation | $w_{\mathrm{eff}} \to -1$ or evolves | Depends on relaxation endpoint |

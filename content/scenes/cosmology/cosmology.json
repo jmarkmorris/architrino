@@ -18,6 +18,10 @@
         "scenePath": "content/scenes/cosmology/cosmology_ontology.json"
       },
       {
+        "nodeId": "cosmology_reconstruction",
+        "scenePath": "content/scenes/cosmology/cosmology_reconstruction.json"
+      },
+      {
         "nodeId": "expansion_mechanism",
         "scenePath": "content/scenes/cosmology/expansion_mechanism.json"
       },
@@ -58,6 +62,14 @@
       "radius": 2.688,
       "color": "#5a1f2e",
       "labelTitle": "Cosmology Ontology",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "cosmology_reconstruction",
+      "label": "Cosmology Reconstruction",
+      "radius": 2.688,
+      "color": "#4f5968",
+      "labelTitle": "Cosmology Reconstruction",
       "labelBadge": "doc"
     },
     {

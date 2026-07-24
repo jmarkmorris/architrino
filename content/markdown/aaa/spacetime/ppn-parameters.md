@@ -212,9 +212,119 @@ $$
 $$
 If a comparison source instead defines $\mathbf w_{\mathrm{sea}}=-\mathbf w$, all odd-in-$\mathbf w$ preferred-frame terms must be sign-translated before reading off the $\Xi_i\to\alpha_i$ map.
 
+### Terrestrial Working Drift Profiles
+
+Terrestrial preferred-frame rows need a declared $\mathbf u_{\mathrm{sea}}$ profile before their $\beta_\oplus$ dependence can be evaluated numerically. Use the CMB dipole only as an observer-level comparison direction, not as proof that the CMB frame is the substrate's absolute rest frame. In that comparison chart, decompose a laboratory velocity as
+
+$$
+\mathbf V_{\mathrm{lab}}(t_{\mathrm{eff}})
+=
+\mathbf V_{\mathrm{CMB}}
++
+\mathbf V_{\mathrm{orb}}(t_{\mathrm{eff}})
++
+\mathbf V_{\mathrm{rot}}(t_{\mathrm{eff}})
++
+\mathbf v_A(t_{\mathrm{eff}}),
+$$
+
+where $\mathbf V_{\mathrm{CMB}}$ is the Solar-system motion inferred from the CMB dipole, $\mathbf V_{\mathrm{orb}}$ and $\mathbf V_{\mathrm{rot}}$ are the terrestrial orbital and rotational contributions, and $\mathbf v_A$ is the apparatus motion relative to the laboratory. A two-coefficient working family brackets the unresolved Noether sea response:
+
+$$
+\mathbf u_{\mathrm{sea}}^{(f)}(t_{\mathrm{eff}})
+=
+f_{\mathrm{tr}}
+\left[
+\mathbf V_{\mathrm{CMB}}
++
+\mathbf V_{\mathrm{orb}}(t_{\mathrm{eff}})
+\right]
++
+f_{\mathrm{rot}}\mathbf V_{\mathrm{rot}}(t_{\mathrm{eff}}),
+\qquad
+0\le f_{\mathrm{tr}},f_{\mathrm{rot}}\le1,
+$$
+
+so that
+
+$$
+\mathbf w_A^{(f)}
+=
+(1-f_{\mathrm{tr}})
+\left(
+\mathbf V_{\mathrm{CMB}}
++
+\mathbf V_{\mathrm{orb}}
+\right)
++
+(1-f_{\mathrm{rot}})\mathbf V_{\mathrm{rot}}
++
+\mathbf v_A.
+$$
+
+The non-entrained comparison is $(f_{\mathrm{tr}},f_{\mathrm{rot}})=(0,0)$. Ignoring the smaller annual, daily, and apparatus contributions, the [measured CMB dipole](https://lambda.gsfc.nasa.gov/education/lambda_graphics/cmb_dipole.html) gives $|\mathbf w_\oplus|\approx369\,\mathrm{km\,s^{-1}}$ and therefore $\beta_\oplus\approx1.23\times10^{-3}$ when $c_0$ is the comparison speed. Translational entrainment uses $f_{\mathrm{tr}}\to1$ while leaving the rotational row independently testable; local co-rotation also takes $f_{\mathrm{rot}}\to1$. These are evaluation profiles, not derived constitutive solutions.
+
+The existing preferred-motion bundle separates the profiles through their predicted annual and sidereal phase and amplitude. Ground-to-orbit clock and resonator comparisons add the radial discriminator: a profile that becomes less entrained with altitude changes $\mathbf w_A^{(f)}$ across the trajectory, whereas a CMB-comoving profile preserves the leading dipole-scale drift. The same $(f_{\mathrm{tr}},f_{\mathrm{rot}})$ values must be used in clock, interferometer, matter-sector, and PPN rows; fitting a different terrestrial drift profile to each channel would not close the preferred-frame map.
+
+### Rotating-Source Frame Dragging
+
+Preferred-frame leakage and physical source-current response are different $g_{0i}$ channels. Setting $\alpha_1=\alpha_2=\alpha_3=0$ must remove dependence on a laboratory's drift through the Noether sea without removing the positive weak-field response to a rotating source. For source angular momentum $\mathbf J$ and $\mathbf r=r\hat{\mathbf r}$, the standard comparison row in the declared $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$ convention is
+$$
+g_{0i}^{\mathrm{drag}}
+=
+-\frac{2G_N}{c_0^3}
+\frac{(\mathbf J\times\mathbf r)_i}{r^3}
++
+O(c_0^{-5}).
+$$
+The corresponding carried-gyroscope target is the Lense-Thirring precession
+$$
+\boldsymbol\Omega_{\mathrm{LT}}
+=
+\frac{G_N}{c_0^2r^3}
+\left[
+3\hat{\mathbf r}(\mathbf J\cdot\hat{\mathbf r})
+-\mathbf J
+\right].
+$$
+In the constitutive map, this row must be projected from the same rotating-source angular-momentum ledger and Noether sea vorticity response that supply $u^i_{\mathrm{sea,eff}}$. The separation requirement is
+$$
+g_{0i}^{\mathrm{eff}}
+=
+g_{0i}^{\mathrm{drag}}(\mathbf J)
++
+g_{0i}^{\mathrm{leak}}(\mathbf w)
++
+O(c_0^{-5}),
+\qquad
+g_{0i}^{\mathrm{leak}}\to0
+\ \text{while}\
+g_{0i}^{\mathrm{drag}}\not\to0
+$$
+for a rotating source. Lense-Thirring and geodetic precession must therefore be recovered from one effective metric but remain distinct observable projections.
+
+### Remaining PPN Parameters
+
+The five-parameter rows used in the numerical examples below are a reduced subset, not the full PPN space. The full observer-level decision layer also contains the preferred-location parameter $\xi_{\mathrm W}$ and the conservation-law parameters $\zeta_1,\zeta_2,\zeta_3,\zeta_4$. The subscript on $\xi_{\mathrm W}$ is mandatory because the undecorated $\xi=R_\parallel/R_\perp$ is the Noether braid envelope shape ratio. Likewise, the PPN $\zeta_i$ must not be confused with the apparatus-calibration nuisance $\zeta_A$ used in the preferred-motion bundle.
+
+For a GR-matching branch, the additional targets are
+$$
+\xi_{\mathrm W}
+=
+\zeta_1
+=
+\zeta_2
+=
+\zeta_3
+=
+\zeta_4
+=0.
+$$
+Here $\xi_{\mathrm W}$ tests preferred-location leakage, while nonzero $\zeta_i$ would signal failure of the effective momentum/conservation bookkeeping. A wake-ledger theory cannot infer these zeros from notation: the same architrino-plus-wake-plus-medium record that closes total energy and momentum must project them below their observer-level bounds.
+
 ## Zero-Leakage Conditions (Preferred-Frame Closure)
 
-The effective theory is preferred-frame safe if and only if all drift couplings vanish:
+The effective theory is preferred-frame safe at the retained order if and only if all laboratory-drift couplings vanish:
 $$
 \Xi_1=\Xi_2=\Xi_3=\Xi_4=0
 \quad\Longleftrightarrow\quad
@@ -232,6 +342,7 @@ $$
 and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
 The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion.
+This condition does not set the rotating-source row $g_{0i}^{\mathrm{drag}}(\mathbf J)$ to zero.
 
 ## Preferred-Motion Null-Test Bundle
 
@@ -277,6 +388,9 @@ Use this table to close the constitutive loop against modern benchmarks.
 | Time nonlinearity | $\beta_{\text{PPN}}$ from $g_{00}$ expansion | $\beta_{\text{PPN}}=1$ | Residual inside ledger tolerance |
 | Space curvature/refraction | $\gamma_{\text{eff}}$ from the shared spatial-compliance row, with Shapiro and lensing as projections | $\gamma_{\text{PPN}}=1$ | Residual inside ledger tolerance |
 | Preferred-frame leakage | $(\alpha_1,\alpha_2,\alpha_3)$ from $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ | all $\approx 0$ | No significant nonzero leakage |
+| Rotating-source frame dragging | $g_{0i}^{\mathrm{drag}}(\mathbf J)$ and $\boldsymbol\Omega_{\mathrm{LT}}$ from the source-current row | Lense-Thirring comparison | Recover the nonzero source response without preferred-frame leakage |
+| Preferred-location leakage | $\xi_{\mathrm W}$ from the same effective metric record | $\xi_{\mathrm W}=0$ | No significant nonzero leakage |
+| Conservation-law leakage | $(\zeta_1,\zeta_2,\zeta_3,\zeta_4)$ from the full architrino-plus-wake-plus-medium ledger | all $=0$ | No observer-level nonconservation residual |
 | Newtonian limit | $\mathbf{a}=-\nabla\Phi_{\text{eff}}$ (weak field) | exact leading-order recovery | No constitutive contradiction |
 | Cross-observable consistency | same constitutive coefficients across delay, redshift, precession, lensing, acceleration, and preferred-frame tests | single-parameter-set closure | No per-observable re-fit |
 
@@ -284,7 +398,7 @@ Numeric pass/fail thresholds are taken from [validation/constraint-ledger.md](..
 
 ## Source-Mined Benchmark Bound Vector
 
-The Will-style weak-field comparison is not a single "GR matches" flag. It is a bound vector on distinct leakage channels:
+The current Will-style numerical comparison is not a single "GR matches" flag. It is a reduced five-row bound vector on the channels already carried by the numerical fit:
 $$
 \mathbf{b}_{\mathrm{Will}}
 =
@@ -347,13 +461,26 @@ This chapter is the observable-side gate for the emergent-metric closure.
 Define the PPN decision vector:
 $$
 \mathbf{p}_{\mathrm{PPN}}=
-\bigl(\gamma_{\mathrm{eff}}-1,\ \beta_{\mathrm{eff}}-1,\ \alpha_1,\ \alpha_2,\ \alpha_3\bigr)
+\bigl(
+\gamma_{\mathrm{eff}}-1,\,
+\beta_{\mathrm{eff}}-1,\,
+\xi_{\mathrm W},\,
+\alpha_1,\,
+\alpha_2,\,
+\alpha_3,\,
+\zeta_1,\,
+\zeta_2,\,
+\zeta_3,\,
+\zeta_4
+\bigr)
 $$
 The weak-field closure target is
 $$
 \mathbf{p}_{\mathrm{PPN}}\approx \mathbf{0}
 $$
 within the benchmark tolerances listed in the validation ledger.
+
+The synthetic calibration and likelihood sections below remain explicitly reduced fits over $(\gamma_{\mathrm{eff}},C_2,\Xi_1,\Xi_2,\Xi_3)$. They do not numerically evaluate $\xi_{\mathrm W}$, $\zeta_i$, or the Lense-Thirring source-current row, so passing those reduced examples is not full PPN closure.
 
 Cross-chapter integration:
 - constitutive map source: [spacetime/emergent-metric.md](./emergent-metric.md)

@@ -27,6 +27,8 @@ Use this template for every concept entry (theory, framework, program, interpret
 - **Ontological Area**: primary layer domain.
 - **Sub-Ontological Area**: narrow domain inside the primary area.
 - **Concept Status**: mainstream foundational/effective, competing, historical rejection, underdetermined, or fringe.
+- **Claims At**: the layer at which the concept or program presents its own explanation.
+- **Assessed At**: the layer at which this chapter evaluates the concept's demonstrated content.
 - **Comparative Stack Placement**: concept placement in the neutral comparative stack.
 - **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement**: placement after $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation.
 - **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation Type**: recovered, partially recovered, reinterpretation-only, mislocated, over-inferred, incompatible, or placeholder.
@@ -47,15 +49,7 @@ Default prose flow for each concept entry:
 7. **Failure Mode or Limiting Tension**: clearest reason it cannot be final.
 8. **Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$**: precise closure target that must be met.
 
-Template conformance test protocol for each concept entry:
-
-1. Confirm all header fields are explicitly filled.
-2. Confirm both stack placements are explicit and non-identical when required.
-3. Confirm all eight prose-flow sections are present in order.
-4. Confirm `What This Concept Gets Right` preserves real strengths, not strawman failures.
-5. Confirm `Failure Mode` and `Mapping Target` are concrete and falsifiable.
-
-Boilerplate quality rule: repeated template language is acceptable only as scaffolding. Each mature entry should name the specific regularity, observable, equation family, or inference pattern that survives, and its `Mapping Target` should identify the concrete derivation, recovery, or rejection needed under $\mathbb{A}\mathbb{A}\mathbb{A}$. Generic claims such as "captures a stable regularity" should be treated as placeholders until the entry states what regularity is actually meant.
+Boilerplate quality rule: repeated template language is acceptable only as scaffolding. Each mature entry should name the specific regularity, observable, equation family, or inference pattern that survives, and its `Mapping Target` should identify the concrete derivation, recovery, or rejection needed under $\mathbb{A}\mathbb{A}\mathbb{A}$. Generic claims such as "captures a stable regularity" should be treated as placeholders until the entry states what regularity is actually meant. Authority language must also follow `Concept Status`: a historically rejected or fringe concept may remain instructive without being indispensable in current practice, and an unconfirmed program may supply comparison pressure without owning empirical successes.
 
 ### Dual-Stack Mapping Frame
 
@@ -1206,13 +1200,15 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **Sub-Ontological Area:** measurement interpretation
 **Short Name:** Copenhagen
 **Concept Status:** Mainstream Effective
+**Claims At:** Measurement and inference
+**Assessed At:** Operational quantum practice and interpretive scope
 **Comparative Stack Placement:** Inference layer
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology; Useful Measurement Rule
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated
 
 #### 1. Concept Summary
 
-Copenhagen Interpretation is a interpretation in the measurement interpretation domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
+Copenhagen Interpretation is an interpretation in the measurement domain. It was built to discipline preparation, observable, and outcome language in quantum practice, and in the comparative stack it is best read as an inference framework rather than as an automatic statement of final ontology.
 
 #### 2. Ontological Commitments
 
@@ -1220,11 +1216,11 @@ Copenhagen Interpretation carries specific ontological commitments even when it 
 
 #### 3. What This Concept Gets Right
 
-Copenhagen Interpretation gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Copenhagen Interpretation gets the operational separation among preparation, measurement context, and recorded outcome right. Its durable value is the rule that claims about unmeasured quantities cannot outrun the experimental arrangement and the quantum probabilities actually tested. That discipline must survive even if the observer boundary and collapse language are replaced by physical apparatus dynamics.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Copenhagen Interpretation sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Mislocated Ontology; Useful Measurement Rule**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, Copenhagen Interpretation sits at the **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, its operational discipline is retained in **Observation and Inference**, while any implication that apparatus context exhausts physical description is rejected. The relation type is **mislocated** because a useful measurement rule does not settle the ontology that produces the record.
 
 #### 5. Transition-Period Relevance
 
@@ -1240,7 +1236,7 @@ The clearest limiting tension for Copenhagen Interpretation is that its native v
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the tested preparation-to-outcome probability tables from a declared apparatus kernel and basin measure, while showing why the operational cut is an observer-access boundary rather than a fundamental collapse boundary.
 
 ---
 
@@ -1296,9 +1292,11 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **Sub-Ontological Area:** hidden-variable dynamics
 **Short Name:** dBB
 **Concept Status:** Underdetermined / Live Minority View
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Claims At:** Substrate ontology and deterministic quantum dynamics
+**Assessed At:** Quantum-effective dynamics and measurement statistics
+**Comparative Stack Placement:** Substrate ontology
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Stable Assembly Dynamics
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially recovered
 
 #### 1. Concept Summary
 
@@ -1310,11 +1308,11 @@ de Broglie-Bohm Theory carries specific ontological commitments even when it is 
 
 #### 3. What This Concept Gets Right
 
-de Broglie-Bohm Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+de Broglie-Bohm Theory supplies a concrete deterministic continuity law: an ensemble density is transported by the same guidance flow that determines individual configurations, while quantum-equilibrium density reproduces the standard position statistics. That compatibility among trajectory flow, transported measure, and apparatus records is the durable recovery target; the separate configuration-space guiding wave is not thereby licensed as $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, de Broglie-Bohm Theory sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, de Broglie-Bohm Theory makes a **Substrate ontology** claim by adding definite configurations and a guiding state. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained deterministic-flow lesson is relocated to **Stable Assembly Dynamics**, while the wavefunction and quantum-equilibrium distribution remain effective descriptions to be derived. The relation type is **partially recovered** because the flow-measure contract survives but the proposed primitives do not transfer unchanged.
 
 #### 5. Transition-Period Relevance
 
@@ -1330,7 +1328,7 @@ The clearest limiting tension for de Broglie-Bohm Theory is that its native vari
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to construct a native finite-window flow and invariant measure whose coarse density and current satisfy the quantum continuity equation, recover the relevant Born-position statistics, and pass detector-record tests without inserting a separate configuration-space pilot wave as a substrate object.
 
 ---
 
@@ -1341,9 +1339,11 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **Sub-Ontological Area:** collapse dynamics
 **Short Name:** GRW / CSL
 **Concept Status:** Underdetermined / Live Minority View
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Claims At:** Fundamental stochastic dynamics
+**Assessed At:** Quantum-effective dynamics and macroscopic record formation
+**Comparative Stack Placement:** Assembly / medium dynamics
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Stable Assembly Dynamics
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Reinterpretation-only
 
 #### 1. Concept Summary
 
@@ -1355,11 +1355,11 @@ Objective Collapse Theory carries specific ontological commitments even when it 
 
 #### 3. What This Concept Gets Right
 
-Objective Collapse Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
+Objective Collapse Theory gets one pressure exactly right: definite macroscopic records require a quantitative dynamical account, not an undefined observer boundary. GRW/CSL models turn that pressure into rate, localization, heating, and mass-scaling predictions. Those experimentally bounded modifications are comparison targets even though $\mathbb{A}\mathbb{A}\mathbb{A}$ does not adopt primitive stochastic collapse.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Objective Collapse Theory sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
+In the neutral comparative stack, Objective Collapse Theory sits at **Assembly / medium dynamics** because it modifies the evolution law rather than merely interpreting an inference rule. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained record-formation pressure is relocated to **Stable Assembly Dynamics**. The relation type is **reinterpretation-only**: a deterministic basin-selection law must face the same coherence, heating, and scaling bounds without importing fundamental noise.
 
 #### 5. Transition-Period Relevance
 
@@ -1375,7 +1375,7 @@ The clearest limiting tension for Objective Collapse Theory is that its native v
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive apparatus- and environment-dependent separatrix times from the assembly law, register their mass and size scaling, and show that the same mechanism forms unique durable records while remaining below spontaneous-heating and anomalous-radiation bounds.
 
 ---
 
@@ -2118,7 +2118,7 @@ Loop Quantum Gravity is a theory in the quantized geometry domain. It was built 
 
 #### 2. Ontological Commitments
 
-Loop Quantum Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats quantized geometry as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
+Loop Quantum Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats quantized geometry as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Its canonical constraint structure also inherits the problem of time: the formalism must recover a physical evolution parameter, relational clock, or observable history from a Hamiltonian constraint rather than assuming ordinary external time. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
 
 #### 3. What This Concept Gets Right
 
@@ -2138,7 +2138,7 @@ In a mature stack the successful parts survive as effective geometry or constitu
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Loop Quantum Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tensions for Loop Quantum Gravity are that quantized geometric variables can be promoted into final ontology before a controlled continuum limit is recovered, and that the Hamiltonian-constraint program does not by itself supply the physical time evolution read by clocks. Until both the effective spacetime limit and the problem-of-time bridge close, the program supplies mathematical comparison pressure rather than a completed replacement.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -2762,7 +2762,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 #### 1. Concept Summary
 
-Steady State Cosmology is a theory in the cosmic history alternative domain. It tried to combine an expanding comparison history with constant large-scale matter density, usually by adding some continuous source of matter. Einstein's unpublished 1931 attempt is the sharp failure prototype: with dust-like matter, constant density and nonzero expansion require an explicit source term, but the source was not present in the field equations. In effective notation the pressure is
+Steady State Cosmology is a theory in the cosmic history alternative domain. It tried to combine an expanding comparison history with constant large-scale matter density, usually by adding some continuous source of matter. Einstein's unpublished 1931 attempt is the sharp failure prototype: with dust-like matter, constant density and nonzero expansion require an explicit source term, but the source was not present in the field equations. In effective notation the continuity obligation is
 $$
 \frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
@@ -3472,7 +3472,7 @@ In a mature stack they survive mainly as historical caution and as reminders tha
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Classical Luminiferous Aether Theory is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Classical Luminiferous Aether Theory is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. It remains a historical contrast, not an indispensable current framework.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3517,7 +3517,7 @@ In a mature stack they survive mainly as historical caution and as reminders tha
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Lorentz Ether Theory is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Lorentz Ether Theory is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Its mathematical equivalence pressure remains instructive, but the ether ontology is not indispensable in current practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3562,7 +3562,7 @@ In a mature stack they survive mainly as historical caution and as reminders tha
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Caloric Theory is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Caloric Theory is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. It remains a historical lesson about heat bookkeeping, not an indispensable current framework.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3607,7 +3607,7 @@ In a mature stack they survive mainly as historical caution and as reminders tha
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Phlogiston Theory is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Phlogiston Theory is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. It remains a historical lesson about combustion accounting, not an indispensable current framework.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3652,7 +3652,7 @@ In a mature stack they survive mainly as historical caution and as reminders tha
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Tired Light Cosmology is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Tired Light Cosmology is that the observational footing is weaker than the ontological story usually built on top of it. The rejected mechanism remains a transport-warning contrast case, not an indispensable current framework.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3697,7 +3697,7 @@ In a mature stack they survive mainly as historical caution and as reminders tha
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Epicyclic Ptolemaic Cosmology is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Epicyclic Ptolemaic Cosmology is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Its fit history remains instructive, but the rejected cosmology is not indispensable in current practice.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3744,7 +3744,7 @@ In a mature stack they persist, if at all, as contrastive caution rather than as
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Plasma Cosmology is that its core claim depends on assumptions that cannot be absorbed into a substrate-first causal account without losing what made the proposal distinctive. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Plasma Cosmology is that its core claim depends on assumptions that cannot be absorbed into a substrate-first causal account without losing what made the proposal distinctive. It remains a boundary-checking contrast case, not an indispensable current framework.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3789,7 +3789,7 @@ In a mature stack they persist, if at all, as contrastive caution rather than as
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Electric Universe is that its core claim depends on assumptions that cannot be absorbed into a substrate-first causal account without losing what made the proposal distinctive. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Electric Universe is that its core claim depends on assumptions that cannot be absorbed into a substrate-first causal account without losing what made the proposal distinctive. It remains a boundary-checking contrast case, not an indispensable current framework.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3834,7 +3834,7 @@ In a mature stack they persist, if at all, as contrastive caution rather than as
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Simulation Hypothesis is that its core claim depends on assumptions that cannot be absorbed into a substrate-first causal account without losing what made the proposal distinctive. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Simulation Hypothesis is that its core claim depends on assumptions that cannot be absorbed into a substrate-first causal account without losing what made the proposal distinctive. It remains a speculative contrast case, not an indispensable current framework.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3879,7 +3879,7 @@ In a mature stack they persist, if at all, as contrastive caution rather than as
 
 #### 7. Failure Mode or Limiting Tension
 
-The clearest limiting tension for Strong Anthropic Landscape Programs is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
+The clearest limiting tension for Strong Anthropic Landscape Programs is that the observational footing is weaker than the ontological story usually built on top of it. They remain inference-level comparison programs, not indispensable current frameworks.
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -3932,7 +3932,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 
 ---
 
-## Additional Major Academic Programs To Consider
+## Additional Major Academic Programs
 
 ### Standard Model Effective Field Theory - SMEFT
 

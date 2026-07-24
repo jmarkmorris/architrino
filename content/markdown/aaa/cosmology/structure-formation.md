@@ -283,7 +283,7 @@ The growth module provides:
 
 This is an inference interface, not a direct ontology map. ACT/Planck-style CMB-lensing reconstructions first supply a lensing data product, compactly represented by $C_L^{\phi\phi}$. A valid medium-and-assembly growth model must then produce the same $C_L^{\phi\phi}$ from the same matter power spectrum, growth history, neutral-assembly loading, and Noether sea response variables used for galaxy clustering and low-redshift weak lensing. If the CMB-lensing fit requires one growth record while late-time shear or cluster offsets require another, the structure-formation branch has split the shared cosmology state rather than closed it.
 
-The kinematic Sunyaev-Zeldovich effect adds a force-law profile test to the same growth family. The retained observable is not a visual picture of dark matter, but the mean pairwise velocity of massive halos inferred from small CMB temperature shifts produced when CMB photons scatter from moving cluster electrons. In the retained ACT/SDSS-style halo-pair comparison, the fitted large-scale halo acceleration obeys $g(r)\propto r^{-n}$ with $n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales.
+The kinematic Sunyaev-Zeldovich effect adds an acceleration-profile test to the same growth family. The retained observable is not a visual picture of dark matter, but the mean pairwise velocity of massive halos inferred from small CMB temperature shifts produced when CMB photons scatter from moving cluster electrons. The [ACT/SDSS halo-pair analysis](https://arxiv.org/abs/2604.14327) combines ACT microwave maps with an SDSS halo catalogue and reports a fitted large-scale halo acceleration $g(r)\propto r^{-n}$ with $n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales. This establishes an observer-level profile comparison on that catalogue and scale window; it does not independently identify a substrate acceleration law.
 
 For a candidate medium-and-assembly history $\theta$, define the projected halo-pair acceleration profile over that separation window by
 $$
@@ -308,6 +308,20 @@ d_{\mathrm{shared}}\!\left(
 \right)
 $$
 This residual protects the level distinction. A Noether sea response may still modify galaxy-scale low-acceleration behavior, but it cannot become a free large-scale modified-gravity law. On the ACT/SDSS halo-pair window the same $\theta_{\mathrm{sea}}$ must recover an approximately inverse-square effective pull while preserving CMB lensing, weak lensing, redshift-space distortions, and the matter power spectrum.
+
+The Lyman-$\alpha$ forest supplies a small-scale transfer gate on the same branch. Let $P_F^\theta(k,z)$ be the transmitted-flux power spectrum projected from the matter, thermal, ionization, and photon-transfer record. Then
+$$
+\mathcal R_{\mathrm{Ly}\alpha}(\theta)
+=
+\sum_z
+\left\|
+\mathbf C_{F,z}^{-1/2}
+\left[
+P_F^\theta(k,z)-P_F^{\mathrm{obs}}(k,z)
+\right]
+\right\|^2.
+$$
+This is an observer-level recovery target, not a direct matter-power measurement. A branch fails if it fits the CMB optical depth with one ionization history while changing the thermal or small-scale growth record for the forest.
 
 Pre-BBN comparison branches enter structure formation only through the transfer record they leave behind. For any branch $X$ retained by [Inflation Model](./inflation-model.md#pre-bbn-comparison-gate) and [BBN Constraints](./BBN-constraints.md#pre-bbn-handoff-gate), the growth-side observable is
 $$
@@ -449,6 +463,8 @@ M_L(a)\equiv K(a)+\frac{4}{3}S(a),
 $$
 and $m_L(a)$ is the finite-range restoring scale (equivalently $k_\ast(a)^2=m_L^2/M_L$).
 
+Use the Fourier convention $e^{-i\omega t_{\mathrm{eff}}}$. For a stable static response, $M_Lk^2+m_L^2>0$. Under the displacement convention above, an overdensity $\delta\rho_m>0$ produces compression when $\theta<0$, so the positive-response branch requires $g_m<0$. Then $\delta u_{\mathrm{sea}}=-\bar u_{\mathrm{sea}}\theta>0$ and $\mu_{\mathrm{sea}}>0$, enhancing $G_{\mathrm{eff}}$. Increasing $M_L$ or $m_L$ reduces the response magnitude but cannot reverse its sign.
+
 The induced sea-energy-density perturbation is
 $$
 \delta u_{\text{sea}}(a,k,\omega)
@@ -517,7 +533,7 @@ $$
 $$
 Cosmological deviations are viable only when the same coefficient record also fits BAO, CMB lensing, supernova distances, and $f\sigma_8$ growth without retuning $S_{\mathrm{loc}}$ by observational channel.
 
-A concrete prediction: if Noether sea compliance decreases as it cools (the declared binary-radius statistic increases, lowering the energy density and stiffening the Noether sea response), then $\mu < 0$ at late times, suppressing growth and lowering $S_8$. This is a falsifiable, quantitative claim.
+Late-time growth suppression requires $\mu<0$ on the relevant scales. With the conventions and stable denominator above, that sign requires $g_m>0$, which is opposite to the positive-density compression branch, or an additional constitutive term that changes sign with scale or epoch. Cooling or increased stiffness alone reduces $|\mu|$; it does not produce negative $\mu$. Deriving the required sign change from one stable Noether sea constitutive law is therefore an explicit closure burden for any proposed $S_8$ explanation.
 
 ---
 

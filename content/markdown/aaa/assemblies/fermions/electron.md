@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This chapter defines the electron-assembly target for $\mathbb{A}\mathbb{A}\mathbb{A}$. The electron is the clean charged-lepton reference case: stable, colorless, charge $-e$, and built from the lowest shielding-coherence version of the Noether braid plus axial-layer architecture.
+This chapter defines the electron-assembly target for $\mathbb{A}\mathbb{A}\mathbb{A}$. The electron is the clean charged-lepton reference case: stable, colorless, charge $-e$, and built from the highest shielding-coherence version of the Noether braid plus axial-layer architecture.
 
 ## Framing
 
@@ -12,7 +12,7 @@ It is the Generation-I charged-lepton reference case for [Noether Braid](../../n
 
 ## Axial Inventory and Generation Core
 
-The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The working hypothesis assigns the $e^-$ branch a pro-oriented candidate Noether braid with shielding support from all three indexed binaries and a six-site axial inventory of $6\epsilon_-$. The $e^+$ branch is the charge-conjugate candidate with axial inventory $6\epsilon_+$. This particle assignment does not identify a taxonomy member or establish a retained branch. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
+The electron uses the charged-fermion axial-layer rule in its highest shielding-coherence class. The working hypothesis assigns the $e^-$ branch a pro-oriented candidate Noether braid with shielding support from all three indexed binaries and a six-site axial inventory of $6\epsilon_-$. The $e^+$ branch is the charge-conjugate candidate with axial inventory $6\epsilon_+$. This particle assignment does not identify a taxonomy member or establish a retained branch. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
 
 Using the shielding-quotient notation from [Quantum Number Mapping](./quantum-number-mapping.md#candidate-generation-operator), the generation-core record is therefore not a new charge pattern. It is the shielding-coherence class of the same charged-lepton axial inventory:
 
@@ -51,7 +51,7 @@ $$
 \right](x_{\mathrm{eff}}^i)
 $$
 
-where $\mathcal{D}_e^{(\ell)}$ is the observer-level electron detection map at coarse window $\ell$, $\mathcal{B}_e$ is the realized electron-envelope branch, $\mathcal{A}_{\mathrm{nuc}}$ is the nuclear assembly ledger, $\theta_{\mathrm{sea}}^{(\ell)}$ is the local Noether sea state record, and $\mathcal{W}_{\mathrm{causal}}^{(\ell)}$ is the retained causal-wake history. This map is not the electron itself. It is the statistical readout obtained after unresolved branch data, apparatus coupling, and local medium response have been projected into an observer-level record.
+where $\mathcal{D}_e^{(\ell)}$ is the observer-level electron detection map at coarse window $\ell$, $\Theta_{\mathrm{atom}}$ is the declared atomic-condition bundle containing the four displayed inputs, $\mathcal{B}_e$ is the realized electron-envelope branch, $\mathcal{A}_{\mathrm{nuc}}$ is the nuclear assembly ledger, $\theta_{\mathrm{sea}}^{(\ell)}$ is the local Noether sea state record, and $\mathcal{W}_{\mathrm{causal}}^{(\ell)}$ is the retained causal-wake history. This map is not the electron itself. It is the statistical readout obtained after unresolved branch data, apparatus coupling, and local medium response have been projected into an observer-level record.
 
 ## Near-Lossless Atomic Motion
 

@@ -575,23 +575,23 @@
     },
     {
       "key": "noether-pair",
-      "title": "Noether Pair tile",
+      "title": "Pro/anti-orientation Noether-braid composite tile",
       "type": "composite-label",
       "borderColor": "purple",
       "lines": [
         {
           "type": "literal",
-          "text": "Noether",
+          "text": "Pro/anti",
           "color": "white"
         },
         {
           "type": "literal",
-          "text": "Pair",
+          "text": "orientation",
           "color": "white"
         },
         {
           "type": "literal",
-          "text": "Pro+Anti",
+          "text": "braids",
           "color": "white"
         }
       ]

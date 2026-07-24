@@ -31,7 +31,7 @@ The background is fixed absolute time times Euclidean space. Free paths are stra
 
 - “Simple action” in precise terms:
   - The law is event-driven: acceleration is a sum of per-hit line-of-action contributions, each scaled by $W^{\mathrm{acc}}/r^2$. Between hits (as $\eta\to 0$) motion is inertial; with mollification ($\eta>0$) the impulses become short, smooth pushes.
-  - The background adds no force; departures from straight motion arise only from these intersections with emitted causal wakes, including self-hits when kinematics allow.
+  - The background adds no acceleration; departures from straight motion arise only from these intersections with emitted causal wakes, including self-hits when the causal-root and branch conditions allow.
 
 - Physical picture:
   - Picture many continuously expanding wake surfaces (causal isochrons). An acceleration contribution occurs whenever one of those surfaces intersects the receiver, directed straight along the radius back to its emission point, with inverse-square geometric decay multiplied by the transmitter-side acceleration weight. Receiver crossing rate belongs to root playback and does not multiply that arriving contribution.

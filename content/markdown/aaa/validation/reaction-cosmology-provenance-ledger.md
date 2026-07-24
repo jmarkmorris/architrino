@@ -42,7 +42,7 @@ $$
 \text{observer-level background variable}
 $$
 
-The minimal useful first path is BBN photon loading: identify a source-zone radiation channel, record its event-level provenance, propagate it through the local thermalization assumptions, and show whether it can support effective $\eta\approx6\times10^{-10}$ during the deuterium bottleneck window.
+The minimal useful first path is BBN photon loading: identify a source-zone radiation channel, record its event-level provenance, propagate it through the local thermalization assumptions, and show whether it can support effective $\eta_B\approx6\times10^{-10}$ during the deuterium bottleneck window.
 
 ## Shared Provenance Fields
 
@@ -79,7 +79,7 @@ These gates are not separate ontologies. They are bookkeeping filters that preve
 | Bremsstrahlung planar-mode nucleation | [Bremsstrahlung](../reactions/bremsstrahlung.md) | Record electron assembly energy loss, target recoil, photon assembly output, and medium excitation | Provisional map |
 | Synchrotron planar-mode nucleation | [Synchrotron](../reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether sea states | Provisional map |
 | Breit-Wheeler pair channel | [Synchrotron](../reactions/synchrotron.md) | Record incoming photon assemblies, recruited Noether braid content, and final $e^+e^-$ assemblies | Derivation target |
-| BBN photon bath | [BBN Constraints](../cosmology/BBN-constraints.md) | Show that pair, bremsstrahlung, synchrotron, and related channels maintain effective $\eta\approx6\times10^{-10}$ during the bottleneck window | Closure target |
+| BBN photon bath | [BBN Constraints](../cosmology/BBN-constraints.md) | Show that pair, bremsstrahlung, synchrotron, and related channels maintain effective $\eta_B\approx6\times10^{-10}$ during the bottleneck window | Closure target |
 | CMB thermal spectrum | [CMB](../cosmology/CMB.md) | Show that source emission, transport, and thermalization produce a near-blackbody photon bath with allowed anisotropy and damping structure | Closure target |
 | Horizon-interface photon release | [Black Holes](../spacetime/black-holes.md#horizon-adjacent-photon-channel) and [CMB](../cosmology/CMB.md#horizon-interface-photon-release-candidate) | Record photon-channel or photon-channel-adjacent packets processed near the symmetry-breaking threshold, including interior blueshift, exterior redshift, thermalization, and release-channel selection | Candidate strong-field source row |
 | Intergalactic pair/reaction production | [CMB](../cosmology/CMB.md), [Expansion Mechanism](../cosmology/expansion-mechanism.md), and [Dark Matter](../cosmology/dark-matter.md) | Inventory photon, neutrino, plasma, cosmic-ray, neutral-assembly, and Noether sea source components before using sparse visible matter as an ontology argument | Source-component target |

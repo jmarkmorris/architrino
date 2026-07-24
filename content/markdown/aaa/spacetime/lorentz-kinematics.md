@@ -36,7 +36,7 @@ This is an exact-substrate-asymmetry to bounded-emergent-symmetry theorem target
 
 Stated plainly, the chapter asks how an asymmetric substrate can export a symmetric measurement world. The answer cannot be "because coordinates say so"; it has to come from assembly deformation, clock retuning, synchronization, and a shared Noether sea dressing map.
 
-Here $\epsilon_{\mathrm{LV}}$ is a residual budget, not one binary tolerance. It contains distinct rows for Michelson-Morley two-way optical isotropy, Kennedy-Thorndike boost dependence, Ives-Stilwell clock-dilation behavior, Hughes-Drever and clock-comparison matter-sector isotropy, sidereal modulation, photon-sector dispersion/birefringence/time-of-flight leakage, weak-field preferred-frame terms, and gravitational-wave-versus-photon speed matching. Each row must declare its expansion order in the appropriate drift parameter, such as $\beta_\oplus\equiv v_\oplus/c_{\text{eff}}$ for terrestrial null tests, its validity regime, and its experimental tolerance before Lorentz recovery can be counted as bounded.
+Here $\epsilon_{\mathrm{LV}}$ is a residual budget, not one binary tolerance. It contains distinct rows for Michelson-Morley two-way optical isotropy, Kennedy-Thorndike boost dependence, Ives-Stilwell clock-dilation behavior, slow-clock-transport synchronization and closed transported-clock loops, Hughes-Drever and clock-comparison matter-sector isotropy, sidereal modulation, closed-loop Sagnac response, photon-sector dispersion/birefringence/time-of-flight leakage, weak-field preferred-frame terms, and gravitational-wave-versus-photon speed matching. Each row must declare its expansion order in the appropriate drift parameter, such as $\beta_\oplus\equiv v_\oplus/c_{\text{eff}}$ for terrestrial null tests, its validity regime, and its experimental tolerance before Lorentz recovery can be counted as bounded.
 
 The common-mode requirement is therefore multi-sector. Matter-sector clocks, photon-channel propagation, and the effective gravitational channel cannot be tuned independently. A branch that nulls Michelson-Morley-type two-way optical anisotropy but leaves orientation-dependent clock energy levels, sidereal leakage, photon birefringence, or a separated effective gravitational-wave speed is not a Lorentz recovery branch.
 
@@ -113,23 +113,36 @@ Here `A1` means one complete Family-A braid with persistent binary indices $a\in
 
 ### Causal path-history interaction form
 
-For architrino labels $i,j\in\{1,\dots,N\}$, with positions $\mathbf X_i(T)$ and regularized inertial weights $m_i$,
+For architrino labels $i,j\in\{1,\dots,N\}$ with positions $\mathbf X_i(T)$, write the reduced branch equation in acceleration-first form:
 $$
-m_i\frac{d^2\mathbf X_i}{dT^2}=\sum_{j\neq i}\mathbf F_{ij}\!\left(\mathbf X_i(T),\mathbf X_j(T-\Delta_{ij}(T)),\mathbf V_j(T-\Delta_{ij}(T))\right)+\mathbf F^{\text{self}}_i(T)
+\frac{d^2\mathbf X_i}{dT^2}
+=
+\sum_{j\neq i}
+\mathbf A_{i\leftarrow j}\!\left(
+\mathbf X_i(T),
+\mathbf X_j(T-\Delta_{ij}(T)),
+\mathbf V_j(T-\Delta_{ij}(T))
+\right)
++
+\mathbf A^{\mathrm{self}}_i(T).
 $$
 with causal delay
 $$
 \Delta_{ij}(T)=\frac{\|\mathbf X_i(T)-\mathbf X_j(T-\Delta_{ij}(T))\|}{c_f}
 $$
-The self-hit term $\mathbf{F}^{\text{self}}_i$ captures history-dependent wake re-intersections and is the non-Markovian source of branch-sensitive corrections.
+The self-hit acceleration row $\mathbf A^{\mathrm{self}}_i$ captures history-dependent wake re-intersections and is the non-Markovian source of branch-sensitive corrections.
 
-The weights $m_i$ in this reduced equation are not primitive architrino rest masses. They are regularized bookkeeping weights for an assembly-level branch chart, analogous to the universal conversion constant used in the master-equation energy diagnostic. A fundamental scan may set them equal before closure, while an effective assembly calculation may replace them with branch-extracted weights only after the relevant internal energy ledger has been specified.
+No architrino-specific inertial weights enter this substrate equation. When quadratic energy or momentum bookkeeping is needed below, the single universal conversion constant $\mu_{\mathrm{arch}}$ may be used; it does not alter the acceleration law or assign primitive mass to an architrino.
 
 ### Co-moving decomposition
 
 For an assembly center trajectory $\mathbf X_c(T)$ with mean velocity $\mathbf V$, write
 $$
-\mathbf X_i(T)=\mathbf X_c(T)+\mathbf r_i(T)\qquad \sum_i m_i\mathbf r_i(T)=\mathbf{0}
+\mathbf X_i(T)=\mathbf X_c(T)+\mathbf r_i(T),
+\qquad
+\mathbf X_c(T)=\frac{1}{N}\sum_i\mathbf X_i(T),
+\qquad
+\sum_i\mathbf r_i(T)=\mathbf 0.
 $$
 The closure task is to solve for bounded relative motion $\mathbf r_i(T)$ under translation $\|\mathbf V\|<c_f$ and extract period and geometry renormalization.
 
@@ -270,7 +283,7 @@ in the planar orientation where the drift direction lies in the binary plane. A 
 At action level, use a causal path-history functional
 $$
 S=\int dT\left[
-\sum_i \frac{1}{2}m_i\left\|\frac{d\mathbf X_i}{dT}\right\|^2
+\sum_i \frac{1}{2}\mu_{\mathrm{arch}}\left\|\frac{d\mathbf X_i}{dT}\right\|^2
 -\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
 \mathcal{L}_{\text{int}}\!\left(\mathbf X_i(T),\mathbf X_j(T-\Delta)\right)
 \right]
@@ -283,13 +296,13 @@ and the associated delayed-Noether proof target is that conserved totals close o
 $$
 \mathbf{P}_{\text{tot}}
 =
-\sum_i m_i\frac{d\mathbf X_i}{dT}+\mathbf{P}_{\text{wake}}
+\sum_i \mu_{\mathrm{arch}}\frac{d\mathbf X_i}{dT}+\mathbf{P}_{\text{wake}}
 \qquad
 E_{\text{tot}}
 =
-\sum_i \frac{1}{2}m_i\left\|\frac{d\mathbf X_i}{dT}\right\|^2+E_{\text{wake}}
+\sum_i \frac{1}{2}\mu_{\mathrm{arch}}\left\|\frac{d\mathbf X_i}{dT}\right\|^2+E_{\text{wake}}.
 $$
-Only after this particle-plus-wake-plus-medium ledger closes does an isolated translating assembly admit a co-moving reduction to a bounded periodic or quasi-periodic branch $\boldsymbol{\rho}^\star(s;\beta)$ with fixed mean drift $\mathbf V=\mathbf{P}_{\text{tot}}/M_{\text{tot}}$.
+These are universal-weight bookkeeping proxies for the delayed-Noether closure target, not primitive momentum or mass assignments. Only after the architrino-plus-wake-plus-medium ledger closes does an isolated translating assembly admit a co-moving reduction to a bounded periodic or quasi-periodic branch $\boldsymbol{\rho}^\star(s;\beta)$ with fixed mean drift extracted from the same record.
 
 ## Emergent Kinematics from Delay Anisotropy
 
@@ -450,7 +463,7 @@ B(\theta_0)
 =
 c_\star^2R_0^2\left[g^2\cos^2\theta_0+(1-\beta_\star^2)\sin^2\theta_0\right]
 $$
-An orientation-independent material clock requires the coefficients of $\cos^2\theta_0$ and $\sin^2\theta_0$ to agree, hence
+An orientation-independent material clock requires this equality for every $\theta_0$ simultaneously, so the coefficients of $\cos^2\theta_0$ and $\sin^2\theta_0$ must agree, hence
 $$
 g(\beta_\star)=\sqrt{1-\beta_\star^2}
 $$
@@ -581,13 +594,12 @@ Fix a drift band $0\le\beta_f\le\beta_{\max}<1$, with $\beta_f=v/c_f$, and choos
 Define the cycle-averaged shape tensor on the translating attractor:
 $$
 Q_{ab}^{(q)}(v)\equiv
-\frac{1}{M_q}
+\frac{1}{N_q}
 \left\langle
-\sum_i m_i\,r_{i,a}r_{i,b}
+\sum_{i=1}^{N_q}r_{i,a}r_{i,b}
 \right\rangle_{\text{cyc},q}
-\qquad
-M_q\equiv \sum_i m_i
 $$
+This equal-weight geometric convention is fixed before closure. It prevents the extracted shape residual from changing when an observer-level inertial-response convention is later assigned to the admitted assembly branch.
 Let $q_{\parallel}(v),q_{\perp,1}(v),q_{\perp,2}(v)$ be principal-frame eigenvalues of $Q^{(q)}(v)$, with principal axis chosen along drift for $q_{\parallel}$. Define extracted semiaxes
 $$
 a_{\parallel,q}(v)\equiv \sqrt{q_{\parallel}(v)}\qquad
@@ -977,6 +989,18 @@ $$
 \frac{2L_0}{c_\gamma}.
 $$
 Thus the measurable two-way photon-channel speed is $c_\gamma$ even though the two one-way legs were asymmetric in absolute time. Einstein synchronization assigns the remote-clock reading by splitting this round trip; a Reichenbach-style one-way freedom remains, but embedded observers cannot extract the absolute anisotropy unless the clock, ruler, or signal-channel response leaves a residual in the preferred-frame leakage budget.
+
+Slow clock transport supplies an independent synchronization route. A clock carried adiabatically between two endpoints must agree with the Einstein-synchronized endpoint clock in the zero-transport-speed limit, with any surviving $O(\beta)$ discrepancy retained as a clock-law leakage row. Agreement is not guaranteed by two-way optical isotropy alone because the transported clock samples the moving-assembly cadence throughout its path.
+
+The conditional lemma applies to a contractible out-and-back path in one synchronization patch. It does not set a rotating closed loop to zero. For a loop with area vector $\mathbf A_{\mathrm{loop}}$ and angular velocity $\boldsymbol\Omega_{\mathrm{rot}}$, the observer-level Sagnac comparison has the nonzero leading target
+$$
+\Delta t_{\mathrm{Sag}}
+=
+\frac{4\boldsymbol\Omega_{\mathrm{rot}}\cdot\mathbf A_{\mathrm{loop}}}{c_\gamma^2}
++
+\mathcal R_{\mathrm{Sag}}.
+$$
+The same clock, ruler, and photon record must recover this loop residual while keeping the contractible two-way anisotropy row small. Treating synchronization reabsorption as a global cancellation around rotating loops would therefore fail the observer map.
 
 This lemma proves only a conditional reabsorption statement: if one branch supplies the square-root ruler law and the square-root clock law, then the two-way optical row self-nulls. It does not prove that the Noether sea response yields those laws. Any deviation in $L_{\parallel}$, $d\tau/dt_{\mathrm{eff}}$, or $c_\gamma$ becomes one of the leakage residuals below.
 
@@ -1373,11 +1397,11 @@ $$
 \qquad
 \|x\|_W^2\equiv x^\top W x,\ W\succ 0
 $$
-For the source record's indexed rows $(1,2,3)$, decompose the binary-3 channel stiffness as
+For the source record's indexed rows $(1,2,3)$, decompose the binary-3 channel stiffness in the coupled A1 system into its isolated binary contribution plus cross-binary corrections:
 $$
-K_{ab}^{(3)}
+K_{ab}^{(3),\mathrm{A1}}
 =
-K_{ab}^{(3)}
+K_{ab}^{(3),\mathrm{bin}}
 +
 \left\langle \frac{\partial^2\mathcal{U}_{3\leftrightarrow 2}}{\partial r_a\partial r_b}\right\rangle_{\text{cyc}}
 +
@@ -1408,7 +1432,7 @@ $$
 
 The [A1 Adiabatic Decoupling Bound](#a1-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
 $$
-|m\omega_L-n\omega_2|
+|m\omega_3-n\omega_2|
 \ge
 \frac{\gamma_D}{(|m|+|n|)^{\tau_D}}
 \quad
@@ -1418,7 +1442,7 @@ $$
 $$
 If this condition is violated so that
 $$
-|m\omega_L-n\omega_2|\lesssim \delta\omega_{\text{nl}}
+|m\omega_3-n\omega_2|\lesssim \delta\omega_{\text{nl}}
 $$
 for small integers $(m,n)$ and nonlinear coupling width $\delta\omega_{\text{nl}}$, then small divisors invalidate the homological equations of the Lie transform. The resulting secular resonance destroys adiabatic decoupling, can break KAM tori, and drives $O(1)$ interlayer energy exchange. In that regime, coefficient drift can exceed the quadrupole estimate and local preferred-frame leakage can rise above $O(\epsilon_{\text{LV}})$ even when geometric hierarchy is large.
 
@@ -1545,8 +1569,8 @@ the drift-response coefficients are locally identifiable from $(a_{\parallel}/a_
 
 If binary and A1 attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
 $$
-\omega_H\gg \omega_2\gg \omega_L\qquad
-|m\omega_L-n\omega_2|
+\omega_1\gg \omega_2\gg \omega_3\qquad
+|m\omega_3-n\omega_2|
 \ge
 \frac{\gamma_D}{(|m|+|n|)^{\tau_D}}
 \ \ \forall\ m,n\in\mathbb{Z}\setminus\{0\}

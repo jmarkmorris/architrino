@@ -1,6 +1,6 @@
 # Action Model Comparison
 
-This note compares three modeling options for the emission-propagation-interaction pipeline and recommends a primary approach, with supporting roles for the others. We work in units with field speed $v=1$ unless stated otherwise; emission cadence and per-wavefront amplitude are constant at the transmitter; per-hit accelerations are directed along $\hat{\mathbf{r}}$ with inverse-square geometric decay and transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; $H(0)=0$ excludes the coincident-time self-kick; no cross products or right-hand-rule terms appear.
+This note compares three modeling options for the emission-propagation-interaction pipeline and recommends a primary approach, with supporting roles for the others. We work in normalized wake-speed units with $c_f=1$ unless stated otherwise; emission cadence and per-wavefront amplitude are constant at the transmitter; per-hit accelerations are directed along $\hat{\mathbf{r}}$ with inverse-square geometric decay and transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; $H(0)=0$ excludes the coincident-time self-kick; no cross products or right-hand-rule terms appear.
 
 ---
 
@@ -26,14 +26,14 @@ We compare three frameworks: (1) a time-domain PDE source term, (2) an integral/
 
 ## Time-based PDE (wave equation with a moving point source term)
 
-**Physical idea:** keep the mathematical source term as an injection per unit time at the transmitter location, put that into a PDE surrogate for causal wake propagation at speed $c_f$, and let the PDE produce expanding spherical causal wake surfaces automatically. Numerically this is usually the easiest and most robust approach.
+**Physical idea:** keep the mathematical source term as an injection per unit time at the transmitter location, put that into a PDE surrogate for causal wake propagation at speed $c_f$, and let the PDE produce expanding spherical causal wake surfaces. This is a standard grid formulation; its cost and accuracy still have to be measured for the declared domain and resolution.
 
 ### PDE model
 
-Use the scalar wave equation as a continuum comparison surrogate for finite-speed causal-wake reconstruction:
+Use the scalar wave equation as a continuum comparison surrogate for finite-speed causal-wake reconstruction. The source normalization below is chosen so its free-space Green function has the $1/(4\pi r)$ convention used later:
 
 $$
-\boxed{\;\frac{\partial^2 \phi}{\partial T^2}(\mathbf X,T) - c_f^2 \,\nabla^2 \phi(\mathbf X,T) \;=\; S(\mathbf X,T)\;}
+\boxed{\;\frac{\partial^2 \phi}{\partial T^2}(\mathbf X,T) - c_f^2 \,\nabla^2 \phi(\mathbf X,T) \;=\; c_f^2 S(\mathbf X,T)\;}
 $$
 
 **Symbols**
@@ -56,7 +56,7 @@ Here $q(T)$ has units “amplitude per unit time.” The finite-speed wave opera
 **How expanding causal wake surfaces appear**
 
 * The source term does not explicitly insert a radius into the right-hand side. Instead, the PDE and the finite speed $c_f$ cause any instantaneous injection at the point $\mathbf X_t(T_t)$ to produce an outgoing spherical causal wake surface whose front moves outward at speed $c_f$. That is the built-in behavior of the wave-equation surrogate.
-* The Green’s function ensures that, at $(\mathbf X,T)$, only the path history emission $q(T_t)$ with $T_t = T - r/c_f$ contributes, producing an outgoing spherical wave with amplitude $q(T_t)/(4\pi r)$ supported on $r=c_f(T-T_t)$. Thus Method 1 with $S(\mathbf X,T)=q(T)\delta(\mathbf X-\mathbf X_t(T))$ naturally yields expanding causal wake surfaces at speed $c_f$.
+* The Green’s function ensures that, at $(\mathbf X,T)$, only simple causal roots satisfying $T-T_t=r(T_t)/c_f$ contribute. A moving or super-field-speed transmitter can supply more than one such root. Thus Method 1 with $S(\mathbf X,T)=q(T)\delta(\mathbf X-\mathbf X_t(T))$ yields finite-speed outgoing support, while the root multiplicity remains part of the path-history geometry.
 
 **Why $\|\mathbf V\|$ (transmitter speed) does not cause blow-ups**
 
@@ -87,7 +87,7 @@ Here $q(T)$ has units “amplitude per unit time.” The finite-speed wave opera
 If the wave equation is
 
 $$
-\frac{\partial^2 \phi}{\partial T^2} - c_f^2 \nabla^2 \phi = S(\mathbf X,T)
+\frac{\partial^2 \phi}{\partial T^2} - c_f^2 \nabla^2 \phi = c_f^2 S(\mathbf X,T)
 $$
 
 then the solution may be written as the space–time convolution with the Green’s function $G$:
@@ -183,7 +183,7 @@ If $\mathbf X_t(T_t)=\mathbf X_0$ (transmitter fixed) and $q(T_t)=Q\,\delta(T_t-
 
 ## Event-driven Radial-Transport + Per-Hit EOM (Canonical Method)
 
-Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing line-of-action per-hit accelerations with transmitter-side acceleration weight at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c_f$ otherwise.
+Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing line-of-action per-hit accelerations with transmitter-side acceleration weight at causal intersection times. Numerical instantiations use $c_f=1$; symbolic derivations retain $c_f$ where its dependence matters.
 
 Field representation (transport/continuity form)
 - Source impulse at $(T_t,\mathbf X_0)$ creates a wake surface supported on $r = v(T-T_t)$ with surface density that conserves a constant per-wake surface amplitude $q$:
@@ -194,7 +194,7 @@ Field representation (transport/continuity form)
   $$
   \partial_T \rho + \nabla_{\mathbf X}\!\cdot\!\big(v\,\hat{\mathbf{r}}\,\rho\big) \;=\; q\,\delta(T-T_t)\,\delta^{(3)}(\mathbf X-\mathbf X_0)
   $$
-- Emission is continuous with constant time-density $q(T)\equiv q_0$.
+- A continuous emission density is obtained by integrating these impulse responses over $T_t$ with $q(T_t)\equiv q_0$.
 
 Per-hit equation of motion (EOM)
 - For a receiver $o'$ at reception time $T_r$ and a transmitter $j$, causal emission times satisfy
@@ -210,14 +210,13 @@ Per-hit equation of motion (EOM)
   \quad
   \hat{\mathbf{r}}=\frac{\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)}{r},\ r>0
   $$
-  with $W_{o'j}^{\mathrm{acc}}=c_f/\lvert D_{t,o'j}\rvert$, $D_{t,o'j}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}$, and $D_{r,o'j}=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$.
-  with total acceleration the sum over transmitters and roots. Convention $H(0)=0$ removes the instantaneous self-kick at zero delay. Optional mollification replaces $\delta(\cdot)$ by $\delta_\eta(\cdot)$ to produce smooth acceleration contributions.
+  with $W_{o'j}^{\mathrm{acc}}=c_f/\lvert D_{t,o'j}\rvert$, $D_{t,o'j}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}$, and $D_{r,o'j}=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$. Total acceleration is the sum over transmitters and roots. Convention $H(0)=0$ removes the instantaneous self-kick at zero delay. Optional mollification replaces $\delta(\cdot)$ by $\delta_\eta(\cdot)$ to produce smooth acceleration contributions.
 
 Implementation checklist
 - Root finding: solve $F(T_t;T_r)=\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|-v(T_r-T_t)=0$ for all transmitters $j$ (including $j=o'$ for self-hits when kinematics permit).
 - Accumulation: compute $r,\hat{\mathbf{r}}$, $D_t$, $D_r$, and $W^{\mathrm{acc}}$, apply $W^{\mathrm{acc}}/r^2$, then superpose.
-- Time stepping: impulsive mode (events) or mollified mode ($\eta>0$) with standard ODE integrators.
-- Self-interaction: appears when the worldline outruns recent wake surfaces ($\|\mathbf V\|>v$ for some emissions); self-hits are repulsive (like-on-like).
+- Time stepping: impulsive mode (events) or mollified mode ($\eta>0$) with a delayed-history integrator that retains and interpolates the required path segment.
+- Self-interaction: a super-field-speed history interval nominates the channel, but an admitted self-hit still requires a nonzero-delay same-transmitter root and the declared branch floors; accepted self-hits are repulsive (like-on-like).
 
 Relation to Methods 1 and 2
 - This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on the spherically expanding causal wake surfaces); it is compatible with conserving total emission per wake surface. In Method 2 the $\!1/(4\pi r)$ factor appears for a wave amplitude; taking gradients connects these scalings when mapping to accelerations.
@@ -238,7 +237,7 @@ Operator diagnostics (finite-window checks)
   \frac{\left|\oint_{\partial S}\mathbf{Y}_\eta\!\cdot d\mathbf X-\int_S(\nabla\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\,dS\right|}
   {\oint_{\partial S}\left|\mathbf{Y}_\eta\!\cdot d\mathbf X\right|+\int_S\left|(\nabla\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\right|\,dS+\varepsilon_S}
   $$
-- PDE and event-root simulations should agree not only pointwise after resampling, but also as operators on finite windows. If $\Delta\mathbf{Y}_\eta=\mathbf{Y}^{\mathrm{PDE}}_\eta-R(\mathbf{Y}^{\mathrm{root}}_\eta)$, use
+- A PDE surrogate and event-root reconstruction are comparable only after a common observable map, normalization, boundary condition, and regulator have been declared. Their agreement then tests the implementations of that declared map; it is not independent evidence for the canonical acceleration law. If $\Delta\mathbf{Y}_\eta=\mathbf{Y}^{\mathrm{PDE}}_\eta-R(\mathbf{Y}^{\mathrm{root}}_\eta)$, use
   $$
   E_{\mathrm{op}}(V,S,T)\equiv
   \max\!\left\{R_G[V,T;\Delta\mathbf{Y}_\eta],\,R_S[S,T;\Delta\mathbf{Y}_\eta]\right\}
@@ -256,8 +255,8 @@ Plain language: treat the potential contribution as a conserved amount spread ov
 
 Short worked example — stationary transmitter, continuous source term (consistent across methods)
 - Setup: transmitter at origin $\mathbf X_t=0$ with $q(T)\equiv q_0$ (constant).
-- Method 1: solving the wave PDE with $S(\mathbf X,T)=q_0\,\delta(\mathbf X)$ reproduces the same spherical profile $\phi(r,T)=q_0/(4\pi r)$ on the outgoing wavefront.
-- Method 2: the path-history formula gives $\displaystyle \phi(r,T)=\frac{q_0}{4\pi r}$ with the path-history time $T_t=T-r/c_f$.
+- Method 1: for a source active since $T_0$, solving the wave PDE with $S(\mathbf X,T)=q_0\,\delta(\mathbf X)H(T-T_0)$ gives $\phi(r,T)=q_0H(T-T_0-r/c_f)/(4\pi r)$ under the declared normalization.
+- Method 2: the path-history formula gives the same switched-on profile, with the path-history time $T_t=T-r/c_f$ admitted only when $T_t\ge T_0$.
 - Method 3: the path-history condition selects the single causal time $T_t=T-r/c_f$; the per-hit EOM yields one radial push along $\hat{\mathbf{r}}$ with $1/r^2$ scaling, consistent with taking spatial gradients of the $1/r$ potential to connect amplitude to acceleration.
 
 Practical implementation notes (concise)
@@ -267,8 +266,8 @@ Practical implementation notes (concise)
 
 ### Operational Summary
 - Model the transmitter through the source term $S(\mathbf X,T)=q(T)\,\delta\!\big(\mathbf X-\mathbf X_t(T)\big)$ (time-based emission density).
-- Use Method 3 as the primary dynamics engine; use Method 2 for calibration/spot checks; use Method 1 for whole-field/media studies.
-- All three agree on simple stationary cases; they differ mainly in computational scope: grids (1), closed-form probes (2), and event-driven ODEs (3).
+- Use Method 3 as the primary dynamics engine; use Method 2 for declared-normalization and implementation spot checks; use Method 1 for whole-field or comparison-media studies.
+- After the normalization and observable map are fixed, all three coincide on the declared stationary comparison case. That shared construction checks implementation parity, not the truth of the common rule.
 
 ---
 
@@ -287,32 +286,32 @@ Causal root structure, self-interaction, multiplicity
 Energetics and work
 - Method 1: Continuum energy bookkeeping is natural ($\phi$, $\partial_T\phi$, $\nabla_{\mathbf X}\phi$). Mapping to radial per-hit work needs careful averaging and alignment with the EOM.
 - Method 2: Exact potentials in free space; gradients give acceleration contributions; care is needed near $\left|1-\mathbf{n}\cdot\mathbf V_t/c_f\right|\to0$ geometries.
-- Method 3: Energetics are validated via $\eta$-mollified potentials $\Phi_\eta$ and work–energy on resolved windows; impulses are recovered as $\eta$→0 in the weak sense.
+- Method 3: Energetics are tested via $\eta$-mollified potentials $\Phi_\eta$ and work–energy residuals on resolved windows. An impulsive $\eta\to0$ claim requires a separate weak-convergence result with stable root identity.
 
 Numerical stability and well-posedness
 - Method 1: CFL constraints; dispersion/reflection control needed; robust under regularized sources; well posed on grids.
 - Method 2: Stable as an evaluation formula; computational issues concentrate in robust, multi-root solving and handling near-tangency Jacobians.
-- Method 3: Well posed with event handling or $\eta$-regularization; stability governed by root-tracking and step control; lightweight for many-body ODEs.
+- Method 3: Event handling or $\eta$-regularization supplies a candidate numerical chart. Well-posedness still requires the declared history class, root floors, continuation bounds, and regulator-refinement checks.
 
-Computational cost and scalability
-- Method 1: Heavy (3D grid + CFL time stepping). Cost grows with volume, resolution, and duration—independent of number of receivers.
-- Method 2: Moderate to heavy depending on receivers × times × transmitters × roots; efficient for few probes, costly for dense sampling.
-- Method 3: Light for particle dynamics. Cost scales with transmitters × average roots per step; independent of any spatial grid.
+Computational scaling
+- Method 1: Work and storage scale with grid volume, spatial resolution, duration, and the CFL-limited step count.
+- Method 2: Work scales with receivers × sample times × transmitters × causal roots, plus the cost of root solving.
+- Method 3: Work scales with receivers × transmitters × active roots per step and with retained-history reconstruction. Actual wall time and memory must be profiled for the declared implementation.
 
 Boundaries, media, and heterogeneity
-- Method 1: Natural—modify PDE coefficients (inhomogeneous $c_f$, damping, boundaries).
+- Method 1: Natural for comparison media and boundaries—modify effective coefficients such as $c_{\mathrm{eff}}(\mathbf X,T)$, damping, and boundary data without changing the primitive wake speed $c_f$.
 - Method 2: Natural only in homogeneous free space; complex media/boundaries require bespoke Green’s functions.
 - Method 3: Natural in free space. Media/boundaries need additional modeling (e.g., corridor-level effective rules); not PDE-native.
 
 ### Observables and Inference
 - Method 1: Full-field pictures aid intuition and corridor studies but obscure per-hit ambiguity without extra processing.
 - Method 2: Clarifies causal timing and geometry at probes; good for inference templates and surrogate-location recasts.
-- Method 3: Directly aligned with hit histories {A(T_k), L(T_k)}; best substrate for event-driven inference and assembly dynamics.
+- Method 3: Directly aligned with hit histories $\{A(T_k),L(T_k)\}$ and therefore the most direct substrate representation among these three options.
 
 Summary (one line each)
 - Method 1: Best for whole-field, media, and visualization; poorest fit to per-hit radial-only axioms without translation layers.
-- Method 2: Best for exact, pointwise, causal analysis in free space; good for calibration and sparsely sampled validation.
-- Method 3: Best for dynamics of many particles/assemblies under the canonical law; scales and matches axioms directly.
+- Method 2: Best for exact, pointwise analysis of the scalar-wave surrogate in free space; useful for declared-normalization and sparsely sampled implementation checks.
+- Method 3: Native choice for many-architrino and assembly dynamics under the canonical law.
 
 Operational guidance — when to use which method
 - Method 1 (PDE): use this for whole-field grid simulations, visualization, and complex media or boundaries; step the wave PDE forward with a smeared source term. Robust when a transmitter slows or stops.
@@ -333,7 +332,7 @@ Method 1 — Time-based PDE (wave equation)
 
 Method 2 — Green’s function (path-history integral)
 - Pros
-  - Exact in homogeneous free space; no grid or time stepping for the field.
+  - Exact for the declared scalar-wave comparison problem in homogeneous free space; no grid or time stepping for that surrogate field.
   - Makes causality explicit via path-history times; captures Doppler/Jacobian $1-\mathbf{n}\!\cdot\!\mathbf V_t/c_f$ automatically.
   - Efficient for field evaluation at a few observation points; excellent for analysis and cross-checks.
 - Cons
@@ -355,42 +354,22 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
 
 ## Recommendation
 
-- Use Method 3 as the primary engine for particle dynamics and assemblies. It matches the model’s axioms (radial-only action, constant emission cadence) and scales well.
-- Adopt Method 2 as the analytic reference for calibration and validation. Calibrate $\kappa$ so simple benchmarks (stationary or slow transmitters and symmetric binaries) agree between Methods 2 and 3 at the per-hit level; do not introduce any per-hit transmitter-speed weighting.
+- Use Method 3 as the primary engine for architrino and assembly dynamics. It directly implements radial-only action and constant emission cadence.
+- Adopt Method 2 as an analytic comparison instrument for the scalar-wave surrogate. Fix normalization on the stationary-transmitter case, then verify that the moving-source Jacobian maps once, and only once, to $W^{\mathrm{acc}}$ under the declared observable map. Because both methods share that map, their agreement is implementation parity rather than an independent oracle.
 - Baseline formula (stationary transmitter at origin): with $q(T)\equiv q_0$, $\displaystyle \phi(r,T)=\frac{q_0}{4\pi r}$ since the path-history condition selects $T_t=T-r/c_f$; if $q$ varies, $\displaystyle \phi(r,T)=\frac{q(T-r/c_f)}{4\pi r}$.
 - Reserve Method 1 for full-field studies (visualization, media, boundary effects) and for end-to-end tests of numerical stability; it is valuable but unnecessary for routine ODE-based assembly simulations.
-- Documentation/actionables: keep the continuity-form field definition and per-hit EOM as the canonical statement; add a brief appendix mapping densities (Method 3) to potentials (Method 2) to clarify when $1/r$ vs $1/r^2$ factors appear and how calibration preserves totals.
+- Keep the continuity-form wake definition and per-hit EOM as the canonical statement. Any density-to-potential comparison must declare the operator that maps the $1/r^2$ surface measure to the $1/r$ scalar surrogate, including normalization and boundary conditions.
 - Numerical cautions:
   - Always smear $\delta(\mathbf X-\mathbf X_t)$ to a normalized kernel of width $\sigma$ comparable to the grid spacing in PDE runs to avoid grid-scale artifacts.
   - Enforce CFL: choose $\Delta T$ so that $c_f\,\Delta T/\Delta X$ meets the stability bound for the chosen stencil to prevent instability.
   - Path history solving: solve $T-T_t=r(T_t)/c_f$ carefully; near $\|\mathbf V_t\|\approx c_f$, root finding and the factor $1-\mathbf{n}\cdot\mathbf V_t/c_f$ require extra care.
   - Finite temporal thickness: if wake surfaces have duration, replace $\delta(T-T_t)$ with a smooth profile to model finite-width wavefronts.
 
-Plain language: use the event-driven, radial-only method for dynamics, check it against the path-history integral to calibrate parameters, and use the PDE only when the calculation needs whole-field pictures or complex media.
+Plain language: use the event-driven, radial-only method for dynamics, use the path-history integral to check the declared comparison map, and use the PDE when the calculation needs whole-field pictures or explicitly modeled comparison media.
 
-Recap (in three lines)
+Recap
 - Model the transmitter through the source term $S(\mathbf X,T)=q(T)\,\delta\!\big(\mathbf X-\mathbf X_t(T)\big)$ (time-based emission density).
 - Method 1: easiest for grid-based whole-field runs; wake surfaces emerge at speed $c_f$.
 - Method 2: exact path-history formula; contributions occur only when $T-T_t=\|\mathbf X-\mathbf X_t(T_t)\|/c_f$, with amplitude decaying as $1/(4\pi r)$ and a geometric $1-\mathbf{n}\cdot\mathbf V_t/c_f$ factor in evaluation.
 
----
-
-## Layered penetration diagram (molecules → cores)
-
-A qualitative “onion” sketch to visualize which excitations typically penetrate which structural layers. This helps readers see what’s excluded and what isn’t.
-
-Legend: [+] passes, [~] depends (energy/frequency/geometry), [x] mostly blocked/strongly attenuated
-
-| Layer | Photons | Neutrinos | Charged ±$\epsilon$ | Dark-matter-like neutral |
-| --- | --- | --- | --- | --- |
-| L4: Bulk molecular wake surface (solids/liquids; many-body opacity) | [~] material window; optical opaque, IR/UV/X/$\gamma$ vary | [+] nearly transparent | [x] bind/deflect; do not traverse as free particles | [+] very weak coupling |
-| L3: Atomic electron distribution (bound electrons) | [~] photoelectric/Compton; X/$\gamma$ penetrate better | [+] | [x] Coulomb-coupled; captured/scattered | [+] |
-| L2: Nuclear layer (nucleons; femtoscopic scale) | [~] $\gamma$ can interact; strong attenuation in bulk | [+] weak interaction; mostly pass | [x] excluded as free traversers | [+] |
-| L1: candidate braid shielding (three persistent binary indices; shielded) | [x] far-field cancels; no corridor capture | [~] tiny axial coupling only | [x] self/partner couplings dominate; no transit | [+] by hypothesis: minimal coupling; taxonomy member unassigned |
-| L0: Axial corridors / flux-tube loci (coherent geometry) | [+] guided along corridor | [~] weak corridor coupling; alignment matters | [x] no cross-product acceleration terms; not a transit channel | [~] minimal, geometry-dependent |
-
-
-Notes (interpretation):
-- “Dark-matter-like neutral” denotes very weakly coupled, neutral meta-assemblies consistent with this framework; included here as a hypothesis for qualitative comparison.
-- Entries marked [~] depend on spectrum, thickness, coherence, and alignment (e.g., $\gamma$ vs optical photons; corridor alignment for neutrinos).
-- The diagram is about penetration (transit). Local interactions, capture, or re-binding are separate processes governed by geometry and delay.
+The comparison ends at propagation and acceleration-method selection. Particle-penetration, shielding, neutrino, photon, and dark-sector claims require their own assembly records and observer-level instruments; this method note does not assign those outcomes.

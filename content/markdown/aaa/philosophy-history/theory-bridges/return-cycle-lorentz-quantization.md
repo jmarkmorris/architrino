@@ -302,9 +302,9 @@ $$
 n_a\in\mathbb{Z}
 $$
 $$
-\Delta A_\ell=n_\ell h+\epsilon_\ell^{\mathrm{leak}}
+\Delta A_a=n_a h+\epsilon_a^{\mathrm{leak}}
 $$
-where $\epsilon_\ell^{\mathrm{leak}}$ records unresolved branch leakage or coupling to the wake ledger. A closed branch requires the layer rows to be compatible with the same all-layer action transaction, not tuned independently.
+where $\epsilon_a^{\mathrm{leak}}$ records unresolved branch leakage or coupling to the wake ledger. A closed branch requires the persistently indexed binary rows to be compatible with the same all-binary action transaction, not tuned independently.
 
 subject to the action ledger
 $$
@@ -312,13 +312,13 @@ $$
 =
 \sigma h
 \qquad
-\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}
+\Delta I_1+\Delta I_2+\Delta I_3+\Delta I_{\text{wake}}
 =
 \sigma\hbar
 $$
-and the all-layer energy ledger
+and the all-binary energy ledger
 $$
-\sum_{\ell\in\{I,M,O\}}
+\sum_{a\in\{1,2,3\}}
 \int_{B_q\to B_{q'}}\omega_a\,dI_a
 +
 \Delta E_{\text{wake}}

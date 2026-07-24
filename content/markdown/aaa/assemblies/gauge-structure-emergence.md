@@ -6,6 +6,8 @@ The target is the low-energy Standard Model gauge record, including $U(1)_Y$, $S
 
 The reader should keep three layers separate. At the substrate layer there are architrinos, assemblies, causal wakes, and the Noether sea. At the effective layer there are potentials, fields, gauge connections, and symmetry labels. At the validation layer there are charge tables, scattering records, precision couplings, and absence-of-extra-channel constraints. The emergence claim is that one retained assembly and Noether sea record must project to the tested effective layer without turning the effective fields into final ontology.
 
+Readers who want the particle dictionary before this emergence map can read [Quantum Number Mapping](./fermions/quantum-number-mapping.md) and [Particle Masses](./particle-masses.md) first.
+
 ## Physical Medium: From Vacuum Language to Noether Sea
 
 In standard QFT, the vacuum is represented by quantum fields and their ground-state structure. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that language is retained only as an observer-level comparison. The physical medium is the Noether sea, while the fixed container remains the Euclidean void.
@@ -215,6 +217,18 @@ k_\theta
 $$
 This target belongs to the gauge recovery map only after $\mathcal{D}_\theta$, $F_{\mathrm{eff}}$, and the apparatus-accessible sector have been declared. It passes when the integer sector is fixed by the same branch record that supplies the local gauge response. It fails if the winding number is imported as an external bundle label while the assembly and Noether sea provenance remain silent.
 
+The same topological-sector map must recover the strong-$CP$ null result. Let $\bar\theta_{\mathrm{eff}}(\theta)$ be the observer-level $CP$-odd strong-sector angle extracted from the declared assembly and Noether sea branch. The target is
+
+$$
+\mathcal{R}_{\mathrm{strong}\text{-}CP}(\theta)
+=
+\left|\bar\theta_{\mathrm{eff}}(\theta)\right|
+\lesssim
+10^{-10},
+$$
+
+at the neutron-electric-dipole comparison scale. This bound is an observer-level constraint, not a substrate premise. The extraction must also join the kaon twist-phase row in [Mesons](./mesons/mesons.md#cpphase-hook-kaons): the same $CP$-odd contribution cannot be counted once as a strong-sector angle and again as an independently fitted weak-sector phase.
+
 ## Scattering-Amplitude Comparison Target
 
 Gauge recovery also has a scattering side. Standard perturbative QFT packages interactions into amplitudes with physical poles, residues, color factors, and numerator identities. In this framework those amplitudes are comparison-layer summaries of finite event windows. The branch ledger must still carry the participating assemblies, causal wakes, transient channel, Noether sea exchange, recoil, and final records.
@@ -260,7 +274,7 @@ Quantum field theory for uniformly accelerated, Rindler observers predicts that 
 **The $\mathbb{A}\mathbb{A}\mathbb{A}$ resolution:**
 - **Objective existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, assemblies have a definite substrate status. Their existence is not frame-dependent.
 - **Acceleration-conditioned detector response:** The warm bath detected by the accelerating Physical Observer is an effective response of the detector's assembly state to accelerated coupling with the Noether sea.
-- **Mechanism:** Acceleration through the Noether sea ($\mathbf{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether braids). The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
+- **Mechanism:** Acceleration through the Noether sea ($\mathbf{a} \neq 0$) changes the rate and geometry of coupling with ambient neutral Noether braids. The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
 
 ## Quantization from Stability (Selection Rules)
 
@@ -354,19 +368,34 @@ The loop-phase target above then requires the same branch record to support both
 
 In this map, electroweak "breaking" means a stabilizer and mass-coordinate recovery problem for the effective gauge chart. It does not mean that gauge redundancy is a primitive substrate symmetry that literally breaks. The substrate task is to derive the observer-level photon, $W^\pm$, $Z$, charge, and weak-mixing records from one branch state while preserving the gauge-invariant record of measured reactions.
 
-To connect microdynamics to observer-sector electroweak equations, start from the causal path-history action:
+To connect microdynamics to observer-sector electroweak equations, start from the canonical acceleration-first Master Equation. For receiver $r$ and transmitter $t$,
 
 $$
-S_{\text{fund}}
+\mathbf A_{r\leftarrow t}(T_r;T_t)
 =
-\int dT\left[
-\sum_i \frac{1}{2}\mu_{\text{arch}}\|\mathbf V_i(T)\|^2
--\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
-\frac{\kappa \epsilon^2\,W_{ij}^{\mathrm{acc}}}{\|\mathbf X_i(T)-\mathbf X_j(T-\Delta_{ij})\|^2}
-\right]
+\kappa\,\sigma_{tr}\,
+\frac{|q_tq_r|}{r^2(T_r;T_t)}
+W_{r\leftarrow t}^{\mathrm{acc}}(T_r;T_t)\,
+\hat{\mathbf r}_t(T_r;T_t),
 $$
-Here $\Delta_{ij}=T-T_{t,ij}$ is the causal travel delay on the active branch, $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant, and $W_{ij}^{\mathrm{acc}}$ is the transmitter-side acceleration weight on the active branch, so the electroweak closure map starts from the same receiver-side causal geometry as the master equation rather than from a stripped inverse-square surrogate.
-After fast-mode averaging of the declared fast binary phases (Lie-Deprit/Hamiltonian averaging) and coarse-graining to $q^2\ll \omega_{\mathrm{fast}}^2$, the minimal observer-level action is written as
+
+with
+
+$$
+\mathbf A_r(T_r)
+=
+\sum_t
+\sum_{T_t\in\mathcal C_{r\leftarrow t}(T_r)}
+\mathbf A_{r\leftarrow t}(T_r;T_t),
+\qquad
+W_{r\leftarrow t}^{\mathrm{acc}}
+=
+\frac{c_f}{\left|c_f-\mathbf V_t(T_t)\cdot\hat{\mathbf r}_t\right|}.
+$$
+
+This preserves the receiver-side causal-root geometry and keeps substrate dynamics acceleration-first. A previous Fokker-type action scaffold is not a premise here: its variation retains an unresolved derivative-of-delta contribution and a future-reception boundary. Fast-mode averaging and coarse-graining must therefore be performed on retained Master Equation solutions, and the effective action below must be derived from those records rather than assumed.
+
+After fast-mode averaging of the declared fast binary phases and coarse-graining to $q^2\ll \omega_{\mathrm{fast}}^2$, the target observer-level action is
 $$
 \mathcal{L}_{\text{eff}}
 =
@@ -450,7 +479,7 @@ F(s)=1-\frac{sR_{\mathrm{comp}}^2}{4},
 \qquad
 \sigma_{\text{model}}(s)=\sigma_{\text{SM}}(s)\,|F(s)|^2
 $$
-For $R_{\mathrm{comp}}\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at $\sqrt{s}=10.58\,\text{GeV}$ but a marginal Gate 1-level deviation near the $Z$ pole at $\sqrt{s}=91.19\,\text{GeV}$. Calling the $Z$-pole shift negligible requires a substantially smaller composite scale, for example $R_{\mathrm{comp}}\lesssim3\times10^{-20}\,\text{m}$.
+For $R_{\mathrm{comp}}\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at $\sqrt{s}=10.58\,\text{GeV}$ but a deviation of order the explicit $10^{-3}$ first falsification tolerance below near the $Z$ pole at $\sqrt{s}=91.19\,\text{GeV}$. Calling the $Z$-pole shift negligible requires a substantially smaller composite scale, for example $R_{\mathrm{comp}}\lesssim3\times10^{-20}\,\text{m}$.
 
 ### Falsification Gates for This Map
 

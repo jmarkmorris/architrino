@@ -1,6 +1,6 @@
 # Synchrotron
 
-Synchrotron cascades are coupled electromagnetic processes in which relativistic charged particles radiate synchrotron photons in magnetic fields, and those photons then trigger secondary channels such as pair production and further radiation. The cascade redistributes injected particle energy into broadband non-thermal emission, with spectral shape set by magnetic field strength, source compactness, transport geometry, and escape times.
+Synchrotron radiation is the observer-level process in which relativistic charged particles following curved paths in a magnetic environment emit broadband, polarized photons. A synchrotron cascade begins when those photons trigger secondary channels such as pair production and the new charged particles radiate again. The cascade redistributes injected particle energy into broadband non-thermal emission, with spectral shape set by magnetic field strength, source compactness, transport geometry, and escape times.
 
 ## Scope
 
@@ -75,13 +75,17 @@ These equations and thresholds are the observer-level scaffold that $\mathbb{A}\
 
 ### Spectral Shape and Cooling Breaks
 
-For power-law injection $N(\gamma) \propto \gamma^{-p}$, the synchrotron emissivity in the slow-cooling regime ($\tau_{\mathrm{syn}} > \tau_{\mathrm{esc}}$) follows
+For power-law injection $N(\gamma) \propto \gamma^{-p}$ in the slow-cooling regime ($\tau_{\mathrm{syn}} > \tau_{\mathrm{esc}}$), let $\nu_m=\nu_c(\gamma_{\min})$ and $\nu_{\mathrm{cool}}=\nu_c(\gamma_{\mathrm{cool}})$, with $\nu_m<\nu_{\mathrm{cool}}$. The optically thin spectrum has three segments:
 
 $$
-j_\nu \propto \nu^{-(p-1)/2}, \quad \nu < \nu_{\mathrm{max}}
+j_\nu \propto \begin{cases}
+\nu^{1/3}, & \nu < \nu_m, \\
+\nu^{-(p-1)/2}, & \nu_m < \nu < \nu_{\mathrm{cool}}, \\
+\nu^{-p/2}, & \nu_{\mathrm{cool}} < \nu < \nu_{\mathrm{max}}.
+\end{cases}
 $$
 
-where $\nu_{\mathrm{max}} \propto \gamma_{\mathrm{max}}^2 B$ is the maximum synchrotron frequency set by the highest injected Lorentz factor.
+Here $\nu_{\mathrm{max}} \propto \gamma_{\mathrm{max}}^2 B$ is the maximum synchrotron frequency set by the highest injected Lorentz factor. The middle slope alone must not be extended below $\nu_m$ or above the cooling break.
 
 In the fast-cooling regime ($\tau_{\mathrm{syn}} < \tau_{\mathrm{esc}}$), electrons cool to a break Lorentz factor
 
@@ -103,11 +107,21 @@ The $-1/2 \to -p/2$ break sits at the injection frequency $\nu_m$, not at $\nu_c
 
 These break structures are testable against broadband SEDs in AGN jets, GRBs, and pulsar wind nebulae.
 
+Synchrotron self-absorption supplies the low-frequency inverse channel. With absorption coefficient $\alpha_\nu^{\mathrm{ssa}}$ and source function
+
+$$
+S_\nu^{\mathrm{ssa}}
+=
+\frac{j_\nu}{\alpha_\nu^{\mathrm{ssa}}},
+$$
+
+a homogeneous optically thick power-law source approaches the standard $I_\nu\propto\nu^{5/2}$ branch below its self-absorption turnover. The same charged-transport event family must generate $j_\nu$, $\alpha_\nu^{\mathrm{ssa}}$, and the source function; otherwise emission and absorption have been fitted independently. Plasma suppression, including the observer-level Razin-Tsytovich limit, is a separate transport recovery and must not be hidden inside the self-absorption coefficient.
+
 ## Core Channels (Inclusion Rule)
 
 This chapter uses a dominant-channel rule: include reactions/channels that contribute at least about 1% in the relevant regime. Where PDG branching ratios are defined, this is a `BR > 1%` rule; where transport channels are not tabulated by PDG branching, use contribution to modeled emissivity/opacity.
 
-- $e^\pm + B \rightarrow e^\pm + \gamma_{\mathrm{syn}}$ (effective synchrotron emission channel).
+- $e^\pm \xrightarrow{B} e^\pm + \gamma_{\mathrm{syn}}$ (effective synchrotron emission channel, with $B$ an environment rather than a reaction participant).
 - $\gamma + \gamma \rightarrow e^+ + e^-$ (Breit-Wheeler two-photon interaction / photon-photon pair-production channel in dense radiation fields, distinct from Schwinger vacuum pair production).
 - Secondary-loop channel: newly produced $e^\pm$ re-enter synchrotron emission, closing the cascade.
 
@@ -139,7 +153,7 @@ $$
 -
 \Theta_a(T;\mathbf{V}_{\text{adiabatic}},G_{\text{grad}},\mathcal{V}_{\mathrm{NS}}),
 \qquad
-a\in\{I,M,O\}
+a\in\{1,2,3\}
 $$
 
 The corresponding residual norm specializes the shared radiation residual:
@@ -147,7 +161,7 @@ The corresponding residual norm specializes the shared radiation residual:
 $$
 \mathcal{R}_{\Theta}^{\mathrm{syn}}
 =
-\left(\sum_{a\in\{I,M,O\}}w_a\left(\delta\Theta_a^{\mathrm{syn}}\right)^2\right)^{1/2}
+\left(\sum_{a\in\{1,2,3\}}w_a\left(\delta\Theta_a^{\mathrm{syn}}\right)^2\right)^{1/2}
 =
 \mathcal{R}_{\Theta}\!\left(
 \Gamma_{e^\pm}(T),
@@ -250,7 +264,7 @@ $$
 \right]
 \right\rangle_{x_{\mathrm{eff}}^i\in K}^{1/2}
 $$
-where $\psi_{\mathrm{syn}}$ is the synthetic linear-polarization angle and $\psi_{B,\mathrm{eff}}^{\perp}$ is the projected field-compression basis expected for the observer-level shock model. The target is not a new free-photon polarization proof; it is a source-scale Gate B consumer. Persistent knot-scale misalignment after Faraday rotation, beam averaging, and turbulent depolarization are accounted for would falsify the directional $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map in that regime.
+where $\psi_{\mathrm{syn}}$ is the synthetic linear-polarization angle and $\psi_{B,\mathrm{eff}}^{\perp}$ is the projected field-compression basis expected for the observer-level shock model. The target is not a new free-photon polarization proof; it is a source-scale Gate B consumer. Persistent knot-scale misalignment, after accounting for Faraday rotation, beam averaging, and turbulent depolarization, would falsify the directional $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map in that regime.
 - Radiation-zone closure: for the local transverse-acceleration segment with $\mathbf{v}\cdot\mathbf{a}_\perp=0$, axes chosen so $\mathbf{v}$ lies along $z$ and $\mathbf{a}_\perp$ along $x$, and $\beta=\|\mathbf{v}\|/c$, recover the angular target
 
 $$
@@ -288,6 +302,7 @@ $$
 
 with $\Delta_{\gamma,\mathrm{flux}}$ inherited from [Radiation](radiation.md). In validated weak homogeneous limits, all components must tend to zero without retuning the $B\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map.
 - Rate closure: recover standard synchrotron and Breit-Wheeler limits in validated regimes.
+- Absorption closure: recover $\alpha_\nu^{\mathrm{ssa}}$, the optically thick $I_\nu\propto\nu^{5/2}$ branch, and the source function from the same charged-transport event family that supplies $j_\nu$, while keeping Razin-Tsytovich suppression in the material-dispersion row.
 - Timing closure: in weak-gravity astrophysical limits, $\Gamma_{\mathrm{eff}} \rightarrow \gamma_{\mathrm{SR}}$ so cooling breaks are preserved. This is an effective closure target for the clock law, not an assumption that substrate time is observer proper time.
 - Polarization closure: recover observer-level synchrotron polarization geometry from directional $B$ mapping; in uniform-field limits, failure to recover linear polarization fractions $\Pi \approx 70\%-75\%$ falsifies the geometric mapping (Rybicki and Lightman 1979, Sec. 6.3; observational confirmation in radio pulsars and synchrotron nebulae typically shows $\Pi_{\mathrm{obs}} \sim 0.3$-0.7 after depolarization from field disorder and Faraday rotation).
 
@@ -416,10 +431,10 @@ Z_{\mathrm{endpoint},X}
 $$
 
 $$
-j_{\nu}^{\mathrm{obs}}(R) = (1+z_X)^{-3} \, j_{\nu(1+z_X)}^{\mathrm{em}}(E)\,\mathcal{T}(\nu,E\rightarrow R)
+I_{\nu}^{\mathrm{obs}}(R) = (1+z_X)^{-3} \, I_{\nu(1+z_X)}^{\mathrm{em}}(E)\,\mathcal{T}(\nu,E\rightarrow R)
 $$
 
-Here $\mathcal{T}(\nu,E\rightarrow R)$ is the cumulative transfer function including absorption (for example, $e^{-\tau_{\gamma\gamma}(\nu,z)}$ for pair production on extragalactic background light) and any intervening scattering. The signed $Y_{X,\mathrm{path}}$ term must carry any Compton/Sunyaev-Zeldovich-like frequency exchange rather than being folded into a primitive expansion factor or hidden inside $\mathcal{T}$. For nearby sources ($z_X \ll 1$) with negligible path exchange, $\mathcal{T} \approx 1$.
+Here $I_\nu^{\mathrm{em}}(E)$ is the source-side specific intensity assembled by integrating $j_\nu$ and absorption through the emitting column. The $(1+z_X)^{-3}$ law applies to this mapped intensity because $I_\nu/\nu^3$ is invariant; it does not by itself map a volume emissivity without the column and volume factors. The function $\mathcal{T}(\nu,E\rightarrow R)$ is the cumulative transfer function including absorption (for example, $e^{-\tau_{\gamma\gamma}(\nu,z)}$ for pair production on extragalactic background light) and any intervening scattering. The signed $Y_{X,\mathrm{path}}$ term must carry any Compton/Sunyaev-Zeldovich-like frequency exchange rather than being folded into a primitive expansion factor or hidden inside $\mathcal{T}$. For nearby sources ($z_X \ll 1$) with negligible path exchange, $\mathcal{T} \approx 1$.
 
 In the standard homogeneous limit, $1+z_X$ reduces to the conventional transport notation $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$. In standard-limit regimes, this must recover the conventional transport results used in high-energy astrophysics.
 
@@ -448,6 +463,8 @@ $$
 $$
 
 If $\epsilon_{\mathrm{eff}}(\omega)=0$ produces a longitudinal plasma oscillation, the cascade record routes it into medium excitation or plasmon-like content. It is not counted as a free photon branch and it cannot repair a failed Gate B no-longitudinal-mode check.
+
+The same plasma record must recover Razin-Tsytovich suppression when refractive beaming is modified at low frequency. That suppression is a medium-dispersion effect and remains distinct from synchrotron self-absorption, even when both contribute to one observed turnover.
 
 ### Absolute-Time vs Proper-Time Bookkeeping (Provisional)
 
@@ -486,6 +503,7 @@ Propagation and timing conventions must remain explicit in cosmology-facing use.
 ## Anticipated Mapping Targets
 
 - Recover observed cascade-like spectral slopes and break structures in limits where synchrotron cooling dominates.
+- Recover synchrotron self-absorption from the same event family as emissivity, including the optically thick source function and its separation from plasma-dispersion suppression.
 - Derive the synchrotron wake-strain threshold and $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ from Noether braid velocity deformation, $G_{\text{grad}}$, transmitter-side acceleration weights, signed root playback, and $\mathcal{V}_{\mathrm{NS}}$.
 - Map pair-loading predictions to assembly-density and outflow-structure variables without changing QED/QED-like reaction channels.
 - Quantify joint regimes where synchrotron cascades and bremsstrahlung together set the photon bath relevant to nucleation-era mapping.
