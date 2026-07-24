@@ -26,6 +26,11 @@ namespace {
 
 constexpr const char* kBorgNativeProtocolMagic = "EOM_BORG_NATIVE_V10";
 
+bool is_exact_history_storage_failure(const std::string& detail) {
+  return detail.find("exact history") != std::string::npos ||
+      detail.find("exact_history") != std::string::npos;
+}
+
 void print_json_number(double value) {
   if (std::isfinite(value)) {
     std::cout << value;
@@ -114,7 +119,8 @@ CausalHistoryRetentionCertificate certify_causal_history_retirement(
     std::size_t retired = 0U;
     std::string cleared_through = segments.front().t_start_token();
     while (retired + 1U < segments.size()) {
-      const auto& segment = segments[retired];
+      const auto segment_pin = segments.pin(retired);
+      const auto& segment = *segment_pin;
       if (segment.t_end_interval().upper() >
           published_window_start.lower()) {
         break;
@@ -141,7 +147,7 @@ CausalHistoryRetentionCertificate certify_causal_history_retirement(
         .path_id = path.path_id,
         .retired_prefix_count = retired,
         .retained_segment_count = segments.size() - retired,
-        .retained_coverage_start = segments[retired].t_start_token(),
+        .retained_coverage_start = segments.pin(retired)->t_start_token(),
         .cleared_through_time = cleared_through,
     });
   }
@@ -240,14 +246,6 @@ eom::NativeCoupledEvolutionCertificate evolve_display_point_histories(
             eom::parse_finite_double(request.causal_width, "causal width"),
         .core_scale =
             eom::parse_finite_double(request.core_scale, "core scale"),
-        .far_field_enclosure_fraction =
-            eom::parse_finite_double(
-                request.far_field_enclosure_fraction,
-                "far-field enclosure fraction"),
-        .acceleration_tolerance =
-            eom::parse_finite_double(
-                request.acceleration_tolerance,
-                "acceleration tolerance"),
         .thread_count = request.thread_count,
     };
     display_request.paths.reserve(histories.size());
@@ -261,6 +259,12 @@ eom::NativeCoupledEvolutionCertificate evolve_display_point_histories(
     }
     const auto evaluated = eom::evaluate_display_acceleration(display_request);
     if (evaluated.status != "display_evaluated") {
+      if (is_exact_history_storage_failure(evaluated.failure_code)) {
+        // Storage corruption invalidates the worker-owned store. Escalate it
+        // to the request boundary so the server discards that store before
+        // accepting another request.
+        throw std::runtime_error(evaluated.failure_code);
+      }
       halt_code = evaluated.failure_code.empty()
           ? "display_invalid_evaluation_request"
           : evaluated.failure_code;
@@ -424,7 +428,8 @@ bool is_exact_suffix(
       prior.segments().size() - current.segments().size();
   for (std::size_t index = 0; index < current.segments().size(); ++index) {
     if (!same_segment_tokens(
-            current.segments()[index], prior.segments()[offset + index])) {
+            current.segments().at(index),
+            prior.segments().at(offset + index))) {
       return false;
     }
   }
@@ -992,8 +997,11 @@ void run(
     }
   }
   if (request.joint_histories.empty() &&
-      parsed_paths.size() == 6U &&
+      parsed_paths.size() >= 6U &&
       paths_have_exact_zero_errors(parsed_paths)) {
+    // Joint affine seeding is a bounded-population certified-path feature.
+    // Preserve the lightweight one- and two-path controls while supporting
+    // both the 3:3 and larger 4:4 Borg populations.
     request.joint_histories = seed_exact_joint_histories(parsed_paths);
   }
   std::optional<eom::NativeAccelerationSnapshotCertificate> rebased_snapshot;
@@ -1121,7 +1129,10 @@ void run(
   }
   const std::string output_grade =
       run_grade == "display" ? "display-only" : result.evidence_status;
-  std::cout << "{\"schema\":\"eom_borg_native_response/v1\",\"status\":\""
+  std::cout << "{\"schema\":\"eom_borg_native_response/v1\","
+               "\"deterministicPayloadScope\":"
+               "\"claim-fields-and-published-extensions/v1\","
+               "\"status\":\""
             << json_escape(result.status) << "\",\"evidenceStatus\":\""
             << json_escape(output_grade)
             << "\",\"runGrade\":\"" << json_escape(run_grade)
@@ -1206,12 +1217,18 @@ void run(
             << ",\"incrementalChunkStartSnapshotRebased\":"
             << (rebased_incremental_chunk_snapshot ? "true" : "false")
             << ",\"jointStatePathCount\":"
-            << request.joint_histories.size()
+            << result.joint_histories.size()
             << ",\"jointStateSymbolCount\":"
-            << (request.joint_histories.empty()
+            << (result.joint_histories.empty()
                     ? 0U
-                    : request.joint_histories.begin()
+                    : result.joint_histories.begin()
                           ->second.symbol_registry().size())
+            << ",\"jointStateFallbackApplied\":"
+            << (result.status == "completed" &&
+                        !request.joint_histories.empty() &&
+                        result.joint_histories.empty()
+                    ? "true"
+                    : "false")
             << ",\"timing\":{"
             << "\"snapshotTotalWallSeconds\":"
             << result.timing.snapshot_total_wall_seconds
@@ -1223,22 +1240,22 @@ void run(
             << result.timing.traversal_wall_seconds
             << ",\"rootBatchWallSeconds\":"
             << result.timing.exact_root_batch_wall_seconds
-            << ",\"rootBinary64CpuSeconds\":"
-            << result.timing.root_binary64_cpu_seconds
+            << ",\"rootBinary64WorkerWallSeconds\":"
+            << result.timing.root_binary64_worker_wall_seconds
             << ",\"rootPairCount\":"
             << result.timing.root_pair_count
             << ",\"rootReevaluatedCells\":"
             << result.timing.root_reevaluated_cells
             << ",\"rootWarmExcludedCells\":"
             << result.timing.root_warm_excluded_cells
-            << ",\"rootMpfrCpuSeconds\":"
-            << result.timing.root_mpfr_cpu_seconds
+            << ",\"rootMpfrWorkerWallSeconds\":"
+            << result.timing.root_mpfr_worker_wall_seconds
             << ",\"rootMpfrPairCount\":"
             << result.timing.root_mpfr_pair_count
             << ",\"rootMpfrAttemptCount\":"
             << result.timing.root_mpfr_attempt_count
-            << ",\"rootMpfrEscalationCpuSeconds\":"
-            << result.timing.root_mpfr_escalation_cpu_seconds
+            << ",\"rootMpfrEscalationWorkerWallSeconds\":"
+            << result.timing.root_mpfr_escalation_worker_wall_seconds
             << ",\"rootMpfrEscalationAttemptCount\":"
             << result.timing.root_mpfr_escalation_attempt_count
             << ",\"accelerationWallSeconds\":"
@@ -1861,7 +1878,7 @@ void run(
         std::cout << ',';
       }
       print_segment(
-          published.history.segments()[segment_index],
+          published.history.segments().at(segment_index),
           output_grade);
     }
     std::cout << "]}";
@@ -1882,17 +1899,23 @@ void drain_failed_request_to_boundary() {
 }
 
 void print_engine_exception_response(const std::exception& error) {
+  const std::string detail = error.what();
+  const std::string halt_code = is_exact_history_storage_failure(detail)
+      ? "checkpoint_or_storage_failure"
+      : "engine_exception";
   std::cout
       << "{\"schema\":\"eom_borg_native_response/v1\","
          "\"status\":\"halted\",\"evidenceStatus\":\"failed\","
-         "\"claimGrade\":\"failed\",\"haltCode\":\"engine_exception\","
+         "\"claimGrade\":\"failed\",\"haltCode\":\""
+      << halt_code
+      << "\","
          "\"diagnosticDetail\":\""
-      << json_escape(error.what())
+      << json_escape(detail)
       << "\",\"acceptedEndTime\":null,\"acceptedStepCount\":0,"
          "\"rejectedStepCount\":0,\"stepFailures\":[],"
          "\"publishedExtensions\":[],\"diagnostics\":[{"
          "\"code\":\"engine_exception\",\"detail\":\""
-      << json_escape(error.what()) << "\"}]}\n";
+      << json_escape(detail) << "\"}]}\n";
 }
 
 }  // namespace
@@ -2059,11 +2082,21 @@ int main(int argc, char** argv) {
     if (mode == "print-protocol-version") {
       std::cout << kBorgNativeProtocolMagic << '\n';
     } else if (mode == "borg-shadow-v0") {
-      run(
-          maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
-          event_max_cells,
-          use_certified_traversal, traversal_exact_tile_pair_limit,
-          shadow_affine);
+      std::ostringstream response;
+      std::streambuf* const published_output =
+          std::cout.rdbuf(response.rdbuf());
+      try {
+        run(
+            maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
+            event_max_cells,
+            use_certified_traversal, traversal_exact_tile_pair_limit,
+            shadow_affine);
+        std::cout.rdbuf(published_output);
+        std::cout << response.str();
+      } catch (...) {
+        std::cout.rdbuf(published_output);
+        throw;
+      }
     } else if (mode == "borg-shadow-server-v0") {
       eom::configure_history_disk_storage({
           .root_directory = history_temp_root,

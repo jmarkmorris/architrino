@@ -62,6 +62,7 @@ export function createIdealBraidSurfaceSolverScheduler({
     if (snapshot?.stateKey === stateKey) {
       return snapshot;
     }
+    // Hold the last solved preview during the edit debounce instead of flashing an empty surface.
     return interactiveUpdatePending ? snapshot : null;
   }
 

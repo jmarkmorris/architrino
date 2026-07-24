@@ -189,6 +189,34 @@ class HistorySegmentSequence {
   // implementation. Callers still cannot construct or inspect Storage.
   struct Storage;
 
+  class PinnedSegment {
+   public:
+    PinnedSegment() = default;
+
+    [[nodiscard]] const CubicHistorySegment& operator*() const {
+      return *segment_;
+    }
+    [[nodiscard]] const CubicHistorySegment* operator->() const {
+      return segment_;
+    }
+    [[nodiscard]] explicit operator bool() const noexcept {
+      return segment_ != nullptr;
+    }
+
+   private:
+    friend class HistorySegmentSequence;
+    explicit PinnedSegment(
+        std::shared_ptr<const void> owner,
+        const CubicHistorySegment* segment)
+        : owner_(std::move(owner)), segment_(segment) {}
+
+    // A disk-backed page is retained here so cache eviction cannot invalidate
+    // the selected segment. In-memory blocks need no page pin and retain the
+    // ordinary container rule: the sequence must outlive its borrowed handle.
+    std::shared_ptr<const void> owner_;
+    const CubicHistorySegment* segment_ = nullptr;
+  };
+
   class const_iterator {
    public:
     using iterator_category = std::forward_iterator_tag;
@@ -203,7 +231,9 @@ class HistorySegmentSequence {
     const_iterator operator++(int);
     friend bool operator==(
         const const_iterator& left,
-        const const_iterator& right) = default;
+        const const_iterator& right) {
+      return left.owner_ == right.owner_ && left.index_ == right.index_;
+    }
 
    private:
     friend class HistorySegmentSequence;
@@ -212,16 +242,17 @@ class HistorySegmentSequence {
 
     const HistorySegmentSequence* owner_ = nullptr;
     std::size_t index_ = 0;
+    mutable PinnedSegment pinned_;
   };
 
   explicit HistorySegmentSequence(std::vector<CubicHistorySegment> segments);
 
   [[nodiscard]] std::size_t size() const noexcept;
   [[nodiscard]] bool empty() const noexcept { return size() == 0U; }
-  [[nodiscard]] const CubicHistorySegment& operator[](
-      std::size_t index) const;
-  [[nodiscard]] const CubicHistorySegment& front() const;
-  [[nodiscard]] const CubicHistorySegment& back() const;
+  [[nodiscard]] CubicHistorySegment at(std::size_t index) const;
+  [[nodiscard]] PinnedSegment pin(std::size_t index) const;
+  [[nodiscard]] CubicHistorySegment front() const;
+  [[nodiscard]] CubicHistorySegment back() const;
   [[nodiscard]] std::size_t resident_segment_count() const noexcept;
   [[nodiscard]] std::size_t disk_backed_block_count() const noexcept;
   [[nodiscard]] const_iterator begin() const { return {this, 0U}; }

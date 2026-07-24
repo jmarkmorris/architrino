@@ -68,6 +68,9 @@ The executable layer currently contains:
   and
 - a persistent Borg shadow worker protocol that accepts continuous cubic
   histories and returns only atomically published history extensions; and
+- a pinned exact-history segment API that keeps disk blocks alive for the
+  complete lifetime of every borrowed segment while value access remains the
+  safe default; and
 - Borg controls for retained-history population count, requested duration,
   automatic fixed-size chunks, progress, cancellation, and clean restart; and
 - binary64 scheduling-tail detection that preserves the explicitly requested
@@ -79,6 +82,15 @@ The native fixtures are independently checked against the Python
 `tests/test_eom_native_acceleration.py`. Coupled evolution and atomic
 publication are checked against the same oracle by
 `tests/test_eom_native_coupled_evolution.py`.
+
+The Borg response identifies its deterministic payload scope as
+`claim-fields-and-published-extensions/v1`. Wall-clock timing and live
+disk-storage statistics remain measured diagnostics and are intentionally
+outside that byte-stability scope; replay comparisons must select the
+claim-carrying fields and `publishedExtensions`, not compare the complete JSON
+response byte for byte. Joint affine histories combined with a finite-width
+event currently fail closed as `unsupported_caustic_or_singular_chart` because
+no certified affine event map exists yet.
 
 This is not yet the complete production EOM application. It accepts and
 publishes correctness-first coupled sharp and finite-width steps, persists
@@ -104,14 +116,27 @@ cmake -S src/eom -B /tmp/architrino-eom-build -DCMAKE_BUILD_TYPE=Release
 cmake --build /tmp/architrino-eom-build --parallel 8
 /tmp/architrino-eom-build/eom_native_fixture_cli all
 /tmp/architrino-eom-build/eom_native_acceleration_fixture_cli all
+/tmp/architrino-eom-build/eom_native_acceleration_fixture_cli \
+  pinned-fold-benchmark
 /tmp/architrino-eom-build/eom_native_evolution_fixture_cli all
+/tmp/architrino-eom-build/eom_native_evolution_fixture_cli \
+  far-field-dispersal
+/tmp/architrino-eom-build/eom_native_evolution_fixture_cli \
+  certified-correction-retry
+/tmp/architrino-eom-build/eom_borg_shadow_cli print-protocol-version
 /tmp/architrino-eom-build/eom_borg_shadow_cli borg-shadow-v0
 /tmp/architrino-eom-build/eom_borg_shadow_cli borg-shadow-server-v0
+/tmp/architrino-eom-build/eom_recursive_block_benchmark_cli \
+  traversal moving_sparse 64 8 100000
 node scripts/eom/run-borg-eom-refinement-ladder.mjs \
   /tmp/architrino-eom-build/eom_borg_shadow_cli
 node scripts/eom/run-borg-eom-refinement-ladder.mjs \
   /tmp/architrino-eom-build/eom_borg_shadow_cli 16
 ```
+
+Configure a sanitizer build with
+`-DEOM_ENABLE_SANITIZERS=ON`; the option enables AddressSanitizer and
+UndefinedBehaviorSanitizer on the library and every native fixture/CLI target.
 
 Run the independent parity test:
 

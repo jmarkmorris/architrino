@@ -116,7 +116,6 @@ struct NativePairAccelerationCertificate {
   double finite_width_wall_seconds = 0.0;
   double precision_escalation_wall_seconds = 0.0;
   std::size_t precision_escalation_attempt_count = 0;
-  bool reconstruction_matches;
   std::vector<NativeAccelerationRow> rows;
   std::optional<IntervalVector> total_acceleration;
 };
@@ -133,7 +132,6 @@ struct NativeAccelerationReconstructionCertificate {
   std::string reduction_policy;
   std::size_t logical_ordered_pairs;
   bool complete_ordered_pair_domain;
-  bool reconstruction_matches;
   double pair_execution_union_wall_seconds = 0.0;
   double finite_width_execution_union_wall_seconds = 0.0;
   double sharp_execution_union_wall_seconds = 0.0;

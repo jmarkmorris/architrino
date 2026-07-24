@@ -1438,6 +1438,7 @@ test("causal delay feedback animation speed setting scales the replay clock", ()
   const cfSpeedValue = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: {
       ...fakeWindow,
       requestAnimationFrame(callback) {
@@ -2493,7 +2494,7 @@ test("causal delay feedback page accepts eom replay review URL options", () => {
   assert.equal(boundedOptions.historyDepth, EOM_REPLAY_MAX_HISTORY_DEPTH);
 });
 
-test("causal delay feedback page rejects unknown learner modes", () => {
+test("causal delay feedback page and direct runtime share one default learner mode", () => {
   const pageRuntime = createCausalDelayFeedbackRuntimeForPage({
     location: { href: "http://localhost/causal-delay-feedback.html?mode=unknown-mode" },
   });
@@ -2502,9 +2503,14 @@ test("causal delay feedback page rejects unknown learner modes", () => {
     window: fakeWindow,
     initialMode: "unknown-mode",
   });
+  const defaultRuntime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
 
   assert.equal(pageRuntime.learnerState.mode, "story");
-  assert.equal(directRuntime.learnerState.mode, "sandbox");
+  assert.equal(directRuntime.learnerState.mode, "story");
+  assert.equal(defaultRuntime.learnerState.mode, "story");
 });
 
 test("causal delay feedback page leaves absent replay request options unset", () => {
@@ -2821,6 +2827,7 @@ test("causal delay feedback wake switches can combine full circles with emission
 test("causal delay feedback full circle emission lines render above path trails", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: fakeWindow,
   });
   const calls = [];
@@ -3773,6 +3780,7 @@ test("causal delay feedback path deformation updates detached frame samples", ()
 test("causal delay feedback spacebar toggles play state", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: fakeWindow,
   });
   runtime.dom = {
@@ -3867,6 +3875,7 @@ test("causal delay feedback destroy removes every runtime listener and invalidat
 test("causal delay feedback spacebar leaves native controls alone", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: fakeWindow,
   });
   let prevented = false;
@@ -3887,6 +3896,7 @@ test("causal delay feedback spacebar leaves native controls alone", () => {
 test("causal delay feedback spacebar toggles play even when a toolbar button has focus", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: fakeWindow,
   });
   runtime.dom = {
@@ -3958,6 +3968,7 @@ test("causal delay feedback arrow keys pause and step solver replay frames", () 
 test("causal delay feedback arrow keys leave native controls alone", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: fakeWindow,
   });
   const beforeTime = runtime.getCurrentReplayTime();

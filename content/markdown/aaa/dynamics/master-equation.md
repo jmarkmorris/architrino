@@ -1121,7 +1121,7 @@ $$
 \lambda_{\mathrm{em}}>0
 \ \text{constant}
 $$
-This density is independent of the transmitter's state of motion. In the normalization used here, $\lambda_{\mathrm{em}}$ is absorbed into $\kappa$, so the path-history integral uses $\mathrm dT_t$ directly. The causal surfaces are continuously indexed by $T_t$; an equal-$\Delta T$ sequence is only a numerical discretization of this continuum, not the substrate emission law. This emission measure is inherited from the transceiver postulate in [Architrino](../foundations/architrino.md) and is a declared conditionality of the canonical boxed law above, not a derived result of this chapter.
+This density is independent of the transmitter's state of motion. In the normalization used here, $\lambda_{\mathrm{em}}$ is absorbed into $\kappa$, so the path-history integral uses $\mathrm dT_t$ directly. The causal surfaces are continuously indexed by $T_t$; an equal-$\Delta T$ sequence is only a numerical discretization of this continuum, not the substrate emission law. This emission measure is inherited from the transceiver postulate in [Architrino: Constant-Time Emission Measure](../foundations/architrino.md#constant-time-emission-measure-postulate), its canonical home, and is a declared conditionality of the canonical boxed law above, not a derived result of this chapter.
 
 Under the continuous uniform-emission rule stated above, transmitter motion maps the uniform $\mathrm dT_t$ measure onto a history-dependent family of expanding causal surfaces. Along a simple branch, surfaces with nearby emission labels $T_t$ and $T_t+\mathrm dT_t$ have local normal separation $\lvert D_t\rvert\,\mathrm dT_t$, where $D_t=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_j(T_t)$. The received causal-surface density per unit local normal distance is therefore proportional to $\lambda_{\mathrm{em}}/\lvert D_t\rvert$. Motion of the transmitter toward the active branch increases that density; motion away from the branch decreases it. After static-transmitter normalization, the geometric acceleration weight is
 $$
@@ -1228,6 +1228,225 @@ W_{ij}^{\mathrm{acc}}
 $$
 
 so transmitter motion compresses the emitted surface density in forward directions and dilates it in trailing directions. This is a transmitter-history effect, not a receiver-cadence multiplier and not an imported observer-level field law.
+
+**Proposition 5 (exact transverse projection under rigid uniform translation; derived).**
+Let two architrinos translate with the same constant velocity
+$\mathbf V=V\hat{\mathbf e}$, where $V=\|\mathbf V\|$ and
+$0\leq\beta_f=V/c_f<1$. At a
+reception time $T_r$, write their instantaneous ordered separation as
+$$
+\mathbf s
+\equiv
+\mathbf X_i(T_r)-\mathbf X_j(T_r)
+=
+d\hat{\mathbf n},
+\qquad
+\hat{\mathbf n}\cdot\hat{\mathbf e}=\cos\psi,
+\qquad
+d>0.
+$$
+Define
+$$
+\alpha(\beta_f,\psi)
+\equiv
+\sqrt{1-\beta_f^2\sin^2\psi},
+\qquad
+p(\beta_f,\psi)
+\equiv
+\alpha-\beta_f\cos\psi.
+$$
+For the unique positive-delay partner root, let
+$y\equiv c_f(T_r-T_t)/d$. Rigid translation and the causal-root
+constraint give
+$$
+\left\|
+\hat{\mathbf n}+\beta_f y\hat{\mathbf e}
+\right\|
+=y,
+\qquad
+(1-\beta_f^2)y^2-2\beta_f\cos\psi\,y-1=0
+$$
+and therefore
+$$
+y
+=
+\frac{\alpha+\beta_f\cos\psi}{1-\beta_f^2}
+=
+\frac{1}{p}.
+$$
+The arriving separation, line of action, transmitter-side factor, and
+acceleration weight are consequently
+$$
+r_{ij}=dy,
+\qquad
+\hat{\mathbf r}_{ij}
+=
+p\hat{\mathbf n}+\beta_f\hat{\mathbf e},
+\qquad
+D_{t,ij}=c_f\alpha p,
+\qquad
+W_{ij}^{\mathrm{acc}}=\frac{1}{\alpha p}.
+$$
+Substitution into the canonical per-hit law gives the exact
+general-orientation acceleration
+$$
+\boxed{
+\mathbf A_{ij}
+=
+\kappa\,\sigma_{ij}\,
+\frac{|q_iq_j|}{d^2}
+\frac{
+p^2\hat{\mathbf n}
++
+\beta_f p\hat{\mathbf e}
+}{\alpha}
+}
+$$
+and, with
+$\hat{\mathbf n}_{\perp}
+\equiv
+\hat{\mathbf n}-(\hat{\mathbf n}\cdot\hat{\mathbf e})\hat{\mathbf e}$,
+its transverse projection is
+$$
+\boxed{
+\mathbf A_{ij,\perp}
+=
+\kappa\,\sigma_{ij}\,
+\frac{|q_iq_j|}{d^2}
+\frac{p^2}{\alpha}
+\hat{\mathbf n}_{\perp},
+\qquad
+\left\|\mathbf A_{ij,\perp}\right\|
+=
+\kappa\,
+\frac{|q_iq_j|}{d^2}
+\frac{
+\sin\psi\,
+\left(
+\sqrt{1-\beta_f^2\sin^2\psi}
+-\beta_f\cos\psi
+\right)^2
+}{
+\sqrt{1-\beta_f^2\sin^2\psi}
+}
+}
+$$
+
+For perpendicular instantaneous separation, $\psi=\pi/2$, define
+$$
+\gamma_f
+\equiv
+\frac{1}{\sqrt{1-\beta_f^2}}.
+$$
+Here $\gamma_f$ is only an abbreviation produced by the Euclidean
+causal-root algebra; no relativistic transformation or observer-level
+law has entered the derivation. In this configuration
+$\alpha=p=1/\gamma_f$, so
+$$
+\boxed{
+\mathbf A_{ij}
+=
+\kappa\,\sigma_{ij}\,
+\frac{|q_iq_j|}{d^2}
+\left(
+\beta_f\hat{\mathbf e}
++
+\frac{1}{\gamma_f}\hat{\mathbf n}
+\right),
+\qquad
+\left\|\mathbf A_{ij,\perp}\right\|
+=
+\kappa\,
+\frac{|q_iq_j|}{\gamma_f d^2}
+}
+$$
+with no expansion or truncation in $\beta_f$. The
+general-orientation formula depends explicitly on $\psi$, so the
+$1/\gamma_f$ result is not an orientation-independent identity.
+Perpendicular separation is the only fixed orientation for which the
+displayed equality holds identically in $\beta_f$; isolated
+$\beta_f$-dependent angles may equal the same numerical value but do
+not extend the identity to a general orientation.
+
+This proposition is derived from the canonical per-hit acceleration,
+the causal-root constraint, rigid uniform translation, and the
+declared uniform absolute-time emission measure that supplies
+$W_{ij}^{\mathrm{acc}}$. Its scope is one ordered partner hit with
+$0\leq\beta_f<1$ and nonzero instantaneous separation. The
+independent reference is the closed-form perpendicular projection
+$\kappa|q_iq_j|/(\gamma_f d^2)$; numerical evaluation can check the
+algebra but does not establish the proposition.
+
+**Scope boundary and explicit non-claims.**
+
+**Full-vector non-claim.** The full perpendicular-configuration vector
+does not reproduce the observer-level two-body comparison target. It
+retains the longitudinal component
+$$
+\mathbf A_{ij,\parallel}
+=
+\kappa\,\sigma_{ij}\,
+\frac{|q_iq_j|}{d^2}
+\beta_f\hat{\mathbf e}
+$$
+which is first order in $\beta_f$. Reversing the ordered transverse
+separation reverses the transverse component but leaves this
+longitudinal component unchanged.
+
+**Parallel-separation non-claim.** For instantaneous separation
+parallel to the translation, the trailing receiver has magnitude
+$\kappa|q_iq_j|(1+\beta_f)/d^2$ and the leading receiver has magnitude
+$\kappa|q_iq_j|(1-\beta_f)/d^2$. The observer-level comparison target
+instead assigns $\kappa|q_iq_j|(1-\beta_f^2)/d^2$ to both. The
+symmetric part is therefore already wrong at order $\beta_f^2$.
+
+**Momentum-closure non-claim.** The perpendicular pair sum is nonzero:
+$$
+\mathbf A_{ij}+\mathbf A_{ji}
+=
+2\kappa\,\sigma_{ij}\,
+\frac{|q_iq_j|}{d^2}
+\beta_f\hat{\mathbf e}
+$$
+Nothing in the projection identity establishes momentum closure.
+
+**Covariance and recovery non-claim.** The result does not establish
+Lorentz covariance of the substrate law, an observer-level two-body
+law, a translating assembly branch, or a common
+clock-ruler-momentum response.
+
+The result is therefore one exactly recovered projection obtained
+without relativistic input. It shows that the canonical
+transmitter-side acceleration weight contains the required geometric
+factor on this branch, while the longitudinal residual and pair sum
+sharpen the separate question of what is missing from the line of
+action. The rigid-common-translation geometry does not by itself
+identify the transmitter-side origin uniquely: because
+$\mathbf V_i=\mathbf V_j$ here, replacing $D_t$ by $D_r$ leaves the
+weight unchanged. The transmitter-side attribution instead comes
+from the uniform-emission causal-surface-density derivation above.
+
+**Falsifiers and attribution check.**
+
+1. In normalized units $c_f=1$ with
+   $\kappa=|q_iq_j|=d=1$, the perpendicular projection must equal
+   $\sqrt{1-\beta_f^2}$. At $\beta_f=0.9$ and $0.99$ it must be,
+   respectively, approximately $0.4358898944$ and $0.1410673598$.
+   Any departure at any order overturns the exact projection claim.
+2. At any $\beta_f>0$, direct evaluation of the full perpendicular
+   vector must retain a longitudinal component of signed magnitude
+   $\kappa\sigma_{ij}|q_iq_j|\beta_f/d^2$. A vanishing component
+   contradicts the proposition and indicates an incorrect evaluator.
+3. Replacing transmitter velocity by receiver velocity inside the
+   weight on this rigid branch must leave the result unchanged because
+   the velocities are equal. That outcome overturns any claim that
+   this projection alone uniquely identifies a transmitter-side
+   weight, but it does not overturn the projection algebra. A
+   discriminating check must instead hold the arriving root and
+   transmitter state fixed while changing receiver velocity, or use
+   $\mathbf V_i\ne\mathbf V_j$: the canonical per-hit strength must
+   remain unchanged, and any receiver-velocity dependence falsifies
+   the transmitter-side-only acceleration weight.
 
 #### Receiver Turning Is Not an Acceleration Singularity
 

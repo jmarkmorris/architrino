@@ -14,9 +14,11 @@ import {
   createCausalHistoryLedger,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackHistoryMode.js";
 import {
-  CAUSAL_DELAY_FEEDBACK_MODES,
   CausalDelayFeedbackModeController,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackModeController.js";
+import {
+  CAUSAL_DELAY_FEEDBACK_MODES,
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackModes.js";
 import {
   createSelfHitScenarios,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackRootsMode.js";
@@ -161,6 +163,29 @@ test("Prediction choices are generated from the canonical root evaluator", () =>
   assert.notEqual(choices.indexOf(correct), 1);
   assert.deepEqual(createPredictionChoices(state), choices);
   assert.match(createPredictionView(state).explanation, /same causal-root evaluator/u);
+});
+
+test("Prediction moves the correct choice on each replay attempt", () => {
+  const state = createState();
+  state.mode = "prediction";
+  const controller = new CausalDelayFeedbackModeController({ state });
+  const firstChoices = createPredictionChoices(state);
+  const firstCorrectIndex = firstChoices.findIndex((choice) => choice.correct);
+  const replayButton = { dataset: { guidedAction: "replay" } };
+
+  controller.handleClick({
+    target: {
+      closest(selector) {
+        return selector === "[data-guided-action]" ? replayButton : null;
+      },
+    },
+  });
+
+  const secondChoices = createPredictionChoices(state);
+  const secondCorrectIndex = secondChoices.findIndex((choice) => choice.correct);
+  assert.equal(state.predictionAttempt, 1);
+  assert.notEqual(secondCorrectIndex, firstCorrectIndex);
+  assert.deepEqual(createPredictionChoices(state), secondChoices);
 });
 
 test("Prediction preserves incorrect-answer explanation and retry", () => {
@@ -336,6 +361,67 @@ test("Branch Lab filters preserve stable rows and reasons while changing the dis
   assert.notDeepEqual(filtered.vectorSum, unfiltered.vectorSum);
 });
 
+test("Branch Lab live refresh keeps the focused filter and replaces current results", () => {
+  const state = createState();
+  state.mode = "branch-lab";
+  const activeFilter = {
+    dataset: { branchFilter: "minimumContribution" },
+    value: "2.5",
+    closest(selector) {
+      return selector === "[data-branch-filter]" ? this : null;
+    },
+    matches(selector) {
+      return selector === "[data-branch-filter]";
+    },
+  };
+  const controller = new CausalDelayFeedbackModeController({
+    state,
+    document: { activeElement: activeFilter },
+  });
+  let renderOptions = null;
+  controller.dom = {};
+  controller.renderBranchLab = (options) => {
+    renderOptions = options;
+  };
+  controller.updateControls = () => {};
+  controller.updateCanvasSummary = () => {};
+
+  controller.renderLiveState();
+
+  assert.deepEqual(renderOptions, { preserveFilters: true });
+  renderOptions = null;
+  controller.handleInput({ target: activeFilter });
+  assert.equal(state.branchFilters.minimumContribution, 2.5);
+  assert.deepEqual(renderOptions, { preserveFilters: true });
+
+  const nextTable = {};
+  const nextSum = {};
+  const currentTable = {
+    replaceWith(replacement) {
+      assert.equal(replacement, nextTable);
+    },
+  };
+  const currentSum = {
+    replaceWith(replacement) {
+      assert.equal(replacement, nextSum);
+    },
+  };
+  controller.dom.content = {
+    querySelector(selector) {
+      if (selector === ".causal-ledger-table") {
+        return currentTable;
+      }
+      if (selector === ".causal-vector-sum") {
+        return currentSum;
+      }
+      return null;
+    },
+  };
+
+  assert.equal(controller.replaceBranchLabResults(nextTable, nextSum), true);
+  assert.equal(controller.document.activeElement, activeFilter);
+});
+
 test("Branch Lab never derives acceleration from emission-reception displacement", () => {
   const state = createState();
   state.acceptedBranchRows = [{
@@ -389,14 +475,15 @@ test("page exposes semantic journey controls and one text-equivalent canvas summ
 });
 
 test("learner journey stays one app with no separate Roots route", async () => {
-  const [html, main, controller] = await Promise.all([
+  const [html, main, controller, modes] = await Promise.all([
     readFile(new URL("causal-delay-feedback.html", REPO_ROOT), "utf8"),
     readFile(new URL("src/apps/causal-delay-feedback/main.js", REPO_ROOT), "utf8"),
     readFile(new URL("src/apps/causal-delay-feedback/CausalDelayFeedbackModeController.js", REPO_ROOT), "utf8"),
+    readFile(new URL("src/apps/causal-delay-feedback/CausalDelayFeedbackModes.js", REPO_ROOT), "utf8"),
   ]);
-  assert.doesNotMatch(`${html}\n${main}\n${controller}`, /roots\.html/iu);
-  assert.match(controller, /\{ id: "roots", label: "Roots"/u);
-  assert.match(controller, /\{ id: "sandbox", label: "Sandbox"/u);
+  assert.doesNotMatch(`${html}\n${main}\n${controller}\n${modes}`, /roots\.html/iu);
+  assert.match(modes, /\{ id: "roots", label: "Roots"/u);
+  assert.match(modes, /\{ id: "sandbox", label: "Sandbox"/u);
 });
 
 test("new learner-facing copy remains acceleration-first", async () => {

@@ -5,6 +5,21 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+option(
+  EOM_ENABLE_SANITIZERS
+  "Build the EOM solver and fixtures with AddressSanitizer and UndefinedBehaviorSanitizer"
+  OFF
+)
+if(EOM_ENABLE_SANITIZERS)
+  if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
+    add_compile_options(-fsanitize=address,undefined -fno-omit-frame-pointer)
+    add_link_options(-fsanitize=address,undefined -fno-omit-frame-pointer)
+  else()
+    message(FATAL_ERROR
+      "EOM_ENABLE_SANITIZERS requires a Clang or GNU-compatible compiler")
+  endif()
+endif()
+
 find_package(Threads REQUIRED)
 find_path(MPFR_INCLUDE_DIR mpfr.h REQUIRED)
 find_library(MPFR_LIBRARY mpfr REQUIRED)

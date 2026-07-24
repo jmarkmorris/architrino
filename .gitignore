@@ -9,6 +9,9 @@ tmp/
 # Local analytical-campaign SQLite runtime data
 /.local-data/braid-analysis/
 
+# Local Braid Program EOM run artifacts
+/.local-data/braid-program/
+
 # Local exact-state PR validation receipts
 /.local-data/pr-validation/
 

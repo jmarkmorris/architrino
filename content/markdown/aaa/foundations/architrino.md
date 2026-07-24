@@ -174,9 +174,18 @@ Ontologically, the causal wake is a **dynamical geometry**: a transmitter-proven
 
 This linearity is a statement about wake superposition, not about the receiver worldline. A wake can act on any architrino, including its own transmitter, and that receiver response makes the dynamics nonlinear. The entire substrate-level content of a wake is therefore computable from the historical trajectory of the transmitter architrino that emitted it.
 
+### Constant-Time Emission Measure (postulate)
+
+The emission is uniform in absolute time. Each architrino deposits its causal wake at a constant rate in $T$, with constant per-wavefront amplitude, independent of the transmitter's state of motion: successive causal surfaces leave the transmitter at equal increments of absolute time, and no wavefront is preferentially weighted by the transmitter's velocity or acceleration.
+
+> **Constant-time emission measure.** The emission measure along a transmitter worldline is $dT_t$ — Lebesgue measure in absolute time — with a motion-independent per-wavefront amplitude. This is a postulate of the transceiver, not a derived result.
+
+This postulate is the canonical home of the emission rule used throughout the theory. It is what makes moving-transmitter effects purely *geometric*: because emission cadence is constant in $T$, all velocity dependence in the received pattern comes from the transmitter changing position between equally spaced emission instants, which is what produces the transmitter-side factor $D_t=c_f-\hat{\mathbf r}\cdot\mathbf V_t$ and the acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ in the [Master Equation](../dynamics/master-equation.md). It is also one of the two declared conditionalities of the narrowed master-equation proposal (the other being the assumed $K_0$ kernel scaffold); the master-equation chapter consumes this measure by reference rather than restating it as an independent rule.
+
 This page fixes the ontological commitments:
 
 - Emission is continuous, not pulse-like.
+- Emission is uniform in absolute time (constant-time emission measure $dT_t$, motion-independent amplitude).
 - Emission has transmitter provenance tied to architrino identity and emission time.
 - Wake propagation is finite-speed in absolute time.
 - Reception is universal across architrinos.

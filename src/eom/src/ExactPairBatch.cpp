@@ -170,9 +170,10 @@ bool same_transmitter_prefix_tokens(
   std::size_t current_index = current.segment_index_at(lower);
   std::size_t prior_index = prior.segment_index_at(lower);
   while (true) {
-    const CubicHistorySegment current_segment =
-        current.segments()[current_index];
-    const CubicHistorySegment prior_segment = prior.segments()[prior_index];
+    const auto current_segment_pin = current.segments().pin(current_index);
+    const auto prior_segment_pin = prior.segments().pin(prior_index);
+    const auto& current_segment = *current_segment_pin;
+    const auto& prior_segment = *prior_segment_pin;
     if (!same_segment_tokens(current_segment, prior_segment)) {
       return false;
     }
@@ -194,11 +195,11 @@ bool same_history_tokens_at(
   if (!current.covers(point) || !prior.covers(point)) {
     return false;
   }
-  const CubicHistorySegment current_segment =
-      current.segments()[current.segment_index_at(time)];
-  const CubicHistorySegment prior_segment =
-      prior.segments()[prior.segment_index_at(time)];
-  return same_segment_tokens(current_segment, prior_segment);
+  const auto current_segment = current.segments().pin(
+      current.segment_index_at(time));
+  const auto prior_segment = prior.segments().pin(
+      prior.segment_index_at(time));
+  return same_segment_tokens(*current_segment, *prior_segment);
 }
 
 bool same_history_endpoint(
@@ -228,7 +229,9 @@ bool endpoint_coordinate_coincidence(
 bool uniform_circular_self_search_is_root_free(
     const ExactPairRequest& request,
     const Interval& field_speed) {
-  if (request.receiver->history_id() != request.source->history_id()) {
+  if (request.receiver->history_id() != request.source->history_id() ||
+      request.receiver->provenance_fingerprint() !=
+          request.source->provenance_fingerprint()) {
     return false;
   }
   const auto& certificate =
@@ -301,7 +304,8 @@ double correlated_self_token_radius(
   const auto emission_index = history.segment_index_at(emission);
   const auto reception_index = history.segment_index_at(reception);
   if (emission_index == reception_index) {
-    const auto& segment = history.segments()[emission_index];
+    const auto segment_pin = history.segments().pin(emission_index);
+    const auto& segment = *segment_pin;
     double square = 0.0;
     for (std::size_t axis = 0U; axis < 3U; ++axis) {
       const double radius = std::min(
@@ -315,7 +319,8 @@ double correlated_self_token_radius(
 
   std::array<double, 3> component_radii{};
   for (std::size_t index = emission_index; index <= reception_index; ++index) {
-    const auto& segment = history.segments()[index];
+    const auto segment_pin = history.segments().pin(index);
+    const auto& segment = *segment_pin;
     const double lower = std::max(emission, segment.t_start());
     const double upper = std::min(reception, segment.t_end());
     if (lower < upper) {
@@ -446,8 +451,9 @@ std::optional<DoubleRoot> surround_double_segment_join_root(
     double search_lower,
     double search_upper,
     double tolerance) {
-  const auto& left_segment =
-      transmitter_history.segments()[left_segment_index];
+  const auto left_segment_pin =
+      transmitter_history.segments().pin(left_segment_index);
+  const auto& left_segment = *left_segment_pin;
   const double boundary = left_segment.t_end();
   if (boundary <= search_lower || boundary >= search_upper) {
     return std::nullopt;
@@ -494,7 +500,8 @@ std::optional<DoubleRoot> surround_double_segment_join_root(
     std::vector<std::size_t> transmitter_segment_indices;
     for (std::size_t index = 0U;
          index < transmitter_history.segments().size(); ++index) {
-      const auto& segment = transmitter_history.segments()[index];
+      const auto segment_pin = transmitter_history.segments().pin(index);
+      const auto& segment = *segment_pin;
       const Interval segment_time(
           segment.t_start_interval().lower(),
           segment.t_end_interval().upper());
@@ -564,8 +571,9 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       (field_speed + norm(receiver_state.velocity)).upper();
   const Interval fallback_receiver_factor =
       Interval::point(0.0).inflate(receiver_factor_abs_bound);
-  const CubicHistorySegment receiver_segment = request.receiver->segments()[
-      request.receiver->segment_index_at(reception_value)];
+  const auto receiver_segment_pin = request.receiver->segments().pin(
+      request.receiver->segment_index_at(reception_value));
+  const auto& receiver_segment = *receiver_segment_pin;
   attempt.stable_negative_prefix_upper = search_lower;
 
   bool warm_start_eligible = false;
@@ -677,7 +685,8 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
   }
   for (std::size_t index = first_segment;
        index < request.source->segments().size(); ++index) {
-    const auto& segment = request.source->segments()[index];
+    const auto segment_pin = request.source->segments().pin(index);
+    const auto& segment = *segment_pin;
     if (segment.t_start() >= search_upper) {
       break;
     }
@@ -705,8 +714,8 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
           request.warm_source_equality_precomputed
               ? index < request.warm_source_aligned_equal_segments
               : same_segment_tokens(
-                    request.source->segments()[index],
-                    request.warm_start->source->segments()[index]);
+                    *request.source->segments().pin(index),
+                    *request.warm_start->source->segments().pin(index));
       if (!segment_tokens_match) {
         continue;
       }
@@ -774,7 +783,8 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
   if (same_retained_history) {
     for (std::size_t index = request.source->segments().size();
          index-- > subfield_scan_lower;) {
-      const auto& segment = request.source->segments()[index];
+      const auto segment_pin = request.source->segments().pin(index);
+      const auto& segment = *segment_pin;
       const double lower = segment.t_start();
       const double upper = std::min(segment.t_end(), reception_value);
       bool segment_subfield = true;
@@ -792,7 +802,9 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         !subfield_suffix[cell.segment_index + 1U]) {
       return false;
     }
-    const auto& segment = request.source->segments()[cell.segment_index];
+    const auto segment_pin =
+        request.source->segments().pin(cell.segment_index);
+    const auto& segment = *segment_pin;
     const double upper = std::min(segment.t_end(), reception_value);
     return cell.lower < upper &&
         norm(segment.velocity_interval(Interval(cell.lower, upper))).upper() <
@@ -859,8 +871,8 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     return true;
   };
 
-  std::function<void(const Cell&)> classify;
-  classify = [&](const Cell& cell) {
+  std::vector<Cell> pending_cells;
+  const auto classify = [&](const Cell& cell) {
     if (!attempt.complete) {
       return;
     }
@@ -888,8 +900,9 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       ++attempt.difficult_cells;
       return;
     }
-    const CubicHistorySegment transmitter_segment =
-        request.source->segments()[cell.segment_index];
+    const auto transmitter_segment_pin =
+        request.source->segments().pin(cell.segment_index);
+    const auto& transmitter_segment = *transmitter_segment_pin;
     const Interval emission(cell.lower, cell.upper);
     if (self_path_from_cell_is_subfield(cell)) {
       if (search_upper == reception_value) {
@@ -953,8 +966,12 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         ++attempt.difficult_cells;
         return;
       }
-      classify({cell.segment_index, cell.lower, middle, cell.depth + 1});
-      classify({cell.segment_index, middle, cell.upper, cell.depth + 1});
+      // Preserve the prior depth-first, lower-before-upper order without
+      // growing the native stack under deep binary64 subdivision.
+      pending_cells.push_back(
+          {cell.segment_index, middle, cell.upper, cell.depth + 1});
+      pending_cells.push_back(
+          {cell.segment_index, cell.lower, middle, cell.depth + 1});
       return;
     }
 
@@ -1090,7 +1107,12 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
          *root_geometry.receiver_factor, {cell.segment_index}});
   };
 
-  for (const auto& cell : cells) {
+  for (auto cell = cells.rbegin(); cell != cells.rend(); ++cell) {
+    pending_cells.push_back(*cell);
+  }
+  while (!pending_cells.empty() && attempt.complete) {
+    Cell cell = std::move(pending_cells.back());
+    pending_cells.pop_back();
     try {
       classify(cell);
     } catch (const std::exception& error) {
@@ -1138,8 +1160,9 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     ++attempt.difficult_cells;
   }
   if (attempt.complete) {
-    const CubicHistorySegment prefix_segment = request.source->segments()[
-        request.source->segment_index_at(incremental_search_lower)];
+    const auto prefix_segment_pin = request.source->segments().pin(
+        request.source->segment_index_at(incremental_search_lower));
+    const auto& prefix_segment = *prefix_segment_pin;
     std::optional<DoubleGeometry> prefix_geometry;
     try {
       prefix_geometry = double_geometry(
@@ -2585,7 +2608,9 @@ bool mp_self_endpoint_open_cell_is_root_free(
     const MpInterval& reception,
     const MpInterval& field_speed,
     mpfr_prec_t bits) {
-  if (request.receiver->history_id() != request.source->history_id()) {
+  if (request.receiver->history_id() != request.source->history_id() ||
+      request.receiver->provenance_fingerprint() !=
+          request.source->provenance_fingerprint()) {
     return false;
   }
   const auto& certificate =
@@ -2830,8 +2855,8 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
          *root_geometry.receiver_factor, {segment_index}});
   };
 
-  std::function<void(const Cell&)> classify;
-  classify = [&](const Cell& cell) {
+  std::vector<Cell> pending_cells;
+  const auto classify = [&](const Cell& cell) {
     if (!attempt.complete) {
       return;
     }
@@ -2884,8 +2909,12 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
         ++attempt.difficult_cells;
         return;
       }
-      classify({cell.segment_index, cell.lower, middle, cell.depth + 1});
-      classify({cell.segment_index, middle, cell.upper, cell.depth + 1});
+      // Preserve the prior depth-first, lower-before-upper order without
+      // growing the native stack under deep MPFR subdivision.
+      pending_cells.push_back(
+          {cell.segment_index, middle, cell.upper, cell.depth + 1});
+      pending_cells.push_back(
+          {cell.segment_index, cell.lower, middle, cell.depth + 1});
       return;
     }
 
@@ -3261,7 +3290,12 @@ MpAttempt run_mpfr_attempt(const ExactPairRequest& request, unsigned bits_value)
          *root_geometry.receiver_factor, {cell.segment_index}});
   };
 
-  for (const auto& cell : cells) {
+  for (auto cell = cells.rbegin(); cell != cells.rend(); ++cell) {
+    pending_cells.push_back(*cell);
+  }
+  while (!pending_cells.empty() && attempt.complete) {
+    Cell cell = std::move(pending_cells.back());
+    pending_cells.pop_back();
     classify(cell);
   }
   if (attempt.complete && !merge_mp_roots(attempt.roots)) {
@@ -3470,8 +3504,9 @@ ExactPairCertificate mpfr_certificate(
       request.receiver->velocity_hull(reception),
       same_retained_history,
       same_retained_history ? request.source : nullptr};
-  const CubicHistorySegment prefix_segment = request.source->segments()[
-      request.source->segment_index_at(search_lower)];
+  const auto prefix_segment_pin = request.source->segments().pin(
+      request.source->segment_index_at(search_lower));
+  const auto& prefix_segment = *prefix_segment_pin;
   const auto prefix_geometry = double_geometry(
       receiver_state, prefix_segment, reception,
       Interval::point(search_lower),
@@ -3647,10 +3682,12 @@ WarmSourceEqualityBounds compute_warm_source_equality_bounds(
   const std::size_t aligned_limit =
       std::min(current.segments().size(), warm.segments().size());
   while (bounds.aligned_equal_segments < aligned_limit) {
-    const CubicHistorySegment current_segment =
-        current.segments()[bounds.aligned_equal_segments];
-    const CubicHistorySegment warm_segment =
-        warm.segments()[bounds.aligned_equal_segments];
+    const auto current_segment_pin =
+        current.segments().pin(bounds.aligned_equal_segments);
+    const auto warm_segment_pin =
+        warm.segments().pin(bounds.aligned_equal_segments);
+    const auto& current_segment = *current_segment_pin;
+    const auto& warm_segment = *warm_segment_pin;
     if (!same_segment_tokens(current_segment, warm_segment)) {
       break;
     }
@@ -3664,9 +3701,10 @@ WarmSourceEqualityBounds compute_warm_source_equality_bounds(
   std::size_t warm_index = warm.segment_index_at(search_lower);
   while (current_index < current.segments().size() &&
          warm_index < warm.segments().size()) {
-    const CubicHistorySegment current_segment =
-        current.segments()[current_index];
-    const CubicHistorySegment warm_segment = warm.segments()[warm_index];
+    const auto current_segment_pin = current.segments().pin(current_index);
+    const auto warm_segment_pin = warm.segments().pin(warm_index);
+    const auto& current_segment = *current_segment_pin;
+    const auto& warm_segment = *warm_segment_pin;
     if (!same_segment_tokens(current_segment, warm_segment)) {
       break;
     }
@@ -3686,13 +3724,13 @@ ExactPairCertificate certify_exact_pair(const ExactPairRequest& request) {
       std::chrono::duration<double>(Clock::now() - binary64_start).count();
   if (fast.complete) {
     auto certificate = double_certificate(request, fast);
-    certificate.binary64_cpu_seconds = binary64_seconds;
+    certificate.binary64_worker_wall_seconds = binary64_seconds;
     return certificate;
   }
   if (fast.token_dominated_failure) {
     auto certificate =
         double_token_dominated_failure_certificate(request, fast);
-    certificate.binary64_cpu_seconds = binary64_seconds;
+    certificate.binary64_worker_wall_seconds = binary64_seconds;
     return certificate;
   }
   if (request.defer_precision_escalation) {
@@ -3701,7 +3739,7 @@ ExactPairCertificate certify_exact_pair(const ExactPairRequest& request) {
     certificate.status = "uncertified";
     certificate.failure_code =
         "numeric_precision_escalation_deferred_for_cost_feedback";
-    certificate.binary64_cpu_seconds = binary64_seconds;
+    certificate.binary64_worker_wall_seconds = binary64_seconds;
     return certificate;
   }
   unsigned bits = request.initial_mpfr_bits;
@@ -3723,25 +3761,29 @@ ExactPairCertificate certify_exact_pair(const ExactPairRequest& request) {
     }
     if (latest.complete) {
       auto certificate = mpfr_certificate(request, latest, bits, false);
-      certificate.binary64_cpu_seconds = binary64_seconds;
-      certificate.mpfr_cpu_seconds = mpfr_seconds;
+      certificate.binary64_worker_wall_seconds = binary64_seconds;
+      certificate.mpfr_worker_wall_seconds = mpfr_seconds;
       certificate.mpfr_attempt_count = mpfr_attempt_count;
-      certificate.mpfr_escalation_cpu_seconds = mpfr_escalation_seconds;
+      certificate.mpfr_escalation_worker_wall_seconds =
+          mpfr_escalation_seconds;
       certificate.mpfr_escalation_attempt_count =
           mpfr_escalation_attempt_count;
       return certificate;
     }
     if (bits >= request.maximum_mpfr_bits) {
       auto certificate = mpfr_certificate(request, latest, bits, true);
-      certificate.binary64_cpu_seconds = binary64_seconds;
-      certificate.mpfr_cpu_seconds = mpfr_seconds;
+      certificate.binary64_worker_wall_seconds = binary64_seconds;
+      certificate.mpfr_worker_wall_seconds = mpfr_seconds;
       certificate.mpfr_attempt_count = mpfr_attempt_count;
-      certificate.mpfr_escalation_cpu_seconds = mpfr_escalation_seconds;
+      certificate.mpfr_escalation_worker_wall_seconds =
+          mpfr_escalation_seconds;
       certificate.mpfr_escalation_attempt_count =
           mpfr_escalation_attempt_count;
       return certificate;
     }
-    bits = std::min(request.maximum_mpfr_bits, bits * 2U);
+    bits = bits > request.maximum_mpfr_bits / 2U
+        ? request.maximum_mpfr_bits
+        : bits * 2U;
   }
 }
 

@@ -40,8 +40,11 @@ import {
 import { sampleTimedPath } from "./CausalDelayFeedbackTimedPath.js";
 import {
   createCausalDelayFeedbackModeController,
-  normalizeCausalDelayFeedbackMode,
 } from "./CausalDelayFeedbackModeController.js";
+import {
+  DEFAULT_CAUSAL_DELAY_FEEDBACK_MODE,
+  normalizeCausalDelayFeedbackMode,
+} from "./CausalDelayFeedbackModes.js";
 import {
   createStoryScene,
 } from "./CausalDelayFeedbackStoryMode.js";
@@ -267,7 +270,10 @@ class CausalDelayFeedbackRuntime {
     this.resetArchitrinoVelocityReference();
     this.learnerState = createCanonicalLearnerState(this.dataset, {
       receiverTime: 0.62,
-      mode: normalizeCausalDelayFeedbackMode(options.initialMode, "sandbox"),
+      mode: normalizeCausalDelayFeedbackMode(
+        options.initialMode,
+        DEFAULT_CAUSAL_DELAY_FEEDBACK_MODE,
+      ),
       signalSpeed: NORMALIZED_FIELD_SPEED,
       distanceScale: 1 / this.getLiveWakeSignalSpeed(),
       loadState: this.replayLoadState,

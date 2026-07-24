@@ -985,9 +985,13 @@ class NativeBorgProcessTests(unittest.TestCase):
             worker.stdin.flush()
             failed = json.loads(worker.stdout.readline())
             self.assertEqual(failed["status"], "halted")
+            self.assertEqual(
+                failed["haltCode"],
+                "checkpoint_or_storage_failure",
+            )
             self.assertIn(
                 "exact history disk block",
-                failed["haltCode"],
+                failed["diagnosticDetail"],
             )
             self.assertIsNone(worker.poll())
             self.assertEqual(list(storage.rglob("*.aehb")), [])
@@ -1037,7 +1041,10 @@ class NativeBorgProcessTests(unittest.TestCase):
             )
             response = json.loads(completed.stdout)
             self.assertEqual(response["status"], "halted")
-            self.assertEqual(response["haltCode"], "engine_exception")
+            self.assertEqual(
+                response["haltCode"],
+                "checkpoint_or_storage_failure",
+            )
             self.assertEqual(
                 response["diagnosticDetail"],
                 "exact_history_disk_limit_exhausted",

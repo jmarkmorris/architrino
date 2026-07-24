@@ -29,6 +29,7 @@ const PHOTON_STAGE_WHITE_LABEL_COLOR = "#ffffff";
 const PHOTON_TRANSLATION_AXIS_COLOR = "rgba(251, 191, 36, 0.92)";
 const PHOTON_FACE_AXIS_COLOR = "rgba(251, 191, 36, 0.82)";
 const PHOTON_FACE_CAMERA_REFERENCE_RADIUS = PHOTON_DEFAULT_LAYER_RADII.O * 1.5;
+const PHOTON_PATH_COLOR_RAMP_STEPS = 256;
 
 function resizeCanvasToDisplaySize(canvas, windowLike = globalThis.window) {
   const rect = canvas.getBoundingClientRect();
@@ -58,32 +59,47 @@ function hexToRgb(hex) {
   };
 }
 
-function lerpColor(startHex, endHex, progress, alpha = 1) {
+function createPathColorRamp(startHex, endHex) {
   const start = hexToRgb(startHex);
   const end = hexToRgb(endHex);
-  const p = Math.max(0, Math.min(1, progress));
-  const r = Math.round(start.r + (end.r - start.r) * p);
-  const g = Math.round(start.g + (end.g - start.g) * p);
-  const b = Math.round(start.b + (end.b - start.b) * p);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  return Array.from({ length: PHOTON_PATH_COLOR_RAMP_STEPS + 1 }, (_, index) => {
+    const progress = index / PHOTON_PATH_COLOR_RAMP_STEPS;
+    const r = Math.round(start.r + (end.r - start.r) * progress);
+    const g = Math.round(start.g + (end.g - start.g) * progress);
+    const b = Math.round(start.b + (end.b - start.b) * progress);
+    return `rgb(${r}, ${g}, ${b})`;
+  });
+}
+
+const PHOTON_PATH_COLOR_RAMPS = Object.freeze({
+  positrino: createPathColorRamp(PHOTON_CHARGE_COLORS.neutral, PHOTON_CHARGE_COLORS.positrino),
+  electrino: createPathColorRamp(PHOTON_CHARGE_COLORS.neutral, PHOTON_CHARGE_COLORS.electrino),
+});
+const PHOTON_NEUTRAL_PATH_COLOR = PHOTON_PATH_COLOR_RAMPS.positrino[0];
+
+function pathColorFromRamp(ramp, progress) {
+  const index = Math.round(
+    Math.max(0, Math.min(1, progress)) * PHOTON_PATH_COLOR_RAMP_STEPS
+  );
+  return ramp[index];
 }
 
 function wrapAngle(angle) {
   return ((((angle + Math.PI) % TWO_PI) + TWO_PI) % TWO_PI) - Math.PI;
 }
 
-function colorForPathAngle(state, braidId, layerId, angle, timeSeconds, alpha = 1) {
+function colorForPathAngle(state, braidId, layerId, angle, timeSeconds) {
   const positrinoAngle = getPhotonLayerAngleRadians(state, braidId, layerId, timeSeconds, "positrino");
   const electrinoAngle = getPhotonLayerAngleRadians(state, braidId, layerId, timeSeconds, "electrino");
   const positrinoWeight = Math.max(0, 1 - Math.abs(wrapAngle(angle - positrinoAngle)) / 0.72);
   const electrinoWeight = Math.max(0, 1 - Math.abs(wrapAngle(angle - electrinoAngle)) / 0.72);
   if (positrinoWeight > electrinoWeight && positrinoWeight > 0) {
-    return lerpColor(PHOTON_CHARGE_COLORS.neutral, PHOTON_CHARGE_COLORS.positrino, positrinoWeight, alpha);
+    return pathColorFromRamp(PHOTON_PATH_COLOR_RAMPS.positrino, positrinoWeight);
   }
   if (electrinoWeight > 0) {
-    return lerpColor(PHOTON_CHARGE_COLORS.neutral, PHOTON_CHARGE_COLORS.electrino, electrinoWeight, alpha);
+    return pathColorFromRamp(PHOTON_PATH_COLOR_RAMPS.electrino, electrinoWeight);
   }
-  return lerpColor(PHOTON_CHARGE_COLORS.neutral, PHOTON_CHARGE_COLORS.neutral, 1, alpha);
+  return PHOTON_NEUTRAL_PATH_COLOR;
 }
 
 function drawPolylineArc(ctx, centerX, centerY, radius, startAngle, directionSign, span, options) {
@@ -100,7 +116,8 @@ function drawPolylineArc(ctx, centerX, centerY, radius, startAngle, directionSig
     ctx.beginPath();
     ctx.moveTo(centerX + Math.cos(a0) * radius, centerY + Math.sin(a0) * radius);
     ctx.lineTo(centerX + Math.cos(a1) * radius, centerY + Math.sin(a1) * radius);
-    ctx.strokeStyle = options.colorForAngle(a0, options.opacity * Math.pow(head, options.alphaFalloff));
+    ctx.globalAlpha = options.opacity * Math.pow(head, options.alphaFalloff);
+    ctx.strokeStyle = options.colorForAngle(a0);
     ctx.lineWidth = options.tailWidth + (options.headWidth - options.tailWidth) * Math.pow(head, options.widthFalloff);
     ctx.stroke();
   }
@@ -111,13 +128,14 @@ function drawOrbitPath(ctx, state, braidId, layerId, centerX, centerY, radius, t
   const segments = 144;
   ctx.save();
   ctx.lineWidth = 1.15;
+  ctx.globalAlpha = 0.72;
   for (let index = 0; index < segments; index += 1) {
     const a0 = (index / segments) * TWO_PI;
     const a1 = ((index + 1) / segments) * TWO_PI;
     ctx.beginPath();
     ctx.moveTo(centerX + Math.cos(a0) * radius, centerY + Math.sin(a0) * radius);
     ctx.lineTo(centerX + Math.cos(a1) * radius, centerY + Math.sin(a1) * radius);
-    ctx.strokeStyle = colorForPathAngle(state, braidId, layerId, (a0 + a1) / 2, timeSeconds, 0.72);
+    ctx.strokeStyle = colorForPathAngle(state, braidId, layerId, (a0 + a1) / 2, timeSeconds);
     ctx.stroke();
   }
   ctx.restore();
@@ -127,7 +145,7 @@ function drawLayerTrail(ctx, state, braidId, layerId, centerX, centerY, radius, 
   const directionSign = state.pair[braidId].direction === "cw" ? -1 : 1;
   ["positrino", "electrino"].forEach((chargeType) => {
     const chargeAngle = getPhotonLayerAngleRadians(state, braidId, layerId, timeSeconds, chargeType);
-    const colorForAngle = (angle, alpha) => colorForPathAngle(state, braidId, layerId, angle, timeSeconds, alpha);
+    const colorForAngle = (angle) => colorForPathAngle(state, braidId, layerId, angle, timeSeconds);
     drawPolylineArc(ctx, centerX, centerY, radius, chargeAngle, directionSign, Math.PI * 0.82, {
       colorForAngle,
       opacity: 0.52,

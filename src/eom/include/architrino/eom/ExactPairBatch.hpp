@@ -116,10 +116,10 @@ struct ExactPairCertificate {
   std::size_t difficult_cells;
   std::string diagnostic_detail;
   std::vector<NativeRootBracket> roots;
-  double binary64_cpu_seconds = 0.0;
-  double mpfr_cpu_seconds = 0.0;
+  double binary64_worker_wall_seconds = 0.0;
+  double mpfr_worker_wall_seconds = 0.0;
   std::size_t mpfr_attempt_count = 0;
-  double mpfr_escalation_cpu_seconds = 0.0;
+  double mpfr_escalation_worker_wall_seconds = 0.0;
   std::size_t mpfr_escalation_attempt_count = 0;
   std::size_t warm_excluded_cells = 0;
   std::size_t reevaluated_cells = 0;

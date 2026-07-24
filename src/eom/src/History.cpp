@@ -260,9 +260,12 @@ IntervalVector segment_hull(
     throw std::out_of_range("history interval lies outside retained coverage");
   }
   std::optional<IntervalVector> result;
+  const auto retained_start_segment = history.segments().pin(0U);
+  const auto retained_end_segment =
+      history.segments().pin(history.segments().size() - 1U);
   const Interval& retained_start =
-      history.segments().front().t_start_interval();
-  const Interval& retained_end = history.segments().back().t_end_interval();
+      retained_start_segment->t_start_interval();
+  const Interval& retained_end = retained_end_segment->t_end_interval();
   const double requested_lower = std::max(time.lower(), retained_start.lower());
   const double requested_upper = std::min(time.upper(), retained_end.upper());
   double cursor = requested_lower;
@@ -927,28 +930,38 @@ std::size_t HistorySegmentSequence::size() const noexcept {
   return storage_->size;
 }
 
-const CubicHistorySegment& HistorySegmentSequence::operator[](
+HistorySegmentSequence::PinnedSegment HistorySegmentSequence::pin(
     std::size_t index) const {
   if (index >= size()) {
     throw std::out_of_range("history segment index lies outside the sequence");
   }
   const auto [block_index, local_index] =
       locate_exact_history_segment(*storage_, index);
-  return (*exact_history_slot_block(storage_->blocks[block_index]))[local_index];
+  const auto& slot = storage_->blocks[block_index];
+  if (slot.memory) {
+    return PinnedSegment(nullptr, &(*slot.memory)[local_index]);
+  }
+  auto block = exact_history_slot_block(slot);
+  const CubicHistorySegment* const segment = &(*block)[local_index];
+  return PinnedSegment(std::move(block), segment);
 }
 
-const CubicHistorySegment& HistorySegmentSequence::front() const {
+CubicHistorySegment HistorySegmentSequence::at(std::size_t index) const {
+  return *pin(index);
+}
+
+CubicHistorySegment HistorySegmentSequence::front() const {
   if (empty()) {
     throw std::out_of_range("empty history segment sequence has no front");
   }
-  return (*this)[0U];
+  return at(0U);
 }
 
-const CubicHistorySegment& HistorySegmentSequence::back() const {
+CubicHistorySegment HistorySegmentSequence::back() const {
   if (empty()) {
     throw std::out_of_range("empty history segment sequence has no back");
   }
-  return (*this)[size() - 1U];
+  return at(size() - 1U);
 }
 
 std::size_t HistorySegmentSequence::resident_segment_count() const noexcept {
@@ -1022,17 +1035,21 @@ HistorySegmentSequence HistorySegmentSequence::retained_suffix(
 
 HistorySegmentSequence::const_iterator::reference
 HistorySegmentSequence::const_iterator::operator*() const {
-  return (*owner_)[index_];
+  if (!pinned_) {
+    pinned_ = owner_->pin(index_);
+  }
+  return *pinned_;
 }
 
 HistorySegmentSequence::const_iterator::pointer
 HistorySegmentSequence::const_iterator::operator->() const {
-  return &(*owner_)[index_];
+  return &**this;
 }
 
 HistorySegmentSequence::const_iterator&
 HistorySegmentSequence::const_iterator::operator++() {
   ++index_;
+  pinned_ = {};
   return *this;
 }
 
@@ -1065,7 +1082,9 @@ RetainedHistory::RetainedHistory(
     throw std::invalid_argument("retained history requires at least one segment");
   }
   for (std::size_t index = 1; index < segments_.size(); ++index) {
-    validate_segment_join(segments_[index - 1U], segments_[index]);
+    const auto left = segments_.pin(index - 1U);
+    const auto right = segments_.pin(index);
+    validate_segment_join(*left, *right);
   }
   for (const auto& segment : segments_) {
     fingerprint_segment(fingerprint_state_, segment);
@@ -1243,7 +1262,7 @@ RetainedHistory RetainedHistory::restore_uniform_circular(
         left.velocity_error_tokens() == right.velocity_error_tokens();
   };
   for (std::size_t index = 0; index < restored.segments().size(); ++index) {
-    if (!same_segment(restored.segments()[index], segments[index])) {
+    if (!same_segment(restored.segments().at(index), segments[index])) {
       throw std::invalid_argument(
           "restored circular history prefix differs from factory construction");
     }
@@ -1351,17 +1370,19 @@ RetainedHistory::uniform_circular_analytic_state(const Interval& time) const {
 }
 
 double RetainedHistory::t_start() const {
-  return segments_.front().t_start();
+  return segments_.pin(0U)->t_start();
 }
 
 double RetainedHistory::t_end() const {
-  return segments_.back().t_end();
+  return segments_.pin(segments_.size() - 1U)->t_end();
 }
 
 bool RetainedHistory::covers(const Interval& time) const noexcept {
   try {
-    const Interval& start = segments_.front().t_start_interval();
-    const Interval& end = segments_.back().t_end_interval();
+    const auto start_segment = segments_.pin(0U);
+    const auto end_segment = segments_.pin(segments_.size() - 1U);
+    const Interval& start = start_segment->t_start_interval();
+    const Interval& end = end_segment->t_end_interval();
     return time.lower() >= start.lower() && time.upper() <= end.upper();
   } catch (...) {
     return false;
@@ -1376,7 +1397,7 @@ std::size_t RetainedHistory::segment_index_at(double time) const {
   std::size_t upper = segments_.size();
   while (lower < upper) {
     const std::size_t middle = lower + (upper - lower) / 2U;
-    if (segments_[middle].t_end() <= time) {
+    if (segments_.pin(middle)->t_end() <= time) {
       lower = middle + 1U;
     } else {
       upper = middle;
@@ -1385,15 +1406,18 @@ std::size_t RetainedHistory::segment_index_at(double time) const {
   if (lower == segments_.size()) {
     return segments_.size() - 1U;
   }
-  if (segments_[lower].t_start() <= time) {
+  if (segments_.pin(lower)->t_start() <= time) {
     return lower;
   }
   throw std::out_of_range("history contains an uncovered time");
 }
 
 IntervalVector RetainedHistory::position_hull(const Interval& time) const {
-  const Interval& retained_start = segments_.front().t_start_interval();
-  const Interval& retained_end = segments_.back().t_end_interval();
+  const auto retained_start_segment = segments_.pin(0U);
+  const auto retained_end_segment = segments_.pin(segments_.size() - 1U);
+  const Interval& retained_start =
+      retained_start_segment->t_start_interval();
+  const Interval& retained_end = retained_end_segment->t_end_interval();
   if (time.lower() == retained_start.lower() &&
       time.upper() == retained_end.upper()) {
     return *full_position_hull_;
@@ -1411,7 +1435,8 @@ IntervalVector RetainedHistory::correlated_position_hull(
   }
   std::optional<IntervalVector> result;
   for (std::size_t index = 0U; index < segments_.size(); ++index) {
-    const auto& segment = segments_[index];
+    const auto segment_pin = segments_.pin(index);
+    const auto& segment = *segment_pin;
     const double lower = std::max(time.lower(), segment.t_start());
     const double upper = std::min(time.upper(), segment.t_end());
     if (lower > upper) {
@@ -1420,8 +1445,10 @@ IntervalVector RetainedHistory::correlated_position_hull(
     const Interval local_time(lower, upper);
     IntervalVector local = segment.position_interval(local_time);
     const auto apply_join = [&](std::size_t left_index) {
-      const auto& left = segments_[left_index];
-      const auto& right = segments_[left_index + 1U];
+      const auto left_pin = segments_.pin(left_index);
+      const auto right_pin = segments_.pin(left_index + 1U);
+      const auto& left = *left_pin;
+      const auto& right = *right_pin;
       const double join_time = left.t_end();
       const Interval point = Interval::point(join_time);
       const IntervalVector shared = intersect_vectors(
@@ -1465,11 +1492,11 @@ IntervalVector RetainedHistory::correlated_velocity_hull(
 }
 
 std::array<double, 3> RetainedHistory::nominal_position(double time) const {
-  return segments_[segment_index_at(time)].nominal_position(time);
+  return segments_.pin(segment_index_at(time))->nominal_position(time);
 }
 
 std::array<double, 3> RetainedHistory::nominal_velocity(double time) const {
-  return segments_[segment_index_at(time)].nominal_velocity(time);
+  return segments_.pin(segment_index_at(time))->nominal_velocity(time);
 }
 
 std::optional<IntervalVector>

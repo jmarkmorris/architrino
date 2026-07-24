@@ -103,7 +103,8 @@ JointSegmentIntervalEvaluation interval_evaluation(
   }
   const std::size_t ordinary_index =
       ordinary.segment_index_at(time.midpoint());
-  const auto& ordinary_segment = ordinary.segments()[ordinary_index];
+  const auto ordinary_segment_pin = ordinary.segments().pin(ordinary_index);
+  const auto& ordinary_segment = *ordinary_segment_pin;
   if (time.lower() < ordinary_segment.t_start() ||
       time.upper() > ordinary_segment.t_end()) {
     throw std::invalid_argument(

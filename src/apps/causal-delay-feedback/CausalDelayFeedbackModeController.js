@@ -16,22 +16,9 @@ import {
 import {
   createBranchLabView,
 } from "./CausalDelayFeedbackBranchLabMode.js";
-
-export const CAUSAL_DELAY_FEEDBACK_MODES = Object.freeze([
-  { id: "story", label: "Story", renderMethod: "renderStory" },
-  { id: "prediction", label: "Prediction", renderMethod: "renderPrediction" },
-  { id: "history", label: "Path History", renderMethod: "renderHistory" },
-  { id: "roots", label: "Roots", renderMethod: "renderRoots" },
-  { id: "self-hit", label: "Self-Hit", renderMethod: "renderSelfHit" },
-  { id: "branch-lab", label: "Branch Lab", renderMethod: "renderBranchLab" },
-  { id: "sandbox", label: "Sandbox", renderMethod: null },
-]);
-
-export function normalizeCausalDelayFeedbackMode(mode, fallback = "story") {
-  return CAUSAL_DELAY_FEEDBACK_MODES.some((candidate) => candidate.id === mode)
-    ? mode
-    : fallback;
-}
+import {
+  CAUSAL_DELAY_FEEDBACK_MODES,
+} from "./CausalDelayFeedbackModes.js";
 
 function describeReason(reason) {
   const descriptions = {
@@ -198,6 +185,8 @@ export class CausalDelayFeedbackModeController {
         break;
       case "replay":
         this.state.storyStep = 0;
+        this.state.predictionAttempt =
+          Math.max(0, Math.floor(Number(this.state.predictionAttempt) || 0)) + 1;
         this.state.predictionState = "unanswered";
         this.state.selectedPredictionId = null;
         this.onReplay?.(this.state);
@@ -229,9 +218,7 @@ export class CausalDelayFeedbackModeController {
     }
     this.state.branchFilters = next;
     this.onStateChange?.(this.state);
-    this.renderBranchLab();
-    const replacement = this.dom.content.querySelector(`[data-branch-filter="${key}"]`);
-    replacement?.focus();
+    this.renderBranchLab({ preserveFilters: true });
   }
 
   goBack() {
@@ -302,7 +289,9 @@ export class CausalDelayFeedbackModeController {
     const focusedBranchFilter =
       this.state.mode === "branch-lab" &&
       this.document.activeElement?.matches?.("[data-branch-filter]");
-    if (!focusedBranchFilter) {
+    if (focusedBranchFilter) {
+      this.renderBranchLab({ preserveFilters: true });
+    } else {
       this.renderModeContent();
     }
     this.updateControls();
@@ -511,7 +500,7 @@ export class CausalDelayFeedbackModeController {
     this.dom.content.replaceChildren(cards);
   }
 
-  renderBranchLab() {
+  renderBranchLab({ preserveFilters = false } = {}) {
     const view = createBranchLabView(this.state);
     this.setLessonCopy({
       title: "Branch Lab",
@@ -519,7 +508,10 @@ export class CausalDelayFeedbackModeController {
       meta: "Branch-local acceleration rows",
       status: `${view.acceptedRows.length} accepted acceleration rows · ${view.rejectedRows.length} rejected · ${view.filteredRows.length} unavailable or filtered · vector sum (${view.vectorSum.x.toFixed(2)}, ${view.vectorSum.y.toFixed(2)}).`,
     });
-    const filters = this.createBranchFilters();
+    const filters = preserveFilters
+      ? this.dom.content.querySelector(".causal-branch-filters")
+      : null;
+    const nextFilters = filters ?? this.createBranchFilters();
     const table = this.createTable(["Branch", "Tₜ → Tᵣ", "Status", "Acceleration", "Reason"]);
     const body = table.querySelector("tbody");
     view.rows.forEach((row) => {
@@ -559,7 +551,30 @@ export class CausalDelayFeedbackModeController {
             }`
       }: (${view.vectorSum.x.toFixed(2)}, ${view.vectorSum.y.toFixed(2)})`,
     });
-    this.dom.content.replaceChildren(filters, table, sum);
+    if (
+      preserveFilters &&
+      filters &&
+      this.replaceBranchLabResults(table, sum)
+    ) {
+      return;
+    }
+    this.dom.content.replaceChildren(nextFilters, table, sum);
+  }
+
+  replaceBranchLabResults(table, sum) {
+    const currentTable = this.dom.content.querySelector(".causal-ledger-table");
+    const currentSum = this.dom.content.querySelector(".causal-vector-sum");
+    if (
+      !currentTable ||
+      !currentSum ||
+      typeof currentTable.replaceWith !== "function" ||
+      typeof currentSum.replaceWith !== "function"
+    ) {
+      return false;
+    }
+    currentTable.replaceWith(table);
+    currentSum.replaceWith(sum);
+    return true;
   }
 
   createBranchFilters() {

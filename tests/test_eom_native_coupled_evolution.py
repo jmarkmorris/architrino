@@ -281,6 +281,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             checkpoint["file_roundtrip_fingerprint"],
         )
         self.assertTrue(checkpoint["tamper_rejected"])
+        self.assertTrue(checkpoint["acceptance_controls_bound"])
         self.assertTrue(checkpoint["circular_certificate_preserved"])
         self.assertEqual(checkpoint["certificate_cost_cooldown_roundtrip"], 4)
         self.assertEqual(
@@ -570,6 +571,22 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(
             exhausted["failure_code"], "caustic_eta_convergence_failed"
         )
+
+    def test_joint_finite_width_event_route_fails_closed(self) -> None:
+        rejected = self.packet["joint_event_fail_closed"]
+        self.assertEqual(rejected["status"], "rejected")
+        self.assertEqual(
+            rejected["failure_code"],
+            "unsupported_caustic_or_singular_chart",
+        )
+        self.assertTrue(rejected["publication_atomic"])
+
+    def test_joint_event_adjudicated_recovery_drops_optional_joint_state(self) -> None:
+        recovered = self.packet["joint_event_adjudicated_fallback"]
+        self.assertEqual(recovered["status"], "completed")
+        self.assertEqual(recovered["halt_code"], "")
+        self.assertEqual(recovered["joint_history_count"], 0)
+        self.assertGreater(recovered["accepted_step_count"], 0)
 
     def test_regulator_matching_remainder_contains_stationary_closed_form(self) -> None:
         control = self.packet["regulator_matching_analytic_control"]

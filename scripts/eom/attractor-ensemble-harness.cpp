@@ -797,10 +797,11 @@ void write_assembly_view_record_atomic(
              << ",\"evolvedSegmentCount\":"
              << (segments.size() - declared_count)
              << ",\"segments\":[";
-      for (std::size_t segment_index = 0; segment_index < segments.size();
-           ++segment_index) {
+      std::size_t segment_index = 0;
+      for (const auto& segment : segments) {
         if (segment_index > 0) output << ',';
-        write_segment(output, segments[segment_index]);
+        write_segment(output, segment);
+        ++segment_index;
       }
       output << "]}";
     }

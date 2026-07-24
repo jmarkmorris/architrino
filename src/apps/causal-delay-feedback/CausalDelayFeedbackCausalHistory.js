@@ -2,6 +2,9 @@ import {
   getTimedPathRange,
   sampleTimedPath,
 } from "./CausalDelayFeedbackTimedPath.js";
+import {
+  DEFAULT_CAUSAL_DELAY_FEEDBACK_MODE,
+} from "./CausalDelayFeedbackModes.js";
 
 const ROOT_TIME_EPSILON = 1e-8;
 const DEFAULT_SCAN_STEPS = 256;
@@ -396,7 +399,7 @@ function createProducerBranchRows(dataset, receiverTime) {
 
 export function createCanonicalLearnerState(dataset, {
   receiverTime = 0.62,
-  mode = "story",
+  mode = DEFAULT_CAUSAL_DELAY_FEEDBACK_MODE,
   signalSpeed = NORMALIZED_FIELD_SPEED,
   distanceScale = DEFAULT_CANVAS_DISTANCE_SCALE,
   loadState = "ready",
@@ -405,6 +408,7 @@ export function createCanonicalLearnerState(dataset, {
   const state = {
     mode,
     storyStep: 0,
+    predictionAttempt: 0,
     predictionState: "unanswered",
     selectedPredictionId: null,
     selectedSelfHitScenarioId: "super_cf_curved",
@@ -516,7 +520,10 @@ export function refreshCanonicalLearnerState(state, {
   return state;
 }
 
-export function createPredictionChoices(state, { count = 3 } = {}) {
+export function createPredictionChoices(state, {
+  count = 3,
+  attempt = state.predictionAttempt ?? 0,
+} = {}) {
   const root = state.roots.find((candidate) => candidate.id === state.selectedRootId)
     ?? state.acceptedBranchRows.at(-1);
   if (!root) {
@@ -540,7 +547,8 @@ export function createPredictionChoices(state, { count = 3 } = {}) {
     5381,
   );
   const choiceCount = Math.min(times.length, Math.max(2, count));
-  const correctIndex = (hash >>> 8) % choiceCount;
+  const attemptIndex = Math.max(0, Math.floor(Number(attempt) || 0));
+  const correctIndex = ((hash >>> 8) + attemptIndex) % choiceCount;
   const distractors = times.slice(1).sort((left, right) => left - right);
   const orderedTimes = Array.from({ length: choiceCount }, (_unused, index) =>
     index === correctIndex ? root.emissionTime : distractors.shift(),

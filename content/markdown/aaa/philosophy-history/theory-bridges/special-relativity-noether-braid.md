@@ -415,6 +415,8 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a strict implementation discipline.
 
 The same Lorentz factor appears in clock, ruler, momentum, and energy formulas because the inherited theory imposes one invariant interval. The bridge target is to show that the same factor appears in $\mathbb{A}\mathbb{A}\mathbb{A}$ because the same delayed closure problem controls all four channels.
 
+At the primitive two-architrino level, [Master Equation, Proposition 5](../../dynamics/master-equation.md#moving-transceiver-geometry-and-received-branch-strength) supplies a narrower exact checkpoint. For rigid common translation with instantaneous separation perpendicular to the drift, the canonical per-hit acceleration has a transverse projection reduced by exactly $1/\gamma_f$, derived from the causal-root geometry and transmitter-side acceleration weight without a relativistic premise. The same proposition retains a first-order longitudinal component, has a nonzero pair sum, fails the comparison target for parallel separation, and varies with general orientation. It is therefore an exact projection identity, not a Lorentz-recovery proof or an assembly clock, ruler, momentum, or covariance result.
+
 At the comparison-law level, the unification is derivation-grade exact algebra. A Lorentz boost is the full one-way causal-leg ledger of the moving assembly. The sum of the fore and aft legs,
 $$
 t_++t_-

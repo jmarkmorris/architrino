@@ -78,6 +78,12 @@ The subsequent [browser Claim-grade history invalidation](browser-claim-history-
 
 Plainly: every confirmed runtime defect from the re-review now has a code repair and direct regression. The two remaining items are an explicitly coordinated schema rename and a larger organization/performance refactor, not a known wrong simulation path.
 
+### Independent re-check addendum — 2026-07-24 (third pass)
+
+An independent re-review confirmed all twelve follow-up code repairs above are present in current source with the cited regression tests, and found **no new defects** in the changed code (workspace restore generation-advance, snapshot-runner dedupe, EPSILON-scaled depth tolerance, translation-swap draw-range persistence, binary-search seeding, and provider rejection-eviction all traced clean).
+
+One caveat on the suite-green claim: the binding-record hash pin **re-drifted after this section was written.** `reference/priorities/app-eom/master-eom-binding-v1.md:14` currently pins `17ad9977…`, but `content/markdown/aaa/dynamics/master-equation.md` now hashes to `9ec3045d316bcbcc60dc3e61fcfaad4642b83af857024856f6684364ef7cab4d` — the master-equation document was edited again by the same-day dynamics claim-audit (emission-rule / ME:3044 changes) after the refresh. `tests/borg-eom-migration.test.js:492` therefore fails again; the borg suite is 164/165. This is a provenance pin drift, not a Borg code defect: refresh the pin to `9ec3045d…`. (This coupling — a Borg contract test gated on a theory-doc hash that unrelated corpus edits keep invalidating — is itself worth revisiting.)
+
 ---
 
 ## Severity 1 — physics-affecting bugs

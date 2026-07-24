@@ -165,10 +165,11 @@ void write_snapshot_timing_json(
          << ",\"traversal_wall_seconds\":" << timing.traversal_wall_seconds
          << ",\"exact_root_batch_wall_seconds\":"
          << timing.exact_root_batch_wall_seconds
-         << ",\"root_binary64_cpu_seconds\":"
-         << timing.root_binary64_cpu_seconds
+         << ",\"root_binary64_worker_wall_seconds\":"
+         << timing.root_binary64_worker_wall_seconds
          << ",\"root_pair_count\":" << timing.root_pair_count
-         << ",\"root_mpfr_cpu_seconds\":" << timing.root_mpfr_cpu_seconds
+         << ",\"root_mpfr_worker_wall_seconds\":"
+         << timing.root_mpfr_worker_wall_seconds
          << ",\"root_mpfr_pair_count\":" << timing.root_mpfr_pair_count
          << ",\"acceleration_wall_seconds\":"
          << timing.acceleration_wall_seconds
@@ -185,17 +186,18 @@ void write_evolution_timing_json(
          << ",\"traversal_wall_seconds\":" << timing.traversal_wall_seconds
          << ",\"exact_root_batch_wall_seconds\":"
          << timing.exact_root_batch_wall_seconds
-         << ",\"root_binary64_cpu_seconds\":"
-         << timing.root_binary64_cpu_seconds
+         << ",\"root_binary64_worker_wall_seconds\":"
+         << timing.root_binary64_worker_wall_seconds
          << ",\"root_pair_count\":" << timing.root_pair_count
          << ",\"root_reevaluated_cells\":" << timing.root_reevaluated_cells
          << ",\"root_warm_excluded_cells\":"
          << timing.root_warm_excluded_cells
-         << ",\"root_mpfr_cpu_seconds\":" << timing.root_mpfr_cpu_seconds
+         << ",\"root_mpfr_worker_wall_seconds\":"
+         << timing.root_mpfr_worker_wall_seconds
          << ",\"root_mpfr_pair_count\":" << timing.root_mpfr_pair_count
          << ",\"root_mpfr_attempt_count\":" << timing.root_mpfr_attempt_count
-         << ",\"root_mpfr_escalation_cpu_seconds\":"
-         << timing.root_mpfr_escalation_cpu_seconds
+         << ",\"root_mpfr_escalation_worker_wall_seconds\":"
+         << timing.root_mpfr_escalation_worker_wall_seconds
          << ",\"acceleration_wall_seconds\":"
          << timing.acceleration_wall_seconds
          << ",\"finite_width_execution_union_wall_seconds\":"

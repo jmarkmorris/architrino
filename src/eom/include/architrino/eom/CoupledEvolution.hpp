@@ -122,10 +122,9 @@ struct NativeCoupledEvolutionRequest {
   // publishes atomically at the same accepted receiver time.
   bool use_synchronized_multirate_publication = false;
   std::string multirate_synchronization_fraction = "0.125";
-  // Validate each atomic step with the existing two-half solution, then
-  // publish a four-quarter solution inflated by the separately measured
-  // two-half-versus-four-quarter local difference. The outer controller and
-  // every acceptance budget remain unchanged.
+  // Publish a four-quarter solution whose local acceptance signal is the
+  // two-half-versus-four-quarter difference. Configured tolerance values are
+  // unchanged, but this is a different estimator from full-versus-two-half.
   bool use_quarter_step_publication = false;
   // Probe endpoint root searches in binary64 before paying MPFR. One bounded
   // shorter landing is attempted first; the unchanged error controller
@@ -274,15 +273,15 @@ struct NativeSnapshotTiming {
   double history_window_wall_seconds = 0.0;
   double traversal_wall_seconds = 0.0;
   double exact_root_batch_wall_seconds = 0.0;
-  // Worker CPU sums can exceed wall time when exact pairs run concurrently.
-  double root_binary64_cpu_seconds = 0.0;
+  // Worker wall-time sums can exceed elapsed wall time when pairs overlap.
+  double root_binary64_worker_wall_seconds = 0.0;
   std::size_t root_pair_count = 0;
   std::size_t root_reevaluated_cells = 0;
   std::size_t root_warm_excluded_cells = 0;
-  double root_mpfr_cpu_seconds = 0.0;
+  double root_mpfr_worker_wall_seconds = 0.0;
   std::size_t root_mpfr_pair_count = 0;
   std::size_t root_mpfr_attempt_count = 0;
-  double root_mpfr_escalation_cpu_seconds = 0.0;
+  double root_mpfr_escalation_worker_wall_seconds = 0.0;
   std::size_t root_mpfr_escalation_attempt_count = 0;
   double acceleration_wall_seconds = 0.0;
   double finite_width_execution_union_wall_seconds = 0.0;
@@ -324,14 +323,14 @@ struct NativeCorrectedSubstepTiming {
   double history_window_wall_seconds = 0.0;
   double traversal_wall_seconds = 0.0;
   double exact_root_batch_wall_seconds = 0.0;
-  double root_binary64_cpu_seconds = 0.0;
+  double root_binary64_worker_wall_seconds = 0.0;
   std::size_t root_pair_count = 0;
   std::size_t root_reevaluated_cells = 0;
   std::size_t root_warm_excluded_cells = 0;
-  double root_mpfr_cpu_seconds = 0.0;
+  double root_mpfr_worker_wall_seconds = 0.0;
   std::size_t root_mpfr_pair_count = 0;
   std::size_t root_mpfr_attempt_count = 0;
-  double root_mpfr_escalation_cpu_seconds = 0.0;
+  double root_mpfr_escalation_worker_wall_seconds = 0.0;
   std::size_t root_mpfr_escalation_attempt_count = 0;
   double acceleration_wall_seconds = 0.0;
   double finite_width_execution_union_wall_seconds = 0.0;
@@ -547,14 +546,14 @@ struct NativeEvolutionTiming {
   double history_window_wall_seconds = 0.0;
   double traversal_wall_seconds = 0.0;
   double exact_root_batch_wall_seconds = 0.0;
-  double root_binary64_cpu_seconds = 0.0;
+  double root_binary64_worker_wall_seconds = 0.0;
   std::size_t root_pair_count = 0;
   std::size_t root_reevaluated_cells = 0;
   std::size_t root_warm_excluded_cells = 0;
-  double root_mpfr_cpu_seconds = 0.0;
+  double root_mpfr_worker_wall_seconds = 0.0;
   std::size_t root_mpfr_pair_count = 0;
   std::size_t root_mpfr_attempt_count = 0;
-  double root_mpfr_escalation_cpu_seconds = 0.0;
+  double root_mpfr_escalation_worker_wall_seconds = 0.0;
   std::size_t root_mpfr_escalation_attempt_count = 0;
   double acceleration_wall_seconds = 0.0;
   double finite_width_execution_union_wall_seconds = 0.0;

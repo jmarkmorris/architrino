@@ -32,6 +32,28 @@ double wall_seconds_since(const SteadyClock::time_point& start) {
   return std::chrono::duration<double>(SteadyClock::now() - start).count();
 }
 
+Interval exact_difference_interval(double left, double right) {
+  const double difference = left - right;
+  const double right_virtual = left - difference;
+  const double left_virtual = difference + right_virtual;
+  const double right_roundoff = right_virtual - right;
+  const double left_roundoff = left - left_virtual;
+  const double error = left_roundoff + right_roundoff;
+  if (error < 0.0) {
+    return Interval(
+        std::nextafter(
+            difference, -std::numeric_limits<double>::infinity()),
+        difference);
+  }
+  if (error > 0.0) {
+    return Interval(
+        difference,
+        std::nextafter(
+            difference, std::numeric_limits<double>::infinity()));
+  }
+  return Interval::point(difference);
+}
+
 class AccelerationCertificationError : public std::runtime_error {
  public:
   using std::runtime_error::runtime_error;
@@ -195,7 +217,8 @@ NativeAccelerationRow reconstruct_row(
   for (const std::size_t index : root.transmitter_segment_indices) {
     if (index >= request.transmitter_history->segments().size() ||
         !root_overlaps_segment(
-            certified_emission, request.transmitter_history->segments()[index])) {
+            certified_emission,
+            request.transmitter_history->segments().at(index))) {
       throw AccelerationCertificationError(
           "root source segment identity does not cover the root enclosure");
     }
@@ -699,17 +722,23 @@ std::optional<CenteredFiniteWidthIntegral> centered_finite_width_integral(
   const IntervalVector midpoint_value = finite_width_integrand(
       request, midpoint_interval, receiver_charge, transmitter_charge, coupling,
       causal_width, core_scale).value;
-  const double width = emission.width();
-  IntervalVector result = scale(Interval::point(width), midpoint_value);
+  const Interval cell_width =
+      exact_difference_interval(emission.upper(), emission.lower());
+  IntervalVector result = scale(cell_width, midpoint_value);
+  const Interval left_radius =
+      midpoint_interval - Interval::point(emission.lower());
+  const Interval right_radius =
+      Interval::point(emission.upper()) - midpoint_interval;
   const double remainder_scale =
-      (Interval::point(width) * Interval::point(width) *
-       Interval::point(0.25))
+      (Interval::point(0.5) *
+       (interval_square(left_radius) + interval_square(right_radius)))
           .upper();
   // For every component A of the unchanged finite-width master-equation
   // integrand,
   //   integral_I A = |I| A(mid(I)) + R,
-  //   |R| <= sup_I |A'| integral_I |tau-mid(I)| d tau
-  //        = sup_I |A'| |I|^2 / 4.
+  //   |R| <= sup_I |A'| integral_I |tau-mid(I)| d tau.
+  // The two outward endpoint radii are used explicitly because the
+  // binary64 midpoint need not be the exact real midpoint.
   // The derivative enclosure above therefore certifies the complete cell
   // integral while avoiding the O(|I|) dependency loss of a box product.
   for (std::size_t axis = 0; axis < 3; ++axis) {
@@ -864,9 +893,15 @@ monotone_finite_width_integral(
     IntervalVector centered = scale(
         signed_charge_scale * field_speed * mollifier_integral,
         midpoint_kernel);
+    const Interval midpoint_interval = Interval::point(midpoint);
+    const Interval left_radius =
+        midpoint_interval - Interval::point(emission.lower());
+    const Interval right_radius =
+        Interval::point(emission.upper()) - midpoint_interval;
+    const double midpoint_radius = std::max(
+        left_radius.upper(), right_radius.upper());
     const double remainder_scale =
-        (Interval::point(0.5) *
-         Interval::point(emission.width()) *
+        (Interval::point(midpoint_radius) *
          Interval::point(mollifier_integral.upper()))
             .upper();
     for (std::size_t axis = 0; axis < 3; ++axis) {
@@ -1076,7 +1111,9 @@ FiniteWidthAttempt reconstruct_finite_width(
   std::vector<IntervalVector> segment_group_enclosures;
   for (std::size_t index = 0;
        index < request.transmitter_history->segments().size(); ++index) {
-    const auto& segment = request.transmitter_history->segments()[index];
+    const auto segment_pin =
+        request.transmitter_history->segments().pin(index);
+    const auto& segment = *segment_pin;
     const double cell_lower = std::max(lower_value, segment.t_start());
     const double cell_upper = std::min(reception_value, segment.t_end());
     if (cell_lower < cell_upper) {
@@ -1250,7 +1287,7 @@ NativePairAccelerationCertificate uncertified_pair(
     double precision_escalation_wall_seconds,
     std::size_t precision_escalation_attempt_count) {
   return {
-      .schema = "eom_native_pair_acceleration_certificate/v1",
+      .schema = "eom_native_pair_acceleration_certificate/v2",
       .row_id = request.row_id,
       .receiver_path_id = request.receiver_path_id,
       .transmitter_path_id = request.transmitter_path_id,
@@ -1274,7 +1311,6 @@ NativePairAccelerationCertificate uncertified_pair(
           precision_escalation_wall_seconds,
       .precision_escalation_attempt_count =
           precision_escalation_attempt_count,
-      .reconstruction_matches = false,
       .rows = {},
       .total_acceleration = std::nullopt,
   };
@@ -1485,7 +1521,9 @@ NativePairAccelerationCertificate certify_pair_acceleration(
           if (bits >= request.maximum_mpfr_bits) {
             break;
           }
-          bits = std::min(request.maximum_mpfr_bits, bits * 2U);
+          bits = bits > request.maximum_mpfr_bits / 2U
+              ? request.maximum_mpfr_bits
+              : bits * 2U;
         }
         if (!binary_certified) {
           if (!binary_failure.empty() && mpfr_failure != binary_failure) {
@@ -1500,7 +1538,9 @@ NativePairAccelerationCertificate certify_pair_acceleration(
       std::vector<std::size_t> transmitter_segment_indices;
       for (std::size_t index = 0;
            index < request.transmitter_history->segments().size(); ++index) {
-        const auto& segment = request.transmitter_history->segments()[index];
+        const auto segment_pin =
+            request.transmitter_history->segments().pin(index);
+        const auto& segment = *segment_pin;
         if (segment.t_end() >
                 Interval::decimal_token(root_certificate.searched_lower).midpoint() &&
             segment.t_start() < reception.midpoint()) {
@@ -1549,7 +1589,7 @@ NativePairAccelerationCertificate certify_pair_acceleration(
       }
     }
     return {
-        .schema = "eom_native_pair_acceleration_certificate/v1",
+        .schema = "eom_native_pair_acceleration_certificate/v2",
         .row_id = request.row_id,
         .receiver_path_id = request.receiver_path_id,
         .transmitter_path_id = request.transmitter_path_id,
@@ -1573,7 +1613,6 @@ NativePairAccelerationCertificate certify_pair_acceleration(
             precision_escalation_wall_seconds,
         .precision_escalation_attempt_count =
             precision_escalation_attempt_count,
-        .reconstruction_matches = true,
         .rows = std::move(rows),
         .total_acceleration = total,
     };
@@ -1829,7 +1868,6 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
         return pair.status != "uncertified" && pair.total_acceleration.has_value();
       });
   std::vector<NativeReceiverAcceleration> receiver_totals;
-  bool reconstruction_matches = all_certified;
   if (all_certified) {
     for (std::size_t receiver_index = 0; receiver_index < path_ids.size();
          ++receiver_index) {
@@ -1847,13 +1885,12 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
     }
   }
   return {
-      .schema = "eom_native_acceleration_reconstruction_certificate/v1",
+      .schema = "eom_native_acceleration_reconstruction_certificate/v2",
       .status = all_certified ? "certified_complete" : "uncertified",
       .failure_code = all_certified ? "" : "ordered_pair_acceleration_uncertified",
       .reduction_policy = kDeterministicReductionPolicy,
       .logical_ordered_pairs = expected_count,
       .complete_ordered_pair_domain = true,
-      .reconstruction_matches = reconstruction_matches,
       .pair_execution_union_wall_seconds =
           pair_execution_union_wall_seconds,
       .finite_width_execution_union_wall_seconds =

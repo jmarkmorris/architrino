@@ -151,8 +151,6 @@ void print_pair(const eom::NativePairAccelerationCertificate& certificate) {
             << (certificate.acceleration_precision_escalated ? "true" : "false")
             << ",\"achieved_acceleration_precision_bits\":"
             << certificate.achieved_acceleration_precision_bits
-            << ",\"reconstruction_matches\":"
-            << (certificate.reconstruction_matches ? "true" : "false")
             << ",\"total_acceleration\":";
   if (certificate.total_acceleration.has_value()) {
     print_vector(*certificate.total_acceleration);
@@ -205,8 +203,6 @@ void print_reconstruction(
             << certificate.logical_ordered_pairs
             << ",\"complete_ordered_pair_domain\":"
             << (certificate.complete_ordered_pair_domain ? "true" : "false")
-            << ",\"reconstruction_matches\":"
-            << (certificate.reconstruction_matches ? "true" : "false")
             << ",\"pair_order\":[";
   for (std::size_t index = 0; index < certificate.pair_certificates.size();
        ++index) {

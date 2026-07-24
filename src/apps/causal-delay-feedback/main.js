@@ -4,8 +4,9 @@ import {
   createCausalDelayFeedbackEomReplayAdapter,
 } from "./CausalDelayFeedbackEomReplayAdapter.js";
 import {
+  DEFAULT_CAUSAL_DELAY_FEEDBACK_MODE,
   normalizeCausalDelayFeedbackMode,
-} from "./CausalDelayFeedbackModeController.js";
+} from "./CausalDelayFeedbackModes.js";
 import { createCausalDelayFeedbackRuntime } from "./CausalDelayFeedbackRuntime.js";
 import { createTemporaryMockReplayAdapter } from "./CausalDelayFeedbackReplayAdapter.js";
 
@@ -111,7 +112,7 @@ export function createCausalDelayFeedbackRuntimeForPage(windowLike = globalThis.
     fallbackReplayAdapter,
     initialMode: normalizeCausalDelayFeedbackMode(
       getInitialQueryValue(windowLike, "mode"),
-      "story",
+      DEFAULT_CAUSAL_DELAY_FEEDBACK_MODE,
     ),
     replayRequestOptions: createCausalDelayFeedbackInitialReplayRequestOptions(windowLike),
   });

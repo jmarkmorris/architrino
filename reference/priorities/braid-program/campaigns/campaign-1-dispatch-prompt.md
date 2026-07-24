@@ -6,7 +6,7 @@ Operator dispatch text, authored 2026-07-16. Paste as a single prompt. Part 2 is
 
 Closure goal: certify that the EOM engine evolves paths by the master equation and nothing else, then run the braid program's first campaign — sub-field opposite-polarity binary evolution (N-ladder rung 1).
 
-Read first: `reference/priorities/braid-program/README.md` (charter and ground rules), `method.md` (Stage S/E discipline, acceptance gates, collapse protocol), `campaigns/instrument-gate.md` (accepted capabilities G1–G5, barred list, booking checklist, `assembly-view-record.v0`), and `priorities.md` (queue items 3–4). AGENTS.md Solver Ownership and Theory Layer Discipline bind throughout. EOM (`src/eom`) is the only engine; producer-asserted evidence flags are never consumed.
+Read first: `reference/priorities/braid-program/README.md` (charter and ground rules), `method.md` (Stage S/E discipline, acceptance gates, collapse protocol), `campaigns/instrument-gate.md` (accepted capabilities G1–G5, barred list, booking checklist, `assembly-view-record.v0`), and `priorities.md` (queue items 2–3). AGENTS.md Solver Ownership and Theory Layer Discipline bind throughout. EOM (`src/eom`) is the only engine; producer-asserted evidence flags are never consumed.
 
 ## Part 1 — Path-provenance audit of the EOM engine (gate)
 

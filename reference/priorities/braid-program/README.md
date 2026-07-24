@@ -1,6 +1,6 @@
 # Braid Program
 
-Status: DRAFT charter, pending operator ratification (opened 2026-07-15).
+Status: RATIFIED by the operator (2026-07-24; opened 2026-07-15).
 
 This is a fresh start on the braid search. It supersedes the eight legacy `braid-*` workstreams, which remain frozen in place until they are archived (planned after the current instrument cross-verification campaign completes). Nothing in this directory is moved from the legacy directories; everything here is authored new.
 

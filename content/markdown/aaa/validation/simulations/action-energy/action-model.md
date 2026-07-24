@@ -373,3 +373,14 @@ Recap
 - Method 2: exact path-history formula; contributions occur only when $T-T_t=\|\mathbf X-\mathbf X_t(T_t)\|/c_f$, with amplitude decaying as $1/(4\pi r)$ and a geometric $1-\mathbf{n}\cdot\mathbf V_t/c_f$ factor in evaluation.
 
 The comparison ends at propagation and acceleration-method selection. Particle-penetration, shielding, neutrino, photon, and dark-sector claims require their own assembly records and observer-level instruments; this method note does not assign those outcomes.
+
+## Sibling Derivation Notes
+
+This note is the hub of the action-energy derivation set. The companion notes develop the individual pieces:
+
+- [Background and Simple Action](background-and-simple-action.md) and [Analytic Baselines](analytic-baselines.md) — starting point and closed-form checks.
+- [Causal Set and Delay Geometry](causal-set-and-delay-geometry.md) and [Delay Dynamics Energy](delay-dynamics-energy.md) — path-history geometry and its energy bookkeeping.
+- [Radial Attraction](radial-attraction.md), [Attraction](attraction.md), and [Like-Polarity Symmetric Repulsion](repulsion.md) — signed two-body cases.
+- [Self-energy and Regularization Notes](self-energy.md) and [Self-interaction Switch](self-interaction-switch.md) — self-hit handling.
+- [Superposition and Locality](superposition-and-locality.md), [Informational Ambiguity](informational-ambiguity.md), and [Receiver Velocity and Work](receiver-velocity-and-work.md) — multi-source and receiver-side effects.
+- [Numerical Recipe and Stability](numerical-recipe-and-stability.md), [Units and Constants](units-and-constants.md), and [Well-posedness and Regularization](well-posedness-and-regularization.md) — implementation and regulator discipline.

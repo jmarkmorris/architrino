@@ -1,6 +1,6 @@
 # Braid Program — Method
 
-Status: DRAFT, pending operator ratification (2026-07-15). This document defines how the program produces and grades results. It is reference-class: rewritten forward-only when policy changes.
+Status: RATIFIED by the operator (2026-07-24; drafted 2026-07-15). This document defines how the program produces and grades results. It is reference-class: rewritten forward-only when policy changes.
 
 ## The Two Stages
 

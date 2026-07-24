@@ -54,7 +54,7 @@ Presets are starting points for inspection, not certified photon branches. They 
 
 The Search configurations button looks for photon settings that are worth inspecting more closely. It starts from the current app settings, then tries nearby or systematic variations of the enabled binaries, indexed frequency powers, radius lanes, phase offsets, $\Delta x$, Virtual Observer position, Analyzer angle, and speed mode. The search includes a small set of `Lorentz factor` local-$c$ candidates so the results can expose configurations where derived $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ materially change the moving-apparatus solve.
 
-The search generates a results list for the current session. The interactive search is intentionally bounded: it samples representative configuration families rather than trying every possible combination. Each result should include a short name, the full settings snapshot, the main plot and polarization summary, the diagnostics that made it stand out, and a plain-language reason to inspect it. When the absolute-history solver path is available, top results also record a compact comparison between the co-moving diagnostic and the absolute-history moving-apparatus diagnostic, including helical same-transmitter phase-family counts when those records are computed. Loading a result applies its settings to the app so it can be viewed, played, edited, or compared against a named preset.
+The search generates a results list for the current session. The interactive search is intentionally bounded: it samples representative configuration families rather than trying every possible combination. Each result should include a short name, the full settings snapshot, the main plot and polarization summary, the diagnostics that made it stand out, and a plain-language reason to inspect it. When the absolute-history solver path is available, top results also record a compact comparison between the co-moving diagnostic and the absolute-history moving-apparatus diagnostic. Interactive search defers the expensive same-transmitter self-hit sweep; helical phase-family records remain available through the dedicated sweep workflow. Loading a result applies its settings to the app so it can be viewed, played, edited, or compared against a named preset.
 
 Useful results can be exported as JSON. Exported settings can later be reviewed and, when they are worth keeping, incorporated into the named preset set. Until a result is promoted that way, treat it as a session finding rather than a durable app preset.
 
@@ -205,6 +205,8 @@ $$
 $$
 
 This is a Virtual Observer diagnostic. It uses Master-EOM-style causal hits to inspect a candidate branch, but it does not prove that the displayed state is a physical photon.
+
+Both calculation modes use the same display regularization, $R_{\mathrm{display}}=\max(R,0.08)$ in app-coordinate units, in the inverse-square denominator. The direction vector remains normalized from the unregularized displacement, so the floor limits only the near-source magnitude. This is a numerical display safeguard, not a derived short-distance law.
 
 ## Derived Polarization
 

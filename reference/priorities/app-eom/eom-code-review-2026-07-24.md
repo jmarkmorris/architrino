@@ -1,5 +1,9 @@
 # EOM Solver Code Review — 2026-07-24
 
+> **Remediation status (three fix rounds, verified 2026-07-24).** Nearly every finding below is now closed in source. Verified FIXED: H1, H2 (structurally, via a new `PinnedSegment` owning handle that also retired the round-2 copy regression), H3, H5, H6 (both server and single-shot), M1 (barred, not repaired), M2, M4, M5 (all four self-pair predicates), M6, M7, M8, M9, M10 event path, M11 `-ffp-contract=off`, M12 (scoped + documented), plus `causal_domain_area` (now Interval ops), the Gaussian-tail bound (now a directed-rounding MPFR helper), `Interval::midpoint()` overflow, the precision-ladder wrap, the centered-form remainder, and both vacuous self-checks (one deleted, one replaced by a real input-vs-published predicate).
+>
+> **Still open after round three:** `monotone_finite_width_integral` remainder still assumes an exact midpoint (see §H4-monotone below); centered main term scaled by upward-rounded `width()`; M10 finite-width acceleration path still has no tail term or spec sentence; `long double` remains in `Interval.cpp` trig phase reduction (same cross-platform class as the fixed `causal_domain_area`); no sanitizer wiring; three dead `far_field_*` result fields; README missing three CLI modes; wall-clock still labelled `*_cpu_seconds`. New consequential items from the joint+event bar are recorded in §Round-three new findings.
+
 Status: findings report, comments only. No source files were modified. Four parallel review lanes covered all 30,025 lines under `src/eom` (core evolution, certified-numerics kernel, history/traversal layer, CLIs/build/diagnostics). Every finding carries a severity, a file:line anchor, and a falsifier. Findings marked **[verified]** were independently re-read against the live source by the consolidating reviewer; the rest are graded as reviewed-once.
 
 Plainly: four independent readers each took a quarter of the solver and hunted for real defects — places where a "certified" number could quietly be wrong, where output could differ between runs, or where the code has grown enough duplication to be a maintenance hazard. The most important claims were then re-checked a second time against the actual code before being written down here.
@@ -104,6 +108,49 @@ Priority order by drift-risk reduction per effort:
 ## Cleanup inventory
 
 Zero TODO/FIXME/HACK markers in the tree. Dead/unwired items: `DisplayEvaluation.hpp:28-29` request fields parsed but never read, result fields (:52-54) never written; `CoupledEvolution.cpp:992-996` unused parameter, `:1016-1019` redundant forward declaration; `RootTimeBudget.cpp:23-26` no-op alias; `ExactPairBatch.cpp:3657-3661` wall time labeled `cpu_seconds`; `eom_borg_shadow_cli.cpp:978-982` uncommented `== 6U` joint-seed gate (a 4:4 run silently loses joint seeding); `eom_borg_shadow_cli.cpp:320` synthetic `rejected_step_count`. Magic constants worth naming: `220U` joint-symbol cap, `1e-13` joint settle, 8-iteration tube fixpoint, 12-step common-domain ladder, `64U`/`16U` split batch. README drift is additive only: `far-field-dispersal`, `certified-correction-retry`, `pinned-fold-benchmark`, `print-protocol-version`, and the entire benchmark CLI are undocumented; nothing listed is stale. Missing asserts on stated invariants: `finite_width_pairs` silently skips on index mismatch (fail-open in the impossible case — should throw), `error_token` maps negative radii to `DBL_MIN` silently, `subfield_suffix` index precondition, `locate_exact_history_segment` bounds.
+
+## Round-three new findings
+
+Filed after verifying the third fix round. Line anchors are current as of 2026-07-24 and will drift.
+
+### R1 (HIGH, operational) — the joint+event bar reports the wrong halt code [verified]
+
+M1 was closed by failing closed: `CoupledEvolution.cpp:3170-3184` returns failure code `unsupported_caustic_or_singular_chart` when `joint_enabled && !event_pairs.empty()`, before any contraction runs. Correct, and regression-tested. But that is a *step* failure, so the controller halves the step and retries until exhaustion, and the halt-code ladder at `:7104-7121` tests `failure_code.rfind("caustic_", 0U) == 0U` — the string starts with `unsupported_`, not `caustic_`, so it falls through every arm to the generic `halt_code = "minimum_step_exhausted"`. A joint run meeting any finite-width event burns the full rejection ladder and then misreports a step-size problem instead of the real chart limitation. Fix: give the code its own arm in the ladder.
+
+Plainly: the solver now correctly refuses a combination it cannot certify, but the refusal is filed under the wrong reason code — so the log says "I ran out of step size" when the truth is "I don't support this combination yet." An operator debugging it would chase the wrong thing.
+
+### R2 (HIGH, capability) — the bar makes the finite-width adjudication retry unreachable for Borg populations
+
+The recovery route at `:7077-7102` answers a near-minimum-step `coupled_correction_failed` by inserting certified opposite-polarity core pairs into `adjudicated_finite_width_pairs` and retrying at the same width. Those pairs re-enter `event_pairs` at `:3151-3155`, so with joint state seeded the retry now returns immediately at the new bar. Since the borg CLI seeds joint histories for any population `>= 6U` paths, the sharp→finite-width fallback is dead for exactly the 3:3 and 4:4 populations Borg runs. Fail-closed and correct, but a whole recovery route silently stopped working; it belongs in the README note beside the bar.
+
+### R3 (MEDIUM) — `monotone_finite_width_integral` remainder still assumes an exact midpoint [verified]
+
+The centered route was fixed correctly (`CertifiedAcceleration.cpp:705-712` now charges `(m−a)²/2 + (b−m)²/2` from two outward endpoint radii, with the reasoning written down at `:717-718`). Its sibling three functions later was not — `:873-877` still computes `0.5 * emission.width() * mollifier_integral.upper()`, asserting `max|τ−m| ≤ |I|/2`. Because `width()` is upward-rounded, the bound is `h/2 + ulp(h)/2` while the true radius is `h/2 + ulp(a)/2`; for a narrow cell at large emission time `ulp(a) ≫ ulp(h)`, and in the degenerate `h < ulp(a)` case the midpoint collapses onto an endpoint and the true radius is `h` — a factor-2 shortfall, with no `lower < midpoint < upper` guard in this function. The correct idiom is already in the file; apply `left_radius`/`right_radius` here too.
+
+### R4 (MEDIUM) — centered main term scaled by the upward-rounded width [verified]
+
+`CertifiedAcceleration.cpp:703-704`: `const double width = emission.width(); result = scale(Interval::point(width), midpoint_value);`. The identity certified is `∫_I A = |I|·A(m) + R`, but `width()` is deliberately one ulp above `|I|`, so the main term carries a sign-dependent bias of up to `ulp(h)·|A(m)|` that the (now-correct) remainder does not cover. `left_radius + right_radius` is exactly `b − a` and is computed two lines below; build the main-term width from that, or from `Interval::point(upper) - Interval::point(lower)`. Same pattern at `:873-877`.
+
+### R5 (MEDIUM) — `long double` survives in the interval trig phase reduction
+
+`causal_domain_area` was migrated to Interval ops, closing its cross-platform drift. The same hazard remains in `Interval.cpp:224-256`: `contains_phase` and `periodic_range` reduce phases in `long double` (80-bit x86-64, 64-bit arm64 macOS, 128-bit aarch64 Linux), so an endpoint sitting within a rounding of a `π/2 + kπ` extremum can take the `upper = 1.0` branch on one platform and the tighter endpoint branch on another. `interval_sin`/`interval_cos` feed the analytic circular history states, so this is the same byte-drift class, relocated. Do the reduction in double/Interval with an outward margin.
+
+### R6 (MEDIUM) — `memory_boundary_contact` "dead flag" was misdiagnosed in the original review
+
+The original LOW claimed the binary64 `memory_boundary_contact` path is unreachable. Re-derivation says otherwise: `ExactPairBatch.cpp:1011-1016` calls the setter with `point = cell.lower`, the first cell's lower is `max(incremental_search_lower, segment.t_start())` which equals `search_lower` on a cold search, and bisection preserves `cell.lower` on the left half. So the flag is attainable whenever the residual is exactly zero at the search floor and token-dominated. Do **not** delete it — `CoupledEvolution.cpp:1150-1151, 1476` and `CertifiedTraversal.cpp:188` all gate on this signal. This corrects the earlier report.
+
+### R7 (LOW-MEDIUM) — leftovers and near-misses
+
+- **Dead joint plumbing behind the bar**: `CoupledEvolution.cpp:3243-3259` still resolves `event_joint_receiver`/`event_joint_transmitter` and passes them to the regulator; both are unconditionally `nullptr` under the bar. The first-pass regulator call passes joint pointers while the refinement call at `:3357-3361` does not — harmless today, a latent asymmetry if the bar is ever lifted. Mark both sites.
+- **Constant-true field pattern survives one level up**: `reconstruction_matches` was removed cleanly (and the removal is pinned by tests), but `CertifiedAcceleration.cpp:1858-1864` still ships `complete_ordered_pair_domain = true` on a path that throws before reaching it — same tautology class.
+- **`const_iterator` declares `forward_iterator_tag`** (`History.hpp:222`) while `operator++` resets the pin (`History.cpp:1049-1054`), so `*i` does not survive increment and the multipass guarantee fails in disk mode. Current uses are safe; downgrade the tag to `input_iterator_tag` before an algorithm caches a reference across `++`.
+- **Warm-start reuse is quietly defeated by retention**: `ExactPairBatch.cpp:713-718` and `:3664-3677` compare warm and current segments at the *same* index, but `retained_suffix` shifts indices by the retired count, so the first comparison fails and every warm cell is discarded. Safe and silent — measure this before attributing warm-start ineffectiveness elsewhere.
+- **`retained_suffix` also changes `provenance_fingerprint()`**, so a suffix-trimmed self-pair now loses both the uniform-circular fast path and (if only one side is trimmed) `same_retained_history`. Correct fail-closed direction, undocumented; one comment at `History.cpp:1313-1318` would pay for itself.
+- **Minor**: `History.cpp:865` dead initializer overwritten inside the lock; `RetainedHistory` construction pins each segment twice (`:1084-1088`) then walks the sequence again, three passes per construction; `std::lower_bound` over the pinning iterator (`CoupledEvolution.cpp:4194`) is O(n) advances with a cache scan each — now the dominant cost in that path since the copies are gone; `nonnegative_point` still a no-op alias asserting an invariant it never checks; wall-clock `steady_clock` still labelled `*_cpu_seconds` and propagated into three headers and the shadow CLI output.
+
+### R8 (INFO) — schema and checkpoint-compat notes
+
+The Python oracle still emits `reconstruction_matches` (and genuinely recomputes it), so native and oracle certificate schemas now differ by that field — field-by-field diffing tools will see a delta. Separately, `model_fingerprint` is now near-complete, which correctly invalidates checkpoints on any control change; confirm the two-call structure at `Checkpoint.cpp:365-369` still intends its fallback arm to accept checkpoints written before these controls were hashed.
 
 ## Suggested fix order
 

@@ -36,8 +36,7 @@ The central change since the prior full ranking is the EOM and campaign-ownershi
 
 | Rank | ID | Decision | Owning tracker task | Status | Last surfaced |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | `BP-01` | Ratify the Braid Program charter and evolution-first N-ladder while preserving the already-ratified instrument gate. | [`braid-program` queue item 1](../braid-program/priorities.md#queue) | `discussion-scoped` | 2026-07-16 |
-| 2 | `DF-01` | Decide whether Information Relay Machines and record-preserving transduction chains should become controlled reader-facing terminology. | [`information-relay-machines` queue](../information-relay-machines/priorities.md#queue) | `discussion-scoped` | 2026-07-11 |
+| 1 | `DF-01` | Decide whether Information Relay Machines and record-preserving transduction chains should become controlled reader-facing terminology. | [`information-relay-machines` queue](../information-relay-machines/priorities.md#queue) | `discussion-scoped` | 2026-07-11 |
 
 ## Unified Priority Table
 
@@ -112,7 +111,7 @@ Prior ranks `3`, `4`, `6`, `7`, and `8` belonged to `braid-mass-response-map`, `
 ## Current Focus
 
 - **Measured/derived:** `app-eom` has the live production kernel, independent acceptance oracle, persistent worker foundations, exact checkpoint-backed record emission, deterministic thread replay, and measured recursive block-exclusion ladders. **Inferred rank claim:** it is first because completing long-horizon bounded evolution and precision/refinement acceptance unlocks every physical campaign. **Falsifier:** demote it if the live EOM queue becomes maintenance-only or a different active lane can produce accepted dynamics without further EOM work.
-- **Measured/derived:** `braid-program` has a ratified instrument gate, a fully constructed 243-row Campaign 1 workload, and no booked physics fate. **Inferred rank claim:** it is second because the first opposite-polarity binary fate is the shortest route to a real assembly object or a decisive no-go. **Falsifier:** demote it if charter ratification rejects the N-ladder or Campaign 1 cannot run under the frozen EOM/instrument contract.
+- **Measured/derived:** `braid-program` has a ratified charter and instrument gate, a fully constructed 243-row Campaign 1 workload, one diagnostic transverse inward-to-outward reversal, and no booked physics fate. **Inferred rank claim:** it is second because completing the first opposite-polarity binary fate remains the shortest route to a real assembly object or a decisive no-go. **Falsifier:** demote it if Campaign 1 cannot run under a source-frozen EOM/instrument contract or another lane obtains a shorter accepted route to a persistent assembly.
 - **Measured/inferred:** the former attractor-search lane has a checkpointed harness, deterministic resume, native assembly-view records, and a measured small-population cost model. Those instrument capabilities now belong to EOM, while Braid Program owns the first statistical campaign. **Falsifier:** reopen a separate rank only if multiple non-braid scientific programs require an independent instrument roadmap and acceptance boundary.
 - **Derived target:** `master-equation-closure` owns the causal wake update law, the finite coincident same-transmitter transition, and energy, momentum, and angular momentum accounts on that same update. Certified-braid construction and observer-level recovery remain downstream. **Falsifier:** demote it if no declared wake-state update reduces to the transmitter-side acceleration law on regular charts while crossing coincident same-transmitter birth finitely and closing the conserved accounts.
 - **No closure-score movement:** the ranking changes attention order only. No row in the 2026-06-28 closure scorecard rises from this audit.
@@ -126,7 +125,7 @@ The `dormant-deferred` archive and all of its children are unscored. `informatio
 ## Top Cross-Workstream Next Actions
 
 1. Finish the EOM bounded-population long-horizon acceptance stack: retained-history residency, refinement and precision ladders, deterministic CPU/SIMD evidence, and the first claim-ready binary run packet.
-2. Ratify the Braid Program charter, then execute Campaign 1 without changing its frozen 27-configuration, three-prehistory, three-refinement workload or its instrument in the production change.
+2. Execute Braid Program Campaign 1 under the ratified charter without changing its frozen 27-configuration, three-prehistory, three-refinement workload or its instrument in the production change.
 3. Run Braid Program's first declared undirected ensemble campaign through EOM's checkpointed harness, with a persistence criterion fixed before scoring and the targeted $2{:}2$ neighborhood at $N\in\{4,6,8\}$.
 4. Close `causal_wake_update_law`, then accept the finite coincident same-transmitter transition and all three conserved accounts only on that same retained-history update.
 5. Populate the pressure-dependent Noether sea constitutive packet only after an accepted branch carries that wake-state closure, and require one shared response row across clock, signal, inertia, effective-metric, material, and cosmology consumers.
