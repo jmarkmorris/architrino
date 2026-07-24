@@ -43,4 +43,3 @@ export function createCausalHistoryLedger(state) {
   }
   return rows.sort((left, right) => left.emissionTime - right.emissionTime);
 }
-

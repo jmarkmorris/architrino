@@ -1,7 +1,6 @@
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
-
 function colorToCss(color, alpha = color?.a ?? 1) {
   if (typeof color === "string") {
     return color;
@@ -94,4 +93,3 @@ export function drawWakeDisplayGeometry(ctx, geometry, {
     ctx.restore();
   }
 }
-
