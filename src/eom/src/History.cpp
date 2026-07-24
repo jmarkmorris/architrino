@@ -537,6 +537,7 @@ struct ExactHistoryDiskRuntime {
   std::uint64_t maximum_disk_bytes = 0U;
   std::uint64_t disk_bytes = 0U;
   std::uint64_t block_file_count = 0U;
+  std::uint64_t block_load_count = 0U;
   std::uint64_t next_block_id = 0U;
   std::uint64_t generation = 0U;
   std::size_t cached_blocks_per_thread = 16U;
@@ -643,6 +644,7 @@ void configure_history_disk_storage(
   runtime.maximum_disk_bytes = options.maximum_disk_bytes;
   runtime.disk_bytes = 0U;
   runtime.block_file_count = 0U;
+  runtime.block_load_count = 0U;
   runtime.next_block_id = 0U;
   runtime.cached_blocks_per_thread = options.cached_blocks_per_thread;
   runtime.run_id.clear();
@@ -676,6 +678,7 @@ void begin_history_disk_storage_run(const std::string& run_id) {
   }
   runtime.disk_bytes = 0U;
   runtime.block_file_count = 0U;
+  runtime.block_load_count = 0U;
   runtime.next_block_id = 0U;
   runtime.run_id = run_id;
 }
@@ -692,6 +695,7 @@ void release_history_disk_storage_run() noexcept {
   runtime.run_directory.clear();
   runtime.disk_bytes = 0U;
   runtime.block_file_count = 0U;
+  runtime.block_load_count = 0U;
   runtime.next_block_id = 0U;
   runtime.run_id.clear();
 }
@@ -705,6 +709,7 @@ HistoryDiskStorageStats history_disk_storage_stats() noexcept {
       .maximum_disk_bytes = runtime.maximum_disk_bytes,
       .disk_bytes = runtime.disk_bytes,
       .block_file_count = runtime.block_file_count,
+      .block_load_count = runtime.block_load_count,
       .cached_blocks_per_thread = runtime.cached_blocks_per_thread,
       .run_id = runtime.run_id,
   };
@@ -862,10 +867,11 @@ std::shared_ptr<const ExactHistoryBlock> exact_history_slot_block(
     }
   }
   auto loaded = read_exact_history_block(*slot.disk);
-  std::size_t limit = 16U;
+  std::size_t limit;
   {
     auto& runtime = exact_history_disk_runtime();
     std::lock_guard lock(runtime.mutex);
+    ++runtime.block_load_count;
     limit = std::max<std::size_t>(2U, runtime.cached_blocks_per_thread);
   }
   if (cache.entries.size() < limit) {
@@ -939,7 +945,7 @@ HistorySegmentSequence::PinnedSegment HistorySegmentSequence::pin(
       locate_exact_history_segment(*storage_, index);
   const auto& slot = storage_->blocks[block_index];
   if (slot.memory) {
-    return PinnedSegment(nullptr, &(*slot.memory)[local_index]);
+    return PinnedSegment(slot.memory, &(*slot.memory)[local_index]);
   }
   auto block = exact_history_slot_block(slot);
   const CubicHistorySegment* const segment = &(*block)[local_index];
@@ -1081,10 +1087,11 @@ RetainedHistory::RetainedHistory(
   if (segments_.empty()) {
     throw std::invalid_argument("retained history requires at least one segment");
   }
+  auto left = segments_.pin(0U);
   for (std::size_t index = 1; index < segments_.size(); ++index) {
-    const auto left = segments_.pin(index - 1U);
     const auto right = segments_.pin(index);
     validate_segment_join(*left, *right);
+    left = right;
   }
   for (const auto& segment : segments_) {
     fingerprint_segment(fingerprint_state_, segment);
@@ -1301,6 +1308,9 @@ RetainedHistory RetainedHistory::appended(CubicHistorySegment segment) const {
   return RetainedHistory(
       history_id_, segments_.appended(std::move(segment)), fingerprint_state,
       hull(*full_position_hull_, position), speed_upper,
+      // Appending preserves the analytic circular prefix and extends only the
+      // ordinary cubic approximation. The certificate remains valid on its
+      // original, explicitly bounded reception interval.
       uniform_circular_endpoint_certificate_);
 }
 
@@ -1313,6 +1323,10 @@ RetainedHistory RetainedHistory::retained_suffix(
   if (first_segment_index == 0U) {
     return *this;
   }
+  // Suffix reconstruction deliberately drops the analytic circular
+  // certificate. The factory provenance no longer starts at its declared
+  // valid_start_time, so circular self shortcuts fail closed until a future
+  // revalidation path certifies the retained prefix independently.
   return RetainedHistory(
       history_id_, segments_.retained_suffix(first_segment_index),
       RecomputeMetadataTag{});
@@ -1433,8 +1447,16 @@ IntervalVector RetainedHistory::correlated_position_hull(
   if (segments_.size() == 1U) {
     return position_hull(time);
   }
+  // Decimal-token intervals may extend one binary64 ulp beyond the nominal
+  // endpoint while still lying inside the segment's outward time enclosure.
+  // Clamp only the lookup keys; each segment evaluation still receives the
+  // original outward interval clipped to its own domain below.
+  const std::size_t first_segment =
+      segment_index_at(std::max(time.lower(), t_start()));
+  const std::size_t last_segment =
+      segment_index_at(std::min(time.upper(), t_end()));
   std::optional<IntervalVector> result;
-  for (std::size_t index = 0U; index < segments_.size(); ++index) {
+  for (std::size_t index = first_segment; index <= last_segment; ++index) {
     const auto segment_pin = segments_.pin(index);
     const auto& segment = *segment_pin;
     const double lower = std::max(time.lower(), segment.t_start());

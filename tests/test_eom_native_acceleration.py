@@ -477,7 +477,7 @@ class NativeAccelerationTests(unittest.TestCase):
         native = self.packet["matrix"]
         self.assertEqual(native["status"], oracle.status)
         self.assertEqual(native["logical_ordered_pairs"], 4)
-        self.assertTrue(native["complete_ordered_pair_domain"])
+        self.assertNotIn("complete_ordered_pair_domain", native)
         self.assertEqual(
             native["pair_order"],
             [["a", "a"], ["a", "b"], ["b", "a"], ["b", "b"]],

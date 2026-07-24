@@ -3241,6 +3241,10 @@ SubstepAttempt corrected_substep_impl(
           }
           const auto pair_request = receiver_pair_budget_request(
               request, event_pairs, receiver_id);
+          // Unreachable while the joint+event bar above is active. If that
+          // bar is widened, these joint inputs must be restored through the
+          // regulator refinement ladder too; today only its first call would
+          // receive them, creating a latent refinement asymmetry.
           const JointAffineRetainedHistory* event_joint_receiver =
               joint_enabled
               ? &candidate_joint_histories.at(receiver_id)
@@ -6056,7 +6060,7 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
         const auto warm_source = warm_history_by_id.find(source.path_id);
         if (warm_source == warm_history_by_id.end()) {
           warm_source_equality.push_back(
-              {-std::numeric_limits<double>::infinity(), 0});
+              {-std::numeric_limits<double>::infinity(), {}});
           continue;
         }
         const std::string transmitter_search_lower =
@@ -6104,9 +6108,10 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
             .warm_source_prefix_token_stable_upper = warm_equality_available
                 ? warm_source_equality[transmitter_index].prefix_token_stable_upper
                 : -std::numeric_limits<double>::infinity(),
-            .warm_source_aligned_equal_segments = warm_equality_available
-                ? warm_source_equality[transmitter_index].aligned_equal_segments
-                : 0,
+            .warm_source_segment_index_map = warm_equality_available
+                ? &warm_source_equality[transmitter_index]
+                       .warm_to_current_segment_indices
+                : nullptr,
             .joint_root_point_state = joint_root_state(
                 receiver.path_id + "/" + source.path_id + "/" +
                 reception_time),
@@ -6911,6 +6916,10 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       adjudicated_finite_width_pairs(
           request.adjudicated_finite_width_pairs.begin(),
           request.adjudicated_finite_width_pairs.end());
+  // A certified finite-width event may discard optional joint correlation,
+  // but joint state must never silently reappear on a later controller step.
+  bool joint_state_fallback_active =
+      !adjudicated_finite_width_pairs.empty();
   std::size_t certificate_cost_cooldown_remaining =
       request.certificate_cost_initial_cooldown_steps;
 
@@ -6951,7 +6960,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
             absolute_time_rounding_envelope(
                 current_time, current_time + attempted_step);
     auto step_request = request;
-    if (adjudicated_finite_width_pairs.empty()) {
+    if (!joint_state_fallback_active &&
+        adjudicated_finite_width_pairs.empty()) {
       step_request.joint_histories = accepted_count == 0U
           ? boundary_joint_histories
           : joint_histories;
@@ -7039,6 +7049,9 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     const bool certificate_cost_deferred =
         step.failure_code ==
             "root_precision_escalation_deferred_for_cost_feedback";
+    const bool ordinary_joint_event_fallback_retry =
+        !joint_state_fallback_active &&
+        native_joint_event_fallback_is_available(step_request, step);
     for (const auto& substep : step.substeps) {
       for (const auto& state : substep.finite_width_state_certificates) {
         const auto pair = std::make_pair(
@@ -7060,12 +7073,22 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       step.correction_retry_scale = retry_scale;
     }
     steps.push_back(std::move(step));
-    if (steps.back().failure_code ==
-        "unsupported_caustic_or_singular_chart") {
-      // Step subdivision cannot create the missing certified joint event map.
-      // Stop on the truthful caustic classification rather than exhausting a
-      // timestep ladder that cannot make this route supported.
-      halt_code = "caustic_transit_uncertified";
+    if (ordinary_joint_event_fallback_retry) {
+      if (rejected_count > request.max_rejected_steps) {
+        halt_code = "numeric_resource_limit_exhausted";
+        break;
+      }
+      // The ordinary finite-width route is certified independently of the
+      // optional joint correlation. Retry the same width without joint state,
+      // and keep that degradation active for the rest of this evolution.
+      joint_state_fallback_active = true;
+      joint_histories.clear();
+      step_size = attempted_step;
+      continue;
+    }
+    if (const auto terminal = native_nonretryable_halt_code(steps.back());
+        terminal.has_value()) {
+      halt_code = *terminal;
       break;
     }
     if (rejected_count > request.max_rejected_steps) {
@@ -7126,6 +7149,9 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       }
     }
     if (next_step < minimum_step) {
+      // Defense in depth for callers that bypass the primary short-circuit
+      // above; ordinary controller flow cannot reach this arm with the
+      // unsupported joint-event code.
       if (steps.back().failure_code.rfind("caustic_", 0U) == 0U ||
           steps.back().failure_code ==
               "unsupported_caustic_or_singular_chart") {
@@ -7184,6 +7210,29 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       .all_steps_atomic = all_atomic,
       .timing = timing,
   };
+}
+
+std::optional<std::string> native_nonretryable_halt_code(
+    const NativeAtomicStepCertificate& rejected_step) {
+  if (rejected_step.failure_code ==
+      "unsupported_caustic_or_singular_chart") {
+    // Step subdivision cannot create the missing certified joint event map.
+    // This is the primary controller short-circuit; the minimum-step ladder
+    // arm remains defense in depth for callers that bypass this classifier.
+    return "caustic_transit_uncertified";
+  }
+  return std::nullopt;
+}
+
+bool native_joint_event_fallback_is_available(
+    const NativeCoupledEvolutionRequest& request,
+    const NativeAtomicStepCertificate& rejected_step) {
+  return rejected_step.status == "rejected" &&
+      rejected_step.failure_code ==
+          "unsupported_caustic_or_singular_chart" &&
+      request.chart_policy == "sharp_with_finite_width_fallback" &&
+      !request.joint_histories.empty() &&
+      request.adjudicated_finite_width_pairs.empty();
 }
 
 }  // namespace architrino::eom

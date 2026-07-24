@@ -71,6 +71,7 @@ struct HistoryDiskStorageStats {
   std::uint64_t maximum_disk_bytes = 0U;
   std::uint64_t disk_bytes = 0U;
   std::uint64_t block_file_count = 0U;
+  std::uint64_t block_load_count = 0U;
   std::size_t cached_blocks_per_thread = 0U;
   std::string run_id;
 };
@@ -192,6 +193,18 @@ class HistorySegmentSequence {
   class PinnedSegment {
    public:
     PinnedSegment() = default;
+    PinnedSegment(const PinnedSegment&) = default;
+    PinnedSegment& operator=(const PinnedSegment&) = default;
+    PinnedSegment(PinnedSegment&& other) noexcept
+        : owner_(std::move(other.owner_)),
+          segment_(std::exchange(other.segment_, nullptr)) {}
+    PinnedSegment& operator=(PinnedSegment&& other) noexcept {
+      if (this != &other) {
+        owner_ = std::move(other.owner_);
+        segment_ = std::exchange(other.segment_, nullptr);
+      }
+      return *this;
+    }
 
     [[nodiscard]] const CubicHistorySegment& operator*() const {
       return *segment_;
@@ -210,21 +223,24 @@ class HistorySegmentSequence {
         const CubicHistorySegment* segment)
         : owner_(std::move(owner)), segment_(segment) {}
 
-    // A disk-backed page is retained here so cache eviction cannot invalidate
-    // the selected segment. In-memory blocks need no page pin and retain the
-    // ordinary container rule: the sequence must outlive its borrowed handle.
+    // The selected disk page or in-memory block is retained here, so a pin can
+    // outlive both the sequence and later cache eviction.
     std::shared_ptr<const void> owner_;
     const CubicHistorySegment* segment_ = nullptr;
   };
 
   class const_iterator {
    public:
-    using iterator_category = std::forward_iterator_tag;
+    // Dereferenced references remain valid only until this input iterator is
+    // incremented or destroyed. Call pin() when ownership must cross either
+    // boundary.
+    using iterator_category = std::input_iterator_tag;
     using value_type = CubicHistorySegment;
     using difference_type = std::ptrdiff_t;
     using pointer = const CubicHistorySegment*;
     using reference = const CubicHistorySegment&;
 
+    const_iterator() = default;
     reference operator*() const;
     pointer operator->() const;
     const_iterator& operator++();
@@ -242,6 +258,8 @@ class HistorySegmentSequence {
 
     const HistorySegmentSequence* owner_ = nullptr;
     std::size_t index_ = 0;
+    // One current page keeps ordinary iteration safe without retaining every
+    // traversed disk page and defeating the configured cache bound.
     mutable PinnedSegment pinned_;
   };
 

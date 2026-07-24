@@ -21,6 +21,7 @@ double magnitude_upper(const Interval& value) {
 }
 
 Interval nonnegative_point(double value) {
+  require_nonnegative_finite(value, "nonnegative interval point");
   return Interval::point(value);
 }
 

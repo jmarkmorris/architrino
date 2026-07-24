@@ -219,7 +219,7 @@ $$
 S_\eta[\{\mathbf X_i\}]
 =
 \int dT \sum_i \frac{1}{2} \mu_{\text{arch}} \|\mathbf V_i(T)\|^2
-- \frac{1}{2}\sum_{i,j}^{\mathrm{adm}}\frac{\kappa \, \sigma_{ij} |q_i q_j|}{c_f}
+- \frac{1}{2}\sum_{i,j}^{\mathrm{adm}}\mu_{\text{arch}}\kappa \, \sigma_{ij} |q_i q_j|
 \int dT \int_{-\infty}^{T} dT_t\,
 \frac{\phi_\eta\!\big(\tilde g_{ij}(T,T_t)\big)}{r_{ij}(T;T_t)}
 $$
@@ -230,6 +230,16 @@ r_{ij}(T;T_t)=\|\mathbf X_i(T)-\mathbf X_j(T_t)\|,
 \qquad
 \phi_\eta\equiv\delta_\eta
 $$
+
+With $[\tilde g]=T$ and $[\delta(\tilde g)]=T^{-1}$, the coefficient
+$\mu_{\text{arch}}\kappa$ gives the interaction term the same action
+dimension as the quadratic bookkeeping term. A factor
+$\kappa/c_f$ would instead leave the kernel with acceleration
+dimensions before time integration.
+
+Plainly: the same universal conversion used in the kinetic row must also
+multiply the interaction row; dividing by the wake speed does not repair the
+units.
 
 Here:
 - $\mathbf X_i(T)$ is the trajectory of architrino $i$.
@@ -446,7 +456,7 @@ where the action-level nonlocal Noether charge can be written with the weighted 
 $$
 \mathcal{K}_{ij}^{E}(T_1,T_t)
 =
-\frac{\kappa\,\sigma_{ij}\,|q_iq_j|}{c_f}
+\mu_{\text{arch}}\kappa\,\sigma_{ij}\,|q_iq_j|
 \Theta(T_1-T_t)
 \frac{\delta\!\big(\tilde g_{ij}(T_1,T_t)\big)}
 {r_{ij}(T_1,T_t)}
@@ -455,7 +465,7 @@ For the delayed-interior characteristic-tail candidate, the Noether-energy kerne
 $$
 \mathcal{K}_{ij,\mathrm{eff}}^{E}(T_1,T_t)
 =
-\frac{\kappa\,\sigma_{ij}\,|q_iq_j|}{c_f}
+\mu_{\text{arch}}\kappa\,\sigma_{ij}\,|q_iq_j|
 \Theta(T_1-T_t)
 K_{\mathrm{eff}}^{(\eta)}
 \!\left(
@@ -469,11 +479,19 @@ Then:
 $$
 E_{\text{wake}}(T)
 =
-\frac{1}{2}\sum_{i,j}
+-\frac{1}{2}\sum_{i,j}
 \int_{-\infty}^{T} dT_t
 \int_{T}^{\infty} dT_1\,
 \partial_{T_1}\mathcal{K}_{ij}^{E}(T_1,T_t)
 $$
+
+The outer minus sign matches the action convention
+$S=S_{\mathrm{kinetic}}-\tfrac12\sum S_{ij}$ and makes the sharp static
+like-polarity pair charge positive. Reversing that sign would contradict the
+positive work required to bring a repelling like-polarity pair closer.
+
+Plainly: the boundary charge must inherit both the units and the sign of the
+same action kernel.
 
 For compatible trajectory reconstruction one may use the work-integral form
 $$
@@ -835,7 +853,7 @@ with the integer tied to the phase-return degree pair above. Thus quantization i
 
 The delayed action, after branch reduction to causal-locus and root-ledger data, constrains the allowed topological configurations of architrino assemblies in the Noether sea. Stable assemblies, such as maximum-curvature candidates inside Family-A braids, should therefore be treated as theorem targets for localized, phase-locked causal-locus classes rather than as already-proved vortices or continuum topological defects.
 
-The stability of these assemblies must be checked by the nonlinear self-hit feedback embedded in the interaction functional. When internal circulation velocities exceed $c_f$, the non-Markovian repulsion supplies a candidate branch-trapping mechanism; it becomes a robust geometric attractor only after a branch chart, Lyapunov or Floquet diagnostic, and history-aware energy bound are supplied. Likewise, mass-gap language is a closure target tied to discrete admissible branch classes, not an automatic consequence of writing the effective action.
+The stability of these assemblies must be checked by the nonlinear self-hit feedback embedded in the interaction functional. When internal circulation velocities exceed $c_f$, the non-Markovian repulsion supplies a candidate outward branch barrier, not the centripetal binder. It becomes part of a robust geometric attractor only after the complete signed acceleration ledger, a branch chart, Lyapunov or Floquet diagnostic, and history-aware energy bound are supplied. Likewise, mass-gap language is a closure target tied to discrete admissible branch classes, not an automatic consequence of writing the effective action.
 
 The native topological sector is the stabilized causal-root ledger, not a borrowed field-theory vortex number. The canonical definition is given in [Noether Braid Topological Charge](../noether-braid/noether-braid-topological-charge.md); in the effective-action chart, the same assembly topological charge is the retained sector
 

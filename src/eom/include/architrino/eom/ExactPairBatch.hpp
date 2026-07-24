@@ -44,13 +44,12 @@ struct ExactPairRequest {
   const ExactPairWarmStart* warm_start = nullptr;
   // Once-per-snapshot warm-history equality bounds for this request's source
   // path, computed by the snapshot certifier so each pair avoids an O(window)
-  // per-pair token walk.  When warm_source_equality_precomputed is false the
-  // pair falls back to the exact token walk; the precomputed bounds are
-  // exactly the values that walk would establish.
+  // per-pair token walk. When warm_source_equality_precomputed is false the
+  // pair falls back to the same timestamp-rebased token walk.
   bool warm_source_equality_precomputed = false;
   double warm_source_prefix_token_stable_upper =
       -std::numeric_limits<double>::infinity();
-  std::size_t warm_source_aligned_equal_segments = 0;
+  const std::vector<std::size_t>* warm_source_segment_index_map = nullptr;
   // Optional admitted joint coefficient state at the difficult point.  The
   // exact-pair consumer ignores its nominal geometry, ordinary radii, factor,
   // and tolerance fields and recomputes those independently from this request's
@@ -151,11 +150,11 @@ struct ExactPairCertificate {
 // bounds are exactly what the per-pair token walks would establish:
 // prefix_token_stable_upper is the largest time T such that the segments
 // covering [search_lower, T] carry identical tokens in both histories, and
-// aligned_equal_segments is the length of the leading run of index-aligned
-// token-equal segments.
+// warm_to_current_segment_indices maps each prior segment to its token-equal
+// current segment by time, with size_t::max() for segments not retained.
 struct WarmSourceEqualityBounds {
   double prefix_token_stable_upper;
-  std::size_t aligned_equal_segments;
+  std::vector<std::size_t> warm_to_current_segment_indices;
 };
 
 [[nodiscard]] WarmSourceEqualityBounds compute_warm_source_equality_bounds(

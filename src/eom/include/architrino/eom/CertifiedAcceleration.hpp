@@ -131,7 +131,6 @@ struct NativeAccelerationReconstructionCertificate {
   std::string failure_code;
   std::string reduction_policy;
   std::size_t logical_ordered_pairs;
-  bool complete_ordered_pair_domain;
   double pair_execution_union_wall_seconds = 0.0;
   double finite_width_execution_union_wall_seconds = 0.0;
   double sharp_execution_union_wall_seconds = 0.0;

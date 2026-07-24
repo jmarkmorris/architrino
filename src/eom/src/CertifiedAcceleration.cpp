@@ -5,6 +5,7 @@
 #include <array>
 #include <atomic>
 #include <chrono>
+#include <cfloat>
 #include <cmath>
 #include <condition_variable>
 #include <cstddef>
@@ -26,12 +27,27 @@
 namespace architrino::eom {
 namespace {
 
+#if defined(__FAST_MATH__)
+#error "The EOM solver requires strict IEEE floating-point semantics"
+#endif
+
+#if !defined(FLT_EVAL_METHOD) || FLT_EVAL_METHOD != 0
+#error "The EOM solver requires binary64 evaluation without excess precision"
+#endif
+
+static_assert(
+    std::numeric_limits<double>::is_iec559,
+    "The EOM solver requires IEEE 754 binary64");
+
 using SteadyClock = std::chrono::steady_clock;
 
 double wall_seconds_since(const SteadyClock::time_point& start) {
   return std::chrono::duration<double>(SteadyClock::now() - start).count();
 }
 
+// Shewchuk Two-Diff error recovery. This enclosure requires strict IEEE 754
+// binary64 evaluation: no excess x87 precision, fast-math reassociation, or
+// contraction across these operations. The build pins -ffp-contract=off.
 Interval exact_difference_interval(double left, double right) {
   const double difference = left - right;
   const double right_virtual = left - difference;
@@ -1068,8 +1084,7 @@ FiniteWidthAttempt reconstruct_finite_width(
     IntervalVector cell_integral = centered_integral.has_value()
         ? integrand.value
         : scale(
-              Interval::point(
-                  Interval(cell_lower, cell_upper).width()),
+              exact_difference_interval(cell_upper, cell_lower),
               integrand.value);
     if (monotone_integral.has_value()) {
       for (std::size_t axis = 0; axis < 3; ++axis) {
@@ -1890,7 +1905,6 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
       .failure_code = all_certified ? "" : "ordered_pair_acceleration_uncertified",
       .reduction_policy = kDeterministicReductionPolicy,
       .logical_ordered_pairs = expected_count,
-      .complete_ordered_pair_domain = true,
       .pair_execution_union_wall_seconds =
           pair_execution_union_wall_seconds,
       .finite_width_execution_union_wall_seconds =

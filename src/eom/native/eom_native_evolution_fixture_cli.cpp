@@ -1223,6 +1223,20 @@ void print_all() {
         joint_finite_event_step.status + "/" +
         joint_finite_event_step.failure_code);
   }
+  const auto joint_event_halt_code =
+      eom::native_nonretryable_halt_code(joint_finite_event_step);
+  if (!joint_event_halt_code.has_value() ||
+      *joint_event_halt_code != "caustic_transit_uncertified") {
+    throw std::runtime_error(
+        "joint finite-width event maps to the wrong controller halt");
+  }
+  const bool ordinary_joint_event_fallback_selected =
+      eom::native_joint_event_fallback_is_available(
+          joint_finite_event_request, joint_finite_event_step);
+  if (!ordinary_joint_event_fallback_selected) {
+    throw std::runtime_error(
+        "ordinary joint finite-width event did not select non-joint retry");
+  }
   auto adjudicated_joint_event_request = joint_finite_event_request;
   adjudicated_joint_event_request.run_id =
       "joint-root-event-adjudicated-fallback";
@@ -1660,6 +1674,10 @@ void print_all() {
   print_atomic(finite_event_step);
   std::cout << ",\"joint_event_fail_closed\":";
   print_atomic(joint_finite_event_step);
+  std::cout << ",\"joint_event_halt_code\":\""
+            << *joint_event_halt_code << "\"";
+  std::cout << ",\"joint_event_ordinary_fallback_selected\":"
+            << (ordinary_joint_event_fallback_selected ? "true" : "false");
   std::cout << ",\"joint_event_adjudicated_fallback\":";
   print_evolution(adjudicated_joint_event);
   std::cout << ",\"event_acceptance_single_thread\":";

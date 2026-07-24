@@ -188,7 +188,7 @@ Recent regular-horizon cosmological-coupling constructions (Croker–Farrah-clas
 
 ## Maximal Curvature vs Planck Scale
 
-In the working indexed chart, **binary 1** is assigned the maximal-curvature self-hit regime as a proposed stabilization outcome of wake dynamics. **Binary 2** is constrained to the field-speed row ($v_2=c_f$), with **scale and cadence retuning**, as a candidate energy-storage channel for transfers across the candidate braid record. Neither role selects a taxonomy member or is established as a retained mechanism.
+In the working indexed chart, **binary 1** is assigned the maximal-curvature self-hit regime as a proposed outward barrier against continued collapse. Circular self-hit does not supply centripetal support; any stabilized outcome requires the complete partner, self, wake-boundary, and return-map ledger. **Binary 2** is constrained to the field-speed row ($v_2=c_f$), with **scale and cadence retuning**, as a candidate energy-storage channel for transfers across the candidate braid record. Neither role selects a taxonomy member or is established as a retained mechanism.
 
 In the same working source record, strong-field conditions increase **binary 3's frequency** and drive $v_3$ toward field speed, while **binary 2** remains at $v_2=c_f$ as its radius and frequency shift. At the horizon-interface limit, binaries 2 and 3 reach $c_f$, all three indexed axes align, and precession ceases. This is a prescribed closure target, not a retained-branch result.
 

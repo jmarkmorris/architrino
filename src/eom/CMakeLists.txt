@@ -72,6 +72,14 @@ target_compile_options(eom_recursive_block_benchmark_cli
   PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
 )
 
+add_executable(eom_history_profile_cli
+  native/eom_history_profile_cli.cpp
+)
+target_link_libraries(eom_history_profile_cli PRIVATE eom_native)
+target_compile_options(eom_history_profile_cli
+  PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
+)
+
 add_executable(eom_native_acceleration_fixture_cli
   native/eom_native_acceleration_fixture_cli.cpp
 )
@@ -99,6 +107,10 @@ add_test(NAME eom_native_fixture COMMAND eom_native_fixture_cli all)
 add_test(
   NAME eom_native_acceleration_fixture
   COMMAND eom_native_acceleration_fixture_cli all
+)
+add_test(
+  NAME eom_history_pin_lifetime
+  COMMAND eom_history_profile_cli pin-lifetime
 )
 add_test(
   NAME eom_native_evolution_fixture

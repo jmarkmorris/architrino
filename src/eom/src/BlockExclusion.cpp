@@ -50,7 +50,9 @@ MovingHistoryBlockCertificate certify_moving_history_block(
 
   const Interval reception = token_bounds(request.reception);
   const Interval emission = token_bounds(request.emission);
-  if (emission.upper() > reception.lower()) {
+  const bool exact_shared_endpoint =
+      request.emission.upper == request.reception.lower;
+  if (!exact_shared_endpoint && emission.upper() > reception.lower()) {
     throw std::invalid_argument(
         "emission block cannot extend beyond the earliest reception time");
   }

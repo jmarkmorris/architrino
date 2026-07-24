@@ -580,6 +580,10 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             "unsupported_caustic_or_singular_chart",
         )
         self.assertTrue(rejected["publication_atomic"])
+        self.assertEqual(
+            self.packet["joint_event_halt_code"],
+            "caustic_transit_uncertified",
+        )
 
     def test_joint_event_adjudicated_recovery_drops_optional_joint_state(self) -> None:
         recovered = self.packet["joint_event_adjudicated_fallback"]
@@ -587,6 +591,11 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(recovered["halt_code"], "")
         self.assertEqual(recovered["joint_history_count"], 0)
         self.assertGreater(recovered["accepted_step_count"], 0)
+
+    def test_ordinary_joint_event_selects_non_joint_retry(self) -> None:
+        self.assertTrue(
+            self.packet["joint_event_ordinary_fallback_selected"]
+        )
 
     def test_regulator_matching_remainder_contains_stationary_closed_form(self) -> None:
         control = self.packet["regulator_matching_analytic_control"]

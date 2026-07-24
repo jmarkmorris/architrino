@@ -595,6 +595,13 @@ struct NativeCoupledEvolutionCertificate {
   NativeEvolutionTiming timing;
 };
 
+[[nodiscard]] std::optional<std::string> native_nonretryable_halt_code(
+    const NativeAtomicStepCertificate& rejected_step);
+
+[[nodiscard]] bool native_joint_event_fallback_is_available(
+    const NativeCoupledEvolutionRequest& request,
+    const NativeAtomicStepCertificate& rejected_step);
+
 [[nodiscard]] NativeAccelerationSnapshotCertificate
 certify_native_acceleration_snapshot(
     const NativeCoupledEvolutionRequest& request,

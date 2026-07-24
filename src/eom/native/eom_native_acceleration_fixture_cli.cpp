@@ -201,8 +201,6 @@ void print_reconstruction(
             << certificate.reduction_policy
             << "\",\"logical_ordered_pairs\":"
             << certificate.logical_ordered_pairs
-            << ",\"complete_ordered_pair_domain\":"
-            << (certificate.complete_ordered_pair_domain ? "true" : "false")
             << ",\"pair_order\":[";
   for (std::size_t index = 0; index < certificate.pair_certificates.size();
        ++index) {

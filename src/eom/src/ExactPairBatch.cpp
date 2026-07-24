@@ -256,6 +256,8 @@ bool uniform_circular_self_search_is_root_free(
   // the open search interval. The factory-bound certificate is deliberately
   // unavailable to an arbitrary cubic history; in particular, a straight
   // v=c_f rail retains its unresolved coincidence continuum.
+  // Exact interval equality is a separate admitted case: outward parsing can
+  // make two identical decimal tokens overlap without proving upper <= lower.
   const bool at_or_below_field_speed =
       (tangential_speed.lower() == field_speed.lower() &&
        tangential_speed.upper() == field_speed.upper()) ||
@@ -702,25 +704,30 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
   std::vector<std::vector<WarmCellView>> warm_cells_by_segment;
   if (warm_start_eligible &&
       !request.warm_start->certificate->root_free_cells.empty()) {
+    std::vector<std::size_t> local_segment_index_map;
+    const std::vector<std::size_t>* segment_index_map =
+        request.warm_source_segment_index_map;
+    if (!request.warm_source_equality_precomputed) {
+      local_segment_index_map = compute_warm_source_equality_bounds(
+          *request.source, *request.warm_start->source, search_lower)
+          .warm_to_current_segment_indices;
+      segment_index_map = &local_segment_index_map;
+    }
     warm_cells_by_segment.resize(request.source->segments().size());
     for (const auto& prior_cell :
          request.warm_start->certificate->root_free_cells) {
-      const std::size_t index = prior_cell.transmitter_segment_index;
-      if (index >= request.source->segments().size() ||
-          index >= request.warm_start->source->segments().size()) {
+      const std::size_t prior_index = prior_cell.transmitter_segment_index;
+      if (segment_index_map == nullptr ||
+          prior_index >= segment_index_map->size()) {
         continue;
       }
-      const bool segment_tokens_match =
-          request.warm_source_equality_precomputed
-              ? index < request.warm_source_aligned_equal_segments
-              : same_segment_tokens(
-                    *request.source->segments().pin(index),
-                    *request.warm_start->source->segments().pin(index));
-      if (!segment_tokens_match) {
+      const std::size_t current_index = (*segment_index_map)[prior_index];
+      if (current_index == std::numeric_limits<std::size_t>::max() ||
+          current_index >= request.source->segments().size()) {
         continue;
       }
       if (prior_cell.numeric_values_valid) {
-        warm_cells_by_segment[index].push_back({
+        warm_cells_by_segment[current_index].push_back({
             .lower = prior_cell.lower_value,
             .upper = prior_cell.upper_value,
             .residual = Interval(
@@ -729,7 +736,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         });
         continue;
       }
-      warm_cells_by_segment[index].push_back({
+      warm_cells_by_segment[current_index].push_back({
           .lower = parse_double(
               prior_cell.lower, "warm-start cell lower"),
           .upper = parse_double(
@@ -1175,6 +1182,9 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
           error.what());
     }
     if (prefix_geometry->residual.upper() < 0.0) {
+      // This prefix may extend through search_upper, including a coincident
+      // endpoint. Its consumer admits it only when receiver_stays_subfield is
+      // strict (< c_f), which independently excludes an endpoint root.
       double prefix_upper = search_upper;
       for (const auto& root : attempt.roots) {
         prefix_upper = std::min(prefix_upper, root.lower);
@@ -2620,10 +2630,19 @@ bool mp_self_endpoint_open_cell_is_root_free(
         MpInterval::decimal(certificate->valid_reception_time, bits);
     const MpInterval tangential_speed =
         MpInterval::decimal(certificate->tangential_speed, bits);
+    // Match the binary64 circular-history theorem predicate: strict
+    // chord-versus-arc inequality makes every nonzero-delay residual negative
+    // when v <= c_f. Exact interval equality is admissible even when outward
+    // token parsing does not establish
+    // tangential_speed.upper <= field_speed.lower.
+    const bool at_or_below_field_speed =
+        (tangential_speed.lower().compare(field_speed.lower()) == 0 &&
+         tangential_speed.upper().compare(field_speed.upper()) == 0) ||
+        tangential_speed.upper().compare(field_speed.lower()) <= 0;
     if (valid_reception.lower().compare(reception.lower()) == 0 &&
         valid_reception.upper().compare(reception.upper()) == 0 &&
         tangential_speed.lower().compare_zero() > 0 &&
-        tangential_speed.upper().compare(field_speed.lower()) <= 0) {
+        at_or_below_field_speed) {
       return true;
     }
   }
@@ -3512,6 +3531,9 @@ ExactPairCertificate mpfr_certificate(
       Interval::point(search_lower),
       Interval::decimal_token(request.field_speed));
   if (prefix_geometry.residual.upper() < 0.0) {
+    // As in the binary64 route, this may reach the coincidence endpoint only
+    // because the consuming incremental-prefix gate separately requires the
+    // receiver speed enclosure to be strictly below c_f.
     double prefix_upper =
         parse_double(request.search_upper, "search upper bound");
     for (const auto& root : certificate.roots) {
@@ -3678,27 +3700,38 @@ WarmSourceEqualityBounds compute_warm_source_equality_bounds(
     const RetainedHistory& warm,
     double search_lower) {
   WarmSourceEqualityBounds bounds{
-      -std::numeric_limits<double>::infinity(), 0};
-  const std::size_t aligned_limit =
-      std::min(current.segments().size(), warm.segments().size());
-  while (bounds.aligned_equal_segments < aligned_limit) {
-    const auto current_segment_pin =
-        current.segments().pin(bounds.aligned_equal_segments);
-    const auto warm_segment_pin =
-        warm.segments().pin(bounds.aligned_equal_segments);
+      -std::numeric_limits<double>::infinity(),
+      std::vector<std::size_t>(
+          warm.segments().size(), std::numeric_limits<std::size_t>::max())};
+  std::size_t current_index = 0U;
+  std::size_t warm_index = 0U;
+  while (current_index < current.segments().size() &&
+         warm_index < warm.segments().size()) {
+    const auto current_segment_pin = current.segments().pin(current_index);
+    const auto warm_segment_pin = warm.segments().pin(warm_index);
     const auto& current_segment = *current_segment_pin;
     const auto& warm_segment = *warm_segment_pin;
-    if (!same_segment_tokens(current_segment, warm_segment)) {
-      break;
+    if (same_segment_tokens(current_segment, warm_segment)) {
+      bounds.warm_to_current_segment_indices[warm_index] = current_index;
+      ++current_index;
+      ++warm_index;
+    } else if (current_segment.t_end() <= warm_segment.t_start()) {
+      ++current_index;
+    } else if (warm_segment.t_end() <= current_segment.t_start()) {
+      ++warm_index;
+    } else {
+      // Overlapping time domains with different tokens cannot represent the
+      // same immutable segment; advance both chronological streams.
+      ++current_index;
+      ++warm_index;
     }
-    ++bounds.aligned_equal_segments;
   }
   const Interval anchor = Interval::point(search_lower);
   if (!current.covers(anchor) || !warm.covers(anchor)) {
     return bounds;
   }
-  std::size_t current_index = current.segment_index_at(search_lower);
-  std::size_t warm_index = warm.segment_index_at(search_lower);
+  current_index = current.segment_index_at(search_lower);
+  warm_index = warm.segment_index_at(search_lower);
   while (current_index < current.segments().size() &&
          warm_index < warm.segments().size()) {
     const auto current_segment_pin = current.segments().pin(current_index);

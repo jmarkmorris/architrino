@@ -88,9 +88,14 @@ The Borg response identifies its deterministic payload scope as
 disk-storage statistics remain measured diagnostics and are intentionally
 outside that byte-stability scope; replay comparisons must select the
 claim-carrying fields and `publishedExtensions`, not compare the complete JSON
-response byte for byte. Joint affine histories combined with a finite-width
-event currently fail closed as `unsupported_caustic_or_singular_chart` because
-no certified affine event map exists yet.
+response byte for byte. An atomic joint-affine step that meets a finite-width
+event fails closed as `unsupported_caustic_or_singular_chart` because no
+certified affine event map exists yet. Under
+`sharp_with_finite_width_fallback`, the evolution controller retries that same
+width through the independently certified ordinary finite-width route,
+permanently dropping optional joint state; if the retry cannot certify, the run
+still fails closed. `caustic_transit_uncertified` remains the terminal
+classification for callers that do not take the controller fallback.
 
 This is not yet the complete production EOM application. It accepts and
 publishes correctness-first coupled sharp and finite-width steps, persists
@@ -103,11 +108,12 @@ full retained-history request at each atomic chunk. GPU, multi-GPU,
 distributed histories, split absolute time, multirate scheduling, and the
 production million-path run remain open. Borg uses a certified artificial
 retained history as part of its randomized initial condition and publishes
-accepted EOM extensions from $T=0$ with conditional provenance. The strict
-eight-path refinement control passes at `0.01`, `0.005`, and `0.0025`, with
-byte-identical one-thread/four-thread output at `0.0025`. That is the completed
-Borg consumer gate; the broader correctness and scale obligations above remain
-owned by EOM validation.
+accepted EOM extensions from $T=0$ with conditional provenance. The one-path
+subset refinement control passes at `0.01`, `0.005`, and `0.0025`, with
+byte-identical one-thread/four-thread output at `0.0025`. The strict six-path
+full-population control currently fails closed at coarse step `0.01` on
+`krawczyk_image_not_strictly_interior`, so the full Borg consumer gate remains
+open alongside the broader correctness and scale obligations above.
 
 Build and run the native fixture:
 
@@ -131,7 +137,7 @@ cmake --build /tmp/architrino-eom-build --parallel 8
 node scripts/eom/run-borg-eom-refinement-ladder.mjs \
   /tmp/architrino-eom-build/eom_borg_shadow_cli
 node scripts/eom/run-borg-eom-refinement-ladder.mjs \
-  /tmp/architrino-eom-build/eom_borg_shadow_cli 16
+  /tmp/architrino-eom-build/eom_borg_shadow_cli 6
 ```
 
 Configure a sanitizer build with

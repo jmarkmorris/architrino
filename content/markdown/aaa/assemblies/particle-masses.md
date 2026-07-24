@@ -837,7 +837,7 @@ The canonical chapter should carry this interface but not the detailed simulatio
 ## Open Questions & Failure Modes
 
 ### Critical Unknowns
-1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
+1. **What sets $d_0$?** A certified minimum-radius bound branch could supply the prototype length scale, but the circular simple-root calculation currently supplies only algebraic MCB candidates. Which retained stable binary or larger-assembly branch defines $d_0$, and can its scale be derived from $\epsilon$, $c_f$, and $\kappa$ rather than postulated?
 2. **Is the reference Noether braid density fixed?** Is $\rho_{\text{NS},0}$ universal, or does $\rho_{\text{NS}}(\mathbf X,T)$ vary with cosmological epoch, gravitational field strength, or local matter density?
 3. **Why do neutrinos have mass at all?** If a [neutrino](./fermions/neutrinos.md) is a near-photon polarity-conjugate braid pair, which residual internal-binary exposure breaks exact photon-like cancellation? The magnitude of that exposure is referent-pending; it cannot be assigned before the base photon lock exists and the exposure map is extracted.
 

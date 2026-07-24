@@ -708,6 +708,8 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
   add("self_rail", self_rail, self_rail, "3", "0", "3", "1e-12", true);
   add("self_curved_rail", self_curved_rail, self_curved_rail, "3", "0",
       "3", "1e-12", true);
+  add("self_curved_rail_binary64", self_curved_rail, self_curved_rail, "3",
+      "0", "3", "1e-12");
   add("nonendpoint_subfield_self_root", nonendpoint_subfield_self,
       nonendpoint_subfield_self, "2", "0", "2", "1e-12", true);
   add("enclosed_self_root_cluster", enclosed_self_root_cluster,
@@ -831,6 +833,53 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
       .initial_mpfr_bits = 128,
       .maximum_mpfr_bits = 512,
       .warm_start = &narrow_warm_start,
+  }));
+  const eom::RetainedHistory suffix_receiver(
+      "warm-suffix-receiver",
+      {segment("0", "4", {"0", "0", "0", "0"})});
+  const eom::RetainedHistory full_suffix_source(
+      "warm-suffix-source",
+      {
+          segment("0", "1", {"10", "0", "0", "0"}),
+          segment("1", "2", {"10", "0", "0", "0"}),
+          segment("2", "3", {"10", "0", "0", "0"}),
+          segment("3", "4", {"10", "0", "0", "0"}),
+      });
+  const auto retained_suffix_source =
+      full_suffix_source.retained_suffix(2U);
+  const auto suffix_prior = eom::certify_exact_pair({
+      .row_id = "warm_retained_suffix_prior",
+      .receiver = &suffix_receiver,
+      .source = &full_suffix_source,
+      .reception_time = "4",
+      .search_lower = "2",
+      .search_upper = "3.5",
+      .field_speed = "1",
+      .root_tolerance = "1e-12",
+      .max_depth = 256,
+      .max_cells = 500000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+  });
+  const eom::ExactPairWarmStart suffix_warm_start{
+      .certificate = &suffix_prior,
+      .receiver = &suffix_receiver,
+      .source = &full_suffix_source,
+  };
+  certificates.push_back(eom::certify_exact_pair({
+      .row_id = "warm_retained_suffix_current",
+      .receiver = &suffix_receiver,
+      .source = &retained_suffix_source,
+      .reception_time = "4",
+      .search_lower = "2",
+      .search_upper = "3.5",
+      .field_speed = "1",
+      .root_tolerance = "1e-12",
+      .max_depth = 256,
+      .max_cells = 500000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .warm_start = &suffix_warm_start,
   }));
   return certificates;
 }

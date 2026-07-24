@@ -1355,6 +1355,28 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertTrue(curved_rail["root_free_complement"])
         self.assertTrue(curved_rail["precision_escalated"])
         self.assertEqual(curved_rail["roots"], [])
+        self.assertEqual(curved_rail["achieved_precision_bits"], 128)
+        binary64_curved_rail = self.pair("self_curved_rail_binary64")
+        self.assertFalse(binary64_curved_rail["precision_escalated"])
+        self.assertEqual(binary64_curved_rail["achieved_precision_bits"], 53)
+        semantic_fields = (
+            "status",
+            "failure_code",
+            "root_free_complement",
+            "memory_boundary_contact",
+            "coincident_endpoint_excluded",
+            "roots",
+        )
+        self.assertEqual(
+            {key: curved_rail[key] for key in semantic_fields},
+            {key: binary64_curved_rail[key] for key in semantic_fields},
+        )
+
+    def test_warm_cells_rebase_across_retained_suffix_indices(self) -> None:
+        rebased = self.pair("warm_retained_suffix_current")
+        self.assertEqual(rebased["status"], "certified_complete")
+        self.assertGreater(rebased["warm_excluded_cells"], 0)
+        self.assertEqual(rebased["reevaluated_cells"], 0)
 
     def test_memory_boundary_and_piecewise_root_identity_match_oracle_rules(self) -> None:
         memory = self.pair("memory_boundary")

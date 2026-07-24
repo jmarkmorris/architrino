@@ -1,6 +1,6 @@
 # Self-interaction switch
 
-An architrino can intersect an expanding causal isochron that it emitted earlier in its own history. Self-hit occurs when the same-transmitter causal-root set is nonempty, $\mathcal{C}_{aa}(T_r)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake, and an admitted self-hit contribution additionally carries a retained transmitter-side acceleration weight $W^{\mathrm{acc}}$. The like-polarity self-hit contribution is repulsive and plays a key role in the stability of emergent structures.
+An architrino can intersect an expanding causal isochron that it emitted earlier in its own history. Self-hit occurs when the same-transmitter causal-root set is nonempty, $\mathcal{C}_{aa}(T_r)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake, and an admitted self-hit contribution additionally carries a retained transmitter-side acceleration weight $W^{\mathrm{acc}}$. The like-polarity self-hit contribution is repulsive. On the uniform-circular chart its radial projection is always outward, so it can oppose collapse but cannot supply centripetal support; stability belongs to the complete signed branch ledger.
 
 ## Conditions and Effects
 
@@ -15,7 +15,7 @@ An architrino can intersect an expanding causal isochron that it emitted earlier
 - Repulsive character:
   - For like-on-like (self) interaction, $\sigma_{q_a q_a}=+1$ ensures the self-contribution points outward along $+\hat{\mathbf{r}}$, opposing further collapse.
 
-- Stabilization and scale selection:
-  - In binaries and multi-binary assemblies, delayed attraction competes with self-repulsion. On a closed branch chart, that balance is the candidate mechanism that can set a minimal sustainable radius $d_0$ and a fastest natural frequency $2\pi/t_0$.
+- Barrier and scale selection:
+  - In binaries and multi-binary assemblies, delayed attraction competes with self-repulsion. On a closed branch chart, the outward self-hit barrier can participate in setting a minimal sustainable radius $d_0$, but the fastest natural frequency $2\pi/t_0$ additionally requires tangential and return-map closure.
 
 Plain language: A fast interval can make self-hit possible, but the code must still solve the same-transmitter root equation and weight each accepted hit by its transmitter-side acceleration weight; only actual same-transmitter hits push outward and help set the smallest sizes and fastest rhythms of stable structures.

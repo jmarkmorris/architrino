@@ -323,6 +323,21 @@ $$
 
 This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_T$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
 
+For the time-normalized constraint
+$\tilde g=T_r-T_t-r/c_f$, dimensional consistency requires the scalar action
+kernel coefficient $\mu_{\text{arch}}\kappa$, not $\kappa/c_f$. The
+corresponding regularized interaction diagnostic is proportional to
+$\delta_\eta(\tilde g)/r$; simple-root collapse produces
+$W^{\mathrm{acc}}/r$ once. An inverse-square acceleration density with a
+manually inserted $W^{\mathrm{acc}}$ is not an energy functional. With the
+polarity convention that like signs repel, the sharp like-polarity interaction
+charge is positive and the boundary derivative inherits the outer minus sign
+declared in the action.
+
+Plainly: the wake-energy row must come from the same $1/r$ action kernel as the
+acceleration derivation. Reusing the $1/r^2$ acceleration formula as energy
+gives the wrong units and double-counts the root weight.
+
 In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the acceleration contribution and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
 The finite-$\eta$ pathology theorem target in [Master Equation](./master-equation.md#finite-regulator-pathology-quarantine-theorem-target) uses this conservation status in a restricted way. The no-runaway conclusion is available only when the action-derived $E_{\text{wake}}^{(\eta)}$, or a compatible realized-trajectory reconstruction, has a declared lower bound on the same admissible branch chart. If the lower bound is absent, the run is not promoted as a closed solution; it is routed to the continuation boundary where collapse, missing wake-history bookkeeping, regulator dependence, or endpoint leakage must be resolved.
@@ -983,7 +998,7 @@ Cross-links:
 
 In the **super-field-speed** regime ($\|\mathbf V_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
 
-- Self-hit repulsion acts as an internal **stiffening mechanism** for Noether braids and more complex assemblies, contributing to their stability.
+- Self-hit repulsion supplies an internal **outward floor** against collapse in Noether braids and more complex assemblies. On the uniform-circular chart it cannot supply centripetal support, and its tangential contribution is signed, so stability requires the other retained branch and wake-boundary entries.
 - Energy represented in an architrino's causal wake and local Noether sea response can be partially routed back through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local Noether braid configuration.
 
 At the exact causal-action level, global energy is conserved: self-hit just routes energy along more complex paths (architrino → causal isochron → local Noether sea → back to architrino/assembly). In dual-mollified local theorem models, the same statement should be read conditionally unless the mollified kernel is explicitly tied to an action-level regularization.
@@ -1025,7 +1040,7 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
 
 ## Appendix A: Energy Zero and Bookkeeping
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of an accepted bound branch (the maximum-curvature binary (MCB) radius when that branch has been certified). This choice is operational: on a branch with a self-hit lower boundary, the deepest accessible state supplies the reference. It should not be read as a proof that every isolated two-body candidate already has a unique, history-independent cutoff.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of an accepted bound branch (the maximum-curvature binary (MCB) radius when that branch has been certified). This choice is operational: on a branch with a self-hit lower boundary, the deepest accessible state supplies the reference. The present circular simple-root ledger supplies measured algebraic MCB candidates, not an accepted inner turning point. Until one candidate passes finite-event, retained-history, and stability certification, the energy gauge must use another explicitly declared reference event or radius and may not be described as a derived ground-state zero.
 
 Cosmology inventory prose uses the same convention only after declaring the comparison window. Positive component entries such as matter, radiation, dark-sector bookkeeping, and thermal reservoirs are mass-equivalent or energy-density terms measured relative to that window, while gravitational binding is a negative finite-window contribution. Mixing a local branch convention with a cosmological inventory convention without naming the window and boundary term risks double counting the same retained wake-history energy.
 
@@ -1037,7 +1052,7 @@ Because a lower bound exists, the natural reference is **not** "infinite separat
 
 ### The Bookkeeping Convention
 
-We adopt a **singular-boundary gauge**: on a certified branch chart with a declared self-hit lower boundary $r_{\min}$, we fix the potential gauge at this wall. If an MCB branch is later certified, its lower boundary is one candidate realization of this reference.
+We adopt a **singular-boundary gauge**: on a certified branch chart with a declared self-hit lower boundary $r_{\min}$, we fix the potential gauge at this wall. If an MCB branch is later certified, its lower boundary is one candidate realization of this reference. Without such a certified wall, choose and name a conventional reference radius $r_{\mathrm{ref}}$ instead; that gauge supports comparisons within the declared ledger cell but carries no claim that $r_{\mathrm{ref}}$ is a physical minimum.
 
 $$U(r_{\min}) \equiv 0.$$
 

@@ -201,13 +201,12 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
   }
   const Interval reception = token_bounds(request.reception);
   const Interval emission = token_bounds(request.emission);
-  const double latest_emission =
-      Interval::decimal_token(request.emission.upper).midpoint();
-  const double earliest_reception =
-      Interval::decimal_token(request.reception.lower).midpoint();
-  if (latest_emission > earliest_reception) {
+  const bool exact_shared_endpoint =
+      request.emission.upper == request.reception.lower;
+  if (!exact_shared_endpoint && emission.upper() > reception.lower()) {
     throw std::invalid_argument(
-        "emission traversal cannot extend beyond earliest reception");
+        "emission traversal cannot extend beyond earliest reception: " +
+        request.emission.upper + " > " + request.reception.lower);
   }
   const Interval field_speed = Interval::decimal_token(request.field_speed);
   if (field_speed.lower() <= 0.0) {
