@@ -2,6 +2,8 @@
 
 > **Remediation status (three fix rounds, verified 2026-07-24).** Nearly every finding below is now closed in source. Verified FIXED: H1, H2 (structurally, via a new `PinnedSegment` owning handle that also retired the round-2 copy regression), H3, H5, H6 (both server and single-shot), M1 (barred, not repaired), M2, M4, M5 (all four self-pair predicates), M6, M7, M8, M9, M10 event path, M11 `-ffp-contract=off`, M12 (scoped + documented), plus `causal_domain_area` (now Interval ops), the Gaussian-tail bound (now a directed-rounding MPFR helper), `Interval::midpoint()` overflow, the precision-ladder wrap, the centered-form remainder, and both vacuous self-checks (one deleted, one replaced by a real input-vs-published predicate).
 >
+> **Round-four verification (2026-07-24).** R1 fixed twice over (non-retryable short-circuit at the first bar hit *plus* a ladder arm), R2 fixed with a real guard (`joint_histories.clear()` on adjudicated retry) pinned by a fixture and a Python test, R3 fixed (monotone remainder now uses `max(left_radius, right_radius)`), R4 fixed at the centered site via a new Shewchuk Two-Diff `exact_difference_interval`, R5 fixed (phase reduction now exact rational multiples in binary64; `long double` gone from all claim-carrying code), R7(c)-(f) all fixed (dead fields dropped, README complete, sanitizer option added, `*_cpu_seconds` renamed to `*_wall_seconds` tree-wide). Remaining items and the round-four findings are in §Round-four findings.
+>
 > **Still open after round three:** `monotone_finite_width_integral` remainder still assumes an exact midpoint (see §H4-monotone below); centered main term scaled by upward-rounded `width()`; M10 finite-width acceleration path still has no tail term or spec sentence; `long double` remains in `Interval.cpp` trig phase reduction (same cross-platform class as the fixed `causal_domain_area`); no sanitizer wiring; three dead `far_field_*` result fields; README missing three CLI modes; wall-clock still labelled `*_cpu_seconds`. New consequential items from the joint+event bar are recorded in §Round-three new findings.
 
 Status: findings report, comments only. No source files were modified. Four parallel review lanes covered all 30,025 lines under `src/eom` (core evolution, certified-numerics kernel, history/traversal layer, CLIs/build/diagnostics). Every finding carries a severity, a file:line anchor, and a falsifier. Findings marked **[verified]** were independently re-read against the live source by the consolidating reviewer; the rest are graded as reviewed-once.
@@ -151,6 +153,76 @@ The original LOW claimed the binary64 `memory_boundary_contact` path is unreacha
 ### R8 (INFO) — schema and checkpoint-compat notes
 
 The Python oracle still emits `reconstruction_matches` (and genuinely recomputes it), so native and oracle certificate schemas now differ by that field — field-by-field diffing tools will see a delta. Separately, `model_fingerprint` is now near-complete, which correctly invalidates checkpoints on any control change; confirm the two-call structure at `Checkpoint.cpp:365-369` still intends its fallback arm to accept checkpoints written before these controls were hashed.
+
+## Round-four findings
+
+Filed after verifying the fourth fix round. Nothing here is a soundness regression; the remaining certified-bound items are one surviving instance of an already-fixed class plus two latent-consistency items.
+
+### S1 (MEDIUM) — last surviving instance of the R4 width class [verified]
+
+`CertifiedAcceleration.cpp:1068-1073`, the direct-cell fallback in `assemble_cell`:
+
+```cpp
+IntervalVector cell_integral = centered_integral.has_value()
+    ? integrand.value
+    : scale(Interval::point(Interval(cell_lower, cell_upper).width()),
+            integrand.value);
+```
+
+`integrand.value` here is the pointwise box enclosure over the whole cell, so this is a main-term `|I|·A(I)` product needing an exact width, but `Interval::width()` is upward-rounded — the same one-sided loss R4 described, at a different site. `exact_difference_interval(cell_upper, cell_lower)` is the drop-in fix and lives in the same anonymous namespace with one caller today. Reached only when the centered route returns `nullopt` (separation straddles zero), so it is a rare fallback rather than the hot path. The file's other `.width()` uses are contraction tests, refinement scores, and tolerance gates, where upward rounding is conservative and correct.
+
+### S2 (MEDIUM) — binary64 and MPFR uniform-circular self-pair predicates disagree at exactly `v = c_f` [verified]
+
+`ExactPairBatch.cpp:259-263` admits the exact-equality case:
+
+```cpp
+const bool at_or_below_field_speed =
+    (tangential_speed.lower() == field_speed.lower() &&
+     tangential_speed.upper() == field_speed.upper()) ||
+    tangential_speed.upper() <= field_speed.lower();
+```
+
+The MPFR twin at `:2625-2626` has no equality branch — only `tangential_speed.upper().compare(field_speed.lower()) <= 0`. For the sharp `v = c_f` rail, which is precisely the case the binary64 comment at `:252-258` was written for, the token intervals are identical but `v_upper > c_f_lower`, so MPFR rejects. The direction is conservative (MPFR does more work, never less), but the consequence is **route-dependent acceptance**: a pair the fast tier certifies root-free will, on any precision escalation, fall through to full cell search and can land on the coincidence continuum the comment says is deliberately unresolved. Falsifier: a fixture seeding `tangential_speed == field_speed` with forced precision escalation.
+
+Plainly: the fast and careful routes disagree about one exact edge case — a particle circling at exactly the wake speed. The careful route is stricter, so nothing wrong gets certified; but the same input can be answered two different ways depending on which route ran, which is the kind of inconsistency that turns into a confusing bug report later.
+
+### S3 (MEDIUM) — `correlated_position_hull` scans the whole segment sequence per ordered pair
+
+`History.cpp:1436-1467` pins every segment before testing overlap, with no `break` and no bracketing; the only fast path is `segments_.size() == 1U`. The `time` argument is a reception *point*, so at most two segments contribute and the rest are pinned and discarded. Past 16 × 64 = 1024 segments this cycles the whole thread block cache and turns each pin into a fresh file read, scaling as O(P²·N) block loads per snapshot in disk mode. Fix: bracket the loop with `segment_index_at(time.lower())` / `segment_index_at(time.upper())`, which already binary-search. This is the one finding in this round with a plausible measurable cost attached, and it likely dominates whatever the warm-start work saves at deep retained windows.
+
+### S4 (MEDIUM) — `PinnedSegment` carries two lifetime contracts in one type
+
+`History.cpp:933-947`: the disk path returns `PinnedSegment(std::move(block), segment)` (self-owning), the in-memory path returns `PinnedSegment(nullptr, ptr)` (borrowing, sequence must outlive it). `slot.memory` is already a `shared_ptr<const Block>`, so passing it costs one refcount and makes the handle uniformly self-owning. As written, a call site correct in disk mode dangles in memory mode, and the failure is invisible in testing because disk paging is what test configs exercise. The header documents the asymmetry, so it is deliberate — but closing it also answers the open `const_iterator` tag question (below) by letting the pin outlive `++` rather than downgrading the tag. Two open items, one change.
+
+Copy/move semantics themselves audited clean: defaulted throughout, type-erased deleter retained, pointer computed before the move in `pin()`, no self-move or double-free, and all 48 `.pin(` sites bind to a named local or dereference within the same full-expression.
+
+### S5 (LOW) — warm-start cell reuse is still defeated by retention
+
+Round four hoisted the comparison cost (per-path precomputed run length instead of a per-pair walk) but reproduced the index-aligned comparison verbatim: `ExactPairBatch.cpp:713-721` and `:3682-3695` count the leading index-aligned run from 0. The Borg cache trims with `retained_suffix(retired)` on every accepted step, so whenever `retired > 0`, current segment 0 ≠ warm segment 0, `aligned_equal_segments == 0`, and every warm root-free cell is discarded. The *prefix* bound in the same function is correctly time-rebased (`:3700-3714`) and does fire. Recommend rebasing the cell path the same way or deleting it and keeping only the prefix reuse — but measure S3 first, since the cost being optimized here may not be the dominant one.
+
+### S6 (LOW) — predicates that hold only because a different condition elsewhere is strict
+
+Two instances worth a sentence at the site, so a future relaxation reads as a soundness decision rather than a style edit:
+
+- The prefix walk's second block (`ExactPairBatch.cpp:1162-1187`, and the MPFR twin at `:3514-3527`) publishes `stable_negative_prefix_upper == search_upper` for a self-pair with no bracketed roots, asserting `residual < 0` on a closed interval whose right endpoint has `residual == 0` by the coincident-endpoint rule. It survives only because the consuming gate's `receiver_stays_subfield` uses a strict `<`.
+- S2 above is the same class.
+
+### S7 (LOW) — remaining leftovers, unchanged
+
+Dead joint plumbing behind the bar (`CoupledEvolution.cpp:3244-3260`, unconditionally `nullptr`) and the first-pass/refinement regulator asymmetry are both still unmarked; `complete_ordered_pair_domain = true` still ships on a path that throws before reaching it; `const_iterator` still declares `forward_iterator_tag` while `operator++` resets the pin; `retained_suffix` still changes the fingerprint and drops the uniform-circular certificate without a comment (`appended()` carries it through — compare the two); `nonnegative_point` still a no-op alias on eight published-radius call sites (a one-line `if (!(value >= 0.0)) throw` makes the name honest at zero cost); `History.cpp:865` dead initializer; join validation pins each segment twice then walks the sequence a third time; traversal causality gate still on token midpoints while `BlockExclusion` uses directed bounds. M10 (below-boundary Gaussian tail on the finite-width acceleration path) still has neither a tail term nor a spec sentence — it remains the one open contract question in the review.
+
+**Correction to an earlier finding:** the `std::lower_bound`-over-pinning-iterator concern was misattributed. `CoupledEvolution.cpp:4194-4199` searches `JointAffineRetainedHistory::segments()`, a plain `std::vector` — random-access, O(log n). No standard algorithm runs over `HistorySegmentSequence::const_iterator` except a single-pass `std::all_of`. Disregard that item.
+
+### S8 (INFO) — coverage and hashing gaps around the new bar
+
+`caustic_transit_uncertified` — the halt code R1 was filed about — has zero test coverage: it appears only at its two emission sites, with nothing in `tests/`, no fixture key, no ladder script. The step-level behavior *is* pinned, but a rename or ladder reorder would pass every suite. Separately, the R1 ladder arm is now unreachable because the short-circuit fires first on every rejected step; harmless defence-in-depth, but one of the two should say the other is primary. And `model_fingerprint` does not hash joint enablement, so a checkpoint from a joint-seeded run and one from a non-joint run over identical controls are fingerprint-identical and each resumes as the other — debatable whether `joint_histories` is a control or state, but the bar made it semantically load-bearing.
+
+### S9 (INFO) — two decisions worth making explicitly
+
+1. **The bar is stricter than the controller needs.** The R2 fix establishes that retrying without the optional joint correlation is a certified-safe degradation, but applies it only when `adjudicated_finite_width_pairs` is non-empty. A joint-seeded run meeting an *ordinary* finite-width event still halts outright, where the same one-line `joint_histories.clear()` retry would keep it alive. Correct but run-ending; your call.
+2. **Joint state is dropped permanently, not just for the retry step**, and nothing in the certificate records that a fallback occurred — a consumer can only infer it from an empty `joint_histories` map, which is exactly what the Borg CLI's new `jointStateFallbackApplied` diagnostic does. Native-fixture consumers have no equivalent. Consider promoting that inference into a certificate field.
+
+Also newly worth writing down: `exact_difference_interval` (the R4 fix) is compensated arithmetic whose validity requires strict IEEE-754 with no excess precision and no contraction. `-ffp-contract=off` covers FMA fusion on all five targets, but nothing names the dependency — under `-ffast-math`, `-Ofast`, or an x87 target the error term silently computes as zero and the routine returns a width that does not contain `b − a`. A two-line comment plus `static_assert(std::numeric_limits<double>::is_iec559)` would make it visible to whoever next touches the flags.
 
 ## Suggested fix order
 

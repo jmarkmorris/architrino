@@ -1,20 +1,39 @@
 # Braid Program — Instrument Gate
 
-Status: RATIFIED (2026-07-16). First campaign-independent spec in this directory, per [../method.md](../method.md) Instrument Requirements. Forward-only: rewritten when acceptance status changes; history lives in the work log.
+Status: PARTIALLY RATIFIED; G3/G4 RESET PENDING FRESH VALIDATION (2026-07-24).
+First campaign-independent spec in this directory, per
+[../method.md](../method.md) Instrument Requirements. Forward-only: rewritten
+when acceptance status changes; history lives in the work log.
 
 This gate answers three questions for every campaign: which instruments may be relied on, what a campaign must show before its results are booked, and what record every run must emit so its output is viewable evidence from day one.
 
-## 1. Accepted Capabilities
+## 1. Capability Status
 
-Each entry names the instrument, its acceptance basis, and the evidence pointer. Acceptance here means *usable by a campaign under the stated conditions* — it does not confer canonical authority, which only the EOM acceptance/migration gates can grant.
+Each entry names the instrument, its acceptance or pending basis, and the
+evidence pointer. Accepted means *usable by a campaign under the stated
+conditions*; pending capabilities are barred until their stated fresh
+validation closes. Neither status confers canonical authority, which only the
+EOM acceptance/migration gates can grant.
 
 **G1. EOM coupled delayed-history evolution (`src/eom`, Stage E engine).** Accepted for campaign use at evidence grade `executable_architecture_evidence` (noncanonical). Basis: engine acceptance suites green (measured — eom-attractor-search work log, 2026-07-15); the independent oracle `eom_independent_oracle/v0` is complete through Phase 4 with frozen mathematical binding and certified piecewise-cubic history representation (measured — [app-eom oracle record](../../app-eom/independent-dynamical-acceptance-oracle.md)), providing the independent side for the per-campaign parity duty in G5. Condition: every campaign names the engine build it ran (build time vs. last `src/eom` source change — a stale binary is a wrong answer that looks slow).
 
 **G2. Master-equation residual evaluation along evolved trajectories.** Accepted as the Stage S instrument applied to Stage E output. Condition: the residual reduction is authored fresh from the owning spec's definitions with predeclared tolerances (method.md rule), never imported from legacy instruments.
 
-**G3. Checkpoint-chunked ensemble harness (`scripts/eom/attractor-ensemble-harness.cpp`).** Accepted for run orchestration: byte-identical checkpoint resume validated (measured — [phase-2 evidence](../../eom-attractor-search/evidence/phase2-harness-validation-2026-07-15/README.md)). Exact `assembly-view-record.v0` emission from checkpoint-retained histories is also accepted (measured serialization parity — [2026-07-16 ratification](../evidence/2026-07-16-checkpoint-record-emitter-ratification-and-campaign-1-workload-validation.md)): the separate ratification change compared path ids, retained-history fingerprints, and every decimal segment time, coefficient, and error token against a checkpoint-only dumper, both before and after the Campaign 1 workload addition. Condition: cross-chunk bit-identity remains an open engine item, so every campaign declares its chunking (chunk duration, steps per chunk) as part of the refinement envelope, and a chunking change is a refinement-envelope change.
+**G3. Checkpoint-chunked ensemble harness
+(`scripts/eom/attractor-ensemble-harness.cpp`).** Not currently accepted for
+campaign execution. The operator removed the historical checkpoint/resume and
+replay artifacts after the 2026-07-24 EOM solver review. The
+[2026-07-16 serialization ratification](../evidence/2026-07-16-checkpoint-record-emitter-ratification-and-campaign-1-workload-validation.md)
+is retained as historical instrument design evidence, but it does not accept
+the corrected solver. Reacceptance requires a fresh build, byte-identical
+checkpoint resume, exact checkpoint-to-record token parity, sanitizer coverage,
+and declared cross-chunk comparison.
 
-**G4. Release root-ledger clearance.** Accepted: the harness records the release root-clearance result in its run manifest (phase-2 evidence, `run-manifest.json`). Condition: a campaign's claim window opens only after clearance holds, per method.md delay discipline rule 3.
+**G4. Release root-ledger clearance.** Interface available but acceptance
+pending fresh validation. A new harness run must show that the run manifest
+records certified release clearance under the corrected solver. A campaign's
+claim window remains closed until that fresh check passes, per method.md delay
+discipline rule 3.
 
 **G5. Independent-oracle parity duty.** Every campaign cross-checks at least one declared window of at least one production run against `eom_independent_oracle/v0` certified intervals, with the window, tolerances, and result booked in evidence. Agreement between engine runs, or between a run and its own replay, is determinism evidence only — the oracle is the independent side.
 
@@ -22,6 +41,8 @@ Each entry names the instrument, its acceptance basis, and the evidence pointer.
 
 - **Any non-EOM engine or retired-evaluator capability**, for computation or evidence, under any labeling. Self-reported evidence fields from any engine other than EOM (for example a `canonicalEomEvidence` flag asserted by the producer itself) are never consumed. Non-EOM output is barred outright.
 - **Campaign windows crossing field-speed folds** until the root-completeness certificate extension lands (live-state Waiting On item). The sub-field rung-1 campaign is unaffected.
+- **Any ensemble campaign using G3/G4 before their fresh validation packet is
+  accepted.**
 - **Prescribed-orbit evaluation presented as evolution.** Stage S instruments nominate; only Stage E books persistence.
 - **Toy interaction laws** (any parameterized stand-in for the master equation) in any campaign path, including display pipelines.
 - **Sampled-only trajectories as state evidence.** In a delay system the state is the history; sampled rows are display convenience (see §4).

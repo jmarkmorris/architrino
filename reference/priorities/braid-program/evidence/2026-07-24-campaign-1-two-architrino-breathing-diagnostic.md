@@ -1,7 +1,12 @@
 # Campaign 1 Two-Architrino Breathing Diagnostic
 
-Status: MEASURED DIAGNOSTIC ONLY; NO CAMPAIGN FATE OR PHYSICS RESULT BOOKED
-(2026-07-24).
+Status: WITHDRAWN HISTORICAL DIAGNOSTIC; RAW RUN REMOVED; NO CAMPAIGN FATE OR
+PHYSICS RESULT BOOKED (2026-07-24).
+
+> The operator removed the underlying Campaign 1 run bundles during the
+> post-review simulation reset. The numerical narrative below remains only as
+> a record of why the old run was investigated. It is not current evidence and
+> must not seed, validate, or benchmark a new run.
 
 ## Question
 
@@ -76,11 +81,11 @@ The final completed confirmation used:
 - exact EOM assembly-view record SHA-256:
   `6710ed1d932290e269dc198aa2b10685aa5c189ec830ccf970c415148cff2fe4`.
 
-The raw confirmation run is under
-`.local-data/braid-program/campaign1-diagnostics/2026-07-24-d1-s025-thetapi2-P0-R1-live-v4/`.
+The raw confirmation run was intentionally removed on 2026-07-24.
 The live EOM source changed again during the run, after that binary was built.
 Therefore the hashes identify the tested executable exactly, but the result is
-not a current-live-source production receipt.
+not a current-live-source production receipt and is no longer reproducible
+from a retained run bundle.
 
 Plainly: the rebound was reproduced across changing certification code, but the
 checkout was still moving. This is one reason the result remains diagnostic.
@@ -109,4 +114,3 @@ Plainly: the immediate engineering blocker is certified root completeness over
 the longer transverse path and through the head-on close approach. Once that
 opens, the scientific question is whether the observed rebound repeats and
 forgets its seeded history.
-
