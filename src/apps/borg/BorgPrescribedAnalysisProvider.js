@@ -33,14 +33,19 @@ export function createBorgPrescribedAnalysisProvider({
   }
   let loadedProjection = null;
   const eventCache = new Map();
-  const displayRecordHashCache = new WeakMap();
-  const validatedRecordProjectionCache = new WeakMap();
+  let displayRecordHashCache = new WeakMap();
+  let validatedRecordProjectionCache = new WeakMap();
 
   function displayRecordHash(entry) {
     let pendingHash = displayRecordHashCache.get(entry.rawRecord);
     if (!pendingHash) {
       pendingHash = sha256BorgCanonicalJson(entry.rawRecord, { cryptoLike });
       displayRecordHashCache.set(entry.rawRecord, pendingHash);
+      void pendingHash.catch(() => {
+        if (displayRecordHashCache.get(entry.rawRecord) === pendingHash) {
+          displayRecordHashCache.delete(entry.rawRecord);
+        }
+      });
     }
     return pendingHash;
   }
@@ -162,6 +167,8 @@ export function createBorgPrescribedAnalysisProvider({
     clearCache() {
       eventCache.clear();
       loadedProjection = null;
+      displayRecordHashCache = new WeakMap();
+      validatedRecordProjectionCache = new WeakMap();
     },
   });
 }

@@ -472,7 +472,7 @@ $$
 \right]
 $$
 
-where $P_{\Lambda_1\Lambda_2}$ is the hyperon-pair spin-correlation signal and $\alpha_1,\alpha_2$ are the weak-decay analysing parameters. The observed pattern is not merely a hadron-counting fact: short-range $\Lambda\bar{\Lambda}$ pairs show a positive correlation, while long-range pairs and scalar-control channels are consistent with zero correlation.
+where $P_{\Lambda_1\Lambda_2}$ is the hyperon-pair spin-correlation signal and $\alpha_1,\alpha_2$ are the weak-decay analysing parameters. The observed pattern, from the BESIII $J/\psi\to\Lambda\bar{\Lambda}$-class spin-correlation measurement, is not merely a hadron-counting fact: short-range $\Lambda\bar{\Lambda}$ pairs show a positive correlation, while long-range pairs and scalar-control channels are consistent with zero correlation.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target, not an import of QCD vacuum ontology or a claim that "nothing" creates particles. The native branch must connect, in one event record, the strong-collision work input, the local Noether sea participation, the quark-level axial and color records, the confinement or hadronization route into color-singlet hyperons, feed-down and remnant rows, and the final weak-decay detector readout. In schematic form the benchmark asks for
 

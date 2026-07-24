@@ -8,7 +8,7 @@ Spin labels in this chapter are downstream mapping targets, not completed deriva
 
 ## Photon Referent Status
 
-The photon construction below is a theorem target, not an exhibited bound branch. A force-balance evaluation of the declared planar polarity-conjugate pair returns a binding residual $\epsilon_{\rm bind}=0.9922$ against a declared $0.03$ gate at 24 cycle samples, with no improvement along the $3\to6\to12\to24$ sampling ladder. The charge ledger closes and the net pump cancels to $3.7\times10^{-16}$ on the same rows, so binding is the measured failure. Claim level: measured force-balance negative on the declared geometry, payload families, and proxy-sea coverage; no stability inference follows, and a constitutive medium law remains untested.
+The photon construction below is a theorem target, not an exhibited bound branch. A force-balance evaluation of the declared planar polarity-conjugate pair, measured by the canonical planar-pair force-balance search (force-balance-only, no dynamical inference), returns a binding residual $\epsilon_{\rm bind}=0.9922$ against a declared $0.03$ gate at 24 cycle samples, with no improvement along the $3\to6\to12\to24$ sampling ladder. The charge ledger closes and the net pump cancels to $3.7\times10^{-16}$ on the same rows, so binding is the measured failure. Claim level: measured force-balance negative on the declared geometry, payload families, and proxy-sea coverage; no stability inference follows, and a constitutive medium law remains untested.
 
 Accordingly, the planar-pair description, Gate A/B quantities, and every neutrino residual defined relative to this lock are referent-pending until an equilibrium branch is exhibited. The gates remain useful because they state what a replacement branch must recover, but they must not be used as premises about a retained photon assembly.
 
@@ -546,7 +546,7 @@ $$
 This is not a new substrate interaction. It is the low-energy observer limit of the same charged-corridor event after the finite-width mediator has been integrated out. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the corridor stiffness or electroweak scale $v_{\mathrm{EW}}$ from Noether sea response and then recover $G_F$, beta rates, and charged-current branching fractions without fitting a separate contact coupling.
 
 ### Effective Mass Scales
-*   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
+*   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV; PDG comparison values) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
     For a resolved weak event $\mathsf e$ observed through an event window $\mathcal W$, the effective mass-scale target can be written schematically as
     $$
     M_{W/Z}^{\mathrm{eff}}(\mathsf e;\mathcal W)c_0^2

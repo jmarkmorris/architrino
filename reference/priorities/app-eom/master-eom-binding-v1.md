@@ -11,7 +11,7 @@
 - Coincident same-transmitter root birth: `fail-closed`
 - Higher or undeclared singular strata: `fail-closed`
 - Canonical document: [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md)
-- Source snapshot SHA-256: `4c3824e0e2f1741d9ba4e493478db9dbe2515731efd4f2923e0e1ee24da2a649`
+- Source snapshot SHA-256: `17ad99777d370aa1cab78e7035b0484018cffbb3398617defb5c388be94f57a1`
 
 ## Scope
 

@@ -261,6 +261,47 @@ test("provider hashes and validates one sealed record only once across requests"
     receiverIdentity: "source-worldline:missing:polarity=1:T=2:X=0,0,0",
   });
   assert.equal(digestCount, firstDigestCount);
+
+  provider.clearCache();
+  await provider.describe(fixture.entry);
+  assert.ok(digestCount > firstDigestCount);
+});
+
+test("provider evicts a rejected display-record digest so a retry can recover", async () => {
+  const fixture = await createProjectionFixture();
+  let digestCount = 0;
+  const cryptoLike = {
+    subtle: {
+      async digest(...args) {
+        digestCount += 1;
+        if (digestCount === 1) {
+          throw new Error("transient digest failure");
+        }
+        return webcrypto.subtle.digest(...args);
+      },
+    },
+  };
+  const provider = createBorgPrescribedAnalysisProvider({
+    projection: fixture.projection,
+    cryptoLike,
+    expectedProtocolHash: H.protocol,
+  });
+
+  await assert.rejects(
+    provider.requestEvent({
+      entry: fixture.entry,
+      receiverIdentity: fixture.receiverIdentity,
+    }),
+    /transient digest failure/,
+  );
+  const recovered = await provider.requestEvent({
+    entry: fixture.entry,
+    receiverIdentity: fixture.receiverIdentity,
+  });
+  assert.equal(
+    recovered.state,
+    BORG_PRESCRIBED_ANALYSIS_PROVIDER_STATE.MATCHED,
+  );
 });
 
 test("unavailable provider distinguishes capability status from a selected receiver request", async () => {

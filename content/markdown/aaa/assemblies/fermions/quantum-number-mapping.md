@@ -915,7 +915,7 @@ $$
 $$
 where $\Delta_{\text{wake}}$ is the causal-wake/polarization correction of the Noether sea at the electroweak scale.
 
-Using the representative effective $Z$-pole value $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$, the required dressing is not numerically negligible:
+Using the representative effective $Z$-pole value $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$ (PDG comparison value), the required dressing is not numerically negligible:
 
 $$
 \Delta_{\text{wake}}(m_Z)

@@ -398,6 +398,19 @@ test("Borg EOM migration uses canonical field speed and the declared memory dept
   assert.equal(config.farFieldEnclosureFraction, "0.25");
   assert.equal(config.coreScale, 0.2);
   assert.ok(Math.abs(config.historyStartTime - (300 - config.historyDepth)) < 1e-12);
+  assert.equal(
+    config.minimumHistoryDepth,
+    config.geometricDelayBound + config.historySafetyMargin,
+  );
+  assert.throws(
+    () => createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
+      startTime: 0,
+      targetDuration: 0.2,
+      historyDepth: 1,
+      historySafetyMargin: 0.05,
+    }),
+    /must cover the geometric delay bound .* plus safety margin/,
+  );
   assert.throws(
     () => createBorgEomShadowRunConfig(BORG_DATASET_MANIFEST_V1, {
       startTime: 0,
@@ -415,7 +428,11 @@ test("Borg EOM migration uses canonical field speed and the declared memory dept
   assert.equal(expandedPopulationConfig.pathCount, 32);
 
   const fallbackConfig = createBorgEomShadowRunConfig({
-    simulationEnvelope: { outerRadius: 50, sampleInterval: 0.2 },
+    simulationEnvelope: {
+      outerRadius: 50,
+      sampleInterval: 0.2,
+      historyDepth: 105,
+    },
     population: { architrinoCount: 1 },
     trajectoryRecord: { historyStartTime: 0, historyEndTime: 300 },
   }, {
@@ -881,7 +898,7 @@ test("Borg promotion accepts canonical evolution from certified initial history"
     },
   });
   const seed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
-    historyStartTime: -0.2,
+    historyStartTime: -1.4,
     historyEndTime: 0,
     sampleInterval: 0.2,
     digest: async () => "promotion-seed-digest",
@@ -891,7 +908,7 @@ test("Borg promotion accepts canonical evolution from certified initial history"
     initialFrameRows: seed.rows,
     pathCount: 2,
     startTime: 0,
-    historyDepth: 0.2,
+    historyDepth: 1.4,
     targetDuration: 0.2,
     chunkDuration: 0.2,
     sampleInterval: 0.2,
@@ -927,7 +944,7 @@ test("Borg publishes EOM evolution from accepted initial history at T=0", async 
     },
   });
   const seed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
-    historyStartTime: -0.02,
+    historyStartTime: -1.05,
     historyEndTime: 0,
     sampleInterval: 0.01,
     digest: async () => "seed-digest",
@@ -945,7 +962,7 @@ test("Borg publishes EOM evolution from accepted initial history at T=0", async 
     initialHistoryClaimLevel: BORG_ACCEPTED_SEED_HISTORY_CLAIM_LEVEL,
     pathCount: 2,
     startTime: 0,
-    historyDepth: 0.02,
+    historyDepth: 1.05,
     targetDuration: 0.03,
     chunkDuration: 0.01,
     sampleInterval: 0.01,
@@ -959,12 +976,16 @@ test("Borg publishes EOM evolution from accepted initial history at T=0", async 
   assert.equal(first.frames.length > 0, true);
   assert.equal(first.initialHistoryAccepted, true);
   assert.equal(second.phase, "live");
-  assert.equal(second.histories.every((history) => history.coverageStart === "0"), true);
+  assert.equal(
+    second.histories.every((history) => history.coverageStart === "-1.05"),
+    true,
+  );
   assert.equal(second.histories.every((history) => history.sourceAcceptedInitialDatum === true), true);
   assert.equal(second.histories.every((history) => history.sourceProvenance === BORG_ACCEPTED_SEED_HISTORY_PROVENANCE), true);
-  assert.equal(second.histories.every((history) =>
-    history.segments.every((segment) => Number(segment.startTime) >= 0)
-  ), true);
+  assert.equal(
+    second.frames.every((frame) => Number(frame.time) >= 0),
+    true,
+  );
   assert.equal(live.phase, "live");
   assert.equal(requests[0].provenance.importedHistoryIsAcceptedInitialDatum, true);
   assert.equal(requests[2].provenance.importedHistoryIsAcceptedInitialDatum, true);

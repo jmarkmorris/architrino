@@ -122,6 +122,8 @@ export function createBorgAssemblyViewScene({
           "position",
           new THREE.Float32BufferAttribute(positions, 3),
         );
+        line.geometry.computeBoundingSphere();
+        line.frustumCulled = false;
       }
     });
     rebuildSelectedTube();
@@ -243,6 +245,7 @@ export function createBorgAssemblyViewScene({
         "position",
         new THREE.Float32BufferAttribute(fixed, 3),
       );
+      geometry.computeBoundingSphere();
       const binaryIndex = binaryIndexByWorldline.get(worldline.id) ?? worldlineIndex;
       const material = new THREE.LineBasicMaterial({
         color: PRESCRIBED_PATH_COLORS[
@@ -253,6 +256,7 @@ export function createBorgAssemblyViewScene({
         depthWrite: false,
       });
       const line = new THREE.Line(geometry, material);
+      line.frustumCulled = false;
       line.userData = {
         kind: "prescribed-path-history-strand",
         worldlineId: worldline.id,
@@ -278,10 +282,8 @@ export function createBorgAssemblyViewScene({
     prescribedPathGroup.children.forEach((line) => {
       const times = line.userData.times ?? [];
       const firstTime = currentTime - historyDepth;
-      let start = 0;
-      while (start < times.length && times[start] < firstTime) start += 1;
-      let end = start;
-      while (end < times.length && times[end] <= currentTime + 1e-12) end += 1;
+      const start = lowerBound(times, firstTime);
+      const end = upperBound(times, currentTime + 1e-12, start);
       line.geometry.setDrawRange(start, Math.max(0, end - start));
     });
   }
@@ -625,4 +627,32 @@ function readPolylinePoints(row) {
 
 function finiteVector(vector) {
   return ["x", "y", "z"].every((axis) => Number.isFinite(Number(vector?.[axis])));
+}
+
+function lowerBound(values, target, start = 0) {
+  let low = start;
+  let high = values.length;
+  while (low < high) {
+    const middle = low + Math.floor((high - low) / 2);
+    if (values[middle] < target) {
+      low = middle + 1;
+    } else {
+      high = middle;
+    }
+  }
+  return low;
+}
+
+function upperBound(values, target, start = 0) {
+  let low = start;
+  let high = values.length;
+  while (low < high) {
+    const middle = low + Math.floor((high - low) / 2);
+    if (values[middle] <= target) {
+      low = middle + 1;
+    } else {
+      high = middle;
+    }
+  }
+  return low;
 }

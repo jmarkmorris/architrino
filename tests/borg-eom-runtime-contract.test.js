@@ -19,6 +19,7 @@ import {
   createBorgParticleStyles,
   createDefaultEomShadowRunnerOptions,
   formatBorgTimelineTime,
+  interpolateBorgFrameSetInto,
 } from "../src/apps/borg/BorgAppRuntime.js";
 import {
   BORG_PRESCRIBED_DISPLAY_OVERSAMPLE_FACTOR,
@@ -103,6 +104,43 @@ test("Borg timeline uses a fixed-width hours-minutes-seconds clock", () => {
   assert.equal(formatBorgTimelineTime(3661.28), "01:01:01.3");
   assert.equal(formatBorgTimelineTime(-0.05), "-00:00:00.1");
   assert.equal(formatBorgTimelineTime(Number.NaN), "--:--:--.-");
+});
+
+test("Borg replay interpolation preserves source worldline identity", () => {
+  const from = {
+    frameIndex: 10,
+    time: 1,
+    frames: [{
+      pathKey: 7,
+      frameIndex: 10,
+      time: 1,
+      sourceWorldlineId: "worldline-7",
+      position: { x: 0, y: 0, z: 0 },
+      velocity: { x: 1, y: 0, z: 0 },
+    }],
+  };
+  const to = {
+    frameIndex: 11,
+    time: 2,
+    frames: [{
+      ...from.frames[0],
+      frameIndex: 11,
+      time: 2,
+      position: { x: 1, y: 0, z: 0 },
+    }],
+  };
+  const target = { frames: [] };
+
+  const result = interpolateBorgFrameSetInto(
+    from,
+    to,
+    0.5,
+    target,
+    new Map([[7, to.frames[0]]]),
+  );
+
+  assert.equal(result.frames[0].sourceWorldlineId, "worldline-7");
+  assert.equal(result.frames[0].position.x, 0.5);
 });
 
 test("Borg selected certified budget atomically owns its step controller", () => {
@@ -472,9 +510,13 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.match(runtimeSource, /borg-live-run-budget\.v1/);
   assert.match(runtimeSource, /BorgMeasuredRunPresets\.js/);
   assert.match(runtimeSource, /BorgLiveRunRetentionPolicy\.js/);
-  assert.match(runtimeSource, /BorgReleaseBudgetDisposition\.js/);
-  assert.match(runtimeSource, /releaseBudgetDisposition/);
-  assert.match(runtimeSource, /legacyBudgetAppliesToEom/);
+  assert.doesNotMatch(runtimeSource, /BorgReleaseBudgetDisposition\.js/);
+  assert.doesNotMatch(runtimeSource, /releaseBudgetDisposition/);
+  assert.doesNotMatch(runtimeSource, /historicalBudgetManifest/);
+  assert.doesNotMatch(runtimeSource, /releaseBudgetStatus/);
+  assert.doesNotMatch(runtimeSource, /releaseBudgetAuthority/);
+  assert.doesNotMatch(runtimeSource, /releaseBudgetSamples/);
+  assert.doesNotMatch(runtimeSource, /legacyBudgetAppliesToEom/);
   assert.doesNotMatch(runtimeSource, /releaseMaxChunk/);
   assert.match(runtimeSource, /measuredRunPresetCalibration/);
   assert.match(runtimeSource, /updateMeasuredRunPresetCalibration/);

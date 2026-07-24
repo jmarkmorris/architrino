@@ -2,7 +2,7 @@ export function createMarkdownRuntime(deps) {
   const {
     markdownPanel,
     markdownTitle,
-    markdownContent,
+    markdownContent: providedMarkdownContent,
     markdownBody,
     markdownLayoutToggle,
     markdownRenderer,
@@ -12,7 +12,9 @@ export function createMarkdownRuntime(deps) {
     appendCacheBust,
     navigateToTarget,
     documentLike = typeof document !== "undefined" ? document : null,
+    eventSignal,
   } = deps;
+  const markdownContent = providedMarkdownContent ?? markdownBody?.parentElement ?? null;
 
   let activeMarkdownPath = null;
   let activeMarkdownSourcePath = null;
@@ -835,7 +837,7 @@ export function createMarkdownRuntime(deps) {
       }
       event.preventDefault();
       await navigateToTarget(target);
-    });
+    }, eventSignal ? { signal: eventSignal } : undefined);
   }
 
   return {

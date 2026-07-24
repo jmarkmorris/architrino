@@ -55,7 +55,7 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 
 **The Yukawa Mechanism (Assembly Tension):**
 *   **Range vs. mass:** The force range scales as $R \sim \hbar/(m c_0)$ in the observer-level comparison; this scaling is read as heavier assemblies (higher internal curvature) exposing stronger Noether sea response and decohering over shorter distances. On this reading, the pion’s low mass/low curvature lets the binding signal span a femtometer.
-*   **Binding energy:** Nuclear mass defect (e.g., 28.3 MeV in ${}^4$He) is read as the energy stored in shared pion flux loops; the coupled, pion-sharing configuration sits at lower energy than isolated nucleons.
+*   **Binding energy:** Nuclear mass defect (e.g., 28.3 MeV in ${}^4$He; PDG/AME nuclear value) is read as the energy stored in shared pion flux loops; the coupled, pion-sharing configuration sits at lower energy than isolated nucleons.
 *   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared axial layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops is hypothesized to make the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
 *   **Geometric bound:** A pion flux tube that stretches beyond a critical length $L_c$ pays more tension energy than the Noether sea needs to rupture by dissociation. Its unusually low curvature keeps $L_c$ large, explaining the long nuclear-range reach.
 *   **Mass suppression as alignment:** The $q$ and $\bar q$ axes are hypothesized to phase-lock so their externally exposed Noether sea response nearly cancels - geometrically the assembly would follow an almost null-like path through the Noether sea, keeping its effective mass small.
@@ -177,6 +177,9 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 - **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or strongly over-twisted excited states (ρ, Δ) dissociate fast; non-inverse pairs and Gen-I/Gen-II kaon mismatches that require weak corridors (π±, $K$) live longer.
 
 ### SM quantum numbers (cheat sheet for particles discussed)
+
+Lifetime and width entries below are PDG comparison values.
+
 | Particle | Quark content | $Q$ | $B$ | $S$ | $I_3$ | $J^P$ | Lifetime / Width (typical; neutral kaons use $K_S/K_L$ mass eigenstates) |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | $\pi^+$ | $u\bar d$ | +1 | 0 | 0 | +1 | $0^-$ | $2.60\times10^{-8}$ s |

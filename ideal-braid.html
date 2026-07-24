@@ -10,7 +10,7 @@
       href="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css"
     />
     <script defer src="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js"></script>
-    <script src="./vendor/markdown-it/markdown-it.min.js"></script>
+    <script defer src="./vendor/markdown-it/markdown-it.min.js"></script>
     <style>
       * {
         box-sizing: border-box;
@@ -176,19 +176,13 @@
         gap: 10px;
       }
 
-      .ideal-braid-action-grid,
-      .ideal-braid-range-row {
+      .ideal-braid-action-grid {
         display: grid;
         gap: 8px;
       }
 
       .ideal-braid-action-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .ideal-braid-range-row {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
       }
 
       .ideal-braid-doc-row {
@@ -360,7 +354,7 @@
         white-space: nowrap;
       }
 
-      #ideal-braid-potential-strip {
+      #ideal-braid-lorentz-chart {
         width: 100%;
         height: 84px;
         border: 1px solid rgba(148, 163, 184, 0.16);
@@ -426,10 +420,6 @@
         background: rgba(148, 163, 184, 0.16);
       }
 
-      .ideal-braid-closure-detail {
-        display: none;
-      }
-
       .ideal-braid-status {
         margin-top: 2px;
         padding: 7px 8px;
@@ -438,6 +428,27 @@
         background: rgba(20, 83, 80, 0.18);
         color: rgba(204, 251, 241, 0.88);
         font-size: 11px;
+      }
+
+      .ideal-braid-status.is-error {
+        border-color: rgba(248, 113, 113, 0.52);
+        background: rgba(127, 29, 29, 0.32);
+        color: #fecaca;
+      }
+
+      .ideal-braid-boot-error {
+        position: absolute;
+        z-index: 50;
+        left: 50%;
+        top: 50%;
+        width: min(560px, calc(100% - 32px));
+        transform: translate(-50%, -50%);
+        padding: 16px;
+        border: 1px solid rgba(248, 113, 113, 0.7);
+        border-radius: 8px;
+        background: rgba(69, 10, 10, 0.96);
+        color: #fee2e2;
+        font-size: 14px;
       }
 
       .ideal-braid-table {
@@ -707,7 +718,7 @@
           width: auto;
         }
 
-        #ideal-braid-potential-strip {
+        #ideal-braid-lorentz-chart {
           height: 48px;
         }
 
@@ -841,7 +852,7 @@
 
       <section class="ideal-braid-panel is-upper-left" aria-label="Graph zone">
         <h2>Lorentz Map</h2>
-        <canvas id="ideal-braid-potential-strip" width="536" height="168" aria-hidden="true"></canvas>
+        <canvas id="ideal-braid-lorentz-chart" width="536" height="168" aria-hidden="true"></canvas>
         <div class="ideal-braid-chart-legend" aria-hidden="true">
           <span><i style="background:#fbbf24"></i>&gamma; time</span>
           <span><i style="background:#2dd4bf"></i>&xi; length</span>
@@ -1048,21 +1059,8 @@
             <code>R<sub>&parallel;</sub> = R<sub>&perp;</sub> / &gamma;</code>
             <output id="ideal-braid-rparallel-equation">1.620</output>
           </div>
-          <div class="ideal-braid-equation-divider ideal-braid-closure-detail"></div>
-          <div class="ideal-braid-cycle-row ideal-braid-closure-detail">
-            <code>T<sub>&parallel;</sub> = R<sub>&parallel;</sub>/(c<sub>f</sub> - v) + R<sub>&parallel;</sub>/(c<sub>f</sub> + v)</code>
-            <output id="ideal-braid-tparallel-equation">3.240</output>
-          </div>
-          <div class="ideal-braid-cycle-row ideal-braid-closure-detail">
-            <code>T<sub>&perp;</sub> = 2 R<sub>&perp;</sub>&gamma; / c<sub>f</sub></code>
-            <output id="ideal-braid-tperp-equation">3.240</output>
-          </div>
-          <div class="ideal-braid-cycle-row ideal-braid-closure-detail">
-            <code>T<sub>&parallel;</sub> - T<sub>&perp;</sub></code>
-            <output id="ideal-braid-closure-equation">0.00</output>
-          </div>
-          <div class="ideal-braid-status">
-            Closure target: the app shows the candidate shared geometry for mass, clock, and ruler response; it is not a proof by itself.
+          <div id="ideal-braid-status" class="ideal-braid-status" role="status" aria-live="polite">
+            Display-only surface: delayed-potential colors use tangent-linearized transmitter histories; this preview is not a proof.
           </div>
         </div>
       </section>
@@ -1092,7 +1090,6 @@
               type="button"
               aria-label="Switch markdown layout"
               title="Layout"
-              hidden
             >
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M4 5h6v14H4z"></path>

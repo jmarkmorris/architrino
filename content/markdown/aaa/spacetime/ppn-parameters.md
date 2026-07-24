@@ -420,7 +420,7 @@ $$
 |\alpha_3|
 \right)
 $$
-The first row is the Cassini time-delay bound on $\gamma_{\mathrm{PPN}}-1$; the second uses the perihelion-shift row for $\beta_{\mathrm{PPN}}-1$; the preferred-frame rows use the best listed weak-field/strong-field analogue bounds. Strong-field pulsar bounds should not be silently reclassified as solar-system PPN measurements, but they are valid closure pressure: any $\mathbb{A}\mathbb{A}\mathbb{A}$ drift leakage that survives in ordinary clocks, orbits, or pulsar timing must project below the corresponding row unless a separate strong-field screening mechanism is derived.
+The first row is the Cassini time-delay bound on $\gamma_{\mathrm{PPN}}-1$; the second uses the perihelion-shift row for $\beta_{\mathrm{PPN}}-1$; the preferred-frame rows use the best listed weak-field/strong-field analogue bounds, namely the $\alpha_1$ row from lunar-laser-ranging plus binary-pulsar bounds, the $\alpha_2$ row from the solar-spin-axis alignment bound, and the $\alpha_3$ row from pulsar-population $\dot p$ statistics, per the Will PPN living-review compilation. Strong-field pulsar bounds should not be silently reclassified as solar-system PPN measurements, but they are valid closure pressure: any $\mathbb{A}\mathbb{A}\mathbb{A}$ drift leakage that survives in ordinary clocks, orbits, or pulsar timing must project below the corresponding row unless a separate strong-field screening mechanism is derived.
 
 The decision residual is therefore the componentwise normalized vector
 $$
@@ -838,6 +838,8 @@ $$
 $$
 so the Fisher matrix is rank-2 in this fit and $(\Xi_1,\Xi_2,\Xi_3)$ remain unconstrained by this subset alone.
 
+The following is an inline reduced-fit example; no archived artifact, reproducible from the declared formulas and inputs above.
+
 Reducing to $\boldsymbol{\vartheta}_{\mathrm{red}}=(\gamma_{\text{eff}},C_2)^{\mathsf T}$, the inferred covariance is
 $$
 \Sigma_{\mathrm{red}}
@@ -859,7 +861,7 @@ $$
 $$
 
 Interpretation for closure:
-1. A single constitutive vector can fit the selected classical observables without per-observable retuning.
+1. A single constitutive vector can fit the selected classical observables without per-observable retuning; read this as consistency of the projection algebra, not independent evidence for the constitutive map.
 2. Preferred-frame channels require additional drift-sensitive observables (LLR, pulsar timing, dedicated anisotropy tests) to close $(\Xi_1,\Xi_2,\Xi_3)$.
 3. The positive $\gamma_{\text{eff}}$-$C_2$ covariance defines the accepted trade-off direction when matching precession jointly with refractive observables.
 

@@ -94,7 +94,7 @@ and discrete self-similarity,
 $$
 Z(\tau+\Delta,x)=Z(\tau,x),
 $$
-for the effective fields $Z$ in logarithmic collapse coordinates. Recent large-$D$ analytic work is useful because it turns part of that threshold structure from a purely numerical GR pattern into a formula-controlled comparison family. The $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target is not a literal crystallization of substrate spacetime. It is to show that the finite-boundary-data transition has a controlled threshold, a repeatable echoing or cadence row when the effective comparison requires one, and a finite continuation family on the compact-region side of the threshold.
+for the effective fields $Z$ in logarithmic collapse coordinates. Recent large-$D$ analytic work (Emparan-class) is useful because it turns part of that threshold structure from a purely numerical GR pattern into a formula-controlled comparison family. The $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target is not a literal crystallization of substrate spacetime. It is to show that the finite-boundary-data transition has a controlled threshold, a repeatable echoing or cadence row when the effective comparison requires one, and a finite continuation family on the compact-region side of the threshold.
 
 ### Finite-Boundary-Data Regularity
 
@@ -184,7 +184,7 @@ F_H(T)=0,\qquad
 $$
 with the same finite boundary data driving the transition across the whole interval. A result that proves regularity only for an isolated stationary exterior remains a comparison result until it supplies this dynamical continuation.
 
-Recent regular-horizon cosmological-coupling constructions sharpen this warning. They show that horizon regularity in an embedded compact-object model depends on handling the cosmological background, apparent-horizon condition, and local/cosmological mass split together; a nonsingular core or stationary exterior is not enough by itself. The native lesson is not to import an anisotropic-fluid metric as ontology. The lesson is that the continuation map above must carry embedding-state backreaction inside $\theta_{\partial\Omega,W}$ and must not evaluate $\mathcal{R}_H(\Omega,T)$ only in an isolated stationary chart.
+Recent regular-horizon cosmological-coupling constructions (Croker–Farrah-class) sharpen this warning. They show that horizon regularity in an embedded compact-object model depends on handling the cosmological background, apparent-horizon condition, and local/cosmological mass split together; a nonsingular core or stationary exterior is not enough by itself. The native lesson is not to import an anisotropic-fluid metric as ontology. The lesson is that the continuation map above must carry embedding-state backreaction inside $\theta_{\partial\Omega,W}$ and must not evaluate $\mathcal{R}_H(\Omega,T)$ only in an isolated stationary chart.
 
 ## Maximal Curvature vs Planck Scale
 

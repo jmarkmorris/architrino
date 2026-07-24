@@ -1,36 +1,29 @@
 export const BORG_MEASURED_RUN_PRESETS_VERSION = "borg-measured-run-presets.v1";
 
-export const BORG_MEASURED_RUN_PRESET_LIMITS = Object.freeze({
-  maxChunkWallTimeMs: 120,
-  minFrameAppendRateRowsPerSecond: 20000,
-  maxChunkWorkerMemoryBytes: 2 * 1024 * 1024,
-  maxRunWorkerMemoryBytes: 64 * 1024 * 1024,
-  maxChunkHeapGrowthBytes: 8 * 1024 * 1024,
-  maxRunHeapGrowthBytes: 64 * 1024 * 1024,
-  maxRunFrameRows: 240000,
-  minTargetDuration: 20,
-  maxTargetDuration: 3000,
-  minChunkDuration: 2,
-  maxChunkDuration: 50,
-});
-
 export function createMeasuredRunPresetCalibration({
   basePresets = [],
-  limits = BORG_MEASURED_RUN_PRESET_LIMITS,
+  limits = null,
 } = {}) {
   const normalizedLimits = normalizeLimits(limits);
-  const thresholds = createBootstrapThresholds(basePresets, normalizedLimits);
+  const thresholds = normalizedLimits == null
+    ? unavailableThresholds()
+    : createBootstrapThresholds(basePresets, normalizedLimits);
+  const thresholdAuthority = normalizedLimits == null
+    ? "base-presets-no-current-eom-release-budget"
+    : "bootstrap-defaults-until-live-budget-measured";
   return Object.freeze({
     schema: BORG_MEASURED_RUN_PRESETS_VERSION,
-    status: "bootstrap-pending-measurement",
-    thresholdAuthority: "bootstrap-defaults-until-live-budget-measured",
+    status: normalizedLimits == null
+      ? "current-eom-release-budget-unavailable"
+      : "bootstrap-pending-measurement",
+    thresholdAuthority,
     sampleCount: 0,
     limits: normalizedLimits,
     thresholds,
     lastSample: null,
     presets: Object.freeze(
       basePresets.map((preset) => applyThresholdsToPreset(preset, thresholds, {
-        thresholdAuthority: "bootstrap-defaults-until-live-budget-measured",
+        thresholdAuthority,
       })),
     ),
   });
@@ -41,6 +34,23 @@ export function updateMeasuredRunPresetCalibration(calibration, measurement, bas
   const sample = createMeasuredRunPresetSample(measurement);
   if (!sample) {
     return previous;
+  }
+  if (previous.limits == null) {
+    const thresholdAuthority = "base-presets-no-current-eom-release-budget";
+    return Object.freeze({
+      ...previous,
+      status: "measured-eom-observation-no-release-ceilings",
+      thresholdAuthority,
+      sampleCount: previous.sampleCount + 1,
+      lastSample: sample,
+      presets: Object.freeze(
+        basePresets.map((preset) => applyThresholdsToPreset(
+          preset,
+          previous.thresholds,
+          { thresholdAuthority },
+        )),
+      ),
+    });
   }
   const thresholds = createMeasuredRunThresholds(sample, previous.limits);
   const sampleCount = previous.sampleCount + 1;
@@ -197,8 +207,12 @@ function applyThresholdsToPreset(preset, thresholds, { thresholdAuthority }) {
   }
   const minTargetDuration = positiveNumber(preset.minTargetDuration, 20);
   const minChunkDuration = positiveNumber(preset.minChunkDuration, 2);
-  const targetLimit = Math.max(minTargetDuration, thresholds.maxTargetDuration);
-  const chunkLimit = Math.max(minChunkDuration, thresholds.maxChunkDuration);
+  const targetLimit = thresholds.maxTargetDuration == null
+    ? Number.POSITIVE_INFINITY
+    : Math.max(minTargetDuration, thresholds.maxTargetDuration);
+  const chunkLimit = thresholds.maxChunkDuration == null
+    ? Number.POSITIVE_INFINITY
+    : Math.max(minChunkDuration, thresholds.maxChunkDuration);
   const isForever =
     preset.durationMode === "forever" || preset.targetDuration === Number.POSITIVE_INFINITY;
   const effectiveTargetDuration = clampDuration(
@@ -222,9 +236,18 @@ function applyThresholdsToPreset(preset, thresholds, { thresholdAuthority }) {
 }
 
 function normalizeLimits(limits) {
+  return limits == null ? null : Object.freeze({ ...limits });
+}
+
+function unavailableThresholds() {
   return Object.freeze({
-    ...BORG_MEASURED_RUN_PRESET_LIMITS,
-    ...(limits ?? {}),
+    measuredAtChunkIndex: null,
+    maxTargetDuration: null,
+    maxChunkDuration: null,
+    rowsPerSolverTime: null,
+    wallTimeMsPerSolverTime: null,
+    workerBytesPerSolverTime: null,
+    heapBytesPerSolverTime: null,
   });
 }
 

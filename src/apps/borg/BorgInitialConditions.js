@@ -1,3 +1,8 @@
+import {
+  BORG_ELECTRINO_STATE_FLAG,
+  BORG_POSITRINO_STATE_FLAG,
+} from "./BorgPolarityDiagnostics.js";
+
 export const BORG_MAX_INITIAL_ARCHITRINO_COUNT = 512;
 export const BORG_PRESCRIBED_INITIAL_HISTORY_PROVENANCE =
   "app-authored-linear-initial-history-non-eom";
@@ -581,7 +586,3 @@ function nonNegativeInteger(value, fallback) {
 function nonNegativeNumber(value, fallback) {
   return strictNonNegativeNumber(value) ?? fallback;
 }
-import {
-  BORG_ELECTRINO_STATE_FLAG,
-  BORG_POSITRINO_STATE_FLAG,
-} from "./BorgPolarityDiagnostics.js";

@@ -25,6 +25,7 @@ export function createBorgAssemblyViewControls({
   dom,
   onRecordChange,
   onCameraModeChange,
+  hasCoRotatingCarrier,
   onExport,
   onTranslationFrameChange,
   onHistoryDepthChange,
@@ -83,7 +84,7 @@ export function createBorgAssemblyViewControls({
       : `Trail: ${trail.periodCount} complete prescribed return cycle${trail.periodCount === 1 ? "" : "s"} (${format(trail.duration)} recorded time units).`;
     dom.cameraMode.querySelector?.('option[value="co-rotating"]')?.toggleAttribute?.(
       "disabled",
-      trail.period == null || !hasPlaneNormal(entry),
+      !borgCoRotatingCameraAvailable(hasCoRotatingCarrier),
     );
     dom.translationFrame.value = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
     dom.translationFrame.querySelector?.(
@@ -747,12 +748,8 @@ function signed(value) {
   return Number.isFinite(number) && number > 0 ? `+${format(number)}` : value;
 }
 
-function hasPlaneNormal(entry) {
-  return entry.dataset.binaries.some((binary) => {
-    const normal = binary?.planeOrientation?.normal ?? binary?.planeNormal;
-    return [normal?.x, normal?.y, normal?.z].every((value) => Number.isFinite(Number(value))) &&
-      Math.hypot(Number(normal.x), Number(normal.y), Number(normal.z)) > 0;
-  });
+export function borgCoRotatingCameraAvailable(carrier) {
+  return Boolean(typeof carrier === "function" ? carrier() : carrier);
 }
 
 function format(value) {

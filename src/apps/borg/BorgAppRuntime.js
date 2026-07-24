@@ -42,9 +42,6 @@ import {
   createBorgLiveRunRetentionSnapshot,
   applyBorgLiveRunRetention,
 } from "./BorgLiveRunRetentionPolicy.js";
-import {
-  BORG_RELEASE_BUDGET_DISPOSITION_V1,
-} from "./BorgReleaseBudgetDisposition.js";
 import { createBorgPathTrails } from "./BorgPathTrails.js";
 import { createBorgAssemblyViewControls } from "./BorgAssemblyViewControls.js";
 import { createBorgAssemblyViewScene } from "./BorgAssemblyViewScene.js";
@@ -887,7 +884,6 @@ export function mountBorgApp(options = {}) {
   function renderDeploymentFields() {
     const budget = state.liveRunBudget;
     const calibration = state.measuredRunPresetCalibration;
-    const releaseBudget = BORG_RELEASE_BUDGET_DISPOSITION_V1;
     renderFieldRows(dom.deploymentFields, [
       ["deploymentBudgetStatus", manifest.deploymentBudget.deploymentBudgetStatus],
       ["bundleSizeBytes", manifest.deploymentBudget.bundleSizeBytes ?? "not-measured"],
@@ -912,12 +908,6 @@ export function mountBorgApp(options = {}) {
       ["presetSamples", calibration.sampleCount],
       ["targetDurationLimit", calibration.thresholds.maxTargetDuration],
       ["chunkDurationLimit", calibration.thresholds.maxChunkDuration],
-      ["releaseBudgetDisposition", releaseBudget.dispositionId],
-      ["historicalBudgetManifest", releaseBudget.sourceManifestId],
-      ["releaseBudgetStatus", releaseBudget.status],
-      ["releaseBudgetAuthority", releaseBudget.valueAuthority],
-      ["releaseBudgetSamples", releaseBudget.sampleMatrix.sampleCount],
-      ["legacyBudgetAppliesToEom", releaseBudget.appliesToCurrentEomSurface],
     ]);
   }
 
@@ -1412,6 +1402,7 @@ export function mountBorgApp(options = {}) {
       },
       onRecordChange: switchReplayRecord,
       onCameraModeChange: (mode) => assemblyViewScene.setCameraMode(mode),
+      hasCoRotatingCarrier: () => assemblyViewScene.hasCoRotatingCarrier,
       onExport: exportReplayImage,
       onTranslationFrameChange: setPrescribedTranslationFrame,
       onHistoryDepthChange: setPrescribedHistoryDepth,

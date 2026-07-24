@@ -154,6 +154,7 @@ export const PHOTON_CONTROL_RANGES = Object.freeze({
   localLorentzFactor: { min: 1, max: 100, step: 0.01 },
   signalSpeedCf: { min: 0.05, max: 1, step: 0.01 },
   photonSpeedCf: { min: 0, max: 1, step: 0.01 },
+  cycleCount: { min: 1, max: 12, step: 1 },
   analyzerAngleDeg: { min: 0, max: 180, step: 1 },
   virtualObserverX: { min: -10, max: 10, step: 0.05 },
   virtualObserverY: { min: -4, max: 4, step: 0.05 },
@@ -533,9 +534,34 @@ export function getPhotonRunDuration(state) {
 
 export function getPhotonMiddleCycleBounds(state) {
   const cycleDuration = getPhotonCycleDuration(state);
+  const runDuration = getPhotonRunDuration(state);
+  const start = Math.max(0, (runDuration - cycleDuration) / 2);
   return {
-    start: cycleDuration,
-    end: cycleDuration * 2,
+    start,
+    end: Math.min(runDuration, start + cycleDuration),
+  };
+}
+
+export function getPhotonCommonFitWindowBounds(state) {
+  const enabledFrequencies = ["left", "right"].flatMap((braidId) =>
+    PHOTON_LAYER_ORDER.flatMap((layerId) => {
+      const layer = getPhotonLayer(state, braidId, layerId);
+      return layer.enabled !== false && Number(layer.frequencyHz) > 0
+        ? [Number(layer.frequencyHz)]
+        : [];
+    })
+  );
+  const slowestFrequency = enabledFrequencies.length > 0
+    ? Math.min(...enabledFrequencies)
+    : getPhotonReferenceFrequency(state);
+  const runDuration = getPhotonRunDuration(state);
+  const duration = Math.min(runDuration, 1 / Math.max(0.0001, slowestFrequency));
+  const start = Math.max(0, (runDuration - duration) / 2);
+  return {
+    start,
+    end: start + duration,
+    duration,
+    slowestFrequency,
   };
 }
 

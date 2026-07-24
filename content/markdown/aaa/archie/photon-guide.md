@@ -17,7 +17,7 @@ The side view shows the same pair along the line of translation. Each planar bra
 The lower stage contains two observer-level readouts:
 
 - Electric Field: the transverse electric-field readout reconstructed from the branch-weighted causal hits at the current Virtual Observer coordinate.
-- Polarization: the transverse $E_y/E_z$ curve fitted from the actual branch-sum field over one reference cycle, with the current field vector, analyzer axis, and optional raw one-cycle points.
+- Polarization: the reference-frequency component fitted from the actual branch-sum field over the slowest enabled layer's common period, with the current field vector, analyzer axis, and optional raw common-period points.
 
 The plot covers three full reference-channel cycles. The white now line moves left to right, and the app leaves only a short forward gap ahead of that line blank so the waveform stays visible when time wraps around. For an ideal plane-wave comparison moving along $+\hat{\mathbf x}$, $\mathbf B$ is recovered from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$, so it is not plotted as a separate graph.
 
@@ -32,6 +32,8 @@ Use Reset preset to return to the last loaded preset after making local edits. U
 Use Paths on/off to show or hide orbit paths and path-history trails.
 
 Use Slow/Fast to scale animation time without changing the configured binary frequencies. The default Slow/Fast setting is calibrated to make the default binary 1/2/3 orbit rates visible at `0.8`, `0.4`, and `0.2` cycles per real second.
+
+Use Cycle reference to choose which indexed layer defines one plotted cycle, and Plotted cycles to choose a run length from `1` through `12` reference cycles. The polarization fit still uses the slowest enabled layer's common period so changing the plot window does not reintroduce slower-layer leakage into the reference-frequency fit.
 
 Each of the six binaries has an enabled checkbox. When a binary is unchecked, it is removed from the braid display and its two architrinos are removed from the Virtual Observer E field sum.
 
@@ -206,11 +208,11 @@ This is a Virtual Observer diagnostic. It uses Master-EOM-style causal hits to i
 
 ## Derived Polarization
 
-The app treats polarization basis, linear angle, phase lag, ellipticity, and intensity as observer-level diagnostic outcomes rather than transmitter-side controls. The formula panel fits the actual branch-sum $E_y(t)$ and $E_z(t)$ over one reference cycle, extracts the fitted amplitudes and relative phase lag, and classifies the result as weak, linear, circular, or elliptical. The polarization inset draws the fitted oscillating component centered on the $E_y/E_z$ origin, so a constant observer bias does not shift the ellipse or line.
+The app treats polarization basis, linear angle, phase lag, ellipticity, and intensity as observer-level diagnostic outcomes rather than transmitter-side controls. The formula panel fits the reference-frequency component of the actual branch-sum $E_y(t)$ and $E_z(t)$ over the slowest enabled layer's common period, extracts the fitted amplitudes and relative phase lag, and classifies the result as weak, linear, circular, or elliptical. This common window prevents slower enabled layers from leaking into the reference-frequency coefficients merely because the fit stopped after one shorter cycle. The polarization inset draws the fitted oscillating component centered on the $E_y/E_z$ origin, so a constant observer bias does not shift the ellipse or line.
 
-Show raw polarization points is on by default. It draws the sampled one-cycle branch-sum points behind the fitted curve. If the points sit close to the fitted curve, the fit is visually clean. If they spread away from it, the polarization label should be treated with more caution.
+Show raw polarization points is on by default. It draws the sampled common-period branch-sum points behind the fitted curve. If the points sit close to the fitted curve, the fit is visually clean. If they spread away from it, the polarization label should be treated with more caution.
 
-The one-cycle fit uses
+The common-period reference-frequency fit uses
 
 $$
 E_y(t)\approx A_y\cos(\omega t+\phi_y),
@@ -220,7 +222,7 @@ $$
 
 with phase lag $\Delta\phi=\phi_z-\phi_y$.
 
-The Analyzer angle remains a control because it is a measurement axis, not a source polarization factor. The inset overlays that analyzer axis and the formula panel reports the scalar analyzer fraction for the current field vector. The formula panel keeps the normalized ellipse-fit residual separate from the analyzer residual, which is the cycle-average analyzer fraction minus the fitted analyzer fraction.
+The Analyzer angle remains a control because it is a measurement axis, not a source polarization factor. The inset overlays that analyzer axis and the formula panel reports the scalar analyzer fraction for the current field vector. The formula panel keeps the normalized fit residual separate from the fit-to-field fraction residual. Both the fitted fraction and the sampled common-period fraction use transmitted energy divided by total transverse energy, so their difference does not mix two incompatible averages.
 
 The analyzer axis is
 
@@ -234,6 +236,15 @@ $$
 
 and the displayed analyzer fraction is
 
+$$
+
+The common-period energy fraction is
+
+$$
+\bar\mu_{\mathrm{analyzer}}
+=
+\frac{\left\langle|\hat{\mathbf a}\cdot\mathbf E|^2\right\rangle}
+{\left\langle|\mathbf E|^2\right\rangle+\varepsilon}.
 $$
 \mu_{\mathrm{analyzer}}
 =
@@ -251,49 +262,42 @@ The live Diagnostics panel includes a quality word when a readout has a useful d
 |---:|---|---|
 | 1 | Transverse&nbsp;amp | How strong the sideways electric readout is at the Virtual Observer. |
 | 2 | Longitudinal&nbsp;leak | How much field points along the travel direction. For a clean transverse light-like readout, this should stay small. |
-| 3 | Helicity&nbsp;estimate | A simple handedness check for the left counter-clockwise and right clockwise setup. |
+| 3 | Fitted&nbsp;$S_3$&nbsp;sign | The sign of the fitted circular or elliptical component. This is a fit readout, not a graded physical helicity claim. |
 | 4 | Fit&nbsp;residual | How far the fitted polarization curve misses the sampled branch-sum field. Smaller is a cleaner fit. |
 | 5 | Mean&nbsp;delay | The average travel time from transmitter history roots to the Virtual Observer. |
 | 6 | Transmitter&nbsp;count | How many active architrino transmitters are included. Each enabled binary contributes two transmitters. |
 | 7 | Root&nbsp;count | How many causal roots were retained after solving transmitter histories. More than the transmitter count means at least one transmitter has multiple roots. |
 | 8 | Max&nbsp;transmitter&nbsp;v/c_f | The fastest active transmitter speed compared with field speed. Above `1` means super-field-speed transmitter motion is present; that is a regime indicator, not a delay-solve failure by itself. |
 | 9 | Min \|J\| | The smallest Jacobian magnitude in the causal-root sum. Very small values mean the branch is close to a pile-up or caustic. |
-| 10 | Span&nbsp;self-hit&nbsp;roots | How many enabled binary layers produced a retained same-transmitter span record in the shared-geometry solver. This is the older circular speed-regime proxy. |
-| 11 | Span&nbsp;self-hit&nbsp;max&nbsp;$v/c_{\mathrm{sig}}$ | The largest span-proxy same-transmitter speed ratio after combining photon-channel translation speed with transverse orbital speed. |
-| 12 | Helical&nbsp;self-hit&nbsp;roots | How many individual architrino helical source histories produced retained same-transmitter roots. |
-| 13 | Helical&nbsp;self-hit&nbsp;max&nbsp;$v/c_{\mathrm{sig}}$ | The largest same-transmitter speed ratio in the helical transmitter-history records. Values above `1` nominate a self-hit candidate regime. |
-| 14 | Helical&nbsp;self-hit&nbsp;min&nbsp;\|J\| | The smallest Jacobian magnitude among retained helical same-transmitter roots. Very small values mean the self-hit family is close to a pile-up or caustic. |
-| 15 | Helical&nbsp;self-hit&nbsp;phase&nbsp;spread | How tightly retained helical same-transmitter roots cluster by source phase. Smaller means the roots are more phase-aligned. |
-| 16 | Helical&nbsp;phase&nbsp;families | How many helical same-transmitter root families are phase-stable after grouping by role, layer, charge, and source cycle. |
-| 17 | Best&nbsp;helical&nbsp;family | The most stable helical same-transmitter family label, spread, and root count. |
-| 18 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
-| 19 | No&nbsp;catch-up&nbsp;sources | How many source histories did not causally catch the moving Virtual Observer in the scanned window. This can be a real moving-apparatus result when $c_\gamma$ is close to $c_{\mathrm{sig}}$. |
-| 20 | Stale&nbsp;windows | How many scan windows looked too old for the selected hit time. |
-| 21 | Near&nbsp;misses | How many source histories came close to a root but did not retain one. These deserve numerical caution. |
-| 22 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
-| 23 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
-| 24 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
-| 25 | Left&nbsp;phase&nbsp;spread | How evenly the left braid's indexed phases are spaced. |
-| 26 | Right&nbsp;phase&nbsp;spread | How evenly the right braid's indexed phases are spaced. |
-| 27 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
-| 28 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 10 | Self-hit&nbsp;diagnostics | The interactive snapshot defers the heavier same-transmitter sweep so animation and control changes remain responsive. Dedicated sweep records retain those diagnostics outside the frame loop. |
+| 11 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
+| 12 | No&nbsp;catch-up&nbsp;sources | How many source histories did not causally catch the moving Virtual Observer in the scanned window. This can be a real moving-apparatus result when $c_\gamma$ is close to $c_{\mathrm{sig}}$. |
+| 13 | Stale&nbsp;windows | How many scan windows looked too old for the selected hit time. |
+| 14 | Near&nbsp;misses | How many source histories came close to a root but did not retain one. These deserve numerical caution. |
+| 15 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
+| 16 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
+| 17 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
+| 18 | Left&nbsp;120-degree&nbsp;spacing&nbsp;error | How far the left braid's three indexed phase gaps depart from equal 120-degree spacing. |
+| 19 | Right&nbsp;120-degree&nbsp;spacing&nbsp;error | How far the right braid's three indexed phase gaps depart from equal 120-degree spacing. |
+| 20 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 21 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
 
 ## Formulas
 
-The live Formulas panel reports the current branch-sum field, the one-cycle polarization fit, the Analyzer-axis comparison, and the Stokes-style fitted polarization components. The Stokes rows put the formula first and the conventional shorthand in parentheses.
+The live Formulas panel reports the current branch-sum field, the common-period reference-frequency fit, the Analyzer-axis comparison, and the Stokes-style fitted polarization components. The Stokes rows put the formula first and the conventional shorthand in parentheses.
 
 | # | Name | ELI5 explanation |
 |---:|---|---|
 | 1 | derived&nbsp;mode | The fitted polarization type: weak field, linear, circular, or elliptical. |
-| 2 | fit&nbsp;amp&nbsp;E_y | How tall the fitted E_y wave is over one reference cycle. |
-| 3 | fit&nbsp;amp&nbsp;E_z | How tall the fitted E_z wave is over one reference cycle. |
+| 2 | fit&nbsp;amp&nbsp;E_y | How tall the reference-frequency fitted $E_y$ wave is over the common period. |
+| 3 | fit&nbsp;amp&nbsp;E_z | How tall the reference-frequency fitted $E_z$ wave is over the common period. |
 | 4 | fit&nbsp;E_z/E_y | How large the fitted E_z amplitude is compared with the fitted E_y amplitude. Near `1` means the two fitted components are about equally strong. |
 | 5 | fit&nbsp;lag | The signed phase difference between the fitted $E_z$ and $E_y$ waves. It is `n/a` when the field is too weak or too close to one axis to define a useful lag. |
-| 6 | fit&nbsp;residual | How far the fitted polarization curve misses the sampled branch-sum field. Smaller is a cleaner one-cycle fit. |
-| 7 | fit&nbsp;analyzer&nbsp;fraction | The fraction predicted by the fitted polarization curve along the current Analyzer angle. |
-| 8 | mu&nbsp;analyzer | The current branch-sum field vector's analyzer fraction at the now line. |
-| 9 | cycle&nbsp;average | The average instantaneous analyzer fraction sampled over the three-cycle run. |
-| 10 | analyzer&nbsp;residual | The cycle average minus the fitted analyzer fraction. Closer to `0` means the analyzer summary agrees better with the raw sampled field. |
+| 6 | fit&nbsp;residual | How far the fitted polarization curve misses the sampled branch-sum field. Smaller is a cleaner common-period fit. |
+| 7 | fit&nbsp;energy&nbsp;fraction | The transmitted-energy fraction predicted by the fitted reference-frequency component along the current Analyzer angle. |
+| 8 | instantaneous&nbsp;fraction | The current branch-sum field vector's analyzer fraction at the now line. |
+| 9 | common-period&nbsp;energy&nbsp;fraction | Sampled projected energy divided by sampled total transverse energy over the common period. |
+| 10 | fit-to-field&nbsp;fraction&nbsp;residual | The common-period sampled energy fraction minus the fitted energy fraction. Closer to `0` means the reference-frequency fit summarizes the sampled field more closely. |
 | 11 | source&nbsp;count | How many active architrino sources are included in the branch-sum field. |
 | 12 | root&nbsp;count | How many causal roots were retained after solving the source histories. |
 | 13 | mean&nbsp;delay | The average travel time from retained source roots to the Virtual Observer. |

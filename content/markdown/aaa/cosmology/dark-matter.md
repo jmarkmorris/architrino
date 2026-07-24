@@ -261,7 +261,7 @@ Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dar
 
 **Definition.** Neutral Noether braid assemblies that lack exposed charged polar sites in their axial layers. The minimal examples are:
 
-- **Neutrino-class assemblies:** pro-orientation Noether braids with balanced axial layers ($3\epsilon_+ + 3\epsilon_-$). These are the SM neutrinos themselves; their masses ($\sum m_\nu < 0.12$ eV from cosmological bounds) are too small to account for the full $\Omega_{\mathrm{DM}}$, but they contribute to the hot dark-matter fraction and to $N_{\mathrm{eff}}$.
+- **Neutrino-class assemblies:** pro-orientation Noether braids with balanced axial layers ($3\epsilon_+ + 3\epsilon_-$). These are the SM neutrinos themselves (see [Neutrinos](../assemblies/fermions/neutrinos.md)); their masses ($\sum m_\nu < 0.12$ eV from the Planck 2018 + BAO inference chain) are too small to account for the full $\Omega_{\mathrm{DM}}$, but they contribute to the hot dark-matter fraction and to $N_{\mathrm{eff}}$.
 
 - **Heavier neutral assemblies (hypothetical):** Noether braids carrying axial patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these would be assemblies whose axial layers cancel in both net charge and oscillating dipole moment, analogous to the neutrino's balanced axial layer but realized on a heavier Noether braid. The mass scale is set by internal binding energy, shielding, and medium-dressed response to the Noether sea.
 
@@ -356,7 +356,7 @@ Here $\mathrm{RAR}^{\theta}$ is the radial-acceleration relation predicted by th
 - Reproducing cluster-scale lensing/gas centroid separation without a collisionless component.
 - Matching acoustic-peak matter loading in pre-decoupling dynamics.
 - Producing the correct large-scale transfer-function shape in $P(k)$.
-- Preserving the large-scale inverse-square force profile inferred from kSZ halo-pair velocities. The retained halo-pair benchmark fits $g(r)\propto r^{-n}$ with $n=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales, so a pure MOND-like branch with an unscreened $n\simeq1$ profile on that window is not viable without a native screening or regime-separation mechanism.
+- Preserving the large-scale inverse-square force profile inferred from kSZ halo-pair velocities. The retained halo-pair benchmark fits $g(r)\propto r^{-n}$ with $n=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales—a kSZ pairwise-velocity constraint, the exemplary measured row presented as the ACT/SDSS kSZ pairwise-velocity entry in [Structure Formation](structure-formation.md#cmb-lensing-and-acoustic-peaks)—so a pure MOND-like branch with an unscreened $n\simeq1$ profile on that window is not viable without a native screening or regime-separation mechanism.
 
 These difficulties motivate retaining Candidate A as the primary dark-matter substrate, with Candidate B contributing corrections.
 
@@ -700,7 +700,7 @@ The neutral-assembly mass is not a free parameter to be fitted post hoc; it must
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework does not predict a unique mass; deriving the mass spectrum from first-principles Noether braid binding energies and formation rates is a high-priority simulation target.
 
-A superheavy neutral-lepton comparison branch is useful only as a benchmark, not as imported ontology. In that comparison, a sterile or right-handed singlet near $m_{\nu_R}\sim4.8\times10^8\;\mathrm{GeV}$ behaves as cold, collisionless dark matter if it is stable, decoupled from visible channels, and produced with the observed abundance. The corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ acceptance record would have to close
+A superheavy neutral-lepton comparison branch is useful only as a benchmark, not as imported ontology. In that comparison, a sterile or right-handed singlet near $m_{\nu_R}\sim4.8\times10^8\;\mathrm{GeV}$ (a type-I seesaw comparison benchmark) behaves as cold, collisionless dark matter if it is stable, decoupled from visible channels, and produced with the observed abundance. The corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ acceptance record would have to close
 $$
 \mathcal{B}_{\nu_R\mathrm{DM}}
 =

@@ -634,13 +634,19 @@ function drawPlotCurve(ctx, samples, width, height, key, color, currentProgress,
 }
 
 function getPlotAmplitudeScale(samples, keys, currentProgress = null) {
-  const visibleSamples = currentProgress === null
-    ? samples
-    : samples.filter((sample) => !isPhotonPlotSampleInForwardGap(sample.progress, currentProgress));
-  return Math.max(
-    0,
-    ...visibleSamples.flatMap((sample) => keys.map((key) => Math.abs(Number(sample[key]) || 0)))
-  );
+  let maximum = 0;
+  for (const sample of samples) {
+    if (
+      currentProgress !== null &&
+      isPhotonPlotSampleInForwardGap(sample.progress, currentProgress)
+    ) {
+      continue;
+    }
+    for (const key of keys) {
+      maximum = Math.max(maximum, Math.abs(Number(sample[key]) || 0));
+    }
+  }
+  return maximum;
 }
 
 function formatPhotonPlotEmax(value) {

@@ -30,7 +30,7 @@ The working source record assigns binary 2 the symmetry-breaking threshold, bina
 
 When the local branch is described from the assembly side, this transition is the braid symmetry-breaking point: the source record's binary-2 threshold row remains at $c_f$, binary 3 is driven to the same terminal threshold, and binary 1 supplies the self-hit interior continuation.
 
-Critical-collapse work in GR supplies a useful threshold comparison for this language. In Choptuik-style scalar collapse, finely tuned effective initial data approach a discretely self-similar solution at the border between dispersal and black-hole formation, and recent large-$D$ work gives analytic expressions for a related family. The useful point for this chapter is not that substrate spacetime literally crystallizes. It is that black-hole formation should have a threshold record: exterior dispersal, horizon-interface capture, and interior continuation must be separated by the same branch data rather than by an ad hoc singular endpoint.
+Critical-collapse work in GR supplies a useful threshold comparison for this language. In Choptuik-style scalar collapse, finely tuned effective initial data approach a discretely self-similar solution at the border between dispersal and black-hole formation, and the large-$D$ black-hole program (Emparan-class) gives analytic expressions for a related family. The useful point for this chapter is not that substrate spacetime literally crystallizes. It is that black-hole formation should have a threshold record: exterior dispersal, horizon-interface capture, and interior continuation must be separated by the same branch data rather than by an ad hoc singular endpoint.
 
 ## Collapse-Response Ladder
 

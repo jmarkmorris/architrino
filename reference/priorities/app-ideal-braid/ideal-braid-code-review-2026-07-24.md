@@ -81,3 +81,24 @@ Mixed. Pure-math tests are real (γ=1.25 at β=0.6, tilt monotonicity, contracti
 6. M10 + mount smoke test — boot error banner, then `mountIdealBraid` smoke test with stubbed document/window/THREE pinning DOM contract and destroy.
 7. Module split (the scheduler bug survived because it is untestable): extract `IdealBraidLorentzMath.js` (~150), `IdealBraidAnalysisAdapters.js` (~450), `IdealBraidOrbitPathVisuals.js` (~600), `IdealBraidSceneAssets.js` (~300), `IdealBraidSurfaceSolverScheduler.js` (~180, injectable clock), `IdealBraidMarkdownDock.js` (~90), leaving the runtime ≈550 lines of mount/state/events/render loop.
 8. Sweep M4/M5/M6/M9 and the LOW list opportunistically during the split.
+
+## Resolution — 2026-07-24
+
+The implementation pass addressed the review as follows:
+
+- **H1:** guide links now distinguish runtime markdown targets from repository markdown paths, derive document names from the known-document map or filename, use one-column layout consistently, and pass the scroll/focus container into the shared markdown runtime. A link-navigation regression test covers the real event path.
+- **H2:** the surface solver now lives behind a testable scheduler with an unconditional minimum request interval, a one-second failure backoff, visible status output, and console reporting. The orbit-profile solve also reports failures. Surface work stops while the Surface layer is hidden.
+- **H3:** all app listeners share one `AbortController`; the markdown-body listener accepts the same signal; `destroy()` cancels the frame, disconnects resize observation, stops the scheduler, traverses the scene to dispose unique geometries/materials, and disposes the renderer. A mount/destroy smoke test pins listener and asset cleanup.
+- **H4:** delayed-potential rows use `model.fieldSpeed` and the adapter's documented `0.08` softening. The scheduler request test pins both values.
+- **M1–M10 and M12:** the UI labels the tangent-linearized surface as a display-only preview; self-hit requests use 48 iterations and a real analysis integration test converges in 31; field-speed ratios derive from the animator scaffold; the unused probe column and tautological closure rows are gone; per-frame chart/control/table rebuilds are gated or reduced to changed phase cells; hidden surfaces do no work; dead scalar analysis bridges were removed; markers are positioned through the contraction matrix without flattening their sphere geometry; boot failures produce a visible alert; markdown scroll/focus is fixed in Ideal Braid and Photon.
+- **L1–L10, L12, L14, and L15:** phase display uses the authored positrino motion, the chart id is accurate, duplicate CSS is removed, the layout control is visible, linked documents use one column, the constant async wrapper is gone, one runtime clock is used, drawing-buffer preservation is disabled, pixel ratio refreshes on resize, pole samples are unique, markdown-it is deferred, option forwarding is preserved, mount no longer steals focus, and shared numeric helpers own normalization.
+
+Three pattern-wide contract/asset items remain intentionally unchanged:
+
+- **M11:** `latestRetardedReach` and `conservativeRetardedHistoryMargin` are shared protocol/result identifiers with test and consumer impact. Renaming them requires an explicit schema migration rather than an app-local edit.
+- **L11:** the KaTeX files currently have one repository owner under the reader asset tree and twelve HTML consumers. Moving them requires a coordinated asset-owner migration; this pass only corrected the independent `markdown-it` loading issue.
+- **L13:** `forceLawVersion` is a shared solver-app bridge schema field. Repository policy requires a coordinated compatibility decision before renaming that machine contract.
+
+The critical untestable closure was removed by extracting `IdealBraidAnalysisAdapters.js`, `IdealBraidSurfaceSolverScheduler.js`, and `IdealBraidNumeric.js`. Further visual-asset decomposition remains maintenance work, not a blocker for the reviewed behavioral fixes.
+
+Validation: 50 focused Ideal Braid, markdown, import-graph, and standalone-launch tests pass; strict content validation reports 0 errors and 0 warnings; scoped `git diff --check` passes. The full content-integrity command reaches the generated textbook reading-copy check and stops on six ambient drifted reading copies caused by concurrent corpus edits. Per generated-artifact policy, this pass did not run `node scripts/build-textbook-md-pdf.mjs --write`.

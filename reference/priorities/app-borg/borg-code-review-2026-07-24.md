@@ -54,6 +54,30 @@ Three reviewers re-inspected current source against every Resolution claim, ran 
 
 **Follow-up fix order:** new-defect 1 (replay bind regression) → new-defect 2 (runner leak) → new-defect 3 (stale hash pin, unblocks the borg suite) → B6 (frustum culling) → B5 gate (wire up `hasCoRotatingCarrier`) → 2.1/2.2 regression tests → dead-code + nits.
 
+## Follow-up repair verification — 2026-07-24
+
+The independent re-review findings above are resolved in current source:
+
+- Replay interpolation now preserves `sourceWorldlineId`; the mid-segment scratch-row regression has a direct test.
+- Workspace snapshot construction and restoration live in `BorgWorkspaceState.js`. Async generation/prefill state is excluded, restoration advances the live generation, and unmount disposes each distinct snapshotted runner without double-disposing the active runner.
+- Polarity-ledger workspace replacement is an explicit operation with a regression proving that escapes from the prior workspace are removed.
+- The co-rotating control reads the scene's live `hasCoRotatingCarrier` capability, so its gate now matches the scene requirement for a positive frequency and nonzero plane normal.
+- Prescribed path strands disable frustum culling and recompute their bounding sphere after a translation-frame attribute swap. The strand regression checks both properties.
+- `createBorgEomShadowRunConfig` rejects `historyDepth < geometricDelayBound + historySafetyMargin`; startup passes its authored one-sample safety margin, and short-history tests were replaced with causally sufficient histories.
+- Rejected provider digest promises are evicted, `clearCache()` resets both weak caches, and retry/clear behavior is covered.
+- The live preset path no longer imports the historical pre-EOM sweep ceilings. Without a separately authorized current EOM release budget it records EOM observations but leaves authored presets unchanged and reports that no release ceilings exist.
+- Cubic retained-history evaluation is shared by the dataset adapter and shadow runner, including an upper-coverage and internal-gap guard. The runner-local evaluator was removed.
+- The dead full-history `appendDisplayHistoryCache` implementation, hardcoded polarity flags, bottom-of-file import, and per-frame linear path-window scans were removed; path-window lookup now uses binary search.
+- The binding record's source snapshot hash was refreshed against the current master-equation document.
+
+Verification: `node --test tests/borg-*.test.js` passes 165/165; the shared dataset/import-graph regression set passes 25/25; `git diff --check` passes; and the binding pin equals the live master-equation SHA-256.
+
+The schema-pinned `adjacent-native-row-line-segments` token remains intentionally deferred to a coordinated contract migration. The larger runtime/panel split remains architectural follow-up; this repair extracted workspace ownership and shared history evaluation without coupling a broad rendering rewrite to correctness fixes.
+
+The subsequent [browser Claim-grade history invalidation](browser-claim-history-invalidation-2026-07-24.md) narrows the historical effect of finding 1.1 to second-or-later Claim-grade continuations produced through the exposed browser HTTP transform. It retains the first accepted extension and artifacts produced through independent routes. The same follow-up removes the disposition wrapper and diagnostics that still coupled the live runtime to the historical pre-EOM release-budget record; the JSON manifest and sweep remain unchanged reference-only evidence.
+
+Plainly: every confirmed runtime defect from the re-review now has a code repair and direct regression. The two remaining items are an explicitly coordinated schema rename and a larger organization/performance refactor, not a known wrong simulation path.
+
 ---
 
 ## Severity 1 — physics-affecting bugs

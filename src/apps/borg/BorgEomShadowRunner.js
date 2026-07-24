@@ -16,6 +16,9 @@ import {
   BORG_ELECTRINO_STATE_FLAG,
   BORG_POSITRINO_STATE_FLAG,
 } from "./BorgPolarityDiagnostics.js";
+import {
+  evaluateEomCubicHistoryAtTime,
+} from "../shared/EomCubicHistoryEvaluation.mjs";
 export {
   BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT,
 } from "./BorgEomHttpClient.js";
@@ -379,6 +382,14 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     options.historyDepth,
     manifest.simulationEnvelope?.historyDepth ?? 10,
   );
+  const minimumHistoryDepth = geometricDelayBound + historySafetyMargin;
+  const historyCoverageTolerance =
+    Number.EPSILON * Math.max(1, historyDepth, minimumHistoryDepth) * 8;
+  if (historyDepth + historyCoverageTolerance < minimumHistoryDepth) {
+    throw new RangeError(
+      `Borg EOM history depth ${historyDepth} must cover the geometric delay bound ${geometricDelayBound} plus safety margin ${historySafetyMargin}.`,
+    );
+  }
   const causalHistoryRetention = createBorgCausalHistoryRetentionRequest({
     enabled:
       runGrade === BORG_EOM_RUN_GRADE_DISPLAY &&
@@ -453,6 +464,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     coreScale,
     geometricDelayBound,
     historySafetyMargin,
+    minimumHistoryDepth,
     coupling: requiredNumericToken(
       options.coupling ?? manifest.modelControls?.coupling ?? "1",
       "coupling",
@@ -1147,7 +1159,11 @@ function createFramesFromHistories(
     const frameIndex = Math.max(roundedFrameIndex, previousFrameIndex + 1);
     previousFrameIndex = frameIndex;
     histories.forEach((history) => {
-      const state = evaluateHistory(history, time);
+      const state = evaluateEomCubicHistoryAtTime(history, time, {
+        historyId: history.pathId,
+        entityLabel: "history",
+        timeRole: "output",
+      });
       frames.push(Object.freeze({
         pathKey: Number(history.pathKey ?? history.pathId),
         frameIndex,
@@ -1169,47 +1185,6 @@ function createFramesFromHistories(
     });
   }
   return frames;
-}
-
-function evaluateHistory(history, time) {
-  const coverageStart = Number(history.coverageStart);
-  const coverageEnd = Number(history.coverageEnd);
-  if (!Number.isFinite(time) || time < coverageStart || time > coverageEnd) {
-    throw new Error(`EOM history ${history.pathId} does not cover output time ${time}.`);
-  }
-  const segment = history.segments.find(
-    (candidate, index) =>
-      Number(candidate.startTime) <= time &&
-      (time < Number(candidate.endTime) || index + 1 === history.segments.length),
-  );
-  if (!segment) {
-    throw new Error(`EOM history ${history.pathId} does not cover output time ${time}.`);
-  }
-  const localTime = time - Number(segment.startTime);
-  const position = {};
-  const velocity = {};
-  ["x", "y", "z"].forEach((axis, axisIndex) => {
-    const coefficients = segment.coefficients[axisIndex].map(Number);
-    position[axis] =
-      coefficients[0] + localTime * (coefficients[1] + localTime * (coefficients[2] + localTime * coefficients[3]));
-    velocity[axis] =
-      coefficients[1] + localTime * (2 * coefficients[2] + localTime * 3 * coefficients[3]);
-  });
-  return {
-    position,
-    velocity,
-    errorBound: Math.max(
-      ...requiredAxisErrorNumbers(segment.positionErrors, "positionErrors"),
-      ...requiredAxisErrorNumbers(segment.velocityErrors, "velocityErrors"),
-    ),
-  };
-}
-
-function requiredAxisErrorNumbers(value, label) {
-  if (!Array.isArray(value) || value.length !== 3) {
-    throw new TypeError(`EOM retained segment ${label} must contain three axes.`);
-  }
-  return value.map((token) => Math.abs(Number(token)) || 0);
 }
 
 function createCompleteChunk(

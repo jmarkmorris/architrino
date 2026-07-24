@@ -137,7 +137,7 @@ $$
 \theta_{\mathrm{inc}} = \frac{\pi}{6}=30^\circ
 $$
 
-The present idea is to reuse this as an **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments. The symbol $\theta_W^{\text{bare}}$ should be treated only as a comparison label for this branch-increment hypothesis until the six-pole quotient and electroweak dressing calculation are derived. A representative effective $Z$-pole target $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$ would require
+The present idea is to reuse this as an **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments. The symbol $\theta_W^{\text{bare}}$ should be treated only as a comparison label for this branch-increment hypothesis until the six-pole quotient and electroweak dressing calculation are derived. A representative effective $Z$-pole target $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$ (PDG comparison value) would require
 
 $$
 \Delta_{\mathrm{wake}}(m_Z)

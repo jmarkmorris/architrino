@@ -11,6 +11,10 @@ import {
   createBorgSeededInitialConditionRows,
 } from "./BorgInitialConditions.js";
 import {
+  BORG_ELECTRINO_STATE_FLAG,
+  BORG_POSITRINO_STATE_FLAG,
+} from "./BorgPolarityDiagnostics.js";
+import {
   createBorgInteractiveDefaults,
   createBorgPlacementPolicy,
 } from "./BorgInteractiveDefaults.js";
@@ -78,19 +82,19 @@ export async function bootBorgApp({
   const activeInitialConditionConfig = Object.freeze({
     ...initialConditionConfig,
     electrinoCount: fullPopulationEndpointRows.filter(
-      (row) => row.stateFlags === 2,
+      (row) => row.stateFlags === BORG_ELECTRINO_STATE_FLAG,
     ).length,
     positrinoCount: fullPopulationEndpointRows.filter(
-      (row) => row.stateFlags === 1,
+      (row) => row.stateFlags === BORG_POSITRINO_STATE_FLAG,
     ).length,
   });
   const sampleInterval = 0.01;
   const causalHistoryDepth = calculateBorgInertialHistoryDepth(
     fullPopulationEndpointRows,
     {
-    fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,
-    sampleInterval,
-    maximumSeparation: 2 * displayPlacement.seedingRadius,
+      fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,
+      sampleInterval,
+      maximumSeparation: 2 * displayPlacement.seedingRadius,
     },
   );
   // Only the causal past is prescribed. Forward EOM segments are appended
@@ -103,9 +107,9 @@ export async function bootBorgApp({
   const initialEomSeed = await createBorgAcceptedInertialSeedHistory(
     fullPopulationEndpointRows,
     {
-    historyStartTime: eomStartTime - seedHistoryDepth,
-    historyEndTime: eomStartTime,
-    minimumPairSeparation: displayPlacement.minimumPairSeparation,
+      historyStartTime: eomStartTime - seedHistoryDepth,
+      historyEndTime: eomStartTime,
+      minimumPairSeparation: displayPlacement.minimumPairSeparation,
     },
   );
   return mountApp({
@@ -123,6 +127,7 @@ export async function bootBorgApp({
       targetDuration: eomStartTime + eomDuration,
       runDuration: eomDuration,
       historyDepth: seedHistoryDepth,
+      historySafetyMargin: sampleInterval,
       certifiedBudgetId: certifiedBudget.id,
       pathCount: fullPopulationEndpointRows.length,
       // Batch six 0.05 EOM steps per process round trip. The selected run

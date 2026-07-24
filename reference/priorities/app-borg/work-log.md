@@ -6,6 +6,16 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-24 - Targeted Browser Claim Invalidation And Legacy-Budget Decoupling
+
+- Adjudicated the missing-history defect by build, transport, grade, and continuation identity. Only Claim-grade chunk index 1 or greater produced through `BorgEomHttpClient` while the all-grade history transform was live is invalidated, together with conclusions that depend on it. Claim chunk zero's accepted extension remains valid for this defect, although its shortened returned history cannot support a continuation. No persisted browser Claim packet in the repository matched the predicate, so zero checked-in result artifacts were deleted or quarantined. Claim grade: derived call-path and commit-history adjudication plus bounded repository inventory. Falsifier: a retained artifact satisfies every predicate condition or an invalidated continuation independently proves it carried complete required history.
+- Retained direct EOM solver CLI, Node process-client, independent-oracle, prescribed-record, and Display-only artifacts at their declared authority. Historical browser Claim observations remain runtime/failure observations only; post-first-chunk physics interpretation is withdrawn unless route provenance proves exemption. Claim grade: provenance classification. Falsifier: one of those retained artifact classes is shown to depend on the faulty browser continuation transform.
+- Removed the historical release-budget disposition module, its live runtime import, and its diagnostics rows. The historical manifest and sweep remain unchanged reference-only evidence; current EOM ceilings require a separately authorized current EOM release budget plus live EOM measurements. Claim grade: derived implementation plus source contract regression. Falsifier: `src/apps/borg` imports either historical artifact, renders legacy-budget fields, or live measurements create ceilings without an authorized current EOM budget.
+
+Plainly: the ruling rejects only browser Claim continuations that could have lost required history, keeps independent work intact, and leaves the old budget files available for audit without allowing them to control the app.
+
+Artifact: [browser Claim-grade history invalidation](browser-claim-history-invalidation-2026-07-24.md).
+
 ### 2026-07-24 - Borg Code-Review Repair
 
 - Fixed both severity-1 findings from `borg-code-review-2026-07-24.md`. The browser now applies history-prefix release and client-window bounding only to Display requests, so certified chunk two retains the full causal history. The certified response firewall now checks a client-owned allowed evidence-status set instead of comparing the server's status to itself. Claim grade: derived implementation plus focused regressions. Falsifier: the certified browser-client chunk-two request loses any retained segment, or a completed certified response with an invented evidence status is accepted.

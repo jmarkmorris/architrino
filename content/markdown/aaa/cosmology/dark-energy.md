@@ -6,7 +6,7 @@ The opening sections state the ontology and the medium-level interpretation of a
 
 ## Scope and Purpose
 
-Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 68% of the present energy budget to dark energy—a component with equation-of-state parameter $w \approx -1$ that drives late-time accelerated expansion. The simplest realization is a cosmological constant $\Lambda$, which enters Einstein's field equations as a geometric term equivalent to a constant vacuum energy density $\rho_\Lambda = \Lambda c^2 / (8\pi G) \approx 5.96 \times 10^{-27}\;\mathrm{kg\,m^{-3}}$.
+Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 68% of the present energy budget to dark energy—a component with equation-of-state parameter $w \approx -1$ that drives late-time accelerated expansion. The simplest realization is a cosmological constant $\Lambda$, which enters Einstein's field equations as a geometric term equivalent to a constant vacuum energy density $\rho_\Lambda = \Lambda c^2 / (8\pi G) \approx 5.96 \times 10^{-27}\;\mathrm{kg\,m^{-3}}$ (Planck 2018 release values).
 
 This chapter maps dark-energy phenomenology onto the architrino assembly architecture. The central claim is that late-time acceleration is not the expansion of the Euclidean void itself—which is fixed, non-dynamical, and does not stretch—but a macroscopic readout of the evolving internal state of the Noether sea. The task is to identify the substrate-level mechanism and derive the effective equation of state. Within that program, black holes are treated as one possible mediator of the large-scale energy-partition history, not as a replacement for the Noether sea ontology itself.
 
@@ -804,8 +804,8 @@ This strengthens the expansion claim and limits it at the same time. If $J_\nu$ 
 
 This mechanism is distinct from classical tired-light proposals. In tired light, photons lose energy through scattering or absorption, producing:
 - Image blurring (not observed),
-- Time-dilation violations (SN Ia light curves confirm $\Delta t \propto (1+z)$),
-- Modified surface-brightness relations (Tolman test).
+- Time-dilation violations (SN survey light-curve-stretch analyses, Goldhaber/Blondin-class, confirm $\Delta t \propto (1+z)$),
+- Modified surface-brightness relations (Tolman test, of the Lubin–Sandage-class surface-brightness test).
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism does not involve untracked photon energy loss in transit. The photon assembly propagates through the Noether sea without degradation in the weak-field, low-density limit; any path-history factor changes the phase-cadence relation later sampled by the receiver rather than acting as generic scattering loss. This reproduces the standard $(1+z)$ time-dilation signature and is consistent with Tolman surface-brightness tests.
 

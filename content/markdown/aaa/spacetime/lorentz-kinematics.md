@@ -176,7 +176,7 @@ where $\mathbf{y}$ stacks positions and velocities in relative coordinates. Kine
 
 ### Translating binary benchmark
 
-The first hard Lorentz-closure calculation is the moving version of the certified rest two-body branch. Let $\sigma\in\{+1,-1\}$ label the two opposite-polarity architrinos and choose the drift direction $\hat{\mathbf e}$. A translating binary branch has the substrate ansatz
+The first hard Lorentz-closure calculation is the moving version of the declared reference rest two-body branch (certificate packet pending; see the closure-packet contract in [Binary Dynamics](../dynamics/binary-dynamics.md)). Let $\sigma\in\{+1,-1\}$ label the two opposite-polarity architrinos and choose the drift direction $\hat{\mathbf e}$. A translating binary branch has the substrate ansatz
 $$
 \mathbf X_{\sigma}(T)
 =
@@ -1476,7 +1476,7 @@ for that class of material branches. The remaining Lorentz program is the constr
 
 ### Theorem A1 (translating binary Lorentz residual)
 
-The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the certified rest binary with radius $R_0$, period $T_0$, active root ledger $b_0$, positive Jacobian floors, and bounded transmitter-side acceleration weights. For each $0<u<c_f$, solve the absolute-time delayed root equations for
+The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the declared reference rest binary (certificate packet pending; see the closure-packet contract in [Binary Dynamics](../dynamics/binary-dynamics.md)) with radius $R_0$, period $T_0$, active root ledger $b_0$, positive Jacobian floors, and bounded transmitter-side acceleration weights. For each $0<u<c_f$, solve the absolute-time delayed root equations for
 $$
 \mathbf X_{\sigma}(T)
 =

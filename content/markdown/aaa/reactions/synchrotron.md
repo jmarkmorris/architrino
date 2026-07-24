@@ -304,7 +304,7 @@ with $\Delta_{\gamma,\mathrm{flux}}$ inherited from [Radiation](radiation.md). I
 - Rate closure: recover standard synchrotron and Breit-Wheeler limits in validated regimes.
 - Absorption closure: recover $\alpha_\nu^{\mathrm{ssa}}$, the optically thick $I_\nu\propto\nu^{5/2}$ branch, and the source function from the same charged-transport event family that supplies $j_\nu$, while keeping Razin-Tsytovich suppression in the material-dispersion row.
 - Timing closure: in weak-gravity astrophysical limits, $\Gamma_{\mathrm{eff}} \rightarrow \gamma_{\mathrm{SR}}$ so cooling breaks are preserved. This is an effective closure target for the clock law, not an assumption that substrate time is observer proper time.
-- Polarization closure: recover observer-level synchrotron polarization geometry from directional $B$ mapping; in uniform-field limits, failure to recover linear polarization fractions $\Pi \approx 70\%-75\%$ falsifies the geometric mapping (Rybicki and Lightman 1979, Sec. 6.3; observational confirmation in radio pulsars and synchrotron nebulae typically shows $\Pi_{\mathrm{obs}} \sim 0.3$-0.7 after depolarization from field disorder and Faraday rotation).
+- Polarization closure: recover observer-level synchrotron polarization geometry from directional $B$ mapping; in uniform-field limits, failure to recover linear polarization fractions $\Pi \approx 70\%-75\%$ falsifies the geometric mapping (Rybicki and Lightman 1979, Sec. 6.3; observational confirmation in radio pulsars and synchrotron nebulae typically shows $\Pi_{\mathrm{obs}} \sim 0.3$-0.7 (textbook-summarized benchmark; radio-pulsar and synchrotron-nebula polarimetry) after depolarization from field disorder and Faraday rotation).
 
 ## Regime Map
 

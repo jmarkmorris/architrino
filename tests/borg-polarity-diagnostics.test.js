@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   calculateBorgPolarityDiagnostics,
   createBorgEscapeLedger,
+  replaceBorgEscapeLedgerRows,
 } from "../src/apps/borg/BorgPolarityDiagnostics.js";
 
 const center = Object.freeze({ x: 0, y: 0, z: 0 });
@@ -32,6 +33,24 @@ test("Borg escape ledger reports each raw EOM path once and respects timeline re
   assert.deepEqual(ledger.countsThrough(2), { electrino: 0, positrino: 1 });
   assert.deepEqual(ledger.countsThrough(3), { electrino: 1, positrino: 1 });
   assert.deepEqual(ledger.countsThrough(100), { electrino: 1, positrino: 1 });
+});
+
+test("Borg workspace replacement clears cumulative polarity escape history", () => {
+  const ledger = createBorgEscapeLedger();
+  ledger.appendFrameRows([
+    frame(1, 1, 1.1, 2, 2),
+  ], { center, radius: 1 });
+
+  replaceBorgEscapeLedgerRows(
+    ledger,
+    [frame(2, 2, -1.2, 3, 3)],
+    { center, radius: 1 },
+  );
+
+  assert.deepEqual(ledger.countsThrough(100), {
+    electrino: 1,
+    positrino: 0,
+  });
 });
 
 test("Borg pair correlation normalizes same and opposite close-pair counts", () => {
