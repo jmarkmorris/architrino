@@ -64,7 +64,7 @@ Interpretive saturation claim: compression approaches medium-defined ceilings $T
 2. **Outward Release and Cooling:**
 
 Material released from near-horizon regions undergoes rapid outward dilution and cooling.
-Effective cooling rate $dT_{\mathrm{temp}}/dt_{\mathrm{eff}}$ matches the freeze-out timing required for standard BBN yields.
+Effective cooling rate $dT_{\mathrm{temp}}/dt_{\mathrm{eff}}$ must match the freeze-out timing required for standard BBN yields; showing that the transport-limited cooling window actually delivers $\tau_{\mathrm{cool}}\approx1\,\mathrm{s}$ is the timing closure target stated in the goals below.
 This is not metric expansion of space; it is bulk flow of assemblies through the Euclidean void, with effective expansion represented as density dilution.
 Interpretive timing claim: the effective expansion rate is not free-form outflow kinematics; it is constrained by assembly transport limits tied to field-speed scale $c_f$, release-channel selection, and near-core stability times, so the cooling window can align with weak freeze-out timing.
 
@@ -216,14 +216,14 @@ Lithium is not a separate patch. It is part of the same primordial transport-and
 - this reweights local reaction paths in the same network equations,
 - hydrogen, deuterium, and helium can remain near their successful values while lithium pathways shift through the same transport-conditioned background.
 
-This keeps lithium inside one coherent mechanism family rather than adding a separate after-the-fact fix.
+This differential-yield claim is conjecture pending the transport-weighted reaction-network computation named in the Lithium Goal (Goal 5) below. It keeps lithium inside one coherent mechanism family rather than adding a separate after-the-fact fix.
 
 ## Observational Equivalence and Distinguishing Tests
 
 ### Why Standard BBN Fits So Well
 
 - If the SMBH-local mapping is correct, its nucleosynthetic output must establish a baseline light-element abundance.
-- Subsequent stellar evolution and mixing would homogenize these abundances across cosmic scales.
+- Subsequent stellar evolution and mixing would homogenize these abundances across cosmic scales; this is a declared gate — the claim requires a mixing timescale shorter than the observation epoch and is checked against galactic metallicity-gradient data.
 - The effective "primordial" abundances reflect equilibrated distributions from SMBH recycling, not a singular cosmic event.
 
 ### Potential Distinguishing Signatures
@@ -384,7 +384,7 @@ Observed low-metallicity gas and very old stars with BBN-like light-element patt
 ### What the Eternal-Universe Interpretation Gains
 
 - **No singularity:** Avoids the conceptual paradox of $t=0$ and "something from nothing."
-- **No fine-tuning of initial conditions:** Abundances emerge from dynamical equilibration in SMBH environments, not from finely-tuned cosmic initial states.
+- **No fine-tuning of initial conditions:** Abundances would emerge, if the universal ejection attractor of Goal 1 is derived, from dynamical equilibration in SMBH environments, not from finely-tuned cosmic initial states.
 - **Mechanistic clarity:** Replaces abstract "expansion cooling" with explicit outward transport of assemblies through fixed Euclidean space.
 
 ### What It Seeks to Explain
@@ -404,4 +404,4 @@ Observed low-metallicity gas and very old stars with BBN-like light-element patt
 | BBN frequency | Once (first 20 min) | Recurring (wherever SMBHs form) |
 | Expansion driver | Metric expansion | Outward transport of assemblies |
 | Light-element origin | Primordial relics | SMBH nucleation products |
-| Homogeneity explanation | Initial conditions | Dynamical equilibration |
+| Homogeneity explanation | Initial conditions | Dynamical equilibration (goal, underived) |

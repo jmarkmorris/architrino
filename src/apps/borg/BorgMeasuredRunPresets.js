@@ -47,14 +47,14 @@ export function updateMeasuredRunPresetCalibration(calibration, measurement, bas
   return Object.freeze({
     schema: BORG_MEASURED_RUN_PRESETS_VERSION,
     status: "measured-live-run-budget",
-    thresholdAuthority: "measured-from-live-native-chunks",
+    thresholdAuthority: "measured-from-live-eom-chunks",
     sampleCount,
     limits: previous.limits,
     thresholds,
     lastSample: sample,
     presets: Object.freeze(
       basePresets.map((preset) => applyThresholdsToPreset(preset, thresholds, {
-        thresholdAuthority: "measured-from-live-native-chunks",
+        thresholdAuthority: "measured-from-live-eom-chunks",
       })),
     ),
   });

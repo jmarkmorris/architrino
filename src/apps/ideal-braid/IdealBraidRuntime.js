@@ -14,7 +14,7 @@ import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStru
 import {
   PRESCRIBED_PATH_ANALYSIS_ID,
   runPrescribedPathAnalysisRequest,
-} from "../../prescribed-path-analysis/index.mjs";
+} from "../../prescribed-path-analysis/PrescribedPathAnalysis.mjs";
 import {
   getFieldSpeedRegimeLabel,
   getOrbitPathBranchGain,

@@ -24,7 +24,7 @@ While the Standard Model chart displays the fundamental fermions (quarks, lepton
 Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations. The implementation burden is to say which branch record forms, which corridor carries the exchange, how long the basin remains stable, and where the ledger goes when the meson dissociates.
 
 ### Geometric variational lens
-The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic response** of the Noether sea to topological defects (fermions). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are stable minima, while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a dissociation in the Noether sea.
+The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic response** of the Noether sea to topological defects (fermions). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are modeled as stable minima — attractor status that remains an open closure target of the braid program — while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a dissociation in the Noether sea.
 
 Plainly, the meson is the temporary bridge state the strong sector can afford. It is stable enough to carry a corridor, but not necessarily stable enough to become an ordinary long-lived matter assembly.
 * **Stability criterion:** An assembly is stable while its trajectory in configuration space remains inside a basin where the binding action is a **local minimum**. **Dissociation** means the trajectory reaches a region where that action loses its minimum, so gradient flow carries the system toward another basin and into a new assembly pattern.
@@ -46,7 +46,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, that bosonic-statistics statement is a down
 A pion is a **two-braid (quark + antiquark) assembly**: one Generation‑I matter-branch Noether braid and one Generation‑I polarity-conjugate antimatter Noether braid linked by a shared flux tube. Their independent pro/anti ordered orientations are not fixed by the matter/antimatter assignment.
 
 *   **Structure:** $u\bar{d}$ ($\pi^+$), $d\bar{u}$ ($\pi^-$), or a superposition of $u\bar{u}/d\bar{d}$ ($\pi^0$).
-*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the matter braid and its polarity-conjugate antimatter braid achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether sea.
+*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the matter braid and its polarity-conjugate antimatter braid are hypothesized to achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark would be destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether sea.
 
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether sea between them.
@@ -54,11 +54,11 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 *   **Topology hypothesis:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger candidate-braid baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 **The Yukawa Mechanism (Assembly Tension):**
-*   **Range vs. mass:** The force range scales as $R \sim \hbar/(m c_0)$ in the observer-level comparison because heavier assemblies (higher internal curvature) expose stronger Noether sea response and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.
-*   **Binding energy:** Nuclear mass defect (e.g., 28.3 MeV in ${}^4$He) is the energy stored in shared pion flux loops; the coupled, pion-sharing configuration sits at lower energy than isolated nucleons.
-*   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared axial layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops makes the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
+*   **Range vs. mass:** The force range scales as $R \sim \hbar/(m c_0)$ in the observer-level comparison; this scaling is read as heavier assemblies (higher internal curvature) exposing stronger Noether sea response and decohering over shorter distances. On this reading, the pion’s low mass/low curvature lets the binding signal span a femtometer.
+*   **Binding energy:** Nuclear mass defect (e.g., 28.3 MeV in ${}^4$He) is read as the energy stored in shared pion flux loops; the coupled, pion-sharing configuration sits at lower energy than isolated nucleons.
+*   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared axial layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops is hypothesized to make the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
 *   **Geometric bound:** A pion flux tube that stretches beyond a critical length $L_c$ pays more tension energy than the Noether sea needs to rupture by dissociation. Its unusually low curvature keeps $L_c$ large, explaining the long nuclear-range reach.
-*   **Mass suppression as alignment:** The $q$ and $\bar q$ axes are phase-locked so their externally exposed Noether sea response nearly cancels - geometrically the assembly follows an almost null-like path through the Noether sea, keeping its effective mass small.
+*   **Mass suppression as alignment:** The $q$ and $\bar q$ axes are hypothesized to phase-lock so their externally exposed Noether sea response nearly cancels - geometrically the assembly would follow an almost null-like path through the Noether sea, keeping its effective mass small.
 
 **Free vs. in-medium pion records:**
 - **Free charged pions:** The measured $\pi^\pm$ lifetime belongs to weak-reaction provenance. A free $\pi^-$ primarily routes through a weak corridor such as $\pi^-\to\mu^-+\bar\nu_\mu$; the charge-conjugate channel applies to $\pi^+$. This lifetime is not the timescale of residual strong exchange inside a nucleus.
@@ -99,6 +99,12 @@ Kaons are the primary laboratory for observing how Generation I stability breaks
 ### Spin and Pauli Status
 
 The spin/parity assignments in this chapter are observer-level labels and hadron-level geometry hypotheses. The local shorthands "aligned," "anti-aligned," "parallel spin alignment," and "Pauli exclusion" inherit the single-assembly angular-momentum ledger, ordered-frame spinor proof, and spin-statistics proof rather than replacing them. Until those closures exist, the rho, Delta, and dense-matter packing statements below should be read as validation targets for the later proof.
+
+---
+
+### Binding and Stability Status
+
+All binding, phase-lock, and stability claims in this chapter are mechanism hypotheses at closure-target grade. No meson or baryon assembly has a retained-branch derivation in this program; no self-confined free assembly has yet been exhibited. The minima, basins, and attractor language above and below names the target geometry the braid program must recover, not an achieved result. The falsifier discipline for these claims lives in the braid-program closure gates.
 
 ---
 
@@ -152,7 +158,7 @@ In the Architrino framework, these ephemeral particles are **intermediate assemb
 2.  **Kaons** represent the **coupling interface** between selected down-type shielding branches across generations (Gen I $\leftrightarrow$ Gen II).
 3.  **Resonances ($\rho, \Delta$)** are **excited rotational/vibrational modes** of the fundamental stable assemblies.
 
-They are "ephemeral" because they are not topological attractors in the ambient Noether sea like the proton or electron; they are high-energy transients that must dissociate to reach the minimum-energy geometric lock.
+They are "ephemeral" because they are not topological attractors in the ambient Noether sea like the proton- and electron-target branches, whose attractor status is itself an open closure target; they are high-energy transients that must dissociate to reach the minimum-energy geometric lock.
 
 ---
 

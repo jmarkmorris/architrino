@@ -781,7 +781,9 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         for node in excluded_nodes:
             lower = max(Decimal("0"), Decimal(str(node["emission_lower"])))
-            upper = Decimal(str(node["emission_upper"]))
+            upper = min(
+                Decimal("2"), Decimal(str(node["emission_upper"]))
+            )
             for receiver_index in range(node["receiver_begin"], node["receiver_end"]):
                 for transmitter_index in range(node["transmitter_begin"], node["transmitter_end"]):
                     oracle = certify_causal_roots(
@@ -950,6 +952,15 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertEqual(row["reevaluated_cells"], 0)
         self.assertGreater(row["root_free_cell_count"], 0)
         self.assertGreater(row["warm_residual_drift_upper"], 0)
+
+    def test_warm_prefix_is_not_reused_when_search_extends_backward(self) -> None:
+        row = self.pair("warm_extended_lower_current")
+        self.assertEqual(row["status"], "certified_complete")
+        self.assertTrue(row["root_free_complement"])
+        self.assertEqual(row["roots"], [])
+        self.assertEqual(row["incremental_prefix_reuse_count"], 0)
+        self.assertEqual(row["warm_excluded_cells"], 0)
+        self.assertEqual(row["warm_residual_drift_upper"], 0)
 
     def test_history_error_midpoint_root_uses_tolerance_scaled_bracket(self) -> None:
         row = self.pair("uncertain_midpoint_root")

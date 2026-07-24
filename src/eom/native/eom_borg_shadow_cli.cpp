@@ -1,4 +1,5 @@
 #include "architrino/eom/CoupledEvolution.hpp"
+#include "architrino/eom/Decimal.hpp"
 #include "architrino/eom/DisplayEvaluation.hpp"
 #include "architrino/eom/ShadowAffineDiagnostic.hpp"
 
@@ -151,17 +152,17 @@ std::string display_decimal_token(double value) {
   if (!std::isfinite(value)) {
     throw std::runtime_error("display_nonfinite_state");
   }
-  std::ostringstream stream;
-  stream << std::setprecision(std::numeric_limits<double>::max_digits10)
-         << value;
-  return stream.str();
+  return eom::finite_double_token(value);
 }
 
 eom::NativeCoupledEvolutionCertificate evolve_display_point_histories(
     const eom::NativeCoupledEvolutionRequest& request) {
-  double current_time = std::strtod(request.start_time.c_str(), nullptr);
-  const double requested_end = std::strtod(request.end_time.c_str(), nullptr);
-  const double requested_step = std::strtod(request.initial_step.c_str(), nullptr);
+  double current_time =
+      eom::parse_finite_double(request.start_time, "display start time");
+  const double requested_end =
+      eom::parse_finite_double(request.end_time, "display end time");
+  const double requested_step =
+      eom::parse_finite_double(request.initial_step, "display initial step");
   if (!std::isfinite(current_time) || !std::isfinite(requested_end) ||
       !std::isfinite(requested_step) || !(requested_end > current_time) ||
       !(requested_step > 0.0)) {
@@ -225,25 +226,36 @@ eom::NativeCoupledEvolutionCertificate evolve_display_point_histories(
     eom::DisplayEvaluationRequest display_request{
         .paths = {},
         .reception_time = current_time,
-        .field_speed = std::strtod(request.field_speed.c_str(), nullptr),
-        .coupling = std::strtod(request.coupling.c_str(), nullptr),
+        .field_speed =
+            eom::parse_finite_double(request.field_speed, "field speed"),
+        .coupling = eom::parse_finite_double(request.coupling, "coupling"),
         .root_relative_tolerance =
-            std::strtod(request.root_tolerance.c_str(), nullptr),
+            eom::parse_finite_double(
+                request.root_tolerance, "root tolerance"),
         .source_normal_floor =
-            std::strtod(request.transmitter_factor_floor.c_str(), nullptr),
-        .causal_width = std::strtod(request.causal_width.c_str(), nullptr),
-        .core_scale = std::strtod(request.core_scale.c_str(), nullptr),
+            eom::parse_finite_double(
+                request.transmitter_factor_floor,
+                "transmitter factor floor"),
+        .causal_width =
+            eom::parse_finite_double(request.causal_width, "causal width"),
+        .core_scale =
+            eom::parse_finite_double(request.core_scale, "core scale"),
         .far_field_enclosure_fraction =
-            std::strtod(request.far_field_enclosure_fraction.c_str(), nullptr),
+            eom::parse_finite_double(
+                request.far_field_enclosure_fraction,
+                "far-field enclosure fraction"),
         .acceleration_tolerance =
-            std::strtod(request.acceleration_tolerance.c_str(), nullptr),
+            eom::parse_finite_double(
+                request.acceleration_tolerance,
+                "acceleration tolerance"),
         .thread_count = request.thread_count,
     };
     display_request.paths.reserve(histories.size());
     for (std::size_t index = 0U; index < histories.size(); ++index) {
       display_request.paths.push_back({
           histories[index].path_id,
-          std::strtod(request.paths[index].charge.c_str(), nullptr),
+          eom::parse_finite_double(
+              request.paths[index].charge, "path charge"),
           &histories[index].history,
       });
     }
@@ -461,13 +473,15 @@ rebase_trimmed_snapshot(
     if (receiver == nullptr || source == nullptr ||
         !row.certificate.stable_negative_prefix_certified ||
         row.certificate.memory_boundary_contact ||
-        std::strtod(
-            row.certificate.stable_negative_prefix_upper.c_str(), nullptr) <
+        eom::parse_finite_double(
+            row.certificate.stable_negative_prefix_upper,
+            "stable negative prefix upper") <
             retained_start) {
       return std::nullopt;
     }
     for (const auto& root : row.certificate.roots) {
-      if (std::strtod(root.lower.c_str(), nullptr) < retained_start) {
+      if (eom::parse_finite_double(root.lower, "root lower") <
+          retained_start) {
         return std::nullopt;
       }
     }
@@ -771,14 +785,16 @@ void run(
   for (std::size_t axis = 0U; axis < 3U; ++axis) {
     causal_retention.center_tokens[axis] = run[56U + axis];
     causal_retention.center[axis] =
-        std::strtod(run[56U + axis].c_str(), nullptr);
+        eom::parse_finite_double(
+            run[56U + axis], "causal-history receiver-envelope center");
     if (!std::isfinite(causal_retention.center[axis])) {
       throw std::invalid_argument(
           "causal-history receiver-envelope center must be finite");
     }
   }
   causal_retention.radius_token = run[59];
-  causal_retention.radius = std::strtod(run[59].c_str(), nullptr);
+  causal_retention.radius = eom::parse_finite_double(
+      run[59], "causal-history receiver-envelope radius");
   if (causal_retention.enabled &&
       (!(causal_retention.radius > 0.0) ||
        !std::isfinite(causal_retention.radius) || run_grade != "display")) {
@@ -1036,8 +1052,8 @@ void run(
       causal_retention_certificate;
   if (causal_retention.enabled &&
       !result.accepted_end_time.empty()) {
-    const double accepted_time =
-        std::strtod(result.accepted_end_time.c_str(), nullptr);
+    const double accepted_time = eom::parse_finite_double(
+        result.accepted_end_time, "accepted end time");
     const bool receiver_domain_enclosed = std::isfinite(accepted_time) &&
         std::all_of(
             result.histories.begin(), result.histories.end(),
@@ -1882,6 +1898,7 @@ void print_engine_exception_response(const std::exception& error) {
 }  // namespace
 
 int main(int argc, char** argv) {
+  std::cout.imbue(std::locale::classic());
   try {
     if (argc < 2) {
       std::cerr << "usage: eom_borg_shadow_cli "
@@ -2059,6 +2076,9 @@ int main(int argc, char** argv) {
       std::optional<IncrementalSnapshotCache> incremental_cache;
       while (std::cin.peek() != std::char_traits<char>::eof()) {
         bool request_boundary_consumed = false;
+        std::ostringstream response;
+        std::streambuf* const published_output =
+            std::cout.rdbuf(response.rdbuf());
         try {
           run(
               maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
@@ -2066,7 +2086,10 @@ int main(int argc, char** argv) {
               use_certified_traversal, traversal_exact_tile_pair_limit,
               shadow_affine,
               &incremental_cache, &request_boundary_consumed);
+          std::cout.rdbuf(published_output);
+          std::cout << response.str();
         } catch (const std::exception& error) {
+          std::cout.rdbuf(published_output);
           incremental_cache.reset();
           // A disk-history read or write failure invalidates the complete
           // worker-owned store, not merely the current snapshot. Release it so

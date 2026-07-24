@@ -11,7 +11,7 @@ import {
   solveMovingCircularAbsoluteHistoryRun,
   solveMovingCircularSameTransmitterCausalRoots,
   solveMovingCircularTransmitterCausalRoots,
-} from "../../prescribed-path-analysis/index.mjs";
+} from "../../prescribed-path-analysis/PrescribedPathAnalysis.mjs";
 import {
   PHOTON_LAYER_ORDER,
   getPhotonDirectionSign,

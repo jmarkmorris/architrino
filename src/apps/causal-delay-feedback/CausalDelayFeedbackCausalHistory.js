@@ -1,3 +1,8 @@
+import {
+  getTimedPathRange,
+  sampleTimedPath,
+} from "./CausalDelayFeedbackTimedPath.js";
+
 const ROOT_TIME_EPSILON = 1e-8;
 const DEFAULT_SCAN_STEPS = 256;
 const DEFAULT_REFINE_STEPS = 48;
@@ -15,43 +20,6 @@ function finiteNumber(value, fallback = 0) {
   return Number.isFinite(number) ? number : fallback;
 }
 
-function pathTimeRange(path) {
-  const times = (path ?? []).map((point) => Number(point?.t)).filter(Number.isFinite);
-  if (times.length === 0) {
-    return [0, 0];
-  }
-  return [Math.min(...times), Math.max(...times)];
-}
-
-export function sampleCausalHistoryPath(path, sampleTime) {
-  if (!Array.isArray(path) || path.length === 0) {
-    return null;
-  }
-  const time = finiteNumber(sampleTime, finiteNumber(path[0]?.t));
-  if (path.length === 1 || time <= finiteNumber(path[0]?.t)) {
-    return { ...path[0], t: time };
-  }
-  const last = path.at(-1);
-  if (time >= finiteNumber(last?.t)) {
-    return { ...last, t: time };
-  }
-  let rightIndex = path.findIndex((point) => finiteNumber(point?.t) >= time);
-  if (rightIndex < 1) {
-    rightIndex = 1;
-  }
-  const left = path[rightIndex - 1];
-  const right = path[rightIndex] ?? last;
-  const span = finiteNumber(right?.t) - finiteNumber(left?.t);
-  const amount = span === 0 ? 0 : clamp((time - finiteNumber(left?.t)) / span, 0, 1);
-  return {
-    t: time,
-    x: finiteNumber(left?.x) + (finiteNumber(right?.x) - finiteNumber(left?.x)) * amount,
-    y: finiteNumber(left?.y) + (finiteNumber(right?.y) - finiteNumber(left?.y)) * amount,
-    vx: finiteNumber(left?.vx) + (finiteNumber(right?.vx) - finiteNumber(left?.vx)) * amount,
-    vy: finiteNumber(left?.vy) + (finiteNumber(right?.vy) - finiteNumber(left?.vy)) * amount,
-  };
-}
-
 export function createCausalDelayResidual({
   sourcePath,
   receiverPath,
@@ -59,16 +27,20 @@ export function createCausalDelayResidual({
   signalSpeed = NORMALIZED_FIELD_SPEED,
   distanceScale = DEFAULT_CANVAS_DISTANCE_SCALE,
 }) {
-  const reception = sampleCausalHistoryPath(receiverPath, receiverTime);
+  const reception = sampleTimedPath(receiverPath, receiverTime);
   if (!reception) {
     return () => Number.NaN;
   }
   return (emissionTime) => {
-    const emission = sampleCausalHistoryPath(sourcePath, emissionTime);
+    const emission = sampleTimedPath(sourcePath, emissionTime);
     if (!emission) {
       return Number.NaN;
     }
-    const distance = Math.hypot(reception.x - emission.x, reception.y - emission.y) * distanceScale;
+    const distance = Math.hypot(
+      reception.x - emission.x,
+      reception.y - emission.y,
+      finiteNumber(reception.z) - finiteNumber(emission.z),
+    ) * distanceScale;
     return distance - signalSpeed * (receiverTime - emissionTime);
   };
 }
@@ -91,16 +63,48 @@ export function evaluateScalarRootSet({
     const time = start + ((end - start) * index) / count;
     return { time, value: Number(residualAt(time)) };
   });
-  const candidateTimes = [];
-  const addCandidate = (time) => {
+  const candidates = [];
+  const rejected = [];
+  const addCandidate = (time, detection = "sign_change") => {
     if (!Number.isFinite(time)) {
       return;
     }
-    if (candidateTimes.some((candidate) => Math.abs(candidate - time) <= Math.max(rootTolerance * 8, 1e-7))) {
+    const duplicate = candidates.find(
+      (candidate) => Math.abs(candidate.time - time) <= Math.max(rootTolerance * 8, 1e-7),
+    );
+    if (duplicate) {
+      if (detection === "tangent_minimum") {
+        duplicate.detection = detection;
+      }
       return;
     }
-    candidateTimes.push(time);
+    candidates.push({ time, detection });
   };
+
+  const nearZero = samples.map(
+    (sample) => Number.isFinite(sample.value) && Math.abs(sample.value) <= rootTolerance,
+  );
+  for (let index = 0; index < nearZero.length;) {
+    if (!nearZero[index]) {
+      index += 1;
+      continue;
+    }
+    const runStart = index;
+    while (index + 1 < nearZero.length && nearZero[index + 1]) {
+      index += 1;
+    }
+    const runEnd = index;
+    if (runEnd > runStart) {
+      rejected.push({
+        reason: "degenerate_zero_interval",
+        start: samples[runStart].time,
+        end: samples[runEnd].time,
+      });
+    } else {
+      addCandidate(samples[runStart].time, "sample_zero");
+    }
+    index += 1;
+  }
 
   for (let index = 1; index < samples.length; index += 1) {
     const left = samples[index - 1];
@@ -108,10 +112,7 @@ export function evaluateScalarRootSet({
     if (!Number.isFinite(left.value) || !Number.isFinite(right.value)) {
       continue;
     }
-    if (Math.abs(left.value) <= rootTolerance) {
-      addCandidate(left.time);
-    }
-    if (left.value === 0 || right.value === 0 || Math.sign(left.value) === Math.sign(right.value)) {
+    if (nearZero[index - 1] || nearZero[index] || Math.sign(left.value) === Math.sign(right.value)) {
       continue;
     }
     let low = left.time;
@@ -135,30 +136,53 @@ export function evaluateScalarRootSet({
         high = mid;
       }
     }
-    addCandidate((low + high) * 0.5);
+    addCandidate((low + high) * 0.5, "sign_change");
   }
-  const tangentCandidates = [];
+
   for (let index = 1; index < samples.length - 1; index += 1) {
     const left = samples[index - 1];
     const sample = samples[index];
     const right = samples[index + 1];
     if (
+      !nearZero[index] &&
+      Number.isFinite(left.value) &&
       Number.isFinite(sample.value) &&
-      Math.abs(sample.value) <= tangentTolerance &&
+      Number.isFinite(right.value) &&
       Math.abs(sample.value) <= Math.abs(left.value) &&
-      Math.abs(sample.value) <= Math.abs(right.value)
+      Math.abs(sample.value) <= Math.abs(right.value) &&
+      Math.sign(left.value) === Math.sign(right.value)
     ) {
-      addCandidate(sample.time);
-      tangentCandidates.push(sample.time);
+      let low = left.time;
+      let high = right.time;
+      for (let refine = 0; refine < refineSteps; refine += 1) {
+        const third = (high - low) / 3;
+        const leftProbe = low + third;
+        const rightProbe = high - third;
+        const leftValue = Math.abs(Number(residualAt(leftProbe)));
+        const rightValue = Math.abs(Number(residualAt(rightProbe)));
+        if (!Number.isFinite(leftValue) || !Number.isFinite(rightValue)) {
+          break;
+        }
+        if (leftValue <= rightValue) {
+          high = rightProbe;
+        } else {
+          low = leftProbe;
+        }
+      }
+      const tangentTime = (low + high) * 0.5;
+      if (Math.abs(Number(residualAt(tangentTime))) <= tangentTolerance) {
+        addCandidate(tangentTime, "tangent_minimum");
+      }
     }
   }
 
   const step = Number.isFinite(derivativeStep)
     ? Math.abs(derivativeStep)
     : Math.max((end - start) / (count * 8), 1e-7);
-  const roots = candidateTimes
-    .sort((left, right) => left - right)
-    .map((time) => {
+  const roots = candidates
+    .sort((left, right) => left.time - right.time)
+    .map((candidate) => {
+      const { time } = candidate;
       const leftTime = clamp(time - step, start, end);
       const rightTime = clamp(time + step, start, end);
       const span = rightTime - leftTime;
@@ -171,14 +195,12 @@ export function evaluateScalarRootSet({
         residual,
         derivative,
         tangent: Math.abs(derivative) <= Math.sqrt(tangentTolerance),
-        detection: tangentCandidates.some((candidate) => Math.abs(candidate - time) <= step)
-          ? "tangent_minimum"
-          : "sign_change",
+        detection: candidate.detection,
       };
     })
     .filter((root) => Number.isFinite(root.residual) && Math.abs(root.residual) <= tangentTolerance * 2);
 
-  return { roots, samples, rejected: [] };
+  return { roots, samples, rejected };
 }
 
 export function evaluateCausalRoots({
@@ -194,8 +216,41 @@ export function evaluateCausalRoots({
   selfHit = sourceId === receiverId,
   scanSteps = DEFAULT_SCAN_STEPS,
 } = {}) {
-  const [sourceStart, sourceEnd] = pathTimeRange(sourcePath);
+  const [sourceStart, sourceEnd] = getTimedPathRange(sourcePath);
+  const receiverRange = getTimedPathRange(receiverPath);
+  if (
+    receiverTime < receiverRange[0] ||
+    receiverTime > receiverRange[1] ||
+    sourceEnd <= sourceStart
+  ) {
+    return {
+      sourceId: String(sourceId),
+      receiverId: String(receiverId),
+      receiverTime,
+      signalSpeed,
+      distanceScale,
+      roots: [],
+      acceptedRoots: [],
+      rejectedRoots: [],
+      samples: [],
+      diagnostics: [{ reason: "insufficient_path_coverage" }],
+    };
+  }
   const upperBound = Math.min(sourceEnd, receiverTime - ROOT_TIME_EPSILON);
+  if (upperBound <= sourceStart) {
+    return {
+      sourceId: String(sourceId),
+      receiverId: String(receiverId),
+      receiverTime,
+      signalSpeed,
+      distanceScale,
+      roots: [],
+      acceptedRoots: [],
+      rejectedRoots: [],
+      samples: [],
+      diagnostics: [{ reason: "no_positive_delay_interval" }],
+    };
+  }
   const residualAt = createCausalDelayResidual({
     sourcePath,
     receiverPath,
@@ -209,20 +264,27 @@ export function evaluateCausalRoots({
     end: upperBound,
     scanSteps,
   });
-  const reception = sampleCausalHistoryPath(receiverPath, receiverTime);
+  const reception = sampleTimedPath(receiverPath, receiverTime);
   const rows = scalar.roots.map((root, ordinal) => {
-    const emission = sampleCausalHistoryPath(sourcePath, root.time);
+    const emission = sampleTimedPath(sourcePath, root.time);
     const delay = receiverTime - root.time;
     const separation = emission && reception
-      ? Math.hypot(reception.x - emission.x, reception.y - emission.y) * distanceScale
+      ? Math.hypot(
+          reception.x - emission.x,
+          reception.y - emission.y,
+          finiteNumber(reception.z) - finiteNumber(emission.z),
+        ) * distanceScale
       : Number.NaN;
-    const coincident = selfHit && separation <= ROOT_TIME_EPSILON;
+    const coincidentDistanceTolerance = Math.abs(signalSpeed) * ROOT_TIME_EPSILON;
+    const coincident = selfHit && separation <= coincidentDistanceTolerance;
     const simple = Math.abs(root.derivative) >= transversalityFloor;
     const accepted = delay > ROOT_TIME_EPSILON && (!coincident || includeCoincident) && simple;
     const reason = delay <= ROOT_TIME_EPSILON
       ? "nonpositive_delay"
       : coincident && !includeCoincident
         ? "coincident_same_source_root_unresolved"
+        : root.tangent
+          ? "tangent_root_unresolved"
         : !simple
           ? "transversality_floor_failed"
           : "accepted_simple_root";
@@ -261,6 +323,7 @@ export function evaluateCausalRoots({
       emissionTime: sample.time,
       value: sample.value,
     })),
+    diagnostics: scalar.rejected,
   };
 }
 
@@ -285,9 +348,6 @@ function createReplayAuthority(dataset, loadState = "ready", loadError = null) {
         ? "representative teaching data"
         : "display-only unavailable state",
     guidedTeachingReplay: "guided teaching replay",
-    constrainedBoundaryReplay:
-      "current constrained pair-interaction boundary replay: separate implementation-grade path",
-    strongerPhysicalSolver: "open",
     error: loadError ? String(loadError?.message ?? loadError) : null,
   };
 }
@@ -393,35 +453,51 @@ export function refreshCanonicalLearnerState(state, {
   state.retainedHistory = dataset?.history ?? state.retainedHistory;
   state.receiverTime = receiverTime;
   state.replay = createReplayAuthority(dataset, loadState, loadError);
-  const evaluation = evaluateCausalRoots({
-    sourceId: state.sourceId,
-    receiverId: state.receiverId,
-    sourcePath: state.paths?.[state.sourceId] ?? [],
-    receiverPath: state.paths?.[state.receiverId] ?? [],
-    receiverTime,
-    signalSpeed,
-    distanceScale,
-  });
-  const reciprocalEvaluation = evaluateCausalRoots({
-    sourceId: state.receiverId,
-    receiverId: state.sourceId,
-    sourcePath: state.paths?.[state.receiverId] ?? [],
-    receiverPath: state.paths?.[state.sourceId] ?? [],
-    receiverTime,
-    signalSpeed,
-    distanceScale,
-  });
+  const causalEvaluationAvailable = dataset?.causalEvaluation?.enabled !== false;
+  const unavailableEvaluation = {
+    roots: [],
+    acceptedRoots: [],
+    rejectedRoots: [],
+    samples: [],
+    diagnostics: [{
+      reason: dataset?.causalEvaluation?.reason ?? "causal_evaluation_unavailable",
+    }],
+  };
+  const evaluation = causalEvaluationAvailable
+    ? evaluateCausalRoots({
+        sourceId: state.sourceId,
+        receiverId: state.receiverId,
+        sourcePath: state.paths?.[state.sourceId] ?? [],
+        receiverPath: state.paths?.[state.receiverId] ?? [],
+        receiverTime,
+        signalSpeed,
+        distanceScale,
+      })
+    : unavailableEvaluation;
+  const reciprocalEvaluation = causalEvaluationAvailable
+    ? evaluateCausalRoots({
+        sourceId: state.receiverId,
+        receiverId: state.sourceId,
+        sourcePath: state.paths?.[state.receiverId] ?? [],
+        receiverPath: state.paths?.[state.sourceId] ?? [],
+        receiverTime,
+        signalSpeed,
+        distanceScale,
+      })
+    : unavailableEvaluation;
+  state.causalEvaluationAvailable = causalEvaluationAvailable;
+  state.causalEvaluationReason = causalEvaluationAvailable
+    ? null
+    : dataset?.causalEvaluation?.reason ?? "causal_evaluation_unavailable";
+  state.causalDiagnostics = evaluation.diagnostics ?? [];
   state.roots = evaluation.roots;
   state.reciprocalRoots = reciprocalEvaluation.roots;
-  const producerRows = createProducerBranchRows(dataset, receiverTime);
-  state.acceptedBranchRows = [
-    ...evaluation.acceptedRoots,
-    ...producerRows.filter((row) => row.accepted),
-  ];
-  state.rejectedBranchRows = [
-    ...evaluation.rejectedRoots,
-    ...producerRows.filter((row) => !row.accepted),
-  ];
+  const producerRows = createProducerBranchRows(dataset, receiverTime).filter(
+    (row) => row.sourceId === state.sourceId && row.receiverId === state.receiverId,
+  );
+  const branchRows = producerRows.length > 0 ? producerRows : evaluation.roots;
+  state.acceptedBranchRows = branchRows.filter((row) => row.accepted);
+  state.rejectedBranchRows = branchRows.filter((row) => !row.accepted);
   const selected = evaluation.acceptedRoots.find((root) => root.id === state.selectedRootId)
     ?? evaluation.acceptedRoots.at(-1)
     ?? evaluation.roots.at(-1)
@@ -434,8 +510,8 @@ export function refreshCanonicalLearnerState(state, {
     ?? null;
   state.selectedReciprocalRootId = selectedReciprocal?.id ?? null;
   state.emissionTime = selected?.emissionTime ?? null;
-  state.sourceGeometry = selected?.emission ?? sampleCausalHistoryPath(state.paths?.[state.sourceId], receiverTime);
-  state.receiverGeometry = selected?.reception ?? sampleCausalHistoryPath(state.paths?.[state.receiverId], receiverTime);
+  state.sourceGeometry = selected?.emission ?? sampleTimedPath(state.paths?.[state.sourceId], receiverTime);
+  state.receiverGeometry = selected?.reception ?? sampleTimedPath(state.paths?.[state.receiverId], receiverTime);
   state.delayMap = evaluation.samples;
   return state;
 }
@@ -446,17 +522,33 @@ export function createPredictionChoices(state, { count = 3 } = {}) {
   if (!root) {
     return [];
   }
-  const [start] = pathTimeRange(state.paths?.[state.sourceId]);
+  const [start, end] = getTimedPathRange(state.paths?.[state.sourceId]);
   const spread = Math.max(0.06, root.delay * 0.42);
-  const times = [
-    clamp(root.emissionTime - spread, start, state.receiverTime),
-    root.emissionTime,
-    clamp(root.emissionTime + spread, start, state.receiverTime - ROOT_TIME_EPSILON),
-  ].slice(0, Math.max(2, count));
-  return times.map((time, index) => ({
+  const upperBound = Math.min(end, state.receiverTime - ROOT_TIME_EPSILON);
+  const times = [root.emissionTime];
+  for (const offset of [-spread, spread, -2 * spread, 2 * spread]) {
+    const candidate = clamp(root.emissionTime + offset, start, upperBound);
+    if (!times.some((time) => Math.abs(time - candidate) <= ROOT_TIME_EPSILON)) {
+      times.push(candidate);
+    }
+    if (times.length >= Math.max(2, count)) {
+      break;
+    }
+  }
+  const hash = [...String(root.id)].reduce(
+    (value, character) => ((value * 33) ^ character.codePointAt(0)) >>> 0,
+    5381,
+  );
+  const choiceCount = Math.min(times.length, Math.max(2, count));
+  const correctIndex = (hash >>> 8) % choiceCount;
+  const distractors = times.slice(1).sort((left, right) => left - right);
+  const orderedTimes = Array.from({ length: choiceCount }, (_unused, index) =>
+    index === correctIndex ? root.emissionTime : distractors.shift(),
+  );
+  return orderedTimes.map((time, index) => ({
     id: `${root.id}:choice:${index + 1}`,
     emissionTime: time,
-    point: sampleCausalHistoryPath(state.paths?.[state.sourceId], time),
+    point: sampleTimedPath(state.paths?.[state.sourceId], time),
     correct: Math.abs(time - root.emissionTime) <= ROOT_TIME_EPSILON,
     label: `Earlier position ${index + 1}`,
   }));

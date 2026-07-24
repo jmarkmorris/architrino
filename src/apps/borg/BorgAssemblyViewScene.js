@@ -6,6 +6,7 @@ import {
   assertBorgPrescribedDisplayFrame,
   resolveBorgPrescribedTranslation,
 } from "./BorgPrescribedTranslation.js";
+import { clearBorgSceneGroup } from "./BorgSceneDisposal.js";
 
 const ANSATZ_COLOR = 0xc6b6ff;
 const AXIS_COLORS = Object.freeze([0x8fdcf2, 0xf0a6d2, 0xb8a8ff]);
@@ -64,16 +65,17 @@ export function createBorgAssemblyViewScene({
 
   function setRecord(nextEntry) {
     entry = nextEntry;
-    clearGroup(axisGroup);
-    clearGroup(ansatzGroup);
-    clearGroup(sweptEnvelopeGroup);
-    clearGroup(prescribedPathGroup);
-    clearGroup(prescribedTubeGroup);
+    clearBorgSceneGroup(axisGroup);
+    clearBorgSceneGroup(ansatzGroup);
+    clearBorgSceneGroup(sweptEnvelopeGroup);
+    clearBorgSceneGroup(prescribedPathGroup);
+    clearBorgSceneGroup(prescribedTubeGroup);
     translation = resolveBorgPrescribedTranslation(nextEntry);
     translationFrame = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
     currentTime = Number(nextEntry?.dataset?.window?.start ?? 0);
     historyDepth = Number.POSITIVE_INFINITY;
     selectedWorldlineId = null;
+    tubeVisible = false;
     buildBinaryAxes(nextEntry?.dataset?.binaries ?? []);
     buildAnsatz(nextEntry?.dataset?.ansatz ?? []);
     buildPrescribedPathStrands();
@@ -285,7 +287,7 @@ export function createBorgAssemblyViewScene({
   }
 
   function rebuildSelectedTube() {
-    clearGroup(prescribedTubeGroup);
+    clearBorgSceneGroup(prescribedTubeGroup);
     if (!tubeVisible || !selectedWorldlineId || !entry ||
         entry.dataset.provenance.engineId !== "prescribed-geometry" ||
         !Number.isFinite(currentTime) ||
@@ -462,11 +464,11 @@ export function createBorgAssemblyViewScene({
   }
 
   function dispose() {
-    clearGroup(axisGroup);
-    clearGroup(ansatzGroup);
-    clearGroup(sweptEnvelopeGroup);
-    clearGroup(prescribedPathGroup);
-    clearGroup(prescribedTubeGroup);
+    clearBorgSceneGroup(axisGroup);
+    clearBorgSceneGroup(ansatzGroup);
+    clearBorgSceneGroup(sweptEnvelopeGroup);
+    clearBorgSceneGroup(prescribedPathGroup);
+    clearBorgSceneGroup(prescribedTubeGroup);
     group.remove(
       axisGroup,
       ansatzGroup,
@@ -623,12 +625,4 @@ function readPolylinePoints(row) {
 
 function finiteVector(vector) {
   return ["x", "y", "z"].every((axis) => Number.isFinite(Number(vector?.[axis])));
-}
-
-function clearGroup(group) {
-  group.children.slice().forEach((object) => {
-    group.remove(object);
-    object.geometry?.dispose?.();
-    object.material?.dispose?.();
-  });
 }

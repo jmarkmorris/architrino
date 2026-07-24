@@ -1759,6 +1759,7 @@ void print_certified_correction_retry() {
 }  // namespace
 
 int main(int argc, char** argv) {
+  std::cout.imbue(std::locale::classic());
   try {
     if (argc != 2 ||
         (std::string(argv[1]) != "all" &&

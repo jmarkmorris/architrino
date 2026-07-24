@@ -151,7 +151,7 @@ Here $\mathcal A_{\downarrow}$ denotes the availability of lower-energy or accep
 The evolution of $\rho_{\mathrm{DE,eff}}(t)$ is governed by the collective relaxation of the Noether sea state. Schematically:
 
 - At early times ($z \gg 1$), the Noether sea is dense and hot; binaries 3 are contracted, and the effective dark-energy contribution is subdominant relative to matter and radiation energy densities.
-- As the Noether sea cools and dilutes through structure formation and radiation escape, binaries 3 relax toward larger radii. The associated tension becomes dynamically significant when $\rho_{\mathrm{DE,eff}} \sim \rho_m$, which occurs at $z \sim 0.3$–$0.7$ (the onset of acceleration).
+- As the Noether sea cools and dilutes through structure formation and radiation escape, binaries 3 relax toward larger radii. The associated tension becomes dynamically significant when $\rho_{\mathrm{DE,eff}} \sim \rho_m$, which occurs at $z \sim 0.3$–$0.7$ (the onset of acceleration — an imported comparison anchor the relaxation law must hit, not a timescale the mechanism derives).
 - At late times ($z \to 0$), the Noether sea approaches a quasi-equilibrium state with slowly evolving tension, producing an approximately constant $\rho_{\mathrm{DE,eff}}$ and $w \approx -1$.
 
 This narrative must be made quantitative through a constitutive relation linking the Noether sea state variables to an effective pressure. The minimal parameterization is:
@@ -458,7 +458,7 @@ not to a new negative-energy assembly. A dark-energy branch may expose shielded 
 
 ### Background Equations
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the Friedmann equations are not fundamental but emerge as the effective large-scale description of the evolving Noether sea in the homogeneous, isotropic limit. The effective Hubble rate is:
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the Friedmann equations are not fundamental but remain comparison-layer summaries targeted for recovery from one retained record: the effective large-scale description of the evolving Noether sea in the homogeneous, isotropic limit. The effective Hubble rate is:
 
 $$
 H^2(z) = \frac{8\pi G_{\mathrm{eff}}}{3}\bigl[\rho_r(z) + \rho_m(z) + \rho_{\mathrm{DE,eff}}(z)\bigr]
@@ -581,7 +581,7 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the problem is reframed as an
 
 - QFT zero-point energies are not physical observables of the Euclidean void (which carries no energy). They are artifacts of the continuum-field approximation applied to a substrate that is fundamentally discrete (point architrinos) and finite (a definite number of Noether braid assemblies per unit volume).
 - In the candidate source record used here, binaries 1 and 2 are hypothesized to store large local energy densities (self-hit regime, $v > c_f$ and $v = c_f$), but this energy would be locked into high-frequency orbital modes rather than exported as a cosmological constant. Only the slowly varying, large-scale stress provisionally assigned to binary 3 contributes to $\rho_{\mathrm{DE,eff}}$ in this candidate map. None of these roles is a meaning of the persistent indices.
-- The observed smallness of $\rho_\Lambda$ relative to naïve QFT estimates reflects the fact that most internal Noether braid energy is dynamically inert on Hubble timescales—it is shielded by the source record indexed-support hierarchy, not canceled by fine-tuning.
+- The observed smallness of $\rho_\Lambda$ relative to naïve QFT estimates would then reflect most internal Noether braid energy being dynamically inert on Hubble timescales — shielded by the source record indexed-support hierarchy rather than canceled by fine-tuning. This shielding is the candidate mechanism whose derivation is the coupling-selection theorem target below, not an established fact.
 
 ### Coupling-Selection Target
 
@@ -611,7 +611,7 @@ This separates two claims that are often conflated. The first claim is a shieldi
 
 ### Comparison to Sequestering and Degravitation Proposals
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism is structurally similar to vacuum-energy sequestering proposals (Kaloper & Padilla 2014) in which high-energy modes are dynamically decoupled from the gravitational sector. The key difference is that $\mathbb{A}\mathbb{A}\mathbb{A}$ provides a concrete physical mechanism for the decoupling (indexed-support shielding) rather than imposing it through a global constraint or modified variational principle.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism is structurally similar to vacuum-energy sequestering proposals (Kaloper & Padilla 2014) in which high-energy modes are dynamically decoupled from the gravitational sector. The key difference is that $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes a concrete physical mechanism for the decoupling — indexed-support shielding, still pending its coupling-selection theorem — rather than imposing it through a global constraint or modified variational principle.
 
 Finite-range gravity and massive-gravity programs are useful here only as comparison frameworks. Their durable lesson is not that the Noether sea should contain a massive graviton, but that any large-scale weakening of gravity must pass a local-recovery gate: solar-system, binary-pulsar, lensing, and gravitational-wave regimes must remain GR-like while a cosmological-scale response is allowed to differ. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that burden belongs to the same Noether sea constitutive map that sets $G_{\text{eff}}$, $\chi_{\text{sea}}$, clock-rate response, and growth history. A degravitation-like dark-energy channel is admissible only if the shielding residual is suppressed at the effective cosmological scale without weakening the already validated weak-field and gravitational-wave channels.
 
@@ -813,7 +813,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism does not involve untracked photon
 
 Supermassive black holes process matter and radiation through their high-energy interiors. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ picture, this recycling has implications for the dark-energy sector:
 
-- **Energy input to the Noether sea.** Jets and radiative outflows from SMBHs inject energy into the surrounding medium, locally exciting binary-3 modes and increasing the Noether sea internal temperature. On galactic and cluster scales, this injection is a source of heating that counteracts the natural cosmological cooling of the medium.
+- **Energy input to the Noether sea.** Jets and radiative outflows from SMBHs are a candidate channel for injecting energy into the surrounding medium, locally exciting binary-3 modes and increasing the Noether sea internal temperature. On galactic and cluster scales, this injection would be a source of heating that counteracts the hypothesized natural cosmological cooling of the medium.
 - **Feedback on $w_{\mathrm{eff}}$.** If SMBH energy injection is correlated with structure formation, the effective dark-energy equation of state can carry weak environmental dependence.
 - **Backreaction rather than isolation.** The relevant cosmological question is not whether a black hole is an isolated object with a fixed bookkeeping mass, but whether the recycling zone and the ambient Noether sea remain coupled strongly enough for the surrounding Noether sea state to alter what the object contributes at late times.
 - **No perpetual motion.** The recycling process does not create energy; it redistributes it. The total energy budget (matter + radiation + medium baseline) is conserved in absolute time. What changes is the partition between locked internal modes and the slowly varying binary-3 tension sector.
@@ -936,7 +936,7 @@ Until those conditions are met, cosmological coupling should be treated as a can
 | Present ($z = 0$) | Quasi-equilibrium tension | $w_{\mathrm{eff}} \approx -1$ with possible mild drift | Acceleration established; coupling tests become survey-limited |
 | Far future ($z \to -1$) | Full relaxation | $w_{\mathrm{eff}} \to -1$ or evolves | Depends on relaxation endpoint |
 
-The acceleration onset redshift $z \sim 0.7$ is treated as the characteristic crossover of this relaxation model, with timescale set by assembly-scale physics (binary-3 binding energy and Noether sea coupling).
+The acceleration onset redshift $z \sim 0.7$ is treated as the characteristic crossover of this relaxation model — an imported comparison anchor the relaxation law must hit, not a timescale the mechanism derives — with timescale set by assembly-scale physics (binary-3 binding energy and Noether sea coupling).
 
 ## Expansion-Module Interface
 

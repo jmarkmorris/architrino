@@ -166,6 +166,15 @@ test("prescribed strands and selected tubes share the finite no-future display w
     tubeGroup.children[0].userData.valueAuthority,
     "display-only-envelope-around-recorded-path-samples",
   );
+  scene.setRecord({ sourceId: "replacement", dataset });
+  scene.setHistoryDepth(1);
+  scene.updateTime(2);
+  scene.setSelectedWorldlineId("worldline-0");
+  assert.equal(
+    tubeGroup.children.length,
+    0,
+    "a record switch resets both the scene tube and the unchecked UI state",
+  );
   scene.dispose();
 });
 

@@ -10,8 +10,6 @@ export const BORG_ACCEPTED_SEED_HISTORY_CLAIM_LEVEL =
 export const BORG_ACCEPTED_SEED_HISTORY_CERTIFICATE_VERSION =
   "borg-eom-seed-history-certificate.v1";
 
-const POSITRINO_STATE_FLAG = 1;
-const ELECTRINO_STATE_FLAG = 2;
 const FIRST_PATH_KEY = 1001;
 
 export function createBorgInitialConditionConfig(initialConditions = {}) {
@@ -139,7 +137,7 @@ export function createBorgSeededInitialConditionRows({
     errorBound: 0,
     stateFlags: flags,
     runSource: initialStateRunSource,
-    valueAuthority: "app-generated-native-run-initial-condition",
+    valueAuthority: "app-generated-eom-run-initial-condition",
   })));
 }
 
@@ -397,11 +395,11 @@ function createBalancedStateFlags(electrinoCount, positrinoCount) {
   const flags = [];
   while (electrinosRemaining > 0 || positrinosRemaining > 0) {
     if (positrinosRemaining > 0) {
-      flags.push(POSITRINO_STATE_FLAG);
+      flags.push(BORG_POSITRINO_STATE_FLAG);
       positrinosRemaining -= 1;
     }
     if (electrinosRemaining > 0) {
-      flags.push(ELECTRINO_STATE_FLAG);
+      flags.push(BORG_ELECTRINO_STATE_FLAG);
       electrinosRemaining -= 1;
     }
   }
@@ -583,3 +581,7 @@ function nonNegativeInteger(value, fallback) {
 function nonNegativeNumber(value, fallback) {
   return strictNonNegativeNumber(value) ?? fallback;
 }
+import {
+  BORG_ELECTRINO_STATE_FLAG,
+  BORG_POSITRINO_STATE_FLAG,
+} from "./BorgPolarityDiagnostics.js";

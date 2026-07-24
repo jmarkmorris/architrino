@@ -1,11 +1,20 @@
+import {
+  applyBorgCausalHistoryRetention,
+} from "./BorgCausalHistoryRetention.js";
+
 export const BORG_EOM_HTTP_CLIENT_VERSION = "borg-eom-http-client.v0";
 export const BORG_EOM_HTTP_HISTORY_TRANSPORT_SCHEMA =
   "borg-eom-http-history-prefix/v1";
+export const BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT =
+  "certified_execution_timeout";
 
 export function createBorgEomHttpClient({
   endpoint = "/api/eom/borg-shadow/v0",
   fetchImpl = globalThis.fetch,
-  timeoutMs = 180000,
+  timeoutMs,
+  certifiedTimeoutMs = timeoutMs ?? 180000,
+  displayTimeoutMs = timeoutMs ?? 60000,
+  releaseTimeoutMs = 10000,
 } = {}) {
   if (typeof fetchImpl !== "function") {
     throw new TypeError("Borg EOM HTTP client requires fetch.");
@@ -16,12 +25,15 @@ export function createBorgEomHttpClient({
     schema: BORG_EOM_HTTP_CLIENT_VERSION,
     async evolveRetainedHistories(request) {
       const controller = new AbortController();
+      const requestTimeoutMs = request?.runGrade === "certified"
+        ? certifiedTimeoutMs
+        : displayTimeoutMs;
       activeControllers.add(controller);
       let timedOut = false;
       const timeout = setTimeout(() => {
         timedOut = true;
         controller.abort();
-      }, timeoutMs);
+      }, requestTimeoutMs);
       try {
         let wireRequest = createDisplayHistoryPrefixRequest(
           request,
@@ -43,11 +55,12 @@ export function createBorgEomHttpClient({
           throw error;
         }
         const unretired = mergeDisplayHistoryExtensions(request, payload);
-        const merged = Array.isArray(unretired?.histories)
+        const merged = request?.runGrade === "display" &&
+            Array.isArray(unretired?.histories)
           ? Object.freeze({
               ...unretired,
               histories: boundDisplayClientHistories(
-                applyDisplayCertificateToClientWindow(
+                applyBorgCausalHistoryRetention(
                   unretired.histories,
                   payload.causalHistoryRetention ?? null,
                 ),
@@ -77,14 +90,14 @@ export function createBorgEomHttpClient({
         if (error?.name === "AbortError") {
           const requestError = new Error(
             timedOut
-              ? `Borg EOM service timed out after ${timeoutMs} ms.`
+              ? `Borg EOM service timed out after ${requestTimeoutMs} ms.`
               : "Borg EOM service request was cancelled.",
           );
           if (timedOut) {
             requestError.code = request?.runGrade === "certified"
-              ? "certified_execution_timeout"
+              ? BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT
               : "display_execution_timeout";
-            requestError.timeoutMs = timeoutMs;
+            requestError.timeoutMs = requestTimeoutMs;
           }
           throw requestError;
         }
@@ -95,13 +108,10 @@ export function createBorgEomHttpClient({
       }
     },
     async dispose() {
-      const hadActiveRequest = activeControllers.size > 0;
       activeControllers.forEach((controller) => controller.abort());
       activeControllers.clear();
       displayHistoryCache = null;
-      if (!hadActiveRequest) {
-        await releaseRemoteRun();
-      }
+      await releaseRemoteRun();
     },
     async releaseRun() {
       displayHistoryCache = null;
@@ -127,6 +137,9 @@ export function createBorgEomHttpClient({
       const error = new Error(
         payload?.error ?? `Borg EOM service returned HTTP ${response.status}.`,
       );
+      error.httpStatus = response.status;
+      error.retryable = response.status >= 500 || response.status === 408 ||
+        response.status === 429;
       if (typeof payload?.code === "string") {
         error.code = payload.code;
       }
@@ -136,10 +149,17 @@ export function createBorgEomHttpClient({
   }
 
   async function releaseRemoteRun() {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), releaseTimeoutMs);
     try {
-      await fetchImpl(endpoint, { method: "DELETE" });
+      await fetchImpl(endpoint, {
+        method: "DELETE",
+        signal: controller.signal,
+      });
     } catch {
       // If the local service is already gone, its worker is gone as well.
+    } finally {
+      clearTimeout(timeout);
     }
   }
 }
@@ -211,30 +231,6 @@ function validHistoryTransport(transport, histories) {
     transport.segmentCounts.length === histories.length &&
     transport.segmentCounts.every((value) =>
       Number.isSafeInteger(Number(value)) && Number(value) > 0);
-}
-
-function applyDisplayCertificateToClientWindow(histories, certificate) {
-  if (certificate == null) return histories;
-  if (!Array.isArray(certificate.paths) ||
-      certificate.paths.length !== histories.length) {
-    throw new Error("EOM causal-history certificate omitted a Display path.");
-  }
-  return Object.freeze(histories.map((history, index) => {
-    const row = certificate.paths[index];
-    if (String(row?.pathId) !== String(history.pathId) ||
-        typeof row.retainedCoverageStart !== "string") {
-      throw new Error("EOM causal-history certificate reordered a Display path.");
-    }
-    const retainedIndex = history.segments.findIndex(
-      (segment) => String(segment.startTime) === row.retainedCoverageStart,
-    );
-    if (retainedIndex <= 0) return history;
-    return Object.freeze({
-      ...history,
-      coverageStart: row.retainedCoverageStart,
-      segments: Object.freeze(history.segments.slice(retainedIndex)),
-    });
-  }));
 }
 
 function boundDisplayClientHistories(histories, requestedStartToken) {

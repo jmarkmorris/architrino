@@ -1,123 +1,20 @@
-export const DESIGN_WIDTH = 1920;
-export const DESIGN_HEIGHT = 1080;
-export const FRAME_COUNT = 1800;
-export const PARTIAL_PROPAGATING_ARCS = "partial_propagating_arcs";
-export const FULL_CIRCULAR_ARCS = "full_circular_arcs";
-export const DEFAULT_PRESET_ID = "accepted_tight_bright";
-export const DEFAULT_CANVAS_ID = "architrinoPurple";
+import {
+  ARCHITRINO_KINDS,
+  DEFAULT_CANVAS_ID,
+  DEFAULT_PRESET_ID,
+  ELECTRINO_WAKE,
+  FRAME_COUNT,
+  PATH_TIME_END_X,
+  PATH_TIME_START_X,
+  POSITRINO_WAKE,
+  getPresetById,
+} from "./CausalDelayFeedbackDisplayContract.js";
+import { sampleTimedPath } from "./CausalDelayFeedbackTimedPath.js";
+
 export const EOM_NATIVE_STREAM_TARGET = "eom_native_path_history_stream";
 export const TEMPORARY_MOCK_ADAPTER = "temporary_mock_adapter";
 export const REPRESENTATIVE_MOCK_SOLVER_REPLAY = "representative_mock_solver_replay";
 export const DIRECT_MANIPULATION_DRAFT_PREVIEW = "direct_manipulation_draft_preview";
-
-export const POSITRINO = Object.freeze({ r: 255, g: 0, b: 0, a: 1 });
-export const ELECTRINO = Object.freeze({ r: 0, g: 0, b: 255, a: 1 });
-export const POSITRINO_WAKE = Object.freeze({ r: 255, g: 150, b: 166, a: 1 });
-export const ELECTRINO_WAKE = Object.freeze({ r: 150, g: 170, b: 255, a: 1 });
-export const WHITE = Object.freeze({ r: 246, g: 247, b: 255, a: 1 });
-export const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
-export const TIME_AXIS_ORIGIN_X = 92;
-export const TIME_AXIS_END_X = 1810;
-export const TIME_AXIS_BASELINE_Y = 908;
-export const SPACE_AXIS_TOP_Y = 182;
-export const PATH_TIME_START_X =
-  TIME_AXIS_ORIGIN_X + (TIME_AXIS_END_X - TIME_AXIS_ORIGIN_X) * 0.05;
-export const PATH_TIME_END_X =
-  TIME_AXIS_ORIGIN_X + (TIME_AXIS_END_X - TIME_AXIS_ORIGIN_X) * 0.95;
-
-export const CANVAS_COLORS = Object.freeze([
-  { id: "architrinoPurple", label: "Purple", color: "#4b0082" },
-  { id: "light", label: "Light", color: "#fdfdfd" },
-  { id: "warm", label: "Warm", color: "#f4ecd8" },
-  { id: "dark", label: "Dark", color: "#0f172a" },
-]);
-
-export const PRESETS = Object.freeze([
-  {
-    id: "accepted_tight_bright",
-    label: "Accepted - tight bright fronts",
-    wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    finalSpan: 14,
-    startSpan: 2.5,
-    dotRadius: 1.8,
-    alphaScale: 1.18,
-    falloffPower: 1,
-  },
-  {
-    id: "tighter_sector",
-    label: "Tighter sector - cleaner arrivals",
-    wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    finalSpan: 10,
-    startSpan: 1.8,
-    dotRadius: 1.8,
-    alphaScale: 1.18,
-    falloffPower: 1,
-  },
-  {
-    id: "slightly_wider",
-    label: "Slightly wider sector",
-    wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    finalSpan: 20,
-    startSpan: 3.5,
-    dotRadius: 1.8,
-    alphaScale: 1.18,
-    falloffPower: 1,
-  },
-  {
-    id: "thin_fronts",
-    label: "Thin fronts - lighter trace weight",
-    wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    finalSpan: 14,
-    startSpan: 2.5,
-    dotRadius: 1.35,
-    alphaScale: 0.86,
-    falloffPower: 1,
-  },
-  {
-    id: "bright_fronts",
-    label: "Brighter fronts - visibility stress",
-    wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    finalSpan: 14,
-    startSpan: 2.5,
-    dotRadius: 2.05,
-    alphaScale: 1.32,
-    falloffPower: 1,
-  },
-  {
-    id: "strong_falloff",
-    label: "Strong falloff - older wakes fade harder",
-    wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    finalSpan: 14,
-    startSpan: 2.5,
-    dotRadius: 1.8,
-    alphaScale: 0.92,
-    falloffPower: 1.7,
-  },
-  {
-    id: "full_circular_arcs",
-    label: "Full circular wakes",
-    wakeArcDisplayMode: FULL_CIRCULAR_ARCS,
-    finalSpan: 360,
-    startSpan: 360,
-    dotRadius: 1.8,
-    alphaScale: 1.18,
-    falloffPower: 1,
-  },
-  {
-    id: "contrast_stress",
-    label: "Contrast stress - mixed wake states",
-    wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    finalSpan: 16,
-    startSpan: 2.8,
-    dotRadius: 1.95,
-    alphaScale: 1.24,
-    falloffPower: 1,
-    canvasColorId: "architrinoPurple",
-    assemblyThreshold: 0.00075,
-    contrastStress: true,
-    representativeOnly: true,
-  },
-]);
 
 const HISTORY_POINTS = Object.freeze([
   { depth: 1, t: 0, weight: 1 / 6, state: "older" },
@@ -197,14 +94,6 @@ function catmullRomPoint(points, t) {
         (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * tt +
         (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * ttt),
   };
-}
-
-export function getPresetById(id) {
-  return PRESETS.find((preset) => preset.id === id) ?? PRESETS[0];
-}
-
-export function getCanvasColorById(id) {
-  return CANVAS_COLORS.find((entry) => entry.id === id) ?? CANVAS_COLORS[0];
 }
 
 export function getPathPoint(kind, t) {
@@ -388,7 +277,7 @@ function createInitialConditionsFromPaths(paths) {
 function createInitialMotionStateFromPath(points) {
   const start = points[0] ?? { t: 0, x: 0, y: 0 };
   const end = points.at(-1) ?? start;
-  const midpoint = interpolateSampledPath(points, start.t + (end.t - start.t) * 0.5);
+  const midpoint = sampleTimedPath(points, start.t + (end.t - start.t) * 0.5);
   const totalTime = Number(end.t) - Number(start.t);
   const midpointTime = Number(midpoint.t) - Number(start.t);
   if (!Number.isFinite(totalTime) || totalTime <= 0 || !Number.isFinite(midpointTime) || midpointTime <= 0) {
@@ -425,29 +314,6 @@ function createInitialMotionStateFromPath(points) {
   };
 }
 
-function interpolateSampledPath(points, t) {
-  if (!Array.isArray(points) || points.length === 0) {
-    return { t, x: 0, y: 0 };
-  }
-  if (points.length === 1 || t <= points[0].t) {
-    return { ...points[0] };
-  }
-  const last = points.at(-1);
-  if (t >= last.t) {
-    return { ...last };
-  }
-  const rightIndex = points.findIndex((point) => point.t >= t);
-  const left = points[Math.max(0, rightIndex - 1)];
-  const right = points[rightIndex] ?? last;
-  const span = right.t - left.t;
-  const amount = span === 0 ? 0 : clamp((t - left.t) / span, 0, 1);
-  return {
-    t,
-    x: left.x + (right.x - left.x) * amount,
-    y: left.y + (right.y - left.y) * amount,
-  };
-}
-
 function samplePath(kind, count = FRAME_COUNT) {
   const points = [];
   for (let index = 0; index < count; index += 1) {
@@ -458,8 +324,8 @@ function samplePath(kind, count = FRAME_COUNT) {
 }
 
 function createWakeLink(sourceKind, receiverKind, sourceDepth, receiverDepth, color, label) {
-  const source = getPathPoint(sourceKind, sourceDepth.t);
-  const receiver = getPathPoint(receiverKind, receiverDepth.t);
+  const source = { t: sourceDepth.t, ...getPathPoint(sourceKind, sourceDepth.t) };
+  const receiver = { t: receiverDepth.t, ...getPathPoint(receiverKind, receiverDepth.t) };
   return {
     id: `${sourceKind}-${sourceDepth.depth}-to-${receiverKind}-${receiverDepth.depth}`,
     label,
@@ -469,6 +335,8 @@ function createWakeLink(sourceKind, receiverKind, sourceDepth, receiverDepth, co
     receiverDepth: receiverDepth.depth,
     source,
     receiver,
+    emissionTime: sourceDepth.t,
+    hitTime: receiverDepth.t,
     color,
     weight: Math.min(sourceDepth.weight, receiverDepth.weight),
   };

@@ -42,7 +42,9 @@ import {
   createBorgLiveRunRetentionSnapshot,
   applyBorgLiveRunRetention,
 } from "./BorgLiveRunRetentionPolicy.js";
-import { BORG_RELEASE_BUDGET_MANIFEST_V1 } from "./BorgReleaseBudgetManifest.js";
+import {
+  BORG_RELEASE_BUDGET_DISPOSITION_V1,
+} from "./BorgReleaseBudgetDisposition.js";
 import { createBorgPathTrails } from "./BorgPathTrails.js";
 import { createBorgAssemblyViewControls } from "./BorgAssemblyViewControls.js";
 import { createBorgAssemblyViewScene } from "./BorgAssemblyViewScene.js";
@@ -64,7 +66,6 @@ import {
   resolveBorgAssemblyViewTrail,
 } from "./BorgAssemblyViewSession.js";
 import {
-  BORG_PRESCRIBED_DISPLAY_PROFILE_V1,
   createBorgPrescribedDisplayBranch,
 } from "./BorgPrescribedDisplayBranch.js";
 import {
@@ -84,7 +85,13 @@ import { createBorgDiagnosticsPanelController } from "./BorgDiagnosticsPanel.js"
 import {
   calculateBorgPolarityDiagnostics,
   createBorgEscapeLedger,
+  replaceBorgEscapeLedgerRows,
 } from "./BorgPolarityDiagnostics.js";
+import {
+  createBorgWorkspaceSnapshotState,
+  disposeBorgWorkspaceSnapshotRunners,
+  restoreBorgWorkspaceState,
+} from "./BorgWorkspaceState.js";
 import {
   borgEnvelopeRadius,
   createBorgPlacementPolicy,
@@ -173,8 +180,8 @@ const LAYER_LABELS = Object.freeze({
 
 const LAYER_TITLES = Object.freeze({
   "simulation-window": "Spherical simulation envelope",
-  "architrino-position": "Architrino positions from native frame rows",
-  "path-history": "Path-history traces from native path rows",
+  "architrino-position": "Architrino positions from EOM frame rows",
+  "path-history": "Path-history traces from EOM path rows",
   "velocity-vectors": "Display-only velocity-direction rays from the current frame rows",
   "wake-streams": "Unavailable: the EOM solver has not supplied retained wake-stream rows",
   "boundary-shell-status": "Unavailable: the EOM solver has not supplied boundary-shell status rows",
@@ -188,30 +195,10 @@ const STATUS_TONE = Object.freeze({
   "missing-error-budget": "warn",
   "exceeded-error-budget": "bad",
   "fail-closed-value": "bad",
-  "native-backed-now": "good",
-  "recorded-eom-dataset-chunks": "warn",
-  "recorded-eom-output": "warn",
-  "eom-record-replay-running": "warn",
-  "computed-eom-shadow-chunks": "warn",
-  "eom-shadow-running": "warn",
-  "eom-shadow-output": "warn",
-  "canonical-eom-output": "good",
-  "live-native-running": "warn",
-  "eom-idle": "warn",
-  "live-native-error": "bad",
-  "record-replay-error": "bad",
-  "completed-live-native-run": "good",
-  "completed-recorded-replay": "warn",
-  "measured-live-run-budget": "good",
-  "partial-live-run-budget": "warn",
-  "fail-closed-missing-contract": "bad",
-  failed: "bad",
-  passed: "good",
-  "not-measured": "warn",
 });
 
 const SOLVER_FAILURE_BANNERS = Object.freeze({
-  "live-native-error":
+  "eom-run-error":
     "Computing stopped. The solver failed part-way; everything after the last good frame is missing.",
   "record-replay-error":
     "Replay stopped. Borg did not repair or extend the sealed record.",
@@ -367,13 +354,27 @@ export function mountBorgApp(options = {}) {
   // leaves the prescribed paths with no matching visible architrinos.
   let currentFrames = replayActive ? [] : [...initialDisplayRows];
   let frameSets = createBorgFrameSetsFromRows(currentFrames);
+  let frameSetByIndex = new Map(
+    frameSets.map((frameSet) => [frameSet.frameIndex, frameSet]),
+  );
+  let frameSetPositionByIndex = new Map(
+    frameSets.map((frameSet, index) => [frameSet.frameIndex, index]),
+  );
+  let frameRowsByFrameIndex = new Map(
+    frameSets.map((frameSet) => [
+      frameSet.frameIndex,
+      new Map(frameSet.frames.map((frame) => [frame.pathKey, frame])),
+    ]),
+  );
+  const interpolatedFrameSetScratch = { frameIndex: 0, time: 0, frames: [] };
+  const boundEventListeners = [];
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.05, 100);
   const renderer = new THREE.WebGLRenderer({
     canvas: dom.canvas,
     antialias: true,
     alpha: false,
-    preserveDrawingBuffer: true,
+    preserveDrawingBuffer: false,
   });
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.setClearColor(0x12130f, 1);
@@ -657,7 +658,7 @@ export function mountBorgApp(options = {}) {
     if (replayActive) {
       startRunAndPlayback();
     } else {
-      startDynamicNativeRunner();
+      startDynamicRunner();
     }
   }
 
@@ -808,7 +809,11 @@ export function mountBorgApp(options = {}) {
     renderFieldRows(
       dom.authorityFields,
       [
-        ["frameAuthority", replayActive ? "recorded-eom-output" : "eom-shadow-output"],
+        ["frameAuthority", replayActive
+          ? activeReplayEntry?.dataset.provenance.engineId === "prescribed-geometry"
+            ? "recorded-prescribed-geometry"
+            : "recorded-eom-output"
+          : "eom-shadow-output"],
         ["replayAuthority", replayActive
           ? "viewing creates no evidence and performs no independent verification"
           : "not-applicable"],
@@ -829,9 +834,17 @@ export function mountBorgApp(options = {}) {
   }
 
   function resetPolarityDiagnosticsHistory() {
-    polarityEscapeLedger.reset();
     if (!replayActive) {
-      appendPolarityEscapeRows(currentFrames);
+      replaceBorgEscapeLedgerRows(
+        polarityEscapeLedger,
+        currentFrames,
+        {
+          center: activeEnvelopeCenter(),
+          radius: activeEnvelopeRadius(),
+        },
+      );
+    } else {
+      polarityEscapeLedger.reset();
     }
     state.polarityDiagnostics = null;
     state.polarityDiagnosticFrameIndex = null;
@@ -848,9 +861,8 @@ export function mountBorgApp(options = {}) {
   }
 
   function updatePolarityDiagnostics() {
-    const rawFrameSet = frameSets.find(
-      (frameSet) => frameSet.frameIndex === state.activeFrameIndex,
-    ) ?? frameSets.at(-1);
+    const rawFrameSet = frameSetByIndex.get(state.activeFrameIndex) ??
+      frameSets.at(-1);
     if (!rawFrameSet) {
       state.polarityDiagnostics = null;
       state.polarityDiagnosticFrameIndex = null;
@@ -875,15 +887,14 @@ export function mountBorgApp(options = {}) {
   function renderDeploymentFields() {
     const budget = state.liveRunBudget;
     const calibration = state.measuredRunPresetCalibration;
-    const releaseBudget = BORG_RELEASE_BUDGET_MANIFEST_V1;
-    const releaseCeilings = releaseBudget.releaseBudgetCeilings;
+    const releaseBudget = BORG_RELEASE_BUDGET_DISPOSITION_V1;
     renderFieldRows(dom.deploymentFields, [
       ["deploymentBudgetStatus", manifest.deploymentBudget.deploymentBudgetStatus],
       ["bundleSizeBytes", manifest.deploymentBudget.bundleSizeBytes ?? "not-measured"],
       ["staticAssetTransferBytes", manifest.deploymentBudget.staticAssetTransferBytes ?? "not-measured"],
       ["browserHeapBudget", manifest.deploymentBudget.browserHeapBudget ?? "not-measured"],
       ["gpuMemoryBudget", manifest.deploymentBudget.gpuMemoryBudget ?? "not-measured"],
-      ["nativeSolverThroughput", "not-measured"],
+      ["eomSolverThroughput", "not-measured"],
       ["liveRunBudget", budget.schema],
       ["liveBudgetStatus", budget.status],
       ["lastChunkMs", budget.lastChunkWallTimeMs ?? "not-measured"],
@@ -901,16 +912,12 @@ export function mountBorgApp(options = {}) {
       ["presetSamples", calibration.sampleCount],
       ["targetDurationLimit", calibration.thresholds.maxTargetDuration],
       ["chunkDurationLimit", calibration.thresholds.maxChunkDuration],
-      ["releaseBudgetManifest", releaseBudget.manifestId],
+      ["releaseBudgetDisposition", releaseBudget.dispositionId],
+      ["historicalBudgetManifest", releaseBudget.sourceManifestId],
       ["releaseBudgetStatus", releaseBudget.status],
       ["releaseBudgetAuthority", releaseBudget.valueAuthority],
       ["releaseBudgetSamples", releaseBudget.sampleMatrix.sampleCount],
-      ["releaseMaxChunkMs", releaseCeilings.maxChunkWallTimeMs],
-      ["releaseMinAppendRowsSec", releaseCeilings.minFrameAppendRateRowsPerSecond],
-      ["releaseWorkerChunkBytes", releaseCeilings.maxChunkWorkerMemoryBytes],
-      ["releaseRunHeapBytes", releaseCeilings.maxRunHeapGrowthBytes],
-      ["releaseMaxTarget", releaseCeilings.maxTargetDuration],
-      ["releaseMaxChunk", releaseCeilings.maxChunkDuration],
+      ["legacyBudgetAppliesToEom", releaseBudget.appliesToCurrentEomSurface],
     ]);
   }
 
@@ -968,7 +975,7 @@ export function mountBorgApp(options = {}) {
       ["Manifest", manifest.manifestId],
       ["Source claim", manifest.claimLevel],
       ["Frame rows", currentFrames.length],
-      ["Native keyframes", frameSets.length],
+      ["EOM frame sets", frameSets.length],
       ["Sample interval", activeSampleInterval()],
       ["Playback source", state.sourceMode],
       ["Initial layout", manifest.initialConditions.initialLinePolicy],
@@ -1023,7 +1030,7 @@ export function mountBorgApp(options = {}) {
       ["minimumTotalSpeed", config.randomVelocityMinSpeed],
       ["minimumPairSeparation", placement.minimumPairSeparation],
       ["measuredMinimumSeparation", state.eomSeedCertificate?.geometryCertificate?.measuredMinimumSeparation ?? "not-certified"],
-      ["velocity rays", "off"],
+      ["velocity rays", state.activeLayers.has("velocity-vectors") ? "on" : "off"],
       ["customEditStatus", state.initialConditionEditStatus],
     ]);
   }
@@ -1112,7 +1119,7 @@ export function mountBorgApp(options = {}) {
       if (layer.state === "on-locked") {
         button.dataset.locked = "true";
       }
-      button.addEventListener("click", () => toggleLayer(layer.layer));
+      listen(button, "click", () => toggleLayer(layer.layer));
       dom.layerStrip.append(button);
     });
     syncLayerButtons();
@@ -1313,7 +1320,7 @@ export function mountBorgApp(options = {}) {
       });
     }
     setBorgRadioGroupValue(dom.startingGeometry, activeStartingGeometryId);
-    dom.startingGeometry.addEventListener("change", (event) => {
+    listen(dom.startingGeometry, "change", (event) => {
       if (event.target?.type === "radio" && event.target.checked) {
         switchStartingGeometry(event.target.value);
       }
@@ -1461,6 +1468,10 @@ export function mountBorgApp(options = {}) {
     } catch (error) {
       dom.prescribedBranchFeedback.value = error?.message ?? String(error);
       dom.prescribedBranchFeedback.textContent = dom.prescribedBranchFeedback.value;
+      setInitialConditionFeedback(
+        `Prescribed geometry could not be loaded: ${dom.prescribedBranchFeedback.value}`,
+        "bad",
+      );
       setBorgRadioGroupValue(dom.startingGeometry, activeStartingGeometryId);
     } finally {
       dom.startingGeometry.disabled = false;
@@ -1471,16 +1482,7 @@ export function mountBorgApp(options = {}) {
     return Object.freeze({
       currentFrames: Object.freeze([...currentFrames]),
       frameSets: Object.freeze([...frameSets]),
-      state: Object.freeze({
-        ...state,
-        activeLayers: new Set(state.activeLayers),
-        playing: false,
-        playbackRequested: false,
-        playFrameRequestId: null,
-        playFrameRequestKind: null,
-        dynamicChunkPromise: null,
-        dynamicChunkStartedAt: null,
-      }),
+      state: createBorgWorkspaceSnapshotState(state),
       activeEomRunnerOptions,
       activeReplayEntry,
       activePrescribedDisplayBranch,
@@ -1495,9 +1497,12 @@ export function mountBorgApp(options = {}) {
     activePrescribedDisplayBranch = snapshot.activePrescribedDisplayBranch;
     currentFrames = [...snapshot.currentFrames];
     frameSets = [...snapshot.frameSets];
-    Object.assign(state, snapshot.state, {
-      activeLayers: new Set(snapshot.state.activeLayers),
-    });
+    rebuildFrameSetLookups();
+    Object.assign(
+      state,
+      restoreBorgWorkspaceState(state, snapshot.state),
+    );
+    resetPolarityDiagnosticsHistory();
     assemblyViewScene.setRecord(activeReplayEntry);
     assemblyViewScene.setDisplayMode("animated");
     setBorgRadioGroupValue(dom.startingGeometry, geometryId);
@@ -1526,6 +1531,7 @@ export function mountBorgApp(options = {}) {
     activeEomRunnerOptions = baseEomRunnerOptions;
     currentFrames = [];
     frameSets = [];
+    rebuildFrameSetLookups();
     state.activeFrameIndex = 0;
     state.dynamicRunner = null;
     state.dynamicChunksComputed = 0;
@@ -1554,7 +1560,7 @@ export function mountBorgApp(options = {}) {
     updateTimelineBounds();
     renderStaticPanels();
     describePrescribedAnalysisProvider();
-    const firstReplayChunk = startDynamicNativeRunner();
+    const firstReplayChunk = startDynamicRunner();
     firstReplayChunk?.then(() => {
       if (replayActive && activeStartingGeometryId === geometryId) {
         updateFrame(resolveReplayChartPoseFrameIndex());
@@ -1612,6 +1618,8 @@ export function mountBorgApp(options = {}) {
     activeEomRunnerOptions = branch.runnerOptions;
     currentFrames = [...branch.displayRows];
     frameSets = createBorgFrameSetsFromRows(currentFrames);
+    rebuildFrameSetLookups();
+    resetPolarityDiagnosticsHistory();
     state.activeFrameIndex = frameSets.at(-1)?.frameIndex ?? 0;
     state.distributionFrameRows = branch.displayRows;
     state.eomSeedEndpointRows = null;
@@ -1682,6 +1690,7 @@ export function mountBorgApp(options = {}) {
     assemblyViewScene.setTranslationFrame(state.prescribedTranslationFrame);
     currentFrames = [];
     frameSets = [];
+    rebuildFrameSetLookups();
     state.activeFrameIndex = 0;
     state.dynamicRunner = null;
     state.dynamicChunksComputed = 0;
@@ -1699,7 +1708,7 @@ export function mountBorgApp(options = {}) {
     updateTimelineBounds();
     renderStaticPanels();
     describePrescribedAnalysisProvider();
-    startDynamicNativeRunner();
+    startDynamicRunner();
   }
 
   function exportReplayImage() {
@@ -1903,9 +1912,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function applyFrameSetAtCurrentTime() {
-    const frameSet = frameSets.find(
-      (entry) => entry.frameIndex === state.activeFrameIndex,
-    );
+    const frameSet = frameSetByIndex.get(state.activeFrameIndex);
     if (frameSet) {
       applyFrameSet(frameSet, {
         outputLabel: formatActiveTimelineLabel(frameSet.time),
@@ -1931,9 +1938,9 @@ export function mountBorgApp(options = {}) {
     const displayStatus = ({
       "eom-shadow-running": "running",
       "computed-eom-shadow-chunks": "running",
-      "completed-live-native-run": "complete",
+      "completed-eom-run": "complete",
       "eom-shadow-stopped": "stopped",
-      "live-native-error": "failed",
+      "eom-run-error": "failed",
     })[state.dynamicRunnerStatus] ?? state.dynamicRunnerStatus;
     dom.eomProgress.hidden = forever;
     if (forever) {
@@ -2006,39 +2013,39 @@ export function mountBorgApp(options = {}) {
   }
 
   function bindEvents() {
-    dom.timelineRange.addEventListener("input", () => {
+    listen(dom.timelineRange, "input", () => {
       const requestedFrameIndex = Number(dom.timelineRange.value);
       stopPlayback();
       updateFrame(requestedFrameIndex);
     });
-    dom.playButton.addEventListener("click", () => {
+    listen(dom.playButton, "click", () => {
       togglePlayback();
     });
-    dom.startButton.addEventListener("click", goToStartFrame);
-    dom.newDistributionButton.addEventListener("click", () => {
+    listen(dom.startButton, "click", goToStartFrame);
+    listen(dom.newDistributionButton, "click", () => {
       startNewDistributionRun({ advanceSeed: true, autoStart: false });
     });
-    dom.prescribedBranchStart.addEventListener("click", () => {
+    listen(dom.prescribedBranchStart, "click", () => {
       startPrescribedDisplayBranch();
     });
-    dom.initialConditionForm.addEventListener("submit", (event) => {
+    listen(dom.initialConditionForm, "submit", (event) => {
       event.preventDefault();
     });
-    dom.initialConditionForm.addEventListener("input", () => {
+    listen(dom.initialConditionForm, "input", () => {
       markInitialConditionControlsPending();
       scheduleInitialConditionReset();
     });
-    dom.initialConditionForm.addEventListener("change", applyInitialConditionResetNow);
-    dom.eomRunGrade.addEventListener("change", () => {
+    listen(dom.initialConditionForm, "change", applyInitialConditionResetNow);
+    listen(dom.eomRunGrade, "change", () => {
       markInitialConditionControlsPending();
       applyInitialConditionResetNow();
     });
-    dom.certifiedBudget.addEventListener("change", () => {
+    listen(dom.certifiedBudget, "change", () => {
       const preset = getBorgCertifiedBudgetPreset(dom.certifiedBudget.value);
       dom.stepHeight.value = preset.allocations.controller.maximumStep;
       dom.minimumStep.value = preset.allocations.controller.minimumStep;
     });
-    dom.runDurationButton.addEventListener("change", () => {
+    listen(dom.runDurationButton, "change", () => {
       switchRunControlPreset(dom.runDurationButton.value);
     });
     const applyPathTrailDuration = () => {
@@ -2050,21 +2057,42 @@ export function mountBorgApp(options = {}) {
       pathTrails.setVisibleDuration(state.pathTrailDuration);
       render();
     };
-    dom.historyDuration.addEventListener("input", applyPathTrailDuration);
-    dom.historyDuration.addEventListener("change", applyPathTrailDuration);
-    dom.resetButton.addEventListener("click", resetView);
-    dom.fitButton.addEventListener("click", fitView);
-    dom.focusButton.addEventListener("click", focusSelected);
-    dom.canvas.addEventListener("pointerdown", handlePointerDown);
-    dom.canvas.addEventListener("pointermove", handlePointerMove);
-    dom.canvas.addEventListener("pointerup", handlePointerUp);
-    dom.canvas.addEventListener("pointercancel", handlePointerCancel);
-    dom.canvas.addEventListener("wheel", handleWheel, { passive: false });
+    listen(dom.historyDuration, "input", applyPathTrailDuration);
+    listen(dom.historyDuration, "change", applyPathTrailDuration);
+    listen(dom.resetButton, "click", resetView);
+    listen(dom.fitButton, "click", fitView);
+    listen(dom.focusButton, "click", focusSelected);
+    listen(dom.canvas, "pointerdown", handlePointerDown);
+    listen(dom.canvas, "pointermove", handlePointerMove);
+    listen(dom.canvas, "pointerup", handlePointerUp);
+    listen(dom.canvas, "pointercancel", handlePointerCancel);
+    listen(dom.canvas, "wheel", handleWheel, { passive: false });
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(dom.canvas);
     state.resizeObserver = resizeObserver;
-    windowLike.addEventListener("resize", resize);
-    windowLike.addEventListener("keydown", handleKeyDown);
+    listen(windowLike, "resize", resize);
+    listen(windowLike, "keydown", handleKeyDown);
+  }
+
+  function listen(target, type, handler, options) {
+    target.addEventListener(type, handler, options);
+    boundEventListeners.push(() =>
+      target.removeEventListener?.(type, handler, options));
+  }
+
+  function rebuildFrameSetLookups() {
+    frameSetByIndex = new Map(
+      frameSets.map((frameSet) => [frameSet.frameIndex, frameSet]),
+    );
+    frameSetPositionByIndex = new Map(
+      frameSets.map((frameSet, index) => [frameSet.frameIndex, index]),
+    );
+    frameRowsByFrameIndex = new Map(
+      frameSets.map((frameSet) => [
+        frameSet.frameIndex,
+        new Map(frameSet.frames.map((frame) => [frame.pathKey, frame])),
+      ]),
+    );
   }
 
   function toggleLayer(layerId) {
@@ -2113,12 +2141,12 @@ export function mountBorgApp(options = {}) {
   }
 
   function updateFrame(frameIndex) {
-    const frameSet = frameSets.find((entry) => entry.frameIndex === frameIndex) ?? frameSets.at(-1);
+    const frameSet = frameSetByIndex.get(frameIndex) ?? frameSets.at(-1);
     if (!frameSet) {
       return;
     }
     applyFrameSet(frameSet, {
-      outputLabel: formatActiveTimelineLabel(frameSet.time, frameSet.frameIndex),
+      outputLabel: formatActiveTimelineLabel(frameSet.time),
       rangeValue: frameSet.frameIndex,
     });
   }
@@ -2177,7 +2205,7 @@ export function mountBorgApp(options = {}) {
         clearAnalysis: false,
       });
     }
-    if (replayActive) {
+    if (replayActive && !state.playing) {
       updatePrescribedBranchAction();
     }
     if (
@@ -2317,6 +2345,9 @@ export function mountBorgApp(options = {}) {
       prescribedReceiverMotionActive = false;
       refreshSelectedReceiverAtTime(state.activeDisplayTime, { request: true });
     }
+    if (wasPlaying && replayActive) {
+      updatePrescribedBranchAction();
+    }
   }
 
   function togglePlayback() {
@@ -2406,9 +2437,9 @@ export function mountBorgApp(options = {}) {
     if (state.playbackSegmentStartedAt == null) {
       state.playbackSegmentStartedAt = now;
     }
-    const msPerNativeStep = getPlaybackMsPerNativeStep();
+    const msPerFrameInterval = getPlaybackMsPerFrameInterval();
     const rawProgress = state.playbackSegmentProgress +
-      (now - state.playbackSegmentStartedAt) / msPerNativeStep;
+      (now - state.playbackSegmentStartedAt) / msPerFrameInterval;
     let progress = clamp(rawProgress, 0, 1);
     if (rawProgress >= 1) {
       const advancedStepCount = getBorgBufferedPlaybackAdvance({
@@ -2423,16 +2454,11 @@ export function mountBorgApp(options = {}) {
           if (newestSetIndex > state.playbackFromSetIndex) {
             const newestFrameSet = frameSets[newestSetIndex];
             applyFrameSet(newestFrameSet, {
-              outputLabel: formatActiveTimelineLabel(
-                newestFrameSet.time,
-                newestFrameSet.frameIndex,
-              ),
+              outputLabel: formatActiveTimelineLabel(newestFrameSet.time),
               rangeValue: newestFrameSet.frameIndex,
             });
             state.playbackFromSetIndex = newestSetIndex;
-            state.playbackToSetIndex = newestSetIndex + 1;
-            state.playbackSegmentStartedAt = null;
-            state.playbackSegmentProgress = 0;
+            state.playbackToSetIndex = newestSetIndex;
           }
           state.playbackSegmentStartedAt = null;
           state.playbackSegmentProgress = 0;
@@ -2441,7 +2467,7 @@ export function mountBorgApp(options = {}) {
           return;
         }
         applyFrameSet(frameSets.at(-1), {
-          outputLabel: formatActiveTimelineLabel(frameSets.at(-1).time, frameSets.at(-1).frameIndex),
+          outputLabel: formatActiveTimelineLabel(frameSets.at(-1).time),
           rangeValue: frameSets.at(-1).frameIndex,
         });
         stopPlayback();
@@ -2461,15 +2487,21 @@ export function mountBorgApp(options = {}) {
     }
     state.playbackSegmentStartedAt = now;
     state.playbackSegmentProgress = progress;
-    const displayFrameSet = interpolateFrameSet(fromFrameSet, toFrameSet, progress);
+    const displayFrameSet = interpolateBorgFrameSetInto(
+      fromFrameSet,
+      toFrameSet,
+      progress,
+      interpolatedFrameSetScratch,
+      frameRowsByFrameIndex.get(toFrameSet.frameIndex),
+    );
     const currentFrameIndex = progress < 0.5 ? fromFrameSet.frameIndex : toFrameSet.frameIndex;
     applyFrameSet(displayFrameSet, {
-      outputLabel: formatActiveTimelineLabel(displayFrameSet.time, currentFrameIndex),
+      outputLabel: formatActiveTimelineLabel(displayFrameSet.time),
       rangeValue: currentFrameIndex,
     });
     if (progress >= 1) {
       applyFrameSet(toFrameSet, {
-        outputLabel: formatActiveTimelineLabel(toFrameSet.time, toFrameSet.frameIndex),
+        outputLabel: formatActiveTimelineLabel(toFrameSet.time),
         rangeValue: toFrameSet.frameIndex,
       });
       if (state.playbackToSetIndex >= frameSets.length - 1) {
@@ -2623,7 +2655,7 @@ export function mountBorgApp(options = {}) {
     const style = getParticleStyle(state.selectedPathKey, particleStyles);
     const keyframeCount = frameSets.length;
     dom.selectedTag.hidden = false;
-    dom.selectedTag.textContent = `${style.polarity} ${state.selectedPathKey} | speed ${formatNumber(speed)} | ${keyframeCount} native keyframes`;
+    dom.selectedTag.textContent = `${style.polarity} ${state.selectedPathKey} | speed ${formatNumber(speed)} | ${keyframeCount} frame sets`;
   }
 
   function resize() {
@@ -2652,13 +2684,15 @@ export function mountBorgApp(options = {}) {
       initialConditionResetTimer = null;
     }
     state.resizeObserver?.disconnect?.();
-    windowLike.removeEventListener("resize", resize);
-    windowLike.removeEventListener("keydown", handleKeyDown);
+    boundEventListeners.splice(0).forEach((remove) => remove());
     diagnosticsPanelController.dispose();
     prescribedAnalysisCoordinator.dispose();
     prescribedAnalysisScene.dispose();
     assemblyViewControls?.dispose?.();
     assemblyViewScene.dispose();
+    disposeBorgWorkspaceSnapshotRunners(simulationWorkspaceSnapshots, {
+      activeRunner: state.dynamicRunner,
+    });
     disposeDynamicRunner();
     boundaryShellGroup.children.slice().forEach((object) => {
       object.geometry?.dispose?.();
@@ -2726,7 +2760,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function activeFrameTime() {
-    return frameSets.find((frameSet) => frameSet.frameIndex === state.activeFrameIndex)?.time ??
+    return frameSetByIndex.get(state.activeFrameIndex)?.time ??
       activeReplayEntry?.dataset.window.start ??
       0;
   }
@@ -2780,15 +2814,14 @@ export function mountBorgApp(options = {}) {
   }
 
   function getFrameSetIndex(frameIndex) {
-    const index = frameSets.findIndex((entry) => entry.frameIndex === frameIndex);
-    return index >= 0 ? index : 0;
+    return frameSetPositionByIndex.get(frameIndex) ?? 0;
   }
 
   function getPlaybackNow() {
     return windowLike.performance?.now?.() ?? Date.now();
   }
 
-  function getPlaybackMsPerNativeStep() {
+  function getPlaybackMsPerFrameInterval() {
     return getBorgPlaybackMsPerFrameSet({
       playbackRate: state.playbackAdaptiveRate,
       sampleInterval: activeSampleInterval(),
@@ -2868,7 +2901,7 @@ export function mountBorgApp(options = {}) {
     state.dynamicChunkDuration = state.dynamicRunner.chunkDuration ?? state.dynamicRunner.config.chunkDuration;
   }
 
-  function startDynamicNativeRunner() {
+  function startDynamicRunner() {
     const preset = getRunControlPreset(state.runControlPresetId);
     const eomRuntimeOptions = {
       ...options,
@@ -2909,7 +2942,7 @@ export function mountBorgApp(options = {}) {
       preset,
     );
     if (!runnerOptions) {
-      state.dynamicRunnerStatus = "live-native-error";
+      state.dynamicRunnerStatus = "eom-run-error";
       state.dynamicRunnerMessage = "no EOM data source available";
       state.dynamicRunnerKind = "eom-idle";
       updateSourceStatusPresentation();
@@ -2926,10 +2959,11 @@ export function mountBorgApp(options = {}) {
       if (eomRunnerOptions) {
         currentFrames = [...getRunInitialDisplayRows()];
         frameSets = createBorgFrameSetsFromRows(currentFrames);
+        rebuildFrameSetLookups();
         resetPolarityDiagnosticsHistory();
         state.sourceMode = "accepted-eom-seed-history";
       }
-      state.dynamicRunnerStatus = "live-native-error";
+      state.dynamicRunnerStatus = "eom-run-error";
       state.dynamicRunnerMessage = error?.message ?? "live runner failed";
       state.dynamicRunnerKind = eomRunnerOptions ? "eom-shadow-failed" : "eom-record-replay-failed";
       updateSourceStatusPresentation();
@@ -2957,7 +2991,7 @@ export function mountBorgApp(options = {}) {
     state.playbackRequested = true;
     setPlayButtonPresentation(true);
     const generation = state.dynamicRunGeneration;
-    const firstChunk = startDynamicNativeRunner();
+    const firstChunk = startDynamicRunner();
     if (!firstChunk) {
       startPlayback();
       if (frameSets.length < 2) {
@@ -3117,11 +3151,11 @@ export function mountBorgApp(options = {}) {
         }
         state.sourceMode = chunk.source;
         state.dynamicRunnerStatus = chunk.terminalHalt && !state.dynamicRunner.canComputeNextChunk()
-          ? "halted-live-native-run"
+          ? "halted-eom-run"
           : state.dynamicRunner.canComputeNextChunk()
             ? chunk.source
             : eomSimulation
-              ? "completed-live-native-run"
+              ? "completed-eom-run"
               : "completed-recorded-replay";
         state.dynamicRunnerMessage = chunk.terminalHalt
             ? `${chunk.runGrade} prefix through T=${chunk.endTime}; failed candidate rejected (${chunk.terminalHalt.code})`
@@ -3133,6 +3167,7 @@ export function mountBorgApp(options = {}) {
           appendBorgFrameRowsInPlace(currentFrames, chunk.frames);
           appendBorgFrameSetsInPlace(frameSets, chunk.frames);
         }
+        rebuildFrameSetLookups();
         if (replaceCurrentFrames) {
           polarityEscapeLedger.reset();
         }
@@ -3142,47 +3177,53 @@ export function mountBorgApp(options = {}) {
         appendPolarityEscapeRows(chunk.frames);
         state.polarityDiagnosticFrameIndex = null;
         const appendedFrameRows = Array.isArray(chunk.frames) ? chunk.frames.length : 0;
-        const compactedFrameSets = applyLiveRunRetentionIfNeeded();
+        const compactedFrameSets = eomSimulation
+          ? applyLiveRunRetentionIfNeeded()
+          : false;
         if (compactedFrameSets) {
           frameSets = createBorgFrameSetsFromRows(currentFrames);
+          rebuildFrameSetLookups();
         }
         if (replaceCurrentFrames || compactedFrameSets) {
           reanchorPlaybackAfterFrameSetRebuild();
         }
-        state.liveRunBudget = createLiveRunBudgetMeasurement({
-          before: budgetBefore,
-          after: readLiveRunBudgetSnapshot(windowLike),
-          chunk,
-          previousFrameRowCount,
-          nextFrameRowCount: currentFrames.length,
-          replaceInitialRows: replaceCurrentFrames,
-          appendedFrameRows,
-          presetId: state.runControlPresetId,
-          memoryBudgetBytes:
-            chunk.memoryBudgetBytes ??
-            state.dynamicRunner?.config?.memoryBudgetBytes ??
-            null,
-        });
-        state.playbackMeasuredProductionRate = updateBorgMeasuredProductionRate({
-          previousRate: state.playbackMeasuredProductionRate,
-          chunkDuration: state.liveRunBudget.chunkDuration,
-          chunkWallTimeMs: state.liveRunBudget.lastChunkWallTimeMs,
-        });
-        updateAdaptivePlaybackRate();
-        state.measuredRunPresetCalibration = updateMeasuredRunPresetCalibration(
-          state.measuredRunPresetCalibration,
-          state.liveRunBudget,
-          RUN_CONTROL_PRESETS,
-        );
-        applyMeasuredPresetLimitsToDynamicRunner();
+        if (eomSimulation) {
+          state.liveRunBudget = createLiveRunBudgetMeasurement({
+            before: budgetBefore,
+            after: readLiveRunBudgetSnapshot(windowLike),
+            chunk,
+            previousFrameRowCount,
+            nextFrameRowCount: currentFrames.length,
+            replaceInitialRows: replaceCurrentFrames,
+            appendedFrameRows,
+            presetId: state.runControlPresetId,
+            memoryBudgetBytes:
+              chunk.memoryBudgetBytes ??
+              state.dynamicRunner?.config?.memoryBudgetBytes ??
+              null,
+          });
+          state.playbackMeasuredProductionRate = updateBorgMeasuredProductionRate({
+            previousRate: state.playbackMeasuredProductionRate,
+            chunkDuration: state.liveRunBudget.chunkDuration,
+            chunkWallTimeMs: state.liveRunBudget.lastChunkWallTimeMs,
+          });
+          updateAdaptivePlaybackRate();
+          state.measuredRunPresetCalibration = updateMeasuredRunPresetCalibration(
+            state.measuredRunPresetCalibration,
+            state.liveRunBudget,
+            RUN_CONTROL_PRESETS,
+          );
+          applyMeasuredPresetLimitsToDynamicRunner();
+        }
         syncRunDurationButton();
-        if (replaceCurrentFrames || state.liveRunRetention?.compactedThisPass) {
+        if (!replayActive &&
+            (replaceCurrentFrames || state.liveRunRetention?.compactedThisPass)) {
           // History changed underneath the trails: the seed endpoint rows were
           // swapped for live rows, or a retention pass moved older rows into
           // compacted history. Otherwise the chunk is pure new history, so
           // append it.
           rebuildPathTrails();
-        } else {
+        } else if (!replayActive) {
           appendPathTrailRows(chunk.frames);
         }
         updateTimelineBounds();
@@ -3215,15 +3256,16 @@ export function mountBorgApp(options = {}) {
         state.dynamicRunner = null;
         failedRunner?.dispose?.();
         state.dynamicRunnerStatus = eomSimulation
-          ? "live-native-error"
+          ? "eom-run-error"
           : "record-replay-error";
         state.dynamicRunnerMessage = error?.message ?? (
-          eomSimulation ? "live native runner failed" : "record replay failed"
+          eomSimulation ? "EOM runner failed" : "record replay failed"
         );
         if (!hadLiveFrames && eomSimulation) {
           state.sourceMode = "accepted-eom-seed-history";
           currentFrames = [...getRunInitialDisplayRows()];
           frameSets = createBorgFrameSetsFromRows(currentFrames);
+          rebuildFrameSetLookups();
           resetPolarityDiagnosticsHistory();
           resetLiveRunRetentionState();
           rebuildParticleObjects();
@@ -3351,9 +3393,7 @@ export function mountBorgApp(options = {}) {
       frameRows: currentFrames,
       compactedPathHistory: state.compactedPathHistory,
     });
-    const activeFrameSet = frameSets.find(
-      (frameSet) => frameSet.frameIndex === state.activeFrameIndex,
-    );
+    const activeFrameSet = frameSetByIndex.get(state.activeFrameIndex);
     pathTrails.setVisibleWindow({
       throughFrameIndex: state.activeFrameIndex,
       throughTime: activeFrameSet?.time ?? Number.POSITIVE_INFINITY,
@@ -3429,6 +3469,7 @@ export function mountBorgApp(options = {}) {
   function resetDynamicRunState() {
     currentFrames = [...getRunInitialDisplayRows()];
     frameSets = createBorgFrameSetsFromRows(currentFrames);
+    rebuildFrameSetLookups();
     resetLiveRunRetentionState();
     rebuildParticleObjects();
     rebuildPathTrails({ recreateMaterials: true });
@@ -3441,12 +3482,12 @@ export function mountBorgApp(options = {}) {
       : "eom-idle";
     state.dynamicRunnerStatus = activeEomRunnerOptions
       ? "eom-shadow-running"
-      : "live-native-running";
+      : "eom-idle";
     state.dynamicRunnerMessage = activeEomRunnerOptions
       ? activePrescribedDisplayBranch
         ? "exact prescribed segment history ready; forward Display evolution pending"
         : "exact polynomial initial history ready; forward EOM evolution pending"
-      : "computing native chunks";
+      : "no EOM data source is configured";
     state.dynamicRunnerKind = activeEomRunnerOptions
       ? "eom-shadow"
       : options.eomRecordReplay
@@ -3602,7 +3643,9 @@ export function createBorgParticleStyles(frames, { prescribedGeometry = false } 
 }
 
 function getParticleStyle(pathKey, particleStyles) {
-  return particleStyles?.get(pathKey) ?? {
+  const numericPathKey = Number(pathKey);
+  return particleStyles?.get(pathKey) ??
+    (Number.isFinite(numericPathKey) ? particleStyles?.get(numericPathKey) : null) ?? {
     label: String(pathKey),
     color: 0xffffff,
     pathColor: 0xe5f1ff,
@@ -3883,7 +3926,7 @@ function createLiveRunBudgetMeasurement({
     wasmWorkerMemoryEstimateBytes,
     wasmWorkerMemoryAuthority:
       wasmWorkerMemoryEstimateBytes > 0
-        ? "estimated-from-native-output-buffers"
+        ? "estimated-from-eom-output-buffers"
         : "not-exposed-by-worker",
     wasmWorkerMemoryPressure: memoryBudgetPressure,
     memoryBudgetBytes: finiteBudgetNumber(memoryBudgetBytes),
@@ -3927,32 +3970,60 @@ function finiteBudgetNumber(value) {
   return Number.isFinite(number) ? number : null;
 }
 
-function interpolateFrameSet(fromFrameSet, toFrameSet, progress) {
-  const toFramesByPathKey = new Map(toFrameSet.frames.map((frame) => [frame.pathKey, frame]));
-  return {
-    frameIndex: progress < 0.5 ? fromFrameSet.frameIndex : toFrameSet.frameIndex,
-    time: lerp(fromFrameSet.time, toFrameSet.time, progress),
-    frames: fromFrameSet.frames.map((fromFrame) => {
-      const toFrame = toFramesByPathKey.get(fromFrame.pathKey) ?? fromFrame;
-      return {
-        pathKey: fromFrame.pathKey,
-        frameIndex: progress < 0.5 ? fromFrame.frameIndex : toFrame.frameIndex,
-        time: lerp(fromFrame.time ?? fromFrameSet.time, toFrame.time ?? toFrameSet.time, progress),
-        position: interpolateVector(fromFrame.position, toFrame.position, progress),
-        velocity: interpolateVector(fromFrame.velocity, toFrame.velocity, progress),
-        errorBound: Math.max(fromFrame.errorBound ?? 0, toFrame.errorBound ?? 0),
-        stateFlags: fromFrame.stateFlags ?? toFrame.stateFlags ?? 0,
-      };
-    }),
-  };
+export function interpolateBorgFrameSetInto(
+  fromFrameSet,
+  toFrameSet,
+  progress,
+  target,
+  toFramesByPathKey,
+) {
+  target.frameIndex = progress < 0.5
+    ? fromFrameSet.frameIndex
+    : toFrameSet.frameIndex;
+  target.time = lerp(fromFrameSet.time, toFrameSet.time, progress);
+  target.frames.length = fromFrameSet.frames.length;
+  fromFrameSet.frames.forEach((fromFrame, index) => {
+    const toFrame = toFramesByPathKey?.get(fromFrame.pathKey) ?? fromFrame;
+    const row = target.frames[index] ?? {
+      position: { x: 0, y: 0, z: 0 },
+      velocity: { x: 0, y: 0, z: 0 },
+    };
+    row.pathKey = fromFrame.pathKey;
+    row.frameIndex = progress < 0.5 ? fromFrame.frameIndex : toFrame.frameIndex;
+    row.time = lerp(
+      fromFrame.time ?? fromFrameSet.time,
+      toFrame.time ?? toFrameSet.time,
+      progress,
+    );
+    interpolateVectorInto(
+      row.position,
+      fromFrame.position,
+      toFrame.position,
+      progress,
+    );
+    interpolateVectorInto(
+      row.velocity,
+      fromFrame.velocity,
+      toFrame.velocity,
+      progress,
+    );
+    row.errorBound = Math.max(
+      fromFrame.errorBound ?? 0,
+      toFrame.errorBound ?? 0,
+    );
+    row.stateFlags = fromFrame.stateFlags ?? toFrame.stateFlags ?? 0;
+    row.sourceWorldlineId =
+      fromFrame.sourceWorldlineId ?? toFrame.sourceWorldlineId ?? null;
+    target.frames[index] = row;
+  });
+  return target;
 }
 
-function interpolateVector(fromVector, toVector, progress) {
-  return {
-    x: lerp(fromVector?.x ?? 0, toVector?.x ?? 0, progress),
-    y: lerp(fromVector?.y ?? 0, toVector?.y ?? 0, progress),
-    z: lerp(fromVector?.z ?? 0, toVector?.z ?? 0, progress),
-  };
+function interpolateVectorInto(target, fromVector, toVector, progress) {
+  target.x = lerp(fromVector?.x ?? 0, toVector?.x ?? 0, progress);
+  target.y = lerp(fromVector?.y ?? 0, toVector?.y ?? 0, progress);
+  target.z = lerp(fromVector?.z ?? 0, toVector?.z ?? 0, progress);
+  return target;
 }
 
 function lerp(fromValue, toValue, progress) {
@@ -4004,8 +4075,8 @@ export function formatBorgTimelineTime(value) {
   if (!Number.isFinite(value)) {
     return "--:--:--.-";
   }
-  const sign = value < -0.05 ? "-" : "";
   const totalTenths = Math.round(Math.abs(value) * 10);
+  const sign = value < 0 && totalTenths > 0 ? "-" : "";
   const hours = Math.floor(totalTenths / 36000);
   const minutes = Math.floor((totalTenths % 36000) / 600);
   const seconds = Math.floor((totalTenths % 600) / 10);
@@ -4105,8 +4176,12 @@ export function getBorgTimelineRangePresentation({
       title: "Following live playback. Pause to scrub buffered frames.",
     });
   }
-  const min = Math.min(...frameIndexes);
-  const max = Math.max(...frameIndexes);
+  let min = Number.POSITIVE_INFINITY;
+  let max = Number.NEGATIVE_INFINITY;
+  frameIndexes.forEach((frameIndex) => {
+    min = Math.min(min, frameIndex);
+    max = Math.max(max, frameIndex);
+  });
   return Object.freeze({
     min,
     max,

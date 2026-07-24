@@ -1,4 +1,5 @@
 #include "architrino/eom/JointAccelerationSnapshot.hpp"
+#include "architrino/eom/Decimal.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -231,7 +232,8 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
     }
   }
 
-  const double reception = std::strtod(snapshot.reception_time.c_str(), nullptr);
+  const double reception =
+      parse_finite_double(snapshot.reception_time, "snapshot reception time");
   const Interval reception_interval =
       Interval::decimal_token(snapshot.reception_time);
   for (const auto& receiver_id : snapshot.acceleration.path_ids) {

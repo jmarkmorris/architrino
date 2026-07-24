@@ -6,6 +6,8 @@ import assert from "node:assert/strict";
 import {
   EOM_REPLAY_ADAPTER,
   EOM_REPLAY_DATASET_SOURCE,
+  EOM_REPLAY_MAX_FRAME_COUNT,
+  EOM_REPLAY_MAX_HISTORY_DEPTH,
   createCausalDelayFeedbackEomReplayAdapter,
   normalizeCausalDelayFeedbackEomReplay,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackEomReplayAdapter.js";
@@ -14,61 +16,18 @@ import {
   PATH_TIME_START_X,
   SPACE_AXIS_TOP_Y,
   TIME_AXIS_BASELINE_Y,
-} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackDisplayContract.js";
 import {
-  EOM_EVOLUTION_CONTRACT_ID,
   createEomHistoryDataset,
 } from "../src/apps/shared/EomHistoryDataset.mjs";
+import {
+  createEomRecordFixture,
+  inertialSegment,
+} from "./helpers/causal-delay-feedback-eom-fixture.js";
 
 const SPACE_MARGIN = (TIME_AXIS_BASELINE_Y - SPACE_AXIS_TOP_Y) * 0.06;
 const CANVAS_TOP = SPACE_AXIS_TOP_Y + SPACE_MARGIN;
 const CANVAS_BOTTOM = TIME_AXIS_BASELINE_Y - SPACE_MARGIN;
-
-function inertialSegment(startTime, endTime, position, velocity) {
-  return {
-    startTime: String(startTime),
-    endTime: String(endTime),
-    coefficients: [
-      [String(position[0]), String(velocity[0]), "0", "0"],
-      [String(position[1]), String(velocity[1]), "0", "0"],
-      [String(position[2]), String(velocity[2]), "0", "0"],
-    ],
-    positionError: "0",
-    velocityError: "0",
-  };
-}
-
-function createEomRecordFixture(overrides = {}) {
-  return {
-    contractId: EOM_EVOLUTION_CONTRACT_ID,
-    runId: "cdf-eom-fixture-run",
-    claimLevel: "evolved-record",
-    evidenceStatus: "canonical",
-    absoluteTimeInterval: { start: "0", end: "2" },
-    provenance: { engineId: "eom-solver" },
-    histories: [
-      {
-        pathId: "10",
-        pathKey: 10,
-        charge: "1",
-        stateFlags: 1,
-        coverageStart: "0",
-        coverageEnd: "2",
-        segments: [inertialSegment(0, 2, [5, 2, 0], [0, 0.5, 0])],
-      },
-      {
-        pathId: "20",
-        pathKey: 20,
-        charge: "-1",
-        stateFlags: 2,
-        coverageStart: "0",
-        coverageEnd: "2",
-        segments: [inertialSegment(0, 2, [5, 0, 0], [0, 0.5, 0])],
-      },
-    ],
-    ...overrides,
-  };
-}
 
 test("eom replay adapter normalizes a recorded dataset into the runtime replay shape", async () => {
   const adapter = createCausalDelayFeedbackEomReplayAdapter({
@@ -82,7 +41,7 @@ test("eom replay adapter normalizes a recorded dataset into the runtime replay s
   });
 
   assert.equal(dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
-  assert.equal(dataset.runId, "cdf-eom-fixture-run");
+  assert.equal(dataset.runId, "cdf-runtime-eom-fixture");
   assert.equal(dataset.engineId, "eom-solver");
   assert.equal(dataset.claimGrade, "evolved-record");
   assert.equal(dataset.eomProvenance.claimGrade, "evolved-record");
@@ -91,6 +50,14 @@ test("eom replay adapter normalizes a recorded dataset into the runtime replay s
   assert.equal(dataset.eomWorldlineRoles.electrino, "20");
   assert.equal(dataset.preset.id, "accepted_tight_bright");
   assert.deepEqual(dataset.wakeLinks, []);
+  assert.deepEqual(dataset.causalEvaluation, {
+    enabled: false,
+    reason: "record_has_no_delayed_hit_rows",
+  });
+  assert.equal(dataset.physicalPaths.positrino[0].t, 0);
+  assert.equal(dataset.physicalPaths.positrino.at(-1).t, 2);
+  assert.equal(dataset.physicalPaths.positrino[0].y, 2);
+  assert.equal(dataset.physicalPaths.positrino.at(-1).y, 3);
 
   assert.equal(dataset.paths.positrino.length, 5);
   assert.equal(dataset.paths.electrino.length, 5);
@@ -150,6 +117,59 @@ test("eom replay adapter honors explicit worldline role overrides", async () => 
   });
   assert.equal(dataset.eomWorldlineRoles.positrino, "10");
   assert.equal(dataset.displayProjection.spaceAxis, "y");
+});
+
+test("eom replay adapter rejects ambiguous automatic worldline roles", async () => {
+  const record = createEomRecordFixture();
+  record.histories.push({
+    ...record.histories[0],
+    pathId: "30",
+    pathKey: 30,
+  });
+  const adapter = createCausalDelayFeedbackEomReplayAdapter({ record });
+  await assert.rejects(
+    adapter.createReplayAsync({}),
+    /exactly one positive-polarity and one negative-polarity/u,
+  );
+});
+
+test("eom replay adapter validates explicit role polarity and identity", async () => {
+  const adapter = createCausalDelayFeedbackEomReplayAdapter({
+    record: createEomRecordFixture(),
+  });
+  await assert.rejects(
+    adapter.createReplayAsync({
+      requestOptions: {
+        positrinoWorldlineId: "20",
+        electrinoWorldlineId: "10",
+      },
+    }),
+    /role overrides must select positive polarity/u,
+  );
+  await assert.rejects(
+    adapter.createReplayAsync({
+      requestOptions: {
+        positrinoWorldlineId: "10",
+        electrinoWorldlineId: "10",
+      },
+    }),
+    /two distinct worldline roles/u,
+  );
+});
+
+test("eom replay adapter rejects allocation counts above the declared bounds", () => {
+  assert.throws(
+    () => normalizeCausalDelayFeedbackEomReplay(createEomRecordFixture(), {
+      requestOptions: { frameCount: EOM_REPLAY_MAX_FRAME_COUNT + 1 },
+    }),
+    /frameCount must not exceed/u,
+  );
+  assert.throws(
+    () => normalizeCausalDelayFeedbackEomReplay(createEomRecordFixture(), {
+      requestOptions: { historyDepth: EOM_REPLAY_MAX_HISTORY_DEPTH + 1 },
+    }),
+    /historyDepth must not exceed/u,
+  );
 });
 
 test("eom replay adapter fails closed without both polarities", async () => {

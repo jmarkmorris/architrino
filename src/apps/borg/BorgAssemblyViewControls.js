@@ -35,8 +35,6 @@ export function createBorgAssemblyViewControls({
   onContributionVisibleChange,
 }) {
   const listeners = [];
-  let selectedReceiver = null;
-  let analysisState = null;
   let declaredVirtualProbes = [];
 
   function listen(element, type, handler) {
@@ -388,7 +386,6 @@ export function createBorgAssemblyViewControls({
   }
 
   function updateReceiverSelection(receiver) {
-    selectedReceiver = receiver;
     dom.clearReceiver.disabled = receiver == null;
     dom.receiverStatus.textContent = receiver == null
       ? "No receiver selected."
@@ -398,7 +395,6 @@ export function createBorgAssemblyViewControls({
   }
 
   function renderAnalysisState(nextState) {
-    analysisState = nextState;
     dom.analysisStatus.dataset.state = nextState?.state ?? "unavailable";
     dom.analysisStatus.textContent = nextState?.message ??
       "Analysis provider unavailable.";
@@ -749,12 +745,6 @@ function formatDegrees(radians) {
 function signed(value) {
   const number = Number(value);
   return Number.isFinite(number) && number > 0 ? `+${format(number)}` : value;
-}
-
-function syncToggle(button, active, label) {
-  button.classList.toggle("is-active", active);
-  button.setAttribute("aria-pressed", active ? "true" : "false");
-  button.textContent = `${label} ${active ? "on" : "off"}`;
 }
 
 function hasPlaneNormal(entry) {

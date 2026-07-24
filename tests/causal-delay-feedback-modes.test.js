@@ -5,8 +5,8 @@ import test from "node:test";
 import {
   createCanonicalLearnerState,
   createPredictionChoices,
-  sampleCausalHistoryPath,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackCausalHistory.js";
+import { sampleTimedPath } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackTimedPath.js";
 import {
   createBranchLabView,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackBranchLabMode.js";
@@ -116,7 +116,7 @@ test("Story stages five distinct scenes and both reception spheres intersect the
   const receptionScene = scenes[3];
   assert.equal(receptionScene.interactions.length, 2);
   receptionScene.interactions.forEach((interaction) => {
-    const receiverAtReception = sampleCausalHistoryPath(
+    const receiverAtReception = sampleTimedPath(
       state.paths[interaction.receiverId],
       receptionScene.displayTime,
     );
@@ -158,6 +158,8 @@ test("Prediction choices are generated from the canonical root evaluator", () =>
   const root = state.roots.find((candidate) => candidate.id === state.selectedRootId);
   assert.equal(correct.emissionTime, root.emissionTime);
   assert.deepEqual(correct.point, root.emission);
+  assert.notEqual(choices.indexOf(correct), 1);
+  assert.deepEqual(createPredictionChoices(state), choices);
   assert.match(createPredictionView(state).explanation, /same causal-root evaluator/u);
 });
 
@@ -170,6 +172,35 @@ test("Prediction preserves incorrect-answer explanation and retry", () => {
   assert.equal(view.selected.id, incorrect.id);
   assert.match(view.explanation, /Try another/u);
   assert.equal(view.choices.some((choice) => choice.correct), true);
+});
+
+test("Prediction keeps one correct choice when the root lies at path coverage start", () => {
+  const root = {
+    id: "boundary-root",
+    emissionTime: 0,
+    receiverTime: 0.5,
+    delay: 0.5,
+    emission: { t: 0, x: 0, y: 0 },
+  };
+  const state = {
+    roots: [root],
+    acceptedBranchRows: [root],
+    selectedRootId: root.id,
+    sourceId: "positrino",
+    receiverTime: 0.5,
+    paths: {
+      positrino: [
+        { t: 0, x: 0, y: 0 },
+        { t: 1, x: 1, y: 0 },
+      ],
+    },
+  };
+
+  const choices = createPredictionChoices(state);
+
+  assert.equal(choices.length, 3);
+  assert.equal(new Set(choices.map((choice) => choice.emissionTime)).size, 3);
+  assert.equal(choices.filter((choice) => choice.correct).length, 1);
 });
 
 test("guided progression requires the evaluator-backed correct Prediction answer", () => {
@@ -194,6 +225,10 @@ test("learner authority labels keep representative EOM and unavailable providers
     ...createMockCausalDelayReplayDataset(),
     datasetSource: "eom_history_replay",
     solverIntegrationPath: "eom_replay_adapter",
+    causalEvaluation: {
+      enabled: false,
+      reason: "record_has_no_delayed_hit_rows",
+    },
   };
   const unavailableDataset = {
     ...createMockCausalDelayReplayDataset(),
@@ -207,9 +242,11 @@ test("learner authority labels keep representative EOM and unavailable providers
   });
   assert.equal(representative.replay.label, "representative mock replay");
   assert.equal(eom.replay.label, "EOM record replay");
+  assert.equal(eom.roots.length, 0);
+  assert.equal(eom.causalEvaluationAvailable, false);
   assert.equal(unavailable.replay.label, "unavailable provider");
-  assert.match(unavailable.replay.constrainedBoundaryReplay, /separate implementation-grade path/u);
-  assert.equal(unavailable.replay.strongerPhysicalSolver, "open");
+  assert.equal("constrainedBoundaryReplay" in unavailable.replay, false);
+  assert.equal("strongerPhysicalSolver" in unavailable.replay, false);
 });
 
 test("Path History maps the selected root to the same emission row", () => {
@@ -223,6 +260,35 @@ test("Path History maps the selected root to the same emission row", () => {
 
 test("Branch Lab vector sum consumes exactly the accepted displayed rows", () => {
   const state = createState("contrast_stress");
+  state.acceptedBranchRows = [
+    {
+      id: "accepted-a",
+      ordinal: 1,
+      accepted: true,
+      reason: "accepted_simple_root",
+      rootKind: "pair_hit",
+      emissionTime: 0.2,
+      acceleration: { x: 1.5, y: -0.5 },
+    },
+    {
+      id: "accepted-b",
+      ordinal: 2,
+      accepted: true,
+      reason: "accepted_simple_root",
+      rootKind: "pair_hit",
+      emissionTime: 0.3,
+      acceleration: { x: -0.25, y: 0.75 },
+    },
+  ];
+  state.rejectedBranchRows = [{
+    id: "rejected",
+    ordinal: 3,
+    accepted: false,
+    reason: "transversality_floor_failed",
+    rootKind: "pair_hit",
+    emissionTime: 0.4,
+    acceleration: { x: 8, y: 8 },
+  }];
   const view = createBranchLabView(state);
   assert.ok(view.acceptedRows.length > 0);
   assert.ok(view.rejectedRows.length > 0);
@@ -236,6 +302,24 @@ test("Branch Lab vector sum consumes exactly the accepted displayed rows", () =>
 
 test("Branch Lab filters preserve stable rows and reasons while changing the displayed sum", () => {
   const state = createState("contrast_stress");
+  state.acceptedBranchRows = [{
+    id: "accepted",
+    ordinal: 1,
+    accepted: true,
+    reason: "accepted_simple_root",
+    rootKind: "pair_hit",
+    emissionTime: 0.2,
+    acceleration: { x: 1, y: 0 },
+  }];
+  state.rejectedBranchRows = [{
+    id: "unavailable",
+    ordinal: 2,
+    accepted: false,
+    reason: "tangent_root_unresolved",
+    rootKind: "pair_hit",
+    emissionTime: 0.4,
+    acceleration: null,
+  }];
   const unfiltered = createBranchLabView(state);
   const filtered = createBranchLabView(state, {
     historyAgeLimit: Number.POSITIVE_INFINITY,
@@ -250,6 +334,28 @@ test("Branch Lab filters preserve stable rows and reasons while changing the dis
   assert.ok(filtered.allRejectedRows.every((row) => row.reason));
   assert.deepEqual(filtered.sourceRows, filtered.acceptedRows.map((row) => row.id));
   assert.notDeepEqual(filtered.vectorSum, unfiltered.vectorSum);
+});
+
+test("Branch Lab never derives acceleration from emission-reception displacement", () => {
+  const state = createState();
+  state.acceptedBranchRows = [{
+    id: "missing-acceleration",
+    ordinal: 1,
+    accepted: true,
+    reason: "accepted_simple_root",
+    rootKind: "pair_hit",
+    emissionTime: 0.2,
+    emission: { x: 0, y: 0 },
+    reception: { x: 3, y: 4 },
+  }];
+  state.rejectedBranchRows = [];
+
+  const view = createBranchLabView(state);
+
+  assert.equal(view.acceptedRows.length, 0);
+  assert.equal(view.rows[0].accelerationAvailable, false);
+  assert.equal(view.rows[0].filterReason, "acceleration unavailable");
+  assert.deepEqual(view.vectorSum, { x: 0, y: 0 });
 });
 
 test("Self-Hit keeps absent unresolved active and failed-floor states distinct", () => {
@@ -289,21 +395,38 @@ test("learner journey stays one app with no separate Roots route", async () => {
     readFile(new URL("src/apps/causal-delay-feedback/CausalDelayFeedbackModeController.js", REPO_ROOT), "utf8"),
   ]);
   assert.doesNotMatch(`${html}\n${main}\n${controller}`, /roots\.html/iu);
-  assert.match(controller, /\{ id: "roots", label: "Roots" \}/u);
-  assert.match(controller, /\{ id: "sandbox", label: "Sandbox" \}/u);
+  assert.match(controller, /\{ id: "roots", label: "Roots"/u);
+  assert.match(controller, /\{ id: "sandbox", label: "Sandbox"/u);
 });
 
 test("new learner-facing copy remains acceleration-first", async () => {
-  const sources = await Promise.all([
+  const learnerSources = await Promise.all([
     "CausalDelayFeedbackModeController.js",
     "CausalDelayFeedbackStoryMode.js",
     "CausalDelayFeedbackHistoryMode.js",
     "CausalDelayFeedbackRootsMode.js",
     "CausalDelayFeedbackBranchLabMode.js",
   ].map((file) => readFile(new URL(`src/apps/causal-delay-feedback/${file}`, REPO_ROOT), "utf8")));
-  const authoredStrings = sources.join("\n").match(/(["'`])(?:(?!\1)[^\\]|\\.)*\1/gu)?.join("\n") ?? "";
+  const domainSources = await Promise.all([
+    "CausalDelayFeedbackRuntime.js",
+    "CausalDelayFeedbackCausalHistory.js",
+    "CausalDelayFeedbackReplayAdapter.js",
+    "CausalDelayFeedbackEomReplayAdapter.js",
+    "CausalDelayFeedbackModeController.js",
+    "CausalDelayFeedbackStoryMode.js",
+    "CausalDelayFeedbackHistoryMode.js",
+    "CausalDelayFeedbackRootsMode.js",
+    "CausalDelayFeedbackBranchLabMode.js",
+    "CausalDelayFeedbackWakeRenderer.js",
+  ].map((file) => readFile(new URL(`src/apps/causal-delay-feedback/${file}`, REPO_ROOT), "utf8")));
+  const learnerStrings =
+    learnerSources.join("\n").match(/(["'`])(?:(?!\1)[^\\]|\\.)*\1/gu)?.join("\n") ?? "";
+  const authoredStrings =
+    domainSources.join("\n").match(/(["'`])(?:(?!\1)[^\\]|\\.)*\1/gu)?.join("\n") ?? "";
   assert.doesNotMatch(authoredStrings, /\bforce(?:s|d)?\b/iu);
   assert.match(authoredStrings, /\bacceleration\b/iu);
-  assert.doesNotMatch(authoredStrings, /\bsource(?:'s)?\b/iu);
-  assert.doesNotMatch(authoredStrings, /T_[tr]/u);
+  assert.doesNotMatch(authoredStrings, /\bmass\b/iu);
+  assert.doesNotMatch(authoredStrings, new RegExp("\\breta" + "rd(?:ed|ation)?\\b", "iu"));
+  assert.doesNotMatch(learnerStrings, /\bsource(?:'s)?\b/iu);
+  assert.doesNotMatch(learnerStrings, /T_[tr]/u);
 });

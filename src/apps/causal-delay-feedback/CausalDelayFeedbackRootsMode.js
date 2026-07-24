@@ -4,13 +4,13 @@ import {
   evaluateScalarRootSet,
 } from "./CausalDelayFeedbackCausalHistory.js";
 
+let cachedSelfHitScenarios = null;
+
 export function createRootsView(state) {
   const roots = state.roots;
   const activeRoots = roots.filter((root) => root.accepted);
-  const zeroCrossingCount = activeRoots.length;
-  const wakeIntersectionCount = activeRoots.length;
   const selectedRoot = roots.find((root) => root.id === state.selectedRootId) ?? null;
-  const available = zeroCrossingCount === wakeIntersectionCount;
+  const available = state.causalEvaluationAvailable !== false;
   return {
     title: "Roots",
     notation: "g(Tᵣ;Tₜ)",
@@ -20,10 +20,8 @@ export function createRootsView(state) {
     activeRoots,
     selectedRoot,
     activeRootCount: activeRoots.length,
-    zeroCrossingCount,
-    wakeIntersectionCount,
     available,
-    unavailableReason: available ? null : "root_count_mismatch",
+    unavailableReason: available ? null : state.causalEvaluationReason,
     fold: createOrdinaryFoldLesson(),
   };
 }
@@ -62,11 +60,14 @@ function makePath(pointAt, count = 501) {
 }
 
 export function createSelfHitScenarios() {
+  if (cachedSelfHitScenarios) {
+    return cachedSelfHitScenarios;
+  }
   const receiverTime = 1;
   const scenarios = [
     {
       id: "sub_cf",
-      label: "sub-c_f",
+      label: "Below c_f",
       path: makePath((t) => ({ x: 0.5 * t, y: 0 })),
       expectedState: "absent",
     },
@@ -87,7 +88,7 @@ export function createSelfHitScenarios() {
     },
     {
       id: "super_cf_curved",
-      label: "super-c_f curved",
+      label: "Curved path above c_f",
       path: makePath((t) => ({ x: 0.25 * Math.cos(6 * t), y: 0.25 * Math.sin(6 * t) })),
       expectedState: "active",
     },
@@ -99,7 +100,7 @@ export function createSelfHitScenarios() {
       transversalityFloor: 1e6,
     },
   ];
-  return scenarios.map((scenario) => {
+  cachedSelfHitScenarios = scenarios.map((scenario) => {
     const evaluation = evaluateCausalRoots({
       sourceId: "self",
       receiverId: "self",
@@ -135,14 +136,15 @@ export function createSelfHitScenarios() {
       transversality: evaluation.roots.at(0)?.transversality ?? null,
       transversalityField: "transversality",
       explanation: scenario.id === "sub_cf"
-        ? "Strict sub-c_f interval history has no noncoincident self-hit root."
+        ? "A path that stays strictly below c_f has no separated self-hit root."
         : scenario.id === "threshold"
           ? "The coincident or tangent threshold is unresolved and is not assigned the ordinary-fold verdict."
           : scenario.id === "tangent"
             ? "A noncoincident tangent root is shown as tangent and is not promoted to a simple acceleration row."
             : scenario.id === "failed_floor"
               ? "A root whose transmitter-side derivative misses the declared floor is shown but is not admitted as an acceleration row."
-              : "Curved super-c_f interval history can produce a noncoincident self-hit root; total speed alone is not the decision rule.",
+              : "A curved path above c_f can produce a separated self-hit root; total speed alone does not decide the result.",
     };
   });
+  return cachedSelfHitScenarios;
 }

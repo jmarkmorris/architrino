@@ -53,7 +53,9 @@ export function createBorgEomRecordReplayRunner(record, options = {}) {
   // The record may report an evidence status, but the viewer never consumes a
   // producer assertion as an authority upgrade. Rendering remains recorded
   // output at every source claim grade.
-  const frameValueAuthority = "recorded-eom-output";
+  const frameValueAuthority = historyDataset.provenance.engineId === "prescribed-geometry"
+    ? "recorded-prescribed-geometry"
+    : "recorded-eom-output";
   let nextStartTime = windowStart;
   let targetDuration = config.targetDuration;
   let chunkDuration = config.chunkDuration;
@@ -75,9 +77,6 @@ export function createBorgEomRecordReplayRunner(record, options = {}) {
     },
     get chunkIndex() {
       return chunkIndex;
-    },
-    get phase() {
-      return "live";
     },
     canComputeNextChunk() {
       return !disposed && nextStartTime < targetDuration;
@@ -141,7 +140,6 @@ function createChunk(config, chunkIndex, startTime, endTime, frames, statusCode)
     startTime,
     endTime,
     sampleInterval: config.sampleInterval,
-    phase: "live",
     frames: Object.freeze(frames),
     promotionEligible: false,
     diagnostics: Object.freeze([]),

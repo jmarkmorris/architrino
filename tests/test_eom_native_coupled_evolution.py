@@ -97,8 +97,12 @@ def assert_contains(
 
 def assert_overlaps(testcase: unittest.TestCase, native, oracle) -> None:
     lower, upper = interval_bounds(native)
-    testcase.assertLessEqual(lower, oracle.upper)
-    testcase.assertGreaterEqual(upper, oracle.lower)
+    if isinstance(oracle, dict):
+        oracle_lower, oracle_upper = interval_bounds(oracle)
+    else:
+        oracle_lower, oracle_upper = oracle.lower, oracle.upper
+    testcase.assertLessEqual(lower, oracle_upper)
+    testcase.assertGreaterEqual(upper, oracle_lower)
 
 
 class NativeCoupledEvolutionTests(unittest.TestCase):

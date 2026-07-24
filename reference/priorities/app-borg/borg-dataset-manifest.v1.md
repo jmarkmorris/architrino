@@ -322,7 +322,7 @@ Deployment budget is separate from EOM solver throughput. The manifest must fail
 | `nativeSolverThroughput` | Steps, rows, candidates, and retained records per second under the EOM solver. |
 | `deploymentBudgetStatus` | `passed`, `warning`, `missing-budget`, `exceeded-budget`, or `fail-closed`. |
 
-`borg-release-budget-manifest.v1` is the first concrete release-facing runtime budget cover sheet for the Borg app. It binds the measured preset calibration sweep to browser/runtime ceilings for chunk wall time, frame append rate, browser heap growth, WASM worker memory, run frame rows, target duration, and chunk duration. It is separate from EOM solver throughput and from the remaining unmeasured deployment budgets: bundle size, static assets, Pages bandwidth, GPU memory, browser storage, Actions artifacts, and EOM solver throughput remain separately reported fields.
+`borg-release-budget-manifest.v1` is retained as the historical runtime budget cover sheet measured against the deleted pre-EOM browser path. Its ceilings do not apply to the current EOM surface. Current browser/runtime ceilings for chunk wall time, frame append rate, browser heap growth, worker memory, run frame rows, target duration, and chunk duration require a calibration sweep measured from EOM chunks. These measurements remain separate from EOM solver throughput and from the remaining unmeasured deployment budgets: bundle size, static assets, Pages bandwidth, GPU memory, browser storage, Actions artifacts, and EOM solver throughput remain separately reported fields.
 
 ## Render Manifest
 

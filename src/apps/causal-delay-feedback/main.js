@@ -1,4 +1,11 @@
-import { createCausalDelayFeedbackEomReplayAdapter } from "./CausalDelayFeedbackEomReplayAdapter.js";
+import {
+  EOM_REPLAY_MAX_FRAME_COUNT,
+  EOM_REPLAY_MAX_HISTORY_DEPTH,
+  createCausalDelayFeedbackEomReplayAdapter,
+} from "./CausalDelayFeedbackEomReplayAdapter.js";
+import {
+  normalizeCausalDelayFeedbackMode,
+} from "./CausalDelayFeedbackModeController.js";
 import { createCausalDelayFeedbackRuntime } from "./CausalDelayFeedbackRuntime.js";
 import { createTemporaryMockReplayAdapter } from "./CausalDelayFeedbackReplayAdapter.js";
 
@@ -64,11 +71,17 @@ export function createCausalDelayFeedbackInitialReplayRequestOptions(windowLike 
     getInitialPositiveQueryNumber(windowLike, "frameCount") ??
     getInitialPositiveQueryNumber(windowLike, "solverFrameCount");
   if (frameCount != null) {
-    requestOptions.frameCount = Math.max(2, Math.floor(frameCount));
+    requestOptions.frameCount = Math.min(
+      EOM_REPLAY_MAX_FRAME_COUNT,
+      Math.max(2, Math.floor(frameCount)),
+    );
   }
   const historyDepth = getInitialPositiveQueryNumber(windowLike, "historyDepth");
   if (historyDepth != null) {
-    requestOptions.historyDepth = Math.max(2, Math.floor(historyDepth));
+    requestOptions.historyDepth = Math.min(
+      EOM_REPLAY_MAX_HISTORY_DEPTH,
+      Math.max(2, Math.floor(historyDepth)),
+    );
   }
   const spaceAxis = getInitialQueryValue(windowLike, "spaceAxis");
   if (spaceAxis) {
@@ -96,7 +109,10 @@ export function createCausalDelayFeedbackRuntimeForPage(windowLike = globalThis.
     window: windowLike,
     replayAdapter,
     fallbackReplayAdapter,
-    initialMode: getInitialQueryValue(windowLike, "mode") ?? "story",
+    initialMode: normalizeCausalDelayFeedbackMode(
+      getInitialQueryValue(windowLike, "mode"),
+      "story",
+    ),
     replayRequestOptions: createCausalDelayFeedbackInitialReplayRequestOptions(windowLike),
   });
 }

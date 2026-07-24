@@ -512,6 +512,7 @@ void print_all(bool include_pinned_fold_legacy) {
 }  // namespace
 
 int main(int argc, char** argv) {
+  std::cout.imbue(std::locale::classic());
   try {
     if (argc != 2 ||
         (std::string(argv[1]) != "all" &&

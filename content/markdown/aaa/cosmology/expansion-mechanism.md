@@ -887,7 +887,7 @@ that vanishes in a valid propagation-redshift segment. The term $E_{\mathrm{sea,
 
 ### First-Order Coefficient Constraints
 
-At first order the propagation ansatz constrains combinations of coefficients, not each coefficient separately. Let barred quantities denote the homogeneous isotropic component at observation time $t_{\mathrm{obs}}$, with $\bar S_{ij}=0$. Then the path rate entering the corrected low-redshift slope is
+At first order the propagation ansatz constrains combinations of coefficients, not each coefficient separately; these constraints are conditional on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics — an open closure item of the [Noether sea program](../spacetime/noether-sea.md). Let barred quantities denote the homogeneous isotropic component at observation time $t_{\mathrm{obs}}$, with $\bar S_{ij}=0$. Then the path rate entering the corrected low-redshift slope is
 
 $$
 \bar\alpha_X(t_{\mathrm{obs}})
@@ -1052,7 +1052,7 @@ a_\chi^X\,\frac{1}{c_\gamma}\,\partial_T\ln\chi_\gamma
 +\mathcal{R}_{\mathrm{prop},X}
 $$
 
-which reproduces the candidate $\alpha_{\mathrm{prop},X}$ when $dY_X/d\ell=\alpha_{\mathrm{prop},X}$. The coefficients are the linear-response derivatives of the transport map at the static homogeneous no-flow reference state. For example, for $q\in\{\ln\chi_\gamma,\ln n,\ln R_{\text{braid}}\}$,
+which reproduces the candidate $\alpha_{\mathrm{prop},X}$ when $dY_X/d\ell=\alpha_{\mathrm{prop},X}$. The coefficients are the linear-response derivatives of the transport map at the static homogeneous no-flow reference state, conditional on that reference state — the homogeneous quiescent Noether sea — being an equilibrium of the constitutive dynamics, an open closure item of the [Noether sea program](../spacetime/noether-sea.md). For example, for $q\in\{\ln\chi_\gamma,\ln n,\ln R_{\text{braid}}\}$,
 
 $$
 a_q^X
@@ -1510,11 +1510,13 @@ Propagation channels must preserve image sharpness and $(1+z)$ time-dilation con
 
 ## Dissipation and Rescaling Picture
 
-Apparent expansion is interpreted as relaxation of Noether sea state:
+Apparent expansion is interpreted, as a candidate reading, as relaxation of Noether sea state:
 
-- high-curvature source regions inject energy into outbound assembly flows,
-- lower-density regions evolve toward larger characteristic assembly scales and lower effective temperatures,
-- observer-level expansion summaries track this rescaling history.
+- high-curvature source regions inject energy into outbound assembly flows (candidate reading),
+- lower-density regions evolve toward larger characteristic assembly scales and lower effective temperatures (candidate reading),
+- observer-level expansion summaries track this rescaling history (candidate reading).
+
+This picture earns claim status only through the transport-kernel gates of this chapter: the [Transport Derivation Target](#transport-derivation-target) and the [Reproducible Transport Constraints](#reproducible-transport-constraints).
 
 ## Dark-Energy Language in This Frame
 
@@ -1533,15 +1535,15 @@ Early-inferred and local-inferred expansion rates probe different Noether sea st
 - Early probes sample a more uniform, less-relaxed sea history.
 - Local probes sample pockets that are further along relaxation and dissipation trajectories.
 
-So the $H_0$ split is interpreted as state-dependent inference from one ontology, not two incompatible universes.
+So the $H_0$ split is interpreted as state-dependent inference from one ontology, not two incompatible universes. This reading is a candidate interpretation, and on its own it is compatible with any $H_0$ outcome; it earns claim status only through the environment-resolved test above: the state-dependence coefficients $\alpha_{E,X}$ must produce a nonzero, sign-definite environmental $H_0$ correlation at the declared tolerance of that gate, and a null environment-resolved residual at that tolerance falsifies this reading of the tension.
 
-In this framing, $H_0$ is not expected to be strictly universal at all environments; local scatter is read as part of Noether sea state dependence.
+In this framing, $H_0$ is not expected to be strictly universal at all environments; local scatter is read — subject to the same gate — as part of Noether sea state dependence.
 
-Quasar redshift distributions are interpreted in the same transport-and-source framework, separating source-population evolution from path-history accumulation within one model.
+Quasar redshift distributions are interpreted — again as a candidate reading — in the same transport-and-source framework, separating source-population evolution from path-history accumulation within one model.
 
 ## Timescape-Style Bridge, $\mathbb{A}\mathbb{A}\mathbb{A}$ Mechanism
 
-Conceptually, this layer is adjacent to inhomogeneous/clock-calibration cosmologies, but the implementation here remains one explicit Noether sea state model:
+Conceptually, this layer is adjacent to inhomogeneous/clock-calibration cosmologies; the bridge is a candidate reading, and the implementation here remains one explicit Noether sea state model:
 
 - clock-rate mapping is computed from shared Noether sea state variables,
 - expansion-like inference shifts are environment-conditioned readouts, not ontology splits,

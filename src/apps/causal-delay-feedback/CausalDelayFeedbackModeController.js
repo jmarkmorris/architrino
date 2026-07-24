@@ -18,14 +18,48 @@ import {
 } from "./CausalDelayFeedbackBranchLabMode.js";
 
 export const CAUSAL_DELAY_FEEDBACK_MODES = Object.freeze([
-  { id: "story", label: "Story" },
-  { id: "prediction", label: "Prediction" },
-  { id: "history", label: "Path History" },
-  { id: "roots", label: "Roots" },
-  { id: "self-hit", label: "Self-Hit" },
-  { id: "branch-lab", label: "Branch Lab" },
-  { id: "sandbox", label: "Sandbox" },
+  { id: "story", label: "Story", renderMethod: "renderStory" },
+  { id: "prediction", label: "Prediction", renderMethod: "renderPrediction" },
+  { id: "history", label: "Path History", renderMethod: "renderHistory" },
+  { id: "roots", label: "Roots", renderMethod: "renderRoots" },
+  { id: "self-hit", label: "Self-Hit", renderMethod: "renderSelfHit" },
+  { id: "branch-lab", label: "Branch Lab", renderMethod: "renderBranchLab" },
+  { id: "sandbox", label: "Sandbox", renderMethod: null },
 ]);
+
+export function normalizeCausalDelayFeedbackMode(mode, fallback = "story") {
+  return CAUSAL_DELAY_FEEDBACK_MODES.some((candidate) => candidate.id === mode)
+    ? mode
+    : fallback;
+}
+
+function describeReason(reason) {
+  const descriptions = {
+    accepted_simple_root: "accepted causal root",
+    coincident_same_source_root_unresolved: "same-transceiver coincidence is unresolved",
+    tangent_root_unresolved: "tangent root is unresolved",
+    transversality_floor_failed: "root slope is below the acceptance threshold",
+    nonpositive_delay: "transmission delay is not positive",
+    producer_delayed_hit_accepted: "recorded delayed hit",
+    representative_replay_row: "representative replay row",
+    root_without_accepted_hit: "root has no accepted delayed hit",
+    no_delayed_hit: "no delayed hit",
+    record_has_no_delayed_hit_rows: "the record does not include delayed-hit rows",
+    causal_evaluation_unavailable: "causal-root evaluation is unavailable",
+  };
+  return descriptions[String(reason)] ?? "unavailable result";
+}
+
+function describeSelfHitState(state) {
+  const descriptions = {
+    absent: "no self-hit",
+    unresolved: "unresolved threshold",
+    tangent: "tangent root",
+    active: "active self-hit",
+    "failed-floor": "below the slope threshold",
+  };
+  return descriptions[String(state)] ?? "unavailable";
+}
 
 function createElement(documentLike, tagName, {
   className,
@@ -92,7 +126,7 @@ export class CausalDelayFeedbackModeController {
       sandbox: this.document.querySelector("#causal-delay-feedback-guided-sandbox"),
       summary: this.document.querySelector("#causal-delay-feedback-canvas-summary"),
     };
-    if (!this.dom.journey || !this.dom.tabs || !this.dom.content) {
+    if (Object.values(this.dom).some((element) => !element)) {
       throw new Error("Missing Causal Delay Feedback learner-journey elements.");
     }
     this.dom.journey.addEventListener("click", this.boundClick);
@@ -265,33 +299,22 @@ export class CausalDelayFeedbackModeController {
     if (!this.dom || !this.state || this.state.mode === "sandbox") {
       return;
     }
-    this.renderModeContent();
+    const focusedBranchFilter =
+      this.state.mode === "branch-lab" &&
+      this.document.activeElement?.matches?.("[data-branch-filter]");
+    if (!focusedBranchFilter) {
+      this.renderModeContent();
+    }
     this.updateControls();
     this.updateCanvasSummary();
   }
 
   renderModeContent() {
-    switch (this.state.mode) {
-      case "prediction":
-        this.renderPrediction();
-        break;
-      case "history":
-        this.renderHistory();
-        break;
-      case "roots":
-        this.renderRoots();
-        break;
-      case "self-hit":
-        this.renderSelfHit();
-        break;
-      case "branch-lab":
-        this.renderBranchLab();
-        break;
-      case "story":
-      default:
-        this.renderStory();
-        break;
-    }
+    const mode = CAUSAL_DELAY_FEEDBACK_MODES.find(
+      (candidate) => candidate.id === this.state.mode,
+    );
+    const renderMethod = mode?.renderMethod ?? "renderStory";
+    this[renderMethod]();
   }
 
   renderTabs() {
@@ -374,11 +397,14 @@ export class CausalDelayFeedbackModeController {
 
   renderHistory() {
     const rows = createCausalHistoryLedger(this.state);
+    const selectedRow = rows.find((row) => row.selected) ?? null;
     this.setLessonCopy({
       title: "Path History",
       body: "Each row refers to the transmitter path used by the scene. Selecting a root row selects the matching wake intersection and branch.",
       meta: "Retained transmission history",
-      status: `${rows.length} retained rows; selected root ${this.state.selectedRootId ?? "unavailable"}.`,
+      status: `${rows.length} retained rows; ${
+        selectedRow ? `row ${selectedRow.depth} is selected` : "no root row is selected"
+      }.`,
     });
     const table = this.createTable(["History row", "Tₜ", "State", "Reason"]);
     const body = table.querySelector("tbody");
@@ -402,7 +428,7 @@ export class CausalDelayFeedbackModeController {
         selectCell,
         createElement(this.document, "td", { text: formatTime(row.emissionTime) }),
         createElement(this.document, "td", { text: row.state }),
-        createElement(this.document, "td", { text: row.reason }),
+        createElement(this.document, "td", { text: describeReason(row.reason) }),
       ].forEach((cell) => tr.append(cell));
       body.append(tr);
     });
@@ -416,8 +442,8 @@ export class CausalDelayFeedbackModeController {
       body: "At one reception time Tᵣ, every zero of g(Tᵣ;Tₜ) is linked to the same wake intersection, history row, and root identity.",
       meta: `${view.notation}=0`,
       status: view.available
-        ? `${view.zeroCrossingCount} zero crossings = ${view.wakeIntersectionCount} wake intersections = ${view.activeRootCount} active roots.`
-        : `Unavailable: ${view.unavailableReason}.`,
+        ? `${view.activeRootCount} active causal ${view.activeRootCount === 1 ? "root" : "roots"}.`
+        : `Unavailable: ${describeReason(view.unavailableReason)}.`,
     });
     const grid = createElement(this.document, "div", { className: "causal-roots-grid" });
     grid.append(
@@ -437,7 +463,7 @@ export class CausalDelayFeedbackModeController {
     );
     const note = createElement(this.document, "p", {
       className: "causal-fold-note",
-      text: "The ordinary fold has a pointwise acceleration spike while its accumulated velocity change stays finite. Coincident same-transceiver birth remains unresolved. Naming blocker: the Roots packet alternates Dₛ and Dₜ, so this view retains the evaluator field transversality for ∂g/∂Tₜ and does not relabel it.",
+      text: "The ordinary fold has a pointwise acceleration spike while its accumulated velocity change stays finite. Coincident same-transceiver birth remains unresolved. Transversality is the slope of the delay-map curve at a root; a near-zero slope marks a tangent case that this view does not accept as a simple acceleration row.",
     });
     this.dom.content.replaceChildren(grid, note);
   }
@@ -448,7 +474,7 @@ export class CausalDelayFeedbackModeController {
       title: "Self-Hit",
       body: "The same evaluator compares one transceiver path with its own later reception event. Line-of-sight root geometry decides the result; a total-speed label does not.",
       meta: "Same-transceiver causal roots",
-      status: "Absent, unresolved, active, and failed-floor states remain distinct.",
+      status: "No self-hit, unresolved, active, and below the threshold remain distinct.",
     });
     const cards = createElement(this.document, "div", { className: "causal-self-hit-grid" });
     scenarios.forEach((scenario) => {
@@ -461,7 +487,7 @@ export class CausalDelayFeedbackModeController {
       });
       card.append(
         createElement(this.document, "h3", { text: scenario.label }),
-        createElement(this.document, "strong", { text: scenario.state }),
+        createElement(this.document, "strong", { text: describeSelfHitState(scenario.state) }),
         createElement(this.document, "p", { text: scenario.explanation }),
         createElement(this.document, "code", {
           text: `${scenario.transversalityField}=${
@@ -491,7 +517,7 @@ export class CausalDelayFeedbackModeController {
       title: "Branch Lab",
       body: "Accepted, rejected, unresolved, and unavailable rows remain visible. The vector sum consumes exactly the accepted rows shown here.",
       meta: "Branch-local acceleration rows",
-      status: `${view.acceptedRows.length} accepted · ${view.rejectedRows.length} rejected · ${view.filteredRows.length} filtered but retained · vector sum (${view.vectorSum.x.toFixed(2)}, ${view.vectorSum.y.toFixed(2)}).`,
+      status: `${view.acceptedRows.length} accepted acceleration rows · ${view.rejectedRows.length} rejected · ${view.filteredRows.length} unavailable or filtered · vector sum (${view.vectorSum.x.toFixed(2)}, ${view.vectorSum.y.toFixed(2)}).`,
     });
     const filters = this.createBranchFilters();
     const table = this.createTable(["Branch", "Tₜ → Tᵣ", "Status", "Acceleration", "Reason"]);
@@ -507,21 +533,31 @@ export class CausalDelayFeedbackModeController {
         attributes: { "aria-hidden": "true" },
       });
       swatch.style.backgroundColor = row.color;
-      branchCell.append(swatch, this.document.createTextNode(row.id));
+      branchCell.append(swatch, this.document.createTextNode(`Branch ${row.ordinal ?? "—"}`));
       tr.append(branchCell);
       [
         `${formatTime(row.emissionTime)} → ${formatTime(row.receiverTime)}`,
         row.included
           ? row.accepted ? "accepted" : "rejected"
           : `filtered ${row.accepted ? "accepted" : "rejected"}`,
-        `(${row.acceleration.x.toFixed(2)}, ${row.acceleration.y.toFixed(2)})`,
-        row.filterReason ? `${row.reason} · ${row.filterReason}` : row.reason,
+        row.accelerationAvailable
+          ? `(${row.acceleration.x.toFixed(2)}, ${row.acceleration.y.toFixed(2)})`
+          : "unavailable",
+        row.filterReason
+          ? `${describeReason(row.reason)} · ${row.filterReason}`
+          : describeReason(row.reason),
       ].forEach((text) => tr.append(createElement(this.document, "td", { text })));
       body.append(tr);
     });
     const sum = createElement(this.document, "p", {
       className: "causal-vector-sum",
-      text: `Displayed vector sum from rows ${view.sourceRows.join(", ") || "none"}: (${view.vectorSum.x.toFixed(2)}, ${view.vectorSum.y.toFixed(2)})`,
+      text: `Displayed vector sum from ${
+        view.acceptedRows.length === 0
+          ? "no accepted rows"
+          : `accepted ${view.acceptedRows.length === 1 ? "row" : "rows"} ${
+              view.acceptedRows.map((row) => row.ordinal ?? "—").join(", ")
+            }`
+      }: (${view.vectorSum.x.toFixed(2)}, ${view.vectorSum.y.toFixed(2)})`,
     });
     this.dom.content.replaceChildren(filters, table, sum);
   }
@@ -593,7 +629,7 @@ export class CausalDelayFeedbackModeController {
     const svg = this.document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", "0 0 420 190");
     svg.setAttribute("role", "img");
-    svg.setAttribute("aria-label", `${view.zeroCrossingCount} zero crossings of g(Tᵣ;Tₜ)`);
+    svg.setAttribute("aria-label", `${view.activeRootCount} active roots of g(Tᵣ;Tₜ)`);
     const samples = view.samples.filter((sample) => Number.isFinite(sample.value));
     if (samples.length > 1) {
       const minT = samples[0].emissionTime;
@@ -677,10 +713,13 @@ export class CausalDelayFeedbackModeController {
     );
     const wake = root ? createWakeDisplayGeometry(root, this.state.receiverTime) : null;
     this.state.wakeGeometry = wake ? [wake] : [];
+    const modeLabel = CAUSAL_DELAY_FEEDBACK_MODES.find(
+      (mode) => mode.id === this.state.mode,
+    )?.label ?? "View";
     this.dom.summary.textContent = this.state.mode === "story" && root && reciprocalRoot
       ? `Story. Positrino transmitter Tₜ=${formatTime(root.emissionTime)} to electrino receiver, and electrino transmitter Tₜ=${formatTime(reciprocalRoot.emissionTime)} to positrino receiver; both receive at Tᵣ=${formatTime(root.receiverTime)}.`
       : root
-      ? `${this.state.mode}. Transmitter ${root.sourceId} transmitted at Tₜ=${formatTime(root.emissionTime)}; receiver ${root.receiverId} receives at Tᵣ=${formatTime(root.receiverTime)}. Root ${root.ordinal} is ${root.accepted ? "accepted" : root.reason}.`
-      : `${this.state.mode}. No causal root is available at the selected receiver event.`;
+      ? `${modeLabel}. Transmitter ${root.sourceId} transmitted at Tₜ=${formatTime(root.emissionTime)}; receiver ${root.receiverId} receives at Tᵣ=${formatTime(root.receiverTime)}. Root ${root.ordinal} is ${root.accepted ? "accepted" : describeReason(root.reason)}.`
+      : `${modeLabel}. No causal root is available at the selected receiver event.`;
   }
 }

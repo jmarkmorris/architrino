@@ -16,7 +16,7 @@ const TRAIL_OPACITY = 1;
  *    buffer; a new chunk writes only its own points, and advancing a frame
  *    moves a draw range rather than allocating geometry.
  *
- * Adjacent native rows are joined by their own line segment, with interior
+ * Adjacent EOM or recorded rows are joined by their own line segment, with interior
  * points duplicated so that k points yield 2*(k-1) vertices. Nothing is
  * interpolated, smoothed, or fitted between rows: what is drawn is what the
  * solver reported.
@@ -216,7 +216,8 @@ export function createBorgPathTrails({
   };
 
   function trailColor(pathKey) {
-    const style = getStyle(pathKey);
+    const numericPathKey = Number(pathKey);
+    const style = getStyle(Number.isFinite(numericPathKey) ? numericPathKey : pathKey);
     return style.pathColor ?? style.velocityColor ?? style.color;
   }
 
@@ -246,7 +247,7 @@ export function createBorgPathTrails({
       if (!row?.position || !Number.isFinite(Number(row.frameIndex))) {
         return;
       }
-      const trail = ensureTrail(retainedTrails, row.pathKey, {
+      const trail = ensureTrail(retainedTrails, String(row.pathKey), {
         opacity: TRAIL_OPACITY,
         order: renderOrder,
       });
@@ -271,9 +272,7 @@ export function createBorgPathTrails({
   }
 
   function resetPath(pathKey) {
-    const exactKey = retainedTrails.has(pathKey) || compactedTrails.has(pathKey)
-      ? pathKey
-      : Number(pathKey);
+    const exactKey = String(pathKey);
     retainedTrails.get(exactKey)?.clear();
     compactedTrails.get(exactKey)?.clear();
   }
@@ -290,7 +289,7 @@ export function createBorgPathTrails({
       if (!Array.isArray(points) || points.length < 2) {
         return;
       }
-      const trail = ensureTrail(compactedTrails, Number(pathKey), {
+      const trail = ensureTrail(compactedTrails, String(pathKey), {
         opacity: TRAIL_OPACITY,
         order: renderOrder - 1,
       });

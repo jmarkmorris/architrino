@@ -105,6 +105,14 @@ void print_pair(const eom::ExactPairCertificate& certificate) {
             << certificate.warm_excluded_cells
             << ",\"warm_residual_drift_upper\":"
             << certificate.warm_residual_drift_upper
+            << ",\"stable_negative_prefix_certified\":"
+            << (certificate.stable_negative_prefix_certified
+                    ? "true"
+                    : "false")
+            << ",\"stable_negative_prefix_upper\":\""
+            << certificate.stable_negative_prefix_upper
+            << "\",\"incremental_prefix_reuse_count\":"
+            << certificate.incremental_prefix_reuse_count
             << ",\"root_free_cell_count\":"
             << certificate.root_free_cells.size()
             << ",\"excluded_cells\":" << certificate.excluded_cells
@@ -790,6 +798,40 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
       .maximum_mpfr_bits = 512,
       .warm_start = &warm_start,
   }));
+  const auto narrow_prior = eom::certify_exact_pair({
+      .row_id = "warm_extended_lower_prior",
+      .receiver = &receiver,
+      .source = &root_free,
+      .reception_time = "3",
+      .search_lower = "0.5",
+      .search_upper = "2.5",
+      .field_speed = "1",
+      .root_tolerance = "1e-12",
+      .max_depth = 256,
+      .max_cells = 500000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+  });
+  const eom::ExactPairWarmStart narrow_warm_start{
+      .certificate = &narrow_prior,
+      .receiver = &receiver,
+      .source = &root_free,
+  };
+  certificates.push_back(eom::certify_exact_pair({
+      .row_id = "warm_extended_lower_current",
+      .receiver = &receiver,
+      .source = &root_free,
+      .reception_time = "3.001",
+      .search_lower = "0",
+      .search_upper = "2.5",
+      .field_speed = "1",
+      .root_tolerance = "1e-12",
+      .max_depth = 256,
+      .max_cells = 500000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .warm_start = &narrow_warm_start,
+  }));
   return certificates;
 }
 
@@ -1305,11 +1347,14 @@ void print_all() {
 }  // namespace
 
 int main(int argc, char** argv) {
+  std::cout.imbue(std::locale::classic());
   try {
     if (argc != 2 || std::string(argv[1]) != "all") {
       std::cerr << "usage: eom_native_fixture_cli all\n";
       return EXIT_FAILURE;
     }
+    std::cout << std::setprecision(
+        std::numeric_limits<double>::max_digits10);
     print_all();
     return EXIT_SUCCESS;
   } catch (const std::exception& error) {

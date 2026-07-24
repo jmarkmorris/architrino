@@ -73,6 +73,18 @@ test("Borg disables the timeline before any recorded frame is available", () => 
   });
 });
 
+test("Borg timeline range handles large retained frame sets without argument spread", () => {
+  const frameIndexes = Array.from({ length: 150000 }, (_, index) => index - 2);
+  const range = getBorgTimelineRangePresentation({
+    frameIndexes,
+    activeFrameIndex: 12,
+    isForever: false,
+    isPlaying: false,
+  });
+  assert.equal(range.min, -2);
+  assert.equal(range.max, 149997);
+});
+
 test("Borg playback re-anchors by absolute keyframe after retention rebuilds frame sets", () => {
   const firstRetainedWindow = Array.from(
     { length: 720 },

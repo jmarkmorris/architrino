@@ -547,7 +547,7 @@ MpfrAccelerationAttempt certify_mpfr_finite_width_acceleration(
           MpNumber::decimal(lower_token, bits, MPFR_RNDD),
           MpNumber::decimal(upper_token, bits, MPFR_RNDU));
       const MpInterval width =
-          MpInterval::decimal(double_token(upper - lower), bits);
+          point_interval(upper, bits) - point_interval(lower, bits);
       const MpVector integral = scale_vector(
           width, integrand(request, cell, lower, upper, bits));
       MpNumber budget(bits);
@@ -714,10 +714,12 @@ MpfrEventImpulseAttempt certify_mpfr_event_impulse(
               request, reception, t_lower, t_upper, emission, s_lower,
               s_upper, bits));
       const MpInterval position_weight(
-          MpNumber::decimal(
-              double_token(reception_upper - t_upper), bits, MPFR_RNDD),
-          MpNumber::decimal(
-              double_token(reception_upper - t_lower), bits, MPFR_RNDU));
+          (point_interval(reception_upper, bits) -
+           point_interval(t_upper, bits))
+              .lower(),
+          (point_interval(reception_upper, bits) -
+           point_interval(t_lower, bits))
+              .upper());
       const MpVector position_moment =
           scale_vector(position_weight, integral);
       MpNumber budget(bits);

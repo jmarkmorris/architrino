@@ -198,7 +198,7 @@ const PROOFS = Object.freeze([
     settingsOpen: false,
     mode: "self-hit",
     expectedScene: "self-hit",
-    expectedText: "failed-floor",
+    expectedText: "below the threshold",
   },
   {
     id: "branch-lab",

@@ -1,4 +1,5 @@
 #include "architrino/eom/CoupledEvolution.hpp"
+#include "architrino/eom/Decimal.hpp"
 #include "architrino/eom/JointAccelerationSnapshot.hpp"
 #include "architrino/eom/JointEndpointCorrector.hpp"
 #include "architrino/eom/MultiprecisionAcceleration.hpp"
@@ -244,6 +245,10 @@ double downward_nonnegative_quotient(double numerator, std::size_t divisor) {
 }
 
 std::string error_token(double value) {
+  if (!std::isfinite(value) || value < 0.0) {
+    throw std::invalid_argument(
+        "history error radius must be finite and nonnegative");
+  }
   if (value == 0.0) {
     return "0";
   }
@@ -353,31 +358,19 @@ std::vector<NativeHistoryFingerprint> fingerprints(
   return result;
 }
 
-bool same_fingerprints(
-    const std::vector<NativeHistoryFingerprint>& left,
-    const std::vector<NativeHistoryFingerprint>& right) {
-  if (left.size() != right.size()) {
-    return false;
-  }
-  for (std::size_t index = 0; index < left.size(); ++index) {
-    if (left[index].path_id != right[index].path_id ||
-        left[index].fingerprint != right[index].fingerprint) {
-      return false;
-    }
-  }
-  return true;
-}
-
 std::array<double, 3> midpoints(const IntervalVector& vector) {
   return {vector[0].midpoint(), vector[1].midpoint(), vector[2].midpoint()};
 }
 
 std::array<double, 3> component_radii(const IntervalVector& vector) {
-  return {
-      vector[0].width() * 0.5,
-      vector[1].width() * 0.5,
-      vector[2].width() * 0.5,
-  };
+  std::array<double, 3> result{};
+  for (std::size_t axis = 0U; axis < result.size(); ++axis) {
+    const Interval centered =
+        vector[axis] - Interval::point(vector[axis].midpoint());
+    result[axis] =
+        std::max(std::abs(centered.lower()), std::abs(centered.upper()));
+  }
+  return result;
 }
 
 SnapshotTotals snapshot_totals(
@@ -2301,12 +2294,12 @@ std::vector<NativePublishedPath> inflate_fine_histories(
       HistoryErrorTokens position_error_tokens{};
       HistoryErrorTokens velocity_error_tokens{};
       for (std::size_t axis = 0U; axis < 3U; ++axis) {
-        position_error_tokens[axis] = error_token(
-            scalar_token(segment.position_error_tokens()[axis]) +
-            error_found->position_errors[axis]);
-        velocity_error_tokens[axis] = error_token(
-            scalar_token(segment.velocity_error_tokens()[axis]) +
-            error_found->velocity_errors[axis]);
+        position_error_tokens[axis] = error_token(upward_nonnegative_sum(
+            scalar_token(segment.position_error_tokens()[axis]),
+            error_found->position_errors[axis]));
+        velocity_error_tokens[axis] = error_token(upward_nonnegative_sum(
+            scalar_token(segment.velocity_error_tokens()[axis]),
+            error_found->velocity_errors[axis]));
       }
       inflated = inflated.appended(CubicHistorySegment(
           segment.t_start_token(), segment.t_end_token(),
@@ -3820,7 +3813,6 @@ NativeAtomicStepCertificate rejected_step(
     std::optional<NativeAccelerationSnapshotCertificate>
         recertification_snapshot = std::nullopt) {
   const auto input_fingerprints = fingerprints(input_histories);
-  const auto published_fingerprints = fingerprints(input_histories);
   std::optional<double> correction_residual;
   if (failure_code == "coupled_correction_failed") {
     for (auto substep = substeps.rbegin(); substep != substeps.rend();
@@ -3831,6 +3823,8 @@ NativeAtomicStepCertificate rejected_step(
       }
     }
   }
+  // Rejection publishes input_histories directly; there is no second
+  // publication path whose equality could be independently rechecked here.
   return {
       .schema = "eom_native_atomic_coupled_step_certificate/v1",
       .status = "rejected",
@@ -3861,8 +3855,7 @@ NativeAtomicStepCertificate rejected_step(
       .evidence_status = "failed",
       .integration_method = integration_method(request),
       .reduction_policy = kDeterministicReductionPolicy,
-      .publication_atomic = same_fingerprints(
-          input_fingerprints, published_fingerprints),
+      .publication_atomic = true,
   };
 }
 
@@ -5933,7 +5926,8 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
             : source.history.segments().front().t_start_token();
         warm_source_equality.push_back(compute_warm_source_equality_bounds(
             source.history, warm_source->second->history,
-            std::strtod(transmitter_search_lower.c_str(), nullptr)));
+            parse_finite_double(
+                transmitter_search_lower, "transmitter search lower")));
       }
     }
     std::vector<ExactPairRequest> root_requests;
@@ -6519,9 +6513,10 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   const auto fingerprint_timing_start = SteadyClock::now();
   const auto input_fingerprints = fingerprints(histories);
   const auto candidate_fingerprints = fingerprints(accepted_histories);
-  const auto published_fingerprints = fingerprints(accepted_histories);
   timing->history_copy_hash_wall_seconds +=
       elapsed_seconds(fingerprint_timing_start);
+  // Acceptance moves accepted_histories directly into the published field;
+  // atomicity is structural rather than a same-vector replay comparison.
   return {
       .schema = "eom_native_atomic_coupled_step_certificate/v1",
       .status = "accepted",
@@ -6549,8 +6544,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       .evidence_status = "executable_architecture_evidence",
       .integration_method = integration_method(request),
       .reduction_policy = kDeterministicReductionPolicy,
-      .publication_atomic = same_fingerprints(
-          candidate_fingerprints, published_fingerprints),
+      .publication_atomic = true,
   };
 }
 

@@ -147,12 +147,6 @@ bool same_interval(const Interval& left, const Interval& right) {
   return left.lower() == right.lower() && left.upper() == right.upper();
 }
 
-bool same_vector(const IntervalVector& left, const IntervalVector& right) {
-  return same_interval(left[0], right[0]) &&
-         same_interval(left[1], right[1]) &&
-         same_interval(left[2], right[2]);
-}
-
 void require_positive(const Interval& value, const char* label) {
   if (value.lower() <= 0.0) {
     throw std::invalid_argument(std::string(label) + " must be positive");
@@ -369,9 +363,12 @@ Interval stable_sine_minus_argument(const Interval& argument) {
                 argument_square *
                     (one / Interval::point(362880.0))));
   Interval result = cubic * coefficient;
-  const double remainder =
-      std::pow(maximum, 11) / 39916800.0;
-  return result.inflate(remainder);
+  Interval remainder = Interval::point(maximum);
+  for (std::size_t factor = 1U; factor < 11U; ++factor) {
+    remainder = remainder * Interval::point(maximum);
+  }
+  remainder = remainder / Interval::point(39916800.0);
+  return result.inflate(remainder.upper());
 }
 
 std::optional<Interval> stable_circular_self_residual(
@@ -501,8 +498,11 @@ std::optional<Interval> analytic_circular_taylor_residual(
   const Interval residual_curvature =
       transverse_speed_square / cell_separation -
       dot(cell_direction, cell_state->acceleration);
+  const Interval centered_emission =
+      emission - Interval::point(midpoint);
   const double radius = std::max(
-      midpoint - emission.lower(), emission.upper() - midpoint);
+      std::abs(centered_emission.lower()),
+      std::abs(centered_emission.upper()));
   const Interval displacement_from_midpoint(-radius, radius);
   // Taylor's theorem encloses the causal residual without losing the
   // cancellation F'(tau_c)=0 at the pinned fold.  The analytic circular
@@ -699,9 +699,12 @@ std::optional<CenteredFiniteWidthIntegral> centered_finite_width_integral(
   const IntervalVector midpoint_value = finite_width_integrand(
       request, midpoint_interval, receiver_charge, transmitter_charge, coupling,
       causal_width, core_scale).value;
-  const double width = emission.upper() - emission.lower();
+  const double width = emission.width();
   IntervalVector result = scale(Interval::point(width), midpoint_value);
-  const double remainder_scale = width * width * 0.25;
+  const double remainder_scale =
+      (Interval::point(width) * Interval::point(width) *
+       Interval::point(0.25))
+          .upper();
   // For every component A of the unchanged finite-width master-equation
   // integrand,
   //   integral_I A = |I| A(mid(I)) + R,
@@ -713,8 +716,11 @@ std::optional<CenteredFiniteWidthIntegral> centered_finite_width_integral(
     const double derivative_bound = std::max(
         std::abs(derivative[axis].lower()),
         std::abs(derivative[axis].upper()));
-    result[axis] =
-        result[axis].inflate(derivative_bound * remainder_scale);
+    const double remainder =
+        (Interval::point(derivative_bound) *
+         Interval::point(remainder_scale))
+            .upper();
+    result[axis] = result[axis].inflate(remainder);
   }
   return CenteredFiniteWidthIntegral{
       .value = result,
@@ -859,13 +865,19 @@ monotone_finite_width_integral(
         signed_charge_scale * field_speed * mollifier_integral,
         midpoint_kernel);
     const double remainder_scale =
-        0.5 * emission.width() * mollifier_integral.upper();
+        (Interval::point(0.5) *
+         Interval::point(emission.width()) *
+         Interval::point(mollifier_integral.upper()))
+            .upper();
     for (std::size_t axis = 0; axis < 3; ++axis) {
       const double derivative_bound = std::max(
           std::abs(prefactor_derivative[axis].lower()),
           std::abs(prefactor_derivative[axis].upper()));
-      centered[axis] =
-          centered[axis].inflate(derivative_bound * remainder_scale);
+      const double remainder =
+          (Interval::point(derivative_bound) *
+           Interval::point(remainder_scale))
+              .upper();
+      centered[axis] = centered[axis].inflate(remainder);
       const auto intersection = result[axis].intersection(centered[axis]);
       if (!intersection.has_value()) {
         throw AccelerationCertificationError(
@@ -1021,7 +1033,8 @@ FiniteWidthAttempt reconstruct_finite_width(
     IntervalVector cell_integral = centered_integral.has_value()
         ? integrand.value
         : scale(
-              Interval::point(cell_upper - cell_lower),
+              Interval::point(
+                  Interval(cell_lower, cell_upper).width()),
               integrand.value);
     if (monotone_integral.has_value()) {
       for (std::size_t axis = 0; axis < 3; ++axis) {
@@ -1535,17 +1548,6 @@ NativePairAccelerationCertificate certify_pair_acceleration(
           " acceleration enclosure exceeds the declared tolerance");
       }
     }
-    std::vector<IntervalVector> replay;
-    replay.reserve(rows.size());
-    for (const auto& row : rows) {
-      replay.push_back(row.acceleration);
-    }
-    const bool reconstruction_matches =
-        same_vector(total, fixed_pairwise_sum(replay));
-    if (!reconstruction_matches) {
-      throw AccelerationCertificationError(
-          "emitted acceleration rows do not reconstruct the pair total");
-    }
     return {
         .schema = "eom_native_pair_acceleration_certificate/v1",
         .row_id = request.row_id,
@@ -1587,6 +1589,17 @@ NativePairAccelerationCertificate certify_pair_acceleration(
         precision_escalation_wall_seconds,
         precision_escalation_attempt_count);
   } catch (const std::runtime_error& error) {
+    return uncertified_pair(
+        request, error.what(), quadrature_visited_cells,
+        analytic_fold_visited_cells,
+        correlated_self_chord_visited_cells,
+        stable_circular_residual_visited_cells,
+        acceleration_precision_escalated,
+        achieved_acceleration_precision_bits,
+        wall_seconds_since(pair_timing_start), finite_width_wall_seconds,
+        precision_escalation_wall_seconds,
+        precision_escalation_attempt_count);
+  } catch (const std::logic_error& error) {
     return uncertified_pair(
         request, error.what(), quadrature_visited_cells,
         analytic_fold_visited_cells,
@@ -1830,8 +1843,6 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
             *pair_certificates[pair_index].total_acceleration);
       }
       const IntervalVector total = fixed_pairwise_sum(transmitter_totals);
-      reconstruction_matches = reconstruction_matches &&
-          same_vector(total, fixed_pairwise_sum(transmitter_totals));
       receiver_totals.push_back({path_ids[receiver_index], total});
     }
   }

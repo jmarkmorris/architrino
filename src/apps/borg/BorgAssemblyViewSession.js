@@ -278,11 +278,20 @@ export function resolveBorgAssemblyViewTrail(entry) {
       source: "prescribed-display-periods",
     });
   }
+  const window = entry?.dataset?.window;
+  const delayHorizon = Number(window?.delayHorizon);
+  const recordDuration = Number(window?.end) - Number(window?.start);
+  const sampleInterval = Number(window?.sampleInterval);
+  const duration = delayHorizon > 0
+    ? Math.min(delayHorizon, recordDuration)
+    : Math.min(sampleInterval, recordDuration);
   return Object.freeze({
-    duration: entry?.dataset?.window?.delayHorizon ?? null,
+    duration,
     period: loop.available ? loop.period : null,
     periodCount: null,
-    source: "record-delay-horizon",
+    source: delayHorizon > 0
+      ? "record-delay-horizon"
+      : "record-sample-interval-fallback",
   });
 }
 

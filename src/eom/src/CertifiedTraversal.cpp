@@ -433,7 +433,12 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
     result.unresolved_pairs = result.exact_fallback_pairs;
     result.exact_fallback_pairs = 0;
     result.exact_tiles.clear();
-    result.excluded_pairs = logical_pairs - result.unresolved_pairs;
+    if (resource_failed) {
+      result.unresolved_pairs = logical_pairs;
+      result.excluded_pairs = 0;
+    } else {
+      result.excluded_pairs = logical_pairs - result.unresolved_pairs;
+    }
   } else if (resource_failed) {
     result.excluded_pairs = 0;
     result.unresolved_pairs = logical_pairs - result.exact_fallback_pairs;

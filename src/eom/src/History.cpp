@@ -1,4 +1,5 @@
 #include "architrino/eom/History.hpp"
+#include "architrino/eom/Decimal.hpp"
 
 #include <boost/multiprecision/cpp_int.hpp>
 
@@ -63,6 +64,7 @@ std::uint64_t initial_history_fingerprint_state() {
 
 std::string history_fingerprint(std::uint64_t state) {
   std::ostringstream stream;
+  stream.imbue(std::locale::classic());
   stream << "fnv1a64-chain-v1:" << std::hex << std::setw(16)
          << std::setfill('0')
          << state;
@@ -189,21 +191,11 @@ void validate_segment_join(
 }
 
 double parse_decimal(const std::string& token, const char* label) {
-  errno = 0;
-  char* end = nullptr;
-  const double value = std::strtod(token.c_str(), &end);
-  if (errno == ERANGE || end == token.c_str() || *end != '\0' ||
-      !std::isfinite(value)) {
-    throw std::invalid_argument(std::string("invalid ") + label + ": " + token);
-  }
-  return value;
+  return parse_finite_double(token, label);
 }
 
 std::string decimal_token(double value) {
-  std::ostringstream stream;
-  stream << std::setprecision(std::numeric_limits<double>::max_digits10)
-         << value;
-  return stream.str();
+  return finite_double_token(value);
 }
 
 std::array<double, 3> rotate_x(

@@ -1,7 +1,7 @@
 import {
   PRESCRIBED_PATH_ANALYSIS_ID,
   runPrescribedPathAnalysisRequest,
-} from "../../prescribed-path-analysis/index.mjs";
+} from "../../prescribed-path-analysis/PrescribedPathAnalysis.mjs";
 
 const QUARTER_TURN = Math.PI / 2;
 const NO_FORWARD_SPAN = 0;

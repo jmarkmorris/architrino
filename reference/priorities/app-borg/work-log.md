@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-24 - Borg Code-Review Repair
+
+- Fixed both severity-1 findings from `borg-code-review-2026-07-24.md`. The browser now applies history-prefix release and client-window bounding only to Display requests, so certified chunk two retains the full causal history. The certified response firewall now checks a client-owned allowed evidence-status set instead of comparing the server's status to itself. Claim grade: derived implementation plus focused regressions. Falsifier: the certified browser-client chunk-two request loses any retained segment, or a completed certified response with an invented evidence status is accepted.
+- Isolated runtime state by run/workspace, excluded asynchronous generation and prefill guards from snapshots, registered every mount listener for disposal, separated replay from live EOM retention/calibration, repaired tube and ArrowHelper display state, and bounded the reviewed timeline and path-key edge cases. The frame hot path now uses indexed lookups and reusable interpolation rows; prescribed analysis caches immutable record validation and digest work. Claim grade: derived implementation plus focused runtime, scene, retention, replay, and provider regressions. Falsifier: a reviewed state leak or display edge case reproduces under its named regression, replay changes measured EOM calibration, or frame interpolation resumes allocating a per-frame map and particle rows.
+- Reclassified the 2026-07-01 release-budget sweep as historical measurement of the deleted pre-EOM browser path. Its ceilings no longer gate the current EOM surface; current limits require measurements from live EOM chunks. The historical JSON remains unchanged as provenance-bound evidence. Claim grade: provenance disposition plus contract regression. Falsifier: current runtime controls consume a ceiling from the historical manifest or the historical artifact is silently relabeled as an EOM measurement.
+
+Plainly: certified runs keep the past they need, evidence labels are checked by the client, switching views no longer mixes run state, and old browser measurements cannot masquerade as current EOM limits.
+
 ### 2026-07-21 - Auto-Tuned Playback And Persistent Trail Duration
 
 - Removed the playback-pace selector. Playback now always requests the controller's $1\,T/s$ ceiling, while measured solver production, the safety factor, the retained lead, and any chunk still in flight automatically reduce the actual playback pace. Claim grade: operator decision plus derived implementation. Falsifier: the timeline still exposes a playback-pace selector or playback bypasses `getBorgAdaptivePlaybackRate` and its in-flight lead protection.

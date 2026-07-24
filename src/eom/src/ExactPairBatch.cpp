@@ -1,4 +1,5 @@
 #include "architrino/eom/ExactPairBatch.hpp"
+#include "architrino/eom/Decimal.hpp"
 #include "architrino/eom/JointRootBracket.hpp"
 #include "architrino/eom/JointAffineHistory.hpp"
 
@@ -13,7 +14,6 @@
 #include <cmath>
 #include <condition_variable>
 #include <cstddef>
-#include <cstdlib>
 #include <exception>
 #include <functional>
 #include <iomanip>
@@ -33,19 +33,11 @@ namespace architrino::eom {
 namespace {
 
 double parse_double(const std::string& token, const char* label) {
-  char* end = nullptr;
-  const double value = std::strtod(token.c_str(), &end);
-  if (end == token.c_str() || *end != '\0' || !std::isfinite(value)) {
-    throw std::invalid_argument(std::string("invalid ") + label + ": " + token);
-  }
-  return value;
+  return parse_finite_double(token, label);
 }
 
 std::string double_token(double value) {
-  std::ostringstream stream;
-  stream << std::setprecision(std::numeric_limits<double>::max_digits10)
-         << value;
-  return stream.str();
+  return finite_double_token(value);
 }
 
 struct DoubleGeometry {
@@ -178,8 +170,9 @@ bool same_transmitter_prefix_tokens(
   std::size_t current_index = current.segment_index_at(lower);
   std::size_t prior_index = prior.segment_index_at(lower);
   while (true) {
-    const auto& current_segment = current.segments()[current_index];
-    const auto& prior_segment = prior.segments()[prior_index];
+    const CubicHistorySegment current_segment =
+        current.segments()[current_index];
+    const CubicHistorySegment prior_segment = prior.segments()[prior_index];
     if (!same_segment_tokens(current_segment, prior_segment)) {
       return false;
     }
@@ -193,11 +186,28 @@ bool same_transmitter_prefix_tokens(
   }
 }
 
+bool same_history_tokens_at(
+    const RetainedHistory& current,
+    const RetainedHistory& prior,
+    double time) {
+  const Interval point = Interval::point(time);
+  if (!current.covers(point) || !prior.covers(point)) {
+    return false;
+  }
+  const CubicHistorySegment current_segment =
+      current.segments()[current.segment_index_at(time)];
+  const CubicHistorySegment prior_segment =
+      prior.segments()[prior.segment_index_at(time)];
+  return same_segment_tokens(current_segment, prior_segment);
+}
+
 bool same_history_endpoint(
     const ExactPairRequest& request,
     double cell_upper,
     double reception) {
   return request.receiver->history_id() == request.source->history_id() &&
+         request.receiver->provenance_fingerprint() ==
+             request.source->provenance_fingerprint() &&
          cell_upper == reception;
 }
 
@@ -554,7 +564,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       (field_speed + norm(receiver_state.velocity)).upper();
   const Interval fallback_receiver_factor =
       Interval::point(0.0).inflate(receiver_factor_abs_bound);
-  const auto& receiver_segment = request.receiver->segments()[
+  const CubicHistorySegment receiver_segment = request.receiver->segments()[
       request.receiver->segment_index_at(reception_value)];
   attempt.stable_negative_prefix_upper = search_lower;
 
@@ -569,6 +579,8 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     const auto& prior_source = *request.warm_start->source;
     const double prior_reception =
         parse_double(prior.reception_time, "warm-start reception time");
+    const double prior_search_lower =
+        parse_double(prior.searched_lower, "warm-start searched lower");
     const Interval prior_reception_interval =
         Interval::decimal_token(prior.reception_time);
     warm_start_eligible =
@@ -577,9 +589,16 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         prior.field_speed == request.field_speed &&
         prior.receiver_history_id == prior_receiver.history_id() &&
         prior.transmitter_history_id == prior_source.history_id() &&
+        prior.receiver_history_fingerprint ==
+            prior_receiver.provenance_fingerprint() &&
+        prior.transmitter_history_fingerprint ==
+            prior_source.provenance_fingerprint() &&
         prior_receiver.history_id() == request.receiver->history_id() &&
         prior_source.history_id() == request.source->history_id() &&
-        prior_receiver.covers(prior_reception_interval);
+        prior_receiver.covers(prior_reception_interval) &&
+        prior_search_lower <= search_lower &&
+        same_history_tokens_at(
+            *request.receiver, prior_receiver, prior_reception);
     if (warm_start_eligible) {
       const Interval receiver_displacement = norm(subtract(
           receiver_state.position,
@@ -869,7 +888,8 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       ++attempt.difficult_cells;
       return;
     }
-    const auto& transmitter_segment = request.source->segments()[cell.segment_index];
+    const CubicHistorySegment transmitter_segment =
+        request.source->segments()[cell.segment_index];
     const Interval emission(cell.lower, cell.upper);
     if (self_path_from_cell_is_subfield(cell)) {
       if (search_upper == reception_value) {
@@ -1098,14 +1118,11 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
           return left->upper < right->upper;
         });
     double cursor = incremental_search_lower;
-    const double continuity_tolerance =
-        64.0 * std::numeric_limits<double>::epsilon() *
-        std::max({1.0, std::abs(search_lower), std::abs(search_upper)});
     for (const auto* cell : ordered_cells) {
       if (cell->upper <= cursor) {
         continue;
       }
-      if (cell->lower > cursor + continuity_tolerance) {
+      if (cell->lower > cursor) {
         break;
       }
       cursor = std::max(cursor, cell->upper);
@@ -1121,7 +1138,7 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
     ++attempt.difficult_cells;
   }
   if (attempt.complete) {
-    const auto& prefix_segment = request.source->segments()[
+    const CubicHistorySegment prefix_segment = request.source->segments()[
         request.source->segment_index_at(incremental_search_lower)];
     std::optional<DoubleGeometry> prefix_geometry;
     try {
@@ -3453,7 +3470,7 @@ ExactPairCertificate mpfr_certificate(
       request.receiver->velocity_hull(reception),
       same_retained_history,
       same_retained_history ? request.source : nullptr};
-  const auto& prefix_segment = request.source->segments()[
+  const CubicHistorySegment prefix_segment = request.source->segments()[
       request.source->segment_index_at(search_lower)];
   const auto prefix_geometry = double_geometry(
       receiver_state, prefix_segment, reception,
@@ -3463,8 +3480,10 @@ ExactPairCertificate mpfr_certificate(
     double prefix_upper =
         parse_double(request.search_upper, "search upper bound");
     for (const auto& root : certificate.roots) {
-      prefix_upper = std::min(
-          prefix_upper, parse_double(root.lower, "MPFR root lower"));
+      const double conservative_root_lower = std::nextafter(
+          parse_double(root.lower, "MPFR root lower"),
+          -std::numeric_limits<double>::infinity());
+      prefix_upper = std::min(prefix_upper, conservative_root_lower);
     }
     if (prefix_upper > search_lower) {
       certificate.stable_negative_prefix_certified = true;
@@ -3627,10 +3646,14 @@ WarmSourceEqualityBounds compute_warm_source_equality_bounds(
       -std::numeric_limits<double>::infinity(), 0};
   const std::size_t aligned_limit =
       std::min(current.segments().size(), warm.segments().size());
-  while (bounds.aligned_equal_segments < aligned_limit &&
-         same_segment_tokens(
-             current.segments()[bounds.aligned_equal_segments],
-             warm.segments()[bounds.aligned_equal_segments])) {
+  while (bounds.aligned_equal_segments < aligned_limit) {
+    const CubicHistorySegment current_segment =
+        current.segments()[bounds.aligned_equal_segments];
+    const CubicHistorySegment warm_segment =
+        warm.segments()[bounds.aligned_equal_segments];
+    if (!same_segment_tokens(current_segment, warm_segment)) {
+      break;
+    }
     ++bounds.aligned_equal_segments;
   }
   const Interval anchor = Interval::point(search_lower);
@@ -3640,12 +3663,14 @@ WarmSourceEqualityBounds compute_warm_source_equality_bounds(
   std::size_t current_index = current.segment_index_at(search_lower);
   std::size_t warm_index = warm.segment_index_at(search_lower);
   while (current_index < current.segments().size() &&
-         warm_index < warm.segments().size() &&
-         same_segment_tokens(
-             current.segments()[current_index],
-             warm.segments()[warm_index])) {
-    bounds.prefix_token_stable_upper =
-        current.segments()[current_index].t_end();
+         warm_index < warm.segments().size()) {
+    const CubicHistorySegment current_segment =
+        current.segments()[current_index];
+    const CubicHistorySegment warm_segment = warm.segments()[warm_index];
+    if (!same_segment_tokens(current_segment, warm_segment)) {
+      break;
+    }
+    bounds.prefix_token_stable_upper = current_segment.t_end();
     ++current_index;
     ++warm_index;
   }

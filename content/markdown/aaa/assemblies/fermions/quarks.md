@@ -495,14 +495,14 @@ where $I_{\mathrm{had}}$ is the selected hadronization route. The readout $P_{\L
 
 ### Fixed by the Architecture
 
-The following parts of the quark catalog are fixed strongly enough to be treated as canonical:
+The following parts of the quark catalog are fixed strongly enough to be treated as canonical. Two classes are mixed here and should be read differently: definitional conventions of the catalog (labeling and basis choices) versus canonical physical hypotheses under test (tagged below):
 
-- up-type axial count $5\epsilon_+,1\epsilon_-$,
-- down-type axial count $2\epsilon_+,4\epsilon_-$,
-- generation as Noether braid shielding level,
-- architrino counts $12$, $10$, and $8$ for Generations I, II, and III,
-- color as axis exceptionality in the three-state $(1,2,3)$ basis,
-- gluon action as an $SU(3)$ color reconfiguration that preserves flavor inventory.
+- up-type axial count $5\epsilon_+,1\epsilon_-$ (hypothesis under test),
+- down-type axial count $2\epsilon_+,4\epsilon_-$ (hypothesis under test),
+- generation as Noether braid shielding level (hypothesis under test),
+- architrino counts $12$, $10$, and $8$ for Generations I, II, and III (hypothesis under test),
+- color as axis exceptionality in the three-state $(1,2,3)$ basis (definitional convention),
+- gluon action as an $SU(3)$ color reconfiguration that preserves flavor inventory (hypothesis under test).
 
 ### Still open
 

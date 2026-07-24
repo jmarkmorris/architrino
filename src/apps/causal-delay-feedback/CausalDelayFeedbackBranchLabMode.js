@@ -1,17 +1,15 @@
 function finiteVector(value) {
   if (Array.isArray(value) && value.length >= 2) {
-    return {
-      x: Number.isFinite(Number(value[0])) ? Number(value[0]) : 0,
-      y: Number.isFinite(Number(value[1])) ? Number(value[1]) : 0,
-    };
+    const x = Number(value[0]);
+    const y = Number(value[1]);
+    return Number.isFinite(x) && Number.isFinite(y) ? { x, y } : null;
   }
   if (value && typeof value === "object") {
-    return {
-      x: Number.isFinite(Number(value.x)) ? Number(value.x) : 0,
-      y: Number.isFinite(Number(value.y)) ? Number(value.y) : 0,
-    };
+    const x = Number(value.x);
+    const y = Number(value.y);
+    return Number.isFinite(x) && Number.isFinite(y) ? { x, y } : null;
   }
-  return { x: 0, y: 0 };
+  return null;
 }
 
 function stableBranchColor(id) {
@@ -30,21 +28,18 @@ export function createBranchLabView(state, {
 } = {}) {
   const rows = [...state.acceptedBranchRows, ...state.rejectedBranchRows]
     .map((row, index) => {
-      const acceleration = finiteVector(
-        row.acceleration ?? {
-          x: row.accepted && row.emission && row.reception
-            ? row.reception.x - row.emission.x
-            : 0,
-          y: row.accepted && row.emission && row.reception
-            ? row.reception.y - row.emission.y
-            : 0,
-        },
-      );
-      const magnitude = Math.hypot(acceleration.x, acceleration.y);
+      const acceleration = finiteVector(row.acceleration);
+      const accelerationAvailable = acceleration !== null;
+      const magnitude = accelerationAvailable
+        ? Math.hypot(acceleration.x, acceleration.y)
+        : Number.NaN;
       const age = Number(state.receiverTime) - Number(row.emissionTime);
       const filterReasons = [
+        !accelerationAvailable ? "acceleration unavailable" : null,
         Number.isFinite(age) && age > historyAgeLimit ? "outside history-age filter" : null,
-        magnitude < minimumContribution ? "below contribution-magnitude filter" : null,
+        accelerationAvailable && magnitude < minimumContribution
+          ? "below contribution-magnitude filter"
+          : null,
         rootKind !== "all" && row.rootKind !== rootKind ? "outside root-kind filter" : null,
         row.accepted &&
           Number.isFinite(Number(row.transversality)) &&
@@ -57,6 +52,7 @@ export function createBranchLabView(state, {
         id: row.id ?? `branch:${index + 1}`,
         color: stableBranchColor(row.id ?? `branch:${index + 1}`),
         acceleration,
+        accelerationAvailable,
         magnitude,
         age,
         included: filterReasons.length === 0,
@@ -68,8 +64,8 @@ export function createBranchLabView(state, {
   const rejectedRows = includedRows.filter((row) => !row.accepted);
   const vectorSum = acceptedRows.reduce(
     (sum, row) => ({
-      x: sum.x + row.acceleration.x,
-      y: sum.y + row.acceleration.y,
+      x: sum.x + (row.acceleration?.x ?? 0),
+      y: sum.y + (row.acceleration?.y ?? 0),
     }),
     { x: 0, y: 0 },
   );

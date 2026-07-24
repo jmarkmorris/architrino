@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iomanip>
 #include <limits>
+#include <locale>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -42,6 +43,7 @@ void hash_token(std::uint64_t& state, const std::string& token) {
 
 std::string format_hash(std::uint64_t state) {
   std::ostringstream stream;
+  stream.imbue(std::locale::classic());
   stream << "fnv1a64:" << std::hex << std::setw(16) << std::setfill('0')
          << state;
   return stream.str();

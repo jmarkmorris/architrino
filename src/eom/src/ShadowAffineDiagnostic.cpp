@@ -1,10 +1,10 @@
 #include "architrino/eom/ShadowAffineDiagnostic.hpp"
+#include "architrino/eom/Decimal.hpp"
 #include "architrino/eom/JointState.hpp"
 
 #include <algorithm>
 #include <array>
 #include <cmath>
-#include <cstdlib>
 #include <fstream>
 #include <iomanip>
 #include <limits>
@@ -77,12 +77,7 @@ struct JointConsumptionFailure {
 };
 
 double token(const std::string& value) {
-  char* end = nullptr;
-  const double parsed = std::strtod(value.c_str(), &end);
-  if (end == value.c_str() || *end != '\0' || !std::isfinite(parsed)) {
-    throw std::invalid_argument("shadow affine diagnostic received a nonfinite token");
-  }
-  return parsed;
+  return parse_finite_double(value, "shadow affine diagnostic token");
 }
 
 std::string json_escape(const std::string& value) {

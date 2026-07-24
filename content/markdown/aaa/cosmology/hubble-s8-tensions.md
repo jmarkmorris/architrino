@@ -291,6 +291,6 @@ In the modular cosmology map, this document is the coupling layer between:
 
 ## Coherent Reading
 
-$H_0$ and $S_8$ are not separate anomalies requiring separate ontologies; they are two observer-level projections of one medium-relaxation and coupling history in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+$H_0$ and $S_8$ are not separate anomalies requiring separate ontologies; they are proposed as two observer-level projections of one medium-relaxation and coupling history in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 For a broader diagnosis of anomaly clustering versus ontology splitting, compare [Crisis in Physics](../philosophy-history/crisis-in-physics.md).

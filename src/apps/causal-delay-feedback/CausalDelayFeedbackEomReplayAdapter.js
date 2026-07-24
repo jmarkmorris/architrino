@@ -10,7 +10,7 @@ import {
   SPACE_AXIS_TOP_Y,
   TIME_AXIS_BASELINE_Y,
   getPresetById,
-} from "./CausalDelayFeedbackReplayAdapter.js";
+} from "./CausalDelayFeedbackDisplayContract.js";
 
 // Causal-Delay-Feedback replay source over recorded EOM datasets.
 //
@@ -24,6 +24,8 @@ import {
 export const EOM_REPLAY_ADAPTER = "eom_history_replay_adapter";
 export const EOM_REPLAY_DATASET_SOURCE = "eom_history_replay";
 export const EOM_REPLAY_DEFAULT_HISTORY_DEPTH = 6;
+export const EOM_REPLAY_MAX_FRAME_COUNT = 20_000;
+export const EOM_REPLAY_MAX_HISTORY_DEPTH = 1_024;
 
 const SPACE_AXES = Object.freeze(["x", "y", "z"]);
 const SPACE_MARGIN_FRACTION = 0.06;
@@ -72,21 +74,42 @@ export function normalizeCausalDelayFeedbackEomReplay(recordOrDataset, {
     : createEomHistoryDataset(recordOrDataset);
   const preset = getPresetById(presetId);
   const roles = resolveWorldlineRoles(historyDataset, requestOptions);
-  const frameCount = Math.max(2, Math.floor(Number(requestOptions.frameCount) || FRAME_COUNT));
-  const projection = createTimeSpaceCanvasProjection(historyDataset, roles, requestOptions);
+  const frameCount = normalizeBoundedCount(
+    requestOptions.frameCount,
+    FRAME_COUNT,
+    EOM_REPLAY_MAX_FRAME_COUNT,
+    "frameCount",
+  );
+  const historyDepth = normalizeBoundedCount(
+    requestOptions.historyDepth,
+    EOM_REPLAY_DEFAULT_HISTORY_DEPTH,
+    EOM_REPLAY_MAX_HISTORY_DEPTH,
+    "historyDepth",
+  );
+  const recordedSamples = {
+    positrino: historyDataset.createFrameSamples({
+      frameCount,
+      worldlineIds: [roles.positrino.id],
+    }),
+    electrino: historyDataset.createFrameSamples({
+      frameCount,
+      worldlineIds: [roles.electrino.id],
+    }),
+  };
+  const projection = createTimeSpaceCanvasProjection(recordedSamples, historyDataset.window, requestOptions);
   const paths = {
-    positrino: projectWorldlinePath(historyDataset, roles.positrino, projection, frameCount),
-    electrino: projectWorldlinePath(historyDataset, roles.electrino, projection, frameCount),
+    positrino: projectWorldlinePath(recordedSamples.positrino, projection),
+    electrino: projectWorldlinePath(recordedSamples.electrino, projection),
+  };
+  const physicalPaths = {
+    positrino: createPhysicalWorldlinePath(recordedSamples.positrino),
+    electrino: createPhysicalWorldlinePath(recordedSamples.electrino),
   };
   const frames = paths.positrino.map((point, index) => ({
     t: point.t,
     positrino: point,
     electrino: paths.electrino[index],
   }));
-  const historyDepth = Math.max(
-    2,
-    Math.floor(Number(requestOptions.historyDepth) || EOM_REPLAY_DEFAULT_HISTORY_DEPTH),
-  );
   const history = {
     positrino: createRetainedHistoryPoints(paths.positrino, historyDepth, "positrino"),
     electrino: createRetainedHistoryPoints(paths.electrino, historyDepth, "electrino"),
@@ -106,6 +129,11 @@ export function normalizeCausalDelayFeedbackEomReplay(recordOrDataset, {
       electrino: roles.electrino.id,
     },
     displayProjection: projection.descriptor,
+    physicalPaths,
+    causalEvaluation: {
+      enabled: false,
+      reason: "record_has_no_delayed_hit_rows",
+    },
     wakeArcDisplayMode: preset.wakeArcDisplayMode,
     canvasColorId: preset.canvasColorId ?? DEFAULT_CANVAS_ID,
     ...(Number.isFinite(Number(preset.assemblyThreshold))
@@ -123,16 +151,31 @@ export function normalizeCausalDelayFeedbackEomReplay(recordOrDataset, {
 }
 
 function resolveWorldlineRoles(historyDataset, requestOptions = {}) {
+  const positiveWorldlines = historyDataset.worldlines.filter((worldline) => worldline.polarity > 0);
+  const negativeWorldlines = historyDataset.worldlines.filter((worldline) => worldline.polarity < 0);
   const positrino = requestOptions.positrinoWorldlineId != null
     ? requireWorldlineById(historyDataset, requestOptions.positrinoWorldlineId)
-    : historyDataset.worldlines.find((worldline) => worldline.polarity > 0);
+    : positiveWorldlines.length === 1
+      ? positiveWorldlines[0]
+      : null;
   const electrino = requestOptions.electrinoWorldlineId != null
     ? requireWorldlineById(historyDataset, requestOptions.electrinoWorldlineId)
-    : historyDataset.worldlines.find((worldline) => worldline.polarity < 0);
+    : negativeWorldlines.length === 1
+      ? negativeWorldlines[0]
+      : null;
   if (!positrino || !electrino) {
     throw new Error(
-      "Causal-delay-feedback EOM replay requires one positive-polarity and one negative-polarity worldline " +
-        "(or explicit positrinoWorldlineId/electrinoWorldlineId request options).",
+      "Causal-delay-feedback EOM replay requires exactly one positive-polarity and one negative-polarity " +
+        "worldline, or explicit positrinoWorldlineId/electrinoWorldlineId request options.",
+    );
+  }
+  if (positrino.id === electrino.id) {
+    throw new Error("Causal-delay-feedback EOM replay requires two distinct worldline roles.");
+  }
+  if (!(positrino.polarity > 0) || !(electrino.polarity < 0)) {
+    throw new Error(
+      "Causal-delay-feedback EOM replay role overrides must select positive polarity for the positrino " +
+        "and negative polarity for the electrino.",
     );
   }
   return { positrino, electrino };
@@ -148,17 +191,13 @@ function requireWorldlineById(historyDataset, worldlineId) {
   return worldline;
 }
 
-function createTimeSpaceCanvasProjection(historyDataset, roles, requestOptions = {}) {
-  const { start, end } = historyDataset.window;
+function createTimeSpaceCanvasProjection(recordedSamples, window, requestOptions = {}) {
+  const { start, end } = window;
   const duration = end - start;
-  const spaceAxis = resolveSpaceAxis(historyDataset, roles, requestOptions);
+  const spaceAxis = resolveSpaceAxis(recordedSamples, requestOptions);
   let spaceMin = Number.POSITIVE_INFINITY;
   let spaceMax = Number.NEGATIVE_INFINITY;
-  [roles.positrino, roles.electrino].forEach((worldline) => {
-    const samples = historyDataset.createFrameSamples({
-      frameCount: 64,
-      worldlineIds: [worldline.id],
-    });
+  Object.values(recordedSamples).forEach((samples) => {
     samples.forEach((frame) => {
       const value = frame.states[0].position[spaceAxis];
       spaceMin = Math.min(spaceMin, value);
@@ -200,21 +239,20 @@ function createTimeSpaceCanvasProjection(historyDataset, roles, requestOptions =
   };
 }
 
-function resolveSpaceAxis(historyDataset, roles, requestOptions = {}) {
+function resolveSpaceAxis(recordedSamples, requestOptions = {}) {
   if (SPACE_AXES.includes(requestOptions.spaceAxis)) {
     return requestOptions.spaceAxis;
   }
   const ranges = new Map(SPACE_AXES.map((axis) => [axis, { min: Infinity, max: -Infinity }]));
-  [roles.positrino, roles.electrino].forEach((worldline) => {
-    historyDataset.createFrameSamples({ frameCount: 16, worldlineIds: [worldline.id] })
-      .forEach((frame) => {
-        SPACE_AXES.forEach((axis) => {
-          const range = ranges.get(axis);
-          const value = frame.states[0].position[axis];
-          range.min = Math.min(range.min, value);
-          range.max = Math.max(range.max, value);
-        });
+  Object.values(recordedSamples).forEach((samples) => {
+    samples.forEach((frame) => {
+      SPACE_AXES.forEach((axis) => {
+        const range = ranges.get(axis);
+        const value = frame.states[0].position[axis];
+        range.min = Math.min(range.min, value);
+        range.max = Math.max(range.max, value);
       });
+    });
   });
   let bestAxis = SPACE_AXES[0];
   let bestSpread = -Infinity;
@@ -229,11 +267,31 @@ function resolveSpaceAxis(historyDataset, roles, requestOptions = {}) {
   return bestAxis;
 }
 
-function projectWorldlinePath(historyDataset, worldline, projection, frameCount) {
-  const samples = historyDataset.createFrameSamples({
-    frameCount,
-    worldlineIds: [worldline.id],
+function createPhysicalWorldlinePath(samples) {
+  return samples.map((frame) => {
+    const state = frame.states[0];
+    return {
+      t: frame.time,
+      x: state.position.x,
+      y: state.position.y,
+      z: state.position.z,
+      vx: state.velocity.x,
+      vy: state.velocity.y,
+      vz: state.velocity.z,
+    };
   });
+}
+
+function normalizeBoundedCount(value, fallback, maximum, label) {
+  const number = Number(value);
+  const count = Number.isFinite(number) ? Math.floor(number) : fallback;
+  if (count > maximum) {
+    throw new RangeError(`${label} must not exceed ${maximum}.`);
+  }
+  return Math.max(2, count);
+}
+
+function projectWorldlinePath(samples, projection) {
   const spaceAxis = projection.descriptor.spaceAxis;
   return samples.map((frame) => {
     const state = frame.states[0];

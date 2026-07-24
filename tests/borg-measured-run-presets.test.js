@@ -11,10 +11,10 @@ import {
   updateMeasuredRunPresetCalibration,
 } from "../src/apps/borg/BorgMeasuredRunPresets.js";
 import {
-  BORG_RELEASE_BUDGET_MANIFEST_V1,
-  BORG_RELEASE_BUDGET_MANIFEST_VERSION,
-  validateBorgReleaseBudgetManifest,
-} from "../src/apps/borg/BorgReleaseBudgetManifest.js";
+  BORG_HISTORICAL_RELEASE_BUDGET_MANIFEST_VERSION,
+  BORG_RELEASE_BUDGET_DISPOSITION_V1,
+  validateBorgReleaseBudgetDisposition,
+} from "../src/apps/borg/BorgReleaseBudgetDisposition.js";
 
 const BASE_PRESETS = Object.freeze([
   Object.freeze({
@@ -93,13 +93,13 @@ test("Borg measured run presets use live wall time, heap, append rate, and worke
   const finitePreset = resolveMeasuredRunControlPreset(measured, "live-20s", BASE_PRESETS);
 
   assert.equal(measured.status, "measured-live-run-budget");
-  assert.equal(measured.thresholdAuthority, "measured-from-live-native-chunks");
+  assert.equal(measured.thresholdAuthority, "measured-from-live-eom-chunks");
   assert.equal(measured.sampleCount, 1);
   assert.ok(measured.thresholds.maxTargetDuration < 3000);
   assert.ok(measured.thresholds.maxChunkDuration < 20);
   assert.equal(livePreset.effectiveTargetDuration, Number.POSITIVE_INFINITY);
   assert.equal(livePreset.effectiveChunkDuration, measured.thresholds.maxChunkDuration);
-  assert.equal(livePreset.thresholdAuthority, "measured-from-live-native-chunks");
+  assert.equal(livePreset.thresholdAuthority, "measured-from-live-eom-chunks");
   assert.equal(finitePreset.effectiveTargetDuration, measured.thresholds.maxTargetDuration);
 });
 
@@ -167,10 +167,10 @@ test("Borg preset calibration sweep covers release sample matrix and binds code 
   assert.deepEqual(sweep.releaseBudgetCeilings, BORG_MEASURED_RUN_PRESET_LIMITS);
 });
 
-test("Borg release budget manifest binds sweep artifact to runtime ceilings", () => {
+test("Borg preserves the legacy sweep but refuses to apply it to the EOM surface", () => {
   const sweep = BORG_PRESET_CALIBRATION_SWEEP_V1;
   const manifest = BORG_RELEASE_BUDGET_MANIFEST_JSON_V1;
-  assert.equal(manifest.schema, BORG_RELEASE_BUDGET_MANIFEST_VERSION);
+  assert.equal(manifest.schema, BORG_HISTORICAL_RELEASE_BUDGET_MANIFEST_VERSION);
   assert.equal(manifest.status, "release-ceilings-decided");
   assert.equal(manifest.claimLevel, "developer-test-surface-budget");
   assert.equal(manifest.valueAuthority, "measured-browser-runtime-budget");
@@ -188,12 +188,21 @@ test("Borg release budget manifest binds sweep artifact to runtime ceilings", ()
   assert.deepEqual(manifest.observedExtrema, sweep.observedExtrema);
   assert.deepEqual(manifest.releaseBudgetCeilings, sweep.releaseBudgetCeilings);
   assert.deepEqual(manifest.releaseBudgetCeilings, BORG_MEASURED_RUN_PRESET_LIMITS);
-  assert.deepEqual(
-    BORG_RELEASE_BUDGET_MANIFEST_V1.releaseBudgetCeilings,
-    BORG_MEASURED_RUN_PRESET_LIMITS,
+  assert.equal(BORG_RELEASE_BUDGET_DISPOSITION_V1.sourceManifestId, manifest.manifestId);
+  assert.equal(
+    BORG_RELEASE_BUDGET_DISPOSITION_V1.status,
+    "superseded-non-eom-measurement",
   );
-  assert.equal(BORG_RELEASE_BUDGET_MANIFEST_V1.manifestId, manifest.manifestId);
-  assert.equal(validateBorgReleaseBudgetManifest(BORG_RELEASE_BUDGET_MANIFEST_V1), true);
+  assert.equal(
+    BORG_RELEASE_BUDGET_DISPOSITION_V1.valueAuthority,
+    "historical-browser-runtime-measurement-disposition",
+  );
+  assert.equal(BORG_RELEASE_BUDGET_DISPOSITION_V1.appliesToCurrentEomSurface, false);
+  assert.equal(BORG_RELEASE_BUDGET_DISPOSITION_V1.currentEomReleaseBudgetCeilings, null);
+  assert.equal(
+    validateBorgReleaseBudgetDisposition(BORG_RELEASE_BUDGET_DISPOSITION_V1),
+    true,
+  );
   assert.equal(
     manifest.nextBuildBurden,
     "migrate-borg-through-certified-eom-shadow-run",

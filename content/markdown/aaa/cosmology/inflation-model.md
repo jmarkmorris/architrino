@@ -24,6 +24,8 @@ This keeps conceptual overlap with cyclical-universe intuitions while preserving
 
 ## SMBH-Core Mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$)
 
+The following sequence is hypothesized, carrying the same candidate grade as the Core Idea above:
+
 1. Inner assemblies enter a high-energy self-hit domain near maximal curvature.
 2. Energy transfer into medium-scale layers drives rapid effective expansion of assembly spacing.
 3. The system relaxes into a slower expansion regime with residual perturbations.

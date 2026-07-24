@@ -27,7 +27,7 @@ import {
   drawPhotonPolarizationInset,
   drawPhotonBraidStage,
 } from "./PhotonBraidVisualRuntime.js";
-import { PRESCRIBED_PATH_ANALYSIS_ID } from "../../prescribed-path-analysis/index.mjs";
+import { PRESCRIBED_PATH_ANALYSIS_ID } from "../../prescribed-path-analysis/PrescribedPathAnalysis.mjs";
 import {
   STANDALONE_APP_HOME_HREF,
   navigateStandaloneAppHome,
