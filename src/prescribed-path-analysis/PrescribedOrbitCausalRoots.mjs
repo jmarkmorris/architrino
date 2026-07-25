@@ -104,7 +104,7 @@ export function evaluateMovingCircularTransmitterPhase(transmitter = {}, timeSec
   const phaseAtEpoch = finiteNumber(transmitter.phaseAtEpoch);
   const angularVelocity = finiteNumber(transmitter.angularVelocity);
   // Optional constant angular acceleration alpha (default 0 preserves the
-  // fixed-omega rigid circle exactly). With alpha != 0 the tangential speed
+  // fixed-frequency circular path exactly). With alpha != 0 the tangential speed
   // omega(t)*|r| sweeps through the field-speed edge, so a same-transmitter root can
   // realize the pump-driven crossing rather than the reflection-locked m = +1.
   const angularAcceleration = finiteNumber(transmitter.angularAcceleration);

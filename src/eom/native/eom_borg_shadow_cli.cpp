@@ -1224,11 +1224,7 @@ void run(
                     : result.joint_histories.begin()
                           ->second.symbol_registry().size())
             << ",\"jointStateFallbackApplied\":"
-            << (result.status == "completed" &&
-                        !request.joint_histories.empty() &&
-                        result.joint_histories.empty()
-                    ? "true"
-                    : "false")
+            << (result.joint_state_fallback_applied ? "true" : "false")
             << ",\"timing\":{"
             << "\"snapshotTotalWallSeconds\":"
             << result.timing.snapshot_total_wall_seconds

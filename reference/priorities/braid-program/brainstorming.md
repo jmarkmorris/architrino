@@ -16,9 +16,9 @@ Entry format: `## Entry N — <plain title> (YYYY-MM-DD, <origin: operator discu
 
 **Relationships.** Configuration chart obligation 1a (added same day); canon two-braid precedents (`mesons.md`, `neutrinos.md`, photon-carrier definition); accessory capture (`noether-braid-configuration-space.md`); orientation-antimatter correspondence hypothesis (`terminology-usage.md`).
 
-## Entry 2 — the first non-spindle symmetric-shell chart requires non-rigid motion (2026-07-21, operator discussion)
+## Entry 2 — the first non-spindle symmetric-shell chart requires internal deformation (2026-07-21, operator discussion)
 
-**The overlap result (grade: derived geometry).** Let the face-opposite seed use $\mathbf e_x,\mathbf e_y,\mathbf e_z$, common radius $R$, body-diagonal axis $\hat{\mathbf n}=(1,1,1)/\sqrt3$, and rigid motion
+**The overlap result (grade: derived geometry).** Let the face-opposite seed use $\mathbf e_x,\mathbf e_y,\mathbf e_z$, common radius $R$, body-diagonal axis $\hat{\mathbf n}=(1,1,1)/\sqrt3$, and fixed-coordinate common-frequency co-rotation
 
 $$
 \mathbf X_{\pm,k}(T)
@@ -29,7 +29,7 @@ $$
 k\in\{x,y,z\}.
 $$
 
-Every pair is exactly antipodal, all six paths share one axis and one frequency, and each path has constant axial height $\pm R/\sqrt3$ and constant transverse radius $R\sqrt{2/3}$. Its spindle cap angle is therefore $\alpha=\arcsin(1/\sqrt3)$. The purely rigid face-opposite rotating chart is an equal-radius, equal-cap-angle member of the spindle family; cataloging it as the first non-spindle prescribed geometry would duplicate the family under a support label. Falsifier: one of the rigid paths lacks a fixed common axis, fixed common frequency, exact antipodality, constant radius, or the stated cap height.
+Every pair is exactly antipodal, all six paths share one axis and one frequency, and each path has constant axial height $\pm R/\sqrt3$ and constant transverse radius $R\sqrt{2/3}$. Its spindle cap angle is therefore $\alpha=\arcsin(1/\sqrt3)$. The fixed-coordinate face-opposite co-rotating chart is an equal-radius, equal-cap-angle member of the spindle family; cataloging it as the first non-spindle prescribed geometry would duplicate the family under a support label. Falsifier: one of the prescribed paths lacks a fixed common axis, fixed common frequency, exact antipodality, constant radius, or the stated cap height.
 
 **Candidate non-spindle chart (grade: proposed display ansatz; operator selection required).** Preserve the exact $C_3\times\langle\iota\rangle$ symmetric-shell channel while giving its common shell radius a periodic breathing mode,
 
@@ -59,9 +59,9 @@ $$
 
 The ansatz is consistent with the live relative-periodic-orbit target of radial breathing against rotation. It is prescribed display geometry only; it is not a master-equation solution, retention result, or selected physical mode. Falsifier: the emitted paths violate the common shell band, antipodality, three-fold symmetry, period return, or equal-speed identity.
 
-**Inputs still requiring operator choice.** Motion class (common radial breathing versus another non-rigid deformation), representative radius $R_*$, fractional breathing amplitude $\varepsilon$, breathing/rotation ratio $m$, rotation rate $\omega$, breathing phase $\phi_b$, drift speed, polarity-face assignment, record interval, and display envelope. Once the motion class is selected, the remaining values can be decided one at a time and sealed in a source-defined `prescribed-geometry` chart.
+**Inputs still requiring operator choice.** Motion class (common radial breathing versus another internal deformation), representative radius $R_*$, fractional breathing amplitude $\varepsilon$, breathing/rotation ratio $m$, rotation rate $\omega$, breathing phase $\phi_b$, drift speed, polarity-face assignment, record interval, and display envelope. Once the motion class is selected, the remaining values can be decided one at a time and sealed in a source-defined `prescribed-geometry` chart.
 
-**Promotion target.** The numerical chart belongs in a source specification and Borg record, not in reader-facing corpus prose. Only the derived rigid-overlap statement or a generally useful symmetry-preserving breathing parameterization should be considered for later corpus promotion after operator review.
+**Promotion target.** The numerical chart belongs in a source specification and Borg record, not in reader-facing corpus prose. Only the derived fixed-coordinate overlap statement or a generally useful symmetry-preserving breathing parameterization should be considered for later corpus promotion after operator review.
 
 ## Entry 3 — coordinate-first taxonomy scope and deferred dimensions (2026-07-21, operator discussion)
 
@@ -69,9 +69,9 @@ The ansatz is consistent with the live relative-periodic-orbit target of radial 
 
 **Axis-structure question (grade: discussion-scoped).** Do not assign a named axis-structure class yet. The current prescribed examples may all require three binary axes, but that observation does not yet define the classification coordinate. Do not add a parallel-but-displaced case at this stage. A rank-two flat geometry is to be treated as an endpoint of a rank-three coordinate family rather than as a separate family. The next discussion must decide which invariant of the three recorded axis vectors defines this dimension and how limiting cases are represented. A candidate mathematical instrument for that discussion is the axis Gram matrix $G_{ab}=\hat{\mathbf n}_a\mathbin{\cdot}\hat{\mathbf n}_b$, but no rank or equivalence rule is accepted yet.
 
-**Deferred motion and geometry breadth (grade: operator-approved scope boundary).** The first taxonomy table records rigid time dependence only as an idealized characteristic. Breathing, precession, and other deformations remain possible later extensions, but they are not table columns now. The reader-facing chapter should state only that many more braid geometries may be investigated; it should not enumerate those possibilities. Support-based names are withheld.
+**Deferred motion and geometry breadth (grade: operator-approved scope boundary).** The first taxonomy table records fixed-coordinate prescribed time dependence only as an idealized characteristic. Breathing, precession, and other deformations remain possible later extensions, but they are not table columns now. The reader-facing chapter should state only that many more braid geometries may be investigated; it should not enumerate those possibilities. Support-based names are withheld.
 
-**Promotion routing.** The fixed neutral-binary coordinates and neutral member-ID scheme are promoted now to `content/markdown/aaa/noether-braid/braid-taxonomy.md`. The axis-structure invariant, non-rigid motion coordinates, additional braid-level dimensions, and support terminology remain priority-only until their one-at-a-time operator discussions close.
+**Promotion routing.** The fixed neutral-binary coordinates and neutral member-ID scheme are promoted now to `content/markdown/aaa/noether-braid/braid-taxonomy.md`. The axis-structure invariant, internal-deformation coordinates, additional braid-level dimensions, and support terminology remain priority-only until their one-at-a-time operator discussions close.
 
 ## Entry 4 — Accessory Configuration moment applications require the full six-site record (2026-07-21, taxonomy migration audit)
 

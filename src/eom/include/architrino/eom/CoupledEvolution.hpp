@@ -582,6 +582,9 @@ struct NativeCoupledEvolutionCertificate {
   std::string accepted_end_time;
   std::vector<NativePublishedPath> histories;
   std::map<std::string, JointAffineRetainedHistory> joint_histories;
+  // True only when this controller invocation actually discarded supplied
+  // optional joint state to take a certified ordinary finite-width route.
+  bool joint_state_fallback_applied = false;
   std::vector<NativeAtomicStepCertificate> steps;
   std::size_t accepted_step_count;
   std::size_t rejected_step_count;

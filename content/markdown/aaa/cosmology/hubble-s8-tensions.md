@@ -73,7 +73,7 @@ Both tensions are treated as different projections of one process: non-uniform r
 
 For $H_0$:
 
-- early-universe inference samples a comparatively rigid, less-relaxed Noether sea state,
+- early-universe inference samples a comparatively constrained, less-relaxed Noether sea state,
 - local ladders sample more relaxed pockets with different clock-rate environments.
 
 This mechanism has a required sign, not merely a tunable magnitude. Define

@@ -590,11 +590,19 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(recovered["status"], "completed")
         self.assertEqual(recovered["halt_code"], "")
         self.assertEqual(recovered["joint_history_count"], 0)
+        self.assertTrue(recovered["joint_state_fallback_applied"])
         self.assertGreater(recovered["accepted_step_count"], 0)
 
     def test_ordinary_joint_event_selects_non_joint_retry(self) -> None:
         self.assertTrue(
             self.packet["joint_event_ordinary_fallback_selected"]
+        )
+
+    def test_non_joint_evolution_does_not_claim_joint_fallback(self) -> None:
+        self.assertFalse(
+            self.evolution("static-multistep")[
+                "joint_state_fallback_applied"
+            ]
         )
 
     def test_regulator_matching_remainder_contains_stationary_closed_form(self) -> None:

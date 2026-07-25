@@ -2,7 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  assessCircularBalance,
   ledgerAt,
+  LINE_OF_ACTION,
   scanLedger,
   selfRoots,
 } from "../scripts/equation-mapping/analyze-circular-self-hit-binary.mjs";
@@ -71,4 +73,90 @@ test("the complete simple-root circular ledger has a tangential zero with inward
   closeTo(scan.zeros[0].beta, 3.070356625390253, 2e-10);
   assert.ok(scan.zeros[0].radial < 0);
   closeTo(scan.zeros[0].tangential, 0, 2e-9);
+});
+
+test("the extrapolated self direction agrees with its independent circular closed form", () => {
+  const beta = 3;
+  const x = selfRoots(beta)[0];
+  const ledger = ledgerAt(beta, {
+    lineOfAction:
+      LINE_OF_ACTION.INERTIALLY_EXTRAPOLATED_EMISSION_SITE,
+  });
+  const doubled = 2 * x;
+  const extrapolatedSeparation = [
+    1 - Math.cos(doubled) - 2 * x * Math.sin(doubled),
+    Math.sin(doubled) - 2 * x * Math.cos(doubled),
+  ];
+  const extrapolatedDistance = Math.hypot(...extrapolatedSeparation);
+  const jacobian = 1 - x / Math.tan(x);
+  const causalDistance = (2 * x) / beta;
+  const scale =
+    1 / (causalDistance * causalDistance * Math.abs(jacobian));
+  const expected = extrapolatedSeparation.map(
+    (component) => (scale * component) / extrapolatedDistance,
+  );
+
+  closeTo(ledger.self[0].radial, expected[0], 2e-11);
+  closeTo(ledger.self[0].tangential, expected[1], 2e-11);
+});
+
+test("the former emission-site candidates fail alternative-line acceleration balance", () => {
+  const formerCandidates = [
+    [3.070356625390253, 0.1986630539600795, -0.33509898165834867],
+    [6.218454963409138, 0.1969175233348653, -0.12710861412060762],
+    [9.376436028216506, 0.18815540194608202, -0.07428630687174287],
+  ];
+
+  for (const [beta, radial, tangential] of formerCandidates) {
+    const emissionSiteAssessment = assessCircularBalance(beta);
+    assert.equal(emissionSiteAssessment.equilibrium, true);
+    assert.equal(
+      emissionSiteAssessment.stabilityStatus,
+      "eligible-for-history-space-stability-analysis",
+    );
+
+    const assessment = assessCircularBalance(beta, {
+      lineOfAction:
+        LINE_OF_ACTION.INERTIALLY_EXTRAPOLATED_EMISSION_SITE,
+    });
+    closeTo(assessment.radial, radial, 2e-10);
+    closeTo(assessment.tangential, tangential, 2e-10);
+    assert.equal(assessment.radialInward, false);
+    assert.equal(assessment.equilibrium, false);
+    assert.equal(
+      assessment.stabilityStatus,
+      "not-an-equilibrium-no-stability-spectrum",
+    );
+  }
+});
+
+test("alternative-line tangential zeros through beta=20 all have outward radial acceleration", () => {
+  const lineOfAction =
+    LINE_OF_ACTION.INERTIALLY_EXTRAPOLATED_EMISSION_SITE;
+  const scan = scanLedger({
+    maxBeta: 20,
+    samplesPerInterval: 2400,
+    ledgerName: "fullCircular",
+    lineOfAction,
+  });
+  const expectedBetas = [
+    3.225396098935436,
+    6.22263796120129,
+    9.376926090187187,
+    12.528726796127465,
+    15.677221438449457,
+    18.823658189124366,
+  ];
+
+  assert.equal(scan.zeros.length, expectedBetas.length);
+  scan.zeros.forEach((zero, index) => {
+    closeTo(zero.beta, expectedBetas[index], 2e-9);
+    assert.ok(zero.radial > 0);
+    const assessment = assessCircularBalance(zero.beta, { lineOfAction });
+    assert.equal(assessment.equilibrium, false);
+    assert.equal(
+      assessment.stabilityStatus,
+      "not-an-equilibrium-no-stability-spectrum",
+    );
+  });
 });

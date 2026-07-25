@@ -84,7 +84,7 @@ Collection navigation preserves configuration-space identity without importing a
 
 1. **Recorded-path playback**: playback with scrub and slow-motion. An `evolved-record` draws retained EOM history through source-declared depth $h$; a prescribed `chart-hypothesis` draws only its declared display path through its source-defined positive whole number of periods. A prescribed trail is not simulation evidence.
 2. **Chart pose**: static hypothesis rendering with ansatz curves and overlays.
-3. **Co-rotating / screw-frame camera**: in the right frame a rigid candidate is a still image, so any motion in that frame is the residual made visible — "is it holding?" becomes "does the picture move?"
+3. **Co-rotating / screw-frame camera**: a fixed-coordinate prescribed chart is a still image in its declared frame, while an evolved relative-periodic branch may retain internal motion there. The camera exposes departures from the declared frame without treating visible motion as failure.
 4. **Envelope**: display-only time-averaged swept envelope (fusiform, oblate, or emergent shape) evaluated from the record's declared interpolation.
 5. **Comparison**: two or more records side-by-side or overlaid with synchronized time — the collapse-protocol view.
 6. **Export**: static images for corpus figures; animation export remains visibly unavailable until its encoding and file contract are implemented.

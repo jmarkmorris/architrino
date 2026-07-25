@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-24T14:09:51.154Z",
-  "total_links": 2017,
+  "generated_at": "2026-07-24T22:56:08.433Z",
+  "total_links": 2056,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -490,6 +490,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/fermions/quarks.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md"
     },
     {
       "sourceChapterId": "assemblies",
@@ -1342,6 +1350,14 @@
     {
       "sourceChapterId": "cosmology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/neutrinos.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/neutrinos.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "target": "../../../../markdown/aaa/cosmology/BBN-constraints.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -1583,6 +1599,14 @@
       "sourceChapterId": "cosmology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "target": "../../../../markdown/aaa/cosmology/cosmology-ontology.md#global-reconstruction-promotion-gate",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/cosmology/cosmology-ontology.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/cosmology/cosmology-ontology.md#inference-dependency-ledger",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/cosmology/cosmology-ontology.md"
@@ -1958,6 +1982,14 @@
     {
       "sourceChapterId": "cosmology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/cosmology/hubble-s8-tensions.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "target": "../../../../markdown/aaa/cosmology/inflation-model.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2039,6 +2071,14 @@
       "sourceChapterId": "cosmology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "target": "../../../../markdown/aaa/cosmology/structure-formation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/cosmology/structure-formation.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/cosmology/structure-formation.md#cmb-lensing-and-acoustic-peaks",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/cosmology/structure-formation.md"
@@ -2206,6 +2246,46 @@
     {
       "sourceChapterId": "cosmology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "target": "../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2282,6 +2362,30 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "#cmb-dipole-and-matter-dipole-gate",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "#reproducible-transport-constraints",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "#transport-derivation-target",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
     },
     {
       "sourceChapterId": "cosmology",
@@ -2694,6 +2798,14 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#super-field-speed-single-architrino-uniform-circular-self-hit",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#symmetric-delayed-spiral-advanced-non-circular-benchmark",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2735,6 +2847,14 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/foundations/architrino.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/architrino.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/foundations/architrino.md#constant-time-emission-measure-postulate",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/foundations/architrino.md"
@@ -2990,6 +3110,14 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/validation/simulations/action-energy/analytic-baselines.md#analytic-baselines",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2998,10 +3126,34 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/attraction.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -3078,6 +3230,14 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md#accepted-construction-routes",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -3086,10 +3246,90 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/repulsion.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/self-energy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -3338,6 +3578,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/entropy.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -7758,6 +8006,30 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-fixed-point-cloud-residual",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#moving-transceiver-geometry-and-received-branch-strength",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#relative-periodic-moving-assembly-test",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/foundations/architrino.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -11350,6 +11622,14 @@
     {
       "sourceChapterId": "reactions",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
+      "target": "../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md"
+    },
+    {
+      "sourceChapterId": "reactions",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
       "target": "../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -11702,6 +11982,14 @@
     {
       "sourceChapterId": "reactions",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
+      "target": "../../../../markdown/aaa/reactions/radiation.md#radiation-closure-target-ledger",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/reactions/radiation.md"
+    },
+    {
+      "sourceChapterId": "reactions",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
       "target": "../../../../markdown/aaa/reactions/synchrotron.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -12026,6 +12314,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/cosmology/expansion-mechanism.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
     },
     {
       "sourceChapterId": "spacetime",
@@ -12882,6 +13186,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/observer-framework.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/ppn-parameters.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/ppn-parameters.md"
     },
     {
       "sourceChapterId": "spacetime",

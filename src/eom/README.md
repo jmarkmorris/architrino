@@ -95,7 +95,10 @@ certified affine event map exists yet. Under
 width through the independently certified ordinary finite-width route,
 permanently dropping optional joint state; if the retry cannot certify, the run
 still fails closed. `caustic_transit_uncertified` remains the terminal
-classification for callers that do not take the controller fallback.
+classification for callers that do not take the controller fallback. The
+native evolution certificate records an actual degradation as
+`joint_state_fallback_applied`; the Borg response exposes the same fact as
+`jointStateFallbackApplied`.
 
 This is not yet the complete production EOM application. It accepts and
 publishes correctness-first coupled sharp and finite-width steps, persists

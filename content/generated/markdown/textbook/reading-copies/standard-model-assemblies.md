@@ -278,7 +278,7 @@ Quantum field theory for uniformly accelerated, Rindler observers predicts that 
 **The $\mathbb{A}\mathbb{A}\mathbb{A}$ resolution:**
 - **Objective existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, assemblies have a definite substrate status. Their existence is not frame-dependent.
 - **Acceleration-conditioned detector response:** The warm bath detected by the accelerating Physical Observer is an effective response of the detector's assembly state to accelerated coupling with the Noether sea.
-- **Mechanism:** Acceleration through the Noether sea ($\mathbf{a} \neq 0$) changes the rate and geometry of coupling with ambient neutral Noether braids. The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
+- **Mechanism (interpretation hypothesis):** Acceleration through the Noether sea ($\mathbf{a} \neq 0$) changes the rate and geometry of coupling with ambient neutral Noether braids. The altered coupling is hypothesized to manifest as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation. No operator-checkable discriminator currently exists for this reading — Unruh radiation itself remains unobserved.
 
 ### Quantization from Stability (Selection Rules)
 
@@ -445,6 +445,7 @@ $$
 =
 \mathcal{O}_{\text{shield}}+\Delta_{\text{wake}}
 $$
+This dictionary entry carries branch-increment-hypothesis grade; the graded derivation, its conditionality, and the falsifier live in [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
 
 Mass channels are mapped by
 $$
@@ -455,7 +456,7 @@ so
 $$
 \frac{m_W}{m_Z}=\cos\theta_W
 $$
-Fermion masses are cycle-averaged attractor energies:
+Fermion masses are targeted as cycle-averaged attractor energies, conditional on a retained attractor branch — an open closure item:
 $$
 m_f \approx \frac{\langle E_{\mathrm{kin}}+U_{\text{pot}}\rangle_f}{c_{\text{eff}}^2}
 $$
@@ -1327,7 +1328,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
   $$
   m_{\text{apparent}}c_{\text{eff}}^2 \sim \zeta(A)\,E_{\text{internal}}(A)
   $$
-- **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because one or two declared indexed supports are depleted on the branch lifetime window. With fewer coherent supports, more of the high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement over the persistent binary indices, not a deletion of the axial frame that carries color and electroweak bookkeeping.
+- **Generational Hierarchy:** Heavier generations (Gen II, Gen III) are hypothesized to have **reduced shielding** because one or two declared indexed supports are depleted on the branch lifetime window. With fewer coherent supports, more of the high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement over the persistent binary indices, not a deletion of the axial frame that carries color and electroweak bookkeeping.
 
 ##### Medium-Dressed Inertial Response
 - **The Medium:** The Noether sea is not empty space; it is a dynamic population of neutral Noether braid assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to the Noether sea.
@@ -1426,9 +1427,9 @@ The same constants are expected to fix an absolute size: a self-supporting braid
 
 Claim level: interpretation and derivation target; assigning specific rungs to specific particles is the open mass-map work, not asserted here.
 
-Because the family is iso-frequency — one shared internal cadence — an added or removed quantum of action cannot land on one layer as a private frequency change; it must re-tune the whole rigid structure together. The hypothesis of this section is that the re-tuning is quantized into integer rungs: all three layer radii co-move and the three tilts re-tune together under one shared constraint, so the layers' shares are fixed by the same closure conditions that fix the rest geometry. No settling dynamics and no speed-holding mechanism are asserted — an earlier proposed rail-pinning mechanism was retired when its own condition was measured false — and the rung structure is a derivation target for the validated engine.
+Because the family is iso-frequency — one shared internal cadence — an added or removed quantum of action cannot land on one layer as a private frequency change; it must re-tune the whole common-frequency coordinate structure together. The hypothesis of this section is that the re-tuning is quantized into integer rungs: all three layer radii co-move and the three tilts re-tune together under one shared constraint, so the layers' shares are fixed by the same closure conditions that fix the rest geometry. No settling dynamics and no speed-holding mechanism are asserted — an earlier proposed rail-pinning mechanism was retired when its own condition was measured false — and the rung structure is a derivation target for the validated engine.
 
-Read as a spectrum, this would be a substrate origin of energy quantization. Each rung is a discrete allowed state; the spacing is one action quantum; a rung-to-rung transition is the emission or absorption of a quantum. The ladder carries the form $E=n\,h\,f$, tying the level index, the action quantum, and the internal cadence in one relation. Through the cadence-radius coupling, a higher cadence forces a smaller envelope, so climbing the ladder makes the object smaller and its observed inertial response larger — the emergent-mass counterpart of the observed mass–Compton-length relation. One geometric family, climbable through a very large (near-Planck) number of integer rungs, thus spans a whole spectrum from the lightest retained states up to the Planck-scale top ($\xi\to0$, the [singularity-resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md) limit). Which rung corresponds to which observed particle is the open extraction the mass map owns; the structure — an integer action ladder whose rungs are the allowed states — is the promotable statement.
+Read as a spectrum, this would be a substrate origin of energy quantization. Each rung is a discrete allowed state; the spacing is one action quantum; a rung-to-rung transition is the emission or absorption of a quantum. The ladder carries the form $E=n\,h\,f$, tying the level index, the action quantum, and the internal cadence in one relation. Through the cadence-radius coupling, a higher cadence forces a smaller envelope, so climbing the ladder makes the object smaller and its observed inertial response larger — the emergent-mass counterpart of the observed mass–Compton-length relation. One geometric family, climbable through a very large (near-Planck) number of integer rungs, thus spans a whole spectrum from the lightest retained states up to the Planck-scale top ($\xi\to0$, the [singularity-resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md) limit). Which rung corresponds to which observed particle is the open extraction the mass map owns; the structure — an integer action ladder whose rungs are the allowed states — is the candidate statement targeted for promotion.
 
 #### Mass-Channel Categories
 
@@ -1703,7 +1704,7 @@ The canonical chapter should carry this interface but not the detailed simulatio
 ### Open Questions & Failure Modes
 
 #### Critical Unknowns
-1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
+1. **What sets $d_0$?** A certified minimum-radius bound branch could supply the prototype length scale, but the circular simple-root calculation currently supplies only algebraic MCB candidates. Which retained stable binary or larger-assembly branch defines $d_0$, and can its scale be derived from $\epsilon$, $c_f$, and $\kappa$ rather than postulated?
 2. **Is the reference Noether braid density fixed?** Is $\rho_{\text{NS},0}$ universal, or does $\rho_{\text{NS}}(\mathbf X,T)$ vary with cosmological epoch, gravitational field strength, or local matter density?
 3. **Why do neutrinos have mass at all?** If a [neutrino](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) is a near-photon polarity-conjugate braid pair, which residual internal-binary exposure breaks exact photon-like cancellation? The magnitude of that exposure is referent-pending; it cannot be assigned before the base photon lock exists and the exposure map is extracted.
 
@@ -2460,16 +2461,16 @@ The opening section states the working geometry and the plain-language interpret
 
 This chapter constructs the neutrino as a perturbation of the photon lock. That lock has not been exhibited, and the point is stated here rather than in a caveat because everything below inherits it.
 
-A force-balance evaluation of the declared planar polarity-conjugate pair — the photon ansatz itself, no payload — returns a binding residual $\epsilon_{\rm bind}=0.9922$ against a declared $0.03$ gate at 24 cycle samples. It does not approach the gate and does not improve along the $3\to6\to12\to24$ sampling ladder. On the same rows the charge ledger closes and the net pump cancels to $3.7\times10^{-16}$: binding is the row that fails, and it fails completely rather than narrowly. Claim level: **measured force-balance negative on the declared geometry, payload families, and proxy-sea coverage**. This is the class of result that stands on its own, because it states that the configuration is not an equilibrium rather than predicting what the configuration would do — no dynamical or stability reading is involved or implied. It is not evidence against a constitutive medium law, which remains untested.
+No canonical photon equilibrium branch has been exhibited. The canonical construction is the 12-worldline coaxial contra-rotating polarity-conjugate planar pair; exhibiting it means evolving that assembly under the master equation to a retained branch, cross-verified by the EOM solver against an independent oracle. Until such a branch exists the lock is a theorem target. Prescribed fixed-coordinate circular histories cannot substitute for that evolution in either direction: a prescribed history reports the geometry its author imposed, not a dynamical outcome, so it can neither establish the lock nor rule it out. The falsifier is direct — exhibit the retained branch, and the target closes.
 
 Two consequences govern how the rest of this chapter reads.
 
-- **The open question is the lock's existence, not only its shape.** No configuration in the declared family holds together, so "near-photon" presently anchors to a state that no exhibited assembly occupies. "Near-photon" remains the controlled descriptor for the *intended* construction; it is not a finished derivation, and it is not yet a statement about a retained object.
+- **The open question is the lock's existence, not only its shape.** No canonical photon configuration has been exhibited as a retained equilibrium branch, so "near-photon" presently anchors to a state that no exhibited assembly occupies. "Near-photon" remains the controlled descriptor for the *intended* construction; it is not a finished derivation, and it is not yet a statement about a retained object.
 - **Every quantity defined as a residual about that lock is referent-pending.** Such quantities are not thereby wrong — they are not yet about anything, and no measurement of them can be commissioned until a lock closes. They are marked where they appear. Results that are theorems about the interaction law rather than perturbations of the lock do not carry this mark and are unaffected.
 
 #### Near-Photon Neutral-Core Pairing
 
-Definition (geometric, working; referent-pending per [Referent Status](#referent-status)): A neutrino is a near-planar polarity-conjugate Noether braid pairing adjacent to the photon geometry. The photon is the **coaxial contra-rotating polarity-conjugate planar pair** in its fully locked branch — a proposed lock, not an exhibited one; the declared family does not bind. A neutrino is nearly snapped into that state, but keeps a residual internal-binary mismatch that prevents it from becoming the photon transport channel.
+Definition (geometric, working; referent-pending per [Referent Status](#referent-status)): A neutrino is a near-planar polarity-conjugate Noether braid pairing adjacent to the photon geometry. The photon is the **coaxial contra-rotating polarity-conjugate planar pair** in its fully locked branch — a proposed lock, not an exhibited one. A neutrino is nearly snapped into that state, but keeps a residual internal-binary mismatch that prevents it from becoming the photon transport channel.
 
 - Core structure and shielding:
   - The braid and polarity-conjugate braid contributions cancel charge-like exposure, with $q_{\text{net}} = 0$.
@@ -2477,7 +2478,7 @@ Definition (geometric, working; referent-pending per [Referent Status](#referent
   - Near-planarity hides most of the internal ledger from exterior coupling. The remaining signal is a tiny phase and energy residue from the internal binaries.
 
 - Near-photon boundary (referent-pending):
-  - The photon state is the proposed fully coherent coaxial contra-rotating polarity-conjugate planar pair transport channel. The coherence is the intended construction; the declared family returns no binding, so the boundary this bullet describes is a target rather than a located state.
+  - The photon state is the proposed fully coherent coaxial contra-rotating polarity-conjugate planar pair transport channel. The coherence is the intended construction; no canonical equilibrium branch has been exhibited, so the boundary this bullet describes is a target rather than a located state.
   - The neutrino sits just off that lock: close enough to be neutral, fast, and weakly coupled, but not coherent enough to propagate as a photon train.
   - The incomplete photon lock is the important difference. A photon hides the polarity-conjugate planar pair inside one massless transverse transport ledger. A neutrino remains close to that boundary, so its exterior coupling is small and its propagation speed is high, but the residual internal-binary rows do not collapse into one photon-channel phase.
   - This "not quite photon" status gives the neutrino a small observer-facing mass channel and a nontrivial oscillation ledger.
@@ -2917,7 +2918,7 @@ Once $\mathcal{E}_{\mathrm{WCT}}$ selects an exposed triad with positive margin,
 *   **Electron ($e^-_L$):** Shielded ($3\epsilon_-$) + Active ($3\epsilon_-$).
     *   Net: $6\epsilon_-$ (Charge -1).
     *   State: weak-coupling triad is negative $\to T_3 = -1/2$.
-*   **The Transformation:** The $W^-$ boson is the packet that removes three positive-polarity units and replaces them with three negative-polarity units.
+*   **The Transformation:** The $W^-$ boson is hypothesized as the packet that removes three positive-polarity units and replaces them with three negative-polarity units.
 
 **The Quark Doublet ($u_L, d_L$)**
 *   **Base (Shielded):** 1 Electrino, 2 Positrinos ($1\epsilon_-,2\epsilon_+$).
@@ -2971,8 +2972,8 @@ Once handed weak exposure is claimed as derived, the exposed weak-coupling triad
 ##### Charged-current chirality (Why right-handed charged-current coupling is zero)
 Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 *   **Geometric Mechanism:** At the observer level, chirality is the weak-channel handedness label. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the charged-current blocker is weak-coupling-triad exposure, which may be consumed only after the ordered-frame spinor/helicity ledger supplies the same branch record.
-*   **Lock-out:** In the "Right-Handed" configuration, the **weak-coupling triad** is geometrically rotated *into the wake* of the particle or shielded by the binary arms.
-*   **Result:** The charged $W$ corridor cannot physically "dock" with the weak-coupling triad in that hidden posture.
+*   **Lock-out:** In the "Right-Handed" configuration, the **weak-coupling triad** would be geometrically rotated *into the wake* of the particle or shielded by the binary arms.
+*   **Result:** The charged $W$ corridor could not physically "dock" with the weak-coupling triad in that hidden posture.
 *   Therefore, $e^-_R$ has no accessible charged-current weak-coupling triad. For the charged-current $SU(2)_L$ channel, $T_3^{(R)} = 0$.
 
 ---
@@ -2999,7 +3000,7 @@ These labels are a basis convention on the quark color triplet, not an additiona
 ##### Confinement (The Flux Tube)
 Because a colored quark leaves one axis exceptional, it opens a non-singlet strong-sector corridor into the surrounding Noether sea.
 
-- **Single quark:** the open corridor carries a line-like energy cost that grows with separation, so isolated color sectors are excluded.
+- **Single quark:** the open corridor is hypothesized to carry a line-like energy cost that grows with separation, which would exclude isolated color sectors.
 - **Meson ($q \bar{q}$):** a triplet and anti-triplet can close the corridor into a singlet flux tube.
 - **Baryon ($qqq$):** one axis-1-exceptional, one axis-2-exceptional, and one axis-3-exceptional quark can close into the color-singlet braid
   $$
@@ -3016,15 +3017,17 @@ Gluons are the axis-reconfiguration carriers of this sector.
 
 ##### Color-singlet alignment and decoherence suppression
 
-- **Restoring force:** the shared flux network has minimum energy when the composite state closes into a singlet, so departures from singlet closure raise the corridor tension.
+Grade note: color decoherence suppression remains a hypothesis pending simulation; the bullets below state requirements on the mechanism, not derived results.
+
+- **Restoring force:** the shared flux network is required to have minimum energy when the composite state closes into a singlet — a recovery target — so departures from singlet closure raise the corridor tension.
 - **Gluon exchange:** axis-reconfiguration events redistribute exceptionality between quarks until the composite closure is restored.
-- **Timescale separation:** color reconfiguration along the shared corridor is faster than typical environmental disturbance, so small kicks relax before the singlet decoheres.
+- **Timescale separation:** color reconfiguration along the shared corridor must be faster than typical environmental disturbance (an underived timescale claim), so small kicks relax before the singlet decoheres.
 - **Isolation:** color flux remains trapped inside the corridor or braid, so external probes see only the color-singlet composite.
 
 ##### Bound-State Proton Stability
 The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 *   **Coulomb Repulsion:** The two $u$ quarks repel electrically.
-*   **Strong Attraction:** Color-singlet closure forces the three quarks into a shared strong-sector braid whose tension overwhelms the electric repulsion.
+*   **Strong Attraction:** Color-singlet closure forces the three quarks into a shared strong-sector braid whose tension must overwhelm the electric repulsion.
 *   **Pauli Exclusion:** Since the quarks occupy different color sectors, they are distinguishable quantum states, allowing them to share the same spatial ground-state assembly.
 
 This paragraph explains ordinary bound-state stability inside the nucleon. It is not yet a derivation of proton-dissociation exclusion or topological baryon conservation. The stronger claim belongs to the closed-braid program in [Color Charge and Strong Confinement](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md): the color-singlet 9-axis braid must make baryon-number-violating rupture either impossible on the admitted branch or suppressed beyond current null-result limits. A local recovery target is therefore
@@ -3241,7 +3244,7 @@ $$
 =0
 $$
 
-So the geometry-to-quantum-number dictionary matches the Standard Model's per-generation gauge-anomaly cancellation. This is a nontrivial consistency check, not just a notation match.
+So the geometry-to-quantum-number dictionary matches the Standard Model's per-generation gauge-anomaly cancellation. This confirms the dictionary carries the full SM representation content self-consistently; it is bookkeeping inherited from the SM table, not independent evidence for the geometry.
 
 If a sterile right-handed neutrino is added with
 $$
@@ -3477,7 +3480,7 @@ Thus an adjacent step toward a heavier generation sheds one neutral electrino:po
 #### Phenomenological Implications
 
 ##### Universality of Gauge Couplings
-Because the **Axial Layer** (which dictates charge bookkeeping and isospin for charged leptons) is structurally identical across generations (always 6 sites), the electromagnetic and weak couplings are identical for $e, \mu, \tau$. This gives the charged-lepton side of lepton universality; neutrino universality must be matched through the common near-photon weak-ledger projection.
+The **Axial Layer** (which dictates charge bookkeeping and isospin for charged leptons) is structurally identical across generations (always 6 sites); this structural identity is the candidate explanation for the observed electromagnetic and weak coupling universality of $e, \mu, \tau$. This addresses the charged-lepton side of lepton universality; neutrino universality must be matched through the common near-photon weak-ledger projection.
 
 ##### The Proton vs. Neutron
 Baryons are bound states of 3 quarks held together by shared flux/gluon planar assemblies.
@@ -3553,7 +3556,7 @@ Two qualifications remain useful without adding new rows to the taxonomy:
     *   Standard physics textbooks use numbers for **Strangeness**, **Charm**, **Bottomness**, and **Topness**.
     *   **Mapping:** These are redundant in this taxonomy. They are covered by the **Generation** row combined with the **Charge** row.
         *   *Example:* "Strangeness = -1" is just code for "Generation II, Charge -1/3 (Down-type)".
-        *   The geometric explanation (Generation = Shielding Level) is more explanatory because it links strong-channel flavor conservation to the fact that an assembly cannot shed a binary ring without a weak-channel event.
+        *   The geometric explanation (Generation = Shielding Level) is more explanatory because it links strong-channel flavor conservation to the hypothesis that an assembly cannot shed a binary ring without a weak-channel event.
 
 2.  **Intrinsic Parity ($P$):**
     *   By convention, quarks have parity $P = +1$ and antiquarks have $P = -1$.
@@ -3613,7 +3616,7 @@ $$
 $$
 where $\Delta_{\text{wake}}$ is the causal-wake/polarization correction of the Noether sea at the electroweak scale.
 
-Using the representative effective $Z$-pole value $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$, the required dressing is not numerically negligible:
+Using the representative effective $Z$-pole value $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$ (PDG comparison value), the required dressing is not numerically negligible:
 
 $$
 \Delta_{\text{wake}}(m_Z)
@@ -4170,7 +4173,7 @@ $$
 \right]
 $$
 
-where $P_{\Lambda_1\Lambda_2}$ is the hyperon-pair spin-correlation signal and $\alpha_1,\alpha_2$ are the weak-decay analysing parameters. The observed pattern is not merely a hadron-counting fact: short-range $\Lambda\bar{\Lambda}$ pairs show a positive correlation, while long-range pairs and scalar-control channels are consistent with zero correlation.
+where $P_{\Lambda_1\Lambda_2}$ is the hyperon-pair spin-correlation signal and $\alpha_1,\alpha_2$ are the weak-decay analysing parameters. The observed pattern, from the BESIII $J/\psi\to\Lambda\bar{\Lambda}$-class spin-correlation measurement, is not merely a hadron-counting fact: short-range $\Lambda\bar{\Lambda}$ pairs show a positive correlation, while long-range pairs and scalar-control channels are consistent with zero correlation.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target, not an import of QCD vacuum ontology or a claim that "nothing" creates particles. The native branch must connect, in one event record, the strong-collision work input, the local Noether sea participation, the quark-level axial and color records, the confinement or hadronization route into color-singlet hyperons, feed-down and remnant rows, and the final weak-decay detector readout. In schematic form the benchmark asks for
 
@@ -4193,14 +4196,14 @@ where $I_{\mathrm{had}}$ is the selected hadronization route. The readout $P_{\L
 
 ##### Fixed by the Architecture
 
-The following parts of the quark catalog are fixed strongly enough to be treated as canonical:
+The following parts of the quark catalog are fixed strongly enough to be treated as canonical. Two classes are mixed here and should be read differently: definitional conventions of the catalog (labeling and basis choices) versus canonical physical hypotheses under test (tagged below):
 
-- up-type axial count $5\epsilon_+,1\epsilon_-$,
-- down-type axial count $2\epsilon_+,4\epsilon_-$,
-- generation as Noether braid shielding level,
-- architrino counts $12$, $10$, and $8$ for Generations I, II, and III,
-- color as axis exceptionality in the three-state $(1,2,3)$ basis,
-- gluon action as an $SU(3)$ color reconfiguration that preserves flavor inventory.
+- up-type axial count $5\epsilon_+,1\epsilon_-$ (hypothesis under test),
+- down-type axial count $2\epsilon_+,4\epsilon_-$ (hypothesis under test),
+- generation as Noether braid shielding level (hypothesis under test),
+- architrino counts $12$, $10$, and $8$ for Generations I, II, and III (hypothesis under test),
+- color as axis exceptionality in the three-state $(1,2,3)$ basis (definitional convention),
+- gluon action as an $SU(3)$ color reconfiguration that preserves flavor inventory (hypothesis under test).
 
 ##### Still open
 
@@ -4365,7 +4368,7 @@ $$
 \theta_{\mathrm{inc}} = \frac{\pi}{6}=30^\circ
 $$
 
-The present idea is to reuse this as an **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments. The symbol $\theta_W^{\text{bare}}$ should be treated only as a comparison label for this branch-increment hypothesis until the six-pole quotient and electroweak dressing calculation are derived. A representative effective $Z$-pole target $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$ would require
+The present idea is to reuse this as an **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments. The symbol $\theta_W^{\text{bare}}$ should be treated only as a comparison label for this branch-increment hypothesis until the six-pole quotient and electroweak dressing calculation are derived. A representative effective $Z$-pole target $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$ (PDG comparison value) would require
 
 $$
 \Delta_{\mathrm{wake}}(m_Z)
@@ -4657,7 +4660,7 @@ Spin labels in this chapter are downstream mapping targets, not completed deriva
 
 ### Photon Referent Status
 
-The photon construction below is a theorem target, not an exhibited bound branch. A force-balance evaluation of the declared planar polarity-conjugate pair returns a binding residual $\epsilon_{\rm bind}=0.9922$ against a declared $0.03$ gate at 24 cycle samples, with no improvement along the $3\to6\to12\to24$ sampling ladder. The charge ledger closes and the net pump cancels to $3.7\times10^{-16}$ on the same rows, so binding is the measured failure. Claim level: measured force-balance negative on the declared geometry, payload families, and proxy-sea coverage; no stability inference follows, and a constitutive medium law remains untested.
+The photon construction below is a theorem target, not an exhibited bound branch. The canonical construction is the 12-worldline coaxial contra-rotating polarity-conjugate planar pair; exhibiting it means evolving that assembly under the master equation to a retained branch, cross-verified by the EOM solver against an independent oracle. No such branch has been exhibited, and prescribed fixed-coordinate circular histories cannot supply one: a prescribed history reports the geometry its author imposed, not a dynamical outcome.
 
 Accordingly, the planar-pair description, Gate A/B quantities, and every neutrino residual defined relative to this lock are referent-pending until an equilibrium branch is exhibited. The gates remain useful because they state what a replacement branch must recover, but they must not be used as premises about a retained photon assembly.
 
@@ -5101,7 +5104,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Lifetime ($\tau$):** Impulsive. The bundle exists only long enough to perform the transaction.
 *   **Tether vs. Free:**
     *   **Tethered:** In close-range interactions (e.g., within a nucleus), the boson acts as a temporary bridge physically linking the source and destination braids.
-    *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether sea, propagating along its axis with corridor speed near the field speed ($v_{\mathrm{corr}}\approx c_f$) before dissociating (rupturing) due to internal instability.
+    *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether sea, propagating along its axis with corridor speed near the field speed ($v_{\mathrm{corr}}\approx c_f$) before dissociating (rupturing); the rupture is modeled as internal instability — corridor lifetime and rupture mode are corridor-closure targets.
 
 #### Quantum Numbers and Channels
 *   **Spin-$1$ (vector):** The weak corridor is a spin-$1$ vector-channel target: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ target, with only transverse helicities $\pm1$ and no physical longitudinal mode after Gate B is derived. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating polarity-conjugate planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
@@ -5174,8 +5177,8 @@ The distinction between photon helicity and massive-vector spin should remain ex
 
 #### Dynamics: Emission and Absorption
 *   **The Trigger (Emission):**
-    *   Caused by a **Strongly Accelerated Shove** (e.g., a violent binary mode transition).
-    *   This kick ejects a "corridor of influence" that nucleates from the superposition of the constituent architrinos' delayed wakes.
+    *   The candidate trigger is a **Strongly Accelerated Shove** (e.g., a violent binary mode transition); confirming the trigger is a corridor-closure target.
+    *   This kick would eject a "corridor of influence" that nucleates from the superposition of the constituent architrinos' delayed wakes.
 *   **Selection Rules (Phase History):**
     *   Coupling is not "magic"; it requires geometric compatibility.
     *   **Chirality:** Allowed couplings follow from the **Path-History Geometry**. The corridor's internal spiral must match the phase structure of the target's indexed Noether braid rows. "Wrong-handed" targets present a phase mismatch, preventing the tether from locking on.
@@ -5195,7 +5198,7 @@ $$
 This is not a new substrate interaction. It is the low-energy observer limit of the same charged-corridor event after the finite-width mediator has been integrated out. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the corridor stiffness or electroweak scale $v_{\mathrm{EW}}$ from Noether sea response and then recover $G_F$, beta rates, and charged-current branching fractions without fitting a separate contact coupling.
 
 #### Effective Mass Scales
-*   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
+*   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV; PDG comparison values) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
     For a resolved weak event $\mathsf e$ observed through an event window $\mathcal W$, the effective mass-scale target can be written schematically as
     $$
     M_{W/Z}^{\mathrm{eff}}(\mathsf e;\mathcal W)c_0^2
@@ -5432,7 +5435,7 @@ $$
 $$
 This is a provenance target, not a new interaction law. It prevents the gluon story from stopping at "color changed" by requiring the same record to bind axis exceptionality, axial inventory, energy, momentum, angular momentum, polarity, path history, and flux-tube strain for one color-reconfiguration event.
 
-#### The 8 Gluon Modes (Deriving the Octet)
+#### The 8 Gluon Modes (Recovering the Octet Count, Bookkeeping)
 
 The octet count comes from the color-basis operator space.
 
@@ -5444,7 +5447,7 @@ The octet count comes from the color-basis operator space.
   $$
   \frac{R\bar{R}+G\bar{G}+B\bar{B}}{\sqrt{3}}
   $$
-  is totally symmetric. It carries no net color change and does not interact as an open color mode.
+  is totally symmetric. It carries no net color change and is required not to interact as an open color mode.
 - **The octet:** removing this one singlet leaves 8 traceless modes: six off-diagonal color-changing generators plus two diagonal traceless generators, the familiar gluon octet of QCD.
 
 #### Gluon Spin (Vector Nature)
@@ -5462,7 +5465,7 @@ At the Standard Model level, gluons are spin-1 gauge bosons. Because color is co
 
 Quarks are confined because an open color corridor stores energy in the surrounding Noether braid assembly network.
 
-#### Energy Density Calculation
+#### Energy-Density Dimensional Consistency Check
 
 - **Noether sea coherence scale:** the confinement scaffold uses a candidate coherence length $L_{\mathrm{coh}}$, provisionally of order $1\;\mathrm{fm}$, rather than a discretization scale of the Euclidean void.
 - **Cost of coherent ordering:** forcing a line of ambient Noether sea braids to align with an open color corridor costs an energy $E_{\mathrm{coh}}$ per coherence length.
@@ -5470,7 +5473,7 @@ Quarks are confined because an open color corridor stores energy in the surround
   $$
   \sigma \sim \frac{E_{\mathrm{coh}}}{L_{\mathrm{coh}}}
   $$
-  If $E_{\mathrm{coh}}\sim 1\;\mathrm{GeV}$ and $L_{\mathrm{coh}}\sim 1\;\mathrm{fm}$, then
+  If $E_{\mathrm{coh}}\sim 1\;\mathrm{GeV}$ and $L_{\mathrm{coh}}\sim 1\;\mathrm{fm}$ — inputs set by the QCD benchmark, not derived here — then
   $$
   \sigma \sim 1\;\mathrm{GeV/fm}
   $$
@@ -5550,7 +5553,7 @@ While the Standard Model chart displays the fundamental fermions (quarks, lepton
 Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations. The implementation burden is to say which branch record forms, which corridor carries the exchange, how long the basin remains stable, and where the ledger goes when the meson dissociates.
 
 #### Geometric variational lens
-The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic response** of the Noether sea to topological defects (fermions). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are stable minima, while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a dissociation in the Noether sea.
+The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic response** of the Noether sea to topological defects (fermions). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are modeled as stable minima — attractor status that remains an open closure target of the braid program — while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a dissociation in the Noether sea.
 
 Plainly, the meson is the temporary bridge state the strong sector can afford. It is stable enough to carry a corridor, but not necessarily stable enough to become an ordinary long-lived matter assembly.
 * **Stability criterion:** An assembly is stable while its trajectory in configuration space remains inside a basin where the binding action is a **local minimum**. **Dissociation** means the trajectory reaches a region where that action loses its minimum, so gradient flow carries the system toward another basin and into a new assembly pattern.
@@ -5572,7 +5575,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, that bosonic-statistics statement is a down
 A pion is a **two-braid (quark + antiquark) assembly**: one Generation‑I matter-branch Noether braid and one Generation‑I polarity-conjugate antimatter Noether braid linked by a shared flux tube. Their independent pro/anti ordered orientations are not fixed by the matter/antimatter assignment.
 
 *   **Structure:** $u\bar{d}$ ($\pi^+$), $d\bar{u}$ ($\pi^-$), or a superposition of $u\bar{u}/d\bar{d}$ ($\pi^0$).
-*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the matter braid and its polarity-conjugate antimatter braid achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether sea.
+*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the matter braid and its polarity-conjugate antimatter braid are hypothesized to achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark would be destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether sea.
 
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether sea between them.
@@ -5580,11 +5583,11 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 *   **Topology hypothesis:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger candidate-braid baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 **The Yukawa Mechanism (Assembly Tension):**
-*   **Range vs. mass:** The force range scales as $R \sim \hbar/(m c_0)$ in the observer-level comparison because heavier assemblies (higher internal curvature) expose stronger Noether sea response and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.
-*   **Binding energy:** Nuclear mass defect (e.g., 28.3 MeV in ${}^4$He) is the energy stored in shared pion flux loops; the coupled, pion-sharing configuration sits at lower energy than isolated nucleons.
-*   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared axial layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops makes the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
+*   **Range vs. mass:** The force range scales as $R \sim \hbar/(m c_0)$ in the observer-level comparison; this scaling is read as heavier assemblies (higher internal curvature) exposing stronger Noether sea response and decohering over shorter distances. On this reading, the pion’s low mass/low curvature lets the binding signal span a femtometer.
+*   **Binding energy:** Nuclear mass defect (e.g., 28.3 MeV in ${}^4$He; PDG/AME nuclear value) is read as the energy stored in shared pion flux loops; the coupled, pion-sharing configuration sits at lower energy than isolated nucleons.
+*   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared axial layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops is hypothesized to make the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
 *   **Geometric bound:** A pion flux tube that stretches beyond a critical length $L_c$ pays more tension energy than the Noether sea needs to rupture by dissociation. Its unusually low curvature keeps $L_c$ large, explaining the long nuclear-range reach.
-*   **Mass suppression as alignment:** The $q$ and $\bar q$ axes are phase-locked so their externally exposed Noether sea response nearly cancels - geometrically the assembly follows an almost null-like path through the Noether sea, keeping its effective mass small.
+*   **Mass suppression as alignment:** The $q$ and $\bar q$ axes are hypothesized to phase-lock so their externally exposed Noether sea response nearly cancels - geometrically the assembly would follow an almost null-like path through the Noether sea, keeping its effective mass small.
 
 **Free vs. in-medium pion records:**
 - **Free charged pions:** The measured $\pi^\pm$ lifetime belongs to weak-reaction provenance. A free $\pi^-$ primarily routes through a weak corridor such as $\pi^-\to\mu^-+\bar\nu_\mu$; the charge-conjugate channel applies to $\pi^+$. This lifetime is not the timescale of residual strong exchange inside a nucleus.
@@ -5625,6 +5628,12 @@ Kaons are the primary laboratory for observing how Generation I stability breaks
 #### Spin and Pauli Status
 
 The spin/parity assignments in this chapter are observer-level labels and hadron-level geometry hypotheses. The local shorthands "aligned," "anti-aligned," "parallel spin alignment," and "Pauli exclusion" inherit the single-assembly angular-momentum ledger, ordered-frame spinor proof, and spin-statistics proof rather than replacing them. Until those closures exist, the rho, Delta, and dense-matter packing statements below should be read as validation targets for the later proof.
+
+---
+
+#### Binding and Stability Status
+
+All binding, phase-lock, and stability claims in this chapter are mechanism hypotheses at closure-target grade. No meson or baryon assembly has a retained-branch derivation in this program; no self-confined free assembly has yet been exhibited. The minima, basins, and attractor language above and below names the target geometry the braid program must recover, not an achieved result. The falsifier discipline for these claims lives in the braid-program closure gates.
 
 ---
 
@@ -5678,7 +5687,7 @@ In the Architrino framework, these ephemeral particles are **intermediate assemb
 2.  **Kaons** represent the **coupling interface** between selected down-type shielding branches across generations (Gen I $\leftrightarrow$ Gen II).
 3.  **Resonances ($\rho, \Delta$)** are **excited rotational/vibrational modes** of the fundamental stable assemblies.
 
-They are "ephemeral" because they are not topological attractors in the ambient Noether sea like the proton or electron; they are high-energy transients that must dissociate to reach the minimum-energy geometric lock.
+They are "ephemeral" because they are not topological attractors in the ambient Noether sea like the proton- and electron-target branches, whose attractor status is itself an open closure target; they are high-energy transients that must dissociate to reach the minimum-energy geometric lock.
 
 ---
 
@@ -5697,6 +5706,9 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 - **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or strongly over-twisted excited states (ρ, Δ) dissociate fast; non-inverse pairs and Gen-I/Gen-II kaon mismatches that require weak corridors (π±, $K$) live longer.
 
 #### SM quantum numbers (cheat sheet for particles discussed)
+
+Lifetime and width entries below are PDG comparison values.
+
 | Particle | Quark content | $Q$ | $B$ | $S$ | $I_3$ | $J^P$ | Lifetime / Width (typical; neutral kaons use $K_S/K_L$ mass eigenstates) |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | $\pi^+$ | $u\bar d$ | +1 | 0 | 0 | +1 | $0^-$ | $2.60\times10^{-8}$ s |

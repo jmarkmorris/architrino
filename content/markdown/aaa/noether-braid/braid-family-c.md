@@ -52,7 +52,7 @@ $$
 
 is a primary Family-C coordinate because it changes the exact causal delays between architrino worldlines. A common shift of every $\xi_m$ is absorbed into the assembly center and does not create a thirteenth axial coordinate.
 
-Let $\mathbf X_{\mathrm{grp}}(T)$ be the prescribed assembly center. For rigid translation at group speed $s_{\mathrm{grp}}$,
+Let $\mathbf X_{\mathrm{grp}}(T)$ be the prescribed assembly center. For uniform translation of that center at group speed $s_{\mathrm{grp}}$,
 
 $$
 \mathbf X_{\mathrm{grp}}(T)

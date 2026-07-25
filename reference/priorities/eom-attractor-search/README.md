@@ -3,7 +3,8 @@
 Native ensemble-release campaigns on the `src/eom` coupled delayed-history
 integrator: release many-architrino neutral populations from declared
 initial-condition families and let the master equation propose the bound
-objects, instead of screening prescribed rigid shapes for force balance.
+objects, instead of screening prescribed fixed-coordinate shapes for
+acceleration balance.
 
 This focused instrument and evidence packet lets evolved ensembles, not prescribed shapes, propose the
 bound-structure candidates. Braid Program owns the scientific campaign and EOM owns the reusable execution capability. The packet subsumes and extends the

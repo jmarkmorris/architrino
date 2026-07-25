@@ -1123,7 +1123,7 @@ $\hat{\mathbf{r}}_{ij}$ points **from the transmitter's historical position** $\
 - Electrino + Electrino (like polarities): repulsion
 - Positrino + Positrino (like polarities): repulsion
 - Electrino + Positrino (unlike polarities): attraction
-- All symmetric: if transmitter and receiver swap roles, the acceleration direction reverses (Newton's third law in the instantaneous-interaction limit)
+- For stationary pair geometry, swapping transmitter and receiver reverses the line-of-action unit vector and leaves the acceleration magnitude unchanged, so the two acceleration contributions are equal and opposite. This static statement does not extend to delayed moving histories; see [Exact Fixed Point-Cloud Residual](#exact-fixed-point-cloud-residual).
 
 #### Scaling and Normalization
 
@@ -1250,7 +1250,7 @@ $$
 
 so transmitter motion compresses the emitted surface density in forward directions and dilates it in trailing directions. This is a transmitter-history effect, not a receiver-cadence multiplier and not an imported observer-level field law.
 
-**Proposition 5 (exact transverse projection under rigid uniform translation; derived).**
+**Proposition 5 (exact transverse projection for a uniformly translating point cloud; derived).**
 Let two architrinos translate with the same constant velocity
 $\mathbf V=V\hat{\mathbf e}$, where $V=\|\mathbf V\|$ and
 $0\leq\beta_f=V/c_f<1$. At a
@@ -1277,7 +1277,7 @@ p(\beta_f,\psi)
 \alpha-\beta_f\cos\psi.
 $$
 For the unique positive-delay partner root, let
-$y\equiv c_f(T_r-T_t)/d$. Rigid translation and the causal-root
+$y\equiv c_f(T_r-T_t)/d$. Uniform translation of the fixed point cloud and the causal-root
 constraint give
 $$
 \left\|
@@ -1390,7 +1390,7 @@ $\beta_f$-dependent angles may equal the same numerical value but do
 not extend the identity to a general orientation.
 
 This proposition is derived from the canonical per-hit acceleration,
-the causal-root constraint, rigid uniform translation, and the
+the causal-root constraint, uniform translation of the fixed point cloud, and the
 declared uniform absolute-time emission measure that supplies
 $W_{ij}^{\mathrm{acc}}$. Its scope is one ordered partner hit with
 $0\leq\beta_f<1$ and nonzero instantaneous separation. The
@@ -1421,7 +1421,7 @@ $\kappa|q_iq_j|(1-\beta_f)/d^2$. The observer-level comparison target
 instead assigns $\kappa|q_iq_j|(1-\beta_f^2)/d^2$ to both. The
 symmetric part is therefore already wrong at order $\beta_f^2$.
 
-**Rigid-drift-closure non-claim.** The perpendicular pair sum is nonzero:
+**Fixed-point-cloud drift non-claim.** The perpendicular pair sum is nonzero:
 $$
 \mathbf A_{ij}+\mathbf A_{ji}
 =
@@ -1443,7 +1443,7 @@ without relativistic input. It shows that the canonical
 transmitter-side acceleration weight contains the required geometric
 factor on this branch, while the longitudinal residual and pair sum
 sharpen the separate question of what is missing from the line of
-action. The rigid-common-translation geometry does not by itself
+action. The fixed-point-cloud translation geometry does not by itself
 identify the transmitter-side origin uniquely: because
 $\mathbf V_i=\mathbf V_j$ here, replacing $D_t$ by $D_r$ leaves the
 weight unchanged. The transmitter-side attribution instead comes
@@ -1461,7 +1461,7 @@ from the uniform-emission causal-surface-density derivation above.
    $\kappa\sigma_{ij}|q_iq_j|\beta_f/d^2$. A vanishing component
    contradicts the proposition and indicates an incorrect evaluator.
 3. Replacing transmitter velocity by receiver velocity inside the
-   weight on this rigid branch must leave the result unchanged because
+   weight on this fixed point-cloud branch must leave the result unchanged because
    the velocities are equal. That outcome overturns any claim that
    this projection alone uniquely identifies a transmitter-side
    weight, but it does not overturn the projection algebra. A
@@ -1471,10 +1471,19 @@ from the uniform-emission causal-surface-density derivation above.
    remain unchanged, and any receiver-velocity dependence falsifies
    the transmitter-side-only acceleration weight.
 
-#### Exact Rigid-Translation Residual
+#### Exact Fixed Point-Cloud Residual
 
-The perpendicular example is one orientation of a general three-dimensional
-result. Let an instantaneous unordered pair have unit separation
+This calculation is a deliberately restricted negative control. Assume
+$\mathbf X_i(T)=\mathbf R_i+\mathbf U T$ for every member, so every internal
+velocity relative to the group center vanishes and every pair distance is
+constant. Candidate braids do not satisfy those assumptions: their members
+orbit internally and their pair distances generally vary with time.
+
+Plainly: this subsection tests whether a frozen point cloud can drift without
+deforming. It does not test an orbiting assembly.
+
+The perpendicular example is one orientation of the resulting general
+three-dimensional formula. Let an instantaneous unordered pair have unit separation
 $\hat{\mathbf n}_{ij}$, common drift
 $\mathbf V=\beta_f c_f\hat{\mathbf e}$, and signed inverse-square coefficient
 $$
@@ -1494,8 +1503,8 @@ $$
 \right].
 }
 $$
-This expression is exact for the rigid common-translation ansatz and does not
-assume that the pair lies in a selected plane.
+This expression is exact only for the fixed-point-cloud common-translation ansatz and does
+not assume that the pair lies in a selected plane.
 
 Plainly: delayed partner hits do not usually cancel when the whole pair is
 assigned one common velocity. Their leftover depends only on the drift
@@ -1515,7 +1524,7 @@ definition. A future kinetic account can change the conservation ledger, but
 it cannot make an assumed constant velocity constant when its calculated time
 derivative is nonzero.
 
-For an $N$-member frozen geometry, define the signed second-moment operator
+For an $N$-member fixed point cloud, define the signed second-moment operator
 $$
 W\equiv\sum_{i<j}w_{ij},
 \qquad
@@ -1561,7 +1570,7 @@ Plainly: threefold symmetry is sufficient only in the appropriate planar
 second-harmonic setting. A three-dimensional object can look highly symmetric
 and still retain a common-drift residual.
 
-If the frozen geometry has an eigenmode
+If the fixed point cloud has an eigenmode
 $\mathsf K\hat{\mathbf e}=\lambda\hat{\mathbf e}$ and
 $\mathbf U=N^{-1}\sum_i\mathbf V_i$, then the local common-mode estimate is
 $$
@@ -1580,26 +1589,128 @@ $$
 =
 \frac{c_f}{2C_gv_{\mathrm{int}}}.
 $$
-The often-used $c_f/v_{\mathrm{int}}$ scaling is therefore only an
-order-of-magnitude statement with a geometry coefficient; comparison with a
-full cycle adds the cycle's own numerical factor. A time-dependent internal
-geometry requires a return-map or Floquet calculation rather than this frozen
-exponential estimate.
+Within this fixed point-cloud ansatz, the often-used
+$c_f/v_{\mathrm{int}}$ scaling is therefore only an order-of-magnitude
+statement with a geometry coefficient; comparison with a full cycle adds the
+cycle's own numerical factor. A time-dependent internal geometry requires a
+return-map or Floquet calculation rather than this frozen exponential
+estimate.
 
-Plainly: a nonzero residual forbids indefinite exact rigid drift, but it does
-not by itself say whether visible deformation takes one cycle or many.
+Plainly: a nonzero residual forbids indefinite translation of that fixed point
+cloud, but it does not by itself say whether visible deformation takes one
+cycle or many.
 
 The independent reference for the pair formula is direct closed-form addition
-of the two ordered roots in Proposition 5. The frozen-geometry analyzer
-`scripts/equation-mapping/analyze-rigid-translation-residual.mjs` separately
+of the two ordered roots in Proposition 5. The point-cloud analyzer
+`scripts/equation-mapping/analyze-fixed-point-cloud-residual.mjs` separately
 checks the matrix identity, planar nulls, and the tetrahedral negative control.
-Every current Borg prescribed record fails its frozen all-phase necessary
-condition, but those records are display-only prescribed geometries rather
-than certified moving solutions. The result therefore rejects the rigid-drift
-ansatz for those displayed paths; it does not reject a physical braid branch.
-One exact zero sample would falsify a claimed pointwise non-null record, while
-a certified evolved branch with a vanishing full return residual would
-supersede the frozen diagnostic.
+It is not a Borg-catalog evaluator. Sampling a prescribed orbit at frozen
+phases while discarding its internal velocities does not evaluate that orbit's
+history and supplies no necessary condition for a moving assembly.
+
+Plainly: the point-cloud analyzer checks the algebra above and nothing more. It
+cannot pass or fail an orbiting candidate.
+
+#### Relative-Periodic Moving-Assembly Test
+
+A translating orbiting assembly must be tested on its actual moving history.
+For drift speed $u$ along $\hat{\mathbf e}$, write a candidate branch as
+$$
+\mathbf X_a^{(u)}(T)
+=
+uT\hat{\mathbf e}+\boldsymbol\xi_a^{(u)}(T).
+$$
+The internal orbit may change with $u$; it is not required to remain an
+undeformed copy of the rest orbit. Relative-periodic closure requires a period
+$P_u$ and an allowed member permutation $\pi$ such that
+$$
+\boldsymbol\xi_a^{(u)}(T+P_u)
+=
+\boldsymbol\xi_{\pi(a)}^{(u)}(T),
+\qquad
+\dot{\boldsymbol\xi}_a^{(u)}(T+P_u)
+=
+\dot{\boldsymbol\xi}_{\pi(a)}^{(u)}(T).
+$$
+
+Plainly: after one cycle, the assembly may have moved as a whole and identical
+members may have exchanged roles, but the complete internal position and
+velocity pattern must return.
+
+The pair distances are periodic under the same relabeling, not constant:
+$$
+d_{ab}(T+P_u)
+=
+d_{\pi(a)\pi(b)}(T).
+$$
+The branch must satisfy the full master-equation residual on the evolved
+history,
+$$
+\mathbf R_a^{(u)}(T_r)
+\equiv
+\ddot{\mathbf X}_a^{(u)}(T_r)
+-
+\sum_j\sum_{T_t\in\mathcal C_{aj}(T_r)}
+\mathbf A_{aj}(T_r;T_t)
+=
+\mathbf0.
+$$
+
+Plainly: orbital acceleration and every delayed hit remain in the test. A
+snapshot-only cancellation cannot substitute for this equation.
+
+The delayed ledger must close with the orbit. Each retained root must map as
+$$
+(a,j,T,T_t)
+\longmapsto
+(\pi(a),\pi(j),T+P_u,T_t+P_u),
+$$
+with root identity, multiplicity, $D_t$, acceleration weight, inactive
+intervals, finite-memory contents, and event conventions preserved. Acceptance
+then requires an EOM-solver evolution record, the full position-velocity
+return residual modulo translation and permutation, the master-equation
+residual along the orbit, and the applicable stability or Floquet
+certificate.
+
+Plainly: a successful moving assembly is a repeated solution of the complete
+delayed dynamics, not a sequence of geometrically attractive pictures.
+
+Prescribed-geometry records may be checked for closure of their declared chart,
+but that is an integrity check only. Because they were not produced by the EOM
+solver, they cannot establish or refute existence or stability of a
+relative-periodic moving branch.
+
+For a small-drift continuation from a rest branch, the useful first-order
+expansion is
+$$
+\boldsymbol\xi^{(u)}
+=
+\boldsymbol\xi^{(0)}
++u\boldsymbol\chi
++O(u^2).
+$$
+Substitution into the full delayed equation gives a periodic correction
+problem of the form
+$$
+\mathcal L\boldsymbol\chi
+=
+-\mathbf B_{\hat{\mathbf e}},
+$$
+after the neutral translation, phase, and allowed relabeling modes are fixed.
+Here $\mathcal L$ is the full delayed linearization about the rest branch and
+$\mathbf B_{\hat{\mathbf e}}$ is the uniform-drift defect.
+
+Plainly: the correct first question is whether the internal orbit can deform
+slightly so that all delayed accelerations still close. Freezing that
+deformation to zero recovers the fixed point-cloud restriction, not a
+necessary condition for the moving branch.
+
+Claim grade: the relative-periodic conditions are derived acceptance
+obligations, not evidence that a branch exists. A certified EOM-solver record
+that satisfies the full residual, root-ledger return, state return, and
+stability conditions passes this test. Failure of any one condition falsifies
+that particular claimed branch; failure of a frozen point-cloud overlay does
+not.
 
 #### Restricted Transmitter-History Cancellation Family
 
@@ -1635,7 +1746,7 @@ b_j^2=\frac{\|\mathbf V_j(T_t)\|^2}{c_f^2},
 \qquad
 H(b^2,0)=\sqrt{1-b^2}.
 $$
-For rigid common translation, reversing the pair sends
+For fixed-point-cloud common translation, reversing the pair sends
 $\mathbf s_{ij}\mapsto-\mathbf s_{ij}$ while leaving the two scalar arguments
 unchanged. The pair therefore cancels exactly, receiver velocity remains
 absent, and the declared transverse target is recovered. The simplest member
@@ -1663,7 +1774,7 @@ velocity-contraction numerator. Replacing that contraction by a constant is
 therefore a plausible structural source of the missing cancellation terms.
 This is an inferred comparison, not a derivation: causal-only time asymmetry
 and unresolved variation residuals can also contribute. A complete variation
-that closes the rigid residual without such a contraction would overturn this
+that closes the fixed-point-cloud residual without such a contraction would overturn this
 diagnosis.
 
 #### Receiver Turning Is Not an Acceleration Singularity
@@ -2872,9 +2983,39 @@ The independently executable instrument `scripts/equation-mapping/analyze-circul
 
 These are measured algebraic facts of the unregularized uniform-circular simple-root chart, not retained-branch or stability results. The null result for the restricted principal-partner ledger is not a theorem on $(1,\infty)$, while the first full-ledger zero already establishes numerical existence inside the searched interval. Promotion to a circular MCB requires the same finite singular-event convention for the folds that created the older roots, a retained-history certificate, wake-boundary closure, and a stable return map.
 
-The result also depends directly on the open line-of-action question. The current calculation points each hit from the transmitter's emission point to the receiver event. Replacing that point by an inertially extrapolated emission point changes the tangential quantity at first order in $\beta_f$. A correction of magnitude $0.24$ is large enough to cancel the restricted-ledger minimum: modeled as a constant backward correction, it produces a tangential zero near $\beta_f\approx1.8860$ where the current radial total is inward. That scale comparison does not predict the corrected root, because the actual correction can vary with branch and can also alter the radial projection. No theory-level MCB verdict survives until that geometry is fixed and the full ledger is recomputed.
+The line-of-action sensitivity can be recomputed without changing the causal-root measure. In the counterfactual inertially extrapolated construction, retain the actual roots, emission-site distance, and canonical transmitter-side acceleration weight, but replace the acceleration direction by
+$$
+\hat{\mathbf d}_{\mathrm{ext}}
+=
+\frac{\mathbf d_{\mathrm{ext}}}{\|\mathbf d_{\mathrm{ext}}\|},
+\qquad
+\mathbf d_{\mathrm{ext}}
+=
+\mathbf X_r(T_r)
+-
+\left[
+\mathbf X_t(T_t)+\mathbf V_t(T_t)(T_r-T_t)
+\right]
+$$
+For a circular self root with receiver at $(R,0)$ and delay half-angle $\xi$, its dimensionless extrapolated separation is
+$$
+\frac{\mathbf d_{\mathrm{ext}}^{\mathrm{self}}}{R}
+=
+\left(
+1-\cos 2\xi-2\xi\sin 2\xi,
+\;
+\sin 2\xi-2\xi\cos 2\xi
+\right)
+$$
+This closed form is the independent directional reference used by the executable check.
 
-Falsifiers are direct. A negative self-hit radial projection on any admissible circular root refutes the radial-sign proposition. Failure of the principal tangential term to change sign between $\beta_f=1.5$ and $\beta_f=1.65$ refutes the threshold result. A missed root with chord residual below the declared tolerance refutes the census. Recomputing the complete current-line ledger without the algebraic zero near $\beta_f=3.07036$, or obtaining no zero after the line-of-action replacement, refutes the corresponding measured statements.
+The full branchwise recomputation changes the existence verdict for that counterfactual. At the first three canonical emission-site candidates $\beta_f\approx3.0703566254$, $6.2184549634$, and $9.3764360282$, the extrapolated-direction radial coefficients are respectively $+0.1986630540$, $+0.1969175233$, and $+0.1881554019$, while the tangential coefficients are $-0.3350989817$, $-0.1271086141$, and $-0.0742863069$. Each row is outward and tangentially unbalanced. The counterfactual ledger develops replacement tangential zeros near $\beta_f\approx3.2253960989$, $6.2226379612$, and $9.3769260902$, but their radial coefficients remain outward. A scan through $1<\beta_f<20$ finds six tangential zeros and no simultaneous inward-radial point.
+
+Claim grade: **measured counterfactual**. This result shows that the canonical algebraic candidates are line-of-action sensitive; it does not promote the extrapolated construction into the Master Equation. The canonical wake geometry still points from the actual transmitter site at $T_t$ to the receiver site at $T_r$. Deriving an independently evolving wake state must decide whether another direction has an ontological basis and, if so, derive its weight rather than mixing it into the canonical root Jacobian by convention.
+
+The equilibrium test precedes every stability test. Because all extrapolated-direction tangential zeros in the searched domain have outward radial acceleration, none is a circular equilibrium and no linearized delay spectrum about those rows is meaningful. The stability result is therefore not applicable after acceleration-balance failure; it is not a measured instability.
+
+Falsifiers are direct. A negative canonical self-hit radial projection on any admissible circular root refutes the radial-sign proposition. Failure of the principal tangential term to change sign between $\beta_f=1.5$ and $\beta_f=1.65$ refutes the threshold result. A missed root with chord residual below the declared tolerance refutes the census. Recomputing the complete canonical ledger without the algebraic zero near $\beta_f=3.07036$ refutes the canonical measurement. Finding an extrapolated-direction tangential zero with negative radial coefficient inside $1<\beta_f<20$ refutes the counterfactual nonexistence measurement.
 
 #### High-Speed-Ratio Partner and Self Circular Residual Status
 
@@ -2959,7 +3100,7 @@ However, the circular benchmark still exposes a serious certification burden in 
 This sharpens the maximum-curvature program into a concrete fork:
 
 - the measured simple-root algebraic cancellations survive the finite-event and retained-history completion, after which stability still requires a separate delay-operator proof, or
-- the cancellations disappear under that completion or under a corrected line of action, in which case the bare constant-speed circular chart fails and the search moves to medium coupling, genuine Noether braid multi-body locking, or a non-circular periodic balance.
+- the cancellations disappear under that completion. The tested inertially extrapolated direction already removes them and supplies no replacement equilibrium on $1<\beta_f<20$, but it can decide the canonical branch only if a wake-state derivation promotes that direction and its accompanying weight.
 
 - Analytically: we can reduce the existence question to algebraic conditions and asymptotic expansions, and in the bare circular ansatz we can identify the partner-positive/self-signed tangential balance that any closure certificate must satisfy.
 - Dynamically: the stability question remains separate from the algebraic construction and requires numerical analysis of attractivity versus fine-tuned orbit families.

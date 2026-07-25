@@ -538,7 +538,7 @@ The member-level inventory below describes the admissible taxonomy space, not th
 | `C3`, `C4` | Two inherited B1 coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial. `C3` fixes equal component circulation senses and `C4` fixes opposite senses; equality of the two component frequencies is not required. |
 | `C5`, `C6` | Two inherited B1.3 coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial and all-equatorial. `C5` fixes equal component circulation senses and `C6` fixes opposite senses; equality of the two component frequencies is not required. |
 
-An overall shift of absolute-time origin changes the stored phase coordinates, and an overall rigid spatial placement changes the stored centers and frames. Whether those are sampled coordinates or fixed frame conventions depends on the probe and environment protocol. A campaign must state that convention before reporting a numerical degree-of-freedom count.
+An overall shift of absolute-time origin changes the stored phase coordinates, and an overall global spatial placement changes the stored centers and frames. Whether those are sampled coordinates or fixed frame conventions depends on the probe and environment protocol. A campaign must state that convention before reporting a numerical degree-of-freedom count.
 
 The active B1 sampling domain requires $\sum_a\rho_a^2>0$. The former `B1.4` source fixes $\rho_a=0$ and $h_a=R_a$ for every binary, so its frequency and phase labels do not change its endpoint paths. Its immutable historical rows remain valid records of the deprecated axial-limit null control, but future active-candidate sampling and comparative rankings exclude it.
 
@@ -593,7 +593,7 @@ Before the first draw, freeze a versioned campaign declaration containing:
 - every included family/member identifier;
 - the bounds, units, constraints, and probability measure for each continuous coordinate;
 - the probabilities or balanced quotas for each discrete source choice;
-- the fixed-frame convention for coordinates removed as rigid placement or absolute-time origin;
+- the fixed-frame convention for coordinates removed as global spatial placement or absolute-time origin;
 - the common analytical protocol $P$, including $c_f=1$, numerical resolutions, tolerances, and gate definitions;
 - the pseudorandom or randomized space-filling algorithm, seed, and stream-assignment rule; and
 - the initial quota $N$, any later adaptive-allocation rule, and the stopping rule.

@@ -1098,7 +1098,39 @@ The complete ledger gives the opposite existence verdict because older partner r
 
 At each listed point the complete tangential coefficient is zero to the scan tolerance and the radial coefficient is inward, so the algebraic circular conditions have solutions inside the searched domain. This establishes measured existence on the current unregularized simple-root chart; it does not certify a periodic history. Each older branch descends from a $J=0$ birth and still needs the common finite-event convention, retained root ledger, wake-boundary account, and return-map stability certificate.
 
-The measurement is conditional on the current line of action from the transmitter's emission point to the receiver event. An inertially extrapolated emission-point construction changes the tangential projection at first order in $s$. A backward correction of magnitude $0.24$ is already large enough to cancel the restricted-ledger minimum and, if treated as constant for scale comparison, yields an inward-radial tangential zero near $s\approx1.8860$. The actual corrected ledger must be recomputed branchwise before any theory-level MCB verdict.
+The measurement is conditional on the canonical line of action from the transmitter's emission point to the receiver event. A counterfactual inertially extrapolated construction replaces only the acceleration direction by
+$$
+\hat{\mathbf d}_{\mathrm{ext}}
+=
+\frac{
+\mathbf X_r(T_r)
+-
+\left[
+\mathbf X_t(T_t)+\mathbf V_t(T_t)(T_r-T_t)
+\right]
+}{
+\left\|
+\mathbf X_r(T_r)
+-
+\left[
+\mathbf X_t(T_t)+\mathbf V_t(T_t)(T_r-T_t)
+\right]
+\right\|
+}
+$$
+while retaining the actual causal roots, emission-site distance, and canonical transmitter-side acceleration weight. This convention isolates the line-of-action sensitivity without substituting a different wake-density law.
+
+The recomputed complete ledger moves the first three emission-site candidates off both balance conditions:
+
+| Emission-site candidate $s$ | Extrapolated-direction radial coefficient | Extrapolated-direction tangential coefficient |
+| ---: | ---: | ---: |
+| $3.0703566254$ | $+0.1986630540$ | $-0.3350989817$ |
+| $6.2184549634$ | $+0.1969175233$ | $-0.1271086141$ |
+| $9.3764360282$ | $+0.1881554019$ | $-0.0742863069$ |
+
+The same counterfactual ledger has tangential zeros near $s=3.2253960989$, $6.2226379612$, and $9.3769260902$, but their radial coefficients are respectively $+0.1357894119$, $+0.1768252822$, and $+0.1802347924$, with outward sign positive. The scan through $1<s<20$ finds six tangential zeros and no simultaneous inward-radial point. Claim grade: **measured counterfactual**, not canonical dynamics. The closed-form extrapolated direction independently checks the vector evaluator, while the causal roots remain checked against the Euclidean chord residual.
+
+The equilibrium gate therefore fails before stability analysis: none of the extrapolated-direction zeros is a circular solution, so a Floquet multiplier or delayed-history spectrum about those rows would have no dynamical referent. This closes the requested stability test as an acceleration-balance negative, not as a measured instability. The canonical emission-site candidates remain eligible for a separate retained-history stability calculation because the counterfactual direction has not been derived from the causal-wake ontology.
 
 The circular result forecloses neither non-circular contraction nor the symmetric logarithmic spiral, multi-architrino braids, or Noether sea embedded configurations. It also does not yet establish the circular MCB: it promotes the current chart from an unanswered algebraic question to a measured candidate family while leaving finite-event persistence and stability open.
 
@@ -1799,4 +1831,4 @@ For $K(T)$ to diverge, $\mathcal{W}(T)$ must decrease without bound.
 
 ## Summary
 
-The circular atlas establishes exact delay equations, signed-sheet root thresholds, and canonically weighted radial and tangential coefficients. The principal partner branch cannot form a particle-only constant-speed circle because its tangential acceleration is positive. The complete unregularized simple-root ledger does contain algebraic radial/tangential balance points, so the circular ansatz is not excluded at that level. A maximum-curvature binary remains conditional: the measured candidates must survive one finite singular-event convention, retained-history transport, wake-boundary exchange, return-map stability, Jacobian floors, the open line-of-action question, and the action-derived conservation charges on one retained history record.
+The circular atlas establishes exact delay equations, signed-sheet root thresholds, and canonically weighted radial and tangential coefficients. The principal partner branch cannot form a particle-only constant-speed circle because its tangential acceleration is positive. The complete unregularized canonical simple-root ledger does contain algebraic radial/tangential balance points, so the circular ansatz is not excluded at that level. Redirecting the acceleration toward an inertially extrapolated emission site removes those candidates and supplies no replacement equilibrium on $1<s<20$, but that construction remains a measured counterfactual rather than a derived wake law. A maximum-curvature binary remains conditional: the canonical candidates must survive one finite singular-event convention, retained-history transport, wake-boundary exchange, return-map stability, Jacobian floors, and the action-derived conservation charges on one retained history record, while the underlying wake-state derivation must decide which line of action is ontologically admissible.

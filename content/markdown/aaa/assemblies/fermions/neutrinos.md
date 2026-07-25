@@ -10,7 +10,7 @@ The opening section states the working geometry and the plain-language interpret
 
 This chapter constructs the neutrino as a perturbation of the photon lock. That lock has not been exhibited, and the point is stated here rather than in a caveat because everything below inherits it.
 
-No canonical photon equilibrium branch has been exhibited. The canonical construction is the 12-worldline coaxial contra-rotating polarity-conjugate planar pair; exhibiting it means evolving that assembly under the master equation to a retained branch, cross-verified by the EOM solver against an independent oracle. Until such a branch exists the lock is a theorem target. Prescribed rigid circular histories cannot substitute for that evolution in either direction: a prescribed history reports the geometry its author imposed, not a dynamical outcome, so it can neither establish the lock nor rule it out. The falsifier is direct — exhibit the retained branch, and the target closes.
+No canonical photon equilibrium branch has been exhibited. The canonical construction is the 12-worldline coaxial contra-rotating polarity-conjugate planar pair; exhibiting it means evolving that assembly under the master equation to a retained branch, cross-verified by the EOM solver against an independent oracle. Until such a branch exists the lock is a theorem target. Prescribed fixed-coordinate circular histories cannot substitute for that evolution in either direction: a prescribed history reports the geometry its author imposed, not a dynamical outcome, so it can neither establish the lock nor rule it out. The falsifier is direct — exhibit the retained branch, and the target closes.
 
 Two consequences govern how the rest of this chapter reads.
 

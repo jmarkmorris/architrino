@@ -130,6 +130,7 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertEqual(response["acceptedEndTime"], "2.1")
         self.assertEqual(response["acceptedStepCount"], 1)
         self.assertEqual(response["rejectedStepCount"], 0)
+        self.assertFalse(response["jointStateFallbackApplied"])
         self.assertAlmostEqual(float(response["controllerStepSize"]), 0.1)
         self.assertEqual(response["haltCode"], "")
         self.assertTrue(all(

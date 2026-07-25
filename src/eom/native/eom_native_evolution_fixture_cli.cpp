@@ -265,6 +265,8 @@ void print_evolution(
             << ",\"evidence_status\":\"" << certificate.evidence_status
             << "\",\"joint_history_count\":"
             << certificate.joint_histories.size()
+            << ",\"joint_state_fallback_applied\":"
+            << (certificate.joint_state_fallback_applied ? "true" : "false")
             << ",\"histories\":";
   print_histories(certificate.histories, certificate.accepted_end_time);
   std::cout << ",\"steps\":";

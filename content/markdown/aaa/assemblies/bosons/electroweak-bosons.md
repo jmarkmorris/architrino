@@ -8,7 +8,7 @@ Spin labels in this chapter are downstream mapping targets, not completed deriva
 
 ## Photon Referent Status
 
-The photon construction below is a theorem target, not an exhibited bound branch. The canonical construction is the 12-worldline coaxial contra-rotating polarity-conjugate planar pair; exhibiting it means evolving that assembly under the master equation to a retained branch, cross-verified by the EOM solver against an independent oracle. No such branch has been exhibited, and prescribed rigid circular histories cannot supply one: a prescribed history reports the geometry its author imposed, not a dynamical outcome.
+The photon construction below is a theorem target, not an exhibited bound branch. The canonical construction is the 12-worldline coaxial contra-rotating polarity-conjugate planar pair; exhibiting it means evolving that assembly under the master equation to a retained branch, cross-verified by the EOM solver against an independent oracle. No such branch has been exhibited, and prescribed fixed-coordinate circular histories cannot supply one: a prescribed history reports the geometry its author imposed, not a dynamical outcome.
 
 Accordingly, the planar-pair description, Gate A/B quantities, and every neutrino residual defined relative to this lock are referent-pending until an equilibrium branch is exhibited. The gates remain useful because they state what a replacement branch must recover, but they must not be used as premises about a retained photon assembly.
 

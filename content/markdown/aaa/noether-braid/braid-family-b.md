@@ -51,7 +51,7 @@ Thus internal speed is controlled by transverse orbit radius rather than by tota
 
 ## B1
 
-B1 is the rigid common-frequency member of Family B. Its member-level constraints are:
+B1 is the fixed-coordinate common-frequency co-rotating member of Family B. Its member-level constraints are:
 
 | Coordinate or relation | B1 value |
 | --- | --- |
@@ -65,7 +65,7 @@ B1 is the rigid common-frequency member of Family B. Its member-level constraint
 | Transverse orbit radii | $\rho_1,\rho_2,\rho_3$ independently assignable subject to each radius decomposition |
 | Phases | $\phi_1,\phi_2,\phi_3$ independently assignable relative to the common zero point |
 
-Rigid here means that the declared $R_a$, $h_a$, $\rho_a$, $f$, $\phi_a$, frame, and circulation sense do not change during the prescribed record. It is a kinematic restriction, not an EOM-solver rigidity result.
+Fixed-coordinate here means that the declared $R_a$, $h_a$, $\rho_a$, $f$, $\phi_a$, frame, and circulation sense do not change during the prescribed record. The architrinos still move on their declared orbits. This is a prescribed-chart restriction, not evidence that the EOM solver retains the assembly.
 
 ### B1 Catalog Members
 
@@ -155,8 +155,8 @@ Axial translation is a B1 specialization, not a Family-B requirement. A record w
 
 Family A and Family B share a coordinate boundary. At $\lambda_A=1$, the three Family-A axes coincide with the Family-A translation direction. A common-frequency Family-A record with one common circulation sense then satisfies the B1 axis, frequency, and circulation relations. It reaches the source-defined common-center B1 chart only if its three binary midpoints also coincide with the braid center.
 
-The A2 face-opposite seed supplies a second exact overlap: rigid rotation about its body diagonal occupies the [cyclic-symmetric A2/B1 sublocus](braid-b1-symmetry.md#cyclic-symmetric-a2b1-overlap), independently of $\lambda_A=1$. These overlaps are coordinate-locus statements. They do not identify Family A with Family B away from the shared loci and do not establish a physical transition between them.
+The A2 face-opposite seed supplies a second exact overlap: common-frequency co-rotation about its body diagonal occupies the [cyclic-symmetric A2/B1 sublocus](braid-b1-symmetry.md#cyclic-symmetric-a2b1-overlap), independently of $\lambda_A=1$. These overlaps are coordinate-locus statements. They do not identify Family A with Family B away from the shared loci and do not establish a physical transition between them.
 
 ## Claim Boundary
 
-The B1 equations define prescribed paths exactly. They would be falsified as EOM-solver branch claims by a same-record evolution showing that the common-axis, common-frequency, common-center, or rigid-coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability records. Until such evidence exists, B1 supplies an exact display geometry and explicit closure targets, not a retained physical braid.
+The B1 equations define prescribed paths exactly. They would be falsified as EOM-solver branch claims by a same-record evolution showing that the common-axis, common-frequency, common-center, or fixed-coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability records. Until such evidence exists, B1 supplies an exact display geometry and explicit closure targets, not a retained physical braid.

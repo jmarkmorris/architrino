@@ -10,6 +10,12 @@ const ROOT_TOLERANCE = 2e-14;
 const RESIDUAL_TOLERANCE = 2e-11;
 const FOLD_OFFSET = 2e-8;
 
+export const LINE_OF_ACTION = Object.freeze({
+  EMISSION_SITE: "emission-site",
+  INERTIALLY_EXTRAPOLATED_EMISSION_SITE:
+    "inertially-extrapolated-emission-site",
+});
+
 function bisect(fn, left, right, tolerance = ROOT_TOLERANCE) {
   let fLeft = fn(left);
   let fRight = fn(right);
@@ -122,7 +128,33 @@ function norm2([x, y]) {
   return Math.hypot(x, y);
 }
 
-function evaluateSelfRoot(beta, x) {
+function selectAccelerationDirection({
+  lineOfAction,
+  positionAtReception,
+  positionAtEmission,
+  velocityAtEmission,
+  delay,
+  causalDirection,
+}) {
+  if (lineOfAction === LINE_OF_ACTION.EMISSION_SITE) {
+    return causalDirection;
+  }
+  assert.equal(
+    lineOfAction,
+    LINE_OF_ACTION.INERTIALLY_EXTRAPOLATED_EMISSION_SITE,
+  );
+  const extrapolatedPosition = positionAtEmission.map(
+    (component, index) => component + velocityAtEmission[index] * delay,
+  );
+  const separation = positionAtReception.map(
+    (component, index) => component - extrapolatedPosition[index],
+  );
+  const distance = norm2(separation);
+  assert.ok(distance > 0);
+  return separation.map((component) => component / distance);
+}
+
+function evaluateSelfRoot(beta, x, lineOfAction) {
   const positionAtReception = [1, 0];
   const positionAtEmission = [Math.cos(2 * x), -Math.sin(2 * x)];
   const velocityAtEmission = [
@@ -140,7 +172,17 @@ function evaluateSelfRoot(beta, x) {
     velocityAtEmission[1] * direction[1];
   const jacobian = 1 - transmitterProjection;
   const scale = 1 / (distance * distance * Math.abs(jacobian));
-  const acceleration = direction.map((component) => component * scale);
+  const accelerationDirection = selectAccelerationDirection({
+    lineOfAction,
+    positionAtReception,
+    positionAtEmission,
+    velocityAtEmission,
+    delay: (2 * x) / beta,
+    causalDirection: direction,
+  });
+  const acceleration = accelerationDirection.map(
+    (component) => component * scale,
+  );
   const chordResidual = distance - (2 * x) / beta;
 
   return {
@@ -153,7 +195,7 @@ function evaluateSelfRoot(beta, x) {
   };
 }
 
-function evaluatePartnerRoot(beta, x) {
+function evaluatePartnerRoot(beta, x, lineOfAction) {
   const positionAtReception = [1, 0];
   const positionAtEmission = [-Math.cos(2 * x), Math.sin(2 * x)];
   const velocityAtEmission = [
@@ -171,7 +213,17 @@ function evaluatePartnerRoot(beta, x) {
     velocityAtEmission[1] * direction[1];
   const jacobian = 1 - transmitterProjection;
   const scale = -1 / (distance * distance * Math.abs(jacobian));
-  const acceleration = direction.map((component) => component * scale);
+  const accelerationDirection = selectAccelerationDirection({
+    lineOfAction,
+    positionAtReception,
+    positionAtEmission,
+    velocityAtEmission,
+    delay: (2 * x) / beta,
+    causalDirection: direction,
+  });
+  const acceleration = accelerationDirection.map(
+    (component) => component * scale,
+  );
   const chordResidual = distance - (2 * x) / beta;
 
   return {
@@ -188,10 +240,15 @@ function sum(values, key) {
   return values.reduce((total, value) => total + value[key], 0);
 }
 
-export function ledgerAt(beta) {
-  const self = selfRoots(beta).map((root) => evaluateSelfRoot(beta, root));
+export function ledgerAt(
+  beta,
+  { lineOfAction = LINE_OF_ACTION.EMISSION_SITE } = {},
+) {
+  const self = selfRoots(beta).map((root) =>
+    evaluateSelfRoot(beta, root, lineOfAction),
+  );
   const partner = partnerRoots(beta).map((root) =>
-    evaluatePartnerRoot(beta, root),
+    evaluatePartnerRoot(beta, root, lineOfAction),
   );
 
   for (const root of [...self, ...partner]) {
@@ -204,6 +261,7 @@ export function ledgerAt(beta) {
   const principalPartner = partner.slice(0, 1);
   return {
     beta,
+    lineOfAction,
     self,
     partner,
     selfOnly: {
@@ -267,6 +325,7 @@ export function scanLedger({
   samplesPerInterval,
   ledgerName,
   component = "tangential",
+  lineOfAction = LINE_OF_ACTION.EMISSION_SITE,
 }) {
   const boundaries = uniqueSorted([
     1,
@@ -290,25 +349,28 @@ export function scanLedger({
     if (right <= left) continue;
 
     let previousBeta = left;
-    let previousValue = ledgerAt(previousBeta)[ledgerName][component];
+    let previousValue = ledgerAt(previousBeta, { lineOfAction })[ledgerName][
+      component
+    ];
     if (previousValue < minimum.value) {
       minimum = { beta: previousBeta, value: previousValue };
     }
 
     for (let sample = 1; sample <= samplesPerInterval; sample += 1) {
       const beta = left + ((right - left) * sample) / samplesPerInterval;
-      const value = ledgerAt(beta)[ledgerName][component];
+      const value = ledgerAt(beta, { lineOfAction })[ledgerName][component];
       if (value < minimum.value) {
         minimum = { beta, value };
       }
       if (Math.sign(value) !== Math.sign(previousValue)) {
         const zero = bisect(
-          (candidate) => ledgerAt(candidate)[ledgerName][component],
+          (candidate) =>
+            ledgerAt(candidate, { lineOfAction })[ledgerName][component],
           previousBeta,
           beta,
           5e-13,
         );
-        const ledger = ledgerAt(zero)[ledgerName];
+        const ledger = ledgerAt(zero, { lineOfAction })[ledgerName];
         zeros.push({ beta: zero, ...ledger });
       }
       previousBeta = beta;
@@ -320,12 +382,40 @@ export function scanLedger({
     domain: [1, maxBeta],
     ledgerName,
     component,
+    lineOfAction,
     boundaries,
     minimum,
     zeros: uniqueSorted(zeros.map((zero) => zero.beta)).map((beta) => ({
       beta,
-      ...ledgerAt(beta)[ledgerName],
+      ...ledgerAt(beta, { lineOfAction })[ledgerName],
     })),
+  };
+}
+
+export function assessCircularBalance(
+  beta,
+  {
+    lineOfAction = LINE_OF_ACTION.EMISSION_SITE,
+    tangentialTolerance = 1e-8,
+  } = {},
+) {
+  const ledger = ledgerAt(beta, { lineOfAction }).fullCircular;
+  const radialInward = ledger.radial < 0;
+  const tangentialBalanced =
+    Math.abs(ledger.tangential) <= tangentialTolerance;
+  const equilibrium = radialInward && tangentialBalanced;
+  return {
+    beta,
+    lineOfAction,
+    radial: ledger.radial,
+    tangential: ledger.tangential,
+    radialInward,
+    tangentialBalanced,
+    equilibrium,
+    radius: radialInward ? -ledger.radial / (beta * beta) : null,
+    stabilityStatus: equilibrium
+      ? "eligible-for-history-space-stability-analysis"
+      : "not-an-equilibrium-no-stability-spectrum",
   };
 }
 
@@ -358,9 +448,25 @@ if (
   import.meta.url === pathToFileURL(process.argv[1]).href
 ) {
   const options = parseArguments(process.argv.slice(2));
-  const sampleBetas = [1.2, 1.4, PI / 2, 1.7, 2, 3, 6, 8, 10].map(
-    (beta) => ledgerAt(beta),
+  const sampleBetas = [1.2, 1.4, PI / 2, 1.7, 2, 3, 6, 8, 10];
+  const emissionSiteSamples = sampleBetas.map((beta) => ledgerAt(beta));
+  const extrapolatedSamples = sampleBetas.map((beta) =>
+    ledgerAt(beta, {
+      lineOfAction:
+        LINE_OF_ACTION.INERTIALLY_EXTRAPOLATED_EMISSION_SITE,
+    }),
   );
+  const extrapolatedFullCircularTangential = scanLedger({
+    ...options,
+    ledgerName: "fullCircular",
+    lineOfAction:
+      LINE_OF_ACTION.INERTIALLY_EXTRAPOLATED_EMISSION_SITE,
+  });
+  const emissionSiteCandidateBetas = [
+    3.070356625390253,
+    6.218454963409138,
+    9.376436028216506,
+  ];
   const output = {
     units: {
       c_f: 1,
@@ -372,13 +478,18 @@ if (
       tangential: "positive along receiver velocity",
       selfRootEquation: "beta*abs(sin(x)) - x = 0",
       partnerRootEquation: "beta*abs(cos(x)) - x = 0",
+      extrapolatedLineOfAction:
+        "roots, causal distance, and transmitter-side weight remain emission-site quantities; only the acceleration direction points from X_t(T_t)+V_t(T_t)*(T_r-T_t) to X_r(T_r)",
     },
     thresholds: {
       principalSelfSignFlip: PI / 2,
       selfBirths: selfBirths(options.maxBeta),
       partnerBirths: partnerBirths(options.maxBeta),
     },
-    samples: sampleBetas,
+    samples: {
+      emissionSite: emissionSiteSamples,
+      inertiallyExtrapolatedEmissionSite: extrapolatedSamples,
+    },
     scans: {
       selfTangential: scanLedger({
         ...options,
@@ -402,7 +513,30 @@ if (
         ledgerName: "fullCircular",
         component: "radial",
       }),
+      extrapolatedFullCircularTangential,
+      extrapolatedFullCircularRadial: scanLedger({
+        ...options,
+        ledgerName: "fullCircular",
+        component: "radial",
+        lineOfAction:
+          LINE_OF_ACTION.INERTIALLY_EXTRAPOLATED_EMISSION_SITE,
+      }),
     },
+    extrapolatedCandidateAssessments:
+      extrapolatedFullCircularTangential.zeros.map((zero) =>
+        assessCircularBalance(zero.beta, {
+          lineOfAction:
+            LINE_OF_ACTION.INERTIALLY_EXTRAPOLATED_EMISSION_SITE,
+        }),
+      ),
+    lineOfActionCandidateComparison: emissionSiteCandidateBetas.map((beta) => ({
+      beta,
+      emissionSite: assessCircularBalance(beta),
+      inertiallyExtrapolatedEmissionSite: assessCircularBalance(beta, {
+        lineOfAction:
+          LINE_OF_ACTION.INERTIALLY_EXTRAPOLATED_EMISSION_SITE,
+      }),
+    })),
   };
 
   process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);

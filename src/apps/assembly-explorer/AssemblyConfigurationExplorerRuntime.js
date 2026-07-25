@@ -279,7 +279,7 @@ export function createAssemblyExplorerDemoDataset() {
         braidCertification: {
           status: "candidate",
           period: 1,
-          allowedSymmetries: ["phase-shift", "rigid-rotation", "S3-layer-relabeling"],
+          allowedSymmetries: ["phase-shift", "spatial-rotation", "S3-layer-relabeling"],
           lorentzExportStatus: "downstream-target",
         },
         axisAlignment: {
@@ -309,7 +309,7 @@ export function createAssemblyExplorerDemoDataset() {
         braidCertification: {
           status: "candidate",
           period: 1,
-          allowedSymmetries: ["phase-shift", "rigid-rotation", "S3-layer-relabeling"],
+          allowedSymmetries: ["phase-shift", "spatial-rotation", "S3-layer-relabeling"],
           lorentzExportStatus: "downstream-target",
         },
         axisAlignment: {

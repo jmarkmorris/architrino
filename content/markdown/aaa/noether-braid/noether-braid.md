@@ -51,7 +51,7 @@ The prescribed geometry is organized by [Braid Taxonomy](braid-taxonomy.md). Its
 | --- | --- | --- |
 | [**neutral braid**](#neutral-braid-base) | The broad six-architrino neutral case before any required binary grouping or radial organization. | Polarity balance and causal-return bookkeeping. |
 | [**Family A**](braid-family-a.md) | One braid whose three binary axes are orthogonal at the near-rest endpoint and converge toward the group-translation direction under the prescribed response. | `A1` is the zero-axial-offset subset, `A2` is the fully symmetric member, and `A3` carries the general axial/transverse decomposition. |
-| [**Family B**](braid-family-b.md) | One braid whose three binary midpoints and axes coincide. | `B1` is the rigid common-frequency member. |
+| [**Family B**](braid-family-b.md) | One braid whose three binary midpoints and axes coincide. | `B1` is the fixed-coordinate common-frequency co-rotating member. |
 | [**Family C**](braid-family-c.md) | A twelve-worldline coaxial braid family containing six neutral binaries. | `C1` and `C2` are general co-rotating and counter-rotating members; `C3` and `C4` constrain the record to two B1 components; `C5` and `C6` further constrain both components to B1.3. |
 
 These definitions name prescribed coordinate classes, not retained-branch existence. Stable all-pairs roots, recovery after perturbation, and observer-export behavior are theorem targets that must be certified by the branch ledger rather than read back into a family identifier. The broader diagnostic axes and search variables remain in [Noether Braid Configuration Space](noether-braid-configuration-space.md).

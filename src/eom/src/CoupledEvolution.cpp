@@ -6920,6 +6920,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   // but joint state must never silently reappear on a later controller step.
   bool joint_state_fallback_active =
       !adjudicated_finite_width_pairs.empty();
+  bool joint_state_fallback_applied =
+      joint_state_fallback_active && !request.joint_histories.empty();
   std::size_t certificate_cost_cooldown_remaining =
       request.certificate_cost_initial_cooldown_steps;
 
@@ -7082,6 +7084,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       // optional joint correlation. Retry the same width without joint state,
       // and keep that degradation active for the rest of this evolution.
       joint_state_fallback_active = true;
+      joint_state_fallback_applied = true;
       joint_histories.clear();
       step_size = attempted_step;
       continue;
@@ -7196,6 +7199,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       .accepted_end_time = current_time_token,
       .histories = std::move(histories),
       .joint_histories = std::move(joint_histories),
+      .joint_state_fallback_applied = joint_state_fallback_applied,
       .steps = std::move(steps),
       .accepted_step_count = accepted_count,
       .rejected_step_count = rejected_count,
