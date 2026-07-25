@@ -212,10 +212,19 @@ function createTimeSpaceCanvasProjection(recordedSamples, window, requestOptions
   const canvasBottom = TIME_AXIS_BASELINE_Y - margin;
   const xSpan = PATH_TIME_END_X - PATH_TIME_START_X;
   const yScale = (canvasBottom - canvasTop) / (spaceMax - spaceMin);
+  const meanSpace = (samples) => {
+    const values = samples.map((frame) => frame.states[0].position[spaceAxis]);
+    return values.reduce((sum, value) => sum + value, 0) / Math.max(1, values.length);
+  };
+  const positrinoMeanSpace = meanSpace(recordedSamples.positrino);
+  const electrinoMeanSpace = meanSpace(recordedSamples.electrino);
+  const increasingSpaceRendersUp = positrinoMeanSpace >= electrinoMeanSpace;
   return {
     descriptor: Object.freeze({
       rule: "time_space_canvas_fit/v1",
       spaceAxis,
+      verticalIdentityOrder: "positrino_above_electrino",
+      spaceDirection: increasingSpaceRendersUp ? "up" : "down",
       timeStart: start,
       timeEnd: end,
       spaceMin,
@@ -228,13 +237,16 @@ function createTimeSpaceCanvasProjection(recordedSamples, window, requestOptions
       return PATH_TIME_START_X + this.normalizedTime(time) * xSpan;
     },
     canvasY(spaceValue) {
-      return canvasBottom - (spaceValue - spaceMin) * yScale;
+      return increasingSpaceRendersUp
+        ? canvasBottom - (spaceValue - spaceMin) * yScale
+        : canvasTop + (spaceValue - spaceMin) * yScale;
     },
     canvasVx() {
       return xSpan;
     },
     canvasVy(spaceVelocity) {
-      return -spaceVelocity * yScale * (duration > 0 ? duration : 1);
+      const screenDirection = increasingSpaceRendersUp ? -1 : 1;
+      return screenDirection * spaceVelocity * yScale * (duration > 0 ? duration : 1);
     },
   };
 }

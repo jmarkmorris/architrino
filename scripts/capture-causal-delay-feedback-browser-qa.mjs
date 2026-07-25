@@ -37,8 +37,9 @@ const PROOFS = Object.freeze([
     settingsOpen: false,
     mode: "story",
     storyStep: 0,
+    storyProgress: 0.5,
     expectedScene: "story:meet",
-    expectedText: "Let's examine the transmitting positrino (red) and a receiving electrino (blue).",
+    expectedText: "Each architrino transmits continuously at a constant rate.",
   },
   {
     id: "story-emission",
@@ -52,38 +53,9 @@ const PROOFS = Object.freeze([
     settingsOpen: false,
     mode: "story",
     storyStep: 1,
+    storyProgress: 1,
     expectedScene: "story:emission",
-    expectedText: "Dimmed architrinos keep both transmission locations visible",
-  },
-  {
-    id: "story-travel",
-    fileName: "story-travel-purple-1440x900.png",
-    width: 1440,
-    height: 900,
-    deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
-    wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
-    mode: "story",
-    storyStep: 2,
-    expectedScene: "story:travel",
-    expectedText: "The two wakes cross the gap",
-  },
-  {
-    id: "story-reception",
-    fileName: "story-reception-purple-1440x900.png",
-    width: 1440,
-    height: 900,
-    deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
-    wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
-    mode: "story",
-    storyStep: 3,
-    expectedScene: "story:reception",
-    expectedText: "the positrino wake intersects the electrino receiver",
+    expectedText: "Wakes arriving at a receiver now were transmitted earlier in the transmitter’s path history.",
   },
   {
     id: "story-desktop",
@@ -96,23 +68,24 @@ const PROOFS = Object.freeze([
     wakeSeriesId: "live-electrino-to-positrino",
     settingsOpen: false,
     mode: "story",
-    storyStep: 4,
+    storyStep: 2,
     expectedScene: "story:meaning",
-    expectedText: "Each dashed causal line connects a receiver",
+    expectedText: "Each full circle is a two-dimensional view of an expanding spherical wake",
   },
   {
-    id: "prediction-desktop",
-    fileName: "prediction-purple-1440x900.png",
+    id: "story-motion",
+    fileName: "story-motion-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=prediction&replay=mock&canvas=architrinoPurple",
+    query: "mode=story&replay=mock&canvas=architrinoPurple",
     replayTime: 0.62,
-    wakeSeriesId: "live-positrino-to-electrino",
+    wakeSeriesId: "live-electrino-to-positrino",
     settingsOpen: false,
-    mode: "prediction",
-    expectedScene: "prediction",
-    expectedText: "Which earlier transmission position matters?",
+    mode: "story",
+    storyStep: 3,
+    expectedScene: "story:motion",
+    expectedText: "For a moving architrino, the wake is compressed in front and expanded behind.",
   },
   {
     id: "story-portrait",
@@ -125,21 +98,8 @@ const PROOFS = Object.freeze([
     wakeSeriesId: "live-positrino-to-electrino",
     settingsOpen: false,
     mode: "story",
-    storyStep: 4,
+    storyStep: 2,
     expectedScene: "story:meaning",
-  },
-  {
-    id: "prediction-portrait",
-    fileName: "prediction-purple-390x844.png",
-    width: 390,
-    height: 844,
-    deviceScaleFactor: 2,
-    query: "mode=prediction&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
-    wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
-    mode: "prediction",
-    expectedScene: "prediction",
   },
   {
     id: "keyboard-journey",
@@ -166,10 +126,10 @@ const PROOFS = Object.freeze([
     wakeSeriesId: "live-positrino-to-electrino",
     settingsOpen: false,
     mode: "story",
-    storyStep: 4,
+    storyStep: 2,
     reducedMotion: true,
     expectedScene: "story:meaning",
-    expectedText: "Each dashed causal line connects a receiver",
+    expectedText: "The matching fading red or blue arc",
   },
   {
     id: "roots-reduced-motion",
@@ -187,8 +147,8 @@ const PROOFS = Object.freeze([
     expectedText: "Finite accumulated ΔV",
   },
   {
-    id: "self-hit",
-    fileName: "self-hit-purple-1440x900.png",
+    id: "forward-buildup",
+    fileName: "forward-buildup-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
@@ -198,29 +158,7 @@ const PROOFS = Object.freeze([
     settingsOpen: false,
     mode: "self-hit",
     expectedScene: "self-hit",
-    expectedText: "below the threshold",
-  },
-  {
-    id: "branch-lab",
-    fileName: "branch-lab-purple-1440x900.png",
-    width: 1440,
-    height: 900,
-    deviceScaleFactor: 1,
-    query: "mode=branch-lab&preset=contrast_stress&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
-    wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
-    mode: "branch-lab",
-    expectedScene: "branch-lab",
-    branchFilters: {
-      historyAgeLimit: 0.7,
-      minimumContribution: 200,
-      rootKind: "all",
-      transversalityFloor: 0,
-    },
-    expectedText: "filtered",
-    expectedSecondaryText: "rejected",
-    expectedBranchFilterCount: 4,
+    expectedText: "Forward Wake Buildup",
   },
   {
     id: "high-contrast",
@@ -233,10 +171,10 @@ const PROOFS = Object.freeze([
     wakeSeriesId: "live-positrino-to-electrino",
     settingsOpen: false,
     mode: "story",
-    storyStep: 4,
+    storyStep: 2,
     highContrast: true,
     expectedScene: "story:meaning",
-    expectedText: "Each dashed causal line connects a receiver",
+    expectedText: "The matching fading red or blue arc",
   },
   {
     id: "eom-unavailable",
@@ -251,7 +189,7 @@ const PROOFS = Object.freeze([
     mode: "story",
     expectedScene: "story:meet",
     expectedReplayState: "fallback",
-    expectedText: "Let's examine the transmitting positrino (red) and a receiving electrino (blue).",
+    expectedText: "Each architrino transmits continuously at a constant rate.",
   },
 ]);
 
@@ -589,6 +527,7 @@ async function captureProof(cdp, { proof, url, outputPath }) {
     timeoutMs: 15000,
     label: `causal-delay page ready for ${proof.id}`,
   });
+  await cdp.send("Page.bringToFront", {}, sessionId);
   if (proof.keyboardJourney) {
     await prepareKeyboardJourney(cdp, sessionId, proof.keyboardJourney);
   }
@@ -620,7 +559,15 @@ async function prepareKeyboardJourney(cdp, sessionId, destination) {
         }
         control.focus();
         if (document.activeElement !== control) {
-          return { ok: false, reason: "focus" };
+          return {
+            ok: false,
+            reason: "focus",
+            disabled: control.disabled,
+            mode: window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode,
+            storyStep: window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.storyStep,
+            activeTag: document.activeElement?.tagName,
+            activeText: document.activeElement?.textContent?.trim(),
+          };
         }
         control.click();
         return { ok: true };
@@ -628,7 +575,7 @@ async function prepareKeyboardJourney(cdp, sessionId, destination) {
     `);
     if (!activated.value?.ok) {
       throw new Error(
-        `keyboard journey could not activate focused ${selector}: ${activated.value?.reason ?? "unknown"}`,
+        `keyboard journey could not activate focused ${selector}: ${JSON.stringify(activated.value)}`,
       );
     }
   };
@@ -636,19 +583,11 @@ async function prepareKeyboardJourney(cdp, sessionId, destination) {
     const mode = await evaluate(cdp, sessionId, `
       window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode
     `);
-    if (mode.value === "prediction") {
+    if (mode.value === "history") {
       break;
     }
     await pressFocusedButton("#causal-delay-feedback-guided-next");
   }
-  const predictionMode = await evaluate(cdp, sessionId, `
-    window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode
-  `);
-  if (predictionMode.value !== "prediction") {
-    throw new Error(`keyboard journey did not reach Prediction; got ${predictionMode.value ?? "unavailable"}`);
-  }
-  await pressFocusedButton(".causal-choice-button:nth-child(2)");
-  await pressFocusedButton("#causal-delay-feedback-guided-next");
   const historyMode = await evaluate(cdp, sessionId, `
     window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode
   `);
@@ -784,6 +723,23 @@ function createPrepareProofExpression(proof) {
     runtime.setPlaying(false);
     runtime.setCurrentReplayTime(${JSON.stringify(proof.replayTime)});
     runtime.updateNowControl(${JSON.stringify(proof.replayTime)});
+    const requestedStoryProgress =
+      ${proof.storyProgress == null ? "undefined" : JSON.stringify(proof.storyProgress)};
+    if (
+      requestedMode === "story" &&
+      Number.isFinite(requestedStoryProgress)
+    ) {
+      runtime.setPlaying(true, { restartStory: true });
+      const heldScene = runtime.storyPlaybackScene;
+      const heldReplayTime =
+        heldScene.playbackStartTime +
+        (heldScene.playbackEndTime - heldScene.playbackStartTime) *
+          Math.max(0, Math.min(1, requestedStoryProgress));
+      runtime.setPlaying(false, {
+        holdScene: heldScene,
+        holdReplayTime: heldReplayTime,
+      });
+    }
     const liveWakeSeries = runtime.getVisibleWakeSeries(runtime.getCurrentReplayTime());
     const link =
       liveWakeSeries.find((candidate) => candidate.id === ${JSON.stringify(proof.wakeSeriesId ?? "")}) ||

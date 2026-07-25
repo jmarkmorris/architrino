@@ -76,10 +76,40 @@ test("eom replay adapter normalizes a recorded dataset into the runtime replay s
   assert.ok(Math.abs(dataset.paths.electrino[0].y - CANVAS_BOTTOM) < 1e-6);
   assert.equal(dataset.displayProjection.rule, "time_space_canvas_fit/v1");
   assert.equal(dataset.displayProjection.spaceAxis, "y");
+  assert.equal(
+    dataset.displayProjection.verticalIdentityOrder,
+    "positrino_above_electrino",
+  );
 
   assert.equal(dataset.initialConditions.positrino.polarity, "positive");
   assert.equal(dataset.initialConditions.electrino.polarity, "negative");
   assert.equal(dataset.initialConditions.positrino.ax, 0);
+});
+
+test("eom display projection keeps positrino above electrino without changing recorded roles", () => {
+  const record = createEomRecordFixture();
+  record.histories[0].segments = [
+    inertialSegment(0, 2, [5, -2, 0], [0, 0.5, 0]),
+  ];
+  record.histories[1].segments = [
+    inertialSegment(0, 2, [5, 2, 0], [0, 0.5, 0]),
+  ];
+
+  const dataset = normalizeCausalDelayFeedbackEomReplay(record, {
+    requestOptions: { frameCount: 5 },
+  });
+  const meanCanvasY = (points) =>
+    points.reduce((sum, point) => sum + point.y, 0) / points.length;
+
+  assert.ok(
+    meanCanvasY(dataset.paths.positrino) <
+      meanCanvasY(dataset.paths.electrino),
+  );
+  assert.equal(dataset.displayProjection.spaceDirection, "down");
+  assert.equal(dataset.physicalPaths.positrino[0].y, -2);
+  assert.equal(dataset.physicalPaths.electrino[0].y, 2);
+  assert.equal(dataset.initialConditions.positrino.polarity, "positive");
+  assert.equal(dataset.initialConditions.electrino.polarity, "negative");
 });
 
 test("eom replay retained-history points span the trail with mock-compatible semantics", async () => {

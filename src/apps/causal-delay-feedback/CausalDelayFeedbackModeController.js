@@ -2,8 +2,8 @@ import {
   createWakeDisplayGeometry,
 } from "./CausalDelayFeedbackWakeRenderer.js";
 import {
+  STORY_MOTION_SPEED_FRACTIONS,
   createStoryView,
-  createPredictionView,
   STORY_STEPS,
 } from "./CausalDelayFeedbackStoryMode.js";
 import {
@@ -11,14 +11,14 @@ import {
 } from "./CausalDelayFeedbackHistoryMode.js";
 import {
   createRootsView,
-  createSelfHitScenarios,
 } from "./CausalDelayFeedbackRootsMode.js";
-import {
-  createBranchLabView,
-} from "./CausalDelayFeedbackBranchLabMode.js";
 import {
   CAUSAL_DELAY_FEEDBACK_MODES,
 } from "./CausalDelayFeedbackModes.js";
+import {
+  TRANSPORT_CONTROL_ICON,
+  setTransportControlButtonPresentation,
+} from "../../runtime/TransportControlIcons.js";
 
 function describeReason(reason) {
   const descriptions = {
@@ -35,17 +35,6 @@ function describeReason(reason) {
     causal_evaluation_unavailable: "causal-root evaluation is unavailable",
   };
   return descriptions[String(reason)] ?? "unavailable result";
-}
-
-function describeSelfHitState(state) {
-  const descriptions = {
-    absent: "no self-hit",
-    unresolved: "unresolved threshold",
-    tangent: "tangent root",
-    active: "active self-hit",
-    "failed-floor": "below the slope threshold",
-  };
-  return descriptions[String(state)] ?? "unavailable";
 }
 
 function createElement(documentLike, tagName, {
@@ -72,6 +61,31 @@ function formatTime(value) {
   return Number.isFinite(Number(value)) ? Number(value).toFixed(3) : "—";
 }
 
+function setFormattedMathText(documentLike, element, value) {
+  const text = String(value ?? "");
+  if (
+    !text.includes("C_f") ||
+    typeof documentLike?.createTextNode !== "function" ||
+    typeof element?.replaceChildren !== "function"
+  ) {
+    element.textContent = text;
+    return;
+  }
+  const children = text.split(/(C_f)/u).map((part) => {
+    if (part !== "C_f") {
+      return documentLike.createTextNode(part);
+    }
+    const symbol = documentLike.createElement("span");
+    symbol.className = "causal-inline-math";
+    symbol.append(documentLike.createTextNode("C"));
+    const subscript = documentLike.createElement("sub");
+    subscript.textContent = "f";
+    symbol.append(subscript);
+    return symbol;
+  });
+  element.replaceChildren(...children);
+}
+
 export function createCausalDelayFeedbackModeController(options) {
   return new CausalDelayFeedbackModeController(options);
 }
@@ -92,7 +106,6 @@ export class CausalDelayFeedbackModeController {
     this.onPlayToggle = onPlayToggle;
     this.onReplay = onReplay;
     this.boundClick = (event) => this.handleClick(event);
-    this.boundInput = (event) => this.handleInput(event);
   }
 
   init() {
@@ -109,22 +122,19 @@ export class CausalDelayFeedbackModeController {
       back: this.document.querySelector("#causal-delay-feedback-guided-back"),
       play: this.document.querySelector("#causal-delay-feedback-guided-play"),
       next: this.document.querySelector("#causal-delay-feedback-guided-next"),
-      replay: this.document.querySelector("#causal-delay-feedback-guided-replay"),
-      sandbox: this.document.querySelector("#causal-delay-feedback-guided-sandbox"),
+      firstFrame: this.document.querySelector("#causal-delay-feedback-guided-first-frame"),
       summary: this.document.querySelector("#causal-delay-feedback-canvas-summary"),
     };
     if (Object.values(this.dom).some((element) => !element)) {
       throw new Error("Missing Causal Delay Feedback learner-journey elements.");
     }
     this.dom.journey.addEventListener("click", this.boundClick);
-    this.dom.journey.addEventListener("input", this.boundInput);
     this.render();
     return this;
   }
 
   destroy() {
     this.dom?.journey?.removeEventListener("click", this.boundClick);
-    this.dom?.journey?.removeEventListener("input", this.boundInput);
   }
 
   setState(state) {
@@ -143,26 +153,48 @@ export class CausalDelayFeedbackModeController {
   }
 
   handleClick(event) {
-    const modeButton = event.target.closest("[data-causal-mode]");
-    if (modeButton) {
-      this.setMode(modeButton.dataset.causalMode);
+    const lessonButton = event.target.closest("[data-causal-lesson]");
+    if (lessonButton) {
+      const lessonIndex = Number(lessonButton.dataset.causalLesson);
+      if (
+        Number.isInteger(lessonIndex) &&
+        lessonIndex >= 0 &&
+        lessonIndex < STORY_STEPS.length
+      ) {
+        this.prepareStoryStepChange();
+        this.state.storyStep = lessonIndex;
+        this.state.mode = "story";
+        this.onModeChange?.("story", this.state);
+        this.render();
+        this.onStateChange?.(this.state);
+      }
       return;
     }
-    const predictionButton = event.target.closest("[data-prediction-id]");
-    if (predictionButton) {
-      this.selectPrediction(predictionButton.dataset.predictionId);
+    const laboratoryButton = event.target.closest("[data-causal-laboratory]");
+    if (laboratoryButton) {
+      this.setMode("sandbox");
+      return;
+    }
+    const storySpeedButton = event.target.closest("[data-story-speed]");
+    if (storySpeedButton && this.state.mode === "story") {
+      const speedFraction = Number(storySpeedButton.dataset.storySpeed);
+      if (
+        STORY_MOTION_SPEED_FRACTIONS.includes(speedFraction) &&
+        speedFraction !== Number(this.state.storyMotionSpeedFraction)
+      ) {
+        this.state.storyMotionSpeedFraction = speedFraction;
+        this.state.playback.playing = false;
+        this.state.playback.resumable = false;
+        this.state.playback.completed = false;
+        this.onStateChange?.(this.state);
+        this.renderStory();
+        this.updateCanvasSummary();
+      }
       return;
     }
     const rootButton = event.target.closest("[data-root-id]");
     if (rootButton) {
       this.state.selectedRootId = rootButton.dataset.rootId;
-      this.onStateChange?.(this.state);
-      this.render();
-      return;
-    }
-    const selfHitButton = event.target.closest("[data-self-hit-id]");
-    if (selfHitButton) {
-      this.state.selectedSelfHitScenarioId = selfHitButton.dataset.selfHitId;
       this.onStateChange?.(this.state);
       this.render();
       return;
@@ -183,84 +215,52 @@ export class CausalDelayFeedbackModeController {
         this.onPlayToggle?.(this.state.playback.playing);
         this.render();
         break;
-      case "replay":
-        this.state.storyStep = 0;
-        this.state.predictionAttempt =
-          Math.max(0, Math.floor(Number(this.state.predictionAttempt) || 0)) + 1;
-        this.state.predictionState = "unanswered";
-        this.state.selectedPredictionId = null;
+      case "first-frame":
         this.onReplay?.(this.state);
         this.render();
-        break;
-      case "sandbox":
-        this.setMode("sandbox");
         break;
       default:
         break;
     }
   }
 
-  handleInput(event) {
-    const control = event.target.closest("[data-branch-filter]");
-    if (!control || this.state.mode !== "branch-lab") {
-      return;
-    }
-    const key = control.dataset.branchFilter;
-    const next = { ...this.state.branchFilters };
-    if (key === "rootKind") {
-      next.rootKind = control.value;
-    } else if (key === "historyAgeLimit") {
-      next.historyAgeLimit = control.value === ""
-        ? Number.POSITIVE_INFINITY
-        : Math.max(0, Number(control.value));
-    } else {
-      next[key] = Math.max(0, Number(control.value) || 0);
-    }
-    this.state.branchFilters = next;
-    this.onStateChange?.(this.state);
-    this.renderBranchLab({ preserveFilters: true });
-  }
-
   goBack() {
     if (this.state.mode === "story" && this.state.storyStep > 0) {
+      this.prepareStoryStepChange();
       this.state.storyStep -= 1;
+    } else if (this.state.mode === "sandbox") {
+      this.prepareStoryStepChange();
+      this.state.mode = "story";
+      this.state.storyStep = STORY_STEPS.length - 1;
+      this.onModeChange?.("story", this.state);
     } else {
-      const index = CAUSAL_DELAY_FEEDBACK_MODES.findIndex((mode) => mode.id === this.state.mode);
-      this.setMode(CAUSAL_DELAY_FEEDBACK_MODES[Math.max(0, index - 1)].id);
       return;
     }
-    this.onStateChange?.(this.state);
     this.render();
+    this.onStateChange?.(this.state);
   }
 
   goNext() {
-    if (this.state.mode === "prediction" && this.state.predictionState !== "correct") {
-      return;
-    }
     if (this.state.mode === "story" && this.state.storyStep < STORY_STEPS.length - 1) {
+      this.prepareStoryStepChange();
       this.state.storyStep += 1;
+    } else if (this.state.mode === "story") {
+      this.setMode("sandbox");
+      return;
     } else {
-      const index = CAUSAL_DELAY_FEEDBACK_MODES.findIndex((mode) => mode.id === this.state.mode);
-      this.setMode(CAUSAL_DELAY_FEEDBACK_MODES[Math.min(CAUSAL_DELAY_FEEDBACK_MODES.length - 1, index + 1)].id);
       return;
     }
-    this.onStateChange?.(this.state);
     this.render();
+    this.onStateChange?.(this.state);
   }
 
-  selectPrediction(predictionId) {
-    const view = createPredictionView(this.state);
-    const choice = view.choices.find((candidate) => candidate.id === predictionId);
-    if (!choice) {
-      return;
+  prepareStoryStepChange() {
+    if (this.state.playback.playing) {
+      this.state.playback.playing = false;
+      this.onPlayToggle?.(false);
     }
-    this.state.selectedPredictionId = choice.id;
-    this.state.predictionState = choice.correct ? "correct" : "incorrect";
-    if (choice.correct) {
-      this.state.emissionTime = choice.emissionTime;
-    }
-    this.onStateChange?.(this.state);
-    this.render();
+    this.state.playback.resumable = false;
+    this.state.playback.completed = false;
   }
 
   render() {
@@ -270,11 +270,12 @@ export class CausalDelayFeedbackModeController {
     const isSandbox = this.state.mode === "sandbox";
     this.dom.app?.classList.toggle("is-guided-mode", !isSandbox);
     this.dom.app?.classList.toggle("is-sandbox-mode", isSandbox);
+    this.dom.journey.dataset.mode = this.state.mode;
     this.dom.panel.hidden = isSandbox;
     this.renderTabs();
     if (isSandbox) {
       this.dom.summary.textContent =
-        "Sandbox view. Both transceiver paths, replay time, and the selected wake are preserved.";
+        "Laboratory. Both architrino paths and the evaluator-backed positrino and electrino current-emission markers are shown; replay time is preserved for inspection.";
       return;
     }
     this.renderModeContent();
@@ -286,14 +287,7 @@ export class CausalDelayFeedbackModeController {
     if (!this.dom || !this.state || this.state.mode === "sandbox") {
       return;
     }
-    const focusedBranchFilter =
-      this.state.mode === "branch-lab" &&
-      this.document.activeElement?.matches?.("[data-branch-filter]");
-    if (focusedBranchFilter) {
-      this.renderBranchLab({ preserveFilters: true });
-    } else {
-      this.renderModeContent();
-    }
+    this.renderModeContent();
     this.updateControls();
     this.updateCanvasSummary();
   }
@@ -307,81 +301,92 @@ export class CausalDelayFeedbackModeController {
   }
 
   renderTabs() {
-    this.dom.tabs.replaceChildren(
-      ...CAUSAL_DELAY_FEEDBACK_MODES.map((mode) => createElement(this.document, "button", {
+    const list = createElement(this.document, "ol", {
+      className: "causal-lesson-toc-list",
+    });
+    STORY_STEPS.forEach((lesson, lessonIndex) => {
+      const item = this.document.createElement("li");
+      item.append(createElement(this.document, "button", {
         className: "causal-mode-tab",
-        text: mode.label,
+        text: `${lessonIndex + 1}. ${lesson.title}`,
         attributes: {
           type: "button",
-          "data-causal-mode": mode.id,
-          "aria-current": this.state.mode === mode.id ? "step" : null,
+          "data-causal-lesson": lessonIndex,
+          "aria-current":
+            this.state.mode === "story" && this.state.storyStep === lessonIndex
+              ? "step"
+              : null,
         },
-      })),
-    );
+      }));
+      list.append(item);
+    });
+    const laboratoryItem = this.document.createElement("li");
+    laboratoryItem.append(createElement(this.document, "button", {
+      className: "causal-mode-tab",
+      text: "Laboratory",
+      attributes: {
+        type: "button",
+        "data-causal-laboratory": "",
+        "aria-current": this.state.mode === "sandbox" ? "step" : null,
+      },
+    }));
+    list.append(laboratoryItem);
+    this.dom.tabs.replaceChildren(list);
   }
 
   renderStory() {
     const view = createStoryView(this.state);
+    this.state.storyStep = view.stepIndex;
     this.setLessonCopy({
       title: view.title,
       body: view.body,
-      meta: `Story ${view.stepIndex + 1} of ${view.stepCount}`,
-      status: view.summary,
+      meta: `Lesson ${view.stepIndex + 1} of ${view.stepCount}`,
+      status: "",
     });
-    const [primary, reciprocal] = view.interactions;
-    this.dom.content.replaceChildren(
-      createElement(this.document, "dl", { className: "causal-event-readout" }),
-    );
+    if (view.id === "motion") {
+      const selector = createElement(this.document, "div", {
+        className: "causal-story-speed-selector",
+        attributes: {
+          role: "group",
+          "aria-label": "Highlight a declared transmitter speed",
+        },
+      });
+      selector.append(createElement(this.document, "span", {
+        className: "causal-story-speed-label",
+        text: "Compare transmitter speeds",
+      }));
+      STORY_MOTION_SPEED_FRACTIONS.forEach((speedFraction) => {
+        const button = createElement(this.document, "button", {
+          className: "causal-story-speed-button",
+          attributes: {
+            type: "button",
+            "data-story-speed": speedFraction,
+            "aria-pressed":
+              Number(this.state.storyMotionSpeedFraction) === speedFraction
+                ? "true"
+                : "false",
+          },
+        });
+        setFormattedMathText(this.document, button, `${speedFraction.toFixed(1)} C_f`);
+        selector.append(button);
+      });
+      this.dom.content.replaceChildren(selector);
+      return;
+    }
+    if (view.id !== "meaning") {
+      this.dom.content.replaceChildren();
+      return;
+    }
+    this.dom.content.replaceChildren(createElement(this.document, "dl", {
+      className: "causal-event-readout",
+    }));
     const readout = this.dom.content.querySelector("dl");
-    [
-      ["Relationship 1", "positrino transmitter → electrino receiver"],
-      ["Positrino transmit time Tₜ", formatTime(primary?.root?.emissionTime)],
-      ["Relationship 2", "electrino transmitter → positrino receiver"],
-      ["Electrino transmit time Tₜ", formatTime(reciprocal?.root?.emissionTime)],
-      ["Shared reception time Tᵣ", formatTime(primary?.root?.receiverTime)],
-      [
-        "Root status",
-        primary?.root && reciprocal?.root
-          ? "two reciprocal roots available"
-          : "reciprocal root unavailable",
-      ],
-    ].forEach(([term, description]) => {
+    view.relationshipDescriptions.forEach(({ label, description }) => {
       readout.append(
-        createElement(this.document, "dt", { text: term }),
+        createElement(this.document, "dt", { text: label }),
         createElement(this.document, "dd", { text: description }),
       );
     });
-  }
-
-  renderPrediction() {
-    const view = createPredictionView(this.state);
-    this.setLessonCopy({
-      title: view.title,
-      body: view.body,
-      meta: "Prediction",
-      status: view.explanation,
-    });
-    const list = createElement(this.document, "div", {
-      className: "causal-prediction-choices",
-      attributes: { role: "group", "aria-label": "Earlier transmission positions" },
-    });
-    view.choices.forEach((choice) => {
-      const selected = choice.id === this.state.selectedPredictionId;
-      const button = createElement(this.document, "button", {
-        className: "causal-choice-button",
-        text: `${choice.label} · Tₜ=${formatTime(choice.emissionTime)}`,
-        attributes: {
-          type: "button",
-          "data-prediction-id": choice.id,
-          "aria-pressed": selected ? "true" : "false",
-        },
-      });
-      if (selected) {
-        button.dataset.answer = choice.correct ? "correct" : "incorrect";
-      }
-      list.append(button);
-    });
-    this.dom.content.replaceChildren(list);
   }
 
   renderHistory() {
@@ -458,185 +463,13 @@ export class CausalDelayFeedbackModeController {
   }
 
   renderSelfHit() {
-    const scenarios = createSelfHitScenarios();
     this.setLessonCopy({
-      title: "Self-Hit",
-      body: "The same evaluator compares one transceiver path with its own later reception event. Line-of-sight root geometry decides the result; a total-speed label does not.",
-      meta: "Same-transceiver causal roots",
-      status: "No self-hit, unresolved, active, and below the threshold remain distinct.",
+      title: "Forward Wake Buildup",
+      body: "At field speed, an architrino's past wakes accumulate at its moving front, creating a growing forward wake buildup.",
+      meta: "Declared field-speed display fixture",
+      status: "",
     });
-    const cards = createElement(this.document, "div", { className: "causal-self-hit-grid" });
-    scenarios.forEach((scenario) => {
-      const card = createElement(this.document, "article", {
-        className: "causal-state-card",
-        attributes: {
-          "data-root-state": scenario.state,
-          "data-selected": scenario.id === this.state.selectedSelfHitScenarioId ? "true" : null,
-        },
-      });
-      card.append(
-        createElement(this.document, "h3", { text: scenario.label }),
-        createElement(this.document, "strong", { text: describeSelfHitState(scenario.state) }),
-        createElement(this.document, "p", { text: scenario.explanation }),
-        createElement(this.document, "code", {
-          text: `${scenario.transversalityField}=${
-            Number.isFinite(scenario.transversality)
-              ? scenario.transversality.toExponential(3)
-              : "unavailable"
-          } · transmitter-side ∂g/∂Tₜ`,
-        }),
-        createElement(this.document, "button", {
-          className: "causal-choice-button",
-          text: "Show in scene",
-          attributes: {
-            type: "button",
-            "data-self-hit-id": scenario.id,
-            "aria-pressed": scenario.id === this.state.selectedSelfHitScenarioId ? "true" : "false",
-          },
-        }),
-      );
-      cards.append(card);
-    });
-    this.dom.content.replaceChildren(cards);
-  }
-
-  renderBranchLab({ preserveFilters = false } = {}) {
-    const view = createBranchLabView(this.state);
-    this.setLessonCopy({
-      title: "Branch Lab",
-      body: "Accepted, rejected, unresolved, and unavailable rows remain visible. The vector sum consumes exactly the accepted rows shown here.",
-      meta: "Branch-local acceleration rows",
-      status: `${view.acceptedRows.length} accepted acceleration rows · ${view.rejectedRows.length} rejected · ${view.filteredRows.length} unavailable or filtered · vector sum (${view.vectorSum.x.toFixed(2)}, ${view.vectorSum.y.toFixed(2)}).`,
-    });
-    const filters = preserveFilters
-      ? this.dom.content.querySelector(".causal-branch-filters")
-      : null;
-    const nextFilters = filters ?? this.createBranchFilters();
-    const table = this.createTable(["Branch", "Tₜ → Tᵣ", "Status", "Acceleration", "Reason"]);
-    const body = table.querySelector("tbody");
-    view.rows.forEach((row) => {
-      const tr = this.document.createElement("tr");
-      tr.dataset.branchStatus = row.included
-        ? row.accepted ? "accepted" : "rejected"
-        : "filtered";
-      const branchCell = this.document.createElement("td");
-      const swatch = createElement(this.document, "span", {
-        className: "causal-branch-swatch",
-        attributes: { "aria-hidden": "true" },
-      });
-      swatch.style.backgroundColor = row.color;
-      branchCell.append(swatch, this.document.createTextNode(`Branch ${row.ordinal ?? "—"}`));
-      tr.append(branchCell);
-      [
-        `${formatTime(row.emissionTime)} → ${formatTime(row.receiverTime)}`,
-        row.included
-          ? row.accepted ? "accepted" : "rejected"
-          : `filtered ${row.accepted ? "accepted" : "rejected"}`,
-        row.accelerationAvailable
-          ? `(${row.acceleration.x.toFixed(2)}, ${row.acceleration.y.toFixed(2)})`
-          : "unavailable",
-        row.filterReason
-          ? `${describeReason(row.reason)} · ${row.filterReason}`
-          : describeReason(row.reason),
-      ].forEach((text) => tr.append(createElement(this.document, "td", { text })));
-      body.append(tr);
-    });
-    const sum = createElement(this.document, "p", {
-      className: "causal-vector-sum",
-      text: `Displayed vector sum from ${
-        view.acceptedRows.length === 0
-          ? "no accepted rows"
-          : `accepted ${view.acceptedRows.length === 1 ? "row" : "rows"} ${
-              view.acceptedRows.map((row) => row.ordinal ?? "—").join(", ")
-            }`
-      }: (${view.vectorSum.x.toFixed(2)}, ${view.vectorSum.y.toFixed(2)})`,
-    });
-    if (
-      preserveFilters &&
-      filters &&
-      this.replaceBranchLabResults(table, sum)
-    ) {
-      return;
-    }
-    this.dom.content.replaceChildren(nextFilters, table, sum);
-  }
-
-  replaceBranchLabResults(table, sum) {
-    const currentTable = this.dom.content.querySelector(".causal-ledger-table");
-    const currentSum = this.dom.content.querySelector(".causal-vector-sum");
-    if (
-      !currentTable ||
-      !currentSum ||
-      typeof currentTable.replaceWith !== "function" ||
-      typeof currentSum.replaceWith !== "function"
-    ) {
-      return false;
-    }
-    currentTable.replaceWith(table);
-    currentSum.replaceWith(sum);
-    return true;
-  }
-
-  createBranchFilters() {
-    const filters = this.state.branchFilters;
-    const group = createElement(this.document, "div", {
-      className: "causal-branch-filters",
-      attributes: { role: "group", "aria-label": "Branch filters" },
-    });
-    const fields = [
-      {
-        label: "History age",
-        key: "historyAgeLimit",
-        type: "number",
-        value: Number.isFinite(filters.historyAgeLimit) ? filters.historyAgeLimit : "",
-        attributes: { min: 0, step: 0.05, placeholder: "All" },
-      },
-      {
-        label: "Minimum contribution",
-        key: "minimumContribution",
-        type: "number",
-        value: filters.minimumContribution,
-        attributes: { min: 0, step: 0.1 },
-      },
-      {
-        label: "Transversality floor",
-        key: "transversalityFloor",
-        type: "number",
-        value: filters.transversalityFloor,
-        attributes: { min: 0, step: 0.001 },
-      },
-    ];
-    fields.forEach((field) => {
-      const label = createElement(this.document, "label", { text: field.label });
-      label.append(createElement(this.document, "input", {
-        attributes: {
-          type: field.type,
-          value: field.value,
-          "data-branch-filter": field.key,
-          ...field.attributes,
-        },
-      }));
-      group.append(label);
-    });
-    const kindLabel = createElement(this.document, "label", { text: "Root kind" });
-    const select = createElement(this.document, "select", {
-      attributes: { "data-branch-filter": "rootKind" },
-    });
-    [
-      ["all", "All"],
-      ["pair_hit", "Pair root"],
-      ["producer_carried_row", "Producer row"],
-    ].forEach(([value, label]) => {
-      const option = createElement(this.document, "option", {
-        text: label,
-        attributes: { value },
-      });
-      option.selected = value === filters.rootKind;
-      select.append(option);
-    });
-    kindLabel.append(select);
-    group.append(kindLabel);
-    return group;
+    this.dom.content.replaceChildren();
   }
 
   createDelayMapSvg(view) {
@@ -706,19 +539,39 @@ export class CausalDelayFeedbackModeController {
 
   setLessonCopy({ title, body, meta, status }) {
     this.dom.title.textContent = title;
-    this.dom.body.textContent = body;
+    setFormattedMathText(this.document, this.dom.body, body);
     this.dom.meta.textContent = meta;
-    this.dom.status.textContent = status;
+    this.dom.status.textContent = status ?? "";
+    this.dom.status.hidden = !String(status ?? "").trim();
   }
 
   updateControls() {
-    const modeIndex = CAUSAL_DELAY_FEEDBACK_MODES.findIndex((mode) => mode.id === this.state.mode);
+    const storyPlayback = this.state.mode === "story";
+    const isPlaying = this.state.playback.playing;
+    const isResumable = storyPlayback && this.state.playback.resumable;
+    const isCompleted = storyPlayback && this.state.playback.completed;
     this.dom.back.disabled = this.state.mode === "story" && this.state.storyStep === 0;
-    this.dom.next.disabled =
-      modeIndex >= CAUSAL_DELAY_FEEDBACK_MODES.length - 1 ||
-      (this.state.mode === "prediction" && this.state.predictionState !== "correct");
-    this.dom.play.textContent = this.state.playback.playing ? "Pause" : "Play";
-    this.dom.play.setAttribute("aria-pressed", this.state.playback.playing ? "true" : "false");
+    this.dom.next.disabled = this.state.mode === "sandbox";
+    this.dom.play.disabled = isCompleted;
+    const playLabel = isPlaying
+      ? "Pause lesson"
+      : isResumable
+        ? "Resume lesson"
+        : isCompleted
+          ? "Lesson complete; use First frame to return to the start"
+          : "Play lesson";
+    setTransportControlButtonPresentation(this.dom.play, {
+      kind: isPlaying
+        ? TRANSPORT_CONTROL_ICON.PAUSE
+        : TRANSPORT_CONTROL_ICON.PLAY,
+      label: playLabel,
+      pressed: isPlaying,
+    });
+    this.dom.play.setAttribute("aria-keyshortcuts", "Space");
+    setTransportControlButtonPresentation(this.dom.firstFrame, {
+      kind: TRANSPORT_CONTROL_ICON.FIRST_FRAME,
+      label: "First frame",
+    });
   }
 
   updateCanvasSummary() {
@@ -731,8 +584,19 @@ export class CausalDelayFeedbackModeController {
     const modeLabel = CAUSAL_DELAY_FEEDBACK_MODES.find(
       (mode) => mode.id === this.state.mode,
     )?.label ?? "View";
-    this.dom.summary.textContent = this.state.mode === "story" && root && reciprocalRoot
-      ? `Story. Positrino transmitter Tₜ=${formatTime(root.emissionTime)} to electrino receiver, and electrino transmitter Tₜ=${formatTime(reciprocalRoot.emissionTime)} to positrino receiver; both receive at Tᵣ=${formatTime(root.receiverTime)}.`
+    const storyView = this.state.mode === "story"
+      ? createStoryView(this.state)
+      : null;
+    this.dom.summary.textContent = this.state.mode === "story"
+      ? storyView?.id === "motion"
+        ? `Lesson Four. Three evaluator-backed constant-speed display fixtures compare transmitter speeds ${STORY_MOTION_SPEED_FRACTIONS.join(", ")} times C_f; ${Number(this.state.storyMotionSpeedFraction).toFixed(1)} is highlighted.`
+        : storyView?.id === "forward-buildup"
+          ? "Lesson Five. Both architrinos begin at emission zero on the shared paired paths while their first wake fronts build forward from the emitters."
+          : "Lesson. Electrino transmitter to Positrino receiver; Positrino transmitter to Electrino receiver."
+      : this.state.mode === "history" && root && reciprocalRoot
+        ? `Path History. Positrino and Electrino history-emission markers show the evaluator-backed earlier points for both reciprocal relationships at Tₜ=${formatTime(root.emissionTime)} and Tₜ=${formatTime(reciprocalRoot.emissionTime)}.`
+      : this.state.mode === "sandbox" && root && reciprocalRoot
+        ? `Laboratory. Positrino and electrino current-emission markers and wake geometry follow the shared replay state at Tₜ=${formatTime(root.emissionTime)} and Tₜ=${formatTime(reciprocalRoot.emissionTime)}.`
       : root
       ? `${modeLabel}. Transmitter ${root.sourceId} transmitted at Tₜ=${formatTime(root.emissionTime)}; receiver ${root.receiverId} receives at Tᵣ=${formatTime(root.receiverTime)}. Root ${root.ordinal} is ${root.accepted ? "accepted" : describeReason(root.reason)}.`
       : `${modeLabel}. No causal root is available at the selected receiver event.`;

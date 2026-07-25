@@ -408,10 +408,7 @@ export function createCanonicalLearnerState(dataset, {
   const state = {
     mode,
     storyStep: 0,
-    predictionAttempt: 0,
-    predictionState: "unanswered",
-    selectedPredictionId: null,
-    selectedSelfHitScenarioId: "super_cf_curved",
+    storyMotionSpeedFraction: 0.6,
     sourceId: "positrino",
     receiverId: "electrino",
     paths: dataset?.paths ?? { positrino: [], electrino: [] },
@@ -435,6 +432,8 @@ export function createCanonicalLearnerState(dataset, {
     selectedReciprocalRootId: null,
     playback: {
       playing: false,
+      resumable: false,
+      completed: false,
       reducedMotion: false,
       rate: 1,
     },
@@ -518,46 +517,4 @@ export function refreshCanonicalLearnerState(state, {
   state.receiverGeometry = selected?.reception ?? sampleTimedPath(state.paths?.[state.receiverId], receiverTime);
   state.delayMap = evaluation.samples;
   return state;
-}
-
-export function createPredictionChoices(state, {
-  count = 3,
-  attempt = state.predictionAttempt ?? 0,
-} = {}) {
-  const root = state.roots.find((candidate) => candidate.id === state.selectedRootId)
-    ?? state.acceptedBranchRows.at(-1);
-  if (!root) {
-    return [];
-  }
-  const [start, end] = getTimedPathRange(state.paths?.[state.sourceId]);
-  const spread = Math.max(0.06, root.delay * 0.42);
-  const upperBound = Math.min(end, state.receiverTime - ROOT_TIME_EPSILON);
-  const times = [root.emissionTime];
-  for (const offset of [-spread, spread, -2 * spread, 2 * spread]) {
-    const candidate = clamp(root.emissionTime + offset, start, upperBound);
-    if (!times.some((time) => Math.abs(time - candidate) <= ROOT_TIME_EPSILON)) {
-      times.push(candidate);
-    }
-    if (times.length >= Math.max(2, count)) {
-      break;
-    }
-  }
-  const hash = [...String(root.id)].reduce(
-    (value, character) => ((value * 33) ^ character.codePointAt(0)) >>> 0,
-    5381,
-  );
-  const choiceCount = Math.min(times.length, Math.max(2, count));
-  const attemptIndex = Math.max(0, Math.floor(Number(attempt) || 0));
-  const correctIndex = ((hash >>> 8) + attemptIndex) % choiceCount;
-  const distractors = times.slice(1).sort((left, right) => left - right);
-  const orderedTimes = Array.from({ length: choiceCount }, (_unused, index) =>
-    index === correctIndex ? root.emissionTime : distractors.shift(),
-  );
-  return orderedTimes.map((time, index) => ({
-    id: `${root.id}:choice:${index + 1}`,
-    emissionTime: time,
-    point: sampleTimedPath(state.paths?.[state.sourceId], time),
-    correct: Math.abs(time - root.emissionTime) <= ROOT_TIME_EPSILON,
-    label: `Earlier position ${index + 1}`,
-  }));
 }

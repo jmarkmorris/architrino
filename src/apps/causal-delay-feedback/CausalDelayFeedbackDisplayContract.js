@@ -5,6 +5,32 @@ export const PARTIAL_PROPAGATING_ARCS = "partial_propagating_arcs";
 export const FULL_CIRCULAR_ARCS = "full_circular_arcs";
 export const DEFAULT_PRESET_ID = "accepted_tight_bright";
 export const DEFAULT_CANVAS_ID = "architrinoPurple";
+export const CAUSAL_PATH_STROKE_WIDTH = 5;
+export const ARCHITRINO_BODY_HALO_RADIUS = 20;
+export const ARCHITRINO_BODY_RADIUS = 9;
+export const ARCHITRINO_BODY_OUTLINE_WIDTH = 1.4;
+
+export const TRANSMISSION_POINT_MARKER_VARIANTS = Object.freeze({
+  OPEN_RING_BASELINE: "open-ring-baseline",
+  SOLID_DOT_STANDARD: "solid-dot-standard",
+});
+
+export const TRANSMISSION_POINT_MARKER_STYLES = Object.freeze({
+  [TRANSMISSION_POINT_MARKER_VARIANTS.OPEN_RING_BASELINE]: Object.freeze({
+    radius: 4.2,
+    minimumRadius: 3.2,
+    fillAlpha: 0.015,
+    outlineAlpha: 0.46,
+    outlineWidth: 0.8,
+  }),
+  [TRANSMISSION_POINT_MARKER_VARIANTS.SOLID_DOT_STANDARD]: Object.freeze({
+    radius: 1.55,
+    fillAlpha: 0.92,
+  }),
+});
+
+export const DEFAULT_TRANSMISSION_POINT_MARKER_VARIANT =
+  TRANSMISSION_POINT_MARKER_VARIANTS.SOLID_DOT_STANDARD;
 
 export const POSITRINO = Object.freeze({ r: 255, g: 0, b: 0, a: 1 });
 export const ELECTRINO = Object.freeze({ r: 0, g: 0, b: 255, a: 1 });
@@ -121,4 +147,10 @@ export function getPresetById(id) {
 
 export function getCanvasColorById(id) {
   return CANVAS_COLORS.find((entry) => entry.id === id) ?? CANVAS_COLORS[0];
+}
+
+export function normalizeTransmissionPointMarkerVariant(variant) {
+  return Object.values(TRANSMISSION_POINT_MARKER_VARIANTS).includes(variant)
+    ? variant
+    : DEFAULT_TRANSMISSION_POINT_MARKER_VARIANT;
 }

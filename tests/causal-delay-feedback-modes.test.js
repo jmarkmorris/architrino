@@ -4,7 +4,6 @@ import test from "node:test";
 
 import {
   createCanonicalLearnerState,
-  createPredictionChoices,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackCausalHistory.js";
 import { sampleTimedPath } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackTimedPath.js";
 import {
@@ -20,21 +19,29 @@ import {
   CAUSAL_DELAY_FEEDBACK_MODES,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackModes.js";
 import {
+  SPACE_AXIS_TOP_Y,
+  TIME_AXIS_BASELINE_Y,
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackDisplayContract.js";
+import {
   createSelfHitScenarios,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackRootsMode.js";
 import {
-  createPredictionView,
+  STORY_MOTION_SPEED_FRACTIONS,
+  STORY_RELATIONSHIP_DESCRIPTIONS,
+  STORY_SYNTHESIS_DISPLAY_MAPPING,
+  STORY_WAKE_DISPLAY_RATE_SCALE,
+  createStoryMotionWakeComparisonFixture,
   createStoryScene,
+  createStorySampledWakeFronts,
+  createStorySynthesisPlayback,
   createStoryView,
+  getEarliestCommonStoryArcTime,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackStoryMode.js";
 import {
   createMockCausalDelayReplayDataset,
   getDistance,
+  getPathPoint,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
-import {
-  createWakeDisplayGeometry,
-} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackWakeRenderer.js";
-
 const REPO_ROOT = new URL("../", import.meta.url);
 const STORY_INTERSECTION_TOLERANCE = 5e-5;
 
@@ -76,6 +83,11 @@ test("all learner modes preserve one canonical state object and its geometry ref
 test("Story reads both reciprocal roots selected by the shared learner state", () => {
   const state = createState();
   const view = createStoryView(state);
+  assert.equal(view.title, "Meet the Electrino and Positrino Transceivers");
+  assert.equal(
+    view.body,
+    "Each architrino transmits continuously at a constant rate. The solid white dot on each body marks its current emission point. Earlier transmission points remain visible as wake history. Each full circle is a two-dimensional view of an expanding spherical wake. Wakes emitted earlier have had longer to expand, so they have a larger radius.",
+  );
   assert.equal(view.root?.id, state.selectedRootId);
   assert.equal(view.reciprocalRoot?.id, state.selectedReciprocalRootId);
   assert.ok(Number.isFinite(view.root?.emissionTime));
@@ -84,9 +96,30 @@ test("Story reads both reciprocal roots selected by the shared learner state", (
   assert.equal(view.reciprocalRoot?.receiverTime, state.receiverTime);
   assert.match(view.summary, /Two causal relationships/u);
   assert.match(view.summary, /Tᵣ=/u);
+  assert.equal(view.relationshipDescriptions, STORY_RELATIONSHIP_DESCRIPTIONS);
+  assert.deepEqual(view.relationshipDescriptions, [
+    {
+      label: "Relationship One",
+      description: "Electrino transmitter → Positrino receiver",
+    },
+    {
+      label: "Relationship Two",
+      description: "Positrino transmitter → Electrino receiver",
+    },
+  ]);
+  state.storyStep = 1;
+  const emissionView = createStoryView(state);
+  assert.equal(
+    emissionView.title,
+    "Wakes Received Now Were Transmitted in the Past",
+  );
+  assert.equal(
+    emissionView.body,
+    "Wakes arriving at a receiver now were transmitted earlier in the transmitter’s path history. The fading red and blue arcs show where the transmissions arriving now were emitted. The white dot marks where that wake was transmitted. By the time the wake is received, both architrinos have moved on from their earlier positions.",
+  );
 });
 
-test("Story stages five distinct scenes and both reception spheres intersect their receivers", () => {
+test("five lessons share one teaching sequence and wake-display rate", () => {
   const state = createState();
   const scenes = Array.from({ length: 5 }, (_unused, storyStep) => {
     state.storyStep = storyStep;
@@ -95,11 +128,46 @@ test("Story stages five distinct scenes and both reception spheres intersect the
   assert.deepEqual(scenes.map((scene) => scene.id), [
     "meet",
     "emission",
-    "travel",
-    "reception",
     "meaning",
+    "motion",
+    "forward-buildup",
   ]);
-  assert.equal(new Set(scenes.slice(0, 4).map((scene) => scene.displayTime)).size, 4);
+  const sharedPathStart = Math.max(
+    state.paths.positrino[0].t,
+    state.paths.electrino[0].t,
+  );
+  const sharedPathEnd = Math.min(
+    state.paths.positrino.at(-1).t,
+    state.paths.electrino.at(-1).t,
+  );
+  assert.equal(scenes[0].playbackStartTime, sharedPathStart);
+  const handoffTime = sharedPathStart + (sharedPathEnd - sharedPathStart) * 0.5;
+  const synthesisEndTime =
+    sharedPathStart + (sharedPathEnd - sharedPathStart) * (5 / 6);
+  assert.ok(Math.abs(scenes[2].playbackStartTime - handoffTime) < 1e-12);
+  assert.equal(scenes[3].playbackStartTime, 0);
+  assert.equal(scenes[0].playbackEndTime, sharedPathEnd);
+  assert.equal(scenes[0].displayTime, sharedPathStart);
+  const fixedBodyTime = handoffTime;
+  const earliestCommonArcTime = getEarliestCommonStoryArcTime(state, {
+    playbackStartTime: sharedPathStart,
+    playbackEndTime: sharedPathEnd,
+  });
+  assert.equal(scenes[1].displayTime, earliestCommonArcTime);
+  assert.equal(scenes[1].playbackStartTime, earliestCommonArcTime);
+  assert.equal(scenes[1].playbackEndTime, fixedBodyTime);
+  assert.equal(scenes[1].pausePathProgress, 0.5);
+  assert.equal(scenes[1].autoPauseProgress, 1);
+  assert.ok(earliestCommonArcTime > sharedPathStart);
+  assert.ok(earliestCommonArcTime < fixedBodyTime);
+  assert.equal(
+    scenes[1].playbackDurationSeconds,
+    scenes[0].playbackDurationSeconds *
+      ((fixedBodyTime - earliestCommonArcTime) / (sharedPathEnd - sharedPathStart)),
+  );
+  assert.equal(scenes[2].fixedBodyTime, undefined);
+  assert.ok(Math.abs(scenes[2].playbackEndTime - synthesisEndTime) < 1e-12);
+  assert.equal(scenes[2].displayTime, handoffTime);
   assert.deepEqual(
     scenes.map((scene) => [
       scene.showWake,
@@ -109,139 +177,350 @@ test("Story stages five distinct scenes and both reception spheres intersect the
     ]),
     [
       [false, false, false, false],
-      [true, true, false, false],
-      [true, true, false, false],
-      [true, true, false, true],
-      [true, true, true, true],
+      [false, false, false, false],
+      [false, false, false, false],
+      [false, false, false, false],
+      [false, false, false, false],
     ],
   );
-  const receptionScene = scenes[3];
-  assert.equal(receptionScene.interactions.length, 2);
-  receptionScene.interactions.forEach((interaction) => {
-    const receiverAtReception = sampleTimedPath(
-      state.paths[interaction.receiverId],
-      receptionScene.displayTime,
+  assert.equal(scenes[0].showSampledWakeHistory, true);
+  assert.equal(scenes[0].playbackDurationSeconds, 28.125);
+  assert.equal(scenes[0].wakeDisplayRateScale, STORY_WAKE_DISPLAY_RATE_SCALE);
+  assert.equal(scenes[0].wakeDisplayTimeScale, 1);
+  assert.equal(scenes[1].showSampledWakeHistory, false);
+  assert.ok(scenes.slice(1, 4).every((scene) => scene.showSampledWakeHistory === false));
+  assert.ok(scenes.every(
+    (scene) => scene.wakeDisplayRateScale === STORY_WAKE_DISPLAY_RATE_SCALE,
+  ));
+  assert.equal(scenes[2].showSynthesisMotion, true);
+  assert.equal(scenes[2].showSynthesisWakeCircles, true);
+  assert.equal(scenes[3].showMotionWakeComparison, true);
+  assert.equal(scenes[4].showForwardWakeBuildup, true);
+  assert.equal(scenes[4].showSampledWakeHistory, true);
+  assert.equal(scenes[4].playbackStartTime, sharedPathStart);
+  assert.equal(scenes[4].displayTime, sharedPathStart);
+  assert.deepEqual(
+    createStorySampledWakeFronts(state, scenes[4], scenes[4].playbackStartTime),
+    [],
+  );
+  assert.deepEqual(
+    createStorySampledWakeFronts(state, scenes[0], scenes[0].playbackStartTime),
+    [],
+  );
+  const midpointFronts = createStorySampledWakeFronts(
+    state,
+    scenes[0],
+    scenes[0].playbackStartTime +
+      (scenes[0].playbackEndTime - scenes[0].playbackStartTime) * 0.5,
+  );
+  assert.equal(midpointFronts.length, 40);
+  scenes[0].interactions.forEach((interaction) => {
+    const transmitterFronts = midpointFronts.filter(
+      (front) => front.transmitterId === interaction.transmitterId,
     );
-    assert.deepEqual(receiverAtReception, interaction.root.reception);
-    const geometry = createWakeDisplayGeometry(
-      interaction.root,
-      receptionScene.displayTime,
+    assert.equal(transmitterFronts.length, 20);
+    assert.ok(
+      transmitterFronts.slice(0, -1).every(
+        (front, index) => front.radius > transmitterFronts[index + 1].radius,
+      ),
     );
+    assert.ok(transmitterFronts.every((front) => front.guideTarget));
+    assert.ok(
+      transmitterFronts.every(
+        (front) => Math.abs(front.displayAge - front.age) < 1e-12,
+      ),
+    );
+  });
+  const endFronts = createStorySampledWakeFronts(
+    state,
+    scenes[0],
+    scenes[0].playbackEndTime,
+  );
+  scenes[0].interactions.forEach((interaction) => {
+    const transmitterFronts = endFronts.filter(
+      (front) => front.transmitterId === interaction.transmitterId,
+    );
+    assert.equal(transmitterFronts.length, 40);
+    assert.equal(new Set(transmitterFronts.map((front) => front.id)).size, 40);
+    assert.equal(
+      new Set(transmitterFronts.map((front) => front.emissionTime.toFixed(12))).size,
+      40,
+    );
+    const gaps = transmitterFronts.slice(1).map(
+      (front, index) => front.emissionTime - transmitterFronts[index].emissionTime,
+    );
+    assert.ok(gaps.every((gap) => Math.abs(gap - 0.025) <= 1e-12));
+    const displayGapSeconds =
+      scenes[0].playbackDurationSeconds * (gaps[0] /
+        (scenes[0].playbackEndTime - scenes[0].playbackStartTime));
+    assert.ok(Math.abs(displayGapSeconds - 0.703125) <= 1e-12);
+    const causalFront = transmitterFronts.find((front) => front.causalReception);
+    assert.equal(causalFront.emissionTime, interaction.root.emissionTime);
+    const receptionFront = createStorySampledWakeFronts(
+      state,
+      scenes[0],
+      state.receiverTime,
+    ).find((front) => front.id === causalFront.id);
+    assert.ok(Math.abs(receptionFront.eventProgress - 1) < 1e-12);
     assert.ok(
       Math.abs(
-        geometry.radius - getDistance(interaction.root.emission, interaction.root.reception),
+        receptionFront.radius -
+          getDistance(receptionFront.center, receptionFront.guideTarget),
       ) < STORY_INTERSECTION_TOLERANCE,
     );
   });
-  const travelScene = scenes[2];
-  travelScene.interactions.forEach((interaction) => {
-    const geometry = createWakeDisplayGeometry(interaction.root, travelScene.displayTime);
-    assert.ok(
-      geometry.radius < getDistance(interaction.root.emission, interaction.root.reception),
+  for (let progressIndex = 1; progressIndex <= 20; progressIndex += 1) {
+    const replayTime =
+      scenes[0].playbackStartTime +
+      (scenes[0].playbackEndTime - scenes[0].playbackStartTime) *
+        (progressIndex / 20);
+    const fronts = createStorySampledWakeFronts(state, scenes[0], replayTime);
+    fronts.forEach((front) => {
+      const currentTransmitter = sampleTimedPath(
+        state.paths[front.transmitterId],
+        replayTime,
+      );
+      assert.ok(
+        getDistance(front.center, currentTransmitter) <=
+          front.radius + STORY_INTERSECTION_TOLERANCE,
+      );
+    });
+  }
+  state.storyStep = 2;
+  const synthesisView = createStoryView(state);
+  assert.equal(synthesisView.stepCount, 5);
+  assert.equal(synthesisView.title, "Two Reciprocal Causal Relationships");
+  assert.match(synthesisView.body, /full circle/u);
+  assert.match(synthesisView.body, /matching fading red or blue arc/u);
+  assert.doesNotMatch(synthesisView.body, /aligns each journey by progress/u);
+});
+
+test("Story 3 maps each body from its own transmission to its later reception", () => {
+  const state = createState();
+  state.storyStep = 2;
+  const scene = createStoryScene(state);
+  const start = createStorySynthesisPlayback(state, scene.interactions, 0);
+  const middle = createStorySynthesisPlayback(state, scene.interactions, 0.5);
+  const end = createStorySynthesisPlayback(state, scene.interactions, 1);
+
+  assert.equal(start.displayMapping, STORY_SYNTHESIS_DISPLAY_MAPPING);
+  assert.match(start.evidenceBoundary, /not asserted to be simultaneous/u);
+  assert.equal(start.events.length, 2);
+  for (const kind of ["positrino", "electrino"]) {
+    const outgoing = scene.interactions.find(
+      (interaction) => interaction.transmitterId === kind,
     );
+    const incoming = scene.interactions.find(
+      (interaction) => interaction.receiverId === kind,
+    );
+    assert.deepEqual(start.bodies[kind].point, {
+      ...outgoing.root.emission,
+      t: outgoing.root.emissionTime,
+    });
+    assert.deepEqual(end.bodies[kind].point, {
+      ...incoming.root.reception,
+      t: incoming.root.receiverTime,
+    });
+    assert.ok(middle.bodies[kind].pathTime > start.bodies[kind].pathTime);
+    assert.ok(middle.bodies[kind].pathTime < end.bodies[kind].pathTime);
+  }
+  start.events.forEach((event) => {
+    const interaction = scene.interactions.find(
+      (candidate) => candidate.transmitterId === event.sourceKind,
+    );
+    assert.deepEqual(event.source, {
+      ...interaction.root.emission,
+      t: interaction.root.emissionTime,
+    });
+    assert.deepEqual(event.receiver, {
+      ...interaction.root.reception,
+      t: interaction.root.receiverTime,
+    });
+    assert.ok(Math.abs(event.rootResidual) < STORY_INTERSECTION_TOLERANCE);
   });
 });
 
-test("representative Story paths stay wavy without crossing", () => {
+test("Story 4 comparison uses evaluator-backed constant-speed wake geometry", () => {
+  const state = createState();
+  state.storyStep = 3;
+  const fixture = createStoryMotionWakeComparisonFixture(state, 0.6);
+  assert.deepEqual(
+    fixture.comparisons.map((comparison) => comparison.speedFraction),
+    STORY_MOTION_SPEED_FRACTIONS,
+  );
+  assert.equal(fixture.signalSpeed, 1);
+  assert.ok(fixture.maximumResidual < 1e-12);
+  assert.deepEqual(
+    fixture.comparisons.map((comparison) =>
+      comparison.fronts.map((front) => front.emissionTime)),
+    Array.from({ length: STORY_MOTION_SPEED_FRACTIONS.length }, () =>
+      [...fixture.emissionTimes]),
+  );
+  const frontReaches = fixture.comparisons.map((comparison) => comparison.frontReach);
+  const rearReaches = fixture.comparisons.map((comparison) => comparison.rearReach);
+  assert.ok(frontReaches.every(
+    (reach, index) => index === 0 || reach < frontReaches[index - 1],
+  ));
+  assert.ok(rearReaches.every(
+    (reach, index) => index === 0 || reach > rearReaches[index - 1],
+  ));
+  fixture.comparisons.forEach((comparison) => {
+    assert.equal(
+      comparison.currentSource.y,
+      (SPACE_AXIS_TOP_Y + TIME_AXIS_BASELINE_Y) * 0.5,
+    );
+    comparison.fronts.forEach((front) => {
+      assert.equal(front.center.y, comparison.currentSource.y);
+      assert.equal(front.frontPoint.y, comparison.currentSource.y);
+      assert.equal(front.rearPoint.y, comparison.currentSource.y);
+      assert.ok(
+        getDistance(front.center, comparison.currentSource) <=
+          front.radius + STORY_INTERSECTION_TOLERANCE,
+      );
+    });
+  });
+  const midpointFixture = createStoryMotionWakeComparisonFixture(state, 0.36);
+  assert.deepEqual(
+    midpointFixture.comparisons.map((comparison) => comparison.currentSource.x),
+    [470, 960, 1450],
+  );
+  assert.ok(midpointFixture.maximumResidual < 1e-12);
+});
+
+test("representative paired paths stay gently wavy and converge monotonically", () => {
   const state = createState();
   assert.equal(state.paths.positrino.length, state.paths.electrino.length);
+  let previousSeparation = Number.POSITIVE_INFINITY;
   state.paths.positrino.forEach((positrinoPoint, index) => {
     const electrinoPoint = state.paths.electrino[index];
-    assert.ok(positrinoPoint.y - electrinoPoint.y > 100);
+    const separation = electrinoPoint.y - positrinoPoint.y;
+    assert.ok(separation > 0);
+    assert.ok(separation < previousSeparation);
+    previousSeparation = separation;
   });
+  const startSeparation =
+    state.paths.electrino[0].y - state.paths.positrino[0].y;
+  const endSeparation =
+    state.paths.electrino.at(-1).y - state.paths.positrino.at(-1).y;
+  assert.equal(startSeparation, 450);
+  assert.equal(endSeparation, 225);
+  const countTurns = (kind) => {
+    let previousDirection = 0;
+    let turns = 0;
+    for (let index = 1; index <= 200; index += 1) {
+      const previous = getPathPoint(kind, (index - 1) / 200);
+      const current = getPathPoint(kind, index / 200);
+      const direction = Math.sign(current.y - previous.y);
+      if (direction !== 0 && previousDirection !== 0 && direction !== previousDirection) {
+        turns += 1;
+      }
+      if (direction !== 0) {
+        previousDirection = direction;
+      }
+    }
+    return turns;
+  };
+  assert.ok(countTurns("positrino") >= 4);
+  assert.ok(countTurns("electrino") >= 4);
 });
 
-test("Prediction choices are generated from the canonical root evaluator", () => {
+test("guided progression follows all lessons and ends in Laboratory", () => {
   const state = createState();
-  const choices = createPredictionChoices(state);
-  assert.equal(choices.length, 3);
-  assert.equal(choices.filter((choice) => choice.correct).length, 1);
-  const correct = choices.find((choice) => choice.correct);
-  const root = state.roots.find((candidate) => candidate.id === state.selectedRootId);
-  assert.equal(correct.emissionTime, root.emissionTime);
-  assert.deepEqual(correct.point, root.emission);
-  assert.notEqual(choices.indexOf(correct), 1);
-  assert.deepEqual(createPredictionChoices(state), choices);
-  assert.match(createPredictionView(state).explanation, /same causal-root evaluator/u);
-});
-
-test("Prediction moves the correct choice on each replay attempt", () => {
-  const state = createState();
-  state.mode = "prediction";
+  state.storyStep = 3;
   const controller = new CausalDelayFeedbackModeController({ state });
-  const firstChoices = createPredictionChoices(state);
-  const firstCorrectIndex = firstChoices.findIndex((choice) => choice.correct);
-  const replayButton = { dataset: { guidedAction: "replay" } };
+  controller.goNext();
+  assert.equal(state.mode, "story");
+  assert.equal(state.storyStep, 4);
+  controller.goNext();
+  assert.equal(state.mode, "sandbox");
+  assert.deepEqual(
+    CAUSAL_DELAY_FEEDBACK_MODES.map((mode) => mode.id),
+    ["story", "sandbox"],
+  );
+  controller.goBack();
+  assert.equal(state.mode, "story");
+  assert.equal(state.storyStep, 4);
+  assert.equal(controller.setMode("prediction"), false);
+  assert.equal(controller.setMode("history"), false);
+  assert.equal(controller.setMode("roots"), false);
+  assert.equal(controller.setMode("self-hit"), false);
+  assert.equal(controller.setMode("branch-lab"), false);
+});
+
+test("changing Story steps clears the prior scene's pause-resume presentation", () => {
+  const state = createState();
+  state.storyStep = 0;
+  state.playback.playing = false;
+  state.playback.resumable = true;
+  state.playback.completed = false;
+  const controller = new CausalDelayFeedbackModeController({ state });
+  controller.render = () => {};
+
+  controller.goNext();
+
+  assert.equal(state.storyStep, 1);
+  assert.equal(state.playback.playing, false);
+  assert.equal(state.playback.resumable, false);
+  assert.equal(state.playback.completed, false);
+});
+
+test("First frame resets the current lesson without returning to Lesson One", () => {
+  const state = createState();
+  state.storyStep = 1;
+  let replayedStep = null;
+  const controller = new CausalDelayFeedbackModeController({
+    state,
+    onReplay: (nextState) => {
+      replayedStep = nextState.storyStep;
+    },
+  });
+  controller.render = () => {};
 
   controller.handleClick({
     target: {
       closest(selector) {
-        return selector === "[data-guided-action]" ? replayButton : null;
+        return selector === "[data-guided-action]"
+          ? { dataset: { guidedAction: "first-frame" } }
+          : null;
       },
     },
   });
 
-  const secondChoices = createPredictionChoices(state);
-  const secondCorrectIndex = secondChoices.findIndex((choice) => choice.correct);
-  assert.equal(state.predictionAttempt, 1);
-  assert.notEqual(secondCorrectIndex, firstCorrectIndex);
-  assert.deepEqual(createPredictionChoices(state), secondChoices);
+  assert.equal(state.storyStep, 1);
+  assert.equal(replayedStep, 1);
 });
 
-test("Prediction preserves incorrect-answer explanation and retry", () => {
+test("Story 4 speed selector updates the shared learner state", () => {
   const state = createState();
-  const incorrect = createPredictionChoices(state).find((choice) => !choice.correct);
-  state.selectedPredictionId = incorrect.id;
-  state.predictionState = "incorrect";
-  const view = createPredictionView(state);
-  assert.equal(view.selected.id, incorrect.id);
-  assert.match(view.explanation, /Try another/u);
-  assert.equal(view.choices.some((choice) => choice.correct), true);
-});
-
-test("Prediction keeps one correct choice when the root lies at path coverage start", () => {
-  const root = {
-    id: "boundary-root",
-    emissionTime: 0,
-    receiverTime: 0.5,
-    delay: 0.5,
-    emission: { t: 0, x: 0, y: 0 },
-  };
-  const state = {
-    roots: [root],
-    acceptedBranchRows: [root],
-    selectedRootId: root.id,
-    sourceId: "positrino",
-    receiverTime: 0.5,
-    paths: {
-      positrino: [
-        { t: 0, x: 0, y: 0 },
-        { t: 1, x: 1, y: 0 },
-      ],
+  state.storyStep = 3;
+  state.playback.playing = true;
+  state.playback.resumable = true;
+  state.playback.completed = true;
+  let changedSpeed = null;
+  const controller = new CausalDelayFeedbackModeController({
+    state,
+    onStateChange: (nextState) => {
+      changedSpeed = nextState.storyMotionSpeedFraction;
     },
-  };
+  });
+  controller.renderStory = () => {};
+  controller.updateCanvasSummary = () => {};
 
-  const choices = createPredictionChoices(state);
+  controller.handleClick({
+    target: {
+      closest(selector) {
+        return selector === "[data-story-speed]"
+          ? { dataset: { storySpeed: "0.9" } }
+          : null;
+      },
+    },
+  });
 
-  assert.equal(choices.length, 3);
-  assert.equal(new Set(choices.map((choice) => choice.emissionTime)).size, 3);
-  assert.equal(choices.filter((choice) => choice.correct).length, 1);
-});
-
-test("guided progression requires the evaluator-backed correct Prediction answer", () => {
-  const state = createState();
-  state.mode = "prediction";
-  const controller = new CausalDelayFeedbackModeController({ state });
-  controller.goNext();
-  assert.equal(state.mode, "prediction");
-  const correct = createPredictionChoices(state).find((choice) => choice.correct);
-  controller.selectPrediction(correct.id);
-  controller.goNext();
-  assert.equal(state.mode, "history");
-  controller.setMode("sandbox");
-  controller.setMode("prediction");
-  assert.equal(state.predictionState, "correct");
-  assert.equal(state.selectedPredictionId, correct.id);
+  assert.equal(state.storyMotionSpeedFraction, 0.9);
+  assert.equal(changedSpeed, 0.9);
+  assert.equal(state.playback.playing, false);
+  assert.equal(state.playback.resumable, false);
+  assert.equal(state.playback.completed, false);
 });
 
 test("learner authority labels keep representative EOM and unavailable providers distinct", () => {
@@ -361,67 +640,6 @@ test("Branch Lab filters preserve stable rows and reasons while changing the dis
   assert.notDeepEqual(filtered.vectorSum, unfiltered.vectorSum);
 });
 
-test("Branch Lab live refresh keeps the focused filter and replaces current results", () => {
-  const state = createState();
-  state.mode = "branch-lab";
-  const activeFilter = {
-    dataset: { branchFilter: "minimumContribution" },
-    value: "2.5",
-    closest(selector) {
-      return selector === "[data-branch-filter]" ? this : null;
-    },
-    matches(selector) {
-      return selector === "[data-branch-filter]";
-    },
-  };
-  const controller = new CausalDelayFeedbackModeController({
-    state,
-    document: { activeElement: activeFilter },
-  });
-  let renderOptions = null;
-  controller.dom = {};
-  controller.renderBranchLab = (options) => {
-    renderOptions = options;
-  };
-  controller.updateControls = () => {};
-  controller.updateCanvasSummary = () => {};
-
-  controller.renderLiveState();
-
-  assert.deepEqual(renderOptions, { preserveFilters: true });
-  renderOptions = null;
-  controller.handleInput({ target: activeFilter });
-  assert.equal(state.branchFilters.minimumContribution, 2.5);
-  assert.deepEqual(renderOptions, { preserveFilters: true });
-
-  const nextTable = {};
-  const nextSum = {};
-  const currentTable = {
-    replaceWith(replacement) {
-      assert.equal(replacement, nextTable);
-    },
-  };
-  const currentSum = {
-    replaceWith(replacement) {
-      assert.equal(replacement, nextSum);
-    },
-  };
-  controller.dom.content = {
-    querySelector(selector) {
-      if (selector === ".causal-ledger-table") {
-        return currentTable;
-      }
-      if (selector === ".causal-vector-sum") {
-        return currentSum;
-      }
-      return null;
-    },
-  };
-
-  assert.equal(controller.replaceBranchLabResults(nextTable, nextSum), true);
-  assert.equal(controller.document.activeElement, activeFilter);
-});
-
 test("Branch Lab never derives acceleration from emission-reception displacement", () => {
   const state = createState();
   state.acceptedBranchRows = [{
@@ -452,6 +670,12 @@ test("Self-Hit keeps absent unresolved active and failed-floor states distinct",
   assert.equal(states.get("tangent"), "tangent");
   assert.equal(states.get("super_cf_curved"), "active");
   assert.equal(states.get("failed_floor"), "failed-floor");
+  scenarios.forEach((scenario) => {
+    scenario.roots.forEach((root) => {
+      assert.equal(root.sourceId, "self");
+      assert.equal(root.receiverId, "self");
+    });
+  });
 });
 
 test("page exposes semantic journey controls and one text-equivalent canvas summary", async () => {
@@ -460,10 +684,9 @@ test("page exposes semantic journey controls and one text-equivalent canvas summ
     "causal-delay-feedback-mode-tabs",
     "causal-delay-feedback-lesson-panel",
     "causal-delay-feedback-guided-back",
+    "causal-delay-feedback-guided-first-frame",
     "causal-delay-feedback-guided-play",
     "causal-delay-feedback-guided-next",
-    "causal-delay-feedback-guided-replay",
-    "causal-delay-feedback-guided-sandbox",
     "causal-delay-feedback-canvas-summary",
   ]) {
     assert.match(html, new RegExp(`id="${id}"`, "u"));
@@ -471,7 +694,23 @@ test("page exposes semantic journey controls and one text-equivalent canvas summ
   assert.match(html, /aria-describedby="causal-delay-feedback-canvas-summary"/u);
   assert.match(html, /@media \(prefers-reduced-motion: reduce\)/u);
   assert.match(html, /@media \(forced-colors: active\)/u);
+  assert.match(html, /\.causal-journey\[data-mode="story"\] \.causal-lesson-panel/u);
+  assert.match(html, /aria-label="Lesson table of contents"/u);
+  assert.doesNotMatch(html, /id="causal-delay-feedback-guided-replay"/u);
   assert.doesNotMatch(html, /causal-delay-feedback-journey-provenance/u);
+  assert.doesNotMatch(html, /data-guided-action="sandbox"/u);
+});
+
+test("Story canvas omits redundant headings and the retired learner surfaces", async () => {
+  const runtime = await readFile(
+    new URL("src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js", REPO_ROOT),
+    "utf8",
+  );
+  assert.doesNotMatch(runtime, /drawSceneHeading\(ctx, `STORY/u);
+  assert.match(runtime, /drawSceneHeading\(ctx, `ROOTS/u);
+  assert.doesNotMatch(runtime, /`SELF-HIT ·/u);
+  assert.doesNotMatch(runtime, /`BRANCH LAB ·/u);
+  assert.match(runtime, /drawFieldSpeedCompressionScene/u);
 });
 
 test("learner journey stays one app with no separate Roots route", async () => {
@@ -482,8 +721,10 @@ test("learner journey stays one app with no separate Roots route", async () => {
     readFile(new URL("src/apps/causal-delay-feedback/CausalDelayFeedbackModes.js", REPO_ROOT), "utf8"),
   ]);
   assert.doesNotMatch(`${html}\n${main}\n${controller}\n${modes}`, /roots\.html/iu);
-  assert.match(modes, /\{ id: "roots", label: "Roots"/u);
-  assert.match(modes, /\{ id: "sandbox", label: "Sandbox"/u);
+  assert.doesNotMatch(modes, /\{ id: "history"/u);
+  assert.doesNotMatch(modes, /\{ id: "roots"/u);
+  assert.doesNotMatch(modes, /\{ id: "self-hit"/u);
+  assert.match(modes, /\{ id: "sandbox", label: "Laboratory"/u);
 });
 
 test("new learner-facing copy remains acceleration-first", async () => {
@@ -516,4 +757,6 @@ test("new learner-facing copy remains acceleration-first", async () => {
   assert.doesNotMatch(authoredStrings, new RegExp("\\breta" + "rd(?:ed|ation)?\\b", "iu"));
   assert.doesNotMatch(learnerStrings, /\bsource(?:'s)?\b/iu);
   assert.doesNotMatch(learnerStrings, /T_[tr]/u);
+  assert.doesNotMatch(learnerStrings, /C_F/u);
+  assert.match(learnerStrings, /C_f/u);
 });

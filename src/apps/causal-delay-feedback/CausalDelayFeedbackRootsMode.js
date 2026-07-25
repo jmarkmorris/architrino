@@ -67,7 +67,7 @@ export function createSelfHitScenarios() {
   const scenarios = [
     {
       id: "sub_cf",
-      label: "Below c_f",
+      label: "Below field speed",
       path: makePath((t) => ({ x: 0.5 * t, y: 0 })),
       expectedState: "absent",
     },
@@ -88,7 +88,7 @@ export function createSelfHitScenarios() {
     },
     {
       id: "super_cf_curved",
-      label: "Curved path above c_f",
+      label: "Curved path above field speed",
       path: makePath((t) => ({ x: 0.25 * Math.cos(6 * t), y: 0.25 * Math.sin(6 * t) })),
       expectedState: "active",
     },
@@ -136,14 +136,14 @@ export function createSelfHitScenarios() {
       transversality: evaluation.roots.at(0)?.transversality ?? null,
       transversalityField: "transversality",
       explanation: scenario.id === "sub_cf"
-        ? "A path that stays strictly below c_f has no separated self-hit root."
+        ? "A path that stays strictly below field speed has no separated self-hit root."
         : scenario.id === "threshold"
           ? "The coincident or tangent threshold is unresolved and is not assigned the ordinary-fold verdict."
           : scenario.id === "tangent"
             ? "A noncoincident tangent root is shown as tangent and is not promoted to a simple acceleration row."
             : scenario.id === "failed_floor"
               ? "A root whose transmitter-side derivative misses the declared floor is shown but is not admitted as an acceleration row."
-              : "A curved path above c_f can produce a separated self-hit root; total speed alone does not decide the result.",
+              : "A curved path above field speed can produce a separated self-hit root; total speed alone does not decide the result.",
     };
   });
   return cachedSelfHitScenarios;

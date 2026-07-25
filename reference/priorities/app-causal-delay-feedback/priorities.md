@@ -13,7 +13,7 @@
 
 This folder owns the active priority packet for `causal-delay-feedback.html`, the single-page app that teaches causal-delay feedback depth in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-The live tracker is intentionally compact. Detailed app requirements, accepted design decisions, solver-contract notes, browser proof artifacts, and implementation evidence now live in [v1-product-requirements.md](v1-product-requirements.md). Provisional teaching ideas and draft explanations live in [brainstorming.md](brainstorming.md). Dated status and partition history live in [work-log.md](work-log.md).
+The live tracker is intentionally compact. Learner-facing intake, audit state, and verification status live in [learner-work-queue.md](learner-work-queue.md). Detailed app requirements, accepted design decisions, solver-contract notes, browser proof artifacts, and implementation evidence now live in [v1-product-requirements.md](v1-product-requirements.md). Provisional teaching ideas and draft explanations live in [brainstorming.md](brainstorming.md). Dated status and partition history live in [work-log.md](work-log.md).
 
 ## Objective
 

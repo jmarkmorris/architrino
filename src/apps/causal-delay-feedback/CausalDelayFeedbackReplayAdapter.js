@@ -25,25 +25,21 @@ const HISTORY_POINTS = Object.freeze([
   { depth: 6, t: 1, weight: 1, state: "newer" },
 ]);
 
+// Declared teaching geometry: both paths share one modest centerline wave while
+// their separation decreases by a constant amount at each anchor. The blue
+// baseline is deliberately placed 25% farther from the unchanged red baseline
+// for the current visual trial (halfway back from the prior 50% displacement).
+// The mock evaluator, histories, wakes, and
+// editable Sandbox paths all consume this same geometry; it is not presented as
+// a solved EOM trajectory.
+const PAIRED_PATH_ANCHOR_X = Object.freeze([260, 450, 650, 830, 1080, 1305, 1450]);
+const PAIRED_PATH_CENTER_Y = Object.freeze([500, 468, 510, 476, 518, 484, 526]);
+const PAIRED_PATH_SEPARATION = Object.freeze([360, 330, 300, 270, 240, 210, 180]);
+const ELECTRINO_SEPARATION_SCALE = 1.25;
+
 const PATH_ANCHORS = Object.freeze({
-  positrino: stretchPathToTimeAxis([
-    Object.freeze({ x: 260, y: 650 }),
-    Object.freeze({ x: 450, y: 700 }),
-    Object.freeze({ x: 650, y: 630 }),
-    Object.freeze({ x: 820, y: 680 }),
-    Object.freeze({ x: 1070, y: 610 }),
-    Object.freeze({ x: 1290, y: 665 }),
-    Object.freeze({ x: 1450, y: 625 }),
-  ]),
-  electrino: stretchPathToTimeAxis([
-    Object.freeze({ x: 250, y: 390 }),
-    Object.freeze({ x: 450, y: 330 }),
-    Object.freeze({ x: 640, y: 420 }),
-    Object.freeze({ x: 830, y: 350 }),
-    Object.freeze({ x: 1080, y: 430 }),
-    Object.freeze({ x: 1305, y: 360 }),
-    Object.freeze({ x: 1450, y: 410 }),
-  ]),
+  positrino: createPairedPathAnchors("positrino"),
+  electrino: createPairedPathAnchors("electrino"),
 });
 
 function clamp(value, min, max) {
@@ -65,6 +61,22 @@ function stretchPathToTimeAxis(points) {
         x: PATH_TIME_START_X + ((point.x - first.x) / sourceSpan) * targetSpan,
       }),
     ),
+  );
+}
+
+function createPairedPathAnchors(kind) {
+  return stretchPathToTimeAxis(
+    PAIRED_PATH_ANCHOR_X.map((x, index) => {
+      const positrinoY =
+        PAIRED_PATH_CENTER_Y[index] - PAIRED_PATH_SEPARATION[index] * 0.5;
+      return Object.freeze({
+        x,
+        y: kind === "positrino"
+          ? positrinoY
+          : positrinoY +
+            PAIRED_PATH_SEPARATION[index] * ELECTRINO_SEPARATION_SCALE,
+      });
+    }),
   );
 }
 
