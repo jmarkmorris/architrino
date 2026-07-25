@@ -135,7 +135,7 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
 - Conventions:
   - $H(0)=0$ (no instantaneous self-kick).
   - No $r=0$ causal roots exist beyond $\Delta_{r\leftarrow t}=0$: because $r=v(T_r-T_t)$, $r=0$ implies $T_r=T_t$; that coincident-time case is excluded by $H(0)=0$.
-  - This exclusion does not supply a continuation through a coincident same-transmitter root birth. Such a singular event remains fail closed until one finite transition rule certifies its root ledger and conserved accounts.
+  - This exclusion does not supply a continuation through a coincident same-transmitter root birth. Verification remains incomplete until one finite transition rule certifies the singular event's root ledger and conserved accounts.
 
 Plain language: A push now only happens if a past causal wake surface has had exactly enough time to reach the receiver.
 

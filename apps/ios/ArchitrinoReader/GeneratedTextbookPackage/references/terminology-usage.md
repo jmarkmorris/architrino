@@ -31,6 +31,30 @@ Treat terminology maintenance as a theory-protective cleanup discipline, not as 
 - When a sentence still blurs levels, rewrite it so ontology, effective bookkeeping, and comparative language are explicitly separated.
 - Pay special attention to recurring confusion pairs such as `spacetime` versus `Euclidean void` / `absolute timespace`, and `shell` versus `layer`, because those often hide constitutive ambiguity rather than harmless style variation.
 
+## Verification and Advancement Usage
+
+Use verification language that separates policy, verification outcome, and advancement disposition. The terms below preserve the conservative behavior without making a temporary or input-dependent state sound permanent.
+
+| When you mean... | Prefer | Usage |
+| --- | --- | --- |
+| a policy or process requires verification before an item may move forward | `Verification required for advancement` | Use only for the policy. Do not use it as an outcome or status. |
+| a required verification completed and met its declared conditions | `Verification passed` | Name the completed check and its declared acceptance conditions when useful. |
+| a required verification ran and did not meet its declared conditions | `Verification failed` | Name the check and its failure witness when available. |
+| a required verification could not be completed because an input, inventory, evidence source, authority, or convergence condition is missing or unresolved | `Verification incomplete` | Name the missing or unresolved requirement and the exact place to inspect or rerun. |
+| a verification does not apply to the item or claim under review | `Verification not applicable` | Name the scope reason; do not use this outcome merely because verification was skipped or unavailable. |
+| the item moves forward or does not move forward | `Advanced` or `Not advanced` | State the disposition separately from the verification outcome. Use `Not advanced` as the umbrella disposition when the narrower cause is mixed, unknown, or not important to the sentence. |
+
+Do not substitute `Verification failed` for a missing-input case. A checker may run successfully and correctly report that the subject's verification is incomplete. Conversely, do not call a completed tolerance miss or contradiction incomplete merely because the item can be revised and tried again. `Verification passed` does not by itself mean `Advanced`: other required verifications or advancement conditions may remain.
+
+Sentence guidance:
+
+- Prefer: "The required residual check ran. Verification failed at the declared tolerance, so the candidate was not advanced."
+- Prefer: "Verification is incomplete because the retained root inventory is missing. The candidate was not advanced."
+- Prefer: "Verification passed for the declared residual check, but the candidate was not advanced because the independent-reference check remains incomplete."
+- Prefer: "Verification is not applicable to the display-only camera transform because it does not affect solver values or evidence."
+- Prefer: "Verification is required for advancement: unresolved evidence cannot be promoted."
+- Preserve machine-readable legacy values, external protocol strings, hashes, retained fixtures, and compatibility fields exactly when changing them would break a contract or invalidate provenance. Explain their current meaning at the nearest human-facing surface instead of silently relabeling the stored value.
+
 ## Ledger, Ledger Entry, and Record Usage
 
 Use `ledger` for the $\mathbb{A}\mathbb{A}\mathbb{A}$ accounting structure that keeps related readouts, sources, carriers, and response terms tied together. A ledger is not just a data table; it is the named bookkeeping structure that lets the theory say which quantities belong to the same retained causal history or Noether sea response.

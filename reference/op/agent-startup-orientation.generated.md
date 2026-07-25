@@ -76,14 +76,14 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [README.md](../../README.md) | 229 | `9586b2bb3becaec3` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 111 | `e069e88628ced39b` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 111 | `688e42e5fd54a5eb` |
 | [reference/op/README.md](README.md) | 32 | `38e9b27389615e68` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 216 | `a6b6ad0c387cdbba` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `d15ca9c97840ca90` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 62 | `ad55c85f6e3d30b1` |
-| [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 29 | `12a8261ec8f772bb` |
+| [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 29 | `67a8192a02268d59` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 495 | `0b0669fe21e5ea1e` |
-| [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 964 | `fca432c638544866` |
+| [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 964 | `d7e6219c8fb2f212` |
 | [reference/priorities/README.md](../priorities/README.md) | 44 | `1fc23f4be2b4bc12` |
 | [reference/entourage/archie/prompts/README.md](../entourage/archie/prompts/README.md) | 42 | `d9fbf2eb6d3bd20e` |
 | [reference/entourage/archie/prompts/convergence-campaign.md](../entourage/archie/prompts/convergence-campaign.md) | 637 | `ffd10e662df89d76` |
@@ -94,7 +94,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/entourage/archie/prompts/core-geometry-theorem-reviewer.md](../entourage/archie/prompts/core-geometry-theorem-reviewer.md) | 59 | `fef7b4e05ccc9501` |
 | [reference/entourage/archie/prompts/priority-lane-resume.md](../entourage/archie/prompts/priority-lane-resume.md) | 71 | `434d7a791d81c766` |
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 369 | `5ef576c5a0f1a61d` |
-| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 307 | `6c8a030591afecc1` |
+| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 307 | `adf1ac4839d4cba4` |
 | [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 141 | `d7bc201e02843464` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 559 | `a0d659c57b607c73` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 583 | `e4ccc2375a990888` |
 | [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 172 | `ad0220d9d6db9e0c` |

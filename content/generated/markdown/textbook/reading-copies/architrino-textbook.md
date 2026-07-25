@@ -10814,7 +10814,7 @@ Event-aware integration (practical algorithm):
 
 6. Two-body closure run packet:
    - For a candidate electrino:positrino binary, emit the signed branch ledger $b$, regulator $\eta$, step or collocation scale $\Delta T_{\mathrm{step}}$, candidate period $P_b$, and the canonical residual tuple owned by [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target). This recipe does not define a second tuple or field order.
-   - Fail closed if the signed ledger changes during the reported period, an active transmitter-side Jacobian floor or inactive-root gap vanishes, the transmitter-side acceleration weight leaves its certified interval or its floor $\nu_{\mathrm{rec}}^{2\mathrm{B}}$ vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
+   - Do not advance the candidate if the signed ledger changes during the reported period, an active transmitter-side Jacobian floor or inactive-root gap vanishes, the transmitter-side acceleration weight leaves its certified interval or its floor $\nu_{\mathrm{rec}}^{2\mathrm{B}}$ vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
    - Treat a visually periodic orbit without these entries as a search hit only. It is not a binary closure certificate.
 
 Plain language: At each reception time, find which past emissions can reach the receiver, compute how the transmitter laid down the wake and how the receiver crosses it, sum the radial acceleration contributions with $W^{\mathrm{acc}}/r^2$ strength, and step forward either with sharp kicks at exact hit times or with thin mollified wake surfaces for smooth integration.
@@ -12347,7 +12347,7 @@ R(T)\,A_{\mathrm{self},0,\eta}^{\mathrm{tan}}(T)\,dT
 $$
 when that limit exists under the same finite-caustic transit convention used for the velocity impulse. If the impulse limit is regulator-dependent, the branch-birth jump remains a diagnostic record rather than a promoted angular-momentum ledger entry.
 
-This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history acceleration sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self branch inherits the transmitter-side fold onset displayed below, and the canonical acceleration weight is $W^{\mathrm{acc}}=1/|J_s|$. Its coincident endpoint birth is therefore more singular than the former stripped model and remains fail-closed.
+This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history acceleration sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self branch inherits the transmitter-side fold onset displayed below, and the canonical acceleration weight is $W^{\mathrm{acc}}=1/|J_s|$. Its coincident endpoint birth is therefore more singular than the former stripped model, and its verification remains incomplete.
 
 #### Spiral Binary Field-Speed Symmetry-Breaking Point
 
@@ -13654,7 +13654,7 @@ $$
 }.
 $$
 
-The boundary term is not optional bookkeeping: it is required by the constructive finite-window wake-energy account. If it is absent, the packet must fail closed rather than hiding tangential work in an undefined reservoir.
+The boundary term is not optional bookkeeping: it is required by the constructive finite-window wake-energy account. If it is absent, verification is incomplete and the packet is not advanced; tangential work cannot be hidden in an undefined reservoir.
 
 The stability certificate is a secular Floquet margin in history space,
 
@@ -14238,7 +14238,7 @@ A current circular benchmark must emit:
 | $W^{\mathrm{acc}}$ | same-record branch strength interval |
 | vector residual | radial and tangential Master EOM residuals |
 | scalar statistic | $\bar{\mathcal A}_{\mathrm{rec}}$ on the same record |
-| negative control | fail-closed result when $D_r$ is absent or mismatched |
+| negative control | Not advanced disposition: verification is incomplete when $D_r$ is absent and failed when $D_r$ is mismatched |
 
 Until those records exist, circular material is not evidence for action closure.
 
@@ -14293,7 +14293,7 @@ causal-root topology, branch labels, caustic routing, and scalar comparison
 targets, but action evidence requires complete transmitter-side branch records.
 The next useful mathematical artifact is one retained branch packet
 that binds root topology, $D_t$, $D_r$, $W^{\mathrm{acc}}$, vector residuals,
-scalar statistic, Noether pullback, and fail-closed negative controls on the
+scalar statistic, Noether pullback, and negative controls required before advancement on the
 same record.
 
 ### Effective Lagrangian
@@ -50566,7 +50566,7 @@ The chapter proceeds in scene order from unit and parameter declarations to even
 3. [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md) requires constituent, energy, momentum, and channel provenance for reaction records.
 4. [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) extends the same-record discipline across source loading, thermalization, and cosmological observables.
 5. [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) records empirical tolerances and the shared records that must satisfy them.
-6. [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md) defines incompatibility witnesses, promotion conditions, and fail-closed outcomes.
+6. [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md) defines incompatibility witnesses, promotion conditions, and Not advanced dispositions.
 7. [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md) classifies whether a theorem applies directly, imposes a replacement constraint, or depends on assumptions absent from the substrate theory.
 8. [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md) collects unresolved recovery burdens without treating them as solved mechanisms.
 9. [Massive-Superposition Gravity](../../../../markdown/aaa/validation/massive-superposition-gravity.md) defines a focused observer-level discriminator for gravity-linked record formation.
@@ -54417,7 +54417,7 @@ This public benchmark packet is a success marker under the existing simulation p
 
 Tier 0 and Tier 1 results are accepted only through an auditable campaign packet. The packet must include the source commit, pre-run tolerances, root ledger, branch residual vector, convergence table, $\eta$ ladder when a regulator claim is made, declared history interpolation, failure report, and artifact hashes. When a run crosses a fold-layer, separator, or active-root status transition, the packet must also include transition records for that window.
 
-The minimum Tier 0 packet contains `campaign.json`, `mesh.json`, `state_vector.json`, `root_ledger.json`, `branch_residuals.json`, `candidate_rows.csv`, `failure_codes.md`, and `promotion_gate.md`. For corrected branch-equation reruns, `branch_residuals.json` must include the branch-native basis, predeclared coefficient rule, held-out residual rule, and pass/fail value for the residual-balance record. Corrected Master EOM branch reruns must also report same-record $D_t$, $D_r$, $D_r/D_t$, and $W^{\mathrm{acc}}$ records. A negative control must show that acceleration fails closed when $D_t$ or $W^{\mathrm{acc}}$ is absent or mismatched, while action and conserved-account claims fail closed when their required $D_r/D_t$ playback record is absent or mismatched. The minimum Tier 1 packet adds `run_metadata.json`, $\mathbb{U}_{\text{now}}$ provenance data, `history_interpolation.json`, `convergence_table.csv`, `eta_ladder.csv`, `conservation_ledger.csv`, `cross_integrator_report.md`, `negative_control_report.md`, `failure_report.md`, and `promotion_lemma_check.md`. A claim of numerical correctness also requires an `independent_reference_report.md` naming the closed form, theorem, analytically known case, or separately authored instrument used as the oracle. If a Tier 1 run claims a branch transition, it also emits `transition_records.json` with the status, regularization route, transition-window scale, root-ledger records, and promoted observables for each transition window.
+The minimum Tier 0 packet contains `campaign.json`, `mesh.json`, `state_vector.json`, `root_ledger.json`, `branch_residuals.json`, `candidate_rows.csv`, `failure_codes.md`, and `promotion_gate.md`. For corrected branch-equation reruns, `branch_residuals.json` must include the branch-native basis, predeclared coefficient rule, held-out residual rule, and pass/fail value for the residual-balance record. Corrected Master EOM branch reruns must also report same-record $D_t$, $D_r$, $D_r/D_t$, and $W^{\mathrm{acc}}$ records. A negative control must show that acceleration does not advance when $D_t$ or $W^{\mathrm{acc}}$ is absent or mismatched, while action and conserved-account claims do not advance when their required $D_r/D_t$ playback record is absent or mismatched. The minimum Tier 1 packet adds `run_metadata.json`, $\mathbb{U}_{\text{now}}$ provenance data, `history_interpolation.json`, `convergence_table.csv`, `eta_ladder.csv`, `conservation_ledger.csv`, `cross_integrator_report.md`, `negative_control_report.md`, `failure_report.md`, and `promotion_lemma_check.md`. A claim of numerical correctness also requires an `independent_reference_report.md` naming the closed form, theorem, analytically known case, or separately authored instrument used as the oracle. If a Tier 1 run claims a branch transition, it also emits `transition_records.json` with the status, regularization route, transition-window scale, root-ledger records, and promoted observables for each transition window.
 
 The `cross_integrator_report.md` artifact must name the solver family, delayed interpolation polynomial or reconstruction rule, nonlinear solve residuals when implicit stages are used, small-delay or vanishing-delay encounters, and event or restart handling. Cross-integrator agreement is valid implementation-parity evidence only when branch identity and transition records match; it is not an independent correctness oracle.
 
@@ -57817,7 +57817,7 @@ Score changes are symmetric. A new assessment may increase, decrease, or leave u
 
 The burden of proof is highest for upward movement. A score can rise only when the new evidence satisfies the category being scored: accepted coefficients for Formula+Coefficient Recovery, fixed constants for Parameter+Scale Closure, benchmark passes for Empirical Precision+Benchmark Validation, certified dynamics for Master EOM+Local Dynamics, and so on. If new work clarifies that an earlier assessment counted scaffolding, provisional diagnostics, local fits, or bookkeeping as accepted closure, the score must go down.
 
-Ledgers, gates, validation packets, mocks, source-mining records, and fail-closed diagnostics usually score as Falsification Gates or Coverage+Interface Readiness only when they add enforceable acceptance or failure conditions. They do not raise formula, parameter, empirical, or coefficient rows until they carry accepted recovered values, same-record derivations, or declared-tolerance passes.
+Ledgers, gates, validation packets, mocks, source-mining records, and diagnostics required before advancement usually score as Falsification Gates or Coverage+Interface Readiness only when they add enforceable acceptance or failure conditions. They do not raise formula, parameter, empirical, or coefficient rows until they carry accepted recovered values, same-record derivations, or declared-tolerance passes.
 
 Score bands:
 
@@ -57951,7 +57951,7 @@ This is a concrete mathematical advance because it prevents isolated seed charts
 
 Executable neutral-braid diagnostics add negative evidence and sharper first-failure semantics. The current sampled octahedral root-ledger diagnostic passes the all-pairs sampled root/Jacobian screen, while the fixed-coordinate zero-offset fixed-speed row is rejected by a nonzero tangential residual witness and an ordinary same-transmitter positive-delay no-go. These artifacts improve falsification readiness and empirical/simulation discipline because they report `not_retained` rather than converting a failed seed into branch evidence. The score increase is deliberately small because sampled diagnostics, no-go witnesses for one fixed-coordinate seed, and finite-mode search schemas do not yet replace an interval-certified all-pairs root ledger, action/Noether row, event ledger, stability certificate, or observer-export recovery.
 
-The total remains far below modern operational closure for the same reason as the prior assessments. The theory stack has stronger taxonomy, residual surfaces, and fail-closed diagnostics, but not the decisive retained branch. Until a single native record supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN recovery, photon-channel recovery, quantum source measures, Standard Model mapping coefficients, and shared cosmology fits, architecture and auditability must not inflate the validated-closure total.
+The total remains far below modern operational closure for the same reason as the prior assessments. The theory stack has stronger taxonomy, residual surfaces, and diagnostics required before advancement, but not the decisive retained branch. Until a single native record supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN recovery, photon-channel recovery, quantum source measures, Standard Model mapping coefficients, and shared cosmology fits, architecture and auditability must not inflate the validated-closure total.
 
 #### 2026-05-19 Assessment Notes
 
@@ -62814,7 +62814,7 @@ unless a separate native derivation or independent measurement is named.
 | Effective-limit concept | Guessed if promoted to substrate ontology | Inferred after coarse-graining, domain, and residual are controlled | Measured only for the underlying record; the interpretation remains inferred |
 | Directional comparison | Guessed | Guessed, or inferred only as a comparative constraint | Measured only when a separate benchmark record is named |
 
-The mechanical audit is fail-closed: a lower-layer claim cannot inherit the
+The mechanical audit requires verification before advancement: a lower-layer claim cannot inherit the
 grade of a higher-layer success. A measured spectrum is still only a measured
 spectrum; the proposed substrate mechanism beneath it remains inferred or
 guessed until an independent native prediction closes the projection and
@@ -72514,7 +72514,7 @@ The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
 - **What it knows**: The complete substrate state at $T$, including position, velocity, polarity, retained path history, active causal roots, and branch data.
 - **What it predicts**: A unique continuation wherever the native branch rule is well posed. Multistability means that different nearby complete states can lie in different basins of attraction; it does not mean that one exact complete state has several realized futures.
 - **What physical observers cannot generally predict**: Which attractor will be reached when their records do not resolve the basin-selecting microstate and wake-phase details.
-- **Fail-closed boundary**: If one exact retained state and one declared law admit more than one legal continuation, determinism has not been established for that branch chart.
+- **Verification required for advancement**: If one exact retained state and one declared law admit more than one legal continuation, determinism has not been established for that branch chart.
 
 The $\mathbb{U}_{\text{now}}$ universe-state perspective can therefore trace lawful evolution through branch points when the branch chart is complete and well posed. Near a basin boundary, arbitrarily close complete states may approach different stable attractors, while physical observers who cannot resolve the separating coordinates experience the outcome as practically open. This is deterministic multistability with epistemic forecast limits, not ontic multiplicity from a single exact state.
 

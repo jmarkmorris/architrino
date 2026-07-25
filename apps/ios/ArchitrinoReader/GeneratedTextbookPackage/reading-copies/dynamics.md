@@ -7636,7 +7636,7 @@ Event-aware integration (practical algorithm):
 
 6. Two-body closure run packet:
    - For a candidate electrino:positrino binary, emit the signed branch ledger $b$, regulator $\eta$, step or collocation scale $\Delta T_{\mathrm{step}}$, candidate period $P_b$, and the canonical residual tuple owned by [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target). This recipe does not define a second tuple or field order.
-   - Fail closed if the signed ledger changes during the reported period, an active transmitter-side Jacobian floor or inactive-root gap vanishes, the transmitter-side acceleration weight leaves its certified interval or its floor $\nu_{\mathrm{rec}}^{2\mathrm{B}}$ vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
+   - Do not advance the candidate if the signed ledger changes during the reported period, an active transmitter-side Jacobian floor or inactive-root gap vanishes, the transmitter-side acceleration weight leaves its certified interval or its floor $\nu_{\mathrm{rec}}^{2\mathrm{B}}$ vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
    - Treat a visually periodic orbit without these entries as a search hit only. It is not a binary closure certificate.
 
 Plain language: At each reception time, find which past emissions can reach the receiver, compute how the transmitter laid down the wake and how the receiver crosses it, sum the radial acceleration contributions with $W^{\mathrm{acc}}/r^2$ strength, and step forward either with sharp kicks at exact hit times or with thin mollified wake surfaces for smooth integration.
@@ -9169,7 +9169,7 @@ R(T)\,A_{\mathrm{self},0,\eta}^{\mathrm{tan}}(T)\,dT
 $$
 when that limit exists under the same finite-caustic transit convention used for the velocity impulse. If the impulse limit is regulator-dependent, the branch-birth jump remains a diagnostic record rather than a promoted angular-momentum ledger entry.
 
-This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history acceleration sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self branch inherits the transmitter-side fold onset displayed below, and the canonical acceleration weight is $W^{\mathrm{acc}}=1/|J_s|$. Its coincident endpoint birth is therefore more singular than the former stripped model and remains fail-closed.
+This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history acceleration sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self branch inherits the transmitter-side fold onset displayed below, and the canonical acceleration weight is $W^{\mathrm{acc}}=1/|J_s|$. Its coincident endpoint birth is therefore more singular than the former stripped model, and its verification remains incomplete.
 
 ### Spiral Binary Field-Speed Symmetry-Breaking Point
 
@@ -10476,7 +10476,7 @@ $$
 }.
 $$
 
-The boundary term is not optional bookkeeping: it is required by the constructive finite-window wake-energy account. If it is absent, the packet must fail closed rather than hiding tangential work in an undefined reservoir.
+The boundary term is not optional bookkeeping: it is required by the constructive finite-window wake-energy account. If it is absent, verification is incomplete and the packet is not advanced; tangential work cannot be hidden in an undefined reservoir.
 
 The stability certificate is a secular Floquet margin in history space,
 
@@ -11060,7 +11060,7 @@ A current circular benchmark must emit:
 | $W^{\mathrm{acc}}$ | same-record branch strength interval |
 | vector residual | radial and tangential Master EOM residuals |
 | scalar statistic | $\bar{\mathcal A}_{\mathrm{rec}}$ on the same record |
-| negative control | fail-closed result when $D_r$ is absent or mismatched |
+| negative control | Not advanced disposition: verification is incomplete when $D_r$ is absent and failed when $D_r$ is mismatched |
 
 Until those records exist, circular material is not evidence for action closure.
 
@@ -11115,7 +11115,7 @@ causal-root topology, branch labels, caustic routing, and scalar comparison
 targets, but action evidence requires complete transmitter-side branch records.
 The next useful mathematical artifact is one retained branch packet
 that binds root topology, $D_t$, $D_r$, $W^{\mathrm{acc}}$, vector residuals,
-scalar statistic, Noether pullback, and fail-closed negative controls on the
+scalar statistic, Noether pullback, and negative controls required before advancement on the
 same record.
 
 ## Effective Lagrangian
