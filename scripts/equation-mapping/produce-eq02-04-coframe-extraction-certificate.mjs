@@ -116,7 +116,7 @@ Options:
   --require-accepted       Exit nonzero unless the produced certificate is accepted.
   --help                   Show this help.
 
-This producer is fail-closed. It emits the existing coframe extraction
+Verification is required for advancement. This producer emits the existing coframe extraction
 certificate schema, but only marks it accepted when a durable source report
 supplies accepted invariant-cell support, gamma-free extraction basis,
 connection/holonomy data, and zero extraction/support/holonomy residuals.`);

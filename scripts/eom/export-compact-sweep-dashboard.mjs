@@ -64,7 +64,7 @@ const DASHBOARD_CLAIM_BOUNDARY = Object.freeze({
   establishes: [
     "sampling coverage within the retained compact campaign",
     "compact numerical metrics and margins",
-    "fail-closed compact gate outcomes",
+    "compact-gate outcomes with a Not advanced disposition",
     "measured per-row computational cost",
     "rows for later adjudication",
   ],
@@ -951,7 +951,7 @@ function help() {
     )}`,
     "  --help",
     "",
-    "Opens the compact SQLite database read-only, fails closed on non-terminal",
+    "Opens the compact SQLite database read-only, does not advance on non-terminal",
     "or identity-mismatched receipts, and writes deterministic dashboard JSON",
     "under .local-data. It does not run evaluations or modify campaign inputs.",
     "",

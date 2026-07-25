@@ -151,7 +151,7 @@ test("cap-angle stencils exactly differentiate a separately authored quadratic c
   }
 });
 
-test("protocol validation fails closed on surface/history and resolution defects", () => {
+test("protocol validation does not advance on surface/history and resolution defects", () => {
   const insideEnvelope = loadProtocol();
   insideEnvelope.enclosingSurfaces.radii[0] = 0.5;
   assert.throws(

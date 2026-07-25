@@ -4,7 +4,7 @@ Status: complete; source migration, strict enforcement, generated propagation, a
 
 ## Scope and Evidence
 
-This fail-closed audit covers reader-facing Markdown outside `content/markdown/aaa/noether-braid/`, the canonical taxonomy sources, the terminology scanner and tests, and repository ownership of `ideal braid` / `ideal-braid` / `ideal_braid`. The audit distinguishes prose taxonomy claims from theorem labels, local variables, links, filenames, routes, machine identifiers, app proper names, generated artifacts, and historical priority records.
+This audit requires verification for advancement and covers reader-facing Markdown outside `content/markdown/aaa/noether-braid/`, the canonical taxonomy sources, the terminology scanner and tests, and repository ownership of `ideal braid` / `ideal-braid` / `ideal_braid`. The audit distinguishes prose taxonomy claims from theorem labels, local variables, links, filenames, routes, machine identifiers, app proper names, generated artifacts, and historical priority records.
 
 The occurrence-level inventory is executable and line-addressed:
 
@@ -234,7 +234,7 @@ The operator selected the preferred display-only correction (`a`) on 2026-07-22:
 4. Existing `ideal-braid` and `ideal_braid` routes, filenames, app and scene IDs, model/config hashes, DOM/CSS selectors, and runtime exports remain unchanged compatibility contracts.
 5. One dated heading, `2026-06-10: Ideal Noether Braid Lorentz Geometry App`, remains in the research notebook as an exact historical title. The scanner exempts only that full line in that one file; the same phrase anywhere else fails the strict gate.
 
-The public-name rule is therefore fail-closed: a new use of `Ideal Noether Braid`, `Ideal Braid`, or `ideal braid` fails unless it is a protected machine string, unrelated mathematical ideality, quoted text, or the one exact historical heading above.
+The public-name rule therefore requires verification for advancement: a new use of `Ideal Noether Braid`, `Ideal Braid`, or `ideal braid` fails unless it is a protected machine string, unrelated mathematical ideality, quoted text, or the one exact historical heading above.
 
 ## Scanner Coverage and Expansion
 

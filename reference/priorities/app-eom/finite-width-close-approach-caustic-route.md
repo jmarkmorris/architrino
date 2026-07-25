@@ -13,7 +13,7 @@
   `amendment-1-bound-and-independently-certified`
 - Evolution authority: [evolution-contract-v1.md](evolution-contract-v1.md)
 - Production authority: certified for the recorded first seed-0 transit;
-  broader trajectory and encounter authority remains per-run and fail-closed
+  broader trajectory and encounter authority remains per-run and requires verification before advancement.
 
 ## Closure Target
 
@@ -137,7 +137,7 @@ $s_+-s_-\le\tau$, the directed causal-residual enclosures at $s_-$ and $s_+$
 have strict opposite signs, and the left/right transmitter-side-factor enclosures have
 one common strict sign. The intermediate-value theorem then proves existence,
 and the strict transmitter-side-factor sign proves uniqueness. If any condition fails,
-the root remains `endpoint_root_not_surrounded` and entry remains fail-closed.
+the root remains `endpoint_root_not_surrounded` and entry remains not advanced.
 
 Claim grade: `derived`. Falsifier: directed recomputation finds a bracket wider
 than $\tau$, a non-strict or equal residual sign, a zero-containing transmitter
@@ -450,7 +450,7 @@ bounded wall cost; that result would reopen this disposition.
 
 Research-tolerance discrimination and any remaining `FWC-STATE-01` work are
 owned by a follow-up finite-width-route thread. They are not prerequisites for
-accepting the demo track's named fail-closed terminal state and are not part of
+accepting the demo track's named not advanced terminal state and are not part of
 the far-field enclosure implementation.
 
 ## Core-Scale Quadrature Resource Closure
@@ -531,7 +531,7 @@ so no atomic request can cross its chunk endpoint. The declared default and
 the effective first attempted height are therefore both $0.05$; no unreachable
 `0.1` controller knob remains.
 
-A rejected step retains the existing fail-closed reduction rule. After an
+A rejected step retains the existing reduction rule requiring verification before advancement. After an
 accepted step, growth is allowed only after two consecutive accepted steps for
 which every path's position and velocity local-error rows use at most one
 eighth of their unchanged budgets. The controller then doubles the height,
@@ -610,7 +610,7 @@ Required acceptance evidence:
 1. existing Python and Borg JavaScript suites pass;
 2. a synthetic fold transits with certified $\mathbf I$, $\mathbf M$, sharp
    exit, and atomic publication, while each named resource/convergence negative
-   fails closed;
+   does not advance;
 3. the seed-0 Borg 3:3 reproduction reaches beyond its former first
    close-approach time or halts with `caustic_transit_uncertified` and a complete
    first-failed-row record;

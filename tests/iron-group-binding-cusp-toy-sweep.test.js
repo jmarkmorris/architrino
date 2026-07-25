@@ -2152,7 +2152,7 @@ test("validation rejects missing coefficient and graph-rule row-binding coverage
   );
 });
 
-test("deuteron control fails closed when the p+n corridor reward is removed", () => {
+test("deuteron control does not advance when the p+n corridor reward is removed", () => {
   const report = buildIronGroupBindingCuspToySweep({
     coefficientOverrides: {
       pnCorridorPairReward: 0.1,
@@ -2166,7 +2166,7 @@ test("deuteron control fails closed when the p+n corridor reward is removed", ()
   assert.equal(report.authorization.acceptedIronGroupCuspRecovery, false);
 });
 
-test("coulomb-free sweep fails closed as no-saturation before cusp promotion", () => {
+test("coulomb-free sweep does not advance as no-saturation before cusp promotion", () => {
   const report = buildIronGroupBindingCuspToySweep({
     coefficientOverrides: {
       alphaCoul: 0,

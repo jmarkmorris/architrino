@@ -348,7 +348,7 @@ reuses the result. A missing, unreadable, mismatched, or stale receipt runs the
 complete gate and replaces the receipt only after success.
 
 The pre-push hook may bypass both receipt verification and the full gate only
-when its separate fail-closed policy classifier proves that every ref update
+when its separate policy requiring verification for advancement classifier proves that every ref update
 is one of these no-content cases:
 
 - deletion of a remote ref; or

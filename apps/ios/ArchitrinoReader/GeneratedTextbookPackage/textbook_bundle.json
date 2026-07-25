@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-07-25T04:21:14.790Z",
+  "generated_at": "2026-07-25T12:21:21.488Z",
   "package_version": "1.0.0-9b130e98",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -212,16 +212,16 @@
       "sourcePath": "__generated__/reading-copies/dynamics.html",
       "role": "chapter",
       "type": "html",
-      "size": 12291051,
-      "sha256": "33464fe5db41e05c0d7eae20ca0106294a304340a86c8f702ebe0cad95cf86a1"
+      "size": 12292200,
+      "sha256": "f89981f233b4bc52a3e313242fe6e5bfdd584e0fa5e7de0a488c8fc7e2776980"
     },
     {
       "path": "reading-copies/dynamics.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 729081,
-      "sha256": "3a912aa041fc87b14bac9d08b03182d53d0c5d98e767b98867acc36c8885ecb8"
+      "size": 729216,
+      "sha256": "4049cf1878e5ae97153ace2fc4c923afff0a2a87e5c16ceefc23a03f855c10e3"
     },
     {
       "path": "reading-copies/foundations.html",
@@ -276,16 +276,16 @@
       "sourcePath": "__generated__/reading-copies/philosophy-history.html",
       "role": "chapter",
       "type": "html",
-      "size": 10883680,
-      "sha256": "7b4287490ead1f48a305451b74776f9d6e9a58e0be0de81b39125c28ca4f82ae"
+      "size": 10883723,
+      "sha256": "f69a4677d4327b431e0d1fcbca24c88386a9c2fe6cb0bb0eaaa0e75795d6f05b"
     },
     {
       "path": "reading-copies/philosophy-history.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1828163,
-      "sha256": "7ed2f2e07e599b69828bc2652902e53b3435be837543278c7cfdb31bc9571dd0"
+      "size": 1828206,
+      "sha256": "a74792aa4412a23a0d027d092b48c76c242a7643f73bd4c04c6631f74a0c5d12"
     },
     {
       "path": "reading-copies/quantum.html",
@@ -340,16 +340,16 @@
       "sourcePath": "__generated__/reading-copies/validation.html",
       "role": "chapter",
       "type": "html",
-      "size": 6286749,
-      "sha256": "114e8e72286dcc9c8d70928f08d023e11ef9aee15ec18ea00d27a47cd1968541"
+      "size": 6286793,
+      "sha256": "377ca228428a45c49ed8aba3991b596882fbdef3254f29ca319368e5b215b9cd"
     },
     {
       "path": "reading-copies/validation.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 546067,
-      "sha256": "f4e1a3a6f41ae8f32800d5f35a42cb41284fe17d0eecc0f0747e0b75600eb67d"
+      "size": 546111,
+      "sha256": "b12b6bd5a1200f9232d6fb52bc2e8f7ce861cd0ed3cb2a2af17b5f6e83c5d7c0"
     },
     {
       "path": "references/academic-style-guide.html",
@@ -388,16 +388,16 @@
       "sourcePath": "__generated__/references/mathematics-style-guide.html",
       "role": "reference",
       "type": "html",
-      "size": 331309,
-      "sha256": "ee908f56f6305162274b83d02f25237f2388ef7d783881dabe96dfeaebfbbe0c"
+      "size": 331318,
+      "sha256": "ef1851922d09c8c62dfa0057704c25429fc8293662dfdb31766fef839c075f86"
     },
     {
       "path": "references/mathematics-style-guide.md",
       "sourcePath": "content/markdown/aaa/archie/mathematics-style-guide.md",
       "role": "reference",
       "type": "markdown",
-      "size": 17983,
-      "sha256": "6c8a030591afecc140efc8d25d01b1822435d67b30339476318ac5c24e9c96b5"
+      "size": 17990,
+      "sha256": "adf1ac4839d4cba4e7160eade80ae9b502cc8bd6967c1c16165111da7ca7412d"
     },
     {
       "path": "references/mathematics-terminology.html",
@@ -420,24 +420,24 @@
       "sourcePath": "__generated__/references/terminology-usage.html",
       "role": "reference",
       "type": "html",
-      "size": 209203,
-      "sha256": "5c8624e648aeac57103c89a3dbfff5ebef9764b768c38f045038bc3cad0deb4b"
+      "size": 212677,
+      "sha256": "5ea738fe05883f83b722c59a6d18f54175ac4258c4d30da7d09b1a000c4d0a2c"
     },
     {
       "path": "references/terminology-usage.md",
       "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
       "role": "reference",
       "type": "markdown",
-      "size": 62691,
-      "sha256": "a0d659c57b607c738d5c45ce485967d78ad54fffe2cb0fe4029c91fe67168208"
+      "size": 65667,
+      "sha256": "e4ccc2375a990888e00c30abae5e188119dddfb673bdd23d9ba8ec5b5a02b2d0"
     },
     {
       "path": "textbook_bundle_search_index.json",
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8706478,
-      "sha256": "edaf81fc6a24d25cff65329f16000218f9e75c3b65ecb4cbe95a1e28d0219c26"
+      "size": 8706698,
+      "sha256": "96d7ebef99cf67000d81432f6e5d531128f7f2a8bbcc7a3089c559b9d110b758"
     }
   ],
   "links": []

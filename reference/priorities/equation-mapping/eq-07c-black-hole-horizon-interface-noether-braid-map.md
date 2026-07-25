@@ -10,7 +10,7 @@
 - Related high-energy routing: [High-Energy Astrophysics](../high-energy-astrophysics/priorities.md#equation-examination-capture)
 - Assigned ID: `EQ-07C`
 - Related corpus material: [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md), [Singularity Resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [General Relativity](../../../content/markdown/aaa/spacetime/general-relativity.md), [Gravitational Waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md)
-- Claim level: observer-level black-hole horizon/interior benchmark, native carrier dictionary, and fail-closed residual target
+- Claim level: observer-level black-hole horizon/interior benchmark, native carrier dictionary, and residual required for advancement target
 - Promotion status: priority-only
 - Current score: unscored; not yet integrated into the main score table
 
@@ -226,7 +226,7 @@ The residual may consume accretion or jet rows as boundary data only through dec
 
 This layer keeps black-hole-proper equations as a same-record geometry problem. It does not treat exterior radius, area, entropy, spin, and interior regularity as separate fitted successes.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | $r_s=2GM/c_0^2$ and $r_{\mathrm{ISCO}}=6GM/c_0^2$ | Exterior compact-source scale and timelike-orbit comparison readout from the effective-metric projection. | `exterior_scale_row`, `mass_readout_row`, `theta_W_parent_support` | Same `bhHorizonCarrierId`, $\theta_W$, $\Omega$, $W$, $M$, and exterior metric projection. | `bhp.metric_only_import`: Schwarzschild/Kerr scales are copied in without native carrier binding. | Accepted black-hole horizon-interface carrier with source-backed exterior scale rows. |
 | $r_+(M,\mathbf J)$ and $A_H(M,\mathbf J)$ | Horizon radius and surface-area readout from the same exterior labels and terminal-alignment interface. | `horizon_radius_area_row`, `spin_readout_row`, `horizon_interface_row` | Same carrier binds $M$, $\mathbf J$, $\chi_J$, $r_H$, $A_H$, $F_H$, and $\mathcal{B}_H$. | `bhp.spin_radius_split`: mass/spin labels and horizon area use different source states. | Accepted radius/area/spin rows on the same horizon-interface carrier. |
@@ -265,7 +265,7 @@ The score-neutral retained-evidence-object starting contract is [eq07c-black-hol
 
 No checker is added by this packet. A future checker is useful only after the accepted carrier contract is stable enough to consume rows without treating priority prose, authored corpus prose, source-contract shells, attempts, probes, mocks, toys, generated files, contract-only JSON, or negative controls as retained evidence.
 
-## Fail-Closed Negative Controls
+## Verification Required for Advancement Negative Controls
 
 | Negative control | Required failure |
 | --- | --- |

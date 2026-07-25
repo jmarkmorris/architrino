@@ -70,7 +70,7 @@ experiment in §9 does exactly this before any rewrite.
 | B2 | `src/eom/src/CoupledEvolution.cpp`, `append_event_aware_candidate_segments` (~831–969) | Same collapse on the finite-width event route via Hermite-basis bounds. | Same |
 | B3 | `src/eom/src/CertifiedAcceleration.cpp`, sharp-row construction (~234–319) | Receiver and source hulls consumed as independent boxes; displacement, separation, and $1/r^2$ evaluated over the product box, so $r_a$ inherits both paths' radii with a $1/r^3$-scale sensitivity. This is the amplifier's feedback branch. | Acceleration enclosure $\tau_a$; state recurrence B1 |
 | B4 | `src/eom/src/ExactPairBatch.cpp`, `mp_geometry_with_source_position` (~2100–2120) with the receiver state built at ~2635 | Root residual $= \lvert X_r(T)-X_s(S)\rvert - c_f (T-S)$ over independent receiver/source boxes; width $\approx$ sum of both paths' projected position radii. Cross-path dependency loss at the point of terminal consumption. | Root certification |
-| B5 | `src/eom/src/ExactPairBatch.cpp`, `enclose_mp_monotone_root` (~2326–2353) and the bisection cell at ~2916–2966 | Mean-value image width $=$ residual width $/\,\lvert$source normal$\rvert$; when it exceeds the `1e-3` ceiling the row fails closed with `interior_root_not_surrounded`. | `root_completeness_not_certified` (`CoupledEvolution.cpp` ~5363) → step rejection → controller exhaustion → halt |
+| B5 | `src/eom/src/ExactPairBatch.cpp`, `enclose_mp_monotone_root` (~2326–2353) and the bisection cell at ~2916–2966 | Mean-value image width $=$ residual width $/\,\lvert$source normal$\rvert$; when it exceeds the `1e-3` ceiling the row does not advance with `interior_root_not_surrounded`. | `root_completeness_not_certified` (`CoupledEvolution.cpp` ~5363) → step rejection → controller exhaustion → halt |
 | B6 | `src/eom/src/CoupledEvolution.cpp`, `certify_native_regulator_convergence`, local `maximum_delta` (~4383–4394) | The $\eta$-ladder convergence metric is endpoint-to-endpoint distance between **outer enclosures**, so it is bounded below by each level's enclosure width. Wide states floor the metric above the Research slice ($0.15 \times 10^{-7}/n_{\text{pairs}} \approx 1.5\times10^{-8}$). | `caustic_eta_convergence_failed` (~2360, ~2460) — Research seed 2's terminal row |
 | B7 | `src/eom/include/architrino/eom/History.hpp` (`HistoryErrorTokens`), `src/eom/src/History.cpp` | The persistence schema itself: per-segment, per-axis scalar radii per path. Even a perfect step-local joint enclosure would be re-projected to independent boxes at every publication. | Structural; makes B1–B6 recur every step |
 
@@ -99,7 +99,7 @@ tree.
    (§4) confirm publication granularity is second-order. `derived` structure,
    `measured` magnitudes, `inferred` dominance.
 4. **Root certification** — not defective. It faithfully encloses every root
-   consistent with the *admitted* state set and fails closed when that set is
+   consistent with the *admitted* state set and does not advance when that set is
    too wide. Its obligation (root-free complement) is untouched by any remedy
    below. `derived`.
 5. **Finite-width regulator** — not defective, but its convergence metric
@@ -291,7 +291,7 @@ coefficient rounding; must be stated and unit-proved in-tree, not assumed.
 **Obligation C (fallback dominance).** The per-axis projection
 $\sum_k |A_{ik}| + \rho_i$ published as ordinary radii must always contain
 the affine set, so every existing gate consumes a valid (possibly wider) box
-even if the affine layer is disabled mid-run. Fail closed: if any Krawczyk
+even if the affine layer is disabled mid-run. Do not advance: if any Krawczyk
 row fails containment, the step publishes nothing (unchanged rejection path).
 
 **Obligation D (delayed-history correctness).** $[J]$ must include the
@@ -373,7 +373,7 @@ for, and the exact missing theorem is named.
    recorded beside the recurrence bound.
 5. Unchanged Decimal-oracle containment and deliberate under-budget rejection
    controls on the affine-consuming path; a deliberately perturbed fixture
-   confirms no root suppression (complement certification still fails closed
+   confirms no root suppression (complement certification still does not advance
    when a root is moved under a cell boundary).
 6. Full recertification and atomic-publication parity on the existing native
    CTest, Borg JavaScript, and EOM Python suites.

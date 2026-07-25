@@ -30,7 +30,7 @@ The rebuilt Borg EOM worker has SHA-256
 
 ## Falsifier
 
-Borg promotion fails closed if the artificial retained history lacks complete
+Borg promotion does not advance if the artificial retained history lacks complete
 causal coverage, its certificate or provenance does not match the selected
 population, the refinement ladder exceeds its declared state tolerance,
 one-thread and four-thread histories differ, or the app presents the artificial

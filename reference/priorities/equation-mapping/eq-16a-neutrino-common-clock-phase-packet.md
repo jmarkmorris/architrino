@@ -383,14 +383,14 @@ Here $r_{\mathrm{atm/sol}}$ is the updateable atmospheric-to-solar gap benchmark
 | Exact first blocker | `missing_accepted_neutral_lepton_retained_branch`; inherited `S_eq` blocker: `missing_accepted_raw_labeled_rows_preserved_on_retained_history`. |
 | Smallest next artifact | Replace the neutral-lepton source-attempt shell with one durable retained-branch source that binds $S_{\mathrm{eq}}$, common clock, residual operator, weak-domain readout, matter correction, cancellation, and event ledger to one branch/domain record. The `EQ-16` muon ledger artifact is a useful weak-domain consumer clue, but it does not satisfy this neutral-lepton retained-branch object. |
 | Existing scripts/fixtures/packets | [neutrino-common-clock-phase-operator.mjs](../../../scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs), [neutrino-common-clock-phase-attempt.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json), [neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-neutral-lepton-source-attempt.v1.json), [neutrino-common-clock-phase-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-priority-source-negative-control.v1.json), [neutrino-common-clock-phase-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-domain-split-negative-control.v1.json) |
-| Fail-closed control | `weak_hidden_domain_split` remains a diagnostic split-domain control, but source evidence guards now fire first when accepted-looking rows point at attempts or priority prose; the current domain-split fixture reports `missing_accepted_neutral_lepton_retained_branch` while `weakDomainIdentityPass: false` records the split. |
+| Control required for advancement | `weak_hidden_domain_split` remains a diagnostic split-domain control, but source evidence guards now fire first when accepted-looking rows point at attempts or priority prose; the current domain-split fixture reports `missing_accepted_neutral_lepton_retained_branch` while `weakDomainIdentityPass: false` records the split. |
 | Safe implementation target | Priority-packet refinement now; accepted-source semantics already reject priority prose, authored AAA prose, generated files, attempts, mocks, toys, probes, negative controls, and temporary paths before any source-attempt row can be treated as retained evidence. |
 
 ## Direct Geometry Layer
 
 This layer keeps the common-clock and residual-phase equations tied to one retained neutral-lepton branch. It does not let a numeric phase-gap shape, an imported PMNS matrix, or a weak-domain fit substitute for retained branch evidence.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | $H_{\nu}^{\mathrm{eff}}=\omega_fC_0\mathbf 1+H_{\nu}^{\mathrm{res}}$ | Common-clock identity term plus residual phase operator on one neutral-lepton retained branch. | `neutral_lepton_retained_branch`, `s_eq`, `common_clock`, `residual_operator` | One branch carrier id binds $S_{\mathrm{eq}}$, $\omega_fC_0\mathbf 1$, and $H_{\nu}^{\mathrm{res}}$. | `common_clock_not_factored` and `neutrino.common_clock_overread` reject treating the common clock as three observed absolute clocks. | Accepted retained neutral-lepton branch plus accepted $S_{\mathrm{eq}}$, common-clock, and residual-operator rows. |
 | $\bar H_{\nu}^{\mathrm{res}}=H_{\nu}^{\mathrm{res}}-\operatorname{tr}(H_{\nu}^{\mathrm{res}})\mathbf 1/3$ | Identity-shift-invariant residual spectrum readout. | `residual_operator`, `phase_gaps`, `spectrum_shape` | Traceless residual eigenvalues and phase gaps share the same branch carrier and phase-rate origin. | `residual_operator_not_traceless`, `residual_operator_erased`, and `phase_rate_origin_not_residual` reject static offsets or erased residuals. | Accepted residual-operator row with accepted phase-rate gap and spectrum-shape rows. |
@@ -433,7 +433,7 @@ This is the intended disposition. The checker is a common-clock/residual-phase g
 
 The `EQ-16` muon weak-visible projection evidence lane now accepts `weak_visible_branch_ledger`, same-domain `weak_projection`, same-domain `weak_quotient`, and same-domain `weak_exposure_record`, and blocks next at `missing_accepted_va_chirality_gate`. Those rows do not change `EQ-16A`: they contain inferred neutral-lepton bookkeeping for muon decay, but they do not provide a retained neutral-lepton branch, common-clock residual operator, PMNS readout, matter correction, cancellation row, or source/detector event ledger.
 
-The existing domain-split negative control remains a fail-closed diagnostic: with the hardened source guard, its accepted-looking rows block first at `missing_accepted_neutral_lepton_retained_branch` because their source paths point at an attempt fixture, and the same run still records `weakDomainIdentityPass: false` with split weak-domain ids. This keeps the source-evidence boundary first while preserving the weak-domain falsifier.
+The existing domain-split negative control remains a diagnostic required before advancement: with the hardened source guard, its accepted-looking rows block first at `missing_accepted_neutral_lepton_retained_branch` because their source paths point at an attempt fixture, and the same run still records `weakDomainIdentityPass: false` with split weak-domain ids. This keeps the source-evidence boundary first while preserving the weak-domain falsifier.
 
 ## Common Equation Candidates
 
@@ -449,7 +449,7 @@ The existing domain-split negative control remains a fail-closed diagnostic: wit
 
 The retained branch must provide:
 
-1. a retained iso-frequency row set $S_{\mathrm{eq}}$ or a fail-closed replacement row set;
+1. a retained iso-frequency row set $S_{\mathrm{eq}}$ or a replacement row set whose verification is required for advancement;
 2. a branch return-period or locked-harmonic certificate for $\omega_f$ rather than inferring frequency only from $s_a/\rho_a$;
 3. effective lever-arm, speed, phase, bivector Gram sector, braid-closure linking, and binary-to-binary phase-history rows on the same branch record;
 4. a nonzero traceless residual operator with exactly two independent phase-rate gaps;
@@ -479,4 +479,4 @@ Classification: `priority-only`.
 
 Later promotion targets are [Neutrinos](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md), [Weak-Mixing CKM](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md), [Weak Mixing Angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [Quantum Operator Mapping](../../../content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md), and [Constraint Ledger](../../../content/markdown/aaa/validation/constraint-ledger.md).
 
-Promotion should wait until $\Theta_{\nu,16A}$ is populated with a retained branch or with a fail-closed certificate that explains which sub-equation failed. The likely first promotion nucleus would be the common-clock residual operator plus the weak-basis / propagation-basis readout split, not the full PMNS claim.
+Promotion should wait until $\Theta_{\nu,16A}$ is populated with a retained branch or with a certificate required for advancement that explains which sub-equation failed. The likely first promotion nucleus would be the common-clock residual operator plus the weak-basis / propagation-basis readout split, not the full PMNS claim.

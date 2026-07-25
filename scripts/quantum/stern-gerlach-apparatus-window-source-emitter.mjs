@@ -140,7 +140,7 @@ Options:
   --pretty          Pretty-print JSON output.
   --help            Show this help.
 
-This emitter is fail-closed. It emits apparatus_response_windows only when the
+Verification is required for advancement. This emitter emits apparatus_response_windows only when the
 input supplies accepted-history provenance, local apparatus target metadata,
 an explicit response functional source, a complete local record gate, a
 record-cycle phase, and same-window record residuals. It does not infer signs

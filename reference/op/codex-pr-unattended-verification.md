@@ -23,7 +23,7 @@ Each handoff records:
 - `escalationInvocationCount`; and
 - `reusedApprovalCount`.
 
-`hostPermissionPromptCount: unknown` is fail-closed and does not qualify as
+`hostPermissionPromptCount: unknown` requires verification for advancement and does not qualify as
 zero. The count may come from host telemetry or an operator observation
 retained with the handoff receipt; do not ask for a separate third handoff only
 to collect it. A mandatory safety stop is excluded rather than passed. Any

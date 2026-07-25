@@ -5,7 +5,7 @@
 Display grade now warns at the entry dispatch and skips the finite-width
 regulator, event cells, state reconstruction, and exit adjudication. Seed 0
 crossed the encounter with a `5.19938 s` terminal encounter chunk, continued
-to $T=2.0$, and then failed closed when the next process request raised the
+to $T=2.0$, and then was not advanced when the next process request raised the
 retained-history boundary error `history evaluation lies outside segment`.
 It did not reach the requested $T=3$ boundary. Certified grade retained the
 existing route, and the pre-change and final certified fixture artifacts have

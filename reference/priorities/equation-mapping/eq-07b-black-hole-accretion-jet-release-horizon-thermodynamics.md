@@ -11,7 +11,7 @@
 - Source fixture: [eq07b-agn-accretion-release-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-source-attempt.v1.json)
 - Assigned ID: `EQ-07B`
 - Related corpus material: [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md), [Dark Energy](../../../content/markdown/aaa/cosmology/dark-energy.md), [Radiation](../../../content/markdown/aaa/reactions/radiation.md)
-- Claim level: observer-level accretion/release benchmark, native carrier dictionary, and fail-closed residual target
+- Claim level: observer-level accretion/release benchmark, native carrier dictionary, and residual required for advancement target
 - Promotion status: priority-only
 - Current score: unscored; not yet integrated into the main score table
 
@@ -172,7 +172,7 @@ The carrier-shell source-contract boundary is [eq07b-agn-accretion-release-carri
 node scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs --input scripts/equation-mapping/eq07b-agn-accretion-release-carrier-shell-source-contract-attempt.v1.json --summary --pretty
 ```
 
-This boundary marks only the parent `agn_accretion_release_carrier` accepted-looking against a source-contract file while every child row remains `attempt`. The hardened checker rejects the contract shell as non-evidence, so the expected result is `status: blocked_accepted_without_evidence_source`, `nextBlocker: accepted_without_evidence_source`, `sourceEvidenceAccepted: false`, `sourceEvidenceFailureCount: 1`, `scoreDecision: no_score_increase`, `residualArithmeticEvaluated: false`, and `4/4` negative controls passing. The same command with `--require-populated` must exit nonzero. This is a fail-closed boundary test, not accepted retained evidence.
+This boundary marks only the parent `agn_accretion_release_carrier` accepted-looking against a source-contract file while every child row remains `attempt`. The hardened checker rejects the contract shell as non-evidence, so the expected result is `status: blocked_accepted_without_evidence_source`, `nextBlocker: accepted_without_evidence_source`, `sourceEvidenceAccepted: false`, `sourceEvidenceFailureCount: 1`, `scoreDecision: no_score_increase`, `residualArithmeticEvaluated: false`, and `4/4` negative controls passing. The same command with `--require-populated` must exit nonzero. This is a boundary test required for advancement, not accepted retained evidence.
 
 The probe-source source-evidence guard is [eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json):
 
@@ -186,7 +186,7 @@ This control marks the carrier and required rows accepted-looking while pointing
 
 This layer is priority-only and score-neutral. It maps the observer-level black-hole accretion, release, jet, feedback, and horizon comparison terms to the $\mathbb{A}\mathbb{A}\mathbb{A}$ readouts that must remain bound to one `agn_accretion_release_carrier`.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Schwarzschild/Kerr exterior scales, ISCO, and launch-radius comparisons | Strong-field/effective-metric support, mass/spin readouts, and horizon-interface labels projected from one source support. | `strong_field_parent_support`, `mass_spin_readout_row`, and `horizon_interface_label_row`. | Same `thetaWId`, `carrierId`, `sourceWindowId`, `supportId`, and `eventLedgerId` as inflow, release, radiation, and feedback rows. | `agn.horizon_entropy_private_row`: horizon bookkeeping uses a private horizon-interface id and fails before residual scoring. | Source-backed accepted carrier with accepted strong-field support, mass/spin readout, and horizon-interface row when horizon claims are included. |
 | Bondi-like inflow, disk transport, and $\dot M_{\mathrm{in}}/\dot M_{\mathrm{acc}}$ rows | Source-history and disk-interface rate readouts for inflow, accretion, launch, and outflow. | `inflow_accretion_row` on `agn_accretion_release_carrier`. | Same `releaseWindowId`, `sourceWindowId`, `supportId`, and `eventLedgerId` as jet and radiation rows. | `agn.jet_power_only_fit`: jet power fits while inflow/accretion and release-selector identity split. | Accepted carrier with source-backed inflow/accretion row tied to the release window. |
@@ -218,7 +218,7 @@ $$
 
 This object can test whether launch speed, collimation, radiation, baryon loading, shock/hot-spot structure, and environmental feedback are all consequences of one source state. If that object fails, `EQ-07B` fails in a useful way before any horizon entropy or cosmological coupling claim is attempted.
 
-## Fail-Closed Negative Controls
+## Verification Required for Advancement Negative Controls
 
 | Negative control | Required failure |
 | --- | --- |
@@ -238,9 +238,9 @@ This object can test whether launch speed, collimation, radiation, baryon loadin
 - Existing scripts/fixtures/packets found: [eq07b-agn-accretion-release-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-source-attempt.v1.json) is the score-neutral identity shell, and [eq07b-agn-accretion-release-carrier-identity-check.mjs](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs) enforces AGN source/release identity before residual arithmetic; related consumers include effective-metric, pressure/effective-$\Lambda$, radiation source-ledger, and finite-window thermodynamic runners.
 - Direct Geometry Layer: present in this packet; it binds strong-field support, inflow/accretion, radiation, jet, wind/sheath, Noether sea loading, feedback, horizon interface, event ledger, provenance, and no-hidden-retune witness to one AGN source/release identity.
 - Candidate breakthrough angle: start with the existing AGN release-channel selector and force launch, collimation, radiation, and feedback onto one state before horizon thermodynamics.
-- Fail-closed negative control: jet/lobe/radiation fits that split inflow, Noether sea loading, angular-momentum drain, and feedback records; accepted-looking rows sourced only to a probe/source-evidence-probe file fail at `accepted_without_evidence_source`.
+- Negative control required for advancement: jet/lobe/radiation fits that split inflow, Noether sea loading, angular-momentum drain, and feedback records; accepted-looking rows sourced only to a probe/source-evidence-probe file fail at `accepted_without_evidence_source`.
 - Next action smaller than broad report: replace the carrier-shell source contract with a real source-backed parent carrier, then populate `strong_field_parent_support` on the same `carrierId`, `thetaWId`, `sourceWindowId`, `supportId`, and `eventLedgerId`.
-- Current implementation target: the identity shell, four fail-closed identity controls, probe-source guard, and carrier-shell source-contract guard now exist. The next smaller action is a retained `strong_field_parent_support` evidence object after a real parent-carrier source replaces the contract shell, not a broader horizon-thermodynamics or jet-power report.
+- Current implementation target: the identity shell, four identity controls required before advancement, probe-source guard, and carrier-shell source-contract guard now exist. The next smaller action is a retained `strong_field_parent_support` evidence object after a real parent-carrier source replaces the contract shell, not a broader horizon-thermodynamics or jet-power report.
 
 ## Promotion Classification
 

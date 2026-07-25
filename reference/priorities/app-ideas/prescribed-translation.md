@@ -302,7 +302,7 @@ The projection must:
 - carry only fields consumed by Borg;
 - exclude raw surface ledgers and unrelated campaign objects;
 - be deterministic and canonical-hashable; and
-- fail closed on unknown fields, duplicate identities, nonfinite values, broken
+- do not advance on unknown fields, duplicate identities, nonfinite values, broken
   hashes, and source/protocol mismatch.
 
 Use one provider interface in Borg. Static precomputed projections and a local
@@ -331,7 +331,7 @@ Family-B, and Family-C records whenever their source carriers satisfy the same
 contract.
 
 If a B-family record lacks a field required by the design, show the missing
-carrier and fail closed. Do not add per-candidate browser constants.
+carrier and remain not advanced. Do not add per-candidate browser constants.
 
 The current Borg catalog contains twenty-one sealed prescribed records:
 eleven Family-A members, four Family-B members, and six Family-C members.
@@ -555,7 +555,7 @@ full gate.
 2. Thin integration into the live Borg composition root.
 3. Fixed/co-translating and finite path-history-tube controls.
 4. Receiver/probe selection and synchronized root overlays.
-5. Compact diagnostics with full provenance and explicit fail-closed states.
+5. Compact diagnostics with full provenance and explicit Not advanced dispositions.
 6. Independent mathematical fixtures and Borg projection/rendering tests.
 7. Browser and performance measurements.
 8. A concise implementation report naming:
@@ -592,7 +592,7 @@ Lead with the user-visible outcome. Then report:
 3. analytical-provider and provenance behavior;
 4. independent verification;
 5. browser and performance results;
-6. fail-closed cases;
+6. cases with a Not advanced disposition;
 7. files changed;
 8. validation;
 9. generated drift; and

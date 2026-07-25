@@ -453,7 +453,7 @@ function renderFunnel(state) {
       "Drawn, not evaluated",
       funnel.drawnNotEvaluated,
       funnel.drawn,
-      "Fail-closed analytical early exits.",
+      "Analytical rows not advanced because verification ended early.",
       "is-failure",
     ),
     funnelStep(

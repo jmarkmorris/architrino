@@ -46,7 +46,7 @@ The first three physical calculations are the outward radial aggregate, the
 outward tangential aggregate, and their negative controls. Removing or changing
 $D_r$ may change playback but must not change the instantaneous acceleration at
 fixed causal geometry. Removing or changing $D_t$ must make the acceleration
-calculation fail closed.
+calculation is not advanced.
 
 ## Promotion boundary
 

@@ -61,7 +61,7 @@ const CHECKS = [
     args: ["scripts/smoke-option3.mjs"],
   },
   {
-    name: "Test fail-closed pre-push gate policy",
+    name: "Test pre-push policy requiring verification for advancement",
     args: ["--test", "tests/pre-push-gate-policy.test.js"],
   },
   {

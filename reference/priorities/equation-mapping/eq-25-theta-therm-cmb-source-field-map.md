@@ -31,7 +31,7 @@ No score changes.
 | Exact first blocker | `missing_accepted_theta_therm`. |
 | Existing scripts, fixtures, and packets found | The `EQ-25` thermodynamic record runner and fixture listed above, the continuum-medium packet, the shared-observation packet, and the recombination/acoustic suffix packet as an adjacent thermal/provenance consumer. |
 | Candidate breakthrough angle | Use CMB, BBN, recombination, and local-radiation thermal/provenance records as inverse clues for `theta_therm` row fields, especially event ledger, channel-decomposed thermalization depth, zero effective photon chemical potential, and shared Noether sea keys. |
-| Fail-closed negative control | `boltzmann_postulate_import`: a collision operator imported as a postulate must fail even when arithmetic residuals look clean. |
+| Negative control required for advancement | `boltzmann_postulate_import`: a collision operator imported as a postulate must fail even when arithmetic residuals look clean. |
 | Smaller-than-report next action | Bind `theta_therm_CMB_attempt_0001` to one source-to-decoupling event-chain skeleton and list the required CMB source fields without changing row statuses. |
 
 ## Current Fixture Inventory
@@ -92,7 +92,7 @@ The first source-backed CMB thermalization object should list, without fitting n
 
 ## Direct Geometry Layer
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | CMB thermal carrier identity | Accepted `theta_therm` finite-window record on `theta_therm_CMB_attempt_0001`, not a generic entropy or Boltzmann postulate | `theta_therm` | Same `commonCarrierId`, `thetaThermId`, `sourceWindowId`, `thermalProvenanceId`, and event ledger across every row | `theta_therm_CMB_coordination_source`; `theta_therm_CMB_source_window_split`; `theta_therm_private_W` | Durable source-backed `theta_therm` CMB carrier row with explicit `EQ-25` support and source-to-decoupling identity fields. |
 | State space, coarse-graining, and measure terms | Finite-window state-space readout over one `W_CMB`, one `Q_CMB`, and one retained measure row | `state_space_row`, `coarse_graining_row`, `measure_row` | Same source window, coarse-graining id, carrier id, shared Noether sea row, and source provenance as the thermal carrier | `theta_therm_private_W`; source-window split checks | Accepted state-space/coarse-graining/measure rows for the same CMB source-to-decoupling window. |
@@ -102,7 +102,7 @@ The first source-backed CMB thermalization object should list, without fitting n
 | Thermalization depth and zero photon chemical potential | Channel-decomposed thermalization-depth readout with zero effective photon-number conserved current | `thermalization_depth_row`, `collision_operator_row`, `shared_noether_sea_row` | Same transport path, channel ledger, Noether sea keys, photon loading, and thermal provenance as BBN/recombination consumers | `insufficient_thermalization_depth`; `hidden_thermo_retune` | Accepted thermalization-depth row with source-backed channel decomposition and same shared keys consumed by CMB, BBN, recombination, and local-radiation rows. |
 | Cross-consumer provenance and no-hidden-retune witness | Source-provenance and retune residual proving CMB, BBN, recombination, and local-radiation consumers read the same thermal record | `source_provenance`, `no_hidden_retune_witness`, shared-key rows | Same `thetaSrcId`, `sourceFamilyId`, `sourceWindowId`, `thermalProvenanceId`, `eventLedgerId`, and `transportPathId` across all accepted rows | `theta_therm_CMB_source_window_split`; `theta_therm_CMB_coordination_source`; `hidden_thermo_retune` | Populated same-carrier source-to-decoupling packet with all required rows accepted from durable retained evidence. |
 
-## Fail-Closed Controls
+## Verification Required for Advancement Controls
 
 - `boltzmann_postulate_import`: a collision operator imported as a postulate fails even if residual arithmetic passes.
 - `insufficient_thermalization_depth`: $\mathcal D_{\mathrm{th}}$ below the declared minimum fails the CMB thermalization claim.

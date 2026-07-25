@@ -20,7 +20,7 @@ The plain-language rule is: the local four-tool query engine may be wrapped in a
 | Artifact | Responsibility |
 | --- | --- |
 | [Positive contract fixture](../../../tests/archie-service/fixtures/mcp/mcp-remote-deployment-contract.v1.json) | Records the complete target boundary and the deliberately blocked current deployment state. |
-| [Negative suite](../../../tests/archie-service/fixtures/mcp/mcp-remote-deployment-negative-suite.v1.json) | Mutates one boundary at a time and names the fail-closed error that must result. |
+| [Negative suite](../../../tests/archie-service/fixtures/mcp/mcp-remote-deployment-negative-suite.v1.json) | Mutates one boundary at a time and names the verification failed error that must result. |
 | [Contract validator](../../../src/archie-service/mcp/remote-deployment-contract-v1.mjs) | Applies cross-field transport, security, limit, snapshot, rollback, and capability invariants. |
 | [Executable checker](../../../scripts/archie-service/validate-mcp-remote-deployment-contract.mjs) | Loads the fixtures and current full-corpus candidate, then exercises every positive and negative case without network or writes. |
 | [Focused tests](../../../tests/archie-service-mcp-remote-deployment-contract.test.js) | Check fixture-only state, all negative cases, and candidate snapshot identity enforcement. |
@@ -146,7 +146,7 @@ Remote V1 exposes exactly:
 
 It exposes no resources or prompts and permits no model call, repository write, external action, or durable user state. A host adapter may reject, meter, authenticate, and route these calls; it may not enlarge the tool semantics or source authority defined by the existing snapshot and tool contracts.
 
-## Fail-Closed Fixtures
+## Verification Fixtures Required for Advancement
 
 The negative suite currently covers 19 unsafe mutations:
 
@@ -180,7 +180,7 @@ node --test tests/archie-service-mcp-remote-deployment-contract.test.js
 node scripts/archie-service/validate-contracts.mjs
 ```
 
-Measured on 2026-07-21, the owned checker accepted the fixture-only contract and all 19 fail-closed cases. The combined MCP/source-index regression passed all 20 tests, the broader Archie service contract suite passed all 16 tests, the shared schema validator accepted 37 fixtures with zero errors, strict content validation reported zero errors and warnings, and priority ranking kept all 37 rows aligned.
+Measured on 2026-07-21, the owned checker accepted the fixture-only contract and all 19 cases with a Not advanced disposition. The combined MCP/source-index regression passed all 20 tests, the broader Archie service contract suite passed all 16 tests, the shared schema validator accepted 37 fixtures with zero errors, strict content validation reported zero errors and warnings, and priority ranking kept all 37 rows aligned.
 
 This is implementation evidence for the contract and validator. The separate local HTTP adapter and official SDK conformance now exist; this evidence still does not establish OAuth, Codex-over-HTTP or ChatGPT-over-HTTP, host load, staging rollback, or public-deployment authorization.
 

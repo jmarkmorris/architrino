@@ -104,7 +104,7 @@ This completion does not certify a branch or terminal label. Downstream consumer
 turn-center context. The A1 acceleration-weight intervals and turn-center point
 diagnostic have now been rebuilt with $W^{\mathrm{acc}}=c_f/|D_t|$ and separate
 $D_r/D_t$ playback. Outward radial and tangential aggregates, action, and all
-three conserved accounts remain fail closed. VP-1 remains a transmitter-side
+three conserved accounts remain not advanced. VP-1 remains a transmitter-side
 rebuild target.
 
 The A1 finite-collar continuation now starts from the derived acceleration-weight

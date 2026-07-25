@@ -46,7 +46,7 @@ strictly positive at `[1.042337015820023, 1.050763472135781]`.
 
 The lower-side uncertainty falls by about `93%`, but the monotone root image is
 still about `1%` wider than the fixed `1e-3` root-time ceiling. MPFR again
-exhausts 512 bits and fails closed with `interior_root_not_surrounded`.
+exhausts 512 bits and does not advance with `interior_root_not_surrounded`.
 Interactive seed 0 reaches the identical accepted solver time and terminal
 row under allocation hash
 `11f005592d4636dec0cec8a062ce95ac7ab84bf51da36961fefcffa74705d33f`.

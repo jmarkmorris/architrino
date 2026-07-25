@@ -327,7 +327,7 @@ Options:
   --require-accepted    Exit nonzero unless all branch-interface rows are accepted.
   --help                Show this help.
 
-This checker keeps the Fe/Ni toy branch-interface source target fail-closed:
+This checker requires verification for advancement of the Fe/Ni toy branch-interface source target:
 it can verify the p+n/p+p orientation extraction algebra and the accepted
 proton/neutron source-acquisition rows without treating top-level target-only rows as
 accepted source evidence.`);

@@ -97,7 +97,7 @@ test("generator retains all records while the active target registry excludes th
   assert.equal(new Set(PRESCRIBED_BRAID_TARGETS.map((row) => row.outPath)).size, 21);
 });
 
-test("spec validation fails closed on nonfinite coordinates, broken radii, and incomplete return cycles", () => {
+test("spec validation does not advance on nonfinite coordinates, broken radii, and incomplete return cycles", () => {
   const valid = structuredClone(fixtures[0].spec);
   assert.equal(validatePrescribedBraidSpec(valid), valid);
   const nonfinite = structuredClone(valid);

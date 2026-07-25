@@ -137,7 +137,7 @@ test("shared adapter ingests assembly-view-record.v0 with full provenance", () =
   assert.ok(Math.abs(state.position.z - 2.5) < 1e-12);
 });
 
-test("assembly-view-record claim grades are the declared enum, fail-closed", () => {
+test("assembly-view-record claim grades preserve the declared compatibility enum", () => {
   assert.throws(
     () => createEomHistoryDataset(createAssemblyViewRecordFixture({
       provenance: {
@@ -150,7 +150,7 @@ test("assembly-view-record claim grades are the declared enum, fail-closed", () 
   );
 });
 
-test("assembly-view-record worldlines without segments fail closed", () => {
+test("assembly-view-record worldlines without segments do not advance", () => {
   const record = createAssemblyViewRecordFixture();
   record.worldlines[0] = {
     ...record.worldlines[0],
@@ -163,7 +163,7 @@ test("assembly-view-record worldlines without segments fail closed", () => {
   );
 });
 
-test("assembly-view-record required provenance and finite values fail closed with the field", () => {
+test("assembly-view-record required provenance and finite values do not advance with the field", () => {
   const missingVersion = createAssemblyViewRecordFixture();
   delete missingVersion.provenance.engineVersion;
   assert.throws(
@@ -237,7 +237,7 @@ test("converter bars sampled replay reconstruction from evolved-record evidence"
   assert.ok(Math.abs(state.velocity.x - 0.5) < 1e-12);
 });
 
-test("converter fails closed on foreign schemas and undeclared polarity", () => {
+test("converter does not advance on foreign schemas and undeclared polarity", () => {
   assert.throws(
     () => convertBorgTrajectoryToAssemblyViewRecord({ schema: "other.v1" }),
     /requires a borg-fixture-trajectory\.v1 replay/,

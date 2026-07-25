@@ -201,7 +201,7 @@ $$
 (\mathcal L_{\mathrm{weak}}^\mu,\Pi_{\mathrm{weak}}^\mu,Q_{\mathrm{weak}},E_{\mathrm{weak}},\mathcal L_{E\mathbf p\mathbf J}^{\mathrm{weak}},\mathcal R_{\mathrm{NS}}^{\mathrm{weak}}).
 $$
 
-The first four entries are accepted source targets. The next missing accepted row is `va_chirality_gate` bound to the same $E_{\mathrm{weak}}$ and retained domain. The fail-closed blocker packet [va-chirality-gate-source-acquisition-blocker.v1.json](../../../scripts/equation-mapping/va-chirality-gate-source-acquisition-blocker.v1.json) keeps the retained weak quotient, weak exposure row, and priority-only `V-A` benchmark table from being mistaken for accepted chirality evidence. The remaining entries should not be treated as accepted weak-channel evidence until `V-A`, overlap, reaction-event, and Noether sea update rows are all populated by durable non-fixture source evidence.
+The first four entries are accepted source targets. The next missing accepted row is `va_chirality_gate` bound to the same $E_{\mathrm{weak}}$ and retained domain. The blocker packet recording a Verification incomplete outcome [va-chirality-gate-source-acquisition-blocker.v1.json](../../../scripts/equation-mapping/va-chirality-gate-source-acquisition-blocker.v1.json) keeps the retained weak quotient, weak exposure row, and priority-only `V-A` benchmark table from being mistaken for accepted chirality evidence. The remaining entries should not be treated as accepted weak-channel evidence until `V-A`, overlap, reaction-event, and Noether sea update rows are all populated by durable non-fixture source evidence.
 
 The next promotion pass can safely edit reader-facing files only after it has one of the following artifacts:
 

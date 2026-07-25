@@ -49,7 +49,7 @@ This file holds dated decisions, implementation status, validation results, fail
 ## 2026-07-13 — Precision And Language Elevated To Architecture Gates
 
 - Recorded that EOM precision may need to exceed the floating-point formats implemented directly by CPU and GPU hardware, particularly when absolute epochs, local timesteps, path scales, residuals, and interaction sums span many orders of magnitude.
-- Added a precision architecture covering stable scaling, local space/time origins, error-controlled reductions, per-row adaptive escalation, software extended and arbitrary precision, interval or ball enclosures, certified discrete decisions, and fail-closed behavior at the configured precision ceiling.
+- Added a precision architecture covering stable scaling, local space/time origins, error-controlled reductions, per-row adaptive escalation, software extended and arbitrary precision, interval or ball enclosures, certified discrete decisions, and behavior for a Not advanced disposition at the configured precision ceiling.
 - Added a focused pre-implementation decision packet for the production language, runtime, accelerator stack, and precision libraries.
 - Required language selection to use representative EOM kernels and end-to-end accepted-history benchmarks across CPU threads, SIMD, GPU, irregular events, multiprecision escalation, storage, and restart behavior.
 - Preserved the headless native compute boundary while allowing a thin application shell in another language. The shell may configure and inspect runs but may not reimplement EOM physics or numerical acceptance.
@@ -68,7 +68,7 @@ This file holds dated decisions, implementation status, validation results, fail
 
 - Promoted the supplied solver requirements into `eom_evolution_contract/v0`, a focused normative draft rather than leaving them only in an attachment or chat record.
 - Defined the invariant that every accepted trajectory segment comes from causal roots of the same run's accepted retained history.
-- Required continuous evaluable initial histories, root continuation through $dS/dT=D_T/D_s$, independent recovery scans, root-completeness certification, coupled immutable-state advancement, operational tolerance control, and fail-closed history boundaries.
+- Required continuous evaluable initial histories, root continuation through $dS/dT=D_T/D_s$, independent recovery scans, root-completeness certification, coupled immutable-state advancement, operational tolerance control, and history boundaries requiring verification before advancement.
 - Required canonical $D_s$, $D_T$, signed branch orientation, unsigned receiver-side-factor weight, polarity, charge product, inverse-square direction, $\eta$, and $\epsilon_c$ on the force rows actually consumed by integration.
 - Defined capability-derived `canonical`, `conditional`, `reference`, `display-only`, and `failed` evidence levels; successful execution cannot self-assign authority.
 - Added reconstructible per-root and per-step evidence schemas, explicit failure codes, sixteen validation gates, and a binary-outcome boundary requiring complete histories and stable full-history return for recurrence claims.
@@ -112,7 +112,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Required scale maps, local pair frames, epoch-plus-offset absolute time, certified time ordering, and rejection of steps that do not advance in their own time representation.
 - Separated exact or enclosed discrete decisions from continuous error enclosures and defined a propagated per-stage budget across history, interpolation, roots, geometry, $D_s$, $D_T$, kernel evaluation, accumulation, integration, and output.
 - Defined the precision ladder from hardware binary64 through verified extended formats, expansions or binary128-class arithmetic, arbitrary precision, interval or ball arithmetic, and exact or adaptive predicates.
-- Required smallest-unit precision escalation, certified root-complement exclusion, deterministic or enclosed parallel reductions, GPU difficult-row return, multirate history synchronization, explicit resource ceilings, and fail-closed numeric failure codes.
+- Required smallest-unit precision escalation, certified root-complement exclusion, deterministic or enclosed parallel reductions, GPU difficult-row return, multirate history synchronization, explicit resource ceilings, and numeric failure codes required before advancement.
 - Removed the completed precision-contract item from the live queue and advanced the independent dynamical acceptance oracle.
 
 ## 2026-07-13 — Independent Oracle Reference Kernel Started
@@ -130,7 +130,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Implemented exhaustive classification of every cell in the declared retained search interval as root free, a unique simple-root bracket, an excluded coincident endpoint, or unresolved. A root-free-complement claim is emitted only when no unresolved cells remain.
 - Preserved multiple roots, close roots, exact roots, and segment-boundary roots; recorded memory-boundary contact separately so a truncated history cannot claim complete causal coverage.
 - Added rigorous open-cell exclusions for an $H(0)$ coincident endpoint under a uniform sub-$c_f$ speed bound or a uniform super-$c_f$ velocity-component bound. Exactly-on-the-rail motion remains unresolved rather than being forced into a simple-root result.
-- Made tangencies, folds, reconstruction uncertainty, root-search depth exhaustion, and root-search cell exhaustion fail closed with explicit unresolved reasons.
+- Left tangencies, folds, reconstruction uncertainty, root-search depth exhaustion, and root-search cell exhaustion not advanced, with explicit unresolved reasons.
 - Added `eom_root_completeness_certificate/v0` records containing exact decimal tokens, search policy and resource use, root and cell ledgers, history identities and digests, and an input-sensitive certificate digest.
 - Added nineteen certified-history and interval controls alongside the six independent equation-reference controls. The full 25-test oracle suite passes.
 - Advanced the active oracle work from the reference kernel and root layer to certified acceleration enclosure. Coupled retained-history evolution and production authority remain incomplete.
@@ -144,7 +144,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Bound the first production implementation to exact evaluation of every surviving active candidate. Later active aggregation requires certified root topology, reconstructible membership, and an acceleration remainder inside the accepted-state error budget.
 - Designed deterministic receiver ownership, immutable content-addressed history chunks, causal residency and prefetch, heterogeneous regular and difficult queues, fixed reduction identities, atomic accepted-window publication, streamed output manifests, and reproducible distributed restart.
 - Added an honest dense-workload boundary: if certified exclusion and controlled aggregation cannot reduce a noncompressible workload inside the declared hardware envelope, preflight returns `resource_envelope_exceeded` before publishing candidate evolution.
-- Added the $N=10^4$, $10^5$, and $10^6$ benchmark ladder, million-path certified sparse evolution, exhaustive nested parity controls, heterogeneous parity, restart/output reconstruction, and dense fail-closed validation.
+- Added the $N=10^4$, $10^5$, and $10^6$ benchmark ladder, million-path certified sparse evolution, exhaustive nested parity controls, heterogeneous parity, restart/output reconstruction, and dense validation required for advancement.
 - Preserved the independent oracle, Master Equation binding, and numeric certification contract unchanged.
 
 ## 2026-07-13 — Certified Acceleration Reconstruction Layer Completed
@@ -231,7 +231,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Added joint reception/emission interval quadrature for finite-width
   fold/caustic impulse. It integrates the complete triangular causal domain,
   avoids division by $D_s$, checks retained-history boundary clearance, and
-  fails closed on depth, cell, or final-width exhaustion.
+  does not advance on depth, cell, or final-width exhaustion.
 - Added exact-decimal content-hashed checkpoints containing the retained
   histories, reconstruction errors, charges, controller step, numeric policy,
   resource policy, accepted/rejected counts, and prefix provenance. Restore
@@ -331,7 +331,7 @@ This file holds dated decisions, implementation status, validation results, fail
   is otherwise complete.
 - Added six independent Python controls covering decimal-interval moving-block
   parity, regular and difficult root count/bracket/orientation parity,
-  fail-closed event routes, self-endpoint behavior, memory and piecewise
+  event routes requiring verification before advancement, self-endpoint behavior, memory and piecewise
   boundaries, and deterministic multithreaded replay.
 - Recorded the Apple M3 packet in
   `evidence/eom-native-history-layer-apple-m3-2026-07-13.json`. Remaining work
@@ -359,7 +359,7 @@ This file holds dated decisions, implementation status, validation results, fail
   ordered pairs and yields byte-identical one-thread and four-thread totals.
   Coincident static self-pairs remain present as certified inactive zero
   contributions.
-- Added fail-closed controls for tangent roots, retained-memory contact,
+- Added controls required for advancement for tangent roots, retained-memory contact,
   tampered transmitter-side-factor evidence, retained-history provenance mismatch, and an
   acceleration enclosure wider than the declared tolerance. None publishes an
   acceleration total.
@@ -422,7 +422,7 @@ This file holds dated decisions, implementation status, validation results, fail
   the achieved bits independently from the root solver's precision route.
 - Added `eom_native_fold_caustic_impulse_certificate/v0`. It integrates the
   regulated equation jointly over reception and emission on the complete
-  causal triangular domain and fails closed on retained-memory contact,
+  causal triangular domain and does not advance on retained-memory contact,
   quadrature depth, cell, time-resolution, or enclosure-budget exhaustion.
 - Integrated fold acceptance into corrected coupled substeps. A changed root
   topology remains rejected under the sharp policy; under a finite-width
@@ -432,7 +432,7 @@ This file holds dated decisions, implementation status, validation results, fail
   coupled trial step is accepted atomically with two event-impulse records
   under finite-width routing. One-thread and four-thread accepted-event output
   is byte-identical.
-- Added fail-closed controls for finite-width acceleration cell exhaustion,
+- Added controls required for advancement for finite-width acceleration cell exhaustion,
   event-impulse cell exhaustion, and atomic event-resource rejection with
   unchanged published-history fingerprints.
 - Added independent decimal-interval oracle overlap for stationary
@@ -491,7 +491,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - Added a deterministic hierarchical traversal over general moving retained
   histories. Every terminal node is either a certified exclusion or a compact
   exact tile; disjoint excluded plus exact coverage must equal the complete
-  ordered-pair domain. Node and exact-pair limits fail closed before exact work
+  ordered-pair domain. Node and exact-pair limits do not advance before exact work
   exceeds the declared envelope.
 - Added bounded multithreaded exact fallback for the surviving tiles and
   controls for traversal-node and exact-pair resource exhaustion. The first
@@ -515,7 +515,7 @@ This file holds dated decisions, implementation status, validation results, fail
   `EOM_BORG_SHADOW=1` and requests shadow mode.
 - The first full-history 16-path attempt timed out at 180 seconds. A
   geometry-derived causal-memory cut reduced the retained window from 300 to
-  about 60.62 time units. Tight root tolerances then failed closed because the
+  about 60.62 time units. The tighter-root-tolerance attempt was not advanced because the
   imported frames carry up to `1.5e-8` source uncertainty and one difficult
   ordered pair, `1015<-1010`, remained unresolved through `1e-4`.
 - A 16-path interval `[300,300.01]` completed one accepted atomic step with
@@ -565,7 +565,7 @@ This file holds dated decisions, implementation status, validation results, fail
   also terminate their runner instead of retrying indefinitely, and expose the
   native failure message in the progress row.
 - Ran the same strict ladder against all 16 Borg histories. Every timestep row
-  failed closed before publication with `minimum_step_exhausted` because all
+  was not advanced before publication with `minimum_step_exhausted` because all
   240 off-diagonal ordered pairs reported
   `numeric_precision_limit_exhausted`; the 16 self-pairs were not root
   failures. Four threads reduced the `0.0025` attempt from about `54.0`
@@ -586,7 +586,7 @@ This file holds dated decisions, implementation status, validation results, fail
   retained-history provenance. At its certified reception endpoint, the
   strict chord inequality excludes every noncoincident self-root for
   $0<v\le c_f$ over the whole circular prehistory.
-- Preserved the fail-closed negative control: an arbitrary straight $v=c_f$
+- Preserved the negative control required for advancement: an arbitrary straight $v=c_f$
   rail remains `caustic_route_required`. A factory-produced curved $v=c_f$
   rail certifies zero roots under forced MPFR escalation, and inconsistent
   circle speed/radius/frequency input is rejected.
@@ -603,7 +603,7 @@ This file holds dated decisions, implementation status, validation results, fail
   This removes the quadratic repeated-summation cost without changing any
   enclosure, resource cap, or stopping condition. A 1,500-cell regression
   fixture now certifies the localized stationary finite-width row, while the
-  deliberately one-cell fixture still fails closed.
+  deliberately one-cell fixture still does not advance.
 - Corrected final atomic recertification to measure the gap between the
   corrected endpoint acceleration midpoint and its recertified
   inflated-history interval. The previous midpoint-to-midpoint comparison
@@ -699,7 +699,7 @@ This file holds dated decisions, implementation status, validation results, fail
   escalation. Token-dominated simple roots now use the tolerance-scale
   strict-sign IVT bracket at binary64, including continuous segment joins.
 - Preserved the unchanged `1e-5` root tolerance, `1e-24` transmitter-side-factor floor,
-  and fail-closed policy. Root uniqueness still requires a sign-definite
+  and policy requiring verification for advancement. Root uniqueness still requires a sign-definite
   transmitter-side-factor hull across the accepted bracket.
 
 ## 2026-07-14 — Warm-complement carry and certified delay window
@@ -712,7 +712,7 @@ This file holds dated decisions, implementation status, validation results, fail
   root-free residual cells, not root brackets. Reuse requires exact source
   segment token identity and a strict residual sign after widening by the
   receiver-side-factor time bound plus certified candidate correction. Marginal
-  cells return to the unchanged fail-closed classifier.
+  cells return to the unchanged classifier requiring verification before advancement.
 - Tightened the certified history window from a global position box to the
   per-history-segment radial triangle bound.
 - Added an unforced arithmetic-limited MPFR fixture. It certifies two roots
@@ -793,8 +793,8 @@ This file holds dated decisions, implementation status, validation results, fail
 ## 2026-07-15 — Borg defaults to the EOM runner
 
 - The operator directed Borg to use EOM by default. Ordinary `/borg.html`
-  now loads the retained-history asset and mounts the fail-closed EOM shadow
-  runner; the superseded path was reachable only through
+  now loads the retained-history asset and mounts the EOM shadow runner, with
+  verification required for advancement; the superseded path was reachable only through
   `?eom=compatibility` for diagnostics.
 - The local development server enables the same-origin EOM solver endpoint by
   default and constructs its process client lazily on the first request. An
@@ -846,14 +846,14 @@ This file holds dated decisions, implementation status, validation results, fail
   to 423 bytes and the native process completed its first step with no rejected
   steps. This is measured transport and execution evidence, not canonical EOM
   evidence.
-- Added fail-closed exact-boundary trimming. A requested retained-window cut
+- Added exact-boundary trimming requiring verification before advancement. A requested retained-window cut
   that does not coincide with a published segment boundary is rejected instead
   of reconstructing polynomial coefficients.
 - The complete Borg JavaScript suite passed 62/62 tests, the native Borg
   process suite passed 4/4 tests, the fixture writer passed `--check`, and the
   independent oracle reference-kernel and certified-evolution suites passed
   6/6 and 10/10 tests. Those tests established exact seed representation and
-  fail-closed retained-history transport; they do not require delayed viewport
+  retained-history transport requiring verification before advancement; they do not require delayed viewport
   publication under the current contract.
 
 ## 2026-07-15 — Borg 16-path retained-history refinement diagnostic
@@ -904,7 +904,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - A rebuilt EOM solver then ran a long continuation diagnostic with root, acceleration,
   position, velocity, and correction tolerances all set to `1e-8`. It accepted
   3,241 fixed `0.01` steps through $T=32.41$ in about 4,037 seconds. The next
-  step failed closed only for ordered pair `1003<-1004`: 5,134 of 5,135 root
+  step was not advanced only for ordered pair `1003<-1004`: 5,134 of 5,135 root
   cells were excluded, one interior cell was not surrounded, and MPFR
   escalation exhausted at 512 bits.
 - The checkpoint/resume boundary exposed and fixed a decimal-time transport
@@ -1113,7 +1113,7 @@ This file holds dated decisions, implementation status, validation results, fail
   accepted initial history, and the corresponding 4+4 polarity counts.
   The Simulation Envelope panel now reports the active EOM history depth and
   wake horizon rather than the compatibility fixture values. No EOM equation,
-  tolerance, certificate, or fail-closed rule changed.
+  tolerance, certificate, or rule requiring verification for advancement changed.
 - **Measured:** after the native rebuild check, the former failing interval and
   the next five chunks completed directly through `T=0.12`. In the in-app
   browser the corrected run reached 213 accepted continuation chunks before an
@@ -1199,7 +1199,7 @@ This file holds dated decisions, implementation status, validation results, fail
   existing exact route.
 - Bumped the Borg process contract forward to V2 with exactly 18 fields and an
   explicit enclosure fraction. Borg declares `0.25`; missing or under-length
-  controls fail closed.
+  controls do not advance.
 - **Measured:** the independent static-pair closed form is contained by the
   native interval. A 3:3 memory-boundary control rejects as
   `insufficient_history_depth` when disabled and completes through $T=3$ when
@@ -1271,7 +1271,7 @@ This file holds dated decisions, implementation status, validation results, fail
 
 - **Operator decision:** Borg defaults to display grade. FWC entry, regulator,
   state, and exit rows may become pair-scoped warnings; every other rejection
-  remains fail-closed. Certified grade retains the existing publication gate.
+  remains not advanced. Certified grade retains the existing publication gate.
 - **Measured:** the final certified fixture artifact is byte-identical to the
   frozen pre-change artifact. Seed-0 display grade crossed the first regulator
   halt, carried both ordered directions of the warned encounter through the
@@ -1384,7 +1384,7 @@ This file holds dated decisions, implementation status, validation results, fail
 - **Unchanged authority:** the two boxed acceleration laws, regulator values,
   event budgets, and prohibition on using the sharp quotient when its source-
   normal floor fails are unchanged.
-- **Fail-closed implementation boundary:** the current EOM solver does not yet
+- **Verification required for advancement implementation boundary:** the current EOM solver does not yet
   emit $R^{\mathrm{reg}}$. Its existing `FWC-STATE-01` halt remains
   adjudicated until an independent implementation contains the actual chart
   difference and keeps the complete remainder inside the unchanged budget.
@@ -1740,7 +1740,7 @@ This file holds dated decisions, implementation status, validation results, fail
   Python and unchanged-oracle `150/150`, V7 protocol `12/12`, and native coupled
   evolution `24/24` pass. The evidence record contains the exact commands and
   phase shares.
-- **Fail-closed default disposition:** Research remains the Borg default because
+- **Not advanced default disposition:** Research remains the Borg default because
   the explicit acceptance rule forbids Interactive default authority before
   Research parity passes. Both ratified records remain selectable for controlled
   validation.
@@ -1763,7 +1763,7 @@ This file holds dated decisions, implementation status, validation results, fail
   interior-root blocker is therefore scalar isotropic width; the first
   join-root blocker is missing cross-segment endpoint correlation.
 - **Adjudication:** representation improvement comes before budget change.
-  Retain corrected widths and every fail-closed row, implement a componentwise
+  Retain corrected widths and every not advanced row, implement a componentwise
   and join-correlated diagnostic, then rerun the unchanged Research gate. A
   new root allocation becomes eligible for derivation only if that ablation
   leaves an irreducible width above `1e-3` and the induced acceleration still
@@ -1785,12 +1785,12 @@ This file holds dated decisions, implementation status, validation results, fail
   `1.0005637e-3`, just above the unchanged `1e-3` root row. This fires the
   packet's representation-ablation falsifier and makes a new root-time budget
   derivation eligible; no budget has been changed or ratified.
-- **Derived fail-closed UI behavior:** a halted native response is displayable
+- **Derived not advanced UI behavior:** a halted native response is displayable
   only when it declares atomic steps, contains a nonempty accepted prefix, and
   supplies complete histories ending exactly at `acceptedEndTime`. Borg then
   displays that prefix, marks the failed candidate rejected, disables further
   continuation, and remains promotion-ineligible. A zero-length prefix still
-  throws the fail-closed error.
+  throws the retained hash-bound `fail-closed` compatibility error.
 - **Measured browser QA:** after refreshing the shared `5173` server onto the
   final rebuilt V8 binary, Research displayed two forward chunks through
   `T=0.38910468749999993`; Interactive displayed one through
@@ -1932,7 +1932,7 @@ This file holds dated decisions, implementation status, validation results, fail
   conservation remain global Master Equation debts, but they do not justify
   retaining the receiver multiplier. The factor correction is ready for a
   separately authorized scoped migration that preserves root transport and
-  fail-closed singular-event handling.
+  singular-event handling for a Verification incomplete outcome.
 - **Unchanged authority boundary:** no canonical equation, EOM solver
   semantics, frozen evidence, or generated artifact was changed.
 - **Artifacts:**
@@ -2005,7 +2005,7 @@ This file holds dated decisions, implementation status, validation results, fail
   $\mathbf d_0+\sum_j\mathbf a_j\epsilon_j+\mathbf r$, the projected affine
   radius plus the Euclidean-norm Taylor remainder maps to the root-time budget
   through the one-sign transmitter-side-factor floor. The implementation uses
-  outward-rounded binary64 intervals and fails closed if the displacement ball
+  outward-rounded binary64 intervals and does not advance if the displacement ball
   reaches zero separation or the transmitter-side factor contains zero.
 - **Inferred current fit:** the non-authoritative shared-state replay has
   displacement radius `1.7583103065752816e-4`, theorem residual width
@@ -2022,7 +2022,7 @@ This file holds dated decisions, implementation status, validation results, fail
   inclusion with an internally certified interval determinant. The analytic
   correlated control makes the ordinary box fail while the joint row passes;
   nonlinear scalar and dense linear Krawczyk controls pass, and negative
-  fallback and wrong-preconditioner controls fail closed.
+  fallback and wrong-preconditioner controls do not advance.
 - **Derived delayed-row and representation components:** added the certified
   implicit delayed-root derivative, the current sharp-root acceleration
   Jacobian including transmitter motion and acceleration-weight response, and
@@ -2094,7 +2094,7 @@ This file holds dated decisions, implementation status, validation results, fail
   binary was rebuilt. The process client now records the executable device,
   inode, size, and modification time and replaces the persistent worker before
   the next request whenever that signature changes. The response validator
-  remains fail closed and now names each mismatched provenance field.
+  remains not advanced and now names each mismatched provenance field.
 - **Measured UI result:** the authority panel renders the boundary with one
   decimal digit and grammatical projection count. The timeline now reads
   `T n.m | rate | lead`; it no longer displays `solver` or the keyframe number.

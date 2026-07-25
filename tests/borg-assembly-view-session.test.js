@@ -102,7 +102,7 @@ test("collection filters consume only source-carried values and preserve source 
   assert.throws(() => session.setFilters({ computedResidual: "small" }), /not source-carried/);
 });
 
-test("comparison fails closed because v0 has no ratified time and unit transforms", () => {
+test("comparison does not advance because v0 has no ratified time and unit transforms", () => {
   const session = createBorgAssemblyViewSession([record("left"), record("right")]);
   const result = session.assessComparison("right");
   assert.equal(result.compatible, false);
@@ -175,7 +175,7 @@ test("record trails stay positive when a valid record declares zero delay horizo
   });
 });
 
-test("play and scrub attempts outside recorded coverage fail closed", () => {
+test("play and scrub attempts outside recorded coverage do not advance", () => {
   const session = createBorgAssemblyViewSession([record("coverage")]);
   assert.equal(session.requireTimeInCoverage(2), 2);
   assert.throws(() => session.requireTimeInCoverage(2.0001), /does not cover display time/);

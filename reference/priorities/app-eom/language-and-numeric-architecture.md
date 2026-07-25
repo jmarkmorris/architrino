@@ -39,7 +39,7 @@ The implementation must expose one numeric policy across every backend:
 | Million-path causal exclusion | Blockwise outward enclosures, deterministic membership records, exact surviving-pair fallback, and no cutoff or sampled-inactivity shortcut. |
 | Distributed retained histories | Immutable content-addressed chunks, stable serialization across precision levels, receiver ownership, causal prefetch, and atomic accepted-window publication. |
 | CPU/GPU agreement | Equality of certified discrete outcomes and convergence of continuous outputs under a shared model and precision policy. |
-| Bounded execution | Caller-declared maximum precision, escalation count, memory, and wall/resource posture; fail closed when certification remains impossible. |
+| Bounded execution | Caller-declared maximum precision, escalation count, memory, and wall/resource posture; do not advance when certification remains impossible. |
 | Restart | Checkpoints preserve numeric representation, rounding policy, scale map, pending escalations, controller state, and all continuation-critical data. |
 
 The initial precision ladder to prototype is:
@@ -95,7 +95,7 @@ The packet must include ordinary, adversarial, and failure cases. It must measur
 | Precision reach | Available extended/arbitrary-precision and enclosure methods, rounding control, escalation overhead, and CPU/GPU interoperability. |
 | Reproducibility | Deterministic or explicitly reproducible reductions, cross-worker/backend behavior, checkpoint continuation, and provenance. |
 | Memory and scale | Layout control, allocator behavior, immutable distributed history storage, the $10^4$, $10^5$, and $10^6$ path ladder, certified pair-domain compression, and out-of-core posture. |
-| Safety and failure containment | Bounds checking, concurrency discipline, nonfinite handling, cancellation, resource limits, and fail-closed numeric behavior. |
+| Safety and failure containment | Bounds checking, concurrency discipline, nonfinite handling, cancellation, resource limits, and numeric behavior required before advancement. |
 | Portability and deployment | Supported operating systems, CPU architectures, accelerator vendors, build reproducibility, packaging, and ABI stability. |
 | Development quality | Profilers, sanitizers, debuggers, testing, documentation, compile/build feedback, and ease of independent oracle integration. |
 | Maintainability | Amount of duplicated backend math, dependency stability, contributor comprehensibility, upgrade burden, and long-term control. |

@@ -206,7 +206,7 @@ The current attempt-level certificate shell contains these field families:
 }
 ```
 
-This is not accepted evidence. It is a schema target and fail-closed contract.
+This is not accepted evidence. It is a schema target and contract with verification required for advancement.
 
 ## Specific Questions
 

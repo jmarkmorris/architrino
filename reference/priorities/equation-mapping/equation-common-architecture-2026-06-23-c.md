@@ -150,7 +150,7 @@ $$
 
 with row-specific residuals read only after this predicate passes or after the missing rows are explicitly reported.
 
-The current fail-closed reducers also expose the same acceptance-vector structure. For the row family $R$, use the working priority-only notation
+The current reducers requiring verification before advancement also expose the same acceptance-vector structure. For the row family $R$, use the working priority-only notation
 
 $$
 \mathbf A_R(\mathfrak D_R)
@@ -179,7 +179,7 @@ A_x(\mathfrak D_R)=0
 \right\}
 $$
 
-uses the reducer's declared row order $\prec_R$. The same structure explains why $S_{\mathrm{eq}}$, $\Theta_{\mathrm{sea}}^{(\ell,W)}$, $\mathsf e_{\gamma e}^{0}$, and $\mathcal C_{\mathrm{stat}}^{W,T}$ can all fail closed without score movement while still giving a useful next row to populate.
+uses the reducer's declared row order $\prec_R$. The same structure explains why $S_{\mathrm{eq}}$, $\Theta_{\mathrm{sea}}^{(\ell,W)}$, $\mathsf e_{\gamma e}^{0}$, and $\mathcal C_{\mathrm{stat}}^{W,T}$ can all remain not advanced without score movement while still giving a useful next row to populate.
 
 ### Equations It Connects
 
@@ -283,7 +283,7 @@ This component keeps the solver general. The frequency family is an input coordi
 
 ### Proof Or Simulation Burden
 
-The first executable hook is now an `equationBearing` payload on each Noether braid candidate branch-chart projection. It reports the candidate family, raw binary frequency row, role-assigned $I:M:O$ row, root signature, geometry/energy residual, common-clock phase residual, event-ledger residual, stability residual, and precision/readout residual. Missing fields fail closed unless they are explicitly outside the candidate's declared comparison scope. The hook does not certify a retained branch; it makes the branch-selection solver consume the same residual architecture as the equation map.
+The first executable hook is now an `equationBearing` payload on each Noether braid candidate branch-chart projection. It reports the candidate family, raw binary frequency row, role-assigned $I:M:O$ row, root signature, geometry/energy residual, common-clock phase residual, event-ledger residual, stability residual, and precision/readout residual. Missing fields do not advance unless they are explicitly outside the candidate's declared comparison scope. The hook does not certify a retained branch; it makes the branch-selection solver consume the same residual architecture as the equation map.
 
 ## Common Component 1: Same-Record / No-Hidden-Retune Residual
 

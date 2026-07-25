@@ -42,7 +42,7 @@ test("Archie fixture MCP server completes the local stdio protocol smoke", () =>
   assert.match(result.stdout, /Archie fixture MCP check passed/);
 });
 
-test("Archie service negative validators fail closed without side effects", () => {
+test("Archie service negative validators do not advance without side effects", () => {
   const result = spawnSync("node", ["scripts/archie-service/validate-negative-validators.mjs", "--check"], {
     cwd: new URL("..", import.meta.url),
     encoding: "utf8",

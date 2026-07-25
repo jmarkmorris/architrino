@@ -32,7 +32,7 @@ This packet turns the [Answer Artifact Manifest](answer-artifact-manifest.md) an
 
 It is not runtime code. It defines the contracts a future implementation should encode in TypeScript, JSON Schema, API validators, integration tests, and UI rendering tests.
 
-The core invariant is simple: every service endpoint returns either a validated Answer Artifact Manifest or a fail-closed manifest-shaped refusal/error response. No endpoint should return a separate ad hoc answer shape.
+The core invariant is simple: every service endpoint returns either a validated Answer Artifact Manifest or a manifest-shaped refusal/error response with a Not advanced disposition. No endpoint should return a separate ad hoc answer shape.
 
 A second invariant governs rendering: every endpoint response that reaches a user must be explainable in normal language before internal terms appear. The rendering contract follows [ai-communication-standards.md](ai-communication-standards.md) and keeps implementation terms inside schemas, diagnostics, support, legal review, or developer-facing packets.
 
@@ -42,9 +42,9 @@ The deployment boundary for these contracts follows [service-deployment-option-d
 
 The service scaffold now includes a root schema at [schema.json](../../../src/archie-service/contracts/v1/schema.json). It validates the Answer Artifact Manifest, answer request, source-index snapshot, MCP tool request/response suites, source-index dry-run, service validation plan, provider capability registry, provider-sandbox contracts, provider-gateway contracts, token-ledger sandbox contracts, issue-mining sandbox contracts, action-broker sandbox contracts, token receipt, action preflight, service status, service terms, and deployment smoke-plan fixture shapes.
 
-The validator-order contract is currently represented by [negative-validator-suite.v1.json](../../../tests/archie-service/fixtures/validators/negative-validator-suite.v1.json). That fixture records fail-closed expectations for browser-key refusal, private-prompt leakage, low-quality speech fallback, unconfirmed GitHub handoff, stale terms, and source-authority inflation. [validate-negative-validators.mjs](../../../scripts/archie-service/validate-negative-validators.mjs) checks those fail-closed expectations and requires a matching manifest-shaped refusal or fallback fixture for each negative case, without provider calls, payments, durable storage, deployment config, or public routes.
+The validator-order contract is currently represented by [negative-validator-suite.v1.json](../../../tests/archie-service/fixtures/validators/negative-validator-suite.v1.json). That fixture records expectations for Not advanced dispositions for browser-key refusal, private-prompt leakage, low-quality speech fallback, unconfirmed GitHub handoff, stale terms, and source-authority inflation. [validate-negative-validators.mjs](../../../scripts/archie-service/validate-negative-validators.mjs) checks those expectations and requires a matching manifest-shaped refusal or fallback fixture for each negative case, without provider calls, payments, durable storage, deployment config, or public routes.
 
-The retrieval/source side is currently checked by [build-source-index.mjs](../../../scripts/archie-service/build-source-index.mjs), which builds and verifies a deterministic fixture snapshot with hashed exact-content, search, graph, and metadata views, then verifies dry-run route cases, current repo files, markdown anchors, scene-source routing, canonical parents, priority exclusion, missing-route behavior, and ten source-index-specific fail-closed cases.
+The retrieval/source side is currently checked by [build-source-index.mjs](../../../scripts/archie-service/build-source-index.mjs), which builds and verifies a deterministic fixture snapshot with hashed exact-content, search, graph, and metadata views, then verifies dry-run route cases, current repo files, markdown anchors, scene-source routing, canonical parents, priority exclusion, missing-route behavior, and ten source-index-specific cases with a Not advanced disposition.
 
 Endpoint response behavior is currently represented by [endpoint-response-contracts.v1.json](../../../tests/archie-service/fixtures/endpoints/endpoint-response-contracts.v1.json) and checked by [validate-endpoint-responses.mjs](../../../scripts/archie-service/validate-endpoint-responses.mjs). The fixture covers `POST /answers`, listen, visualize, issue draft, service terms, and service status responses, and requires each route to return a validated manifest, partial manifest update, manifest-shaped refusal, service terms object, or service status object without enabling HTTP handlers, provider calls, payments, durable storage, deployment config, or public routes.
 
@@ -66,7 +66,7 @@ Token-ledger sandbox behavior is currently represented by [token-ledger-sandbox.
 
 Issue-mining sandbox behavior is currently represented by [issue-mining-sandbox.v1.json](../../../tests/archie-service/fixtures/issue-mining/issue-mining-sandbox.v1.json) and [validate-issue-mining-sandbox.mjs](../../../scripts/archie-service/validate-issue-mining-sandbox.mjs). The check consumes manifest source context, claim labels, token receipt ids, action preflight state, and draft issue metadata to verify duplicate keys, owner lanes, smallest next artifacts, public issue URL state, report clusters, noise summary, fix queues, private-prompt exclusion, no hidden GitHub writes, no durable storage, and no source-authority effects.
 
-Action-broker sandbox behavior is currently represented by [action-broker-sandbox.v1.json](../../../tests/archie-service/fixtures/actions/action-broker-sandbox.v1.json) and [validate-action-broker-sandbox.mjs](../../../scripts/archie-service/validate-action-broker-sandbox.mjs). The check consumes manifest `submit_issue` actions, issue-mining draft metadata, action preflight fixtures, token receipt ids, and terms state to verify confirmed prefilled GitHub handoff, unconfirmed no-run, cancelled no-run, stale-terms fail-closed, credentialed-write fail-closed, no hidden GitHub writes, no credentials, no payments, no durable storage, no private prompt exposure, and no source-authority effects.
+Action-broker sandbox behavior is currently represented by [action-broker-sandbox.v1.json](../../../tests/archie-service/fixtures/actions/action-broker-sandbox.v1.json) and [validate-action-broker-sandbox.mjs](../../../scripts/archie-service/validate-action-broker-sandbox.mjs). The check consumes manifest `submit_issue` actions, issue-mining draft metadata, action preflight fixtures, token receipt ids, and terms state to verify confirmed prefilled GitHub handoff, unconfirmed no-run, cancelled no-run, stale-terms verification incomplete behavior, credentialed-write behavior for a Not advanced disposition, no hidden GitHub writes, no credentials, no payments, no durable storage, no private prompt exposure, and no source-authority effects.
 
 ## Shared Type Vocabulary
 
@@ -102,6 +102,8 @@ The future typed schema should start with these closed or controlled vocabularie
 | `ValidatorDisposition` | `pass`, `fail_closed`, `allow_with_changes`, `refuse_artifact`, `text_only_fallback` |
 
 Any new value should be added to this packet before it becomes public product behavior.
+
+The `failed_closed`, `fail_closed`, and `failClosedAction` spellings are retained V1 compatibility values. Human-facing explanations must classify the underlying outcome as `Verification failed`, `Verification incomplete`, or the disposition `Not advanced`. These compatibility values do not change the policy: verification is required for advancement.
 
 ## User-Facing Rendering Contract
 
@@ -171,7 +173,7 @@ Each service boundary reads a narrow input, writes a narrow output, and leaves t
 | `privacy_and_audit` | Manifest, consent state, retention policy, generated artifacts. | `privacy_state`, safe diagnostics. | token ledger and privacy contract, retention, deletion route, private data redaction. |
 | `observability_status` | Manifest, validator dispositions, provider health, token receipt, issue context, privacy redaction state, incident policy. | Safe event classes, aggregate metrics, public-status state, support-summary redaction state, incident/change-history candidates. | observability public status and incident contract, redaction, public status, incident safety, no-proof-authority metrics. |
 | `action_broker` | Manifest, action request, confirmation state, consent state, token state. | Updated `available_actions`, confirmation text, destination, credential boundary, and optional action result. | action broker confirmation contract, side-effect guard, credentialed-action boundary. |
-| `manifest_validator` | Complete candidate manifest. | Validated manifest or fail-closed manifest-shaped response. | all validators in defined order. |
+| `manifest_validator` | Complete candidate manifest. | Validated manifest or manifest-shaped response with a Not advanced disposition. | all validators in defined order. |
 | `conversation_surface` | Validated manifest. | Rendered UI only. | no new authority fields, no unmanifested actions. |
 
 ## Validator Contract Order
@@ -218,7 +220,7 @@ Required request fields:
 Required response:
 
 - validated Answer Artifact Manifest; or
-- fail-closed manifest-shaped response with `claim_label: unsupported`, no unsafe artifacts, and a clear nearest supported route when available.
+- manifest-shaped response with a Not advanced disposition and `claim_label: unsupported`, no unsafe artifacts, and a clear nearest supported route when available.
 
 ### `POST /answers/{manifest_id}/actions/listen`
 
@@ -376,11 +378,11 @@ Required response fields:
 - auto-fund event;
 - privacy state.
 
-## Fail-Closed Manifest Shape
+## Not advanced Manifest Shape
 
 A failure should still look like a manifest so the UI, token ledger, issue draft path, and diagnostics do not need a separate response model.
 
-Required fail-closed fields:
+Fields required for advancement verification:
 
 | Field | Required value |
 | --- | --- |
@@ -393,7 +395,7 @@ Required fail-closed fields:
 | `available_actions` | Only safe alternatives or confirmation-gated actions. |
 | `diagnostics` | Safe developer summary without private prompt leakage. |
 
-Fail-closed responses should be regression-tested for unsupported answers, unavailable high-quality speech, insufficient tokens, missing source routes, media-standard refusal, privacy refusal, unsafe observability redaction, and unconfirmed public issue submission.
+Responses with a Not advanced disposition should be regression-tested for unsupported answers, unavailable high-quality speech, insufficient tokens, missing source routes, media-standard refusal, privacy refusal, unsafe observability redaction, and unconfirmed public issue submission.
 
 ## Speech Sync Contract
 
@@ -433,7 +435,7 @@ Rules:
 3. durable saved notes require consent, retention policy, deletion route, and storage-cost policy;
 4. issue drafts exclude private material unless explicit inclusion consent exists;
 5. receipts, issue-mining metadata, and diagnostics must not expand private prompt text;
-6. missing retention policy returns a fail-closed manifest or text-only fallback.
+6. missing retention policy returns a manifest for a Not advanced disposition or text-only fallback.
 
 ## Issue Mining Contract
 
@@ -463,7 +465,7 @@ The future implementation should include fixtures for:
 | `contract-retrieval-published-001` | `retrieval_context` returns authored corpus route, source chip, freshness, and no model-memory source authority. |
 | `contract-retrieval-missing-route-001` | Missing route is recorded in `source_context` and produces nearest route or unsupported behavior. |
 | `contract-answer-text-001` | `POST /answers` returns a valid text-only manifest with source and claim context. |
-| `contract-answer-unsupported-001` | Unsupported answer returns fail-closed manifest with nearest route or burden. |
+| `contract-answer-unsupported-001` | Unsupported answer returns manifest for a Not advanced disposition with nearest route or burden. |
 | `contract-provider-context-001` | Manifest includes provider execution context for provider-backed capabilities without exposing secrets. |
 | `contract-provider-browser-key-negative-001` | Public client receives no model API keys, direct model-call config, or raw provider payloads. |
 | `contract-provider-fallback-001` | Degraded or unavailable provider health produces declared fallback or unavailable action. |
@@ -512,7 +514,7 @@ Task:
 - Encode saved-note, notebook item, account-history, share-state, export/delete, and evidence-status types.
 - Encode service terms, accepted-version, acceptance-scope, re-acceptance, feature-blocker, support-route, and legal-review-state types.
 - Define request and response types for each service boundary.
-- Implement validator ordering and fail-closed result types.
+- Implement validator ordering and result types for Not advanced dispositions.
 - Define endpoint request/response schemas.
 - Map executable coverage to accepted service targets only after the standards gate and implementation target require it; keep fixture names and validator vocabulary implementation-only.
 

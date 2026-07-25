@@ -10,7 +10,7 @@
 - Parent packet: [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md)
 - Assigned ID: `EQ-22B`
 - Related corpus material: [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [BBN Constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), [Structure Formation](../../../content/markdown/aaa/cosmology/structure-formation.md)
-- Claim level: observer-level recombination, visibility, sound-horizon, damping, and acoustic-transfer benchmark; native carrier dictionary; fail-closed residual target
+- Claim level: observer-level recombination, visibility, sound-horizon, damping, and acoustic-transfer benchmark; native carrier dictionary; residual required for advancement target
 - Promotion status: priority-only
 - Current score: `2`
 
@@ -154,14 +154,14 @@ The carrier requires:
 | Smallest next artifact | Replace the recombination/acoustic source attempt with one durable carrier source whose `theta_src`, thermal/provenance/readout rows, photon/neutrino handoffs, event ledger, and no-hidden-retune witness share one source window. |
 | Probe-exposed next blocker | `missing_accepted_theta_src` after the carrier-shell probe marks only the top carrier accepted-looking. |
 | Existing scripts/fixtures/packets | [eq22b-recombination-acoustic-residual.mjs](../../../scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs), [eq22b-recombination-acoustic-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-attempt.v1.json), [eq22b-recombination-acoustic-source-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-source-attempt.v1.json), [eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json) |
-| Fail-closed controls | Generic/source and `theta_src` coordination-source controls reject priority packets, authored prose, fixture files, private source windows, split readout clocks, and child-row source substitutions. |
+| Controls required for advancement | Generic/source and `theta_src` coordination-source controls reject priority packets, authored prose, fixture files, private source windows, split readout clocks, and child-row source substitutions. |
 | Safe implementation target | Replace the carrier-shell probe with a durable non-priority `recombination_acoustic_carrier` source object, then populate the first child `theta_src` row on the same shared observation record. The existing source-attempt, carrier-shell probe, `theta_src` coordination-source control, and generic/source negative control remain score-neutral guardrails; they do not count as retained evidence. |
 
 ## Direct Geometry Layer
 
 This layer binds the recombination and acoustic equations to one shared observation record. It does not let recombination, visibility, damping, acoustic phase, BBN handoff, and readout clock become separate fitted successes.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Saha row for $x_e$ | Ionization-fraction readout from one thermal/provenance and baryon/electron population record. | `recombination_acoustic_carrier`, `theta_therm_prov`, `recombination_kinetics_row` | $x_e^\theta$, $n_e^\theta$, $T^\theta$, and hydrogen abundance stay on the same source window and thermal/provenance id. | Generic/source controls reject fitted ionization rows sourced to priority packets or authored prose. | Accepted carrier plus same-record thermal/provenance and recombination-kinetics rows. |
 | Peebles-style $\dot x_e$ | Rate-competition readout for recombination and ionization over the same finite window. | `recombination_kinetics_row`, `event_ledger`, `source_provenance` | Recombination coefficients, ionization terms, finite-window event ledger, and source provenance share one carrier id. | Private recombination-rate controls reject a kinetics row not bound to the shared observation record. | Accepted recombination-kinetics row with finite-window event ledger and durable source support. |
@@ -257,7 +257,7 @@ node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input 
 
 This fixture marks only the top $\Theta_{\mathrm{rec/ac}}$ carrier and the `recombination_acoustic_carrier` row as accepted-looking against a durable source path while leaving `theta_src`, thermal/provenance, readout, photon, neutrino, Noether sea, recombination, visibility, acoustic-transfer, provenance, and no-retune rows at `attempt`. The expected result is `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_theta_src`; the `--require-populated` form must exit nonzero. This proves the first carrier-shell step is mechanically smaller than full recombination/acoustic closure and exposes the shared observation-source window as the next accepted-evidence object.
 
-The fail-closed generic/source control is [eq22b-recombination-acoustic-generic-source-negative-control.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-generic-source-negative-control.v1.json):
+The generic/source control required before advancement is [eq22b-recombination-acoustic-generic-source-negative-control.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-generic-source-negative-control.v1.json):
 
 ```bash
 node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input scripts/equation-mapping/eq22b-recombination-acoustic-generic-source-negative-control.v1.json --summary --pretty
@@ -272,7 +272,7 @@ The carrier-shell source-evidence probe advances `EQ-22B` only to `missing_accep
 
 Candidate finite source window: `W_src_BBN_CMB_rec_ac_0001`, a single BBN-to-CMB/recombination handoff window with start and end boundary references still pending durable evidence.
 
-| Contract field | Required value | Fail-closed condition |
+| Contract field | Required value | Condition required for advancement |
 | --- | --- | --- |
 | `theta_src.id` | `Theta_src_attempt_0001` until a durable source-backed row replaces it | Accepted-looking placeholder identity is rejected. |
 | `sourceFamily` | `shared observation source window` | A private recombination/acoustic source family cannot satisfy the shared observation parent. |
@@ -286,7 +286,7 @@ Candidate finite source window: `W_src_BBN_CMB_rec_ac_0001`, a single BBN-to-CMB
 | Event ledger | one `event_ledger_ref` | Source, photon, weak, baryon, neutrino, or medium exchange rows split ledgers. |
 | No-hidden-retune witness | one `S_retune` witness | Source window, event ledger, thermal provenance, readout, photon loading, or neutrino handoff is privately retuned. |
 
-The matching fail-closed control is [eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json). It clones the carrier-shell probe, mutates only `packet.rows.theta_src` to `status: accepted`, gives it `sourceKind: source_window_record`, and points `theta_src.sourcePath` back to [EQ-21/EQ-22/EQ-23 $\Theta_{\mathrm{src}}$ Source-Field Map](eq-21-22-23-theta-src-source-field-map.md). The checker reports `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: accepted_without_evidence_source`, and `sourceEvidenceFailureCount: 1`; the `--require-populated` form exits nonzero. This prevents a coordination packet from satisfying the shared observation source window.
+The matching control required for advancement is [eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json). It clones the carrier-shell probe, mutates only `packet.rows.theta_src` to `status: accepted`, gives it `sourceKind: source_window_record`, and points `theta_src.sourcePath` back to [EQ-21/EQ-22/EQ-23 $\Theta_{\mathrm{src}}$ Source-Field Map](eq-21-22-23-theta-src-source-field-map.md). The checker reports `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: accepted_without_evidence_source`, and `sourceEvidenceFailureCount: 1`; the `--require-populated` form exits nonzero. This prevents a coordination packet from satisfying the shared observation source window.
 
 ```sh
 node scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs --input scripts/equation-mapping/eq22b-recombination-acoustic-theta-src-coordination-source-negative-control.v1.json --summary --pretty --require-populated

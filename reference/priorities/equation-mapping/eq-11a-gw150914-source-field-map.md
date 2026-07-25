@@ -34,7 +34,7 @@ The candidate source is suitable for a source-field map because it is versioned 
 | Exact first blocker | `missing_accepted_gw_source_carrier` |
 | Existing scripts/fixtures/packets | [eq11a-gravitational-wave-source-residual.mjs](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs), [eq11a-gravitational-wave-source-attempt.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-attempt.v1.json), [EQ-11A Gravitational-Wave Source Recovery](eq-11a-gravitational-wave-source-recovery.md) |
 | Breakthrough angle | Reuse `EQ-29` source-ledger grammar and `EQ-23A` source-window identity fields, while keeping the gravitational-wave effective-metric tensor channel separate from photon radiation or explosive-source carriers. |
-| Fail-closed negative control | `gw.source_window_split`: chirp, quadrupole, strain, and ringdown rows pass numerically but use different `carrierId`, `sourceWindowId`, or detector path-history window. Expected failure: carrier split or hidden-retune failure before residual scoring. |
+| Negative control required for advancement | `gw.source_window_split`: chirp, quadrupole, strain, and ringdown rows pass numerically but use different `carrierId`, `sourceWindowId`, or detector path-history window. Expected failure: carrier split or hidden-retune failure before residual scoring. |
 | Next action | Fill the GW150914 retained-evidence intake template with local event, strain, parameter-estimation, waveform, calibration, extraction, path, and hash artifacts; only after that, replace the source-contract shell with the smallest accepted retained $\Theta_{\mathrm{GWsrc}}(W,P)$ evidence object. |
 
 ## Required Row Map
@@ -58,7 +58,7 @@ The candidate source is suitable for a source-field map because it is versioned 
 
 This source-window layer applies the Direct Geometry Layer requirement to the concrete `GW150914-v3` candidate. The row remains candidate-level: it names the retained-record geometry that would have to exist, not accepted evidence that it already exists.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | $\mathcal M_c$ from component masses | Component-mass and chirp-mass readout from one binary source event ledger. | `gw_source_carrier`, `source_event_ledger`, `chirp_mass_row` | One `carrierId`, `sourceWindowId`, `supportId`, and `eventId` bind $m_1$, $m_2$, and $\mathcal M_c$ to `GW150914-v3`. | `gw.source_window_split` rejects a chirp row whose source event or support id differs from the carrier. | Accepted `gw_source_carrier` row plus component-mass and chirp-mass row sourced to a durable GWOSC/LVK event record with artifact hashes. |
 | $\dot f_{\mathrm{GW}}$ | Inspiral phase-rate readout from the same chirp mass and tensor-channel constants. | `chirp_mass_row`, `theta_sea`, `effective_metric_tensor_channel` | The chirp row, Noether sea row, and effective metric tensor channel share the carrier identity before the chirp-rate residual is scored. | Probe-source and theta-sea content-source controls reject probe JSON or authored Noether sea prose as retained evidence. | Accepted `theta_sea` and effective-metric tensor rows bound to the accepted GW source carrier. |
@@ -66,7 +66,7 @@ This source-window layer applies the Direct Geometry Layer requirement to the co
 | $P_{\mathrm{GW}}$ and quadrupole power | Effective quadrupole and radiated-power readout from the binary source ledger. | `quadrupole_source_row`, `source_event_ledger`, `effective_metric_tensor_channel` | $Q_{ij}^{\mathrm{eff}}$, $E_{\mathrm{rad}}$, and $\mathbf J_{\mathrm{rad}}$ bind to the same source/remnant ledger. | Unledgered-power control rejects standalone quadrupole arithmetic without source-ledger identity. | Accepted quadrupole row plus radiated energy/angular-momentum ledger sourced to one event record. |
 | $\mathcal F_{\mathrm{GW}}$ | Detector path-history strain-flux readout for $h_+$ and $h_\times$. | `strain_flux_row`, `detector_strain_record`, `effective_metric_tensor_channel` | H1/L1 strain, detector calibration/nuisance state, path-history window, and source event share one `supportId`. | Strain-only controls reject one-polarization or detector-only fits not bound to the source carrier. | Accepted detector strain record and strain-flux row with source-window binding and artifact hashes. |
 | Ringdown $f_{\mathrm{ring}}$, $\tau_{\mathrm{ring}}$ | Final compact-object label after radiated energy and angular momentum update the remnant. | `ringdown_label_row`, `source_event_ledger` | Ringdown label, final mass/spin, radiated ledger, and remnant id remain on the same source event ledger. | Split-ringdown control rejects final-state labels imported from another event or retuned after the chirp fit. | Accepted ringdown label row bound to the same remnant ledger as the source carrier. |
-| Source identity and $\mathcal S_{\mathrm{retune}}$ | No-hidden-retune witness for the whole GW150914 retained record. | `source_provenance`, `no_hidden_retune_witness`, all required rows | Every required row cites durable non-priority evidence and the same `carrierId`, `sourceWindowId`, `supportId`, and `eventId`. | Coordination-source, probe-source, and content-source controls reject priority packets, probes, authored prose, generated paths, and temporary paths. | A checker-consumable $\Theta_{\mathrm{GWsrc}}(W,P)$ packet whose required rows are accepted, source-backed, same-record bound, and fail closed under the existing checker. |
+| Source identity and $\mathcal S_{\mathrm{retune}}$ | No-hidden-retune witness for the whole GW150914 retained record. | `source_provenance`, `no_hidden_retune_witness`, all required rows | Every required row cites durable non-priority evidence and the same `carrierId`, `sourceWindowId`, `supportId`, and `eventId`. | Coordination-source, probe-source, and content-source controls reject priority packets, probes, authored prose, generated paths, and temporary paths. | A checker-consumable $\Theta_{\mathrm{GWsrc}}(W,P)$ packet whose required rows are accepted, source-backed, same-record bound, and not advanced under the existing checker. |
 
 The smallest accepted evidence object is therefore not a better normalized numerical sample. It is a retained $\Theta_{\mathrm{GWsrc}}(W,P)$ source packet for `GW150914-v3` whose carrier, Noether sea/effective-metric rows, source-event ledger, detector strain record, radiated-output ledger, ringdown label, source provenance, and no-hidden-retune witness all survive the existing accepted-source and same-record checks.
 
@@ -78,7 +78,7 @@ This map may reuse source-ledger structure from `EQ-29`: `carrierId`, `sourceWin
 
 ## Coordination-Source Negative Control
 
-The fail-closed source check for the gravitational-wave source carrier is [eq11a-gravitational-wave-source-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-coordination-source-negative-control.v1.json):
+The source check required for advancement for the gravitational-wave source carrier is [eq11a-gravitational-wave-source-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-coordination-source-negative-control.v1.json):
 
 ```sh
 node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-coordination-source-negative-control.v1.json --summary --pretty
@@ -230,7 +230,7 @@ node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --inp
 
 The first command reports `status=blocked_source_contract_boundary`, `nextBlocker=source_contract_boundary_not_retained_evidence`, and `scoreDecision=no_score_increase`; the `--require-populated` form exits nonzero. [eq11a-gravitational-wave-source-no-hidden-retune-witness-mismatch-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-no-hidden-retune-witness-mismatch-negative-control.v1.json) keeps an accepted-looking no-hidden-retune row blocked at `missing_accepted_no_hidden_retune_witness` when its `sourceEvidence` names the wrong row.
 
-The smallest retained-evidence object contract is staged in [eq11a-gravitational-wave-source-retained-evidence-object-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-retained-evidence-object-contract.v1.json). The fail-closed contract-only control is [eq11a-gravitational-wave-source-retained-evidence-object-contract-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-retained-evidence-object-contract-negative-control.v1.json):
+The smallest retained-evidence object contract is staged in [eq11a-gravitational-wave-source-retained-evidence-object-contract.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-retained-evidence-object-contract.v1.json). The contract containing only a control required before advancement is [eq11a-gravitational-wave-source-retained-evidence-object-contract-negative-control.v1.json](../../../scripts/equation-mapping/eq11a-gravitational-wave-source-retained-evidence-object-contract-negative-control.v1.json):
 
 ```sh
 node scripts/equation-mapping/eq11a-gravitational-wave-source-residual.mjs --input scripts/equation-mapping/eq11a-gravitational-wave-source-retained-evidence-object-contract-negative-control.v1.json --summary --pretty
@@ -265,7 +265,7 @@ The checker also reports `sourceContractBoundaryRows`, `sourceArtifactHashMissin
 
 The next candidate packet must replace every boundary-only row with durable retained evidence. This checklist is not an additional score gate; it is the minimum intake shape for the first real $\Theta_{\mathrm{GWsrc}}(W,P)$ evidence object.
 
-| Intake field | Minimum retained-evidence requirement | Fail-closed condition |
+| Intake field | Minimum retained-evidence requirement | Condition required for advancement |
 | --- | --- | --- |
 | Source paths | Every accepted row points to a durable non-priority, non-generated, non-attempt, non-probe, non-mock, non-negative-control file that is not a contract-only or intake-template object. | `accepted_without_evidence_source`, `non_durable_source_path`, or `source_contract_boundary_not_retained_evidence` remains blocking. |
 | Artifact identity | The carrier and all required rows record their required local artifact paths and artifact-family hashes for the event page, strain products, posterior samples or parameter-estimation record, waveform/phase provenance, calibration/detector-quality rows, and local retained extraction. | Rows with source names but no artifact-family identity block at `source_artifact_hashes_missing`. |
@@ -277,7 +277,7 @@ The next candidate packet must replace every boundary-only row with durable reta
 
 The intake template now names the first local artifact bundle shape as `gw150914_local_artifact_bundle_v1`. This is still template-only, not retained evidence. A future accepted-looking packet must first materialize an in-repo bundle with these fields:
 
-| Bundle field | Required content | Fail-closed condition |
+| Bundle field | Required content | Condition required for advancement |
 | --- | --- | --- |
 | `artifacts` | One entry for each required artifact family: `gwosc_event_release_metadata`, `h1_l1_strain_products`, `parameter_estimation_posterior_or_release`, `waveform_or_phase_provenance`, and `aaa_local_extraction_manifest`. Each entry carries `localPath`, `sha256`, source URL or source report, role, and supported rows. | Missing path or hash keeps the checker at `source_artifact_hashes_missing`. |
 | `rowBindings` | One row-binding object per `EQ-11A` required row with `rowId`, `carrierId`, `sourceWindowId`, `supportId`, `eventId`, `sharedRecordId`, row-specific `sourceEvidence`, `artifactPaths`, and `artifactHashes`. | Split identity remains blocked by carrier binding or no-hidden-retune checks. |

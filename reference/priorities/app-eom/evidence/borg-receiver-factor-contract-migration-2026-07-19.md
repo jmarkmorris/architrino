@@ -11,7 +11,7 @@
 
 This validation closes the Borg-specific migration gap. It does not add a term
 to the acceleration, alter the transmitter-side factor, or weaken any
-fail-closed singular-event route.
+singular-event route for a Verification incomplete outcome.
 
 ## Live Request Identity
 

@@ -18,7 +18,7 @@ recorded in the [Certified Error-Budget Ledger](../certified-error-budget-ledger
 and must be used for new requests. This evidence record retains the hashes that
 actually accompanied its measurements.
 
-The V7 implementation is fail-closed and its independent controls pass, but it
+The V7 implementation requires verification for advancement and its independent controls pass, but it
 does not pass the complete Amendment 2 acceptance gate. The reason is concrete:
 publishing the acceleration-derived state width changes the retained-history
 intervals, and the ratified Research preset no longer reproduces the historical
@@ -37,7 +37,7 @@ authority until Research parity passes.
 
 Claim grade: `measured-current-binary`. Falsifier: the exact V7 four-seed
 command below reaches the historical Research endpoints while retaining the
-corrected position and velocity radii and every fail-closed gate.
+corrected position and velocity radii and every verification gate required for advancement.
 
 ## Ratified Presets
 
@@ -174,8 +174,8 @@ oracle files appear in the implementation diff.
 ## Protocol And Call-Site Inventory
 
 - `src/apps/borg/BorgCertifiedBudgets.js`: one complete registry, canonical
-  serialization, two stable hashes, ledger validation, and the fail-closed
-  Research default while parity remains open.
+  serialization, two stable hashes, ledger validation, and the Research default
+  while parity remains open, under the policy that verification is required for advancement.
 - `borg.html`, `src/apps/borg/BorgAppRuntime.js`, and
   `src/apps/borg/BorgBootstrap.js`: two plain-language selector options; the
   selected preset atomically owns all numerical and controller allocations.
@@ -199,7 +199,7 @@ oracle files appear in the implementation diff.
   comparison. No old custom-tolerance rung remains.
 - `tests/borg-eom-migration.test.js` and
   `tests/test_eom_borg_native_process.py`: registry hash, atomic preset, V7 exact
-  format, response provenance, and fail-closed protocol controls.
+  format, response provenance, and protocol controls required before advancement.
 
 There is one producer, one parser, one exact V7 format, and no V6 compatibility
 path. `PATH` remains the exact six-field retained-history record.
@@ -242,7 +242,7 @@ and event failure remains dominated by the regulator ladder. The immediate
 mathematical blocker is earlier than performance work: determine whether the
 newly propagated acceleration widths are intentionally part of later root
 input, then derive or ratify a Research record whose root-completeness budget
-can carry those widths without weakening fail-closed certification.
+can carry those widths without weakening certification required before advancement.
 
 Claim grade: `inferred-next-target` from the measured parity failure. Falsifier:
 code-path inspection shows propagated state widths must not enter later causal

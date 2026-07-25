@@ -201,7 +201,7 @@ function validateNoSideEffects(label, entry, manifest) {
 function validateResult(label, entry) {
   if (entry.requestedExecutionMode === "server_write") {
     if (entry.expectedResultStatus !== "failed_closed" || entry.prefilledUrlGenerated !== false || entry.prefilledUrl !== null) {
-      failures.push(`${label}: server-write attempts must fail closed without a prefilled URL`);
+      failures.push(`${label}: server-write attempts must not advance without a prefilled URL`);
     }
     return;
   }
@@ -232,7 +232,7 @@ function validateResult(label, entry) {
 
   if (entry.termsState === "blocked_until_terms") {
     if (entry.expectedResultStatus !== "failed_closed" || entry.prefilledUrlGenerated !== false || entry.prefilledUrl !== null) {
-      failures.push(`${label}: terms-blocked actions must fail closed without a URL`);
+      failures.push(`${label}: terms-blocked actions must not advance without a URL`);
     }
   }
 }

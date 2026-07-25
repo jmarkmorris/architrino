@@ -15,7 +15,7 @@ function update(localRef, localOid, remoteRef, remoteOid) {
   return `${localRef} ${localOid} ${remoteRef} ${remoteOid}`;
 }
 
-test("pre-push parser fails closed on empty or malformed input", () => {
+test("pre-push parser does not advance on empty or malformed input", () => {
   assert.equal(parsePrePushUpdates("").ok, false);
   assert.equal(parsePrePushUpdates("not a ref update").ok, false);
   assert.deepEqual(

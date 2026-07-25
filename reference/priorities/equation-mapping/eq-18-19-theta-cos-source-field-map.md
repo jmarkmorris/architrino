@@ -16,7 +16,7 @@
 
 This map now has one accepted score-neutral `theta_cos` effective-FRW/cosmology handoff for the provider-backed `EQ-20` pressure route. The handoff consumes the retained `delta_P_eff` pressure report without hidden retuning and the live checker returns `status=populated` with `nextBlocker=null` for the accepted handoff input.
 
-The original attempt fixture remains a fail-closed control: every row is `status: "attempt"` with `sourcePath: "pending-retained-source"`, so it correctly returns `missing_accepted_theta_cos`.
+The original attempt fixture remains a control required for advancement: every row is `status: "attempt"` with `sourcePath: "pending-retained-source"`, so it correctly returns `missing_accepted_theta_cos`.
 
 No score changes.
 
@@ -30,7 +30,7 @@ No score changes.
 | Exact first blocker | Provider-backed accepted handoff route: `nextBlocker=null`. Broader redshift, distance-ladder, growth, CMB, and no-retune consumers remain open. |
 | Existing scripts, fixtures, and packets found | The effective-FRW handoff runner, attempt fixture, accepted handoff evidence, accepted checker input, and effective-metric/cosmology packet. |
 | Candidate breakthrough angle | Use `EQ-17` redshift factorization inversely: $a_{\mathrm{eff}}$ should be the homogeneous readout of endpoint cadence and path-history transport, not an independently fitted FRW scale. |
-| Fail-closed negative control | `void_expansion_level_collapse`: any route treating $a_{\mathrm{eff}}$ as Euclidean void expansion must fail before score review. |
+| Negative control required for advancement | `void_expansion_level_collapse`: any route treating $a_{\mathrm{eff}}$ as Euclidean void expansion must fail before score review. |
 | Smaller-than-report next action | Use the accepted handoff as the fixed-void cosmology carrier for downstream coupling, growth, CMB, distance-ladder, and no-hidden-retune consumers without changing its shared keys. |
 
 | Coordinate | `EQ-19` |
@@ -41,7 +41,7 @@ No score changes.
 | Exact first blocker | Provider-backed accepted handoff route: `nextBlocker=null`. Broader Friedmann/continuity consumers remain open until they consume the same carrier without retuning. |
 | Existing scripts, fixtures, and packets found | The same effective-FRW handoff runner, attempt fixture, accepted evidence object, accepted checker input, and packet. |
 | Candidate breakthrough angle | Treat the continuity equation's $\mathcal S_{\mathrm{eff}}$ as the inverse clue: the first accepted evidence object is source provenance from transport, recycling, assembly exchange, or Noether sea exchange, not a cleaner Friedmann formula. |
-| Fail-closed negative control | `theta_cos.window_split`: shared numbers with split carrier ids or source-window ids must fail at shared-key, hidden-retune, or FRW-handoff split checks. |
+| Negative control required for advancement | `theta_cos.window_split`: shared numbers with split carrier ids or source-window ids must fail at shared-key, hidden-retune, or FRW-handoff split checks. |
 | Smaller-than-report next action | Bind downstream source-term, growth, CMB, distance-ladder, and shared-coupling consumers to the accepted `theta_cos` handoff rather than creating private cosmology records. |
 
 ## Attempt Fixture Inventory
@@ -88,7 +88,7 @@ This accepted handoff closes the provider-backed `EQ-20` inherited `theta_cos` b
 
 ## Direct Geometry Layer
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Homogeneous cosmology carrier identity | `theta_cos` homogeneous observer-readout carrier, not Euclidean void expansion | `theta_cos`, `cosmology_carrier`, `noether_sea_window` | Same carrier id, homogeneous Noether sea window, source path, `tauClockId`, fixed-void witness, and shared keys across `EQ-18` and `EQ-19` | `status_flip`; `self_reference`; `theta_cos.window_split` | Durable source-backed `theta_cos` retained-window row with accepted carrier/window identity and fixed-void witness. |
 | Effective FRW scale factor and Hubble readouts | $a_{\mathrm{eff}}$ and $H_{\mathrm{eff}}$ as readouts of clock comparison, path-history transport, and medium evolution | `pi_frw`, `theta_read`, `scale_factor_row`, `hubble_row`, `redshift_transfer_handoff` | Same carrier, $\tau_c$, `aBefore`, `aAfter`, $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}$, transport provenance, and readout handoff | `void_expansion_level_collapse`; `theta_cos.window_split` | Accepted FRW handoff rows whose scale and Hubble residuals consume one `theta_cos` record rather than a fitted expansion level. |
@@ -97,7 +97,7 @@ This accepted handoff closes the provider-backed `EQ-20` inherited `theta_cos` b
 | Fixed-void discipline | Witness that $a_{\mathrm{eff}}$ is an observer-level readout, not physical expansion of the Euclidean void | fixed-void witness carried by `theta_cos` / handoff fields | Same fixed-void metric id, carrier, scale-factor row, Hubble row, and no-retune witness | `void_expansion_level_collapse` | Accepted fixed-void witness with zero or bounded void-scale drift on the same `theta_cos` source report. |
 | Shared keys and no-hidden-retune witness | Same-key ledger for `theta_cos_id`, $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}$, $\rho_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, $G_{\mathrm{eff}}$, $\Lambda_{\mathrm{eff}}$, $k$, and $S_{\mathrm{eff}}$ | shared-key rows and `no_hidden_retune_witness` | Same carrier id, shared-key values, provenance row, source path, and no-hidden-retune residual across FRW and Friedmann consumers | `theta_cos.window_split`; hidden-retune shared-key mismatch | Populated same-carrier `theta_cos` packet with all FRW, Friedmann, continuity, source-provenance, fixed-void, and retune rows accepted from durable evidence. |
 
-## Fail-Closed Controls
+## Verification Required for Advancement Controls
 
 - `status_flip`: a row promoted from `attempt` to `accepted` while retaining `pending-retained-source` must fail source concreteness.
 - `self_reference`: this map, the attempt fixture, or the parent packet is not retained cosmology evidence.

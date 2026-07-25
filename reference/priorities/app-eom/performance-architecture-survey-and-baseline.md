@@ -108,7 +108,7 @@ authored 90-decimal-digit oracle.
 
 The difficult close-root row bypasses binary64 automatically at a requested
 `1e-16` root tolerance and certifies two distinct roots at 128 MPFR bits. The
-tangent and exact-field-speed rail rows remain fail-closed after the declared
+tangent and exact-field-speed rail rows remain not advanced after the declared
 512-bit ceiling and return `caustic_route_required`; they do not publish a
 false complete root set. Evidence is recorded in
 [eom-native-history-layer-apple-m3-2026-07-13.json](evidence/eom-native-history-layer-apple-m3-2026-07-13.json).
@@ -156,7 +156,7 @@ finite-width rows. Binary64 finite-width integration budgets uncertainty on
 the globally summed interval integral, refines the active time cell with the
 largest enclosure-width contribution, and checks the deterministic reduction
 at a population-proportional cadence. This preserves the caller's global
-tolerance and fail-closed resource caps without uniform over-refinement or
+tolerance and resource caps required for advancement without uniform over-refinement or
 quadratic repeated summation. Sharp-row and receiver-reduction MPFR replay
 remain open.
 
@@ -333,7 +333,7 @@ and the one-thread and four-thread `0.0025` histories were byte identical.
 This control is not the Borg acceptance gate. It covers one of sixteen Borg
 histories, and its input history did not meet the current EOM provenance
 requirement (Evidence withdrawn 2026-07-16; re-measurement queued). The
-follow-up 16-history attempt failed closed for steps `0.01`, `0.005`, and
+follow-up 16-history attempt was not advanced for steps `0.01`, `0.005`, and
 `0.0025`: all 240 off-diagonal ordered pairs reached
 `numeric_precision_limit_exhausted` on every row. The four-thread `0.0025`
 attempt reduced wall time from about `54.0` seconds to `21.7` seconds but did

@@ -272,7 +272,7 @@ test("Borg initial-condition controls support an explicit zero-velocity populati
   assert.deepEqual(rows[0].velocity, { x: 0, y: 0, z: 0 });
 });
 
-test("Borg seeds large populations by holding the declared density, not by failing closed", () => {
+test("Borg seeds large populations by holding the declared density, not by not advancing", () => {
   const rows = createBorgSeededInitialConditionRows({
     manifest: BORG_DATASET_MANIFEST_V1,
     seedIndex: 0,

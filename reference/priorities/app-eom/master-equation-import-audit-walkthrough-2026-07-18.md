@@ -22,7 +22,7 @@ Its status is deliberately narrow:
 - **Completed scoped migration:** the receiver factor $|D_r|/c_f$ is removed from the canonical base acceleration, the EOM solver, and Borg's live v1 request path on the certified transmitter-side domain.
 - **Conditional derivation:** $c_f/|D_t|$ follows from uniform wake emission in transmitter time and the causal-root change of variables.
 - **Retained postulates:** the inverse-square spatial dependence, radial line of action, polarity rule, linear superposition, and uniform emission measure remain model commitments unless separately derived.
-- **Passed within scope:** the simple-root derivation, ordinary-fold integrated acceleration, first-order static-transmitter discriminator, contract migration, certified-budget identity checks, and fail-closed regression tests.
+- **Passed within scope:** the simple-root derivation, ordinary-fold integrated acceleration, first-order static-transmitter discriminator, contract migration, certified-budget identity checks, and regression tests required for advancement.
 - **Open beyond scope:** coincident same-transmitter continuation, conservation on general histories, complete observer-level recovery, and any separately derived receiver-velocity-dependent acceleration.
 
 Nothing in this correction says that receiver velocity can never affect the complete dynamics. It says only that the root-playback identity $D_r/D_t$ does not justify multiplying this base acceleration by $|D_r|/c_f$.
@@ -224,7 +224,7 @@ The exact quadratic control also rules out an event-only patch. Every newborn ro
 
 ### 5.4 Finite retained history
 
-Roots may enter or leave the retained history window even when no interior fold occurs. The EOM solver must distinguish a genuine root birth or death from a memory-boundary event and must fail closed when the available history is insufficient.
+Roots may enter or leave the retained history window even when no interior fold occurs. The EOM solver must distinguish a genuine root birth or death from a memory-boundary event and must not advance when the available history is insufficient.
 
 ## 6. Promotion Evidence and Remaining Scope
 
@@ -268,7 +268,7 @@ The independently evolving wake-state option has now been tested rather than mer
 
 The same construction must also determine the near-origin acceleration. Conservation accounts added after a finite activation function has been chosen do not validate that function; conversely, a finite activation function without predeclared accounts does not close conservation. Broader Master Equation closure therefore remains barred until one joint retained-state update survives both tests on the same non-circular histories.
 
-The first retained-branch recomputation has also begun. [Spiral A1 Transmitter-Side Rebuild](../master-equation-closure/spiral-a1-restart.md) derives transmitter-side acceleration-weight intervals for the retained $P_1,P_2,P_3,S_1$ roots and reports a turn-center radial/tangential diagnostic with signed playback kept separate. It does not promote the A1 branch: outward aggregate bounds and an accepted causal wake state are still missing, so action and all three conserved accounts remain fail closed.
+The first retained-branch recomputation has also begun. [Spiral A1 Transmitter-Side Rebuild](../master-equation-closure/spiral-a1-restart.md) derives transmitter-side acceleration-weight intervals for the retained $P_1,P_2,P_3,S_1$ roots and reports a turn-center radial/tangential diagnostic with signed playback kept separate. It does not promote the A1 branch: outward aggregate bounds and an accepted causal wake state are still missing, so action and all three conserved accounts remain not advanced.
 
 ### 6.4 Repeated promotion audit
 
@@ -293,11 +293,11 @@ The complete Master Equation is not globally closed. The 2026-07-20 repeated aud
 
 The repository-authority audit is complete for the receiver-factor change. The three obsolete receiver-weighted Master Equation packets are isolated under `reference/priorities/master-equation-closure/history/`; current priority dependencies no longer treat them as acceleration, action, or promotion authority. The old parallel-stream specification that explicitly consumed the removed equation is likewise isolated under `reference/priorities/app-eom/archive/receiver-weighted-law/`. Historical records remain available as history, not as current evidence.
 
-The coincident-birth divergence must remain fail-closed and visible. It blocks a claim of globally complete same-transmitter evolution. Missing conservation likewise remains a global closure obligation and does not justify adding receiver playback to the acceleration magnitude.
+The coincident-birth divergence must remain not advanced and visible. It blocks a claim of globally complete same-transmitter evolution. Missing conservation likewise remains a global closure obligation and does not justify adding receiver playback to the acceleration magnitude.
 
 The resulting disposition is:
 
-- **implemented within the scoped promotion boundary:** the base acceleration factor is $c_f/|D_t|$ on the certified transmitter-side domain, $D_r/D_t$ is retained for root playback, and singular-event routing remains fail closed;
+- **implemented within the scoped promotion boundary:** the base acceleration factor is $c_f/|D_t|$ on the certified transmitter-side domain, $D_r/D_t$ is retained for root playback, and singular-event routing remains not advanced;
 - **completed as a scoped migration:** canon, the v1 binding, the EOM solver, and Borg's live request and certified-budget identities agree on that boundary;
 - **not ready for global closure claims:** coincident same-transmitter continuation, causal conservation, and complete moving-transmitter and moving-receiver recovery remain open.
 

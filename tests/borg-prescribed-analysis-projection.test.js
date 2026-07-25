@@ -83,7 +83,7 @@ test("canonical B1 evaluator packet projects retained history, probe identity, a
   assert.equal(projection.branches.length, 0);
 });
 
-test("projection validation fails closed on unknown fields, duplicates, and nonfinite rows", async () => {
+test("projection validation does not advance on unknown fields, duplicates, and nonfinite rows", async () => {
   const { projection } = await createProjectionFixture();
   assert.throws(
     () => validateBorgPrescribedAnalysisProjection({
@@ -142,7 +142,7 @@ test("projection validation fails closed on unknown fields, duplicates, and nonf
   );
 });
 
-test("drawn-not-evaluated and unresolved events remain distinct fail-closed states", async () => {
+test("drawn-not-evaluated and unresolved events remain distinct states with a Verification incomplete outcome", async () => {
   const drawn = await createProjectionFixture({
     eventPatch: {
       status: BORG_PRESCRIBED_ANALYSIS_EVENT_STATUS.DRAWN_NOT_EVALUATED,

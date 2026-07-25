@@ -82,7 +82,7 @@ A solver-side receiver-normal row is accepted only when it reports:
 - source-normal denominator $D_s$,
 - receiver-normal numerator $D_T$,
 - receiver-normal factor $D_T/D_s$,
-- fail-closed status for nonfinite values, small $D_s$, or small $D_T$ when the selected proof requires monotone receiver sampling.
+- verification failed status for nonfinite values, small $D_s$, or small $D_T$ when the selected proof requires monotone receiver sampling.
 
 This is consumed as the branch-strength row. A separate variational proof is
 still required for action derivation, but not for using receiver-normal branch

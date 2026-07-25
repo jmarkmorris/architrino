@@ -491,7 +491,7 @@ RSS must be remeasured.
 ### EXP-DB-004: production-compatible verified-gzip safety fixture
 
 - Question: can the importer retain supplied gzip bytes without recompression
-  while preserving its fail-closed identity boundary?
+  while preserving its identity boundary requiring verification before advancement?
 - Baseline: default recompress-and-byte-compare importer.
 - Changed variable: opt-in
   `experimentalRawArtifactImportMode: "verified-compressed"`.
@@ -898,7 +898,7 @@ result.
   while the methodology coverage review is being updated in another thread?
 - Baseline: first four registered candidates, current protocol, sensitivity
   omitted, one worker, file artifacts plus deterministic merge.
-- Harness boundary: production registry validation remained fail-closed. The
+- Harness boundary: production registry validation remained not advanced. The
   explicit
   `--allow-unreviewed-methodology-performance-fixture` mode recorded registry,
   methodology, coverage, protocol, candidate-spec, and implementation hashes
@@ -1515,8 +1515,8 @@ Required design before production use:
    complete.
 3. Publish the database and object tree as one same-volume directory rename, or
    publish an immutable generation directory followed by one atomically replaced
-   pointer. A separately swapped database and object directory is not
-   fail-closed.
+   pointer. A separately swapped database and object directory does not satisfy
+   the verification required for advancement.
 4. Make verification fail on a missing, extra, renamed, size-mismatched, or
    hash-mismatched object. Backup and recovery must copy and verify the whole
    generation directory, not SQLite alone.

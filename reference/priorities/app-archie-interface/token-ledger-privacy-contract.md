@@ -220,7 +220,7 @@ Required fields:
 | `private_prompt_expanded_in_receipt` | Must be `false`. |
 | `diagnostic_redaction` | Whether diagnostics are safe for operator/developer review. |
 
-If the service cannot state retention behavior, the request should fail closed or return a text-only response with no durable action.
+If the service cannot state retention behavior, the request should not advance or return a text-only response with no durable action.
 
 ## Confirmation Matrix
 
@@ -270,9 +270,9 @@ Requires explicit consent:
 
 The public issue body should show what will be public before GitHub handoff.
 
-## Fail-Closed Behavior
+## Verification Required for Advancement
 
-The token/privacy contract should fail closed when:
+The token/privacy contract should not advance when:
 
 1. estimated work exceeds cap and the user has not approved;
 2. auto-fund would trigger and the user has not approved;
@@ -287,7 +287,7 @@ The token/privacy contract should fail closed when:
 11. receipt would need to expose private prompt text to be understandable;
 12. token metrics, support summaries, public status, or incident records would expose private prompt text or account history.
 
-Fail-closed responses should return a manifest-shaped refusal or fallback with `actual_tokens_charged` set to zero unless a narrow attempted-provider charge policy was shown before work.
+Responses with a Not advanced disposition should return a manifest-shaped refusal or fallback with `actual_tokens_charged` set to zero unless a narrow attempted-provider charge policy was shown before work.
 
 ## Regression Fixtures
 

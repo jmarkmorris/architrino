@@ -32,7 +32,7 @@ of declared retained histories. Every path source had to fit exactly one of:
 
 Any source crossing those roles fails the audit.
 
-## Fail-Closed Finding
+## Verification Required for Advancement Finding
 
 ### F1 — sampled replay interpolation is promoted to authoritative evolved history
 
@@ -66,7 +66,7 @@ Any source crossing those roles fails the audit.
 - **Fix:** emit the actual EOM-published segment tokens directly from the
   checkpoint-chunked harness into each run's `assembly-view-record.v0`. Stream
   accepted extensions before discarding each chunk, preserve input prehistory
-  versus evolved-extension provenance, and make the record fail closed if any
+  versus evolved-extension provenance, and leave the record not advanced if any
   segment lacks its EOM publication source. Remove the sampled-row reconstruction
   route from evolved-record booking.
 - **Bar alternative:** restrict converter output to display-only/non-evidence

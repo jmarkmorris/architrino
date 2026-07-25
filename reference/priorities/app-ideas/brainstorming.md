@@ -102,7 +102,7 @@ These capabilities form one progressive learning suite over a shared source, rec
 - Slow the scene at a generic fold so a tangent zero becomes two causal roots and the ledger changes by $\Delta N=\pm2$.
 - Keep the pointwise acceleration spike visually separate from the finite accumulated velocity change through an ordinary interior fold.
 - Resolve the provisional $c(\cdot)$ label against the packet's $g(T_r;T_t)$ notation before end-user implementation.
-- Do not generalize the ordinary-fold result to coincident same-source root birth, which remains fail closed under the current sharp equation.
+- Do not generalize the ordinary-fold result to coincident same-source root birth, which remains not advanced under the current sharp equation.
 
 #### 4. Self-Hit Near $c_f$
 

@@ -187,7 +187,7 @@ function validateCapabilitySpecificPolicy(label, entry) {
     failures.push(`${label}: rerank fallback must preserve source order`);
   }
   if (entry.capabilityType === "moderation" && !entry.expectedFallbackBehavior.includes("fail_closed")) {
-    failures.push(`${label}: moderation fallback must fail closed`);
+    failures.push(`${label}: moderation fallback must not advance`);
   }
 }
 

@@ -11,7 +11,7 @@
 - Source map: [EQ-28A Theta-Nu-Ex Source-Field Map](eq-28a-theta-nu-ex-source-field-map.md)
 - Assigned ID: `EQ-28A`
 - Related corpus material: [Radiation](../../../content/markdown/aaa/reactions/radiation.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [Reaction Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md)
-- Claim level: observer-level path-frequency exchange benchmark, native carrier dictionary, and fail-closed residual target
+- Claim level: observer-level path-frequency exchange benchmark, native carrier dictionary, and residual required for advancement target
 - Promotion status: priority-only
 - Current score: `2`
 
@@ -136,9 +136,9 @@ The carrier requires:
 
 ## Direct Geometry Layer
 
-This table is priority-only. It maps the comparison terms to the native geometry, carrier rows, same-record bindings, fail-closed controls, and smallest accepted evidence objects that must exist before any inverse-Compton or SZ comparison can count as equation evidence. It does not change scores, and it does not treat frequency change as pure photon energy loss, void expansion, source emission, or a private thermal calibration.
+This table is priority-only. It maps the comparison terms to the native geometry, carrier rows, same-record bindings, controls required for advancement, and smallest accepted evidence objects that must exist before any inverse-Compton or SZ comparison can count as equation evidence. It does not change scores, and it does not treat frequency change as pure photon energy loss, void expansion, source emission, or a private thermal calibration.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | $Y_{\gamma,j}^{\mathrm{ex}}=-\ln(\nu_{\gamma,j}^{+}/\nu_{\gamma,j}^{-})$ | Signed photon path-frequency increment read from one incoming/outgoing photon packet over one path window. | `path_frequency_exchange_carrier`, `theta_gamma_packet`, `photon_gate_a_b_handoff`, and `exchange_event_ledger`. | Same `commonCarrierId`, `pathWindowId`, `photonInId`, `photonOutId`, and `exchangeEventLedgerId`; packet identity must survive unless a different reaction channel is declared. | `phenomenological_frequency_loss_without_medium_ledger` if the shift is recorded without target, medium, recoil, and remnant ledger rows. | Accepted source-backed `Theta_nu-ex(W)` carrier row with durable photon in/out, path-window, Gate A/B, and exchange-ledger evidence. |
 | $h(\nu_{\gamma,j}^{+}-\nu_{\gamma,j}^{-})+\Delta E_{\mathrm{target},j}+\Delta E_{\mathrm{med},j}+\Delta E_{\mathrm{recoil},j}+\Delta E_{\mathrm{rem},j}$ | Energy-balance readout of the same exchange event ledger, including target, medium, recoil, and remnant updates. | `exchange_event_ledger`, `electron_medium_population`, `recoil_remnant_row`, and `source_provenance`. | Energy, momentum, angular momentum, recoil, remnant, and medium-update rows share one `exchangeEventLedgerId` and the carrier's path-window identity. | `split_path_medium_record_retune` if the path-frequency row and medium/SZ rows come from separate carriers. | Accepted exchange event ledger and recoil/remnant rows after the parent carrier is accepted. |
@@ -231,4 +231,4 @@ Potential later targets:
 The next accepted-retained-evidence artifact is not another normalized fixture. It is a source-backed $\Theta_{\nu\text{-}\mathrm{ex}}(W)$ carrier whose row bindings are accepted and whose path ledger keeps photon packet identity, frequency exchange, electron-medium state, recoil/remnant rows, and finite-window thermal state on one record.
 
 The source-field contract for that carrier is staged in [EQ-28A Theta-Nu-Ex Source-Field Map](eq-28a-theta-nu-ex-source-field-map.md). It keeps `Theta_nu-ex` distinct from `theta_gamma_packet`, `theta_therm`, and `Theta_rec/ac`, and preserves `missing_accepted_path_frequency_exchange_carrier` as the ordinary first blocker.
-That source-field map now carries the Direct Geometry Layer for the concrete `Theta_nu-ex` source object, including source-object ids, same-record bindings, fail-closed controls, and the smallest accepted evidence object.
+That source-field map now carries the Direct Geometry Layer for the concrete `Theta_nu-ex` source object, including source-object ids, same-record bindings, controls required for advancement, and the smallest accepted evidence object.

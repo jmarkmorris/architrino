@@ -199,7 +199,7 @@ process.stdout.write(`${JSON.stringify({
       ? [`the strict ladder covers ${pathCount} of ${manifest.population.architrinoCount} Borg histories`]
       : strictControlPassed
         ? []
-        : ["the full-population strict ladder failed closed; inspect the case diagnostics"]),
+        : ["the full-population strict ladder was not advanced; inspect the case diagnostics"]),
     "the initial retained history is an app-authored accepted inertial datum, not EOM-produced history",
     "the million-path, GPU, distributed-history, and full Borg performance gates remain open",
     "the native response remains executable architecture evidence rather than canonical evidence",

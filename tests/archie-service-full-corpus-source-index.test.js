@@ -181,7 +181,7 @@ test("full-corpus reads support exact route anchors, pagination, and Unicode cod
   assert.equal(Array.from(second.result.content)[0], "𝒪");
 });
 
-test("full-corpus negative inputs and altered bundles fail closed", () => {
+test("full-corpus negative inputs and altered bundles do not advance", () => {
   const input = enumerateFullCorpusBuildInput({ rootDir });
   input.sourceRecords.push(structuredClone(input.sourceRecords[0]));
   assert.throws(() => buildSourceIndexSnapshot({ rootDir, input }), /duplicate source record/);

@@ -63,7 +63,7 @@ test("transport presentation keeps icon, accessible name, title, and pressed sta
   assert.equal(button.dataset.tooltip, "Pause replay");
 });
 
-test("unknown transport kinds fail closed", () => {
+test("unknown transport kinds do not advance", () => {
   assert.throws(() => getTransportControlIconMarkup("skip"), /Unknown transport-control icon/);
 });
 

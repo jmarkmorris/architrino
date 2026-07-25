@@ -34,7 +34,7 @@ The test is intentionally smaller than the full nested shell braid. It asks whet
 - rest-mass invariance;
 - Noether sea medium response.
 
-The packet does not claim that the translating binary already proves Lorentz behavior, mass shell recovery, or rest-energy closure. It defines the first fail-closed calculation that would decide whether those rows share one branch or split into independent fits.
+The packet does not claim that the translating binary already proves Lorentz behavior, mass shell recovery, or rest-energy closure. It defines the first calculation required for advancement that would decide whether those rows share one branch or split into independent fits.
 
 ## Source Basis
 
@@ -386,7 +386,7 @@ For the first primitive run, any nonzero $R_{\mathcal M}^{\mathrm{bin},ab}$ must
 
 This layer keeps the Lorentz and energy-momentum comparison as one retained translating-binary record. It does not let a small Lorentz-looking residual, solver proxy row, or separately tuned mass-shell row replace the shared retained branch chart.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | $\gamma_f(u)=(1-u^2/c_f^2)^{-1/2}$ and $T_u/T_0$ | Clock-period readout from the retained translating branch. | `retained_branch_chart`, `clock_row`, `same_branch_chart_identity` | $T_u$, $T_0$, drift $u$, branch ledger $b_u$, Noether sea cell, and common carrier are the same objects used by envelope, energy, and mass-shell rows. | Current proxy rows remain `blocked_current_proxy_only` until raw retained rows and branch identity are accepted. | Accepted retained branch chart plus clock row on one `S_eq` retained-domain carrier. |
 | $R_{\parallel,u}/R_{\perp,u}=1/\gamma_f(u)$ | Envelope-shape readout from the same oblate branch geometry. | `envelope_row`, `retained_branch_chart`, inactive-root gap cover | Principal axes, branch chart, causal-root ledger, inactive-root gaps, and envelope projection share the same support and retained history. | Root-starvation and split-root witnesses reject envelope rows whose forward roots differ from clock or force rows. | Accepted envelope row with same retained branch chart and root ledger. |
@@ -461,7 +461,7 @@ For each sampled drift $u_k$, the run must output:
 
 ## Current Solver Proxy Intake
 
-The live three-binary runner may be referenced here only as current solver-proxy evidence. Its solver report carries a nested `cases[].branchChartProjection.equationBearing` payload. That payload is fail-closed and does not yet populate $R_T^{\mathrm{bin}}$, $R_{\xi}^{\mathrm{bin}}$, $R_{\mathrm{tw}}^{\mathrm{bin}}$, $R_E^{\mathrm{bin}}$, $R_p^{\mathrm{bin},a}$, $R_{\mathrm{shell}}^{\mathrm{bin}}$, $R_{M_0}^{\mathrm{bin}}$, or $R_{\mathcal M}^{\mathrm{bin},ab}$ from one retained translating branch chart.
+The live three-binary runner may be referenced here only as current solver-proxy evidence. Its solver report carries a nested `cases[].branchChartProjection.equationBearing` payload. That payload requires verification for advancement and does not yet populate $R_T^{\mathrm{bin}}$, $R_{\xi}^{\mathrm{bin}}$, $R_{\mathrm{tw}}^{\mathrm{bin}}$, $R_E^{\mathrm{bin}}$, $R_p^{\mathrm{bin},a}$, $R_{\mathrm{shell}}^{\mathrm{bin}}$, $R_{M_0}^{\mathrm{bin}}$, or $R_{\mathcal M}^{\mathrm{bin},ab}$ from one retained translating branch chart.
 
 The next score-neutral executable object is the retained-row extraction
 
@@ -501,7 +501,7 @@ node scripts/equation-mapping/check-emit-02-04-contract.mjs --input <tri-binary-
 
 The checker consumes `cases[].branchChartProjection.equationBearing`, maps it onto $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k)$, and reports missing retained projection rows instead of converting current-proxy rows into Lorentz, energy-momentum, or mass-shell evidence. Against the 2026-06-23 iso-frequency smoke report, the summary is `blocked_not_evaluable`: 0 evaluable cases, 7 blocked cases, `retainedBranchClaim=false`, and `scoreDecision=no_score_increase`.
 
-The checker keeps two row-name classes separate: `requiredRows` are retained $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}$ target rows, while `currentProxyRows` are current three-binary solver-report rows. The aggregate missing rows identify the first concrete reducer burden. The common carrier is blocked by absent `retained_branch_chart`, `root_starvation_row`, `row_set_identity`, `tail_wake_pullback`, `vector_partition_retained`, `energy_routing`, and `retained_noether_sea_cell` rows. The reduced `root_chart_reduced` row remains proxy-only. The clock, envelope, two-way signal, energy, momentum, mass-shell, rest-mass, medium-response, and same-record witness projections are likewise blocked until the same retained branch chart supplies their declared rows. This is the intended fail-closed result: the common carrier has a checkable interface, but the current solver report has not earned score-change review.
+The checker keeps two row-name classes separate: `requiredRows` are retained $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}$ target rows, while `currentProxyRows` are current three-binary solver-report rows. The aggregate missing rows identify the first concrete reducer burden. The common carrier is blocked by absent `retained_branch_chart`, `root_starvation_row`, `row_set_identity`, `tail_wake_pullback`, `vector_partition_retained`, `energy_routing`, and `retained_noether_sea_cell` rows. The reduced `root_chart_reduced` row remains proxy-only. The clock, envelope, two-way signal, energy, momentum, mass-shell, rest-mass, medium-response, and same-record witness projections are likewise blocked until the same retained branch chart supplies their declared rows. This is the intended result with a Verification incomplete outcome: the common carrier has a checkable interface, but the current solver report has not earned score-change review.
 
 ## Executable Same-Branch Identity Check
 
@@ -652,7 +652,7 @@ For `EQ-04A`, this same evidence object has one downstream consequence: it can s
 4. nested shell or charged-lepton branch-family specialization of the same mass response;
 5. `EQ-04A` Koide mass-root residual with zero hidden retune.
 
-If the next solver pass cannot produce the full retained-domain fixture, the only useful partial win is a certified positive-width return box or a durable row evaluated on such a box. The highest-value row remains `raw_labeled_rows_preserved_on_retained_history`; the next Noether sea row is `Noether_sea_record_bound_to_S_eq`. Either row is useful only if it rides on the same certified invariant support, is source-backed, is bound to the same `domainId` and `commonCarrierId`, and keeps the current evaluators fail-closed for every still-missing row.
+If the next solver pass cannot produce the full retained-domain fixture, the only useful partial win is a certified positive-width return box or a durable row evaluated on such a box. The highest-value row remains `raw_labeled_rows_preserved_on_retained_history`; the next Noether sea row is `Noether_sea_record_bound_to_S_eq`. Either row is useful only if it rides on the same certified invariant support, is source-backed, is bound to the same `domainId` and `commonCarrierId`, and leaves verification incomplete in the current evaluators for every still-missing row.
 
 This rule prevents a common failure mode: treating a numerically coherent attempt packet as accepted branch evidence. The current arithmetic passes at $\beta_f=0.6$ and $\gamma_f=1.25$ are valuable diagnostics, but they stay score-neutral until the positive-width invariant support, truncation/refinement controls, and row bindings are source-backed.
 
@@ -767,7 +767,7 @@ e^0_u(\partial_t)=1.25,
 e^0_u(\partial_t)\frac{e^\parallel_u}{e^\perp_u}=1.
 $$
 
-The input declaration also states that $\gamma_f$, Lorentz target coefficients, mass-shell targets, and fitted clock/envelope rows were not used to construct the coframe. The evaluator treats this as an arithmetic diagnostic only. The row remains `attempt` until those legs are extracted from accepted wake-return data on a certified invariant support. The separate `coframeExtraction` diagnostic now loads an external extraction certificate contract, but the current certificate is still `attempt`, so the diagnostic fails closed as `not_evaluated` with `reason=coframe_extraction_evidence_not_accepted`. Accepted extraction evidence must provide a durable solver or proof source, matching `commonCarrierId`, matching `domainId`, certified support kind, required extraction basis, and residuals for extraction, support binding, and holonomy.
+The input declaration also states that $\gamma_f$, Lorentz target coefficients, mass-shell targets, and fitted clock/envelope rows were not used to construct the coframe. The evaluator treats this as an arithmetic diagnostic only. The row remains `attempt` until those legs are extracted from accepted wake-return data on a certified invariant support. The separate `coframeExtraction` diagnostic now loads an external extraction certificate contract, but the current certificate is still `attempt`, so the diagnostic does not advance as `not_evaluated` with `reason=coframe_extraction_evidence_not_accepted`. Accepted extraction evidence must provide a durable solver or proof source, matching `commonCarrierId`, matching `domainId`, certified support kind, required extraction basis, and residuals for extraction, support binding, and holonomy.
 
 The `gamma_inserted_coframe` negative control catches the failure mode where the reciprocity product is made to pass by inserting $\gamma_f$ or an equivalent fitted target into the coframe construction. The `reciprocal_unextracted_coframe` negative control catches the distinct failure mode where reciprocal legs pass arithmetically while extraction source, support binding, or holonomy evidence remains absent.
 

@@ -399,7 +399,7 @@ test("Borg record replay applies measured target and chunk limits within the win
   await runner.dispose();
 });
 
-test("Borg record replay fails closed on foreign or ungraded records", () => {
+test("Borg record replay does not advance on foreign or ungraded records", () => {
   assert.throws(
     () => createBorgEomRecordReplayRunner(
       createBorgEomRecordFixture({ contractId: "foreign-contract/v1" }),
@@ -762,7 +762,7 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.match(runtimeSource, /banner\.textContent = detail \? `\$\{message\} — \$\{detail\}` : message;/);
 });
 
-test("Borg surface keeps EOM-native layer policy and fail-closed authority", () => {
+test("Borg surface keeps EOM-native policy requiring verification for advancement", () => {
   const surfaceDesign = BORG_APP_SURFACE_DESIGN_V1;
   assert.equal(surfaceDesign.authorityMap.centralBallAcceleration, undefined);
   assert.equal(surfaceDesign.noAuthorityPromotions, true);

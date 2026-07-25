@@ -225,7 +225,7 @@ test("equation mapping reproduces the canonical transmitter-side Master Equation
   );
   assert.equal(accelerationFactorMath.includes("D_r"), false);
   assert.match(accelerationFactorText, /Dₜ certified nonzero/u);
-  assert.match(accelerationFactorText, /fail closed/u);
+  assert.match(accelerationFactorText, /verification is incomplete/u);
 });
 
 test("equation mapping uses transmitter for the causal-hit role", () => {

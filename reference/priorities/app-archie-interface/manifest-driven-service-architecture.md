@@ -111,7 +111,7 @@ The service architecture should include explicit validators before rendering:
 | `issue_mining_validator` | Issue drafts and feedback include enough metadata for duplicate clustering, signal/noise classification, and owner routing. |
 | `notebook_history_validator` | Saved notes, account history, deletion/export state, sharing state, storage cost, and not-project-evidence labels are explicit. |
 
-Validation should fail closed. If a requested artifact cannot satisfy its validator, the manifest should omit or downgrade that artifact and record a compliant alternative.
+Validation should not advance. If a requested artifact cannot satisfy its validator, the manifest should omit or downgrade that artifact and record a compliant alternative.
 
 ## Provider Capability Architecture
 
@@ -138,7 +138,7 @@ The observability path should follow [observability-public-status-incident-contr
 6. incidents record severity, affected surfaces, affected capability ids, user impact, privacy impact class, billing impact class, source-authority impact, mitigation, and follow-up artifact;
 7. metrics, issue volume, provider success, incidents, and public status history remain operational signals and cannot strengthen source authority or claim labels.
 
-Unsafe diagnostics should fail closed by omitting the field, aggregating it, marking `needs_public_reproduction`, or blocking public/support disclosure.
+Unsafe diagnostics should not advance by omitting the field, aggregating it, marking `needs_public_reproduction`, or blocking public/support disclosure.
 
 ## Source Context Architecture
 
@@ -226,7 +226,7 @@ The action path should follow [action-broker-confirmation-contract.md](action-br
 5. GitHub issue handoff starts with prefilled URLs in V1 and no public-client credentials;
 6. action results return to the manifest as updated `available_actions`, token receipt, privacy state, issue context, or artifact state.
 
-Unconfirmed or unsafe actions should leave the manifest renderable, with a clear unavailable or fail-closed action state and no hidden side effect.
+Unconfirmed or unsafe actions should leave the manifest renderable, with a clear unavailable or action state with a Not advanced disposition and no hidden side effect.
 
 ## Saved Notebook Architecture
 
@@ -259,7 +259,7 @@ The later implementation can map this architecture to endpoints such as:
 | `GET /service-terms` | Return public terms, privacy notice, token/subscription terms, media terms, GitHub handoff notice, notebook terms, support route, and version ids. |
 | `POST /account/terms/accept` | Record accepted terms versions for a safe account/session scope. |
 
-Endpoint names are illustrative. The required invariant is that each endpoint returns a validated manifest or a fail-closed error state.
+Endpoint names are illustrative. The required invariant is that each endpoint returns a validated manifest or a error state with a Not advanced disposition.
 
 ## Visual Artifact Architecture
 
@@ -295,7 +295,7 @@ Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [ai
 Use [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md), [service-deployment-architecture.md](../archie/service-deployment-architecture.md), and [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md) for the public site, browser client, service API, background job, provider gateway, token ledger, action broker, issue-mining, observability, staging, production, CI/CD, smoke-test, rollback, schema package, and fixture boundary.
 
 Task:
-- Define service components, input/output types, validator responsibilities, and fail-closed behavior.
+- Define service components, input/output types, validator responsibilities, and behavior for a Not advanced disposition.
 - Define model/provider capability registry, provider gateway, quality gate, fallback, credential boundary, cost mapping, privacy/terms, health-state, and observability boundaries before provider-backed features launch.
 - Define observability event classes, public status, incident records, change history, support summaries, diagnostics redaction, and safe issue-mining handoff before public beta.
 - Define source ingestion, source-index, source-chip, freshness, missing-route, and `source_context` boundaries before answer generation.

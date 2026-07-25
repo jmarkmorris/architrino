@@ -175,7 +175,7 @@ Raw dense complete-path wall seconds were:
 
 **Measured.** The dense moving fixture provides no exclusion and no exact-
 search reduction. The ladder stopped at 2,048 paths and did not launch a later
-dense stage. This is the required fail-closed noncompressible result.
+dense stage. This is the required noncompressible result with a Not advanced disposition.
 
 ## Claim Grades And Limits
 

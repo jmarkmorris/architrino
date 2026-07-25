@@ -201,8 +201,8 @@ For an ordinary interior fold:
   accumulated kick through the ordinary fold.
 
 Do not generalize this ordinary-fold lesson to unresolved coincident
-same-source root birth. The sharp same-source coincident case remains
-fail-closed unless a separate accepted treatment supplies the missing
+same-source root birth. The sharp same-source coincident case is not advanced;
+verification remains incomplete unless a separate accepted treatment supplies the missing
 regularization or singular-stratum result.
 
 ## 5. Self-Hit
@@ -402,7 +402,7 @@ The task is complete only when:
 - the end-user delay-map label is $g(T_r;T_t)$ rather than provisional `c()`;
 - ordinary-fold pointwise acceleration and finite accumulated velocity change
   are visually and numerically distinct;
-- coincident same-source root birth remains fail closed;
+- coincident same-source root birth remains not advanced;
 - all architrino-level language is acceleration-first;
 - the stronger physical causal-delay solver remains visibly open;
 - desktop, portrait, keyboard, reduced-motion, and high-contrast QA pass;

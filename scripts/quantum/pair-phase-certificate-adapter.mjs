@@ -73,7 +73,7 @@ Options:
   --pretty           Pretty-print JSON output.
   --help             Show this help.
 
-This adapter is fail-closed. It may prepare rows for
+Verification is required for advancement. This adapter may prepare rows for
 pair-phase-certificate-emitter.mjs only when pair-source, daughter, layer-phase,
 angular-momentum, wake, and gauge-probe fields are already present. Otherwise it
 emits blocked rows with stable failure codes and does not manufacture phase

@@ -50,7 +50,7 @@ $$
 $$
 
 The code never evaluates this quotient when the interval for $D_s$ contains
-zero. A row fails closed if either its post-accounting distance is positive or
+zero. A row does not advance if either its post-accounting distance is positive or
 its complete remainder exceeds the unchanged event budget.
 
 Claim grade: `derived-implementation`. Falsifier: direct differentiation gives

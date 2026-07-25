@@ -11,7 +11,7 @@ export const BORG_ASSEMBLY_VIEW_CONTRACT_BLOCKERS = Object.freeze({
   collectionCarrier:
     "assembly-view-record.v0 has no ratified multi-record carrier; direct records may be held in memory, but packet, manifest, and local-file collection intake remain unavailable.",
   comparisonTransforms:
-    "assembly-view-record.v0 has no ratified declared time-transform and unit-transform fields, so synchronized comparison must fail closed.",
+    "assembly-view-record.v0 has no ratified declared time-transform and unit-transform fields, so synchronized comparison must not advance.",
   fieldSpeed:
     "assembly-view-record.v0 has no required source-carried field-speed value, so speed relative to c_f is unavailable unless the schema authority adds that carrier.",
   spinDipole:

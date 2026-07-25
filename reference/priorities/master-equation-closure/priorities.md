@@ -134,7 +134,7 @@ $D_r/D_t$ has been classified as playback rather than acceleration strength.
 
 ## Dependencies
 
-- The EOM solver supplies retained histories, certified transmitter-side acceleration records, signed playback, and fail-closed singular-event records. It does not invent the missing wake state.
+- The EOM solver supplies retained histories, certified transmitter-side acceleration records, signed playback, and singular-event records with a Verification incomplete outcome. It does not invent the missing wake state.
 - The coincident-birth and conservation-obstruction analyses in `../app-eom/` define negative controls for items 1–3.
 - The Braid Program may use the closed update to test candidate braids, but even a certified braid would not replace any of these three derivations.
 - Mass, quantum, spin, cosmology, reaction, and observer-recovery programs are downstream consumers, not tasks in this queue.

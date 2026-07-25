@@ -42,7 +42,7 @@ For this pass, the active `EQ-30` working row begins from the deepest row-level 
 | Baseline first blocker | `missing_accepted_W` for ordinary `EQ-30` toy or incomplete source objects. |
 | Deepest row-level frontier | `missing_accepted_elastic_regime` before this pass; the elastic-regime probe advances past it, then exposes `same_record_binding_missing` until the top-carrier source-contract shell supplies explicit one-record bindings. |
 | Current retained-carrier blocker | `blocked_carrier_not_retained`; the source-contract attempt has `carrierSourceContractReady: true` and `carrierSameRecordBindingReady: true`, but the top carrier remains `attempt`. |
-| First fail-closed split blocker | `blocked_eq30_same_record_binding` when an accepted-looking top carrier has a valid source contract but parent/projection rows do not share one `carrierId`. |
+| First not advanced split blocker | `blocked_eq30_same_record_binding` when an accepted-looking top carrier has a valid source contract but parent/projection rows do not share one `carrierId`. |
 | Smallest accepted evidence object | A durable retained top finite-window carrier for `EQ-30` whose metadata declares row identity and retained/top finite-window carrier support, with every parent and projection row bound to the same `carrierId` and every form-factor sample bound to the same `exposureDistributionId`. |
 | Smallest next artifact | Replace the `EQ-30` top-carrier source-contract attempt with a durable retained top finite-window carrier whose parent/projection rows all carry the same `carrierId`. |
 
@@ -55,7 +55,7 @@ For this pass, the active `EQ-30` working row begins from the deepest row-level 
 | Baseline first blocker | `missing_accepted_W` for ordinary `EQ-31` toy or incomplete source objects. |
 | Deepest row-level frontier | `missing_accepted_C` before the corridor-family probe; the current charged-pion `C` probe advances past it without retaining the top carrier. |
 | Current retained-carrier blocker | `blocked_carrier_not_retained`; the source-contract attempt has carrier-level `EQ-31` retained/top finite-window support metadata and one-record corridor bindings, but the top carrier remains `attempt`. |
-| First fail-closed split blocker | `blocked_eq31_same_record_binding` when an accepted-looking top carrier has a valid source contract but a first-exit preimage or corridor row points to another `carrierId`. |
+| First not advanced split blocker | `blocked_eq31_same_record_binding` when an accepted-looking top carrier has a valid source contract but a first-exit preimage or corridor row points to another `carrierId`. |
 | Smallest accepted evidence object | A durable retained top finite-window carrier for `EQ-31` whose metadata declares row identity and retained/top finite-window carrier support, with `W`, `Phi_T`, `mu_star_T`, `Q`, `K_det`, `B`, `S_retune`, `C`, first-exit preimages, null-separatrix rows, and refinement rows bound to the same `carrierId`. |
 | Smallest next artifact | Replace the `EQ-31` top-carrier source-contract attempt with a durable retained top finite-window carrier whose corridor, null-separatrix, and refinement rows all carry the same `carrierId`. |
 
@@ -118,7 +118,7 @@ This layer is score-neutral. It maps the Born-current comparison terms to one fi
 
 The `EQ-14` row ladder parallel to `EQ-30` and `EQ-31` is: `W`, `Theta_rhoJ`, record-current samples, continuity, density-reference, current-reference, and top carrier must declare `sourceSupport: ["EQ-14", "retained W", "Theta_rhoJ record-current"]` and share one `carrierId` before score-change review.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Born density $\rho(x,t)$ | Finite record density read from a retained position projection of one support window. | Parent `W`, $\mu_{*,T}$, `Q`, `K_det`, `B`, and `Theta_rhoJ`. | `Theta_rhoJ.densityMeasureId` must equal $\mu_{*,T}$ on the same retained carrier. | `finite_window.toy_status_import` keeps the toy blocked at `missing_accepted_W`; `eq14.W_source_missing` keeps accepted-looking record-current rows blocked when `W` lacks a resolving retained source. | One source-backed retained `W` with accepted finite measure and a source-backed `Theta_rhoJ` density projection on the same carrier. |
 | Born current $J(x,t)$ | Finite record current read from the same transition map and position projection. | `Theta_rhoJ`, `Phi_T`, and `record_current_samples`. | `Theta_rhoJ.currentMeasureId` must equal $\mu_{*,T}$ and `currentFlowId` must equal `Phi_T`; density and current cannot use private measure or flow ids. | `eq14.measure_flow_split` blocks density/current rows that use different measure or flow ids. | Accepted `Theta_rhoJ` plus accepted record-current samples using the same finite measure and transition map. |
@@ -131,9 +131,9 @@ The `EQ-14` `W` source-missing control is [finite-window-statistical-carrier-eq1
 
 ## EQ-30 Direct Geometry Layer
 
-This layer is a score-neutral method map for the elastic-scattering shard. It does not assert accepted retained evidence. Its job is to bind each comparison-facing term to one finite-window geometric readout, one required row family, one same-record condition, and one fail-closed control before any score review is considered.
+This layer is a score-neutral method map for the elastic-scattering shard. It does not assert accepted retained evidence. Its job is to bind each comparison-facing term to one finite-window geometric readout, one required row family, one same-record condition, and one control required for advancement before any score review is considered.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Prepared ensemble and incoming flux | A finite-window preparation plus calibrated incoming exposure on the same scattering carrier. | `Gamma_a`, `Phi_in` after parent rows `W`, `Phi_T`, `mu_star_T`, `Q`, `K_det`, `B`, and `S_retune`. | Same $\mathcal C_{\mathrm{stat}}^{W,T}$ id, same `W`, same detector kernel `K_det`, same outcome partition `B`, and same no-hidden-retune witness `S_retune`. | `eq30.Gamma_a_coordination_source` and `eq30.Phi_in_coordination_source` keep accepted-looking preparation or flux rows blocked when their sources resolve only to this priority map. | Source-backed `Gamma_a` and `Phi_in` rows on the same accepted parent carrier, still score-neutral until later projection rows and the top carrier are accepted. |
 | Detected event-class measure | Pushforward class measure under the same detector/readout kernel, not a separately imported rate. | `detected_class_measures` for `elastic_ep`, `inelastic_ep`, and `lost`. | Same `K_det`, same `B.classes`, same $\mu_{*,T}$, and the same `S_retune` residual already used by the parent carrier. | `eq30.detected_class_measures_coordination_source` blocks class measures sourced only to the coordination packet. | A source-backed detected-class measure family with detector-refinement residuals under tolerance on the same carrier. |
@@ -147,7 +147,7 @@ This layer is a score-neutral method map for the elastic-scattering shard. It do
 
 This layer is score-neutral. It maps the resonance-width comparison terms to one finite-window metastable-branch readout. It does not make the charged-pion probes accepted retained evidence; it only states which geometric rows must be shared before any width, lifetime, or branching comparison can count.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Central energy $E_0$ | Retained metastable branch energy or exposed mass response on the finite branch window. | Parent `W`, `Phi_T`, $\mu_{*,T}$, `Q`, and branch-energy/stability row once available. | Same metastable branch window, same transition map, same finite measure, and same quotient later used by the corridor family. | A fitted resonance-center row without retained branch-energy support remains a comparison label, not a native branch readout. | One source-backed retained metastable `W` row with branch identity, support, transition map, and finite measure bound to the later corridor rows. |
 | Width $\Gamma$ | Total first-exit escape/dephasing rate from admissible corridor measures before detector pushforward. | Corridor family `C`, `corridorSemantics`, and positive escape measures. | Same basin id, boundary id, first-exit map id, pre-detector corridor measures, and no-hidden-retune witness. | `missing_positive_escape_measure` and `missing_first_exit_corridor_semantics` block fitted-width imports without positive pre-detector escape corridors. | A source-backed corridor family whose `exitCorridors` are first-exit boundary components with positive pre-detector measures on the same carrier. |
@@ -252,7 +252,7 @@ The first accepted-looking source-missing control is [finite-window-statistical-
 
 The coordination-source control is [finite-window-statistical-carrier-eq30-elastic-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/finite-window-statistical-carrier-eq30-elastic-coordination-source-negative-control.v1.json). It marks the same finite-window carrier rows as accepted-looking and numerically passing, but points `W` at this coordination map. The checker must still stop at `missing_accepted_W`, now with `reason: accepted_without_evidence_source`, `sourceReferenceExists=true`, and `sourceEvidenceReferenceExists=false`.
 
-## Fail-Closed Controls
+## Verification Required for Advancement Controls
 
 | Control | Expected failure |
 | --- | --- |

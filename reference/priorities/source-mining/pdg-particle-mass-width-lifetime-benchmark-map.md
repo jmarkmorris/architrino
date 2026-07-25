@@ -90,7 +90,7 @@ Observed particle values may enter only after the native branch, exposure, shiel
 
 ## Direct Geometry Layer Use
 
-This packet does not advance a retained geometry by itself. It supplies benchmark rows that fail closed until the upstream carrier exists:
+This packet does not advance a retained geometry by itself. It supplies benchmark rows that do not advance until the upstream carrier exists:
 
 | Recovery target | Required retained carrier before acceptance |
 | --- | --- |

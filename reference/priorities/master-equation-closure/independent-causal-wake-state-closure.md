@@ -29,7 +29,7 @@ surface resolution, a coupling or maturity variable, scalar wake energy, vector
 wake momentum, and explicit boundary flux as the smallest necessary state class.
 It also proves that the current primitives do not select the coincident-birth
 maturity law, the motion-account functions, an emission capacity, or a
-reception transfer. The route therefore remains fail closed until one new
+reception transfer. The route therefore remains not advanced until one new
 Architrino-native construction supplies all four together.
 
 ## Regular Kinematic Substate Result
@@ -176,4 +176,4 @@ Promotion requires an independent derivation or reference calculation for the
 regular control, the coincident transition, and all three accounts. Agreement
 between two implementations of the same assumed update checks implementation
 parity only. Until these gates pass, this packet remains priority-only and the
-EOM solver must continue to fail closed at the unsupported coincident event.
+EOM solver must continue not to advance at the unsupported coincident event.

@@ -20,7 +20,7 @@
 
 This packet defines the answer-engine and source-authority contract for the future Archie question service.
 
-The Answer Artifact Manifest defines where source context, claim context, and answer text live. The manifest service contracts define how service boundaries return validated manifests. The source ingestion and retrieval context contract defines how source records, routes, freshness, source chips, and exclusions become `source_context`. This packet defines the answer-engine decision rule for choosing from that validated context, assigning claim labels, building answer text, and failing closed when the request exceeds source support.
+The Answer Artifact Manifest defines where source context, claim context, and answer text live. The manifest service contracts define how service boundaries return validated manifests. The source ingestion and retrieval context contract defines how source records, routes, freshness, source chips, and exclusions become `source_context`. This packet defines the answer-engine decision rule for choosing from that validated context, assigning claim labels, building answer text, and not advancing when the request exceeds source support.
 
 It is not runtime code. It is the contract a future implementation should encode in retrieval prompts, source-ranking logic, answer-engine tests, unsupported-answer fixtures, and source-chip rendering tests.
 
@@ -176,7 +176,7 @@ The future implementation should include answer-engine fixtures for:
 | `engine-priority-visible-001` | Priority-only answer is labeled `priority-only` when development-status material is enabled. |
 | `engine-app-diagnostic-001` | App visual/control answer receives `app diagnostic` label and no proof implication. |
 | `engine-external-compare-001` | Prior-physics comparison separates external source, local claim, recovery target, and open burden. |
-| `engine-unsupported-001` | Unsupported proof claim returns fail-closed answer body and nearest supported route. |
+| `engine-unsupported-001` | Unsupported proof claim returns answer body with a Not advanced disposition and nearest supported route. |
 | `engine-missing-route-001` | Missing source route is reported rather than replaced by model memory. |
 | `engine-tex-preserve-001` | User/source TeX is preserved in `display_text` and `verbatim_segments`. |
 | `engine-issue-triage-001` | Idea triage outputs category, duplicate keys, owner lane, claim label, and smallest next artifact. |

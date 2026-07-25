@@ -325,7 +325,7 @@ node scripts/quantum/source-measure-local-response-replay.mjs \
 
 On the current generated joint-basin candidate, the expected replay status is `failure_boundary_missing_local_response`: $\Delta_{\mathrm{par}}=1/\sqrt{2}$ remains visible, but no completed local one-wing response signs or local record residuals have been supplied.
 
-The fail-closed local-response adapter is:
+The local-response adapter requiring verification before advancement is:
 
 ```text
 node scripts/quantum/local-response-contract-adapter.mjs \
@@ -350,7 +350,7 @@ node scripts/quantum/local-response-contract-adapter.mjs \
 
 This emitter is intentionally narrower than the adapter. It emits `local_response_rows` only from explicit local Stern-Gerlach apparatus response inputs with `G_rec`, a nonzero signed `Q_m` or `mathcal_Q_m`, `theta_rec_fraction`, `setting_axis`, `Z_in_id`, `record_window_id`, an accepted `response_source`, and same-window residuals. It refuses `correlation_interval`, `eta_AB_interval`, Bell target tables, context probability tables, and separatrix-zero rows. Its stable blocker codes are `sg-response-row-missing`, `source-record-id-missing`, `party-missing`, `setting-missing`, `response-source-not-accepted`, `forbidden-bell-threshold-source`, `apparatus-kernel-missing`, `setting-axis-missing`, `z-in-missing`, `record-window-missing`, `record-gate-missing`, `signed-response-functional-missing`, `signed-response-separatrix-zero`, `record-cycle-phase-missing`, `local-record-residuals-missing`, `residual-window-missing`, `residual-window-mismatch`, `delta-rec-missing`, `delta-div-missing`, `entropy-locking-missing`, `event-ledger-missing`, and `sg-response-duplicate-row`.
 
-The fail-closed apparatus-window extractor upstream of that emitter is:
+The apparatus-window extractor requiring verification before advancement upstream of that emitter is:
 
 ```text
 node scripts/quantum/stern-gerlach-apparatus-window-source-emitter.mjs \
@@ -435,7 +435,7 @@ node scripts/mass-map/a0-tier1-one-period-continuation-prototype.mjs \
   --out /tmp/a0-tier1-one-period-continuation-prototype-fold-lock.json
 ```
 
-On the compact Tier 0 fixture this run classifies the first self-root surplus as `fold-layer` at step `276` with `dynamics_step_fraction=0.0009765625`, surplus keys `I+|I+|self|active` and `I-|I-|self|active`, and an event horizon fraction `0.00002386388014033042`. The event-local `direct-root-fold-layer-lock` is `ready`. The raw controller lowers the estimate from `46247370` to `11561729` direct-root steps per period, and the raw fold-layer-lock event estimate is `11565597`, still about `11.56` times the current direct attempt cap. The fold-layer-locked integrator seed then compresses the locked event work into `41905` locked events with `276` retained direct-root steps per event, selects macro stride `12`, and the one-period intake reports `ready_for_fold_layer_locked_one_period_attempt` with `estimated_steps_for_one_period=963815` under the current `1000000` cap. This is an attempt-budget milestone only, not accepted Tier 1 history: residual closure, no secular center drift, `Delta_k_positive`, and same-branch persistence across the eta ladder remain uncomputed and fail-closed. The accepted-history writer remains correctly blocked at `blocked_tier1_acceptance_incomplete`; the remaining acceptance blockers are `status_is_accepted_history_segment`, `source_row_identity_matches` because the compact fixture lacks `z_lambda`, `residuals_below_tolerance`, `no_secular_center_drift`, `Delta_k_positive`, and `same_branch_persists_across_eta_ladder`. Feeding that writer output into the apparatus-window source emitter gives the live missing-field set: `accepted-history-status-missing`, missing local apparatus target metadata (`party`, `setting`, `apparatus_kernel_id`, `setting_axis`, `Z_in_id`, `record_window_id`), missing response-functional source (`Sigma_m_in`, `Lambda_m_in_out`, sample `N_m`, and `Jdot_app` or computable torque terms), missing `record_gate`, missing `record_cycle`, and missing same-window residuals.
+On the compact Tier 0 fixture this run classifies the first self-root surplus as `fold-layer` at step `276` with `dynamics_step_fraction=0.0009765625`, surplus keys `I+|I+|self|active` and `I-|I-|self|active`, and an event horizon fraction `0.00002386388014033042`. The event-local `direct-root-fold-layer-lock` is `ready`. The raw controller lowers the estimate from `46247370` to `11561729` direct-root steps per period, and the raw fold-layer-lock event estimate is `11565597`, still about `11.56` times the current direct attempt cap. The fold-layer-locked integrator seed then compresses the locked event work into `41905` locked events with `276` retained direct-root steps per event, selects macro stride `12`, and the one-period intake reports `ready_for_fold_layer_locked_one_period_attempt` with `estimated_steps_for_one_period=963815` under the current `1000000` cap. This is an attempt-budget milestone only, not accepted Tier 1 history: verification remains incomplete because residual closure, no secular center drift, `Delta_k_positive`, and same-branch persistence across the eta ladder remain uncomputed. The accepted-history writer remains correctly blocked at `blocked_tier1_acceptance_incomplete`; the remaining acceptance blockers are `status_is_accepted_history_segment`, `source_row_identity_matches` because the compact fixture lacks `z_lambda`, `residuals_below_tolerance`, `no_secular_center_drift`, `Delta_k_positive`, and `same_branch_persists_across_eta_ladder`. Feeding that writer output into the apparatus-window source emitter gives the live missing-field set: `accepted-history-status-missing`, missing local apparatus target metadata (`party`, `setting`, `apparatus_kernel_id`, `setting_axis`, `Z_in_id`, `record_window_id`), missing response-functional source (`Sigma_m_in`, `Lambda_m_in_out`, sample `N_m`, and `Jdot_app` or computable torque terms), missing `record_gate`, missing `record_cycle`, and missing same-window residuals.
 
 The next minimal quantum-side producer remains a data artifact, not another Bell-table fixture, but it is blocked on the upstream fold-layer-locked Tier 1 continuation emitting a real `accepted_history_segment`. Once that exists, pair one accepted-history row with an apparatus target overlay and a response-functional source. The required row shape is
 
@@ -470,7 +470,7 @@ node scripts/quantum/pair-phase-certificate-emitter.mjs \
 
 This emitter computes $Z_A^{AB}$, $Z_B^{AB}$, $\varphi_{\Pi}$, the derived $\eta_{AB}$ fraction, and the residual fields from declared diagnostic rows. It is not a Bell-family harness candidate and does not claim substrate derivation. A row with `wake_certificate_missing=1` or `certificate_status=diagnostic_declared_row` is a JSON-shape success marker only. A future positive source-measure candidate may copy this shape into `source_records` only after the same fields are filled from an accepted branch certificate and the product-screening audit remains nonzero without setting-dependent source weights.
 
-The fail-closed intake adapter is:
+The intake adapter requiring verification before advancement is:
 
 ```text
 node scripts/quantum/pair-phase-certificate-adapter.mjs \
@@ -489,7 +489,7 @@ node scripts/quantum/accepted-history-layer-phase-extractor.mjs \
   --out /tmp/accepted-history-layer-phase-extractor.json
 ```
 
-This extractor computes provisional per-layer relative vectors, reduced angular-momentum vectors, unwrapped phase samples, and plane-stability residuals from accepted-history samples. It remains fail-closed: unaccepted history rows stay blocked, and the script emits pair-phase-certificate input only when the pair-source event, daughter ledgers, substrate-derived wake phase, source weight, local record-cycle phases, and quotient-audit probes are already explicit in the input. It therefore narrows the layer phase part of $\Theta_{\ell X}^{AB}$ without claiming $\varphi_{\Pi}$, $\eta_{AB}$, or Bell-family closure.
+This extractor computes provisional per-layer relative vectors, reduced angular-momentum vectors, unwrapped phase samples, and plane-stability residuals from accepted-history samples. It remains not advanced: unaccepted history rows stay blocked, and the script emits pair-phase-certificate input only when the pair-source event, daughter ledgers, substrate-derived wake phase, source weight, local record-cycle phases, and quotient-audit probes are already explicit in the input. It therefore narrows the layer phase part of $\Theta_{\ell X}^{AB}$ without claiming $\varphi_{\Pi}$, $\eta_{AB}$, or Bell-family closure.
 
 The diagnostic residuals should be read as first filters:
 

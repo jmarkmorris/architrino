@@ -78,7 +78,7 @@ Operational signal handoff should follow [observability-public-status-incident-c
 
 Saved notebook and account history behavior should follow [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md). Private saved notes, account history, and session-local drafts are not issue-mining evidence by default.
 
-GitHub handoff notices, public-feedback-use terms, issue-mining disclosure, and support routes should follow [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md). If the GitHub handoff notice or issue-mining disclosure is missing or stale, public issue handoff and issue-mining metadata retention should fail closed.
+GitHub handoff notices, public-feedback-use terms, issue-mining disclosure, and support routes should follow [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md). If the GitHub handoff notice or issue-mining disclosure is missing or stale, public issue handoff and issue-mining metadata retention should not advance.
 
 ## Cluster Model
 

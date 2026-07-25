@@ -34,7 +34,7 @@ This file holds provisional feature ideas, performance directions, validation po
 - Compensated, pairwise, binned, or expansion reductions for many-source acceleration accumulation and reproducibility across worker counts.
 - Cross-precision shadow samples during long runs to measure whether the current fast path remains inside its declared envelope.
 - Precision-aware checkpointing that preserves representations, rounding policy, controller state, and pending escalations.
-- Explicit maximum-precision and maximum-escalation budgets with a fail-closed unresolved result rather than an unbounded computation.
+- Explicit maximum-precision and maximum-escalation budgets with a result with a Verification incomplete outcome rather than an unbounded computation.
 
 ### Language And Toolchain Candidates
 
@@ -49,7 +49,7 @@ This file holds provisional feature ideas, performance directions, validation po
 ### History And Root Handling
 
 - Per-path retained-history sufficiency checks before the run starts and during continuation.
-- Hot-history windows selected from actual causal reach, with fail-closed behavior when an omitted tail may contribute.
+- Hot-history windows selected from actual causal reach, with behavior for a Not advanced disposition when an omitted tail may contribute.
 - Root identity continuation between steps to reduce search cost without hiding births or missing additional roots.
 - Exhaustive fallback scans that periodically verify accelerated/indexed root search.
 - Separate active, inactive-gap, unresolved, caustic, and excluded-coincidence rows.

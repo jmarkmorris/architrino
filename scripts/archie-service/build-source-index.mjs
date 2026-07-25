@@ -105,7 +105,7 @@ if (failures.length > 0) {
 
 const action = mode === "--write" ? "write passed" : "check passed";
 console.log(
-  `Archie source-index ${action}: ${snapshot.snapshotId}, ${snapshot.views.search.records.length} source record(s), ${snapshot.views.graph.edges.length} graph edge(s), ${snapshot.views.metadata.records.length} metadata record(s), ${negativeSuite.cases.length} fail-closed case(s), sha256 ${snapshot.snapshotSha256}`
+  `Archie source-index ${action}: ${snapshot.snapshotId}, ${snapshot.views.search.records.length} source record(s), ${snapshot.views.graph.edges.length} graph edge(s), ${snapshot.views.metadata.records.length} metadata record(s), ${negativeSuite.cases.length} case(s) with a Not advanced disposition, sha256 ${snapshot.snapshotSha256}`
 );
 
 function validateNegativeCases({ input: baseInput, snapshot: baseSnapshot, negativeSuite: suite }) {

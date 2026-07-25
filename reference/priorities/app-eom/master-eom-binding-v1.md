@@ -13,6 +13,8 @@
 - Canonical document: [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md)
 - Source snapshot SHA-256: `9ec3045d316bcbcc60dc3e61fcfaad4642b83af857024856f6684364ef7cab4d`
 
+The two `fail-closed` labels above are retained binding values. In current human-facing terminology, verification is incomplete for both unresolved singular-event classes and their disposition is not advanced.
+
 ## Scope
 
 This binding defines the current acceleration multiplier, causal-root equation,
@@ -146,8 +148,8 @@ The transmitter-side correction does not weaken any singular-event gate.
 | Ordinary interior transmitter-side fold with positive separation | Route through the existing certified finite-width regulator ladder and accept only a finite, regulator-stable impulse and position moment. |
 | Receiver-side playback turn $D_r=0$, $D_t\ne0$ | Keep the root active, record signed playback through zero, and evaluate the ordinary transmitter-side acceleration. |
 | Coincident same-transmitter root birth | Return `coincident_same_transmitter_birth_uncertified`; do not publish the candidate path segment. |
-| Simultaneous transmitter-side-factor and core-kernel failure | Fail closed. |
-| Cusp, higher stratum, persistent $D_t=0$, or regulator-dependent transition | Fail closed with the existing uncertified-event route. |
+| Simultaneous transmitter-side-factor and core-kernel failure | Do not advance. |
+| Cusp, higher stratum, persistent $D_t=0$, or regulator-dependent transition | Verification incomplete under the existing uncertified-event route. |
 | Retained-history boundary contact | Return insufficient history; do not relabel it as a fold. |
 
 The coincident same-transmitter rule is required by the exact quadratic control
@@ -181,7 +183,7 @@ Promotion requires all of the following:
    of receiver velocity at fixed geometry.
 4. Sharp/finite-width common-domain convergence using independently authored
    reference-kernel mathematics.
-5. Exact coincident-birth asymptotic above, which must remain fail-closed.
+5. Exact coincident-birth asymptotic above, which must remain not advanced.
 
 C++/Python parity checks implementations. It does not by itself prove the law;
 the stationary-transmitter and quadratic-history controls supply the independent
@@ -193,4 +195,4 @@ This binding does not establish a finite accepted coincident same-transmitter
 transition, global same-transmitter continuation, or closed energy, momentum, and
 angular momentum. Those remain promotion gates for the wider wake-state and
 action program. They do not block the scoped receiver-factor correction because
-the v1 solver fails closed at the unresolved transition.
+the v1 solver does not advance at the unresolved transition.

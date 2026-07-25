@@ -22,6 +22,59 @@
 <li>When a sentence still blurs levels, rewrite it so ontology, effective bookkeeping, and comparative language are explicitly separated.</li>
 <li>Pay special attention to recurring confusion pairs such as <code>spacetime</code> versus <code>Euclidean void</code> / <code>absolute timespace</code>, and <code>shell</code> versus <code>layer</code>, because those often hide constitutive ambiguity rather than harmless style variation.</li>
 </ul>
+<h2 id="verification-and-advancement-usage">Verification and Advancement Usage</h2>
+<p>Use verification language that separates policy, verification outcome, and advancement disposition. The terms below preserve the conservative behavior without making a temporary or input-dependent state sound permanent.</p>
+<table>
+<thead>
+<tr>
+<th>When you mean…</th>
+<th>Prefer</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a policy or process requires verification before an item may move forward</td>
+<td><code>Verification required for advancement</code></td>
+<td>Use only for the policy. Do not use it as an outcome or status.</td>
+</tr>
+<tr>
+<td>a required verification completed and met its declared conditions</td>
+<td><code>Verification passed</code></td>
+<td>Name the completed check and its declared acceptance conditions when useful.</td>
+</tr>
+<tr>
+<td>a required verification ran and did not meet its declared conditions</td>
+<td><code>Verification failed</code></td>
+<td>Name the check and its failure witness when available.</td>
+</tr>
+<tr>
+<td>a required verification could not be completed because an input, inventory, evidence source, authority, or convergence condition is missing or unresolved</td>
+<td><code>Verification incomplete</code></td>
+<td>Name the missing or unresolved requirement and the exact place to inspect or rerun.</td>
+</tr>
+<tr>
+<td>a verification does not apply to the item or claim under review</td>
+<td><code>Verification not applicable</code></td>
+<td>Name the scope reason; do not use this outcome merely because verification was skipped or unavailable.</td>
+</tr>
+<tr>
+<td>the item moves forward or does not move forward</td>
+<td><code>Advanced</code> or <code>Not advanced</code></td>
+<td>State the disposition separately from the verification outcome. Use <code>Not advanced</code> as the umbrella disposition when the narrower cause is mixed, unknown, or not important to the sentence.</td>
+</tr>
+</tbody>
+</table>
+<p>Do not substitute <code>Verification failed</code> for a missing-input case. A checker may run successfully and correctly report that the subject’s verification is incomplete. Conversely, do not call a completed tolerance miss or contradiction incomplete merely because the item can be revised and tried again. <code>Verification passed</code> does not by itself mean <code>Advanced</code>: other required verifications or advancement conditions may remain.</p>
+<p>Sentence guidance:</p>
+<ul>
+<li>Prefer: “The required residual check ran. Verification failed at the declared tolerance, so the candidate was not advanced.”</li>
+<li>Prefer: “Verification is incomplete because the retained root inventory is missing. The candidate was not advanced.”</li>
+<li>Prefer: “Verification passed for the declared residual check, but the candidate was not advanced because the independent-reference check remains incomplete.”</li>
+<li>Prefer: “Verification is not applicable to the display-only camera transform because it does not affect solver values or evidence.”</li>
+<li>Prefer: “Verification is required for advancement: unresolved evidence cannot be promoted.”</li>
+<li>Preserve machine-readable legacy values, external protocol strings, hashes, retained fixtures, and compatibility fields exactly when changing them would break a contract or invalidate provenance. Explain their current meaning at the nearest human-facing surface instead of silently relabeling the stored value.</li>
+</ul>
 <h2 id="ledger-ledger-entry-and-record-usage">Ledger, Ledger Entry, and Record Usage</h2>
 <p>Use <code>ledger</code> for the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">A</mi><mi mathvariant="double-struck">A</mi><mi mathvariant="double-struck">A</mi></mrow><annotation encoding="application/x-tex">\mathbb{A}\mathbb{A}\mathbb{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">AAA</span></span></span></span> accounting structure that keeps related readouts, sources, carriers, and response terms tied together. A ledger is not just a data table; it is the named bookkeeping structure that lets the theory say which quantities belong to the same retained causal history or Noether sea response.</p>
 <p>Use <code>ledger entry</code> for a specific channel inside that shared accounting structure. Avoid <code>row</code> in reader-facing prose unless the word literally means a table row or layout row. In explanatory app language, name the entry, contribution, record, or channel directly.</p>

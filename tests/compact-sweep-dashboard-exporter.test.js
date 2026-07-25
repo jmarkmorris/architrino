@@ -223,7 +223,7 @@ test("writer confines generated dashboard data to .local-data", () => {
   }
 });
 
-test("exporter fails closed on malformed, non-terminal, mismatched, and unsupported receipts", () => {
+test("exporter does not advance on malformed, non-terminal, mismatched, and unsupported receipts", () => {
   const testFixture = fixture();
   try {
     const validAnalyzer = JSON.parse(

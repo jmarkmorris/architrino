@@ -93,7 +93,7 @@ Cluster census over time with composition ledger ($k{:}m$ mixes, e.g.
 2:2), cluster lifetimes, boundedness of mean separation, per-cluster charge
 and angular-momentum ledgers, escaper speed histogram (speed-attractor
 bearing), pair-distance minima (collision diagnostics), root-certification
-health (fail-closed events), and approach-to-pin statistics.
+health (events with a Verification incomplete outcome), and approach-to-pin statistics.
 
 ## Standing constraints and cost rules
 

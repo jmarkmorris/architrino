@@ -35,7 +35,7 @@ for (const testCase of negativeSuite.cases) {
 }
 
 process.stdout.write(
-  `Architrino MCP remote deployment contract passed: fixture-only, remote-ready=false, ${negativeSuite.cases.length} fail-closed case(s)\n`
+  `Architrino MCP remote deployment contract passed: fixture-only, remote-ready=false, ${negativeSuite.cases.length} case(s) with a Not advanced disposition\n`
 );
 
 function readJson(relativePath) {

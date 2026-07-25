@@ -39,7 +39,7 @@ The service should split responsibilities across five deployment boundaries:
 | Boundary | Primary responsibility | Launch invariant |
 | --- | --- | --- |
 | `static_public_site` | Serve current public site, Archie sphere, System Card, corpus routes, app routes, Legal Terms, and service entry link. | No provider credentials, token authority, account state, private logs, or direct model calls. |
-| `browser_conversation_client` | Render the conversation UI, source chips, claim labels, token wallet display, audio playback, visual artifacts, issue previews, and confirmation dialogs. | Render only validated manifests or fail-closed states returned by the service. |
+| `browser_conversation_client` | Render the conversation UI, source chips, claim labels, token wallet display, audio playback, visual artifacts, issue previews, and confirmation dialogs. | Render only validated manifests or not advanced states returned by the service. |
 | `service_api` | Own request gateway, provider registry, source retrieval, answer orchestration, manifest validation, token ledger, terms policy, privacy/audit, action broker, notebook drafts, and public-safe status. | Every endpoint returns a validated Answer Artifact Manifest or manifest-shaped refusal. |
 | `background_jobs` | Build source records, refresh source indexes, mine public issues, reconcile token/provider costs, aggregate public status, and prepare incident/change-history records. | Jobs produce versioned artifacts and safe summaries; they do not publish answer claims directly. |
 | `external_services` | Provide model, speech, generated image, moderation, embedding/rerank, payment, GitHub, auth, storage, and monitoring capabilities behind service adapters. | External providers never own source authority, proof status, token policy, action confirmation, or public issue-mining conclusions. |
@@ -169,7 +169,7 @@ The existing repository content-integrity gate remains necessary for the static 
 14. staging smoke test;
 15. rollback smoke test.
 
-The pipeline should fail closed when any gate cannot determine whether private prompts, provider secrets, token authority, source authority, action side effects, or public status are safe.
+The pipeline should not advance when any gate cannot determine whether private prompts, provider secrets, token authority, source authority, action side effects, or public status are safe.
 
 ## Rollback And Incident Response
 
@@ -194,7 +194,7 @@ Before public beta, staging must pass these smoke tests:
 | --- | --- |
 | `deploy-static-entry-001` | Public site links to the service entry and Legal Terms without embedding service secrets. |
 | `deploy-answer-text-001` | Staging returns a validated text Answer Artifact Manifest from a source-backed question. |
-| `deploy-unsupported-001` | Unsupported claim returns a fail-closed manifest with nearest supported route or open burden. |
+| `deploy-unsupported-001` | Unsupported claim returns a manifest for a Not advanced disposition with nearest supported route or open burden. |
 | `deploy-source-index-001` | Active source-index snapshot records repository ref, generated artifact refs, source counts, freshness, and rollback parent. |
 | `deploy-provider-registry-001` | Public provider capability endpoint returns product capability ids and health/fallback state without secrets. |
 | `deploy-token-receipt-001` | Token estimate, hold, charge, refund, cap status, and receipt are server-authoritative and omit private prompt text. |
@@ -202,7 +202,7 @@ Before public beta, staging must pass these smoke tests:
 | `deploy-visual-policy-001` | Generated visual request inherits source/claim context and refuses proof-inflating media. |
 | `deploy-issue-handoff-001` | Issue draft shows public/GitHub-login warning and requires confirmation before handoff. |
 | `deploy-action-unconfirmed-001` | Unconfirmed public, durable, paid, retained, or credentialed action performs no side effect. |
-| `deploy-service-terms-001` | Paid, durable, public, retained, generated-media, and credentialed features fail closed when terms are missing or stale. |
+| `deploy-service-terms-001` | Paid, durable, public, retained, generated-media, and credentialed features do not advance when terms are missing or stale. |
 | `deploy-public-status-001` | Public status reports product-level degradation without provider secrets, account ids, private prompt text, raw logs, or private saved notes. |
 | `deploy-secret-scan-001` | Browser bundle and static output contain no provider, GitHub, payment, database, signing, or monitoring secrets. |
 | `deploy-rollback-001` | Staging rollback restores prior service code and compatible source-index snapshot. |

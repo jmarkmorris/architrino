@@ -63,7 +63,7 @@ The accepted `Theta_src` row must be one source-window record with:
 
 ## Direct Geometry Layer
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Source-window identity for BBN, CMB, growth, and RAR rows | $\Theta_{\mathrm{src}}(W_{\mathrm{src}})$ as one finite source-window readout, not four fitted observation summaries | `theta_src`, with parent `theta_obs` now accepted in the provider-backed consumer route | One `W_src`, event-ledger id, source-window id, and no-hidden-retune witness across BBN, CMB, growth, and RAR projections | `cosmology.source_window_split` | [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json), with accepted `theta_obs`, `theta_src`, readout, thermal/provenance, galaxy, event-ledger, and no-hidden-retune rows. |
 | BBN source terms: $T_\theta(t)$, $\rho_\theta(t)$, $\eta$, $N_{\text{eff}}$, and $Y_p$ | Thermal/source-window ledger values produced inside `Theta_src`, then consumed by the BBN projection | `theta_src` plus `thermal_provenance_ledger` and the `BBN` projection row | Same `W_src`, thermal-provenance id, and event ledger as the CMB photon-loading route | `cosmology.blackbody_yield_split` | Accepted `BBN` projection and shared-key rows under the provider-backed shared-observation evidence object; predictive BBN child rows remain downstream. |
@@ -72,7 +72,7 @@ The accepted `Theta_src` row must be one source-window record with:
 | Low-acceleration galaxy response terms | Boundary readout `theta_gal` consumes `theta_sea_rho_NS` and `delta_a_star`; it cannot be imported from `Theta_src` alone | `theta_gal`, `theta_sea_rho_NS`, and `delta_a_star` | Same readout handoff and source-window provenance as the shared observation record, plus the accepted output-projection carrier | `cosmology.galaxy_response_leakage` | Accepted `delta_a_star` output projection plus accepted `RAR` projection under the provider-backed shared-observation evidence object, with accepted score-neutral galaxy-response child evidence in [eq32-galaxy-response-child-evidence.v1.json](../../../scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json). |
 | Source provenance and no-hidden-retune term | Retained-source witness `S_retune` proving BBN, CMB, growth, and galaxy routes did not choose separate source windows or private readout clocks | `no_hidden_retune_witness`, `event_ledger`, and all accepted shared-key rows | One source path class accepted by the checker, one event ledger, one `W_src`, and one transformation ledger across all rows | All four controls above, plus checker rejection of coordination, authored-prose, generated, attempt, mock, probe, and negative-control sources | Durable non-priority evidence source with explicit `theta_src` support metadata and same-record ids for every accepted shared-observation row. |
 
-## Fail-Closed Controls
+## Verification Required for Advancement Controls
 
 | Control | Expected failure |
 | --- | --- |

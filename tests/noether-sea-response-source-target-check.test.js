@@ -78,7 +78,7 @@ test("current Noether sea provider accepts Fe/Ni toy response rows", () => {
   );
 });
 
-test("Noether sea checker fails closed when acoustic-elastic agreement drifts", () => {
+test("Noether sea checker does not advance when acoustic-elastic agreement drifts", () => {
   const target = readTarget();
   target.acousticElasticAgreement.C1111_X = 1;
 
@@ -99,7 +99,7 @@ test("Noether sea checker fails closed when acoustic-elastic agreement drifts", 
   ]);
 });
 
-test("Noether sea checker fails closed when a toy-bound row is not accepted", () => {
+test("Noether sea checker does not advance when a toy-bound row is not accepted", () => {
   const target = readTarget();
   target.responseRows.stress_strain_row.status = "attempt";
 

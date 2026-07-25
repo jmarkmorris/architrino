@@ -30,7 +30,7 @@ No score changes.
 | Exact first blocker | Accepted route: `nextBlocker=null`; attempt and coordination-source routes still block at `missing_accepted_theta_W`. |
 | Existing scripts/fixtures/packets found | The weak-field checker, attempt fixture, accepted evidence/input, coordination-source control, and the parent effective-metric/cosmology packet. The consolidated weak-field audit established that passing arithmetic on attempt rows is score-neutral; score review requires one source-backed `theta_W` carrying the full same-carrier weak-field row set and zero-retune witness. |
 | Candidate breakthrough angle | Use `EQ-10` as the variational consistency consumer: once `EQ-07` through `EQ-09` supply a single metric projection, `EQ-10` should ask whether the same record also makes the null/eikonal and action-to-acceleration residuals vanish, rather than introducing a separate geodesic fit. |
-| Fail-closed negative control | `scalar_delay_half_lensing`: a scalar-delay-only fixture can match Shapiro or acceleration while missing the spatial-compliance half of light bending, so it must fail before `EQ-10` geodesic action can be reviewed. |
+| Negative control required for advancement | `scalar_delay_half_lensing`: a scalar-delay-only fixture can match Shapiro or acceleration while missing the spatial-compliance half of light bending, so it must fail before `EQ-10` geodesic action can be reviewed. |
 | Smaller next action | Carry the accepted `theta_W` report into growth, CMB, and broader low-acceleration no-retune consumers while keeping attempt, coordination-source, and generic durable sources rejected. |
 
 ## Accepted-Object Contract
@@ -73,7 +73,7 @@ Required rows on one `commonCarrierId`:
 
 ## Direct Geometry Layer
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Weak-field carrier identity | `theta_W` retained weak-field record, not a geodesic-only or PPN-only fit | `theta_W` | Same `commonCarrierId`, retained window, source path, Noether sea cell, constitutive response, and metric projection across `EQ-07` through `EQ-10` | Coordination-source guard; `hidden_metric_retune` | [effective-metric-theta-w-evidence.v1.json](../../../scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json), with explicit support for `EQ-07` through `EQ-10` and accepted row bindings. |
 | Noether sea constitutive response | Shared response vector/tensor producing lapse, drift, spatial compliance, signal delay, cadence, and PPN coefficients | `noether_sea_cell`, `constitutive_response`, `metric_projection` | Same Noether sea cell, response coefficients, metric projection, and carrier id as all weak-field observables | `hidden_metric_retune`; `clock_signal_split` | Accepted response/metric rows that feed clock, signal, spatial, acceleration, PPN, null/eikonal, and geodesic rows without per-observable changes. |
@@ -83,7 +83,7 @@ Required rows on one `commonCarrierId`:
 | Proper-time/geodesic action comparison | `EQ-10` geodesic-action residual from the same clock, ruler, matter, and signal record | `geodesic_action_row` | Same weak-clock, metric projection, acceleration row, matter/ruler support, source provenance, and no-hidden-retune witness | `scalar_delay_half_lensing`; `hidden_metric_retune` | Accepted geodesic-action row whose action-to-acceleration residual is bound to the accepted `theta_W` carrier. |
 | Source provenance and no-hidden-retune witness | Retained-source witness proving no observable chooses a private metric coefficient or response row | `source_provenance`, `no_hidden_retune_witness`, shared-key rows | Same source report, carrier id, Noether sea cell, response coefficients, $\chi_{\text{sea}}$, $\Gamma_N$, $\gamma_{\mathrm{PPN}}$, and metric coefficients across all rows | Coordination-source guard; `hidden_metric_retune` | Populated weak-field packet with all required rows accepted from durable retained evidence. |
 
-## Fail-Closed Controls
+## Verification Required for Advancement Controls
 
 Keep the existing four controls as first-line guards:
 

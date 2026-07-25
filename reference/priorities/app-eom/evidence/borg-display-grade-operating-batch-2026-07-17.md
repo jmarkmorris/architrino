@@ -103,7 +103,7 @@ running hundreds of keyframes ahead while paused.
 
 A 512-path display control selected 256 electrinos and 256 positrinos. Playback
 automatically reported `0.20× realtime` and advanced continuously through the
-available 120 keyframes. The fifth request failed closed before publication as
+available 120 keyframes. The fifth request was not advanced before publication as
 `memory_budget_exhausted`; four chunks through solver time `1.2` remained the
 last accepted output. This validates slow-motion pacing but also confirms that
 the separate 64 MiB retained-history budget, rather than playback throughput,

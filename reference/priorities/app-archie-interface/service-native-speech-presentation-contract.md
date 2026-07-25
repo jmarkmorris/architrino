@@ -89,7 +89,7 @@ The following are deferred until separate policy and implementation contracts ex
 8. real-person voice imitation;
 9. authority-implying voice identity.
 
-Deferred surfaces should fail closed or return a compliant script/storyboard alternative.
+Deferred surfaces should not advance or return a compliant script/storyboard alternative.
 
 ## Speech Source Text
 
@@ -207,9 +207,9 @@ Required:
 
 Voice-selection and speed controls may be useful later, but they are not V1 launch requirements.
 
-## Fail-Closed Behavior
+## Verification Required for Advancement
 
-Speech and presentation should fail closed when:
+Speech and presentation should not advance when:
 
 1. high-quality speech is unavailable;
 2. synchronized displayed text is unavailable;
@@ -221,7 +221,7 @@ Speech and presentation should fail closed when:
 8. requested artifact implies proof, endorsement, or authority;
 9. requested artifact requires deferred avatar, persona, or video support.
 
-Fail-closed behavior should return text-only display, narration script, storyboard plan, or refusal as appropriate, with no low-quality speech fallback.
+Behavior for a Not advanced disposition should return text-only display, narration script, storyboard plan, or refusal as appropriate, with no low-quality speech fallback.
 
 ## Regression Fixtures
 

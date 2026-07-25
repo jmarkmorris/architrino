@@ -141,7 +141,7 @@ unless a separate native derivation or independent measurement is named.
 | Effective-limit concept | Guessed if promoted to substrate ontology | Inferred after coarse-graining, domain, and residual are controlled | Measured only for the underlying record; the interpretation remains inferred |
 | Directional comparison | Guessed | Guessed, or inferred only as a comparative constraint | Measured only when a separate benchmark record is named |
 
-The mechanical audit is fail-closed: a lower-layer claim cannot inherit the
+The mechanical audit requires verification before advancement: a lower-layer claim cannot inherit the
 grade of a higher-layer success. A measured spectrum is still only a measured
 spectrum; the proposed substrate mechanism beneath it remains inferred or
 guessed until an independent native prediction closes the projection and

@@ -61,7 +61,7 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   fold windows pending the root-completeness extension, prescribed-orbit-as-
   evolution, toy laws, sampled-only state, canonical claims pre-acceptance-gate);
   the per-campaign booking checklist; and §4 finalizing `assembly-view-record.v0`
-  (segments authoritative, samples display-only, claim-grade enum fail-closed).
+  (segments authoritative, samples display-only, and the claim-grade enum requires verification before advancement).
 - Schema adopted in code the same day (measured — suites named below green):
   the shared display adapter `src/apps/shared/EomHistoryDataset.mjs` ingests
   `assembly-view-record.v0` alongside `eom_evolution_contract/v0`, so Borg
@@ -83,7 +83,7 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   are display-only. The gate as a whole remains DRAFT pending ratification of
   the charter set.
 
-## 2026-07-16 — EOM path-provenance audit failed closed before Campaign 1
+## 2026-07-16 — EOM path-provenance audit was not advanced before Campaign 1
 
 - Completed the requested source sweep across `src/eom`, `scripts/eom`, the
   shared history display adapter, `src/prescribed-path-analysis`, and the Python

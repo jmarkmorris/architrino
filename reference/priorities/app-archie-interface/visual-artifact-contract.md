@@ -153,9 +153,9 @@ They must refuse or reshape requests involving:
 6. public-unsuitable, humiliating, harassing, or exploitative content;
 7. regulated-risk instruction framed as Architrino advice.
 
-## Fail-Closed Behavior
+## Verification Required for Advancement
 
-Visual artifacts should fail closed when:
+Visual artifacts should not advance when:
 
 1. source context is missing;
 2. claim context is missing;
@@ -167,7 +167,7 @@ Visual artifacts should fail closed when:
 8. the request needs user-uploaded media intake that V1 does not support;
 9. publication use is requested without human-review state.
 
-Fail-closed behavior should return a text answer, source route, diagram spec, or compliant lower-risk visual alternative.
+Behavior for a Not advanced disposition should return a text answer, source route, diagram spec, or compliant lower-risk visual alternative.
 
 ## Regression Fixtures
 

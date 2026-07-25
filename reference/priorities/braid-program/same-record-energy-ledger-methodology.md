@@ -557,7 +557,7 @@ The triangle inequality gives $0\le\eta_{\mathcal W,\mathrm{flux}}\le1$. The raw
 
 Current status: implemented analytical diagnostic. It is added alongside $\mathcal W$, $\mathcal W_{\mathrm{abs}}$, and $\eta_{\mathrm{ext}}$ rather than replacing those measures. It is linear in the causal-wake contributions and normalized by declared emission measure, whereas $\eta_{\mathrm{ext}}$ is built from squared acceleration-exposure norms. Neither is energy.
 
-Falsifiers: reject surface invariance if the raw cycle row changes across enclosing radii after root, history, time, and surface-quadrature refinement; reject the shell identity if the measured two-surface difference disagrees with the independently integrated shell-storage derivative; fail closed when a source crosses a surface, the surface moves, retained history is incomplete, a root or fold is unresolved, or a nonconvex surface lacks an oriented multiple-crossing policy.
+Falsifiers: reject surface invariance if the raw cycle row changes across enclosing radii after root, history, time, and surface-quadrature refinement; reject the shell identity if the measured two-surface difference disagrees with the independently integrated shell-storage derivative; do not advance when a source crosses a surface, the surface moves, retained history is incomplete, a root or fold is unresolved, or a nonconvex surface lacks an oriented multiple-crossing policy.
 
 ### 5.10 Frequency-resolved causal-wake cancellation
 
@@ -601,7 +601,7 @@ $$
 
 The triangle inequality again gives a value in $[0,1]$. This coefficient-level ratio measures phase-resolved signed-wake cancellation at one temporal harmonic and angular mode. It is not spectral energy. A separate Fourier transform of the rectified trace $\int_{S_R}|\sum_a f_a|\,dA$ may be reported as a **rectified-residual spectrum**, but the absolute value creates new sum, difference, and multiple frequencies. Those components must not be misidentified as the frequencies emitted by the source paths.
 
-Current status: implemented analytical diagnostic. The streaming reducer retains transmitter-root-tagged complex normal-flux coefficients, net and raw coefficient magnitudes, $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$, per-harmonic angular-mode norms, radial-scaling rows, retained-band coverage, and primary-versus-refined convergence entries. A relative coefficient floor prevents numerical-zero channels from receiving cancellation ratios or logarithmic radial exponents. A separately authored two-source fixture fixes one harmonic at $\eta=1/3$ and another at $\eta=1$, while an untagged sample fails closed. The result remains a wake-frequency diagnostic and not spectral energy.
+Current status: implemented analytical diagnostic. The streaming reducer retains transmitter-root-tagged complex normal-flux coefficients, net and raw coefficient magnitudes, $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$, per-harmonic angular-mode norms, radial-scaling rows, retained-band coverage, and primary-versus-refined convergence entries. A relative coefficient floor prevents numerical-zero channels from receiving cancellation ratios or logarithmic radial exponents. A separately authored two-source fixture fixes one harmonic at $\eta=1/3$ and another at $\eta=1$, while an untagged sample does not advance. The result remains a wake-frequency diagnostic and not spectral energy.
 
 Falsifiers: reject a frequency row if inverse reconstruction does not recover the sampled signed normal-flux field within the declared retained-band residual, if primary and refined time grids disagree beyond tolerance, if transmitter-root tags are discarded before the raw coefficient is formed, or if a rectification-created harmonic is reported as a transmitter-emission harmonic.
 
@@ -708,7 +708,7 @@ Falsifiers:
 
 ## 8. Balance-ledger requirements
 
-| Required term | Exact source record | Derivation authority | Current implementation status | Fail-closed condition |
+| Required term | Exact source record | Derivation authority | Current implementation status | Condition required for advancement |
 | --- | --- | --- | --- | --- |
 | Source paths, velocities, polarities | Exact prescribed source or retained EOM-solver branch | Source schema or EOM-solver record | Present for prescribed sources. | Missing identity, path interval, or polarity. |
 | Receiver paths and velocities | Moving receiver record on the same identity | Source or retained branch record | Absent from canonical stationary-probe packet. | Coordinate probe substituted for an actual receiver. |
@@ -833,7 +833,7 @@ Falsifier: any apparent conservation or leakage result that disappears when $\et
 | Two-radius delayed balance | Same action and branch evaluated at $R_1<R_2$ | Difference in boundary timing is balanced by energy stored in the shell. | In-flight storage or radius synchronization is missing. |
 | Inward/outward angular split | Authored surface case with simultaneous opposite oriented sectors | Gross out and in remain nonzero while net may vanish. | $[\Phi_{\mathrm{net}}]_+$ was incorrectly used as gross transport. |
 | Self-hit case | Analytically controlled nontrivial self-root toy history | Self-hit power and action rows appear once; trivial coincidence appears zero times. | Self-interaction policy is incomplete or double counted. |
-| Missing-field negatives | Remove $D_r$, action identity, drive work, sea term, or lower bound one at a time | The corresponding power, conservation, embedded-energy, or fraction row fails closed. | Schema permits unsupported promotion. |
+| Missing-field negatives | Remove $D_r$, action identity, drive work, sea term, or lower bound one at a time | The corresponding power, conservation, embedded-energy, or fraction row does not advance. | Schema permits unsupported promotion. |
 | Gauge-shift test | Add a common constant to every allowed energy charge | Available-energy ratios remain unchanged; absolute-denominator ratios are rejected. | Fraction depends on arbitrary energy zero. |
 | Replay negative control | Replay production output through its own reducer | Reproducibility only; no correctness promotion. | Self-agreement was mistaken for independent evidence. |
 
@@ -857,7 +857,7 @@ Specify and independently test one **prescribed-path work-and-drive row** withou
 2. retain every partner root, declared self-hit status, $D_t$, $D_r$, $D_r/D_t$, $W^{\mathrm{acc}}$, line of action, and per-hit acceleration;
 3. declare one kinetic convention before evaluation;
 4. emit per-hit $\mu_K\mathbf A\cdot\mathbf V$, summed interaction power, prescribed required acceleration, incomplete-inventory status, and drive power;
-5. fail closed when any receiver, root, self-hit, environment, or kinetic row is absent; and
+5. do not advance when any receiver, root, self-hit, environment, or kinetic row is absent; and
 6. verify the static-receiver zero-work and driven-periodic balance cases with separately authored closed-form calculations.
 
 This step protects a live mathematical distinction that existing exposure gates do not test: whether an imposed path's exported work is supplied by its external prescription. It should be implemented as a separate diagnostic consumer or sibling packet so the accepted `result-packet.v1` exposure contract is not silently redefined. It still must exclude total energy, conservation, surface transport, intrinsic leakage, stability, retention, and physical realization.
@@ -878,7 +878,7 @@ Promotion target, only after those blockers close: the energy-construction stand
 
 ## 15. Ordered future-consideration sequence
 
-The following items preserve the dependency order from wake transport to a possible total-energy ledger. They are future considerations, not current implementation authority. Each item must retain one source/protocol/branch identity and fail closed when its required rows are absent. Completion of an earlier item does not promote any later item automatically.
+The following items preserve the dependency order from wake transport to a possible total-energy ledger. They are future considerations, not current implementation authority. Each item must retain one source/protocol/branch identity and not advance when its required rows are absent. Completion of an earlier item does not promote any later item automatically.
 
 ### 15.1 Instantaneous two-radius causal-wake shell balance
 

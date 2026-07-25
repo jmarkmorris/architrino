@@ -130,7 +130,7 @@ Options:
   --pretty          Pretty-print JSON output.
   --help            Show this help.
 
-This extractor is fail-closed. It emits stern_gerlach_response_rows only when
+Verification is required for advancement. This extractor emits stern_gerlach_response_rows only when
 the input explicitly supplies a local apparatus-window response functional,
 record gate, record-cycle phase, setting axis, incoming local record id, and
 same-window residuals. It computes the signed response functional from declared

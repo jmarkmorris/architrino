@@ -448,7 +448,7 @@ test("accepted branch-interface rows pass when the same algebra is retained", ()
   assert.deepEqual(report.sourceAcquisitionBlockerMap.blockers, []);
 });
 
-test("branch-interface rows fail closed when the accepted-row proof target loses closure rows", () => {
+test("branch-interface rows do not advance when the accepted-row proof target loses closure rows", () => {
   const target = acceptedTarget();
   target.acceptedSourceRowProofTargets.nucleon_branch_interface_ledgers.requiredClosureRows =
     target.acceptedSourceRowProofTargets.nucleon_branch_interface_ledgers
@@ -473,7 +473,7 @@ test("branch-interface rows fail closed when the accepted-row proof target loses
   ]);
 });
 
-test("branch-interface rows fail closed when the accepted-row proof target loses no-open limit statements", () => {
+test("branch-interface rows do not advance when the accepted-row proof target loses no-open limit statements", () => {
   const target = acceptedTarget();
   target.acceptedSourceRowProofTargets.nucleon_branch_interface_ledgers.requiredLimitStatements =
     target.acceptedSourceRowProofTargets.nucleon_branch_interface_ledgers
@@ -498,7 +498,7 @@ test("branch-interface rows fail closed when the accepted-row proof target loses
   ]);
 });
 
-test("branch-interface rows fail closed when the no-open proof target loses finite-tail sufficient conditions", () => {
+test("branch-interface rows do not advance when the no-open proof target loses finite-tail sufficient conditions", () => {
   const target = acceptedTarget();
   target.acceptedSourceRowProofTargets.no_open_color_far_field.requiredSufficientConditionRows =
     target.acceptedSourceRowProofTargets.no_open_color_far_field
@@ -523,7 +523,7 @@ test("branch-interface rows fail closed when the no-open proof target loses fini
   ]);
 });
 
-test("accepted branch-interface rows fail closed when a source-acquisition target loses its required component shape", () => {
+test("accepted branch-interface rows do not advance when a source-acquisition target loses its required component shape", () => {
   const target = acceptedTarget();
   target.sourceAcquisitionTargets.accepted_proton_branch_interface_ledger.requiredLedgerComponents =
     target.sourceAcquisitionTargets.accepted_proton_branch_interface_ledger
@@ -559,7 +559,7 @@ test("accepted branch-interface rows fail closed when a source-acquisition targe
   );
 });
 
-test("accepted branch-interface rows fail closed when source rows are named but target-only", () => {
+test("accepted branch-interface rows do not advance when source rows are named but target-only", () => {
   const target = readTarget();
   for (const row of Object.values(target.rows)) {
     row.status = "accepted";
@@ -590,7 +590,7 @@ test("accepted branch-interface rows fail closed when source rows are named but 
   );
 });
 
-test("accepted branch-interface rows fail closed without upstream source acquisition", () => {
+test("accepted branch-interface rows do not advance without upstream source acquisition", () => {
   const target = readTarget();
   for (const row of Object.values(target.rows)) {
     row.status = "accepted";
@@ -616,7 +616,7 @@ test("accepted branch-interface rows fail closed without upstream source acquisi
   });
 });
 
-test("branch-interface checker fails closed on accepted-looking priority-only rows", () => {
+test("branch-interface checker does not advance on accepted-looking priority-only rows", () => {
   const target = readTarget();
   for (const row of Object.values(target.rows)) {
     row.status = "accepted";
@@ -652,7 +652,7 @@ test("branch-interface checker fails closed on accepted-looking priority-only ro
   ]);
 });
 
-test("branch-interface checker fails closed on corrupted orientation algebra", () => {
+test("branch-interface checker does not advance on corrupted orientation algebra", () => {
   const target = acceptedTarget();
   target.rows.pp_orientation_count.W_c = 0.9;
 

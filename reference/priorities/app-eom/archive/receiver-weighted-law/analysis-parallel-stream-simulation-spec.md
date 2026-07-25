@@ -77,7 +77,7 @@ interfaces only:
 
 - `eom_evolution_contract/v0`, including continuous retained-history initial
   data, immutable accepted-state stepping, complete ordered-pair coverage,
-  atomic publication, and fail-closed root/history behavior;
+  atomic publication, and root/history behavior requiring verification before advancement;
 - `master_eom_binding/v0`, which pins the canonical equation, $\kappa$, $c_f$,
   charge and polarity convention, sharp/finite-width chart policy, regulators,
   finite-history rule, and branch aggregation;
@@ -538,7 +538,7 @@ $\widehat C_B$ outside the interval.
 
 An interval containing zero but wider than $0.10$, a failed refinement
 overlap, an unbounded endpoint or lattice allowance, a geometry-deformation
-overrun, or any fail-closed EOM outcome is inconclusive. It neither verifies
+overrun, or any not advanced EOM outcome is inconclusive. It neither verifies
 nor falsifies P1.
 
 **Claim grade: derived from interval logic.**

@@ -88,7 +88,7 @@ If a component needs data that does not fit the manifest, the schema should be u
 | `request_summary` | yes | Short non-sensitive summary of the user request for UI display, receipts, and issue context. |
 | `source_context` | yes | Source classes, source routes, source chips, freshness, missing routes, citations, and excluded source classes. |
 | `claim_context` | yes | Claim label, unsupported-answer state, open burden route, and System Card route when relevant. |
-| `answer_body` | yes | Displayed answer text or fail-closed response. |
+| `answer_body` | yes | Displayed answer text or response with a Not advanced disposition. |
 | `artifacts` | yes | Generated media artifacts and issue/save/action previews attached to the answer. |
 | `speech_sync` | conditional | Required when generated audio exists; forbidden to be empty for spoken output. |
 | `provider_execution_context` | yes | Safe provider capability ids, quality gate outcomes, fallback behavior, credential boundary, cost class, and health state. |
@@ -239,7 +239,7 @@ Required fields:
 | `capability_types_requested` | Capability families requested or attempted. |
 | `capability_health_state` | `healthy`, `degraded`, `unavailable`, `policy_blocked`, or `unknown` per relevant capability. |
 | `quality_gate_result` | Passed, failed, unavailable, or downgraded quality gate result. |
-| `fallback_behavior` | Text-only fallback, reduced-scope answer, unavailable action, retry, or fail-closed behavior used. |
+| `fallback_behavior` | Text-only fallback, reduced-scope answer, unavailable action, retry, or a recorded Not advanced disposition. |
 | `credential_boundary` | Approved server, serverless, edge, managed gateway, or internal boundary. |
 | `cost_class` | Product cost class mapped to token work units. |
 | `provider_privacy_terms_state` | Whether provider data-use, privacy, and terms gates were satisfied. |
@@ -367,7 +367,7 @@ Required fields:
 | `feature_blockers` | Terms-dependent features currently unavailable. |
 | `legal_review_state` | `draft`, `counsel_required`, `approved_for_beta`, or `approved_for_public`. |
 
-Paid, durable, retained, public, generated-media, and credentialed features should fail closed when required terms state is missing, stale, or below the required legal-review state.
+Paid, durable, retained, public, generated-media, and credentialed features should not advance when required terms state is missing, stale, or below the required legal-review state.
 
 ## Available Actions
 
@@ -396,6 +396,8 @@ Each action record should include:
 | `result_status` | `not_run`, `confirmed`, `completed`, `cancelled`, `failed_closed`, or `external_pending`. |
 
 No durable, public, paid, or credentialed action should run without the confirmation state recorded in the manifest.
+
+`failed_closed` is a retained V1 wire value. User-facing and operator-facing surfaces must explain the narrower result as `Verification failed`, `Verification incomplete`, or `Not advanced`.
 
 ## Minimal JSON Shape
 

@@ -26,7 +26,7 @@ Relevant files:
 - [EOM Solver](../../../../src/eom/README.md)
 - [Prescribed-Path Analysis](../../../../src/prescribed-path-analysis/README.md)
 
-The campaign to determine the geometry of the Noether braid reached a strategic turning point. The first ambition was direct: begin with six architrinos, evolve them under the Master Equation, and let the EOM solver reveal which geometries survive. That route produced an extraordinarily precise fail-closed solver. It certifies causal-root completeness, acceleration enclosures, local error, and retained-history state before publishing an accepted step. Its precision is a genuine achievement, but that same precision exposed how severe the braid problem is.
+The campaign to determine the geometry of the Noether braid reached a strategic turning point. The first ambition was direct: begin with six architrinos, evolve them under the Master Equation, and let the EOM solver reveal which geometries survive. That route produced an extraordinarily precise solver in which verification is required for advancement. It certifies causal-root completeness, acceleration enclosures, local error, and retained-history state before publishing an accepted step. Its precision is a genuine achievement, but that same precision exposed how severe the braid problem is.
 
 The architecture permits architrino trajectories below, at, and above the field speed $c_f$. Near the exact-field-speed boundary, the transmitter-side factor
 
