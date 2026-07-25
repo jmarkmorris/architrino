@@ -26,7 +26,9 @@ import {
   SPACE_AXIS_TOP_Y,
   TIME_AXIS_BASELINE_Y,
   TIME_AXIS_END_X,
+  TIME_AXIS_LABEL_POSITION,
   TIME_AXIS_ORIGIN_X,
+  TIMELINE_RAIL_AXIS_SAFE_INSET,
   TRANSMISSION_POINT_MARKER_STYLES,
   TRANSMISSION_POINT_MARKER_VARIANTS,
   WHITE,
@@ -57,6 +59,10 @@ import {
   createCausalDelayFeedbackModeController,
 } from "./CausalDelayFeedbackModeController.js";
 import {
+  navigateStandaloneAppHome,
+  resolveStandaloneAppHomeHref,
+} from "../navigator/StandaloneAppHomeRuntime.js";
+import {
   DEFAULT_CAUSAL_DELAY_FEEDBACK_MODE,
   normalizeCausalDelayFeedbackMode,
 } from "./CausalDelayFeedbackModes.js";
@@ -78,6 +84,7 @@ import {
 
 const REPLAY_LOOP_SECONDS = 9;
 const STORY_STAGE_PLAYBACK_SECONDS = 3.2;
+export const LABORATORY_INITIAL_REPLAY_FRACTION = 0.16;
 const STORY_CHART_GAP = 16;
 const STORY_CHART_EDGE_PADDING = 18;
 const STORY_CHART_DESIGN_PADDING = 0;
@@ -110,9 +117,6 @@ const LIVE_WAKE_ROOT_SCAN_STEPS = 96;
 const DEFAULT_LIVE_WAKE_SIGNAL_SPEED = 3000;
 const PATH_LINE_HIT_RADIUS = 18;
 const PATH_LINE_DRAG_FALLOFF_TIME = 0.32;
-const PATH_LINE_FAIRING_CONTROL_STRIDE = 12;
-const PATH_LINE_FAIRING_SHOULDER_FRACTION = 0.46;
-const PATH_LINE_FAIRING_TANGENT_SCALE = 0.62;
 const CENTRIPETAL_CATMULL_ROM_ALPHA = 0.5;
 const PATH_ENDPOINT_HANDLE_RADIUS = 5.5;
 const PATH_ENDPOINT_HANDLE_HIT_RADIUS = 18;
@@ -341,10 +345,7 @@ class CausalDelayFeedbackRuntime {
       document: this.document,
       state: this.learnerState,
       onModeChange: (mode) => {
-        this.learnerState.mode = mode;
-        this.selectedItem = null;
-        this.setPlaying(false);
-        this.render();
+        this.handleLearnerModeChange(mode);
       },
       onStateChange: () => {
         this.handleLearnerStateChange();
@@ -355,7 +356,20 @@ class CausalDelayFeedbackRuntime {
       onReplay: () => {
         this.resetStoryScenarioPlayback();
       },
+      onHome: () => {
+        navigateStandaloneAppHome(
+          this.window?.location,
+          resolveStandaloneAppHomeHref(this.window?.location?.href),
+          {
+            windowLike: this.window,
+            returnHref: this.window?.location?.href,
+          },
+        );
+      },
     }).init();
+    if (this.learnerState.mode === "sandbox") {
+      this.resetLaboratoryScenarioPlayback();
+    }
     this.resize();
     this.render(this.getCurrentReplayTime());
     this.start();
@@ -382,7 +396,7 @@ class CausalDelayFeedbackRuntime {
       resetPresetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset-preset"),
       colorSwatches: queryRequiredElement(this.document, "#causal-delay-feedback-color-swatches"),
       nowInput: queryRequiredElement(this.document, "#causal-delay-feedback-now"),
-      nowValue: queryRequiredElement(this.document, "#causal-delay-feedback-now-value"),
+      nowValue: this.document.querySelector("#causal-delay-feedback-now-value"),
       cfSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed"),
       cfSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed-value"),
       architrinoSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed"),
@@ -471,6 +485,11 @@ class CausalDelayFeedbackRuntime {
     this.listen(this.dom.resetButton, "click", () => {
       this.resetReplayTime();
     });
+    if (this.dom.lastFrameButton) {
+      this.listen(this.dom.lastFrameButton, "click", () => {
+        this.jumpToLastFrame();
+      });
+    }
     this.listen(this.dom.resetPresetButton, "click", () => {
       void this.resetPreset();
     });
@@ -714,6 +733,17 @@ class CausalDelayFeedbackRuntime {
 
   setLearnerMode(mode) {
     return this.modeController?.setMode(mode) ?? false;
+  }
+
+  handleLearnerModeChange(mode) {
+    this.learnerState.mode = mode;
+    this.selectedItem = null;
+    this.setPlaying(false);
+    if (mode === "sandbox") {
+      this.resetLaboratoryScenarioPlayback();
+      return;
+    }
+    this.render();
   }
 
   setGuidedReplayCursor(replayTime) {
@@ -1233,6 +1263,7 @@ class CausalDelayFeedbackRuntime {
     const wantsPlayback = Boolean(isPlaying);
     const wasPlaying = this.isPlaying;
     const storyMode = this.learnerState?.mode === "story";
+    const laboratoryMode = this.learnerState?.mode === "sandbox";
     let storyRenderTime = null;
 
     if (
@@ -1246,6 +1277,14 @@ class CausalDelayFeedbackRuntime {
       this.updatePlayButton();
       this.modeController?.render();
       return false;
+    }
+
+    if (wantsPlayback && laboratoryMode) {
+      const [, endTime] = this.getReplayTimeRange();
+      if (this.getCurrentReplayTime() >= endTime - TIME_EPSILON) {
+        this.setCurrentReplayTime(this.getLaboratoryInitialReplayTime());
+        this.updateNowControl(this.getLaboratoryInitialReplayTime());
+      }
     }
 
     this.isPlaying = wantsPlayback;
@@ -1405,6 +1444,12 @@ class CausalDelayFeedbackRuntime {
         label: "First frame",
       });
     }
+    if (this.dom?.lastFrameButton) {
+      setTransportControlButtonPresentation(this.dom.lastFrameButton, {
+        kind: TRANSPORT_CONTROL_ICON.LAST_FRAME,
+        label: "Last frame",
+      });
+    }
   }
 
   resetReplayTime() {
@@ -1413,7 +1458,9 @@ class CausalDelayFeedbackRuntime {
       this.resetStoryScenarioPlayback();
       return;
     }
-    const [startTime] = this.getReplayTimeRange();
+    const startTime = this.learnerState?.mode === "sandbox"
+      ? this.getLaboratoryInitialReplayTime()
+      : this.getReplayTimeRange()[0];
     this.setPlaying(false);
     this.setCurrentReplayTime(startTime);
     this.updateNowControl(startTime);
@@ -1423,6 +1470,59 @@ class CausalDelayFeedbackRuntime {
     if (this.context) {
       this.render(startTime);
     }
+  }
+
+  getLaboratoryInitialReplayTime() {
+    const [startTime, endTime] = this.getReplayTimeRange();
+    return startTime +
+      (endTime - startTime) * LABORATORY_INITIAL_REPLAY_FRACTION;
+  }
+
+  resetLaboratoryScenarioPlayback() {
+    const replayTime = this.getLaboratoryInitialReplayTime();
+    this.isPlaying = false;
+    this.learnerState.playback.playing = false;
+    this.learnerState.playback.resumable = false;
+    this.learnerState.playback.completed = false;
+    this.setCurrentReplayTime(replayTime);
+    this.updateNowControl(replayTime);
+    this.updatePlayButton();
+    if (this.dom?.readout) {
+      this.updateReadout();
+    }
+    if (this.context) {
+      this.render(replayTime);
+    }
+    return replayTime;
+  }
+
+  jumpToLastFrame() {
+    if (this.learnerState?.mode === "story") {
+      const scene = createStoryScene(this.learnerState);
+      this.storyStageElapsedSeconds =
+        Number(scene.playbackDurationSeconds) || STORY_STAGE_PLAYBACK_SECONDS;
+      this.setPlaying(false, {
+        holdScene: scene,
+        holdReplayTime: scene.playbackEndTime,
+        completed: true,
+      });
+      this.setGuidedReplayCursor(scene.playbackEndTime);
+      if (this.context) {
+        this.render(scene.playbackEndTime);
+      }
+      return scene.playbackEndTime;
+    }
+    const [, endTime] = this.getReplayTimeRange();
+    this.setPlaying(false);
+    this.setCurrentReplayTime(endTime);
+    this.updateNowControl(endTime);
+    if (this.dom?.readout) {
+      this.updateReadout();
+    }
+    if (this.context) {
+      this.render(endTime);
+    }
+    return endTime;
   }
 
   resetPreset() {
@@ -1468,14 +1568,18 @@ class CausalDelayFeedbackRuntime {
   }
 
   updateNowControl(replayTime = this.getCurrentReplayTime()) {
-    if (!this.dom?.nowInput || !this.dom?.nowValue) {
+    if (!this.dom?.nowInput) {
       return;
     }
     const [start, end] = this.getReplayTimeRange();
     const span = end - start;
     const phase = span > 0 ? clamp((replayTime - start) / span, 0, 1) : 0;
     this.dom.nowInput.value = String(Math.round(phase * NOW_SLIDER_MAX));
-    this.dom.nowValue.textContent = `replay t=${formatCompactNumber(replayTime)}`;
+    const replayTimeLabel = `Replay time ${formatCompactNumber(replayTime)}`;
+    this.dom.nowInput.setAttribute("aria-valuetext", replayTimeLabel);
+    if (this.dom.nowValue) {
+      this.dom.nowValue.textContent = replayTimeLabel;
+    }
   }
 
   toggleSettings() {
@@ -1654,6 +1758,13 @@ class CausalDelayFeedbackRuntime {
       if (this.dom?.readout) {
         this.updateReadout();
       }
+      if (
+        this.learnerState?.mode === "sandbox" &&
+        this.elapsedSeconds >= this.getReplayLoopSeconds() - TIME_EPSILON
+      ) {
+        this.elapsedSeconds = this.getReplayLoopSeconds();
+        this.setPlaying(false);
+      }
     }
     if (this.isPlaying) {
       this.scheduleAnimationFrame();
@@ -1715,6 +1826,7 @@ class CausalDelayFeedbackRuntime {
     const panel = this.modeController?.dom?.panel;
     const tabs = this.modeController?.dom?.tabs;
     const canvas = this.dom?.canvas;
+    const bottomRail = this.dom?.bottomRail;
     if (
       typeof panel?.getBoundingClientRect !== "function" ||
       typeof canvas?.getBoundingClientRect !== "function"
@@ -1723,6 +1835,9 @@ class CausalDelayFeedbackRuntime {
     }
     const panelRect = panel.getBoundingClientRect();
     const canvasRect = canvas.getBoundingClientRect();
+    const railRect = typeof bottomRail?.getBoundingClientRect === "function"
+      ? bottomRail.getBoundingClientRect()
+      : null;
     const tabsRect = typeof tabs?.getBoundingClientRect === "function"
       ? tabs.getBoundingClientRect()
       : null;
@@ -1740,12 +1855,19 @@ class CausalDelayFeedbackRuntime {
         STORY_CHART_EDGE_PADDING,
         panelSafeBottom - canvasRect.top + STORY_CHART_GAP,
       );
+    const railSafeTop = railRect
+      ? Number(railRect.top) - canvasRect.top - STORY_CHART_GAP
+      : this.canvasHeight - STORY_CHART_EDGE_PADDING;
     const chartBottom = isNarrow
       ? Math.min(
         this.canvasHeight - STORY_CHART_EDGE_PADDING,
         Number(panelRect.top) - canvasRect.top - STORY_CHART_GAP,
+        railSafeTop,
       )
-      : this.canvasHeight - STORY_CHART_EDGE_PADDING;
+      : Math.min(
+        this.canvasHeight - STORY_CHART_EDGE_PADDING,
+        railSafeTop,
+      );
     const availableWidth = Math.max(1, chartRight - chartLeft);
     const availableHeight = Math.max(1, chartBottom - chartTop);
     const bounds = this.getStoryChartDesignBounds();
@@ -1796,7 +1918,11 @@ class CausalDelayFeedbackRuntime {
     const tocRect = typeof tableOfContents?.getBoundingClientRect === "function"
       ? tableOfContents.getBoundingClientRect()
       : null;
-    const isSideBySideDesktop = this.canvasWidth >= 1200 && tocRect;
+    const isSideBySideDesktop =
+      this.canvasWidth >= 1200 &&
+      tocRect &&
+      !tableOfContents.hidden &&
+      Number(tocRect.width) > 0;
     const chartLeft = STORY_CHART_EDGE_PADDING;
     const chartRight = isSideBySideDesktop
       ? Math.max(
@@ -1933,6 +2059,32 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
+  alignBottomRailToTimeAxis() {
+    if (!this.dom?.bottomRail?.style || !this.viewport) {
+      return null;
+    }
+    const axisOrigin = this.worldToScreen({
+      x: TIME_AXIS_ORIGIN_X,
+      y: TIME_AXIS_BASELINE_Y,
+    });
+    const axisArrowhead = this.worldToScreen({
+      x: TIME_AXIS_END_X,
+      y: TIME_AXIS_BASELINE_Y,
+    });
+    const left = clamp(axisOrigin.x, 0, this.canvasWidth);
+    const rightEdge = clamp(
+      axisArrowhead.x - TIMELINE_RAIL_AXIS_SAFE_INSET,
+      left + 1,
+      this.canvasWidth,
+    );
+    this.dom.bottomRail.style.left = `${left.toFixed(2)}px`;
+    this.dom.bottomRail.style.right =
+      `${Math.max(0, this.canvasWidth - rightEdge).toFixed(2)}px`;
+    this.dom.bottomRail.dataset.axisAlignedBounds =
+      `${left.toFixed(2)},${rightEdge.toFixed(2)}`;
+    return { left, right: rightEdge };
+  }
+
   screenToWorld(point) {
     return {
       x: (point.x - this.viewport.offsetX) / this.viewport.scale,
@@ -2052,6 +2204,7 @@ class CausalDelayFeedbackRuntime {
   render(replayTime = this.getCurrentReplayTime()) {
     const ctx = this.context;
     this.updateViewportForRender();
+    this.alignBottomRailToTimeAxis();
     ctx.setTransform(this.pixelRatio, 0, 0, this.pixelRatio, 0, 0);
     ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     this.drawBackground(ctx);
@@ -2125,13 +2278,14 @@ class CausalDelayFeedbackRuntime {
       delete this.dom.canvas.dataset.guidedChartScale;
       delete this.dom.canvas.dataset.guidedChartBounds;
     }
-    this.drawWakes(ctx, replayTime);
+    const visibleWakeSeries = this.getVisibleWakeSeries(replayTime);
+    this.drawWakes(ctx, replayTime, visibleWakeSeries);
     this.drawPathTrail(ctx, "positrino", POSITRINO);
     this.drawPathTrail(ctx, "electrino", ELECTRINO);
-    this.drawForegroundWakeEmissionLines(ctx, replayTime);
+    this.drawForegroundWakeEmissionLines(ctx, replayTime, visibleWakeSeries);
     this.drawPathEndpointHandles(ctx);
     this.drawSelection(ctx);
-    this.drawSandboxTransmissionGhost(ctx);
+    this.drawSandboxTransmissionGhost(ctx, visibleWakeSeries);
     this.drawLiveMarkers(ctx, replayTime);
   }
 
@@ -2970,7 +3124,14 @@ class CausalDelayFeedbackRuntime {
     ], withAlpha(WHITE, 0.3));
 
     this.drawText(ctx, "space", { x: 74, y: 165 }, 14, withAlpha(WHITE, 0.62), "left");
-    this.drawText(ctx, "time", { x: 1788, y: 932 }, 14, withAlpha(WHITE, 0.72), "right");
+    this.drawText(
+      ctx,
+      "time",
+      TIME_AXIS_LABEL_POSITION,
+      14,
+      withAlpha(WHITE, 0.72),
+      "right",
+    );
   }
 
   drawBackgroundDepthField(ctx) {
@@ -3029,7 +3190,11 @@ class CausalDelayFeedbackRuntime {
     return "wakes hidden";
   }
 
-  drawWakes(ctx, replayTime = this.getCurrentReplayTime()) {
+  drawWakes(
+    ctx,
+    replayTime = this.getCurrentReplayTime(),
+    visibleWakeSeries = this.getVisibleWakeSeries(replayTime),
+  ) {
     const drawArcWakes = this.wakeVisualSettings.arcWakesEnabled === true;
     const drawFullCircularWakes = this.wakeVisualSettings.fullCircularWakesEnabled === true;
     if (drawFullCircularWakes) {
@@ -3038,19 +3203,22 @@ class CausalDelayFeedbackRuntime {
     if (!drawArcWakes || drawFullCircularWakes) {
       return;
     }
-    const visibleWakeSeries = this.getVisibleWakeSeries(replayTime);
     visibleWakeSeries.forEach((link) => {
       this.drawWakeProgression(ctx, link, replayTime);
     });
   }
 
-  drawForegroundWakeEmissionLines(ctx, replayTime = this.getCurrentReplayTime()) {
+  drawForegroundWakeEmissionLines(
+    ctx,
+    replayTime = this.getCurrentReplayTime(),
+    visibleWakeSeries = this.getVisibleWakeSeries(replayTime),
+  ) {
     const drawArcWakes = this.wakeVisualSettings.arcWakesEnabled === true;
     const drawFullCircularWakes = this.wakeVisualSettings.fullCircularWakesEnabled === true;
     if (!drawArcWakes || !drawFullCircularWakes) {
       return;
     }
-    this.getVisibleWakeSeries(replayTime).forEach((link) => {
+    visibleWakeSeries.forEach((link) => {
       this.drawWakeEmissionLine(ctx, link, replayTime);
     });
   }
@@ -3271,26 +3439,15 @@ class CausalDelayFeedbackRuntime {
     this.drawCircle(ctx, this.worldToScreen(endpoints.receiver), 15, withAlpha(WHITE, 0.04), withAlpha(WHITE, 0.78), 1.1);
   }
 
-  drawSandboxTransmissionGhost(ctx) {
-    const root = this.learnerState?.roots?.find(
-      (candidate) => candidate.id === this.learnerState.selectedRootId,
-    );
-    const reciprocalRoot = this.learnerState?.reciprocalRoots?.find(
-      (candidate) => candidate.id === this.learnerState.selectedReciprocalRootId,
-    );
-    if (root?.emission) {
-      this.drawTransmissionGhost(ctx, root.emission, root.sourceId, {
+  drawSandboxTransmissionGhost(
+    ctx,
+    visibleWakeSeries = this.getVisibleWakeSeries(),
+  ) {
+    visibleWakeSeries.forEach((link) => {
+      this.drawTransmissionGhost(ctx, link.source, link.sourceKind, {
         showLabel: false,
       });
-    }
-    if (reciprocalRoot?.emission) {
-      this.drawTransmissionGhost(
-        ctx,
-        reciprocalRoot.emission,
-        reciprocalRoot.sourceId,
-        { showLabel: false },
-      );
-    }
+    });
   }
 
   drawTransmissionGhost(ctx, point, kind, {
@@ -4092,7 +4249,8 @@ class CausalDelayFeedbackRuntime {
       applyDelta(point, point.t);
     });
     if (didEdit) {
-      this.fairPathLineDrag(kind, anchorT);
+      path.interpolationMode = C1_CUBIC_HERMITE_INTERPOLATION;
+      this.syncPathDependentSamplesFromPath(kind);
     }
     const startPoint = this.getHistoryStartPoint(kind);
     if (startPoint) {
@@ -4149,84 +4307,6 @@ class CausalDelayFeedbackRuntime {
     }
     const amount = 1 - normalizedDistance;
     return amount * amount * amount * (amount * (amount * 6 - 15) + 10);
-  }
-
-  fairPathLineDrag(kind, anchorT) {
-    const path = this.dataset?.paths?.[kind];
-    if (!Array.isArray(path) || path.length < 4) {
-      return false;
-    }
-    const controls = this.getPathLineFairingControls(kind, path, anchorT);
-    if (controls.length < 3) {
-      return false;
-    }
-    path.forEach((point) => {
-      const sampleT = Number(point?.t);
-      if (!Number.isFinite(sampleT)) {
-        return;
-      }
-      const smoothPoint = this.isPathEndpointTime(kind, sampleT)
-        ? this.samplePathPoint(path, sampleT)
-        : this.sampleSmoothControlPath(controls, sampleT, PATH_LINE_FAIRING_TANGENT_SCALE);
-      point.t = sampleT;
-      point.x = smoothPoint.x;
-      point.y = smoothPoint.y;
-    });
-    path.interpolationMode = C1_CUBIC_HERMITE_INTERPOLATION;
-    this.syncPathDependentSamplesFromPath(kind);
-    return true;
-  }
-
-  getPathLineFairingControls(kind, path, anchorT) {
-    const controls = [];
-    const addControl = (point, fallbackT = point?.t) => {
-      const time = Number(fallbackT);
-      const x = Number(point?.x);
-      const y = Number(point?.y);
-      if (!Number.isFinite(time) || !Number.isFinite(x) || !Number.isFinite(y)) {
-        return;
-      }
-      const existingIndex = controls.findIndex((candidate) => Math.abs(candidate.t - time) <= TIME_EPSILON);
-      const control = { t: time, x, y };
-      if (existingIndex >= 0) {
-        controls[existingIndex] = control;
-        return;
-      }
-      controls.push(control);
-    };
-
-    const anchor = Number(anchorT);
-    const shoulder = Number.isFinite(anchor)
-      ? PATH_LINE_DRAG_FALLOFF_TIME * PATH_LINE_FAIRING_SHOULDER_FRACTION
-      : 0;
-
-    addControl(path[0]);
-    addControl(path.at(-1));
-    path.forEach((point, index) => {
-      if (index % PATH_LINE_FAIRING_CONTROL_STRIDE === 0) {
-        const time = Number(point?.t);
-        if (Number.isFinite(anchor) && Number.isFinite(time) && Math.abs(time - anchor) < shoulder) {
-          return;
-        }
-        addControl(point);
-      }
-    });
-    (this.dataset?.history?.[kind] ?? []).forEach((point) => {
-      const time = Number(point?.t);
-      const isAnchor = Number.isFinite(anchor) && Number.isFinite(time) && Math.abs(time - anchor) <= TIME_EPSILON;
-      if (Number.isFinite(anchor) && Number.isFinite(time) && Math.abs(time - anchor) < shoulder && !isAnchor) {
-        return;
-      }
-      addControl(point);
-    });
-
-    if (Number.isFinite(anchor)) {
-      addControl(this.samplePathPoint(path, anchor - shoulder), anchor - shoulder);
-      addControl(this.samplePathPoint(path, anchor), anchor);
-      addControl(this.samplePathPoint(path, anchor + shoulder), anchor + shoulder);
-    }
-
-    return controls.sort((left, right) => left.t - right.t);
   }
 
   syncPathDependentSamplesFromPath(kind) {
@@ -4564,7 +4644,9 @@ class CausalDelayFeedbackRuntime {
   getReplayTimeForElapsedSeconds(elapsedSeconds) {
     const [start, end] = this.getReplayTimeRange();
     const loopSeconds = this.getReplayLoopSeconds();
-    const phase = (elapsedSeconds % loopSeconds) / loopSeconds;
+    const phase = this.learnerState?.mode === "sandbox"
+      ? clamp(elapsedSeconds / loopSeconds, 0, 1)
+      : (elapsedSeconds % loopSeconds) / loopSeconds;
     return start + (end - start) * phase;
   }
 

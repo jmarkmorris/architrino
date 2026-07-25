@@ -102,6 +102,28 @@ const PROOFS = Object.freeze([
     expectedScene: "story:meaning",
   },
   {
+    id: "laboratory-path-drag-c1",
+    fileName: "laboratory-path-drag-c1-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=sandbox&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.4,
+    wakeSeriesId: "live-electrino-to-positrino",
+    settingsOpen: false,
+    mode: "sandbox",
+    prepareAction: {
+      type: "path-line-drag",
+      kind: "positrino",
+      anchorFraction: 0.5,
+      delta: { x: 0, y: -220 },
+      visibleHalfWindow: 0.005,
+      minimumTangentDot: 0.999,
+    },
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
     id: "keyboard-journey",
     fileName: "keyboard-sandbox-purple-1440x900.png",
     width: 1440,
@@ -630,6 +652,62 @@ function createPrepareProofExpression(proof) {
       runtime.modeController?.render();
     }
     const prepareAction = ${JSON.stringify(proof.prepareAction ?? null)};
+    if (prepareAction?.type === "path-line-drag") {
+      const path = runtime.dataset.paths?.[prepareAction.kind];
+      if (!Array.isArray(path) || path.length < 3) {
+        return { ok: false, reason: "path_line_drag_path_missing", action: prepareAction };
+      }
+      const anchorIndex = Math.max(
+        1,
+        Math.min(
+          path.length - 2,
+          Math.round((path.length - 1) * Number(prepareAction.anchorFraction))
+        )
+      );
+      const anchorT = Number(path[anchorIndex].t);
+      const didEdit = runtime.applyPathLineDrag(
+        prepareAction.kind,
+        anchorT,
+        prepareAction.delta
+      );
+      if (!didEdit) {
+        return { ok: false, reason: "path_line_drag_noop", action: prepareAction };
+      }
+      const halfWindow = Number(prepareAction.visibleHalfWindow);
+      const previous = runtime.getReplayPathPoint(
+        prepareAction.kind,
+        anchorT - halfWindow
+      );
+      const anchor = runtime.getReplayPathPoint(prepareAction.kind, anchorT);
+      const next = runtime.getReplayPathPoint(
+        prepareAction.kind,
+        anchorT + halfWindow
+      );
+      const incoming = {
+        x: anchor.x - previous.x,
+        y: anchor.y - previous.y,
+      };
+      const outgoing = {
+        x: next.x - anchor.x,
+        y: next.y - anchor.y,
+      };
+      const denominator =
+        Math.hypot(incoming.x, incoming.y) * Math.hypot(outgoing.x, outgoing.y);
+      const tangentDot = denominator > 0
+        ? (incoming.x * outgoing.x + incoming.y * outgoing.y) / denominator
+        : -1;
+      if (tangentDot < Number(prepareAction.minimumTangentDot)) {
+        return {
+          ok: false,
+          reason: "visible_one_sided_tangent_mismatch",
+          tangentDot,
+          minimum: prepareAction.minimumTangentDot,
+          anchorT,
+          halfWindow,
+        };
+      }
+      runtime.dom.canvas.dataset.browserDragTangentDot = tangentDot.toFixed(9);
+    }
     if (prepareAction?.type === "retained-point-drag") {
       const previousCondition = runtime.dataset.initialConditions?.[prepareAction.kind]
         ? { ...runtime.dataset.initialConditions[prepareAction.kind] }

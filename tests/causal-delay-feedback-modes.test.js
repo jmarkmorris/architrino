@@ -686,7 +686,11 @@ test("page exposes semantic journey controls and one text-equivalent canvas summ
     "causal-delay-feedback-guided-back",
     "causal-delay-feedback-guided-first-frame",
     "causal-delay-feedback-guided-play",
+    "causal-delay-feedback-guided-last-frame",
     "causal-delay-feedback-guided-next",
+    "causal-delay-feedback-toc-toggle",
+    "causal-delay-feedback-home",
+    "causal-delay-feedback-lesson-search-toggle",
     "causal-delay-feedback-canvas-summary",
   ]) {
     assert.match(html, new RegExp(`id="${id}"`, "u"));

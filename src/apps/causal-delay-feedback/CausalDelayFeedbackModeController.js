@@ -98,6 +98,7 @@ export class CausalDelayFeedbackModeController {
     onStateChange,
     onPlayToggle,
     onReplay,
+    onHome,
   } = {}) {
     this.document = document ?? globalThis.document;
     this.state = state;
@@ -105,7 +106,22 @@ export class CausalDelayFeedbackModeController {
     this.onStateChange = onStateChange;
     this.onPlayToggle = onPlayToggle;
     this.onReplay = onReplay;
+    this.onHome = onHome;
     this.boundClick = (event) => this.handleClick(event);
+    this.boundSearchInput = (event) => this.renderSearchResults(event.target?.value);
+    this.boundSearchKeyDown = (event) => {
+      if (event.key === "Escape") {
+        this.closeSearchPanel();
+      }
+    };
+    this.boundDocumentPointerDown = (event) => {
+      if (
+        this.dom?.search?.classList.contains("is-open") &&
+        !this.dom.search.contains(event.target)
+      ) {
+        this.closeSearchPanel();
+      }
+    };
   }
 
   init() {
@@ -123,18 +139,38 @@ export class CausalDelayFeedbackModeController {
       play: this.document.querySelector("#causal-delay-feedback-guided-play"),
       next: this.document.querySelector("#causal-delay-feedback-guided-next"),
       firstFrame: this.document.querySelector("#causal-delay-feedback-guided-first-frame"),
+      lastFrame: this.document.querySelector("#causal-delay-feedback-guided-last-frame"),
+      tocToggle: this.document.querySelector("#causal-delay-feedback-toc-toggle"),
+      home: this.document.querySelector("#causal-delay-feedback-home"),
+      search: this.document.querySelector("#causal-delay-feedback-lesson-search"),
+      searchToggle: this.document.querySelector("#causal-delay-feedback-lesson-search-toggle"),
+      searchPanel: this.document.querySelector("#causal-delay-feedback-lesson-search-panel"),
+      searchInput: this.document.querySelector("#causal-delay-feedback-lesson-search-input"),
+      searchResults: this.document.querySelector("#causal-delay-feedback-lesson-search-results"),
       summary: this.document.querySelector("#causal-delay-feedback-canvas-summary"),
     };
     if (Object.values(this.dom).some((element) => !element)) {
       throw new Error("Missing Causal Delay Feedback learner-journey elements.");
     }
     this.dom.journey.addEventListener("click", this.boundClick);
+    this.dom.tocToggle.addEventListener("click", () => {
+      this.setTableOfContentsOpen(this.dom.tabs.hidden);
+    });
+    this.dom.home.addEventListener("click", () => this.onHome?.());
+    this.dom.searchToggle.addEventListener("click", () => this.openSearchPanel());
+    this.dom.searchInput.addEventListener("input", this.boundSearchInput);
+    this.dom.searchInput.addEventListener("keydown", this.boundSearchKeyDown);
+    this.document.addEventListener("pointerdown", this.boundDocumentPointerDown);
+    this.renderSearchResults();
     this.render();
     return this;
   }
 
   destroy() {
     this.dom?.journey?.removeEventListener("click", this.boundClick);
+    this.dom?.searchInput?.removeEventListener("input", this.boundSearchInput);
+    this.dom?.searchInput?.removeEventListener("keydown", this.boundSearchKeyDown);
+    this.document?.removeEventListener("pointerdown", this.boundDocumentPointerDown);
   }
 
   setState(state) {
@@ -165,6 +201,7 @@ export class CausalDelayFeedbackModeController {
         this.state.storyStep = lessonIndex;
         this.state.mode = "story";
         this.onModeChange?.("story", this.state);
+        this.closeSearchPanel();
         this.render();
         this.onStateChange?.(this.state);
       }
@@ -172,6 +209,7 @@ export class CausalDelayFeedbackModeController {
     }
     const laboratoryButton = event.target.closest("[data-causal-laboratory]");
     if (laboratoryButton) {
+      this.closeSearchPanel();
       this.setMode("sandbox");
       return;
     }
@@ -274,6 +312,7 @@ export class CausalDelayFeedbackModeController {
     this.dom.panel.hidden = isSandbox;
     this.renderTabs();
     if (isSandbox) {
+      this.updateControls();
       this.dom.summary.textContent =
         "Laboratory. Both architrino paths and the evaluator-backed positrino and electrino current-emission markers are shown; replay time is preserved for inspection.";
       return;
@@ -332,6 +371,79 @@ export class CausalDelayFeedbackModeController {
     }));
     list.append(laboratoryItem);
     this.dom.tabs.replaceChildren(list);
+  }
+
+  setTableOfContentsOpen(isOpen) {
+    const nextOpen = Boolean(isOpen);
+    this.dom.tabs.hidden = !nextOpen;
+    this.dom.tocToggle.classList.toggle("is-active", nextOpen);
+    this.dom.tocToggle.setAttribute("aria-expanded", String(nextOpen));
+    this.dom.tocToggle.setAttribute(
+      "aria-label",
+      nextOpen
+        ? "Close lesson table of contents"
+        : "Open lesson table of contents",
+    );
+  }
+
+  openSearchPanel() {
+    this.dom.search.classList.add("is-open");
+    this.dom.searchToggle.setAttribute("aria-expanded", "true");
+    this.dom.searchPanel.setAttribute("aria-hidden", "false");
+    this.dom.searchInput.value = "";
+    this.renderSearchResults();
+    this.dom.searchInput.focus();
+  }
+
+  closeSearchPanel() {
+    if (!this.dom?.search) {
+      return;
+    }
+    this.dom.search.classList.remove("is-open");
+    this.dom.searchToggle.setAttribute("aria-expanded", "false");
+    this.dom.searchPanel.setAttribute("aria-hidden", "true");
+  }
+
+  renderSearchResults(query = "") {
+    if (!this.dom?.searchResults) {
+      return;
+    }
+    const normalizedQuery = String(query ?? "").trim().toLowerCase();
+    const destinations = [
+      ...STORY_STEPS.map((lesson, lessonIndex) => ({
+        label: `${lessonIndex + 1}. ${lesson.title}`,
+        lessonIndex,
+      })),
+      {
+        label: "Laboratory",
+        laboratory: true,
+      },
+    ].filter((destination) =>
+      !normalizedQuery ||
+      destination.label.toLowerCase().includes(normalizedQuery)
+    );
+    const buttons = destinations.map((destination) => createElement(
+      this.document,
+      "button",
+      {
+        className: "causal-lesson-search-item",
+        text: destination.label,
+        attributes: {
+          type: "button",
+          ...(destination.laboratory
+            ? { "data-causal-laboratory": "" }
+            : { "data-causal-lesson": destination.lessonIndex }),
+        },
+      },
+    ));
+    if (buttons.length === 0) {
+      this.dom.searchResults.replaceChildren(createElement(this.document, "p", {
+        className: "causal-lesson-search-empty",
+        text: "No lessons found.",
+      }));
+      return;
+    }
+    this.dom.searchResults.replaceChildren(...buttons);
   }
 
   renderStory() {
@@ -553,13 +665,17 @@ export class CausalDelayFeedbackModeController {
     this.dom.back.disabled = this.state.mode === "story" && this.state.storyStep === 0;
     this.dom.next.disabled = this.state.mode === "sandbox";
     this.dom.play.disabled = isCompleted;
-    const playLabel = isPlaying
-      ? "Pause lesson"
-      : isResumable
-        ? "Resume lesson"
-        : isCompleted
-          ? "Lesson complete; use First frame to return to the start"
-          : "Play lesson";
+    const playLabel = storyPlayback
+      ? isPlaying
+        ? "Pause lesson"
+        : isResumable
+          ? "Resume lesson"
+          : isCompleted
+            ? "Lesson complete; use First frame to return to the start"
+            : "Play lesson"
+      : isPlaying
+        ? "Pause replay"
+        : "Play replay";
     setTransportControlButtonPresentation(this.dom.play, {
       kind: isPlaying
         ? TRANSPORT_CONTROL_ICON.PAUSE
@@ -571,6 +687,10 @@ export class CausalDelayFeedbackModeController {
     setTransportControlButtonPresentation(this.dom.firstFrame, {
       kind: TRANSPORT_CONTROL_ICON.FIRST_FRAME,
       label: "First frame",
+    });
+    setTransportControlButtonPresentation(this.dom.lastFrame, {
+      kind: TRANSPORT_CONTROL_ICON.LAST_FRAME,
+      label: "Last frame",
     });
   }
 

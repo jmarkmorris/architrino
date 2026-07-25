@@ -2,7 +2,10 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 
-import { createCausalDelayFeedbackRuntime } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js";
+import {
+  LABORATORY_INITIAL_REPLAY_FRACTION,
+  createCausalDelayFeedbackRuntime,
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js";
 import {
   EOM_REPLAY_ADAPTER,
   EOM_REPLAY_DATASET_SOURCE,
@@ -31,8 +34,11 @@ import {
   PRESETS,
   TRANSMISSION_POINT_MARKER_STYLES,
   TRANSMISSION_POINT_MARKER_VARIANTS,
+  TIME_AXIS_BASELINE_Y,
   TIME_AXIS_END_X,
+  TIME_AXIS_LABEL_POSITION,
   TIME_AXIS_ORIGIN_X,
+  TIMELINE_RAIL_AXIS_SAFE_INSET,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackDisplayContract.js";
 import {
   createCausalDelayFeedbackEomReplayOptions,
@@ -611,10 +617,85 @@ test("causal delay feedback now scrubber pauses and moves replay time", () => {
 
   assert.equal(runtime.isPlaying, false);
   assert.equal(nowInput.value, "500");
-  assert.equal(nowValue.textContent, "replay t=0.5");
+  assert.equal(nowValue.textContent, "Replay time 0.5");
+  assert.equal(nowInput.attributes["aria-valuetext"], "Replay time 0.5");
   assertNear(runtime.getCurrentReplayTime(), 0.5);
   assertNear(renderedTime, 0.5);
   assert.equal(readout.hidden, true);
+});
+
+test("Laboratory entry and First Frame use one stable early causal-delay state", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  const nowInput = new FakeElement();
+  runtime.dom = {
+    nowInput,
+    nowValue: null,
+    playButton: new FakeElement(),
+    resetButton: new FakeElement(),
+    lastFrameButton: new FakeElement(),
+  };
+  runtime.context = {};
+  runtime.render = () => {};
+  runtime.elapsedSeconds = runtime.getReplayLoopSeconds() * 0.72;
+
+  runtime.handleLearnerModeChange("sandbox");
+
+  const [rangeStart, rangeEnd] = runtime.getReplayTimeRange();
+  const expectedTime =
+    rangeStart +
+    (rangeEnd - rangeStart) * LABORATORY_INITIAL_REPLAY_FRACTION;
+  assertNear(runtime.getCurrentReplayTime(), expectedTime);
+  assert.equal(nowInput.value, String(Math.round(LABORATORY_INITIAL_REPLAY_FRACTION * 1000)));
+  assert.ok(runtime.getVisibleWakeSeries(expectedTime).length > 0);
+
+  runtime.setReplayNowSliderValue(420);
+  assertNear(
+    runtime.getCurrentReplayTime(),
+    rangeStart + (rangeEnd - rangeStart) * 0.42,
+  );
+
+  runtime.resetReplayTime();
+  assertNear(runtime.getCurrentReplayTime(), expectedTime);
+});
+
+test("Laboratory playback stops at and holds its final frame without looping", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "sandbox",
+  });
+  const nowInput = new FakeElement();
+  runtime.dom = {
+    nowInput,
+    nowValue: null,
+    playButton: new FakeElement(),
+    resetButton: new FakeElement(),
+    lastFrameButton: new FakeElement(),
+  };
+  runtime.context = {};
+  runtime.render = () => {};
+  runtime.isPlaying = true;
+  runtime.learnerState.playback.playing = true;
+  runtime.elapsedSeconds = runtime.getReplayLoopSeconds() - 0.01;
+  runtime.lastFrameTime = 0;
+
+  runtime.tick(60);
+
+  const [, endTime] = runtime.getReplayTimeRange();
+  assert.equal(runtime.isPlaying, false);
+  assertNear(runtime.getCurrentReplayTime(), endTime);
+  assert.equal(nowInput.value, "1000");
+
+  runtime.tick(120);
+  assertNear(runtime.getCurrentReplayTime(), endTime);
+
+  runtime.setPlaying(true);
+  assert.equal(runtime.isPlaying, true);
+  assertNear(runtime.getCurrentReplayTime(), runtime.getLaboratoryInitialReplayTime());
 });
 
 test("causal delay feedback now scrubber updates selected wake state", () => {
@@ -665,7 +746,8 @@ test("causal delay feedback reset resyncs now control and selected readout", () 
 
   assert.equal(runtime.isPlaying, false);
   assert.equal(nowInput.value, "0");
-  assert.equal(nowValue.textContent, "replay t=0");
+  assert.equal(nowValue.textContent, "Replay time 0");
+  assert.equal(nowInput.attributes["aria-valuetext"], "Replay time 0");
 });
 
 test("causal delay feedback reset preset restores the loaded preset state", async () => {
@@ -1330,8 +1412,11 @@ test("causal delay feedback toolbar exposes independent wake visual switches", (
 
   assert.equal(html.includes("right: max(20px, env(safe-area-inset-right));"), true);
   assert.equal(html.includes("max-width: calc(100vw - 40px);"), false);
-  assert.equal(html.includes("flex: 1 1 520px;"), true);
-  assert.equal(html.includes("grid-template-columns: minmax(320px, 1fr) 48px;"), true);
+  assert.equal(
+    html.includes("grid-template-columns: auto auto auto minmax(0, 1fr);"),
+    true,
+  );
+  assert.equal(html.includes("grid-template-columns: minmax(320px, 1fr) 48px;"), false);
   assert.equal(html.includes("grid-template-columns: minmax(118px, 18vw) 48px;"), false);
   assert.equal(html.includes('id="causal-delay-feedback-visual-switches"'), true);
   [
@@ -1386,18 +1471,71 @@ test("causal delay feedback settings button uses a gear icon", () => {
   assert.equal(settingsButtonHtml.includes('d="M2.8 12h3"'), false);
 });
 
-test("causal delay feedback toolbar uses one play-pause toggle without visible source chip", () => {
+test("causal delay feedback bottom rail keeps timeline-only transport before the scrubber", () => {
   const html = readCausalDelayFeedbackHtml();
-  const playIndex = html.indexOf('id="causal-delay-feedback-play"');
+  const firstIndex = html.indexOf('id="causal-delay-feedback-guided-first-frame"');
+  const playIndex = html.indexOf('id="causal-delay-feedback-guided-play"');
+  const lastIndex = html.indexOf('id="causal-delay-feedback-guided-last-frame"');
   const scrubIndex = html.indexOf('id="causal-delay-feedback-now"');
   const replayStatusIndex = html.indexOf('id="causal-delay-feedback-replay-status"');
 
-  assert(playIndex > 0);
-  assert(scrubIndex > playIndex);
+  assert(firstIndex > 0);
+  assert(playIndex > firstIndex);
+  assert(lastIndex > playIndex);
+  assert(scrubIndex > lastIndex);
   assert(replayStatusIndex > scrubIndex);
-  assert.match(html.slice(playIndex, scrubIndex), /aria-label="Play replay"/);
+  assert.match(html.slice(playIndex, lastIndex), /aria-label="Play"/);
   assert.doesNotMatch(html, /id="causal-delay-feedback-pause"/);
+  assert.doesNotMatch(
+    html.slice(
+      html.indexOf('id="causal-delay-feedback-bottom-rail"'),
+      replayStatusIndex,
+    ),
+    />Back<|>Next</u,
+  );
+  assert.doesNotMatch(html, /id="causal-delay-feedback-now-value"/u);
   assert.match(html.slice(replayStatusIndex, replayStatusIndex + 180), /hidden/);
+});
+
+test("causal delay feedback shares one time-axis label position above the axis", () => {
+  assert.equal(TIME_AXIS_LABEL_POSITION.x, TIME_AXIS_END_X - 22);
+  assert.equal(TIME_AXIS_LABEL_POSITION.y, TIME_AXIS_BASELINE_Y - 24);
+  assert.ok(TIME_AXIS_LABEL_POSITION.y < TIME_AXIS_BASELINE_Y);
+  const source = readFileSync(
+    new URL(
+      "../src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+  assert.match(source, /"time",\s*TIME_AXIS_LABEL_POSITION/u);
+});
+
+test("causal delay feedback aligns the bottom rail to the transformed time axis", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.canvasWidth = 1000;
+  runtime.viewport = {
+    scale: 0.5,
+    offsetX: 10,
+    offsetY: 20,
+  };
+  runtime.dom = {
+    bottomRail: new FakeElement(),
+  };
+
+  const bounds = runtime.alignBottomRailToTimeAxis();
+
+  assert.equal(bounds.left, TIME_AXIS_ORIGIN_X * 0.5 + 10);
+  assert.equal(
+    bounds.right,
+    TIME_AXIS_END_X * 0.5 + 10 - TIMELINE_RAIL_AXIS_SAFE_INSET,
+  );
+  assert.equal(runtime.dom.bottomRail.style.left, "56.00px");
+  assert.equal(runtime.dom.bottomRail.style.right, "87.00px");
+  assert.equal(runtime.dom.bottomRail.dataset.axisAlignedBounds, "56.00,913.00");
 });
 
 test("causal delay feedback Laboratory omits the redundant polarity legend and readout lozenge", () => {
@@ -3788,17 +3926,27 @@ test("causal delay feedback full circle emission lines render above path trails"
     window: fakeWindow,
   });
   const calls = [];
+  const liveWakeSeriesConsumers = [];
   runtime.context = {
     clearRect() {},
     setTransform() {},
   };
   runtime.drawBackground = () => calls.push("background");
-  runtime.drawWakes = () => calls.push("wakes");
+  runtime.drawWakes = (_ctx, _replayTime, visibleWakeSeries) => {
+    calls.push("wakes");
+    liveWakeSeriesConsumers.push(visibleWakeSeries);
+  };
   runtime.drawPathTrail = (_ctx, kind) => calls.push(`path:${kind}`);
-  runtime.drawForegroundWakeEmissionLines = () => calls.push("emission-lines");
+  runtime.drawForegroundWakeEmissionLines = (_ctx, _replayTime, visibleWakeSeries) => {
+    calls.push("emission-lines");
+    liveWakeSeriesConsumers.push(visibleWakeSeries);
+  };
   runtime.drawPathEndpointHandles = () => calls.push("endpoint-handles");
   runtime.drawSelection = () => calls.push("selection");
-  runtime.drawSandboxTransmissionGhost = () => calls.push("transmission-ghost");
+  runtime.drawSandboxTransmissionGhost = (_ctx, visibleWakeSeries) => {
+    calls.push("transmission-ghost");
+    liveWakeSeriesConsumers.push(visibleWakeSeries);
+  };
   runtime.drawLiveMarkers = () => calls.push("markers");
 
   runtime.render(0.5);
@@ -3814,39 +3962,62 @@ test("causal delay feedback full circle emission lines render above path trails"
     "transmission-ghost",
     "markers",
   ]);
+  assert.equal(liveWakeSeriesConsumers.length, 3);
+  assert(
+    liveWakeSeriesConsumers.every(
+      (visibleWakeSeries) => visibleWakeSeries === liveWakeSeriesConsumers[0],
+    ),
+    "wake arcs, foreground emission lines, and emission dots must consume one shared live frame",
+  );
 });
 
-test("causal delay feedback Sandbox draws both reciprocal history-emission markers without labels", () => {
+test("causal delay feedback Sandbox draws emission markers from exact live wake sources after path drag", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     initialMode: "sandbox",
     window: fakeWindow,
   });
+  const replayTime = 0.7;
+  const beforeLinks = runtime.getVisibleWakeSeries(replayTime);
+  assert.equal(beforeLinks.length, 2);
+  const beforeSources = new Map(
+    beforeLinks.map((link) => [link.sourceKind, { ...link.source }]),
+  );
   const calls = [];
   runtime.drawTransmissionGhost = (_ctx, point, kind, options) => {
     calls.push({ point, kind, options });
   };
 
-  runtime.drawSandboxTransmissionGhost({});
+  runtime.drawSandboxTransmissionGhost({}, beforeLinks);
 
-  const root = runtime.learnerState.roots.find(
-    (candidate) => candidate.id === runtime.learnerState.selectedRootId,
+  assert.equal(calls.length, 2);
+  calls.forEach((call, index) => {
+    assert.equal(call.point, beforeLinks[index].source);
+    assert.equal(call.kind, beforeLinks[index].sourceKind);
+    assert.deepEqual(call.options, { showLabel: false });
+  });
+
+  const anchor = runtime.dataset.paths.positrino[90];
+  assert.equal(
+    runtime.applyPathLineDrag("positrino", anchor.t, { x: 24, y: -38 }),
+    true,
   );
-  const reciprocalRoot = runtime.learnerState.reciprocalRoots.find(
-    (candidate) => candidate.id === runtime.learnerState.selectedReciprocalRootId,
-  );
-  assert.deepEqual(calls, [
-    {
-      point: root.emission,
-      kind: root.sourceId,
-      options: { showLabel: false },
-    },
-    {
-      point: reciprocalRoot.emission,
-      kind: reciprocalRoot.sourceId,
-      options: { showLabel: false },
-    },
-  ]);
+  const afterLinks = runtime.getVisibleWakeSeries(replayTime);
+  assert.equal(afterLinks.length, 2);
+  calls.length = 0;
+
+  runtime.drawSandboxTransmissionGhost({}, afterLinks);
+
+  calls.forEach((call, index) => {
+    const link = afterLinks[index];
+    assert.equal(call.point, link.source);
+    assert.equal(call.kind, link.sourceKind);
+    assert.deepEqual(call.options, { showLabel: false });
+  });
+  assert(afterLinks.some((link) => {
+    const before = beforeSources.get(link.sourceKind);
+    return Math.hypot(link.source.x - before.x, link.source.y - before.y) > 0.1;
+  }));
 });
 
 test("causal delay feedback shared axes stop at both arrowhead bases", () => {
@@ -4207,45 +4378,43 @@ test("causal delay feedback path line drag keeps path endpoints fixed", () => {
   assert.notEqual(path.at(-2).y, endBefore.neighborY);
 });
 
-test("causal delay feedback path line drag fairs high-curvature bends", () => {
+test("causal delay feedback path line drag has no visible one-sided tangent kink", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
   });
-  const path = Array.from({ length: 101 }, (_unused, index) => {
-    const t = index / 100;
-    if (t <= 0.5) {
-      return { t, x: 200 * t, y: 200 * t };
-    }
-    return { t, x: 100 + 200 * (t - 0.5), y: 100 - 200 * (t - 0.5) };
-  });
-  runtime.dataset.paths.positrino = path;
-  runtime.dataset.frames = path.map((point) => ({ t: point.t, positrino: point }));
-  runtime.dataset.history.positrino = [
-    { kind: "positrino", depth: 1, t: 0, x: 0, y: 0, weight: 1 / 5, state: "older" },
-    { kind: "positrino", depth: 2, t: 0.25, x: 50, y: 50, weight: 2 / 5, state: "active" },
-    { kind: "positrino", depth: 3, t: 0.5, x: 100, y: 100, weight: 3 / 5, state: "active" },
-    { kind: "positrino", depth: 4, t: 0.75, x: 150, y: 50, weight: 4 / 5, state: "active" },
-    { kind: "positrino", depth: 5, t: 1, x: 200, y: 0, weight: 1, state: "newer" },
-  ];
+  const path = runtime.dataset.paths.positrino;
+  const anchorIndex = Math.floor(path.length * 0.5);
+  const anchorT = path[anchorIndex].t;
   const startBefore = { ...path[0] };
   const endBefore = { ...path.at(-1) };
 
-  const didEdit = runtime.applyPathLineDrag("positrino", 0.5, { x: 0, y: -24 });
+  const didEdit = runtime.applyPathLineDrag(
+    "positrino",
+    anchorT,
+    { x: 0, y: -220 },
+  );
 
-  const previous = runtime.getReplayPathPoint("positrino", 0.49);
-  const anchor = runtime.getReplayPathPoint("positrino", 0.5);
-  const next = runtime.getReplayPathPoint("positrino", 0.51);
+  const visibleHalfWindow = 0.005;
+  const previous = runtime.getReplayPathPoint(
+    "positrino",
+    anchorT - visibleHalfWindow,
+  );
+  const anchor = runtime.getReplayPathPoint("positrino", anchorT);
+  const next = runtime.getReplayPathPoint(
+    "positrino",
+    anchorT + visibleHalfWindow,
+  );
   const incoming = { x: anchor.x - previous.x, y: anchor.y - previous.y };
   const outgoing = { x: next.x - anchor.x, y: next.y - anchor.y };
-  const retainedAnchor = runtime.dataset.history.positrino.find((point) => point.depth === 3);
 
   assert.equal(didEdit, true);
   assert.deepEqual(path[0], startBefore);
   assert.deepEqual(path.at(-1), endBefore);
-  assert(normalizedDot(incoming, outgoing) > 0.55);
-  assertNear(retainedAnchor.x, anchor.x, 1e-6);
-  assertNear(retainedAnchor.y, anchor.y, 1e-6);
+  assert(
+    normalizedDot(incoming, outgoing) > 0.999,
+    "the rendered-scale incoming and outgoing chords must remain visually tangent",
+  );
 });
 
 test("causal delay feedback path drag uses a curvature-smooth truthful falloff", () => {
@@ -4922,6 +5091,7 @@ test("causal delay feedback destroy removes every runtime listener and invalidat
   runtime.dom = {
     playButton: new FakeElement(),
     resetButton: new FakeElement(),
+    lastFrameButton: new FakeElement(),
     resetPresetButton: new FakeElement(),
     settingsButton: new FakeElement(),
     visualSwitches: new FakeElement(),
@@ -5027,7 +5197,11 @@ test("causal delay feedback arrow keys pause and step solver replay frames", () 
   assert.equal(prevented, true);
   assert.equal(runtime.isPlaying, false);
   assertNear(runtime.getCurrentReplayTime(), frameTimes[1]);
-  assert.equal(nowValue.textContent, `replay t=${formatTestCompactNumber(frameTimes[1])}`);
+  assert.equal(nowValue.textContent, `Replay time ${formatTestCompactNumber(frameTimes[1])}`);
+  assert.equal(
+    nowInput.attributes["aria-valuetext"],
+    `Replay time ${formatTestCompactNumber(frameTimes[1])}`,
+  );
 
   prevented = false;
   runtime.handleKeyDown({

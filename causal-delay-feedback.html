@@ -150,10 +150,7 @@
       }
 
       .causal-now-scrub {
-        display: grid;
-        grid-template-columns: minmax(320px, 1fr) 48px;
-        align-items: center;
-        gap: 8px;
+        display: block;
         width: 100%;
         min-width: 0;
       }
@@ -175,15 +172,6 @@
         background: rgba(6, 6, 12, 0.84);
         box-shadow: 0 18px 36px rgba(12, 4, 24, 0.24);
         backdrop-filter: blur(10px);
-      }
-
-      .causal-now-value {
-        color: rgba(246, 247, 255, 0.86);
-        font-size: 11px;
-        font-weight: 760;
-        line-height: 1;
-        text-align: right;
-        white-space: nowrap;
       }
 
       .causal-icon-button {
@@ -767,6 +755,10 @@
         display: none;
       }
 
+      .causal-mode-tabs[hidden] {
+        display: none;
+      }
+
       .causal-lesson-toc-list {
         display: grid;
         gap: 4px;
@@ -1179,10 +1171,6 @@
           max-width: none;
         }
 
-        .causal-now-scrub {
-          grid-template-columns: minmax(118px, 1fr) 48px;
-        }
-
         .causal-bottom-rail {
           right: max(12px, env(safe-area-inset-right));
           bottom: max(12px, env(safe-area-inset-bottom));
@@ -1223,7 +1211,7 @@
         .causal-lesson-panel {
           top: auto;
           right: max(12px, env(safe-area-inset-right));
-          bottom: max(88px, calc(env(safe-area-inset-bottom) + 88px));
+          bottom: max(104px, calc(env(safe-area-inset-bottom) + 104px));
           left: max(12px, env(safe-area-inset-left));
           width: auto;
           max-height: 47vh;
@@ -1233,7 +1221,7 @@
         .causal-journey[data-mode="story"] .causal-lesson-panel {
           top: auto;
           right: max(12px, env(safe-area-inset-right));
-          bottom: max(88px, calc(env(safe-area-inset-bottom) + 88px));
+          bottom: max(104px, calc(env(safe-area-inset-bottom) + 104px));
           left: max(12px, env(safe-area-inset-left));
           width: auto;
           max-height: 47vh;
@@ -1323,12 +1311,12 @@
             title="Table of Contents"
           >TOC</button>
           <div class="causal-lesson-nav-history" role="group" aria-label="Lesson sequence">
-            <button id="causal-delay-feedback-guided-back" class="causal-app-icon-button" type="button" aria-label="Previous lesson" title="Previous lesson">
+            <button id="causal-delay-feedback-guided-back" class="causal-app-icon-button" type="button" data-guided-action="back" aria-label="Previous lesson" title="Previous lesson">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <polyline points="15 5 8 12 15 19"></polyline>
               </svg>
             </button>
-            <button id="causal-delay-feedback-guided-next" class="causal-app-icon-button" type="button" aria-label="Next lesson" title="Next lesson">
+            <button id="causal-delay-feedback-guided-next" class="causal-app-icon-button" type="button" data-guided-action="next" aria-label="Next lesson" title="Next lesson">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <polyline points="9 5 16 12 9 19"></polyline>
               </svg>
@@ -1446,7 +1434,6 @@
             value="0"
             aria-label="Replay now"
           />
-          <output id="causal-delay-feedback-now-value" class="causal-now-value">replay t=0.00</output>
         </div>
       </div>
 

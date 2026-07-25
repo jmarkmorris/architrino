@@ -41,6 +41,11 @@ export const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 export const TIME_AXIS_ORIGIN_X = 92;
 export const TIME_AXIS_END_X = 1810;
 export const TIME_AXIS_BASELINE_Y = 908;
+export const TIME_AXIS_LABEL_POSITION = Object.freeze({
+  x: TIME_AXIS_END_X - 22,
+  y: TIME_AXIS_BASELINE_Y - 24,
+});
+export const TIMELINE_RAIL_AXIS_SAFE_INSET = 2;
 export const SPACE_AXIS_TOP_Y = 182;
 export const PATH_TIME_START_X =
   TIME_AXIS_ORIGIN_X + (TIME_AXIS_END_X - TIME_AXIS_ORIGIN_X) * 0.05;
