@@ -42,7 +42,7 @@ No score changes.
 | Exact first blocker | `missing_accepted_radiation_source_carrier`. |
 | Existing scripts/fixtures/packets found | The `EQ-29` checker and attempt fixture listed above, [EQ-13 And EQ-28 e_gamma_e_0 Gate A Source-Field Map](eq-13-28-e-gamma-e0-gate-a-source-field-map.md), [EQ-12 Theta-Gamma Packet Source Shell](eq-12-theta-gamma-packet-source-shell.md), and [EQ-28A Path-Frequency Exchange](eq-28a-path-frequency-exchange.md). The consolidated radiation audit found that benchmark power or frequency agreement is score-neutral until an accepted `radiation_source_carrier` binds the source mechanism, depletion, photon output, recoil/medium/wake/remnant, event ledger, provenance, and zero-retune rows on one carrier. |
 | Candidate breakthrough angle | Use one EOM event record from the synchrotron lane: a charged assembly path segment with $\Gamma_{e^\pm}(t)$, causal-root/Jacobian data (same-record transmitter factor $D_t$, acceleration weight $W_{\mathrm{acc}}=c_f/|D_t|$, and separate signed playback $D_r/D_t$), $\mathcal V_{\mathrm{NS}}$, $G_{\text{grad}}$, wake-strain threshold status, photon Gate A/B output, and transmitter-depletion identity. |
-| Fail-closed negative control | `source_channel_collapse`: a Compton/frequency-exchange row or photon Gate A object must not satisfy the synchrotron source mechanism row. |
+| Negative control required for advancement | `source_channel_collapse`: a Compton/frequency-exchange row or photon Gate A object must not satisfy the synchrotron source mechanism row. |
 | Smaller next action | Draft one checker-consumable candidate `radiation_source_carrier` row for a single event window with concrete ids and durable sources while keeping status `attempt`; then rerun the existing checker and require the first blocker to stay at `missing_accepted_radiation_source_carrier` until accepted evidence exists. |
 
 ## Accepted-Object Contract
@@ -92,7 +92,7 @@ Accepted rows must also declare EQ-29/radiation-source support in row metadata s
 
 This layer keeps radiation source recovery as one source-ledger geometry problem. It does not let a photon-channel output row, a Compton exchange row, a generic radiation note, or an observer-level power/spectrum benchmark substitute for a retained synchrotron source mechanism.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | $P_L$ / Lienard power and synchrotron $P_{\mathrm{syn}}$ | Source-depletion and emitted-power readout from one curved charged-assembly source ledger. | `radiation_source_carrier`, `source_depletion_row`, `power_spectrum_benchmark_row` | One `commonCarrierId`, event window, source branch id, and source-depletion ledger feed both power and benchmark rows. | `power_without_source_depletion` rejects benchmark power without a source-depletion ledger. | Accepted `radiation_source_carrier` plus source-depletion and benchmark rows with EQ-29/radiation-source support metadata. |
 | Critical frequency $\nu_c$ and spectrum shape | Photon output spectrum readout from the same source branch and Noether sea magnetic-state row. | `carrier_channel_family_row`, `source_mechanism_row`, `noether_sea_magnetic_state_row`, `power_spectrum_benchmark_row` | $B_{\mathrm{eff}}$, $\gamma$, pitch, channel family, and synchrotron mechanism remain on one source branch. | `hidden_B_or_gamma_retune`, `carrier_channel_family_source_contract_mismatch`, and `source_mechanism_source_contract_mismatch` reject retuned or generic rows. | Accepted photon-channel family and synchrotron source-mechanism rows after the parent radiation carrier passes. |
@@ -100,11 +100,11 @@ This layer keeps radiation source recovery as one source-ledger geometry problem
 | Photon Gate A/B output and polarization | Photon-channel output, Gate B polarization, and angular-momentum handoff from the same event ledger. | `photon_output_gate_A_B_row`, `polarization_angular_momentum_handoff_row` | Photon output, polarization, angular momentum, and source depletion use one event ledger and carrier id. | `polarization_without_gate_B` rejects polarization rows without Gate B handoff. | Accepted photon Gate A/B output and polarization/angular-momentum rows on the source carrier. |
 | Recoil, medium, wake, and remnant updates | Conservation readout across source, photon, recoil, medium, wake, and remnant rows. | `recoil_medium_wake_remnant_rows`, `event_ledger_row` | Recoil, medium update, wake, remnant, photon output, and source depletion cite one event ledger. | Event-ledger controls reject thermal/free-free or benchmark-only fits without the full ledger. | Accepted recoil/medium/wake/remnant rows plus event-ledger row on one carrier. |
 | Cooling time | Cooling readout from source energy divided by emitted power on the same ledger. | `cooling_row`, `source_depletion_row`, `power_spectrum_benchmark_row` | Cooling, source energy, emitted power, and source depletion share one event and source branch. | Hidden-retune controls reject changing source energy, $B_{\mathrm{eff}}$, $\gamma$, or pitch between power and cooling. | Accepted cooling row bound to accepted source-depletion and benchmark rows. |
-| $\mathcal S_{\mathrm{retune}}$ and source provenance | No-hidden-retune witness plus durable source provenance for carrier, family, mechanism, branch, source state, photon output, depletion, recoil, cooling, and polarization rows. | `source_provenance`, `no_hidden_retune_witness`, all required rows | All required rows cite durable evidence and the same `commonCarrierId`, source branch, event ledger, and row-specific source-support metadata. | Coordination-source, probe-source, unrelated-durable, metadata-missing, family-collapse, mechanism-collapse, and non-synchrotron controls reject false evidence sources. | A checker-consumable $\Theta_{\mathrm{rad,source}}^{(\mathrm{syn},W)}$ packet whose required rows are accepted, source-backed, metadata-supported, same-record bound, and fail closed under the existing checker. |
+| $\mathcal S_{\mathrm{retune}}$ and source provenance | No-hidden-retune witness plus durable source provenance for carrier, family, mechanism, branch, source state, photon output, depletion, recoil, cooling, and polarization rows. | `source_provenance`, `no_hidden_retune_witness`, all required rows | All required rows cite durable evidence and the same `commonCarrierId`, source branch, event ledger, and row-specific source-support metadata. | Coordination-source, probe-source, unrelated-durable, metadata-missing, family-collapse, mechanism-collapse, and non-synchrotron controls reject false evidence sources. | A checker-consumable $\Theta_{\mathrm{rad,source}}^{(\mathrm{syn},W)}$ packet whose required rows are accepted, source-backed, metadata-supported, same-record bound, and not advanced under the existing checker. |
 
 The smallest accepted evidence object is therefore not a radiation benchmark residual by itself. It is the accepted radiation-source carrier, followed by accepted carrier-channel-family and synchrotron source-mechanism rows with the row-specific support metadata already exercised by the source-evidence probes and metadata/collapse controls.
 
-## Fail-Closed Controls
+## Verification Required for Advancement Controls
 
 Keep the existing controls as first-line guards:
 
@@ -148,7 +148,7 @@ node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input 
 
 Expected result: `status=blocked_missing_rows`, `nextBlocker=missing_accepted_radiation_source_carrier`, `sourceEvidenceFailureCount=1`, and `rowStatuses.radiation_source_carrier.reason=accepted_without_evidence_source`. The same command with `--require-populated` must exit nonzero. This protects the checker from treating an existing durable file as source evidence unless the row declares EQ-29/radiation-source support.
 
-The coordination-source fail-closed control is:
+The coordination-source control required for advancement is:
 
 ```sh
 node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-ledger-coordination-source-negative-control.v1.json --summary --pretty
@@ -156,7 +156,7 @@ node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input 
 
 Expected result: `status=blocked_source_evidence`, `nextBlocker=accepted_without_evidence_source`, and `sourceEvidenceFailureCount=15`. The same command with `--require-populated` must exit nonzero.
 
-The probe-source fail-closed control is:
+The probe-source control required for advancement is:
 
 ```sh
 node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-ledger-probe-source-negative-control.v1.json --summary --pretty
@@ -164,7 +164,7 @@ node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input 
 
 Expected result: `status=blocked_source_evidence`, `nextBlocker=accepted_without_evidence_source`, and `sourceEvidenceFailureCount=15`. This protects `EQ-29` from treating toy or `source-evidence-probe` fixtures as retained radiation source evidence.
 
-The unrelated-durable-source fail-closed control is:
+The unrelated-durable-source control required for advancement is:
 
 ```sh
 node scripts/equation-mapping/eq29-radiation-source-ledger-residual.mjs --input scripts/equation-mapping/eq29-radiation-source-ledger-unrelated-durable-source-negative-control.v1.json --summary --pretty

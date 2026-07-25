@@ -1012,7 +1012,7 @@ test("Borg EOM shadow response rejects reordered or incomplete published histori
   );
 });
 
-test("Borg EOM fail-closed responses preserve native diagnostics", async () => {
+test("Borg EOM verification failed responses preserve native diagnostics", async () => {
   const diagnostics = [{ code: "minimum_step_exhausted", rootFailureCount: 240 }];
   const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
     eomClient: {

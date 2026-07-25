@@ -152,7 +152,7 @@ export function validateMcpRemoteDeploymentContract({ contract, candidateSnapsho
     contract.health?.readinessFailureStatus !== 503 ||
     !sameMembers(contract.health?.readinessRequires, REQUIRED_READINESS_GATES)
   ) {
-    add("HEALTH_CONTRACT_MISMATCH", "readiness must fail closed on every deployment gate without exposing diagnostics");
+    add("HEALTH_CONTRACT_MISMATCH", "readiness verification failed: readiness must require every deployment gate without exposing diagnostics");
   }
 
   if (contract.snapshotPublication?.repositoryReadDuringRequest !== false) {

@@ -77,25 +77,25 @@ export const HIGH_LEVEL_GATE_DEFINITIONS = Object.freeze([
     id: "fixedInternalPrimary",
     label: "Fixed internal · primary",
     definition:
-      "Primary-resolution fixed internal receiver validity completed without a fail-closed defect.",
+      "Primary-resolution fixed internal receiver verification completed without a verification failure.",
   }),
   Object.freeze({
     id: "fixedInternalRefined",
     label: "Fixed internal · refined",
     definition:
-      "Refined-resolution fixed internal receiver validity completed without a fail-closed defect.",
+      "Refined-resolution fixed internal receiver verification completed without a verification failure.",
   }),
   Object.freeze({
     id: "movingReceiverPrimary",
     label: "Moving receiver · primary",
     definition:
-      "Primary-resolution moving internal receiver validity completed without a fail-closed defect.",
+      "Primary-resolution moving internal receiver verification completed without a verification failure.",
   }),
   Object.freeze({
     id: "movingReceiverRefined",
     label: "Moving receiver · refined",
     definition:
-      "Refined-resolution moving internal receiver validity completed without a fail-closed defect.",
+      "Refined-resolution moving internal receiver verification completed without a verification failure.",
   }),
   Object.freeze({
     id: "surfaceQuadrature",

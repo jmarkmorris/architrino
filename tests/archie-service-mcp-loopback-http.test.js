@@ -137,7 +137,7 @@ test("principal concurrency limit denies a second active lease", () => {
   third.release();
 });
 
-test("unauthenticated address limit and insufficient scope fail closed", async () => {
+test("unauthenticated address limit and insufficient scope do not advance", async () => {
   const addressContract = contractForSnapshot(activeSnapshot);
   addressContract.limits.maxUnauthenticatedRequestsPerMinutePerAddress = 2;
   const addressAdapter = makeAdapter({ contract: addressContract, clock: () => 0 });

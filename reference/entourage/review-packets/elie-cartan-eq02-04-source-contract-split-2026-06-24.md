@@ -73,7 +73,7 @@ The coframe is allowed to use $c_f$, $u$, causal-root rows, wake-return rows, an
 
 ## Current Executable Contract
 
-The current fail-closed producer accepts a source report only if all required checks pass. It has been hardened to reject three important fake-evidence modes:
+The current producer with verification required for advancement accepts a source report only if all required checks pass. It has been hardened to reject three important fake-evidence modes:
 
 1. **Empty source shell:** the report uses accepted-looking labels but leaves $B_N,\Sigma_N,P_N,\mathcal K_{P_N}$ mathematically empty. It blocks at the first support-object check.
 2. **Bare row-binding shell:** the report supplies valid-looking support, refinement, coframe, connection, residual, and negative-control rows, but its row bindings are only bare `accepted` labels. It blocks at the first row-binding check.

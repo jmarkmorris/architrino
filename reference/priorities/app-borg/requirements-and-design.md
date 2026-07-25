@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The app lets the operator build, run, inspect, and replay finite simulation windows that approximate an unbounded architrino universe with controlled scale and initial conditions. The first target is a bounded 3D window whose outbound shell statistics can generate statistically matched inbound architrinos and wake history. Solver diagnostics must remain explicit about what is retained, replayed, display-only, or fail-closed.
+The app lets the operator build, run, inspect, and replay finite simulation windows that approximate an unbounded architrino universe with controlled scale and initial conditions. The first target is a bounded 3D window whose outbound shell statistics can generate statistically matched inbound architrinos and wake history. Solver diagnostics must remain explicit about what is retained, replayed, display-only, verification incomplete, or not advanced.
 
 The app is a design target until native-backed runs and retained same-record evidence exist.
 
@@ -89,7 +89,7 @@ The app should expose scale as a declared simulation envelope, not as cosmetic z
 | `electrinoCount` / `positrinoCount` | Requested polarity inventory for the initial condition | Must map to explicit per-architrino polarity or composition rows; native numerical encodings are implementation details. |
 | `duration` | Simulated time span | Determines required path-history depth and storage. |
 | `timeStepPolicy` | Fixed, adaptive, or solver-selected stepping policy | Must be part of the EOM solver model contract. |
-| `historyDepth` | Active causal-history time window $h$ | Measured in time; must be enough to support requested wake/root queries or fail closed. |
+| `historyDepth` | Active causal-history time window $h$ | Measured in time; must be enough to support requested wake/root queries, or verification remains incomplete. |
 | `wakeHorizon` | Wake travel length $c_f h$ corresponding to `historyDepth` | Measured in length; determines whether wakes can reach the simulation-window boundary-shell patches inside the retained history. |
 | `wakeFloor` | Declared threshold below which wakes are not retained as resolved rows | Must route to background/noise rows rather than silent truncation. |
 | `boundaryMode` | Local window or statistical boundary shell | Must determine whether outbound/inbound boundary-shell patch rows are required in displayed rows. |
@@ -118,7 +118,7 @@ The app should support several initial-condition families while preserving expli
 
 The current browser implementation launches from a fresh `seeded-random` geometry on every page startup: six architrinos are sampled by rejection uniformly in the full spherical simulation envelope, with a 3:3 electrino/positrino mix, declared minimum pair separation `0.2`, and independently sampled velocity components bounded by `0.01`. The rendered dotted sphere and the initial-population volume share `outerRadius = 0.5`; the startup seed is recorded so an explicit seed can reproduce the distribution without imposing a lattice. The accepted initial-history certificate records the measured all-pairs separation and its `1e-12` comparison tolerance.
 
-The Initial Condition panel exposes exact `electrinoCount`, exact `positrinoCount`, the run coupling `κ`, nominal `stepHeight`, `adaptiveMinimumStep`, `randomVelocityMaxComponentMagnitude`, and `randomVelocityMinSpeed`. The nominal height sets both the first attempted EOM height and the adaptive-growth ceiling; the adaptive minimum is the smallest retried height before a named fail-closed halt. The panel requires `0 < adaptiveMinimumStep <= stepHeight <= chunkDuration`, so neither control is aspirational. The component maximum bounds each of `|v_x|`, `|v_y|`, and `|v_z|`; the minimum speed bounds the complete vector magnitude `sqrt(v_x^2+v_y^2+v_z^2)`. An accepted panel edit uses the current deterministic seed with random placement subject to the declared minimum-separation gate, constructs a certified exact polynomial initial history, discards prior forward frames, and returns the timeline to `T=0` without starting motion. The timeline Play control starts forward EOM evolution with the accepted coupling and step controls. The die control advances the seed and performs the same reset. The timeline places a visible path-history selector after the run-duration limit and before playback speed, with 30, 60, 90, 180, and 360 units of simulation time $T$ and a 30-unit default. That selector redraws the displayed trails immediately in either run grade without resetting the simulation. It is not the EOM solver's causal-history depth and cannot delete solver input merely because a segment is visually old. The lower-right timeline status is a fixed-width `T hh:mm:ss.s` clock; buffer lead and adaptive playback-rate diagnostics remain available in diagnostics rather than occupying the primary timeline. The runtime validates a combined population from 1 through 512 and rejects an unreachable speed, step, or placement request. A rejected edit leaves the prior accepted initial datum visible. These rows are accepted input, not canonical equation-of-motion evidence. Per-architrino position and velocity-vector editing remains outside this implemented control set; high populations remain gated in practice by measured EOM throughput.
+The Initial Condition panel exposes exact `electrinoCount`, exact `positrinoCount`, the run coupling `κ`, nominal `stepHeight`, `adaptiveMinimumStep`, `randomVelocityMaxComponentMagnitude`, and `randomVelocityMinSpeed`. The nominal height sets both the first attempted EOM height and the adaptive-growth ceiling; the adaptive minimum is the smallest retried height before a named not advanced halt. The panel requires `0 < adaptiveMinimumStep <= stepHeight <= chunkDuration`, so neither control is aspirational. The component maximum bounds each of `|v_x|`, `|v_y|`, and `|v_z|`; the minimum speed bounds the complete vector magnitude `sqrt(v_x^2+v_y^2+v_z^2)`. An accepted panel edit uses the current deterministic seed with random placement subject to the declared minimum-separation gate, constructs a certified exact polynomial initial history, discards prior forward frames, and returns the timeline to `T=0` without starting motion. The timeline Play control starts forward EOM evolution with the accepted coupling and step controls. The die control advances the seed and performs the same reset. The timeline places a visible path-history selector after the run-duration limit and before playback speed, with 30, 60, 90, 180, and 360 units of simulation time $T$ and a 30-unit default. That selector redraws the displayed trails immediately in either run grade without resetting the simulation. It is not the EOM solver's causal-history depth and cannot delete solver input merely because a segment is visually old. The lower-right timeline status is a fixed-width `T hh:mm:ss.s` clock; buffer lead and adaptive playback-rate diagnostics remain available in diagnostics rather than occupying the primary timeline. The runtime validates a combined population from 1 through 512 and rejects an unreachable speed, step, or placement request. A rejected edit leaves the prior accepted initial datum visible. These rows are accepted input, not canonical equation-of-motion evidence. Per-architrino position and velocity-vector editing remains outside this implemented control set; high populations remain gated in practice by measured EOM throughput.
 
 ### Population Count From Central Sphere To Outer Sphere
 
@@ -145,7 +145,7 @@ The app should display both counts:
 | `architrinoCount` | Total architrino count requested for the outer spherical envelope. | This drives solver cost, path-history pressure, and wake-history pressure. |
 | `bufferArchitrinoCount` | Difference `architrinoCount - centralArchitrinoCount`. | This is computed exterior population, not the primary observation set. |
 
-Central-sphere counts are interpretable only after exterior boundary-shell patch effects are excluded by the strict central-ball buffer target or by a passing $R_{\mathrm{boundary\to central}}$ residual. If neither condition is available, the central count may still be displayed as the staged interior population, but central-ball acceleration and wake-background claims must fail closed.
+Central-sphere counts are interpretable only after exterior boundary-shell patch effects are excluded by the strict central-ball buffer target or by a passing $R_{\mathrm{boundary\to central}}$ residual. If neither condition is available, the central count may still be displayed as the staged interior population, but central-ball acceleration and wake-background claims must not advance.
 
 No initial-condition editor should ask the operator for architrino physical mass. The initial-condition editor must expose the requested electrino/positrino inventory directly. The operator should be able to set the central architrino count, see the derived outer computed count, and set the mix as exact counts, a ratio, or a percentage view, with the manifest preserving the resolved per-architrino polarity assignment across both the central ball and the buffer population.
 
@@ -243,7 +243,7 @@ The app must separate retained local evidence from boundary-generated values.
 | `retained-local-evidence` | Same-record source and receiver path history exists inside the active window; the causal root is solved inside the declared `errorBudget`; and the row does not depend on statistical boundary replay. | Supports local simulation-window diagnostics only. It does not prove the external unbounded universe state. |
 | `boundary-generated-value` | The value is generated from outbound/inbound boundary-shell patch statistics with an explicit boundary-shell patch label, summary id, sampling policy, seed, and error budget. | Supports reduced-model boundary input only. It cannot stand in for retained path history, retained wake evidence, branch evidence, or same-record causal-root proof. |
 | `display-only-visualization` | The value is drawn only to preview boundary behavior and does not feed acceleration, wake rows, or diagnostics. | Helps inspect possible boundary behavior but has no solver authority. |
-| `fail-closed-value` | The run needs boundary interpretation but lacks a required boundary-shell patch summary, retained path binding, causal-root row, error budget, replay validation, or row conservation proof. | Blocks authoritative acceleration, branch evidence, retained wake evidence, and unbounded-window claims for the affected receiver, region, or run. |
+| `fail-closed-value` | Verification is incomplete because the run needs boundary interpretation but lacks a required boundary-shell patch summary, retained path binding, causal-root record, error budget, replay validation, or record-conservation proof. | Blocks authoritative acceleration, branch evidence, retained wake evidence, and unbounded-window claims for the affected receiver, region, or run. |
 
 ## Simulation-Envelope Wake Row Rule
 
@@ -275,7 +275,7 @@ The app may not display receiver acceleration as authoritative unless every cand
 | Resolved wake row | Same-record source and receiver path history exists; the causal root is solved inside `errorBudget`; and the wake contribution is at or above `wakeFloor`, or the selected diagnostic/branch depends on the individual row. | A retained wake row with source id, receiver id, source path id, receiver path id, emission time, hit time, causal-root id, residual, wake strength or acceleration contribution, value authority, and status. |
 | Aggregated wake-noise/background row | The individual row is below `wakeFloor`; it is not selected; no branch row, retained record, or selected-object diagnostic depends on that individual row; and the aggregate bin can be bounded inside `errorBudget`. | A background/noise row with threshold, bin definition, omitted-row count, aggregate magnitude, error bound, source population, receiver population or region, boundary-shell patch summary when relevant, and claim-level downgrade. |
 | Boundary-generated row | The value comes from a declared boundary-shell replay source with boundary-shell patch id, source summary id, sampling seed, replay policy, and error budget. | A boundary-generated row with reduced value authority and a claim-level downgrade. |
-| Failure row | The run cannot prove resolved-row retention, admissible aggregation, or admissible boundary replay. | A fail-closed row with first-failure code, affected receiver or region, missing field or exceeded bound, and value-authority downgrade. |
+| Failure row | The run cannot prove resolved-row retention, admissible aggregation, or admissible boundary replay. | A not advanced row with first-failure code, affected receiver or region, missing field or exceeded bound, and value-authority downgrade. |
 
 The classification is exclusive and exhaustive inside the declared envelope:
 
@@ -313,7 +313,7 @@ Policy ladder:
 
 ## Boundary-Aware Wake Interpretation
 
-When the active causal-history horizon is small compared with $L$, most retained wakes are local to the active window. When the horizon reaches the boundary-shell patch scale, wakes and architrinos can leave the window and external influence must be handled by retained external path history, statistically replayed boundary-shell patch rows, or fail-closed diagnostics. The app must make this visible because boundary-generated rows are not the same diagnostic situation as retained local rows.
+When the active causal-history horizon is small compared with $L$, most retained wakes are local to the active window. When the horizon reaches the boundary-shell patch scale, wakes and architrinos can leave the window and external influence must be handled by retained external path history, statistically replayed boundary-shell patch rows, or diagnostics required for advancement. The app must make this visible because boundary-generated rows are not the same diagnostic situation as retained local rows.
 
 Required diagnostics:
 
@@ -346,7 +346,7 @@ The app may display this decomposition, but it must not promote it to proof evid
 
 The app should open on the working simulation surface, not a landing page. The visual design should be minimal, elegant, contemporary, and parsimonious by default: one quiet simulation workspace with restrained controls, clear hierarchy, and no decorative chrome that competes with the simulation state.
 
-Parsimony means the first screen should expose only the controls and statuses needed for the active run interpretation. Required solver state, value authority, error-budget status, wake-history gaps, boundary-shell status, and fail-closed diagnostics must remain reachable without turning the default view into a dashboard of every possible row.
+Parsimony means the first screen should expose only the controls and statuses needed for the active run interpretation. Required solver state, value authority, error-budget status, wake-history gaps, boundary-shell status, and diagnostics required for advancement must remain reachable without turning the default view into a dashboard of every possible row.
 
 Primary regions:
 
@@ -406,7 +406,7 @@ The first deployment budget should report:
 | `actionsArtifactBudget` | CI/review artifacts, generated captures, benchmark output, and logs retained by GitHub Actions. | Pages bandwidth. |
 | `nativeSolverThroughput` | Steps, rows, candidates, and retained records per second under the EOM solver. | Static hosting or browser rendering pressure. |
 
-The deployment budget must fail closed when the app cannot distinguish static transfer, browser runtime memory, GPU memory, browser storage, GitHub Actions artifacts, GitHub Pages bandwidth, and EOM solver throughput. A beautiful 4K UHD render does not imply the deployment footprint is acceptable, and a small bundle does not imply solver or browser memory is safe.
+The deployment budget must not advance when the app cannot distinguish static transfer, browser runtime memory, GPU memory, browser storage, GitHub Actions artifacts, GitHub Pages bandwidth, and EOM solver throughput. A beautiful 4K UHD render does not imply the deployment footprint is acceptable, and a small bundle does not imply solver or browser memory is safe.
 
 Display-grade continuation keeps every causally reachable retained segment in the logical run history, but it must not serialize that complete prefix again at every increment. The first Display request establishes the worker-owned retained-history cache. Each later request names the exact cache token and per-path prefix count and carries only appended input segments; the ordinary case carries zero input segments because the prior accepted response is already the complete prefix. The response likewise carries only solver-published extensions, which the browser appends to its logical history. A cache-token, path-order, charge, or segment-count mismatch invalidates the optimization and permits one complete retransmission; it never permits uncertain prefix reuse or history deletion. Request queues must settle to value-free completion promises so a completed full response cannot remain retained merely as queue state.
 
@@ -422,7 +422,7 @@ The first screen should make camera navigation, viewport layers, and simulation-
 | --- | --- | --- | --- |
 | Viewport camera cluster | Floating inside the 3D viewport, upper right or lower right. | Rotate/orbit, zoom, pan, reset view, fit window, focus selected. | Camera controls change only the rendered viewpoint. They must never edit `outerRadius`, `scaleFactor`, `historyDepth`, `wakeHorizon`, `wakeFloor`, precision, or solver state. |
 | Layer toggle strip | Floating inside the 3D viewport, upper left or top center. | `path-history`, `wake-streams`, `velocity-vectors`, `boundary-shell-status`, and `diagnostics` toggles. | Layer toggles change visibility only. They must not create, delete, or recompute solver rows. |
-| Simulation-envelope panel | Left control rail, outside the 3D viewport. | `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `centralArchitrinoCount`, derived `architrinoCount`, `bufferArchitrinoCount`, `scaleFactor`, `historyDepth`, `wakeHorizon = c_f h`, `wakeFloor`, `boundaryMode`, electrino/positrino mix, velocity policy, `duration`, `timeStepPolicy`, and precision claim controls. | These controls change the requested run envelope or pending initial condition and must show pending, accepted, rejected, or fail-closed status. |
+| Simulation-envelope panel | Left control rail, outside the 3D viewport. | `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `centralArchitrinoCount`, derived `architrinoCount`, `bufferArchitrinoCount`, `scaleFactor`, `historyDepth`, `wakeHorizon = c_f h`, `wakeFloor`, `boundaryMode`, electrino/positrino mix, velocity policy, `duration`, `timeStepPolicy`, and precision claim controls. | These controls change the requested run envelope or pending initial condition and must show pending, accepted, rejected, or Not advanced disposition. |
 | Exact-value readout | Near the simulation-envelope panel and selected-object diagnostics. | Exact `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `centralArchitrinoCount`, `architrinoCount`, `bufferArchitrinoCount`, camera zoom ratio, `scaleFactor`, `historyDepth`, `wakeHorizon`, selected time, frame index, selected architrino velocity, selected wake strength, diagnostic status, and value-authority status. | Must keep camera zoom and physical simulation scale in separate labeled rows. |
 | Timeline rail | Bottom of the screen. | Linear local scrubber, logarithmic overview, current time, frame index, checkpoint id, and playback speed. | Timeline navigation changes playback/readback position only unless the operator explicitly changes the simulation envelope duration. |
 | Diagnostics rail | Right side, contextual and collapsible. | Selected architrino state, selected wake row, error budget, diagnostic status, value authority, first-failure codes, and acceleration decomposition. | Diagnostics may explain a value but must not silently upgrade claim level. |
@@ -441,7 +441,7 @@ Interaction rules:
 
 1. Mouse wheel, trackpad pinch, viewport zoom buttons, and fit-view commands control `view zoom` only.
 2. Editing `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `centralArchitrinoCount`, `scaleFactor`, `historyDepth`, `wakeHorizon`, `wakeFloor`, `boundaryMode`, or precision must occur only in the simulation-envelope panel.
-3. A changed simulation-envelope or boundary-policy field must enter a pending state until the EOM solver accepts, reruns, rejects, or fails closed.
+3. A changed simulation-envelope or boundary-policy field must enter a pending state until the EOM solver accepts, reruns, rejects, or does not advance.
 4. Layer toggles may reveal path history, wake streams, velocity rays, boundary-shell status, and diagnostics without changing run data.
 5. Selected-object diagnostics must show both camera-independent solver values and any display transform used by the viewport.
 
@@ -499,9 +499,9 @@ The first-screen layer controls should keep the workspace minimal by default whi
 | `wake-streams` | Off. | Toggle in the layer strip, with a retained/background/boundary split in the layer menu. | Selecting a wake shell shows wake row id, source/receiver ids, boundary-shell status, and authority; residual and threshold details remain in the diagnostics rail. |
 | `velocity-vectors` | Off by default; toggleable in staging and playback. | Toggle in the layer strip, with a logarithmic-scale marker when enabled. | Selecting a ray shows raw speed, transform type, and ray scale rule; vector components remain in the diagnostics rail. |
 | `boundary-shell-status` | Contextual and off for local-only runs. | Toggle is disabled or subdued when no outbound/inbound boundary-shell patch rows exist. | Selecting a boundary-shell label focuses the related wake/path row and shows whether it is retained local, boundary-generated, or display-only. |
-| `diagnostics` | Contextual. | Toggle opens or pins diagnostics overlays; default state shows only selected-object tags and fail-closed alerts. | Selected-object diagnostics appear first as compact tags; detailed tables live in the right diagnostics rail. |
+| `diagnostics` | Contextual. | Toggle opens or pins diagnostics overlays; default state shows only selected-object tags and alerts for Not advanced dispositions. | Selected-object diagnostics appear first as compact tags; detailed tables live in the right diagnostics rail. |
 
-The default visible stack for launch is `simulation-window` and `architrino-position`. The default contextual stack is selected-object tags plus fail-closed alerts. Velocity rays, path history, wake streams, boundary-shell status, outbound-shell background, and full diagnostics start behind toggles so the first screen remains quiet.
+The default visible stack for launch is `simulation-window` and `architrino-position`. The default contextual stack is selected-object tags plus alerts for Not advanced dispositions. Velocity rays, path history, wake streams, boundary-shell status, outbound-shell background, and full diagnostics start behind toggles so the first screen remains quiet.
 
 Boundary display is part of the `architrino-position` layer: an architrino crossing the outer boundary shell contributes to the boundary-shell rows. Inbound architrinos generated by the boundary policy enter through the shell as boundary-generated rows with reduced value authority unless retained external path history is present. The central ball remains the primary visible region.
 
@@ -519,7 +519,7 @@ Selected-object diagnostics should not clutter the viewport:
 2. The tag should contain only object id, diagnostic status, one primary value, and value-authority mark.
 3. Full details must appear in the right diagnostics rail, not as large floating cards over the 3D scene.
 4. Multiple selected objects should route to a compact list in the diagnostics rail; the viewport should highlight selected objects without opening multiple large tags.
-5. Fail-closed values may show a stronger inline alert, but the alert must link to the diagnostics rail rather than covering the simulation.
+5. Values with a Not advanced disposition may show a stronger inline alert, but the alert must link to the diagnostics rail rather than covering the simulation.
 
 ## Viewport Navigation
 
@@ -558,11 +558,11 @@ The app should use a small diagnostic status vocabulary for every displayed solv
 | `authoritative-solver-output` | The value comes from the EOM solver, is inside the declared error budget, and has the required run manifest, model contract, precision path, and value-authority metadata. | May be styled as authoritative; exact value, units, precision path, and error-budget state must be available. |
 | `app-facing-projection` | The value is derived from authoritative solver output for rendering, downsampling, interpolation, binning, or logarithmic display. | Must identify the source authoritative value and the projection rule; must not be styled as raw solver output. |
 | `display-only-visualization` | The value or geometry is drawn only to help the operator inspect the run, such as preview wake shells, visual trails, camera overlays, or non-authoritative layer effects. | Must be visually distinct from solver authority; must not feed receiver acceleration, branch evidence, or validation rows. |
-| `missing-error-budget` | The value lacks the error-budget metadata required for its claimed use. | Must be shown as unavailable, warning, or fail-closed; must not be styled as authoritative. |
+| `missing-error-budget` | The value lacks the error-budget metadata required for its claimed use. | Verification is incomplete; the value must be shown as unavailable or warning and must not be styled as authoritative. |
 | `exceeded-error-budget` | The value has an error budget, but the reported residual, precision status, replay residual, interpolation error, or stage error exceeds the declared bound. | Must show the exceeded budget and first-failure code; affected values lose authoritative styling. |
-| `fail-closed-value` | The value is present only as a halted, invalid, or rejected result because a required condition failed. | Must show the failure reason and block use in branch evidence, retained wake evidence, or authoritative acceleration displays. |
+| `fail-closed-value` | The value is present only as a halted, invalid, or rejected result, or as a result for which verification is incomplete. | Must show whether verification failed or remained incomplete and block use in branch evidence, retained wake evidence, or authoritative acceleration displays. |
 
-The status order is fail-closed by construction. If a value could match more than one status, the app must choose the least-authoritative applicable status in this order: `fail-closed-value`, `exceeded-error-budget`, `missing-error-budget`, `display-only-visualization`, `app-facing-projection`, `authoritative-solver-output`.
+The status order requires verification for advancement by construction. If a value could match more than one status, the app must choose the least-authoritative applicable status in this order: `fail-closed-value`, `exceeded-error-budget`, `missing-error-budget`, `display-only-visualization`, `app-facing-projection`, `authoritative-solver-output`.
 
 ## Data Products
 
@@ -574,15 +574,15 @@ Every run should produce a `borg-dataset-manifest.v1` manifest; see [borg-datase
 4. path-history stream ids and spill policy;
 5. wake-history row ids, boundary-shell patch summary ids, replay source ids, and background/noise policy;
 6. timestep, precision, tolerance, global error budget, stage-level error budgets, and halt diagnostics;
-7. diagnostic status and value-authority status for solver outputs, app-facing projections, display-only layers, missing error budgets, exceeded error budgets, and fail-closed values;
+7. diagnostic status and value-authority status for solver outputs, app-facing projections, display-only layers, missing error budgets, exceeded error budgets, and values with a Not advanced disposition;
 8. frame-buffer or playback dataset handles;
 9. validation status and claim level.
 
-The first screen-spec consumer is `borg-app-surface-design.v1`; see [borg-app-surface-design.v1](borg-app-surface-design.v1.md). It binds the native-backed manifest fixture into first-screen layout regions, layer defaults, simulation-envelope fields, diagnostics, deployment/render placeholders, value-authority states, and fail-closed rows. The first static page consumer is [borg.html](../../../borg.html), with browser runtime entrypoint [main.js](../../../src/apps/borg/main.js).
+The first screen-spec consumer is `borg-app-surface-design.v1`; see [borg-app-surface-design.v1](borg-app-surface-design.v1.md). It binds the native-backed manifest fixture into first-screen layout regions, layer defaults, simulation-envelope fields, diagnostics, deployment/render placeholders, value-authority states, and rows with a Not advanced disposition. The first static page consumer is [borg.html](../../../borg.html), with browser runtime entrypoint [main.js](../../../src/apps/borg/main.js).
 
 ## Pass/Fail Conditions
 
-The first app design pass should fail closed if any of these occur:
+The first app design pass should not advance if any of these occur:
 
 1. an implementation path requires a new production solver;
 2. architrino physical mass is introduced as an input or explanatory field;

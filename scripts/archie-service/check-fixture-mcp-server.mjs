@@ -94,7 +94,7 @@ if (failures.length > 0) {
 
 const action = mode === "--write" ? "write passed" : "check passed";
 console.log(
-  `Archie fixture MCP ${action}: ${fixture.smokeId}, initialize + four tools listed and called + missing-source error + fail-closed unknown tool + ping`
+  `Archie fixture MCP ${action}: ${fixture.smokeId}, initialize + four tools listed and called + missing-source error + unknown-tool rejection + ping`
 );
 
 function validateSemanticEvidence() {

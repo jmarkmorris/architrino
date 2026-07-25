@@ -625,7 +625,7 @@ Claim classification: **derived necessity result on the exact control**. It is f
 | Ordinary interior fold with $r>0$ and $D_r\ne0$ | pointwise divergence but finite impulse | use the fold impulse, not point sampling |
 | Receiver turning point with $D_t\ne0$ | no acceleration singularity | preserve root transport through the turning point |
 | Coincident same-transmitter birth | nonintegrable impulse | sharp equation fails without another rule |
-| Retained-history boundary crossing | boundary event, not an interior fold | require complete history or fail closed |
+| Retained-history boundary crossing | boundary event, not an interior fold | require complete history or leave verification incomplete |
 
 The coincident event has only three currently visible resolution classes:
 

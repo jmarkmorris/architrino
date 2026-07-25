@@ -188,7 +188,7 @@ $$
 \frac{M_{\mathrm{comp}}^{-}}{\epsilon_M}
 \right).
 $$
-The first two rows ask whether recoil and energy can be balanced by an admitted apparatus record. The third row is a fail-closed flag for any native negative-mass substitute. A comparison may remain useful for understanding why gravitational-field measurement is harder than electromagnetic-field measurement, but it cannot import negative masses as assemblies.
+The first two rows ask whether recoil and energy can be balanced by an admitted apparatus record. The third row is a flag requiring verification before advancement for any native negative-mass substitute. A comparison may remain useful for understanding why gravitational-field measurement is harder than electromagnetic-field measurement, but it cannot import negative masses as assemblies.
 
 ## Public Benchmark Rows
 

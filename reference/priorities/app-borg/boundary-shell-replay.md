@@ -34,7 +34,7 @@ $$
 \mathbf n(\mathbf x)=\frac{\mathbf x-\mathbf c}{r_{\mathrm{outer}}}.
 $$
 
-A crossing is outbound when $(\mathbf v\cdot\mathbf n)>0$ and inbound when $(\mathbf v\cdot\mathbf n)<0$. A zero or interval-indeterminate projection is unresolved and fails closed for replay authority.
+A crossing is outbound when $(\mathbf v\cdot\mathbf n)>0$ and inbound when $(\mathbf v\cdot\mathbf n)<0$. A zero or interval-indeterminate projection is unresolved and does not advance for replay authority.
 
 ## Surface Partition
 
@@ -65,7 +65,7 @@ Complete shell coverage means every declared patch and time bin is either repres
 
 The influence schema is `borg-boundary-shell-influence-model.v1`. Its authority comes from retained path histories, a path index, the EOM interaction kernel id, the surface partition, and a declared compression or quadrature error. Cached values at display points are visualization aids only.
 
-The model must reconstruct the bounded shell contribution at requested shell points and times. It carries the complete error line into replay and central-ball residuals. A model that cannot map between source and target shell patches inside that budget is display-only or fail-closed.
+The model must reconstruct the bounded shell contribution at requested shell points and times. It carries the complete error line into replay and central-ball residuals. A model that cannot map between source and target shell patches inside that budget is display-only or not advanced.
 
 ## Replay Source
 
@@ -97,7 +97,7 @@ The reduced-model comparison carries three declared rows:
 | `shell_replay_residual` | $R_{\mathrm{shell\ replay}}\le\tau_{\mathrm{shell}}$. |
 | `boundary_to_central_residual` | $R_{\mathrm{boundary\to central}}\le\tau_{\mathcal C}$. |
 
-The v0 thresholds remain $\tau_{\mathrm{self}}=5\times10^{-2}$, $\tau_{\mathrm{shell}}=10^{-2}$, and $\tau_{\mathcal C}=10^{-3}$. Missing observed input, incomplete shell coverage, an unmeasured velocity policy, an untraceable time map, or an exceeded residual is fail-closed whenever replay would affect a value-authority claim. Display-only preview is allowed only when no replay value is consumed by the run.
+The v0 thresholds remain $\tau_{\mathrm{self}}=5\times10^{-2}$, $\tau_{\mathrm{shell}}=10^{-2}$, and $\tau_{\mathcal C}=10^{-3}$. Missing observed input, incomplete shell coverage, an unmeasured velocity policy, an untraceable time map, or an exceeded residual requires verification for advancement whenever replay would affect a value-authority claim. Display-only preview is allowed only when no replay value is consumed by the run.
 
 ## First-Failure Codes
 

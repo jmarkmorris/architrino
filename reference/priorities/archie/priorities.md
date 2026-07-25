@@ -82,7 +82,7 @@ Ordered by marginal ROI on 2026-07-17. The external `theory_closure_first` depen
 | `service_platform_priority` | Long-term platform plan. | Archie is treated as a deployed service, not a static UI mockup. |
 | `source_authority_boundary` | Public-answer source policy. | Priority-only and speculative material cannot appear as established corpus claims. |
 | `platform_architecture_packet` | Deployment architecture task. | Secrets, model calls, user data, and operations live outside GitHub Pages static hosting, with ownership split by [service-deployment-architecture.md](service-deployment-architecture.md). |
-| `service_scaffolding_and_fixtures` | Schema-only implementation target. | Service code starts from contracts, fixtures, environment classes, and fail-closed gates before providers or public launch. |
+| `service_scaffolding_and_fixtures` | Schema-only implementation target. | Service code starts from contracts, fixtures, environment classes, and verification gates required for advancement before providers or public launch. |
 | `privacy_security_cost_boundary` | Platform launch gate. | User data, service use, logging, retention, abuse controls, and budget limits are explicit before public beta. |
 | `validation_and_qa` | Launch checklist. | Source, answer, privacy, multimodal, deployment, and rollback checks pass. |
 

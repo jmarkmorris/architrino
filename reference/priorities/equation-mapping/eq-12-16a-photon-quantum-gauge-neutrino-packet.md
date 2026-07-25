@@ -14,12 +14,12 @@ This packet keeps photon, quantum, spinor, gauge, and neutrino equations in the 
 | Field | Current result |
 | --- | --- |
 | Rows served | `EQ-12`, `EQ-12A`, `EQ-13`, `EQ-14`, `EQ-15`, `EQ-16`, and `EQ-16A` |
-| Closure driver | Convert photon, action, Maxwell, Born-current, spinor, gauge, and neutrino comparison equations into retained finite-window records with declared branch ledgers, Noether sea rows, event ledgers, sector projections, and fail-closed residuals. |
+| Closure driver | Convert photon, action, Maxwell, Born-current, spinor, gauge, and neutrino comparison equations into retained finite-window records with declared branch ledgers, Noether sea rows, event ledgers, sector projections, and residuals required for advancement. |
 | Shared first blocker family | No row in this packet should score from a numeric residual alone; each needs an accepted branch/event/domain carrier before the comparison equation counts. |
 | Deepest current executable blockers | `EQ-12`: `missing_accepted_theta_gamma_packet`; `EQ-12A`: `missing_accepted_retained_orbit_reduction_row` with shared photon-support blocker `missing_accepted_theta_gamma_packet`; `EQ-14`: `missing_accepted_W`; `EQ-15`/`EQ-27`: `missing_accepted_ordered_frame_loop`; `EQ-16`: muon projection lane now blocks at `missing_accepted_va_chirality_gate` while the ledger-only lane still blocks at `missing_accepted_weak_projection` and the baseline skeleton still blocks at `missing_accepted_weak_visible_branch_ledger`; `EQ-16A`: `missing_accepted_neutral_lepton_retained_branch` with inherited `S_eq` blocker `missing_accepted_raw_labeled_rows_preserved_on_retained_history`. |
 | Smallest shared accepted evidence object | One row-local retained carrier whose parent branch, Noether sea state, event ledger, sector projection, source provenance, and no-hidden-retune witness are accepted from durable evidence and bound to one record. |
 | Smallest next artifact | Choose one lane among $\Theta_\gamma$, weak-visible branch ledger, or $\Theta_{\nu,16A}$ and replace its source-attempt shell with one durable carrier source that keeps all required row ids on the same event or branch record. |
-| Fail-closed method | Reject observer equations, imported field summaries, toy/probe fixtures, priority prose, authored prose, and split carriers before residual arithmetic can change scores. |
+| Method with verification required for advancement | Reject observer equations, imported field summaries, toy/probe fixtures, priority prose, authored prose, and split carriers before residual arithmetic can change scores. |
 
 ## Score Recommendation
 
@@ -58,7 +58,7 @@ where $\mathcal{L}_{\mathrm{branch}}$ is the retained Noether braid or photon-ch
 
 This table is a packet-level method map. It does not replace the row-specific source-field maps; it states the Direct Geometry Layer that every row in the packet must satisfy before a comparison equation becomes evidence.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Photon $E=h\nu$, null/eikonal transport, and helicity | Photon-channel event transfer ledger with source, packet, path, receiver, recoil, wake, and remnant rows. | `theta_gamma_packet`, Gate A/B/C rows, path-history transfer, event ledger | One photon branch id, event id, path-history id, source/remnant ledger, and receiver coupling record. | `equation_map.hidden_retune`, `photon.longitudinal_leakage`, and source/probe guards block imported photon equations or extra modes. | Accepted `theta_gamma_packet` whose energy, helicity, null/eikonal, event-balance, source-provenance, and retune rows are all source-backed. |
 | Planck action and de Broglie readouts | Retained-orbit action-period carrier with one geometry-derived $h_\vartheta$ and $\hbar_\vartheta$. | `retained_orbit_reduction_row`, `constant_delay_self_hit_model_row`, `geometry_derived_action_period_row` | The energy, phase, momentum, angular-momentum, orbit, and photon consumers use the same retained branch and action-period id. | Hopf degeneracy, state-dependent-delay first-model failure, readout splitting, and alpha-fitted action controls block fitted $h$. | Accepted retained branch with iso-frequency action-period readout, four-readout coincidence, positive Floquet margin, and durable source support. |
@@ -405,7 +405,7 @@ $$
 
 This table is a priority-only recovery map. It names the geometric readout each Maxwell-style term should consume before the residual above can count as equation evidence. It is not a score change and does not make $A_\mu$, $J_\mu$, $\mathbf E$, or $\mathbf B$ native substrate fields.
 
-| Comparison term | AAA geometric readout | Required carrier or row | Fail-closed condition |
+| Comparison term | AAA geometric readout | Required carrier or row | Condition required for advancement |
 | --- | --- | --- | --- |
 | $\theta$ | Declared coarse-graining from causal wakes, photon-channel packets, charged assembly records, and Noether sea state into one observer-level field chart. | One retained event or finite window with source/receiver branch ids, photon Gate A/B/C rows, Noether sea row, and a declared projection $\Pi_{13}$. | `equation_map.imported_formula` if the chart is asserted without a coarse-graining map. |
 | $A_{\mathrm{eff},\mu}^{\theta}$ | Effective EM connection/potential readout extracted from wake superposition, photon-channel transport, and Noether sea response. | `effective_gauge_chart_witness`, causal-wake ledger, photon packet ledger, and shared $c_\gamma$ / $\chi_\gamma$ rows on the same event or window. | `equation_map.level_collapse` if $A_\mu$ is treated as a substrate field instead of an effective connection readout. |
@@ -1036,4 +1036,4 @@ Defer with blockers:
 - `EQ-14`: Born-current continuity has a finite-window pushforward target, but no populated measurement or scattering packet yet supplies density, current, detector, and event rows.
 - `EQ-15`: spinor and exchange rows need an ordered-frame, angular-momentum, exchange, and sector-exposure branch calculation before relativistic wave equations can be promoted.
 - `EQ-16`: gauge and Standard Model-facing rows need one weak/gauge exposure packet where `V-A`, CKM/PMNS overlap, reaction provenance, and covariance read from one sector-visible domain.
-- `EQ-16A`: the common-clock plus residual phase operator is sharp, but no retained neutral-lepton branch has yet populated $\Theta_{\nu,16A}$ or fail-closed the iso-frequency hypothesis.
+- `EQ-16A`: the common-clock plus residual phase operator is sharp, but no retained neutral-lepton branch has yet populated $\Theta_{\nu,16A}$ or completed verification of the iso-frequency hypothesis.

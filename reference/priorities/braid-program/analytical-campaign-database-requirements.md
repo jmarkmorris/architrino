@@ -36,7 +36,7 @@ The active contracts are:
 - [database tests](../../../tests/analytical-campaign-database.test.js), [rebuild tests](../../../tests/all-candidate-analytical-rebuild.test.js), [evaluator tests](../../../tests/prescribed-source-wake-evaluator.test.js), and [root tests](../../../tests/prescribed-orbit-causal-roots.test.js); and
 - the Braid Program [method](method.md), [charter](README.md), and live priority-lane conventions.
 
-The retired sizing set contained 260 cases: 256 seeded samples and four anchors. Its row shapes remain useful for capacity formulas, while current tests independently exercise accepted and rejected current-catalog cases, a one-root/one-no-root case, exact-source retention, and fail-closed campaign acceptance.
+The retired sizing set contained 260 cases: 256 seeded samples and four anchors. Its row shapes remain useful for capacity formulas, while current tests independently exercise accepted and rejected current-catalog cases, a one-root/one-no-root case, exact-source retention, and campaign acceptance requiring verification before advancement.
 
 ### 2.2 Current complete generation measurement
 
@@ -264,7 +264,7 @@ The following are non-negotiable.
 1. **Hashes are identities.** Exact source, protocol, manifest, result, and artifact hashes are first-class keys or unique candidate keys. Human ids are labels, not substitutes.
 2. **Canonical hash rules are versioned.** Each hash records its algorithm, canonicalization rule, schema version, and whether the result hash excludes its own field as `result-packet.v1` does.
 3. **Ingestion is idempotent.** Re-ingesting identical bytes changes no logical row count. A hash collision with different canonical bytes is a fatal integrity error.
-4. **Acceptance is fail-closed.** Partial, failed, quarantined, or hash-invalid cases cannot appear in accepted views or accepted campaign counts.
+4. **Acceptance requires verification for advancement.** Partial, failed, quarantined, or hash-invalid cases cannot appear in accepted views or accepted campaign counts.
 5. **Evaluator and schema versions are explicit.** Store evaluator id/version, packet schema, source schema, protocol schema, database schema migration, and exporter version.
 6. **Measurement definitions remain explicit.** Units, coordinate definitions, reference frame, probe kind and position, probe polarity, observation time, coupling, field speed, tolerances, retained-history bounds, root policy, sampling rule, and convergence policy are never implicit defaults.
 7. **Raw ledgers remain recoverable.** The authoritative packet bytes or a lossless canonical reconstruction plus every required ledger row must survive compaction and migration.
@@ -364,7 +364,7 @@ The archived [SQLite benchmark](analytical-campaign-database-benchmark.md) suppo
 
 ### 9.1 Ingestion transaction
 
-One bounded ingestion transaction contains at most 32 cases and follows this fail-closed order. The bound is measured: one transaction per gzip packet produced `9.75` times as much WAL as checkpointed database growth, while batches of 32 reduced that ratio to `1.93`.
+One bounded ingestion transaction contains at most 32 cases and follows this order requiring verification before advancement. The bound is measured: one transaction per gzip packet produced `9.75` times as much WAL as checkpointed database growth, while batches of 32 reduced that ratio to `1.93`.
 
 1. Read bytes and validate JSON/schema without trusting producer status.
 2. Recompute canonical source, protocol, result, and artifact hashes using the recorded canonicalization version.

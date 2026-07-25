@@ -24,7 +24,7 @@
 
 This packet defines how the future Archie service turns repository content, public routes, app guides, priority packets, System Card routes, and curated external comparison sources into a validated `source_context`.
 
-The answer engine source contract decides what can be claimed from the retrieved context. This contract owns the upstream source ingestion, route identity, freshness, authority flags, source-chip payloads, excluded-source reporting, and fail-closed missing-route behavior that the answer engine receives.
+The answer engine source contract decides what can be claimed from the retrieved context. This contract owns the upstream source ingestion, route identity, freshness, authority flags, source-chip payloads, excluded-source reporting, and missing-route behavior for a Verification incomplete outcome that the answer engine receives.
 
 It is not runtime indexing code. It is the policy and schema target for future ingestion jobs, retrieval indexes, source route validators, source-chip rendering tests, answer fixtures, token receipts, visual artifacts, speech artifacts, issue drafts, and issue-mining reports.
 
@@ -48,7 +48,7 @@ The dry run proves the first manifest-facing route cases without enabling runtim
 
 Each dry-run case declares the requested route, route surface, expected disposition, source chip, manifest `sourceContext` fragment, and the invariants `feedsManifestSourceContext`, `noModelMemorySubstitution`, and `privatePromptIncluded: false`.
 
-The fixture-backed builder now produces deterministic hashed exact-content, search, graph, and metadata views from representative live repository sources. It fails closed on missing sources, duplicate ids, invalid canonical parents, priority authority or visibility inflation, false equation or figure provenance, stale source hashes, and altered view hashes. This is not yet complete production-corpus enumeration or a runtime `source_context` service.
+The fixture-backed builder now produces deterministic hashed exact-content, search, graph, and metadata views from representative live repository sources. It does not advance on missing sources, duplicate ids, invalid canonical parents, priority authority or visibility inflation, false equation or figure provenance, stale source hashes, and altered view hashes. This is not yet complete production-corpus enumeration or a runtime `source_context` service.
 
 ## Core Invariant
 
@@ -178,9 +178,9 @@ Minimum requirements before use:
 
 If those requirements are unavailable, Compare mode should use already-curated local comparison material or return a source-backed comparison-needed response.
 
-## Fail-Closed Behavior
+## Verification Required for Advancement
 
-Retrieval should fail closed when:
+Retrieval should not advance when:
 
 1. requested route cannot be resolved;
 2. route exists only in generated material with no canonical parent;
@@ -192,7 +192,7 @@ Retrieval should fail closed when:
 8. source chips cannot show authority status clearly;
 9. private or uploaded material would need to become a source record without policy.
 
-Fail-closed retrieval can still return a useful response: nearest source route, missing-route report, source-index candidate, System Card route, or issue-draft metadata.
+Retrieval requiring verification before advancement can still return a useful response: nearest source route, missing-route report, source-index candidate, System Card route, or issue-draft metadata.
 
 ## Regression Fixtures
 

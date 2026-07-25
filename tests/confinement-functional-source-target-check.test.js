@@ -3046,7 +3046,7 @@ test("accepted confinement rows pass when the same dependency structure is retai
   });
 });
 
-test("accepted confinement rows fail closed when source rows are named but target-only", () => {
+test("accepted confinement rows do not advance when source rows are named but target-only", () => {
   const target = readTarget();
   for (const row of Object.values(target.rows)) {
     row.status = "accepted";
@@ -3084,7 +3084,7 @@ test("accepted confinement rows fail closed when source rows are named but targe
   );
 });
 
-test("accepted confinement rows fail closed when a source-acquisition target loses its required component shape", () => {
+test("accepted confinement rows do not advance when a source-acquisition target loses its required component shape", () => {
   const target = acceptedTarget();
   target.sourceAcquisitionTargets.K_perp.requiredLedgerComponents =
     target.sourceAcquisitionTargets.K_perp.requiredLedgerComponents.filter(
@@ -3130,7 +3130,7 @@ test("accepted confinement rows fail closed when a source-acquisition target los
   );
 });
 
-test("confinement checker fails closed when no-open proof target loses a limit statement", () => {
+test("confinement checker does not advance when no-open proof target loses a limit statement", () => {
   const target = acceptedTarget();
   target.acceptedSourceRowProofTargets.no_open_color_far_field.requiredLimitStatements =
     target.acceptedSourceRowProofTargets.no_open_color_far_field.requiredLimitStatements.filter(
@@ -3153,7 +3153,7 @@ test("confinement checker fails closed when no-open proof target loses a limit s
   ]);
 });
 
-test("confinement checker fails closed when sigma-eff proof target loses extraction certificate rows", () => {
+test("confinement checker does not advance when sigma-eff proof target loses extraction certificate rows", () => {
   const target = acceptedTarget();
   target.acceptedSourceRowProofTargets.sigma_eff_extraction.requiredExtractionCertificateRows =
     target.acceptedSourceRowProofTargets.sigma_eff_extraction.requiredExtractionCertificateRows.filter(
@@ -3176,7 +3176,7 @@ test("confinement checker fails closed when sigma-eff proof target loses extract
   ]);
 });
 
-test("confinement checker fails closed on accepted-looking priority-only rows", () => {
+test("confinement checker does not advance on accepted-looking priority-only rows", () => {
   const target = readTarget();
   for (const row of Object.values(target.rows)) {
     row.status = "accepted";
@@ -3219,7 +3219,7 @@ test("confinement checker fails closed on accepted-looking priority-only rows", 
   ]);
 });
 
-test("confinement checker fails closed on corrupted Delta E equation structure", () => {
+test("confinement checker does not advance on corrupted Delta E equation structure", () => {
   const target = acceptedTarget();
   target.rows.delta_E_corr_NN.targetEquation = "Delta E_corr_NN(r)=unstructured";
 

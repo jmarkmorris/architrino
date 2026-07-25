@@ -108,7 +108,7 @@ input obligations to be rebound, not as a completed force/action step.
 The next closure-relevant artifact is a same-record receiver-normal branch table:
 for each retained branch row, report the source-normal denominator interval,
 receiver-normal numerator interval, receiver-normal factor interval, branch
-status, and a fail-closed negative control on the same box. That table is the
+status, and a negative control required for advancement on the same box. That table is the
 minimum object needed before any purged proof path can be rationally restarted.
 
 First-derivative extension. The first derivative-consuming restart object is

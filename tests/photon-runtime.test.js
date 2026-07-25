@@ -587,7 +587,7 @@ test("Photon absolute-history transmitter roots route through the moving-circula
   assert.ok(Array.isArray(roots));
 });
 
-test("prescribed-path observer field fails closed without complete receiver-side root-playback records", async () => {
+test("prescribed-path observer field does not advance without complete receiver-side root-playback records", async () => {
   const response = computeMovingCircularObserverField({
     signalSpeed: 1,
     minimumDistance: 0.08,

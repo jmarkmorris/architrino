@@ -44,7 +44,7 @@ Progress is not another general argument. It is one of the following:
 
 - a bridge equation with declared source variables, target variables, validity regime, and failure condition;
 - a toy model showing a bounded residual under refinement;
-- a numerical simulation that fails closed when the claimed mechanism is absent;
+- a numerical simulation that does not advance when the claimed mechanism is absent;
 - a table of predicted correlated residuals, especially where standard test theories treat coefficients as independent;
 - a compact proof scaffold that turns a declared burden into a theorem target.
 

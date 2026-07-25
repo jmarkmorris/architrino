@@ -82,7 +82,7 @@ test("all-candidate registry exactly covers the live Borg catalog", () => {
   });
 });
 
-test("methodology coverage is exact and a methodology byte change fails closed", () => {
+test("methodology coverage is exact and a methodology byte change does not advance", () => {
   const coverage = JSON.parse(readFileSync(
     new URL("../src/prescribed-path-analysis/analytical-measure-coverage.v1.json", import.meta.url),
     "utf8",

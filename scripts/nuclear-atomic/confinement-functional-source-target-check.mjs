@@ -884,8 +884,8 @@ Options:
   --require-accepted    Exit nonzero unless all confinement-functional rows are accepted.
   --help                Show this help.
 
-This checker keeps the Fe/Ni toy confinement-functional source target
-fail-closed: it can verify the sigma_eff and Delta E_corr_NN dependency
+This checker requires verification for advancement of the Fe/Ni toy
+confinement-functional source target: it can verify the sigma_eff and Delta E_corr_NN dependency
 structure without treating target-only rows as accepted source evidence.`);
 }
 

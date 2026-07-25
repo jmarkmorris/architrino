@@ -18,7 +18,7 @@ This file owns the operating procedure and recurrence evidence for long-running 
 6. Verify that the detached process remains alive after the launching shell exits and that the heartbeat advances before handing it off.
 7. On completion or failure, report the terminal state and remove or close any monitoring mechanism that no longer has a job to watch.
 
-The procedure fails closed: silence is not progress unless a separately observed process state proves the job is still healthy.
+The procedure does not advance: silence is not progress unless a separately observed process state proves the job is still healthy.
 
 ## Recurrence Notes
 

@@ -172,7 +172,7 @@ test("eom replay adapter rejects allocation counts above the declared bounds", (
   );
 });
 
-test("eom replay adapter fails closed without both polarities", async () => {
+test("eom replay adapter does not advance without both polarities", async () => {
   const record = createEomRecordFixture();
   record.histories = [record.histories[0]];
   const adapter = createCausalDelayFeedbackEomReplayAdapter({ record });
@@ -182,7 +182,7 @@ test("eom replay adapter fails closed without both polarities", async () => {
   );
 });
 
-test("eom replay adapter fails closed without a record", async () => {
+test("eom replay adapter does not advance without a record", async () => {
   const adapter = createCausalDelayFeedbackEomReplayAdapter({});
   await assert.rejects(
     adapter.createReplayAsync({}),
@@ -221,20 +221,20 @@ test("eom replay adapter resolves records through an async loader", async () => 
   assert.equal(dataset.preset.id, "thin_fronts");
 });
 
-test("shared EOM history dataset fails closed on foreign contract ids", () => {
+test("shared EOM history dataset does not advance on foreign contract ids", () => {
   assert.throws(
     () => createEomHistoryDataset(createEomRecordFixture({ contractId: "solver-app-bridge/v2" })),
     /requires contractId eom_evolution_contract\/v0/,
   );
 });
 
-test("shared EOM history dataset fails closed without a claim grade", () => {
+test("shared EOM history dataset does not advance without a claim grade", () => {
   const record = createEomRecordFixture();
   delete record.claimLevel;
   assert.throws(() => createEomHistoryDataset(record), /claim grade/);
 });
 
-test("shared EOM history dataset fails closed on non-contiguous segments", () => {
+test("shared EOM history dataset does not advance on non-contiguous segments", () => {
   const record = createEomRecordFixture();
   record.histories[0].segments = [
     inertialSegment(0, 0.5, [5, 2, 0], [0, 0.5, 0]),

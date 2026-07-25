@@ -21,7 +21,7 @@ This shell defines the smallest source-backed $\Theta_\gamma$ object that can re
 | Exact first blocker | `missing_accepted_theta_gamma_packet` |
 | Existing scripts/fixtures/packets | [photon-packet-transfer-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-attempt.v1.json), [photon-packet-transfer-source-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-source-attempt.v1.json), [photon-packet-transfer-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-priority-source-negative-control.v1.json), [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json), and [EQ-12 Through EQ-16A Photon, Quantum, Gauge, And Neutrino Packet](eq-12-16a-photon-quantum-gauge-neutrino-packet.md). The consolidated packet-transfer audit found that arithmetic-shape passes remain score-neutral until a source-backed $\Theta_\gamma$ packet binds Gate A/B/C, event balance, path-frequency, provenance, and no-hidden-retune rows on one carrier. |
 | Breakthrough angle | Treat solved-wave families as acceptance tests for causal support, dispersion, mode counting, and scattering consistency, while keeping the native carrier in photon packet and Noether sea rows. |
-| Fail-closed negative control | `solved_wave_import_without_native_packet`: an effective wave solution may satisfy dispersion and boundary checks, but it fails if it lacks photon branch identity, event balance, source/path/receiver provenance, or no-hidden-retune. |
+| Negative control required for advancement | `solved_wave_import_without_native_packet`: an effective wave solution may satisfy dispersion and boundary checks, but it fails if it lacks photon branch identity, event balance, source/path/receiver provenance, or no-hidden-retune. |
 | Next action | Build one row-by-row source-field map for the first candidate photon packet event; do not create accepted rows until durable sources and checker-consumable row bindings exist. |
 
 ## Carrier Contract
@@ -71,7 +71,7 @@ Malus-law analyzer intensity $I(\theta)=I_0\cos^2\theta$ is a Gate B analyzer be
 
 This layer keeps photon recovery as a finite-window packet-transfer geometry. It does not let solved-wave equations, action-period support, thermal support, or alpha exposure rows replace the native $\Theta_\gamma(W;E,R)$ carrier.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | $E_\gamma=h\nu$ and $p=h/\lambda$ | Gate A packet kinematics and energy-frequency readout on one photon branch packet. | `theta_gamma_packet`, `photon_branch_packet`, `gate_a_kinematics_row`, `energy_frequency_row` | Packet id, finite window, source endpoint, receiver endpoint, energy row, momentum row, and action support references share one `commonCarrierId`. | `detuned_energy_frequency` rejects fitted $h$ or per-observable packet constants. | Accepted photon packet carrier plus Gate A and energy-frequency rows. |
 | Null/eikonal dispersion and $c_\gamma$ path speed | Noether sea path readout for the same packet path-history transfer. | `null_eikonal_row`, `path_history_transfer_row`, `noether_sea_path_row` | Null/eikonal residual, path response, endpoint cadence, and Noether sea path state use the same source/path/receiver provenance chain. | `solved_wave_import_without_native_packet` rejects solved-wave dispersion without native packet rows. | Accepted path-history transfer, null/eikonal, and Noether sea path rows. |
@@ -103,7 +103,7 @@ Solved-wave families may be used as inverse clues and acceptance tests:
 - scattering phase and flux consistency for receiver or event-balance rows;
 - packet-spreading bounds for the path-history transfer row.
 
-These tests fail closed if they are imported as the photon packet ontology without the native carrier rows.
+These tests do not advance if they are imported as the photon packet ontology without the native carrier rows.
 
 ## Negative Controls
 

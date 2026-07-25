@@ -42,8 +42,9 @@ struct JointAffineEndpointOverride {
 
 // Retained shared-symbol state parallel to one ordinary retained history.  All
 // path histories participating in one coupled state use the same ordered
-// symbol_registry.  Ordinary radii remain the fail-closed fallback and are
-// supplied by the canonical RetainedHistory at each evaluation.
+// symbol_registry.  Ordinary radii remain the fallback; verification is
+// required for advancement, and they are supplied by the canonical
+// RetainedHistory at each evaluation.
 class JointAffineRetainedHistory {
  public:
   JointAffineRetainedHistory(

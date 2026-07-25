@@ -32,7 +32,7 @@ No score changes.
 | Exact first blocker | Provider-backed route: `nextBlocker=null` for the `EQ-24` density-compression slice. Output-projection route: `nextBlocker=null` for accepted `delta_N`, `delta_gamma_ij`, `delta_G_eff`, and `delta_a_star`. Retained-attempt and source-attempt routes still block at `missing_accepted_theta_sea_rho_NS`. Growth, CMB, and broader low-acceleration consumers remain downstream. |
 | Existing scripts, fixtures, and packets found | The Noether sea density-compression surface-slice runner, retained-attempt fixture, accepted provider, provider-backed slice, provider-intake runner, and continuum-medium packet listed above. |
 | Candidate breakthrough angle | `EQ-24` is the narrowest Noether sea coefficient discriminator because it can accept speed plus bulk stress/strain without first claiming metric, pressure, or low-acceleration outputs. The accepted `theta_sea_rho_NS` provider now gives `EQ-20`, `EQ-11`, `theta_W`, and `EQ-32` a concrete density carrier. `EQ-20` consumes it through a retained pressure projection report and accepted `theta_cos` handoff; the output-projection slice now supplies the weak-gravity and `delta_a_star` outputs without changing the provider. |
-| Fail-closed negative control | A numerically agreeing acoustic/elastic row with pending, missing, directory, generated-reading-copy, temp, or self-referential source evidence must remain blocked even when $c_{X,\mathrm{disp}}^2$ and $C_{1111}^X/\rho_{\text{NS}}$ agree. |
+| Negative control required for advancement | A numerically agreeing acoustic/elastic row with pending, missing, directory, generated-reading-copy, temp, or self-referential source evidence must remain blocked even when $c_{X,\mathrm{disp}}^2$ and $C_{1111}^X/\rho_{\text{NS}}$ agree. |
 | Smaller-than-report next action | Use the accepted provider-backed and output-projection slices as upstream carriers for growth, CMB, and broader low-acceleration no-retune consumers without changing the provider record. |
 
 ## Retained Fixture Inventory
@@ -165,7 +165,7 @@ The expected result is `status=populated`, `nextBlocker=null`, `outputProjection
 
 This layer keeps the continuum comparison as one retained-window Noether sea response. It does not let acoustic/elastic arithmetic, authored Noether sea prose, a pressure row, or a metric consumer stand in for the source-backed `theta_sea_rho_NS` row.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | $\rho_{\text{NS}}(\mathbf x,t)$ | Retained Noether braid density row over one smoothing window. | `theta_sea_rho_NS`, `rho_NS`, retained inventory, smoothing kernel, event ledger | `windowId`, `ell`, retained inventory id, smoothing kernel id, and event-ledger id stay fixed across the density row and all response rows. | `status_flip`, `self_reference`, and `authored_prose_source` reject accepted-looking rows with pending, priority-packet, fixture, or authored-prose sources. | One source-backed `rho_NS` row with retained-window, event-ledger, and refinement-family identifiers. |
 | $c_{X,\mathrm{disp}}^2$ | Channel speed projection from the same density-compression window. | `channel_declaration_row`, `speed_row`, `rho_NS` | Channel id, channel type, `windowId`, $\ell$, and density row bind the speed projection to the retained carrier. | `speed_without_stress` rejects speed-only evidence before a same-window stress/strain or metric-compliance row exists. | Accepted channel declaration and speed row on the accepted `theta_sea_rho_NS` window. |
@@ -178,7 +178,7 @@ This layer keeps the continuum comparison as one retained-window Noether sea res
 
 The most direct downstream consumer is `EQ-20`, because its pressure and effective-$\Lambda$ checker consumes the accepted density provider, retained $\delta P_{\mathrm{eff}}$ pressure report, and accepted `theta_cos` handoff. `EQ-11` and `EQ-32` now have accepted output-projection rows from the same retained window, ready for consumer review. Broader growth, CMB, low-acceleration, and compact-region consumers remain downstream and should not be treated as first accepted objects for `EQ-24`.
 
-## Fail-Closed Controls
+## Verification Required for Advancement Controls
 
 - `status_flip`: an accepted-looking row with the same pending source path must continue to fail at source concreteness.
 - `self_reference`: this map, the retained-attempt fixture, and the continuum-medium packet are coordination artifacts, not retained evidence for $\rho_{\text{NS}}$.

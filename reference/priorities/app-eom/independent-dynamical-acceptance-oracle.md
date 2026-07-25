@@ -76,7 +76,7 @@ For `eom_independent_oracle/v0` it provides:
 This is an exhaustive certificate for the declared piecewise-cubic v0 history
 representation and searched interval. It is not a claim that every continuous
 history can be certified by this representation. A fold, tangent root, exact
-rail degeneracy, or enclosure too wide for a discrete decision fails closed and
+rail degeneracy, or enclosure too wide for a discrete decision does not advance and
 must proceed through a later finite-width or higher-order certification route.
 
 The certified acceleration layer lives in
@@ -95,7 +95,7 @@ For `eom_independent_oracle/v0` it provides:
   mollifier and smooth radial core kernel;
 - the complete-vector zero extension at coordinate coincidence, bounded by
   $|D_T| \leq c_f+\|\mathbf V_i\|$ without evaluating an undefined direction;
-- fail-closed memory-boundary, provenance, quadrature-depth, and
+- memory-boundary handling requiring verification before advancement, provenance, quadrature-depth, and
   quadrature-cell routes;
 - final enclosure-width checks against declared quadrature and acceleration
   tolerances, rather than acceptance from local error allocation alone;
@@ -243,7 +243,7 @@ dependencies, and false canonical evidence rejection.
   unresolved cell and the earliest retained boundary is not itself a root.
 - Multiple simple roots and segment-boundary roots are retained; folds,
   persistent tangencies, exact rail degeneracies, wide error enclosures, and
-  exhausted resource budgets fail closed.
+  exhausted resource budgets do not advance.
 
 ### Phase 2: Certified Acceleration Layer
 
@@ -256,7 +256,7 @@ dependencies, and false canonical evidence rejection.
 - Every ordered pair, including self-pairs, is structurally required and its
   emitted rows reconstruct the receiver totals exactly as interval objects.
 - Discrete uncertainty, provenance disagreement, memory-boundary contact, or
-  exhausted quadrature resources fails closed.
+  exhausted quadrature resources does not advance.
 
 ### Phase 3: Coupled History Evolution Executable Nucleus
 
@@ -265,7 +265,7 @@ dependencies, and false canonical evidence rejection.
 - Predictor and correction histories remain unpublished; only the recertified
   fine history is appended, and every path is committed atomically.
 - Root topology changes trigger subdivision; unresolved roots, memory-boundary
-  contact, correction exhaustion, and minimum-step exhaustion fail closed.
+  contact, correction exhaustion, and minimum-step exhaustion do not advance.
 - Returned records bind input histories, root and acceleration snapshots,
   correction iterations, local errors, appended histories, reduction order,
   resolved policy, and reference evidence status.

@@ -30,8 +30,8 @@ Every manifest must identify the EOM solver contract used to produce the dataset
 | `nativeSolverStatus` | `native-backed-now`, `manifest-gap`, `bridge-schema-gap`, `native-capability-gap`, `display-only`, or `fail-closed`. |
 | `nativeSolverVersion` | EOM solver build, ABI, or commit identifier when available. |
 | `bridgeSchemaVersion` | Bridge schema version consumed by the app. |
-| `claimLevel` | `priority-design`, `developer-test`, `candidate-run`, or stricter fail-closed status. |
-| `firstFailureCode` | Null when no fail-closed condition applies; otherwise one first-failure code from this packet. |
+| `claimLevel` | `priority-design`, `developer-test`, `candidate-run`, or a stricter claim status with a Not advanced disposition. |
+| `firstFailureCode` | Null when no condition required for advancement applies; otherwise one first-failure code from this packet. |
 
 Required native-solver rule: the manifest may report gaps, projections, or display-only values, but it must not define an app-local production solver or promote JavaScript-only reference behavior to production behavior.
 
@@ -61,7 +61,7 @@ b_{\mathrm{shell}}(\mathcal C)
 \max(c_fh,\ v_{\max}T_{\mathcal C}).
 $$
 
-If the strict buffer target is not satisfied, central-ball interpretation requires a passing `R_boundary->central` residual or must fail closed.
+If the strict buffer target is not satisfied, central-ball interpretation requires a passing `R_boundary->central` residual or must not advance.
 
 ## History And Central-Volume Timing
 
@@ -158,7 +158,7 @@ Minimum path-history gap row:
 | `pathId` | Affected path id or null for run-level gaps. |
 | `timeStart` / `timeEnd` | Affected interval. |
 | `affectedConsumers` | Causal roots, wake rows, selected-object diagnostics, acceleration displays, or replay views blocked by the gap. |
-| `firstFailureCode` | First fail-closed code. |
+| `firstFailureCode` | First compatibility code for a not advanced disposition. |
 | `diagnosticStatus` | Diagnostic status vocabulary value. |
 | `valueAuthority` | Value authority state. |
 
@@ -171,7 +171,7 @@ The manifest must account for every candidate wake row inside the declared envel
 | `resolvedWakeRowIds` | Retained above-floor wake rows with same-record source and receiver path history. |
 | `backgroundNoiseRowIds` | Aggregated below-floor wake rows with omitted-row counts and error bounds. |
 | `boundaryGeneratedWakeRowIds` | Wake rows generated from declared boundary-shell replay source ids. |
-| `failureWakeRowIds` | Fail-closed wake rows. |
+| `failureWakeRowIds` | Wake rows with a Verification incomplete outcome. |
 | `wakeHistoryGapRows` | Explicit gap rows for missing native row output, missing causal roots, insufficient history depth, missing error budget, or missing boundary-shell patch summary. |
 | `rowConservationCounts` | Candidate, resolved, aggregated, boundary-generated, and failure counts. |
 | `rowConservationStatus` | `passed`, `failed`, `not-measured`, or `fail-closed`. |
@@ -198,7 +198,7 @@ Minimum row-conservation count object:
 | `resolvedWakeRowCount` | Rows retained explicitly. |
 | `aggregatedWakeRowCount` | Rows represented in background/noise rows. |
 | `boundaryGeneratedWakeRowCount` | Rows generated from boundary-shell replay. |
-| `failureWakeRowCount` | Rows that failed closed. |
+| `failureWakeRowCount` | Rows that were not advanced. |
 | `conservationResidual` | Difference between candidate count and the classified sum. |
 | `firstFailureCode` | `row_conservation_failed` or null. |
 
@@ -257,7 +257,7 @@ Central-ball values outside strict buffer status require a residual decision:
 | `boundaryRunId` | Boundary replay run used by the residual. |
 | `status` | `passed`, `failed`, `missing-reference`, `missing-bound`, `not-measured`, or `fail-closed`. |
 | `firstFailureCode` | `central_boundary_residual_exceeded`, `missing_error_budget`, or another first-failure code. |
-| `boundaryReplayDecisionPolicyId` | Decision policy id for strict-buffer, measured replay, display-only, and fail-closed outcomes. |
+| `boundaryReplayDecisionPolicyId` | Decision policy id for strict-buffer, measured replay, display-only, and Not advanced dispositions. |
 | `strictBufferStatus` | `strict-buffer-pass`, `strict-buffer-failed`, or `not-evaluated`. |
 | `boundaryReplayDecisionStatus` | `strict-buffer-pass`, `measured-reduced-pass`, `display-only-insufficient-evidence`, `fail-closed-residual`, `fail-closed-contamination`, or `fail-closed-missing-contract`. |
 | `tauSelf` | Declared $\tau_{\mathrm{self}}$; v0 default is $5\times10^{-2}$. |
@@ -266,7 +266,7 @@ Central-ball values outside strict buffer status require a residual decision:
 | `epsilon0` | Normalization floor used in residual denominators. |
 | `decisionNormId` | Norm and comparison-window definition used for residual decisions. |
 | `displayOnlyReason` | Reason code when the replay can be rendered but cannot receive value authority. |
-| `failClosedAffectedValueIds` | Central-ball, acceleration, wake-background, or diagnostic value ids forced closed by the decision. |
+| `failClosedAffectedValueIds` | Central-ball, acceleration, wake-background, or diagnostic value ids that the decision does not advance. |
 
 If this residual is required and does not pass, central-ball acceleration and wake-background values must use `fail-closed-value` or `missing-error-budget`.
 
@@ -304,11 +304,11 @@ The least-authoritative applicable status wins in this order: `fail-closed-value
 | `display-only-visualization` | Visual aid that does not feed solver state, receiver acceleration, branch evidence, or validation rows. | Inspection only. |
 | `missing-error-budget` | Required error-budget metadata is absent. | Blocks authoritative use. |
 | `exceeded-error-budget` | Reported residual, replay residual, interpolation error, or stage error exceeds the declared bound. | Blocks authoritative use. |
-| `fail-closed-value` | Required condition failed or required field is missing. | Blocks affected value, region, or run from authoritative display. |
+| `fail-closed-value` | Compatibility value for either a completed verification failure or incomplete verification caused by a missing required field. | Blocks the affected value, region, or run from authoritative display and records the narrower reason separately. |
 
 ## Deployment Budget
 
-Deployment budget is separate from EOM solver throughput. The manifest must fail closed if these budgets are collapsed into one undifferentiated value.
+Deployment budget is separate from EOM solver throughput. The manifest must not advance if these budgets are collapsed into one undifferentiated value.
 
 | Field | Required content |
 | --- | --- |
@@ -426,7 +426,7 @@ renderManifests:
     renderStatus: passed-4k-uhd | fail-closed
 ```
 
-## Fail-Closed First-Failure Codes
+## First-Failure Codes for Not advanced Dispositions
 
 The manifest must report the first applicable failure before displaying affected values as authoritative.
 
@@ -484,7 +484,7 @@ This manifest contract is `priority-design`. It does not upgrade app output beyo
 
 ## Design-Owned Policy Object
 
-The design-owned pieces live in `src/apps/borg/BorgAppManifest.js`: the spherical simulation envelope, the population sizing rule, the seeded initial-condition policy (`initialLinePolicy = seeded-random-simulation-envelope`, `polaritySignConvention = positrino-positive-electrino-negative`, `velocityPolicy = seeded-random-small-3d`, `randomVelocityMaxComponentMagnitude = 0.01`), canonical normalized `fieldSpeed = 1`, and the fail-closed gap-row vocabulary for retained wake rows, boundary-shell summaries, `borg-boundary-shell-influence-model.v1`, `borg-boundary-shell-noise-policy.v1`, velocity sampling, and `R_boundary->central`.
+The design-owned pieces live in `src/apps/borg/BorgAppManifest.js`: the spherical simulation envelope, the population sizing rule, the seeded initial-condition policy (`initialLinePolicy = seeded-random-simulation-envelope`, `polaritySignConvention = positrino-positive-electrino-negative`, `velocityPolicy = seeded-random-small-3d`, `randomVelocityMaxComponentMagnitude = 0.01`), canonical normalized `fieldSpeed = 1`, and the gap-row vocabulary for retained wake rows whose outcome is Verification incomplete, boundary-shell summaries, `borg-boundary-shell-influence-model.v1`, `borg-boundary-shell-noise-policy.v1`, velocity sampling, and `R_boundary->central`.
 
 ## First App Surface Design Artifact
 
@@ -492,11 +492,11 @@ The design-owned pieces live in `src/apps/borg/BorgAppManifest.js`: the spherica
 
 The surface design binds the displayed central ball, one dotted outer boundary shell, EOM-run current-state frames, path-history availability, simulation-envelope rail, initial-condition summary, layer strip, bottom timeline, diagnostics rail, deployment budget placeholders, and 4K UHD render manifest. The central ball remains a declared measurement region and is not rendered as a second sphere. It keeps `simulation-window`, `architrino-position`, `path-history`, and `diagnostics` visible by default, keeps `velocity-vectors` off by default, and disables `wake-streams` and `boundary-shell-status` until their required EOM rows exist. The app-facing visual convention renders architrinos as small fixed-screen points, with `electrino` rows pure blue and `positrino` rows pure red. The path-history visual rule is `displayTransform = adjacent-native-row-line-segments` and `smoothingPolicy = none`, so the page cannot imply curved interaction dynamics beyond the EOM rows it renders.
 
-The surface design intentionally preserves fail-closed authority for wake history, boundary-shell replay, benign-noise status, and central-ball acceleration. Its valid claim is `developer-test-screen-spec`, not production UI readiness and not proof evidence.
+The surface design intentionally preserves authority requiring verification before advancement for wake history, boundary-shell replay, benign-noise status, and central-ball acceleration. Its valid claim is `developer-test-screen-spec`, not production UI readiness and not proof evidence.
 
 ## First Static Page Artifact
 
-[borg.html](../../../borg.html) is the first static page consumer for the dataset manifest and surface design. It uses [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the browser-safe design-owned policy object and [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) to render the central ball, EOM-run current-state positions, frame scrubber, layer controls, render/deployment placeholders, and fail-closed diagnostics.
+[borg.html](../../../borg.html) is the first static page consumer for the dataset manifest and surface design. It uses [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the browser-safe design-owned policy object and [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) to render the central ball, EOM-run current-state positions, frame scrubber, layer controls, render/deployment placeholders, and diagnostics required for advancement.
 
 The page is static and developer-test scoped. All displayed motion comes from the EOM run path; the page does not run a browser solver and does not grant authority to replay-affected values.
 

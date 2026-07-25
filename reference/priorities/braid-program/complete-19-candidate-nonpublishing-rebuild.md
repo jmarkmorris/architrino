@@ -56,7 +56,7 @@ Eleven candidates remained diagnostic-only:
 | A1.3 | Radial-exponent change was $0.1873$ against $0.05$, and frequency-band coverage was $0.05394$ against $0.02$; all four perturbations were rejected. |
 | A1.4 | Frequency-band coverage was $0.04450$ against $0.02$; all four perturbations were rejected. |
 | A3 | Frequency-band coverage was $0.1424$ against $0.02$; all four perturbations were rejected. |
-| A3.2 | The surface packet passed, but fixed and moving internal receivers failed the continuous minimum-separation certificate. Moving receivers also failed numerical convergence. Source sensitivity therefore failed closed. |
+| A3.2 | The surface packet passed, but fixed and moving internal receivers failed the continuous minimum-separation certificate. Moving receivers also failed numerical convergence. Source sensitivity therefore was not advanced. |
 | A3.3 | Radial-exponent change was $0.1416$ against $0.05$, and frequency-band coverage was $0.04874$ against $0.02$; all four perturbations were rejected. |
 | A3.4 | Frequency-band coverage was $0.03986$ against $0.02$; all four perturbations were rejected. |
 | C1 | At the adopted grid, exposure, anisotropy, retained spectral power, radial exponent, and frequency-resolved wake flux all failed. The sensitivity stencil settled, but all four perturbed surface packets remained rejected. |

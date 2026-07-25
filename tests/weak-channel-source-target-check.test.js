@@ -387,7 +387,7 @@ test("weak-channel source-acquisition map clears when target rows are accepted",
   });
 });
 
-test("weak-channel checker fails closed when a weak proof target loses conservation rows", () => {
+test("weak-channel checker does not advance when a weak proof target loses conservation rows", () => {
   const target = sourceAcquisitionAcceptedTarget();
   target.acceptedSourceRowProofTargets.reaction_event_ledger.requiredConservationRows =
     target.acceptedSourceRowProofTargets.reaction_event_ledger.requiredConservationRows.filter(
@@ -410,7 +410,7 @@ test("weak-channel checker fails closed when a weak proof target loses conservat
   ]);
 });
 
-test("weak-channel checker fails closed when the V-A proof target loses chirality selection rows", () => {
+test("weak-channel checker does not advance when the V-A proof target loses chirality selection rows", () => {
   const target = sourceAcquisitionAcceptedTarget();
   target.acceptedSourceRowProofTargets.va_chirality_gate.requiredChiralitySelectionRows =
     target.acceptedSourceRowProofTargets.va_chirality_gate.requiredChiralitySelectionRows.filter(
@@ -433,7 +433,7 @@ test("weak-channel checker fails closed when the V-A proof target loses chiralit
   ]);
 });
 
-test("weak-channel checker fails closed when a weak proof target loses event-balance rows", () => {
+test("weak-channel checker does not advance when a weak proof target loses event-balance rows", () => {
   const target = sourceAcquisitionAcceptedTarget();
   target.acceptedSourceRowProofTargets.reaction_event_ledger.requiredEventBalanceRows =
     target.acceptedSourceRowProofTargets.reaction_event_ledger.requiredEventBalanceRows.filter(
@@ -456,7 +456,7 @@ test("weak-channel checker fails closed when a weak proof target loses event-bal
   ]);
 });
 
-test("weak-channel checker fails closed on hidden domain split", () => {
+test("weak-channel checker does not advance on hidden domain split", () => {
   const target = readTarget();
   target.rows.weak_quotient.domainId = "D_weak_hidden_split";
 
@@ -472,7 +472,7 @@ test("weak-channel checker fails closed on hidden domain split", () => {
   ]);
 });
 
-test("weak-channel checker fails closed on downstream accepted-looking row without source evidence", () => {
+test("weak-channel checker does not advance on downstream accepted-looking row without source evidence", () => {
   const target = readTarget();
   target.rows.va_chirality_gate.status = "accepted";
 

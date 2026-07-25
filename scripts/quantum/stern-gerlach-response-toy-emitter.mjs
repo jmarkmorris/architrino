@@ -124,7 +124,7 @@ Options:
   --pretty          Pretty-print JSON output.
   --help            Show this help.
 
-This diagnostic emitter is fail-closed. It emits adapter-ready local_response
+Verification is required for advancement. This diagnostic emitter emits adapter-ready local_response
 rows only when the input explicitly supplies a completed local record gate,
 nonzero signed response functional, record-cycle phase, apparatus axis,
 incoming local record id, accepted response source, and same-window residuals.

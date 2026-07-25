@@ -112,7 +112,7 @@ The current standards direction supports a plain-language-first answer surface:
 3. Keep provenance metadata separate from claim authority. Media origin records can say where media came from; they cannot make an explanatory image or generated audio into evidence.
 4. Treat accessibility fields as required product behavior, not polish. Audio needs displayed text, captions or transcripts, and text fallback; visual artifacts need captions and alt text; status changes need assistive-technology-friendly messages.
 5. Keep receipts, issue-mining metadata, observability records, incidents, support summaries, and diagnostics free of private prompt expansion.
-6. Fail closed with a plain explanation when a standard-backed feature is unavailable. Examples: no C2PA support, no high-quality speech, stale public-issue notice, exceeded spending cap, or inaccessible generated media.
+6. Return `not advanced` with a plain explanation when a standard-backed feature is unavailable. Examples: no C2PA support, no high-quality speech, stale public-issue notice, exceeded spending cap, or inaccessible generated media.
 
 ## Implementation-Only Term Map
 
@@ -142,7 +142,7 @@ Adopt an external standard only when it satisfies all of these:
 3. it does not inflate source authority or proof status;
 4. it does not require storing private prompts, private media, secrets, or raw provider payloads beyond the stated retention policy;
 5. it has a practical implementation route for the future Archie service;
-6. it can fail closed with a plain explanation when unsupported.
+6. it can return `not advanced` with a plain explanation when unsupported.
 
 ## Output
 

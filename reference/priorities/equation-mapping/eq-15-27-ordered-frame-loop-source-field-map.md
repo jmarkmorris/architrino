@@ -48,7 +48,7 @@ $$
 
 but only with $\boldsymbol\mu_{\mathrm{eff}}$ supplied by the `EQ-27` ordered-frame/internal-current ledger and $\mathbf B_{\mathrm{eff}}^\theta$ supplied by `EQ-13` effective EM rows. The comparison reads: an iron branch or domain aligns its exposed ordered-frame/internal-current response with the magnet's effective EM and Noether sea response gradient. It is not evidence for a first-class magnetic substance.
 
-First blockers remain unchanged: `EQ-27` still blocks at `missing_accepted_ordered_frame_loop`, and the `EQ-13` event-bound EM gate still blocks at `missing_accepted_photon_gate_A_input_output`. A magnetic analogy, Maxwell prose row, or naked $B$ field label is a fail-closed imported-formula/substrate-field bypass unless the row binds to those retained carriers.
+First blockers remain unchanged: `EQ-27` still blocks at `missing_accepted_ordered_frame_loop`, and the `EQ-13` event-bound EM gate still blocks at `missing_accepted_photon_gate_A_input_output`. A magnetic analogy, Maxwell prose row, or naked $B$ field label is a not advanced imported-formula/substrate-field bypass unless the row binds to those retained carriers.
 
 ## Equation Attack Cards
 
@@ -60,7 +60,7 @@ First blockers remain unchanged: `EQ-27` still blocks at `missing_accepted_order
 | Shared coordinate | Current answer |
 | --- | --- |
 | Existing scripts/fixtures/packets | [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs), [spin-magnetic-moment-certificate-attempt.v1.json](../../../scripts/equation-mapping/spin-magnetic-moment-certificate-attempt.v1.json), [eq15-27-ordered-frame-loop-source-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-attempt.v1.json), [eq15-27-ordered-frame-loop-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract-attempt.v1.json), and the priority-source, record-split, assigned-spin, and assigned-spin durable-source controls listed in metadata. |
-| Fail-closed negative control | Priority/source-map rows and source-contract shell paths fail at `accepted_without_evidence_source`; unrelated durable-source metadata fails at `source_lacks_eq15_eq27_ordered_frame_loop_support`; valid durable source metadata with a split `sameRecordId` fails at `record_split`; assigned-spin or imported $g(q/2m)\mathbf S$ support fails at `eq27.assigned_spin_label` once durable source evidence exists. |
+| Negative control required for advancement | Priority/source-map rows and source-contract shell paths fail at `accepted_without_evidence_source`; unrelated durable-source metadata fails at `source_lacks_eq15_eq27_ordered_frame_loop_support`; valid durable source metadata with a split `sameRecordId` fails at `record_split`; assigned-spin or imported $g(q/2m)\mathbf S$ support fails at `eq27.assigned_spin_label` once durable source evidence exists. |
 | Smaller next action | Replace the carrier-shell source-contract boundary with a durable non-priority `ordered_frame_loop` evidence object on one `sameRecordId`, then populate `spin_lift` on that same record before any moment-map or leading-$g$ comparison is reviewed. |
 
 Current safe implementation target: replace the carrier-shell source-contract boundary with a durable non-priority `ordered_frame_loop` evidence object on one `sameRecordId`, then populate `spin_lift` on that same record. The existing source-attempt, source-contract boundary, priority-source, record-split, and assigned-spin controls remain score-neutral guardrails; they do not change scores or count as retained evidence.
@@ -69,7 +69,7 @@ Current safe implementation target: replace the carrier-shell source-contract bo
 
 This layer is score-neutral. It maps the spinor and exchange comparison terms to the retained ordered-frame geometry that must exist before Dirac, Klein-Gordon, or spin-statistics benchmarks can count.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Spinor state $\psi$ or spinor-label components | Retained ordered-frame spinor-label pullback from one non-coplanar branch record, not a primitive field ontology. | `ordered_frame_loop` plus `spin_lift`. | Same `sameRecordId`, retained branch/domain id, loop id, and spin-lift witness later used by angular-momentum, exchange, and moment-map rows. | `visible_so3_closure_import_without_non_gauge_lift` blocks a visible spinor label or closed $SO(3)$ loop without retained non-gauge lift evidence. | A durable accepted `ordered_frame_loop` row on one non-coplanar retained branch record, with source-backed $\mathbb Z/2$ holonomy and spin-lift witness. |
 | $2\pi$ sign change and $4\pi$ restoration | Odd $\mathbb Z/2$ holonomy with doubled-path restoration in $\mathrm{Spin}(3)=SU(2)$. | `spin_lift` with $\eta_{\mathrm{spin}}=1$ and `doubledPathRestores=true`. | Same loop map $\Phi_\star$, same retained branch/domain, and same gauge-control row as the ordered-frame loop. | A closed visible $SO(3)$ loop with no odd lift or failed doubled-path restoration remains `spin_lift_not_odd` or `doubled_path_not_restored`. | Accepted spin-lift row sourced to the same retained ordered-frame loop. |
@@ -82,7 +82,7 @@ This layer is score-neutral. It maps the spinor and exchange comparison terms to
 
 This layer is score-neutral. It maps the magnetic-moment comparison terms to the ordered-frame and exposed-sector geometry that must exist before a leading-$g$ or anomaly comparison can count.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Spin vector $\mathbf S$ | Non-gauge retained ordered-frame loop whose visible $SO(3)$ closure lifts to odd $\mathbb Z/2$ holonomy and $4\pi$ restoration. | `ordered_frame_loop` plus `spin_lift`. | Same `sameRecordId`, retained branch/domain id, loop id, and spin-lift witness used by the angular-momentum and moment-map rows. | `visible_so3_closure_import_without_non_gauge_lift` blocks a visible spin label or closed $SO(3)$ loop that lacks the retained non-gauge lift. | A durable accepted `ordered_frame_loop` row on one non-coplanar retained branch record, with source-backed spin-lift witness. |
 | Charge/exposure factor $q_\ell/m_\ell$ | Exposed-sector response read through the same branch's charge/polarity ledger, exposed mass response, and exposure fiber. | `moment_map_magnetic` and `exposure_fiber_residual`, with downstream compatibility to exposed-sector and mass-response carriers. | Same retained branch/domain and same exposure fiber as the ordered-frame loop; no separate lepton-by-lepton retune of charge, mass, or exposure. | `eq15_27.record_split_durable_source` blocks accepted-looking rows that use durable source paths but split one row onto a different `sameRecordId`. | A source-backed exposed-sector record whose moment map and exposure fiber are row-bound to the same ordered-frame branch. |
@@ -126,7 +126,7 @@ Required rows on one `sameRecordId`:
 | `covering_degree_g2` | $g_{\mathrm{lead}}=2$ within tolerance as a covering-degree theorem result. |
 | `exposure_fiber_residual` | Nonnegative $\mathcal R_{\mathrm{fib}}$ carrying exposure nonuniformity and dressing, not a fitted spin-label correction. |
 
-## Fail-Closed Control
+## Verification Required for Advancement Control
 
 Use `visible_so3_closure_import_without_non_gauge_lift`: a fixture supplies a closed visible $SO(3)$ loop and maybe $g_{\mathrm{lead}}=2$, but lacks accepted nontrivial $\mathbb Z/2$ holonomy, same-record gauge-control probes, or computes `moment_map_magnetic` from $g(q/2m)\mathbf S$ instead of the exposure-current moment map.
 

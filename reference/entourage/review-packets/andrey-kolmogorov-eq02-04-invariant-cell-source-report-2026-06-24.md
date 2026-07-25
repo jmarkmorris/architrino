@@ -7,7 +7,7 @@ Attack the proposed invariant-cell/coframe source report for EQ-02 through EQ-04
 
 Please first give overall insights, corrections, and advancements. Then answer the specific breakthrough questions below.
 
-Aim for 10-12 substantive comments total. Prioritize mathematical falsifiability, return-map certification, numerical-analysis failure modes, refinement requirements, negative controls, and the minimum source report that can honestly feed a fail-closed producer.
+Aim for 10-12 substantive comments total. Prioritize mathematical falsifiability, return-map certification, numerical-analysis failure modes, refinement requirements, negative controls, and the minimum source report that can honestly feed a producer with verification required for advancement.
 
 ## Reviewer Lens
 
@@ -77,7 +77,7 @@ Those numbers currently pass reciprocal arithmetic only. They are not accepted e
 
 ## Current Producer Contract
 
-A fail-closed producer now consumes an invariant-cell/coframe source report and emits a coframe extraction certificate. The output certificate may be marked `accepted` only if every producer check passes. Otherwise it is `blocked`.
+A producer with verification required for advancement now consumes an invariant-cell/coframe source report and emits a coframe extraction certificate. The output certificate may be marked `accepted` only if every producer check passes. Otherwise it is `blocked`.
 
 The producer checks:
 

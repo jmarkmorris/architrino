@@ -70,7 +70,7 @@ sampling field. $W^{\mathrm{rec}}$ is the branch-strength field.
 | Projection rows | Radial and tangential projections computed from the same force/action row. |
 | Aggregation row | Branch-family sum that names exactly which retained rows were consumed. |
 | Scalar statistic row | Any margin, constant, threshold, or pass/fail statistic derived from the aggregation row. |
-| Negative controls | Fail-closed controls listed below. |
+| Negative controls | Controls required for advancement listed below. |
 | Source artifact hash | Stable input artifact, solver version, or proof packet identifier. |
 | Regulator state | Declared $\eta$, $\epsilon_c$, fold, caustic, or simple-root status. |
 
@@ -162,7 +162,7 @@ $$
 $$
 If the retained interval for $Q_\alpha$ contains zero, a derivative-consuming
 force/action packet must either declare a nonsmooth crossing row with a bounded
-subgradient convention or fail closed for differentiable action use.
+subgradient convention or do not advance for differentiable action use.
 
 The smallest force/action derivative row derived from these fields is
 $$
@@ -356,9 +356,9 @@ evidence.
 | `geometry_derivatives` | $D_vr_a$ and $D_v\hat{\mathbf r}_a$, or the shell-braid arclength equivalents $D_v\eta_a$ and $D_v\widehat{\mathbf R}_a$. |
 | `force_kernel_derivative` | $\mathbf B_a^{\mathrm{rec}}$ and $D_v\mathbf B_a^{\mathrm{rec}}$ computed from the same rows. |
 | `branch_family_checksum` | Exact retained branch list $\mathcal{A}_{\mathcal B}$, aggregation convention, and consumer checksum tying every downstream statistic to that list. |
-| `negative_controls` | Fail-closed controls below, including aggregate-only and source-normal-diagnostic substitutions. |
+| `negative_controls` | Controls required for advancement below, including aggregate-only and source-normal-diagnostic substitutions. |
 
-### Fail-Closed Ledger
+### Verification Required for Advancement Ledger
 
 The artifact fails with:
 
@@ -372,7 +372,7 @@ The artifact fails with:
 | `source-normal-diagnostic-consumed-as-branch-strength` | A row consumes the source-normal transversality diagnostic as receiver-normal branch strength. |
 | `branch-family-consumer-checksum-mismatch` | A force, action, power, wake-history, Lipschitz, or scalar row consumes a different retained branch list from the derivative artifact. |
 
-## Fail-Closed Controls
+## Verification Required for Advancement Controls
 
 The certificate must reject:
 

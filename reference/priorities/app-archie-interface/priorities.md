@@ -86,7 +86,7 @@ Every response should be represented by the [Answer Artifact Manifest](answer-ar
 2. `multimodal_question_box` - Accept text, voice, screenshots, images, diagrams, and later documents through one intake surface. Status: `candidate`.
 3. `answer_artifact_manifest` - Keep source context, claim labels, answer body, generated media, speech sync, token receipt, privacy state, available actions, and issue-mining metadata in one response envelope. Status: `candidate`.
 4. `manifest_driven_service_architecture` - Map the manifest to service components, validators, endpoints, speech sync, token receipts, privacy state, and issue-mining flow. Status: `candidate`.
-5. `manifest_service_contracts` - Define typed service-boundary inputs/outputs, validator ordering, endpoint contracts, fail-closed manifest shape, and contract fixtures. Status: `candidate`.
+5. `manifest_service_contracts` - Define typed service-boundary inputs/outputs, validator ordering, endpoint contracts, manifest shape for a Not advanced disposition, and contract fixtures. Status: `candidate`.
 6. `source_ingestion_retrieval_context_contract` - Define source records, route identity, freshness, source chips, source visibility, missing-route behavior, and manifest `source_context` population. Status: `candidate`.
 7. `answer_engine_source_contract` - Define source selection, claim-label assignment, unsupported-answer behavior, answer body fields, and idea-triage classification before media or token work. Status: `candidate`.
 8. `model_provider_capability_registry_contract` - Define provider-backed capabilities, quality gates, fallback behavior, credential boundaries, cost classes, provider privacy/terms checks, health state, observability, and no-browser-key enforcement. Status: `candidate`.

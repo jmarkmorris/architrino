@@ -15,7 +15,7 @@ function bashBlocks(markdown) {
   );
 }
 
-test("PR procedure executable blocks preserve fail-closed command forms", () => {
+test("PR procedure executable blocks preserve commands required for advancement verification", () => {
   const procedure = read("reference/op/codex-pr-branch.md");
   const executable = bashBlocks(procedure).join("\n");
 
@@ -46,7 +46,7 @@ test("PR procedure, pre-push hook, and CI share the aggregate gate", () => {
   assert.match(aggregate, /tests\/pr-validation-receipt\.test\.js/);
 });
 
-test("PR procedure makes unattended execution measurable and fail closed", () => {
+test("PR procedure makes unattended execution measurable and requires verification for advancement", () => {
   const procedure = read("reference/op/codex-pr-branch.md");
   const verification = read(
     "reference/op/codex-pr-unattended-verification.md"

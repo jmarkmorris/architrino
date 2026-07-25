@@ -42,7 +42,7 @@ Score changes are symmetric. A new assessment may increase, decrease, or leave u
 
 The burden of proof is highest for upward movement. A score can rise only when the new evidence satisfies the category being scored: accepted coefficients for Formula+Coefficient Recovery, fixed constants for Parameter+Scale Closure, benchmark passes for Empirical Precision+Benchmark Validation, certified dynamics for Master EOM+Local Dynamics, and so on. If new work clarifies that an earlier assessment counted scaffolding, provisional diagnostics, local fits, or bookkeeping as accepted closure, the score must go down.
 
-Ledgers, gates, validation packets, mocks, source-mining records, and fail-closed diagnostics usually score as Falsification Gates or Coverage+Interface Readiness only when they add enforceable acceptance or failure conditions. They do not raise formula, parameter, empirical, or coefficient rows until they carry accepted recovered values, same-record derivations, or declared-tolerance passes.
+Ledgers, gates, validation packets, mocks, source-mining records, and diagnostics required before advancement usually score as Falsification Gates or Coverage+Interface Readiness only when they add enforceable acceptance or failure conditions. They do not raise formula, parameter, empirical, or coefficient rows until they carry accepted recovered values, same-record derivations, or declared-tolerance passes.
 
 Score bands:
 
@@ -176,7 +176,7 @@ This is a concrete mathematical advance because it prevents isolated seed charts
 
 Executable neutral-braid diagnostics add negative evidence and sharper first-failure semantics. The current sampled octahedral root-ledger diagnostic passes the all-pairs sampled root/Jacobian screen, while the fixed-coordinate zero-offset fixed-speed row is rejected by a nonzero tangential residual witness and an ordinary same-transmitter positive-delay no-go. These artifacts improve falsification readiness and empirical/simulation discipline because they report `not_retained` rather than converting a failed seed into branch evidence. The score increase is deliberately small because sampled diagnostics, no-go witnesses for one fixed-coordinate seed, and finite-mode search schemas do not yet replace an interval-certified all-pairs root ledger, action/Noether row, event ledger, stability certificate, or observer-export recovery.
 
-The total remains far below modern operational closure for the same reason as the prior assessments. The theory stack has stronger taxonomy, residual surfaces, and fail-closed diagnostics, but not the decisive retained branch. Until a single native record supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN recovery, photon-channel recovery, quantum source measures, Standard Model mapping coefficients, and shared cosmology fits, architecture and auditability must not inflate the validated-closure total.
+The total remains far below modern operational closure for the same reason as the prior assessments. The theory stack has stronger taxonomy, residual surfaces, and diagnostics required before advancement, but not the decisive retained branch. Until a single native record supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN recovery, photon-channel recovery, quantum source measures, Standard Model mapping coefficients, and shared cosmology fits, architecture and auditability must not inflate the validated-closure total.
 
 ## 2026-05-19 Assessment Notes
 

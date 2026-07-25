@@ -49,7 +49,7 @@ history, or identifies the warned pair as the failing pair.
 
 `surround_double_segment_join_root` now evaluates source position and velocity
 through the complete retained history, collects every source segment crossed
-by the certified root interval, and fails closed if coverage or the normal
+by the certified root interval, and does not advance if coverage or the normal
 cannot be certified. The strict condition in
 `CubicHistorySegment::require_time` is unchanged; its exception now reports
 the requested and segment intervals.
@@ -69,7 +69,7 @@ passes after restoring the single-adjacent-segment evaluation.
 
 Persistent server mode now catches an engine exception at the request
 boundary, clears incremental request state, consumes the rest of an
-unconsumed request through `END`, and returns a structured fail-closed response
+unconsumed request through `END`, and returns a structured response with a Not advanced disposition
 with `haltCode="engine_exception"`, diagnostic detail, no accepted endpoint,
 and no published extensions. The same process then accepts the next request.
 One-shot mode retains its process-error behavior.

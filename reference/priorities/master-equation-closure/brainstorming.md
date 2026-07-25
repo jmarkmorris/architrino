@@ -314,7 +314,7 @@ not an accepted mechanism. A real row would need:
 | --- | --- |
 | `middle_hinge_speed_residual` | Track $v_M^{\mathrm{rel}}(t)-c_f$ on one retained branch. |
 | `middle_hinge_root_count_word` | Emit the root-count or root-status sequence across hinge crossings. |
-| `middle_hinge_caustic_route` | Route $J=0$ or tangent events as caustic / finite-impulse / fail-closed rows. |
+| `middle_hinge_caustic_route` | Route $J=0$ or tangent events as caustic / finite-impulse / rows with a Not advanced disposition. |
 | `middle_hinge_action_increment` | Decide whether the contact pulses correspond to $h$-scale action increments, $2h$-scale increments, or neither. |
 | `middle_hinge_not_decision_by_itself` | Preserve the distinction between metastability substrate and controlled Switch / Decider status. |
 

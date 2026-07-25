@@ -146,7 +146,7 @@ test("animator simulation worker dataset carries record provenance", async () =>
   assert.equal(message.dataset.particles[0].chargeType, "eom-worldline");
 });
 
-test("animator simulation worker fails closed without a recorded EOM dataset", async () => {
+test("animator simulation worker does not advance without a recorded EOM dataset", async () => {
   const request = createAnimatorSimulationWorkerRunRequest(
     { steps: 8, dt: 0.01 },
     { requestId: "missing_record_test" }
@@ -157,7 +157,7 @@ test("animator simulation worker fails closed without a recorded EOM dataset", a
   );
 });
 
-test("animator simulation worker fails closed on a foreign contract id", async () => {
+test("animator simulation worker does not advance on a foreign contract id", async () => {
   const request = createAnimatorSimulationWorkerRunRequest(
     { eomRecord: createEomRecordFixture({ contractId: "solver-app-bridge/v2" }) },
     { requestId: "foreign_contract_test" }
@@ -168,7 +168,7 @@ test("animator simulation worker fails closed on a foreign contract id", async (
   );
 });
 
-test("animator simulation worker fails closed on a record without a claim grade", async () => {
+test("animator simulation worker does not advance on a record without a claim grade", async () => {
   const record = createEomRecordFixture();
   delete record.claimLevel;
   const request = createAnimatorSimulationWorkerRunRequest(

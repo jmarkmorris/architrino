@@ -183,7 +183,7 @@ second producer/parser path is found.
 The live 3:3 seed-0 command requested 140 chunks through $T=7$ with the Borg
 default `0.25` enclosure fraction. No pair was enclosed before the close
 approach. Smooth chunks through $T=1.35$ cost `0.0141233` to `0.0416461`
-seconds. The terminal chunk cost `109.33` seconds and failed closed at
+seconds. The terminal chunk cost `109.33` seconds and was not advanced at
 $T=1.3759765625$ as `caustic_transit_uncertified`; the first failed row was
 `FWC-REG-02`, whose $\epsilon_c=0.05$ level exhausted 200,001 cells.
 

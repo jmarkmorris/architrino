@@ -314,7 +314,7 @@ rejection.
 
 The earlier strict-state proposal (`root=1e-8`, `position=velocity=1e-8`, with
 `acceleration=correction=1e-1`) is retained only as a negative control. Seeds 0,
-1, and 2 reached `T=1.2`; seed 3 halted fail-closed at `T=0.375` after `78.6071`
+1, and 2 reached `T=1.2`; seed 3 halted at `T=0.375`, so verification failed after `78.6071`
 seconds, with `78.0756` seconds measured in the regulator ladder. It is not the
 Research preset.
 

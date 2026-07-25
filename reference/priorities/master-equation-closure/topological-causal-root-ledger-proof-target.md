@@ -91,7 +91,7 @@ The current split is:
 | Action endpoint and multiplier row | Downstream same-record pullback; not part of the topology-only theorem. |
 | Noether wake-history charge row | Downstream same-record pullback from declared event ledger rows. |
 | Noether sea medium-response row | Downstream same-record pullback from one retained response object. |
-| EOM or force-law label | Not admissibility data; fails closed unless the topology-native active root ledger object is present. |
+| EOM or force-law label | Not admissibility data; does not advance unless the topology-native active root ledger object is present. |
 | Branch retention or corpus promotion | Not supplied by this packet; still requires accepted branch evidence from a future downstream consumer. |
 
 ## Brainstorming Link 2026-06-29
@@ -243,10 +243,10 @@ Root count can change only when one of the following boundaries is reached:
 | --- | --- |
 | Endpoint $s=t$ | Exclude the trivial coincidence or route through the declared core convention. |
 | Memory edge $s=t-h$ | Record entry or exit as finite-window wake-history flux. |
-| Caustic $J=0$ | Route through finite impulse, branch transition, or fail-closed singular-stratum chart. |
+| Caustic $J=0$ | Route through finite impulse, branch transition, or verification incomplete singular-stratum chart. |
 | Collision/core locus | Use the same $\epsilon_c$ convention in root, action, and energy rows. |
 | Periodic seam or winding transfer | Record winding ownership or prove it is only representative relabeling. |
-| Omitted branch row | Fail closed until the active and inactive root ledgers are complete. |
+| Omitted branch row | Do not advance until the active and inactive root ledgers are complete. |
 
 ## Candidate Lemma 3: Self-Hit Is Not Pair-Contact
 

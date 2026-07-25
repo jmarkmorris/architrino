@@ -948,7 +948,7 @@ Options:
   --out PATH                Write JSON output to PATH.
   --summary                 Emit compact summary JSON.
   --pretty                  Pretty-print JSON output.
-  --require-pass            Exit nonzero when a fail-closed row triggers.
+  --require-pass            Exit nonzero when a row is not advanced.
   --require-promotion-ready Exit nonzero unless all required source families are accepted.
   --help                    Show this help.
 

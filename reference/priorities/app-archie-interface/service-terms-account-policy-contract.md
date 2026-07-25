@@ -100,7 +100,7 @@ Default product stance:
 - normal work should run inside user-configured limits without constant prompts;
 - auto-fund requires explicit opt-in and a cap;
 - refunds return unused holds automatically;
-- refused unsafe media, unavailable high-quality speech, unconfirmed issue handoff, and fail-closed privacy actions should not charge by default;
+- refused unsafe media, unavailable high-quality speech, unconfirmed issue handoff, and privacy actions with a Not advanced disposition should not charge by default;
 - payment may buy tokens, caps, storage quota, or longer history, but never source authority or proof status.
 
 ## Privacy And Retention Terms
@@ -192,9 +192,9 @@ Disallowed use should include:
 
 The service may rate-limit, refuse, suspend, or require additional confirmation for abuse-risk behavior. Abuse controls must still preserve the unsupported-answer, privacy, receipt, and action-confirmation contracts.
 
-## Fail-Closed Behavior
+## Verification Required for Advancement
 
-The service should fail closed when:
+The service should not advance when:
 
 1. service terms are missing or stale for a paid/account feature;
 2. token/subscription terms are missing for a token-bearing paid action;
@@ -208,7 +208,7 @@ The service should fail closed when:
 10. public status, support summary, or incident disclosure would exceed the approved privacy/status notice;
 11. a terms change requires re-acceptance.
 
-Fail-closed behavior should return a clear unavailable action, reduced-scope response, text-only answer, draft-only note, or confirmation-required state. It should not silently charge, retain, publish, open GitHub, share content, or generate media under missing terms.
+Behavior for a Not advanced disposition should return a clear unavailable action, reduced-scope response, text-only answer, draft-only note, or confirmation-required state. It should not silently charge, retain, publish, open GitHub, share content, or generate media under missing terms.
 
 ## Regression Fixtures
 

@@ -74,7 +74,7 @@ before any precision equation is treated as more than a comparison target.
 
 ## Direct Geometry Layer
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Hydrogen spectral constants, fine/hyperfine terms, and Lamb-shift class (`EQ-26`) | Envelope-gap, transition event, reduced-mass/recoil, clock/rate, spin-sensitive, and wake-dressing rows for one weak homogeneous line set. | Accepted `theta_H_spec` carrier with the hydrogen line-set ledger and shared Rydberg coefficient row. | The same $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$, $\Gamma_N^{(\ell)}$, $\chi_{\text{sea}}^{(\ell)}$, $c_{\gamma,0}^{(\ell)}$, and event ledger must feed all selected lines. | `eq26.per_line_fit`, line-by-line $R_\infty$ retune, and any source map treated as retained evidence. | Source-backed retained hydrogen line-set object accepted by the spectral carrier route before any Rydberg or fine-structure residual is scored. |
 | Fine-structure constant, coupling, and running (`EQ-26A`) | Charge-exposure convention, action-period inheritance, photon speed, gauge/coupling row, charged-threshold inventory, and running readout. | Accepted `theta_gamma_packet`, accepted `EQ-12A` action-period row, then accepted `charge_exposure_row` and `alpha_coupling_row`. | $h_\vartheta$, $q_{\mathrm{obs}}$, $c_\gamma$, $\theta_{\mathrm{sea}}$, and threshold inventory must stay fixed across the low-energy anchor, atomic fine-structure anchor, and running point. | `eq26a.alpha_hidden_retune`, `eq26a.mu_dependent_action_period`, `eq26a.alpha_fitted_action_period`, and parent photon/action source negatives. | Retained alpha source packet with accepted photon/action inheritance and a scheme-pinned charge-exposure row before the coupling row is interpreted. |
@@ -753,7 +753,7 @@ Default summary:
 | Compton inverse-energy residual | `7.40e-17` |
 | Wavelength residual | `7.40e-17` |
 
-The checker is deliberately fail-closed. The comparison replay closes because the weak homogeneous output photon energy is computed from the Compton relation and the recoil momentum is then balanced. It is not a native $\mathbb{A}\mathbb{A}\mathbb{A}$ event-ledger certificate until these rows are accepted on the same $\mathsf e_{\gamma e}^{0}$ record:
+The checker deliberately requires verification for advancement. The comparison replay closes because the weak homogeneous output photon energy is computed from the Compton relation and the recoil momentum is then balanced. It is not a native $\mathbb{A}\mathbb{A}\mathbb{A}$ event-ledger certificate until these rows are accepted on the same $\mathsf e_{\gamma e}^{0}$ record:
 
 - `photon_gate_A_input_output`
 - `photon_gate_B_transverse_handoff`

@@ -177,7 +177,7 @@ controls:
 - a transverse `1e-2` coefficient independently checked against
   $\sqrt{1+0.01^2}-1$ by the 90-digit Decimal test.
 
-`JointState.cpp` implements aligned shared-symbol subtraction and fails closed
+`JointState.cpp` implements aligned shared-symbol subtraction and does not advance
 unless the existing ordinary radii dominate every per-path affine projection.
 Its analytic two-path control makes the independent box fail at
 `4.04082e-2` while the shared-symbol row passes at `8.0016e-4`; an under-sized
@@ -195,7 +195,7 @@ the one-sign transmitter-side factor and propagates the emission-time response
 into the transmitter position. `SharpAccelerationSensitivity.cpp` then
 certifies the current sharp-root acceleration Jacobian, including transmitter
 motion and the derivative of the acceleration weight. Independent Decimal
-controls check both rows and a zero-factor control fails closed.
+controls check both rows and a zero-factor control does not advance.
 
 `CenteredAffine.cpp` implements the explicit-map part of the new
 representation: a centered mean-value form retains aligned shared coefficients

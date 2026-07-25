@@ -23,7 +23,7 @@
 
 This packet defines the model/provider capability registry contract for the future Archie question service.
 
-The service may eventually use different providers for text answer generation, source-grounded comparison, high-quality speech, image generation, caption/transcript work, embeddings or retrieval support, vision input, transcription, document intake, moderation, and future video. The user interface should not know provider secrets, provider-specific billing units, provider-specific model names, or raw capability quirks. It should see only product capabilities with declared quality gates, token classes, privacy behavior, fallback behavior, and fail-closed rules.
+The service may eventually use different providers for text answer generation, source-grounded comparison, high-quality speech, image generation, caption/transcript work, embeddings or retrieval support, vision input, transcription, document intake, moderation, and future video. The user interface should not know provider secrets, provider-specific billing units, provider-specific model names, or raw capability quirks. It should see only product capabilities with declared quality gates, token classes, privacy behavior, fallback behavior, and rules requiring verification for advancement.
 
 This packet is not a provider selection, runtime integration, credential store, or deployment config. It is the product and platform contract that future provider adapters, model gateways, capability toggles, token estimates, media validators, and service health checks must satisfy before any provider-backed capability ships.
 
@@ -54,7 +54,7 @@ Each provider-backed product capability should be represented by a registry entr
 | `terms_required` | Required service terms, privacy notice, generated-media terms, or provider terms state. |
 | `credential_boundary` | Server, serverless, edge, managed gateway, or internal tool boundary; never public browser secrets. |
 | `token_work_units` | User-visible work units and cost class used by the token ledger. |
-| `fallback_behavior` | Text-only fallback, reduced-scope answer, disabled action, retry, or fail-closed behavior. |
+| `fallback_behavior` | Text-only fallback, reduced-scope answer, disabled action, retry, or behavior for a Not advanced disposition. |
 | `health_state` | `healthy`, `degraded`, `unavailable`, `policy_blocked`, or `unknown`. |
 | `observability_fields` | Safe latency, error, cost, refusal, and provider-health metrics. |
 
@@ -108,7 +108,7 @@ Required fallback examples:
 | `speech_output` | Text-only display when high-quality synchronized speech is unavailable. |
 | `image_generation` | Diagram spec, generated-image prompt draft, or text-only explanation when image generation is unavailable or unsafe. |
 | `caption_transcript` | Disable speech output until captions/transcripts can be produced when required. |
-| `moderation` | Fail closed for public/generated media if moderation is unavailable and policy requires it. |
+| `moderation` | Do not advance for public/generated media if moderation is unavailable and policy requires it. |
 | `retrieval_embedding` | Keyword or route-based retrieval fallback when embeddings are unavailable, with weaker source recall noted internally. |
 | `speech_input` | Typed text input only. |
 | `image_input` | Text description only; do not infer from unavailable image analysis. |
@@ -126,7 +126,7 @@ Registry entries should provide:
 2. estimate basis: source count, output length, audio duration, image count, context size, provider call count, or storage size;
 3. whether a pre-run estimate is required;
 4. whether attempted-provider work can ever be charged after refusal;
-5. refund behavior when output is omitted, downgraded, or failed closed;
+5. refund behavior when output is omitted, downgraded, or was not advanced;
 6. cap behavior for per-request, monthly, and auto-fund limits.
 
 Provider-specific billing units should not appear directly in the public UI. Receipts should show product work units, safe provider capability ids when useful, and token charges/refunds.
@@ -166,9 +166,9 @@ The manifest should record:
 
 The manifest should not expose secrets, raw provider request payloads, full private prompt text, provider-specific billing internals, or provider output as a citation.
 
-## Fail-Closed Behavior
+## Verification Required for Advancement
 
-The provider registry should fail closed when:
+The provider registry should not advance when:
 
 1. no registry entry exists for a requested capability;
 2. capability is disabled, internal-only, policy-blocked, or below required health state;
@@ -181,7 +181,7 @@ The provider registry should fail closed when:
 9. public client would need a model/API key;
 10. provider output would be needed to support a claim label.
 
-Fail-closed behavior should return a manifest-shaped unsupported, unavailable, text-only, reduced-scope, or confirmation-required response without hidden provider calls, hidden charges, hidden retention, or proof-status inflation.
+Behavior for a Not advanced disposition should return a manifest-shaped unsupported, unavailable, text-only, reduced-scope, or confirmation-required response without hidden provider calls, hidden charges, hidden retention, or proof-status inflation.
 
 ## Regression Fixtures
 

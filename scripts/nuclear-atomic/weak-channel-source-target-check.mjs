@@ -447,7 +447,7 @@ Options:
   --require-accepted    Exit nonzero unless all weak-channel rows are accepted.
   --help                Show this help.
 
-This checker keeps the Fe/Ni weak-channel source target fail-closed: it can
+This checker requires verification for advancement of the Fe/Ni weak-channel source target: it can
 verify accepted weak_visible_branch_ledger, weak_projection, weak_quotient, and
 weak_exposure_record rows plus
 same-domain weak structure without treating downstream attempt rows as accepted.`);

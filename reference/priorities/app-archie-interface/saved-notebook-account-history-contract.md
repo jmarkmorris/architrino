@@ -175,9 +175,9 @@ Rules:
 5. a private note cannot become a priority packet or corpus edit without a separate project-authoring review path;
 6. generated images, diagrams, and storyboards remain explanatory artifacts, not proof witnesses.
 
-## Fail-Closed Behavior
+## Verification Required for Advancement
 
-The notebook service should fail closed when:
+The notebook service should not advance when:
 
 1. durable save is requested before retention policy exists;
 2. deletion route is missing;
@@ -190,7 +190,7 @@ The notebook service should fail closed when:
 9. submitted issue link retention is unresolved;
 10. account history would store full prompt text without explicit opt-in.
 
-Fail-closed behavior should return a saved-note draft, text-only summary, unavailable action, or confirmation-required state with no hidden durable storage.
+Behavior for a Not advanced disposition should return a saved-note draft, text-only summary, unavailable action, or confirmation-required state with no hidden durable storage.
 
 ## Regression Fixtures
 

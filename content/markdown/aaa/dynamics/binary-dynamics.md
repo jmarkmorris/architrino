@@ -139,7 +139,7 @@ R(T)\,A_{\mathrm{self},0,\eta}^{\mathrm{tan}}(T)\,dT
 $$
 when that limit exists under the same finite-caustic transit convention used for the velocity impulse. If the impulse limit is regulator-dependent, the branch-birth jump remains a diagnostic record rather than a promoted angular-momentum ledger entry.
 
-This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history acceleration sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self branch inherits the transmitter-side fold onset displayed below, and the canonical acceleration weight is $W^{\mathrm{acc}}=1/|J_s|$. Its coincident endpoint birth is therefore more singular than the former stripped model and remains fail-closed.
+This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history acceleration sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self branch inherits the transmitter-side fold onset displayed below, and the canonical acceleration weight is $W^{\mathrm{acc}}=1/|J_s|$. Its coincident endpoint birth is therefore more singular than the former stripped model, and its verification remains incomplete.
 
 ## Spiral Binary Field-Speed Symmetry-Breaking Point
 
@@ -1446,7 +1446,7 @@ $$
 }.
 $$
 
-The boundary term is not optional bookkeeping: it is required by the constructive finite-window wake-energy account. If it is absent, the packet must fail closed rather than hiding tangential work in an undefined reservoir.
+The boundary term is not optional bookkeeping: it is required by the constructive finite-window wake-energy account. If it is absent, verification is incomplete and the packet is not advanced; tangential work cannot be hidden in an undefined reservoir.
 
 The stability certificate is a secular Floquet margin in history space,
 

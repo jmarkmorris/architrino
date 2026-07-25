@@ -3,7 +3,7 @@
 ## Verdict
 
 **PILOT ONLY — no scientific verdict.** The predeclared 13-case pilot matrix
-failed closed before the EOM solver accepted its first step. All 13 first
+was not advanced before the EOM solver accepted its first step. All 13 first
 chunks returned `engine_exception` with the same diagnostic:
 `certified budget provenance is incomplete or malformed`. No run reached root
 search, acceleration reconstruction, coupled correction, publication, or
@@ -143,7 +143,7 @@ named certificate. It is not a pass.
 | Retained-history coverage | **NOT REACHED**; no root touched or cleared the memory boundary | measured | Root records certify boundary clearance |
 | Sharp chart only | Request binding **PASS**; execution **NOT REACHED** | measured | Any finite-width row is emitted |
 | Canonical evidence status | **FAIL as an available interface**; current completed path is hard-coded to architecture evidence | measured by code inspection | A completed canonical certificate is emitted |
-| No fail-closed outcome | **FAIL**; 13/13 failed closed | measured | A case completes |
+| No completed case | **FAIL**; 13/13 were not advanced | measured | A case completes |
 
 ## PILOT $C_B$ error rows
 
@@ -252,7 +252,7 @@ Scale selection remains an operator decision and was not made here.
 - [`pilot-instrument-manifest.json`](pilot-instrument-manifest.json): frozen cases, parameters, budgets, equations, and allocations.
 - [`pilot-instrument-lock.json`](pilot-instrument-lock.json): executable and input hashes fixed before output.
 - [`build-provenance.json`](build-provenance.json): build times, commands, host, and artifact hashes.
-- `runs/`: all 13 fail-closed run records.
+- `runs/`: all 13 not advanced run records.
 - [`pilot-contract-compliance.json`](pilot-contract-compliance.json): machine-readable contract summary.
 - [`pilot-interval-record.json`](pilot-interval-record.json): interval rows and feasibility calculation.
 - [`pilot-profile.json`](pilot-profile.json): timer, counter, path, pair, and storage attribution.

@@ -69,7 +69,7 @@ test("sealed receipt, analyzer hashes, source manifests, and packet contract rep
   );
 });
 
-test("packet lock fails closed when any predeclared ladder row drifts", () => {
+test("packet lock does not advance when any predeclared ladder row drifts", () => {
   const packet = readFileSync(PACKET, "utf8");
   assert.doesNotThrow(() => assertProtocolPacketContract(packet));
   assert.throws(

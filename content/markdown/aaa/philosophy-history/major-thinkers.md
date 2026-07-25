@@ -23,7 +23,7 @@ The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
 - **What it knows**: The complete substrate state at $T$, including position, velocity, polarity, retained path history, active causal roots, and branch data.
 - **What it predicts**: A unique continuation wherever the native branch rule is well posed. Multistability means that different nearby complete states can lie in different basins of attraction; it does not mean that one exact complete state has several realized futures.
 - **What physical observers cannot generally predict**: Which attractor will be reached when their records do not resolve the basin-selecting microstate and wake-phase details.
-- **Fail-closed boundary**: If one exact retained state and one declared law admit more than one legal continuation, determinism has not been established for that branch chart.
+- **Verification required for advancement**: If one exact retained state and one declared law admit more than one legal continuation, determinism has not been established for that branch chart.
 
 The $\mathbb{U}_{\text{now}}$ universe-state perspective can therefore trace lawful evolution through branch points when the branch chart is complete and well posed. Near a basin boundary, arbitrarily close complete states may approach different stable attractors, while physical observers who cannot resolve the separating coordinates experience the outcome as practically open. This is deterministic multistability with epistemic forecast limits, not ontic multiplicity from a single exact state.
 

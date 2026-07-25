@@ -167,7 +167,7 @@ enclosure induced by the complete widened root interval to fit the unchanged
 Research acceleration allocation, and the current four-seed evidence does not
 establish that row.
 
-The completed V8 diagnostic preserved all fail-closed logic and changed only
+The completed V8 diagnostic preserved all logic requiring verification before advancement and changed only
 the state-set representation:
 
 1. retain three position and three velocity radii through candidate

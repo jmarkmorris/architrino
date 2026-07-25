@@ -10,7 +10,7 @@
 - Parent packet: [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md)
 - Assigned ID: `EQ-07A`
 - Related corpus material: [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md), [Singularity Resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-braid/braid-envelope-geometry.md), [Fermi-Dirac And Bose-Einstein Statistics](../../../content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md)
-- Claim level: observer-level compact-star support benchmark, native variable dictionary, and fail-closed residual target
+- Claim level: observer-level compact-star support benchmark, native variable dictionary, and residual required for advancement target
 - Promotion status: priority-only
 - Current score: `2`
 
@@ -154,14 +154,14 @@ Here $\mathcal B_{\mathrm{std}}^{\mathrm{cs}}$ carries the observer-level compac
 | Exact first blocker | `missing_accepted_compact_region_carrier` |
 | Smallest next artifact | Produce one source-backed compact-region carrier with mass profile, pressure profile, compactness, support-balance row, collapse-scale row, source provenance, and no-hidden-retune witness on one record. |
 | Existing scripts/fixtures/packets | [eq07a-compact-region-carrier-residual.mjs](../../../scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs), [eq07a-compact-region-carrier-attempt.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-attempt.v1.json), [eq07a-chandrasekhar-scaling-residual.mjs](../../../scripts/equation-mapping/eq07a-chandrasekhar-scaling-residual.mjs), [eq07a-tov-compact-support-residual.mjs](../../../scripts/equation-mapping/eq07a-tov-compact-support-residual.mjs) |
-| Fail-closed controls | Coordination-source, metadata-missing, probe-source mutation, hidden-retune, pressure-regime, level-separation, Chandrasekhar, and TOV controls must reject priority packets, probe artifacts, split carriers, and collapsed scale levels. |
+| Controls required for advancement | Coordination-source, metadata-missing, probe-source mutation, hidden-retune, pressure-regime, level-separation, Chandrasekhar, and TOV controls must reject priority packets, probe artifacts, split carriers, and collapsed scale levels. |
 | Safe implementation target | Existing script/fixture improvement: harden the `standard_benchmark_row` source contract after the parent carrier probe, without score change. |
 
 ## Direct Geometry Layer
 
 This layer keeps compact-star support as a same-record geometry problem. It does not treat the white-dwarf scaling laws, TOV comparison, reaction inventory, and metric compliance as independent successes.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | $\ell_e\sim n_e^{-1/3}$, $p_F\sim\hbar n_e^{1/3}$, and $x_F=p_F/(m_ec_0)$ | Degenerate-electron spacing and momentum readout from the compact-region electron inventory. | `compact_region_carrier`, `electron_inventory_row`, `fermi_state_counting_row`, `level_separation_witness` | One `carrierId`, compact region $\Omega$, and window $W$ bind $n_e$, $\ell_e$, $p_F$, $x_F$, atomic scale, and material Noether braid scale. | Level-separation controls reject using atomic orbital scale or material Noether braid scale as Fermi spacing without a bridge calculation. | Accepted compact-region carrier plus same-record electron inventory and Fermi state-counting rows. |
 | $P_{e,\mathrm{nr}}\propto\rho^{5/3}$ and $P_{e,\mathrm{rel}}\propto\rho^{4/3}$ | Pressure-regime readout from exclusion stress and native packing response. | `standard_benchmark_row`, `pressure_regime_row`, `native_pressure_packing_row` | The active pressure regime and $P_{\mathrm{pack}}^\theta$ share the same carrier and declared regime samples. | Pressure-regime and hidden-retune controls reject fitted exponents or per-sample coefficient changes. | Accepted standard benchmark, pressure-regime, and native pressure-packing rows on the same carrier. |
@@ -288,7 +288,7 @@ The current run returns `schemaOk: true`, `status: blocked_missing_accepted_comp
 
 ### Coordination-Source Negative Control
 
-The fail-closed source check for the compact-region carrier is [eq07a-compact-region-carrier-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-coordination-source-negative-control.v1.json):
+The source check required for advancement for the compact-region carrier is [eq07a-compact-region-carrier-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-coordination-source-negative-control.v1.json):
 
 ```bash
 node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input scripts/equation-mapping/eq07a-compact-region-carrier-coordination-source-negative-control.v1.json --summary --pretty
@@ -300,7 +300,7 @@ The source filter also rejects `attempt`, `toy`, `source-evidence-probe`, `probe
 
 ### Compact-Region Carrier Source Contract
 
-The compact-region carrier now has a row-specific source-support contract, not only a durable-path check. An accepted-looking $\Theta_{\mathrm{cs}}^{07A}$ row must carry metadata that explicitly names `EQ-07A`, the `compact_region_carrier`, and one of the supported compact-region routes: same-root finite-window ledger, compact-region conservation ledger, or collapse-to-metric residual. A durable source path without that metadata still fails closed.
+The compact-region carrier now has a row-specific source-support contract, not only a durable-path check. An accepted-looking $\Theta_{\mathrm{cs}}^{07A}$ row must carry metadata that explicitly names `EQ-07A`, the `compact_region_carrier`, and one of the supported compact-region routes: same-root finite-window ledger, compact-region conservation ledger, or collapse-to-metric residual. A durable source path without that metadata still does not advance.
 
 The metadata-missing negative control is [eq07a-compact-region-carrier-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/eq07a-compact-region-carrier-metadata-missing-negative-control.v1.json):
 
@@ -318,7 +318,7 @@ node scripts/equation-mapping/eq07a-compact-region-carrier-residual.mjs --input 
 
 This probe marks only the parent compact-region carrier accepted-looking with the required support metadata. It advances the checker past `missing_accepted_compact_region_carrier` and exposes `missing_accepted_standard_benchmark_row` as the next blocker, while still exiting nonzero under `--require-populated`. The probe is not accepted retained evidence and does not change the score.
 
-The `standard_benchmark_row` has the same fail-closed source-support rule. An accepted-looking row must explicitly name `EQ-07A`, `standard_benchmark_row`, the compact-region carrier, and a standard compact-star benchmark route such as `chandrasekhar_support` or `tov_compact_support`. A durable source path without that metadata is not enough.
+The `standard_benchmark_row` has the same source-support rule required for advancement. An accepted-looking row must explicitly name `EQ-07A`, `standard_benchmark_row`, the compact-region carrier, and a standard compact-star benchmark route such as `chandrasekhar_support` or `tov_compact_support`. A durable source path without that metadata is not enough.
 
 The score-neutral standard-benchmark source-evidence probe is [eq07a-standard-benchmark-row-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq07a-standard-benchmark-row-source-evidence-probe.v1.json):
 

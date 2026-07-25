@@ -356,7 +356,7 @@ test("transmitter-tagged normal wake-flux coefficients resolve frequency-selecti
   assert.match(surface.transmitterTaggedWakeFluxBandCoverage.claimBoundary, /not energy/);
 });
 
-test("frequency-resolved wake-flux reduction fails closed without reconstructing transmitter tags", () => {
+test("frequency-resolved wake-flux reduction does not advance without reconstructing transmitter tags", () => {
   const protocol = compactProtocol();
   assert.throws(
     () => reduceB1SurfaceSampleGrid({
@@ -378,7 +378,7 @@ test("frequency-resolved wake-flux reduction fails closed without reconstructing
   );
 });
 
-test("streaming acceptance independently fails closed on every event-level validity obligation", () => {
+test("streaming acceptance does not advance when any event-level validity obligation is unmet", () => {
   const protocol = compactProtocol();
   const sourceRecord = staticSixSourceRecord();
   const defects = [

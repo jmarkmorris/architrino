@@ -132,7 +132,7 @@ The contract controls:
 4. token cost classes and provider cost mapping;
 5. privacy, provider data-use, and terms state;
 6. safe manifest `provider_execution_context` fields and observability;
-7. fail-closed behavior for missing capabilities, failed quality gates, missing cost maps, stale provider terms, and provider-health degradation.
+7. behavior for a Not advanced disposition for missing capabilities, failed quality gates, missing cost maps, stale provider terms, and provider-health degradation.
 
 Provider capability does not create source authority. Model memory, provider output, generated media, and provider health status remain non-evidence; they can only produce or block artifacts whose source and claim context has already been selected.
 
@@ -229,7 +229,7 @@ The contract controls:
 4. auto-fund, refunds, cancellation, failed payment, cap changes, and no-proof-authority behavior;
 5. legal-review state before public beta.
 
-V1 must fail closed when required service terms, privacy notices, token/subscription terms, generated-media terms, GitHub handoff notices, notebook terms, or legal-review state are missing or stale for the requested feature.
+V1 must not advance when required service terms, privacy notices, token/subscription terms, generated-media terms, GitHub handoff notices, notebook terms, or legal-review state are missing or stale for the requested feature.
 
 ## V1 Capabilities
 
@@ -502,7 +502,7 @@ The contract controls:
 3. internal diagnostics that use safe ids, route ids, provider capability ids, error classes, fallback classes, validator names, and receipt ids;
 4. incident records for privacy, billing, source-authority, provider, media, token, action, and launch-gate risks;
 5. issue-mining handoff rules that avoid private prompt text and route unclear clusters to public reproduction;
-6. fail-closed behavior for unsafe diagnostics, unsafe public status, unsafe support summaries, and unsafe incident disclosure.
+6. behavior for a Not advanced disposition for unsafe diagnostics, unsafe public status, unsafe support summaries, and unsafe incident disclosure.
 
 Observability is operational evidence only. Metrics, issue volume, provider success, incidents, or public status history cannot upgrade source authority, claim labels, proof status, or launch readiness.
 
@@ -694,7 +694,7 @@ Pass conditions:
 
 Pass conditions:
 
-- unsupported answers use the required fail-closed shape;
+- unsupported answers use the required not advanced shape;
 - nearest supported source or open burden is named when available;
 - the service does not invent citations, claim labels, or proof status.
 
@@ -787,7 +787,7 @@ Pass conditions:
 - service terms, privacy notice, token/subscription terms, generated-media terms, GitHub handoff notice, saved-notebook terms, support/refund route, abuse policy, and terms-change notice exist;
 - provider data-use notices and provider terms state exist for provider-backed features;
 - terms-version and acceptance state are available to validators without exposing private prompt text;
-- paid, retained, durable, public, generated-media, and credentialed actions fail closed when required terms are missing, stale, or require re-acceptance;
+- paid, retained, durable, public, generated-media, and credentialed actions do not advance when required terms are missing, stale, or require re-acceptance;
 - token receipts can cite safe terms-version ids without expanding private prompt text;
 - legal review state is `approved_for_beta` or stronger before public beta.
 
@@ -851,7 +851,7 @@ Pass conditions:
 - internal diagnostics expose safe ids, route ids, provider capability ids, validator dispositions, fallback classes, receipt ids, and redaction state without private prompt expansion;
 - incident records capture severity, affected surfaces, affected capability ids, user impact, privacy impact class, billing impact class, source-authority impact, mitigation, and follow-up artifact;
 - provider health, token receipts, source misses, unsupported-answer rates, media refusals, speech fallbacks, issue handoffs, and manifest validation failures are measurable through safe classes;
-- unsafe observability, support summaries, issue-mining handoffs, public status, or incident disclosure fail closed.
+- unsafe observability, support summaries, issue-mining handoffs, public status, or incident disclosure do not advance.
 
 ### Validation Fixture Gate
 
@@ -859,7 +859,7 @@ Pass conditions:
 
 - fixture questions cover every v1 mode;
 - manifest fixtures cover text-only answers, unsupported answers, speech sync, text-only speech fallback, generated images, mixed media, issue drafts, token caps, saved-note drafts, and priority-only answers;
-- service contract fixtures cover endpoint responses, validator failures, provider capability refusal, fail-closed manifests, token-cap refusal, privacy refusal, and render-contract behavior;
+- service contract fixtures cover endpoint responses, validator failures, provider capability refusal, manifests with a Not advanced disposition, token-cap refusal, privacy refusal, and render-contract behavior;
 - provider capability fixtures cover answer text, high-quality speech, speech fallback, generated images, browser-key refusal, cost-map refusal, privacy refusal, terms refusal, provider-health degradation, source-authority refusal, and privacy-safe observability;
 - token/privacy fixtures cover normal charges, cap exceedance, auto-fund, refunds, high-quality speech fallback, ephemeral audio, durable-save refusal, public issue warnings, private-material exclusion, no-private-prompt receipts, and redacted diagnostics;
 - issue-mining fixtures cover duplicate clustering, recurring confusion, unsupported-answer gaps, app usability, noise classification, private-data exclusion, ambiguous ownership, fixture candidates, source-index candidates, and report shape;
@@ -949,7 +949,7 @@ The v1 fixture set should include at least the following cases.
 | `manifest-text-001` | Ask | Answer a source-backed question. | varies | Return an Answer Artifact Manifest with source context, claim context, answer body, token receipt, privacy state, and available actions. |
 | `manifest-speech-sync-001` | Explain | Listen to this answer. | varies | Manifest includes high-quality audio artifact, `speech_sync`, synchronized displayed verbatim text, and ephemeral audio retention state. |
 | `manifest-issue-mining-001` | Triage Idea | Draft an issue for this idea. | varies | Manifest includes issue draft, public visibility warning, confirmation requirement, and issue-mining context. |
-| `contract-endpoint-fail-closed-001` | Any | Request an unavailable or unsafe artifact. | `unsupported` or weaker supported label | Endpoint returns a validated fail-closed manifest rather than an ad hoc error shape. |
+| `contract-endpoint-fail-closed-001` | Any | Request an unavailable or unsafe artifact. | `unsupported` or weaker supported label | Endpoint returns a validated manifest for a Not advanced disposition rather than an ad hoc error shape. |
 | `provider-answer-text-001` | Ask | Answer a source-backed question with provider-backed answer generation. | varies | Manifest records safe provider execution context without exposing provider secrets or changing source authority. |
 | `provider-speech-fallback-001` | Explain | Listen when the high-quality speech provider is unavailable. | varies | Return text-only fallback, record provider health state, and avoid speech charge. |
 | `provider-image-policy-001` | Visualize | Generate a controlled image response. | varies | Provider capability, moderation gate, cost class, privacy/terms state, credential boundary, and source/claim inheritance are present. |

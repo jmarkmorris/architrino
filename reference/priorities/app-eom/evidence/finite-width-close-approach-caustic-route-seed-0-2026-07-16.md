@@ -489,7 +489,7 @@ the existing numerical remainder and keep their sum inside the unchanged
 event budget.
 
 No transit is promoted by this decision. The current EOM solver does not emit
-the new row, so its halt remains fail-closed and adjudicated until a separate
+the new row, so its halt remains not advanced and adjudicated until a separate
 implementation with independent evidence contains the measured gaps. For the
 recorded side cells, that implementation must certify at least
 $R^{\mathrm{reg}}_{I,0}\ge3.51437\times10^{-11}$ for `1004 <- 1006` and
@@ -581,13 +581,13 @@ whose interval does not overlap the corresponding Decimal oracle interval.
 | Snapshot reuse across controller-step change | passed |
 | Native/Decimal event impulse and position-moment overlap | passed in binary64 and MPFR controls |
 | Native/Decimal non-binary segment-join root overlap | passed in MPFR control |
-| Event resource exhaustion | failed closed |
+| Event resource exhaustion | was not advanced |
 | Atomic publication on route failure | passed; input histories retained |
 
 ## Disposition
 
-This evidence is `priority-only`. It authorizes the named fail-closed
-adjudication path, not a production transit claim. `FWC-ENTRY-02` is closed for
+This evidence is `priority-only`. It authorizes the named adjudication path, for
+which verification is required for advancement, not a production transit claim. `FWC-ENTRY-02` is closed for
 the default seed-0 trajectory. Its `FWC-REG-02` halt is the accepted
 adjudicated state of that demo-tolerance track. No atomic transit or production
 passage claim is authorized. Any research-tolerance discriminator,

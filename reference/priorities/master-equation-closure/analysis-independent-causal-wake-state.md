@@ -310,7 +310,7 @@ impulse theorem.
 Finite retained history requires explicit flux of $e_i$ and
 $\boldsymbol\pi_i$ when a stored surface element exits the retained domain.
 Silently dropping it would manufacture conservation loss. Missing history still
-routes to fail-closed handling.
+routes to handling requiring verification before advancement.
 
 ## 8. Disposition
 

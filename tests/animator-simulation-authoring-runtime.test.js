@@ -114,7 +114,7 @@ test("simulation authoring draft applies worker config and preserves existing me
   });
 });
 
-test("simulation authoring worker payload normalizes invalid choices fail-closed to defaults", () => {
+test("simulation authoring worker payload requires verification before advancing invalid choices", () => {
   const payload = buildAnimatorSimulationAuthoringWorkerPayload(
     {
       duration: 4,

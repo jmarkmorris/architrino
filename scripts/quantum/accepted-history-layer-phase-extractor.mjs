@@ -74,7 +74,7 @@ Options:
 
 This extractor computes provisional layer relative vectors, angular-momentum
 vectors, phase samples, and plane-stability residuals from accepted-history
-rows. It is fail-closed: it does not emit pair-phase-certificate input unless
+rows. Verification is required for advancement: it does not emit pair-phase-certificate input unless
 pair-source, daughter, substrate-derived wake, source-weight, and quotient-audit
 fields are already explicit in the input.`);
 }

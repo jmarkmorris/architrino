@@ -6,7 +6,7 @@ Status: `consolidated`; `app-simulation` is not an app and is no longer an indep
 
 | Existing task | Canonical owner | Ownership boundary |
 | --- | --- | --- |
-| `tier0_tier1_runs` | [Master-Equation Closure](../master-equation-closure/priorities.md) | Own the $A_0$ branch-chart basis, fail-closed interpretation, and certificate acceptance. EOM supplies evolved records. |
+| `tier0_tier1_runs` | [Master-Equation Closure](../master-equation-closure/priorities.md) | Own the $A_0$ branch-chart basis, interpretation requiring verification before advancement, and certificate acceptance. EOM supplies evolved records. |
 | `field_speed_action_self_hit_scan` | [Braid Program](../braid-program/priorities.md) and [Master-Equation Closure](../master-equation-closure/priorities.md) | Braid Program owns the declared field-speed campaign; Master-Equation Closure owns transmitter provenance, action, transmitter-side acceleration, signed playback, causal wake accounts, and branch-certificate acceptance. |
 | `convergence_and_provenance` | [EOM](../app-eom/priorities.md) | EOM owns generic refinement, precision, deterministic replay, checkpoint, and provenance capability; each consuming campaign owns its thresholds. |
 | `eta_positive_package` | [Master-Equation Closure](../master-equation-closure/priorities.md) | Treat finite-$\eta$ existence and continuation as a mathematical proof obligation, not an app feature. |

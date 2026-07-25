@@ -156,7 +156,7 @@ emitted impulse width was `9.97774e-8`; maximum position-moment width was
 `8.86206e-8`. The first event pair was `1004 <- 1005` on the attempted
 `[0.01,0.0125]` window. Smaller windows produced three certified-complete state
 records with common-domain overlap and exit passes before the eventual
-fail-closed terminal step.
+not advanced terminal step.
 
 Claim grade: `measured`. Falsifier: the regulator timer no longer encloses the
 event-ladder calls or a repeated finite-width run assigns the wall time to a
@@ -268,11 +268,11 @@ show a semantic, protocol, event-budget, default, or UI change not listed here.
 Use this only after the operator explicitly ratifies Amendment 2:
 
 ```text
-Closure goal: implement the ratified two-preset certified error-budget contract end to end while preserving fail-closed EOM publication and proving independent containment for both event budgets.
+Closure goal: implement the ratified two-preset certified error-budget contract end to end while preserving the EOM publication policy—verification required for advancement—and proving independent containment for both event budgets.
 
 Operator decision: Amendment 2 and the proposed Interactive and Research records in reference/priorities/app-eom/certified-error-budget-ledger.md are ratified. Treat that ledger and the ratified amendment as binding input.
 
-Implement one canonical budget registry; make Borg default to Interactive certified budget; add the plain-language selector and Custom certified budget advanced path; validate the complete dimensional ledger; propagate every acceleration, correction, event, retained-history, interpolation, rounding, and shortcut remainder into published position and velocity intervals; carry receiver-total impulse and position-moment budgets explicitly; preserve zero independent overlap allowance; record the complete allocation and deterministic hash in request and response provenance; advance V6 once with one exact producer and parser and no compatibility route; update every fixture and call site; keep all FWC gates, Amendment 1 matching, outward rounding, sharp-chart prohibitions, atomic publication, and fail-closed behavior unchanged.
+Implement one canonical budget registry; make Borg default to Interactive certified budget; add the plain-language selector and Custom certified budget advanced path; validate the complete dimensional ledger; propagate every acceleration, correction, event, retained-history, interpolation, rounding, and shortcut remainder into published position and velocity intervals; carry receiver-total impulse and position-moment budgets explicitly; preserve zero independent overlap allowance; record the complete allocation and deterministic hash in request and response provenance; advance V6 once with one exact producer and parser and no compatibility route; update every fixture and call site; keep all FWC gates, Amendment 1 matching, outward rounding, sharp-chart prohibitions, atomic publication, and behavior for a Not advanced disposition unchanged.
 
 Do not modify the Decimal oracle. Add unchanged-oracle or analytic containment for each selectable event budget, deliberate under-budget rejection, Research parity on the recorded finite-width control, and Interactive seed/population acceptance. Stop if emitted state intervals remain disjoint beyond their complete declared remainders.
 ```

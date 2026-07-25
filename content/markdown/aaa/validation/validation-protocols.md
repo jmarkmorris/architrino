@@ -11,7 +11,7 @@ The chapter proceeds in scene order from unit and parameter declarations to even
 3. [Reaction Ledger](reaction-ledger.md) requires constituent, energy, momentum, and channel provenance for reaction records.
 4. [Reaction-Cosmology Provenance Ledger](reaction-cosmology-provenance-ledger.md) extends the same-record discipline across source loading, thermalization, and cosmological observables.
 5. [Constraint Ledger](constraint-ledger.md) records empirical tolerances and the shared records that must satisfy them.
-6. [Failure Criteria](failure-criteria.md) defines incompatibility witnesses, promotion conditions, and fail-closed outcomes.
+6. [Failure Criteria](failure-criteria.md) defines incompatibility witnesses, promotion conditions, and Not advanced dispositions.
 7. [No-Go Theorems](no-go-theorems.md) classifies whether a theorem applies directly, imposes a replacement constraint, or depends on assumptions absent from the substrate theory.
 8. [Known Tensions](known-tensions.md) collects unresolved recovery burdens without treating them as solved mechanisms.
 9. [Massive-Superposition Gravity](massive-superposition-gravity.md) defines a focused observer-level discriminator for gravity-linked record formation.

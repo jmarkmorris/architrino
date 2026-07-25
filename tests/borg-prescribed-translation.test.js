@@ -107,7 +107,7 @@ test("zero common translation makes the two display frames coincide exactly", ()
   );
 });
 
-test("missing translation carrier fails closed for co-translating display", () => {
+test("co-translating display does not advance without a translation carrier", () => {
   const translation = resolveBorgPrescribedTranslation(prescribedEntry(null));
 
   assert.equal(translation.available, false);

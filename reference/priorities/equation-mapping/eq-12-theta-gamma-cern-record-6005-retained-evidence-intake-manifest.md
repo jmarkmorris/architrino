@@ -6,7 +6,7 @@
 - Schema target: `aaa-equation-map-eq12-theta-gamma-packet-retained-evidence-intake/v1`
 - Source lead: CERN Open Data CMS DoublePhoton AOD record 6005
 - Rows served: `EQ-12` parent `theta_gamma_packet` and shared $\Theta_\gamma(W;E,R)$ consumers
-- Claim level: fail-closed source-acquisition manifest; not accepted retained evidence
+- Claim level: source-acquisition manifest with a Verification incomplete outcome; not accepted retained evidence
 - Score disposition: no score changes
 
 This manifest narrows the first source-acquisition object for [EQ-12 Theta-Gamma Packet Source Shell](eq-12-theta-gamma-packet-source-shell.md). It records the smallest retained-evidence intake object that could make CERN Open Data record 6005 checker-consumable after a local mirror and extraction pass. It does not mark `theta_gamma_packet` or any child row accepted, and it does not replace the photon packet checker.
@@ -70,7 +70,7 @@ The expected top-level fields are:
 | `sourceProvenance` | DOI, CERN record id, selected artifact id, local mirror hash, extraction environment, script hash, and row-specific source support metadata |
 | `noHiddenRetuneWitness` | frozen constants, thresholds, trigger policy, calibration inputs, extraction code hash, local artifact hash, and statement that $h$, $c_\gamma$, transfer factor, detector coupling, and path response were not retuned per observable |
 | `acceptedStateGates` | explicit pass/fail gates below; all must pass before any row is accepted |
-| `firstFailure` | first fail-closed code from the table below |
+| `firstFailure` | first compatibility code for a not advanced disposition from the table below |
 
 ## Required Row Bindings
 

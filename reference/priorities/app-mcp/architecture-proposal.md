@@ -173,7 +173,7 @@ Every tool result should include enough context to audit the answer:
 - missing, stale, excluded, ambiguous, or unsupported dispositions;
 - System Card route when proof status or unsupported claims are involved.
 
-The service must fail closed when source identity, visibility, authority, freshness, or result completeness cannot be established.
+The service must not advance when source identity, visibility, authority, freshness, or result completeness cannot be established.
 
 ## V1 Tool Surface
 
@@ -259,7 +259,7 @@ V1 is accepted only when all of the following are independently checkable:
 1. A schema validates one immutable source-index snapshot containing exact-content, search, graph, and metadata views.
 2. A clean build from the same pinned repository commit produces the same normalized records and content hashes.
 3. Broken links, duplicate ids, missing assets, missing canonical parents, visibility leaks, and source-authority inflation fail the build.
-4. `search`, `read`, `topics`, and `neighbors` pass positive and negative fixture suites with provenance, pagination, truncation, and fail-closed errors.
+4. `search`, `read`, `topics`, and `neighbors` pass positive and negative fixture suites with provenance, pagination, truncation, and verification failed errors.
 5. Request handling reads only the accepted snapshot and performs no repository scan or write.
 6. Priority material is excluded by default and cannot appear as published corpus authority.
 7. At least one supported client completes a local conformance run, followed by documented tests for the other target clients where their current MCP support allows it.

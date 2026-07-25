@@ -57,7 +57,7 @@ The service should define stable event classes before implementation.
 | `action_preflight_checked` | action type, confirmation reason, destination class, action status. |
 | `issue_handoff_created` | public issue draft id, source route ids, duplicate keys, privacy inclusion class, owner lane. |
 | `issue_mining_report_generated` | report id, cluster count, top owner lanes, noise counts, privacy statement class. |
-| `manifest_validation_completed` | manifest id, validator dispositions, fail-closed reason class. |
+| `manifest_validation_completed` | manifest id, validator dispositions, reason class for a Not advanced disposition. |
 | `support_summary_created` | support id, receipt id, safe error classes, redaction class. |
 | `incident_record_created` | incident id, severity, affected capability ids, public-status flag, mitigation state. |
 
@@ -77,7 +77,7 @@ Rules:
 6. private-content support review requires a separate explicit policy, consent path, retention period, and deletion behavior;
 7. public incident records should state impact, affected capability class, mitigation, and user action when needed without exposing private content.
 
-If redaction state is unknown, observability export, issue mining, support display, and public status publication should fail closed.
+If redaction state is unknown, observability export, issue mining, support display, and public status publication should not advance.
 
 ## Public Status Surface
 
@@ -199,9 +199,9 @@ Incident fields:
 
 Change history should record feature enablement, launch-gate changes, provider capability state changes, terms changes, material validation changes, and public beta decisions. It should link to public docs or issues when available and keep private diagnostics internal.
 
-## Fail-Closed Behavior
+## Verification Required for Advancement
 
-Observability should fail closed when:
+Observability should not advance when:
 
 1. a metric or log would require private prompt text;
 2. public status would expose provider secrets, account identifiers, or private material;
@@ -212,7 +212,7 @@ Observability should fail closed when:
 7. token/billing diagnostic would reveal private prompt text;
 8. legal-review or terms state does not allow the public status or support disclosure.
 
-Fail-closed behavior should omit the unsafe diagnostic field, aggregate it, mark `needs_public_reproduction`, or block publication. It should not suppress the underlying service refusal, incident, or fix queue.
+Behavior for a Not advanced disposition should omit the unsafe diagnostic field, aggregate it, mark `needs_public_reproduction`, or block publication. It should not suppress the underlying service refusal, incident, or fix queue.
 
 ## Regression Fixtures
 
@@ -243,7 +243,7 @@ Task:
 - Encode observable event classes, public status fields, internal diagnostic fields, incident records, and change-history records.
 - Define redaction rules for prompts, uploaded media, provider payloads, token receipts, issue metadata, saved notes, support summaries, and public status.
 - Define provider, token, source, media, speech, action, terms, and issue-mining metrics.
-- Add fail-closed behavior for unsafe diagnostics, unsafe public status, unsafe issue-mining handoff, and unsafe incident disclosure.
+- Add behavior for a Not advanced disposition for unsafe diagnostics, unsafe public status, unsafe issue-mining handoff, and unsafe incident disclosure.
 - Add fixtures for request events, provider health, token receipts, source misses, media refusals, speech fallback, issue-mining handoff, public status, incidents, redaction negatives, and source-authority negatives.
 
 Constraints:

@@ -6,7 +6,7 @@
 - Protocol: `EOM_BORG_NATIVE_V8`
 - Budgets: unchanged `research-certified-v1` and `interactive-certified-v1`
 - Population: six paths, deterministic seeds 0–3
-- Requested gate: ten wall-clock minutes without a terminal fail-closed halt
+- Requested gate: ten wall-clock minutes without a terminal halt with a Not advanced disposition
 - Result: `failed; no preset survives one wall-clock minute on all four seeds`
 - Budget, root completeness, acceleration enclosure, local-error rejection, and atomic-publication gates changed: no
 
@@ -35,7 +35,7 @@ remedy must reduce dependency loss in the joint retained state or provide a
 separately validated reconditioned integrator.
 
 Claim grade: `measured-current-binary` for both the removed first mechanism and
-the endurance matrix; `derived-current-tree` for the fail-closed preservation;
+the endurance matrix; `derived-current-tree` for the preservation of verification before advancement;
 `inferred-adjudication` for the next architecture target. Falsifier: the same
 binary and unchanged preset hashes complete 600 wall seconds on all seeds 0–3,
 or a certified joint-state/reconditioned method keeps every root set and

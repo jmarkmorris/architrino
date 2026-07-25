@@ -152,10 +152,10 @@ function validateMatchingManifest(entry) {
       failures.push(`${label}: issue-mining context must not include private prompt text`);
     }
     if (manifest.privacyState?.publicMaterialIncluded !== false) {
-      failures.push(`${label}: fail-closed manifest must not include public material`);
+      failures.push(`${label}: manifest with a Not advanced disposition must not include public material`);
     }
     if (manifest.issueMiningContext?.publicIssueUrl !== null) {
-      failures.push(`${label}: fail-closed manifest must not expose a submitted public issue URL`);
+      failures.push(`${label}: manifest with a Not advanced disposition must not expose a submitted public issue URL`);
     }
 
     switch (entry.caseId) {

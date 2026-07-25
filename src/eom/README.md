@@ -21,10 +21,10 @@ The executable layer currently contains:
   canonical coincident self-endpoint rule;
 - a provenance-bound uniform-circular history factory whose strict chord
   certificate excludes the complete open self-search interval at
-  $0<v\le c_f$, while arbitrary straight $v=c_f$ histories remain
-  fail-closed;
+  $0<v\le c_f$, while verification of arbitrary straight $v=c_f$ histories
+  remains incomplete and those histories are not advanced;
 - local difficult-row replay using MPFR/GMP directed interval arithmetic; and
-- fail-closed caustic/rail and precision-ceiling outcomes;
+- Verification incomplete outcomes at caustic/rail and precision ceilings;
 - certified sharp-law acceleration reconstruction that consumes only complete
   root certificates covering the full emission domain through reception;
 - certified binary64 finite-width acceleration reconstruction that budgets

@@ -15,7 +15,7 @@
 
 `borg-app-surface-design.v1` is the first concrete first-screen contract for the Borg app. It binds the design-owned `borg-dataset-manifest.v1` policy object to a screen-spec object that a static Borg page can render without reinterpreting the design prose.
 
-The artifact is a manifest consumer, not a new solver and not a production browser screen. It keeps native current-state frames and native path-history rows visible, while wake streams, boundary-shell status, outbound-shell background, and benign-noise status remain fail-closed until native-backed rows and residuals exist.
+The artifact is a manifest consumer, not a new solver and not a production browser screen. It keeps native current-state frames and native path-history rows visible, while wake streams, boundary-shell status, outbound-shell background, and benign-noise status remain not advanced until native-backed rows and residuals exist.
 
 ## Minimum Surface Object
 
@@ -30,8 +30,8 @@ The surface object (the design-owned constant `BORG_APP_SURFACE_DESIGN_V1` in `s
 | `sourceManifest` | Manifest schema, manifest id, and source claim level; must match the app manifest. |
 | `firstViewport` | Workspace layout regions, required 4K UHD render size, visible layers, hidden layers, disabled layers, and authority promotion rule. |
 | `layerStrip` | First-screen layer states and source fields. |
-| `authorityMap` | Screen-level authority for EOM-run frame rows, path history, display projections, fail-closed wake/boundary-shell patch values, deployment budgets, and render quality. The EOM solver is the only production solver. |
-| `failClosedFirstFailureCodes` | First-failure codes surfaced by the screen spec. |
+| `authorityMap` | Screen-level authority for EOM-run frame rows, path history, display projections, verification incomplete wake/boundary-shell patch values, deployment budgets, and render quality. The EOM solver is the only production solver. |
+| `failClosedFirstFailureCodes` | First-failure codes surfaced by the screen spec for values that were not advanced. |
 | `validation` | Screen-spec validation status and proof-claim status. |
 
 ## First Developer-Test Values
@@ -55,7 +55,7 @@ The current `borg-eom-first-screen` surface contract binds these checked values 
 
 These values are valid only as a developer-test screen contract. They do not establish proof evidence, production rendering performance, or benign-noise authority.
 
-The browser surface also provides exact runtime controls for electrino count, positrino count, coupling, nominal step height, adaptive minimum step, maximum random velocity-component magnitude, and minimum random speed. The nominal height is both the first attempted height and the ceiling to which adaptive growth may return; the minimum is the fail-closed floor. Applying the controls replaces the staged population, rebuilds particle and path objects, and starts a new EOM run from a certified causal seed history. That prescribed stationary or inertial seed covers only the delay needed at $T=0$; computed EOM segments after $T=0$ are appended as the separately evolving retained history. These controls do not change the design values in the table and do not promote the resulting trajectory to canonical equation-of-motion evidence.
+The browser surface also provides exact runtime controls for electrino count, positrino count, coupling, nominal step height, adaptive minimum step, maximum random velocity-component magnitude, and minimum random speed. The nominal height is both the first attempted height and the ceiling to which adaptive growth may return; below the minimum, verification fails and the run is not advanced. Applying the controls replaces the staged population, rebuilds particle and path objects, and starts a new EOM run from a certified causal seed history. That prescribed stationary or inertial seed covers only the delay needed at $T=0$; computed EOM segments after $T=0$ are appended as the separately evolving retained history. These controls do not change the design values in the table and do not promote the resulting trajectory to canonical equation-of-motion evidence.
 
 ## First-Screen Layer Contract
 
@@ -67,7 +67,7 @@ The browser surface also provides exact runtime controls for electrino count, po
 | `velocity-vectors` | `off` | raw values are `authoritative-solver-output`; ray geometry is `app-facing-projection` |
 | `wake-streams` | `disabled` | `fail-closed-value` |
 | `boundary-shell-status` | `contextual-disabled` | `fail-closed-value` |
-| `diagnostics` | `on-locked` | exposes fail-closed diagnostics without upgrading values |
+| `diagnostics` | `on-locked` | exposes diagnostics required for advancement without upgrading values |
 
 The visible default is `simulation-window`, `architrino-position`, `path-history`, and `diagnostics`. The first static page does not expose `simulation-window` or `architrino-position` as buttons because those core layers are not useful toggles in the first-screen workflow. Path history starts on and velocity vectors remain available but off. Wake streams and boundary-shell status are disabled because their source rows do not yet exist in the manifest.
 
@@ -95,7 +95,7 @@ The left rail must display separate exact fields for:
 
 The rail is the only place where simulation-envelope edits may occur. View camera controls may rotate, zoom, pan, reset, fit, or focus, but they may not edit these fields.
 
-## Fail-Closed Rows Surfaced
+## Not advanced Rows Surfaced
 
 The current screen spec surfaces these first-failure codes from the source manifest:
 
@@ -115,7 +115,7 @@ The design-owned surface object lives in `src/apps/borg/BorgAppManifest.js` and 
 
 The first browser consumer is [borg.html](../../../borg.html). It uses [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the browser-safe design-owned policy object, [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) as the Three.js app runtime, and [main.js](../../../src/apps/borg/main.js) as the page entrypoint.
 
-The page renders one dotted outer boundary shell, EOM-run current-state positions, path-history trails when toggled on, velocity vectors when toggled on, the simulation-envelope rail, collapsed provenance drawer, timeline scrubber, render/deployment placeholders, value-authority rows, and fail-closed diagnostics. There is no separate central ball or radial buffer. In simulation-workspace mode, explicit Start may invoke the EOM solver through the local bridge; the browser contains no evolution substitute. In assembly-view replay, the page consumes sealed `assembly-view-record.v0` files only, hides workspace-only envelope fields, disables run and initial-condition controls, and cannot construct the live EOM client. Neither mode generates boundary input or upgrades wake streams, boundary-shell replay, benign-noise status, or record evidence beyond its source authority.
+The page renders one dotted outer boundary shell, EOM-run current-state positions, path-history trails when toggled on, velocity vectors when toggled on, the simulation-envelope rail, collapsed provenance drawer, timeline scrubber, render/deployment placeholders, value-authority rows, and diagnostics required for advancement. There is no separate central ball or radial buffer. In simulation-workspace mode, explicit Start may invoke the EOM solver through the local bridge; the browser contains no evolution substitute. In assembly-view replay, the page consumes sealed `assembly-view-record.v0` files only, hides workspace-only envelope fields, disables run and initial-condition controls, and cannot construct the live EOM client. Neither mode generates boundary input or upgrades wake streams, boundary-shell replay, benign-noise status, or record evidence beyond its source authority.
 
 The first screen must show the simulation before manifest details. Source manifest id, model contract id, bridge path, raw frame-row count, and raw path-row count belong in the collapsed provenance drawer unless the app is in a dedicated audit/debug view.
 

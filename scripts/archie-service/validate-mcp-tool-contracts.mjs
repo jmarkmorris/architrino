@@ -92,7 +92,7 @@ if (failures.length > 0) {
 
 const action = mode === "--write" ? "write passed" : "check passed";
 console.log(
-  `Archie MCP tool-contract ${action}: ${contract.contractId}, ${contract.cases.length} positive case(s), ${negativeSuite.cases.length} fail-closed case(s), four bounded tools`
+  `Archie MCP tool-contract ${action}: ${contract.contractId}, ${contract.cases.length} positive case(s), ${negativeSuite.cases.length} case(s) with a Not advanced disposition, four bounded tools`
 );
 
 function validateNegativeSuite() {
@@ -128,7 +128,7 @@ function validateNegativeSuite() {
       );
     }
     if (response.result !== null || response.page !== null) {
-      failures.push(`${testCase.caseId}: fail-closed response must not return result or page data`);
+      failures.push(`${testCase.caseId}: response with a Not advanced disposition must not return result or page data`);
     }
   }
 }

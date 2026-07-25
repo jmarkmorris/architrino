@@ -17,6 +17,8 @@ const packet = evaluatePrescribedRecordAnalysis({
 
 The older observer-field and path-display APIs remain labeled `display-only-visualization`. `evaluatePrescribedSourceWake` remains as a compatibility interface for a single event. New analytical braid work should use `evaluatePrescribedRecordAnalysis` because it binds every result to the exact source and complete protocol hashes.
 
+The V1/V2 protocol field `failClosedGates` and policy identifiers ending in `/fail-closed.v1` are retained compatibility strings whose hashes bind existing protocols, database rows, and fixtures. In current prose their policy is `Verification required for advancement`; an affected candidate is `Not advanced`, with the specific result classified as `Verification failed` or `Verification incomplete`.
+
 ## Current Root Domain
 
 The active policy is
@@ -28,7 +30,7 @@ multiple roots and may include transverse branches with either derivative
 sign. Total path speed is diagnostic under this policy, not an acceptance
 gate.
 
-The event fails closed when the subdivision depth or candidate-interval bound
+The event does not advance when the subdivision depth or candidate-interval bound
 is exhausted with a possible root or fold unresolved. The thrown
 `CausalRootEnumerationError` carries
 `code: "causal_root_enumeration_incomplete"` plus transmitter, event, retained
@@ -299,7 +301,7 @@ The protocol also predeclares:
 
 `buildB1SurfaceEventAnalysisProtocol` expands any declared radius and resolution into a canonical `analysis-protocol.v1` accepted by `evaluatePrescribedRecordAnalysis`. `evaluateB1StreamingSurfaceReductions` evaluates one stationary surface time batch at a time, independently rechecks the event validity obligations, passes each complete raw result packet to the configured analytical-data-store callback, and retains only reduction accumulators between batches. It emits the external-exposure, complete-cycle normal causal-wake flux, angular-power, anisotropy, complete-cycle spectral, transmitter-root-tagged normal wake-flux spectral, frequency-and-angular-mode cancellation, and radial-scaling entries. The frequency-resolved wake-flux rows retain each transmitter and root ordinal until the raw complex-magnitude sum and net complex sum have both been formed. The wake-flux entries remain causal-wake measures and are explicitly excluded from energy, potential, work, leakage, stability, retention, and physical-realization claims. Moving endpoint receivers and local source-sensitivity stencils are composed by `CompleteCycleAnalyticalCampaign.mjs`; they remain outside the narrower surface-reduction packet.
 
-Validate the declaration and its independent quadrature, symmetry, Fourier, causal-reach, and fail-closed checks with:
+Validate the declaration and its independent quadrature, symmetry, Fourier, causal-reach, and checks required for advancement with:
 
 ```bash
 node --test \
@@ -316,7 +318,7 @@ node scripts/eom/run-b1-complete-cycle-streaming-reduction.mjs \
   --write .tmp/prescribed-path-analysis/b1-interior-complete-cycle-reduction.result-packet.v1.json
 ```
 
-The raw result packets are written under `.tmp/prescribed-path-analysis/b1-interior-complete-cycle-raw/` by default. Every stored packet is bound into the reduction result by its compressed and uncompressed SHA-256 hashes, event result hash, event protocol hash, raw causal-root-ledger hash, entry counts, radius, resolution, and time index. The generated reduction result retains the exact quadrature nodes and weights, the primary-versus-refined convergence comparisons, the raw wake-flux residual against $T_{\mathrm{ret}}\sum_j|q_j|$, and the transmitter-tagged retained-band coverage at every radius and resolution. The frequency rows fail closed when transmitter tags do not reconstruct the sampled normal flux, the retained out-of-band RMS fraction exceeds `0.02`, or primary and refined complex coefficients disagree by more than `0.05`. Cancellation ratios and logarithmic radial fits are admitted only above the larger of the absolute coefficient floor and $10^{-6}$ times the dominant raw coefficient on that surface; below-floor rows remain diagnostic.
+The raw result packets are written under `.tmp/prescribed-path-analysis/b1-interior-complete-cycle-raw/` by default. Every stored packet is bound into the reduction result by its compressed and uncompressed SHA-256 hashes, event result hash, event protocol hash, raw causal-root-ledger hash, entry counts, radius, resolution, and time index. The generated reduction result retains the exact quadrature nodes and weights, the primary-versus-refined convergence comparisons, the raw wake-flux residual against $T_{\mathrm{ret}}\sum_j|q_j|$, and the transmitter-tagged retained-band coverage at every radius and resolution. The frequency rows do not advance when transmitter tags do not reconstruct the sampled normal flux, the retained out-of-band RMS fraction exceeds `0.02`, or primary and refined complex coefficients disagree by more than `0.05`. Cancellation ratios and logarithmic radial fits are admitted only above the larger of the absolute coefficient floor and $10^{-6}$ times the dominant raw coefficient on that surface; below-floor rows remain diagnostic.
 
 Check the result without rewriting it:
 

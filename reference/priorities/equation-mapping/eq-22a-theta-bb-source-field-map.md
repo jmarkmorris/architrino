@@ -16,7 +16,7 @@
 
 This map does not populate accepted retained evidence. It narrows the local `EQ-22A` child route under the shared `theta_gamma_packet` parent. The current parent blocker remains `missing_accepted_theta_gamma_packet`; after that parent is populated, the local child route begins with `thermal_mode_counting_row` inside a finite-window thermal photon carrier, $\Theta_{\mathrm{bb}}$.
 
-Findability note: blackbody ultraviolet catastrophe belongs here. Classical Rayleigh-Jeans high-frequency divergence is a fail-closed control for mode counting plus occupancy, and it is distinct from QFT ultraviolet divergence or renormalization.
+Findability note: blackbody ultraviolet catastrophe belongs here. Classical Rayleigh-Jeans high-frequency divergence is a control required for advancement for mode counting plus occupancy, and it is distinct from QFT ultraviolet divergence or renormalization.
 
 No score changes.
 
@@ -31,7 +31,7 @@ No score changes.
 | Exact first blocker | Parent: `missing_accepted_theta_gamma_packet`; local child after parent: `missing_accepted_thermal_mode_counting_row`. |
 | Existing scripts/fixtures/packets found | The Planck/alpha runner and fixture listed above; [EQ-25 Theta-Therm CMB Source-Field Map](eq-25-theta-therm-cmb-source-field-map.md); [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md). |
 | Candidate breakthrough angle | Follow the local proof order: no conserved photon-number current, Gate B two-mode transversality, maximum entropy on the mode measure, then finite-window thermal closure. |
-| Fail-closed negative control | `wrong_mode_count_dimension`: halving or otherwise changing the mode density must fail the blackbody residual before occupancy is accepted. |
+| Negative control required for advancement | `wrong_mode_count_dimension`: halving or otherwise changing the mode density must fail the blackbody residual before occupancy is accepted. |
 | Smaller next action | The checker contract fixture already names `theta_bb` and binds the three first child rows without marking them accepted; the next smaller action is a durable mode-count source report after the parent `theta_gamma_packet` blocker is resolved. |
 
 ## Accepted-Object Contract
@@ -85,7 +85,7 @@ Checker-contract finding: [planck-alpha-braid-theta-bb-source-attempt.v1.json](.
 
 This layer keeps the Planck blackbody row as a child of accepted photon/action support. It does not allow frequency-bin fitting, a private temperature clock, or an unbound mode count to stand in for $\Theta_{\mathrm{bb}}$.
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Photon parent packet and shared $h_\vartheta$ | Accepted photon/action support consumed by the finite-window thermal photon carrier. | `theta_gamma_packet`, `retained_orbit_reduction_row`, `geometry_derived_action_period_row` | $\Theta_\gamma$, $h_\vartheta$, $c_\gamma$, and the finite thermal window share one parent support chain. | Theta-gamma coordination/probe-source controls reject priority packets and probe JSON as retained photon evidence. | Accepted `theta_gamma_packet` plus retained action-period rows before any child blackbody score review. |
 | Gate B two-mode count and $\mathcal N_{\mathrm{mode}}$ | Transverse photon mode-count readout for the declared finite window. | `thermal_mode_counting_row`, `photon_packet_row`, `planck_braid_carrier` | Mode count, Gate B transversality, finite window, and photon packet use the same carrier id. | `wrong_mode_count_dimension` and `longitudinal_mode_leakage` reject wrong mode density or hidden modes. | Accepted `theta_bb` packet beginning with accepted thermal mode-counting and photon-packet rows. |
@@ -93,7 +93,7 @@ This layer keeps the Planck blackbody row as a child of accepted photon/action s
 | Zero photon chemical potential and thermalization depth | Finite-window detailed-balance readout for photon number nonconservation and equilibration. | `temperature_clock_conversion_row`, `source_provenance`, `no_hidden_retune_witness` | Thermalization depth, temperature conversion, source provenance, and retune witness share one window and parent carrier. | `blackbody_without_thermalization` rejects Planck occupancy without adequate thermalization evidence. | Accepted thermalization/source-provenance rows with one no-hidden-retune witness. |
 | $\mathcal S_{\mathrm{retune}}$ across frequency bins | Same-record witness that mode count, occupancy, $h_\vartheta$, $c_\gamma$, and $\theta_{\mathrm{sea}}$ are fixed. | `no_hidden_retune_witness`, `sea_state_fibration_row`, all child rows | All bins and rows cite the same carrier, finite window, source provenance, and Noether sea state. | Hidden-retune controls reject per-bin changes to mode density, temperature, $h_\vartheta$, or sea state. | A source-backed $\Theta_{\mathrm{bb}}^{(W)}$ packet whose child rows are accepted, same-window bound, and checker consumable. |
 
-## Fail-Closed Controls
+## Verification Required for Advancement Controls
 
 - `wrong_mode_count_dimension`: catches wrong transverse-mode density.
 - `per_bin_temperature_fit`: catches fitting a different temperature per frequency bin.

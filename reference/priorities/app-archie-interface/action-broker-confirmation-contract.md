@@ -63,6 +63,8 @@ Each `available_actions` entry should include:
 
 The action broker updates action state. Other services may propose actions, but they should not perform side effects directly.
 
+`failed_closed` is a retained V1 wire value. User-facing and operator-facing surfaces must explain the narrower result as `Verification failed`, `Verification incomplete`, or `Not advanced`.
+
 ## Controlled Action Types
 
 | Action type | V1 behavior |
@@ -97,7 +99,7 @@ Confirmation is required when an action involves:
 | `external_handoff` | State that GitHub or another destination controls the final submission experience. |
 | `terms_acceptance` | State which service terms, token terms, privacy notices, media terms, GitHub notices, or notebook terms must be current. |
 
-If any required disclosure is unavailable, the action must be disabled or return a fail-closed manifest update.
+If any required disclosure is unavailable, the action must be disabled or return a manifest update with a Not advanced disposition.
 
 ## Confirmation Sequence
 
@@ -110,7 +112,7 @@ The action broker should use this sequence:
 5. record confirmed fields before side effects;
 6. perform the side effect or external handoff;
 7. update manifest action result, token receipt, privacy state, issue-mining context, or artifact state;
-8. fail closed if side effect result cannot be verified.
+8. do not advance if the side-effect result cannot be verified.
 
 The action broker should not receive raw private prompt text unless policy explicitly requires it. It should work from manifest-safe summaries, source context, artifact ids, consent state, and receipt ids.
 
@@ -166,9 +168,9 @@ The action broker must not allow `save_note` or `share_artifact` to treat privat
 
 Saved-notebook terms must be current before durable save, account-history opt-in, export, sharing, or submitted issue-link retention can run.
 
-## Fail-Closed Behavior
+## Verification Required for Advancement
 
-The action broker should fail closed when:
+The action broker should not advance when:
 
 1. confirmation is required but missing;
 2. confirmation text lacks destination, token effect, privacy effect, or public visibility;
@@ -181,11 +183,11 @@ The action broker should fail closed when:
 9. required service terms, token/subscription terms, privacy notices, generated-media terms, GitHub handoff notices, notebook terms, or re-acceptance state are missing;
 10. action result cannot be written back into the manifest.
 
-Fail-closed action behavior should return the manifest with updated `available_actions`, a user-visible reason, no unsafe side effect, and no hidden token charge.
+Not advanced action behavior should return the manifest with updated `available_actions`, a user-visible reason, no unsafe side effect, and no hidden token charge.
 
 ## Regression Fixtures
 
-The current schema-only service scaffold includes [issue-preflight.v1.json](../../../tests/archie-service/fixtures/actions/issue-preflight.v1.json), [action-broker-sandbox.v1.json](../../../tests/archie-service/fixtures/actions/action-broker-sandbox.v1.json), and [validate-action-broker-sandbox.mjs](../../../scripts/archie-service/validate-action-broker-sandbox.mjs). These fixtures cover confirmation-required `submit_issue` preflight, confirmed prefilled GitHub URL handoff, unconfirmed no-run behavior, cancelled no-run behavior, stale-terms fail-closed behavior, credentialed-write fail-closed behavior, safe issue-mining draft metadata inheritance, safe token receipt id linkage, no hidden GitHub writes, no browser/server GitHub credentials, no payment side effects, no durable storage, no private prompt expansion, and no source-authority effects.
+The current schema-only service scaffold includes [issue-preflight.v1.json](../../../tests/archie-service/fixtures/actions/issue-preflight.v1.json), [action-broker-sandbox.v1.json](../../../tests/archie-service/fixtures/actions/action-broker-sandbox.v1.json), and [validate-action-broker-sandbox.mjs](../../../scripts/archie-service/validate-action-broker-sandbox.mjs). These fixtures cover confirmation-required `submit_issue` preflight, confirmed prefilled GitHub URL handoff, unconfirmed no-run behavior, cancelled no-run behavior, stale-terms behavior for a Not advanced disposition, credentialed-write behavior for a Not advanced disposition, safe issue-mining draft metadata inheritance, safe token receipt id linkage, no hidden GitHub writes, no browser/server GitHub credentials, no payment side effects, no durable storage, no private prompt expansion, and no source-authority effects.
 
 The future implementation should include action fixtures for:
 
@@ -213,7 +215,7 @@ Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [ma
 
 Task:
 - Add observability fixtures that consume action preflight states, confirmation reasons, destination classes, token receipt ids, issue-mining queue ids, and action result classes.
-- Define redacted public-status and incident fields for confirmed external-pending handoff, unconfirmed no-run, cancelled no-run, terms-blocked fail-closed, and credentialed-write fail-closed cases.
+- Define redacted public-status and incident fields for confirmed external-pending handoff, unconfirmed no-run, cancelled no-run, terms-blocked verification incomplete cases, and credentialed-write cases with a Not advanced disposition.
 - Preserve the existing action-broker sandbox as the prerequisite for any future action execution.
 
 Constraints:

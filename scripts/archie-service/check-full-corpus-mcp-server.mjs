@@ -109,7 +109,7 @@ requireCondition(
   "neighbors omitted declared containment"
 );
 const missing = structured(byId.get(7));
-requireCondition(missing.status === "not_found" && missing.error.code === "SOURCE_NOT_FOUND", "missing read did not fail closed");
+requireCondition(missing.status === "not_found" && missing.error.code === "SOURCE_NOT_FOUND", "missing read advanced unexpectedly");
 requireCondition(byId.get(8)?.error?.code === -32602, "task-augmented call was not rejected");
 
 for (const response of responses) {

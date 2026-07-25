@@ -249,7 +249,7 @@ continuation under the declared reproducibility contract.
    restart.
 7. Population ladder $N=10^4$, $10^5$, and $10^6$ with reported exclusion,
    exact-pair, root, escalation, memory, transfer, storage, and output metrics.
-8. Million-path certified sparse evolution and dense fail-closed control from
+8. Million-path certified sparse evolution and dense control required for advancement from
    the governing amendment.
 
 No benchmark stage grants EOM authority until the independent oracle,

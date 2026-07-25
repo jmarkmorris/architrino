@@ -28,7 +28,7 @@ The EOM solver owns delayed causal-root solving, branch-resolved finite-history 
 | 2-D planar mode | Captured planar visual semantics; `src/apps/animator/` for UI integration | Add an animator view mode that constrains or projects solver data onto a planar surface while retaining animator playback, trails, and diagnostics. |
 | Authoring UI | `src/apps/animator/` | Extend the existing document workspace, path editor, timeline, library/save flow, and camera waypoint tools. |
 | Solver semantics | `src/eom/` | Use the EOM solver bridge, typed buffers, streams, and manifests. |
-| Delayed causal roots | `src/eom/` | Use branch-root search, causal residual checks, Jacobian diagnostics, and fail-closed halt reporting from the EOM solver. |
+| Delayed causal roots | `src/eom/` | Use branch-root search, causal residual checks, Jacobian diagnostics, and halt reporting with a Not advanced disposition from the EOM solver. |
 | Field shells | Animator requirements | Render as Three.js shell geometry or shader-assisted shell rendering. |
 | Delayed hit visuals | Animator renderer and recorded EOM datasets | Render solver-derived hits using connectors, emission points, shell intersections, and hit tables. |
 | Path animation | `src/apps/animator/` | Keep authored spline/polyline paths and add solver-derived trails as a separate motion source. |

@@ -345,7 +345,7 @@ Every request declares or resolves to a versioned policy containing:
 - minimum and maximum timestep and history-slab rules;
 - regulator values and regulator-refinement posture;
 - CPU, accelerator, and distributed backend permissions;
-- fail-closed resource limits.
+- resource limits required for advancement.
 
 Defaults may exist only inside a named policy version. Every result records the
 fully resolved values rather than only the policy name.
@@ -397,7 +397,7 @@ The independent oracle and every promoted backend must pass:
 
 This contract is frozen as the numeric acceptance requirement for EOM v0.
 Implementation choices may exceed it, but weakening a discrete certificate,
-error budget, escalation route, or fail-closed condition requires an explicit
+error budget, escalation route, or condition required for advancement requires an explicit
 contract amendment or successor version.
 
 The contract does not select a language, numeric library, integrator, CPU

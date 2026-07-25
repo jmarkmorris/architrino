@@ -32,7 +32,7 @@ No score changes.
 | Exact first blocker | `missing_accepted_photon_gate_A_input_output`. |
 | Existing scripts, fixtures, and packets found | The Compton/recoil runner and fixture listed above. The consolidated executable-gate audit found that arithmetic projection checks can pass while the route remains score-neutral and blocked first at `missing_accepted_photon_gate_A_input_output`; accepted charge/current continuity is the first `EQ-13`-specific blocker after the native event closes. |
 | Candidate breakthrough angle | Solved Maxwell, Green-function, and eikonal families can become inverse tests for causal support, continuity, gauge residual, and Poynting balance after the event ledger exists. They must not bypass Gate A/B/C and recoil rows. |
-| Fail-closed negative control | An imported $\Box A_\mu=J_\mu$ row with no coarse-graining map remains `equation_map.imported_formula`. An accepted-looking row with the wrong `eventId` or non-durable source must fail before EM residuals count. |
+| Negative control required for advancement | An imported $\Box A_\mu=J_\mu$ row with no coarse-graining map remains `equation_map.imported_formula`. An accepted-looking row with the wrong `eventId` or non-durable source must fail before EM residuals count. |
 | Smaller-than-report next action | Build a candidate source row for `photon_gate_A_input_output` only, with event id, source path, incoming/outgoing packet ids, constants, and Gate A residual fields. |
 
 | Coordinate | `EQ-28` |
@@ -43,7 +43,7 @@ No score changes.
 | Exact first blocker | `missing_accepted_photon_gate_A_input_output`. |
 | Existing scripts, fixtures, and packets found | The Compton/recoil runner and fixture listed above. The consolidated native-event audit found no accepted row on $\mathsf e_{\gamma e}^{0}$: all seven native rows plus `medium` and `remnant` support must share one `eventId`, retained carrier, row provenance, and explicit weak-homogeneous deltas before the event can close. |
 | Candidate breakthrough angle | The inverse-energy Compton residual can discipline Gate A: the same $h$, $c_\gamma$, exposed electron mass, recoil convention, and `eventId` must survive across `EQ-26` and `EQ-28` before wavelength shift counts as native event evidence. |
-| Fail-closed negative control | `eq28.frequency_loss_without_recoil`: phenomenological photon frequency loss, pair creation without momentum-balancing environment, dropped material/recoil rows, or changed shared constants must fail. |
+| Negative control required for advancement | `eq28.frequency_loss_without_recoil`: phenomenological photon frequency loss, pair creation without momentum-balancing environment, dropped material/recoil rows, or changed shared constants must fail. |
 | Smaller-than-report next action | Construct the minimal Gate A accepted-row candidate contract for `e_gamma_e_0`, not another full Compton report. |
 
 ## Current Fixture Inventory
@@ -98,7 +98,7 @@ The `EQ-13` effective EM gate rows are downstream attempt rows:
 | `effective_gauge_chart_witness` | `effective-gauge-chart-witness-attempt` |
 | `photon_gate_C_compton_vertex_handoff` | `photon-gate-C-compton-vertex-handoff-attempt` |
 
-The current fail-closed source-evidence control is
+The current source-evidence control required for advancement is
 [compton-recoil-gate-a-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-coordination-source-negative-control.v1.json).
 It marks `photon_gate_A_input_output` as `accepted` while pointing the row to this
 priority map. The replay must still return `missing_accepted_photon_gate_A_input_output`
@@ -127,7 +127,7 @@ The durable source must supply incoming and outgoing photon-channel records, $E_
 
 ## Direct Geometry Layer
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Photon Gate A input/output relation | Event-bound `photon_gate_A_input_output` row on $\mathsf e_{\gamma e}^{0}$, not an imported Compton formula | `photon_gate_A_input_output` | Same `eventId=e_gamma_e_0`, incoming/outgoing packet ids, $h$, $c_\gamma$, source path, and null-branch status | `event_id_mismatch`; `accepted_without_retained_reference`; `source_self_reference` | Durable source-backed Gate A row with concrete row id, accepted status, source evidence, photon packet ids, frequency/wavelength rows, momentum rows, and Gate A residual fields. |
 | Compton/recoil event closure | Native event ledger over $\mathsf e_{\gamma e}^{0}$ with Gate A/B, target branch, recoil branch, angular momentum, Noether sea, and energy-momentum rows | Seven native event rows plus `medium` and `remnant` support rows | Same event id, recoil convention, $h$, $c_\gamma$, exposed electron mass, medium/remnant support, and no-hidden-retune witness | `support_rows_omitted`; `event_id_mismatch`; `accepted_without_retained_reference` | Accepted native event bundle with Gate A first, then Gate B, target, recoil, angular-momentum, Noether sea, energy-momentum, medium, and remnant rows on one event. |
@@ -142,7 +142,7 @@ The durable source must supply incoming and outgoing photon-channel records, $E_
 
 `EQ-26` can use the same $h$, $c_\gamma$, exposed mass, and recoil convention as an anti-retune check, but an atomic spectral row is not the Gate A row. `EQ-29` may consume a photon Gate A/B output as an emitted-channel output, but its source mechanism remains `radiation_source_carrier`.
 
-## Fail-Closed Controls
+## Verification Required for Advancement Controls
 
 - `event_id_mismatch`: an otherwise accepted row with `eventId` other than `e_gamma_e_0` must fail.
 - `accepted_without_retained_reference`: a bare accepted string or row without concrete `rowId` and source evidence must fail.

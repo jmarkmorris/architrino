@@ -688,7 +688,7 @@ export function preflightAnalyticalCampaignImport(options) {
     fail("campaign failed independent publication acceptance.");
   }
   if (summary.acceptance && summary.acceptance.accepted !== true) {
-    fail("producer summary reports campaign rejection; import fails closed.");
+    fail("producer summary reports campaign rejection; import does not advance.");
   }
   return { ...preflight, campaignAcceptance };
 }

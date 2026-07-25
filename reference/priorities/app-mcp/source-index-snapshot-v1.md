@@ -96,7 +96,7 @@ Graph edges and metadata records inherit retrieval visibility from their `eviden
 
 The matrix is enforced while building and while reading the completed snapshot. Generated routing layers therefore cannot elevate themselves by copying authoritative prose.
 
-## Fail-Closed Fixtures
+## Verification Fixtures Required for Advancement
 
 The negative suite must reject:
 

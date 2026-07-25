@@ -130,7 +130,7 @@ K_{\mu}(t)+E_{\mathrm{wake}}^{(\eta)}(t),
 $$
 If $E_{\mathrm{wake}}^{(\eta)}$ lacks a lower bound on the same branch row, the scan status is `energy-row-unbounded` and no action-spacing promotion may consume the row.
 
-Failure routing is fail-closed:
+Failure routing requires verification for advancement:
 
 | Condition | Status or failure code |
 | --- | --- |
@@ -147,7 +147,7 @@ Failure routing is fail-closed:
 | The negative control also passes the scan gates | $\mathsf{null\_control\_passed}$ |
 | All declared rows pass with artifact hashes and the action-increment packet also passes its own gates | `candidate_h_recovery-eligible` |
 
-The minimal first executable artifact is `field_speed_action_self_hit_scan/v0`: one declared scan family over one already-retained nested shell braid action-increment branch row, the four mandatory below-$c_f$ values in $\mathcal{S}_{c_f}$, one temporal refinement pair, one history-resolution refinement pair, the active-root identity hash at both refinements, $J_{\min}$, $\Delta I_{\mathrm{ME}}$, $E_{\mathrm{p+w}}^{(\eta)}$, delayed-Noether status, a wrong-$c_f$ negative control, `field_speed_approach_scan.csv`, and `failure_report.md`. This v0 artifact may only produce `diagnostic-only`, one of the fail-closed statuses above, or `candidate_h_recovery-eligible` priority statuses; it may not assert accepted physics or theorem-level conservation.
+The minimal first executable artifact is `field_speed_action_self_hit_scan/v0`: one declared scan family over one already-retained nested shell braid action-increment branch row, the four mandatory below-$c_f$ values in $\mathcal{S}_{c_f}$, one temporal refinement pair, one history-resolution refinement pair, the active-root identity hash at both refinements, $J_{\min}$, $\Delta I_{\mathrm{ME}}$, $E_{\mathrm{p+w}}^{(\eta)}$, delayed-Noether status, a wrong-$c_f$ negative control, `field_speed_approach_scan.csv`, and `failure_report.md`. This v0 artifact may only produce `diagnostic-only`, one of the Not advanced dispositions above, or `candidate_h_recovery-eligible` priority statuses; it may not assert accepted physics or theorem-level conservation.
 
 ### V0 Source-Row Binding
 
@@ -178,7 +178,7 @@ pre-acceptance modes:
 | Source verdict | Meaning | Allowed v0 interpretation |
 | --- | --- | --- |
 | `accepted_transition_source` | The named `branch_row_id` is an accepted action-increment transition row with source hashes for the same root ledger and conservation pullback. | May test `candidate_h_recovery-eligible`, subject to all scan gates. |
-| `diagnostic_rejected_endpoint_source` | The named `branch_row_id` is present in the action-increment packet but rejected by endpoint eligibility or conservation pullback. | May emit only `diagnostic-only` or a fail-closed status. |
+| `diagnostic_rejected_endpoint_source` | The named `branch_row_id` is present in the action-increment packet but rejected by endpoint eligibility or conservation pullback. | May emit only `diagnostic-only` or a Not advanced disposition. |
 | `source_row_binding_open` | No named action-increment row and matching hashes exist. | The scan artifact is incomplete and cannot vote on action spacing, self-hit well-posedness, or `candidate_h_recovery`. |
 
 This binding rule is not an additional promotion gate. It is the row-identity
@@ -209,7 +209,7 @@ Minimum non-fixture `accepted_transition_source` object:
 | `root_ledger_hash` | Hash of the active-root ledger consumed by the action-increment row. | absent for live binding |
 | `conservation_pullback_hash` | Hash of the conservation-pullback row consumed by the same action-increment row. | absent for live binding |
 | `action_increment_row_id` | Named non-fixture action-increment row with accepted status. | fixture row only |
-| `negative_control_ref` | Fail-closed control showing mismatched root or conservation hashes reject. | absent |
+| `negative_control_ref` | Control required for advancement showing mismatched root or conservation hashes reject. | absent |
 | `candidate_h_recovery_vote` | May be emitted only after every row above binds on the same retained branch record. | not authorized |
 
 Current source-binding report object: `field_speed_action_self_hit_scan_source_binding_report/v0`.
@@ -227,7 +227,7 @@ any scan output is interpreted.
 | `root_ledger_hash` | absent for live binding | `source_row_binding_open` |
 | `conservation_pullback_hash` | absent for live binding | `source_row_binding_open` |
 | `source_verdict` | fixture rows have `status=accepted`, but `promotion_status=fixture-shape-only` | `diagnostic_rejected_endpoint_source` for closure purposes |
-| `negative_control_ref` | absent | fail-closed hash mismatch control still required |
+| `negative_control_ref` | absent | hash-mismatch control required before advancement still required |
 | `candidate_h_recovery_vote` | not authorized | no simulation vote |
 
 Executable report status, 2026-06-28:

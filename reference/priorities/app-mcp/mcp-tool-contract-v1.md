@@ -19,7 +19,7 @@ The contract is implemented as a pure query engine over one validated immutable 
 | Artifact | Role |
 | --- | --- |
 | [Archie service schema](../../../src/archie-service/contracts/v1/schema.json) | Defines typed request, response, result, page, source-chip, error, contract-suite, and negative-suite shapes. |
-| [Pure query engine](../../../src/archie-service/mcp/tool-contract-v1.mjs) | Applies deterministic search, exact-content reads, topic enumeration, direct-edge traversal, visibility policy, pagination, and fail-closed errors over an accepted snapshot. |
+| [Pure query engine](../../../src/archie-service/mcp/tool-contract-v1.mjs) | Applies deterministic search, exact-content reads, topic enumeration, direct-edge traversal, visibility policy, pagination, and verification failed errors over an accepted snapshot. |
 | [Positive contract fixture](../../../tests/archie-service/fixtures/mcp/mcp-tool-contract.v1.json) | Stores seven complete request/response pairs spanning all four tools, truncation, missing sources, and public/operator visibility. |
 | [Negative suite](../../../tests/archie-service/fixtures/mcp/mcp-tool-negative-suite.v1.json) | Stores eight invalid or unauthorized cases for limits, snapshot identity, visibility, cursors, freshness, edge types, and duplicate filters. |
 | [Checker](../../../scripts/archie-service/validate-mcp-tool-contracts.mjs) | Recomputes every expected response, checks negative dispositions, and follows the first pagination cursor for all four tools. |
@@ -40,7 +40,7 @@ Every response carries:
 - an explicit status;
 - snapshot id, snapshot SHA-256, repository ref, visibility-policy version, and freshness state;
 - either a typed result and page or a typed error;
-- no result or page payload on a fail-closed response.
+- no result or page payload on a response with a Not advanced disposition.
 
 The response provenance identifies the bundle consulted. It does not prove the truth of the indexed claim; source class, authority status, visibility, claim-label floor, and selection hash remain attached to every returned source chip.
 
@@ -68,7 +68,7 @@ The V1 cursor is opaque to clients and contains a canonical payload protected by
 - the complete normalized request arguments other than the cursor;
 - the next record or Unicode-character offset.
 
-A cursor cannot be reused after changing the query, filters, route, direction, edge types, visibility scope, tool, or snapshot. A malformed, altered, cross-scope, or out-of-range cursor fails closed.
+A cursor cannot be reused after changing the query, filters, route, direction, edge types, visibility scope, tool, or snapshot. A malformed, altered, cross-scope, or out-of-range cursor does not advance.
 
 SHA-256 here is an integrity and scope-binding checksum, not authentication. A future public transport that needs adversarial cursor authenticity must add a server-held message-authentication key without changing the logical cursor scope.
 

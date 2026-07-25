@@ -193,7 +193,7 @@ A current circular benchmark must emit:
 | $W^{\mathrm{acc}}$ | same-record branch strength interval |
 | vector residual | radial and tangential Master EOM residuals |
 | scalar statistic | $\bar{\mathcal A}_{\mathrm{rec}}$ on the same record |
-| negative control | fail-closed result when $D_r$ is absent or mismatched |
+| negative control | Not advanced disposition: verification is incomplete when $D_r$ is absent and failed when $D_r$ is mismatched |
 
 Until those records exist, circular material is not evidence for action closure.
 
@@ -248,5 +248,5 @@ causal-root topology, branch labels, caustic routing, and scalar comparison
 targets, but action evidence requires complete transmitter-side branch records.
 The next useful mathematical artifact is one retained branch packet
 that binds root topology, $D_t$, $D_r$, $W^{\mathrm{acc}}$, vector residuals,
-scalar statistic, Noether pullback, and fail-closed negative controls on the
+scalar statistic, Noether pullback, and negative controls required before advancement on the
 same record.

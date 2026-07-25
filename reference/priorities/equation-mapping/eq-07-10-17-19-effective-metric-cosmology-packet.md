@@ -116,7 +116,7 @@ The same $\theta$ must supply the weak-field metric rows, the endpoint/source/la
 
 ## Direct Geometry Layer
 
-| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | ADM/Cartan effective metric $g_{\mu\nu}^{\mathrm{eff}}$ | Lapse $N$, Noether sea drift $u^i_{\mathrm{sea,eff}}$, triad $e^a{}_i$, spatial metric $\gamma_{ij}^{\mathrm{eff}}$, and connection rows read from one Noether sea state. | Accepted `theta_W` carrier with retained lapse, drift, spatial-compliance, signal-delay, cadence, and source-provenance rows. | The same `theta_W` id must appear on redshift, Shapiro, lensing, acceleration, PPN, null/eikonal, and geodesic-action rows. | `equation_map.hidden_retune`, `metric.scalar_delay_half_test`, and `ppn.preferred_frame_leakage`. | One retained weak-window source packet proving `theta_W` plus its row provenance is accepted evidence, not a priority/authored source. |
 | Weak-field clock/redshift $d\tau/dt$ | Endpoint cadence extraction $\Gamma_N$, local potential readout $\Phi_N$, and relative Noether sea drift contribution $\|\mathbf w\|^2/(2c_0^2)$. | Accepted weak-clock row inside `theta_W`. | Clock extraction must use the same $\Gamma_N$, $\chi_{\text{sea}}$, $\xi$, and branch label as the metric rows. | `clock_signal_split` and hidden $\mathbf{b}_N$ coefficient retuning. | Retained weak-clock extraction row with source-backed coefficients for $\Gamma_N=1$, Lorentz limit, and weak-gravity limit. |
@@ -347,7 +347,7 @@ $$
 \lambda_{\mathrm{retune}}\mathcal{S}_{\mathrm{retune}}(\theta)
 $$
 
-This row is not a new public claim. It is a fail-closed equation-mapping hook for the collapse clue: if stellar-core material compression and effective metric compression require different retained records, different scale variables, or unreported coefficient retuning, the proposed one-mechanism reading fails in that window.
+This row is not a new public claim. It is a equation-mapping hook required for advancement for the collapse clue: if stellar-core material compression and effective metric compression require different retained records, different scale variables, or unreported coefficient retuning, the proposed one-mechanism reading fails in that window.
 
 ## Collapse-Scale Derivation Expansion Target
 
@@ -471,7 +471,7 @@ This is not a new validation gate. It is the first reusable equation-mapping res
 
 $\mathcal R_{\mathrm{null}}$ and $\mathcal R_{\mathrm{geo}}$ are terms inside the same metric-observable residual. They do not promote geodesic behavior into substrate ontology; they check whether null/eikonal and proper-time action readouts follow from the same observer-level metric projection that already supplies redshift, Shapiro delay, lensing, acceleration, and PPN rows.
 
-The weak-field metric side is now executable in [effective-metric-weak-field-residual.mjs](../../../scripts/equation-mapping/effective-metric-weak-field-residual.mjs). Its attempt fixture [effective-metric-weak-field-attempt.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-attempt.v1.json) blocks first at `missing_accepted_theta_W` while the static-response, shared-delay, weak-clock, Shapiro, lensing, acceleration, PPN, null/eikonal, geodesic-action, source-provenance, no-hidden-retune, and negative-control diagnostics pass. This makes the $\theta_W$ weak-field route fail closed without raising scores: accepted source-backed lapse, drift, spatial-compliance, signal-delay, cadence, weak-clock, redshift, Shapiro, lensing, acceleration, PPN/preferred-frame, null/eikonal, action-to-acceleration, source-provenance, and no-hidden-retune rows are still missing.
+The weak-field metric side is now executable in [effective-metric-weak-field-residual.mjs](../../../scripts/equation-mapping/effective-metric-weak-field-residual.mjs). Its attempt fixture [effective-metric-weak-field-attempt.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-attempt.v1.json) blocks first at `missing_accepted_theta_W` while the static-response, shared-delay, weak-clock, Shapiro, lensing, acceleration, PPN, null/eikonal, geodesic-action, source-provenance, no-hidden-retune, and negative-control diagnostics pass. This leaves the $\theta_W$ weak-field route not advanced and does not raise scores: accepted source-backed lapse, drift, spatial-compliance, signal-delay, cadence, weak-clock, redshift, Shapiro, lensing, acceleration, PPN/preferred-frame, null/eikonal, action-to-acceleration, source-provenance, and no-hidden-retune rows are still missing.
 
 The priority-only [EQ-10 Theta-W Source-Field Map](eq-10-theta-w-source-field-map.md) narrows the `EQ-10` consumer to the local null/eikonal and geodesic-action rows on the same accepted `theta_W` record required by `EQ-07` through `EQ-09`. No score changes.
 

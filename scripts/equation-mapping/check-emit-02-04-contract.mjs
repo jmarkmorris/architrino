@@ -209,7 +209,7 @@ Options:
   --require-evaluable   Exit nonzero unless the Emit_02-04 contract is evaluable.
   --help                Show this help.
 
-This checker is fail-closed. It maps ${SOURCE_PAYLOAD_PATH} onto the
+Verification is required for advancement. This checker maps ${SOURCE_PAYLOAD_PATH} onto the
 Emit_02-04 projection contract and reports missing retained rows instead of
 treating current proxy rows as Lorentz, energy-momentum, or mass-shell evidence.`);
 }

@@ -40,7 +40,7 @@ At an accepted receiver time $T_n$, EOM must:
 
 EOM must accept finite sub-field-speed, exactly field-speed, and super-field-speed path velocities. It must not clamp, reject, or perturb a state merely because $\|\mathbf V_i\|$ is less than, equal to, or greater than $c_f$.
 
-The equality $\|\mathbf V_i\|=c_f$ is not by itself a singularity. At each ordered receiver-transmitter pair, including $i=j$, the engine must evaluate the actual causal-root geometry and the transmitter-side and receiver-side factors. A rail-aligned pair may produce $D_t=0$, $D_r=0$, a root fold, a receiver-playback turning point, or another chart event; those outcomes require the declared certified transition, regularization, or fail-closed route. They may not be replaced by a global prohibition on field-speed motion.
+The equality $\|\mathbf V_i\|=c_f$ is not by itself a singularity. At each ordered receiver-transmitter pair, including $i=j$, the engine must evaluate the actual causal-root geometry and the transmitter-side and receiver-side factors. A rail-aligned pair may produce $D_t=0$, $D_r=0$, a root fold, a receiver-playback turning point, or another chart event; those outcomes require the declared certified transition, regularization, or route with verification required for advancement. They may not be replaced by a global prohibition on field-speed motion.
 
 Super-field-speed motion is also inside the required domain. It may create multiple partner roots or nontrivial self-history roots, so exhaustive root enumeration and branch identity become more important rather than optional.
 

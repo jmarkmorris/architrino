@@ -98,7 +98,7 @@ The first target is `pressure_dependent_noether_sea_constitutive_response/v0`:
    $$
 
 5. repeat at one smaller pressure step and one tighter numerical refinement;
-6. fail closed if the branch identity changes without a declared transition, the finite difference does not settle, or any consumer requires a private coefficient row.
+6. do not advance if the branch identity changes without a declared transition, the finite difference does not settle, or any consumer requires a private coefficient row.
 
 This packet protects one live derivation route and does not create a separate validation gate.
 

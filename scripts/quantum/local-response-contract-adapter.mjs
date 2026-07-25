@@ -124,7 +124,7 @@ Options:
   --pretty          Pretty-print JSON output.
   --help            Show this help.
 
-This adapter is fail-closed. It emits replay-ready local_response patches only
+Verification is required for advancement. This adapter emits replay-ready local_response patches only
 when each row already supplies a local one-wing sign, accepted response source,
 apparatus kernel, setting axis, incoming record id, completed local record gate,
 local return-map measure, record-cycle phase coordinate, and local residuals.

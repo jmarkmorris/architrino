@@ -291,7 +291,7 @@ test("compatibility adapter preserves every exact B1 source path and supports a 
   assert.ok(Number.isFinite(result.virtualProbeAcceleration.x));
 });
 
-test("first evaluator fails closed outside the certified unique-root speed domain", () => {
+test("first evaluator does not advance outside the certified unique-root speed domain", () => {
   assert.throws(() => evaluatePrescribedSourceWake({
     sourceRecord: sourceRecord([
       linearSource("field-speed-source", 1, { x: 1, y: 0, z: 0 }),
@@ -615,7 +615,7 @@ test("moving endpoint receiver independently fixes D_r without changing instanta
   assertNear(Math.hypot(acceleration.x, acceleration.y, acceleration.z), expectedAccelerationMagnitude);
 });
 
-test("canonical protocol fails closed when convergence inputs are incomplete", () => {
+test("canonical protocol does not advance when convergence inputs are incomplete", () => {
   const protocol = analysisProtocol();
   delete protocol.convergence.rootTolerance;
   assert.throws(() => evaluatePrescribedRecordAnalysis({

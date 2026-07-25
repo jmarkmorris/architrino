@@ -80,7 +80,7 @@ The detector packet should be attached to $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ 
 
 ## Direct Geometry Layer Use
 
-This packet does not advance a retained geometry by itself. Its value is a fail-closed detector boundary for later equation-mapping work:
+This packet does not advance a retained geometry by itself. Its value is a detector boundary requiring verification before advancement for later equation-mapping work:
 
 | Comparison term | Required retained row before acceptance |
 | --- | --- |

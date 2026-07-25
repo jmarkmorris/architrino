@@ -407,7 +407,7 @@ const equationMapSeedDocuments = [
         "transmitter-side",
         "Acceleration factor",
         "branchStrength",
-        "The acceleration weight is fixed by transmitter-side wake spacing. Receiver-side wake crossing remains separately available only through the signed root-playback derivative Dᵣ/Dₜ. This sharp formula applies only to an ordinary causal hit with Dₜ certified nonzero; when roots are born or die at Dₜ = 0, the solver must use a certified finite transition or fail closed.",
+        "The acceleration weight is fixed by transmitter-side wake spacing. Receiver-side wake crossing remains separately available only through the signed root-playback derivative Dᵣ/Dₜ. This sharp formula applies only to an ordinary causal hit with Dₜ certified nonzero; when roots are born or die at Dₜ = 0, the solver must use a certified finite transition. Otherwise verification is incomplete and the contribution is not advanced.",
         "W_{r\\leftarrow t}^{\\mathrm{acc}}(T_r;T_t)=c_f/\\left|D_t(T_r;T_t)\\right|",
         { x: 6, y: 68, width: 34, line: "below" }
       ),

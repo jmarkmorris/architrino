@@ -97,7 +97,7 @@ The hosted service should be built around these pieces:
 
 1. `phase_0_priority_contracts` - Accept the priority packets that define source, manifest, provider, token, terms, action, issue-mining, observability, speech, visual, and notebook behavior.
 2. `phase_1_static_entry_and_system_card` - Keep the public site as the entry and status route, with Legal Terms and System Card links.
-3. `phase_2_service_skeleton` - Implement request gateway, manifest shell, provider registry stub, terms state, token wallet display, and fail-closed validators without runtime AI launch.
+3. `phase_2_service_skeleton` - Implement request gateway, manifest shell, provider registry stub, terms state, token wallet display, and validators requiring verification before advancement without runtime AI launch.
 4. `phase_3_source_ingestion_manifest_answers` - Add source records, retrieval context, answer-engine source contract, manifest rendering, and unsupported-answer fixtures.
 5. `phase_4_tokens_terms_observability` - Add authoritative token ledger, spending limits, auto-fund controls, terms acceptance, privacy state, public status, incident records, and redacted diagnostics.
 6. `phase_5_speech_visual_issue_handoff` - Add high-quality speech, generated visual artifacts, issue drafts, GitHub handoff, saved-note drafts, and issue-mining metadata.
