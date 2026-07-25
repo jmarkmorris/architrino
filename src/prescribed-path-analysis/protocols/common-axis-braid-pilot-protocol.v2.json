@@ -98,11 +98,12 @@
         "net acceleration response",
         "prescribed-path acceleration",
         "declared-inventory prescribed-path residual",
+        "pointwise summed-acceleration falsification-only screen when the declared isolated inventory is certified complete",
         "axial radial and tangential residual projections",
         "receiver-side factor D_r",
         "root playback derivative D_r/D_t"
       ],
-      "mismatchBoundary": "complete over the declared source inventory when the strict sub-field-speed self-root exclusion is certified; Noether-sea and undeclared contributions remain outside scope"
+      "mismatchBoundary": "complete over the declared isolated source inventory when the strict sub-field-speed self-root exclusion is certified; the pointwise summed-acceleration screen is falsification-only, while Noether-sea and undeclared contributions remain outside scope"
     }
   },
   "enclosingSurfaces": {

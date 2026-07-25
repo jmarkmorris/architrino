@@ -114,7 +114,7 @@ $$
 $$
 This is a provenance target, not a new interaction law. It prevents the gluon story from stopping at "color changed" by requiring the same record to bind axis exceptionality, axial inventory, energy, momentum, angular momentum, polarity, path history, and flux-tube strain for one color-reconfiguration event.
 
-### The 8 Gluon Modes (Deriving the Octet)
+### The 8 Gluon Modes (Recovering the Octet Count, Bookkeeping)
 
 The octet count comes from the color-basis operator space.
 
@@ -126,7 +126,7 @@ The octet count comes from the color-basis operator space.
   $$
   \frac{R\bar{R}+G\bar{G}+B\bar{B}}{\sqrt{3}}
   $$
-  is totally symmetric. It carries no net color change and does not interact as an open color mode.
+  is totally symmetric. It carries no net color change and is required not to interact as an open color mode.
 - **The octet:** removing this one singlet leaves 8 traceless modes: six off-diagonal color-changing generators plus two diagonal traceless generators, the familiar gluon octet of QCD.
 
 ### Gluon Spin (Vector Nature)
@@ -144,7 +144,7 @@ At the Standard Model level, gluons are spin-1 gauge bosons. Because color is co
 
 Quarks are confined because an open color corridor stores energy in the surrounding Noether braid assembly network.
 
-### Energy Density Calculation
+### Energy-Density Dimensional Consistency Check
 
 - **Noether sea coherence scale:** the confinement scaffold uses a candidate coherence length $L_{\mathrm{coh}}$, provisionally of order $1\;\mathrm{fm}$, rather than a discretization scale of the Euclidean void.
 - **Cost of coherent ordering:** forcing a line of ambient Noether sea braids to align with an open color corridor costs an energy $E_{\mathrm{coh}}$ per coherence length.
@@ -152,7 +152,7 @@ Quarks are confined because an open color corridor stores energy in the surround
   $$
   \sigma \sim \frac{E_{\mathrm{coh}}}{L_{\mathrm{coh}}}
   $$
-  If $E_{\mathrm{coh}}\sim 1\;\mathrm{GeV}$ and $L_{\mathrm{coh}}\sim 1\;\mathrm{fm}$, then
+  If $E_{\mathrm{coh}}\sim 1\;\mathrm{GeV}$ and $L_{\mathrm{coh}}\sim 1\;\mathrm{fm}$ — inputs set by the QCD benchmark, not derived here — then
   $$
   \sigma \sim 1\;\mathrm{GeV/fm}
   $$

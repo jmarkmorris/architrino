@@ -12,15 +12,13 @@ import {
 import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
 import {
-  PRESCRIBED_PATH_ANALYSIS_ID,
-  runPrescribedPathAnalysisRequest,
-} from "../../prescribed-path-analysis/index.mjs";
-import {
   getFieldSpeedRegimeLabel,
   getOrbitPathBranchGain,
   getOrbitPathTintProfile as resolveOrbitPathTintProfile,
   solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis,
 } from "./IdealBraidPathPotentialProfile.js";
+import { clampNumber } from "./IdealBraidNumeric.js";
+import { createIdealBraidSurfaceSolverScheduler } from "./IdealBraidSurfaceSolverScheduler.js";
 
 const BINARY_META = [
   {
@@ -61,14 +59,7 @@ const TWO_PI = Math.PI * 2;
 const LORENTZ_BETA_MAX = 1;
 const LORENTZ_CHART_GAMMA_CAP = 6;
 const FIELD_SPEED_REFERENCE_BINARY_INDEX = 1;
-const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
-const DEFAULT_FLIGHT_TIME_TOLERANCE = 1e-12;
-const DEFAULT_FLIGHT_TIME_TRANSMITTER_HISTORY_DEPTH = 10;
-const IDEAL_BRAID_ANALYSIS_ID = PRESCRIBED_PATH_ANALYSIS_ID;
 const IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
-const IDEAL_BRAID_SURFACE_SOLVER_TIME_QUANTUM_SECONDS = 1 / 8;
-const IDEAL_BRAID_SURFACE_SOLVER_MIN_INTERVAL_MS = 180;
-const IDEAL_BRAID_SURFACE_SOLVER_EDIT_DEBOUNCE_MS = 120;
 const SHELL_SURFACE_BASE_OPACITY = 0.007;
 const SHELL_SURFACE_RIM_OPACITY = 0.16;
 const SHELL_SURFACE_RIM_POWER = 3.2;
@@ -163,24 +154,11 @@ const ORBIT_PATH_TRAIL_LAYERS = [
   },
 ];
 
-function clampNumber(value, min, max) {
-  return Math.min(max, Math.max(min, value));
-}
-
 function formatFixed(value, digits = 2) {
   if (!Number.isFinite(value)) {
     return "0";
   }
   return value.toFixed(digits);
-}
-
-function formatSignedFixed(value, digits = 4) {
-  if (!Number.isFinite(value)) {
-    return "0";
-  }
-  const threshold = 1 / 10 ** digits;
-  const normalized = Math.abs(value) < threshold ? 0 : value;
-  return normalized.toFixed(digits);
 }
 
 function formatLimitFixed(value, digits = 2) {
@@ -194,17 +172,6 @@ function formatLimitFixed(value, digits = 2) {
     return "undefined";
   }
   return formatFixed(value, digits);
-}
-
-function formatScientific(value) {
-  if (!Number.isFinite(value) || value === 0) {
-    return "0.00";
-  }
-  const absValue = Math.abs(value);
-  if (absValue >= 1000 || absValue < 0.01) {
-    return value.toExponential(2);
-  }
-  return value.toFixed(3);
 }
 
 export function computeLorentzState(beta, radius) {
@@ -224,10 +191,6 @@ export function computeLorentzState(beta, radius) {
   const totalMassEquivalent = totalEnergy;
   const rPerp = referenceRadius;
   const rParallel = rPerp * xi;
-  const tPlus = isLightSpeedLimit ? Infinity : rParallel / (1 - normalizedBeta);
-  const tMinus = isLightSpeedLimit ? 0 : rParallel / (1 + normalizedBeta);
-  const tParallel = isLightSpeedLimit ? Infinity : tPlus + tMinus;
-  const tPerp = isLightSpeedLimit ? Infinity : 2 * rPerp * gamma;
   return {
     beta: normalizedBeta,
     gamma,
@@ -243,11 +206,6 @@ export function computeLorentzState(beta, radius) {
     movementMassEquivalent,
     totalEnergy,
     totalMassEquivalent,
-    tPlus,
-    tMinus,
-    tParallel,
-    tPerp,
-    closureResidual: isLightSpeedLimit ? 0 : tParallel - tPerp,
     isLightSpeedLimit,
   };
 }
@@ -283,8 +241,8 @@ function updateBinaryFieldSpeedRatios(binaries) {
   return fieldSpeed;
 }
 
-export function getOrbitPathTintProfile(binaryOrId) {
-  return resolveOrbitPathTintProfile(binaryOrId);
+export function getOrbitPathTintProfile(binaryOrId, options = {}) {
+  return resolveOrbitPathTintProfile(binaryOrId, options);
 }
 
 function cloneOrbitBasis(basis) {
@@ -439,437 +397,8 @@ export function createIdealBraidModel(options = {}) {
   };
 }
 
-export function createIdealBraidFlightTimeRunRequest(
-  samplePoint,
-  architrino,
-  observationTime,
-  options = {}
-) {
-  const fieldSpeed = Math.max(0.001, Number(options.fieldSpeed ?? 6) || 6);
-  const iterations = Math.max(1, Math.round(Number(options.iterations ?? 4) || 4));
-  const tolerance = normalizeNonnegativeSolverNumber(
-    options.tolerance,
-    DEFAULT_FLIGHT_TIME_TOLERANCE
-  );
-  const memoryBudgetBytes = normalizePositiveSolverInteger(
-    options.memoryBudgetBytes,
-    DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
-  );
-  const transmitter = createIdealBraidFlightTimeTransmitterSegment(
-    architrino,
-    observationTime,
-    options
-  );
-  const runId = options.runId ?? `ideal-braid-flight-time-${formatSolverIdNumber(observationTime)}`;
-  return {
-    appId: "ideal-braid",
-    runKind: "sharedGeometry",
-    requestId: options.requestId ?? `${runId}-request`,
-    runId,
-    datasetId: options.datasetId ?? `${runId}-dataset`,
-    claimLevel: options.claimLevel ?? "interactive-preview",
-    precisionPath: options.precisionPath ?? "auto",
-    configVersion: options.configVersion ?? "ideal-braid-flight-time-adapter.v1",
-    configHash: options.configHash ?? `ideal-braid-flight-time:${formatSolverIdNumber(observationTime)}`,
-    model: options.model ?? createDefaultIdealBraidFlightTimeModel(),
-    envelope: options.envelope ?? createDefaultIdealBraidFlightTimeEnvelope({
-      transmitter,
-      observationTime,
-      memoryBudgetBytes,
-    }),
-    errorBudget: options.errorBudget ?? createDefaultIdealBraidFlightTimeErrorBudget(tolerance),
-    config: {
-      geometryRequest: {
-        delayedPotentials: [
-        {
-          transmitter,
-          samplePoint: vectorToPrescribedPathAnalysis(samplePoint),
-          observationTime: Number(observationTime) || 0,
-          fieldSpeed,
-          normalization: Number(options.normalization ?? 1) || 1,
-          softening: Math.max(0.0001, Number(options.softening ?? 0.08) || 0.08),
-          transmitterCharge: Number(options.transmitterCharge ?? architrino?.q ?? 1) || 1,
-          iterations,
-          useCausalDenominator: options.useCausalDenominator === true,
-        },
-        ],
-      },
-    },
-    output: options.output ?? {
-      outputs: ["geometryBuffer", "diagnostics"],
-      streamTarget: options.streamTarget ?? "caller-buffer",
-      memoryBudgetBytes,
-      deterministic: options.deterministic ?? true,
-    },
-  };
-}
-
-export async function solveFlightTimeWithPrescribedPathAnalysis(
-  samplePoint,
-  architrino,
-  observationTime,
-  options = {}
-) {
-  const row = await solveFlightTimeRowWithPrescribedPathAnalysis(
-    samplePoint,
-    architrino,
-    observationTime,
-    options
-  );
-  return Number(row.tau) || 0;
-}
-
-export async function solveFlightTimeRowWithPrescribedPathAnalysis(
-  samplePoint,
-  architrino,
-  observationTime,
-  options = {}
-) {
-  const runRequest =
-    options.runRequest ??
-    createIdealBraidFlightTimeRunRequest(samplePoint, architrino, observationTime, options);
-  const runHandle = await runIdealBraidPrescribedPathAnalysis(options, runRequest);
-  return extractIdealBraidFlightTimeRow(runHandle);
-}
-
-async function runIdealBraidPrescribedPathAnalysis(options, runRequest) {
-  const run = options.runPrescribedPathAnalysis ?? runPrescribedPathAnalysisRequest;
-  return run(runRequest);
-}
-
-function extractIdealBraidFlightTimeRow(runHandle = {}) {
-  const response = runHandle.response ?? runHandle;
-  const geometry = response.geometry ?? response;
-  const rows = Array.isArray(geometry.delayedPotentials) ? geometry.delayedPotentials : [];
-  if (rows.length === 0) {
-    throw new Error("A1 Lorentz Geometry prescribed-path analysis did not include a delayed-potential row.");
-  }
-  return {
-    analysisId: IDEAL_BRAID_ANALYSIS_ID,
-    runId: response.runId ?? runHandle.runId ?? "",
-    datasetId: response.datasetId ?? runHandle.datasetId ?? "",
-    ...rows[0],
-  };
-}
-
-export function createIdealBraidPotentialSamplesRunRequest(
-  samplePoints,
-  model,
-  observationTime,
-  options = {}
-) {
-  const points = normalizeSolverSamplePoints(samplePoints);
-  const architrinos = normalizeSolverArchitrinos(model);
-  const fieldSpeed = Math.max(0.001, Number(options.fieldSpeed ?? 6) || 6);
-  const iterations = Math.max(1, Math.round(Number(options.iterations ?? 4) || 4));
-  const tolerance = normalizeNonnegativeSolverNumber(
-    options.tolerance,
-    DEFAULT_FLIGHT_TIME_TOLERANCE
-  );
-  const memoryBudgetBytes = normalizePositiveSolverInteger(
-    options.memoryBudgetBytes,
-    DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
-  );
-  const transmitters = architrinos.map((architrino) =>
-    createIdealBraidFlightTimeTransmitterSegment(architrino, observationTime, options)
-  );
-  const delayedPotentials = points.flatMap((samplePoint) =>
-    architrinos.map((architrino, transmitterIndex) => ({
-      transmitter: cloneSolverSegment(transmitters[transmitterIndex]),
-      samplePoint: vectorToPrescribedPathAnalysis(samplePoint),
-      observationTime: Number(observationTime) || 0,
-      fieldSpeed,
-      normalization: Number(options.normalization ?? 1) || 1,
-      softening: Math.max(0.0001, Number(options.softening ?? 0.08) || 0.08),
-      transmitterCharge: Number(options.transmitterCharge ?? architrino?.q ?? 1) || 1,
-      iterations,
-      useCausalDenominator: options.useCausalDenominator === true,
-    }))
-  );
-  const runId =
-    options.runId ??
-    `ideal-braid-potential-samples-${formatSolverIdNumber(observationTime)}-${points.length}x${architrinos.length}`;
-  return {
-    appId: "ideal-braid",
-    runKind: "sharedGeometry",
-    requestId: options.requestId ?? `${runId}-request`,
-    runId,
-    datasetId: options.datasetId ?? `${runId}-dataset`,
-    claimLevel: options.claimLevel ?? "interactive-preview",
-    precisionPath: options.precisionPath ?? "auto",
-    configVersion: options.configVersion ?? "ideal-braid-potential-samples-adapter.v1",
-    configHash:
-      options.configHash ??
-      `ideal-braid-potential-samples:${formatSolverIdNumber(observationTime)}:${points.length}:${architrinos.length}`,
-    model: options.model ?? createDefaultIdealBraidPotentialSamplesModel(),
-    envelope:
-      options.envelope ??
-      createDefaultIdealBraidPotentialSamplesEnvelope({
-        transmitters,
-        observationTime,
-        sampleCount: points.length,
-        transmitterCount: architrinos.length,
-        memoryBudgetBytes,
-      }),
-    errorBudget: options.errorBudget ?? createDefaultIdealBraidFlightTimeErrorBudget(tolerance),
-    config: {
-      geometryRequest: {
-        delayedPotentials,
-      },
-    },
-    output: options.output ?? {
-      outputs: ["geometryBuffer", "diagnostics"],
-      streamTarget: options.streamTarget ?? "caller-buffer",
-      memoryBudgetBytes,
-      deterministic: options.deterministic ?? true,
-    },
-  };
-}
-
-export async function computePotentialSamplesWithPrescribedPathAnalysis(
-  samplePoints,
-  model,
-  observationTime,
-  options = {}
-) {
-  const points = normalizeSolverSamplePoints(samplePoints);
-  const architrinos = normalizeSolverArchitrinos(model);
-  const runRequest =
-    options.runRequest ??
-    createIdealBraidPotentialSamplesRunRequest(points, { architrinos }, observationTime, options);
-  const runHandle = await runIdealBraidPrescribedPathAnalysis(options, runRequest);
-  return extractIdealBraidPotentialSamplesSnapshot(runHandle, {
-    sampleCount: points.length,
-    transmitterCount: architrinos.length,
-  });
-}
-
-function extractIdealBraidPotentialSamplesSnapshot(
-  runHandle = {},
-  { sampleCount = 0, transmitterCount = 0 } = {}
-) {
-  const response = runHandle.response ?? runHandle;
-  const geometry = response.geometry ?? response;
-  const rows = Array.isArray(geometry.delayedPotentials) ? geometry.delayedPotentials : [];
-  const samplePotentials = Array.from({ length: sampleCount }, () => 0);
-  const contributionsBySample = Array.from({ length: sampleCount }, () => []);
-  const rowTransmitterCount = Math.max(1, transmitterCount);
-  rows.forEach((row, rowIndex) => {
-    const itemIndex = Number.isInteger(row.itemIndex) ? row.itemIndex : rowIndex;
-    const sampleIndex = Math.floor(itemIndex / rowTransmitterCount);
-    if (sampleIndex < 0 || sampleIndex >= sampleCount) {
-      return;
-    }
-    contributionsBySample[sampleIndex].push(row);
-    if (row.statusCode !== 0) {
-      return;
-    }
-    const potential = Number(row.potential);
-    if (Number.isFinite(potential)) {
-      samplePotentials[sampleIndex] += potential;
-    }
-  });
-  const maxAbs = Math.max(0.0001, ...samplePotentials.map((value) => Math.abs(value)));
-  const min = samplePotentials.length > 0 ? Math.min(...samplePotentials) : 0;
-  const max = samplePotentials.length > 0 ? Math.max(...samplePotentials) : 0;
-  return {
-    analysisId: IDEAL_BRAID_ANALYSIS_ID,
-    runId: response.runId ?? runHandle.runId ?? "",
-    datasetId: response.datasetId ?? runHandle.datasetId ?? "",
-    samplePotentials,
-    contributionsBySample,
-    delayedPotentials: rows,
-    surfaceRange: { min, max, maxAbs },
-    status: response.status ?? runHandle.status ?? geometry.status,
-  };
-}
-
-function createIdealBraidFlightTimeTransmitterSegment(architrino, observationTime, options = {}) {
-  if (options.transmitterSegment && typeof options.transmitterSegment === "object") {
-    return cloneSolverSegment(options.transmitterSegment);
-  }
-  const endTime = Number.isFinite(Number(options.transmitterEndTime))
-    ? Number(options.transmitterEndTime)
-    : Number(observationTime) || 0;
-  const historyDepth = normalizePositiveSolverNumber(
-    options.transmitterHistoryDepth,
-    DEFAULT_FLIGHT_TIME_TRANSMITTER_HISTORY_DEPTH
-  );
-  const startTime = Number.isFinite(Number(options.transmitterStartTime))
-    ? Number(options.transmitterStartTime)
-    : endTime - historyDepth;
-  const linearizationTime = Number.isFinite(Number(options.transmitterLinearizationTime))
-    ? Number(options.transmitterLinearizationTime)
-    : endTime;
-  const velocity = typeof architrino?.velocityAt === "function"
-    ? vectorToPrescribedPathAnalysis(architrino.velocityAt(linearizationTime))
-    : vectorToPrescribedPathAnalysis(architrino?.velocity);
-  const anchorPosition = typeof architrino?.positionAt === "function"
-    ? vectorToPrescribedPathAnalysis(architrino.positionAt(linearizationTime))
-    : vectorToPrescribedPathAnalysis(architrino?.position ?? architrino);
-  const anchorOffset = linearizationTime - startTime;
-  const positionAtStart = {
-    x: anchorPosition.x - velocity.x * anchorOffset,
-    y: anchorPosition.y - velocity.y * anchorOffset,
-    z: anchorPosition.z - velocity.z * anchorOffset,
-  };
-  return {
-    startTime,
-    endTime,
-    positionAtStart,
-    velocity,
-    errorBound: normalizeNonnegativeSolverNumber(options.transmitterErrorBound, 0),
-  };
-}
-
-function cloneSolverSegment(segment = {}) {
-  return {
-    startTime: Number(segment.startTime) || 0,
-    endTime: Number(segment.endTime) || 0,
-    positionAtStart: vectorToPrescribedPathAnalysis(segment.positionAtStart ?? segment.start),
-    velocity: vectorToPrescribedPathAnalysis(segment.velocity),
-    errorBound: normalizeNonnegativeSolverNumber(segment.errorBound, 0),
-  };
-}
-
-function createDefaultIdealBraidFlightTimeModel() {
-  return {
-    modelId: "aaa.ideal-braid",
-    equationVersion: "delayed-potential-flight-time-v1",
-    forceLawVersion: "causal-delay-v1",
-    constantsHash: "constants:ideal-braid",
-    causalSpeedPolicy: "field-speed",
-    branchPolicy: "fixed-point-flight-time",
-    unitConvention: "relative",
-    compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
-  };
-}
-
-function createDefaultIdealBraidPotentialSamplesModel() {
-  return {
-    modelId: "aaa.ideal-braid",
-    equationVersion: "delayed-potential-samples-v1",
-    forceLawVersion: "causal-delay-v1",
-    constantsHash: "constants:ideal-braid",
-    causalSpeedPolicy: "field-speed",
-    branchPolicy: "batched-linear-transmitter-segments",
-    unitConvention: "relative",
-    compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
-  };
-}
-
-function createDefaultIdealBraidFlightTimeEnvelope({
-  transmitter,
-  observationTime,
-  memoryBudgetBytes,
-} = {}) {
-  const startTime = Number(transmitter?.startTime) || 0;
-  const endTime = Number.isFinite(Number(observationTime)) ? Number(observationTime) : startTime;
-  const duration = Math.max(0, endTime - startTime);
-  const stepHint = duration > 0 ? duration / 64 : 1;
-  return {
-    entityCount: 1,
-    assemblyCount: 1,
-    timeWindow: { start: startTime, end: endTime, stepHint, units: "seconds" },
-    timeResolutionHint: stepHint,
-    interactionPolicy: "single-transmitter-delayed-potential",
-    expectedBranchComplexity: "low",
-    outputDetail: "geometry",
-    memoryBudgetBytes,
-    storageBudgetBytes: memoryBudgetBytes,
-    latencyTarget: "interactive",
-    simplificationPolicy: "linear-transmitter-segment",
-  };
-}
-
-function createDefaultIdealBraidPotentialSamplesEnvelope({
-  transmitters = [],
-  observationTime,
-  sampleCount = 0,
-  transmitterCount = 0,
-  memoryBudgetBytes,
-} = {}) {
-  const startTime = Math.min(
-    ...transmitters.map((transmitter) => Number(transmitter?.startTime)).filter(Number.isFinite),
-    Number(observationTime) || 0
-  );
-  const endTime = Number.isFinite(Number(observationTime)) ? Number(observationTime) : startTime;
-  const duration = Math.max(0, endTime - startTime);
-  const stepHint = duration > 0 ? duration / 64 : 1;
-  return {
-    entityCount: transmitterCount,
-    assemblyCount: Math.max(1, transmitterCount),
-    timeWindow: { start: startTime, end: endTime, stepHint, units: "seconds" },
-    timeResolutionHint: stepHint,
-    interactionPolicy: "batched-delayed-potential-surface",
-    expectedBranchComplexity: "medium",
-    outputDetail: "geometry",
-    memoryBudgetBytes,
-    storageBudgetBytes: memoryBudgetBytes,
-    latencyTarget: "interactive",
-    simplificationPolicy: "linear-transmitter-segments",
-    sampleCount,
-    transmitterCount,
-  };
-}
-
-function createDefaultIdealBraidFlightTimeErrorBudget(tolerance = DEFAULT_FLIGHT_TIME_TOLERANCE) {
-  return {
-    globalTolerance: tolerance,
-    rootIsolationTolerance: tolerance,
-    delayedHitTolerance: tolerance,
-    integrationTolerance: tolerance,
-    streamEncodingTolerance: tolerance,
-    readbackTolerance: tolerance,
-    projectionTolerance: 1e-9,
-    displayTolerance: 1e-6,
-  };
-}
-
-function normalizeSolverSamplePoints(samplePoints) {
-  const points = Array.isArray(samplePoints) ? samplePoints : [samplePoints];
-  return points.filter(Boolean);
-}
-
-function normalizeSolverArchitrinos(model) {
-  const architrinos = Array.isArray(model?.architrinos) ? model.architrinos : [];
-  if (architrinos.length === 0) {
-    throw new TypeError("A1 Lorentz Geometry potential sample request requires at least one architrino.");
-  }
-  return architrinos;
-}
-
-function vectorToPrescribedPathAnalysis(value = {}) {
-  return {
-    x: Number(value?.x) || 0,
-    y: Number(value?.y) || 0,
-    z: Number(value?.z) || 0,
-  };
-}
-
-function normalizePositiveSolverNumber(value, fallback) {
-  const number = Number(value);
-  return Number.isFinite(number) && number > 0 ? number : fallback;
-}
-
-function normalizeNonnegativeSolverNumber(value, fallback) {
-  const number = Number(value);
-  return Number.isFinite(number) && number >= 0 ? number : fallback;
-}
-
-function normalizePositiveSolverInteger(value, fallback) {
-  const number = Number(value);
-  return Number.isFinite(number) && number > 0 ? Math.max(1, Math.round(number)) : fallback;
-}
-
 function formatSolverIdNumber(value) {
   return String(Number(value) || 0).replaceAll(".", "_").replaceAll("-", "neg_");
-}
-
-function quantizeIdealBraidRuntimeSolverTime(timeSeconds) {
-  const time = Number.isFinite(Number(timeSeconds)) ? Number(timeSeconds) : 0;
-  return Math.round(time / IDEAL_BRAID_SURFACE_SOLVER_TIME_QUANTUM_SECONDS) *
-    IDEAL_BRAID_SURFACE_SOLVER_TIME_QUANTUM_SECONDS;
 }
 
 function getIdealBraidRuntimeNowMs(windowLike) {
@@ -1411,7 +940,11 @@ export function createSurfaceSamples(Three) {
     const theta = (latIndex / (SURFACE_LATITUDE_COUNT - 1)) * Math.PI;
     const longitudinal = Math.cos(theta);
     const ring = Math.sin(theta);
-    for (let lonIndex = 0; lonIndex < SURFACE_LONGITUDE_COUNT; lonIndex += 1) {
+    const longitudeCount =
+      latIndex === 0 || latIndex === SURFACE_LATITUDE_COUNT - 1
+        ? 1
+        : SURFACE_LONGITUDE_COUNT;
+    for (let lonIndex = 0; lonIndex < longitudeCount; lonIndex += 1) {
       const phi = (lonIndex / SURFACE_LONGITUDE_COUNT) * TWO_PI;
       const unit = ASSEMBLY_MOMENTUM_AXIS.clone()
         .multiplyScalar(longitudinal)
@@ -1487,13 +1020,31 @@ function createIdealBraidMarkdownRenderer(windowLike) {
   return markdownRenderer;
 }
 
-function createIdealBraidMarkdownRuntime({
+function getIdealBraidMarkdownNameForPath(markdownPath) {
+  const knownDoc = Object.values(IDEAL_BRAID_DOCS).find(
+    (doc) => doc.markdownPath === markdownPath
+  );
+  if (knownDoc) {
+    return knownDoc.name;
+  }
+  return (
+    String(markdownPath ?? "")
+      .split("/")
+      .at(-1)
+      ?.replace(/\.md$/i, "")
+      .replace(/[-_]+/g, " ") || "Document"
+  );
+}
+
+export function createIdealBraidMarkdownRuntime({
   documentLike,
   windowLike,
   markdownPanel,
   markdownTitle,
+  markdownContent,
   markdownBody,
   markdownLayoutToggle,
+  eventSignal,
 }) {
   const markdownCache = new Map();
   const markdownSectionCache = new Map();
@@ -1504,16 +1055,22 @@ function createIdealBraidMarkdownRuntime({
     if (!markdownRuntime || typeof target !== "string") {
       return;
     }
-    await markdownRuntime.showMarkdownPanel({
-      id: target,
-      name: "Guide",
-      markdownColumns: 2,
-    });
+    const isRuntimeMarkdownTarget = target.startsWith("runtime:markdown:");
+    await markdownRuntime.showMarkdownPanel(
+      isRuntimeMarkdownTarget
+        ? { id: target, name: "Document", markdownColumns: 1 }
+        : {
+            markdownPath: target,
+            name: getIdealBraidMarkdownNameForPath(target),
+            markdownColumns: 1,
+          }
+    );
   };
 
   markdownRuntime = createMarkdownRuntime({
     markdownPanel,
     markdownTitle,
+    markdownContent,
     markdownBody,
     markdownLayoutToggle,
     markdownRenderer: createIdealBraidMarkdownRenderer(windowLike),
@@ -1522,10 +1079,39 @@ function createIdealBraidMarkdownRuntime({
     extractMarkdownSection,
     appendCacheBust: (path) => appendIdealBraidCacheBust(path, cacheBustToken),
     navigateToTarget: openMarkdownTarget,
+    documentLike,
+    eventSignal,
   });
 
   markdownPanel.inert = true;
   return markdownRuntime;
+}
+
+export function disposeIdealBraidScene(scene) {
+  const disposedGeometries = new Set();
+  const disposedMaterials = new Set();
+  scene?.traverse?.((object) => {
+    const geometry = object?.geometry;
+    if (geometry?.dispose && !disposedGeometries.has(geometry)) {
+      disposedGeometries.add(geometry);
+      geometry.dispose();
+    }
+    const materials = Array.isArray(object?.material)
+      ? object.material
+      : object?.material
+        ? [object.material]
+        : [];
+    materials.forEach((material) => {
+      if (material?.dispose && !disposedMaterials.has(material)) {
+        disposedMaterials.add(material);
+        material.dispose();
+      }
+    });
+  });
+  return {
+    geometryCount: disposedGeometries.size,
+    materialCount: disposedMaterials.size,
+  };
 }
 
 export function mountIdealBraid(options = {}) {
@@ -1534,13 +1120,26 @@ export function mountIdealBraid(options = {}) {
   const Three = options.THREE ?? THREE;
   const homeHref = options.homeHref ?? IDEAL_BRAID_NAVIGATOR_HREF;
   const prescribedPathAnalysisOptions = options.prescribedPathAnalysisOptions ?? {};
+  const AbortControllerCtor =
+    options.AbortController ?? windowLike?.AbortController ?? globalThis.AbortController;
+  if (typeof AbortControllerCtor !== "function") {
+    throw new Error("A1 Lorentz Geometry requires AbortController support.");
+  }
+  const ResizeObserverCtor =
+    options.ResizeObserver ?? windowLike?.ResizeObserver ?? globalThis.ResizeObserver;
+  if (typeof ResizeObserverCtor !== "function") {
+    throw new Error("A1 Lorentz Geometry requires ResizeObserver support.");
+  }
+  const listenerController = new AbortControllerCtor();
+  const listenerOptions = { signal: listenerController.signal };
   const canvas = queryRequiredElement(documentLike, "#ideal-braid-canvas");
   const model = createIdealBraidModel({ THREE: Three });
-  const renderer = new Three.WebGLRenderer({
+  const createRenderer =
+    options.createRenderer ?? ((rendererOptions) => new Three.WebGLRenderer(rendererOptions));
+  const renderer = createRenderer({
     canvas,
     antialias: true,
     alpha: true,
-    preserveDrawingBuffer: true,
   });
   renderer.setPixelRatio(Math.min(2, windowLike.devicePixelRatio || 1));
   renderer.setClearColor(0x000000, 0);
@@ -1576,6 +1175,8 @@ export function mountIdealBraid(options = {}) {
   });
   sphereContents.add(pathGroup);
 
+  const architrinoGroup = new Three.Group();
+  coreFrame.add(architrinoGroup);
   const architrinoGeometry = new Three.SphereGeometry(0.0375, 18, 14);
   const architrinoMeshes = model.architrinos.map((architrino) => {
     const mesh = new Three.Mesh(
@@ -1584,7 +1185,7 @@ export function mountIdealBraid(options = {}) {
     );
     mesh.renderOrder = 12;
     mesh.userData.architrino = architrino;
-    sphereContents.add(mesh);
+    architrinoGroup.add(mesh);
     return mesh;
   });
 
@@ -1641,13 +1242,12 @@ export function mountIdealBraid(options = {}) {
     gammaEquation: queryRequiredElement(documentLike, "#ideal-braid-gamma-equation"),
     xiEquation: queryRequiredElement(documentLike, "#ideal-braid-xi-equation"),
     rParallelEquation: queryRequiredElement(documentLike, "#ideal-braid-rparallel-equation"),
-    tParallelEquation: queryRequiredElement(documentLike, "#ideal-braid-tparallel-equation"),
-    tPerpEquation: queryRequiredElement(documentLike, "#ideal-braid-tperp-equation"),
-    closureEquation: queryRequiredElement(documentLike, "#ideal-braid-closure-equation"),
-    stripCanvas: queryRequiredElement(documentLike, "#ideal-braid-potential-strip"),
+    stripCanvas: queryRequiredElement(documentLike, "#ideal-braid-lorentz-chart"),
     tableBody: queryRequiredElement(documentLike, "#ideal-braid-table-body"),
+    status: queryRequiredElement(documentLike, "#ideal-braid-status"),
     markdownPanel: queryRequiredElement(documentLike, "#markdown-panel"),
     markdownTitle: queryRequiredElement(documentLike, "#markdown-title"),
+    markdownContent: queryRequiredElement(documentLike, "#markdown-content"),
     markdownBody: queryRequiredElement(documentLike, "#markdown-body"),
     markdownClose: queryRequiredElement(documentLike, "#markdown-close"),
     markdownLayoutToggle: queryRequiredElement(documentLike, "#markdown-layout-toggle"),
@@ -1659,8 +1259,10 @@ export function mountIdealBraid(options = {}) {
     windowLike,
     markdownPanel: dom.markdownPanel,
     markdownTitle: dom.markdownTitle,
+    markdownContent: dom.markdownContent,
     markdownBody: dom.markdownBody,
     markdownLayoutToggle: dom.markdownLayoutToggle,
+    eventSignal: listenerController.signal,
   });
 
   const state = {
@@ -1672,25 +1274,23 @@ export function mountIdealBraid(options = {}) {
     beta: Number.isFinite(Number(dom.betaInput.value)) ? Number(dom.betaInput.value) : 0,
     speed: Number(dom.speedInput.value) || 1,
     modelTime: 0,
-    lastFrameTime: performance.now(),
+    lastFrameTime: getIdealBraidRuntimeNowMs(windowLike),
     dragging: false,
     lastPointer: { x: 0, y: 0 },
     surfaceRange: { min: 0, max: 0, maxAbs: 1 },
-    samplePotential: 0,
   };
   let runtimeDestroyed = false;
-  let surfaceSolverSnapshot = null;
-  let surfaceSolverSnapshotPromise = null;
-  let surfaceSolverLastRequestAtMs = 0;
-  let surfaceSolverLastStateChangeAtMs = 0;
-  let surfaceSolverInteractiveUpdatePending = false;
   let surfaceSolverError = null;
-  let solverGeneration = 0;
+  let orbitProfileSolverError = null;
   let orbitProfileSolverPromise = null;
-
-  async function createIdealBraidRuntimeAnalysisOptions() {
-    return prescribedPathAnalysisOptions;
-  }
+  let lorentzGeometryDirty = true;
+  let chartDirty = true;
+  let animationFrameId = 0;
+  let lastAppliedSurfaceSnapshot = null;
+  let lastAppliedSurfaceRadius = Number.NaN;
+  let phaseCells = [];
+  const phaseLabels = [];
+  const assemblyContractionMatrix = new Three.Matrix4();
 
   function createSurfaceSolverStateKey() {
     return [
@@ -1710,122 +1310,68 @@ export function mountIdealBraid(options = {}) {
   }
 
   function createSurfaceSolverSamplePoints() {
-    const points = surfaceSamples.map((sample) =>
+    return surfaceSamples.map((sample) =>
       sample.unit.clone().multiplyScalar(state.radius)
     );
-    points.push(new Three.Vector3(state.radius, 0, 0));
-    return points;
   }
 
-  function clearSurfaceSolverSnapshotForStateChange({ preserveSnapshot = true } = {}) {
-    solverGeneration += 1;
-    surfaceSolverLastStateChangeAtMs = getIdealBraidRuntimeNowMs(windowLike);
-    surfaceSolverInteractiveUpdatePending = preserveSnapshot;
-    if (!preserveSnapshot) {
-      surfaceSolverSnapshot = null;
+  function analysisErrorMessage(error) {
+    return error instanceof Error ? error.message : String(error);
+  }
+
+  function renderAnalysisStatus() {
+    const activeError = surfaceSolverError ?? orbitProfileSolverError;
+    dom.status.classList.toggle("is-error", !!activeError);
+    if (surfaceSolverError) {
+      dom.status.textContent =
+        `Surface preview unavailable: ${analysisErrorMessage(surfaceSolverError)}. ` +
+        "Retrying with backoff.";
+      return;
     }
-    surfaceSolverError = null;
+    if (orbitProfileSolverError) {
+      dom.status.textContent =
+        `Wake-span preview unavailable: ${analysisErrorMessage(orbitProfileSolverError)}.`;
+      return;
+    }
+    dom.status.textContent =
+      "Display-only surface: delayed-potential colors use tangent-linearized transmitter " +
+      "histories; this preview is not a proof.";
+  }
+
+  const surfaceSolver = createIdealBraidSurfaceSolverScheduler({
+    model,
+    getStateKey: createSurfaceSolverStateKey,
+    getModelTime: () => state.modelTime,
+    getSamplePoints: createSurfaceSolverSamplePoints,
+    isVisible: () => state.surfaceVisible,
+    nowMs: () => getIdealBraidRuntimeNowMs(windowLike),
+    prescribedPathAnalysisOptions,
+    memoryBudgetBytes: IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
+    onSnapshot() {
+      surfaceSolverError = null;
+      renderAnalysisStatus();
+    },
+    onError(error) {
+      surfaceSolverError = error;
+      console.error("A1 Lorentz Geometry surface analysis failed.", error);
+      renderAnalysisStatus();
+    },
+    onErrorCleared() {
+      surfaceSolverError = null;
+      renderAnalysisStatus();
+    },
+  });
+
+  function clearSurfaceSolverSnapshotForStateChange({ preserveSnapshot = true } = {}) {
+    surfaceSolver.clearForStateChange({ preserveSnapshot });
   }
 
   function getCurrentSurfaceSolverSnapshot() {
-    const stateKey = createSurfaceSolverStateKey();
-    if (surfaceSolverSnapshot?.stateKey === stateKey) {
-      return surfaceSolverSnapshot;
-    }
-    return surfaceSolverInteractiveUpdatePending ? surfaceSolverSnapshot : null;
+    return surfaceSolver.getCurrentSnapshot();
   }
 
   function scheduleSurfaceSolverSnapshot({ force = false } = {}) {
-    if (runtimeDestroyed || surfaceSolverSnapshotPromise) {
-      return;
-    }
-    const solveTime = quantizeIdealBraidRuntimeSolverTime(state.modelTime);
-    const stateKey = createSurfaceSolverStateKey();
-    const snapshotMatches =
-      surfaceSolverSnapshot?.stateKey === stateKey &&
-      Math.abs((surfaceSolverSnapshot.solveTime ?? 0) - solveTime) <= 1e-12;
-    if (snapshotMatches) {
-      return;
-    }
-    const nowMs = getIdealBraidRuntimeNowMs(windowLike);
-    if (
-      !force &&
-      surfaceSolverInteractiveUpdatePending &&
-      nowMs - surfaceSolverLastStateChangeAtMs < IDEAL_BRAID_SURFACE_SOLVER_EDIT_DEBOUNCE_MS
-    ) {
-      return;
-    }
-    const stateChanged = surfaceSolverSnapshot?.stateKey !== stateKey;
-    if (
-      !force &&
-      !stateChanged &&
-      !state.frozen &&
-      nowMs - surfaceSolverLastRequestAtMs < IDEAL_BRAID_SURFACE_SOLVER_MIN_INTERVAL_MS
-    ) {
-      return;
-    }
-
-    const generation = solverGeneration;
-    const samplePoints = createSurfaceSolverSamplePoints();
-    const runRequest = createIdealBraidPotentialSamplesRunRequest(
-      samplePoints,
-      model,
-      solveTime,
-      {
-        fieldSpeed: 6,
-        softening: 0.1,
-        memoryBudgetBytes: IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
-      }
-    );
-    surfaceSolverLastRequestAtMs = nowMs;
-    surfaceSolverInteractiveUpdatePending = false;
-    surfaceSolverError = null;
-    surfaceSolverSnapshotPromise = (async () => {
-      const runtimeAnalysisOptions = await createIdealBraidRuntimeAnalysisOptions();
-      const snapshot = await computePotentialSamplesWithPrescribedPathAnalysis(
-        samplePoints,
-        model,
-        solveTime,
-        {
-          ...runtimeAnalysisOptions,
-          runRequest,
-          fieldSpeed: 6,
-          softening: 0.1,
-          memoryBudgetBytes: IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
-        }
-      );
-      return {
-        ...snapshot,
-        stateKey,
-        solveTime,
-        surfacePotentials: snapshot.samplePotentials.slice(0, surfaceSamples.length),
-        samplePotential: snapshot.samplePotentials[surfaceSamples.length] ?? 0,
-      };
-    })();
-    surfaceSolverSnapshotPromise
-      .then((snapshot) => {
-        surfaceSolverSnapshotPromise = null;
-        if (runtimeDestroyed) {
-          return;
-        }
-        if (
-          generation !== solverGeneration ||
-          createSurfaceSolverStateKey() !== snapshot.stateKey
-        ) {
-          return;
-        }
-        surfaceSolverSnapshot = snapshot;
-        surfaceSolverInteractiveUpdatePending = false;
-        surfaceSolverError = null;
-      })
-      .catch((error) => {
-        surfaceSolverSnapshotPromise = null;
-        if (runtimeDestroyed || generation !== solverGeneration) {
-          return;
-        }
-        surfaceSolverInteractiveUpdatePending = false;
-        surfaceSolverError = error;
-      });
+    return surfaceSolver.schedule({ force });
   }
 
   function scheduleOrbitProfileSolverSnapshot() {
@@ -1833,20 +1379,19 @@ export function mountIdealBraid(options = {}) {
       return;
     }
     const ratios = model.binaries.map((binary) => binary.fieldSpeedRatio);
-    orbitProfileSolverPromise = (async () => {
-      const runtimeAnalysisOptions = await createIdealBraidRuntimeAnalysisOptions();
-      return solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis(ratios, {
-        ...runtimeAnalysisOptions,
-        runId: "ideal-braid-orbit-profile-self-hit",
-        memoryBudgetBytes: IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
-      });
-    })();
+    orbitProfileSolverPromise = solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis(ratios, {
+      ...prescribedPathAnalysisOptions,
+      runId: "ideal-braid-orbit-profile-self-hit",
+      memoryBudgetBytes: IDEAL_BRAID_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
+    });
     orbitProfileSolverPromise
       .then((rows) => {
         orbitProfileSolverPromise = null;
         if (runtimeDestroyed) {
           return;
         }
+        orbitProfileSolverError = null;
+        renderAnalysisStatus();
         rows.forEach((row, rowIndex) => {
           const binary = model.binaries[row.itemIndex ?? rowIndex];
           if (!binary || row.statusCode !== 0) {
@@ -1856,8 +1401,14 @@ export function mountIdealBraid(options = {}) {
           binary.solverSelfHitRow = row;
         });
       })
-      .catch(() => {
+      .catch((error) => {
         orbitProfileSolverPromise = null;
+        if (runtimeDestroyed) {
+          return;
+        }
+        orbitProfileSolverError = error;
+        console.error("A1 Lorentz Geometry wake-span analysis failed.", error);
+        renderAnalysisStatus();
       });
   }
 
@@ -1913,13 +1464,19 @@ export function mountIdealBraid(options = {}) {
     state.radius = Math.max(0.0001, Number(referenceRadius) || state.radius);
     updateBinaryOrbitRadii(state.radius);
     updateShellSurfaces();
+    lorentzGeometryDirty = true;
+    chartDirty = true;
+    lastAppliedSurfaceRadius = Number.NaN;
     clearSurfaceSolverSnapshotForStateChange({ preserveSnapshot: true });
+    updateAxisReference();
+    renderTable();
   }
 
   function resize() {
     const rect = canvas.getBoundingClientRect();
     const width = Math.max(1, Math.floor(rect.width));
     const height = Math.max(1, Math.floor(rect.height));
+    renderer.setPixelRatio(Math.min(2, windowLike.devicePixelRatio || 1));
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
@@ -1969,15 +1526,14 @@ export function mountIdealBraid(options = {}) {
     dom.gammaEquation.textContent = formatLimitFixed(lorentzState.gamma, 3);
     dom.xiEquation.textContent = formatFixed(lorentzState.xi, 3);
     dom.rParallelEquation.textContent = formatFixed(lorentzState.rParallel, 3);
-    dom.tParallelEquation.textContent = formatLimitFixed(lorentzState.tParallel, 3);
-    dom.tPerpEquation.textContent = formatLimitFixed(lorentzState.tPerp, 3);
-    dom.closureEquation.textContent = formatSignedFixed(lorentzState.closureResidual, 5);
   }
 
   function updateArchitrinoMeshes() {
     architrinoMeshes.forEach((mesh) => {
       const architrino = mesh.userData.architrino;
-      mesh.position.copy(architrino.positionAt(state.modelTime));
+      mesh.position
+        .copy(architrino.positionAt(state.modelTime))
+        .applyMatrix4(assemblyContractionMatrix);
       mesh.scale.setScalar(1.18);
       mesh.material.color.set(architrino.color);
       mesh.material.opacity = 1;
@@ -1991,8 +1547,17 @@ export function mountIdealBraid(options = {}) {
   }
 
   function updateSurface() {
+    if (!state.surfaceVisible) {
+      return;
+    }
     const snapshot = getCurrentSurfaceSolverSnapshot();
     scheduleSurfaceSolverSnapshot();
+    if (
+      snapshot === lastAppliedSurfaceSnapshot &&
+      Math.abs(lastAppliedSurfaceRadius - state.radius) <= 1e-12
+    ) {
+      return;
+    }
     const potentials = snapshot?.surfacePotentials ??
       Array.from({ length: surfaceSamples.length }, () => 0);
     surfaceSamples.forEach((sample, sampleIndex) => {
@@ -2016,7 +1581,8 @@ export function mountIdealBraid(options = {}) {
     surfaceGeometry.attributes.color.needsUpdate = true;
     surfaceGeometry.computeBoundingSphere();
     state.surfaceRange = surfaceRange;
-    state.samplePotential = snapshot?.samplePotential ?? state.samplePotential;
+    lastAppliedSurfaceSnapshot = snapshot;
+    lastAppliedSurfaceRadius = state.radius;
   }
 
   function updateAxisReference() {
@@ -2026,7 +1592,10 @@ export function mountIdealBraid(options = {}) {
   function updateLorentzGeometry() {
     const lorentzState = getCurrentLorentzState();
     updateBinaryLorentzBases(lorentzState);
-    sphereContents.matrix.copy(computeAssemblyMomentumContractionMatrix(Three, lorentzState));
+    assemblyContractionMatrix.copy(
+      computeAssemblyMomentumContractionMatrix(Three, lorentzState)
+    );
+    sphereContents.matrix.copy(assemblyContractionMatrix);
     sphereContents.matrixWorldNeedsUpdate = true;
     sphereContents.updateMatrixWorld(true);
   }
@@ -2144,11 +1713,11 @@ export function mountIdealBraid(options = {}) {
         values: model.binaries.map((binary) => formatWakeRegime(binary.fieldSpeedRegime)),
       },
       {
-        label: "Phase",
-        values: model.binaries.map((binary) => {
-          const degrees = ((state.modelTime * binary.frequencyHz * 360) % 360 + 360) % 360;
-          return `${formatFixed(degrees, 0)}°`;
-        }),
+        label: "Positrino phase",
+        values: model.binaries.map(
+          (_binary, index) =>
+            `<span class="ideal-braid-phase-value" data-binary-index="${index}">0°</span>`
+        ),
       },
     ];
     dom.tableBody.innerHTML = rows
@@ -2157,6 +1726,26 @@ export function mountIdealBraid(options = {}) {
           `<tr><td>${row.label}</td>${row.values.map((value) => `<td>${value}</td>`).join("")}</tr>`
       )
       .join("");
+    phaseCells = Array.from(
+      dom.tableBody.querySelectorAll?.(".ideal-braid-phase-value") ?? []
+    );
+    phaseLabels.length = 0;
+    updateTablePhases();
+  }
+
+  function updateTablePhases() {
+    model.binaries.forEach((binary, index) => {
+      const angle = getMotionAngle(binary.motion, "positrino", state.modelTime);
+      const degrees = ((((angle * 180) / Math.PI) % 360) + 360) % 360;
+      const label = `${formatFixed(degrees, 0)}°`;
+      if (phaseLabels[index] === label) {
+        return;
+      }
+      phaseLabels[index] = label;
+      if (phaseCells[index]) {
+        phaseCells[index].textContent = label;
+      }
+    });
   }
 
   function updateVisibility() {
@@ -2187,91 +1776,100 @@ export function mountIdealBraid(options = {}) {
     if (!state.frozen) {
       state.modelTime += deltaSeconds * state.speed;
     }
-    updateVisibility();
-    updateLorentzGeometry();
+    if (lorentzGeometryDirty) {
+      updateLorentzGeometry();
+      lorentzGeometryDirty = false;
+    }
     updateOrbitPaths();
     updateArchitrinoMeshes();
     updateSurface();
-    updateAxisReference();
-    drawLorentzChart();
-    renderTable();
-    syncControls();
+    if (chartDirty) {
+      drawLorentzChart();
+      chartDirty = false;
+    }
+    updateTablePhases();
     renderer.render(scene, camera);
     if (!runtimeDestroyed) {
-      windowLike.requestAnimationFrame(renderFrame);
+      animationFrameId = windowLike.requestAnimationFrame(renderFrame);
     }
   }
 
   dom.pathToggle.addEventListener("click", () => {
     state.pathsVisible = !state.pathsVisible;
+    updateVisibility();
     syncControls();
     canvas.focus();
-  });
+  }, listenerOptions);
   dom.surfaceToggle.addEventListener("click", () => {
     state.surfaceVisible = !state.surfaceVisible;
+    updateVisibility();
     syncControls();
     canvas.focus();
-  });
+  }, listenerOptions);
   dom.axesToggle.addEventListener("click", () => {
     state.axesVisible = !state.axesVisible;
+    updateVisibility();
     syncControls();
     canvas.focus();
-  });
+  }, listenerOptions);
   dom.freezeToggle.addEventListener("click", () => {
     toggleFrozen();
     canvas.focus();
-  });
+  }, listenerOptions);
   dom.radiusInput.addEventListener("input", () => {
     setReferenceRadius(dom.radiusInput.value);
     syncControls();
-  });
+  }, listenerOptions);
   dom.betaInput.addEventListener("input", () => {
     state.beta = clampNumber(Number(dom.betaInput.value) || 0, 0, LORENTZ_BETA_MAX);
+    lorentzGeometryDirty = true;
+    chartDirty = true;
+    lastAppliedSurfaceRadius = Number.NaN;
     clearSurfaceSolverSnapshotForStateChange({ preserveSnapshot: true });
     syncControls();
-  });
+  }, listenerOptions);
   dom.speedInput.addEventListener("input", () => {
     state.speed = Number(dom.speedInput.value) || state.speed;
     syncControls();
-  });
+  }, listenerOptions);
   dom.homeButton.addEventListener("click", () => {
     navigateIdealBraidHome(windowLike?.location, homeHref, {
       windowLike,
     });
-  });
+  }, listenerOptions);
   dom.resetButton.addEventListener("click", () => {
     resetRotation();
     canvas.focus();
-  });
+  }, listenerOptions);
   dom.focusButton.addEventListener("click", () => {
     canvas.focus();
-  });
+  }, listenerOptions);
   dom.returnCycleDocButton.addEventListener("click", () => {
     markdownRuntime.showMarkdownPanel(IDEAL_BRAID_DOCS.returnCycle);
-  });
+  }, listenerOptions);
   dom.notesDocButton.addEventListener("click", () => {
     markdownRuntime.showMarkdownPanel(IDEAL_BRAID_DOCS.notes);
-  });
+  }, listenerOptions);
   dom.lorentzDocButton.addEventListener("click", () => {
     markdownRuntime.showMarkdownPanel(IDEAL_BRAID_DOCS.lorentzKinematics);
-  });
+  }, listenerOptions);
   dom.markdownClose.addEventListener("click", () => {
     markdownRuntime.hideMarkdownPanel();
     canvas.focus();
-  });
+  }, listenerOptions);
   dom.markdownLayoutToggle.addEventListener("click", () => {
     markdownRuntime.toggleMarkdownLayout();
-  });
+  }, listenerOptions);
   dom.markdownPdfButton.addEventListener("click", () => {
     markdownRuntime.printMarkdownPanel();
-  });
+  }, listenerOptions);
 
   canvas.addEventListener("pointerdown", (event) => {
     state.dragging = true;
     state.lastPointer = { x: event.clientX, y: event.clientY };
     canvas.setPointerCapture?.(event.pointerId);
     canvas.focus();
-  });
+  }, listenerOptions);
   canvas.addEventListener("pointermove", (event) => {
     if (!state.dragging) {
       return;
@@ -2281,14 +1879,14 @@ export function mountIdealBraid(options = {}) {
     coreFrame.rotation.y += dx * 0.008;
     coreFrame.rotation.x += dy * 0.008;
     state.lastPointer = { x: event.clientX, y: event.clientY };
-  });
+  }, listenerOptions);
   canvas.addEventListener("pointerup", (event) => {
     state.dragging = false;
     canvas.releasePointerCapture?.(event.pointerId);
-  });
+  }, listenerOptions);
   canvas.addEventListener("pointercancel", () => {
     state.dragging = false;
-  });
+  }, listenerOptions);
   canvas.addEventListener("keydown", (event) => {
     const rotationStep = event.shiftKey ? 0.16 : 0.08;
     if (event.key === "ArrowLeft") {
@@ -2316,19 +1914,23 @@ export function mountIdealBraid(options = {}) {
       event.preventDefault();
       toggleFrozen();
     }
-  });
+  }, listenerOptions);
 
-  const resizeObserver = new ResizeObserver(resize);
+  const resizeObserver = new ResizeObserverCtor(resize);
   resizeObserver.observe(canvas);
   setReferenceRadius(state.radius);
   resetRotation();
   resize();
+  updateVisibility();
   syncControls();
+  renderAnalysisStatus();
   updateLorentzGeometry();
+  lorentzGeometryDirty = false;
+  drawLorentzChart();
+  chartDirty = false;
   scheduleOrbitProfileSolverSnapshot();
   scheduleSurfaceSolverSnapshot({ force: true });
-  canvas.focus();
-  windowLike.requestAnimationFrame(renderFrame);
+  animationFrameId = windowLike.requestAnimationFrame(renderFrame);
 
   return {
     model,
@@ -2338,12 +1940,22 @@ export function mountIdealBraid(options = {}) {
     renderer,
     coreFrame,
     sphereContents,
+    architrinoGroup,
     markdownRuntime,
     destroy() {
+      if (runtimeDestroyed) {
+        return;
+      }
       runtimeDestroyed = true;
+      listenerController.abort();
+      surfaceSolver.destroy();
       resizeObserver.disconnect();
-      renderer.dispose();
+      if (animationFrameId && typeof windowLike.cancelAnimationFrame === "function") {
+        windowLike.cancelAnimationFrame(animationFrameId);
+      }
       markdownRuntime.hideMarkdownPanel();
+      disposeIdealBraidScene(scene);
+      renderer.dispose();
     },
   };
 }

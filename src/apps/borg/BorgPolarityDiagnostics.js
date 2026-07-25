@@ -43,6 +43,20 @@ export function createBorgEscapeLedger() {
   });
 }
 
+export function replaceBorgEscapeLedgerRows(
+  ledger,
+  frameRows,
+  sphere,
+) {
+  if (typeof ledger?.reset !== "function" ||
+      typeof ledger?.appendFrameRows !== "function") {
+    throw new TypeError("Borg escape-ledger replacement requires an escape ledger.");
+  }
+  ledger.reset();
+  ledger.appendFrameRows(frameRows, sphere);
+  return ledger;
+}
+
 export function calculateBorgPolarityDiagnostics({
   frames,
   center,

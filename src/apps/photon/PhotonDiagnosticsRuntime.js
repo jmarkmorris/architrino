@@ -7,14 +7,7 @@ export function formatPhotonFixed(value, digits = 3) {
   return value.toFixed(digits);
 }
 
-function computeBraidActionProxy(state, braidId) {
-  return PHOTON_LAYER_ORDER.reduce((sum, layerId) => {
-    const layer = getPhotonLayer(state, braidId, layerId);
-    return sum + Math.abs(layer.radius * layer.frequencyHz);
-  }, 0);
-}
-
-function computePhaseLockSpread(state, braidId) {
+function computePhaseSpacingError(state, braidId) {
   const phases = PHOTON_LAYER_ORDER.map((layerId) => getPhotonLayer(state, braidId, layerId).phaseDeg);
   const sorted = phases.slice().sort((a, b) => a - b);
   const gaps = sorted.map((phase, index) => {
@@ -229,12 +222,8 @@ function requirePhotonFormulaSummary(formulaSummary) {
 
 export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = null) {
   const formula = requirePhotonFormulaSummary(formulaSummary);
-  const leftAction = computeBraidActionProxy(state, "left");
-  const rightAction = computeBraidActionProxy(state, "right");
-  const exposureBalance = Math.abs(leftAction - rightAction) / (leftAction + rightAction + 1e-9);
-  const helicityEstimate = state?.pair?.left?.direction === "ccw" && state?.pair?.right?.direction === "cw"
-    ? 1
-    : 0;
+  const fittedS3 = Number(formula.polarization?.normalizedStokes?.s3) || 0;
+  const fittedS3Sign = fittedS3 > 1e-6 ? 1 : fittedS3 < -1e-6 ? -1 : 0;
   const trailingHitPhaseSpread = computeHitPhaseSpread(formula.field.contributions, "trailing");
   const leadingHitPhaseSpread = computeHitPhaseSpread(formula.field.contributions, "leading");
   const helicalSelfHitRecords = formula.selfHitDiagnostics?.helicalRecords ?? [];
@@ -243,11 +232,9 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     helicalSelfHitRecords.map((record) => record.jacobianAbs)
   );
   return {
-    exposureBalance,
     transverseAmplitude: formula.field.electric.magnitude,
     longitudinalLeakage: Math.abs(formula.field.receiverAcceleration?.x ?? 0),
-    helicityEstimate,
-    analyzerProjection: formula.field.analyzer.projection,
+    fittedS3Sign,
     analyzerFraction: formula.field.analyzer.fraction,
     averageAnalyzerFraction: formula.averageAnalyzerFraction,
     fitResidual: formula.fitResidual,
@@ -296,11 +283,10 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
       ? helicalSelfHitJacobianAbsMin
       : 0,
     helicalSelfHitPhaseSpread,
-    leftPhaseSpread: computePhaseLockSpread(state, "left"),
-    rightPhaseSpread: computePhaseLockSpread(state, "right"),
+    leftPhaseSpacingError: computePhaseSpacingError(state, "left"),
+    rightPhaseSpacingError: computePhaseSpacingError(state, "right"),
     trailingHitPhaseSpread,
     leadingHitPhaseSpread,
-    snapshotId: `photon-v${state.version}-t${formatPhotonFixed(formula.wrappedTime, 2)}`,
   };
 }
 
@@ -308,10 +294,14 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
   const formula = requirePhotonFormulaSummary(formulaSummary);
   const diagnostics = computePhotonDiagnostics(state, timeSeconds, formula);
   const delayStatus = getDelaySolveStatus(diagnostics);
-  const rows = [
+  let rows = [
     ["Transverse amp", formatPhotonFixed(diagnostics.transverseAmplitude, 3), "info"],
     ["Longitudinal leak", formatPhotonFixed(diagnostics.longitudinalLeakage, 3), getLongitudinalLeakQuality(diagnostics)],
-    ["Helicity estimate", diagnostics.helicityEstimate > 0 ? "+1" : "open", diagnostics.helicityEstimate > 0 ? "good" : "info"],
+    [
+      "Fitted S3 sign",
+      diagnostics.fittedS3Sign > 0 ? "+1" : diagnostics.fittedS3Sign < 0 ? "-1" : "0",
+      "info",
+    ],
     ["Fit residual", formatPhotonFixed(diagnostics.fitResidual, 4), getLowerIsBetterQuality(diagnostics.fitResidual, { great: 0.005, good: 0.02, ok: 0.08, poor: 0.2 })],
     ["Mean delay", formatPhotonFixed(diagnostics.averageDelay, 3), "info"],
     ["Transmitter count", String(diagnostics.transmitterCount), "info"],
@@ -428,8 +418,16 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
     ],
     ["Delay solve gap", formatPhotonFixed(diagnostics.delaySolveGapMax, 3), getLowerIsBetterQuality(diagnostics.delaySolveGapMax, { great: 0.001, good: 0.005, ok: 0.02, poor: 0.05 })],
     ["Delay status", delayStatus, getDelayStatusQuality(delayStatus)],
-    ["Left phase spread", `${formatPhotonFixed(diagnostics.leftPhaseSpread, 1)} deg`, "info"],
-    ["Right phase spread", `${formatPhotonFixed(diagnostics.rightPhaseSpread, 1)} deg`, "info"],
+    [
+      "Left 120-deg spacing error",
+      `${formatPhotonFixed(diagnostics.leftPhaseSpacingError, 1)} deg`,
+      "info",
+    ],
+    [
+      "Right 120-deg spacing error",
+      `${formatPhotonFixed(diagnostics.rightPhaseSpacingError, 1)} deg`,
+      "info",
+    ],
     [
       "Trailing hit phase spread",
       `${formatPhotonFixed(diagnostics.trailingHitPhaseSpread.spreadDeg, 1)} deg`,
@@ -441,6 +439,27 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
       getHitPhaseSpreadQuality(diagnostics.leadingHitPhaseSpread),
     ],
   ];
+  if (diagnostics.selfHitStatus === "skipped") {
+    const deferredLabels = new Set([
+      "Span self-hit roots",
+      "Span self-hit max v/c_sig",
+      "Helical self-hit roots",
+      "Helical self-hit max v/c_sig",
+      "Helical speed regimes",
+      "Helical self-hit min |J|",
+      "Helical self-hit phase spread",
+      "Helical phase families",
+      "Helical phase-lock classes",
+      "Best helical family",
+    ]);
+    rows = rows.filter(([label]) => !deferredLabels.has(label));
+    const minJacobianIndex = rows.findIndex(([label]) => label === "Min |J|");
+    rows.splice(
+      Math.max(0, minJacobianIndex + 1),
+      0,
+      ["Self-hit diagnostics", "deferred from interactive snapshots", "info"]
+    );
+  }
   if (formula?.analysisId) {
     rows.unshift(["Analysis library", formula.analysisId, "info"]);
   }

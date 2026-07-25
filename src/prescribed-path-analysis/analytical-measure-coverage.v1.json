@@ -4,12 +4,14 @@
   "requiredMeasureCount": 29,
   "methodology": {
     "path": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-    "sha256": "86052fb8569285d7a80abdfb2dc20a198df7a1f9b7fffdcb03d4d86deed7041c",
+    "sha256": "54f3db1a09eb6b109f1dde2ae61d28d0f043d8f1ad24348228f7e88f0a82c303",
     "impactReview": "reviewed-for-complete-cycle-campaign-v1",
-    "impactNote": "Reviewed after event-specific multiple-root isolation, drawn-not-evaluated rows, translating-center closure, the full bounded taxonomy sampler, compact resolution calibration, the N=64 production boundary, and retirement of the zero-transverse-motion B1.4 axial-limit control were made explicit. The active campaign now excludes B1.4 from sampling and comparative rankings while preserving its historical records. The existing 29 complete-cycle analytical measures and their full-adjudication publication dispositions remain unchanged. Compact Monte Carlo rows are diagnostic, omit acceptance-bearing raw evidence, and cannot enter accepted_case until rerun through the full independently checked protocol."
+    "impactNote": "Reviewed after event-specific multiple-root isolation, drawn-not-evaluated rows, translating-center closure, the bounded taxonomy sampler, compact resolution calibration, the N=64 production boundary, retirement of the zero-transverse-motion B1.4 axial-limit control, and the pointwise summed-acceleration and per-member residual falsification reductions were made explicit. The active campaign excludes B1.4 from sampling and comparative rankings while preserving its historical records. The pointwise reductions strengthen the existing prescribed-path equation-mismatch obligation without creating a positive branch, return-symmetry, or taxonomy claim. The per-member screen is evaluated only for a certified complete declared isolated acceleration inventory, reports both declared half-cycles and the full cycle, and treats an apparent near-zero as diagnostic search guidance pending refinement and independent causal-root checks. The 29 complete-cycle analytical obligations remain unchanged. Compact Monte Carlo rows are diagnostic, omit acceptance-bearing raw evidence, and cannot enter accepted_case until rerun through the full independently checked protocol."
   },
   "reductionVersions": [
-    "prescribed-record-analytics/complete-cycle-campaign-reducer.v1",
+    "prescribed-record-analytics/complete-cycle-campaign-reducer.v3",
+    "prescribed-record-analytics/pointwise-summed-acceleration-screen.v1",
+    "prescribed-record-analytics/pointwise-member-residual-search-screen.v1",
     "b1-complete-cycle-streaming-surface-reducer/v1",
     "prescribed-record-analytical-braid-evaluator/v1"
   ],
@@ -173,18 +175,18 @@
     },
     {
       "measureId": "partial-prescribed-path-equation-mismatch",
-      "obligation": "prescribed-path acceleration mismatch with exact implemented and omitted contributions",
+      "obligation": "prescribed-path acceleration mismatch plus pointwise summed-acceleration and per-member residual falsification screens when the declared isolated acceleration inventory is certified complete",
       "methodologyLocation": "Wakes Experienced Inside the Braid",
-      "requiredFields": ["analytical prescribed acceleration", "other-source acceleration", "omission ledger"],
+      "requiredFields": ["analytical prescribed acceleration", "other-source acceleration", "omission ledger", "complete acceleration-inventory certificate", "common observation grid", "pointwise summed evaluated acceleration", "per-member residual", "declared half-cycle windows", "full-cycle peak and RMS"],
       "applicability": "every source endpoint",
-      "producer": "complete-cycle campaign reducer",
-      "resultPacketLocation": "diagnosticReductions.internalReceivers.*.partialPrescribedPathMismatch",
+      "producer": "complete-cycle campaign reducer plus pointwise summed-acceleration and member-residual reducers",
+      "resultPacketLocation": "diagnosticReductions.internalReceivers.*.partialPrescribedPathMismatch, pointwiseSummedAccelerationNecessaryCondition, and pointwiseMemberResidualSearchScreen",
       "sqliteProjection": "internal_receiver_projection; multidimensional_measure",
-      "validityGates": ["moving-receiver validity"],
-      "convergence": "primary versus refined cycle reductions",
-      "independentEvidence": "closed-form circular acceleration",
+      "validityGates": ["moving-receiver validity", "complete declared isolated acceleration inventory", "zero summed prescribed acceleration for the summed screen only"],
+      "convergence": "primary versus refined full-cycle and half-cycle member-residual reductions",
+      "independentEvidence": "closed-form circular acceleration, separately hand-summed vector ledgers, exact half-partition identities, and independently checked causal-root residuals",
       "status": "newly-implemented",
-      "publicationDisposition": "partial mismatch only; diagnostic when upstream gate fails"
+      "publicationDisposition": "pointwise falsification-only when all applicable screen hypotheses pass; per-member near-zeros remain diagnostic search guidance; otherwise partial mismatch or explicit inapplicability"
     },
     {
       "measureId": "external-signed-and-raw-exposure",

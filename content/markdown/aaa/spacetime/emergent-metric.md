@@ -404,7 +404,7 @@ The assembly fact that a Noether braid is oblate belongs in [Braid Envelope Geom
 
 ## Jacobson-Type Support: Metric as Equation of State
 
-This Noether sea-first picture is strengthened by the general Jacobson-style lesson: Einstein equations are plausibly an **equation of state** for an underlying microscopic system rather than substrate-level laws of the void itself.
+This Noether sea-first picture is paralleled by the general Jacobson-style lesson: Einstein equations are plausibly an **equation of state** for an underlying microscopic system rather than substrate-level laws of the void itself.
 
 That comparative point fits $\mathbb{A}\mathbb{A}\mathbb{A}$ cleanly:
 
@@ -625,7 +625,7 @@ Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
   - Primitive causal-wake support is measured by Euclidean distances in $(X,Y,Z)$ on the absolute slice,
   - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(\mathbf X,T)$ set by the local Noether braid configuration:
-    $c_{\text{eff}}(\mathbf X,T) < c_f \quad \text{in dense regions (near mass)}$
+    $c_{\text{eff}}(\mathbf X,T) < c_f \quad \text{in dense regions (near mass)}$ — the declared response-sign assumption of the weak-field branch, required for recovery rather than derived.
 - From the **Physical Observer** (built from assemblies):
   - Light and free-falling matter appear to move along curved paths (geodesics) of an effective metric $g^{\text{eff}}_{\mu\nu}$.
   - Shapiro delay, light bending, and perihelion precession become **refractive-medium effects** rather than curvature of the void itself.
@@ -753,7 +753,7 @@ c_0^2\ln\!\big(\Omega(x_{\mathrm{eff}}^i)\xi(x_{\mathrm{eff}}^i)\big),
 N(x_{\mathrm{eff}}^i)=e^{\Phi_{\text{eff}}(x_{\mathrm{eff}}^i)/c_0^2}
 $$
 
-The $c_0^2$ prefactor calibrates the observer-sector potential; in the weak homogeneous branch, the primitive wake speed $c_f$ and the measured limiting speed $c_0$ agree up to $O(\epsilon_{\mathrm{LV}}c_0)$.
+The $c_0^2$ prefactor calibrates the observer-sector potential; in the weak homogeneous branch, the residual between the primitive wake speed $c_f$ and the measured limiting speed $c_0$ is what operationally defines $\epsilon_{\mathrm{LV}}$ — the two agree up to $O(\epsilon_{\mathrm{LV}}c_0)$ by that definition, as a residual bounded by the Lorentz-violation budget rather than an asserted derivation.
 
 With $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the Noether sea rest-frame metric components are
 $$
@@ -779,7 +779,7 @@ $$
 =
 -\xi^{2}\nabla^i\Phi_{\text{eff}}
 $$
-Hence, in weak field ($\xi\to 1$),
+Hence, in weak field ($\xi\to 1$, a subclass boundary condition of the declared branch),
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
 =-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
@@ -798,5 +798,7 @@ In that canonical map:
 $$
 \beta_{\text{PPN}}=1
 $$
-for the exponential clock-law channel, while $\gamma_{\text{PPN}}$ is fixed by
-first-order clock-channel partitioning between $\Omega$ and $\xi$.
+for the exponential clock-law channel — a declared subclass whose clock law is
+not yet derived from primitives; see the exponential clock-law subclass
+discussion in [PPN Parameters](ppn-parameters.md) — while $\gamma_{\text{PPN}}$
+is fixed by first-order clock-channel partitioning between $\Omega$ and $\xi$.

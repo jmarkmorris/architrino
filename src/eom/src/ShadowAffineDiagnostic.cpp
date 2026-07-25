@@ -1,10 +1,10 @@
 #include "architrino/eom/ShadowAffineDiagnostic.hpp"
+#include "architrino/eom/Decimal.hpp"
 #include "architrino/eom/JointState.hpp"
 
 #include <algorithm>
 #include <array>
 #include <cmath>
-#include <cstdlib>
 #include <fstream>
 #include <iomanip>
 #include <limits>
@@ -77,12 +77,7 @@ struct JointConsumptionFailure {
 };
 
 double token(const std::string& value) {
-  char* end = nullptr;
-  const double parsed = std::strtod(value.c_str(), &end);
-  if (end == value.c_str() || *end != '\0' || !std::isfinite(parsed)) {
-    throw std::invalid_argument("shadow affine diagnostic received a nonfinite token");
-  }
-  return parsed;
+  return parse_finite_double(value, "shadow affine diagnostic token");
 }
 
 std::string json_escape(const std::string& value) {
@@ -444,7 +439,8 @@ struct ShadowAffineDiagnostic::Impl {
   std::array<double, 3> nominal_acceleration(
       const RetainedHistory& history, double time) const {
     const std::size_t index = history.segment_index_at(time);
-    const auto& segment = history.segments()[index];
+    const auto segment_pin = history.segments().pin(index);
+    const auto& segment = *segment_pin;
     const double local = time - segment.t_start();
     std::array<double, 3> result{};
     for (std::size_t axis = 0U; axis < 3U; ++axis) {
@@ -658,8 +654,9 @@ struct ShadowAffineDiagnostic::Impl {
     if (current_acceleration.empty()) {
       const auto* first = published_substep(
           step, token(step.attempted_start),
-          published.front().history.segments()[
-              path_history(input_histories, published.front().path_id).history.segments().size()].t_end());
+          published.front().history.segments().at(
+              path_history(input_histories, published.front().path_id)
+                  .history.segments().size()).t_end());
       if (first == nullptr) first = step.substeps.empty() ? nullptr : &step.substeps.front();
       if (first != nullptr) {
         const auto fresh = allocate_snapshot_fresh(first->start_snapshot);
@@ -676,8 +673,10 @@ struct ShadowAffineDiagnostic::Impl {
     std::vector<std::pair<std::string, std::size_t>> added_segments;
     for (std::size_t local_index = 0U; local_index < new_segment_count; ++local_index) {
       const auto& reference_path = published.front();
-      const auto& reference_segment = reference_path.history.segments()[
-          first_new_index.at(reference_path.path_id) + local_index];
+      const auto reference_segment_pin =
+          reference_path.history.segments().pin(
+              first_new_index.at(reference_path.path_id) + local_index);
+      const auto& reference_segment = *reference_segment_pin;
       const double begin = reference_segment.t_start();
       const double end = reference_segment.t_end();
       const auto* substep = published_substep(step, begin, end);

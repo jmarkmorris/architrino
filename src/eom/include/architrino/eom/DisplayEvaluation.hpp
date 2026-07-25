@@ -25,8 +25,6 @@ struct DisplayEvaluationRequest {
   double source_normal_floor = 0.0;
   double causal_width = 0.0;
   double core_scale = 0.0;
-  double far_field_enclosure_fraction = 0.0;
-  double acceleration_tolerance = 0.0;
   std::size_t thread_count = 1U;
 };
 
@@ -49,9 +47,6 @@ struct DisplayEvaluationResult {
   std::vector<std::pair<std::string, std::string>> regulated_pairs;
   std::size_t root_pair_count = 0U;
   std::size_t root_count = 0U;
-  std::size_t far_field_pair_count = 0U;
-  double far_field_error_width_total = 0.0;
-  double far_field_error_width_max_receiver = 0.0;
   double emission_to_current_source_ratio_max = 0.0;
   double emission_to_current_source_ratio_sum = 0.0;
   std::size_t emission_to_current_source_ratio_sample_count = 0U;

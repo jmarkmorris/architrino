@@ -5,27 +5,28 @@ capture with claim levels; nothing is corpus-solid yet.
 
 ## Why this workstream exists (the three-assumption diagnosis)
 
-A bound-structure search can silently impose three assumptions: the
-assembly is **isolated** in empty void, its motion is **rigid** (prescribed
-circles/helices), and success is **static force balance** in a co-moving
-sense. Which assumption is wrong is the open question (inferred, this
-session):
+A bound-structure search can silently impose three assumptions: the assembly
+is **isolated** in empty void, its motion is restricted to
+**fixed-coordinate prescribed paths** (circles/helices), and success is
+**static acceleration balance** in a co-moving chart. Which assumption is
+wrong is the open question (inferred, this session):
 
-1. **Isolation.** The void is not empty in the theory's own ontology. A
-   derived structural point supports the medium reading: the master
-   equation has NO pointwise2. **Rigidity.** A rigid ansatz class cannot represent a bound state that
-   is a limit cycle (breathing, phase-slipping): the untested channel is
-   nonlinear retained-history relaxation, and against a genuinely
-   non-rigid object $\epsilon_{\rm bind} \approx 1$ for every rigid shape
-   is exactly what a real object would produce. THIS workstream tests this
-   assumption.
+1. **Isolation.** The void is not empty in the theory's own ontology. The
+   Noether-sea program therefore remains a distinct environmental branch of
+   the search rather than an optional observer-level correction.
+2. **Fixed-coordinate ansatz.** A fixed-coordinate prescribed class cannot
+   represent a bound state that breathes, phase-slips, or otherwise deforms
+   during a return cycle. The untested channel is nonlinear retained-history
+   relaxation, and a large residual on every frozen shape does not decide the
+   fate of a moving branch. THIS workstream tests this assumption.
 3. **Equilibrium framing.** Co-moving stasis is massive-particle intuition;
-   a luminal object has no rest frame. Force balance is the right
-   precondition for electron-like objects, possibly a category error for
-   the photon. This workstream drops it: persistence replaces balance.
+   a luminal object has no rest frame. Static acceleration balance may be the
+   right precondition for electron-like objects and a category error for the
+   photon. This workstream drops it: persistence replaces stasis.
 
-The attractor search is the discriminating experiment: it drops rigidity
-and equilibrium simultaneously while staying bare. If persistent structures
+The attractor search is the discriminating experiment: it drops the
+fixed-coordinate restriction and the equilibrium assumption simultaneously
+while staying bare. If persistent structures
 exist bare, the sea is not needed for existence; if nothing survives,
 isolation is cornered and the sea route inherits everything.
 

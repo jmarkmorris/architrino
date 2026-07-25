@@ -5,6 +5,8 @@ import {
   ACTIVE_CANDIDATE_DISPOSITION,
   DEPRECATED_CONTROL_DISPOSITION,
   buildEvaluationFunnel,
+  caseResidualDetail,
+  filterCompactSweepCaseRows,
   filterCompactSweepRows,
   pearsonCorrelation,
   quantile,
@@ -85,6 +87,55 @@ test("dashboard filtering applies family and member constraints together", () =>
   );
 });
 
+test("case filtering treats sample expressions as exact ordinals", () => {
+  const caseRows = [
+    {
+      memberId: "A1.2",
+      sampleOrdinal: 0,
+      caseId: "case-zero",
+      campaignHash: "campaign-a",
+    },
+    {
+      memberId: "A1.2",
+      sampleOrdinal: 2,
+      caseId: "case-two-a",
+      campaignHash: "campaign-a",
+    },
+    {
+      memberId: "A1.2",
+      sampleOrdinal: 2,
+      caseId: "case-two-b",
+      campaignHash: "campaign-b",
+    },
+    {
+      memberId: "A1.3",
+      sampleOrdinal: 2,
+      caseId: "case-two-other-member",
+      campaignHash: "campaign-a",
+    },
+  ];
+
+  assert.deepEqual(
+    filterCompactSweepCaseRows(caseRows, "A1.2 sample 2"),
+    caseRows.slice(1, 3),
+  );
+  assert.deepEqual(
+    filterCompactSweepCaseRows(caseRows, "A1.2 sample-2"),
+    caseRows.slice(1, 3),
+  );
+  assert.deepEqual(
+    filterCompactSweepCaseRows(caseRows, "sample 2"),
+    caseRows.slice(1),
+  );
+  assert.deepEqual(
+    filterCompactSweepCaseRows(caseRows, "", {
+      memberId: "A1.2",
+      sampleOrdinal: "2",
+    }),
+    caseRows.slice(1, 3),
+  );
+});
+
 test("evaluation funnel keeps null classes separate from compact gate outcomes", () => {
   const funnel = buildEvaluationFunnel([
     row({ familyId: "A", memberId: "A1", passed: false }),
@@ -142,6 +193,31 @@ test("threshold ratios and gate aggregation use exact evaluated denominators", (
     failureCount: 1,
     passRate: 0.5,
     medianThresholdRatio: 1.125,
+  });
+});
+
+test("case residual detail keeps the absolute cycle value separate from its tolerance-bearing companion", () => {
+  assert.deepEqual(caseResidualDetail({
+    metrics: {
+      signedCycleResidual: 4.171323488146487e-8,
+      signedEmissionResidual: 1.7380514533943696e-9,
+    },
+    gates: {
+      surfaceQuadrature: {
+        signedEmissionReference: {
+          maximumChange: 5.7160790517820805e-9,
+          threshold: 0.01,
+          thresholdRatio: 5.71607905178208e-7,
+        },
+      },
+    },
+  }), {
+    signedCycleResidual: 4.171323488146487e-8,
+    signedEmissionResidual: 1.7380514533943696e-9,
+    signedEmissionThreshold: 0.01,
+    signedEmissionThresholdRatio: 1.7380514533943695e-7,
+    signedEmissionGateMaximum: 5.7160790517820805e-9,
+    signedEmissionGateThresholdRatio: 5.71607905178208e-7,
   });
 });
 

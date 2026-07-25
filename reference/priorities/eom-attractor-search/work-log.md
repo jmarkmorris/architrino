@@ -4,12 +4,27 @@ Chronological agent status, run narratives, handoffs, and failed paths for
 this workstream. Keep the live queue in [priorities.md](priorities.md) and
 conceptual material in [brainstorming.md](brainstorming.md).
 
+## 2026-07-24 — Historical simulation outputs removed
+
+- Operator directed a clean start after the EOM solver review.
+- Removed the seven Phase 0 workload run ledgers and the Phase 2 harness demo
+  bundle from tracked evidence.
+- Removed local Campaign 1 run bundles and scratch EOM, Borg, finite-width,
+  affine, verification, checkpoint, and legacy braid-ideal simulation outputs.
+- The measurements below are retained only as chronological narrative. Their
+  raw artifacts are gone, they are not current evidence, and none may be reused
+  as a baseline or campaign-acceptance basis.
+- The next run must begin from a fresh build and establish new independent,
+  sanitizer, checkpoint, and replay evidence.
+
 ## 2026-07-16 — Ownership consolidated
 
 - This directory ceased to be an independently ranked workstream.
 - Braid Program owns the undirected ensemble campaign, persistence criterion, fate classification, and collapse adjudication.
 - EOM owns the reusable checkpointed harness, deterministic replay, campaign-driver behavior, performance attribution, and cost instrument.
-- Existing evidence, validation artifacts, host-control instructions, and chronological notes remain here as a focused instrument/evidence packet. No measured result or campaign fate changed.
+- At that time, existing evidence, validation artifacts, host-control
+  instructions, and chronological notes remained here as a focused packet.
+  The 2026-07-24 reset above supersedes that artifact-retention decision.
 
 ## 2026-07-15 — Workstream opened
 
@@ -48,11 +63,9 @@ conceptual material in [brainstorming.md](brainstorming.md).
   chunk via checkpoints and stream observables; 4-thread speedup
   $2.56\times$ at $N=24$; warm-root exclusion (the just-landed perf
   change) engaged, $89\%$ of cells skipped at $N=48$.
-- Evidence note + campaign sizing:
-  [evidence/phase0-workload-profile-2026-07-15.md](evidence/phase0-workload-profile-2026-07-15.md)
-  with raw JSON ledgers in
-  [evidence/phase0-workload-profile-2026-07-15/](evidence/phase0-workload-profile-2026-07-15/README.md).
-  Phase 0 removed from the queue; phases renumbered.
+- The evidence note and raw JSON ledgers described here were intentionally
+  removed on 2026-07-24. Phase 0 must be rerun before any of these measurements
+  are reused.
 
 ## 2026-07-15 — Phase 2 harness core landed (same session)
 
@@ -93,30 +106,13 @@ conceptual material in [brainstorming.md](brainstorming.md).
   $\le 6.9\times10^{-18}$ position / $3.5\times10^{-18}$ velocity against
   $2\times10^{-6}$ tolerances; exact cross-chunking identity waits on the
   engine's open split-absolute-time item. Demo artifact ($N=12$,
-  $t\in[0,0.3]$, 6 chunks, root clearance green, zero MPFR/rejects):
-  [evidence/phase2-harness-validation-2026-07-15/](evidence/phase2-harness-validation-2026-07-15/README.md).
+  $t\in[0,0.3]$, 6 chunks, root clearance green, zero MPFR/rejects).
+  The demo artifact was intentionally removed on 2026-07-24 and no longer
+  supports current harness acceptance.
 - Straight-family cost note (measured, $N=6$, 3 steps): the 1-segment
   straight prehistory ran $\sim 13\times$ faster than the 400-segment
   circular one — prehistory segment count is a real cost knob for
   campaign seeding.
-- **Operator handoff — $N=12$ host control** (converts the sandbox-to-host
-  transfer from inferred to measured). On the native host, from the repo
-  root, with the engine already built at `.tmp/eom-native-dev`:
-
-  ```bash
-  c++ -std=c++20 -O3 -DNDEBUG -Isrc/eom/include -I/opt/homebrew/include \
-    scripts/eom/attractor-phase0-release-profile.cpp \
-    .tmp/eom-native-dev/libeom_native.a \
-    /opt/homebrew/lib/libmpfr.dylib /opt/homebrew/lib/libgmp.dylib \
-    -pthread -o .tmp/attractor-phase0-release-profile
-  .tmp/attractor-phase0-release-profile --population=12 --end-time=0.2 \
-    --threads=4 \
-    --output=reference/priorities/eom-attractor-search/evidence/phase0-workload-profile-2026-07-15/n12-host.json
-  ```
-
-  Comparison targets (sandbox, 4 threads): $0.591$ s/step, exact-root
-  $49.6\%$, $10.1$ snapshots/step, $202$ µs per pair-snapshot, zero
-  MPFR/rejected. The host-to-sandbox wall ratio is the transfer factor to
-  apply to every Phase 0 sizing row; the percentages should move little
-  (falsifier: an attribution shift $>10$ points would mean the cost
-  structure, not just the clock, differs across hosts).
+- The former host-control handoff and comparison targets were retired with the
+  old run artifacts on 2026-07-24. A replacement baseline must declare new
+  output paths and must not compare against the removed timing measurements.

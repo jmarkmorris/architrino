@@ -1,32 +1,39 @@
 import {
   PRESCRIBED_PATH_ANALYSIS_ID,
   runPrescribedPathAnalysisRequest,
-} from "../../prescribed-path-analysis/index.mjs";
+} from "../../prescribed-path-analysis/PrescribedPathAnalysis.mjs";
+import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
+import {
+  clampNumber,
+  normalizeNonnegativeNumber,
+  normalizePositiveInteger,
+  normalizePositiveNumber,
+} from "./IdealBraidNumeric.js";
 
 const QUARTER_TURN = Math.PI / 2;
 const NO_FORWARD_SPAN = 0;
 const FIELD_SPEED_TOLERANCE = 0.015;
-const SELF_HIT_SOLVE_ITERATIONS = 28;
+const SELF_HIT_SOLVE_ITERATIONS = 48;
 const SELF_HIT_SCAN_SUBDIVISIONS = 72;
 const SELF_HIT_TOLERANCE = 1e-12;
 const SELF_HIT_MAX_ANGLE = Math.PI * 1.96;
 const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const IDEAL_BRAID_ANALYSIS_ID = PRESCRIBED_PATH_ANALYSIS_ID;
-const DEFAULT_PATH_SPEED_PRODUCTS = Object.freeze({
-  inner: 0.5 * 0.42,
-  middle: 0.7 * 0.26,
-  outer: 0.9 * 0.16,
-});
+const DEFAULT_BINARY_IDS = ["inner", "middle", "outer"];
+const DEFAULT_PATH_SPEED_PRODUCTS = Object.freeze(
+  Object.fromEntries(
+    createAnimatorDefaultCoreSpec("ideal_braid").binaries.map((binary, index) => [
+      DEFAULT_BINARY_IDS[index],
+      Number(binary.motion.radius) * Number(binary.motion.frequencyHz),
+    ])
+  )
+);
 
 export const BINARY_FIELD_SPEED_RATIOS = Object.freeze({
   inner: DEFAULT_PATH_SPEED_PRODUCTS.inner / DEFAULT_PATH_SPEED_PRODUCTS.middle,
   middle: 1,
   outer: DEFAULT_PATH_SPEED_PRODUCTS.outer / DEFAULT_PATH_SPEED_PRODUCTS.middle,
 });
-
-function clampNumber(value, min, max) {
-  return Math.min(max, Math.max(min, value));
-}
 
 function lerpNumber(start, end, progress) {
   return start + (end - start) * progress;
@@ -64,10 +71,6 @@ export function getFieldSpeedRegimeLabel(fieldSpeedRatio) {
     return "faster";
   }
   return "field speed";
-}
-
-export function createIdealBraidCircularSelfHitSpanRunRequest(fieldSpeedRatio, options = {}) {
-  return createIdealBraidCircularSelfHitSpansRunRequest([fieldSpeedRatio], options);
 }
 
 export function createIdealBraidCircularSelfHitSpansRunRequest(fieldSpeedRatios, options = {}) {
@@ -124,19 +127,6 @@ export function createIdealBraidCircularSelfHitSpansRunRequest(fieldSpeedRatios,
       deterministic: options.deterministic ?? true,
     },
   };
-}
-
-export async function solveCircularSelfHitSpanWithPrescribedPathAnalysis(fieldSpeedRatio, options = {}) {
-  const row = await solveCircularSelfHitSpanRowWithPrescribedPathAnalysis(fieldSpeedRatio, options);
-  return Number(row.span) || 0;
-}
-
-export async function solveCircularSelfHitSpanRowWithPrescribedPathAnalysis(fieldSpeedRatio, options = {}) {
-  const rows = await solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis([fieldSpeedRatio], options);
-  if (rows.length === 0) {
-    throw new Error("A1 Lorentz Geometry prescribed-path analysis did not include a circular self-hit span record.");
-  }
-  return rows[0];
 }
 
 export async function solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis(
@@ -217,21 +207,6 @@ function createDefaultIdealBraidGeometryErrorBudget(tolerance = SELF_HIT_TOLERAN
   };
 }
 
-function normalizePositiveNumber(value, fallback) {
-  const number = Number(value);
-  return Number.isFinite(number) && number > 0 ? number : fallback;
-}
-
-function normalizeNonnegativeNumber(value, fallback) {
-  const number = Number(value);
-  return Number.isFinite(number) && number >= 0 ? number : fallback;
-}
-
-function normalizePositiveInteger(value, fallback) {
-  const number = Number(value);
-  return Number.isFinite(number) && number > 0 ? Math.max(1, Math.round(number)) : fallback;
-}
-
 function createSubFieldProfile(fieldSpeedRatio) {
   const subProgress = clampNumber((1 - fieldSpeedRatio) / 0.3, 0, 1);
   return {
@@ -291,21 +266,6 @@ export function getOrbitPathTintProfile(binaryOrId, options = {}) {
     return createSuperFieldProfile(fieldSpeedRatio, resolveSelfHitSpan(binaryOrId, options));
   }
   return createFieldSpeedProfile();
-}
-
-export async function getOrbitPathTintProfileWithPrescribedPathAnalysis(binaryOrId, options = {}) {
-  const fieldSpeedRatio = getBinaryFieldSpeedRatio(binaryOrId);
-  if (fieldSpeedRatio <= 1 + FIELD_SPEED_TOLERANCE) {
-    return getOrbitPathTintProfile(binaryOrId, options);
-  }
-  const row = await solveCircularSelfHitSpanRowWithPrescribedPathAnalysis(fieldSpeedRatio, options);
-  return {
-    ...createSuperFieldProfile(fieldSpeedRatio, row.span),
-    analysisId: row.analysisId,
-    analysisRunId: row.runId,
-    analysisDatasetId: row.datasetId,
-    analysisRow: row,
-  };
 }
 
 export function getOrbitPathBranchGain(profile, travelSign) {

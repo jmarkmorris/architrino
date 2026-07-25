@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iomanip>
 #include <limits>
+#include <locale>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -42,6 +43,7 @@ void hash_token(std::uint64_t& state, const std::string& token) {
 
 std::string format_hash(std::uint64_t state) {
   std::ostringstream stream;
+  stream.imbue(std::locale::classic());
   stream << "fnv1a64:" << std::hex << std::setw(16) << std::setfill('0')
          << state;
   return stream.str();
@@ -272,11 +274,31 @@ std::string model_fingerprint(
       request.core_scale,
       request.quadrature_tolerance,
       request.event_impulse_tolerance,
+      request.event_position_moment_tolerance,
       request.regulator_refinement_ratio,
       request.regulator_convergence_tolerance,
       request.position_tolerance,
       request.velocity_tolerance,
       request.correction_tolerance,
+      request.certified_budget_schema,
+      request.certified_budget_preset_id,
+      request.certified_budget_allocation_hash,
+      request.certified_budget_allocation_json,
+      request.position_increment_budget,
+      request.velocity_increment_budget,
+      request.event_impulse_budget,
+      request.event_position_moment_budget,
+      request.independent_overlap_budget,
+      request.event_quadrature_fraction,
+      request.event_causal_regulator_fraction,
+      request.event_core_regulator_fraction,
+      request.event_state_numerical_fraction,
+      request.event_matching_fraction,
+      request.deterministic_reduction_policy,
+      request.rounding_mode,
+      request.receiver_event_allocation_rule,
+      std::to_string(request.resolved_receiver_event_pair_count),
+      request.resolved_receiver_event_pair_weight,
       request.minimum_step,
       request.maximum_step,
       std::to_string(request.root_max_depth),
@@ -290,6 +312,9 @@ std::string model_fingerprint(
       std::to_string(request.maximum_mpfr_bits),
       request.force_event_precision_escalation ? "1" : "0",
       std::to_string(request.max_correction_iterations),
+      std::to_string(request.max_step_attempts),
+      std::to_string(request.max_rejected_steps),
+      std::to_string(request.memory_budget_bytes),
       request.use_adaptive_step_growth ? "1" : "0",
       request.use_continuous_adaptive_step ? "1" : "0",
       request.adaptive_step_safety_factor,
@@ -313,6 +338,13 @@ std::string model_fingerprint(
         request.use_pinned_fold_aware_temporal_step ? "1" : "0");
   }
   controls.push_back(request.use_certified_history_window ? "1" : "0");
+  controls.push_back(request.use_warm_root_exclusion ? "1" : "0");
+  controls.push_back(request.use_certified_traversal ? "1" : "0");
+  controls.push_back(
+      std::to_string(request.traversal_exact_tile_pair_limit));
+  controls.push_back(std::to_string(request.traversal_maximum_nodes));
+  controls.push_back(
+      std::to_string(request.traversal_maximum_exact_pairs));
   controls.push_back(request.use_synchronized_multirate_publication
                          ? kNativeMultirateIntegrationMethod
                          : (request.use_pinned_fold_aware_temporal_step

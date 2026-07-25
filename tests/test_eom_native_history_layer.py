@@ -781,7 +781,9 @@ class NativeHistoryLayerTests(unittest.TestCase):
         )
         for node in excluded_nodes:
             lower = max(Decimal("0"), Decimal(str(node["emission_lower"])))
-            upper = Decimal(str(node["emission_upper"]))
+            upper = min(
+                Decimal("2"), Decimal(str(node["emission_upper"]))
+            )
             for receiver_index in range(node["receiver_begin"], node["receiver_end"]):
                 for transmitter_index in range(node["transmitter_begin"], node["transmitter_end"]):
                     oracle = certify_causal_roots(
@@ -950,6 +952,15 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertEqual(row["reevaluated_cells"], 0)
         self.assertGreater(row["root_free_cell_count"], 0)
         self.assertGreater(row["warm_residual_drift_upper"], 0)
+
+    def test_warm_prefix_is_not_reused_when_search_extends_backward(self) -> None:
+        row = self.pair("warm_extended_lower_current")
+        self.assertEqual(row["status"], "certified_complete")
+        self.assertTrue(row["root_free_complement"])
+        self.assertEqual(row["roots"], [])
+        self.assertEqual(row["incremental_prefix_reuse_count"], 0)
+        self.assertEqual(row["warm_excluded_cells"], 0)
+        self.assertEqual(row["warm_residual_drift_upper"], 0)
 
     def test_history_error_midpoint_root_uses_tolerance_scaled_bracket(self) -> None:
         row = self.pair("uncertain_midpoint_root")
@@ -1344,6 +1355,28 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertTrue(curved_rail["root_free_complement"])
         self.assertTrue(curved_rail["precision_escalated"])
         self.assertEqual(curved_rail["roots"], [])
+        self.assertEqual(curved_rail["achieved_precision_bits"], 128)
+        binary64_curved_rail = self.pair("self_curved_rail_binary64")
+        self.assertFalse(binary64_curved_rail["precision_escalated"])
+        self.assertEqual(binary64_curved_rail["achieved_precision_bits"], 53)
+        semantic_fields = (
+            "status",
+            "failure_code",
+            "root_free_complement",
+            "memory_boundary_contact",
+            "coincident_endpoint_excluded",
+            "roots",
+        )
+        self.assertEqual(
+            {key: curved_rail[key] for key in semantic_fields},
+            {key: binary64_curved_rail[key] for key in semantic_fields},
+        )
+
+    def test_warm_cells_rebase_across_retained_suffix_indices(self) -> None:
+        rebased = self.pair("warm_retained_suffix_current")
+        self.assertEqual(rebased["status"], "certified_complete")
+        self.assertGreater(rebased["warm_excluded_cells"], 0)
+        self.assertEqual(rebased["reevaluated_cells"], 0)
 
     def test_memory_boundary_and_piecewise_root_identity_match_oracle_rules(self) -> None:
         memory = self.pair("memory_boundary")

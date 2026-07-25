@@ -84,7 +84,7 @@ All items: grade **idea (unproven lead)**. Sources are inert plain-string citati
 
 ## 11. Steady-state imbalance as far-field throughput; zero-net-flux as the scale anchor
 
-**The idea.** A persistent budget imbalance in a steady rotating assembly may be the outgoing flux it continuously radiates — a throughput current, not a defect needing a local brake; rigid or truncated models trap the current and misread it as instability. Corollary: demanding zero net far-field flux is a candidate principle for fixing the absolute scale that scale-invariant near-field analyses cannot fix.
+**The idea.** A persistent budget imbalance in a steady rotating assembly may be the outgoing flux it continuously radiates — a throughput current, not a defect needing a local brake; fixed-coordinate or truncated models trap the current and misread it as instability. Corollary: demanding zero net far-field flux is a candidate principle for fixing the absolute scale that scale-invariant near-field analyses cannot fix.
 **Why it matters.** Redirects stability diagnostics toward a far-field flux ledger; offers a scale-setting principle for the mass map.
 **Confirm/kill.** Build a far-field flux post-processor on the validated engine; test continuity balance with the flux term and whether zero-net-flux selects a discrete scale.
 **Source:** `braid-archive/braid-ideal/brainstorming.md`, radiation-reframe entry (~L3069).
@@ -92,9 +92,9 @@ All items: grade **idea (unproven lead)**. Sources are inert plain-string citati
 
 ## 12. Neutrality is not silence: internal relative motion radiates
 
-**The idea.** Opposite charges at the same delayed location cancel emission only if co-moving: the emission kernel carries source velocity, so internal relative motion leaves an uncancelled residual at exactly zero net charge. Neutral matter's radiation is carried entirely by internal velocity mismatch; a bound neutral goes dark only when internally rigid.
+**The idea.** Opposite charges at the same delayed location cancel emission only if co-moving: the emission kernel carries source velocity, so internal relative motion leaves an uncancelled residual at exactly zero net charge. Whether a bound neutral has a vanishing far-field ledger is a moving-history question; fixed internal coordinates are neither assumed nor required.
 **Why it matters.** Native mechanism for neutral emission/absorption; load-bearing for the photon sector and the flux ledger of item 11.
-**Confirm/kill.** Compare far-field output of co-moving versus internally counter-moving neutral pairs in the validated kernel; residual should scale with mismatch and vanish only in the rigid limit.
+**Confirm/kill.** Compare far-field output of co-moving versus internally counter-moving neutral pairs in the validated kernel; test how any residual scales with velocity mismatch without extrapolating to a frozen-assembly claim.
 **Source:** `braid-archive/braid-ideal/brainstorming.md`, co-located pair entry (~L3234–3251).
 **Recommended disposition:** brainstorming entry; candidate early analytic check (kernel-structure argument, cheap).
 

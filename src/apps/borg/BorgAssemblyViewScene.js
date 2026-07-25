@@ -6,6 +6,7 @@ import {
   assertBorgPrescribedDisplayFrame,
   resolveBorgPrescribedTranslation,
 } from "./BorgPrescribedTranslation.js";
+import { clearBorgSceneGroup } from "./BorgSceneDisposal.js";
 
 const ANSATZ_COLOR = 0xc6b6ff;
 const AXIS_COLORS = Object.freeze([0x8fdcf2, 0xf0a6d2, 0xb8a8ff]);
@@ -64,16 +65,17 @@ export function createBorgAssemblyViewScene({
 
   function setRecord(nextEntry) {
     entry = nextEntry;
-    clearGroup(axisGroup);
-    clearGroup(ansatzGroup);
-    clearGroup(sweptEnvelopeGroup);
-    clearGroup(prescribedPathGroup);
-    clearGroup(prescribedTubeGroup);
+    clearBorgSceneGroup(axisGroup);
+    clearBorgSceneGroup(ansatzGroup);
+    clearBorgSceneGroup(sweptEnvelopeGroup);
+    clearBorgSceneGroup(prescribedPathGroup);
+    clearBorgSceneGroup(prescribedTubeGroup);
     translation = resolveBorgPrescribedTranslation(nextEntry);
     translationFrame = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
     currentTime = Number(nextEntry?.dataset?.window?.start ?? 0);
     historyDepth = Number.POSITIVE_INFINITY;
     selectedWorldlineId = null;
+    tubeVisible = false;
     buildBinaryAxes(nextEntry?.dataset?.binaries ?? []);
     buildAnsatz(nextEntry?.dataset?.ansatz ?? []);
     buildPrescribedPathStrands();
@@ -120,6 +122,8 @@ export function createBorgAssemblyViewScene({
           "position",
           new THREE.Float32BufferAttribute(positions, 3),
         );
+        line.geometry.computeBoundingSphere();
+        line.frustumCulled = false;
       }
     });
     rebuildSelectedTube();
@@ -241,6 +245,7 @@ export function createBorgAssemblyViewScene({
         "position",
         new THREE.Float32BufferAttribute(fixed, 3),
       );
+      geometry.computeBoundingSphere();
       const binaryIndex = binaryIndexByWorldline.get(worldline.id) ?? worldlineIndex;
       const material = new THREE.LineBasicMaterial({
         color: PRESCRIBED_PATH_COLORS[
@@ -251,6 +256,7 @@ export function createBorgAssemblyViewScene({
         depthWrite: false,
       });
       const line = new THREE.Line(geometry, material);
+      line.frustumCulled = false;
       line.userData = {
         kind: "prescribed-path-history-strand",
         worldlineId: worldline.id,
@@ -276,16 +282,14 @@ export function createBorgAssemblyViewScene({
     prescribedPathGroup.children.forEach((line) => {
       const times = line.userData.times ?? [];
       const firstTime = currentTime - historyDepth;
-      let start = 0;
-      while (start < times.length && times[start] < firstTime) start += 1;
-      let end = start;
-      while (end < times.length && times[end] <= currentTime + 1e-12) end += 1;
+      const start = lowerBound(times, firstTime);
+      const end = upperBound(times, currentTime + 1e-12, start);
       line.geometry.setDrawRange(start, Math.max(0, end - start));
     });
   }
 
   function rebuildSelectedTube() {
-    clearGroup(prescribedTubeGroup);
+    clearBorgSceneGroup(prescribedTubeGroup);
     if (!tubeVisible || !selectedWorldlineId || !entry ||
         entry.dataset.provenance.engineId !== "prescribed-geometry" ||
         !Number.isFinite(currentTime) ||
@@ -462,11 +466,11 @@ export function createBorgAssemblyViewScene({
   }
 
   function dispose() {
-    clearGroup(axisGroup);
-    clearGroup(ansatzGroup);
-    clearGroup(sweptEnvelopeGroup);
-    clearGroup(prescribedPathGroup);
-    clearGroup(prescribedTubeGroup);
+    clearBorgSceneGroup(axisGroup);
+    clearBorgSceneGroup(ansatzGroup);
+    clearBorgSceneGroup(sweptEnvelopeGroup);
+    clearBorgSceneGroup(prescribedPathGroup);
+    clearBorgSceneGroup(prescribedTubeGroup);
     group.remove(
       axisGroup,
       ansatzGroup,
@@ -625,10 +629,30 @@ function finiteVector(vector) {
   return ["x", "y", "z"].every((axis) => Number.isFinite(Number(vector?.[axis])));
 }
 
-function clearGroup(group) {
-  group.children.slice().forEach((object) => {
-    group.remove(object);
-    object.geometry?.dispose?.();
-    object.material?.dispose?.();
-  });
+function lowerBound(values, target, start = 0) {
+  let low = start;
+  let high = values.length;
+  while (low < high) {
+    const middle = low + Math.floor((high - low) / 2);
+    if (values[middle] < target) {
+      low = middle + 1;
+    } else {
+      high = middle;
+    }
+  }
+  return low;
+}
+
+function upperBound(values, target, start = 0) {
+  let low = start;
+  let high = values.length;
+  while (low < high) {
+    const middle = low + Math.floor((high - low) / 2);
+    if (values[middle] <= target) {
+      low = middle + 1;
+    } else {
+      high = middle;
+    }
+  }
+  return low;
 }

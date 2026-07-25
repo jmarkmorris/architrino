@@ -531,11 +531,12 @@ function createSeparationLogControl(documentLike, { state, getState, onInput }) 
       setExponentMenuOpen(false);
     });
   });
-  documentLike.addEventListener?.("click", (event) => {
+  const handleDocumentClick = (event) => {
     if (!exponentControl.contains(event.target)) {
       setExponentMenuOpen(false);
     }
-  });
+  };
+  documentLike.addEventListener?.("click", handleDocumentClick);
   exponentControl.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       setExponentMenuOpen(false);
@@ -547,7 +548,14 @@ function createSeparationLogControl(documentLike, { state, getState, onInput }) 
   controlShell.append(mantissaGroup, exponentControl, output);
   row.append(span, controlShell);
   syncOutput();
-  return { row, output, sync: syncOutput };
+  return {
+    row,
+    output,
+    sync: syncOutput,
+    destroy() {
+      documentLike.removeEventListener?.("click", handleDocumentClick);
+    },
+  };
 }
 
 function createPlaybackSpeedControl(documentLike, { state, getState, onInput }) {
@@ -604,7 +612,6 @@ function createSelectControl(documentLike, { label, value, options, onChange }) 
   const row = createElement(documentLike, "label", "photon-control-row photon-select-control-row");
   const span = createElement(documentLike, "span", "photon-control-label", label);
   const select = createElement(documentLike, "select", "photon-select");
-  const output = createElement(documentLike, "output", "photon-control-output", "");
   select.setAttribute("aria-label", label);
   options.forEach((option) => {
     const element = createElement(documentLike, "option", "", option.label);
@@ -615,7 +622,7 @@ function createSelectControl(documentLike, { label, value, options, onChange }) 
   select.addEventListener("change", () => {
     onChange(select.value);
   });
-  row.append(span, select, output);
+  row.append(span, select);
   return {
     row,
     select,
@@ -745,6 +752,7 @@ function createSearchControl(
   {
     getSearchResults = () => [],
     getSearchStatus = () => "",
+    isSearchInFlight = () => false,
     isPreviewingSearchResult = () => false,
     onSearchConfigurations,
     onRestoreSearchPreview,
@@ -805,6 +813,9 @@ function createSearchControl(
     const results = getSearchResults();
     const selectedCount = results.filter((result) => result.selected !== false).length;
     const previewing = isPreviewingSearchResult();
+    const searchInFlight = isSearchInFlight();
+    searchButton.disabled = searchInFlight;
+    searchButton.textContent = searchInFlight ? "Searching..." : "Search configurations";
     restoreButton.hidden = !previewing;
     exportSelectedButton.disabled = selectedCount === 0;
     exportAllButton.disabled = results.length === 0;
@@ -939,6 +950,7 @@ export function createPhotonControlsRuntime({
   onResetPreset,
   getSearchResults,
   getSearchStatus,
+  isSearchInFlight,
   isPreviewingSearchResult,
   onSearchConfigurations,
   onRestoreSearchPreview,
@@ -953,10 +965,21 @@ export function createPhotonControlsRuntime({
   onExportSelectedSearchResults,
   onImportSearchResults,
 }) {
-  const controls = [];
+  const controlsByKey = new Map();
+  const controlDestroyers = [];
   const binaryControls = [];
   container.textContent = "";
   const onRangeStateChange = () => onStateChange({ syncControls: false, drawNow: false });
+  const registerControl = (key, control) => {
+    if (controlsByKey.has(key)) {
+      throw new Error(`Duplicate photon control key: ${key}`);
+    }
+    controlsByKey.set(key, control);
+    if (typeof control?.destroy === "function") {
+      controlDestroyers.push(() => control.destroy());
+    }
+    return control;
+  };
 
   const timeSection = addSection(documentLike, container, "Runtime");
   const presetControl = createPresetControl(documentLike, {
@@ -983,29 +1006,62 @@ export function createPhotonControlsRuntime({
     const nextState = getState();
     nextState.view.pathsVisible = !nextState.view.pathsVisible;
     syncToggleButton(pathsButton, nextState.view.pathsVisible, "Paths on", "Paths off");
-    onStateChange();
+    onStateChange({ syncControls: false, drawNow: false });
   });
 
-  controls.push(
+  const separationControl = registerControl(
+    "pair.pairSeparation",
     createSeparationLogControl(documentLike, {
       state,
       getState,
       onInput: () => onRangeStateChange(),
     })
   );
-  controls.push(
+  const playbackSpeedControl = registerControl(
+    "time.speedMultiplier",
     createPlaybackSpeedControl(documentLike, {
       state,
       getState,
       onInput: () => onRangeStateChange(),
     })
   );
-  timeSection.append(...controls.slice(-2).map((control) => control.row));
+  const cycleReferenceControl = createSelectControl(documentLike, {
+    label: "Cycle reference",
+    value: state.time.cycleReferenceLayer,
+    options: PHOTON_LAYER_ORDER.map((layerId) => ({
+      value: layerId,
+      label: PHOTON_LAYER_META[layerId]?.label ?? layerId,
+    })),
+    onChange: (value) => {
+      getState().time.cycleReferenceLayer = value;
+      onStateChange({ drawNow: false });
+    },
+  });
+  const cycleCountControl = registerControl(
+    "time.cycleCount",
+    createRangeControl(documentLike, {
+      label: "Plotted cycles",
+      value: state.time.cycleCount,
+      range: PHOTON_CONTROL_RANGES.cycleCount,
+      digits: 0,
+      onInput: (value) => {
+        getState().time.cycleCount = value;
+        onRangeStateChange();
+      },
+    })
+  );
+  timeSection.append(
+    separationControl.row,
+    playbackSpeedControl.row,
+    cycleReferenceControl.row,
+    cycleCountControl.row
+  );
 
   const searchSection = addSection(documentLike, container, "Configuration Search");
   const searchControl = createSearchControl(documentLike, {
     getSearchResults,
     getSearchStatus,
+    isSearchInFlight,
     isPreviewingSearchResult,
     onSearchConfigurations,
     onRestoreSearchPreview,
@@ -1037,7 +1093,7 @@ export function createPhotonControlsRuntime({
     checked: state.measurement?.transmitterHistoryMode === "absolute_history",
     onChange: (checked) => {
       getState().measurement.transmitterHistoryMode = checked ? "absolute_history" : "co_moving";
-      onStateChange();
+      onStateChange({ drawNow: false });
     },
   });
   measurementSection.append(absoluteHistoryControl.row);
@@ -1050,7 +1106,7 @@ export function createPhotonControlsRuntime({
     ].filter((option) => PHOTON_LOCAL_C_SPEED_MODES.includes(option.value)),
     onChange: (value) => {
       getState().pair.speedMode = normalizePhotonSpeedMode(value);
-      onStateChange();
+      onStateChange({ drawNow: false });
     },
   });
   measurementControls.append(speedModeControl.row);
@@ -1070,11 +1126,11 @@ export function createPhotonControlsRuntime({
         onRangeStateChange();
       },
     });
-    controls.push(control);
+    registerControl(`measurement.virtualObserver.${key}`, control);
     measurementControls.append(control.row);
   });
   const localLorentzControl = createRangeControl(documentLike, {
-    label: "Local γ",
+    label: "Lorentz factor γ⋆",
     value: state.pair.localLorentzFactor,
     range: PHOTON_CONTROL_RANGES.localLorentzFactor,
     digits: 2,
@@ -1083,11 +1139,11 @@ export function createPhotonControlsRuntime({
       onStateChange({ syncControls: true, drawNow: false });
     },
   });
-  controls.push(localLorentzControl);
+  registerControl("pair.localLorentzFactor", localLorentzControl);
   measurementControls.append(localLorentzControl.row);
   [
     ["signalSpeedCf", "Signal c/c_f", PHOTON_CONTROL_RANGES.signalSpeedCf, 2],
-    ["photonSpeedCf", "Photon cγ/c_f", PHOTON_CONTROL_RANGES.photonSpeedCf, 2],
+    ["photonSpeedCf", "Photon speed c_γ/c_f", PHOTON_CONTROL_RANGES.photonSpeedCf, 2],
   ].forEach(([key, label, range, digits]) => {
     const control = createRangeControl(documentLike, {
       label,
@@ -1107,7 +1163,10 @@ export function createPhotonControlsRuntime({
         onRangeStateChange();
       },
     });
-    controls.push(control);
+    registerControl(
+      key === "signalSpeedCf" ? "measurement.signalSpeedCf" : "pair.photonSpeedCf",
+      control
+    );
     measurementControls.append(control.row);
   });
   PHOTON_CONTROL_BRAID_ORDER.forEach((braidId) => {
@@ -1126,7 +1185,7 @@ export function createPhotonControlsRuntime({
           const separationLog10Ratio = getPhotonSeparationLog10Ratio(nextState);
           setPhotonLayerEnabled(nextState, braidId, layerId, checked);
           setPhotonPairSeparationLog10Ratio(nextState, separationLog10Ratio);
-          onStateChange();
+          onStateChange({ drawNow: false });
         },
       });
       binaryControls.push({ ...enabledControl, braidId, layerId });
@@ -1159,7 +1218,7 @@ export function createPhotonControlsRuntime({
               snapToPhaseDegrees: key === "phaseDeg",
               onInput: handleLayerInput,
             });
-        controls.push(control);
+        registerControl(`pair.${braidId}.layers.${layerId}.${key}`, control);
         group.append(control.row);
       });
       section.append(group);
@@ -1172,7 +1231,7 @@ export function createPhotonControlsRuntime({
     checked: state.view?.rawPolarizationVisible !== false,
     onChange: (checked) => {
       getState().view.rawPolarizationVisible = checked;
-      onStateChange();
+      onStateChange({ syncControls: false, drawNow: false });
     },
   });
   analyzerSection.append(rawPolarizationControl.row);
@@ -1189,7 +1248,7 @@ export function createPhotonControlsRuntime({
         onRangeStateChange();
       },
     });
-    controls.push(control);
+    registerControl(`polarization.${key}`, control);
     analyzerSection.append(control.row);
   });
 
@@ -1197,34 +1256,35 @@ export function createPhotonControlsRuntime({
     presetControl.sync(nextState);
     searchControl.sync(nextState);
     const speedSettings = resolvePhotonSpeedSettings(nextState);
-    let index = 0;
-    syncRange(controls[index], nextState.pair.pairSeparation);
-    index += 1;
-    syncRange(controls[index], nextState.time.speedMultiplier);
-    index += 1;
+    syncRange(controlsByKey.get("pair.pairSeparation"), nextState.pair.pairSeparation);
+    syncRange(controlsByKey.get("time.speedMultiplier"), nextState.time.speedMultiplier);
+    cycleReferenceControl.sync(nextState.time.cycleReferenceLayer);
+    syncRange(controlsByKey.get("time.cycleCount"), nextState.time.cycleCount);
     ["x", "y", "z"].forEach((key) => {
-      syncRange(controls[index], nextState.measurement.virtualObserver[key]);
-      index += 1;
+      syncRange(
+        controlsByKey.get(`measurement.virtualObserver.${key}`),
+        nextState.measurement.virtualObserver[key]
+      );
     });
-    syncRange(controls[index], speedSettings.localLorentzFactor);
-    setRangeControlDisabled(controls[index], speedSettings.speedMode !== "lorentz_factor");
-    index += 1;
-    syncRange(controls[index], speedSettings.signalSpeedCf);
-    setRangeControlDisabled(controls[index], speedSettings.speedMode !== "direct");
-    index += 1;
-    syncRange(controls[index], speedSettings.photonSpeedCf);
-    setRangeControlDisabled(controls[index], speedSettings.speedMode !== "direct");
-    index += 1;
+    const lorentzControl = controlsByKey.get("pair.localLorentzFactor");
+    syncRange(lorentzControl, speedSettings.localLorentzFactor);
+    setRangeControlDisabled(lorentzControl, speedSettings.speedMode !== "lorentz_factor");
+    const signalSpeedControl = controlsByKey.get("measurement.signalSpeedCf");
+    syncRange(signalSpeedControl, speedSettings.signalSpeedCf);
+    setRangeControlDisabled(signalSpeedControl, speedSettings.speedMode !== "direct");
+    const photonSpeedControl = controlsByKey.get("pair.photonSpeedCf");
+    syncRange(photonSpeedControl, speedSettings.photonSpeedCf);
+    setRangeControlDisabled(photonSpeedControl, speedSettings.speedMode !== "direct");
     PHOTON_CONTROL_BRAID_ORDER.forEach((braidId) => {
       PHOTON_LAYER_ORDER.forEach((layerId) => {
         const layer = getPhotonLayer(nextState, braidId, layerId);
         ["frequencyHz", "radius", "phaseDeg"].forEach((key) => {
+          const control = controlsByKey.get(`pair.${braidId}.layers.${layerId}.${key}`);
           if (key === "radius") {
-            syncRadiusRange(controls[index], nextState, braidId, layerId);
+            syncRadiusRange(control, nextState, braidId, layerId);
           } else {
-            syncRange(controls[index], layer[key]);
+            syncRange(control, layer[key]);
           }
-          index += 1;
         });
       });
     });
@@ -1233,10 +1293,10 @@ export function createPhotonControlsRuntime({
     });
     absoluteHistoryControl.input.checked = nextState.measurement?.transmitterHistoryMode === "absolute_history";
     speedModeControl.sync(speedSettings.speedMode);
-    ["analyzerAngleDeg"].forEach((key) => {
-      syncRange(controls[index], nextState.polarization[key]);
-      index += 1;
-    });
+    syncRange(
+      controlsByKey.get("polarization.analyzerAngleDeg"),
+      nextState.polarization.analyzerAngleDeg
+    );
     const pauseLabel = nextState.time.paused ? "Play" : "Pause";
     pauseControl.text.textContent = pauseLabel;
     pauseButton.classList.toggle("is-active", !nextState.time.paused);
@@ -1250,5 +1310,11 @@ export function createPhotonControlsRuntime({
   }
 
   sync(state);
-  return { sync };
+  return {
+    sync,
+    destroy() {
+      controlDestroyers.forEach((destroyControl) => destroyControl());
+      container.textContent = "";
+    },
+  };
 }

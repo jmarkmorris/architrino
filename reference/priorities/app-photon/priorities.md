@@ -36,12 +36,12 @@ The current app implements:
 - default `Absolute history` mode that translates source and Virtual Observer histories at $c_\gamma$ and uses a shared solver-layer moving-circular absolute-history run facade as the first moving-apparatus solver path;
 - a three-cycle Electric Field plot based on causal-root branch sums;
 - absolute-history source-scan diagnostics for no-catch-up sources, stale windows, near misses, and root-cap hits;
-- a transverse polarization inset derived from a one-cycle branch-sum fit, with optional raw one-cycle branch-sum points behind the fit;
+- a transverse polarization inset derived from a reference-frequency fit over the slowest enabled layer's common period, with optional raw common-period branch-sum points behind the fit;
 - formula and diagnostic panels with quality words where the readout has a useful direction;
 - shared-geometry same-transmitter self-hit span diagnostics for enabled leading/trailing Inner/Middle/Outer binaries, using the vector sum of photon-channel speed and transverse orbital speed as the solver speed ratio;
 - first-pass helical same-transmitter root results for individual architrino transmitter histories, with transmitter phase-at-hit, receiver phase-at-hit, and phase-family grouping by role, layer, charge, and transmitter cycle;
 - a named preset dropdown that can load a complete photon settings state and reset back to the last loaded preset;
-- a bounded `Search configurations` workflow that samples representative configuration families, includes derived local-$c$ speed-mode candidates, generates session-local scored settings, compares top co-moving and absolute-history diagnostics when the solver path is available, includes helical same-transmitter phase-family summaries for bounded comparison runs, supports preview/load/play, rename/delete, selected/all JSON export, JSON import, and promotion into session presets;
+- a bounded `Search configurations` workflow that samples representative configuration families, includes derived local-$c$ speed-mode candidates, generates session-local scored settings, compares top co-moving and absolute-history diagnostics when the solver path is available, defers the expensive same-transmitter self-hit sweep to its dedicated workflow, supports preview/load/play, rename/delete, selected/all JSON export, JSON import, and promotion into session presets;
 - and in-app Markdown viewing for the user-facing guide and the two supporting corpus bridges.
 
 ## Candidate Model
@@ -134,8 +134,10 @@ Current control ranges remain:
 | O phase | `0 deg` | `0` to `360 deg` | `1 deg` |
 | $\Delta x$ ratio | `1 r` | `1e-10 r` to `1e5 r` | selectable `1` through `9` ticks per decade |
 | Slow/Fast animation scale | `0.20` | `0.025` to `1.600` | log slider |
+| Cycle reference | `M` | `I`, `M`, or `O` | select |
+| Plotted cycles | `3` | `1` to `12` | `1` |
 | Local $c$ mode | `Direct` | `Direct` or `Lorentz factor` | select |
-| Local $\gamma$ | `100.00` | `1.00` to `100.00` | `0.01` |
+| Lorentz factor $\gamma_\star$ | `100.00` | `1.00` to `100.00` | `0.01` |
 | Signal $c_{\mathrm{sig}}/c_f$ | `1.00` | `0.05` to `1.00` | `0.01` |
 | Photon $c_\gamma/c_f$ | `1.00` | `0.00` to `1.00` | `0.01` |
 | Absolute history | `on` | `off` or `on` | checkbox |
@@ -399,7 +401,7 @@ Photon should use the EOM solver bridge for transmitter histories, receiver hist
 
 ### Polarization And Formulas
 
-The app fits the actual branch-sum transverse field over one reference cycle:
+The app fits the reference-frequency component of the actual branch-sum transverse field over the slowest enabled layer's common period:
 
 $$
 E_y(t)\approx A_y\cos(\omega t+\phi_y),
@@ -407,7 +409,9 @@ E_y(t)\approx A_y\cos(\omega t+\phi_y),
 E_z(t)\approx A_z\cos(\omega t+\phi_z).
 $$
 
-The formula panel should continue to report the relative amplitude $A_z/A_y$, phase lag $\Delta\phi=\phi_z-\phi_y$, linear/circular/elliptical classification, Stokes-style observer summaries, analyzer fraction, analyzer residual, and fit residual.
+The formula panel should continue to report the relative amplitude $A_z/A_y$, phase lag $\Delta\phi=\phi_z-\phi_y$, linear/circular/elliptical classification, Stokes-style observer summaries, instantaneous analyzer fraction, common-period energy fraction, fit-to-field fraction residual, and fit residual.
+
+Both calculation modes use the same display regularization, $R_{\mathrm{display}}=\max(R,0.08)$ in app-coordinate units, in the inverse-square observer-field denominator. The direction vector remains normalized from the unregularized displacement. This floor is a numerical display safeguard and carries no short-distance-law authority.
 
 The analyzer projection uses
 
@@ -419,13 +423,22 @@ $$
 \sin\theta\,\hat{\mathbf z},
 $$
 
-and the displayed analyzer fraction is
+and the instantaneous analyzer fraction is
 
 $$
 \mu_{\mathrm{analyzer}}
 =
 \frac{|\hat{\mathbf a}\cdot\mathbf E|^2}
 {|\mathbf E|^2+\varepsilon}.
+$$
+
+The common-period analyzer summary uses projected energy divided by total transverse energy:
+
+$$
+\bar\mu_{\mathrm{analyzer}}
+=
+\frac{\left\langle|\hat{\mathbf a}\cdot\mathbf E|^2\right\rangle}
+{\left\langle|\mathbf E|^2\right\rangle+\varepsilon}.
 $$
 
 ### Configuration Search Design
@@ -485,8 +498,9 @@ Suspect numerical cases should be labeled as suspect, not good. Missed roots, ve
 3. `moving_apparatus_delta_x_mapping` - Default absolute-history mode now translates source and Virtual Observer histories at $c_\gamma$ through the shared moving-circular facade, and the diagnostics panel reports no-catch-up, stale-window, near-miss, and root-cap summaries. Remaining work: make this mode the authoritative $\Delta x$ diagnostic and add clearer stale-root aging thresholds. Status: `open`.
 4. `absolute_source_history_self_hit` - Third pass exists: Photon now combines photon-channel translation speed with transverse binary speed as an explicit orthogonal vector-sum speed budget, reports legacy shared-geometry circular self-hit span results, and computes helical same-transmitter roots through the compatibility facade retained under its literal machine name. The results include retained roots, Jacobian values, transmitter/receiver phase-at-hit metadata, phase families grouped by role, layer, charge, and transmitter cycle, and diagnostics separating sub-field, field-speed-boundary, and self-hit regimes. The sweep evidence in [helical-self-hit-phase-lock-sweep.v1.json](helical-self-hit-phase-lock-sweep.v1.json) covers 756 preset/speed/observation-phase cases; it found 5,116 phase families, 5,068 helical roots, zero stable phase-lock families, and 422 singular-candidate families. Remaining work: deepen rejected-root reasons for same-transmitter results, and extend sweeps beyond the current moving-circular constrained-transmitter grid if new transmitter-history families are introduced. Status: `open`.
 5. `substrate_mapping_refinement` - Refine the Virtual Observer branch-sum mapping from I/M/O layer parameters to transverse observer-field amplitudes, while preserving claim discipline and distinguishing co-moving diagnostics from absolute-history results. Status: `open`.
-6. `configuration_search_absolute_history_comparison` - First pass exists: Configuration Search now stores and scores a compact co-moving versus absolute-history comparison for top results using the shared moving-circular absolute-history solver, bounded comparison runs include helical same-transmitter phase-family counts and stable-family deltas, and the candidate pool now includes representative direct and Lorentz-factor local-$c$ speed modes. Remaining work: support deeper/background comparison runs when useful, add search filters for local-$c$ and phase-family traits, and use the phase-family summaries in richer result filtering/export workflows. Status: `open`.
+6. `configuration_search_absolute_history_comparison` - First pass exists: Configuration Search now stores and scores a compact co-moving versus absolute-history comparison for top results using the shared moving-circular absolute-history solver, defers expensive same-transmitter helical diagnostics so the UI-bound search can yield between candidates, and includes representative direct and Lorentz-factor local-$c$ speed modes. Remaining work: add a deeper/background comparison path when helical phase-family summaries are useful, add search filters for local-$c$ and phase-family traits, and use independently produced phase-family summaries in richer result filtering/export workflows. Status: `open`.
 7. `shared_visual_extraction` - Extract shared Ideal Braid / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
+8. `runtime_module_decomposition` - Split `PhotonFormulaRuntime.js` into focused request-building, solver-adapter, field-superposition, polarization-fit, and self-hit-classification modules, and move search-result, preset, and Markdown ownership out of `PhotonRuntime.js`. Perform this as a behavior-preserving architecture pass after the reviewed correctness boundaries are stable; do not introduce parallel implementations or compatibility paths. Status: `open`.
 
 ## Deferred Non-Goals
 

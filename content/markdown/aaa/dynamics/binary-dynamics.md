@@ -187,7 +187,7 @@ and the architrino is the transmitter of the causal wake surface emitted at $T_t
 - On any interval with strict sub-field-speed motion, self-hit is absent by the triangle-inequality root test, unless older path-history emissions from a prior super-field-speed interval remain active.
 - As velocities exceed $c_f$ on curved histories, emission isochrons can catch up with the transmitter's future positions, generating candidate nonlocal feedback and effective restoring or destabilizing accelerations depending on configuration.
 - In generic trajectories, once an architrino has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions because the active record is non-Markovian.
-- For binary and Noether braid assemblies, repeated self-hit events are the proposed mechanism that can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
+- For binary and Noether braid assemblies, repeated self-hit events are a proposed outward barrier against collapse. Stable radii, frequencies, limit cycles, and attractors require separate tangential, radial, wake-boundary, and return-map closure.
 
 For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in **Maximum-Curvature Binary — Circular**.
 
@@ -202,10 +202,11 @@ In the circular benchmark, the principal self-hit branch ($m=0$) becomes availab
 ## Maximum-Curvature Binary — Circular
 
 Receiver-side validity notice. The circular MCB branch topology, root labels,
-and transmitter-side Jacobian formulas remain useful geometry. Acceleration components,
-stability criteria, action records, and any branch-weighted verdicts in this
-section must be recomputed with $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ before
-they can serve as canonical Master EOM evidence.
+transmitter-side Jacobian formulas, and canonical acceleration components use
+$W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$. The algebraic root-ledger result below
+is therefore a Master EOM measurement on the unregularized circular simple-root
+chart. Stability, finite-event continuation, action records, and retained-history
+claims remain outside that measurement.
 
 Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, acceleration components, and stability criteria. It is the canonical reference for MCB attractor status.
 
@@ -219,7 +220,7 @@ MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In t
 
 #### The Maximum-Curvature Binary (MCB) as Fundamental Unit
 
-The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be reachable first by one declared persistent binary index of a candidate Noether braid, stabilized by certified same-transmitter self-hit roots on the super-field-speed circular branch. This mechanism does not by itself assign a braid-taxonomy member. If the branch is certified as a stable and reproducible attractor, it would supply candidate **fundamental physical units** (length and time); see **Emergent Properties and Measurement Standards** below for the explicit definitions.
+The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be reachable first by one declared persistent binary index of a candidate Noether braid. On the super-field-speed circular chart, certified same-transmitter roots can supply only the outward barrier against collapse; centripetal and tangential closure must come from the complete signed ledger. This mechanism does not by itself assign a braid-taxonomy member. If the branch is certified as a stable and reproducible attractor, it would supply candidate **fundamental physical units** (length and time); see **Emergent Properties and Measurement Standards** below for the explicit definitions.
 
 **Universal cap target (explicit):** If a stable MCB branch is certified, it would define a single limit state with one radius/speed pair. Binaries may sit below that limit, but the claim that no binary can exceed the MCB curvature or pass beyond its defining radius/speed remains conditional on the full signed-root ledger and stability certificate.
 
@@ -406,7 +407,7 @@ $$
 \sum_{T_t\in\mathcal{C}_{11}(T)}A_\theta^{(11)}(T;T_t)
 =0
 $$
-on the retained ledger, or an explicitly retained wake-flux channel in the finite-window energy ledger. Since circular self-hit roots require super-field-speed history on this branch, a self-hit-stabilized MCB candidate must live on the super-field-speed side of the circular ledger rather than on the principal partner branch alone.
+on the retained ledger, or an explicitly retained wake-flux channel in the finite-window energy ledger. Since circular self-hit roots require super-field-speed history on this branch, an MCB candidate using the self-hit barrier must live on the super-field-speed side of the circular ledger rather than on the principal partner branch alone.
 
 Additional partner roots are not speculative. The full delay-angle equation is
 $$
@@ -828,7 +829,7 @@ Two distinct balance mechanisms are now mathematically visible:
 2. **Higher-speed multi-branch redistribution.**
    At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full transmitter-side weighted sum over all active branches rather than on the principal branch alone.
 
-**However**: Due to the same-sheet per-hit $T > 0$ result, this "maximum curvature" state remains unverified for the isolated two-body system. Its stability must be tested by the full, signed, multi-root time-averaged dynamics.
+**Current status**: The same-sheet per-hit $T>0$ result excludes only the restricted same-sheet chart. The complete unregularized signed simple-root ledger has algebraic circular candidates, beginning near $s=3.07036$, so existence is measured rather than excluded on that chart. The maximum-curvature state remains uncertified for the isolated two-body system because finite-event continuation, retained-history persistence, wake-boundary closure, and return-map stability have not been established.
 
 Because the desired MCB branch is expected to graze the $J=0$ wall, the stability target is not only a smooth Floquet calculation. On smooth arcs with a fixed ledger, Floquet multipliers are the right local test. At the null separatrix itself, the branch is a caustic-grazing limit cycle: the appropriate theorem target is an isolating block in history space that straddles the $J=0$ wall and has a persistent Conley index under finite-$\eta$ continuation. The concrete target is uniform index persistence: for sufficiently small $\eta>0$, the regularized return map must carry the same Conley index on one isolating neighborhood of the grazing orbit, with the finite-caustic impulse bound controlling the velocity jump through the wall. If the index changes as $\eta\to0^+$, the MCB is not a robust attractor. In that reading, the MCB branch is stable only if the orbit returns through the grazing chart without escaping the isolating block or changing its declared signed ledger except at the certified fold records.
 
@@ -1048,6 +1049,92 @@ $$
 =0
 $$
 Here $b_p$ and $b_s$ are the partner-hit and self-hit entries in the signed causal-root ledger. The equations are parameter-free because $\kappa$, $\epsilon$, and $c_f$ have already been absorbed into $R_*$ and the acceleration scale. A common zero of these two residuals is only an algebraic circular MCB candidate; promotion to a stable branch still requires the finite-window return-map certificate, positive Jacobian floors, and energy packet described below.
+
+#### Circular Self-Hit Sign Theorem and Complete-Ledger Measurement
+
+The uniform-circular self-hit geometry supplies a derived sign result. For the full delay half-angle $\xi>0$,
+$$
+\left|\sin\xi\right|=\frac{\xi}{s},
+\qquad
+\hat{\mathbf u}_s
+=
+|\sin\xi|\,\hat{\mathbf e}_r
++
+\operatorname{sign}(\sin\xi)\cos\xi\,\hat{\mathbf e}_t
+$$
+Every nondegenerate self-hit therefore has a strictly outward radial projection. On the principal branch $\xi\in(0,\pi)$, the tangential projection changes from forward to backward exactly at
+$$
+\xi=\frac{\pi}{2},
+\qquad
+s=\frac{\pi}{2}
+$$
+This is exact on the uniform-circular chart, not a general threshold for non-circular histories. The derivation and falsifiers are given in [Master Equation](master-equation.md#super-field-speed-single-architrino-uniform-circular-self-hit).
+
+The absolute value in the root equation is essential. The first additional self-root pair is born at
+$$
+\tan\xi_1^\star=\xi_1^\star,
+\qquad
+s_1^\star
+=
+\sqrt{1+(\xi_1^\star)^2}
+\approx
+4.6033388488
+$$
+not near $7.8$. The next pair is born at $s_2^\star\approx7.7897057675$. At $s=8$, the complete self ledger contains five roots, with full delay angles approximately $319.2409^\circ$, $413.6433^\circ$, $632.7112^\circ$, $859.1794^\circ$, and $911.8419^\circ$. A three-root census at that speed has omitted the alternating-sine pair.
+
+Claim grade: **derived** for the radial sign, principal $\pi/2$ threshold, and pair-birth equations; **measured** for the numerical root and residual values below. The independent analysis instrument is `scripts/equation-mapping/analyze-circular-self-hit-binary.mjs`. It brackets every monotone half-lobe, verifies roots against the direct Euclidean chord condition, and evaluates acceleration from the circular position and velocity vectors.
+
+The principal partner formula reproduces the supplied tangential values through $s=6$, including $0.7083439236$ there, and confirms their positive sign. At $s=10$ the canonical value is $1.1141796596$, not $1.05588$. The principal self value at $s=10$ is $-0.2782507206$, while the sum over all five active self roots is $-0.0902141750$.
+
+On $1<s<20$, the restricted ledger containing the principal partner root and every self root has no tangential zero. Its minimum is approximately $0.2389668633$ in units $\kappa\epsilon^2/R^2$ at $s\approx1.7972747766$. Its radial coefficient changes sign at $s\approx1.8471246228$, not at $\pi/2$; the two values solve different balance equations, so their proximity has no derived significance.
+
+The complete ledger gives the opposite existence verdict because older partner roots cannot be omitted. The measured simple-root zeros are:
+
+| $s$ | Net radial coefficient, outward positive | Algebraic radius $R/R_*$ |
+| ---: | ---: | ---: |
+| $3.0703566254$ | $-0.8196069638$ | $0.0869416735$ |
+| $6.2184549634$ | $-1.2902686401$ | $0.0333668459$ |
+| $9.3764360282$ | $-1.8001431321$ | $0.0204753554$ |
+
+At each listed point the complete tangential coefficient is zero to the scan tolerance and the radial coefficient is inward, so the algebraic circular conditions have solutions inside the searched domain. This establishes measured existence on the current unregularized simple-root chart; it does not certify a periodic history. Each older branch descends from a $J=0$ birth and still needs the common finite-event convention, retained root ledger, wake-boundary account, and return-map stability certificate.
+
+The measurement is conditional on the canonical line of action from the transmitter's emission point to the receiver event. A counterfactual inertially extrapolated construction replaces only the acceleration direction by
+$$
+\hat{\mathbf d}_{\mathrm{ext}}
+=
+\frac{
+\mathbf X_r(T_r)
+-
+\left[
+\mathbf X_t(T_t)+\mathbf V_t(T_t)(T_r-T_t)
+\right]
+}{
+\left\|
+\mathbf X_r(T_r)
+-
+\left[
+\mathbf X_t(T_t)+\mathbf V_t(T_t)(T_r-T_t)
+\right]
+\right\|
+}
+$$
+while retaining the actual causal roots, emission-site distance, and canonical transmitter-side acceleration weight. This convention isolates the line-of-action sensitivity without substituting a different wake-density law.
+
+The recomputed complete ledger moves the first three emission-site candidates off both balance conditions:
+
+| Emission-site candidate $s$ | Extrapolated-direction radial coefficient | Extrapolated-direction tangential coefficient |
+| ---: | ---: | ---: |
+| $3.0703566254$ | $+0.1986630540$ | $-0.3350989817$ |
+| $6.2184549634$ | $+0.1969175233$ | $-0.1271086141$ |
+| $9.3764360282$ | $+0.1881554019$ | $-0.0742863069$ |
+
+The same counterfactual ledger has tangential zeros near $s=3.2253960989$, $6.2226379612$, and $9.3769260902$, but their radial coefficients are respectively $+0.1357894119$, $+0.1768252822$, and $+0.1802347924$, with outward sign positive. The scan through $1<s<20$ finds six tangential zeros and no simultaneous inward-radial point. Claim grade: **measured counterfactual**, not canonical dynamics. The closed-form extrapolated direction independently checks the vector evaluator, while the causal roots remain checked against the Euclidean chord residual.
+
+The equilibrium gate therefore fails before stability analysis: none of the extrapolated-direction zeros is a circular solution, so a Floquet multiplier or delayed-history spectrum about those rows would have no dynamical referent. This closes the requested counterfactual stability test as an acceleration-balance negative, not as a measured instability.
+
+The autonomous wake-state reduction in [Master Equation](master-equation.md#autonomous-emission-labeled-wake-transport) resolves the regular-domain ontology dependency under the present postulates. A fixed emission-site center with radius growing at absolute speed $c_f$ has the canonical emission-site normal and the canonical $c_f/|D_t|$ weight. Redirecting only the acceleration is not a surface-normal response; moving the emitted center inertially changes absolute propagation speed, causal support, and root weight. The extrapolated calculation therefore remains a sensitivity diagnostic and does not eliminate the canonical emission-site candidates.
+
+The circular result forecloses neither non-circular contraction nor the symmetric logarithmic spiral, multi-architrino braids, or Noether sea embedded configurations. It also does not yet establish the circular MCB: it promotes the current chart from an unanswered algebraic question to a measured candidate family while leaving finite-event persistence and stability open.
 
 ---
 
@@ -1720,6 +1807,8 @@ $$
 This functional is nonlocal in time: it accumulates deferred work along the path-history of wakes and is not an instantaneous potential $U(r)$.
 Then, by construction along the realized trajectory, $\mathcal{E}_{\text{tot}} = K(T) + \mathcal{W}(T)$ is constant. It is an exact Noether charge only when $\mathcal{W}$ is the boundary term of the same symmetry-preserving delayed action; otherwise it is a diagnostic reconstruction.
 
+That distinction is decisive for the circular tangential channel. A $\mathcal W$ obtained by integrating the same $\mathbf A\cdot\mathbf V$ record cannot test whether the record contains persistent forward tangential acceleration; it assigns the opposite change to $\mathcal W$ by definition. Independent circular energy closure requires the action-derived boundary charge or a separately derived finite-window wake account.
+
 #### Lemma (Boundedness of the Potential)
 **Assumption:** The interaction is regularized with width $\eta > 0$ such that the per-hit acceleration is bounded: $\|\mathbf A_{ij}\| \le A_{\max}(\eta)$.
 **Statement:** For a bound system (architrinos confined to a finite volume $V$), the magnitude of the assembly-level work rate is bounded by $N\mu_{\text{arch}}A_{\max}V_{\max}$.
@@ -1744,4 +1833,4 @@ For $K(T)$ to diverge, $\mathcal{W}(T)$ must decrease without bound.
 
 ## Summary
 
-The circular atlas establishes exact delay equations, signed-sheet root thresholds, and canonically weighted radial and tangential coefficients. The principal partner branch cannot form a particle-only constant-speed circle because its tangential acceleration is positive. A maximum-curvature binary remains conditional: its full signed ledger must close radial and tangential acceleration, wake-boundary exchange, return-map stability, Jacobian floors, and the action-derived conservation charges on one retained history record.
+The circular atlas establishes exact delay equations, signed-sheet root thresholds, and canonically weighted radial and tangential coefficients. The principal partner branch cannot form a particle-only constant-speed circle because its tangential acceleration is positive. The complete unregularized canonical simple-root ledger does contain algebraic radial/tangential balance points, so the circular ansatz is not excluded at that level. Redirecting the acceleration toward an inertially extrapolated emission site removes those candidates and supplies no replacement equilibrium on $1<s<20$, but the autonomous fixed-speed wake state rejects that construction as the local response of the present causal surfaces. A maximum-curvature binary remains conditional: the canonical candidates must survive one finite singular-event convention, retained-history transport, wake-boundary exchange, return-map stability, Jacobian floors, and the action-derived conservation charges on one retained history record.

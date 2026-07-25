@@ -59,7 +59,7 @@ const VT095_SAME_TRANSMITTER_TRANSMITTER = {
   epochTime: 0,
 };
 
-test("same-transmitter root emits signed root playback; rigid circle stays reflection-locked at m=+1", () => {
+test("same-transmitter root emits signed root playback; fixed-frequency circle stays reflection-locked at m=+1", () => {
   const rho = Math.sqrt(2 / 3);
   const response = solveMovingCircularSameTransmitterCausalRoots({
     transmitter: { ...VT095_SAME_TRANSMITTER_TRANSMITTER, angularVelocity: 1.00196 / rho, angularAcceleration: 0 },
@@ -73,7 +73,7 @@ test("same-transmitter root emits signed root playback; rigid circle stays refle
   assert.ok(response.roots.length >= 1);
   const root = response.roots[response.roots.length - 1];
   assert.equal(root.rootKind, "same-transmitter");
-  // Fixed-omega rigid circle: reflection symmetry gives D_r = D_t, m = +1.
+  // Fixed-frequency circular path: reflection symmetry gives D_r = D_t, m = +1.
   assert.ok(Math.abs(root.rootPlayback - 1) < 1e-6);
   assert.ok(Math.abs(root.distance - 0.17662) < 2e-3);
   assert.ok(Math.abs(root.accelerationWeight - 1 / Math.abs(root.transmitterFactor)) < 1e-12);

@@ -23,6 +23,8 @@ At assembly level, these terms refer to substrate dynamics in absolute time:
 - **Corridor-mode nucleation (weak channels):** lock-in to corridor-type interaction modes used for $W^\pm/Z$ channel bookkeeping.
 - **Pair nucleation:** local substrate recruitment/reconfiguration into $e^+e^-$ assemblies under threshold-satisfying two-photon forcing, constrained to recover standard kinematic and rate limits in validated regimes. The incoming photon ledgers close at the vertex; the outgoing charged-assembly identities require identity-routed substrate content rather than relabeling the photon constituents.
 
+Carrier-grade note: the coaxial contra-rotating polarity-conjugate planar pair is a proposed photon carrier whose acceleration-balance closure remains open, so `lock-in` and `stable planar-pair mode` vocabulary throughout this taxonomy is referent-pending (see Photon Referent Status in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md)).
+
 Observer-level equations remain the operational layer. Assembly-level language is accepted only when it preserves threshold, cross-section, timing, and conservation closure against standard phenomenology.
 
 ### Low-Energy Standard Model Assemblies in the Noether Sea
@@ -91,7 +93,7 @@ A_{\perp,A}^{i}(T)
 \hat r_{Ak,j}(T;T_t)
 $$
 
-The weight $\mathcal{K}_{Ak}$ packages the inverse-square causal-wake factor, the transmitter-side acceleration-weight factor of the $W^{\mathrm{acc}}$ family, the polarity sign, and the local Noether sea anisotropy/vorticity response; the transmitter-side (causal) Jacobian $D_t$ enters only as the transversality and root-density data that make each causal root legal, not as a separate multiplicative factor stacked on $W^{\mathrm{acc}}$ (which already carries the $1/D_t$ branch density). It is named $\mathcal{K}$ rather than $W$ because it is a channel-level composite, not the canonical per-hit acceleration weight alone. The argument $R_A$ is the assembly envelope scale-and-orientation record inherited from Noether braid geometry. This equation is the allowed bridge to magnetic-like language: transverse acceleration is recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
+The weight $\mathcal{K}_{Ak}$ packages the inverse-square causal-wake factor, the transmitter-side acceleration-weight factor of the $W^{\mathrm{acc}}$ family, the polarity sign, and the local Noether sea anisotropy/vorticity response; the transmitter-side (causal) Jacobian $D_t$ enters only as the transversality and root-density data that make each causal root legal, not as a separate multiplicative factor stacked on $W^{\mathrm{acc}}$ (which already carries the $1/D_t$ branch density). It is named $\mathcal{K}$ rather than $W$ because it is a channel-level composite, not the canonical per-hit acceleration weight alone. The argument $R_A$ is the assembly envelope scale-and-orientation record inherited from Noether braid geometry. This equation is the allowed bridge to magnetic-like language: transverse acceleration is to be recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
 
 In this expression, $\mathcal{C}_{Ak}(T)$ is the causal-root set for source branch $k$ acting on assembly $A$, and $\hat r_{Ak,j}(T;T_t)$ is the $j$ component of the delayed line-of-action unit vector. The formula therefore preserves the primitive line-of-action law while naming the observer-level transverse projection.
 
@@ -358,7 +360,7 @@ Each reaction chapter should include three short blocks:
 
 ### Channel-Specific Terms
 
-- **Planar-mode nucleation:** photon-channel lock-in language for forming a coaxial contra-rotating polarity-conjugate planar-pair mode. Use for electromagnetic radiation channels (for example synchrotron, bremsstrahlung) unless a chapter justifies another term. The term carries Gate A kinematic closure and Gate B transverse-ledger closure, but those closures should be tested separately.
+- **Planar-mode nucleation:** photon-channel lock-in language for forming a coaxial contra-rotating polarity-conjugate planar-pair mode (a proposed carrier; referent-pending per the carrier-grade note in the assembly-level interpretation section). Use for electromagnetic radiation channels (for example synchrotron, bremsstrahlung) unless a chapter justifies another term. The term carries Gate A kinematic closure and Gate B transverse-ledger closure, but those closures should be tested separately.
 - **Corridor-mode nucleation:** weak-channel language reserved for $W^\pm/Z$ interaction contexts.
 - **Pair nucleation:** $\gamma\gamma \rightarrow e^+e^-$ language at ontology level; must map to standard threshold/rate constraints in validated limits.
 
@@ -401,11 +403,16 @@ This page is a foundation-up overview. It states the shared mechanism and the cl
 
 ### Radiation Versus The Always-On Wake
 
-Every architrino emits its wake at all times. The causal-isochron record that carries the potential is broadcast continuously by every source — moving or still, bound or free — and mediating force through that record is the ordinary business of the substrate. This constant emission is *not* radiation. Radiation is the narrower event defined above: a *routed closure residual*, in which a driven, non-adiabatically disturbed assembly sheds part of that residual into an outgoing carrier — a planar-mode photon assembly, or a reaction-product assembly such as an alpha, beta electron, neutron, or neutrino (see [Radioactivity Naming](#radioactivity-naming)). If no residual is routed, nothing is radiated, even though the wake never stops.
+Every architrino emits its wake at all times. The causal-isochron record that carries the potential is broadcast continuously by every source — moving or still, bound or free — and mediating acceleration through that record is the ordinary business of the substrate. This constant emission is *not* radiation. Radiation is the narrower event defined above: a *routed closure residual*, in which a driven, non-adiabatically disturbed assembly sheds part of that residual into an outgoing carrier — a planar-mode photon assembly, or a reaction-product assembly such as an alpha, beta electron, neutron, or neutrino (see [Radioactivity Naming](#radioactivity-naming)). If no residual is routed, nothing is radiated, even though the wake never stops.
 
 The always-on wake is therefore the emission of the potential, and it should keep the name **wake**. The word `transmission` is reserved in this chapter for the material row where a photon passes through a medium (reflection, transmission, absorption); it must not be reused for the substrate wake, or the two meanings collide.
 
-A steady bound assembly makes the distinction sharp. A stable Noether braid emits its wake on every cycle, yet its return map carries no routed residual: over a cycle the far-zone transport of energy, momentum, and angular momentum must net to zero. At observer level this is the bound $1/r^2$ near-field rather than a radiative $1/r$ tail. The Master Equation does not acquire a separate acceleration-field term when motion changes. Instead, acceleration enters the causal-root record through transmitter-side root-density bunching in the $W^{\mathrm{acc}}$ family, while any irreversible radiative share must appear as nucleated photon assemblies with source-depletion, recoil, medium, wake, and remnant rows. The substrate statement is therefore not that acceleration creates a new $1/r$ field term; it is that a driven event may leave a closure residual that the channel ledger routes into discrete photon output. Recovering the Larmor/Liénard and synchrotron far-zone laws from those event records remains a derivation target.
+A steady bound assembly makes the distinction sharp. A stable Noether braid emits its wake on every cycle, yet a certified non-radiative return map must carry no routed residual: over a cycle the far-zone transport of energy, momentum, and angular momentum must net to zero. That zero-flux statement is a closure target, not a consequence of the inverse-square per-hit acceleration alone. The canonical fixed-hit multiplier reads transmitter position and velocity but no separate transmitter acceleration or higher derivative. Acceleration can still be represented across a sequence of changing roots and velocities, while any irreversible radiative share must appear in a derived wake-energy current or as nucleated photon assemblies with source-depletion, recoil, medium, wake, and remnant rows. The substrate statement is therefore not that acceleration creates a primitive $1/r$ acceleration term; it is that a driven event may leave a closure residual that the channel ledger routes into outgoing transport. Recovering the Larmor/Liénard and synchrotron far-zone laws from those event records remains a derivation target.
+
+Plainly: the Master Equation is acceleration-blind only at one fixed hit. That
+does not prove that accelerated histories cannot radiate, and the $1/r^2$
+acceleration falloff does not by itself determine the energy reaching a distant
+boundary.
 
 ### Radiation as the Cost of an Unprepared Path
 
@@ -439,7 +446,7 @@ In ordinary physics language, radiation can mean electromagnetic light, emitted 
 
 | Form | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading | Boundary discipline |
 | --- | --- | --- |
-| Photon-channel radiation | Electromagnetic bands such as radio, microwave, infrared, visible, ultraviolet, X-ray, and gamma-ray radiation are photon-channel records with different frequency, energy, source, and path-history ledgers. | The carrier is still the coaxial contra-rotating polarity-conjugate planar pair; the band name is not a separate substrate ontology. |
+| Photon-channel radiation | Electromagnetic bands such as radio, microwave, infrared, visible, ultraviolet, X-ray, and gamma-ray radiation are photon-channel records with different frequency, energy, source, and path-history ledgers. | The carrier is still modeled as the coaxial contra-rotating polarity-conjugate planar pair (a proposed assembly, referent-pending); the band name is not a separate substrate ontology. |
 | Source-specific photon mechanisms | Atomic transition radiation, bremsstrahlung, synchrotron emission, thermal free-free emission, and medium relaxation are different trigger geometries for routing a closure residual into photon output. | Each mechanism must keep its source depletion, recoil, medium, remnant, polarization handoff, and benchmark recovery rows explicit. |
 | Medium-speed and boundary radiation | Cherenkov radiation tests uniform motion with $v>c_{\mathrm{phase}}$ in a material response channel; transition radiation tests constant-velocity passage across an abrupt response boundary. | These are observer-level recovery targets for the sea-dependent preparation map. They do not establish a substrate mechanism until the same material event record derives the angle, spectrum, boundary dependence, and energy-momentum ledger. |
 | Thermal or blackbody radiation | A photon bath reaches an ensemble-level detailed-balance limit after repeated emission, capture, scattering, pair-channel exchange, and non-radiative medium exchange. | Blackbody language is stronger than photon emission; it requires ensemble temperature, thermalization depth, and Planck-occupation recovery. |
@@ -459,8 +466,8 @@ Radioactivity labels mix carrier names with source mechanisms. In $\mathbb{A}\ma
 | Alpha radiation | outgoing helium nucleus | reaction-product routing of a bound nuclear assembly, with recoil and nuclear-remnant rows |
 | Beta radiation | outgoing electron or positron plus neutrino-sector product in a beta reaction | weak-corridor reaction provenance, axial-inventory payload, neutrino routing, and recoil |
 | Neutron radiation | outgoing neutron assembly | nuclear product routing, not photon-channel radiation |
-| Gamma radiation | photon-channel packet from nuclear de-excitation or related high-energy nuclear transition | planar-mode photon output whose source mechanism is nuclear |
-| X-ray radiation | photon-channel packet usually sourced by electron-envelope transition, braking, or inner-shell rearrangement | planar-mode photon output whose source mechanism is atomic or charged-particle transport |
+| Gamma radiation | photon-channel packet from nuclear de-excitation or related high-energy nuclear transition | photon output modeled as a planar mode (proposed carrier) whose source mechanism is nuclear |
+| X-ray radiation | photon-channel packet usually sourced by electron-envelope transition, braking, or inner-shell rearrangement | photon output modeled as a planar mode (proposed carrier) whose source mechanism is atomic or charged-particle transport |
 
 Thus gamma rays and X-rays differ mainly by source mechanism and frequency band, not by photon ontology. Alpha, beta, and neutron radiation are outgoing assemblies or reaction products and must use the reaction ledger rather than the photon-only planar-mode record.
 
@@ -1046,7 +1053,7 @@ with every component required to vanish, or to be assigned to a named residual r
 
 ### Photon-Material Surface Routing
 
-A material surface interaction is the near-field Gate C version of the same event schema. It should not be pictured as a small projectile striking a hard wall. At atomic resolution the incoming photon is a coaxial contra-rotating polarity-conjugate planar pair with Gate A and Gate B ledgers, while the material supplies an electron-envelope branch, a nuclear source envelope, a bonding or lattice branch, and a local Noether sea response record. The local event state can be written as
+A material surface interaction is the near-field Gate C version of the same event schema. It should not be pictured as a small projectile striking a hard wall. At atomic resolution the incoming photon is modeled as a coaxial contra-rotating polarity-conjugate planar pair (a proposed carrier, referent-pending) with Gate A and Gate B ledgers, while the material supplies an electron-envelope branch, a nuclear source envelope, a bonding or lattice branch, and a local Noether sea response record. The local event state can be written as
 
 $$
 X_{\mathrm{surf}}
@@ -1445,7 +1452,7 @@ The routing skeleton above becomes useful only if each benchmark is carried as a
 
 | Target | Class | Concrete closure requirement | Validation check | Failure condition |
 | --- | --- | --- | --- | --- |
-| Radiative event ontology | ontology | A radiative event is a routed closure residual. Photon output is a planar-mode nucleation event whose photon branch is the coaxial contra-rotating polarity-conjugate planar pair; medium excitation, recoil, residual internal energy, and reaction products remain explicit non-photon channels. | Every channel event record identifies the source assembly, trigger geometry, local Noether sea state, $\mathcal{R}_{\Theta}$, $E_{\text{exc}}$, photon or non-photon outputs, and conservation ledgers. | If radiation is treated as primitive acceleration-field output or as untracked energy loss, the ontology has been bypassed. |
+| Radiative event ontology | ontology | A radiative event is a routed closure residual (this event structure is the ontology claim). Photon output is a planar-mode nucleation event whose photon branch is modeled as the coaxial contra-rotating polarity-conjugate planar pair, a proposed carrier (referent-pending) whose acceleration-balance closure remains open; medium excitation, recoil, residual internal energy, and reaction products remain explicit non-photon channels. | Every channel event record identifies the source assembly, trigger geometry, local Noether sea state, $\mathcal{R}_{\Theta}$, $E_{\text{exc}}$, photon or non-photon outputs, and conservation ledgers. | If radiation is treated as primitive acceleration-field output or as untracked energy loss, the ontology has been bypassed. |
 | Scattering/reaction event grammar | derivation target | Express every scattering, relativistic collision, pair-channel, and radiation-coupled reaction as $\mathcal{E}_{\mathrm{scat/rxn}}=(\mathfrak{L}_{\mathrm{in}},W_{\mathrm{int}},\mathfrak{T}_{\mathrm{cons}},\mathfrak{L}_{\mathrm{out}},\mathfrak{R}_{\mathrm{res}})$, with incoming ledgers, a finite interaction window, conserved transfers, outgoing ledgers, and residual checks all present. | A completed channel must drive $\mathfrak{R}_{\mathrm{res}}$ to zero within tolerance or assign every nonzero term to a named remnant, medium, recoil, wake, or benchmark-failure row. | If products are listed without incoming provenance, if the interaction window is hidden, if observer-level creation language bypasses identity routing, or if standard scattering limits are asserted without residual checks, the event grammar has failed. |
 | Larmor/Liénard recovery | derivation target | Coarse-grain repeated planar-mode nucleation from smooth weak-field charged-assembly acceleration so that the nonrelativistic power scales as $P\propto\|\mathbf{a}\|^2$ and the relativistic observer-level limit recovers the Larmor/Liénard class after clock and rate conversion. | Sweep smooth acceleration histories at fixed weak homogeneous Noether sea state and recover the standard power and angular limits before claiming channel-specific deviations. | If the low-speed limit is not quadratic in acceleration, or if the relativistic limit requires a separately fitted radiation threshold, the radiation map is not closed. |
 | Medium-speed and boundary radiation | derivation target | Recover Cherenkov radiation for uniform transport with $v>c_{\mathrm{phase}}$ and transition radiation at an abrupt material-response boundary from the same sea-dependent event grammar. | Derive threshold, angle or boundary dependence, spectrum, recoil, and material energy-momentum transfer without inserting an acceleration-only trigger. | If the model forbids radiation at constant velocity in these validated material regimes, or reproduces them only by relabeling a fitted photon source as a closure residual, the preparation map fails. |
@@ -1488,7 +1495,7 @@ Atomic transition radiation is the line-emission and line-absorption channel in 
 
 This page specializes the shared routing skeleton in [Radiation](../../../../markdown/aaa/reactions/radiation.md). The envelope energies and spectral labels are inherited from [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), while photon ontology and Gate A/B/C closure requirements are inherited from [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface). Reaction provenance follows [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), and cosmology-facing photon records remain downstream of [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
-This chapter is not a completed derivation of atomic transition rates. Its role is to state the first event record for the Gate C vertex: how a bound atomic envelope sheds or captures a coaxial contra-rotating polarity-conjugate planar pair while preserving energy, momentum, angular momentum, local Noether sea state, and path-history provenance.
+This chapter is not a completed derivation of atomic transition rates. Its role is to state the first event record for the Gate C vertex: how a bound atomic envelope sheds or captures a photon modeled as a coaxial contra-rotating polarity-conjugate planar pair while preserving energy, momentum, angular momentum, local Noether sea state, and path-history provenance.
 
 ### Basin Transition
 
@@ -1688,7 +1695,7 @@ The minimum event record is:
 
 ### Absorption and Stimulated Channels
 
-Absorption is the inverse Gate C vertex: an incoming coaxial contra-rotating polarity-conjugate planar pair is captured by the atomic assembly and folded into a higher envelope basin when the capture geometry and gap condition match. In compact form,
+Absorption is the inverse Gate C vertex: an incoming photon, modeled as a coaxial contra-rotating polarity-conjugate planar pair, is captured by the atomic assembly and folded into a higher envelope basin when the capture geometry and gap condition match. In compact form,
 
 $$
 b+\gamma \to a,
@@ -1807,7 +1814,7 @@ Cosmology-facing use of any line should keep source-branch changes separate from
 
 ### Closure Status
 
-Accepted ontology: a photon emitted or captured in this channel is a coaxial contra-rotating polarity-conjugate planar pair, and atomic line radiation is a routed assembly-level transition rather than excitation of a separate fundamental electromagnetic field.
+Proposed ontology (referent-pending): a photon emitted or captured in this channel is modeled as a coaxial contra-rotating polarity-conjugate planar pair (the planar-pair acceleration-balance closure is still open), and atomic line radiation is a routed assembly-level transition rather than excitation of a separate fundamental electromagnetic field.
 
 Derivation targets: compute $\mathcal S_{\gamma}^{\mathrm{at}}$, recover the weak-coupling transition-rate limit, derive selection-rule basin measures, close recoil and medium ledgers, recover the hydrogen $2s\to1s$ two-photon and Lyman-$\alpha$ escape bottlenecks, and recover detailed balance without changing the Noether sea state map between emission, absorption, and thermal ensembles. The named single-record closure requires frequency, emission and absorption strength, dispersion strength, stimulated coefficients, and continuum inverse channels to project from the same event family.
 
@@ -1903,6 +1910,17 @@ $$
 
 Here $\Gamma_e(T)$ is the electron-assembly microstate, $\mathcal{C}_{o'j}(T)$ and $J_{o'j}$ are the active causal-root and Jacobian data during the target encounter, $Z$ and $b$ summarize the observer-level target charge and impact-parameter geometry, and $\left\| d\mathbf{V}_e/dT\right\|$ is the deceleration magnitude in absolute time. This equation does not derive the QED bremsstrahlung cross-section. It names the closure functional that must later recover the validated cross-section and emissivity limits.
 
+The explicit deceleration argument is a path-derived assembly diagnostic, not
+an input to the canonical fixed-hit acceleration multiplier and not a derived
+radiation amplitude. At one hit the Master Equation reads transmitter position
+and velocity; a retained encounter record may estimate deceleration from the
+changing path and then test whether that history predicts the routed assembly
+transition.
+
+Plainly: this provisional channel model summarizes a changing trajectory. It
+must not be read as adding an acceleration-dependent field term to each
+architrino hit.
+
 The corresponding excitation energy is inherited from the radiation basin definition:
 
 $$
@@ -1927,7 +1945,7 @@ Only when both conditions are met is photon output allowed. If the closure resid
 
 #### Wake Shock Definition (Channel Specialization)
 
-In this document, a **wake shock** is the bremsstrahlung name for the inherited radiation closure residual when it is produced by strong target-induced deceleration of the electron Noether braid assembly. It is not merely a descriptive label for radiation. Operationally, it is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in a declared binary channel (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether sea.
+In this document, a **wake shock** is the bremsstrahlung name for the inherited radiation closure residual when it is produced by strong target-induced deceleration of the electron Noether braid assembly. It is not merely a descriptive label for radiation. Operationally, the candidate mechanism (a derivation target, not an established result) is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in a declared binary channel (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether sea. Falsifier: simulated emission events that radiate without any internal-channel $c_f$ crossing would falsify the wake-shock identification.
 
 A minimal trigger condition is written as
 
@@ -2021,7 +2039,7 @@ This section states the mechanism-level emergence claim explicitly:
 
 1. **Mechanism:** deceleration-driven internal reconfiguration in the electron assembly produces a closure mismatch $\mathcal{R}_{\Theta}^{\mathrm{br}}$ and excitation energy $E_{\text{exc}}^{\mathrm{br}}$; if the inherited planar-mode threshold is crossed, a planar mode is nucleated and propagates as a photon assembly.
 2. **Microstate mapping:** non-emissive states satisfy $\mathcal{I}_e < \mathcal{I}_{\mathrm{crit}}$; emissive states satisfy $\mathcal{I}_e \ge \mathcal{I}_{\mathrm{crit}}$ and admit planar-mode nucleation probability $P_{\mathrm{nuc}} > 0$.
-3. **Classical-limit recovery:** for many emissions over smooth trajectories, coarse-grained power recovers the standard acceleration-radiation scaling (Larmor/Liénard class) in weak-coupling validated regimes.
+3. **Classical-limit recovery (open derivation target):** for many emissions over smooth trajectories, coarse-grained power must recover the standard acceleration-radiation scaling (Larmor/Liénard class) in weak-coupling validated regimes; this recovery has not been derived and is graded open in the [Radiation closure-target ledger](../../../../markdown/aaa/reactions/radiation.md#radiation-closure-target-ledger).
 4. **Declared breakdown regime:** near unresolved ultra-strong-field or ultra-high-energy domains, this effective mapping is not assumed complete and requires direct Master Equation treatment.
 
 ### Core Equations (Observer-Level Baselines)
@@ -2275,7 +2293,7 @@ Per the authoring rule in [Mode Taxonomy](../../../../markdown/aaa/reactions/mod
 
 ### Photon Ontology Note
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, the photon is fundamentally a coaxial contra-rotating polarity-conjugate planar pair assembly propagating through the Noether sea. The language of "field quanta" and effectively continuous emission is retained as a coarse-grained description over many discrete planar-mode nucleation events. In this file, $\mathbf{p}_{\gamma}$ denotes momentum of that discrete assembly object at micro level, while standard QED field language is used for observer-level rates and spectra.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, the photon is modeled fundamentally as a coaxial contra-rotating polarity-conjugate planar pair assembly (a proposed carrier whose acceleration-balance closure remains open) propagating through the Noether sea. The language of "field quanta" and effectively continuous emission is retained as a coarse-grained description over many discrete planar-mode nucleation events. In this file, $\mathbf{p}_{\gamma}$ denotes momentum of that discrete assembly object at micro level, while standard QED field language is used for observer-level rates and spectra.
 
 Event-level provenance for cosmology-facing use is tracked in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
@@ -2510,9 +2528,9 @@ in weak homogeneous limits, with $B_{\mathrm{eff}}$ the observer-level magnetic 
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel
 
-- **Synchrotron emission channel:** curved charged-assembly transport through an anisotropic Noether sea state produces $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ by Noether braid velocity deformation and gradient forcing. If the inherited planar-mode threshold is crossed, the event nucleates [photon assemblies](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) from interaction energy / wake stress while conserving charged-assembly identity. The photon-side target is the canonical **coaxial contra-rotating polarity-conjugate planar pair** description.
-- **Pair channel:** two-photon overlap, with each photon treated as a coaxial contra-rotating polarity-conjugate planar pair, associates local substrate content into a charged $e^+e^-$ assembly pair; this association must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether sea braids $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
-- **Cascade loop:** repeated emission-pair-emission cycles are modeled as repeated mode-lock events under the same observer-level thresholds.
+- **Synchrotron emission channel:** (provisional map) curved charged-assembly transport through an anisotropic Noether sea state produces $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ by Noether braid velocity deformation and gradient forcing. If the inherited planar-mode threshold is crossed, the event nucleates [photon assemblies](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) from interaction energy / wake stress while conserving charged-assembly identity. The photon-side target is the proposed **coaxial contra-rotating polarity-conjugate planar pair** description (referent-pending).
+- **Pair channel:** (provisional map) two-photon overlap, with each photon treated as a coaxial contra-rotating polarity-conjugate planar pair, associates local substrate content into a charged $e^+e^-$ assembly pair; this association must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether sea braids $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
+- **Cascade loop:** (provisional map) repeated emission-pair-emission cycles are modeled as repeated mode-lock events under the same observer-level thresholds.
 
 ### Shared Photon Event Record
 
@@ -2605,7 +2623,7 @@ with $\Delta_{\gamma,\mathrm{flux}}$ inherited from [Radiation](../../../../mark
 - Rate closure: recover standard synchrotron and Breit-Wheeler limits in validated regimes.
 - Absorption closure: recover $\alpha_\nu^{\mathrm{ssa}}$, the optically thick $I_\nu\propto\nu^{5/2}$ branch, and the source function from the same charged-transport event family that supplies $j_\nu$, while keeping Razin-Tsytovich suppression in the material-dispersion row.
 - Timing closure: in weak-gravity astrophysical limits, $\Gamma_{\mathrm{eff}} \rightarrow \gamma_{\mathrm{SR}}$ so cooling breaks are preserved. This is an effective closure target for the clock law, not an assumption that substrate time is observer proper time.
-- Polarization closure: recover observer-level synchrotron polarization geometry from directional $B$ mapping; in uniform-field limits, failure to recover linear polarization fractions $\Pi \approx 70\%-75\%$ falsifies the geometric mapping (Rybicki and Lightman 1979, Sec. 6.3; observational confirmation in radio pulsars and synchrotron nebulae typically shows $\Pi_{\mathrm{obs}} \sim 0.3$-0.7 after depolarization from field disorder and Faraday rotation).
+- Polarization closure: recover observer-level synchrotron polarization geometry from directional $B$ mapping; in uniform-field limits, failure to recover linear polarization fractions $\Pi \approx 70\%-75\%$ falsifies the geometric mapping (Rybicki and Lightman 1979, Sec. 6.3; observational confirmation in radio pulsars and synchrotron nebulae typically shows $\Pi_{\mathrm{obs}} \sim 0.3$-0.7 (textbook-summarized benchmark; radio-pulsar and synchrotron-nebula polarimetry) after depolarization from field disorder and Faraday rotation).
 
 ### Regime Map
 
@@ -2662,7 +2680,7 @@ Status convention used below:
 
 This file uses the following provisional mapping targets.
 
-- **Synchrotron emission (provisional):** a charged Noether braid assembly in curved transport through $\mathcal{V}_{\mathrm{NS}}$ develops a Noether braid velocity deformation. Gradient forcing $G_{\text{grad}}$ and receiver-side causal-branch bunching can leave $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ after ordinary adiabatic retuning fails; when the associated wake-strain state crosses the inherited planar-mode threshold, a photon assembly nucleates and carries the photon-row share of the source-depletion ledger. Recoil, medium, wake, handoff, and remnant rows close the rest. This nucleation threshold must be derivable from wake-strain eigenvalue conditions in simulations; hand-tuning the threshold to match observed $P_{\mathrm{syn}}(\gamma,B)$ or $\nu_c\propto\gamma^2B$ constitutes a fit, not a derivation. The mapping succeeds only if the threshold emerges naturally from the architrino master equation applied to curved charged-assembly trajectories in anisotropic Noether sea states.
+- **Synchrotron emission (provisional):** a charged Noether braid assembly in curved transport through $\mathcal{V}_{\mathrm{NS}}$ develops a Noether braid velocity deformation. Gradient forcing $G_{\text{grad}}$, transmitter-side root-density bunching, receiver-side root playback, and the changing delayed geometry can leave $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ after ordinary adiabatic retuning fails; when the associated wake-strain state crosses the inherited planar-mode threshold, a photon assembly nucleates and carries the photon-row share of the source-depletion ledger. Recoil, medium, wake, handoff, and remnant rows close the rest. This nucleation threshold must be derivable from wake-strain eigenvalue conditions in simulations; hand-tuning the threshold to match observed $P_{\mathrm{syn}}(\gamma,B)$ or $\nu_c\propto\gamma^2B$ constitutes a fit, not a derivation. The mapping succeeds only if the threshold emerges naturally from the architrino master equation applied to curved charged-assembly trajectories in anisotropic Noether sea states.
 - **Magnetic field ontology (provisional mapping):** observer-level $B$ is treated as the effective coarse-grained directional (vector/tensor) vorticity-anisotropy state of the Noether sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$, not as a separate fundamental void field. This is a mapping target, not settled ontology. Charged-assembly curvature is therefore interpreted provisionally as transport through an anisotropic Noether sea state with explicit directionality. In validated limits, this mapping must: (i) derive the effective Lorentz-force law $\mathbf{F}_{\mathrm{eff}} = q(\mathbf{v}/c) \times \mathbf{B}_{\mathrm{eff}}$ from anisotropic Noether sea transport together with the receiver-side geometry of delayed causal flux, rather than by postulating a primitive cross-product force term; (specifically, show that vorticity-tensor gradients $\partial_i \mathcal{V}^j_{\mathrm{NS}}$ produce perpendicular deflection under boost); (ii) reproduce Maxwell-level electromagnetic-wave propagation (dispersion relation $\omega = ck$ for photon modes in uniform $\mathcal{V}_{\mathrm{NS}}$); (iii) recover synchrotron polarization geometry ($\mathbf{E}_\gamma \perp \mathbf{B}_{\mathrm{eff}}$, $\mathbf{E}_\gamma \perp \mathbf{v}$ in observer frame) from directional emission rules in the Noether sea anisotropy basis, while inheriting photon helicity and analyzer statistics from Gate B rather than deriving them locally. **Falsification criterion:** if simulations with anisotropic Noether sea states fail to produce the factor-of-$\gamma^2$ frequency scaling in $\nu_c$ (tested via swept $B$-field and $\gamma$ at fixed pitch angle), or if polarization vectors misalign with standard geometry by $> 15^\circ$ systematically, this magnetic mapping is unresolved or failed and must be replaced by a new Noether sea / assembly response map.
 - **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether sea energy-density concentration triggered by overlap of two photon assemblies modeled as coaxial contra-rotating polarity-conjugate planar pairs above threshold, not ex nihilo creation. The incoming photon assemblies supply energy, momentum, and trigger geometry, not new architrino identities; the recruited Noether sea content must supply the identity-routed inventory. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling. Operational constraint: pair-channel cross-section $\sigma_{\gamma\gamma}(s)$ computed from this nucleation picture must reproduce
 $$

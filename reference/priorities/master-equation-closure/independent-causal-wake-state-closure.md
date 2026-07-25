@@ -4,7 +4,7 @@
 
 - Claim level: `derivation-target`
 - Priority rank: `1` within Master Equation closure
-- Current result: `minimum-state-derived; closed-negatively-under-current-primitives`
+- Current result: `regular-kinematic-substate-derived; account-complete-update-closed-negatively-under-current-primitives`
 - Canonical regular-domain law: unchanged transmitter-side acceleration
 - Required outcome: one causal update that closes the coincident transition and conserved accounts together
 
@@ -31,6 +31,42 @@ It also proves that the current primitives do not select the coincident-birth
 maturity law, the motion-account functions, an emission capacity, or a
 reception transfer. The route therefore remains fail closed until one new
 Architrino-native construction supplies all four together.
+
+## Regular Kinematic Substate Result
+
+The regular-domain emission, propagation, and reception geometry now has an
+explicit autonomous state realization. Each emission label stores the
+transmitter identity, emission time, fixed emission-site center, expanding
+radius, and polarity-weighted emission measure. After emission,
+
+$$
+\dot{\mathbf C}_{t,e}=\mathbf0,
+\qquad
+\dot R_{t,e}=c_f.
+$$
+
+The local reception direction is the expanding surface normal, which is the
+canonical emission-site-to-receiver direction. Fixed-reception source-time
+collapse of the constant emission measure independently yields
+$c_f/|D_t|$. The executable reference is
+`scripts/equation-mapping/derive-causal-wake-update-law.mjs`, with focused
+checks in `tests/causal-wake-update-law.test.js`.
+
+Claim grade: derived on certified regular support from the existing fixed-speed
+causal-surface postulate. This is `promote now` for the regular direction and
+weight, and it has been captured in the Master Equation.
+
+The same derivation rejects the inertially extrapolated direction as a local
+response of the present wake state. Redirecting only the acceleration breaks
+surface-normal response. Moving each emitted center inertially changes surface
+element speeds away from the fixed absolute value $c_f$ and produces a
+different causal support and collapse denominator.
+
+This does not overturn the negative result below. The transparent kinematic
+state has no derived maturity, energy, momentum, reception-transfer, or
+account-bearing boundary law. It therefore does not cross coincident
+same-transmitter birth or close the three conserved accounts. Promotion
+classification for the full packet remains `defer with blocker`.
 
 ## Required State And Update
 

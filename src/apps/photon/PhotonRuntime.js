@@ -19,15 +19,17 @@ import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js";
 import { createPhotonControlsRuntime } from "./PhotonControlsRuntime.js";
 import {
+  buildPhotonPlotSamplesWithPrescribedPathAnalysis,
   computePhotonFormulaSummaryWithPrescribedPathAnalysis,
 } from "./PhotonFormulaRuntime.js";
 import { getPhotonDiagnosticRows, formatPhotonFixed } from "./PhotonDiagnosticsRuntime.js";
 import {
   drawPhotonElectricFieldPlot,
+  getPhotonFieldPlotSampleCount,
   drawPhotonPolarizationInset,
   drawPhotonBraidStage,
 } from "./PhotonBraidVisualRuntime.js";
-import { PRESCRIBED_PATH_ANALYSIS_ID } from "../../prescribed-path-analysis/index.mjs";
+import { PRESCRIBED_PATH_ANALYSIS_ID } from "../../prescribed-path-analysis/PrescribedPathAnalysis.mjs";
 import {
   STANDALONE_APP_HOME_HREF,
   navigateStandaloneAppHome,
@@ -40,7 +42,7 @@ const PHOTON_DOCS = {
     markdownColumns: 1,
   },
   photonClosure: {
-    name: "Photon Closure",
+    name: "Photon Closure Interface",
     markdownPath: "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
     markdownSection: "Photon Closure Interface",
     markdownColumns: 1,
@@ -60,39 +62,38 @@ const PHOTON_DOCS = {
 };
 
 const PHOTON_RUNTIME_ANALYSIS_ID = PRESCRIBED_PATH_ANALYSIS_ID;
-const PHOTON_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const PHOTON_RUNTIME_SOLVER_MIN_INTERVAL_MS = 750;
+const PHOTON_RUNTIME_SOLVER_ERROR_RETRY_MS = 1500;
 const PHOTON_RUNTIME_SOLVER_EDIT_DEBOUNCE_MS = 220;
 const PHOTON_RUNTIME_SOLVER_TIME_QUANTUM_SECONDS = 1 / 12;
-const PHOTON_RUNTIME_SOLVER_DISPLAY_PLOT_SAMPLE_COUNT = 360;
 const PHOTON_RUNTIME_SOLVER_SUMMARY_OPTIONS = Object.freeze({
-  polarizationSampleCount: 6,
-  minimumPolarizationSampleCount: 6,
-  analyzerSampleCount: 2,
-  minimumAnalyzerSampleCount: 2,
+  polarizationSampleCount: 24,
+  minimumPolarizationSampleCount: 24,
+  analyzerSampleCount: 24,
+  minimumAnalyzerSampleCount: 24,
+  skipSelfHitDiagnostics: true,
 });
 const PHOTON_RUNTIME_SOLVER_SEARCH_OPTIONS = Object.freeze({
   limit: 6,
   maxCandidates: 6,
   comparisonCandidateLimit: 1,
   summaryOptions: {
-    polarizationSampleCount: 8,
-    minimumPolarizationSampleCount: 6,
-    analyzerSampleCount: 2,
-    minimumAnalyzerSampleCount: 1,
+    polarizationSampleCount: 24,
+    minimumPolarizationSampleCount: 24,
+    analyzerSampleCount: 16,
+    minimumAnalyzerSampleCount: 16,
   },
   perturbOptions: {
-    polarizationSampleCount: 4,
-    minimumPolarizationSampleCount: 3,
-    analyzerSampleCount: 1,
-    minimumAnalyzerSampleCount: 1,
+    polarizationSampleCount: 16,
+    minimumPolarizationSampleCount: 16,
+    analyzerSampleCount: 8,
+    minimumAnalyzerSampleCount: 8,
   },
   comparisonOptions: {
-    polarizationSampleCount: 4,
-    minimumPolarizationSampleCount: 3,
-    analyzerSampleCount: 1,
-    minimumAnalyzerSampleCount: 1,
-    absoluteHistorySegments: 2,
+    polarizationSampleCount: 16,
+    minimumPolarizationSampleCount: 16,
+    analyzerSampleCount: 8,
+    minimumAnalyzerSampleCount: 8,
     maxDelay: 0.25,
   },
 });
@@ -182,10 +183,10 @@ function renderFormulaSummary(documentLike, container, summary, { windowLike } =
         : "n/a",
     ],
     ["fit residual", formatPhotonFixed(summary.fitResidual, 4)],
-    ["fit analyzer fraction", formatPhotonFixed(summary.analyzerTarget, 3)],
-    ["mu analyzer", formatPhotonFixed(summary.field.analyzer.fraction, 3)],
-    ["cycle average", formatPhotonFixed(summary.averageAnalyzerFraction, 3)],
-    ["analyzer residual", formatPhotonFixed(summary.analyzerResidual, 4)],
+    ["fit energy fraction", formatPhotonFixed(summary.analyzerTarget, 3)],
+    ["instantaneous fraction", formatPhotonFixed(summary.field.analyzer.fraction, 3)],
+    ["common-period energy fraction", formatPhotonFixed(summary.averageAnalyzerFraction, 3)],
+    ["fit-to-field fraction residual", formatPhotonFixed(summary.analyzerResidual, 4)],
     ["transmitter count", String(summary.field.transmitterCount)],
     ["root count", String(summary.field.rootCount)],
     ["mean delay", formatPhotonFixed(summary.field.averageDelay, 3)],
@@ -352,70 +353,11 @@ function getPhotonRuntimeNowMs(windowLike) {
   return Date.now();
 }
 
-function hasPhotonInlineSolverOption(options) {
-  return typeof options?.solveCircularTransmitterRootsHitsLedger === "function" ||
-    typeof options?.runPrescribedPathAnalysis === "function";
-}
-
 function getPhotonRuntimeSolverStatusMessage(error = null) {
   if (error) {
     return `Prescribed-path analysis unavailable: ${error?.message ?? "unknown error"}`;
   }
   return "Loading prescribed-path analysis";
-}
-
-function evaluatePhotonRuntimeCenteredFit(component, phase) {
-  return (
-    (Number(component?.cosCoefficient) || 0) * Math.cos(phase) +
-    (Number(component?.sinCoefficient) || 0) * Math.sin(phase)
-  );
-}
-
-function createPhotonRuntimePlotFromPolarizationTrace(
-  state,
-  trace,
-  timeSeconds,
-  sampleCount = PHOTON_RUNTIME_SOLVER_DISPLAY_PLOT_SAMPLE_COUNT
-) {
-  const runDuration = getPhotonRunDuration(state);
-  const currentTime = wrapPhotonTime(state, timeSeconds);
-  const count = Math.max(24, Math.round(sampleCount));
-  const cycleDuration = Math.max(1e-12, Number(trace?.cycleDuration) || runDuration || 1);
-  const cyclesPerRun = runDuration / cycleDuration;
-  const yComponent = trace?.components?.y;
-  const zComponent = trace?.components?.z;
-  const canEvaluateFit = yComponent && zComponent;
-  const fallbackSamples = Array.isArray(trace?.samples) ? trace.samples : [];
-  const samples = Array.from({ length: count + 1 }, (_, index) => {
-    const progress = count > 0 ? index / count : 0;
-    const phase = Math.PI * 2 * progress * cyclesPerRun;
-    const fallback = fallbackSamples.length > 0
-      ? fallbackSamples[Math.min(fallbackSamples.length - 1, Math.round(progress * (fallbackSamples.length - 1)))]
-      : {};
-    return {
-      t: progress * runDuration,
-      progress,
-      ey: canEvaluateFit
-        ? evaluatePhotonRuntimeCenteredFit(yComponent, phase)
-        : Number(fallback?.ey) || 0,
-      ez: canEvaluateFit
-        ? evaluatePhotonRuntimeCenteredFit(zComponent, phase)
-        : Number(fallback?.ez) || 0,
-      analyzerFraction: 0,
-    };
-  });
-  const amplitudeScale = Math.max(
-    1e-9,
-    Number(trace?.scale) || 0,
-    ...samples.flatMap((sample) => [Math.abs(sample.ey), Math.abs(sample.ez)])
-  );
-  return {
-    runDuration,
-    currentTime,
-    analysisId: trace?.analysisId,
-    amplitudeScale,
-    samples,
-  };
 }
 
 function createPhotonSlug(value, fallback = "configuration") {
@@ -456,6 +398,8 @@ export function createPhotonRuntime({
   windowLike = globalThis.window,
   homeHref = STANDALONE_APP_HOME_HREF,
   prescribedPathAnalysisOptions = {},
+  configurationSearchFactory =
+    createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis,
 } = {}) {
   const stageCanvas = queryPhotonElement(documentLike, "#photon-stage-canvas");
   const electricFieldCanvas = queryPhotonElement(documentLike, "#photon-electric-field-canvas");
@@ -505,7 +449,15 @@ export function createPhotonRuntime({
   let solverDebounceTimer = 0;
   let solverError = null;
   let solverGeneration = 0;
-  let runtimeDestroyed = false;
+  let solverRetryAfterMs = 0;
+  let solverPlotCache = null;
+  let lastRenderedReadoutKey = "";
+  let searchGeneration = 0;
+  let searchResultIdCounter = 1;
+  let searchInFlightPromise = null;
+  let runtimeInitialized = false;
+  let runtimeDestroyed = true;
+  let runtimeEventListeners = [];
   const markdownRuntime = createPhotonMarkdownRuntime({
     windowLike,
     markdownPanel,
@@ -513,10 +465,6 @@ export function createPhotonRuntime({
     markdownBody,
     markdownLayoutToggle,
   });
-
-  async function createPhotonRuntimeSolverOptions() {
-    return prescribedPathAnalysisOptions;
-  }
 
   function getCurrentSolverSnapshot() {
     const stateKey = createPhotonRuntimeSolverStateKey(state);
@@ -556,6 +504,13 @@ export function createPhotonRuntime({
   }
 
   function clearSolverSnapshotForStateChange({ preserveSnapshot = false } = {}) {
+    const nextStateKey = createPhotonRuntimeSolverStateKey(state);
+    if (solverSnapshot?.stateKey === nextStateKey) {
+      solverInteractiveUpdatePending = false;
+      solverError = null;
+      solverRetryAfterMs = 0;
+      return;
+    }
     solverGeneration += 1;
     solverLastStateChangeAtMs = getPhotonRuntimeNowMs(windowLike);
     solverInteractiveUpdatePending = preserveSnapshot;
@@ -566,12 +521,22 @@ export function createPhotonRuntime({
       solverSnapshot = null;
     }
     solverError = null;
+    solverRetryAfterMs = 0;
+  }
+
+  function syncTimeOutputs(displayTime, runDuration = getPhotonRunDuration(state)) {
+    setTextAll(timeOutputs, `${formatPhotonFixed(displayTime, 1)} s`);
+    setTextAll(cycleOutputs, `${formatPhotonFixed(runDuration, 1)} s`);
   }
 
   function syncPendingOutputs(displayTime) {
-    setTextAll(timeOutputs, `${formatPhotonFixed(displayTime, 1)} s`);
-    setTextAll(cycleOutputs, `${formatPhotonFixed(getPhotonRunDuration(state), 1)} s`);
+    syncTimeOutputs(displayTime);
     const statusMessage = getPhotonRuntimeSolverStatusMessage(solverError);
+    const readoutKey = `pending:${solverGeneration}:${statusMessage}`;
+    if (lastRenderedReadoutKey === readoutKey) {
+      return;
+    }
+    lastRenderedReadoutKey = readoutKey;
     renderRows(
       documentLike,
       diagnosticsElement,
@@ -605,6 +570,9 @@ export function createPhotonRuntime({
       return;
     }
     const nowMs = getPhotonRuntimeNowMs(windowLike);
+    if (!force && solverError && nowMs < solverRetryAfterMs) {
+      return;
+    }
     if (
       !force &&
       solverInteractiveUpdatePending &&
@@ -627,31 +595,44 @@ export function createPhotonRuntime({
     solverLastRequestAtMs = nowMs;
     solverInteractiveUpdatePending = false;
     solverError = null;
-    solverSnapshotPromise = (async () => {
-      const solverOptions = await createPhotonRuntimeSolverOptions();
-      const summary = await computePhotonFormulaSummaryWithPrescribedPathAnalysis(
-        stateForSolve,
-        solveTime,
-        {
-          ...solverOptions,
-          ...PHOTON_RUNTIME_SOLVER_SUMMARY_OPTIONS,
-        }
+    solverRetryAfterMs = 0;
+    const pendingSnapshotPromise = (async () => {
+      const solverOptions = {
+        ...prescribedPathAnalysisOptions,
+        ...PHOTON_RUNTIME_SOLVER_SUMMARY_OPTIONS,
+      };
+      const plotSampleCount = getPhotonFieldPlotSampleCount(
+        electricFieldCanvas.getBoundingClientRect?.().width ?? 0
       );
+      const [summary, plot] = await Promise.all([
+        computePhotonFormulaSummaryWithPrescribedPathAnalysis(
+          stateForSolve,
+          solveTime,
+          solverOptions
+        ),
+        solverPlotCache?.stateKey === stateKey
+          ? Promise.resolve(solverPlotCache.plot)
+          : buildPhotonPlotSamplesWithPrescribedPathAnalysis(
+              stateForSolve,
+              solveTime,
+              plotSampleCount,
+              solverOptions
+            ),
+      ]);
       return {
         stateKey,
         solveTime,
         summary,
-        plot: createPhotonRuntimePlotFromPolarizationTrace(
-          stateForSolve,
-          summary.polarization,
-          solveTime
-        ),
+        plot,
       };
     })();
+    solverSnapshotPromise = pendingSnapshotPromise;
 
-    solverSnapshotPromise
+    pendingSnapshotPromise
       .then((snapshot) => {
-        solverSnapshotPromise = null;
+        if (solverSnapshotPromise === pendingSnapshotPromise) {
+          solverSnapshotPromise = null;
+        }
         if (runtimeDestroyed) {
           return;
         }
@@ -663,12 +644,19 @@ export function createPhotonRuntime({
           return;
         }
         solverSnapshot = snapshot;
+        solverPlotCache = {
+          stateKey: snapshot.stateKey,
+          plot: snapshot.plot,
+        };
         solverInteractiveUpdatePending = false;
         solverError = null;
+        solverRetryAfterMs = 0;
         draw();
       })
       .catch((error) => {
-        solverSnapshotPromise = null;
+        if (solverSnapshotPromise === pendingSnapshotPromise) {
+          solverSnapshotPromise = null;
+        }
         if (runtimeDestroyed) {
           return;
         }
@@ -678,13 +666,20 @@ export function createPhotonRuntime({
         }
         solverInteractiveUpdatePending = false;
         solverError = error;
+        solverRetryAfterMs =
+          getPhotonRuntimeNowMs(windowLike) + PHOTON_RUNTIME_SOLVER_ERROR_RETRY_MS;
         draw();
       });
   }
 
-  function syncOutputs(displayTime, summary) {
-    setTextAll(timeOutputs, `${formatPhotonFixed(displayTime, 1)} s`);
-    setTextAll(cycleOutputs, `${formatPhotonFixed(summary.runDuration, 1)} s`);
+  function syncOutputs(displayTime, snapshot) {
+    const summary = snapshot.summary;
+    syncTimeOutputs(displayTime, summary.runDuration);
+    const readoutKey = `${snapshot.stateKey}:${snapshot.solveTime}`;
+    if (lastRenderedReadoutKey === readoutKey) {
+      return;
+    }
+    lastRenderedReadoutKey = readoutKey;
     renderRows(documentLike, diagnosticsElement, getPhotonDiagnosticRows(state, displayTime, summary), {
       windowLike,
     });
@@ -708,7 +703,7 @@ export function createPhotonRuntime({
       pendingMessage: getPhotonRuntimeSolverStatusMessage(solverError),
     });
     if (snapshot?.summary) {
-      syncOutputs(displayTime, snapshot.summary);
+      syncOutputs(displayTime, snapshot);
     } else {
       syncPendingOutputs(displayTime);
     }
@@ -745,6 +740,19 @@ export function createPhotonRuntime({
     return searchResults.find((result) => result.id === resultId);
   }
 
+  function mintSearchResultId(prefix = "result") {
+    const id = `${prefix}-${String(searchResultIdCounter).padStart(4, "0")}`;
+    searchResultIdCounter += 1;
+    return id;
+  }
+
+  function assignRuntimeSearchResultIds(results, prefix) {
+    return (Array.isArray(results) ? results : []).map((result) => ({
+      ...result,
+      id: mintSearchResultId(prefix),
+    }));
+  }
+
   function setSearchStatus(nextStatus) {
     searchStatus = String(nextStatus ?? "");
     syncControls();
@@ -773,34 +781,50 @@ export function createPhotonRuntime({
   }
 
   function runConfigurationSearch() {
+    if (searchInFlightPromise) {
+      return searchInFlightPromise;
+    }
     clearSearchPreview();
-    setSearchStatus("Searching configurations...");
     const schedule =
       typeof windowLike?.setTimeout === "function"
         ? windowLike.setTimeout.bind(windowLike)
         : setTimeout;
     const stateForSearch = cloneRuntimePhotonState(state);
-    return new Promise((resolve) => {
-      schedule(() => {
-        resolve((async () => {
-          try {
-            const solverOptions = await createPhotonRuntimeSolverOptions();
-            searchResults = await createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis(
-              stateForSearch,
-              {
-                ...solverOptions,
-                ...PHOTON_RUNTIME_SOLVER_SEARCH_OPTIONS,
-              }
-            );
-            searchStatus = `${searchResults.length} configurations found.`;
-          } catch (error) {
+    const generation = ++searchGeneration;
+    searchStatus = "Searching configurations...";
+    searchInFlightPromise = new Promise((resolve) => schedule(resolve, 0))
+      .then(async () => {
+        try {
+          const found = await configurationSearchFactory(
+            stateForSearch,
+            {
+              ...prescribedPathAnalysisOptions,
+              ...PHOTON_RUNTIME_SOLVER_SEARCH_OPTIONS,
+              yieldToEventLoop: () => new Promise((resolve) => schedule(resolve, 0)),
+            }
+          );
+          if (runtimeDestroyed || generation !== searchGeneration) {
+            return [];
+          }
+          const runtimeResults = assignRuntimeSearchResultIds(found, "search");
+          searchResults = [...runtimeResults, ...searchResults].slice(0, 100);
+          searchStatus = `${runtimeResults.length} configurations found.`;
+          return runtimeResults;
+        } catch (error) {
+          if (generation === searchGeneration) {
             searchStatus = `Search failed: ${error?.message ?? "unknown error"}`;
+          }
+          return [];
+        } finally {
+          if (generation === searchGeneration) {
+            searchInFlightPromise = null;
           }
           syncControls();
           draw();
-        })());
+        }
       });
-    });
+    syncControls();
+    return searchInFlightPromise;
   }
 
   function restoreSearchPreview() {
@@ -836,7 +860,7 @@ export function createPhotonRuntime({
     if (!result) {
       return;
     }
-    result.name = String(name ?? "").trim() || result.name;
+    result.name = String(name ?? "").replace(/\s+/g, " ").trim().slice(0, 120) || result.name;
     const promotedPreset = findSessionPreset(result.promotedPresetId);
     if (promotedPreset) {
       promotedPreset.name = result.name;
@@ -921,13 +945,15 @@ export function createPhotonRuntime({
       const text = typeof fileOrText === "string"
         ? fileOrText
         : await fileOrText.text();
-      const imported = parsePhotonSearchResultsJson(text).map((result, index) => ({
+      const imported = assignRuntimeSearchResultIds(
+        parsePhotonSearchResultsJson(text).map((result) => ({
         ...result,
-        id: `imported-${Date.now()}-${index + 1}`,
-        selected: true,
+        selected: result.selected !== false,
         promotedPresetId: "",
-      }));
-      searchResults = [...imported, ...searchResults];
+        })),
+        "imported"
+      );
+      searchResults = [...imported, ...searchResults].slice(0, 100);
       searchStatus = `Imported ${imported.length} configuration${imported.length === 1 ? "" : "s"}.`;
     } catch (error) {
       searchStatus = `Import failed: ${error?.message ?? "invalid file"}`;
@@ -987,7 +1013,10 @@ export function createPhotonRuntime({
   }
 
   function handleKeydown(event) {
-    if (!shouldHandlePhotonSpaceToggle(event)) {
+    if (
+      markdownRuntime.isMarkdownPanelOpen() ||
+      !shouldHandlePhotonSpaceToggle(event)
+    ) {
       return;
     }
     event.preventDefault();
@@ -1006,6 +1035,9 @@ export function createPhotonRuntime({
   }
 
   function frame(timestamp) {
+    if (runtimeDestroyed) {
+      return;
+    }
     if (!lastFrame) {
       lastFrame = timestamp;
     }
@@ -1018,8 +1050,19 @@ export function createPhotonRuntime({
     animationFrame = windowLike.requestAnimationFrame(frame);
   }
 
+  function addRuntimeEventListener(target, type, listener) {
+    target.addEventListener(type, listener);
+    runtimeEventListeners.push({ target, type, listener });
+  }
+
   function init() {
+    if (runtimeInitialized) {
+      return api;
+    }
+    runtimeInitialized = true;
     runtimeDestroyed = false;
+    lastFrame = 0;
+    lastRenderedReadoutKey = "";
     controlsRuntime = createPhotonControlsRuntime({
       documentLike,
       container: controlsElement,
@@ -1035,6 +1078,7 @@ export function createPhotonRuntime({
       onResetPreset: resetPreset,
       getSearchResults: () => searchResults,
       getSearchStatus: () => searchStatus,
+      isSearchInFlight: () => Boolean(searchInFlightPromise),
       isPreviewingSearchResult: () => Boolean(searchPreviewSnapshot),
       onSearchConfigurations: runConfigurationSearch,
       onRestoreSearchPreview: restoreSearchPreview,
@@ -1049,48 +1093,60 @@ export function createPhotonRuntime({
       onExportSelectedSearchResults: exportSelectedSearchResults,
       onImportSearchResults: importSearchResults,
     });
-    homeButton.addEventListener("click", () => {
+    addRuntimeEventListener(homeButton, "click", () => {
       navigateStandaloneAppHome(windowLike.location, homeHref, {
         windowLike,
       });
     });
-    guideDocButton.addEventListener("click", () => {
+    addRuntimeEventListener(guideDocButton, "click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.guide);
     });
-    photonClosureDocButton.addEventListener("click", () => {
+    addRuntimeEventListener(photonClosureDocButton, "click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.photonClosure);
     });
-    polarizationGateBDocButton.addEventListener("click", () => {
+    addRuntimeEventListener(polarizationGateBDocButton, "click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.polarizationGateB);
     });
-    projectDocButton.addEventListener("click", () => {
+    addRuntimeEventListener(projectDocButton, "click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.project);
     });
-    markdownClose.addEventListener("click", () => {
+    addRuntimeEventListener(markdownClose, "click", () => {
       markdownRuntime.hideMarkdownPanel();
     });
-    markdownLayoutToggle.addEventListener("click", () => {
+    addRuntimeEventListener(markdownLayoutToggle, "click", () => {
       markdownRuntime.toggleMarkdownLayout();
     });
-    markdownPdfButton.addEventListener("click", () => {
+    addRuntimeEventListener(markdownPdfButton, "click", () => {
       markdownRuntime.printMarkdownPanel();
     });
-    documentLike.addEventListener("keydown", handleKeydown);
-    windowLike.addEventListener("resize", draw);
+    addRuntimeEventListener(documentLike, "keydown", handleKeydown);
+    addRuntimeEventListener(windowLike, "resize", draw);
     draw();
     animationFrame = windowLike.requestAnimationFrame(frame);
     return api;
   }
 
   function destroy() {
+    if (!runtimeInitialized) {
+      return;
+    }
+    runtimeInitialized = false;
     runtimeDestroyed = true;
+    solverGeneration += 1;
+    searchGeneration += 1;
     if (animationFrame) {
       windowLike.cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
     }
     clearSolverDebounceTimer();
     solverSnapshotPromise = null;
-    documentLike.removeEventListener("keydown", handleKeydown);
-    windowLike.removeEventListener("resize", draw);
+    searchInFlightPromise = null;
+    runtimeEventListeners.forEach(({ target, type, listener }) => {
+      target.removeEventListener(type, listener);
+    });
+    runtimeEventListeners = [];
+    controlsRuntime?.destroy();
+    controlsRuntime = null;
     markdownRuntime.hideMarkdownPanel();
   }
 

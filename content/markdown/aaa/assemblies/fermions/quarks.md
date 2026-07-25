@@ -472,7 +472,7 @@ $$
 \right]
 $$
 
-where $P_{\Lambda_1\Lambda_2}$ is the hyperon-pair spin-correlation signal and $\alpha_1,\alpha_2$ are the weak-decay analysing parameters. The observed pattern is not merely a hadron-counting fact: short-range $\Lambda\bar{\Lambda}$ pairs show a positive correlation, while long-range pairs and scalar-control channels are consistent with zero correlation.
+where $P_{\Lambda_1\Lambda_2}$ is the hyperon-pair spin-correlation signal and $\alpha_1,\alpha_2$ are the weak-decay analysing parameters. The observed pattern, from the BESIII $J/\psi\to\Lambda\bar{\Lambda}$-class spin-correlation measurement, is not merely a hadron-counting fact: short-range $\Lambda\bar{\Lambda}$ pairs show a positive correlation, while long-range pairs and scalar-control channels are consistent with zero correlation.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target, not an import of QCD vacuum ontology or a claim that "nothing" creates particles. The native branch must connect, in one event record, the strong-collision work input, the local Noether sea participation, the quark-level axial and color records, the confinement or hadronization route into color-singlet hyperons, feed-down and remnant rows, and the final weak-decay detector readout. In schematic form the benchmark asks for
 
@@ -495,14 +495,14 @@ where $I_{\mathrm{had}}$ is the selected hadronization route. The readout $P_{\L
 
 ### Fixed by the Architecture
 
-The following parts of the quark catalog are fixed strongly enough to be treated as canonical:
+The following parts of the quark catalog are fixed strongly enough to be treated as canonical. Two classes are mixed here and should be read differently: definitional conventions of the catalog (labeling and basis choices) versus canonical physical hypotheses under test (tagged below):
 
-- up-type axial count $5\epsilon_+,1\epsilon_-$,
-- down-type axial count $2\epsilon_+,4\epsilon_-$,
-- generation as Noether braid shielding level,
-- architrino counts $12$, $10$, and $8$ for Generations I, II, and III,
-- color as axis exceptionality in the three-state $(1,2,3)$ basis,
-- gluon action as an $SU(3)$ color reconfiguration that preserves flavor inventory.
+- up-type axial count $5\epsilon_+,1\epsilon_-$ (hypothesis under test),
+- down-type axial count $2\epsilon_+,4\epsilon_-$ (hypothesis under test),
+- generation as Noether braid shielding level (hypothesis under test),
+- architrino counts $12$, $10$, and $8$ for Generations I, II, and III (hypothesis under test),
+- color as axis exceptionality in the three-state $(1,2,3)$ basis (definitional convention),
+- gluon action as an $SU(3)$ color reconfiguration that preserves flavor inventory (hypothesis under test).
 
 ### Still open
 

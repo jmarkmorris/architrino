@@ -1,4 +1,5 @@
 import * as THREE from "../../../vendor/three/three.module.js";
+import { clearBorgSceneGroup } from "./BorgSceneDisposal.js";
 
 const ROOT_MARKER_RADIUS = 0.045;
 const ROOT_MARKER_SEGMENTS = 12;
@@ -18,7 +19,7 @@ export function createBorgPrescribedAnalysisScene({
   const rootLinkGroup = new THREE.Group();
   rootLinkGroup.userData.kind = "analytical-wake-arrival-links";
   const rootMarkerGroup = new THREE.Group();
-  rootMarkerGroup.userData.kind = "certified-causal-root-markers";
+  rootMarkerGroup.userData.kind = "causal-root-markers";
   const arrivalGlyphGroup = new THREE.Group();
   arrivalGlyphGroup.userData.kind = "receiver-arrival-direction-glyphs";
   const contributionGroup = new THREE.Group();
@@ -58,11 +59,11 @@ export function createBorgPrescribedAnalysisScene({
   }
 
   function rebuild() {
-    clearGroup(rootLinkGroup);
-    clearGroup(rootMarkerGroup);
-    clearGroup(arrivalGlyphGroup);
-    clearGroup(contributionGroup);
-    clearGroup(unresolvedGroup);
+    clearBorgSceneGroup(rootLinkGroup);
+    clearBorgSceneGroup(rootMarkerGroup);
+    clearBorgSceneGroup(arrivalGlyphGroup);
+    clearBorgSceneGroup(contributionGroup);
+    clearBorgSceneGroup(unresolvedGroup);
     if (!currentEvent) {
       render?.();
       return;
@@ -114,7 +115,7 @@ export function createBorgPrescribedAnalysisScene({
     );
     marker.position.copy(transmitter);
     marker.renderOrder = 10;
-    marker.userData = rootUserData(root, "certified-causal-root");
+    marker.userData = rootUserData(root, "causal-root-marker");
     rootMarkerGroup.add(marker);
 
     const arrivalDirection = transmitter.clone().sub(receiver);
@@ -208,25 +209,33 @@ export function createBorgPrescribedAnalysisScene({
       contributionGroup,
     ];
     groups.forEach((targetGroup) => {
-      targetGroup.traverse((object) => {
-        if (!object.material || !object.userData?.rootId) {
-          return;
-        }
+      targetGroup.children.forEach((rootObject) => {
+        const rootData = rootObject.userData;
+        if (!rootData?.rootId) return;
         const selected = selectedRootId == null ||
-          object.userData.rootId === selectedRootId;
-        object.material.opacity = selected
-          ? object.userData.kind === "analytical-wake-arrival-link" ? 0.78 : 0.98
-          : 0.2;
+          rootData.rootId === selectedRootId;
+        rootObject.traverse((object) => {
+          if (!object.material) return;
+          const materials = Array.isArray(object.material)
+            ? object.material
+            : [object.material];
+          materials.forEach((material) => {
+            material.transparent = true;
+            material.opacity = selected
+              ? rootData.kind === "analytical-wake-arrival-link" ? 0.78 : 0.98
+              : 0.2;
+          });
+        });
       });
     });
   }
 
   function dispose() {
-    clearGroup(rootLinkGroup);
-    clearGroup(rootMarkerGroup);
-    clearGroup(arrivalGlyphGroup);
-    clearGroup(contributionGroup);
-    clearGroup(unresolvedGroup);
+    clearBorgSceneGroup(rootLinkGroup);
+    clearBorgSceneGroup(rootMarkerGroup);
+    clearBorgSceneGroup(arrivalGlyphGroup);
+    clearBorgSceneGroup(contributionGroup);
+    clearBorgSceneGroup(unresolvedGroup);
     group.remove(
       rootLinkGroup,
       rootMarkerGroup,
@@ -263,6 +272,7 @@ function rootUserData(root, kind) {
     rootOrdinal: root.rootOrdinal,
     transmitterId: root.transmitterId,
     rootLabel: `${root.transmitterId} · root ${root.rootOrdinal}`,
+    rootCompletenessStatus: root.rootCompletenessStatus,
     valueAuthority: "canonical-prescribed-path-analysis-projection",
   };
 }
@@ -276,18 +286,4 @@ function rootColor(transmitterId, rootOrdinal) {
   }
   const hue = ((hash >>> 0) % 360) / 360;
   return new THREE.Color().setHSL(hue, 0.72, 0.62);
-}
-
-function clearGroup(group) {
-  group.children.slice().forEach((object) => {
-    group.remove(object);
-    object.traverse?.((child) => {
-      child.geometry?.dispose?.();
-      if (Array.isArray(child.material)) {
-        child.material.forEach((material) => material.dispose?.());
-      } else {
-        child.material?.dispose?.();
-      }
-    });
-  });
 }

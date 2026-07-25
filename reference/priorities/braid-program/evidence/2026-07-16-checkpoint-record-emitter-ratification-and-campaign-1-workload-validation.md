@@ -2,6 +2,11 @@
 
 Date: 2026-07-16
 
+> Historical instrument record only. The operator removed the associated old
+> simulation outputs on 2026-07-24 after the EOM solver review. This document
+> no longer accepts G3/G4 for campaign execution; fresh validation against the
+> corrected solver is required by the live instrument gate.
+
 ## Verdict
 
 **Instrument verdict — ACCEPTED (measured serialization parity).** The harness's

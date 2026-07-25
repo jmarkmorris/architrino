@@ -78,7 +78,7 @@ k_{\mathrm{eff}}x_{\mathrm{eff}}
 O\!\left(k_{\mathrm{eff}}\Delta_{\mathrm{eff}}^3\frac{d^3x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^3}\right)
 $$
 
-on a slowly varying branch. The leading correction is therefore sign-definite once the branch delay orientation is fixed. For the causal restoring convention displayed above it is anti-damping, the same local pattern that appears as positive tangential work in the circular binary. The mass-like coefficient is also shifted by the delayed response. This does not prove the full assembly mass map, but it shows in the simplest chart why inertia and dissipation-like terms are delayed-response quantities rather than primitive architrino constants.
+on a slowly varying branch. The leading correction is therefore sign-definite once the branch delay orientation is fixed. For the causal restoring convention displayed above it is anti-damping, an analogous local pattern to the one that appears as positive tangential work in the circular binary. The mass-like coefficient is also shifted by the delayed response. This does not prove the full assembly mass map, but it shows in the simplest chart why inertia and dissipation-like terms are delayed-response quantities rather than primitive architrino constants.
 
 The two displayed corrections are not independent parameters. They are the first even and odd moments of the same delayed restoring channel:
 
@@ -219,7 +219,7 @@ $$
 S_\eta[\{\mathbf X_i\}]
 =
 \int dT \sum_i \frac{1}{2} \mu_{\text{arch}} \|\mathbf V_i(T)\|^2
-- \frac{1}{2}\sum_{i,j}^{\mathrm{adm}}\frac{\kappa \, \sigma_{ij} |q_i q_j|}{c_f}
+- \frac{1}{2}\sum_{i,j}^{\mathrm{adm}}\mu_{\text{arch}}\kappa \, \sigma_{ij} |q_i q_j|
 \int dT \int_{-\infty}^{T} dT_t\,
 \frac{\phi_\eta\!\big(\tilde g_{ij}(T,T_t)\big)}{r_{ij}(T;T_t)}
 $$
@@ -230,6 +230,16 @@ r_{ij}(T;T_t)=\|\mathbf X_i(T)-\mathbf X_j(T_t)\|,
 \qquad
 \phi_\eta\equiv\delta_\eta
 $$
+
+With $[\tilde g]=T$ and $[\delta(\tilde g)]=T^{-1}$, the coefficient
+$\mu_{\text{arch}}\kappa$ gives the interaction term the same action
+dimension as the quadratic bookkeeping term. A factor
+$\kappa/c_f$ would instead leave the kernel with acceleration
+dimensions before time integration.
+
+Plainly: the same universal conversion used in the kinetic row must also
+multiply the interaction row; dividing by the wake speed does not repair the
+units.
 
 Here:
 - $\mathbf X_i(T)$ is the trajectory of architrino $i$.
@@ -446,7 +456,7 @@ where the action-level nonlocal Noether charge can be written with the weighted 
 $$
 \mathcal{K}_{ij}^{E}(T_1,T_t)
 =
-\frac{\kappa\,\sigma_{ij}\,|q_iq_j|}{c_f}
+\mu_{\text{arch}}\kappa\,\sigma_{ij}\,|q_iq_j|
 \Theta(T_1-T_t)
 \frac{\delta\!\big(\tilde g_{ij}(T_1,T_t)\big)}
 {r_{ij}(T_1,T_t)}
@@ -455,7 +465,7 @@ For the delayed-interior characteristic-tail candidate, the Noether-energy kerne
 $$
 \mathcal{K}_{ij,\mathrm{eff}}^{E}(T_1,T_t)
 =
-\frac{\kappa\,\sigma_{ij}\,|q_iq_j|}{c_f}
+\mu_{\text{arch}}\kappa\,\sigma_{ij}\,|q_iq_j|
 \Theta(T_1-T_t)
 K_{\mathrm{eff}}^{(\eta)}
 \!\left(
@@ -469,11 +479,19 @@ Then:
 $$
 E_{\text{wake}}(T)
 =
-\frac{1}{2}\sum_{i,j}
+-\frac{1}{2}\sum_{i,j}
 \int_{-\infty}^{T} dT_t
 \int_{T}^{\infty} dT_1\,
 \partial_{T_1}\mathcal{K}_{ij}^{E}(T_1,T_t)
 $$
+
+The outer minus sign matches the action convention
+$S=S_{\mathrm{kinetic}}-\tfrac12\sum S_{ij}$ and makes the sharp static
+like-polarity pair charge positive. Reversing that sign would contradict the
+positive work required to bring a repelling like-polarity pair closer.
+
+Plainly: the boundary charge must inherit both the units and the sign of the
+same action kernel.
 
 For compatible trajectory reconstruction one may use the work-integral form
 $$
@@ -587,7 +605,7 @@ $$
 $$
 This Eulerian double-space functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. It contains no additional transmitter-side factor: the delayed density $\rho_q(\mathbf X',T')$ already carries the transmitter-side compression or dilation produced by the Lagrangian-to-Eulerian coarse-graining. For a point transmitter, the familiar transmitter-velocity factor appears when the particle delta is collapsed through its emission-time root; it is not an extra denominator to multiply into the Eulerian density kernel. A corrected delayed action must reproduce the canonical inverse-square acceleration density weighted by $W^{\mathrm{acc}}=c_f/|D_t|$. Receiver velocity may enter the full variation, root playback, and conserved accounts, but it may not reappear as an extra multiplier on the instantaneous acceleration.
 
-The remaining action correction is also one continuum location of the per-hit third-law defect. The branch chart must distinguish transmitter-side acceleration weight from receiver-side root playback, so the receiver/transmitter exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
+The remaining action correction is also one continuum location where delayed pairwise mechanical acceleration fails to cancel. The branch chart must distinguish transmitter-side acceleration weight from receiver-side root playback, so the receiver/transmitter exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
 
 $$
 \Pi_q^{ij}
@@ -769,7 +787,7 @@ context that actually control the return map. Dropping an active sub-assembly
 phase can make a closed chart look dissipative or probabilistic merely because
 the chart has thrown away one of the variables that carries the recurrence.
 
-The preserved two-form is likewise not the naive instantaneous form alone. On a delayed branch the candidate symplectic structure has a memory correction,
+The preserved two-form is likewise not the naive instantaneous form alone. On a delayed branch the candidate symplectic structure is posited to carry a memory correction,
 
 $$
 \omega_{\mathcal{Q}}
@@ -796,7 +814,7 @@ $$
 \,d\vartheta
 $$
 
-where $h$ is the retained memory depth and $\mathcal K_{\mathrm{symp}}$ is built from the same branch causal kernel that supplies the acceleration. The residual $\epsilon_{\omega}$ is small only when this memory term is replayable: after one return, the retained history segment $[-h,0]$ must map to a congruent segment with the same branch records and boundary convention. This is why phase-locked branches are the natural Hamiltonian domain. They replay the history window that carries $\omega_{\mathrm{mem}}$, while off-lock branches leak symplectic content through the memory boundary and can look dissipative after projection.
+where $h$ is the retained memory depth and $\mathcal K_{\mathrm{symp}}$ is built from the same branch causal kernel that supplies the acceleration. The explicit construction of $\mathcal K_{\mathrm{symp}}$ and the boundary-flux identity below are open obligations of the Hamiltonian-promotion gate. The residual $\epsilon_{\omega}$ is small only when this memory term is replayable: after one return, the retained history segment $[-h,0]$ must map to a congruent segment with the same branch records and boundary convention. This is why phase-locked branches are the natural Hamiltonian domain. They replay the history window that carries $\omega_{\mathrm{mem}}$, while off-lock branches leak symplectic content through the memory boundary and can look dissipative after projection.
 
 Equivalently, $\omega_{\mathrm{mem}}$ is the symplectic flux through the boundary of the retained memory interval. A Hamiltonian-promotable branch must make that boundary periodic under the return map:
 
@@ -835,7 +853,7 @@ with the integer tied to the phase-return degree pair above. Thus quantization i
 
 The delayed action, after branch reduction to causal-locus and root-ledger data, constrains the allowed topological configurations of architrino assemblies in the Noether sea. Stable assemblies, such as maximum-curvature candidates inside Family-A braids, should therefore be treated as theorem targets for localized, phase-locked causal-locus classes rather than as already-proved vortices or continuum topological defects.
 
-The stability of these assemblies must be checked by the nonlinear self-hit feedback embedded in the interaction functional. When internal circulation velocities exceed $c_f$, the non-Markovian repulsion supplies a candidate branch-trapping mechanism; it becomes a robust geometric attractor only after a branch chart, Lyapunov or Floquet diagnostic, and history-aware energy bound are supplied. Likewise, mass-gap language is a closure target tied to discrete admissible branch classes, not an automatic consequence of writing the effective action.
+The stability of these assemblies must be checked by the nonlinear self-hit feedback embedded in the interaction functional. When internal circulation velocities exceed $c_f$, the non-Markovian repulsion supplies a candidate outward branch barrier, not the centripetal binder. It becomes part of a robust geometric attractor only after the complete signed acceleration ledger, a branch chart, Lyapunov or Floquet diagnostic, and history-aware energy bound are supplied. Likewise, mass-gap language is a closure target tied to discrete admissible branch classes, not an automatic consequence of writing the effective action.
 
 The native topological sector is the stabilized causal-root ledger, not a borrowed field-theory vortex number. The canonical definition is given in [Noether Braid Topological Charge](../noether-braid/noether-braid-topological-charge.md); in the effective-action chart, the same assembly topological charge is the retained sector
 

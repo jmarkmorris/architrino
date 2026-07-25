@@ -80,6 +80,68 @@ Object keys are sorted recursively before hashing; array order remains part of t
 
 The result claim grade is `derived`: it is conditional on the prescribed source record and protocol. The packet explicitly excludes stability, energy, retention, and physical-realization claims.
 
+## Pointwise Summed-Acceleration Screen
+
+The complete-cycle moving-endpoint reducer reports
+`pointwiseSummedAccelerationNecessaryCondition`. At each common observation
+time it sums the evaluated canonical-kernel acceleration over every declared
+receiver worldline, the independently prescribed path accelerations, and their
+equation residual. It reuses the retained causal-root event packets; it does
+not sample frozen phases or invoke a second root solver.
+
+The zero-sum screen is evaluated only when the packet certifies every retained
+root from the declared isolated architrino-worldline inventory and strict
+sub-field speed excludes a positive-delay same-worldline root. It also requires
+the prescribed accelerations to sum to zero within the declared tolerance.
+Otherwise the row is explicitly inapplicable. Noether-sea response and
+undeclared external worldlines remain outside the certified scope.
+
+A nonzero summed evaluated acceleration beyond the declared tolerance and
+numerical-convergence allowance falsifies only the exact isolated prescribed
+history. A zero result is recorded as `not-falsified-by-this-screen`; it does
+not establish a branch, taxonomy member, stability, retention, or physical
+realization.
+
+## Pointwise Member-Residual Search Screen
+
+The same certified moving-endpoint packets also report
+`pointwiseMemberResidualSearchScreen`. This reducer preserves every
+per-architrino prescribed-path equation residual and summarizes the first
+declared half-cycle, second declared half-cycle, and full cycle. It catches
+equal-and-opposite member errors that disappear in the summed-acceleration
+screen.
+
+On the same sample grid, the full-cycle peak is exactly the worse of the two
+half-cycle peaks. The full-cycle RMS is the row-count-weighted combination of
+the two half-cycle RMS values. A coverage search may therefore evaluate one
+half first and reject early, but it must evaluate the other half before ranking
+or retaining an apparent near-zero. Compact scores rank the refined full-cycle
+peak first and refined full-cycle RMS second; half-cycle values and their
+imbalance remain diagnostics.
+
+The member screen is inapplicable unless the declared isolated acceleration
+inventory is certified complete. A residual above threshold falsifies only the
+exact prescribed history. A sampled near-zero is diagnostic search guidance
+until it survives further time-grid refinement, retained raw-ledger review,
+and an independently authored causal-root residual check. The reducer neither
+changes the accepted return-symmetry group nor makes a taxonomy or branch
+existence claim.
+
+Run the bounded stratified endpoint-only search with:
+
+```bash
+node scripts/eom/run-endpoint-residual-search.mjs
+```
+
+The runner evaluates one catalog-reference, two local-neighborhood, and three
+full bounded-taxonomy draws per active member at 12/24 cycle samples. It then
+reevaluates the eight lowest complete-inventory member residuals plus up to
+eight summed-cancellation cases at 48/96 samples. Every eligible row must pass
+the complete-inventory certificate and a separately recomputed geometric
+causal-root residual check. The default output stays under
+`.local-data/braid-analysis/endpoint-residual-search/`; it is diagnostic and
+does not enter the accepted analytical database.
+
 ## Local Evaluation
 
 Print an evaluation to standard output without retaining a repository result packet:

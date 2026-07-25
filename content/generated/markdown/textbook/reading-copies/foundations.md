@@ -470,9 +470,18 @@ Ontologically, the causal wake is a **dynamical geometry**: a transmitter-proven
 
 This linearity is a statement about wake superposition, not about the receiver worldline. A wake can act on any architrino, including its own transmitter, and that receiver response makes the dynamics nonlinear. The entire substrate-level content of a wake is therefore computable from the historical trajectory of the transmitter architrino that emitted it.
 
+#### Constant-Time Emission Measure (postulate)
+
+The emission is uniform in absolute time. Each architrino deposits its causal wake at a constant rate in $T$, with constant per-wavefront amplitude, independent of the transmitter's state of motion: successive causal surfaces leave the transmitter at equal increments of absolute time, and no wavefront is preferentially weighted by the transmitter's velocity or acceleration.
+
+> **Constant-time emission measure.** The emission measure along a transmitter worldline is $dT_t$ — Lebesgue measure in absolute time — with a motion-independent per-wavefront amplitude. This is a postulate of the transceiver, not a derived result.
+
+This postulate is the canonical home of the emission rule used throughout the theory. It is what makes moving-transmitter effects purely *geometric*: because emission cadence is constant in $T$, all velocity dependence in the received pattern comes from the transmitter changing position between equally spaced emission instants, which is what produces the transmitter-side factor $D_t=c_f-\hat{\mathbf r}\cdot\mathbf V_t$ and the acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). It is also one of the two declared conditionalities of the narrowed master-equation proposal (the other being the assumed $K_0$ kernel scaffold); the master-equation chapter consumes this measure by reference rather than restating it as an independent rule.
+
 This page fixes the ontological commitments:
 
 - Emission is continuous, not pulse-like.
+- Emission is uniform in absolute time (constant-time emission measure $dT_t$, motion-independent amplitude).
 - Emission has transmitter provenance tied to architrino identity and emission time.
 - Wake propagation is finite-speed in absolute time.
 - Reception is universal across architrinos.
@@ -895,7 +904,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, time itself has no internal structure or dy
 
 They do **not** arise from any curvature or dynamics of the time coordinate itself.
 
-**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**. Any observer-level clock dilation, lapse effect, or effective metric curvature observed in experiments must emerge from assembly dynamics, causal wakes, and Noether sea response within this rigid temporal framework. The comparison does not deny relativistic phenomenology; it assigns that phenomenology to an effective recovery layer rather than to fundamental time.
+**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**. Any observer-level clock dilation, lapse effect, or effective metric curvature observed in experiments must emerge from assembly dynamics, causal wakes, and Noether sea response within this fixed temporal framework. The comparison does not deny relativistic phenomenology; it assigns that phenomenology to an effective recovery layer rather than to fundamental time.
 
 ### Distinction from Relativistic Time
 
@@ -1039,7 +1048,7 @@ Consequently, topological protection in $\mathbb{A}\mathbb{A}\mathbb{A}$ is not 
 
 ### Canonical Coordinates and Event Identity
 
-Coordinates are names for fixed substrate locations. The void itself does not come with painted axes or a built-in origin. Once a chart is chosen for calculation, the canonical spatial chart is a rigid Cartesian coordinate system
+Coordinates are names for fixed substrate locations. The void itself does not come with painted axes or a built-in origin. Once a chart is chosen for calculation, the canonical spatial chart is a fixed Cartesian coordinate system
 $$
 \mathcal{C}=\{X,Y,Z\}
 $$
@@ -2833,7 +2842,7 @@ The lemma above is the full construction. Complete-state bookkeeping performs fo
 3. Choose a non-collinear architrino $B$ and use the orthogonal projection of $\mathbf{d}_2$ to define $\hat{\mathbf e}_2$. This fixes the remaining continuous roll around $\hat{\mathbf e}_1$.
 4. Declare a parity convention and set $\hat{\mathbf e}_3=\hat{\mathbf e}_1\times\hat{\mathbf e}_2$, or use a non-coplanar fourth architrino only as a side marker for reporting the chosen convention.
 
-The continuous freedoms removed are translation and rotation. Absolute time zero remains a separate temporal convention. The spatial basis does not need to be re-derived on every slice: once the chart is fixed on $\Sigma_{T_\ast}$, it transports rigidly across absolute-time slices because Euclidean-void points have fixed identity. In the selected $c_f$-isotropic rest frame, the dynamically completed Newton-Cartan connection is the flat representative described in [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md#newton-cartan-data), so this transport has trivial holonomy and is path-independent. The delayed root condition $\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|=c_f(T_r-T_t)$ therefore compares positions at different times inside the same spatial chart, not inside separately reconstructed per-slice frames.
+The continuous freedoms removed are translation and rotation. Absolute time zero remains a separate temporal convention. The spatial basis does not need to be re-derived on every slice: once the chart is fixed on $\Sigma_{T_\ast}$, it transports identically across absolute-time slices because Euclidean-void points have fixed identity. In the selected $c_f$-isotropic rest frame, the dynamically completed Newton-Cartan connection is the flat representative described in [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md#newton-cartan-data), so this transport has trivial holonomy and is path-independent. The delayed root condition $\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|=c_f(T_r-T_t)$ therefore compares positions at different times inside the same spatial chart, not inside separately reconstructed per-slice frames.
 
 The reconstruction fails only for degenerate or ill-conditioned reference data: $\|\mathbf{d}_1\|=0$, $\|\mathbf{d}_1\times\mathbf{d}_2\|=0$, or a violated conditioning floor. In that case complete-state bookkeeping must choose a different ordered tuple. The failure belongs to the selected chart data, not to the Euclidean void.
 

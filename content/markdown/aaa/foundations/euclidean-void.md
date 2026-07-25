@@ -123,7 +123,7 @@ Consequently, topological protection in $\mathbb{A}\mathbb{A}\mathbb{A}$ is not 
 
 ## Canonical Coordinates and Event Identity
 
-Coordinates are names for fixed substrate locations. The void itself does not come with painted axes or a built-in origin. Once a chart is chosen for calculation, the canonical spatial chart is a rigid Cartesian coordinate system
+Coordinates are names for fixed substrate locations. The void itself does not come with painted axes or a built-in origin. Once a chart is chosen for calculation, the canonical spatial chart is a fixed Cartesian coordinate system
 $$
 \mathcal{C}=\{X,Y,Z\}
 $$

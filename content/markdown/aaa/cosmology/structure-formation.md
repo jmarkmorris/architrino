@@ -62,7 +62,8 @@ Each symbol carries a specific medium-level meaning:
 - perturbations are small ($|\delta| \ll 1$),
 - the wavelength of perturbations is much larger than the Noether braid scale,
 - the Noether sea response is quasi-static (perturbation timescale $\gg$ internal Noether braid oscillation period),
-- no internal velocity component of the matter assemblies approaches $c_f$ (the self-hit regime is not triggered by the perturbation dynamics themselves).
+- no internal velocity component of the matter assemblies approaches $c_f$ (the self-hit regime is not triggered by the perturbation dynamics themselves),
+- the homogeneous quiescent Noether sea about which the perturbation is taken is an equilibrium of the constitutive dynamics — an open closure item of the [Noether sea program](../spacetime/noether-sea.md) that this equation inherits rather than establishes.
 
 **What breaks outside that regime.** At $|\delta| \sim 1$ (turnaround and collapse), the linear equation fails and must be replaced by the full nonlinear medium response—analogous to N-body or hydrodynamic treatment in standard cosmology. At very small scales, the finite size of Noether braid assemblies and the discreteness of the Noether sea introduce a physical cutoff; the continuum growth equation is not valid below the mean inter-assembly spacing. At extremely high densities (approaching conditions near a maximum-curvature object), the self-hit regime is entered, Jacobian anisotropies become large, and the effective $G$ itself changes qualitatively.
 
@@ -237,7 +238,7 @@ Structure formation in this framework is a single coupled medium-and-assembly hi
 ### Galaxy Rotation Curves
 
 Flat rotation curves require either a dark-matter halo or a modified gravitational response at low accelerations. In the Noether sea picture:
-- A halo of weakly coupled neutral assemblies reproduces standard NFW-like profiles.
+- A halo of weakly coupled neutral assemblies is expected, by analogy with CDM N-body results, to reproduce standard NFW-like profiles.
 - Alternatively, if $G_{\text{eff}}$ develops scale dependence at galactic scales (from nonlinear medium response at low density gradients), MOND-like behavior emerges without particle dark matter.
 - The Bullet Cluster and similar offset systems provide a high-pressure inference gate rather than a one-image ontological proof. If an ensemble of cluster-offset reconstructions robustly requires lensing mass separated from the baryonic gas under the same lensing priors, gas dynamics, and shared Noether sea state record, then pure medium-modification scenarios fail and a collisionless neutral-assembly component is required.
 
@@ -269,8 +270,8 @@ Clusters probe the intermediate regime ($\sim 1$–$10$ Mpc) where both thermal 
 
 Weak gravitational lensing measures the integrated matter power spectrum weighted by the lensing kernel. The $S_8 = \sigma_8 \sqrt{\Omega_m / 0.3}$ parameter family directly constrains the amplitude of linear growth at low redshift. In the Noether sea picture:
 - $\sigma_8$ is the rms matter fluctuation at $8\,h^{-1}$ Mpc, computed from the growth factor $D(t)$ and the primordial spectrum.
-- Consistency between CMB-inferred $S_8$ (high-$z$ prediction evolved to $z=0$) and direct low-$z$ lensing measurement is a stringent test. Current data suggest mild tension ($S_8^{\text{CMB}} > S_8^{\text{lensing}}$ at $\sim 2$–$3\sigma$).
-- If $G_{\text{eff}}$ weakens at late times relative to its early-universe value (because the Noether sea stiffens as it cools), the predicted $S_8$ at low $z$ drops, potentially resolving the tension. This is a concrete, testable prediction of Noether sea-evolution cosmology.
+- Consistency between CMB-inferred $S_8$ (high-$z$ prediction evolved to $z=0$) and direct low-$z$ lensing measurement is a stringent test. Current data suggest mild tension ($S_8^{\text{CMB}} > S_8^{\text{lensing}}$ at $\sim 2$–$3\sigma$); the benchmark residual-contract table in [Hubble/S8 Tensions](hubble-s8-tensions.md) names the contributing instruments (Planck vs DES-Y3/KiDS-class).
+- If $G_{\text{eff}}$ weakens at late times relative to its early-universe value, the predicted $S_8$ at low $z$ drops, potentially resolving the tension. This is a conditional candidate, not yet a prediction: as the scale-dependence section below records, the stable compression branch derives $|\mu|$ shrinking rather than the negative $\mu$ this resolution requires, so the required sign is an explicit closure burden before any $S_8$ claim can be made.
 
 ### CMB Lensing and Acoustic Peaks
 
@@ -366,9 +367,9 @@ Here the first term tests whether the shared source history can grow the compact
 
 Little-red-dot spectra add the obscured-accretion side of the same early-growth test. In a system such as GLIMPSE-17775, the compact red source is not interpreted from brightness alone: lensing reconstruction, deep JWST spectroscopy, line-profile modeling, host decomposition, gas density, optical depth, fluorescence, absorption, and X-ray or radio suppression all help determine whether the object is a rapidly accreting black hole hidden inside a dense gas envelope. If electron scattering and radiative transfer set much of the broad-line profile, then the inferred black-hole mass and Eddington ratio are coupled to gas-state modeling rather than to virial motion alone. The structure-formation branch must therefore explain the compact source, its host contribution, and its line-formation environment with one source-history record instead of treating little red dots as either overmassive galaxies or ordinary exposed quasars.
 
-QSO1 supplies the complementary host-ordering constraint. Its direct dynamical mass estimate places a massive compact source in a very low-mass, low-metallicity host at $z=7.04$. The structure-formation problem is therefore not only whether early galaxies can feed central black holes quickly enough. It is whether one source-history model can produce compact central mass, delayed or weak host buildup, near-pristine gas, and later galaxy assembly without switching seed assumptions between the dynamical, chemical, and photometric records. Direct-collapse, heavy-seed, super-Eddington, and primordial-black-hole scenarios remain comparison routes until the same record also closes the host and enrichment constraints.
+QSO1 supplies the complementary host-ordering constraint. Its direct dynamical mass estimate (ALMA dynamical-mass class) places a massive compact source in a very low-mass, low-metallicity host at $z=7.04$. The structure-formation problem is therefore not only whether early galaxies can feed central black holes quickly enough. It is whether one source-history model can produce compact central mass, delayed or weak host buildup, near-pristine gas, and later galaxy assembly without switching seed assumptions between the dynamical, chemical, and photometric records. Direct-collapse, heavy-seed, super-Eddington, and primordial-black-hole scenarios remain comparison routes until the same record also closes the host and enrichment constraints.
 
-Lensed inactive black holes supply the host-galaxy complement to the bright-quasar row. A system such as MRG-M0138 at $z\simeq1.95$ is selected through a foreground lens, reconstructed through stellar kinematics, and interpreted together with a quiescent host whose star formation has already been suppressed. That packet tests whether black-hole growth, feedback or release history, stellar-mass buildup, and lensing reconstruction can be held in one source-history record. If an early massive black hole is explained only while the host quenching, stellar velocity dispersion, and lens model are treated as independent bookkeeping, the structure-formation branch has not supplied a shared growth history.
+Lensed inactive black holes supply the host-galaxy complement to the bright-quasar row. A system such as MRG-M0138 at $z\simeq1.95$ (JWST relic-galaxy class) is selected through a foreground lens, reconstructed through stellar kinematics, and interpreted together with a quiescent host whose star formation has already been suppressed. That packet tests whether black-hole growth, feedback or release history, stellar-mass buildup, and lensing reconstruction can be held in one source-history record. If an early massive black hole is explained only while the host quenching, stellar velocity dispersion, and lens model are treated as independent bookkeeping, the structure-formation branch has not supplied a shared growth history.
 
 ### Top-Down vs Bottom-Up Discriminator
 
@@ -433,7 +434,7 @@ where $\mu(a, k)$ is a dimensionless modification function.
 
 ### Linear Constitutive Derivation of $\mu(a,k)$
 
-To make the map explicit, linearize the Noether sea response around a homogeneous background with displacement field $\mathbf{u}$ and scalar compression mode
+To make the map explicit, linearize the Noether sea response around a homogeneous background — carrying the same open equilibrium predicate declared in the growth-equation validity list above — with displacement field $\mathbf{u}$ and scalar compression mode
 $$
 \theta \equiv \nabla\cdot\mathbf{u}
 $$
@@ -517,7 +518,7 @@ $$
 k_\ast(a)^2\equiv\frac{m_L^2(a)}{M_L(a)}
 $$
 
-Setting $g_m=0$ (or equivalently $\mu=0$) recovers standard GR growth. Current data constrain $|\mu| \lesssim 0.1$ on the scales probed by galaxy surveys and CMB lensing.
+Setting $g_m=0$ (or equivalently $\mu=0$) recovers standard GR growth. Current data constrain $|\mu| \lesssim 0.1$ (Planck modified-gravity + DES/KiDS-class weak-lensing constraints) on the scales probed by galaxy surveys and CMB lensing.
 
 A finite-range or screening comparison adds one useful local-recovery gate without importing massive-gravity ontology. If a local constitutive invariant $\mathcal{I}_{\mathrm{loc}}$ suppresses the response in dense or strongly tested regimes, write
 $$

@@ -9,7 +9,9 @@ namespace architrino::eom {
 namespace {
 
 double radius_about(const Interval& value, double center) {
-  return std::max(center - value.lower(), value.upper() - center);
+  const Interval displacement = value - Interval::point(center);
+  return std::max(
+      std::abs(displacement.lower()), std::abs(displacement.upper()));
 }
 
 double outward_sum(double left, double right) {

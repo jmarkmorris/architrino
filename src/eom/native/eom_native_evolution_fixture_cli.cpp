@@ -263,7 +263,11 @@ void print_evolution(
             << "\",\"all_steps_atomic\":"
             << (certificate.all_steps_atomic ? "true" : "false")
             << ",\"evidence_status\":\"" << certificate.evidence_status
-            << "\",\"histories\":";
+            << "\",\"joint_history_count\":"
+            << certificate.joint_histories.size()
+            << ",\"joint_state_fallback_applied\":"
+            << (certificate.joint_state_fallback_applied ? "true" : "false")
+            << ",\"histories\":";
   print_histories(certificate.histories, certificate.accepted_end_time);
   std::cout << ",\"steps\":";
   print_steps(certificate.steps);
@@ -927,6 +931,30 @@ void print_all() {
       eom::evolve_native_coupled_histories(checkpoint_partial_request);
   const auto checkpoint = eom::create_native_evolution_checkpoint(
       checkpoint_partial_request, checkpoint_partial_result);
+  const std::string checkpoint_model_fingerprint =
+      eom::native_evolution_model_fingerprint(checkpoint_partial_request);
+  auto changed_event_fraction = checkpoint_partial_request;
+  changed_event_fraction.event_quadrature_fraction = "0.34";
+  auto changed_increment_budget = checkpoint_partial_request;
+  changed_increment_budget.position_increment_budget = "1e-9";
+  auto changed_traversal_limit = checkpoint_partial_request;
+  ++changed_traversal_limit.traversal_maximum_nodes;
+  auto changed_warm_policy = checkpoint_partial_request;
+  changed_warm_policy.use_warm_root_exclusion =
+      !changed_warm_policy.use_warm_root_exclusion;
+  const bool checkpoint_controls_bound =
+      checkpoint_model_fingerprint !=
+          eom::native_evolution_model_fingerprint(changed_event_fraction) &&
+      checkpoint_model_fingerprint !=
+          eom::native_evolution_model_fingerprint(changed_increment_budget) &&
+      checkpoint_model_fingerprint !=
+          eom::native_evolution_model_fingerprint(changed_traversal_limit) &&
+      checkpoint_model_fingerprint !=
+          eom::native_evolution_model_fingerprint(changed_warm_policy);
+  if (!checkpoint_controls_bound) {
+    throw std::runtime_error(
+        "checkpoint fingerprint omits an acceptance-regime control");
+  }
   const auto checkpoint_bytes =
       eom::serialize_native_evolution_checkpoint(checkpoint);
   const auto checkpoint_roundtrip =
@@ -1175,6 +1203,55 @@ void print_all() {
   finite_event_request.event_max_cells = 200000;
   const auto finite_event_step = eom::certify_native_atomic_coupled_step(
       finite_event_request, event_histories, 0, "2.7", "2.8");
+  eom::JointAffineCubicSegment event_joint_segment;
+  event_joint_segment.start_time = 0.0;
+  event_joint_segment.end_time = 2.7;
+  auto joint_finite_event_request = finite_event_request;
+  joint_finite_event_request.run_id = "joint-root-event-fail-closed";
+  joint_finite_event_request.joint_histories = {
+      {"receiver", eom::JointAffineRetainedHistory(
+          "receiver", {}, {event_joint_segment})},
+      {"source", eom::JointAffineRetainedHistory(
+          "source", {}, {event_joint_segment})},
+  };
+  const auto joint_finite_event_step =
+      eom::certify_native_atomic_coupled_step(
+          joint_finite_event_request, event_histories, 0, "2.7", "2.8");
+  if (joint_finite_event_step.status != "rejected" ||
+      joint_finite_event_step.failure_code !=
+          "unsupported_caustic_or_singular_chart") {
+    throw std::runtime_error(
+        "joint finite-width event route did not fail closed: " +
+        joint_finite_event_step.status + "/" +
+        joint_finite_event_step.failure_code);
+  }
+  const auto joint_event_halt_code =
+      eom::native_nonretryable_halt_code(joint_finite_event_step);
+  if (!joint_event_halt_code.has_value() ||
+      *joint_event_halt_code != "caustic_transit_uncertified") {
+    throw std::runtime_error(
+        "joint finite-width event maps to the wrong controller halt");
+  }
+  const bool ordinary_joint_event_fallback_selected =
+      eom::native_joint_event_fallback_is_available(
+          joint_finite_event_request, joint_finite_event_step);
+  if (!ordinary_joint_event_fallback_selected) {
+    throw std::runtime_error(
+        "ordinary joint finite-width event did not select non-joint retry");
+  }
+  auto adjudicated_joint_event_request = joint_finite_event_request;
+  adjudicated_joint_event_request.run_id =
+      "joint-root-event-adjudicated-fallback";
+  adjudicated_joint_event_request.adjudicated_finite_width_pairs = {
+      {"receiver", "source"}};
+  const auto adjudicated_joint_event =
+      eom::evolve_native_coupled_histories(
+          adjudicated_joint_event_request);
+  if (adjudicated_joint_event.status != "completed" ||
+      !adjudicated_joint_event.joint_histories.empty()) {
+    throw std::runtime_error(
+        "adjudicated finite-width retry did not fall back from joint state");
+  }
   auto finite_event_single_thread_request = finite_event_request;
   finite_event_single_thread_request.thread_count = 1;
   const auto finite_event_single_thread_step =
@@ -1544,6 +1621,8 @@ void print_all() {
             << checkpoint_file_roundtrip.checkpoint_fingerprint
             << "\",\"tamper_rejected\":"
             << (checkpoint_tamper_rejected ? "true" : "false")
+            << ",\"acceptance_controls_bound\":"
+            << (checkpoint_controls_bound ? "true" : "false")
             << ",\"circular_certificate_preserved\":"
             << (circular_certificate_preserved ? "true" : "false")
             << ",\"certificate_cost_cooldown_roundtrip\":"
@@ -1595,6 +1674,14 @@ void print_all() {
   print_atomic(event_step);
   std::cout << "],\"event_acceptance\":";
   print_atomic(finite_event_step);
+  std::cout << ",\"joint_event_fail_closed\":";
+  print_atomic(joint_finite_event_step);
+  std::cout << ",\"joint_event_halt_code\":\""
+            << *joint_event_halt_code << "\"";
+  std::cout << ",\"joint_event_ordinary_fallback_selected\":"
+            << (ordinary_joint_event_fallback_selected ? "true" : "false");
+  std::cout << ",\"joint_event_adjudicated_fallback\":";
+  print_evolution(adjudicated_joint_event);
   std::cout << ",\"event_acceptance_single_thread\":";
   print_atomic(finite_event_single_thread_step);
   std::cout << ",\"event_atomic_resource_failure\":";
@@ -1759,6 +1846,7 @@ void print_certified_correction_retry() {
 }  // namespace
 
 int main(int argc, char** argv) {
+  std::cout.imbue(std::locale::classic());
   try {
     if (argc != 2 ||
         (std::string(argv[1]) != "all" &&

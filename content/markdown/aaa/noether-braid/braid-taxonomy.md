@@ -111,7 +111,7 @@ $$
 
 This angle is not a primary taxonomy coordinate.
 
-Only rigid time dependence is considered in the taxonomy table as an idealized characteristic. Other possible time dependences, including breathing, precession, and other deformations, lie outside its present scope.
+The taxonomy table uses fixed-coordinate prescribed time dependence as an idealized characteristic. Other possible time dependences, including breathing, precession, and other deformations, lie outside its present scope.
 
 ## Family A: Noether Core
 
@@ -222,7 +222,7 @@ $$
 \hat{\mathbf n}_B
 $$
 
-`B1` is the rigid common-frequency member. Its binaries may have different radii, axial half-separations, transverse orbit radii, and phases, but share one midpoint, one axis, one frequency, and one circulation sense. The coincident-axis relation distinguishes Family B from Family A; the family identifier does not assert that either geometry is dynamically retained.
+`B1` is the fixed-coordinate common-frequency co-rotating member. Its binaries may have different radii, axial half-separations, transverse orbit radii, and phases, but share one midpoint, one axis, one frequency, and one circulation sense. The coincident-axis relation distinguishes Family B from Family A; the family identifier does not assert that either geometry is dynamically retained.
 
 The three current Borg selections are `B1.1`, the interior reference with $h_a>0$ and $\rho_a>0$; `B1.2`, the high-axial interior selection with $h_a>\rho_a>0$; and `B1.3`, the all-equatorial boundary with $h_a=0$ and $\rho_a=R_a$. Each inherits every other B1 relation. Active B1 candidates additionally satisfy $\sum_a\rho_a^2>0$, equivalently nonzero total squared internal speed for the declared common frequency. The all-axial locus $\rho_a=0$, $h_a=R_a$ remains part of the B1 coordinate boundary, but the former identifier `B1.4` is retained only as a deprecated historical null control.
 

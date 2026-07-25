@@ -1,28 +1,38 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 
 import * as THREE from "../vendor/three/three.module.js";
 import {
-  createIdealBraidCircularSelfHitSpanRunRequest,
-  solveCircularSelfHitSpanRowWithPrescribedPathAnalysis,
+  BINARY_FIELD_SPEED_RATIOS,
   solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis,
-  solveCircularSelfHitSpanWithPrescribedPathAnalysis,
-  getOrbitPathTintProfileWithPrescribedPathAnalysis,
 } from "../src/apps/ideal-braid/IdealBraidPathPotentialProfile.js";
 import {
   computePotentialSamplesWithPrescribedPathAnalysis,
+  createIdealBraidPotentialSamplesRunRequest,
+  IDEAL_BRAID_POTENTIAL_SOFTENING,
+} from "../src/apps/ideal-braid/IdealBraidAnalysisAdapters.js";
+import {
+  IDEAL_BRAID_SURFACE_SOLVER_FAILURE_BACKOFF_MS,
+  createIdealBraidSurfaceSolverScheduler,
+} from "../src/apps/ideal-braid/IdealBraidSurfaceSolverScheduler.js";
+import {
   computeAssemblyMomentumContractionMatrix,
   computeLorentzAlignedOrbitBasis,
   computeLorentzState,
-  createIdealBraidFlightTimeRunRequest,
-  createIdealBraidPotentialSamplesRunRequest,
+  createIdealBraidMarkdownRuntime,
   createSurfaceSamples,
   createIdealBraidModel,
+  mountIdealBraid,
   getOrbitPathTintProfile,
   navigateIdealBraidHome,
-  solveFlightTimeRowWithPrescribedPathAnalysis,
-  solveFlightTimeWithPrescribedPathAnalysis,
 } from "../src/apps/ideal-braid/IdealBraidRuntime.js";
+import {
+  bootstrapIdealBraid,
+} from "../src/apps/ideal-braid/main.js";
+
+const repoRoot = fileURLToPath(new URL("../", import.meta.url));
 
 test("A1 Lorentz Geometry model preserves stable ids and exposes indexed labels", () => {
   const model = createIdealBraidModel({ THREE });
@@ -44,6 +54,9 @@ test("A1 Lorentz Geometry model preserves stable ids and exposes indexed labels"
   assert.equal(model.fieldSpeed, model.binaries[1].speed);
   model.binaries.forEach((binary) => {
     assert.ok(Math.abs(binary.fieldSpeedRatio - binary.speed / model.fieldSpeed) < 1e-12);
+    assert.ok(
+      Math.abs(binary.fieldSpeedRatio - BINARY_FIELD_SPEED_RATIOS[binary.id]) < 1e-12
+    );
   });
   assert.ok(Math.abs(model.binaries[0].fieldSpeedRatio - 1.1538461538461537) < 1e-12);
   assert.ok(Math.abs(model.binaries[2].fieldSpeedRatio - 0.7912087912087912) < 1e-12);
@@ -72,6 +85,15 @@ test("surface sample poles align with assembly momentum", () => {
 
   assert.ok(firstPole.distanceTo(assemblyMomentum) < 1e-12);
   assert.ok(lastPole.distanceTo(assemblyMomentum.clone().multiplyScalar(-1)) < 1e-12);
+  assert.equal(samples.length, 2 + 23 * 48);
+  assert.equal(
+    samples.filter((sample) => sample.unit.distanceTo(firstPole) < 1e-12).length,
+    1
+  );
+  assert.equal(
+    samples.filter((sample) => sample.unit.distanceTo(lastPole) < 1e-12).length,
+    1
+  );
 });
 
 test("full potential is the prescribed-path analysis six-emission superposition", async () => {
@@ -83,8 +105,7 @@ test("full potential is the prescribed-path analysis six-emission superposition"
     model,
     observationTime,
     {
-      fieldSpeed: 6,
-      softening: 0.1,
+      fieldSpeed: model.fieldSpeed,
       requestId: "ideal_potential_samples_request",
       runId: "ideal_potential_samples_run",
       datasetId: "ideal_potential_samples_dataset",
@@ -93,6 +114,10 @@ test("full potential is the prescribed-path analysis six-emission superposition"
   const expectedPotentials = model.architrinos.map((architrino, index) =>
     architrino.q * (index + 1) * 0.25
   );
+  runRequest.config.geometryRequest.delayedPotentials.forEach((row) => {
+    assert.equal(row.fieldSpeed, model.fieldSpeed);
+    assert.equal(row.softening, IDEAL_BRAID_POTENTIAL_SOFTENING);
+  });
   const manualTotal = expectedPotentials.reduce((sum, potential) => sum + potential, 0);
   const snapshot = await computePotentialSamplesWithPrescribedPathAnalysis(
     [samplePoint],
@@ -172,89 +197,6 @@ test("assembly momentum contraction preserves the final shared orbit plane", () 
   assert.ok(contractedInPlane.distanceTo(inPlane) < 1e-10);
 });
 
-test("prescribed-path flight-time analysis returns a positive emission delay", async () => {
-  const model = createIdealBraidModel({ THREE });
-  const samplePoint = new THREE.Vector3(1.6, 0.3, -0.5);
-  const expectedTau = 0.3125;
-  const tau = await solveFlightTimeWithPrescribedPathAnalysis(samplePoint, model.architrinos[0], 0.9, {
-    fieldSpeed: 6,
-    iterations: 5,
-    async runPrescribedPathAnalysis(request) {
-      return createFlightTimeRunHandle(request, expectedTau);
-    },
-  });
-
-  assert.ok(tau > 0);
-  assert.ok(Number.isFinite(tau));
-  assert.equal(tau, expectedTau);
-});
-
-test("A1 Lorentz Geometry flight time can be routed through the prescribed-path analysis for a linear transmitter", async () => {
-  const transmitterStart = new THREE.Vector3(1, -0.5, 0.25);
-  const transmitterVelocity = new THREE.Vector3(0.2, 0.1, -0.05);
-  const architrino = {
-    q: 2,
-    positionAt(timeSeconds) {
-      return transmitterStart.clone().add(transmitterVelocity.clone().multiplyScalar(timeSeconds));
-    },
-    velocityAt() {
-      return transmitterVelocity.clone();
-    },
-  };
-  const samplePoint = new THREE.Vector3(3.4, 1.2, -0.7);
-  const observationTime = 2.5;
-  const options = {
-    fieldSpeed: 6,
-    iterations: 6,
-    transmitterStartTime: 0,
-    transmitterEndTime: observationTime,
-    normalization: 2,
-    transmitterCharge: 2,
-    useCausalDenominator: true,
-  };
-  const expectedTau = 0.483125;
-  const runRequest = createIdealBraidFlightTimeRunRequest(
-    samplePoint,
-    architrino,
-    observationTime,
-    {
-      ...options,
-      requestId: "ideal_flight_bridge_request",
-      runId: "ideal_flight_bridge_run",
-      datasetId: "ideal_flight_bridge_dataset",
-    }
-  );
-
-  assert.equal(runRequest.appId, "ideal-braid");
-  assert.equal(runRequest.runKind, "sharedGeometry");
-  assert.equal(runRequest.envelope.timeWindow.units, "seconds");
-  assert.equal(runRequest.config.geometryRequest.delayedPotentials[0].iterations, 6);
-  assert.deepEqual(runRequest.config.geometryRequest.delayedPotentials[0].transmitter.velocity, {
-    x: 0.2,
-    y: 0.1,
-    z: -0.05,
-  });
-
-  const row = await solveFlightTimeRowWithPrescribedPathAnalysis(samplePoint, architrino, observationTime, {
-    runRequest,
-    async runPrescribedPathAnalysis(request) {
-      assert.equal(request.requestId, "ideal_flight_bridge_request");
-      return createFlightTimeRunHandle(request, expectedTau);
-    },
-  });
-
-  assert.equal(row.analysisId, "prescribed-path-analysis");
-  assert.equal(row.runId, "ideal_flight_bridge_run");
-  assert.ok(Math.abs(row.tau - expectedTau) < 1e-12);
-
-  const tau = await solveFlightTimeWithPrescribedPathAnalysis(samplePoint, architrino, observationTime, {
-    async runPrescribedPathAnalysis(request) {
-      return createFlightTimeRunHandle(request, expectedTau);
-    },
-  });
-  assert.ok(Math.abs(tau - expectedTau) < 1e-12);
-});
-
 test("orbit path tint profiles distinguish inner middle and outer binaries", () => {
   const model = createIdealBraidModel({ THREE });
   const [inner, middle, outer] = model.binaries.map((binary) => getOrbitPathTintProfile(binary));
@@ -278,68 +220,37 @@ test("orbit path tint profiles distinguish inner middle and outer binaries", () 
   assert.ok(outer.wakeWidthScale > 2);
 });
 
-test("super-field profile expands the path-history span from prescribed circular self-hit geometry", async () => {
+test("super-field profile expands from a cached prescribed circular self-hit row", () => {
   const model = createIdealBraidModel({ THREE });
   const innerBinary = model.binaries[0];
-  const expectedSpan = 2.0534765827345125;
+  const expectedSpan = 2.053476582744672;
   const pendingProfile = getOrbitPathTintProfile(innerBinary);
   const cachedProfile = getOrbitPathTintProfile({
     ...innerBinary,
     solverSelfHitSpan: expectedSpan,
   });
-  const bridgeProfile = await getOrbitPathTintProfileWithPrescribedPathAnalysis(innerBinary, {
-    async runPrescribedPathAnalysis(request) {
-      assert.equal(request.config.geometryRequest.circularSelfHitSpans.length, 1);
-      return createSelfHitRunHandle(request, expectedSpan);
-    },
-  });
 
   assert.equal(pendingProfile.analysisProfileStatus, "pending-analysis-row");
   assert.equal(pendingProfile.selfHitSpan, 0);
   assert.ok(Math.abs(cachedProfile.selfHitSpan - expectedSpan) < 1e-12);
-  assert.ok(Math.abs(bridgeProfile.selfHitSpan - expectedSpan) < 1e-12);
-  assert.equal(bridgeProfile.analysisId, "prescribed-path-analysis");
 });
 
-test("A1 Lorentz Geometry circular self-hit span can be routed through the prescribed-path analysis", async () => {
-  const runRequest = createIdealBraidCircularSelfHitSpanRunRequest(1.2, {
-    requestId: "ideal_self_hit_bridge_request",
-    runId: "ideal_self_hit_bridge_run",
-    datasetId: "ideal_self_hit_bridge_dataset",
+test("real prescribed-path analysis converges the super-field circular self-hit span", async () => {
+  const [row] = await solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis([1.2], {
+    runId: "ideal-self-hit-real-integration",
   });
-
-  assert.equal(runRequest.appId, "ideal-braid");
-  assert.equal(runRequest.runKind, "sharedGeometry");
-  assert.equal(runRequest.config.geometryRequest.circularSelfHitSpans[0].fieldSpeedRatio, 1.2);
-  assert.equal(runRequest.config.geometryRequest.circularSelfHitSpans[0].maxIterations, 28);
-  assert.equal(runRequest.envelope.timeWindow.units, "cycles");
-
-  const expectedSpan = 2.0534765827345125;
-  const row = await solveCircularSelfHitSpanRowWithPrescribedPathAnalysis(1.2, {
-    runRequest,
-    async runPrescribedPathAnalysis(request) {
-      assert.equal(request.requestId, "ideal_self_hit_bridge_request");
-      return createSelfHitRunHandle(request, expectedSpan);
-    },
-  });
-
   assert.equal(row.analysisId, "prescribed-path-analysis");
-  assert.equal(row.runId, "ideal_self_hit_bridge_run");
+  assert.equal(row.runId, "ideal-self-hit-real-integration");
   assert.equal(row.resultKind, "root_solved");
   assert.equal(row.rootFound, true);
-  assert.ok(Math.abs(row.span - expectedSpan) < 1e-12);
-
-  const span = await solveCircularSelfHitSpanWithPrescribedPathAnalysis(1.2, {
-    async runPrescribedPathAnalysis(request) {
-      return createSelfHitRunHandle(request, expectedSpan);
-    },
-  });
-  assert.ok(Math.abs(span - expectedSpan) < 1e-12);
+  assert.equal(row.iterations, 31);
+  assert.ok(Math.abs(row.span - 2.053476582744672) < 1e-12);
+  assert.ok(Math.abs(row.residual) <= 1e-12);
 });
 
 test("A1 Lorentz Geometry circular self-hit spans can be batched through the prescribed-path analysis", async () => {
   const ratios = [1.2, 1.01, 0.8];
-  const spans = [2.0534765827345125, 0, 0];
+  const spans = [2.053476582744672, 0, 0];
   const rows = await solveCircularSelfHitSpanRowsWithPrescribedPathAnalysis(ratios, {
     requestId: "ideal_self_hit_batch_request",
     runId: "ideal_self_hit_batch_run",
@@ -347,6 +258,7 @@ test("A1 Lorentz Geometry circular self-hit spans can be batched through the pre
     async runPrescribedPathAnalysis(request) {
       assert.equal(request.requestId, "ideal_self_hit_batch_request");
       assert.equal(request.config.geometryRequest.circularSelfHitSpans.length, 3);
+      assert.equal(request.config.geometryRequest.circularSelfHitSpans[0].maxIterations, 48);
       return createSelfHitRunHandle(request, spans);
     },
   });
@@ -357,6 +269,224 @@ test("A1 Lorentz Geometry circular self-hit spans can be batched through the pre
   assert.equal(rows[1].rootFound, false);
   assert.equal(rows[2].rootFound, false);
   assert.ok(Math.abs(rows[0].span - spans[0]) < 1e-12);
+});
+
+test("surface scheduler uses the model field speed, documented softening, and no probe column", async () => {
+  const model = createIdealBraidModel({ THREE });
+  const samplePoints = [
+    new THREE.Vector3(1, 0, 0),
+    new THREE.Vector3(0, 1, 0),
+  ];
+  const requests = [];
+  const snapshots = [];
+  const scheduler = createIdealBraidSurfaceSolverScheduler({
+    model,
+    getStateKey: () => "state-a",
+    getModelTime: () => 0.25,
+    getSamplePoints: () => samplePoints,
+    nowMs: () => 0,
+    onSnapshot: (snapshot) => snapshots.push(snapshot),
+    prescribedPathAnalysisOptions: {
+      async runPrescribedPathAnalysis(request) {
+        requests.push(request);
+        return createPotentialSamplesRunHandle(
+          request,
+          request.config.geometryRequest.delayedPotentials.map(() => 0)
+        );
+      },
+    },
+  });
+
+  assert.equal(scheduler.schedule({ force: true }), true);
+  await flushAsyncWork();
+
+  assert.equal(requests.length, 1);
+  assert.equal(requests[0].config.geometryRequest.delayedPotentials.length, 12);
+  requests[0].config.geometryRequest.delayedPotentials.forEach((row) => {
+    assert.equal(row.fieldSpeed, model.fieldSpeed);
+    assert.equal(row.softening, IDEAL_BRAID_POTENTIAL_SOFTENING);
+  });
+  assert.equal(snapshots.length, 1);
+  assert.equal(snapshots[0].surfacePotentials.length, samplePoints.length);
+  assert.equal("samplePotential" in snapshots[0], false);
+});
+
+test("surface scheduler reports failures and enforces retry backoff across state changes", async () => {
+  const model = createIdealBraidModel({ THREE });
+  let now = 0;
+  let stateKey = "state-a";
+  let callCount = 0;
+  const errors = [];
+  const scheduler = createIdealBraidSurfaceSolverScheduler({
+    model,
+    getStateKey: () => stateKey,
+    getModelTime: () => 0,
+    getSamplePoints: () => [new THREE.Vector3(1, 0, 0)],
+    nowMs: () => now,
+    onError: (error) => errors.push(error),
+    prescribedPathAnalysisOptions: {
+      async runPrescribedPathAnalysis() {
+        callCount += 1;
+        throw new Error("analysis offline");
+      },
+    },
+  });
+
+  assert.equal(scheduler.schedule({ force: true }), true);
+  await flushAsyncWork();
+  assert.equal(callCount, 1);
+  assert.equal(errors.length, 1);
+
+  stateKey = "state-b";
+  scheduler.clearForStateChange();
+  now = IDEAL_BRAID_SURFACE_SOLVER_FAILURE_BACKOFF_MS - 1;
+  assert.equal(scheduler.schedule(), false);
+  assert.equal(callCount, 1);
+
+  now = IDEAL_BRAID_SURFACE_SOLVER_FAILURE_BACKOFF_MS + 1;
+  assert.equal(scheduler.schedule(), true);
+  await flushAsyncWork();
+  assert.equal(callCount, 2);
+});
+
+test("guide links open their target document and reset/focus the markdown panel", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const fetched = [];
+  globalThis.fetch = async (path) => {
+    fetched.push(String(path));
+    return {
+      ok: true,
+      async text() {
+        return "# Document";
+      },
+    };
+  };
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+  });
+
+  const markdownPanel = createFakeElement("markdown-panel");
+  const markdownTitle = createFakeElement("markdown-title");
+  const markdownContent = createFakeElement("markdown-content");
+  const markdownBody = createFakeElement("markdown-body");
+  const runtime = createIdealBraidMarkdownRuntime({
+    documentLike: { title: "A1 Lorentz Geometry" },
+    windowLike: {},
+    markdownPanel,
+    markdownTitle,
+    markdownContent,
+    markdownBody,
+    markdownLayoutToggle: createFakeElement("markdown-layout-toggle"),
+  });
+
+  await runtime.showMarkdownPanel({
+    name: "A1 Lorentz Geometry Guide",
+    markdownPath: "content/markdown/aaa/archie/ideal-braid-guide.md",
+    markdownColumns: 1,
+  });
+  markdownContent.scrollTop = 420;
+  const link = {
+    getAttribute: () => "../spacetime/lorentz-kinematics.md",
+  };
+  await markdownBody.dispatch("click", {
+    defaultPrevented: false,
+    metaKey: false,
+    ctrlKey: false,
+    shiftKey: false,
+    altKey: false,
+    preventDefault() {},
+    target: {
+      closest(selector) {
+        return selector === "a[href]" ? link : null;
+      },
+    },
+  });
+
+  assert.equal(fetched.length, 2);
+  assert.match(fetched[1], /content\/markdown\/aaa\/spacetime\/lorentz-kinematics\.md/);
+  assert.equal(markdownTitle.textContent, "Lorentz Kinematics");
+  assert.equal(markdownContent.scrollTop, 0);
+  assert.equal(markdownContent.focused, true);
+  assert.equal(markdownPanel.classList.contains("is-open"), true);
+});
+
+test("bootstrap failure produces a visible A1 Lorentz Geometry error banner", () => {
+  const appElement = createFakeElement("ideal-braid-app");
+  appElement.prepend = (child) => {
+    appElement.prepended = child;
+  };
+  const documentLike = {
+    getElementById: () => appElement,
+    createElement: () => createFakeElement("ideal-braid-boot-error"),
+  };
+  const windowLike = {};
+  const originalConsoleError = console.error;
+  console.error = () => {};
+  try {
+    const runtime = bootstrapIdealBraid({
+      documentLike,
+      windowLike,
+      mount() {
+        throw new Error("WebGL unavailable");
+      },
+    });
+    assert.equal(runtime, null);
+  } finally {
+    console.error = originalConsoleError;
+  }
+
+  assert.equal(windowLike.__ARCHITRINO_IDEAL_BRAID_BOOT_ERROR__, "WebGL unavailable");
+  assert.equal(appElement.prepended.id, "ideal-braid-boot-error");
+  assert.match(appElement.prepended.textContent, /WebGL unavailable/);
+});
+
+test("mount smoke test binds the authored DOM and destroy releases listeners and scene assets", () => {
+  const harness = createIdealBraidMountHarness();
+  const runtime = mountIdealBraid({
+    documentLike: harness.documentLike,
+    windowLike: harness.windowLike,
+    createRenderer: () => harness.renderer,
+    ResizeObserver: harness.ResizeObserver,
+    prescribedPathAnalysisOptions: {
+      async runPrescribedPathAnalysis(request) {
+        if (request.config.geometryRequest.circularSelfHitSpans) {
+          return createSelfHitRunHandle(request, [2.053476582744672, 0, 0]);
+        }
+        return createPotentialSamplesRunHandle(
+          request,
+          request.config.geometryRequest.delayedPotentials.map(() => 0)
+        );
+      },
+    },
+  });
+
+  assert.equal(runtime.architrinoGroup.parent, runtime.coreFrame);
+  assert.equal(runtime.sphereContents.children.includes(runtime.architrinoGroup), false);
+  assert.ok(harness.listenerCount() >= 20);
+  let geometryDisposeCount = 0;
+  let materialDisposeCount = 0;
+  runtime.architrinoGroup.children[0].geometry.addEventListener(
+    "dispose",
+    () => {
+      geometryDisposeCount += 1;
+    }
+  );
+  runtime.architrinoGroup.children[0].material.addEventListener(
+    "dispose",
+    () => {
+      materialDisposeCount += 1;
+    }
+  );
+
+  runtime.destroy();
+  runtime.destroy();
+
+  assert.equal(harness.listenerCount(), 0);
+  assert.equal(harness.resizeObserver.disconnected, true);
+  assert.equal(harness.renderer.disposed, true);
+  assert.equal(harness.windowLike.cancelledAnimationFrame, 1);
+  assert.equal(geometryDisposeCount, 1);
+  assert.equal(materialDisposeCount, 1);
 });
 
 function createSelfHitRunHandle(runRequest, spanOrSpans) {
@@ -386,7 +516,7 @@ function createSelfHitRunHandle(runRequest, spanOrSpans) {
             bracketLow: span,
             bracketHigh: span,
             residual: 0,
-            iterations: request.maxIterations ?? 28,
+            iterations: request.maxIterations ?? 48,
           };
         }),
       },
@@ -426,34 +556,182 @@ function createPotentialSamplesRunHandle(runRequest, potentials) {
   };
 }
 
-function createFlightTimeRunHandle(runRequest, tau) {
+function flushAsyncWork() {
+  return new Promise((resolve) => setImmediate(resolve));
+}
+
+function createFakeClassList() {
+  const classes = new Set();
   return {
-    requestId: runRequest.requestId,
-    runId: runRequest.runId,
-    datasetId: runRequest.datasetId,
-    status: { code: "ok", severity: "ok", message: "shared geometry completed" },
-    response: {
-      runId: runRequest.runId,
-      datasetId: runRequest.datasetId,
-      geometry: {
-        delayedPotentials: [
-          {
-            itemIndex: 0,
-            statusCode: 0,
-            tau,
-            emissionTime: runRequest.config.geometryRequest.delayedPotentials[0].observationTime - tau,
-            emissionPoint: { x: 0, y: 0, z: 0 },
-            displacement: { x: 0, y: 0, z: 0 },
-            distance: 1,
-            denominator: 1,
-            potential: 1,
-            kappa: 1,
-            iterations: runRequest.config.geometryRequest.delayedPotentials[0].iterations,
-            usedCausalDenominator: true,
-          },
-        ],
-      },
-      status: { code: "ok", severity: "ok", message: "shared geometry completed" },
+    add(...tokens) {
+      tokens.forEach((token) => classes.add(token));
     },
+    remove(...tokens) {
+      tokens.forEach((token) => classes.delete(token));
+    },
+    toggle(token, force) {
+      const shouldAdd = typeof force === "boolean" ? force : !classes.has(token);
+      if (shouldAdd) {
+        classes.add(token);
+      } else {
+        classes.delete(token);
+      }
+      return shouldAdd;
+    },
+    contains(token) {
+      return classes.has(token);
+    },
+  };
+}
+
+function createFakeCanvasContext() {
+  return {
+    beginPath() {},
+    clearRect() {},
+    fill() {},
+    fillRect() {},
+    fillText() {},
+    lineTo() {},
+    moveTo() {},
+    stroke() {},
+    arc() {},
+  };
+}
+
+function createFakeElement(id = "") {
+  const attributes = new Map();
+  const listeners = new Map();
+  const element = {
+    id,
+    attributes,
+    classList: createFakeClassList(),
+    dataset: {},
+    inert: false,
+    innerHTML: "",
+    scrollLeft: 0,
+    scrollTop: 0,
+    textContent: "",
+    title: "",
+    style: {
+      setProperty() {},
+    },
+    value:
+      id === "ideal-braid-radius-input"
+        ? "1.62"
+        : id === "ideal-braid-beta-input"
+          ? "0"
+          : id === "ideal-braid-speed-input"
+            ? "1"
+            : "",
+    addEventListener(type, handler, options) {
+      if (!listeners.has(type)) {
+        listeners.set(type, new Set());
+      }
+      listeners.get(type).add(handler);
+      options?.signal?.addEventListener?.(
+        "abort",
+        () => {
+          listeners.get(type)?.delete(handler);
+        },
+        { once: true }
+      );
+    },
+    dispatch(type, event) {
+      const handlers = [...(listeners.get(type) ?? [])];
+      return Promise.all(handlers.map((handler) => handler(event))).then((values) => values.at(-1));
+    },
+    focus() {
+      element.focused = true;
+    },
+    getAttribute(key) {
+      return attributes.get(key) ?? null;
+    },
+    setAttribute(key, value) {
+      attributes.set(key, String(value));
+    },
+    removeAttribute(key) {
+      attributes.delete(key);
+    },
+    getBoundingClientRect() {
+      return { width: 960, height: 640 };
+    },
+    getContext(kind) {
+      return kind === "2d" ? createFakeCanvasContext() : null;
+    },
+    querySelector() {
+      return null;
+    },
+    querySelectorAll() {
+      return [];
+    },
+    setPointerCapture() {},
+    releasePointerCapture() {},
+    listenerCount() {
+      return [...listeners.values()].reduce((sum, handlers) => sum + handlers.size, 0);
+    },
+  };
+  return element;
+}
+
+function createIdealBraidMountHarness() {
+  const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
+  const authoredIds = new Set(
+    [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1])
+  );
+  const elements = new Map(
+    [...authoredIds].map((id) => [id, createFakeElement(id)])
+  );
+  const documentLike = {
+    title: "A1 Lorentz Geometry",
+    querySelector(selector) {
+      return selector.startsWith("#") ? elements.get(selector.slice(1)) ?? null : null;
+    },
+    getElementById(id) {
+      return elements.get(id) ?? null;
+    },
+  };
+  const renderer = {
+    disposed: false,
+    setPixelRatio() {},
+    setClearColor() {},
+    setSize() {},
+    render() {},
+    dispose() {
+      renderer.disposed = true;
+    },
+  };
+  const windowLike = {
+    AbortController,
+    devicePixelRatio: 2,
+    performance: { now: () => 0 },
+    location: { assign() {} },
+    requestAnimationFrame: () => 1,
+    cancelAnimationFrame(id) {
+      windowLike.cancelledAnimationFrame = id;
+    },
+  };
+  let resizeObserver = null;
+  class ResizeObserver {
+    constructor(callback) {
+      this.callback = callback;
+      this.disconnected = false;
+      resizeObserver = this;
+    }
+    observe() {}
+    disconnect() {
+      this.disconnected = true;
+    }
+  }
+  return {
+    documentLike,
+    elements,
+    listenerCount: () =>
+      [...elements.values()].reduce((sum, element) => sum + element.listenerCount(), 0),
+    renderer,
+    ResizeObserver,
+    get resizeObserver() {
+      return resizeObserver;
+    },
+    windowLike,
   };
 }

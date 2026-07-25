@@ -24,7 +24,7 @@ An architrino in motion possesses kinetic energy and momentum.
   
   $$E_{k,a}(T) = K(s_a),\qquad s_a=\|\mathbf V_a(T)\|,$$
   
-  where $s_a$ denotes the speed argument and $K$ is a strictly convex, monotonically increasing function with $K(0)=0$. If an effective saturation proxy is being used, $K'(s_a)\to\infty$ at the saturation scale; in the primitive limit, $K$ grows unboundedly. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether braids in the Noether sea. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf V_a\|\to\infty$.
+  where $s_a$ denotes the speed argument and $K$ is a strictly convex, monotonically increasing function with $K(0)=0$. If an effective saturation proxy is being used, $K'(s_a)\to\infty$ at the saturation scale; in the primitive limit, $K$ grows unboundedly. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether braids in the Noether sea. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf V_a\|\to\infty$. **Scaffold-grade:** at this stage $K(s)$ is an unconstrained functional degree of freedom; it must eventually be fixed by back-solution consistency across certified branches, and inconsistent back-solved $\mu_K$ across certified branches would falsify this kinetic-scalar scaffold.
 
 - **Momentum $\mathbf{p}_a$**
   
@@ -191,7 +191,7 @@ When we work with the mollified effective potential $\Phi_\eta$, we can also wri
 
 $$\mathbf F_i(T) = -\nabla_{\mathbf X_i}U_i(T) = -q_i \nabla_{\mathbf X_i} \Phi_\eta[\text{history}]\big(\mathbf X_i(T),T\big),$$
 
-and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf F_i=\mu_{\text{arch}}\mathbf A_i$ or the appropriate $\mu_K\mathbf A_i$, has been declared.
+and this is required to be equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf F_i=\mu_{\text{arch}}\mathbf A_i$ or the appropriate $\mu_K\mathbf A_i$, has been declared; the recovery is graded a target in the Master Equation chapter.
 The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental acceleration law remains the per-hit sum of the Master EOM.
 
 ### Macroscopic Cancellation and Localized Resonance
@@ -322,6 +322,21 @@ E_{\text{wake}}(T)
 $$
 
 This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_T$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
+
+For the time-normalized constraint
+$\tilde g=T_r-T_t-r/c_f$, dimensional consistency requires the scalar action
+kernel coefficient $\mu_{\text{arch}}\kappa$, not $\kappa/c_f$. The
+corresponding regularized interaction diagnostic is proportional to
+$\delta_\eta(\tilde g)/r$; simple-root collapse produces
+$W^{\mathrm{acc}}/r$ once. An inverse-square acceleration density with a
+manually inserted $W^{\mathrm{acc}}$ is not an energy functional. With the
+polarity convention that like signs repel, the sharp like-polarity interaction
+charge is positive and the boundary derivative inherits the outer minus sign
+declared in the action.
+
+Plainly: the wake-energy row must come from the same $1/r$ action kernel as the
+acceleration derivation. Reusing the $1/r^2$ acceleration formula as energy
+gives the wrong units and double-counts the root weight.
 
 In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the acceleration contribution and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
@@ -910,7 +925,7 @@ The multi-scale status of $A_0$ matters for this accounting. Fast internal corre
 The Noether sea adds an additional layer:
 
 - Moving assemblies must retune their internal causal ledger and reorganize local Noether sea coupling.
-- The effective resistance to high center-of-mass speed (near the relevant internal Noether braid causal-wake propagation scale) increases steeply, producing an emergent saturation speed scale $c_{\text{eff}}$ at which assemblies effectively saturate. Its identification with the photon-channel speed is a separate closure.
+- The proposed mechanism is that the effective resistance to high center-of-mass speed (near the relevant internal Noether braid causal-wake propagation scale) increases steeply, producing an emergent saturation speed scale $c_{\text{eff}}$ at which assemblies effectively saturate. This presupposes stable sea-coupled assemblies, none of which has yet been derived. Its identification with the photon-channel speed is a separate closure.
 
 Thus:
 
@@ -983,7 +998,7 @@ Cross-links:
 
 In the **super-field-speed** regime ($\|\mathbf V_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
 
-- Self-hit repulsion acts as an internal **stiffening mechanism** for Noether braids and more complex assemblies, contributing to their stability.
+- Self-hit repulsion supplies an internal **outward floor** against collapse in Noether braids and more complex assemblies. On the uniform-circular chart it cannot supply centripetal support, and its tangential contribution is signed, so stability requires the other retained branch and wake-boundary entries.
 - Energy represented in an architrino's causal wake and local Noether sea response can be partially routed back through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local Noether braid configuration.
 
 At the exact causal-action level, global energy is conserved: self-hit just routes energy along more complex paths (architrino → causal isochron → local Noether sea → back to architrino/assembly). In dual-mollified local theorem models, the same statement should be read conditionally unless the mollified kernel is explicitly tied to an action-level regularization.
@@ -1025,7 +1040,7 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
 
 ## Appendix A: Energy Zero and Bookkeeping
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of an accepted bound branch (the maximum-curvature binary (MCB) radius when that branch has been certified). This choice is operational: on a branch with a self-hit lower boundary, the deepest accessible state supplies the reference. It should not be read as a proof that every isolated two-body candidate already has a unique, history-independent cutoff.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of an accepted bound branch (the maximum-curvature binary (MCB) radius when that branch has been certified). This choice is operational: on a branch with a self-hit lower boundary, the deepest accessible state supplies the reference. The present circular simple-root ledger supplies measured algebraic MCB candidates, not an accepted inner turning point. Until one candidate passes finite-event, retained-history, and stability certification, the energy gauge must use another explicitly declared reference event or radius and may not be described as a derived ground-state zero.
 
 Cosmology inventory prose uses the same convention only after declaring the comparison window. Positive component entries such as matter, radiation, dark-sector bookkeeping, and thermal reservoirs are mass-equivalent or energy-density terms measured relative to that window, while gravitational binding is a negative finite-window contribution. Mixing a local branch convention with a cosmological inventory convention without naming the window and boundary term risks double counting the same retained wake-history energy.
 
@@ -1037,7 +1052,7 @@ Because a lower bound exists, the natural reference is **not** "infinite separat
 
 ### The Bookkeeping Convention
 
-We adopt a **singular-boundary gauge**: on a certified branch chart with a declared self-hit lower boundary $r_{\min}$, we fix the potential gauge at this wall. If an MCB branch is later certified, its lower boundary is one candidate realization of this reference.
+We adopt a **singular-boundary gauge**: on a certified branch chart with a declared self-hit lower boundary $r_{\min}$, we fix the potential gauge at this wall. If an MCB branch is later certified, its lower boundary is one candidate realization of this reference. Without such a certified wall, choose and name a conventional reference radius $r_{\mathrm{ref}}$ instead; that gauge supports comparisons within the declared ledger cell but carries no claim that $r_{\mathrm{ref}}$ is a physical minimum.
 
 $$U(r_{\min}) \equiv 0.$$
 

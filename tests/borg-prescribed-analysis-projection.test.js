@@ -234,6 +234,76 @@ test("provider accepts only the exact display-record hash, protocol, and receive
   );
 });
 
+test("provider hashes and validates one sealed record only once across requests", async () => {
+  const fixture = await createProjectionFixture();
+  let digestCount = 0;
+  const cryptoLike = {
+    subtle: {
+      async digest(...args) {
+        digestCount += 1;
+        return webcrypto.subtle.digest(...args);
+      },
+    },
+  };
+  const provider = createBorgPrescribedAnalysisProvider({
+    projection: fixture.projection,
+    cryptoLike,
+    expectedProtocolHash: H.protocol,
+  });
+  await provider.describe(fixture.entry);
+  const firstDigestCount = digestCount;
+  await provider.requestEvent({
+    entry: fixture.entry,
+    receiverIdentity: fixture.receiverIdentity,
+  });
+  await provider.requestEvent({
+    entry: fixture.entry,
+    receiverIdentity: "source-worldline:missing:polarity=1:T=2:X=0,0,0",
+  });
+  assert.equal(digestCount, firstDigestCount);
+
+  provider.clearCache();
+  await provider.describe(fixture.entry);
+  assert.ok(digestCount > firstDigestCount);
+});
+
+test("provider evicts a rejected display-record digest so a retry can recover", async () => {
+  const fixture = await createProjectionFixture();
+  let digestCount = 0;
+  const cryptoLike = {
+    subtle: {
+      async digest(...args) {
+        digestCount += 1;
+        if (digestCount === 1) {
+          throw new Error("transient digest failure");
+        }
+        return webcrypto.subtle.digest(...args);
+      },
+    },
+  };
+  const provider = createBorgPrescribedAnalysisProvider({
+    projection: fixture.projection,
+    cryptoLike,
+    expectedProtocolHash: H.protocol,
+  });
+
+  await assert.rejects(
+    provider.requestEvent({
+      entry: fixture.entry,
+      receiverIdentity: fixture.receiverIdentity,
+    }),
+    /transient digest failure/,
+  );
+  const recovered = await provider.requestEvent({
+    entry: fixture.entry,
+    receiverIdentity: fixture.receiverIdentity,
+  });
+  assert.equal(
+    recovered.state,
+    BORG_PRESCRIBED_ANALYSIS_PROVIDER_STATE.MATCHED,
+  );
+});
+
 test("unavailable provider distinguishes capability status from a selected receiver request", async () => {
   const provider = createBorgPrescribedAnalysisProvider();
   const description = await provider.describe();
@@ -313,6 +383,27 @@ test("analysis scene keeps certified roots independently selectable and unresolv
     scene.getPickableObjects()[0].material.opacity <
       scene.getPickableObjects()[1].material.opacity,
     true,
+  );
+  const arrivalGroup = group.children.find(
+    (child) => child.userData.kind === "receiver-arrival-direction-glyphs",
+  );
+  assert.ok(
+    arrivalGroup.children[0].line.material.opacity <
+      arrivalGroup.children[1].line.material.opacity,
+    "ArrowHelper line children inherit the parent root selection",
+  );
+  let sharedGeometryDisposeCount = 0;
+  const sharedGeometry = arrivalGroup.children[0].line.geometry;
+  const originalDispose = sharedGeometry.dispose.bind(sharedGeometry);
+  sharedGeometry.dispose = () => {
+    sharedGeometryDisposeCount += 1;
+    originalDispose();
+  };
+  scene.setEvent({ projection, event: projection.events[0] });
+  assert.equal(
+    sharedGeometryDisposeCount,
+    0,
+    "ArrowHelper module-level geometry remains owned by Three.js",
   );
   scene.dispose();
   assert.equal(group.children.length, 0);

@@ -44,7 +44,8 @@ function record(runId, overrides = {}) {
       generatingSpec: "tests/borg-assembly-view-session.test.js",
       date: "2026-07-20",
     },
-    window: { start: 0, end: 2, delayHorizon: 0.75, sampleInterval: 0.25 },
+    window: overrides.window ??
+      { start: 0, end: 2, delayHorizon: 0.75, sampleInterval: 0.25 },
     worldlines: [worldline],
     binaries: overrides.binaries ?? [],
     ansatz: overrides.ansatz ?? [],
@@ -148,6 +149,29 @@ test("prescribed chart trails use the source-defined number of full rotations", 
     period: 4,
     periodCount: 2,
     source: "prescribed-display-periods",
+  });
+});
+
+test("record trails stay positive when a valid record declares zero delay horizon", () => {
+  const entry = createBorgAssemblyViewSession([
+    record("zero-horizon", {
+      window: {
+        start: 0,
+        end: 2,
+        delayHorizon: 0,
+        sampleInterval: 0.25,
+      },
+      binaries: [{
+        id: "binary",
+        frequency: 1,
+      }],
+    }),
+  ]).selected;
+  assert.deepEqual(resolveBorgAssemblyViewTrail(entry), {
+    duration: 0.25,
+    period: 1,
+    periodCount: null,
+    source: "record-sample-interval-fallback",
   });
 });
 

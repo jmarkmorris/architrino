@@ -17,6 +17,10 @@
 // `events[]`. Retained segments are the authoritative state in both schemas;
 // sampled rows are display convenience only and are never evaluated.
 
+import {
+  evaluateEomCubicHistoryAtTime,
+} from "./EomCubicHistoryEvaluation.mjs";
+
 export const EOM_EVOLUTION_CONTRACT_ID = "eom_evolution_contract/v0";
 export const ASSEMBLY_VIEW_RECORD_SCHEMA = "assembly-view-record.v0";
 export const EOM_HISTORY_DATASET_SCHEMA = "eom-history-dataset.v0";
@@ -69,7 +73,11 @@ export function createEomHistoryDataset(record, options = {}) {
 
   function evaluateWorldline(worldlineId, time) {
     const worldline = requireWorldline(worldlineId);
-    return evaluateWorldlineSegments(worldline, Number(time));
+    return evaluateEomCubicHistoryAtTime(worldline, Number(time), {
+      historyId: worldline.id,
+      entityLabel: "worldline",
+      timeRole: "display",
+    });
   }
 
   function createFrameSamples({
@@ -100,7 +108,11 @@ export function createEomHistoryDataset(record, options = {}) {
           worldlineId: worldline.id,
           pathKey: worldline.pathKey,
           polarity: worldline.polarity,
-          ...evaluateWorldlineSegments(worldline, time),
+          ...evaluateEomCubicHistoryAtTime(worldline, time, {
+            historyId: worldline.id,
+            entityLabel: "worldline",
+            timeRole: "display",
+          }),
         }))),
       }));
     }
@@ -118,7 +130,11 @@ export function createEomHistoryDataset(record, options = {}) {
       const sampleTime = startTime + ((endTime - startTime) * index) / (count - 1);
       samples.push(Object.freeze({
         time: sampleTime,
-        ...evaluateWorldlineSegments(worldline, sampleTime),
+        ...evaluateEomCubicHistoryAtTime(worldline, sampleTime, {
+          historyId: worldline.id,
+          entityLabel: "worldline",
+          timeRole: "display",
+        }),
       }));
     }
     return Object.freeze(samples);
@@ -573,35 +589,6 @@ function requiredNonnegativeNumber(value, label) {
   return number;
 }
 
-
-function evaluateWorldlineSegments(worldline, time) {
-  if (!Number.isFinite(time)) {
-    throw new TypeError(`EOM worldline ${worldline.id} cannot be evaluated at a non-finite time.`);
-  }
-  const segment = worldline.segments.find(
-    (candidate, index) =>
-      candidate.startTime <= time &&
-      (time < candidate.endTime || index + 1 === worldline.segments.length),
-  );
-  if (!segment || time < segment.startTime || time > segment.endTime + 1e-12) {
-    throw new RangeError(
-      `EOM worldline ${worldline.id} does not cover display time ${time}; recorded coverage is [${worldline.coverage.start}, ${worldline.coverage.end}].`,
-    );
-  }
-  const localTime = time - segment.startTime;
-  const position = {};
-  const velocity = {};
-  AXES.forEach((axis, axisIndex) => {
-    const [c0, c1, c2, c3] = segment.coefficients[axisIndex];
-    position[axis] = c0 + localTime * (c1 + localTime * (c2 + localTime * c3));
-    velocity[axis] = c1 + localTime * (2 * c2 + localTime * 3 * c3);
-  });
-  return {
-    position: Object.freeze(position),
-    velocity: Object.freeze(velocity),
-    errorBound: Math.max(segment.positionError, segment.velocityError),
-  };
-}
 
 function resolveSampleCount({ startTime, endTime, sampleInterval, frameCount }) {
   if (Number.isFinite(Number(frameCount)) && Number(frameCount) >= 1) {

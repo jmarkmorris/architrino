@@ -173,7 +173,7 @@ Scoring system:
   4. derive a genuine minimum-radius turning condition $\dot r = 0$, $\ddot r \ge 0$;
   5. test whether any such non-circular closure can beat the circular tangential obstruction without extra medium coupling.
 - Spiral intuition to preserve:
-  1. the circular ansatz hard-codes constant radius, constant speed, constant curvature, rigid branch geometry, and sign-definite tangential contributions;
+  1. the circular ansatz hard-codes constant radius, constant speed, constant curvature, fixed-coordinate branch geometry, and sign-definite tangential contributions;
   2. a true spiral introduces radial velocity, varying curvature, intersections between later tighter turns and earlier wider-turn wakes, changing Jacobian amplification, and the possibility of a turning point before singular continuation.
 - Keep the maximum-curvature-wall question tied to both tracks: the Jacobian-null boundary amplifies the full self branch, so the tangential contribution also blows up. That is an obstruction, not yet a resolution.
 - Lorentz / GR bridge inside this same stack:

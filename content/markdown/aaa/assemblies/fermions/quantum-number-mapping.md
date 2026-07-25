@@ -217,7 +217,7 @@ Once $\mathcal{E}_{\mathrm{WCT}}$ selects an exposed triad with positive margin,
 *   **Electron ($e^-_L$):** Shielded ($3\epsilon_-$) + Active ($3\epsilon_-$).
     *   Net: $6\epsilon_-$ (Charge -1).
     *   State: weak-coupling triad is negative $\to T_3 = -1/2$.
-*   **The Transformation:** The $W^-$ boson is the packet that removes three positive-polarity units and replaces them with three negative-polarity units.
+*   **The Transformation:** The $W^-$ boson is hypothesized as the packet that removes three positive-polarity units and replaces them with three negative-polarity units.
 
 **The Quark Doublet ($u_L, d_L$)**
 *   **Base (Shielded):** 1 Electrino, 2 Positrinos ($1\epsilon_-,2\epsilon_+$).
@@ -271,8 +271,8 @@ Once handed weak exposure is claimed as derived, the exposed weak-coupling triad
 ### Charged-current chirality (Why right-handed charged-current coupling is zero)
 Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 *   **Geometric Mechanism:** At the observer level, chirality is the weak-channel handedness label. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the charged-current blocker is weak-coupling-triad exposure, which may be consumed only after the ordered-frame spinor/helicity ledger supplies the same branch record.
-*   **Lock-out:** In the "Right-Handed" configuration, the **weak-coupling triad** is geometrically rotated *into the wake* of the particle or shielded by the binary arms.
-*   **Result:** The charged $W$ corridor cannot physically "dock" with the weak-coupling triad in that hidden posture.
+*   **Lock-out:** In the "Right-Handed" configuration, the **weak-coupling triad** would be geometrically rotated *into the wake* of the particle or shielded by the binary arms.
+*   **Result:** The charged $W$ corridor could not physically "dock" with the weak-coupling triad in that hidden posture.
 *   Therefore, $e^-_R$ has no accessible charged-current weak-coupling triad. For the charged-current $SU(2)_L$ channel, $T_3^{(R)} = 0$.
 
 ---
@@ -299,7 +299,7 @@ These labels are a basis convention on the quark color triplet, not an additiona
 ### Confinement (The Flux Tube)
 Because a colored quark leaves one axis exceptional, it opens a non-singlet strong-sector corridor into the surrounding Noether sea.
 
-- **Single quark:** the open corridor carries a line-like energy cost that grows with separation, so isolated color sectors are excluded.
+- **Single quark:** the open corridor is hypothesized to carry a line-like energy cost that grows with separation, which would exclude isolated color sectors.
 - **Meson ($q \bar{q}$):** a triplet and anti-triplet can close the corridor into a singlet flux tube.
 - **Baryon ($qqq$):** one axis-1-exceptional, one axis-2-exceptional, and one axis-3-exceptional quark can close into the color-singlet braid
   $$
@@ -316,15 +316,17 @@ Gluons are the axis-reconfiguration carriers of this sector.
 
 ### Color-singlet alignment and decoherence suppression
 
-- **Restoring force:** the shared flux network has minimum energy when the composite state closes into a singlet, so departures from singlet closure raise the corridor tension.
+Grade note: color decoherence suppression remains a hypothesis pending simulation; the bullets below state requirements on the mechanism, not derived results.
+
+- **Restoring force:** the shared flux network is required to have minimum energy when the composite state closes into a singlet — a recovery target — so departures from singlet closure raise the corridor tension.
 - **Gluon exchange:** axis-reconfiguration events redistribute exceptionality between quarks until the composite closure is restored.
-- **Timescale separation:** color reconfiguration along the shared corridor is faster than typical environmental disturbance, so small kicks relax before the singlet decoheres.
+- **Timescale separation:** color reconfiguration along the shared corridor must be faster than typical environmental disturbance (an underived timescale claim), so small kicks relax before the singlet decoheres.
 - **Isolation:** color flux remains trapped inside the corridor or braid, so external probes see only the color-singlet composite.
 
 ### Bound-State Proton Stability
 The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 *   **Coulomb Repulsion:** The two $u$ quarks repel electrically.
-*   **Strong Attraction:** Color-singlet closure forces the three quarks into a shared strong-sector braid whose tension overwhelms the electric repulsion.
+*   **Strong Attraction:** Color-singlet closure forces the three quarks into a shared strong-sector braid whose tension must overwhelm the electric repulsion.
 *   **Pauli Exclusion:** Since the quarks occupy different color sectors, they are distinguishable quantum states, allowing them to share the same spatial ground-state assembly.
 
 This paragraph explains ordinary bound-state stability inside the nucleon. It is not yet a derivation of proton-dissociation exclusion or topological baryon conservation. The stronger claim belongs to the closed-braid program in [Color Charge and Strong Confinement](./color-charge-su3.md): the color-singlet 9-axis braid must make baryon-number-violating rupture either impossible on the admitted branch or suppressed beyond current null-result limits. A local recovery target is therefore
@@ -541,7 +543,7 @@ $$
 =0
 $$
 
-So the geometry-to-quantum-number dictionary matches the Standard Model's per-generation gauge-anomaly cancellation. This is a nontrivial consistency check, not just a notation match.
+So the geometry-to-quantum-number dictionary matches the Standard Model's per-generation gauge-anomaly cancellation. This confirms the dictionary carries the full SM representation content self-consistently; it is bookkeeping inherited from the SM table, not independent evidence for the geometry.
 
 If a sterile right-handed neutrino is added with
 $$
@@ -777,7 +779,7 @@ Thus an adjacent step toward a heavier generation sheds one neutral electrino:po
 ## Phenomenological Implications
 
 ### Universality of Gauge Couplings
-Because the **Axial Layer** (which dictates charge bookkeeping and isospin for charged leptons) is structurally identical across generations (always 6 sites), the electromagnetic and weak couplings are identical for $e, \mu, \tau$. This gives the charged-lepton side of lepton universality; neutrino universality must be matched through the common near-photon weak-ledger projection.
+The **Axial Layer** (which dictates charge bookkeeping and isospin for charged leptons) is structurally identical across generations (always 6 sites); this structural identity is the candidate explanation for the observed electromagnetic and weak coupling universality of $e, \mu, \tau$. This addresses the charged-lepton side of lepton universality; neutrino universality must be matched through the common near-photon weak-ledger projection.
 
 ### The Proton vs. Neutron
 Baryons are bound states of 3 quarks held together by shared flux/gluon planar assemblies.
@@ -853,7 +855,7 @@ Two qualifications remain useful without adding new rows to the taxonomy:
     *   Standard physics textbooks use numbers for **Strangeness**, **Charm**, **Bottomness**, and **Topness**.
     *   **Mapping:** These are redundant in this taxonomy. They are covered by the **Generation** row combined with the **Charge** row.
         *   *Example:* "Strangeness = -1" is just code for "Generation II, Charge -1/3 (Down-type)".
-        *   The geometric explanation (Generation = Shielding Level) is more explanatory because it links strong-channel flavor conservation to the fact that an assembly cannot shed a binary ring without a weak-channel event.
+        *   The geometric explanation (Generation = Shielding Level) is more explanatory because it links strong-channel flavor conservation to the hypothesis that an assembly cannot shed a binary ring without a weak-channel event.
 
 2.  **Intrinsic Parity ($P$):**
     *   By convention, quarks have parity $P = +1$ and antiquarks have $P = -1$.
@@ -913,7 +915,7 @@ $$
 $$
 where $\Delta_{\text{wake}}$ is the causal-wake/polarization correction of the Noether sea at the electroweak scale.
 
-Using the representative effective $Z$-pole value $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$, the required dressing is not numerically negligible:
+Using the representative effective $Z$-pole value $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$ (PDG comparison value), the required dressing is not numerically negligible:
 
 $$
 \Delta_{\text{wake}}(m_Z)

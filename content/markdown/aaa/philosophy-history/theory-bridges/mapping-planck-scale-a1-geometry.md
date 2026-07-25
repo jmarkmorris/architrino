@@ -247,7 +247,7 @@ In this causal-wake framing:
 ### Field-Speed Regimes in the Causal-Wake View
 
 - **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic (ahead starves, behind dominates). Phase-locking becomes delicate; alignment effects intensify.  
-- **At $v > c_f$:** It outruns newly emitted causal-wake propagation. The only gradients it can receive are from delayed emissions and the Noether sea behind or sideways, which leads to self-hit dynamics. This creates a strong inward or centripetal feedback candidate that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
+- **At $v > c_f$:** It outruns newly emitted causal-wake propagation. The only gradients it can receive are from delayed emissions and the Noether sea behind or sideways, which leads to self-hit dynamics. On the uniform-circular chart, self-hit supplies a strong outward barrier and a signed tangential contribution; it cannot supply inward or centripetal support. A maximal-curvature orbit requires the complete partner, self, wake-boundary, and stability ledger.
 
 ---
 

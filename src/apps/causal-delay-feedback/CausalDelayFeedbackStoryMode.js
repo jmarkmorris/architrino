@@ -135,8 +135,6 @@ export function createStoryView(state) {
     root,
     reciprocalRoot,
     interactions,
-    canGoBack: stepIndex > 0,
-    canGoNext: stepIndex < STORY_STEPS.length - 1,
     summary: availableCount === 2
       ? `Two causal relationships are shown at Tᵣ=${root.receiverTime.toFixed(3)}: positrino Tₜ=${root.emissionTime.toFixed(3)} and electrino Tₜ=${reciprocalRoot.emissionTime.toFixed(3)}.`
       : `Only ${availableCount} of 2 reciprocal causal relationships is available at this receiver event.`,

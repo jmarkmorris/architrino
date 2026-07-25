@@ -35,22 +35,25 @@ const PHOTON_SEARCH_PERTURB_OPTIONS = Object.freeze({
   skipSelfHitDiagnostics: true,
 });
 const PHOTON_SEARCH_COMPARISON_OPTIONS = Object.freeze({
-  polarizationSampleCount: 4,
-  minimumPolarizationSampleCount: 4,
-  analyzerSampleCount: 2,
-  minimumAnalyzerSampleCount: 1,
-  absoluteHistorySegments: 2,
+  polarizationSampleCount: 16,
+  minimumPolarizationSampleCount: 16,
+  analyzerSampleCount: 8,
+  minimumAnalyzerSampleCount: 8,
   maxDelay: 0.25,
-  skipSelfHitDiagnostics: false,
-  skipSpanSelfHitDiagnostics: true,
+  skipSelfHitDiagnostics: true,
 });
 const PHOTON_SEARCH_COMPARISON_CANDIDATE_LIMIT = 3;
 const PHOTON_SEARCH_EXPORT_KIND = "photon-configuration-search-results";
 const PHOTON_SEARCH_EXPORT_VERSION = 1;
+const PHOTON_SEARCH_IMPORT_RESULT_LIMIT = 100;
+const PHOTON_SEARCH_NAME_MAX_LENGTH = 120;
 const EPSILON = 1e-9;
 
 function normalizeSearchName(value, fallback = "Configuration") {
-  const text = String(value ?? "").replace(/\s+/g, " ").trim();
+  const text = String(value ?? "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, PHOTON_SEARCH_NAME_MAX_LENGTH);
   return text || fallback;
 }
 
@@ -85,7 +88,6 @@ function getStateSearchKey(state) {
       signalSpeedCf: Number(normalized.measurement.signalSpeedCf ?? 1).toPrecision(10),
     },
     analyzer: normalized.polarization.analyzerAngleDeg,
-    view: normalized.view,
   });
 }
 
@@ -161,10 +163,10 @@ function buildPhotonSearchCandidates(baseState) {
 
   [
     ["Direct speed controls", "direct", base.pair.localLorentzFactor],
-    ["Local c gamma 2", "lorentz_factor", 2],
-    ["Local c gamma 5", "lorentz_factor", 5],
-    ["Local c gamma 20", "lorentz_factor", 20],
-    ["Local c gamma 100", "lorentz_factor", 100],
+    ["Lorentz factor gamma-star 2", "lorentz_factor", 2],
+    ["Lorentz factor gamma-star 5", "lorentz_factor", 5],
+    ["Lorentz factor gamma-star 20", "lorentz_factor", 20],
+    ["Lorentz factor gamma-star 100", "lorentz_factor", 100],
   ].forEach(([name, speedMode, localLorentzFactor]) => {
     pushCandidate(
       name,
@@ -513,6 +515,7 @@ function createPhotonSearchSolverOptions(options, defaults, overrideKey) {
     compareAbsoluteHistory: _compareAbsoluteHistory,
     comparisonCandidateLimit: _comparisonCandidateLimit,
     candidateIndex: _candidateIndex,
+    yieldToEventLoop: _yieldToEventLoop,
     ...solverOptions
   } = options && typeof options === "object" ? options : {};
   const overrides = overrideKey === "comparison"
@@ -908,11 +911,22 @@ export async function createPhotonConfigurationSearchResultsWithPrescribedPathAn
     buildPhotonSearchCandidates(baseState),
     options.maxCandidates ?? Number.POSITIVE_INFINITY
   );
-  const evaluated = await Promise.all(
-    candidates.map((candidate, index) =>
-      evaluatePhotonSearchCandidateWithPrescribedPathAnalysis(candidate, index, options)
-    )
-  );
+  const evaluated = [];
+  const yieldToEventLoop = typeof options.yieldToEventLoop === "function"
+    ? options.yieldToEventLoop
+    : () => new Promise((resolve) => setTimeout(resolve, 0));
+  for (let index = 0; index < candidates.length; index += 1) {
+    evaluated.push(
+      await evaluatePhotonSearchCandidateWithPrescribedPathAnalysis(
+        candidates[index],
+        index,
+        options
+      )
+    );
+    if (index + 1 < candidates.length) {
+      await yieldToEventLoop();
+    }
+  }
   return selectDiversePhotonSearchResults(
     evaluated,
     options.limit ?? PHOTON_SEARCH_RESULT_LIMIT
@@ -968,10 +982,24 @@ export function normalizePhotonSearchResult(rawResult, index = 0) {
 
 export function parsePhotonSearchResultsJson(jsonText) {
   const parsed = JSON.parse(String(jsonText ?? ""));
-  const rawResults = Array.isArray(parsed)
-    ? parsed
-    : Array.isArray(parsed?.results)
-      ? parsed.results
-      : [];
+  if (
+    !parsed ||
+    typeof parsed !== "object" ||
+    parsed.app !== "photon" ||
+    parsed.kind !== PHOTON_SEARCH_EXPORT_KIND ||
+    parsed.version !== PHOTON_SEARCH_EXPORT_VERSION ||
+    !Array.isArray(parsed.results)
+  ) {
+    throw new Error("Unsupported Photon search-results file.");
+  }
+  if (parsed.results.length > PHOTON_SEARCH_IMPORT_RESULT_LIMIT) {
+    throw new Error(
+      `Photon search-results file exceeds ${PHOTON_SEARCH_IMPORT_RESULT_LIMIT} configurations.`
+    );
+  }
+  const rawResults = parsed.results;
+  if (rawResults.some((result) => !result || typeof result !== "object" || Array.isArray(result))) {
+    throw new Error("Photon search-results entries must be objects.");
+  }
   return rawResults.map((result, index) => normalizePhotonSearchResult(result, index));
 }

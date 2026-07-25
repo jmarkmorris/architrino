@@ -5,6 +5,9 @@ import test from "node:test";
 import * as THREE from "../vendor/three/three.module.js";
 import { createBorgAssemblyViewScene } from "../src/apps/borg/BorgAssemblyViewScene.js";
 import {
+  borgCoRotatingCameraAvailable,
+} from "../src/apps/borg/BorgAssemblyViewControls.js";
+import {
   BORG_PRESCRIBED_DISPLAY_FRAME_CO_TRANSLATING,
 } from "../src/apps/borg/BorgPrescribedTranslation.js";
 import { createEomHistoryDataset } from "../src/apps/shared/EomHistoryDataset.mjs";
@@ -148,9 +151,13 @@ test("prescribed strands and selected tubes share the finite no-future display w
   );
   const strand = pathGroup.children[0];
   assert.deepEqual(strand.geometry.drawRange, { start: 1, count: 2 });
+  assert.equal(strand.frustumCulled, false);
+  assert.ok(strand.geometry.boundingSphere);
 
   scene.setTranslationFrame(BORG_PRESCRIBED_DISPLAY_FRAME_CO_TRANSLATING);
   const coPositions = strand.geometry.getAttribute("position");
+  assert.equal(strand.frustumCulled, false);
+  assert.ok(strand.geometry.boundingSphere);
   assert.deepEqual(
     Array.from({ length: coPositions.count }, (_, index) => coPositions.getX(index)),
     [0, 0, 0, 0],
@@ -165,6 +172,48 @@ test("prescribed strands and selected tubes share the finite no-future display w
   assert.equal(
     tubeGroup.children[0].userData.valueAuthority,
     "display-only-envelope-around-recorded-path-samples",
+  );
+  scene.setRecord({ sourceId: "replacement", dataset });
+  scene.setHistoryDepth(1);
+  scene.updateTime(2);
+  scene.setSelectedWorldlineId("worldline-0");
+  assert.equal(
+    tubeGroup.children.length,
+    0,
+    "a record switch resets both the scene tube and the unchecked UI state",
+  );
+  scene.dispose();
+});
+
+test("co-rotating control availability follows the scene carrier", () => {
+  const root = new THREE.Group();
+  const scene = createBorgAssemblyViewScene({
+    group: root,
+    toWorld(source, target) {
+      return target.set(Number(source.x), Number(source.y), Number(source.z));
+    },
+    render() {},
+  });
+  const noFrequency = prescribedDataset({ group: null });
+  noFrequency.binaries = [{
+    frequency: 0,
+    planeOrientation: { normal: { x: 0, y: 0, z: 1 } },
+  }];
+  scene.setRecord({ sourceId: "no-frequency", dataset: noFrequency });
+  assert.equal(
+    borgCoRotatingCameraAvailable(() => scene.hasCoRotatingCarrier),
+    false,
+  );
+
+  const rotating = prescribedDataset({ group: null });
+  rotating.binaries = [{
+    frequency: 0.25,
+    planeOrientation: { normal: { x: 0, y: 0, z: 1 } },
+  }];
+  scene.setRecord({ sourceId: "rotating", dataset: rotating });
+  assert.equal(
+    borgCoRotatingCameraAvailable(() => scene.hasCoRotatingCarrier),
+    true,
   );
   scene.dispose();
 });

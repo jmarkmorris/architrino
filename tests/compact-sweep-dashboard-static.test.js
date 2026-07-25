@@ -40,12 +40,26 @@ test("Braid Search is a focused standalone app with configured local data", () =
     /replaceChildren\(state\.viewContainer, renderBoundary\(data\)\)/u,
   );
   assert.match(runtime, /descriptionClassName: "compact-dashboard-nowrap"/u);
+  assert.match(runtime, /\["cases", "Case detail"\]/u);
+  assert.match(runtime, /function renderCaseDetail/u);
+  assert.match(runtime, /function renderCases/u);
+  assert.match(runtime, /caseResidualDetail\(row\)/u);
+  assert.match(runtime, /Signed-cycle residual/u);
+  assert.match(runtime, /Signed-emission threshold/u);
+  assert.match(runtime, /tabindex: 0/u);
+  assert.match(runtime, /circle\.addEventListener\("click", inspect\)/u);
+  assert.match(runtime, /event\.key === "Enter" \|\| event\.key === " "/u);
+  assert.match(runtime, /compact-dashboard-case-member/u);
+  assert.match(runtime, /compact-dashboard-case-sample/u);
+  assert.match(runtime, /Candidate, case, or hash/u);
+  assert.match(runtime, /Selected campaign row/u);
+  assert.match(runtime, /cancellation and agreement/u);
+  assert.match(runtime, /not mean the candidate emits slowly/u);
   assert.match(
     read("src/apps/compact-sweep-dashboard/CompactSweepDashboardData.js"),
     /Lower is better for this compact diagnostic/u,
   );
   assert.equal(runtime.includes("Data identity"), false);
-  assert.equal(runtime.includes("Case drilldown"), false);
   assert.equal(runtime.includes("B1.4"), false);
   assert.equal(runtime.includes("Open JSON"), false);
   assert.equal(runtime.includes("No smoothed density"), false);

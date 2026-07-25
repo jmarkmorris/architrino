@@ -4,7 +4,7 @@ Atomic transition radiation is the line-emission and line-absorption channel in 
 
 This page specializes the shared routing skeleton in [Radiation](radiation.md). The envelope energies and spectral labels are inherited from [Atomic Spectra](../nuclear-atomic/atomic-spectra.md), while photon ontology and Gate A/B/C closure requirements are inherited from [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#photon-closure-interface). Reaction provenance follows [Reaction Ledger](../validation/reaction-ledger.md), and cosmology-facing photon records remain downstream of [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
 
-This chapter is not a completed derivation of atomic transition rates. Its role is to state the first event record for the Gate C vertex: how a bound atomic envelope sheds or captures a coaxial contra-rotating polarity-conjugate planar pair while preserving energy, momentum, angular momentum, local Noether sea state, and path-history provenance.
+This chapter is not a completed derivation of atomic transition rates. Its role is to state the first event record for the Gate C vertex: how a bound atomic envelope sheds or captures a photon modeled as a coaxial contra-rotating polarity-conjugate planar pair while preserving energy, momentum, angular momentum, local Noether sea state, and path-history provenance.
 
 ## Basin Transition
 
@@ -204,7 +204,7 @@ The minimum event record is:
 
 ## Absorption and Stimulated Channels
 
-Absorption is the inverse Gate C vertex: an incoming coaxial contra-rotating polarity-conjugate planar pair is captured by the atomic assembly and folded into a higher envelope basin when the capture geometry and gap condition match. In compact form,
+Absorption is the inverse Gate C vertex: an incoming photon, modeled as a coaxial contra-rotating polarity-conjugate planar pair, is captured by the atomic assembly and folded into a higher envelope basin when the capture geometry and gap condition match. In compact form,
 
 $$
 b+\gamma \to a,
@@ -323,7 +323,7 @@ Cosmology-facing use of any line should keep source-branch changes separate from
 
 ## Closure Status
 
-Accepted ontology: a photon emitted or captured in this channel is a coaxial contra-rotating polarity-conjugate planar pair, and atomic line radiation is a routed assembly-level transition rather than excitation of a separate fundamental electromagnetic field.
+Proposed ontology (referent-pending): a photon emitted or captured in this channel is modeled as a coaxial contra-rotating polarity-conjugate planar pair (the planar-pair acceleration-balance closure is still open), and atomic line radiation is a routed assembly-level transition rather than excitation of a separate fundamental electromagnetic field.
 
 Derivation targets: compute $\mathcal S_{\gamma}^{\mathrm{at}}$, recover the weak-coupling transition-rate limit, derive selection-rule basin measures, close recoil and medium ledgers, recover the hydrogen $2s\to1s$ two-photon and Lyman-$\alpha$ escape bottlenecks, and recover detailed balance without changing the Noether sea state map between emission, absorption, and thermal ensembles. The named single-record closure requires frequency, emission and absorption strength, dispersion strength, stimulated coefficients, and continuum inverse channels to project from the same event family.
 

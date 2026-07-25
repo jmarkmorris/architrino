@@ -398,11 +398,12 @@ function resolveCausalFactorRecord(branch = {}, signalSpeed = 1) {
 
 export function computeMovingCircularObserverField(request = {}) {
   const signalSpeed = Math.max(EPSILON, finiteNumber(request.signalSpeed, 1));
+  const minimumDistance = Math.max(EPSILON, finiteNumber(request.minimumDistance, EPSILON));
   const branches = Array.isArray(request.branches) ? request.branches : [];
   const contributions = branches.map((branch, branchIndex) => {
     const direction = vector(branch.direction);
     const transmitterVelocity = vector(branch.transmitterVelocity);
-    const distance = Math.max(EPSILON, finiteNumber(branch.distance));
+    const distance = Math.max(minimumDistance, finiteNumber(branch.distance));
     const normal = resolveCausalFactorRecord(branch, signalSpeed);
     const electric = scale(
       direction,
@@ -410,6 +411,12 @@ export function computeMovingCircularObserverField(request = {}) {
     );
     return labelRecord({
       branchIndex,
+      transmitterRootRequestIndex: Number.isFinite(Number(branch.transmitterRootRequestIndex))
+        ? Number(branch.transmitterRootRequestIndex)
+        : 0,
+      transmitterRootIndex: Number.isFinite(Number(branch.transmitterRootIndex))
+        ? Number(branch.transmitterRootIndex)
+        : branchIndex,
       delay: Math.max(0, finiteNumber(branch.delay)),
       distance,
       delaySolveGap: Math.abs(finiteNumber(branch.residual)),
@@ -426,6 +433,8 @@ export function computeMovingCircularObserverField(request = {}) {
       transmitterSpeedRatio: magnitude(transmitterVelocity) / signalSpeed,
       receiverAcceleration: electric,
       electric,
+      // Diagnostic plane-wave comparison only: the global +x propagation
+      // convention is not a branch-local magnetic reconstruction off axis.
       comparisonB: scale(cross({ x: 1, y: 0, z: 0 }, electric), 1 / signalSpeed),
     });
   });
@@ -485,7 +494,7 @@ export function computeMovingCircularObserverField(request = {}) {
   });
 }
 
-function createObserverFieldBranch(root, rootResponse, requestIndex) {
+function createObserverFieldBranch(root, rootResponse, requestIndex, rootIndex) {
   const transmitterPoint = vector(root.transmitterPoint);
   const receiverPoint = vector(root.receiverPoint);
   const delta = subtract(receiverPoint, transmitterPoint);
@@ -493,6 +502,7 @@ function createObserverFieldBranch(root, rootResponse, requestIndex) {
   const distance = Math.max(EPSILON, finiteNumber(root.distance, deltaDistance));
   return labelRecord({
     transmitterRootRequestIndex: requestIndex,
+    transmitterRootIndex: rootIndex,
     transmitterRef: rootResponse.transmitterRef ?? rootResponse.request?.transmitterRef ?? null,
     chargeSign: finiteNumber(rootResponse.branchChargeSign),
     direction: deltaDistance > EPSILON ? scale(delta, 1 / deltaDistance) : { x: 1, y: 0, z: 0 },
@@ -534,7 +544,12 @@ export function solveMovingCircularAbsoluteHistoryRun(request = {}) {
     }))
   );
   const branches = roots.map((root) =>
-    createObserverFieldBranch(root, transmitterRootResponses[root.transmitterRootRequestIndex], root.transmitterRootRequestIndex)
+    createObserverFieldBranch(
+      root,
+      transmitterRootResponses[root.transmitterRootRequestIndex],
+      root.transmitterRootRequestIndex,
+      root.transmitterRootIndex
+    )
   );
   const observerField = computeMovingCircularObserverField({
     ...(request.observerFieldRequest ?? {}),

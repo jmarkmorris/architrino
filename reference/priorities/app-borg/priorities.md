@@ -15,7 +15,7 @@
 - Native bridge audit packet: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md)
 - Dataset manifest packet: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
 - Surface design packet: [borg-app-surface-design.v1](borg-app-surface-design.v1.md)
-- Release budget manifest packet: [borg-release-budget-manifest.v1](borg-release-budget-manifest.v1.json)
+- Historical release budget manifest packet: [borg-release-budget-manifest.v1](borg-release-budget-manifest.v1.json)
 - Live run retention policy: [borg-live-run-retention-policy.v1](borg-live-run-retention-policy.v1.json)
 
 ## Scope
@@ -49,8 +49,8 @@ The workstream is not an implementation license for a new solver. Missing motion
 17. The outer spherical envelope must provide a `radialBufferMargin` that satisfies $b_{\mathrm{shell}}(\mathcal C)\ge\max(c_fh,\ v_{\max}T_{\mathcal C})$ for strict central-ball buffer status, or else statistical inbound architrinos and reconstructed wake history are admissible only when $R_{\mathrm{boundary\to central}}\le\tau_{\mathcal C}$.
 18. Measure deployment budget separately from solver throughput: static bundle transfer, static asset transfer, browser heap, GPU memory, browser storage, GitHub Pages bandwidth, GitHub Actions artifacts, and EOM solver throughput are distinct budgets.
 19. Use `borg-dataset-manifest.v1` as the first app-facing run cover sheet, but defer save, export, import, and load workflows until the first-screen contract and EOM-run dataset coverage are stable.
-20. Use `borg-release-budget-manifest.v1` as the release-facing browser runtime budget cover sheet for measured run-preset ceilings. It binds the measured calibration sweep to UI fields and runtime limits, but does not upgrade solver, wake-history, boundary-shell, benign-noise, or proof authority.
-21. Use `borg-live-run-retention-policy.v1` for forever-mode display retention: keep recent native frame rows for playback and current-state inspection, compact older path history into display-only sampled trail points, and keep EOM solver state and chunk requests unchanged.
+20. Preserve `borg-release-budget-manifest.v1` and its sweep as reference-only historical measurements of the deleted pre-EOM browser path. Do not import either artifact into `src/apps/borg`; current run-preset ceilings require a separately authorized current EOM release budget as well as measured EOM chunks, and measurements alone do not create ceilings.
+21. Use `borg-live-run-retention-policy.v1` for forever-mode display retention: keep recent EOM frame rows for playback and current-state inspection, compact older path history into display-only sampled trail points, and keep EOM solver state and chunk requests unchanged.
 22. Use the canonical normalized field speed $c_f=1$ for Borg EOM runs. A non-unit value requires an explicit run-manifest unit transform; no run-local override is admissible.
 23. Keep assembly-view replay record-only and visibly distinct from the simulation workspace. A record produced by a Borg-triggered run is replayable only after the accepted emitter seals it and the replay path reloads the file.
 24. Preserve raw ids and source ordering in collection navigation. For tri-binary collections, optional $S_3$ grouping may use a source-carried permutation-canonical key to hide duplicate navigation rows, but it may not delete, relabel, or replace the underlying unquotiented records.

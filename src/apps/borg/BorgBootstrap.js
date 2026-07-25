@@ -11,6 +11,10 @@ import {
   createBorgSeededInitialConditionRows,
 } from "./BorgInitialConditions.js";
 import {
+  BORG_ELECTRINO_STATE_FLAG,
+  BORG_POSITRINO_STATE_FLAG,
+} from "./BorgPolarityDiagnostics.js";
+import {
   createBorgInteractiveDefaults,
   createBorgPlacementPolicy,
 } from "./BorgInteractiveDefaults.js";
@@ -44,15 +48,8 @@ export async function bootBorgApp({
   let eomRecordReplay = null;
   if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {
     const recordUrls = query.getAll("eomRecord");
-    const records = await Promise.all(recordUrls.map(async (recordUrl) => {
-      const response = await fetchLike(recordUrl);
-      if (!response?.ok) {
-        throw new Error(
-          `Borg assembly-view record fetch failed (${response?.status ?? "no response"}): ${recordUrl}`,
-        );
-      }
-      return response.json();
-    }));
+    const records = await Promise.all(recordUrls.map((recordUrl) =>
+      fetchBorgRecord(fetchLike, recordUrl, "assembly-view record")));
     assemblyViewSession = createBorgAssemblyViewSession(records);
     eomRecordReplay = {
       record: records[0],
@@ -82,18 +79,24 @@ export async function bootBorgApp({
     seedingRadius: displayPlacement.seedingRadius,
     minimumPairSeparation: displayPlacement.minimumPairSeparation,
   });
-  const endpointRows = fullPopulationEndpointRows;
   const activeInitialConditionConfig = Object.freeze({
     ...initialConditionConfig,
-    electrinoCount: endpointRows.filter((row) => row.stateFlags === 2).length,
-    positrinoCount: endpointRows.filter((row) => row.stateFlags === 1).length,
+    electrinoCount: fullPopulationEndpointRows.filter(
+      (row) => row.stateFlags === BORG_ELECTRINO_STATE_FLAG,
+    ).length,
+    positrinoCount: fullPopulationEndpointRows.filter(
+      (row) => row.stateFlags === BORG_POSITRINO_STATE_FLAG,
+    ).length,
   });
   const sampleInterval = 0.01;
-  const causalHistoryDepth = calculateBorgInertialHistoryDepth(endpointRows, {
-    fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,
-    sampleInterval,
-    maximumSeparation: 2 * displayPlacement.seedingRadius,
-  });
+  const causalHistoryDepth = calculateBorgInertialHistoryDepth(
+    fullPopulationEndpointRows,
+    {
+      fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,
+      sampleInterval,
+      maximumSeparation: 2 * displayPlacement.seedingRadius,
+    },
+  );
   // Only the causal past is prescribed. Forward EOM segments are appended
   // after T=0 and form the separately evolving retained history.
   const seedHistoryDepth = causalHistoryDepth;
@@ -101,11 +104,14 @@ export async function bootBorgApp({
     manifest,
     seedHistoryDepth,
   );
-  const initialEomSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
-    historyStartTime: eomStartTime - seedHistoryDepth,
-    historyEndTime: eomStartTime,
-    minimumPairSeparation: displayPlacement.minimumPairSeparation,
-  });
+  const initialEomSeed = await createBorgAcceptedInertialSeedHistory(
+    fullPopulationEndpointRows,
+    {
+      historyStartTime: eomStartTime - seedHistoryDepth,
+      historyEndTime: eomStartTime,
+      minimumPairSeparation: displayPlacement.minimumPairSeparation,
+    },
+  );
   return mountApp({
     manifest: runtimeManifest,
     initialEomSeed,
@@ -121,8 +127,9 @@ export async function bootBorgApp({
       targetDuration: eomStartTime + eomDuration,
       runDuration: eomDuration,
       historyDepth: seedHistoryDepth,
+      historySafetyMargin: sampleInterval,
       certifiedBudgetId: certifiedBudget.id,
-      pathCount: endpointRows.length,
+      pathCount: fullPopulationEndpointRows.length,
       // Batch six 0.05 EOM steps per process round trip. The selected run
       // grade stays fixed while protocol traffic remains below render cadence.
       chunkDuration: 0.3,
@@ -180,13 +187,7 @@ export function createBorgBraidRecordNavigation({
     if (typeof fetchLike !== "function") {
       throw new TypeError("Borg braid record loading requires fetch().");
     }
-    const response = await fetchLike(entry.recordUrl);
-    if (!response?.ok) {
-      throw new Error(
-        `Borg prescribed geometry fetch failed (${response?.status ?? "no response"}): ${entry.recordUrl}`,
-      );
-    }
-    return response.json();
+    return fetchBorgRecord(fetchLike, entry.recordUrl, "prescribed geometry");
   }
 
   function persistSelection(recordId) {
@@ -206,6 +207,19 @@ export function createBorgBraidRecordNavigation({
     load,
     persistSelection,
   });
+}
+
+async function fetchBorgRecord(fetchLike, recordUrl, label) {
+  if (typeof fetchLike !== "function") {
+    throw new TypeError(`Borg ${label} loading requires fetch().`);
+  }
+  const response = await fetchLike(recordUrl);
+  if (!response?.ok) {
+    throw new Error(
+      `Borg ${label} fetch failed (${response?.status ?? "no response"}): ${recordUrl}`,
+    );
+  }
+  return response.json();
 }
 
 export function createBorgStartupSeedIndex(cryptoLike = globalThis.crypto) {

@@ -31,7 +31,7 @@ test("Borg live run retention updates ordinary append counts without rescanning 
   assert.equal(appended.compactedThisPass, false);
 });
 
-test("Borg live run retention leaves short runs as retained native frame rows", () => {
+test("Borg live run retention leaves short runs as retained EOM frame rows", () => {
   const frameRows = createFrameRows({ frameSetCount: 5, pathCount: 2 });
   const result = applyBorgLiveRunRetention({
     frameRows,
@@ -39,7 +39,7 @@ test("Borg live run retention leaves short runs as retained native frame rows", 
   });
 
   assert.equal(result.summary.schema, BORG_LIVE_RUN_RETENTION_POLICY_VERSION);
-  assert.equal(result.summary.status, "retaining-recent-native-frame-rows");
+  assert.equal(result.summary.status, "retaining-recent-eom-frame-rows");
   assert.equal(result.summary.compactedThisPass, false);
   assert.equal(result.summary.retainedFrameSetCount, 5);
   assert.equal(result.frameRows.length, frameRows.length);
@@ -65,6 +65,11 @@ test("Borg live run retention compacts older path history and keeps recent displ
   assert.deepEqual(
     result.compactedPathHistory[0].at(-1).position,
     { x: 6, y: 0, z: 0 },
+  );
+  assert.equal(
+    result.compactedPathHistory[0].at(-1).frameIndex,
+    retainedFrameIndexes[0],
+    "one shared boundary endpoint keeps compacted and exact trails continuous",
   );
 });
 

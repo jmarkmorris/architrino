@@ -8,7 +8,7 @@ Spin labels in this chapter are downstream mapping targets, not completed deriva
 
 ## Photon Referent Status
 
-The photon construction below is a theorem target, not an exhibited bound branch. A force-balance evaluation of the declared planar polarity-conjugate pair returns a binding residual $\epsilon_{\rm bind}=0.9922$ against a declared $0.03$ gate at 24 cycle samples, with no improvement along the $3\to6\to12\to24$ sampling ladder. The charge ledger closes and the net pump cancels to $3.7\times10^{-16}$ on the same rows, so binding is the measured failure. Claim level: measured force-balance negative on the declared geometry, payload families, and proxy-sea coverage; no stability inference follows, and a constitutive medium law remains untested.
+The photon construction below is a theorem target, not an exhibited bound branch. The canonical construction is the 12-worldline coaxial contra-rotating polarity-conjugate planar pair; exhibiting it means evolving that assembly under the master equation to a retained branch, cross-verified by the EOM solver against an independent oracle. No such branch has been exhibited, and prescribed fixed-coordinate circular histories cannot supply one: a prescribed history reports the geometry its author imposed, not a dynamical outcome.
 
 Accordingly, the planar-pair description, Gate A/B quantities, and every neutrino residual defined relative to this lock are referent-pending until an equilibrium branch is exhibited. The gates remain useful because they state what a replacement branch must recover, but they must not be used as premises about a retained photon assembly.
 
@@ -452,7 +452,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Lifetime ($\tau$):** Impulsive. The bundle exists only long enough to perform the transaction.
 *   **Tether vs. Free:**
     *   **Tethered:** In close-range interactions (e.g., within a nucleus), the boson acts as a temporary bridge physically linking the source and destination braids.
-    *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether sea, propagating along its axis with corridor speed near the field speed ($v_{\mathrm{corr}}\approx c_f$) before dissociating (rupturing) due to internal instability.
+    *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether sea, propagating along its axis with corridor speed near the field speed ($v_{\mathrm{corr}}\approx c_f$) before dissociating (rupturing); the rupture is modeled as internal instability — corridor lifetime and rupture mode are corridor-closure targets.
 
 ### Quantum Numbers and Channels
 *   **Spin-$1$ (vector):** The weak corridor is a spin-$1$ vector-channel target: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ target, with only transverse helicities $\pm1$ and no physical longitudinal mode after Gate B is derived. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating polarity-conjugate planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
@@ -525,8 +525,8 @@ The distinction between photon helicity and massive-vector spin should remain ex
 
 ### Dynamics: Emission and Absorption
 *   **The Trigger (Emission):**
-    *   Caused by a **Strongly Accelerated Shove** (e.g., a violent binary mode transition).
-    *   This kick ejects a "corridor of influence" that nucleates from the superposition of the constituent architrinos' delayed wakes.
+    *   The candidate trigger is a **Strongly Accelerated Shove** (e.g., a violent binary mode transition); confirming the trigger is a corridor-closure target.
+    *   This kick would eject a "corridor of influence" that nucleates from the superposition of the constituent architrinos' delayed wakes.
 *   **Selection Rules (Phase History):**
     *   Coupling is not "magic"; it requires geometric compatibility.
     *   **Chirality:** Allowed couplings follow from the **Path-History Geometry**. The corridor's internal spiral must match the phase structure of the target's indexed Noether braid rows. "Wrong-handed" targets present a phase mismatch, preventing the tether from locking on.
@@ -546,7 +546,7 @@ $$
 This is not a new substrate interaction. It is the low-energy observer limit of the same charged-corridor event after the finite-width mediator has been integrated out. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the corridor stiffness or electroweak scale $v_{\mathrm{EW}}$ from Noether sea response and then recover $G_F$, beta rates, and charged-current branching fractions without fitting a separate contact coupling.
 
 ### Effective Mass Scales
-*   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
+*   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV; PDG comparison values) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
     For a resolved weak event $\mathsf e$ observed through an event window $\mathcal W$, the effective mass-scale target can be written schematically as
     $$
     M_{W/Z}^{\mathrm{eff}}(\mathsf e;\mathcal W)c_0^2

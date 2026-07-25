@@ -103,7 +103,7 @@ The meaning of angular momentum and spin changes sharply as one moves from free 
 | Opposite-polarity architrinos passing in an empty void | Two persistent architrino worldlines, unlike polarities, mutual attractive delayed partner hits, and their emitted causal wakes. | A scattering impact-parameter ledger exists for the two-body history. The mechanical part can bend during delayed attraction, while $\mathbf{L}_{\text{wake}}$ carries the in-flight balance. There is no quantized orbital label unless the interaction locks into a periodic assembly. | None at the primitive level. A single architrino has no internal axis, and a flyby pair has not formed an ordered assembly. |
 | Same-polarity architrinos passing in an empty void | Two persistent architrino worldlines, like polarities, mutual repulsive delayed partner hits, and their emitted causal wakes. | The same total ledger exists, but the radial sign is repulsive. The encounter is normally a deflection rather than a capture route. Any self-hit contribution requires suitable curved super-field-speed history; it is not implied by same polarity alone. | None at the primitive level. Same polarity changes the force sign, not the ontological inventory. |
 | Spiraling opposite-polarity binary | A bound or capturing electrino:positrino pair with partner-hit delay, positive tangential drive in the sub-field-speed circular benchmark, and possible transition toward self-hit. | Angular momentum becomes assembly-relevant. The binary has orbital-plane circulation, a phase variable, and an action-angle ledger. The particle-only circular expression is not enough because delayed partner hits and later self-hits exchange angular momentum with wake history. | Not standard spin. A planar binary can have a circulation sign relative to its plane normal, but it is still a planar orbital-like datum, not a spinor representation. |
-| Maximum-curvature binary | A candidate tight self-hit-supported binary near the null-separatrix / Jacobian-wall regime, with root ledgers and possible stable cycle. | If a stable maximum-curvature binary exists, it supplies a reproducible internal rotational-action standard. Its angular momentum is internal circulation plus self-wake history, not a primitive point property. | Still not fermion spin-$\tfrac{1}{2}$. It can supply a planar angular-momentum sign or helicity-like boundary datum only after a normal or propagation axis is specified. |
+| Maximum-curvature binary | A candidate tight binary near the null-separatrix / Jacobian-wall regime. Self-hit supplies an outward barrier; the complete signed ledger must supply centripetal and tangential closure. | If a stable maximum-curvature binary exists, it supplies a reproducible internal rotational-action standard. Its angular momentum is internal circulation plus self-wake history, not a primitive point property. | Still not fermion spin-$\tfrac{1}{2}$. It can supply a planar angular-momentum sign or helicity-like boundary datum only after a normal or propagation axis is specified. |
 
 The table shows why the answer cannot be simply "angular momentum exists" or "spin exists." The primitive two-body law contains only delayed radial hits. Angular momentum appears when the entire isolated history is organized under rotational symmetry. Spin appears only after an assembly has enough internal orientation structure to transform like a standard spin representation.
 
@@ -216,9 +216,9 @@ If a stable maximum-curvature binary exists, it may define a fundamental length 
 
 ## B1 Spin Scaffold
 
-[B1](../../noether-braid/braid-family-b.md#b1) supplies this bridge with its primary common-axis realization of the angular-momentum ledger, and its rigid common-frequency rotation makes the kinematic half of that ledger exact rather than approximate. Where the Family-A comparison scaffold below must carry three separate binary normals $\hat{\mathbf n}_\ell$ and combine them into an approximate rank-three construction, B1 has one axis exactly.
+[B1](../../noether-braid/braid-family-b.md#b1) supplies this bridge with its primary common-axis realization of the angular-momentum ledger, and its fixed-coordinate common-frequency co-rotation makes the kinematic half of that ledger exact rather than approximate. Where the Family-A comparison scaffold below must carry three separate binary normals $\hat{\mathbf n}_\ell$ and combine them into an approximate rank-three construction, B1 has one axis exactly.
 
-### The Exact Kinematic Ledger of Rigid B1
+### The Exact Kinematic Ledger of Prescribed Co-Rotating B1
 
 All six architrinos co-rotate at one common frequency $\omega$ about one shared axis $\hat{\mathbf z}$. Each indexed binary $a\in\{1,2,3\}$ is an antipodal pair with independently assignable axial coordinate $h_a$ and axis offset $\rho_a$. The kinematic angular momentum is then exact at every instant, not cycle-averaged and not approximate:
 
@@ -238,13 +238,13 @@ $$
 m_a=\mu_{\text{arch}}\left(\rho_a^2+2h_a^2\right)
 $$
 
-so a binary with small $\rho_a$ can still carry full-scale tilt inertia through $h_a$ while carrying little spin. The two coordinate types therefore separate the spin ledger from the tilt-inertia ledger, which makes the axis sector a gyroscopic problem rather than a quasi-static one. Claim level: exact kinematics of prescribed rigid B1 (the tilt inertia is the cycle-averaged rigid-binary reduction); $\mu_{\text{arch}}$ is the numerical site weight of the working models, not a primitive mass.
+so a binary with small $\rho_a$ can still carry full-scale tilt inertia through $h_a$ while carrying little spin. The two coordinate types therefore separate the spin ledger from the tilt-inertia ledger, which makes the axis sector a gyroscopic problem rather than a quasi-static one. Claim level: exact kinematics of prescribed fixed-coordinate B1 (the tilt inertia is the cycle-averaged fixed-coordinate binary reduction); $\mu_{\text{arch}}$ is the numerical site weight of the working models, not a primitive mass.
 
 ### The Wake Ledger and the Causal-Delay Asymmetry
 
-The total rotational ledger is the kinematic spine plus the same branch-resolved wake term as in the boxed three-binary total of the functional scaffold below. B1 adds a clean indexed row structure for posing the wake questions (claim level for this subsection: symmetry and structural arguments on prescribed rigid B1; no measured wake rows are carried):
+The total rotational ledger is the kinematic spine plus the same branch-resolved wake term as in the boxed three-binary total of the functional scaffold below. B1 adds a clean indexed row structure for posing the wake questions (claim level for this subsection: symmetry and structural arguments on prescribed fixed-coordinate B1; no measured wake rows are carried):
 
-- The per-binary transverse (tilt) wake torques vanish at the untilted configuration — tilt equilibrium is automatic, by reflection symmetry of the rigid family.
+- The per-binary transverse (tilt) wake torques vanish at the untilted configuration — tilt equilibrium is automatic, by reflection symmetry of the fixed-coordinate family.
 - Whether the per-binary axial wake torques close binary by binary — and, if not, which binaries carry a standing tangential surplus that must be transacted into the outgoing wake — is the first wake measurement the validated engine must supply for this family. No per-binary closure values are carried here.
 - The tilt stiffness block $K$ — the matrix of cycle-averaged transverse-torque responses to per-binary tilts — is **not required to be symmetric, and any asymmetry would be physics rather than error**. Its rows must sum to zero (a global tilt is a symmetry of the isotropic delayed law, so the global mode is an exact null), but its columns need not: in an instantaneous-interaction theory internal torques cancel pairwise and no column imbalance can exist, while in a causal-delay theory the field in flight carries angular momentum, and a column imbalance is exactly a tilt-sector posting to the wake ledger. Measuring $K$ is an open target for the validated engine.
 
@@ -276,7 +276,7 @@ with the axial cost of a binary inclination only second order — tilting stores
 2. **The cadence is an open coordinate.** Nothing established fixes $\Delta\omega$. Whether any mechanism holds a B1 member at a fixed cadence or speed budget is an open question for the validated engine; until one is established, $\Delta\omega$ enters the partition map as a free coordinate.
 3. **One energy price.** In the reduced action-angle chart the Family-A companion ledger reads $\Delta E=\sum_{a=1}^{3}\omega_a\Delta I_a+\Delta E_{\text{wake}}$, so the energy cost of an accepted increment can depend on which indexed binary receives it. At one cadence that dependence vanishes: $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ at first order, however the allocation falls. For the accepted quantum $\Delta I=\hbar$ this is $\Delta E=\hbar\omega$ appearing as a ledger identity of B1 rather than an imported relation. The actual allocation must therefore be decided by the constraint structure, stiffness spectrum, and causal-root admissibility.
 
-The tilts are the map's distinctive channel — transverse storage at zero first-order axial cost — and therefore the natural candidate storage channel for accepted increments; whether the coupled relative-tilt modes are in fact soft is a stiffness measurement the validated engine has yet to supply. As in the Family-A case, writing the map is not solving it: the partition among radii, tilts, cadence, and wake remains a dynamics problem in conservation, admissibility, phase rigidity, and branch stability. Claim level: the increment identities are exact kinematics of the prescribed rigid family; the energy-price statement is a reduced action-angle statement at the same grade as the Family-A companion ledger; the allocation dynamics — and any cadence- or speed-holding mechanism — is open.
+The tilts are the map's distinctive channel — transverse storage at zero first-order axial cost — and therefore the natural candidate storage channel for accepted increments; whether the coupled relative-tilt modes are in fact soft is a stiffness measurement the validated engine has yet to supply. As in the Family-A case, writing the map is not solving it: the partition among radii, tilts, cadence, and wake remains a dynamics problem in conservation, admissibility, phase locking, and branch stability. Claim level: the increment identities are exact kinematics of the prescribed fixed-coordinate family; the energy-price statement is a reduced action-angle statement at the same grade as the Family-A companion ledger; the allocation dynamics — and any cadence- or speed-holding mechanism — is open.
 
 ### Quotient-Spectrum Discipline
 
@@ -284,13 +284,13 @@ The exact global-tilt null is a gift and a trap, and it fixes a method rule for 
 
 ### The Ordered Frame and the Helicity-Polarity Lock
 
-The spinor program of this bridge needs an ordered frame: a locked triple of oriented structures whose transport around closed histories can be interrogated for $2\pi/4\pi$ behavior. Rigid B1 supplies the spin axis $\hat{\mathbf z}$ exactly. An axial polarity dipole is an additional B1 subset condition, not a consequence of the common axis alone. If the members of binary $a$ have axial signs $s_a$ and azimuthal phases $\phi_a$, transverse cancellation requires
+The spinor program of this bridge needs an ordered frame: a locked triple of oriented structures whose transport around closed histories can be interrogated for $2\pi/4\pi$ behavior. Prescribed B1 supplies the spin axis $\hat{\mathbf z}$ exactly. An axial polarity dipole is an additional B1 subset condition, not a consequence of the common axis alone. If the members of binary $a$ have axial signs $s_a$ and azimuthal phases $\phi_a$, transverse cancellation requires
 
 $$
 \sum_{a=1}^{3}s_a\rho_a e^{i\phi_a}=0.
 $$
 
-On that subset, the axis, axial polarity dipole, and a declared azimuthal reference form a rigid locked triple. The handedness label is the pseudoscalar pairing of dipole and spin. Claim level: derived kinematics for the stated B1 subset; the $2\pi/4\pi$ transport response and any drift-orientation preference remain open.
+On that subset, the axis, axial polarity dipole, and a declared azimuthal reference form a fixed-coordinate locked triple. The handedness label is the pseudoscalar pairing of dipole and spin. Claim level: derived kinematics for the stated B1 subset; the $2\pi/4\pi$ transport response and any drift-orientation preference remain open.
 
 ### Gyroscopic-Circulatory Axis Dynamics
 
@@ -310,7 +310,7 @@ $$
 
 with $M$ the diagonal tilt-inertia matrix, $G$ the gyroscopic (spin) block, and $\Gamma$ the spin-transport block of the baseline axial torques, required for the exact global null of $K-\Gamma$ and hence for the quotient discipline. The eigenvector components pair into complex tilt amplitudes $\zeta_a=\eta_a^x+i\eta_a^y$, so each quotient eigenvalue is a whirl mode: a rotating precession pattern with growth rate $\operatorname{Re}\lambda$ and whirl frequency $\operatorname{Im}\lambda$.
 
-Everything beyond this chart is open. $M$ and $G$ follow from the exact kinematics; $K$, $\Gamma$, and any delay-memory (tilt-rate) contribution are measurements the validated engine has yet to supply. Whether B1 holds its axis, whether an axis-sector surplus exists that must be absorbed, and whether drift changes the answer are questions for direct EOM-solver evolution, subject to the quotient discipline above. A causal-root fold crossing lies outside any cycle-averaged linearization, so no pencil alone can close the axis sector. Claim level: the pencil is the standard rigid-binary linearization chart; every block beyond $M$ and $G$, and every stability statement, is an open measurement.
+Everything beyond this chart is open. $M$ and $G$ follow from the exact kinematics; $K$, $\Gamma$, and any delay-memory (tilt-rate) contribution are measurements the validated engine has yet to supply. Whether B1 holds its axis, whether an axis-sector surplus exists that must be absorbed, and whether drift changes the answer are questions for direct EOM-solver evolution, subject to the quotient discipline above. A causal-root fold crossing lies outside any cycle-averaged linearization, so no pencil alone can close the axis sector. Claim level: the pencil is the standard fixed-coordinate binary linearization chart; every block beyond $M$ and $G$, and every stability statement, is an open measurement.
 
 ## A1 Spin Scaffold
 
@@ -1477,7 +1477,7 @@ $$
 \bigr)
 $$
 
-where $\hat{\boldsymbol\jmath}$ is the exact spin axis from the rank-one kinematic spine, $\hat{\mathbf d}$ is the polarity-dipole direction on the transverse-canceling B1 subset defined above, $\theta_3$ is a declared azimuthal reference, and $\mathcal R$ is the causal-root and self-hit ledger. On that subset the handedness label is the pseudoscalar pairing $h=\hat{\mathbf d}\cdot\hat{\boldsymbol\jmath}$. B1 rigidity locks the triple's relative orientation around the entire cycle. Claim level: derived for the stated transverse-canceling subset; no axial dipole is asserted for general B1.
+where $\hat{\boldsymbol\jmath}$ is the exact spin axis from the rank-one kinematic spine, $\hat{\mathbf d}$ is the polarity-dipole direction on the transverse-canceling B1 subset defined above, $\theta_3$ is a declared azimuthal reference, and $\mathcal R$ is the causal-root and self-hit ledger. On that subset the handedness label is the pseudoscalar pairing $h=\hat{\mathbf d}\cdot\hat{\boldsymbol\jmath}$. The prescribed B1 coordinate lock keeps the triple's relative orientation fixed around the entire cycle. Claim level: derived for the stated transverse-canceling subset; no axial dipole is asserted for general B1.
 
 The discrete-symmetry structure of the label follows from B1's results at their stated claim level. Polarity conjugation $C$ reverses $\hat{\mathbf d}$ while preserving $\hat{\boldsymbol\jmath}$, so it flips $h$: a braid and its polarity-conjugate braid are the exactly degenerate glove pair at fixed worldline order. A true mirror reverses the ordered orientation and flips $h$ again. The combined $CP$ operation restores $h$. The pro/anti ordered-orientation sign is therefore not the same object as the polarity-conjugation sign; their product supplies the polarity-weighted handedness $h$. Consequently the gauge quotient on the B1 frame must not remove polarity assignment, ordered-orientation reversal, or causal-root branch change — exactly the discipline stated for the A1 chart below.
 
@@ -1646,7 +1646,7 @@ The same test needs an explicit gauge control so that coordinate relabeling is n
 $$
 \Delta_{\mathrm{gc}}(r)
 =
-\Delta_{\mathrm{rig}}(r)
+\Delta_{\mathrm{id}}(r)
 +
 \Delta_{\mathrm{flip}}(r)
 +
@@ -1659,12 +1659,12 @@ $$
 \Delta_{\mathbf J}(r)
 $$
 
-The null rigid row must return ordinary closure,
+The return-identical control row must show ordinary closure,
 
 $$
-\Pi_{W,r,\mathrm{rig}}^{2\pi}=0,
+\Pi_{W,r,\mathrm{id}}^{2\pi}=0,
 \qquad
-\Pi_{W,r,\mathrm{rig}}^{4\pi}=0
+\Pi_{W,r,\mathrm{id}}^{4\pi}=0
 $$
 
 If an allowed branch-preserving gauge probe $g\in G_{\mathrm{gauge}}$ changes the proposed parity,
@@ -1709,11 +1709,11 @@ $$
 
 This is a $\mathbb Z_2$ additivity lemma, not a spinor-support pass. Gauge-erased rows contribute zero, even physical row flips cancel, and termwise gauge invariance of $\bar\epsilon_r^s$ gives gauge invariance of $\eta_B^{\mathrm{table}}$. The remaining burden is still to populate a retained non-coplanar row, compute its row-local causal writhe, supply $\operatorname{Prov}_\chi$, exhibit quotient witnesses, prove doubled-path restoration, and keep the angular-momentum residual below tolerance.
 
-### Rigid Branch-Preserving Control
+### Return-Identical Branch-Preserving Control
 
-The row-local test has a useful no-go consequence. Apply the quotient-resolved table parity above to a branch-preserving visible $2\pi$ loop $\gamma_{2\pi}^{\mathrm{rig}}$.
+The row-local test has a useful no-go consequence. Apply the quotient-resolved table parity above to a branch-preserving visible $2\pi$ loop $\gamma_{2\pi}^{\mathrm{id}}$.
 
-If the loop is rigid on the retained history data,
+If the loop returns identically on the retained history data,
 
 $$
 \bar\epsilon_r^{2\pi}=0
@@ -1724,10 +1724,10 @@ $$
 then
 
 $$
-\eta_B^{\mathrm{table}}(\gamma_{2\pi}^{\mathrm{rig}})=0
+\eta_B^{\mathrm{table}}(\gamma_{2\pi}^{\mathrm{id}})=0
 $$
 
-This is ordinary $SO(3)$ closure, not spinor support. The proof is just the parity sum: when every retained non-gauge row returns identically, the visible normal-triad loop has no history-sheet change to pull back into the ordered frame. Therefore a proposed spinor proof that assigns nontrivial $2\pi$ lift to this rigid table has imported the $SU(2)\to SO(3)$ comparison rather than deriving the lift from delayed causal-root transport.
+This is ordinary $SO(3)$ closure, not spinor support. The proof is just the parity sum: when every retained non-gauge row returns identically, the visible normal-triad loop has no history-sheet change to pull back into the ordered frame. Therefore a proposed spinor proof that assigns nontrivial $2\pi$ lift to this return-identical table has imported the $SU(2)\to SO(3)$ comparison rather than deriving the lift from delayed causal-root transport.
 
 The first non-null support condition is consequently narrow:
 

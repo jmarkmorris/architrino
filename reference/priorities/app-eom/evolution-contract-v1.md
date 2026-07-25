@@ -209,6 +209,13 @@ completeness test.
 
 If a possible root reaches the retained-history boundary or completeness cannot be certified, the candidate step fails with `insufficient_history_depth` or `unresolved_root_set`. The contribution is never silently omitted.
 
+The certified finite-width acceleration quantity is the integral over the
+declared retained emission interval from `searched_lower` through
+`reception_time`. It makes no claim about unrepresented emission times below
+`searched_lower` and is not an infinite-past master-equation integral. The
+memory-boundary clearance check excludes a causal root at the retained lower
+boundary; it is not a Gaussian-tail enclosure for earlier times.
+
 An ordinary `root_completeness_not_certified` record carries no finite-width
 contract record and no regulator level. `FWC-ENTRY-02` is emitted only when the
 root certificate actually requires the caustic route; selecting the

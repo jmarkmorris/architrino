@@ -4,17 +4,24 @@ import { test } from "node:test";
 
 import {
   BORG_MEASURED_RUN_PRESETS_VERSION,
-  BORG_MEASURED_RUN_PRESET_LIMITS,
   createMeasuredRunPresetCalibration,
   formatMeasuredRunPresetLabel,
   resolveMeasuredRunControlPreset,
   updateMeasuredRunPresetCalibration,
 } from "../src/apps/borg/BorgMeasuredRunPresets.js";
-import {
-  BORG_RELEASE_BUDGET_MANIFEST_V1,
-  BORG_RELEASE_BUDGET_MANIFEST_VERSION,
-  validateBorgReleaseBudgetManifest,
-} from "../src/apps/borg/BorgReleaseBudgetManifest.js";
+const TEST_EOM_LIMITS = Object.freeze({
+  maxChunkWallTimeMs: 120,
+  minFrameAppendRateRowsPerSecond: 1000,
+  maxChunkWorkerMemoryBytes: 100 * 1024 * 1024,
+  maxRunWorkerMemoryBytes: 200 * 1024 * 1024,
+  maxChunkHeapGrowthBytes: 100 * 1024 * 1024,
+  maxRunHeapGrowthBytes: 200 * 1024 * 1024,
+  maxRunFrameRows: 100000,
+  minTargetDuration: 20,
+  maxTargetDuration: 1000,
+  minChunkDuration: 2,
+  maxChunkDuration: 40,
+});
 
 const BASE_PRESETS = Object.freeze([
   Object.freeze({
@@ -57,22 +64,72 @@ const BORG_RELEASE_BUDGET_MANIFEST_JSON_V1 = JSON.parse(
     "utf8",
   ),
 );
+const BORG_APP_RUNTIME_SOURCE = readFileSync(
+  new URL("../src/apps/borg/BorgAppRuntime.js", import.meta.url),
+  "utf8",
+);
+const BORG_MEASURED_RUN_PRESETS_SOURCE = readFileSync(
+  new URL("../src/apps/borg/BorgMeasuredRunPresets.js", import.meta.url),
+  "utf8",
+);
 
-test("Borg measured run presets start with bootstrap authority until a live chunk is measured", () => {
+test("Borg presets remain authored defaults without a current EOM release budget", () => {
   const calibration = createMeasuredRunPresetCalibration({ basePresets: BASE_PRESETS });
   const livePreset = resolveMeasuredRunControlPreset(calibration, "live-forever", BASE_PRESETS);
 
   assert.equal(calibration.schema, BORG_MEASURED_RUN_PRESETS_VERSION);
-  assert.equal(calibration.status, "bootstrap-pending-measurement");
-  assert.equal(calibration.thresholdAuthority, "bootstrap-defaults-until-live-budget-measured");
+  assert.equal(calibration.status, "current-eom-release-budget-unavailable");
+  assert.equal(
+    calibration.thresholdAuthority,
+    "base-presets-no-current-eom-release-budget",
+  );
+  assert.equal(calibration.limits, null);
   assert.equal(livePreset.effectiveTargetDuration, Number.POSITIVE_INFINITY);
   assert.equal(livePreset.effectiveChunkDuration, 20);
-  assert.equal(livePreset.thresholdAuthority, "bootstrap-defaults-until-live-budget-measured");
+  assert.equal(
+    livePreset.thresholdAuthority,
+    "base-presets-no-current-eom-release-budget",
+  );
   assert.equal(formatMeasuredRunPresetLabel(livePreset), "Forever / 20");
 });
 
+test("live EOM observations do not invent release ceilings when none are authorized", () => {
+  const calibration = createMeasuredRunPresetCalibration({
+    basePresets: BASE_PRESETS,
+  });
+  const measured = updateMeasuredRunPresetCalibration(
+    calibration,
+    {
+      lastChunkWallTimeMs: 25,
+      computedFrameRows: 100,
+      frameAppendRateRowsPerSecond: 4000,
+      chunkDuration: 20,
+      chunkIndex: 0,
+    },
+    BASE_PRESETS,
+  );
+  const livePreset = resolveMeasuredRunControlPreset(
+    measured,
+    "live-forever",
+    BASE_PRESETS,
+  );
+
+  assert.equal(
+    measured.status,
+    "measured-eom-observation-no-release-ceilings",
+  );
+  assert.equal(measured.sampleCount, 1);
+  assert.equal(measured.thresholds.maxTargetDuration, null);
+  assert.equal(measured.thresholds.maxChunkDuration, null);
+  assert.equal(livePreset.effectiveTargetDuration, Number.POSITIVE_INFINITY);
+  assert.equal(livePreset.effectiveChunkDuration, 20);
+});
+
 test("Borg measured run presets use live wall time, heap, append rate, and worker memory as thresholds", () => {
-  const calibration = createMeasuredRunPresetCalibration({ basePresets: BASE_PRESETS });
+  const calibration = createMeasuredRunPresetCalibration({
+    basePresets: BASE_PRESETS,
+    limits: TEST_EOM_LIMITS,
+  });
   const measured = updateMeasuredRunPresetCalibration(
     calibration,
     {
@@ -93,18 +150,21 @@ test("Borg measured run presets use live wall time, heap, append rate, and worke
   const finitePreset = resolveMeasuredRunControlPreset(measured, "live-20s", BASE_PRESETS);
 
   assert.equal(measured.status, "measured-live-run-budget");
-  assert.equal(measured.thresholdAuthority, "measured-from-live-native-chunks");
+  assert.equal(measured.thresholdAuthority, "measured-from-live-eom-chunks");
   assert.equal(measured.sampleCount, 1);
-  assert.ok(measured.thresholds.maxTargetDuration < 3000);
+  assert.ok(measured.thresholds.maxTargetDuration < TEST_EOM_LIMITS.maxTargetDuration);
   assert.ok(measured.thresholds.maxChunkDuration < 20);
   assert.equal(livePreset.effectiveTargetDuration, Number.POSITIVE_INFINITY);
   assert.equal(livePreset.effectiveChunkDuration, measured.thresholds.maxChunkDuration);
-  assert.equal(livePreset.thresholdAuthority, "measured-from-live-native-chunks");
-  assert.equal(finitePreset.effectiveTargetDuration, measured.thresholds.maxTargetDuration);
+  assert.equal(livePreset.thresholdAuthority, "measured-from-live-eom-chunks");
+  assert.equal(finitePreset.effectiveTargetDuration, 20);
 });
 
 test("Borg measured run presets allow release chunk ceiling when per-chunk budgets pass", () => {
-  const calibration = createMeasuredRunPresetCalibration({ basePresets: BASE_PRESETS });
+  const calibration = createMeasuredRunPresetCalibration({
+    basePresets: BASE_PRESETS,
+    limits: TEST_EOM_LIMITS,
+  });
   const measured = updateMeasuredRunPresetCalibration(
     calibration,
     {
@@ -124,11 +184,11 @@ test("Borg measured run presets allow release chunk ceiling when per-chunk budge
 
   assert.equal(
     measured.thresholds.maxChunkDuration,
-    BORG_MEASURED_RUN_PRESET_LIMITS.maxChunkDuration,
+    TEST_EOM_LIMITS.maxChunkDuration,
   );
 });
 
-test("Borg preset calibration sweep covers release sample matrix and binds code ceilings", () => {
+test("Borg historical preset sweep remains internally complete without binding current code", () => {
   const sweep = BORG_PRESET_CALIBRATION_SWEEP_V1;
   assert.equal(sweep.schema, "borg-preset-calibration-sweep.v1");
   assert.equal(sweep.status, "release-ceilings-decided");
@@ -164,13 +224,16 @@ test("Borg preset calibration sweep covers release sample matrix and binds code 
     sweep.observedExtrema.maxChunkWorkerMemoryBytes,
   );
 
-  assert.deepEqual(sweep.releaseBudgetCeilings, BORG_MEASURED_RUN_PRESET_LIMITS);
+  assert.equal(
+    createMeasuredRunPresetCalibration({ basePresets: BASE_PRESETS }).limits,
+    null,
+  );
 });
 
-test("Borg release budget manifest binds sweep artifact to runtime ceilings", () => {
+test("Borg preserves the historical sweep as reference-only evidence", () => {
   const sweep = BORG_PRESET_CALIBRATION_SWEEP_V1;
   const manifest = BORG_RELEASE_BUDGET_MANIFEST_JSON_V1;
-  assert.equal(manifest.schema, BORG_RELEASE_BUDGET_MANIFEST_VERSION);
+  assert.equal(manifest.schema, "borg-release-budget-manifest.v1");
   assert.equal(manifest.status, "release-ceilings-decided");
   assert.equal(manifest.claimLevel, "developer-test-surface-budget");
   assert.equal(manifest.valueAuthority, "measured-browser-runtime-budget");
@@ -187,15 +250,17 @@ test("Borg release budget manifest binds sweep artifact to runtime ceilings", ()
   assert.equal(manifest.sampleMatrix.sampleCount, sweep.sampleMatrix.sampleCount);
   assert.deepEqual(manifest.observedExtrema, sweep.observedExtrema);
   assert.deepEqual(manifest.releaseBudgetCeilings, sweep.releaseBudgetCeilings);
-  assert.deepEqual(manifest.releaseBudgetCeilings, BORG_MEASURED_RUN_PRESET_LIMITS);
-  assert.deepEqual(
-    BORG_RELEASE_BUDGET_MANIFEST_V1.releaseBudgetCeilings,
-    BORG_MEASURED_RUN_PRESET_LIMITS,
-  );
-  assert.equal(BORG_RELEASE_BUDGET_MANIFEST_V1.manifestId, manifest.manifestId);
-  assert.equal(validateBorgReleaseBudgetManifest(BORG_RELEASE_BUDGET_MANIFEST_V1), true);
   assert.equal(
     manifest.nextBuildBurden,
     "migrate-borg-through-certified-eom-shadow-run",
   );
+  for (const source of [
+    BORG_APP_RUNTIME_SOURCE,
+    BORG_MEASURED_RUN_PRESETS_SOURCE,
+  ]) {
+    assert.doesNotMatch(source, /BorgReleaseBudgetDisposition/);
+    assert.doesNotMatch(source, /borg-release-budget-manifest/);
+    assert.doesNotMatch(source, /legacyBudgetAppliesToEom/);
+    assert.doesNotMatch(source, /releaseBudgetDisposition/);
+  }
 });

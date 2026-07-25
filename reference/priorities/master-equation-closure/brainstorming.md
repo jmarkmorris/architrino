@@ -10,6 +10,117 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ## Ideas And Insights
 
+### Reception-Active Cubic Maturity and Account-Transfer Candidate (2026-07-24)
+
+Claim level: **unproven proposal**. This note preserves one explicit candidate
+for testing the independently evolving causal-wake route. It does not change
+the derived obstruction in
+[Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md),
+does not define accepted architrino momentum, and is not a corpus or EOM solver
+update.
+
+The derived part is only the endpoint order condition. With
+$z=|D_t|/c_f$, finite accumulated acceleration at exact quadratic coincident
+self-birth requires more-than-quadratic suppression; an analytic maturity
+therefore begins at cubic order. One smallest explicit but unselected
+realization is
+
+$$
+b_{z_\ast}(z)
+=
+\begin{cases}
+(z/z_\ast)^3,&0\le z<z_\ast,\\[4pt]
+1,&z\ge z_\ast,
+\end{cases}
+$$
+
+where the dimensionless transition scale $z_\ast>0$ is introduced rather than
+derived. For a surface-resolved wake element, the proposed emission state is
+
+$$
+(m,e,\boldsymbol\pi)
+=
+\left(b_{z_\ast}(z),0,\mathbf0\right).
+$$
+
+The proposed motion-account form is conditional on additional minimality
+assumptions: isotropy, line-of-action momentum exchange, and no separate
+intrinsic wake angular-momentum variable. Writing
+$\mathbf p=P(s)\hat{\mathbf V}$ with $s=\|\mathbf V\|$, radial exchange for
+arbitrary receiver velocity requires
+
+$$
+P'(s)=\frac{P(s)}s,
+$$
+
+so within this proposal
+
+$$
+\mathbf p=\mu_{\text{arch}}\mathbf V,
+\qquad
+K=\frac12\mu_{\text{arch}}\|\mathbf V\|^2.
+$$
+
+This conditional form does not derive $\mu_{\text{arch}}$ from existing
+Architrino primitives and must not be read as physical architrino mass. For one
+finite reception update, the proposed opposite wake-account increments are
+
+$$
+\Delta\boldsymbol\pi
+=
+-\mu_{\text{arch}}\Delta\mathbf V_r,
+\qquad
+\Delta e
+=
+-\frac{\mu_{\text{arch}}}{2}
+\left(
+\|\mathbf V_r^+\|^2-\|\mathbf V_r^-\|^2
+\right).
+$$
+
+To make the added state reception-active rather than an inert residual ledger,
+the candidate depletes its maturity by
+
+$$
+\Delta m
+=
+-\frac{1}{\Pi_\ast}
+\left(
+\|\Delta\boldsymbol\pi\|
++
+\frac{|\Delta e|}{c_f}
+\right),
+\qquad
+m\ge0,
+$$
+
+with transfer truncated when the available $m$ is exhausted.
+$\Pi_\ast$ is a newly introduced capacity scale per unit emitted surface
+measure. Free propagation transports $(m,e,\boldsymbol\pi)$ at $c_f$, and a
+finite retained boundary exports $e$, $\boldsymbol\pi$, and
+$\mathbf Y\times\boldsymbol\pi$.
+
+The proposal remains blocked for four independent reasons:
+
+1. $z_\ast$, $\Pi_\ast$, and $\mu_{\text{arch}}$ are not selected by the
+   present primitives.
+2. Reception-dependent $m$ lets later receivers distinguish earlier
+   receptions, so it abandons the universal transmitter-history-only
+   acceleration law.
+3. Omitting the $m$ update preserves that regular law but leaves
+   $(e,\boldsymbol\pi)$ dynamically inert and therefore only bookkeeping.
+4. Eternal constant emission creates fresh capacity without a derived global
+   lower bound. A finite transmitter capacity ends constant active emission,
+   while Noether sea replenishment moves the closure out of the bare
+   Master Equation.
+
+Promotion target: none until one Architrino-native construction derives the
+motion-account map, maturity scale and shape, reception update, capacity source,
+and boundary flux together. Falsifier of the obstruction: exhibit a smaller
+causal, reception-active, bounded update that preserves eternal
+motion-independent active emission and the universal transmitter-history-only
+regular law without an additional capacity source or residual-defined ledger.
+
 ### Import Audit of the Master-Equation Main Path (2026-07-18, operator-requested)
 
 Claim level: **audit finding** — code-verified against `src/eom` (CertifiedAcceleration.cpp, CoupledEvolution.cpp) and `dynamics/master-equation.md`. No unexamined standard-physics import was found in the executed acceleration path; the load-bearing exposure is a set of **postulates that mirror standard-physics structure** and are not yet derived within $\mathbb{A}\mathbb{A}\mathbb{A}$:
@@ -72,9 +183,9 @@ Claim level: **derivation-target framing** (clarifies an earlier imprecision). $
 
 Claim level: **interpretation / derivation-target framing** from an operator brainstorm; several sub-claims are corpus-anchored, others are sharpenings.
 
-- **One ± h re-settles the whole rigid structure by one integer rung.** Because the braid is iso-frequency (one shared cadence), an action quantum cannot split into three separate frequency changes; it is a single *coordinated rescaling* of one rigid shared structure — all three radii co-move and the three tilts re-settle so the middle stays on the field-speed rail and the internal forces stay balanced. The three pairs' shares are therefore **not free**: they are fixed by the force balance, anchored by the rail (velocity pins radius, $\omega=c_f/(R_M\cos\alpha_M)$). The still-open "relationship" is the *closed form* of that balance — the exact ratios $R_I:R_M:R_O$ and the tilts — which we currently have only numerically; the wake's *own* share of the angular momentum is the separate open bookkeeping gap.
+- **One ± h re-settles the whole common-frequency coordinate structure by one integer rung.** Because the braid is iso-frequency (one shared cadence), an action quantum cannot split into three separate frequency changes; it is a single *coordinated rescaling* of one shared structure — all three radii co-move and the three tilts re-settle so the middle stays on the field-speed rail and the internal acceleration rows balance. The three pairs' shares are therefore **not free**: they are fixed by that balance, anchored by the rail (velocity pins radius, $\omega=c_f/(R_M\cos\alpha_M)$). The still-open "relationship" is the *closed form* of that balance — the exact ratios $R_I:R_M:R_O$ and the tilts — which we currently have only numerically; the wake's *own* share of the angular momentum is the separate open bookkeeping gap.
 - **The integer ladder is the energy spectrum.** Each rung is a discrete allowed state, spacing $h$; a rung transition is emission/absorption of a quantum; the ladder is $E=nhf$. Via the rail, higher cadence $\Rightarrow$ smaller/heavier, so climbing the ladder reproduces the observed mass$\leftrightarrow$Compton-wavelength relation. One geometric family, climbable through a ~Planck-scale number of integer rungs, compactly encodes the whole spectrum from the lightest states to the Planck/black-hole-core top ($\xi\to0$). Which rung $=$ which particle is the open mass-map; the *structure* (integer ladder $=$ quantized spectrum, top $=$ Planck) is promotable. **PROMOTED (2026-07-11) → `assemblies/particle-masses.md` ("The Action Ladder").**
-- **Two rigid interpenetrating like-charge triangles.** The three electrinos form one triangle and the three positrinos another (a hexagram-like pair); rigid rotation freezes both. Candidate seat of the "threes": color (corpus: color $=$ axis-exceptionality among the three layers), the three generations (shielding tiers), and the weak/shielded triads. The relative *twist* between the two triangles encodes the polarity dipole and handedness — the pseudoscalar of the symmetry theorem. Promotion target: `assemblies/fermions/color-charge-su3.md` / `quantum-number-mapping.md` for the triangle$\to$three-ness geometric picture (color links canonical; twisted-triangle seat is a sharpening).
+- **Two fixed-coordinate interpenetrating like-polarity triangles.** The three electrinos form one triangle and the three positrinos another (a hexagram-like pair); common-frequency co-rotation preserves their prescribed relative coordinates while every architrino continues along its orbit. Candidate seat of the "threes": color (corpus: color $=$ axis-exceptionality among the three layers), the three generations (shielding tiers), and the weak/shielded triads. The relative *twist* between the two triangles encodes the polarity dipole and handedness — the pseudoscalar of the symmetry theorem. Promotion target: `assemblies/fermions/color-charge-su3.md` / `quantum-number-mapping.md` for the triangle$\to$three-ness geometric picture (color links canonical; twisted-triangle seat is a sharpening).
 - **Acceleration is the trigger of every h-transfer (both directions).** Partly canonical: the prepared-path reading (now in `reactions/radiation.md`) says shedding an h is *caused by* accelerating onto an unprepared path. Sharper principle worth stating: **no h-transfer without acceleration, and no acceleration without h-transfer** — a steadily drifting free braid neither emits nor absorbs (why it is stable/non-radiating), while any quantum exchange is an acceleration event. Classical half (Larmor) is standard; the two-way substrate principle is the sharpening. **PROMOTED (2026-07-11) → `reactions/radiation.md` (two-way acceleration↔h-transfer principle).**
 - **Transverse area ∝ speed² (kinematic, mass-free).** Each layer's speed is $s=\omega\rho$ (cadence × transverse radius), so its transverse circle area is $\pi\rho^2=\pi s^2/\omega^2$ — the I:M:O speeds map to transverse areas as $s_a^2$. Holds at every drift (the geometry runs numerically as oblateness grows, envelope flattening $\xi\to1/\gamma$). Whether transverse area also encodes each layer's angular-momentum share is the open wake-bookkeeping question; the speed↔area relation itself is exact. The exact I:M:O speed ratio and the tilts remain numerical (no closed form yet) — the same open "relationship" as the force-balance closed form.
 - **Drift vs spin (a clarification, not a mechanism).** A drifting braid's spin ($N\hbar$) and its drift are *independent* — spin does not drive drift; free drift is inertial coasting (wake-history carrying it forward), not self-propulsion (which conservation forbids). Drift and internal cadence meet only in the de Broglie matter wave, the wave structure of an inertially-coasting particle, not an engine.

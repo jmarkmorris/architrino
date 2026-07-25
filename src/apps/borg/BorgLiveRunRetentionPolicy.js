@@ -8,7 +8,7 @@ export const BORG_LIVE_RUN_RETENTION_POLICY_V1 = Object.freeze({
   compactionTriggerFrameSetLimit: 900,
   compactionSampleStride: 8,
   compactedPointsPerPathLimit: 512,
-  retainedFrameAuthority: "authoritative-recent-native-frame-rows",
+  retainedFrameAuthority: "authoritative-recent-eom-frame-rows",
   compactedPathHistoryAuthority: "display-only-compacted-path-history",
   claimBoundary:
     "Retention limits browser display memory only. It does not alter EOM solver state, EOM chunk requests, or authoritative recent frame rows.",
@@ -18,7 +18,7 @@ export function createBorgLiveRunRetentionSnapshot({
   frameRows = [],
   compactedPathHistory = {},
   policy = BORG_LIVE_RUN_RETENTION_POLICY_V1,
-  status = "retaining-recent-native-frame-rows",
+  status = "retaining-recent-eom-frame-rows",
 } = {}) {
   return Object.freeze({
     schema: BORG_LIVE_RUN_RETENTION_POLICY_VERSION,
@@ -46,7 +46,7 @@ export function createBorgLiveRunRetentionAppendSnapshot({
     ...previous,
     status: previous.status === "compacted-path-history"
       ? previous.status
-      : "retaining-recent-native-frame-rows",
+      : "retaining-recent-eom-frame-rows",
     retainedFrameRows: nonnegativeInteger(
       retainedFrameRowCount,
       previous.retainedFrameRows,
@@ -85,6 +85,10 @@ export function applyBorgLiveRunRetention({
 
   const retainedLimit = positiveInteger(policy.retainedFrameSetLimit, triggerLimit);
   const retainStartIndex = Math.max(0, frameIndexes.length - retainedLimit);
+  // The boundary frame is deliberately present in both representations. It is
+  // the single shared endpoint that lets a compacted display trail join the
+  // exact retained trail without a visible gap; it does not duplicate an EOM
+  // request or an authoritative solver state.
   const compactFrameIndexes = new Set(frameIndexes.slice(0, retainStartIndex + 1));
   const retainFrameIndexes = new Set(frameIndexes.slice(retainStartIndex));
   const compactRows = normalizedRows.filter((row) => compactFrameIndexes.has(row.frameIndex));

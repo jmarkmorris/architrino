@@ -8,9 +8,7 @@ import {
   validateBorgManifest,
 } from "../src/apps/borg/BorgAppManifest.js";
 import {
-  appendBorgFrameRows,
   appendBorgFrameRowsInPlace,
-  appendBorgFrameSets,
   appendBorgFrameSetsInPlace,
   createBorgFrameSetsFromRows,
   mergeBorgFrameRows,
@@ -21,6 +19,7 @@ import {
   createBorgParticleStyles,
   createDefaultEomShadowRunnerOptions,
   formatBorgTimelineTime,
+  interpolateBorgFrameSetInto,
 } from "../src/apps/borg/BorgAppRuntime.js";
 import {
   BORG_PRESCRIBED_DISPLAY_OVERSAMPLE_FACTOR,
@@ -103,7 +102,45 @@ test("Borg timeline uses a fixed-width hours-minutes-seconds clock", () => {
   assert.equal(formatBorgTimelineTime(59.96), "00:01:00.0");
   assert.equal(formatBorgTimelineTime(119.4), "00:01:59.4");
   assert.equal(formatBorgTimelineTime(3661.28), "01:01:01.3");
+  assert.equal(formatBorgTimelineTime(-0.05), "-00:00:00.1");
   assert.equal(formatBorgTimelineTime(Number.NaN), "--:--:--.-");
+});
+
+test("Borg replay interpolation preserves source worldline identity", () => {
+  const from = {
+    frameIndex: 10,
+    time: 1,
+    frames: [{
+      pathKey: 7,
+      frameIndex: 10,
+      time: 1,
+      sourceWorldlineId: "worldline-7",
+      position: { x: 0, y: 0, z: 0 },
+      velocity: { x: 1, y: 0, z: 0 },
+    }],
+  };
+  const to = {
+    frameIndex: 11,
+    time: 2,
+    frames: [{
+      ...from.frames[0],
+      frameIndex: 11,
+      time: 2,
+      position: { x: 1, y: 0, z: 0 },
+    }],
+  };
+  const target = { frames: [] };
+
+  const result = interpolateBorgFrameSetInto(
+    from,
+    to,
+    0.5,
+    target,
+    new Map([[7, to.frames[0]]]),
+  );
+
+  assert.equal(result.frames[0].sourceWorldlineId, "worldline-7");
+  assert.equal(result.frames[0].position.x, 0.5);
 });
 
 test("Borg selected certified budget atomically owns its step controller", () => {
@@ -253,13 +290,6 @@ test("Borg record replay chunks carry recorded frames with record provenance", a
 
   const mergedFrames = mergeBorgFrameRows(firstChunk.frames, secondChunk.frames);
   const frameSets = createBorgFrameSetsFromRows(mergedFrames);
-  const appendedFrames = appendBorgFrameRows(firstChunk.frames, secondChunk.frames);
-  const appendedFrameSets = appendBorgFrameSets(
-    createBorgFrameSetsFromRows(firstChunk.frames),
-    secondChunk.frames,
-  );
-  assert.deepEqual(appendedFrames, mergedFrames);
-  assert.deepEqual(appendedFrameSets, frameSets);
   const appendedFramesInPlace = [...firstChunk.frames];
   const appendedFrameSetsInPlace = createBorgFrameSetsFromRows(firstChunk.frames);
   assert.equal(
@@ -307,7 +337,9 @@ test("Borg display-oversamples prescribed cubic records by four without changing
     [0, 0.0125, 0.025, 0.0375, 0.05],
   );
   assert.equal(chunk.frames.length, 5 * record.worldlines.length);
-  assert.ok(chunk.frames.every((frame) => frame.valueAuthority === "recorded-eom-output"));
+  assert.ok(chunk.frames.every(
+    (frame) => frame.valueAuthority === "recorded-prescribed-geometry",
+  ));
   await runner.dispose();
 });
 
@@ -478,9 +510,14 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.match(runtimeSource, /borg-live-run-budget\.v1/);
   assert.match(runtimeSource, /BorgMeasuredRunPresets\.js/);
   assert.match(runtimeSource, /BorgLiveRunRetentionPolicy\.js/);
-  assert.match(runtimeSource, /BorgReleaseBudgetManifest\.js/);
-  assert.match(runtimeSource, /releaseBudgetManifest/);
-  assert.match(runtimeSource, /releaseMaxChunk/);
+  assert.doesNotMatch(runtimeSource, /BorgReleaseBudgetDisposition\.js/);
+  assert.doesNotMatch(runtimeSource, /releaseBudgetDisposition/);
+  assert.doesNotMatch(runtimeSource, /historicalBudgetManifest/);
+  assert.doesNotMatch(runtimeSource, /releaseBudgetStatus/);
+  assert.doesNotMatch(runtimeSource, /releaseBudgetAuthority/);
+  assert.doesNotMatch(runtimeSource, /releaseBudgetSamples/);
+  assert.doesNotMatch(runtimeSource, /legacyBudgetAppliesToEom/);
+  assert.doesNotMatch(runtimeSource, /releaseMaxChunk/);
   assert.match(runtimeSource, /measuredRunPresetCalibration/);
   assert.match(runtimeSource, /updateMeasuredRunPresetCalibration/);
   assert.match(runtimeSource, /effectiveTargetDuration/);
@@ -508,12 +545,25 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.match(htmlSource, /grid-template-columns: 620px minmax\(0, 1fr\);/);
   assert.match(
     runtimeSource,
-    /if \(autoStartEom\) \{\s*if \(replayActive\) \{\s*startRunAndPlayback\(\);\s*\} else \{\s*startDynamicNativeRunner\(\);/,
+    /if \(autoStartEom\) \{\s*if \(replayActive\) \{\s*startRunAndPlayback\(\);\s*\} else \{\s*startDynamicRunner\(\);/,
   );
   assert.match(runtimeSource, /applyLiveRunRetentionIfNeeded/);
   assert.match(runtimeSource, /compactedPathHistory/);
   assert.match(runtimeSource, /switchRunControlPreset/);
   assert.match(runtimeSource, /startNewDistributionRun/);
+  assert.equal((runtimeSource.match(/\.addEventListener\(/g) ?? []).length, 1);
+  assert.match(runtimeSource, /boundEventListeners\.splice\(0\)\.forEach/);
+  assert.match(runtimeSource, /preserveDrawingBuffer: false/);
+  assert.match(
+    runtimeSource,
+    /function exportReplayImage\(\)[\s\S]*?render\(\);\s*const dataUrl = renderer\.domElement\?\.toDataURL/,
+  );
+  assert.doesNotMatch(runtimeSource, /new Map\(toFrameSet\.frames/);
+  assert.match(
+    runtimeSource,
+    /if \(eomSimulation\) \{\s*state\.liveRunBudget = createLiveRunBudgetMeasurement/,
+  );
+  assert.match(runtimeSource, /\} else if \(!replayActive\) \{\s*appendPathTrailRows/);
   // The only frame sources are the live EOM shadow runner, recorded EOM
   // dataset replay, and the accepted seed's endpoint rows. No stored
   // pre-computed run ships with the app.

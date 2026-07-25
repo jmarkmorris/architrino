@@ -176,7 +176,7 @@ where $\mathbf{y}$ stacks positions and velocities in relative coordinates. Kine
 
 ### Translating binary benchmark
 
-The first hard Lorentz-closure calculation is the moving version of the certified rest two-body branch. Let $\sigma\in\{+1,-1\}$ label the two opposite-polarity architrinos and choose the drift direction $\hat{\mathbf e}$. A translating binary branch has the substrate ansatz
+The first hard Lorentz-closure calculation is the moving version of the declared reference rest two-body branch (certificate packet pending; see the closure-packet contract in [Binary Dynamics](../dynamics/binary-dynamics.md)). Let $\sigma\in\{+1,-1\}$ label the two opposite-polarity architrinos and choose the drift direction $\hat{\mathbf e}$. A translating binary branch has the substrate ansatz
 $$
 \mathbf X_{\sigma}(T)
 =
@@ -540,7 +540,7 @@ q
 $$
 with admissibility requiring the same causal-root ledger to close the oblate spheroidal envelope geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether braid return-cycle classes only after those branch-admissibility conditions close.
 
-Confirmation status: the ruler law has no confirmation from evolved dynamics at any drift speed. The kinematic content — that the drifting rigid family's shape ratio $\xi(u)/\xi(0)$ should approach $1/\gamma_f(u)$ — remains a closure target of the delayed acceleration law, not a measured result, and confirming it requires evolving the drifting family directly under the master equation and measuring the envelope it actually settles to. Whether the contracted branch is an attracting solution of the boosted delay dynamics is the same open question stated above; it is not answered here.
+Confirmation status: the ruler law has no confirmation from evolved dynamics at any drift speed. The prescribed translating-family prediction — that the moving branch's shape ratio $\xi(u)/\xi(0)$ should approach $1/\gamma_f(u)$ — remains a closure target of the delayed acceleration law, not a measured result. The actual branch may deform internally, and confirmation requires evolving it directly under the master equation and measuring the relative-periodic envelope it settles to. Whether the contracted branch is an attracting solution of the moving delay dynamics is the same open question stated above; it is not answered here.
 
 To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
 $$
@@ -772,7 +772,7 @@ and, at $O(\beta_f^4)$,
 $$
 k_4=-\frac{1}{9}\qquad \ell_4=\frac{2}{9}
 $$
-before leakage terms are added.
+before leakage terms are added. This coefficient vector is conditional on the two declared ansatzes: the fixed-action harmonic-shell scaling $a_i\propto K_i^{-1/2}$ used in shape closure and the $1/6$-power geometric-mean clock aggregator above; neither is yet derived from primitives.
 
 ### binary-3 transduction hypothesis (working)
 
@@ -867,7 +867,7 @@ with $c_\star=c_{\text{eff}}$ for Noether sea dressed clock/ruler closure and $c
 $$
 R_\perp=R_\perp(E)\qquad \frac{dR_\perp}{dE}<0
 $$
-as the default constitutive sign convention in energized regimes.
+as a working prior in energized regimes; a certified energized-branch record exhibiting $dR_\perp/dE\ge 0$ is the observable that would flip this sign choice.
 
 The corresponding exclusion volume model is
 $$
@@ -1272,7 +1272,7 @@ k_4=
 \frac{\partial_{\beta_f}^4\mathcal{I}_{\perp}\big|_{\beta_f=0}}
 {24\,\mathcal{I}_{\perp}(0)}
 $$
-but now requires the branch-action integrals $\mathcal{I}_{\parallel},\mathcal{I}_{\perp}$ to be computed from the completed delayed action and the admitted moving branch chart. The Lorentz-matching closure condition remains
+but now requires the branch-action integrals $\mathcal{I}_{\parallel},\mathcal{I}_{\perp}$ to be computed from the completed delayed action and the admitted moving branch chart. The Lorentz-matching closure condition (ansatz-conditional) remains
 $$
 (k_2,\ell_2,k_4,\ell_4)
 =
@@ -1344,7 +1344,7 @@ $$
 \equiv
 (k_2,\ell_2,k_4,\ell_4)
 $$
-satisfies
+satisfies the ansatz-conditional target
 $$
 \mathbf{c}_{\mathrm{L}}(\mathfrak{B}_{\mathrm{mov}})
 =
@@ -1381,6 +1381,8 @@ The technology-facing status is therefore conditional. The immediate test is not
 This also prevents overclaiming. This chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
 
 ### A1 adiabatic decoupling bound
+
+Conditional lemma target: this bound assumes the Theorem A translating attractor exists and the nonresonance condition holds; the averaging computation below is an open obligation, not a completed proof.
 
 Let
 $$
@@ -1474,7 +1476,7 @@ for that class of material branches. The remaining Lorentz program is the constr
 
 ### Theorem A1 (translating binary Lorentz residual)
 
-The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the certified rest binary with radius $R_0$, period $T_0$, active root ledger $b_0$, positive Jacobian floors, and bounded transmitter-side acceleration weights. For each $0<u<c_f$, solve the absolute-time delayed root equations for
+The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the declared reference rest binary (certificate packet pending; see the closure-packet contract in [Binary Dynamics](../dynamics/binary-dynamics.md)) with radius $R_0$, period $T_0$, active root ledger $b_0$, positive Jacobian floors, and bounded transmitter-side acceleration weights. For each $0<u<c_f$, solve the absolute-time delayed root equations for
 $$
 \mathbf X_{\sigma}(T)
 =
@@ -1514,11 +1516,11 @@ If these equalities hold on the same branch ledger, the Lorentzian compensation 
 
 ### Theorem A (attractor existence under drift)
 
-For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and A1 systems for $\|\mathbf V\|<c_f$.
+Target (unproved). For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and A1 systems for $\|\mathbf V\|<c_f$.
 
 ### Theorem B (anisotropic deformation law)
 
-Let $\beta_\star=v/c_\star$ and $\gamma_\star=(1-\beta_\star^2)^{-1/2}$ for the declared observer channel.
+Target (unproved). Let $\beta_\star=v/c_\star$ and $\gamma_\star=(1-\beta_\star^2)^{-1/2}$ for the declared observer channel.
 
 On the attracting manifold, principal-axis deformation obeys
 $$
@@ -1534,7 +1536,7 @@ $$
 
 ### Theorem C (clock renormalization law)
 
-Fundamental period satisfies
+Target (unproved). Fundamental period satisfies
 $$
 \frac{T(v)}{T_0}
 =1+\frac{1}{2}\beta_\star^2+\frac{3}{8}\beta_\star^4+R_2(\beta_\star)
@@ -1548,7 +1550,7 @@ $$
 
 ### Theorem D (operational Lorentz closure)
 
-For composite observers formed from this assembly class, two-way kinematic observables satisfy
+Target (unproved). For composite observers formed from this assembly class, two-way kinematic observables satisfy
 $$
 \Delta_{\text{tw}}(\beta_\star,\theta)
 =\sum_{m\ge 1}\mathcal{A}_{2m}(\beta_\star)\cos(2m\theta)

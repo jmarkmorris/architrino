@@ -113,9 +113,11 @@ JointRootTimeConsumptionCertificate certify_joint_root_time_consumption(
           Interval::point(
               request.transmitter.shared_symbol_coefficients[symbol][axis]);
       difference[axis] = exact_difference.midpoint();
+      const Interval centered_difference =
+          exact_difference - Interval::point(difference[axis]);
       const double rounding_radius = std::max(
-          difference[axis] - exact_difference.lower(),
-          exact_difference.upper() - difference[axis]);
+          std::abs(centered_difference.lower()),
+          std::abs(centered_difference.upper()));
       result.displacement_remainder_radii_upper[axis] = outward_sum(
           result.displacement_remainder_radii_upper[axis], rounding_radius);
     }

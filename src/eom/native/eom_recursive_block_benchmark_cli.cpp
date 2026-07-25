@@ -459,6 +459,7 @@ std::size_t positive_size(const char* token_value, const char* label) {
 }  // namespace
 
 int main(int argc, char** argv) {
+  std::cout.imbue(std::locale::classic());
   try {
     if (argc != 6) {
       std::cerr << "usage: eom_recursive_block_benchmark_cli "

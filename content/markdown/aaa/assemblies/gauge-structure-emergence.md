@@ -274,7 +274,7 @@ Quantum field theory for uniformly accelerated, Rindler observers predicts that 
 **The $\mathbb{A}\mathbb{A}\mathbb{A}$ resolution:**
 - **Objective existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, assemblies have a definite substrate status. Their existence is not frame-dependent.
 - **Acceleration-conditioned detector response:** The warm bath detected by the accelerating Physical Observer is an effective response of the detector's assembly state to accelerated coupling with the Noether sea.
-- **Mechanism:** Acceleration through the Noether sea ($\mathbf{a} \neq 0$) changes the rate and geometry of coupling with ambient neutral Noether braids. The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
+- **Mechanism (interpretation hypothesis):** Acceleration through the Noether sea ($\mathbf{a} \neq 0$) changes the rate and geometry of coupling with ambient neutral Noether braids. The altered coupling is hypothesized to manifest as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation. No operator-checkable discriminator currently exists for this reading — Unruh radiation itself remains unobserved.
 
 ## Quantization from Stability (Selection Rules)
 
@@ -441,6 +441,7 @@ $$
 =
 \mathcal{O}_{\text{shield}}+\Delta_{\text{wake}}
 $$
+This dictionary entry carries branch-increment-hypothesis grade; the graded derivation, its conditionality, and the falsifier live in [Weak Mixing Angle](fermions/weak-mixing-angle.md).
 
 Mass channels are mapped by
 $$
@@ -451,7 +452,7 @@ so
 $$
 \frac{m_W}{m_Z}=\cos\theta_W
 $$
-Fermion masses are cycle-averaged attractor energies:
+Fermion masses are targeted as cycle-averaged attractor energies, conditional on a retained attractor branch — an open closure item:
 $$
 m_f \approx \frac{\langle E_{\mathrm{kin}}+U_{\text{pot}}\rangle_f}{c_{\text{eff}}^2}
 $$

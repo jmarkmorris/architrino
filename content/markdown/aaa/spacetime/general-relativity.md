@@ -34,7 +34,7 @@ Notation convention: $G_N$ denotes the standard Newtonian and low-energy GR comp
 
 ### Network evidence and nuisance separation
 
-The empirical gravity lesson is that one precise test is not enough to establish an effective metric branch. A measurement can accidentally agree with the right number while sharing an unmodeled nuisance with the theory input, as in historical redshift and solar-system cases. The phenomenology gate therefore treats GR recovery as a network constraint:
+The empirical gravity lesson is that one precise test is not enough to establish an effective metric branch. A measurement can accidentally agree with the right number while sharing an unmodeled nuisance with the theory input, as in historical redshift and solar-system cases (Pound–Rebka thermal-gradient control; Eddington-1919 eclipse-systematics). The phenomenology gate therefore treats GR recovery as a network constraint:
 $$
 \mathcal{E}_{\mathrm{GR}}(\theta)
 =
@@ -103,7 +103,7 @@ $$
 \frac{\Delta \Phi_N}{c_0^2}
 $$
 
-Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are the direct acceptance layer. Height-resolved optical-clock comparisons sharpen this layer: near Earth's surface, $\Delta\nu/\nu\approx gL/c_0^2$, so a $1\,\mathrm{mm}$ clock-sample separation corresponds to about $1.1\times10^{-19}$ and a $33\,\mathrm{cm}$ separation to about $3.6\times10^{-17}$. The same clock law must handle both separated clocks and extended collective clock samples without replacing the constitutive coefficients used for Shapiro delay and lensing.
+Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are the direct acceptance layer. Height-resolved optical-clock comparisons (mm-baseline Sr optical-lattice clock comparison, Bothwell-class) sharpen this layer: near Earth's surface, $\Delta\nu/\nu\approx gL/c_0^2$, so a $1\,\mathrm{mm}$ clock-sample separation corresponds to about $1.1\times10^{-19}$ and a $33\,\mathrm{cm}$ separation to about $3.6\times10^{-17}$. The same clock law must handle both separated clocks and extended collective clock samples without replacing the constitutive coefficients used for Shapiro delay and lensing.
 
 ### Shapiro delay
 

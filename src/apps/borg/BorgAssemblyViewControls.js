@@ -25,6 +25,7 @@ export function createBorgAssemblyViewControls({
   dom,
   onRecordChange,
   onCameraModeChange,
+  hasCoRotatingCarrier,
   onExport,
   onTranslationFrameChange,
   onHistoryDepthChange,
@@ -35,8 +36,6 @@ export function createBorgAssemblyViewControls({
   onContributionVisibleChange,
 }) {
   const listeners = [];
-  let selectedReceiver = null;
-  let analysisState = null;
   let declaredVirtualProbes = [];
 
   function listen(element, type, handler) {
@@ -85,7 +84,7 @@ export function createBorgAssemblyViewControls({
       : `Trail: ${trail.periodCount} complete prescribed return cycle${trail.periodCount === 1 ? "" : "s"} (${format(trail.duration)} recorded time units).`;
     dom.cameraMode.querySelector?.('option[value="co-rotating"]')?.toggleAttribute?.(
       "disabled",
-      trail.period == null || !hasPlaneNormal(entry),
+      !borgCoRotatingCameraAvailable(hasCoRotatingCarrier),
     );
     dom.translationFrame.value = BORG_PRESCRIBED_DISPLAY_FRAME_FIXED;
     dom.translationFrame.querySelector?.(
@@ -388,7 +387,6 @@ export function createBorgAssemblyViewControls({
   }
 
   function updateReceiverSelection(receiver) {
-    selectedReceiver = receiver;
     dom.clearReceiver.disabled = receiver == null;
     dom.receiverStatus.textContent = receiver == null
       ? "No receiver selected."
@@ -398,7 +396,6 @@ export function createBorgAssemblyViewControls({
   }
 
   function renderAnalysisState(nextState) {
-    analysisState = nextState;
     dom.analysisStatus.dataset.state = nextState?.state ?? "unavailable";
     dom.analysisStatus.textContent = nextState?.message ??
       "Analysis provider unavailable.";
@@ -751,18 +748,8 @@ function signed(value) {
   return Number.isFinite(number) && number > 0 ? `+${format(number)}` : value;
 }
 
-function syncToggle(button, active, label) {
-  button.classList.toggle("is-active", active);
-  button.setAttribute("aria-pressed", active ? "true" : "false");
-  button.textContent = `${label} ${active ? "on" : "off"}`;
-}
-
-function hasPlaneNormal(entry) {
-  return entry.dataset.binaries.some((binary) => {
-    const normal = binary?.planeOrientation?.normal ?? binary?.planeNormal;
-    return [normal?.x, normal?.y, normal?.z].every((value) => Number.isFinite(Number(value))) &&
-      Math.hypot(Number(normal.x), Number(normal.y), Number(normal.z)) > 0;
-  });
+export function borgCoRotatingCameraAvailable(carrier) {
+  return Boolean(typeof carrier === "function" ? carrier() : carrier);
 }
 
 function format(value) {

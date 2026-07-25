@@ -190,7 +190,7 @@ class NativeAccelerationTests(unittest.TestCase):
                 native = self.case(row_id)
                 self.assertEqual(native["status"], oracle.status)
                 self.assertEqual(len(native["rows"]), len(oracle.rows))
-                self.assertTrue(native["reconstruction_matches"])
+                self.assertNotIn("reconstruction_matches", native)
                 for native_component, oracle_component in zip(
                     native["total_acceleration"], oracle.total_acceleration
                 ):
@@ -243,7 +243,7 @@ class NativeAccelerationTests(unittest.TestCase):
                 result = self.case(row_id)
                 self.assertEqual(result["status"], "uncertified")
                 self.assertIsNone(result["total_acceleration"])
-                self.assertFalse(result["reconstruction_matches"])
+                self.assertNotIn("reconstruction_matches", result)
                 self.assertTrue(result["failure_code"])
 
     def test_native_finite_width_acceleration_has_oracle_parity(self) -> None:
@@ -477,7 +477,7 @@ class NativeAccelerationTests(unittest.TestCase):
         native = self.packet["matrix"]
         self.assertEqual(native["status"], oracle.status)
         self.assertEqual(native["logical_ordered_pairs"], 4)
-        self.assertTrue(native["complete_ordered_pair_domain"])
+        self.assertNotIn("complete_ordered_pair_domain", native)
         self.assertEqual(
             native["pair_order"],
             [["a", "a"], ["a", "b"], ["b", "a"], ["b", "b"]],

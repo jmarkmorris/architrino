@@ -33,10 +33,30 @@ export function createBorgPrescribedAnalysisProvider({
   }
   let loadedProjection = null;
   const eventCache = new Map();
+  let displayRecordHashCache = new WeakMap();
+  let validatedRecordProjectionCache = new WeakMap();
+
+  function displayRecordHash(entry) {
+    let pendingHash = displayRecordHashCache.get(entry.rawRecord);
+    if (!pendingHash) {
+      pendingHash = sha256BorgCanonicalJson(entry.rawRecord, { cryptoLike });
+      displayRecordHashCache.set(entry.rawRecord, pendingHash);
+      void pendingHash.catch(() => {
+        if (displayRecordHashCache.get(entry.rawRecord) === pendingHash) {
+          displayRecordHashCache.delete(entry.rawRecord);
+        }
+      });
+    }
+    return pendingHash;
+  }
 
   async function loadProjection(entry, signal) {
     signal?.throwIfAborted?.();
-    const displayRecordHash = await sha256BorgCanonicalJson(entry.rawRecord, { cryptoLike });
+    const cachedProjection = validatedRecordProjectionCache.get(entry.rawRecord);
+    if (cachedProjection) {
+      return cachedProjection;
+    }
+    const recordHash = await displayRecordHash(entry);
     signal?.throwIfAborted?.();
     if (!loadedProjection) {
       const loaded = projection ??
@@ -44,7 +64,7 @@ export function createBorgPrescribedAnalysisProvider({
       signal?.throwIfAborted?.();
       const structurallyValid = validateBorgPrescribedAnalysisProjection(loaded, {
         displayRecordId: entry.sourceId,
-        displayRecordHash,
+        displayRecordHash: recordHash,
         protocolHash: expectedProtocolHash,
       });
       const verified = await verifyBorgPrescribedAnalysisProjectionHash(
@@ -57,9 +77,10 @@ export function createBorgPrescribedAnalysisProvider({
     signal?.throwIfAborted?.();
     validateBorgPrescribedAnalysisProjection(loadedProjection, {
       displayRecordId: entry.sourceId,
-      displayRecordHash,
+      displayRecordHash: recordHash,
       protocolHash: expectedProtocolHash,
     });
+    validatedRecordProjectionCache.set(entry.rawRecord, loadedProjection);
     return loadedProjection;
   }
 
@@ -146,6 +167,8 @@ export function createBorgPrescribedAnalysisProvider({
     clearCache() {
       eventCache.clear();
       loadedProjection = null;
+      displayRecordHashCache = new WeakMap();
+      validatedRecordProjectionCache = new WeakMap();
     },
   });
 }
@@ -160,7 +183,7 @@ export function createBorgPrescribedAnalysisRequestCoordinator({
   let generation = 0;
   let controller = null;
 
-  async function request(request) {
+  async function request(requestOptions) {
     generation += 1;
     const requestedGeneration = generation;
     controller?.abort?.();
@@ -173,7 +196,7 @@ export function createBorgPrescribedAnalysisRequestCoordinator({
     }));
     try {
       const result = await provider.requestEvent({
-        ...request,
+        ...requestOptions,
         signal: controller.signal,
       });
       if (requestedGeneration !== generation || controller.signal.aborted) {

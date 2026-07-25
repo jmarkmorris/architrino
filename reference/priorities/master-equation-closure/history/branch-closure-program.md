@@ -451,7 +451,7 @@ Failure modes. The packet fails if $\dot{\beta}_n=0$ at the fold, if the regulat
 
 ## Spiral Intuition To Preserve
 
-- The circular ansatz hard-codes constant radius, constant speed, constant curvature, rigid branch geometry, and sign-definite tangential contributions.
+- The circular ansatz hard-codes constant radius, constant speed, constant curvature, fixed-coordinate branch geometry, and sign-definite tangential contributions.
 - A true spiral introduces radial velocity, varying curvature, intersections between later tighter turns and earlier wider-turn wakes, changing Jacobian amplification, and the possibility of a turning point before singular continuation.
 - The live question remains: does the symmetric delayed spiral admit a self-consistent limit cycle or radial turning point that the circular ansatz misses?
 - The next concrete spiral target is the branch-chart certification test: enumerate admissible partner and self roots for one variable-pitch candidate, certify positive Jacobian floors and finite memory depth, test the radial turn inequality, and decide whether the weighted tangential sum can become negative without extra medium, three-binary, or multi-body structure.

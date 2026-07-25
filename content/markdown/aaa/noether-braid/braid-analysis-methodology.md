@@ -265,6 +265,88 @@ $$
 
 under the declared self-hit convention. This is a pointwise comparison between the acceleration required by the prescribed path and the acceleration supplied by the analytical causal-hit sum. Its peak, RMS, mean vector, phase dependence, and per-binary decomposition are legitimate prescribed-record measures. If the self-hit term or another accepted acceleration contribution is unavailable, the result must be labeled a partial mismatch rather than a complete Master Equation residual. A small mismatch measures compatibility of the declared chart with the evaluated acceleration contributions; it does not establish stability.
 
+When the declared isolated acceleration inventory is certified complete, summing these rows gives a stronger falsification-only reduction. Define
+
+$$
+\mathbf S_A(T)
+=
+\sum_i \mathbf A_i(T)
+$$
+
+for the evaluated canonical-kernel acceleration supplied to every declared architrino. If the prescribed kinematics satisfy
+
+$$
+\sum_i \frac{d^2\mathbf X_i}{dT^2}=0
+$$
+
+pointwise, as occurs for antipodal prescribed pairs about inertially moving centers, then any exact solution on that prescribed history must satisfy
+
+$$
+\boxed{
+\mathbf S_A(T)=0
+}
+$$
+
+at every evaluation time. This follows directly by summing the individual equations of motion; it introduces no force, mass, momentum, return-map, or stability assumption.
+
+Plainly: the prescribed pair accelerations cancel before the interaction law is evaluated, so the complete evaluated acceleration sum must also cancel at each instant if that exact history solves the equations.
+
+A value of $\|\mathbf S_A(T)\|$ beyond the declared numerical tolerance and convergence allowance falsifies only that exact isolated prescribed history under the certified inventory. A zero value is recorded only as not falsified by this screen. It does not establish a branch, a taxonomy member, stability, retention, or physical realization. If the same-worldline contribution, root inventory, or another contribution inside the declared isolated system is not certified complete, the screen is inapplicable rather than partial.
+
+The summed row can hide equal-and-opposite member errors. Therefore a certified complete inventory also carries the stronger pointwise member screen
+
+$$
+E_\infty(W)
+=
+\max_{\substack{i\\T\in W}}
+\left\|
+\mathbf R_i^{\mathrm{path}}(T)
+\right\|,
+\qquad
+E_2(W)
+=
+\left[
+\frac{1}{N|G_W|}
+\sum_i\sum_{T\in G_W}
+\left\|
+\mathbf R_i^{\mathrm{path}}(T)
+\right\|^2
+\right]^{1/2},
+$$
+
+where $G_W$ is the declared time grid in window $W$. Any sampled member residual above the adjudication threshold falsifies that exact isolated prescribed history even when $\sum_i\mathbf R_i^{\mathrm{path}}=0$. A sampled near-zero is only a search diagnostic and must survive time-grid refinement and independent causal-root residual checks.
+
+Plainly: two wrong accelerations can cancel in the total. Checking every architrino separately prevents that cancellation from hiding a bad prescribed record.
+
+For a declared cycle split into first and second halves, $W_P=W_{1/2}^{(1)}\cup W_{1/2}^{(2)}$, the same-grid reductions obey
+
+$$
+E_\infty(W_P)
+=
+\max\left\{
+E_\infty(W_{1/2}^{(1)}),
+E_\infty(W_{1/2}^{(2)})
+\right\},
+$$
+
+and
+
+$$
+E_2(W_P)^2
+=
+\frac{
+|G_1|E_2(W_{1/2}^{(1)})^2
++
+|G_2|E_2(W_{1/2}^{(2)})^2
+}{
+|G_1|+|G_2|
+}.
+$$
+
+Thus one half-cycle is useful only as a staged early rejector. Candidate search minimizes the refined full-cycle $E_\infty$ first and refined full-cycle $E_2$ second, while retaining both half-cycle peaks and their imbalance as diagnostics. One favorable half cannot support positive selection; both halves are required, and the window split changes no return-symmetry or taxonomy contract.
+
+Plainly: the full-cycle worst error is exactly the worse half's worst error. Testing one half can save work when it already fails, but passing one half says nothing about the other half.
+
 ## Probe Geometry
 
 A candidate should be tested on the same nested probe geometry:
@@ -291,7 +373,7 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | Root-transversality margin | $\min|D_{t,j}|$ over all retained probe and internal roots | Distance from an unresolved causal-root fold |
 | Root-topology ledger | Root counts, identities, births, deaths, and reconnections versus $T$ | Whether averaged curves hide causal-branch changes |
 | Internal prescribed-path response | Per-endpoint peak, RMS, and cycle integral of $\mathbf A_i^{\mathrm{others}}$ evaluated on the prescribed paths | The acceleration that the other prescribed paths would deliver, not whether those paths persist |
-| Prescribed-path equation mismatch | Peak, RMS, mean, phase-resolved, and per-binary rows of $\mathbf R_i^{\mathrm{path}}$ | Pointwise compatibility between the prescribed kinematics and the evaluated acceleration contributions |
+| Prescribed-path equation mismatch | Peak, RMS, mean, phase-resolved, and per-binary rows of $\mathbf R_i^{\mathrm{path}}$; when its hypotheses hold, the falsification-only pointwise sum $\mathbf S_A(T)$ | Pointwise compatibility between the prescribed kinematics and the evaluated acceleration contributions, without promoting a non-falsifying sum to a branch claim |
 | External signed exposure | $\mathcal W$ on $S_R$ through the complete cycle | Net polarity-signed wake exposure |
 | External raw exposure | $\mathcal W_{\mathrm{abs}}$ on $S_R$ through the complete cycle | Wake strength before signed cancellation |
 | Complete-cycle signed normal wake flux | $F_{\mathrm{signed}}(R)$ from the outward-normal projection of the signed causal-wake contributions | The global signed crossing total, which vanishes for a polarity-neutral assembly and is therefore not a cancellation score |
@@ -538,7 +620,7 @@ The member-level inventory below describes the admissible taxonomy space, not th
 | `C3`, `C4` | Two inherited B1 coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial. `C3` fixes equal component circulation senses and `C4` fixes opposite senses; equality of the two component frequencies is not required. |
 | `C5`, `C6` | Two inherited B1.3 coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial and all-equatorial. `C5` fixes equal component circulation senses and `C6` fixes opposite senses; equality of the two component frequencies is not required. |
 
-An overall shift of absolute-time origin changes the stored phase coordinates, and an overall rigid spatial placement changes the stored centers and frames. Whether those are sampled coordinates or fixed frame conventions depends on the probe and environment protocol. A campaign must state that convention before reporting a numerical degree-of-freedom count.
+An overall shift of absolute-time origin changes the stored phase coordinates, and an overall global spatial placement changes the stored centers and frames. Whether those are sampled coordinates or fixed frame conventions depends on the probe and environment protocol. A campaign must state that convention before reporting a numerical degree-of-freedom count.
 
 The active B1 sampling domain requires $\sum_a\rho_a^2>0$. The former `B1.4` source fixes $\rho_a=0$ and $h_a=R_a$ for every binary, so its frequency and phase labels do not change its endpoint paths. Its immutable historical rows remain valid records of the deprecated axial-limit null control, but future active-candidate sampling and comparative rankings exclude it.
 
@@ -593,7 +675,7 @@ Before the first draw, freeze a versioned campaign declaration containing:
 - every included family/member identifier;
 - the bounds, units, constraints, and probability measure for each continuous coordinate;
 - the probabilities or balanced quotas for each discrete source choice;
-- the fixed-frame convention for coordinates removed as rigid placement or absolute-time origin;
+- the fixed-frame convention for coordinates removed as global spatial placement or absolute-time origin;
 - the common analytical protocol $P$, including $c_f=1$, numerical resolutions, tolerances, and gate definitions;
 - the pseudorandom or randomized space-filling algorithm, seed, and stream-assignment rule; and
 - the initial quota $N$, any later adaptive-allocation rule, and the stopping rule.

@@ -28,7 +28,7 @@ All items: grade **idea (unproven lead)** except where marked as standing discip
 
 ## 5. Rotating-wave reduction: solve the ideal family as algebra, then perturb
 
-**The lesson.** On a rigidly rotating-and-translating ansatz, state-dependent delays become constant lags, collapsing the delay system into transcendental algebra with a generically discrete solution set — an enumerable spectrum indexed by winding/root data. Workflow: solve the ideal family semi-analytically first, then run stability as perturbation around each solved member. Replaces blind sweeps with spectrum-plus-perturbation. (The constant-lag reduction itself survives in corpus as mathematics; the workflow prescription is the mined content.)
+**The lesson.** On a fixed-coordinate common-frequency co-rotating ansatz with uniform center translation, state-dependent delays become constant lags, collapsing the delay system into transcendental algebra with a generically discrete solution set — an enumerable spectrum indexed by winding/root data. Workflow: solve the ideal family semi-analytically first, then run stability as perturbation around each solved member. Replaces blind sweeps with spectrum-plus-perturbation. (The constant-lag reduction itself survives in corpus as mathematics; the workflow prescription is the mined content.)
 **Recommended disposition:** method.md addition (Stage S design pattern).
 **Source:** `braid-archive/braid-ideal/brainstorming.md` (~L2712, 2810).
 

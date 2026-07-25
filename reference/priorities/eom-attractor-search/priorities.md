@@ -6,18 +6,27 @@ Status: `consolidated`; this directory is not an independently ranked workstream
 
 - [Braid Program](../braid-program/priorities.md) owns the undirected ensemble campaign, declared seed families, persistence criterion, fate classification, collapse adjudication, and any physical promotion.
 - [EOM](../app-eom/priorities.md) owns reusable checkpoint/resume, deterministic replay, campaign-driver behavior, performance attribution, and the cost instrument.
-- This directory preserves the focused harness specification, measured workload evidence, validation artifacts, host-control handoff, and chronological work log.
+- This directory preserves the focused harness specification and chronological
+  work log. Historical simulation outputs were intentionally removed on
+  2026-07-24 so that all new measurements begin from the corrected EOM solver.
 
-## Current Evidence
+## Current Evidence State
 
-- Phase 0 workload characterization is complete: per-step wall scales as $N^{1.97}$ on the measured ladder; exact-pair root certification owns $50$–$57\%$ of a step; zero traversal-excluded pairs were measured; and certificate retention produced the first memory ceiling. See [phase0-workload-profile-2026-07-15](evidence/phase0-workload-profile-2026-07-15.md).
-- The checkpoint-chunked ensemble harness emits streamed census and frame rows, deterministic resume, endpoint-matched circular and straight prehistories, release root-clearance status, and Borg-shaped replay. See [phase2-harness-validation-2026-07-15](evidence/phase2-harness-validation-2026-07-15/README.md).
-- These are measured instrument results. They do not book a persistent assembly, braid, or attractor.
+- No historical EOM simulation output is current evidence.
+- The profiler and checkpoint-chunked ensemble harness remain available as
+  instruments, but their performance, resume, replay, and root-clearance
+  behavior must be remeasured against a fresh build before campaign use.
+- No persistent assembly, braid, or attractor is booked.
 
 ## Routed Open Work
 
-1. EOM: measure the $N=12$ host-control transfer factor and close split-absolute-time cross-chunk identity.
-2. Borg: confirm the record-only display route for one emitted replay or sealed `assembly-view-record.v0` file.
-3. Braid Program: execute the first declared undirected ensemble campaign with the persistence criterion fixed before scoring and route every candidate through the collapse protocol.
+1. EOM: establish a new post-review baseline from a fresh build, including
+   independent fixture acceptance, sanitizer coverage, checkpoint resume, and
+   cross-chunk identity.
+2. Borg: confirm the record-only display route using a newly emitted
+   `assembly-view-record.v0` file.
+3. Braid Program: execute no ensemble campaign until the refreshed instrument
+   gate accepts the harness and release root ledger.
 
-Support: [README](README.md), [brainstorming](brainstorming.md), [work log](work-log.md), and [host-control and replay handoff](host-control-and-replay-dispatch-prompt.md).
+Support: [README](README.md), [brainstorming](brainstorming.md), and
+[work log](work-log.md).

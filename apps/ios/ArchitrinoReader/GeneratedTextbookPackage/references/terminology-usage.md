@@ -163,7 +163,7 @@ Two frequently used kinematic terms with canonical meanings (operator-ratified 2
 | --- | --- | --- | --- |
 | the instantaneous position an architrino occupies in an assembly configuration | `site` | every architrino is a transceiver, so its site can transmit and receive; compounds inherit this (`six-site`, `single-site self-hit`, `polar site`) | "The B1 record has six sites on its prescribed common-axis paths." |
 | the point an arriving causal wake was born | `transmitter site at emission time $T_t$` | the delayed formalism evaluates the transmitter at the causal root's emission time, not at reception time | "The line of action runs from the transmitter site at $T_t$ to the receiver site at $T_r$." |
-| uniform, unaccelerated translation of an assembly (or of the medium) relative to the void frame | `drift`, `drift speed` $u$ | drift deliberately connotes non-acceleration — a drifting rotation is a rigid screw motion; accelerated translation should be named as such, never called drift | "At drift $u$ the pinned internal cadence is $\omega_0\sqrt{1-u^2/c_f^2}$." |
+| uniform, unaccelerated translation of an assembly (or of the medium) relative to the void frame | `drift`, `drift speed` $u$ | drift deliberately connotes non-acceleration — uniform rotation plus drift is a screw motion; accelerated translation should be named as such, never called drift | "At drift $u$ the branch cadence is $\omega_0\sqrt{1-u^2/c_f^2}$." |
 
 ## Transmitter and Receiver Event Usage
 

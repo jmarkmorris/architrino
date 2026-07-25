@@ -42,8 +42,8 @@ The packing fraction is therefore about
 $14.2\,\mathrm{cm}^3 / 24{,}000\,\mathrm{cm}^3 \approx 0.06\%$.
 
 Intuition scales:
-- Average intermolecular spacing is about $3$ to $4\,\mathrm{nm}$.
-- Mean free path in air is about $60$ to $70\,\mathrm{nm}$.
+- Average intermolecular spacing is about $3$ to $4\,\mathrm{nm}$ (from the number density above).
+- Mean free path in air is about $60$ to $70\,\mathrm{nm}$ (standard kinetic estimate).
 
 Conclusion: gas molecules occupy well under one-tenth of a percent of the available Euclidean volume as molecular hard cores; most gas volume is not molecularly occupied compared with liquids and solids.
 

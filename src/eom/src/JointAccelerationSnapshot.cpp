@@ -1,4 +1,5 @@
 #include "architrino/eom/JointAccelerationSnapshot.hpp"
+#include "architrino/eom/Decimal.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -109,7 +110,8 @@ IntervalVector acceleration_hull(
       Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
   for (const std::size_t index : row.transmitter_segment_indices) {
     if (index >= history.segments().size()) continue;
-    const auto& segment = history.segments()[index];
+    const auto segment_pin = history.segments().pin(index);
+    const auto& segment = *segment_pin;
     const Interval segment_time(
         segment.t_start_interval().lower(),
         segment.t_end_interval().upper());
@@ -163,7 +165,8 @@ std::size_t source_segment_at_center(
   std::optional<std::size_t> first_covering;
   for (const std::size_t index : row.transmitter_segment_indices) {
     if (index >= ordinary_history.segments().size()) continue;
-    const auto& segment = ordinary_history.segments()[index];
+    const auto segment_pin = ordinary_history.segments().pin(index);
+    const auto& segment = *segment_pin;
     const double scale = std::max(
         {1.0, std::abs(emission_center), std::abs(segment.t_start()),
          std::abs(segment.t_end())});
@@ -231,7 +234,8 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
     }
   }
 
-  const double reception = std::strtod(snapshot.reception_time.c_str(), nullptr);
+  const double reception =
+      parse_finite_double(snapshot.reception_time, "snapshot reception time");
   const Interval reception_interval =
       Interval::decimal_token(snapshot.reception_time);
   for (const auto& receiver_id : snapshot.acceleration.path_ids) {
@@ -351,8 +355,9 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
         const std::size_t source_segment_index = source_segment_at_center(
             row, transmitter_ordinary, transmitter_joint_found->second,
             emission_center, receiver_nominal, field_speed);
-        const auto& source_segment =
-            transmitter_ordinary.segments()[source_segment_index];
+        const auto source_segment_pin =
+            transmitter_ordinary.segments().pin(source_segment_index);
+        const auto& source_segment = *source_segment_pin;
         const auto source_position_box = source_segment.position_interval(
             Interval::point(emission_center));
         const auto source_velocity_box = source_segment.velocity_interval(
@@ -497,8 +502,9 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
                  << "/center=" << emission_center << "/segments=";
           for (const std::size_t index : row.transmitter_segment_indices) {
             if (index >= transmitter_ordinary.segments().size()) continue;
-            const auto& diagnostic_segment =
-                transmitter_ordinary.segments()[index];
+            const auto diagnostic_segment_pin =
+                transmitter_ordinary.segments().pin(index);
+            const auto& diagnostic_segment = *diagnostic_segment_pin;
             if (emission_center < diagnostic_segment.t_start() ||
                 emission_center > diagnostic_segment.t_end()) {
               detail << index << ":outside;";

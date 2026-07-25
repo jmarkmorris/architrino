@@ -812,30 +812,6 @@ function applyDisplayHistoryRetirementSummary(cache, certificate) {
   });
 }
 
-function appendDisplayHistoryCache(cache, suffixHistories, response) {
-  if (!Array.isArray(cache) ||
-      !Array.isArray(response?.publishedExtensions) ||
-      response.publishedExtensions.length !== cache.length ||
-      (suffixHistories != null && suffixHistories.length !== cache.length)) {
-    throw new Error("EOM response omitted the Display history extension domain.");
-  }
-  cache.forEach((history, index) => {
-    const suffix = suffixHistories?.[index];
-    const extension = response.publishedExtensions[index];
-    if (String(extension?.pathId) !== String(history.pathId) ||
-        (suffix != null && String(suffix.pathId) !== String(history.pathId)) ||
-        !Array.isArray(extension?.segments) ||
-        (suffix != null && !Array.isArray(suffix.segments))) {
-      throw new Error("EOM response reordered or omitted a Display path extension.");
-    }
-    if (suffix != null) {
-      history.segments.push(...suffix.segments);
-    }
-    history.segments.push(...extension.segments);
-    history.coverageEnd = response.acceptedEndTime;
-  });
-}
-
 function queryBorgNativeEomProtocolMagic(binaryPath) {
   const query = spawnSync(binaryPath, ["print-protocol-version"], {
     encoding: "utf8",

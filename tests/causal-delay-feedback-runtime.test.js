@@ -6,27 +6,34 @@ import { createCausalDelayFeedbackRuntime } from "../src/apps/causal-delay-feedb
 import {
   EOM_REPLAY_ADAPTER,
   EOM_REPLAY_DATASET_SOURCE,
+  EOM_REPLAY_MAX_FRAME_COUNT,
+  EOM_REPLAY_MAX_HISTORY_DEPTH,
   createCausalDelayFeedbackEomReplayAdapter,
   normalizeCausalDelayFeedbackEomReplay,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackEomReplayAdapter.js";
 import {
-  CANVAS_COLORS,
   DIRECT_MANIPULATION_DRAFT_PREVIEW,
-  FRAME_COUNT,
-  PATH_TIME_END_X,
-  PATH_TIME_START_X,
-  PRESETS,
   REPRESENTATIVE_MOCK_SOLVER_REPLAY,
   TEMPORARY_MOCK_ADAPTER,
   createMockCausalDelayReplayDataset,
   getAngleDegrees,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
 import {
+  CANVAS_COLORS,
+  FRAME_COUNT,
+  PATH_TIME_END_X,
+  PATH_TIME_START_X,
+  PRESETS,
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackDisplayContract.js";
+import {
   createCausalDelayFeedbackEomReplayOptions,
   createCausalDelayFeedbackInitialReplayRequestOptions,
   createCausalDelayFeedbackRuntimeForPage,
   shouldUseEomReplay,
 } from "../src/apps/causal-delay-feedback/main.js";
+import {
+  createEomRecordFixture,
+} from "./helpers/causal-delay-feedback-eom-fixture.js";
 
 class FakeElement {
   constructor() {
@@ -38,6 +45,7 @@ class FakeElement {
     this.attributes = {};
     this.style = {};
     this.classNames = new Set();
+    this.listeners = new Map();
     this.classList = {
       add: (name) => {
         this.classNames.add(name);
@@ -65,11 +73,35 @@ class FakeElement {
   setAttribute(name, value) {
     this.attributes[name] = value;
   }
+
+  addEventListener(type, handler) {
+    const listeners = this.listeners.get(type) ?? new Set();
+    listeners.add(handler);
+    this.listeners.set(type, listeners);
+  }
+
+  removeEventListener(type, handler) {
+    this.listeners.get(type)?.delete(handler);
+  }
 }
 
 class FakeDocument {
+  constructor() {
+    this.listeners = new Map();
+  }
+
   createElement() {
     return new FakeElement();
+  }
+
+  addEventListener(type, handler) {
+    const listeners = this.listeners.get(type) ?? new Set();
+    listeners.add(handler);
+    this.listeners.set(type, listeners);
+  }
+
+  removeEventListener(type, handler) {
+    this.listeners.get(type)?.delete(handler);
   }
 }
 
@@ -223,51 +255,6 @@ function createRuntimeForReadout() {
 
 function readCausalDelayFeedbackHtml() {
   return readFileSync(new URL("../causal-delay-feedback.html", import.meta.url), "utf8");
-}
-
-function inertialSegment(startTime, endTime, position, velocity) {
-  return {
-    startTime: String(startTime),
-    endTime: String(endTime),
-    coefficients: [
-      [String(position[0]), String(velocity[0]), "0", "0"],
-      [String(position[1]), String(velocity[1]), "0", "0"],
-      [String(position[2]), String(velocity[2]), "0", "0"],
-    ],
-    positionError: "0",
-    velocityError: "0",
-  };
-}
-
-function createEomRecordFixture() {
-  return {
-    contractId: "eom_evolution_contract/v0",
-    runId: "cdf-runtime-eom-fixture",
-    claimLevel: "evolved-record",
-    evidenceStatus: "canonical",
-    absoluteTimeInterval: { start: "0", end: "2" },
-    provenance: { engineId: "eom-solver" },
-    histories: [
-      {
-        pathId: "10",
-        pathKey: 10,
-        charge: "1",
-        stateFlags: 1,
-        coverageStart: "0",
-        coverageEnd: "2",
-        segments: [inertialSegment(0, 2, [5, 2, 0], [0, 0.5, 0])],
-      },
-      {
-        pathId: "20",
-        pathKey: 20,
-        charge: "-1",
-        stateFlags: 2,
-        coverageStart: "0",
-        coverageEnd: "2",
-        segments: [inertialSegment(0, 2, [5, 0, 0], [0, 0.5, 0])],
-      },
-    ],
-  };
 }
 
 function createMockEomReplayDataset(presetId, overrides = {}) {
@@ -1451,6 +1438,7 @@ test("causal delay feedback animation speed setting scales the replay clock", ()
   const cfSpeedValue = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: {
       ...fakeWindow,
       requestAnimationFrame(callback) {
@@ -1466,16 +1454,16 @@ test("causal delay feedback animation speed setting scales the replay clock", ()
 
   runtime.tick(1000);
 
-  assert.equal(runtime.fieldSpeedScale, 0.98);
+  assert.equal(runtime.fieldSpeedScale, 1);
   assert.equal(cfSpeedInput.value, "1");
   assert.equal(cfSpeedValue.textContent, "1x");
-  assertNear(runtime.elapsedSeconds, 0.01568);
-  assert.equal(runtime.replayRequestOptions.fieldSpeedScale, 0.98);
+  assertNear(runtime.elapsedSeconds, 0.016);
+  assert.equal(runtime.replayRequestOptions.fieldSpeedScale, 1);
   assert.equal(scheduledFrames.length, 1);
 
   runtime.setFieldSpeedControlScale(1.25);
 
-  assert.equal(runtime.fieldSpeedScale, 1.225);
+  assert.equal(runtime.fieldSpeedScale, 1.25);
   assert.equal(cfSpeedInput.value, "1.25");
   assert.equal(cfSpeedValue.textContent, "1.25x");
 });
@@ -1505,7 +1493,59 @@ test("Story play animates one complete teaching stage for more than three second
   assert.equal(runtime.isPlaying, false);
   assert.ok(replayTimes.length > 50);
   assert.ok(replayTimes.at(-1) > replayTimes[0]);
-  assert.ok(scheduledFrames.length >= 56);
+  assert.ok(scheduledFrames.length > 0);
+});
+
+test("causal delay feedback does not keep a frame loop alive while paused", () => {
+  const scheduledFrames = [];
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: {
+      ...fakeWindow,
+      requestAnimationFrame(callback) {
+        scheduledFrames.push(callback);
+        return scheduledFrames.length;
+      },
+    },
+  });
+  runtime.render = () => {};
+  runtime.isPlaying = false;
+  runtime.animationFrame = null;
+  runtime.lastFrameTime = 0;
+
+  runtime.tick(16);
+  assert.equal(scheduledFrames.length, 0);
+
+  runtime.setPlaying(true);
+  assert.equal(scheduledFrames.length, 1);
+});
+
+test("guided playback refreshes learner roots and panels as replay time advances", () => {
+  let panelRefreshes = 0;
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: {
+      ...fakeWindow,
+      requestAnimationFrame() {
+        return 1;
+      },
+    },
+    initialMode: "roots",
+  });
+  runtime.render = () => {};
+  runtime.modeController = {
+    render() {},
+    renderLiveState() {
+      panelRefreshes += 1;
+    },
+  };
+  runtime.lastFrameTime = 0;
+  runtime.setPlaying(true);
+
+  runtime.tick(200);
+
+  assertNear(runtime.learnerState.receiverTime, runtime.getCurrentReplayTime());
+  assert.equal(panelRefreshes, 1);
 });
 
 test("causal delay feedback animation tempo and architrino speed settings keep live wake arcs visible", () => {
@@ -1519,7 +1559,7 @@ test("causal delay feedback animation tempo and architrino speed settings keep l
   runtime.setFieldSpeedControlScale(0.25);
   runtime.setArchitrinoSpeedIndex(9);
 
-  assert.equal(runtime.fieldSpeedScale, 0.245);
+  assert.equal(runtime.fieldSpeedScale, 0.25);
   assert.equal(runtime.getArchitrinoSpeedFraction(), 0.999999);
   assert.equal(runtime.getLiveWakeSignalSpeed(), baseSignalSpeed);
   assert.deepEqual(
@@ -1548,6 +1588,31 @@ test("causal delay feedback display sampler uses fixed path speed", () => {
   assert.equal(solverTimePoint.x, 100);
   assert.equal(fixedDisplayPoint.x, 150);
   assert.equal(fixedDisplayPoint.t, 0.5);
+});
+
+test("causal delay feedback recorded EOM sampler preserves recorded time-position data", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = {
+    ...runtime.dataset,
+    datasetSource: EOM_REPLAY_DATASET_SOURCE,
+    eomProvenance: { runId: "recorded-time-fixture" },
+    paths: {
+      ...runtime.dataset.paths,
+      positrino: [
+        { t: 0, x: 0, y: 0 },
+        { t: 0.5, x: 100, y: 0 },
+        { t: 1, x: 300, y: 0 },
+      ],
+    },
+  };
+  runtime.invalidateComputedCaches();
+
+  const point = runtime.getTraversalPathPoint("positrino", 0.5);
+
+  assert.deepEqual(point, { t: 0.5, x: 100, y: 0 });
 });
 
 test("causal delay feedback live markers use fixed path speed", () => {
@@ -1771,6 +1836,34 @@ test("causal delay feedback wheel zoom anchors on empty canvas background", () =
   assertNear(afterWorld.y, beforeWorld.y);
 });
 
+test("causal delay feedback reuses one hit test during a wheel gesture", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    canvas: {
+      getBoundingClientRect: () => ({ left: 0, top: 0 }),
+    },
+  };
+  let hitTests = 0;
+  runtime.findNearestHit = () => {
+    hitTests += 1;
+    return null;
+  };
+  const event = {
+    clientX: 960,
+    clientY: 150,
+    deltaY: -10,
+    preventDefault() {},
+  };
+
+  runtime.handleCanvasWheel({ ...event, timeStamp: 1000 });
+  runtime.handleCanvasWheel({ ...event, timeStamp: 1020 });
+
+  assert.equal(hitTests, 1);
+});
+
 test("causal delay feedback wheel zoom treats removed history points as background", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -1948,13 +2041,13 @@ test("causal delay feedback runtime loads an async eom replay over the mock fall
   assert.equal(runtime.replayLoadError, null);
   assert.equal(replayStatus.textContent, "EOM recorded replay");
   assert.equal(replayStatus.dataset.state, "eom-replay");
-  assert.match(replayStatus.title, /engine=eom-solver/);
-  assert.match(replayStatus.title, /run=eom:full_circular_arcs/);
-  assert.match(replayStatus.title, /claim=evolved-record/);
-  assert.match(replayStatus.title, /computes no physics/);
+  assert.equal(
+    replayStatus.title,
+    "Showing recorded EOM paths. This viewer does not recompute the record or infer delayed hits.",
+  );
 });
 
-test("causal delay feedback status reports eom replay with full recorded provenance", () => {
+test("causal delay feedback status keeps raw recorded provenance out of learner-facing copy", () => {
   const replayStatus = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -1978,16 +2071,13 @@ test("causal delay feedback status reports eom replay with full recorded provena
 
   assert.equal(replayStatus.textContent, "EOM recorded replay");
   assert.equal(replayStatus.dataset.state, "eom-replay");
-  assert.match(replayStatus.title, /engine=eom-solver/);
-  assert.match(replayStatus.title, /run=eom:partial_arcs:full/);
-  assert.match(replayStatus.title, /claim=evolved-record/);
-  assert.match(replayStatus.title, /evidence=canonical/);
-  assert.match(replayStatus.title, /worldlines=10\/20/);
-  assert.match(replayStatus.title, /draws recorded data only; it computes no physics/);
+  assert.match(replayStatus.title, /recorded EOM paths/u);
+  assert.match(replayStatus.title, /does not recompute/u);
+  assert.doesNotMatch(replayStatus.title, /engine=|run=|claim=|evidence=|worldlines=/u);
   assert.equal(replayStatus.attributes["aria-label"], replayStatus.title);
 });
 
-test("causal delay feedback status falls back to dataset-level eom provenance fields", () => {
+test("causal delay feedback status does not expose dataset-level eom provenance fields", () => {
   const replayStatus = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -2002,12 +2092,8 @@ test("causal delay feedback status falls back to dataset-level eom provenance fi
 
   assert.equal(replayStatus.textContent, "EOM recorded replay");
   assert.equal(replayStatus.dataset.state, "eom-replay");
-  assert.match(replayStatus.title, /engine=eom-solver/);
-  assert.match(replayStatus.title, /run=eom:partial_arcs:flat/);
-  assert.match(replayStatus.title, /claim=evolved-record/);
-  assert.doesNotMatch(replayStatus.title, /evidence=/);
-  assert.doesNotMatch(replayStatus.title, /worldlines=/);
-  assert.match(replayStatus.title, /draws recorded data only; it computes no physics/);
+  assert.match(replayStatus.title, /recorded EOM paths/u);
+  assert.doesNotMatch(replayStatus.title, /engine=|run=|claim=|evidence=|worldlines=/u);
 });
 
 test("causal delay feedback status ignores legacy solver telemetry on eom datasets", () => {
@@ -2038,7 +2124,7 @@ test("causal delay feedback status ignores legacy solver telemetry on eom datase
   assert.doesNotMatch(replayStatus.title, /relax/);
   assert.doesNotMatch(replayStatus.title, /constraint=/);
   assert.doesNotMatch(replayStatus.title, /pair-interaction/);
-  assert.match(replayStatus.title, /draws recorded data only; it computes no physics/);
+  assert.match(replayStatus.title, /does not recompute the record or infer delayed hits/u);
 });
 
 test("causal delay feedback status reports plain recorded replay for non-eom recorded datasets", () => {
@@ -2091,7 +2177,7 @@ test("causal delay feedback recorded replay status ignores legacy path-constrain
   assert.doesNotMatch(replayStatus.title, /constraint=|relax|seedRows=|physical=/);
 });
 
-test("causal delay feedback status fills missing eom provenance with viewer defaults", () => {
+test("causal delay feedback status remains plain when eom provenance is incomplete", () => {
   const replayStatus = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -2109,9 +2195,8 @@ test("causal delay feedback status fills missing eom provenance with viewer defa
 
   assert.equal(replayStatus.textContent, "EOM recorded replay");
   assert.equal(replayStatus.dataset.state, "eom-replay");
-  assert.match(replayStatus.title, /engine=eom-solver/);
-  assert.match(replayStatus.title, /run= claim=/);
-  assert.match(replayStatus.title, /draws recorded data only; it computes no physics/);
+  assert.match(replayStatus.title, /recorded EOM paths/u);
+  assert.doesNotMatch(replayStatus.title, /engine=|run=|claim=/u);
 });
 
 test("causal delay feedback status treats legacy motion-policy datasets as plain recorded replay", () => {
@@ -2216,13 +2301,15 @@ test("causal delay feedback runtime keeps the mock replay when eom replay loadin
   assert.equal(replayStatus.dataset.state, "fallback");
 });
 
-test("causal delay feedback rejected direct edit preserves the draft and reports solver diagnostics", async () => {
+test("causal delay feedback direct edit remains a local draft without calling the replay adapter", async () => {
   const replayStatus = new FakeElement();
   const readout = new FakeElement();
+  let adapterCalls = 0;
   const adapter = {
     id: EOM_REPLAY_ADAPTER,
     async createReplayAsync() {
-      throw new Error("edited position outside solver domain");
+      adapterCalls += 1;
+      return createMockEomReplayDataset("accepted_tight_bright");
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -2238,21 +2325,21 @@ test("causal delay feedback rejected direct edit preserves the draft and reports
   const editedX = runtime.dataset.initialConditions.electrino.x;
   runtime.dragState = { type: "history", kind: "electrino", depth: 1, didEdit: true };
   await runtime.finishDrag();
+  runtime.updateReadout();
 
   const readoutText = readout.children.map((child) => child.textContent);
 
   assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
-  assert.equal(runtime.replayLoadState, "draft-rejected");
+  assert.equal(runtime.replayLoadState, "draft");
   assert.equal(runtime.dataset.initialConditions.electrino.x, editedX);
-  assert.equal(runtime.dataset.draftPreview.solverRejected, true);
-  assert.equal(runtime.dataset.draftPreview.solverRejection.message, "edited position outside solver domain");
+  assert.equal(adapterCalls, 0);
   assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
   assert.equal(runtime.replayRequestOptions.initialConditions.electrino.x, editedX);
-  assert.equal(replayStatus.textContent, "solver rejected edit");
-  assert.equal(replayStatus.dataset.state, "draft-rejected");
-  assert.match(replayStatus.title, /edited position outside solver domain/);
-  assert(readoutText.includes("edit=not_solved"));
-  assert(readoutText.includes("reason=edited_position_outside_solver_domain"));
+  assert.equal(replayStatus.textContent, "draft preview");
+  assert.equal(replayStatus.dataset.state, "draft");
+  assert.match(replayStatus.title, /local teaching preview/u);
+  assert(readoutText.includes("preview=local_teaching_only"));
+  assert(readoutText.includes("recorded_replay=unchanged"));
 });
 
 test("causal delay feedback runtime ignores stale async replay responses", async () => {
@@ -2283,6 +2370,7 @@ test("causal delay feedback runtime ignores stale async replay responses", async
 
   assert.equal(runtime.dataset.runId, "newer-eom-dataset");
   assert.equal(runtime.dataset.preset.id, "full_circular_arcs");
+  assert.equal(runtime.presetId, "full_circular_arcs");
 });
 
 test("causal delay feedback page uses eom replay by default with a mock escape hatch", () => {
@@ -2388,6 +2476,11 @@ test("causal delay feedback page accepts eom replay review URL options", () => {
       href: "http://localhost/causal-delay-feedback.html?frameCount=120.6&solverFrameCount=999",
     },
   });
+  const boundedOptions = createCausalDelayFeedbackInitialReplayRequestOptions({
+    location: {
+      href: "http://localhost/causal-delay-feedback.html?frameCount=999999999&historyDepth=999999999",
+    },
+  });
 
   assert.deepEqual(options, {
     frameCount: 18000,
@@ -2397,6 +2490,27 @@ test("causal delay feedback page accepts eom replay review URL options", () => {
     electrinoWorldlineId: "20",
   });
   assert.equal(preferredFrameCountOptions.frameCount, 120);
+  assert.equal(boundedOptions.frameCount, EOM_REPLAY_MAX_FRAME_COUNT);
+  assert.equal(boundedOptions.historyDepth, EOM_REPLAY_MAX_HISTORY_DEPTH);
+});
+
+test("causal delay feedback page and direct runtime share one default learner mode", () => {
+  const pageRuntime = createCausalDelayFeedbackRuntimeForPage({
+    location: { href: "http://localhost/causal-delay-feedback.html?mode=unknown-mode" },
+  });
+  const directRuntime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "unknown-mode",
+  });
+  const defaultRuntime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+
+  assert.equal(pageRuntime.learnerState.mode, "story");
+  assert.equal(directRuntime.learnerState.mode, "story");
+  assert.equal(defaultRuntime.learnerState.mode, "story");
 });
 
 test("causal delay feedback page leaves absent replay request options unset", () => {
@@ -2466,8 +2580,8 @@ test("causal delay feedback page eom replay uses configured record from scope", 
   assert.equal(runtime.replayLoadState, "ready");
   assert.equal(replayStatus.textContent, "EOM recorded replay");
   assert.equal(replayStatus.dataset.state, "eom-replay");
-  assert.match(replayStatus.title, /run=cdf-runtime-eom-fixture/);
-  assert.match(replayStatus.title, /evidence=canonical/);
+  assert.match(replayStatus.title, /recorded EOM paths/u);
+  assert.doesNotMatch(replayStatus.title, /run=|evidence=/u);
 });
 
 test("causal delay feedback wake fronts and receiver markers synchronize for every retained link", () => {
@@ -2713,6 +2827,7 @@ test("causal delay feedback wake switches can combine full circles with emission
 test("causal delay feedback full circle emission lines render above path trails", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: fakeWindow,
   });
   const calls = [];
@@ -2801,45 +2916,6 @@ test("causal delay feedback solver hit diagnostics do not desynchronize receiver
   assert.equal(synchronization.isSynchronized, true);
   assert(hit.details.includes(`hit=${receiverPoint.t.toFixed(2)}`));
   assert(hit.details.includes(`solverHit=${solverDiagnosticHitTime.toFixed(2)}`));
-});
-
-test("causal delay feedback skipped animation frames do not snap to retained wake points", () => {
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  const link = runtime.dataset.wakeLinks[0];
-  const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
-  const previousReplayTime = receiverPoint.t - 0.006;
-  const nextReplayTime = receiverPoint.t + 0.006;
-
-  const snappedReplayTime = runtime.getFrameReceptionReplayTime(previousReplayTime, nextReplayTime);
-
-  assert.equal(snappedReplayTime, null);
-  assert.equal(runtime.getFrameReceptionReplayTime(receiverPoint.t + 0.006, receiverPoint.t + 0.012), null);
-});
-
-test("causal delay feedback live wake arcs do not create retained-point arrival snaps", () => {
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  const visibleLink = runtime.dataset.wakeLinks.find((link) => link.receiverDepth === 2);
-  const hiddenLink = runtime.dataset.wakeLinks.find((link) => link.receiverDepth === 3);
-  const visibleReceiver = runtime.dataset.history[visibleLink.receiverKind].find(
-    (point) => point.depth === visibleLink.receiverDepth,
-  );
-  const hiddenReceiver = runtime.dataset.history[hiddenLink.receiverKind].find(
-    (point) => point.depth === hiddenLink.receiverDepth,
-  );
-
-  runtime.setRetainedDepthLimit(2);
-
-  assert.equal(runtime.getVisibleWakeLinks().some((link) => link.id === visibleLink.id), true);
-  assert.equal(runtime.getVisibleWakeLinks().some((link) => link.id === hiddenLink.id), false);
-  assert.equal(runtime.getVisibleWakeSeries(0.5).length, 2);
-  assert.equal(runtime.getFrameReceptionReplayTime(visibleReceiver.t - 0.006, visibleReceiver.t + 0.006), null);
-  assert.equal(runtime.getFrameReceptionReplayTime(hiddenReceiver.t - 0.006, hiddenReceiver.t + 0.006), null);
 });
 
 test("causal delay feedback hit testing does not expose retained reception points", () => {
@@ -3204,7 +3280,7 @@ test("causal delay feedback pointer drag on path line updates the path preview",
   assert.equal(readout.hidden, false);
 });
 
-test("causal delay feedback can start another path drag while the prior solver rerun is pending", async () => {
+test("causal delay feedback cancels a pending replay only when a direct edit begins", async () => {
   let resolveReplay;
   const replayPending = new Promise((resolve) => {
     resolveReplay = resolve;
@@ -3228,36 +3304,25 @@ test("causal delay feedback can start another path drag while the prior solver r
     replayStatus: new FakeElement(),
   };
   runtime.render = () => {};
-  const firstAnchor = runtime.dataset.paths.positrino[60];
-  runtime.applyPathLineDrag("positrino", firstAnchor.t, { x: 0, y: -20 });
-  runtime.dragState = { type: "path-line", kind: "positrino", anchorT: firstAnchor.t, didEdit: true };
-  const firstRerun = runtime.finishDrag();
+  const pendingLoad = runtime.loadReplay();
   assert.equal(runtime.replayLoadState, "loading");
 
-  const secondAnchor = runtime.dataset.paths.positrino[80];
-  const secondScreen = runtime.worldToScreen(secondAnchor);
+  const backgroundScreen = runtime.worldToScreen({ x: 10, y: 10 });
   runtime.handleCanvasPointerDown({
     pointerId: 9,
     pointerType: "mouse",
-    clientX: secondScreen.x,
-    clientY: secondScreen.y,
+    clientX: backgroundScreen.x,
+    clientY: backgroundScreen.y,
     preventDefault() {},
   });
-  runtime.handleCanvasPointerMove({
-    pointerId: 9,
-    pointerType: "mouse",
-    clientX: secondScreen.x,
-    clientY: secondScreen.y - 25,
-    preventDefault() {},
-  });
+  assert.equal(runtime.replayLoadState, "loading");
 
-  assert.equal(runtime.dragState.type, "path-line");
-  assert.equal(runtime.dragState.didEdit, true);
+  const anchor = runtime.dataset.paths.positrino[80];
+  runtime.applyPathLineDrag("positrino", anchor.t, { x: 0, y: -25 });
   assert.equal(runtime.replayLoadState, "draft");
   resolveReplay(createMockCausalDelayReplayDataset(runtime.presetId));
-  await firstRerun;
-  assert.equal(runtime.dragState.type, "path-line");
-  assert.equal(runtime.dragState.didEdit, true);
+  await pendingLoad;
+  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
 });
 
 test("causal delay feedback pointer drag on endpoint handle moves the endpoint", () => {
@@ -3585,394 +3650,31 @@ test("causal delay feedback initial velocity drag updates setup and bends the pr
   assert.equal(replayStatus.textContent, "draft preview");
 });
 
-test("causal delay feedback point 1 release reruns eom replay with edited setup", async () => {
-  const replayStatus = new FakeElement();
-  let capturedRequestOptions = null;
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId, requestOptions }) {
-      capturedRequestOptions = requestOptions;
-      return createMockEomReplayDataset(presetId, {
-        initialConditions: requestOptions.initialConditions,
-      });
-    },
-  };
+test("causal delay feedback edit release keeps a local draft and never invokes the replay adapter", async () => {
+  let adapterCalls = 0;
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
-    replayAdapter: adapter,
-    autoLoadReplay: false,
-  });
-  runtime.dom = { replayStatus };
-
-  runtime.applyRetainedPointDrag("positrino", 1, { x: 34, y: -19 });
-  runtime.dragState = { type: "history", kind: "positrino", depth: 1, didEdit: true };
-  await runtime.finishDrag();
-
-  assert.equal(capturedRequestOptions.initialConditions.positrino.x, runtime.dataset.initialConditions.positrino.x);
-  assert.equal(capturedRequestOptions.initialConditions.positrino.y, runtime.dataset.initialConditions.positrino.y);
-  assert.equal(capturedRequestOptions.replayDataset.draftPreview.reason, "retained_point_drag_preview");
-  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 256);
-  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 1);
-  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
-});
-
-test("causal delay feedback final path point release submits replay constraints", async () => {
-  const replayStatus = new FakeElement();
-  let capturedRequestOptions = null;
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId, requestOptions }) {
-      capturedRequestOptions = requestOptions;
-      return createMockEomReplayDataset(presetId, {
-        history: requestOptions.replayDataset.history,
-        wakeLinks: requestOptions.replayDataset.wakeLinks,
-        initialConditions: requestOptions.initialConditions,
-      });
+    replayAdapter: {
+      id: EOM_REPLAY_ADAPTER,
+      async createReplayAsync() {
+        adapterCalls += 1;
+        return createMockEomReplayDataset("accepted_tight_bright");
+      },
     },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-    replayAdapter: adapter,
     autoLoadReplay: false,
   });
-  runtime.dom = { replayStatus };
-
-  const endDepth = runtime.getMaxHistoryDepth("electrino");
-  runtime.applyRetainedPointDrag("electrino", endDepth, { x: -32, y: 23 });
-  runtime.dragState = { type: "history", kind: "electrino", depth: endDepth, didEdit: true };
-  await runtime.finishDrag();
-
-  assert.equal(capturedRequestOptions.replayDataset.draftPreview.reason, "retained_point_drag_preview");
-  assert.equal(capturedRequestOptions.replayDataset.history.electrino.at(-1).x, runtime.dataset.history.electrino.at(-1).x);
-  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 256);
-  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 1);
-  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
-});
-
-test("causal delay feedback path line release submits replay constraints", async () => {
-  const replayStatus = new FakeElement();
-  let capturedRequestOptions = null;
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId, requestOptions }) {
-      capturedRequestOptions = requestOptions;
-      return createMockEomReplayDataset(presetId, {
-        history: requestOptions.replayDataset.history,
-        wakeLinks: requestOptions.replayDataset.wakeLinks,
-        initialConditions: requestOptions.initialConditions,
-      });
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-    replayAdapter: adapter,
-    autoLoadReplay: false,
-  });
-  runtime.dom = { replayStatus };
+  runtime.dom = { replayStatus: new FakeElement() };
   const anchor = runtime.dataset.paths.positrino[82];
 
   runtime.applyPathLineDrag("positrino", anchor.t, { x: 26, y: -31 });
   runtime.dragState = { type: "path-line", kind: "positrino", anchorT: anchor.t, didEdit: true };
   await runtime.finishDrag();
 
-  assert.equal(capturedRequestOptions.replayDataset.draftPreview.reason, "path_line_drag_preview");
-  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 256);
-  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 1);
-  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
-});
-
-test("causal delay feedback path line release keeps the smooth released draft geometry", async () => {
-  const replayStatus = new FakeElement();
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId }) {
-      const dataset = createMockCausalDelayReplayDataset(presetId);
-      dataset.paths.positrino = dataset.paths.positrino.map((point, index) => ({
-        ...point,
-        y: point.y + (index % 2 === 0 ? 44 : -44),
-      }));
-      dataset.frames = dataset.frames.map((frame, index) => ({
-        ...frame,
-        positrino: dataset.paths.positrino[index],
-      }));
-      return {
-        ...dataset,
-        datasetSource: EOM_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: EOM_REPLAY_ADAPTER,
-      };
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-    replayAdapter: adapter,
-    autoLoadReplay: false,
-  });
-  runtime.dom = { replayStatus };
-  const anchorIndex = 82;
-  const anchor = runtime.dataset.paths.positrino[anchorIndex];
-
-  runtime.applyPathLineDrag("positrino", anchor.t, { x: 26, y: -31 });
-  const releasedAnchor = { ...runtime.dataset.paths.positrino[anchorIndex] };
-  runtime.dragState = { type: "path-line", kind: "positrino", anchorT: anchor.t, didEdit: true };
-  await runtime.finishDrag();
-
-  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
-  assert(runtime.dataset.solverAcceptedPaths);
-  assert.notEqual(runtime.dataset.solverAcceptedPaths.positrino[anchorIndex].y, releasedAnchor.y);
-  assertNear(runtime.dataset.paths.positrino[anchorIndex].x, releasedAnchor.x);
-  assertNear(runtime.dataset.paths.positrino[anchorIndex].y, releasedAnchor.y);
-  assertNear(runtime.dataset.frames[anchorIndex].positrino.x, releasedAnchor.x);
-  assertNear(runtime.dataset.frames[anchorIndex].positrino.y, releasedAnchor.y);
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
-});
-
-test("causal delay feedback retained path releases retry weak default boundary solves", async () => {
-  const replayStatus = new FakeElement();
-  const capturedCalls = [];
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId, requestOptions }) {
-      capturedCalls.push({
-        iterationCount: requestOptions.pathConstraintBoundaryRelaxationIterationCount,
-        tolerance: requestOptions.pathConstraintBoundaryRelaxationTolerance,
-        reason: requestOptions.replayDataset.draftPreview.reason,
-      });
-      const isAdaptiveRetry = capturedCalls.length === 2;
-      return createMockEomReplayDataset(presetId, {
-        history: requestOptions.replayDataset.history,
-        wakeLinks: requestOptions.replayDataset.wakeLinks,
-        initialConditions: requestOptions.initialConditions,
-        pairInteractionStepCount: 181,
-        pathConstraintGuidanceSampleCount: 6,
-        pathConstraintGuidanceMode: "retained_knot_boundary",
-        pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
-        pathConstraintBoundaryRelaxationIterationCount:
-          requestOptions.pathConstraintBoundaryRelaxationIterationCount,
-        pathConstraintBoundaryRelaxationAppliedIterationCount: isAdaptiveRetry ? 5 : 1,
-        pathConstraintBoundaryRelaxationTolerance:
-          requestOptions.pathConstraintBoundaryRelaxationTolerance,
-        pathConstraintBoundaryRelaxationStatus: isAdaptiveRetry ? "converged" : "accepted",
-        pathConstraintBoundaryRelaxationResidualRatio: isAdaptiveRetry ? 0.003 : 0.15,
-        pathConstraintSolverStatus: isAdaptiveRetry
-          ? "discrete_boundary_value_converged"
-          : "guided_constraint_path",
-        pathConstraintSolverClaim: isAdaptiveRetry
-          ? "finite_difference_pair_boundary_value_solve_converged"
-          : "diagnostic_constraint_replay_not_boundary_value_solve",
-        maxPathConstraintBoundaryRelaxationResidualAfter: isAdaptiveRetry ? 0.42 : 12.5,
-      });
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-    replayAdapter: adapter,
-    autoLoadReplay: false,
-  });
-  runtime.dom = { replayStatus };
-
-  runtime.applyRetainedPointDrag("electrino", 3, { x: 46, y: -34 });
-  runtime.dragState = { type: "history", kind: "electrino", depth: 3, didEdit: true };
-  await runtime.finishDrag();
-
-  assert.deepEqual(capturedCalls, [
-    { iterationCount: 64, tolerance: 10, reason: "retained_point_drag_preview" },
-    { iterationCount: 256, tolerance: 1, reason: "retained_point_drag_preview" },
-  ]);
-  assert.equal(runtime.dataset.pathConstraintSolverStatus, "discrete_boundary_value_converged");
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationAdaptiveRetry, true);
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRetryCount, 1);
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationInitialIterationCount, 64);
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationInitialTolerance, 10);
-  assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt, 12.5);
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRetryIterationCount, 256);
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRetryTolerance, 1);
-  assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfter, 0.42);
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
-  assert.equal(replayStatus.dataset.state, "eom-replay");
-  assert.doesNotMatch(replayStatus.title, /adaptiveRetry=|firstTol=|firstResidual=/);
-  assert.deepEqual(runtime.createContributionSummarySolverDetails(), []);
-});
-
-test("causal delay feedback retained path releases keep first solve when adaptive retry worsens", async () => {
-  const replayStatus = new FakeElement();
-  const capturedCalls = [];
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId, requestOptions }) {
-      capturedCalls.push({
-        iterationCount: requestOptions.pathConstraintBoundaryRelaxationIterationCount,
-        tolerance: requestOptions.pathConstraintBoundaryRelaxationTolerance,
-        reason: requestOptions.replayDataset.draftPreview.reason,
-      });
-      const isAdaptiveRetry = capturedCalls.length === 2;
-      return createMockEomReplayDataset(presetId, {
-        history: requestOptions.replayDataset.history,
-        wakeLinks: requestOptions.replayDataset.wakeLinks,
-        initialConditions: requestOptions.initialConditions,
-        pairInteractionStepCount: 181,
-        pathConstraintGuidanceSampleCount: 6,
-        pathConstraintGuidanceMode: "retained_knot_boundary",
-        pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
-        pathConstraintBoundaryRelaxationIterationCount:
-          requestOptions.pathConstraintBoundaryRelaxationIterationCount,
-        pathConstraintBoundaryRelaxationAppliedIterationCount: isAdaptiveRetry ? 6 : 1,
-        pathConstraintBoundaryRelaxationTolerance:
-          requestOptions.pathConstraintBoundaryRelaxationTolerance,
-        pathConstraintBoundaryRelaxationStatus: "accepted",
-        pathConstraintBoundaryRelaxationResidualRatio: isAdaptiveRetry ? 0.4 : 0.1,
-        pathConstraintSolverStatus: "guided_constraint_path",
-        pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
-        maxPathConstraintBoundaryRelaxationResidualAfter: isAdaptiveRetry ? 30 : 8,
-      });
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-    replayAdapter: adapter,
-    autoLoadReplay: false,
-  });
-  runtime.dom = { replayStatus };
-
-  runtime.applyRetainedPointDrag("electrino", 3, { x: 46, y: -34 });
-  runtime.dragState = { type: "history", kind: "electrino", depth: 3, didEdit: true };
-  await runtime.finishDrag();
-
-  assert.deepEqual(capturedCalls, [
-    { iterationCount: 64, tolerance: 10, reason: "retained_point_drag_preview" },
-    { iterationCount: 256, tolerance: 1, reason: "retained_point_drag_preview" },
-  ]);
-  assert.equal(runtime.dataset.pathConstraintSolverStatus, "guided_constraint_path");
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationAdaptiveRetry, undefined);
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationAdaptiveRetryRejected, true);
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRetryCount, 1);
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationInitialIterationCount, 64);
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationInitialTolerance, 10);
-  assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt, 8);
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRejectedRetryIterationCount, 256);
-  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRejectedRetryTolerance, 1);
-  assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry, 30);
-  assert.equal(runtime.dataset.pathConstraintSolverStatusRejectedRetry, "guided_constraint_path");
-  assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfter, 8);
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
-  assert.equal(replayStatus.dataset.state, "eom-replay");
-  assert.doesNotMatch(replayStatus.title, /adaptiveRetryRejected=|retryTol=|retryResidual=/);
-  assert.deepEqual(runtime.createContributionSummarySolverDetails(), []);
-});
-
-test("causal delay feedback retained path releases preserve explicit boundary relaxation settings", async () => {
-  let capturedRequestOptions = null;
-  let callCount = 0;
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId, requestOptions }) {
-      callCount += 1;
-      capturedRequestOptions = requestOptions;
-      return createMockEomReplayDataset(presetId, {
-        history: requestOptions.replayDataset.history,
-        wakeLinks: requestOptions.replayDataset.wakeLinks,
-      });
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-    replayAdapter: adapter,
-    replayRequestOptions: {
-      pathConstraintBoundaryRelaxationIterationCount: 12,
-      pathConstraintBoundaryRelaxationTolerance: 6,
-    },
-    autoLoadReplay: false,
-  });
-  runtime.dom = { replayStatus: new FakeElement() };
-
-  runtime.applyRetainedPointDrag("positrino", 3, { x: 28, y: -18 });
-  runtime.dragState = { type: "history", kind: "positrino", depth: 3, didEdit: true };
-  await runtime.finishDrag();
-
-  assert.equal(capturedRequestOptions.replayDataset.draftPreview.reason, "retained_point_drag_preview");
-  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 12);
-  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 6);
-  assert.equal(callCount, 1);
-});
-
-test("causal delay feedback retained depth survives eom replay reruns", async () => {
-  const replayStatus = new FakeElement();
-  let capturedRequestOptions = null;
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId, requestOptions }) {
-      capturedRequestOptions = requestOptions;
-      return createMockEomReplayDataset(presetId, {
-        initialConditions: requestOptions.initialConditions,
-      });
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-    replayAdapter: adapter,
-    autoLoadReplay: false,
-  });
-  runtime.dom = { replayStatus };
-
-  runtime.setRetainedDepthLimit(2);
-  runtime.applyRetainedPointDrag("electrino", 1, { x: -12, y: 9 });
-  runtime.dragState = { type: "history", kind: "electrino", depth: 1, didEdit: true };
-  await runtime.finishDrag();
-
-  assert.equal(capturedRequestOptions.retainedDepthLimit, 2);
-  assert.equal(runtime.retainedDepthLimit, 2);
-  assert.equal(runtime.getVisibleWakeLinks().length, 2);
-  assert.equal(runtime.dataset.initialConditions.electrino.x, capturedRequestOptions.initialConditions.electrino.x);
-  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
-});
-
-test("causal delay feedback initial velocity release reruns eom replay with edited setup", async () => {
-  const replayStatus = new FakeElement();
-  let capturedRequestOptions = null;
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId, requestOptions }) {
-      capturedRequestOptions = requestOptions;
-      return createMockEomReplayDataset(presetId, {
-        initialConditions: requestOptions.initialConditions,
-      });
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-    replayAdapter: adapter,
-    autoLoadReplay: false,
-  });
-  runtime.dom = { replayStatus };
-  const condition = runtime.dataset.initialConditions.electrino;
-  const velocityEnd = runtime.initialConditionVelocityEnd(condition);
-
-  runtime.applyInitialVelocityDrag("electrino", {
-    x: velocityEnd.x - 21,
-    y: velocityEnd.y - 7,
-  });
-  runtime.dragState = { type: "initial-velocity", kind: "electrino", didEdit: true };
-  await runtime.finishDrag();
-
-  assertNear(capturedRequestOptions.initialConditions.electrino.vx, runtime.dataset.initialConditions.electrino.vx);
-  assertNear(capturedRequestOptions.initialConditions.electrino.vy, runtime.dataset.initialConditions.electrino.vy);
-  assert.equal(capturedRequestOptions.replayDataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
-  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, undefined);
-  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, undefined);
-  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
-  assert.equal(runtime.replayLoadState, "ready");
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(adapterCalls, 0);
+  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
+  assert.equal(runtime.replayLoadState, "draft");
+  assert.equal(runtime.dataset.draftPreview.reason, "path_line_drag_preview");
 });
 
 test("causal delay feedback no-op retained point drag does not mark a draft preview", () => {
@@ -4078,6 +3780,7 @@ test("causal delay feedback path deformation updates detached frame samples", ()
 test("causal delay feedback spacebar toggles play state", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: fakeWindow,
   });
   runtime.dom = {
@@ -4125,9 +3828,54 @@ test("causal delay feedback play-pause toggle follows the shared transport state
   assert.match(playButton.innerHTML, /data-transport-icon="play"/);
 });
 
+test("causal delay feedback destroy removes every runtime listener and invalidates pending loads", () => {
+  const documentLike = new FakeDocument();
+  const windowLike = new FakeElement();
+  Object.assign(windowLike, {
+    location: fakeWindow.location,
+    performance: { now: () => 0 },
+    cancelAnimationFrame() {},
+  });
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: documentLike,
+    window: windowLike,
+    autoLoadReplay: false,
+  });
+  runtime.dom = {
+    playButton: new FakeElement(),
+    resetButton: new FakeElement(),
+    resetPresetButton: new FakeElement(),
+    settingsButton: new FakeElement(),
+    visualSwitches: new FakeElement(),
+    colorSwatches: new FakeElement(),
+    nowInput: new FakeElement(),
+    cfSpeedInput: new FakeElement(),
+    architrinoSpeedInput: new FakeElement(),
+    settingsPanel: new FakeElement(),
+    canvas: new FakeElement(),
+  };
+
+  runtime.bindEvents();
+  const sequenceBeforeDestroy = runtime.replayLoadSequence;
+  assert.ok(runtime.eventListeners.length > 3);
+
+  runtime.destroy();
+
+  assert.equal(runtime.eventListeners.length, 0);
+  assert.equal(runtime.replayLoadSequence, sequenceBeforeDestroy + 1);
+  assert.ok([...windowLike.listeners.values()].every((listeners) => listeners.size === 0));
+  assert.ok([...documentLike.listeners.values()].every((listeners) => listeners.size === 0));
+  assert.ok(
+    Object.values(runtime.dom).every(
+      (element) => [...element.listeners.values()].every((listeners) => listeners.size === 0),
+    ),
+  );
+});
+
 test("causal delay feedback spacebar leaves native controls alone", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: fakeWindow,
   });
   let prevented = false;
@@ -4148,6 +3896,7 @@ test("causal delay feedback spacebar leaves native controls alone", () => {
 test("causal delay feedback spacebar toggles play even when a toolbar button has focus", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: fakeWindow,
   });
   runtime.dom = {
@@ -4219,6 +3968,7 @@ test("causal delay feedback arrow keys pause and step solver replay frames", () 
 test("causal delay feedback arrow keys leave native controls alone", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: fakeWindow,
   });
   const beforeTime = runtime.getCurrentReplayTime();

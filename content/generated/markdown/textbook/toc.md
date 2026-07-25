@@ -138,6 +138,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - **Ch 2.3.1.5** [Differential analysis (criteria-by-criteria)](../../../markdown/aaa/validation/simulations/action-energy/action-model.md?section=Differential+analysis+%28criteria-by-criteria%29)
       - **Ch 2.3.1.6** [Pros and cons (comparative)](../../../markdown/aaa/validation/simulations/action-energy/action-model.md?section=Pros+and+cons+%28comparative%29)
       - **Ch 2.3.1.7** [Recommendation](../../../markdown/aaa/validation/simulations/action-energy/action-model.md?section=Recommendation)
+      - **Ch 2.3.1.8** [Sibling Derivation Notes](../../../markdown/aaa/validation/simulations/action-energy/action-model.md?section=Sibling+Derivation+Notes)
     - **Ch 2.3.2** [Analytic Baselines](../../../scenes/validation/analytic_baselines.json)
     - **Ch 2.3.3** [Attraction](../../../scenes/validation/attraction.json)
     - **Ch 2.3.4** [Background and Simple Action](../../../scenes/validation/background_simple_action.json)

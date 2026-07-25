@@ -369,3 +369,52 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 ## 2026-07-24 — Causal-delay angular bound and independent audit completed
 
 - Proved separate finite-radius and first causal-delay remainder bounds, recovered the exact $2/5$ angular coefficient from sphere moments, and ran an independent $197$-case, $1{,}361{,}664$-sample Family-C audit. Every sampled inequality passed; independently computed $\ell=2/\ell=1$ ratios matched the primary study within $2.06\times10^{-12}$. The active speed range makes the conservative uniform remainder too large to certify individual ratios, so the relationship remains measured prescribed-path structure. No eligible EOM-evolved Family-C branch exists; the survival test cannot run without violating the evolution-first campaign and evidence gates. See [the proof and evidence packet](evidence/2026-07-24-causal-delay-angular-bound.md).
+
+## 2026-07-24 — Evolved Family-C same-row consumer construction validated
+
+- Added a fail-closed EOM-record consumer that evaluates $\mathbf U$, $\mathbf S$, the exact far pattern, and finite enclosing-sphere degree powers from the same authoritative piecewise-cubic time row. It retains raw causal-root ledgers, runs primary/refined quadrature, requires direct neutral twelve-worldline evolved records in the strict sub-field domain, and pools only a Cartesian-complete cohort with at least three prehistories and two refinements plus hash-bound collapse, clearance, refinement, and oracle artifacts.
+- A separately derived constant-velocity far-pattern case fixes the degree-$1$ and degree-$2$ powers analytically; the consumer matched them within relative errors $10^{-11}$ and $10^{-9}$. Focused assembly-record and evolved-consumer validation passed $14/14$. This validates construction only: the instrument is not accepted for campaign use in the same change, no qualified Family-C input exists, and no evolved relationship or physics result is booked. See [the consumer validation packet](evidence/2026-07-24-evolved-family-c-us-consumer-validation.md).
+
+## 2026-07-24 — A1.3/C5 V1 calibration campaign closed as insufficient
+
+- Closed the receipt-bound V1 artifact without changing its sealed protocol, gates, denominators, stop rules, or output bytes. The `693`-draw population retained all `674` evaluated rows and `19` null-score rows across `45` distinct campaign files. Among `673` jointly evaluated compact-versus-full-protocol rows, `673` were both-reject and zero were full passes, leaving both conditional confusion denominators undefined. Claim grade: measured diagnostic result plus a sufficiency conclusion derived from the predeclared rules.
+- Completed all `66` A1.3/C5 resolution-ladder rows: `5` invalidated, `33` root-resolution unresolved, and `28` surface-resolution unresolved. The result does not authorize a gate change and establishes no stability, retention, binding, energy closure, particle identity, catalog acceptance, or physical realization.
+- Promoted the next burden, not the result, to the live queue: separately predeclare and independently adjudicate all `172` retained queue rows with complete raw evidence and a purge-aware rebuild manifest. A compact-screen V2 remains conditional and must use a new, predeclared population with full-pass support rather than modifying V1 after observing its all-reject population. Identity hashes, measurements, falsifiers, and the handoff contract are recorded in the [V1 closeout](evidence/2026-07-24-a1-3-c5-resolution-calibration-v1-closeout.md).
+
+## 2026-07-24 — Braid Program charter and N-ladder ratified
+
+- The operator ratified the Braid Program charter, evolution-first N-ladder, and method. The separately ratified instrument gate remains unchanged. This closes the governance dependency and authorizes Campaign 1 production under its frozen workload; it books no dynamical or physics result.
+
+## 2026-07-24 — Two-architrino breathing diagnostic completed
+
+- Rebuilt the EOM solver and ran source-identified Campaign 1 slices at $d=1$, $s=0.25$. Head-on R0/R1/R2 traces remained strictly inward and halted fail-closed on root completeness at progressively smaller separations; no head-on reversal was certified.
+- The transverse R1 trace completed one inward-to-outward reversal between $t=1.7175$ and $t=1.7200$, with sampled minimum separation $0.77577103$, and remained outward through a completed $t=1.9$ run. Consecutive EOM solver rebuilds reproduced the same bracket and minimum while certification changes were arriving in the live checkout.
+- Booked the result as diagnostic only. It is half of a possible breath, not repeated breathing or retained binding: the trace lacks a second reversal, R2 transverse confirmation, three-prehistory collapse, a post-$H$ claim window, residual ledgers, and independent-oracle parity, and the live EOM source continued changing after each tested build. See [the diagnostic packet](evidence/2026-07-24-campaign-1-two-architrino-breathing-diagnostic.md).
+
+## 2026-07-24 — Current-solver Breather return-map diagnostic completed
+
+- Rebuilt the current EOM solver, passed all five compiled fixtures and all 75 independent Python oracle tests, and revalidated all 243 Campaign 1 construction rows without invoking evolution in the construction check.
+- The transverse $d=1$, $s=0.25$ R1/R2 rows agree on one minimum near $t=1.719$ and $r=0.775771$, but no later maximum occurs through the R2 checkpoint at $t=2.4$. R2 ends with $r=0.946307$ and $\dot r=+0.500683$; its sampled midpoint remains fixed. With only one minimum, period, amplitude, and return-map drift are undefined.
+- R0 and R1 halt on `root_completeness_not_certified`; all three R0 endpoint-matched prehistories halt at $t=1.55$ while moving inward. The $s=0.50$ sensitivity row separates from release and halts at $t=1.025$ without recapture. No accepted energy account exists for this run.
+- A fresh read-only reducer and three independent synthetic tests now enforce the minimum-maximum-minimum diagnostic return definition. The run also exposed that resumed harness manifests reset cumulative chunk and wall-time counters, so G3/G4 remain unaccepted and no campaign fate is booked. See [the current-solver return-map packet](evidence/2026-07-24-current-solver-two-architrino-breather-return-map.md).
+
+## 2026-07-24 — Stationary-rest Breather diagnostic completed
+
+- Replaced the moving transverse setup as the Breather baseline with the
+  operator-requested release: opposite polarities at
+  $\mathbf X_\pm(0)=(\pm0.5,0,0)$, both velocities exactly zero, and an exactly
+  stationary retained prehistory on $[-20,0]$ with $c_f=1$.
+- The EOM solver and independent Python oracle agree on the certified inward
+  release acceleration:
+  $A_{r,\mathrm{rel}}(0)\in[-0.572457220610732,-0.572457220610621]$.
+  R0/R1/R2 remain exactly centered and collinear but halt on cross-root
+  `numeric_precision_limit_exhausted` before crossing. R2 retains motion through
+  $T=1.54625$, at $r=0.152080$ and individual speed $0.870314c_f$.
+- No crossing, rebound, outer turn, recapture, or minimum-maximum-minimum
+  excursion is certified; the return-map trend is unresolved. R0 histories
+  with stationary horizons $H=10$, $20$, and $40$ produce byte-identical frame
+  and release-acceleration streams.
+- G3 remains unaccepted and no campaign fate, energy account, retention,
+  stability, binding, or physical-realization claim is booked. See the
+  [predeclared protocol](campaigns/stationary-binary-breather-diagnostic.md) and
+  [diagnostic packet](evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md).

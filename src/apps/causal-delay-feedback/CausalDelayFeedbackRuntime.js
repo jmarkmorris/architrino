@@ -1,29 +1,31 @@
 import {
+  DIRECT_MANIPULATION_DRAFT_PREVIEW,
+  REPRESENTATIVE_MOCK_SOLVER_REPLAY,
+  TEMPORARY_MOCK_ADAPTER,
+  createMockCausalDelayReplayDataset,
+  createTemporaryMockReplayAdapter,
+  getAngleDegrees,
+  getDistance,
+} from "./CausalDelayFeedbackReplayAdapter.js";
+import {
   CANVAS_COLORS,
   DEFAULT_CANVAS_ID,
   DEFAULT_PRESET_ID,
   DESIGN_HEIGHT,
   DESIGN_WIDTH,
-  DIRECT_MANIPULATION_DRAFT_PREVIEW,
   ELECTRINO,
   ELECTRINO_WAKE,
+  POSITRINO,
+  POSITRINO_WAKE,
+  PRESETS,
   SPACE_AXIS_TOP_Y,
   TIME_AXIS_BASELINE_Y,
   TIME_AXIS_END_X,
   TIME_AXIS_ORIGIN_X,
-  POSITRINO,
-  POSITRINO_WAKE,
-  PRESETS,
-  REPRESENTATIVE_MOCK_SOLVER_REPLAY,
-  TEMPORARY_MOCK_ADAPTER,
   WHITE,
-  createMockCausalDelayReplayDataset,
-  createTemporaryMockReplayAdapter,
-  getAngleDegrees,
   getCanvasColorById,
-  getDistance,
   getPresetById,
-} from "./CausalDelayFeedbackReplayAdapter.js";
+} from "./CausalDelayFeedbackDisplayContract.js";
 import { EOM_REPLAY_DATASET_SOURCE } from "./CausalDelayFeedbackEomReplayAdapter.js";
 import {
   TRANSPORT_CONTROL_ICON,
@@ -34,11 +36,15 @@ import {
   createCanonicalLearnerState,
   evaluateCausalRoots,
   refreshCanonicalLearnerState,
-  sampleCausalHistoryPath,
 } from "./CausalDelayFeedbackCausalHistory.js";
+import { sampleTimedPath } from "./CausalDelayFeedbackTimedPath.js";
 import {
   createCausalDelayFeedbackModeController,
 } from "./CausalDelayFeedbackModeController.js";
+import {
+  DEFAULT_CAUSAL_DELAY_FEEDBACK_MODE,
+  normalizeCausalDelayFeedbackMode,
+} from "./CausalDelayFeedbackModes.js";
 import {
   createStoryScene,
 } from "./CausalDelayFeedbackStoryMode.js";
@@ -58,6 +64,8 @@ import {
 const REPLAY_LOOP_SECONDS = 9;
 const STORY_STAGE_PLAYBACK_SECONDS = 3.2;
 const TIME_EPSILON = 1e-6;
+const WHEEL_HIT_CACHE_MILLISECONDS = 160;
+const WHEEL_HIT_CACHE_RADIUS = 3;
 const INITIAL_VELOCITY_ARROW_SCALE = 0.04;
 const INITIAL_VELOCITY_PREVIEW_RESPONSE = 0.42;
 const RETAINED_PATH_SPLINE_TANGENT_SCALE = 0.72;
@@ -68,10 +76,9 @@ const RETAINED_DEPTH_LIMIT_OPTIONS = Object.freeze([2, 4, 8, 16, 32, 64]);
 const FIELD_SPEED_CONTROL_MIN = 0.25;
 const FIELD_SPEED_CONTROL_MAX = 1.75;
 const DEFAULT_FIELD_SPEED_CONTROL_SCALE = 1;
-const FIELD_SPEED_BASE_MULTIPLIER = 0.98;
-const FIELD_SPEED_MIN = FIELD_SPEED_CONTROL_MIN * FIELD_SPEED_BASE_MULTIPLIER;
-const FIELD_SPEED_MAX = FIELD_SPEED_CONTROL_MAX * FIELD_SPEED_BASE_MULTIPLIER;
-const DEFAULT_FIELD_SPEED_SCALE = DEFAULT_FIELD_SPEED_CONTROL_SCALE * FIELD_SPEED_BASE_MULTIPLIER;
+const FIELD_SPEED_MIN = FIELD_SPEED_CONTROL_MIN;
+const FIELD_SPEED_MAX = FIELD_SPEED_CONTROL_MAX;
+const DEFAULT_FIELD_SPEED_SCALE = DEFAULT_FIELD_SPEED_CONTROL_SCALE;
 const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 const ARCHITRINO_SPEED_FRACTIONS = Object.freeze([0.1, 0.3, 0.5, 0.7, 0.9, 0.99, 0.999, 0.9999, 0.99999, 0.999999]);
 const DEFAULT_ARCHITRINO_SPEED_INDEX = 3;
@@ -96,14 +103,6 @@ const LEGEND_TEXT_ON_DARK_CANVAS = "rgba(246, 247, 255, 0.9)";
 const LEGEND_TEXT_ON_LIGHT_CANVAS = "rgba(14, 9, 24, 0.88)";
 const LEGEND_BORDER_ON_DARK_CANVAS = "rgba(224, 207, 255, 0.34)";
 const LEGEND_BORDER_ON_LIGHT_CANVAS = "rgba(14, 9, 24, 0.24)";
-const BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS = "boundary_seeded_constraint_path";
-const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
-const PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS = "physical_boundary_solver_pending";
-const PHYSICAL_BOUNDARY_SOLVER_CONVERGED_STATUS = "physical_boundary_value_converged";
-const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 64;
-const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 10;
-const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 256;
-const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 1;
 const WEAK_CONTRIBUTION_CUE_VISUAL_THRESHOLD_MULTIPLIER = 8;
 const WEAK_CONTRIBUTION_CUE_MIN_ALPHA_SCALE = 0.36;
 const WEAK_CONTRIBUTION_CUE_MIN_RADIUS_SCALE = 0.56;
@@ -116,10 +115,6 @@ const DEFAULT_WAKE_VISUAL_SETTINGS = Object.freeze({
   arcWakesEnabled: true,
   fullCircularWakesEnabled: false,
 });
-const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
-  "retained_point_drag_preview",
-  "path_line_drag_preview",
-]);
 const SPACE_KEYS = new Set([" ", "Space", "Spacebar"]);
 const REPLAY_STEP_KEYS = Object.freeze({
   ArrowLeft: -1,
@@ -233,6 +228,14 @@ class CausalDelayFeedbackRuntime {
     this.document = options.document ?? globalThis.document;
     this.window = options.window ?? globalThis.window;
     this.animationFrame = null;
+    this.destroyed = false;
+    this.eventListeners = [];
+    this.datasetRevision = 0;
+    this.visibleWakeSeriesCache = null;
+    this.replayTimeRangeCache = null;
+    this.replayFrameTimesCache = null;
+    this.pathArcLengthCache = new Map();
+    this.wheelHitCache = null;
     this.lastFrameTime = 0;
     this.elapsedSeconds = 0;
     this.reducedMotionEnabled = this.normalizeBooleanSetting(
@@ -258,18 +261,6 @@ class CausalDelayFeedbackRuntime {
     this.fallbackReplayAdapter = options.fallbackReplayAdapter ?? createTemporaryMockReplayAdapter();
     this.replayAdapter = options.replayAdapter ?? this.fallbackReplayAdapter;
     this.replayRequestOptions = options.replayRequestOptions ?? {};
-    this.explicitBoundaryRelaxationIterationCount = Object.prototype.hasOwnProperty.call(
-      this.replayRequestOptions,
-      "pathConstraintBoundaryRelaxationIterationCount",
-    );
-    this.explicitBoundaryRelaxationTolerance = Object.prototype.hasOwnProperty.call(
-      this.replayRequestOptions,
-      "pathConstraintBoundaryRelaxationTolerance",
-    );
-    this.explicitBoundaryRelaxationStepTolerance = Object.prototype.hasOwnProperty.call(
-      this.replayRequestOptions,
-      "pathConstraintBoundaryRelaxationStepTolerance",
-    );
     this.autoLoadReplay = options.autoLoadReplay !== false;
     this.replayLoadSequence = 0;
     this.replayLoadState = "idle";
@@ -279,7 +270,10 @@ class CausalDelayFeedbackRuntime {
     this.resetArchitrinoVelocityReference();
     this.learnerState = createCanonicalLearnerState(this.dataset, {
       receiverTime: 0.62,
-      mode: options.initialMode ?? getInitialQueryValue(this.window, "mode") ?? "sandbox",
+      mode: normalizeCausalDelayFeedbackMode(
+        options.initialMode,
+        DEFAULT_CAUSAL_DELAY_FEEDBACK_MODE,
+      ),
       signalSpeed: NORMALIZED_FIELD_SPEED,
       distanceScale: 1 / this.getLiveWakeSignalSpeed(),
       loadState: this.replayLoadState,
@@ -441,75 +435,76 @@ class CausalDelayFeedbackRuntime {
 
   bindEvents() {
     this.boundResize = () => this.resize();
-    this.window.addEventListener("resize", this.boundResize);
+    this.listen(this.window, "resize", this.boundResize);
     this.boundKeyDown = (event) => this.handleKeyDown(event);
-    this.document.addEventListener("keydown", this.boundKeyDown);
+    this.listen(this.document, "keydown", this.boundKeyDown);
 
-    this.dom.playButton.addEventListener("click", () => {
+    this.listen(this.dom.playButton, "click", () => {
       this.setPlaying(!this.isPlaying);
     });
-    this.dom.resetButton.addEventListener("click", () => {
+    this.listen(this.dom.resetButton, "click", () => {
       this.resetReplayTime();
     });
-    this.dom.resetPresetButton.addEventListener("click", () => {
+    this.listen(this.dom.resetPresetButton, "click", () => {
       void this.resetPreset();
     });
-    this.dom.settingsButton.addEventListener("click", () => {
+    this.listen(this.dom.settingsButton, "click", () => {
       this.toggleSettings();
     });
-    this.dom.visualSwitches.addEventListener("click", (event) => {
+    this.listen(this.dom.visualSwitches, "click", (event) => {
       const button = event.target.closest("[data-visual-switch]");
       if (!button) {
         return;
       }
       this.toggleWakeVisualSwitch(button.dataset.visualSwitch);
     });
-    this.dom.colorSwatches.addEventListener("click", (event) => {
+    this.listen(this.dom.colorSwatches, "click", (event) => {
       const button = event.target.closest("[data-color-id]");
       if (!button) {
         return;
       }
       this.setCanvasColor(button.dataset.colorId);
     });
-    this.dom.nowInput.addEventListener("input", () => {
+    this.listen(this.dom.nowInput, "input", () => {
       this.setReplayNowSliderValue(this.dom.nowInput.value);
     });
-    this.dom.cfSpeedInput.addEventListener("input", () => {
+    this.listen(this.dom.cfSpeedInput, "input", () => {
       this.setFieldSpeedControlScale(this.dom.cfSpeedInput.value);
     });
-    this.dom.architrinoSpeedInput.addEventListener("input", () => {
+    this.listen(this.dom.architrinoSpeedInput, "input", () => {
       this.setArchitrinoSpeedIndex(this.dom.architrinoSpeedInput.value);
     });
-    this.dom.architrinoSpeedInput.addEventListener("change", () => {
+    this.listen(this.dom.architrinoSpeedInput, "change", () => {
       void this.submitArchitrinoSpeedFraction();
     });
-    this.dom.settingsPanel.addEventListener("click", (event) => {
+    this.listen(this.dom.settingsPanel, "click", (event) => {
       const button = event.target.closest("[data-architrino-speed-step]");
       if (!button) {
         return;
       }
       void this.stepArchitrinoSpeedIndex(Number(button.dataset.architrinoSpeedStep));
     });
-    this.dom.canvas.addEventListener("pointermove", (event) => {
+    this.listen(this.dom.canvas, "pointermove", (event) => {
       this.handleCanvasPointerMove(event);
     });
-    this.dom.canvas.addEventListener("pointerdown", (event) => {
+    this.listen(this.dom.canvas, "pointerdown", (event) => {
       this.handleCanvasPointerDown(event);
     });
-    this.dom.canvas.addEventListener(
+    this.listen(
+      this.dom.canvas,
       "wheel",
       (event) => {
         this.handleCanvasWheel(event);
       },
       { passive: false },
     );
-    this.window.addEventListener("pointerup", (event) => {
+    this.listen(this.window, "pointerup", (event) => {
       void this.finishDrag(event);
     });
-    this.window.addEventListener("pointercancel", (event) => {
+    this.listen(this.window, "pointercancel", (event) => {
       void this.finishDrag(event);
     });
-    this.document.addEventListener("pointerdown", (event) => {
+    this.listen(this.document, "pointerdown", (event) => {
       if (
         this.dom.settingsPanel.hidden ||
         this.dom.settingsPanel.contains(event.target) ||
@@ -519,6 +514,11 @@ class CausalDelayFeedbackRuntime {
       }
       this.hideSettings();
     });
+  }
+
+  listen(target, type, handler, options) {
+    target.addEventListener(type, handler, options);
+    this.eventListeners.push({ target, type, handler, options });
   }
 
   setPreset(presetId) {
@@ -554,19 +554,20 @@ class CausalDelayFeedbackRuntime {
   async loadReplay({
     presetId = this.presetId,
     requestOptions = this.replayRequestOptions,
-    preserveDraftOnFailure = false,
   } = {}) {
+    const selectedPresetId = getPresetById(presetId).id;
     const sequence = ++this.replayLoadSequence;
     const adapter = this.replayAdapter;
     this.replayLoadState = "loading";
     this.replayLoadError = null;
     this.updateReplayStatus();
 
-    if (this.shouldUseRepresentativeReplayOnly(presetId)) {
-      const dataset = this.createFallbackReplay(presetId);
+    if (this.shouldUseRepresentativeReplayOnly(selectedPresetId)) {
+      const dataset = this.createFallbackReplay(selectedPresetId);
       if (sequence !== this.replayLoadSequence) {
         return this.dataset;
       }
+      this.presetId = selectedPresetId;
       this.applyReplayDataset(dataset, { loadState: "ready" });
       this.elapsedSeconds = 0;
       this.selectedItem = null;
@@ -576,34 +577,11 @@ class CausalDelayFeedbackRuntime {
     }
 
     try {
-      let dataset = await this.createReplayDataset(adapter, presetId, requestOptions);
+      const dataset = await this.createReplayDataset(adapter, selectedPresetId, requestOptions);
       if (sequence !== this.replayLoadSequence) {
         return this.dataset;
       }
-      const firstDataset = dataset;
-      const adaptiveRequestOptions = this.createAdaptivePathConstraintBoundaryRequestOptions(firstDataset, requestOptions);
-      if (adaptiveRequestOptions) {
-        try {
-          const retryDataset = await this.createReplayDataset(adapter, presetId, adaptiveRequestOptions);
-          if (this.isAdaptivePathConstraintBoundaryRetryBetter(firstDataset, retryDataset)) {
-            dataset = retryDataset;
-            this.annotateAdaptivePathConstraintBoundaryRetry(dataset, firstDataset, requestOptions, adaptiveRequestOptions);
-          } else {
-            this.annotateRejectedAdaptivePathConstraintBoundaryRetry(
-              dataset,
-              retryDataset,
-              requestOptions,
-              adaptiveRequestOptions,
-            );
-          }
-        } catch {
-          // Keep the first solver dataset if the stronger retry fails.
-        }
-        if (sequence !== this.replayLoadSequence) {
-          return this.dataset;
-        }
-      }
-      this.preserveReleasedDraftPathGeometry(dataset, requestOptions?.replayDataset);
+      this.presetId = selectedPresetId;
       this.applyReplayDataset(dataset, { loadState: "ready" });
       this.elapsedSeconds = 0;
       this.selectedItem = null;
@@ -615,12 +593,8 @@ class CausalDelayFeedbackRuntime {
         return this.dataset;
       }
       this.replayLoadError = error;
-      if (preserveDraftOnFailure && this.dataset?.datasetSource === DIRECT_MANIPULATION_DRAFT_PREVIEW) {
-        this.markDraftSolverRejection(error);
-        this.refreshAfterReplayDatasetChange();
-        return this.dataset;
-      }
-      this.applyReplayDataset(this.createFallbackReplay(presetId), { loadState: "fallback" });
+      this.presetId = selectedPresetId;
+      this.applyReplayDataset(this.createFallbackReplay(selectedPresetId), { loadState: "fallback" });
       this.elapsedSeconds = 0;
       this.selectedItem = null;
       this.dragState = null;
@@ -637,6 +611,7 @@ class CausalDelayFeedbackRuntime {
 
   applyReplayDataset(dataset, { loadState = this.replayLoadState } = {}) {
     this.dataset = dataset;
+    this.invalidateComputedCaches();
     this.replayLoadState = loadState;
     this.retainedDepthLimit = this.normalizeRetainedDepthLimit(this.retainedDepthLimit);
     this.applyDatasetCanvasColor(dataset);
@@ -648,6 +623,15 @@ class CausalDelayFeedbackRuntime {
     });
     this.updateSpeedControls();
     this.updateReplayStatus();
+  }
+
+  invalidateComputedCaches() {
+    this.datasetRevision += 1;
+    this.visibleWakeSeriesCache = null;
+    this.replayTimeRangeCache = null;
+    this.replayFrameTimesCache = null;
+    this.pathArcLengthCache.clear();
+    this.wheelHitCache = null;
   }
 
   syncReplayRequestOptionsFromDataset() {
@@ -662,274 +646,7 @@ class CausalDelayFeedbackRuntime {
       fieldSpeedScale: this.fieldSpeedScale,
       architrinoSpeedFraction: this.getArchitrinoSpeedFraction(),
     };
-    this.applyPathConstraintBoundaryDefaults(requestOptions);
     this.replayRequestOptions = requestOptions;
-  }
-
-  applyPathConstraintBoundaryDefaults(requestOptions) {
-    const usesPathConstraints = this.usesPathConstraintDraft(this.dataset?.draftPreview);
-    if (!this.explicitBoundaryRelaxationIterationCount) {
-      if (usesPathConstraints) {
-        requestOptions.pathConstraintBoundaryRelaxationIterationCount =
-          DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT;
-      } else {
-        delete requestOptions.pathConstraintBoundaryRelaxationIterationCount;
-      }
-    }
-    if (!this.explicitBoundaryRelaxationTolerance) {
-      if (usesPathConstraints) {
-        requestOptions.pathConstraintBoundaryRelaxationTolerance =
-          DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE;
-      } else {
-        delete requestOptions.pathConstraintBoundaryRelaxationTolerance;
-      }
-    }
-  }
-
-  usesPathConstraintDraft(draftPreview) {
-    return PATH_CONSTRAINT_DRAFT_REASONS.has(String(draftPreview?.reason ?? ""));
-  }
-
-  preserveReleasedDraftPathGeometry(dataset, draftDataset) {
-    if (!dataset || !draftDataset || !this.usesPathConstraintDraft(draftDataset?.draftPreview)) {
-      return;
-    }
-    if (!dataset.paths || !draftDataset.paths) {
-      return;
-    }
-    dataset.solverAcceptedPaths = cloneJson(dataset.paths);
-    dataset.history = dataset.history ?? {};
-    ARCHITRINO_KINDS.forEach((kind) => {
-      const draftPath = draftDataset.paths?.[kind];
-      if (Array.isArray(draftPath) && draftPath.length >= 2) {
-        dataset.paths[kind] = draftPath.map((point) => ({ ...point }));
-      }
-      const draftHistory = draftDataset.history?.[kind];
-      if (Array.isArray(draftHistory) && draftHistory.length > 0) {
-        dataset.history[kind] = draftHistory.map((point) => ({ ...point }));
-      }
-    });
-    this.syncDatasetFramesToPaths(dataset);
-  }
-
-  syncDatasetFramesToPaths(dataset) {
-    if (!Array.isArray(dataset?.frames) || !dataset?.paths) {
-      return;
-    }
-    dataset.frames.forEach((frame) => {
-      const frameTime = Number(frame?.t);
-      ARCHITRINO_KINDS.forEach((kind) => {
-        const path = dataset.paths?.[kind];
-        if (!Array.isArray(path) || path.length === 0) {
-          return;
-        }
-        const sampleT = Number.isFinite(frameTime) ? frameTime : Number(frame?.[kind]?.t);
-        const point = this.samplePathPoint(path, sampleT);
-        frame[kind] = point;
-      });
-    });
-  }
-
-  createAdaptivePathConstraintBoundaryRequestOptions(dataset, requestOptions) {
-    if (!this.usesPathConstraintDraft(requestOptions?.replayDataset?.draftPreview)) {
-      return null;
-    }
-    if (this.hasExplicitBoundaryRelaxationSettings(requestOptions)) {
-      return null;
-    }
-    const requestedIterationCount = Number(requestOptions?.pathConstraintBoundaryRelaxationIterationCount);
-    if (
-      Number.isFinite(requestedIterationCount) &&
-      requestedIterationCount >= ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT
-    ) {
-      return null;
-    }
-    if (!this.needsAdaptivePathConstraintBoundaryRetry(dataset)) {
-      return null;
-    }
-    return {
-      ...requestOptions,
-      pathConstraintBoundaryRelaxationIterationCount:
-        ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT,
-      pathConstraintBoundaryRelaxationTolerance:
-        ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE,
-    };
-  }
-
-  hasExplicitBoundaryRelaxationSettings(requestOptions = this.replayRequestOptions) {
-    const hasIterationOverride =
-      Object.prototype.hasOwnProperty.call(requestOptions ?? {}, "pathConstraintBoundaryRelaxationIterationCount") &&
-      requestOptions?.pathConstraintBoundaryRelaxationIterationCount !==
-        DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT;
-    const hasToleranceOverride =
-      Object.prototype.hasOwnProperty.call(requestOptions ?? {}, "pathConstraintBoundaryRelaxationTolerance") &&
-      requestOptions?.pathConstraintBoundaryRelaxationTolerance !==
-        DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE;
-    const hasStepToleranceOverride =
-      Object.prototype.hasOwnProperty.call(requestOptions ?? {}, "pathConstraintBoundaryRelaxationStepTolerance");
-    return (
-      this.explicitBoundaryRelaxationIterationCount ||
-      this.explicitBoundaryRelaxationTolerance ||
-      this.explicitBoundaryRelaxationStepTolerance ||
-      hasIterationOverride ||
-      hasToleranceOverride ||
-      hasStepToleranceOverride
-    );
-  }
-
-  needsAdaptivePathConstraintBoundaryRetry(dataset) {
-    const solverStatus = this.getDatasetPathConstraintSolverStatus(dataset);
-    if (solverStatus !== DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS) {
-      return true;
-    }
-    const residualAfter = this.getDatasetBoundaryRelaxationResidualAfter(dataset);
-    return (
-      !Number.isFinite(residualAfter) ||
-      residualAfter > ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE
-    );
-  }
-
-  isAdaptivePathConstraintBoundaryRetryBetter(firstDataset, retryDataset) {
-    if (!retryDataset || typeof retryDataset !== "object") {
-      return false;
-    }
-    const firstRank = this.getDatasetPathConstraintBoundaryRank(firstDataset);
-    const retryRank = this.getDatasetPathConstraintBoundaryRank(retryDataset);
-    if (retryRank > firstRank) {
-      return true;
-    }
-    if (retryRank < firstRank) {
-      return false;
-    }
-
-    const firstResidualAfter = this.getDatasetBoundaryRelaxationResidualAfter(firstDataset);
-    const retryResidualAfter = this.getDatasetBoundaryRelaxationResidualAfter(retryDataset);
-    if (Number.isFinite(retryResidualAfter) && !Number.isFinite(firstResidualAfter)) {
-      return true;
-    }
-    if (!Number.isFinite(retryResidualAfter) && Number.isFinite(firstResidualAfter)) {
-      return false;
-    }
-    if (Number.isFinite(firstResidualAfter) && Number.isFinite(retryResidualAfter)) {
-      if (retryResidualAfter < firstResidualAfter) {
-        return true;
-      }
-      if (retryResidualAfter > firstResidualAfter) {
-        return false;
-      }
-    }
-
-    const firstResidualRatio = this.getDatasetBoundaryRelaxationResidualRatio(firstDataset);
-    const retryResidualRatio = this.getDatasetBoundaryRelaxationResidualRatio(retryDataset);
-    if (Number.isFinite(retryResidualRatio) && !Number.isFinite(firstResidualRatio)) {
-      return true;
-    }
-    if (!Number.isFinite(retryResidualRatio) && Number.isFinite(firstResidualRatio)) {
-      return false;
-    }
-    return Number.isFinite(firstResidualRatio) && Number.isFinite(retryResidualRatio)
-      ? retryResidualRatio < firstResidualRatio
-      : false;
-  }
-
-  getDatasetPathConstraintBoundaryRank(dataset) {
-    const solverStatus = this.getDatasetPathConstraintSolverStatus(dataset);
-    if (solverStatus === DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS) {
-      return 2;
-    }
-    return solverStatus ? 1 : 0;
-  }
-
-  getDatasetPathConstraintSolverStatus(dataset) {
-    return dataset?.pathConstraintSolverStatus ?? dataset?.solverSummary?.pathConstraintSolverStatus;
-  }
-
-  getDatasetBoundaryRelaxationResidualAfter(dataset) {
-    return Number(
-      dataset?.maxPathConstraintBoundaryRelaxationResidualAfter ??
-        dataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualAfter,
-    );
-  }
-
-  getDatasetBoundaryRelaxationResidualRatio(dataset) {
-    return Number(
-      dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
-        dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio,
-    );
-  }
-
-  annotateAdaptivePathConstraintBoundaryRetry(dataset, firstDataset, firstRequestOptions, retryRequestOptions) {
-    if (!dataset || typeof dataset !== "object") {
-      return;
-    }
-    const metadata = {
-      pathConstraintBoundaryRelaxationAdaptiveRetry: true,
-      pathConstraintBoundaryRelaxationRetryCount: 1,
-      pathConstraintBoundaryRelaxationInitialIterationCount: Number(
-        firstRequestOptions?.pathConstraintBoundaryRelaxationIterationCount,
-      ),
-      pathConstraintBoundaryRelaxationInitialTolerance: Number(
-        firstRequestOptions?.pathConstraintBoundaryRelaxationTolerance,
-      ),
-      maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt: Number(
-        firstDataset?.maxPathConstraintBoundaryRelaxationResidualAfter ??
-          firstDataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualAfter,
-      ),
-      pathConstraintBoundaryRelaxationResidualRatioInitialAttempt: Number(
-        firstDataset?.pathConstraintBoundaryRelaxationResidualRatio ??
-          firstDataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio,
-      ),
-      pathConstraintBoundaryRelaxationRetryIterationCount: Number(
-        retryRequestOptions?.pathConstraintBoundaryRelaxationIterationCount,
-      ),
-      pathConstraintBoundaryRelaxationRetryTolerance: Number(
-        retryRequestOptions?.pathConstraintBoundaryRelaxationTolerance,
-      ),
-    };
-    Object.assign(dataset, metadata);
-    if (dataset.solverSummary && typeof dataset.solverSummary === "object") {
-      Object.assign(dataset.solverSummary, metadata);
-    }
-  }
-
-  annotateRejectedAdaptivePathConstraintBoundaryRetry(
-    dataset,
-    rejectedDataset,
-    firstRequestOptions,
-    retryRequestOptions,
-  ) {
-    if (!dataset || typeof dataset !== "object") {
-      return;
-    }
-    const metadata = {
-      pathConstraintBoundaryRelaxationAdaptiveRetryRejected: true,
-      pathConstraintBoundaryRelaxationRetryCount: 1,
-      pathConstraintBoundaryRelaxationInitialIterationCount: Number(
-        firstRequestOptions?.pathConstraintBoundaryRelaxationIterationCount,
-      ),
-      pathConstraintBoundaryRelaxationInitialTolerance: Number(
-        firstRequestOptions?.pathConstraintBoundaryRelaxationTolerance,
-      ),
-      maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt:
-        this.getDatasetBoundaryRelaxationResidualAfter(dataset),
-      pathConstraintBoundaryRelaxationResidualRatioInitialAttempt:
-        this.getDatasetBoundaryRelaxationResidualRatio(dataset),
-      pathConstraintBoundaryRelaxationRejectedRetryIterationCount: Number(
-        retryRequestOptions?.pathConstraintBoundaryRelaxationIterationCount,
-      ),
-      pathConstraintBoundaryRelaxationRejectedRetryTolerance: Number(
-        retryRequestOptions?.pathConstraintBoundaryRelaxationTolerance,
-      ),
-      maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry:
-        this.getDatasetBoundaryRelaxationResidualAfter(rejectedDataset),
-      pathConstraintBoundaryRelaxationResidualRatioRejectedRetry:
-        this.getDatasetBoundaryRelaxationResidualRatio(rejectedDataset),
-      pathConstraintSolverStatusRejectedRetry: this.getDatasetPathConstraintSolverStatus(rejectedDataset),
-    };
-    Object.assign(dataset, metadata);
-    if (dataset.solverSummary && typeof dataset.solverSummary === "object") {
-      Object.assign(dataset.solverSummary, metadata);
-    }
   }
 
   refreshAfterReplayDatasetChange() {
@@ -1019,16 +736,6 @@ class CausalDelayFeedbackRuntime {
           : "Showing representative replay data because solver bridge replay is unavailable.",
       };
     }
-    if (this.replayLoadState === "draft-rejected") {
-      const errorMessage = this.getDraftSolverRejectionMessage();
-      return {
-        state: "draft-rejected",
-        label: "solver rejected edit",
-        help: errorMessage
-          ? `Showing the edited draft because the solver bridge could not recompute it: ${errorMessage}`
-          : "Showing the edited draft because the solver bridge could not recompute it.",
-      };
-    }
     if (
       this.replayLoadState === "draft" ||
       this.dataset?.datasetSource === DIRECT_MANIPULATION_DRAFT_PREVIEW
@@ -1036,26 +743,14 @@ class CausalDelayFeedbackRuntime {
       return {
         state: "draft",
         label: "draft preview",
-        help: "Showing an edited canvas preview that has not been recomputed by the solver.",
+        help: "Showing a local teaching preview. The recorded replay remains unchanged.",
       };
     }
     if (this.dataset?.datasetSource === EOM_REPLAY_DATASET_SOURCE) {
-      const provenance = this.dataset?.eomProvenance ?? {};
-      const engineId = provenance.engineId ?? this.dataset?.engineId ?? "eom-solver";
-      const runId = provenance.runId ?? this.dataset?.runId ?? "";
-      const claimGrade = provenance.claimGrade ?? this.dataset?.claimGrade ?? "";
-      const evidenceStatus = provenance.evidenceStatus ?? this.dataset?.evidenceStatus;
-      const roles = this.dataset?.eomWorldlineRoles;
-      const roleDetail = roles?.positrino != null && roles?.electrino != null
-        ? ` worldlines=${roles.positrino}/${roles.electrino}`
-        : "";
       return {
         state: "eom-replay",
         label: "EOM recorded replay",
-        help:
-          `Showing a recorded EOM dataset. engine=${engineId} run=${runId} claim=${claimGrade}` +
-          `${evidenceStatus ? ` evidence=${evidenceStatus}` : ""}${roleDetail}. ` +
-          "This viewer draws recorded data only; it computes no physics.",
+        help: "Showing recorded EOM paths. This viewer does not recompute the record or infer delayed hits.",
       };
     }
     if (this.dataset?.solverIntegrationPath && this.dataset.solverIntegrationPath !== TEMPORARY_MOCK_ADAPTER) {
@@ -1137,7 +832,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   submitArchitrinoSpeedFraction() {
-    return this.rerunAfterDirectManipulationDrag();
+    return this.dataset;
   }
 
   setRetainedDepthLimit(depthLimit) {
@@ -1309,15 +1004,11 @@ class CausalDelayFeedbackRuntime {
   }
 
   getFieldSpeedScaleForControlScale(controlScale) {
-    return this.normalizeFieldSpeedControlScale(controlScale) * FIELD_SPEED_BASE_MULTIPLIER;
+    return this.normalizeFieldSpeedControlScale(controlScale);
   }
 
   getFieldSpeedControlScale(speedScale = this.fieldSpeedScale) {
-    return clamp(
-      this.normalizeFieldSpeedScale(speedScale) / FIELD_SPEED_BASE_MULTIPLIER,
-      FIELD_SPEED_CONTROL_MIN,
-      FIELD_SPEED_CONTROL_MAX,
-    );
+    return this.normalizeFieldSpeedScale(speedScale);
   }
 
   normalizeArchitrinoSpeedIndex(speedIndex) {
@@ -1365,9 +1056,25 @@ class CausalDelayFeedbackRuntime {
   }
 
   getVisibleWakeSeries(replayTime = this.getCurrentReplayTime()) {
-    return ARCHITRINO_KINDS
+    if (this.dataset?.causalEvaluation?.enabled === false) {
+      return [];
+    }
+    const time = Number(replayTime);
+    if (
+      this.visibleWakeSeriesCache?.datasetRevision === this.datasetRevision &&
+      Math.abs(this.visibleWakeSeriesCache.replayTime - time) <= TIME_EPSILON
+    ) {
+      return this.visibleWakeSeriesCache.series;
+    }
+    const series = ARCHITRINO_KINDS
       .map((sourceKind) => this.createLiveWakeSeries(sourceKind, replayTime))
       .filter(Boolean);
+    this.visibleWakeSeriesCache = {
+      datasetRevision: this.datasetRevision,
+      replayTime: time,
+      series,
+    };
+    return series;
   }
 
   createLiveWakeSeries(sourceKind, replayTime = this.getCurrentReplayTime()) {
@@ -1493,12 +1200,18 @@ class CausalDelayFeedbackRuntime {
       this.learnerState?.mode === "story"
     ) {
       this.storyStageElapsedSeconds = 0;
+      this.storyPlaybackScene = createStoryScene(this.learnerState);
+    } else if (!this.isPlaying) {
+      this.storyPlaybackScene = null;
     }
     if (this.learnerState) {
       this.learnerState.playback.playing = this.isPlaying;
     }
     this.updatePlayButton();
     this.modeController?.render();
+    if (this.isPlaying) {
+      this.scheduleAnimationFrame();
+    }
   }
 
   updatePlayButton() {
@@ -1652,14 +1365,21 @@ class CausalDelayFeedbackRuntime {
   }
 
   getReplayFrameStepTimes() {
+    if (this.replayFrameTimesCache) {
+      return this.replayFrameTimesCache;
+    }
     const frameTimes = (this.dataset?.frames ?? [])
       .map((frame) => Number(frame.t))
       .filter(Number.isFinite);
     if (frameTimes.length === 0) {
-      return [];
+      this.replayFrameTimesCache = [];
+      return this.replayFrameTimesCache;
     }
     frameTimes.sort((left, right) => left - right);
-    return frameTimes.filter((time, index, rows) => index === 0 || Math.abs(time - rows[index - 1]) > TIME_EPSILON);
+    this.replayFrameTimesCache = frameTimes.filter(
+      (time, index, rows) => index === 0 || Math.abs(time - rows[index - 1]) > TIME_EPSILON,
+    );
+    return this.replayFrameTimesCache;
   }
 
   resize() {
@@ -1678,16 +1398,32 @@ class CausalDelayFeedbackRuntime {
   }
 
   start() {
+    this.destroyed = false;
     this.lastFrameTime = this.window.performance.now();
+    this.scheduleAnimationFrame();
+  }
+
+  scheduleAnimationFrame() {
+    if (
+      this.destroyed ||
+      this.animationFrame !== null ||
+      typeof this.window?.requestAnimationFrame !== "function"
+    ) {
+      return;
+    }
     this.animationFrame = this.window.requestAnimationFrame((time) => this.tick(time));
   }
 
   tick(time) {
+    this.animationFrame = null;
+    if (this.destroyed) {
+      return;
+    }
     const deltaSeconds = Math.min(0.06, Math.max(0, (time - this.lastFrameTime) / 1000));
     this.lastFrameTime = time;
     if (this.isPlaying) {
       if (this.learnerState?.mode === "story") {
-        const scene = createStoryScene(this.learnerState);
+        const scene = this.storyPlaybackScene ?? createStoryScene(this.learnerState);
         this.storyStageElapsedSeconds =
           (this.storyStageElapsedSeconds ?? 0) + deltaSeconds * this.fieldSpeedScale;
         const progress = clamp(
@@ -1697,38 +1433,58 @@ class CausalDelayFeedbackRuntime {
         );
         const replayTime =
           scene.startTime + (scene.endTime - scene.startTime) * progress;
+        const shouldRefreshLearnerPanel =
+          time - (this.lastLearnerPanelUpdate ?? 0) >= 120;
+        if (shouldRefreshLearnerPanel) {
+          this.lastLearnerPanelUpdate = time;
+          this.refreshLearnerState({ receiverTime: replayTime });
+        }
         this.render(replayTime);
+        if (shouldRefreshLearnerPanel) {
+          this.modeController?.renderLiveState();
+        }
         if (progress >= 1) {
           this.setPlaying(false);
         }
-        this.animationFrame = this.window.requestAnimationFrame((nextTime) => this.tick(nextTime));
+        this.scheduleAnimationFrame();
         return;
       }
-      const previousReplayTime = this.getCurrentReplayTime();
       this.elapsedSeconds += deltaSeconds * this.fieldSpeedScale;
       const replayTime = this.getCurrentReplayTime();
-      this.updateNowControl(replayTime);
-      this.render(this.getFrameReceptionReplayTime(previousReplayTime, replayTime) ?? replayTime);
-      if (
+      const shouldRefreshLearnerPanel =
         this.learnerState?.mode !== "sandbox" &&
-        time - (this.lastLearnerPanelUpdate ?? 0) >= 120
-      ) {
+        time - (this.lastLearnerPanelUpdate ?? 0) >= 120;
+      if (shouldRefreshLearnerPanel) {
         this.lastLearnerPanelUpdate = time;
+        this.refreshLearnerState({ receiverTime: replayTime });
+      }
+      this.updateNowControl(replayTime);
+      this.render(replayTime);
+      if (shouldRefreshLearnerPanel) {
         this.modeController?.renderLiveState();
       }
       if (this.dom?.readout) {
         this.updateReadout();
       }
     }
-    this.animationFrame = this.window.requestAnimationFrame((nextTime) => this.tick(nextTime));
+    if (this.isPlaying) {
+      this.scheduleAnimationFrame();
+    }
   }
 
   destroy() {
+    this.destroyed = true;
+    this.replayLoadSequence += 1;
     if (this.animationFrame !== null) {
       this.window.cancelAnimationFrame(this.animationFrame);
+      this.animationFrame = null;
     }
-    this.window.removeEventListener("resize", this.boundResize);
-    this.document.removeEventListener("keydown", this.boundKeyDown);
+    this.eventListeners.forEach(({ target, type, handler, options }) => {
+      target.removeEventListener(type, handler, options);
+    });
+    this.eventListeners = [];
+    this.dragState = null;
+    this.clearBackgroundPointers();
     this.modeController?.destroy();
   }
 
@@ -1964,7 +1720,7 @@ class CausalDelayFeedbackRuntime {
       ctx,
       "positrino",
       POSITRINO,
-      sampleCausalHistoryPath(this.learnerState.paths.positrino, replayTime),
+      sampleTimedPath(this.learnerState.paths.positrino, replayTime),
       "positrino",
       { x: 0, y: -36 },
     );
@@ -1972,7 +1728,7 @@ class CausalDelayFeedbackRuntime {
       ctx,
       "electrino",
       ELECTRINO,
-      sampleCausalHistoryPath(this.learnerState.paths.electrino, replayTime),
+      sampleTimedPath(this.learnerState.paths.electrino, replayTime),
       "electrino",
       { x: 0, y: 36 },
     );
@@ -2082,7 +1838,7 @@ class CausalDelayFeedbackRuntime {
       );
     } else {
       const reception = this.mapSelfHitPoint(
-        sampleCausalHistoryPath(scenario.path, scenario.receiverTime),
+        sampleTimedPath(scenario.path, scenario.receiverTime),
       );
       this.drawLiveMarker(
         ctx,
@@ -2752,9 +2508,6 @@ class CausalDelayFeedbackRuntime {
 
   handleCanvasPointerMove(event) {
     if (this.dragState) {
-      if (this.dragState.type === "initial-velocity") {
-        this.dragSelectedInitialVelocity(event);
-      }
       if (this.dragState.type === "history") {
         this.dragSelectedHistoryPoint(event);
       }
@@ -2769,7 +2522,6 @@ class CausalDelayFeedbackRuntime {
   }
 
   handleCanvasPointerDown(event) {
-    this.cancelPendingReplayForDirectManipulation();
     const screen = this.canvasScreenPointFromEvent(event);
     const hit = this.findNearestHit(screen, { includeWakes: true, includePaths: true });
     if (!hit) {
@@ -2782,9 +2534,6 @@ class CausalDelayFeedbackRuntime {
     this.clearBackgroundPointers();
     this.selectedItem = hit.selection;
     this.updateReadout(hit);
-    if (hit.type === "initial-velocity") {
-      this.startInitialVelocityDrag(event, hit);
-    }
     if (hit.type === "history") {
       this.startHistoryPointDrag(event, hit);
     }
@@ -2799,10 +2548,10 @@ class CausalDelayFeedbackRuntime {
       return false;
     }
     this.replayLoadSequence += 1;
-    if (this.dataset?.datasetSource === DIRECT_MANIPULATION_DRAFT_PREVIEW) {
-      this.replayLoadState = "draft";
-      this.updateReplayStatus();
-    }
+    this.replayLoadState = this.dataset?.datasetSource === DIRECT_MANIPULATION_DRAFT_PREVIEW
+      ? "draft"
+      : "ready";
+    this.updateReplayStatus();
     return true;
   }
 
@@ -2812,7 +2561,24 @@ class CausalDelayFeedbackRuntime {
     }
     const rect = this.dom.canvas.getBoundingClientRect();
     const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const hit = this.findNearestHit(screen, { includeWakes: true });
+    const eventTime = Number(event.timeStamp);
+    const cached = this.wheelHitCache;
+    const canReuseHit = cached &&
+      cached.datasetRevision === this.datasetRevision &&
+      Number.isFinite(eventTime) &&
+      eventTime >= cached.eventTime &&
+      eventTime - cached.eventTime <= WHEEL_HIT_CACHE_MILLISECONDS &&
+      Math.hypot(screen.x - cached.x, screen.y - cached.y) <= WHEEL_HIT_CACHE_RADIUS;
+    const hit = canReuseHit
+      ? cached.hit
+      : this.findNearestHit(screen, { includeWakes: true });
+    this.wheelHitCache = {
+      datasetRevision: this.datasetRevision,
+      eventTime: Number.isFinite(eventTime) ? eventTime : 0,
+      x: screen.x,
+      y: screen.y,
+      hit,
+    };
     if (hit) {
       return;
     }
@@ -2869,34 +2635,6 @@ class CausalDelayFeedbackRuntime {
       this.render();
     }
     return didZoom;
-  }
-
-  startInitialVelocityDrag(event, hit) {
-    this.clearBackgroundPointers();
-    const screen = this.canvasScreenPointFromEvent(event);
-    this.dragState = {
-      type: "initial-velocity",
-      kind: hit.selection.kind,
-      lastWorld: this.screenToWorld(screen),
-      didEdit: false,
-    };
-    this.setPlaying(false);
-    if (typeof this.dom.canvas.setPointerCapture === "function") {
-      this.dom.canvas.setPointerCapture(event.pointerId);
-    }
-    event.preventDefault();
-  }
-
-  dragSelectedInitialVelocity(event) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const world = this.screenToWorld(screen);
-    this.dragState.lastWorld = world;
-    if (this.applyInitialVelocityDrag(this.dragState.kind, world)) {
-      this.dragState.didEdit = true;
-      this.updateReadout();
-      this.render();
-    }
   }
 
   startHistoryPointDrag(event, hit) {
@@ -2965,32 +2703,8 @@ class CausalDelayFeedbackRuntime {
 
   finishDrag(event = null) {
     this.releaseCanvasPointer(event);
-    const completedDrag = this.dragState;
     this.dragState = null;
-    if (this.shouldRerunAfterCompletedDrag(completedDrag)) {
-      return this.rerunAfterDirectManipulationDrag();
-    }
     return this.dataset;
-  }
-
-  shouldRerunAfterCompletedDrag(completedDrag) {
-    if (!completedDrag?.didEdit) {
-      return false;
-    }
-    if (completedDrag.type === "initial-velocity") {
-      return true;
-    }
-    return completedDrag.type === "history" || completedDrag.type === "path-line";
-  }
-
-  rerunAfterDirectManipulationDrag() {
-    if (this.usesFallbackReplayOnly()) {
-      return this.dataset;
-    }
-    return this.loadReplay({
-      requestOptions: this.replayRequestOptions,
-      preserveDraftOnFailure: true,
-    });
   }
 
   applyRetainedPointDrag(kind, depth, delta) {
@@ -2998,6 +2712,7 @@ class CausalDelayFeedbackRuntime {
     if (!didEdit) {
       return false;
     }
+    this.cancelPendingReplayForDirectManipulation();
     this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
     this.markDraftPreview("retained_point_drag_preview");
@@ -3009,6 +2724,7 @@ class CausalDelayFeedbackRuntime {
     if (!didEdit) {
       return false;
     }
+    this.cancelPendingReplayForDirectManipulation();
     this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
     this.markDraftPreview("path_line_drag_preview", {
@@ -3039,6 +2755,7 @@ class CausalDelayFeedbackRuntime {
 
     condition.vx = nextVelocity.vx;
     condition.vy = nextVelocity.vy;
+    this.cancelPendingReplayForDirectManipulation();
     this.applyInitialVelocityPreview(kind, { ...condition, ...velocityAnchor }, previousVelocity, nextVelocity);
     this.setArchitrinoVelocityReferenceFromCondition(kind);
     this.updateWakeLinkGeometry();
@@ -3066,41 +2783,13 @@ class CausalDelayFeedbackRuntime {
     };
     this.replayLoadState = "draft";
     this.replayLoadError = null;
+    this.invalidateComputedCaches();
     this.syncReplayRequestOptionsFromDataset();
     this.updateReplayStatus();
-  }
-
-  markDraftSolverRejection(error) {
-    if (!this.dataset) {
-      return;
-    }
-    const message = this.formatSolverRejectionMessage(error);
-    this.dataset.datasetSource = DIRECT_MANIPULATION_DRAFT_PREVIEW;
-    this.dataset.draftPreview = {
-      ...(this.dataset.draftPreview ?? {}),
-      authoritative: false,
-      solverRejected: true,
-      solverRejection: {
-        message,
-        code: formatCompactLabel(error?.code ?? error?.name, "solver_error"),
-      },
-    };
-    this.replayLoadState = "draft-rejected";
-    this.syncReplayRequestOptionsFromDataset();
-    this.updateReplayStatus();
-  }
-
-  getDraftSolverRejectionMessage() {
-    return this.dataset?.draftPreview?.solverRejection?.message ?? this.formatSolverRejectionMessage(this.replayLoadError);
-  }
-
-  formatSolverRejectionMessage(error) {
-    const message = String(error?.message ?? error ?? "").trim();
-    return message.length > 0 ? message : "solver bridge rejected the edited setup";
   }
 
   markSolverWakeLinksStale(reason) {
-    this.getVisibleWakeLinks().forEach((link) => {
+    (this.dataset?.wakeLinks ?? []).forEach((link) => {
       if (!this.hasWakeSolverMetadata(link)) {
         return;
       }
@@ -3547,10 +3236,6 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
-  getSmoothHistoryPathTangent(history, index) {
-    return this.getSmoothControlPathTangent(history, index, RETAINED_PATH_SPLINE_TANGENT_SCALE);
-  }
-
   getSmoothControlPathTangent(controlPoints, index, tangentScale = RETAINED_PATH_SPLINE_TANGENT_SCALE) {
     const previous = controlPoints[Math.max(0, index - 1)];
     const next = controlPoints[Math.min(controlPoints.length - 1, index + 1)];
@@ -3654,6 +3339,12 @@ class CausalDelayFeedbackRuntime {
   }
 
   getTraversalPathPoint(kind, t) {
+    if (
+      this.dataset?.datasetSource === EOM_REPLAY_DATASET_SOURCE ||
+      this.dataset?.eomProvenance
+    ) {
+      return this.getReplayPathPoint(kind, t);
+    }
     return this.getFixedSpeedReplayPathPoint(kind, t);
   }
 
@@ -3671,15 +3362,7 @@ class CausalDelayFeedbackRuntime {
       return this.getReplayPathPoint(kind, t);
     }
     const sampleTime = clamp(Number(t) || 0, startTime, endTime);
-    const segmentLengths = [];
-    let totalLength = 0;
-    for (let index = 1; index < points.length; index += 1) {
-      const segmentLength = getDistance(points[index - 1], points[index]);
-      segmentLengths.push(segmentLength);
-      if (Number.isFinite(segmentLength) && segmentLength > 0) {
-        totalLength += segmentLength;
-      }
-    }
+    const { segmentLengths, totalLength } = this.getPathArcLengthTable(kind, points);
     if (!Number.isFinite(totalLength) || totalLength <= TIME_EPSILON) {
       return this.getReplayPathPoint(kind, t);
     }
@@ -3712,6 +3395,25 @@ class CausalDelayFeedbackRuntime {
     return { ...last, t: sampleTime };
   }
 
+  getPathArcLengthTable(kind, points = this.dataset.paths[kind] ?? []) {
+    const cached = this.pathArcLengthCache.get(kind);
+    if (cached?.datasetRevision === this.datasetRevision) {
+      return cached;
+    }
+    const segmentLengths = [];
+    let totalLength = 0;
+    for (let index = 1; index < points.length; index += 1) {
+      const segmentLength = getDistance(points[index - 1], points[index]);
+      segmentLengths.push(segmentLength);
+      if (Number.isFinite(segmentLength) && segmentLength > 0) {
+        totalLength += segmentLength;
+      }
+    }
+    const table = { datasetRevision: this.datasetRevision, segmentLengths, totalLength };
+    this.pathArcLengthCache.set(kind, table);
+    return table;
+  }
+
   getCurrentReplayTime() {
     return this.getReplayTimeForElapsedSeconds(this.elapsedSeconds);
   }
@@ -3722,39 +3424,21 @@ class CausalDelayFeedbackRuntime {
     return start + (end - start) * phase;
   }
 
-  getFrameReceptionReplayTime(previousReplayTime, replayTime) {
-    void previousReplayTime;
-    void replayTime;
-    return null;
-  }
-
-  getReplayTimeAdvanceToCrossedPoint(previousReplayTime, replayTime, crossedReplayTime, start, end) {
-    if (previousReplayTime <= replayTime) {
-      if (crossedReplayTime > previousReplayTime + TIME_EPSILON && crossedReplayTime <= replayTime + TIME_EPSILON) {
-        return crossedReplayTime - previousReplayTime;
-      }
-      return Number.NaN;
-    }
-
-    if (crossedReplayTime > previousReplayTime + TIME_EPSILON && crossedReplayTime <= end + TIME_EPSILON) {
-      return crossedReplayTime - previousReplayTime;
-    }
-    if (crossedReplayTime >= start - TIME_EPSILON && crossedReplayTime <= replayTime + TIME_EPSILON) {
-      return end - previousReplayTime + crossedReplayTime - start;
-    }
-    return Number.NaN;
-  }
-
   getReplayTimeRange() {
+    if (this.replayTimeRangeCache) {
+      return this.replayTimeRangeCache;
+    }
     const points = [
       ...(this.dataset.paths.positrino ?? []),
       ...(this.dataset.paths.electrino ?? []),
     ].filter((point) => Number.isFinite(Number(point.t)));
     if (points.length === 0) {
-      return [0, 1];
+      this.replayTimeRangeCache = [0, 1];
+      return this.replayTimeRangeCache;
     }
     const times = points.map((point) => point.t);
-    return [Math.min(...times), Math.max(...times)];
+    this.replayTimeRangeCache = [Math.min(...times), Math.max(...times)];
+    return this.replayTimeRangeCache;
   }
 
   findHistoryPointAtTime(kind, t) {
@@ -4296,13 +3980,12 @@ class CausalDelayFeedbackRuntime {
   }
 
   createDraftSolverRejectionReadoutDetails() {
-    if (this.replayLoadState !== "draft-rejected" && !this.dataset?.draftPreview?.solverRejected) {
+    if (this.dataset?.datasetSource !== DIRECT_MANIPULATION_DRAFT_PREVIEW) {
       return [];
     }
-    const rejection = this.dataset?.draftPreview?.solverRejection;
     return [
-      "edit=not_solved",
-      `reason=${formatCompactLabel(rejection?.message ?? this.replayLoadError?.message, "solver_rejected_edit")}`,
+      "preview=local_teaching_only",
+      "recorded_replay=unchanged",
     ];
   }
 
@@ -4634,14 +4317,6 @@ class CausalDelayFeedbackRuntime {
       return "pending";
     }
     return "received";
-  }
-
-  getWakeFalloff(link) {
-    const endpoints = this.getWakeEndpoints(link);
-    const distance = endpoints
-      ? getDistance(endpoints.source, endpoints.receiver)
-      : Number(link.distance);
-    return distance > 0 ? 1 / distance : 0;
   }
 
   getWakeContributionFalloff(link) {

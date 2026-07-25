@@ -1,10 +1,16 @@
 #!/usr/bin/env node
 
+import { createHash } from "node:crypto";
 import { performance } from "node:perf_hooks";
 
 import { createBorgNativeEomProcessClient } from "./BorgNativeEomProcessClient.mjs";
-import { createBorgEomShadowRunner } from "../../src/apps/borg/BorgEomShadowRunner.js";
+import {
+  createBorgContinuousRetainedHistories,
+  createBorgEomShadowRequest,
+  createBorgEomShadowRunConfig,
+} from "../../src/apps/borg/BorgEomShadowRunner.js";
 import { BORG_DATASET_MANIFEST_V1 } from "../../src/apps/borg/BorgAppManifest.js";
+import { canonicalStringify } from "../../src/apps/borg/BorgCertifiedBudgets.js";
 import {
   calculateBorgInertialHistoryDepth,
   createBorgAcceptedInertialSeedHistory,
@@ -35,9 +41,12 @@ const seededEndpointRows = createBorgSeededInitialConditionRows({
   config: createBorgInitialConditionConfig(manifest.initialConditions),
 });
 const endpointRows = seededEndpointRows.slice(0, pathCount);
+const envelopeDiameter = 2 * manifest.simulationEnvelope.outerRadius;
 const historyDepth = calculateBorgInertialHistoryDepth(endpointRows, {
   fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,
   sampleInterval: duration,
+  maximumSeparation: envelopeDiameter,
+  safetyMargin: Math.max(duration * 2, envelopeDiameter * 0.05),
 });
 const initialSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
   historyStartTime: startTime - historyDepth,
@@ -45,6 +54,25 @@ const initialSeed = await createBorgAcceptedInertialSeedHistory(endpointRows, {
   sampleInterval: duration,
 });
 const initialFrameRows = initialSeed.rows;
+const baseConfig = createBorgEomShadowRunConfig(manifest, {
+  pathCount,
+  startTime,
+  historyDepth,
+  targetDuration: endTime,
+  chunkDuration: duration,
+  sampleInterval: duration,
+});
+const initialHistories = createBorgContinuousRetainedHistories(
+  initialFrameRows,
+  manifest,
+  {
+    historyStartTime: -historyDepth,
+    historyEndTime: startTime,
+    expectedPathCount: pathCount,
+    sourceProvenance: initialSeed.certificate.construction,
+    sourceClaimLevel: initialSeed.certificate.acceptanceScope,
+  },
+);
 const client = createBorgNativeEomProcessClient({ binaryPath, timeoutMs: 180000 });
 const cases = [
   { id: "h", step: "0.01", threadCount: 1 },
@@ -56,32 +84,52 @@ const cases = [
 const results = [];
 try {
   for (const control of cases) {
-    const runner = createBorgEomShadowRunner(manifest, {
-      eomClient: client,
-      initialFrameRows,
-      pathCount,
-      startTime,
-      historyDepth,
-      targetDuration: endTime,
-      chunkDuration: duration,
-      sampleInterval: duration,
+    const allocations = structuredClone(
+      baseConfig.certifiedBudget.allocations,
+    );
+    allocations.controller = {
+      initialStep: control.step,
+      minimumStep: control.step,
+      maximumStep: control.step,
+      adaptiveGrowth: false,
+    };
+    allocations.resources = {
+      ...allocations.resources,
+      workerThreads: control.threadCount,
+    };
+    const allocationCanonicalJson = canonicalStringify(allocations);
+    const config = {
+      ...baseConfig,
+      runId: `borg-eom-refinement-${control.id}`,
       initialStep: control.step,
       minimumStep: control.step,
       maximumStep: control.step,
       useAdaptiveStepGrowth: false,
-      rootTolerance: "1e-8",
-      accelerationTolerance: "1e-8",
-      positionTolerance: "1e-8",
-      velocityTolerance: "1e-8",
-      correctionTolerance: "1e-8",
       threadCount: control.threadCount,
+      certifiedBudget: {
+        id: `refinement-control-${control.id}-v1`,
+        label: `Refinement control ${control.id}`,
+        allocations,
+        allocationCanonicalJson,
+        allocationHash: createHash("sha256")
+          .update(allocationCanonicalJson)
+          .digest("hex"),
+      },
+    };
+    const request = createBorgEomShadowRequest({
+      manifest,
+      config,
+      histories: initialHistories,
+      chunkIndex: 0,
+      startTime,
+      endTime,
     });
     const startedAt = performance.now();
     try {
-      const chunk = await runner.computeNextChunk();
+      const chunk = await client.evolveRetainedHistories(request);
       results.push({
         ...control,
-        status: chunk.statusCode,
+        status: chunk.status,
         evidenceStatus: chunk.evidenceStatus,
         wallTimeMs: performance.now() - startedAt,
         workerPid: client.workerPid,
@@ -122,7 +170,7 @@ const threadParity = Boolean(
 );
 const persistentWorker = new Set(results.map((result) => result.workerPid)).size === 1;
 const strictControlPassed =
-  results.every((result) => result.status === "ok") &&
+  results.every((result) => result.status === "completed") &&
   refinementDeltas.length === 2 &&
   refinementDeltas.every((row) => row.maximumStateDelta <= 1e-8) &&
   threadParity &&
@@ -136,7 +184,7 @@ process.stdout.write(`${JSON.stringify({
   pathCount,
   fullBorgPathCount: manifest.population.architrinoCount,
   interval: [startTime, endTime],
-  rootTolerance: "1e-8",
+  rootTolerance: baseConfig.rootTolerance,
   cases: results.map(({ histories: _histories, endpoint, ...result }) => ({
     ...result,
     endpoint,

@@ -6,6 +6,55 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas, insights, concep
 
 ## Log Entries
 
+- 2026-07-24: Completed the no-edit preservation audit for the circular
+  self-hit energy-balance and causal-wake follow-on. The durable findings and
+  their authority remain:
+  1. **Derived:** every nondegenerate uniform-circular self-hit root has an
+     outward radial projection, so self-hit can supply a collapse barrier but
+     not circular centripetal support. This is owned by the circular self-hit
+     sections of `master-equation.md`, `binary-dynamics.md`, and `energy.md`.
+  2. **Derived scope boundary:** the reported tangential power is the
+     acceleration-kinematic rate $\mathbf A\cdot\mathbf V$; momentum is not an
+     input to that sign calculation, and an energy-rate reading requires the
+     optional universal $\mu_{\text{arch}}$ account convention. This is owned
+     by `master-equation.md`.
+  3. **Derived on the declared chart:** the principal circular self-hit
+     tangential contribution changes sign exactly at
+     $\beta_f=\pi/2$. The result is not a non-circular, multi-body, or
+     alternative-line-of-action speed theorem. This is owned by
+     `master-equation.md` and `binary-dynamics.md`.
+  4. **Derived equations; measured numerical instances:** the complete
+     absolute-value root census contains fold-born pairs beginning near
+     $\beta_f=4.60334$ and $7.78971$ and contains five self roots at
+     $\beta_f=8$. This is owned by `master-equation.md` and
+     `binary-dynamics.md`.
+  5. **Measured diagnostic:** on $1<\beta_f<20$, the principal-partner plus
+     all-self ledger has no tangential zero, while the complete
+     partner-plus-self simple-root ledger has algebraic circular candidates
+     beginning near $\beta_f=3.07036$ with inward net radial acceleration.
+     This corrects the restricted-ledger nonexistence reading but does not
+     certify retained dynamics. The two dynamics chapters own the result.
+  6. **Derived acceptance boundary:** algebraic acceleration balance is not a
+     stability or retained-branch result. Fold-event continuation, retained
+     history, wake-boundary closure, and a return-map or delay-spectrum
+     certificate remain required. This boundary is owned by the maximum-
+     curvature sections of the two dynamics chapters.
+  7. **Measured counterfactual:** the inertially extrapolated direction removes
+     the canonical simultaneous balance points and supplies no replacement
+     inward-radial tangential zero on $1<\beta_f<20$. It is a sensitivity
+     diagnostic, not authority to replace the canonical wake-surface normal.
+     This is owned by the two dynamics chapters.
+  8. **Derived necessity:** a coincident-birth maturity factor must vanish more
+     than quadratically; an analytic candidate begins at cubic order. The
+     current primitives select no unique maturity function. This is owned by
+     `analysis-independent-causal-wake-state.md`.
+  9. **Unproven proposal:** the particular clipped-cubic maturity,
+     $\mathbf p=\mu_{\text{arch}}\mathbf V$ account choice, and
+     reception-depletion law are preserved only in `brainstorming.md`.
+     They are not accepted ontology, a derived momentum law, or an
+     account-complete Master Equation.
+  No reader-facing claim was raised in authority by this preservation pass.
+
 - 2026-07-22: Normalized braid terminology across canon, current priority
   packets, and app contracts. `Eigen-braid spectrum` now names only the
   discrete-mode theorem target; candidate braid and certified braid name

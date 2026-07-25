@@ -6,7 +6,9 @@ import {
   NORMALIZED_FIELD_SPEED,
   createCanonicalLearnerState,
   evaluateCausalRoots,
+  evaluateScalarRootSet,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackCausalHistory.js";
+import { sampleTimedPath } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackTimedPath.js";
 import {
   createOrdinaryFoldLesson,
   createRootsView,
@@ -44,14 +46,65 @@ test("canonical evaluator recovers independently known one-root emission time wi
   assert.equal(root.reason, "accepted_simple_root");
 });
 
-test("Roots exposes identical zero-crossing wake-intersection and active-root counts", () => {
+test("scalar evaluator retains a root at the final search endpoint", () => {
+  const result = evaluateScalarRootSet({
+    residualAt: (time) => time - 1,
+    start: 0,
+    end: 1,
+    scanSteps: 32,
+  });
+  assert.equal(result.roots.length, 1);
+  assert.ok(Math.abs(result.roots[0].time - 1) < 1e-10);
+});
+
+test("scalar evaluator refines one tangent root between scan points", () => {
+  const tangentTime = 0.501953125;
+  const result = evaluateScalarRootSet({
+    residualAt: (time) => (time - tangentTime) ** 2,
+    start: 0,
+    end: 1,
+    scanSteps: 128,
+    tangentTolerance: 1e-8,
+  });
+  assert.equal(result.roots.length, 1);
+  assert.ok(Math.abs(result.roots[0].time - tangentTime) < 1e-6);
+  assert.equal(result.roots[0].detection, "tangent_minimum");
+});
+
+test("scalar evaluator reports a zero interval as degenerate rather than many roots", () => {
+  const result = evaluateScalarRootSet({
+    residualAt: () => 0,
+    start: 0,
+    end: 1,
+    scanSteps: 16,
+  });
+  assert.deepEqual(result.roots, []);
+  assert.deepEqual(result.rejected, [{
+    reason: "degenerate_zero_interval",
+    start: 0,
+    end: 1,
+  }]);
+});
+
+test("causal history sampling refuses to invent state outside recorded coverage", () => {
+  const path = [
+    { t: 0, x: 1, y: 2 },
+    { t: 1, x: 3, y: 4 },
+  ];
+  assert.equal(sampleTimedPath(path, -0.1), null);
+  assert.equal(sampleTimedPath(path, 1.1), null);
+  assert.deepEqual(sampleTimedPath(path, 0), { t: 0, x: 1, y: 2 });
+});
+
+test("Roots exposes the evaluator root count without claiming an independent intersection count", () => {
   const state = createCanonicalLearnerState(createMockCausalDelayReplayDataset(), {
     receiverTime: 0.62,
   });
   const view = createRootsView(state);
   assert.equal(view.available, true);
-  assert.equal(view.zeroCrossingCount, view.wakeIntersectionCount);
-  assert.equal(view.wakeIntersectionCount, view.activeRootCount);
+  assert.equal(view.activeRootCount, state.roots.filter((root) => root.accepted).length);
+  assert.equal("zeroCrossingCount" in view, false);
+  assert.equal("wakeIntersectionCount" in view, false);
   assert.equal(view.notation, "g(Tᵣ;Tₜ)");
 });
 
@@ -87,8 +140,8 @@ test("coincident same-source threshold does not receive the ordinary-fold verdic
     transversalityFloor: 0.01,
   });
   assert.equal(evaluation.acceptedRoots.length, 0);
-  assert.ok(evaluation.rejectedRoots.length > 0);
-  assert.ok(evaluation.rejectedRoots.every((root) => root.reason !== "ordinary_fold"));
+  assert.equal(evaluation.roots.length, 0);
+  assert.ok(evaluation.diagnostics.some((row) => row.reason === "degenerate_zero_interval"));
 });
 
 test("runtime delegates root finding to the canonical evaluator", async () => {

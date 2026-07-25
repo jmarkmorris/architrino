@@ -1,7 +1,6 @@
 import {
   PRESCRIBED_PATH_ANALYSIS_ID,
   computeMovingCircularObserverField,
-  createMovingCircularTransmitterLinearizedRootRequests,
   createMovingCircularSameTransmitterRootRequest,
   createMovingCircularTransmitterRootRequest,
   evaluateLinearHistoryPoint,
@@ -11,13 +10,14 @@ import {
   solveMovingCircularAbsoluteHistoryRun,
   solveMovingCircularSameTransmitterCausalRoots,
   solveMovingCircularTransmitterCausalRoots,
-} from "../../prescribed-path-analysis/index.mjs";
+} from "../../prescribed-path-analysis/PrescribedPathAnalysis.mjs";
 import {
   PHOTON_LAYER_ORDER,
   getPhotonDirectionSign,
   getPhotonLayer,
   getPhotonLayerEnabled,
   getPhotonLayerAngleRadians,
+  getPhotonCommonFitWindowBounds,
   getPhotonReferenceFrequency,
   getPhotonRunDuration,
   getPhotonMiddleCycleBounds,
@@ -37,7 +37,6 @@ const MIN_FIELD_DISTANCE = 0.08;
 const ROOT_SCAN_MIN_STEPS = 48;
 const ROOT_SCAN_MAX_STEPS = 720;
 const ROOT_SCAN_STEPS_PER_CYCLE = 40;
-const DEFAULT_ABSOLUTE_HISTORY_SEGMENTS = 24;
 const DEFAULT_ABSOLUTE_HISTORY_CYCLES = 2;
 const DEFAULT_SELF_HIT_TOLERANCE = 1e-12;
 const DEFAULT_SELF_HIT_FIELD_SPEED_TOLERANCE = 0.015;
@@ -189,10 +188,13 @@ function crossVector(a, b) {
 }
 
 function safeDirectionVector(delta) {
-  const distance = Math.max(MIN_FIELD_DISTANCE, vectorMagnitude(delta));
+  const rawDistance = vectorMagnitude(delta);
+  const distance = Math.max(MIN_FIELD_DISTANCE, rawDistance);
   return {
     distance,
-    direction: scaleVector(delta, 1 / distance),
+    direction: rawDistance > EPSILON
+      ? scaleVector(delta, 1 / rawDistance)
+      : { x: 1, y: 0, z: 0 },
   };
 }
 
@@ -1217,55 +1219,6 @@ function getPhotonAbsoluteTransmitterMaxDelay(state, transmitterRef, measurement
   return Number.isFinite(requested) && requested > 0 ? requested : cycleWindow;
 }
 
-export function createPhotonAbsoluteTransmitterSegmentCausalRootRequests(
-  state,
-  transmitterRef,
-  observationTime,
-  options = {}
-) {
-  const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
-  const provider = createPhotonConstrainedTransmitterHistoryProvider(state, transmitterRef, measurement, {
-    transmitterHistoryKind: "moving-circular-transmitter-linearized",
-    approximationPolicy: "linearized-moving-circular-transmitter-segments",
-  });
-  const hitTime = Number(observationTime) || 0;
-  const maxDelay = normalizeNonnegativeSolverNumber(
-    options.maxDelay,
-    getPhotonAbsoluteTransmitterMaxDelay(state, transmitterRef, measurement)
-  );
-  const segmentCount = normalizePositiveSolverInteger(
-    options.absoluteHistorySegments,
-    DEFAULT_ABSOLUTE_HISTORY_SEGMENTS
-  );
-  const transmitterStartTime = Number.isFinite(Number(options.transmitterStartTime))
-    ? Number(options.transmitterStartTime)
-    : hitTime - maxDelay;
-  const transmitterEndTime = Number.isFinite(Number(options.transmitterEndTime))
-    ? Number(options.transmitterEndTime)
-    : hitTime;
-  return createMovingCircularTransmitterLinearizedRootRequests({
-    transmitter: provider.transmitter,
-    receiver: provider.receiver,
-    hitTime,
-    signalSpeed: measurement.emissionSpeedCf,
-    transmitterStartTime,
-    transmitterEndTime,
-    segmentCount,
-    rootTolerance: options.rootTolerance ?? DEFAULT_PHOTON_ROOT_TOLERANCE,
-    maxIterations: options.maxIterations ?? 64,
-    scanSubdivisions: normalizePositiveSolverInteger(options.scanSubdivisions, 8),
-    maxRoots: normalizePositiveSolverInteger(options.maxRoots, 4),
-    maxHits: normalizePositiveSolverInteger(options.maxHits, 4),
-    transmitterErrorBound: options.transmitterErrorBound ?? 0,
-    receiverErrorBound: options.receiverErrorBound ?? 0,
-    transmitterRef,
-  }).map((request) => ({
-    ...request,
-    transmitterHistoryProvider: provider,
-    analysisBoundary: PHOTON_TRANSMITTER_HISTORY_BOUNDARY,
-  }));
-}
-
 export function createPhotonAbsoluteMovingCircularCausalRootRequest(
   state,
   transmitterRef,
@@ -1328,6 +1281,7 @@ export function createPhotonAbsoluteHistoryRunRequest(
     signalSpeed: measurement.emissionSpeedCf,
     observerFieldRequest: {
       signalSpeed: measurement.emissionSpeedCf,
+      minimumDistance: MIN_FIELD_DISTANCE,
       jacobianFloor: JACOBIAN_FLOOR,
       unstableGapThreshold: 0.05,
       transmitterHistoryProviderId: PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID,
@@ -1450,7 +1404,10 @@ function mapPhotonMovingCircularRootToDelayedRoot(state, transmitterRef, measure
     hitTime,
     delay,
     residual: Number.isFinite(Number(root.residual)) ? Number(root.residual) : 0,
-    distance: Number.isFinite(Number(root.distance)) ? Number(root.distance) : distance,
+    distance: Math.max(
+      MIN_FIELD_DISTANCE,
+      Number.isFinite(Number(root.distance)) ? Number(root.distance) : distance
+    ),
     direction,
     kinematics: {
       ...coMovingKinematics,
@@ -1484,88 +1441,6 @@ function mapPhotonMovingCircularRootToDelayedRoot(state, transmitterRef, measure
       : Number(root.solveIterations) || 0,
     analysisId: PHOTON_ANALYSIS_ID,
   };
-}
-
-function mapPhotonLinearSegmentRootToDelayedRoot(state, transmitterRef, measurement, request, root = {}) {
-  const emissionTime = Number(root.emissionTime) || 0;
-  const hitTime = Number(root.hitTime) || request.hitTime || 0;
-  const delay = Number.isFinite(Number(root.delay))
-    ? Number(root.delay)
-    : Math.max(0, hitTime - emissionTime);
-  const movingTransmitterSample = request.transmitterHistory?.transmitter
-    ? evaluateMovingCircularTransmitterHistory(request.transmitterHistory.transmitter, emissionTime)
-    : null;
-  const transmitterPoint = root.transmitterPoint && typeof root.transmitterPoint === "object"
-    ? root.transmitterPoint
-    : movingTransmitterSample?.position ?? evaluateLinearHistoryPoint(request.transmitter, emissionTime);
-  const receiverPoint = root.receiverPoint && typeof root.receiverPoint === "object"
-    ? root.receiverPoint
-    : evaluateLinearHistoryPoint(request.receiver, hitTime);
-  const delta = subtractVector(receiverPoint, transmitterPoint);
-  const { distance, direction } = safeDirectionVector(delta);
-  const coMovingKinematics = getPhotonArchitrinoKinematics(
-    state,
-    transmitterRef.braidId,
-    transmitterRef.layerId,
-    transmitterRef.chargeType,
-    emissionTime
-  );
-  return {
-    ...root,
-    emissionTime,
-    hitTime,
-    delay,
-    residual: Number.isFinite(Number(root.residual)) ? Number(root.residual) : 0,
-    distance: Number.isFinite(Number(root.distance)) ? Number(root.distance) : distance,
-    direction,
-    kinematics: {
-      ...coMovingKinematics,
-      transmitterHistoryMode: "absolute_history_segmented",
-      position: {
-        x: Number(transmitterPoint.x) || 0,
-        y: Number(transmitterPoint.y) || 0,
-        z: Number(transmitterPoint.z) || 0,
-      },
-      velocity: {
-        x: Number(movingTransmitterSample?.velocity?.x ?? request.transmitter.velocity.x) || 0,
-        y: Number(movingTransmitterSample?.velocity?.y ?? request.transmitter.velocity.y) || 0,
-        z: Number(movingTransmitterSample?.velocity?.z ?? request.transmitter.velocity.z) || 0,
-      },
-    },
-    receiverPoint,
-    segmentIndex: request.segmentIndex,
-    transmitterHistoryKind: request.transmitterHistory?.kind ?? "linear-transmitter-segment",
-    transmitterHistoryProviderId:
-      request.transmitterHistoryProvider?.providerId ?? PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID,
-    transmitterHistoryProviderKind:
-      request.transmitterHistoryProvider?.providerKind ?? "constrained_architrino_motion",
-    analysisBoundary: request.analysisBoundary ?? PHOTON_TRANSMITTER_HISTORY_BOUNDARY,
-    phaseAtHit: createPhotonPhaseAtHitRecord(
-      state,
-      transmitterRef,
-      emissionTime,
-      movingTransmitterSample?.phase
-    ),
-    solveIterations: Number.isFinite(Number(root.iterationCount))
-      ? Number(root.iterationCount)
-      : Number(root.solveIterations) || 0,
-    analysisId: PHOTON_ANALYSIS_ID,
-  };
-}
-
-function dedupePhotonDelayedRoots(roots) {
-  const seen = new Set();
-  return roots
-    .slice()
-    .sort((a, b) => a.delay - b.delay)
-    .filter((root) => {
-      const key = `${root.emissionTime.toFixed(10)}:${root.hitTime.toFixed(10)}`;
-      if (seen.has(key)) {
-        return false;
-      }
-      seen.add(key);
-      return true;
-    });
 }
 
 function readPhotonFiniteNumber(value, fallback = 0) {
@@ -1653,6 +1528,8 @@ function computePhotonDelayedContribution(root, measurement) {
     root.kinematics.chargeSign * accelerationWeight / (root.distance * root.distance)
   );
   const electric = receiverAcceleration;
+  // Diagnostic plane-wave comparison only: +x is the app propagation
+  // convention, not a branch-local magnetic reconstruction off axis.
   const comparisonB = scaleVector(crossVector(X_HAT, electric), 1 / signalSpeed);
 
   return {
@@ -1681,11 +1558,18 @@ function computePhotonDelayedContribution(root, measurement) {
 function createPhotonObserverFieldBranchSumRequest(roots = [], measurement = {}) {
   return {
     signalSpeed: measurement.emissionSpeedCf,
+    minimumDistance: MIN_FIELD_DISTANCE,
     jacobianFloor: JACOBIAN_FLOOR,
     unstableGapThreshold: 0.05,
     transmitterHistoryProviderId: PHOTON_TRANSMITTER_HISTORY_PROVIDER_ID,
     analysisBoundary: PHOTON_TRANSMITTER_HISTORY_BOUNDARY,
-    branches: roots.map((root) => ({
+    branches: roots.map((root, rootIndex) => ({
+      transmitterRootRequestIndex: Number.isFinite(Number(root.transmitterRootRequestIndex))
+        ? Number(root.transmitterRootRequestIndex)
+        : 0,
+      transmitterRootIndex: Number.isFinite(Number(root.transmitterRootIndex))
+        ? Number(root.transmitterRootIndex)
+        : rootIndex,
       chargeSign: root.kinematics?.chargeSign ?? 0,
       direction: root.direction,
       transmitterVelocity: root.kinematics?.velocity,
@@ -1713,9 +1597,24 @@ function createPhotonAbsoluteObserverFieldContributionsFromSolverResponse(
   response = {}
 ) {
   const solverContributions = Array.isArray(response.contributions) ? response.contributions : [];
+  const contributionByRoot = new Map(
+    solverContributions.flatMap((contribution) => {
+      const requestIndex = Number(contribution?.transmitterRootRequestIndex);
+      const rootIndex = Number(contribution?.transmitterRootIndex);
+      return Number.isFinite(requestIndex) && Number.isFinite(rootIndex)
+        ? [[`${requestIndex}:${rootIndex}`, contribution]]
+        : [];
+    })
+  );
   const contributions = roots.map((root, index) => ({
     ...root,
-    ...(solverContributions[index] ?? computePhotonDelayedContribution(root, measurement)),
+    ...(
+      contributionByRoot.get(
+        `${Number(root.transmitterRootRequestIndex)}:${Number(root.transmitterRootIndex)}`
+      ) ??
+      solverContributions[index] ??
+      computePhotonDelayedContribution(root, measurement)
+    ),
   }));
   return {
     transmitterMode: "prescribed_path_absolute_history_transmitter_acceleration_sum",
@@ -1796,7 +1695,10 @@ function mapPhotonCircularTransmitterRootToDelayedRoot(state, transmitterRef, me
     emissionTime,
     delay,
     residual: Number.isFinite(Number(root.residual)) ? Number(root.residual) : 0,
-    distance: Number.isFinite(Number(root.distance)) ? Number(root.distance) : distance,
+    distance: Math.max(
+      MIN_FIELD_DISTANCE,
+      Number.isFinite(Number(root.distance)) ? Number(root.distance) : distance
+    ),
     direction,
     kinematics: {
       ...kinematics,
@@ -1832,11 +1734,15 @@ export async function solvePhotonCoMovingCausalRootsForTransmitterWithPrescribed
     }
   );
   return (Array.isArray(response?.roots) ? response.roots : [])
-    .map((root) => mapPhotonCircularTransmitterRootToDelayedRoot(
+    .map((root, rootIndex) => mapPhotonCircularTransmitterRootToDelayedRoot(
       state,
       transmitterRef,
       measurement,
-      root
+      {
+        ...root,
+        transmitterRootRequestIndex: 0,
+        transmitterRootIndex: rootIndex,
+      }
     ))
     .sort((a, b) => a.delay - b.delay);
 }
@@ -1877,12 +1783,16 @@ async function solvePhotonAbsoluteCausalRootSetForTransmitterWithPrescribedPathA
     : await runPhotonMovingCircularTransmitterPrescribedPathAnalysis(options, request);
   const roots = Array.isArray(response?.roots) ? response.roots : [];
   const mappedRoots = roots
-    .map((root) => mapPhotonMovingCircularRootToDelayedRoot(
+    .map((root, rootIndex) => mapPhotonMovingCircularRootToDelayedRoot(
       state,
       transmitterRef,
       measurement,
       request,
-      root
+      {
+        ...root,
+        transmitterRootRequestIndex: 0,
+        transmitterRootIndex: rootIndex,
+      }
     ))
     .sort((a, b) => a.delay - b.delay);
   return {
@@ -2091,12 +2001,16 @@ async function computePhotonAbsoluteDelayedEmissionFieldWithFacadeRun(
     const transmitterRef = rootResponse.transmitterRef ?? fallbackTransmitterRef;
     const transmitterRootRequest = request.transmitterRootRequests[requestIndex] ?? rootResponse.request ?? {};
     const roots = (Array.isArray(rootResponse.roots) ? rootResponse.roots : [])
-      .map((root) => mapPhotonMovingCircularRootToDelayedRoot(
+      .map((root, rootIndex) => mapPhotonMovingCircularRootToDelayedRoot(
         state,
         transmitterRef,
         measurement,
         transmitterRootRequest,
-        root
+        {
+          ...root,
+          transmitterRootRequestIndex: requestIndex,
+          transmitterRootIndex: rootIndex,
+        }
       ))
       .sort((a, b) => a.delay - b.delay);
     return {
@@ -2116,7 +2030,12 @@ async function computePhotonAbsoluteDelayedEmissionFieldWithFacadeRun(
     measurement,
     response?.observerField ?? {}
   );
-  return createPhotonDelayedEmissionFieldResult(fieldSum, rootSets, transmitterRefs, measurement);
+  return createPhotonDelayedEmissionFieldResult(
+    fieldSum,
+    rootSets,
+    transmitterRefs,
+    measurement
+  );
 }
 
 export async function computePhotonDelayedEmissionFieldWithPrescribedPathAnalysis(
@@ -2172,7 +2091,15 @@ export async function computePhotonDelayedEmissionFieldWithPrescribedPathAnalysi
       rootSets.push(await solveRootSet(transmitterRef));
     }
   }
-  const roots = rootSets.flatMap((rootSet) => rootSet.roots);
+  const indexedRootSets = rootSets.map((rootSet, requestIndex) => ({
+    ...rootSet,
+    roots: rootSet.roots.map((root, rootIndex) => ({
+      ...root,
+      transmitterRootRequestIndex: requestIndex,
+      transmitterRootIndex: rootIndex,
+    })),
+  }));
+  const roots = indexedRootSets.flatMap((rootSet) => rootSet.roots);
   const fieldSum = measurement.transmitterHistoryMode === "absolute_history"
     ? await computePhotonAbsoluteObserverFieldContributionsWithPrescribedPathAnalysis(
         roots,
@@ -2219,7 +2146,12 @@ export async function computePhotonDelayedEmissionFieldWithPrescribedPathAnalysi
           ),
         };
       })();
-  return createPhotonDelayedEmissionFieldResult(fieldSum, rootSets, transmitterRefs, measurement);
+  return createPhotonDelayedEmissionFieldResult(
+    fieldSum,
+    indexedRootSets,
+    transmitterRefs,
+    measurement
+  );
 }
 
 export async function computePhotonObserverFieldWithPrescribedPathAnalysis(state, timeSeconds, options = {}) {
@@ -2381,6 +2313,22 @@ function clampPhotonUnitInterval(value) {
   return Math.max(0, Math.min(1, value));
 }
 
+export function computePhotonEnergyWeightedAnalyzerFraction(fieldRows = []) {
+  const energy = (Array.isArray(fieldRows) ? fieldRows : []).reduce(
+    (sum, field) => {
+      const projection = Number(field?.analyzer?.projection) || 0;
+      const ey = Number(field?.electric?.y) || 0;
+      const ez = Number(field?.electric?.z) || 0;
+      return {
+        projected: sum.projected + projection * projection,
+        transverse: sum.transverse + ey * ey + ez * ez,
+      };
+    },
+    { projected: 0, transverse: 0 }
+  );
+  return clampPhotonUnitInterval(energy.projected / Math.max(EPSILON, energy.transverse));
+}
+
 export function fitPhotonPolarizationFromSamples(samples, analyzerAngleRadians = 0) {
   const safeSamples = Array.isArray(samples) ? samples : [];
   const yFit = fitPhotonSignalComponent(safeSamples, "ey");
@@ -2463,7 +2411,8 @@ export async function buildPhotonDerivedPolarizationTraceWithPrescribedPathAnaly
   const referenceFrequency = getPhotonReferenceFrequency(state);
   const cycleDuration = 1 / referenceFrequency;
   const currentTime = Number.isFinite(timeSeconds) ? timeSeconds : 0;
-  const fitCycleStart = getPhotonMiddleCycleBounds(state).start;
+  const fitWindow = getPhotonCommonFitWindowBounds(state);
+  const fitCycleStart = fitWindow.start;
   const currentProgress =
     ((((currentTime - fitCycleStart) / cycleDuration) % 1) + 1) % 1;
   const currentPhase = TWO_PI * currentProgress;
@@ -2475,8 +2424,8 @@ export async function buildPhotonDerivedPolarizationTraceWithPrescribedPathAnaly
   const rawSamples = await Promise.all(
     Array.from({ length: count }, async (_, index) => {
       const progress = index / count;
-      const phase = TWO_PI * progress;
-      const t = fitCycleStart + progress * cycleDuration;
+      const t = fitWindow.start + progress * fitWindow.duration;
+      const phase = TWO_PI * referenceFrequency * (t - fitWindow.start);
       const field = await computePhotonObserverFieldWithPrescribedPathAnalysis(state, t, options);
       return {
         t,
@@ -2543,6 +2492,7 @@ export async function buildPhotonDerivedPolarizationTraceWithPrescribedPathAnaly
     referenceFrequency,
     cycleDuration,
     fitCycleStart,
+    fitWindow,
     rawSamples,
     rawCurrent,
     samples,
@@ -2561,20 +2511,19 @@ export async function computePhotonAverageAnalyzerFractionWithPrescribedPathAnal
   sampleCount = DEFAULT_ANALYZER_AVERAGE_SAMPLES,
   options = {}
 ) {
-  const runDuration = getPhotonRunDuration(state);
+  const fitWindow = getPhotonCommonFitWindowBounds(state);
   const minimumSampleCount = Math.max(
     1,
     Math.round(options.minimumAnalyzerSampleCount ?? 8)
   );
   const count = Math.max(minimumSampleCount, Math.round(sampleCount));
-  const fractions = await Promise.all(
+  const fields = await Promise.all(
     Array.from({ length: count }, async (_, index) => {
-      const t = (index / count) * runDuration;
-      const field = await computePhotonObserverFieldWithPrescribedPathAnalysis(state, t, options);
-      return field.analyzer.fraction;
+      const t = fitWindow.start + (index / count) * fitWindow.duration;
+      return computePhotonObserverFieldWithPrescribedPathAnalysis(state, t, options);
     })
   );
-  return fractions.reduce((sum, fraction) => sum + fraction, 0) / count;
+  return computePhotonEnergyWeightedAnalyzerFraction(fields);
 }
 
 export async function computePhotonFormulaSummaryWithPrescribedPathAnalysis(

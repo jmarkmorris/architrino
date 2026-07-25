@@ -12,6 +12,16 @@ import {
   createBorgCausalHistoryRetentionRequest,
   validateBorgCausalHistoryRetentionCertificate,
 } from "./BorgCausalHistoryRetention.js";
+import {
+  BORG_ELECTRINO_STATE_FLAG,
+  BORG_POSITRINO_STATE_FLAG,
+} from "./BorgPolarityDiagnostics.js";
+import {
+  evaluateEomCubicHistoryAtTime,
+} from "../shared/EomCubicHistoryEvaluation.mjs";
+export {
+  BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT,
+} from "./BorgEomHttpClient.js";
 
 export const BORG_EOM_SHADOW_RUNNER_VERSION = "borg-eom-shadow-runner.v0";
 export const BORG_EOM_SHADOW_RUN_SOURCE = "computed-eom-shadow-chunks";
@@ -24,13 +34,13 @@ export const BORG_EOM_ACCEPTED_INITIAL_HISTORY_EVOLUTION_CLAIM_LEVEL =
   "eom-evolution-conditioned-on-accepted-initial-history";
 export const BORG_EOM_RUN_GRADE_CERTIFIED = "certified";
 export const BORG_EOM_RUN_GRADE_DISPLAY = "display";
-export const BORG_EOM_CERTIFIED_EXECUTION_TIMEOUT =
-  "certified_execution_timeout";
+const BORG_EOM_CERTIFIED_COMPLETED_EVIDENCE_STATUSES = Object.freeze(new Set([
+  "canonical",
+  "executable_architecture_evidence",
+]));
+const BORG_EOM_CERTIFIED_HALTED_EVIDENCE_STATUS = "failed";
 
 let borgEomRunSequence = 0;
-
-const POSITRINO_STATE_FLAG = 1;
-const ELECTRINO_STATE_FLAG = 2;
 
 function normalizeBorgEomRunGrade(value) {
   if (value == null) {
@@ -87,7 +97,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
     displayHistoryProjectionCount = 1;
   }
   let nextStartTime = config.startTime;
-  let nextStartTimeToken = String(config.startTime);
+  let nextStartTimeToken = String(histories[0].coverageEnd);
   let targetDuration = config.targetDuration;
   let chunkDuration = config.chunkDuration;
   let controllerStepSize = config.initialStep;
@@ -372,6 +382,14 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     options.historyDepth,
     manifest.simulationEnvelope?.historyDepth ?? 10,
   );
+  const minimumHistoryDepth = geometricDelayBound + historySafetyMargin;
+  const historyCoverageTolerance =
+    Number.EPSILON * Math.max(1, historyDepth, minimumHistoryDepth) * 8;
+  if (historyDepth + historyCoverageTolerance < minimumHistoryDepth) {
+    throw new RangeError(
+      `Borg EOM history depth ${historyDepth} must cover the geometric delay bound ${geometricDelayBound} plus safety margin ${historySafetyMargin}.`,
+    );
+  }
   const causalHistoryRetention = createBorgCausalHistoryRetentionRequest({
     enabled:
       runGrade === BORG_EOM_RUN_GRADE_DISPLAY &&
@@ -446,6 +464,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     coreScale,
     geometricDelayBound,
     historySafetyMargin,
+    minimumHistoryDepth,
     coupling: requiredNumericToken(
       options.coupling ?? manifest.modelControls?.coupling ?? "1",
       "coupling",
@@ -482,7 +501,7 @@ export function createBorgContinuousRetainedHistories(
   } = {},
 ) {
   if (!Array.isArray(frameRows) || frameRows.length === 0) {
-    throw new TypeError("Borg EOM migration requires retained path-history rows.");
+    throw new TypeError("Borg EOM evolution requires retained path-history rows.");
   }
   const cutTime = finiteNumber(historyEndTime, Math.max(...frameRows.map((row) => Number(row.time))));
   const requestedStart = finiteNumber(
@@ -583,7 +602,7 @@ export function createBorgEomShadowRequest({
     requestId: `borg-eom-shadow-request:chunk-${chunkIndex}`,
     runId: config.runId ?? "borg-eom-shadow-run",
     runGrade,
-    claimLevel: "migration-shadow",
+    claimLevel: "eom-forward-evolution-request",
     modelBindingId: config.modelBindingId,
     absoluteTimeInterval: Object.freeze({
       start: String(startTimeToken),
@@ -796,29 +815,6 @@ function formatExactDecimal(value) {
   return `${negative ? "-" : ""}${padded.slice(0, split)}.${padded.slice(split)}`;
 }
 
-export function trimBorgRetainedHistories(histories, { coverageStart } = {}) {
-  const lowerBound = requiredFiniteNumber(coverageStart, "retained-history coverage start");
-  return Object.freeze(histories.map((history) => {
-    const segments = history.segments.filter(
-      (segment) => Number(segment.endTime) > lowerBound + 1e-9,
-    );
-    const exactLowerBound = Number(segments[0]?.startTime);
-    if (
-      segments.length === 0 ||
-      Math.abs(exactLowerBound - lowerBound) > 1e-9
-    ) {
-      throw new Error(
-        `Borg EOM retained-history window does not align with an exact segment boundary at ${lowerBound}.`,
-      );
-    }
-    return Object.freeze({
-      ...history,
-      coverageStart: String(exactLowerBound),
-      segments: Object.freeze(segments),
-    });
-  }));
-}
-
 export function retainBorgHistoryWindow(histories, { minimumCoverageStart } = {}) {
   const lowerBound = requiredFiniteNumber(
     minimumCoverageStart,
@@ -967,7 +963,13 @@ function normalizeEomResponse(rawResponse, request) {
   const responseRunGrade = String(response.runGrade ?? request.runGrade);
   const expectedEvidenceStatus = request.runGrade === BORG_EOM_RUN_GRADE_DISPLAY
     ? "display-only"
-    : String(response.evidenceStatus ?? "failed");
+    : certifiedPrefix
+      ? BORG_EOM_CERTIFIED_HALTED_EVIDENCE_STATUS
+      : BORG_EOM_CERTIFIED_COMPLETED_EVIDENCE_STATUSES.has(
+          String(response.evidenceStatus ?? ""),
+        )
+        ? String(response.evidenceStatus)
+        : null;
   const memoryBudgetBytes = requiredPositiveInteger(
     response.memoryBudgetBytes ?? request.resourceEnvelope.memoryBudgetBytes,
     "response memoryBudgetBytes",
@@ -1023,7 +1025,11 @@ function normalizeEomResponse(rawResponse, request) {
       `runGrade expected ${request.runGrade} but received ${responseRunGrade}`,
     );
   }
-  if (String(response.evidenceStatus ?? "failed") !== expectedEvidenceStatus) {
+  if (expectedEvidenceStatus == null) {
+    provenanceMismatches.push(
+      "evidenceStatus expected one of canonical, executable_architecture_evidence",
+    );
+  } else if (String(response.evidenceStatus ?? "failed") !== expectedEvidenceStatus) {
     provenanceMismatches.push(`evidenceStatus expected ${expectedEvidenceStatus}`);
   }
   if (claimGrade !== expectedEvidenceStatus) {
@@ -1144,15 +1150,23 @@ function createFramesFromHistories(
 ) {
   const frames = [];
   const sampleCount = Math.round((endTime - startTime) / sampleInterval);
+  let previousFrameIndex = Number.NEGATIVE_INFINITY;
   for (let sampleIndex = 0; sampleIndex <= sampleCount; sampleIndex += 1) {
     const time = sampleIndex === sampleCount
       ? endTime
       : roundTime(startTime + sampleIndex * sampleInterval);
+    const roundedFrameIndex = Math.round(time / sampleInterval);
+    const frameIndex = Math.max(roundedFrameIndex, previousFrameIndex + 1);
+    previousFrameIndex = frameIndex;
     histories.forEach((history) => {
-      const state = evaluateHistory(history, time);
+      const state = evaluateEomCubicHistoryAtTime(history, time, {
+        historyId: history.pathId,
+        entityLabel: "history",
+        timeRole: "output",
+      });
       frames.push(Object.freeze({
         pathKey: Number(history.pathKey ?? history.pathId),
-        frameIndex: Math.round(time / sampleInterval),
+        frameIndex,
         time,
         position: Object.freeze(state.position),
         velocity: Object.freeze(state.velocity),
@@ -1173,42 +1187,6 @@ function createFramesFromHistories(
   return frames;
 }
 
-function evaluateHistory(history, time) {
-  const segment = history.segments.find(
-    (candidate, index) =>
-      Number(candidate.startTime) <= time &&
-      (time < Number(candidate.endTime) || index + 1 === history.segments.length),
-  );
-  if (!segment) {
-    throw new Error(`EOM history ${history.pathId} does not cover output time ${time}.`);
-  }
-  const localTime = time - Number(segment.startTime);
-  const position = {};
-  const velocity = {};
-  ["x", "y", "z"].forEach((axis, axisIndex) => {
-    const coefficients = segment.coefficients[axisIndex].map(Number);
-    position[axis] =
-      coefficients[0] + localTime * (coefficients[1] + localTime * (coefficients[2] + localTime * coefficients[3]));
-    velocity[axis] =
-      coefficients[1] + localTime * (2 * coefficients[2] + localTime * 3 * coefficients[3]);
-  });
-  return {
-    position,
-    velocity,
-    errorBound: Math.max(
-      ...requiredAxisErrorNumbers(segment.positionErrors, "positionErrors"),
-      ...requiredAxisErrorNumbers(segment.velocityErrors, "velocityErrors"),
-    ),
-  };
-}
-
-function requiredAxisErrorNumbers(value, label) {
-  if (!Array.isArray(value) || value.length !== 3) {
-    throw new TypeError(`EOM retained segment ${label} must contain three axes.`);
-  }
-  return value.map((token) => Math.abs(Number(token)) || 0);
-}
-
 function createCompleteChunk(
   config,
   chunkIndex,
@@ -1222,7 +1200,6 @@ function createCompleteChunk(
     startTime: time,
     endTime: time,
     sampleInterval: config.sampleInterval,
-    phase: "live",
     initialHistoryAccepted: false,
     coreScale: config.coreScale,
     budgetProvenance: Object.freeze({
@@ -1246,13 +1223,13 @@ function createCompleteChunk(
 }
 
 function chargeForStateFlags(stateFlags, manifest) {
-  if (stateFlags === POSITRINO_STATE_FLAG) {
+  if (stateFlags === BORG_POSITRINO_STATE_FLAG) {
     return manifest.initialConditions?.positrinoCharge ?? 1;
   }
-  if (stateFlags === ELECTRINO_STATE_FLAG) {
+  if (stateFlags === BORG_ELECTRINO_STATE_FLAG) {
     return manifest.initialConditions?.electrinoCharge ?? -1;
   }
-  throw new Error("Borg EOM migration requires a declared path polarity.");
+  throw new Error("Borg EOM evolution requires a declared path polarity.");
 }
 
 function roundTime(value) {
@@ -1318,14 +1295,6 @@ function requiredPositiveToken(value, label) {
   const token = requiredNumericToken(value, label);
   if (!(Number(token) > 0)) {
     throw new RangeError(`Borg EOM ${label} must be positive.`);
-  }
-  return token;
-}
-
-function requiredFractionToken(value, label) {
-  const token = requiredNumericToken(value, label);
-  if (!(Number(token) >= 0 && Number(token) < 1)) {
-    throw new RangeError(`Borg EOM ${label} must lie in [0, 1).`);
   }
   return token;
 }

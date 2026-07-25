@@ -1,9 +1,8 @@
 #include "architrino/eom/Interval.hpp"
+#include "architrino/eom/Decimal.hpp"
 
 #include <algorithm>
-#include <cerrno>
 #include <cmath>
-#include <cstdlib>
 #include <limits>
 #include <stdexcept>
 #include <utility>
@@ -23,6 +22,14 @@ double upward(double value) {
     return value;
   }
   return std::nextafter(value, std::numeric_limits<double>::infinity());
+}
+
+double downward_transcendental(double value) {
+  return downward(downward(value));
+}
+
+double upward_transcendental(double value) {
+  return upward(upward(value));
 }
 
 void require_finite(double value, const char* label) {
@@ -50,19 +57,16 @@ Interval Interval::decimal_token(const std::string& token) {
   if (token.empty()) {
     throw std::invalid_argument("decimal token cannot be empty");
   }
-  errno = 0;
-  char* end = nullptr;
-  const double value = std::strtod(token.c_str(), &end);
-  if (errno == ERANGE || end == token.c_str() || *end != '\0' ||
-      !std::isfinite(value)) {
-    throw std::invalid_argument("invalid finite decimal token: " + token);
-  }
+  const double value = parse_finite_double(token, "finite decimal token");
   return Interval(downward(value), upward(value));
 }
 
 double Interval::width() const noexcept { return upward(upper_ - lower_); }
 
 double Interval::midpoint() const noexcept {
+  if (lower_ < 0.0 && upper_ > 0.0) {
+    return lower_ * 0.5 + upper_ * 0.5;
+  }
   return lower_ + (upper_ - lower_) * 0.5;
 }
 
@@ -172,8 +176,10 @@ Interval interval_sqrt(const Interval& value) {
   }
   const double lower = value.lower() == 0.0
                            ? 0.0
-                           : downward(std::sqrt(value.lower()));
-  return Interval(lower, upward(std::sqrt(value.upper())));
+                           : downward_transcendental(
+                                 std::sqrt(value.lower()));
+  return Interval(
+      lower, upward_transcendental(std::sqrt(value.upper())));
 }
 
 Interval interval_exp(const Interval& value) {
@@ -182,8 +188,10 @@ Interval interval_exp(const Interval& value) {
   if (!std::isfinite(lower_value) || !std::isfinite(upper_value)) {
     throw std::overflow_error("interval exponential is nonfinite");
   }
-  const double lower = lower_value == 0.0 ? 0.0 : downward(lower_value);
-  return Interval(lower, upward(upper_value));
+  const double lower = lower_value == 0.0
+      ? 0.0
+      : downward_transcendental(lower_value);
+  return Interval(lower, upward_transcendental(upper_value));
 }
 
 Interval interval_erf(const Interval& value) {
@@ -193,8 +201,12 @@ Interval interval_erf(const Interval& value) {
     throw std::overflow_error("interval error function is nonfinite");
   }
   return Interval(
-      lower_value == -1.0 ? -1.0 : downward(lower_value),
-      upper_value == 1.0 ? 1.0 : upward(upper_value));
+      lower_value == -1.0
+          ? -1.0
+          : downward_transcendental(lower_value),
+      upper_value == 1.0
+          ? 1.0
+          : upward_transcendental(upper_value));
 }
 
 Interval interval_absolute(const Interval& value) {
@@ -209,53 +221,92 @@ Interval interval_absolute(const Interval& value) {
 
 namespace {
 
+std::pair<double, double> phase_bounds(
+    unsigned numerator,
+    unsigned denominator) {
+  if (numerator == 0U) {
+    return {0.0, 0.0};
+  }
+  constexpr double kPiLower = 3.1415926535897931;
+  constexpr double kPiUpper = 3.1415926535897936;
+  const double factor =
+      static_cast<double>(numerator) / static_cast<double>(denominator);
+  return {
+      downward(factor * kPiLower),
+      upward(factor * kPiUpper),
+  };
+}
+
 bool contains_phase(
     const Interval& value,
-    long double phase,
-    long double period) {
-  const long double first = std::ceil(
-      (static_cast<long double>(value.lower()) - phase) / period);
-  const long double last = std::floor(
-      (static_cast<long double>(value.upper()) - phase) / period);
-  return first <= last;
+    unsigned phase_numerator,
+    unsigned phase_denominator) {
+  const auto [phase_lower, phase_upper] =
+      phase_bounds(phase_numerator, phase_denominator);
+  const auto [period_lower, period_upper] = phase_bounds(2U, 1U);
+  const double numerator_lower = downward(value.lower() - phase_upper);
+  const double numerator_upper = upward(value.upper() - phase_lower);
+  const std::array<double, 4> lower_candidates{
+      downward(numerator_lower / period_lower),
+      downward(numerator_lower / period_upper),
+      downward(numerator_upper / period_lower),
+      downward(numerator_upper / period_upper),
+  };
+  const std::array<double, 4> upper_candidates{
+      upward(numerator_lower / period_lower),
+      upward(numerator_lower / period_upper),
+      upward(numerator_upper / period_lower),
+      upward(numerator_upper / period_upper),
+  };
+  const double quotient_lower =
+      *std::min_element(lower_candidates.begin(), lower_candidates.end());
+  const double quotient_upper =
+      *std::max_element(upper_candidates.begin(), upper_candidates.end());
+  if (!std::isfinite(quotient_lower) || !std::isfinite(quotient_upper)) {
+    return true;
+  }
+  return std::ceil(quotient_lower) <= std::floor(quotient_upper);
+}
+
+bool spans_complete_period(const Interval& value) {
+  const auto [period_lower, period_upper] = phase_bounds(2U, 1U);
+  static_cast<void>(period_upper);
+  return upward(value.upper() - value.lower()) >= period_lower;
 }
 
 Interval periodic_range(
     const Interval& value,
     double (*function)(double),
-    long double maximum_phase,
-    long double minimum_phase) {
-  constexpr long double kPi =
-      3.141592653589793238462643383279502884L;
-  constexpr long double kTwoPi = 2.0L * kPi;
-  if (static_cast<long double>(value.width()) >= kTwoPi) {
+    unsigned maximum_phase_numerator,
+    unsigned maximum_phase_denominator,
+    unsigned minimum_phase_numerator,
+    unsigned minimum_phase_denominator) {
+  if (spans_complete_period(value)) {
     return Interval(-1.0, 1.0);
   }
   double lower = std::min(function(value.lower()), function(value.upper()));
   double upper = std::max(function(value.lower()), function(value.upper()));
-  if (contains_phase(value, maximum_phase, kTwoPi)) {
+  if (contains_phase(
+          value, maximum_phase_numerator, maximum_phase_denominator)) {
     upper = 1.0;
   }
-  if (contains_phase(value, minimum_phase, kTwoPi)) {
+  if (contains_phase(
+          value, minimum_phase_numerator, minimum_phase_denominator)) {
     lower = -1.0;
   }
   return Interval(
-      lower == -1.0 ? -1.0 : downward(lower),
-      upper == 1.0 ? 1.0 : upward(upper));
+      lower == -1.0 ? -1.0 : downward_transcendental(lower),
+      upper == 1.0 ? 1.0 : upward_transcendental(upper));
 }
 
 }  // namespace
 
 Interval interval_sin(const Interval& value) {
-  constexpr long double kPi =
-      3.141592653589793238462643383279502884L;
-  return periodic_range(value, std::sin, 0.5L * kPi, 1.5L * kPi);
+  return periodic_range(value, std::sin, 1U, 2U, 3U, 2U);
 }
 
 Interval interval_cos(const Interval& value) {
-  constexpr long double kPi =
-      3.141592653589793238462643383279502884L;
-  return periodic_range(value, std::cos, 0.0L, kPi);
+  return periodic_range(value, std::cos, 0U, 1U, 1U, 1U);
 }
 
 IntervalVector subtract(const IntervalVector& left,

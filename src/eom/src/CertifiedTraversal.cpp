@@ -201,13 +201,12 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
   }
   const Interval reception = token_bounds(request.reception);
   const Interval emission = token_bounds(request.emission);
-  const double latest_emission =
-      Interval::decimal_token(request.emission.upper).midpoint();
-  const double earliest_reception =
-      Interval::decimal_token(request.reception.lower).midpoint();
-  if (latest_emission > earliest_reception) {
+  const bool exact_shared_endpoint =
+      request.emission.upper == request.reception.lower;
+  if (!exact_shared_endpoint && emission.upper() > reception.lower()) {
     throw std::invalid_argument(
-        "emission traversal cannot extend beyond earliest reception");
+        "emission traversal cannot extend beyond earliest reception: " +
+        request.emission.upper + " > " + request.reception.lower);
   }
   const Interval field_speed = Interval::decimal_token(request.field_speed);
   if (field_speed.lower() <= 0.0) {
@@ -433,7 +432,12 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
     result.unresolved_pairs = result.exact_fallback_pairs;
     result.exact_fallback_pairs = 0;
     result.exact_tiles.clear();
-    result.excluded_pairs = logical_pairs - result.unresolved_pairs;
+    if (resource_failed) {
+      result.unresolved_pairs = logical_pairs;
+      result.excluded_pairs = 0;
+    } else {
+      result.excluded_pairs = logical_pairs - result.unresolved_pairs;
+    }
   } else if (resource_failed) {
     result.excluded_pairs = 0;
     result.unresolved_pairs = logical_pairs - result.exact_fallback_pairs;
