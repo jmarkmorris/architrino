@@ -146,6 +146,140 @@ c_f-\hat{\mathbf r}_t(T_r;T_t)\cdot\mathbf V_t(T_t)
 $$
 When this floor fails, the active root is caustic-like or degenerate and must be routed to a different branch chart or regularization regime. In special geometries the floor can be computed rather than declared; the principal circular partner branch derives $\kappa_{\mathrm{hit}}^{\mathrm{bin}}=c_f(1+\beta_f\sin(\phi/2)) > c_f$ in [Binary Dynamics](binary-dynamics.md#principal-partner-root-certificate), where Binary Dynamics uses $\phi/2=\xi$ for the circular delay angle used below.
 
+#### Autonomous Emission-Labeled Wake Transport
+
+The regular-domain causal-wake geometry has a self-contained present-time state realization. For each transmitter $t$ and emission time $T_e\le T$, retain one emitted surface label
+$$
+\mathsf w_{t,e}(T)
+=
+\left(
+t,T_e,\mathbf C_{t,e},R_{t,e}(T),c_fq_t\,dT_e
+\right)
+$$
+with emission boundary data
+$$
+\mathbf C_{t,e}(T_e)=\mathbf X_t(T_e),
+\qquad
+R_{t,e}(T_e)=0
+$$
+and free absolute-time update
+$$
+\frac{d\mathbf C_{t,e}}{dT}=\mathbf0,
+\qquad
+\frac{dR_{t,e}}{dT}=c_f,
+\qquad
+\frac{d(c_fq_t\,dT_e)}{dT}=0.
+$$
+The center is the transmitter site at emission and remains fixed in the Euclidean void. The surface radius grows at the primitive wake speed. After emission, this kinematic state reads neither the later transmitter path nor any future receiver path.
+
+Plain language: each instant of emission creates a labeled expanding sphere. Its center is frozen at the place where the emission occurred, while its radius grows by $c_f$ times its age. Later transmitter motion does not drag an already emitted sphere through the void.
+
+The surface measure is conserved during free propagation. With the conventional static-transmitter normalization absorbed into the emission measure, its uniform area density is
+$$
+\varrho_{t,e}^{\mathrm{surf}}(T)
+=
+\frac{c_fq_t\,dT_e}{4\pi R_{t,e}^2(T)}.
+$$
+The inverse-square factor is therefore the dilution of one fixed emitted measure over the expanding spherical area. For a finite retained spatial window, the kinematic boundary update exports the labeled surface portion when it crosses the window boundary; it is not silently deleted. This geometric export is not yet an energy or momentum flux.
+
+Plain language: the sphere carries a fixed amount of signed emission measure. As its area grows, the same measure is spread more thinly, producing the inverse-square strength. A local simulation may hand an outgoing piece to its boundary record, but this alone says nothing about how much energy or momentum that piece carries.
+
+For a direction $\boldsymbol\omega\in S^2$, a point on the emitted surface is
+$$
+\mathbf Y_{t,e}(T,\boldsymbol\omega)
+=
+\mathbf C_{t,e}
++
+c_f(T-T_e)\boldsymbol\omega.
+$$
+Consequently every surface element has absolute speed $c_f$, and a receiver at $\mathbf X_r(T_r)$ intersects the surface only when
+$$
+\left\|
+\mathbf X_r(T_r)-\mathbf C_{t,e}
+\right\|
+=
+c_f(T_r-T_e).
+$$
+At a noncoincident intersection, the outward surface normal is
+$$
+\boldsymbol\omega_{\mathsf h}
+=
+\frac{
+\mathbf X_r(T_r)-\mathbf X_t(T_e)
+}{
+\left\|
+\mathbf X_r(T_r)-\mathbf X_t(T_e)
+\right\|
+}
+=
+\hat{\mathbf r}_t.
+$$
+
+Plain language: the acceleration direction is not an additional choice. It is the local normal of the actual wake sphere where that sphere meets the receiver, so it points from the emission site to the receiver.
+
+The transparent regular-domain reception rule leaves the kinematic wake surface unchanged and adds the receiver-local acceleration contribution
+$$
+\mathbf A_r(T_r)
+=
+\sum_t
+\kappa\sigma_{tr}|q_tq_r|c_f
+\int_{-\infty}^{T_r}
+\frac{\hat{\mathbf r}_t}{r_t^2}
+\delta\!\left(
+r_t-c_f(T_r-T_e)
+\right)
+dT_e.
+$$
+At fixed $T_r$, differentiating the support function with respect to $T_e$ gives
+$$
+\frac{\partial}{\partial T_e}
+\left[
+r_t-c_f(T_r-T_e)
+\right]
+=
+c_f-\mathbf V_t(T_e)\cdot\hat{\mathbf r}_t
+=
+D_t.
+$$
+The coarea collapse therefore yields
+$$
+c_f
+\int dT_e\,
+f(T_e)\,
+\delta\!\left(
+r_t-c_f(T_r-T_e)
+\right)
+=
+\sum_{T_e\in\mathcal C_{r\leftarrow t}(T_r)}
+\frac{c_f\,f(T_e)}{|D_t|}.
+$$
+
+Plain language: constant emission time is pushed through the moving transmitter's sequence of sphere centers. Where successive spheres bunch together, the receiver encounters a larger surface density. That geometric conversion produces the canonical acceleration weight $c_f/|D_t|$; receiver velocity is unnecessary because reception time was held fixed during the collapse.
+
+This state also adjudicates the inertially extrapolated direction under the current ontology. A direction-only replacement aimed at
+$$
+\mathbf X_t(T_e)+\mathbf V_t(T_e)(T_r-T_e)
+$$
+is not normal to the emitted surface above. Moving the surface center to that extrapolated point would instead give surface-element velocity
+$$
+\mathbf V_t(T_e)+c_f\boldsymbol\omega,
+$$
+whose magnitude is not generally $c_f$. It would define a different propagation law and a different causal support. For a smoothly accelerated transmitter, fixed-reception collapse of that moving-center family has denominator
+$$
+c_f
+-
+(T_r-T_e)
+\mathbf A_t(T_e)\cdot
+\hat{\mathbf r}_{\mathrm{ext}},
+$$
+not the canonical transmitter-velocity denominator.
+
+Plain language: the alternative has only two coherent interpretations, and both leave the current wake ontology. If only the arrow changes, it no longer follows the wake surface normal. If the sphere itself moves with the extrapolated center, its points no longer propagate at the fixed absolute speed $c_f$, and its arrival weight changes as well.
+
+Claim grade: **derived regular-domain state reduction** from fixed-speed causal-surface propagation, constant emission measure, and receiver-local surface-normal response. The executable reference is `scripts/equation-mapping/derive-causal-wake-update-law.mjs`; it checks center autonomy, the surface normal by an independent spatial finite difference, the source-time weight by direct mollified quadrature, and the absolute-speed failure of inertially transported centers. A fixed-speed independently evolving wake whose local normal is the extrapolated direction would refute the directional conclusion. Failure of the quadrature to converge to $c_f/|D_t|$ on a certified simple root would refute the weight reduction.
+
+This result closes only the regular kinematic substate and its line-of-action decision. Transparent reception does not supply the missing maturity, wake energy, wake momentum, or reception-transfer accounts needed for a finite coincident same-transmitter birth and simultaneous energy, momentum, and angular-momentum closure. Those obligations remain fail closed; the present derivation must not be cited as an account-complete Master Equation closure.
+
 #### Caustic Transit and Finite Impulse
 
 The branch expression with $W_{ij}^{\mathrm{acc}}$ should not be interpreted as a permission to pin an architrino at an infinite pointwise acceleration. At a simple delay-map caustic, the branch chart fails, but the time-integrated velocity change can remain finite.
@@ -3011,7 +3145,7 @@ This closed form is the independent directional reference used by the executable
 
 The full branchwise recomputation changes the existence verdict for that counterfactual. At the first three canonical emission-site candidates $\beta_f\approx3.0703566254$, $6.2184549634$, and $9.3764360282$, the extrapolated-direction radial coefficients are respectively $+0.1986630540$, $+0.1969175233$, and $+0.1881554019$, while the tangential coefficients are $-0.3350989817$, $-0.1271086141$, and $-0.0742863069$. Each row is outward and tangentially unbalanced. The counterfactual ledger develops replacement tangential zeros near $\beta_f\approx3.2253960989$, $6.2226379612$, and $9.3769260902$, but their radial coefficients remain outward. A scan through $1<\beta_f<20$ finds six tangential zeros and no simultaneous inward-radial point.
 
-Claim grade: **measured counterfactual**. This result shows that the canonical algebraic candidates are line-of-action sensitive; it does not promote the extrapolated construction into the Master Equation. The canonical wake geometry still points from the actual transmitter site at $T_t$ to the receiver site at $T_r$. Deriving an independently evolving wake state must decide whether another direction has an ontological basis and, if so, derive its weight rather than mixing it into the canonical root Jacobian by convention.
+Claim grade: **measured counterfactual**. This result shows that the canonical algebraic candidates are line-of-action sensitive; it does not promote the extrapolated construction into the Master Equation. The [autonomous emission-labeled wake transport](#autonomous-emission-labeled-wake-transport) derives the canonical direction and weight on regular support from the present fixed-speed wake ontology. The direction-only extrapolated construction is not the wake-surface normal, while a coherently moving extrapolated center changes the propagation law, causal support, and collapse weight. The counterfactual therefore cannot demote the canonical candidates unless the substrate wake postulates are changed.
 
 The equilibrium test precedes every stability test. Because all extrapolated-direction tangential zeros in the searched domain have outward radial acceleration, none is a circular equilibrium and no linearized delay spectrum about those rows is meaningful. The stability result is therefore not applicable after acceleration-balance failure; it is not a measured instability.
 

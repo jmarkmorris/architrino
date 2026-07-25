@@ -962,6 +962,10 @@ struct FiniteWidthAttempt {
   double last_largest_cell_width = 0.0;
 };
 
+// Contract boundary: finite-width acceleration certifies only the integral
+// over [searched_lower, reception_time], the declared retained emission
+// interval. This check excludes a causal root at searched_lower; it does not
+// bound or add Gaussian mass from unrepresented earlier emission times.
 void require_finite_width_boundary_clearance(
     const NativePairAccelerationRequest& request) {
   const auto& certificate = *request.root_certificate;

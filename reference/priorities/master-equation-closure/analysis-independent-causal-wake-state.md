@@ -328,6 +328,14 @@ acceleration, but not the maturity law, motion-account functions, emission
 capacity, or reception transfer. No accepted transition or conserved branch may
 be inferred until those items are supplied by one non-circular construction.
 
+The regular part of that statement now has an executable state reduction:
+`scripts/equation-mapping/derive-causal-wake-update-law.mjs` advances fixed
+emission-site centers and radii at $c_f$, derives the surface-normal line of
+action, and reproduces $c_f/|D_t|$ by fixed-reception source-time collapse.
+This closes the regular kinematic substate only. It does not supply any of the
+four missing constitutive objects named above, so the obstruction and
+fail-closed disposition are unchanged.
+
 Promotion classification: **closed negatively under the current primitive set;
 retain as the first-ranked derivation target, with singular evolution fail
 closed**.

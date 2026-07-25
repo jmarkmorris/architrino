@@ -35,8 +35,10 @@ The executable layer currently contains:
   factory-certified circular-prefix speed equals $c_f$: a second-order Taylor
   enclosure preserves the vanishing causal-residual derivative, and a
   midpoint integral with a certified first-derivative remainder encloses the
-  unchanged finite-width master-equation integral; arbitrary histories retain
-  the generic finite-width route;
+  model-bound retained-history finite-width integral; arbitrary histories
+  retain the generic finite-width route. This certificate does not claim the
+  unrepresented interval before the retained-history boundary or an
+  infinite-past master-equation integral;
 - a provenance-gated pinned-fold temporal onset step for the same exact
   $v=c_f$ circular endpoint: the certified sharp-chart value at the single
   onset instant is excluded from the positive-duration acceleration integral,

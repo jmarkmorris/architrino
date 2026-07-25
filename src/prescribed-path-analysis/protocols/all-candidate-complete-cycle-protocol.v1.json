@@ -91,10 +91,11 @@
         "net acceleration response",
         "prescribed-path acceleration",
         "partial prescribed-path equation mismatch",
+        "pointwise summed-acceleration screen only when the declared isolated inventory is certified complete",
         "receiver-side factor D_r",
         "root playback derivative D_r/D_t"
       ],
-      "mismatchBoundary": "partial because self-hit and other possible acceleration contributions are omitted"
+      "mismatchBoundary": "partial unless the declared isolated acceleration inventory is certified complete; the pointwise summed-acceleration row is otherwise explicitly inapplicable"
     }
   },
   "enclosingSurfaces": {

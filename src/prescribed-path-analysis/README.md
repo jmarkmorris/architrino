@@ -80,6 +80,28 @@ Object keys are sorted recursively before hashing; array order remains part of t
 
 The result claim grade is `derived`: it is conditional on the prescribed source record and protocol. The packet explicitly excludes stability, energy, retention, and physical-realization claims.
 
+## Pointwise Summed-Acceleration Screen
+
+The complete-cycle moving-endpoint reducer reports
+`pointwiseSummedAccelerationNecessaryCondition`. At each common observation
+time it sums the evaluated canonical-kernel acceleration over every declared
+receiver worldline, the independently prescribed path accelerations, and their
+equation residual. It reuses the retained causal-root event packets; it does
+not sample frozen phases or invoke a second root solver.
+
+The zero-sum screen is evaluated only when the packet certifies every retained
+root from the declared isolated architrino-worldline inventory and strict
+sub-field speed excludes a positive-delay same-worldline root. It also requires
+the prescribed accelerations to sum to zero within the declared tolerance.
+Otherwise the row is explicitly inapplicable. Noether-sea response and
+undeclared external worldlines remain outside the certified scope.
+
+A nonzero summed evaluated acceleration beyond the declared tolerance and
+numerical-convergence allowance falsifies only the exact isolated prescribed
+history. A zero result is recorded as `not-falsified-by-this-screen`; it does
+not establish a branch, taxonomy member, stability, retention, or physical
+realization.
+
 ## Local Evaluation
 
 Print an evaluation to standard output without retaining a repository result packet:

@@ -219,6 +219,12 @@ function augmentCommonAxisPacket(packet, sourceRecord) {
       completeDeclaredSourceInventory: completeInventory,
       omittedContributions: primaryReduction.omittedContributions,
     },
+    pointwiseSummedAccelerationNecessaryCondition: {
+      primary:
+        primaryReduction.pointwiseSummedAccelerationNecessaryCondition,
+      refined:
+        refinedReduction.pointwiseSummedAccelerationNecessaryCondition,
+    },
     minimumRootTransversalityMargin: {
       primary: rootMargin(primaryReduction),
       refined: rootMargin(refinedReduction),
@@ -281,7 +287,7 @@ function augmentCommonAxisPacket(packet, sourceRecord) {
   if (!accepted) modified.reducedMeasures = null;
   else modified.reducedMeasures.commonAxisBraid = generalized;
   modified.methodologyBoundary.commonAxisBraid =
-    "complete over the declared architrino-worldline inventory only; no path evolution, Noether-sea closure, stability, retention, photon, or quantization inference";
+    "complete over the declared isolated architrino-worldline inventory only; the pointwise summed-acceleration row is a falsification-only screen for the exact prescribed history and makes no branch, taxonomy, Noether-sea closure, stability, retention, photon, or quantization inference";
   return { ...modified, resultHash: sha256Canonical(modified) };
 }
 

@@ -26,7 +26,9 @@ import {
 export const COMPLETE_CYCLE_CANDIDATE_RESULT_SCHEMA =
   "prescribed-path-analysis/complete-cycle-candidate-result.v1";
 export const COMPLETE_CYCLE_CAMPAIGN_REDUCER_VERSION =
-  "prescribed-record-analytics/complete-cycle-campaign-reducer.v1";
+  "prescribed-record-analytics/complete-cycle-campaign-reducer.v2";
+export const POINTWISE_SUMMED_ACCELERATION_REDUCER_VERSION =
+  "prescribed-record-analytics/pointwise-summed-acceleration-screen.v1";
 
 function fail(message) {
   throw new Error(message);
@@ -172,16 +174,264 @@ function reduceVectorSeries(rows, period) {
   };
 }
 
+function maximumOrbitalRadius(trajectory) {
+  const uu = dot(trajectory.radiusU, trajectory.radiusU);
+  const uv = dot(trajectory.radiusU, trajectory.radiusV);
+  const vv = dot(trajectory.radiusV, trajectory.radiusV);
+  const discriminant = Math.hypot(uu - vv, 2 * uv);
+  return Math.sqrt(Math.max(0, (uu + vv + discriminant) / 2));
+}
+
+function maximumPrescribedSpeed(source, history) {
+  const trajectory = source.trajectory;
+  const rates = [history.start, history.end].map((time) =>
+    Math.abs(
+      trajectory.angularVelocity +
+        trajectory.angularAcceleration * (time - trajectory.epochTime),
+    ));
+  return norm(trajectory.centerVelocity) +
+    Math.max(...rates) * maximumOrbitalRadius(trajectory);
+}
+
+function certifyDeclaredAccelerationInventory(packet, sourceRecord, fieldSpeed) {
+  const sourceIds = sourceRecord.sources.map((source) => source.id);
+  const sourceIdSet = new Set(sourceIds);
+  const events = packet.rawLedgers?.causalRoots ?? [];
+  const reasons = [];
+  const history = sourceRecord.history;
+  const maximumSourceSpeed = fieldSpeed === null
+    ? null
+    : Math.max(...sourceRecord.sources.map((source) =>
+        maximumPrescribedSpeed(source, history)));
+  const allSourcesStrictlySubField = fieldSpeed !== null &&
+    maximumSourceSpeed < fieldSpeed;
+
+  if (packet.reducedMeasures?.validity?.passed !== true) {
+    reasons.push("moving-endpoint analytical validity gates did not all pass");
+  }
+  if (!allSourcesStrictlySubField) {
+    reasons.push(
+      "strict sub-field-speed path bound does not exclude a positive-delay same-worldline root",
+    );
+  }
+  if (events.length === 0) {
+    reasons.push("moving-endpoint packet contains no causal-root events");
+  }
+
+  for (const event of events) {
+    const receiverId = event.receiverSourceId;
+    const expectedIds = sourceIds.filter((sourceId) => sourceId !== receiverId);
+    const certificates =
+      event.rootCompletenessCertification?.transmitterCertificates ?? [];
+    const certificateIds = certificates.map((row) => row.transmitterId);
+    const uniqueCertificateIds = new Set(certificateIds);
+    const exactCertificateInventory =
+      sourceIdSet.has(receiverId) &&
+      event.expectedTransmitterCount === expectedIds.length &&
+      certificates.length === expectedIds.length &&
+      uniqueCertificateIds.size === expectedIds.length &&
+      expectedIds.every((sourceId) => uniqueCertificateIds.has(sourceId)) &&
+      certificates.every((row) => row.complete === true);
+    if (event.rootCompletenessCertification?.complete !== true ||
+        !exactCertificateInventory) {
+      reasons.push(
+        `event ${event.eventId} lacks a complete exact transmitter-inventory certificate`,
+      );
+    }
+  }
+
+  const complete = reasons.length === 0;
+  return {
+    schema:
+      "prescribed-path-analysis/declared-isolated-acceleration-inventory-certificate.v1",
+    complete,
+    status: complete ? "certified" : "not-certified",
+    scope:
+      "all retained canonical-kernel contributions from the declared isolated architrino-worldline inventory",
+    sourceCount: sourceIds.length,
+    sourceIds,
+    eventCount: events.length,
+    fieldSpeed,
+    maximumCertifiedSourceSpeed: maximumSourceSpeed,
+    strictSubFieldSpeedPassed: allSourcesStrictlySubField,
+    rootCompletenessPassed: events.length > 0 && events.every(
+      (event) => event.rootCompletenessCertification?.complete === true,
+    ),
+    sameTransmitterRootDisposition: allSourcesStrictlySubField
+      ? "no-positive-delay-root-by-strict-sub-field-speed-path-length-bound"
+      : "not-certified",
+    outsideCertifiedScope: [
+      "Noether-sea response",
+      "undeclared external architrino worldlines",
+    ],
+    reasons,
+  };
+}
+
+export function reducePointwiseSummedAccelerationNecessaryCondition(
+  endpointReduction,
+  {
+    absoluteTolerance,
+    numericalConvergenceBound = 0,
+  } = {},
+) {
+  const tolerance = finite(
+    absoluteTolerance,
+    "pointwise summed-acceleration absoluteTolerance",
+  );
+  const convergenceBound = finite(
+    numericalConvergenceBound,
+    "pointwise summed-acceleration numericalConvergenceBound",
+  );
+  if (tolerance < 0 || convergenceBound < 0) {
+    throw new RangeError(
+      "pointwise summed-acceleration tolerances must be nonnegative.",
+    );
+  }
+
+  const certificate = endpointReduction?.accelerationInventoryCertification;
+  const shared = {
+    schema:
+      "prescribed-path-analysis/pointwise-summed-acceleration-necessary-condition.v1",
+    reducerVersion: POINTWISE_SUMMED_ACCELERATION_REDUCER_VERSION,
+    claimGrade: "derived",
+    claimScope:
+      "falsification-only screen for the exact isolated prescribed history under its declared architrino-worldline inventory",
+    sufficientConditionClaim: false,
+    branchExistenceClaim: false,
+    taxonomyClaim: false,
+    absoluteTolerance: tolerance,
+    numericalConvergenceBound: convergenceBound,
+  };
+  if (certificate?.complete !== true) {
+    return {
+      ...shared,
+      status: "inapplicable-incomplete-acceleration-inventory",
+      outcome: "not-evaluated",
+      falsifiedAsExactIsolatedPrescribedHistory: null,
+      accelerationInventoryCertification: certificate ?? null,
+      rows: [],
+      summary: null,
+    };
+  }
+
+  const receivers = endpointReduction.receivers;
+  if (!Array.isArray(receivers) || receivers.length === 0) {
+    fail("certified pointwise summed-acceleration reduction requires receivers.");
+  }
+  const eventCount = receivers[0].events.length;
+  if (eventCount === 0 ||
+      receivers.some((receiver) => receiver.events.length !== eventCount)) {
+    fail("pointwise summed-acceleration receiver event grids differ.");
+  }
+
+  const rows = [];
+  for (let eventIndex = 0; eventIndex < eventCount; eventIndex += 1) {
+    const observationTime = receivers[0].events[eventIndex].observationTime;
+    if (receivers.some(
+      (receiver) => receiver.events[eventIndex].observationTime !== observationTime,
+    )) {
+      fail("pointwise summed-acceleration receiver observation times differ.");
+    }
+    const summedEvaluatedAcceleration = receivers.reduce(
+      (sum, receiver) =>
+        add(sum, receiver.events[eventIndex].netAccelerationFromOtherSources),
+      { x: 0, y: 0, z: 0 },
+    );
+    const summedPrescribedAcceleration = receivers.reduce(
+      (sum, receiver) =>
+        add(sum, receiver.events[eventIndex].prescribedPathAcceleration),
+      { x: 0, y: 0, z: 0 },
+    );
+    const summedEquationResidual = subtract(
+      summedPrescribedAcceleration,
+      summedEvaluatedAcceleration,
+    );
+    rows.push({
+      eventIndex,
+      observationTime,
+      summedEvaluatedAcceleration,
+      summedEvaluatedAccelerationNorm: norm(summedEvaluatedAcceleration),
+      summedPrescribedAcceleration,
+      summedPrescribedAccelerationNorm: norm(summedPrescribedAcceleration),
+      summedEquationResidual,
+      summedEquationResidualNorm: norm(summedEquationResidual),
+    });
+  }
+
+  const peak = (field) => rows.reduce(
+    (best, row) => !best || row[field] > best[field] ? row : best,
+    null,
+  );
+  const peakEvaluated = peak("summedEvaluatedAccelerationNorm");
+  const peakPrescribed = peak("summedPrescribedAccelerationNorm");
+  const peakResidual = peak("summedEquationResidualNorm");
+  const adjudicationThreshold =
+    tolerance + receivers.length * convergenceBound;
+  const prescribedAccelerationSumZeroWithinTolerance =
+    peakPrescribed.summedPrescribedAccelerationNorm <= tolerance;
+  const falsified = prescribedAccelerationSumZeroWithinTolerance &&
+    peakEvaluated.summedEvaluatedAccelerationNorm > adjudicationThreshold;
+  const status = !prescribedAccelerationSumZeroWithinTolerance
+    ? "inapplicable-nonzero-prescribed-acceleration-sum"
+    : "evaluated-falsification-only";
+  const outcome = !prescribedAccelerationSumZeroWithinTolerance
+    ? "not-evaluated"
+    : falsified
+      ? "falsified-exact-isolated-prescribed-history"
+      : "not-falsified-by-this-screen";
+
+  return {
+    ...shared,
+    status,
+    outcome,
+    falsifiedAsExactIsolatedPrescribedHistory:
+      prescribedAccelerationSumZeroWithinTolerance ? falsified : null,
+    accelerationInventoryCertification: certificate,
+    hypotheses: {
+      completeAccelerationInventory: true,
+      commonObservationGrid: true,
+      prescribedAccelerationSumZeroWithinTolerance,
+    },
+    adjudicationThreshold,
+    rows,
+    summary: {
+      eventCount,
+      receiverCount: receivers.length,
+      maximumSummedEvaluatedAccelerationNorm:
+        peakEvaluated.summedEvaluatedAccelerationNorm,
+      peakSummedEvaluatedAcceleration: {
+        eventIndex: peakEvaluated.eventIndex,
+        observationTime: peakEvaluated.observationTime,
+        vector: peakEvaluated.summedEvaluatedAcceleration,
+      },
+      maximumSummedPrescribedAccelerationNorm:
+        peakPrescribed.summedPrescribedAccelerationNorm,
+      peakSummedPrescribedAcceleration: {
+        eventIndex: peakPrescribed.eventIndex,
+        observationTime: peakPrescribed.observationTime,
+        vector: peakPrescribed.summedPrescribedAcceleration,
+      },
+      maximumSummedEquationResidualNorm:
+        peakResidual.summedEquationResidualNorm,
+      peakSummedEquationResidual: {
+        eventIndex: peakResidual.eventIndex,
+        observationTime: peakResidual.observationTime,
+        vector: peakResidual.summedEquationResidual,
+      },
+    },
+    interpretation:
+      "A falsifying outcome applies only to this exact isolated prescribed history. A non-falsifying outcome establishes no branch, taxonomy, stability, retention, or physical-realization claim.",
+  };
+}
+
 export function reduceCompleteCycleEndpointPacket(packet, sourceRecord, period, {
   fieldSpeed = null,
 } = {}) {
   const eventsBySource = new Map(sourceRecord.sources.map((source) => [source.id, []]));
   const declaredFrame = sourceRecord.parameterVector?.frame ?? null;
-  const allSourcesStrictlySubField = fieldSpeed !== null &&
-    sourceRecord.sources.every((source) =>
-      norm(source.trajectory.centerVelocity) +
-        Math.abs(source.trajectory.angularVelocity) * norm(source.trajectory.radiusU) <
-      fieldSpeed);
+  const accelerationInventoryCertification =
+    certifyDeclaredAccelerationInventory(packet, sourceRecord, fieldSpeed);
   for (const event of packet.rawLedgers.causalRoots) {
     const source = sourceRecord.sources.find((row) => row.id === event.receiverSourceId);
     if (!source) fail(`endpoint event ${event.eventId} lacks its receiver source.`);
@@ -245,20 +495,36 @@ export function reduceCompleteCycleEndpointPacket(packet, sourceRecord, period, 
     },
     events,
   }));
-  return {
+  const endpointReduction = {
     selfHitPolicy: "exclude-same-transmitter-id.v1",
     implementedContributions: ["acceleration from every other prescribed source"],
-    sameTransmitterRootDisposition: allSourcesStrictlySubField
-      ? "no-positive-delay-root-by-strict-sub-field-speed-path-length-bound"
-      : "not-certified-by-this-reducer",
-    completeDeclaredSourceInventory: allSourcesStrictlySubField,
+    sameTransmitterRootDisposition:
+      accelerationInventoryCertification.sameTransmitterRootDisposition,
+    completeDeclaredSourceInventory:
+      accelerationInventoryCertification.complete,
+    accelerationInventoryCertification,
     omittedContributions: [
-      ...(allSourcesStrictlySubField ? [] : ["same-source self-hit acceleration"]),
+      ...(accelerationInventoryCertification.strictSubFieldSpeedPassed
+        ? []
+        : ["same-source self-hit acceleration"]),
       "Noether-sea response",
       "any other acceleration contribution not present in the prescribed-source evaluator",
     ],
     mismatchDisposition: "partial-prescribed-path-equation-mismatch",
     receivers,
+  };
+  const absoluteTolerance =
+    packet.tolerances?.convergenceAbsolute ??
+    packet.reducedMeasures?.numericalConvergence?.absoluteTolerance;
+  const numericalConvergenceBound =
+    packet.reducedMeasures?.numericalConvergence?.maximumReportedChange ?? 0;
+  return {
+    ...endpointReduction,
+    pointwiseSummedAccelerationNecessaryCondition:
+      reducePointwiseSummedAccelerationNecessaryCondition(endpointReduction, {
+        absoluteTolerance,
+        numericalConvergenceBound,
+      }),
   };
 }
 
@@ -957,6 +1223,8 @@ export function evaluateCompleteCycleCandidate({
       prescribedPathAccelerationMismatch: "partial",
       omittedAccelerationContributions:
         internalReceivers.primary.reduction.omittedContributions,
+      pointwiseSummedAccelerationNecessaryCondition:
+        "falsification-only for an exact isolated prescribed history when the declared architrino-worldline acceleration inventory is certified complete and the summed prescribed acceleration vanishes within tolerance; a non-falsifying result establishes no branch or taxonomy claim",
       symmetryResiduals:
         "inapplicable until the source-record contract declares an exact transform and probe mapping",
     },

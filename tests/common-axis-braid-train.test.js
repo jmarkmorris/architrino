@@ -205,6 +205,19 @@ test("complete-cycle residual projections are deterministic and ledger-backed", 
     { fieldSpeed: 1 },
   );
   assert.equal(reduction.completeDeclaredSourceInventory, true);
+  assert.equal(reduction.accelerationInventoryCertification.status, "certified");
+  assert.equal(
+    reduction.pointwiseSummedAccelerationNecessaryCondition.status,
+    "evaluated-falsification-only",
+  );
+  assert.equal(
+    reduction.pointwiseSummedAccelerationNecessaryCondition.branchExistenceClaim,
+    false,
+  );
+  assert.equal(
+    reduction.pointwiseSummedAccelerationNecessaryCondition.taxonomyClaim,
+    false,
+  );
   assert.equal(reduction.receivers.length, 6);
   for (const receiver of reduction.receivers) {
     assert.equal(receiver.events.length, 8);

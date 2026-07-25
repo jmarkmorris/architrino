@@ -265,6 +265,34 @@ $$
 
 under the declared self-hit convention. This is a pointwise comparison between the acceleration required by the prescribed path and the acceleration supplied by the analytical causal-hit sum. Its peak, RMS, mean vector, phase dependence, and per-binary decomposition are legitimate prescribed-record measures. If the self-hit term or another accepted acceleration contribution is unavailable, the result must be labeled a partial mismatch rather than a complete Master Equation residual. A small mismatch measures compatibility of the declared chart with the evaluated acceleration contributions; it does not establish stability.
 
+When the declared isolated acceleration inventory is certified complete, summing these rows gives a stronger falsification-only reduction. Define
+
+$$
+\mathbf S_A(T)
+=
+\sum_i \mathbf A_i(T)
+$$
+
+for the evaluated canonical-kernel acceleration supplied to every declared architrino. If the prescribed kinematics satisfy
+
+$$
+\sum_i \frac{d^2\mathbf X_i}{dT^2}=0
+$$
+
+pointwise, as occurs for antipodal prescribed pairs about inertially moving centers, then any exact solution on that prescribed history must satisfy
+
+$$
+\boxed{
+\mathbf S_A(T)=0
+}
+$$
+
+at every evaluation time. This follows directly by summing the individual equations of motion; it introduces no force, mass, momentum, return-map, or stability assumption.
+
+Plain language: the prescribed pair accelerations cancel before the interaction law is evaluated, so the complete evaluated acceleration sum must also cancel at each instant if that exact history solves the equations.
+
+A value of $\|\mathbf S_A(T)\|$ beyond the declared numerical tolerance and convergence allowance falsifies only that exact isolated prescribed history under the certified inventory. A zero value is recorded only as not falsified by this screen. It does not establish a branch, a taxonomy member, stability, retention, or physical realization. If the same-worldline contribution, root inventory, or another contribution inside the declared isolated system is not certified complete, the screen is inapplicable rather than partial.
+
 ## Probe Geometry
 
 A candidate should be tested on the same nested probe geometry:
@@ -291,7 +319,7 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | Root-transversality margin | $\min|D_{t,j}|$ over all retained probe and internal roots | Distance from an unresolved causal-root fold |
 | Root-topology ledger | Root counts, identities, births, deaths, and reconnections versus $T$ | Whether averaged curves hide causal-branch changes |
 | Internal prescribed-path response | Per-endpoint peak, RMS, and cycle integral of $\mathbf A_i^{\mathrm{others}}$ evaluated on the prescribed paths | The acceleration that the other prescribed paths would deliver, not whether those paths persist |
-| Prescribed-path equation mismatch | Peak, RMS, mean, phase-resolved, and per-binary rows of $\mathbf R_i^{\mathrm{path}}$ | Pointwise compatibility between the prescribed kinematics and the evaluated acceleration contributions |
+| Prescribed-path equation mismatch | Peak, RMS, mean, phase-resolved, and per-binary rows of $\mathbf R_i^{\mathrm{path}}$; when its hypotheses hold, the falsification-only pointwise sum $\mathbf S_A(T)$ | Pointwise compatibility between the prescribed kinematics and the evaluated acceleration contributions, without promoting a non-falsifying sum to a branch claim |
 | External signed exposure | $\mathcal W$ on $S_R$ through the complete cycle | Net polarity-signed wake exposure |
 | External raw exposure | $\mathcal W_{\mathrm{abs}}$ on $S_R$ through the complete cycle | Wake strength before signed cancellation |
 | Complete-cycle signed normal wake flux | $F_{\mathrm{signed}}(R)$ from the outward-normal projection of the signed causal-wake contributions | The global signed crossing total, which vanishes for a polarity-neutral assembly and is therefore not a cancellation score |
