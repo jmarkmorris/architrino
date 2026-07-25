@@ -390,3 +390,31 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 - Rebuilt the EOM solver and ran source-identified Campaign 1 slices at $d=1$, $s=0.25$. Head-on R0/R1/R2 traces remained strictly inward and halted fail-closed on root completeness at progressively smaller separations; no head-on reversal was certified.
 - The transverse R1 trace completed one inward-to-outward reversal between $t=1.7175$ and $t=1.7200$, with sampled minimum separation $0.77577103$, and remained outward through a completed $t=1.9$ run. Consecutive EOM solver rebuilds reproduced the same bracket and minimum while certification changes were arriving in the live checkout.
 - Booked the result as diagnostic only. It is half of a possible breath, not repeated breathing or retained binding: the trace lacks a second reversal, R2 transverse confirmation, three-prehistory collapse, a post-$H$ claim window, residual ledgers, and independent-oracle parity, and the live EOM source continued changing after each tested build. See [the diagnostic packet](evidence/2026-07-24-campaign-1-two-architrino-breathing-diagnostic.md).
+
+## 2026-07-24 — Current-solver Breather return-map diagnostic completed
+
+- Rebuilt the current EOM solver, passed all five compiled fixtures and all 75 independent Python oracle tests, and revalidated all 243 Campaign 1 construction rows without invoking evolution in the construction check.
+- The transverse $d=1$, $s=0.25$ R1/R2 rows agree on one minimum near $t=1.719$ and $r=0.775771$, but no later maximum occurs through the R2 checkpoint at $t=2.4$. R2 ends with $r=0.946307$ and $\dot r=+0.500683$; its sampled midpoint remains fixed. With only one minimum, period, amplitude, and return-map drift are undefined.
+- R0 and R1 halt on `root_completeness_not_certified`; all three R0 endpoint-matched prehistories halt at $t=1.55$ while moving inward. The $s=0.50$ sensitivity row separates from release and halts at $t=1.025$ without recapture. No accepted energy account exists for this run.
+- A fresh read-only reducer and three independent synthetic tests now enforce the minimum-maximum-minimum diagnostic return definition. The run also exposed that resumed harness manifests reset cumulative chunk and wall-time counters, so G3/G4 remain unaccepted and no campaign fate is booked. See [the current-solver return-map packet](evidence/2026-07-24-current-solver-two-architrino-breather-return-map.md).
+
+## 2026-07-24 — Stationary-rest Breather diagnostic completed
+
+- Replaced the moving transverse setup as the Breather baseline with the
+  operator-requested release: opposite polarities at
+  $\mathbf X_\pm(0)=(\pm0.5,0,0)$, both velocities exactly zero, and an exactly
+  stationary retained prehistory on $[-20,0]$ with $c_f=1$.
+- The EOM solver and independent Python oracle agree on the certified inward
+  release acceleration:
+  $A_{r,\mathrm{rel}}(0)\in[-0.572457220610732,-0.572457220610621]$.
+  R0/R1/R2 remain exactly centered and collinear but halt on cross-root
+  `numeric_precision_limit_exhausted` before crossing. R2 retains motion through
+  $T=1.54625$, at $r=0.152080$ and individual speed $0.870314c_f$.
+- No crossing, rebound, outer turn, recapture, or minimum-maximum-minimum
+  excursion is certified; the return-map trend is unresolved. R0 histories
+  with stationary horizons $H=10$, $20$, and $40$ produce byte-identical frame
+  and release-acceleration streams.
+- G3 remains unaccepted and no campaign fate, energy account, retention,
+  stability, binding, or physical-realization claim is booked. See the
+  [predeclared protocol](campaigns/stationary-binary-breather-diagnostic.md) and
+  [diagnostic packet](evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md).

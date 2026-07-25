@@ -310,6 +310,58 @@ std::vector<eom::NativeCoupledPathInput> campaign1_paths(
   return paths;
 }
 
+eom::RetainedHistory stationary_binary_history(
+    double depth, double segment_step, int polarity) {
+  if (!(depth > 1.0) || !(segment_step > 0.0)) {
+    throw std::invalid_argument(
+        "stationary binary history requires depth > 1 and segment step > 0");
+  }
+  const double segment_count_value = depth / segment_step;
+  const std::size_t segment_count =
+      static_cast<std::size_t>(std::llround(segment_count_value));
+  if (std::abs(
+          segment_count_value - static_cast<double>(segment_count)) > 1e-9) {
+    throw std::invalid_argument(
+        "stationary binary history depth must be divisible by segment step");
+  }
+  const double x = static_cast<double>(polarity) * 0.5;
+  std::vector<eom::CubicHistorySegment> segments;
+  segments.reserve(segment_count);
+  for (std::size_t index = 0; index < segment_count; ++index) {
+    const double start =
+        -depth + segment_step * static_cast<double>(index);
+    const double end = index + 1 == segment_count
+        ? 0.0
+        : -depth + segment_step * static_cast<double>(index + 1);
+    eom::CubicCoefficientTokens coefficients{};
+    coefficients[0] = {token(x), "0", "0", "0"};
+    coefficients[1] = {"0", "0", "0", "0"};
+    coefficients[2] = {"0", "0", "0", "0"};
+    segments.emplace_back(
+        token(start), token(end), coefficients, "1e-14", "1e-14");
+  }
+  const std::string path_id = polarity > 0 ? "positive" : "negative";
+  return eom::RetainedHistory(
+      path_id + "-stationary-held-prehistory", std::move(segments));
+}
+
+std::vector<SeedRow> stationary_binary_rows() {
+  return {
+      {"positive", kCharge, 0.5, 0.0, 0.0, 0.0, 0},
+      {"negative", kNegativeCharge, 0.5, 0.0, kPi, 0.0, 0},
+  };
+}
+
+std::vector<eom::NativeCoupledPathInput> stationary_binary_paths(
+    double depth, double segment_step) {
+  return {
+      {"positive", kCharge,
+       stationary_binary_history(depth, segment_step, +1)},
+      {"negative", kNegativeCharge,
+       stationary_binary_history(depth, segment_step, -1)},
+  };
+}
+
 // Release-time endpoint state shared by both prehistory families
 // (endpoint-matched within binary64 — the requirement is materially
 // different prehistories arriving at the same release state).
@@ -588,6 +640,108 @@ void write_interval_vector(
            << ",\"upper\":" << values[axis].upper() << '}';
   }
   output << ']';
+}
+
+void write_release_acceleration_atomic(
+    const std::filesystem::path& path,
+    const eom::NativeAccelerationSnapshotCertificate& snapshot) {
+  const auto temporary_path = path.string() + ".tmp";
+  std::ofstream output(temporary_path, std::ios::trunc);
+  if (!output) {
+    throw std::runtime_error(
+        "failed to open release acceleration temporary file");
+  }
+  output << std::setprecision(17)
+         << "{\"schema\":\"stationary_binary_release_acceleration/v0\""
+         << ",\"evidenceBoundary\":"
+            "\"EOM-solver diagnostic; not an independent oracle\""
+         << ",\"status\":";
+  write_json_string(output, snapshot.status);
+  output << ",\"failureCode\":";
+  write_json_string(output, snapshot.failure_code);
+  output << ",\"receptionTime\":";
+  write_json_string(output, snapshot.reception_time);
+  output << ",\"rootCertificates\":[";
+  for (std::size_t index = 0;
+       index < snapshot.root_certificates.size(); ++index) {
+    const auto& row = snapshot.root_certificates[index];
+    if (index > 0) output << ',';
+    output << "{\"receiver\":";
+    write_json_string(output, row.receiver_path_id);
+    output << ",\"transmitter\":";
+    write_json_string(output, row.transmitter_path_id);
+    output << ",\"status\":";
+    write_json_string(output, row.certificate.status);
+    output << ",\"failureCode\":";
+    write_json_string(output, row.certificate.failure_code);
+    output << '}';
+  }
+  output << "],\"receiverAccelerations\":[";
+  const eom::NativeReceiverAcceleration* positive = nullptr;
+  const eom::NativeReceiverAcceleration* negative = nullptr;
+  for (std::size_t index = 0;
+       index < snapshot.acceleration.receiver_totals.size(); ++index) {
+    const auto& row = snapshot.acceleration.receiver_totals[index];
+    if (index > 0) output << ',';
+    output << "{\"pathId\":";
+    write_json_string(output, row.receiver_path_id);
+    output << ",\"acceleration\":";
+    write_interval_vector(output, row.acceleration);
+    output << '}';
+    if (row.receiver_path_id == "positive") positive = &row;
+    if (row.receiver_path_id == "negative") negative = &row;
+  }
+  output << ']';
+  if (positive != nullptr && negative != nullptr) {
+    const double lower =
+        positive->acceleration[0].lower() -
+        negative->acceleration[0].upper();
+    const double upper =
+        positive->acceleration[0].upper() -
+        negative->acceleration[0].lower();
+    output << ",\"relativeRadialAcceleration\":{\"axis\":\"+x from negative "
+              "to positive\",\"lower\":"
+           << lower << ",\"upper\":" << upper << '}';
+  }
+  output << "}\n";
+  output.flush();
+  if (!output) {
+    throw std::runtime_error("failed to write release acceleration file");
+  }
+  output.close();
+  std::filesystem::rename(temporary_path, path);
+}
+
+void log_halt_detail(
+    const eom::NativeCoupledEvolutionCertificate& chunk) {
+  if (chunk.status == "completed") return;
+  std::cerr << "halt_detail status=" << chunk.status
+            << " halt_code=" << chunk.halt_code
+            << " accepted_end=" << chunk.accepted_end_time << '\n';
+  for (const auto& step : chunk.steps) {
+    if (step.status == "accepted") continue;
+    std::cerr << "rejected_step index=" << step.step_index
+              << " attempted_start=" << step.attempted_start
+              << " attempted_end=" << step.attempted_end
+              << " failure=" << step.failure_code << '\n';
+    for (std::size_t substep_index = 0;
+         substep_index < step.substeps.size(); ++substep_index) {
+      const auto& substep = step.substeps[substep_index];
+      std::cerr << "rejected_substep index=" << substep_index
+                << " start=" << substep.start_time
+                << " end=" << substep.end_time
+                << " status=" << substep.status
+                << " failure=" << substep.failure_code << '\n';
+      if (!substep.endpoint_snapshot.has_value()) continue;
+      for (const auto& root : substep.endpoint_snapshot->root_certificates) {
+        if (root.certificate.status == "certified_complete") continue;
+        std::cerr << "rejected_root receiver=" << root.receiver_path_id
+                  << " transmitter=" << root.transmitter_path_id
+                  << " status=" << root.certificate.status
+                  << " failure=" << root.certificate.failure_code << '\n';
+      }
+    }
+  }
 }
 
 void write_campaign1_probe(
@@ -1029,6 +1183,14 @@ void write_manifest(
     output << ",\"refinement\":";
     write_json_string(output, options.refinement);
     output << '}';
+  } else if (options.seed_family == "stationary-rest-binary-v1") {
+    output << ",\"stationaryBinaryCoordinate\":{\"separation\":1"
+           << ",\"releaseSpeed\":0"
+           << ",\"prehistoryId\":\"stationary-held\""
+           << ",\"historyDepth\":" << options.history_depth
+           << ",\"refinement\":";
+    write_json_string(output, options.refinement);
+    output << '}';
   }
   output << ",\"evidence\":{\"eomEvidenceStatus\":"
             "\"executable_architecture_evidence\""
@@ -1054,6 +1216,11 @@ void write_manifest(
              << ",\"releaseVelocity\":[" << velocity.x << ',' << velocity.y
              << ',' << velocity.z << "]"
              << ",\"speed\":" << row.speed << '}';
+    } else if (options.seed_family == "stationary-rest-binary-v1") {
+      const double signed_x = row.charge == kCharge ? 0.5 : -0.5;
+      output << ",\"releasePosition\":[" << signed_x << ",0,0]"
+             << ",\"releaseVelocity\":[0,0,0]"
+             << ",\"speed\":0}";
     } else {
       output << ",\"radius\":" << row.radius
              << ",\"height\":" << row.height
@@ -1197,10 +1364,20 @@ int main(int argc, char** argv) {
       options.history_segment_step = refinement.history_segment_step;
       options.root_max_depth = refinement.root_max_depth;
       options.chunk_steps = refinement.chunk_steps;
+    } else if (options.seed_family == "stationary-rest-binary-v1") {
+      const auto& refinement = campaign1_refinement(options.refinement);
+      options.population = 2;
+      options.prehistory = "stationary-held";
+      options.step = refinement.step;
+      options.minimum_step = refinement.step / 4.0;
+      options.history_segment_step = refinement.history_segment_step;
+      options.root_max_depth = refinement.root_max_depth;
+      options.chunk_steps = refinement.chunk_steps;
+      options.delay_horizon = options.history_depth;
     } else if (options.seed_family != "phase0-shell-v1") {
       throw std::invalid_argument(
-          "seed-family must be phase0-shell-v1 or "
-          "campaign1-subfield-binary-v1");
+          "seed-family must be phase0-shell-v1, "
+          "campaign1-subfield-binary-v1, or stationary-rest-binary-v1");
     }
     options.run_id = option_string(
         argc, argv, "run-id",
@@ -1209,6 +1386,10 @@ int main(int argc, char** argv) {
                   options.binary_separation, options.binary_speed,
                   options.binary_angle, options.prehistory,
                   campaign1_refinement(options.refinement)})
+            : options.seed_family == "stationary-rest-binary-v1"
+            ? "stationary-rest-d1-H" +
+                  campaign1_scalar_id(options.history_depth) + "-" +
+                  options.refinement
             : "attractor-ensemble-n" + std::to_string(options.population) +
                   "-s" + std::to_string(options.seed_offset) + "-" +
                   options.prehistory);
@@ -1236,6 +1417,11 @@ int main(int argc, char** argv) {
             "Campaign 1 separation and speed must be declared grid values");
       }
     }
+    if (options.seed_family == "stationary-rest-binary-v1" &&
+        !(options.history_depth > 1.0)) {
+      throw std::invalid_argument(
+          "stationary retained-history depth must exceed unit travel time");
+    }
     if (options.chunk_steps == 0 || options.sample_every == 0) {
       throw std::invalid_argument("chunk-steps and sample-every must be >= 1");
     }
@@ -1248,6 +1434,8 @@ int main(int argc, char** argv) {
     const auto replay_path = out_dir / "replay.borg-trajectory.json";
     const auto checkpoint_path = out_dir / "checkpoint.bin";
     const auto assembly_record_path = out_dir / "assembly-view-record.json";
+    const auto release_acceleration_path =
+        out_dir / "release-acceleration.json";
 
     const std::optional<Campaign1Coordinate> campaign1_coordinate =
         options.seed_family == "campaign1-subfield-binary-v1"
@@ -1256,15 +1444,22 @@ int main(int argc, char** argv) {
               options.binary_angle, options.prehistory,
               campaign1_refinement(options.refinement)})
         : std::nullopt;
+    const bool stationary_binary =
+        options.seed_family == "stationary-rest-binary-v1";
     const auto rows = campaign1_coordinate.has_value()
         ? campaign1_rows(*campaign1_coordinate)
+        : stationary_binary
+        ? stationary_binary_rows()
         : seed_rows(options.population, options.seed_offset);
     std::vector<eom::NativeCoupledPathInput> paths =
         campaign1_coordinate.has_value()
         ? campaign1_paths(*campaign1_coordinate)
+        : stationary_binary
+        ? stationary_binary_paths(
+              options.history_depth, options.history_segment_step)
         : std::vector<eom::NativeCoupledPathInput>{};
     double maximum_seed_speed = 0.0;
-    if (!campaign1_coordinate.has_value()) {
+    if (!campaign1_coordinate.has_value() && !stationary_binary) {
       paths.reserve(rows.size());
       for (const auto& row : rows) {
         paths.push_back({
@@ -1340,6 +1535,10 @@ int main(int argc, char** argv) {
       }
       const auto snapshot = eom::certify_native_acceleration_snapshot(
           request_template, initial, "0");
+      if (stationary_binary) {
+        write_release_acceleration_atomic(
+            release_acceleration_path, snapshot);
+      }
       std::size_t unresolved = 0;
       for (const auto& row : snapshot.root_certificates) {
         if (row.certificate.status != "certified_complete") {
@@ -1420,6 +1619,7 @@ int main(int argc, char** argv) {
             request, *checkpoint, token(chunk_target));
       }();
       cumulative_wall_seconds += chunk.timing.total_wall_seconds;
+      log_halt_detail(chunk);
 
       if (chunk.accepted_step_count == 0) {
         std::cerr << "chunk=" << chunks_completed

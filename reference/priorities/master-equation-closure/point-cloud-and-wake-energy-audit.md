@@ -341,6 +341,178 @@ Claim grade: derived acceptance contract. No eligible EOM-solver branch record
 is currently adjudicated by this packet, so it reports no moving-assembly
 pass/fail result.
 
+## Prescribed-History Falsification And Search Guidance
+
+For a prescribed record whose moving-endpoint packet certifies the complete
+declared isolated acceleration inventory, the individual equation residuals
+$\mathbf R_i^{\mathrm{path}}(T)$ provide a stricter screen than their vector
+sum. On a declared time grid $G_W$, define
+
+$$
+E_\infty(W)
+=
+\max_{\substack{i\\T\in G_W}}
+\left\|\mathbf R_i^{\mathrm{path}}(T)\right\|,
+\qquad
+E_2(W)
+=
+\left[
+\frac{1}{N|G_W|}
+\sum_i\sum_{T\in G_W}
+\left\|\mathbf R_i^{\mathrm{path}}(T)\right\|^2
+\right]^{1/2}.
+$$
+
+A sampled value above the declared tolerance plus numerical-convergence bound
+falsifies that exact isolated prescribed history. Equal-and-opposite member
+residuals cannot hide behind a zero summed row. A sampled near-zero remains
+diagnostic: it is not a relative-periodic branch, return-symmetry, taxonomy,
+stability, retention, or physical-realization result.
+
+Plainly: the summed screen can miss two equally wrong architrinos whose errors
+cancel. The member screen checks each architrino before doing any addition.
+
+For first and second declared half-cycle windows on the same grid,
+
+$$
+E_\infty(P)
+=
+\max\left\{
+E_\infty(P/2,1),
+E_\infty(P/2,2)
+\right\}.
+$$
+
+The corresponding full-cycle RMS squared is the row-count-weighted mean of the
+two half-cycle RMS squares. Therefore the half-cycle row is a staged
+early-rejection device, not an independent positive objective: failure of the
+first evaluated half saves the second half's work, while survival requires the
+other half and time-grid refinement. Search ordering is refined full-cycle
+$E_\infty$ first and refined full-cycle $E_2$ second; the two half peaks and
+their imbalance remain diagnostics.
+
+Plainly: the full-cycle worst error is exactly the worse half's worst error.
+One good half never excuses a bad second half.
+
+The live reducer is
+`prescribed-record-analytics/pointwise-member-residual-search-screen.v1`.
+It reuses the existing complete-cycle moving-endpoint causal-root packets and
+does not evolve paths, sample frozen overlays, invoke the EOM solver, or alter
+the accepted return-symmetry group. Unit checks use hand-authored residual
+ledgers, including a summed-cancellation counterexample, a clean-first-half
+and bad-second-half row, a cyclic phase relabeling, and an incomplete-inventory
+negative control. The causal-root path remains checked separately by the
+common-axis root-residual test rather than by the acceleration reducer.
+
+Measured diagnostic pilot: `buildCompactMonteCarloCampaign` ran one deterministic bounded
+taxonomy draw per active member with the coverage protocol and seed
+`member-residual-bounded-pilot-2026-07-24`. It drew 20 rows in 131.750 wall
+seconds on the operator's current machine. Five rows reached an eligible
+complete-inventory residual score; 15 did not reach that instrument, so they
+are unknown rather than passing. All five eligible rows were already falsified
+by the summed screen, so this small evaluated subset contained zero cases where
+summed cancellation concealed a member failure. Their first-half versus
+second-half peak Pearson correlation was $0.9924$, and first-half versus
+full-cycle peak correlation was $0.99999996$.
+
+Plainly: this pilot proves neither that cancellation hiding is rare nor that
+one half is generally predictive. It had only five eligible rows, all far from
+zero, and most catalog draws never reached the screen.
+
+Claim grades: the partition identities and falsification scope are derived.
+The five-row pilot values are measured and diagnostic-only, produced by the
+named instrument, and apply only to that seed, protocol, implementation state,
+and eligible subset. The search ordering is inferred from the exact identities
+plus the need to resolve peak residuals before average residuals.
+
+Falsifiers: a hand ledger for which the full-cycle peak differs from the worse
+half peak overturns the partition implementation; an independently checked
+causal root missing from a certified packet invalidates its screen; a repeated
+stratified pilot with materially different half-to-full ranking overturns the
+proxy correlation; and any attempt to promote a near-zero without the second
+half, refinement, or independent root-residual check violates the search
+contract.
+
+### Stratified Endpoint-Only Follow-Up
+
+The reproducible endpoint-only runner
+`scripts/eom/run-endpoint-residual-search.mjs` evaluated six deterministic
+draws for each of the 20 active catalog members: one exact catalog-reference
+record, two local-neighborhood draws, and three full bounded-taxonomy draws.
+The screening grids used 12 and 24 cycle samples. Every eligible row required
+complete declared isolated acceleration inventories at both resolutions and a
+separately computed geometric causal-root residual no larger than
+$10^{-12}$. The campaign seed was
+`stratified-endpoint-residual-search-2026-07-24-v1`.
+
+| Stratum | Drawn | Eligible complete inventory | Unknown | Member failures hidden by the summed screen |
+| --- | ---: | ---: | ---: | ---: |
+| catalog reference | 20 | 13 | 7 | 8 |
+| local neighborhood | 40 | 25 | 15 | 16 |
+| full bounded taxonomy | 60 | 24 | 36 | 0 |
+| total | 120 | 62 | 58 | 24 |
+
+All 62 eligible rows were falsified as their exact isolated prescribed
+histories by the pointwise member residual. None was near zero. Twenty-four
+would not have been falsified by the summed-acceleration screen because their
+member residuals canceled in the sum. These 24 rows demonstrate the stricter
+screen's value on this bounded sample; they do not estimate a population
+frequency.
+
+Plainly: the old total found zero in 24 cases only because different
+architrinos' errors canceled. Checking the architrinos separately exposed
+those prescribed records as inconsistent with their complete evaluated
+acceleration inventories.
+
+The runner then selected the eight smallest member residuals plus up to eight
+summed-cancellation cases, with overlaps retained only once. Thirteen distinct
+rows were reevaluated on 48- and 96-sample cycle grids. All 13 remained
+complete-inventory eligible and all remained falsified. The smallest refined
+full-cycle peak was the C1 catalog-reference row,
+
+$$
+E_\infty(P)=9.300748709368706,
+\qquad
+\varepsilon_{\mathrm{adj}}=1.0163904445571462\times10^{-9},
+$$
+
+so even the leading sampled row exceeded its own adjudication threshold by
+approximately $9.15\times10^9$. No near-zero basin was found in this bounded
+search.
+
+Plainly: the best row was not narrowly outside tolerance. Its worst member
+error was billions of times larger than the numerical allowance.
+
+Of the 58 unknown screening rows, 57 lacked a complete certified acceleration
+inventory at one or both resolutions. One otherwise complete C5
+local-neighborhood row failed the independent root check because its recomputed
+maximum residual was $1.000088900582341\times10^{-12}$ against the declared
+$10^{-12}$ bound. It remains unknown; the few-ulps excess was not rounded into
+a pass.
+
+The diagnostic result is retained locally at
+`.local-data/braid-analysis/endpoint-residual-search/stratified-v1.json`.
+Its timing-independent result hash is
+`83b7104f27503e4ae4cdf7c5da7e93e7143b09f541c18e48e0815a8338d53fc8`.
+The screening stage took 10.651 wall seconds on the operator's current
+machine; the dense refinements followed in the same run. The local artifact
+contains exact sampled specifications, protocol hashes, primary and refined
+screen summaries, inventory reasons, and independent root checks, but no
+acceptance-bearing raw-ledger archive.
+
+Claim grade: measured diagnostic-only for the named seed, bounded strata,
+protocols, implementation, and machine. The result falsifies only the 62 exact
+eligible prescribed histories. It does not exclude any taxonomy member,
+establish nonexistence of nearby branches, adjudicate the 58 unknown rows, or
+provide branch, stability, retention, or physical-realization evidence.
+
+Next blocker: the current bounded coordinate draws did not approach the
+near-zero region. Further search should not merely increase the same random
+quota. It needs a directed coordinate optimizer over the complete-inventory
+domain, using the refined full-cycle member peak as the primary objective,
+while preserving a held-out stratified audit and the independent causal-root
+residual check.
+
 ## Transmitter-Only Law-Family Search
 
 The canonical perpendicular projection and the observer-level comparison form

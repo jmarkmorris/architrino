@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-24T22:56:08.433Z",
-  "total_links": 2056,
+  "generated_at": "2026-07-25T04:21:14.790Z",
+  "total_links": 2059,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -2702,6 +2702,14 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#autonomous-emission-labeled-wake-transport",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -3358,7 +3366,23 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "#autonomous-emission-labeled-wake-transport",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "#caustic-transit-and-finite-impulse",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "#exact-fixed-point-cloud-residual",
       "kind": "anchor",
       "status": "skip_anchor",
       "targetBundlePath": ""

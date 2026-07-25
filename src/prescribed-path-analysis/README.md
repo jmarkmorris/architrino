@@ -127,6 +127,21 @@ and an independently authored causal-root residual check. The reducer neither
 changes the accepted return-symmetry group nor makes a taxonomy or branch
 existence claim.
 
+Run the bounded stratified endpoint-only search with:
+
+```bash
+node scripts/eom/run-endpoint-residual-search.mjs
+```
+
+The runner evaluates one catalog-reference, two local-neighborhood, and three
+full bounded-taxonomy draws per active member at 12/24 cycle samples. It then
+reevaluates the eight lowest complete-inventory member residuals plus up to
+eight summed-cancellation cases at 48/96 samples. Every eligible row must pass
+the complete-inventory certificate and a separately recomputed geometric
+causal-root residual check. The default output stays under
+`.local-data/braid-analysis/endpoint-residual-search/`; it is diagnostic and
+does not enter the accepted analytical database.
+
 ## Local Evaluation
 
 Print an evaluation to standard output without retaining a repository result packet:

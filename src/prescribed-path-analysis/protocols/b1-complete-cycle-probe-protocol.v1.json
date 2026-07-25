@@ -103,7 +103,7 @@
         "partial prescribed-path equation mismatch",
         "pointwise summed-acceleration screen only when the declared isolated inventory is certified complete"
       ],
-      "mismatchBoundary": "partial unless the declared isolated acceleration inventory is certified complete; the pointwise summed-acceleration row is otherwise explicitly inapplicable"
+      "mismatchBoundary": "partial unless the declared isolated acceleration inventory is certified complete; the pointwise summed-acceleration screen is otherwise explicitly inapplicable"
     }
   },
   "enclosingSurfaces": {

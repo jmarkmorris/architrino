@@ -3326,6 +3326,140 @@ c_f-\hat{\mathbf r}_t(T_r;T_t)\cdot\mathbf V_t(T_t)
 $$
 When this floor fails, the active root is caustic-like or degenerate and must be routed to a different branch chart or regularization regime. In special geometries the floor can be computed rather than declared; the principal circular partner branch derives $\kappa_{\mathrm{hit}}^{\mathrm{bin}}=c_f(1+\beta_f\sin(\phi/2)) > c_f$ in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#principal-partner-root-certificate), where Binary Dynamics uses $\phi/2=\xi$ for the circular delay angle used below.
 
+###### Autonomous Emission-Labeled Wake Transport
+
+The regular-domain causal-wake geometry has a self-contained present-time state realization. For each transmitter $t$ and emission time $T_e\le T$, retain one emitted surface label
+$$
+\mathsf w_{t,e}(T)
+=
+\left(
+t,T_e,\mathbf C_{t,e},R_{t,e}(T),c_fq_t\,dT_e
+\right)
+$$
+with emission boundary data
+$$
+\mathbf C_{t,e}(T_e)=\mathbf X_t(T_e),
+\qquad
+R_{t,e}(T_e)=0
+$$
+and free absolute-time update
+$$
+\frac{d\mathbf C_{t,e}}{dT}=\mathbf0,
+\qquad
+\frac{dR_{t,e}}{dT}=c_f,
+\qquad
+\frac{d(c_fq_t\,dT_e)}{dT}=0.
+$$
+The center is the transmitter site at emission and remains fixed in the Euclidean void. The surface radius grows at the primitive wake speed. After emission, this kinematic state reads neither the later transmitter path nor any future receiver path.
+
+Plain language: each instant of emission creates a labeled expanding sphere. Its center is frozen at the place where the emission occurred, while its radius grows by $c_f$ times its age. Later transmitter motion does not drag an already emitted sphere through the void.
+
+The surface measure is conserved during free propagation. With the conventional static-transmitter normalization absorbed into the emission measure, its uniform area density is
+$$
+\varrho_{t,e}^{\mathrm{surf}}(T)
+=
+\frac{c_fq_t\,dT_e}{4\pi R_{t,e}^2(T)}.
+$$
+The inverse-square factor is therefore the dilution of one fixed emitted measure over the expanding spherical area. For a finite retained spatial window, the kinematic boundary update exports the labeled surface portion when it crosses the window boundary; it is not silently deleted. This geometric export is not yet an energy or momentum flux.
+
+Plain language: the sphere carries a fixed amount of signed emission measure. As its area grows, the same measure is spread more thinly, producing the inverse-square strength. A local simulation may hand an outgoing piece to its boundary record, but this alone says nothing about how much energy or momentum that piece carries.
+
+For a direction $\boldsymbol\omega\in S^2$, a point on the emitted surface is
+$$
+\mathbf Y_{t,e}(T,\boldsymbol\omega)
+=
+\mathbf C_{t,e}
++
+c_f(T-T_e)\boldsymbol\omega.
+$$
+Consequently every surface element has absolute speed $c_f$, and a receiver at $\mathbf X_r(T_r)$ intersects the surface only when
+$$
+\left\|
+\mathbf X_r(T_r)-\mathbf C_{t,e}
+\right\|
+=
+c_f(T_r-T_e).
+$$
+At a noncoincident intersection, the outward surface normal is
+$$
+\boldsymbol\omega_{\mathsf h}
+=
+\frac{
+\mathbf X_r(T_r)-\mathbf X_t(T_e)
+}{
+\left\|
+\mathbf X_r(T_r)-\mathbf X_t(T_e)
+\right\|
+}
+=
+\hat{\mathbf r}_t.
+$$
+
+Plain language: the acceleration direction is not an additional choice. It is the local normal of the actual wake sphere where that sphere meets the receiver, so it points from the emission site to the receiver.
+
+The transparent regular-domain reception rule leaves the kinematic wake surface unchanged and adds the receiver-local acceleration contribution
+$$
+\mathbf A_r(T_r)
+=
+\sum_t
+\kappa\sigma_{tr}|q_tq_r|c_f
+\int_{-\infty}^{T_r}
+\frac{\hat{\mathbf r}_t}{r_t^2}
+\delta\!\left(
+r_t-c_f(T_r-T_e)
+\right)
+dT_e.
+$$
+At fixed $T_r$, differentiating the support function with respect to $T_e$ gives
+$$
+\frac{\partial}{\partial T_e}
+\left[
+r_t-c_f(T_r-T_e)
+\right]
+=
+c_f-\mathbf V_t(T_e)\cdot\hat{\mathbf r}_t
+=
+D_t.
+$$
+The coarea collapse therefore yields
+$$
+c_f
+\int dT_e\,
+f(T_e)\,
+\delta\!\left(
+r_t-c_f(T_r-T_e)
+\right)
+=
+\sum_{T_e\in\mathcal C_{r\leftarrow t}(T_r)}
+\frac{c_f\,f(T_e)}{|D_t|}.
+$$
+
+Plain language: constant emission time is pushed through the moving transmitter's sequence of sphere centers. Where successive spheres bunch together, the receiver encounters a larger surface density. That geometric conversion produces the canonical acceleration weight $c_f/|D_t|$; receiver velocity is unnecessary because reception time was held fixed during the collapse.
+
+This state also adjudicates the inertially extrapolated direction under the current ontology. A direction-only replacement aimed at
+$$
+\mathbf X_t(T_e)+\mathbf V_t(T_e)(T_r-T_e)
+$$
+is not normal to the emitted surface above. Moving the surface center to that extrapolated point would instead give surface-element velocity
+$$
+\mathbf V_t(T_e)+c_f\boldsymbol\omega,
+$$
+whose magnitude is not generally $c_f$. It would define a different propagation law and a different causal support. For a smoothly accelerated transmitter, fixed-reception collapse of that moving-center family has denominator
+$$
+c_f
+-
+(T_r-T_e)
+\mathbf A_t(T_e)\cdot
+\hat{\mathbf r}_{\mathrm{ext}},
+$$
+not the canonical transmitter-velocity denominator.
+
+Plain language: the alternative has only two coherent interpretations, and both leave the current wake ontology. If only the arrow changes, it no longer follows the wake surface normal. If the sphere itself moves with the extrapolated center, its points no longer propagate at the fixed absolute speed $c_f$, and its arrival weight changes as well.
+
+Claim grade: **derived regular-domain state reduction** from fixed-speed causal-surface propagation, constant emission measure, and receiver-local surface-normal response. The executable reference is `scripts/equation-mapping/derive-causal-wake-update-law.mjs`; it checks center autonomy, the surface normal by an independent spatial finite difference, the source-time weight by direct mollified quadrature, and the absolute-speed failure of inertially transported centers. A fixed-speed independently evolving wake whose local normal is the extrapolated direction would refute the directional conclusion. Failure of the quadrature to converge to $c_f/|D_t|$ on a certified simple root would refute the weight reduction.
+
+This result closes only the regular kinematic substate and its line-of-action decision. Transparent reception does not supply the missing maturity, wake energy, wake momentum, or reception-transfer accounts needed for a finite coincident same-transmitter birth and simultaneous energy, momentum, and angular-momentum closure. Those obligations remain fail closed; the present derivation must not be cited as an account-complete Master Equation closure.
+
 ###### Caustic Transit and Finite Impulse
 
 The branch expression with $W_{ij}^{\mathrm{acc}}$ should not be interpreted as a permission to pin an architrino at an infinite pointwise acceleration. At a simple delay-map caustic, the branch chart fails, but the time-integrated velocity change can remain finite.
@@ -4303,7 +4437,7 @@ $\hat{\mathbf{r}}_{ij}$ points **from the transmitter's historical position** $\
 - Electrino + Electrino (like polarities): repulsion
 - Positrino + Positrino (like polarities): repulsion
 - Electrino + Positrino (unlike polarities): attraction
-- All symmetric: if transmitter and receiver swap roles, the acceleration direction reverses (Newton's third law in the instantaneous-interaction limit)
+- For stationary pair geometry, swapping transmitter and receiver reverses the line-of-action unit vector and leaves the acceleration magnitude unchanged, so the two acceleration contributions are equal and opposite. This static statement does not extend to delayed moving histories; see [Exact Fixed Point-Cloud Residual](#exact-fixed-point-cloud-residual).
 
 ###### Scaling and Normalization
 
@@ -6160,9 +6294,39 @@ The independently executable instrument `scripts/equation-mapping/analyze-circul
 
 These are measured algebraic facts of the unregularized uniform-circular simple-root chart, not retained-branch or stability results. The null result for the restricted principal-partner ledger is not a theorem on $(1,\infty)$, while the first full-ledger zero already establishes numerical existence inside the searched interval. Promotion to a circular MCB requires the same finite singular-event convention for the folds that created the older roots, a retained-history certificate, wake-boundary closure, and a stable return map.
 
-The result also depends directly on the open line-of-action question. The current calculation points each hit from the transmitter's emission point to the receiver event. Replacing that point by an inertially extrapolated emission point changes the tangential quantity at first order in $\beta_f$. A correction of magnitude $0.24$ is large enough to cancel the restricted-ledger minimum: modeled as a constant backward correction, it produces a tangential zero near $\beta_f\approx1.8860$ where the current radial total is inward. That scale comparison does not predict the corrected root, because the actual correction can vary with branch and can also alter the radial projection. No theory-level MCB verdict survives until that geometry is fixed and the full ledger is recomputed.
+The line-of-action sensitivity can be recomputed without changing the causal-root measure. In the counterfactual inertially extrapolated construction, retain the actual roots, emission-site distance, and canonical transmitter-side acceleration weight, but replace the acceleration direction by
+$$
+\hat{\mathbf d}_{\mathrm{ext}}
+=
+\frac{\mathbf d_{\mathrm{ext}}}{\|\mathbf d_{\mathrm{ext}}\|},
+\qquad
+\mathbf d_{\mathrm{ext}}
+=
+\mathbf X_r(T_r)
+-
+\left[
+\mathbf X_t(T_t)+\mathbf V_t(T_t)(T_r-T_t)
+\right]
+$$
+For a circular self root with receiver at $(R,0)$ and delay half-angle $\xi$, its dimensionless extrapolated separation is
+$$
+\frac{\mathbf d_{\mathrm{ext}}^{\mathrm{self}}}{R}
+=
+\left(
+1-\cos 2\xi-2\xi\sin 2\xi,
+\;
+\sin 2\xi-2\xi\cos 2\xi
+\right)
+$$
+This closed form is the independent directional reference used by the executable check.
 
-Falsifiers are direct. A negative self-hit radial projection on any admissible circular root refutes the radial-sign proposition. Failure of the principal tangential term to change sign between $\beta_f=1.5$ and $\beta_f=1.65$ refutes the threshold result. A missed root with chord residual below the declared tolerance refutes the census. Recomputing the complete current-line ledger without the algebraic zero near $\beta_f=3.07036$, or obtaining no zero after the line-of-action replacement, refutes the corresponding measured statements.
+The full branchwise recomputation changes the existence verdict for that counterfactual. At the first three canonical emission-site candidates $\beta_f\approx3.0703566254$, $6.2184549634$, and $9.3764360282$, the extrapolated-direction radial coefficients are respectively $+0.1986630540$, $+0.1969175233$, and $+0.1881554019$, while the tangential coefficients are $-0.3350989817$, $-0.1271086141$, and $-0.0742863069$. Each row is outward and tangentially unbalanced. The counterfactual ledger develops replacement tangential zeros near $\beta_f\approx3.2253960989$, $6.2226379612$, and $9.3769260902$, but their radial coefficients remain outward. A scan through $1<\beta_f<20$ finds six tangential zeros and no simultaneous inward-radial point.
+
+Claim grade: **measured counterfactual**. This result shows that the canonical algebraic candidates are line-of-action sensitive; it does not promote the extrapolated construction into the Master Equation. The [autonomous emission-labeled wake transport](#autonomous-emission-labeled-wake-transport) derives the canonical direction and weight on regular support from the present fixed-speed wake ontology. The direction-only extrapolated construction is not the wake-surface normal, while a coherently moving extrapolated center changes the propagation law, causal support, and collapse weight. The counterfactual therefore cannot demote the canonical candidates unless the substrate wake postulates are changed.
+
+The equilibrium test precedes every stability test. Because all extrapolated-direction tangential zeros in the searched domain have outward radial acceleration, none is a circular equilibrium and no linearized delay spectrum about those rows is meaningful. The stability result is therefore not applicable after acceleration-balance failure; it is not a measured instability.
+
+Falsifiers are direct. A negative canonical self-hit radial projection on any admissible circular root refutes the radial-sign proposition. Failure of the principal tangential term to change sign between $\beta_f=1.5$ and $\beta_f=1.65$ refutes the threshold result. A missed root with chord residual below the declared tolerance refutes the census. Recomputing the complete canonical ledger without the algebraic zero near $\beta_f=3.07036$ refutes the canonical measurement. Finding an extrapolated-direction tangential zero with negative radial coefficient inside $1<\beta_f<20$ refutes the counterfactual nonexistence measurement.
 
 ###### High-Speed-Ratio Partner and Self Circular Residual Status
 
@@ -6247,7 +6411,7 @@ However, the circular benchmark still exposes a serious certification burden in 
 This sharpens the maximum-curvature program into a concrete fork:
 
 - the measured simple-root algebraic cancellations survive the finite-event and retained-history completion, after which stability still requires a separate delay-operator proof, or
-- the cancellations disappear under that completion or under a corrected line of action, in which case the bare constant-speed circular chart fails and the search moves to medium coupling, genuine Noether braid multi-body locking, or a non-circular periodic balance.
+- the cancellations disappear under that completion. The tested inertially extrapolated direction already removes them and supplies no replacement equilibrium on $1<\beta_f<20$, but it can decide the canonical branch only if a wake-state derivation promotes that direction and its accompanying weight.
 
 - Analytically: we can reduce the existence question to algebraic conditions and asymptotic expansions, and in the bare circular ansatz we can identify the partner-positive/self-signed tangential balance that any closure certificate must satisfy.
 - Dynamically: the stability question remains separate from the algebraic construction and requires numerical analysis of attractivity versus fine-tuned orbit families.
@@ -13142,7 +13306,41 @@ The complete ledger gives the opposite existence verdict because older partner r
 
 At each listed point the complete tangential coefficient is zero to the scan tolerance and the radial coefficient is inward, so the algebraic circular conditions have solutions inside the searched domain. This establishes measured existence on the current unregularized simple-root chart; it does not certify a periodic history. Each older branch descends from a $J=0$ birth and still needs the common finite-event convention, retained root ledger, wake-boundary account, and return-map stability certificate.
 
-The measurement is conditional on the current line of action from the transmitter's emission point to the receiver event. An inertially extrapolated emission-point construction changes the tangential projection at first order in $s$. A backward correction of magnitude $0.24$ is already large enough to cancel the restricted-ledger minimum and, if treated as constant for scale comparison, yields an inward-radial tangential zero near $s\approx1.8860$. The actual corrected ledger must be recomputed branchwise before any theory-level MCB verdict.
+The measurement is conditional on the canonical line of action from the transmitter's emission point to the receiver event. A counterfactual inertially extrapolated construction replaces only the acceleration direction by
+$$
+\hat{\mathbf d}_{\mathrm{ext}}
+=
+\frac{
+\mathbf X_r(T_r)
+-
+\left[
+\mathbf X_t(T_t)+\mathbf V_t(T_t)(T_r-T_t)
+\right]
+}{
+\left\|
+\mathbf X_r(T_r)
+-
+\left[
+\mathbf X_t(T_t)+\mathbf V_t(T_t)(T_r-T_t)
+\right]
+\right\|
+}
+$$
+while retaining the actual causal roots, emission-site distance, and canonical transmitter-side acceleration weight. This convention isolates the line-of-action sensitivity without substituting a different wake-density law.
+
+The recomputed complete ledger moves the first three emission-site candidates off both balance conditions:
+
+| Emission-site candidate $s$ | Extrapolated-direction radial coefficient | Extrapolated-direction tangential coefficient |
+| ---: | ---: | ---: |
+| $3.0703566254$ | $+0.1986630540$ | $-0.3350989817$ |
+| $6.2184549634$ | $+0.1969175233$ | $-0.1271086141$ |
+| $9.3764360282$ | $+0.1881554019$ | $-0.0742863069$ |
+
+The same counterfactual ledger has tangential zeros near $s=3.2253960989$, $6.2226379612$, and $9.3769260902$, but their radial coefficients are respectively $+0.1357894119$, $+0.1768252822$, and $+0.1802347924$, with outward sign positive. The scan through $1<s<20$ finds six tangential zeros and no simultaneous inward-radial point. Claim grade: **measured counterfactual**, not canonical dynamics. The closed-form extrapolated direction independently checks the vector evaluator, while the causal roots remain checked against the Euclidean chord residual.
+
+The equilibrium gate therefore fails before stability analysis: none of the extrapolated-direction zeros is a circular solution, so a Floquet multiplier or delayed-history spectrum about those rows would have no dynamical referent. This closes the requested counterfactual stability test as an acceleration-balance negative, not as a measured instability.
+
+The autonomous wake-state reduction in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#autonomous-emission-labeled-wake-transport) resolves the regular-domain ontology dependency under the present postulates. A fixed emission-site center with radius growing at absolute speed $c_f$ has the canonical emission-site normal and the canonical $c_f/|D_t|$ weight. Redirecting only the acceleration is not a surface-normal response; moving the emitted center inertially changes absolute propagation speed, causal support, and root weight. The extrapolated calculation therefore remains a sensitivity diagnostic and does not eliminate the canonical emission-site candidates.
 
 The circular result forecloses neither non-circular contraction nor the symmetric logarithmic spiral, multi-architrino braids, or Noether sea embedded configurations. It also does not yet establish the circular MCB: it promotes the current chart from an unanswered algebraic question to a measured candidate family while leaving finite-event persistence and stability open.
 
@@ -13843,7 +14041,7 @@ For $K(T)$ to diverge, $\mathcal{W}(T)$ must decrease without bound.
 
 #### Summary
 
-The circular atlas establishes exact delay equations, signed-sheet root thresholds, and canonically weighted radial and tangential coefficients. The principal partner branch cannot form a particle-only constant-speed circle because its tangential acceleration is positive. The complete unregularized simple-root ledger does contain algebraic radial/tangential balance points, so the circular ansatz is not excluded at that level. A maximum-curvature binary remains conditional: the measured candidates must survive one finite singular-event convention, retained-history transport, wake-boundary exchange, return-map stability, Jacobian floors, the open line-of-action question, and the action-derived conservation charges on one retained history record.
+The circular atlas establishes exact delay equations, signed-sheet root thresholds, and canonically weighted radial and tangential coefficients. The principal partner branch cannot form a particle-only constant-speed circle because its tangential acceleration is positive. The complete unregularized canonical simple-root ledger does contain algebraic radial/tangential balance points, so the circular ansatz is not excluded at that level. Redirecting the acceleration toward an inertially extrapolated emission site removes those candidates and supplies no replacement equilibrium on $1<s<20$, but the autonomous fixed-speed wake state rejects that construction as the local response of the present causal surfaces. A maximum-curvature binary remains conditional: the canonical candidates must survive one finite singular-event convention, retained-history transport, wake-boundary exchange, return-map stability, Jacobian floors, and the action-derived conservation charges on one retained history record.
 
 ### Causal Action Functional
 
@@ -14705,7 +14903,7 @@ $$
 $$
 This Eulerian double-space functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. It contains no additional transmitter-side factor: the delayed density $\rho_q(\mathbf X',T')$ already carries the transmitter-side compression or dilation produced by the Lagrangian-to-Eulerian coarse-graining. For a point transmitter, the familiar transmitter-velocity factor appears when the particle delta is collapsed through its emission-time root; it is not an extra denominator to multiply into the Eulerian density kernel. A corrected delayed action must reproduce the canonical inverse-square acceleration density weighted by $W^{\mathrm{acc}}=c_f/|D_t|$. Receiver velocity may enter the full variation, root playback, and conserved accounts, but it may not reappear as an extra multiplier on the instantaneous acceleration.
 
-The remaining action correction is also one continuum location of the per-hit third-law defect. The branch chart must distinguish transmitter-side acceleration weight from receiver-side root playback, so the receiver/transmitter exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
+The remaining action correction is also one continuum location where delayed pairwise mechanical acceleration fails to cancel. The branch chart must distinguish transmitter-side acceleration weight from receiver-side root playback, so the receiver/transmitter exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
 
 $$
 \Pi_q^{ij}
@@ -18811,6 +19009,88 @@ $$
 
 under the declared self-hit convention. This is a pointwise comparison between the acceleration required by the prescribed path and the acceleration supplied by the analytical causal-hit sum. Its peak, RMS, mean vector, phase dependence, and per-binary decomposition are legitimate prescribed-record measures. If the self-hit term or another accepted acceleration contribution is unavailable, the result must be labeled a partial mismatch rather than a complete Master Equation residual. A small mismatch measures compatibility of the declared chart with the evaluated acceleration contributions; it does not establish stability.
 
+When the declared isolated acceleration inventory is certified complete, summing these rows gives a stronger falsification-only reduction. Define
+
+$$
+\mathbf S_A(T)
+=
+\sum_i \mathbf A_i(T)
+$$
+
+for the evaluated canonical-kernel acceleration supplied to every declared architrino. If the prescribed kinematics satisfy
+
+$$
+\sum_i \frac{d^2\mathbf X_i}{dT^2}=0
+$$
+
+pointwise, as occurs for antipodal prescribed pairs about inertially moving centers, then any exact solution on that prescribed history must satisfy
+
+$$
+\boxed{
+\mathbf S_A(T)=0
+}
+$$
+
+at every evaluation time. This follows directly by summing the individual equations of motion; it introduces no force, mass, momentum, return-map, or stability assumption.
+
+Plainly: the prescribed pair accelerations cancel before the interaction law is evaluated, so the complete evaluated acceleration sum must also cancel at each instant if that exact history solves the equations.
+
+A value of $\|\mathbf S_A(T)\|$ beyond the declared numerical tolerance and convergence allowance falsifies only that exact isolated prescribed history under the certified inventory. A zero value is recorded only as not falsified by this screen. It does not establish a branch, a taxonomy member, stability, retention, or physical realization. If the same-worldline contribution, root inventory, or another contribution inside the declared isolated system is not certified complete, the screen is inapplicable rather than partial.
+
+The summed row can hide equal-and-opposite member errors. Therefore a certified complete inventory also carries the stronger pointwise member screen
+
+$$
+E_\infty(W)
+=
+\max_{\substack{i\\T\in W}}
+\left\|
+\mathbf R_i^{\mathrm{path}}(T)
+\right\|,
+\qquad
+E_2(W)
+=
+\left[
+\frac{1}{N|G_W|}
+\sum_i\sum_{T\in G_W}
+\left\|
+\mathbf R_i^{\mathrm{path}}(T)
+\right\|^2
+\right]^{1/2},
+$$
+
+where $G_W$ is the declared time grid in window $W$. Any sampled member residual above the adjudication threshold falsifies that exact isolated prescribed history even when $\sum_i\mathbf R_i^{\mathrm{path}}=0$. A sampled near-zero is only a search diagnostic and must survive time-grid refinement and independent causal-root residual checks.
+
+Plainly: two wrong accelerations can cancel in the total. Checking every architrino separately prevents that cancellation from hiding a bad prescribed record.
+
+For a declared cycle split into first and second halves, $W_P=W_{1/2}^{(1)}\cup W_{1/2}^{(2)}$, the same-grid reductions obey
+
+$$
+E_\infty(W_P)
+=
+\max\left\{
+E_\infty(W_{1/2}^{(1)}),
+E_\infty(W_{1/2}^{(2)})
+\right\},
+$$
+
+and
+
+$$
+E_2(W_P)^2
+=
+\frac{
+|G_1|E_2(W_{1/2}^{(1)})^2
++
+|G_2|E_2(W_{1/2}^{(2)})^2
+}{
+|G_1|+|G_2|
+}.
+$$
+
+Thus one half-cycle is useful only as a staged early rejector. Candidate search minimizes the refined full-cycle $E_\infty$ first and refined full-cycle $E_2$ second, while retaining both half-cycle peaks and their imbalance as diagnostics. One favorable half cannot support positive selection; both halves are required, and the window split changes no return-symmetry or taxonomy contract.
+
+Plainly: the full-cycle worst error is exactly the worse half's worst error. Testing one half can save work when it already fails, but passing one half says nothing about the other half.
+
 #### Probe Geometry
 
 A candidate should be tested on the same nested probe geometry:
@@ -18837,7 +19117,7 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | Root-transversality margin | $\min|D_{t,j}|$ over all retained probe and internal roots | Distance from an unresolved causal-root fold |
 | Root-topology ledger | Root counts, identities, births, deaths, and reconnections versus $T$ | Whether averaged curves hide causal-branch changes |
 | Internal prescribed-path response | Per-endpoint peak, RMS, and cycle integral of $\mathbf A_i^{\mathrm{others}}$ evaluated on the prescribed paths | The acceleration that the other prescribed paths would deliver, not whether those paths persist |
-| Prescribed-path equation mismatch | Peak, RMS, mean, phase-resolved, and per-binary rows of $\mathbf R_i^{\mathrm{path}}$ | Pointwise compatibility between the prescribed kinematics and the evaluated acceleration contributions |
+| Prescribed-path equation mismatch | Peak, RMS, mean, phase-resolved, and per-binary rows of $\mathbf R_i^{\mathrm{path}}$; when its hypotheses hold, the falsification-only pointwise sum $\mathbf S_A(T)$ | Pointwise compatibility between the prescribed kinematics and the evaluated acceleration contributions, without promoting a non-falsifying sum to a branch claim |
 | External signed exposure | $\mathcal W$ on $S_R$ through the complete cycle | Net polarity-signed wake exposure |
 | External raw exposure | $\mathcal W_{\mathrm{abs}}$ on $S_R$ through the complete cycle | Wake strength before signed cancellation |
 | Complete-cycle signed normal wake flux | $F_{\mathrm{signed}}(R)$ from the outward-normal projection of the signed causal-wake contributions | The global signed crossing total, which vanishes for a polarity-neutral assembly and is therefore not a cancellation score |

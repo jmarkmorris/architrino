@@ -196,8 +196,8 @@ function maximumPrescribedSpeed(source, history) {
 }
 
 function certifyDeclaredAccelerationInventory(packet, sourceRecord, fieldSpeed) {
-  const sourceIds = sourceRecord.sources.map((source) => source.id);
-  const sourceIdSet = new Set(sourceIds);
+  const transmitterIds = sourceRecord.sources.map((source) => source.id);
+  const transmitterIdSet = new Set(transmitterIds);
   const events = packet.rawLedgers?.causalRoots ?? [];
   const reasons = [];
   const history = sourceRecord.history;
@@ -222,17 +222,19 @@ function certifyDeclaredAccelerationInventory(packet, sourceRecord, fieldSpeed) 
 
   for (const event of events) {
     const receiverId = event.receiverSourceId;
-    const expectedIds = sourceIds.filter((sourceId) => sourceId !== receiverId);
+    const expectedIds =
+      transmitterIds.filter((transmitterId) => transmitterId !== receiverId);
     const certificates =
       event.rootCompletenessCertification?.transmitterCertificates ?? [];
     const certificateIds = certificates.map((row) => row.transmitterId);
     const uniqueCertificateIds = new Set(certificateIds);
     const exactCertificateInventory =
-      sourceIdSet.has(receiverId) &&
+      transmitterIdSet.has(receiverId) &&
       event.expectedTransmitterCount === expectedIds.length &&
       certificates.length === expectedIds.length &&
       uniqueCertificateIds.size === expectedIds.length &&
-      expectedIds.every((sourceId) => uniqueCertificateIds.has(sourceId)) &&
+      expectedIds.every((transmitterId) =>
+        uniqueCertificateIds.has(transmitterId)) &&
       certificates.every((row) => row.complete === true);
     if (event.rootCompletenessCertification?.complete !== true ||
         !exactCertificateInventory) {
@@ -250,11 +252,11 @@ function certifyDeclaredAccelerationInventory(packet, sourceRecord, fieldSpeed) 
     status: complete ? "certified" : "not-certified",
     scope:
       "all retained canonical-kernel contributions from the declared isolated architrino-worldline inventory",
-    sourceCount: sourceIds.length,
-    sourceIds,
+    transmitterCount: transmitterIds.length,
+    transmitterIds,
     eventCount: events.length,
     fieldSpeed,
-    maximumCertifiedSourceSpeed: maximumSourceSpeed,
+    maximumCertifiedTransmitterSpeed: maximumSourceSpeed,
     strictSubFieldSpeedPassed: allSourcesStrictlySubField,
     rootCompletenessPassed: events.length > 0 && events.every(
       (event) => event.rootCompletenessCertification?.complete === true,
@@ -827,7 +829,11 @@ export function reduceCompleteCycleEndpointPacket(packet, sourceRecord, period, 
   };
 }
 
-function buildEndpointProtocol(protocol, sourceRecord, resolution) {
+export function buildCompleteCycleEndpointProtocol(
+  protocol,
+  sourceRecord,
+  resolution,
+) {
   const times = createPeriodicCycleTimes({
     start: protocol.completeCycle.start,
     period: protocol.completeCycle.period,
@@ -1129,7 +1135,11 @@ function evaluateSensitivity({
         return artifact;
       },
     });
-    const endpointProtocol = buildEndpointProtocol(protocol, sourceRecord, "primary");
+    const endpointProtocol = buildCompleteCycleEndpointProtocol(
+      protocol,
+      sourceRecord,
+      "primary",
+    );
     const endpointPacket = evaluatePrescribedRecordAnalysis({
       sourceRecord,
       protocol: endpointProtocol,
@@ -1388,7 +1398,11 @@ export function evaluateCompleteCycleCandidate({
   onProgress?.({ candidateId, stage: "moving-receivers-start" });
   const internalReceivers = {};
   for (const resolution of ["primary", "refined"]) {
-    const endpointProtocol = buildEndpointProtocol(protocol, sourceRecord, resolution);
+    const endpointProtocol = buildCompleteCycleEndpointProtocol(
+      protocol,
+      sourceRecord,
+      resolution,
+    );
     const packet = evaluatePrescribedRecordAnalysis({
       sourceRecord,
       protocol: endpointProtocol,

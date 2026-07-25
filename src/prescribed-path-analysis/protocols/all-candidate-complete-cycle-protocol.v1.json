@@ -95,7 +95,7 @@
         "receiver-side factor D_r",
         "root playback derivative D_r/D_t"
       ],
-      "mismatchBoundary": "partial unless the declared isolated acceleration inventory is certified complete; the pointwise summed-acceleration row is otherwise explicitly inapplicable"
+      "mismatchBoundary": "partial unless the declared isolated acceleration inventory is certified complete; the pointwise summed-acceleration screen is otherwise explicitly inapplicable"
     }
   },
   "enclosingSurfaces": {

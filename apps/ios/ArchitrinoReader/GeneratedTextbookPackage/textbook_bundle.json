@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-07-24T22:56:08.433Z",
+  "generated_at": "2026-07-25T04:21:14.790Z",
   "package_version": "1.0.0-9b130e98",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -212,16 +212,16 @@
       "sourcePath": "__generated__/reading-copies/dynamics.html",
       "role": "chapter",
       "type": "html",
-      "size": 12115195,
-      "sha256": "a509ff337c980e46089f54cacd4e1c1c2dad4f4e70d40318c9468208248f1fe1"
+      "size": 12291051,
+      "sha256": "33464fe5db41e05c0d7eae20ca0106294a304340a86c8f702ebe0cad95cf86a1"
     },
     {
       "path": "reading-copies/dynamics.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 718278,
-      "sha256": "ff9fbb98bd83102b664b733d971cc32daf19fda078647b0a27104d22d3a131ae"
+      "size": 729081,
+      "sha256": "3a912aa041fc87b14bac9d08b03182d53d0c5d98e767b98867acc36c8885ecb8"
     },
     {
       "path": "reading-copies/foundations.html",
@@ -244,16 +244,16 @@
       "sourcePath": "__generated__/reading-copies/noether-braid.html",
       "role": "chapter",
       "type": "html",
-      "size": 4621178,
-      "sha256": "174b719574e1d0c6361dfabe6d1e068f556894932bda62509c90edc93a9108d0"
+      "size": 4678505,
+      "sha256": "a7ee6ef404fa799e51b04adc312853889d3bafb149522baeddb24ab985c7e180"
     },
     {
       "path": "reading-copies/noether-braid.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 400149,
-      "sha256": "a0c24812691f2d2e6b02ea7156101af8b1c70828aaa3088f7346d6047307adc5"
+      "size": 403535,
+      "sha256": "c09571c9fbeb286c323e9966bcae786d1c05385ba195dc196d5f7e5e3371ebcd"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.html",
@@ -436,8 +436,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8693522,
-      "sha256": "d4eebbb6c39140f22f6eaebf37b65dc790e718443e0a953fc7c201a277adb16a"
+      "size": 8706478,
+      "sha256": "edaf81fc6a24d25cff65329f16000218f9e75c3b65ecb4cbe95a1e28d0219c26"
     }
   ],
   "links": []
