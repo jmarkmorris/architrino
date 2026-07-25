@@ -648,6 +648,18 @@ export function compactCandidateScore(packet) {
       gateId !== "transmitterSensitivity"),
   );
   const coveragePassed = Object.values(evaluatedGates).every(Boolean);
+  const primaryMemberResidual =
+    packet.diagnosticReductions.internalReceivers?.primary?.reduction
+      ?.pointwiseMemberResidualSearchScreen ?? null;
+  const refinedMemberResidual =
+    packet.diagnosticReductions.internalReceivers?.refined?.reduction
+      ?.pointwiseMemberResidualSearchScreen ?? null;
+  const primarySummedAcceleration =
+    packet.diagnosticReductions.internalReceivers?.primary?.reduction
+      ?.pointwiseSummedAccelerationNecessaryCondition ?? null;
+  const refinedSummedAcceleration =
+    packet.diagnosticReductions.internalReceivers?.refined?.reduction
+      ?.pointwiseSummedAccelerationNecessaryCondition ?? null;
   return {
     outerRadius,
     exposures: outer.exposures,
@@ -666,6 +678,47 @@ export function compactCandidateScore(packet) {
           },
         ]),
       ),
+    },
+    pointwiseMemberResidualSearch: {
+      status:
+        primaryMemberResidual?.status ===
+          "evaluated-falsification-and-search-guidance" &&
+        refinedMemberResidual?.status ===
+          "evaluated-falsification-and-search-guidance"
+          ? "eligible-diagnostic-search-score"
+          : "inapplicable",
+      primary: primaryMemberResidual?.searchGuidance ?? null,
+      refined: refinedMemberResidual?.searchGuidance ?? null,
+      resolutionComparison:
+        packet.convergenceComparisons.pointwiseMemberResidual ?? null,
+      ordering:
+        "prefer smaller refined full-cycle maximum pointwise member residual, then smaller refined full-cycle RMS; use one half-cycle only for early rejection and never for positive selection",
+      evidenceDisposition:
+        "diagnostic-only; rerun selected near-zeros with retained raw ledgers, additional time refinement, and independent root-residual checks",
+    },
+    pointwiseSummedAccelerationAudit: {
+      primary: primarySummedAcceleration === null ? null : {
+        status: primarySummedAcceleration.status,
+        outcome: primarySummedAcceleration.outcome,
+        maximumSummedEvaluatedAccelerationNorm:
+          primarySummedAcceleration.summary
+            ?.maximumSummedEvaluatedAccelerationNorm ?? null,
+        maximumSummedEquationResidualNorm:
+          primarySummedAcceleration.summary
+            ?.maximumSummedEquationResidualNorm ?? null,
+      },
+      refined: refinedSummedAcceleration === null ? null : {
+        status: refinedSummedAcceleration.status,
+        outcome: refinedSummedAcceleration.outcome,
+        maximumSummedEvaluatedAccelerationNorm:
+          refinedSummedAcceleration.summary
+            ?.maximumSummedEvaluatedAccelerationNorm ?? null,
+        maximumSummedEquationResidualNorm:
+          refinedSummedAcceleration.summary
+            ?.maximumSummedEquationResidualNorm ?? null,
+      },
+      interpretation:
+        "Compare with the per-member screen to count cases where vector cancellation hides large individual residuals; this audit does not weaken the per-member falsifier.",
     },
     gates: {
       evaluated: evaluatedGates,

@@ -102,6 +102,31 @@ history. A zero result is recorded as `not-falsified-by-this-screen`; it does
 not establish a branch, taxonomy member, stability, retention, or physical
 realization.
 
+## Pointwise Member-Residual Search Screen
+
+The same certified moving-endpoint packets also report
+`pointwiseMemberResidualSearchScreen`. This reducer preserves every
+per-architrino prescribed-path equation residual and summarizes the first
+declared half-cycle, second declared half-cycle, and full cycle. It catches
+equal-and-opposite member errors that disappear in the summed-acceleration
+screen.
+
+On the same sample grid, the full-cycle peak is exactly the worse of the two
+half-cycle peaks. The full-cycle RMS is the row-count-weighted combination of
+the two half-cycle RMS values. A coverage search may therefore evaluate one
+half first and reject early, but it must evaluate the other half before ranking
+or retaining an apparent near-zero. Compact scores rank the refined full-cycle
+peak first and refined full-cycle RMS second; half-cycle values and their
+imbalance remain diagnostics.
+
+The member screen is inapplicable unless the declared isolated acceleration
+inventory is certified complete. A residual above threshold falsifies only the
+exact prescribed history. A sampled near-zero is diagnostic search guidance
+until it survives further time-grid refinement, retained raw-ledger review,
+and an independently authored causal-root residual check. The reducer neither
+changes the accepted return-symmetry group nor makes a taxonomy or branch
+existence claim.
+
 ## Local Evaluation
 
 Print an evaluation to standard output without retaining a repository result packet:

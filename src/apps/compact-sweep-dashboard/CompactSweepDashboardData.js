@@ -46,7 +46,7 @@ export const COMPACT_SWEEP_METRICS = Object.freeze([
     symbol: "|I_signed|",
     direction: "Lower is better for this compact diagnostic",
     definition:
-      "The size of the signed wake-flux total left after one complete cycle.",
+      "The absolute net signed wake-flux integral after one complete cycle. A small value shows cancellation in this signed sum, not low total emission.",
   }),
   Object.freeze({
     id: "rawEmissionResidual",
@@ -62,7 +62,7 @@ export const COMPACT_SWEEP_METRICS = Object.freeze([
     symbol: "epsilon_signed",
     direction: "Lower is better for this compact diagnostic",
     definition:
-      "The difference from the signed emission reference, using the declared relative or absolute scale.",
+      "The scaled difference from the expected signed complete-cycle reference. This is a cancellation and reference check, not an emission rate or total emitted amount.",
   }),
 ]);
 
@@ -327,6 +327,48 @@ export function filterCompactSweepRows(rows = [], filters = {}) {
       row.candidateDisposition === candidateDisposition));
 }
 
+export function filterCompactSweepCaseRows(
+  rows = [],
+  query = "",
+  filters = {},
+) {
+  const normalizedQuery = String(query ?? "").trim().toLowerCase();
+  const sampleMatch = normalizedQuery.match(/\bsample(?:\s+|-)(\d+)\b/u);
+  const querySampleOrdinal = sampleMatch ? Number(sampleMatch[1]) : null;
+  const memberId = String(filters.memberId ?? "all");
+  const selectedSampleOrdinal = String(filters.sampleOrdinal ?? "all");
+  const remainingQuery = sampleMatch
+    ? normalizedQuery.replace(sampleMatch[0], " ").trim()
+    : normalizedQuery;
+  const terms = remainingQuery.split(/\s+/u).filter(Boolean);
+
+  return rows.filter((row) => {
+    if (
+      (memberId !== "all" && row.memberId !== memberId) ||
+      (
+        selectedSampleOrdinal !== "all" &&
+        String(row.sampleOrdinal) !== selectedSampleOrdinal
+      ) ||
+      (
+        querySampleOrdinal !== null &&
+        Number(row.sampleOrdinal) !== querySampleOrdinal
+      )
+    ) {
+      return false;
+    }
+    const haystack = [
+      row.caseId,
+      row.candidateId,
+      row.caseHash,
+      row.campaignHash,
+      row.sampledSpecHash,
+      row.exactSourceHash,
+      row.memberId,
+    ].join(" ").toLowerCase();
+    return terms.every((term) => haystack.includes(term));
+  });
+}
+
 export function buildEvaluationFunnel(rows = []) {
   const evaluatedRows = rows.filter((row) =>
     row.evaluation?.evaluated === true);
@@ -385,4 +427,32 @@ export function summarizeGate(rows = [], gateKind, gateId) {
 export function metricValue(row, metricId) {
   const value = row?.metrics?.[metricId];
   return Number.isFinite(value) ? value : null;
+}
+
+export function caseResidualDetail(row) {
+  const signedCycleResidual = metricValue(row, "signedCycleResidual");
+  const signedEmissionResidual = metricValue(row, "signedEmissionResidual");
+  const signedEmissionGate =
+    row?.gates?.surfaceQuadrature?.signedEmissionReference;
+  const signedEmissionThreshold =
+    Number.isFinite(signedEmissionGate?.threshold)
+      ? signedEmissionGate.threshold
+      : null;
+  return {
+    signedCycleResidual,
+    signedEmissionResidual,
+    signedEmissionThreshold,
+    signedEmissionThresholdRatio: thresholdRatio(
+      signedEmissionResidual,
+      signedEmissionThreshold,
+    ),
+    signedEmissionGateMaximum:
+      Number.isFinite(signedEmissionGate?.maximumChange)
+        ? signedEmissionGate.maximumChange
+        : null,
+    signedEmissionGateThresholdRatio:
+      Number.isFinite(signedEmissionGate?.thresholdRatio)
+        ? signedEmissionGate.thresholdRatio
+        : null,
+  };
 }

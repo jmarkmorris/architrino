@@ -10,6 +10,117 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ## Ideas And Insights
 
+### Reception-Active Cubic Maturity and Account-Transfer Candidate (2026-07-24)
+
+Claim level: **unproven proposal**. This note preserves one explicit candidate
+for testing the independently evolving causal-wake route. It does not change
+the derived obstruction in
+[Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md),
+does not define accepted architrino momentum, and is not a corpus or EOM solver
+update.
+
+The derived part is only the endpoint order condition. With
+$z=|D_t|/c_f$, finite accumulated acceleration at exact quadratic coincident
+self-birth requires more-than-quadratic suppression; an analytic maturity
+therefore begins at cubic order. One smallest explicit but unselected
+realization is
+
+$$
+b_{z_\ast}(z)
+=
+\begin{cases}
+(z/z_\ast)^3,&0\le z<z_\ast,\\[4pt]
+1,&z\ge z_\ast,
+\end{cases}
+$$
+
+where the dimensionless transition scale $z_\ast>0$ is introduced rather than
+derived. For a surface-resolved wake element, the proposed emission state is
+
+$$
+(m,e,\boldsymbol\pi)
+=
+\left(b_{z_\ast}(z),0,\mathbf0\right).
+$$
+
+The proposed motion-account form is conditional on additional minimality
+assumptions: isotropy, line-of-action momentum exchange, and no separate
+intrinsic wake angular-momentum variable. Writing
+$\mathbf p=P(s)\hat{\mathbf V}$ with $s=\|\mathbf V\|$, radial exchange for
+arbitrary receiver velocity requires
+
+$$
+P'(s)=\frac{P(s)}s,
+$$
+
+so within this proposal
+
+$$
+\mathbf p=\mu_{\text{arch}}\mathbf V,
+\qquad
+K=\frac12\mu_{\text{arch}}\|\mathbf V\|^2.
+$$
+
+This conditional form does not derive $\mu_{\text{arch}}$ from existing
+Architrino primitives and must not be read as physical architrino mass. For one
+finite reception update, the proposed opposite wake-account increments are
+
+$$
+\Delta\boldsymbol\pi
+=
+-\mu_{\text{arch}}\Delta\mathbf V_r,
+\qquad
+\Delta e
+=
+-\frac{\mu_{\text{arch}}}{2}
+\left(
+\|\mathbf V_r^+\|^2-\|\mathbf V_r^-\|^2
+\right).
+$$
+
+To make the added state reception-active rather than an inert residual ledger,
+the candidate depletes its maturity by
+
+$$
+\Delta m
+=
+-\frac{1}{\Pi_\ast}
+\left(
+\|\Delta\boldsymbol\pi\|
++
+\frac{|\Delta e|}{c_f}
+\right),
+\qquad
+m\ge0,
+$$
+
+with transfer truncated when the available $m$ is exhausted.
+$\Pi_\ast$ is a newly introduced capacity scale per unit emitted surface
+measure. Free propagation transports $(m,e,\boldsymbol\pi)$ at $c_f$, and a
+finite retained boundary exports $e$, $\boldsymbol\pi$, and
+$\mathbf Y\times\boldsymbol\pi$.
+
+The proposal remains blocked for four independent reasons:
+
+1. $z_\ast$, $\Pi_\ast$, and $\mu_{\text{arch}}$ are not selected by the
+   present primitives.
+2. Reception-dependent $m$ lets later receivers distinguish earlier
+   receptions, so it abandons the universal transmitter-history-only
+   acceleration law.
+3. Omitting the $m$ update preserves that regular law but leaves
+   $(e,\boldsymbol\pi)$ dynamically inert and therefore only bookkeeping.
+4. Eternal constant emission creates fresh capacity without a derived global
+   lower bound. A finite transmitter capacity ends constant active emission,
+   while Noether sea replenishment moves the closure out of the bare
+   Master Equation.
+
+Promotion target: none until one Architrino-native construction derives the
+motion-account map, maturity scale and shape, reception update, capacity source,
+and boundary flux together. Falsifier of the obstruction: exhibit a smaller
+causal, reception-active, bounded update that preserves eternal
+motion-independent active emission and the universal transmitter-history-only
+regular law without an additional capacity source or residual-defined ledger.
+
 ### Import Audit of the Master-Equation Main Path (2026-07-18, operator-requested)
 
 Claim level: **audit finding** — code-verified against `src/eom` (CertifiedAcceleration.cpp, CoupledEvolution.cpp) and `dynamics/master-equation.md`. No unexamined standard-physics import was found in the executed acceleration path; the load-bearing exposure is a set of **postulates that mirror standard-physics structure** and are not yet derived within $\mathbb{A}\mathbb{A}\mathbb{A}$:

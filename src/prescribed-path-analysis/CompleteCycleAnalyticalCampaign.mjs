@@ -26,9 +26,11 @@ import {
 export const COMPLETE_CYCLE_CANDIDATE_RESULT_SCHEMA =
   "prescribed-path-analysis/complete-cycle-candidate-result.v1";
 export const COMPLETE_CYCLE_CAMPAIGN_REDUCER_VERSION =
-  "prescribed-record-analytics/complete-cycle-campaign-reducer.v2";
+  "prescribed-record-analytics/complete-cycle-campaign-reducer.v3";
 export const POINTWISE_SUMMED_ACCELERATION_REDUCER_VERSION =
   "prescribed-record-analytics/pointwise-summed-acceleration-screen.v1";
+export const POINTWISE_MEMBER_RESIDUAL_REDUCER_VERSION =
+  "prescribed-record-analytics/pointwise-member-residual-search-screen.v1";
 
 function fail(message) {
   throw new Error(message);
@@ -425,8 +427,295 @@ export function reducePointwiseSummedAccelerationNecessaryCondition(
   };
 }
 
+function validateCommonReceiverGrid(endpointReduction, label) {
+  const receivers = endpointReduction?.receivers;
+  if (!Array.isArray(receivers) || receivers.length === 0) {
+    fail(`${label} requires receivers.`);
+  }
+  const eventCount = receivers[0].events.length;
+  if (eventCount === 0 ||
+      receivers.some((receiver) => receiver.events.length !== eventCount)) {
+    fail(`${label} receiver event grids differ.`);
+  }
+  for (let eventIndex = 0; eventIndex < eventCount; eventIndex += 1) {
+    const observationTime = receivers[0].events[eventIndex].observationTime;
+    if (receivers.some(
+      (receiver) => receiver.events[eventIndex].observationTime !== observationTime,
+    )) {
+      fail(`${label} receiver observation times differ.`);
+    }
+  }
+  return { receivers, eventCount };
+}
+
+function summarizeMemberResidualRows(rows, adjudicationThreshold) {
+  if (rows.length === 0) return null;
+  const peak = rows.reduce(
+    (best, row) =>
+      !best || row.residualNorm > best.residualNorm ? row : best,
+    null,
+  );
+  const byReceiver = new Map();
+  for (const row of rows) {
+    const receiverRows = byReceiver.get(row.receiverId) ?? [];
+    receiverRows.push(row);
+    byReceiver.set(row.receiverId, receiverRows);
+  }
+  return {
+    rowCount: rows.length,
+    maximumPointwiseMemberResidualNorm: peak.residualNorm,
+    rmsPointwiseMemberResidualNorm: Math.sqrt(
+      rows.reduce((sum, row) => sum + row.residualNorm ** 2, 0) / rows.length,
+    ),
+    peak: {
+      receiverId: peak.receiverId,
+      eventIndex: peak.eventIndex,
+      observationTime: peak.observationTime,
+      residual: peak.residual,
+      residualNorm: peak.residualNorm,
+    },
+    receivers: [...byReceiver.entries()].map(([receiverId, receiverRows]) => {
+      const receiverPeak = receiverRows.reduce(
+        (best, row) =>
+          !best || row.residualNorm > best.residualNorm ? row : best,
+        null,
+      );
+      return {
+        receiverId,
+        rowCount: receiverRows.length,
+        maximumPointwiseResidualNorm: receiverPeak.residualNorm,
+        rmsPointwiseResidualNorm: Math.sqrt(
+          receiverRows.reduce(
+            (sum, row) => sum + row.residualNorm ** 2,
+            0,
+          ) / receiverRows.length,
+        ),
+      };
+    }),
+    withinAdjudicationThreshold:
+      peak.residualNorm <= adjudicationThreshold,
+    falsifiedAsExactIsolatedPrescribedHistory:
+      peak.residualNorm > adjudicationThreshold,
+  };
+}
+
+export function reducePointwiseMemberResidualSearchScreen(
+  endpointReduction,
+  {
+    cycleStart,
+    period,
+    absoluteTolerance,
+    numericalConvergenceBound = 0,
+  } = {},
+) {
+  const start = finite(cycleStart, "member-residual cycleStart");
+  const cyclePeriod = finite(period, "member-residual period");
+  const tolerance = finite(
+    absoluteTolerance,
+    "member-residual absoluteTolerance",
+  );
+  const convergenceBound = finite(
+    numericalConvergenceBound,
+    "member-residual numericalConvergenceBound",
+  );
+  if (cyclePeriod <= 0) {
+    throw new RangeError("member-residual period must be positive.");
+  }
+  if (tolerance < 0 || convergenceBound < 0) {
+    throw new RangeError("member-residual tolerances must be nonnegative.");
+  }
+
+  const certificate = endpointReduction?.accelerationInventoryCertification;
+  const adjudicationThreshold = tolerance + convergenceBound;
+  const shared = {
+    schema:
+      "prescribed-path-analysis/pointwise-member-residual-search-screen.v1",
+    reducerVersion: POINTWISE_MEMBER_RESIDUAL_REDUCER_VERSION,
+    claimGrade: "derived",
+    claimScope:
+      "falsification and diagnostic search guidance for the exact isolated prescribed history under its certified declared architrino-worldline inventory",
+    cycleStart: start,
+    period: cyclePeriod,
+    absoluteTolerance: tolerance,
+    numericalConvergenceBound: convergenceBound,
+    adjudicationThreshold,
+    branchExistenceClaim: false,
+    returnSymmetryClaim: false,
+    taxonomyClaim: false,
+  };
+  if (certificate?.complete !== true) {
+    return {
+      ...shared,
+      status: "inapplicable-incomplete-acceleration-inventory",
+      outcome: "not-evaluated",
+      falsifiedAsExactIsolatedPrescribedHistory: null,
+      accelerationInventoryCertification: certificate ?? null,
+      rows: [],
+      windows: null,
+      searchGuidance: null,
+    };
+  }
+
+  const { receivers, eventCount } = validateCommonReceiverGrid(
+    endpointReduction,
+    "pointwise member-residual screen",
+  );
+  const rows = [];
+  const firstHalfRows = [];
+  const secondHalfRows = [];
+  for (let eventIndex = 0; eventIndex < eventCount; eventIndex += 1) {
+    const observationTime = receivers[0].events[eventIndex].observationTime;
+    const rawPhase = (observationTime - start) / cyclePeriod;
+    const cyclePhase = rawPhase - Math.floor(rawPhase);
+    const halfCycle = cyclePhase < 0.5 ? "first" : "second";
+    for (const receiver of receivers) {
+      const event = receiver.events[eventIndex];
+      const residual = event.declaredInventoryPrescribedPathResidual ??
+        subtract(
+          event.prescribedPathAcceleration,
+          event.netAccelerationFromOtherSources,
+        );
+      const row = {
+        receiverId: receiver.transmitterId,
+        eventIndex,
+        observationTime,
+        cyclePhase,
+        halfCycle,
+        residual,
+        residualNorm: norm(residual),
+      };
+      rows.push(row);
+      (halfCycle === "first" ? firstHalfRows : secondHalfRows).push(row);
+    }
+  }
+  if (firstHalfRows.length === 0 || secondHalfRows.length === 0) {
+    fail(
+      "pointwise member-residual screen requires samples in both declared half-cycle windows.",
+    );
+  }
+
+  const firstHalf = summarizeMemberResidualRows(
+    firstHalfRows,
+    adjudicationThreshold,
+  );
+  const secondHalf = summarizeMemberResidualRows(
+    secondHalfRows,
+    adjudicationThreshold,
+  );
+  const fullCycle = summarizeMemberResidualRows(rows, adjudicationThreshold);
+  const partitionPeak = Math.max(
+    firstHalf.maximumPointwiseMemberResidualNorm,
+    secondHalf.maximumPointwiseMemberResidualNorm,
+  );
+  const partitionRms = Math.sqrt(
+    (
+      firstHalf.rowCount * firstHalf.rmsPointwiseMemberResidualNorm ** 2 +
+      secondHalf.rowCount * secondHalf.rmsPointwiseMemberResidualNorm ** 2
+    ) / fullCycle.rowCount,
+  );
+  const fullCycleFalsified =
+    fullCycle.falsifiedAsExactIsolatedPrescribedHistory;
+
+  return {
+    ...shared,
+    status: "evaluated-falsification-and-search-guidance",
+    outcome: fullCycleFalsified
+      ? "falsified-exact-isolated-prescribed-history"
+      : "not-falsified-by-sampled-member-residual-screen",
+    falsifiedAsExactIsolatedPrescribedHistory: fullCycleFalsified,
+    accelerationInventoryCertification: certificate,
+    rows,
+    windows: {
+      firstHalf,
+      secondHalf,
+      fullCycle,
+    },
+    partitionIdentities: {
+      fullCyclePeakEqualsWorseHalfPeak:
+        fullCycle.maximumPointwiseMemberResidualNorm === partitionPeak,
+      fullCyclePeak: fullCycle.maximumPointwiseMemberResidualNorm,
+      worseHalfPeak: partitionPeak,
+      fullCycleRmsEqualsWeightedHalfRms:
+        Math.abs(
+          fullCycle.rmsPointwiseMemberResidualNorm - partitionRms,
+        ) <= Number.EPSILON * Math.max(1, partitionRms),
+      fullCycleRms: fullCycle.rmsPointwiseMemberResidualNorm,
+      weightedHalfRms: partitionRms,
+    },
+    searchGuidance: {
+      eligibility:
+        "certified-complete-declared-isolated-acceleration-inventory",
+      stagedEvaluation:
+        "evaluate one declared half-cycle as a cheap early rejector; evaluate the other half before ranking or retaining any apparent near-zero",
+      ranking:
+        "minimize full-cycle maximum pointwise member residual first, then full-cycle RMS; retain both half-cycle peaks and their imbalance as diagnostics",
+      fullCycleMaximumPointwiseMemberResidualNorm:
+        fullCycle.maximumPointwiseMemberResidualNorm,
+      fullCycleRmsPointwiseMemberResidualNorm:
+        fullCycle.rmsPointwiseMemberResidualNorm,
+      firstHalfMaximumPointwiseMemberResidualNorm:
+        firstHalf.maximumPointwiseMemberResidualNorm,
+      secondHalfMaximumPointwiseMemberResidualNorm:
+        secondHalf.maximumPointwiseMemberResidualNorm,
+      worseHalfMaximumPointwiseMemberResidualNorm: partitionPeak,
+      halfPeakImbalance: Math.abs(
+        firstHalf.maximumPointwiseMemberResidualNorm -
+        secondHalf.maximumPointwiseMemberResidualNorm,
+      ),
+      interpretation:
+        "One near-zero half is insufficient. Both declared halves must be near zero for the sampled full-cycle maximum to be near zero; even then the record is only not falsified on the sampled grid.",
+    },
+    interpretation:
+      "Any sampled member residual above the adjudication threshold falsifies only this exact isolated prescribed history. A non-falsifying sampled result establishes no branch, return symmetry, taxonomy member, stability, retention, or physical realization.",
+  };
+}
+
+export function comparePointwiseMemberResidualSearchScreens(primary, refined) {
+  const metricNames = [
+    "fullCycleMaximumPointwiseMemberResidualNorm",
+    "fullCycleRmsPointwiseMemberResidualNorm",
+    "firstHalfMaximumPointwiseMemberResidualNorm",
+    "secondHalfMaximumPointwiseMemberResidualNorm",
+    "halfPeakImbalance",
+  ];
+  if (primary?.status !== "evaluated-falsification-and-search-guidance" ||
+      refined?.status !== "evaluated-falsification-and-search-guidance") {
+    return {
+      status: "inapplicable",
+      reason:
+        "primary and refined member-residual screens must both be evaluated",
+      entries: [],
+    };
+  }
+  const entries = metricNames.map((metric) => {
+    const primaryValue = primary.searchGuidance[metric];
+    const refinedValue = refined.searchGuidance[metric];
+    return {
+      metric,
+      primary: primaryValue,
+      refined: refinedValue,
+      absoluteChange: Math.abs(refinedValue - primaryValue),
+      relativeOrAbsoluteChange:
+        Math.abs(refinedValue - primaryValue) /
+        Math.max(1, Math.abs(primaryValue), Math.abs(refinedValue)),
+    };
+  });
+  return {
+    status: "diagnostic-resolution-comparison",
+    comparison:
+      "absolute-change-normalized-by-max(1,abs(primary),abs(refined)).v1",
+    entries,
+    maximumRelativeOrAbsoluteChange: Math.max(
+      ...entries.map((row) => row.relativeOrAbsoluteChange),
+    ),
+    interpretation:
+      "A refined apparent near-zero is search guidance only. Retain it for full adjudication only after the peak identity and scale settle under further time-grid refinement and independent root-residual checks.",
+  };
+}
+
 export function reduceCompleteCycleEndpointPacket(packet, sourceRecord, period, {
   fieldSpeed = null,
+  cycleStart = null,
 } = {}) {
   const eventsBySource = new Map(sourceRecord.sources.map((source) => [source.id, []]));
   const declaredFrame = sourceRecord.parameterVector?.frame ?? null;
@@ -522,6 +811,16 @@ export function reduceCompleteCycleEndpointPacket(packet, sourceRecord, period, 
     ...endpointReduction,
     pointwiseSummedAccelerationNecessaryCondition:
       reducePointwiseSummedAccelerationNecessaryCondition(endpointReduction, {
+        absoluteTolerance,
+        numericalConvergenceBound,
+      }),
+    pointwiseMemberResidualSearchScreen:
+      reducePointwiseMemberResidualSearchScreen(endpointReduction, {
+        cycleStart:
+          cycleStart ??
+          packet.protocol?.returnWindow?.start ??
+          sourceRecord.history.start,
+        period,
         absoluteTolerance,
         numericalConvergenceBound,
       }),
@@ -859,7 +1158,10 @@ function evaluateSensitivity({
             endpointPacket,
             sourceRecord,
             protocol.completeCycle.period,
-            { fieldSpeed: protocol.eventEvaluator.fieldSpeed },
+            {
+              fieldSpeed: protocol.eventEvaluator.fieldSpeed,
+              cycleStart: protocol.completeCycle.start,
+            },
           ),
         ),
       },
@@ -1108,12 +1410,19 @@ export function evaluateCompleteCycleCandidate({
         packet,
         sourceRecord,
         protocol.completeCycle.period,
-        { fieldSpeed: protocol.eventEvaluator.fieldSpeed },
+        {
+          fieldSpeed: protocol.eventEvaluator.fieldSpeed,
+          cycleStart: protocol.completeCycle.start,
+        },
       ),
       validity: packet.reducedMeasures.validity,
       resultHash: packet.resultHash ?? null,
     };
   }
+  const pointwiseMemberResidualResolution = comparePointwiseMemberResidualSearchScreens(
+    internalReceivers.primary.reduction.pointwiseMemberResidualSearchScreen,
+    internalReceivers.refined.reduction.pointwiseMemberResidualSearchScreen,
+  );
   onProgress?.({ candidateId, stage: "branch-diagnostics-start" });
   const branchDiagnostics = evaluateBranchDiagnostics(
     sourceRecord,
@@ -1201,6 +1510,7 @@ export function evaluateCompleteCycleCandidate({
     },
     convergenceComparisons: {
       surface: surface.convergenceComparisons,
+      pointwiseMemberResidual: pointwiseMemberResidualResolution,
       transmitterSensitivity: sensitivity,
     },
     reducedMeasures: accepted
@@ -1225,6 +1535,8 @@ export function evaluateCompleteCycleCandidate({
         internalReceivers.primary.reduction.omittedContributions,
       pointwiseSummedAccelerationNecessaryCondition:
         "falsification-only for an exact isolated prescribed history when the declared architrino-worldline acceleration inventory is certified complete and the summed prescribed acceleration vanishes within tolerance; a non-falsifying result establishes no branch or taxonomy claim",
+      pointwiseMemberResidualSearchScreen:
+        "falsification-only for the exact isolated prescribed history plus diagnostic search guidance over declared half-cycle and full-cycle windows; half-cycle success is never a return-symmetry or branch claim, and both halves plus refinement are required before retaining an apparent near-zero",
       symmetryResiduals:
         "inapplicable until the source-record contract declares an exact transform and probe mapping",
     },

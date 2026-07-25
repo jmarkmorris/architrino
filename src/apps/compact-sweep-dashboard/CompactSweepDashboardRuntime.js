@@ -5,6 +5,8 @@ import {
   HIGH_LEVEL_GATE_DEFINITIONS,
   SURFACE_GATE_DEFINITIONS,
   buildEvaluationFunnel,
+  caseResidualDetail,
+  filterCompactSweepCaseRows,
   filterCompactSweepRows,
   groupRows,
   median,
@@ -20,6 +22,7 @@ import {
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 const DEFAULT_VIEW_ID = "overview";
+const CASE_PAGE_SIZE = 50;
 
 const VIEW_DEFINITIONS = Object.freeze([
   ["overview", "Overview"],
@@ -28,6 +31,7 @@ const VIEW_DEFINITIONS = Object.freeze([
   ["metrics", "Metric distributions"],
   ["parameters", "Parameter explorer"],
   ["performance", "Performance"],
+  ["cases", "Case detail"],
 ].map(([id, label]) => Object.freeze({ id, label })));
 
 function element(tagName, className = "", textContent = null) {
@@ -67,6 +71,11 @@ function formatNumber(value, digits = 4) {
   return new Intl.NumberFormat("en-US", {
     maximumFractionDigits: digits,
   }).format(number);
+}
+
+function formatExactNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? String(number) : "—";
 }
 
 function formatPercent(value, digits = 1) {
@@ -989,6 +998,22 @@ function parameterDefinitions(rows) {
   return definitions;
 }
 
+function openCase(state, row, { preserveQuery = false } = {}) {
+  if (!preserveQuery) {
+    state.caseMemberId = row.memberId;
+    state.caseQuery = "";
+    state.caseSampleOrdinal = String(row.sampleOrdinal);
+    state.casePage = 0;
+  }
+  state.selectedCaseKey = row.rowKey;
+  state.viewId = "cases";
+  syncTabs(state);
+  renderView(state);
+  state.viewContainer
+    .querySelector(".compact-dashboard-case-detail h3")
+    ?.focus();
+}
+
 function createScatterPlot(points, parameter, metric) {
   if (points.length === 0) return null;
   const width = 980;
@@ -1106,6 +1131,12 @@ function createScatterPlot(points, parameter, metric) {
       cy: yScale(point.y),
       r: 4.5,
       class: `chart-point family-${point.row.familyId}`,
+      tabindex: 0,
+      role: "button",
+      "aria-label":
+        `${point.row.memberId}, ${parameter.label} ` +
+        `${String(point.rawX)}, ${metric.label} ${formatNumber(point.y, 7)}; ` +
+        `open case ${point.row.caseId}`,
     });
     const title = svgElement("title");
     title.textContent =
@@ -1113,6 +1144,14 @@ function createScatterPlot(points, parameter, metric) {
       `${parameter.label}: ${String(point.rawX)}\n` +
       `${metric.label}: ${formatNumber(point.y, 7)}`;
     circle.appendChild(title);
+    const inspect = () => point.onOpen(point.row);
+    circle.addEventListener("click", inspect);
+    circle.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        inspect();
+      }
+    });
     svg.appendChild(circle);
   });
   return { svg, categories, metricDomain };
@@ -1172,7 +1211,14 @@ function renderParameters(state) {
       ? typeof rawX === "string" && rawX.length > 0
       : Number.isFinite(rawX);
     return hasX && Number.isFinite(y)
-      ? [{ rawX, y, row }]
+      ? [{
+          rawX,
+          y,
+          row,
+          onOpen(selectedRow) {
+            openCase(state, selectedRow);
+          },
+        }]
       : [];
   });
   const plot = createScatterPlot(points, parameter, metric);
@@ -1199,6 +1245,7 @@ function renderParameters(state) {
       "Case",
       parameter.label,
       metric.label,
+      "Inspect",
     ]);
     points.slice(0, 100).forEach((point) => {
       const row = element("tr");
@@ -1208,6 +1255,22 @@ function renderParameters(state) {
         String(point.rawX),
         formatNumber(point.y, 7),
       ].forEach((value) => row.appendChild(element("td", "", value)));
+      const actionCell = element("td");
+      const inspectButton = element(
+        "button",
+        "compact-dashboard-button",
+        "Open case",
+      );
+      inspectButton.type = "button";
+      inspectButton.setAttribute(
+        "aria-label",
+        `Open case detail for ${point.row.caseId}`,
+      );
+      inspectButton.addEventListener("click", () => {
+        openCase(state, point.row);
+      });
+      actionCell.appendChild(inspectButton);
+      row.appendChild(actionCell);
       valuesTable.tBodies[0].appendChild(row);
     });
     const tableWrap = element("div", "compact-dashboard-table-wrap");
@@ -1497,6 +1560,444 @@ function renderPerformance(state) {
   return view;
 }
 
+function detailValue(list, label, value, { code = false } = {}) {
+  list.appendChild(element("dt", "", label));
+  const description = element("dd");
+  const text = element(
+    code ? "code" : "span",
+    code ? "compact-dashboard-code" : "",
+    value == null || value === "" ? "—" : value,
+  );
+  text.title = String(value ?? "");
+  description.appendChild(text);
+  list.appendChild(description);
+}
+
+function formatCoordinateValue(value) {
+  if (value == null) return "—";
+  if (!Array.isArray(value)) return formatExactNumber(value);
+  if (value.length === 0) return "—";
+  return value.map((entry) => {
+    if (entry && typeof entry === "object") {
+      return `${entry.id ?? "value"}: ${formatExactNumber(entry.value)}`;
+    }
+    return String(entry);
+  }).join(" · ");
+}
+
+function renderCaseDetail(row) {
+  const wrapper = element("div", "compact-dashboard-case-detail");
+  if (!row) {
+    wrapper.appendChild(
+      emptyState("Choose a row from the table to inspect its exact case."),
+    );
+    return wrapper;
+  }
+  const residual = caseResidualDetail(row);
+  const heading = element(
+    "h3",
+    "",
+    `${row.memberId} · sample ${row.sampleOrdinal}`,
+  );
+  heading.tabIndex = -1;
+  append(
+    wrapper,
+    heading,
+    element(
+      "p",
+      "compact-dashboard-selected-case",
+      `Selected campaign row: ${row.waveId} · case hash ${
+        row.caseHash.slice(0, 12)
+      }…`,
+    ),
+    element(
+      "span",
+      `compact-dashboard-badge ${
+        row.evaluation.evaluated ? "is-failure" : "is-warning"
+      }`,
+      row.evaluation.evaluated
+        ? "evaluated diagnostic row"
+        : "null early exit",
+    ),
+  );
+
+  const residualTable = table(["Field", "Exact value", "Meaning"]);
+  [
+    [
+      "Signed-cycle residual",
+      formatExactNumber(residual.signedCycleResidual),
+      "Absolute net signed wake-flux integral after one complete cycle. Small means cancellation in the signed sum, not low total emission.",
+    ],
+    [
+      "Signed-emission residual",
+      formatExactNumber(residual.signedEmissionResidual),
+      "Difference from the expected signed complete-cycle reference on its declared scale. This is not how much emission leaves.",
+    ],
+    [
+      "Signed-emission threshold",
+      formatExactNumber(residual.signedEmissionThreshold),
+      "Declared numerical reference tolerance; residual at or below this value is within the diagnostic threshold.",
+    ],
+    [
+      "Residual / threshold",
+      formatExactNumber(residual.signedEmissionThresholdRatio),
+      "The selected row's signed-emission residual divided by its threshold.",
+    ],
+    [
+      "Subgate maximum",
+      formatExactNumber(residual.signedEmissionGateMaximum),
+      "Largest signed-emission reference residual across the case's retained surface rows.",
+    ],
+    [
+      "Subgate maximum / threshold",
+      formatExactNumber(residual.signedEmissionGateThresholdRatio),
+      "The case-level signed-emission subgate ratio used by the gate summary.",
+    ],
+  ].forEach((values) => {
+    const rowNode = element("tr");
+    values.forEach((value) => rowNode.appendChild(element("td", "", value)));
+    residualTable.tBodies[0].appendChild(rowNode);
+  });
+  const residualWrap = element("div", "compact-dashboard-table-wrap");
+  residualWrap.appendChild(residualTable);
+  append(
+    wrapper,
+    element("h4", "", "Complete-cycle residuals"),
+    residualWrap,
+    element(
+      "p",
+      "compact-dashboard-note",
+      "The expected signed reference is the cycle period multiplied by the normalized signed source-polarity sum. Its scale also uses the expected raw reference: the cycle period multiplied by the normalized absolute source-polarity sum.",
+    ),
+    element(
+      "p",
+      "compact-dashboard-case-boundary",
+      "A small signed-emission residual reports cancellation and agreement with the declared reference. It does not mean the candidate emits slowly or has low total emission, and it does not establish stability, retention, binding, energy closure, quantization, particle identity, catalog acceptance, or physical realization.",
+    ),
+  );
+
+  const identities = element("dl", "compact-dashboard-detail-grid");
+  const sampledSpec = row.exactRerunInstruction?.sampledSpec;
+  [
+    ["Case ID", row.caseId],
+    ["Candidate ID", row.candidateId],
+    ["Source claim grade", sampledSpec?.claimGrade],
+    ["Source evidence status", sampledSpec?.evidenceStatus],
+    ["Campaign ID", row.campaignId],
+    ["Wave", row.waveId],
+    ["Sampling seed", row.samplingSeed],
+    ["Campaign hash", row.campaignHash],
+    ["Case hash", row.caseHash],
+    ["Sampled-spec hash", row.sampledSpecHash],
+    ["Exact-source hash", row.exactSourceHash],
+    ["Score hash", row.score.scoreHash],
+    ["Protocol hash", row.protocolHash],
+    ["Implementation hash", row.implementationHash],
+  ].forEach(([label, value]) => detailValue(
+    identities,
+    label,
+    value,
+    { code: true },
+  ));
+  append(wrapper, element("h4", "", "Case provenance"), identities);
+
+  const outcome = element("dl", "compact-dashboard-detail-grid");
+  detailValue(outcome, "Evaluation status", row.evaluation.statusCode);
+  detailValue(outcome, "Score status", row.score.statusCode);
+  detailValue(
+    outcome,
+    "Failed compact gates",
+    row.score.failedGates.join(", ") || "—",
+  );
+  detailValue(outcome, "Null class", row.evaluation.nullClass);
+  detailValue(outcome, "Null reason", row.evaluation.reasonCode);
+  detailValue(outcome, "Null message", row.evaluation.message);
+  detailValue(
+    outcome,
+    "Wake-flux claim boundary",
+    row.score.wakeFluxClaimBoundary,
+  );
+  detailValue(
+    outcome,
+    "Wall / total CPU",
+    `${formatNumber(row.performance.wallSeconds, 7)} s / ` +
+    `${formatNumber(row.performance.totalCpuSeconds, 7)} s`,
+  );
+  append(wrapper, element("h4", "", "Score and evaluation"), outcome);
+
+  const gateTable = table([
+    "Gate",
+    "Outcome",
+    "Observed",
+    "Threshold",
+    "Ratio",
+  ]);
+  SURFACE_GATE_DEFINITIONS.forEach((definition) => {
+    const gate = row.gates.surfaceQuadrature[definition.id];
+    const gateRow = element("tr");
+    [
+      definition.label,
+      gate?.passed === true ? "pass" : gate?.passed === false ? "fail" : "—",
+      formatExactNumber(gate?.maximumChange),
+      formatExactNumber(gate?.threshold),
+      formatExactNumber(gate?.thresholdRatio),
+    ].forEach((value) => gateRow.appendChild(element("td", "", value)));
+    gateRow.cells[0].title = definition.definition;
+    gateTable.tBodies[0].appendChild(gateRow);
+  });
+  const gateWrap = element("div", "compact-dashboard-table-wrap");
+  gateWrap.appendChild(gateTable);
+  append(wrapper, element("h4", "", "Surface-quadrature details"), gateWrap);
+
+  const coordinateTable = table(["Sampled coordinate", "Exact value"]);
+  const coordinateLabels = {
+    geometryScale: "Geometry scale",
+    translationSpeed: "Translation speed",
+    familyAFlattening: "Family-A flattening",
+    familyCSpacingScale: "Family-C spacing scale",
+    frequencies: "Frequencies",
+    radii: "Radii",
+    axialFractions: "Axial fractions",
+    generalCAxialSpacings: "General-C axial gaps",
+    circulationSenses: "Circulation",
+    polarityAssignments: "Polarity",
+    orbitOrder: "Orbit order",
+  };
+  Object.entries(coordinateLabels).forEach(([key, label]) => {
+    const coordinateRow = element("tr");
+    coordinateRow.appendChild(element("td", "", label));
+    coordinateRow.appendChild(element(
+      "td",
+      "compact-dashboard-code",
+      formatCoordinateValue(row.sampledCoordinates?.[key]),
+    ));
+    coordinateTable.tBodies[0].appendChild(coordinateRow);
+  });
+  const coordinateWrap = element("div", "compact-dashboard-table-wrap");
+  coordinateWrap.appendChild(coordinateTable);
+  append(wrapper, element("h4", "", "Sampled coordinates"), coordinateWrap);
+  return wrapper;
+}
+
+function renderCases(state) {
+  const allRows = filteredRows(state);
+  const memberIds = [...new Set(allRows.map((row) => row.memberId))]
+    .sort((left, right) =>
+      left.localeCompare(right, undefined, { numeric: true }));
+  if (
+    state.caseMemberId !== "all" &&
+    !memberIds.includes(state.caseMemberId)
+  ) {
+    state.caseMemberId = "all";
+  }
+  const memberRows = filterCompactSweepCaseRows(allRows, "", {
+    memberId: state.caseMemberId,
+  });
+  const sampleOrdinals = [...new Set(
+    memberRows.map((row) => String(row.sampleOrdinal)),
+  )].sort((left, right) => Number(left) - Number(right));
+  if (
+    state.caseSampleOrdinal !== "all" &&
+    !sampleOrdinals.includes(state.caseSampleOrdinal)
+  ) {
+    state.caseSampleOrdinal = "all";
+  }
+  const rows = filterCompactSweepCaseRows(allRows, state.caseQuery, {
+    memberId: state.caseMemberId,
+    sampleOrdinal: state.caseSampleOrdinal,
+  });
+  const pageCount = Math.max(1, Math.ceil(rows.length / CASE_PAGE_SIZE));
+  state.casePage = Math.min(state.casePage, pageCount - 1);
+  const pageStart = state.casePage * CASE_PAGE_SIZE;
+  const pageRows = rows.slice(pageStart, pageStart + CASE_PAGE_SIZE);
+  const selected = rows.find((row) =>
+    row.rowKey === state.selectedCaseKey) ?? pageRows[0] ?? null;
+  if (selected && selected.rowKey !== state.selectedCaseKey) {
+    state.selectedCaseKey = selected.rowKey;
+  }
+
+  const view = element("div", "compact-dashboard-view");
+  const layout = element("div", "compact-dashboard-case-layout");
+  const listPanel = panel({
+    kicker: "Keyboard-accessible case table",
+    title: "Select an exact case",
+    description:
+      "Choose a member and sample, then use exact search only when you need a candidate, case, or hash. A sample number can identify rows from more than one campaign.",
+  });
+  const controls = element("div", "compact-dashboard-case-controls");
+  const memberControl = selectControl({
+    id: "compact-dashboard-case-member",
+    label: "Member",
+    value: state.caseMemberId,
+    options: [
+      { value: "all", label: "All matching members" },
+      ...memberIds.map((memberId) => ({
+        value: memberId,
+        label: memberId,
+      })),
+    ],
+    onChange(value) {
+      state.caseMemberId = value;
+      state.caseSampleOrdinal = "all";
+      state.casePage = 0;
+      state.selectedCaseKey = null;
+      renderView(state);
+      state.viewContainer
+        .querySelector("#compact-dashboard-case-member")
+        ?.focus();
+    },
+  });
+  const sampleControl = selectControl({
+    id: "compact-dashboard-case-sample",
+    label: "Sample",
+    value: state.caseSampleOrdinal,
+    options: [
+      { value: "all", label: "All samples" },
+      ...sampleOrdinals.map((sampleOrdinal) => ({
+        value: sampleOrdinal,
+        label: `Sample ${sampleOrdinal}`,
+      })),
+    ],
+    onChange(value) {
+      state.caseSampleOrdinal = value;
+      state.casePage = 0;
+      state.selectedCaseKey = null;
+      renderView(state);
+      state.viewContainer
+        .querySelector("#compact-dashboard-case-sample")
+        ?.focus();
+    },
+  });
+  const searchControl = element("div", "compact-dashboard-filter");
+  const searchLabel = element("label", "", "Candidate, case, or hash");
+  searchLabel.htmlFor = "compact-dashboard-case-search";
+  const input = element("input", "compact-dashboard-case-search");
+  input.type = "search";
+  input.id = "compact-dashboard-case-search";
+  input.value = state.caseQuery;
+  input.placeholder = "Exact search";
+  input.addEventListener("input", () => {
+    state.caseQuery = input.value;
+    state.casePage = 0;
+    state.selectedCaseKey = null;
+    renderView(state);
+    const nextInput = state.viewContainer.querySelector(
+      ".compact-dashboard-case-search",
+    );
+    nextInput?.focus();
+    nextInput?.setSelectionRange(
+      state.caseQuery.length,
+      state.caseQuery.length,
+    );
+  });
+  append(searchControl, searchLabel, input);
+  append(
+    controls,
+    memberControl.wrapper,
+    sampleControl.wrapper,
+    searchControl,
+    element(
+      "span",
+      "compact-dashboard-badge",
+      `${formatInteger(rows.length)} cases`,
+    ),
+  );
+  listPanel.body.appendChild(controls);
+
+  if (pageRows.length === 0) {
+    listPanel.body.appendChild(
+      emptyState("No exact cases match the current search and filters."),
+    );
+  } else {
+    const caseTable = table([
+      "Member",
+      "Sample",
+      "Signed-cycle residual",
+      "Signed-emission residual",
+      "Case",
+      "Inspect",
+    ]);
+    pageRows.forEach((item) => {
+      const rowNode = element("tr");
+      const isSelected = item.rowKey === selected?.rowKey;
+      rowNode.className = "compact-dashboard-case-row";
+      rowNode.setAttribute("aria-selected", String(isSelected));
+      [
+        item.memberId,
+        item.sampleOrdinal,
+        formatExactNumber(item.metrics.signedCycleResidual),
+        formatExactNumber(item.metrics.signedEmissionResidual),
+        item.caseId,
+      ].forEach((value) => rowNode.appendChild(element("td", "", value)));
+      const actionCell = element("td");
+      const inspectButton = element(
+        "button",
+        "compact-dashboard-button",
+        isSelected ? "Selected" : "Open",
+      );
+      inspectButton.type = "button";
+      inspectButton.setAttribute(
+        "aria-label",
+        `Open case detail for ${item.caseId}, case hash ${item.caseHash}`,
+      );
+      if (isSelected) {
+        inspectButton.setAttribute("aria-current", "true");
+        inspectButton.disabled = true;
+      }
+      inspectButton.addEventListener("click", () => {
+        openCase(state, item, { preserveQuery: true });
+      });
+      actionCell.appendChild(inspectButton);
+      rowNode.appendChild(actionCell);
+      caseTable.tBodies[0].appendChild(rowNode);
+    });
+    const tableWrap = element("div", "compact-dashboard-table-wrap");
+    tableWrap.appendChild(caseTable);
+    listPanel.body.appendChild(tableWrap);
+
+    const pagination = element("div", "compact-dashboard-pagination");
+    const previous = element("button", "compact-dashboard-button", "Previous");
+    previous.type = "button";
+    previous.disabled = state.casePage === 0;
+    previous.addEventListener("click", () => {
+      state.casePage -= 1;
+      state.selectedCaseKey = null;
+      renderView(state);
+    });
+    const next = element("button", "compact-dashboard-button", "Next");
+    next.type = "button";
+    next.disabled = state.casePage >= pageCount - 1;
+    next.addEventListener("click", () => {
+      state.casePage += 1;
+      state.selectedCaseKey = null;
+      renderView(state);
+    });
+    append(
+      pagination,
+      previous,
+      element(
+        "span",
+        "compact-dashboard-note",
+        `Page ${state.casePage + 1} of ${pageCount} · ` +
+        `${pageStart + 1}-${Math.min(pageStart + CASE_PAGE_SIZE, rows.length)}`,
+      ),
+      next,
+    );
+    listPanel.body.appendChild(pagination);
+  }
+
+  const detailPanel = panel({
+    kicker: "Exact row provenance",
+    title: "Case detail",
+    description:
+      "One retained row, its measured compact diagnostics, declared numerical thresholds, sampled coordinates, and source identities.",
+  });
+  detailPanel.body.appendChild(renderCaseDetail(selected));
+  append(layout, listPanel.wrapper, detailPanel.wrapper);
+  view.appendChild(layout);
+  return view;
+}
+
 function renderBoundary(data) {
   const boundary = element("aside", "compact-dashboard-boundary");
   append(
@@ -1553,6 +2054,7 @@ function renderView(state) {
     metrics: renderMetrics,
     parameters: renderParameters,
     performance: renderPerformance,
+    cases: renderCases,
   };
   const renderer = renderers[state.viewId] ?? renderers[DEFAULT_VIEW_ID];
   state.viewContainer.appendChild(renderer(state));
@@ -1756,6 +2258,10 @@ export async function renderCompactSweepDashboardApp({
 } = {}) {
   if (!root) throw new Error("compact sweep dashboard root is required.");
   const state = {
+    casePage: 0,
+    caseMemberId: "all",
+    caseQuery: "",
+    caseSampleOrdinal: "all",
     data: null,
     defaultDataPath,
     filters: {
@@ -1768,6 +2274,7 @@ export async function renderCompactSweepDashboardApp({
     parameterId: "geometryScale",
     parameterMetricId: "externalExposureFraction",
     performanceValue: "wallSeconds",
+    selectedCaseKey: null,
     tabs: new Map(),
     viewId: DEFAULT_VIEW_ID,
   };

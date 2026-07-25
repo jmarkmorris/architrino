@@ -289,9 +289,63 @@ $$
 
 at every evaluation time. This follows directly by summing the individual equations of motion; it introduces no force, mass, momentum, return-map, or stability assumption.
 
-Plain language: the prescribed pair accelerations cancel before the interaction law is evaluated, so the complete evaluated acceleration sum must also cancel at each instant if that exact history solves the equations.
+Plainly: the prescribed pair accelerations cancel before the interaction law is evaluated, so the complete evaluated acceleration sum must also cancel at each instant if that exact history solves the equations.
 
 A value of $\|\mathbf S_A(T)\|$ beyond the declared numerical tolerance and convergence allowance falsifies only that exact isolated prescribed history under the certified inventory. A zero value is recorded only as not falsified by this screen. It does not establish a branch, a taxonomy member, stability, retention, or physical realization. If the same-worldline contribution, root inventory, or another contribution inside the declared isolated system is not certified complete, the screen is inapplicable rather than partial.
+
+The summed row can hide equal-and-opposite member errors. Therefore a certified complete inventory also carries the stronger pointwise member screen
+
+$$
+E_\infty(W)
+=
+\max_{\substack{i\\T\in W}}
+\left\|
+\mathbf R_i^{\mathrm{path}}(T)
+\right\|,
+\qquad
+E_2(W)
+=
+\left[
+\frac{1}{N|G_W|}
+\sum_i\sum_{T\in G_W}
+\left\|
+\mathbf R_i^{\mathrm{path}}(T)
+\right\|^2
+\right]^{1/2},
+$$
+
+where $G_W$ is the declared time grid in window $W$. Any sampled member residual above the adjudication threshold falsifies that exact isolated prescribed history even when $\sum_i\mathbf R_i^{\mathrm{path}}=0$. A sampled near-zero is only a search diagnostic and must survive time-grid refinement and independent causal-root residual checks.
+
+Plainly: two wrong accelerations can cancel in the total. Checking every architrino separately prevents that cancellation from hiding a bad prescribed record.
+
+For a declared cycle split into first and second halves, $W_P=W_{1/2}^{(1)}\cup W_{1/2}^{(2)}$, the same-grid reductions obey
+
+$$
+E_\infty(W_P)
+=
+\max\left\{
+E_\infty(W_{1/2}^{(1)}),
+E_\infty(W_{1/2}^{(2)})
+\right\},
+$$
+
+and
+
+$$
+E_2(W_P)^2
+=
+\frac{
+|G_1|E_2(W_{1/2}^{(1)})^2
++
+|G_2|E_2(W_{1/2}^{(2)})^2
+}{
+|G_1|+|G_2|
+}.
+$$
+
+Thus one half-cycle is useful only as a staged early rejector. Candidate search minimizes the refined full-cycle $E_\infty$ first and refined full-cycle $E_2$ second, while retaining both half-cycle peaks and their imbalance as diagnostics. One favorable half cannot support positive selection; both halves are required, and the window split changes no return-symmetry or taxonomy contract.
+
+Plainly: the full-cycle worst error is exactly the worse half's worst error. Testing one half can save work when it already fails, but passing one half says nothing about the other half.
 
 ## Probe Geometry
 
