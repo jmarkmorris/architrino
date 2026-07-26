@@ -287,7 +287,7 @@ export class CausalDelayFeedbackModeController {
     if (isSandbox) {
       this.updateControls();
       this.dom.summary.textContent =
-        "Laboratory. Both architrino paths and the evaluator-backed positrino and electrino current-emission markers are shown; replay time is preserved for inspection.";
+        "Laboratory. Both architrino paths and the evaluator-backed positrino and electrino current-emission markers are shown; replay time is preserved for inspection. The visible replay-status label identifies the display authority; the display is not physics acceptance.";
       return;
     }
     this.renderModeContent();
@@ -352,7 +352,9 @@ export class CausalDelayFeedbackModeController {
     this.setLessonCopy({
       title: view.title,
       body: view.body,
-      meta: `Lesson ${view.stepIndex + 1} of ${view.stepCount}`,
+      // The persistent lesson list is the learner-facing sequence indicator.
+      // Keep implementation/replay provenance out of the teaching header.
+      meta: "",
       status: "",
     });
     if (view.id === "motion") {
@@ -607,16 +609,18 @@ export class CausalDelayFeedbackModeController {
     const storyView = this.state.mode === "story"
       ? createStoryView(this.state)
       : null;
+    const replayAuthoritySummary =
+      this.state.replay?.lessonMeta ?? "Display authority unavailable";
     this.dom.summary.textContent = this.state.mode === "story"
       ? storyView?.id === "motion"
-        ? `Lesson Four. Three evaluator-backed constant-speed display fixtures compare transmitter speeds ${STORY_MOTION_SPEED_FRACTIONS.join(", ")} times C_f; ${Number(this.state.storyMotionSpeedFraction).toFixed(1)} is highlighted.`
+        ? `Lesson Four. Three evaluator-backed constant-speed display fixtures compare transmitter speeds ${STORY_MOTION_SPEED_FRACTIONS.join(", ")} times C_f; ${Number(this.state.storyMotionSpeedFraction).toFixed(1)} is highlighted. These displays do not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
         : storyView?.id === "forward-buildup"
-          ? "Lesson Five. Both architrinos begin at emission zero on the shared paired paths while their first wake fronts build forward from the emitters."
-          : "Lesson. Electrino transmitter to Positrino receiver; Positrino transmitter to Electrino receiver."
+          ? `Lesson Five. Both architrinos begin at emission zero on the shared paired paths while their first wake fronts build forward from the emitters. This display does not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
+          : `Lesson. Electrino transmitter to Positrino receiver; Positrino transmitter to Electrino receiver. This teaching display does not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
       : this.state.mode === "history" && root && reciprocalRoot
         ? `Path History. Positrino and Electrino history-emission markers show the evaluator-backed earlier points for both reciprocal relationships at Tₜ=${formatTime(root.emissionTime)} and Tₜ=${formatTime(reciprocalRoot.emissionTime)}.`
       : this.state.mode === "sandbox" && root && reciprocalRoot
-        ? `Laboratory. Positrino and electrino current-emission markers and wake geometry follow the shared replay state at Tₜ=${formatTime(root.emissionTime)} and Tₜ=${formatTime(reciprocalRoot.emissionTime)}.`
+        ? `Laboratory. Positrino and electrino current-emission markers and wake geometry follow the shared replay state at Tₜ=${formatTime(root.emissionTime)} and Tₜ=${formatTime(reciprocalRoot.emissionTime)}. The visible replay-status label identifies the display authority; the display is not physics acceptance.`
       : root
       ? `${modeLabel}. Transmitter ${root.sourceId} transmitted at Tₜ=${formatTime(root.emissionTime)}; receiver ${root.receiverId} receives at Tᵣ=${formatTime(root.receiverTime)}. Root ${root.ordinal} is ${root.accepted ? "accepted" : describeReason(root.reason)}.`
       : `${modeLabel}. No causal root is available at the selected receiver event.`;

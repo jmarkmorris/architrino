@@ -418,3 +418,14 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   stability, binding, or physical-realization claim is booked. See the
   [predeclared protocol](campaigns/stationary-binary-breather-diagnostic.md) and
   [diagnostic packet](evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md).
+
+## 2026-07-25 — B1/Family-C Monte Carlo-to-basin diagnostic completed
+
+- Ran 576 reproducible $c_f=1$ full-taxonomy draws across B1.1, B1.2, B1.3,
+  and C1 through C6 under a six-process cap. Of 573 evaluated rows, 159 carried
+  the applicable refined member-residual score, 414 were inapplicable, and
+  three remained fail-closed unknown. The best refined full-cycle peak was
+  `59.29861867019956`, above the predeclared handoff ceiling `6`, so zero rows
+  entered raw admission and zero local descents ran. All ordinary rows and the
+  empty handoff ledger were imported into the verified local compact database.
+  See the [write-once diagnostic packet](evidence/2026-07-25-bc-monte-carlo-basin-diagnostic.md).

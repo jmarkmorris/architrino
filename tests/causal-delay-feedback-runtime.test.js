@@ -1251,14 +1251,47 @@ test("causal delay feedback legend lozenges use the fixed canvas and trace color
 
 });
 
-test("causal delay feedback bottom scrubber uses a dedicated purple transport theme", () => {
+test("causal delay feedback bottom scrubber is borderless until keyboard focus is visible", () => {
   const html = readCausalDelayFeedbackHtml();
   const themeStart = html.indexOf(".causal-timeline-range {");
   const themeEnd = html.indexOf(".causal-readout {", themeStart);
   const timelineTheme = html.slice(themeStart, themeEnd);
+  const webkitThumb = timelineTheme.match(
+    /\.causal-timeline-range::-webkit-slider-thumb\s*\{(?<rules>[^}]*)\}/u,
+  )?.groups?.rules;
+  const mozThumb = timelineTheme.match(
+    /\.causal-timeline-range::-moz-range-thumb\s*\{(?<rules>[^}]*)\}/u,
+  )?.groups?.rules;
+  const focusVisible = timelineTheme.match(
+    /\.causal-timeline-range:focus-visible\s*\{(?<rules>[^}]*)\}/u,
+  )?.groups?.rules;
+  const channelToLinear = (channel) => {
+    const normalized = channel / 255;
+    return normalized <= 0.04045
+      ? normalized / 12.92
+      : ((normalized + 0.055) / 1.055) ** 2.4;
+  };
+  const relativeLuminance = (hexColor) => {
+    const channels = [
+      Number.parseInt(hexColor.slice(1, 3), 16),
+      Number.parseInt(hexColor.slice(3, 5), 16),
+      Number.parseInt(hexColor.slice(5, 7), 16),
+    ].map(channelToLinear);
+    return (0.2126 * channels[0]) + (0.7152 * channels[1]) + (0.0722 * channels[2]);
+  };
+  const contrastRatio = (firstColor, secondColor) => {
+    const firstLuminance = relativeLuminance(firstColor);
+    const secondLuminance = relativeLuminance(secondColor);
+    const lighter = Math.max(firstLuminance, secondLuminance);
+    const darker = Math.min(firstLuminance, secondLuminance);
+    return (lighter + 0.05) / (darker + 0.05);
+  };
 
   assert(themeStart > 0);
   assert(themeEnd > themeStart);
+  assert(webkitThumb);
+  assert(mozThumb);
+  assert(focusVisible);
   assert.match(html, /id="causal-delay-feedback-now"[\s\S]*?class="causal-range causal-timeline-range"/u);
   assert.match(timelineTheme, /\.causal-timeline-range::-webkit-slider-runnable-track/u);
   assert.match(timelineTheme, /\.causal-timeline-range::-webkit-slider-thumb/u);
@@ -1282,8 +1315,18 @@ test("causal delay feedback bottom scrubber uses a dedicated purple transport th
     timelineTheme,
     /\.causal-timeline-range::-moz-range-thumb[\s\S]*?background: #8b4fbf/u,
   );
-  assert.match(timelineTheme, /border-color: rgba\(246, 247, 255, 0\.94\)/u);
-  assert.match(timelineTheme, /rgba\(225, 205, 255, 0\.96\)/u);
+  assert.match(webkitThumb, /border: 0;/u);
+  assert.match(mozThumb, /border: 0;/u);
+  assert.doesNotMatch(webkitThumb, /rgba\(246, 247, 255|rgba\(183, 126, 225/u);
+  assert.doesNotMatch(mozThumb, /rgba\(246, 247, 255|rgba\(183, 126, 225/u);
+  assert.match(
+    html,
+    /\.causal-range:focus-visible\s*\{[^}]*outline: 2px solid rgba\(246, 247, 255, 0\.76\);[^}]*outline-offset: 4px;/u,
+  );
+  assert.match(focusVisible, /outline-color: rgba\(225, 205, 255, 0\.96\);/u);
+  assert.doesNotMatch(timelineTheme, /\.causal-timeline-range:focus(?!-visible)/u);
+  assert(relativeLuminance("#8b4fbf") > relativeLuminance("#7a36aa"));
+  assert(contrastRatio("#8b4fbf", "#7a36aa") >= 1.35);
   assert.doesNotMatch(timelineTheme, /#(?:ff0000|0000ff|ff96a6|96aaff|4ae5ff)/iu);
 });
 
@@ -1319,30 +1362,40 @@ test("causal delay feedback toolbar exposes independent wake visual switches", (
   assert.equal(html.includes(">Gap+</button>"), false);
 });
 
-test("causal delay feedback bottom rail keeps timeline-only transport before the scrubber", () => {
+test("causal delay feedback keeps timeline-only transport and a visible Laboratory display-authority label", () => {
   const html = readCausalDelayFeedbackHtml();
+  const toolbarIndex = html.indexOf('id="causal-delay-feedback-toolbar"');
   const firstIndex = html.indexOf('id="causal-delay-feedback-guided-first-frame"');
   const playIndex = html.indexOf('id="causal-delay-feedback-guided-play"');
   const lastIndex = html.indexOf('id="causal-delay-feedback-guided-last-frame"');
   const scrubIndex = html.indexOf('id="causal-delay-feedback-now"');
   const replayStatusIndex = html.indexOf('id="causal-delay-feedback-replay-status"');
 
+  assert(toolbarIndex > 0);
+  assert(replayStatusIndex > toolbarIndex);
+  assert(replayStatusIndex < firstIndex);
   assert(firstIndex > 0);
   assert(playIndex > firstIndex);
   assert(lastIndex > playIndex);
   assert(scrubIndex > lastIndex);
-  assert(replayStatusIndex > scrubIndex);
   assert.match(html.slice(playIndex, lastIndex), /aria-label="Play"/);
   assert.doesNotMatch(html, /id="causal-delay-feedback-pause"/);
   assert.doesNotMatch(
     html.slice(
       html.indexOf('id="causal-delay-feedback-bottom-rail"'),
-      replayStatusIndex,
+      html.indexOf("</div>", scrubIndex),
     ),
     />Back<|>Next</u,
   );
   assert.doesNotMatch(html, /id="causal-delay-feedback-now-value"/u);
-  assert.match(html.slice(replayStatusIndex, replayStatusIndex + 180), /hidden/);
+  assert.doesNotMatch(
+    html.slice(replayStatusIndex, replayStatusIndex + 220),
+    /\shidden(?:\s|>)/u,
+  );
+  assert.match(
+    html.slice(replayStatusIndex, replayStatusIndex + 220),
+    /representative · display only/u,
+  );
 });
 
 test("causal delay feedback shares one time-axis label position above the axis", () => {
@@ -2026,6 +2079,16 @@ test("Story 4 renders all declared speed fixtures from one evaluator-backed geom
     runtime.dom.canvas.dataset.storyMotionFixture,
     "declared_constant_speed_transmitter_history",
   );
+  assert.equal(
+    runtime.dom.canvas.dataset.displayAuthorityKind,
+    "declared_constant_speed_teaching_fixture",
+  );
+  assert.equal(runtime.dom.canvas.dataset.displayEvidenceStatus, "display-only");
+  assert.equal(runtime.dom.canvas.dataset.displayPhysicsAcceptance, "false");
+  assert.equal(
+    runtime.dom.canvas.dataset.displayParityEstablishesPhysicsAcceptance,
+    "false",
+  );
   assert.equal(runtime.dom.canvas.dataset.storyMotionSpeeds, "0.3,0.6,0.9");
   assert.equal(runtime.dom.canvas.dataset.storyMotionSelectedSpeed, "0.6");
   assert.equal(runtime.dom.canvas.dataset.storyEmissionOriginMarkerCount, "18");
@@ -2228,11 +2291,19 @@ test("Lesson Five starts at emission zero and visibly differs from Lesson One at
   runtime.dom = { canvas: { dataset: {} } };
   runtime.learnerState.storyStep = 4;
   runtime.drawStoryEmissionOriginMarker = () => {};
-  runtime.drawLiveMarker = () => {};
   runtime.drawPathTrail = () => {};
   const renders = [];
+  const liveMarkers = [];
+  const renderSequence = [];
+  const drawForwardWakeBuildupHistory =
+    runtime.drawForwardWakeBuildupHistory.bind(runtime);
   runtime.drawForwardWakeBuildupHistory = (_ctx, frame) => {
     renders.push(frame);
+    renderSequence.push("wake-history");
+  };
+  runtime.drawLiveMarker = (_ctx, _label, _color, point, kind) => {
+    liveMarkers.push({ point, kind });
+    renderSequence.push(`current-emission:${kind}`);
   };
 
   const scene = createStoryScene(runtime.learnerState);
@@ -2281,9 +2352,18 @@ test("Lesson Five starts at emission zero and visibly differs from Lesson One at
   );
   assert.equal(
     runtime.dom.canvas.dataset.forwardWakeBuildupFrontClip,
-    "trailing-half-plane-through-current-body",
+    "body-anchored-trailing-arc",
   );
-  for (const progress of [0.1, 0.3, 0.5, 0.7, 1]) {
+  assert.deepEqual(liveMarkers.slice(-2), [
+    { point: renders[1].bodies.positrino, kind: "positrino" },
+    { point: renders[1].bodies.electrino, kind: "electrino" },
+  ]);
+  assert.deepEqual(renderSequence.slice(-3), [
+    "wake-history",
+    "current-emission:positrino",
+    "current-emission:electrino",
+  ]);
+  for (const progress of [0.05, 0.1, 0.3, 0.5, 0.7, 0.9, 1]) {
     const frame = runtime.createStoryForwardWakeBuildupFrame(
       scene,
       scene.playbackStartTime +
@@ -2294,13 +2374,67 @@ test("Lesson Five starts at emission zero and visibly differs from Lesson One at
     frame.fronts.forEach((front) => {
       assert.equal(front.currentBody, frame.bodies[front.transmitterId]);
       assert.equal(front.leadingPoint, front.currentBody);
+      assert.equal(front.bodyAnchoredTrailingArc, true);
       assert.ok(
         Math.abs(
           front.radius - getDistance(front.center, front.currentBody),
         ) <= 1e-9,
       );
       assert.equal(front.trailingHalfPlaneOnly, true);
+      const arc = runtime.getForwardWakeBuildupFrontArcGeometry(front);
+      assert(arc);
+      assertNear(Math.hypot(arc.forward.x, arc.forward.y), 1);
+      assertNear(arc.leadingProjectionError, 0);
+      assertNear(
+        arc.center.x + Math.cos(arc.startAngle) * arc.radius,
+        arc.leadingPoint.x,
+        1e-7,
+      );
+      assertNear(
+        arc.center.y + Math.sin(arc.startAngle) * arc.radius,
+        arc.leadingPoint.y,
+        1e-7,
+      );
+      for (let sampleIndex = 0; sampleIndex < 360; sampleIndex += 1) {
+        const amount = sampleIndex / 359;
+        const angle = arc.startAngle +
+          (arc.endAngle - arc.startAngle) * amount;
+        const point = {
+          x: arc.center.x + Math.cos(angle) * arc.radius,
+          y: arc.center.y + Math.sin(angle) * arc.radius,
+        };
+        assert.ok(
+          point.x <= arc.leadingPoint.x + 1e-7,
+          `${front.transmitterId} front led its current-emission dot at ${progress}`,
+        );
+      }
     });
+
+    const drawnArcs = [];
+    const context = {
+      save() {},
+      restore() {},
+      beginPath() {},
+      stroke() {},
+      arc(x, y, radius, startAngle, endAngle, anticlockwise) {
+        drawnArcs.push({
+          x,
+          y,
+          radius,
+          startAngle,
+          endAngle,
+          anticlockwise,
+        });
+      },
+      set lineWidth(value) {
+        this._lineWidth = value;
+      },
+      set strokeStyle(value) {
+        this._strokeStyle = value;
+      },
+    };
+    drawForwardWakeBuildupHistory(context, frame);
+    assert.equal(drawnArcs.length, frame.fronts.length);
   }
   const meetScene = createStoryScene({
     ...runtime.learnerState,
@@ -2320,7 +2454,7 @@ test("Lesson Five starts at emission zero and visibly differs from Lesson One at
   );
   assert.match(
     runtime.dom.canvas.dataset.forwardWakeBuildupEvidenceBoundary,
-    /sampled trailing wake arcs are anchored to the current body/u,
+    /unique displayed-time-leading buildup point is the white current-emission dot/u,
   );
 });
 
@@ -2947,12 +3081,11 @@ test("causal delay feedback runtime loads an async eom replay over the mock fall
   assert.equal(runtime.dataset.solverIntegrationPath, EOM_REPLAY_ADAPTER);
   assert.equal(runtime.replayLoadState, "ready");
   assert.equal(runtime.replayLoadError, null);
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.textContent, "EOM record · display only");
   assert.equal(replayStatus.dataset.state, "eom-replay");
-  assert.equal(
-    replayStatus.title,
-    "Showing recorded EOM paths. This viewer does not recompute the record or infer delayed hits.",
-  );
+  assert.match(replayStatus.title, /recorded EOM paths/u);
+  assert.match(replayStatus.title, /does not prove that the physics has been accepted/u);
+  assert.equal(replayStatus.hidden, false);
 });
 
 test("causal delay feedback status keeps raw recorded provenance out of learner-facing copy", () => {
@@ -2977,10 +3110,11 @@ test("causal delay feedback status keeps raw recorded provenance out of learner-
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.textContent, "EOM record · display only");
   assert.equal(replayStatus.dataset.state, "eom-replay");
   assert.match(replayStatus.title, /recorded EOM paths/u);
   assert.match(replayStatus.title, /does not recompute/u);
+  assert.match(replayStatus.title, /does not prove that the physics has been accepted/u);
   assert.doesNotMatch(replayStatus.title, /engine=|run=|claim=|evidence=|worldlines=/u);
   assert.equal(replayStatus.attributes["aria-label"], replayStatus.title);
 });
@@ -2998,7 +3132,7 @@ test("causal delay feedback status does not expose dataset-level eom provenance 
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.textContent, "EOM record · display only");
   assert.equal(replayStatus.dataset.state, "eom-replay");
   assert.match(replayStatus.title, /recorded EOM paths/u);
   assert.doesNotMatch(replayStatus.title, /engine=|run=|claim=|evidence=|worldlines=/u);
@@ -3026,7 +3160,7 @@ test("causal delay feedback status ignores legacy solver telemetry on eom datase
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.textContent, "EOM record · display only");
   assert.equal(replayStatus.dataset.state, "eom-replay");
   assert.doesNotMatch(replayStatus.title, /steps=/);
   assert.doesNotMatch(replayStatus.title, /relax/);
@@ -3049,9 +3183,10 @@ test("causal delay feedback status reports plain recorded replay for non-eom rec
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "recorded replay");
+  assert.equal(replayStatus.textContent, "recorded replay · display only");
   assert.equal(replayStatus.dataset.state, "recorded");
-  assert.equal(replayStatus.title, "Showing a recorded replay dataset.");
+  assert.match(replayStatus.title, /recorded replay dataset/u);
+  assert.match(replayStatus.title, /does not prove that the physics has been accepted/u);
   assert.equal(replayStatus.attributes["aria-label"], replayStatus.title);
 });
 
@@ -3079,9 +3214,10 @@ test("causal delay feedback recorded replay status ignores legacy path-constrain
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "recorded replay");
+  assert.equal(replayStatus.textContent, "recorded replay · display only");
   assert.equal(replayStatus.dataset.state, "recorded");
-  assert.equal(replayStatus.title, "Showing a recorded replay dataset.");
+  assert.match(replayStatus.title, /recorded replay dataset/u);
+  assert.match(replayStatus.title, /does not prove that the physics has been accepted/u);
   assert.doesNotMatch(replayStatus.title, /constraint=|relax|seedRows=|physical=/);
 });
 
@@ -3101,7 +3237,7 @@ test("causal delay feedback status remains plain when eom provenance is incomple
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.textContent, "EOM record · display only");
   assert.equal(replayStatus.dataset.state, "eom-replay");
   assert.match(replayStatus.title, /recorded EOM paths/u);
   assert.doesNotMatch(replayStatus.title, /engine=|run=|claim=/u);
@@ -3124,7 +3260,7 @@ test("causal delay feedback status treats legacy motion-policy datasets as plain
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "recorded replay");
+  assert.equal(replayStatus.textContent, "recorded replay · display only");
   assert.equal(replayStatus.dataset.state, "recorded");
   assert.doesNotMatch(replayStatus.title, /pair_initial_attraction_seed|segments=/);
   assert.equal(replayStatus.attributes["aria-label"], replayStatus.title);
@@ -3168,8 +3304,11 @@ test("causal delay feedback runtime keeps the mock replay when eom replay loadin
   assert.equal(runtime.dataset.solverIntegrationPath, "temporary_mock_adapter");
   assert.equal(runtime.replayLoadState, "fallback");
   assert.match(runtime.replayLoadError.message, /solver client missing/);
-  assert.equal(replayStatus.textContent, "representative fallback");
+  assert.equal(replayStatus.textContent, "provider unavailable · sample only");
+  assert.doesNotMatch(replayStatus.title, /\.\./u);
   assert.equal(replayStatus.dataset.state, "fallback");
+  assert.match(replayStatus.title, /solver client missing/u);
+  assert.match(replayStatus.title, /does not prove that the physics has been accepted/u);
 });
 
 test("causal delay feedback direct edit remains a local draft without calling the replay adapter", async () => {
@@ -3206,9 +3345,16 @@ test("causal delay feedback direct edit remains a local draft without calling th
   assert.equal(adapterCalls, 0);
   assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
   assert.equal(runtime.replayRequestOptions.initialConditions.electrino.x, editedX);
-  assert.equal(replayStatus.textContent, "draft preview");
+  assert.equal(replayStatus.textContent, "local preview · display only");
   assert.equal(replayStatus.dataset.state, "draft");
   assert.match(replayStatus.title, /local teaching preview/u);
+  assert.match(replayStatus.title, /does not prove that the physics has been accepted/u);
+  assert.equal(runtime.dataset.displayAuthority.kind, "local_drag_teaching_preview");
+  assert.equal(runtime.dataset.displayAuthority.physicsAcceptance, false);
+  assert.equal(
+    runtime.dataset.displayAuthority.displayParityEstablishesPhysicsAcceptance,
+    false,
+  );
   assert(readoutText.includes("preview=local_teaching_only"));
   assert(readoutText.includes("recorded_replay=unchanged"));
 });
@@ -3448,7 +3594,7 @@ test("causal delay feedback page eom replay uses configured record from scope", 
   assert.deepEqual(runtime.dataset.eomWorldlineRoles, { positrino: "10", electrino: "20" });
   assert.deepEqual(runtime.dataset.wakeLinks, []);
   assert.equal(runtime.replayLoadState, "ready");
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.textContent, "EOM record · display only");
   assert.equal(replayStatus.dataset.state, "eom-replay");
   assert.match(replayStatus.title, /recorded EOM paths/u);
   assert.doesNotMatch(replayStatus.title, /run=|evidence=/u);
@@ -4624,7 +4770,7 @@ test("causal delay feedback retained point drag marks the replay as a draft prev
   assert.equal(runtime.dataset.draftPreview.reason, "retained_point_drag_preview");
   assert.equal(runtime.dataset.draftPreview.authoritative, false);
   assert.equal(runtime.replayLoadState, "draft");
-  assert.equal(replayStatus.textContent, "draft preview");
+  assert.equal(replayStatus.textContent, "local preview · display only");
   assert.equal(replayStatus.dataset.state, "draft");
 });
 
@@ -4656,7 +4802,7 @@ test("causal delay feedback path start history drag updates setup and replay pre
   assert.equal(runtime.dataset.draftPreview.reason, "retained_point_drag_preview");
   assert.equal(runtime.replayRequestOptions.initialConditions.positrino.x, condition.x);
   assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
-  assert.equal(replayStatus.textContent, "draft preview");
+  assert.equal(replayStatus.textContent, "local preview · display only");
 });
 
 test("causal delay feedback initial velocity drag updates setup and bends the preview path", () => {
@@ -4699,7 +4845,7 @@ test("causal delay feedback initial velocity drag updates setup and bends the pr
   assert.equal(runtime.dataset.draftPreview.reason, "initial_velocity_drag_preview");
   assertNear(runtime.replayRequestOptions.initialConditions.positrino.vx, condition.vx);
   assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
-  assert.equal(replayStatus.textContent, "draft preview");
+  assert.equal(replayStatus.textContent, "local preview · display only");
 });
 
 test("causal delay feedback edit release keeps a local draft and never invokes the replay adapter", async () => {

@@ -171,6 +171,8 @@ function evaluateResolution({
   sourceRecord,
   protocol,
   resolution,
+  onRawPacket = null,
+  rawPacketContext = null,
 }) {
   const endpointProtocol = buildCompleteCycleEndpointProtocol(
     protocol,
@@ -181,6 +183,11 @@ function evaluateResolution({
     sourceRecord,
     protocol: endpointProtocol,
   });
+  const rawEvidenceReceipt = onRawPacket?.(packet, {
+    ...rawPacketContext,
+    resolution,
+    artifactKind: "endpoint-residual-raw-result-packet",
+  }) ?? null;
   const reduction = reduceCompleteCycleEndpointPacket(
     packet,
     sourceRecord,
@@ -199,6 +206,7 @@ function evaluateResolution({
   return {
     protocolHash: sha256Canonical(endpointProtocol),
     resultHash: packet.resultHash,
+    rawEvidenceReceipt,
     eventCount: packet.rawLedgers.causalRoots.length,
     inventoryCertification: reduction.accelerationInventoryCertification,
     memberResidual: compactScreen(
@@ -228,26 +236,47 @@ export function evaluateEndpointResidualSearchCase({
   stratumId,
   stratumOrdinal,
   refinement = "screening",
+  onRawPacket = null,
 } = {}) {
   const protocol = validateB1CompleteCycleProbeProtocol(rawProtocol);
   const started = performance.now();
+  const sourceSpecHash = sha256Canonical(sampled.spec);
+  let exactSourceHash = null;
   try {
-    const sourceSpecHash = sha256Canonical(sampled.spec);
     const sourceRecord = validateExactPrescribedSourceRecord(
       createPrescribedBraidExactSourceRecord(sampled.spec, {
         sourceHash: sourceSpecHash,
         generatingSpec: candidate.declaration.specPath,
       }),
     );
+    exactSourceHash = sha256Canonical(sourceRecord);
     const primary = evaluateResolution({
       sourceRecord,
       protocol,
       resolution: "primary",
+      onRawPacket,
+      rawPacketContext: {
+        candidateId: candidate.declaration.candidateId,
+        memberId: candidate.declaration.memberId,
+        seed,
+        stratumId,
+        stratumOrdinal,
+        refinement,
+      },
     });
     const refined = evaluateResolution({
       sourceRecord,
       protocol,
       resolution: "refined",
+      onRawPacket,
+      rawPacketContext: {
+        candidateId: candidate.declaration.candidateId,
+        memberId: candidate.declaration.memberId,
+        seed,
+        stratumId,
+        stratumOrdinal,
+        refinement,
+      },
     });
     const comparison = comparePointwiseMemberResidualSearchScreens(
       primary.memberResidual,
@@ -274,7 +303,8 @@ export function evaluateEndpointResidualSearchCase({
       coordinates: sampled.coordinates,
       sampledSpec: sampled.spec,
       sampledSpecHash: sourceSpecHash,
-      exactSourceHash: sha256Canonical(sourceRecord),
+      exactSourceHash,
+      searchProtocolHash: sha256Canonical(protocol),
       status: completeInventory && independentRootCheckPassed
         ? "eligible-complete-inventory"
         : "unknown-failed-required-check",
@@ -302,7 +332,9 @@ export function evaluateEndpointResidualSearchCase({
       samplingDisposition: sampled.samplingDisposition,
       coordinates: sampled.coordinates,
       sampledSpec: sampled.spec,
-      sampledSpecHash: sha256Canonical(sampled.spec),
+      sampledSpecHash: sourceSpecHash,
+      exactSourceHash,
+      searchProtocolHash: sha256Canonical(protocol),
       status: "unknown-evaluation-failed",
       completeInventory: false,
       independentRootCheckPassed: false,

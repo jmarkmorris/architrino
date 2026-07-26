@@ -2,6 +2,9 @@ import {
   createEomHistoryDataset,
 } from "../shared/EomHistoryDataset.mjs";
 import {
+  createDisplayAuthority,
+} from "./CausalDelayFeedbackCausalHistory.js";
+import {
   FIXED_WAKE_VISUAL_STYLE,
   FRAME_COUNT,
   PATH_TIME_END_X,
@@ -124,6 +127,11 @@ export function normalizeCausalDelayFeedbackEomReplay(recordOrDataset, {
       positrino: roles.positrino.id,
       electrino: roles.electrino.id,
     },
+    displayAuthority: createDisplayAuthority("recorded_eom_path_display", {
+      label: "Recorded EOM path display",
+      recordEvidenceStatus: historyDataset.provenance.evidenceStatus,
+      delayedHitInference: false,
+    }),
     displayProjection: projection.descriptor,
     physicalPaths,
     causalEvaluation: {

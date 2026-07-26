@@ -45,6 +45,14 @@ test("eom replay adapter normalizes a recorded dataset into the runtime replay s
   assert.equal(dataset.claimGrade, "evolved-record");
   assert.equal(dataset.eomProvenance.claimGrade, "evolved-record");
   assert.equal(dataset.eomProvenance.evidenceStatus, "canonical");
+  assert.equal(dataset.displayAuthority.kind, "recorded_eom_path_display");
+  assert.equal(dataset.displayAuthority.evidenceStatus, "display-only");
+  assert.equal(dataset.displayAuthority.recordEvidenceStatus, "canonical");
+  assert.equal(dataset.displayAuthority.physicsAcceptance, false);
+  assert.equal(
+    dataset.displayAuthority.displayParityEstablishesPhysicsAcceptance,
+    false,
+  );
   assert.equal(dataset.eomWorldlineRoles.positrino, "10");
   assert.equal(dataset.eomWorldlineRoles.electrino, "20");
   assert.equal("preset" in dataset, false);
