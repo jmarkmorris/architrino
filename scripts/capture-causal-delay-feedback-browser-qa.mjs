@@ -90,6 +90,36 @@ const PROOFS = Object.freeze([
     expectedText: "Motion Changes Wake Shape",
   },
   {
+    id: "lesson-four-label-anchors-desktop",
+    fileName: "lesson-four-label-anchors-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
+    replayTime: 0.6,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "story",
+    storyStep: 3,
+    verifyLessonFourLabelAnchors: true,
+    expectedScene: "story:motion",
+    expectedText: "Motion Changes Wake Shape",
+  },
+  {
+    id: "lesson-four-label-anchors-phone",
+    fileName: "lesson-four-label-anchors-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=story&replay=mock",
+    replayTime: 0.6,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "story",
+    storyStep: 3,
+    verifyLessonFourLabelAnchors: true,
+    expectedScene: "story:motion",
+    expectedText: "Motion Changes Wake Shape",
+  },
+  {
     id: "transport-state",
     fileName: "lesson-transport-state-purple-1440x900.png",
     width: 1440,
@@ -288,6 +318,74 @@ const PROOFS = Object.freeze([
     expectedText: "At field speed, each architrino moves with the advancing edge of the wakes it continually emits. As successive wakes expand, their forward edges stay together at the moving front. The wake builds up there.",
   },
   {
+    id: "superposition-lesson-seven-desktop",
+    fileName: "lesson-seven-superposition-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
+    wakeSeriesId: "live-positrino-to-electrino",
+    mode: "story",
+    storyStep: 5,
+    storyProgress: 0.62,
+    verifySuperposition: true,
+    expectedScene: "story:superposition",
+    expectedText: "Wakes Combine by Superposition",
+    expectedSecondaryText: "the downward white arrow is their net acceleration",
+  },
+  {
+    id: "superposition-lesson-seven-phone",
+    fileName: "lesson-seven-superposition-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
+    wakeSeriesId: "live-positrino-to-electrino",
+    mode: "story",
+    storyStep: 5,
+    storyProgress: 0.72,
+    verifySuperposition: true,
+    expectedScene: "story:superposition",
+    expectedText: "Wakes Combine by Superposition",
+    expectedSecondaryText: "Display-only: no physical acceleration law",
+  },
+  {
+    id: "continuous-delayed-feedback-desktop",
+    fileName: "lesson-eight-continuous-delayed-feedback-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
+    wakeSeriesId: "live-positrino-to-electrino",
+    mode: "story",
+    storyStep: 6,
+    storyProgress: 0.62,
+    verifyContinuousDelayedFeedback: true,
+    expectedScene: "story:continuous-delayed-feedback",
+    expectedText: "Continuous Delayed Feedback",
+    expectedSecondaryText: "an arriving wake applies acceleration",
+  },
+  {
+    id: "continuous-delayed-feedback-phone",
+    fileName: "lesson-eight-continuous-delayed-feedback-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
+    wakeSeriesId: "live-positrino-to-electrino",
+    mode: "story",
+    storyStep: 6,
+    storyProgress: 0.72,
+    verifyContinuousDelayedFeedback: true,
+    expectedScene: "story:continuous-delayed-feedback",
+    expectedText: "Continuous Delayed Feedback",
+    expectedSecondaryText: "an arriving wake applies acceleration",
+  },
+  {
     id: "high-contrast",
     fileName: "lesson-high-contrast-purple-1440x900.png",
     width: 1440,
@@ -332,6 +430,14 @@ const CDF020_PROOF_IDS = Object.freeze(new Set([
   "reduced-motion",
   "high-contrast",
 ]));
+const CDF022_PROOF_IDS = Object.freeze(new Set([
+  "continuous-delayed-feedback-desktop",
+  "continuous-delayed-feedback-phone",
+]));
+const CDF018_PROOF_IDS = Object.freeze(new Set([
+  "superposition-lesson-seven-desktop",
+  "superposition-lesson-seven-phone",
+]));
 
 const args = parseArgs(process.argv.slice(2));
 
@@ -369,7 +475,13 @@ try {
       if (args.proof && args.proof !== proof.id) {
         continue;
       }
-      if (!args.proof && !args.all && !CDF020_PROOF_IDS.has(proof.id)) {
+      if (
+        !args.proof &&
+        !args.all &&
+        !CDF020_PROOF_IDS.has(proof.id) &&
+        !CDF018_PROOF_IDS.has(proof.id) &&
+        !CDF022_PROOF_IDS.has(proof.id)
+      ) {
         continue;
       }
       const outputPath = path.join(outputDir, proof.fileName);
@@ -483,6 +595,26 @@ function validateProofConfigurations(proofs) {
     }
     if (proof.expectedText === "Sandbox") {
       errors.push(`CDF-020 proof ${proofId} uses retired learner-facing Sandbox naming`);
+    }
+  }
+  for (const proofId of CDF022_PROOF_IDS) {
+    const proof = proofsById.get(proofId);
+    if (!proof) {
+      errors.push(`CDF-022 proof ${proofId} is missing`);
+      continue;
+    }
+    if (proof.mode !== "story" || proof.verifyContinuousDelayedFeedback !== true) {
+      errors.push(`CDF-022 proof ${proofId} must be a Story continuous delayed-feedback proof`);
+    }
+  }
+  for (const proofId of CDF018_PROOF_IDS) {
+    const proof = proofsById.get(proofId);
+    if (!proof) {
+      errors.push(`CDF-018 proof ${proofId} is missing`);
+      continue;
+    }
+    if (proof.mode !== "story" || proof.verifySuperposition !== true) {
+      errors.push(`CDF-018 proof ${proofId} must be a Story superposition proof`);
     }
   }
   if (errors.length > 0) {
@@ -1122,6 +1254,139 @@ function createPrepareProofExpression(proof) {
       runtime.dom.canvas.dataset.browserLessonFourSpeedReset =
         \`\${previousSpeed.toFixed(1)}-to-\${nextSpeed.toFixed(1)}\`;
     }
+    if (${proof.verifyLessonFourLabelAnchors === true ? "true" : "false"}) {
+      runtime.learnerState.mode = "story";
+      runtime.learnerState.storyStep = 3;
+      runtime.modeController?.render();
+      runtime.setPlaying(false);
+      const labelChecks = [];
+      const originalDrawScreenText = runtime.drawScreenText;
+      runtime.drawScreenText = function (ctx, text, screenPoint, size, color, align, weight) {
+        if (text === "Expanded" || text === "Compressed") {
+          labelChecks.push({ text, screenPoint: { ...screenPoint }, align });
+        }
+        return originalDrawScreenText.call(this, ctx, text, screenPoint, size, color, align, weight);
+      };
+      const speeds = [0.3, 0.6, 0.9];
+      const fractions = [0, 0.1, 0.3, 0.6, 1];
+      const wideViewport = window.innerWidth > 820;
+      try {
+        for (const speed of speeds) {
+          runtime.learnerState.storyMotionSpeedFraction = speed;
+          const scene = runtime.resetStoryScenarioPlayback();
+          for (const fraction of fractions) {
+            labelChecks.length = 0;
+            const replayTime =
+              scene.playbackStartTime +
+              (scene.playbackEndTime - scene.playbackStartTime) * fraction;
+            runtime.setPlaying(false, {
+              holdScene: scene,
+              holdReplayTime: replayTime,
+            });
+            runtime.render(replayTime);
+            const canvasDataset = runtime.dom.canvas.dataset;
+            const expectedLabels = wideViewport ? 2 : 0;
+            if (labelChecks.length !== expectedLabels) {
+              return {
+                ok: false,
+                reason: "lesson_four_label_visibility_failed",
+                speed,
+                fraction,
+                expectedLabels,
+                actualLabels: labelChecks.length,
+              };
+            }
+            if (!wideViewport) {
+              continue;
+            }
+            const [rearExtent, frontExtent] = String(
+              canvasDataset.storyMotionVisibleWakeExtents,
+            ).split(",").map(Number);
+            const expanded = labelChecks.find((label) => label.text === "Expanded");
+            const compressed = labelChecks.find((label) => label.text === "Compressed");
+            const expandedX = Number(
+              canvasDataset.storyMotionExpandedLabelScreen.split(",")[0],
+            );
+            const compressedX = Number(
+              canvasDataset.storyMotionCompressedLabelScreen.split(",")[0],
+            );
+            const expectedRearX = runtime.worldToScreen({ x: rearExtent, y: 0 }).x;
+            const expectedFrontX = runtime.worldToScreen({ x: frontExtent, y: 0 }).x;
+            runtime.context.font =
+              Math.max(9, 12 * runtime.viewport.scale) +
+              'px "Helvetica Neue", Arial, sans-serif';
+            const expandedWidth = runtime.context.measureText("Expanded").width;
+            const compressedWidth = runtime.context.measureText("Compressed").width;
+            const noOverlap =
+              compressedX - compressedWidth - (expandedX + expandedWidth) >= -0.5;
+            const minimumGap = Math.max(
+              Math.max(9, 12 * runtime.viewport.scale) * 0.56,
+              runtime.context.measureText(" ").width * 2,
+            );
+            const naturalGap =
+              expectedFrontX -
+              compressedWidth -
+              (expectedRearX + expandedWidth);
+            const exactWhenRoom =
+              naturalGap < minimumGap - 0.5 ||
+              (
+                Math.abs(expandedX - expectedRearX) <= 0.5 &&
+                Math.abs(compressedX - expectedFrontX) <= 0.5
+              );
+            if (
+              canvasDataset.storyMotionExpandedLabelAlign !== "left" ||
+              canvasDataset.storyMotionCompressedLabelAlign !== "right" ||
+              expanded?.align !== "left" ||
+              compressed?.align !== "right" ||
+              expandedX > expectedRearX + 0.5 ||
+              compressedX < expectedFrontX - 0.5 ||
+              !noOverlap ||
+              !exactWhenRoom
+            ) {
+              return {
+                ok: false,
+                reason: "lesson_four_label_anchor_contract_failed",
+                speed,
+                fraction,
+                rearExtent,
+                frontExtent,
+                expectedRearX,
+                expectedFrontX,
+                expanded,
+                compressed,
+                expandedX,
+                compressedX,
+                expandedWidth,
+                compressedWidth,
+                noOverlap,
+                minimumGap,
+                naturalGap,
+                exactWhenRoom,
+                canvasDataset: {
+                  expandedAlign: canvasDataset.storyMotionExpandedLabelAlign,
+                  compressedAlign: canvasDataset.storyMotionCompressedLabelAlign,
+                  visibleWakeExtents: canvasDataset.storyMotionVisibleWakeExtents,
+                  alignmentAdjusted: canvasDataset.storyMotionLabelAlignmentAdjusted,
+                },
+              };
+            }
+          }
+        }
+      } finally {
+        runtime.drawScreenText = originalDrawScreenText;
+      }
+      runtime.learnerState.storyMotionSpeedFraction = 0.6;
+      const finalScene = runtime.resetStoryScenarioPlayback();
+      runtime.setPlaying(false, {
+        holdScene: finalScene,
+        holdReplayTime: ${JSON.stringify(proof.replayTime)},
+      });
+      runtime.render(${JSON.stringify(proof.replayTime)});
+      runtime.dom.canvas.dataset.browserLessonFourLabelAnchors =
+        wideViewport ? "visible-extents-left-right" : "narrow-labels-hidden-no-overlap";
+      runtime.dom.canvas.dataset.browserLessonFourLabelAnchorSpeeds = speeds.join(",");
+      runtime.dom.canvas.dataset.browserLessonFourLabelAnchorFractions = fractions.join(",");
+    }
     if (${proof.verifyLessonFiveEmissionZero === true ? "true" : "false"}) {
       runtime.learnerState.mode = "story";
       runtime.learnerState.storyStep = 4;
@@ -1149,6 +1414,277 @@ function createPrepareProofExpression(proof) {
       }
       canvasDataset.browserLessonFiveBoundary =
         "emission-zero-only-cdf008-independent";
+    }
+    if (${proof.verifySuperposition === true ? "true" : "false"}) {
+      const expectedLabels = [
+        "1. Meet the Electrino and Positrino Transceivers",
+        "2. Wakes Received Now Were Transmitted in the Past",
+        "3. Two Reciprocal Causal Relationships",
+        "4. Motion Changes Wake Shape",
+        "5. Wake Buildup at Field Speed",
+        "6. Inverse-Square Spreading — Coming soon",
+        "7. Wakes Combine by Superposition",
+        "8. Continuous Delayed Feedback",
+        "Laboratory",
+      ];
+      const actualLabels = Array.from(
+        document.querySelectorAll("#causal-delay-feedback-mode-tabs .causal-mode-tab"),
+      ).map((button) => button.textContent?.trim());
+      const lessonSevenButton = document.querySelector('[data-causal-lesson="5"]');
+      const lessonEightButton = document.querySelector('[data-causal-lesson="6"]');
+      const previewButtons = document.querySelectorAll("[data-causal-preview]");
+      const expectedProgress = Number(${proof.storyProgress});
+      const scene = runtime.storyHeldFrame?.scene;
+      const initialReplayTime = scene?.playbackStartTime;
+      runtime.setPlaying(false, {
+        holdScene: scene,
+        holdReplayTime: initialReplayTime,
+      });
+      runtime.render(initialReplayTime);
+      const initialPathTimes =
+        runtime.superpositionScene?.bodies.map((body) => body.pathTime) ?? [];
+      const heldReplayTime = scene
+        ? scene.playbackStartTime +
+          (scene.playbackEndTime - scene.playbackStartTime) * expectedProgress
+        : Number.NaN;
+      runtime.setPlaying(false, {
+        holdScene: scene,
+        holdReplayTime: heldReplayTime,
+      });
+      runtime.render(heldReplayTime);
+      const fixture = runtime.superpositionScene;
+      const canvasDataset = runtime.dom.canvas.dataset;
+      const increments = fixture?.bodies.map(
+        (body, index) => body.pathTime - initialPathTimes[index],
+      ) ?? [];
+      const larger = fixture?.contributions.find(
+        (contribution) => contribution.teachingWeight > 1,
+      );
+      const smaller = fixture?.contributions.find(
+        (contribution) => contribution.teachingWeight === 1,
+      );
+      const superpositionContract =
+        scene?.id === "superposition" &&
+        actualLabels.join("|") === expectedLabels.join("|") &&
+        lessonSevenButton &&
+        lessonSevenButton.getAttribute("aria-current") === "step" &&
+        lessonEightButton &&
+        previewButtons.length === 1 &&
+        document.querySelectorAll("[data-causal-lesson]").length === 7 &&
+        fixture?.bodies.length === 3 &&
+        initialPathTimes.join(",") === "0,0.25,0.5" &&
+        increments.length === 3 &&
+        increments.every(
+          (increment) => Math.abs(increment - expectedProgress * 0.25) <= 1e-9,
+        ) &&
+        fixture.selectedArcs.length === 2 &&
+        fixture.selectedArcs.every(
+          (arc) =>
+            arc.direction === "electrino-to-positrino" &&
+            arc.wakeFront.style === "standard-fading-dotted-wake-front",
+        ) &&
+        fixture.componentArrows.length === 2 &&
+        larger?.arrow.lengthFraction > smaller?.arrow.lengthFraction &&
+        larger?.arrow.width > smaller?.arrow.width &&
+        fixture.netAccelerationArrow?.label === "net acceleration" &&
+        canvasDataset.superpositionArcVisual === "curved_fading_causal_arcs" &&
+        canvasDataset.superpositionNetDirection === "approximately-downward" &&
+        canvasDataset.superpositionOmittedReciprocalSet === "true" &&
+        canvasDataset.displayEvidenceStatus === "display-only";
+      if (!superpositionContract) {
+        return {
+          ok: false,
+          reason: "superposition_contract_failed",
+          expectedLabels,
+          actualLabels,
+          expectedProgress,
+          sceneId: scene?.id ?? null,
+          initialPathTimes,
+          increments,
+          lessonSevenButton: Boolean(lessonSevenButton),
+          lessonEightButton: Boolean(lessonEightButton),
+          previewCount: previewButtons.length,
+          lessonCount: document.querySelectorAll("[data-causal-lesson]").length,
+          fixture,
+          dataset: {
+            selectedArcCount: canvasDataset.superpositionSelectedArcCount,
+            componentArrowCount: canvasDataset.superpositionComponentArrowCount,
+            hasNetAcceleration: canvasDataset.superpositionHasNetAcceleration,
+            wakeStyle: canvasDataset.superpositionWakeStyle,
+            arcVisual: canvasDataset.superpositionArcVisual,
+            allAdvanceTogether: canvasDataset.superpositionAllAdvanceTogether,
+            omittedReciprocalSet: canvasDataset.superpositionOmittedReciprocalSet,
+            netDirection: canvasDataset.superpositionNetDirection,
+            evidenceStatus: canvasDataset.displayEvidenceStatus,
+          },
+        };
+      }
+      canvasDataset.browserSuperposition =
+        "three-shared-path-bodies-two-selected-components-downward-net";
+    }
+    if (${proof.verifyContinuousDelayedFeedback === true ? "true" : "false"}) {
+      const expectedLabels = [
+        "1. Meet the Electrino and Positrino Transceivers",
+        "2. Wakes Received Now Were Transmitted in the Past",
+        "3. Two Reciprocal Causal Relationships",
+        "4. Motion Changes Wake Shape",
+        "5. Wake Buildup at Field Speed",
+        "6. Inverse-Square Spreading — Coming soon",
+        "7. Wakes Combine by Superposition",
+        "8. Continuous Delayed Feedback",
+        "Laboratory",
+      ];
+      const actualLabels = Array.from(
+        document.querySelectorAll("#causal-delay-feedback-mode-tabs .causal-mode-tab"),
+      ).map((button) => button.textContent?.trim());
+      const lessonEightButton = document.querySelector('[data-causal-lesson="6"]');
+      const previewButtons = document.querySelectorAll("[data-causal-preview]");
+      const expectedProgress = Number(${proof.storyProgress});
+      const scene = runtime.storyHeldFrame?.scene;
+      const desiredReplayTime = scene
+        ? scene.playbackStartTime +
+          (scene.playbackEndTime - scene.playbackStartTime) * expectedProgress
+        : Number.NaN;
+      const inspectFrame = (replayTime) => {
+        if (!scene) {
+          return null;
+        }
+        runtime.setPlaying(false, {
+          holdScene: scene,
+          holdReplayTime: replayTime,
+        });
+        runtime.render(replayTime);
+        return runtime.createStoryContinuousDelayedFeedbackFrame(scene, replayTime);
+      };
+      const startFrame = inspectFrame(scene?.playbackStartTime);
+      const heldFrame = inspectFrame(desiredReplayTime);
+      const canvasDataset = runtime.dom.canvas.dataset;
+      const activeKinds = heldFrame?.activeArcs
+        .map((arc) => \`\${arc.sourceKind}->\${arc.targetKind}\`)
+        .sort();
+      const sharedArcSpacing = runtime.getWakeFrontSpacing();
+      const measureSpacing = (source, receiver, progresses) => {
+        const distance = Math.hypot(
+          Number(receiver?.x) - Number(source?.x),
+          Number(receiver?.y) - Number(source?.y),
+        );
+        const distances = progresses.map((progress) => progress * distance);
+        const gaps = distances.map(
+          (value, index) => value - (distances[index - 1] ?? 0),
+        );
+        return {
+          distance,
+          gaps,
+          matchesSharedSpacing:
+            gaps.length > 0 &&
+            gaps.slice(0, -1).every(
+              (gap) => Math.abs(gap - sharedArcSpacing) <= 1e-6,
+            ) &&
+            gaps.at(-1) > 0 &&
+            gaps.at(-1) <= sharedArcSpacing + 1e-6,
+        };
+      };
+      const lessonTwoLink = runtime.getStoryVisibleWakeSeries(desiredReplayTime)[0];
+      const lessonTwoTiming = runtime.getWakeTiming(
+        lessonTwoLink,
+        desiredReplayTime,
+      );
+      const lessonTwoProgresses = runtime.getWakeFrontProgresses(
+        lessonTwoTiming,
+        lessonTwoLink,
+      );
+      const lessonTwoSpacing = measureSpacing(
+        lessonTwoTiming?.source,
+        lessonTwoTiming?.receiver,
+        lessonTwoProgresses,
+      );
+      const lessonEightArc = heldFrame?.activeArcs[0] ?? heldFrame?.frozenArcs[0];
+      const lessonEightTarget = lessonEightArc?.frozen
+        ? lessonEightArc?.end
+        : lessonEightArc?.current;
+      const lessonEightDistance = Math.hypot(
+        Number(lessonEightTarget?.x) - Number(lessonEightArc?.start?.x),
+        Number(lessonEightTarget?.y) - Number(lessonEightArc?.start?.y),
+      );
+      const lessonEightProgresses = runtime.getWakeFrontProgresses(
+        {
+          source: lessonEightArc?.start,
+          receiver: lessonEightTarget,
+          liveWakeSeries: true,
+        },
+        {
+          distance: lessonEightDistance,
+          liveWakeSeries: true,
+        },
+      );
+      const lessonEightSpacing = measureSpacing(
+        lessonEightArc?.start,
+        lessonEightTarget,
+        lessonEightProgresses,
+      );
+      const spacingParity =
+        lessonTwoSpacing.matchesSharedSpacing &&
+        lessonEightSpacing.matchesSharedSpacing &&
+        Math.abs(
+          Number(canvasDataset.continuousDelayedFeedbackArcSpacing) -
+          sharedArcSpacing
+        ) <= 1e-6;
+      const expectedCompletedRounds = Math.floor(expectedProgress * 6 + 1e-9);
+      const chainContract =
+        scene?.id === "continuous-delayed-feedback" &&
+        startFrame?.displayProgress === 0 &&
+        startFrame?.frozenArcs.length === 0 &&
+        startFrame?.activeArcs.length === 2 &&
+        heldFrame?.frozenArcs.length === expectedCompletedRounds * 2 &&
+        heldFrame?.activeArcs.length === 2 &&
+        heldFrame.activeArcs.every((arc) => arc.progress > 0 && arc.progress < 1) &&
+        activeKinds?.join(",") === "electrino->positrino,positrino->electrino" &&
+        canvasDataset.continuousDelayedFeedbackArcVisual ===
+          "curved_fading_causal_arcs" &&
+        canvasDataset.continuousDelayedFeedbackArcCadence ===
+          "lesson-two-wake-front-cadence" &&
+        spacingParity &&
+        canvasDataset.continuousDelayedFeedbackEndpointMarkerCount === "0" &&
+        canvasDataset.continuousDelayedFeedbackSourceOrigin ===
+          "timed_path_emission_point" &&
+        actualLabels.join("|") === expectedLabels.join("|") &&
+        lessonEightButton &&
+        previewButtons.length === 1 &&
+        document.querySelectorAll("[data-causal-lesson]").length === 7 &&
+        canvasDataset.continuousDelayedFeedbackStartAtLeftEnds === "false" &&
+        canvasDataset.continuousDelayedFeedbackFrozenArcCount ===
+          String(expectedCompletedRounds * 2) &&
+        canvasDataset.continuousDelayedFeedbackActiveArcCount === "2";
+      if (!chainContract) {
+        return {
+          ok: false,
+          reason: "continuous_delayed_feedback_contract_failed",
+          expectedLabels,
+          actualLabels,
+          expectedProgress,
+          desiredReplayTime,
+          sceneId: scene?.id ?? null,
+          startFrame,
+          heldFrame,
+          activeKinds,
+          sharedArcSpacing,
+          lessonTwoSpacing,
+          lessonEightSpacing,
+          spacingParity,
+          expectedCompletedRounds,
+          lessonEightButton: Boolean(lessonEightButton),
+          previewCount: previewButtons.length,
+          lessonCount: document.querySelectorAll("[data-causal-lesson]").length,
+          dataset: {
+            fixture: canvasDataset.continuousDelayedFeedbackFixture,
+            startAtLeftEnds: canvasDataset.continuousDelayedFeedbackStartAtLeftEnds,
+            frozenArcCount: canvasDataset.continuousDelayedFeedbackFrozenArcCount,
+            activeArcCount: canvasDataset.continuousDelayedFeedbackActiveArcCount,
+          },
+        };
+      }
+      canvasDataset.browserContinuousDelayedFeedback =
+        "start-zero-frozen-history-active-pair-desktop-or-narrow";
     }
     if (${proof.verifyTransportState === true ? "true" : "false"}) {
       const firstFrameButton = document.querySelector(
@@ -1328,6 +1864,8 @@ function createPrepareProofExpression(proof) {
             ok:
               sphere.maximumDisplayedTimeLead <= 1e-7 &&
               sphere.leadingProjectionError <= 1e-7 &&
+              Math.abs(sphere.minimumScreenRadius - sphere.radius) <= 1e-7 &&
+              Math.abs(sphere.maximumScreenRadius - sphere.radius) <= 1e-7 &&
               sphere.upperPointCount > 0 &&
               sphere.lowerPointCount > 0 &&
               front.leadingPoint === front.currentBody &&
@@ -1335,10 +1873,25 @@ function createPrepareProofExpression(proof) {
             transmitterId: front.transmitterId,
             maximumDisplayedTimeLead: sphere.maximumDisplayedTimeLead,
             sphereLeadingError: sphere.leadingProjectionError,
+            minimumScreenRadius: sphere.minimumScreenRadius,
+            maximumScreenRadius: sphere.maximumScreenRadius,
+            screenRadiusError: Math.max(
+              Math.abs(sphere.minimumScreenRadius - sphere.radius),
+              Math.abs(sphere.maximumScreenRadius - sphere.radius),
+            ),
             upperPointCount: sphere.upperPointCount,
             lowerPointCount: sphere.lowerPointCount,
           };
         });
+        const slopeSigns = [
+          ...new Set(
+            frame.fronts
+              .map((front) => Math.sign(
+                Number(front.currentBody?.y) - Number(front.center?.y),
+              ))
+              .filter((sign) => sign !== 0),
+          ),
+        ];
         const bodyWakeSpeedMatch =
           canvasDataset.forwardWakeBuildupFixture ===
             "paired_story_template_equal_body_arc_length_and_wake_speed" &&
@@ -1367,6 +1920,7 @@ function createPrepareProofExpression(proof) {
           frontClip: canvasDataset.forwardWakeBuildupFrontClip,
           inheritedHistory:
             canvasDataset.forwardWakeBuildupInheritedHistory,
+          slopeSigns,
           failedSphereChecks: sphereChecks.filter((check) => !check.ok),
         };
       };
@@ -1406,6 +1960,11 @@ function createPrepareProofExpression(proof) {
       returnCheck.ok = returnCheck.ok && returnedFresh;
       fractionChecks.push(returnCheck);
       const failedFractionChecks = fractionChecks.filter((check) => !check.ok);
+      const slopeSigns = [
+        ...new Set(fractionChecks.flatMap((check) => check.slopeSigns ?? [])),
+      ];
+      const hasPositiveAndNegativeSlopes =
+        slopeSigns.includes(1) && slopeSigns.includes(-1);
       if (failedFractionChecks.length > 0) {
         return {
           ok: false,
@@ -1415,6 +1974,14 @@ function createPrepareProofExpression(proof) {
           causalScene: runtime.dom.canvas.dataset.causalScene,
           hasContext: Boolean(runtime.context),
           heldSceneId: runtime.storyHeldFrame?.scene?.id ?? null,
+        };
+      }
+      if (!hasPositiveAndNegativeSlopes) {
+        return {
+          ok: false,
+          reason: "forward_wake_buildup_slopes_not_exercised",
+          slopeSigns,
+          fractionChecks,
         };
       }
       const screenshotProgress = Number.isFinite(requestedStoryProgress)
@@ -1540,7 +2107,15 @@ function createPrepareProofExpression(proof) {
         "3. Two Reciprocal Causal Relationships",
         "4. Motion Changes Wake Shape",
         "5. Wake Buildup at Field Speed",
+        "6. Inverse-Square Spreading — Coming soon",
+        "7. Wakes Combine by Superposition",
+        "8. Continuous Delayed Feedback",
         "Laboratory",
+      ];
+      const expectedActiveLabels = [
+        ...expectedLabels.slice(0, 5),
+        expectedLabels[6],
+        expectedLabels[7],
       ];
       const lessonButtons = Array.from(
         document.querySelectorAll(
@@ -1556,12 +2131,12 @@ function createPrepareProofExpression(proof) {
       const expectedCurrentLabel =
         runtime.learnerState?.mode === "sandbox"
           ? "Laboratory"
-          : expectedLabels[Number(runtime.learnerState?.storyStep)];
+          : expectedActiveLabels[Number(runtime.learnerState?.storyStep)];
       if (
         JSON.stringify(actualLabels) !== JSON.stringify(expectedLabels) ||
         currentLabels.length !== 1 ||
         currentLabels[0] !== expectedCurrentLabel ||
-        document.querySelectorAll("[data-causal-lesson]").length !== 5 ||
+        document.querySelectorAll("[data-causal-lesson]").length !== 7 ||
         document.querySelectorAll("[data-causal-laboratory]").length !== 1
       ) {
         return {
@@ -1580,7 +2155,7 @@ function createPrepareProofExpression(proof) {
         };
       }
       runtime.dom.canvas.dataset.browserOrderedLearnerSurface =
-        "five-lessons-then-laboratory";
+        "five-lessons-one-roadmap-preview-two-promoted-continuations-then-laboratory";
     }
     if (${proof.verifyBottomRail === true ? "true" : "false"}) {
       const bottomRail = document.querySelector(

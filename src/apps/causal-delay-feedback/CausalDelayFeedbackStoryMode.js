@@ -1,6 +1,7 @@
 import {
   C1_CUBIC_HERMITE_INTERPOLATION,
   sampleTimedPath,
+  sampleTimedPathByArcLength,
   usesC1TimedPathInterpolation,
 } from "./CausalDelayFeedbackTimedPath.js";
 import {
@@ -23,6 +24,7 @@ const STORY_WAKE_SAMPLE_PROGRESS = 0.025;
 const STORY_TRAVERSAL_BASE_SECONDS = 22.5;
 const STORY_SYNTHESIS_BASE_SECONDS = 8;
 const STORY_MOTION_COMPARISON_BASE_SECONDS = 6;
+const STORY_SUPERPOSITION_BASE_SECONDS = 9;
 export const STORY_TWO_THREE_HANDOFF_TIME_AXIS_FRACTION = 0.5;
 export const STORY_THREE_END_TIME_AXIS_FRACTION = 0.8;
 export const INVERSE_SQUARE_START_PROGRESS = 0.5;
@@ -137,19 +139,135 @@ export const STORY_PREVIEW_STEPS = Object.freeze([
     id: "inverse-square-spreading",
     title: "Inverse-Square Spreading",
   }),
-  Object.freeze({
-    id: "acceleration",
-    title: "Acceleration",
-  }),
+]);
+
+export const STORY_CONTINUATION_STEPS = Object.freeze([
   Object.freeze({
     id: "superposition",
     title: "Wakes Combine by Superposition",
+    body: "Lower blue electrino: t=0. Red positrino: 25%. Middle blue electrino: 50%. All three advance together. Two selected electrino wakes reach the red positrino. White component arrows trace back along the fading arcs, with the nearer contribution larger; the downward white arrow is their net acceleration. Only these two incoming wakes are shown. Display-only: no physical acceleration law, measured magnitude, binding, stability, or solved trajectory.",
   }),
   Object.freeze({
-    id: "reciprocal-causal-chain",
-    title: "Continuous Delayed Feedback / Reciprocal Causal Chain",
+    id: "continuous-delayed-feedback",
+    title: "Continuous Delayed Feedback",
+    body: "This illustration samples how delayed feedback flows back and forth between two architrinos. The underlying interaction is continuous: an arriving wake applies acceleration to its receiver, while every contribution still arrives after a delay.",
   }),
 ]);
+
+export const STORY_ACTIVE_STEPS = Object.freeze([
+  ...STORY_STEPS,
+  ...STORY_CONTINUATION_STEPS,
+]);
+
+export const STORY_CONTINUATION_STEP_INDEX = STORY_STEPS.length;
+export const STORY_CONTINUOUS_DELAYED_FEEDBACK_ROUND_COUNT = 6;
+
+function getContinuousDelayedFeedbackPathPoint(path, progress) {
+  // The guided bodies use timed-path coordinates.  The causal-chain source
+  // point must use that same clock or it will visibly detach from its
+  // transmitter even though the normalized progress values agree.
+  return sampleTimedPath(path, clamp01(progress)) ??
+    sampleTimedPathByArcLength(path, clamp01(progress));
+}
+
+export function createStoryContinuousDelayedFeedbackFrame(
+  state,
+  scene,
+  replayTime,
+) {
+  const startTime = Number(scene?.playbackStartTime ?? 0);
+  const endTime = Number(scene?.playbackEndTime ?? 1);
+  const span = Math.max(Number.EPSILON, endTime - startTime);
+  const displayTime = Math.max(
+    startTime,
+    Math.min(endTime, Number(replayTime) || startTime),
+  );
+  const displayProgress = clamp01((displayTime - startTime) / span);
+  const roundCount = STORY_CONTINUOUS_DELAYED_FEEDBACK_ROUND_COUNT;
+  const hopProgress = displayProgress * roundCount;
+  const completedRoundCount = Math.min(roundCount, Math.floor(hopProgress + 1e-9));
+  const activeRoundIndex = Math.min(roundCount - 1, completedRoundCount);
+  const activeProgress = completedRoundCount >= roundCount
+    ? 1
+    : clamp01(hopProgress - completedRoundCount);
+  const paths = state?.paths ?? {};
+  const frozenArcs = [];
+  const activeArcs = [];
+  const makeArc = (roundIndex, sourceKind, targetKind, progress) => {
+    const startProgress = roundIndex / roundCount;
+    const endProgress = (roundIndex + 1) / roundCount;
+    const arcStartTime = startTime + span * startProgress;
+    const arcEndTime = startTime + span * endProgress;
+    const sourcePath = paths[sourceKind];
+    const targetPath = paths[targetKind];
+    const start = getContinuousDelayedFeedbackPathPoint(sourcePath, startProgress);
+    const end = getContinuousDelayedFeedbackPathPoint(targetPath, endProgress);
+    if (!start || !end) {
+      return null;
+    }
+    const current = {
+      t: displayTime,
+      x: start.x + (end.x - start.x) * progress,
+      y: start.y + (end.y - start.y) * progress,
+      z: (start.z ?? 0) + ((end.z ?? 0) - (start.z ?? 0)) * progress,
+    };
+    return {
+      id: `continuous-delayed-feedback:${roundIndex}:${sourceKind}`,
+      roundIndex,
+      sourceKind,
+      targetKind,
+      start,
+      end,
+      current,
+      progress,
+      startTime: arcStartTime,
+      endTime: arcEndTime,
+      frozen: progress >= 1 - 1e-9,
+      direction: sourceKind === "positrino" ? "positrino-to-electrino" : "electrino-to-positrino",
+    };
+  };
+  for (let roundIndex = 0; roundIndex < completedRoundCount; roundIndex += 1) {
+    for (const [sourceKind, targetKind] of [
+      ["positrino", "electrino"],
+      ["electrino", "positrino"],
+    ]) {
+      const arc = makeArc(roundIndex, sourceKind, targetKind, 1);
+      if (arc) {
+        frozenArcs.push(arc);
+      }
+    }
+  }
+  if (completedRoundCount < roundCount) {
+    for (const [sourceKind, targetKind] of [
+      ["positrino", "electrino"],
+      ["electrino", "positrino"],
+    ]) {
+      const arc = makeArc(activeRoundIndex, sourceKind, targetKind, activeProgress);
+      if (arc) {
+        activeArcs.push(arc);
+      }
+    }
+  }
+  return {
+    id: "continuous-delayed-feedback",
+    displayTime,
+    displayProgress,
+    roundCount,
+    completedRoundCount,
+    activeRoundIndex: completedRoundCount < roundCount ? activeRoundIndex : null,
+    activeProgress,
+    frozenArcs,
+    activeArcs,
+    bodyProgress: displayProgress,
+    displayAuthority: createDisplayAuthority(
+      "declared_continuous_delayed_feedback_teaching_fixture",
+      {
+        label: "Declared continuous delayed-feedback teaching fixture",
+        sampledTrace: true,
+      },
+    ),
+  };
+}
 
 function createConstantSpeedPath({
   currentPosition,
@@ -542,6 +660,38 @@ export function createStoryScene(state) {
       showCausalLine: false,
       showReceptionMarker: false,
     },
+    superposition: {
+      startTime: 0,
+      endTime: 1,
+      playbackStartTime: 0,
+      playbackEndTime: 1,
+      displayTime: 0,
+      playbackDurationSeconds: getScaledStoryDuration(
+        STORY_SUPERPOSITION_BASE_SECONDS,
+      ),
+      wakeDisplayRateScale: STORY_WAKE_DISPLAY_RATE_SCALE,
+      showSuperposition: true,
+      showWake: false,
+      showSampledWakeHistory: false,
+      showTransmissionGhost: false,
+      showCausalLine: false,
+      showReceptionMarker: false,
+    },
+    "continuous-delayed-feedback": {
+      startTime: playbackWindow.playbackStartTime,
+      endTime: playbackWindow.playbackEndTime,
+      playbackStartTime: playbackWindow.playbackStartTime,
+      playbackEndTime: playbackWindow.playbackEndTime,
+      displayTime: playbackWindow.playbackStartTime,
+      playbackDurationSeconds: STORY_SHARED_PATH_PLAYBACK_SECONDS,
+      wakeDisplayRateScale: STORY_WAKE_DISPLAY_RATE_SCALE,
+      showContinuousDelayedFeedback: true,
+      showWake: false,
+      showSampledWakeHistory: false,
+      showTransmissionGhost: false,
+      showCausalLine: false,
+      showReceptionMarker: false,
+    },
   }[view.id];
   return {
     id: view.id,
@@ -760,8 +910,8 @@ export function createStorySampledWakeFronts(state, scene, replayTime) {
 }
 
 export function createStoryView(state) {
-  const stepIndex = Math.max(0, Math.min(STORY_STEPS.length - 1, Number(state.storyStep) || 0));
-  const step = STORY_STEPS[stepIndex];
+  const stepIndex = Math.max(0, Math.min(STORY_ACTIVE_STEPS.length - 1, Number(state.storyStep) || 0));
+  const step = STORY_ACTIVE_STEPS[stepIndex];
   const root = state.roots.find((candidate) => candidate.id === state.selectedRootId) ?? null;
   const reciprocalRoot = state.reciprocalRoots?.find(
     (candidate) => candidate.id === state.selectedReciprocalRootId,
@@ -784,7 +934,7 @@ export function createStoryView(state) {
   return {
     ...step,
     stepIndex,
-    stepCount: STORY_STEPS.length,
+    stepCount: STORY_ACTIVE_STEPS.length,
     root,
     reciprocalRoot,
     interactions,

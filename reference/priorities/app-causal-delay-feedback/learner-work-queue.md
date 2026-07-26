@@ -12,258 +12,91 @@ This is the canonical intake and execution ledger for learner-facing Causal Dela
 
 ## Audit Baseline
 
-Live comparison on 2026-07-25 used the current checkout, focused CDF source and test inspection, and `causal-delay-feedback.html?replay=mock` in the browser. `Landed`, `partial`, and `missing` below describe that baseline; none of those labels means Verified. A row marked **Awaiting verification** has implementation and focused-test coverage but still needs the relevant current browser confirmation. Rows are grouped by lifecycle: **Awaiting verification**, **In progress**, **Queued**, then **Verified**.
+Live comparison on 2026-07-25 used the current checkout, focused CDF source and test inspection, and `causal-delay-feedback.html?replay=mock` in the browser. `Landed`, `partial`, and `missing` below describe that baseline; none of those labels means Verified. A row marked **Awaiting verification** has implementation and focused-test coverage but still needs the relevant current browser confirmation. Rows are grouped by lifecycle: **Awaiting verification**, **In progress**, **Queued**, **Verified**, **Superseded / merged**, then **Withdrawn / defunct**.
 
-**Next real tests:** CDF-061 Laboratory scale/framing parity acceptance at desktop and narrow widths. CDF-063 Laboratory status-ribbon removal acceptance remains pending.
+**Next real tests:** operator retest of live CDF-018 Lesson Seven, then CDF-016 Lesson Six live menu/playback proof. CDF-065 remains outside this handoff.
 
 ## Awaiting verification
 
-### CDF-063
+### CDF-018
 
 - **Status:** Awaiting verification
-- **Owner:** Codex
-- **Request / acceptance:** In the learner-facing Laboratory only, remove the top-right replay/provider status ribbon (including “provider unavailable · sample only” and equivalent labels). Preserve internal replay provenance, data attributes, meaningful accessibility text outside the hidden ribbon, the Causal Delay Laboratory title, endpoint cleanup, Arcs/Full, transport, paths, and every Story lesson. Do not alter CDF-061's deferred scale item or status.
-- **Current evidence or blocker:** **Implemented, focused-tested, and current-served browser-checked; operator acceptance pending.** The Laboratory status element remains in the DOM with its text, state, title, and replay provenance, while `.causal-source-chip[hidden] { display: none; }` makes the hidden state genuinely absent visually. Guided Story lessons retain their visible status behavior. Desktop and phone served checks report `hidden=true`, `display:none`, and a zero-sized status rectangle in Laboratory; the Laboratory accessible canvas summary does not claim a visible status label identifies authority.
-- **Source / tests:** `causal-delay-feedback.html` (`causal-delay-feedback-replay-status`, `.causal-source-chip[hidden]`); `CausalDelayFeedbackRuntime.js` (`updateReplayStatus`, Laboratory mode transition); `CausalDelayFeedbackModeController.js` (Laboratory summary); `tests/causal-delay-feedback-runtime.test.js` (hidden ribbon/provenance and CSS hidden-state regression); CDF-019 (superseded only for the Laboratory visible-chip presentation); operator browser retest pending
-
-### CDF-061
-
-- **Status:** Awaiting verification
-- **Owner:** Codex
-- **Request / acceptance:** In the learner-facing Laboratory only, replace the generic toolbar title **Causal Delay Feedback** with the operator-chosen **Causal Delay Laboratory**. Restore the Laboratory chart/world scale and framing to the established standard chart transform used by Lessons One, Two, Three, and Five; Lesson Four is not a reference. Preserve the Arc and Full wake displays, removed decorative endpoint circles, CDF-063's hidden visible provider ribbon, paths, endpoint editing/hit behavior, transport, and every Story lesson.
-- **Current evidence or blocker:** **Scale/framing repair superseded and reimplemented against the actual Story chart frame; focused-tested and current-served browser-checked; explicit operator browser acceptance pending.** The Laboratory viewport now uses the same safe chart bounds and Story design bounds as the standard lessons: at 1440×900 the served Laboratory reports `18,278,1422,810` and scale `0.693611`, matching Lesson One; at 390×844 it uses the responsive safe window between the lesson list and transport rail (`18,549,372,731`) with positive fitted scale and no toolbar/TOC/rail overlap. Desktop screenshots show the Laboratory axes and curves at the same vertical framing and visible height as Lessons One, Two, Three, and Five; phone screenshots show the chart retained in the safe lower canvas region. The CDF-063 status chip remains visually absent (`display:none`, zero-sized) while its DOM text/provenance is retained. Focused Laboratory frame coverage passes; the complete focused CDF suite passes 215/215. CDF-057 and Scene Nine were untouched.
-- **Source / tests:** `CausalDelayFeedbackRuntime.js` (`createLaboratoryViewport`); `causal-delay-feedback.html` (Laboratory title/status surface and hidden-chip rule); `tests/causal-delay-feedback-runtime.test.js` (`Laboratory matches the Story chart frame at desktop and keeps a safe narrow frame`, plus title/render-order/ornament-absence/endpoint-interaction/status regressions); current served Laboratory desktop and phone screenshots; CDF-037; CDF-041; CDF-047; CDF-063; operator browser acceptance pending
-
-### CDF-008
-
-- **Status:** Awaiting verification
-- **Owner:** Codex
-- **Request / acceptance:** Promote **Forward Wake Buildup** to Lesson Five. Remove its separate mode and “Declared field speed display fixture” supertitle. Use the Lesson One frame, start at the normal path origins at emission zero with no inherited wake history, and grow the first fronts from both emitters. The moving bodies must make the declared field-speed buildup visibly distinct from Lesson One while preserving the shared coordinate template. Do not call it a bow shock.
-- **Current evidence or blocker:** **Dedicated current forward-wake proof passes; explicit operator visual acceptance pending.** After CDF-057 became operator Verified, `node scripts/capture-causal-delay-feedback-browser-qa.mjs --proof=forward-buildup` completed and wrote a fresh 1440×900 capture. The proof checks the approved Lesson Five title/body, emission-zero start, seven playback fractions, closed two-sided fronts for both emitters, upper/lower persistence, emission centering, no front ahead of the white current-emission dot, navigation return reset, and clean browser diagnostics. Focused CDF-008 tests pass, `git diff --check` passes, and no learner copy, runtime behavior, Laboratory, roadmap, CDF-061, or CDF-063 changes were made in this reconciliation. The current served Lesson Five check reports rate `0.800`, duration `28.125000`, finite replay advance `0.035555556`, and no console warnings/errors.
-- **Source / tests:** `CausalDelayFeedbackRuntime.js`; `CausalDelayFeedbackStoryMode.js`; `tests/causal-delay-feedback-runtime.test.js`; `scripts/capture-causal-delay-feedback-browser-qa.mjs` (`forward-buildup`); `browser-qa/forward-buildup-purple-1440x900.png`; CDF-052; CDF-057; CDF-059; operator visual acceptance pending
+- **Owner:** CDF implementation + operator browser review
+- **Request / acceptance:** Add Lesson Seven, **Wakes Combine by Superposition**, using three shared-frame paths/bodies: the original lower electrino starts at `t=0`, the positrino/red path starts at 25% of its path, and a second middle electrino/blue path starts at 50%. On Play, all three advance together. Deliberately show only two fading causal arcs, each from an electrino to the positrino; this is a selected subset, not the full six reciprocal directions. At the red positrino, show one white component arrow tracing back along each fading arc toward its emission/transmission origin; declare both contributions attractive in this teaching fixture, with the nearer electrino's contribution visually larger. Show one white net acceleration/vector-sum arrow on the positrino, approximately downward from the two contributions. Add top-left learner copy explaining that the two selected electrino contributions combine into the displayed net acceleration of the positrino, while preserving the display-only teaching-fixture boundary: this visual does not establish a physical force law, measured magnitude, binding, stability, or solved trajectory. Keep individual contributions secondary and omit a data panel. CDF-017 is merged into this row as superseded history, not a separate Lesson Seven implementation.
+- **Current evidence or blocker:** **Implementation and current served browser proof landed; Awaiting verification.** Lesson Seven is enabled and highlighted in the live lesson menu after disabled Lesson Six and before active Lesson Eight. Its single Story runtime declares the lower electrino at `t=0`, red positrino at 25%, and middle electrino at 50%; Play advances all three by the same path-time increment. The scene draws exactly two standard curved fading electrino-to-positrino causal arcs, two white component arrows back toward their transmission origins, a visibly larger nearer contribution, and an approximately downward white net-acceleration arrow. The learner copy states the selected-subset and display-only boundaries, and no data panel is added. Focused Lesson Seven/navigation coverage passes 30/30. The full runtime file passes 166/167; the sole failure is the separately owned CDF-033 Lesson Four compressed-label monotonicity assertion, not Lesson Seven, Lesson Eight, or Laboratory. Fresh current-server desktop and 390×844 proofs pass their machine-readable scene/menu/geometry contracts. The in-app served route also selected Lesson Seven, advanced playback with `superpositionAllAdvanceTogether=true`, reset to its first frame, and reported no browser warnings or errors. Operator visual acceptance remains pending.
+- **Verification protocol:** Hard-refresh `http://127.0.0.1:5173/causal-delay-feedback.html?mode=story&replay=mock`, select **7. Wakes Combine by Superposition**, and confirm it is highlighted between disabled Lesson Six and enabled Lesson Eight. Confirm the three colored bodies start at 0%/25%/50%, exactly two blue fading causal arcs and two white back-tracing component arrows are visible, the nearer component is larger, and the white net-acceleration arrow points approximately downward. Press Play and confirm all three bodies advance together while the two-contribution display and no-data-panel boundary remain intact. Repeat once at a narrow phone width and confirm the chart, copy, menu, and transport remain readable.
+- **Source / tests:** `CausalDelayFeedbackSuperpositionMode.js`; `CausalDelayFeedbackStoryMode.js`; `CausalDelayFeedbackModeController.js`; `CausalDelayFeedbackRuntime.js`; `tests/causal-delay-feedback-superposition.test.js`; `tests/causal-delay-feedback-modes.test.js`; `tests/causal-delay-feedback-runtime.test.js`; `scripts/capture-causal-delay-feedback-browser-qa.mjs` (`superposition-lesson-seven-desktop`, `superposition-lesson-seven-phone`); `browser-qa/lesson-seven-superposition-purple-1440x900.png`; `browser-qa/lesson-seven-superposition-purple-390x844.png`; CDF-060; CDF-017; operator verification pending
 
 ## In progress
 
-### CDF-062
+### CDF-016
 
 - **Status:** In progress
-- **Owner:** Codex
-- **Request / acceptance:** Protect Stage 0 of the Causal Delay Feedback stabilization plan with one machine-readable five-lesson golden baseline and a real browser transition matrix covering cold load, direct Lesson One through Five entry, One→Two, Two→Three handoff, pointer and keyboard scrub held frames, pause/resume, First/Last, shared pace, desktop and portrait navigation, and Laboratory entry. Exercise normal UI paths only; do not change runtime behavior, learner copy, visual layout, or add lessons.
-- **Current evidence or blocker:** **Scoped artifacts and focused tests are complete; current browser proof is partial and this row must not move to Awaiting verification yet.** Added `stage-0-golden-baseline.json`, `stage-0-transition-matrix.json`, `run-causal-delay-feedback-stage0-browser-matrix.mjs`, and the focused baseline test. The focused CDF suite passes 213/213. The current in-app browser confirms cold load, all five direct entries, both lesson handoffs, pause/resume, First/Last, shared pace, desktop/portrait lesson navigation, Laboratory entry, and no browser warnings. Its native range control did not respond to the available pointer/arrow injection, and the standalone Chromium CDP runner could not start the installed browser because it exited before exposing DevTools. Keep this row In progress until the matrix runner completes in a browser environment that delivers the native range input; then update to Awaiting verification with the result JSON.
-- **Source / tests:** `reference/priorities/app-causal-delay-feedback/browser-qa/stage-0-golden-baseline.json`; `reference/priorities/app-causal-delay-feedback/browser-qa/stage-0-transition-matrix.json`; `scripts/run-causal-delay-feedback-stage0-browser-matrix.mjs`; `tests/causal-delay-feedback-stage0-baseline.test.js`; `node --test tests/causal-delay-feedback-*.test.js`; current in-app browser retest
-
-### CDF-020
-
-- **Status:** In progress
-- **Owner:** Codex
-- **Request / acceptance:** Rebuild focused browser QA around the final lesson order at desktop and portrait sizes, including reduced motion, high contrast, transport state, Lesson Two→Three handoff, Lesson Four speed reset, Lesson Five emission-zero start, Laboratory drag, and no retired learner surfaces. Keep CDF-008 visual acceptance and CDF-050 Settings-removal acceptance as separately owned auxiliary proofs rather than CDF-020 prerequisites.
-- **Current evidence or blocker:** **Prior acceptance claims remain withdrawn; CDF-058 is now operator-verified, but broader CDF-020 regression coverage is still In progress.** The prior CDF-020 run did not exercise Lesson Two entry from Lesson One's newly synchronized zero-time frame and therefore missed the rootless fallback that removed both arcs and accelerated playback. Do not return this broader browser-regression row to Awaiting verification until the current suite's superseded Lesson Five emission-zero expectation is reconciled and the broader proofs are rerun without changing CDF-008 behavior.
-- **Source / tests:** `scripts/capture-causal-delay-feedback-browser-qa.mjs`; `tests/causal-delay-feedback-modes.test.js`; `tests/causal-delay-feedback-runtime.test.js`; `tests/transport-control-icons.test.js`; CDF-008; CDF-050; CDF-052; CDF-058
-
-### CDF-057
-
-- **Status:** Verified
-- **Owner:** Codex
-- **Request / acceptance:** Supersede CDF-056's rejected Lesson Five paragraph while preserving its operator-accepted title **Wake Buildup at Field Speed**. Use the operator's exact replacement: “At field speed, each architrino moves with the advancing edge of the wakes it continually emits. As successive wakes expand, their forward edges stay together at the moving front. The wake builds up there.” Preserve all existing behavior, navigation, provenance boundaries, CDF-008 rendering repair, CDF-052 scrubber repair, and unrelated/new-worktree lesson implementations. Require focused exact-copy and current browser confirmation before returning this row to Awaiting verification.
-- **Current evidence or blocker:** **Implemented, focused-tested, current served browser-checked, and operator-verified.** The authored body and accessible canvas summary carry the exact approved replacement byte-for-byte, while the Lesson Five title remains **Wake Buildup at Field Speed**. Focused copy coverage passes 24/24; the Causal Delay Feedback runtime suite passes 160/160, including the Lesson Five wake-front regression. The dedicated served `forward-buildup` browser proof passes with the exact paragraph precondition and existing wake-front checks, and its current 1440×900 capture visibly shows the approved title/body. No runtime, layout, CDF-008 rendering, CDF-052 scrubber, Laboratory, roadmap, or new-lesson behavior was changed for this copy repair. Operator explicitly verified CDF-057.
-- **Source / tests:** `CausalDelayFeedbackStoryMode.js`; `CausalDelayFeedbackModeController.js`; `tests/causal-delay-feedback-modes.test.js`; current served Lesson Five browser check; CDF-056; CDF-008; CDF-052
+- **Owner:** Sol High live Lesson Six delivery
+- **Request / acceptance:** Add Lesson Six, **Inverse-Square Spreading**, on the shared paired-path frame. Start both architrinos at the 50% position and keep them fixed for the full lesson. During Play, both emit expanding circular wakes continuously at a declared constant rate. Teach geometric dilution: the same emitted amount is distributed over the growing spherical wakefront area, `4 pi R^2`, so the declared local received contribution decreases as `1/R^2` with increasing radius. Do not generalize this teaching fixture to an unsupported field-amplitude or physical interaction-law claim.
+- **Current evidence or blocker:** Design is defined and live implementation is active. The prior comparison graphic, formula clutter, and dot/star treatment were rejected. The new scene must retain the shared axes/two-architrino language, fixed 50% bodies, and expanding circular wakes; do not expose the old graphic or treat source presence as a partial live lesson. Completion requires enabled Lesson Six menu access, served desktop/phone proof, focused tests, and operator browser acceptance.
+- **Source / tests:** `CausalDelayFeedbackStoryMode.js`; `CausalDelayFeedbackModeController.js`; `CausalDelayFeedbackRuntime.js`; focused tests and capture script; CDF-060
 
 ## Queued
 
-### CDF-056
-
-- **Status:** Queued
-- **Owner:** Codex
-- **Request / acceptance:** Rename Lesson Five to **Wake Buildup at Field Speed** and explain its displayed idealized model in plain learner language: the architrinos move at field speed and continuously emit wakes; the wakes do not get ahead of them; successive expanding wake fronts meet at the advancing front, where their displayed contributions build into a visibly concentrated front. Do not use “emission zero,” fixture or diagnostic jargon, unsupported physics claims, or any statement that a wake outruns its source. Preserve the lesson ID, causal/evidence boundaries, renderer, behavior, navigation position, provenance, CDF-008 rendering repair, CDF-052 scrubber repair, and new-worktree lesson implementations. Require focused exact-copy/forbidden-language expectations plus current browser confirmation before returning this row to Awaiting verification.
-- **Current evidence or blocker:** **Partially accepted, then superseded by CDF-057.** The operator accepted the title **Wake Buildup at Field Speed** but rejected this row's paragraph as awkward. Retain the title; do not present the rejected paragraph for further acceptance.
-- **Source / tests:** Historical `CausalDelayFeedbackStoryMode.js` and `tests/causal-delay-feedback-modes.test.js`; CDF-057; CDF-008; CDF-052
-
-### CDF-045
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Follow up on CDF-032 without rewriting its accepted history: use darker purple `#7a36aa` for the bottom scrubber track, retain the existing lighter purple `#8b4fbf` for the thumb, and retain the accepted light outline. Preserve contrast and visible keyboard focus, and keep transport chrome distinct from source/wake colors.
-- **Current evidence or blocker:** **Superseded before final operator acceptance by CDF-052.** The implemented permanent light thumb border is no longer the requested endpoint and must not be presented for testing. Wait for CDF-052's border removal and keyboard-focus-only treatment to be implemented and focused-tested.
-- **Source / tests:** `causal-delay-feedback.html` (`causal-timeline-range`); `tests/causal-delay-feedback-runtime.test.js` (`bottom scrubber uses a dedicated purple transport theme`); CDF-052
-
-### CDF-011
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Repeated Laboratory interior drags keep both fixed endpoints unchanged and keep the editable path on screen. Add a regression that exercises repeated drags, not only one drag.
-- **Current evidence or blocker:** **Partial.** Endpoint immobility and several local fairing drags are tested. No explicit screen-bound constraint or repeated-drag screen-bound regression exists.
-- **Source / tests:** `CausalDelayFeedbackRuntime.js` (`deformPathAroundPathTime`); `tests/causal-delay-feedback-runtime.test.js` (`path line drag keeps path endpoints fixed`)
-
-### CDF-016
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Add Lesson Six, **Inverse-Square Spreading**, on the shared paired-path frame. Start at a calm 50% state. Teach only the transmitted quantity per unit spherical-wakefront area: fixed amount over `4 pi R^2`, hence `1/R^2`; do not generalize this to unsupported field amplitude.
-- **Current evidence or blocker:** **Superseded for learner exposure by CDF-060; substantive pedagogy remains queued.** A prior comparison graphic and formula treatment was rejected. The clean shared-axes/two-Architrino renderer source is preserved for future redesign, but Inverse-Square is now a disabled gray `Coming soon` roadmap entry with no learner route. Do not treat source presence as a partial live lesson or substantive acceptance.
-- **Source / tests:** `CausalDelayFeedbackStoryMode.js`; `CausalDelayFeedbackModeController.js`; preserved `CausalDelayFeedbackRuntime.js` redesign source; CDF-060; focused tests and capture script
-
-### CDF-017
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Add Lesson Seven, **Acceleration**, on the shared paired-path frame at a calm 50% start. Teach that a wake changes velocity: from behind may increase speed, from ahead may decrease speed, and off-axis may turn the path. Do not imply every acceleration is sideways.
-- **Current evidence or blocker:** **Intentionally disabled preview; implementation is not integrated into the current served checkout.** The current learner list exposes only the muted-gray `Acceleration — Coming soon` roadmap label. A dedicated-worktree implementation exists, but its local CDF-059 provenance ID conflicts with the canonical current-checkout CDF-059 pacing-recovery record and must be reconciled before any sequential integration. Routing evidence from that worktree is not live-app acceptance.
-- **Source / tests:** `CausalDelayFeedbackStoryMode.js`; `CausalDelayFeedbackModeController.js`; CDF-060; isolated Acceleration worktree `/Users/markmorris/.codex/worktrees/73e1/architrino`; focused tests and capture script
-
-### CDF-018
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Add Lesson Eight, **Wakes Combine by Superposition**, with one receiver and two independently colored transmitter paths. Begin wake-first; combine arriving wake vectors into a net wake, then show that the net wake determines displayed acceleration. Keep individual contributions secondary and omit a data panel.
-- **Current evidence or blocker:** **Intentionally disabled preview; implementation is not integrated into the current served checkout.** The current learner list exposes only the muted-gray `Wakes Combine by Superposition — Coming soon` roadmap label. Lesson-specific work exists in detached transport commit `f13d02c67`, but its inherited shared-runtime changes still require a compatibility audit after active pacing/repair work. Do not present its isolated browser evidence as current-live acceptance.
-- **Source / tests:** `CausalDelayFeedbackStoryMode.js`; `CausalDelayFeedbackModeController.js`; CDF-060; detached transport commit `f13d02c67`; focused tests and capture script
-
-### CDF-021
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Preserve public teaching launch readiness: the standalone route and apps-page exposure remain live, the complete lesson flow is navigable and understandable without operator explanation, and Laboratory remains simple enough for younger learners.
-- **Current evidence or blocker:** **Partial.** Route/app exposure and a usable canvas are present. The canonical lesson flow and Laboratory cleanup are not complete.
-- **Source / tests:** `causal-delay-feedback.html`; `src/apps/navigator/StandaloneAppLaunchRuntime.js`; `priorities.md`; final focused tests and browser QA
+## Verified
 
 ### CDF-022
 
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** After the prerequisite lessons, plan and add **Continuous Delayed Feedback / Reciprocal Causal Chain** on the standard paired-path diagram. Begin with an early fading arc reaching the partner path near 0–10%, then alternate hit-to-emission arcs between the paths toward 90–100% for as many clear hops as the frame supports. Teach that feedback is continuous but delayed: each one-way influence propagates before reception changes the partner's motion while transmission continues, and a full round trip contains two one-way propagation delays. State that the drawn arcs are sampled trace points, not discrete-only physics, and keep all model/display claims scoped.
-- **Current evidence or blocker:** **Intentionally disabled preview and still sequenced after prerequisites; implementation is not integrated into the current served checkout.** The current learner list exposes only the muted-gray `Continuous Delayed Feedback / Reciprocal Causal Chain — Coming soon` roadmap label. Dedicated-worktree source exists, but shared Story/runtime/queue/test compatibility has not been integrated or proved in the current served app.
-- **Source / tests:** Future focused requirements card; `CausalDelayFeedbackStoryMode.js`; `CausalDelayFeedbackModeController.js`; CDF-060; isolated reciprocal-chain worktree `/Users/markmorris/.codex/worktrees/0d73/architrino`; focused tests and capture script
-
-### CDF-029
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Original Laboratory entry/reset intake: start at literal `t=0` with no inherited story cursor.
-- **Current evidence or blocker:** **Superseded before implementation by CDF-030 after operator clarification.** Retained as a stable intake record; do not implement the literal empty-start behavior.
-- **Source / tests:** `CausalDelayFeedbackModeController.js`; `CausalDelayFeedbackRuntime.js`; superseding CDF-030
-
-### CDF-033
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Align Lesson Four's `Expanded` and `Compressed` labels to the visible wake geometry at every speed and frame. `Expanded` is left-aligned with the outermost trailing/rear wake ring; `Compressed` is right-aligned with the outermost leading/front wake ring. Derive both anchors from actual visible wake extents rather than free caption positions, while preserving readability and preventing initial overlap.
-- **Current evidence or blocker:** **Queued from operator browser review.** Current labels can drift too far apart from the wakes they describe.
-- **Source / tests:** `CausalDelayFeedbackRuntime.js` (`drawStoryMotionWakeComparison`); `CausalDelayFeedbackStoryMode.js`; focused extent/label geometry tests; operator browser acceptance pending
-
-### CDF-034
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Diagnose and prevent Laboratory settings failures or sluggishness observed when selecting **White Background** after **Full** wakes appeared. Capture browser/runtime error evidence and measured input-to-render timing before claiming a fix; settings changes must avoid app-side exceptions and blocking response. Popover behavior remains governed by CDF-014.
-- **Current evidence or blocker:** **Superseded before diagnosis by CDF-050.** Retain the reported sequence as durable defect history, but do not restore a White Background or settings interaction to reproduce it; the owning Settings DOM/state/event path is deleted under the later operator decision.
-- **Source / tests:** Historical `CausalDelayFeedbackRuntime.js` settings path; CDF-014; superseding CDF-050
-
-### CDF-035
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Review the Laboratory header/control row where **Causal Delay Feedback** appears beside **Arcs**, **Full**, and Settings. Define the heading's role and its relationship to lesson/Laboratory framing, then present any proposed title change for explicit operator approval. Do not choose or implement a new title without that approval.
-- **Current evidence or blocker:** **New operator design-review intake.** The current literal heading and neighboring controls are confirmed in the page source; no replacement title or role decision has been approved.
-- **Source / tests:** `causal-delay-feedback.html` (`causal-toolbar`, `causal-title`, `causal-switch-row`); lesson/Laboratory framing in `CausalDelayFeedbackModeController.js`; operator title decision; desktop/phone browser review
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF tests
+- **Request / acceptance:** Add Lesson Eight, **Continuous Delayed Feedback** (reciprocal causal chain) on the standard paired-path diagram. Begin at `t=0` with both architrinos at the left ends. During Play, only the two active causal arcs move; each freezes permanently as history when it reaches the partner path, then launches the paired return arcs. Repeat for several clear alternating rounds so the learner sees a growing fixed faded crisscross chain. Teach that feedback is continuous but delayed, and state that the drawn arcs are sampled trace points rather than discrete-only physics. Keep all model/display claims scoped.
+- **Current evidence or blocker:** **Verified.** The current learner list preserves muted-gray disabled Lesson Six `Inverse-Square Spreading`, exposes enabled Lesson Seven `Wakes Combine by Superposition`, then exposes active Lesson Eight `Continuous Delayed Feedback`. The exact approved paragraph is: `This illustration samples how delayed feedback flows back and forth between two architrinos. The underlying interaction is continuous: an arriving wake applies acceleration to its receiver, while every contribution still arrives after a delay.` Lesson Eight uses the same live-series `getWakeFrontProgresses` branch and shared `getWakeFrontSpacing()` mechanism as Lesson Two. Fresh served desktop and narrow proofs cover the denser matched cadence, accumulating fixed history, and only the active pair moving. The operator explicitly verified and closed CDF-022.
+- **Source / tests:** `CausalDelayFeedbackStoryMode.js`; `CausalDelayFeedbackModeController.js`; `CausalDelayFeedbackRuntime.js`; `tests/causal-delay-feedback-modes.test.js`; `tests/causal-delay-feedback-runtime.test.js`; `scripts/capture-causal-delay-feedback-browser-qa.mjs` (`continuous-delayed-feedback-desktop`, `continuous-delayed-feedback-phone`); CDF-060; operator acceptance
 
 ### CDF-036
 
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Define and reuse one compact control-row height token across the relevant Causal Delay Feedback header controls and rails so adjacent lozenges, including Settings beside **Arcs** and **Full**, align to the same height. Preserve icon legibility, touch targets, and focus visibility. Require desktop and phone browser QA before verification.
-- **Current evidence or blocker:** **Settings-specific acceptance is superseded by CDF-050; remaining scope needs a fresh operator decision.** The gear and `.causal-icon-button` consumer are deleted. Do not infer a new cross-rail token obligation solely from the historical Arcs/Full/Settings alignment request.
-- **Source / tests:** Historical `causal-delay-feedback.html` control row; `causal-switch-button`; superseding CDF-050; operator scope decision pending
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF tests
+- **Request / acceptance:** In Laboratory only, place the exact **Causal Delay Laboratory** title text in the same title position used by Lessons One through Five. Reuse the Story title structure and positioning rules; do not introduce an independent centering concept, optical offset, or different baseline. The panel/lozenge position is already correct; do not move or resize it. Preserve the exact title wording, Arcs/Full controls, chart scale/framing, hidden provider chip, transport, and every Story lesson. Settings scope is removed under CDF-050.
+- **Current evidence or blocker:** **Verified.** Laboratory uses the same empty-meta/title structure, `h1` typography, line height, 10px title gap, panel padding, and top alignment as Story, with the prior Laboratory-only `translateY` offset removed. The operator explicitly accepted the final Laboratory title position.
+- **Source / tests:** `causal-delay-feedback.html` (`.is-sandbox-mode .causal-toolbar .causal-title strong`); `tests/causal-delay-feedback-runtime.test.js` (`Laboratory header mirrors the Story panel treatment`); served `settings-removed-desktop` and `settings-removed-phone` browser proofs; CDF-050; CDF-064; operator acceptance
 
-### CDF-037
+### CDF-033
 
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** In Laboratory, change the header label from **Causal Delay Feedback** to **Causal Delay Feedback Laboratory**. Preserve the shared header geometry and its relationship to the neighboring controls.
-- **Current evidence or blocker:** **Superseded before implementation by CDF-061.** The operator chose the shorter final title **Causal Delay Laboratory**, not this row's proposed **Causal Delay Feedback Laboratory**. Retain this row as durable title-decision history and do not restore its wording.
-- **Source / tests:** Historical `causal-delay-feedback.html` (`causal-title`, `causal-toolbar`); CDF-035; superseding CDF-061
-
-### CDF-038
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Diagnose and correct the Laboratory **Arcs**/**Full** rendering intersection. At the stable Laboratory entry with Arcs enabled, expected arcs must be present. The sequence entry → Arcs enabled → Full enabled must render the intended wake geometry without a faint straight connector from the positrino path's left/start point to the current electrino and without any degenerate-arc substitute. Do not claim fixed without focused initial-state/toggle-sequence tests and visual browser QA.
-- **Current evidence or blocker:** **New operator defect intake; cause unconfirmed.** Expected arcs were reportedly absent at stable entry, and toggling Full produced an apparent faint straight connector rather than a proper arc. No current reproduction capture, diagnosis, or fix exists.
-- **Source / tests:** `CausalDelayFeedbackRuntime.js` (`getVisibleWakeSeries`, `drawWakes`, `drawFullCircularWakes`, `drawForegroundWakeEmissionLines`, `drawWakeEmissionLine`); stable entry from CDF-030; focused render/toggle regression; desktop/phone browser QA
-
-### CDF-039
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Remove the stray purple dot observed above or within the **Arcs** control unless it is given an explicit, operator-approved learner-facing meaning; none is currently defined. Confirm the control remains clean in its enabled and disabled states at desktop and phone widths.
-- **Current evidence or blocker:** **New operator visual-defect intake; source unconfirmed.** The purple dot has no current learner-facing meaning, and no DOM/canvas-layer diagnosis or fix has been recorded.
-- **Source / tests:** `causal-delay-feedback.html` (`causal-toolbar`, `causal-switch-row`, `causal-switch-button`); canvas/control stacking inspection; focused control-state check; desktop/phone browser QA
-
-### CDF-041
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Replace every Laboratory fixed start/end path marker with a filled, borderless source-color dot: red for both positrino path endpoints and blue for both electrino path endpoints. Apply the treatment consistently on every canvas background, including white and purple, while retaining a clear semantic distinction from current-emission/transmission markers. Require desktop and phone browser acceptance on white and purple canvases.
-- **Current evidence or blocker:** **Superseded before implementation by CDF-047.** Retain this original intake as durable history, but do not replace the white endpoint circles with colored dots.
-- **Source / tests:** `CausalDelayFeedbackRuntime.js` (`drawPathEndpointHandles`, `getPathEndpointHandles`); superseding CDF-047
-
-### CDF-042
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Withdrawn TOC-label intake: the final Laboratory entry was proposed to display **Lab. Laboratory** without becoming Lesson 6.
-- **Current evidence or blocker:** **Withdrawn by the operator before implementation.** Keep the final TOC entry exactly `Laboratory`; do not change the Laboratory title, route/mode identity, search label, or lesson sequence for this intake.
-- **Source / tests:** `CausalDelayFeedbackModeController.js` (`renderTabs`); durable superseded decision record; no implementation or browser QA required
-
-### CDF-043
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Extend Lesson Five, **Forward Wake Buildup**, with the same `0.3 C_f`, `0.6 C_f`, and `0.9 C_f` speed choices as Lesson Four. In Lesson Five, the choice selects one full buildup scenario rather than Lesson Four's simultaneous comparative display. Every selection must reset Lesson Five to emission zero with no inherited wake history, then show the selected-speed buildup. Reuse shared speed-selector and learner-state semantics where safe while retaining Lesson Five's distinct teaching copy. Require focused selection/state/reset tests and operator browser review.
-- **Current evidence or blocker:** **Approved operator intake; not implemented.** The shared speed fractions and selector semantics currently belong to Lesson Four's `motion` comparison, while Lesson Five has separate copy and an emission-zero paired-front renderer without a speed selector.
-- **Source / tests:** `CausalDelayFeedbackStoryMode.js` (`STORY_MOTION_SPEED_FRACTIONS`, `forward-buildup` scene); `CausalDelayFeedbackModeController.js` (`renderStory`, speed selection state); `CausalDelayFeedbackRuntime.js` (`drawStoryForwardWakeBuildup`); focused Lesson Five selection/reset tests; operator browser acceptance
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF tests
+- **Request / acceptance:** Align Lesson Four's `Expanded` and `Compressed` labels to the visible wake geometry at every speed and frame. `Expanded` is left-aligned with the outermost trailing/rear wake ring; `Compressed` is right-aligned with the outermost leading/front wake ring. Derive both anchors from actual visible wake extents rather than free caption positions, while preserving readability and preventing initial overlap.
+- **Current evidence or blocker:** **Verified.** The operator explicitly accepted the current Lesson Four label placement: the `E` of `Expanded` sits beneath the farthest-left outer edge of the largest wake ring and the `D` of `Compressed` sits beneath the farthest-right outer edge of the largest wake ring.
+- **Source / tests:** `CausalDelayFeedbackRuntime.js` (`drawStoryMotionWakeComparison`); `CausalDelayFeedbackStoryMode.js`; focused extent/label geometry tests; operator acceptance
 
 ### CDF-044
 
-- **Status:** Queued
-- **Owner:** —
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF tests
 - **Request / acceptance:** Laboratory uses the same standard lesson chart coordinate frame, scale, and template: shared axes, usable spatial and time extent, path presentation, margins, and transforms. Diagnose and remove any Laboratory-only viewport/display-contract shrinkage by consuming the shared chart contract rather than applying a one-off visual enlargement. Require focused geometry-contract coverage plus desktop and phone browser proof.
-- **Current evidence or blocker:** **New high-priority operator browser regression; not implemented.** Laboratory currently appears visibly shrunken in both space and time relative to the lesson charts. CDF-003 remains scoped to parity among the lessons and does not consume this Laboratory obligation.
-- **Source / tests:** `CausalDelayFeedbackDisplayContract.js`; `CausalDelayFeedbackRuntime.js` (story/Laboratory viewport and transform selection); focused shared-frame geometry test; desktop/phone browser QA; operator acceptance pending
+- **Current evidence or blocker:** **Verified.** Laboratory now uses the shared standard lesson chart coordinate frame, scale, and template, with matched axes, spatial/time extent, path presentation, margins, and transforms. CDF-061 is the implemented evidence and its focused desktop/phone geometry coverage and operator browser acceptance establish this result; CDF-003 remains scoped to lesson-to-lesson parity.
+- **Source / tests:** `CausalDelayFeedbackDisplayContract.js`; `CausalDelayFeedbackRuntime.js` (Story/Laboratory viewport and transform selection); focused shared-frame geometry test; desktop/phone browser QA; CDF-061; operator acceptance
 
-### CDF-046
+### CDF-062
 
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** At the deterministic reciprocal-visible Laboratory entry and Laboratory First Frame, evaluate each current body and each earlier emission origin from the same replay state. The current positrino and electrino bodies must be visibly forward along their paths relative to the transmission origins of the reciprocal arcs; neither body may falsely read as the path's fixed start/endpoint marker. Diagnose whether replay-time rendering or marker semantics cause the mismatch, preserve the CDF-040 both-arc rule, and do not alter endpoint-marker styling or behavior without separate operator review. Require focused body/origin state-consistency tests and a browser frame showing both reciprocal arcs with correct current positions.
-- **Current evidence or blocker:** **New operator browser defect intake; not implemented.** The stable reciprocal-visible state can read as though the positrino current body remains on the white fixed-start circle despite its earlier causal emission origin. This is distinct from CDF-041 endpoint-marker styling and must be resolved from actual evaluator/display state before any visual change.
-- **Source / tests:** `CausalDelayFeedbackRuntime.js` (Laboratory replay state, live body markers, wake emission origins, endpoint handles); `CausalDelayFeedbackCausalHistory.js`; CDF-040 initial-state evaluator; focused reciprocal body/origin regression; desktop browser proof; operator acceptance pending
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF tests
+- **Request / acceptance:** Protect Stage 0 of the Causal Delay Feedback stabilization plan with one machine-readable five-lesson golden baseline and a real browser transition matrix covering cold load, direct Lesson One through Five entry, One→Two, Two→Three handoff, pointer and keyboard scrub held frames, pause/resume, First/Last, shared pace, desktop and portrait navigation, and Laboratory entry. Exercise normal UI paths only; do not change runtime behavior, learner copy, visual layout, or add lessons.
+- **Current evidence or blocker:** **Verified.** The Stage 0 golden baseline and transition-matrix artifacts, runner, and focused baseline test are preserved. The focused CDF suite passes 213/213; current in-app browser checks cover cold load, all five direct entries, both lesson handoffs, pause/resume, First/Last, shared pace, desktop/portrait navigation, Laboratory entry, and clean browser diagnostics. The historical native-range automation limitation (pointer/arrow injection did not drive the native range control and standalone Chromium CDP exited before DevTools) is retained as non-blocking context, not an unresolved status.
+- **Source / tests:** `reference/priorities/app-causal-delay-feedback/browser-qa/stage-0-golden-baseline.json`; `reference/priorities/app-causal-delay-feedback/browser-qa/stage-0-transition-matrix.json`; `scripts/run-causal-delay-feedback-stage0-browser-matrix.mjs`; `tests/causal-delay-feedback-stage0-baseline.test.js`; `node --test tests/causal-delay-feedback-*.test.js`; current in-app browser retest; operator acceptance
 
-### CDF-047
+### CDF-066
 
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Supersede CDF-041: remove all decorative fixed path-endpoint circles/handles from normal Laboratory learner rendering; do not replace them with colored dots. Preserve current-emission and transmission-history markers. Retain endpoint manipulation only if the Laboratory interaction model needs it and it can be exposed as a non-decorative, unambiguous edit affordance rather than a persistent marker. Inspect and test endpoint hit, hover/focus/selection, drag, and discoverability behavior before implementation.
-- **Current evidence or blocker:** **Normal-render ornament removal implemented under CDF-061; broader interaction-affordance review remains queued.** The four persistent white circles and their renderer are gone, while `getPathEndpointHandles`, enlarged endpoint hit targets, and endpoint drag behavior remain unchanged. CDF-061 explicitly preserves path manipulation; this row still owns any future decision to replace invisible endpoint hit zones with a discoverable non-decorative edit affordance. Do not restore persistent endpoint circles.
-- **Source / tests:** `CausalDelayFeedbackRuntime.js` (`render`, `getPathEndpointHandles`, `findNearestPathEndpointHit`, endpoint drag flow); focused normal-render absence and endpoint hit/drag tests; CDF-041; CDF-061; future interaction-affordance decision
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF tests
+- **Request / acceptance:** In Lesson Five only, make every emitted expanding wake circular/isotropic in screen/canvas space on both uphill and downhill path segments. Preserve CDF-008's body/front anchoring, emission-zero/no-inherited-history rules, current shared pace, paths, labels, Laboratory, and every other lesson. Do not alter CDF-020's scope or the paused CDF-065 task.
+- **Current evidence or blocker:** **Verified.** The defect was in `getForwardWakeBuildupSphereGeometry`: the old projection combined the body-to-emission vector with an unrotated screen sine axis, producing slope-dependent ellipses. Lesson Five now constructs each closed front from an orthonormal screen-space basis, so every sampled point has the same screen radius while the body remains the leading radial point and no front leads it in that direction. Focused coverage passes the existing seven-fraction CDF-008 contract plus explicit uphill and downhill slope cases; the served `--proof=forward-buildup` browser proof passes with positive and negative path slopes, isotropic radius checks, preserved front anchoring, emission-zero reset, approved copy, current pace, and clean diagnostics. Fresh capture: `browser-qa/forward-buildup-purple-1440x900.png`. No CDF-020 scope, CDF-065, Laboratory, other-lesson, copy, pace, or path changes were made. The operator explicitly verified CDF-066: Lesson Five wakes remain circular regardless of uphill/downhill path direction.
+- **Verification protocol:** Hard-refresh `http://127.0.0.1:5173/causal-delay-feedback.html?mode=story&replay=mock`, select **5. Wake Buildup at Field Speed**, confirm the approved title/body and clean emission-zero first frame, then Play and inspect early, middle, and late playback. Confirm both red and blue emitted wakes remain round (not uphill/downhill ellipses), the white current-emission dots stay on the leading radial edge with no ring ahead of either dot, and the result remains unchanged after navigating to Lesson Four and back to Lesson Five. Confirm no console warnings/errors.
+- **Source / tests:** `src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js` (`getForwardWakeBuildupSphereGeometry`); `tests/causal-delay-feedback-runtime.test.js` (`Lesson Five starts at emission zero...`; `Lesson Five wakefronts stay circular on uphill and downhill path slopes`); `scripts/capture-causal-delay-feedback-browser-qa.mjs` (`forward-buildup`); `browser-qa/forward-buildup-purple-1440x900.png`; CDF-008; operator verification
 
-### CDF-048
+### CDF-008
 
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Promote the Laboratory gear visual into a standard page-settings icon in the canonical shared top-right page-control area, preserving global Home and Search semantics rather than retaining a one-off Laboratory toolbar layout.
-- **Current evidence or blocker:** **Superseded before implementation by CDF-050.** Retain this intake as durable decision history, but do not create or relocate a shared Settings gear.
-- **Source / tests:** `causal-delay-feedback.html` (`scene-hud-tools`, `causal-delay-feedback-settings`); CDF-024; superseding CDF-050
-
-### CDF-049
-
-- **Status:** Queued
-- **Owner:** —
-- **Request / acceptance:** Keep Canvas Settings limited to canvas/display choices and separate its two speed controls without conflating them: Animation Speed belongs with playback/transport controls, while Architrino Speed belongs in a distinct motion/experiment control area. Investigate shared ownership and state consequences first; do not choose exact placements without explicit operator approval.
-- **Current evidence or blocker:** **Superseded before implementation by CDF-050.** Retain the distinct Animation Speed versus Architrino Speed semantics as historical rationale, but do not relocate either learner-facing control.
-- **Source / tests:** `causal-delay-feedback.html` settings panel and bottom transport rail; `CausalDelayFeedbackRuntime.js` animation and architrino speed state; superseding CDF-050
-
-
-## Verified
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF tests
+- **Request / acceptance:** Promote **Forward Wake Buildup** to Lesson Five. Remove its separate mode and “Declared field speed display fixture” supertitle. Use the Lesson One frame, start at the normal path origins at emission zero with no inherited wake history, and grow the first fronts from both emitters. The moving bodies must make the declared field-speed buildup visibly distinct from Lesson One while preserving the shared coordinate template. Do not call it a bow shock.
+- **Current evidence or blocker:** **Verified.** After CDF-057 became operator Verified, `node scripts/capture-causal-delay-feedback-browser-qa.mjs --proof=forward-buildup` completed and wrote a fresh 1440×900 capture. The proof checks the approved Lesson Five title/body, emission-zero start, seven playback fractions, closed two-sided fronts for both emitters, upper/lower persistence, emission centering, no front ahead of the white current-emission dot, navigation return reset, and clean browser diagnostics. Focused CDF-008 tests pass, `git diff --check` passes, and no learner copy, runtime behavior, Laboratory, roadmap, CDF-061, or CDF-063 changes were made in this reconciliation. The current served Lesson Five check reports rate `0.800`, duration `28.125000`, finite replay advance `0.035555556`, and no console warnings/errors. The operator explicitly verified CDF-008.
+- **Source / tests:** `CausalDelayFeedbackRuntime.js`; `CausalDelayFeedbackStoryMode.js`; `tests/causal-delay-feedback-runtime.test.js`; `scripts/capture-causal-delay-feedback-browser-qa.mjs` (`forward-buildup`); `browser-qa/forward-buildup-purple-1440x900.png`; CDF-052; CDF-057; CDF-059; operator verification
 
 ### CDF-050
 
@@ -277,9 +110,105 @@ Live comparison on 2026-07-25 used the current checkout, focused CDF source and 
 
 - **Status:** Verified
 - **Owner:** Operator browser review + focused CDF tests
-- **Request / acceptance:** Keep the four intended lesson concepts discoverable in their ordered roadmap positions, but present all four uniformly as muted-gray disabled controls with the exact visible `— Coming soon` suffix. Inverse-Square Spreading must not route to or expose its unfinished Scene Six implementation and must not be more visible or interactive than Acceleration, Wakes Combine by Superposition, or Continuous Delayed Feedback / Reciprocal Causal Chain. Preserve the unfinished source for later redesign, keep Laboratory visible as the ordinary final entry, and let the lesson panel show up to twelve entries before normal scrolling begins.
-- **Current evidence or blocker:** **Verified.** The live ordered list has five working lessons, four identically styled disabled roadmap entries numbered 6–9, and Laboratory as the visible ordinary final entry. Inverse-Square no longer belongs to `STORY_STEPS`; out-of-range Story state clamps to Lesson Five, while its clean-baseline renderer source remains preserved for later redesign. Current-served inspection confirms all four buttons are disabled, use identical computed muted colors, carry the exact visible `— Coming soon` suffix, and expose no Inverse-Square lesson-route attribute. At desktop width the current ten-entry list needs no scrollbar and Laboratory is visible. Focused source/DOM coverage pins the exact labels, disabled semantics, muted styling, five-scene route boundary, twelve-entry capacity, responsive two-column layout, and ordinary scrolling beyond capacity. The complete focused CDF suite passes 211/211, the shared transport suite passes 6/6, syntax checks and `git diff --check` pass, and the operator explicitly accepted uniform disabled styling, non-opening behavior, list order, and Laboratory reachability.
-- **Source / tests:** `CausalDelayFeedbackStoryMode.js`; `CausalDelayFeedbackModeController.js`; `CausalDelayFeedbackRuntime.js` (preserved unreachable redesign source); `causal-delay-feedback.html`; `tests/causal-delay-feedback-modes.test.js` (`five working lessons`, `Inverse-Square Spreading is not a learner-routable Story scene`, `lesson navigation fits twelve uniform entries`); `tests/causal-delay-feedback-runtime.test.js` (`unfinished Inverse-Square source is preserved without a learner Story route`); current served desktop browser check; operator acceptance
+- **Request / acceptance:** Historical CDF-060 acceptance for the disabled future-lesson roadmap, exact muted `— Coming soon` treatment, responsive lesson list, and Laboratory placement. The live sequence is now intentionally superseded by CDF-022's promotion of Continuous Delayed Feedback to Lesson Eight.
+- **Current evidence or blocker:** **Verified as historical evidence; superseded for current ordering by CDF-022.** The current ordered list has five working lessons, disabled Lesson Six `Inverse-Square Spreading`, disabled Lesson Seven `Wakes Combine by Superposition`, active Lesson Eight `Continuous Delayed Feedback`, and Laboratory. The prior four-disabled-preview state and its uniform styling remain the accepted historical boundary; current CDF-022 proof owns the updated order and route.
+- **Source / tests:** Historical `CausalDelayFeedbackStoryMode.js`; `CausalDelayFeedbackModeController.js`; `causal-delay-feedback.html`; focused CDF navigation/style tests; CDF-022 superseding evidence; operator acceptance of the historical disabled-preview treatment
+
+### CDF-061
+
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF tests
+- **Request / acceptance:** In the learner-facing Laboratory only, replace the generic toolbar title **Causal Delay Feedback** with the operator-chosen **Causal Delay Laboratory**. Restore the Laboratory chart/world scale and framing to the established standard chart transform used by Lessons One, Two, Three, and Five; Lesson Four is not a reference. Preserve the Arc and Full wake displays, removed decorative endpoint circles, CDF-063's hidden visible provider ribbon, paths, endpoint editing/hit behavior, transport, and every Story lesson.
+- **Current evidence or blocker:** **Verified.** The Laboratory viewport uses the same safe chart bounds and Story design bounds as the standard lessons: at 1440×900 the served Laboratory reports `18,278,1422,810` and scale `0.693611`, matching the standard Story template; at 390×844 it uses the responsive safe window between the expanded lesson list and transport rail (`18,549,372,731`) with positive fitted scale and no toolbar/TOC/rail overlap. Focused frame/title/render-order/ornament-absence/endpoint-interaction coverage passes; the complete focused CDF suite passes 215/215. The operator explicitly accepted the scale/framing result: “we’re good on that.” CDF-057 and Scene Nine were untouched.
+- **Source / tests:** `CausalDelayFeedbackRuntime.js` (`createLaboratoryViewport`); `causal-delay-feedback.html` (Laboratory title/status surface and hidden-chip rule); `tests/causal-delay-feedback-runtime.test.js` (`Laboratory matches the Story chart frame at desktop and keeps a safe narrow frame`, plus title/render-order/ornament-absence/endpoint-interaction/status regressions); current served Laboratory desktop and phone screenshots; CDF-037; CDF-041; CDF-047; CDF-063; operator acceptance
+
+### CDF-042
+
+- **Status:** Verified
+- **Owner:** Operator decision
+- **Request / acceptance:** Withdrawn TOC-label intake: the final Laboratory entry was proposed to display **Lab. Laboratory** without becoming Lesson 6.
+- **Current evidence or blocker:** **Verified as a durable non-action decision.** The operator deliberately did not adopt “Lab. Laboratory.” Keep the final TOC entry exactly `Laboratory`; do not change the Laboratory title, route/mode identity, search label, or lesson sequence for this intake.
+- **Source / tests:** `CausalDelayFeedbackModeController.js` (`renderTabs`); durable superseded decision record; no implementation or browser QA required
+
+### CDF-063
+
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF tests
+- **Request / acceptance:** In the learner-facing Laboratory only, remove the top-right replay/provider status ribbon (including “provider unavailable · sample only” and equivalent labels). Preserve internal replay provenance, data attributes, meaningful accessibility text outside the hidden ribbon, the Causal Delay Laboratory title, endpoint cleanup, Arcs/Full, transport, paths, and every Story lesson. Do not alter CDF-061's deferred scale item or status.
+- **Current evidence or blocker:** **Verified.** The Laboratory status element remains in the DOM with its text, state, title, and replay provenance, while `.causal-source-chip[hidden] { display: none; }` makes the hidden state genuinely absent visually. Guided Story lessons retain their visible status behavior. Desktop and phone served checks report `hidden=true`, `display:none`, and a zero-sized status rectangle in Laboratory; the Laboratory accessible canvas summary does not claim a visible status label identifies authority. The operator explicitly verified CDF-063.
+- **Source / tests:** `causal-delay-feedback.html` (`causal-delay-feedback-replay-status`, `.causal-source-chip[hidden]`); `CausalDelayFeedbackRuntime.js` (`updateReplayStatus`, Laboratory mode transition); `CausalDelayFeedbackModeController.js` (Laboratory summary); `tests/causal-delay-feedback-runtime.test.js` (hidden ribbon/provenance and CSS hidden-state regression); CDF-019 (superseded only for the Laboratory visible-chip presentation); operator acceptance
+
+### CDF-064
+
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF tests
+- **Request / acceptance:** In the learner-facing Laboratory only, make the header use the common Story top-left panel treatment for typography, spacing, title/control alignment, and responsive sizing. Preserve the exact title **Causal Delay Laboratory**, Arcs/Full controls, CDF-061 chart scale/framing, CDF-063 hidden provider chip, endpoint cleanup/hit behavior, transport, and every Story lesson.
+- **Current evidence or blocker:** **Verified.** Laboratory desktop uses the Story panel's 640px width, 12px radius, 16px padding, dark panel surface, 24px/1.12 title treatment, and aligned 34px controls; the ≥1380px top-left offset matches the Story panel. Phone layout uses the same 12px panel treatment, 13px padding, 20px title, and full-width responsive controls. Served screenshots at 1440×900 and 390×844 show the exact title, matched panel/header spacing, Arcs/Full controls, absent provider chip, unchanged chart/transport, and visible roadmap navigation. CDF-061 is separately operator-verified and remains unchanged. The operator explicitly verified CDF-064.
+- **Source / tests:** `causal-delay-feedback.html` (`.is-sandbox-mode .causal-toolbar` parity overrides); `tests/causal-delay-feedback-runtime.test.js` (`Laboratory header mirrors the Story panel treatment` plus existing title/status/transport regressions); current served Laboratory desktop and phone screenshots; CDF-061; CDF-063; operator acceptance
+
+### CDF-020
+
+- **Status:** Verified
+- **Owner:** Codex
+- **Request / acceptance:** Rebuild focused browser QA around the final lesson order at desktop and portrait sizes, including reduced motion, high contrast, transport state, Lesson Two→Three handoff, Lesson Four speed reset, Lesson Five emission-zero start, Laboratory drag, and no retired learner surfaces. Keep CDF-008 visual acceptance and CDF-050 Settings-removal acceptance as separately owned auxiliary proofs rather than CDF-020 prerequisites.
+- **Current evidence or blocker:** **Verified by operator.** The CDF-020 ordered-surface assertion matches the accepted live surface of five working lessons, four disabled `Coming soon` roadmap entries, and Laboratory; no lesson or runtime behavior changed. Focused CDF tests pass 195/195 and the capture script passes syntax validation. The current served CDF-020 suite passes all ten proofs at desktop and portrait widths: lesson order, Lesson Two→Three handoff, Lesson Four speed reset, transport, Lesson Five emission-zero boundary, Laboratory path drag, reduced-motion playback, high-contrast rendering, keyboard journey to Laboratory, and retired-surface absence. The normal in-app browser retest covered cold Lesson One, Lesson One→Two via Next, Lesson Two→Three via Next, Lesson Four speed reset, Lesson Five initial/play/pause, Laboratory entry, and a real portrait-width Laboratory path drag; the drag remains a local display-only preview. Operator explicitly verified CDF-020.
+- **Source / tests:** `scripts/capture-causal-delay-feedback-browser-qa.mjs`; `tests/causal-delay-feedback-modes.test.js`; `tests/causal-delay-feedback-runtime.test.js`; `tests/transport-control-icons.test.js`; `tests/causal-delay-feedback-stage0-baseline.test.js`; `reference/priorities/app-causal-delay-feedback/browser-qa/` CDF-020 captures; CDF-008; CDF-050; CDF-052; CDF-058
+
+### CDF-057
+
+- **Status:** Verified
+- **Owner:** Codex
+- **Request / acceptance:** Supersede CDF-056's rejected Lesson Five paragraph while preserving its operator-accepted title **Wake Buildup at Field Speed**. Use the operator's exact replacement: “At field speed, each architrino moves with the advancing edge of the wakes it continually emits. As successive wakes expand, their forward edges stay together at the moving front. The wake builds up there.” Preserve all existing behavior, navigation, provenance boundaries, CDF-008 rendering repair, CDF-052 scrubber repair, and unrelated/new-worktree lesson implementations. Require focused exact-copy and current browser confirmation before returning this row to Awaiting verification.
+- **Current evidence or blocker:** **Implemented, focused-tested, current served browser-checked, and operator-verified.** The authored body and accessible canvas summary carry the exact approved replacement byte-for-byte, while the Lesson Five title remains **Wake Buildup at Field Speed**. Focused copy coverage passes 24/24; the Causal Delay Feedback runtime suite passes 160/160, including the Lesson Five wake-front regression. The dedicated served `forward-buildup` browser proof passes with the exact paragraph precondition and existing wake-front checks, and its current 1440×900 capture visibly shows the approved title/body. No runtime, layout, CDF-008 rendering, CDF-052 scrubber, Laboratory, roadmap, or new-lesson behavior was changed for this copy repair. Operator explicitly verified CDF-057.
+- **Source / tests:** `CausalDelayFeedbackStoryMode.js`; `CausalDelayFeedbackModeController.js`; `tests/causal-delay-feedback-modes.test.js`; current served Lesson Five browser check; CDF-056; CDF-008; CDF-052
+
+### CDF-056
+
+- **Status:** Verified
+- **Owner:** Operator decision + CDF-057 superseding evidence
+- **Request / acceptance:** Rename Lesson Five to **Wake Buildup at Field Speed** and explain its displayed idealized model in plain learner language: the architrinos move at field speed and continuously emit wakes; the wakes do not get ahead of them; successive expanding wake fronts meet at the advancing front, where their displayed contributions build into a visibly concentrated front. Do not use “emission zero,” fixture or diagnostic jargon, unsupported physics claims, or any statement that a wake outruns its source. Preserve the lesson ID, causal/evidence boundaries, renderer, behavior, navigation position, provenance, CDF-008 rendering repair, CDF-052 scrubber repair, and new-worktree lesson implementations. Require focused exact-copy/forbidden-language expectations plus current browser confirmation before returning this row to Awaiting verification.
+- **Current evidence or blocker:** **Closed as superseded history.** The operator accepted the title **Wake Buildup at Field Speed**, but rejected the original CDF-056 paragraph; that paragraph was not accepted. The replacement wording and operator verification are recorded under CDF-057. Do not present the rejected CDF-056 paragraph for acceptance.
+- **Source / tests:** Historical `CausalDelayFeedbackStoryMode.js` and `tests/causal-delay-feedback-modes.test.js`; superseded by operator-verified CDF-057; CDF-008; CDF-052
+
+### CDF-045
+
+- **Status:** Verified
+- **Owner:** Operator decision + CDF-052 superseding evidence
+- **Request / acceptance:** Follow up on CDF-032 without rewriting its accepted history: use darker purple `#7a36aa` for the bottom scrubber track, retain the existing lighter purple `#8b4fbf` for the thumb, and retain the accepted light outline. Preserve contrast and visible keyboard focus, and keep transport chrome distinct from source/wake colors.
+- **Current evidence or blocker:** **Closed as superseded historical work.** The permanent-thumb-border proposal was superseded by operator-verified CDF-052, whose accepted final behavior is a borderless pointer state with a keyboard-only focus ring. The old CDF-045 endpoint is not the final visual behavior and must not be presented as accepted.
+- **Source / tests:** `causal-delay-feedback.html` (`causal-timeline-range`); `tests/causal-delay-feedback-runtime.test.js` (`bottom scrubber uses a dedicated purple transport theme`); superseded by CDF-052; operator acceptance
+
+### CDF-011
+
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF tests
+- **Request / acceptance:** Repeated Laboratory interior drags keep both fixed endpoints unchanged and keep the editable path on screen. Add a regression that exercises repeated drags, not only one drag.
+- **Current evidence or blocker:** **Verified.** Existing focused endpoint-immobility and path-drag coverage is preserved. The operator explicitly confirmed that repeated Laboratory interior drags preserve both fixed endpoints and keep the editable path on screen.
+- **Source / tests:** `CausalDelayFeedbackRuntime.js` (`deformPathAroundPathTime`); `tests/causal-delay-feedback-runtime.test.js` (`path line drag keeps path endpoints fixed`); operator acceptance
+
+### CDF-021
+
+- **Status:** Verified
+- **Owner:** Operator browser review + focused tests
+- **Request / acceptance:** Preserve public teaching launch readiness: the standalone route and apps-page exposure remain live, the complete lesson flow is navigable and understandable without operator explanation, and Laboratory remains simple enough for younger learners.
+- **Current evidence or blocker:** **Verified.** The operator explicitly accepted the current public teaching launch readiness, including standalone route/apps exposure, a navigable lesson flow, and a sufficiently simple Laboratory. Historical route, app-exposure, lesson-flow, and Laboratory evidence remains the boundary for this acceptance.
+- **Source / tests:** `causal-delay-feedback.html`; `src/apps/navigator/StandaloneAppLaunchRuntime.js`; `priorities.md`; final focused tests and browser QA; operator acceptance
+
+### CDF-035
+
+- **Status:** Verified
+- **Owner:** Operator decision + CDF-037/CDF-064 superseding evidence
+- **Request / acceptance:** Review the Laboratory header/control row where **Causal Delay Feedback** appears beside **Arcs**, **Full**, and Settings. Define the heading's role and its relationship to lesson/Laboratory framing, then present any proposed title change for explicit operator approval. Do not choose or implement a new title without that approval.
+- **Current evidence or blocker:** **Verified as validated/superseded history.** The header/control-row review led to the accepted shorter Laboratory title under CDF-037 and the accepted common Story header parity under CDF-064. Do not restore the old generic **Causal Delay Feedback** wording or prior Settings control assumptions.
+- **Source / tests:** `causal-delay-feedback.html` (`causal-toolbar`, `causal-title`, `causal-switch-row`); lesson/Laboratory framing in `CausalDelayFeedbackModeController.js`; CDF-037; CDF-064; operator acceptance
+
+### CDF-037
+
+- **Status:** Verified
+- **Owner:** Operator decision
+- **Request / acceptance:** In Laboratory, change the header label from **Causal Delay Feedback** to **Causal Delay Feedback Laboratory**. Preserve the shared header geometry and its relationship to the neighboring controls.
+- **Current evidence or blocker:** **Verified as the accepted title decision.** The operator selected the shorter final Laboratory title **Causal Delay Laboratory** and explicitly rejected restoring the longer wording. CDF-061 is the implemented superseding surface and retains the title/evidence.
+- **Source / tests:** Historical `causal-delay-feedback.html` (`causal-title`, `causal-toolbar`); CDF-035; superseded by CDF-061; operator acceptance
 
 ### CDF-059
 
@@ -433,6 +362,14 @@ Live comparison on 2026-07-25 used the current checkout, focused CDF source and 
 - **Current evidence or blocker:** **Verified.** Focused tests pin Laboratory-owned entry/reset state and retained in-Laboratory scrubbing. CDF-040 subsequently replaced the provisional fixed fraction with the deterministic earliest time at which both directed reciprocal arcs have visible on-canvas geometry. Operator browser review confirmed that entering Laboratory from lessons or scrubbed positions and using First Frame always returns to that same stable early Laboratory state without inheriting the prior position.
 - **Source / tests:** `CausalDelayFeedbackModeController.js`; `CausalDelayFeedbackRuntime.js` (`handleLearnerModeChange`, `resetLaboratoryScenarioPlayback`, `getLaboratoryInitialReplayState`); `tests/causal-delay-feedback-runtime.test.js` (`earliest reciprocal-visible state`); CDF-040; operator browser acceptance
 
+### CDF-029
+
+- **Status:** Verified
+- **Owner:** Operator decision + CDF-040 superseding evidence
+- **Request / acceptance:** Original Laboratory entry/reset intake: start at literal `t=0` with no inherited story cursor.
+- **Current evidence or blocker:** **Verified as superseded historical work.** The literal `t=0` Laboratory-reset intake was not adopted as current behavior. CDF-040 superseded it with the evaluator-derived earliest reciprocal-visible entry rule; do not imply that literal `t=0` is the current reset state.
+- **Source / tests:** `CausalDelayFeedbackModeController.js`; `CausalDelayFeedbackRuntime.js`; superseded by CDF-030 and evaluator-derived CDF-040; operator acceptance
+
 ### CDF-040
 
 - **Status:** Verified
@@ -440,6 +377,22 @@ Live comparison on 2026-07-25 used the current checkout, focused CDF source and 
 - **Request / acceptance:** Laboratory fresh entry and First Frame use one deterministic earliest replay time at which both directed reciprocal fading arcs have valid visible on-canvas geometry. Derive it from the live evaluator and display geometry as the later of the two directed first-visibility times; do not retain a hard-coded fraction that shows only one direction. Preserve CDF-030 as historical evidence and do not alter paths unless evaluation proves no valid common entry exists.
 - **Current evidence or blocker:** **Verified.** The live evaluator/display search finds positrino-to-electrino first visibility near `t=0.1537` and electrino-to-positrino near `t=0.1806`, then deterministically selects the later time for fresh Laboratory entry and First Frame without changing the paths. Focused tests and the 1440×900 proof pin valid sampled on-canvas geometry for both directions. Operator browser review confirmed that after refresh, opening Laboratory with Arcs enabled shows both reciprocal fading arcs before Play.
 - **Source / tests:** `CausalDelayFeedbackRuntime.js` (`getLaboratoryInitialReplayState`, `findFirstVisibleLaboratoryWakeTime`, `hasVisibleLaboratoryWakeArcGeometry`); `tests/causal-delay-feedback-runtime.test.js` (`earliest reciprocal-visible state`); `scripts/capture-causal-delay-feedback-browser-qa.mjs` (`laboratory-reciprocal-entry`); `browser-qa/laboratory-reciprocal-entry-purple-1440x900.png`; operator browser acceptance
+
+### CDF-046
+
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF evidence
+- **Request / acceptance:** At the deterministic reciprocal-visible Laboratory entry and Laboratory First Frame, evaluate each current body and each earlier emission origin from the same replay state. The current positrino and electrino bodies must be visibly forward along their paths relative to the transmission origins of the reciprocal arcs; neither body may falsely read as the path's fixed start/endpoint marker. Diagnose whether replay-time rendering or marker semantics cause the mismatch, preserve the CDF-040 both-arc rule, and do not alter endpoint-marker styling or behavior without separate operator review. Require focused body/origin state-consistency tests and a browser frame showing both reciprocal arcs with correct current positions.
+- **Current evidence or blocker:** **Verified.** Preserved the reciprocal-visible Laboratory entry and body-versus-emission-origin evidence: the current positrino and electrino bodies are evaluated alongside earlier reciprocal emission origins, remain visibly forward along their paths, and are not treated as fixed start/endpoint markers. CDF-040's both-arc rule and endpoint-marker boundaries remain intact.
+- **Source / tests:** `CausalDelayFeedbackRuntime.js` (Laboratory replay state, live body markers, wake emission origins, endpoint handles); `CausalDelayFeedbackCausalHistory.js`; CDF-040 initial-state evaluator; focused reciprocal body/origin regression; desktop browser proof; operator acceptance
+
+### CDF-047
+
+- **Status:** Verified
+- **Owner:** Operator browser review + focused CDF evidence
+- **Request / acceptance:** Supersede CDF-041: remove all decorative fixed path-endpoint circles/handles from normal Laboratory learner rendering; do not replace them with colored dots. Preserve current-emission and transmission-history markers. Retain endpoint manipulation only if the Laboratory interaction model needs it and it can be exposed as a non-decorative, unambiguous edit affordance rather than a persistent marker. Inspect and test endpoint hit, hover/focus/selection, drag, and discoverability behavior before implementation.
+- **Current evidence or blocker:** **Verified.** The accepted normal-render ornament removal is implemented under CDF-061: the four persistent white circles and their renderer are gone, while `getPathEndpointHandles`, enlarged endpoint hit targets, and endpoint drag behavior remain unchanged. CDF-061 explicitly preserves path manipulation; the broader interaction-affordance boundary remains documented for any future decision to replace invisible endpoint hit zones with a discoverable non-decorative edit affordance. Do not restore persistent endpoint circles.
+- **Source / tests:** `CausalDelayFeedbackRuntime.js` (`render`, `getPathEndpointHandles`, `findNearestPathEndpointHit`, endpoint drag flow); focused normal-render absence and endpoint hit/drag tests; CDF-041; CDF-061; future interaction-affordance decision; operator acceptance
 
 ### CDF-002
 
@@ -531,3 +484,71 @@ Live comparison on 2026-07-25 used the current checkout, focused CDF source and 
 
 
 CDF-001 and CDF-005 were promoted to **Verified** after focused-test coverage and explicit operator browser acceptance.
+
+## Superseded / merged
+
+### CDF-017
+
+- **Status:** Merged into CDF-018 (superseded)
+- **Owner:** —
+- **Request / acceptance:** Add Lesson Seven, **Acceleration**, on the shared paired-path frame at a calm 50% start. Teach that a wake changes velocity: from behind may increase speed, from ahead may decrease speed, and off-axis may turn the path. Do not imply every acceleration is sideways.
+- **Current evidence or blocker:** **Merged into CDF-018; not a separate Lesson Seven implementation.** Preserve the original proposal and isolated-worktree evidence: the current learner list exposes only the muted-gray `Acceleration — Coming soon` roadmap label. A dedicated-worktree implementation exists, but its local CDF-059 provenance ID conflicts with the canonical current-checkout CDF-059 pacing-recovery record and must be reconciled before any sequential integration. Routing evidence from that worktree is not live-app acceptance. CDF-018 is the superseding Lesson Seven row.
+- **Source / tests:** `CausalDelayFeedbackStoryMode.js`; `CausalDelayFeedbackModeController.js`; CDF-060; isolated Acceleration worktree `/Users/markmorris/.codex/worktrees/73e1/architrino`; focused tests and capture script; superseded by CDF-018
+
+## Withdrawn / defunct
+
+### CDF-034
+
+- **Status:** Withdrawn (defunct)
+- **Owner:** Operator decision
+- **Request / acceptance:** Diagnose and prevent Laboratory settings failures or sluggishness observed when selecting **White Background** after **Full** wakes appeared. Capture browser/runtime error evidence and measured input-to-render timing before claiming a fix; settings changes must avoid app-side exceptions and blocking response. Popover behavior remains governed by CDF-014.
+- **Current evidence or blocker:** **Withdrawn/defunct by explicit operator decision; do not implement.** Preserve the reported White Background/Settings sluggishness sequence as durable defect history, but it has no implementation path because the learner-facing Settings menu and white-background setting were removed under accepted CDF-050. Do not restore those surfaces to reproduce the old intake.
+- **Source / tests:** Historical `CausalDelayFeedbackRuntime.js` settings path; CDF-014; superseded by accepted CDF-050; no implementation or browser QA change required
+
+### CDF-038
+
+- **Status:** Withdrawn (defunct)
+- **Owner:** —
+- **Request / acceptance:** Diagnose and correct the Laboratory **Arcs**/**Full** rendering intersection. At the stable Laboratory entry with Arcs enabled, expected arcs must be present. The sequence entry → Arcs enabled → Full enabled must render the intended wake geometry without a faint straight connector from the positrino path's left/start point to the current electrino and without any degenerate-arc substitute. Do not claim fixed without focused initial-state/toggle-sequence tests and visual browser QA.
+- **Current evidence or blocker:** **Withdrawn/defunct by explicit operator decision; operator-misdiagnosed.** Preserve the original Arcs/Full intersection report as history, but do not dispatch or implement rendering fixes from this intake. The separate paused CDF-065 mutually exclusive Arcs-or-Full requirement is independent and unchanged.
+- **Source / tests:** Historical `CausalDelayFeedbackRuntime.js` (`getVisibleWakeSeries`, `drawWakes`, `drawFullCircularWakes`, `drawForegroundWakeEmissionLines`, `drawWakeEmissionLine`); stable entry from CDF-030; no implementation or browser QA change required; CDF-065 remains separate and paused
+
+### CDF-039
+
+- **Status:** Withdrawn (defunct)
+- **Owner:** —
+- **Request / acceptance:** Remove the stray purple dot observed above or within the **Arcs** control unless it is given an explicit, operator-approved learner-facing meaning; none is currently defined. Confirm the control remains clean in its enabled and disabled states at desktop and phone widths.
+- **Current evidence or blocker:** **Withdrawn/defunct by explicit operator decision; do not implement.** The reported purple dot was an external browser/OS control overlay, absent from app page pixels, with no app-side implementation path.
+- **Source / tests:** External browser/OS overlay diagnosis; app page-pixel inspection; no app implementation or browser QA change required
+
+### CDF-041
+
+- **Status:** Withdrawn (defunct)
+- **Owner:** —
+- **Request / acceptance:** Replace every Laboratory fixed start/end path marker with a filled, borderless source-color dot: red for both positrino path endpoints and blue for both electrino path endpoints. Apply the treatment consistently on every canvas background, including white and purple, while retaining a clear semantic distinction from current-emission/transmission markers. Require desktop and phone browser acceptance on white and purple canvases.
+- **Current evidence or blocker:** **Withdrawn/defunct by explicit operator decision; do not implement.** Preserve this proposal as durable history. CDF-047 superseded its endpoint-marker proposal, and the current accepted direction is no decorative endpoint circles.
+- **Source / tests:** `CausalDelayFeedbackRuntime.js` (`drawPathEndpointHandles`, `getPathEndpointHandles`); superseded by CDF-047; current accepted no-decorative-endpoint direction
+
+### CDF-043
+
+- **Status:** Withdrawn (defunct)
+- **Owner:** —
+- **Request / acceptance:** Extend Lesson Five, **Forward Wake Buildup**, with the same `0.3 C_f`, `0.6 C_f`, and `0.9 C_f` speed choices as Lesson Four. In Lesson Five, the choice selects one full buildup scenario rather than Lesson Four's simultaneous comparative display. Every selection must reset Lesson Five to emission zero with no inherited wake history, then show the selected-speed buildup. Reuse shared speed-selector and learner-state semantics where safe while retaining Lesson Five's distinct teaching copy. Require focused selection/state/reset tests and operator browser review.
+- **Current evidence or blocker:** **Withdrawn/defunct by explicit operator decision; do not implement.** The proposed Lesson Five speed choices are not needed because the concept is already taught in Lesson Four. Preserve this intake as durable history and do not dispatch implementation work from it.
+- **Source / tests:** `CausalDelayFeedbackStoryMode.js` (`STORY_MOTION_SPEED_FRACTIONS`, `forward-buildup` scene); `CausalDelayFeedbackModeController.js` (`renderStory`, speed selection state); `CausalDelayFeedbackRuntime.js` (`drawStoryForwardWakeBuildup`); historical focused Lesson Five selection/reset requirements; operator decision
+
+### CDF-048
+
+- **Status:** Withdrawn (defunct)
+- **Owner:** Operator decision
+- **Request / acceptance:** Promote the Laboratory gear visual into a standard page-settings icon in the canonical shared top-right page-control area, preserving global Home and Search semantics rather than retaining a one-off Laboratory toolbar layout.
+- **Current evidence or blocker:** **Withdrawn/defunct by explicit operator decision; do not implement.** Causal Delay has no learner-facing Settings panel, gear, or relocated settings icon; accepted CDF-050 removed those surfaces. Preserve this intake as durable decision history and do not create or relocate a Settings control.
+- **Source / tests:** `causal-delay-feedback.html` (`scene-hud-tools`, `causal-delay-feedback-settings`); CDF-024; superseded by accepted CDF-050; no implementation or browser QA change required
+
+### CDF-049
+
+- **Status:** Withdrawn (defunct)
+- **Owner:** Operator decision
+- **Request / acceptance:** Keep Canvas Settings limited to canvas/display choices and separate its two speed controls without conflating them: Animation Speed belongs with playback/transport controls, while Architrino Speed belongs in a distinct motion/experiment control area. Investigate shared ownership and state consequences first; do not choose exact placements without explicit operator approval.
+- **Current evidence or blocker:** **Withdrawn/defunct by explicit operator decision; do not implement.** This settings-speed-control placement intake has no implementation path because the learner-facing Settings panel and both speed controls were removed under accepted CDF-050. Preserve the distinct historical semantics, but do not relocate or restore either learner-facing control.
+- **Source / tests:** `causal-delay-feedback.html` settings panel and bottom transport rail; `CausalDelayFeedbackRuntime.js` animation and architrino speed state; superseded by accepted CDF-050; no implementation or browser QA change required

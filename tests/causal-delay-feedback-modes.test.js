@@ -26,6 +26,8 @@ import {
   createSelfHitScenarios,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackRootsMode.js";
 import {
+  STORY_ACTIVE_STEPS,
+  STORY_CONTINUATION_STEPS,
   STORY_MOTION_SPEED_FRACTIONS,
   STORY_PREVIEW_STEPS,
   STORY_RELATIONSHIP_DESCRIPTIONS,
@@ -33,6 +35,7 @@ import {
   STORY_SYNTHESIS_DISPLAY_MAPPING,
   STORY_WAKE_DISPLAY_RATE_SCALE,
   createStoryMotionWakeComparisonFixture,
+  createStoryContinuousDelayedFeedbackFrame,
   createStoryScene,
   createStorySampledWakeFronts,
   createStorySynthesisPlayback,
@@ -44,6 +47,9 @@ import {
   getDistance,
   getPathPoint,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
+import {
+  createSuperpositionScene,
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackSuperpositionMode.js";
 const REPO_ROOT = new URL("../", import.meta.url);
 const STORY_INTERSECTION_TOLERANCE = 5e-5;
 
@@ -122,7 +128,7 @@ test("Story reads both reciprocal roots selected by the shared learner state", (
   );
 });
 
-test("five working lessons share one teaching sequence and display-authority boundary", () => {
+test("working lessons Seven and Eight share one teaching sequence and display-authority boundary", () => {
   const state = createState();
   const scenes = Array.from({ length: 5 }, (_unused, storyStep) => {
     state.storyStep = storyStep;
@@ -137,13 +143,25 @@ test("five working lessons share one teaching sequence and display-authority bou
   ]);
   assert.deepEqual(
     STORY_PREVIEW_STEPS.map((lesson) => lesson.title),
-    [
-      "Inverse-Square Spreading",
-      "Acceleration",
-      "Wakes Combine by Superposition",
-      "Continuous Delayed Feedback / Reciprocal Causal Chain",
-    ],
+    ["Inverse-Square Spreading"],
   );
+  assert.deepEqual(STORY_CONTINUATION_STEPS.map((lesson) => lesson.title), [
+    "Wakes Combine by Superposition",
+    "Continuous Delayed Feedback",
+  ]);
+  state.storyStep = 5;
+  const lessonSevenScene = createStoryScene(state);
+  assert.equal(lessonSevenScene.id, "superposition");
+  assert.equal(createStoryView(state).title, "Wakes Combine by Superposition");
+  state.storyStep = 6;
+  const lessonEightScene = createStoryScene(state);
+  assert.equal(lessonEightScene.id, "continuous-delayed-feedback");
+  assert.equal(createStoryView(state).title, "Continuous Delayed Feedback");
+  assert.equal(
+    createStoryView(state).body,
+    "This illustration samples how delayed feedback flows back and forth between two architrinos. The underlying interaction is continuous: an arriving wake applies acceleration to its receiver, while every contribution still arrives after a delay.",
+  );
+  assert.equal(STORY_ACTIVE_STEPS.length, 7);
   state.storyStep = 4;
   const lessonFiveView = createStoryView(state);
   assert.equal(lessonFiveView.title, "Wake Buildup at Field Speed");
@@ -337,21 +355,111 @@ test("five working lessons share one teaching sequence and display-authority bou
   }
   state.storyStep = 2;
   const synthesisView = createStoryView(state);
-  assert.equal(synthesisView.stepCount, 5);
+  assert.equal(synthesisView.stepCount, 7);
   assert.equal(synthesisView.title, "Two Reciprocal Causal Relationships");
   assert.match(synthesisView.body, /full circle/u);
   assert.match(synthesisView.body, /matching fading red or blue arc/u);
   assert.doesNotMatch(synthesisView.body, /aligns each journey by progress/u);
 });
 
-test("Inverse-Square Spreading is not a learner-routable Story scene", () => {
+test("Lesson Seven is enabled before active Lesson Eight while Lesson Six stays disabled", () => {
   const state = createState();
   state.storyStep = 5;
-  const view = createStoryView(state);
+  const lessonSeven = createStoryView(state);
   assert.equal(STORY_STEPS.length, 5);
-  assert.equal(view.title, "Wake Buildup at Field Speed");
-  assert.equal(view.stepIndex, 4);
+  assert.equal(lessonSeven.title, "Wakes Combine by Superposition");
+  assert.equal(lessonSeven.stepIndex, 5);
   assert.equal(STORY_PREVIEW_STEPS[0].title, "Inverse-Square Spreading");
+  assert.equal(STORY_PREVIEW_STEPS.length, 1);
+  assert.equal(createStoryScene(state).id, "superposition");
+  state.storyStep = 6;
+  const lessonEight = createStoryView(state);
+  assert.equal(lessonEight.title, "Continuous Delayed Feedback");
+  assert.equal(lessonEight.stepIndex, 6);
+  assert.equal(createStoryScene(state).playbackStartTime, 0);
+  assert.equal(createStoryScene(state).playbackEndTime, 1);
+});
+
+test("Lesson Seven advances three shared-frame bodies and displays two selected attractive contributions", () => {
+  const state = createState();
+  state.storyStep = 5;
+  const start = createSuperpositionScene(state, { phase: 0 });
+  const middle = createSuperpositionScene(state, { phase: 0.5 });
+  const end = createSuperpositionScene(state, { phase: 1 });
+
+  assert.equal(createStoryScene(state).showSuperposition, true);
+  assert.deepEqual(
+    start.bodies.map((body) => [body.id, body.startFraction, body.pathTime]),
+    [
+      ["original-electrino", 0, 0],
+      ["positrino", 0.25, 0.25],
+      ["second-electrino", 0.5, 0.5],
+    ],
+  );
+  assert.ok(start.bodies.every((body, index) =>
+    middle.bodies[index].pathTime > body.pathTime &&
+    end.bodies[index].pathTime > middle.bodies[index].pathTime));
+  assert.equal(start.selectedArcs.length, 2);
+  assert.ok(start.selectedArcs.every((arc) =>
+    arc.direction === "electrino-to-positrino" &&
+    arc.wakeFront.style === "standard-fading-dotted-wake-front"));
+  assert.equal(start.componentArrows.length, 2);
+  assert.ok(start.componentArrows.every((arrow) =>
+    arrow.color === "white" &&
+    arrow.origin === start.netAccelerationArrow.origin));
+  const nearer = start.contributions.find((contribution) =>
+    start.selectedArcs.find((arc) => arc.id === contribution.arcId)?.nearer);
+  const farther = start.contributions.find((contribution) =>
+    !start.selectedArcs.find((arc) => arc.id === contribution.arcId)?.nearer);
+  assert.ok(nearer.teachingWeight > farther.teachingWeight);
+  assert.ok(nearer.arrow.lengthFraction > farther.arrow.lengthFraction);
+  assert.ok(start.netVector.y > 0);
+  assert.ok(Math.abs(start.netVector.y) >= Math.abs(start.netVector.x));
+  assert.equal(start.omittedReciprocalSet, true);
+  assert.equal(start.displayAuthority.evidenceStatus, "display-only");
+  assert.equal(start.displayAuthority.physicsAcceptance, false);
+});
+
+test("Lesson Eight freezes completed hops and keeps only two active arcs moving", () => {
+  const state = createState();
+  state.storyStep = 6;
+  const scene = createStoryScene(state);
+  const start = createStoryContinuousDelayedFeedbackFrame(state, scene, 0);
+  const middle = createStoryContinuousDelayedFeedbackFrame(state, scene, 0.55);
+  const end = createStoryContinuousDelayedFeedbackFrame(state, scene, 1);
+  assert.equal(start.completedRoundCount, 0);
+  assert.equal(start.frozenArcs.length, 0);
+  assert.equal(start.activeArcs.length, 2);
+  assert.equal(start.activeArcs[0].progress, 0);
+  assert.equal(middle.completedRoundCount, 3);
+  assert.equal(middle.frozenArcs.length, 6);
+  assert.equal(middle.activeArcs.length, 2);
+  assert.ok(middle.activeArcs.every((arc) => arc.progress > 0));
+  assert.equal(end.completedRoundCount, 6);
+  assert.equal(end.frozenArcs.length, 12);
+  assert.equal(end.activeArcs.length, 0);
+  assert.ok(end.frozenArcs.every((arc) => arc.frozen === true));
+  assert.deepEqual(
+    start.activeArcs.map((arc) => [arc.sourceKind, arc.targetKind]),
+    [["positrino", "electrino"], ["electrino", "positrino"]],
+  );
+  [...middle.frozenArcs, ...middle.activeArcs].forEach((arc) => {
+    const timedSource = sampleTimedPath(
+      state.paths[arc.sourceKind],
+      arc.roundIndex / middle.roundCount,
+    );
+    assert.ok(
+      getDistance(arc.start, timedSource) <= STORY_INTERSECTION_TOLERANCE,
+      `${arc.id} must start at its timed transmitter emission point`,
+    );
+    assert.ok(
+      Math.abs(
+        arc.endTime -
+        arc.startTime -
+        (scene.playbackEndTime - scene.playbackStartTime) / middle.roundCount
+      ) <= Number.EPSILON,
+    );
+  });
 });
 
 test("Story 3 maps each body from its own transmission to its later reception", () => {
@@ -500,6 +608,12 @@ test("guided progression follows all lessons and ends in Laboratory", () => {
   state.storyStep = 4;
   const controller = new CausalDelayFeedbackModeController({ state });
   controller.goNext();
+  assert.equal(state.mode, "story");
+  assert.equal(state.storyStep, 5);
+  controller.goNext();
+  assert.equal(state.mode, "story");
+  assert.equal(state.storyStep, 6);
+  controller.goNext();
   assert.equal(state.mode, "sandbox");
   assert.deepEqual(
     CAUSAL_DELAY_FEEDBACK_MODES.map((mode) => mode.id),
@@ -507,7 +621,7 @@ test("guided progression follows all lessons and ends in Laboratory", () => {
   );
   controller.goBack();
   assert.equal(state.mode, "story");
-  assert.equal(state.storyStep, 4);
+  assert.equal(state.storyStep, 6);
   assert.equal(controller.setMode("prediction"), false);
   assert.equal(controller.setMode("history"), false);
   assert.equal(controller.setMode("roots"), false);
@@ -837,6 +951,10 @@ test("lesson navigation fits twelve uniform entries before ordinary scrolling", 
   assert.match(
     controller,
     /STORY_PREVIEW_STEPS\.forEach[\s\S]*?text: `\$\{STORY_STEPS\.length \+ previewIndex \+ 1\}\. \$\{lesson\.title\} — Coming soon`[\s\S]*?disabled: true[\s\S]*?"data-causal-preview": lesson\.id[\s\S]*?coming soon and not yet available/u,
+  );
+  assert.match(
+    controller,
+    /STORY_CONTINUATION_STEPS\.forEach[\s\S]*?text: `\$\{lessonNumber\}\. \$\{lesson\.title\}`[\s\S]*?"data-causal-lesson": lessonIndex/u,
   );
   assert.match(
     html,

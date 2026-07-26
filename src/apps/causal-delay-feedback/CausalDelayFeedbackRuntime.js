@@ -70,12 +70,16 @@ import {
 import {
   createStoryTimeAxisPath,
   createStoryMotionWakeComparisonFixture,
+  createStoryContinuousDelayedFeedbackFrame,
   createStoryScene,
   createStorySampledWakeFronts,
   INVERSE_SQUARE_START_PROGRESS,
   STORY_SHARED_PATH_PLAYBACK_SECONDS,
   STORY_TWO_THREE_HANDOFF_PATH_PROGRESS,
 } from "./CausalDelayFeedbackStoryMode.js";
+import {
+  createSuperpositionScene,
+} from "./CausalDelayFeedbackSuperpositionMode.js";
 import {
   createRootsView,
 } from "./CausalDelayFeedbackRootsMode.js";
@@ -397,20 +401,22 @@ class CausalDelayFeedbackRuntime {
   }
 
   createWakeVisualSettings(overrides = null) {
-    const settings = { ...DEFAULT_WAKE_VISUAL_SETTINGS };
-    Object.entries(overrides ?? {}).forEach(([key, value]) => {
-      if (Object.prototype.hasOwnProperty.call(settings, key)) {
-        settings[key] = this.normalizeBooleanSetting(value);
-      }
-    });
-    return settings;
+    const fullCircularWakesEnabled = this.normalizeBooleanSetting(
+      overrides?.fullCircularWakesEnabled,
+    );
+    return fullCircularWakesEnabled
+      ? {
+          arcWakesEnabled: false,
+          fullCircularWakesEnabled: true,
+        }
+      : { ...DEFAULT_WAKE_VISUAL_SETTINGS };
   }
 
   toggleWakeVisualSwitch(switchId) {
     if (!Object.prototype.hasOwnProperty.call(WAKE_VISUAL_SWITCHES, switchId)) {
       return;
     }
-    this.setWakeVisualSwitch(switchId, !this.wakeVisualSettings[switchId]);
+    this.setWakeVisualSwitch(switchId, true);
   }
 
   setWakeVisualSwitch(switchId, isEnabled) {
@@ -418,13 +424,16 @@ class CausalDelayFeedbackRuntime {
       return;
     }
     const nextValue = this.normalizeBooleanSetting(isEnabled);
-    if (this.wakeVisualSettings[switchId] === nextValue) {
+    if (!nextValue || this.wakeVisualSettings[switchId] === true) {
       this.updateDisplaySettingControls();
       return;
     }
+    const otherSwitchId = switchId === "arcWakesEnabled"
+      ? "fullCircularWakesEnabled"
+      : "arcWakesEnabled";
     this.wakeVisualSettings = {
-      ...this.wakeVisualSettings,
-      [switchId]: nextValue,
+      [switchId]: true,
+      [otherSwitchId]: false,
     };
     this.updateDisplaySettingControls();
     if (this.context) {
@@ -1036,13 +1045,6 @@ class CausalDelayFeedbackRuntime {
         receiverTime:
           startTime +
           (endTime - startTime) * STORY_TWO_THREE_HANDOFF_PATH_PROGRESS,
-      });
-    } else if (this.learnerState.storyStep === 5) {
-      const [startTime, endTime] = this.getReplayTimeRange();
-      this.refreshLearnerState({
-        receiverTime:
-          startTime +
-          (endTime - startTime) * INVERSE_SQUARE_START_PROGRESS,
       });
     }
     let scene = createStoryScene(this.learnerState);
@@ -2107,7 +2109,10 @@ class CausalDelayFeedbackRuntime {
         );
         ctx.clip();
       }
-      if (storyScene?.showMotionWakeComparison !== true) {
+      if (
+        storyScene?.showMotionWakeComparison !== true &&
+        storyScene?.showSuperposition !== true
+      ) {
         this.drawPathTrail(ctx, "positrino", withAlpha(POSITRINO, 0.76));
         this.drawPathTrail(ctx, "electrino", withAlpha(ELECTRINO, 0.76));
       }
@@ -2197,6 +2202,14 @@ class CausalDelayFeedbackRuntime {
     }
     if (scene.id === "inverse-square-spreading") {
       this.drawStoryInverseSquareSpreading(ctx, scene, displayTime);
+      return;
+    }
+    if (scene.id === "superposition") {
+      this.drawStorySuperposition(ctx, scene, displayTime);
+      return;
+    }
+    if (scene.id === "continuous-delayed-feedback") {
+      this.drawStoryContinuousDelayedFeedback(ctx, scene, displayTime);
       return;
     }
     const usesSharedPairedPathFrame =
@@ -2518,12 +2531,11 @@ class CausalDelayFeedbackRuntime {
         comparison.selected &&
         comparison.fronts.length > 0
       ) {
-        const oldest = comparison.fronts[0];
+        const wakeExtents = this.getStoryMotionWakeExtents(comparison.fronts);
         const labelAnchors = this.drawStoryCompressionLabels(
           ctx,
-          oldest.rearPoint,
-          oldest.frontPoint,
-          oldest.rearPoint.y + 180,
+          wakeExtents,
+          comparison.currentSource.y + 180,
           comparison.currentSource,
         );
         if (this.dom?.canvas) {
@@ -2531,6 +2543,12 @@ class CausalDelayFeedbackRuntime {
             `${labelAnchors.expanded.x.toFixed(2)},${labelAnchors.expanded.y.toFixed(2)}`;
           this.dom.canvas.dataset.storyMotionCompressedLabelScreen =
             `${labelAnchors.compressed.x.toFixed(2)},${labelAnchors.compressed.y.toFixed(2)}`;
+          this.dom.canvas.dataset.storyMotionExpandedLabelAlign = labelAnchors.expandedAlign;
+          this.dom.canvas.dataset.storyMotionCompressedLabelAlign = labelAnchors.compressedAlign;
+          this.dom.canvas.dataset.storyMotionVisibleWakeExtents =
+            `${wakeExtents.rearX.toFixed(2)},${wakeExtents.frontX.toFixed(2)}`;
+          this.dom.canvas.dataset.storyMotionLabelAlignmentAdjusted =
+            String(labelAnchors.alignmentAdjusted);
         }
       }
     });
@@ -2575,13 +2593,51 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
+  getStoryMotionWakeExtents(fronts) {
+    const visibleRings = (fronts ?? []).filter((front) =>
+      Number.isFinite(Number(front?.center?.x)) &&
+      Number.isFinite(Number(front?.center?.y)) &&
+      Number.isFinite(Number(front?.radius)) &&
+      Number(front.radius) >= 0,
+    );
+    if (visibleRings.length === 0) {
+      return null;
+    }
+    return visibleRings.reduce(
+      (extents, front) => {
+        const centerX = Number(front.center.x);
+        const radius = Number(front.radius);
+        return {
+          rearX: Math.min(extents.rearX, centerX - radius),
+          frontX: Math.max(extents.frontX, centerX + radius),
+          y: Number(front.center.y),
+          visibleRingCount: extents.visibleRingCount + 1,
+        };
+      },
+      {
+        rearX: Number.POSITIVE_INFINITY,
+        frontX: Number.NEGATIVE_INFINITY,
+        y: Number(visibleRings[0].center.y),
+        visibleRingCount: 0,
+      },
+    );
+  }
+
   drawStoryCompressionLabels(
     ctx,
-    rearPoint,
-    frontPoint,
+    wakeExtents,
     baselineY,
-    initialCenterPoint = null,
+    _initialCenterPoint = null,
   ) {
+    if (!wakeExtents) {
+      return {
+        expanded: null,
+        compressed: null,
+        expandedAlign: "left",
+        compressedAlign: "right",
+        alignmentAdjusted: false,
+      };
+    }
     const fontSize = Math.max(9, 12 * this.viewport.scale);
     const expandedText = "Expanded";
     const compressedText = "Compressed";
@@ -2599,32 +2655,31 @@ class CausalDelayFeedbackRuntime {
     const compressedWidth = measure(compressedText);
     const twoSpaceGap = Math.max(fontSize * 0.56, measure(" ") * 2);
     const expandedAnchor = this.worldToScreen({
-      x: rearPoint.x,
+      x: wakeExtents.rearX,
       y: baselineY,
     });
     const compressedAnchor = this.worldToScreen({
-      x: frontPoint.x,
+      x: wakeExtents.frontX,
       y: baselineY,
     });
-    const initialCenter = this.worldToScreen({
-      x: Number.isFinite(Number(initialCenterPoint?.x))
-        ? Number(initialCenterPoint.x)
-        : (Number(rearPoint.x) + Number(frontPoint.x)) * 0.5,
-      y: baselineY,
-    });
-    const minimumCenterDistance =
-      expandedWidth * 0.5 + twoSpaceGap + compressedWidth * 0.5;
-    const initialExpandedX = initialCenter.x - minimumCenterDistance * 0.5;
-    const initialCompressedX = initialCenter.x + minimumCenterDistance * 0.5;
-    expandedAnchor.x = Math.min(expandedAnchor.x, initialExpandedX);
-    compressedAnchor.x = Math.max(compressedAnchor.x, initialCompressedX);
+    const actualExpandedX = expandedAnchor.x;
+    const actualCompressedX = compressedAnchor.x;
+    const actualGap =
+      compressedAnchor.x -
+      compressedWidth -
+      (expandedAnchor.x + expandedWidth);
+    if (actualGap < twoSpaceGap) {
+      const outwardAdjustment = (twoSpaceGap - actualGap) * 0.5;
+      expandedAnchor.x -= outwardAdjustment;
+      compressedAnchor.x += outwardAdjustment;
+    }
     this.drawScreenText(
       ctx,
       expandedText,
       expandedAnchor,
       12,
       withAlpha(WHITE, 0.72),
-      "center",
+      "left",
     );
     this.drawScreenText(
       ctx,
@@ -2632,11 +2687,17 @@ class CausalDelayFeedbackRuntime {
       compressedAnchor,
       12,
       withAlpha(WHITE, 0.72),
-      "center",
+      "right",
     );
     return {
       expanded: expandedAnchor,
       compressed: compressedAnchor,
+      expandedAlign: "left",
+      compressedAlign: "right",
+      alignmentAdjusted:
+        actualExpandedX !== expandedAnchor.x ||
+        actualCompressedX !== compressedAnchor.x,
+      wakeExtents,
     };
   }
 
@@ -2988,6 +3049,300 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
+  drawStorySuperposition(ctx, scene, displayTime) {
+    const span = Math.max(
+      TIME_EPSILON,
+      Number(scene.playbackEndTime) - Number(scene.playbackStartTime),
+    );
+    const phase = clamp(
+      (Number(displayTime) - Number(scene.playbackStartTime)) / span,
+      0,
+      1,
+    );
+    const fixture = createSuperpositionScene(this.learnerState, { phase });
+    this.superpositionScene = fixture;
+    this.setCanvasDisplayAuthority(fixture.displayAuthority);
+    fixture.paths.forEach((path) => {
+      const color = path.kind === "positrino"
+        ? withAlpha(POSITRINO, 0.76)
+        : withAlpha(ELECTRINO, path.role === "middle-source" ? 0.64 : 0.76);
+      this.drawSmoothLine(
+        ctx,
+        path.points.map((point) => this.worldToScreen(point)),
+        color,
+        CAUSAL_PATH_STROKE_WIDTH,
+      );
+    });
+    fixture.selectedArcs.forEach((arc) => {
+      this.drawStoryContinuousDelayedFeedbackArc(
+        ctx,
+        {
+          start: arc.emissionOrigin,
+          current: arc.receptionPoint,
+          end: arc.receptionPoint,
+          sourceKind: "electrino",
+          progress: 1,
+          startTime: 0,
+          endTime: 1,
+        },
+        true,
+      );
+      const contribution = fixture.contributions.find(
+        (candidate) => candidate.arcId === arc.id,
+      );
+      this.drawStorySuperpositionComponentArrow(
+        ctx,
+        contribution?.arrow,
+      );
+    });
+    if (fixture.netAccelerationArrow) {
+      this.drawStorySuperpositionNetArrow(
+        ctx,
+        fixture.netAccelerationArrow.origin,
+        fixture.netAccelerationArrow.vector,
+      );
+    }
+    fixture.bodies.forEach((body) => {
+      const color = body.kind === "electrino" ? ELECTRINO : POSITRINO;
+      const screen = this.worldToScreen(body.point);
+      this.drawCircle(ctx, screen, 22, withAlpha(color, 0.14));
+      this.drawCircle(ctx, screen, 10, color);
+      if (this.canvasWidth > 820) {
+        this.drawScreenText(
+          ctx,
+          body.label,
+          {
+            x: screen.x,
+            y: screen.y +
+              (body.id === "positrino" ? -34 : 34) * this.viewport.scale,
+          },
+          12,
+          withAlpha(WHITE, 0.9),
+          "center",
+          "bold",
+        );
+      }
+    });
+    if (this.dom?.canvas) {
+      this.dom.canvas.dataset.superpositionFixture =
+        "three-shared-path-selected-electrino-contributions";
+      this.dom.canvas.dataset.superpositionBodyCount =
+        String(fixture.bodies.length);
+      this.dom.canvas.dataset.superpositionSelectedArcCount =
+        String(fixture.selectedArcs.length);
+      this.dom.canvas.dataset.superpositionComponentArrowCount =
+        String(fixture.componentArrows.length);
+      this.dom.canvas.dataset.superpositionHasNetAcceleration =
+        String(Boolean(fixture.netAccelerationArrow));
+      this.dom.canvas.dataset.superpositionWakeStyle =
+        fixture.selectedArcs[0]?.wakeFront?.style ?? "unavailable";
+      this.dom.canvas.dataset.superpositionArcVisual =
+        "curved_fading_causal_arcs";
+      this.dom.canvas.dataset.superpositionAllAdvanceTogether =
+        String(
+          fixture.bodies.every(
+            (body) =>
+              Math.abs(
+                body.pathTime - body.startFraction - phase * 0.25,
+                body.pathTime - body.startFraction - phase * 0.5,
+              ) <= 1e-9,
+          ),
+        );
+      this.dom.canvas.dataset.superpositionOmittedReciprocalSet =
+        String(fixture.omittedReciprocalSet === true);
+      this.dom.canvas.dataset.superpositionNetDirection =
+        fixture.netVector.y > 0 &&
+          Math.abs(fixture.netVector.y) >= Math.abs(fixture.netVector.x)
+          ? "approximately-downward"
+          : "not-downward";
+      this.dom.canvas.dataset.superpositionEvidenceBoundary =
+        "Display-only selected-contribution teaching fixture; no physical-law, measured-magnitude, binding, stability, or solved-trajectory claim.";
+    }
+  }
+
+  drawStorySuperpositionComponentArrow(ctx, arrow) {
+    if (!arrow) {
+      return;
+    }
+    const start = this.worldToScreen(arrow.origin);
+    const target = this.worldToScreen(arrow.target);
+    const dx = target.x - start.x;
+    const dy = target.y - start.y;
+    const length = Math.hypot(dx, dy) || 1;
+    const ux = dx / length;
+    const uy = dy / length;
+    const tip = {
+      x: start.x + dx * arrow.lengthFraction,
+      y: start.y + dy * arrow.lengthFraction,
+    };
+    const headLength = Math.min(
+      24 * this.viewport.scale,
+      length * arrow.lengthFraction * 0.3,
+    );
+    const base = {
+      x: tip.x - ux * headLength,
+      y: tip.y - uy * headLength,
+    };
+    const headLength = 11;
+    const halfWidth = 5.5;
+    const color = withAlpha(WHITE, 0.96);
+    const lineWidth = arrow.width / Math.max(this.viewport.scale, 0.01);
+    this.drawLine(ctx, [start, tip], color, lineWidth);
+    this.drawTriangle(ctx, [
+      tip,
+      { x: base.x - uy * halfWidth, y: base.y + ux * halfWidth },
+      { x: base.x + uy * halfWidth, y: base.y - ux * halfWidth },
+    ], color);
+  }
+
+  drawStorySuperpositionNetArrow(ctx, origin, vector) {
+    const magnitude = Math.hypot(vector.x, vector.y) || 1;
+    const start = this.worldToScreen(origin);
+    const scale = Math.max(34, 110 * this.viewport.scale);
+    const end = {
+      x: start.x + (vector.x / magnitude) * scale,
+      y: start.y + (vector.y / magnitude) * scale,
+    };
+    const ux = (end.x - start.x) / scale;
+    const uy = (end.y - start.y) / scale;
+    const headLength = 11;
+    const base = {
+      x: end.x - ux * headLength,
+      y: end.y - uy * headLength,
+    };
+    const halfWidth = 5.5;
+    const color = withAlpha(WHITE, 0.98);
+    const lineWidth = 3.2 / Math.max(this.viewport.scale, 0.01);
+    this.drawLine(ctx, [start, end], color, lineWidth);
+    this.drawTriangle(ctx, [
+      end,
+      { x: base.x - uy * halfWidth, y: base.y + ux * halfWidth },
+      { x: base.x + uy * halfWidth, y: base.y - ux * halfWidth },
+    ], color);
+    if (this.canvasWidth > 820) {
+      this.drawScreenText(
+        ctx,
+        "net acceleration",
+        { x: end.x, y: end.y + 24 * this.viewport.scale },
+        12,
+        color,
+        "center",
+        "bold",
+      );
+    }
+  }
+
+  drawStoryContinuousDelayedFeedback(ctx, scene, displayTime) {
+    const frame = createStoryContinuousDelayedFeedbackFrame(
+      this.learnerState,
+      scene,
+      displayTime,
+    );
+    this.setCanvasDisplayAuthority(frame.displayAuthority);
+    frame.frozenArcs.forEach((arc) => {
+      this.drawStoryContinuousDelayedFeedbackArc(ctx, arc, false);
+    });
+    frame.activeArcs.forEach((arc) => {
+      this.drawStoryContinuousDelayedFeedbackArc(ctx, arc, true);
+    });
+    this.drawGuidedLiveMarkers(ctx, frame.bodyProgress, {
+      positrino: { x: 50, y: -64 },
+      electrino: { x: 50, y: 36 },
+    });
+    if (this.dom?.canvas) {
+      this.dom.canvas.dataset.continuousDelayedFeedbackFixture =
+        "shared-paired-path-frozen-history-active-pair";
+      this.dom.canvas.dataset.continuousDelayedFeedbackRoundCount =
+        String(frame.roundCount);
+      this.dom.canvas.dataset.continuousDelayedFeedbackCompletedRoundCount =
+        String(frame.completedRoundCount);
+      this.dom.canvas.dataset.continuousDelayedFeedbackFrozenArcCount =
+        String(frame.frozenArcs.length);
+      this.dom.canvas.dataset.continuousDelayedFeedbackActiveArcCount =
+        String(frame.activeArcs.length);
+      this.dom.canvas.dataset.continuousDelayedFeedbackActiveProgress =
+        frame.activeProgress.toFixed(6);
+      this.dom.canvas.dataset.continuousDelayedFeedbackStartAtLeftEnds =
+        String(frame.displayProgress <= Number.EPSILON);
+      this.dom.canvas.dataset.continuousDelayedFeedbackArcVisual =
+        "curved_fading_causal_arcs";
+      this.dom.canvas.dataset.continuousDelayedFeedbackArcCadence =
+        "lesson-two-wake-front-cadence";
+      this.dom.canvas.dataset.continuousDelayedFeedbackArcSpacing =
+        this.getWakeFrontSpacing().toFixed(6);
+      this.dom.canvas.dataset.continuousDelayedFeedbackEndpointMarkerCount =
+        "0";
+      this.dom.canvas.dataset.continuousDelayedFeedbackSourceOrigin =
+        "timed_path_emission_point";
+      this.dom.canvas.dataset.continuousDelayedFeedbackEvidenceBoundary =
+        "Display-only sampled trace on the shared paired paths; frozen arcs are retained screen history and the active pair is a teaching animation. This display does not establish solved physics, a dynamical law, binding, stability, or numerical validation.";
+    }
+  }
+
+  createStoryContinuousDelayedFeedbackFrame(
+    scene,
+    replayTime = this.getCurrentReplayTime(),
+  ) {
+    return createStoryContinuousDelayedFeedbackFrame(
+      this.learnerState,
+      scene,
+      replayTime,
+    );
+  }
+
+  drawStoryContinuousDelayedFeedbackArc(ctx, arc, active) {
+    const target = active ? arc.current : arc.end;
+    const radius = getDistance(arc.start, target);
+    if (!(radius > TIME_EPSILON)) {
+      return;
+    }
+    const baseColor = arc.sourceKind === "positrino" ? POSITRINO_WAKE : ELECTRINO_WAKE;
+    const wakeStyle = this.getWakeVisualStyle();
+    const lessonTwoTiming = {
+      source: arc.start,
+      receiver: target,
+      sourceT: arc.startTime,
+      receiverT: arc.endTime,
+      progress: 1,
+      active: true,
+      startedForLoop: true,
+      completedForLoop: false,
+      liveWakeSeries: true,
+    };
+    const lessonTwoLink = {
+      distance: radius,
+      liveWakeSeries: true,
+    };
+    const frontProgresses = this.getWakeFrontProgresses(
+      lessonTwoTiming,
+      lessonTwoLink,
+    );
+    // Reuse the app's established curved fading wake-front grammar. Each
+    // retained causal event is a stack of short circular-front segments
+    // growing from the actual transmitter point toward the current/received
+    // point. No straight connector or endpoint ornament is added.
+    this.drawWakeBuildProgression(
+      ctx,
+      { color: baseColor },
+      {
+        source: arc.start,
+        radius,
+        theta: getAngleDegrees(arc.start, target),
+        falloffWeight: 1,
+        frontProgresses,
+        visualWeight: {
+          alphaScale: active ? 1.15 : 0.58,
+          radiusScale: active ? 1.08 : 0.9,
+          desaturation: active ? 0.08 : 0.28,
+        },
+        wakeStyle: {
+          ...wakeStyle,
+          finalSpan: active ? 9 : 7,
+        },
+      },
+    );
+  }
+
   createStoryForwardWakeBuildupFrame(scene, replayTime) {
     const startTime = Number(scene?.playbackStartTime);
     const endTime = Number(scene?.playbackEndTime);
@@ -3085,25 +3440,39 @@ class CausalDelayFeedbackRuntime {
     if (!(radius > TIME_EPSILON)) {
       return null;
     }
-    if (!(delta.x > TIME_EPSILON)) {
-      return null;
-    }
+    const leadingDirection = {
+      x: delta.x / radius,
+      y: delta.y / radius,
+    };
+    const perpendicularDirection = {
+      x: -leadingDirection.y,
+      y: leadingDirection.x,
+    };
     const points = Array.from(
       { length: FORWARD_WAKE_SPHERE_SEGMENT_COUNT + 1 },
       (_unused, index) => {
         const angle =
           (index / FORWARD_WAKE_SPHERE_SEGMENT_COUNT) * Math.PI * 2;
         return {
-          x: center.x + delta.x * Math.cos(angle),
+          x:
+            center.x +
+            radius *
+              (leadingDirection.x * Math.cos(angle) +
+                perpendicularDirection.x * Math.sin(angle)),
           y:
             center.y +
-            delta.y * Math.cos(angle) +
-            radius * Math.sin(angle),
+            radius *
+              (leadingDirection.y * Math.cos(angle) +
+                perpendicularDirection.y * Math.sin(angle)),
         };
       },
     );
     const maximumDisplayedTimeLead = Math.max(
-      ...points.map((point) => point.x - leadingPoint.x),
+      ...points.map(
+        (point) =>
+          (point.x - leadingPoint.x) * leadingDirection.x +
+          (point.y - leadingPoint.y) * leadingDirection.y,
+      ),
     );
     const upperPointCount = points.filter(
       (point) => point.y < center.y - TIME_EPSILON,
@@ -3120,6 +3489,18 @@ class CausalDelayFeedbackRuntime {
       upperPointCount,
       lowerPointCount,
       leadingProjectionError: getDistance(points[0], leadingPoint),
+      minimumScreenRadius: Math.min(
+        ...points.map((point) => Math.hypot(
+          point.x - center.x,
+          point.y - center.y,
+        )),
+      ),
+      maximumScreenRadius: Math.max(
+        ...points.map((point) => Math.hypot(
+          point.x - center.x,
+          point.y - center.y,
+        )),
+      ),
     };
   }
 
@@ -3286,16 +3667,10 @@ class CausalDelayFeedbackRuntime {
 
   getWakeVisualModeLabel() {
     const settings = this.wakeVisualSettings ?? DEFAULT_WAKE_VISUAL_SETTINGS;
-    if (settings.fullCircularWakesEnabled && settings.arcWakesEnabled) {
-      return "full circles + emission lines";
-    }
     if (settings.fullCircularWakesEnabled) {
       return "full circular";
     }
-    if (settings.arcWakesEnabled) {
-      return "arc wakes";
-    }
-    return "wakes hidden";
+    return "arc wakes";
   }
 
   drawWakes(
@@ -3307,8 +3682,9 @@ class CausalDelayFeedbackRuntime {
     const drawFullCircularWakes = this.wakeVisualSettings.fullCircularWakesEnabled === true;
     if (drawFullCircularWakes) {
       this.drawFullCircularWakes(ctx, replayTime);
+      return;
     }
-    if (!drawArcWakes || drawFullCircularWakes) {
+    if (!drawArcWakes) {
       return;
     }
     visibleWakeSeries.forEach((link) => {
@@ -3321,9 +3697,8 @@ class CausalDelayFeedbackRuntime {
     replayTime = this.getCurrentReplayTime(),
     visibleWakeSeries = this.getVisibleWakeSeries(replayTime),
   ) {
-    const drawArcWakes = this.wakeVisualSettings.arcWakesEnabled === true;
     const drawFullCircularWakes = this.wakeVisualSettings.fullCircularWakesEnabled === true;
-    if (!drawArcWakes || !drawFullCircularWakes) {
+    if (!drawFullCircularWakes) {
       return;
     }
     visibleWakeSeries.forEach((link) => {

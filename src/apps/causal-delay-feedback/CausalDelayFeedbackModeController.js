@@ -2,6 +2,8 @@ import {
   createWakeDisplayGeometry,
 } from "./CausalDelayFeedbackWakeRenderer.js";
 import {
+  STORY_ACTIVE_STEPS,
+  STORY_CONTINUATION_STEPS,
   STORY_MOTION_SPEED_FRACTIONS,
   STORY_PREVIEW_STEPS,
   createStoryView,
@@ -171,7 +173,7 @@ export class CausalDelayFeedbackModeController {
       if (
         Number.isInteger(lessonIndex) &&
         lessonIndex >= 0 &&
-        lessonIndex < STORY_STEPS.length
+        lessonIndex < STORY_ACTIVE_STEPS.length
       ) {
         this.prepareStoryStepChange();
         this.state.storyStep = lessonIndex;
@@ -243,7 +245,7 @@ export class CausalDelayFeedbackModeController {
     } else if (this.state.mode === "sandbox") {
       this.prepareStoryStepChange();
       this.state.mode = "story";
-      this.state.storyStep = STORY_STEPS.length - 1;
+      this.state.storyStep = STORY_ACTIVE_STEPS.length - 1;
       this.onModeChange?.("story", this.state);
     } else {
       return;
@@ -253,7 +255,7 @@ export class CausalDelayFeedbackModeController {
   }
 
   goNext() {
-    if (this.state.mode === "story" && this.state.storyStep < STORY_STEPS.length - 1) {
+    if (this.state.mode === "story" && this.state.storyStep < STORY_ACTIVE_STEPS.length - 1) {
       this.prepareStoryStepChange();
       this.state.storyStep += 1;
     } else if (this.state.mode === "story") {
@@ -343,6 +345,25 @@ export class CausalDelayFeedbackModeController {
           disabled: true,
           "data-causal-preview": lesson.id,
           "aria-label": `${lesson.title}, coming soon and not yet available`,
+        },
+      }));
+      list.append(item);
+    });
+    STORY_CONTINUATION_STEPS.forEach((lesson, continuationIndex) => {
+      const lessonIndex = STORY_STEPS.length + continuationIndex;
+      const lessonNumber =
+        STORY_STEPS.length + STORY_PREVIEW_STEPS.length + continuationIndex + 1;
+      const item = this.document.createElement("li");
+      item.append(createElement(this.document, "button", {
+        className: "causal-mode-tab",
+        text: `${lessonNumber}. ${lesson.title}`,
+        attributes: {
+          type: "button",
+          "data-causal-lesson": lessonIndex,
+          "aria-current":
+            this.state.mode === "story" && this.state.storyStep === lessonIndex
+              ? "step"
+              : null,
         },
       }));
       list.append(item);
@@ -633,6 +654,10 @@ export class CausalDelayFeedbackModeController {
           ? `Lesson Five. ${storyView.body} This display does not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
           : storyView?.id === "inverse-square-spreading"
             ? `Lesson Six preview. The shared two-architrino path frame is available for inspection, but the inverse-square explanation and visual design are being redesigned and are not accepted. Replay status: ${replayAuthoritySummary}.`
+          : storyView?.id === "superposition"
+            ? `Lesson Seven. ${storyView.body} Replay status: ${replayAuthoritySummary}.`
+          : storyView?.id === "continuous-delayed-feedback"
+            ? `Lesson Eight. ${storyView.body} Replay status: ${replayAuthoritySummary}.`
           : `Lesson. Electrino transmitter to Positrino receiver; Positrino transmitter to Electrino receiver. This teaching display does not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
       : this.state.mode === "history" && root && reciprocalRoot
         ? `Path History. Positrino and Electrino history-emission markers show the evaluator-backed earlier points for both reciprocal relationships at Tₜ=${formatTime(root.emissionTime)} and Tₜ=${formatTime(reciprocalRoot.emissionTime)}.`

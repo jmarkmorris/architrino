@@ -743,7 +743,8 @@
         text-transform: uppercase;
       }
 
-      .causal-lesson-panel h1 {
+      .causal-lesson-panel h1,
+      .is-sandbox-mode .causal-toolbar .causal-title h1 {
         margin: 0;
         color: #ffffff;
         font-size: 24px;
@@ -1119,7 +1120,8 @@
           white-space: normal;
         }
 
-        .causal-lesson-panel h1 {
+        .causal-lesson-panel h1,
+        .is-sandbox-mode .causal-toolbar .causal-title h1 {
           font-size: 20px;
         }
 
@@ -1154,6 +1156,7 @@
         top: max(70px, calc(env(safe-area-inset-top) + 70px));
         right: auto;
         left: max(18px, env(safe-area-inset-left));
+        align-items: flex-start;
         width: min(640px, calc(100vw - 36px));
         padding: 16px;
         border-radius: 12px;
@@ -1161,9 +1164,9 @@
         box-shadow: 0 22px 46px rgba(8, 2, 20, 0.38);
       }
 
-      .is-sandbox-mode .causal-toolbar .causal-title strong {
-        font-size: 24px;
-        line-height: 1.12;
+      .is-sandbox-mode .causal-toolbar .causal-title {
+        display: grid;
+        gap: 10px;
       }
 
       .is-sandbox-mode .causal-toolbar .causal-switch-button {
@@ -1191,10 +1194,6 @@
           padding: 13px;
         }
 
-        .is-sandbox-mode .causal-toolbar .causal-title strong {
-          font-size: 20px;
-          line-height: 1.12;
-        }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -1303,13 +1302,15 @@
 
       <div id="causal-delay-feedback-toolbar" class="causal-toolbar" aria-label="Causal delay feedback controls">
         <div class="causal-title">
-          <strong>Causal Delay Laboratory</strong>
+          <div class="causal-lesson-meta" aria-hidden="true"></div>
+          <h1>Causal Delay Laboratory</h1>
         </div>
 
         <div
           id="causal-delay-feedback-visual-switches"
           class="causal-switch-row"
-          aria-label="Wake visual switches"
+          aria-label="Wake display mode: Arcs or Full"
+          data-selection-mode="exclusive"
         >
           <button
             class="causal-switch-button"
