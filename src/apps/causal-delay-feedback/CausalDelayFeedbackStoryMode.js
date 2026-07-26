@@ -24,10 +24,10 @@ const STORY_WAKE_SAMPLE_PROGRESS = 0.025;
 const STORY_TRAVERSAL_BASE_SECONDS = 22.5;
 const STORY_SYNTHESIS_BASE_SECONDS = 8;
 const STORY_MOTION_COMPARISON_BASE_SECONDS = 6;
+const STORY_INVERSE_SQUARE_BASE_SECONDS = 10;
 const STORY_SUPERPOSITION_BASE_SECONDS = 9;
 export const STORY_TWO_THREE_HANDOFF_TIME_AXIS_FRACTION = 0.5;
 export const STORY_THREE_END_TIME_AXIS_FRACTION = 0.8;
-export const INVERSE_SQUARE_START_PROGRESS = 0.5;
 function getPathProgressAtTimeAxisFraction(axisFraction) {
   const axisX =
     TIME_AXIS_ORIGIN_X +
@@ -134,14 +134,14 @@ export const STORY_STEPS = Object.freeze([
   },
 ]);
 
-export const STORY_PREVIEW_STEPS = Object.freeze([
-  Object.freeze({
-    id: "inverse-square-spreading",
-    title: "Inverse-Square Spreading",
-  }),
-]);
+export const STORY_PREVIEW_STEPS = Object.freeze([]);
 
 export const STORY_CONTINUATION_STEPS = Object.freeze([
+  Object.freeze({
+    id: "inverse-square-spreading",
+    title: "Wake Strength Decreases as it Expands",
+    body: "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².",
+  }),
   Object.freeze({
     id: "superposition",
     title: "Wakes Combine by Superposition",
@@ -545,10 +545,6 @@ export function createStoryScene(state) {
     playbackWindow.playbackStartTime +
     (playbackWindow.playbackEndTime - playbackWindow.playbackStartTime) *
       STORY_THREE_END_PATH_PROGRESS;
-  const inverseSquareStartTime =
-    playbackWindow.playbackStartTime +
-    (playbackWindow.playbackEndTime - playbackWindow.playbackStartTime) *
-      INVERSE_SQUARE_START_PROGRESS;
   const earliestCommonArcTime = view.id === "emission"
     ? getEarliestCommonStoryArcTime(state, playbackWindow)
     : playbackWindow.playbackStartTime;
@@ -643,15 +639,14 @@ export function createStoryScene(state) {
       showReceptionMarker: false,
     },
     "inverse-square-spreading": {
-      startTime: inverseSquareStartTime,
-      endTime: playbackWindow.playbackEndTime,
-      playbackStartTime: inverseSquareStartTime,
-      playbackEndTime: playbackWindow.playbackEndTime,
-      displayTime: inverseSquareStartTime,
-      fixedBodyTime: inverseSquareStartTime,
-      playbackDurationSeconds:
-        STORY_SHARED_PATH_PLAYBACK_SECONDS *
-        (1 - INVERSE_SQUARE_START_PROGRESS),
+      startTime: 0,
+      endTime: 1,
+      playbackStartTime: 0,
+      playbackEndTime: 1,
+      displayTime: 0,
+      playbackDurationSeconds: getScaledStoryDuration(
+        STORY_INVERSE_SQUARE_BASE_SECONDS,
+      ),
       wakeDisplayRateScale: STORY_WAKE_DISPLAY_RATE_SCALE,
       showInverseSquareSpreading: true,
       showWake: false,

@@ -128,7 +128,7 @@ test("Story reads both reciprocal roots selected by the shared learner state", (
   );
 });
 
-test("working lessons Seven and Eight share one teaching sequence and display-authority boundary", () => {
+test("working lessons Six, Seven, and Eight share one teaching sequence and display-authority boundary", () => {
   const state = createState();
   const scenes = Array.from({ length: 5 }, (_unused, storyStep) => {
     state.storyStep = storyStep;
@@ -143,17 +143,33 @@ test("working lessons Seven and Eight share one teaching sequence and display-au
   ]);
   assert.deepEqual(
     STORY_PREVIEW_STEPS.map((lesson) => lesson.title),
-    ["Inverse-Square Spreading"],
+    [],
   );
   assert.deepEqual(STORY_CONTINUATION_STEPS.map((lesson) => lesson.title), [
+    "Wake Strength Decreases as it Expands",
     "Wakes Combine by Superposition",
     "Continuous Delayed Feedback",
   ]);
   state.storyStep = 5;
+  const lessonSixScene = createStoryScene(state);
+  assert.equal(lessonSixScene.id, "inverse-square-spreading");
+  assert.equal(
+    createStoryView(state).title,
+    "Wake Strength Decreases as it Expands",
+  );
+  assert.equal(
+    createStoryView(state).body,
+    "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².",
+  );
+  assert.doesNotMatch(
+    createStoryView(state).body,
+    /geometric teaching (?:picture|fixture)|field amplitude|physical interaction law/u,
+  );
+  state.storyStep = 6;
   const lessonSevenScene = createStoryScene(state);
   assert.equal(lessonSevenScene.id, "superposition");
   assert.equal(createStoryView(state).title, "Wakes Combine by Superposition");
-  state.storyStep = 6;
+  state.storyStep = 7;
   const lessonEightScene = createStoryScene(state);
   assert.equal(lessonEightScene.id, "continuous-delayed-feedback");
   assert.equal(createStoryView(state).title, "Continuous Delayed Feedback");
@@ -161,7 +177,7 @@ test("working lessons Seven and Eight share one teaching sequence and display-au
     createStoryView(state).body,
     "This illustration samples how delayed feedback flows back and forth between two architrinos. The underlying interaction is continuous: an arriving wake applies acceleration to its receiver, while every contribution still arrives after a delay.",
   );
-  assert.equal(STORY_ACTIVE_STEPS.length, 7);
+  assert.equal(STORY_ACTIVE_STEPS.length, 8);
   state.storyStep = 4;
   const lessonFiveView = createStoryView(state);
   assert.equal(lessonFiveView.title, "Wake Buildup at Field Speed");
@@ -355,34 +371,38 @@ test("working lessons Seven and Eight share one teaching sequence and display-au
   }
   state.storyStep = 2;
   const synthesisView = createStoryView(state);
-  assert.equal(synthesisView.stepCount, 7);
+  assert.equal(synthesisView.stepCount, 8);
   assert.equal(synthesisView.title, "Two Reciprocal Causal Relationships");
   assert.match(synthesisView.body, /full circle/u);
   assert.match(synthesisView.body, /matching fading red or blue arc/u);
   assert.doesNotMatch(synthesisView.body, /aligns each journey by progress/u);
 });
 
-test("Lesson Seven is enabled before active Lesson Eight while Lesson Six stays disabled", () => {
+test("Lesson Six is enabled before active Lessons Seven and Eight", () => {
   const state = createState();
   state.storyStep = 5;
-  const lessonSeven = createStoryView(state);
+  const lessonSix = createStoryView(state);
   assert.equal(STORY_STEPS.length, 5);
-  assert.equal(lessonSeven.title, "Wakes Combine by Superposition");
-  assert.equal(lessonSeven.stepIndex, 5);
-  assert.equal(STORY_PREVIEW_STEPS[0].title, "Inverse-Square Spreading");
-  assert.equal(STORY_PREVIEW_STEPS.length, 1);
-  assert.equal(createStoryScene(state).id, "superposition");
+  assert.equal(lessonSix.title, "Wake Strength Decreases as it Expands");
+  assert.equal(lessonSix.stepIndex, 5);
+  assert.equal(STORY_PREVIEW_STEPS.length, 0);
+  assert.equal(createStoryScene(state).id, "inverse-square-spreading");
   state.storyStep = 6;
+  const lessonSeven = createStoryView(state);
+  assert.equal(lessonSeven.title, "Wakes Combine by Superposition");
+  assert.equal(lessonSeven.stepIndex, 6);
+  assert.equal(createStoryScene(state).id, "superposition");
+  state.storyStep = 7;
   const lessonEight = createStoryView(state);
   assert.equal(lessonEight.title, "Continuous Delayed Feedback");
-  assert.equal(lessonEight.stepIndex, 6);
+  assert.equal(lessonEight.stepIndex, 7);
   assert.equal(createStoryScene(state).playbackStartTime, 0);
   assert.equal(createStoryScene(state).playbackEndTime, 1);
 });
 
 test("Lesson Seven advances three shared-frame bodies and displays two selected attractive contributions", () => {
   const state = createState();
-  state.storyStep = 5;
+  state.storyStep = 6;
   const start = createSuperpositionScene(state, { phase: 0 });
   const middle = createSuperpositionScene(state, { phase: 0.5 });
   const end = createSuperpositionScene(state, { phase: 1 });
@@ -396,6 +416,12 @@ test("Lesson Seven advances three shared-frame bodies and displays two selected 
       ["second-electrino", 0.5, 0.5],
     ],
   );
+  assert.deepEqual(end.bodies.map((body) => body.pathTime), [0.5, 0.75, 1]);
+  assert.deepEqual(start.bodies.map((body) => body.label), [
+    "electrino",
+    "positrino",
+    "electrino",
+  ]);
   assert.ok(start.bodies.every((body, index) =>
     middle.bodies[index].pathTime > body.pathTime &&
     end.bodies[index].pathTime > middle.bodies[index].pathTime));
@@ -422,7 +448,7 @@ test("Lesson Seven advances three shared-frame bodies and displays two selected 
 
 test("Lesson Eight freezes completed hops and keeps only two active arcs moving", () => {
   const state = createState();
-  state.storyStep = 6;
+  state.storyStep = 7;
   const scene = createStoryScene(state);
   const start = createStoryContinuousDelayedFeedbackFrame(state, scene, 0);
   const middle = createStoryContinuousDelayedFeedbackFrame(state, scene, 0.55);
@@ -614,6 +640,9 @@ test("guided progression follows all lessons and ends in Laboratory", () => {
   assert.equal(state.mode, "story");
   assert.equal(state.storyStep, 6);
   controller.goNext();
+  assert.equal(state.mode, "story");
+  assert.equal(state.storyStep, 7);
+  controller.goNext();
   assert.equal(state.mode, "sandbox");
   assert.deepEqual(
     CAUSAL_DELAY_FEEDBACK_MODES.map((mode) => mode.id),
@@ -621,7 +650,7 @@ test("guided progression follows all lessons and ends in Laboratory", () => {
   );
   controller.goBack();
   assert.equal(state.mode, "story");
-  assert.equal(state.storyStep, 6);
+  assert.equal(state.storyStep, 7);
   assert.equal(controller.setMode("prediction"), false);
   assert.equal(controller.setMode("history"), false);
   assert.equal(controller.setMode("roots"), false);

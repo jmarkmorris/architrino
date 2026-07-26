@@ -3035,7 +3035,7 @@ test("Lesson Five wakefronts stay circular on uphill and downhill path slopes", 
   });
 });
 
-test("unfinished Inverse-Square source is preserved while Lessons Seven and Eight own promoted routes", () => {
+test("Lesson Six renders fixed halfway bodies with constant-rate expanding circular wakes and no rejected ornaments", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -3045,26 +3045,150 @@ test("unfinished Inverse-Square source is preserved while Lessons Seven and Eigh
   const lessonFive = runtime.resetStoryScenarioPlayback();
   assertNear(lessonFive.playbackStartTime, 0);
 
-  runtime.learnerState.storyStep = 6;
+  runtime.learnerState.storyStep = 5;
   runtime.handleLearnerStateChange();
   const scene = createStoryScene(runtime.learnerState);
-  assert.equal(scene.id, "continuous-delayed-feedback");
-  const runtimeSource = readFileSync(
-    new URL(
-      "../src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js",
-      import.meta.url,
-    ),
-    "utf8",
+  assert.equal(scene.id, "inverse-square-spreading");
+  runtime.dom = { canvas: { dataset: {} } };
+  runtime.viewport = { offsetX: 0, offsetY: 0, scale: 1 };
+  const circles = [];
+  const markers = [];
+  runtime.drawSolidWakeCircle = (_ctx, center, radius) => {
+    circles.push({ center, radius });
+  };
+  runtime.drawLiveMarker = (_ctx, label, _color, point) => {
+    markers.push({ label, point });
+  };
+  runtime.learnerState.playback.playing = true;
+  runtime.storyPlaybackScene = scene;
+  runtime.drawStoryScene({}, scene.playbackStartTime);
+  const firstBodyPoints = markers.map(({ label, point }) => ({ label, point }));
+  assert.equal(circles.length, 0);
+  assert.equal(firstBodyPoints.length, 2);
+  assert.equal(runtime.dom.canvas.dataset.inverseSquareBodyProgress, "0.500000");
+
+  circles.length = 0;
+  markers.length = 0;
+  const middleTime =
+    scene.playbackStartTime +
+    (scene.playbackEndTime - scene.playbackStartTime) * 0.625;
+  runtime.drawStoryScene({}, middleTime);
+  assert.equal(
+    circles.length,
+    Number(runtime.dom.canvas.dataset.inverseSquareWakeCount),
   );
-  assert.match(runtimeSource, /drawStoryInverseSquareSpreading\(/u);
-  assert.match(runtimeSource, /drawStorySuperposition\(/u);
-  assert.match(runtimeSource, /drawStoryContinuousDelayedFeedback\(/u);
-  const inverseSquareRenderer = runtimeSource.match(
-    /\n  drawStoryInverseSquareSpreading\([\s\S]*?\n  \}\n\n  drawStorySuperposition/u,
-  )?.[0] ?? "";
-  assert.doesNotMatch(
-    inverseSquareRenderer,
-    /surfaceTokens|drawSolidWakeCircle|drawCircle|drawScreenText|4 pi|R²|\b2R\b|\b3R\b|1\/4|1\/9/u,
+  assert.ok(circles.length > 0);
+  assert.ok(circles.every((circle) => circle.radius > 0));
+  assert.deepEqual(markers, firstBodyPoints);
+  assert.equal(
+    runtime.dom.canvas.dataset.inverseSquareFixture,
+    "shared-paired-path-fixed-halfway-constant-rate-circular-wakes",
+  );
+  assert.equal(runtime.dom.canvas.dataset.inverseSquareWakeShape, "full-circular");
+  assert.equal(
+    runtime.dom.canvas.dataset.inverseSquareEmissionCadence,
+    "equal-interval-normalized-lesson-progress",
+  );
+  assert.equal(runtime.dom.canvas.dataset.inverseSquareComparisonOrnamentCount, "0");
+  assert.equal(runtime.dom.canvas.dataset.inverseSquareFormulaLabelCount, "0");
+  assert.equal(runtime.dom.canvas.dataset.inverseSquareDotStarGraphic, "false");
+  assert.equal(runtime.dom.canvas.dataset.inverseSquareFieldAmplitudeClaim, "false");
+  assert.equal(runtime.dom.canvas.dataset.inverseSquarePhysicalLawClaim, "false");
+
+  runtime.learnerState.storyStep = 7;
+  assert.equal(
+    createStoryScene(runtime.learnerState).id,
+    "continuous-delayed-feedback",
+  );
+});
+
+test("Lesson Seven renders Lesson One labels and uniform clean-triangle white arrows through the full endpoint", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.learnerState.storyStep = 6;
+  runtime.dom = { canvas: { dataset: {} } };
+  runtime.viewport = { offsetX: 0, offsetY: 0, scale: 1 };
+  runtime.canvasWidth = 1000;
+  runtime.setCanvasDisplayAuthority = () => {};
+  runtime.drawSmoothLine = () => {};
+  runtime.drawStoryContinuousDelayedFeedbackArc = () => {};
+  runtime.drawStorySuperpositionComponentArrow = () => {};
+  runtime.drawStorySuperpositionNetArrow = () => {};
+  runtime.drawCircle = () => {};
+  const labels = [];
+  runtime.drawScreenText = (_ctx, text, point, size, color, align, weight) => {
+    labels.push({ text, point, size, color, align, weight });
+  };
+  const scene = createStoryScene(runtime.learnerState);
+
+  runtime.drawStorySuperposition({}, scene, scene.playbackEndTime);
+
+  assert.deepEqual(labels.map(({ text }) => text), [
+    "electrino",
+    "positrino",
+    "electrino",
+  ]);
+  assert.deepEqual(labels.map(({ color }) => color), [
+    { r: 143, g: 143, b: 255, a: 1 },
+    { r: 255, g: 0, b: 0, a: 0.9 },
+    { r: 143, g: 143, b: 255, a: 1 },
+  ]);
+  assert.ok(labels.every(
+    ({ size, align, weight }) =>
+      size === 14 && align === "center" && weight === "bold",
+  ));
+  assert.equal(
+    runtime.dom.canvas.dataset.superpositionBodyPathTimes,
+    "0.50,0.75,1.00",
+  );
+  assert.equal(
+    runtime.dom.canvas.dataset.superpositionLabelStyle,
+    "lesson-one-lowercase-polarity-colors",
+  );
+
+  const fixture = runtime.superpositionScene;
+  const lines = [];
+  const triangles = [];
+  runtime.worldToScreen = (point) => point;
+  runtime.drawLine = (_ctx, points, _color, width) => {
+    lines.push({ points, width });
+  };
+  runtime.drawTriangle = (_ctx, points) => {
+    triangles.push(points);
+  };
+  runtime.drawScreenText = () => {};
+  fixture.componentArrows.forEach((arrow) => {
+    Object.getPrototypeOf(runtime).drawStorySuperpositionComponentArrow.call(
+      runtime,
+      {},
+      arrow,
+    );
+  });
+  Object.getPrototypeOf(runtime).drawStorySuperpositionNetArrow.call(
+    runtime,
+    {},
+    fixture.netAccelerationArrow.origin,
+    fixture.netAccelerationArrow.vector,
+  );
+
+  assert.deepEqual(lines.map(({ width }) => width), [3.2, 3.2, 3.2]);
+  assert.equal(triangles.length, 3);
+  assert.ok(triangles.every((points) => points.length === 3));
+  lines.forEach((line, index) => {
+    const triangle = triangles[index];
+    const baseMidpoint = {
+      x: (triangle[1].x + triangle[2].x) * 0.5,
+      y: (triangle[1].y + triangle[2].y) * 0.5,
+    };
+    assert.deepEqual(line.points.at(-1), baseMidpoint);
+    assert.notDeepEqual(line.points.at(-1), triangle[0]);
+  });
+  assert.equal(
+    runtime.dom.canvas.dataset.superpositionArrowShaftEnd,
+    "triangle-base-no-terminal-marker",
   );
 });
 
@@ -3317,7 +3441,7 @@ test("Lesson Eight draws retained causal history plus only the active arc pair",
     initialMode: "story",
   });
   runtime.dom = { canvas: { dataset: {} } };
-  runtime.learnerState.storyStep = 6;
+  runtime.learnerState.storyStep = 7;
   runtime.drawPathTrail = () => {};
   runtime.drawGuidedLiveMarkers = () => {};
   runtime.setCanvasDisplayAuthority = () => {};

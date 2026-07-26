@@ -111,7 +111,7 @@ function sampleBody(path, id, kind, phase, startFraction) {
     startFraction,
     pathTime,
     point: { x: Number(sampled.x), y: Number(sampled.y) },
-    label: id === "positrino" ? "Positrino" : "Electrino",
+    label: id === "positrino" ? "positrino" : "electrino",
   };
 }
 

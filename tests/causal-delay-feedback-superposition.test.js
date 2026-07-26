@@ -36,6 +36,11 @@ test("Lesson Seven declares three shared-frame bodies at 0%, 25%, and 50%", () =
     "second-electrino",
   ]);
   assert.deepEqual(scene.bodies.map((body) => body.pathTime), [0, 0.25, 0.5]);
+  assert.deepEqual(scene.bodies.map((body) => body.label), [
+    "electrino",
+    "positrino",
+    "electrino",
+  ]);
   assert.equal(scene.selectedArcs.length, 2);
   assert.equal(scene.omittedReciprocalSet, true);
 });
@@ -86,7 +91,7 @@ test("Lesson Seven keeps exactly two selected electrino-to-positrino arcs and a 
   assert.ok(smaller);
   assert.ok(larger.teachingWeight > smaller.teachingWeight);
   assert.ok(larger.arrow.lengthFraction > smaller.arrow.lengthFraction);
-  assert.ok(larger.arrow.width > smaller.arrow.width);
+  assert.equal(larger.arrow.width, smaller.arrow.width);
   assert.equal(scene.componentArrows.length, 2);
   assert.equal(scene.netAccelerationArrow.label, "net acceleration");
   assert.ok(scene.netVector.y > 0);
@@ -104,5 +109,9 @@ test("Lesson Seven advances all three bodies by the same path-time increment", (
     (body, index) => body.pathTime - initial.bodies[index].pathTime,
   );
 
-  assert.deepEqual(increments, [0.25, 0.25, 0.25]);
+  assert.deepEqual(increments, [0.5, 0.5, 0.5]);
+  assert.deepEqual(
+    advanced.bodies.map((body) => body.pathTime),
+    [0.5, 0.75, 1],
+  );
 });

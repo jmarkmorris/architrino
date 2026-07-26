@@ -318,8 +318,8 @@ const PROOFS = Object.freeze([
     expectedText: "At field speed, each architrino moves with the advancing edge of the wakes it continually emits. As successive wakes expand, their forward edges stay together at the moving front. The wake builds up there.",
   },
   {
-    id: "superposition-lesson-seven-desktop",
-    fileName: "lesson-seven-superposition-purple-1440x900.png",
+    id: "inverse-square-lesson-six-desktop",
+    fileName: "lesson-six-inverse-square-spreading-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
@@ -329,6 +329,40 @@ const PROOFS = Object.freeze([
     mode: "story",
     storyStep: 5,
     storyProgress: 0.62,
+    verifyInverseSquareSpreading: true,
+    expectedScene: "story:inverse-square-spreading",
+    expectedText: "Wake Strength Decreases as it Expands",
+    expectedSecondaryText: "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².",
+  },
+  {
+    id: "inverse-square-lesson-six-phone",
+    fileName: "lesson-six-inverse-square-spreading-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
+    wakeSeriesId: "live-positrino-to-electrino",
+    mode: "story",
+    storyStep: 5,
+    storyProgress: 0.72,
+    verifyInverseSquareSpreading: true,
+    expectedScene: "story:inverse-square-spreading",
+    expectedText: "Wake Strength Decreases as it Expands",
+    expectedSecondaryText: "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².",
+  },
+  {
+    id: "superposition-lesson-seven-desktop",
+    fileName: "lesson-seven-superposition-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
+    wakeSeriesId: "live-positrino-to-electrino",
+    mode: "story",
+    storyStep: 6,
+    storyProgress: 1,
     verifySuperposition: true,
     expectedScene: "story:superposition",
     expectedText: "Wakes Combine by Superposition",
@@ -344,8 +378,8 @@ const PROOFS = Object.freeze([
     replayTime: 0,
     wakeSeriesId: "live-positrino-to-electrino",
     mode: "story",
-    storyStep: 5,
-    storyProgress: 0.72,
+    storyStep: 6,
+    storyProgress: 1,
     verifySuperposition: true,
     expectedScene: "story:superposition",
     expectedText: "Wakes Combine by Superposition",
@@ -361,7 +395,7 @@ const PROOFS = Object.freeze([
     replayTime: 0,
     wakeSeriesId: "live-positrino-to-electrino",
     mode: "story",
-    storyStep: 6,
+    storyStep: 7,
     storyProgress: 0.62,
     verifyContinuousDelayedFeedback: true,
     expectedScene: "story:continuous-delayed-feedback",
@@ -378,7 +412,7 @@ const PROOFS = Object.freeze([
     replayTime: 0,
     wakeSeriesId: "live-positrino-to-electrino",
     mode: "story",
-    storyStep: 6,
+    storyStep: 7,
     storyProgress: 0.72,
     verifyContinuousDelayedFeedback: true,
     expectedScene: "story:continuous-delayed-feedback",
@@ -434,6 +468,10 @@ const CDF022_PROOF_IDS = Object.freeze(new Set([
   "continuous-delayed-feedback-desktop",
   "continuous-delayed-feedback-phone",
 ]));
+const CDF016_PROOF_IDS = Object.freeze(new Set([
+  "inverse-square-lesson-six-desktop",
+  "inverse-square-lesson-six-phone",
+]));
 const CDF018_PROOF_IDS = Object.freeze(new Set([
   "superposition-lesson-seven-desktop",
   "superposition-lesson-seven-phone",
@@ -479,6 +517,7 @@ try {
         !args.proof &&
         !args.all &&
         !CDF020_PROOF_IDS.has(proof.id) &&
+        !CDF016_PROOF_IDS.has(proof.id) &&
         !CDF018_PROOF_IDS.has(proof.id) &&
         !CDF022_PROOF_IDS.has(proof.id)
       ) {
@@ -605,6 +644,16 @@ function validateProofConfigurations(proofs) {
     }
     if (proof.mode !== "story" || proof.verifyContinuousDelayedFeedback !== true) {
       errors.push(`CDF-022 proof ${proofId} must be a Story continuous delayed-feedback proof`);
+    }
+  }
+  for (const proofId of CDF016_PROOF_IDS) {
+    const proof = proofsById.get(proofId);
+    if (!proof) {
+      errors.push(`CDF-016 proof ${proofId} is missing`);
+      continue;
+    }
+    if (proof.mode !== "story" || proof.verifyInverseSquareSpreading !== true) {
+      errors.push(`CDF-016 proof ${proofId} must be a Story inverse-square proof`);
     }
   }
   for (const proofId of CDF018_PROOF_IDS) {
@@ -885,7 +934,10 @@ async function prepareKeyboardJourney(cdp, sessionId, destination) {
     { mode: "story", storyStep: 2 },
     { mode: "story", storyStep: 3 },
     { mode: "story", storyStep: 4 },
-    { mode: "sandbox", storyStep: 4 },
+    { mode: "story", storyStep: 5 },
+    { mode: "story", storyStep: 6 },
+    { mode: "story", storyStep: 7 },
+    { mode: "sandbox", storyStep: 7 },
   ];
   for (const expectedState of expectedStates) {
     await pressFocusedButton("#nav-forward");
@@ -1415,14 +1467,24 @@ function createPrepareProofExpression(proof) {
       canvasDataset.browserLessonFiveBoundary =
         "emission-zero-only-cdf008-independent";
     }
-    if (${proof.verifySuperposition === true ? "true" : "false"}) {
+    if (${proof.verifyInverseSquareSpreading === true ? "true" : "false"}) {
+      const expectedLessonTitle =
+        "Wake Strength Decreases as it Expands";
+      const expectedLessonBody =
+        "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².";
+      const actualLessonTitle = document.querySelector(
+        "#causal-delay-feedback-lesson-title",
+      )?.textContent;
+      const actualLessonBody = document.querySelector(
+        "#causal-delay-feedback-lesson-body",
+      )?.textContent;
       const expectedLabels = [
         "1. Meet the Electrino and Positrino Transceivers",
         "2. Wakes Received Now Were Transmitted in the Past",
         "3. Two Reciprocal Causal Relationships",
         "4. Motion Changes Wake Shape",
         "5. Wake Buildup at Field Speed",
-        "6. Inverse-Square Spreading — Coming soon",
+        "6. Wake Strength Decreases as it Expands",
         "7. Wakes Combine by Superposition",
         "8. Continuous Delayed Feedback",
         "Laboratory",
@@ -1430,8 +1492,203 @@ function createPrepareProofExpression(proof) {
       const actualLabels = Array.from(
         document.querySelectorAll("#causal-delay-feedback-mode-tabs .causal-mode-tab"),
       ).map((button) => button.textContent?.trim());
-      const lessonSevenButton = document.querySelector('[data-causal-lesson="5"]');
-      const lessonEightButton = document.querySelector('[data-causal-lesson="6"]');
+      const lessonSixButton = document.querySelector('[data-causal-lesson="5"]');
+      const previewButtons = document.querySelectorAll("[data-causal-preview]");
+      const playButton = document.querySelector(
+        "#causal-delay-feedback-guided-play",
+      );
+      const scene = runtime.resetStoryScenarioPlayback();
+      const initialLiveFrame = runtime.inverseSquareSpreadingFrame;
+      playButton?.click();
+      await new Promise((resolve) => setTimeout(resolve, 240));
+      const playingLiveFrame = runtime.inverseSquareSpreadingFrame;
+      const uiPlayAdvanced =
+        runtime.isPlaying === true &&
+        playButton?.getAttribute("aria-label") === "Pause lesson" &&
+        playingLiveFrame?.phase > initialLiveFrame?.phase &&
+        playingLiveFrame?.wakes.length > 0 &&
+        ["positrino", "electrino"].every((kind) => (
+          Math.abs(
+            playingLiveFrame.bodies[kind].point.x -
+            initialLiveFrame.bodies[kind].point.x
+          ) <= 1e-9 &&
+          Math.abs(
+            playingLiveFrame.bodies[kind].point.y -
+            initialLiveFrame.bodies[kind].point.y
+          ) <= 1e-9
+        ));
+      playButton?.click();
+      const uiPauseWorked =
+        runtime.isPlaying === false &&
+        runtime.learnerState.playback.resumable === true &&
+        playButton?.getAttribute("aria-label") === "Resume lesson";
+      const inspectFrame = (progress) => {
+        if (!scene) {
+          return null;
+        }
+        const replayTime =
+          scene.playbackStartTime +
+          (scene.playbackEndTime - scene.playbackStartTime) * progress;
+        runtime.setPlaying(false, {
+          holdScene: scene,
+          holdReplayTime: replayTime,
+        });
+        runtime.render(replayTime);
+        return runtime.inverseSquareSpreadingFrame;
+      };
+      const earlierFrame = inspectFrame(0.25);
+      const laterFrame = inspectFrame(Number(${proof.storyProgress}));
+      const canvasDataset = runtime.dom.canvas.dataset;
+      const bodyKinds = ["positrino", "electrino"];
+      const bodiesStayFixed = bodyKinds.every((kind) => {
+        const earlierBody = earlierFrame?.bodies?.[kind];
+        const laterBody = laterFrame?.bodies?.[kind];
+        return (
+          earlierBody?.pathProgress === 0.5 &&
+          laterBody?.pathProgress === 0.5 &&
+          Math.abs(earlierBody.point.x - laterBody.point.x) <= 1e-9 &&
+          Math.abs(earlierBody.point.y - laterBody.point.y) <= 1e-9
+        );
+      });
+      const positrinoWakes = laterFrame?.wakes.filter(
+        (wake) => wake.sourceKind === "positrino",
+      ) ?? [];
+      const electrinoWakes = laterFrame?.wakes.filter(
+        (wake) => wake.sourceKind === "electrino",
+      ) ?? [];
+      const emissionProgresses = [
+        ...new Set(positrinoWakes.map((wake) => wake.emissionProgress)),
+      ];
+      const emissionGaps = emissionProgresses.slice(1).map(
+        (progress, index) => progress - emissionProgresses[index],
+      );
+      const equalEmissionIntervals =
+        emissionGaps.length > 0 &&
+        emissionGaps.every(
+          (gap) => Math.abs(gap - laterFrame.emissionInterval) <= 1e-12,
+        );
+      const geometricDilution = laterFrame?.wakes.every(
+        (wake) =>
+          wake.emittedAmount === 1 &&
+          wake.center === laterFrame.bodies[wake.sourceKind].point &&
+          wake.radius > 0 &&
+          Math.abs(
+            wake.sphericalArea - 4 * Math.PI * wake.radius * wake.radius
+          ) <= 1e-6 &&
+          Math.abs(
+            wake.inverseRadiusSquared - 1 / (wake.radius * wake.radius)
+          ) <= 1e-12,
+      );
+      const commonWakesExpand = earlierFrame?.wakes.every((wake) => {
+        const laterWake = laterFrame?.wakes.find(
+          (candidate) => candidate.id === wake.id,
+        );
+        return (
+          laterWake &&
+          laterWake.radius > wake.radius &&
+          laterWake.inverseRadiusSquared < wake.inverseRadiusSquared
+        );
+      });
+      const inverseSquareContract =
+        scene?.id === "inverse-square-spreading" &&
+        actualLessonTitle === expectedLessonTitle &&
+        actualLessonBody === expectedLessonBody &&
+        actualLabels.join("|") === expectedLabels.join("|") &&
+        lessonSixButton &&
+        lessonSixButton.disabled === false &&
+        lessonSixButton.getAttribute("aria-current") === "step" &&
+        uiPlayAdvanced &&
+        uiPauseWorked &&
+        previewButtons.length === 0 &&
+        document.querySelectorAll("[data-causal-lesson]").length === 8 &&
+        bodiesStayFixed &&
+        positrinoWakes.length > 0 &&
+        positrinoWakes.length === electrinoWakes.length &&
+        equalEmissionIntervals &&
+        geometricDilution &&
+        commonWakesExpand &&
+        canvasDataset.inverseSquareFixture ===
+          "shared-paired-path-fixed-halfway-constant-rate-circular-wakes" &&
+        canvasDataset.inverseSquareBodyProgress === "0.500000" &&
+        canvasDataset.inverseSquareWakeShape === "full-circular" &&
+        canvasDataset.inverseSquareWakeCenters === "fixed-body-points" &&
+        canvasDataset.inverseSquareEmissionCadence ===
+          "equal-interval-normalized-lesson-progress" &&
+        canvasDataset.inverseSquareComparisonOrnamentCount === "0" &&
+        canvasDataset.inverseSquareFormulaLabelCount === "0" &&
+        canvasDataset.inverseSquareDotStarGraphic === "false" &&
+        canvasDataset.inverseSquareFieldAmplitudeClaim === "false" &&
+        canvasDataset.inverseSquarePhysicalLawClaim === "false" &&
+        canvasDataset.displayEvidenceStatus === "display-only" &&
+        canvasDataset.displayPhysicsAcceptance === "false";
+      if (!inverseSquareContract) {
+        return {
+          ok: false,
+          reason: "inverse_square_spreading_contract_failed",
+          expectedLessonTitle,
+          actualLessonTitle,
+          expectedLessonBody,
+          actualLessonBody,
+          expectedLabels,
+          actualLabels,
+          sceneId: scene?.id ?? null,
+          lessonSixButton: Boolean(lessonSixButton),
+          lessonSixDisabled: lessonSixButton?.disabled,
+          playButton: Boolean(playButton),
+          uiPlayAdvanced,
+          uiPauseWorked,
+          initialLivePhase: initialLiveFrame?.phase,
+          playingLivePhase: playingLiveFrame?.phase,
+          playingLiveWakeCount: playingLiveFrame?.wakes.length,
+          previewCount: previewButtons.length,
+          lessonCount: document.querySelectorAll("[data-causal-lesson]").length,
+          bodiesStayFixed,
+          positrinoWakeCount: positrinoWakes.length,
+          electrinoWakeCount: electrinoWakes.length,
+          emissionGaps,
+          equalEmissionIntervals,
+          geometricDilution,
+          commonWakesExpand,
+          earlierFrame,
+          laterFrame,
+          dataset: {
+            fixture: canvasDataset.inverseSquareFixture,
+            bodyProgress: canvasDataset.inverseSquareBodyProgress,
+            wakeShape: canvasDataset.inverseSquareWakeShape,
+            wakeCenters: canvasDataset.inverseSquareWakeCenters,
+            emissionCadence: canvasDataset.inverseSquareEmissionCadence,
+            comparisonOrnamentCount:
+              canvasDataset.inverseSquareComparisonOrnamentCount,
+            formulaLabelCount: canvasDataset.inverseSquareFormulaLabelCount,
+            dotStarGraphic: canvasDataset.inverseSquareDotStarGraphic,
+            fieldAmplitudeClaim:
+              canvasDataset.inverseSquareFieldAmplitudeClaim,
+            physicalLawClaim: canvasDataset.inverseSquarePhysicalLawClaim,
+            evidenceStatus: canvasDataset.displayEvidenceStatus,
+            physicsAcceptance: canvasDataset.displayPhysicsAcceptance,
+          },
+        };
+      }
+      canvasDataset.browserInverseSquareSpreading =
+        "enabled-fixed-halfway-equal-interval-circular-wakes";
+    }
+    if (${proof.verifySuperposition === true ? "true" : "false"}) {
+      const expectedLabels = [
+        "1. Meet the Electrino and Positrino Transceivers",
+        "2. Wakes Received Now Were Transmitted in the Past",
+        "3. Two Reciprocal Causal Relationships",
+        "4. Motion Changes Wake Shape",
+        "5. Wake Buildup at Field Speed",
+        "6. Wake Strength Decreases as it Expands",
+        "7. Wakes Combine by Superposition",
+        "8. Continuous Delayed Feedback",
+        "Laboratory",
+      ];
+      const actualLabels = Array.from(
+        document.querySelectorAll("#causal-delay-feedback-mode-tabs .causal-mode-tab"),
+      ).map((button) => button.textContent?.trim());
+      const lessonSevenButton = document.querySelector('[data-causal-lesson="6"]');
+      const lessonEightButton = document.querySelector('[data-causal-lesson="7"]');
       const previewButtons = document.querySelectorAll("[data-causal-preview]");
       const expectedProgress = Number(${proof.storyProgress});
       const scene = runtime.storyHeldFrame?.scene;
@@ -1453,6 +1710,18 @@ function createPrepareProofExpression(proof) {
       });
       runtime.render(heldReplayTime);
       const fixture = runtime.superpositionScene;
+      runtime.setPlaying(false, {
+        holdScene: scene,
+        holdReplayTime: scene?.playbackEndTime,
+      });
+      runtime.render(scene?.playbackEndTime);
+      const terminalPathTimes =
+        runtime.superpositionScene?.bodies.map((body) => body.pathTime) ?? [];
+      runtime.setPlaying(false, {
+        holdScene: scene,
+        holdReplayTime: heldReplayTime,
+      });
+      runtime.render(heldReplayTime);
       const canvasDataset = runtime.dom.canvas.dataset;
       const increments = fixture?.bodies.map(
         (body, index) => body.pathTime - initialPathTimes[index],
@@ -1469,14 +1738,17 @@ function createPrepareProofExpression(proof) {
         lessonSevenButton &&
         lessonSevenButton.getAttribute("aria-current") === "step" &&
         lessonEightButton &&
-        previewButtons.length === 1 &&
-        document.querySelectorAll("[data-causal-lesson]").length === 7 &&
+        previewButtons.length === 0 &&
+        document.querySelectorAll("[data-causal-lesson]").length === 8 &&
         fixture?.bodies.length === 3 &&
         initialPathTimes.join(",") === "0,0.25,0.5" &&
         increments.length === 3 &&
         increments.every(
-          (increment) => Math.abs(increment - expectedProgress * 0.25) <= 1e-9,
+          (increment) => Math.abs(increment - expectedProgress * 0.5) <= 1e-9,
         ) &&
+        fixture.bodies.map((body) => body.label).join(",") ===
+          "electrino,positrino,electrino" &&
+        terminalPathTimes.join(",") === "0.5,0.75,1" &&
         fixture.selectedArcs.length === 2 &&
         fixture.selectedArcs.every(
           (arc) =>
@@ -1485,8 +1757,16 @@ function createPrepareProofExpression(proof) {
         ) &&
         fixture.componentArrows.length === 2 &&
         larger?.arrow.lengthFraction > smaller?.arrow.lengthFraction &&
-        larger?.arrow.width > smaller?.arrow.width &&
+        larger?.arrow.width === smaller?.arrow.width &&
         fixture.netAccelerationArrow?.label === "net acceleration" &&
+        canvasDataset.superpositionArrowheadStyle === "clean-triangle" &&
+        canvasDataset.superpositionArrowShaftEnd ===
+          "triangle-base-no-terminal-marker" &&
+        canvasDataset.superpositionWhiteArrowStrokeWidth === "3.2" &&
+        canvasDataset.superpositionBodyLabels ===
+          "electrino|positrino|electrino" &&
+        canvasDataset.superpositionLabelStyle ===
+          "lesson-one-lowercase-polarity-colors" &&
         canvasDataset.superpositionArcVisual === "curved_fading_causal_arcs" &&
         canvasDataset.superpositionNetDirection === "approximately-downward" &&
         canvasDataset.superpositionOmittedReciprocalSet === "true" &&
@@ -1501,6 +1781,7 @@ function createPrepareProofExpression(proof) {
           sceneId: scene?.id ?? null,
           initialPathTimes,
           increments,
+          terminalPathTimes,
           lessonSevenButton: Boolean(lessonSevenButton),
           lessonEightButton: Boolean(lessonEightButton),
           previewCount: previewButtons.length,
@@ -1512,6 +1793,12 @@ function createPrepareProofExpression(proof) {
             hasNetAcceleration: canvasDataset.superpositionHasNetAcceleration,
             wakeStyle: canvasDataset.superpositionWakeStyle,
             arcVisual: canvasDataset.superpositionArcVisual,
+            arrowheadStyle: canvasDataset.superpositionArrowheadStyle,
+            arrowShaftEnd: canvasDataset.superpositionArrowShaftEnd,
+            whiteArrowStrokeWidth:
+              canvasDataset.superpositionWhiteArrowStrokeWidth,
+            bodyLabels: canvasDataset.superpositionBodyLabels,
+            labelStyle: canvasDataset.superpositionLabelStyle,
             allAdvanceTogether: canvasDataset.superpositionAllAdvanceTogether,
             omittedReciprocalSet: canvasDataset.superpositionOmittedReciprocalSet,
             netDirection: canvasDataset.superpositionNetDirection,
@@ -1529,7 +1816,7 @@ function createPrepareProofExpression(proof) {
         "3. Two Reciprocal Causal Relationships",
         "4. Motion Changes Wake Shape",
         "5. Wake Buildup at Field Speed",
-        "6. Inverse-Square Spreading — Coming soon",
+        "6. Wake Strength Decreases as it Expands",
         "7. Wakes Combine by Superposition",
         "8. Continuous Delayed Feedback",
         "Laboratory",
@@ -1537,7 +1824,7 @@ function createPrepareProofExpression(proof) {
       const actualLabels = Array.from(
         document.querySelectorAll("#causal-delay-feedback-mode-tabs .causal-mode-tab"),
       ).map((button) => button.textContent?.trim());
-      const lessonEightButton = document.querySelector('[data-causal-lesson="6"]');
+      const lessonEightButton = document.querySelector('[data-causal-lesson="7"]');
       const previewButtons = document.querySelectorAll("[data-causal-preview]");
       const expectedProgress = Number(${proof.storyProgress});
       const scene = runtime.storyHeldFrame?.scene;
@@ -1649,8 +1936,8 @@ function createPrepareProofExpression(proof) {
           "timed_path_emission_point" &&
         actualLabels.join("|") === expectedLabels.join("|") &&
         lessonEightButton &&
-        previewButtons.length === 1 &&
-        document.querySelectorAll("[data-causal-lesson]").length === 7 &&
+        previewButtons.length === 0 &&
+        document.querySelectorAll("[data-causal-lesson]").length === 8 &&
         canvasDataset.continuousDelayedFeedbackStartAtLeftEnds === "false" &&
         canvasDataset.continuousDelayedFeedbackFrozenArcCount ===
           String(expectedCompletedRounds * 2) &&
@@ -2107,16 +2394,12 @@ function createPrepareProofExpression(proof) {
         "3. Two Reciprocal Causal Relationships",
         "4. Motion Changes Wake Shape",
         "5. Wake Buildup at Field Speed",
-        "6. Inverse-Square Spreading — Coming soon",
+        "6. Wake Strength Decreases as it Expands",
         "7. Wakes Combine by Superposition",
         "8. Continuous Delayed Feedback",
         "Laboratory",
       ];
-      const expectedActiveLabels = [
-        ...expectedLabels.slice(0, 5),
-        expectedLabels[6],
-        expectedLabels[7],
-      ];
+      const expectedActiveLabels = expectedLabels.slice(0, 8);
       const lessonButtons = Array.from(
         document.querySelectorAll(
           "#causal-delay-feedback-mode-tabs .causal-mode-tab"
@@ -2136,7 +2419,7 @@ function createPrepareProofExpression(proof) {
         JSON.stringify(actualLabels) !== JSON.stringify(expectedLabels) ||
         currentLabels.length !== 1 ||
         currentLabels[0] !== expectedCurrentLabel ||
-        document.querySelectorAll("[data-causal-lesson]").length !== 7 ||
+        document.querySelectorAll("[data-causal-lesson]").length !== 8 ||
         document.querySelectorAll("[data-causal-laboratory]").length !== 1
       ) {
         return {

@@ -73,10 +73,13 @@ import {
   createStoryContinuousDelayedFeedbackFrame,
   createStoryScene,
   createStorySampledWakeFronts,
-  INVERSE_SQUARE_START_PROGRESS,
   STORY_SHARED_PATH_PLAYBACK_SECONDS,
   STORY_TWO_THREE_HANDOFF_PATH_PROGRESS,
 } from "./CausalDelayFeedbackStoryMode.js";
+import {
+  INVERSE_SQUARE_BODY_PROGRESS,
+  createInverseSquareSpreadingFrame,
+} from "./CausalDelayFeedbackInverseSquareMode.js";
 import {
   createSuperpositionScene,
 } from "./CausalDelayFeedbackSuperpositionMode.js";
@@ -3027,25 +3030,77 @@ class CausalDelayFeedbackRuntime {
   drawStoryInverseSquareSpreading(
     ctx,
     scene,
-    _replayTime = this.getCurrentReplayTime(),
+    replayTime = this.getCurrentReplayTime(),
   ) {
-    this.drawGuidedLiveMarkers(
+    const frame = createInverseSquareSpreadingFrame(
+      this.learnerState,
+      scene,
+      replayTime,
+    );
+    this.inverseSquareSpreadingFrame = frame;
+    this.setCanvasDisplayAuthority(frame.displayAuthority);
+    frame.wakes.forEach((wake) => {
+      const sourceColor = wake.sourceKind === "positrino"
+        ? POSITRINO_WAKE
+        : ELECTRINO_WAKE;
+      const alpha = 0.24 + 0.48 * (1 - wake.ageProgress);
+      this.drawSolidWakeCircle(
+        ctx,
+        wake.center,
+        wake.radius,
+        withAlpha(mixColor(sourceColor, WHITE, 0.18), alpha),
+      );
+    });
+    this.drawLiveMarker(
       ctx,
-      scene.fixedBodyTime,
-      {
-        positrino: { x: 50, y: -64 },
-        electrino: { x: 50, y: 36 },
-      },
+      "Positrino",
+      POSITRINO,
+      frame.bodies.positrino.point,
+      "positrino",
+      { x: 50, y: -64 },
+    );
+    this.drawLiveMarker(
+      ctx,
+      "Electrino",
+      ELECTRINO,
+      frame.bodies.electrino.point,
+      "electrino",
+      { x: 50, y: 36 },
     );
     if (this.dom?.canvas) {
+      const positrinoScreen = this.worldToScreen(frame.bodies.positrino.point);
+      const electrinoScreen = this.worldToScreen(frame.bodies.electrino.point);
       this.dom.canvas.dataset.inverseSquareFixture =
-        "shared_paired_path_preview_baseline";
-      this.dom.canvas.dataset.inverseSquareStartProgress =
-        INVERSE_SQUARE_START_PROGRESS.toFixed(1);
-      this.dom.canvas.dataset.inverseSquareOrnamentCount = "0";
+        "shared-paired-path-fixed-halfway-constant-rate-circular-wakes";
+      this.dom.canvas.dataset.inverseSquareBodyProgress =
+        INVERSE_SQUARE_BODY_PROGRESS.toFixed(6);
+      this.dom.canvas.dataset.inverseSquareEmissionRate =
+        frame.emissionRate.toFixed(6);
+      this.dom.canvas.dataset.inverseSquareEmissionInterval =
+        frame.emissionInterval.toFixed(6);
+      this.dom.canvas.dataset.inverseSquareWakeCount =
+        String(frame.wakes.length);
+      this.dom.canvas.dataset.inverseSquareWakeShape = "full-circular";
+      this.dom.canvas.dataset.inverseSquareWakeCenters = "fixed-body-points";
+      this.dom.canvas.dataset.inverseSquareEmissionCadence =
+        "equal-interval-normalized-lesson-progress";
+      this.dom.canvas.dataset.inverseSquareAreaRule =
+        "same-emitted-amount-over-4pi-r-squared";
+      this.dom.canvas.dataset.inverseSquareContributionScaling =
+        "inverse-radius-squared";
+      this.dom.canvas.dataset.inverseSquareComparisonOrnamentCount = "0";
       this.dom.canvas.dataset.inverseSquareFormulaLabelCount = "0";
+      this.dom.canvas.dataset.inverseSquareDotStarGraphic = "false";
+      this.dom.canvas.dataset.inverseSquareFieldAmplitudeClaim = "false";
+      this.dom.canvas.dataset.inverseSquarePhysicalLawClaim = "false";
+      this.dom.canvas.dataset.storyBodyTime =
+        INVERSE_SQUARE_BODY_PROGRESS.toFixed(6);
+      this.dom.canvas.dataset.storyElectrinoScreen =
+        `${electrinoScreen.x.toFixed(2)},${electrinoScreen.y.toFixed(2)}`;
+      this.dom.canvas.dataset.storyPositrinoScreen =
+        `${positrinoScreen.x.toFixed(2)},${positrinoScreen.y.toFixed(2)}`;
       this.dom.canvas.dataset.inverseSquareEvidenceBoundary =
-        "Unaccepted preview on the shared paired-path display baseline; inverse-square pedagogy and visual encoding are pending operator-approved redesign.";
+        "Declared geometric-dilution teaching fixture with fixed halfway bodies and equal-interval wake emission. It does not establish a field amplitude, physical interaction law, measured magnitude, binding, stability, or solved trajectory.";
     }
   }
 
@@ -3107,27 +3162,35 @@ class CausalDelayFeedbackRuntime {
       const screen = this.worldToScreen(body.point);
       this.drawCircle(ctx, screen, 22, withAlpha(color, 0.14));
       this.drawCircle(ctx, screen, 10, color);
-      if (this.canvasWidth > 820) {
-        this.drawScreenText(
-          ctx,
-          body.label,
-          {
-            x: screen.x,
-            y: screen.y +
-              (body.id === "positrino" ? -34 : 34) * this.viewport.scale,
-          },
-          12,
-          withAlpha(WHITE, 0.9),
-          "center",
-          "bold",
-        );
-      }
+      const labelOffset = Math.max(18, 34 * this.viewport.scale);
+      const labelColor = body.kind === "electrino"
+        ? ELECTRINO_LABEL
+        : withAlpha(color, 0.9);
+      this.drawScreenText(
+        ctx,
+        body.label,
+        {
+          x: screen.x,
+          y: screen.y +
+            (body.id === "positrino" ? -labelOffset : labelOffset),
+        },
+        14,
+        labelColor,
+        "center",
+        "bold",
+      );
     });
     if (this.dom?.canvas) {
       this.dom.canvas.dataset.superpositionFixture =
         "three-shared-path-selected-electrino-contributions";
       this.dom.canvas.dataset.superpositionBodyCount =
         String(fixture.bodies.length);
+      this.dom.canvas.dataset.superpositionBodyLabels =
+        fixture.bodies.map((body) => body.label).join("|");
+      this.dom.canvas.dataset.superpositionBodyPathTimes =
+        fixture.bodies.map((body) => body.pathTime.toFixed(2)).join(",");
+      this.dom.canvas.dataset.superpositionLabelStyle =
+        "lesson-one-lowercase-polarity-colors";
       this.dom.canvas.dataset.superpositionSelectedArcCount =
         String(fixture.selectedArcs.length);
       this.dom.canvas.dataset.superpositionComponentArrowCount =
@@ -3138,12 +3201,17 @@ class CausalDelayFeedbackRuntime {
         fixture.selectedArcs[0]?.wakeFront?.style ?? "unavailable";
       this.dom.canvas.dataset.superpositionArcVisual =
         "curved_fading_causal_arcs";
+      this.dom.canvas.dataset.superpositionArrowheadStyle =
+        "clean-triangle";
+      this.dom.canvas.dataset.superpositionArrowShaftEnd =
+        "triangle-base-no-terminal-marker";
+      this.dom.canvas.dataset.superpositionWhiteArrowStrokeWidth =
+        "3.2";
       this.dom.canvas.dataset.superpositionAllAdvanceTogether =
         String(
           fixture.bodies.every(
             (body) =>
               Math.abs(
-                body.pathTime - body.startFraction - phase * 0.25,
                 body.pathTime - body.startFraction - phase * 0.5,
               ) <= 1e-9,
           ),
@@ -3175,19 +3243,15 @@ class CausalDelayFeedbackRuntime {
       x: start.x + dx * arrow.lengthFraction,
       y: start.y + dy * arrow.lengthFraction,
     };
-    const headLength = Math.min(
-      24 * this.viewport.scale,
-      length * arrow.lengthFraction * 0.3,
-    );
+    const headLength = 11;
     const base = {
       x: tip.x - ux * headLength,
       y: tip.y - uy * headLength,
     };
-    const headLength = 11;
     const halfWidth = 5.5;
     const color = withAlpha(WHITE, 0.96);
     const lineWidth = arrow.width / Math.max(this.viewport.scale, 0.01);
-    this.drawLine(ctx, [start, tip], color, lineWidth);
+    this.drawLine(ctx, [start, base], color, lineWidth);
     this.drawTriangle(ctx, [
       tip,
       { x: base.x - uy * halfWidth, y: base.y + ux * halfWidth },
@@ -3213,7 +3277,7 @@ class CausalDelayFeedbackRuntime {
     const halfWidth = 5.5;
     const color = withAlpha(WHITE, 0.98);
     const lineWidth = 3.2 / Math.max(this.viewport.scale, 0.01);
-    this.drawLine(ctx, [start, end], color, lineWidth);
+    this.drawLine(ctx, [start, base], color, lineWidth);
     this.drawTriangle(ctx, [
       end,
       { x: base.x - uy * halfWidth, y: base.y + ux * halfWidth },

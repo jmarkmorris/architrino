@@ -653,7 +653,7 @@ export class CausalDelayFeedbackModeController {
         : storyView?.id === "forward-buildup"
           ? `Lesson Five. ${storyView.body} This display does not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
           : storyView?.id === "inverse-square-spreading"
-            ? `Lesson Six preview. The shared two-architrino path frame is available for inspection, but the inverse-square explanation and visual design are being redesigned and are not accepted. Replay status: ${replayAuthoritySummary}.`
+            ? `Lesson Six. ${storyView.body} Replay status: ${replayAuthoritySummary}.`
           : storyView?.id === "superposition"
             ? `Lesson Seven. ${storyView.body} Replay status: ${replayAuthoritySummary}.`
           : storyView?.id === "continuous-delayed-feedback"
