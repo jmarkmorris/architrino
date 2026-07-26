@@ -1,13 +1,11 @@
 import {
   ARCHITRINO_KINDS,
-  DEFAULT_CANVAS_ID,
-  DEFAULT_PRESET_ID,
   ELECTRINO_WAKE,
+  FIXED_WAKE_VISUAL_STYLE,
   FRAME_COUNT,
   PATH_TIME_END_X,
   PATH_TIME_START_X,
   POSITRINO_WAKE,
-  getPresetById,
 } from "./CausalDelayFeedbackDisplayContract.js";
 import { sampleTimedPath } from "./CausalDelayFeedbackTimedPath.js";
 
@@ -124,14 +122,13 @@ export function createTemporaryMockReplayAdapter() {
   return {
     id: TEMPORARY_MOCK_ADAPTER,
     futureSolverTarget: EOM_NATIVE_STREAM_TARGET,
-    createReplay({ presetId = DEFAULT_PRESET_ID } = {}) {
-      return createMockCausalDelayReplayDataset(presetId);
+    createReplay() {
+      return createMockCausalDelayReplayDataset();
     },
   };
 }
 
-export function createMockCausalDelayReplayDataset(presetId = DEFAULT_PRESET_ID) {
-  const preset = getPresetById(presetId);
+export function createMockCausalDelayReplayDataset() {
   const paths = {
     positrino: samplePath("positrino"),
     electrino: samplePath("electrino"),
@@ -166,21 +163,12 @@ export function createMockCausalDelayReplayDataset(presetId = DEFAULT_PRESET_ID)
       ),
     );
   }
-  if (preset.contrastStress) {
-    applyContrastStressWakeState(wakeLinks);
-  }
-
   return {
-    runId: `causal-delay-feedback:${preset.id}`,
+    runId: "causal-delay-feedback:fixed-display",
     datasetSource: REPRESENTATIVE_MOCK_SOLVER_REPLAY,
     solverIntegrationPath: TEMPORARY_MOCK_ADAPTER,
     futureSolverTarget: EOM_NATIVE_STREAM_TARGET,
-    wakeArcDisplayMode: preset.wakeArcDisplayMode,
-    canvasColorId: preset.canvasColorId ?? DEFAULT_CANVAS_ID,
-    ...(Number.isFinite(Number(preset.assemblyThreshold))
-      ? { assemblyThreshold: Number(preset.assemblyThreshold) }
-      : {}),
-    preset,
+    wakeArcDisplayMode: FIXED_WAKE_VISUAL_STYLE.wakeArcDisplayMode,
     initialConditions,
     paths,
     history,
@@ -191,74 +179,6 @@ export function createMockCausalDelayReplayDataset(presetId = DEFAULT_PRESET_ID)
       electrino: paths.electrino[index],
     })),
   };
-}
-
-function applyContrastStressWakeState(wakeLinks) {
-  const [red1Blue2, blue1Red2, red2Blue3, blue2Red3, red3Blue4, blue3Red4] = wakeLinks;
-  if (red1Blue2) {
-    Object.assign(red1Blue2, {
-      solverRunId: "contrast-stress-red1-blue2-delayed-hit",
-      rootCount: 1,
-      solverHitCount: 1,
-      solverHitTime: red1Blue2.hitTime,
-      solverResidual: 0,
-    });
-  }
-  if (blue1Red2) {
-    Object.assign(blue1Red2, {
-      solverRunId: "contrast-stress-blue1-red2-root-only",
-      rootCount: 1,
-      solverHitCount: 0,
-      rootStatus: {
-        code: "contrast_root_without_hit",
-        severity: "warn",
-        message: "contrast stress root without accepted hit",
-      },
-    });
-  }
-  if (red2Blue3) {
-    Object.assign(red2Blue3, {
-      status: "stale",
-      reason: "contrast_stress_stale_solver_row",
-      solverRunId: "contrast-stress-red2-blue3-delayed-hit",
-      staleSolverRunId: "contrast-stress-red2-blue3-delayed-hit",
-      staleReplaySource: "contrast_stress",
-      rootCount: 1,
-      solverHitCount: 1,
-      solverHitTime: red2Blue3.hitTime,
-      solverResidual: 0,
-    });
-  }
-  if (blue2Red3) {
-    Object.assign(blue2Red3, {
-      solverRunId: "contrast-stress-blue2-red3-rejected",
-      rootCount: 0,
-      solverHitCount: 0,
-      rootStatus: {
-        code: "contrast_no_delayed_hit",
-        severity: "warn",
-        message: "contrast stress rejected wake row",
-      },
-    });
-  }
-  if (red3Blue4) {
-    Object.assign(red3Blue4, {
-      solverRunId: "contrast-stress-red3-blue4-delayed-hit",
-      rootCount: 1,
-      solverHitCount: 1,
-      solverHitTime: red3Blue4.hitTime,
-      solverResidual: 0,
-    });
-  }
-  if (blue3Red4) {
-    Object.assign(blue3Red4, {
-      solverRunId: "contrast-stress-blue3-red4-delayed-hit",
-      rootCount: 1,
-      solverHitCount: 1,
-      solverHitTime: blue3Red4.hitTime,
-      solverResidual: 0,
-    });
-  }
 }
 
 function createInitialConditionsFromPaths(paths) {

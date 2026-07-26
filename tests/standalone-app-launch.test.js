@@ -10,11 +10,19 @@ import {
   APPLICATIONS_SCENE_PATH,
   STANDALONE_APP_HOME_HREF,
   STANDALONE_APP_HOME_RETURN_STORAGE_KEY,
+  STANDALONE_SITE_HOME_HREF,
   consumeStandaloneAppHomeReturn,
   navigateStandaloneAppHome,
   recordStandaloneAppHomeReturn,
   resolveStandaloneAppHomeHref,
+  resolveStandaloneSiteHomeHref,
 } from "../src/apps/navigator/StandaloneAppHomeRuntime.js";
+import {
+  GLOBAL_SCENE_GRAPH_MANIFEST_PATH,
+  TEXTBOOK_TOC_SCENE_PATH,
+  resolveStandaloneGlobalSceneHref,
+  resolveStandaloneGlobalSearchHref,
+} from "../src/apps/navigator/StandaloneAppSceneSearchRuntime.js";
 
 function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
@@ -118,6 +126,45 @@ test("standalone app home href returns to the Applications scene", () => {
   assert.equal(
     resolveStandaloneAppHomeHref("http://127.0.0.1:5173/photon.html"),
     "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json"
+  );
+});
+
+test("standalone site home href resolves the actual root homepage without the Applications hash", () => {
+  assert.equal(STANDALONE_SITE_HOME_HREF, "./index.html");
+  assert.equal(
+    resolveStandaloneSiteHomeHref(
+      "http://127.0.0.1:5173/causal-delay-feedback.html?replay=mock",
+    ),
+    "http://127.0.0.1:5173/index.html",
+  );
+});
+
+test("standalone global search uses the canonical scene graph and main-app navigation contract", () => {
+  assert.equal(GLOBAL_SCENE_GRAPH_MANIFEST_PATH, "content/graph/scene_graph.json");
+  assert.equal(
+    resolveStandaloneGlobalSearchHref(
+      "content/scenes/archie/causal_delay_feedback.json",
+      "http://127.0.0.1:5173/causal-delay-feedback.html?replay=mock",
+    ),
+    "http://127.0.0.1:5173/causal-delay-feedback.html",
+  );
+  assert.equal(
+    resolveStandaloneGlobalSearchHref(
+      "content/scenes/architrino_assembly_architecture.json",
+      "http://127.0.0.1:5173/causal-delay-feedback.html?replay=mock",
+    ),
+    "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchitrino_assembly_architecture.json",
+  );
+});
+
+test("standalone global TOC resolves the canonical textbook TOC scene", () => {
+  assert.equal(TEXTBOOK_TOC_SCENE_PATH, "content/scenes/archie/textbook_toc.json");
+  assert.equal(
+    resolveStandaloneGlobalSceneHref(
+      TEXTBOOK_TOC_SCENE_PATH,
+      "http://127.0.0.1:5173/causal-delay-feedback.html?replay=mock",
+    ),
+    "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Ftextbook_toc.json",
   );
 });
 

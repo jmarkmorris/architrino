@@ -11,18 +11,16 @@ import {
   ARCHITRINO_BODY_HALO_RADIUS,
   ARCHITRINO_BODY_OUTLINE_WIDTH,
   ARCHITRINO_BODY_RADIUS,
-  CANVAS_COLORS,
   CAUSAL_PATH_STROKE_WIDTH,
-  DEFAULT_CANVAS_ID,
-  DEFAULT_PRESET_ID,
   DEFAULT_TRANSMISSION_POINT_MARKER_VARIANT,
   DESIGN_HEIGHT,
   DESIGN_WIDTH,
   ELECTRINO,
   ELECTRINO_WAKE,
+  FIXED_CANVAS_COLOR,
+  FIXED_WAKE_VISUAL_STYLE,
   POSITRINO,
   POSITRINO_WAKE,
-  PRESETS,
   SPACE_AXIS_TOP_Y,
   TIME_AXIS_BASELINE_Y,
   TIME_AXIS_END_X,
@@ -32,8 +30,6 @@ import {
   TRANSMISSION_POINT_MARKER_STYLES,
   TRANSMISSION_POINT_MARKER_VARIANTS,
   WHITE,
-  getCanvasColorById,
-  getPresetById,
   normalizeTransmissionPointMarkerVariant,
 } from "./CausalDelayFeedbackDisplayContract.js";
 import { EOM_REPLAY_DATASET_SOURCE } from "./CausalDelayFeedbackEomReplayAdapter.js";
@@ -60,8 +56,13 @@ import {
 } from "./CausalDelayFeedbackModeController.js";
 import {
   navigateStandaloneAppHome,
-  resolveStandaloneAppHomeHref,
+  resolveStandaloneSiteHomeHref,
 } from "../navigator/StandaloneAppHomeRuntime.js";
+import {
+  createStandaloneAppSceneSearchRuntime,
+  resolveStandaloneGlobalSceneHref,
+  TEXTBOOK_TOC_SCENE_PATH,
+} from "../navigator/StandaloneAppSceneSearchRuntime.js";
 import {
   DEFAULT_CAUSAL_DELAY_FEEDBACK_MODE,
   normalizeCausalDelayFeedbackMode,
@@ -101,15 +102,8 @@ const NOW_SLIDER_MAX = 1000;
 const DEFAULT_ASSEMBLY_THRESHOLD = 0.00075;
 const MIN_RETAINED_DEPTH_LIMIT = 2;
 const RETAINED_DEPTH_LIMIT_OPTIONS = Object.freeze([2, 4, 8, 16, 32, 64]);
-const FIELD_SPEED_CONTROL_MIN = 0.25;
-const FIELD_SPEED_CONTROL_MAX = 1.75;
-const DEFAULT_FIELD_SPEED_CONTROL_SCALE = 1;
-const FIELD_SPEED_MIN = FIELD_SPEED_CONTROL_MIN;
-const FIELD_SPEED_MAX = FIELD_SPEED_CONTROL_MAX;
-const DEFAULT_FIELD_SPEED_SCALE = DEFAULT_FIELD_SPEED_CONTROL_SCALE;
+const DEFAULT_FIELD_SPEED_SCALE = 1;
 const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
-const ARCHITRINO_SPEED_FRACTIONS = Object.freeze([0.1, 0.3, 0.5, 0.7, 0.9, 0.99, 0.999, 0.9999, 0.99999, 0.999999]);
-const DEFAULT_ARCHITRINO_SPEED_INDEX = 3;
 const VIEWPORT_ZOOM_MIN = 1;
 const VIEWPORT_ZOOM_MAX = 3;
 const WHEEL_ZOOM_SENSITIVITY = 0.0015;
@@ -125,11 +119,6 @@ const CENTRIPETAL_CATMULL_ROM_ALPHA = 0.5;
 const PATH_ENDPOINT_HANDLE_RADIUS = 5.5;
 const PATH_ENDPOINT_HANDLE_HIT_RADIUS = 18;
 const ELECTRINO_LABEL = Object.freeze(mixColor(ELECTRINO, WHITE, 0.58));
-const LIGHT_CANVAS_COLOR_IDS = new Set(["light", "warm"]);
-const LEGEND_TEXT_ON_DARK_CANVAS = "rgba(246, 247, 255, 0.9)";
-const LEGEND_TEXT_ON_LIGHT_CANVAS = "rgba(14, 9, 24, 0.88)";
-const LEGEND_BORDER_ON_DARK_CANVAS = "rgba(224, 207, 255, 0.34)";
-const LEGEND_BORDER_ON_LIGHT_CANVAS = "rgba(14, 9, 24, 0.24)";
 const WEAK_CONTRIBUTION_CUE_VISUAL_THRESHOLD_MULTIPLIER = 8;
 const WEAK_CONTRIBUTION_CUE_MIN_ALPHA_SCALE = 0.36;
 const WEAK_CONTRIBUTION_CUE_MIN_RADIUS_SCALE = 0.56;
@@ -234,14 +223,6 @@ function createViewport(canvasWidth, canvasHeight, zoom = 1) {
   };
 }
 
-function getInitialQueryValue(windowLike, key) {
-  try {
-    return new URL(windowLike?.location?.href ?? "http://localhost/").searchParams.get(key);
-  } catch {
-    return null;
-  }
-}
-
 function cloneJson(value) {
   return value == null ? value : JSON.parse(JSON.stringify(value));
 }
@@ -272,21 +253,8 @@ class CausalDelayFeedbackRuntime {
     );
     this.backgroundDepthFieldEnabled = this.normalizeBooleanSetting(options.backgroundDepthFieldEnabled);
     this.isPlaying = !this.reducedMotionEnabled;
-    this.fieldSpeedScale = this.normalizeFieldSpeedScale(options.fieldSpeedScale ?? DEFAULT_FIELD_SPEED_SCALE);
-    this.architrinoSpeedIndex = this.normalizeArchitrinoSpeedIndex(
-      options.architrinoSpeedIndex ?? DEFAULT_ARCHITRINO_SPEED_INDEX,
-    );
-    this.architrinoVelocityReference = {};
-    this.presetId = getPresetById(
-      options.presetId ?? getInitialQueryValue(this.window, "preset") ?? DEFAULT_PRESET_ID,
-    ).id;
-    this.wakeVisualSettings = this.createWakeVisualSettingsForPreset(
-      getPresetById(this.presetId),
-      options.wakeVisualSettings,
-    );
-    this.canvasColorId = getCanvasColorById(
-      options.canvasColorId ?? getInitialQueryValue(this.window, "canvas") ?? DEFAULT_CANVAS_ID,
-    ).id;
+    this.fieldSpeedScale = DEFAULT_FIELD_SPEED_SCALE;
+    this.wakeVisualSettings = this.createWakeVisualSettings(options.wakeVisualSettings);
     this.transmissionPointMarkerVariant = normalizeTransmissionPointMarkerVariant(
       options.transmissionPointMarkerVariant ??
         DEFAULT_TRANSMISSION_POINT_MARKER_VARIANT,
@@ -298,9 +266,8 @@ class CausalDelayFeedbackRuntime {
     this.replayLoadSequence = 0;
     this.replayLoadState = "idle";
     this.replayLoadError = null;
-    this.dataset = this.createFallbackReplay(this.presetId);
+    this.dataset = this.createFallbackReplay();
     this.updateWakeLinkGeometry();
-    this.resetArchitrinoVelocityReference();
     this.learnerState = createCanonicalLearnerState(this.dataset, {
       receiverTime: 0.62,
       mode: normalizeCausalDelayFeedbackMode(
@@ -340,8 +307,6 @@ class CausalDelayFeedbackRuntime {
       throw new Error("Canvas 2D context is unavailable.");
     }
 
-    this.populateCanvasSwatches();
-    this.updateSpeedControls();
     this.updateDisplaySettingControls();
     this.updateNowControl();
     this.updateReplayStatus();
@@ -364,11 +329,34 @@ class CausalDelayFeedbackRuntime {
       onHome: () => {
         navigateStandaloneAppHome(
           this.window?.location,
-          resolveStandaloneAppHomeHref(this.window?.location?.href),
+          resolveStandaloneSiteHomeHref(this.window?.location?.href),
           {
             windowLike: this.window,
             returnHref: this.window?.location?.href,
           },
+        );
+      },
+      onTableOfContents: () => {
+        navigateStandaloneAppHome(
+          this.window?.location,
+          resolveStandaloneGlobalSceneHref(
+            TEXTBOOK_TOC_SCENE_PATH,
+            this.window?.location?.href,
+          ),
+          {
+            windowLike: this.window,
+            returnHref: this.window?.location?.href,
+          },
+        );
+      },
+    }).init();
+    this.sceneSearchRuntime = createStandaloneAppSceneSearchRuntime({
+      document: this.document,
+      window: this.window,
+      onOpenChange: (isOpen) => {
+        this.modeController.dom.journey.classList.toggle(
+          "is-global-search-open",
+          isOpen,
         );
       },
     }).init();
@@ -395,58 +383,22 @@ class CausalDelayFeedbackRuntime {
         this.document,
         "#causal-delay-feedback-guided-last-frame",
       ),
-      settingsButton: queryRequiredElement(this.document, "#causal-delay-feedback-settings"),
       visualSwitches: queryRequiredElement(this.document, "#causal-delay-feedback-visual-switches"),
-      settingsPanel: queryRequiredElement(this.document, "#causal-delay-feedback-settings-panel"),
-      resetPresetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset-preset"),
-      colorSwatches: queryRequiredElement(this.document, "#causal-delay-feedback-color-swatches"),
       nowInput: queryRequiredElement(this.document, "#causal-delay-feedback-now"),
       nowValue: this.document.querySelector("#causal-delay-feedback-now-value"),
-      cfSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed"),
-      cfSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed-value"),
-      architrinoSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed"),
-      architrinoSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed-value"),
       replayStatus: queryRequiredElement(this.document, "#causal-delay-feedback-replay-status"),
       readout: queryRequiredElement(this.document, "#causal-delay-feedback-readout"),
     };
   }
 
-  populateCanvasSwatches() {
-    this.dom.colorSwatches.replaceChildren(
-      ...CANVAS_COLORS.map((entry) => {
-        const button = this.document.createElement("button");
-        button.type = "button";
-        button.className = "causal-swatch";
-        button.style.background = entry.color;
-        button.dataset.colorId = entry.id;
-        button.setAttribute("aria-label", entry.label);
-        return button;
-      }),
-    );
-    this.updateCanvasSwatchSelection();
-  }
-
-  createWakeVisualSettingsForPreset(preset, overrides = null) {
+  createWakeVisualSettings(overrides = null) {
     const settings = { ...DEFAULT_WAKE_VISUAL_SETTINGS };
-    switch (preset?.id) {
-      case "full_circular_arcs":
-        settings.arcWakesEnabled = false;
-        settings.fullCircularWakesEnabled = true;
-        break;
-      default:
-        break;
-    }
     Object.entries(overrides ?? {}).forEach(([key, value]) => {
       if (Object.prototype.hasOwnProperty.call(settings, key)) {
         settings[key] = this.normalizeBooleanSetting(value);
       }
     });
     return settings;
-  }
-
-  setWakeVisualSettingsFromPreset(presetId) {
-    this.wakeVisualSettings = this.createWakeVisualSettingsForPreset(getPresetById(presetId));
-    this.updateDisplaySettingControls();
   }
 
   toggleWakeVisualSwitch(switchId) {
@@ -495,12 +447,6 @@ class CausalDelayFeedbackRuntime {
         this.jumpToLastFrame();
       });
     }
-    this.listen(this.dom.resetPresetButton, "click", () => {
-      void this.resetPreset();
-    });
-    this.listen(this.dom.settingsButton, "click", () => {
-      this.toggleSettings();
-    });
     this.listen(this.dom.visualSwitches, "click", (event) => {
       const button = event.target.closest("[data-visual-switch]");
       if (!button) {
@@ -508,31 +454,8 @@ class CausalDelayFeedbackRuntime {
       }
       this.toggleWakeVisualSwitch(button.dataset.visualSwitch);
     });
-    this.listen(this.dom.colorSwatches, "click", (event) => {
-      const button = event.target.closest("[data-color-id]");
-      if (!button) {
-        return;
-      }
-      this.setCanvasColor(button.dataset.colorId);
-    });
     this.listen(this.dom.nowInput, "input", () => {
       this.setReplayNowSliderValue(this.dom.nowInput.value);
-    });
-    this.listen(this.dom.cfSpeedInput, "input", () => {
-      this.setFieldSpeedControlScale(this.dom.cfSpeedInput.value);
-    });
-    this.listen(this.dom.architrinoSpeedInput, "input", () => {
-      this.setArchitrinoSpeedIndex(this.dom.architrinoSpeedInput.value);
-    });
-    this.listen(this.dom.architrinoSpeedInput, "change", () => {
-      void this.submitArchitrinoSpeedFraction();
-    });
-    this.listen(this.dom.settingsPanel, "click", (event) => {
-      const button = event.target.closest("[data-architrino-speed-step]");
-      if (!button) {
-        return;
-      }
-      void this.stepArchitrinoSpeedIndex(Number(button.dataset.architrinoSpeedStep));
     });
     this.listen(this.dom.canvas, "pointermove", (event) => {
       this.handleCanvasPointerMove(event);
@@ -554,16 +477,6 @@ class CausalDelayFeedbackRuntime {
     this.listen(this.window, "pointercancel", (event) => {
       void this.finishDrag(event);
     });
-    this.listen(this.document, "pointerdown", (event) => {
-      if (
-        this.dom.settingsPanel.hidden ||
-        this.dom.settingsPanel.contains(event.target) ||
-        this.dom.settingsButton.contains(event.target)
-      ) {
-        return;
-      }
-      this.hideSettings();
-    });
   }
 
   listen(target, type, handler, options) {
@@ -571,67 +484,31 @@ class CausalDelayFeedbackRuntime {
     this.eventListeners.push({ target, type, handler, options });
   }
 
-  setPreset(presetId) {
-    this.presetId = getPresetById(presetId).id;
-    this.setWakeVisualSettingsFromPreset(this.presetId);
-    this.elapsedSeconds = 0;
-    this.selectedItem = null;
-    this.dragState = null;
-    const fallbackDataset = this.createFallbackReplay(this.presetId);
-    this.retainedDepthLimit = this.normalizeRetainedDepthLimit(fallbackDataset.initialConditions?.historyDepth);
-    this.applyReplayDataset(fallbackDataset, {
-      loadState: this.usesFallbackReplayOnly() || this.shouldUseRepresentativeReplayOnly(this.presetId) ? "ready" : "loading",
-    });
-    this.refreshAfterReplayDatasetChange();
-    return this.loadReplay();
-  }
-
-  createFallbackReplay(presetId = this.presetId) {
+  createFallbackReplay() {
     if (typeof this.fallbackReplayAdapter.createReplay === "function") {
-      return this.fallbackReplayAdapter.createReplay({ presetId });
+      return this.fallbackReplayAdapter.createReplay();
     }
-    return createMockCausalDelayReplayDataset(presetId);
+    return createMockCausalDelayReplayDataset();
   }
 
   usesFallbackReplayOnly() {
     return this.replayAdapter === this.fallbackReplayAdapter && typeof this.replayAdapter.createReplayAsync !== "function";
   }
 
-  shouldUseRepresentativeReplayOnly(presetId = this.presetId) {
-    return getPresetById(presetId).representativeOnly === true;
-  }
-
   async loadReplay({
-    presetId = this.presetId,
     requestOptions = this.replayRequestOptions,
   } = {}) {
-    const selectedPresetId = getPresetById(presetId).id;
     const sequence = ++this.replayLoadSequence;
     const adapter = this.replayAdapter;
     this.replayLoadState = "loading";
     this.replayLoadError = null;
     this.updateReplayStatus();
 
-    if (this.shouldUseRepresentativeReplayOnly(selectedPresetId)) {
-      const dataset = this.createFallbackReplay(selectedPresetId);
-      if (sequence !== this.replayLoadSequence) {
-        return this.dataset;
-      }
-      this.presetId = selectedPresetId;
-      this.applyReplayDataset(dataset, { loadState: "ready" });
-      this.elapsedSeconds = 0;
-      this.selectedItem = null;
-      this.dragState = null;
-      this.refreshAfterReplayDatasetChange();
-      return this.dataset;
-    }
-
     try {
-      const dataset = await this.createReplayDataset(adapter, selectedPresetId, requestOptions);
+      const dataset = await this.createReplayDataset(adapter, requestOptions);
       if (sequence !== this.replayLoadSequence) {
         return this.dataset;
       }
-      this.presetId = selectedPresetId;
       this.applyReplayDataset(dataset, { loadState: "ready" });
       this.elapsedSeconds = 0;
       this.selectedItem = null;
@@ -643,8 +520,7 @@ class CausalDelayFeedbackRuntime {
         return this.dataset;
       }
       this.replayLoadError = error;
-      this.presetId = selectedPresetId;
-      this.applyReplayDataset(this.createFallbackReplay(selectedPresetId), { loadState: "fallback" });
+      this.applyReplayDataset(this.createFallbackReplay(), { loadState: "fallback" });
       this.elapsedSeconds = 0;
       this.selectedItem = null;
       this.dragState = null;
@@ -653,10 +529,10 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
-  createReplayDataset(adapter, presetId, requestOptions) {
+  createReplayDataset(adapter, requestOptions) {
     return typeof adapter.createReplayAsync === "function"
-      ? adapter.createReplayAsync({ presetId, requestOptions })
-      : adapter.createReplay({ presetId, requestOptions });
+      ? adapter.createReplayAsync({ requestOptions })
+      : adapter.createReplay({ requestOptions });
   }
 
   applyReplayDataset(dataset, { loadState = this.replayLoadState } = {}) {
@@ -664,14 +540,11 @@ class CausalDelayFeedbackRuntime {
     this.invalidateComputedCaches();
     this.replayLoadState = loadState;
     this.retainedDepthLimit = this.normalizeRetainedDepthLimit(this.retainedDepthLimit);
-    this.applyDatasetCanvasColor(dataset);
     this.updateWakeLinkGeometry();
-    this.resetArchitrinoVelocityReference();
     this.syncReplayRequestOptionsFromDataset();
     this.refreshLearnerState({
       receiverTime: this.learnerState?.receiverTime ?? this.getCurrentReplayTime(),
     });
-    this.updateSpeedControls();
     this.updateReplayStatus();
   }
 
@@ -696,7 +569,6 @@ class CausalDelayFeedbackRuntime {
       replayDataset: this.dataset,
       retainedDepthLimit: this.retainedDepthLimit,
       fieldSpeedScale: this.fieldSpeedScale,
-      architrinoSpeedFraction: this.getArchitrinoSpeedFraction(),
     };
     this.replayRequestOptions = requestOptions;
   }
@@ -837,67 +709,6 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
-  setCanvasColor(colorId) {
-    this.canvasColorId = getCanvasColorById(colorId).id;
-    this.updateCanvasSwatchSelection();
-    if (this.dom?.settingsPanel) {
-      this.hideSettings();
-    }
-    this.render();
-  }
-
-  setFieldSpeedScale(speedScale) {
-    const nextScale = this.normalizeFieldSpeedScale(speedScale);
-    if (nextScale === this.fieldSpeedScale) {
-      this.updateFieldSpeedControl();
-      return;
-    }
-    this.fieldSpeedScale = nextScale;
-    this.syncReplayRequestOptionsFromDataset();
-    this.updateFieldSpeedControl();
-  }
-
-  setFieldSpeedControlScale(controlScale) {
-    this.setFieldSpeedScale(this.getFieldSpeedScaleForControlScale(controlScale));
-  }
-
-  setArchitrinoSpeedIndex(speedIndex, { submit = false } = {}) {
-    const nextIndex = this.normalizeArchitrinoSpeedIndex(speedIndex);
-    const didIndexChange = nextIndex !== this.architrinoSpeedIndex;
-    this.architrinoSpeedIndex = nextIndex;
-    const didEdit = didIndexChange && this.applyArchitrinoSpeedFraction(this.getArchitrinoSpeedFraction());
-    this.updateArchitrinoSpeedControl();
-    if (didEdit) {
-      this.updateWakeLinkGeometry();
-      this.syncReplayRequestOptionsFromDataset();
-      this.markDraftPreview("architrino_speed_fraction_preview");
-      if (this.dom?.readout) {
-        this.updateReadout();
-      }
-      if (this.context) {
-        this.render();
-      }
-    } else {
-      this.syncReplayRequestOptionsFromDataset();
-    }
-    if (submit) {
-      return this.submitArchitrinoSpeedFraction();
-    }
-    return this.dataset;
-  }
-
-  stepArchitrinoSpeedIndex(direction) {
-    const step = Math.sign(Number(direction) || 0);
-    if (step === 0) {
-      return this.dataset;
-    }
-    return this.setArchitrinoSpeedIndex(this.architrinoSpeedIndex + step, { submit: true });
-  }
-
-  submitArchitrinoSpeedFraction() {
-    return this.dataset;
-  }
-
   setRetainedDepthLimit(depthLimit) {
     const nextLimit = this.normalizeRetainedDepthLimit(depthLimit);
     if (nextLimit === this.retainedDepthLimit) {
@@ -913,9 +724,6 @@ class CausalDelayFeedbackRuntime {
     }
     if (this.context) {
       this.render();
-    }
-    if (this.dom?.settingsPanel) {
-      this.hideSettings();
     }
   }
 
@@ -947,51 +755,6 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
-  applyDatasetCanvasColor(dataset) {
-    const colorId = dataset?.canvasColorId ?? dataset?.preset?.canvasColorId;
-    if (!colorId) {
-      return;
-    }
-    this.canvasColorId = getCanvasColorById(colorId).id;
-    this.updateCanvasSwatchSelection();
-  }
-
-  updateCanvasSwatchSelection() {
-    this.updateCanvasThemeVariables();
-    if (!this.dom?.colorSwatches) {
-      return;
-    }
-    Array.from(this.dom.colorSwatches.children).forEach((button) => {
-      button.classList.toggle("is-active", button.dataset.colorId === this.canvasColorId);
-    });
-  }
-
-  updateCanvasThemeVariables() {
-    if (!this.dom?.app?.style) {
-      return;
-    }
-    const canvasColor = getCanvasColorById(this.canvasColorId);
-    const usesLightCanvas = LIGHT_CANVAS_COLOR_IDS.has(canvasColor.id);
-    this.dom.app.style.setProperty("--causal-selected-canvas-color", canvasColor.color);
-    this.dom.app.style.setProperty(
-      "--causal-legend-text-color",
-      usesLightCanvas ? LEGEND_TEXT_ON_LIGHT_CANVAS : LEGEND_TEXT_ON_DARK_CANVAS,
-    );
-    this.dom.app.style.setProperty(
-      "--causal-legend-border-color",
-      usesLightCanvas ? LEGEND_BORDER_ON_LIGHT_CANVAS : LEGEND_BORDER_ON_DARK_CANVAS,
-    );
-    this.dom.app.style.setProperty("--causal-positrino-color", colorToCss(POSITRINO));
-    this.dom.app.style.setProperty("--causal-electrino-color", colorToCss(ELECTRINO));
-    this.dom.app.style.setProperty("--causal-positrino-wake-color", colorToCss(POSITRINO_WAKE));
-    this.dom.app.style.setProperty("--causal-electrino-wake-color", colorToCss(ELECTRINO_WAKE));
-  }
-
-  updateSpeedControls() {
-    this.updateFieldSpeedControl();
-    this.updateArchitrinoSpeedControl();
-  }
-
   updateDisplaySettingControls() {
     if (this.dom?.visualSwitches) {
       Array.from(this.dom.visualSwitches.children).forEach((button) => {
@@ -1003,28 +766,6 @@ class CausalDelayFeedbackRuntime {
         button.classList.toggle("is-active", isActive);
         button.setAttribute("aria-pressed", isActive ? "true" : "false");
       });
-    }
-  }
-
-  updateFieldSpeedControl() {
-    if (this.dom?.cfSpeedInput) {
-      const roundedControlScale = Math.round(this.getFieldSpeedControlScale(this.fieldSpeedScale) * 100) / 100;
-      this.dom.cfSpeedInput.value = String(roundedControlScale);
-    }
-    if (this.dom?.cfSpeedValue) {
-      this.dom.cfSpeedValue.textContent = this.formatFieldSpeedScale(this.fieldSpeedScale);
-    }
-  }
-
-  updateArchitrinoSpeedControl() {
-    if (this.dom?.architrinoSpeedInput) {
-      this.dom.architrinoSpeedInput.value = String(this.architrinoSpeedIndex);
-    }
-    if (this.dom?.architrinoSpeedValue) {
-      const value = this.formatArchitrinoSpeedFraction(this.getArchitrinoSpeedFraction());
-      this.dom.architrinoSpeedValue.textContent = `${value} C_f`;
-      this.dom.architrinoSpeedValue.setAttribute("aria-label", `${value} times field speed`);
-      this.dom.architrinoSpeedValue.innerHTML = `${value} C<sub>f</sub>`;
     }
   }
 
@@ -1054,32 +795,6 @@ class CausalDelayFeedbackRuntime {
     return RETAINED_DEPTH_LIMIT_OPTIONS.find((depth) => depth >= candidate) ?? RETAINED_DEPTH_LIMIT_OPTIONS.at(-1);
   }
 
-  normalizeFieldSpeedScale(speedScale) {
-    const numericScale = Number(speedScale);
-    const candidate = Number.isFinite(numericScale) ? numericScale : DEFAULT_FIELD_SPEED_SCALE;
-    return clamp(candidate, FIELD_SPEED_MIN, FIELD_SPEED_MAX);
-  }
-
-  normalizeFieldSpeedControlScale(controlScale) {
-    const numericScale = Number(controlScale);
-    const candidate = Number.isFinite(numericScale) ? numericScale : DEFAULT_FIELD_SPEED_CONTROL_SCALE;
-    return clamp(candidate, FIELD_SPEED_CONTROL_MIN, FIELD_SPEED_CONTROL_MAX);
-  }
-
-  getFieldSpeedScaleForControlScale(controlScale) {
-    return this.normalizeFieldSpeedControlScale(controlScale);
-  }
-
-  getFieldSpeedControlScale(speedScale = this.fieldSpeedScale) {
-    return this.normalizeFieldSpeedScale(speedScale);
-  }
-
-  normalizeArchitrinoSpeedIndex(speedIndex) {
-    const numericIndex = Number(speedIndex);
-    const candidate = Number.isFinite(numericIndex) ? Math.round(numericIndex) : DEFAULT_ARCHITRINO_SPEED_INDEX;
-    return clamp(candidate, 0, ARCHITRINO_SPEED_FRACTIONS.length - 1);
-  }
-
   normalizeBooleanSetting(value) {
     return value === true || value === "true" || value === "1" || value === 1;
   }
@@ -1093,19 +808,6 @@ class CausalDelayFeedbackRuntime {
     } catch {
       return false;
     }
-  }
-
-  getArchitrinoSpeedFraction(index = this.architrinoSpeedIndex) {
-    return ARCHITRINO_SPEED_FRACTIONS[this.normalizeArchitrinoSpeedIndex(index)];
-  }
-
-  formatFieldSpeedScale(speedScale) {
-    const rounded = Math.round(this.getFieldSpeedControlScale(speedScale) * 100) / 100;
-    return `${String(rounded).replace(/\.0+$/, "")}x`;
-  }
-
-  formatArchitrinoSpeedFraction(fraction) {
-    return String(fraction);
   }
 
   getVisibleHistory(kind) {
@@ -1582,11 +1284,8 @@ class CausalDelayFeedbackRuntime {
       return false;
     }
     const theta = getAngleDegrees(timing.source, timing.receiver);
-    const wakeSpan = this.getWakeVisualPreset().finalSpan;
-    const margin = Math.max(
-      1,
-      Number(this.dataset?.preset?.dotRadius) || 1,
-    );
+    const wakeSpan = this.getWakeVisualStyle().finalSpan;
+    const margin = Math.max(1, FIXED_WAKE_VISUAL_STYLE.dotRadius);
     return frontProgresses.some((progress) => {
       const bandRadius = radius * progress;
       for (
@@ -1664,13 +1363,6 @@ class CausalDelayFeedbackRuntime {
     return endTime;
   }
 
-  resetPreset() {
-    if (this.dom?.settingsPanel && this.dom?.settingsButton) {
-      this.hideSettings();
-    }
-    return this.setPreset(this.presetId);
-  }
-
   setReplayNowSliderValue(value) {
     const numericValue = Number(value);
     const sliderValue = Number.isFinite(numericValue) ? clamp(numericValue, 0, NOW_SLIDER_MAX) : 0;
@@ -1719,17 +1411,6 @@ class CausalDelayFeedbackRuntime {
     if (this.dom.nowValue) {
       this.dom.nowValue.textContent = replayTimeLabel;
     }
-  }
-
-  toggleSettings() {
-    const shouldOpen = this.dom.settingsPanel.hidden;
-    this.dom.settingsPanel.hidden = !shouldOpen;
-    this.dom.settingsButton.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
-  }
-
-  hideSettings() {
-    this.dom.settingsPanel.hidden = true;
-    this.dom.settingsButton.setAttribute("aria-expanded", "false");
   }
 
   handleKeyDown(event) {
@@ -2459,13 +2140,17 @@ class CausalDelayFeedbackRuntime {
     const scene = this.learnerState.playback.playing && this.storyPlaybackScene
       ? this.storyPlaybackScene
       : heldFrame?.scene ?? currentScene;
+    const displayTime = this.learnerState.playback.playing
+      ? clamp(replayTime, scene.playbackStartTime, scene.playbackEndTime)
+      : heldFrame?.replayTime ?? scene.displayTime;
+    if (scene.id === "forward-buildup") {
+      this.drawStoryForwardWakeBuildup(ctx, scene, displayTime);
+      return;
+    }
     if (scene.interactions.length === 0) {
       this.drawGuidedLiveMarkers(ctx, scene.displayTime);
       return;
     }
-    const displayTime = this.learnerState.playback.playing
-      ? clamp(replayTime, scene.playbackStartTime, scene.playbackEndTime)
-      : heldFrame?.replayTime ?? scene.displayTime;
     const usesSharedPairedPathFrame =
       scene.id === "meet" || scene.id === "forward-buildup";
     if (scene.showMotionWakeComparison) {
@@ -3172,18 +2857,75 @@ class CausalDelayFeedbackRuntime {
     this.drawSceneHeading(ctx, `ROOTS · ${view.activeRootCount} ACTIVE`);
   }
 
-  drawFieldSpeedCompressionScene(ctx, replayTime = this.getCurrentReplayTime()) {
-    const [startTime, endTime] = this.getReplayTimeRange();
+  drawStoryForwardWakeBuildup(
+    ctx,
+    scene,
+    replayTime = this.getCurrentReplayTime(),
+  ) {
+    const frame = this.createStoryForwardWakeBuildupFrame(scene, replayTime);
+    this.drawForwardWakeBuildupHistory(ctx, frame);
+    this.drawLiveMarker(
+      ctx,
+      "Positrino",
+      POSITRINO,
+      frame.bodies.positrino,
+      "positrino",
+      { x: 50, y: -64 },
+    );
+    this.drawLiveMarker(
+      ctx,
+      "Electrino",
+      ELECTRINO,
+      frame.bodies.electrino,
+      "electrino",
+      { x: 50, y: 36 },
+    );
+    if (this.dom?.canvas) {
+      this.dom.canvas.dataset.forwardWakeBuildupFixture =
+        "paired_story_template_equal_body_arc_length_and_wake_speed";
+      this.dom.canvas.dataset.forwardWakeBuildupWakeCount =
+        String(frame.fronts.length);
+      this.dom.canvas.dataset.forwardWakeBuildupTime =
+        frame.displayTime.toFixed(6);
+      this.dom.canvas.dataset.forwardWakeBuildupContainmentMargin =
+        frame.minimumContainmentMargin.toFixed(6);
+      this.dom.canvas.dataset.forwardWakeBuildupMinimumSpeedRatio =
+        frame.minimumSpeedRatio.toFixed(9);
+      this.dom.canvas.dataset.forwardWakeBuildupMaximumSpeedRatio =
+        frame.maximumSpeedRatio.toFixed(9);
+      this.dom.canvas.dataset.forwardWakeBuildupMaximumLeadingError =
+        frame.maximumLeadingCoincidenceError.toFixed(9);
+      this.dom.canvas.dataset.forwardWakeBuildupFrontClip =
+        "trailing-half-plane-through-current-body";
+      this.dom.canvas.dataset.forwardWakeBuildupInheritedHistory = "false";
+      this.dom.canvas.dataset.forwardWakeBuildupDiffersFromMeet =
+        "equal-body-and-wake-speed";
+      this.dom.canvas.dataset.forwardWakeBuildupEvidenceBoundary =
+        "Declared paired-path display fixture from emission zero; sampled trailing wake arcs are anchored to the current body and clipped behind it. This display projection does not establish an EOM-solved trajectory, self-interaction, causal-route change, or stability result.";
+    }
+  }
+
+  createStoryForwardWakeBuildupFrame(scene, replayTime) {
+    const startTime = Number(scene?.playbackStartTime);
+    const endTime = Number(scene?.playbackEndTime);
     const displayTime = clamp(replayTime, startTime, endTime);
     const duration = Math.max(TIME_EPSILON, endTime - startTime);
-    const emissionTimeStep = duration * 0.05;
+    const emissionTimeStep = duration * 0.025;
     const fronts = [];
     let minimumContainmentMargin = Number.POSITIVE_INFINITY;
+    let minimumSpeedRatio = Number.POSITIVE_INFINITY;
+    let maximumSpeedRatio = 0;
+    const bodies = {};
 
     ARCHITRINO_KINDS.forEach((kind) => {
       const arcLength = this.getPathArcLengthTable(kind).totalLength;
-      const matchedFieldSpeed = arcLength / duration;
+      const bodySpeed = arcLength / duration;
+      const wakeExpansionSpeed = bodySpeed;
       const body = this.getFixedSpeedReplayPathPoint(kind, displayTime);
+      bodies[kind] = body;
+      const speedRatio = wakeExpansionSpeed / Math.max(bodySpeed, TIME_EPSILON);
+      minimumSpeedRatio = Math.min(minimumSpeedRatio, speedRatio);
+      maximumSpeedRatio = Math.max(maximumSpeedRatio, speedRatio);
       const finalIndex = Math.floor(
         (displayTime - startTime) / emissionTimeStep - TIME_EPSILON,
       );
@@ -3193,8 +2935,21 @@ class CausalDelayFeedbackRuntime {
           continue;
         }
         const center = this.getFixedSpeedReplayPathPoint(kind, emissionTime);
-        const radius = matchedFieldSpeed * (displayTime - emissionTime);
-        fronts.push({ transmitterId: kind, center, radius, emissionTime });
+        const fieldRadius = wakeExpansionSpeed * (displayTime - emissionTime);
+        const radius = getDistance(center, body);
+        fronts.push({
+          transmitterId: kind,
+          center,
+          radius,
+          fieldRadius,
+          currentBody: body,
+          leadingPoint: body,
+          emissionTime,
+          bodySpeed,
+          wakeExpansionSpeed,
+          declaredFieldSpeed: true,
+          trailingHalfPlaneOnly: true,
+        });
         minimumContainmentMargin = Math.min(
           minimumContainmentMargin,
           radius - getDistance(center, body),
@@ -3202,21 +2957,95 @@ class CausalDelayFeedbackRuntime {
       }
     });
 
-    this.drawPairedFullWakeHistory(ctx, fronts, displayTime, {
-      useTraversalPaths: true,
+    const leadingErrors = fronts.map((front) =>
+      getDistance(front.leadingPoint, front.currentBody));
+    return {
+      startTime,
+      endTime,
+      displayTime,
+      duration,
+      emissionTimeStep,
+      bodies,
+      fronts,
+      minimumContainmentMargin: Number.isFinite(minimumContainmentMargin)
+        ? minimumContainmentMargin
+        : 0,
+      minimumSpeedRatio: Number.isFinite(minimumSpeedRatio)
+        ? minimumSpeedRatio
+        : 1,
+      maximumSpeedRatio,
+      maximumLeadingCoincidenceError: leadingErrors.length > 0
+        ? Math.max(...leadingErrors)
+        : 0,
+    };
+  }
+
+  drawForwardWakeBuildupHistory(ctx, frame) {
+    ARCHITRINO_KINDS.forEach((kind) => {
+      const body = frame.bodies[kind];
+      const bodyScreen = this.worldToScreen(body);
+      const tangentWindow = Math.max(frame.duration * 0.001, TIME_EPSILON);
+      const before = this.getFixedSpeedReplayPathPoint(
+        kind,
+        Math.max(frame.startTime, frame.displayTime - tangentWindow),
+      );
+      const after = this.getFixedSpeedReplayPathPoint(
+        kind,
+        Math.min(frame.endTime, frame.displayTime + tangentWindow),
+      );
+      const beforeScreen = this.worldToScreen(before);
+      const afterScreen = this.worldToScreen(after);
+      const tangentLength = Math.max(
+        Math.hypot(
+          afterScreen.x - beforeScreen.x,
+          afterScreen.y - beforeScreen.y,
+        ),
+        TIME_EPSILON,
+      );
+      const forward = {
+        x: (afterScreen.x - beforeScreen.x) / tangentLength,
+        y: (afterScreen.y - beforeScreen.y) / tangentLength,
+      };
+      const normal = { x: -forward.y, y: forward.x };
+      const reach = Math.hypot(this.canvasWidth, this.canvasHeight) * 2;
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(
+        bodyScreen.x + normal.x * reach,
+        bodyScreen.y + normal.y * reach,
+      );
+      ctx.lineTo(
+        bodyScreen.x - normal.x * reach,
+        bodyScreen.y - normal.y * reach,
+      );
+      ctx.lineTo(
+        bodyScreen.x - normal.x * reach - forward.x * reach,
+        bodyScreen.y - normal.y * reach - forward.y * reach,
+      );
+      ctx.lineTo(
+        bodyScreen.x + normal.x * reach - forward.x * reach,
+        bodyScreen.y + normal.y * reach - forward.y * reach,
+      );
+      ctx.closePath();
+      ctx.clip();
+      frame.fronts
+        .filter((front) => front.transmitterId === kind)
+        .forEach((front) => {
+          const baseColor = kind === "positrino" ? POSITRINO : ELECTRINO;
+          this.drawSolidWakeCircle(
+            ctx,
+            front.center,
+            front.radius,
+            withAlpha(mixColor(baseColor, WHITE, 0.22), 0.68),
+          );
+        });
+      ctx.restore();
+      frame.fronts
+        .filter((front) => front.transmitterId === kind)
+        .forEach((front) => {
+          this.drawStoryEmissionOriginMarker(ctx, front.center, 1, kind);
+        });
     });
-    if (this.dom?.canvas) {
-      this.dom.canvas.dataset.fieldSpeedCompressionFixture =
-        "paired_story_template_equal_body_arc_length_and_wake_speed";
-      this.dom.canvas.dataset.fieldSpeedCompressionWakeCount = String(fronts.length);
-      this.dom.canvas.dataset.fieldSpeedCompressionTime = displayTime.toFixed(6);
-      this.dom.canvas.dataset.fieldSpeedCompressionContainmentMargin =
-        (Number.isFinite(minimumContainmentMargin)
-          ? minimumContainmentMargin
-          : 0).toFixed(6);
-      this.dom.canvas.dataset.fieldSpeedCompressionEvidenceBoundary =
-        "Declared display fixture only; it does not establish a self-interaction, causal-route change, or stability result.";
-    }
   }
 
   drawPairedFullWakeHistory(ctx, fronts, bodyDisplayTime, {
@@ -3266,8 +3095,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   drawBackground(ctx) {
-    const canvasColor = getCanvasColorById(this.canvasColorId).color;
-    ctx.fillStyle = canvasColor;
+    ctx.fillStyle = FIXED_CANVAS_COLOR;
     ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
     if (this.backgroundDepthFieldEnabled) {
       this.drawBackgroundDepthField(ctx);
@@ -3330,14 +3158,11 @@ class CausalDelayFeedbackRuntime {
     });
   }
 
-  getWakeVisualPreset() {
-    const basePreset = this.dataset?.preset?.contrastStress
-      ? this.dataset.preset
-      : getPresetById(DEFAULT_PRESET_ID);
-    const dotRadius = (Number(basePreset.dotRadius) || 1.8) * (1.35 / 1.8);
-    const alphaScale = (Number(basePreset.alphaScale) || 1) * (0.86 / 1.18);
+  getWakeVisualStyle() {
+    const dotRadius = FIXED_WAKE_VISUAL_STYLE.dotRadius * (1.35 / 1.8);
+    const alphaScale = FIXED_WAKE_VISUAL_STYLE.alphaScale * (0.86 / 1.18);
     return {
-      ...basePreset,
+      ...FIXED_WAKE_VISUAL_STYLE,
       finalSpan: 7,
       startSpan: 7,
       dotRadius,
@@ -3403,9 +3228,9 @@ class CausalDelayFeedbackRuntime {
     if (!this.shouldDrawCausalIsochronSphere(sphere)) {
       return;
     }
-    const preset = this.getWakeVisualPreset();
+    const wakeStyle = this.getWakeVisualStyle();
     const wakeColor = mixColor(sphere.color, WHITE, 0.18);
-    const alpha = (118 / 255) * preset.alphaScale * this.getCausalIsochronSphereVisualWeight(sphere);
+    const alpha = (118 / 255) * wakeStyle.alphaScale * this.getCausalIsochronSphereVisualWeight(sphere);
     this.drawSolidWakeCircle(
       ctx,
       sphere.origin,
@@ -3421,9 +3246,9 @@ class CausalDelayFeedbackRuntime {
     if (!Number.isFinite(age) || !Number.isFinite(pathDuration) || pathDuration <= TIME_EPSILON) {
       return 1;
     }
-    const preset = this.getWakeVisualPreset();
+    const wakeStyle = this.getWakeVisualStyle();
     const ageRatio = clamp(age / pathDuration, 0, 1);
-    const distanceFalloff = Math.pow(1 - ageRatio * 0.72, preset.falloffPower);
+    const distanceFalloff = Math.pow(1 - ageRatio * 0.72, wakeStyle.falloffPower);
     return 0.34 + 0.66 * distanceFalloff;
   }
 
@@ -3434,7 +3259,7 @@ class CausalDelayFeedbackRuntime {
     }
     const center = this.worldToScreen(sphere.origin);
     const screenRadius = radius * this.viewport.scale;
-    const margin = Math.max(4, (this.dataset?.preset?.dotRadius ?? 1.8) * this.viewport.scale * 3);
+    const margin = Math.max(4, FIXED_WAKE_VISUAL_STYLE.dotRadius * this.viewport.scale * 3);
     const minDx = center.x < 0 ? -center.x : center.x > this.canvasWidth ? center.x - this.canvasWidth : 0;
     const minDy = center.y < 0 ? -center.y : center.y > this.canvasHeight ? center.y - this.canvasHeight : 0;
     const minDistance = Math.hypot(minDx, minDy);
@@ -3452,10 +3277,10 @@ class CausalDelayFeedbackRuntime {
     if (!this.shouldDrawWakeSeries(timing)) {
       return;
     }
-    const preset = this.getWakeVisualPreset();
+    const wakeStyle = this.getWakeVisualStyle();
     const radius = getDistance(timing.source, timing.receiver);
     const theta = getAngleDegrees(timing.source, timing.receiver);
-    const falloffWeight = Math.pow(link.weight, preset.falloffPower);
+    const falloffWeight = Math.pow(link.weight, wakeStyle.falloffPower);
     const visualWeight = this.getWakeVisualWeight(link);
     const frontProgresses = this.getWakeFrontProgressesThroughProgress(
       timing,
@@ -3470,7 +3295,7 @@ class CausalDelayFeedbackRuntime {
       falloffWeight,
       frontProgresses,
       visualWeight,
-      preset,
+      wakeStyle,
     });
   }
 
@@ -3479,15 +3304,15 @@ class CausalDelayFeedbackRuntime {
     if (!this.shouldDrawWakeSeries(timing)) {
       return;
     }
-    const preset = this.getWakeVisualPreset();
+    const wakeStyle = this.getWakeVisualStyle();
     const visualWeight = this.getWakeVisualWeight(link);
-    const falloffWeight = Math.pow(link.weight, preset.falloffPower);
+    const falloffWeight = Math.pow(link.weight, wakeStyle.falloffPower);
     const wakeColor = mixColor(link.color, WHITE, visualWeight.desaturation);
     const alpha = Math.max(
       0.34,
-      0.52 * preset.alphaScale * (0.5 + 0.5 * falloffWeight) * visualWeight.alphaScale,
+      0.52 * wakeStyle.alphaScale * (0.5 + 0.5 * falloffWeight) * visualWeight.alphaScale,
     );
-    const width = Math.max(1.5, preset.dotRadius * 1.18 * visualWeight.radiusScale);
+    const width = Math.max(1.5, wakeStyle.dotRadius * 1.18 * visualWeight.radiusScale);
     this.drawLine(
       ctx,
       [this.worldToScreen(timing.receiver), this.worldToScreen(timing.source)],
@@ -3499,24 +3324,24 @@ class CausalDelayFeedbackRuntime {
   drawWakeBuildProgression(
     ctx,
     link,
-    { source, radius, theta, falloffWeight, frontProgresses, visualWeight, preset, fullCircle = false },
+    { source, radius, theta, falloffWeight, frontProgresses, visualWeight, wakeStyle, fullCircle = false },
   ) {
-    const wakePreset = preset ?? this.getWakeVisualPreset();
+    const resolvedWakeStyle = wakeStyle ?? this.getWakeVisualStyle();
 
     for (const progress of frontProgresses) {
       if (progress <= 0) {
         continue;
       }
       const bandRadius = radius * progress;
-      const wakeSpan = fullCircle ? 360 : wakePreset.finalSpan;
+      const wakeSpan = fullCircle ? 360 : resolvedWakeStyle.finalSpan;
       const emitterBias = 1 - progress;
       const alpha =
         ((84 + 124 * emitterBias) / 255) *
         (0.48 + 0.52 * falloffWeight) *
-        wakePreset.alphaScale *
+        resolvedWakeStyle.alphaScale *
         visualWeight.alphaScale;
       const dotRadius =
-        wakePreset.dotRadius *
+        resolvedWakeStyle.dotRadius *
         (0.82 + 0.34 * emitterBias) *
         (0.72 + 0.3 * falloffWeight) *
         visualWeight.radiusScale;
@@ -4214,7 +4039,6 @@ class CausalDelayFeedbackRuntime {
     condition.vy = nextVelocity.vy;
     this.cancelPendingReplayForDirectManipulation();
     this.applyInitialVelocityPreview(kind, { ...condition, ...velocityAnchor }, previousVelocity, nextVelocity);
-    this.setArchitrinoVelocityReferenceFromCondition(kind);
     this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
     this.markDraftPreview("initial_velocity_drag_preview");
@@ -4255,91 +4079,6 @@ class CausalDelayFeedbackRuntime {
       link.staleSolverRunId = link.solverRunId ?? link.staleSolverRunId;
       link.staleReplaySource = this.dataset.runId ?? this.dataset.datasetId ?? null;
     });
-  }
-
-  applyArchitrinoSpeedFraction(fraction) {
-    const speedFraction = Number(fraction);
-    if (!Number.isFinite(speedFraction) || speedFraction <= 0) {
-      return false;
-    }
-    let didEdit = false;
-    ARCHITRINO_KINDS.forEach((kind) => {
-      const condition = this.getInitialCondition(kind);
-      if (!condition) {
-        return;
-      }
-      const previousVelocity = {
-        vx: Number(condition.vx) || 0,
-        vy: Number(condition.vy) || 0,
-      };
-      const direction = this.getVelocityDirection(kind, condition);
-      const referenceMagnitude = this.getArchitrinoVelocityReferenceMagnitude(kind, condition);
-      const nextMagnitude = referenceMagnitude * speedFraction;
-      const nextVelocity = {
-        vx: direction.x * nextMagnitude,
-        vy: direction.y * nextMagnitude,
-      };
-      if (
-        Math.abs(previousVelocity.vx - nextVelocity.vx) <= TIME_EPSILON &&
-        Math.abs(previousVelocity.vy - nextVelocity.vy) <= TIME_EPSILON
-      ) {
-        return;
-      }
-      condition.vx = nextVelocity.vx;
-      condition.vy = nextVelocity.vy;
-      this.applyInitialVelocityPreview(kind, condition, previousVelocity, nextVelocity);
-      didEdit = true;
-    });
-    return didEdit;
-  }
-
-  resetArchitrinoVelocityReference() {
-    this.architrinoVelocityReference = {};
-    ARCHITRINO_KINDS.forEach((kind) => {
-      this.setArchitrinoVelocityReferenceFromCondition(kind);
-    });
-  }
-
-  setArchitrinoVelocityReferenceFromCondition(kind, fraction = this.getArchitrinoSpeedFraction()) {
-    const condition = this.getInitialCondition(kind);
-    if (!condition) {
-      return;
-    }
-    const magnitude = Math.hypot(Number(condition.vx) || 0, Number(condition.vy) || 0);
-    const speedFraction = Math.max(Number(fraction) || this.getArchitrinoSpeedFraction(), TIME_EPSILON);
-    this.architrinoVelocityReference[kind] = magnitude / speedFraction;
-  }
-
-  getArchitrinoVelocityReferenceMagnitude(kind, condition) {
-    const storedMagnitude = Number(this.architrinoVelocityReference?.[kind]);
-    if (Number.isFinite(storedMagnitude) && storedMagnitude > 0) {
-      return storedMagnitude;
-    }
-    this.setArchitrinoVelocityReferenceFromCondition(kind);
-    const nextMagnitude = Number(this.architrinoVelocityReference?.[kind]);
-    if (Number.isFinite(nextMagnitude) && nextMagnitude > 0) {
-      return nextMagnitude;
-    }
-    return Math.hypot(Number(condition?.vx) || 0, Number(condition?.vy) || 0);
-  }
-
-  getVelocityDirection(kind, condition) {
-    const vx = Number(condition?.vx) || 0;
-    const vy = Number(condition?.vy) || 0;
-    const magnitude = Math.hypot(vx, vy);
-    if (magnitude > TIME_EPSILON) {
-      return { x: vx / magnitude, y: vy / magnitude };
-    }
-    const points = this.dataset?.paths?.[kind] ?? [];
-    const start = points[0];
-    const next = points[1];
-    const dx = Number(next?.x) - Number(start?.x);
-    const dy = Number(next?.y) - Number(start?.y);
-    const pathMagnitude = Math.hypot(dx, dy);
-    if (pathMagnitude > TIME_EPSILON) {
-      return { x: dx / pathMagnitude, y: dy / pathMagnitude };
-    }
-    return { x: 1, y: 0 };
   }
 
   applyInitialVelocityPreview(kind, condition, previousVelocity, nextVelocity) {
@@ -5646,7 +5385,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   getAssemblyThreshold() {
-    const threshold = Number(this.dataset.assemblyThreshold ?? this.dataset.preset?.assemblyThreshold);
+    const threshold = Number(this.dataset.assemblyThreshold);
     return Number.isFinite(threshold) && threshold > 0 ? threshold : DEFAULT_ASSEMBLY_THRESHOLD;
   }
 
@@ -5895,6 +5634,4 @@ class CausalDelayFeedbackRuntime {
   }
 }
 
-export const CAUSAL_DELAY_FEEDBACK_PRESETS = PRESETS;
-export const CAUSAL_DELAY_FEEDBACK_CANVAS_COLORS = CANVAS_COLORS;
 export const createMockCausalDelayReplay = createMockCausalDelayReplayDataset;

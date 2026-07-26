@@ -10,6 +10,8 @@ export function createSceneSearchRuntime(deps) {
     navigationStack,
     searchBackStack,
     jumpToScene,
+    documentRef = document,
+    onOpenChange,
   } = deps;
 
   function normalizeSearch(text) {
@@ -116,7 +118,7 @@ export function createSceneSearchRuntime(deps) {
 
     sceneSearchResults.innerHTML = "";
     uniqueMatches.slice(0, 10).forEach((scene) => {
-      const item = document.createElement("button");
+      const item = documentRef.createElement("button");
       item.type = "button";
       item.className = "scene-search-item";
       item.textContent = scene.name ?? scene.id ?? scene.path;
@@ -142,11 +144,13 @@ export function createSceneSearchRuntime(deps) {
     if (!sceneSearchPanel) {
       return;
     }
-    if (!isOpen && sceneSearchPanel.contains(document.activeElement)) {
+    if (!isOpen && sceneSearchPanel.contains(documentRef.activeElement)) {
       sceneSearchToggle?.focus();
     }
     sceneSearch?.classList.toggle("is-open", isOpen);
     sceneSearchPanel.classList.toggle("is-open", isOpen);
+    sceneSearchToggle?.classList.toggle("is-active", isOpen);
+    sceneSearchToggle?.setAttribute("aria-expanded", String(isOpen));
     sceneSearchPanel.setAttribute("aria-hidden", String(!isOpen));
     sceneSearchPanel.inert = !isOpen;
     if (isOpen && sceneSearchInput) {
@@ -154,6 +158,7 @@ export function createSceneSearchRuntime(deps) {
       updateSearchResults("");
       sceneSearchInput.focus();
     }
+    onOpenChange?.(isOpen);
   }
 
   function isSearchOpen() {

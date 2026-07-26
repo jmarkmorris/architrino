@@ -1,5 +1,6 @@
 export const APPLICATIONS_SCENE_PATH = "content/scenes/archie/applications.json";
 export const STANDALONE_APP_HOME_HREF = `./index.html#scene=${encodeURIComponent(APPLICATIONS_SCENE_PATH)}`;
+export const STANDALONE_SITE_HOME_HREF = "./index.html";
 export const STANDALONE_APP_HOME_RETURN_STORAGE_KEY = "architrino.standaloneApp.homeReturn.v1";
 
 export function resolveStandaloneAppHomeHref(currentHref = "") {
@@ -9,6 +10,11 @@ export function resolveStandaloneAppHomeHref(currentHref = "") {
   params.set("scene", APPLICATIONS_SCENE_PATH);
   url.hash = params.toString();
   return url.href;
+}
+
+export function resolveStandaloneSiteHomeHref(currentHref = "") {
+  const baseHref = String(currentHref ?? "").trim() || "http://localhost/";
+  return new URL(STANDALONE_SITE_HOME_HREF, baseHref).href;
 }
 
 function resolveReturnHref(windowLike = globalThis.window, returnHref = "") {

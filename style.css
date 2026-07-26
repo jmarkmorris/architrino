@@ -393,10 +393,6 @@ body.has-scene-image-gallery .label-center-context {
   pointer-events: auto;
 }
 
-#scene-search.is-open #scene-search-toggle {
-  display: none;
-}
-
 #scene-search-toggle {
   width: 32px;
   height: 32px;
@@ -409,6 +405,11 @@ body.has-scene-image-gallery .label-center-context {
   justify-content: center;
   cursor: pointer;
   padding: 0;
+}
+
+#scene-search-toggle.is-active {
+  background: rgba(92, 36, 164, 0.92);
+  border-color: rgba(176, 136, 255, 0.7);
 }
 
 #scene-search-toggle svg {

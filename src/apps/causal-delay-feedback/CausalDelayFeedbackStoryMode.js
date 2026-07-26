@@ -125,7 +125,7 @@ export const STORY_STEPS = Object.freeze([
   {
     id: "forward-buildup",
     title: "Forward Wake Buildup",
-    body: "Begin at emission zero. As both architrinos move along the same paired paths used in Lesson One, their first wake fronts expand from the current emitters. Continued transmission builds a denser sequence of fronts ahead while each wake still expands from the point where it was emitted.",
+    body: "Begin at emission zero. In this declared display fixture, both architrinos move at the same speed as their expanding wakes along the paired paths used in Lesson One. Continued transmission makes the forward edges build up while every wake still expands from the earlier point where it was emitted.",
   },
 ]);
 

@@ -99,6 +99,7 @@ export class CausalDelayFeedbackModeController {
     onPlayToggle,
     onReplay,
     onHome,
+    onTableOfContents,
   } = {}) {
     this.document = document ?? globalThis.document;
     this.state = state;
@@ -107,21 +108,8 @@ export class CausalDelayFeedbackModeController {
     this.onPlayToggle = onPlayToggle;
     this.onReplay = onReplay;
     this.onHome = onHome;
+    this.onTableOfContents = onTableOfContents;
     this.boundClick = (event) => this.handleClick(event);
-    this.boundSearchInput = (event) => this.renderSearchResults(event.target?.value);
-    this.boundSearchKeyDown = (event) => {
-      if (event.key === "Escape") {
-        this.closeSearchPanel();
-      }
-    };
-    this.boundDocumentPointerDown = (event) => {
-      if (
-        this.dom?.search?.classList.contains("is-open") &&
-        !this.dom.search.contains(event.target)
-      ) {
-        this.closeSearchPanel();
-      }
-    };
   }
 
   init() {
@@ -135,18 +123,13 @@ export class CausalDelayFeedbackModeController {
       meta: this.document.querySelector("#causal-delay-feedback-lesson-meta"),
       content: this.document.querySelector("#causal-delay-feedback-lesson-content"),
       status: this.document.querySelector("#causal-delay-feedback-lesson-status"),
-      back: this.document.querySelector("#causal-delay-feedback-guided-back"),
+      back: this.document.querySelector("#nav-up"),
       play: this.document.querySelector("#causal-delay-feedback-guided-play"),
-      next: this.document.querySelector("#causal-delay-feedback-guided-next"),
+      next: this.document.querySelector("#nav-forward"),
       firstFrame: this.document.querySelector("#causal-delay-feedback-guided-first-frame"),
       lastFrame: this.document.querySelector("#causal-delay-feedback-guided-last-frame"),
-      tocToggle: this.document.querySelector("#causal-delay-feedback-toc-toggle"),
-      home: this.document.querySelector("#causal-delay-feedback-home"),
-      search: this.document.querySelector("#causal-delay-feedback-lesson-search"),
-      searchToggle: this.document.querySelector("#causal-delay-feedback-lesson-search-toggle"),
-      searchPanel: this.document.querySelector("#causal-delay-feedback-lesson-search-panel"),
-      searchInput: this.document.querySelector("#causal-delay-feedback-lesson-search-input"),
-      searchResults: this.document.querySelector("#causal-delay-feedback-lesson-search-results"),
+      tocToggle: this.document.querySelector("#textbook-toc-button"),
+      home: this.document.querySelector("#home-button"),
       summary: this.document.querySelector("#causal-delay-feedback-canvas-summary"),
     };
     if (Object.values(this.dom).some((element) => !element)) {
@@ -154,23 +137,15 @@ export class CausalDelayFeedbackModeController {
     }
     this.dom.journey.addEventListener("click", this.boundClick);
     this.dom.tocToggle.addEventListener("click", () => {
-      this.setTableOfContentsOpen(this.dom.tabs.hidden);
+      this.onTableOfContents?.();
     });
     this.dom.home.addEventListener("click", () => this.onHome?.());
-    this.dom.searchToggle.addEventListener("click", () => this.openSearchPanel());
-    this.dom.searchInput.addEventListener("input", this.boundSearchInput);
-    this.dom.searchInput.addEventListener("keydown", this.boundSearchKeyDown);
-    this.document.addEventListener("pointerdown", this.boundDocumentPointerDown);
-    this.renderSearchResults();
     this.render();
     return this;
   }
 
   destroy() {
     this.dom?.journey?.removeEventListener("click", this.boundClick);
-    this.dom?.searchInput?.removeEventListener("input", this.boundSearchInput);
-    this.dom?.searchInput?.removeEventListener("keydown", this.boundSearchKeyDown);
-    this.document?.removeEventListener("pointerdown", this.boundDocumentPointerDown);
   }
 
   setState(state) {
@@ -201,7 +176,6 @@ export class CausalDelayFeedbackModeController {
         this.state.storyStep = lessonIndex;
         this.state.mode = "story";
         this.onModeChange?.("story", this.state);
-        this.closeSearchPanel();
         this.render();
         this.onStateChange?.(this.state);
       }
@@ -209,7 +183,6 @@ export class CausalDelayFeedbackModeController {
     }
     const laboratoryButton = event.target.closest("[data-causal-laboratory]");
     if (laboratoryButton) {
-      this.closeSearchPanel();
       this.setMode("sandbox");
       return;
     }
@@ -371,79 +344,6 @@ export class CausalDelayFeedbackModeController {
     }));
     list.append(laboratoryItem);
     this.dom.tabs.replaceChildren(list);
-  }
-
-  setTableOfContentsOpen(isOpen) {
-    const nextOpen = Boolean(isOpen);
-    this.dom.tabs.hidden = !nextOpen;
-    this.dom.tocToggle.classList.toggle("is-active", nextOpen);
-    this.dom.tocToggle.setAttribute("aria-expanded", String(nextOpen));
-    this.dom.tocToggle.setAttribute(
-      "aria-label",
-      nextOpen
-        ? "Close lesson table of contents"
-        : "Open lesson table of contents",
-    );
-  }
-
-  openSearchPanel() {
-    this.dom.search.classList.add("is-open");
-    this.dom.searchToggle.setAttribute("aria-expanded", "true");
-    this.dom.searchPanel.setAttribute("aria-hidden", "false");
-    this.dom.searchInput.value = "";
-    this.renderSearchResults();
-    this.dom.searchInput.focus();
-  }
-
-  closeSearchPanel() {
-    if (!this.dom?.search) {
-      return;
-    }
-    this.dom.search.classList.remove("is-open");
-    this.dom.searchToggle.setAttribute("aria-expanded", "false");
-    this.dom.searchPanel.setAttribute("aria-hidden", "true");
-  }
-
-  renderSearchResults(query = "") {
-    if (!this.dom?.searchResults) {
-      return;
-    }
-    const normalizedQuery = String(query ?? "").trim().toLowerCase();
-    const destinations = [
-      ...STORY_STEPS.map((lesson, lessonIndex) => ({
-        label: `${lessonIndex + 1}. ${lesson.title}`,
-        lessonIndex,
-      })),
-      {
-        label: "Laboratory",
-        laboratory: true,
-      },
-    ].filter((destination) =>
-      !normalizedQuery ||
-      destination.label.toLowerCase().includes(normalizedQuery)
-    );
-    const buttons = destinations.map((destination) => createElement(
-      this.document,
-      "button",
-      {
-        className: "causal-lesson-search-item",
-        text: destination.label,
-        attributes: {
-          type: "button",
-          ...(destination.laboratory
-            ? { "data-causal-laboratory": "" }
-            : { "data-causal-lesson": destination.lessonIndex }),
-        },
-      },
-    ));
-    if (buttons.length === 0) {
-      this.dom.searchResults.replaceChildren(createElement(this.document, "p", {
-        className: "causal-lesson-search-empty",
-        text: "No lessons found.",
-      }));
-      return;
-    }
-    this.dom.searchResults.replaceChildren(...buttons);
   }
 
   renderStory() {

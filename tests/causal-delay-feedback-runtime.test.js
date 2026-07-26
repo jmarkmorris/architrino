@@ -19,20 +19,21 @@ import {
   TEMPORARY_MOCK_ADAPTER,
   createMockCausalDelayReplayDataset,
   getAngleDegrees,
+  getDistance,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
 import {
   ARCHITRINO_BODY_HALO_RADIUS,
   ARCHITRINO_BODY_OUTLINE_WIDTH,
   ARCHITRINO_BODY_RADIUS,
-  CANVAS_COLORS,
   CAUSAL_PATH_STROKE_WIDTH,
   DEFAULT_TRANSMISSION_POINT_MARKER_VARIANT,
+  FIXED_CANVAS_COLOR,
+  FIXED_WAKE_VISUAL_STYLE,
   FRAME_COUNT,
   PATH_TIME_END_X,
   PATH_TIME_START_X,
   ELECTRINO_WAKE,
   POSITRINO_WAKE,
-  PRESETS,
   TRANSMISSION_POINT_MARKER_STYLES,
   TRANSMISSION_POINT_MARKER_VARIANTS,
   TIME_AXIS_BASELINE_Y,
@@ -298,10 +299,10 @@ function readCausalDelayFeedbackHtml() {
   return readFileSync(new URL("../causal-delay-feedback.html", import.meta.url), "utf8");
 }
 
-function createMockEomReplayDataset(presetId, overrides = {}) {
+function createMockEomReplayDataset(fixtureId, overrides = {}) {
   return {
-    ...createMockCausalDelayReplayDataset(presetId),
-    runId: `eom:${presetId}`,
+    ...createMockCausalDelayReplayDataset(),
+    runId: `eom:${fixtureId}`,
     datasetSource: EOM_REPLAY_DATASET_SOURCE,
     solverIntegrationPath: EOM_REPLAY_ADAPTER,
     engineId: "eom-solver",
@@ -798,81 +799,6 @@ test("causal delay feedback reset resyncs now control and selected readout", () 
   assert.equal(nowInput.attributes["aria-valuetext"], "Replay time 0");
 });
 
-test("causal delay feedback reset preset restores the loaded preset state", async () => {
-  const replayStatus = new FakeElement();
-  const settingsPanel = new FakeElement();
-  const settingsButton = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dom = {
-    replayStatus,
-    settingsPanel,
-    settingsButton,
-  };
-  settingsPanel.hidden = false;
-  const expectedDataset = createMockCausalDelayReplayDataset(runtime.presetId);
-  const expectedStart = expectedDataset.history.positrino.find((point) => point.depth === 1);
-
-  runtime.applyRetainedPointDrag("positrino", 1, { x: 56, y: -18 });
-  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
-  assert.notEqual(runtime.dataset.history.positrino.find((point) => point.depth === 1).x, expectedStart.x);
-
-  await runtime.resetPreset();
-  const resetStart = runtime.dataset.history.positrino.find((point) => point.depth === 1);
-
-  assert.equal(settingsPanel.hidden, true);
-  assert.equal(settingsButton.attributes["aria-expanded"], "false");
-  assert.equal(runtime.dataset.datasetSource, REPRESENTATIVE_MOCK_SOLVER_REPLAY);
-  assert.equal(runtime.replayLoadState, "ready");
-  assert.equal(replayStatus.textContent, "representative replay");
-  assert.equal(resetStart.x, expectedStart.x);
-  assert.equal(resetStart.y, expectedStart.y);
-  assert.equal(runtime.dataset.draftPreview, undefined);
-});
-
-test("causal delay feedback reset preset reloads the current preset through the eom replay adapter", async () => {
-  const replayStatus = new FakeElement();
-  const settingsPanel = new FakeElement();
-  const settingsButton = new FakeElement();
-  const loadedPresets = [];
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId }) {
-      loadedPresets.push(presetId);
-      return createMockEomReplayDataset(presetId, {
-        runId: `eom:${presetId}:${loadedPresets.length}`,
-      });
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-    replayAdapter: adapter,
-    autoLoadReplay: false,
-  });
-  runtime.dom = {
-    replayStatus,
-    settingsPanel,
-    settingsButton,
-  };
-
-  await runtime.setPreset("full_circular_arcs");
-  const firstEomRunId = runtime.dataset.runId;
-  runtime.applyRetainedPointDrag("electrino", 2, { x: 28, y: -16 });
-
-  await runtime.resetPreset();
-
-  assert.deepEqual(loadedPresets, ["full_circular_arcs", "full_circular_arcs"]);
-  assert.equal(runtime.presetId, "full_circular_arcs");
-  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
-  assert.equal(runtime.dataset.solverIntegrationPath, EOM_REPLAY_ADAPTER);
-  assert.notEqual(runtime.dataset.runId, firstEomRunId);
-  assert.equal(runtime.dataset.draftPreview, undefined);
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
-});
-
 test("causal delay feedback reduced motion preference starts paused but allows manual play", () => {
   const nowInput = new FakeElement();
   const nowValue = new FakeElement();
@@ -1125,19 +1051,17 @@ test("causal delay feedback wake-front separation is locked to the smaller gap",
     document: new FakeDocument(),
     window: fakeWindow,
   });
-  const contrastRuntime = createCausalDelayFeedbackRuntime({
+  const secondRuntime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
-    window: {
-      location: { href: "http://localhost/causal-delay-feedback.html?preset=contrast_stress&replay=mock" },
-    },
+    window: fakeWindow,
   });
   const replayTime = 0.25;
   const link = runtime.getVisibleWakeSeries(replayTime)[0];
-  const contrastLink = contrastRuntime.getVisibleWakeSeries(replayTime)[0];
+  const secondLink = secondRuntime.getVisibleWakeSeries(replayTime)[0];
   const timing = runtime.getWakeTiming(link, replayTime);
-  const contrastTiming = contrastRuntime.getWakeTiming(contrastLink, replayTime);
+  const secondTiming = secondRuntime.getWakeTiming(secondLink, replayTime);
   const frontDistances = getWakeFrontDistances(runtime, timing, link);
-  const contrastFrontDistances = getWakeFrontDistances(contrastRuntime, contrastTiming, contrastLink);
+  const secondFrontDistances = getWakeFrontDistances(secondRuntime, secondTiming, secondLink);
   const shortTiming = {
     liveWakeSeries: true,
     source: { x: 0, y: 0 },
@@ -1151,11 +1075,10 @@ test("causal delay feedback wake-front separation is locked to the smaller gap",
   const shortFronts = runtime.getWakeFrontProgresses(shortTiming);
   const longFronts = runtime.getWakeFrontProgresses(longTiming);
 
-  assert(PRESETS.every((preset) => !("wakeBands" in preset)));
   const spacing = assertConstantWakeFrontSeparation(frontDistances, getTimingDistance(timing, link));
   assertNear(spacing, 9, 1e-6);
   assertNear(
-    assertConstantWakeFrontSeparation(contrastFrontDistances, getTimingDistance(contrastTiming, contrastLink)),
+    assertConstantWakeFrontSeparation(secondFrontDistances, getTimingDistance(secondTiming, secondLink)),
     spacing,
     1e-6,
   );
@@ -1175,23 +1098,19 @@ test("causal delay feedback wake visual switches derive combinable rendering set
     window: fakeWindow,
   });
   const sphere = runtime.getCausalIsochronSpheres("positrino", 0.82)[0];
-  const normalPreset = runtime.getWakeVisualPreset();
+  const normalStyle = runtime.getWakeVisualStyle();
   const normalSphereWeight = runtime.getCausalIsochronSphereVisualWeight(sphere);
 
   runtime.setWakeVisualSwitch("fullCircularWakesEnabled", true);
-  const combinedPreset = runtime.getWakeVisualPreset();
+  const combinedStyle = runtime.getWakeVisualStyle();
   const combinedSphereWeight = runtime.getCausalIsochronSphereVisualWeight(sphere);
 
-  assert.equal(normalPreset.falloffPower, 1);
-  assert.equal(normalPreset.finalSpan, 7);
-  assert.equal(normalPreset.startSpan, 7);
-  assert.equal(normalPreset.dotRadius, 1.35);
-  assert.equal(normalPreset.alphaScale, 0.86);
-  assert.equal(combinedPreset.falloffPower, 1);
-  assert.equal(combinedPreset.finalSpan, 7);
-  assert.equal(combinedPreset.startSpan, 7);
-  assert.equal(combinedPreset.dotRadius, 1.35);
-  assert.equal(combinedPreset.alphaScale, 0.86);
+  assert.equal(normalStyle.falloffPower, 1);
+  assert.equal(normalStyle.finalSpan, 7);
+  assert.equal(normalStyle.startSpan, 7);
+  assert.equal(normalStyle.dotRadius, 1.35);
+  assert.equal(normalStyle.alphaScale, 0.86);
+  assert.deepEqual(combinedStyle, normalStyle);
   assert.equal(runtime.getWakeVisualModeLabel(), "full circles + emission lines");
   assert.equal(combinedSphereWeight, normalSphereWeight);
 });
@@ -1254,27 +1173,6 @@ test("causal delay feedback mock initial motion state spans retained path endpoi
   });
 });
 
-test("causal delay feedback contrast stress preset exercises mixed purple-background states", () => {
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: {
-      location: { href: "http://localhost/causal-delay-feedback.html?preset=contrast_stress" },
-    },
-  });
-  const statuses = runtime.dataset.wakeLinks.map((link) => runtime.getWakeStatus(link).status);
-
-  assert.equal(runtime.dataset.preset.id, "contrast_stress");
-  assert.equal(runtime.dataset.canvasColorId, "architrinoPurple");
-  assert.equal(runtime.dataset.assemblyThreshold, 0.00075);
-  assert(statuses.includes("active"));
-  assert(statuses.includes("inactive"));
-  assert(statuses.includes("stale"));
-  assert(statuses.includes("rejected"));
-  assert.equal(runtime.dataset.wakeLinks[1].rootStatus.code, "contrast_root_without_hit");
-  assert.equal(runtime.dataset.wakeLinks[2].reason, "contrast_stress_stale_solver_row");
-  assert.equal(runtime.dataset.wakeLinks[3].rootStatus.code, "contrast_no_delayed_hit");
-});
-
 test("causal delay feedback aggregate summary omits retained-link invalid root reasons", () => {
   const { runtime, readout } = createRuntimeForReadout();
   runtime.applyReplayDataset(createMockCausalDelayReplayDataset("contrast_stress"), { loadState: "ready" });
@@ -1328,19 +1226,18 @@ test("causal delay feedback aggregate summary omits solver constraint telemetry 
   assert.equal(readoutText.some((text) => text.startsWith("claim=")), false);
 });
 
-test("causal delay feedback canvas swatches match the iOS reader theme colors", () => {
-  assert.deepEqual(
-    CANVAS_COLORS.map(({ id, label, color }) => ({ id, label, color })),
-    [
-      { id: "architrinoPurple", label: "Purple", color: "#4b0082" },
-      { id: "light", label: "Light", color: "#fdfdfd" },
-      { id: "warm", label: "Warm", color: "#f4ecd8" },
-      { id: "dark", label: "Dark", color: "#0f172a" },
-    ],
-  );
+test("causal delay feedback uses one fixed learner display with no settings surface", () => {
+  const html = readCausalDelayFeedbackHtml();
+
+  assert.equal(FIXED_CANVAS_COLOR, "#4b0082");
+  assert.equal(FIXED_WAKE_VISUAL_STYLE.wakeArcDisplayMode, "partial_propagating_arcs");
+  assert.doesNotMatch(html, /causal-delay-feedback-settings/u);
+  assert.doesNotMatch(html, /causal-settings/u);
+  assert.doesNotMatch(html, /Canvas settings|Animation speed|Architrino speed|Reset preset/u);
+  assert.doesNotMatch(html, /causal-delay-feedback-(?:color-swatches|cf-speed|architrino-speed|reset-preset)/u);
 });
 
-test("causal delay feedback legend lozenges use selected canvas and trace colors", () => {
+test("causal delay feedback legend lozenges use the fixed canvas and trace colors", () => {
   const html = readCausalDelayFeedbackHtml();
   assert.equal(html.includes("background: var(--causal-selected-canvas-color, #4b0082);"), true);
   assert.match(html, /\.causal-legend-line\s*\{[^}]*height: 22px;/);
@@ -1352,61 +1249,12 @@ test("causal delay feedback legend lozenges use selected canvas and trace colors
   assert.match(html, /\.causal-legend-dots i\s*\{[^}]*width: 3px;[^}]*height: 3px;/);
   assert.match(html, /\.causal-legend-dots i:nth-child\(3\)\s*\{[^}]*top: 5px;/);
 
-  const colorSwatches = new FakeElement();
-  const appStyle = {};
-  const app = {
-    style: {
-      setProperty(name, value) {
-        appStyle[name] = value;
-      },
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dom = { app, colorSwatches };
-  runtime.render = () => {};
-  runtime.populateCanvasSwatches();
-
-  assert.equal(appStyle["--causal-selected-canvas-color"], "#4b0082");
-  assert.equal(appStyle["--causal-positrino-color"], "rgba(255, 0, 0, 1)");
-  assert.equal(appStyle["--causal-electrino-color"], "rgba(0, 0, 255, 1)");
-  assert.equal(appStyle["--causal-positrino-wake-color"], "rgba(255, 150, 166, 1)");
-  assert.equal(appStyle["--causal-electrino-wake-color"], "rgba(150, 170, 255, 1)");
-
-  runtime.setCanvasColor("warm");
-
-  assert.equal(appStyle["--causal-selected-canvas-color"], "#f4ecd8");
-  assert.equal(appStyle["--causal-legend-text-color"], "rgba(14, 9, 24, 0.88)");
-  assert.equal(appStyle["--causal-legend-border-color"], "rgba(14, 9, 24, 0.24)");
-});
-
-test("causal delay feedback settings sliders use themed range styling", () => {
-  const html = readCausalDelayFeedbackHtml();
-
-  assert.equal(html.includes(".causal-range::-webkit-slider-runnable-track"), true);
-  assert.equal(html.includes(".causal-range::-webkit-slider-thumb"), true);
-  assert.equal(html.includes(".causal-range::-moz-range-track"), true);
-  assert.equal(html.includes(".causal-range::-moz-range-thumb"), true);
-  assert.equal(html.includes("appearance: none;"), true);
-  assert.equal(html.includes("background: #4ae5ff;"), false);
-  assert.equal(html.includes("background: #f6f7ff;"), true);
-  assert.equal(html.includes("Animation speed"), true);
-  assert.equal(html.includes('aria-label="Animation speed"'), true);
-  assert.equal(html.includes('id="causal-delay-feedback-cf-speed"'), true);
-  assert.equal(html.includes('min="0.25"'), true);
-  assert.equal(html.includes('max="1.75"'), true);
-  assert.equal(html.includes('value="1"'), true);
-  assert.equal(html.includes('class="causal-range-midpoint"'), true);
-  assert.equal(html.includes('aria-hidden="true">1</span>'), true);
-  assert.equal(html.includes('<span class="causal-math-label">c<sub>f</sub></span> speed'), false);
 });
 
 test("causal delay feedback bottom scrubber uses a dedicated purple transport theme", () => {
   const html = readCausalDelayFeedbackHtml();
   const themeStart = html.indexOf(".causal-timeline-range {");
-  const themeEnd = html.indexOf(".causal-range-midpoint {", themeStart);
+  const themeEnd = html.indexOf(".causal-readout {", themeStart);
   const timelineTheme = html.slice(themeStart, themeEnd);
 
   assert(themeStart > 0);
@@ -1418,61 +1266,25 @@ test("causal delay feedback bottom scrubber uses a dedicated purple transport th
   assert.match(timelineTheme, /\.causal-timeline-range::-moz-range-thumb/u);
   assert.match(timelineTheme, /\.causal-timeline-range:focus-visible/u);
   assert.match(timelineTheme, /accent-color: #8b4fbf/u);
-  assert.match(timelineTheme, /background: #7a36aa/u);
+  assert.match(
+    timelineTheme,
+    /\.causal-timeline-range::-webkit-slider-runnable-track[\s\S]*?background: #7a36aa/u,
+  );
+  assert.match(
+    timelineTheme,
+    /\.causal-timeline-range::-webkit-slider-thumb[\s\S]*?background: #8b4fbf/u,
+  );
+  assert.match(
+    timelineTheme,
+    /\.causal-timeline-range::-moz-range-track[\s\S]*?background: #7a36aa/u,
+  );
+  assert.match(
+    timelineTheme,
+    /\.causal-timeline-range::-moz-range-thumb[\s\S]*?background: #8b4fbf/u,
+  );
+  assert.match(timelineTheme, /border-color: rgba\(246, 247, 255, 0\.94\)/u);
   assert.match(timelineTheme, /rgba\(225, 205, 255, 0\.96\)/u);
   assert.doesNotMatch(timelineTheme, /#(?:ff0000|0000ff|ff96a6|96aaff|4ae5ff)/iu);
-});
-
-test("causal delay feedback settings place architrino speed after canvas", () => {
-  const html = readCausalDelayFeedbackHtml();
-  const canvasIndex = html.indexOf('id="causal-delay-feedback-color-swatches"');
-  const architrinoSpeedIndex = html.indexOf('id="causal-delay-feedback-architrino-speed"');
-  const cfSpeedIndex = html.indexOf('id="causal-delay-feedback-cf-speed"');
-  const resetPresetIndex = html.indexOf('id="causal-delay-feedback-reset-preset"');
-
-  assert(canvasIndex > 0);
-  assert(architrinoSpeedIndex > canvasIndex);
-  assert(cfSpeedIndex > architrinoSpeedIndex);
-  assert(resetPresetIndex > cfSpeedIndex);
-});
-
-test("causal delay feedback settings popover omits promoted and deprecated controls", () => {
-  const html = readCausalDelayFeedbackHtml();
-
-  assert.equal(html.includes('id="causal-delay-feedback-reset-preset"'), true);
-  assert.equal(html.includes("Reset preset"), true);
-  assert.equal(html.includes(".causal-settings-action"), true);
-  assert.equal(html.includes('id="causal-delay-feedback-reduced-motion"'), false);
-  assert.equal(html.includes("Reduced motion"), false);
-  assert.equal(html.includes('id="causal-delay-feedback-high-contrast-paths"'), false);
-  assert.equal(html.includes("High contrast paths"), false);
-  assert.equal(html.includes('id="causal-delay-feedback-depth-field"'), false);
-  assert.equal(html.includes("Depth field"), false);
-  assert.equal(html.includes('id="causal-delay-feedback-virtual-observer"'), false);
-  assert.equal(html.includes("Virtual observer"), false);
-  assert.equal(html.includes('id="causal-delay-feedback-weak-cue"'), false);
-  assert.equal(html.includes('id="causal-delay-feedback-weak-cue-button"'), false);
-  assert.equal(html.includes("data-weak-cue-toggle"), false);
-  assert.equal(html.includes(">Weak cue</button>"), false);
-  assert.equal(html.includes('value="threshold_only"'), false);
-  assert.equal(html.includes('value="off"'), false);
-  assert.equal(html.includes('id="causal-delay-feedback-traversal-mode"'), false);
-  assert.equal(html.includes('value="fixed_speed" selected'), false);
-  assert.equal(html.includes("Fixed speed"), false);
-  assert.equal(html.includes('value="variable_speed"'), false);
-  assert.equal(html.includes("Variable speed"), false);
-  assert.equal(html.includes(".causal-toggle-row"), false);
-  assert.equal(html.includes(".causal-setting-select"), false);
-  assert.equal(html.includes("Hide path history"), false);
-  assert.equal(html.includes("Show path history"), false);
-  assert.equal(html.includes("Paths on/off"), false);
-  assert.equal(html.includes("Readout on/off"), false);
-  assert.equal(html.includes("Feedback Links"), false);
-  assert.equal(html.includes("trace count"), false);
-  assert.equal(html.includes("Root Ledger"), false);
-  assert.equal(html.includes("root ledger inspector"), false);
-  assert.equal(html.includes("diagnostic table"), false);
-  assert.equal(html.includes("diagnostics panel"), false);
 });
 
 test("causal delay feedback toolbar exposes independent wake visual switches", () => {
@@ -1505,38 +1317,6 @@ test("causal delay feedback toolbar exposes independent wake visual switches", (
   assert.equal(html.includes(">Bright</button>"), false);
   assert.equal(html.includes('data-visual-switch="wideWakeFrontGapEnabled"'), false);
   assert.equal(html.includes(">Gap+</button>"), false);
-});
-
-test("causal delay feedback toolbar omits the preset dropdown while review presets still load", async () => {
-  const html = readCausalDelayFeedbackHtml();
-  const replayStatus = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-    autoLoadReplay: false,
-  });
-  runtime.dom = { replayStatus };
-
-  await runtime.setPreset("contrast_stress");
-
-  assert.equal(html.includes('id="causal-delay-feedback-preset"'), false);
-  assert.equal(html.includes("causal-preset"), false);
-  assert.equal(runtime.presetId, "contrast_stress");
-  assert.equal(runtime.dataset.preset.id, "contrast_stress");
-});
-
-test("causal delay feedback settings button uses a gear icon", () => {
-  const html = readCausalDelayFeedbackHtml();
-  const settingsIndex = html.indexOf('id="causal-delay-feedback-settings"');
-  const settingsPanelIndex = html.indexOf('id="causal-delay-feedback-settings-panel"');
-  const settingsButtonHtml = html.slice(settingsIndex, settingsPanelIndex);
-
-  assert(settingsIndex > 0);
-  assert(settingsPanelIndex > settingsIndex);
-  assert.match(settingsButtonHtml, /<circle cx="12" cy="12" r="3" \/>/);
-  assert.match(settingsButtonHtml, /a2 2 0 0 0-2-2z/);
-  assert.equal(settingsButtonHtml.includes('d="M12 2.8v3"'), false);
-  assert.equal(settingsButtonHtml.includes('d="M2.8 12h3"'), false);
 });
 
 test("causal delay feedback bottom rail keeps timeline-only transport before the scrubber", () => {
@@ -1609,12 +1389,10 @@ test("causal delay feedback aligns the bottom rail to the transformed time axis"
 test("causal delay feedback Laboratory omits the redundant polarity legend and readout lozenge", () => {
   const html = readCausalDelayFeedbackHtml();
   const toolbarIndex = html.indexOf('class="causal-toolbar"');
-  const settingsIndex = html.indexOf('id="causal-delay-feedback-settings"');
   const replayStatusIndex = html.indexOf('id="causal-delay-feedback-replay-status"');
 
   assert(toolbarIndex > 0);
-  assert(settingsIndex > toolbarIndex);
-  assert(replayStatusIndex > settingsIndex);
+  assert(replayStatusIndex > toolbarIndex);
   assert.doesNotMatch(html, /red Positrino above · blue Electrino below/u);
   assert.doesNotMatch(html, /class="causal-legend"/u);
   assert.match(
@@ -1628,29 +1406,6 @@ test("causal delay feedback does not render a floating hover overlay", () => {
 
   assert.equal(html.includes("causal-delay-feedback-hover-label"), false);
   assert.equal(html.includes("causal-hover-label"), false);
-});
-
-test("causal delay feedback replay datasets can load preset canvas color state", () => {
-  const colorSwatches = new FakeElement();
-  const replayStatus = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dom = { colorSwatches, replayStatus };
-  runtime.populateCanvasSwatches();
-
-  runtime.applyReplayDataset(
-    {
-      ...createMockCausalDelayReplayDataset("accepted_tight_bright"),
-      canvasColorId: "warm",
-    },
-    { loadState: "ready" },
-  );
-
-  assert.equal(runtime.canvasColorId, "warm");
-  const activeSwatch = colorSwatches.children.find((button) => button.classList.contains("is-active"));
-  assert.equal(activeSwatch.dataset.colorId, "warm");
 });
 
 test("causal delay feedback retained depth setting filters history while live wake count stays continuous", () => {
@@ -1687,48 +1442,12 @@ test("causal delay feedback retained depth setting clears hidden selected rows",
   assert.equal(runtime.selectedItem, null);
 });
 
-test("causal delay feedback settings omit retained point controls", () => {
+test("causal delay feedback learner surface omits retained point controls", () => {
   const html = readCausalDelayFeedbackHtml();
 
   assert.equal(html.includes('id="causal-delay-feedback-history-depth"'), false);
   assert.equal(html.includes("Retained points"), false);
   assert.equal(html.includes("causal-depth-button"), false);
-});
-
-test("causal delay feedback animation speed setting scales the replay clock", () => {
-  const scheduledFrames = [];
-  const cfSpeedInput = new FakeElement();
-  const cfSpeedValue = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    initialMode: "sandbox",
-    window: {
-      ...fakeWindow,
-      requestAnimationFrame(callback) {
-        scheduledFrames.push(callback);
-        return scheduledFrames.length;
-      },
-    },
-  });
-  runtime.dom = { cfSpeedInput, cfSpeedValue };
-  runtime.render = () => {};
-  runtime.updateFieldSpeedControl();
-  runtime.lastFrameTime = 984;
-
-  runtime.tick(1000);
-
-  assert.equal(runtime.fieldSpeedScale, 1);
-  assert.equal(cfSpeedInput.value, "1");
-  assert.equal(cfSpeedValue.textContent, "1x");
-  assertNear(runtime.elapsedSeconds, 0.016);
-  assert.equal(runtime.replayRequestOptions.fieldSpeedScale, 1);
-  assert.equal(scheduledFrames.length, 1);
-
-  runtime.setFieldSpeedControlScale(1.25);
-
-  assert.equal(runtime.fieldSpeedScale, 1.25);
-  assert.equal(cfSpeedInput.value, "1.25");
-  assert.equal(cfSpeedValue.textContent, "1.25x");
 });
 
 test("Story 1 uses the shared eighty-percent wake-display rate", () => {
@@ -2500,7 +2219,7 @@ test("dormant diagnostic history renderer preserves reciprocal geometry", () => 
   assert.equal(runtime.dom.canvas.dataset.historyWakeGuideArcCount, "0");
 });
 
-test("Lesson Five starts at emission zero and then builds paired full fronts", () => {
+test("Lesson Five starts at emission zero and visibly differs from Lesson One at equal body-wake speed", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -2509,11 +2228,11 @@ test("Lesson Five starts at emission zero and then builds paired full fronts", (
   runtime.dom = { canvas: { dataset: {} } };
   runtime.learnerState.storyStep = 4;
   runtime.drawStoryEmissionOriginMarker = () => {};
-  runtime.drawGuidedLiveMarkers = () => {};
+  runtime.drawLiveMarker = () => {};
   runtime.drawPathTrail = () => {};
   const renders = [];
-  runtime.drawPairedFullWakeHistory = (_ctx, fronts, bodyDisplayTime, options) => {
-    renders.push({ fronts, bodyDisplayTime, options });
+  runtime.drawForwardWakeBuildupHistory = (_ctx, frame) => {
+    renders.push(frame);
   };
 
   const scene = createStoryScene(runtime.learnerState);
@@ -2539,13 +2258,69 @@ test("Lesson Five starts at emission zero and then builds paired full fronts", (
     new Set(renders[1].fronts.map((front) => front.transmitterId)),
     new Set(["positrino", "electrino"]),
   );
+  assert.ok(renders[1].fronts.every((front) => front.declaredFieldSpeed));
+  assert.ok(renders[1].fronts.every(
+    (front) =>
+      Math.abs(front.bodySpeed - front.wakeExpansionSpeed) <= Number.EPSILON,
+  ));
+  assert.equal(
+    runtime.dom.canvas.dataset.forwardWakeBuildupMinimumSpeedRatio,
+    "1.000000000",
+  );
+  assert.equal(
+    runtime.dom.canvas.dataset.forwardWakeBuildupMaximumSpeedRatio,
+    "1.000000000",
+  );
+  assert.equal(
+    runtime.dom.canvas.dataset.forwardWakeBuildupDiffersFromMeet,
+    "equal-body-and-wake-speed",
+  );
+  assert.equal(
+    runtime.dom.canvas.dataset.forwardWakeBuildupMaximumLeadingError,
+    "0.000000000",
+  );
+  assert.equal(
+    runtime.dom.canvas.dataset.forwardWakeBuildupFrontClip,
+    "trailing-half-plane-through-current-body",
+  );
+  for (const progress of [0.1, 0.3, 0.5, 0.7, 1]) {
+    const frame = runtime.createStoryForwardWakeBuildupFrame(
+      scene,
+      scene.playbackStartTime +
+        (scene.playbackEndTime - scene.playbackStartTime) * progress,
+    );
+    assert.ok(frame.fronts.length > 0);
+    assert.equal(frame.maximumLeadingCoincidenceError, 0);
+    frame.fronts.forEach((front) => {
+      assert.equal(front.currentBody, frame.bodies[front.transmitterId]);
+      assert.equal(front.leadingPoint, front.currentBody);
+      assert.ok(
+        Math.abs(
+          front.radius - getDistance(front.center, front.currentBody),
+        ) <= 1e-9,
+      );
+      assert.equal(front.trailingHalfPlaneOnly, true);
+    });
+  }
+  const meetScene = createStoryScene({
+    ...runtime.learnerState,
+    storyStep: 0,
+  });
+  const meetFronts = createStorySampledWakeFronts(
+    runtime.learnerState,
+    meetScene,
+    meetScene.playbackStartTime +
+      (meetScene.playbackEndTime - meetScene.playbackStartTime) * 0.5,
+  );
+  assert.ok(meetFronts.length > 0);
+  assert.ok(meetFronts.every((front) => front.declaredFieldSpeed !== true));
   assert.match(
     runtime.dom.canvas.dataset.forwardWakeBuildupEvidenceBoundary,
-    /Shared paired-path teaching projection/u,
+    /Declared paired-path display fixture/u,
   );
   assert.match(
     runtime.dom.canvas.dataset.forwardWakeBuildupEvidenceBoundary,
-    /do not establish a self-interaction/u,
+    /sampled trailing wake arcs are anchored to the current body/u,
   );
 });
 
@@ -2743,26 +2518,6 @@ test("lesson playback advances its scene without polling dormant diagnostic pane
   assert.equal(panelRefreshes, 0);
 });
 
-test("causal delay feedback animation tempo and architrino speed settings keep live wake arcs visible", () => {
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  const replayTime = 0.5;
-  const baseSignalSpeed = runtime.getLiveWakeSignalSpeed();
-
-  runtime.setFieldSpeedControlScale(0.25);
-  runtime.setArchitrinoSpeedIndex(9);
-
-  assert.equal(runtime.fieldSpeedScale, 0.25);
-  assert.equal(runtime.getArchitrinoSpeedFraction(), 0.999999);
-  assert.equal(runtime.getLiveWakeSignalSpeed(), baseSignalSpeed);
-  assert.deepEqual(
-    runtime.getVisibleWakeSeries(replayTime).map((link) => link.id),
-    ["live-positrino-to-electrino", "live-electrino-to-positrino"],
-  );
-});
-
 test("causal delay feedback display sampler uses fixed path speed", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -2843,46 +2598,6 @@ test("causal delay feedback live markers use fixed path speed", () => {
   );
 });
 
-test("causal delay feedback architrino speed setting uses the requested v over c_f sequence", () => {
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-
-  assert.deepEqual(
-    Array.from({ length: 10 }, (_, index) => runtime.getArchitrinoSpeedFraction(index)),
-    [0.1, 0.3, 0.5, 0.7, 0.9, 0.99, 0.999, 0.9999, 0.99999, 0.999999],
-  );
-});
-
-test("causal delay feedback architrino speed setting rescales initial velocity magnitudes", () => {
-  const replayStatus = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dom = { replayStatus };
-  const previousMagnitudes = Object.fromEntries(
-    ["positrino", "electrino"].map((kind) => {
-      const condition = runtime.getInitialCondition(kind);
-      return [kind, Math.hypot(condition.vx, condition.vy)];
-    }),
-  );
-
-  runtime.setArchitrinoSpeedIndex(5);
-
-  assert.equal(runtime.getArchitrinoSpeedFraction(), 0.99);
-  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
-  assert.equal(runtime.dataset.draftPreview.reason, "architrino_speed_fraction_preview");
-  assert.equal(runtime.replayLoadState, "draft");
-  assert.equal(replayStatus.textContent, "draft preview");
-  assert.equal(runtime.replayRequestOptions.architrinoSpeedFraction, 0.99);
-  ["positrino", "electrino"].forEach((kind) => {
-    const condition = runtime.getInitialCondition(kind);
-    assertNear(Math.hypot(condition.vx, condition.vy), previousMagnitudes[kind] * (0.99 / 0.7));
-  });
-});
-
 test("causal delay feedback replay keeps initial conditions synced to path start history", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -2900,9 +2615,7 @@ test("causal delay feedback replay keeps initial conditions synced to path start
 });
 
 test("causal delay feedback eom normalization projects recorded worldlines onto the canvas", () => {
-  const normalized = normalizeCausalDelayFeedbackEomReplay(createEomRecordFixture(), {
-    presetId: "accepted_tight_bright",
-  });
+  const normalized = normalizeCausalDelayFeedbackEomReplay(createEomRecordFixture());
 
   assert.equal(normalized.runId, "cdf-runtime-eom-fixture");
   assert.equal(normalized.datasetSource, EOM_REPLAY_DATASET_SOURCE);
@@ -2913,7 +2626,7 @@ test("causal delay feedback eom normalization projects recorded worldlines onto 
   assert.equal(normalized.eomProvenance.runId, "cdf-runtime-eom-fixture");
   assert.equal(normalized.eomProvenance.claimGrade, "evolved-record");
   assert.deepEqual(normalized.eomWorldlineRoles, { positrino: "10", electrino: "20" });
-  assert.equal(normalized.preset.id, "accepted_tight_bright");
+  assert.equal("preset" in normalized, false);
   // Both worldlines only move along y, so the display projection picks y.
   assert.equal(normalized.displayProjection.spaceAxis, "y");
   assert.deepEqual(normalized.wakeLinks, []);
@@ -3213,8 +2926,8 @@ test("causal delay feedback runtime loads an async eom replay over the mock fall
   const replayStatus = new FakeElement();
   const adapter = {
     id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId }) {
-      return createMockEomReplayDataset(presetId);
+    async createReplayAsync() {
+      return createMockEomReplayDataset("fixed-display");
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -3227,9 +2940,9 @@ test("causal delay feedback runtime loads an async eom replay over the mock fall
 
   assert.equal(runtime.dataset.datasetSource, "representative_mock_solver_replay");
 
-  await runtime.setPreset("full_circular_arcs");
+  await runtime.loadReplay();
 
-  assert.equal(runtime.dataset.runId, "eom:full_circular_arcs");
+  assert.equal(runtime.dataset.runId, "eom:fixed-display");
   assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
   assert.equal(runtime.dataset.solverIntegrationPath, EOM_REPLAY_ADAPTER);
   assert.equal(runtime.replayLoadState, "ready");
@@ -3423,51 +3136,14 @@ test("causal delay feedback eom replay adapter rejects draft-preview recompute r
   assert.equal(adapter.id, EOM_REPLAY_ADAPTER);
   await assert.rejects(
     adapter.createReplayAsync({
-      presetId: "accepted_tight_bright",
       requestOptions: { replayDataset: { draftPreview: { reason: "retained_point_drag_preview" } } },
     }),
     /recorded solver output; canvas edits cannot be recomputed/,
   );
 
-  const dataset = await adapter.createReplayAsync({ presetId: "accepted_tight_bright" });
+  const dataset = await adapter.createReplayAsync();
   assert.equal(dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
   assert.equal(dataset.runId, "cdf-runtime-eom-fixture");
-});
-
-test("causal delay feedback contrast stress preset stays representative under eom replay", async () => {
-  const replayStatus = new FakeElement();
-  let eomCalls = 0;
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId }) {
-      eomCalls += 1;
-      return createMockEomReplayDataset(presetId);
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: {
-      location: { href: "http://localhost/causal-delay-feedback.html?preset=contrast_stress" },
-    },
-    replayAdapter: adapter,
-    autoLoadReplay: false,
-  });
-  runtime.dom = { replayStatus };
-
-  await runtime.loadReplay();
-  const statuses = runtime.dataset.wakeLinks.map((link) => runtime.getWakeStatus(link).status);
-
-  assert.equal(eomCalls, 0);
-  assert.equal(runtime.dataset.preset.id, "contrast_stress");
-  assert.equal(runtime.dataset.datasetSource, REPRESENTATIVE_MOCK_SOLVER_REPLAY);
-  assert.equal(runtime.dataset.solverIntegrationPath, TEMPORARY_MOCK_ADAPTER);
-  assert.equal(runtime.replayLoadState, "ready");
-  assert.equal(replayStatus.textContent, "representative replay");
-  assert.equal(replayStatus.dataset.state, "representative");
-  assert(statuses.includes("active"));
-  assert(statuses.includes("inactive"));
-  assert(statuses.includes("stale"));
-  assert(statuses.includes("rejected"));
 });
 
 test("causal delay feedback runtime keeps the mock replay when eom replay loading fails", async () => {
@@ -3541,9 +3217,9 @@ test("causal delay feedback runtime ignores stale async replay responses", async
   const pending = [];
   const adapter = {
     id: EOM_REPLAY_ADAPTER,
-    createReplayAsync({ presetId }) {
+    createReplayAsync() {
       return new Promise((resolve) => {
-        pending.push({ presetId, resolve });
+        pending.push({ resolve });
       });
     },
   };
@@ -3554,8 +3230,8 @@ test("causal delay feedback runtime ignores stale async replay responses", async
     autoLoadReplay: false,
   });
 
-  const firstLoad = runtime.loadReplay({ presetId: "accepted_tight_bright" });
-  const secondLoad = runtime.loadReplay({ presetId: "full_circular_arcs" });
+  const firstLoad = runtime.loadReplay();
+  const secondLoad = runtime.loadReplay();
 
   pending[1].resolve(createMockEomReplayDataset("full_circular_arcs", { runId: "newer-eom-dataset" }));
   await secondLoad;
@@ -3564,8 +3240,7 @@ test("causal delay feedback runtime ignores stale async replay responses", async
   await firstLoad;
 
   assert.equal(runtime.dataset.runId, "newer-eom-dataset");
-  assert.equal(runtime.dataset.preset.id, "full_circular_arcs");
-  assert.equal(runtime.presetId, "full_circular_arcs");
+  assert.equal("preset" in runtime.dataset, false);
 });
 
 test("causal delay feedback page uses eom replay by default with a mock escape hatch", () => {
@@ -3731,7 +3406,7 @@ test("causal delay feedback eom replay adapter requires a recorded dataset", asy
   const emptyAdapter = createCausalDelayFeedbackEomReplayAdapter();
 
   await assert.rejects(
-    emptyAdapter.createReplayAsync({ presetId: "accepted_tight_bright" }),
+    emptyAdapter.createReplayAsync(),
     /requires a recorded eom_evolution_contract\/v0 dataset/,
   );
 
@@ -3742,10 +3417,10 @@ test("causal delay feedback eom replay adapter requires a recorded dataset", asy
       return createEomRecordFixture();
     },
   });
-  const dataset = await loaderAdapter.createReplayAsync({ presetId: "accepted_tight_bright" });
+  const dataset = await loaderAdapter.createReplayAsync();
 
   assert.equal(loaderContexts.length, 1);
-  assert.equal(loaderContexts[0].presetId, "accepted_tight_bright");
+  assert.equal("presetId" in loaderContexts[0], false);
   assert.equal(dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
   assert.equal(dataset.solverIntegrationPath, EOM_REPLAY_ADAPTER);
   assert.equal(dataset.runId, "cdf-runtime-eom-fixture");
@@ -3884,9 +3559,7 @@ test("causal delay feedback partial wake arc fronts keep radial sector boundarie
 test("causal delay feedback full circular wakes keep expanding after retained receptions", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
-    window: {
-      location: { href: "http://localhost/causal-delay-feedback.html?preset=full_circular_arcs" },
-    },
+    window: fakeWindow,
   });
   const link = runtime.dataset.wakeLinks[0];
   const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
@@ -3917,10 +3590,9 @@ test("causal delay feedback full circular wakes are emitted from moving path ori
   });
   const fullRuntime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
-    window: {
-      location: { href: "http://localhost/causal-delay-feedback.html?preset=full_circular_arcs" },
-    },
+    window: fakeWindow,
   });
+  fullRuntime.setWakeVisualSwitch("fullCircularWakesEnabled", true);
   const partialLink = partialRuntime.dataset.wakeLinks[0];
   const transmitterPoint = partialRuntime.dataset.history[partialLink.sourceKind].find(
     (point) => point.depth === partialLink.sourceDepth,
@@ -3959,8 +3631,7 @@ test("causal delay feedback full circular wakes are emitted from moving path ori
     positrinoSpheres.map((sphere) => `${Math.round(sphere.origin.x)}:${Math.round(sphere.origin.y)}`),
   );
 
-  assert.equal(fullRuntime.dataset.preset.dotRadius, partialRuntime.dataset.preset.dotRadius);
-  assert.equal(fullRuntime.dataset.preset.alphaScale, partialRuntime.dataset.preset.alphaScale);
+  assert.deepEqual(fullRuntime.getWakeVisualStyle(), partialRuntime.getWakeVisualStyle());
   assert(fullCalls.length > partialCalls.length);
   assert(positrinoSpheres.length > 8);
   assert(distinctOrigins.size > 3);
@@ -4701,7 +4372,7 @@ test("causal delay feedback cancels a pending replay only when a direct edit beg
   const anchor = runtime.dataset.paths.positrino[80];
   runtime.applyPathLineDrag("positrino", anchor.t, { x: 0, y: -25 });
   assert.equal(runtime.replayLoadState, "draft");
-  resolveReplay(createMockCausalDelayReplayDataset(runtime.presetId));
+  resolveReplay(createMockCausalDelayReplayDataset());
   await pendingLoad;
   assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
 });
@@ -5230,77 +4901,6 @@ test("causal delay feedback play-pause toggle follows the shared transport state
   );
 });
 
-test("causal delay feedback settings stay open through option changes until explicit dismissal", () => {
-  const documentLike = new FakeDocument();
-  const windowLike = new FakeElement();
-  Object.assign(windowLike, {
-    location: fakeWindow.location,
-    performance: { now: () => 0 },
-    cancelAnimationFrame() {},
-  });
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: documentLike,
-    window: windowLike,
-    autoLoadReplay: false,
-  });
-  runtime.dom = {
-    playButton: new FakeElement(),
-    resetButton: new FakeElement(),
-    lastFrameButton: new FakeElement(),
-    resetPresetButton: new FakeElement(),
-    settingsButton: new FakeElement(),
-    visualSwitches: new FakeElement(),
-    colorSwatches: new FakeElement(),
-    nowInput: new FakeElement(),
-    cfSpeedInput: new FakeElement(),
-    architrinoSpeedInput: new FakeElement(),
-    settingsPanel: new FakeElement(),
-    canvas: new FakeElement(),
-  };
-  runtime.dom.settingsPanel.hidden = false;
-  runtime.dom.settingsButton.setAttribute("aria-expanded", "true");
-  runtime.dom.settingsPanel.contains = () => false;
-  runtime.dom.settingsButton.contains = () => false;
-  runtime.toggleWakeVisualSwitch = () => {};
-  runtime.setCanvasColor = () => {};
-  runtime.setReplayNowSliderValue = () => {};
-  runtime.setFieldSpeedControlScale = () => {};
-  runtime.setArchitrinoSpeedIndex = () => {};
-  runtime.submitArchitrinoSpeedFraction = () => {};
-  runtime.stepArchitrinoSpeedIndex = () => {};
-  runtime.bindEvents();
-
-  const dispatch = (target, type, event = {}) => {
-    [...(target.listeners.get(type) ?? [])].forEach((handler) => handler(event));
-    assert.equal(runtime.dom.settingsPanel.hidden, false);
-    assert.equal(runtime.dom.settingsButton.attributes["aria-expanded"], "true");
-  };
-  dispatch(runtime.dom.visualSwitches, "click", {
-    target: { closest: () => ({ dataset: { visualSwitch: "arcWakesEnabled" } }) },
-  });
-  dispatch(runtime.dom.colorSwatches, "click", {
-    target: { closest: () => ({ dataset: { colorId: "light" } }) },
-  });
-  dispatch(runtime.dom.nowInput, "input");
-  dispatch(runtime.dom.cfSpeedInput, "input");
-  dispatch(runtime.dom.architrinoSpeedInput, "input");
-  dispatch(runtime.dom.architrinoSpeedInput, "change");
-  dispatch(runtime.dom.settingsPanel, "click", {
-    target: { closest: () => ({ dataset: { architrinoSpeedStep: "1" } }) },
-  });
-
-  [...documentLike.listeners.get("pointerdown")].forEach((handler) => {
-    handler({ target: new FakeElement() });
-  });
-  assert.equal(runtime.dom.settingsPanel.hidden, true);
-  assert.equal(runtime.dom.settingsButton.attributes["aria-expanded"], "false");
-
-  runtime.toggleSettings();
-  [...runtime.dom.settingsButton.listeners.get("click")].forEach((handler) => handler());
-  assert.equal(runtime.dom.settingsPanel.hidden, true);
-  assert.equal(runtime.dom.settingsButton.attributes["aria-expanded"], "false");
-});
-
 test("causal delay feedback destroy removes every runtime listener and invalidates pending loads", () => {
   const documentLike = new FakeDocument();
   const windowLike = new FakeElement();
@@ -5318,14 +4918,8 @@ test("causal delay feedback destroy removes every runtime listener and invalidat
     playButton: new FakeElement(),
     resetButton: new FakeElement(),
     lastFrameButton: new FakeElement(),
-    resetPresetButton: new FakeElement(),
-    settingsButton: new FakeElement(),
     visualSwitches: new FakeElement(),
-    colorSwatches: new FakeElement(),
     nowInput: new FakeElement(),
-    cfSpeedInput: new FakeElement(),
-    architrinoSpeedInput: new FakeElement(),
-    settingsPanel: new FakeElement(),
     canvas: new FakeElement(),
   };
 
@@ -5466,16 +5060,23 @@ test("causal delay feedback arrow keys leave native controls alone", () => {
   assertNear(runtime.getCurrentReplayTime(), beforeTime);
 });
 
-test("causal delay feedback runtime accepts direct full-circular preset review URL", () => {
+test("causal delay feedback ignores removed display-setting query parameters", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: {
-      location: { href: "http://localhost/causal-delay-feedback.html?preset=full_circular_arcs" },
+      location: {
+        href:
+          "http://localhost/causal-delay-feedback.html?preset=full_circular_arcs" +
+          "&canvas=warm&animationSpeed=1.75&architrinoSpeed=9",
+      },
     },
   });
 
-  assert.equal(runtime.presetId, "full_circular_arcs");
-  assert.equal(runtime.dataset.wakeArcDisplayMode, "full_circular_arcs");
-  assert.equal(runtime.wakeVisualSettings.fullCircularWakesEnabled, true);
-  assert.equal(runtime.wakeVisualSettings.arcWakesEnabled, false);
+  assert.equal("presetId" in runtime, false);
+  assert.equal("canvasColorId" in runtime, false);
+  assert.equal("architrinoSpeedIndex" in runtime, false);
+  assert.equal(runtime.fieldSpeedScale, 1);
+  assert.equal(runtime.dataset.wakeArcDisplayMode, "partial_propagating_arcs");
+  assert.equal(runtime.wakeVisualSettings.fullCircularWakesEnabled, false);
+  assert.equal(runtime.wakeVisualSettings.arcWakesEnabled, true);
 });

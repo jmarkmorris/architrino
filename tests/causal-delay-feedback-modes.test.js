@@ -683,14 +683,17 @@ test("page exposes semantic journey controls and one text-equivalent canvas summ
   for (const id of [
     "causal-delay-feedback-mode-tabs",
     "causal-delay-feedback-lesson-panel",
-    "causal-delay-feedback-guided-back",
+    "nav-up",
     "causal-delay-feedback-guided-first-frame",
     "causal-delay-feedback-guided-play",
     "causal-delay-feedback-guided-last-frame",
-    "causal-delay-feedback-guided-next",
-    "causal-delay-feedback-toc-toggle",
-    "causal-delay-feedback-home",
-    "causal-delay-feedback-lesson-search-toggle",
+    "nav-forward",
+    "textbook-toc-button",
+    "home-button",
+    "scene-search-toggle",
+    "scene-search-panel",
+    "scene-search-input",
+    "scene-search-results",
     "causal-delay-feedback-canvas-summary",
   ]) {
     assert.match(html, new RegExp(`id="${id}"`, "u"));
@@ -703,6 +706,50 @@ test("page exposes semantic journey controls and one text-equivalent canvas summ
   assert.doesNotMatch(html, /id="causal-delay-feedback-guided-replay"/u);
   assert.doesNotMatch(html, /causal-delay-feedback-journey-provenance/u);
   assert.doesNotMatch(html, /data-guided-action="sandbox"/u);
+  assert.match(html, /aria-label="Search scenes"/u);
+  assert.match(html, /placeholder="Search scenes"/u);
+  assert.doesNotMatch(html, /Search lessons/u);
+  assert.doesNotMatch(html, /causal-delay-feedback-lesson-search/u);
+});
+
+test("shared top-right shell keeps Search and the local lesson list persistent", async () => {
+  const [html, sharedStyles, runtime] = await Promise.all([
+    readFile(new URL("causal-delay-feedback.html", REPO_ROOT), "utf8"),
+    readFile(new URL("style.css", REPO_ROOT), "utf8"),
+    readFile(
+      new URL(
+        "src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js",
+        REPO_ROOT,
+      ),
+      "utf8",
+    ),
+  ]);
+  assert.match(html, /id="scene-hud-tools"/u);
+  assert.match(html, /id="scene-search-toggle"[\s\S]*aria-expanded="false"/u);
+  assert.doesNotMatch(
+    html,
+    /\.causal-scene-search\.is-open\s+\.causal-scene-search-toggle\s*\{\s*display:\s*none/u,
+  );
+  assert.doesNotMatch(
+    sharedStyles,
+    /#scene-search\.is-open\s+#scene-search-toggle\s*\{\s*display:\s*none/u,
+  );
+  assert.match(runtime, /createStandaloneAppSceneSearchRuntime/u);
+  assert.match(runtime, /resolveStandaloneSiteHomeHref/u);
+  assert.match(runtime, /TEXTBOOK_TOC_SCENE_PATH/u);
+  assert.match(html, /aria-label="Open textbook table of contents"/u);
+  assert.doesNotMatch(
+    html.match(/<button[\s\S]*?id="textbook-toc-button"[\s\S]*?<\/button>/u)?.[0] ?? "",
+    /aria-controls|aria-expanded/u,
+  );
+  assert.match(
+    html,
+    /\.causal-journey\.is-global-search-open \.causal-mode-tabs/u,
+  );
+  assert.doesNotMatch(
+    runtime,
+    /setTableOfContentsOpen|onTableOfContentsOpen/u,
+  );
 });
 
 test("Story canvas omits redundant headings and the retired learner surfaces", async () => {
@@ -714,7 +761,7 @@ test("Story canvas omits redundant headings and the retired learner surfaces", a
   assert.match(runtime, /drawSceneHeading\(ctx, `ROOTS/u);
   assert.doesNotMatch(runtime, /`SELF-HIT ·/u);
   assert.doesNotMatch(runtime, /`BRANCH LAB ·/u);
-  assert.match(runtime, /drawFieldSpeedCompressionScene/u);
+  assert.match(runtime, /drawStoryForwardWakeBuildup/u);
 });
 
 test("learner journey stays one app with no separate Roots route", async () => {

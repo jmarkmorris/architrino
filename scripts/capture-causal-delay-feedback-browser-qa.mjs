@@ -31,10 +31,9 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    query: "mode=story&replay=mock",
     replayTime: 0.62,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
     mode: "story",
     storyStep: 0,
     storyProgress: 0.5,
@@ -47,10 +46,9 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    query: "mode=story&replay=mock",
     replayTime: 0.62,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
     mode: "story",
     storyStep: 1,
     storyProgress: 1,
@@ -63,10 +61,9 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    query: "mode=story&replay=mock",
     replayTime: 0.62,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
     mode: "story",
     storyStep: 2,
     expectedScene: "story:meaning",
@@ -78,10 +75,9 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    query: "mode=story&replay=mock",
     replayTime: 0.62,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
     mode: "story",
     storyStep: 3,
     expectedScene: "story:motion",
@@ -93,13 +89,70 @@ const PROOFS = Object.freeze([
     width: 390,
     height: 844,
     deviceScaleFactor: 2,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    query: "mode=story&replay=mock",
     replayTime: 0.62,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
     mode: "story",
     storyStep: 2,
     expectedScene: "story:meaning",
+  },
+  {
+    id: "shared-shell-search-desktop",
+    fileName: "shared-shell-search-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
+    replayTime: 0.62,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "story",
+    storyStep: 0,
+    shellSearchQuery: "Applications",
+    expectedGlobalSearchResult: "Applications",
+    expectedScene: "story:meet",
+  },
+  {
+    id: "shared-shell-search-phone",
+    fileName: "shared-shell-search-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=story&replay=mock",
+    replayTime: 0.62,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "story",
+    storyStep: 0,
+    shellSearchQuery: "Applications",
+    expectedGlobalSearchResult: "Applications",
+    expectedScene: "story:meet",
+  },
+  {
+    id: "settings-removed-desktop",
+    fileName: "settings-removed-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=sandbox&replay=mock",
+    useLaboratoryInitialReplayTime: true,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "sandbox",
+    verifySettingsRemoved: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
+    id: "settings-removed-phone",
+    fileName: "settings-removed-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=sandbox&replay=mock",
+    useLaboratoryInitialReplayTime: true,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "sandbox",
+    verifySettingsRemoved: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
   },
   {
     id: "laboratory-path-drag-c1",
@@ -107,10 +160,9 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=sandbox&replay=mock&canvas=architrinoPurple",
+    query: "mode=sandbox&replay=mock",
     replayTime: 0.4,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
     mode: "sandbox",
     prepareAction: {
       type: "path-line-drag",
@@ -129,10 +181,9 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=sandbox&replay=mock&canvas=architrinoPurple",
+    query: "mode=sandbox&replay=mock",
     replayTime: 0.7,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
     mode: "sandbox",
     prepareAction: {
       type: "path-line-drag",
@@ -152,10 +203,9 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=sandbox&replay=mock&canvas=architrinoPurple",
+    query: "mode=sandbox&replay=mock",
     useLaboratoryInitialReplayTime: true,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
     mode: "sandbox",
     verifyReciprocalInitialArcs: true,
     expectedScene: "sandbox",
@@ -167,10 +217,9 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    query: "mode=story&replay=mock",
     replayTime: 0.62,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
     keyboardJourney: "sandbox",
     expectedScene: "sandbox",
     expectedText: "Sandbox",
@@ -181,10 +230,9 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    query: "mode=story&replay=mock",
     replayTime: 0.62,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
     mode: "story",
     storyStep: 2,
     reducedMotion: true,
@@ -197,10 +245,9 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=roots&replay=mock&canvas=architrinoPurple",
+    query: "mode=roots&replay=mock",
     replayTime: 0.62,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
     mode: "roots",
     reducedMotion: true,
     expectedScene: "roots",
@@ -212,13 +259,15 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=self-hit&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
-    mode: "self-hit",
-    expectedScene: "self-hit",
-    expectedText: "Forward Wake Buildup",
+    mode: "story",
+    storyStep: 4,
+    storyProgress: 0.3,
+    verifyForwardWakeBuildup: true,
+    expectedScene: "story:forward-buildup",
+    expectedText: "both architrinos move at the same speed as their expanding wakes",
   },
   {
     id: "high-contrast",
@@ -226,10 +275,9 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    query: "mode=story&replay=mock",
     replayTime: 0.62,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
     mode: "story",
     storyStep: 2,
     highContrast: true,
@@ -242,10 +290,9 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&canvas=architrinoPurple",
+    query: "mode=story",
     replayTime: 0.62,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
     mode: "story",
     expectedScene: "story:meet",
     expectedReplayState: "fallback",
@@ -684,6 +731,63 @@ function createPrepareProofExpression(proof) {
       runtime.learnerState.storyStep = requestedStoryStep;
       runtime.modeController?.render();
     }
+    const shellSearchQuery = ${JSON.stringify(proof.shellSearchQuery ?? "")};
+    if (shellSearchQuery) {
+      const toggle = document.querySelector("#scene-search-toggle");
+      const panel = document.querySelector("#scene-search-panel");
+      const input = document.querySelector("#scene-search-input");
+      const toc = document.querySelector("#causal-delay-feedback-mode-tabs");
+      if (!toggle || !panel || !input || !toc) {
+        return { ok: false, reason: "shared_shell_search_elements_missing" };
+      }
+      toggle.click();
+      await new Promise((resolve) => setTimeout(resolve, 250));
+      input.value = shellSearchQuery;
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      const resultLabels = Array.from(
+        document.querySelectorAll("#scene-search-results .scene-search-item"),
+      ).map((item) => item.textContent?.trim());
+      const expectedGlobalSearchResult =
+        ${JSON.stringify(proof.expectedGlobalSearchResult ?? "")};
+      const shellRect = document.querySelector("#scene-hud-tools").getBoundingClientRect();
+      const panelRect = panel.getBoundingClientRect();
+      const iconRect = toggle.getBoundingClientRect();
+      const tocRect = toc.getBoundingClientRect();
+      if (
+        !panel.classList.contains("is-open") ||
+        getComputedStyle(toggle).display === "none" ||
+        toggle.getAttribute("aria-expanded") !== "true" ||
+        toc.hidden ||
+        panelRect.bottom > tocRect.top + 1 ||
+        shellRect.left < 0 ||
+        shellRect.right > window.innerWidth ||
+        panelRect.left < 0 ||
+        panelRect.right > window.innerWidth ||
+        iconRect.left < 0 ||
+        iconRect.right > window.innerWidth ||
+        (expectedGlobalSearchResult &&
+          !resultLabels.includes(expectedGlobalSearchResult)) ||
+        resultLabels.some((label) => /^\\d+\\./u.test(label ?? ""))
+      ) {
+        return {
+          ok: false,
+          reason: "shared_shell_search_contract_failed",
+          resultLabels,
+          expectedGlobalSearchResult,
+          searchOpen: panel.classList.contains("is-open"),
+          searchIconDisplay: getComputedStyle(toggle).display,
+          searchExpanded: toggle.getAttribute("aria-expanded"),
+          tocHidden: toc.hidden,
+          shellRect: shellRect.toJSON(),
+          panelRect: panelRect.toJSON(),
+          iconRect: iconRect.toJSON(),
+          tocRect: tocRect.toJSON(),
+          viewport: { width: window.innerWidth, height: window.innerHeight },
+        };
+      }
+      runtime.dom.canvas.dataset.browserSharedShellSearch = "global-persistent";
+    }
     const requestedBranchFilters = ${JSON.stringify(proof.branchFilters ?? null)};
     if (requestedBranchFilters) {
       Object.assign(runtime.learnerState.branchFilters, requestedBranchFilters);
@@ -859,6 +963,9 @@ function createPrepareProofExpression(proof) {
         holdReplayTime: heldReplayTime,
       });
     }
+    if (${proof.jumpToLastFrame === true ? "true" : "false"}) {
+      runtime.jumpToLastFrame();
+    }
     const liveWakeSeries = runtime.getVisibleWakeSeries(runtime.getCurrentReplayTime());
     const link =
       liveWakeSeries.find((candidate) => candidate.id === ${JSON.stringify(proof.wakeSeriesId ?? "")}) ||
@@ -897,12 +1004,60 @@ function createPrepareProofExpression(proof) {
       }
       runtime.dom.canvas.dataset.browserReciprocalEntry = "both-visible";
     }
+    if (${proof.verifyForwardWakeBuildup === true ? "true" : "false"}) {
+      runtime.render(runtime.getCurrentReplayTime());
+      runtime.modeController?.renderLiveState();
+      const canvasDataset = runtime.dom.canvas.dataset;
+      const bodyWakeSpeedMatch =
+        canvasDataset.forwardWakeBuildupFixture ===
+          "paired_story_template_equal_body_arc_length_and_wake_speed" &&
+        canvasDataset.forwardWakeBuildupMinimumSpeedRatio === "1.000000000" &&
+        canvasDataset.forwardWakeBuildupMaximumSpeedRatio === "1.000000000";
+      const wakeCount = Number(canvasDataset.forwardWakeBuildupWakeCount);
+      if (
+        !bodyWakeSpeedMatch ||
+        !(wakeCount > 0) ||
+        canvasDataset.forwardWakeBuildupMaximumLeadingError !==
+          "0.000000000" ||
+        canvasDataset.forwardWakeBuildupFrontClip !==
+          "trailing-half-plane-through-current-body" ||
+        canvasDataset.forwardWakeBuildupInheritedHistory !== "false" ||
+        canvasDataset.forwardWakeBuildupDiffersFromMeet !==
+          "equal-body-and-wake-speed"
+      ) {
+        return {
+          ok: false,
+          reason: "forward_wake_buildup_contract_failed",
+          bodyWakeSpeedMatch,
+          wakeCount,
+          fixture: canvasDataset.forwardWakeBuildupFixture,
+          minimumSpeedRatio:
+            canvasDataset.forwardWakeBuildupMinimumSpeedRatio,
+          maximumSpeedRatio:
+            canvasDataset.forwardWakeBuildupMaximumSpeedRatio,
+          maximumLeadingError:
+            canvasDataset.forwardWakeBuildupMaximumLeadingError,
+          frontClip:
+            canvasDataset.forwardWakeBuildupFrontClip,
+          inheritedHistory:
+            canvasDataset.forwardWakeBuildupInheritedHistory,
+          differentiator:
+            canvasDataset.forwardWakeBuildupDiffersFromMeet,
+          storyStep: runtime.learnerState?.storyStep,
+          causalScene: canvasDataset.causalScene,
+          hasContext: Boolean(runtime.context),
+          heldSceneId: runtime.storyHeldFrame?.scene?.id ?? null,
+          heldReplayTime: runtime.storyHeldFrame?.replayTime ?? null,
+          heldInteractionCount:
+            runtime.storyHeldFrame?.scene?.interactions?.length ?? null,
+          heldShowForwardWakeBuildup:
+            runtime.storyHeldFrame?.scene?.showForwardWakeBuildup ?? null,
+        };
+      }
+      runtime.dom.canvas.dataset.browserForwardWakeBuildup =
+        "equal-body-and-wake-speed-visible";
+    }
     runtime.selectedItem = { type: "wake", linkId: link.id };
-    runtime.dom.settingsPanel.hidden = ${proof.settingsOpen === false ? "true" : "false"};
-    runtime.dom.settingsButton.setAttribute(
-      "aria-expanded",
-      ${proof.settingsOpen === false ? JSON.stringify("false") : JSON.stringify("true")}
-    );
     runtime.updateReadout(runtime.createWakeHit(link, 0));
     if (${proof.verifySharedEmissionOrigins === true ? "true" : "false"}) {
       const drawnWakeLinks = [];
@@ -1000,6 +1155,53 @@ function createPrepareProofExpression(proof) {
         expected: expectedSecondaryText,
         actualMode,
       };
+    }
+    if (${proof.verifySettingsRemoved === true ? "true" : "false"}) {
+      const removedSelectors = [
+        "#causal-delay-feedback-settings",
+        "#causal-delay-feedback-settings-panel",
+        "#causal-delay-feedback-color-swatches",
+        "#causal-delay-feedback-cf-speed",
+        "#causal-delay-feedback-architrino-speed",
+        "#causal-delay-feedback-reset-preset",
+      ];
+      const survivingSelectors = removedSelectors.filter((selector) =>
+        document.querySelector(selector)
+      );
+      const survivingRuntimePaths = [
+        "presetId",
+        "canvasColorId",
+        "architrinoSpeedIndex",
+      ].filter((key) => key in runtime);
+      const survivingRuntimeMethods = [
+        "setPreset",
+        "resetPreset",
+        "setCanvasColor",
+        "setFieldSpeedControlScale",
+        "setArchitrinoSpeedIndex",
+        "toggleSettings",
+        "hideSettings",
+      ].filter((key) => typeof runtime[key] === "function");
+      document.dispatchEvent(new KeyboardEvent("keydown", {
+        key: "Escape",
+        code: "Escape",
+        bubbles: true,
+      }));
+      if (
+        survivingSelectors.length > 0 ||
+        survivingRuntimePaths.length > 0 ||
+        survivingRuntimeMethods.length > 0
+      ) {
+        return {
+          ok: false,
+          reason: "removed_settings_surface_survives",
+          survivingSelectors,
+          survivingRuntimePaths,
+          survivingRuntimeMethods,
+        };
+      }
+      runtime.dom.canvas.dataset.browserSettingsRemoval =
+        "dom-state-handlers-absent";
     }
     const expectedBranchFilterCount =
       ${proof.expectedBranchFilterCount == null
@@ -1651,7 +1853,6 @@ function createPrepareProofExpression(proof) {
     }
     return {
       ok: true,
-      preset: runtime.dataset.preset?.id,
       source,
       selected: link.label,
       status: runtime.dom.replayStatus.textContent,

@@ -2,14 +2,12 @@ import {
   createEomHistoryDataset,
 } from "../shared/EomHistoryDataset.mjs";
 import {
-  DEFAULT_CANVAS_ID,
-  DEFAULT_PRESET_ID,
+  FIXED_WAKE_VISUAL_STYLE,
   FRAME_COUNT,
   PATH_TIME_END_X,
   PATH_TIME_START_X,
   SPACE_AXIS_TOP_Y,
   TIME_AXIS_BASELINE_Y,
-  getPresetById,
 } from "./CausalDelayFeedbackDisplayContract.js";
 
 // Causal-Delay-Feedback replay source over recorded EOM datasets.
@@ -33,15 +31,15 @@ const SPACE_MARGIN_FRACTION = 0.06;
 export function createCausalDelayFeedbackEomReplayAdapter(options = {}) {
   return {
     id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId = DEFAULT_PRESET_ID, requestOptions = {} } = {}) {
+    async createReplayAsync({ requestOptions = {} } = {}) {
       if (requestOptions?.replayDataset?.draftPreview) {
         throw new Error(
           "EOM replay datasets are recorded solver output; canvas edits cannot be recomputed by this viewer. " +
             "Author a new EOM campaign run to obtain an updated record.",
         );
       }
-      const record = await resolveEomRecord(options, { presetId, requestOptions });
-      return normalizeCausalDelayFeedbackEomReplay(record, { presetId, requestOptions });
+      const record = await resolveEomRecord(options, { requestOptions });
+      return normalizeCausalDelayFeedbackEomReplay(record, { requestOptions });
     },
   };
 }
@@ -66,13 +64,11 @@ async function resolveEomRecord(options, context) {
 }
 
 export function normalizeCausalDelayFeedbackEomReplay(recordOrDataset, {
-  presetId = DEFAULT_PRESET_ID,
   requestOptions = {},
 } = {}) {
   const historyDataset = recordOrDataset?.schema === "eom-history-dataset.v0"
     ? recordOrDataset
     : createEomHistoryDataset(recordOrDataset);
-  const preset = getPresetById(presetId);
   const roles = resolveWorldlineRoles(historyDataset, requestOptions);
   const frameCount = normalizeBoundedCount(
     requestOptions.frameCount,
@@ -134,12 +130,7 @@ export function normalizeCausalDelayFeedbackEomReplay(recordOrDataset, {
       enabled: false,
       reason: "record_has_no_delayed_hit_rows",
     },
-    wakeArcDisplayMode: preset.wakeArcDisplayMode,
-    canvasColorId: preset.canvasColorId ?? DEFAULT_CANVAS_ID,
-    ...(Number.isFinite(Number(preset.assemblyThreshold))
-      ? { assemblyThreshold: Number(preset.assemblyThreshold) }
-      : {}),
-    preset,
+    wakeArcDisplayMode: FIXED_WAKE_VISUAL_STYLE.wakeArcDisplayMode,
     initialConditions,
     paths,
     history,
