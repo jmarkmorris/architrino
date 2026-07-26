@@ -713,9 +713,10 @@ test("page exposes semantic journey controls and one text-equivalent canvas summ
 });
 
 test("shared top-right shell keeps Search and the local lesson list persistent", async () => {
-  const [html, sharedStyles, runtime] = await Promise.all([
+  const [html, sharedStyles, uiTokens, runtime] = await Promise.all([
     readFile(new URL("causal-delay-feedback.html", REPO_ROOT), "utf8"),
     readFile(new URL("style.css", REPO_ROOT), "utf8"),
+    readFile(new URL("ui-tokens.css", REPO_ROOT), "utf8"),
     readFile(
       new URL(
         "src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js",
@@ -746,6 +747,30 @@ test("shared top-right shell keeps Search and the local lesson list persistent",
     html,
     /\.causal-journey\.is-global-search-open \.causal-mode-tabs/u,
   );
+  assert.match(sharedStyles, /@import url\("\.\/ui-tokens\.css"\)/u);
+  assert.match(html, /<link rel="stylesheet" href="\.\/ui-tokens\.css" \/>/u);
+  assert.match(uiTokens, /--ui-font-family:\s*"Helvetica Neue", Arial, sans-serif/u);
+  assert.match(uiTokens, /--ui-label-size:\s*12px/u);
+  assert.match(uiTokens, /--ui-label-weight:\s*700/u);
+  assert.match(uiTokens, /--ui-label-line-height:\s*1\.25/u);
+  for (const styles of [sharedStyles, html]) {
+    const searchItemRule = styles.match(/\.scene-search-item\s*\{(?<body>[^}]*)\}/u);
+    assert.ok(searchItemRule?.groups?.body);
+    assert.match(searchItemRule.groups.body, /font-family:\s*var\(--ui-font-family\)/u);
+    assert.match(searchItemRule.groups.body, /font-size:\s*var\(--ui-label-size\)/u);
+    assert.match(searchItemRule.groups.body, /font-weight:\s*var\(--ui-label-weight\)/u);
+    assert.match(searchItemRule.groups.body, /line-height:\s*var\(--ui-label-line-height\)/u);
+    assert.doesNotMatch(searchItemRule.groups.body, /--scene-label-/u);
+  }
+  const lessonListRule = html.match(
+    /\.causal-mode-tab,\s*\.causal-guided-button,\s*\.causal-choice-button,\s*\.causal-ledger-button\s*\{(?<body>[^}]*)\}/u,
+  );
+  assert.ok(lessonListRule?.groups?.body);
+  assert.match(lessonListRule.groups.body, /font-family:\s*var\(--ui-font-family\)/u);
+  assert.match(lessonListRule.groups.body, /font-size:\s*var\(--ui-label-size\)/u);
+  assert.match(lessonListRule.groups.body, /font-weight:\s*var\(--ui-label-weight\)/u);
+  assert.match(lessonListRule.groups.body, /line-height:\s*var\(--ui-label-line-height\)/u);
+  assert.doesNotMatch(lessonListRule.groups.body, /--scene-label-/u);
   assert.doesNotMatch(
     runtime,
     /setTableOfContentsOpen|onTableOfContentsOpen/u,

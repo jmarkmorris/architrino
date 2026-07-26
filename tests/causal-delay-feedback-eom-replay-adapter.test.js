@@ -36,7 +36,6 @@ test("eom replay adapter normalizes a recorded dataset into the runtime replay s
   assert.equal(adapter.id, EOM_REPLAY_ADAPTER);
 
   const dataset = await adapter.createReplayAsync({
-    presetId: "accepted_tight_bright",
     requestOptions: { frameCount: 5 },
   });
 
@@ -48,7 +47,7 @@ test("eom replay adapter normalizes a recorded dataset into the runtime replay s
   assert.equal(dataset.eomProvenance.evidenceStatus, "canonical");
   assert.equal(dataset.eomWorldlineRoles.positrino, "10");
   assert.equal(dataset.eomWorldlineRoles.electrino, "20");
-  assert.equal(dataset.preset.id, "accepted_tight_bright");
+  assert.equal("preset" in dataset, false);
   assert.deepEqual(dataset.wakeLinks, []);
   assert.deepEqual(dataset.causalEvaluation, {
     enabled: false,
@@ -239,16 +238,17 @@ test("eom replay adapter resolves records through an async loader", async () => 
   const adapter = createCausalDelayFeedbackEomReplayAdapter({
     async loadEomRecord(context) {
       loaderCalls += 1;
-      assert.equal(context.presetId, "thin_fronts");
+      assert.equal("presetId" in context, false);
+      assert.equal(context.requestOptions.frameCount, 3);
       return createEomRecordFixture();
     },
   });
   const dataset = await adapter.createReplayAsync({
-    presetId: "thin_fronts",
     requestOptions: { frameCount: 3 },
   });
   assert.equal(loaderCalls, 1);
-  assert.equal(dataset.preset.id, "thin_fronts");
+  assert.equal("preset" in dataset, false);
+  assert.equal(dataset.frames.length, 3);
 });
 
 test("shared EOM history dataset does not advance on foreign contract ids", () => {
