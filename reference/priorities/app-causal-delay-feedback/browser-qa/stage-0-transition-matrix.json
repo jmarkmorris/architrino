@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "cdf-stage-0-transition-matrix/v1",
+  "baseline": "stage-0-golden-baseline.json",
+  "interactionAuthority": "normal-browser-ui-input",
+  "claimBoundary": "This matrix detects semantic and transition regressions in the learner shell; it is display evidence only and cannot establish physics correctness or solver acceptance.",
+  "cases": [
+    { "id": "cold-load-lesson-one", "viewport": "desktop", "actions": ["reload", "assertLesson:1"] },
+    { "id": "direct-entry-lesson-one", "viewport": "desktop", "actions": ["reload", "clickLesson:1", "assertLesson:1"] },
+    { "id": "direct-entry-lesson-two", "viewport": "desktop", "actions": ["reload", "clickLesson:2", "assertLesson:2"] },
+    { "id": "direct-entry-lesson-three", "viewport": "desktop", "actions": ["reload", "clickLesson:3", "assertLesson:3"] },
+    { "id": "direct-entry-lesson-four", "viewport": "desktop", "actions": ["reload", "clickLesson:4", "assertLesson:4"] },
+    { "id": "direct-entry-lesson-five", "viewport": "desktop", "actions": ["reload", "clickLesson:5", "assertLesson:5"] },
+    { "id": "lesson-one-to-two", "viewport": "desktop", "actions": ["reload", "clickLesson:1", "clickAction:next", "assertLesson:2"] },
+    { "id": "lesson-two-to-three-handoff", "viewport": "desktop", "actions": ["reload", "clickLesson:2", "clickAction:next", "assertLesson:3", "assertHandoff"] },
+    { "id": "pointer-and-keyboard-scrub", "viewport": "desktop", "actions": ["reload", "clickLesson:1", "pointerScrub:0.42", "assertHeldFrame", "keyboardScrub:right", "assertHeldFrame"] },
+    { "id": "pause-resume", "viewport": "desktop", "actions": ["reload", "clickLesson:1", "clickAction:play", "wait:120", "assertPlaying", "clickAction:play", "assertPaused"] },
+    { "id": "first-last", "viewport": "desktop", "actions": ["reload", "clickLesson:3", "clickAction:last", "assertLastFrame", "clickAction:first", "assertFirstFrame"] },
+    { "id": "shared-pace", "viewport": "desktop", "actions": ["reload", "clickLesson:1", "assertSharedPace", "clickLesson:4", "assertSharedPace"] },
+    { "id": "desktop-navigation", "viewport": "desktop", "actions": ["reload", "clickAction:next", "assertLesson:2", "clickAction:next", "assertLesson:3"] },
+    { "id": "portrait-navigation", "viewport": "portrait", "actions": ["reload", "clickLesson:1", "clickAction:next", "assertLesson:2", "clickAction:next", "assertLesson:3"] },
+    { "id": "laboratory-entry", "viewport": "desktop", "actions": ["reload", "clickLesson:5", "clickAction:next", "assertLaboratory"] }
+  ]
+}

@@ -27,7 +27,9 @@ import {
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackRootsMode.js";
 import {
   STORY_MOTION_SPEED_FRACTIONS,
+  STORY_PREVIEW_STEPS,
   STORY_RELATIONSHIP_DESCRIPTIONS,
+  STORY_STEPS,
   STORY_SYNTHESIS_DISPLAY_MAPPING,
   STORY_WAKE_DISPLAY_RATE_SCALE,
   createStoryMotionWakeComparisonFixture,
@@ -86,8 +88,9 @@ test("Story reads both reciprocal roots selected by the shared learner state", (
   assert.equal(view.title, "Meet the Electrino and Positrino Transceivers");
   assert.equal(
     view.body,
-    "Each architrino transmits continuously at a constant rate. The solid white dot on each body marks its current emission point. Earlier transmission points remain visible as wake history. Each full circle is a two-dimensional view of an expanding spherical wake. Wakes emitted earlier have had longer to expand, so they have a larger radius.",
+    "Each architrino transmits continuously at a constant rate. The solid dot on each body marks its current emission point. Earlier transmission points remain visible as wake history. Each full circle is a two-dimensional view of an expanding spherical wake. Wakes emitted earlier have had longer to expand, so they have a larger radius.",
   );
+  assert.doesNotMatch(view.body, /\b(?:white|pink|blue|red|color(?:ed)?)\b/iu);
   assert.equal(view.root?.id, state.selectedRootId);
   assert.equal(view.reciprocalRoot?.id, state.selectedReciprocalRootId);
   assert.ok(Number.isFinite(view.root?.emissionTime));
@@ -119,7 +122,7 @@ test("Story reads both reciprocal roots selected by the shared learner state", (
   );
 });
 
-test("five lessons share one teaching sequence and wake-display rate", () => {
+test("five working lessons share one teaching sequence and display-authority boundary", () => {
   const state = createState();
   const scenes = Array.from({ length: 5 }, (_unused, storyStep) => {
     state.storyStep = storyStep;
@@ -132,6 +135,22 @@ test("five lessons share one teaching sequence and wake-display rate", () => {
     "motion",
     "forward-buildup",
   ]);
+  assert.deepEqual(
+    STORY_PREVIEW_STEPS.map((lesson) => lesson.title),
+    [
+      "Inverse-Square Spreading",
+      "Acceleration",
+      "Wakes Combine by Superposition",
+      "Continuous Delayed Feedback / Reciprocal Causal Chain",
+    ],
+  );
+  state.storyStep = 4;
+  const lessonFiveView = createStoryView(state);
+  assert.equal(lessonFiveView.title, "Wake Buildup at Field Speed");
+  assert.equal(
+    lessonFiveView.body,
+    "At field speed, each architrino moves with the advancing edge of the wakes it continually emits. As successive wakes expand, their forward edges stay together at the moving front. The wake builds up there.",
+  );
   assert.ok(
     scenes.every(
       (scene) =>
@@ -152,6 +171,16 @@ test("five lessons share one teaching sequence and wake-display rate", () => {
       /Replay status: Representative replay fixture · not physics acceptance\./u,
     );
   });
+  state.storyStep = 4;
+  controller.updateCanvasSummary();
+  assert.equal(
+    controller.dom.summary.textContent,
+    "Lesson Five. At field speed, each architrino moves with the advancing edge of the wakes it continually emits. As successive wakes expand, their forward edges stay together at the moving front. The wake builds up there. This display does not establish physics acceptance. Replay status: Representative replay fixture · not physics acceptance.",
+  );
+  assert.doesNotMatch(
+    controller.dom.summary.textContent,
+    /In this idealized view|emission zero|declared display fixture|shared paired paths|first wake fronts|outruns? its source/u,
+  );
   const sharedPathStart = Math.max(
     state.paths.positrino[0].t,
     state.paths.electrino[0].t,
@@ -315,6 +344,16 @@ test("five lessons share one teaching sequence and wake-display rate", () => {
   assert.doesNotMatch(synthesisView.body, /aligns each journey by progress/u);
 });
 
+test("Inverse-Square Spreading is not a learner-routable Story scene", () => {
+  const state = createState();
+  state.storyStep = 5;
+  const view = createStoryView(state);
+  assert.equal(STORY_STEPS.length, 5);
+  assert.equal(view.title, "Wake Buildup at Field Speed");
+  assert.equal(view.stepIndex, 4);
+  assert.equal(STORY_PREVIEW_STEPS[0].title, "Inverse-Square Spreading");
+});
+
 test("Story 3 maps each body from its own transmission to its later reception", () => {
   const state = createState();
   state.storyStep = 2;
@@ -458,11 +497,8 @@ test("representative paired paths stay gently wavy and converge monotonically", 
 
 test("guided progression follows all lessons and ends in Laboratory", () => {
   const state = createState();
-  state.storyStep = 3;
+  state.storyStep = 4;
   const controller = new CausalDelayFeedbackModeController({ state });
-  controller.goNext();
-  assert.equal(state.mode, "story");
-  assert.equal(state.storyStep, 4);
   controller.goNext();
   assert.equal(state.mode, "sandbox");
   assert.deepEqual(
@@ -766,6 +802,63 @@ test("page exposes semantic journey controls and one text-equivalent canvas summ
   assert.match(html, /placeholder="Search scenes"/u);
   assert.doesNotMatch(html, /Search lessons/u);
   assert.doesNotMatch(html, /causal-delay-feedback-lesson-search/u);
+});
+
+test("lesson navigation fits twelve uniform entries before ordinary scrolling", async () => {
+  const [html, controller] = await Promise.all([
+    readFile(new URL("causal-delay-feedback.html", REPO_ROOT), "utf8"),
+    readFile(
+      new URL(
+        "src/apps/causal-delay-feedback/CausalDelayFeedbackModeController.js",
+        REPO_ROOT,
+      ),
+      "utf8",
+    ),
+  ]);
+  const navigationRule = html.match(
+    /\.causal-mode-tabs\s*\{(?<body>[^}]*)\}/u,
+  );
+  assert.ok(navigationRule?.groups?.body);
+  assert.match(
+    navigationRule.groups.body,
+    /max-height:\s*min\(520px,\s*calc\(100vh - 80px\)\)/u,
+  );
+  assert.match(navigationRule.groups.body, /overflow-y:\s*auto/u);
+  assert.match(navigationRule.groups.body, /scrollbar-width:\s*thin/u);
+  assert.match(
+    html,
+    /@media \(max-width: 820px\)[\s\S]*?\.causal-mode-tabs\s*\{[\s\S]*?max-height:\s*min\(390px,\s*calc\(100vh - 104px\)\)[\s\S]*?\.causal-lesson-toc-list\s*\{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/u,
+  );
+  assert.match(
+    controller,
+    /laboratoryItem\.append\([\s\S]*?className: "causal-mode-tab"[\s\S]*?list\.append\(laboratoryItem\)[\s\S]*?replaceChildren\(list\)/u,
+  );
+  assert.doesNotMatch(controller, /opens for inspection/u);
+  assert.match(
+    controller,
+    /STORY_PREVIEW_STEPS\.forEach[\s\S]*?text: `\$\{STORY_STEPS\.length \+ previewIndex \+ 1\}\. \$\{lesson\.title\} — Coming soon`[\s\S]*?disabled: true[\s\S]*?"data-causal-preview": lesson\.id[\s\S]*?coming soon and not yet available/u,
+  );
+  assert.match(
+    html,
+    /\.causal-mode-tab\[data-causal-preview\]\s*\{[\s\S]*?background:\s*rgba\(42,\s*42,\s*50,\s*0\.82\)[\s\S]*?color:\s*rgba\(214,\s*216,\s*225,\s*0\.68\)/u,
+  );
+  assert.doesNotMatch(html, /causal-laboratory-tab/u);
+  assert.doesNotMatch(controller, /causal-laboratory-tab/u);
+});
+
+test("guided lesson header leaves sequence and replay provenance out of learner copy", async () => {
+  const controller = await readFile(
+    new URL(
+      "src/apps/causal-delay-feedback/CausalDelayFeedbackModeController.js",
+      REPO_ROOT,
+    ),
+    "utf8",
+  );
+  const renderStory = controller.match(/renderStory\(\) \{[\s\S]*?\n  \}/u)?.[0] ?? "";
+
+  assert.match(renderStory, /title: view\.title,[\s\S]*?body: view\.body,[\s\S]*?meta: "",/u);
+  assert.doesNotMatch(renderStory, /Lesson \$\{view\.stepIndex \+ 1\} of/u);
+  assert.doesNotMatch(renderStory, /lessonMeta/u);
 });
 
 test("shared top-right shell keeps Search and the local lesson list persistent", async () => {

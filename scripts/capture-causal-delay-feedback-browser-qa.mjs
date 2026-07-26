@@ -269,7 +269,7 @@ const PROOFS = Object.freeze([
     storyStep: 4,
     verifyLessonFiveEmissionZero: true,
     expectedScene: "story:forward-buildup",
-    expectedText: "Forward Wake Buildup",
+    expectedText: "Wake Buildup at Field Speed",
   },
   {
     id: "forward-buildup",
@@ -285,7 +285,7 @@ const PROOFS = Object.freeze([
     storyProgress: 0.9,
     verifyForwardWakeBuildup: true,
     expectedScene: "story:forward-buildup",
-    expectedText: "both architrinos move at the same speed as their expanding wakes",
+    expectedText: "At field speed, each architrino moves with the advancing edge of the wakes it continually emits. As successive wakes expand, their forward edges stay together at the moving front. The wake builds up there.",
   },
   {
     id: "high-contrast",
@@ -1304,50 +1304,39 @@ function createPrepareProofExpression(proof) {
           heldSceneId: forwardScene?.id ?? null,
         };
       }
-      for (const fraction of playbackFractions) {
-        const replayTime =
-          forwardScene.playbackStartTime +
-          (forwardScene.playbackEndTime - forwardScene.playbackStartTime) *
-            fraction;
+      const verifySphereFrame = (scene, replayTime, label) => {
         runtime.setPlaying(false, {
-          holdScene: forwardScene,
+          holdScene: scene,
           holdReplayTime: replayTime,
         });
         runtime.render(replayTime);
         const frame = runtime.createStoryForwardWakeBuildupFrame(
-          forwardScene,
+          scene,
           replayTime,
         );
         const canvasDataset = runtime.dom.canvas.dataset;
-        const arcChecks = frame.fronts.map((front) => {
-          const arc = runtime.getForwardWakeBuildupFrontArcGeometry(front);
-          if (!arc) {
+        const sphereChecks = frame.fronts.map((front) => {
+          const sphere = runtime.getForwardWakeBuildupSphereGeometry(front);
+          if (!sphere) {
             return {
               ok: false,
               transmitterId: front.transmitterId,
-              reason: "arc_geometry_missing",
+              reason: "sphere_geometry_missing",
             };
-          }
-          let maximumDisplayedTimeLead = Number.NEGATIVE_INFINITY;
-          for (let sampleIndex = 0; sampleIndex < 360; sampleIndex += 1) {
-            const amount = sampleIndex / 359;
-            const angle =
-              arc.startAngle + (arc.endAngle - arc.startAngle) * amount;
-            const x = arc.center.x + Math.cos(angle) * arc.radius;
-            maximumDisplayedTimeLead = Math.max(
-              maximumDisplayedTimeLead,
-              x - arc.leadingPoint.x,
-            );
           }
           return {
             ok:
-              maximumDisplayedTimeLead <= 1e-7 &&
-              arc.leadingProjectionError <= 1e-7 &&
+              sphere.maximumDisplayedTimeLead <= 1e-7 &&
+              sphere.leadingProjectionError <= 1e-7 &&
+              sphere.upperPointCount > 0 &&
+              sphere.lowerPointCount > 0 &&
               front.leadingPoint === front.currentBody &&
-              front.bodyAnchoredTrailingArc === true,
+              front.bodyAnchoredFullSphereProjection === true,
             transmitterId: front.transmitterId,
-            maximumDisplayedTimeLead,
-            arcLeadingError: arc.leadingProjectionError,
+            maximumDisplayedTimeLead: sphere.maximumDisplayedTimeLead,
+            sphereLeadingError: sphere.leadingProjectionError,
+            upperPointCount: sphere.upperPointCount,
+            lowerPointCount: sphere.lowerPointCount,
           };
         });
         const bodyWakeSpeedMatch =
@@ -1360,16 +1349,16 @@ function createPrepareProofExpression(proof) {
           bodyWakeSpeedMatch &&
           wakeCount === frame.fronts.length &&
           wakeCount > 0 &&
-          arcChecks.every((check) => check.ok) &&
+          sphereChecks.every((check) => check.ok) &&
           canvasDataset.forwardWakeBuildupMaximumLeadingError ===
             "0.000000000" &&
           canvasDataset.forwardWakeBuildupFrontClip ===
-            "body-anchored-trailing-arc" &&
+            "body-anchored-full-sphere-projection" &&
           canvasDataset.forwardWakeBuildupInheritedHistory === "false" &&
           canvasDataset.forwardWakeBuildupDiffersFromMeet ===
             "equal-body-and-wake-speed";
-        fractionChecks.push({
-          fraction,
+        return {
+          label,
           ok,
           wakeCount,
           bodyWakeSpeedMatch,
@@ -1378,9 +1367,44 @@ function createPrepareProofExpression(proof) {
           frontClip: canvasDataset.forwardWakeBuildupFrontClip,
           inheritedHistory:
             canvasDataset.forwardWakeBuildupInheritedHistory,
-          failedArcChecks: arcChecks.filter((check) => !check.ok),
-        });
+          failedSphereChecks: sphereChecks.filter((check) => !check.ok),
+        };
+      };
+      for (const fraction of playbackFractions) {
+        const replayTime =
+          forwardScene.playbackStartTime +
+          (forwardScene.playbackEndTime - forwardScene.playbackStartTime) *
+            fraction;
+        fractionChecks.push(
+          verifySphereFrame(forwardScene, replayTime, fraction),
+        );
       }
+      const lessonFourButton = document.querySelector(
+        '[data-causal-lesson="3"]',
+      );
+      lessonFourButton?.click();
+      const lessonFiveButton = document.querySelector(
+        '[data-causal-lesson="4"]',
+      );
+      lessonFiveButton?.click();
+      const returnedFresh =
+        runtime.learnerState?.mode === "story" &&
+        runtime.learnerState?.storyStep === 4 &&
+        runtime.storyHeldFrame == null &&
+        runtime.learnerState?.playback?.resumable === false;
+      runtime.setPlaying(true, { restartStory: true });
+      const returnedScene = runtime.storyPlaybackScene;
+      const returnedReplayTime =
+        returnedScene.playbackStartTime +
+        (returnedScene.playbackEndTime - returnedScene.playbackStartTime) * 0.5;
+      const returnCheck = verifySphereFrame(
+        returnedScene,
+        returnedReplayTime,
+        "return-to-Lesson-Five",
+      );
+      returnCheck.returnedFresh = returnedFresh;
+      returnCheck.ok = returnCheck.ok && returnedFresh;
+      fractionChecks.push(returnCheck);
       const failedFractionChecks = fractionChecks.filter((check) => !check.ok);
       if (failedFractionChecks.length > 0) {
         return {
@@ -1406,7 +1430,7 @@ function createPrepareProofExpression(proof) {
       });
       runtime.render(screenshotReplayTime);
       runtime.dom.canvas.dataset.browserForwardWakeBuildup =
-        "body-anchored-trailing-arcs";
+        "body-anchored-full-sphere-projections";
       runtime.dom.canvas.dataset.browserForwardWakeBuildupFractions =
         playbackFractions.map((fraction) => fraction.toFixed(2)).join(",");
     }
@@ -1515,7 +1539,7 @@ function createPrepareProofExpression(proof) {
         "2. Wakes Received Now Were Transmitted in the Past",
         "3. Two Reciprocal Causal Relationships",
         "4. Motion Changes Wake Shape",
-        "5. Forward Wake Buildup",
+        "5. Wake Buildup at Field Speed",
         "Laboratory",
       ];
       const lessonButtons = Array.from(

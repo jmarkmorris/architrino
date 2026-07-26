@@ -4,6 +4,7 @@ import {
   usesC1TimedPathInterpolation,
 } from "./CausalDelayFeedbackTimedPath.js";
 import {
+  DEFAULT_CANVAS_DISTANCE_SCALE,
   NORMALIZED_FIELD_SPEED,
   createDisplayAuthority,
   createCausalDelayResidual,
@@ -24,6 +25,7 @@ const STORY_SYNTHESIS_BASE_SECONDS = 8;
 const STORY_MOTION_COMPARISON_BASE_SECONDS = 6;
 export const STORY_TWO_THREE_HANDOFF_TIME_AXIS_FRACTION = 0.5;
 export const STORY_THREE_END_TIME_AXIS_FRACTION = 0.8;
+export const INVERSE_SQUARE_START_PROGRESS = 0.5;
 function getPathProgressAtTimeAxisFraction(axisFraction) {
   const axisX =
     TIME_AXIS_ORIGIN_X +
@@ -106,7 +108,7 @@ export const STORY_STEPS = Object.freeze([
   {
     id: "meet",
     title: "Meet the Electrino and Positrino Transceivers",
-    body: "Each architrino transmits continuously at a constant rate. The solid white dot on each body marks its current emission point. Earlier transmission points remain visible as wake history. Each full circle is a two-dimensional view of an expanding spherical wake. Wakes emitted earlier have had longer to expand, so they have a larger radius.",
+    body: "Each architrino transmits continuously at a constant rate. The solid dot on each body marks its current emission point. Earlier transmission points remain visible as wake history. Each full circle is a two-dimensional view of an expanding spherical wake. Wakes emitted earlier have had longer to expand, so they have a larger radius.",
   },
   {
     id: "emission",
@@ -125,9 +127,28 @@ export const STORY_STEPS = Object.freeze([
   },
   {
     id: "forward-buildup",
-    title: "Forward Wake Buildup",
-    body: "Begin at emission zero. In this declared display fixture, both architrinos move at the same speed as their expanding wakes along the paired paths used in Lesson One. Continued transmission makes the forward edges build up while every wake still expands from the earlier point where it was emitted.",
+    title: "Wake Buildup at Field Speed",
+    body: "At field speed, each architrino moves with the advancing edge of the wakes it continually emits. As successive wakes expand, their forward edges stay together at the moving front. The wake builds up there.",
   },
+]);
+
+export const STORY_PREVIEW_STEPS = Object.freeze([
+  Object.freeze({
+    id: "inverse-square-spreading",
+    title: "Inverse-Square Spreading",
+  }),
+  Object.freeze({
+    id: "acceleration",
+    title: "Acceleration",
+  }),
+  Object.freeze({
+    id: "superposition",
+    title: "Wakes Combine by Superposition",
+  }),
+  Object.freeze({
+    id: "reciprocal-causal-chain",
+    title: "Continuous Delayed Feedback / Reciprocal Causal Chain",
+  }),
 ]);
 
 function createConstantSpeedPath({
@@ -387,32 +408,17 @@ export function createStoryScene(state) {
     },
   );
   const interactions = view.interactions.filter((interaction) => interaction.root);
-  if (interactions.length === 0) {
-    const playbackWindow = getSharedPathPlaybackWindow(
-      state,
-      view.id === "meet" ? Number.POSITIVE_INFINITY : state.receiverTime,
-    );
-    return {
-      id: view.id,
-      interactions: [],
-      displayTime: playbackWindow.playbackStartTime,
-      ...playbackWindow,
-      showWake: false,
-      showTransmissionGhost: false,
-      showCausalLine: false,
-      showReceptionMarker: false,
-      displayAuthority,
-    };
-  }
-  const emissionTimes = interactions.map((interaction) => interaction.root.emissionTime);
-  const delays = interactions.map((interaction) =>
-    Math.max(0, interaction.root.receiverTime - interaction.root.emissionTime));
-  const earliestEmissionTime = Math.min(...emissionTimes);
-  const maximumDelay = Math.max(...delays);
   const playbackWindow = getSharedPathPlaybackWindow(
     state,
     Number.POSITIVE_INFINITY,
   );
+  const emissionTimes = interactions.map((interaction) => interaction.root.emissionTime);
+  const delays = interactions.map((interaction) =>
+    Math.max(0, interaction.root.receiverTime - interaction.root.emissionTime));
+  const earliestEmissionTime = emissionTimes.length > 0
+    ? Math.min(...emissionTimes)
+    : playbackWindow.playbackStartTime;
+  const maximumDelay = delays.length > 0 ? Math.max(...delays) : 0;
   const fixedBodyTime =
     playbackWindow.playbackStartTime +
     (playbackWindow.playbackEndTime - playbackWindow.playbackStartTime) *
@@ -421,6 +427,10 @@ export function createStoryScene(state) {
     playbackWindow.playbackStartTime +
     (playbackWindow.playbackEndTime - playbackWindow.playbackStartTime) *
       STORY_THREE_END_PATH_PROGRESS;
+  const inverseSquareStartTime =
+    playbackWindow.playbackStartTime +
+    (playbackWindow.playbackEndTime - playbackWindow.playbackStartTime) *
+      INVERSE_SQUARE_START_PROGRESS;
   const earliestCommonArcTime = view.id === "emission"
     ? getEarliestCommonStoryArcTime(state, playbackWindow)
     : playbackWindow.playbackStartTime;
@@ -510,6 +520,24 @@ export function createStoryScene(state) {
       showForwardWakeBuildup: true,
       showWake: false,
       showSampledWakeHistory: true,
+      showTransmissionGhost: false,
+      showCausalLine: false,
+      showReceptionMarker: false,
+    },
+    "inverse-square-spreading": {
+      startTime: inverseSquareStartTime,
+      endTime: playbackWindow.playbackEndTime,
+      playbackStartTime: inverseSquareStartTime,
+      playbackEndTime: playbackWindow.playbackEndTime,
+      displayTime: inverseSquareStartTime,
+      fixedBodyTime: inverseSquareStartTime,
+      playbackDurationSeconds:
+        STORY_SHARED_PATH_PLAYBACK_SECONDS *
+        (1 - INVERSE_SQUARE_START_PROGRESS),
+      wakeDisplayRateScale: STORY_WAKE_DISPLAY_RATE_SCALE,
+      showInverseSquareSpreading: true,
+      showWake: false,
+      showSampledWakeHistory: false,
       showTransmissionGhost: false,
       showCausalLine: false,
       showReceptionMarker: false,
@@ -642,7 +670,32 @@ export function createStorySampledWakeFronts(state, scene, replayTime) {
   );
   const sampleProgressStep = STORY_WAKE_SAMPLE_PROGRESS;
   const fronts = [];
-  for (const interaction of scene.interactions ?? []) {
+  const interactions = [...(scene.interactions ?? [])];
+  if (scene.id === "meet") {
+    const fallbackDistanceScale = Number(
+      interactions[0]?.root?.distanceScale ??
+        state.roots?.[0]?.distanceScale ??
+        state.reciprocalRoots?.[0]?.distanceScale ??
+        DEFAULT_CANVAS_DISTANCE_SCALE,
+    );
+    for (const transmitterId of ["positrino", "electrino"]) {
+      if (interactions.some(
+        (interaction) => interaction.transmitterId === transmitterId,
+      )) {
+        continue;
+      }
+      interactions.push({
+        transmitterId,
+        earlyWakeFallback: true,
+        root: {
+          emissionTime: scene.playbackStartTime,
+          signalSpeed: NORMALIZED_FIELD_SPEED,
+          distanceScale: fallbackDistanceScale,
+        },
+      });
+    }
+  }
+  for (const interaction of interactions) {
     const path = ["meet", "forward-buildup"].includes(scene.id)
       ? state.paths?.[interaction.transmitterId]
       : createStoryTimeAxisPath(state.paths?.[interaction.transmitterId]);
@@ -675,6 +728,9 @@ export function createStorySampledWakeFronts(state, scene, replayTime) {
       const sampleProgress =
         (emissionTime - scene.playbackStartTime) / playbackSpan;
       const age = Math.max(0, currentTime - emissionTime);
+      if (interaction.earlyWakeFallback && age <= Number.EPSILON) {
+        continue;
+      }
       const displayAge = age * scene.wakeDisplayTimeScale;
       const causalDelay =
         Number(interaction.root?.receiverTime) -

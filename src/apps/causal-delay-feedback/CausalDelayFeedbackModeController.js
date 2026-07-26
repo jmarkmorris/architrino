@@ -3,6 +3,7 @@ import {
 } from "./CausalDelayFeedbackWakeRenderer.js";
 import {
   STORY_MOTION_SPEED_FRACTIONS,
+  STORY_PREVIEW_STEPS,
   createStoryView,
   STORY_STEPS,
 } from "./CausalDelayFeedbackStoryMode.js";
@@ -287,7 +288,7 @@ export class CausalDelayFeedbackModeController {
     if (isSandbox) {
       this.updateControls();
       this.dom.summary.textContent =
-        "Laboratory. Both architrino paths and the evaluator-backed positrino and electrino current-emission markers are shown; replay time is preserved for inspection. The visible replay-status label identifies the display authority; the display is not physics acceptance.";
+        "Laboratory. Both architrino paths and the evaluator-backed positrino and electrino current-emission markers are shown; replay time is preserved for inspection. This display is not physics acceptance.";
       return;
     }
     this.renderModeContent();
@@ -328,6 +329,20 @@ export class CausalDelayFeedbackModeController {
             this.state.mode === "story" && this.state.storyStep === lessonIndex
               ? "step"
               : null,
+        },
+      }));
+      list.append(item);
+    });
+    STORY_PREVIEW_STEPS.forEach((lesson, previewIndex) => {
+      const item = this.document.createElement("li");
+      item.append(createElement(this.document, "button", {
+        className: "causal-mode-tab",
+        text: `${STORY_STEPS.length + previewIndex + 1}. ${lesson.title} — Coming soon`,
+        attributes: {
+          type: "button",
+          disabled: true,
+          "data-causal-preview": lesson.id,
+          "aria-label": `${lesson.title}, coming soon and not yet available`,
         },
       }));
       list.append(item);
@@ -615,7 +630,9 @@ export class CausalDelayFeedbackModeController {
       ? storyView?.id === "motion"
         ? `Lesson Four. Three evaluator-backed constant-speed display fixtures compare transmitter speeds ${STORY_MOTION_SPEED_FRACTIONS.join(", ")} times C_f; ${Number(this.state.storyMotionSpeedFraction).toFixed(1)} is highlighted. These displays do not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
         : storyView?.id === "forward-buildup"
-          ? `Lesson Five. Both architrinos begin at emission zero on the shared paired paths while their first wake fronts build forward from the emitters. This display does not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
+          ? `Lesson Five. ${storyView.body} This display does not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
+          : storyView?.id === "inverse-square-spreading"
+            ? `Lesson Six preview. The shared two-architrino path frame is available for inspection, but the inverse-square explanation and visual design are being redesigned and are not accepted. Replay status: ${replayAuthoritySummary}.`
           : `Lesson. Electrino transmitter to Positrino receiver; Positrino transmitter to Electrino receiver. This teaching display does not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
       : this.state.mode === "history" && root && reciprocalRoot
         ? `Path History. Positrino and Electrino history-emission markers show the evaluator-backed earlier points for both reciprocal relationships at Tₜ=${formatTime(root.emissionTime)} and Tₜ=${formatTime(reciprocalRoot.emissionTime)}.`

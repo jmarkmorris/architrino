@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "cdf-stage-0-golden-baseline/v1",
+  "authority": "semantic-ui-baseline",
+  "claimBoundary": {
+    "grade": "measured",
+    "instrument": "focused source test plus real-browser transition matrix",
+    "establishes": [
+      "The current five working lessons have stable ids, order, titles, and learner copy.",
+      "Normal lesson, transport, scrubber, viewport, and Laboratory UI paths remain reachable.",
+      "The shared Story display-rate token is present across the baseline lessons."
+    ],
+    "doesNotEstablish": [
+      "physical correctness",
+      "solver correctness",
+      "retained-branch acceptance",
+      "physics acceptance",
+      "launch readiness"
+    ]
+  },
+  "page": {
+    "path": "/causal-delay-feedback.html",
+    "query": "mode=story&replay=mock",
+    "storyMode": "story",
+    "laboratoryMode": "sandbox",
+    "lessonCount": 5,
+    "previewCount": 4,
+    "laboratoryLabel": "Laboratory",
+    "laboratoryTitle": "Causal Delay Laboratory"
+  },
+  "lessons": [
+    {
+      "index": 1,
+      "id": "meet",
+      "title": "Meet the Electrino and Positrino Transceivers",
+      "body": "Each architrino transmits continuously at a constant rate. The solid dot on each body marks its current emission point. Earlier transmission points remain visible as wake history. Each full circle is a two-dimensional view of an expanding spherical wake. Wakes emitted earlier have had longer to expand, so they have a larger radius."
+    },
+    {
+      "index": 2,
+      "id": "emission",
+      "title": "Wakes Received Now Were Transmitted in the Past",
+      "body": "Wakes arriving at a receiver now were transmitted earlier in the transmitter’s path history. The fading red and blue arcs show where the transmissions arriving now were emitted. The white dot marks where that wake was transmitted. By the time the wake is received, both architrinos have moved on from their earlier positions."
+    },
+    {
+      "index": 3,
+      "id": "meaning",
+      "title": "Two Reciprocal Causal Relationships",
+      "body": "Each full circle is a two-dimensional view of an expanding spherical wake. The matching fading red or blue arc highlights the portion that meets the other architrino. The circle and the arc share the same earlier transmission point and the same reception point."
+    },
+    {
+      "index": 4,
+      "id": "motion",
+      "title": "Motion Changes Wake Shape",
+      "body": "For a moving architrino, the wake is compressed in front and expanded behind. These evaluator-backed display fixtures use the same transmission times with C_f=1; only transmitter speed changes. Higher speed tightens the fronts ahead and spreads them farther behind."
+    },
+    {
+      "index": 5,
+      "id": "forward-buildup",
+      "title": "Wake Buildup at Field Speed",
+      "body": "At field speed, each architrino moves with the advancing edge of the wakes it continually emits. As successive wakes expand, their forward edges stay together at the moving front. The wake builds up there."
+    }
+  ],
+  "controls": {
+    "previous": "#nav-up",
+    "next": "#nav-forward",
+    "first": "#causal-delay-feedback-guided-first-frame",
+    "play": "#causal-delay-feedback-guided-play",
+    "last": "#causal-delay-feedback-guided-last-frame",
+    "scrubber": "#causal-delay-feedback-now",
+    "lessonSelector": "[data-causal-lesson=INDEX_ZERO_BASED]",
+    "laboratorySelector": "[data-causal-laboratory]"
+  },
+  "sharedPace": {
+    "canvasDataset": "storyWakeDisplayRateScale",
+    "value": "0.800",
+    "scope": "working Story lessons"
+  },
+  "viewports": {
+    "desktop": { "width": 1440, "height": 900, "deviceScaleFactor": 1 },
+    "portrait": { "width": 390, "height": 844, "deviceScaleFactor": 2 }
+  }
+}
