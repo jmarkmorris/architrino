@@ -84,7 +84,9 @@ import {
 
 const REPLAY_LOOP_SECONDS = 9;
 const STORY_STAGE_PLAYBACK_SECONDS = 3.2;
-export const LABORATORY_INITIAL_REPLAY_FRACTION = 0.16;
+const LABORATORY_ENTRY_VISIBILITY_SCAN_STEPS = 512;
+const LABORATORY_ENTRY_VISIBILITY_REFINEMENT_STEPS = 32;
+const LABORATORY_ENTRY_ARC_ANGLE_SAMPLES = 8;
 const STORY_CHART_GAP = 16;
 const STORY_CHART_EDGE_PADDING = 18;
 const STORY_CHART_DESIGN_PADDING = 0;
@@ -117,6 +119,8 @@ const LIVE_WAKE_ROOT_SCAN_STEPS = 96;
 const DEFAULT_LIVE_WAKE_SIGNAL_SPEED = 3000;
 const PATH_LINE_HIT_RADIUS = 18;
 const PATH_LINE_DRAG_FALLOFF_TIME = 0.32;
+const PATH_LINE_DRAG_ENDPOINT_INSET_FRACTION = 0.04;
+const PATH_LINE_DRAG_MINIMUM_X_GAP_FRACTION = 0.02;
 const CENTRIPETAL_CATMULL_ROM_ALPHA = 0.5;
 const PATH_ENDPOINT_HANDLE_RADIUS = 5.5;
 const PATH_ENDPOINT_HANDLE_HIT_RADIUS = 18;
@@ -257,6 +261,7 @@ class CausalDelayFeedbackRuntime {
     this.visibleWakeSeriesCache = null;
     this.replayTimeRangeCache = null;
     this.replayFrameTimesCache = null;
+    this.laboratoryInitialReplayStateCache = null;
     this.pathArcLengthCache = new Map();
     this.storyTimeAxisPathCache = new Map();
     this.wheelHitCache = null;
@@ -675,6 +680,7 @@ class CausalDelayFeedbackRuntime {
     this.visibleWakeSeriesCache = null;
     this.replayTimeRangeCache = null;
     this.replayFrameTimesCache = null;
+    this.laboratoryInitialReplayStateCache = null;
     this.pathArcLengthCache.clear();
     this.storyTimeAxisPathCache.clear();
     this.wheelHitCache = null;
@@ -1473,9 +1479,142 @@ class CausalDelayFeedbackRuntime {
   }
 
   getLaboratoryInitialReplayTime() {
+    return this.getLaboratoryInitialReplayState().time;
+  }
+
+  getLaboratoryInitialReplayState() {
+    if (
+      this.laboratoryInitialReplayStateCache?.datasetRevision ===
+      this.datasetRevision
+    ) {
+      return this.laboratoryInitialReplayStateCache;
+    }
     const [startTime, endTime] = this.getReplayTimeRange();
-    return startTime +
-      (endTime - startTime) * LABORATORY_INITIAL_REPLAY_FRACTION;
+    const directedFirstVisibilityTimes = Object.fromEntries(
+      ARCHITRINO_KINDS.map((sourceKind) => [
+        sourceKind,
+        this.findFirstVisibleLaboratoryWakeTime(
+          sourceKind,
+          startTime,
+          endTime,
+        ),
+      ]),
+    );
+    const firstVisibilityTimes = Object.values(directedFirstVisibilityTimes);
+    const hasReciprocalVisibility = firstVisibilityTimes.every(Number.isFinite);
+    const time = hasReciprocalVisibility
+      ? Math.max(...firstVisibilityTimes)
+      : endTime;
+    this.laboratoryInitialReplayStateCache = {
+      datasetRevision: this.datasetRevision,
+      time,
+      hasReciprocalVisibility,
+      directedFirstVisibilityTimes,
+    };
+    return this.laboratoryInitialReplayStateCache;
+  }
+
+  findFirstVisibleLaboratoryWakeTime(sourceKind, startTime, endTime) {
+    const start = Number(startTime);
+    const end = Number(endTime);
+    if (
+      !ARCHITRINO_KINDS.includes(sourceKind) ||
+      !Number.isFinite(start) ||
+      !Number.isFinite(end) ||
+      end <= start
+    ) {
+      return Number.NaN;
+    }
+    const isVisible = (replayTime) => {
+      const link = this.createLiveWakeSeries(sourceKind, replayTime);
+      return Boolean(
+        link &&
+        this.hasVisibleLaboratoryWakeArcGeometry(link, replayTime),
+      );
+    };
+    if (isVisible(start)) {
+      return start;
+    }
+    let previousTime = start;
+    for (
+      let step = 1;
+      step <= LABORATORY_ENTRY_VISIBILITY_SCAN_STEPS;
+      step += 1
+    ) {
+      const candidateTime =
+        start +
+        (end - start) *
+          (step / LABORATORY_ENTRY_VISIBILITY_SCAN_STEPS);
+      if (!isVisible(candidateTime)) {
+        previousTime = candidateTime;
+        continue;
+      }
+      let lower = previousTime;
+      let upper = candidateTime;
+      for (
+        let refinement = 0;
+        refinement < LABORATORY_ENTRY_VISIBILITY_REFINEMENT_STEPS;
+        refinement += 1
+      ) {
+        const middle = (lower + upper) * 0.5;
+        if (isVisible(middle)) {
+          upper = middle;
+        } else {
+          lower = middle;
+        }
+      }
+      return upper;
+    }
+    return Number.NaN;
+  }
+
+  hasVisibleLaboratoryWakeArcGeometry(link, replayTime) {
+    const timing = this.getWakeTiming(link, replayTime);
+    if (!this.shouldDrawWakeSeries(timing)) {
+      return false;
+    }
+    const radius = getDistance(timing.source, timing.receiver);
+    if (!Number.isFinite(radius) || radius <= TIME_EPSILON) {
+      return false;
+    }
+    const frontProgresses = this.getWakeFrontProgresses(timing, link);
+    if (frontProgresses.length === 0) {
+      return false;
+    }
+    const theta = getAngleDegrees(timing.source, timing.receiver);
+    const wakeSpan = this.getWakeVisualPreset().finalSpan;
+    const margin = Math.max(
+      1,
+      Number(this.dataset?.preset?.dotRadius) || 1,
+    );
+    return frontProgresses.some((progress) => {
+      const bandRadius = radius * progress;
+      for (
+        let sample = 0;
+        sample <= LABORATORY_ENTRY_ARC_ANGLE_SAMPLES;
+        sample += 1
+      ) {
+        const angle =
+          theta -
+          wakeSpan * 0.5 +
+          wakeSpan *
+            (sample / LABORATORY_ENTRY_ARC_ANGLE_SAMPLES);
+        const radians = angle * Math.PI / 180;
+        const point = {
+          x: timing.source.x + Math.cos(radians) * bandRadius,
+          y: timing.source.y + Math.sin(radians) * bandRadius,
+        };
+        if (
+          point.x >= -margin &&
+          point.x <= DESIGN_WIDTH + margin &&
+          point.y >= -margin &&
+          point.y <= DESIGN_HEIGHT + margin
+        ) {
+          return true;
+        }
+      }
+      return false;
+    });
   }
 
   resetLaboratoryScenarioPlayback() {
@@ -2474,7 +2613,12 @@ class CausalDelayFeedbackRuntime {
           : undefined,
       );
       if (scene.id === "emission" || scene.showStagedWakeGrowth) {
-        this.drawStoryEmissionOriginMarker(ctx, link.source);
+        this.drawStoryEmissionOriginMarker(
+          ctx,
+          link.source,
+          1,
+          link.sourceKind,
+        );
       }
     });
     if (usesSharedPairedPathFrame) {
@@ -2486,7 +2630,12 @@ class CausalDelayFeedbackRuntime {
         const displayCenter = scene.id === "emission"
           ? this.getStoryPathPoint(front.transmitterId, front.emissionTime)
           : front.center;
-        this.drawStoryEmissionOriginMarker(ctx, displayCenter);
+        this.drawStoryEmissionOriginMarker(
+          ctx,
+          displayCenter,
+          1,
+          front.transmitterId,
+        );
       });
     }
     scene.interactions.forEach((interaction) => {
@@ -2585,7 +2734,12 @@ class CausalDelayFeedbackRuntime {
           front.radius,
           withAlpha(mixColor(POSITRINO, WHITE, 0.22), alpha * 0.72),
         );
-        this.drawStoryEmissionOriginMarker(ctx, front.center);
+        this.drawStoryEmissionOriginMarker(
+          ctx,
+          front.center,
+          1,
+          "positrino",
+        );
       });
       const bodyScreen = this.worldToScreen(comparison.currentSource);
       this.drawCircle(
@@ -2778,7 +2932,12 @@ class CausalDelayFeedbackRuntime {
         link,
         displayTime,
       );
-      this.drawStoryEmissionOriginMarker(ctx, link.source);
+      this.drawStoryEmissionOriginMarker(
+        ctx,
+        link.source,
+        1,
+        link.sourceKind,
+      );
     });
     const positrino = this.getStoryPathPoint("positrino", displayTime);
     const electrino = this.getStoryPathPoint("electrino", displayTime);
@@ -2851,8 +3010,14 @@ class CausalDelayFeedbackRuntime {
     );
   }
 
-  drawStoryEmissionOriginMarker(ctx, center, opacity = 1) {
-    this.drawTransmissionPointMarker(ctx, center, undefined, opacity);
+  drawStoryEmissionOriginMarker(ctx, center, opacity = 1, kind) {
+    this.drawTransmissionPointMarker(
+      ctx,
+      center,
+      undefined,
+      opacity,
+      this.getTransmissionHistoryMarkerColor(kind),
+    );
   }
 
   drawSolidWakeCircle(ctx, center, radius, color) {
@@ -3068,7 +3233,12 @@ class CausalDelayFeedbackRuntime {
         front.radius,
         withAlpha(mixColor(baseColor, WHITE, 0.22), 0.68),
       );
-      this.drawStoryEmissionOriginMarker(ctx, front.center);
+      this.drawStoryEmissionOriginMarker(
+        ctx,
+        front.center,
+        1,
+        front.transmitterId,
+      );
     });
     if (drawBodies) {
       this.drawGuidedLiveMarkers(
@@ -3460,7 +3630,13 @@ class CausalDelayFeedbackRuntime {
       return;
     }
     const screen = this.worldToScreen(point);
-    this.drawTransmissionPointMarker(ctx, point);
+    this.drawTransmissionPointMarker(
+      ctx,
+      point,
+      undefined,
+      1,
+      this.getTransmissionHistoryMarkerColor(kind),
+    );
     if (showLabel) {
       this.drawScreenText(
         ctx,
@@ -3482,6 +3658,7 @@ class CausalDelayFeedbackRuntime {
     point,
     variant = this.transmissionPointMarkerVariant,
     opacity = 1,
+    color = WHITE,
   ) {
     if (!point) {
       return;
@@ -3505,8 +3682,18 @@ class CausalDelayFeedbackRuntime {
       ctx,
       screen,
       style.radius,
-      withAlpha(WHITE, style.fillAlpha * markerOpacity),
+      withAlpha(color, style.fillAlpha * markerOpacity),
     );
+  }
+
+  getTransmissionHistoryMarkerColor(kind) {
+    if (kind === "positrino") {
+      return POSITRINO_WAKE;
+    }
+    if (kind === "electrino") {
+      return ELECTRINO_WAKE;
+    }
+    return WHITE;
   }
 
   drawLiveMarkers(ctx, replayTime = this.getCurrentReplayTime()) {
@@ -4220,18 +4407,33 @@ class CausalDelayFeedbackRuntime {
     if (!Array.isArray(path) || path.length === 0) {
       return false;
     }
+    const effectiveAnchorT = this.getEndpointSafePathLineDragAnchorT(path, anchorT);
+    const constrainedDelta = {
+      x: this.constrainPathLineDragDeltaX(path, effectiveAnchorT, Number(delta.x) || 0),
+      y: Number(delta.y) || 0,
+    };
+    if (
+      Math.abs(constrainedDelta.x) <= TIME_EPSILON &&
+      Math.abs(constrainedDelta.y) <= TIME_EPSILON
+    ) {
+      return false;
+    }
     const pathPointSet = new Set(path);
     let didEdit = false;
     const applyDelta = (point, fallbackT = point?.t) => {
       if (!point || this.isPathEndpointPoint(kind, point, fallbackT)) {
         return;
       }
-      const weight = this.getPathLineDragWeight(anchorT, fallbackT);
+      const weight = this.getEndpointTaperedPathLineDragWeight(
+        path,
+        effectiveAnchorT,
+        fallbackT,
+      );
       if (weight <= 0) {
         return;
       }
-      point.x += delta.x * weight;
-      point.y += delta.y * weight;
+      point.x += constrainedDelta.x * weight;
+      point.y += constrainedDelta.y * weight;
       didEdit = true;
     };
 
@@ -4257,6 +4459,94 @@ class CausalDelayFeedbackRuntime {
       this.syncInitialConditionToHistoryStart(kind, startPoint);
     }
     return didEdit;
+  }
+
+  getEndpointSafePathLineDragAnchorT(path, anchorT) {
+    const startT = Number(path?.[0]?.t);
+    const endT = Number(path?.at(-1)?.t);
+    const requestedT = Number(anchorT);
+    if (
+      !Number.isFinite(startT) ||
+      !Number.isFinite(endT) ||
+      !Number.isFinite(requestedT) ||
+      endT <= startT
+    ) {
+      return requestedT;
+    }
+    const pathSpan = endT - startT;
+    const inset = Math.min(
+      PATH_LINE_DRAG_FALLOFF_TIME * 0.125,
+      pathSpan * PATH_LINE_DRAG_ENDPOINT_INSET_FRACTION,
+    );
+    return clamp(requestedT, startT + inset, endT - inset);
+  }
+
+  getEndpointTaperedPathLineDragWeight(path, anchorT, sampleT) {
+    const anchor = Number(anchorT);
+    const sample = Number(sampleT);
+    const startT = Number(path?.[0]?.t);
+    const endT = Number(path?.at(-1)?.t);
+    let weight = this.getPathLineDragWeight(anchor, sample);
+    if (
+      weight <= 0 ||
+      !Number.isFinite(startT) ||
+      !Number.isFinite(endT)
+    ) {
+      return Math.max(0, weight);
+    }
+    if (
+      sample < anchor &&
+      anchor - startT < PATH_LINE_DRAG_FALLOFF_TIME
+    ) {
+      const amount = clamp((sample - startT) / Math.max(TIME_EPSILON, anchor - startT), 0, 1);
+      weight *= amount * amount * amount * (amount * (amount * 6 - 15) + 10);
+    }
+    if (
+      sample > anchor &&
+      endT - anchor < PATH_LINE_DRAG_FALLOFF_TIME
+    ) {
+      const amount = clamp((endT - sample) / Math.max(TIME_EPSILON, endT - anchor), 0, 1);
+      weight *= amount * amount * amount * (amount * (amount * 6 - 15) + 10);
+    }
+    return Math.max(0, weight);
+  }
+
+  constrainPathLineDragDeltaX(path, anchorT, requestedDeltaX) {
+    const requested = Number(requestedDeltaX);
+    if (!Number.isFinite(requested) || requested === 0 || path.length < 2) {
+      return Number.isFinite(requested) ? requested : 0;
+    }
+    const startX = Number(path[0]?.x);
+    const endX = Number(path.at(-1)?.x);
+    const xSpan = endX - startX;
+    if (!Number.isFinite(xSpan) || xSpan <= 0) {
+      return 0;
+    }
+    const minimumGap = Math.max(
+      TIME_EPSILON * 10,
+      (xSpan / (path.length - 1)) * PATH_LINE_DRAG_MINIMUM_X_GAP_FRACTION,
+    );
+    const weights = path.map((point) =>
+      this.getEndpointTaperedPathLineDragWeight(path, anchorT, point.t));
+    let lowerBound = Number.NEGATIVE_INFINITY;
+    let upperBound = Number.POSITIVE_INFINITY;
+    for (let index = 0; index < path.length - 1; index += 1) {
+      const gap = Number(path[index + 1]?.x) - Number(path[index]?.x);
+      const weightDelta = weights[index + 1] - weights[index];
+      if (!Number.isFinite(gap) || !Number.isFinite(weightDelta)) {
+        continue;
+      }
+      const requiredChange = minimumGap - gap;
+      if (weightDelta > TIME_EPSILON) {
+        lowerBound = Math.max(lowerBound, requiredChange / weightDelta);
+      } else if (weightDelta < -TIME_EPSILON) {
+        upperBound = Math.min(upperBound, requiredChange / weightDelta);
+      }
+    }
+    if (lowerBound > upperBound) {
+      return 0;
+    }
+    return clamp(requested, lowerBound, upperBound);
   }
 
   getPathEndpointHandles(kind) {

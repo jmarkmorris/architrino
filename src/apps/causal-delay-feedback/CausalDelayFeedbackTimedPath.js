@@ -14,6 +14,9 @@ export function usesC1TimedPathInterpolation(path) {
 }
 
 function getTimedPathTangent(path, index, key) {
+  if (key === "x") {
+    return getMonotoneTimedPathTangent(path, index, key);
+  }
   const previous = path[Math.max(0, index - 1)];
   const next = path[Math.min(path.length - 1, index + 1)];
   const timeSpan = finiteNumber(next?.t) - finiteNumber(previous?.t);
@@ -21,6 +24,47 @@ function getTimedPathTangent(path, index, key) {
     return 0;
   }
   return (finiteNumber(next?.[key]) - finiteNumber(previous?.[key])) / timeSpan;
+}
+
+function getTimedPathSecant(path, leftIndex, key) {
+  const start = path[leftIndex];
+  const end = path[leftIndex + 1];
+  const timeSpan = finiteNumber(end?.t) - finiteNumber(start?.t);
+  if (!(timeSpan > 0)) {
+    return null;
+  }
+  return {
+    slope: (finiteNumber(end?.[key]) - finiteNumber(start?.[key])) / timeSpan,
+    timeSpan,
+  };
+}
+
+function getMonotoneTimedPathTangent(path, index, key) {
+  if (!Array.isArray(path) || path.length < 2) {
+    return 0;
+  }
+  if (index <= 0) {
+    return getTimedPathSecant(path, 0, key)?.slope ?? 0;
+  }
+  if (index >= path.length - 1) {
+    return getTimedPathSecant(path, path.length - 2, key)?.slope ?? 0;
+  }
+  const previous = getTimedPathSecant(path, index - 1, key);
+  const next = getTimedPathSecant(path, index, key);
+  if (
+    !previous ||
+    !next ||
+    previous.slope <= 0 ||
+    next.slope <= 0
+  ) {
+    return 0;
+  }
+  const previousWeight = 2 * next.timeSpan + previous.timeSpan;
+  const nextWeight = next.timeSpan + 2 * previous.timeSpan;
+  return (
+    (previousWeight + nextWeight) /
+    (previousWeight / previous.slope + nextWeight / next.slope)
+  );
 }
 
 export function getC1TimedPathBezierSegment(path, leftIndex) {

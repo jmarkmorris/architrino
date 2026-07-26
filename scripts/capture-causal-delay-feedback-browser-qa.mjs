@@ -124,6 +124,44 @@ const PROOFS = Object.freeze([
     expectedText: "Laboratory",
   },
   {
+    id: "laboratory-emission-origin-coincidence",
+    fileName: "laboratory-emission-origin-coincidence-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=sandbox&replay=mock&canvas=architrinoPurple",
+    replayTime: 0.7,
+    wakeSeriesId: "live-electrino-to-positrino",
+    settingsOpen: false,
+    mode: "sandbox",
+    prepareAction: {
+      type: "path-line-drag",
+      kind: "positrino",
+      anchorFraction: 0.5,
+      delta: { x: 0, y: -90 },
+      visibleHalfWindow: 0.005,
+      minimumTangentDot: 0.999,
+    },
+    verifySharedEmissionOrigins: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
+    id: "laboratory-reciprocal-entry",
+    fileName: "laboratory-reciprocal-entry-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=sandbox&replay=mock&canvas=architrinoPurple",
+    useLaboratoryInitialReplayTime: true,
+    wakeSeriesId: "live-electrino-to-positrino",
+    settingsOpen: false,
+    mode: "sandbox",
+    verifyReciprocalInitialArcs: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
     id: "keyboard-journey",
     fileName: "keyboard-sandbox-purple-1440x900.png",
     width: 1440,
@@ -799,8 +837,11 @@ function createPrepareProofExpression(proof) {
       }
     }
     runtime.setPlaying(false);
-    runtime.setCurrentReplayTime(${JSON.stringify(proof.replayTime)});
-    runtime.updateNowControl(${JSON.stringify(proof.replayTime)});
+    const requestedReplayTime = ${proof.useLaboratoryInitialReplayTime === true
+      ? "runtime.getLaboratoryInitialReplayTime()"
+      : JSON.stringify(proof.replayTime)};
+    runtime.setCurrentReplayTime(requestedReplayTime);
+    runtime.updateNowControl(requestedReplayTime);
     const requestedStoryProgress =
       ${proof.storyProgress == null ? "undefined" : JSON.stringify(proof.storyProgress)};
     if (
@@ -827,6 +868,35 @@ function createPrepareProofExpression(proof) {
     if (!link) {
       return { ok: false, reason: "wake_series_missing" };
     }
+    if (${proof.verifyReciprocalInitialArcs === true ? "true" : "false"}) {
+      const entryState = runtime.getLaboratoryInitialReplayState();
+      const sourceKinds = liveWakeSeries
+        .map((candidate) => candidate.sourceKind)
+        .sort();
+      const bothArcsVisible =
+        liveWakeSeries.length === 2 &&
+        sourceKinds.join(",") === "electrino,positrino" &&
+        liveWakeSeries.every((candidate) =>
+          runtime.hasVisibleLaboratoryWakeArcGeometry(
+            candidate,
+            runtime.getCurrentReplayTime(),
+          ));
+      if (
+        !entryState.hasReciprocalVisibility ||
+        Math.abs(runtime.getCurrentReplayTime() - entryState.time) > 1e-9 ||
+        !bothArcsVisible
+      ) {
+        return {
+          ok: false,
+          reason: "reciprocal_initial_arcs_missing",
+          entryState,
+          replayTime: runtime.getCurrentReplayTime(),
+          sourceKinds,
+          bothArcsVisible,
+        };
+      }
+      runtime.dom.canvas.dataset.browserReciprocalEntry = "both-visible";
+    }
     runtime.selectedItem = { type: "wake", linkId: link.id };
     runtime.dom.settingsPanel.hidden = ${proof.settingsOpen === false ? "true" : "false"};
     runtime.dom.settingsButton.setAttribute(
@@ -834,6 +904,51 @@ function createPrepareProofExpression(proof) {
       ${proof.settingsOpen === false ? JSON.stringify("false") : JSON.stringify("true")}
     );
     runtime.updateReadout(runtime.createWakeHit(link, 0));
+    if (${proof.verifySharedEmissionOrigins === true ? "true" : "false"}) {
+      const drawnWakeLinks = [];
+      const drawnEmissionMarkers = [];
+      const originalDrawWakeProgression = runtime.drawWakeProgression;
+      const originalDrawTransmissionGhost = runtime.drawTransmissionGhost;
+      runtime.drawWakeProgression = function (ctx, drawnLink, drawnReplayTime) {
+        drawnWakeLinks.push(drawnLink);
+        return originalDrawWakeProgression.call(this, ctx, drawnLink, drawnReplayTime);
+      };
+      runtime.drawTransmissionGhost = function (ctx, point, kind, options) {
+        drawnEmissionMarkers.push({ point, kind });
+        return originalDrawTransmissionGhost.call(this, ctx, point, kind, options);
+      };
+      try {
+        runtime.render(runtime.getCurrentReplayTime());
+      } finally {
+        runtime.drawWakeProgression = originalDrawWakeProgression;
+        runtime.drawTransmissionGhost = originalDrawTransmissionGhost;
+      }
+      const exactSharedOrigins = liveWakeSeries.every((wakeLink) => {
+        const drawnWakeLink = drawnWakeLinks.find(
+          (candidate) => candidate.id === wakeLink.id
+        );
+        const marker = drawnEmissionMarkers.find(
+          (candidate) => candidate.kind === wakeLink.sourceKind
+        );
+        return drawnWakeLink === wakeLink && marker?.point === wakeLink.source;
+      });
+      if (
+        liveWakeSeries.length !== 2 ||
+        drawnWakeLinks.length !== 2 ||
+        drawnEmissionMarkers.length !== 2 ||
+        !exactSharedOrigins
+      ) {
+        return {
+          ok: false,
+          reason: "emission_marker_wake_origin_mismatch",
+          liveWakeSeriesCount: liveWakeSeries.length,
+          drawnWakeLinkCount: drawnWakeLinks.length,
+          drawnEmissionMarkerCount: drawnEmissionMarkers.length,
+          exactSharedOrigins,
+        };
+      }
+      runtime.dom.canvas.dataset.browserEmissionOriginCoincidence = "exact";
+    }
     runtime.render(runtime.getCurrentReplayTime());
     runtime.modeController?.renderLiveState();
     window.scrollTo(0, 0);

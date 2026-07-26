@@ -447,6 +447,50 @@
         outline-offset: 4px;
       }
 
+      .causal-timeline-range {
+        accent-color: #8b4fbf;
+      }
+
+      .causal-timeline-range::-webkit-slider-runnable-track {
+        border-color: rgba(225, 205, 255, 0.46);
+        background: linear-gradient(
+          90deg,
+          rgba(92, 36, 127, 0.96),
+          rgba(151, 86, 203, 0.96) 50%,
+          rgba(92, 36, 127, 0.96)
+        );
+      }
+
+      .causal-timeline-range::-webkit-slider-thumb {
+        border-color: rgba(246, 247, 255, 0.94);
+        background: #7a36aa;
+        box-shadow:
+          0 0 0 3px rgba(183, 126, 225, 0.28),
+          0 2px 8px rgba(0, 0, 0, 0.42);
+      }
+
+      .causal-timeline-range::-moz-range-track {
+        border-color: rgba(225, 205, 255, 0.46);
+        background: linear-gradient(
+          90deg,
+          rgba(92, 36, 127, 0.96),
+          rgba(151, 86, 203, 0.96) 50%,
+          rgba(92, 36, 127, 0.96)
+        );
+      }
+
+      .causal-timeline-range::-moz-range-thumb {
+        border-color: rgba(246, 247, 255, 0.94);
+        background: #7a36aa;
+        box-shadow:
+          0 0 0 3px rgba(183, 126, 225, 0.28),
+          0 2px 8px rgba(0, 0, 0, 0.42);
+      }
+
+      .causal-timeline-range:focus-visible {
+        outline-color: rgba(225, 205, 255, 0.96);
+      }
+
       .causal-range-midpoint {
         position: absolute;
         top: 15px;
@@ -1426,7 +1470,7 @@
         <div class="causal-now-scrub">
           <input
             id="causal-delay-feedback-now"
-            class="causal-range"
+            class="causal-range causal-timeline-range"
             type="range"
             min="0"
             max="1000"

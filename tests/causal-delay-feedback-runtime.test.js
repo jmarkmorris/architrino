@@ -3,7 +3,6 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 
 import {
-  LABORATORY_INITIAL_REPLAY_FRACTION,
   createCausalDelayFeedbackRuntime,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js";
 import {
@@ -31,6 +30,8 @@ import {
   FRAME_COUNT,
   PATH_TIME_END_X,
   PATH_TIME_START_X,
+  ELECTRINO_WAKE,
+  POSITRINO_WAKE,
   PRESETS,
   TRANSMISSION_POINT_MARKER_STYLES,
   TRANSMISSION_POINT_MARKER_VARIANTS,
@@ -186,6 +187,22 @@ function normalizedDot(left, right) {
   assert(leftMagnitude > 0);
   assert(rightMagnitude > 0);
   return (left.x * right.x + left.y * right.y) / (leftMagnitude * rightMagnitude);
+}
+
+function assertStrictlyIncreasingDisplayedTimeAxis(runtime, kind, sampleCount = 4000) {
+  const path = runtime.dataset.paths[kind];
+  const startT = path[0].t;
+  const endT = path.at(-1).t;
+  let previous = sampleTimedPath(path, startT);
+  for (let index = 1; index <= sampleCount; index += 1) {
+    const time = startT + (endT - startT) * (index / sampleCount);
+    const current = sampleTimedPath(path, time);
+    assert(
+      current.x > previous.x,
+      `${kind} displayed time reversed between ${previous.t} and ${current.t}`,
+    );
+    previous = current;
+  }
 }
 
 function createArcRecordingContext() {
@@ -624,7 +641,7 @@ test("causal delay feedback now scrubber pauses and moves replay time", () => {
   assert.equal(readout.hidden, true);
 });
 
-test("Laboratory entry and First Frame use one stable early causal-delay state", () => {
+test("Laboratory entry and First Frame use the earliest reciprocal-visible state", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -645,12 +662,43 @@ test("Laboratory entry and First Frame use one stable early causal-delay state",
   runtime.handleLearnerModeChange("sandbox");
 
   const [rangeStart, rangeEnd] = runtime.getReplayTimeRange();
-  const expectedTime =
-    rangeStart +
-    (rangeEnd - rangeStart) * LABORATORY_INITIAL_REPLAY_FRACTION;
+  const entryState = runtime.getLaboratoryInitialReplayState();
+  const expectedTime = Math.max(
+    entryState.directedFirstVisibilityTimes.positrino,
+    entryState.directedFirstVisibilityTimes.electrino,
+  );
+  const expectedSliderValue = Math.round(
+    ((expectedTime - rangeStart) / (rangeEnd - rangeStart)) * 1000,
+  );
+  const initialLinks = runtime.getVisibleWakeSeries(expectedTime);
+  assert.equal(entryState.hasReciprocalVisibility, true);
+  assert.equal(entryState.time, expectedTime);
   assertNear(runtime.getCurrentReplayTime(), expectedTime);
-  assert.equal(nowInput.value, String(Math.round(LABORATORY_INITIAL_REPLAY_FRACTION * 1000)));
-  assert.ok(runtime.getVisibleWakeSeries(expectedTime).length > 0);
+  assert.equal(nowInput.value, String(expectedSliderValue));
+  assert.deepEqual(
+    initialLinks.map((link) => link.sourceKind).sort(),
+    ["electrino", "positrino"],
+  );
+  initialLinks.forEach((link) => {
+    assert.equal(
+      runtime.hasVisibleLaboratoryWakeArcGeometry(link, expectedTime),
+      true,
+    );
+  });
+  assert(
+    entryState.directedFirstVisibilityTimes.electrino >
+      entryState.directedFirstVisibilityTimes.positrino,
+    "the current paths must expose the reciprocal direction later than the first direction",
+  );
+  const justBeforeReciprocalVisibility =
+    entryState.directedFirstVisibilityTimes.electrino - 1e-5;
+  assert.equal(
+    runtime.createLiveWakeSeries(
+      "electrino",
+      justBeforeReciprocalVisibility,
+    ),
+    null,
+  );
 
   runtime.setReplayNowSliderValue(420);
   assertNear(
@@ -1355,6 +1403,26 @@ test("causal delay feedback settings sliders use themed range styling", () => {
   assert.equal(html.includes('<span class="causal-math-label">c<sub>f</sub></span> speed'), false);
 });
 
+test("causal delay feedback bottom scrubber uses a dedicated purple transport theme", () => {
+  const html = readCausalDelayFeedbackHtml();
+  const themeStart = html.indexOf(".causal-timeline-range {");
+  const themeEnd = html.indexOf(".causal-range-midpoint {", themeStart);
+  const timelineTheme = html.slice(themeStart, themeEnd);
+
+  assert(themeStart > 0);
+  assert(themeEnd > themeStart);
+  assert.match(html, /id="causal-delay-feedback-now"[\s\S]*?class="causal-range causal-timeline-range"/u);
+  assert.match(timelineTheme, /\.causal-timeline-range::-webkit-slider-runnable-track/u);
+  assert.match(timelineTheme, /\.causal-timeline-range::-webkit-slider-thumb/u);
+  assert.match(timelineTheme, /\.causal-timeline-range::-moz-range-track/u);
+  assert.match(timelineTheme, /\.causal-timeline-range::-moz-range-thumb/u);
+  assert.match(timelineTheme, /\.causal-timeline-range:focus-visible/u);
+  assert.match(timelineTheme, /accent-color: #8b4fbf/u);
+  assert.match(timelineTheme, /background: #7a36aa/u);
+  assert.match(timelineTheme, /rgba\(225, 205, 255, 0\.96\)/u);
+  assert.doesNotMatch(timelineTheme, /#(?:ff0000|0000ff|ff96a6|96aaff|4ae5ff)/iu);
+});
+
 test("causal delay feedback settings place architrino speed after canvas", () => {
   const html = readCausalDelayFeedbackHtml();
   const canvasIndex = html.indexOf('id="causal-delay-feedback-color-swatches"');
@@ -1923,6 +1991,28 @@ test("Story and guided-mode transmission markers share the selected marker rende
   runtime.drawTransmissionGhost({}, guidedPoint, "electrino");
 
   assert.deepEqual(calls, [storyPoint, guidedPoint]);
+});
+
+test("transmission-history dots use pale source colors while current-emission dots stay neutral", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  const circles = [];
+  runtime.drawCircle = (_ctx, point, radius, fill, outline, outlineWidth) => {
+    circles.push({ point, radius, fill, outline, outlineWidth });
+  };
+
+  runtime.drawTransmissionGhost({}, { x: 0.2, y: 0.3 }, "positrino");
+  runtime.drawTransmissionGhost({}, { x: 0.4, y: 0.5 }, "electrino");
+  runtime.drawStoryEmissionOriginMarker({}, { x: 0.6, y: 0.7 });
+
+  assert.equal(circles.length, 3);
+  assert.deepEqual(circles[0].fill, { ...POSITRINO_WAKE, a: 0.92 });
+  assert.deepEqual(circles[1].fill, { ...ELECTRINO_WAKE, a: 0.92 });
+  assert.deepEqual(circles[2].fill, { r: 246, g: 247, b: 255, a: 0.92 });
+  assert(circles.every(({ outline }) => outline === undefined));
 });
 
 test("Story 2 trails stay receiver-centered on the shared time-axis mapping", () => {
@@ -4417,6 +4507,71 @@ test("causal delay feedback path line drag has no visible one-sided tangent kink
   );
 });
 
+test("causal delay feedback near-start backward drags preserve endpoint continuity and displayed time order", () => {
+  for (const [kind, yDelta] of [
+    ["positrino", -260],
+    ["electrino", 260],
+  ]) {
+    const runtime = createCausalDelayFeedbackRuntime({
+      document: new FakeDocument(),
+      window: fakeWindow,
+    });
+    const path = runtime.dataset.paths[kind];
+    const startBefore = { ...path[0] };
+    const endBefore = { ...path.at(-1) };
+    const anchor = path[Math.round((path.length - 1) * 0.025)];
+
+    assert.equal(
+      runtime.applyPathLineDrag(kind, anchor.t, { x: -900, y: yDelta }),
+      true,
+    );
+
+    assert.deepEqual(path[0], startBefore);
+    assert.deepEqual(path.at(-1), endBefore);
+    assertStrictlyIncreasingDisplayedTimeAxis(runtime, kind);
+    const h = (path.at(-1).t - path[0].t) / 4000;
+    const start = sampleTimedPath(path, path[0].t);
+    const first = sampleTimedPath(path, path[0].t + h);
+    const second = sampleTimedPath(path, path[0].t + 2 * h);
+    assert(
+      normalizedDot(
+        { x: first.x - start.x, y: first.y - start.y },
+        { x: second.x - first.x, y: second.y - first.y },
+      ) > 0.999,
+      `${kind} must leave its fixed start without an endpoint-adjacent kink`,
+    );
+  }
+});
+
+test("causal delay feedback aggressive interior drag cannot fold displayed time backward", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const kind = "electrino";
+  const path = runtime.dataset.paths[kind];
+  const anchor = path[Math.round((path.length - 1) * 0.48)];
+  const anchorT = anchor.t;
+
+  assert.equal(
+    runtime.applyPathLineDrag(kind, anchorT, { x: -1400, y: 360 }),
+    true,
+  );
+
+  assertStrictlyIncreasingDisplayedTimeAxis(runtime, kind);
+  const halfWindow = 0.005;
+  const previous = sampleTimedPath(path, anchorT - halfWindow);
+  const center = sampleTimedPath(path, anchorT);
+  const next = sampleTimedPath(path, anchorT + halfWindow);
+  assert(
+    normalizedDot(
+      { x: center.x - previous.x, y: center.y - previous.y },
+      { x: next.x - center.x, y: next.y - center.y },
+    ) > 0.999,
+    "the aggressive interior edit must retain visible C1 continuity",
+  );
+});
+
 test("causal delay feedback path drag uses a curvature-smooth truthful falloff", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -5073,6 +5228,77 @@ test("causal delay feedback play-pause toggle follows the shared transport state
     runtime.getStoryPlaybackFrame(runtime.storyPlaybackScene).replayTime,
     pausedTime,
   );
+});
+
+test("causal delay feedback settings stay open through option changes until explicit dismissal", () => {
+  const documentLike = new FakeDocument();
+  const windowLike = new FakeElement();
+  Object.assign(windowLike, {
+    location: fakeWindow.location,
+    performance: { now: () => 0 },
+    cancelAnimationFrame() {},
+  });
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: documentLike,
+    window: windowLike,
+    autoLoadReplay: false,
+  });
+  runtime.dom = {
+    playButton: new FakeElement(),
+    resetButton: new FakeElement(),
+    lastFrameButton: new FakeElement(),
+    resetPresetButton: new FakeElement(),
+    settingsButton: new FakeElement(),
+    visualSwitches: new FakeElement(),
+    colorSwatches: new FakeElement(),
+    nowInput: new FakeElement(),
+    cfSpeedInput: new FakeElement(),
+    architrinoSpeedInput: new FakeElement(),
+    settingsPanel: new FakeElement(),
+    canvas: new FakeElement(),
+  };
+  runtime.dom.settingsPanel.hidden = false;
+  runtime.dom.settingsButton.setAttribute("aria-expanded", "true");
+  runtime.dom.settingsPanel.contains = () => false;
+  runtime.dom.settingsButton.contains = () => false;
+  runtime.toggleWakeVisualSwitch = () => {};
+  runtime.setCanvasColor = () => {};
+  runtime.setReplayNowSliderValue = () => {};
+  runtime.setFieldSpeedControlScale = () => {};
+  runtime.setArchitrinoSpeedIndex = () => {};
+  runtime.submitArchitrinoSpeedFraction = () => {};
+  runtime.stepArchitrinoSpeedIndex = () => {};
+  runtime.bindEvents();
+
+  const dispatch = (target, type, event = {}) => {
+    [...(target.listeners.get(type) ?? [])].forEach((handler) => handler(event));
+    assert.equal(runtime.dom.settingsPanel.hidden, false);
+    assert.equal(runtime.dom.settingsButton.attributes["aria-expanded"], "true");
+  };
+  dispatch(runtime.dom.visualSwitches, "click", {
+    target: { closest: () => ({ dataset: { visualSwitch: "arcWakesEnabled" } }) },
+  });
+  dispatch(runtime.dom.colorSwatches, "click", {
+    target: { closest: () => ({ dataset: { colorId: "light" } }) },
+  });
+  dispatch(runtime.dom.nowInput, "input");
+  dispatch(runtime.dom.cfSpeedInput, "input");
+  dispatch(runtime.dom.architrinoSpeedInput, "input");
+  dispatch(runtime.dom.architrinoSpeedInput, "change");
+  dispatch(runtime.dom.settingsPanel, "click", {
+    target: { closest: () => ({ dataset: { architrinoSpeedStep: "1" } }) },
+  });
+
+  [...documentLike.listeners.get("pointerdown")].forEach((handler) => {
+    handler({ target: new FakeElement() });
+  });
+  assert.equal(runtime.dom.settingsPanel.hidden, true);
+  assert.equal(runtime.dom.settingsButton.attributes["aria-expanded"], "false");
+
+  runtime.toggleSettings();
+  [...runtime.dom.settingsButton.listeners.get("click")].forEach((handler) => handler());
+  assert.equal(runtime.dom.settingsPanel.hidden, true);
+  assert.equal(runtime.dom.settingsButton.attributes["aria-expanded"], "false");
 });
 
 test("causal delay feedback destroy removes every runtime listener and invalidates pending loads", () => {
