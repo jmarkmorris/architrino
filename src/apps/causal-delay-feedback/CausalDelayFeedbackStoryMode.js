@@ -5,6 +5,7 @@ import {
 } from "./CausalDelayFeedbackTimedPath.js";
 import {
   NORMALIZED_FIELD_SPEED,
+  createDisplayAuthority,
   createCausalDelayResidual,
   evaluateCausalRoots,
 } from "./CausalDelayFeedbackCausalHistory.js";
@@ -237,6 +238,13 @@ export function createStoryMotionWakeComparisonFixture(
   return {
     fixtureKind: "declared_constant_speed_transmitter_history",
     evidenceBoundary: "Evaluator-backed aligned constant-speed snapshot fixture; not an EOM-solved trajectory.",
+    displayAuthority: createDisplayAuthority(
+      "declared_constant_speed_teaching_fixture",
+      {
+        label: "Declared constant-speed teaching fixture",
+        eomSolvedTrajectory: false,
+      },
+    ),
     signalSpeed: NORMALIZED_FIELD_SPEED,
     distanceScale: STORY_MOTION_COMPARISON_DISTANCE_SCALE,
     displayTime: time,
@@ -368,6 +376,16 @@ export function getEarliestCommonStoryArcTime(state, playbackWindow) {
 
 export function createStoryScene(state) {
   const view = createStoryView(state);
+  const displayAuthority = createDisplayAuthority(
+    "declared_story_teaching_fixture",
+    {
+      label: "Declared lesson teaching fixture",
+      sourceReplayKind:
+        state?.replay?.kind ??
+        state?.dataset?.displayAuthority?.kind ??
+        "unavailable_provider",
+    },
+  );
   const interactions = view.interactions.filter((interaction) => interaction.root);
   if (interactions.length === 0) {
     const playbackWindow = getSharedPathPlaybackWindow(
@@ -383,6 +401,7 @@ export function createStoryScene(state) {
       showTransmissionGhost: false,
       showCausalLine: false,
       showReceptionMarker: false,
+      displayAuthority,
     };
   }
   const emissionTimes = interactions.map((interaction) => interaction.root.emissionTime);
@@ -499,6 +518,7 @@ export function createStoryScene(state) {
   return {
     id: view.id,
     interactions,
+    displayAuthority,
     ...playbackWindow,
     ...stage,
   };
@@ -591,6 +611,13 @@ export function createStorySynthesisPlayback(
     displayMapping: STORY_SYNTHESIS_DISPLAY_MAPPING,
     evidenceBoundary:
       "Each body is synchronized by normalized teaching progress from its own evaluator-backed transmission event to its later evaluator-backed reception event; the two starting transmission times are not asserted to be simultaneous.",
+    displayAuthority: createDisplayAuthority(
+      "normalized_reciprocal_teaching_fixture",
+      {
+        label: "Normalized reciprocal teaching fixture",
+        simultaneousStartClaim: false,
+      },
+    ),
     events,
     bodies,
   };

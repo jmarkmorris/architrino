@@ -1,7 +1,5 @@
 import {
   DIRECT_MANIPULATION_DRAFT_PREVIEW,
-  REPRESENTATIVE_MOCK_SOLVER_REPLAY,
-  TEMPORARY_MOCK_ADAPTER,
   createMockCausalDelayReplayDataset,
   createTemporaryMockReplayAdapter,
   getAngleDegrees,
@@ -40,6 +38,8 @@ import {
 import {
   NORMALIZED_FIELD_SPEED,
   createCanonicalLearnerState,
+  createDisplayAuthority,
+  createReplayAuthority,
   evaluateCausalRoots,
   refreshCanonicalLearnerState,
 } from "./CausalDelayFeedbackCausalHistory.js";
@@ -644,68 +644,23 @@ class CausalDelayFeedbackRuntime {
     this.dom.replayStatus.dataset.state = replayStatus.state;
     this.dom.replayStatus.title = replayStatus.help;
     this.dom.replayStatus.setAttribute("aria-label", replayStatus.help);
+    this.dom.replayStatus.hidden = false;
   }
 
   getReplayStatusState() {
-    if (this.replayLoadState === "loading") {
-      if (this.usesFallbackReplayOnly()) {
-        return {
-          state: "representative",
-          label: "representative replay",
-          help: "Showing representative replay data shaped like the solver output.",
-        };
-      }
-      return {
-        state: "loading",
-        label: "solver bridge loading",
-        help: "Loading replay data through the solver bridge.",
-      };
-    }
-    if (this.replayLoadState === "fallback") {
-      const errorMessage = this.replayLoadError?.message;
-      return {
-        state: "fallback",
-        label: "representative fallback",
-        help: errorMessage
-          ? `Showing representative replay data because solver bridge replay is unavailable: ${errorMessage}`
-          : "Showing representative replay data because solver bridge replay is unavailable.",
-      };
-    }
-    if (
-      this.replayLoadState === "draft" ||
-      this.dataset?.datasetSource === DIRECT_MANIPULATION_DRAFT_PREVIEW
-    ) {
-      return {
-        state: "draft",
-        label: "draft preview",
-        help: "Showing a local teaching preview. The recorded replay remains unchanged.",
-      };
-    }
-    if (this.dataset?.datasetSource === EOM_REPLAY_DATASET_SOURCE) {
-      return {
-        state: "eom-replay",
-        label: "EOM recorded replay",
-        help: "Showing recorded EOM paths. This viewer does not recompute the record or infer delayed hits.",
-      };
-    }
-    if (this.dataset?.solverIntegrationPath && this.dataset.solverIntegrationPath !== TEMPORARY_MOCK_ADAPTER) {
-      return {
-        state: "recorded",
-        label: "recorded replay",
-        help: "Showing a recorded replay dataset.",
-      };
-    }
-    if (this.dataset?.datasetSource === REPRESENTATIVE_MOCK_SOLVER_REPLAY) {
-      return {
-        state: "representative",
-        label: "representative replay",
-        help: "Showing representative replay data shaped like the solver output.",
-      };
-    }
+    const loadState =
+      this.replayLoadState === "loading" && this.usesFallbackReplayOnly()
+        ? "ready"
+        : this.replayLoadState;
+    const authority = createReplayAuthority(
+      this.dataset,
+      loadState,
+      this.replayLoadError,
+    );
     return {
-      state: "representative",
-      label: "replay ready",
-      help: "Showing replay data.",
+      state: authority.statusState,
+      label: authority.compactLabel,
+      help: authority.help,
     };
   }
 
@@ -2040,6 +1995,9 @@ class CausalDelayFeedbackRuntime {
         ? `story:${storyScene.id}`
         : this.learnerState.mode;
       if (this.dom?.canvas) {
+        this.setCanvasDisplayAuthority(
+          storyScene?.displayAuthority ?? this.dataset?.displayAuthority,
+        );
         this.dom.canvas.dataset.causalScene = sceneId;
         if (this.learnerState.mode === "story") {
           this.dom.canvas.dataset.storyChartScale = this.viewport.scale.toFixed(6);
@@ -2094,6 +2052,7 @@ class CausalDelayFeedbackRuntime {
       return;
     }
     if (this.dom?.canvas) {
+      this.setCanvasDisplayAuthority(this.dataset?.displayAuthority);
       this.dom.canvas.dataset.causalScene = "sandbox";
       delete this.dom.canvas.dataset.guidedChartScale;
       delete this.dom.canvas.dataset.guidedChartBounds;
@@ -2107,6 +2066,26 @@ class CausalDelayFeedbackRuntime {
     this.drawSelection(ctx);
     this.drawSandboxTransmissionGhost(ctx, visibleWakeSeries);
     this.drawLiveMarkers(ctx, replayTime);
+  }
+
+  setCanvasDisplayAuthority(authority = this.dataset?.displayAuthority) {
+    if (!this.dom?.canvas) {
+      return;
+    }
+    const displayAuthority = authority ?? createDisplayAuthority(
+      "unavailable_provider",
+      { label: "Display authority unavailable" },
+    );
+    this.dom.canvas.dataset.displayAuthorityKind =
+      String(displayAuthority.kind ?? "unavailable_provider");
+    this.dom.canvas.dataset.displayEvidenceStatus =
+      String(displayAuthority.evidenceStatus ?? "display-only");
+    this.dom.canvas.dataset.displayPhysicsAcceptance =
+      String(displayAuthority.physicsAcceptance === true);
+    this.dom.canvas.dataset.displayParityEstablishesPhysicsAcceptance =
+      String(
+        displayAuthority.displayParityEstablishesPhysicsAcceptance === true,
+      );
   }
 
   drawGuidedModeScene(ctx, replayTime = this.getCurrentReplayTime()) {
@@ -2404,6 +2383,7 @@ class CausalDelayFeedbackRuntime {
     );
     const selectedAlpha = 0.92;
     const unselectedAlpha = 0.64;
+    this.setCanvasDisplayAuthority(fixture.displayAuthority);
     fixture.comparisons.forEach((comparison) => {
       const alpha = comparison.selected ? selectedAlpha : unselectedAlpha;
       this.drawLine(
@@ -2649,7 +2629,7 @@ class CausalDelayFeedbackRuntime {
       this.dom.canvas.dataset.storySynthesisProgress =
         progress.toFixed(6);
       this.dom.canvas.dataset.storySynthesisEvidenceBoundary =
-        "Story 3 begins at the exact Story 2 handoff time, then advances the same paths and evaluator-backed reciprocal wake roots by shared display time.";
+        "Story 3 begins at the exact Story 2 handoff time, then advances the same paths and evaluator-backed reciprocal wake roots by shared display time. Display agreement does not establish physics acceptance.";
       this.dom.canvas.dataset.storyWakeCircleCount = String(
         progress > TIME_EPSILON ? links.length : 0,
       );
@@ -2896,12 +2876,12 @@ class CausalDelayFeedbackRuntime {
       this.dom.canvas.dataset.forwardWakeBuildupMaximumLeadingError =
         frame.maximumLeadingCoincidenceError.toFixed(9);
       this.dom.canvas.dataset.forwardWakeBuildupFrontClip =
-        "trailing-half-plane-through-current-body";
+        "body-anchored-trailing-arc";
       this.dom.canvas.dataset.forwardWakeBuildupInheritedHistory = "false";
       this.dom.canvas.dataset.forwardWakeBuildupDiffersFromMeet =
         "equal-body-and-wake-speed";
       this.dom.canvas.dataset.forwardWakeBuildupEvidenceBoundary =
-        "Declared paired-path display fixture from emission zero; sampled trailing wake arcs are anchored to the current body and clipped behind it. This display projection does not establish an EOM-solved trajectory, self-interaction, causal-route change, or stability result.";
+        "Declared paired-path display fixture from emission zero; each sampled wake front is drawn backward from the current body as a trailing arc, so its unique displayed-time-leading buildup point is the white current-emission dot. This display projection does not establish an EOM-solved trajectory, self-interaction, causal-route change, or stability result.";
     }
   }
 
@@ -2937,6 +2917,12 @@ class CausalDelayFeedbackRuntime {
         const center = this.getFixedSpeedReplayPathPoint(kind, emissionTime);
         const fieldRadius = wakeExpansionSpeed * (displayTime - emissionTime);
         const radius = getDistance(center, body);
+        const leadingDirection = radius > TIME_EPSILON
+          ? {
+              x: (body.x - center.x) / radius,
+              y: (body.y - center.y) / radius,
+            }
+          : { x: 1, y: 0 };
         fronts.push({
           transmitterId: kind,
           center,
@@ -2944,11 +2930,13 @@ class CausalDelayFeedbackRuntime {
           fieldRadius,
           currentBody: body,
           leadingPoint: body,
+          leadingDirection,
           emissionTime,
           bodySpeed,
           wakeExpansionSpeed,
           declaredFieldSpeed: true,
           trailingHalfPlaneOnly: true,
+          bodyAnchoredTrailingArc: true,
         });
         minimumContainmentMargin = Math.min(
           minimumContainmentMargin,
@@ -2980,66 +2968,73 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
+  getForwardWakeBuildupFrontArcGeometry(front) {
+    const center = this.worldToScreen(front?.center);
+    const leadingPoint = this.worldToScreen(front?.currentBody);
+    if (!center || !leadingPoint) {
+      return null;
+    }
+    const delta = {
+      x: leadingPoint.x - center.x,
+      y: leadingPoint.y - center.y,
+    };
+    const radius = Math.hypot(delta.x, delta.y);
+    if (!(radius > TIME_EPSILON)) {
+      return null;
+    }
+    const forward = {
+      x: delta.x / radius,
+      y: delta.y / radius,
+    };
+    const startAngle = Math.atan2(delta.y, delta.x);
+    const anticlockwise = startAngle < 0;
+    return {
+      center,
+      leadingPoint,
+      radius,
+      forward,
+      startAngle,
+      endAngle: anticlockwise ? -Math.PI : Math.PI,
+      anticlockwise,
+      leadingProjectionError: Math.abs(
+        leadingPoint.x - (center.x + Math.cos(startAngle) * radius),
+      ),
+    };
+  }
+
+  drawForwardWakeBuildupFront(ctx, front, color) {
+    const geometry = this.getForwardWakeBuildupFrontArcGeometry(front);
+    if (!geometry) {
+      return;
+    }
+    ctx.save();
+    ctx.strokeStyle = colorToCss(color);
+    ctx.lineWidth = Math.max(0.9, 1.25 * this.viewport.scale);
+    ctx.beginPath();
+    ctx.arc(
+      geometry.center.x,
+      geometry.center.y,
+      geometry.radius,
+      geometry.startAngle,
+      geometry.endAngle,
+      geometry.anticlockwise,
+    );
+    ctx.stroke();
+    ctx.restore();
+  }
+
   drawForwardWakeBuildupHistory(ctx, frame) {
     ARCHITRINO_KINDS.forEach((kind) => {
-      const body = frame.bodies[kind];
-      const bodyScreen = this.worldToScreen(body);
-      const tangentWindow = Math.max(frame.duration * 0.001, TIME_EPSILON);
-      const before = this.getFixedSpeedReplayPathPoint(
-        kind,
-        Math.max(frame.startTime, frame.displayTime - tangentWindow),
-      );
-      const after = this.getFixedSpeedReplayPathPoint(
-        kind,
-        Math.min(frame.endTime, frame.displayTime + tangentWindow),
-      );
-      const beforeScreen = this.worldToScreen(before);
-      const afterScreen = this.worldToScreen(after);
-      const tangentLength = Math.max(
-        Math.hypot(
-          afterScreen.x - beforeScreen.x,
-          afterScreen.y - beforeScreen.y,
-        ),
-        TIME_EPSILON,
-      );
-      const forward = {
-        x: (afterScreen.x - beforeScreen.x) / tangentLength,
-        y: (afterScreen.y - beforeScreen.y) / tangentLength,
-      };
-      const normal = { x: -forward.y, y: forward.x };
-      const reach = Math.hypot(this.canvasWidth, this.canvasHeight) * 2;
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(
-        bodyScreen.x + normal.x * reach,
-        bodyScreen.y + normal.y * reach,
-      );
-      ctx.lineTo(
-        bodyScreen.x - normal.x * reach,
-        bodyScreen.y - normal.y * reach,
-      );
-      ctx.lineTo(
-        bodyScreen.x - normal.x * reach - forward.x * reach,
-        bodyScreen.y - normal.y * reach - forward.y * reach,
-      );
-      ctx.lineTo(
-        bodyScreen.x + normal.x * reach - forward.x * reach,
-        bodyScreen.y + normal.y * reach - forward.y * reach,
-      );
-      ctx.closePath();
-      ctx.clip();
       frame.fronts
         .filter((front) => front.transmitterId === kind)
         .forEach((front) => {
           const baseColor = kind === "positrino" ? POSITRINO : ELECTRINO;
-          this.drawSolidWakeCircle(
+          this.drawForwardWakeBuildupFront(
             ctx,
-            front.center,
-            front.radius,
+            front,
             withAlpha(mixColor(baseColor, WHITE, 0.22), 0.68),
           );
         });
-      ctx.restore();
       frame.fronts
         .filter((front) => front.transmitterId === kind)
         .forEach((front) => {
@@ -4057,6 +4052,14 @@ class CausalDelayFeedbackRuntime {
       this.markSolverWakeLinksStale(reason);
     }
     this.dataset.datasetSource = DIRECT_MANIPULATION_DRAFT_PREVIEW;
+    this.dataset.displayAuthority = createDisplayAuthority(
+      "local_drag_teaching_preview",
+      {
+        label: "Local drag teaching preview",
+        replayRecomputed: false,
+        recordedReplayChanged: false,
+      },
+    );
     this.dataset.draftPreview = {
       reason,
       authoritative: false,

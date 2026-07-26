@@ -13,6 +13,18 @@ const DEFAULT_TRANSVERSALITY_FLOOR = 1e-5;
 
 export const NORMALIZED_FIELD_SPEED = 1;
 export const DEFAULT_CANVAS_DISTANCE_SCALE = 1 / 3000;
+const DISPLAY_PARITY_NON_ACCEPTANCE =
+  "Matching the display does not prove that the physics has been accepted.";
+
+export function createDisplayAuthority(kind, details = {}) {
+  return {
+    kind,
+    evidenceStatus: "display-only",
+    physicsAcceptance: false,
+    displayParityEstablishesPhysicsAcceptance: false,
+    ...details,
+  };
+}
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -330,28 +342,113 @@ export function evaluateCausalRoots({
   };
 }
 
-function createReplayAuthority(dataset, loadState = "ready", loadError = null) {
+export function createReplayAuthority(dataset, loadState = "ready", loadError = null) {
   const source = String(dataset?.datasetSource ?? "unavailable_provider");
   const isRepresentative = source === "representative_mock_solver_replay";
   const isRecordedEom = source === "eom_history_replay";
+  const isDraftPreview = source === "direct_manipulation_draft_preview";
+  const isRecordedReplay =
+    !isRecordedEom &&
+    !isDraftPreview &&
+    source !== "unavailable_provider" &&
+    Boolean(dataset?.solverIntegrationPath) &&
+    dataset.solverIntegrationPath !== "temporary_mock_adapter";
+  const providerUnavailable =
+    loadState === "fallback" || source === "unavailable_provider";
+  const providerLoading = loadState === "loading";
+  const error = loadError ? String(loadError?.message ?? loadError) : null;
+  const formattedError = error
+    ? /[.!?]$/u.test(error)
+      ? error
+      : `${error}.`
+    : null;
+  let label = "unavailable provider";
+  let compactLabel = "provider unavailable · display only";
+  let lessonMeta = "Provider unavailable · display only";
+  let authority = "display-only unavailable state";
+  let kind = "unavailable_provider";
+  let statusState = "fallback";
+  let help = formattedError
+    ? `The replay provider is unavailable: ${formattedError} ${DISPLAY_PARITY_NON_ACCEPTANCE}`
+    : `The replay provider is unavailable. ${DISPLAY_PARITY_NON_ACCEPTANCE}`;
+
+  if (providerLoading) {
+    label = "provider loading; representative teaching replay";
+    compactLabel = "provider loading · representative";
+    lessonMeta = "Provider loading · representative replay fixture only";
+    authority = "representative teaching data";
+    kind = "representative_teaching_replay";
+    statusState = "loading";
+    help =
+      `The current picture remains representative teaching data while the recorded EOM provider loads. ${DISPLAY_PARITY_NON_ACCEPTANCE}`;
+  } else if (providerUnavailable && isRepresentative) {
+    label = "provider unavailable; representative fallback";
+    compactLabel = "provider unavailable · sample only";
+    lessonMeta = "Provider unavailable · representative replay fixture only";
+    authority = "representative teaching data";
+    kind = "representative_teaching_replay";
+    statusState = "fallback";
+    help = formattedError
+      ? `The recorded EOM provider is unavailable, so representative teaching data is shown: ${formattedError} ${DISPLAY_PARITY_NON_ACCEPTANCE}`
+      : `The recorded EOM provider is unavailable, so representative teaching data is shown. ${DISPLAY_PARITY_NON_ACCEPTANCE}`;
+  } else if (isDraftPreview) {
+    label = "local drag preview";
+    compactLabel = "local preview · display only";
+    lessonMeta = "Local drag preview · not physics acceptance";
+    authority = "local teaching preview";
+    kind = "local_drag_preview";
+    statusState = "draft";
+    help =
+      `This is a local teaching preview; no replay was recomputed and the recorded replay remains unchanged. ${DISPLAY_PARITY_NON_ACCEPTANCE}`;
+  } else if (isRecordedEom) {
+    label = "EOM record replay";
+    compactLabel = "EOM record · display only";
+    lessonMeta = "EOM record display · not physics acceptance";
+    authority = "recorded path display";
+    kind = "recorded_eom_path_display";
+    statusState = "eom-replay";
+    help =
+      `Showing recorded EOM paths. This viewer does not recompute the record or infer delayed hits. ${DISPLAY_PARITY_NON_ACCEPTANCE}`;
+  } else if (isRecordedReplay) {
+    label = "recorded replay";
+    compactLabel = "recorded replay · display only";
+    lessonMeta = "Recorded replay display · not physics acceptance";
+    authority = "recorded replay display";
+    kind = "recorded_replay_display";
+    statusState = "recorded";
+    help =
+      `A recorded replay dataset is shown without recomputation. ${DISPLAY_PARITY_NON_ACCEPTANCE}`;
+  } else if (isRepresentative) {
+    label = "representative teaching replay";
+    compactLabel = "representative · display only";
+    lessonMeta = "Representative replay fixture · not physics acceptance";
+    authority = "representative teaching data";
+    kind = "representative_teaching_replay";
+    statusState = "representative";
+    help =
+      `Representative teaching data shaped like replay output is shown. ${DISPLAY_PARITY_NON_ACCEPTANCE}`;
+  }
+
   return {
     source,
     adapter: String(dataset?.solverIntegrationPath ?? "unavailable_provider"),
     loadState,
-    label: isRecordedEom
-      ? "EOM record replay"
-      : isRepresentative
-        ? "representative mock replay"
-        : source === "direct_manipulation_draft_preview"
-          ? "guided teaching replay"
-          : "unavailable provider",
-    authority: isRecordedEom
-      ? "recorded display replay"
-      : isRepresentative
-        ? "representative teaching data"
-        : "display-only unavailable state",
-    guidedTeachingReplay: "guided teaching replay",
-    error: loadError ? String(loadError?.message ?? loadError) : null,
+    label,
+    compactLabel,
+    lessonMeta,
+    authority,
+    kind,
+    statusState,
+    providerStatus: providerLoading
+      ? "loading"
+      : providerUnavailable
+        ? "unavailable"
+        : "available",
+    evidenceStatus: "display-only",
+    physicsAcceptance: false,
+    displayParityEstablishesPhysicsAcceptance: false,
+    help,
+    error,
   };
 }
 

@@ -26,23 +26,25 @@ const DEFAULT_BROWSER_PATHS = [
 ].filter(Boolean);
 const PROOFS = Object.freeze([
   {
-    id: "story-meet",
-    fileName: "story-meet-purple-1440x900.png",
+    id: "lessons-desktop",
+    fileName: "lessons-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
     query: "mode=story&replay=mock",
-    replayTime: 0.62,
+    replayTime: 0,
     wakeSeriesId: "live-electrino-to-positrino",
     mode: "story",
     storyStep: 0,
-    storyProgress: 0.5,
+    verifyOrderedLearnerSurface: true,
+    verifyBottomRail: true,
+    verifyRetiredSurfaceAbsence: true,
     expectedScene: "story:meet",
-    expectedText: "Each architrino transmits continuously at a constant rate.",
+    expectedText: "Meet the Electrino and Positrino Transceivers",
   },
   {
-    id: "story-emission",
-    fileName: "story-emission-purple-1440x900.png",
+    id: "lesson-two-three-handoff",
+    fileName: "lesson-three-handoff-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
@@ -51,50 +53,57 @@ const PROOFS = Object.freeze([
     wakeSeriesId: "live-electrino-to-positrino",
     mode: "story",
     storyStep: 1,
-    storyProgress: 1,
-    expectedScene: "story:emission",
-    expectedText: "Wakes arriving at a receiver now were transmitted earlier in the transmitter’s path history.",
-  },
-  {
-    id: "story-desktop",
-    fileName: "story-purple-1440x900.png",
-    width: 1440,
-    height: 900,
-    deviceScaleFactor: 1,
-    query: "mode=story&replay=mock",
-    replayTime: 0.62,
-    wakeSeriesId: "live-electrino-to-positrino",
-    mode: "story",
-    storyStep: 2,
+    verifyLessonTwoThreeHandoff: true,
     expectedScene: "story:meaning",
-    expectedText: "Each full circle is a two-dimensional view of an expanding spherical wake",
+    expectedText: "Two Reciprocal Causal Relationships",
   },
   {
-    id: "story-motion",
-    fileName: "story-motion-purple-1440x900.png",
-    width: 1440,
-    height: 900,
-    deviceScaleFactor: 1,
-    query: "mode=story&replay=mock",
-    replayTime: 0.62,
-    wakeSeriesId: "live-electrino-to-positrino",
-    mode: "story",
-    storyStep: 3,
-    expectedScene: "story:motion",
-    expectedText: "For a moving architrino, the wake is compressed in front and expanded behind.",
-  },
-  {
-    id: "story-portrait",
-    fileName: "story-purple-390x844.png",
+    id: "lessons-portrait",
+    fileName: "lessons-purple-390x844.png",
     width: 390,
     height: 844,
     deviceScaleFactor: 2,
     query: "mode=story&replay=mock",
-    replayTime: 0.62,
-    wakeSeriesId: "live-positrino-to-electrino",
+    replayTime: 0.5,
+    wakeSeriesId: "live-electrino-to-positrino",
     mode: "story",
     storyStep: 2,
+    verifyOrderedLearnerSurface: true,
+    verifyBottomRail: true,
+    verifyRetiredSurfaceAbsence: true,
     expectedScene: "story:meaning",
+    expectedText: "Two Reciprocal Causal Relationships",
+  },
+  {
+    id: "lesson-four-speed-reset",
+    fileName: "lesson-four-speed-reset-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
+    replayTime: 0.6,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "story",
+    storyStep: 3,
+    verifyLessonFourSpeedReset: true,
+    expectedScene: "story:motion",
+    expectedText: "Motion Changes Wake Shape",
+  },
+  {
+    id: "transport-state",
+    fileName: "lesson-transport-state-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
+    replayTime: 0.5,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "story",
+    storyStep: 1,
+    verifyTransportState: true,
+    verifyBottomRail: true,
+    expectedScene: "story:emission",
+    expectedText: "Wakes Received Now Were Transmitted in the Past",
   },
   {
     id: "shared-shell-search-desktop",
@@ -155,7 +164,7 @@ const PROOFS = Object.freeze([
     expectedText: "Laboratory",
   },
   {
-    id: "laboratory-path-drag-c1",
+    id: "laboratory-path-drag",
     fileName: "laboratory-path-drag-c1-purple-1440x900.png",
     width: 1440,
     height: 900,
@@ -172,6 +181,9 @@ const PROOFS = Object.freeze([
       visibleHalfWindow: 0.005,
       minimumTangentDot: 0.999,
     },
+    verifyOrderedLearnerSurface: true,
+    verifyBottomRail: true,
+    verifyRetiredSurfaceAbsence: true,
     expectedScene: "sandbox",
     expectedText: "Laboratory",
   },
@@ -212,46 +224,52 @@ const PROOFS = Object.freeze([
     expectedText: "Laboratory",
   },
   {
-    id: "keyboard-journey",
-    fileName: "keyboard-sandbox-purple-1440x900.png",
+    id: "ordered-keyboard-journey",
+    fileName: "keyboard-laboratory-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
     query: "mode=story&replay=mock",
-    replayTime: 0.62,
-    wakeSeriesId: "live-positrino-to-electrino",
-    keyboardJourney: "sandbox",
+    useLaboratoryInitialReplayTime: true,
+    wakeSeriesId: "live-electrino-to-positrino",
+    keyboardJourney: "laboratory",
+    mode: "sandbox",
+    verifyOrderedLearnerSurface: true,
+    verifyBottomRail: true,
+    verifyRetiredSurfaceAbsence: true,
     expectedScene: "sandbox",
-    expectedText: "Sandbox",
+    expectedText: "Laboratory",
   },
   {
-    id: "story-reduced-motion",
-    fileName: "story-reduced-motion-purple-1440x900.png",
+    id: "reduced-motion",
+    fileName: "lesson-reduced-motion-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
     query: "mode=story&replay=mock",
-    replayTime: 0.62,
+    replayTime: 0.5,
     wakeSeriesId: "live-positrino-to-electrino",
     mode: "story",
     storyStep: 2,
     reducedMotion: true,
+    verifyReducedMotionPlayback: true,
     expectedScene: "story:meaning",
-    expectedText: "The matching fading red or blue arc",
+    expectedText: "Two Reciprocal Causal Relationships",
   },
   {
-    id: "roots-reduced-motion",
-    fileName: "roots-reduced-motion-purple-1440x900.png",
+    id: "lesson-five-emission-zero",
+    fileName: "lesson-five-emission-zero-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=roots&replay=mock",
-    replayTime: 0.62,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
     wakeSeriesId: "live-positrino-to-electrino",
-    mode: "roots",
-    reducedMotion: true,
-    expectedScene: "roots",
-    expectedText: "Finite accumulated ΔV",
+    mode: "story",
+    storyStep: 4,
+    verifyLessonFiveEmissionZero: true,
+    expectedScene: "story:forward-buildup",
+    expectedText: "Forward Wake Buildup",
   },
   {
     id: "forward-buildup",
@@ -264,25 +282,27 @@ const PROOFS = Object.freeze([
     wakeSeriesId: "live-positrino-to-electrino",
     mode: "story",
     storyStep: 4,
-    storyProgress: 0.3,
+    storyProgress: 0.9,
     verifyForwardWakeBuildup: true,
     expectedScene: "story:forward-buildup",
     expectedText: "both architrinos move at the same speed as their expanding wakes",
   },
   {
     id: "high-contrast",
-    fileName: "story-high-contrast-purple-1440x900.png",
+    fileName: "lesson-high-contrast-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
     query: "mode=story&replay=mock",
-    replayTime: 0.62,
+    replayTime: 0.5,
     wakeSeriesId: "live-positrino-to-electrino",
     mode: "story",
     storyStep: 2,
     highContrast: true,
+    verifyOrderedLearnerSurface: true,
+    verifyBottomRail: true,
     expectedScene: "story:meaning",
-    expectedText: "The matching fading red or blue arc",
+    expectedText: "Two Reciprocal Causal Relationships",
   },
   {
     id: "eom-unavailable",
@@ -299,6 +319,19 @@ const PROOFS = Object.freeze([
     expectedText: "Each architrino transmits continuously at a constant rate.",
   },
 ]);
+
+const CDF020_PROOF_IDS = Object.freeze(new Set([
+  "lessons-desktop",
+  "lessons-portrait",
+  "ordered-keyboard-journey",
+  "transport-state",
+  "lesson-two-three-handoff",
+  "lesson-four-speed-reset",
+  "lesson-five-emission-zero",
+  "laboratory-path-drag",
+  "reduced-motion",
+  "high-contrast",
+]));
 
 const args = parseArgs(process.argv.slice(2));
 
@@ -336,6 +369,9 @@ try {
       if (args.proof && args.proof !== proof.id) {
         continue;
       }
+      if (!args.proof && !args.all && !CDF020_PROOF_IDS.has(proof.id)) {
+        continue;
+      }
       const outputPath = path.join(outputDir, proof.fileName);
       await captureProof(cdp, {
         proof,
@@ -364,11 +400,13 @@ function printUsage(exitCode) {
   console.log("  --host=HOST        Host used when starting the dev server. Default: 127.0.0.1");
   console.log("  --port=PORT        Port used when starting the dev server. Default: 5173");
   console.log("  --proof=ID         Capture only the named proof id.");
+  console.log("  --all              Include auxiliary proofs owned by other CDF items.");
   process.exit(exitCode);
 }
 
 function parseArgs(argv) {
   const parsed = {
+    all: false,
     baseUrl: null,
     browserPath: null,
     help: false,
@@ -379,7 +417,9 @@ function parseArgs(argv) {
     unknown: [],
   };
   for (const arg of argv) {
-    if (arg === "--help" || arg === "-h") {
+    if (arg === "--all") {
+      parsed.all = true;
+    } else if (arg === "--help" || arg === "-h") {
       parsed.help = true;
     } else if (arg.startsWith("--base-url=")) {
       parsed.baseUrl = arg.slice("--base-url=".length).replace(/\/$/u, "");
@@ -405,6 +445,7 @@ function parseArgs(argv) {
 
 function validateProofConfigurations(proofs) {
   const errors = [];
+  const proofsById = new Map(proofs.map((proof) => [proof.id, proof]));
   for (const proof of proofs) {
     const query = new URLSearchParams(proof.query);
     if (
@@ -421,6 +462,27 @@ function validateProofConfigurations(proofs) {
       !(query.has("pathConstraintBoundaryResidualTolerance") || query.has("boundaryResidualTolerance"))
     ) {
       errors.push(`${proof.id} requires boundary-residual evidence without a boundary-residual tolerance query`);
+    }
+  }
+  for (const proofId of CDF020_PROOF_IDS) {
+    const proof = proofsById.get(proofId);
+    if (!proof) {
+      errors.push(`CDF-020 proof ${proofId} is missing`);
+      continue;
+    }
+    if (
+      proof.verifySettingsRemoved === true ||
+      proof.verifyForwardWakeBuildup === true
+    ) {
+      errors.push(
+        `CDF-020 proof ${proofId} depends on separately owned Settings or CDF-008 acceptance`,
+      );
+    }
+    if (!["story", "sandbox"].includes(proof.mode)) {
+      errors.push(`CDF-020 proof ${proofId} uses retired mode ${proof.mode}`);
+    }
+    if (proof.expectedText === "Sandbox") {
+      errors.push(`CDF-020 proof ${proofId} uses retired learner-facing Sandbox naming`);
     }
   }
   if (errors.length > 0) {
@@ -686,32 +748,44 @@ async function prepareKeyboardJourney(cdp, sessionId, destination) {
       );
     }
   };
-  for (let step = 0; step < 6; step += 1) {
-    const mode = await evaluate(cdp, sessionId, `
-      window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode
+  const expectedStates = [
+    { mode: "story", storyStep: 1 },
+    { mode: "story", storyStep: 2 },
+    { mode: "story", storyStep: 3 },
+    { mode: "story", storyStep: 4 },
+    { mode: "sandbox", storyStep: 4 },
+  ];
+  for (const expectedState of expectedStates) {
+    await pressFocusedButton("#nav-forward");
+    const state = await evaluate(cdp, sessionId, `
+      (() => ({
+        mode: window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode,
+        storyStep:
+          window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.storyStep,
+      }))()
     `);
-    if (mode.value === "history") {
-      break;
+    if (
+      state.value?.mode !== expectedState.mode ||
+      state.value?.storyStep !== expectedState.storyStep
+    ) {
+      throw new Error(
+        `keyboard journey expected ${JSON.stringify(expectedState)}, got ${JSON.stringify(state.value)}`,
+      );
     }
-    await pressFocusedButton("#causal-delay-feedback-guided-next");
-  }
-  const historyMode = await evaluate(cdp, sessionId, `
-    window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode
-  `);
-  if (historyMode.value !== "history") {
-    throw new Error(`keyboard journey did not reach Path History; got ${historyMode.value ?? "unavailable"}`);
-  }
-  if (destination === "sandbox") {
-    await pressFocusedButton('[data-causal-mode="sandbox"]');
   }
   const state = await evaluate(cdp, sessionId, `
     (() => ({
       mode: window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode,
+      storyStep:
+        window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.storyStep,
       focus: document.activeElement?.textContent?.trim(),
     }))()
   `);
-  if (state.value?.mode !== destination) {
-    throw new Error(`keyboard journey expected ${destination}, got ${state.value?.mode ?? "unavailable"}`);
+  const expectedMode = destination === "laboratory" ? "sandbox" : destination;
+  if (state.value?.mode !== expectedMode) {
+    throw new Error(
+      `keyboard journey expected ${destination}, got ${state.value?.mode ?? "unavailable"}`,
+    );
   }
 }
 
@@ -966,6 +1040,221 @@ function createPrepareProofExpression(proof) {
     if (${proof.jumpToLastFrame === true ? "true" : "false"}) {
       runtime.jumpToLastFrame();
     }
+    if (${proof.verifyLessonTwoThreeHandoff === true ? "true" : "false"}) {
+      runtime.learnerState.mode = "story";
+      runtime.learnerState.storyStep = 1;
+      runtime.modeController?.render();
+      const lessonTwoScene = runtime.resetStoryScenarioPlayback();
+      runtime.jumpToLastFrame();
+      const lessonTwoEndTime = Number(lessonTwoScene.playbackEndTime);
+      const lessonTwoHeldTime = Number(runtime.getCurrentReplayTime());
+      document.querySelector("#nav-forward")?.click();
+      const handoffReplayTime = Number(runtime.getCurrentReplayTime());
+      const lessonThreeStep = runtime.learnerState?.storyStep;
+      const lessonThreeScene = runtime.resetStoryScenarioPlayback();
+      const lessonThreeStartTime = Number(lessonThreeScene.playbackStartTime);
+      const handoffMatches =
+        lessonThreeStep === 2 &&
+        Math.abs(lessonTwoEndTime - lessonTwoHeldTime) <= 1e-9 &&
+        Math.abs(lessonTwoEndTime - handoffReplayTime) <= 1e-9 &&
+        Math.abs(lessonTwoEndTime - lessonThreeStartTime) <= 1e-9;
+      if (!handoffMatches) {
+        return {
+          ok: false,
+          reason: "lesson_two_three_handoff_mismatch",
+          lessonThreeStep,
+          lessonTwoEndTime,
+          lessonTwoHeldTime,
+          handoffReplayTime,
+          lessonThreeStartTime,
+        };
+      }
+      runtime.dom.canvas.dataset.browserLessonTwoThreeHandoff =
+        lessonTwoEndTime.toFixed(9);
+    }
+    if (${proof.verifyLessonFourSpeedReset === true ? "true" : "false"}) {
+      runtime.learnerState.mode = "story";
+      runtime.learnerState.storyStep = 3;
+      runtime.modeController?.render();
+      const initialScene = runtime.resetStoryScenarioPlayback();
+      const initialReplayTime = Number(initialScene.playbackStartTime);
+      runtime.jumpToLastFrame();
+      const completedBeforeChange =
+        runtime.learnerState.playback.completed === true &&
+        runtime.dom.playButton.disabled === true;
+      const previousSpeed = Number(runtime.learnerState.storyMotionSpeedFraction);
+      const nextSpeed = previousSpeed === 0.9 ? 0.3 : 0.9;
+      const speedButton = document.querySelector(
+        \`[data-story-speed="\${nextSpeed}"]\`
+      );
+      speedButton?.click();
+      const resetAfterChange =
+        completedBeforeChange &&
+        Number(runtime.learnerState.storyMotionSpeedFraction) === nextSpeed &&
+        runtime.isPlaying === false &&
+        runtime.learnerState.playback.playing === false &&
+        runtime.learnerState.playback.resumable === false &&
+        runtime.learnerState.playback.completed === false &&
+        runtime.storyHeldFrame === null &&
+        runtime.storyPlaybackScene === null &&
+        runtime.dom.playButton.disabled === false &&
+        runtime.dom.playButton.getAttribute("aria-label") === "Play lesson" &&
+        Math.abs(Number(runtime.getCurrentReplayTime()) - initialReplayTime) <=
+          1e-9;
+      if (!speedButton || !resetAfterChange) {
+        return {
+          ok: false,
+          reason: "lesson_four_speed_reset_failed",
+          speedButtonFound: Boolean(speedButton),
+          completedBeforeChange,
+          previousSpeed,
+          nextSpeed,
+          actualSpeed: runtime.learnerState.storyMotionSpeedFraction,
+          replayTime: runtime.getCurrentReplayTime(),
+          initialReplayTime,
+          playback: runtime.learnerState.playback,
+          playDisabled: runtime.dom.playButton.disabled,
+          playLabel: runtime.dom.playButton.getAttribute("aria-label"),
+          hasHeldFrame: Boolean(runtime.storyHeldFrame),
+          hasPlaybackScene: Boolean(runtime.storyPlaybackScene),
+        };
+      }
+      runtime.dom.canvas.dataset.browserLessonFourSpeedReset =
+        \`\${previousSpeed.toFixed(1)}-to-\${nextSpeed.toFixed(1)}\`;
+    }
+    if (${proof.verifyLessonFiveEmissionZero === true ? "true" : "false"}) {
+      runtime.learnerState.mode = "story";
+      runtime.learnerState.storyStep = 4;
+      runtime.modeController?.render();
+      const lessonFiveScene = runtime.resetStoryScenarioPlayback();
+      const emissionZero = Number(lessonFiveScene.playbackStartTime);
+      runtime.render(emissionZero);
+      const canvasDataset = runtime.dom.canvas.dataset;
+      const wakeCount = Number(canvasDataset.forwardWakeBuildupWakeCount);
+      const emissionZeroContract =
+        Math.abs(emissionZero) <= 1e-9 &&
+        Math.abs(Number(runtime.getCurrentReplayTime()) - emissionZero) <= 1e-9 &&
+        wakeCount === 0 &&
+        canvasDataset.forwardWakeBuildupInheritedHistory === "false";
+      if (!emissionZeroContract) {
+        return {
+          ok: false,
+          reason: "lesson_five_emission_zero_contract_failed",
+          emissionZero,
+          replayTime: runtime.getCurrentReplayTime(),
+          wakeCount,
+          inheritedHistory:
+            canvasDataset.forwardWakeBuildupInheritedHistory,
+        };
+      }
+      canvasDataset.browserLessonFiveBoundary =
+        "emission-zero-only-cdf008-independent";
+    }
+    if (${proof.verifyTransportState === true ? "true" : "false"}) {
+      const firstFrameButton = document.querySelector(
+        "#causal-delay-feedback-guided-first-frame"
+      );
+      const playButton = document.querySelector(
+        "#causal-delay-feedback-guided-play"
+      );
+      const lastFrameButton = document.querySelector(
+        "#causal-delay-feedback-guided-last-frame"
+      );
+      const captureTransportState = () => ({
+        playing: runtime.isPlaying,
+        playback: { ...runtime.learnerState.playback },
+        playDisabled: playButton?.disabled,
+        playLabel: playButton?.getAttribute("aria-label"),
+        playPressed: playButton?.getAttribute("aria-pressed"),
+        replayTime: runtime.getCurrentReplayTime(),
+      });
+      firstFrameButton?.click();
+      const firstState = captureTransportState();
+      playButton?.click();
+      const playingState = captureTransportState();
+      await new Promise((resolve) => setTimeout(resolve, 80));
+      playButton?.click();
+      const pausedState = captureTransportState();
+      lastFrameButton?.click();
+      const lastState = captureTransportState();
+      firstFrameButton?.click();
+      const resetState = captureTransportState();
+      playButton?.click();
+      await new Promise((resolve) => setTimeout(resolve, 80));
+      playButton?.click();
+      const finalPausedState = captureTransportState();
+      const transportContract =
+        firstFrameButton &&
+        playButton &&
+        lastFrameButton &&
+        firstState.playing === false &&
+        firstState.playback.resumable === false &&
+        firstState.playback.completed === false &&
+        playingState.playing === true &&
+        playingState.playLabel === "Pause lesson" &&
+        playingState.playPressed === "true" &&
+        pausedState.playing === false &&
+        pausedState.playback.resumable === true &&
+        pausedState.playLabel === "Resume lesson" &&
+        lastState.playing === false &&
+        lastState.playback.completed === true &&
+        lastState.playDisabled === true &&
+        lastState.playLabel?.startsWith("Lesson complete;") &&
+        resetState.playing === false &&
+        resetState.playback.resumable === false &&
+        resetState.playback.completed === false &&
+        resetState.playDisabled === false &&
+        resetState.playLabel === "Play lesson" &&
+        finalPausedState.playing === false &&
+        finalPausedState.playback.resumable === true &&
+        finalPausedState.playLabel === "Resume lesson";
+      if (!transportContract) {
+        return {
+          ok: false,
+          reason: "shared_transport_state_contract_failed",
+          controlsFound: {
+            firstFrame: Boolean(firstFrameButton),
+            play: Boolean(playButton),
+            lastFrame: Boolean(lastFrameButton),
+          },
+          firstState,
+          playingState,
+          pausedState,
+          lastState,
+          resetState,
+          finalPausedState,
+        };
+      }
+      runtime.dom.canvas.dataset.browserTransportState =
+        "first-play-pause-last-reset-resume";
+    }
+    if (${proof.verifyReducedMotionPlayback === true ? "true" : "false"}) {
+      const playButton = document.querySelector(
+        "#causal-delay-feedback-guided-play"
+      );
+      const startsPaused = runtime.isPlaying === false;
+      playButton?.click();
+      const manualPlayWorks =
+        runtime.isPlaying === true &&
+        playButton?.getAttribute("aria-label") === "Pause lesson";
+      playButton?.click();
+      const manualPauseWorks =
+        runtime.isPlaying === false &&
+        runtime.learnerState.playback.resumable === true &&
+        playButton?.getAttribute("aria-label") === "Resume lesson";
+      if (!startsPaused || !manualPlayWorks || !manualPauseWorks) {
+        return {
+          ok: false,
+          reason: "reduced_motion_playback_contract_failed",
+          startsPaused,
+          manualPlayWorks,
+          manualPauseWorks,
+          playLabel: playButton?.getAttribute("aria-label"),
+        };
+      }
+      runtime.dom.canvas.dataset.browserReducedMotionPlayback =
+        "paused-manual-play-pause";
+    }
     const liveWakeSeries = runtime.getVisibleWakeSeries(runtime.getCurrentReplayTime());
     const link =
       liveWakeSeries.find((candidate) => candidate.id === ${JSON.stringify(proof.wakeSeriesId ?? "")}) ||
@@ -1005,57 +1294,121 @@ function createPrepareProofExpression(proof) {
       runtime.dom.canvas.dataset.browserReciprocalEntry = "both-visible";
     }
     if (${proof.verifyForwardWakeBuildup === true ? "true" : "false"}) {
-      runtime.render(runtime.getCurrentReplayTime());
-      runtime.modeController?.renderLiveState();
-      const canvasDataset = runtime.dom.canvas.dataset;
-      const bodyWakeSpeedMatch =
-        canvasDataset.forwardWakeBuildupFixture ===
-          "paired_story_template_equal_body_arc_length_and_wake_speed" &&
-        canvasDataset.forwardWakeBuildupMinimumSpeedRatio === "1.000000000" &&
-        canvasDataset.forwardWakeBuildupMaximumSpeedRatio === "1.000000000";
-      const wakeCount = Number(canvasDataset.forwardWakeBuildupWakeCount);
-      if (
-        !bodyWakeSpeedMatch ||
-        !(wakeCount > 0) ||
-        canvasDataset.forwardWakeBuildupMaximumLeadingError !==
-          "0.000000000" ||
-        canvasDataset.forwardWakeBuildupFrontClip !==
-          "trailing-half-plane-through-current-body" ||
-        canvasDataset.forwardWakeBuildupInheritedHistory !== "false" ||
-        canvasDataset.forwardWakeBuildupDiffersFromMeet !==
-          "equal-body-and-wake-speed"
-      ) {
+      const forwardScene = runtime.storyHeldFrame?.scene;
+      const playbackFractions = [0.05, 0.1, 0.3, 0.5, 0.7, 0.9, 1];
+      const fractionChecks = [];
+      if (forwardScene?.id !== "forward-buildup") {
+        return {
+          ok: false,
+          reason: "forward_wake_buildup_scene_missing",
+          heldSceneId: forwardScene?.id ?? null,
+        };
+      }
+      for (const fraction of playbackFractions) {
+        const replayTime =
+          forwardScene.playbackStartTime +
+          (forwardScene.playbackEndTime - forwardScene.playbackStartTime) *
+            fraction;
+        runtime.setPlaying(false, {
+          holdScene: forwardScene,
+          holdReplayTime: replayTime,
+        });
+        runtime.render(replayTime);
+        const frame = runtime.createStoryForwardWakeBuildupFrame(
+          forwardScene,
+          replayTime,
+        );
+        const canvasDataset = runtime.dom.canvas.dataset;
+        const arcChecks = frame.fronts.map((front) => {
+          const arc = runtime.getForwardWakeBuildupFrontArcGeometry(front);
+          if (!arc) {
+            return {
+              ok: false,
+              transmitterId: front.transmitterId,
+              reason: "arc_geometry_missing",
+            };
+          }
+          let maximumDisplayedTimeLead = Number.NEGATIVE_INFINITY;
+          for (let sampleIndex = 0; sampleIndex < 360; sampleIndex += 1) {
+            const amount = sampleIndex / 359;
+            const angle =
+              arc.startAngle + (arc.endAngle - arc.startAngle) * amount;
+            const x = arc.center.x + Math.cos(angle) * arc.radius;
+            maximumDisplayedTimeLead = Math.max(
+              maximumDisplayedTimeLead,
+              x - arc.leadingPoint.x,
+            );
+          }
+          return {
+            ok:
+              maximumDisplayedTimeLead <= 1e-7 &&
+              arc.leadingProjectionError <= 1e-7 &&
+              front.leadingPoint === front.currentBody &&
+              front.bodyAnchoredTrailingArc === true,
+            transmitterId: front.transmitterId,
+            maximumDisplayedTimeLead,
+            arcLeadingError: arc.leadingProjectionError,
+          };
+        });
+        const bodyWakeSpeedMatch =
+          canvasDataset.forwardWakeBuildupFixture ===
+            "paired_story_template_equal_body_arc_length_and_wake_speed" &&
+          canvasDataset.forwardWakeBuildupMinimumSpeedRatio === "1.000000000" &&
+          canvasDataset.forwardWakeBuildupMaximumSpeedRatio === "1.000000000";
+        const wakeCount = Number(canvasDataset.forwardWakeBuildupWakeCount);
+        const ok =
+          bodyWakeSpeedMatch &&
+          wakeCount === frame.fronts.length &&
+          wakeCount > 0 &&
+          arcChecks.every((check) => check.ok) &&
+          canvasDataset.forwardWakeBuildupMaximumLeadingError ===
+            "0.000000000" &&
+          canvasDataset.forwardWakeBuildupFrontClip ===
+            "body-anchored-trailing-arc" &&
+          canvasDataset.forwardWakeBuildupInheritedHistory === "false" &&
+          canvasDataset.forwardWakeBuildupDiffersFromMeet ===
+            "equal-body-and-wake-speed";
+        fractionChecks.push({
+          fraction,
+          ok,
+          wakeCount,
+          bodyWakeSpeedMatch,
+          maximumLeadingError:
+            canvasDataset.forwardWakeBuildupMaximumLeadingError,
+          frontClip: canvasDataset.forwardWakeBuildupFrontClip,
+          inheritedHistory:
+            canvasDataset.forwardWakeBuildupInheritedHistory,
+          failedArcChecks: arcChecks.filter((check) => !check.ok),
+        });
+      }
+      const failedFractionChecks = fractionChecks.filter((check) => !check.ok);
+      if (failedFractionChecks.length > 0) {
         return {
           ok: false,
           reason: "forward_wake_buildup_contract_failed",
-          bodyWakeSpeedMatch,
-          wakeCount,
-          fixture: canvasDataset.forwardWakeBuildupFixture,
-          minimumSpeedRatio:
-            canvasDataset.forwardWakeBuildupMinimumSpeedRatio,
-          maximumSpeedRatio:
-            canvasDataset.forwardWakeBuildupMaximumSpeedRatio,
-          maximumLeadingError:
-            canvasDataset.forwardWakeBuildupMaximumLeadingError,
-          frontClip:
-            canvasDataset.forwardWakeBuildupFrontClip,
-          inheritedHistory:
-            canvasDataset.forwardWakeBuildupInheritedHistory,
-          differentiator:
-            canvasDataset.forwardWakeBuildupDiffersFromMeet,
+          failedFractionChecks,
           storyStep: runtime.learnerState?.storyStep,
-          causalScene: canvasDataset.causalScene,
+          causalScene: runtime.dom.canvas.dataset.causalScene,
           hasContext: Boolean(runtime.context),
           heldSceneId: runtime.storyHeldFrame?.scene?.id ?? null,
-          heldReplayTime: runtime.storyHeldFrame?.replayTime ?? null,
-          heldInteractionCount:
-            runtime.storyHeldFrame?.scene?.interactions?.length ?? null,
-          heldShowForwardWakeBuildup:
-            runtime.storyHeldFrame?.scene?.showForwardWakeBuildup ?? null,
         };
       }
+      const screenshotProgress = Number.isFinite(requestedStoryProgress)
+        ? requestedStoryProgress
+        : 0.9;
+      const screenshotReplayTime =
+        forwardScene.playbackStartTime +
+        (forwardScene.playbackEndTime - forwardScene.playbackStartTime) *
+          screenshotProgress;
+      runtime.setPlaying(false, {
+        holdScene: forwardScene,
+        holdReplayTime: screenshotReplayTime,
+      });
+      runtime.render(screenshotReplayTime);
       runtime.dom.canvas.dataset.browserForwardWakeBuildup =
-        "equal-body-and-wake-speed-visible";
+        "body-anchored-trailing-arcs";
+      runtime.dom.canvas.dataset.browserForwardWakeBuildupFractions =
+        playbackFractions.map((fraction) => fraction.toFixed(2)).join(",");
     }
     runtime.selectedItem = { type: "wake", linkId: link.id };
     runtime.updateReadout(runtime.createWakeHit(link, 0));
@@ -1155,6 +1508,165 @@ function createPrepareProofExpression(proof) {
         expected: expectedSecondaryText,
         actualMode,
       };
+    }
+    if (${proof.verifyOrderedLearnerSurface === true ? "true" : "false"}) {
+      const expectedLabels = [
+        "1. Meet the Electrino and Positrino Transceivers",
+        "2. Wakes Received Now Were Transmitted in the Past",
+        "3. Two Reciprocal Causal Relationships",
+        "4. Motion Changes Wake Shape",
+        "5. Forward Wake Buildup",
+        "Laboratory",
+      ];
+      const lessonButtons = Array.from(
+        document.querySelectorAll(
+          "#causal-delay-feedback-mode-tabs .causal-mode-tab"
+        )
+      );
+      const actualLabels = lessonButtons.map((button) =>
+        button.textContent?.trim()
+      );
+      const currentLabels = lessonButtons
+        .filter((button) => button.getAttribute("aria-current") === "step")
+        .map((button) => button.textContent?.trim());
+      const expectedCurrentLabel =
+        runtime.learnerState?.mode === "sandbox"
+          ? "Laboratory"
+          : expectedLabels[Number(runtime.learnerState?.storyStep)];
+      if (
+        JSON.stringify(actualLabels) !== JSON.stringify(expectedLabels) ||
+        currentLabels.length !== 1 ||
+        currentLabels[0] !== expectedCurrentLabel ||
+        document.querySelectorAll("[data-causal-lesson]").length !== 5 ||
+        document.querySelectorAll("[data-causal-laboratory]").length !== 1
+      ) {
+        return {
+          ok: false,
+          reason: "ordered_learner_surface_mismatch",
+          expectedLabels,
+          actualLabels,
+          expectedCurrentLabel,
+          currentLabels,
+          lessonCount:
+            document.querySelectorAll("[data-causal-lesson]").length,
+          laboratoryCount:
+            document.querySelectorAll("[data-causal-laboratory]").length,
+          mode: runtime.learnerState?.mode,
+          storyStep: runtime.learnerState?.storyStep,
+        };
+      }
+      runtime.dom.canvas.dataset.browserOrderedLearnerSurface =
+        "five-lessons-then-laboratory";
+    }
+    if (${proof.verifyBottomRail === true ? "true" : "false"}) {
+      const bottomRail = document.querySelector(
+        "#causal-delay-feedback-bottom-rail"
+      );
+      const firstFrameButton = document.querySelector(
+        "#causal-delay-feedback-guided-first-frame"
+      );
+      const playButton = document.querySelector(
+        "#causal-delay-feedback-guided-play"
+      );
+      const lastFrameButton = document.querySelector(
+        "#causal-delay-feedback-guided-last-frame"
+      );
+      const scrubber = document.querySelector("#causal-delay-feedback-now");
+      const controls = [
+        firstFrameButton,
+        playButton,
+        lastFrameButton,
+        scrubber,
+      ];
+      const orderedIds = bottomRail
+        ? Array.from(bottomRail.querySelectorAll("button, input")).map(
+            (control) => control.id
+          )
+        : [];
+      const expectedIds = [
+        "causal-delay-feedback-guided-first-frame",
+        "causal-delay-feedback-guided-play",
+        "causal-delay-feedback-guided-last-frame",
+        "causal-delay-feedback-now",
+      ];
+      const railRect = bottomRail?.getBoundingClientRect();
+      const controlRects = controls.map((control) =>
+        control?.getBoundingClientRect()
+      );
+      const withinViewport = (rect) =>
+        rect &&
+        rect.width > 0 &&
+        rect.height > 0 &&
+        rect.left >= -1 &&
+        rect.right <= window.innerWidth + 1 &&
+        rect.top >= -1 &&
+        rect.bottom <= window.innerHeight + 1;
+      const bottomRailContract =
+        bottomRail &&
+        JSON.stringify(orderedIds) === JSON.stringify(expectedIds) &&
+        controls.every(Boolean) &&
+        withinViewport(railRect) &&
+        controlRects.every(withinViewport) &&
+        !document.querySelector("#causal-delay-feedback-now-value") &&
+        Boolean(scrubber?.getAttribute("aria-valuetext")) &&
+        Boolean(bottomRail.dataset.axisAlignedBounds);
+      if (!bottomRailContract) {
+        return {
+          ok: false,
+          reason: "bottom_timeline_rail_contract_failed",
+          expectedIds,
+          orderedIds,
+          controlsFound: controls.map(Boolean),
+          railRect: railRect?.toJSON(),
+          controlRects: controlRects.map((rect) => rect?.toJSON()),
+          viewport: {
+            width: window.innerWidth,
+            height: window.innerHeight,
+          },
+          nowValuePresent: Boolean(
+            document.querySelector("#causal-delay-feedback-now-value")
+          ),
+          ariaValueText: scrubber?.getAttribute("aria-valuetext"),
+          axisAlignedBounds: bottomRail?.dataset.axisAlignedBounds,
+        };
+      }
+      runtime.dom.canvas.dataset.browserBottomRail =
+        bottomRail.dataset.axisAlignedBounds;
+    }
+    if (${proof.verifyRetiredSurfaceAbsence === true ? "true" : "false"}) {
+      const learnerSurfaceText = [
+        document.querySelector("#causal-delay-feedback-mode-tabs"),
+        document.querySelector("#causal-delay-feedback-lesson-panel"),
+      ]
+        .map((element) => element?.textContent ?? "")
+        .join("\\n");
+      const retiredLabels = [
+        "Path History",
+        "Roots",
+        "Self-Hit",
+        "Branch Lab",
+        "Sandbox",
+      ];
+      const survivingLabels = retiredLabels.filter((label) =>
+        learnerSurfaceText.includes(label)
+      );
+      const survivingModeControls = Array.from(
+        document.querySelectorAll("[data-causal-mode]")
+      ).map((element) => ({
+        mode: element.getAttribute("data-causal-mode"),
+        text: element.textContent?.trim(),
+      }));
+      if (survivingLabels.length > 0 || survivingModeControls.length > 0) {
+        return {
+          ok: false,
+          reason: "retired_learner_surface_survives",
+          survivingLabels,
+          survivingModeControls,
+          learnerSurfaceText,
+        };
+      }
+      runtime.dom.canvas.dataset.browserRetiredSurfaceAbsence =
+        "path-history-roots-self-hit-branch-lab-sandbox";
     }
     if (${proof.verifySettingsRemoved === true ? "true" : "false"}) {
       const removedSelectors = [

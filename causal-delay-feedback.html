@@ -112,6 +112,7 @@
       .causal-source-chip {
         display: inline-flex;
         align-items: center;
+        margin-left: auto;
         height: 26px;
         max-width: 190px;
         padding: 0 9px;
@@ -350,11 +351,9 @@
       }
 
       .causal-timeline-range::-webkit-slider-thumb {
-        border-color: rgba(246, 247, 255, 0.94);
+        border: 0;
         background: #8b4fbf;
-        box-shadow:
-          0 0 0 3px rgba(183, 126, 225, 0.28),
-          0 2px 8px rgba(0, 0, 0, 0.42);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.42);
       }
 
       .causal-timeline-range::-moz-range-track {
@@ -363,11 +362,9 @@
       }
 
       .causal-timeline-range::-moz-range-thumb {
-        border-color: rgba(246, 247, 255, 0.94);
+        border: 0;
         background: #8b4fbf;
-        box-shadow:
-          0 0 0 3px rgba(183, 126, 225, 0.28),
-          0 2px 8px rgba(0, 0, 0, 0.42);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.42);
       }
 
       .causal-timeline-range:focus-visible {
@@ -459,8 +456,8 @@
 
       .causal-app-icon-button:not(:disabled):hover,
       .causal-app-icon-button:not(:disabled):focus-visible,
-      .causal-toc-toggle:not(:disabled):hover,
-      .causal-toc-toggle:not(:disabled):focus-visible {
+      #textbook-toc-button:not(:disabled):hover,
+      #textbook-toc-button:not(:disabled):focus-visible {
         border-color: rgba(213, 220, 255, 0.6);
         outline: none;
       }
@@ -470,7 +467,8 @@
         cursor: default;
       }
 
-      .causal-toc-toggle {
+      /* Keep the global TOC lozenge visually identical to the site shell. */
+      #textbook-toc-button {
         position: relative;
         min-width: 48px;
         height: 32px;
@@ -483,13 +481,19 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        font: inherit;
         font-size: 12px;
         font-weight: 700;
         line-height: 1;
         text-transform: uppercase;
       }
 
-      .causal-toc-toggle.is-active {
+      #textbook-toc-button::after {
+        content: none;
+        display: none;
+      }
+
+      #textbook-toc-button.is-active {
         background: rgba(92, 36, 164, 0.92);
         border-color: rgba(176, 136, 255, 0.7);
       }
@@ -1238,6 +1242,11 @@
           >Full</button>
         </div>
 
+        <span
+          id="causal-delay-feedback-replay-status"
+          class="causal-source-chip"
+          data-state="representative"
+        >representative · display only</span>
       </div>
 
       <div id="causal-delay-feedback-bottom-rail" class="causal-bottom-rail" aria-label="Playback timeline">
@@ -1257,13 +1266,6 @@
           />
         </div>
       </div>
-
-      <span
-        id="causal-delay-feedback-replay-status"
-        class="causal-source-chip"
-        data-state="representative"
-        hidden
-      >representative replay</span>
 
       <div id="causal-delay-feedback-readout" class="causal-readout" aria-hidden="true" hidden></div>
     </main>

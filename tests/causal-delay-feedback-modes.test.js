@@ -132,6 +132,26 @@ test("five lessons share one teaching sequence and wake-display rate", () => {
     "motion",
     "forward-buildup",
   ]);
+  assert.ok(
+    scenes.every(
+      (scene) =>
+        scene.displayAuthority.kind === "declared_story_teaching_fixture" &&
+        scene.displayAuthority.evidenceStatus === "display-only" &&
+        scene.displayAuthority.physicsAcceptance === false &&
+        scene.displayAuthority.displayParityEstablishesPhysicsAcceptance ===
+      false,
+    ),
+  );
+  const controller = new CausalDelayFeedbackModeController({ state });
+  controller.dom = { summary: { textContent: "" } };
+  scenes.forEach((_scene, storyStep) => {
+    state.storyStep = storyStep;
+    controller.updateCanvasSummary();
+    assert.match(
+      controller.dom.summary.textContent,
+      /Replay status: Representative replay fixture · not physics acceptance\./u,
+    );
+  });
   const sharedPathStart = Math.max(
     state.paths.positrino[0].t,
     state.paths.electrino[0].t,
@@ -305,6 +325,12 @@ test("Story 3 maps each body from its own transmission to its later reception", 
 
   assert.equal(start.displayMapping, STORY_SYNTHESIS_DISPLAY_MAPPING);
   assert.match(start.evidenceBoundary, /not asserted to be simultaneous/u);
+  assert.equal(
+    start.displayAuthority.kind,
+    "normalized_reciprocal_teaching_fixture",
+  );
+  assert.equal(start.displayAuthority.evidenceStatus, "display-only");
+  assert.equal(start.displayAuthority.physicsAcceptance, false);
   assert.equal(start.events.length, 2);
   for (const kind of ["positrino", "electrino"]) {
     const outgoing = scene.interactions.find(
@@ -344,6 +370,12 @@ test("Story 4 comparison uses evaluator-backed constant-speed wake geometry", ()
   const state = createState();
   state.storyStep = 3;
   const fixture = createStoryMotionWakeComparisonFixture(state, 0.6);
+  assert.equal(
+    fixture.displayAuthority.kind,
+    "declared_constant_speed_teaching_fixture",
+  );
+  assert.equal(fixture.displayAuthority.evidenceStatus, "display-only");
+  assert.equal(fixture.displayAuthority.physicsAcceptance, false);
   assert.deepEqual(
     fixture.comparisons.map((comparison) => comparison.speedFraction),
     STORY_MOTION_SPEED_FRACTIONS,
@@ -544,11 +576,35 @@ test("learner authority labels keep representative EOM and unavailable providers
     loadState: "fallback",
     loadError: new Error("provider unavailable"),
   });
-  assert.equal(representative.replay.label, "representative mock replay");
+  assert.equal(representative.replay.label, "representative teaching replay");
+  assert.equal(representative.replay.kind, "representative_teaching_replay");
+  assert.equal(
+    representative.replay.lessonMeta,
+    "Representative replay fixture · not physics acceptance",
+  );
+  assert.equal(representative.replay.evidenceStatus, "display-only");
+  assert.equal(representative.replay.physicsAcceptance, false);
+  assert.equal(
+    representative.replay.displayParityEstablishesPhysicsAcceptance,
+    false,
+  );
+  assert.equal(
+    representative.dataset.displayAuthority.kind,
+    "representative_paired_path_teaching_fixture",
+  );
+  assert.equal(
+    representative.dataset.displayAuthority.evidenceStatus,
+    "display-only",
+  );
+  assert.equal(representative.dataset.displayAuthority.physicsAcceptance, false);
   assert.equal(eom.replay.label, "EOM record replay");
+  assert.equal(eom.replay.kind, "recorded_eom_path_display");
+  assert.equal(eom.replay.physicsAcceptance, false);
   assert.equal(eom.roots.length, 0);
   assert.equal(eom.causalEvaluationAvailable, false);
   assert.equal(unavailable.replay.label, "unavailable provider");
+  assert.equal(unavailable.replay.providerStatus, "unavailable");
+  assert.equal(unavailable.replay.physicsAcceptance, false);
   assert.equal("constrainedBoundaryReplay" in unavailable.replay, false);
   assert.equal("strongerPhysicalSolver" in unavailable.replay, false);
 });

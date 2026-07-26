@@ -8,6 +8,9 @@ import {
   POSITRINO_WAKE,
 } from "./CausalDelayFeedbackDisplayContract.js";
 import { sampleTimedPath } from "./CausalDelayFeedbackTimedPath.js";
+import {
+  createDisplayAuthority,
+} from "./CausalDelayFeedbackCausalHistory.js";
 
 export const EOM_NATIVE_STREAM_TARGET = "eom_native_path_history_stream";
 export const TEMPORARY_MOCK_ADAPTER = "temporary_mock_adapter";
@@ -168,6 +171,13 @@ export function createMockCausalDelayReplayDataset() {
     datasetSource: REPRESENTATIVE_MOCK_SOLVER_REPLAY,
     solverIntegrationPath: TEMPORARY_MOCK_ADAPTER,
     futureSolverTarget: EOM_NATIVE_STREAM_TARGET,
+    displayAuthority: createDisplayAuthority(
+      "representative_paired_path_teaching_fixture",
+      {
+        label: "Representative paired-path teaching fixture",
+        sourceAuthority: "declared_geometry",
+      },
+    ),
     wakeArcDisplayMode: FIXED_WAKE_VISUAL_STYLE.wakeArcDisplayMode,
     initialConditions,
     paths,
