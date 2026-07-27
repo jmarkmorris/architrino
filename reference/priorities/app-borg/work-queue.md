@@ -26,15 +26,15 @@ No rows.
 ### BORG-001 — Native wake history and boundary residuals
 
 - **Status:** Queued
-- **Priority source:** `native_wake_history_and_boundary_residual_fixture` in [priorities](priorities.md)
+- **Priority source:** [Ranked Strategic Work item 1](priorities.md#ranked-strategic-work)
 - **Request / acceptance:** Extend the EOM contracts and native implementation so Borg receives retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics. The app must consume these as EOM-owned data; no app-local physics or visual tuning may replace missing rows.
-- **Evidence / blocker:** Native EOM and bridge capability work is required. Until these rows exist, replay-affected values remain fail-closed or display-only.
+- **Evidence / blocker:** EOM solver and bridge capability work is required. Until these rows exist, replay-affected values remain fail-closed or display-only.
 - **Completion:** Contract, native implementation, bridge schema, focused validation fixtures, and Borg consumer coverage pass; any learner/operator surface requiring these values is verified against current EOM output.
 
 ### BORG-002 — Assembly-viewer record-contract carriers
 
 - **Status:** Queued
-- **Priority source:** `assembly_viewer_replay_mode` in [priorities](priorities.md)
+- **Priority source:** [Ranked Strategic Work item 2](priorities.md#ranked-strategic-work)
 - **Request / acceptance:** Close the remaining record-contract carriers needed for Borg’s record-only assembly-view replay: ratified comparison time/unit transforms, an external collection carrier, required field-speed carrier, and spin/polarity-dipole vectors. Borg must consume sealed records and must not invent missing carriers.
 - **Evidence / blocker:** Blocked on the Braid Program instrument-gate schema action.
 - **Completion:** Required carriers are ratified and available in sealed records; record-only replay preserves its no-run/no-mutation boundary and passes focused/browser checks.
@@ -42,7 +42,7 @@ No rows.
 ### BORG-003 — Velocity-scale sampling evidence
 
 - **Status:** Queued
-- **Priority source:** `velocity_scale_sampling_research` in [priorities](priorities.md)
+- **Priority source:** [Ranked Strategic Work item 3](priorities.md#ranked-strategic-work)
 - **Request / acceptance:** Produce measured velocity-scale-aware boundary-shell replay sampling evidence across the declared range using EOM-run rows, under the existing velocity-sampling protocol.
 - **Evidence / blocker:** Depends on BORG-001 retained wake/history and residual rows. Affected boundary replay output remains display-only or fail-closed until measured evidence exists.
 - **Completion:** Declared calibration and holdout evidence is produced with the protocol’s residual, tail-mass, correlation, seed-variance, patch-replay, and central-ball contribution checks.
@@ -50,7 +50,7 @@ No rows.
 ### BORG-004 — Assembly Explorer disposition
 
 - **Status:** Queued
-- **Priority source:** `assembly_explorer_surface_disposition` in [priorities](priorities.md)
+- **Priority source:** [Ranked Strategic Work item 4](priorities.md#ranked-strategic-work)
 - **Request / acceptance:** Decide whether the standalone Assembly Explorer can be retired or redirected after Borg replay reaches the declared parity for raw-record navigation, source ordering, optional source-carried $S_3$ grouping, and source-carried search diagnostics.
 - **Evidence / blocker:** Depends on BORG-002.
 - **Completion:** A documented disposition is accepted and any authorized retirement or redirect work is verified without losing the required replay capabilities.

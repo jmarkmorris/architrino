@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-26 - Borg Documentation Consolidation
+
+- Consolidated the first-screen requirements into [requirements-and-design](requirements-and-design.md), while retaining `BORG_APP_SURFACE_DESIGN_V1` in [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the executable screen-contract authority.
+- Reconciled the former bridge capability audit against live code and queue ownership. The unresolved EOM products are the wake/history, shell, conservation, residual, and acceleration-contribution rows owned by [BORG-001](work-queue.md#borg-001--native-wake-history-and-boundary-residuals), followed by the measured velocity-scale sampling evidence owned by [BORG-003](work-queue.md#borg-003--velocity-scale-sampling-evidence). Implemented or display-only rows no longer remain in a separate audit packet.
+- Consolidated the live-run browser-retention explanation into [requirements-and-design](requirements-and-design.md), while retaining [BorgLiveRunRetentionPolicy.js](../../../src/apps/borg/BorgLiveRunRetentionPolicy.js) as the executable authority for numeric limits, compaction, snapshots, and runtime status.
+
+Plainly: one requirements packet now explains the screen and browser-retention boundaries, the queue owns the remaining EOM work, and executable constants stay in source.
+
 ### 2026-07-24 - Targeted Browser Claim Invalidation And Legacy-Budget Decoupling
 
 - Adjudicated the missing-history defect by build, transport, grade, and continuation identity. Only Claim-grade chunk index 1 or greater produced through `BorgEomHttpClient` while the all-grade history transform was live is invalidated, together with conclusions that depend on it. Claim chunk zero's accepted extension remains valid for this defect, although its shortened returned history cannot support a continuation. No persisted browser Claim packet in the repository matched the predicate, so zero checked-in result artifacts were deleted or quarantined. Claim grade: derived call-path and commit-history adjudication plus bounded repository inventory. Falsifier: a retained artifact satisfies every predicate condition or an invalidated continuation independently proves it carried complete required history.
@@ -154,7 +162,7 @@ Plainly: certified runs keep the past they need, evidence labels are checked by 
 
 - Resumed the paused Borg app work after reading the current priority partition policy in [../README.md](../README.md), then the live tracker, brainstorming file, and this work log before writing.
 - Confirmed the active priority directory is `reference/priorities/app-borg/`; the old `reference/priorities/borg-app/` path is absent in the current branch state.
-- Confirmed current focused sibling artifacts already hold the release/runtime decisions: [borg-release-budget-manifest.v1](borg-release-budget-manifest.v1.json) records measured browser runtime budget ceilings, and [borg-live-run-retention-policy.v1](borg-live-run-retention-policy.v1.json) records forever-mode display retention with compacted display-only path history.
+- Confirmed focused artifacts held the release/runtime decisions: [borg-release-budget-manifest.v1](borg-release-budget-manifest.v1.json) records measured browser runtime budget ceilings, while the live-run browser-retention policy records forever-mode display retention with compacted display-only path history. The retention explanation now lives in [requirements-and-design](requirements-and-design.md), and its executable authority remains [BorgLiveRunRetentionPolicy.js](../../../src/apps/borg/BorgLiveRunRetentionPolicy.js).
 - No loose conceptual notes were migrated into [brainstorming](brainstorming.md) during this audit. The live tracker remains compact because the current queue and next action are already stated there.
 - Current tracker next build burden remains `build-native-wake-history-and-boundary-residual-fixture`: extend the EOM contracts and native implementation for retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and acceleration-contribution diagnostics without app-local physics.
 

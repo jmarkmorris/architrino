@@ -117,4 +117,4 @@ Boundary-generated rows may support only the declared reduced-model grade. They 
 
 ## Implementation Burden
 
-The boundary-shell route remains unimplemented. Its first executable artifact must add shell-crossing rows, complete-coverage accounting, path-derived influence rows, replay-source rows, and the three residual decisions to the EOM-facing data contracts without adding app-local dynamics.
+The boundary-shell route remains unimplemented. [BORG-001](work-queue.md#borg-001--native-wake-history-and-boundary-residuals) owns the first executable artifact: shell-crossing rows, complete-coverage accounting, retained wake/interaction rows, path-derived influence rows, replay-source rows, row-conservation counts, acceleration-contribution rows, and the three residual decisions must enter the EOM-facing data contracts without app-local dynamics. [BORG-003](work-queue.md#borg-003--velocity-scale-sampling-evidence) then owns measured calibration and holdout evidence for the declared velocity range; it depends on BORG-001. Until both applicable rows close, replay-affected output remains reduced-model, display-only, or fail-closed according to the manifest.

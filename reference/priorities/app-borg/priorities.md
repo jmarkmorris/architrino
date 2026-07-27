@@ -10,7 +10,6 @@
 - Design packet: [requirements-and-design](requirements-and-design.md)
 - Assembly-view replay packet: [assembly-viewer-requirements](assembly-viewer-requirements.md)
 - Boundary-shell replay packet: [boundary-shell-replay](boundary-shell-replay.md)
-- Native bridge audit: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md)
 - Dataset manifest: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
 
 ## Objective
