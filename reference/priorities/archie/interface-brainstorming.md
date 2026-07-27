@@ -422,23 +422,23 @@ Closure goal:
 Turn the Archie Interface V1 product requirements into an implementation-ready service-platform architecture packet without adding runtime AI code.
 
 Context:
-- The interface bucket is `reference/priorities/app-archie-interface/`.
-- The product requirements are `reference/priorities/app-archie-interface/v1-product-requirements.md`.
-- The Answer Artifact Manifest is `reference/priorities/app-archie-interface/answer-artifact-manifest.md`.
-- The manifest-driven service architecture is `reference/priorities/app-archie-interface/manifest-driven-service-architecture.md`.
-- The manifest service contracts are `reference/priorities/app-archie-interface/manifest-service-contracts.md`.
-- The source ingestion and retrieval context contract is `reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md`.
-- The answer engine source contract is `reference/priorities/app-archie-interface/answer-engine-source-contract.md`.
-- The model/provider capability registry contract is `reference/priorities/app-archie-interface/model-provider-capability-registry-contract.md`.
-- The token ledger and privacy contract is `reference/priorities/app-archie-interface/token-ledger-privacy-contract.md`.
-- The issue mining signal contract is `reference/priorities/app-archie-interface/issue-mining-signal-contract.md`.
-- The observability public status and incident contract is `reference/priorities/app-archie-interface/observability-public-status-incident-contract.md`.
-- The action broker confirmation contract is `reference/priorities/app-archie-interface/action-broker-confirmation-contract.md`.
-- The saved notebook and account history contract is `reference/priorities/app-archie-interface/saved-notebook-account-history-contract.md`.
-- The service terms and account policy contract is `reference/priorities/app-archie-interface/service-terms-account-policy-contract.md`.
-- The service-native speech and presentation contract is `reference/priorities/app-archie-interface/service-native-speech-presentation-contract.md`.
-- The corporate media standard is `reference/priorities/app-archie-interface/corporate-media-standards.md`.
-- The corporate media acceptance fixtures are `reference/priorities/app-archie-interface/corporate-media-acceptance-fixtures.md`.
+- The interface bucket is `reference/priorities/archie/`.
+- The product requirements are `reference/priorities/archie/v1-product-requirements.md`.
+- The Answer Artifact Manifest is `reference/priorities/archie/answer-artifact-manifest.md`.
+- The manifest-driven service architecture is `reference/priorities/archie/manifest-driven-service-architecture.md`.
+- The manifest service contracts are `reference/priorities/archie/manifest-service-contracts.md`.
+- The source ingestion and retrieval context contract is `reference/priorities/archie/source-ingestion-retrieval-context-contract.md`.
+- The answer engine source contract is `reference/priorities/archie/answer-engine-source-contract.md`.
+- The model/provider capability registry contract is `reference/priorities/archie/model-provider-capability-registry-contract.md`.
+- The token ledger and privacy contract is `reference/priorities/archie/token-ledger-privacy-contract.md`.
+- The issue mining signal contract is `reference/priorities/archie/issue-mining-signal-contract.md`.
+- The observability public status and incident contract is `reference/priorities/archie/observability-public-status-incident-contract.md`.
+- The action broker confirmation contract is `reference/priorities/archie/action-broker-confirmation-contract.md`.
+- The saved notebook and account history contract is `reference/priorities/archie/saved-notebook-account-history-contract.md`.
+- The service terms and account policy contract is `reference/priorities/archie/service-terms-account-policy-contract.md`.
+- The service-native speech and presentation contract is `reference/priorities/archie/service-native-speech-presentation-contract.md`.
+- The corporate media standard is `reference/priorities/archie/corporate-media-standards.md`.
+- The corporate media acceptance fixtures are `reference/priorities/archie/corporate-media-acceptance-fixtures.md`.
 - The backend/platform owner remains `reference/priorities/archie/service-platform.md`.
 - The deployment option decision is `reference/priorities/archie/service-deployment-option-decision.md`.
 - The deployment architecture is `reference/priorities/archie/service-deployment-architecture.md`.

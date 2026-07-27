@@ -5,14 +5,14 @@
 - Kind: `priority-fixtures`
 - Status: `draft`
 - Claim level: `priority-only`
-- Parent priority: [Archie Interface App](priorities.md)
+- Parent priority: [Archie](priorities.md)
 - Corporate media standard: [corporate-media-standards.md](corporate-media-standards.md)
 - Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
-- Service platform owner: [Archie Service Platform](../archie/service-platform.md)
+- Service platform owner: [Archie Service Platform](service-platform.md)
 
 ## Purpose
 

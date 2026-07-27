@@ -13,7 +13,7 @@
     "sourceClasses": ["published_corpus", "priority_material"],
     "sourceChips": [
       {
-        "route": "reference/priorities/app-archie-interface/v1-product-requirements.md",
+        "route": "reference/priorities/archie/v1-product-requirements.md",
         "label": "V1 Product Requirements",
         "sourceClass": "priority_material",
         "authorityStatus": "priority_only",

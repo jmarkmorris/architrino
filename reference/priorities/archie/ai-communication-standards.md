@@ -5,8 +5,8 @@
 - Kind: `priority-research`
 - Status: `draft`
 - Claim level: `priority-only`
-- Parent priority: [Archie Interface App](priorities.md)
-- Service platform: [Archie Service Platform](../archie/service-platform.md)
+- Parent priority: [Archie](priorities.md)
+- Service platform: [Archie Service Platform](service-platform.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)

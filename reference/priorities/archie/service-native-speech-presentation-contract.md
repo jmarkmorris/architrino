@@ -5,7 +5,7 @@
 - Kind: `priority-contract`
 - Status: `draft`
 - Claim level: `priority-only`
-- Parent priority: [Archie Interface App](priorities.md)
+- Parent priority: [Archie](priorities.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
@@ -20,7 +20,7 @@
 - Generated media acceptance fixtures: [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md)
 - AI communication standards: [ai-communication-standards.md](ai-communication-standards.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
-- Service platform owner: [Archie Service Platform](../archie/service-platform.md)
+- Service platform owner: [Archie Service Platform](service-platform.md)
 
 ## Purpose
 

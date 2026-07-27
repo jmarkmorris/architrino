@@ -5,7 +5,7 @@
 - Kind: `priority-contract`
 - Status: `draft`
 - Claim level: `priority-only`
-- Parent priority: [Archie Interface App](priorities.md)
+- Parent priority: [Archie](priorities.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
@@ -21,10 +21,10 @@
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - AI communication standards: [ai-communication-standards.md](ai-communication-standards.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
-- Service platform owner: [Archie Service Platform](../archie/service-platform.md)
-- Service deployment option decision: [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md)
-- Service deployment architecture: [service-deployment-architecture.md](../archie/service-deployment-architecture.md)
-- Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md)
+- Service platform owner: [Archie Service Platform](service-platform.md)
+- Service deployment option decision: [service-deployment-option-decision.md](service-deployment-option-decision.md)
+- Service deployment architecture: [service-deployment-architecture.md](service-deployment-architecture.md)
+- Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md)
 
 ## Purpose
 
@@ -36,7 +36,7 @@ The core invariant is simple: every service endpoint returns either a validated 
 
 A second invariant governs rendering: every endpoint response that reaches a user must be explainable in normal language before internal terms appear. The rendering contract follows [ai-communication-standards.md](ai-communication-standards.md) and keeps implementation terms inside schemas, diagnostics, support, legal review, or developer-facing packets.
 
-The deployment boundary for these contracts follows [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md), [service-deployment-architecture.md](../archie/service-deployment-architecture.md), and [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md): public static entry and browser rendering are separate from the service API, provider gateways, token authority, source retrieval, action broker, issue-mining pipeline, observability, and privacy/audit state.
+The deployment boundary for these contracts follows [service-deployment-option-decision.md](service-deployment-option-decision.md), [service-deployment-architecture.md](service-deployment-architecture.md), and [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md): public static entry and browser rendering are separate from the service API, provider gateways, token authority, source retrieval, action broker, issue-mining pipeline, observability, and privacy/audit state.
 
 ## Current Schema-Only Contract Surface
 
@@ -503,7 +503,7 @@ Turn Manifest Service Contracts into concrete TypeScript interfaces, JSON Schema
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md), [ai-communication-standards.md](ai-communication-standards.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
 
-Use [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md), [service-deployment-architecture.md](../archie/service-deployment-architecture.md), and [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md) for the deployment responsibility split before assigning endpoint ownership and schema fixture locations.
+Use [service-deployment-option-decision.md](service-deployment-option-decision.md), [service-deployment-architecture.md](service-deployment-architecture.md), and [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md) for the deployment responsibility split before assigning endpoint ownership and schema fixture locations.
 
 Task:
 - Encode the shared type vocabulary.

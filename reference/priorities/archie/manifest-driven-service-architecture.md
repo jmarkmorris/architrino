@@ -5,7 +5,7 @@
 - Kind: `priority-architecture`
 - Status: `draft`
 - Claim level: `priority-only`
-- Parent priority: [Archie Interface App](priorities.md)
+- Parent priority: [Archie](priorities.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
 - Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
@@ -21,10 +21,10 @@
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - AI communication standards: [ai-communication-standards.md](ai-communication-standards.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
-- Service platform owner: [Archie Service Platform](../archie/service-platform.md)
-- Service deployment option decision: [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md)
-- Service deployment architecture: [service-deployment-architecture.md](../archie/service-deployment-architecture.md)
-- Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md)
+- Service platform owner: [Archie Service Platform](service-platform.md)
+- Service deployment option decision: [service-deployment-option-decision.md](service-deployment-option-decision.md)
+- Service deployment architecture: [service-deployment-architecture.md](service-deployment-architecture.md)
+- Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md)
 
 ## Purpose
 
@@ -32,7 +32,7 @@ This packet turns the [Answer Artifact Manifest](answer-artifact-manifest.md) in
 
 The goal is to make each service boundary answer one question: which manifest fields does this component read, write, validate, or refuse to touch? That keeps answer generation, generated media, speech synchronization, token receipts, issue handoff, privacy, and issue mining from drifting into parallel response formats.
 
-This is not runtime code. Deployment ownership stays with [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md), [service-deployment-architecture.md](../archie/service-deployment-architecture.md), and [Archie Service Platform](../archie/service-platform.md); this packet defines the service components and manifest boundaries that the chosen deployment shape must host.
+This is not runtime code. Deployment ownership stays with [service-deployment-option-decision.md](service-deployment-option-decision.md), [service-deployment-architecture.md](service-deployment-architecture.md), and [Archie Service Platform](service-platform.md); this packet defines the service components and manifest boundaries that the chosen deployment shape must host.
 
 ## Core Flow
 
@@ -292,7 +292,7 @@ Turn the manifest-driven service architecture into concrete typed service-bounda
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [ai-communication-standards.md](ai-communication-standards.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
 
-Use [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md), [service-deployment-architecture.md](../archie/service-deployment-architecture.md), and [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md) for the public site, browser client, service API, background job, provider gateway, token ledger, action broker, issue-mining, observability, staging, production, CI/CD, smoke-test, rollback, schema package, and fixture boundary.
+Use [service-deployment-option-decision.md](service-deployment-option-decision.md), [service-deployment-architecture.md](service-deployment-architecture.md), and [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md) for the public site, browser client, service API, background job, provider gateway, token ledger, action broker, issue-mining, observability, staging, production, CI/CD, smoke-test, rollback, schema package, and fixture boundary.
 
 Task:
 - Define service components, input/output types, validator responsibilities, and behavior for a Not advanced disposition.

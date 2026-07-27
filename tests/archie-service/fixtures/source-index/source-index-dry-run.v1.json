@@ -131,11 +131,11 @@
     {
       "caseId": "source-route-priority-excluded-001",
       "mode": "Ask",
-      "requestedRoute": "reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md",
+      "requestedRoute": "reference/priorities/archie/source-ingestion-retrieval-context-contract.md",
       "routeSurface": "priority_packet",
       "expectedDisposition": "excluded_visibility",
       "expectedSourceChip": {
-        "route": "reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md",
+        "route": "reference/priorities/archie/source-ingestion-retrieval-context-contract.md",
         "label": "Source ingestion priority packet",
         "sourceClass": "priority_material",
         "authorityStatus": "excluded",

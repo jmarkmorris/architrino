@@ -5,8 +5,8 @@
 - Kind: `priority-contract`
 - Status: `draft`
 - Claim level: `priority-only`
-- Parent priority: [Archie Interface App](priorities.md)
-- Assistant mode contract: [assistant-mode-contract.md](../archie/assistant-mode-contract.md)
+- Parent priority: [Archie](priorities.md)
+- Assistant mode contract: [assistant-mode-contract.md](assistant-mode-contract.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
@@ -14,7 +14,7 @@
 - Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
-- Service platform owner: [Archie Service Platform](../archie/service-platform.md)
+- Service platform owner: [Archie Service Platform](service-platform.md)
 
 ## Purpose
 
@@ -55,7 +55,7 @@ If provider-backed answer generation is requested, the manifest should carry onl
 
 ## Source Selection Rules
 
-Source selection should follow the authority order in [assistant-mode-contract.md](../archie/assistant-mode-contract.md).
+Source selection should follow the authority order in [assistant-mode-contract.md](assistant-mode-contract.md).
 
 1. Prefer authored `published_corpus` routes for theory explanations.
 2. Use `scene_route` and `generated_reading_copy` routes for navigation and reading convenience, not stronger authority.
@@ -187,7 +187,7 @@ The future implementation should include answer-engine fixtures for:
 Closure goal:
 Turn the Answer Engine Source Contract into retrieval rules, claim-label assignment tests, unsupported-answer fixtures, and manifest population checks.
 
-Use this packet, [assistant-mode-contract.md](../archie/assistant-mode-contract.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), and [manifest-service-contracts.md](manifest-service-contracts.md) as the source of truth.
+Use this packet, [assistant-mode-contract.md](assistant-mode-contract.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), and [manifest-service-contracts.md](manifest-service-contracts.md) as the source of truth.
 
 Task:
 - Consume validated source records, source chips, missing routes, and source freshness from the retrieval context.

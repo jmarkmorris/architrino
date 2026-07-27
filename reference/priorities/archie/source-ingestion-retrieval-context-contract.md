@@ -5,8 +5,8 @@
 - Kind: `priority-contract`
 - Status: `draft`
 - Claim level: `priority-only`
-- Parent priority: [Archie Interface App](priorities.md)
-- Assistant mode contract: [assistant-mode-contract.md](../archie/assistant-mode-contract.md)
+- Parent priority: [Archie](priorities.md)
+- Assistant mode contract: [assistant-mode-contract.md](assistant-mode-contract.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
@@ -18,7 +18,7 @@
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
-- Service platform owner: [Archie Service Platform](../archie/service-platform.md)
+- Service platform owner: [Archie Service Platform](service-platform.md)
 
 ## Purpose
 
@@ -58,7 +58,7 @@ A generated reading copy, scene route, app visual, priority packet, external sou
 
 ## Source Classes
 
-The contract follows [assistant-mode-contract.md](../archie/assistant-mode-contract.md) and uses these source classes:
+The contract follows [assistant-mode-contract.md](assistant-mode-contract.md) and uses these source classes:
 
 | Source class | Ingestion source | Default use | Authority limit |
 | --- | --- | --- | --- |
@@ -221,7 +221,7 @@ The future implementation should include retrieval fixtures for:
 Closure goal:
 Extend the fixture-backed source-index snapshot into complete corpus record enumeration and manifest `source_context` population while preserving the accepted hash, provenance, visibility, canonical-parent, and source-authority gates.
 
-Use this packet, [assistant-mode-contract.md](../archie/assistant-mode-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), and [answer-engine-source-contract.md](answer-engine-source-contract.md) as the source of truth.
+Use this packet, [assistant-mode-contract.md](assistant-mode-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), and [answer-engine-source-contract.md](answer-engine-source-contract.md) as the source of truth.
 
 Task:
 - Expand the representative hashed snapshot builder into complete corpus, generated-copy, scene-route, app-guide, Archie-reference, and policy-controlled priority/external record enumeration.

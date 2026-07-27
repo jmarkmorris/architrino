@@ -6,14 +6,14 @@
   "requestSummary": {
     "requestId": "request_source_authority_inflation_negative_001",
     "safeSummaryId": "safe_summary_source_authority_inflation_negative_001",
-    "contextRoute": "reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md"
+    "contextRoute": "reference/priorities/archie/source-ingestion-retrieval-context-contract.md"
   },
   "sourceContext": {
     "snapshotId": "source_snapshot_fixture_001",
     "sourceClasses": [],
     "sourceChips": [
       {
-        "route": "reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md",
+        "route": "reference/priorities/archie/source-ingestion-retrieval-context-contract.md",
         "label": "Source ingestion priority packet",
         "sourceClass": "priority_material",
         "authorityStatus": "excluded",

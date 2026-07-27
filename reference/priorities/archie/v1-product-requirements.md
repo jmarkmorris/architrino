@@ -5,8 +5,8 @@
 - Kind: `priority-app-requirements`
 - Status: `draft`
 - Claim level: `priority-only`
-- Parent priority: [Archie Interface App](priorities.md)
-- Brainstorming source: [brainstorming.md](brainstorming.md)
+- Parent priority: [Archie](priorities.md)
+- Brainstorming source: [interface-brainstorming.md](interface-brainstorming.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
@@ -23,11 +23,11 @@
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
 - Generated media acceptance fixtures: [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md)
-- Service platform owner: [Archie Service Platform](../archie/service-platform.md)
-- Service deployment option decision: [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md)
-- Service deployment architecture: [service-deployment-architecture.md](../archie/service-deployment-architecture.md)
-- Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md)
-- Assistant behavior contract: [assistant-mode-contract.md](../archie/assistant-mode-contract.md)
+- Service platform owner: [Archie Service Platform](service-platform.md)
+- Service deployment option decision: [service-deployment-option-decision.md](service-deployment-option-decision.md)
+- Service deployment architecture: [service-deployment-architecture.md](service-deployment-architecture.md)
+- Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md)
+- Assistant behavior contract: [assistant-mode-contract.md](assistant-mode-contract.md)
 
 ## Purpose
 
@@ -35,7 +35,7 @@ This packet converts the Archie interface brainstorming into a v1 product requir
 
 The v1 objective is a source-grounded question service for $\mathbb{A}\mathbb{A}\mathbb{A}$ readers with text first, service-native speech output as the first audio feature, and controlled generated images as visual answer artifacts. It should help users ask questions, find corpus sources, understand claim levels, generate text, generate audio, generate images or diagrams, prepare spoken or narration-friendly explainers, and submit GitHub issues without launching autonomous actions or presenting priority-only work as established corpus material.
 
-This packet is not a runtime implementation plan. It defines the product boundary that the future service-platform design must satisfy before any public beta. The deployment boundary is controlled by [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md) and [service-deployment-architecture.md](../archie/service-deployment-architecture.md): the public site can provide the entry route, while provider calls, token authority, source retrieval, action confirmation, account policy, manifest validation, issue mining, observability, and privacy/audit behavior live behind the hosted service backend. The schema-only scaffolding target is captured in [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md).
+This packet is not a runtime implementation plan. It defines the product boundary that the future service-platform design must satisfy before any public beta. The deployment boundary is controlled by [service-deployment-option-decision.md](service-deployment-option-decision.md) and [service-deployment-architecture.md](service-deployment-architecture.md): the public site can provide the entry route, while provider calls, token authority, source retrieval, action confirmation, account policy, manifest validation, issue mining, observability, and privacy/audit behavior live behind the hosted service backend. The schema-only scaffolding target is captured in [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md).
 
 ## V1 Product Goal
 
@@ -674,7 +674,7 @@ V1 public beta is not ready until every gate below has an owner and pass/fail ev
 
 Pass conditions:
 
-- source classes match [assistant-mode-contract.md](../archie/assistant-mode-contract.md);
+- source classes match [assistant-mode-contract.md](assistant-mode-contract.md);
 - source records, source-chip payloads, source freshness, missing-route behavior, and visibility policy match [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md);
 - source selection, excluded-source reporting, claim-label assignment, and unsupported-answer behavior follow [answer-engine-source-contract.md](answer-engine-source-contract.md);
 - claim labels are available in every mode;
@@ -811,8 +811,8 @@ Pass conditions:
 
 Pass conditions:
 
-- the deployment option decision in [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md) is accepted or explicitly superseded;
-- the deployment architecture in [service-deployment-architecture.md](../archie/service-deployment-architecture.md) assigns public site, browser client, service API, background jobs, source-index, provider gateway, token ledger, action broker, issue-mining, observability, storage, staging, production, CI/CD, rollback, and smoke-test ownership;
+- the deployment option decision in [service-deployment-option-decision.md](service-deployment-option-decision.md) is accepted or explicitly superseded;
+- the deployment architecture in [service-deployment-architecture.md](service-deployment-architecture.md) assigns public site, browser client, service API, background jobs, source-index, provider gateway, token ledger, action broker, issue-mining, observability, storage, staging, production, CI/CD, rollback, and smoke-test ownership;
 - no browser-side model credentials;
 - no direct public model API calls from browser JavaScript;
 - provider-backed capabilities resolve through the service-side provider registry rather than public client configuration;
@@ -992,9 +992,9 @@ Fixture outputs should be stored as regression expectations once the service imp
 - [ ] [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md) accepted as the saved-note draft, durable notebook, account-history, deletion, export, sharing, storage-cost, submitted-issue-link retention, and not-project-evidence contract.
 - [ ] [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md) accepted as the service terms, account policy, token/subscription notice, privacy notice, generated-media terms, GitHub handoff notice, notebook terms, support-route, abuse-control, terms-change, and legal-review contract.
 - [ ] [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md) accepted as the high-quality speech, synchronized text, captions/transcripts, narration-script, storyboard, accessibility, voice-identity, token, and retention contract.
-- [ ] [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md) accepted as the deployment-shape decision.
-- [ ] [service-deployment-architecture.md](../archie/service-deployment-architecture.md) accepted as the deployment boundary, environment, CI/CD, rollback, and smoke-test contract.
-- [ ] [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md) accepted as the schema-only service module, fixture, environment-class, CI-gate, and implementation-stage target.
+- [ ] [service-deployment-option-decision.md](service-deployment-option-decision.md) accepted as the deployment-shape decision.
+- [ ] [service-deployment-architecture.md](service-deployment-architecture.md) accepted as the deployment boundary, environment, CI/CD, rollback, and smoke-test contract.
+- [ ] [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md) accepted as the schema-only service module, fixture, environment-class, CI-gate, and implementation-stage target.
 - [ ] Service-platform architecture packet maps the public site, browser client, service API, background jobs, source index, provider gateways, token ledger, action broker, issue-mining pipeline, observability, storage, staging, production, and rollback boundaries.
 - [ ] Source ingestion design defines source classes, authority flags, freshness, source chips, missing-route behavior, and visibility policy.
 - [ ] Answer-engine contract implements modes, labels, citations, and unsupported behavior.
@@ -1020,23 +1020,23 @@ Closure goal:
 Turn the Archie Interface V1 product requirements into an implementation-ready service-platform architecture packet without adding runtime AI code.
 
 Context:
-- Product requirements: `reference/priorities/app-archie-interface/v1-product-requirements.md`.
-- Answer artifact manifest: `reference/priorities/app-archie-interface/answer-artifact-manifest.md`.
-- Manifest-driven service architecture: `reference/priorities/app-archie-interface/manifest-driven-service-architecture.md`.
-- Manifest service contracts: `reference/priorities/app-archie-interface/manifest-service-contracts.md`.
-- Source ingestion and retrieval context contract: `reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md`.
-- Answer engine source contract: `reference/priorities/app-archie-interface/answer-engine-source-contract.md`.
-- Model/provider capability registry contract: `reference/priorities/app-archie-interface/model-provider-capability-registry-contract.md`.
-- Token ledger and privacy contract: `reference/priorities/app-archie-interface/token-ledger-privacy-contract.md`.
-- Issue mining signal contract: `reference/priorities/app-archie-interface/issue-mining-signal-contract.md`.
-- Observability public status and incident contract: `reference/priorities/app-archie-interface/observability-public-status-incident-contract.md`.
-- Action broker confirmation contract: `reference/priorities/app-archie-interface/action-broker-confirmation-contract.md`.
-- Saved notebook and account history contract: `reference/priorities/app-archie-interface/saved-notebook-account-history-contract.md`.
-- Service terms and account policy contract: `reference/priorities/app-archie-interface/service-terms-account-policy-contract.md`.
-- Service-native speech and presentation contract: `reference/priorities/app-archie-interface/service-native-speech-presentation-contract.md`.
-- Interface brainstorm: `reference/priorities/app-archie-interface/brainstorming.md`.
-- Corporate media standard: `reference/priorities/app-archie-interface/corporate-media-standards.md`.
-- Corporate media acceptance fixtures: `reference/priorities/app-archie-interface/corporate-media-acceptance-fixtures.md`.
+- Product requirements: `reference/priorities/archie/v1-product-requirements.md`.
+- Answer artifact manifest: `reference/priorities/archie/answer-artifact-manifest.md`.
+- Manifest-driven service architecture: `reference/priorities/archie/manifest-driven-service-architecture.md`.
+- Manifest service contracts: `reference/priorities/archie/manifest-service-contracts.md`.
+- Source ingestion and retrieval context contract: `reference/priorities/archie/source-ingestion-retrieval-context-contract.md`.
+- Answer engine source contract: `reference/priorities/archie/answer-engine-source-contract.md`.
+- Model/provider capability registry contract: `reference/priorities/archie/model-provider-capability-registry-contract.md`.
+- Token ledger and privacy contract: `reference/priorities/archie/token-ledger-privacy-contract.md`.
+- Issue mining signal contract: `reference/priorities/archie/issue-mining-signal-contract.md`.
+- Observability public status and incident contract: `reference/priorities/archie/observability-public-status-incident-contract.md`.
+- Action broker confirmation contract: `reference/priorities/archie/action-broker-confirmation-contract.md`.
+- Saved notebook and account history contract: `reference/priorities/archie/saved-notebook-account-history-contract.md`.
+- Service terms and account policy contract: `reference/priorities/archie/service-terms-account-policy-contract.md`.
+- Service-native speech and presentation contract: `reference/priorities/archie/service-native-speech-presentation-contract.md`.
+- Interface brainstorm: `reference/priorities/archie/interface-brainstorming.md`.
+- Corporate media standard: `reference/priorities/archie/corporate-media-standards.md`.
+- Corporate media acceptance fixtures: `reference/priorities/archie/corporate-media-acceptance-fixtures.md`.
 - Service platform owner: `reference/priorities/archie/service-platform.md`.
 - Service deployment option decision: `reference/priorities/archie/service-deployment-option-decision.md`.
 - Service deployment architecture: `reference/priorities/archie/service-deployment-architecture.md`.

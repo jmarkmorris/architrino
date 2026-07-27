@@ -29,7 +29,7 @@ Portfolio scope includes the public Navigator, every reader-facing app on the pr
 | [Standard Model](../../../content/scenes/standard-model-particles/standard_model.json) | deployed | 2 | H |
 | [Website Stats](../../../website-stats.html) | deployed | 0 | L |
 | [Architrino Reader for iOS and iPadOS](../app-ios/priorities.md) | started | 0 | L |
-| [Archie Interface](../app-archie-interface/priorities.md) | not started | 0 | L |
+| [Archie](../archie/priorities.md) | not started | 0 | L |
 | Interaction Ledger Lab | not started | 2 | H |
 | Emergence and Measurement Lab | deferred | 4 | M |
 | Lorentz Recovery Lab | deferred | 2 | M |

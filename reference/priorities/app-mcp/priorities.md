@@ -45,11 +45,11 @@ Test the loopback URL through an ephemeral Codex configuration, then determine w
 
 ## Related Work
 
-- [Archie service source ingestion and retrieval context](../app-archie-interface/source-ingestion-retrieval-context-contract.md)
-- [Archie manifest-driven service architecture](../app-archie-interface/manifest-driven-service-architecture.md)
+- [Archie service source ingestion and retrieval context](../archie/source-ingestion-retrieval-context-contract.md)
+- [Archie manifest-driven service architecture](../archie/manifest-driven-service-architecture.md)
 - [Archie service deployment architecture](../archie/service-deployment-architecture.md)
 - [Archie service scaffolding and fixtures](../archie/service-scaffolding-and-fixtures.md)
-- [Archie Interface App](../app-archie-interface/priorities.md)
+- [Archie interface product plan](../archie/interface-product-plan.md)
 
 ## Promotion Map
 

@@ -1,21 +1,18 @@
-# Archie Interface App
+# Archie Interface Product Plan
 
-## Workstream Metadata
+## Packet Metadata
 
-- Kind: `priority-app`
-- Rank: `29`
-- Value: `0.86`
-- Cost: `3.5`
-- ROI: `0.25`
-- Status: `investigate`
+- Kind: `detailed-priority-packet`
+- Status: `priority-only`
 - Claim level: `priority-only`
-- Parent priority: [Archie](../archie/priorities.md)
-- Service platform packet: [Archie Service Platform](../archie/service-platform.md)
-- Service deployment option decision: [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md)
-- Service deployment architecture: [service-deployment-architecture.md](../archie/service-deployment-architecture.md)
-- Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md)
-- Assistant contract: [assistant-mode-contract.md](../archie/assistant-mode-contract.md)
-- Brainstorming: [brainstorming.md](brainstorming.md)
+- Parent priority: [Archie](priorities.md)
+- Service platform packet: [Archie Service Platform](service-platform.md)
+- Service deployment option decision: [service-deployment-option-decision.md](service-deployment-option-decision.md)
+- Service deployment architecture: [service-deployment-architecture.md](service-deployment-architecture.md)
+- Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md)
+- Assistant contract: [assistant-mode-contract.md](assistant-mode-contract.md)
+- Interface brainstorming: [interface-brainstorming.md](interface-brainstorming.md)
+- Interface work log: [interface-work-log.md](interface-work-log.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
@@ -37,9 +34,9 @@
 
 ## Current
 
-This bucket owns product and interface planning for a user-facing Archie question surface.
+This packet defines product and interface planning for the user-facing Archie question surface under the single [Archie](priorities.md) priority owner.
 
-The existing [Archie Service Platform](../archie/service-platform.md) remains the owner for deployment architecture, backend or serverless runtime, model/provider abstraction, source ingestion, privacy, logging, rate limits, token ledger, presentation/media handling, GitHub issue handoff, issue-mining operations, cost controls, observability, and rollback. Its deployment option decision is captured in [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md): public static entry plus hosted service backend. Its concrete deployment boundary map is captured in [service-deployment-architecture.md](../archie/service-deployment-architecture.md). Its first schema-only implementation target is captured in [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md). This bucket focuses on the user experience: conversation modes, multimodal input and output, subscription shape, service-native speech output, guided corpus explanation, idea triage, GitHub issue submission, generated explanatory media, and the [Generated Media Corporate Standard](corporate-media-standards.md).
+The [Archie Service Platform](service-platform.md) owns deployment architecture, backend or serverless runtime, model/provider abstraction, source ingestion, privacy, logging, rate limits, token ledger, presentation/media handling, GitHub issue handoff, issue-mining operations, cost controls, observability, and rollback. Its deployment option decision is captured in [service-deployment-option-decision.md](service-deployment-option-decision.md): public static entry plus hosted service backend. Its concrete deployment boundary map is captured in [service-deployment-architecture.md](service-deployment-architecture.md). Its first schema-only implementation target is captured in [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md). This packet focuses on the user experience: conversation modes, multimodal input and output, subscription shape, service-native speech output, guided corpus explanation, idea triage, GitHub issue submission, generated explanatory media, and the [Generated Media Corporate Standard](corporate-media-standards.md).
 
 The v1 product boundary is captured in [v1-product-requirements.md](v1-product-requirements.md). The shared answer response shape is captured in [answer-artifact-manifest.md](answer-artifact-manifest.md). The first service-boundary map is captured in [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md). The typed service, validator, and endpoint contract target is captured in [manifest-service-contracts.md](manifest-service-contracts.md). Source ingestion, route identity, freshness, source chips, and `source_context` population are captured in [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md). The upstream source-selection and claim-label rules are captured in [answer-engine-source-contract.md](answer-engine-source-contract.md). Model/provider capabilities, quality gates, fallback behavior, credential boundaries, cost classes, privacy/terms checks, and no-browser-key behavior are captured in [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md). Token accounting, spending limits, receipts, privacy state, and retention rules are captured in [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md). Issue-mining report, clustering, noise, owner-lane, and fix-queue rules are captured in [issue-mining-signal-contract.md](issue-mining-signal-contract.md). Privacy-safe logs, metrics, public status, incident records, change history, and diagnostics redaction are captured in [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md). Confirmation-gated public, durable, paid, retained, and credentialed actions are captured in [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md). Saved-note drafts, durable notebook entries, account history, deletion, export, sharing, storage-cost rules, and private-note evidence boundaries are captured in [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md). Service terms, token/subscription disclosures, account acceptance, public issue notices, generated-media terms, support routes, abuse controls, and legal-review launch gates are captured in [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md). Service-native speech, synchronized verbatim text, captions/transcripts, narration scripts, and storyboards are captured in [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md). Visual diagrams, generated images, purpose labels, captions, alt text, retention, and proof-status guardrails are captured in [visual-artifact-contract.md](visual-artifact-contract.md). No runtime AI answer generation is implemented here. This is priority-only planning for a future service.
 
@@ -108,7 +105,7 @@ Every response should be represented by the [Answer Artifact Manifest](answer-ar
 24. `service_deployment_architecture` - Assign public site, browser client, service API, background jobs, source-index, provider gateway, token ledger, action broker, issue-mining, observability, staging, production, CI/CD, rollback, and smoke-test responsibilities. Status: `candidate`.
 25. `service_scaffolding_and_fixtures` - Define schema-only service module targets, fixture families, environment variable classes, CI gates, and implementation stages before runtime providers or public launch. Status: `candidate`.
 
-## Ranked Next Objects
+## Interface Work Queue
 
 Ordered by marginal ROI on 2026-07-17. Existing design documents reduce remaining burden but do not retain value credit.
 

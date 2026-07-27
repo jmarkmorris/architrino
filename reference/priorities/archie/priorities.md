@@ -16,6 +16,11 @@
 - System Card sphere: [System Card scene](../../../content/scenes/archie/system_card.json)
 - System Card markdown: [System Card markdown](../../../content/markdown/aaa/archie/system-card.md)
 - Assistant contract: [assistant-mode-contract.md](assistant-mode-contract.md)
+- Interface product plan: [interface-product-plan.md](interface-product-plan.md)
+- Interface brainstorming: [interface-brainstorming.md](interface-brainstorming.md)
+- Interface work log: [interface-work-log.md](interface-work-log.md)
+- V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
+- Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Long-term service platform: [service-platform.md](service-platform.md)
 - Service deployment option decision: [service-deployment-option-decision.md](service-deployment-option-decision.md)
 - Service deployment architecture: [service-deployment-architecture.md](service-deployment-architecture.md)
@@ -24,7 +29,7 @@
 
 ## Current State
 
-This workstream owns Archie as the public web persona, reader-facing guide, and future question interface for $\mathbb{A}\mathbb{A}\mathbb{A}$.
+This workstream owns Archie as the public web persona, reader-facing guide, future question interface, product contract, and service platform for $\mathbb{A}\mathbb{A}\mathbb{A}$. Product requirements, answer and media contracts, service boundaries, and their supporting interface notes now share this single priority owner.
 
 The main architecture ring now routes the top-level `Archie` sphere to `content/scenes/archie/archie.json`. The Archie root scene combines:
 
@@ -59,20 +64,23 @@ The main risk is scope drift. If Archie becomes an AI persona, it must not sound
 Ordered by marginal ROI on 2026-07-17. The external `theory_closure_first` dependency is not scored as Archie-owned implementation value.
 
 1. `platform_architecture_packet` — Fix the future service deployment route and responsibility boundary. Status: `draft`.
-2. `source_authority_boundary` — Convert source classes into the deployed-service allowlist. Status: `deferred`.
-3. `service_scaffolding_and_fixtures` — Define schema-first service contracts, fixture families, environment classes, CI gates, and rollback evidence. Status: `draft`.
-4. `privacy_security_cost_boundary` — Define data movement, providers, rate limits, retention, abuse controls, cost limits, and failure behavior. Status: `deferred`.
-5. `validation_and_qa` — Define source, answer, privacy, multimodal, deployment, and rollback acceptance. Status: `deferred`.
+2. `answer_artifact_manifest_regression_fixture` — Turn the answer manifest and communication standard into one executable source, claim, media, token, privacy, action, and issue-mining fixture. Status: `candidate`.
+3. `source_authority_boundary` — Convert source classes into the deployed-service allowlist. Status: `deferred`.
+4. `service_scaffolding_and_fixtures` — Define schema-first service contracts, fixture families, environment classes, CI gates, and rollback evidence. Status: `draft`.
+5. `privacy_security_cost_boundary` — Define data movement, providers, rate limits, retention, abuse controls, cost limits, and failure behavior. Status: `deferred`.
+6. `validation_and_qa` — Define source, answer, privacy, multimodal, deployment, and rollback acceptance. Status: `deferred`.
 
 ## Detailed Task Inventory
 
 1. `theory_closure_first` - Return near-term effort to the strongest core theory-closure targets so future Archie answers have stable substance to explain. Status: `active`.
 2. `service_platform_priority` - Maintain the long-term Archie service plan in [service-platform.md](service-platform.md), including deployment, backend/serverless boundary, source authority, privacy, logging, cost, and operations. Status: `long-term`. Depends on: `assistant-mode-contract.md`.
-3. `source_authority_boundary` - Convert the contract's source classes into a deployed-service allowlist for public, operator/developer, priority-only, curated external, and excluded sources. Status: `deferred`. Depends on: `service_platform_priority`.
-4. `platform_architecture_packet` - Use [service-deployment-option-decision.md](service-deployment-option-decision.md) and [service-deployment-architecture.md](service-deployment-architecture.md) as the deployment route and boundary map for the future service. Status: `draft`. Depends on: `theory_closure_first`.
-5. `service_scaffolding_and_fixtures` - Use [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md) to drive schema-only service contracts, fixture locations, environment classes, CI gates, staging smoke tests, and rollback fixtures before runtime providers or public launch. Status: `draft`. Depends on: `platform_architecture_packet`.
-6. `privacy_security_cost_boundary` - For the deployed Archie platform, define what user text, speech, images, and answer history leave the browser, what model/service is used, rate limits, logs, retention, cost controls, abuse controls, and failure behavior. Status: `deferred`. Depends on: `service_scaffolding_and_fixtures`.
-7. `validation_and_qa` - Define the service validation checklist for source authority, answer citations, claim-level correctness, multimodal handling, System Card links, privacy behavior, deployment smoke tests, and rollback readiness. Status: `deferred`. Depends on: `privacy_security_cost_boundary`.
+3. `interface_product_plan` - Maintain the consolidated user experience, product tracks, and subordinate interface queue in [interface-product-plan.md](interface-product-plan.md). Status: `priority-only`. Depends on: `assistant-mode-contract.md`.
+4. `source_authority_boundary` - Convert the contract's source classes into a deployed-service allowlist for public, operator/developer, priority-only, curated external, and excluded sources. Status: `deferred`. Depends on: `service_platform_priority`.
+5. `platform_architecture_packet` - Use [service-deployment-option-decision.md](service-deployment-option-decision.md) and [service-deployment-architecture.md](service-deployment-architecture.md) as the deployment route and boundary map for the future service. Status: `draft`. Depends on: `theory_closure_first`.
+6. `answer_artifact_manifest_regression_fixture` - Turn [answer-artifact-manifest.md](answer-artifact-manifest.md) and [ai-communication-standards.md](ai-communication-standards.md) into one executable contract fixture. Status: `candidate`. Depends on: `platform_architecture_packet`.
+7. `service_scaffolding_and_fixtures` - Use [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md) to drive schema-only service contracts, fixture locations, environment classes, CI gates, staging smoke tests, and rollback fixtures before runtime providers or public launch. Status: `draft`. Depends on: `platform_architecture_packet`.
+8. `privacy_security_cost_boundary` - For the deployed Archie platform, define what user text, speech, images, and answer history leave the browser, what model/service is used, rate limits, logs, retention, cost controls, abuse controls, and failure behavior. Status: `deferred`. Depends on: `service_scaffolding_and_fixtures`.
+9. `validation_and_qa` - Define the service validation checklist for source authority, answer citations, claim-level correctness, multimodal handling, System Card links, privacy behavior, deployment smoke tests, and rollback readiness. Status: `deferred`. Depends on: `privacy_security_cost_boundary`.
 
 ## Promotion Map
 
@@ -80,8 +88,10 @@ Ordered by marginal ROI on 2026-07-17. The external `theory_closure_first` depen
 | --- | --- | --- |
 | `theory_closure_first` | Core proof/corpus readiness. | Archie has stable enough source substance to explain publicly. |
 | `service_platform_priority` | Long-term platform plan. | Archie is treated as a deployed service, not a static UI mockup. |
+| `interface_product_plan` | User-facing product and contract packet. | Product requirements and interface contracts remain subordinate to the single Archie owner. |
 | `source_authority_boundary` | Public-answer source policy. | Priority-only and speculative material cannot appear as established corpus claims. |
 | `platform_architecture_packet` | Deployment architecture task. | Secrets, model calls, user data, and operations live outside GitHub Pages static hosting, with ownership split by [service-deployment-architecture.md](service-deployment-architecture.md). |
+| `answer_artifact_manifest_regression_fixture` | Executable response-contract fixture. | Source, claim, media, token, privacy, action, and issue-mining fields validate together. |
 | `service_scaffolding_and_fixtures` | Schema-only implementation target. | Service code starts from contracts, fixtures, environment classes, and verification gates required for advancement before providers or public launch. |
 | `privacy_security_cost_boundary` | Platform launch gate. | User data, service use, logging, retention, abuse controls, and budget limits are explicit before public beta. |
 | `validation_and_qa` | Launch checklist. | Source, answer, privacy, multimodal, deployment, and rollback checks pass. |

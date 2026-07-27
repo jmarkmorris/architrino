@@ -1,18 +1,18 @@
-# App Archie Interface Work Log
+# Archie Interface Work Log
 
-This file is the chronological work log for the `app-archie-interface` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker.
+This file is the chronological work log for the interface-product packet within the `archie` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker.
 
-Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and draft corpus-promotable text when this priority area has one. Use the main priority tracker in this directory for the compact current queue, blockers, promotion routing, and next action. Keep focused proof packets, certificates, app specs, and requirement notes in their own sibling files when they need a stable structure.
+Use [interface-brainstorming.md](interface-brainstorming.md) for provisional product ideas, insights, conceptual maps, and draft corpus-promotable text. Use [priorities.md](priorities.md) as the sole ranked priority tracker and [interface-product-plan.md](interface-product-plan.md) for the detailed interface queue. Keep focused proof packets, certificates, app specs, and requirement notes in their own sibling files when they need a stable structure.
 
 ## Log Entries
 
 ### 2026-07-02 - Resume Under Priority-File Partitioning
 
 - Resumed the paused Answer Artifact Manifest / Archie interface lane under the current priority-directory partitioning.
-- Read [../README.md](../README.md), [priorities.md](priorities.md), [brainstorming.md](brainstorming.md), and this work log before editing.
+- Read [../README.md](../README.md), [priorities.md](priorities.md), [interface-brainstorming.md](interface-brainstorming.md), and this work log before editing.
 - Current branch at resume check: `codex/galatea`, latest commit `c4a70b775 Refactor corpus and runtime wiring`.
 - Ambient dirty state at resume check was outside this lane: `reference/priorities/aaa-futures/work-log.md`.
-- Partition decision: status history and handoff notes belong here; the plain-language manifest rendering idea belongs in [brainstorming.md](brainstorming.md); the compact live queue belongs in [priorities.md](priorities.md).
+- Partition decision: status history and handoff notes belong here; the plain-language manifest rendering idea belongs in [interface-brainstorming.md](interface-brainstorming.md); the compact live queue belongs in [priorities.md](priorities.md).
 - Direction preserved: do not reintroduce speculative speech/service/generated-media fixture expansion from the paused pass. Use [ai-communication-standards.md](ai-communication-standards.md) first, and keep technical terms implementation-only unless the user-facing behavior is explained plainly.
 
 ### 2026-07-02 - Standards Gate Applied To Manifest
