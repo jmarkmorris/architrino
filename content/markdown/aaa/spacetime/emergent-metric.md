@@ -42,6 +42,7 @@ Use the following symbols consistently across spacetime chapters:
 - $u^i_{\mathrm{sea,eff}}(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$: Noether sea drift field in the observer-level bookkeeping map.
 - $e^a{}_i(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$: spatial frame field carrying Noether sea compliance and orientation response.
 - $\gamma_{ij}^{\mathrm{eff}}(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)=\delta_{ab}e^a{}_i e^b{}_j$: observer-level spatial compliance metric.
+- $(\gamma_{\mathrm{eff}}^{-1})^{ij}$: inverse of the spatial compliance metric, defined by $(\gamma_{\mathrm{eff}}^{-1})^{ik}\gamma_{kj}^{\mathrm{eff}}=\delta^i{}_j$.
 
 ## What “Metric” Means Here
 
@@ -90,7 +91,7 @@ The constitutive variable that sources $\Phi_{\text{eff}}$ may therefore be an e
 
 ### Alternating-Flux Constitutive Candidate
 
-One candidate route from assembly wakes to weak gravity is an RMS excitation law. If local causal-wake hits alternate in sign, direction, or branch provenance, the mean signed force can cancel while the quadratic excitation of the Noether sea remains:
+One candidate route from assembly wakes to weak gravity is an RMS excitation law. If local causal-wake hits alternate in sign, direction, or branch provenance, the mean signed acceleration can cancel while the quadratic excitation of the Noether sea remains:
 $$
 \Phi_{\mathrm{eff}}^\theta(\mathbf X,T)
 \propto
@@ -197,12 +198,13 @@ $$
 $$
 u^i_{\mathrm{sea,eff}}
 =
-D^i{}_j w^j\frac{U}{c_0^2}
+D_U w^i\frac{U}{c_0^2}
++D_T w^j\frac{U^i{}_j}{c_0^2}
 +O(c_0^{-5},\epsilon_{\mathrm{LV}}),
 \qquad
 \gamma_{ij}^{\mathrm{eff}}=\delta_{ab}e^a{}_i e^b{}_j
 $$
-Here $w^i$ is the Noether sea drift relative to the comparison frame, $D^i{}_j$ is the drift-response coefficient, and $U$ is the positive PPN potential. These are not new substrate fields. They are coefficient rows for the observer-level reconstruction. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must read from these rows as one shared constitutive record.
+Here $w^i$ is the Noether sea drift relative to the comparison frame, $D_U$ and $D_T$ are the isotropic and anisotropic drift-response coefficients, $U$ is the positive PPN potential, and $U^i{}_j$ is its standard anisotropic potential tensor. These are not new substrate fields. They are coefficient rows for the observer-level reconstruction. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must read from these rows as one shared constitutive record. The coefficient dictionary to $(\gamma_{\mathrm{PPN}},C_2^{(U)},\Xi_1,\ldots,\Xi_4)$ is given in [PPN Parameters](./ppn-parameters.md#admcartan-extraction-equations).
 
 A practical consistency check is that those channels must be projections of one shared record of the Noether sea and the Physical Observer, not independently tuned descriptions. For an observation window $W$, let $\theta$ collect the retained Noether sea state, source assemblies, observer clock/ruler state, signal-channel record, apparatus calibration, and boundary wake data. Let
 $$
@@ -255,7 +257,7 @@ and extremizing this observer-level action must give the same weak-field acceler
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
 =
--\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
+-(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
 +O(c_0^{-2})
 $$
 For null signal records,
@@ -281,7 +283,7 @@ ds_{\mathrm{eff}}^2
 =
 -\left(1+\frac{2\Phi_{\mathrm{dyn}}}{c_0^2}\right)c_0^2dt_{\mathrm{eff}}^2
 +
-\left(1-\frac{2\Psi_{\mathrm{sp}}}{c_0^2}\right)\gamma_{ij}^{\mathrm{eff}}dx_{\mathrm{eff}}^i dx_{\mathrm{eff}}^j
+\left(1-\frac{2\Psi_{\mathrm{sp}}}{c_0^2}\right)h_{ij}dx_{\mathrm{eff}}^i dx_{\mathrm{eff}}^j
 $$
 
 Massive slow probes read the dynamical potential $\Phi_{\mathrm{dyn}}$, while weak lensing reads the Weyl combination
@@ -761,6 +763,33 @@ g^{\text{eff}}_{00}=-N^2,
 \qquad
 g^{\text{eff}}_{ij}=\Omega^2h_{ij}
 $$
+
+This subclass turns the first-order shape response into a sharp geometry-side
+closure target. Matching the standard positive-potential PPN rows gives
+$$
+N
+=
+1-\frac{U}{c_0^2}
++O(c_0^{-4}),
+\qquad
+\Omega
+=
+1+\gamma_{\mathrm{PPN}}\frac{U}{c_0^2}
++O(c_0^{-4}).
+$$
+Because $N=\Omega\xi$, the same record must therefore satisfy
+$$
+\xi
+=
+1-(1+\gamma_{\mathrm{PPN}})\frac{U}{c_0^2}
++O(c_0^{-4}).
+$$
+Thus $\gamma_{\mathrm{PPN}}=1$ is equivalent at first order to
+$\xi=1-2U/c_0^2+O(c_0^{-4})$ in this ADM subclass. The asymptotic condition is
+$\xi\to1$ as $U\to0$; it does not erase the first-order response that carries
+$\gamma_{\mathrm{PPN}}$. A native braid-envelope derivation of this response
+would determine $\gamma_{\mathrm{PPN}}$ rather than fit it.
+
 For a slowly moving test assembly in a stationary medium, the dominant connection piece is
 $$
 \Gamma^i_{00}
@@ -779,10 +808,10 @@ $$
 =
 -\xi^{2}\nabla^i\Phi_{\text{eff}}
 $$
-Hence, in weak field ($\xi\to 1$, a subclass boundary condition of the declared branch),
+Hence, retaining $\xi=1+O(U/c_0^2)$ on the declared weak-field branch,
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
-=-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
+=-(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
 +O\!\left(
 \left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|
 \right)
@@ -794,11 +823,10 @@ PPN extraction for this constitutive subclass is defined canonically in
 including the full $g_{00}$/$g_{ij}$ expansions, preferred-frame leakage map,
 and weak-field closure vector.
 
-In that canonical map:
-$$
-\beta_{\text{PPN}}=1
-$$
-for the exponential clock-law channel — a declared subclass whose clock law is
-not yet derived from primitives; see the exponential clock-law subclass
-discussion in [PPN Parameters](ppn-parameters.md) — while $\gamma_{\text{PPN}}$
-is fixed by first-order clock-channel partitioning between $\Omega$ and $\xi$.
+In that canonical map the exponential identity
+$N=e^{\Phi_{\mathrm{eff}}/c_0^2}$ fixes the quadratic coefficient only when the
+series is expressed in the constitutive potential $U_\Phi=-\Phi_{\mathrm{eff}}$.
+It gives $\beta_{\mathrm{PPN}}=1$ only if
+$U_\Phi=U+O(U^3/c_0^6)$, so the second-order potential-conversion coefficient
+vanishes. That conversion is a constitutive obligation, not a consequence of
+the definition $\Phi_{\mathrm{eff}}=c_0^2\ln N$.

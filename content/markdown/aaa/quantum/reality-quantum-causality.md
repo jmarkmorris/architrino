@@ -34,7 +34,22 @@ At the absolute level, any local neighborhood is crowded:
   - Wakes from distant assemblies whose emission fronts are just arriving,
   - Self-hit structures from $v>c_f$ motion in a declared indexed binary.
 
-- **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a globally neutral mix of electrinos ($q=-$) and positrinos ($q=+$); exact 50/50 balance is a cosmological neutrality postulate carried by [Noether Sea](../spacetime/noether-sea.md), not a derived result, and local inventories are routinely unbalanced. Consequently, the potential contributions from distant regions statistically cancel out (effective screening). More precisely: in a statistically homogeneous 50/50 mixture the mean far-field cancels, while potential fluctuations and local charge imbalances remain and dominate the dynamics on finite scales. Screening is therefore statistical and scale-dependent, not an exact cancellation theorem. The observer-level summary is a local unresolved fluctuation floor, not an infinite static wake background.
+- **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a globally neutral mix of electrinos ($q=-$) and positrinos ($q=+$); exact 50/50 balance is a cosmological neutrality postulate carried by [Noether Sea](../spacetime/noether-sea.md), not a derived result, and local inventories are routinely unbalanced. Neutrality cancels the mean signed far field but does not make the scalar potential sum absolutely convergent. In the ideal uncorrelated homogeneous comparison with source density $n$, signed kernel amplitude $q$, inner cutoff $r_{\min}$, and outer radius $R$,
+  $$
+  \operatorname{Var}\Phi(R)
+  =
+  4\pi n q^2(R-r_{\min})
+  $$
+  while one Cartesian component of the acceleration-kernel sum has
+  $$
+  \operatorname{Var}A_x(R)
+  =
+  \frac{4\pi n q^2}{3}
+  \left(
+  \frac{1}{r_{\min}}-\frac{1}{R}
+  \right)
+  $$
+  The potential variance is infrared divergent, whereas the acceleration variance converges at large $R$ and is controlled by nearby sources. Because the master equation consumes acceleration rows, the dynamically relevant screening claim belongs to the acceleration sum; the scalar potential remains a conditionally defined reconstruction unless a separate summation prescription is declared.
 
 "Stable" particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
 
@@ -118,10 +133,10 @@ At the assembly level (Noether braids, atoms, etc.):
   - It supports discrete resonance bands labeled by an integer index $f$ (linked to a characteristic frequency).
   - In the phenomenological bridge owned by the action-increment protocol, a transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E \approx h \nu$, and pushes the system across the boundary between resonance bands (the $f \to f \pm 1$ boundary). This is a recovery target for the basin dynamics, not a quantization premise at the architrino level. Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
 
-- A **declared indexed channel** near $v=c_f$ may sit near a **self-hit threshold** (see [Self-Hit Threshold Analogy](#self-hit-threshold-analogy)):
-  - Slightly below $c_f$: one regime (e.g., a response on the order of an $h$-scale action increment per cycle, phenomenological).
-  - Slightly above $c_f$: another regime (e.g., a response on the order of a $2h$-scale action increment per cycle, phenomenological; self-hit-amplified).
-  - Small differences in forcing near this manifold can switch which $f$-band is selected and send trajectories to qualitatively different long-term behavior.
+- A **declared indexed channel** may sit near a **self-hit threshold** (see [Self-Hit Threshold Analogy](#self-hit-threshold-analogy)):
+  - A strictly sub-field-speed straight interval has no same-transmitter causal root by the triangle inequality.
+  - A super-field-speed interval is only a candidate. The self-hit regime begins when the same-transmitter root inventory is nonempty and the retained roots pass the transversality, Jacobian, and transmitter-side acceleration-weight floors.
+  - Small differences in forcing can change that root ledger or move the reduced state across a genuine basin boundary, but speed alone does not determine an $h$- or $2h$-scale response.
 
 #### Threshold Structure Guide (Plain-Language Labels)
 
@@ -130,7 +145,7 @@ We use "threshold" and "separatrix" in several regimes. A separatrix is a bounda
 | Context | Boundary (plain language) | Typical term in models | Example anchor |
 | --- | --- | --- | --- |
 | Outer $f$-step | Boundary between resonant island families | Separatrix between island chains (heteroclinic in maps) | Island-chain boundary |
-| Middle $v = c_f$ | Self-hit onset boundary | Homoclinic-like threshold in reduced phase space | Entry into wake-coupled regime |
+| Same-transmitter root onset | Boundary where an admissible self-hit root ledger appears | Root-onset or homoclinic-like threshold in a reduced chart | Entry into a validated wake-coupled regime |
 | He-Rb-He mode (see [Agency and Internal Causation](../philosophy-history/agency-and-internal-causation.md)) | Mode-crossing boundary | Conical-intersection-like crossing in configuration space | Vibronic coupling analogue |
 | Neural firing | Firing threshold manifold | Saddle-node threshold in network models | Spike threshold |
 
@@ -179,18 +194,18 @@ Those statistics must stay tied to the same coarse-graining that carries thermod
 This is the retained content of hidden-variable language, stripped of the misleading suggestion that the missing variables are an added nonphysical layer. The relevant hidden structure is the ordinary complete state plus path history:
 
 $$
-\Gamma_T
+\Gamma_{[T_0,T_1]}
 =
 \left(\Gamma(T_0),\{\mathbf X_i(T),\mathbf V_i(T),q_i\}_{T\in[T_0,T_1]},\mathcal{K}_{\mathrm{app}}\right)
 $$
 
-where $\mathcal{K}_{\mathrm{app}}$ is the apparatus kernel retained for the declared record channel. Quantum randomness is closed only if pushing $\Gamma_T$ through the deterministic flow yields the same record frequencies, restartability behavior, and thermodynamic ledger used by the effective probability description.
+where $\mathcal{K}_{\mathrm{app}}$ is the apparatus kernel retained for the declared record channel. Quantum randomness is closed only if pushing $\Gamma_{[T_0,T_1]}$ through the deterministic flow yields the same record frequencies, restartability behavior, and thermodynamic ledger used by the effective probability description.
 
 ---
 
 ## Agency and Decision
 
-This section states the **minimal structural and dynamical conditions** under which an assembly or super-assembly can *decide* its response. In this usage, deciding means either leveraging incoming **large-deviation wake peaks** or effectively ignoring them. When the illustrative $3\sigma$ threshold is used below, $\sigma$ is the standard deviation of the no-signal wake-amplitude distribution for one fixed coarse-graining, access region, and record window. It is a working detection convention, not a universal substrate constant.
+This section states the **minimal structural and dynamical conditions** under which an assembly or super-assembly can *decide* its response. In this usage, deciding means either leveraging incoming **large-deviation wake peaks** or effectively ignoring them.
 
 ### Definition of Decision
 
@@ -286,7 +301,18 @@ Concretely:
   - The assembly can hold a "configuration of sensitivity" over many incoming wake peaks,
   - But can still adjust that configuration over longer time (learning, context).
 
-**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must do work and export entropy into the surrounding Noether sea to maintain a tuned state.
+**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. If a Decider retains one of $N$ distinguishable memory states and later resets it, the reset ledger inherited from [Measurement Ontology](measurement-ontology.md#what-makes-an-interaction-a-record) must satisfy
+$$
+W_{\mathrm{reset}}
+\ge
+T_{\mathrm{temp}}\Delta S_{\mathrm{reset}}
+\ge
+k_B T_{\mathrm{temp}}
+\left(
+\log N-\varepsilon_\mu
+\right)
+$$
+for the declared reset protocol. A reliably retained bit gives the familiar comparison floor $k_BT_{\mathrm{temp}}\log2$ up to the error allowance. Agency is therefore a thermodynamic process with an operator-checkable memory cost, not merely a qualitative requirement to export entropy.
 
 ---
 
@@ -381,14 +407,14 @@ The extended discussion of internal/external causation, functional agency, and c
 
 ---
 
-### Core Reinterpretations of Quantum Language
+## Core Reinterpretations of Quantum Language
 
 These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard quantum interpretations onto explicit dynamical mechanisms. They are foundational claims of the framework, but the quantitative derivations remain closure targets where noted.
 
 > ### **Wavefunction Collapse = Threshold Resolution**
 > In standard QM, "collapse" is an axiom added to a linear wave equation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the underlying dynamics are continuous, but **bifurcation boundaries are real**. When a metastable system is pushed across a threshold boundary (see [Threshold Structure Guide](#threshold-structure-guide-plain-language-labels)) by a record-making interaction, the **effective wave equation changes** because the basin geometry changes. Observers therefore use a different effective equation *after* the resolution than *before*. "Collapse" is the observer's forced update to the correct effective equation once the threshold has been crossed.
 >
-> Crucially, the transition itself is not an observable steady state. Attempting to probe the in-between injects action and **forces a resolution to one side**, which is why continuous photon sampling cannot leave the bifurcation unresolved.
+> Crucially, the transition itself is not an observable steady state. A probe strong enough to cross the record threshold forces a resolution to one side. A weak probe may remain below that threshold and leave an unresolved interval $t_{\mathrm{split}}<t<t_{\mathrm{rec}}$, as specified by the [weak-probe limit](measurement-ontology.md#weak-probe-limit); the monitored-transition benchmark is discussed in [Wavefunction Ontology](wavefunction-ontology.md#falsifiability-and-predictions).
 
 > ### **Uncertainty Brackets the Integer Step (Phenomenological + Toy Dynamics)**
 > A declared indexed binary occupies discrete **resonance bands** labeled by an integer index $f$ (or $n$). A transition occurs when the **action per cycle** crosses the $h$-scale threshold. In absolute dynamics the step is clean: $f \to f \pm 1$.
@@ -401,11 +427,11 @@ These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard q
 > Many-worlds diagrams visualize the tree of **possible coarse-grained histories** near a bifurcation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ there is still **one realized trajectory** in absolute time; the "branching" reflects the observer's incomplete knowledge of microstate and wake history. The diagram is a map of epistemic alternatives, not a claim that reality splits.
 
 > ### **Observability Requires a Record**
-> A decision is **detectable** only if it produces a macroscopic record—a bifurcation in the coarse-grained history. If the internal configuration shifts but stays in the same basin, there is no external divergence and no observable "decision." This is why **photons (or any probe)** are central to observability: they create the record and, through back-action, finalize which basin is realized. Decisions that do not produce a record are empirically invisible.
+> A decision is **detectable** only if it produces a macroscopic record—a bifurcation in the coarse-grained history. If the internal configuration shifts but stays in the same basin, there is no external divergence and no observable "decision." A probe creates a completed record only when its coupling crosses the declared record threshold; below-threshold weak probes may perturb a conditional ensemble without selecting an intermediate record. Decisions that do not produce a record are empirically invisible.
 
 ---
 
-### Operational Mapping (Phenomenological)
+## Operational Mapping (Phenomenological)
 
 The following **operational dictionary** links the QM formal step to architrino micro-dynamics. This is not a full derivation; it is a **phenomenological mapping** that clarifies what is meant by each claim and where it could, in principle, diverge in experiment.
 
@@ -416,10 +442,10 @@ The following **operational dictionary** links the QM formal step to architrino 
 - **Difference (in principle):** Transition time is finite and tied to threshold crossing / Lyapunov time, not instantaneous; near threshold, history-dependent hysteresis is expected.
 
 **2) Uncertainty**
-- **QM formalism:** $\Delta x\,\Delta p \ge \hbar/2$.
-- **Architrino micro-dynamics:** The basin boundary is sharp in $\Gamma$, but measurement back-action plus finite predictability time create a **band** of operational indeterminacy $\delta$ around it.
-- **Coarse-graining map:** Operational observables cannot resolve $\Gamma$ inside the $\delta$-band; this is the bracket around the integer step.
-- **Difference (in principle):** The width of the bracket depends on probe strength and forcing scale (not solely on $\hbar$), and can vary across architectures.
+- **QM formalism:** $\Delta x\,\Delta p \ge \hbar/2$ follows from the Fourier relation between the effective spatial envelope and its retained wave-number support.
+- **Architrino micro-dynamics:** The basin boundary is sharp in $\Gamma$; measurement back-action adds an apparatus-dependent disturbance and finite predictability band but does not derive the Fourier inequality.
+- **Coarse-graining map:** The effective phase-amplitude extraction must recover the Fourier width relation, while the apparatus model separately predicts its disturbance.
+- **Difference (in principle):** Architecture-dependent probe disturbance may vary; the recovered observer-level uncertainty bound may not.
 
 **3) Branching / Many-Worlds**
 - **QM formalism:** $\sum_n c_n |n\rangle$ treated as coexisting branches.
@@ -435,7 +461,7 @@ The following **operational dictionary** links the QM formal step to architrino 
 
 ---
 
-### Historical Note (Late Nineteenth Century–Present): From Operational Success to Ontological Drift
+## Historical Note (Late Nineteenth Century–Present): From Operational Success to Ontological Drift
 
 If $\mathbb{A}\mathbb{A}\mathbb{A}$ is correct, the last 150 years should be read as follows:
 
@@ -472,7 +498,7 @@ P_{c_\Omega,u_b,T_W}
 \ge
 \epsilon_{\mathrm{sw}}
 $$
-where $D$ is a declared statistical distance — total variation in the first pass — so that $\epsilon_{\mathrm{sw}}$ has definite meaning, while the boundary context $c_\Omega$ is held fixed and the work ledger remains finite. A Decider claim additionally requires a record-sensitive update map $u_{n+1}=G(u_n,r_n,\chi_n)$ whose later basin weights differ above tolerance.
+where $D$ is a declared statistical distance — total variation in the first pass — so that $\epsilon_{\mathrm{sw}}$ has definite meaning, while the boundary context $c_\Omega$ is held fixed and the work ledger remains finite. This knob sweep establishes only a Switch response. A Decider claim additionally requires a record-sensitive internal update map $u_{n+1}=G(u_n,r_n,\chi_n)$, a retained hold time, the reset-cost bound above, and later basin weights that differ above tolerance under the same fixed external context.
 
 Here $\mu_{c_\Omega,u,T_W}$ is the normalized restriction of the branch-wide finite-window measure $\mu_{*,T_W}$ to the fixed boundary context $c_\Omega$ and preparation $u$. The variable $r_n$ is the retained outcome record from cycle $n$, while $\chi_n$ is the declared coarse environment/context summary supplied to the next feedback update.
 

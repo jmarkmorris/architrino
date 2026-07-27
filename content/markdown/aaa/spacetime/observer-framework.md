@@ -5,7 +5,7 @@ This chapter explains what an observer can access in $\mathbb{A}\mathbb{A}\mathb
 The key split is simple:
 
 - The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is the theory-side complete-state perspective on an absolute-time slice.
-- A **Physical Observer** is an embedded assembly inside the Noether sea, using physical clocks, rulers, detectors, records, and finite-speed signals.
+- A **Physical Observer** is an embedded assembly inside the [Noether sea](./noether-sea.md), using physical clocks, rulers, detectors, records, and finite-speed signals.
 
 This page owns the level distinction. The clock law itself belongs in [Proper Time and Time Dilation](proper-time-and-time-dilation.md), and the effective metric bridge belongs in [Emergent Metric](emergent-metric.md).
 
@@ -127,7 +127,7 @@ $$
 =
 \left\{
 (j,T_t,T_{\mathrm{cross}},\mathbf X_{\mathrm{cross}},
-\mathbf X_j(T_t),\mathbf V_j(T_t),q_j)
+\mathbf X_j(T_t),\mathbf V_j(T_t),q_j,\mathcal C_j^{\mathrm{root}})
 \;:\;
 \mathbf X_j(T_t)\notin\Omega,\quad
 T_t<T_{\mathrm{cross}}\le T,\quad
@@ -136,6 +136,18 @@ T_t<T_{\mathrm{cross}}\le T,\quad
 =c_f(T_{\mathrm{cross}}-T_t)
 \right\}
 $$
+
+The root-chart entry $\mathcal C_j^{\mathrm{root}}$ retains the causal branch identifier and the transmitter-side root derivatives. On a simple-root chart it includes
+$$
+D_{t,j}
+=
+c_f-\widehat{\mathbf r}_{j,\mathrm{cross}}\cdot\mathbf V_j(T_t),
+\qquad
+W_j^{\mathrm{acc}}
+=
+\frac{c_f}{|D_{t,j}|},
+$$
+where $\widehat{\mathbf r}_{j,\mathrm{cross}}$ points from the transmitter event to the boundary crossing. At a transmitter-side fold, $D_{t,j}=0$ and the simple-root weight diverges. Such an entry is fail-closed unless the chart also retains the root multiplicity and the next nonzero derivative needed for a fold or multi-root evaluation; substituting a finite simple-root weight is not an admissible boundary approximation.
 
 The crossing time $T_{\mathrm{cross}}$ separates instantaneous influx from already admitted exterior history. An interior receiver at $T$ may depend on a boundary entry with $T_{\mathrm{cross}}<T$, so the boundary ledger is accumulated rather than only evaluated at the present boundary. For non-convex $\Omega$, the ledger retains each boundary-crossing event rather than assuming that the active exterior isochron still intersects $\partial\Omega$ at the evaluation time.
 
@@ -147,10 +159,10 @@ F_\Omega\!\left(
 X_\Omega(T),
 \mathcal{H}_{\Omega}^{<T},
 \mathcal{B}_{\partial\Omega}(T),
-N_{\text{sea}}|_{\Omega}(T)
+\mathcal N_{\text{sea}}|_{\Omega}(T)
 \right)
 $$
-where $N_{\text{sea}}|_{\Omega}(T)$ denotes the locally resolved Noether sea state. A Physical Observer who models only $X_\Omega(T)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
+where $\mathcal N_{\text{sea}}|_{\Omega}(T)$ denotes the locally resolved Noether sea state. A Physical Observer who models only $X_\Omega(T)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
 
 The same finite-boundary form is the local substitute for placing a hypothetical observer at infinity in compact strong-field comparisons. For black-hole and cosmology problems, $\mathcal{B}_{\partial\Omega}$ is the controlled interface between what a Physical Observer can access and what the complete state must carry for deterministic continuation.
 
@@ -256,7 +268,7 @@ $$
 \Theta_{\mathrm{weak}}^{(O,W)}
 =
 \left(
-N_{\text{sea}}|_{\Omega,W},
+\mathcal N_{\text{sea}}|_{\Omega,W},
 O_W,
 \mathcal{B}_{\partial\Omega}^{(O)}(W),
 \widehat{\mathcal{B}}_{\partial\Omega}(W),
@@ -267,7 +279,7 @@ O_W,
 \Pi_{\mathrm{ADM}}
 \right)
 $$
-where $\Pi_{\mathrm{ADM}}$ is the observer-level projection, owned by the effective-metric map, to $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},\Phi_{\text{eff}},\chi_{\text{sea}})$. The lapse $N$ inside $\Pi_{\mathrm{ADM}}$ and the medium-state notation $N_{\text{sea}}$ are distinct from the covariance kernels, which consistently use the sans-serif symbol $\mathsf N_{AB}$. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must be read from $\Theta_{\mathrm{weak}}^{(O,W)}$ with the same covariance and boundary-data model. A channel-specific replacement of $\mu_{\Omega,\theta}$, $\mathsf N^{\mathrm{bw}}_{AB}$, or the imported $\Pi_{\mathrm{ADM}}$ is therefore a retuning residual, not an improved observer model.
+where $\Pi_{\mathrm{ADM}}$ is the observer-level projection, owned by the effective-metric map, to $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},\Phi_{\text{eff}},\chi_{\text{sea}})$. The lapse $N$ inside $\Pi_{\mathrm{ADM}}$, the medium-state notation $\mathcal N_{\text{sea}}$, and the covariance kernels $\mathsf N_{AB}$ are distinct objects. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must be read from $\Theta_{\mathrm{weak}}^{(O,W)}$ with the same covariance and boundary-data model. A channel-specific replacement of $\mu_{\Omega,\theta}$, $\mathsf N^{\mathrm{bw}}_{AB}$, or the imported $\Pi_{\mathrm{ADM}}$ is therefore a retuning residual, not an improved observer model.
 
 The same declared-measure discipline applies to observer-level probability tables and ensemble summaries. For a Physical Observer record $\theta$, observation window $W$, readout channel $Y_A$, and event set $B$, the probability assigned to that readout should be a pushforward of the conditional measure already tied to retained boundary data:
 $$

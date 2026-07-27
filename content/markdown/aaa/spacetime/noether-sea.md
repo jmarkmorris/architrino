@@ -4,7 +4,7 @@ This chapter defines the **Noether sea** as the physical medium inside the fixed
 
 The Noether sea is not the substrate. The substrate is [absolute timespace](../foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../foundations/euclidean-void.md). The Noether sea is physical content inside that background: an emergent, coupled population of neutral Noether braid assemblies whose collective response appears to physical observers as spacetime behavior.
 
-The easiest mistake is to treat the Noether sea as another name for space. It is not. Space is the fixed container. The Noether sea is the organized medium inside that container. Effective spacetime is the observer-level reconstruction built from how that medium changes clocks, rulers, signals, and matter response.
+The easiest mistake is to treat the Noether sea as another name for space. It is not. Space is the fixed container. The Noether sea is the organized medium inside that container. Effective spacetime is the observer-level reconstruction built from how that medium changes clocks, rulers, signals, and matter response. The corresponding observer-side record and projection boundary is defined in [Observer Framework](./observer-framework.md).
 
 This is why the reader path introduces Noether braid scaffold and geometry before observer-level spacetime. The intended picture is a fixed container populated by organized assemblies, not a flexible container that curves by itself. At the roadmap level, the physical Noether braid density can be read as a coarse-grained population field,
 $$
@@ -24,11 +24,23 @@ $$
 $$
 where $\Delta\mathbf A_n$ is the signed fluctuation of shell $n$'s wake-acceleration contribution about its neutral ensemble mean. The condition prevents correlations from rebuilding a divergent coherent tail from individually decaying shells. Under that condition the neutral far-population contribution converges in the receiver-centered exhaustion sense. This exhaustion is fixed by the receiver event's causal-root ledger and expanding receiver-centered shells, not by an arbitrary rearrangement of a conditionally convergent spatial series. This is a weak homogeneous medium result, not a blanket convergence claim for coherent strong-field regions or unneutralized source populations.
 
+It also controls only fluctuations about a zero shell mean. For a weak density gradient
+$$
+\rho_{\mathrm{NS}}(\mathbf X)
+=
+\rho_0+\mathbf g_\rho\cdot\mathbf X+O(\|\mathbf X\|^2),
+$$
+the additional gravity-side obligation is to compute the neutral-cell multipole and prove convergence of
+$$
+\sum_n\mathbb E[\Delta\mathbf A_n\mid\mathbf g_\rho].
+$$
+That mean row, rather than the homogeneous variance proof, must supply the leading constitutive response to $\mathbf g_\rho$. Until the neutral-cell multipole and its shell falloff are derived, the homogeneous result does not settle the weak-gradient or Seeliger problem.
+
 The spacetime recovery stack depends on four load-bearing hypotheses that must remain visible:
 
 | Hypothesis | Role | Current status |
 | --- | --- | --- |
-| Family-A Lorentz-link | Identifies moving-envelope flattening as the carrier of clock and ruler retuning. | Kinematic closure target; no confirmation from evolved moving branches. |
+| Family-A Lorentz-link | Identifies moving-envelope flattening as the carrier of clock and ruler retuning. | Kinematic closure target in [Lorentz Kinematics](./lorentz-kinematics.md); no confirmation from evolved moving branches. |
 | Shared clock/signal delay | Sets $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$ so clocks and Shapiro delay consume one scalar delay response. | Conditional weak-field branch, not a derived identity. |
 | Local clock/sea cadence tracking | Identifies a matter-clock cadence change with the local $C_N=\Gamma_N^{-1}$ readout in the same cell. | Same-record closure target, with mismatch retained explicitly. |
 | Family-A ambient selection | Selects Family-A carriers as the physical Noether sea population. | Comparative selection hypothesis; not established by prescribed geometry alone. |
@@ -123,7 +135,7 @@ $$
 \right).
 $$
 
-The first term enforces weak homogeneous transparency and hides ordinary medium-drift leakage; the second term enforces that clocks, photon transport, matter response, or neutrino-like propagation still consume the same retained Noether sea record. A candidate class that sets the coupling to zero passes neither row: it may become invisible, but it no longer reconstructs the effective observables assigned to the Noether sea.
+The first term enforces weak homogeneous transparency and hides ordinary medium-drift leakage; the second term enforces that clocks, photon transport, matter response, or neutrino-like propagation still consume the same retained Noether sea record. A candidate class that sets the coupling to zero passes the visibility row trivially while failing the response row: it becomes invisible, but it no longer reconstructs the effective observables assigned to the Noether sea.
 
 The Family-A-centered Noether sea claim is therefore the statement that the corresponding class $\mathfrak C_A$—prescribed one-braid records whose three axes run from mutual orthogonality toward the group-translation direction along $\lambda_A$—can drive $\mathcal R_{\mathrm{sea\text{-}class}}(\mathfrak C_A)$ below the accepted tolerance while other candidate classes either fail one of the rows or are classified as localized matter, radiation, reaction, or strong-field branches. This is stronger than saying that Family-A exclusion envelopes are visually plausible. It is a comparative selection problem over assembly classes, not a consequence of the taxonomy definition.
 
@@ -395,7 +407,7 @@ n=2,3,\ldots
 $$
 Here $\Pi_{\mathrm{corr}}^{(n)}$ is the declared projection from retained Noether sea histories to the $n$-point observer-level correlation. Passing the $n=2$ test is the analogue of the noise-kernel step in stochastic gravity; higher $n$ tests are the kinetic-theory route toward mesoscopic closure.
 
-Constitutive response must be stated as a map from the same state variables. A weak linear row has the schematic form
+Constitutive response must be stated as a map from the same state variables. Here $\chi_{AB}$ is a response susceptibility indexed by observable channels; it is not the scalar delay factor $\chi_{\mathrm{sea}}$. A weak linear row has the schematic form
 $$
 \delta Y_A(\omega,\mathbf{k})
 =
@@ -538,7 +550,7 @@ $$
 \right]
 $$
 
-where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether braid can sit inside the same coordinate window as ambient Noether sea braids without becoming part of the ambient Noether sea record; ledger complement, not mere spatial proximity, makes the separation.
+where $\chi_{\mathrm{comp}}^{(\ell)}$ is the established ledger-complement indicator that removes branches phase-locked to resolved assemblies; it is neither $\chi_{\mathrm{sea}}$ nor the response susceptibility $\chi_{AB}$. The term $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether braid can sit inside the same coordinate window as ambient Noether sea braids without becoming part of the ambient Noether sea record; ledger complement, not mere spatial proximity, makes the separation.
 
 A candidate equilibrium-transport equation is
 
@@ -569,12 +581,13 @@ $$
 \Gamma_{N,R},\,
 B_X(E),\,
 D_v,\,
-Y_{X,E\to R}
+Y_{X,E\to R}^{\mathrm{freq}},\,
+Y_{X,E\to R}^{\mathrm{dur}}
 \right),
 \qquad
 \mathcal P_{E\to R,X}
 =
-\exp(Y_{X,E\to R})
+\exp(Y_{X,E\to R}^{\mathrm{freq}})
 $$
 
 The factor $B_X(E)$ is the source-branch emission factor for family $X$: it relates the actual emitted line frequency in the source branch at $E$ to the reference frequency $\nu_{X,0}$, with $B_X(E)=1$ on the reference branch. It is fixed by the source emission or calibration record, not by endpoint cadence, launch geometry, or path propagation.
@@ -679,7 +692,7 @@ $$
 Q\in\{E,R\}
 $$
 
-where $\mathbf g_N=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,\ln(R_{\text{braid}}/R_{\text{braid},0}))^T$ in the local endpoint cell. The launch term is the causal-root compression of the emitted phase train. In the first weak-velocity form,
+where $\mathbf g_N=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,\ln(R_{\text{braid}}/R_{\text{braid},0}))^T$ in the local endpoint cell. Here $\lambda$ is the coarse transverse envelope scale ratio, $\xi=R_\parallel/R_\perp$ is its shape ratio, and $R_{\text{braid}}$ is a separately extracted local carrier-size observable. A compensated fit may treat the $\lambda$ and $R_{\text{braid}}$ rows as independent only when the extraction protocol varies them independently; their geometric definitions and covariance obligation are owned by [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md). The launch term is the causal-root compression of the emitted phase train. In the first weak-velocity form,
 
 $$
 D_v
@@ -949,6 +962,25 @@ Y_X^{\mathrm{dur}}
 \epsilon_{\mathrm{td},X}
 $$
 
+The two transport outputs are operationally defined by the measured phase frequency and packet-envelope duration:
+$$
+Y_{X,E\to R}^{\mathrm{freq}}
+=
+-\ln\!\left[
+\frac{\nu_{\mathrm{obs},X}}
+{\nu_{X,0}B_X(E)(\Gamma_{N,R}/\Gamma_{N,E})D_v}
+\right],
+$$
+$$
+Y_{X,E\to R}^{\mathrm{dur}}
+=
+\ln\!\left[
+\frac{\Delta t_{\mathrm{obs},X}}
+{\Delta t_{X,0}B_X(E)^{-1}(\Gamma_{N,E}/\Gamma_{N,R})D_v^{-1}}
+\right].
+$$
+The same segmented path record must predict both. Their mismatch is the duration-side falsifier that rules out a frequency-only loss law even when that law reproduces a redshift curve.
+
 The path term is thus phase-cadence retiming read from $S(T)$: it may change the energy a receiver assigns through $E=h\nu_{\mathrm{obs}}$, but it is not an untracked energy sink along the path.
 
 With this map, the received frequency is
@@ -959,7 +991,7 @@ $$
 \nu_{X,0}B_X(E)
 \frac{\Gamma_{N,R}}{\Gamma_{N,E}}
 D_v
-\exp(-Y_{X,E\to R})
+\exp(-Y_{X,E\to R}^{\mathrm{freq}})
 $$
 
 so no factor is interpreted as untracked photon energy loss. The packet energy read by the receiver is $E_{\mathrm{obs},X}=h\nu_{\mathrm{obs},X}$ after source branch, endpoint cadence, launch compression, and path-history propagation have all been extracted from the same absolute record.

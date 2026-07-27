@@ -1122,9 +1122,9 @@ $$
 $$
 and the PPN map used in [PPN Parameters](./ppn-parameters.md) is
 $$
-\beta_{\mathrm{eff}}=\frac{1+2C_2}{2}
+\beta_{\mathrm{PPN}}=\frac{1+2C_2}{2}
 $$
-So the GR target $\beta_{\mathrm{eff}}=1$ implies
+So the GR target $\beta_{\mathrm{PPN}}=1$ implies
 $$
 C_2^\star=\frac{1}{2}
 $$
@@ -1173,7 +1173,7 @@ The clock-to-PPN closure checklist is:
 1. Define a reference clock assembly and extraction window for $\omega_0$.
 2. Run controlled perturbations over $(U_j,v_j)$ in the weak-field, low-velocity regime.
 3. Fit $(A_U,A_v,C_2,C_{Uv},C_{v4})$ from the extracted clock ratios.
-4. Forward $\hat\beta_{\mathrm{eff}}$ and the leakage coefficient $\hat C_{Uv}$ to [PPN Parameters](./ppn-parameters.md).
+4. Forward $\hat\beta_{\mathrm{PPN}}$ and the leakage coefficient $\hat C_{Uv}$ to [PPN Parameters](./ppn-parameters.md).
 5. Record pass/fail status in [Closure Scorecard](../validation/closure-scorecard.md) against [Constraint Ledger](../validation/constraint-ledger.md) bounds.
 
 Given extracted coefficients
@@ -1182,7 +1182,7 @@ $$
 $$
 map to
 $$
-\hat\beta_{\mathrm{eff}}=\frac{1+2\hat C_2}{2}
+\hat\beta_{\mathrm{PPN}}=\frac{1+2\hat C_2}{2}
 $$
 and forward to the PPN decision vector in [spacetime/ppn-parameters.md](./ppn-parameters.md).
 
@@ -1195,7 +1195,7 @@ $$
 $$
 with
 $$
-\hat{\mathbf{q}}=(\hat A_U,\hat A_v,\hat\beta_{\mathrm{eff}},\hat C_{Uv}),\qquad
+\hat{\mathbf{q}}=(\hat A_U,\hat A_v,\hat\beta_{\mathrm{PPN}},\hat C_{Uv}),\qquad
 \mathbf{q}_\star=(1,\tfrac12,1,0)
 $$
 Low $\chi^2_{\mathrm{closure}}$ with no preferred-direction leakage is the acceptance condition for the clock-law sector.
