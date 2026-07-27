@@ -1,9 +1,9 @@
 export const PHOTON_LAYER_ORDER = Object.freeze(["I", "M", "O"]);
 
 export const PHOTON_LAYER_META = Object.freeze({
-  I: { id: "I", label: "Inner", color: "#7dd3fc", role: "inner" },
-  M: { id: "M", label: "Middle", color: "#fbbf24", role: "middle" },
-  O: { id: "O", label: "Outer", color: "#f472b6", role: "outer" },
+  I: { id: "I", label: "Binary 1", color: "#7dd3fc", role: "binary-1" },
+  M: { id: "M", label: "Binary 2", color: "#fbbf24", role: "binary-2" },
+  O: { id: "O", label: "Binary 3", color: "#f472b6", role: "binary-3" },
 });
 
 export const PHOTON_CHARGE_COLORS = Object.freeze({

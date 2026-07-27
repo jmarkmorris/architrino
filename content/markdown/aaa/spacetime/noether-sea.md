@@ -841,15 +841,15 @@ $$
 b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1
 $$
 
-Under shared clock/signal delay closure, [Proper Time and Time Dilation](proper-time-and-time-dilation.md#shared-clocksignal-delay-closure) supplies $a_\chi=1+\gamma_{\text{eff}}$, so the endpoint condition consumed here is
+Under shared clock/signal delay closure, [Proper Time and Time Dilation](proper-time-and-time-dilation.md#shared-clocksignal-delay-closure) supplies $a_\chi=1+\gamma_{\mathrm{PPN}}$, so the endpoint condition consumed here is
 
 $$
-b_n a_n+b_\chi(1+\gamma_{\text{eff}})+b_\lambda a_\lambda+b_R a_R=1
+b_n a_n+b_\chi(1+\gamma_{\mathrm{PPN}})+b_\lambda a_\lambda+b_R a_R=1
 $$
 
 In the GR-matching weak branch this is $b_n a_n+2b_\chi+b_\lambda a_\lambda+b_R a_R=1$. If the shared-delay residual is nonzero, the unconstrained equation with $a_\chi$ must be used and the residual must remain visible in the clock, Shapiro-delay, pressure-response, and redshift packets.
 
-The minimal shared-delay packet is likewise imported from the clock-row owner. For $\gamma_{\text{eff}}=1$, it gives $a_\chi=2$ and $b_\chi=1/2$. Nonzero $n$, $\lambda$, or $R_{\text{braid}}$ contributions remain admissible only as a compensated static family that preserves the endpoint sum and the inverse clock-rate row; they are not free redshift-fit parameters.
+The minimal shared-delay packet is likewise imported from the clock-row owner. For $\gamma_{\mathrm{PPN}}=1$, it gives $a_\chi=2$ and $b_\chi=1/2$. Nonzero $n$, $\lambda$, or $R_{\text{braid}}$ contributions remain admissible only as a compensated static family that preserves the endpoint sum and the inverse clock-rate row; they are not free redshift-fit parameters.
 
 The relative-motion recovery fixes the separation between launch geometry and transport coefficients. In a homogeneous weak record with $\mathbf g_N(E)=\mathbf g_N(R)=0$, $B_X(E)=1$, and $\mathcal K_{X,j}=0$ for every segment,
 

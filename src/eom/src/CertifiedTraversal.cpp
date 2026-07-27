@@ -524,6 +524,20 @@ CertifiedTraversalExactBatchCertificate certify_traversal_exact_pair_batch(
   std::vector<ExactPairRequest> exact_requests;
   exact_requests.reserve(
       static_cast<std::size_t>(certificate.exact_fallback_pairs));
+  const auto joint_root_point_state = [&](const std::string& row_id)
+      -> const JointRootBracketRequest* {
+    if (request.joint_root_point_states == nullptr) return nullptr;
+    const auto found = request.joint_root_point_states->find(row_id);
+    return found == request.joint_root_point_states->end()
+        ? nullptr
+        : &found->second;
+  };
+  const auto joint_history = [&](const std::string& path_id)
+      -> const JointAffineRetainedHistory* {
+    if (request.joint_histories == nullptr) return nullptr;
+    const auto found = request.joint_histories->find(path_id);
+    return found == request.joint_histories->end() ? nullptr : &found->second;
+  };
   for (const auto& tile : certificate.exact_tiles) {
     for (std::size_t receiver_index = tile.receiver_begin;
          receiver_index < tile.receiver_end; ++receiver_index) {
@@ -533,11 +547,16 @@ CertifiedTraversalExactBatchCertificate certify_traversal_exact_pair_batch(
         const auto& source = traversal.sources[transmitter_index];
         const std::size_t logical_index =
             receiver_index * traversal.sources.size() + transmitter_index;
+        const std::string joint_row_id =
+            receiver.path_id + "/" + source.path_id + "/" +
+            request.reception_time;
         exact_requests.push_back({
             .row_id = traversal.traversal_id + "/" + receiver.path_id + "/" +
                 source.path_id,
             .receiver = receiver.history,
             .source = source.history,
+            .receiver_path_id = receiver.path_id,
+            .source_path_id = source.path_id,
             .reception_time = request.reception_time,
             .search_lower = request.search_lower,
             .search_upper = request.search_upper,
@@ -553,6 +572,10 @@ CertifiedTraversalExactBatchCertificate certify_traversal_exact_pair_batch(
             .warm_start = request.warm_starts == nullptr
                 ? nullptr
                 : &(*request.warm_starts)[logical_index],
+            .joint_root_point_state =
+                joint_root_point_state(joint_row_id),
+            .joint_receiver_history = joint_history(receiver.path_id),
+            .joint_transmitter_history = joint_history(source.path_id),
         });
       }
     }

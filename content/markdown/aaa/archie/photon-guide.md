@@ -1,10 +1,25 @@
 # Photon Guide
 
-The photon app is an inspection workbench, not a proof document. It lets a reader inspect whether a paired planar Noether braid candidate can produce coherent field and polarization readouts before the full photon proof is available.
+The photon app is an inspection workbench, not a proof document. It visualizes a prescribed, contra-rotating planar pair. The current state uses the same polarity assignment on both braids rather than the canonical polarity-conjugate carrier relation, so it is not a physical photon referent.
+
+Read this alongside:
+
+- [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md)
+- [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
+- [Master Equation](../dynamics/master-equation.md)
+- [Braid Analysis Methodology](../noether-braid/braid-analysis-methodology.md)
+
+## Claim Grade and Referent
+
+| Surface | Claim grade | What it establishes | Falsifier |
+| --- | --- | --- | --- |
+| Runtime formulas and controls | `measured` at display-only-visualization grade | The named browser runtime produces the documented prescribed-path readouts. | A current browser run or source inspection shows a different formula, control, provenance row, or label. |
+| Candidate geometry and polarization fit | `guessed` | The display can identify settings worth separate analysis. It does not establish force balance, retention, binding, stability, or physical realization. | An independent analysis shows that the displayed diagnostic is not produced from the declared source record, or that its reported fit cannot be reproduced from the exported samples. |
+| Physical photon branch | referent-pending | No polarity-conjugate EOM-retained photon branch has been exhibited. A prescribed circular history cannot supply that missing referent. | An independently accepted branch certificate exhibits the canonical carrier relation, complete causal-root ledger, force balance, retained evolution, stability, and photon observables from one record. |
 
 ## What This App Shows
 
-The photon app is an exploratory diagnostic for a candidate photon modeled as two contra-rotating flat Noether braids. It is meant to help inspect the candidate geometry, Virtual Observer field readouts, and derived polarization diagnostics. It is not a proof of photon closure.
+The photon app is an exploratory diagnostic for two contra-rotating flat Noether braids. It is meant to help inspect the prescribed geometry, Virtual Observer field readouts, and derived polarization diagnostics. It is not a proof of photon closure and does not implement the canonical polarity-conjugate carrier.
 
 The left braid is the trailing braid and rotates counter-clockwise. The right braid is the leading braid and rotates clockwise. The app shows the braids face-on so the binary 1/2/3 motion is visible; in the candidate geometry, the planar braids are perpendicular to the line of translation.
 
@@ -19,7 +34,7 @@ The lower stage contains two observer-level readouts:
 - Electric Field: the transverse electric-field readout reconstructed from the branch-weighted causal hits at the current Virtual Observer coordinate.
 - Polarization: the reference-frequency component fitted from the actual branch-sum field over the slowest enabled layer's common period, with the current field vector, analyzer axis, and optional raw common-period points.
 
-The plot covers three full reference-channel cycles. The white now line moves left to right, and the app leaves only a short forward gap ahead of that line blank so the waveform stays visible when time wraps around. For an ideal plane-wave comparison moving along $+\hat{\mathbf x}$, $\mathbf B$ is recovered from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$, so it is not plotted as a separate graph.
+The plot covers three full reference-channel cycles. The white now line moves left to right, and the app leaves only a short forward gap ahead of that line blank so the waveform stays visible when time wraps around. For the app’s ideal plane-wave comparison moving along $+\hat{\mathbf x}$, $\mathbf B$ is reconstructed with the selected signal speed as $\mathbf B=(1/c_{\mathrm{sig}})\hat{\mathbf x}\times\mathbf E$, so it is not plotted as a separate graph.
 
 ## Basic Controls
 
@@ -44,7 +59,7 @@ Presets are starting points for inspection, not certified photon branches. They 
 | Preset | What it sets up | How to read it |
 |---|---|---|
 | Balanced pair | All binaries enabled, indexed frequencies `4`, `2`, `1`, speed-matched default radii, and all phases at `0` degrees. | Baseline contra-rotating pair for comparing later edits. |
-| Linear candidate | Only the O binaries enabled, with both braids phase-aligned. | A simple one-axis transverse readout candidate. |
+| Linear candidate | Only binary 3 is enabled, with both braids phase-aligned. | A simple one-axis transverse readout candidate. |
 | Right circular candidate | All binaries enabled with a handed leading/trailing phase pattern. | A handed phase-lock candidate; it is not a certified circular photon branch. |
 | Left circular candidate | The mirror handed phase pattern of the right-circular candidate. | A comparison state for reversing the fitted handed component. |
 | Phase-offset stress | All binaries enabled, nonzero observer position, small $\Delta x$, and nontrivial phase offsets. | A stress test for the causal-root solver and polarization fit. |
@@ -65,7 +80,7 @@ The search should flag a configuration as interesting when it has one or more of
 - Sharp transitions: small changes in phase, $\Delta x$, Virtual Observer position, or radius produce a large change in the fitted polarization.
 - Robust patterns: the same behavior survives small nudges to the settings instead of depending on one exact slider position.
 - Absolute-history agreement or divergence: the absolute-history comparison either preserves the co-moving behavior, which is a stability clue, or changes it strongly, which is a useful stress clue.
-- Causal-root structure: low missed-transmitter count, healthy Jacobian values together with a bounded transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$, signed root playback $D_r/D_t$, repeatable phase-at-hit families, or organized same-transmitter and partner-hit roots.
+- Causal-root structure: low missed-transmitter count, healthy Jacobian values together with a bounded transmitter-side acceleration weight $W^{\mathrm{acc}}=c_{\mathrm{sig}}/|D_t|$, signed root playback $D_r/D_t$, repeatable phase-at-hit families, or organized same-transmitter and partner-hit roots.
 - Simple explanations: fewer active binaries, integer frequency ratios, simple phase offsets, or clean leading/trailing symmetry are preferred when the diagnostic quality is similar.
 - Diversity: the results list should avoid many tiny variations of the same pattern and keep representative examples from different pattern families.
 
@@ -93,17 +108,17 @@ The Virtual Observer controls choose where the sample point is placed in the app
 
 The `x`, `y`, and `z` sliders mark the zero point and snap values very close to zero to exactly `0`.
 
-`Local c mode` chooses how the app sets the speeds used by the moving-apparatus solver. `Direct` uses the two speed sliders. `Lorentz factor` derives both speeds from `Local γ` as a first chart-style approximation of local $c/c_f$.
+`Local c mode` chooses how the app sets the speeds used by the moving-apparatus solver. `Direct` uses the two speed sliders. `Lorentz factor` derives both speeds from `Lorentz factor γ⋆` as a first chart-style approximation of local $c/c_f$.
 
 `Signal c/c_f` sets the causal signal speed used by the current root solve. At the default value `1.00`, the branch signal speed is $c_f$. Lower values let the diagnostic inspect slower local-signal regimes.
 
-`Photon c_\gamma/c_f` sets the photon-channel translation speed used by the default `Absolute history` calculation.
+`Photon speed c_\gamma/c_f` sets the photon-channel translation speed used by the `Absolute transmitter history` calculation.
 
-When `Local c mode` is `Lorentz factor`, the `Signal c/c_f` and `Photon c_\gamma/c_f` sliders become readouts for the derived value. Change `Local γ` to change the solver speed in that mode.
+When `Local c mode` is `Lorentz factor`, the `Signal c/c_f` and `Photon speed c_\gamma/c_f` sliders become readouts for the derived value. Change `Lorentz factor γ⋆` to change the solver speed in that mode.
 
-`Absolute history` makes the Electric Field plot use the moving-apparatus diagnostic. In that mode, each architrino transmitter history and the Virtual Observer history translate along $+\hat{\mathbf x}$ at $c_\gamma$, and the shared solver helper solves the moving circular transmitter against the moving Virtual Observer. This remains a diagnostic layer for the moving-apparatus calculation; the co-moving mode remains useful for comparison.
+`Absolute transmitter history` makes the Electric Field plot use the moving-apparatus diagnostic. In that mode, each architrino transmitter history and the Virtual Observer history translate along $+\hat{\mathbf x}$ at $c_\gamma$, and the shared solver helper solves the moving circular transmitter against the moving Virtual Observer. This remains a diagnostic layer for the moving-apparatus calculation; the co-moving mode remains useful for comparison.
 
-The plotted E curve is recalculated by solving the causal-root equation from every active architrino transmitter history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $W^{\mathrm{acc}}/R^2$, where $R$ is the transmitter-to-observer distance at the root and $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ is computed from the same retained root record. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
+The plotted E curve is recalculated by solving the causal-root equation from every active architrino transmitter history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $W^{\mathrm{acc}}/R^2$, where $R$ is the transmitter-to-observer distance at the root and $W^{\mathrm{acc}}=c_{\mathrm{sig}}/\lvert D_t\rvert$ is computed from the same retained root record. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
 
 The $\mathbf E$ graph auto-scales its vertical span from the maximum visible $|E_y|$ or $|E_z|$ sample, so the curve stays readable without changing the diagnostic field values. The displayed field comes directly from retained roots and the radial inverse-square causal-hit form rather than from a separate near/far mixing slider.
 
@@ -239,6 +254,11 @@ $$
 and the displayed analyzer fraction is
 
 $$
+\mu_{\mathrm{analyzer}}
+=
+\frac{|\hat{\mathbf a}\cdot\mathbf E|^2}
+{|\mathbf E|^2+\varepsilon}
+$$
 
 The common-period energy fraction is
 
@@ -246,12 +266,7 @@ $$
 \bar\mu_{\mathrm{analyzer}}
 =
 \frac{\left\langle|\hat{\mathbf a}\cdot\mathbf E|^2\right\rangle}
-{\left\langle|\mathbf E|^2\right\rangle+\varepsilon}.
-$$
-\mu_{\mathrm{analyzer}}
-=
-\frac{|\hat{\mathbf a}\cdot\mathbf E|^2}
-{|\mathbf E|^2+\varepsilon}
+{\left\langle|\mathbf E|^2\right\rangle+\varepsilon}
 $$
 
 Treat polarization agreement as a diagnostic signal. A useful fit can identify a parameter regime worth studying, but it does not by itself establish a physical photon branch.
@@ -269,20 +284,24 @@ The live Diagnostics panel includes a quality word when a readout has a useful d
 | 5 | Mean&nbsp;delay | The average travel time from transmitter history roots to the Virtual Observer. |
 | 6 | Transmitter&nbsp;count | How many active architrino transmitters are included. Each enabled binary contributes two transmitters. |
 | 7 | Root&nbsp;count | How many causal roots were retained after solving transmitter histories. More than the transmitter count means at least one transmitter has multiple roots. |
-| 8 | Max&nbsp;transmitter&nbsp;v/c_f | The fastest active transmitter speed compared with field speed. Above `1` means super-field-speed transmitter motion is present; that is a regime indicator, not a delay-solve failure by itself. |
-| 9 | Min \|J\| | The smallest Jacobian magnitude in the causal-root sum. Very small values mean the branch is close to a pile-up or caustic. |
-| 10 | Self-hit&nbsp;diagnostics | The interactive snapshot defers the heavier same-transmitter sweep so animation and control changes remain responsive. Dedicated sweep records retain those diagnostics outside the frame loop. |
-| 11 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
-| 12 | No&nbsp;catch-up&nbsp;sources | How many source histories did not causally catch the moving Virtual Observer in the scanned window. This can be a real moving-apparatus result when $c_\gamma$ is close to $c_{\mathrm{sig}}$. |
-| 13 | Stale&nbsp;windows | How many scan windows looked too old for the selected hit time. |
-| 14 | Near&nbsp;misses | How many source histories came close to a root but did not retain one. These deserve numerical caution. |
-| 15 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
-| 16 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
-| 17 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
-| 18 | Left&nbsp;120-degree&nbsp;spacing&nbsp;error | How far the left braid's three indexed phase gaps depart from equal 120-degree spacing. |
-| 19 | Right&nbsp;120-degree&nbsp;spacing&nbsp;error | How far the right braid's three indexed phase gaps depart from equal 120-degree spacing. |
-| 20 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
-| 21 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 8 | Motion&nbsp;history | Names whether the photon-constrained transmitter-history provider supplied the paths. |
+| 9 | Field&nbsp;reconstruction | Names prescribed-path analysis as the owner of the displayed reconstruction when that provenance is present. |
+| 10 | Max&nbsp;transmitter&nbsp;v/c_f | The fastest active transmitter speed compared with field speed. Above `1` means super-field-speed transmitter motion is present; that is a regime indicator, not a delay-solve failure by itself. |
+| 11 | Min \|J\| | The smallest Jacobian magnitude in the causal-root sum. Very small values mean the branch is close to a pile-up or caustic. |
+| 12 | Self-hit&nbsp;diagnostics | The interactive snapshot defers the heavier same-transmitter sweep so animation and control changes remain responsive. Dedicated sweep records retain those diagnostics outside the frame loop. |
+| 13 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
+| 14 | No&nbsp;catch-up&nbsp;sources | How many source histories did not causally catch the moving Virtual Observer in the scanned window. This can be a real moving-apparatus result when $c_\gamma$ is close to $c_{\mathrm{sig}}$. |
+| 15 | Stale&nbsp;windows | How many scan windows looked too old for the selected hit time. |
+| 16 | Near&nbsp;misses | How many source histories came close to a root but did not retain one. These deserve numerical caution. |
+| 17 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
+| 18 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
+| 19 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
+| 20 | Left&nbsp;120-degree&nbsp;spacing&nbsp;error | How far the left braid's three indexed phase gaps depart from equal 120-degree spacing. |
+| 21 | Right&nbsp;120-degree&nbsp;spacing&nbsp;error | How far the right braid's three indexed phase gaps depart from equal 120-degree spacing. |
+| 22 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 23 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-braid source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+
+When present, `Analysis library` names the analysis implementation that produced the formula summary. These provenance rows describe ownership and evidence grade; they do not promote the visualization into independent numerical evidence.
 
 ## Formulas
 

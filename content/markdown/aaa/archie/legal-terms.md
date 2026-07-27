@@ -8,7 +8,7 @@ Basic terms: Architrino is open source, published in good faith, and offered for
 
 ## License
 
-The Architrino repository is open source under the [MIT License](../../../../LICENSE), Copyright (c) 2026 J Mark Morris.
+Project-authored Architrino code and documents are open source under the [MIT License](../../../../LICENSE), Copyright (c) 2026 J Mark Morris. Bundled third-party libraries, datasets, images, and derivatives retain their own licenses and attribution requirements; see [Licenses & Attributions](licenses-attributions.md).
 
 In broad terms, the MIT License allows use, copying, modification, merging, publication, distribution, sublicensing, and sale of copies of the software, as long as the copyright notice and permission notice are included in copies or substantial portions of the software.
 

@@ -15,7 +15,7 @@ const MARKDOWN_EXTENSIONS = new Set([".md"]);
 const SURFACE_EXTENSIONS = new Set([".md", ".json", ".js", ".mjs", ".html", ".css"]);
 const args = process.argv.slice(2);
 const strict = args.includes("--strict");
-const includeArchie = args.includes("--include-archie");
+const excludeArchie = args.includes("--exclude-archie");
 const surfaceMode = args.includes("--surface");
 const wantsHelp = args.includes("--help") || args.includes("-h");
 const targetArgs = args.filter((arg) => !arg.startsWith("-"));
@@ -23,7 +23,7 @@ const rootDir = process.cwd();
 
 if (wantsHelp) {
   console.log(
-    "Usage: node scripts/audit-aaa-corpus-drift.mjs [--strict] [--include-archie] [--surface] [path ...]"
+    "Usage: node scripts/audit-aaa-corpus-drift.mjs [--strict] [--exclude-archie] [--surface] [path ...]"
   );
   console.log(
     "Scans AAA markdown, or with --surface scans reference/app/scene surfaces, for recurring terminology drift and closure-overclaim patterns."
@@ -33,11 +33,20 @@ if (wantsHelp) {
 
 const rules = [
   {
+    id: "causal-delay-rword",
+    description: "Disallowed legacy causal-delay wording in authored AAA prose.",
+    pattern: /\b(retarded|retarding|retardation|retard)\b/i,
+    allowedPattern: /explicit enforcement exception|terms are disallowed/i,
+    suggestion: "Use path history, causal wake surface, causal isochron, delayed, or causal-delay wording.",
+  },
+  {
     id: "substrate-field-wake-drift",
     description: "Substrate-level field wording that usually wants wake/causal-wake language.",
     pattern:
       /\b(field structures|field dynamics|external fields|emitted field|experienced field|emitter field|wake field|field shell|field front)\b/i,
     suggestion: "Use wake, causal wake, wake structure, or effective field after naming the level.",
+    excludePathPattern:
+      /\/archie\/(comparative-glossary|mathematics-terminology|terminology-usage)\.md$/,
   },
   {
     id: "mass-drag-language",
@@ -180,6 +189,7 @@ const rules = [
       /\b(architrino framework|architrino theory|architrino picture|architrino ontology|architrino assembly architecture|Architrino Assembly Architecture)\b/i,
     suggestion:
       "Use the stylized theory name $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ unless referring to a literal title, path, or code identifier.",
+    excludePathPattern: /\/archie\//,
   },
   {
     id: "reader-prose-working-note-language",
@@ -188,6 +198,7 @@ const rules = [
       /\b(Here I|Let(?:'|’)s|Let me|I recommend|we should|we need|smart antenna|fluffy atom|architrino weather|architrino breeze|chaotic mess|rigid rock|Take one large)\b/i,
     suggestion:
       "Rewrite as formal, reader-ready prose with scoped claims and explicit closure-target language.",
+    excludePathPattern: /\/archie\/comics(?:\/|\.md$)/,
   },
   {
     id: "reader-prose-placeholder-language",
@@ -195,6 +206,8 @@ const rules = [
     pattern: /\b(placeholder|stub|previously empty|Suggested Refinements|Immediate Next Steps)\b/i,
     suggestion:
       "Promote to a scoped purpose, status, closure-target, or missing-material section rather than leaving implementation-note language.",
+    excludePathPattern:
+      /\/archie\/(comparative-glossary|mathematics-terminology)\.md$/,
   },
 ];
 
@@ -259,10 +272,7 @@ function normalizePath(value) {
 }
 
 function shouldSkip(relativePath) {
-  if (includeArchie) {
-    return false;
-  }
-  return relativePath.startsWith("content/markdown/aaa/archie/");
+  return excludeArchie && relativePath.startsWith("content/markdown/aaa/archie/");
 }
 
 function shouldIncludeFile(relativePath) {
@@ -319,6 +329,12 @@ for (const file of files) {
   for (const [index, line] of lines.entries()) {
     for (const rule of activeRules) {
       if (rule.pathPattern && !rule.pathPattern.test(`/${file}`)) {
+        continue;
+      }
+      if (rule.excludePathPattern && rule.excludePathPattern.test(`/${file}`)) {
+        continue;
+      }
+      if (rule.allowedPattern && rule.allowedPattern.test(line)) {
         continue;
       }
       if (!rule.pattern.test(line)) {

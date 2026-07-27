@@ -54,7 +54,7 @@ $$
 \qquad
 \Box_{c_{\text{GW}}^{\mathrm{eff}}}\equiv
 -\frac{1}{(c_{\text{GW}}^{\mathrm{eff}})^2}\partial_{t_{\mathrm{eff}}}^2
-+\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}
++(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}
 $$
 
 This display is the GR-normalized observer-level target, not a derived lemma. A native derivation must obtain three ingredients from one constitutive record: the tensor kinetic normalization, the source coupling $16\pi G_{\text{eff}}/(c_{\text{GW}}^{\text{eff}})^4$, and the constraints that remove non-TT components. Linearizing an assumed effective field equation would check its consequences but would not derive any of those ingredients from Noether sea dynamics.

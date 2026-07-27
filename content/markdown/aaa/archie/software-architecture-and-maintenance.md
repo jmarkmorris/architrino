@@ -60,6 +60,32 @@ Examples:
 - do not put long-term content rules into ad hoc runtime conditionals,
 - and do not let temporary runtime workarounds quietly replace authored scene or document structure.
 
+## Live Architecture Map
+
+The canonical paths are:
+
+- `index.html`, `app.js`, and `style.css`: root web shell and composition entry
+- `src/apps/architrino/`: scene-navigation application runtime
+- `src/apps/`: standalone application runtimes and focused app modules
+- `src/runtime/`, `src/services/`, and `src/domain/`: shared rendering, service, and domain responsibilities
+- `content/markdown/aaa/`: authored reader-facing corpus
+- `content/scenes/`: authored scene hierarchy and application index
+- `content/graph/` and `content/generated/`: generated consumers, never hand-authored sources
+- `src/eom/`: the EOM solver, the sole forward production solver target
+- `tests/`: runtime, content, solver, and contract verification
+
+JavaScript solver code is reference, fallback, fixture, or comparison code only. It must not become another production solver or bypass a missing EOM-solver capability. Application composition roots should consume the EOM solver through declared contracts and keep rendering or prescribed-path diagnostics at their stated evidence grade.
+
+Common repository checks are:
+
+```bash
+node scripts/validate-content.mjs
+node scripts/build-scene-graph.mjs --check
+node --test
+```
+
+Run a narrower owning test when a change does not justify the full suite. Generated-content checks normally use `--check`; regeneration belongs to an explicitly authorized regeneration or final publication workflow.
+
 ## Canonical Path Over Coexistence
 
 Parallel implementations should be treated as a smell unless they are deliberately temporary and explicitly named as such.

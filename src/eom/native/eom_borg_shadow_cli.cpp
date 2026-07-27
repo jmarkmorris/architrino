@@ -1274,6 +1274,51 @@ void run(
             << result.timing.common_domain_wall_seconds
             << ",\"historyCopyHashWallSeconds\":"
             << result.timing.history_copy_hash_wall_seconds
+            << ",\"endpointPositionLookupWallSeconds\":"
+            << result.timing.history.endpoint_position_lookup.wall_seconds
+            << ",\"endpointPositionLookupDiskBlockLoads\":"
+            << result.timing.history.endpoint_position_lookup
+                   .disk_block_load_count
+            << ",\"endpointPositionLookupDiskCacheMisses\":"
+            << result.timing.history.endpoint_position_lookup
+                   .disk_cache_miss_count
+            << ",\"endpointVelocityLookupWallSeconds\":"
+            << result.timing.history.endpoint_velocity_lookup.wall_seconds
+            << ",\"endpointVelocityLookupDiskBlockLoads\":"
+            << result.timing.history.endpoint_velocity_lookup
+                   .disk_block_load_count
+            << ",\"endpointVelocityLookupDiskCacheMisses\":"
+            << result.timing.history.endpoint_velocity_lookup
+                   .disk_cache_miss_count
+            << ",\"segmentConstructionWallSeconds\":"
+            << result.timing.history.segment_construction.wall_seconds
+            << ",\"segmentConstructionDiskBlockLoads\":"
+            << result.timing.history.segment_construction
+                   .disk_block_load_count
+            << ",\"segmentConstructionDiskCacheMisses\":"
+            << result.timing.history.segment_construction
+                   .disk_cache_miss_count
+            << ",\"tailBlockCopyWallSeconds\":"
+            << result.timing.history.tail_block_copy.wall_seconds
+            << ",\"tailBlockCopyDiskBlockLoads\":"
+            << result.timing.history.tail_block_copy.disk_block_load_count
+            << ",\"tailBlockCopyDiskCacheMisses\":"
+            << result.timing.history.tail_block_copy.disk_cache_miss_count
+            << ",\"fingerprintMetadataUpdateWallSeconds\":"
+            << result.timing.history.fingerprint_metadata_update.wall_seconds
+            << ",\"fingerprintMetadataUpdateDiskBlockLoads\":"
+            << result.timing.history.fingerprint_metadata_update
+                   .disk_block_load_count
+            << ",\"fingerprintMetadataUpdateDiskCacheMisses\":"
+            << result.timing.history.fingerprint_metadata_update
+                   .disk_cache_miss_count
+            << ",\"historyInflationWallSeconds\":"
+            << result.timing.history.history_inflation.wall_seconds
+            << ",\"historyInflationDiskBlockLoads\":"
+            << result.timing.history.history_inflation.disk_block_load_count
+            << ",\"historyInflationDiskCacheMisses\":"
+            << result.timing.history.history_inflation
+                   .disk_cache_miss_count
             << ",\"correctionWallSeconds\":"
             << result.timing.correction_wall_seconds
             << ",\"reusedStartSnapshotCount\":"

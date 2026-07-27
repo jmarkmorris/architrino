@@ -147,6 +147,23 @@ class NativeBorgProcessTests(unittest.TestCase):
         self.assertGreater(
             len(response["publishedExtensions"][0]["segments"]), 0
         )
+        history_phase_fields = (
+            "endpointPositionLookupWallSeconds",
+            "endpointVelocityLookupWallSeconds",
+            "segmentConstructionWallSeconds",
+            "tailBlockCopyWallSeconds",
+            "fingerprintMetadataUpdateWallSeconds",
+            "historyInflationWallSeconds",
+        )
+        self.assertTrue(all(
+            response["timing"][field] >= 0
+            for field in history_phase_fields
+        ))
+        self.assertAlmostEqual(
+            response["timing"]["historyCopyHashWallSeconds"],
+            sum(response["timing"][field] for field in history_phase_fields),
+            delta=1e-7,
+        )
 
     def test_display_grade_preserves_numerical_path_but_marks_every_output_display_only(self) -> None:
         protocol = "\n".join((
@@ -889,6 +906,29 @@ class NativeBorgProcessTests(unittest.TestCase):
             self.assertGreater(history_storage["diskBytes"], 0)
             self.assertFalse(stale.exists())
             self.assertGreaterEqual(len(list(storage.rglob("*.aehb"))), 2)
+            phase_disk_loads = sum(
+                paged["timing"][field]
+                for field in (
+                    "endpointPositionLookupDiskBlockLoads",
+                    "endpointVelocityLookupDiskBlockLoads",
+                    "segmentConstructionDiskBlockLoads",
+                    "tailBlockCopyDiskBlockLoads",
+                    "fingerprintMetadataUpdateDiskBlockLoads",
+                    "historyInflationDiskBlockLoads",
+                )
+            )
+            phase_cache_misses = sum(
+                paged["timing"][field]
+                for field in (
+                    "endpointPositionLookupDiskCacheMisses",
+                    "endpointVelocityLookupDiskCacheMisses",
+                    "segmentConstructionDiskCacheMisses",
+                    "tailBlockCopyDiskCacheMisses",
+                    "fingerprintMetadataUpdateDiskCacheMisses",
+                    "historyInflationDiskCacheMisses",
+                )
+            )
+            self.assertEqual(phase_disk_loads, phase_cache_misses)
 
             replacement_request = "\n".join((
                 PROTOCOL_MAGIC,

@@ -16,6 +16,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <map>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -482,6 +483,131 @@ void print_traversal_exact_batch(
               << "\",\"root_count\":" << row.roots.size() << '}';
   }
   std::cout << "]}";
+}
+
+struct JointTraversalCarrierControl {
+  eom::ExactPairCertificate direct;
+  eom::CertifiedTraversalExactBatchCertificate carried;
+  eom::CertifiedTraversalExactBatchCertificate missing;
+};
+
+JointTraversalCarrierControl joint_traversal_carrier_control() {
+  const eom::RetainedHistory receiver(
+      "joint-traversal-receiver",
+      {segment("0", "3", {"1", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.010200000000001", "0")});
+  const eom::RetainedHistory source(
+      "joint-traversal-source",
+      {segment("0", "3", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.009800000000001", "0")});
+  eom::JointAffineCubicSegment receiver_segment;
+  eom::JointAffineCubicSegment source_segment;
+  receiver_segment.start_time = source_segment.start_time = 0.0;
+  receiver_segment.end_time = source_segment.end_time = 3.0;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    for (std::size_t degree = 0U; degree < 4U; ++degree) {
+      receiver_segment.position_coefficients[axis][degree] = {0.0};
+      source_segment.position_coefficients[axis][degree] = {0.0};
+    }
+  }
+  receiver_segment.position_coefficients[0][0] = {1.02e-2};
+  source_segment.position_coefficients[0][0] = {9.8e-3};
+  const std::map<std::string, eom::JointAffineRetainedHistory>
+      joint_histories{
+          {"joint-traversal-receiver",
+           eom::JointAffineRetainedHistory(
+               "joint-traversal-receiver", {"shared-translation"},
+               {receiver_segment})},
+          {"joint-traversal-source",
+           eom::JointAffineRetainedHistory(
+               "joint-traversal-source", {"shared-translation"},
+               {source_segment})},
+      };
+  const auto direct = eom::certify_exact_pair({
+      .row_id = "joint_traversal_direct_control",
+      .receiver = &receiver,
+      .source = &source,
+      .receiver_path_id = "joint-traversal-receiver",
+      .source_path_id = "joint-traversal-source",
+      .reception_time = "2",
+      .search_lower = "0",
+      .search_upper = "1.9",
+      .field_speed = "1",
+      .root_tolerance = "0.001",
+      .max_depth = 256,
+      .max_cells = 500000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .force_precision_escalation = true,
+      .joint_receiver_history =
+          &joint_histories.at("joint-traversal-receiver"),
+      .joint_transmitter_history =
+          &joint_histories.at("joint-traversal-source"),
+  });
+  const eom::CertifiedTraversalRequest traversal_request{
+      .traversal_id = "joint-traversal-carrier-control",
+      .receivers = {{
+          "joint-traversal-receiver", &receiver, true}},
+      .sources = {{
+          "joint-traversal-source", &source, true}},
+      .reception = {"2", "2"},
+      .emission = {"0", "1.9"},
+      .field_speed = "1",
+      .exact_tile_pair_limit = 1,
+      .maximum_nodes = 8,
+      .maximum_emission_depth = 0,
+  };
+  const auto traversal =
+      eom::certify_moving_history_traversal(traversal_request);
+  const eom::CertifiedTraversalExactBatchRequest carried_request{
+      .traversal_request = &traversal_request,
+      .traversal_certificate = &traversal,
+      .reception_time = "2",
+      .search_lower = "0",
+      .search_upper = "1.9",
+      .root_tolerance = "0.001",
+      .root_max_depth = 256,
+      .root_max_cells = 500000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .maximum_exact_pairs = 1,
+      .thread_count = 1,
+      .joint_histories = &joint_histories,
+  };
+  auto missing_request = carried_request;
+  missing_request.joint_histories = nullptr;
+  return {
+      .direct = direct,
+      .carried =
+          eom::certify_traversal_exact_pair_batch(carried_request),
+      .missing =
+          eom::certify_traversal_exact_pair_batch(missing_request),
+  };
+}
+
+void print_joint_traversal_carrier_control(
+    const JointTraversalCarrierControl& control) {
+  std::cout << "{\"direct\":";
+  print_pair(control.direct);
+  std::cout << ",\"carried_batch_status\":\""
+            << control.carried.status
+            << "\",\"carried\":";
+  if (control.carried.exact_pair_certificates.size() != 1U) {
+    throw std::runtime_error(
+        "joint traversal carrier control lacks its exact row");
+  }
+  print_pair(control.carried.exact_pair_certificates.front());
+  std::cout << ",\"missing_batch_status\":\""
+            << control.missing.status
+            << "\",\"missing\":";
+  if (control.missing.exact_pair_certificates.size() != 1U) {
+    throw std::runtime_error(
+        "joint traversal missing-carrier control lacks its exact row");
+  }
+  print_pair(control.missing.exact_pair_certificates.front());
+  std::cout << '}';
 }
 
 std::vector<eom::ExactPairCertificate> pair_fixture() {
@@ -1382,6 +1508,9 @@ void print_all() {
   print_traversal_exact_batch(accelerating_exact);
   std::cout << ",\"accelerating_traversal_exact_batch_single_thread\":";
   print_traversal_exact_batch(accelerating_exact_single);
+  std::cout << ",\"joint_traversal_carrier_control\":";
+  print_joint_traversal_carrier_control(
+      joint_traversal_carrier_control());
   std::cout << ",\"pairs\":[";
   const auto pairs = pair_fixture();
   for (std::size_t index = 0; index < pairs.size(); ++index) {

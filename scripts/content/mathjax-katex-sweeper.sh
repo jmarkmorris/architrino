@@ -104,8 +104,6 @@ done
 inline_compat_matches="$(
   rg -n --glob "*.md" '\\\\\\(|\\\\\\)' "$ROOT" \
     --glob '!AGENTS.md' \
-    --glob '!content/markdown/aaa/archie/academic-style-guide.md' \
-    --glob '!content/markdown/aaa/archie/mathematics-style-guide.md' \
     || true
 )"
 

@@ -22,18 +22,19 @@ The app shows an A1 Noether braid whose velocity-dependent boundary is treated a
 3. the relative-length readout,
 4. the normalized center-of-mass energy and mass-equivalent ledger.
 
-The central visual point is that the Lorentz factor is not only a formula on a panel. In the zero-extra-scale lesson case, it is the aspect ratio of the displayed oblate spheroidal envelope:
+The central visual point is that the Lorentz factor is not only a formula on a panel. In the app’s zero-extra-scale display rule, the prescribed oblate envelope is assigned the aspect ratio
 $$
 \xi
 =\frac{R_{\parallel}}{R_{\perp}}
 =\sqrt{1-\beta_f^2}
 =\frac{1}{\gamma_f}
 \qquad
-\gamma_f
+\gamma_{\mathrm{rul}}^{(\mathrm{display})}
 =\frac{R_{\perp}}{R_{\parallel}}
+=\gamma_f
 $$
 
-The app therefore uses geometry as a dictionary for the Lorentz kinematics, while leaving the derivation burden in the theory documents.
+This is a visualization assignment, not a definition of $\gamma_f$ and not a result from evolved braid dynamics. The app uses geometry as a dictionary for the Lorentz kinematics, while leaving the derivation burden in the theory documents.
 
 ## What the App Shows
 
@@ -161,15 +162,16 @@ falls in lockstep with the length-contraction factor because the denominator is 
 | Control | Meaning |
 | --- | --- |
 | `Paths` | Toggles visible orbit paths and charge traces. |
-| `Surface` | Toggles the surface rendering of the oblate spheroidal envelope. Its sample poles align with the bulk-motion axis $\hat{\mathbf{n}}$. |
+| `Surface` | Toggles a live display-only delayed-potential preview over the prescribed oblate envelope. The preview uses prescribed-path analysis and its own status line; it is not a retained EOM-solver branch or a proof. |
 | `Axes` | Toggles momentum-frame guides: a short bulk-motion contraction guide along $\hat{\mathbf{n}}$ plus two transverse axes perpendicular to it. |
 | `Pause` / `Resume` | Pauses or resumes the animation. |
 | Home icon | Returns from the standalone lesson to the main webapp. |
+| `Geometry` | Selects the authored geometry record. The current shipped menu contains the A1 geometry. |
 | `Reference orbit` | Sets the reference transverse scale and rescales the displayed Family-A braid from that reference. |
 | $\beta_f=v/c_f$ | Sets the displayed velocity fraction, from rest to the formal field-speed limit. |
 | `Cycle` | Changes animation phase speed only. It does not change $\beta_f$, $\gamma_f$, or the physical factors. |
-| `Reset` | Restores the view orientation and default phase. |
-| `Focus` | Returns keyboard focus to the 3D stage. |
+
+When the 3D stage has keyboard focus, the arrow keys rotate about two axes, `Q`/`E` rotate about the third, `R` resets the view orientation, and `Space` pauses or resumes the animation. Holding `Shift` increases the rotation step.
 
 The documentation buttons open this note, the return-cycle bridge, and the Lorentz kinematics document inside the app's markdown overlay.
 

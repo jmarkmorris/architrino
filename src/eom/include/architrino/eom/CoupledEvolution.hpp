@@ -319,8 +319,24 @@ struct NativeAccelerationSnapshotCertificate {
   NativeSnapshotTiming timing;
 };
 
+struct NativeHistoryPhaseTiming {
+  double wall_seconds = 0.0;
+  std::uint64_t disk_block_load_count = 0U;
+  std::uint64_t disk_cache_miss_count = 0U;
+};
+
+struct NativeHistoryTiming {
+  NativeHistoryPhaseTiming endpoint_position_lookup;
+  NativeHistoryPhaseTiming endpoint_velocity_lookup;
+  NativeHistoryPhaseTiming segment_construction;
+  NativeHistoryPhaseTiming tail_block_copy;
+  NativeHistoryPhaseTiming fingerprint_metadata_update;
+  NativeHistoryPhaseTiming history_inflation;
+};
+
 struct NativeCorrectedSubstepTiming {
   double history_copy_hash_wall_seconds = 0.0;
+  NativeHistoryTiming history;
   std::size_t reused_start_snapshot_count = 0;
   double snapshot_total_wall_seconds = 0.0;
   std::size_t snapshot_count = 0;
@@ -501,6 +517,7 @@ certify_native_pinned_fold_temporal_onset(
 struct NativeAtomicStepTiming {
   double corrected_substeps_wall_seconds = 0.0;
   double history_copy_hash_wall_seconds = 0.0;
+  NativeHistoryTiming history;
   std::size_t reused_start_snapshot_count = 0;
   double recertification_wall_seconds = 0.0;
   double rejection_wall_seconds = 0.0;
@@ -569,6 +586,7 @@ struct NativeEvolutionTiming {
   double regulator_ladder_wall_seconds = 0.0;
   double common_domain_wall_seconds = 0.0;
   double history_copy_hash_wall_seconds = 0.0;
+  NativeHistoryTiming history;
   // Correction wall time includes its nested snapshot and history phases.
   double correction_wall_seconds = 0.0;
   std::size_t reused_start_snapshot_count = 0;

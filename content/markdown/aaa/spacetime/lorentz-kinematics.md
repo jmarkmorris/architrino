@@ -1152,9 +1152,9 @@ The $c_0^2$ prefactor marks this as an observer-sector potential calibration: $c
 Then the nonrelativistic geodesic limit becomes
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
-=-\xi^{2}\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
+=-\xi^{2}(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
 +O\!\left(\frac{\|\mathbf V\|^2}{c_0^2},\epsilon_{\text{LV}}\right)
-=-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
+=-(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
 +O\!\left(
 \left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|,
 \frac{\|\mathbf V\|^2}{c_0^2},

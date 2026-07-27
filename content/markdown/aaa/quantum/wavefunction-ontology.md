@@ -57,11 +57,11 @@ $$
 \qquad
 \psi\sim\lambda\psi,\quad \lambda\in\mathbb{C}\setminus\{0\}
 $$
-because a constant nonzero complex rescaling does not change the record statistics after normalization. On a spatial chart with effective metric determinant $\gamma_{\mathrm{eff}}$, the measure is
+because a constant nonzero complex rescaling does not change the record statistics after normalization. On a spatial chart define $\gamma_{\mathrm{sp}}\equiv\det(\gamma_{ij}^{\mathrm{eff}})$. The measure is
 $$
 d\nu_\vartheta
 =
-\sqrt{\gamma_{\mathrm{eff}}}\,d^3x_{\mathrm{eff}}
+\sqrt{\gamma_{\mathrm{sp}}}\,d^3x_{\mathrm{eff}}
 $$
 unless the chart declares a different density explicitly. A spatially varying phase is different: it changes momentum, current, and interference data, so it cannot be quotiented away by the same rule. The Aharonov-Bohm phase is an observer-level benchmark for this non-removable holonomy; its derivation belongs to the [holonomy recovery program](../philosophy-history/theory-bridges/quantum-operator-mapping.md), not to a substrate potential postulate in this chapter.
 
@@ -139,30 +139,30 @@ $$
 J_{\psi,\mathrm{eff}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 =
 \frac{\hbar_{\mathrm{eff}}}{2m_{\mathrm{eff}}i}
-\gamma_{\mathrm{eff}}^{ij}\left(\psi_{\mathrm{eff}}^*\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}-\psi_{\mathrm{eff}}\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}^*\right),
+(\gamma_{\mathrm{eff}}^{-1})^{ij}\left(\psi_{\mathrm{eff}}^*\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}-\psi_{\mathrm{eff}}\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}^*\right),
 $$
 $$
 \partial_{t_{\mathrm{eff}}}\!\left(
-\sqrt{\gamma_{\mathrm{eff}}}\rho_{\psi,\mathrm{eff}}
+\sqrt{\gamma_{\mathrm{sp}}}\rho_{\psi,\mathrm{eff}}
 \right)
 +
 \partial_{x_{\mathrm{eff}}^i}\!\left(
-\sqrt{\gamma_{\mathrm{eff}}}J_{\psi,\mathrm{eff}}^i
+\sqrt{\gamma_{\mathrm{sp}}}J_{\psi,\mathrm{eff}}^i
 \right)
 =0
 $$
-Here $\gamma_{\mathrm{eff}}^{ij}$ is the inverse effective spatial metric of the declared observer chart, reducing to $\delta^{ij}$ in its flat weak-response limit. This equation should be read as an effective continuity target, not as a claim that probability is a physical fluid. Let $\rho_{\mathrm{rec}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $J_{\mathrm{rec}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ be the position density and record-facing flux obtained by pushing the same finite-window basin measure $\mu_{*,T_W}$ through the deterministic assembly flow and the declared position projection, and define
+Here $(\gamma_{\mathrm{eff}}^{-1})^{ij}$ is the inverse effective spatial metric of the declared observer chart, reducing to $\delta^{ij}$ in its flat weak-response limit. This equation should be read as an effective continuity target, not as a claim that probability is a physical fluid. Let $\rho_{\mathrm{rec}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $J_{\mathrm{rec}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ be the position density and record-facing flux obtained by pushing the same finite-window basin measure $\mu_{*,T_W}$ through the deterministic assembly flow and the declared position projection, and define
 $$
 \mathcal C_{\mathrm{rec}}
 =
-\frac{1}{\sqrt{\gamma_{\mathrm{eff}}}}
+\frac{1}{\sqrt{\gamma_{\mathrm{sp}}}}
 \left[
 \partial_{t_{\mathrm{eff}}}\!\left(
-\sqrt{\gamma_{\mathrm{eff}}}\rho_{\mathrm{rec}}
+\sqrt{\gamma_{\mathrm{sp}}}\rho_{\mathrm{rec}}
 \right)
 +
 \partial_{x_{\mathrm{eff}}^i}\!\left(
-\sqrt{\gamma_{\mathrm{eff}}}J_{\mathrm{rec}}^i
+\sqrt{\gamma_{\mathrm{sp}}}J_{\mathrm{rec}}^i
 \right)
 \right]
 $$

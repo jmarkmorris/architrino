@@ -49,7 +49,7 @@ At the absolute level, any local neighborhood is crowded:
   \frac{1}{r_{\min}}-\frac{1}{R}
   \right)
   $$
-  The potential variance is infrared divergent, whereas the acceleration variance converges at large $R$ and is controlled by nearby sources. Because the master equation consumes acceleration rows, the dynamically relevant screening claim belongs to the acceleration sum; the scalar potential remains a conditionally defined reconstruction unless a separate summation prescription is declared.
+  The potential variance is infrared divergent, whereas the acceleration variance converges at large $R$ and is controlled by nearby sources. Because the master equation consumes acceleration contributions, the dynamically relevant screening claim belongs to the acceleration sum; the scalar potential remains a conditionally defined reconstruction unless a separate summation prescription is declared.
 
 "Stable" particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
 

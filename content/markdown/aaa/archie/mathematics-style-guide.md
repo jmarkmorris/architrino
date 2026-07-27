@@ -119,22 +119,22 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
 
 ## Propagation and causal set (delayed-only)
 
-- Field speed is $v$; by default we non-dimensionalize to $v=1$.
+- Primitive causal-wake speed is $c_f$; every numerical instantiation uses $c_f=1$.
 - Causal-time condition (CT):
   $$
   \mathbf r_t=\mathbf X_r(T_r)-\mathbf X_t(T_t),\quad
   \Delta_{r\leftarrow t}=T_r-T_t,\quad
-  r=\|\mathbf r_t\|=v\,\Delta_{r\leftarrow t}
+  r=\|\mathbf r_t\|=c_f\,\Delta_{r\leftarrow t}
   $$
 - Causal set:
   $$
   \mathcal C_{r\leftarrow t}(T_r)
   =
-  \{\,T_t<T_r\mid\|\mathbf X_r(T_r)-\mathbf X_t(T_t)\|=v(T_r-T_t)\,\}
+  \{\,T_t<T_r\mid\|\mathbf X_r(T_r)-\mathbf X_t(T_t)\|=c_f(T_r-T_t)\,\}
   $$
 - Conventions:
   - $H(0)=0$ (no instantaneous self-kick).
-  - No $r=0$ causal roots exist beyond $\Delta_{r\leftarrow t}=0$: because $r=v(T_r-T_t)$, $r=0$ implies $T_r=T_t$; that coincident-time case is excluded by $H(0)=0$.
+  - No $r=0$ causal roots exist beyond $\Delta_{r\leftarrow t}=0$: because $r=c_f(T_r-T_t)$, $r=0$ implies $T_r=T_t$; that coincident-time case is excluded by $H(0)=0$.
   - This exclusion does not supply a continuation through a coincident same-transmitter root birth. Verification remains incomplete until one finite transition rule certifies the singular event's root ledger and conserved accounts.
 
 Plain language: A push now only happens if a past causal wake surface has had exactly enough time to reach the receiver.
@@ -147,18 +147,18 @@ Plain language: A push now only happens if a past causal wake surface has had ex
   $$
   \text{source} = q\,\delta(T - T_t)\,\delta^{(3)}(\mathbf X - \mathbf X_{\mathrm{em}})
   $$
--- Expanding causal wake surface at speed v:
+- Expanding causal wake surface at speed $c_f$:
   $$
-  \rho(T,\mathbf X) = \frac{q}{4\pi r^2}\,\delta(r - v\,\Delta)\,H(\Delta),\quad r=\|\mathbf X-\mathbf X_{\mathrm{em}}\|,\ \Delta=T-T_t
+  \rho(T,\mathbf X) = \frac{q}{4\pi r^2}\,\delta(r - c_f\,\Delta)\,H(\Delta),\quad r=\|\mathbf X-\mathbf X_{\mathrm{em}}\|,\ \Delta=T-T_t
   $$
   $$
-  \rho = \frac{q}{4\pi r^2}\,\delta_{S_{v\Delta}}(\mathbf X-\mathbf X_{\mathrm{em}})\,H(\Delta)
+  \rho = \frac{q}{4\pi r^2}\,\delta_{S_{c_f\Delta}}(\mathbf X-\mathbf X_{\mathrm{em}})\,H(\Delta)
   $$
 - Regularization:
   $$
-  \delta(r - v\,\Delta)\ \to\ \delta_\eta(r - v\,\Delta) \;=\; \frac{1}{\sqrt{2\pi}\,\eta}\,\exp\!\Big(\!-\frac{(r - v\,\Delta)^2}{2\,\eta^2}\Big)
+  \delta(r - c_f\,\Delta)\ \to\ \delta_\eta(r - c_f\,\Delta) \;=\; \frac{1}{\sqrt{2\pi}\,\eta}\,\exp\!\Big(\!-\frac{(r - c_f\,\Delta)^2}{2\,\eta^2}\Big)
   $$
-  - Use $\eta$ > 0 when differentiability is required; take $\eta$ → 0 limits in the weak/integrated sense.
+  - Use $\eta > 0$ when differentiability is required; take $\eta\to 0$ limits in the weak/integrated sense.
 
 Plain language: Each emission is a razor-thin causal wake surface; when needed, we thicken it slightly so calculus works smoothly.
 
@@ -208,7 +208,7 @@ DDE view: let native state $\mathsf Z = (\mathbf X, \mathbf V)$. With $\eta>0$ r
 $$
 \frac{d \mathsf Z}{dT} = F\big(\mathsf Z(T), \{\mathsf Z_j(T - \Delta_j)\}_j, T\big)
 $$
-with $\Delta_j$ determined implicitly by $\|\mathbf X(T)-\mathbf X_j(T-\Delta_j)\| = v\,\Delta_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
+with $\Delta_j$ determined implicitly by $\|\mathbf X(T)-\mathbf X_j(T-\Delta_j)\| = c_f\,\Delta_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
 
 Notes:
 - Emission cadence and per-wavefront amplitude are constant at the transmitter; the received acceleration magnitude is modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
@@ -237,7 +237,7 @@ Plain language: a hit changes only the along-the-line piece of your velocity rig
 
 ## Energetics
 
--- Potential (mollified):
+- Potential (mollified):
   - $\Phi_\eta$ is defined using $\delta_\eta$ causal surfaces; at a point:
     $$
     U_{\text{pot}} = q'\,\Phi_\eta
@@ -258,13 +258,13 @@ Plain language: With slightly thick causal wake surfaces, the optional force-boo
 
 ## Units and symbols
 
-- Core dynamics chapters often set field speed to $v=1$ (equivalently $c_f=1$).
+- Core dynamics chapters set primitive causal-wake speed to $c_f=1$.
 - In spacetime closure chapters, keep $c_f$ explicit and use $v$ for drift speed only through channel-subscripted ratios such as $\beta_f=v/c_f$, $\beta_{\text{eff}}=v/c_{\text{eff}}$, or $\beta_\star=v/c_\star$; the paired Lorentz factor inherits the same subscript. Reserve bare $\beta$ and $\gamma$ for quoted standard-physics benchmark formulas.
 - $\epsilon = |e|/6$ is the potential polarity-unit magnitude in observer-level electric bookkeeping; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
 - In axial-inventory and weak-coupling-triad counts, write signed polarity units as $\epsilon_+$ and $\epsilon_-$, for example $5\epsilon_+ + 1\epsilon_-$. Do not use initial-letter polarity shorthand for these inventories.
 - $\kappa>0$ universal coupling.
 - $\eta>0$ mollifier width (regularization parameter).
-- Emission cadence and per-wavefront amplitude are constant. Receiver-side velocity enters signed root playback through $D_r/D_t$ and instantaneous power through the radial factor $\mathbf A\cdot\mathbf V=\|\mathbf A\|V_{r,\parallel}$; it does not multiply the instantaneous acceleration weight.
+- Emission cadence and per-wavefront amplitude are constant. Receiver-side velocity enters signed root playback through $D_r/D_t$ and instantaneous specific power through $\mathbf A_{r\leftarrow t}\cdot\mathbf V_r=\sigma_{tr}\|\mathbf A_{r\leftarrow t}\|V_{r,\parallel}$; it does not multiply the instantaneous acceleration weight.
 - $r$, $\hat{\mathbf{r}}$ as above; $H$ is the Heaviside step function with $H(0)=0$.
 
 Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic polarity unit; transmitter motion sets the arriving acceleration weight, while receiver motion changes root playback, future geometry, and instantaneous power.
@@ -282,14 +282,14 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
 ## Editorial micro-style
 
 - After formal definitions, add a brief “Plain language” sentence.
-- Use consistent event-role notation: $\mathcal C_{r\leftarrow t}(T_r)$, $T_t$, $T_r$, $\mathbf r_t$, $r$, $\hat{\mathbf r}_t$, $v$, $\epsilon$, $\kappa$, $D_t$, $D_r$, $W^{\mathrm{acc}}$, and $J^t$.
+- Use consistent event-role notation: $\mathcal C_{r\leftarrow t}(T_r)$, $T_t$, $T_r$, $\mathbf r_t$, $r$, $\hat{\mathbf r}_t$, $c_f$, $\epsilon$, $\kappa$, $D_t$, $D_r$, $W^{\mathrm{acc}}$, and $J^t$.
 - Equation tags (optional): (CT) causal-time, (EOM) equation of motion, (REG) regularization, (ENER) energetics.
 - Emission cadence and per-wavefront amplitude are constant; receiver-side motion changes the crossing cadence of the emitted wake sequence.
 - Notation for “now”: use $T_{\mathrm{now}}$ or a locally declared $T_\ast$ for a fixed native evaluation time; use $t_{\mathrm{eff,obs}}$ for effective observation time after an observer chart has been declared.
 - Canonical universe-now notation: use $\mathbb{U}_{\text{now}} \equiv S(T)$ for the complete ontic universe state; do not substitute alternate labels or glyph variants.
 - Emitters/receivers are individual architrinos; composite assemblies never emit or receive as wholes; their behavior emerges from constituent architrinos.
 - Use “surrogate location” to denote a stationary, hypothetical transmitter placed on the receiver's current unoriented line of action that reproduces the same instantaneous hit; use “surrogate-location recast” when referring to this rewriting.
-- On first occurrence in a doc: “We work in units with field speed v=1 unless stated otherwise.”
+- On first occurrence in a numerical document: “We work in normalized wake-speed units with $c_f=1$.”
 - KaTeX lint:
   - Use `$...$` inline math for short symbols or ratios in prose.
   - Use `$$...$$` display math only for standalone equations.
@@ -299,7 +299,7 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
 
 - Notation lint (common mistakes):
   - Use bold for vectors: $\mathbf V$, not plain $V$.
-  - In core dynamics derivations, reserve $v$ for field speed; in spacetime closure derivations, reserve $c_f$ for field speed and use $v$ only as drift magnitude in channel-subscripted ratios such as $\beta_f=v/c_f$.
+  - Use $c_f$ for primitive causal-wake speed and $v$ only as drift magnitude in channel-subscripted ratios such as $\beta_f=v/c_f$.
   - Use $\|\mathbf V\|$ for speed magnitude of a vector velocity.
   - Emission cadence and per-wavefront amplitude are constant.
   - Do not write mixed forms like $|V|$ to mean speed; bold the vector and take its norm.

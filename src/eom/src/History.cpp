@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <cerrno>
+#include <chrono>
 #include <cmath>
 #include <cstdint>
 #include <cstdlib>
@@ -23,6 +24,19 @@ namespace architrino::eom {
 namespace {
 
 using ExactRational = boost::multiprecision::cpp_rational;
+using HistoryDiagnosticCounterArray = std::array<
+    HistoryDiagnosticCounters,
+    static_cast<std::size_t>(HistoryDiagnosticPhase::count)>;
+
+thread_local HistoryDiagnosticPhase current_history_diagnostic_phase =
+    HistoryDiagnosticPhase::unclassified;
+thread_local HistoryDiagnosticCounterArray history_diagnostic_counters{};
+
+std::size_t history_diagnostic_phase_index(
+    HistoryDiagnosticPhase phase) noexcept {
+  const auto index = static_cast<std::size_t>(phase);
+  return index < history_diagnostic_counters.size() ? index : 0U;
+}
 
 void fingerprint_token(std::uint64_t& state, const std::string& token) {
   const std::string length = std::to_string(token.size());
@@ -340,6 +354,21 @@ IntervalVector correlated_segment_position_from_join(
 }
 
 }  // namespace
+
+ScopedHistoryDiagnosticPhase::ScopedHistoryDiagnosticPhase(
+    HistoryDiagnosticPhase phase) noexcept
+    : previous_(current_history_diagnostic_phase) {
+  current_history_diagnostic_phase = phase;
+}
+
+ScopedHistoryDiagnosticPhase::~ScopedHistoryDiagnosticPhase() {
+  current_history_diagnostic_phase = previous_;
+}
+
+HistoryDiagnosticCounters current_thread_history_diagnostic_counters(
+    HistoryDiagnosticPhase phase) noexcept {
+  return history_diagnostic_counters[history_diagnostic_phase_index(phase)];
+}
 
 CubicHistorySegment::CubicHistorySegment(
     std::string t_start,
@@ -866,7 +895,11 @@ std::shared_ptr<const ExactHistoryBlock> exact_history_slot_block(
       return entry.block;
     }
   }
+  auto& phase_counters = history_diagnostic_counters[
+      history_diagnostic_phase_index(current_history_diagnostic_phase)];
+  ++phase_counters.disk_cache_miss_count;
   auto loaded = read_exact_history_block(*slot.disk);
+  ++phase_counters.disk_block_load_count;
   std::size_t limit;
   {
     auto& runtime = exact_history_disk_runtime();
@@ -1298,20 +1331,92 @@ RetainedHistory::RetainedHistory(
       uniform_circular_endpoint_certificate_(
           std::move(uniform_circular_endpoint_certificate)) {}
 
-RetainedHistory RetainedHistory::appended(CubicHistorySegment segment) const {
-  validate_segment_join(segments_.back(), segment);
-  std::uint64_t fingerprint_state = fingerprint_state_;
-  fingerprint_segment(fingerprint_state, segment);
-  const IntervalVector position = complete_segment_position_hull(segment);
-  const double speed_upper = std::max(
-      nominal_speed_upper_bound_, segment.nominal_speed_upper_bound());
-  return RetainedHistory(
-      history_id_, segments_.appended(std::move(segment)), fingerprint_state,
-      hull(*full_position_hull_, position), speed_upper,
-      // Appending preserves the analytic circular prefix and extends only the
-      // ordinary cubic approximation. The certificate remains valid on its
-      // original, explicitly bounded reception interval.
-      uniform_circular_endpoint_certificate_);
+RetainedHistory RetainedHistory::appended(
+    CubicHistorySegment segment,
+    HistoryAppendDiagnostics* diagnostics) const {
+  if (diagnostics == nullptr) {
+    validate_segment_join(segments_.back(), segment);
+    std::uint64_t fingerprint_state = fingerprint_state_;
+    fingerprint_segment(fingerprint_state, segment);
+    const IntervalVector position = complete_segment_position_hull(segment);
+    const double speed_upper = std::max(
+        nominal_speed_upper_bound_, segment.nominal_speed_upper_bound());
+    return RetainedHistory(
+        history_id_, segments_.appended(std::move(segment)),
+        fingerprint_state, hull(*full_position_hull_, position), speed_upper,
+        uniform_circular_endpoint_certificate_);
+  }
+  using DiagnosticClock = std::chrono::steady_clock;
+  const auto metadata_start = DiagnosticClock::now();
+  const auto metadata_counters_before =
+      current_thread_history_diagnostic_counters(
+          HistoryDiagnosticPhase::fingerprint_metadata_update);
+  std::uint64_t fingerprint_state;
+  IntervalVector position{
+      Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
+  double speed_upper;
+  {
+    ScopedHistoryDiagnosticPhase phase(
+        HistoryDiagnosticPhase::fingerprint_metadata_update);
+    validate_segment_join(segments_.back(), segment);
+    fingerprint_state = fingerprint_state_;
+    fingerprint_segment(fingerprint_state, segment);
+    position = complete_segment_position_hull(segment);
+    speed_upper = std::max(
+        nominal_speed_upper_bound_, segment.nominal_speed_upper_bound());
+  }
+  const auto metadata_counters_after =
+      current_thread_history_diagnostic_counters(
+          HistoryDiagnosticPhase::fingerprint_metadata_update);
+
+  const auto tail_start = DiagnosticClock::now();
+  const auto tail_counters_before =
+      current_thread_history_diagnostic_counters(
+          HistoryDiagnosticPhase::tail_block_copy);
+  HistorySegmentSequence appended_segments = [&] {
+    ScopedHistoryDiagnosticPhase phase(
+        HistoryDiagnosticPhase::tail_block_copy);
+    return segments_.appended(std::move(segment));
+  }();
+  const auto tail_counters_after =
+      current_thread_history_diagnostic_counters(
+          HistoryDiagnosticPhase::tail_block_copy);
+
+  const auto metadata_finish_start = DiagnosticClock::now();
+  RetainedHistory result = [&] {
+    ScopedHistoryDiagnosticPhase phase(
+        HistoryDiagnosticPhase::fingerprint_metadata_update);
+    return RetainedHistory(
+        history_id_, std::move(appended_segments), fingerprint_state,
+        hull(*full_position_hull_, position), speed_upper,
+        // Appending preserves the analytic circular prefix and extends only
+        // the ordinary cubic approximation. The certificate remains valid on
+        // its original, explicitly bounded reception interval.
+        uniform_circular_endpoint_certificate_);
+  }();
+  const auto metadata_finish = DiagnosticClock::now();
+  if (diagnostics != nullptr) {
+    diagnostics->fingerprint_metadata_update_wall_seconds +=
+        std::chrono::duration<double>(tail_start - metadata_start).count() +
+        std::chrono::duration<double>(
+            metadata_finish - metadata_finish_start).count();
+    diagnostics->tail_block_copy_wall_seconds +=
+        std::chrono::duration<double>(
+            metadata_finish_start - tail_start).count();
+    diagnostics->fingerprint_metadata_update_disk_block_load_count +=
+        metadata_counters_after.disk_block_load_count -
+        metadata_counters_before.disk_block_load_count;
+    diagnostics->fingerprint_metadata_update_disk_cache_miss_count +=
+        metadata_counters_after.disk_cache_miss_count -
+        metadata_counters_before.disk_cache_miss_count;
+    diagnostics->tail_block_copy_disk_block_load_count +=
+        tail_counters_after.disk_block_load_count -
+        tail_counters_before.disk_block_load_count;
+    diagnostics->tail_block_copy_disk_cache_miss_count +=
+        tail_counters_after.disk_cache_miss_count -
+        tail_counters_before.disk_cache_miss_count;
+  }
+  return result;
 }
 
 RetainedHistory RetainedHistory::retained_suffix(

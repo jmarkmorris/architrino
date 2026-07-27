@@ -19,6 +19,7 @@
 #include <stdexcept>
 #include <string>
 #include <tuple>
+#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -93,6 +94,118 @@ std::uint64_t estimate_coupled_working_set_bytes(
 
 double elapsed_seconds(const SteadyClock::time_point& start) {
   return std::chrono::duration<double>(SteadyClock::now() - start).count();
+}
+
+void accumulate_history_phase_timing(
+    NativeHistoryPhaseTiming& total,
+    const NativeHistoryPhaseTiming& addition) {
+  total.wall_seconds += addition.wall_seconds;
+  total.disk_block_load_count += addition.disk_block_load_count;
+  total.disk_cache_miss_count += addition.disk_cache_miss_count;
+}
+
+void accumulate_history_timing(
+    NativeHistoryTiming& total,
+    const NativeHistoryTiming& addition) {
+  accumulate_history_phase_timing(
+      total.endpoint_position_lookup, addition.endpoint_position_lookup);
+  accumulate_history_phase_timing(
+      total.endpoint_velocity_lookup, addition.endpoint_velocity_lookup);
+  accumulate_history_phase_timing(
+      total.segment_construction, addition.segment_construction);
+  accumulate_history_phase_timing(
+      total.tail_block_copy, addition.tail_block_copy);
+  accumulate_history_phase_timing(
+      total.fingerprint_metadata_update,
+      addition.fingerprint_metadata_update);
+  accumulate_history_phase_timing(
+      total.history_inflation, addition.history_inflation);
+}
+
+template <typename Function>
+auto measure_history_phase(
+    NativeHistoryTiming* timing,
+    double* compatibility_wall_seconds,
+    NativeHistoryPhaseTiming NativeHistoryTiming::* member,
+    HistoryDiagnosticPhase phase,
+    Function&& function) -> std::invoke_result_t<Function> {
+  using Result = std::invoke_result_t<Function>;
+  if (timing == nullptr) {
+    if constexpr (std::is_void_v<Result>) {
+      std::invoke(std::forward<Function>(function));
+      return;
+    } else {
+      return std::invoke(std::forward<Function>(function));
+    }
+  }
+  const auto counters_before =
+      current_thread_history_diagnostic_counters(phase);
+  const auto wall_start = SteadyClock::now();
+  if constexpr (std::is_void_v<Result>) {
+    {
+      ScopedHistoryDiagnosticPhase diagnostic_phase(phase);
+      std::invoke(std::forward<Function>(function));
+    }
+    auto& phase_timing = timing->*member;
+    const double wall_seconds = elapsed_seconds(wall_start);
+    const auto counters_after =
+        current_thread_history_diagnostic_counters(phase);
+    phase_timing.wall_seconds += wall_seconds;
+    phase_timing.disk_block_load_count +=
+        counters_after.disk_block_load_count -
+        counters_before.disk_block_load_count;
+    phase_timing.disk_cache_miss_count +=
+        counters_after.disk_cache_miss_count -
+        counters_before.disk_cache_miss_count;
+    if (compatibility_wall_seconds != nullptr) {
+      *compatibility_wall_seconds += wall_seconds;
+    }
+    return;
+  } else {
+    Result result = [&]() -> Result {
+      ScopedHistoryDiagnosticPhase diagnostic_phase(phase);
+      return std::invoke(std::forward<Function>(function));
+    }();
+    auto& phase_timing = timing->*member;
+    const double wall_seconds = elapsed_seconds(wall_start);
+    const auto counters_after =
+        current_thread_history_diagnostic_counters(phase);
+    phase_timing.wall_seconds += wall_seconds;
+    phase_timing.disk_block_load_count +=
+        counters_after.disk_block_load_count -
+        counters_before.disk_block_load_count;
+    phase_timing.disk_cache_miss_count +=
+        counters_after.disk_cache_miss_count -
+        counters_before.disk_cache_miss_count;
+    if (compatibility_wall_seconds != nullptr) {
+      *compatibility_wall_seconds += wall_seconds;
+    }
+    return result;
+  }
+}
+
+void accumulate_history_append_diagnostics(
+    NativeHistoryTiming* timing,
+    double* compatibility_wall_seconds,
+    const HistoryAppendDiagnostics& diagnostics) {
+  if (timing == nullptr) return;
+  timing->tail_block_copy.wall_seconds +=
+      diagnostics.tail_block_copy_wall_seconds;
+  timing->tail_block_copy.disk_block_load_count +=
+      diagnostics.tail_block_copy_disk_block_load_count;
+  timing->tail_block_copy.disk_cache_miss_count +=
+      diagnostics.tail_block_copy_disk_cache_miss_count;
+  timing->fingerprint_metadata_update.wall_seconds +=
+      diagnostics.fingerprint_metadata_update_wall_seconds;
+  timing->fingerprint_metadata_update.disk_block_load_count +=
+      diagnostics.fingerprint_metadata_update_disk_block_load_count;
+  timing->fingerprint_metadata_update.disk_cache_miss_count +=
+      diagnostics.fingerprint_metadata_update_disk_cache_miss_count;
+  if (compatibility_wall_seconds != nullptr) {
+    *compatibility_wall_seconds +=
+        diagnostics.tail_block_copy_wall_seconds +
+        diagnostics.fingerprint_metadata_update_wall_seconds;
+  }
 }
 
 double upward_nonnegative_sum(double left, double right) {
@@ -1211,7 +1324,6 @@ std::vector<NativePublishedPath> append_candidate_segments(
     const SnapshotTotals& end_acceleration,
     const std::set<std::string>& right_endpoint_acceleration_paths,
     NativeCorrectedSubstepTiming* timing) {
-  const auto timing_start = SteadyClock::now();
   const double start = scalar_token(start_time);
   const double end = scalar_token(end_time);
   const double step = end - start;
@@ -1225,66 +1337,98 @@ std::vector<NativePublishedPath> append_candidate_segments(
   for (const auto& path : histories) {
     const Interval time = Interval::point(start);
     const IntervalVector position_interval =
-        path.history.correlated_position_hull(time);
+        measure_history_phase(
+            timing == nullptr ? nullptr : &timing->history,
+            timing == nullptr
+                ? nullptr : &timing->history_copy_hash_wall_seconds,
+            &NativeHistoryTiming::endpoint_position_lookup,
+            HistoryDiagnosticPhase::endpoint_position_lookup,
+            [&] { return path.history.correlated_position_hull(time); });
     const IntervalVector velocity_interval =
-        path.history.correlated_velocity_hull(time);
-    const auto position = midpoints(position_interval);
-    const auto velocity = midpoints(velocity_interval);
-    const auto start_found = start_acceleration.find(path.path_id);
-    const auto end_found = end_acceleration.find(path.path_id);
-    if (start_found == start_acceleration.end() ||
-        end_found == end_acceleration.end()) {
-      throw std::invalid_argument("candidate segment lacks path acceleration");
-    }
-    CubicCoefficientTokens coefficients{};
-    for (std::size_t axis = 0; axis < 3; ++axis) {
-      const double acceleration_start =
-          right_endpoint_acceleration_paths.contains(path.path_id)
-          ? end_found->second[axis].midpoint()
-          : start_found->second[axis].midpoint();
-      const double acceleration_end = end_found->second[axis].midpoint();
-      coefficients[axis] = {
-          decimal_token(position[axis]),
-          decimal_token(velocity[axis]),
-          decimal_token(acceleration_start * 0.5),
-          decimal_token(
-              (acceleration_end - acceleration_start) / (6.0 * step)),
-      };
-    }
-    const auto position_radii = component_radii(position_interval);
-    const auto velocity_radii = component_radii(velocity_interval);
-    const auto acceleration_start_radii = component_radii(
-        right_endpoint_acceleration_paths.contains(path.path_id)
-            ? end_found->second
-            : start_found->second);
-    const auto acceleration_end_radii = component_radii(end_found->second);
-    // The published cubic uses acceleration midpoints.  Its explicit error
-    // radius must therefore carry the entire interval input through the
-    // accepted step: integral_0^h a_err dt <= h r_a and
-    // integral_0^h (h-t) a_err dt <= h^2 r_a / 2.  Retained position and
-    // velocity radii propagate through the same map.
-    HistoryErrorTokens position_error_tokens{};
-    HistoryErrorTokens velocity_error_tokens{};
-    for (std::size_t axis = 0U; axis < 3U; ++axis) {
-      const double acceleration_radius = std::max(
-          acceleration_start_radii[axis], acceleration_end_radii[axis]);
-      position_error_tokens[axis] = error_token(upward_nonnegative_sum(
-          upward_nonnegative_sum(
-              position_radii[axis], step * velocity_radii[axis]),
-          0.5 * step * step * acceleration_radius));
-      velocity_error_tokens[axis] = error_token(upward_nonnegative_sum(
-          velocity_radii[axis], step * acceleration_radius));
-    }
-    CubicHistorySegment segment(
-        start_time, end_time, coefficients, position_error_tokens,
-        velocity_error_tokens);
+        measure_history_phase(
+            timing == nullptr ? nullptr : &timing->history,
+            timing == nullptr
+                ? nullptr : &timing->history_copy_hash_wall_seconds,
+            &NativeHistoryTiming::endpoint_velocity_lookup,
+            HistoryDiagnosticPhase::endpoint_velocity_lookup,
+            [&] { return path.history.correlated_velocity_hull(time); });
+    CubicHistorySegment segment = measure_history_phase(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        &NativeHistoryTiming::segment_construction,
+        HistoryDiagnosticPhase::segment_construction,
+        [&] {
+          const auto position = midpoints(position_interval);
+          const auto velocity = midpoints(velocity_interval);
+          const auto start_found = start_acceleration.find(path.path_id);
+          const auto end_found = end_acceleration.find(path.path_id);
+          if (start_found == start_acceleration.end() ||
+              end_found == end_acceleration.end()) {
+            throw std::invalid_argument(
+                "candidate segment lacks path acceleration");
+          }
+          CubicCoefficientTokens coefficients{};
+          for (std::size_t axis = 0; axis < 3; ++axis) {
+            const double acceleration_start =
+                right_endpoint_acceleration_paths.contains(path.path_id)
+                ? end_found->second[axis].midpoint()
+                : start_found->second[axis].midpoint();
+            const double acceleration_end = end_found->second[axis].midpoint();
+            coefficients[axis] = {
+                decimal_token(position[axis]),
+                decimal_token(velocity[axis]),
+                decimal_token(acceleration_start * 0.5),
+                decimal_token(
+                    (acceleration_end - acceleration_start) / (6.0 * step)),
+            };
+          }
+          const auto position_radii = component_radii(position_interval);
+          const auto velocity_radii = component_radii(velocity_interval);
+          const auto acceleration_start_radii = component_radii(
+              right_endpoint_acceleration_paths.contains(path.path_id)
+                  ? end_found->second
+                  : start_found->second);
+          const auto acceleration_end_radii =
+              component_radii(end_found->second);
+          // The published cubic uses acceleration midpoints.  Its explicit
+          // error radius must therefore carry the entire interval input
+          // through the accepted step: integral_0^h a_err dt <= h r_a and
+          // integral_0^h (h-t) a_err dt <= h^2 r_a / 2.  Retained position and
+          // velocity radii propagate through the same map.
+          HistoryErrorTokens position_error_tokens{};
+          HistoryErrorTokens velocity_error_tokens{};
+          for (std::size_t axis = 0U; axis < 3U; ++axis) {
+            const double acceleration_radius = std::max(
+                acceleration_start_radii[axis],
+                acceleration_end_radii[axis]);
+            position_error_tokens[axis] =
+                error_token(upward_nonnegative_sum(
+                    upward_nonnegative_sum(
+                        position_radii[axis],
+                        step * velocity_radii[axis]),
+                    0.5 * step * step * acceleration_radius));
+            velocity_error_tokens[axis] =
+                error_token(upward_nonnegative_sum(
+                    velocity_radii[axis],
+                    step * acceleration_radius));
+          }
+          return CubicHistorySegment(
+              start_time, end_time, coefficients, position_error_tokens,
+              velocity_error_tokens);
+        });
+    HistoryAppendDiagnostics append_diagnostics;
     result.push_back({
         path.path_id,
-        path.history.appended(std::move(segment)),
+        path.history.appended(
+            std::move(segment), timing == nullptr ? nullptr
+                                                 : &append_diagnostics),
     });
-  }
-  if (timing != nullptr) {
-    timing->history_copy_hash_wall_seconds += elapsed_seconds(timing_start);
+    accumulate_history_append_diagnostics(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        append_diagnostics);
   }
   return result;
 }
@@ -1310,7 +1454,6 @@ EventAwareCandidate append_event_aware_candidate_segments(
     throw std::invalid_argument(
         "event-aware reconstruction pair/event domain mismatch");
   }
-  const auto timing_start = SteadyClock::now();
   const double start = scalar_token(start_time);
   const double end = scalar_token(end_time);
   const double step = end - start;
@@ -1327,112 +1470,155 @@ EventAwareCandidate append_event_aware_candidate_segments(
   for (const auto& path : histories) {
     const Interval start_point = Interval::point(start);
     const IntervalVector x0 =
-        path.history.correlated_position_hull(start_point);
+        measure_history_phase(
+            timing == nullptr ? nullptr : &timing->history,
+            timing == nullptr
+                ? nullptr : &timing->history_copy_hash_wall_seconds,
+            &NativeHistoryTiming::endpoint_position_lookup,
+            HistoryDiagnosticPhase::endpoint_position_lookup,
+            [&] {
+              return path.history.correlated_position_hull(start_point);
+            });
     const IntervalVector v0 =
-        path.history.correlated_velocity_hull(start_point);
+        measure_history_phase(
+            timing == nullptr ? nullptr : &timing->history,
+            timing == nullptr
+                ? nullptr : &timing->history_copy_hash_wall_seconds,
+            &NativeHistoryTiming::endpoint_velocity_lookup,
+            HistoryDiagnosticPhase::endpoint_velocity_lookup,
+            [&] {
+              return path.history.correlated_velocity_hull(start_point);
+            });
     IntervalVector background_start = start_totals.at(path.path_id);
     IntervalVector background_end = end_totals.at(path.path_id);
     IntervalVector event_impulse = zero_vector;
     IntervalVector event_moment = zero_vector;
     bool has_event = false;
-    for (std::size_t index = 0; index < event_pairs.size(); ++index) {
-      const auto& pair = event_pairs[index];
-      if (pair.first != path.path_id) continue;
-      const auto& event = events[index];
-      if (!event.impulse.has_value() ||
-          !event.position_moment.has_value()) {
-        throw std::invalid_argument(
-            "event-aware reconstruction requires certified event rows");
-      }
-      const auto& start_pair =
-          snapshot_pair(start_snapshot, pair.first, pair.second);
-      const auto& end_pair =
-          snapshot_pair(end_snapshot, pair.first, pair.second);
-      if (!start_pair.total_acceleration.has_value() ||
-          !end_pair.total_acceleration.has_value()) {
-        throw std::invalid_argument(
-            "event-aware reconstruction lacks endpoint pair acceleration");
-      }
-      background_start = subtract(
-          background_start, *start_pair.total_acceleration);
-      background_end = subtract(
-          background_end, *end_pair.total_acceleration);
-      event_impulse = add(event_impulse, *event.impulse);
-      event_moment = add(event_moment, *event.position_moment);
-      has_event = true;
-    }
+    measure_history_phase(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        &NativeHistoryTiming::segment_construction,
+        HistoryDiagnosticPhase::segment_construction,
+        [&] {
+          for (std::size_t index = 0; index < event_pairs.size(); ++index) {
+            const auto& pair = event_pairs[index];
+            if (pair.first != path.path_id) continue;
+            const auto& event = events[index];
+            if (!event.impulse.has_value() ||
+                !event.position_moment.has_value()) {
+              throw std::invalid_argument(
+                  "event-aware reconstruction requires certified event rows");
+            }
+            const auto& start_pair =
+                snapshot_pair(start_snapshot, pair.first, pair.second);
+            const auto& end_pair =
+                snapshot_pair(end_snapshot, pair.first, pair.second);
+            if (!start_pair.total_acceleration.has_value() ||
+                !end_pair.total_acceleration.has_value()) {
+              throw std::invalid_argument(
+                  "event-aware reconstruction lacks endpoint pair acceleration");
+            }
+            background_start = subtract(
+                background_start, *start_pair.total_acceleration);
+            background_end = subtract(
+                background_end, *end_pair.total_acceleration);
+            event_impulse = add(event_impulse, *event.impulse);
+            event_moment = add(event_moment, *event.position_moment);
+            has_event = true;
+          }
+        });
     if (!has_event) {
       auto ordinary = append_candidate_segments(
           {path}, start_time, end_time,
           {{path.path_id, start_totals.at(path.path_id)}},
-          {{path.path_id, end_totals.at(path.path_id)}}, {}, nullptr);
+          {{path.path_id, end_totals.at(path.path_id)}}, {}, timing);
       result.histories.push_back(std::move(ordinary.front()));
       continue;
     }
 
-    const IntervalVector background_impulse = scale(
-        Interval::point(step * 0.5),
-        add(background_start, background_end));
-    const IntervalVector background_moment = scale(
-        Interval::point(step * step / 6.0),
-        add(scale(Interval::point(2.0), background_start), background_end));
-    const IntervalVector v1 = add(v0, add(background_impulse, event_impulse));
-    const IntervalVector x1 = add(
-        add(x0, scale(Interval::point(step), v0)),
-        add(background_moment, event_moment));
-    result.background_impulses.insert_or_assign(
-        path.path_id, background_impulse);
-    result.background_position_moments.insert_or_assign(
-        path.path_id, background_moment);
-    result.endpoint_positions.insert_or_assign(path.path_id, x1);
-    result.endpoint_velocities.insert_or_assign(path.path_id, v1);
+    CubicHistorySegment segment = measure_history_phase(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        &NativeHistoryTiming::segment_construction,
+        HistoryDiagnosticPhase::segment_construction,
+        [&] {
+          const IntervalVector background_impulse = scale(
+              Interval::point(step * 0.5),
+              add(background_start, background_end));
+          const IntervalVector background_moment = scale(
+              Interval::point(step * step / 6.0),
+              add(scale(Interval::point(2.0), background_start),
+                  background_end));
+          const IntervalVector v1 = add(
+              v0, add(background_impulse, event_impulse));
+          const IntervalVector x1 = add(
+              add(x0, scale(Interval::point(step), v0)),
+              add(background_moment, event_moment));
+          result.background_impulses.insert_or_assign(
+              path.path_id, background_impulse);
+          result.background_position_moments.insert_or_assign(
+              path.path_id, background_moment);
+          result.endpoint_positions.insert_or_assign(path.path_id, x1);
+          result.endpoint_velocities.insert_or_assign(path.path_id, v1);
 
-    CubicCoefficientTokens coefficients{};
-    for (std::size_t axis = 0; axis < 3U; ++axis) {
-      const double x0_mid = x0[axis].midpoint();
-      const double v0_mid = v0[axis].midpoint();
-      const double x1_mid = x1[axis].midpoint();
-      const double v1_mid = v1[axis].midpoint();
-      coefficients[axis] = {
-          decimal_token(x0_mid),
-          decimal_token(v0_mid),
-          decimal_token(
-              (3.0 * (x1_mid - x0_mid) -
-               step * (2.0 * v0_mid + v1_mid)) /
-              (step * step)),
-          decimal_token(
-              (2.0 * (x0_mid - x1_mid) +
-               step * (v0_mid + v1_mid)) /
-              (step * step * step)),
-      };
-    }
-    const auto x0_radii = component_radii(x0);
-    const auto v0_radii = component_radii(v0);
-    const auto x1_radii = component_radii(x1);
-    const auto v1_radii = component_radii(v1);
-    // These are uniform Hermite-basis bounds, not endpoint-only radii.  They
-    // enclose every convex position basis term and every differentiated basis
-    // term on 0 <= (T-T0)/h <= 1.
-    HistoryErrorTokens position_error_tokens{};
-    HistoryErrorTokens velocity_error_tokens{};
-    for (std::size_t axis = 0U; axis < 3U; ++axis) {
-      position_error_tokens[axis] = error_token(upward_nonnegative_sum(
-          upward_nonnegative_sum(x0_radii[axis], x1_radii[axis]),
-          step * upward_nonnegative_sum(
-              v0_radii[axis], v1_radii[axis])));
-      velocity_error_tokens[axis] = error_token(upward_nonnegative_sum(
-          1.5 * (x0_radii[axis] + x1_radii[axis]) / step,
-          2.0 * (v0_radii[axis] + v1_radii[axis])));
-    }
+          CubicCoefficientTokens coefficients{};
+          for (std::size_t axis = 0; axis < 3U; ++axis) {
+            const double x0_mid = x0[axis].midpoint();
+            const double v0_mid = v0[axis].midpoint();
+            const double x1_mid = x1[axis].midpoint();
+            const double v1_mid = v1[axis].midpoint();
+            coefficients[axis] = {
+                decimal_token(x0_mid),
+                decimal_token(v0_mid),
+                decimal_token(
+                    (3.0 * (x1_mid - x0_mid) -
+                     step * (2.0 * v0_mid + v1_mid)) /
+                    (step * step)),
+                decimal_token(
+                    (2.0 * (x0_mid - x1_mid) +
+                     step * (v0_mid + v1_mid)) /
+                    (step * step * step)),
+            };
+          }
+          const auto x0_radii = component_radii(x0);
+          const auto v0_radii = component_radii(v0);
+          const auto x1_radii = component_radii(x1);
+          const auto v1_radii = component_radii(v1);
+          // These are uniform Hermite-basis bounds, not endpoint-only radii.
+          // They enclose every convex position basis term and every
+          // differentiated basis term on 0 <= (T-T0)/h <= 1.
+          HistoryErrorTokens position_error_tokens{};
+          HistoryErrorTokens velocity_error_tokens{};
+          for (std::size_t axis = 0U; axis < 3U; ++axis) {
+            position_error_tokens[axis] =
+                error_token(upward_nonnegative_sum(
+                    upward_nonnegative_sum(
+                        x0_radii[axis], x1_radii[axis]),
+                    step * upward_nonnegative_sum(
+                        v0_radii[axis], v1_radii[axis])));
+            velocity_error_tokens[axis] =
+                error_token(upward_nonnegative_sum(
+                    1.5 * (x0_radii[axis] + x1_radii[axis]) / step,
+                    2.0 * (v0_radii[axis] + v1_radii[axis])));
+          }
+          return CubicHistorySegment(
+              start_time, end_time, coefficients,
+              position_error_tokens, velocity_error_tokens);
+        });
+    HistoryAppendDiagnostics append_diagnostics;
     result.histories.push_back({
         path.path_id,
-        path.history.appended(CubicHistorySegment(
-            start_time, end_time, coefficients,
-            position_error_tokens, velocity_error_tokens)),
+        path.history.appended(
+            std::move(segment), timing == nullptr ? nullptr
+                                                 : &append_diagnostics),
     });
-  }
-  if (timing != nullptr) {
-    timing->history_copy_hash_wall_seconds += elapsed_seconds(timing_start);
+    accumulate_history_append_diagnostics(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        append_diagnostics);
   }
   return result;
 }
@@ -2322,7 +2508,8 @@ std::vector<NativePathLocalError> endpoint_local_errors(
 std::vector<NativePublishedPath> inflate_fine_histories(
     const std::vector<NativePublishedPath>& input_histories,
     const std::vector<NativePublishedPath>& fine_histories,
-    const std::vector<NativePathLocalError>& local_errors) {
+    const std::vector<NativePathLocalError>& local_errors,
+    NativeAtomicStepTiming* timing) {
   std::vector<NativePublishedPath> result;
   result.reserve(fine_histories.size());
   for (const auto& fine : fine_histories) {
@@ -2337,22 +2524,41 @@ std::vector<NativePublishedPath> inflate_fine_histories(
     RetainedHistory inflated = input.history;
     for (std::size_t index = input.history.segments().size();
          index < fine.history.segments().size(); ++index) {
-      const auto segment_pin = fine.history.segments().pin(index);
-      const auto& segment = *segment_pin;
-      HistoryErrorTokens position_error_tokens{};
-      HistoryErrorTokens velocity_error_tokens{};
-      for (std::size_t axis = 0U; axis < 3U; ++axis) {
-        position_error_tokens[axis] = error_token(upward_nonnegative_sum(
-            scalar_token(segment.position_error_tokens()[axis]),
-            error_found->position_errors[axis]));
-        velocity_error_tokens[axis] = error_token(upward_nonnegative_sum(
-            scalar_token(segment.velocity_error_tokens()[axis]),
-            error_found->velocity_errors[axis]));
-      }
-      inflated = inflated.appended(CubicHistorySegment(
-          segment.t_start_token(), segment.t_end_token(),
-          segment.coefficient_tokens(), position_error_tokens,
-          velocity_error_tokens));
+      CubicHistorySegment inflated_segment = measure_history_phase(
+          timing == nullptr ? nullptr : &timing->history,
+          timing == nullptr
+              ? nullptr : &timing->history_copy_hash_wall_seconds,
+          &NativeHistoryTiming::history_inflation,
+          HistoryDiagnosticPhase::history_inflation,
+          [&] {
+            const auto segment_pin = fine.history.segments().pin(index);
+            const auto& segment = *segment_pin;
+            HistoryErrorTokens position_error_tokens{};
+            HistoryErrorTokens velocity_error_tokens{};
+            for (std::size_t axis = 0U; axis < 3U; ++axis) {
+              position_error_tokens[axis] =
+                  error_token(upward_nonnegative_sum(
+                      scalar_token(segment.position_error_tokens()[axis]),
+                      error_found->position_errors[axis]));
+              velocity_error_tokens[axis] =
+                  error_token(upward_nonnegative_sum(
+                      scalar_token(segment.velocity_error_tokens()[axis]),
+                      error_found->velocity_errors[axis]));
+            }
+            return CubicHistorySegment(
+                segment.t_start_token(), segment.t_end_token(),
+                segment.coefficient_tokens(), position_error_tokens,
+                velocity_error_tokens);
+          });
+      HistoryAppendDiagnostics append_diagnostics;
+      inflated = inflated.appended(
+          std::move(inflated_segment),
+          timing == nullptr ? nullptr : &append_diagnostics);
+      accumulate_history_append_diagnostics(
+          timing == nullptr ? nullptr : &timing->history,
+          timing == nullptr
+              ? nullptr : &timing->history_copy_hash_wall_seconds,
+          append_diagnostics);
     }
     result.push_back({
         fine.path_id,
@@ -2728,10 +2934,11 @@ MultiratePublication synchronized_multirate_histories(
     const std::vector<NativePublishedPath>& input_histories,
     const std::vector<NativePublishedPath>& full_histories,
     const std::vector<NativePublishedPath>& fine_histories,
-    const std::vector<NativePathLocalError>& endpoint_errors) {
+    const std::vector<NativePathLocalError>& endpoint_errors,
+    NativeAtomicStepTiming* timing) {
   MultiratePublication result{
       .histories = inflate_fine_histories(
-          input_histories, fine_histories, endpoint_errors),
+          input_histories, fine_histories, endpoint_errors, timing),
   };
   const double fraction = exact_decimal_value(
       request.multirate_synchronization_fraction);
@@ -2822,11 +3029,27 @@ MultiratePublication synchronized_multirate_histories(
           coarse_segment.velocity_errors()[axis],
           maximum_fine_velocity_errors[axis] + dense_velocity_errors[axis]));
     }
+    CubicHistorySegment inflated_coarse_segment = measure_history_phase(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        &NativeHistoryTiming::history_inflation,
+        HistoryDiagnosticPhase::history_inflation,
+        [&] {
+          return CubicHistorySegment(
+              coarse_segment.t_start_token(), coarse_segment.t_end_token(),
+              coarse_segment.coefficient_tokens(),
+              coarse_position_error_tokens, coarse_velocity_error_tokens);
+        });
+    HistoryAppendDiagnostics append_diagnostics;
     RetainedHistory coarse_history = input.history.appended(
-        CubicHistorySegment(
-            coarse_segment.t_start_token(), coarse_segment.t_end_token(),
-            coarse_segment.coefficient_tokens(),
-            coarse_position_error_tokens, coarse_velocity_error_tokens));
+        std::move(inflated_coarse_segment),
+        timing == nullptr ? nullptr : &append_diagnostics);
+    accumulate_history_append_diagnostics(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        append_diagnostics);
     result.histories[path_index] = {
         input.path_id, std::move(coarse_history)};
     result.coarse_path_ids.push_back(input.path_id);
@@ -5841,6 +6064,8 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
           .warm_starts = warm_snapshot != nullptr && warm_histories != nullptr
               ? &warm_starts
               : nullptr,
+          .joint_root_point_states = &request.joint_root_point_states,
+          .joint_histories = &request.joint_histories,
       });
       timing.exact_root_batch_wall_seconds +=
           elapsed_seconds(exact_root_timing_start);
@@ -6399,6 +6624,8 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       full.certificate.timing.total_wall_seconds;
   timing->history_copy_hash_wall_seconds +=
       full.certificate.timing.history_copy_hash_wall_seconds;
+  accumulate_history_timing(
+      timing->history, full.certificate.timing.history);
   timing->reused_start_snapshot_count +=
       full.certificate.timing.reused_start_snapshot_count;
   if (!full.histories.has_value()) {
@@ -6425,6 +6652,8 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       first_half.certificate.timing.total_wall_seconds;
   timing->history_copy_hash_wall_seconds +=
       first_half.certificate.timing.history_copy_hash_wall_seconds;
+  accumulate_history_timing(
+      timing->history, first_half.certificate.timing.history);
   timing->reused_start_snapshot_count +=
       first_half.certificate.timing.reused_start_snapshot_count;
   if (!first_half.histories.has_value()) {
@@ -6465,6 +6694,8 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       second_half.certificate.timing.total_wall_seconds;
   timing->history_copy_hash_wall_seconds +=
       second_half.certificate.timing.history_copy_hash_wall_seconds;
+  accumulate_history_timing(
+      timing->history, second_half.certificate.timing.history);
   timing->reused_start_snapshot_count +=
       second_half.certificate.timing.reused_start_snapshot_count;
   if (!second_half.histories.has_value()) {
@@ -6523,6 +6754,8 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
           attempt.certificate.timing.total_wall_seconds;
       timing->history_copy_hash_wall_seconds +=
           attempt.certificate.timing.history_copy_hash_wall_seconds;
+      accumulate_history_timing(
+          timing->history, attempt.certificate.timing.history);
       timing->reused_start_snapshot_count +=
           attempt.certificate.timing.reused_start_snapshot_count;
       const bool succeeded = attempt.histories.has_value();
@@ -6599,7 +6832,6 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
         fine_histories, std::move(local_errors));
   }
 
-  const auto inflation_timing_start = SteadyClock::now();
   MultiratePublication multirate_publication;
   if (!request.joint_histories.empty() &&
       request.use_synchronized_multirate_publication) {
@@ -6609,16 +6841,21 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   auto accepted_histories = request.use_synchronized_multirate_publication
       ? (multirate_publication = synchronized_multirate_histories(
              request, histories, *full.histories, *second_half.histories,
-             local_errors),
+             local_errors, timing),
          multirate_publication.histories)
       : inflate_fine_histories(
-            histories, fine_histories, local_errors);
+            histories, fine_histories, local_errors, timing);
   auto accepted_joint_histories = fine_joint_histories == nullptr
       ? std::map<std::string, JointAffineRetainedHistory>{}
-      : inflate_joint_histories(
-            request.joint_histories, *fine_joint_histories, local_errors);
-  timing->history_copy_hash_wall_seconds +=
-      elapsed_seconds(inflation_timing_start);
+      : measure_history_phase(
+            &timing->history, &timing->history_copy_hash_wall_seconds,
+            &NativeHistoryTiming::history_inflation,
+            HistoryDiagnosticPhase::history_inflation,
+            [&] {
+              return inflate_joint_histories(
+                  request.joint_histories, *fine_joint_histories,
+                  local_errors);
+            });
   if (!substeps.back().endpoint_snapshot.has_value()) {
     throw std::runtime_error("accepted candidate substep lacks endpoint snapshot");
   }
@@ -6656,13 +6893,19 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
     return rejection;
   }
 
-  const auto fingerprint_timing_start = SteadyClock::now();
-  const auto input_fingerprints = fingerprints(histories);
-  const auto candidate_fingerprints = fingerprints(accepted_histories);
-  const bool publication_atomic = publication_extension_is_atomic(
-      histories, accepted_histories, end_time);
-  timing->history_copy_hash_wall_seconds +=
-      elapsed_seconds(fingerprint_timing_start);
+  std::vector<NativeHistoryFingerprint> input_fingerprints;
+  std::vector<NativeHistoryFingerprint> candidate_fingerprints;
+  bool publication_atomic = false;
+  measure_history_phase(
+      &timing->history, &timing->history_copy_hash_wall_seconds,
+      &NativeHistoryTiming::fingerprint_metadata_update,
+      HistoryDiagnosticPhase::fingerprint_metadata_update,
+      [&] {
+        input_fingerprints = fingerprints(histories);
+        candidate_fingerprints = fingerprints(accepted_histories);
+        publication_atomic = publication_extension_is_atomic(
+            histories, accepted_histories, end_time);
+      });
   // Acceptance moves accepted_histories directly into the published field;
   // atomicity is structural rather than a same-vector replay comparison.
   return {
@@ -6801,6 +7044,7 @@ NativeEvolutionTiming summarize_evolution_timing(
   for (const auto& step : steps) {
     timing.history_copy_hash_wall_seconds +=
         step.timing.history_copy_hash_wall_seconds;
+    accumulate_history_timing(timing.history, step.timing.history);
     timing.correction_wall_seconds +=
         step.timing.corrected_substeps_wall_seconds;
     timing.reused_start_snapshot_count +=

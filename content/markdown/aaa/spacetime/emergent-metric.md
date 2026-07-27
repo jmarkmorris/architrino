@@ -199,12 +199,12 @@ $$
 u^i_{\mathrm{sea,eff}}
 =
 D_U w^i\frac{U}{c_0^2}
-+D_T w^j\frac{U^i{}_j}{c_0^2}
++D_{\mathrm{aniso}} w^j\frac{U^i{}_j}{c_0^2}
 +O(c_0^{-5},\epsilon_{\mathrm{LV}}),
 \qquad
 \gamma_{ij}^{\mathrm{eff}}=\delta_{ab}e^a{}_i e^b{}_j
 $$
-Here $w^i$ is the Noether sea drift relative to the comparison frame, $D_U$ and $D_T$ are the isotropic and anisotropic drift-response coefficients, $U$ is the positive PPN potential, and $U^i{}_j$ is its standard anisotropic potential tensor. These are not new substrate fields. They are coefficient rows for the observer-level reconstruction. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must read from these rows as one shared constitutive record. The coefficient dictionary to $(\gamma_{\mathrm{PPN}},C_2^{(U)},\Xi_1,\ldots,\Xi_4)$ is given in [PPN Parameters](./ppn-parameters.md#admcartan-extraction-equations).
+Here $w^i$ is the Noether sea drift relative to the comparison frame, $D_U$ and $D_{\mathrm{aniso}}$ are the isotropic and anisotropic drift-response coefficients, $U$ is the positive PPN potential, and $U^i{}_j$ is its standard anisotropic potential tensor. These are not new substrate fields. They are coefficient rows for the observer-level reconstruction. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must read from these rows as one shared constitutive record. The coefficient dictionary to $(\gamma_{\mathrm{PPN}},C_2^{(U)},\Xi_1,\ldots,\Xi_4)$ is given in [PPN Parameters](./ppn-parameters.md#admcartan-extraction-equations).
 
 A practical consistency check is that those channels must be projections of one shared record of the Noether sea and the Physical Observer, not independently tuned descriptions. For an observation window $W$, let $\theta$ collect the retained Noether sea state, source assemblies, observer clock/ruler state, signal-channel record, apparatus calibration, and boundary wake data. Let
 $$
@@ -268,11 +268,11 @@ must match the eikonal path-time extremal of the Noether sea signal channel. In 
 $$
 \Delta\theta
 =
-2(1+\gamma_{\text{eff}})
+2(1+\gamma_{\mathrm{PPN}})
 \frac{GM}{b\,c_0^2}
 +O(c_0^{-4})
 $$
-so the GR limit $\gamma_{\text{eff}}=1$ gives $\Delta\theta=4GM/(b\,c_0^2)$. A lapse-only or scalar-delay-only map that supplies only $2GM/(b\,c_0^2)$ has recovered the Newtonian half-test, not the full effective metric. This is why the ADM/Cartan map must carry both the clock/lapse channel and the spatial-compliance channel.
+so the GR limit $\gamma_{\mathrm{PPN}}=1$ gives $\Delta\theta=4GM/(b\,c_0^2)$. A lapse-only or scalar-delay-only map that supplies only $2GM/(b\,c_0^2)$ has recovered the Newtonian half-test, not the full effective metric. This is why the ADM/Cartan map must carry both the clock/lapse channel and the spatial-compliance channel.
 
 ### Lensing-Dynamics Equality Constraint
 
@@ -307,7 +307,7 @@ $$
 O(\epsilon_{\mathrm{lens}})
 $$
 
-equivalently $\gamma_{\text{eff}}\equiv\Psi_{\mathrm{sp}}/\Phi_{\mathrm{dyn}}\to1$ in the weak-field lensing regime. A scalar force or medium-response correction that appears only in the clock/lapse channel accelerates matter but under-deflects light. A valid $\mathbb{A}\mathbb{A}\mathbb{A}$ response must project the same Noether sea state into the lapse and spatial-compliance channels so that rotation curves, hydrostatic mass, time delay, and lensing consume one effective metric.
+equivalently $\gamma_{\mathrm{PPN}}\equiv\Psi_{\mathrm{sp}}/\Phi_{\mathrm{dyn}}\to1$ in the weak-field lensing regime. A scalar force or medium-response correction that appears only in the clock/lapse channel accelerates matter but under-deflects light. A valid $\mathbb{A}\mathbb{A}\mathbb{A}$ response must project the same Noether sea state into the lapse and spatial-compliance channels so that rotation curves, hydrostatic mass, time delay, and lensing consume one effective metric.
 
 For a window $W$, add the lensing-dynamics residual
 
@@ -328,7 +328,7 @@ $$
 +
 \lambda_\gamma
 \left\|
-\gamma_{\text{eff}}^\theta-1
+\gamma_{\mathrm{PPN}}^\theta-1
 \right\|_W^2
 +
 \lambda_{\mathrm{shared}}\mathcal{S}_{\mathrm{retune}}(\theta)
@@ -660,7 +660,7 @@ $$
 \gamma_{ij}^{\mathrm{eff}}(x_{\mathrm{eff}}^k)
 =
 \left(
-1-2\gamma_{\text{eff}}\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
+1-2\gamma_{\mathrm{PPN}}\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
 \right)h_{ij}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
@@ -676,7 +676,7 @@ $$
 g^{\text{eff}}_{ij}(x_{\mathrm{eff}}^k)
 =
 \left(
-1-2\gamma_{\text{eff}}\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
+1-2\gamma_{\mathrm{PPN}}\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
 \right)h_{ij}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
@@ -691,7 +691,7 @@ $$
 =
 \frac{\chi_{\text{sea}}(x_{\mathrm{eff}}^k)}{\chi_{\text{sea}}(\infty)}
 =
-1-(1+\gamma_{\text{eff}})\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
+1-(1+\gamma_{\mathrm{PPN}})\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 so travel time on a Euclidean anchor path $\Gamma$ is
@@ -707,7 +707,7 @@ $$
 \mapsto
 g^{\text{eff}}_{\mu\nu}
 $$
-with $\gamma_{\text{eff}}$ the observer-level refraction/spatial-compliance coefficient extracted from the same constitutive record whose Shapiro-delay and lensing projections are tested in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
+with $\gamma_{\mathrm{PPN}}$ the observer-level refraction/spatial-compliance coefficient extracted from the same constitutive record whose Shapiro-delay and lensing projections are tested in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
 ## Closure Program Interface (metric constitutive map)
 

@@ -8,6 +8,7 @@ Interrogate $\mathbb{A}\mathbb{A}\mathbb{A}$ from the strongest nineteenth-centu
 - Treat electromagnetic and photon-facing claims through `assemblies/bosons/electroweak-bosons.md`, `spacetime/noether-sea.md`, and `spacetime/emergent-metric.md`.
 - Keep the distinction between causal wakes, effective fields, Noether sea response, and observer-level electromagnetic bookkeeping aligned with `content/markdown/aaa/archie/mathematics-terminology.md` and `content/markdown/aaa/archie/comparative-glossary.md`.
 - Treat Lorentz, photon-speed, polarization, stress, and energy-flux claims as closure targets until one retained branch and constitutive record supplies the needed rows.
+- Apply the photon referent boundary in `assemblies/bosons/electroweak-bosons.md`: the twelve-worldline coaxial contra-rotating polarity-conjugate planar pair is a theorem target, and no retained photon branch has been exhibited.
 
 ## Perspective Response Mandate
 
@@ -29,13 +30,14 @@ When responding to the Philosophy-History Perspectives questions, Maxwell should
 
 ### Light and photon closure
 
-- Test whether the coaxial contra-rotating polarity-conjugate planar pair can recover light-channel behavior.
+- Test whether an evolved, independently cross-verified coaxial contra-rotating polarity-conjugate planar pair can recover light-channel behavior.
 - Require photon work to separate:
   - primitive wake speed $c_f$,
   - Noether sea dressed speed $c_{\text{eff}}$,
   - photon-channel speed $c_\gamma$,
   - measured asymptotic speed $c_0$.
 - Demand that polarization, phase, energy flux, and speed closure come from one retained branch or a declared constitutive projection.
+- Keep prescribed fixed-coordinate histories, phase patterns, wake maps, and visualizations at diagnostic authority; they cannot establish photon persistence or physical realization.
 
 ### Stress, pressure, and medium response
 
@@ -60,5 +62,6 @@ When responding to the Philosophy-History Perspectives questions, Maxwell should
 
 - Field language is used as substrate ontology when the local claim means causal wakes.
 - Photon or electromagnetic behavior is asserted without a retained branch, constitutive map, or closure residual.
+- A prescribed or display-only planar pair is promoted to a photon referent.
 - Medium language is introduced without stress, transport, conservation, or response equations.
 - A Maxwell-style perspective treats nineteenth-century medium intuition as vindicated without naming why the old program failed.

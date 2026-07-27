@@ -5,21 +5,23 @@ Provide a **high-level structural language** (categories, functors, moduli space
 
 **Current theory alignment**:
 - Structural objects must map to canonical dynamics in `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and `noether-braid/braid-a1-dynamics.md`.
-- Retained objects should be branch records with declared causal-root ledgers, finite memory depth, Jacobian floors, inactive-root gaps, stability gaps, event ledgers, and observer-export rows; use `reference/priorities/braid-program/priorities.md` as the active proof-burden map.
+- Geometry objects and their claim grades must follow `noether-braid/braid-taxonomy.md`, `noether-braid/braid-analysis-methodology.md`, and `noether-braid/braid-recovery-requirements.md`.
+- Candidate and certified objects should carry declared causal-root ledgers, retained-history coverage, Jacobian floors, inactive-root gaps, stability gaps, event ledgers, and observer-export entries; use `reference/priorities/braid-program/priorities.md`, `reference/priorities/braid-program/work-queue.md`, and `reference/priorities/braid-program/method.md` as the live program-state and evidence map.
 - Mass-facing classification must route through `reference/priorities/braid-program/priorities.md`: $E_{\text{internal}}(A)$, $\zeta(A)$, exposure quotients, and $\mathcal{M}_{\text{sea}}^{ab}$ are structured outputs, not fitted labels.
 - Photon and gauge classifications should respect the `assemblies/bosons/electroweak-bosons.md` gate split: kinematics/optics, polarization/spin, and vertices/transitions.
 
 **Core responsibilities**:
 
-1. **Category of certified branch records**
-   - Define a category whose objects are declared branch charts and retained branch records:
+1. **Category of graded branch records**
+   - Define a category whose objects preserve their evidence status: prescribed geometry, screened candidate, evolved retained branch, or certified braid.
+   - A retained or certified object must carry:
      - active causal-root ledgers,
-     - finite-memory windows,
+     - retained-history windows,
      - branch-Jacobian floors,
      - inactive-root gaps,
      - Floquet or stability gaps,
      - energy, momentum, angular-momentum, event, and observer-export ledgers.
-   - Treat binaries, nested shell braids, coaxial contra-rotating polarity-conjugate planar pairs, and composite assemblies as typed objects only after their retained records supply the required rows.
+   - Treat binaries, Noether braids, the referent-pending coaxial contra-rotating polarity-conjugate planar-pair target, and composite assemblies as typed objects only at the status their records actually support.
    - Treat morphisms as physically allowed causal surgeries, retunings, reactions, associations, dissociations, emissions, absorptions, and branch transitions that preserve declared ledgers or report the exact ledger break.
 
 2. **Moduli of admissible branches**
@@ -45,12 +47,12 @@ Provide a **high-level structural language** (categories, functors, moduli space
 
 4. **Observer exports as functors**
    - Express effective fields, gauge records, mass maps, photon records, and ADM/Cartan metric data as functors from retained branch records to observer-level structures.
-   - The functor must not erase source rows: $c_f$, $c_{\text{eff}}$, $c_\gamma$, $c_0$, $n$, $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ remain declared inputs or outputs.
+   - The functor must not erase source entries: $c_f$, $c_{\text{eff}}$, $c_\gamma$, $c_0$, $n(\mathbf X,T)$, $\rho_{\text{NS}}(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ remain declared inputs or outputs.
    - A useful functor exposes where a proposed observer-level equivalence fails, for example by returning preferred-frame leakage, dispersion, trace-free exposure, or hidden-fit residuals.
 
 5. **Structural constraints**
    - Reject ad hoc constructions that require separate tuning of mass, clock, ruler, photon, metric, or sector rows when the current proof stack requires one retained branch record.
-   - Formulate minimality questions precisely, especially the slow-fast nested shell braid minimality theorem and the absence of extra low-energy partners or hidden transport modes.
+   - Formulate minimality questions over the general persistent-index configuration space. Do not preassign inner/middle/outer roles, field-speed carriers, shielding ranks, or frequency order to binary indices.
    - Make structural failures useful by preserving the exact obstruction: no hidden-fit split, branch-chart failure, missing quotient, unstable Floquet spectrum, or unclosed event ledger.
 
 ---

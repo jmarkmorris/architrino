@@ -76,6 +76,51 @@ struct HistoryDiskStorageStats {
   std::string run_id;
 };
 
+enum class HistoryDiagnosticPhase : std::uint8_t {
+  unclassified = 0,
+  endpoint_position_lookup,
+  endpoint_velocity_lookup,
+  segment_construction,
+  tail_block_copy,
+  fingerprint_metadata_update,
+  history_inflation,
+  count,
+};
+
+struct HistoryDiagnosticCounters {
+  std::uint64_t disk_block_load_count = 0U;
+  std::uint64_t disk_cache_miss_count = 0U;
+};
+
+// Phase selection and counters are thread-local diagnostics. They do not
+// participate in history storage, lookup, fingerprints, or solver decisions.
+class ScopedHistoryDiagnosticPhase {
+ public:
+  explicit ScopedHistoryDiagnosticPhase(
+      HistoryDiagnosticPhase phase) noexcept;
+  ~ScopedHistoryDiagnosticPhase();
+
+  ScopedHistoryDiagnosticPhase(const ScopedHistoryDiagnosticPhase&) = delete;
+  ScopedHistoryDiagnosticPhase& operator=(
+      const ScopedHistoryDiagnosticPhase&) = delete;
+
+ private:
+  HistoryDiagnosticPhase previous_;
+};
+
+[[nodiscard]] HistoryDiagnosticCounters
+current_thread_history_diagnostic_counters(
+    HistoryDiagnosticPhase phase) noexcept;
+
+struct HistoryAppendDiagnostics {
+  double tail_block_copy_wall_seconds = 0.0;
+  double fingerprint_metadata_update_wall_seconds = 0.0;
+  std::uint64_t tail_block_copy_disk_block_load_count = 0U;
+  std::uint64_t tail_block_copy_disk_cache_miss_count = 0U;
+  std::uint64_t fingerprint_metadata_update_disk_block_load_count = 0U;
+  std::uint64_t fingerprint_metadata_update_disk_cache_miss_count = 0U;
+};
+
 // The Borg persistent worker owns this lifecycle. Configuration removes stale
 // files under the dedicated root; begin replaces the preceding run; release
 // removes the active run. Full immutable blocks are exact token records.
@@ -341,7 +386,9 @@ class RetainedHistory {
   [[nodiscard]] std::optional<IntervalVector> correlated_self_displacement(
       const Interval& reception,
       const Interval& emission) const;
-  [[nodiscard]] RetainedHistory appended(CubicHistorySegment segment) const;
+  [[nodiscard]] RetainedHistory appended(
+      CubicHistorySegment segment,
+      HistoryAppendDiagnostics* diagnostics = nullptr) const;
   [[nodiscard]] RetainedHistory retained_suffix(
       std::size_t first_segment_index) const;
 
