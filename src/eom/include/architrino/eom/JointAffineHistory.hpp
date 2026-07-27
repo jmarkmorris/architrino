@@ -71,6 +71,16 @@ class JointAffineRetainedHistory {
       const std::array<double, 3>& ordinary_position_radii,
       const std::array<double, 3>& ordinary_velocity_radii) const;
 
+  // Evaluates one already-validated retained segment directly. This preserves
+  // the segment choice made by an upstream certified row without copying that
+  // segment and the shared symbol registry into a temporary one-segment
+  // history.
+  [[nodiscard]] JointAffinePointEvaluation evaluate_segment(
+      std::size_t segment_index,
+      double time,
+      const std::array<double, 3>& ordinary_position_radii,
+      const std::array<double, 3>& ordinary_velocity_radii) const;
+
   [[nodiscard]] JointAffineRetainedHistory appended(
       JointAffineCubicSegment segment) const;
 

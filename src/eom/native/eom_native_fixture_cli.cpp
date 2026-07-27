@@ -1063,6 +1063,32 @@ void print_all() {
       "joint-history-control", {"epsilon-0"}, {joint_history_segment});
   const auto joint_affine_evaluation = joint_affine_history.evaluate(
       0.5, {0.1, 1e-15, 1e-15}, {0.1, 1e-15, 1e-15});
+  const auto direct_joint_affine_evaluation =
+      joint_affine_history.evaluate_segment(
+          0U, 0.5, {0.1, 1e-15, 1e-15}, {0.1, 1e-15, 1e-15});
+  if (direct_joint_affine_evaluation.position.path_id !=
+          joint_affine_evaluation.position.path_id ||
+      direct_joint_affine_evaluation
+              .position.shared_symbol_coefficients !=
+          joint_affine_evaluation.position.shared_symbol_coefficients ||
+      direct_joint_affine_evaluation
+              .position.independent_remainder_radii !=
+          joint_affine_evaluation.position.independent_remainder_radii ||
+      direct_joint_affine_evaluation.position.ordinary_position_radii !=
+          joint_affine_evaluation.position.ordinary_position_radii ||
+      direct_joint_affine_evaluation.velocity_shared_coefficients !=
+          joint_affine_evaluation.velocity_shared_coefficients ||
+      direct_joint_affine_evaluation.velocity_remainder_radii !=
+          joint_affine_evaluation.velocity_remainder_radii ||
+      direct_joint_affine_evaluation.ordinary_velocity_radii !=
+          joint_affine_evaluation.ordinary_velocity_radii ||
+      direct_joint_affine_evaluation.position_fallback_dominates !=
+          joint_affine_evaluation.position_fallback_dominates ||
+      direct_joint_affine_evaluation.velocity_fallback_dominates !=
+          joint_affine_evaluation.velocity_fallback_dominates) {
+    throw std::runtime_error(
+        "direct joint segment evaluation changed the exact point image");
+  }
   const auto centered_square = eom::certify_centered_affine_map({
       .output_center = {1.0},
       .output_center_enclosure = {eom::Interval::point(1.0)},

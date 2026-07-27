@@ -368,13 +368,10 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
             Interval::point(emission_center));
         const auto source_velocity_box = source_segment.velocity_interval(
             Interval::point(emission_center));
-        const JointAffineRetainedHistory source_joint_history(
-            pair.transmitter_path_id,
-            transmitter_joint_found->second.symbol_registry(),
-            {transmitter_joint_found->second.segments()[source_segment_index]});
-        const auto transmitter_joint = source_joint_history.evaluate(
-            emission_center, radii(source_position_box),
-            radii(source_velocity_box));
+        const auto transmitter_joint =
+            transmitter_joint_found->second.evaluate_segment(
+                source_segment_index, emission_center,
+                radii(source_position_box), radii(source_velocity_box));
         if (!transmitter_joint.position_fallback_dominates ||
             !transmitter_joint.velocity_fallback_dominates) {
           for (std::size_t axis = 0U; axis < 3U; ++axis) {
@@ -441,7 +438,8 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
           for (std::size_t axis = 0U; axis < 3U; ++axis) {
             for (std::size_t degree = 0U; degree < 4U; ++degree) {
               for (const double coefficient :
-                   source_joint_history.segments()[0]
+                   transmitter_joint_found->second
+                       .segments()[source_segment_index]
                        .position_coefficients[axis][degree]) {
                 if (coefficient == 0.0) continue;
                 ++raw_nonzero_coefficients;

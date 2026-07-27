@@ -74,6 +74,87 @@ bool dominates(
   return true;
 }
 
+JointAffinePointEvaluation evaluate_joint_segment(
+    const std::string& path_id,
+    const JointAffineCubicSegment& segment,
+    std::size_t symbol_count,
+    double original_time,
+    double evaluation_time,
+    const std::array<double, 3>& ordinary_position_radii,
+    const std::array<double, 3>& ordinary_velocity_radii) {
+  double local = evaluation_time - segment.start_time;
+  const double boundary_envelope =
+      32.0 * std::numeric_limits<double>::epsilon() *
+      std::max({1.0, std::abs(original_time), std::abs(segment.start_time)});
+  if (std::abs(local) <= boundary_envelope) local = 0.0;
+  JointAffinePointEvaluation result;
+  result.position.path_id = path_id;
+  result.position.shared_symbol_coefficients.resize(symbol_count);
+  result.velocity_shared_coefficients.resize(symbol_count);
+  result.position.independent_remainder_radii =
+      segment.position_remainder_radii;
+  result.velocity_remainder_radii = segment.velocity_remainder_radii;
+  result.position.ordinary_position_radii = ordinary_position_radii;
+  result.ordinary_velocity_radii = ordinary_velocity_radii;
+
+  for (std::size_t symbol = 0U; symbol < symbol_count; ++symbol) {
+    for (std::size_t axis = 0U; axis < 3U; ++axis) {
+      const bool structurally_zero = std::all_of(
+          segment.position_coefficients[axis].begin(),
+          segment.position_coefficients[axis].end(),
+          [&](const auto& row) { return row[symbol] == 0.0; });
+      if (structurally_zero) {
+        result.position.shared_symbol_coefficients[symbol][axis] = 0.0;
+        result.velocity_shared_coefficients[symbol][axis] = 0.0;
+        continue;
+      }
+      if (local == 0.0) {
+        result.position.shared_symbol_coefficients[symbol][axis] =
+            segment.position_coefficients[axis][0][symbol];
+        result.velocity_shared_coefficients[symbol][axis] =
+            segment.position_coefficients[axis][1][symbol];
+        continue;
+      }
+      Interval position = Interval::point(
+          segment.position_coefficients[axis][3][symbol]);
+      for (int degree = 2; degree >= 0; --degree) {
+        position = position * Interval::point(local) + Interval::point(
+            segment.position_coefficients[axis]
+                [static_cast<std::size_t>(degree)][symbol]);
+      }
+      const double position_coefficient = position.midpoint();
+      result.position.shared_symbol_coefficients[symbol][axis] =
+          position_coefficient;
+      result.position.independent_remainder_radii[axis] = outward_sum(
+          result.position.independent_remainder_radii[axis],
+          radius_about(position, position_coefficient));
+
+      Interval velocity = Interval::point(3.0) * Interval::point(
+          segment.position_coefficients[axis][3][symbol]);
+      velocity = velocity * Interval::point(local) +
+          Interval::point(2.0) * Interval::point(
+              segment.position_coefficients[axis][2][symbol]);
+      velocity = velocity * Interval::point(local) + Interval::point(
+          segment.position_coefficients[axis][1][symbol]);
+      const double velocity_coefficient = velocity.midpoint();
+      result.velocity_shared_coefficients[symbol][axis] =
+          velocity_coefficient;
+      result.velocity_remainder_radii[axis] = outward_sum(
+          result.velocity_remainder_radii[axis],
+          radius_about(velocity, velocity_coefficient));
+    }
+  }
+  result.position_fallback_dominates = dominates(
+      result.position.shared_symbol_coefficients,
+      result.position.independent_remainder_radii,
+      ordinary_position_radii);
+  result.velocity_fallback_dominates = dominates(
+      result.velocity_shared_coefficients,
+      result.velocity_remainder_radii,
+      ordinary_velocity_radii);
+  return result;
+}
+
 struct JointSegmentIntervalEvaluation {
   IntervalVector nominal_position;
   std::vector<IntervalVector> position_coefficients;
@@ -265,78 +346,44 @@ JointAffinePointEvaluation JointAffineRetainedHistory::evaluate(
             evaluation_time <= segment.end_time;
       });
   const auto& segment = found == segments_.end() ? segments_.back() : *found;
-  double local = evaluation_time - segment.start_time;
-  const double boundary_envelope =
-      32.0 * std::numeric_limits<double>::epsilon() *
-      std::max({1.0, std::abs(time), std::abs(segment.start_time)});
-  if (std::abs(local) <= boundary_envelope) local = 0.0;
-  const std::size_t symbol_count = symbol_registry_.size();
-  JointAffinePointEvaluation result;
-  result.position.path_id = path_id_;
-  result.position.shared_symbol_coefficients.resize(symbol_count);
-  result.velocity_shared_coefficients.resize(symbol_count);
-  result.position.independent_remainder_radii =
-      segment.position_remainder_radii;
-  result.velocity_remainder_radii = segment.velocity_remainder_radii;
-  result.position.ordinary_position_radii = ordinary_position_radii;
-  result.ordinary_velocity_radii = ordinary_velocity_radii;
+  return evaluate_joint_segment(
+      path_id_, segment, symbol_registry_.size(), time, evaluation_time,
+      ordinary_position_radii, ordinary_velocity_radii);
+}
 
-  for (std::size_t symbol = 0U; symbol < symbol_count; ++symbol) {
-    for (std::size_t axis = 0U; axis < 3U; ++axis) {
-      const bool structurally_zero = std::all_of(
-          segment.position_coefficients[axis].begin(),
-          segment.position_coefficients[axis].end(),
-          [&](const auto& row) { return row[symbol] == 0.0; });
-      if (structurally_zero) {
-        result.position.shared_symbol_coefficients[symbol][axis] = 0.0;
-        result.velocity_shared_coefficients[symbol][axis] = 0.0;
-        continue;
-      }
-      if (local == 0.0) {
-        result.position.shared_symbol_coefficients[symbol][axis] =
-            segment.position_coefficients[axis][0][symbol];
-        result.velocity_shared_coefficients[symbol][axis] =
-            segment.position_coefficients[axis][1][symbol];
-        continue;
-      }
-      Interval position = Interval::point(
-          segment.position_coefficients[axis][3][symbol]);
-      for (int degree = 2; degree >= 0; --degree) {
-        position = position * Interval::point(local) + Interval::point(
-            segment.position_coefficients[axis]
-                [static_cast<std::size_t>(degree)][symbol]);
-      }
-      const double position_coefficient = position.midpoint();
-      result.position.shared_symbol_coefficients[symbol][axis] =
-          position_coefficient;
-      result.position.independent_remainder_radii[axis] = outward_sum(
-          result.position.independent_remainder_radii[axis],
-          radius_about(position, position_coefficient));
-
-      Interval velocity = Interval::point(3.0) * Interval::point(
-          segment.position_coefficients[axis][3][symbol]);
-      velocity = velocity * Interval::point(local) +
-          Interval::point(2.0) * Interval::point(
-              segment.position_coefficients[axis][2][symbol]);
-      velocity = velocity * Interval::point(local) + Interval::point(
-          segment.position_coefficients[axis][1][symbol]);
-      const double velocity_coefficient = velocity.midpoint();
-      result.velocity_shared_coefficients[symbol][axis] =
-          velocity_coefficient;
-      result.velocity_remainder_radii[axis] = outward_sum(
-          result.velocity_remainder_radii[axis],
-          radius_about(velocity, velocity_coefficient));
-    }
+JointAffinePointEvaluation JointAffineRetainedHistory::evaluate_segment(
+    std::size_t segment_index,
+    double time,
+    const std::array<double, 3>& ordinary_position_radii,
+    const std::array<double, 3>& ordinary_velocity_radii) const {
+  if (segment_index >= segments_.size()) {
+    throw std::out_of_range(
+        "joint affine segment evaluation index lies outside retained history");
   }
-  result.position_fallback_dominates = dominates(
-      result.position.shared_symbol_coefficients,
-      result.position.independent_remainder_radii,
-      ordinary_position_radii);
-  result.velocity_fallback_dominates = dominates(
-      result.velocity_shared_coefficients,
-      result.velocity_remainder_radii,
-      ordinary_velocity_radii);
-  return result;
+  const auto& segment = segments_[segment_index];
+  if (!std::isfinite(time) ||
+      time < segment.start_time || time > segment.end_time) {
+    throw std::out_of_range(
+        "joint affine segment evaluation lies outside selected segment");
+  }
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    require_radius(ordinary_position_radii[axis], "ordinary position radius");
+    require_radius(ordinary_velocity_radii[axis], "ordinary velocity radius");
+  }
+  double evaluation_time = time;
+  const double scale = std::max(
+      {1.0, std::abs(time), std::abs(segment.start_time),
+       std::abs(segment.end_time)});
+  const double envelope =
+      32.0 * std::numeric_limits<double>::epsilon() * scale;
+  if (std::abs(time - segment.start_time) <= envelope) {
+    evaluation_time = segment.start_time;
+  } else if (std::abs(time - segment.end_time) <= envelope) {
+    evaluation_time = segment.end_time;
+  }
+  return evaluate_joint_segment(
+      path_id_, segment, symbol_registry_.size(), time, evaluation_time,
+      ordinary_position_radii, ordinary_velocity_radii);
 }
 
 JointAffineRetainedHistory JointAffineRetainedHistory::appended(
