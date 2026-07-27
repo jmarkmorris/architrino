@@ -1,12 +1,9 @@
-# High-Energy Astrophysics
+# High-Energy Astrophysics event routing
 
 ## Workstream Metadata
 
-- Kind: `priority-candidate`
-- Rank: `13`
-- Value: `8.04`
-- Cost: `5.0`
-- ROI: `1.61`
+- Kind: `strong-field-closure supporting packet`
+- Parent: [Strong-Field Quantitative Closure](../priorities.md)
 - Status: `routing`
 
 ## Ranked Next Objects

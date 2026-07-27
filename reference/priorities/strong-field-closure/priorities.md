@@ -7,32 +7,15 @@
 - Value: `11.46`
 - Cost: `6.2`
 - ROI: `1.85`
-- Status: `queued`
+- Status: `active strategic lane`
 
-## Task Queue
-
-1. `embedded_boundary_conditions` — Formulate horizon-interface solutions as Noether sea boundary-condition problems with $\rho_{\text{NS}}$, $\Sigma_{\text{medium}}$, $\mathbf{u}_{\text{medium}}$, admissible $\Lambda_{\text{NS}}$ data, and surrounding $\partial\Omega$. Status: `next`. Depends on: none.
-2. `observer_predictions` — Derive a stronger observer-level strong-field prediction set from the embedded boundary-condition formulation. Status: `pending`. Depends on: `embedded_boundary_conditions`.
-3. `horizon_entropy_packet` — Define the horizon-interface label ensemble and its local block entropy density from admissible $\Lambda_{\text{NS}}$ states, then use them to state entropy-area and Page-curve recovery targets, including tests of proposed horizon identifications. Status: `kernel-handoff-ready`; terminal enumerator consumption and coefficient derivation pending. Depends on: `observer_predictions`.
-4. `release_channel_selection` — Decide the release-channel selection between jets, diffuse outflow, dark-sector escape, and candidate dark-sector photon-like modes. Status: `pending`. Depends on: `observer_predictions`, `horizon_entropy_packet`.
-5. `discriminating_observable` — Extract at least one discriminating observable against GR-like strong-field behavior. Status: `pending`. Depends on: `release_channel_selection`.
-6. `hypothesis_bank_review` — Preserve strong-field and three-binary hypotheses as a watchlist, and promote only hypotheses that gain a boundary condition, equation, simulation target, or observable. Status: `ongoing`. Depends on: none.
-7. `high_energy_source_sink_taxonomy` — Classify horizon release, jets, mergers, diffuse release, catastrophic candidates, reabsorption, and return channels before using strong-field events as cosmology source terms. Status: `pending`. Depends on: `release_channel_selection`.
-8. `packed_core_temperature_endpoint_residual` — Keep observer-accessible temperature, stored configuration energy, and packed-core coarse-graining separate before making any low-temperature or low-entropy interior claim. Status: `priority-only`. Depends on: [temperature](../cross-theory-mapping/temperature.md), `embedded_boundary_conditions`.
-9. `hard_em_constitutive_ceiling` — Test whether finite radius, Noether sea effective permittivity/permeability, and maximum-curvature regularity combine into a bounded electromagnetic constitutive response. Status: `priority-only`. Depends on: `embedded_boundary_conditions`.
-10. `ingress_conserved_ledger_deposition` — Route infalling conserved ledgers into horizon-interface, packed-core, Noether sea, defect, or release rows before making any assimilation or information claim. Status: `priority-only`. Depends on: `horizon_entropy_packet`, `release_channel_selection`.
-11. `quasar_wind_mechanical_benchmark` — Use high-power quasar winds as a mechanical outflow benchmark for release-channel selection and galaxy-scale feedback. Status: `priority-only`. Depends on: `release_channel_selection`, `high_energy_source_sink_taxonomy`.
-12. `all_rail_terminal_barrel_theorem_target` — Prove and scope the conditional barrel lemma in the [strong-field disposition](terminal-barrel-horizon-release-scope-decision.md): a common-cadence spindle with every layer on the $c_f$ rail has one cylindrical radius, while dynamical existence and retention remain separate. Status: `priority-only conditional theorem target` (2026-07-11). Depends on: a retained terminal family and the characteristic-tail wake/action rows; no new build authorized.
-13. `horizon_interface_alignment_boundary_target` — Test the terminal-alignment residual on the same carrier as embedded boundary conditions, conserved-ledger deposition, entropy, release, and observer-recovery rows, while keeping the horizon distinct from the photon sphere or light ring unless a declared branch derives coincidence. Status: `priority-only boundary theorem target` (2026-07-11). Depends on: `embedded_boundary_conditions`, `horizon_entropy_packet`, `observer_predictions`.
-14. `frequency_421_hypothesis_watch` — Preserve `4:2:1` only as a hypothesis until an accepted reduced map, retained branch, or closed Planck-alignment calculation independently derives it and gives it a discriminating invariant consequence. Status: `watchlist` (2026-07-11). Depends on: `hypothesis_bank_review`; no implementation authorized.
-15. `dark_sector_photon_like_release_watch` — Preserve dark-sector photon-like release as a release-channel hypothesis gated on a same-event conserved ledger, transport / conversion law, radiation Gate C, and an observable that distinguishes it from ordinary visible and mechanical channels. Status: `watchlist` (2026-07-11). Depends on: `release_channel_selection`, `high_energy_source_sink_taxonomy`, `discriminating_observable`.
-16. `gw_public_waveform_packet` — Build the source-side and effective-metric portion of a versioned public gravitational-wave benchmark packet; route GWOSC/LVK detector comparison and equation residuals through Equation Mapping. Status: `pending`. Depends on: `observer_predictions`, `release_channel_selection`, and a shared event ledger.
+Current executable and deferred obligations are tracked in [work-queue.md](work-queue.md).
 
 ## Scope
 
 The main black-hole and strong-field chapter architecture is already in place. The remaining work is narrow and quantitative rather than exploratory.
 
-This file remains the control surface for strong-field quantitative closure. The sibling [brainstorming.md](brainstorming.md) preserves exploratory strong-field and three-binary ideas without keeping a separate ranked top-level workstream. If the quantitative work expands, the natural future split is an embedded-boundary packet and a horizon-interface label-ensemble packet.
+This file is the strategic control surface for strong-field quantitative closure. The [work queue](work-queue.md) tracks executable and deferred obligations; sibling [brainstorming.md](brainstorming.md) preserves exploratory strong-field and three-binary ideas without keeping a separate ranked top-level workstream. If the quantitative work expands, the natural future split is an embedded-boundary packet and a horizon-interface label-ensemble packet.
 
 Release-channel accounting consumes the shared residual-routing event-ledger theorem. This workstream owns the strong-field boundary conditions, label ensemble, channel candidates, and observables; the shared packet owns the general rule that any release route must close $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ without untracked loss or missing remnant state.
 
@@ -41,9 +24,11 @@ Release-channel accounting consumes the shared residual-routing event-ledger the
 | File | Role | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ notes |
 | --- | --- | --- |
 | [brainstorming.md](brainstorming.md) | Watchlist for strong-field and three-binary hypotheses that should not outrank the derivation spine. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [noether-sea-pro-anti-coupling](../../../content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md) |
+| [work-queue.md](work-queue.md) | Current execution order plus deferred quantitative obligations. | No item is live until moved to In progress with an owner. |
 | [holographic-entropy-boundary-data-benchmark.md](holographic-entropy-boundary-data-benchmark.md) | Source-mined RT/Maldacena benchmark packet for horizon-wrapping entropy, finite boundary data, and scale-coordinate discipline. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [entropy](../cross-theory-mapping/entropy.md), [spacetime-models-and-noether-sea](../../../content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md) |
 | [EQ-07C black-hole horizon-interface map](../equation-mapping/eq-07c-black-hole-horizon-interface-noether-braid-map.md) | Working black-hole-proper carrier contract that keeps terminal alignment, light-ring/null-orbit recovery, and planar-photon recovery separate until one source-backed carrier derives coincidence. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [general-relativity](../../../content/markdown/aaa/spacetime/general-relativity.md) |
 | [dark-sector-photon-like-mode.md](../dark-sector/dark-sector-photon-like-mode.md) | Detailed watchlist packet for candidate dark-sector photon-like release, redshift, reaction, and visible-channel re-entry. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
+| [high-energy-astrophysics/priorities.md](high-energy-astrophysics/priorities.md) | Event-scale routing for compact objects, mergers, jets, explosive transients, and source/sink families. | Equation Mapping and Strong-Field Closure; CMB/redshift consequences remain linked into Cosmology Closure. |
 
 ## Promotion Map
 
