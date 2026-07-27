@@ -35,7 +35,12 @@ Walk up from the smallest object, certifying dynamical behavior at each rung bef
 
 ## Waiting On
 
-- Engine: certified root completeness through the sub-field head-on close approach and the longer transverse path — blocks Campaign 1 fate booking and the sub-field breathing classification.
+- Engine: the stationary joint retained-history fixture is certified through
+  `1.3649999999999967`, but its unchanged next step to
+  `1.3699999999999966` fails closed at the 512-bit precision ceiling. Certified
+  root completeness through the full sub-field head-on close approach and the
+  longer transverse path still blocks Campaign 1 fate booking and the
+  sub-field breathing classification.
 - Engine: field-speed-fold root-completeness extension — separately gates queue item 3's at/above-field-speed stage.
 
 ## Pointers

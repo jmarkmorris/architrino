@@ -46,7 +46,7 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 - **Status:** Deferred / blocked
 - **Priority object:** `binary_subfield_fate`
 - **Request / acceptance:** Execute the frozen 27-configuration, three-prehistory, three-refinement Campaign 1 and book the opposite-polarity sub-field binary as bound, unbound, conditional, or failed.
-- **Evidence / blocker:** G3/G4 are reaccepted under the bounded 2026-07-27 instrument packet. Campaign execution remains blocked on certified close-approach root completeness. No fate is currently booked.
+- **Evidence / blocker:** G3/G4 are reaccepted under the bounded 2026-07-27 instrument packet. The stationary joint-history fixture now certifies through `1.3649999999999967`, but the next step to `1.3699999999999966` fails closed in both cross rows at the unchanged 512-bit ceiling. Campaign execution remains blocked on certified root completeness through the full close approach and longer transverse path. No fate is currently booked.
 - **Completion:** The unchanged residual, root, oracle, collapse, and record gates yield one accepted fate or declared failure.
 
 ### BP-003 — Collinear breather campaign
@@ -54,7 +54,10 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 - **Status:** Deferred / blocked
 - **Priority object:** `collinear_breather_campaign`
 - **Request / acceptance:** Extend certified close-approach roots and rerun the unchanged stationary seed; run the at/above-field stage only after fold-root completeness.
-- **Evidence / blocker:** Current runs halt before crossing and do not establish breathing.
+- **Evidence / blocker:** The stationary joint-history fixture now certifies
+  through `1.3649999999999967`; its next step fails closed on root
+  completeness. Current runs still halt before crossing and do not establish
+  breathing.
 - **Completion:** The unchanged protocol resolves inner turn, crossing, outer turn, recapture, return, or a fail-closed no-go.
 
 ### BP-004 — Undirected ensemble campaign

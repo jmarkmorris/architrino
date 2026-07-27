@@ -474,3 +474,22 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   release-ledger propagation only. It does not satisfy G5, close the
   close-approach root blocker, or book a fate. See the
   [G3/G4 reacceptance packet](../app-solver/evidence/attractor-resume-g3-g4-reacceptance-2026-07-27.md).
+
+## 2026-07-27 — Stationary joint frontier extended; next gate failed closed
+
+- A validation-fixture implementation commit converted the one-step stationary
+  joint-history replay into a consecutive atomic-step certificate and a pinned
+  next-step probe. A later evidence-only pass rebuilt and inspected the
+  committed fixture without changing its tolerances or solver path.
+- Both cross roots certify through `1.3649999999999967`: 25 accepted steps of
+  width `0.005` from the retained-history start, including 24 new steps beyond
+  the prior endpoint. At the new endpoint each row has one 128-bit root and a
+  certified root-free complement.
+- The next step to `1.3699999999999966` rejects atomically. Both rows exhaust
+  the unchanged 512-bit ceiling with
+  `interior_root_not_surrounded/joint_root_history_missing`. All 6 compiled
+  fixtures and all 23 independent Python root-contract tests passed.
+- This is an unresolved capability row, not candidate failure. The required
+  root gate did not pass, so Campaign 1 evolution and fate classification did
+  not start. See the
+  [frontier-extension packet](evidence/2026-07-27-stationary-rest-joint-frontier-extension.md).
