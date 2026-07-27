@@ -1,6 +1,6 @@
 # Braid Program — Instrument Gate
 
-Status: PARTIALLY RATIFIED; G3/G4 RESET PENDING FRESH VALIDATION (2026-07-24).
+Status: RATIFIED; G3/G4 REACCEPTED FOR BOUNDED CAMPAIGN USE (2026-07-27).
 First campaign-independent spec in this directory, per
 [../method.md](../method.md) Instrument Requirements. Forward-only: rewritten
 when acceptance status changes; history lives in the work log.
@@ -20,19 +20,23 @@ EOM acceptance/migration gates can grant.
 **G2. Master-equation residual evaluation along evolved trajectories.** Accepted as the Stage S instrument applied to Stage E output. Condition: the residual reduction is authored fresh from the owning spec's definitions with predeclared tolerances (method.md rule), never imported from legacy instruments.
 
 **G3. Checkpoint-chunked ensemble harness
-(`scripts/eom/attractor-ensemble-harness.cpp`).** Not currently accepted for
-campaign execution. The operator removed the historical checkpoint/resume and
-replay artifacts after the 2026-07-24 EOM solver review. The
+(`scripts/eom/attractor-ensemble-harness.cpp`).** Accepted for bounded campaign
+execution. The operator removed the historical checkpoint/resume and replay
+artifacts after the 2026-07-24 EOM solver review. The
 [2026-07-16 serialization ratification](../evidence/2026-07-16-checkpoint-record-emitter-ratification-and-campaign-1-workload-validation.md)
-is retained as historical instrument design evidence, but it does not accept
-the corrected solver. Reacceptance requires a fresh build, byte-identical
-checkpoint resume, exact checkpoint-to-record token parity, sanitizer coverage,
-and declared cross-chunk comparison.
+is retained as historical instrument design evidence. Fresh release and
+sanitizer builds now supply byte-identical checkpoint resume, exact
+checkpoint-to-record token parity, cumulative accounting, and declared
+cross-chunk comparison under the corrected solver. Basis:
+[the 2026-07-27 G3/G4 reacceptance packet](../../app-solver/evidence/attractor-resume-g3-g4-reacceptance-2026-07-27.md).
+This is determinism and serialization evidence, not independent
+numerical-correctness evidence.
 
-**G4. Release root-ledger clearance.** Interface available but acceptance
-pending fresh validation. A new harness run must show that the run manifest
-records certified release clearance under the corrected solver. A campaign's
-claim window remains closed until that fresh check passes, per method.md delay
+**G4. Release root-ledger clearance.** Accepted for bounded campaign use. Fresh
+release and sanitizer manifests recorded
+`releaseRootClearance: certified_complete`, and resume failed closed unless the
+prior manifest retained that status. Each campaign's claim window remains
+closed until its own run records certified clearance, per method.md delay
 discipline rule 3.
 
 **G5. Independent-oracle parity duty.** Every campaign cross-checks at least one declared window of at least one production run against `eom_independent_oracle/v0` certified intervals, with the window, tolerances, and result booked in evidence. Agreement between engine runs, or between a run and its own replay, is determinism evidence only — the oracle is the independent side.
@@ -41,8 +45,8 @@ discipline rule 3.
 
 - **Any non-EOM engine or retired-evaluator capability**, for computation or evidence, under any labeling. Self-reported evidence fields from any engine other than EOM (for example a `canonicalEomEvidence` flag asserted by the producer itself) are never consumed. Non-EOM output is barred outright.
 - **Campaign windows crossing field-speed folds** until the root-completeness certificate extension lands (live-state Waiting On item). The sub-field rung-1 campaign is unaffected.
-- **Any ensemble campaign using G3/G4 before their fresh validation packet is
-  accepted.**
+- **Any ensemble campaign whose own run lacks G3 cumulative accounting or G4
+  certified release clearance.**
 - **Prescribed-orbit evaluation presented as evolution.** Stage S instruments nominate; only Stage E books persistence.
 - **Toy interaction laws** (any parameterized stand-in for the master equation) in any campaign path, including display pipelines.
 - **Sampled-only trajectories as state evidence.** In a delay system the state is the history; sampled rows are display convenience (see §4).

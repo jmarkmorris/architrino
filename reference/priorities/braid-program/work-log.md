@@ -454,3 +454,23 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 - All 6 compiled fixtures and all 23 separately authored Python
   root-certification tests passed. See the
   [bounded certification packet](evidence/2026-07-27-stationary-rest-joint-frontier-certification.md).
+
+## 2026-07-27 — Corrected G3/G4 instrument gates reaccepted
+
+- A prior implementation-only commit repaired cumulative resume accounting,
+  bound the checkpoint to its manifest and request, retained certified
+  release-root status across resume, and restored public checkpoint segment
+  dumping. This later evidence-only change independently inspected the
+  committed instrument without modifying it.
+- Fresh release and sanitizer builds each passed all 6 compiled fixtures.
+  Interrupted and uninterrupted two-chunk runs produced byte-identical final
+  checkpoints, frame streams, evolved records, and replay records. Cumulative
+  chunk, accepted-step, rejected-step, frame, resume-count, and wall-time
+  accounting advanced correctly; exact checkpoint-to-record tokens matched;
+  both manifests recorded `releaseRootClearance: certified_complete`; and a
+  mismatched run identity failed closed.
+- G3 and G4 are accepted for bounded campaign execution. The result establishes
+  instrument determinism, accounting, serialization identity, and
+  release-ledger propagation only. It does not satisfy G5, close the
+  close-approach root blocker, or book a fate. See the
+  [G3/G4 reacceptance packet](../app-solver/evidence/attractor-resume-g3-g4-reacceptance-2026-07-27.md).

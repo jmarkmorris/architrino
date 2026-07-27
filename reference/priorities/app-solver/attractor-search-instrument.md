@@ -3,7 +3,7 @@
 ## Packet Metadata
 
 - Parent: [EOM](priorities.md)
-- Status: `fresh-baseline-required`
+- Status: `accepted-for-bounded-campaign-use`
 - Claim level: `priority-design`
 - Scientific campaign owner: [Braid Program](../braid-program/priorities.md)
 - Campaign design: [Undirected Ensemble Search](../braid-program/undirected-ensemble-search.md)
@@ -25,13 +25,16 @@ classification, collapse adjudication, and any physical promotion.
 
 - Historical profiler ledgers, harness demo output, and local campaign bundles
   were intentionally removed on 2026-07-24 after the EOM solver review.
-- The profiler and harness source remain available, but their performance,
-  resume, replay, and root-clearance behavior require fresh validation against
-  the corrected EOM solver.
+- Fresh release and sanitizer builds now reaccept deterministic checkpoint
+  resume, cumulative accounting, exact checkpoint-to-record token parity,
+  declared cross-chunk comparison, and certified release-root propagation.
+  The bounded evidence is recorded in the
+  [G3/G4 reacceptance packet](evidence/attractor-resume-g3-g4-reacceptance-2026-07-27.md).
 - No persistent assembly, braid, or attractor is booked.
-- Reproduction against the harness's own replay establishes determinism only;
-  campaign correctness still requires the independent-oracle duty declared by
-  the Braid Program instrument gate.
+- Reproduction against the harness's own uninterrupted execution establishes
+  determinism and serialization identity only; campaign correctness still
+  requires the independent-oracle duty declared by the Braid Program
+  instrument gate.
 
 ## Owned Capabilities
 
@@ -45,12 +48,8 @@ classification, collapse adjudication, and any physical promotion.
 
 ## Open Work
 
-1. Establish a post-review baseline from a fresh EOM build.
-2. Reaccept checkpoint resume and exact checkpoint-to-record token parity.
-3. Reaccept sanitizer coverage, cross-chunk comparison, and release-root
-   clearance.
-4. Confirm Borg's record-only display route using a newly emitted
+1. Confirm Borg's record-only display route using a newly emitted
    `assembly-view-record.v0` file; display does not upgrade evidence.
-5. Hand the accepted instrument to the Braid Program only after its
-   [instrument gate](../braid-program/campaigns/instrument-gate.md) accepts G3
-   and G4.
+2. Preserve the accepted G3/G4 baseline while each Braid Program campaign
+   separately satisfies its root, residual, refinement, collapse, and
+   independent-oracle gates.

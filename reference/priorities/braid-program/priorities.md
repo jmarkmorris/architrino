@@ -35,7 +35,6 @@ Walk up from the smallest object, certifying dynamical behavior at each rung bef
 
 ## Waiting On
 
-- Instrument: corrected-solver G3/G4 reacceptance, including cumulative checkpoint-resume accounting; the current resumed manifest resets chunk and wall-time counters.
 - Engine: certified root completeness through the sub-field head-on close approach and the longer transverse path — blocks Campaign 1 fate booking and the sub-field breathing classification.
 - Engine: field-speed-fold root-completeness extension — separately gates queue item 3's at/above-field-speed stage.
 

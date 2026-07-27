@@ -7,6 +7,26 @@ The [Braid Program](../braid-program/priorities.md) owns the scientific
 campaign and keeps its design in
 [Undirected Ensemble Search](../braid-program/undirected-ensemble-search.md).
 
+## 2026-07-27 — Corrected resume accounting and G3/G4 reaccepted
+
+- Commit `287dd735b67e2f3e9407a7ca4ec2bc443c9b5cbc` repaired cumulative
+  checkpoint/resume accounting, bound resume to the checkpoint, manifest, and
+  requested configuration, retained certified release-root clearance, made
+  manifest replacement atomic, repaired the public checkpoint dumper, and
+  added a bounded parity checker.
+- A later evidence-only change crossed the instrument gate's separate-change
+  boundary. Fresh release and sanitizer builds each passed all 6 compiled
+  fixtures and an interrupted-versus-uninterrupted two-chunk comparison.
+  Checkpoints, frame streams, evolved records, and replay records were
+  byte-identical; deterministic census fields and exact checkpoint-to-record
+  tokens matched; cumulative counters advanced; and both manifests retained
+  `releaseRootClearance: certified_complete`.
+- G3 and G4 are accepted for bounded campaign execution. The comparison proves
+  determinism, accounting, release-ledger propagation, and serialization
+  identity only. It does not supply independent numerical correctness or any
+  campaign outcome. See the
+  [acceptance packet](evidence/attractor-resume-g3-g4-reacceptance-2026-07-27.md).
+
 ## 2026-07-26 — Focused packet distributed to canonical owners
 
 - Moved the reusable execution-instrument state and this chronological log

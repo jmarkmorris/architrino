@@ -46,7 +46,7 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 - **Status:** Deferred / blocked
 - **Priority object:** `binary_subfield_fate`
 - **Request / acceptance:** Execute the frozen 27-configuration, three-prehistory, three-refinement Campaign 1 and book the opposite-polarity sub-field binary as bound, unbound, conditional, or failed.
-- **Evidence / blocker:** Blocked on corrected G3/G4 resume reacceptance and certified close-approach root completeness. No fate is currently booked.
+- **Evidence / blocker:** G3/G4 are reaccepted under the bounded 2026-07-27 instrument packet. Campaign execution remains blocked on certified close-approach root completeness. No fate is currently booked.
 - **Completion:** The unchanged residual, root, oracle, collapse, and record gates yield one accepted fate or declared failure.
 
 ### BP-003 — Collinear breather campaign
