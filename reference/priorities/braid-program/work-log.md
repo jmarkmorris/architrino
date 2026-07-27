@@ -493,3 +493,25 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   root gate did not pass, so Campaign 1 evolution and fate classification did
   not start. See the
   [frontier-extension packet](evidence/2026-07-27-stationary-rest-joint-frontier-extension.md).
+## 2026-07-27 — B/C retained landscape diagnosed; new searches remain frozen
+
+- Closed BP-008 at documentary diagnostic grade without rerunning or changing
+  the sealed 576-case campaign. The retained landscape contains 159 applicable
+  member scores, 414 inapplicable rows, and three fail-closed unknown rows.
+  B1.1 sample 5 is the isolated lowest retained row at peak
+  `59.29861867019956`, still `9.883103111699926` times the unchanged handoff
+  ceiling. See the
+  [retained diagnosis](evidence/2026-07-27-bc-score-landscape-diagnosis.md).
+- Coordinator review found that the 377-row local-landscape prose design lacks
+  a frozen machine manifest, exact protocol hash, write-once runner, and
+  separately bound dense-root audit. BP-009 now owns a score-free manifest and
+  instrument freeze; the first later analytical action is a separately
+  reviewed center-only capability pilot.
+- Declared a downstream 27-row
+  [rational multi-frequency slice](b1-1-rational-multifrequency-chart-slice-predeclaration.md)
+  with exact harmonic tuples, least-return periods, fastest-orbit time
+  resolution, root-completeness gates, null-score dispositions, and a 12-row
+  held-out audit. It remains blocked until the local geometry anchor is
+  dense-admitted and its own machine manifest is frozen. No EOM solver, path
+  evolution, analytical search, threshold relaxation, or physical claim was
+  made.

@@ -1,8 +1,10 @@
 # B1.1 Score-Landscape Diagnostic Predeclaration
 
-Status: proposed priority-only protocol for coordinator review. No execution is
-authorized by this file. It does not reopen or modify the sealed 2026-07-25
-B1/Family-C campaign.
+Status: coordinator-reviewed priority-only design. Analytical execution is
+blocked until the exact machine manifest, protocol, runner, and independent
+dense-root audit bindings below are frozen and validated without scoring a
+row. This file does not reopen or modify the sealed 2026-07-25 B1/Family-C
+campaign.
 
 Claim grade: **measured diagnostic** for the retained-row diagnosis below;
 **declared protocol** for the proposed population, reductions, dispositions,
@@ -25,6 +27,54 @@ post-score point creation.
 Plainly: the old campaign remains closed. This proposal asks how the B1.1 score
 changes around its lowest retained row without changing the old pass line or
 calling unavailable scores failures.
+
+## Coordinator audit disposition
+
+The design is mathematically bounded, but it is not yet a reproducible
+executable campaign. Four execution-bearing objects are absent:
+
+1. no machine-readable 377-row manifest records the normalized-coordinate
+   tokens, materialized specifications, row order, and manifest hash;
+2. no exact complete-cycle protocol hash binds all event, root, surface,
+   spectral, and reduction fields at the declared 24/48 resolutions;
+3. no write-once runner accepts only that manifest and refuses score-dependent
+   row creation; and
+4. no separately bound dense-row root-residual instrument and implementation
+   hash is named.
+
+The old compact database and coverage artifacts are also local operational
+data, not committed repository inputs. Their retained hashes and diagnosis are
+durable, but a clean checkout cannot treat their former local paths as an
+executable dependency.
+
+Plainly: the prose fixes the intended chart, but there is not yet one exact
+file that a runner can consume. Running now would require inventing execution
+details after seeing the old scores, so no analytical row was evaluated in
+this pass.
+
+Before any analytical evaluation, a manifest-freeze packet must:
+
+1. implement a pure, score-free manifest builder;
+2. retain exact hexadecimal SHA-256 counter tokens before converting them to
+   binary64 coordinates;
+3. bind the canonical B1.1 source bytes, the complete materialized center
+   specification, and the center hashes stated below;
+4. emit and validate exactly 377 unique rows in the declared order;
+5. freeze the exact complete-cycle protocol and its SHA-256;
+6. bind the write-once runner and the independent geometric causal-root
+   residual recomputation by file hash; and
+7. pass a dry-run validation that performs no causal-root evaluation and
+   produces no score.
+
+The first analytical action after that packet is accepted is a center-only
+capability pilot. It must stop before the remaining 376 rows unless the center
+reproduces its exact source identity and is applicable at both declared
+resolutions. The pilot's measured wall time, CPU time, memory, and retained
+bytes set the execution budget; the old campaign's process time is not a cost
+measurement for this stronger protocol.
+
+Plainly: first freeze what will be run, then measure one already-known center.
+Only a valid and applicable center can authorize the bounded landscape batch.
 
 ## Retained-row diagnosis
 
@@ -357,14 +407,18 @@ handoff line; it is not a family-level or physical negative.
 
 ## Coordinator decision
 
-Coordinator review should accept, revise, or reject the twelve-coordinate box,
-377-row design, resolution ladder, raw-retention rule, and independent dense
-root audit before implementation. Acceptance authorizes only a later
-implementation/validation packet; campaign execution requires a separate
-explicit instruction.
+The twelve-coordinate box, 377-row design, resolution ladder, raw-retention
+rule, and fail-closed dispositions are accepted as the design input to a
+manifest-freeze packet. They are not accepted as an executable campaign until
+the seven pre-evaluation obligations above have exact hashes and passing
+score-free validation.
 
-Plainly: this file is ready to become the machine predeclaration, but it is not
-itself permission to build or run the search.
+The center-only capability pilot is the next analytical step after that
+freeze. It is not a search and does not authorize the remaining 376 rows. A
+separate execution decision follows the measured pilot result.
+
+Plainly: the chart design is settled enough to implement, but no search is
+authorized and no threshold has changed.
 
 Closure goal: freeze a separately hashed B1.1 score-landscape protocol that
 maps the retained low row without rerunning the old campaign, changing the
