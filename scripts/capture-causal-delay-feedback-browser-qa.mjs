@@ -12,7 +12,7 @@ const DEFAULT_HOST = "127.0.0.1";
 const DEFAULT_PORT = 5173;
 const DEFAULT_OUTPUT_DIR = path.join(
   REPO_ROOT,
-  "reference/priorities/app-causal-delay-feedback/browser-qa",
+  "reference/priorities/dormant-deferred/app-causal-delay-feedback/browser-qa",
 );
 const DEFAULT_BROWSER_PATHS = [
   process.env.CAUSAL_DELAY_BROWSER_PATH,

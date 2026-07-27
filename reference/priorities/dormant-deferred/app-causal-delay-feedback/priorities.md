@@ -3,19 +3,23 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Status: `maintenance`
+- Status: `deferred`
 - Immediate implementation lane: `closed`
 - Active queue: none
 
 ## Current
 
-`causal-delay-feedback.html` is a live canvas-first teaching app with eight ordered lessons followed by Laboratory. The accepted learner surface, exact lesson copy, architecture, provenance rules, and claim boundaries live in [v1-product-requirements.md](v1-product-requirements.md).
+`causal-delay-feedback.html` is a live canvas-first teaching app with eight ordered lessons followed by Laboratory, but its priority lane is deferred. The accepted learner surface, exact lesson copy, architecture, provenance rules, and claim boundaries live in [v1-product-requirements.md](v1-product-requirements.md).
 
 [work-queue.md](work-queue.md) is intentionally empty until the operator opens a new learner-facing request or a verified regression is found. [brainstorming.md](brainstorming.md) retains only ideas that have not been promoted or implemented. [work-log.md](work-log.md) records the current closure transition; routine bug and verification history remain in Git history.
 
+The advanced causal-root fold teaching concept is also deferred here. [roots-product-plan.md](roots-product-plan.md) preserves its mathematical scope, [roots-requirements-and-design.md](roots-requirements-and-design.md) preserves the proposed synchronized linked views, and the focused [roots-brainstorming.md](roots-brainstorming.md) and [roots-work-log.md](roots-work-log.md) preserve its ideas and history without reopening a standalone app.
+
 ## Strategic Status
 
-The immediate CDF implementation lane is complete. Preserve the accepted eight-lesson sequence, Laboratory, exact learner copy, one canonical runtime/state/evaluator/wake-rendering path, and display-only authority boundaries.
+The immediate CDF implementation lane is complete and the combined priority remains deferred. Preserve the accepted eight-lesson sequence, Laboratory, exact learner copy, one canonical runtime/state/evaluator/wake-rendering path, and display-only authority boundaries.
+
+Roots is a real teaching challenge because the learner must connect delay-map zeroes, causal-wake geometry, root-count changes, and finite accumulated velocity change without mistaking a display construction for an accepted physical result. Keep the proposed advanced linked-view lesson deferred until an operator-directed teaching pass can simplify that burden within the existing app.
 
 Reopen implementation only for:
 
@@ -38,6 +42,10 @@ None.
 - [work-queue.md](work-queue.md): new unresolved intake only.
 - [brainstorming.md](brainstorming.md): genuinely open ideas only.
 - [work-log.md](work-log.md): major lane-status transitions only.
+- [roots-product-plan.md](roots-product-plan.md): deferred advanced causal-root fold teaching scope.
+- [roots-requirements-and-design.md](roots-requirements-and-design.md): proposed linked-view teaching design and theory-layer constraints.
+- [roots-brainstorming.md](roots-brainstorming.md): unpromoted Roots teaching ideas.
+- [roots-work-log.md](roots-work-log.md): Roots packet history and consolidation record.
 - `src/apps/causal-delay-feedback/` and focused CDF tests: executable source of truth.
 - `browser-qa/stage-0-golden-baseline.json` and `browser-qa/stage-0-transition-matrix.json`: live Stage 0 regression fixtures.
 
@@ -49,3 +57,4 @@ None.
 - Keep representative teaching fixtures, recorded EOM path display, local drag previews, and browser parity at `display-only`.
 - Do not infer solver correctness, physical acceleration law, measured magnitude, binding, stability, solved trajectory, retained-branch acceptance, or physics acceptance from the app.
 - Use Git history for discarded micro-fix narratives, superseded proposals, and old screenshot evidence.
+- Do not create a separate Roots route, runtime, state store, evaluator, or wake renderer.

@@ -6,6 +6,12 @@ Use [interface-brainstorming.md](interface-brainstorming.md) for provisional pro
 
 ## Log Entries
 
+### 2026-07-26 - Consolidated Under Archie
+
+- Moved the interface product packet, brainstorming, work log, requirements, standards, and service contracts into `reference/priorities/archie/`.
+- Made [priorities.md](priorities.md) the sole ranked owner and retained this interface chronology as a focused supporting log.
+- Updated source-index and service fixtures to use the canonical Archie routes; generated source-index snapshots remain check-only until regeneration is explicitly authorized.
+
 ### 2026-07-02 - Resume Under Priority-File Partitioning
 
 - Resumed the paused Answer Artifact Manifest / Archie interface lane under the current priority-directory partitioning.

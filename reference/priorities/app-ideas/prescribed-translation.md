@@ -37,7 +37,7 @@ Read these live sources before editing:
 - [Borg priorities](../app-borg/priorities.md)
 - [Borg assembly-viewer requirements](../app-borg/assembly-viewer-requirements.md)
 - [Software Architecture and Maintenance](../../../content/markdown/aaa/archie/software-architecture-and-maintenance.md)
-- [Roots requirements and design](../app-roots/requirements-and-design.md)
+- [Roots requirements and design](../dormant-deferred/app-causal-delay-feedback/roots-requirements-and-design.md)
 - `src/apps/borg/BorgAppRuntime.js`
 - `src/apps/borg/BorgAssemblyViewSession.js`
 - `src/apps/borg/BorgEomRecordReplayRunner.js`

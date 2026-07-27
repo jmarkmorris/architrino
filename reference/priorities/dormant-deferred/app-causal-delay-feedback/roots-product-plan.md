@@ -1,21 +1,24 @@
-# Roots Mode
+# Deferred Roots Teaching Plan
 
-## Workstream Metadata
+## Packet Metadata
 
-- Kind: `priority-app`
-- Rank: `unranked` (not yet entered in the unified [aaa-work-threads/priorities.md](../aaa-work-threads/priorities.md) table)
-- Value: `tbd`
-- Cost: `tbd`
-- ROI: `tbd`
-- Status: `consolidated-into-app-causal-delay-feedback`
+- Kind: `detailed-priority-packet`
+- Parent priority: [Causal Delay Feedback](priorities.md)
+- Status: `deferred`
+- Claim level: `priority-only`
+- Requirements and design: [roots-requirements-and-design.md](roots-requirements-and-design.md)
+- Brainstorming: [roots-brainstorming.md](roots-brainstorming.md)
+- Work log: [roots-work-log.md](roots-work-log.md)
 
 ## Current
 
-This folder preserves the mathematical, linked-view, and acceptance packet for the future **Roots** mode of [Causal Delay Feedback](../app-causal-delay-feedback/priorities.md). It is no longer a proposed standalone app. No Roots-mode code exists yet; implementation belongs inside the Causal Delay Feedback capability suite.
+This packet preserves the mathematical, linked-view, and acceptance plan for advanced causal-root teaching inside [Causal Delay Feedback](priorities.md). It is not a standalone app and remains deferred.
+
+The existing app already has a shared causal-root evaluator and an internal `CausalDelayFeedbackRootsMode.js` view used by focused tests and earlier learner-journey work. The accepted current navigation does not expose Roots as a separate live lesson or route. The deferred work here is therefore pedagogical: decide whether the proposed linked views can teach the fold clearly enough to justify reopening the learner surface without creating a second runtime or overstating display-only results.
 
 This packet uses $T_r$ for receiver time and $T_t$ for transmit (emission) time, in place of `master-equation.md`'s bare $T$ and $T_{\mathrm{em}}$, so panes and controls can name "receiver" and "transmit" time explicitly without relying on subscript position alone. The two notations refer to the same quantities; cross-reference `master-equation.md` by dropping the `r`/`t` subscripts back to $T$/$T_{\mathrm{em}}$.
 
-The app's subject is the **causal-root fold**: the mechanism in [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse) by which the number of active causal roots between a transmitter path and a receiver event changes. A causal root is an emission event on the transmitter path whose expanding causal wake intersects the receiver event now; the Master EOM sums per-hit accelerations over the currently active roots (`master-equation.md`, "Master EOM"). The transmitter-side transversality floor
+The app's subject is the **causal-root fold**: the mechanism in [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse) by which the number of active causal roots between a transmitter path and a receiver event changes. A causal root is an emission event on the transmitter path whose expanding causal wake intersects the receiver event now; the Master EOM sums per-hit accelerations over the currently active roots (`master-equation.md`, "Master EOM"). The transmitter-side transversality floor
 
 $$
 D_{s,ij}(T_r;T_t) \equiv c_f - \hat{\mathbf r}_{ij}(T_r;T_t)\cdot\mathbf V_j(T_t)
@@ -34,7 +37,7 @@ Specify how the Causal Delay Feedback Roots mode illustrates causal-root count c
 
 ## Requirements And Design
 
-The pane layout, control set, and theory-layer constraints for V1 are worked out in [requirements-and-design.md](requirements-and-design.md). Summary: a synchronized 2x2 grid (delay-map roots, wake scene, root-count ledger, finite-impulse pane) driven primarily by a source velocity slider $\beta=v/c_f$, with a secondary impact-parameter slider and standard time-transport controls.
+The pane layout, control set, and theory-layer constraints are worked out in [roots-requirements-and-design.md](roots-requirements-and-design.md). Summary: a synchronized 2x2 grid (delay-map roots, wake scene, root-count ledger, finite-impulse pane) driven primarily by a source velocity slider $\beta=v/c_f$, with a secondary impact-parameter slider and standard time-transport controls.
 
 ## Theory-Layer Constraints
 
@@ -44,7 +47,7 @@ The pane layout, control set, and theory-layer constraints for V1 are worked out
 
 ## Open Design Questions (discussion-scoped)
 
-Resolved into the V1 design (see [requirements-and-design.md](requirements-and-design.md)): panel layout is a synchronized 2x2 grid, the source path defaults to a straight-line pass with a circular-orbit mode deferred, and root-count history is its own ledger pane (Pane C) so the $\Delta N=\pm2$ law is checkable against Pane A's zero-crossing count, not just visually plausible.
+Resolved into the deferred design (see [roots-requirements-and-design.md](roots-requirements-and-design.md)): panel layout is a synchronized 2x2 grid, the source path defaults to a straight-line pass with a circular-orbit mode deferred, and root-count history is its own ledger pane (Pane C) so the $\Delta N=\pm2$ law is checkable against Pane A's zero-crossing count, not just visually plausible.
 
 Still unresolved:
 
@@ -52,4 +55,4 @@ Still unresolved:
 - Whether the circular-orbit transmitter mode ships in V1 or stays deferred.
 - Whether the numeric readout strip should expose both the transmitter-side acceleration weight $W_{r\leftarrow t}^{\mathrm{acc}}$ and the signed root-playback derivative $D_r/D_t$.
 
-No implementation dispatched. The next implementation scope should consume this packet from Causal Delay Feedback rather than create a separate Roots product.
+No new implementation is scheduled. Any future teaching pass must consume this packet inside Causal Delay Feedback, reuse the existing evaluator and rendering path, and first show that the linked-view burden can be made legible without creating a separate Roots product.

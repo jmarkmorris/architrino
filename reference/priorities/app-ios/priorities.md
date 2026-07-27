@@ -34,7 +34,7 @@ Decision 1 (locked): `Xcode` scaffold for v1 lives at `apps/ios/ArchitrinoReader
 13. Glossary access is provided through an explicit reader action and opens as a bundled in-app reference document when included in the textbook package.
 14. Reader-facing UI text and notices avoid equation-style symbols; keep labels and helper copy as plain words.
 15. The first public release target is Unlisted App Store distribution. The app still ships through App Store Connect and ordinary App Review, but the post-approval install path is a direct App Store link rather than App Store search, categories, recommendations, charts, or other listings.
-16. [Causal Delay Feedback App](../app-causal-delay-feedback/priorities.md) is a post-v1 visualization candidate. Its iPhone/iPad integration should adapt to landscape and portrait orientation while preserving the one-pair causal-delay scene state.
+16. [Causal Delay Feedback App](../dormant-deferred/app-causal-delay-feedback/priorities.md) is a post-v1 visualization candidate. Its iPhone/iPad integration should adapt to landscape and portrait orientation while preserving the one-pair causal-delay scene state.
 17. iPadOS is a first-release quality target, not an opportunistic compatibility target. The first release must be usable on iPad with the same textbook content package, reader controls, search, bookmarks, and local-only persistence as iPhone.
 
 ## Design Thesis

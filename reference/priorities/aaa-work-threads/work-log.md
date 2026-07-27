@@ -6,6 +6,12 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-26 — Archie interface owner consolidated
+
+- Merged the former `app-archie-interface` directory into `archie`.
+- Kept [archie/priorities.md](../archie/priorities.md) as the sole ranked owner and retained the detailed product lane in [interface-product-plan.md](../archie/interface-product-plan.md).
+- Removed the duplicate global row and shifted the lower ranks upward without changing their component scores.
+
 ### 2026-07-17 — Marginal-object scoring and mandatory two-level sorting
 
 - Replaced whole-workstream scoring language with marginal scoring of one next unresolved object against its remaining value and remaining cost; completed infrastructure now reduces burden or satisfies prerequisites but does not retain value credit.

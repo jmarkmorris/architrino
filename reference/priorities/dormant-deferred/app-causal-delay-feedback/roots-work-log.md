@@ -1,14 +1,14 @@
-# App Roots Work Log
+# Deferred Roots Teaching Work Log
 
-This file is the chronological work log for the `app-roots` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker.
+This file preserves the chronological history of the Roots teaching packet inside the deferred Causal Delay Feedback priority area.
 
-Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and draft corpus-promotable text when this priority area has one. Use the main priority tracker in this directory for the compact current queue, blockers, promotion routing, and next action. Keep focused proof packets, certificates, app specs, and requirement notes in their own sibling files when they need a stable structure.
+Use [roots-brainstorming.md](roots-brainstorming.md) for provisional ideas, [roots-product-plan.md](roots-product-plan.md) for the focused packet, and [priorities.md](priorities.md) as the sole priority owner.
 
 ## Log Entries
 
 ### 2026-07-19 Priority Area Opened
 
-Created `app-roots` to stage a proposed visualization app for the causal-root fold: root pairs are created or annihilated when a source's velocity component along the line of sight to the receiver crosses $c_f$, per the fold law in [master-equation.md](../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse). No implementation exists yet; Status is `proposed` and Rank is `unranked` pending operator/developer scoping and entry into the unified priority table.
+Created `app-roots` to stage a proposed visualization app for the causal-root fold: root pairs are created or annihilated when a source's velocity component along the line of sight to the receiver crosses $c_f$, per the fold law in [master-equation.md](../../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse). No implementation exists yet; Status is `proposed` and Rank is `unranked` pending operator/developer scoping and entry into the unified priority table.
 
 ### 2026-07-19 V1 Requirements And Design Drafted
 
@@ -17,3 +17,7 @@ Wrote [requirements-and-design.md](requirements-and-design.md): a synchronized 2
 ### 2026-07-23 Consolidated Into Causal Delay Feedback
 
 The operator selected capability grouping over a separate Roots product. This directory now preserves the mathematical, linked-view, and acceptance packet for a future Roots mode inside Causal Delay Feedback. The standalone `roots.html` and `src/apps/roots/` implementation direction was retired before code existed. The mode must reuse Causal Delay Feedback's canonical source, receiver, retained-history state, causal-root evaluator, and wake renderer.
+
+### 2026-07-26 Merged And Deferred
+
+Moved the complete Roots packet into the dormant Causal Delay Feedback directory. The current app already contains the shared evaluator and internal Roots view, but the advanced fold lesson remains deferred because coordinating the delay map, wake geometry, root-count ledger, and finite accumulated velocity change is a substantial teaching challenge. No standalone route, duplicate runtime, or new implementation queue was opened.

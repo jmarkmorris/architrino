@@ -1,6 +1,6 @@
-# App Roots Brainstorming
+# Deferred Roots Teaching Brainstorming
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This file preserves unpromoted ideas for teaching causal-root folds inside Causal Delay Feedback. The packet is deferred and does not own a standalone app.
 
 ## Routing Rules
 

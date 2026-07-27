@@ -19,7 +19,7 @@ Portfolio scope includes the public Navigator, every reader-facing app on the pr
 | [Atom](../../../content/scenes/nuclear/atom.json) | deployed | 0 | L |
 | [Braid Search](../../../braid-search.html) | deployed | 0 | L |
 | [Borg](../app-borg/priorities.md) | deployed | 4 | H |
-| [Causal Delay Feedback](../app-causal-delay-feedback/priorities.md) | deployed | 5 | H |
+| [Causal Delay Feedback](../dormant-deferred/app-causal-delay-feedback/priorities.md) | deployed | 5 | H |
 | [Equation Mapping](../app-equation-mapping/priorities.md) | deployed | 0 | L |
 | [Hyde Periodic Table](../../../content/scenes/chemistry/hyde_periodic_table_scene.json) | deployed | 0 | L |
 | [It's Greek to Me!](../../../greek-letter-match.html) | deployed | 0 | L |
@@ -97,7 +97,7 @@ These capabilities form one progressive learning suite over a shared source, rec
 
 #### 3. Roots Mode
 
-- Use the existing [Roots requirements](../app-roots/requirements-and-design.md) as the mathematical and acceptance authority for an advanced linked-view mode.
+- Use the existing [Roots requirements](../dormant-deferred/app-causal-delay-feedback/roots-requirements-and-design.md) as the mathematical and acceptance authority for an advanced linked-view mode.
 - Plot the delay-map function against emission time and synchronize its zero-crossings with wake intersections and the active-root count.
 - Slow the scene at a generic fold so a tangent zero becomes two causal roots and the ledger changes by $\Delta N=\pm2$.
 - Keep the pointwise acceleration spike visually separate from the finite accumulated velocity change through an ordinary interior fold.

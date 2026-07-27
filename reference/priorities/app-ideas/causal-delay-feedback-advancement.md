@@ -32,11 +32,11 @@ Before editing:
    `reference/op/agent-startup-orientation.generated.md`.
 2. Run `git status --short --untracked-files=all` and preserve unrelated work.
 3. Read:
-   - `reference/priorities/app-causal-delay-feedback/priorities.md`;
-   - `reference/priorities/app-causal-delay-feedback/brainstorming.md`;
-   - `reference/priorities/app-causal-delay-feedback/v1-product-requirements.md`;
-   - `reference/priorities/app-roots/priorities.md`;
-   - `reference/priorities/app-roots/requirements-and-design.md`;
+   - `reference/priorities/dormant-deferred/app-causal-delay-feedback/priorities.md`;
+   - `reference/priorities/dormant-deferred/app-causal-delay-feedback/brainstorming.md`;
+   - `reference/priorities/dormant-deferred/app-causal-delay-feedback/v1-product-requirements.md`;
+   - `reference/priorities/dormant-deferred/app-causal-delay-feedback/roots-product-plan.md`;
+   - `reference/priorities/dormant-deferred/app-causal-delay-feedback/roots-requirements-and-design.md`;
    - `content/markdown/aaa/dynamics/master-equation.md`, especially causal
      roots and caustic transit;
    - `content/markdown/aaa/archie/navigation-and-controls.md`;

@@ -5,10 +5,10 @@ import { test } from "node:test";
 import { STORY_STEPS } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackStoryMode.js";
 
 const baseline = JSON.parse(readFileSync(
-  new URL("../reference/priorities/app-causal-delay-feedback/browser-qa/stage-0-golden-baseline.json", import.meta.url),
+  new URL("../reference/priorities/dormant-deferred/app-causal-delay-feedback/browser-qa/stage-0-golden-baseline.json", import.meta.url),
 ));
 const matrix = JSON.parse(readFileSync(
-  new URL("../reference/priorities/app-causal-delay-feedback/browser-qa/stage-0-transition-matrix.json", import.meta.url),
+  new URL("../reference/priorities/dormant-deferred/app-causal-delay-feedback/browser-qa/stage-0-transition-matrix.json", import.meta.url),
 ));
 
 test("Stage 0 golden baseline matches the current five working Story lessons", () => {

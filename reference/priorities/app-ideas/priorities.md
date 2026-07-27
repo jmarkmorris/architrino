@@ -35,7 +35,7 @@ Ordered by marginal ROI on 2026-07-17.
 
 1. [Causal Delay Feedback Learner Progression](causal-delay-feedback-advancement.md). Status: `promoted implementation packet`; Story and Prediction is first, followed by Path History, Roots, Self-Hit, Branch Lab, and Sandbox as one progressive app.
 2. [Prescribed Translation and Causal-History Tubes](prescribed-translation.md). Status: `promoted implementation packet`; this is Borg's first selected learner-facing enhancement slice.
-3. [Causal Delay Feedback Depth](../app-causal-delay-feedback/priorities.md). Status: `promoted`; Path-History Ledger, Roots, Self-Hit, Branch Geometry, and Prediction are consolidated as future capabilities of this app.
+3. [Causal Delay Feedback Depth](../dormant-deferred/app-causal-delay-feedback/priorities.md). Status: `promoted`; Path-History Ledger, Roots, Self-Hit, Branch Geometry, and Prediction are consolidated as future capabilities of this app.
 4. [Assembly Viewer](../app-borg/assembly-viewer-requirements.md). Status: `consolidated into app-borg`.
 5. [Equation Mapping App](../app-equation-mapping/priorities.md). Status: `promoted`.
 
@@ -45,8 +45,8 @@ Ordered by marginal ROI on 2026-07-17.
 
 ## Related Priorities
 
-- [app-causal-delay-feedback](../app-causal-delay-feedback/priorities.md)
+- [app-causal-delay-feedback](../dormant-deferred/app-causal-delay-feedback/priorities.md)
 - [app-borg](../app-borg/priorities.md)
 - [app-equation-mapping](../app-equation-mapping/priorities.md)
 - [app-animator](../app-animator/priorities.md)
-- [app-roots technical packet](../app-roots/priorities.md)
+- [app-roots technical packet](../dormant-deferred/app-causal-delay-feedback/roots-product-plan.md)

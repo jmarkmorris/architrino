@@ -1,12 +1,14 @@
-# Roots Mode Requirements And Design
+# Deferred Roots Teaching Requirements And Design
 
 ## Purpose
 
-Roots is a linked-view mode inside Causal Delay Feedback for the causal-root fold described in [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse): as a source's velocity component toward a receiver crosses $c_f$, the delay-map function $g$ develops a new pair of zero-crossings (causal roots), the wake surfaces emitted by the source visibly compress on the approach side, the active-root count steps by $\pm2$, and the per-hit acceleration spikes but integrates to a finite velocity change. V1 renders all four of these as one synchronized 2x2 grid driven by a small shared control set, so a reader can watch one physical event (the fold) show up simultaneously as an algebraic fact, a geometric picture, a counting ledger, and a bounded kinematic consequence.
+This deferred packet explores a linked-view lesson inside Causal Delay Feedback for the causal-root fold described in [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse): as a source's velocity component toward a receiver crosses $c_f$, the delay-map function $g$ develops a new pair of zero-crossings (causal roots), the wake surfaces emitted by the source visibly compress on the approach side, the active-root count steps by $\pm2$, and the per-hit acceleration spikes but integrates to a finite velocity change. The proposed design renders all four as one synchronized 2x2 grid driven by a small shared control set, so a reader can watch one fold appear simultaneously as an algebraic fact, a geometric picture, a counting ledger, and a bounded kinematic consequence.
+
+The challenge is not missing computation. It is teaching four coupled representations without overwhelming the learner or implying that a schematic view independently proves the Master EOM behavior. The current app already has a canonical causal-root evaluator and internal Roots view; this packet does not authorize another evaluator, route, runtime, or implementation pass.
 
 **Notation.** This packet writes receiver time as $T_r$ and transmit (emission) time as $T_t$, rather than `master-equation.md`'s bare $T$ and $T_{\mathrm{em}}$, so every pane and control can name "receiver" and "transmit" explicitly. Fold instants carry the same subscript pattern: $T_{r,\ast}$ is the receiver-time instant of the fold, $T_{t,\ast}$ the paired transmit-time instant. Drop the `r`/`t` subscripts to recover the `master-equation.md` symbols.
 
-## Non-Negotiable V1 Requirements
+## Requirements Before Reopening
 
 1. All four panes share one time cursor and one source-kinematics state; moving any shared control redraws all four panes together, not just one.
 2. The fold event (where $D_{s,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_j$ crosses zero) must be visually identifiable in every pane at the same instant: a zero-crossing pair-creation in Pane A, a compression crest in Pane B, a step in Pane C, and the divergent-then-bounded spike in Pane D.
@@ -36,7 +38,7 @@ Primary:
 Secondary:
 
 - **Impact parameter slider ($b$)**, the source's perpendicular offset from the receiver on its straight-line pass. Does not change whether a fold exists (that is governed by $\beta$ alone, since $\hat{\mathbf r}_{ij}\cdot\mathbf V_j\to v$ as the source position on its line goes to $\pm\infty$, so any $\beta>1$ guarantees a fold region regardless of $b$), but changes when the fold occurs and how compressed Pane B's wake spacing gets at closest approach.
-- **Source path toggle: straight-line pass vs. circular orbit.** V1 default is the straight-line pass (simplest fold demonstration). A circular-orbit mode is a stretch goal tied to the principal-partner root certificate in [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md#principal-partner-root-certificate) and may ship after V1.
+- **Source path toggle: straight-line pass vs. circular orbit.** V1 default is the straight-line pass (simplest fold demonstration). A circular-orbit mode is a stretch goal tied to the principal-partner root certificate in [Binary Dynamics](../../../../content/markdown/aaa/dynamics/binary-dynamics.md#principal-partner-root-certificate) and may ship after V1.
 - **Snap-to-fold step control.** Jumps the time cursor directly to the next or previous root-count transition, since the fold window can be brief relative to the full pass and is easy to scrub past.
 - **Pane overlay toggles.** Show/hide the $D_s$ floor trace on Pane A, and show/hide the cumulative-$\Delta V$ overlay on Pane D, so a first-time viewer can start simpler and add detail.
 
@@ -63,4 +65,4 @@ Numeric readout strip (not a fifth pane, a compact status row): current $\beta$,
 - Whether the circular-orbit transmitter mode ships in V1 or is deferred as noted above.
 - Whether the numeric readout strip should expose both $W_{r\leftarrow t}^{\mathrm{acc}}=c_f/|D_t|$ and signed root playback $D_r/D_t$, or stay limited to $\beta$, $D_t$, $N$, and time-to-fold for V1 simplicity.
 
-Status of all three: unresolved, no implementation dispatched.
+Status of all three: deferred. No new implementation is scheduled.

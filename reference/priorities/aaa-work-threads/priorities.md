@@ -55,7 +55,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | 9 | App | [`app-photon`](../app-photon/priorities.md) | `reusable_absolute_history_solver` generalized beyond Photon circular histories | 6.0 | 1.25 | -45 | 1.45 | 0.85 | 5 | 1.00 | 9.24 | 4 | 3 | 4 | 4 | 3.7 | 2.50 |
 | 10 | Shared packet | `exposure-quotient-theorem` | One accepted branch-to-sector exposure quotient with a null-sector bound | 9.5 | 1.65 | -45 | 1.45 | 0.35 | 6 | 1.10 | 8.75 | 4 | 4 | 4 | 5 | 4.2 | 2.08 |
 | 11 | Workstream | [`strong-field-closure`](../strong-field-closure/priorities.md) | `embedded_boundary_conditions` for one Noether sea horizon-interface case | 6.0 | 1.20 | -56 | 1.56 | 0.85 | 7 | 1.20 | 11.46 | 6 | 6 | 6 | 7 | 6.2 | 1.85 |
-| 12 | App | [`app-causal-delay-feedback`](../app-causal-delay-feedback/priorities.md) | `story_mode_teaching_flow`: one-emission, one-reception requirements and acceptance card | 5.0 | 1.15 | 0 | 1.00 | 0.85 | 4 | 0.90 | 4.40 | 4 | 2 | 3 | 2 | 2.7 | 1.63 |
+| 12 | App | [`app-causal-delay-feedback`](../dormant-deferred/app-causal-delay-feedback/priorities.md) | `story_mode_teaching_flow`: one-emission, one-reception requirements and acceptance card | 5.0 | 1.15 | 0 | 1.00 | 0.85 | 4 | 0.90 | 4.40 | 4 | 2 | 3 | 2 | 2.7 | 1.63 |
 | 14 | Candidate | [`nuclear-atomic-molecular-closure`](../nuclear-atomic-molecular-closure/priorities.md) | `iron_group_binding_cusp_recovery` with an accepted nucleon branch-interface ledger | 6.0 | 1.25 | -45 | 1.45 | 0.85 | 5 | 1.00 | 9.24 | 5 | 6 | 6 | 6 | 5.8 | 1.59 |
 | 15 | Candidate | [`cross-theory-mapping`](../cross-theory-mapping/priorities.md) | `redshift_clock_transport` benchmark mapped to explicit acceptance and failure gates | 7.5 | 1.35 | -56 | 1.56 | 0.40 | 6 | 1.10 | 6.95 | 4 | 4 | 5 | 6 | 4.6 | 1.51 |
 | 16 | App | [`app-animator`](../app-animator/priorities.md) | `runtime_cutover` from shared scene-shell behavior to the Animator-owned runtime | 7.0 | 1.20 | 0 | 1.00 | 0.85 | 4 | 0.90 | 6.43 | 5 | 4 | 4 | 4 | 4.3 | 1.50 |
@@ -71,21 +71,20 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | 26 | App queue | [`app-ideas`](../app-ideas/priorities.md) | `next_concept_selection`: one one-page app promoted to a scoped implementation packet | 4.5 | 1.10 | 0 | 1.00 | 0.20 | 3 | 0.80 | 0.79 | 3 | 2 | 3 | 2 | 2.5 | 0.32 |
 | 27 | Design | [`archie`](../archie/priorities.md) | `platform_architecture_packet` for the future Archie service boundary | 5.0 | 1.25 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.00 | 4 | 2 | 4 | 5 | 3.5 | 0.29 |
 | 28 | App | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive`: physical iPhone/iPad QA and signed archive | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.92 | 5 | 2 | 4 | 3 | 3.4 | 0.27 |
-| 29 | App | [`app-archie-interface`](../archie/priorities.md) | `answer_artifact_manifest_regression_fixture` under the communication standard | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 3 | 0.80 | 0.86 | 4 | 2 | 4 | 5 | 3.5 | 0.25 |
-| 30 | Op queue | [`operations`](../operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
-| 31 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` for the shared dynamic control bar | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
-| 32 | Media | [`media-videos`](../media-videos/priorities.md) | `first_prototype_decision_stack` and reviewed YouTube outline | 3.5 | 1.15 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.56 | 5 | 3 | 4 | 3 | 3.7 | 0.15 |
-| 33 | Candidate | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` packet with release-channel predicates | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 5 | 1.00 | 0.66 | 4 | 7 | 6 | 7 | 6.1 | 0.11 |
-| 34 | Media | [`media-images`](../media-images/priorities.md) | `image_production_brief_selection` with a target, claim level, and owner | 2.5 | 1.05 | 0 | 1.00 | 0.10 | 2 | 0.70 | 0.18 | 3 | 2 | 2 | 2 | 2.3 | 0.08 |
-| 35 | Media | [`media-comics`](../media-comics/priorities.md) | `comic_production_brief_selection` with a target, claim level, and owner | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 2 | 0.70 | 0.15 | 3 | 2 | 2 | 2 | 2.3 | 0.07 |
-| 36 | Media | [`media-posts`](../media-posts/priorities.md) | `post_publication_brief_selection` with a target, claim level, and owner | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 2 | 0.70 | 0.15 | 3 | 2 | 2 | 2 | 2.3 | 0.07 |
-| 37 | Candidate | [`aaa-futures`](../aaa-futures/priorities.md) | `research_revolution_seed` with opportunity, work, risk, and claim dependencies | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 3 | 0.80 | 0.17 | 3 | 3 | 3 | 2 | 2.8 | 0.06 |
+| 29 | Op queue | [`operations`](../operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
+| 30 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` for the shared dynamic control bar | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
+| 31 | Media | [`media-videos`](../dormant-deferred/media-videos/priorities.md) | `first_prototype_decision_stack` and reviewed YouTube outline | 3.5 | 1.15 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.56 | 5 | 3 | 4 | 3 | 3.7 | 0.15 |
+| 32 | Candidate | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` packet with release-channel predicates | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 5 | 1.00 | 0.66 | 4 | 7 | 6 | 7 | 6.1 | 0.11 |
+| 33 | Media | [`media-images`](../dormant-deferred/media-images/priorities.md) | `image_production_brief_selection` with a target, claim level, and owner | 2.5 | 1.05 | 0 | 1.00 | 0.10 | 2 | 0.70 | 0.18 | 3 | 2 | 2 | 2 | 2.3 | 0.08 |
+| 34 | Media | [`media-comics`](../dormant-deferred/media-comics/priorities.md) | `comic_production_brief_selection` with a target, claim level, and owner | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 2 | 0.70 | 0.15 | 3 | 2 | 2 | 2 | 2.3 | 0.07 |
+| 35 | Media | [`media-posts`](../dormant-deferred/media-posts/priorities.md) | `post_publication_brief_selection` with a target, claim level, and owner | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 2 | 0.70 | 0.15 | 3 | 2 | 2 | 2 | 2.3 | 0.07 |
+| 36 | Candidate | [`aaa-futures`](../aaa-futures/priorities.md) | `research_revolution_seed` with opportunity, work, risk, and claim dependencies | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 3 | 0.80 | 0.17 | 3 | 3 | 3 | 2 | 2.8 | 0.06 |
 
 ## Marginal-Object Rescore Movement — 2026-07-17
 
 - No top-ten rank changed when completed infrastructure was removed from the scored object descriptions and each row was rebound to its bucket's local rank-`1` unresolved object.
 - `app-eom` remains rank `1` because `coupled_retained_history_integrator` is still the first missing production object for claim-ready long-horizon evolution; the existing executable kernel lowers remaining cost but does not close that acceptance boundary.
-- The mandatory full-table sort corrected one stale tie-break: `app-archie-interface` moved from rank `30` to `29`, and `operations` moved from `29` to `30` because both display ROI `0.25` while the former has higher `Value`.
+- The Archie interface product lane is now subordinate to the single rank-`27` `archie` owner. Removing the duplicate ranked row shifted the former ranks `30` through `37` upward by one without changing their component scores.
 - Recomputing from the component scores corrected stale rounding for the pressure-dependent Noether sea response ROI, Animator ROI, Validation Gates value, and the Media Comics and Media Posts ROIs. These arithmetic corrections did not change the top ten.
 
 ## Top-Ten Movement Since The Prior Full Ranking

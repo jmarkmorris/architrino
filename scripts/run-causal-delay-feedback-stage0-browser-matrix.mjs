@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(SCRIPT_DIR, "..");
-const QA_DIR = path.join(REPO_ROOT, "reference/priorities/app-causal-delay-feedback/browser-qa");
+const QA_DIR = path.join(REPO_ROOT, "reference/priorities/dormant-deferred/app-causal-delay-feedback/browser-qa");
 const BASELINE_PATH = path.join(QA_DIR, "stage-0-golden-baseline.json");
 const MATRIX_PATH = path.join(QA_DIR, "stage-0-transition-matrix.json");
 const DEFAULT_OUTPUT_PATH = path.join(QA_DIR, "stage-0-browser-transition-matrix-result.json");
