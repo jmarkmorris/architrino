@@ -176,6 +176,34 @@
         gap: 10px;
       }
 
+      .ideal-braid-geometry-picker {
+        display: grid;
+        grid-template-columns: 72px minmax(0, 1fr);
+        align-items: center;
+        gap: 8px;
+      }
+
+      .ideal-braid-geometry-picker label {
+        color: rgba(203, 213, 225, 0.76);
+        font-size: 12px;
+      }
+
+      .ideal-braid-geometry-picker select {
+        min-width: 0;
+        min-height: 32px;
+        padding: 0 28px 0 9px;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        border-radius: 6px;
+        background: rgba(17, 24, 39, 0.85);
+        color: rgba(238, 243, 255, 0.88);
+        cursor: pointer;
+      }
+
+      .ideal-braid-geometry-picker select:focus-visible {
+        border-color: rgba(125, 211, 252, 0.58);
+        outline: none;
+      }
+
       .ideal-braid-action-grid {
         display: grid;
         gap: 8px;
@@ -784,6 +812,16 @@
           gap: 5px;
         }
 
+        .ideal-braid-geometry-picker {
+          grid-template-columns: 48px minmax(0, 1fr);
+          gap: 5px;
+        }
+
+        .ideal-braid-geometry-picker label,
+        .ideal-braid-geometry-picker select {
+          font-size: 10px;
+        }
+
         .ideal-braid-range-row label,
         .ideal-braid-range-row output,
         .ideal-braid-table {
@@ -927,6 +965,12 @@
           </button>
         </div>
         <div class="ideal-braid-control-stack">
+          <div class="ideal-braid-geometry-picker">
+            <label for="ideal-braid-geometry-select">Geometry</label>
+            <select id="ideal-braid-geometry-select" aria-label="Geometry selection">
+              <option value="a1" selected>A1 Geometry</option>
+            </select>
+          </div>
           <div class="ideal-braid-action-grid">
             <button id="ideal-braid-path-toggle" class="ideal-braid-button is-active" type="button">Paths</button>
             <button id="ideal-braid-surface-toggle" class="ideal-braid-button is-active" type="button">Surface</button>

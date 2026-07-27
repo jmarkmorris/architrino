@@ -1,4 +1,4 @@
-# A1 Lorentz Geometry work queue
+# Lorentz Geometry work queue
 
 No app-local implementation work is queued.
 

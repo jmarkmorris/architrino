@@ -326,11 +326,11 @@ test("pdgedit scene no longer resolves to a standalone app path from the main we
   assert.equal(getStandaloneAppPathForScene("pdgedit"), null);
 });
 
-test("A1 Lorentz Geometry display name preserves the ideal-braid scene and route contracts", () => {
+test("Lorentz Geometry display name preserves the ideal-braid scene and route contracts", () => {
   const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
   assert.equal(
     applicationsScene.objects.find((object) => object.id === "ideal_braid")?.labelTitle,
-    "A1 Lorentz Geometry"
+    "Lorentz Geometry"
   );
   assert.equal(getStandaloneAppPathForScene("archie__ideal_braid"), "ideal-braid.html");
   assert.equal(
