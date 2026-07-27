@@ -11,7 +11,7 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 5. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
 6. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
 7. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
-8. `bc_score_landscape_diagnosis` — [BP-008](#bp-008--bc-score-landscape-diagnosis). Status: `Queued`.
+8. `b1_1_score_landscape_manifest_freeze` — [BP-009](#bp-009--b11-score-landscape-manifest-freeze). Status: `Queued`.
 
 ## Queued
 
@@ -31,13 +31,13 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 - **Evidence / blocker:** Mined leads remain priority-only until accepted into a proof route or corpus edit.
 - **Completion:** No curated lead remains without a disposition.
 
-### BP-008 — B/C score-landscape diagnosis
+### BP-009 — B1.1 score-landscape manifest freeze
 
 - **Status:** Queued
-- **Priority object:** `bc_score_landscape_diagnosis`
-- **Request / acceptance:** Diagnose the sealed B1/Family-C score landscape across the applicable rows, coordinates, score components, and fail-closed dispositions recorded by the 2026-07-25 campaign; preserve the predeclared handoff thresholds and do not rerun the campaign.
-- **Evidence / blocker:** The [write-once diagnostic packet](evidence/2026-07-25-bc-monte-carlo-basin-diagnostic.md) records 576 draws, zero qualified handoffs or descents, and three unresolved rows. The next B/C action is diagnosis of that retained landscape, not threshold relaxation or another Monte Carlo draw.
-- **Completion:** A focused diagnostic packet identifies which retained coordinate and score-component patterns control the best rows, keeps `unknown` and `inapplicable` distinct from candidate failure, and states a separately predeclared next search or a bounded stop without changing the sealed result.
+- **Priority object:** `b1_1_score_landscape_manifest_freeze`
+- **Request / acceptance:** Implement and validate the score-free manifest builder, exact 377-row manifest, complete-cycle protocol, write-once runner contract, and separately bound dense-root residual audit required by the [coordinator-reviewed local-landscape design](b1-1-score-landscape-diagnostic-predeclaration.md). Do not evaluate a causal root or score a row.
+- **Evidence / blocker:** The [closed retained diagnosis](evidence/2026-07-27-bc-score-landscape-diagnosis.md) identifies B1.1 sample 5 as an isolated lowest retained row but not a finite-width basin. The design remains non-executable until its machine identities are frozen.
+- **Completion:** A dry-run receipt proves the exact center identity, 377 unique declared rows, held-out construction, protocol validity, implementation hashes, and write-once paths without analytical evaluation. The separately reviewed next step is then a center-only capability pilot, not the remaining 376-row search.
 
 ## Deferred / blocked
 
@@ -91,7 +91,12 @@ No rows.
 
 ## Verified
 
-No rows.
+### BP-008 — B/C score-landscape diagnosis
+
+- **Status:** Verified
+- **Priority object:** `bc_score_landscape_diagnosis`
+- **Result:** The [closed documentary diagnosis](evidence/2026-07-27-bc-score-landscape-diagnosis.md) preserves all 576 sealed dispositions, identifies moving-receiver inventory applicability as the dominant limitation, and records B1.1 sample 5 as an isolated lowest retained row rather than a basin or handoff.
+- **Boundary:** No row was rerun or rescored; the three unknown rows remain fail-closed, the handoff thresholds are unchanged, and no solver or physical claim was made.
 
 ## Superseded / withdrawn
 
