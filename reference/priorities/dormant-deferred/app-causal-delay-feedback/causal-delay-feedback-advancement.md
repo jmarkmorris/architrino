@@ -5,6 +5,12 @@ Closure goal: Turn `causal-delay-feedback.html` into one progressive learner jou
 Advance the deployed Causal Delay Feedback app without splitting its related
 teaching requirements into separate products or disconnected mini-apps.
 
+## Packet Status
+
+Status: `deferred`; owner: Causal Delay Feedback; queue rows: CDF-067 through
+CDF-071 in [work-queue.md](work-queue.md). Moving this packet into the dormant
+owner does not reopen implementation.
+
 The completed app should let a learner move through one coherent sequence:
 
 1. **Story** — watch one wake leave a source and reach a receiver;

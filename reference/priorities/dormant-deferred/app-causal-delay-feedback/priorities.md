@@ -5,13 +5,13 @@
 - Kind: `priority-app`
 - Status: `deferred`
 - Immediate implementation lane: `closed`
-- Active queue: none
+- Active queue: none; five deferred teaching rows
 
 ## Current
 
 `causal-delay-feedback.html` is a live canvas-first teaching app with eight ordered lessons followed by Laboratory, but its priority lane is deferred. The accepted learner surface, exact lesson copy, architecture, provenance rules, and claim boundaries live in [v1-product-requirements.md](v1-product-requirements.md).
 
-[work-queue.md](work-queue.md) is intentionally empty until the operator opens a new learner-facing request or a verified regression is found. [brainstorming.md](brainstorming.md) retains only ideas that have not been promoted or implemented. [work-log.md](work-log.md) records the current closure transition; routine bug and verification history remain in Git history.
+[work-queue.md](work-queue.md) now preserves five operator-routed advanced teaching tasks without reopening implementation. [brainstorming.md](brainstorming.md) retains only ideas that have not been promoted or implemented. [work-log.md](work-log.md) records major lane transitions; routine bug and verification history remain in Git history.
 
 The advanced causal-root fold teaching concept is also deferred here. [roots-product-plan.md](roots-product-plan.md) preserves its mathematical scope, [roots-requirements-and-design.md](roots-requirements-and-design.md) preserves the proposed synchronized linked views, and the focused [roots-brainstorming.md](roots-brainstorming.md) and [roots-work-log.md](roots-work-log.md) preserve its ideas and history without reopening a standalone app.
 
@@ -34,12 +34,14 @@ Plainly: maintenance means protecting the accepted teaching app, not continuing 
 
 ## Current Queue
 
-None.
+CDF-067 through CDF-071 remain `Deferred / blocked`. There is no executable
+row while this directory remains under `dormant-deferred`.
 
 ## Retained Authorities
 
 - [v1-product-requirements.md](v1-product-requirements.md): accepted surface, exact copy, architecture, interactions, provenance, and claim boundaries.
-- [work-queue.md](work-queue.md): new unresolved intake only.
+- [work-queue.md](work-queue.md): deferred teaching backlog and new unresolved intake.
+- [causal-delay-feedback-advancement.md](causal-delay-feedback-advancement.md): deferred Story-to-Branch-Lab learner progression and shared-state boundary.
 - [brainstorming.md](brainstorming.md): genuinely open ideas only.
 - [work-log.md](work-log.md): major lane-status transitions only.
 - [roots-product-plan.md](roots-product-plan.md): deferred advanced causal-root fold teaching scope.

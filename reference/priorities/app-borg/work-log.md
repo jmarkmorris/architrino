@@ -6,6 +6,20 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-27 - App-Idea Ownership Consolidated
+
+- Accepted IDEA-007 through IDEA-014 from App Ideas as BORG-006 through
+  BORG-013.
+- Moved the prescribed-translation packet into this directory and queued that
+  bounded feature behind the five existing Borg objects.
+- Kept taxonomy morphs, harmonics, Family-A exclusion, Gell-Mann
+  classification, polarity bookkeeping, conserved-account flow, and material
+  routing deferred. Borg owns their eventual display surface, while the
+  relevant scientific lane must supply every classification, mapping,
+  conserved-account, and constitutive row.
+- The local rank-1 object and global Borg score remain unchanged. Promotion
+  triage: `priority-only`.
+
 ### 2026-07-26 - Borg Documentation Consolidation
 
 - Consolidated the first-screen requirements into [requirements-and-design](requirements-and-design.md), while retaining `BORG_APP_SURFACE_DESIGN_V1` in [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the executable screen-contract authority.

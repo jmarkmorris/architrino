@@ -78,4 +78,3 @@ The first useful version should let the operator:
 ## Related Priority Notes
 
 - [Equation Mapping](../equation-mapping/priorities.md)
-- [New Apps](../app-ideas/priorities.md)

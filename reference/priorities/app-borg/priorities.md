@@ -12,6 +12,7 @@
 - Execution ledger: [work queue](work-queue.md)
 - Design packet: [requirements-and-design](requirements-and-design.md)
 - Assembly-view replay packet: [assembly-viewer-requirements](assembly-viewer-requirements.md)
+- Prescribed-translation packet: [prescribed-translation](prescribed-translation.md)
 - Boundary-shell replay packet: [boundary-shell-replay](boundary-shell-replay.md)
 - Dataset manifest: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
 
@@ -27,6 +28,7 @@ Maintain Borg as an app-facing surface for EOM-solver simulation and sealed-reco
 4. Missing wake, interaction, residual, or boundary-shell rows remain fail-closed or display-only; the app must not fill gaps with visual tuning.
 5. Keep the UI minimal while preserving required authority, error-budget, path-history, wake-history, boundary-shell, and diagnostic state.
 6. Use normalized field speed $c_f=1$ for Borg EOM runs unless an explicit manifest transform is present.
+7. Borg owns the selected teaching surfaces for prescribed geometry, source-carried classification and polarity rows, and interaction-ledger display; the scientific owner must supply every non-display row.
 
 ## Work Queue
 

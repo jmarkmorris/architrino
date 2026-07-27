@@ -6,6 +6,11 @@ Extend Borg's existing assembly-view replay mode with a record-derived analysis
 surface that makes prescribed translation and causal-delay geometry directly
 visible.
 
+## Packet Status
+
+Status: `queued`; owner: Borg; queue row:
+[BORG-006](work-queue.md#borg-006--prescribed-translation-and-causal-history-tubes).
+
 The completed feature should let a user:
 
 1. load a sealed B-family prescribed record;
@@ -34,8 +39,8 @@ lifetimes, Riemann-zeta trajectories, or superluminal internal fluids.
 Read these live sources before editing:
 
 - [Braid Analysis Methodology — Borg Analysis Surface](../../../content/markdown/aaa/noether-braid/braid-analysis-methodology.md#borg-analysis-surface)
-- [Borg priorities](../app-borg/priorities.md)
-- [Borg assembly-viewer requirements](../app-borg/assembly-viewer-requirements.md)
+- [Borg priorities](priorities.md)
+- [Borg assembly-viewer requirements](assembly-viewer-requirements.md)
 - [Software Architecture and Maintenance](../../../content/markdown/aaa/archie/software-architecture-and-maintenance.md)
 - [Roots requirements and design](../dormant-deferred/app-causal-delay-feedback/roots-requirements-and-design.md)
 - `src/apps/borg/BorgAppRuntime.js`
@@ -347,8 +352,9 @@ Account explicitly for those identities:
 - C1 through C6 retain their sealed record identities and source order.
 
 Use C1 and C2 as cross-family contract checks after the first B-family
-translation fixture. Do not make their scheduled visual QA part of this task
-while task `019f90d2-36df-7d01-aa6d-5ad5ecb1cdee` remains active.
+translation fixture. Keep their broader visual QA outside BORG-006 unless the
+live Borg queue and current source state show that it is required for this
+packet's acceptance.
 
 B1 midpoint-dimension or train exploration and further coaxial Family-C
 extensions are source-producing research lanes. Borg may replay sealed records
@@ -361,9 +367,9 @@ Prescribed Translation and Causal-History Tubes is the first Borg enhancement
 slice. Keep these later capability stages out of its critical path unless they
 can be implemented without diluting or delaying the first slice:
 
-1. Assembly Taxonomy Morph Lab;
-2. Braid Harmonics Studio; and
-3. Family-A Exclusion Geometry.
+1. [BORG-007 — Taxonomy Morph Lab](work-queue.md#borg-007--taxonomy-morph-lab);
+2. [BORG-008 — Braid Harmonics Studio](work-queue.md#borg-008--braid-harmonics-studio); and
+3. [BORG-009 — Family-A Exclusion Geometry](work-queue.md#borg-009--family-a-exclusion-geometry).
 
 If any later-stage display is included, it must reuse the same sealed-record,
 stable-worldline, display-transform, and claim-boundary architecture. Do not
@@ -399,10 +405,10 @@ expanding scope.
 
 # Coordination
 
-- Before any C1/C2 browser pass, determine whether task
-  `019f90d2-36df-7d01-aa6d-5ad5ecb1cdee` is still active. Do not duplicate its
-  assigned visual QA while it is active.
-- Background tasks may produce analyzer tooling, A1.3/C5 calibration, or
+- Before any C1/C2 browser pass, inspect the live Borg work queue and current
+  browser evidence so the packet does not duplicate an already owned visual
+  acceptance pass.
+- Other workstreams may produce analyzer tooling, A1.3/C5 calibration, or
   Family-B/Family-C train findings. Their outputs are not app authority unless
   the completed artifacts are inspected and their evidence boundaries remain
   explicit.

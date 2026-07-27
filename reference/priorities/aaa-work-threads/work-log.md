@@ -6,6 +6,19 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-27 — App Ideas owner removed
+
+- Removed the `app-ideas` priority directory after its actionable concepts and
+  implementation packets had been transferred to Causal Delay Feedback and
+  Borg.
+- Removed App Ideas from the active inventory and unified ranking, then closed
+  the resulting rank gap without changing any surviving row's component
+  scores or evidence grade.
+- Removed live related-priority links to the deleted owner. The dated Causal
+  Delay Feedback and Borg work-log entries remain as the transfer history.
+- Promotion triage: `priority-only`; no authored $\mathbb{A}\mathbb{A}\mathbb{A}$
+  prose, implementation claim, or closure score changed.
+
 ### 2026-07-26 — Active work queues separated from strategy and brainstorming
 
 - Added or standardized `work-queue.md` for all 25 immediate active priority

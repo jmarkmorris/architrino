@@ -1,6 +1,6 @@
 # Priorities Inventory
 
-Snapshot: 2026-07-26.
+Snapshot: 2026-07-27.
 
 This is the developer-facing ownership and routing inventory for
 [reference/priorities](../README.md). The canonical numeric order lives in
@@ -46,13 +46,12 @@ The rank column is mirrored from the active-only unified table. Ranks `4`, `5`,
 | 18 | [`source-mining`](../source-mining/priorities.md) | `mine_source_material` | Source acquisition and convergence intake when a batch yields a concrete mathematical or corpus artifact. | [Work queue](../source-mining/work-queue.md); [mining history](../source-mining/source-mining-history.md). |
 | 19 | [`cosmology-closure`](../cosmology-closure/priorities.md) | `component_interfaces` | Deferred but top-level owner for the cosmology transfer-function and observer-interface pipeline. | [Work queue](../cosmology-closure/work-queue.md); the tracker retains interfaces and promotion map. |
 | 20 | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance` | Read-only source-grounded MCP access; repository sources remain authoritative. | [Work queue](../app-mcp/work-queue.md); [client conformance](../app-mcp/client-conformance.md). |
-| 21 | [`app-ideas`](../app-ideas/priorities.md) | `next_concept_selection` | Active reader-app portfolio selection after Causal Delay Feedback was deferred. | [Work queue](../app-ideas/work-queue.md); [portfolio brainstorming](../app-ideas/brainstorming.md). |
-| 22 | [`archie`](../archie/priorities.md) | `platform_architecture_packet` | Single owner for the Archie persona, interface product, service platform, and source-authority boundary. | [Work queue](../archie/work-queue.md); [service architecture](../archie/service-deployment-architecture.md). |
-| 23 | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive` | iPhone/iPad release packaging and physical-device acceptance. | [Work queue](../app-ios/work-queue.md); the tracker retains completed package design. |
-| 24 | [`operations`](../operations/priorities.md) | `deployment_budget_contract` | Repo-wide deployment, hosting, cost, reliability, and release operations. | [Work queue](../operations/work-queue.md); first consumer is Borg. |
-| 25 | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` | Shared implementation-facing control-bar and app-chrome standardization. | [Work queue](../app-ui-guidelines/work-queue.md); [top dynamic control bar](../app-ui-guidelines/top-dynamic-control-bar.md). |
-| 26 | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` | Speculative candidate-assembly and dark-visible re-entry watchlist. | [Work queue](../dark-sector/work-queue.md); [photon-like mode packet](../dark-sector/dark-sector-photon-like-mode.md). |
-| 27 | [`aaa-futures`](../aaa-futures/priorities.md) | `research_revolution_seed` | Low-priority future research, institutional, publication, and impact implications. | [Work queue](../aaa-futures/work-queue.md); [research revolution note](../aaa-futures/research-revolution.md). |
+| 21 | [`archie`](../archie/priorities.md) | `platform_architecture_packet` | Single owner for the Archie persona, interface product, service platform, and source-authority boundary. | [Work queue](../archie/work-queue.md); [service architecture](../archie/service-deployment-architecture.md). |
+| 22 | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive` | iPhone/iPad release packaging and physical-device acceptance. | [Work queue](../app-ios/work-queue.md); the tracker retains completed package design. |
+| 23 | [`operations`](../operations/priorities.md) | `deployment_budget_contract` | Repo-wide deployment, hosting, cost, reliability, and release operations. | [Work queue](../operations/work-queue.md); first consumer is Borg. |
+| 24 | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` | Shared implementation-facing control-bar and app-chrome standardization. | [Work queue](../app-ui-guidelines/work-queue.md); [top dynamic control bar](../app-ui-guidelines/top-dynamic-control-bar.md). |
+| 25 | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` | Speculative candidate-assembly and dark-visible re-entry watchlist. | [Work queue](../dark-sector/work-queue.md); [photon-like mode packet](../dark-sector/dark-sector-photon-like-mode.md). |
+| 26 | [`aaa-futures`](../aaa-futures/priorities.md) | `research_revolution_seed` | Low-priority future research, institutional, publication, and impact implications. | [Work queue](../aaa-futures/work-queue.md); [research revolution note](../aaa-futures/research-revolution.md). |
 
 ## Separately Ranked Shared Packets
 
