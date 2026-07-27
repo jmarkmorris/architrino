@@ -10,6 +10,8 @@ export * from "./CommonAxisBraidTrain.mjs";
 export * from "./CommonAxisBraidPilot.mjs";
 export * from "./CommonAxisBraidCampaign.mjs";
 export * from "./AllCandidateAnalyticalCampaign.mjs";
+export * from "./A11ContinuousRootIntervalCertifier.mjs";
+export * from "./A11IndependentResidualRecomputation.mjs";
 export * from "./database/IndependentAnalyticalAcceptance.mjs";
 export * from "./database/AnalyticalCampaignDatabase.mjs";
 export * from "./database/AnalyticalCampaignRebuild.mjs";
