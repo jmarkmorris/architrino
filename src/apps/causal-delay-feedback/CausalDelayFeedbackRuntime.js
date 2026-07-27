@@ -740,6 +740,12 @@ class CausalDelayFeedbackRuntime {
 
   updateDisplaySettingControls() {
     if (this.dom?.visualSwitches) {
+      const selectedSwitchId = this.wakeVisualSettings.fullCircularWakesEnabled
+        ? "fullCircularWakesEnabled"
+        : "arcWakesEnabled";
+      this.dom.visualSwitches.dataset.selectionMode = "exclusive";
+      this.dom.visualSwitches.dataset.selectedWakeMode =
+        selectedSwitchId === "fullCircularWakesEnabled" ? "full" : "arcs";
       Array.from(this.dom.visualSwitches.children).forEach((button) => {
         const switchId = button.dataset.visualSwitch;
         if (!switchId) {
@@ -749,6 +755,11 @@ class CausalDelayFeedbackRuntime {
         button.classList.toggle("is-active", isActive);
         button.setAttribute("aria-pressed", isActive ? "true" : "false");
       });
+      if (this.dom?.canvas) {
+        this.dom.canvas.dataset.laboratoryWakeDisplaySelection =
+          this.dom.visualSwitches.dataset.selectedWakeMode;
+        this.dom.canvas.dataset.laboratoryWakeDisplaySelectionCount = "1";
+      }
     }
   }
 

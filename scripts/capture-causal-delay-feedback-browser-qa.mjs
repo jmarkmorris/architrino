@@ -254,6 +254,34 @@ const PROOFS = Object.freeze([
     expectedText: "Laboratory",
   },
   {
+    id: "laboratory-exclusive-wake-mode-desktop",
+    fileName: "laboratory-exclusive-wake-mode-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=sandbox&replay=mock",
+    replayTime: 0.5,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "sandbox",
+    verifyExclusiveWakeMode: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
+    id: "laboratory-exclusive-wake-mode-phone",
+    fileName: "laboratory-exclusive-wake-mode-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=sandbox&replay=mock",
+    replayTime: 0.5,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "sandbox",
+    verifyExclusiveWakeMode: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
     id: "ordered-keyboard-journey",
     fileName: "keyboard-laboratory-purple-1440x900.png",
     width: 1440,
@@ -476,6 +504,10 @@ const CDF018_PROOF_IDS = Object.freeze(new Set([
   "superposition-lesson-seven-desktop",
   "superposition-lesson-seven-phone",
 ]));
+const CDF065_PROOF_IDS = Object.freeze(new Set([
+  "laboratory-exclusive-wake-mode-desktop",
+  "laboratory-exclusive-wake-mode-phone",
+]));
 
 const args = parseArgs(process.argv.slice(2));
 
@@ -519,7 +551,8 @@ try {
         !CDF020_PROOF_IDS.has(proof.id) &&
         !CDF016_PROOF_IDS.has(proof.id) &&
         !CDF018_PROOF_IDS.has(proof.id) &&
-        !CDF022_PROOF_IDS.has(proof.id)
+        !CDF022_PROOF_IDS.has(proof.id) &&
+        !CDF065_PROOF_IDS.has(proof.id)
       ) {
         continue;
       }
@@ -664,6 +697,16 @@ function validateProofConfigurations(proofs) {
     }
     if (proof.mode !== "story" || proof.verifySuperposition !== true) {
       errors.push(`CDF-018 proof ${proofId} must be a Story superposition proof`);
+    }
+  }
+  for (const proofId of CDF065_PROOF_IDS) {
+    const proof = proofsById.get(proofId);
+    if (!proof) {
+      errors.push(`CDF-065 proof ${proofId} is missing`);
+      continue;
+    }
+    if (proof.mode !== "sandbox" || proof.verifyExclusiveWakeMode !== true) {
+      errors.push(`CDF-065 proof ${proofId} must be a Laboratory exclusive wake-mode proof`);
     }
   }
   if (errors.length > 0) {
@@ -1220,6 +1263,78 @@ function createPrepareProofExpression(proof) {
         holdScene: heldScene,
         holdReplayTime: heldReplayTime,
       });
+    }
+    if (${proof.verifyExclusiveWakeMode === true ? "true" : "false"}) {
+      const arcsButton = document.querySelector(
+        '[data-visual-switch="arcWakesEnabled"]',
+      );
+      const fullButton = document.querySelector(
+        '[data-visual-switch="fullCircularWakesEnabled"]',
+      );
+      const group = document.querySelector(
+        "#causal-delay-feedback-visual-switches",
+      );
+      const snapshotWakeMode = () => ({
+        arcs: runtime.wakeVisualSettings.arcWakesEnabled === true,
+        full: runtime.wakeVisualSettings.fullCircularWakesEnabled === true,
+        arcsPressed: arcsButton?.getAttribute("aria-pressed"),
+        fullPressed: fullButton?.getAttribute("aria-pressed"),
+        selected: group?.dataset.selectedWakeMode,
+        selectedCount:
+          Number(runtime.wakeVisualSettings.arcWakesEnabled === true) +
+          Number(runtime.wakeVisualSettings.fullCircularWakesEnabled === true),
+      });
+      const initial = snapshotWakeMode();
+      fullButton?.click();
+      const full = snapshotWakeMode();
+      fullButton?.click();
+      const repeatedFull = snapshotWakeMode();
+      arcsButton?.click();
+      const arcs = snapshotWakeMode();
+      fullButton?.click();
+      runtime.render(runtime.getCurrentReplayTime());
+      const finalFull = snapshotWakeMode();
+      const exclusiveWakeModeContract =
+        requestedMode === "sandbox" &&
+        group?.dataset.selectionMode === "exclusive" &&
+        initial.selectedCount === 1 &&
+        initial.arcs &&
+        !initial.full &&
+        full.selectedCount === 1 &&
+        !full.arcs &&
+        full.full &&
+        full.arcsPressed === "false" &&
+        full.fullPressed === "true" &&
+        JSON.stringify(repeatedFull) === JSON.stringify(full) &&
+        arcs.selectedCount === 1 &&
+        arcs.arcs &&
+        !arcs.full &&
+        arcs.arcsPressed === "true" &&
+        arcs.fullPressed === "false" &&
+        finalFull.selectedCount === 1 &&
+        !finalFull.arcs &&
+        finalFull.full &&
+        finalFull.selected === "full" &&
+        runtime.dom.canvas.dataset.laboratoryWakeDisplaySelection === "full" &&
+        runtime.dom.canvas.dataset.laboratoryWakeDisplaySelectionCount === "1";
+      if (!exclusiveWakeModeContract) {
+        return {
+          ok: false,
+          reason: "laboratory_exclusive_wake_mode_contract_failed",
+          initial,
+          full,
+          repeatedFull,
+          arcs,
+          finalFull,
+          groupSelectionMode: group?.dataset.selectionMode ?? null,
+          canvasSelection:
+            runtime.dom.canvas.dataset.laboratoryWakeDisplaySelection ?? null,
+          canvasSelectionCount:
+            runtime.dom.canvas.dataset.laboratoryWakeDisplaySelectionCount ?? null,
+        };
+      }
+      runtime.dom.canvas.dataset.browserExclusiveWakeMode =
+        "arcs-or-full-exactly-one";
     }
     if (${proof.jumpToLastFrame === true ? "true" : "false"}) {
       runtime.jumpToLastFrame();
