@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#4b0082" />
     <title>Causal Delay Feedback</title>
     <link rel="stylesheet" href="./ui-tokens.css" />
+    <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
     <style>
       * {
         box-sizing: border-box;
@@ -431,168 +432,6 @@
         inset: 0;
         z-index: 4;
         pointer-events: none;
-      }
-
-      .causal-app-icon-strip {
-        position: absolute;
-        top: max(16px, env(safe-area-inset-top));
-        right: max(16px, env(safe-area-inset-right));
-        z-index: 2;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        pointer-events: auto;
-      }
-
-      .causal-app-icon-strip button {
-        font: inherit;
-      }
-
-      .causal-app-icon-button {
-        width: 32px;
-        height: 32px;
-        padding: 0;
-        border: 1px solid rgba(160, 170, 220, 0.25);
-        border-radius: 999px;
-        background: rgba(8, 10, 18, 0.75);
-        color: #f5f7ff;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
-
-      .causal-app-icon-button svg {
-        width: 16px;
-        height: 16px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-
-      .causal-app-icon-button:not(:disabled):hover,
-      .causal-app-icon-button:not(:disabled):focus-visible,
-      #textbook-toc-button:not(:disabled):hover,
-      #textbook-toc-button:not(:disabled):focus-visible {
-        border-color: rgba(213, 220, 255, 0.6);
-        outline: none;
-      }
-
-      .causal-app-icon-button:disabled {
-        opacity: 0.4;
-        cursor: default;
-      }
-
-      /* Keep the global TOC lozenge visually identical to the site shell. */
-      #textbook-toc-button {
-        position: relative;
-        min-width: 48px;
-        height: 32px;
-        padding: 0 12px;
-        border: 1px solid rgba(160, 170, 220, 0.25);
-        border-radius: 999px;
-        background: rgba(8, 10, 18, 0.75);
-        color: #f5f7ff;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font: inherit;
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 1;
-        text-transform: uppercase;
-      }
-
-      #textbook-toc-button::after {
-        content: none;
-        display: none;
-      }
-
-      #textbook-toc-button.is-active {
-        background: rgba(92, 36, 164, 0.92);
-        border-color: rgba(176, 136, 255, 0.7);
-      }
-
-      .causal-lesson-nav-history {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 0;
-        border: none;
-        background: transparent;
-      }
-
-      .causal-scene-search {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        pointer-events: auto;
-      }
-
-      .causal-scene-search-toggle.is-active {
-        background: rgba(92, 36, 164, 0.92);
-        border-color: rgba(176, 136, 255, 0.7);
-      }
-
-      .causal-scene-search-panel {
-        position: absolute;
-        top: 44px;
-        right: 0;
-        z-index: 7;
-        display: none;
-        min-width: 260px;
-        max-width: 80vw;
-        padding: 10px;
-        border: 1px solid rgba(160, 170, 220, 0.25);
-        border-radius: 8px;
-        background: rgba(8, 10, 18, 0.94);
-      }
-
-      .causal-scene-search-panel.is-open {
-        display: block;
-      }
-
-      .causal-scene-search-input {
-        width: 100%;
-        min-height: 32px;
-        padding: 6px 8px;
-        border: 1px solid rgba(160, 170, 220, 0.25);
-        border-radius: 6px;
-        background: rgba(15, 18, 32, 0.9);
-        color: #f5f7ff;
-      }
-
-      .causal-scene-search-results {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        max-height: 220px;
-        margin-top: 8px;
-        overflow: auto;
-      }
-
-      .causal-app-icon-strip .scene-search-item {
-        padding: 6px 8px;
-        border: 1px solid rgba(160, 170, 220, 0.25);
-        border-radius: 8px;
-        background: rgba(15, 18, 32, 0.8);
-        color: #f5f7ff;
-        text-align: left;
-        font-family: var(--ui-font-family);
-        font-size: var(--ui-label-size);
-        font-weight: var(--ui-label-weight);
-        line-height: var(--ui-label-line-height);
-        cursor: pointer;
-      }
-
-      .causal-app-icon-strip .scene-search-item:hover,
-      .causal-app-icon-strip .scene-search-item:focus-visible {
-        border-color: rgba(213, 220, 255, 0.6);
       }
 
       .causal-mode-tabs {
@@ -1145,10 +984,6 @@
           top: max(56px, calc(env(safe-area-inset-top) + 56px));
         }
 
-        .causal-app-icon-strip {
-          top: max(12px, env(safe-area-inset-top));
-          right: max(12px, env(safe-area-inset-right));
-        }
       }
 
       /* Laboratory keeps the same top-left panel treatment as Story. */
@@ -1230,26 +1065,27 @@
       ></canvas>
 
       <section id="causal-delay-feedback-journey" class="causal-journey" aria-label="Causal delay learning journey">
-        <div id="scene-hud-tools" class="causal-app-icon-strip" aria-label="App and lesson navigation">
+        <div id="scene-hud-tools" class="standalone-app-navigation" aria-label="App and lesson navigation">
           <button
             id="textbook-toc-button"
+            class="standalone-app-toc-button"
             type="button"
             aria-label="Open textbook table of contents"
             title="Table of Contents"
           >TOC</button>
-          <div id="scene-nav-history" class="causal-lesson-nav-history" role="group" aria-label="Lesson sequence">
-            <button id="nav-up" class="causal-app-icon-button" type="button" data-guided-action="back" aria-label="Previous lesson" title="Previous lesson">
+          <div id="scene-nav-history" class="standalone-app-nav-history" role="group" aria-label="Lesson sequence">
+            <button id="nav-up" class="standalone-app-nav-icon-button" type="button" data-guided-action="back" aria-label="Previous lesson" title="Previous lesson">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <polyline points="15 5 8 12 15 19"></polyline>
               </svg>
             </button>
-            <button id="nav-forward" class="causal-app-icon-button" type="button" data-guided-action="next" aria-label="Next lesson" title="Next lesson">
+            <button id="nav-forward" class="standalone-app-nav-icon-button" type="button" data-guided-action="next" aria-label="Next lesson" title="Next lesson">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <polyline points="9 5 16 12 9 19"></polyline>
               </svg>
             </button>
           </div>
-          <button id="home-button" class="causal-app-icon-button" type="button" aria-label="Go to home" title="Home">
+          <button id="home-button" class="standalone-app-nav-icon-button" type="button" aria-label="Go to home" title="Home">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path
                 d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
@@ -1261,10 +1097,10 @@
               ></path>
             </svg>
           </button>
-          <div id="scene-search" class="causal-scene-search">
+          <div id="scene-search" class="standalone-app-scene-search">
             <button
               id="scene-search-toggle"
-              class="causal-app-icon-button causal-scene-search-toggle"
+              class="standalone-app-nav-icon-button standalone-app-scene-search-toggle"
               type="button"
               aria-label="Search scenes"
               aria-controls="scene-search-panel"
@@ -1276,16 +1112,16 @@
                 <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
               </svg>
             </button>
-            <div id="scene-search-panel" class="causal-scene-search-panel" aria-hidden="true" inert>
+            <div id="scene-search-panel" class="standalone-app-scene-search-panel" aria-hidden="true" inert>
               <input
                 id="scene-search-input"
-                class="causal-scene-search-input"
+                class="standalone-app-scene-search-input"
                 type="search"
                 placeholder="Search scenes"
                 autocomplete="off"
                 aria-label="Search scenes"
               />
-              <div id="scene-search-results" class="causal-scene-search-results"></div>
+              <div id="scene-search-results" class="standalone-app-scene-search-results"></div>
             </div>
           </div>
         </div>

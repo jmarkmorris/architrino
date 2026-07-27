@@ -11,6 +11,7 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 5. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
 6. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
 7. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
+8. `bc_score_landscape_diagnosis` — [BP-008](#bp-008--bc-score-landscape-diagnosis). Status: `Queued`.
 
 ## Queued
 
@@ -29,6 +30,14 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 - **Request / acceptance:** Adjudicate the 47 curated `mining/` leads and record one keep, route, defer, or reject disposition for each.
 - **Evidence / blocker:** Mined leads remain priority-only until accepted into a proof route or corpus edit.
 - **Completion:** No curated lead remains without a disposition.
+
+### BP-008 — B/C score-landscape diagnosis
+
+- **Status:** Queued
+- **Priority object:** `bc_score_landscape_diagnosis`
+- **Request / acceptance:** Diagnose the sealed B1/Family-C score landscape across the applicable rows, coordinates, score components, and fail-closed dispositions recorded by the 2026-07-25 campaign; preserve the predeclared handoff thresholds and do not rerun the campaign.
+- **Evidence / blocker:** The [write-once diagnostic packet](evidence/2026-07-25-bc-monte-carlo-basin-diagnostic.md) records 576 draws, zero qualified handoffs or descents, and three unresolved rows. The next B/C action is diagnosis of that retained landscape, not threshold relaxation or another Monte Carlo draw.
+- **Completion:** A focused diagnostic packet identifies which retained coordinate and score-component patterns control the best rows, keeps `unknown` and `inapplicable` distinct from candidate failure, and states a separately predeclared next search or a bounded stop without changing the sealed result.
 
 ## Deferred / blocked
 

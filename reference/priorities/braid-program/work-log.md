@@ -429,3 +429,28 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   and [work log](../app-solver/attractor-search-work-log.md).
 - Deleted the redundant `eom-attractor-search` directory. No gate, evidence
   status, campaign rank, or physical claim changed.
+
+## 2026-07-27 — Sealed B1/Family-C diagnostic landed in the live record
+
+- Transported the byte-identical write-once packet for the 2026-07-25
+  prescribed-path campaign: 576 draws produced zero qualified handoffs or
+  descents, with three rows retained as fail-closed unresolved. The packet
+  preserves the protocol, receipt, hashes, dispositions, and diagnostic-only
+  boundary; it makes no stability, retention, binding, or physical-realization
+  claim. See the [diagnostic evidence](evidence/2026-07-25-bc-monte-carlo-basin-diagnostic.md).
+- Current B/C handoff: diagnose the retained score landscape under
+  [BP-008](work-queue.md#bp-008--bc-score-landscape-diagnosis). Do not relax
+  the handoff thresholds or rerun the Monte Carlo campaign.
+
+## 2026-07-27 — Stationary-rest joint root frontier certified
+
+- Added a validation-only compiled fixture that evolves the exact stationary
+  R0 seed to $T=1.2399999999999993$, retains the accepted endpoint-corrector
+  joint histories in-process, and replays only the exact step to
+  $T=1.2449999999999992$.
+- Both cross-pair roots certified complete at the unchanged $10^{-5}$
+  root-time tolerance in one 128-bit directed-MPFR attempt. The fixture changes
+  no Campaign 1, checkpoint, solver, tolerance, G3/G4, or fate-booking path.
+- All 6 compiled fixtures and all 23 separately authored Python
+  root-certification tests passed. See the
+  [bounded certification packet](evidence/2026-07-27-stationary-rest-joint-frontier-certification.md).

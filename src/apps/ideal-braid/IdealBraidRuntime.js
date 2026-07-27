@@ -1214,8 +1214,6 @@ export function mountIdealBraid(options = {}) {
     surfaceToggle: queryRequiredElement(documentLike, "#ideal-braid-surface-toggle"),
     axesToggle: queryRequiredElement(documentLike, "#ideal-braid-axes-toggle"),
     freezeToggle: queryRequiredElement(documentLike, "#ideal-braid-freeze-toggle"),
-    resetButton: queryRequiredElement(documentLike, "#ideal-braid-reset-button"),
-    focusButton: queryRequiredElement(documentLike, "#ideal-braid-focus-button"),
     returnCycleDocButton: queryRequiredElement(
       documentLike,
       "#ideal-braid-return-cycle-doc-button"
@@ -1492,8 +1490,6 @@ export function mountIdealBraid(options = {}) {
     const nextLabel = state.frozen ? "Play" : "Pause";
     if (label) {
       label.textContent = nextLabel;
-    } else {
-      dom.freezeToggle.textContent = nextLabel;
     }
     setTransportControlButtonPresentation(dom.freezeToggle, {
       kind: state.frozen ? TRANSPORT_CONTROL_ICON.PLAY : TRANSPORT_CONTROL_ICON.PAUSE,
@@ -1612,7 +1608,7 @@ export function mountIdealBraid(options = {}) {
     const left = 34;
     const right = width - 14;
     const top = 14;
-    const bottom = height - 24;
+    const bottom = height - 30;
     const plotWidth = Math.max(1, right - left);
     const plotHeight = Math.max(1, bottom - top);
     function chartX(beta) {
@@ -1686,7 +1682,7 @@ export function mountIdealBraid(options = {}) {
     stripContext.fill();
 
     stripContext.fillStyle = "rgba(203, 213, 225, 0.82)";
-    stripContext.font = "20px Helvetica Neue, Arial, sans-serif";
+    stripContext.font = "24px Helvetica Neue, Arial, sans-serif";
     stripContext.fillText("0", left - 6, height - 6);
     stripContext.fillText("1.000", right - 48, height - 6);
     stripContext.fillText("1", 8, chartY(1) + 6);
@@ -1836,13 +1832,6 @@ export function mountIdealBraid(options = {}) {
     navigateIdealBraidHome(windowLike?.location, homeHref, {
       windowLike,
     });
-  }, listenerOptions);
-  dom.resetButton.addEventListener("click", () => {
-    resetRotation();
-    canvas.focus();
-  }, listenerOptions);
-  dom.focusButton.addEventListener("click", () => {
-    canvas.focus();
   }, listenerOptions);
   dom.returnCycleDocButton.addEventListener("click", () => {
     markdownRuntime.showMarkdownPanel(IDEAL_BRAID_DOCS.returnCycle);

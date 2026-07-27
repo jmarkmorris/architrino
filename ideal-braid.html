@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#080b12" />
-    <title>A1 Lorentz Geometry</title>
+    <title>Lorentz Geometry</title>
     <link
       rel="stylesheet"
       href="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css"
@@ -83,6 +83,11 @@
         letter-spacing: 0;
       }
 
+      .ideal-braid-panel sub,
+      .ideal-braid-panel sup {
+        font-size: 12px;
+      }
+
       .ideal-braid-panel-header {
         display: flex;
         align-items: center;
@@ -123,18 +128,49 @@
       .ideal-braid-panel.is-upper-left {
         left: 16px;
         top: 16px;
-        width: 296px;
+        width: 340px;
       }
 
-      .ideal-braid-panel.is-upper-right {
-        right: 16px;
-        top: 16px;
-      }
-
-      .ideal-braid-panel.is-lower-left {
+      .ideal-braid-left-rail {
+        position: absolute;
         left: 16px;
+        top: 16px;
         bottom: 16px;
-        width: 296px;
+        z-index: 3;
+        display: flex;
+        width: 340px;
+        flex-direction: column;
+        gap: 12px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+        scrollbar-width: thin;
+      }
+
+      .ideal-braid-left-rail:focus-visible {
+        outline: 1px solid rgba(125, 211, 252, 0.58);
+        outline-offset: 2px;
+      }
+
+      .ideal-braid-left-rail::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .ideal-braid-left-rail::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .ideal-braid-left-rail::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.45);
+      }
+
+      .ideal-braid-left-rail > .ideal-braid-panel {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        flex: 0 0 auto;
       }
 
       .ideal-braid-panel.is-lower-right {
@@ -196,6 +232,7 @@
         border-radius: 6px;
         background: rgba(17, 24, 39, 0.85);
         color: rgba(238, 243, 255, 0.88);
+        font-size: 13px;
         cursor: pointer;
       }
 
@@ -232,10 +269,25 @@
         height: 18px;
       }
 
+      .ideal-braid-sphere-transport {
+        position: absolute;
+        left: 50%;
+        bottom: 18px;
+        z-index: 4;
+        width: 36px;
+        height: 36px;
+        min-height: 36px;
+        padding: 0;
+        border-radius: 999px;
+        transform: translateX(-50%);
+        background: rgba(17, 24, 39, 0.9);
+        backdrop-filter: blur(8px);
+      }
+
       .ideal-braid-button.is-doc-button {
         gap: 4px;
         padding: 0 5px;
-        font-size: 11px;
+        font-size: 12px;
       }
 
       .ideal-braid-md-icon {
@@ -308,7 +360,7 @@
 
       .ideal-braid-factor-card span {
         color: rgba(203, 213, 225, 0.82);
-        font-size: 10px;
+        font-size: 12px;
         line-height: 1.2;
       }
 
@@ -321,7 +373,7 @@
 
       .ideal-braid-factor-card small {
         color: rgba(203, 213, 225, 0.7);
-        font-size: 8px;
+        font-size: 12px;
         line-height: 1.18;
         overflow-wrap: anywhere;
         white-space: nowrap;
@@ -346,13 +398,13 @@
       .ideal-braid-energy-ledger h3 {
         margin: 0;
         color: rgba(238, 243, 255, 0.95);
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 700;
       }
 
       .ideal-braid-energy-ledger small {
         color: rgba(203, 213, 225, 0.62);
-        font-size: 9px;
+        font-size: 12px;
         text-align: right;
       }
 
@@ -367,7 +419,7 @@
         gap: 8px;
         align-items: baseline;
         color: rgba(203, 213, 225, 0.78);
-        font-size: 10px;
+        font-size: 12px;
         line-height: 1.25;
       }
 
@@ -377,7 +429,7 @@
 
       .ideal-braid-energy-row output {
         color: #fef3c7;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 700;
         white-space: nowrap;
       }
@@ -396,10 +448,10 @@
         gap: 8px;
         margin-top: 8px;
         color: rgba(203, 213, 225, 0.78);
-        font-size: 11px;
+        font-size: 12px;
       }
 
-      .ideal-braid-chart-legend span {
+      .ideal-braid-chart-legend > span {
         display: inline-flex;
         align-items: center;
         gap: 5px;
@@ -417,6 +469,12 @@
         gap: 9px;
         color: rgba(203, 213, 225, 0.78);
         font-size: 12px;
+      }
+
+      .ideal-braid-equation-section {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(148, 163, 184, 0.18);
       }
 
       .ideal-braid-equation-row,
@@ -455,7 +513,7 @@
         border-radius: 6px;
         background: rgba(20, 83, 80, 0.18);
         color: rgba(204, 251, 241, 0.88);
-        font-size: 11px;
+        font-size: 12px;
       }
 
       .ideal-braid-status.is-error {
@@ -706,14 +764,17 @@
           padding: 8px;
         }
 
-        .ideal-braid-panel.is-upper-left,
-        .ideal-braid-panel.is-upper-right {
+        .ideal-braid-left-rail {
+          left: 10px;
+          top: 10px;
+          bottom: 206px;
           width: calc(50vw - 15px);
+          gap: 10px;
         }
 
         .ideal-braid-panel h2 {
           margin-bottom: 7px;
-          font-size: 11px;
+          font-size: 12px;
         }
 
         .ideal-braid-panel-header {
@@ -725,20 +786,6 @@
           height: 28px;
         }
 
-        .ideal-braid-panel.is-upper-left {
-          left: 10px;
-          top: 10px;
-        }
-
-        .ideal-braid-panel.is-upper-right {
-          right: 10px;
-          top: 10px;
-        }
-
-        .ideal-braid-panel.is-lower-left {
-          display: none;
-        }
-
         .ideal-braid-panel.is-lower-right {
           left: 10px;
           right: 10px;
@@ -747,7 +794,7 @@
         }
 
         #ideal-braid-lorentz-chart {
-          height: 48px;
+          height: 84px;
         }
 
         .ideal-braid-chart-legend,
@@ -758,13 +805,21 @@
         .ideal-braid-energy-ledger small,
         .ideal-braid-energy-row,
         .ideal-braid-status {
-          font-size: 10px;
+          font-size: 12px;
+        }
+
+        .ideal-braid-equation-section {
+          display: none;
         }
 
         .ideal-braid-factor-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 5px;
           margin-top: 8px;
+        }
+
+        .ideal-braid-factor-card small {
+          white-space: normal;
         }
 
         .ideal-braid-factor-card {
@@ -804,7 +859,14 @@
 
         .ideal-braid-button {
           min-height: 28px;
-          font-size: 11px;
+          font-size: 12px;
+        }
+
+        .ideal-braid-sphere-transport {
+          bottom: 204px;
+          width: 32px;
+          height: 32px;
+          min-height: 32px;
         }
 
         .ideal-braid-range-row {
@@ -819,13 +881,13 @@
 
         .ideal-braid-geometry-picker label,
         .ideal-braid-geometry-picker select {
-          font-size: 10px;
+          font-size: 12px;
         }
 
         .ideal-braid-range-row label,
         .ideal-braid-range-row output,
         .ideal-braid-table {
-          font-size: 10px;
+          font-size: 12px;
         }
 
         .ideal-braid-table th,
@@ -886,15 +948,30 @@
   <body>
     <main id="ideal-braid-app">
       <canvas id="ideal-braid-canvas" tabindex="0" aria-label="A1 Lorentz Geometry stage"></canvas>
-      <div class="ideal-braid-title">A1 Lorentz Geometry</div>
+      <div class="ideal-braid-title">Lorentz Geometry</div>
+      <button
+        id="ideal-braid-freeze-toggle"
+        class="ideal-braid-button ideal-braid-sphere-transport"
+        type="button"
+        aria-label="Pause animation"
+        title="Pause animation"
+      >
+        <span class="ideal-braid-control-icon" data-transport-icon-host aria-hidden="true"></span>
+      </button>
 
-      <section class="ideal-braid-panel is-upper-left" aria-label="Graph zone">
+      <div
+        class="ideal-braid-left-rail"
+        role="region"
+        aria-label="Lorentz information and controls"
+        tabindex="0"
+      >
+        <section class="ideal-braid-panel is-upper-left" aria-label="Lorentz information panel">
         <h2>Lorentz Map</h2>
         <canvas id="ideal-braid-lorentz-chart" width="536" height="168" aria-hidden="true"></canvas>
         <div class="ideal-braid-chart-legend" aria-hidden="true">
           <span><i style="background:#fbbf24"></i>&gamma; time</span>
           <span><i style="background:#2dd4bf"></i>&xi; length</span>
-          <span><i style="background:#f472b6"></i>&beta; = v / c<sub>f</sub></span>
+          <span><i style="background:#f472b6"></i><span class="ideal-braid-chart-label">&beta; = v / c<sub>f</sub></span></span>
         </div>
         <div class="ideal-braid-factor-grid" aria-label="Time and length factors">
           <div class="ideal-braid-factor-card is-time">
@@ -940,9 +1017,29 @@
             </div>
           </div>
         </div>
-      </section>
+        <div class="ideal-braid-equation-section" aria-label="Lorentz equation zone">
+          <h2>Noether Braid Equations</h2>
+          <div class="ideal-braid-equation-stack">
+            <div class="ideal-braid-equation-row">
+              <code>&gamma; = 1 / sqrt(1 - (v/c<sub>f</sub>)<sup>2</sup>)</code>
+              <output id="ideal-braid-gamma-equation">1.000</output>
+            </div>
+            <div class="ideal-braid-equation-row">
+              <code>&xi; = R<sub>&parallel;</sub> / R<sub>&perp;</sub> = 1 / &gamma;</code>
+              <output id="ideal-braid-xi-equation">1.000</output>
+            </div>
+            <div class="ideal-braid-equation-row">
+              <code>R<sub>&parallel;</sub> = R<sub>&perp;</sub> / &gamma;</code>
+              <output id="ideal-braid-rparallel-equation">1.620</output>
+            </div>
+            <div id="ideal-braid-status" class="ideal-braid-status" role="status" aria-live="polite">
+              Display-only surface: delayed-potential colors use tangent-linearized transmitter histories; this preview is not a proof.
+            </div>
+          </div>
+        </div>
+        </section>
 
-      <section class="ideal-braid-panel is-upper-right" aria-label="Control panel">
+        <section class="ideal-braid-panel is-controls" aria-label="Control panel">
         <div class="ideal-braid-panel-header">
           <h2>Controls</h2>
           <button
@@ -975,17 +1072,6 @@
             <button id="ideal-braid-path-toggle" class="ideal-braid-button is-active" type="button">Paths</button>
             <button id="ideal-braid-surface-toggle" class="ideal-braid-button is-active" type="button">Surface</button>
             <button id="ideal-braid-axes-toggle" class="ideal-braid-button is-active" type="button">Axes</button>
-            <button
-              id="ideal-braid-freeze-toggle"
-              class="ideal-braid-button"
-              type="button"
-              aria-label="Pause animation"
-            >
-              <span class="ideal-braid-control-icon" data-transport-icon-host aria-hidden="true"></span>
-              <span class="ideal-braid-control-label">Pause</span>
-            </button>
-            <button id="ideal-braid-reset-button" class="ideal-braid-button" type="button">Reset</button>
-            <button id="ideal-braid-focus-button" class="ideal-braid-button" type="button">Focus</button>
           </div>
           <div class="ideal-braid-range-row">
             <label for="ideal-braid-radius-input">Reference orbit</label>
@@ -1086,28 +1172,8 @@
             </button>
           </div>
         </div>
-      </section>
-
-      <section class="ideal-braid-panel is-lower-left" aria-label="Lorentz equation zone">
-        <h2>Noether Braid Equations</h2>
-        <div class="ideal-braid-equation-stack">
-          <div class="ideal-braid-equation-row">
-            <code>&gamma; = 1 / sqrt(1 - (v/c<sub>f</sub>)<sup>2</sup>)</code>
-            <output id="ideal-braid-gamma-equation">1.000</output>
-          </div>
-          <div class="ideal-braid-equation-row">
-            <code>&xi; = R<sub>&parallel;</sub> / R<sub>&perp;</sub> = 1 / &gamma;</code>
-            <output id="ideal-braid-xi-equation">1.000</output>
-          </div>
-          <div class="ideal-braid-equation-row">
-            <code>R<sub>&parallel;</sub> = R<sub>&perp;</sub> / &gamma;</code>
-            <output id="ideal-braid-rparallel-equation">1.620</output>
-          </div>
-          <div id="ideal-braid-status" class="ideal-braid-status" role="status" aria-live="polite">
-            Display-only surface: delayed-potential colors use tangent-linearized transmitter histories; this preview is not a proof.
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <section class="ideal-braid-panel is-lower-right" aria-label="Binary measures table">
         <h2>Binary Measures</h2>

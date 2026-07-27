@@ -738,7 +738,37 @@ void log_halt_detail(
         std::cerr << "rejected_root receiver=" << root.receiver_path_id
                   << " transmitter=" << root.transmitter_path_id
                   << " status=" << root.certificate.status
-                  << " failure=" << root.certificate.failure_code << '\n';
+                  << " failure=" << root.certificate.failure_code
+                  << " diagnostic=" << root.certificate.diagnostic_detail
+                  << " precision_bits="
+                  << root.certificate.achieved_precision_bits
+                  << " mpfr_attempts="
+                  << root.certificate.mpfr_attempt_count
+                  << " has_difficult_cell="
+                  << root.certificate.has_difficult_cell;
+        if (root.certificate.has_difficult_cell) {
+          std::cerr
+              << " difficult_source_segment="
+              << root.certificate.difficult_source_segment_index
+              << " difficult_cell=["
+              << root.certificate.difficult_cell_lower << ','
+              << root.certificate.difficult_cell_upper << ']'
+              << " difficult_point="
+              << root.certificate.difficult_point
+              << " difficult_residual=["
+              << root.certificate.difficult_point_residual_lower << ','
+              << root.certificate.difficult_point_residual_upper << ']'
+              << " difficult_transmitter_factor=["
+              << root.certificate.difficult_transmitter_factor_lower << ','
+              << root.certificate.difficult_transmitter_factor_upper << ']'
+              << " difficult_receiver_factor=["
+              << root.certificate.difficult_receiver_factor_lower << ','
+              << root.certificate.difficult_receiver_factor_upper << ']'
+              << " difficult_signs=["
+              << root.certificate.difficult_lower_sign << ','
+              << root.certificate.difficult_upper_sign << ']';
+        }
+        std::cerr << '\n';
       }
     }
   }
