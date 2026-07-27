@@ -52,7 +52,7 @@
   cursor: default;
 }
 
-.standalone-app-toc-button {
+.standalone-app-navigation .standalone-app-toc-button {
   position: relative;
   display: inline-flex;
   align-items: center;
