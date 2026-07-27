@@ -86,7 +86,8 @@ int main(int argc, char** argv) {
       for (std::size_t segment_index = 0;
            segment_index < path.history.segments().size(); ++segment_index) {
         if (segment_index > 0) std::cout << ',';
-        write_segment(path.history.segments()[segment_index]);
+        const auto segment = path.history.segments().pin(segment_index);
+        write_segment(*segment);
       }
       std::cout << "]}";
     }

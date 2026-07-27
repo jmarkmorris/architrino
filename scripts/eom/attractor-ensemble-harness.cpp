@@ -44,6 +44,7 @@
 #include <chrono>
 #include <cmath>
 #include <cstddef>
+#include <cstdint>
 #include <filesystem>
 #include <fstream>
 #include <iomanip>
@@ -54,6 +55,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace eom = architrino::eom;
@@ -531,6 +533,54 @@ struct Options {
   bool resume = false;
 };
 
+void hash_resume_token(std::uint64_t& state, const std::string& value) {
+  for (const unsigned char character : value) {
+    state ^= static_cast<std::uint64_t>(character);
+    state *= UINT64_C(1099511628211);
+  }
+  state ^= UINT64_C(255);
+  state *= UINT64_C(1099511628211);
+}
+
+std::string harness_resume_fingerprint(
+    const Options& options, const std::string& model_fingerprint) {
+  std::uint64_t state = UINT64_C(14695981039346656037);
+  for (const auto& value : std::vector<std::string>{
+           "eom_attractor_resume_configuration/v1",
+           options.seed_family,
+           std::to_string(options.population),
+           std::to_string(options.seed_offset),
+           options.prehistory,
+           token(options.binary_separation),
+           token(options.binary_speed),
+           options.binary_angle,
+           options.refinement,
+           token(options.step),
+           token(options.minimum_step),
+           token(options.history_depth),
+           token(options.history_segment_step),
+           std::to_string(options.chunk_steps),
+           std::to_string(options.sample_every),
+           token(options.link_distance),
+           token(options.escape_radius),
+           token(options.pin_speed),
+           std::to_string(options.thread_count),
+           options.root_tolerance,
+           std::to_string(options.root_max_depth),
+           options.engine_build_id,
+           options.generating_spec,
+           options.record_date,
+           token(options.delay_horizon),
+           model_fingerprint,
+       }) {
+    hash_resume_token(state, value);
+  }
+  std::ostringstream result;
+  result << "fnv1a64-resume-v1:" << std::hex << std::setfill('0')
+         << std::setw(16) << state;
+  return result.str();
+}
+
 eom::NativeCoupledEvolutionRequest build_request(
     const Options& options,
     const std::vector<eom::NativeCoupledPathInput>& paths) {
@@ -1002,6 +1052,160 @@ struct CensusAccumulator {
   double minimum_pair_distance = std::numeric_limits<double>::infinity();
 };
 
+std::string read_text_file(const std::filesystem::path& path) {
+  std::ifstream input(path);
+  if (!input) {
+    throw std::runtime_error(
+        "resume manifest is missing or unreadable: " + path.string());
+  }
+  std::ostringstream contents;
+  contents << input.rdbuf();
+  if (!input.good() && !input.eof()) {
+    throw std::runtime_error(
+        "resume manifest read failed: " + path.string());
+  }
+  return contents.str();
+}
+
+std::size_t manifest_value_start(
+    const std::string& manifest, std::string_view field) {
+  const std::string key = "\"" + std::string(field) + "\":";
+  const std::size_t found = manifest.find(key);
+  if (found == std::string::npos) {
+    throw std::runtime_error(
+        "resume manifest lacks required field: " + std::string(field));
+  }
+  return found + key.size();
+}
+
+std::string manifest_string(
+    const std::string& manifest, std::string_view field) {
+  std::size_t cursor = manifest_value_start(manifest, field);
+  if (cursor >= manifest.size() || manifest[cursor] != '"') {
+    throw std::runtime_error(
+        "resume manifest field is not a string: " + std::string(field));
+  }
+  ++cursor;
+  std::string value;
+  bool escaped = false;
+  for (; cursor < manifest.size(); ++cursor) {
+    const char character = manifest[cursor];
+    if (escaped) {
+      switch (character) {
+        case '"':
+        case '\\': value.push_back(character); break;
+        case 'n': value.push_back('\n'); break;
+        case 'r': value.push_back('\r'); break;
+        case 't': value.push_back('\t'); break;
+        default:
+          throw std::runtime_error(
+              "resume manifest string uses an unsupported escape");
+      }
+      escaped = false;
+    } else if (character == '\\') {
+      escaped = true;
+    } else if (character == '"') {
+      return value;
+    } else {
+      value.push_back(character);
+    }
+  }
+  throw std::runtime_error(
+      "resume manifest has an unterminated string field: " +
+      std::string(field));
+}
+
+std::string manifest_number_token(
+    const std::string& manifest, std::string_view field) {
+  std::size_t cursor = manifest_value_start(manifest, field);
+  const std::size_t start = cursor;
+  while (cursor < manifest.size()) {
+    const char character = manifest[cursor];
+    if ((character >= '0' && character <= '9') || character == '-' ||
+        character == '+' || character == '.' || character == 'e' ||
+        character == 'E') {
+      ++cursor;
+      continue;
+    }
+    break;
+  }
+  if (cursor == start) {
+    throw std::runtime_error(
+        "resume manifest field is not numeric: " + std::string(field));
+  }
+  return manifest.substr(start, cursor - start);
+}
+
+std::size_t manifest_size(
+    const std::string& manifest, std::string_view field) {
+  const std::string value = manifest_number_token(manifest, field);
+  std::size_t consumed = 0;
+  const unsigned long long parsed = std::stoull(value, &consumed);
+  if (consumed != value.size() ||
+      parsed > static_cast<unsigned long long>(
+          std::numeric_limits<std::size_t>::max())) {
+    throw std::runtime_error(
+        "resume manifest size field is invalid: " + std::string(field));
+  }
+  return static_cast<std::size_t>(parsed);
+}
+
+double manifest_double(
+    const std::string& manifest, std::string_view field) {
+  const std::string value = manifest_number_token(manifest, field);
+  std::size_t consumed = 0;
+  const double parsed = std::stod(value, &consumed);
+  if (consumed != value.size() || !std::isfinite(parsed) || parsed < 0.0) {
+    throw std::runtime_error(
+        "resume manifest numeric field is invalid: " + std::string(field));
+  }
+  return parsed;
+}
+
+struct ResumeAccounting {
+  std::string run_id;
+  std::string seed_family;
+  std::string model_fingerprint;
+  std::string resume_configuration_fingerprint;
+  std::string release_root_clearance;
+  std::string accepted_end_time;
+  std::size_t chunks_completed = 0;
+  std::size_t accepted_steps = 0;
+  std::size_t rejected_steps = 0;
+  std::size_t frames_emitted = 0;
+  std::size_t resume_count = 0;
+  double cumulative_wall_seconds = 0.0;
+};
+
+ResumeAccounting read_resume_accounting(
+    const std::filesystem::path& path) {
+  const std::string manifest = read_text_file(path);
+  if (manifest_string(manifest, "schema") !=
+          "eom_attractor_ensemble_run_manifest/v1" ||
+      manifest_string(manifest, "resumeAccountingSchema") !=
+          "eom_attractor_resume_accounting/v1") {
+    throw std::runtime_error(
+        "resume manifest predates corrected cumulative accounting");
+  }
+  return {
+      .run_id = manifest_string(manifest, "runId"),
+      .seed_family = manifest_string(manifest, "seedFamily"),
+      .model_fingerprint = manifest_string(manifest, "modelFingerprint"),
+      .resume_configuration_fingerprint =
+          manifest_string(manifest, "resumeConfigurationFingerprint"),
+      .release_root_clearance =
+          manifest_string(manifest, "releaseRootClearance"),
+      .accepted_end_time = manifest_string(manifest, "acceptedEndTime"),
+      .chunks_completed = manifest_size(manifest, "chunksCompleted"),
+      .accepted_steps = manifest_size(manifest, "acceptedSteps"),
+      .rejected_steps = manifest_size(manifest, "rejectedSteps"),
+      .frames_emitted = manifest_size(manifest, "framesEmitted"),
+      .resume_count = manifest_size(manifest, "resumeCount"),
+      .cumulative_wall_seconds =
+          manifest_double(manifest, "cumulativeWallSeconds"),
+  };
+}
+
 void write_census_row(
     std::ostream& output, const Options& options,
     const std::string& time_token,
@@ -1154,11 +1358,20 @@ void write_manifest(
     const std::vector<SeedRow>& rows, const std::string& model_fingerprint,
     const std::string& root_clearance_status,
     std::size_t chunks_completed, const std::string& accepted_end,
-    std::size_t frames_emitted, double cumulative_wall_seconds,
+    std::size_t accepted_steps, std::size_t rejected_steps,
+    std::size_t frames_emitted, std::size_t resume_count,
+    double cumulative_wall_seconds,
     const std::string& status) {
-  std::ofstream output(path);
+  const auto temporary_path = path.string() + ".tmp";
+  std::ofstream output(temporary_path, std::ios::trunc);
+  if (!output) {
+    throw std::runtime_error(
+        "failed to open run manifest temporary file");
+  }
   output << std::setprecision(17)
          << "{\"schema\":\"eom_attractor_ensemble_run_manifest/v1\""
+         << ",\"resumeAccountingSchema\":"
+            "\"eom_attractor_resume_accounting/v1\""
          << ",\"runId\":";
   write_json_string(output, options.run_id);
   output << ",\"seedFamily\":";
@@ -1186,6 +1399,9 @@ void write_manifest(
   write_json_string(output, token(kNativeCoupling));
   output << ",\"modelFingerprint\":";
   write_json_string(output, model_fingerprint);
+  output << ",\"resumeConfigurationFingerprint\":";
+  write_json_string(
+      output, harness_resume_fingerprint(options, model_fingerprint));
   output << ",\"engineBuildId\":";
   write_json_string(output, options.engine_build_id);
   output << ",\"generatingSpec\":";
@@ -1195,10 +1411,15 @@ void write_manifest(
   output << ",\"releaseRootClearance\":";
   write_json_string(output, root_clearance_status);
   output << ",\"chunksCompleted\":" << chunks_completed
+         << ",\"acceptedSteps\":" << accepted_steps
+         << ",\"rejectedSteps\":" << rejected_steps
          << ",\"acceptedEndTime\":";
   write_json_string(output, accepted_end);
   output << ",\"framesEmitted\":" << frames_emitted
+         << ",\"resumeCount\":" << resume_count
          << ",\"cumulativeWallSeconds\":" << cumulative_wall_seconds
+         << ",\"crossChunkComparisonPolicy\":"
+            "\"integer-grid-decimal-endpoints/v1\""
          << ",\"status\":";
   write_json_string(output, status);
   if (options.seed_family == "campaign1-subfield-binary-v1") {
@@ -1260,6 +1481,12 @@ void write_manifest(
     }
   }
   output << "]}\n";
+  output.flush();
+  if (!output) {
+    throw std::runtime_error("failed to write run manifest");
+  }
+  output.close();
+  std::filesystem::rename(temporary_path, path);
 }
 
 // Wrap the streamed frame JSONL into one borg-fixture-trajectory.v1-shaped
@@ -1528,24 +1755,56 @@ int main(int argc, char** argv) {
     std::size_t frame_count = 0;
     std::size_t keyframe_count = 0;
     std::size_t chunks_completed = 0;
+    std::size_t accepted_steps = 0;
+    std::size_t rejected_steps = 0;
+    std::size_t resume_count = 0;
     double cumulative_wall_seconds = 0.0;
     std::string accepted_end = "0";
     std::string root_clearance_status = "not_checked";
     if (options.resume) {
       checkpoint = eom::read_native_evolution_checkpoint(
           checkpoint_path.string());
+      const ResumeAccounting prior = read_resume_accounting(manifest_path);
+      if (prior.run_id != options.run_id ||
+          prior.seed_family != options.seed_family ||
+          prior.model_fingerprint != model_fingerprint ||
+          prior.resume_configuration_fingerprint !=
+              harness_resume_fingerprint(options, model_fingerprint) ||
+          prior.accepted_end_time != checkpoint->accepted_time) {
+        throw std::runtime_error(
+            "resume manifest identity does not match the checkpoint or request");
+      }
+      if (prior.release_root_clearance != "certified_complete") {
+        throw std::runtime_error(
+            "resume manifest lacks certified release root clearance");
+      }
       accepted_end = checkpoint->accepted_time;
+      chunks_completed = prior.chunks_completed;
+      accepted_steps = prior.accepted_steps;
+      rejected_steps = prior.rejected_steps;
+      cumulative_wall_seconds = prior.cumulative_wall_seconds;
+      resume_count = prior.resume_count + 1U;
       // Continue the frame index from the streamed file.
       std::ifstream frames(frames_path);
       std::string line;
       while (std::getline(frames, line)) {
         if (!line.empty()) ++frame_count;
       }
+      if (frame_count != prior.frames_emitted ||
+          frame_count % options.population != 0U) {
+        throw std::runtime_error(
+            "resume frame stream does not match cumulative manifest accounting");
+      }
       frame_index = frame_count / options.population;
       keyframe_count = frame_index;
-      root_clearance_status = "checked_before_interruption";
+      root_clearance_status = prior.release_root_clearance;
       std::cerr << "resume accepted_end=" << accepted_end
-                << " frames=" << frame_count << '\n';
+                << " chunks=" << chunks_completed
+                << " accepted_steps=" << accepted_steps
+                << " rejected_steps=" << rejected_steps
+                << " frames=" << frame_count
+                << " prior_cumulative_wall=" << cumulative_wall_seconds
+                << " resume_count=" << resume_count << '\n';
     }
 
     std::ofstream census(
@@ -1591,7 +1850,7 @@ int main(int argc, char** argv) {
             "blocked_release_root_clearance");
         write_manifest(
             manifest_path, options, rows, model_fingerprint,
-            root_clearance_status, 0, "0", 0, 0.0,
+            root_clearance_status, 0, "0", 0, 0, 0, 0, 0.0,
             "blocked_release_root_clearance");
         return 2;
       }
@@ -1649,6 +1908,8 @@ int main(int argc, char** argv) {
             request, *checkpoint, token(chunk_target));
       }();
       cumulative_wall_seconds += chunk.timing.total_wall_seconds;
+      accepted_steps += chunk.accepted_step_count;
+      rejected_steps += chunk.rejected_step_count;
       log_halt_detail(chunk);
 
       if (chunk.accepted_step_count == 0) {
@@ -1729,7 +1990,8 @@ int main(int argc, char** argv) {
       write_manifest(
           manifest_path, options, rows, model_fingerprint,
           root_clearance_status, chunks_completed, accepted_end,
-          frame_count, cumulative_wall_seconds, "running");
+          accepted_steps, rejected_steps, frame_count, resume_count,
+          cumulative_wall_seconds, "running");
 
       if (chunk.status != "completed") {
         final_status = "halted_" +
@@ -1753,14 +2015,18 @@ int main(int argc, char** argv) {
     }
     write_manifest(
         manifest_path, options, rows, model_fingerprint,
-        root_clearance_status, chunks_completed, accepted_end, frame_count,
+        root_clearance_status, chunks_completed, accepted_end,
+        accepted_steps, rejected_steps, frame_count, resume_count,
         cumulative_wall_seconds, final_status);
 
     std::cout << "ensemble run_id=" << options.run_id
               << " status=" << final_status
               << " accepted_end=" << accepted_end
               << " chunks=" << chunks_completed
+              << " accepted_steps=" << accepted_steps
+              << " rejected_steps=" << rejected_steps
               << " frames=" << frame_count
+              << " resume_count=" << resume_count
               << " cumulative_wall=" << cumulative_wall_seconds
               << " out_dir=" << options.out_dir << '\n';
     return final_status == "completed" ? 0 : 3;
