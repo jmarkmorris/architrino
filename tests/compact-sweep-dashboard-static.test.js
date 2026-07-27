@@ -24,7 +24,29 @@ test("Braid Search is a focused standalone app with configured local data", () =
   );
   assert.match(html, /prefers-reduced-motion/u);
   assert.match(html, /aria-live="polite"/u);
+  assert.match(
+    html,
+    /src\/apps\/navigator\/standalone-app-navigation\.css/u,
+  );
   assert.match(main, /renderCompactSweepDashboardApp/u);
+  assert.match(runtime, /createStandaloneAppSceneSearchRuntime/u);
+  assert.match(runtime, /resolveStandaloneGlobalSceneHref/u);
+  assert.match(runtime, /TEXTBOOK_TOC_SCENE_PATH/u);
+  assert.match(runtime, /resolveStandaloneSiteHomeHref/u);
+  for (const id of [
+    "textbook-toc-button",
+    "nav-up",
+    "nav-forward",
+    "home-button",
+    "scene-search-toggle",
+    "scene-search-panel",
+    "scene-search-input",
+    "scene-search-results",
+  ]) {
+    assert.match(runtime, new RegExp(`(?:id =|id:) "${id}"`, "u"));
+  }
+  assert.doesNotMatch(runtime, /compact-dashboard-action-link/u);
+  assert.doesNotMatch(runtime, /STANDALONE_APP_HOME_HREF/u);
   assert.match(
     runtime,
     /\.\/\.local-data\/braid-analysis\/compact-monte-carlo\/family-sweep-v1\/compact-sweep-dashboard\.v1\.json/u,

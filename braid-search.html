@@ -8,6 +8,7 @@
     />
     <meta name="theme-color" content="#07111f" />
     <title>architrino Braid Search</title>
+    <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
     <style>
       * {
         box-sizing: border-box;
@@ -154,11 +155,17 @@
         display: flex;
         flex: 0 0 auto;
         align-items: center;
+        justify-content: flex-end;
         gap: 8px;
       }
 
+      .compact-dashboard-actions .standalone-app-navigation {
+        position: relative;
+        top: auto;
+        right: auto;
+      }
+
       .compact-dashboard-button,
-      .compact-dashboard-action-link,
       .compact-dashboard-tab {
         display: inline-flex;
         min-height: 36px;
@@ -177,13 +184,11 @@
       }
 
       .compact-dashboard-button:hover,
-      .compact-dashboard-action-link:hover,
       .compact-dashboard-tab:hover {
         border-color: var(--line-strong);
         background: rgba(29, 57, 85, 0.92);
       }
 
-      .compact-dashboard-action-link svg,
       .compact-dashboard-button svg {
         width: 16px;
         height: 16px;
@@ -824,8 +829,9 @@
         }
 
         .compact-dashboard-actions {
-          justify-content: flex-start;
-          overflow-x: auto;
+          width: 100%;
+          justify-content: flex-end;
+          overflow: visible;
         }
 
         .compact-dashboard-filters {

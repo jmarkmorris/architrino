@@ -17,8 +17,14 @@ import {
   validateCompactSweepDashboardData,
 } from "./CompactSweepDashboardData.js";
 import {
-  STANDALONE_APP_HOME_HREF,
+  navigateStandaloneAppHome,
+  resolveStandaloneSiteHomeHref,
 } from "../navigator/StandaloneAppHomeRuntime.js";
+import {
+  createStandaloneAppSceneSearchRuntime,
+  resolveStandaloneGlobalSceneHref,
+  TEXTBOOK_TOC_SCENE_PATH,
+} from "../navigator/StandaloneAppSceneSearchRuntime.js";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 const DEFAULT_VIEW_ID = "overview";
@@ -90,18 +96,197 @@ function ratioText(count, denominator) {
     `(${denominator === 0 ? "—" : formatPercent(count / denominator)})`;
 }
 
-function homeIcon() {
+function icon(paths = []) {
   const svg = svgElement("svg", {
     viewBox: "0 0 24 24",
     "aria-hidden": "true",
   });
-  append(
-    svg,
-    svgElement("path", { d: "M3 11.5 12 4l9 7.5" }),
-    svgElement("path", { d: "M5.5 10.5V20h13v-9.5" }),
-    svgElement("path", { d: "M9.5 20v-6h5v6" }),
-  );
+  paths.forEach(({ tagName = "path", ...attributes }) => {
+    svg.appendChild(svgElement(tagName, attributes));
+  });
   return svg;
+}
+
+function iconButton({ id, label, title, paths }) {
+  const button = element(
+    "button",
+    "standalone-app-nav-icon-button",
+  );
+  button.id = id;
+  button.type = "button";
+  button.setAttribute("aria-label", label);
+  button.title = title;
+  button.appendChild(icon(paths));
+  return button;
+}
+
+function createStandaloneNavigation() {
+  const navigation = element("div", "standalone-app-navigation");
+  navigation.id = "scene-hud-tools";
+  navigation.setAttribute("aria-label", "Webapp navigation");
+
+  const tocButton = element(
+    "button",
+    "standalone-app-toc-button",
+    "TOC",
+  );
+  tocButton.id = "textbook-toc-button";
+  tocButton.type = "button";
+  tocButton.setAttribute("aria-label", "Open textbook table of contents");
+  tocButton.title = "Table of Contents";
+
+  const history = element("div", "standalone-app-nav-history");
+  history.id = "scene-nav-history";
+  history.setAttribute("role", "group");
+  history.setAttribute("aria-label", "Browser history");
+  const backButton = iconButton({
+    id: "nav-up",
+    label: "Go back",
+    title: "Back",
+    paths: [{
+      tagName: "polyline",
+      points: "15 5 8 12 15 19",
+    }],
+  });
+  const forwardButton = iconButton({
+    id: "nav-forward",
+    label: "Go forward",
+    title: "Forward",
+    paths: [{
+      tagName: "polyline",
+      points: "9 5 16 12 9 19",
+    }],
+  });
+  append(history, backButton, forwardButton);
+
+  const homeButton = iconButton({
+    id: "home-button",
+    label: "Go to home",
+    title: "Home",
+    paths: [{
+      d: "M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5",
+    }],
+  });
+
+  const sceneSearch = element("div", "standalone-app-scene-search");
+  sceneSearch.id = "scene-search";
+  const searchToggle = iconButton({
+    id: "scene-search-toggle",
+    label: "Search scenes",
+    title: "Search",
+    paths: [
+      {
+        tagName: "circle",
+        cx: "11",
+        cy: "11",
+        r: "6.5",
+      },
+      {
+        tagName: "line",
+        x1: "15.5",
+        y1: "15.5",
+        x2: "21",
+        y2: "21",
+      },
+    ],
+  });
+  searchToggle.classList.add("standalone-app-scene-search-toggle");
+  searchToggle.setAttribute("aria-controls", "scene-search-panel");
+  searchToggle.setAttribute("aria-expanded", "false");
+
+  const searchPanel = element(
+    "div",
+    "standalone-app-scene-search-panel",
+  );
+  searchPanel.id = "scene-search-panel";
+  searchPanel.setAttribute("aria-hidden", "true");
+  searchPanel.setAttribute("inert", "");
+  const searchInput = element(
+    "input",
+    "standalone-app-scene-search-input",
+  );
+  searchInput.id = "scene-search-input";
+  searchInput.type = "search";
+  searchInput.placeholder = "Search scenes";
+  searchInput.autocomplete = "off";
+  searchInput.setAttribute("aria-label", "Search scenes");
+  const searchResults = element(
+    "div",
+    "standalone-app-scene-search-results",
+  );
+  searchResults.id = "scene-search-results";
+  append(searchPanel, searchInput, searchResults);
+  append(sceneSearch, searchToggle, searchPanel);
+  append(navigation, tocButton, history, homeButton, sceneSearch);
+
+  return {
+    navigation,
+    tocButton,
+    backButton,
+    forwardButton,
+    homeButton,
+  };
+}
+
+function wireStandaloneNavigation({
+  documentLike = globalThis.document,
+  windowLike = globalThis.window,
+} = {}) {
+  const navigation = {
+    tocButton: documentLike.querySelector("#textbook-toc-button"),
+    backButton: documentLike.querySelector("#nav-up"),
+    forwardButton: documentLike.querySelector("#nav-forward"),
+    homeButton: documentLike.querySelector("#home-button"),
+  };
+  const AbortControllerCtor =
+    windowLike?.AbortController ?? globalThis.AbortController;
+  const listenerController =
+    typeof AbortControllerCtor === "function"
+      ? new AbortControllerCtor()
+      : null;
+  const listenerOptions = listenerController
+    ? { signal: listenerController.signal }
+    : undefined;
+  navigation.tocButton?.addEventListener("click", () => {
+    navigateStandaloneAppHome(
+      windowLike?.location,
+      resolveStandaloneGlobalSceneHref(
+        TEXTBOOK_TOC_SCENE_PATH,
+        windowLike?.location?.href,
+      ),
+      {
+        windowLike,
+        returnHref: windowLike?.location?.href,
+      },
+    );
+  }, listenerOptions);
+  navigation.backButton?.addEventListener("click", () => {
+    windowLike?.history?.back?.();
+  }, listenerOptions);
+  navigation.forwardButton?.addEventListener("click", () => {
+    windowLike?.history?.forward?.();
+  }, listenerOptions);
+  navigation.homeButton?.addEventListener("click", () => {
+    navigateStandaloneAppHome(
+      windowLike?.location,
+      resolveStandaloneSiteHomeHref(windowLike?.location?.href),
+      {
+        windowLike,
+        returnHref: windowLike?.location?.href,
+      },
+    );
+  }, listenerOptions);
+  const sceneSearchRuntime = createStandaloneAppSceneSearchRuntime({
+    document: documentLike,
+    window: windowLike,
+  }).init();
+  return {
+    destroy() {
+      listenerController?.abort();
+      sceneSearchRuntime.destroy?.();
+    },
+    sceneSearchRuntime,
+  };
 }
 
 function metricDefinition(metricId) {
@@ -2076,15 +2261,7 @@ function mountShell(root, state) {
     ),
   );
   const actions = element("div", "compact-dashboard-actions");
-  const homeLink = element(
-    "a",
-    "compact-dashboard-action-link",
-  );
-  homeLink.href = STANDALONE_APP_HOME_HREF;
-  homeLink.title = "Return to Applications";
-  homeLink.setAttribute("aria-label", "Home, return to Applications");
-  append(homeLink, homeIcon(), element("span", "", "Home"));
-  actions.appendChild(homeLink);
+  actions.appendChild(createStandaloneNavigation().navigation);
   append(headerMain, title, actions);
 
   const filters = element("div", "compact-dashboard-filters");
@@ -2255,6 +2432,8 @@ export async function renderCompactSweepDashboardApp({
   defaultDataPath =
     "./.local-data/braid-analysis/compact-monte-carlo/family-sweep-v1/compact-sweep-dashboard.v1.json",
   fetchImpl = globalThis.fetch,
+  documentLike = globalThis.document,
+  windowLike = globalThis.window,
 } = {}) {
   if (!root) throw new Error("compact sweep dashboard root is required.");
   const state = {
@@ -2279,6 +2458,10 @@ export async function renderCompactSweepDashboardApp({
     viewId: DEFAULT_VIEW_ID,
   };
   mountShell(root, state);
+  const navigationRuntime = wireStandaloneNavigation({
+    documentLike,
+    windowLike,
+  });
   try {
     const response = await fetchImpl(defaultDataPath, { cache: "no-store" });
     if (!response.ok) {
@@ -2301,6 +2484,10 @@ export async function renderCompactSweepDashboardApp({
     loadData(data) {
       loadData(state, data);
     },
+    destroy() {
+      navigationRuntime.destroy();
+    },
+    navigationRuntime,
     state,
   };
 }
