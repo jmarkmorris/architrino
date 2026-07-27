@@ -1009,9 +1009,16 @@ test("guided lesson header leaves sequence and replay provenance out of learner 
 });
 
 test("shared top-right shell keeps Search and the local lesson list persistent", async () => {
-  const [html, sharedStyles, uiTokens, runtime] = await Promise.all([
+  const [html, sharedStyles, navigationStyles, uiTokens, runtime] = await Promise.all([
     readFile(new URL("causal-delay-feedback.html", REPO_ROOT), "utf8"),
     readFile(new URL("style.css", REPO_ROOT), "utf8"),
+    readFile(
+      new URL(
+        "src/apps/navigator/standalone-app-navigation.css",
+        REPO_ROOT,
+      ),
+      "utf8",
+    ),
     readFile(new URL("ui-tokens.css", REPO_ROOT), "utf8"),
     readFile(
       new URL(
@@ -1049,7 +1056,7 @@ test("shared top-right shell keeps Search and the local lesson list persistent",
   assert.match(uiTokens, /--ui-label-size:\s*12px/u);
   assert.match(uiTokens, /--ui-label-weight:\s*700/u);
   assert.match(uiTokens, /--ui-label-line-height:\s*1\.25/u);
-  for (const styles of [sharedStyles, html]) {
+  for (const styles of [sharedStyles, navigationStyles]) {
     const searchItemRule = styles.match(/\.scene-search-item\s*\{(?<body>[^}]*)\}/u);
     assert.ok(searchItemRule?.groups?.body);
     assert.match(searchItemRule.groups.body, /font-family:\s*var\(--ui-font-family\)/u);

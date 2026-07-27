@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#12130f" />
     <title>Borg</title>
+    <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
     <style>
       * {
         box-sizing: border-box;
@@ -411,11 +412,11 @@
       .borg-viewport-toolbar {
         position: absolute;
         left: 14px;
-        right: 14px;
+        right: 256px;
         top: 14px;
         z-index: 40;
         display: grid;
-        grid-template-columns: max-content minmax(0, 1fr) max-content;
+        grid-template-columns: max-content minmax(0, 1fr);
         align-items: center;
         gap: 7px;
         pointer-events: none;
@@ -454,6 +455,7 @@
         grid-auto-flow: column;
         grid-auto-columns: minmax(58px, auto);
         gap: 7px;
+        align-items: start;
       }
 
       .borg-layer-button,
@@ -493,15 +495,6 @@
       .borg-icon-button:focus-visible {
         border-color: rgba(242, 245, 236, 0.64);
         outline: none;
-      }
-
-      .borg-view-tools {
-        display: grid;
-        grid-template-columns: max-content 32px;
-        grid-auto-flow: column;
-        gap: 7px;
-        justify-self: end;
-        align-items: start;
       }
 
       .borg-camera-drawer {
@@ -578,8 +571,18 @@
         transition: opacity 120ms ease;
       }
 
-      .borg-icon-button.is-active .borg-panel-icon-pane {
+      .borg-diagnostics-toggle.is-active .borg-panel-icon-pane {
         opacity: 1;
+      }
+
+      .borg-diagnostics-toggle.is-active {
+        border-color: rgba(94, 183, 183, 0.74);
+        color: #c2f2f1;
+        background: #1b2a25;
+      }
+
+      .borg-webapp-navigation {
+        z-index: 50;
       }
 
       .borg-selected-tag {
@@ -1393,14 +1396,6 @@
           right: 14px;
         }
 
-        .borg-view-tools {
-          position: absolute;
-          right: 14px;
-          z-index: 3;
-          top: auto;
-          bottom: 14px;
-        }
-
         .borg-viewport-status {
           position: absolute;
           left: 14px;
@@ -1458,6 +1453,78 @@
     </style>
   </head>
   <body>
+    <div
+      id="scene-hud-tools"
+      class="standalone-app-navigation borg-webapp-navigation"
+      aria-label="Webapp navigation"
+    >
+      <button
+        id="textbook-toc-button"
+        class="standalone-app-toc-button"
+        type="button"
+        aria-label="Open textbook table of contents"
+        title="Table of Contents"
+      >TOC</button>
+      <div id="scene-nav-history" class="standalone-app-nav-history" role="group" aria-label="Browser history">
+        <button id="nav-up" class="standalone-app-nav-icon-button" type="button" aria-label="Go back" title="Back">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="15 5 8 12 15 19"></polyline>
+          </svg>
+        </button>
+        <button id="nav-forward" class="standalone-app-nav-icon-button" type="button" aria-label="Go forward" title="Forward">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="9 5 16 12 9 19"></polyline>
+          </svg>
+        </button>
+      </div>
+      <button id="home-button" class="standalone-app-nav-icon-button" type="button" aria-label="Go to home" title="Home">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"></path>
+        </svg>
+      </button>
+      <div id="scene-search" class="standalone-app-scene-search">
+        <button
+          id="scene-search-toggle"
+          class="standalone-app-nav-icon-button standalone-app-scene-search-toggle"
+          type="button"
+          aria-label="Search scenes"
+          aria-controls="scene-search-panel"
+          aria-expanded="false"
+          title="Search"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5"></circle>
+            <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+          </svg>
+        </button>
+        <div id="scene-search-panel" class="standalone-app-scene-search-panel" aria-hidden="true" inert>
+          <input
+            id="scene-search-input"
+            class="standalone-app-scene-search-input"
+            type="search"
+            placeholder="Search scenes"
+            autocomplete="off"
+            aria-label="Search scenes"
+          />
+          <div id="scene-search-results" class="standalone-app-scene-search-results"></div>
+        </div>
+      </div>
+      <button
+        id="borg-diagnostics-toggle"
+        class="standalone-app-nav-icon-button borg-diagnostics-toggle"
+        type="button"
+        aria-label="Show diagnostics"
+        aria-controls="borg-diagnostics-panel"
+        aria-pressed="false"
+        title="Show diagnostics"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path class="borg-panel-icon-pane" d="M15 5h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3z"></path>
+          <rect x="4" y="5" width="16" height="14" rx="2" fill="none"></rect>
+          <line x1="15" y1="5" x2="15" y2="19"></line>
+        </svg>
+      </button>
+    </div>
     <div id="borg-app">
       <aside class="borg-side-rail is-left" aria-label="Simulation envelope">
         <header class="borg-panel-header">
@@ -1729,15 +1796,8 @@
       <main class="borg-viewport" aria-label="Borg simulation viewport">
         <canvas id="borg-canvas" tabindex="0" aria-label="Borg native frame viewport"></canvas>
         <div class="borg-viewport-toolbar">
-          <nav id="borg-layer-strip" class="borg-layer-strip" aria-label="Viewport layers"></nav>
-          <div class="borg-viewport-status">
-            <span id="borg-record-date-chip" class="borg-viewport-chip" hidden></span>
-            <div class="borg-solver-banner-slot">
-            <div id="borg-solver-banner" role="status" hidden></div>
-            </div>
-          </div>
-          <div class="borg-view-tools" aria-label="View controls">
-            <details class="borg-camera-drawer">
+          <div id="borg-layer-strip" class="borg-layer-strip" aria-label="Viewport layers and camera">
+            <details id="borg-camera-drawer" class="borg-camera-drawer">
               <summary>Camera</summary>
               <div class="borg-camera-panel">
                 <label class="borg-replay-control">
@@ -1760,13 +1820,12 @@
                 </div>
               </div>
             </details>
-            <button id="borg-diagnostics-toggle" class="borg-icon-button" type="button" aria-label="Show diagnostics" aria-controls="borg-diagnostics-panel" aria-pressed="false" title="Show diagnostics">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path class="borg-panel-icon-pane" d="M15 5h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3z"></path>
-                <rect x="4" y="5" width="16" height="14" rx="2" fill="none"></rect>
-                <line x1="15" y1="5" x2="15" y2="19"></line>
-              </svg>
-            </button>
+          </div>
+          <div class="borg-viewport-status">
+            <span id="borg-record-date-chip" class="borg-viewport-chip" hidden></span>
+            <div class="borg-solver-banner-slot">
+            <div id="borg-solver-banner" role="status" hidden></div>
+            </div>
           </div>
         </div>
         <output id="borg-selected-tag" class="borg-selected-tag" hidden></output>

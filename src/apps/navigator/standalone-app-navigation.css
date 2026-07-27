@@ -1,3 +1,5 @@
+@import url("../../../ui-tokens.css");
+
 .standalone-app-navigation {
   position: absolute;
   top: max(16px, env(safe-area-inset-top));
@@ -143,10 +145,10 @@
   border-radius: 8px;
   background: rgba(15, 18, 32, 0.8);
   color: #f5f7ff;
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 650;
-  line-height: 1.2;
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-label-size);
+  font-weight: var(--ui-label-weight);
+  line-height: var(--ui-label-line-height);
   text-align: left;
   cursor: pointer;
 }

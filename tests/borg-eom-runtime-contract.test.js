@@ -729,6 +729,14 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   );
   assert.match(
     htmlSource,
+    /standalone-app-navigation\.css/,
+  );
+  assert.match(
+    htmlSource,
+    /id="scene-hud-tools"[\s\S]*id="textbook-toc-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="home-button"[\s\S]*id="scene-search-toggle"[\s\S]*id="borg-diagnostics-toggle"/,
+  );
+  assert.match(
+    htmlSource,
     /id="borg-diagnostics-panel"[\s\S]*aria-hidden="true"[\s\S]*inert/,
   );
   assert.match(runtimeSource, /refreshDiagnosticsPanel\(\)[\s\S]*diagnosticsPanelController\.renderIfOpen\(\)/);
@@ -739,8 +747,13 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.match(runtimeSource, /opposite-polarity close fraction/);
   assert.match(
     htmlSource,
-    /class="borg-viewport-toolbar"[\s\S]*id="borg-layer-strip"[\s\S]*class="borg-solver-banner-slot"[\s\S]*id="borg-solver-banner"[\s\S]*id="borg-reset-view-button"/,
+    /class="borg-viewport-toolbar"[\s\S]*id="borg-layer-strip"[\s\S]*id="borg-camera-drawer"[\s\S]*id="borg-reset-view-button"[\s\S]*class="borg-solver-banner-slot"[\s\S]*id="borg-solver-banner"/,
   );
+  assert.match(runtimeSource, /layer\.layer === "path-history"[\s\S]*dom\.layerStrip\.append\(dom\.cameraDrawer\)/);
+  assert.match(runtimeSource, /createStandaloneAppSceneSearchRuntime/);
+  assert.match(runtimeSource, /TEXTBOOK_TOC_SCENE_PATH/);
+  assert.match(runtimeSource, /windowLike\?\.history\?\.back\?\.\(\)/);
+  assert.match(runtimeSource, /windowLike\?\.history\?\.forward\?\.\(\)/);
   assert.match(
     htmlSource,
     /#borg-solver-banner \{[\s\S]*height: 32px;[\s\S]*text-overflow: ellipsis;[\s\S]*white-space: nowrap;/,

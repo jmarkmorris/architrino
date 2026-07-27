@@ -1642,6 +1642,7 @@ class CausalDelayFeedbackRuntime {
     this.eventListeners = [];
     this.dragState = null;
     this.clearBackgroundPointers();
+    this.sceneSearchRuntime?.destroy?.();
     this.modeController?.destroy();
   }
 

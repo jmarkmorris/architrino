@@ -4,6 +4,15 @@ import {
   setTransportControlButtonPresentation,
 } from "../../runtime/TransportControlIcons.js";
 import {
+  navigateStandaloneAppHome,
+  resolveStandaloneSiteHomeHref,
+} from "../navigator/StandaloneAppHomeRuntime.js";
+import {
+  createStandaloneAppSceneSearchRuntime,
+  resolveStandaloneGlobalSceneHref,
+  TEXTBOOK_TOC_SCENE_PATH,
+} from "../navigator/StandaloneAppSceneSearchRuntime.js";
+import {
   BORG_APP_SURFACE_DESIGN_V1,
   BORG_DATASET_MANIFEST_V1,
   BORG_FAIL_CLOSED_ROWS,
@@ -241,11 +250,16 @@ export function mountBorgApp(options = {}) {
 
   const dom = {
     app: queryRequiredElement(documentLike, "#borg-app"),
+    tocButton: queryRequiredElement(documentLike, "#textbook-toc-button"),
+    backButton: queryRequiredElement(documentLike, "#nav-up"),
+    forwardButton: queryRequiredElement(documentLike, "#nav-forward"),
+    homeButton: queryRequiredElement(documentLike, "#home-button"),
     diagnosticsPanel: queryRequiredElement(documentLike, "#borg-diagnostics-panel"),
     diagnosticsToggle: queryRequiredElement(documentLike, "#borg-diagnostics-toggle"),
     solverBanner: documentLike.querySelector?.("#borg-solver-banner") ?? null,
     canvas: queryRequiredElement(documentLike, "#borg-canvas"),
     layerStrip: queryRequiredElement(documentLike, "#borg-layer-strip"),
+    cameraDrawer: queryRequiredElement(documentLike, "#borg-camera-drawer"),
     envelopeSection: queryRequiredElement(documentLike, "#borg-envelope-section"),
     envelopeFields: queryRequiredElement(documentLike, "#borg-envelope-fields"),
     initialConditionFields: queryRequiredElement(documentLike, "#borg-initial-condition-fields"),
@@ -365,6 +379,10 @@ export function mountBorgApp(options = {}) {
   );
   const interpolatedFrameSetScratch = { frameIndex: 0, time: 0, frames: [] };
   const boundEventListeners = [];
+  const sceneSearchRuntime = createStandaloneAppSceneSearchRuntime({
+    document: documentLike,
+    window: windowLike,
+  }).init();
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.05, 100);
   const renderer = new THREE.WebGLRenderer({
@@ -1111,7 +1129,13 @@ export function mountBorgApp(options = {}) {
       }
       listen(button, "click", () => toggleLayer(layer.layer));
       dom.layerStrip.append(button);
+      if (layer.layer === "path-history") {
+        dom.layerStrip.append(dom.cameraDrawer);
+      }
     });
+    if (!dom.cameraDrawer.parentElement) {
+      dom.layerStrip.append(dom.cameraDrawer);
+    }
     syncLayerButtons();
   }
 
@@ -2004,6 +2028,35 @@ export function mountBorgApp(options = {}) {
   }
 
   function bindEvents() {
+    listen(dom.tocButton, "click", () => {
+      navigateStandaloneAppHome(
+        windowLike?.location,
+        resolveStandaloneGlobalSceneHref(
+          TEXTBOOK_TOC_SCENE_PATH,
+          windowLike?.location?.href,
+        ),
+        {
+          windowLike,
+          returnHref: windowLike?.location?.href,
+        },
+      );
+    });
+    listen(dom.backButton, "click", () => {
+      windowLike?.history?.back?.();
+    });
+    listen(dom.forwardButton, "click", () => {
+      windowLike?.history?.forward?.();
+    });
+    listen(dom.homeButton, "click", () => {
+      navigateStandaloneAppHome(
+        windowLike?.location,
+        resolveStandaloneSiteHomeHref(windowLike?.location?.href),
+        {
+          windowLike,
+          returnHref: windowLike?.location?.href,
+        },
+      );
+    });
     listen(dom.timelineRange, "input", () => {
       const requestedFrameIndex = Number(dom.timelineRange.value);
       stopPlayback();
@@ -2676,6 +2729,7 @@ export function mountBorgApp(options = {}) {
     }
     state.resizeObserver?.disconnect?.();
     boundEventListeners.splice(0).forEach((remove) => remove());
+    sceneSearchRuntime.destroy();
     diagnosticsPanelController.dispose();
     prescribedAnalysisCoordinator.dispose();
     prescribedAnalysisScene.dispose();

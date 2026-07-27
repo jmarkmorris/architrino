@@ -664,6 +664,10 @@ function createFakeElement(id = "") {
     querySelectorAll() {
       return [];
     },
+    appendChild() {},
+    contains() {
+      return false;
+    },
     setPointerCapture() {},
     releasePointerCapture() {},
     listenerCount() {
@@ -681,8 +685,13 @@ function createIdealBraidMountHarness() {
   const elements = new Map(
     [...authoredIds].map((id) => [id, createFakeElement(id)])
   );
+  const documentEvents = createFakeElement("document");
+  const windowEvents = createFakeElement("window");
   const documentLike = {
     title: "A1 Lorentz Geometry",
+    activeElement: null,
+    addEventListener: documentEvents.addEventListener,
+    createElement: (tagName) => createFakeElement(tagName),
     querySelector(selector) {
       return selector.startsWith("#") ? elements.get(selector.slice(1)) ?? null : null;
     },
@@ -702,7 +711,12 @@ function createIdealBraidMountHarness() {
   };
   const windowLike = {
     AbortController,
+    addEventListener: windowEvents.addEventListener,
     devicePixelRatio: 2,
+    history: {
+      back() {},
+      forward() {},
+    },
     performance: { now: () => 0 },
     location: { assign() {} },
     requestAnimationFrame: () => 1,
@@ -790,7 +804,7 @@ test("Lorentz Geometry places an icon-only play-pause control below the sphere",
   const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
   assert.match(
     html,
-    /<div class="ideal-braid-title">Lorentz Geometry<\/div>\s*<button\s+id="ideal-braid-freeze-toggle"\s+class="ideal-braid-button ideal-braid-sphere-transport"/,
+    /<button\s+id="ideal-braid-freeze-toggle"\s+class="ideal-braid-button ideal-braid-sphere-transport"/,
   );
   assert.doesNotMatch(html, /class="ideal-braid-control-label"/);
   const controlPanel = html.match(
@@ -861,4 +875,43 @@ test("Lorentz Geometry selector text matches the Controls heading size", () => {
     html,
     /@media \(max-width: 900px\), \(max-height: 680px\)[\s\S]*?\.ideal-braid-panel h2\s*\{[^}]*font-size:\s*12px;[\s\S]*?\.ideal-braid-geometry-picker label,\s*\.ideal-braid-geometry-picker select\s*\{[^}]*font-size:\s*12px;/s,
   );
+});
+
+test("Lorentz Geometry uses the shared standalone navigation strip and no panel home button", () => {
+  const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
+  const causalHtml = readFileSync(
+    `${repoRoot}/causal-delay-feedback.html`,
+    "utf8",
+  );
+  const runtime = readFileSync(
+    `${repoRoot}/src/apps/ideal-braid/IdealBraidRuntime.js`,
+    "utf8",
+  );
+  const sharedStylesheet =
+    "./src/apps/navigator/standalone-app-navigation.css";
+
+  assert.match(html, new RegExp(sharedStylesheet.replaceAll(".", "\\.")));
+  assert.match(causalHtml, new RegExp(sharedStylesheet.replaceAll(".", "\\.")));
+  for (const id of [
+    "textbook-toc-button",
+    "nav-up",
+    "nav-forward",
+    "home-button",
+    "scene-search-toggle",
+    "scene-search-panel",
+    "scene-search-input",
+    "scene-search-results",
+  ]) {
+    assert.match(html, new RegExp(`id="${id}"`));
+  }
+  assert.doesNotMatch(html, /id="ideal-braid-home-button"/);
+  const controlsPanel = html.match(
+    /<section class="ideal-braid-panel is-controls"[\s\S]*?<\/section>/,
+  )?.[0];
+  assert.ok(controlsPanel);
+  assert.doesNotMatch(controlsPanel, /aria-label="Go to home"/);
+  assert.match(runtime, /createStandaloneAppSceneSearchRuntime/);
+  assert.match(runtime, /TEXTBOOK_TOC_SCENE_PATH/);
+  assert.match(runtime, /windowLike\?\.history\?\.back\?\.\(\)/);
+  assert.match(runtime, /windowLike\?\.history\?\.forward\?\.\(\)/);
 });

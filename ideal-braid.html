@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#080b12" />
     <title>Lorentz Geometry</title>
+    <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
     <link
       rel="stylesheet"
       href="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css"
@@ -91,38 +92,12 @@
       .ideal-braid-panel-header {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         gap: 8px;
         margin: 0 0 10px;
       }
 
       .ideal-braid-panel-header h2 {
         margin: 0;
-      }
-
-      .ideal-braid-home-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 30px;
-        height: 30px;
-        padding: 0;
-        border: 1px solid rgba(148, 163, 184, 0.25);
-        border-radius: 999px;
-        background: rgba(17, 24, 39, 0.85);
-        color: rgba(238, 243, 255, 0.88);
-        cursor: pointer;
-      }
-
-      .ideal-braid-home-button:hover,
-      .ideal-braid-home-button:focus-visible {
-        border-color: rgba(125, 211, 252, 0.58);
-        outline: none;
-      }
-
-      .ideal-braid-home-button svg {
-        width: 18px;
-        height: 18px;
       }
 
       .ideal-braid-panel.is-upper-left {
@@ -781,11 +756,6 @@
           margin-bottom: 7px;
         }
 
-        .ideal-braid-home-button {
-          width: 28px;
-          height: 28px;
-        }
-
         .ideal-braid-panel.is-lower-right {
           left: 10px;
           right: 10px;
@@ -949,6 +919,59 @@
     <main id="ideal-braid-app">
       <canvas id="ideal-braid-canvas" tabindex="0" aria-label="A1 Lorentz Geometry stage"></canvas>
       <div class="ideal-braid-title">Lorentz Geometry</div>
+      <div id="scene-hud-tools" class="standalone-app-navigation" aria-label="Webapp navigation">
+        <button
+          id="textbook-toc-button"
+          class="standalone-app-toc-button"
+          type="button"
+          aria-label="Open textbook table of contents"
+          title="Table of Contents"
+        >TOC</button>
+        <div id="scene-nav-history" class="standalone-app-nav-history" role="group" aria-label="Browser history">
+          <button id="nav-up" class="standalone-app-nav-icon-button" type="button" aria-label="Go back" title="Back">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="15 5 8 12 15 19"></polyline>
+            </svg>
+          </button>
+          <button id="nav-forward" class="standalone-app-nav-icon-button" type="button" aria-label="Go forward" title="Forward">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="9 5 16 12 9 19"></polyline>
+            </svg>
+          </button>
+        </div>
+        <button id="home-button" class="standalone-app-nav-icon-button" type="button" aria-label="Go to home" title="Home">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"></path>
+          </svg>
+        </button>
+        <div id="scene-search" class="standalone-app-scene-search">
+          <button
+            id="scene-search-toggle"
+            class="standalone-app-nav-icon-button standalone-app-scene-search-toggle"
+            type="button"
+            aria-label="Search scenes"
+            aria-controls="scene-search-panel"
+            aria-expanded="false"
+            title="Search"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5"></circle>
+              <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+            </svg>
+          </button>
+          <div id="scene-search-panel" class="standalone-app-scene-search-panel" aria-hidden="true" inert>
+            <input
+              id="scene-search-input"
+              class="standalone-app-scene-search-input"
+              type="search"
+              placeholder="Search scenes"
+              autocomplete="off"
+              aria-label="Search scenes"
+            />
+            <div id="scene-search-results" class="standalone-app-scene-search-results"></div>
+          </div>
+        </div>
+      </div>
       <button
         id="ideal-braid-freeze-toggle"
         class="ideal-braid-button ideal-braid-sphere-transport"
@@ -1042,24 +1065,6 @@
         <section class="ideal-braid-panel is-controls" aria-label="Control panel">
         <div class="ideal-braid-panel-header">
           <h2>Controls</h2>
-          <button
-            id="ideal-braid-home-button"
-            class="ideal-braid-home-button"
-            type="button"
-            aria-label="Go to main webapp"
-            title="Main webapp"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
-                stroke="currentColor"
-                stroke-width="2"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-            </svg>
-          </button>
         </div>
         <div class="ideal-braid-control-stack">
           <div class="ideal-braid-geometry-picker">

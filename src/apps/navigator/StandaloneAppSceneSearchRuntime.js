@@ -33,6 +33,12 @@ export function createStandaloneAppSceneSearchRuntime({
   sceneGraphManifestPath = GLOBAL_SCENE_GRAPH_MANIFEST_PATH,
   onOpenChange,
 } = {}) {
+  const AbortControllerCtor =
+    windowLike?.AbortController ?? globalThis.AbortController;
+  const listenerController =
+    typeof AbortControllerCtor === "function"
+      ? new AbortControllerCtor()
+      : null;
   const sceneSearch = documentLike.querySelector("#scene-search");
   const sceneSearchToggle = documentLike.querySelector("#scene-search-toggle");
   const sceneSearchPanel = documentLike.querySelector("#scene-search-panel");
@@ -85,6 +91,7 @@ export function createStandaloneAppSceneSearchRuntime({
     sceneSearchCoordinator,
     documentRef: documentLike,
     windowRef: windowLike,
+    eventSignal: listenerController?.signal,
   });
 
   return {
@@ -92,6 +99,10 @@ export function createStandaloneAppSceneSearchRuntime({
       sceneSearchRuntime.setSearchOpen(false);
       sceneSearchUiRuntime.wireListeners();
       return this;
+    },
+    destroy() {
+      listenerController?.abort();
+      sceneSearchRuntime.setSearchOpen(false);
     },
     sceneIndexService,
     sceneSearchRuntime,
