@@ -340,26 +340,6 @@ body.has-scene-image-gallery .label-center-context {
   height: 18px;
 }
 
-#textbook-toc-button {
-  position: relative;
-  min-width: 48px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid rgba(160, 170, 220, 0.25);
-  background: rgba(8, 10, 18, 0.75);
-  color: #f5f7ff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0 12px;
-  font: inherit;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
 #textbook-toc-button::after {
   content: none;
   display: none;

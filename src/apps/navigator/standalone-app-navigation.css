@@ -64,10 +64,10 @@
   border-radius: 999px;
   background: rgba(8, 10, 18, 0.75);
   color: #f5f7ff;
-  font: inherit;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-label-size);
+  font-weight: var(--ui-label-weight);
+  line-height: var(--ui-label-line-height);
   text-transform: uppercase;
   cursor: pointer;
 }
