@@ -206,7 +206,7 @@ Doc manifest status: the three first benchmark rows are currently document-level
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | [strong-field-closure](../strong-field-closure/priorities.md) | Use waveform phase and ringdown as strong-field quantitative closure. |
-| This file | [validation-gates](../validation-gates/priorities.md) | Add gravitational-wave speed, polarization, and phase to gravity acceptance. |
+| This file | [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Add gravitational-wave speed, polarization, and phase to gravity acceptance. |
 | This file | nested-shell-braid-causal-closure/residual-routing-event-ledger | Require source loss and propagating disturbance to close one event ledger. |
 
 ## Failure Modes

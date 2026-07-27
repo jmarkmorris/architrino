@@ -22,7 +22,7 @@ This file is not the authority. If this file conflicts with a source file, the s
 | Source mining | Acquire and map source material into current AAA terminology, claim levels, proof routes, and corpus or priority destinations. | [reference/entourage/archie/prompts/convergence-campaign.md](../entourage/archie/prompts/convergence-campaign.md)<br>[reference/op/source-mining-best-practice.md](source-mining-best-practice.md)<br>source-family addendum | Use the guide for acquisition details, traceability, mining history, and source-family rules. |
 | Fable corpus review | Prepare a review-only pass across a directory in scene or textbook order, one file per turn. | [reference/entourage/archie/prompts/corpus-reviewer.md](../entourage/archie/prompts/corpus-reviewer.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>style and terminology guides listed by the prompt | Read the live target file and nearby canon before raising file-specific findings. |
 | Fable comment integration | Classify review comments, integrate the valid ones, run an independent closure-quality review, and stage larger issues in priorities. | [reference/entourage/archie/prompts/integrator-reviewer.md](../entourage/archie/prompts/integrator-reviewer.md)<br>target document<br>nearby corpus and style authorities | Review comments are input, not authority; verify against live canon before editing. |
-| Priority lane resume | Resume a named priority workstream from live state and make the next scoped progress step. | [reference/entourage/archie/prompts/priority-lane-resume.md](../entourage/archie/prompts/priority-lane-resume.md)<br>[reference/priorities/README.md](../priorities/README.md)<br>lane tracker, brainstorming.md, and work-log.md | Do not rely on memory for queue state; read the lane tracker and owning packet. |
+| Priority lane resume | Resume a named priority workstream from live state and make the next scoped progress step. | [reference/entourage/archie/prompts/priority-lane-resume.md](../entourage/archie/prompts/priority-lane-resume.md)<br>[reference/priorities/README.md](../priorities/README.md)<br>priorities.md, work-queue.md, brainstorming.md, and work-log.md | Do not rely on memory for queue state; read work-queue.md and its owning packet. |
 | Core geometry theorem review | Request concentrated mathematical review of one theorem target, equation stack, branch certificate, or proof gap. | [reference/entourage/archie/prompts/core-geometry-theorem-reviewer.md](../entourage/archie/prompts/core-geometry-theorem-reviewer.md)<br>the exact theorem or packet under review<br>nearby foundation, dynamics, and terminology files | Use live equations and local notation before making proof or closure claims. |
 | Branch, commit, push, and PR | Run the explicit branch/PR process, including validation, scoped staging, push, PR state checks, and rollover when requested. | [reference/op/codex-pr-branch.md](codex-pr-branch.md)<br>[.githooks/pre-commit](../../.githooks/pre-commit)<br>[.githooks/pre-push](../../.githooks/pre-push) | Always re-read the live procedure before publishing or regenerating; command order and required checks are policy. |
 | Long-running job | Run, detach, monitor, resume, or hand off a long test, simulation, rebuild, or analytical campaign. | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md)<br>the exact build and run entrypoints | Rebuild first, keep the job watched or observably detached, and verify that its fixed-cadence heartbeat advances. |
@@ -72,7 +72,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 141 | `10e026c5d5e0d515` |
+| [AGENTS.md](../../AGENTS.md) | 141 | `a6503da48351732d` |
 | [README.md](../../README.md) | 229 | `9586b2bb3becaec3` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
@@ -84,7 +84,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 29 | `67a8192a02268d59` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 495 | `0b0669fe21e5ea1e` |
 | [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 964 | `d7e6219c8fb2f212` |
-| [reference/priorities/README.md](../priorities/README.md) | 44 | `1fc23f4be2b4bc12` |
+| [reference/priorities/README.md](../priorities/README.md) | 48 | `37f38d7f5b1a072c` |
 | [reference/entourage/archie/prompts/README.md](../entourage/archie/prompts/README.md) | 42 | `d9fbf2eb6d3bd20e` |
 | [reference/entourage/archie/prompts/convergence-campaign.md](../entourage/archie/prompts/convergence-campaign.md) | 637 | `ffd10e662df89d76` |
 | [reference/entourage/archie/prompts/corpus-reviewer.md](../entourage/archie/prompts/corpus-reviewer.md) | 110 | `84c14fd56a711ba2` |
@@ -92,7 +92,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/entourage/archie/prompts/review-comment-assessor.md](../entourage/archie/prompts/review-comment-assessor.md) | 66 | `c7bc649dd4a09f9c` |
 | [reference/entourage/archie/prompts/review-closure-verifier.md](../entourage/archie/prompts/review-closure-verifier.md) | 59 | `4c2ae8888fd20722` |
 | [reference/entourage/archie/prompts/core-geometry-theorem-reviewer.md](../entourage/archie/prompts/core-geometry-theorem-reviewer.md) | 59 | `fef7b4e05ccc9501` |
-| [reference/entourage/archie/prompts/priority-lane-resume.md](../entourage/archie/prompts/priority-lane-resume.md) | 71 | `434d7a791d81c766` |
+| [reference/entourage/archie/prompts/priority-lane-resume.md](../entourage/archie/prompts/priority-lane-resume.md) | 79 | `b003a1d04dc09176` |
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 369 | `5ef576c5a0f1a61d` |
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 307 | `adf1ac4839d4cba4` |
 | [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 141 | `d7bc201e02843464` |

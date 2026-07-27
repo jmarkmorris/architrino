@@ -18,26 +18,30 @@ Use `dormant-deferred/aaa-journey/priorities.md` for priority-stage reconstructi
 The current preferred style for live priority docs is:
 
 - name the main live tracker `priorities.md` in each active priority workstream directory;
-- keep priorities concise and code-verified;
+- give every active priority workstream directory a sibling `work-queue.md`;
+- keep `priorities.md` concise and code-verified as the strategic objective, current state, ownership, scoring metadata, routing, blocker, and promotion surface;
+- keep executable task rows only in `work-queue.md`, including the locally ranked next-object order, lifecycle state, request and acceptance boundary, evidence or blocker, and completion condition;
+- use `Queued`, `In progress`, `Awaiting verification`, `Verified`, `Superseded`, or `Withdrawn` as queue lifecycle states; keep blocked or intentionally postponed rows in a clearly labeled deferred/blocked section without presenting them as executable now;
 - use `Current` plus `Objective` rather than long migration diaries;
 - keep readable architecture notes, equation explanations, comparison matrices, conceptual maps, provisional insights, and draft corpus-promotable text in the sibling `brainstorming.md` file by default;
 - keep chronological agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and communication updates in the sibling `work-log.md` file;
 - every immediate priority workstream directory should carry a `work-log.md`, even when it only contains the standard purpose note;
-- let the priority/tracking document reference `brainstorming.md`, `work-log.md`, and focused support files instead of embedding explanation-first material, long status logs, or detailed proof packets in the active queue, routing, ranking, blocker, or promotion sections;
+- let `priorities.md` reference `work-queue.md`, `brainstorming.md`, `work-log.md`, and focused support files instead of embedding task execution, explanation-first material, long status logs, or detailed proof packets;
+- promote a brainstorming item into `work-queue.md` only when it has become an accepted, testable task, and remove the promoted task from `brainstorming.md` in the same edit;
 - keep detailed proof packets, certificates, app specs, and requirement notes in focused sibling files when their structure deserves more than a dated log entry;
 - score each live queue item as its own next unresolved object against remaining value and remaining cost, then sort the bucket so local item `1` has the highest current marginal ROI;
 - use the bucket's local item `1` as its scored row in `aaa-work-threads/priorities.md`, then sort those bucket winners globally so global rank `1` has the highest current marginal ROI;
 - after any score change, rerank and renumber both the affected bucket and the unified table; validate the unified arithmetic, sort order, and mirrored tracker metadata with `node scripts/validate-priority-ranking.mjs`;
 - rerank based on real code state, not stale historical intent;
-- if a task is done, remove it and renumber the list.
+- if a task is done, record any durable result in the work log or focused evidence packet, remove it from the live queue, and renumber the list.
 - keep history only when it supports active triage, auditability, or a current proof/certificate decision; otherwise rely on GitHub and git history.
 
 ## Discuss-First Handling
 
 `Discuss-first` is a live priority status, not a report-only disposition. When an agent identifies a theory leap, terminology decision, broad ontology claim, or other item that requires operator judgment before implementation:
 
-- add or update a compact task in the owning workstream's `priorities.md` with status `discussion-scoped`;
+- add or update a compact task in the owning workstream's `work-queue.md` with status `discussion-scoped`;
 - add it to the canonical [Operator Discussion Queue](aaa-work-threads/priorities.md#operator-discussion-queue) when the decision crosses workstreams or is easy to miss;
 - surface one unresolved discussion item directly to the operator in later substantive theory closeouts until it is accepted, rejected, or explicitly deferred with a revisit condition;
 - do not launch implementation agents or promote the claim while its status remains `discussion-scoped`;
-- after the operator decides, record the decision in the owning tracker, remove the row from the cross-workstream discussion queue, and renumber any following queue items when applicable.
+- after the operator decides, record the decision in the owning strategy tracker or work log, remove the row from the cross-workstream discussion queue, and renumber any following queue items when applicable.

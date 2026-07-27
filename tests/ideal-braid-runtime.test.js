@@ -664,6 +664,10 @@ function createFakeElement(id = "") {
     querySelectorAll() {
       return [];
     },
+    appendChild() {},
+    contains() {
+      return false;
+    },
     setPointerCapture() {},
     releasePointerCapture() {},
     listenerCount() {
@@ -681,8 +685,13 @@ function createIdealBraidMountHarness() {
   const elements = new Map(
     [...authoredIds].map((id) => [id, createFakeElement(id)])
   );
+  const documentEvents = createFakeElement("document");
+  const windowEvents = createFakeElement("window");
   const documentLike = {
     title: "A1 Lorentz Geometry",
+    activeElement: null,
+    addEventListener: documentEvents.addEventListener,
+    createElement: (tagName) => createFakeElement(tagName),
     querySelector(selector) {
       return selector.startsWith("#") ? elements.get(selector.slice(1)) ?? null : null;
     },
@@ -702,7 +711,12 @@ function createIdealBraidMountHarness() {
   };
   const windowLike = {
     AbortController,
+    addEventListener: windowEvents.addEventListener,
     devicePixelRatio: 2,
+    history: {
+      back() {},
+      forward() {},
+    },
     performance: { now: () => 0 },
     location: { assign() {} },
     requestAnimationFrame: () => 1,
@@ -735,3 +749,169 @@ function createIdealBraidMountHarness() {
     windowLike,
   };
 }
+
+test("Lorentz Geometry document and canvas titles omit the A1 prefix", () => {
+  const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
+  assert.match(html, /<title>Lorentz Geometry<\/title>/);
+  assert.doesNotMatch(html, /<title>A1 Lorentz Geometry<\/title>/);
+  assert.match(
+    html,
+    /<div class="ideal-braid-title">Lorentz Geometry<\/div>/,
+  );
+  assert.doesNotMatch(
+    html,
+    /<div class="ideal-braid-title">A1 Lorentz Geometry<\/div>/,
+  );
+});
+
+test("Lorentz Geometry panels enforce a 12px minimum and render the field-speed subscript", () => {
+  const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
+  const runtime = readFileSync(
+    `${repoRoot}/src/apps/ideal-braid/IdealBraidRuntime.js`,
+    "utf8",
+  );
+  const undersizedPixelFonts = [...html.matchAll(/font-size:\s*([0-9.]+)px/g)]
+    .map((match) => Number(match[1]))
+    .filter((fontSize) => fontSize < 12);
+  assert.deepEqual(undersizedPixelFonts, []);
+  assert.match(
+    html,
+    /\.ideal-braid-factor-card small\s*\{[^}]*font-size:\s*12px;/s,
+  );
+  assert.match(
+    html,
+    /<span class="ideal-braid-chart-label">&beta; = v \/ c<sub>f<\/sub><\/span>/,
+  );
+  assert.match(runtime, /stripContext\.font = "24px Helvetica Neue, Arial, sans-serif";/);
+  assert.match(runtime, /const bottom = height - 30;/);
+});
+
+test("Lorentz Geometry omits dedicated Reset and Focus buttons while retaining canvas keyboard controls", () => {
+  const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
+  const runtime = readFileSync(
+    `${repoRoot}/src/apps/ideal-braid/IdealBraidRuntime.js`,
+    "utf8",
+  );
+  assert.doesNotMatch(html, /id="ideal-braid-reset-button"/);
+  assert.doesNotMatch(html, /id="ideal-braid-focus-button"/);
+  assert.match(runtime, /event\.key\.toLowerCase\(\) === "r"/);
+  assert.match(runtime, /canvas\.addEventListener\("pointerdown"/);
+  assert.match(runtime, /canvas\.focus\(\);/);
+  assert.match(runtime, /resetRotation\(\);/);
+});
+
+test("Lorentz Geometry places an icon-only play-pause control below the sphere", () => {
+  const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
+  assert.match(
+    html,
+    /<button\s+id="ideal-braid-freeze-toggle"\s+class="ideal-braid-button ideal-braid-sphere-transport"/,
+  );
+  assert.doesNotMatch(html, /class="ideal-braid-control-label"/);
+  const controlPanel = html.match(
+    /<section class="ideal-braid-panel is-controls"[\s\S]*?<\/section>/,
+  )?.[0];
+  assert.ok(controlPanel);
+  assert.doesNotMatch(controlPanel, /id="ideal-braid-freeze-toggle"/);
+});
+
+test("Lorentz Geometry uses one widened left panel and hides its equation subsection in compact layouts", () => {
+  const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
+  assert.match(
+    html,
+    /\.ideal-braid-panel\.is-upper-left\s*\{[^}]*width:\s*340px;/s,
+  );
+  assert.doesNotMatch(html, /class="ideal-braid-panel is-lower-left"/);
+  const unifiedPanel = html.match(
+    /<section class="ideal-braid-panel is-upper-left"[\s\S]*?<\/section>/,
+  )?.[0];
+  assert.ok(unifiedPanel);
+  assert.match(unifiedPanel, /<h2>Lorentz Map<\/h2>/);
+  assert.match(unifiedPanel, /<h2>Noether Braid Equations<\/h2>/);
+  assert.match(
+    html,
+    /@media \(max-width: 900px\), \(max-height: 680px\)[\s\S]*?\.ideal-braid-equation-section\s*\{[^}]*display:\s*none;/s,
+  );
+  assert.match(
+    html,
+    /@media \(max-width: 900px\), \(max-height: 680px\)[\s\S]*?\.ideal-braid-factor-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\);/s,
+  );
+});
+
+test("Lorentz Geometry stacks information and controls in a scrollable left rail", () => {
+  const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
+  assert.match(
+    html,
+    /\.ideal-braid-left-rail\s*\{[^}]*width:\s*340px;[^}]*overflow-y:\s*auto;/s,
+  );
+  assert.match(
+    html,
+    /@media \(max-width: 900px\), \(max-height: 680px\)[\s\S]*?\.ideal-braid-left-rail\s*\{[^}]*bottom:\s*206px;/s,
+  );
+  const rail = html.match(
+    /<div\s+class="ideal-braid-left-rail"[\s\S]*?<\/div>\s*<section class="ideal-braid-panel is-lower-right"/,
+  )?.[0];
+  assert.ok(rail);
+  const informationIndex = rail.indexOf(
+    'class="ideal-braid-panel is-upper-left"',
+  );
+  const controlsIndex = rail.indexOf(
+    'class="ideal-braid-panel is-controls"',
+  );
+  assert.ok(informationIndex >= 0);
+  assert.ok(controlsIndex > informationIndex);
+});
+
+test("Lorentz Geometry selector text matches the Controls heading size", () => {
+  const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
+  assert.match(
+    html,
+    /\.ideal-braid-panel h2\s*\{[^}]*font-size:\s*13px;/s,
+  );
+  assert.match(
+    html,
+    /\.ideal-braid-geometry-picker select\s*\{[^}]*font-size:\s*13px;/s,
+  );
+  assert.match(
+    html,
+    /@media \(max-width: 900px\), \(max-height: 680px\)[\s\S]*?\.ideal-braid-panel h2\s*\{[^}]*font-size:\s*12px;[\s\S]*?\.ideal-braid-geometry-picker label,\s*\.ideal-braid-geometry-picker select\s*\{[^}]*font-size:\s*12px;/s,
+  );
+});
+
+test("Lorentz Geometry uses the shared standalone navigation strip and no panel home button", () => {
+  const html = readFileSync(`${repoRoot}/ideal-braid.html`, "utf8");
+  const causalHtml = readFileSync(
+    `${repoRoot}/causal-delay-feedback.html`,
+    "utf8",
+  );
+  const runtime = readFileSync(
+    `${repoRoot}/src/apps/ideal-braid/IdealBraidRuntime.js`,
+    "utf8",
+  );
+  const sharedStylesheet =
+    "./src/apps/navigator/standalone-app-navigation.css";
+
+  assert.match(html, new RegExp(sharedStylesheet.replaceAll(".", "\\.")));
+  assert.match(causalHtml, new RegExp(sharedStylesheet.replaceAll(".", "\\.")));
+  for (const id of [
+    "textbook-toc-button",
+    "nav-up",
+    "nav-forward",
+    "home-button",
+    "scene-search-toggle",
+    "scene-search-panel",
+    "scene-search-input",
+    "scene-search-results",
+  ]) {
+    assert.match(html, new RegExp(`id="${id}"`));
+  }
+  assert.doesNotMatch(html, /id="ideal-braid-home-button"/);
+  const controlsPanel = html.match(
+    /<section class="ideal-braid-panel is-controls"[\s\S]*?<\/section>/,
+  )?.[0];
+  assert.ok(controlsPanel);
+  assert.doesNotMatch(controlsPanel, /aria-label="Go to home"/);
+  assert.match(runtime, /createStandaloneAppSceneSearchRuntime/);
+  assert.match(runtime, /TEXTBOOK_TOC_SCENE_PATH/);
+  assert.match(runtime, /windowLike\?\.history\?\.back\?\.\(\)/);
+  assert.match(runtime, /windowLike\?\.history\?\.forward\?\.\(\)/);
+});

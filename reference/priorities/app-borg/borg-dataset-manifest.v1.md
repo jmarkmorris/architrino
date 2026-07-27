@@ -8,8 +8,7 @@
 - Schema id: `borg-dataset-manifest.v1`
 - Primary requirements: [requirements-and-design](requirements-and-design.md)
 - Boundary shell source packet: [boundary-shell-replay](boundary-shell-replay.md)
-- Native bridge source packet: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md)
-- First screen consumer: [borg-app-surface-design.v1](borg-app-surface-design.v1.md)
+- Execution ledger: [work queue](work-queue.md)
 
 ## Purpose
 
@@ -34,6 +33,15 @@ Every manifest must identify the EOM solver contract used to produce the dataset
 | `firstFailureCode` | Null when no condition required for advancement applies; otherwise one first-failure code from this packet. |
 
 Required native-solver rule: the manifest may report gaps, projections, or display-only values, but it must not define an app-local production solver or promote JavaScript-only reference behavior to production behavior.
+
+### Current EOM Capability Gaps
+
+| Capability | Current disposition | Canonical execution owner |
+| --- | --- | --- |
+| Retained wake/interaction rows, row-conservation counts, boundary-shell crossing and influence rows, boundary-to-central residuals, and required acceleration-contribution rows | Not emitted as accepted Borg EOM products; affected consumers remain fail-closed or display-only. | [BORG-001](work-queue.md#borg-001--native-wake-history-and-boundary-residuals) |
+| Velocity-scale-aware sampling across the declared boundary-shell range | Protocol is designed, but measured calibration and holdout evidence do not exist. | [BORG-003](work-queue.md#borg-003--velocity-scale-sampling-evidence), dependent on BORG-001 |
+
+The former bridge audit's other rows are not open capability owners: EOM stepping, current-state frames, path-history streaming, manifest and screen-spec objects, 3D camera controls, layer visibility, and render metadata have live implementation paths. Their presence does not establish wake-history, boundary-shell, residual, or solver acceptance.
 
 ## Simulation Envelope
 
@@ -480,15 +488,15 @@ The manifest must report the first applicable failure before displaying affected
 
 ## Claim-Level Status
 
-This manifest contract is `priority-design`. It does not upgrade app output beyond `candidate-run` or `developer-test` without native-backed rows, error budgets, residuals, row-conservation counts, and measured velocity-scale sampling results for any replay-affected diagnostic.
+This manifest contract is `priority-design`. It does not upgrade app output beyond `candidate-run` or `developer-test` without EOM-backed rows, error budgets, residuals, row-conservation counts, and measured velocity-scale sampling results for any replay-affected diagnostic.
 
 ## Design-Owned Policy Object
 
-The design-owned pieces live in `src/apps/borg/BorgAppManifest.js`: the spherical simulation envelope, the population sizing rule, the seeded initial-condition policy (`initialLinePolicy = seeded-random-simulation-envelope`, `polaritySignConvention = positrino-positive-electrino-negative`, `velocityPolicy = seeded-random-small-3d`, `randomVelocityMaxComponentMagnitude = 0.01`), canonical normalized `fieldSpeed = 1`, and the gap-row vocabulary for retained wake rows whose outcome is Verification incomplete, boundary-shell summaries, `borg-boundary-shell-influence-model.v1`, `borg-boundary-shell-noise-policy.v1`, velocity sampling, and `R_boundary->central`.
+The design-owned executable policy lives in [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js): the spherical simulation envelope, population sizing rule, seeded initial-condition policy, canonical normalized `fieldSpeed = 1`, diagnostic vocabulary, and explicit gap rows for wake history, boundary-shell products, velocity sampling, and `R_boundary->central`. That source object and its validator own the exact developer-test values; this packet owns their manifest meaning and authority boundary.
 
-## First App Surface Design Artifact
+## Executable App Surface Contract
 
-`borg-app-surface-design.v1` is a design-owned constant in `src/apps/borg/BorgAppManifest.js`.
+`borg-app-surface-design.v1` is the design-owned `BORG_APP_SURFACE_DESIGN_V1` constant in [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js). The source object and `validateBorgManifest` own its exact executable fields.
 
 The surface design binds the displayed central ball, one dotted outer boundary shell, EOM-run current-state frames, path-history availability, simulation-envelope rail, initial-condition summary, layer strip, bottom timeline, diagnostics rail, deployment budget placeholders, and 4K UHD render manifest. The central ball remains a declared measurement region and is not rendered as a second sphere. It keeps `simulation-window`, `architrino-position`, `path-history`, and `diagnostics` visible by default, keeps `velocity-vectors` off by default, and disables `wake-streams` and `boundary-shell-status` until their required EOM rows exist. The app-facing visual convention renders architrinos as small fixed-screen points, with `electrino` rows pure blue and `positrino` rows pure red. The path-history visual rule is `displayTransform = adjacent-native-row-line-segments` and `smoothingPolicy = none`, so the page cannot imply curved interaction dynamics beyond the EOM rows it renders.
 
@@ -496,7 +504,7 @@ The surface design intentionally preserves authority requiring verification befo
 
 ## First Static Page Artifact
 
-[borg.html](../../../borg.html) is the first static page consumer for the dataset manifest and surface design. It uses [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the browser-safe design-owned policy object and [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) to render the central ball, EOM-run current-state positions, frame scrubber, layer controls, render/deployment placeholders, and diagnostics required for advancement.
+[borg.html](../../../borg.html) is the first static page consumer for the dataset manifest and surface design. It uses [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the browser-safe design-owned policy object and [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) to render the dotted outer boundary shell, EOM-run current-state positions, frame scrubber, layer controls, render/deployment placeholders, and diagnostics required for advancement.
 
 The page is static and developer-test scoped. All displayed motion comes from the EOM run path; the page does not run a browser solver and does not grant authority to replay-affected values.
 

@@ -362,13 +362,6 @@ $$
 
 This is only a candidate frame. It becomes useful when one enzyme, DNA/RNA motif, or radiation-damage case is selected and grounded in molecule-level rows.
 
-## Candidate Discussion Prompts
+## Biomolecular Mechanism Idea
 
-1. `iron_group_binding_cusp_recovery` — Turn the candidate analytic route above into a first reduced recovery packet for the Fe/Ni binding cusp, keeping the model shared across deuteron, saturation, beta-stability, fusion, and fission checks.
-2. `no_open_color_finite_tail_route` — Close the next branch-interface source-acquisition target by deriving $\lim_{R\to\infty}\mathcal N_{\mathrm{open}}(R)=0$ from `finite_range_residual`, `color_singlet_closure`, and `same_record_no_open_color_audit` before retuning Fe/Ni coefficients.
-3. `nuclear_radiation_worked_example` — Extend the Pu-238 alpha-decay packet into a source-bound native branch record, keeping gamma/photon rows separate from alpha and heat rows.
-4. `electron_orbital_triage` — Convert the deferred electron-orbitals note into a claim-leveled atomic-structure packet, preserving standard notation while isolating the localized-assembly interpretation.
-5. `first_molecular_bond_target` — Choose one simple molecule and define the first bond/event ledger without importing ordinary chemistry labels as source fields.
-6. `enzyme_active_site_bridge` — Choose one enzyme mechanism and restate it as molecular geometry, action-path selection, energy routing, and record-state stability.
-7. `biomolecular_mechanism_bridge` — Preserve enzyme, DNA/RNA, conformational, and information-bearing molecular-geometry ideas as physical assembly targets, not biological overclaims, until one case becomes concrete enough for a queue item or packet.
-8. `dna_record_integrity_bridge` — Choose one DNA/RNA structural motif or damage/repair event and express it as information-bearing molecular geometry plus event-ledger integrity.
+Preserve enzyme, DNA/RNA, conformational, and information-bearing molecular-geometry ideas as physical assembly targets rather than biological overclaims. The accepted concrete selections and duplicate recovery tasks were moved to [work-queue.md](work-queue.md); broader biomolecular work remains here until one case gains source-bound molecule-level rows.

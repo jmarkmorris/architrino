@@ -3,34 +3,15 @@
 ## Workstream Metadata
 
 - Kind: `deferred-priority`
-- Rank: `18`
+- Rank: `16`
 - Value: `7.08`
 - Cost: `7.3`
 - ROI: `0.97`
 - Status: `deferred`
 
-## Ranked Next Objects
+## Work Queue
 
-Ordered by marginal ROI on 2026-07-17. The separately ranked transfer-operator/basin-measure packet is not double-counted as this bucket's winner.
-
-1. `detector_response_kernel_acceptance` — Accept spin and photon analyzer kernels only as derived objects on an accepted basin measure with event-ledger closure. Status: `deferred`.
-2. `foundation_up_prerequisites` — Supply the named angular-momentum, spinor, polarity-domain-wall, Stern-Gerlach, and Photon Gate B proof packets or failure diagnostics. Status: `blocked`.
-3. `invariant_measure` — Identify the invariant measure and attempt squared-amplitude recovery within the separately ranked shared theorem packet. Status: `deferred`.
-4. `transfer_operator` — Construct the transfer operator within the separately ranked shared theorem packet. Status: `deferred`.
-
-## Detailed Task Inventory
-
-1. `transfer_operator` — Construct the transfer-operator closure for metastable assemblies. Status: `deferred`. Depends on: none.
-2. `invariant_measure` — Identify the invariant measure and recover squared-amplitude weights. Status: `deferred`. Depends on: `transfer_operator`.
-3. `foundation_up_prerequisites` — Verify that the angular-momentum program has named proof packets for the delayed three-layer ledger, Noether braid partition theorem, worked outer-coupled transition, ordered-core spinor lift, polarity-domain-wall $\mathbb{Z}_2$ sign-sheet circulation, Stern-Gerlach-like measurement response, and photon Gate B transverse ledger. Status: `blocked`; external dependency: angular-momentum-spin.
-4. `detector_response_kernel_acceptance` — Accept the completed spin-measurement kernels $K_{\pm}$ and photon analyzer capture kernel as derived objects, not assumed $\cos^2(\alpha/2)$ or $\cos^2\theta$ rules. The photon route must include the material analyzer projector and invariant unresolved-material measure, not only the observer-level pass frequency. Status: `deferred`. Depends on: `invariant_measure`, `foundation_up_prerequisites`.
-5. `pair_provenance_measure` — Derive the singlet-like spin-pair provenance measure and photon-polarization pair ledger needed for Bell tests. Status: `scaffolded`; source-measure contract added. Depends on: `detector_response_kernel_acceptance`.
-6. `bell_gate` — Test Bell, CHSH, Tsirelson, no-signaling, ordering invariance, measurement-independence, product-screening, and preferred-frame leakage handoff as a hard gate after the angular-momentum ledger, detector-response kernels, photon Gate B ledger, and pair provenance measures are explicit. Status: `blocked-on-source-candidate`. Depends on: `pair_provenance_measure`.
-7. `bell_rewrite_handoff` — Rewrite [bell-theorem.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) only after the Bell gate has passed or failed with explicit diagnostics. Status: `blocked`. Depends on: `bell_gate`.
-8. `pair_provenance_local_compliance_probe` — Apply the [scope decision](pair-provenance-local-compliance-scope-decision.md): reject ER=EPR ontology and test only whether locally available, setting-independent pair records add a non-redundant statistic to an independently derived Noether sea medium-response law. Status: `priority-only local constitutive probe` (2026-07-12). Depends on: `pair_provenance_measure` and a retained mass-map medium-response probe; implementation not authorized.
-9. `noether_braid_metastability_decider_minimality` — Treat the field-speed middle binary in every Noether braid as a built-in metastability substrate, then derive what additional bias, memory, feedback, work, and hold-time ledgers are required before an assembly counts as a Switch or Decider. Status: `scaffolded`. Depends on: `transfer_operator`, `invariant_measure`, `foundation_up_prerequisites`.
-10. `transfer_operator_stress_tests` — Preserve Decider minimality, pilot-wave character, and algorithmic resonance as downstream transfer-operator stress tests with topology, energetics, guidance, amplitude, feedback, and coherence-depth gates. Status: `review`. Depends on: `transfer_operator`, `invariant_measure`.
-11. `xenon_isotope_spin_biology_watch` — Track the external xenon isotope anesthetic-potency signal as a possible future spin-sensitive biological response benchmark, while blocking any consciousness, radical-pair, or superposition-as-consciousness import. Status: `blocked-on-replication`. Depends on: `foundation_up_prerequisites`, `detector_response_kernel_acceptance`, `noether_braid_metastability_decider_minimality`.
+The locally ranked quantum closure tasks, proof dependencies, and completion boundaries live in [work-queue.md](work-queue.md).
 
 ## Scope
 
@@ -213,7 +194,7 @@ Preserved quantum side questions have been moved to [brainstorming.md](brainstor
 - [app-simulation](../app-simulation/priorities.md)
 - mass-map
 - [standard-model-closure](../standard-model-closure/priorities.md)
-- [validation-gates](../validation-gates/priorities.md)
+- [validation-gates](../dormant-deferred/validation-gates/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

@@ -2,9 +2,31 @@
 
 This file is the chronological work log for the `app-borg` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker.
 
-Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and draft corpus-promotable text when this priority area has one. Use the main priority tracker in this directory for the compact current queue, blockers, promotion routing, and next action. Keep focused proof packets, certificates, app specs, and requirement notes in their own sibling files when they need a stable structure.
+Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and draft corpus-promotable text when this priority area has one. Use `priorities.md` for strategy, status, blockers, and promotion routing, and use `work-queue.md` for accepted executable tasks and their local order. Keep focused proof packets, certificates, app specs, and requirement notes in their own sibling files when they need a stable structure.
 
 ## Log Entries
+
+### 2026-07-27 - App-Idea Ownership Consolidated
+
+- Accepted IDEA-007 through IDEA-014 from App Ideas as BORG-006 through
+  BORG-013.
+- Moved the prescribed-translation packet into this directory and queued that
+  bounded feature behind the five existing Borg objects.
+- Kept taxonomy morphs, harmonics, Family-A exclusion, Gell-Mann
+  classification, polarity bookkeeping, conserved-account flow, and material
+  routing deferred. Borg owns their eventual display surface, while the
+  relevant scientific lane must supply every classification, mapping,
+  conserved-account, and constitutive row.
+- The local rank-1 object and global Borg score remain unchanged. Promotion
+  triage: `priority-only`.
+
+### 2026-07-26 - Borg Documentation Consolidation
+
+- Consolidated the first-screen requirements into [requirements-and-design](requirements-and-design.md), while retaining `BORG_APP_SURFACE_DESIGN_V1` in [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the executable screen-contract authority.
+- Reconciled the former bridge capability audit against live code and queue ownership. The unresolved EOM products are the wake/history, shell, conservation, residual, and acceleration-contribution rows owned by [BORG-001](work-queue.md#borg-001--native-wake-history-and-boundary-residuals), followed by the measured velocity-scale sampling evidence owned by [BORG-003](work-queue.md#borg-003--velocity-scale-sampling-evidence). Implemented or display-only rows no longer remain in a separate audit packet.
+- Consolidated the live-run browser-retention explanation into [requirements-and-design](requirements-and-design.md), while retaining [BorgLiveRunRetentionPolicy.js](../../../src/apps/borg/BorgLiveRunRetentionPolicy.js) as the executable authority for numeric limits, compaction, snapshots, and runtime status.
+
+Plainly: one requirements packet now explains the screen and browser-retention boundaries, the queue owns the remaining EOM work, and executable constants stay in source.
 
 ### 2026-07-24 - Targeted Browser Claim Invalidation And Legacy-Budget Decoupling
 
@@ -154,7 +176,7 @@ Plainly: certified runs keep the past they need, evidence labels are checked by 
 
 - Resumed the paused Borg app work after reading the current priority partition policy in [../README.md](../README.md), then the live tracker, brainstorming file, and this work log before writing.
 - Confirmed the active priority directory is `reference/priorities/app-borg/`; the old `reference/priorities/borg-app/` path is absent in the current branch state.
-- Confirmed current focused sibling artifacts already hold the release/runtime decisions: [borg-release-budget-manifest.v1](borg-release-budget-manifest.v1.json) records measured browser runtime budget ceilings, and [borg-live-run-retention-policy.v1](borg-live-run-retention-policy.v1.json) records forever-mode display retention with compacted display-only path history.
+- Confirmed focused artifacts held the release/runtime decisions: [borg-release-budget-manifest.v1](borg-release-budget-manifest.v1.json) records measured browser runtime budget ceilings, while the live-run browser-retention policy records forever-mode display retention with compacted display-only path history. The retention explanation now lives in [requirements-and-design](requirements-and-design.md), and its executable authority remains [BorgLiveRunRetentionPolicy.js](../../../src/apps/borg/BorgLiveRunRetentionPolicy.js).
 - No loose conceptual notes were migrated into [brainstorming](brainstorming.md) during this audit. The live tracker remains compact because the current queue and next action are already stated there.
 - Current tracker next build burden remains `build-native-wake-history-and-boundary-residual-fixture`: extend the EOM contracts and native implementation for retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and acceleration-contribution diagnostics without app-local physics.
 

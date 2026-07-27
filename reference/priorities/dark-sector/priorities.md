@@ -3,23 +3,23 @@
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `33`
+- Rank: `25`
 - Value: `0.66`
 - Cost: `6.1`
 - ROI: `0.11`
 - Status: `watchlist`
 
-## Task Queue
+## Work Queue
 
-1. `dark_sector_photon_like_mode` — Preserve and sharpen the dark-sector photon-like mode hypothesis as a candidate release, transport, redshift, and visible-channel re-entry packet. Status: `watchlist`. Depends on: `release_channel_selection`, radiation Gate C, residual-routing event ledger, cosmology transfer-function closure.
-2. `candidate_assembly_registry` — Enumerate candidate dark-sector assemblies by internal binary ordering, exposed channel, medium response, and failure mode. Status: `pending`. Depends on: `dark_sector_photon_like_mode`.
-3. `wimp_benchmark_vector` — Stage the source-limited Jungman WIMP/neutralino benchmark as comparison language for candidate dark-sector assemblies. Status: `pending`. Depends on: `candidate_assembly_registry`, relic-abundance closure, direct/indirect detection constraints, and null-result bounds.
-4. `axion_like_null_benchmark` — Stage axion-like candidates as a null-result and photon-conversion benchmark for neutral, weakly exposed, spin-0 dark-sector comparisons without identifying the Noether sea with axions. Status: `pending`. Depends on: `candidate_assembly_registry`, photon-conversion bounds, stellar-cooling constraints, and relic-abundance comparison.
-5. `dark_visible_reentry_gate` — Define the threshold where a dark-sector assembly can react, thermalize, shed ordinary photons, or re-enter a visible channel without violating conservation or cosmology gates. Status: `pending`. Depends on: `candidate_assembly_registry`, radiation Gate C.
+The candidate task rows, upstream gates, and promotion boundaries live in [work-queue.md](work-queue.md).
 
 ## Scope
 
-This workstream preserves speculative dark-sector subjects when they are assembly candidates, release-channel candidates, transport modes, or dark-visible conversion hypotheses. It is a priority lane for disciplined ideation, not a ranked closure workstream yet.
+This workstream preserves speculative dark-sector subjects when they are
+assembly candidates, release-channel candidates, transport modes, or
+dark-visible conversion hypotheses. Its low numeric rank allocates attention
+to a candidate packet; it does not make the lane an accepted closure-evidence
+workstream.
 
 The lane does not replace [strong-field-closure](../strong-field-closure/priorities.md), [cosmology-closure](../cosmology-closure/priorities.md), [Radiation](../../../content/markdown/aaa/reactions/radiation.md), or the shared residual-routing event ledger. It packages candidate assemblies until one of them gains a boundary condition, equation, simulation target, or discriminating observable strong enough for promotion.
 
@@ -88,7 +88,7 @@ where $A_{\mathrm{int}}$ is the internal action or assembly record, $\mathcal{B}
 - [cosmology-closure](../cosmology-closure/priorities.md)
 - braid
 - [radiation](../../../content/markdown/aaa/reactions/radiation.md)
-- [validation-gates](../validation-gates/priorities.md)
+- [archived validation-gates](../dormant-deferred/validation-gates/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

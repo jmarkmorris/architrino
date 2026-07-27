@@ -8,19 +8,19 @@
 - Parent priority: [service-platform.md](service-platform.md)
 - Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md)
 - Deployment option decision: [service-deployment-option-decision.md](service-deployment-option-decision.md)
-- App interface: [Archie Interface App](../app-archie-interface/priorities.md)
-- V1 product requirements: [v1-product-requirements.md](../app-archie-interface/v1-product-requirements.md)
-- Answer artifact manifest: [answer-artifact-manifest.md](../app-archie-interface/answer-artifact-manifest.md)
-- Manifest-driven service architecture: [manifest-driven-service-architecture.md](../app-archie-interface/manifest-driven-service-architecture.md)
-- Manifest service contracts: [manifest-service-contracts.md](../app-archie-interface/manifest-service-contracts.md)
-- Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](../app-archie-interface/source-ingestion-retrieval-context-contract.md)
-- Answer engine source contract: [answer-engine-source-contract.md](../app-archie-interface/answer-engine-source-contract.md)
-- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](../app-archie-interface/model-provider-capability-registry-contract.md)
-- Token ledger and privacy contract: [token-ledger-privacy-contract.md](../app-archie-interface/token-ledger-privacy-contract.md)
-- Action broker confirmation contract: [action-broker-confirmation-contract.md](../app-archie-interface/action-broker-confirmation-contract.md)
-- Issue mining signal contract: [issue-mining-signal-contract.md](../app-archie-interface/issue-mining-signal-contract.md)
-- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](../app-archie-interface/observability-public-status-incident-contract.md)
-- Service terms and account policy contract: [service-terms-account-policy-contract.md](../app-archie-interface/service-terms-account-policy-contract.md)
+- Interface product plan: [interface-product-plan.md](interface-product-plan.md)
+- V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
+- Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
+- Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
+- Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
+- Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
+- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
+- Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
+- Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
+- Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md)
+- Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 
 ## Purpose
 
@@ -229,7 +229,7 @@ No deferred choice may weaken the core deployment boundary: static public entry 
 Closure goal:
 Turn the Archie service scaffolding and fixture plan into schema-only service contract files and fixture expectations without enabling runtime AI generation or public launch.
 
-Use [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md), this packet, [service-deployment-option-decision.md](service-deployment-option-decision.md), [service-platform.md](service-platform.md), [manifest-driven-service-architecture.md](../app-archie-interface/manifest-driven-service-architecture.md), [manifest-service-contracts.md](../app-archie-interface/manifest-service-contracts.md), [v1-product-requirements.md](../app-archie-interface/v1-product-requirements.md), and [observability-public-status-incident-contract.md](../app-archie-interface/observability-public-status-incident-contract.md) as the source of truth.
+Use [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md), this packet, [service-deployment-option-decision.md](service-deployment-option-decision.md), [service-platform.md](service-platform.md), [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md), [manifest-service-contracts.md](manifest-service-contracts.md), [v1-product-requirements.md](v1-product-requirements.md), and [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md) as the source of truth.
 
 Task:
 - Add schema-only service contract files, fixture directories, and validation placeholders for the Archie service.

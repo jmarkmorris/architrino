@@ -1,4 +1,4 @@
-Closure goal: Resume an existing `reference/priorities/` workstream from live state, make the next scoped progress step, and leave the tracker, brainstorming, and work-log split clean.
+Closure goal: Resume an existing `reference/priorities/` workstream from live state, make the next scoped progress step, and leave the strategy, queue, brainstorming, and work-log split clean.
 
 # Priority Lane Resume Prompt
 
@@ -16,10 +16,11 @@ Then read:
 
 1. `AGENTS.md`
 2. `reference/priorities/README.md`
-3. The named workstream's `priorities.md` or main tracker.
-4. The named workstream's `brainstorming.md`, if present.
-5. The named workstream's `work-log.md`, if present.
-6. Any focused sibling packet directly named by the current top item.
+3. The named workstream's `priorities.md` strategy and status tracker.
+4. The named workstream's `work-queue.md`.
+5. The named workstream's `brainstorming.md`, if present.
+6. The named workstream's `work-log.md`, if present.
+7. Any focused sibling packet directly named by the current top queue item.
 
 Do not rely on memory for the live queue. Treat dirty worktree state as normal and do not revert unrelated changes.
 
@@ -40,12 +41,19 @@ Identify the smallest next step that actually advances the workstream. Prefer on
 
 Maintain the priority-lane split:
 
-- keep the tracker compact and focused on live queue state
-- put provisional theory insight in `brainstorming.md`
+- keep strategy, current state, score metadata, routing, blockers, and promotion state in `priorities.md`
+- keep accepted executable tasks and their local rank in `work-queue.md`
+- keep non-task hypotheses, questions, and provisional theory insight in `brainstorming.md`
 - put dated proof attempts, status, and handoff notes in `work-log.md`
 - use focused sibling files for long specs, certificates, evidence packets, or derivations
 
-If a priority item is completed, remove it from the priority list and renumber following items. If a substantive theory advancement is made, decide whether it belongs directly in `content/markdown/aaa`, in the priority lane, or only in the closeout with a reason.
+If a queue item is completed, remove it from the live queue, record the result in
+`work-log.md` when it has durable handoff value, and renumber following items.
+Move a brainstorming idea into `work-queue.md` only after it becomes an accepted,
+testable task with a named acceptance condition. If a substantive theory
+advancement is made, decide whether it belongs directly in
+`content/markdown/aaa`, in the priority lane, or only in the closeout with a
+reason.
 
 ## Validation
 
@@ -65,6 +73,6 @@ Report:
 2. Live top item or blocker found.
 3. Files changed.
 4. Concrete progress made.
-5. Priority item removed, updated, or left open.
+5. Queue item removed, updated, or left open.
 6. Validation commands and results.
 7. Remaining blocker or next step.

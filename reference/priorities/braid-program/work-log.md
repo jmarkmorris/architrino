@@ -1,6 +1,6 @@
 # Braid Program — Work Log
 
-Append-only. Dated entries, newest last. One entry per completed unit of work: what ran, what it showed (graded), where the evidence landed, what it unblocks. No entry rewrites; corrections are new dated entries.
+Append-only. Dated entries, newest last. One entry per completed unit of work: what ran, what it showed (graded), where the evidence landed, what it unblocks. No entry rewrites; corrections are new dated entries. Live executable tasks and their local order remain in [work-queue.md](work-queue.md).
 
 ## 2026-07-15 — Program opened
 
@@ -418,3 +418,118 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   stability, binding, or physical-realization claim is booked. See the
   [predeclared protocol](campaigns/stationary-binary-breather-diagnostic.md) and
   [diagnostic packet](evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md).
+
+## 2026-07-26 — Attractor-search packet distributed
+
+- Moved the undirected ensemble rationale, seed and campaign design,
+  observables, persistence criteria, and promotion rules into
+  [undirected-ensemble-search.md](undirected-ensemble-search.md).
+- EOM now retains the reusable profiler and checkpoint-chunked harness state in
+  its [attractor-search instrument packet](../app-solver/campaigns/attractor-search-instrument.md)
+  and [work log](../app-solver/campaigns/attractor-search-work-log.md).
+- Deleted the redundant `eom-attractor-search` directory. No gate, evidence
+  status, campaign rank, or physical claim changed.
+
+## 2026-07-27 — Sealed B1/Family-C diagnostic landed in the live record
+
+- Transported the byte-identical write-once packet for the 2026-07-25
+  prescribed-path campaign: 576 draws produced zero qualified handoffs or
+  descents, with three rows retained as fail-closed unresolved. The packet
+  preserves the protocol, receipt, hashes, dispositions, and diagnostic-only
+  boundary; it makes no stability, retention, binding, or physical-realization
+  claim. See the [diagnostic evidence](evidence/2026-07-25-bc-monte-carlo-basin-diagnostic.md).
+- Current B/C handoff: diagnose the retained score landscape under
+  [BP-008](work-queue.md#bp-008--bc-score-landscape-diagnosis). Do not relax
+  the handoff thresholds or rerun the Monte Carlo campaign.
+
+## 2026-07-27 — Stationary-rest joint root frontier certified
+
+- Added a validation-only compiled fixture that evolves the exact stationary
+  R0 seed to $T=1.2399999999999993$, retains the accepted endpoint-corrector
+  joint histories in-process, and replays only the exact step to
+  $T=1.2449999999999992$.
+- Both cross-pair roots certified complete at the unchanged $10^{-5}$
+  root-time tolerance in one 128-bit directed-MPFR attempt. The fixture changes
+  no Campaign 1, checkpoint, solver, tolerance, G3/G4, or fate-booking path.
+- All 6 compiled fixtures and all 23 separately authored Python
+  root-certification tests passed. See the
+  [bounded certification packet](evidence/2026-07-27-stationary-rest-joint-frontier-certification.md).
+
+## 2026-07-27 — Corrected G3/G4 instrument gates reaccepted
+
+- A prior implementation-only commit repaired cumulative resume accounting,
+  bound the checkpoint to its manifest and request, retained certified
+  release-root status across resume, and restored public checkpoint segment
+  dumping. This later evidence-only change independently inspected the
+  committed instrument without modifying it.
+- Fresh release and sanitizer builds each passed all 6 compiled fixtures.
+  Interrupted and uninterrupted two-chunk runs produced byte-identical final
+  checkpoints, frame streams, evolved records, and replay records. Cumulative
+  chunk, accepted-step, rejected-step, frame, resume-count, and wall-time
+  accounting advanced correctly; exact checkpoint-to-record tokens matched;
+  both manifests recorded `releaseRootClearance: certified_complete`; and a
+  mismatched run identity failed closed.
+- G3 and G4 are accepted for bounded campaign execution. The result establishes
+  instrument determinism, accounting, serialization identity, and
+  release-ledger propagation only. It does not satisfy G5, close the
+  close-approach root blocker, or book a fate. See the
+  [G3/G4 reacceptance packet](../app-solver/evidence/attractor-resume-g3-g4-reacceptance-2026-07-27.md).
+
+## 2026-07-27 — Stationary joint frontier extended; next gate failed closed
+
+- A validation-fixture implementation commit converted the one-step stationary
+  joint-history replay into a consecutive atomic-step certificate and a pinned
+  next-step probe. A later evidence-only pass rebuilt and inspected the
+  committed fixture without changing its tolerances or solver path.
+- Both cross roots certify through `1.3649999999999967`: 25 accepted steps of
+  width `0.005` from the retained-history start, including 24 new steps beyond
+  the prior endpoint. At the new endpoint each row has one 128-bit root and a
+  certified root-free complement.
+- The next step to `1.3699999999999966` rejects atomically. Both rows exhaust
+  the unchanged 512-bit ceiling with
+  `interior_root_not_surrounded/joint_root_history_missing`. All 6 compiled
+  fixtures and all 23 independent Python root-contract tests passed.
+- This is an unresolved capability row, not candidate failure. The required
+  root gate did not pass, so Campaign 1 evolution and fate classification did
+  not start. See the
+  [frontier-extension packet](evidence/2026-07-27-stationary-rest-joint-frontier-extension.md).
+## 2026-07-27 — B/C retained landscape diagnosed; new searches remain frozen
+
+- Closed BP-008 at documentary diagnostic grade without rerunning or changing
+  the sealed 576-case campaign. The retained landscape contains 159 applicable
+  member scores, 414 inapplicable rows, and three fail-closed unknown rows.
+  B1.1 sample 5 is the isolated lowest retained row at peak
+  `59.29861867019956`, still `9.883103111699926` times the unchanged handoff
+  ceiling. See the
+  [retained diagnosis](evidence/2026-07-27-bc-score-landscape-diagnosis.md).
+- Coordinator review found that the 377-row local-landscape prose design lacks
+  a frozen machine manifest, exact protocol hash, write-once runner, and
+  separately bound dense-root audit. BP-009 now owns a score-free manifest and
+  instrument freeze; the first later analytical action is a separately
+  reviewed center-only capability pilot.
+- Declared a downstream 27-row
+  [rational multi-frequency slice](b1-1-rational-multifrequency-chart-slice-predeclaration.md)
+  with exact harmonic tuples, least-return periods, fastest-orbit time
+  resolution, root-completeness gates, null-score dispositions, and a 12-row
+  held-out audit. It remains blocked until the local geometry anchor is
+  dense-admitted and its own machine manifest is frozen. No EOM solver, path
+  evolution, analytical search, threshold relaxation, or physical claim was
+  made.
+
+## 2026-07-27 — BP-009 score-free manifest and instrument freeze completed
+
+- Reconstructed sealed B1.1 sample 5 from the canonical source with the
+  original score-free sampler, seed, and ordinal. Its sampled-spec and
+  exact-source SHA-256 identities match the retained declaration without
+  reading or recomputing its score.
+- Froze exactly 377 unique materialized rows: one center, 48 axial, 264
+  pairwise, and 64 independently seeded held-out Latin-hypercube rows. The
+  held-out rows retain all 1,536 full pre-conversion SHA-256 counter tokens.
+- Bound the $c_f=1$ complete-cycle protocol, 377 create-exclusive output paths,
+  unchanged handoff thresholds, root-completeness gates, null-score
+  dispositions, implementation hashes, and separately authored dense-root
+  residual contract. Focused validation passed 6/6.
+- The write-once receipt records zero causal-root evaluations, zero scores, and
+  no campaign output paths created. BP-009 now awaits operator verification;
+  the center-only pilot and every search remain separately unauthorized. See
+  the [freeze packet](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.md).

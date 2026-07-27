@@ -9,11 +9,9 @@
 - ROI: `8.97`
 - Status: `blocked-on-account-complete-causal-wake-construction`
 
-## Task Queue
+## Work Queue
 
-1. `causal_wake_update_law` — Derive the smallest independently evolving wake state, with state variables and emission, propagation, reception, and boundary updates declared before evolution. On regular charts the update must reduce to the canonical transmitter-side acceleration without reading future receiver history or defining the wake from a conservation residual. Status: `regular-kinematic-substate-derived; blocked-on-account-complete-Architrino-native-construction`. The fixed emission-site center, $c_f$ radial transport, surface-normal direction, and $c_f/|D_t|$ source-time collapse are now executable; the maturity, conserved accounts, reception transfer, and account-bearing boundary law remain missing. Evidence and obstruction packets: [Independent Causal Wake-State Closure](independent-causal-wake-state-closure.md), [Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md), and [Point-Cloud Negative Control and Wake-Energy Audit](point-cloud-and-wake-energy-audit.md).
-2. `finite_coincident_same_transmitter_transition` — Derive a finite, unique, open-neighborhood continuation through complete coincident same-transmitter root birth on the state update from item 1. The continuation must not be an event-only patch or depend on regulator path. Status: `blocked-on-item-1`; accept only jointly with item 3. Negative controls: [transmitter-side fold and coincident-birth analysis](../app-eom/analysis-transmitter-factor-fold-and-coincident-birth.md) and [causal retained-history functional](../app-eom/analysis-transmitter-factor-causal-history-functional.md).
-3. `same_update_conserved_accounts` — Derive Architrino-native motion, wake, and boundary accounts for energy, momentum, and angular momentum on exactly the causal retained-history update used by items 1 and 2. The account maps must be fixed before evolution and may not import mass-based single-architrino formulas or be defined as whatever cancels the residual. Status: `blocked-on-item-1`; accept only jointly with item 2. The dimensional and sign constraints are recorded in [Point-Cloud Negative Control and Wake-Energy Audit](point-cloud-and-wake-energy-audit.md).
+The three jointly accepted closure obligations, their blockers, and their completion boundaries live in [work-queue.md](work-queue.md).
 
 ## Scope
 
@@ -135,7 +133,7 @@ $D_r/D_t$ has been classified as playback rather than acceleration strength.
 ## Dependencies
 
 - The EOM solver supplies retained histories, certified transmitter-side acceleration records, signed playback, and singular-event records with a Verification incomplete outcome. It does not invent the missing wake state.
-- The coincident-birth and conservation-obstruction analyses in `../app-eom/` define negative controls for items 1–3.
+- The coincident-birth and conservation-obstruction analyses in `../app-solver/` define negative controls for items 1–3.
 - The Braid Program may use the closed update to test candidate braids, but even a certified braid would not replace any of these three derivations.
 - Mass, quantum, spin, cosmology, reaction, and observer-recovery programs are downstream consumers, not tasks in this queue.
 

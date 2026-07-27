@@ -35,3 +35,25 @@ test("main scene shell uses true purple as its first-paint background", () => {
   assert.match(css, /--scene-background-base: #6A0DAD;/u);
   assert.match(css, /--scene-background: #6A0DAD;/u);
 });
+
+test("standalone TOC lozenges retain the Home TOC typography", () => {
+  const homeCss = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+  const sharedNavigationCss = readFileSync(
+    new URL("../src/apps/navigator/standalone-app-navigation.css", import.meta.url),
+    "utf8",
+  );
+
+  const homeRule =
+    homeCss.match(/#textbook-toc-button\s*\{(?<body>[^}]*)\}/u)?.groups?.body ?? "";
+
+  const tocRule =
+    sharedNavigationCss.match(
+      /\.standalone-app-toc-button\s*\{(?<body>[^}]*)\}/u,
+    )?.groups?.body ?? "";
+  for (const rule of [homeRule, tocRule]) {
+    assert.match(rule, /font:\s*inherit/u);
+    assert.match(rule, /font-size:\s*12px/u);
+    assert.match(rule, /font-weight:\s*700/u);
+    assert.match(rule, /line-height:\s*1/u);
+  }
+});

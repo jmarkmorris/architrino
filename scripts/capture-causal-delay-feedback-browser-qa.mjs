@@ -12,7 +12,7 @@ const DEFAULT_HOST = "127.0.0.1";
 const DEFAULT_PORT = 5173;
 const DEFAULT_OUTPUT_DIR = path.join(
   REPO_ROOT,
-  "reference/priorities/app-causal-delay-feedback/browser-qa",
+  "reference/priorities/dormant-deferred/app-causal-delay-feedback/browser-qa",
 );
 const DEFAULT_BROWSER_PATHS = [
   process.env.CAUSAL_DELAY_BROWSER_PATH,
@@ -26,217 +26,443 @@ const DEFAULT_BROWSER_PATHS = [
 ].filter(Boolean);
 const PROOFS = Object.freeze([
   {
-    id: "story-meet",
-    fileName: "story-meet-purple-1440x900.png",
+    id: "lessons-desktop",
+    fileName: "lessons-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
     mode: "story",
     storyStep: 0,
+    verifyOrderedLearnerSurface: true,
+    verifyBottomRail: true,
+    verifyRetiredSurfaceAbsence: true,
     expectedScene: "story:meet",
-    expectedText: "Let's examine the transmitting positrino (red) and a receiving electrino (blue).",
+    expectedText: "Meet the Electrino and Positrino Transceivers",
   },
   {
-    id: "story-emission",
-    fileName: "story-emission-purple-1440x900.png",
+    id: "lesson-two-three-handoff",
+    fileName: "lesson-three-handoff-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    query: "mode=story&replay=mock",
     replayTime: 0.62,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
     mode: "story",
     storyStep: 1,
-    expectedScene: "story:emission",
-    expectedText: "Dimmed architrinos keep both transmission locations visible",
+    verifyLessonTwoThreeHandoff: true,
+    expectedScene: "story:meaning",
+    expectedText: "Two Reciprocal Causal Relationships",
   },
   {
-    id: "story-travel",
-    fileName: "story-travel-purple-1440x900.png",
-    width: 1440,
-    height: 900,
-    deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
+    id: "lessons-portrait",
+    fileName: "lessons-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=story&replay=mock",
+    replayTime: 0.5,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
     mode: "story",
     storyStep: 2,
-    expectedScene: "story:travel",
-    expectedText: "The two wakes cross the gap",
+    verifyOrderedLearnerSurface: true,
+    verifyBottomRail: true,
+    verifyRetiredSurfaceAbsence: true,
+    expectedScene: "story:meaning",
+    expectedText: "Two Reciprocal Causal Relationships",
   },
   {
-    id: "story-reception",
-    fileName: "story-reception-purple-1440x900.png",
+    id: "lesson-four-speed-reset",
+    fileName: "lesson-four-speed-reset-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
+    query: "mode=story&replay=mock",
+    replayTime: 0.6,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
     mode: "story",
     storyStep: 3,
-    expectedScene: "story:reception",
-    expectedText: "the positrino wake intersects the electrino receiver",
+    verifyLessonFourSpeedReset: true,
+    expectedScene: "story:motion",
+    expectedText: "Motion Changes Wake Shape",
   },
   {
-    id: "story-desktop",
-    fileName: "story-purple-1440x900.png",
+    id: "lesson-four-label-anchors-desktop",
+    fileName: "lesson-four-label-anchors-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    query: "mode=story&replay=mock",
+    replayTime: 0.6,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "story",
+    storyStep: 3,
+    verifyLessonFourLabelAnchors: true,
+    expectedScene: "story:motion",
+    expectedText: "Motion Changes Wake Shape",
+  },
+  {
+    id: "lesson-four-label-anchors-phone",
+    fileName: "lesson-four-label-anchors-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=story&replay=mock",
+    replayTime: 0.6,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "story",
+    storyStep: 3,
+    verifyLessonFourLabelAnchors: true,
+    expectedScene: "story:motion",
+    expectedText: "Motion Changes Wake Shape",
+  },
+  {
+    id: "transport-state",
+    fileName: "lesson-transport-state-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
+    replayTime: 0.5,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "story",
+    storyStep: 1,
+    verifyTransportState: true,
+    verifyBottomRail: true,
+    expectedScene: "story:emission",
+    expectedText: "Wakes Received Now Were Transmitted in the Past",
+  },
+  {
+    id: "shared-shell-search-desktop",
+    fileName: "shared-shell-search-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
     replayTime: 0.62,
     wakeSeriesId: "live-electrino-to-positrino",
-    settingsOpen: false,
     mode: "story",
-    storyStep: 4,
-    expectedScene: "story:meaning",
-    expectedText: "Each dashed causal line connects a receiver",
+    storyStep: 0,
+    shellSearchQuery: "Applications",
+    expectedGlobalSearchResult: "Applications",
+    expectedScene: "story:meet",
   },
   {
-    id: "prediction-desktop",
-    fileName: "prediction-purple-1440x900.png",
-    width: 1440,
-    height: 900,
-    deviceScaleFactor: 1,
-    query: "mode=prediction&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
-    wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
-    mode: "prediction",
-    expectedScene: "prediction",
-    expectedText: "Which earlier transmission position matters?",
-  },
-  {
-    id: "story-portrait",
-    fileName: "story-purple-390x844.png",
+    id: "shared-shell-search-phone",
+    fileName: "shared-shell-search-purple-390x844.png",
     width: 390,
     height: 844,
     deviceScaleFactor: 2,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
+    query: "mode=story&replay=mock",
     replayTime: 0.62,
-    wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
+    wakeSeriesId: "live-electrino-to-positrino",
     mode: "story",
-    storyStep: 4,
-    expectedScene: "story:meaning",
+    storyStep: 0,
+    shellSearchQuery: "Applications",
+    expectedGlobalSearchResult: "Applications",
+    expectedScene: "story:meet",
   },
   {
-    id: "prediction-portrait",
-    fileName: "prediction-purple-390x844.png",
-    width: 390,
-    height: 844,
-    deviceScaleFactor: 2,
-    query: "mode=prediction&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
-    wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
-    mode: "prediction",
-    expectedScene: "prediction",
-  },
-  {
-    id: "keyboard-journey",
-    fileName: "keyboard-sandbox-purple-1440x900.png",
+    id: "settings-removed-desktop",
+    fileName: "settings-removed-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
-    wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
-    keyboardJourney: "sandbox",
+    query: "mode=sandbox&replay=mock",
+    useLaboratoryInitialReplayTime: true,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "sandbox",
+    verifySettingsRemoved: true,
     expectedScene: "sandbox",
-    expectedText: "Sandbox",
+    expectedText: "Laboratory",
   },
   {
-    id: "story-reduced-motion",
-    fileName: "story-reduced-motion-purple-1440x900.png",
+    id: "settings-removed-phone",
+    fileName: "settings-removed-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=sandbox&replay=mock",
+    useLaboratoryInitialReplayTime: true,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "sandbox",
+    verifySettingsRemoved: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
+    id: "laboratory-path-drag",
+    fileName: "laboratory-path-drag-c1-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
+    query: "mode=sandbox&replay=mock",
+    replayTime: 0.4,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "sandbox",
+    prepareAction: {
+      type: "path-line-drag",
+      kind: "positrino",
+      anchorFraction: 0.5,
+      delta: { x: 0, y: -220 },
+      visibleHalfWindow: 0.005,
+      minimumTangentDot: 0.999,
+    },
+    verifyOrderedLearnerSurface: true,
+    verifyBottomRail: true,
+    verifyRetiredSurfaceAbsence: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
+    id: "laboratory-emission-origin-coincidence",
+    fileName: "laboratory-emission-origin-coincidence-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=sandbox&replay=mock",
+    replayTime: 0.7,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "sandbox",
+    prepareAction: {
+      type: "path-line-drag",
+      kind: "positrino",
+      anchorFraction: 0.5,
+      delta: { x: 0, y: -90 },
+      visibleHalfWindow: 0.005,
+      minimumTangentDot: 0.999,
+    },
+    verifySharedEmissionOrigins: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
+    id: "laboratory-reciprocal-entry",
+    fileName: "laboratory-reciprocal-entry-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=sandbox&replay=mock",
+    useLaboratoryInitialReplayTime: true,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "sandbox",
+    verifyReciprocalInitialArcs: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
+    id: "laboratory-exclusive-wake-mode-desktop",
+    fileName: "laboratory-exclusive-wake-mode-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=sandbox&replay=mock",
+    replayTime: 0.5,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "sandbox",
+    verifyExclusiveWakeMode: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
+    id: "laboratory-exclusive-wake-mode-phone",
+    fileName: "laboratory-exclusive-wake-mode-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=sandbox&replay=mock",
+    replayTime: 0.5,
+    wakeSeriesId: "live-electrino-to-positrino",
+    mode: "sandbox",
+    verifyExclusiveWakeMode: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
+    id: "ordered-keyboard-journey",
+    fileName: "keyboard-laboratory-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
+    useLaboratoryInitialReplayTime: true,
+    wakeSeriesId: "live-electrino-to-positrino",
+    keyboardJourney: "laboratory",
+    mode: "sandbox",
+    verifyOrderedLearnerSurface: true,
+    verifyBottomRail: true,
+    verifyRetiredSurfaceAbsence: true,
+    expectedScene: "sandbox",
+    expectedText: "Laboratory",
+  },
+  {
+    id: "reduced-motion",
+    fileName: "lesson-reduced-motion-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
+    replayTime: 0.5,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
+    mode: "story",
+    storyStep: 2,
+    reducedMotion: true,
+    verifyReducedMotionPlayback: true,
+    expectedScene: "story:meaning",
+    expectedText: "Two Reciprocal Causal Relationships",
+  },
+  {
+    id: "lesson-five-emission-zero",
+    fileName: "lesson-five-emission-zero-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
+    wakeSeriesId: "live-positrino-to-electrino",
     mode: "story",
     storyStep: 4,
-    reducedMotion: true,
-    expectedScene: "story:meaning",
-    expectedText: "Each dashed causal line connects a receiver",
+    verifyLessonFiveEmissionZero: true,
+    expectedScene: "story:forward-buildup",
+    expectedText: "Wake Buildup at Field Speed",
   },
   {
-    id: "roots-reduced-motion",
-    fileName: "roots-reduced-motion-purple-1440x900.png",
+    id: "forward-buildup",
+    fileName: "forward-buildup-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=roots&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
-    mode: "roots",
-    reducedMotion: true,
-    expectedScene: "roots",
-    expectedText: "Finite accumulated ΔV",
+    mode: "story",
+    storyStep: 4,
+    storyProgress: 0.9,
+    verifyForwardWakeBuildup: true,
+    expectedScene: "story:forward-buildup",
+    expectedText: "At field speed, each architrino moves with the advancing edge of the wakes it continually emits. As successive wakes expand, their forward edges stay together at the moving front. The wake builds up there.",
   },
   {
-    id: "self-hit",
-    fileName: "self-hit-purple-1440x900.png",
+    id: "inverse-square-lesson-six-desktop",
+    fileName: "lesson-six-inverse-square-spreading-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=self-hit&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
-    mode: "self-hit",
-    expectedScene: "self-hit",
-    expectedText: "below the threshold",
+    mode: "story",
+    storyStep: 5,
+    storyProgress: 0.62,
+    verifyInverseSquareSpreading: true,
+    expectedScene: "story:inverse-square-spreading",
+    expectedText: "Wake Strength Decreases as it Expands",
+    expectedSecondaryText: "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².",
   },
   {
-    id: "branch-lab",
-    fileName: "branch-lab-purple-1440x900.png",
+    id: "inverse-square-lesson-six-phone",
+    fileName: "lesson-six-inverse-square-spreading-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
+    wakeSeriesId: "live-positrino-to-electrino",
+    mode: "story",
+    storyStep: 5,
+    storyProgress: 0.72,
+    verifyInverseSquareSpreading: true,
+    expectedScene: "story:inverse-square-spreading",
+    expectedText: "Wake Strength Decreases as it Expands",
+    expectedSecondaryText: "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².",
+  },
+  {
+    id: "superposition-lesson-seven-desktop",
+    fileName: "lesson-seven-superposition-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=branch-lab&preset=contrast_stress&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
-    mode: "branch-lab",
-    expectedScene: "branch-lab",
-    branchFilters: {
-      historyAgeLimit: 0.7,
-      minimumContribution: 200,
-      rootKind: "all",
-      transversalityFloor: 0,
-    },
-    expectedText: "filtered",
-    expectedSecondaryText: "rejected",
-    expectedBranchFilterCount: 4,
+    mode: "story",
+    storyStep: 6,
+    storyProgress: 1,
+    verifySuperposition: true,
+    expectedScene: "story:superposition",
+    expectedText: "Wakes Combine by Superposition",
+    expectedSecondaryText: "the downward white arrow is their net acceleration",
+  },
+  {
+    id: "superposition-lesson-seven-phone",
+    fileName: "lesson-seven-superposition-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
+    wakeSeriesId: "live-positrino-to-electrino",
+    mode: "story",
+    storyStep: 6,
+    storyProgress: 1,
+    verifySuperposition: true,
+    expectedScene: "story:superposition",
+    expectedText: "Wakes Combine by Superposition",
+    expectedSecondaryText: "Display-only: no physical acceleration law",
+  },
+  {
+    id: "continuous-delayed-feedback-desktop",
+    fileName: "lesson-eight-continuous-delayed-feedback-purple-1440x900.png",
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 1,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
+    wakeSeriesId: "live-positrino-to-electrino",
+    mode: "story",
+    storyStep: 7,
+    storyProgress: 0.62,
+    verifyContinuousDelayedFeedback: true,
+    expectedScene: "story:continuous-delayed-feedback",
+    expectedText: "Continuous Delayed Feedback",
+    expectedSecondaryText: "an arriving wake applies acceleration",
+  },
+  {
+    id: "continuous-delayed-feedback-phone",
+    fileName: "lesson-eight-continuous-delayed-feedback-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    query: "mode=story&replay=mock",
+    replayTime: 0,
+    wakeSeriesId: "live-positrino-to-electrino",
+    mode: "story",
+    storyStep: 7,
+    storyProgress: 0.72,
+    verifyContinuousDelayedFeedback: true,
+    expectedScene: "story:continuous-delayed-feedback",
+    expectedText: "Continuous Delayed Feedback",
+    expectedSecondaryText: "an arriving wake applies acceleration",
   },
   {
     id: "high-contrast",
-    fileName: "story-high-contrast-purple-1440x900.png",
+    fileName: "lesson-high-contrast-purple-1440x900.png",
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&replay=mock&canvas=architrinoPurple",
-    replayTime: 0.62,
+    query: "mode=story&replay=mock",
+    replayTime: 0.5,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
     mode: "story",
-    storyStep: 4,
+    storyStep: 2,
     highContrast: true,
+    verifyOrderedLearnerSurface: true,
+    verifyBottomRail: true,
     expectedScene: "story:meaning",
-    expectedText: "Each dashed causal line connects a receiver",
+    expectedText: "Two Reciprocal Causal Relationships",
   },
   {
     id: "eom-unavailable",
@@ -244,16 +470,44 @@ const PROOFS = Object.freeze([
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
-    query: "mode=story&canvas=architrinoPurple",
+    query: "mode=story",
     replayTime: 0.62,
     wakeSeriesId: "live-positrino-to-electrino",
-    settingsOpen: false,
     mode: "story",
     expectedScene: "story:meet",
     expectedReplayState: "fallback",
-    expectedText: "Let's examine the transmitting positrino (red) and a receiving electrino (blue).",
+    expectedText: "Each architrino transmits continuously at a constant rate.",
   },
 ]);
+
+const CDF020_PROOF_IDS = Object.freeze(new Set([
+  "lessons-desktop",
+  "lessons-portrait",
+  "ordered-keyboard-journey",
+  "transport-state",
+  "lesson-two-three-handoff",
+  "lesson-four-speed-reset",
+  "lesson-five-emission-zero",
+  "laboratory-path-drag",
+  "reduced-motion",
+  "high-contrast",
+]));
+const CDF022_PROOF_IDS = Object.freeze(new Set([
+  "continuous-delayed-feedback-desktop",
+  "continuous-delayed-feedback-phone",
+]));
+const CDF016_PROOF_IDS = Object.freeze(new Set([
+  "inverse-square-lesson-six-desktop",
+  "inverse-square-lesson-six-phone",
+]));
+const CDF018_PROOF_IDS = Object.freeze(new Set([
+  "superposition-lesson-seven-desktop",
+  "superposition-lesson-seven-phone",
+]));
+const CDF065_PROOF_IDS = Object.freeze(new Set([
+  "laboratory-exclusive-wake-mode-desktop",
+  "laboratory-exclusive-wake-mode-phone",
+]));
 
 const args = parseArgs(process.argv.slice(2));
 
@@ -291,6 +545,17 @@ try {
       if (args.proof && args.proof !== proof.id) {
         continue;
       }
+      if (
+        !args.proof &&
+        !args.all &&
+        !CDF020_PROOF_IDS.has(proof.id) &&
+        !CDF016_PROOF_IDS.has(proof.id) &&
+        !CDF018_PROOF_IDS.has(proof.id) &&
+        !CDF022_PROOF_IDS.has(proof.id) &&
+        !CDF065_PROOF_IDS.has(proof.id)
+      ) {
+        continue;
+      }
       const outputPath = path.join(outputDir, proof.fileName);
       await captureProof(cdp, {
         proof,
@@ -319,11 +584,13 @@ function printUsage(exitCode) {
   console.log("  --host=HOST        Host used when starting the dev server. Default: 127.0.0.1");
   console.log("  --port=PORT        Port used when starting the dev server. Default: 5173");
   console.log("  --proof=ID         Capture only the named proof id.");
+  console.log("  --all              Include auxiliary proofs owned by other CDF items.");
   process.exit(exitCode);
 }
 
 function parseArgs(argv) {
   const parsed = {
+    all: false,
     baseUrl: null,
     browserPath: null,
     help: false,
@@ -334,7 +601,9 @@ function parseArgs(argv) {
     unknown: [],
   };
   for (const arg of argv) {
-    if (arg === "--help" || arg === "-h") {
+    if (arg === "--all") {
+      parsed.all = true;
+    } else if (arg === "--help" || arg === "-h") {
       parsed.help = true;
     } else if (arg.startsWith("--base-url=")) {
       parsed.baseUrl = arg.slice("--base-url=".length).replace(/\/$/u, "");
@@ -360,6 +629,7 @@ function parseArgs(argv) {
 
 function validateProofConfigurations(proofs) {
   const errors = [];
+  const proofsById = new Map(proofs.map((proof) => [proof.id, proof]));
   for (const proof of proofs) {
     const query = new URLSearchParams(proof.query);
     if (
@@ -376,6 +646,67 @@ function validateProofConfigurations(proofs) {
       !(query.has("pathConstraintBoundaryResidualTolerance") || query.has("boundaryResidualTolerance"))
     ) {
       errors.push(`${proof.id} requires boundary-residual evidence without a boundary-residual tolerance query`);
+    }
+  }
+  for (const proofId of CDF020_PROOF_IDS) {
+    const proof = proofsById.get(proofId);
+    if (!proof) {
+      errors.push(`CDF-020 proof ${proofId} is missing`);
+      continue;
+    }
+    if (
+      proof.verifySettingsRemoved === true ||
+      proof.verifyForwardWakeBuildup === true
+    ) {
+      errors.push(
+        `CDF-020 proof ${proofId} depends on separately owned Settings or CDF-008 acceptance`,
+      );
+    }
+    if (!["story", "sandbox"].includes(proof.mode)) {
+      errors.push(`CDF-020 proof ${proofId} uses retired mode ${proof.mode}`);
+    }
+    if (proof.expectedText === "Sandbox") {
+      errors.push(`CDF-020 proof ${proofId} uses retired learner-facing Sandbox naming`);
+    }
+  }
+  for (const proofId of CDF022_PROOF_IDS) {
+    const proof = proofsById.get(proofId);
+    if (!proof) {
+      errors.push(`CDF-022 proof ${proofId} is missing`);
+      continue;
+    }
+    if (proof.mode !== "story" || proof.verifyContinuousDelayedFeedback !== true) {
+      errors.push(`CDF-022 proof ${proofId} must be a Story continuous delayed-feedback proof`);
+    }
+  }
+  for (const proofId of CDF016_PROOF_IDS) {
+    const proof = proofsById.get(proofId);
+    if (!proof) {
+      errors.push(`CDF-016 proof ${proofId} is missing`);
+      continue;
+    }
+    if (proof.mode !== "story" || proof.verifyInverseSquareSpreading !== true) {
+      errors.push(`CDF-016 proof ${proofId} must be a Story inverse-square proof`);
+    }
+  }
+  for (const proofId of CDF018_PROOF_IDS) {
+    const proof = proofsById.get(proofId);
+    if (!proof) {
+      errors.push(`CDF-018 proof ${proofId} is missing`);
+      continue;
+    }
+    if (proof.mode !== "story" || proof.verifySuperposition !== true) {
+      errors.push(`CDF-018 proof ${proofId} must be a Story superposition proof`);
+    }
+  }
+  for (const proofId of CDF065_PROOF_IDS) {
+    const proof = proofsById.get(proofId);
+    if (!proof) {
+      errors.push(`CDF-065 proof ${proofId} is missing`);
+      continue;
+    }
+    if (proof.mode !== "sandbox" || proof.verifyExclusiveWakeMode !== true) {
+      errors.push(`CDF-065 proof ${proofId} must be a Laboratory exclusive wake-mode proof`);
     }
   }
   if (errors.length > 0) {
@@ -589,6 +920,7 @@ async function captureProof(cdp, { proof, url, outputPath }) {
     timeoutMs: 15000,
     label: `causal-delay page ready for ${proof.id}`,
   });
+  await cdp.send("Page.bringToFront", {}, sessionId);
   if (proof.keyboardJourney) {
     await prepareKeyboardJourney(cdp, sessionId, proof.keyboardJourney);
   }
@@ -620,7 +952,15 @@ async function prepareKeyboardJourney(cdp, sessionId, destination) {
         }
         control.focus();
         if (document.activeElement !== control) {
-          return { ok: false, reason: "focus" };
+          return {
+            ok: false,
+            reason: "focus",
+            disabled: control.disabled,
+            mode: window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode,
+            storyStep: window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.storyStep,
+            activeTag: document.activeElement?.tagName,
+            activeText: document.activeElement?.textContent?.trim(),
+          };
         }
         control.click();
         return { ok: true };
@@ -628,44 +968,51 @@ async function prepareKeyboardJourney(cdp, sessionId, destination) {
     `);
     if (!activated.value?.ok) {
       throw new Error(
-        `keyboard journey could not activate focused ${selector}: ${activated.value?.reason ?? "unknown"}`,
+        `keyboard journey could not activate focused ${selector}: ${JSON.stringify(activated.value)}`,
       );
     }
   };
-  for (let step = 0; step < 6; step += 1) {
-    const mode = await evaluate(cdp, sessionId, `
-      window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode
+  const expectedStates = [
+    { mode: "story", storyStep: 1 },
+    { mode: "story", storyStep: 2 },
+    { mode: "story", storyStep: 3 },
+    { mode: "story", storyStep: 4 },
+    { mode: "story", storyStep: 5 },
+    { mode: "story", storyStep: 6 },
+    { mode: "story", storyStep: 7 },
+    { mode: "sandbox", storyStep: 7 },
+  ];
+  for (const expectedState of expectedStates) {
+    await pressFocusedButton("#nav-forward");
+    const state = await evaluate(cdp, sessionId, `
+      (() => ({
+        mode: window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode,
+        storyStep:
+          window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.storyStep,
+      }))()
     `);
-    if (mode.value === "prediction") {
-      break;
+    if (
+      state.value?.mode !== expectedState.mode ||
+      state.value?.storyStep !== expectedState.storyStep
+    ) {
+      throw new Error(
+        `keyboard journey expected ${JSON.stringify(expectedState)}, got ${JSON.stringify(state.value)}`,
+      );
     }
-    await pressFocusedButton("#causal-delay-feedback-guided-next");
-  }
-  const predictionMode = await evaluate(cdp, sessionId, `
-    window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode
-  `);
-  if (predictionMode.value !== "prediction") {
-    throw new Error(`keyboard journey did not reach Prediction; got ${predictionMode.value ?? "unavailable"}`);
-  }
-  await pressFocusedButton(".causal-choice-button:nth-child(2)");
-  await pressFocusedButton("#causal-delay-feedback-guided-next");
-  const historyMode = await evaluate(cdp, sessionId, `
-    window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode
-  `);
-  if (historyMode.value !== "history") {
-    throw new Error(`keyboard journey did not reach Path History; got ${historyMode.value ?? "unavailable"}`);
-  }
-  if (destination === "sandbox") {
-    await pressFocusedButton('[data-causal-mode="sandbox"]');
   }
   const state = await evaluate(cdp, sessionId, `
     (() => ({
       mode: window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.mode,
+      storyStep:
+        window.__ARCHITRINO_CAUSAL_DELAY_FEEDBACK_RUNTIME__?.learnerState?.storyStep,
       focus: document.activeElement?.textContent?.trim(),
     }))()
   `);
-  if (state.value?.mode !== destination) {
-    throw new Error(`keyboard journey expected ${destination}, got ${state.value?.mode ?? "unavailable"}`);
+  const expectedMode = destination === "laboratory" ? "sandbox" : destination;
+  if (state.value?.mode !== expectedMode) {
+    throw new Error(
+      `keyboard journey expected ${destination}, got ${state.value?.mode ?? "unavailable"}`,
+    );
   }
 }
 
@@ -685,12 +1032,125 @@ function createPrepareProofExpression(proof) {
       runtime.learnerState.storyStep = requestedStoryStep;
       runtime.modeController?.render();
     }
+    const shellSearchQuery = ${JSON.stringify(proof.shellSearchQuery ?? "")};
+    if (shellSearchQuery) {
+      const toggle = document.querySelector("#scene-search-toggle");
+      const panel = document.querySelector("#scene-search-panel");
+      const input = document.querySelector("#scene-search-input");
+      const toc = document.querySelector("#causal-delay-feedback-mode-tabs");
+      if (!toggle || !panel || !input || !toc) {
+        return { ok: false, reason: "shared_shell_search_elements_missing" };
+      }
+      toggle.click();
+      await new Promise((resolve) => setTimeout(resolve, 250));
+      input.value = shellSearchQuery;
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      const resultLabels = Array.from(
+        document.querySelectorAll("#scene-search-results .scene-search-item"),
+      ).map((item) => item.textContent?.trim());
+      const expectedGlobalSearchResult =
+        ${JSON.stringify(proof.expectedGlobalSearchResult ?? "")};
+      const shellRect = document.querySelector("#scene-hud-tools").getBoundingClientRect();
+      const panelRect = panel.getBoundingClientRect();
+      const iconRect = toggle.getBoundingClientRect();
+      const tocRect = toc.getBoundingClientRect();
+      if (
+        !panel.classList.contains("is-open") ||
+        getComputedStyle(toggle).display === "none" ||
+        toggle.getAttribute("aria-expanded") !== "true" ||
+        toc.hidden ||
+        panelRect.bottom > tocRect.top + 1 ||
+        shellRect.left < 0 ||
+        shellRect.right > window.innerWidth ||
+        panelRect.left < 0 ||
+        panelRect.right > window.innerWidth ||
+        iconRect.left < 0 ||
+        iconRect.right > window.innerWidth ||
+        (expectedGlobalSearchResult &&
+          !resultLabels.includes(expectedGlobalSearchResult)) ||
+        resultLabels.some((label) => /^\\d+\\./u.test(label ?? ""))
+      ) {
+        return {
+          ok: false,
+          reason: "shared_shell_search_contract_failed",
+          resultLabels,
+          expectedGlobalSearchResult,
+          searchOpen: panel.classList.contains("is-open"),
+          searchIconDisplay: getComputedStyle(toggle).display,
+          searchExpanded: toggle.getAttribute("aria-expanded"),
+          tocHidden: toc.hidden,
+          shellRect: shellRect.toJSON(),
+          panelRect: panelRect.toJSON(),
+          iconRect: iconRect.toJSON(),
+          tocRect: tocRect.toJSON(),
+          viewport: { width: window.innerWidth, height: window.innerHeight },
+        };
+      }
+      runtime.dom.canvas.dataset.browserSharedShellSearch = "global-persistent";
+    }
     const requestedBranchFilters = ${JSON.stringify(proof.branchFilters ?? null)};
     if (requestedBranchFilters) {
       Object.assign(runtime.learnerState.branchFilters, requestedBranchFilters);
       runtime.modeController?.render();
     }
     const prepareAction = ${JSON.stringify(proof.prepareAction ?? null)};
+    if (prepareAction?.type === "path-line-drag") {
+      const path = runtime.dataset.paths?.[prepareAction.kind];
+      if (!Array.isArray(path) || path.length < 3) {
+        return { ok: false, reason: "path_line_drag_path_missing", action: prepareAction };
+      }
+      const anchorIndex = Math.max(
+        1,
+        Math.min(
+          path.length - 2,
+          Math.round((path.length - 1) * Number(prepareAction.anchorFraction))
+        )
+      );
+      const anchorT = Number(path[anchorIndex].t);
+      const didEdit = runtime.applyPathLineDrag(
+        prepareAction.kind,
+        anchorT,
+        prepareAction.delta
+      );
+      if (!didEdit) {
+        return { ok: false, reason: "path_line_drag_noop", action: prepareAction };
+      }
+      const halfWindow = Number(prepareAction.visibleHalfWindow);
+      const previous = runtime.getReplayPathPoint(
+        prepareAction.kind,
+        anchorT - halfWindow
+      );
+      const anchor = runtime.getReplayPathPoint(prepareAction.kind, anchorT);
+      const next = runtime.getReplayPathPoint(
+        prepareAction.kind,
+        anchorT + halfWindow
+      );
+      const incoming = {
+        x: anchor.x - previous.x,
+        y: anchor.y - previous.y,
+      };
+      const outgoing = {
+        x: next.x - anchor.x,
+        y: next.y - anchor.y,
+      };
+      const denominator =
+        Math.hypot(incoming.x, incoming.y) * Math.hypot(outgoing.x, outgoing.y);
+      const tangentDot = denominator > 0
+        ? (incoming.x * outgoing.x + incoming.y * outgoing.y) / denominator
+        : -1;
+      if (tangentDot < Number(prepareAction.minimumTangentDot)) {
+        return {
+          ok: false,
+          reason: "visible_one_sided_tangent_mismatch",
+          tangentDot,
+          minimum: prepareAction.minimumTangentDot,
+          anchorT,
+          halfWindow,
+        };
+      }
+      runtime.dom.canvas.dataset.browserDragTangentDot = tangentDot.toFixed(9);
+    }
     if (prepareAction?.type === "retained-point-drag") {
       const previousCondition = runtime.dataset.initialConditions?.[prepareAction.kind]
         ? { ...runtime.dataset.initialConditions[prepareAction.kind] }
@@ -782,8 +1242,957 @@ function createPrepareProofExpression(proof) {
       }
     }
     runtime.setPlaying(false);
-    runtime.setCurrentReplayTime(${JSON.stringify(proof.replayTime)});
-    runtime.updateNowControl(${JSON.stringify(proof.replayTime)});
+    const requestedReplayTime = ${proof.useLaboratoryInitialReplayTime === true
+      ? "runtime.getLaboratoryInitialReplayTime()"
+      : JSON.stringify(proof.replayTime)};
+    runtime.setCurrentReplayTime(requestedReplayTime);
+    runtime.updateNowControl(requestedReplayTime);
+    const requestedStoryProgress =
+      ${proof.storyProgress == null ? "undefined" : JSON.stringify(proof.storyProgress)};
+    if (
+      requestedMode === "story" &&
+      Number.isFinite(requestedStoryProgress)
+    ) {
+      runtime.setPlaying(true, { restartStory: true });
+      const heldScene = runtime.storyPlaybackScene;
+      const heldReplayTime =
+        heldScene.playbackStartTime +
+        (heldScene.playbackEndTime - heldScene.playbackStartTime) *
+          Math.max(0, Math.min(1, requestedStoryProgress));
+      runtime.setPlaying(false, {
+        holdScene: heldScene,
+        holdReplayTime: heldReplayTime,
+      });
+    }
+    if (${proof.verifyExclusiveWakeMode === true ? "true" : "false"}) {
+      const arcsButton = document.querySelector(
+        '[data-visual-switch="arcWakesEnabled"]',
+      );
+      const fullButton = document.querySelector(
+        '[data-visual-switch="fullCircularWakesEnabled"]',
+      );
+      const group = document.querySelector(
+        "#causal-delay-feedback-visual-switches",
+      );
+      const snapshotWakeMode = () => ({
+        arcs: runtime.wakeVisualSettings.arcWakesEnabled === true,
+        full: runtime.wakeVisualSettings.fullCircularWakesEnabled === true,
+        arcsPressed: arcsButton?.getAttribute("aria-pressed"),
+        fullPressed: fullButton?.getAttribute("aria-pressed"),
+        selected: group?.dataset.selectedWakeMode,
+        selectedCount:
+          Number(runtime.wakeVisualSettings.arcWakesEnabled === true) +
+          Number(runtime.wakeVisualSettings.fullCircularWakesEnabled === true),
+      });
+      const initial = snapshotWakeMode();
+      fullButton?.click();
+      const full = snapshotWakeMode();
+      fullButton?.click();
+      const repeatedFull = snapshotWakeMode();
+      arcsButton?.click();
+      const arcs = snapshotWakeMode();
+      fullButton?.click();
+      runtime.render(runtime.getCurrentReplayTime());
+      const finalFull = snapshotWakeMode();
+      const exclusiveWakeModeContract =
+        requestedMode === "sandbox" &&
+        group?.dataset.selectionMode === "exclusive" &&
+        initial.selectedCount === 1 &&
+        initial.arcs &&
+        !initial.full &&
+        full.selectedCount === 1 &&
+        !full.arcs &&
+        full.full &&
+        full.arcsPressed === "false" &&
+        full.fullPressed === "true" &&
+        JSON.stringify(repeatedFull) === JSON.stringify(full) &&
+        arcs.selectedCount === 1 &&
+        arcs.arcs &&
+        !arcs.full &&
+        arcs.arcsPressed === "true" &&
+        arcs.fullPressed === "false" &&
+        finalFull.selectedCount === 1 &&
+        !finalFull.arcs &&
+        finalFull.full &&
+        finalFull.selected === "full" &&
+        runtime.dom.canvas.dataset.laboratoryWakeDisplaySelection === "full" &&
+        runtime.dom.canvas.dataset.laboratoryWakeDisplaySelectionCount === "1";
+      if (!exclusiveWakeModeContract) {
+        return {
+          ok: false,
+          reason: "laboratory_exclusive_wake_mode_contract_failed",
+          initial,
+          full,
+          repeatedFull,
+          arcs,
+          finalFull,
+          groupSelectionMode: group?.dataset.selectionMode ?? null,
+          canvasSelection:
+            runtime.dom.canvas.dataset.laboratoryWakeDisplaySelection ?? null,
+          canvasSelectionCount:
+            runtime.dom.canvas.dataset.laboratoryWakeDisplaySelectionCount ?? null,
+        };
+      }
+      runtime.dom.canvas.dataset.browserExclusiveWakeMode =
+        "arcs-or-full-exactly-one";
+    }
+    if (${proof.jumpToLastFrame === true ? "true" : "false"}) {
+      runtime.jumpToLastFrame();
+    }
+    if (${proof.verifyLessonTwoThreeHandoff === true ? "true" : "false"}) {
+      runtime.learnerState.mode = "story";
+      runtime.learnerState.storyStep = 1;
+      runtime.modeController?.render();
+      const lessonTwoScene = runtime.resetStoryScenarioPlayback();
+      runtime.jumpToLastFrame();
+      const lessonTwoEndTime = Number(lessonTwoScene.playbackEndTime);
+      const lessonTwoHeldTime = Number(runtime.getCurrentReplayTime());
+      document.querySelector("#nav-forward")?.click();
+      const handoffReplayTime = Number(runtime.getCurrentReplayTime());
+      const lessonThreeStep = runtime.learnerState?.storyStep;
+      const lessonThreeScene = runtime.resetStoryScenarioPlayback();
+      const lessonThreeStartTime = Number(lessonThreeScene.playbackStartTime);
+      const handoffMatches =
+        lessonThreeStep === 2 &&
+        Math.abs(lessonTwoEndTime - lessonTwoHeldTime) <= 1e-9 &&
+        Math.abs(lessonTwoEndTime - handoffReplayTime) <= 1e-9 &&
+        Math.abs(lessonTwoEndTime - lessonThreeStartTime) <= 1e-9;
+      if (!handoffMatches) {
+        return {
+          ok: false,
+          reason: "lesson_two_three_handoff_mismatch",
+          lessonThreeStep,
+          lessonTwoEndTime,
+          lessonTwoHeldTime,
+          handoffReplayTime,
+          lessonThreeStartTime,
+        };
+      }
+      runtime.dom.canvas.dataset.browserLessonTwoThreeHandoff =
+        lessonTwoEndTime.toFixed(9);
+    }
+    if (${proof.verifyLessonFourSpeedReset === true ? "true" : "false"}) {
+      runtime.learnerState.mode = "story";
+      runtime.learnerState.storyStep = 3;
+      runtime.modeController?.render();
+      const initialScene = runtime.resetStoryScenarioPlayback();
+      const initialReplayTime = Number(initialScene.playbackStartTime);
+      runtime.jumpToLastFrame();
+      const completedBeforeChange =
+        runtime.learnerState.playback.completed === true &&
+        runtime.dom.playButton.disabled === true;
+      const previousSpeed = Number(runtime.learnerState.storyMotionSpeedFraction);
+      const nextSpeed = previousSpeed === 0.9 ? 0.3 : 0.9;
+      const speedButton = document.querySelector(
+        \`[data-story-speed="\${nextSpeed}"]\`
+      );
+      speedButton?.click();
+      const resetAfterChange =
+        completedBeforeChange &&
+        Number(runtime.learnerState.storyMotionSpeedFraction) === nextSpeed &&
+        runtime.isPlaying === false &&
+        runtime.learnerState.playback.playing === false &&
+        runtime.learnerState.playback.resumable === false &&
+        runtime.learnerState.playback.completed === false &&
+        runtime.storyHeldFrame === null &&
+        runtime.storyPlaybackScene === null &&
+        runtime.dom.playButton.disabled === false &&
+        runtime.dom.playButton.getAttribute("aria-label") === "Play lesson" &&
+        Math.abs(Number(runtime.getCurrentReplayTime()) - initialReplayTime) <=
+          1e-9;
+      if (!speedButton || !resetAfterChange) {
+        return {
+          ok: false,
+          reason: "lesson_four_speed_reset_failed",
+          speedButtonFound: Boolean(speedButton),
+          completedBeforeChange,
+          previousSpeed,
+          nextSpeed,
+          actualSpeed: runtime.learnerState.storyMotionSpeedFraction,
+          replayTime: runtime.getCurrentReplayTime(),
+          initialReplayTime,
+          playback: runtime.learnerState.playback,
+          playDisabled: runtime.dom.playButton.disabled,
+          playLabel: runtime.dom.playButton.getAttribute("aria-label"),
+          hasHeldFrame: Boolean(runtime.storyHeldFrame),
+          hasPlaybackScene: Boolean(runtime.storyPlaybackScene),
+        };
+      }
+      runtime.dom.canvas.dataset.browserLessonFourSpeedReset =
+        \`\${previousSpeed.toFixed(1)}-to-\${nextSpeed.toFixed(1)}\`;
+    }
+    if (${proof.verifyLessonFourLabelAnchors === true ? "true" : "false"}) {
+      runtime.learnerState.mode = "story";
+      runtime.learnerState.storyStep = 3;
+      runtime.modeController?.render();
+      runtime.setPlaying(false);
+      const labelChecks = [];
+      const originalDrawScreenText = runtime.drawScreenText;
+      runtime.drawScreenText = function (ctx, text, screenPoint, size, color, align, weight) {
+        if (text === "Expanded" || text === "Compressed") {
+          labelChecks.push({ text, screenPoint: { ...screenPoint }, align });
+        }
+        return originalDrawScreenText.call(this, ctx, text, screenPoint, size, color, align, weight);
+      };
+      const speeds = [0.3, 0.6, 0.9];
+      const fractions = [0, 0.1, 0.3, 0.6, 1];
+      const wideViewport = window.innerWidth > 820;
+      try {
+        for (const speed of speeds) {
+          runtime.learnerState.storyMotionSpeedFraction = speed;
+          const scene = runtime.resetStoryScenarioPlayback();
+          for (const fraction of fractions) {
+            labelChecks.length = 0;
+            const replayTime =
+              scene.playbackStartTime +
+              (scene.playbackEndTime - scene.playbackStartTime) * fraction;
+            runtime.setPlaying(false, {
+              holdScene: scene,
+              holdReplayTime: replayTime,
+            });
+            runtime.render(replayTime);
+            const canvasDataset = runtime.dom.canvas.dataset;
+            const expectedLabels = wideViewport ? 2 : 0;
+            if (labelChecks.length !== expectedLabels) {
+              return {
+                ok: false,
+                reason: "lesson_four_label_visibility_failed",
+                speed,
+                fraction,
+                expectedLabels,
+                actualLabels: labelChecks.length,
+              };
+            }
+            if (!wideViewport) {
+              continue;
+            }
+            const [rearExtent, frontExtent] = String(
+              canvasDataset.storyMotionVisibleWakeExtents,
+            ).split(",").map(Number);
+            const expanded = labelChecks.find((label) => label.text === "Expanded");
+            const compressed = labelChecks.find((label) => label.text === "Compressed");
+            const expandedX = Number(
+              canvasDataset.storyMotionExpandedLabelScreen.split(",")[0],
+            );
+            const compressedX = Number(
+              canvasDataset.storyMotionCompressedLabelScreen.split(",")[0],
+            );
+            const expectedRearX = runtime.worldToScreen({ x: rearExtent, y: 0 }).x;
+            const expectedFrontX = runtime.worldToScreen({ x: frontExtent, y: 0 }).x;
+            runtime.context.font =
+              Math.max(9, 12 * runtime.viewport.scale) +
+              'px "Helvetica Neue", Arial, sans-serif';
+            const expandedWidth = runtime.context.measureText("Expanded").width;
+            const compressedWidth = runtime.context.measureText("Compressed").width;
+            const noOverlap =
+              compressedX - compressedWidth - (expandedX + expandedWidth) >= -0.5;
+            const minimumGap = Math.max(
+              Math.max(9, 12 * runtime.viewport.scale) * 0.56,
+              runtime.context.measureText(" ").width * 2,
+            );
+            const naturalGap =
+              expectedFrontX -
+              compressedWidth -
+              (expectedRearX + expandedWidth);
+            const exactWhenRoom =
+              naturalGap < minimumGap - 0.5 ||
+              (
+                Math.abs(expandedX - expectedRearX) <= 0.5 &&
+                Math.abs(compressedX - expectedFrontX) <= 0.5
+              );
+            if (
+              canvasDataset.storyMotionExpandedLabelAlign !== "left" ||
+              canvasDataset.storyMotionCompressedLabelAlign !== "right" ||
+              expanded?.align !== "left" ||
+              compressed?.align !== "right" ||
+              expandedX > expectedRearX + 0.5 ||
+              compressedX < expectedFrontX - 0.5 ||
+              !noOverlap ||
+              !exactWhenRoom
+            ) {
+              return {
+                ok: false,
+                reason: "lesson_four_label_anchor_contract_failed",
+                speed,
+                fraction,
+                rearExtent,
+                frontExtent,
+                expectedRearX,
+                expectedFrontX,
+                expanded,
+                compressed,
+                expandedX,
+                compressedX,
+                expandedWidth,
+                compressedWidth,
+                noOverlap,
+                minimumGap,
+                naturalGap,
+                exactWhenRoom,
+                canvasDataset: {
+                  expandedAlign: canvasDataset.storyMotionExpandedLabelAlign,
+                  compressedAlign: canvasDataset.storyMotionCompressedLabelAlign,
+                  visibleWakeExtents: canvasDataset.storyMotionVisibleWakeExtents,
+                  alignmentAdjusted: canvasDataset.storyMotionLabelAlignmentAdjusted,
+                },
+              };
+            }
+          }
+        }
+      } finally {
+        runtime.drawScreenText = originalDrawScreenText;
+      }
+      runtime.learnerState.storyMotionSpeedFraction = 0.6;
+      const finalScene = runtime.resetStoryScenarioPlayback();
+      runtime.setPlaying(false, {
+        holdScene: finalScene,
+        holdReplayTime: ${JSON.stringify(proof.replayTime)},
+      });
+      runtime.render(${JSON.stringify(proof.replayTime)});
+      runtime.dom.canvas.dataset.browserLessonFourLabelAnchors =
+        wideViewport ? "visible-extents-left-right" : "narrow-labels-hidden-no-overlap";
+      runtime.dom.canvas.dataset.browserLessonFourLabelAnchorSpeeds = speeds.join(",");
+      runtime.dom.canvas.dataset.browserLessonFourLabelAnchorFractions = fractions.join(",");
+    }
+    if (${proof.verifyLessonFiveEmissionZero === true ? "true" : "false"}) {
+      runtime.learnerState.mode = "story";
+      runtime.learnerState.storyStep = 4;
+      runtime.modeController?.render();
+      const lessonFiveScene = runtime.resetStoryScenarioPlayback();
+      const emissionZero = Number(lessonFiveScene.playbackStartTime);
+      runtime.render(emissionZero);
+      const canvasDataset = runtime.dom.canvas.dataset;
+      const wakeCount = Number(canvasDataset.forwardWakeBuildupWakeCount);
+      const emissionZeroContract =
+        Math.abs(emissionZero) <= 1e-9 &&
+        Math.abs(Number(runtime.getCurrentReplayTime()) - emissionZero) <= 1e-9 &&
+        wakeCount === 0 &&
+        canvasDataset.forwardWakeBuildupInheritedHistory === "false";
+      if (!emissionZeroContract) {
+        return {
+          ok: false,
+          reason: "lesson_five_emission_zero_contract_failed",
+          emissionZero,
+          replayTime: runtime.getCurrentReplayTime(),
+          wakeCount,
+          inheritedHistory:
+            canvasDataset.forwardWakeBuildupInheritedHistory,
+        };
+      }
+      canvasDataset.browserLessonFiveBoundary =
+        "emission-zero-only-cdf008-independent";
+    }
+    if (${proof.verifyInverseSquareSpreading === true ? "true" : "false"}) {
+      const expectedLessonTitle =
+        "Wake Strength Decreases as it Expands";
+      const expectedLessonBody =
+        "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².";
+      const actualLessonTitle = document.querySelector(
+        "#causal-delay-feedback-lesson-title",
+      )?.textContent;
+      const actualLessonBody = document.querySelector(
+        "#causal-delay-feedback-lesson-body",
+      )?.textContent;
+      const expectedLabels = [
+        "1. Meet the Electrino and Positrino Transceivers",
+        "2. Wakes Received Now Were Transmitted in the Past",
+        "3. Two Reciprocal Causal Relationships",
+        "4. Motion Changes Wake Shape",
+        "5. Wake Buildup at Field Speed",
+        "6. Wake Strength Decreases as it Expands",
+        "7. Wakes Combine by Superposition",
+        "8. Continuous Delayed Feedback",
+        "Laboratory",
+      ];
+      const actualLabels = Array.from(
+        document.querySelectorAll("#causal-delay-feedback-mode-tabs .causal-mode-tab"),
+      ).map((button) => button.textContent?.trim());
+      const lessonSixButton = document.querySelector('[data-causal-lesson="5"]');
+      const previewButtons = document.querySelectorAll("[data-causal-preview]");
+      const playButton = document.querySelector(
+        "#causal-delay-feedback-guided-play",
+      );
+      const scene = runtime.resetStoryScenarioPlayback();
+      const initialLiveFrame = runtime.inverseSquareSpreadingFrame;
+      playButton?.click();
+      await new Promise((resolve) => setTimeout(resolve, 240));
+      const playingLiveFrame = runtime.inverseSquareSpreadingFrame;
+      const uiPlayAdvanced =
+        runtime.isPlaying === true &&
+        playButton?.getAttribute("aria-label") === "Pause lesson" &&
+        playingLiveFrame?.phase > initialLiveFrame?.phase &&
+        playingLiveFrame?.wakes.length > 0 &&
+        ["positrino", "electrino"].every((kind) => (
+          Math.abs(
+            playingLiveFrame.bodies[kind].point.x -
+            initialLiveFrame.bodies[kind].point.x
+          ) <= 1e-9 &&
+          Math.abs(
+            playingLiveFrame.bodies[kind].point.y -
+            initialLiveFrame.bodies[kind].point.y
+          ) <= 1e-9
+        ));
+      playButton?.click();
+      const uiPauseWorked =
+        runtime.isPlaying === false &&
+        runtime.learnerState.playback.resumable === true &&
+        playButton?.getAttribute("aria-label") === "Resume lesson";
+      const inspectFrame = (progress) => {
+        if (!scene) {
+          return null;
+        }
+        const replayTime =
+          scene.playbackStartTime +
+          (scene.playbackEndTime - scene.playbackStartTime) * progress;
+        runtime.setPlaying(false, {
+          holdScene: scene,
+          holdReplayTime: replayTime,
+        });
+        runtime.render(replayTime);
+        return runtime.inverseSquareSpreadingFrame;
+      };
+      const earlierFrame = inspectFrame(0.25);
+      const laterFrame = inspectFrame(Number(${proof.storyProgress}));
+      const canvasDataset = runtime.dom.canvas.dataset;
+      const bodyKinds = ["positrino", "electrino"];
+      const bodiesStayFixed = bodyKinds.every((kind) => {
+        const earlierBody = earlierFrame?.bodies?.[kind];
+        const laterBody = laterFrame?.bodies?.[kind];
+        return (
+          earlierBody?.pathProgress === 0.5 &&
+          laterBody?.pathProgress === 0.5 &&
+          Math.abs(earlierBody.point.x - laterBody.point.x) <= 1e-9 &&
+          Math.abs(earlierBody.point.y - laterBody.point.y) <= 1e-9
+        );
+      });
+      const positrinoWakes = laterFrame?.wakes.filter(
+        (wake) => wake.sourceKind === "positrino",
+      ) ?? [];
+      const electrinoWakes = laterFrame?.wakes.filter(
+        (wake) => wake.sourceKind === "electrino",
+      ) ?? [];
+      const emissionProgresses = [
+        ...new Set(positrinoWakes.map((wake) => wake.emissionProgress)),
+      ];
+      const emissionGaps = emissionProgresses.slice(1).map(
+        (progress, index) => progress - emissionProgresses[index],
+      );
+      const equalEmissionIntervals =
+        emissionGaps.length > 0 &&
+        emissionGaps.every(
+          (gap) => Math.abs(gap - laterFrame.emissionInterval) <= 1e-12,
+        );
+      const geometricDilution = laterFrame?.wakes.every(
+        (wake) =>
+          wake.emittedAmount === 1 &&
+          wake.center === laterFrame.bodies[wake.sourceKind].point &&
+          wake.radius > 0 &&
+          Math.abs(
+            wake.sphericalArea - 4 * Math.PI * wake.radius * wake.radius
+          ) <= 1e-6 &&
+          Math.abs(
+            wake.inverseRadiusSquared - 1 / (wake.radius * wake.radius)
+          ) <= 1e-12,
+      );
+      const commonWakesExpand = earlierFrame?.wakes.every((wake) => {
+        const laterWake = laterFrame?.wakes.find(
+          (candidate) => candidate.id === wake.id,
+        );
+        return (
+          laterWake &&
+          laterWake.radius > wake.radius &&
+          laterWake.inverseRadiusSquared < wake.inverseRadiusSquared
+        );
+      });
+      const inverseSquareContract =
+        scene?.id === "inverse-square-spreading" &&
+        actualLessonTitle === expectedLessonTitle &&
+        actualLessonBody === expectedLessonBody &&
+        actualLabels.join("|") === expectedLabels.join("|") &&
+        lessonSixButton &&
+        lessonSixButton.disabled === false &&
+        lessonSixButton.getAttribute("aria-current") === "step" &&
+        uiPlayAdvanced &&
+        uiPauseWorked &&
+        previewButtons.length === 0 &&
+        document.querySelectorAll("[data-causal-lesson]").length === 8 &&
+        bodiesStayFixed &&
+        positrinoWakes.length > 0 &&
+        positrinoWakes.length === electrinoWakes.length &&
+        equalEmissionIntervals &&
+        geometricDilution &&
+        commonWakesExpand &&
+        canvasDataset.inverseSquareFixture ===
+          "shared-paired-path-fixed-halfway-constant-rate-circular-wakes" &&
+        canvasDataset.inverseSquareBodyProgress === "0.500000" &&
+        canvasDataset.inverseSquareWakeShape === "full-circular" &&
+        canvasDataset.inverseSquareWakeCenters === "fixed-body-points" &&
+        canvasDataset.inverseSquareEmissionCadence ===
+          "equal-interval-normalized-lesson-progress" &&
+        canvasDataset.inverseSquareComparisonOrnamentCount === "0" &&
+        canvasDataset.inverseSquareFormulaLabelCount === "0" &&
+        canvasDataset.inverseSquareDotStarGraphic === "false" &&
+        canvasDataset.inverseSquareFieldAmplitudeClaim === "false" &&
+        canvasDataset.inverseSquarePhysicalLawClaim === "false" &&
+        canvasDataset.displayEvidenceStatus === "display-only" &&
+        canvasDataset.displayPhysicsAcceptance === "false";
+      if (!inverseSquareContract) {
+        return {
+          ok: false,
+          reason: "inverse_square_spreading_contract_failed",
+          expectedLessonTitle,
+          actualLessonTitle,
+          expectedLessonBody,
+          actualLessonBody,
+          expectedLabels,
+          actualLabels,
+          sceneId: scene?.id ?? null,
+          lessonSixButton: Boolean(lessonSixButton),
+          lessonSixDisabled: lessonSixButton?.disabled,
+          playButton: Boolean(playButton),
+          uiPlayAdvanced,
+          uiPauseWorked,
+          initialLivePhase: initialLiveFrame?.phase,
+          playingLivePhase: playingLiveFrame?.phase,
+          playingLiveWakeCount: playingLiveFrame?.wakes.length,
+          previewCount: previewButtons.length,
+          lessonCount: document.querySelectorAll("[data-causal-lesson]").length,
+          bodiesStayFixed,
+          positrinoWakeCount: positrinoWakes.length,
+          electrinoWakeCount: electrinoWakes.length,
+          emissionGaps,
+          equalEmissionIntervals,
+          geometricDilution,
+          commonWakesExpand,
+          earlierFrame,
+          laterFrame,
+          dataset: {
+            fixture: canvasDataset.inverseSquareFixture,
+            bodyProgress: canvasDataset.inverseSquareBodyProgress,
+            wakeShape: canvasDataset.inverseSquareWakeShape,
+            wakeCenters: canvasDataset.inverseSquareWakeCenters,
+            emissionCadence: canvasDataset.inverseSquareEmissionCadence,
+            comparisonOrnamentCount:
+              canvasDataset.inverseSquareComparisonOrnamentCount,
+            formulaLabelCount: canvasDataset.inverseSquareFormulaLabelCount,
+            dotStarGraphic: canvasDataset.inverseSquareDotStarGraphic,
+            fieldAmplitudeClaim:
+              canvasDataset.inverseSquareFieldAmplitudeClaim,
+            physicalLawClaim: canvasDataset.inverseSquarePhysicalLawClaim,
+            evidenceStatus: canvasDataset.displayEvidenceStatus,
+            physicsAcceptance: canvasDataset.displayPhysicsAcceptance,
+          },
+        };
+      }
+      canvasDataset.browserInverseSquareSpreading =
+        "enabled-fixed-halfway-equal-interval-circular-wakes";
+    }
+    if (${proof.verifySuperposition === true ? "true" : "false"}) {
+      const expectedLabels = [
+        "1. Meet the Electrino and Positrino Transceivers",
+        "2. Wakes Received Now Were Transmitted in the Past",
+        "3. Two Reciprocal Causal Relationships",
+        "4. Motion Changes Wake Shape",
+        "5. Wake Buildup at Field Speed",
+        "6. Wake Strength Decreases as it Expands",
+        "7. Wakes Combine by Superposition",
+        "8. Continuous Delayed Feedback",
+        "Laboratory",
+      ];
+      const actualLabels = Array.from(
+        document.querySelectorAll("#causal-delay-feedback-mode-tabs .causal-mode-tab"),
+      ).map((button) => button.textContent?.trim());
+      const lessonSevenButton = document.querySelector('[data-causal-lesson="6"]');
+      const lessonEightButton = document.querySelector('[data-causal-lesson="7"]');
+      const previewButtons = document.querySelectorAll("[data-causal-preview]");
+      const expectedProgress = Number(${proof.storyProgress});
+      const scene = runtime.storyHeldFrame?.scene;
+      const initialReplayTime = scene?.playbackStartTime;
+      runtime.setPlaying(false, {
+        holdScene: scene,
+        holdReplayTime: initialReplayTime,
+      });
+      runtime.render(initialReplayTime);
+      const initialPathTimes =
+        runtime.superpositionScene?.bodies.map((body) => body.pathTime) ?? [];
+      const heldReplayTime = scene
+        ? scene.playbackStartTime +
+          (scene.playbackEndTime - scene.playbackStartTime) * expectedProgress
+        : Number.NaN;
+      runtime.setPlaying(false, {
+        holdScene: scene,
+        holdReplayTime: heldReplayTime,
+      });
+      runtime.render(heldReplayTime);
+      const fixture = runtime.superpositionScene;
+      runtime.setPlaying(false, {
+        holdScene: scene,
+        holdReplayTime: scene?.playbackEndTime,
+      });
+      runtime.render(scene?.playbackEndTime);
+      const terminalPathTimes =
+        runtime.superpositionScene?.bodies.map((body) => body.pathTime) ?? [];
+      runtime.setPlaying(false, {
+        holdScene: scene,
+        holdReplayTime: heldReplayTime,
+      });
+      runtime.render(heldReplayTime);
+      const canvasDataset = runtime.dom.canvas.dataset;
+      const increments = fixture?.bodies.map(
+        (body, index) => body.pathTime - initialPathTimes[index],
+      ) ?? [];
+      const larger = fixture?.contributions.find(
+        (contribution) => contribution.teachingWeight > 1,
+      );
+      const smaller = fixture?.contributions.find(
+        (contribution) => contribution.teachingWeight === 1,
+      );
+      const superpositionContract =
+        scene?.id === "superposition" &&
+        actualLabels.join("|") === expectedLabels.join("|") &&
+        lessonSevenButton &&
+        lessonSevenButton.getAttribute("aria-current") === "step" &&
+        lessonEightButton &&
+        previewButtons.length === 0 &&
+        document.querySelectorAll("[data-causal-lesson]").length === 8 &&
+        fixture?.bodies.length === 3 &&
+        initialPathTimes.join(",") === "0,0.25,0.5" &&
+        increments.length === 3 &&
+        increments.every(
+          (increment) => Math.abs(increment - expectedProgress * 0.5) <= 1e-9,
+        ) &&
+        fixture.bodies.map((body) => body.label).join(",") ===
+          "electrino,positrino,electrino" &&
+        terminalPathTimes.join(",") === "0.5,0.75,1" &&
+        fixture.selectedArcs.length === 2 &&
+        fixture.selectedArcs.every(
+          (arc) =>
+            arc.direction === "electrino-to-positrino" &&
+            arc.wakeFront.style === "standard-fading-dotted-wake-front",
+        ) &&
+        fixture.componentArrows.length === 2 &&
+        larger?.arrow.lengthFraction > smaller?.arrow.lengthFraction &&
+        larger?.arrow.width === smaller?.arrow.width &&
+        fixture.netAccelerationArrow?.label === "net acceleration" &&
+        canvasDataset.superpositionArrowheadStyle === "clean-triangle" &&
+        canvasDataset.superpositionArrowShaftEnd ===
+          "triangle-base-no-terminal-marker" &&
+        canvasDataset.superpositionWhiteArrowStrokeWidth === "3.2" &&
+        canvasDataset.superpositionBodyLabels ===
+          "electrino|positrino|electrino" &&
+        canvasDataset.superpositionLabelStyle ===
+          "lesson-one-lowercase-polarity-colors" &&
+        canvasDataset.superpositionArcVisual === "curved_fading_causal_arcs" &&
+        canvasDataset.superpositionNetDirection === "approximately-downward" &&
+        canvasDataset.superpositionOmittedReciprocalSet === "true" &&
+        canvasDataset.displayEvidenceStatus === "display-only";
+      if (!superpositionContract) {
+        return {
+          ok: false,
+          reason: "superposition_contract_failed",
+          expectedLabels,
+          actualLabels,
+          expectedProgress,
+          sceneId: scene?.id ?? null,
+          initialPathTimes,
+          increments,
+          terminalPathTimes,
+          lessonSevenButton: Boolean(lessonSevenButton),
+          lessonEightButton: Boolean(lessonEightButton),
+          previewCount: previewButtons.length,
+          lessonCount: document.querySelectorAll("[data-causal-lesson]").length,
+          fixture,
+          dataset: {
+            selectedArcCount: canvasDataset.superpositionSelectedArcCount,
+            componentArrowCount: canvasDataset.superpositionComponentArrowCount,
+            hasNetAcceleration: canvasDataset.superpositionHasNetAcceleration,
+            wakeStyle: canvasDataset.superpositionWakeStyle,
+            arcVisual: canvasDataset.superpositionArcVisual,
+            arrowheadStyle: canvasDataset.superpositionArrowheadStyle,
+            arrowShaftEnd: canvasDataset.superpositionArrowShaftEnd,
+            whiteArrowStrokeWidth:
+              canvasDataset.superpositionWhiteArrowStrokeWidth,
+            bodyLabels: canvasDataset.superpositionBodyLabels,
+            labelStyle: canvasDataset.superpositionLabelStyle,
+            allAdvanceTogether: canvasDataset.superpositionAllAdvanceTogether,
+            omittedReciprocalSet: canvasDataset.superpositionOmittedReciprocalSet,
+            netDirection: canvasDataset.superpositionNetDirection,
+            evidenceStatus: canvasDataset.displayEvidenceStatus,
+          },
+        };
+      }
+      canvasDataset.browserSuperposition =
+        "three-shared-path-bodies-two-selected-components-downward-net";
+    }
+    if (${proof.verifyContinuousDelayedFeedback === true ? "true" : "false"}) {
+      const expectedLabels = [
+        "1. Meet the Electrino and Positrino Transceivers",
+        "2. Wakes Received Now Were Transmitted in the Past",
+        "3. Two Reciprocal Causal Relationships",
+        "4. Motion Changes Wake Shape",
+        "5. Wake Buildup at Field Speed",
+        "6. Wake Strength Decreases as it Expands",
+        "7. Wakes Combine by Superposition",
+        "8. Continuous Delayed Feedback",
+        "Laboratory",
+      ];
+      const actualLabels = Array.from(
+        document.querySelectorAll("#causal-delay-feedback-mode-tabs .causal-mode-tab"),
+      ).map((button) => button.textContent?.trim());
+      const lessonEightButton = document.querySelector('[data-causal-lesson="7"]');
+      const previewButtons = document.querySelectorAll("[data-causal-preview]");
+      const expectedProgress = Number(${proof.storyProgress});
+      const scene = runtime.storyHeldFrame?.scene;
+      const desiredReplayTime = scene
+        ? scene.playbackStartTime +
+          (scene.playbackEndTime - scene.playbackStartTime) * expectedProgress
+        : Number.NaN;
+      const inspectFrame = (replayTime) => {
+        if (!scene) {
+          return null;
+        }
+        runtime.setPlaying(false, {
+          holdScene: scene,
+          holdReplayTime: replayTime,
+        });
+        runtime.render(replayTime);
+        return runtime.createStoryContinuousDelayedFeedbackFrame(scene, replayTime);
+      };
+      const startFrame = inspectFrame(scene?.playbackStartTime);
+      const heldFrame = inspectFrame(desiredReplayTime);
+      const canvasDataset = runtime.dom.canvas.dataset;
+      const activeKinds = heldFrame?.activeArcs
+        .map((arc) => \`\${arc.sourceKind}->\${arc.targetKind}\`)
+        .sort();
+      const sharedArcSpacing = runtime.getWakeFrontSpacing();
+      const measureSpacing = (source, receiver, progresses) => {
+        const distance = Math.hypot(
+          Number(receiver?.x) - Number(source?.x),
+          Number(receiver?.y) - Number(source?.y),
+        );
+        const distances = progresses.map((progress) => progress * distance);
+        const gaps = distances.map(
+          (value, index) => value - (distances[index - 1] ?? 0),
+        );
+        return {
+          distance,
+          gaps,
+          matchesSharedSpacing:
+            gaps.length > 0 &&
+            gaps.slice(0, -1).every(
+              (gap) => Math.abs(gap - sharedArcSpacing) <= 1e-6,
+            ) &&
+            gaps.at(-1) > 0 &&
+            gaps.at(-1) <= sharedArcSpacing + 1e-6,
+        };
+      };
+      const lessonTwoLink = runtime.getStoryVisibleWakeSeries(desiredReplayTime)[0];
+      const lessonTwoTiming = runtime.getWakeTiming(
+        lessonTwoLink,
+        desiredReplayTime,
+      );
+      const lessonTwoProgresses = runtime.getWakeFrontProgresses(
+        lessonTwoTiming,
+        lessonTwoLink,
+      );
+      const lessonTwoSpacing = measureSpacing(
+        lessonTwoTiming?.source,
+        lessonTwoTiming?.receiver,
+        lessonTwoProgresses,
+      );
+      const lessonEightArc = heldFrame?.activeArcs[0] ?? heldFrame?.frozenArcs[0];
+      const lessonEightTarget = lessonEightArc?.frozen
+        ? lessonEightArc?.end
+        : lessonEightArc?.current;
+      const lessonEightDistance = Math.hypot(
+        Number(lessonEightTarget?.x) - Number(lessonEightArc?.start?.x),
+        Number(lessonEightTarget?.y) - Number(lessonEightArc?.start?.y),
+      );
+      const lessonEightProgresses = runtime.getWakeFrontProgresses(
+        {
+          source: lessonEightArc?.start,
+          receiver: lessonEightTarget,
+          liveWakeSeries: true,
+        },
+        {
+          distance: lessonEightDistance,
+          liveWakeSeries: true,
+        },
+      );
+      const lessonEightSpacing = measureSpacing(
+        lessonEightArc?.start,
+        lessonEightTarget,
+        lessonEightProgresses,
+      );
+      const spacingParity =
+        lessonTwoSpacing.matchesSharedSpacing &&
+        lessonEightSpacing.matchesSharedSpacing &&
+        Math.abs(
+          Number(canvasDataset.continuousDelayedFeedbackArcSpacing) -
+          sharedArcSpacing
+        ) <= 1e-6;
+      const expectedCompletedRounds = Math.floor(expectedProgress * 6 + 1e-9);
+      const chainContract =
+        scene?.id === "continuous-delayed-feedback" &&
+        startFrame?.displayProgress === 0 &&
+        startFrame?.frozenArcs.length === 0 &&
+        startFrame?.activeArcs.length === 2 &&
+        heldFrame?.frozenArcs.length === expectedCompletedRounds * 2 &&
+        heldFrame?.activeArcs.length === 2 &&
+        heldFrame.activeArcs.every((arc) => arc.progress > 0 && arc.progress < 1) &&
+        activeKinds?.join(",") === "electrino->positrino,positrino->electrino" &&
+        canvasDataset.continuousDelayedFeedbackArcVisual ===
+          "curved_fading_causal_arcs" &&
+        canvasDataset.continuousDelayedFeedbackArcCadence ===
+          "lesson-two-wake-front-cadence" &&
+        spacingParity &&
+        canvasDataset.continuousDelayedFeedbackEndpointMarkerCount === "0" &&
+        canvasDataset.continuousDelayedFeedbackSourceOrigin ===
+          "timed_path_emission_point" &&
+        actualLabels.join("|") === expectedLabels.join("|") &&
+        lessonEightButton &&
+        previewButtons.length === 0 &&
+        document.querySelectorAll("[data-causal-lesson]").length === 8 &&
+        canvasDataset.continuousDelayedFeedbackStartAtLeftEnds === "false" &&
+        canvasDataset.continuousDelayedFeedbackFrozenArcCount ===
+          String(expectedCompletedRounds * 2) &&
+        canvasDataset.continuousDelayedFeedbackActiveArcCount === "2";
+      if (!chainContract) {
+        return {
+          ok: false,
+          reason: "continuous_delayed_feedback_contract_failed",
+          expectedLabels,
+          actualLabels,
+          expectedProgress,
+          desiredReplayTime,
+          sceneId: scene?.id ?? null,
+          startFrame,
+          heldFrame,
+          activeKinds,
+          sharedArcSpacing,
+          lessonTwoSpacing,
+          lessonEightSpacing,
+          spacingParity,
+          expectedCompletedRounds,
+          lessonEightButton: Boolean(lessonEightButton),
+          previewCount: previewButtons.length,
+          lessonCount: document.querySelectorAll("[data-causal-lesson]").length,
+          dataset: {
+            fixture: canvasDataset.continuousDelayedFeedbackFixture,
+            startAtLeftEnds: canvasDataset.continuousDelayedFeedbackStartAtLeftEnds,
+            frozenArcCount: canvasDataset.continuousDelayedFeedbackFrozenArcCount,
+            activeArcCount: canvasDataset.continuousDelayedFeedbackActiveArcCount,
+          },
+        };
+      }
+      canvasDataset.browserContinuousDelayedFeedback =
+        "start-zero-frozen-history-active-pair-desktop-or-narrow";
+    }
+    if (${proof.verifyTransportState === true ? "true" : "false"}) {
+      const firstFrameButton = document.querySelector(
+        "#causal-delay-feedback-guided-first-frame"
+      );
+      const playButton = document.querySelector(
+        "#causal-delay-feedback-guided-play"
+      );
+      const lastFrameButton = document.querySelector(
+        "#causal-delay-feedback-guided-last-frame"
+      );
+      const captureTransportState = () => ({
+        playing: runtime.isPlaying,
+        playback: { ...runtime.learnerState.playback },
+        playDisabled: playButton?.disabled,
+        playLabel: playButton?.getAttribute("aria-label"),
+        playPressed: playButton?.getAttribute("aria-pressed"),
+        replayTime: runtime.getCurrentReplayTime(),
+      });
+      firstFrameButton?.click();
+      const firstState = captureTransportState();
+      playButton?.click();
+      const playingState = captureTransportState();
+      await new Promise((resolve) => setTimeout(resolve, 80));
+      playButton?.click();
+      const pausedState = captureTransportState();
+      lastFrameButton?.click();
+      const lastState = captureTransportState();
+      firstFrameButton?.click();
+      const resetState = captureTransportState();
+      playButton?.click();
+      await new Promise((resolve) => setTimeout(resolve, 80));
+      playButton?.click();
+      const finalPausedState = captureTransportState();
+      const transportContract =
+        firstFrameButton &&
+        playButton &&
+        lastFrameButton &&
+        firstState.playing === false &&
+        firstState.playback.resumable === false &&
+        firstState.playback.completed === false &&
+        playingState.playing === true &&
+        playingState.playLabel === "Pause lesson" &&
+        playingState.playPressed === "true" &&
+        pausedState.playing === false &&
+        pausedState.playback.resumable === true &&
+        pausedState.playLabel === "Resume lesson" &&
+        lastState.playing === false &&
+        lastState.playback.completed === true &&
+        lastState.playDisabled === true &&
+        lastState.playLabel?.startsWith("Lesson complete;") &&
+        resetState.playing === false &&
+        resetState.playback.resumable === false &&
+        resetState.playback.completed === false &&
+        resetState.playDisabled === false &&
+        resetState.playLabel === "Play lesson" &&
+        finalPausedState.playing === false &&
+        finalPausedState.playback.resumable === true &&
+        finalPausedState.playLabel === "Resume lesson";
+      if (!transportContract) {
+        return {
+          ok: false,
+          reason: "shared_transport_state_contract_failed",
+          controlsFound: {
+            firstFrame: Boolean(firstFrameButton),
+            play: Boolean(playButton),
+            lastFrame: Boolean(lastFrameButton),
+          },
+          firstState,
+          playingState,
+          pausedState,
+          lastState,
+          resetState,
+          finalPausedState,
+        };
+      }
+      runtime.dom.canvas.dataset.browserTransportState =
+        "first-play-pause-last-reset-resume";
+    }
+    if (${proof.verifyReducedMotionPlayback === true ? "true" : "false"}) {
+      const playButton = document.querySelector(
+        "#causal-delay-feedback-guided-play"
+      );
+      const startsPaused = runtime.isPlaying === false;
+      playButton?.click();
+      const manualPlayWorks =
+        runtime.isPlaying === true &&
+        playButton?.getAttribute("aria-label") === "Pause lesson";
+      playButton?.click();
+      const manualPauseWorks =
+        runtime.isPlaying === false &&
+        runtime.learnerState.playback.resumable === true &&
+        playButton?.getAttribute("aria-label") === "Resume lesson";
+      if (!startsPaused || !manualPlayWorks || !manualPauseWorks) {
+        return {
+          ok: false,
+          reason: "reduced_motion_playback_contract_failed",
+          startsPaused,
+          manualPlayWorks,
+          manualPauseWorks,
+          playLabel: playButton?.getAttribute("aria-label"),
+        };
+      }
+      runtime.dom.canvas.dataset.browserReducedMotionPlayback =
+        "paused-manual-play-pause";
+    }
     const liveWakeSeries = runtime.getVisibleWakeSeries(runtime.getCurrentReplayTime());
     const link =
       liveWakeSeries.find((candidate) => candidate.id === ${JSON.stringify(proof.wakeSeriesId ?? "")}) ||
@@ -793,13 +2202,254 @@ function createPrepareProofExpression(proof) {
     if (!link) {
       return { ok: false, reason: "wake_series_missing" };
     }
+    if (${proof.verifyReciprocalInitialArcs === true ? "true" : "false"}) {
+      const entryState = runtime.getLaboratoryInitialReplayState();
+      const sourceKinds = liveWakeSeries
+        .map((candidate) => candidate.sourceKind)
+        .sort();
+      const bothArcsVisible =
+        liveWakeSeries.length === 2 &&
+        sourceKinds.join(",") === "electrino,positrino" &&
+        liveWakeSeries.every((candidate) =>
+          runtime.hasVisibleLaboratoryWakeArcGeometry(
+            candidate,
+            runtime.getCurrentReplayTime(),
+          ));
+      if (
+        !entryState.hasReciprocalVisibility ||
+        Math.abs(runtime.getCurrentReplayTime() - entryState.time) > 1e-9 ||
+        !bothArcsVisible
+      ) {
+        return {
+          ok: false,
+          reason: "reciprocal_initial_arcs_missing",
+          entryState,
+          replayTime: runtime.getCurrentReplayTime(),
+          sourceKinds,
+          bothArcsVisible,
+        };
+      }
+      runtime.dom.canvas.dataset.browserReciprocalEntry = "both-visible";
+    }
+    if (${proof.verifyForwardWakeBuildup === true ? "true" : "false"}) {
+      const forwardScene = runtime.storyHeldFrame?.scene;
+      const playbackFractions = [0.05, 0.1, 0.3, 0.5, 0.7, 0.9, 1];
+      const fractionChecks = [];
+      if (forwardScene?.id !== "forward-buildup") {
+        return {
+          ok: false,
+          reason: "forward_wake_buildup_scene_missing",
+          heldSceneId: forwardScene?.id ?? null,
+        };
+      }
+      const verifySphereFrame = (scene, replayTime, label) => {
+        runtime.setPlaying(false, {
+          holdScene: scene,
+          holdReplayTime: replayTime,
+        });
+        runtime.render(replayTime);
+        const frame = runtime.createStoryForwardWakeBuildupFrame(
+          scene,
+          replayTime,
+        );
+        const canvasDataset = runtime.dom.canvas.dataset;
+        const sphereChecks = frame.fronts.map((front) => {
+          const sphere = runtime.getForwardWakeBuildupSphereGeometry(front);
+          if (!sphere) {
+            return {
+              ok: false,
+              transmitterId: front.transmitterId,
+              reason: "sphere_geometry_missing",
+            };
+          }
+          return {
+            ok:
+              sphere.maximumDisplayedTimeLead <= 1e-7 &&
+              sphere.leadingProjectionError <= 1e-7 &&
+              Math.abs(sphere.minimumScreenRadius - sphere.radius) <= 1e-7 &&
+              Math.abs(sphere.maximumScreenRadius - sphere.radius) <= 1e-7 &&
+              sphere.upperPointCount > 0 &&
+              sphere.lowerPointCount > 0 &&
+              front.leadingPoint === front.currentBody &&
+              front.bodyAnchoredFullSphereProjection === true,
+            transmitterId: front.transmitterId,
+            maximumDisplayedTimeLead: sphere.maximumDisplayedTimeLead,
+            sphereLeadingError: sphere.leadingProjectionError,
+            minimumScreenRadius: sphere.minimumScreenRadius,
+            maximumScreenRadius: sphere.maximumScreenRadius,
+            screenRadiusError: Math.max(
+              Math.abs(sphere.minimumScreenRadius - sphere.radius),
+              Math.abs(sphere.maximumScreenRadius - sphere.radius),
+            ),
+            upperPointCount: sphere.upperPointCount,
+            lowerPointCount: sphere.lowerPointCount,
+          };
+        });
+        const slopeSigns = [
+          ...new Set(
+            frame.fronts
+              .map((front) => Math.sign(
+                Number(front.currentBody?.y) - Number(front.center?.y),
+              ))
+              .filter((sign) => sign !== 0),
+          ),
+        ];
+        const bodyWakeSpeedMatch =
+          canvasDataset.forwardWakeBuildupFixture ===
+            "paired_story_template_equal_body_arc_length_and_wake_speed" &&
+          canvasDataset.forwardWakeBuildupMinimumSpeedRatio === "1.000000000" &&
+          canvasDataset.forwardWakeBuildupMaximumSpeedRatio === "1.000000000";
+        const wakeCount = Number(canvasDataset.forwardWakeBuildupWakeCount);
+        const ok =
+          bodyWakeSpeedMatch &&
+          wakeCount === frame.fronts.length &&
+          wakeCount > 0 &&
+          sphereChecks.every((check) => check.ok) &&
+          canvasDataset.forwardWakeBuildupMaximumLeadingError ===
+            "0.000000000" &&
+          canvasDataset.forwardWakeBuildupFrontClip ===
+            "body-anchored-full-sphere-projection" &&
+          canvasDataset.forwardWakeBuildupInheritedHistory === "false" &&
+          canvasDataset.forwardWakeBuildupDiffersFromMeet ===
+            "equal-body-and-wake-speed";
+        return {
+          label,
+          ok,
+          wakeCount,
+          bodyWakeSpeedMatch,
+          maximumLeadingError:
+            canvasDataset.forwardWakeBuildupMaximumLeadingError,
+          frontClip: canvasDataset.forwardWakeBuildupFrontClip,
+          inheritedHistory:
+            canvasDataset.forwardWakeBuildupInheritedHistory,
+          slopeSigns,
+          failedSphereChecks: sphereChecks.filter((check) => !check.ok),
+        };
+      };
+      for (const fraction of playbackFractions) {
+        const replayTime =
+          forwardScene.playbackStartTime +
+          (forwardScene.playbackEndTime - forwardScene.playbackStartTime) *
+            fraction;
+        fractionChecks.push(
+          verifySphereFrame(forwardScene, replayTime, fraction),
+        );
+      }
+      const lessonFourButton = document.querySelector(
+        '[data-causal-lesson="3"]',
+      );
+      lessonFourButton?.click();
+      const lessonFiveButton = document.querySelector(
+        '[data-causal-lesson="4"]',
+      );
+      lessonFiveButton?.click();
+      const returnedFresh =
+        runtime.learnerState?.mode === "story" &&
+        runtime.learnerState?.storyStep === 4 &&
+        runtime.storyHeldFrame == null &&
+        runtime.learnerState?.playback?.resumable === false;
+      runtime.setPlaying(true, { restartStory: true });
+      const returnedScene = runtime.storyPlaybackScene;
+      const returnedReplayTime =
+        returnedScene.playbackStartTime +
+        (returnedScene.playbackEndTime - returnedScene.playbackStartTime) * 0.5;
+      const returnCheck = verifySphereFrame(
+        returnedScene,
+        returnedReplayTime,
+        "return-to-Lesson-Five",
+      );
+      returnCheck.returnedFresh = returnedFresh;
+      returnCheck.ok = returnCheck.ok && returnedFresh;
+      fractionChecks.push(returnCheck);
+      const failedFractionChecks = fractionChecks.filter((check) => !check.ok);
+      const slopeSigns = [
+        ...new Set(fractionChecks.flatMap((check) => check.slopeSigns ?? [])),
+      ];
+      const hasPositiveAndNegativeSlopes =
+        slopeSigns.includes(1) && slopeSigns.includes(-1);
+      if (failedFractionChecks.length > 0) {
+        return {
+          ok: false,
+          reason: "forward_wake_buildup_contract_failed",
+          failedFractionChecks,
+          storyStep: runtime.learnerState?.storyStep,
+          causalScene: runtime.dom.canvas.dataset.causalScene,
+          hasContext: Boolean(runtime.context),
+          heldSceneId: runtime.storyHeldFrame?.scene?.id ?? null,
+        };
+      }
+      if (!hasPositiveAndNegativeSlopes) {
+        return {
+          ok: false,
+          reason: "forward_wake_buildup_slopes_not_exercised",
+          slopeSigns,
+          fractionChecks,
+        };
+      }
+      const screenshotProgress = Number.isFinite(requestedStoryProgress)
+        ? requestedStoryProgress
+        : 0.9;
+      const screenshotReplayTime =
+        forwardScene.playbackStartTime +
+        (forwardScene.playbackEndTime - forwardScene.playbackStartTime) *
+          screenshotProgress;
+      runtime.setPlaying(false, {
+        holdScene: forwardScene,
+        holdReplayTime: screenshotReplayTime,
+      });
+      runtime.render(screenshotReplayTime);
+      runtime.dom.canvas.dataset.browserForwardWakeBuildup =
+        "body-anchored-full-sphere-projections";
+      runtime.dom.canvas.dataset.browserForwardWakeBuildupFractions =
+        playbackFractions.map((fraction) => fraction.toFixed(2)).join(",");
+    }
     runtime.selectedItem = { type: "wake", linkId: link.id };
-    runtime.dom.settingsPanel.hidden = ${proof.settingsOpen === false ? "true" : "false"};
-    runtime.dom.settingsButton.setAttribute(
-      "aria-expanded",
-      ${proof.settingsOpen === false ? JSON.stringify("false") : JSON.stringify("true")}
-    );
     runtime.updateReadout(runtime.createWakeHit(link, 0));
+    if (${proof.verifySharedEmissionOrigins === true ? "true" : "false"}) {
+      const drawnWakeLinks = [];
+      const drawnEmissionMarkers = [];
+      const originalDrawWakeProgression = runtime.drawWakeProgression;
+      const originalDrawTransmissionGhost = runtime.drawTransmissionGhost;
+      runtime.drawWakeProgression = function (ctx, drawnLink, drawnReplayTime) {
+        drawnWakeLinks.push(drawnLink);
+        return originalDrawWakeProgression.call(this, ctx, drawnLink, drawnReplayTime);
+      };
+      runtime.drawTransmissionGhost = function (ctx, point, kind, options) {
+        drawnEmissionMarkers.push({ point, kind });
+        return originalDrawTransmissionGhost.call(this, ctx, point, kind, options);
+      };
+      try {
+        runtime.render(runtime.getCurrentReplayTime());
+      } finally {
+        runtime.drawWakeProgression = originalDrawWakeProgression;
+        runtime.drawTransmissionGhost = originalDrawTransmissionGhost;
+      }
+      const exactSharedOrigins = liveWakeSeries.every((wakeLink) => {
+        const drawnWakeLink = drawnWakeLinks.find(
+          (candidate) => candidate.id === wakeLink.id
+        );
+        const marker = drawnEmissionMarkers.find(
+          (candidate) => candidate.kind === wakeLink.sourceKind
+        );
+        return drawnWakeLink === wakeLink && marker?.point === wakeLink.source;
+      });
+      if (
+        liveWakeSeries.length !== 2 ||
+        drawnWakeLinks.length !== 2 ||
+        drawnEmissionMarkers.length !== 2 ||
+        !exactSharedOrigins
+      ) {
+        return {
+          ok: false,
+          reason: "emission_marker_wake_origin_mismatch",
+          liveWakeSeriesCount: liveWakeSeries.length,
+          drawnWakeLinkCount: drawnWakeLinks.length,
+          drawnEmissionMarkerCount: drawnEmissionMarkers.length,
+          exactSharedOrigins,
+        };
+      }
+      runtime.dom.canvas.dataset.browserEmissionOriginCoincidence = "exact";
+    }
     runtime.render(runtime.getCurrentReplayTime());
     runtime.modeController?.renderLiveState();
     window.scrollTo(0, 0);
@@ -851,6 +2501,216 @@ function createPrepareProofExpression(proof) {
         expected: expectedSecondaryText,
         actualMode,
       };
+    }
+    if (${proof.verifyOrderedLearnerSurface === true ? "true" : "false"}) {
+      const expectedLabels = [
+        "1. Meet the Electrino and Positrino Transceivers",
+        "2. Wakes Received Now Were Transmitted in the Past",
+        "3. Two Reciprocal Causal Relationships",
+        "4. Motion Changes Wake Shape",
+        "5. Wake Buildup at Field Speed",
+        "6. Wake Strength Decreases as it Expands",
+        "7. Wakes Combine by Superposition",
+        "8. Continuous Delayed Feedback",
+        "Laboratory",
+      ];
+      const expectedActiveLabels = expectedLabels.slice(0, 8);
+      const lessonButtons = Array.from(
+        document.querySelectorAll(
+          "#causal-delay-feedback-mode-tabs .causal-mode-tab"
+        )
+      );
+      const actualLabels = lessonButtons.map((button) =>
+        button.textContent?.trim()
+      );
+      const currentLabels = lessonButtons
+        .filter((button) => button.getAttribute("aria-current") === "step")
+        .map((button) => button.textContent?.trim());
+      const expectedCurrentLabel =
+        runtime.learnerState?.mode === "sandbox"
+          ? "Laboratory"
+          : expectedActiveLabels[Number(runtime.learnerState?.storyStep)];
+      if (
+        JSON.stringify(actualLabels) !== JSON.stringify(expectedLabels) ||
+        currentLabels.length !== 1 ||
+        currentLabels[0] !== expectedCurrentLabel ||
+        document.querySelectorAll("[data-causal-lesson]").length !== 8 ||
+        document.querySelectorAll("[data-causal-laboratory]").length !== 1
+      ) {
+        return {
+          ok: false,
+          reason: "ordered_learner_surface_mismatch",
+          expectedLabels,
+          actualLabels,
+          expectedCurrentLabel,
+          currentLabels,
+          lessonCount:
+            document.querySelectorAll("[data-causal-lesson]").length,
+          laboratoryCount:
+            document.querySelectorAll("[data-causal-laboratory]").length,
+          mode: runtime.learnerState?.mode,
+          storyStep: runtime.learnerState?.storyStep,
+        };
+      }
+      runtime.dom.canvas.dataset.browserOrderedLearnerSurface =
+        "five-lessons-one-roadmap-preview-two-promoted-continuations-then-laboratory";
+    }
+    if (${proof.verifyBottomRail === true ? "true" : "false"}) {
+      const bottomRail = document.querySelector(
+        "#causal-delay-feedback-bottom-rail"
+      );
+      const firstFrameButton = document.querySelector(
+        "#causal-delay-feedback-guided-first-frame"
+      );
+      const playButton = document.querySelector(
+        "#causal-delay-feedback-guided-play"
+      );
+      const lastFrameButton = document.querySelector(
+        "#causal-delay-feedback-guided-last-frame"
+      );
+      const scrubber = document.querySelector("#causal-delay-feedback-now");
+      const controls = [
+        firstFrameButton,
+        playButton,
+        lastFrameButton,
+        scrubber,
+      ];
+      const orderedIds = bottomRail
+        ? Array.from(bottomRail.querySelectorAll("button, input")).map(
+            (control) => control.id
+          )
+        : [];
+      const expectedIds = [
+        "causal-delay-feedback-guided-first-frame",
+        "causal-delay-feedback-guided-play",
+        "causal-delay-feedback-guided-last-frame",
+        "causal-delay-feedback-now",
+      ];
+      const railRect = bottomRail?.getBoundingClientRect();
+      const controlRects = controls.map((control) =>
+        control?.getBoundingClientRect()
+      );
+      const withinViewport = (rect) =>
+        rect &&
+        rect.width > 0 &&
+        rect.height > 0 &&
+        rect.left >= -1 &&
+        rect.right <= window.innerWidth + 1 &&
+        rect.top >= -1 &&
+        rect.bottom <= window.innerHeight + 1;
+      const bottomRailContract =
+        bottomRail &&
+        JSON.stringify(orderedIds) === JSON.stringify(expectedIds) &&
+        controls.every(Boolean) &&
+        withinViewport(railRect) &&
+        controlRects.every(withinViewport) &&
+        !document.querySelector("#causal-delay-feedback-now-value") &&
+        Boolean(scrubber?.getAttribute("aria-valuetext")) &&
+        Boolean(bottomRail.dataset.axisAlignedBounds);
+      if (!bottomRailContract) {
+        return {
+          ok: false,
+          reason: "bottom_timeline_rail_contract_failed",
+          expectedIds,
+          orderedIds,
+          controlsFound: controls.map(Boolean),
+          railRect: railRect?.toJSON(),
+          controlRects: controlRects.map((rect) => rect?.toJSON()),
+          viewport: {
+            width: window.innerWidth,
+            height: window.innerHeight,
+          },
+          nowValuePresent: Boolean(
+            document.querySelector("#causal-delay-feedback-now-value")
+          ),
+          ariaValueText: scrubber?.getAttribute("aria-valuetext"),
+          axisAlignedBounds: bottomRail?.dataset.axisAlignedBounds,
+        };
+      }
+      runtime.dom.canvas.dataset.browserBottomRail =
+        bottomRail.dataset.axisAlignedBounds;
+    }
+    if (${proof.verifyRetiredSurfaceAbsence === true ? "true" : "false"}) {
+      const learnerSurfaceText = [
+        document.querySelector("#causal-delay-feedback-mode-tabs"),
+        document.querySelector("#causal-delay-feedback-lesson-panel"),
+      ]
+        .map((element) => element?.textContent ?? "")
+        .join("\\n");
+      const retiredLabels = [
+        "Path History",
+        "Roots",
+        "Self-Hit",
+        "Branch Lab",
+        "Sandbox",
+      ];
+      const survivingLabels = retiredLabels.filter((label) =>
+        learnerSurfaceText.includes(label)
+      );
+      const survivingModeControls = Array.from(
+        document.querySelectorAll("[data-causal-mode]")
+      ).map((element) => ({
+        mode: element.getAttribute("data-causal-mode"),
+        text: element.textContent?.trim(),
+      }));
+      if (survivingLabels.length > 0 || survivingModeControls.length > 0) {
+        return {
+          ok: false,
+          reason: "retired_learner_surface_survives",
+          survivingLabels,
+          survivingModeControls,
+          learnerSurfaceText,
+        };
+      }
+      runtime.dom.canvas.dataset.browserRetiredSurfaceAbsence =
+        "path-history-roots-self-hit-branch-lab-sandbox";
+    }
+    if (${proof.verifySettingsRemoved === true ? "true" : "false"}) {
+      const removedSelectors = [
+        "#causal-delay-feedback-settings",
+        "#causal-delay-feedback-settings-panel",
+        "#causal-delay-feedback-color-swatches",
+        "#causal-delay-feedback-cf-speed",
+        "#causal-delay-feedback-architrino-speed",
+        "#causal-delay-feedback-reset-preset",
+      ];
+      const survivingSelectors = removedSelectors.filter((selector) =>
+        document.querySelector(selector)
+      );
+      const survivingRuntimePaths = [
+        "presetId",
+        "canvasColorId",
+        "architrinoSpeedIndex",
+      ].filter((key) => key in runtime);
+      const survivingRuntimeMethods = [
+        "setPreset",
+        "resetPreset",
+        "setCanvasColor",
+        "setFieldSpeedControlScale",
+        "setArchitrinoSpeedIndex",
+        "toggleSettings",
+        "hideSettings",
+      ].filter((key) => typeof runtime[key] === "function");
+      document.dispatchEvent(new KeyboardEvent("keydown", {
+        key: "Escape",
+        code: "Escape",
+        bubbles: true,
+      }));
+      if (
+        survivingSelectors.length > 0 ||
+        survivingRuntimePaths.length > 0 ||
+        survivingRuntimeMethods.length > 0
+      ) {
+        return {
+          ok: false,
+          reason: "removed_settings_surface_survives",
+          survivingSelectors,
+          survivingRuntimePaths,
+          survivingRuntimeMethods,
+        };
+      }
+      runtime.dom.canvas.dataset.browserSettingsRemoval =
+        "dom-state-handlers-absent";
     }
     const expectedBranchFilterCount =
       ${proof.expectedBranchFilterCount == null
@@ -1502,7 +3362,6 @@ function createPrepareProofExpression(proof) {
     }
     return {
       ok: true,
-      preset: runtime.dataset.preset?.id,
       source,
       selected: link.label,
       status: runtime.dom.replayStatus.textContent,

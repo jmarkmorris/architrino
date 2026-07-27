@@ -73,10 +73,10 @@
   "objects": [
     {
       "id": "ideal_braid",
-      "title": "A1 Lorentz Geometry",
+      "title": "Lorentz Geometry",
       "radius": 2.2,
       "color": "#0f766e",
-      "labelTitle": "A1 Lorentz Geometry",
+      "labelTitle": "Lorentz Geometry",
       "labelBadge": ""
     },
     {

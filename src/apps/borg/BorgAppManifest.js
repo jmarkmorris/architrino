@@ -120,8 +120,8 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
     "renderPixelSize": "3840x2160",
     "layoutRegions": [
       "left-simulation-envelope-rail",
-      "top-layer-strip",
-      "viewport-camera-cluster",
+      "top-layer-and-camera-strip",
+      "upper-right-webapp-controls",
       "right-diagnostics-rail",
       "bottom-timeline"
     ],
@@ -135,8 +135,7 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
       "velocity-vectors"
     ],
     "defaultDisabledLayers": [
-      "wake-streams",
-      "boundary-shell-status"
+      "wake-streams"
     ],
     "authorityPromotionRule": "least-authoritative-applicable-status-wins"
   },
@@ -186,13 +185,6 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
       "firstFailureCode": "wake_history_gap_unclassified"
     },
     {
-      "layer": "boundary-shell-status",
-      "state": "contextual-disabled",
-      "sourceFields": [],
-      "valueAuthority": "fail-closed-value",
-      "firstFailureCode": "missing_boundary_shell_crossing_coverage"
-    },
-    {
       "layer": "diagnostics",
       "state": "on-locked",
       "sourceFields": [
@@ -203,19 +195,15 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
   ],
   "authorityMap": {
     "eomRunFrameRows": "eom-shadow-output",
-    "outerBoundaryShellWireframe": "app-facing-projection",
+    "simulationWindowGuide": "app-facing-projection",
     "velocityRayGeometry": "app-facing-projection",
     "wakeStreams": "fail-closed-value",
-    "boundaryShellStatus": "fail-closed-value",
     "deploymentBudgets": "missing-error-budget",
     "renderQuality": "not-measured"
   },
   "noAuthorityPromotions": true,
   "failClosedFirstFailureCodes": [
     "wake_history_gap_unclassified",
-    "missing_boundary_shell_crossing_coverage",
-    "boundary_shell_influence_model_missing",
-    "boundary_shell_policy_missing",
     "velocity_sampling_protocol_missing"
   ],
   "validation": {
@@ -234,34 +222,9 @@ export const BORG_FAIL_CLOSED_ROWS = deepFreeze([
     "valueAuthority": "fail-closed-value"
   },
   {
-    "firstFailureCode": "missing_boundary_shell_crossing_coverage",
-    "affectedConsumers": [
-      "boundary-shell-status",
-      "boundary-shell-summary-extraction"
-    ],
-    "valueAuthority": "fail-closed-value"
-  },
-  {
-    "firstFailureCode": "boundary_shell_influence_model_missing",
-    "affectedConsumers": [
-      "boundary-shell-replay-source",
-      "boundary-shell-noise-policy"
-    ],
-    "valueAuthority": "fail-closed-value"
-  },
-  {
-    "firstFailureCode": "boundary_shell_policy_missing",
-    "affectedConsumers": [
-      "boundary-replay-decision",
-      "benign-noise-status"
-    ],
-    "valueAuthority": "fail-closed-value"
-  },
-  {
     "firstFailureCode": "velocity_sampling_protocol_missing",
     "affectedConsumers": [
-      "velocity-scale-sampling",
-      "boundary-replay-decision"
+      "velocity-scale-sampling"
     ],
     "valueAuthority": "fail-closed-value"
   }

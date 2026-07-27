@@ -1,5 +1,7 @@
 #include "architrino/eom/Checkpoint.hpp"
 
+#include <algorithm>
+#include <bit>
 #include <cerrno>
 #include <cstdint>
 #include <cstring>
@@ -24,6 +26,7 @@ constexpr char kCheckpointMagic[] = "EOMCPV3\n";
 constexpr std::size_t kMaximumTokenBytes = 16U * 1024U * 1024U;
 constexpr std::uint64_t kMaximumPathCount = UINT64_C(10000000);
 constexpr std::uint64_t kMaximumSegmentCount = UINT64_C(1000000000);
+constexpr std::uint64_t kMaximumJointSymbolCount = UINT64_C(10000000);
 
 void hash_byte(std::uint64_t& state, unsigned char value) {
   state ^= value;
@@ -47,6 +50,14 @@ std::string format_hash(std::uint64_t state) {
   stream << "fnv1a64:" << std::hex << std::setw(16) << std::setfill('0')
          << state;
   return stream.str();
+}
+
+void hash_u64(std::uint64_t& state, std::uint64_t value) {
+  hash_token(state, std::to_string(value));
+}
+
+void hash_double(std::uint64_t& state, double value) {
+  hash_u64(state, std::bit_cast<std::uint64_t>(value));
 }
 
 std::uint64_t hash_bytes(
@@ -111,6 +122,7 @@ std::string checkpoint_content_fingerprint(
       state,
       std::to_string(
           checkpoint.controller_certificate_cost_cooldown_remaining));
+  hash_token(state, checkpoint.joint_history_mode);
   hash_token(state, checkpoint.model_fingerprint);
   hash_token(state, std::to_string(checkpoint.accepted_step_count));
   hash_token(state, std::to_string(checkpoint.rejected_step_count));
@@ -119,6 +131,57 @@ std::string checkpoint_content_fingerprint(
     hash_token(state, path.path_id);
     hash_token(state, path.charge);
     hash_token(state, path.history.provenance_fingerprint());
+  }
+  hash_u64(state, checkpoint.joint_histories.size());
+  for (const auto& [path_id, history] : checkpoint.joint_histories) {
+    hash_token(state, path_id);
+    hash_token(state, history.path_id());
+    hash_u64(state, history.symbol_registry().size());
+    for (const auto& symbol : history.symbol_registry()) {
+      hash_token(state, symbol);
+    }
+    hash_u64(state, history.segments().size());
+    for (const auto& segment : history.segments()) {
+      hash_double(state, segment.start_time);
+      hash_double(state, segment.end_time);
+      for (const auto& axis : segment.position_coefficients) {
+        for (const auto& degree : axis) {
+          hash_u64(state, degree.size());
+          for (const double coefficient : degree) {
+            hash_double(state, coefficient);
+          }
+        }
+      }
+      for (const double radius : segment.position_remainder_radii) {
+        hash_double(state, radius);
+      }
+      for (const double radius : segment.velocity_remainder_radii) {
+        hash_double(state, radius);
+      }
+    }
+    hash_u64(state, history.endpoint_override().has_value() ? 1U : 0U);
+    if (history.endpoint_override().has_value()) {
+      const auto& endpoint = *history.endpoint_override();
+      hash_double(state, endpoint.time);
+      for (const auto& coefficients :
+           endpoint.position_shared_symbol_coefficients) {
+        for (const double coefficient : coefficients) {
+          hash_double(state, coefficient);
+        }
+      }
+      for (const auto& coefficients :
+           endpoint.velocity_shared_symbol_coefficients) {
+        for (const double coefficient : coefficients) {
+          hash_double(state, coefficient);
+        }
+      }
+      for (const double radius : endpoint.position_remainder_radii) {
+        hash_double(state, radius);
+      }
+      for (const double radius : endpoint.velocity_remainder_radii) {
+        hash_double(state, radius);
+      }
+    }
   }
   return format_hash(state);
 }
@@ -228,9 +291,159 @@ NativeCheckpointPath take_history(
   };
 }
 
+void append_double(std::vector<unsigned char>& bytes, double value) {
+  append_u64(bytes, std::bit_cast<std::uint64_t>(value));
+}
+
+double take_double(
+    const std::vector<unsigned char>& bytes,
+    std::size_t& cursor,
+    std::size_t payload_end) {
+  return std::bit_cast<double>(take_u64(bytes, cursor, payload_end));
+}
+
+void append_joint_history(
+    std::vector<unsigned char>& bytes,
+    const std::string& path_id,
+    const JointAffineRetainedHistory& history) {
+  append_string(bytes, path_id);
+  append_string(bytes, history.path_id());
+  append_u64(
+      bytes, static_cast<std::uint64_t>(history.symbol_registry().size()));
+  for (const auto& symbol : history.symbol_registry()) {
+    append_string(bytes, symbol);
+  }
+  append_u64(bytes, static_cast<std::uint64_t>(history.segments().size()));
+  for (const auto& segment : history.segments()) {
+    append_double(bytes, segment.start_time);
+    append_double(bytes, segment.end_time);
+    for (const auto& axis : segment.position_coefficients) {
+      for (const auto& degree : axis) {
+        for (const double coefficient : degree) {
+          append_double(bytes, coefficient);
+        }
+      }
+    }
+    for (const double radius : segment.position_remainder_radii) {
+      append_double(bytes, radius);
+    }
+    for (const double radius : segment.velocity_remainder_radii) {
+      append_double(bytes, radius);
+    }
+  }
+  append_u64(bytes, history.endpoint_override().has_value() ? 1U : 0U);
+  if (history.endpoint_override().has_value()) {
+    const auto& endpoint = *history.endpoint_override();
+    append_double(bytes, endpoint.time);
+    for (const auto& coefficients :
+         endpoint.position_shared_symbol_coefficients) {
+      for (const double coefficient : coefficients) {
+        append_double(bytes, coefficient);
+      }
+    }
+    for (const auto& coefficients :
+         endpoint.velocity_shared_symbol_coefficients) {
+      for (const double coefficient : coefficients) {
+        append_double(bytes, coefficient);
+      }
+    }
+    for (const double radius : endpoint.position_remainder_radii) {
+      append_double(bytes, radius);
+    }
+    for (const double radius : endpoint.velocity_remainder_radii) {
+      append_double(bytes, radius);
+    }
+  }
+}
+
+std::pair<std::string, JointAffineRetainedHistory> take_joint_history(
+    const std::vector<unsigned char>& bytes,
+    std::size_t& cursor,
+    std::size_t payload_end) {
+  std::string map_path_id = take_string(bytes, cursor, payload_end);
+  std::string history_path_id = take_string(bytes, cursor, payload_end);
+  const std::uint64_t symbol_count = take_u64(bytes, cursor, payload_end);
+  if (symbol_count > kMaximumJointSymbolCount ||
+      symbol_count > static_cast<std::uint64_t>(
+          std::numeric_limits<std::size_t>::max())) {
+    throw std::invalid_argument("checkpoint joint symbol count is invalid");
+  }
+  std::vector<std::string> symbols;
+  symbols.reserve(static_cast<std::size_t>(symbol_count));
+  for (std::uint64_t index = 0U; index < symbol_count; ++index) {
+    symbols.push_back(take_string(bytes, cursor, payload_end));
+  }
+  const std::uint64_t segment_count = take_u64(bytes, cursor, payload_end);
+  if (segment_count == 0U || segment_count > kMaximumSegmentCount ||
+      segment_count > static_cast<std::uint64_t>(
+          std::numeric_limits<std::size_t>::max())) {
+    throw std::invalid_argument("checkpoint joint segment count is invalid");
+  }
+  std::vector<JointAffineCubicSegment> segments;
+  segments.reserve(static_cast<std::size_t>(segment_count));
+  for (std::uint64_t index = 0U; index < segment_count; ++index) {
+    JointAffineCubicSegment segment;
+    segment.start_time = take_double(bytes, cursor, payload_end);
+    segment.end_time = take_double(bytes, cursor, payload_end);
+    for (auto& axis : segment.position_coefficients) {
+      for (auto& degree : axis) {
+        degree.resize(static_cast<std::size_t>(symbol_count));
+        for (double& coefficient : degree) {
+          coefficient = take_double(bytes, cursor, payload_end);
+        }
+      }
+    }
+    for (double& radius : segment.position_remainder_radii) {
+      radius = take_double(bytes, cursor, payload_end);
+    }
+    for (double& radius : segment.velocity_remainder_radii) {
+      radius = take_double(bytes, cursor, payload_end);
+    }
+    segments.push_back(std::move(segment));
+  }
+  const std::uint64_t has_endpoint = take_u64(bytes, cursor, payload_end);
+  if (has_endpoint > 1U) {
+    throw std::invalid_argument(
+        "checkpoint joint endpoint flag is invalid");
+  }
+  std::optional<JointAffineEndpointOverride> endpoint;
+  if (has_endpoint == 1U) {
+    JointAffineEndpointOverride value;
+    value.time = take_double(bytes, cursor, payload_end);
+    value.position_shared_symbol_coefficients.resize(
+        static_cast<std::size_t>(symbol_count));
+    value.velocity_shared_symbol_coefficients.resize(
+        static_cast<std::size_t>(symbol_count));
+    for (auto& coefficients :
+         value.position_shared_symbol_coefficients) {
+      for (double& coefficient : coefficients) {
+        coefficient = take_double(bytes, cursor, payload_end);
+      }
+    }
+    for (auto& coefficients :
+         value.velocity_shared_symbol_coefficients) {
+      for (double& coefficient : coefficients) {
+        coefficient = take_double(bytes, cursor, payload_end);
+      }
+    }
+    for (double& radius : value.position_remainder_radii) {
+      radius = take_double(bytes, cursor, payload_end);
+    }
+    for (double& radius : value.velocity_remainder_radii) {
+      radius = take_double(bytes, cursor, payload_end);
+    }
+    endpoint = std::move(value);
+  }
+  return {
+      std::move(map_path_id),
+      JointAffineRetainedHistory(
+          std::move(history_path_id), std::move(symbols),
+          std::move(segments), std::move(endpoint))};
+}
+
 void require_checkpoint_consistency(
     const NativeEvolutionCheckpoint& checkpoint) {
-  if (checkpoint.schema != "eom_native_evolution_checkpoint/v5" ||
+  if (checkpoint.schema != "eom_native_evolution_checkpoint/v6" ||
       checkpoint.run_id.empty() || checkpoint.paths.empty()) {
     throw std::invalid_argument("checkpoint identity or path domain is invalid");
   }
@@ -238,12 +451,61 @@ void require_checkpoint_consistency(
       checkpoint_content_fingerprint(checkpoint)) {
     throw std::invalid_argument("checkpoint content fingerprint mismatch");
   }
+  const bool joint_mode_active =
+      checkpoint.joint_history_mode == "active";
+  const bool joint_mode_disabled =
+      checkpoint.joint_history_mode == "disabled";
+  const bool joint_mode_fallback =
+      checkpoint.joint_history_mode == "ordinary_fallback";
+  if ((!joint_mode_active && !joint_mode_disabled && !joint_mode_fallback) ||
+      (joint_mode_active != !checkpoint.joint_histories.empty())) {
+    throw std::invalid_argument(
+        "checkpoint joint history mode is inconsistent");
+  }
   for (const auto& path : checkpoint.paths) {
     if (path.path_id.empty() || path.charge.empty() ||
         path.history.segments().back().t_end_token() !=
             checkpoint.accepted_time) {
       throw std::invalid_argument(
           "checkpoint histories do not share the accepted boundary");
+    }
+  }
+  if (!checkpoint.joint_histories.empty() &&
+      checkpoint.joint_histories.size() != checkpoint.paths.size()) {
+    throw std::invalid_argument(
+        "checkpoint joint history domain differs from the path domain");
+  }
+  for (const auto& [path_id, history] : checkpoint.joint_histories) {
+    const auto path = std::find_if(
+        checkpoint.paths.begin(), checkpoint.paths.end(),
+        [&path_id](const auto& candidate) {
+          return candidate.path_id == path_id;
+        });
+    if (path == checkpoint.paths.end() || history.path_id() != path_id ||
+        history.segments().size() != path->history.segments().size() ||
+        history.segments().back().end_time !=
+            std::stod(checkpoint.accepted_time)) {
+      throw std::invalid_argument(
+          "checkpoint joint history is not aligned with its ordinary path");
+    }
+    for (std::size_t index = 0U; index < history.segments().size(); ++index) {
+      const auto ordinary = path->history.segments().pin(index);
+      if (history.segments()[index].start_time != ordinary->t_start() ||
+          history.segments()[index].end_time != ordinary->t_end()) {
+        throw std::invalid_argument(
+            "checkpoint joint and ordinary segment registries disagree");
+      }
+    }
+  }
+  if (!checkpoint.joint_histories.empty()) {
+    const auto& registry =
+        checkpoint.joint_histories.begin()->second.symbol_registry();
+    for (const auto& [path_id, history] : checkpoint.joint_histories) {
+      static_cast<void>(path_id);
+      if (history.symbol_registry() != registry) {
+        throw std::invalid_argument(
+            "checkpoint joint symbol registries disagree");
+      }
     }
   }
 }
@@ -329,6 +591,9 @@ std::string model_fingerprint(
       request.certificate_cost_probe_scale,
       std::to_string(
           request.certificate_cost_unavoidable_cooldown_steps),
+      request.joint_histories.empty()
+          ? "joint-affine-history/disabled"
+          : "joint-affine-history/v1",
   };
   if (include_pinned_fold_controls) {
     controls.push_back(request.use_analytic_pinned_fold ? "1" : "0");
@@ -389,18 +654,38 @@ NativeEvolutionCheckpoint create_native_evolution_checkpoint(
     throw std::invalid_argument(
         "checkpoint source is not an atomic result for the request");
   }
+  if (!request.joint_root_point_states.empty()) {
+    throw std::invalid_argument(
+        "checkpoint does not support pending joint root point states");
+  }
+  const std::string joint_history_mode =
+      !certificate.joint_histories.empty()
+      ? "active"
+      : certificate.joint_state_fallback_applied
+      ? "ordinary_fallback"
+      : "disabled";
+  if ((joint_history_mode == "active" && request.joint_histories.empty()) ||
+      (joint_history_mode == "ordinary_fallback" &&
+       request.joint_histories.empty()) ||
+      (joint_history_mode == "disabled" &&
+       !request.joint_histories.empty())) {
+    throw std::invalid_argument(
+        "checkpoint joint history state does not follow the request");
+  }
   NativeEvolutionCheckpoint checkpoint{
-      .schema = "eom_native_evolution_checkpoint/v5",
+      .schema = "eom_native_evolution_checkpoint/v6",
       .run_id = certificate.run_id,
       .accepted_time = certificate.accepted_end_time,
       .controller_step_size = certificate.controller_step_size,
       .controller_certificate_cost_cooldown_remaining =
           certificate.controller_certificate_cost_cooldown_remaining,
+      .joint_history_mode = joint_history_mode,
       .model_fingerprint = native_evolution_model_fingerprint(request),
       .checkpoint_fingerprint = "",
       .accepted_step_count = certificate.accepted_step_count,
       .rejected_step_count = certificate.rejected_step_count,
       .paths = {},
+      .joint_histories = certificate.joint_histories,
   };
   checkpoint.paths.reserve(request.paths.size());
   for (std::size_t index = 0; index < request.paths.size(); ++index) {
@@ -433,6 +718,7 @@ std::vector<unsigned char> serialize_native_evolution_checkpoint(
   append_u64(
       bytes,
       checkpoint.controller_certificate_cost_cooldown_remaining);
+  append_string(bytes, checkpoint.joint_history_mode);
   append_string(bytes, checkpoint.model_fingerprint);
   append_string(bytes, checkpoint.checkpoint_fingerprint);
   append_u64(bytes, checkpoint.accepted_step_count);
@@ -440,6 +726,12 @@ std::vector<unsigned char> serialize_native_evolution_checkpoint(
   append_u64(bytes, static_cast<std::uint64_t>(checkpoint.paths.size()));
   for (const auto& path : checkpoint.paths) {
     append_history(bytes, path);
+  }
+  append_u64(
+      bytes,
+      static_cast<std::uint64_t>(checkpoint.joint_histories.size()));
+  for (const auto& [path_id, history] : checkpoint.joint_histories) {
+    append_joint_history(bytes, path_id, history);
   }
   append_u64(bytes, hash_bytes(bytes, bytes.size()));
   return bytes;
@@ -469,6 +761,7 @@ NativeEvolutionCheckpoint deserialize_native_evolution_checkpoint(
       .controller_step_size = take_string(bytes, cursor, payload_end),
       .controller_certificate_cost_cooldown_remaining =
           static_cast<std::size_t>(take_u64(bytes, cursor, payload_end)),
+      .joint_history_mode = take_string(bytes, cursor, payload_end),
       .model_fingerprint = take_string(bytes, cursor, payload_end),
       .checkpoint_fingerprint = take_string(bytes, cursor, payload_end),
       .accepted_step_count = static_cast<std::size_t>(
@@ -476,6 +769,7 @@ NativeEvolutionCheckpoint deserialize_native_evolution_checkpoint(
       .rejected_step_count = static_cast<std::size_t>(
           take_u64(bytes, cursor, payload_end)),
       .paths = {},
+      .joint_histories = {},
   };
   const std::uint64_t path_count = take_u64(bytes, cursor, payload_end);
   if (path_count == 0U || path_count > kMaximumPathCount ||
@@ -486,6 +780,23 @@ NativeEvolutionCheckpoint deserialize_native_evolution_checkpoint(
   checkpoint.paths.reserve(static_cast<std::size_t>(path_count));
   for (std::uint64_t index = 0; index < path_count; ++index) {
     checkpoint.paths.push_back(take_history(bytes, cursor, payload_end));
+  }
+  const std::uint64_t joint_history_count =
+      take_u64(bytes, cursor, payload_end);
+  if (joint_history_count > kMaximumPathCount ||
+      joint_history_count > static_cast<std::uint64_t>(
+          std::numeric_limits<std::size_t>::max())) {
+    throw std::invalid_argument(
+        "checkpoint joint history count is invalid");
+  }
+  for (std::uint64_t index = 0U; index < joint_history_count; ++index) {
+    auto [path_id, history] =
+        take_joint_history(bytes, cursor, payload_end);
+    if (!checkpoint.joint_histories.emplace(
+            std::move(path_id), std::move(history)).second) {
+      throw std::invalid_argument(
+          "checkpoint joint history path is duplicated");
+    }
   }
   if (cursor != payload_end) {
     throw std::invalid_argument("checkpoint payload has trailing fields");
@@ -597,11 +908,15 @@ NativeCoupledEvolutionCertificate resume_native_coupled_histories(
   resumed.initial_step = checkpoint.controller_step_size;
   resumed.certificate_cost_initial_cooldown_steps =
       checkpoint.controller_certificate_cost_cooldown_remaining;
+  resumed.joint_state_fallback_already_applied =
+      checkpoint.joint_history_mode == "ordinary_fallback";
+  resumed.joint_root_point_states.clear();
   resumed.paths.clear();
   resumed.paths.reserve(checkpoint.paths.size());
   for (const auto& path : checkpoint.paths) {
     resumed.paths.push_back({path.path_id, path.charge, path.history});
   }
+  resumed.joint_histories = checkpoint.joint_histories;
   return evolve_native_coupled_histories(resumed);
 }
 

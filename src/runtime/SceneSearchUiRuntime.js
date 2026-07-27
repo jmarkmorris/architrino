@@ -7,19 +7,21 @@ export function createSceneSearchUiRuntime(deps) {
     sceneSearchCoordinator,
     documentRef = document,
     windowRef = window,
+    eventSignal,
   } = deps;
+  const listenerOptions = eventSignal ? { signal: eventSignal } : undefined;
 
   function wireListeners() {
     if (sceneSearchToggle) {
       sceneSearchToggle.addEventListener("click", async () => {
         await sceneSearchCoordinator.toggleSearchPanel();
-      });
+      }, listenerOptions);
     }
 
     if (sceneSearchInput) {
       sceneSearchInput.addEventListener("input", (event) => {
         sceneSearchRuntime.updateSearchResults(event.target.value);
-      });
+      }, listenerOptions);
       sceneSearchInput.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
           sceneSearchCoordinator.closeSearchPanel();
@@ -31,7 +33,7 @@ export function createSceneSearchUiRuntime(deps) {
             firstItem.click();
           }
         }
-      });
+      }, listenerOptions);
     }
 
     documentRef.addEventListener("pointerdown", (event) => {
@@ -42,7 +44,7 @@ export function createSceneSearchUiRuntime(deps) {
         return;
       }
       sceneSearchCoordinator.closeSearchPanel();
-    });
+    }, listenerOptions);
 
     documentRef.addEventListener("focusin", (event) => {
       if (!sceneSearchRuntime.isSearchOpen()) {
@@ -52,7 +54,7 @@ export function createSceneSearchUiRuntime(deps) {
         return;
       }
       sceneSearchCoordinator.closeSearchPanel();
-    });
+    }, listenerOptions);
 
     windowRef.addEventListener("keydown", async (event) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
@@ -65,7 +67,7 @@ export function createSceneSearchUiRuntime(deps) {
       } else if (event.key === "Escape" && sceneSearchRuntime.isSearchOpen()) {
         sceneSearchCoordinator.closeSearchPanel();
       }
-    });
+    }, listenerOptions);
   }
 
   return {

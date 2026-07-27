@@ -4,6 +4,15 @@ import {
   setTransportControlButtonPresentation,
 } from "../../runtime/TransportControlIcons.js";
 import {
+  navigateStandaloneAppHome,
+  resolveStandaloneSiteHomeHref,
+} from "../navigator/StandaloneAppHomeRuntime.js";
+import {
+  createStandaloneAppSceneSearchRuntime,
+  resolveStandaloneGlobalSceneHref,
+  TEXTBOOK_TOC_SCENE_PATH,
+} from "../navigator/StandaloneAppSceneSearchRuntime.js";
+import {
   BORG_APP_SURFACE_DESIGN_V1,
   BORG_DATASET_MANIFEST_V1,
   BORG_FAIL_CLOSED_ROWS,
@@ -117,8 +126,8 @@ const ARCHITRINO_POINT_PIXEL_SIZE = 8;
 const ARCHITRINO_PICK_THRESHOLD = 0.22;
 const VELOCITY_RAY_MINIMUM_VISIBLE_LENGTH = 0.22;
 const VELOCITY_RAY_LOG_SCALE = 0.88;
-const BOUNDARY_SHELL_LATITUDE_COUNT = 25;
-const BOUNDARY_SHELL_LONGITUDE_COUNT = 48;
+const SIMULATION_WINDOW_LATITUDE_COUNT = 25;
+const SIMULATION_WINDOW_LONGITUDE_COUNT = 48;
 const ENVELOPE_GUIDE_COLOR = 0xcbd0c8;
 const ENVELOPE_GUIDE_OPACITY = 0.88;
 const DEFAULT_RUN_CONTROL_PRESET_ID = "live-forever";
@@ -162,6 +171,7 @@ const ARCHITRINO_RENDER_ORDER = 6;
 const HIDDEN_LAYER_BUTTONS = new Set([
   "simulation-window",
   "architrino-position",
+  "wake-streams",
   "diagnostics",
 ]);
 
@@ -170,8 +180,6 @@ const LAYER_LABELS = Object.freeze({
   "architrino-position": "Points",
   "path-history": "Path",
   "velocity-vectors": "Velocity",
-  "wake-streams": "Wake",
-  "boundary-shell-status": "Shell",
   diagnostics: "Diag",
 });
 
@@ -180,8 +188,6 @@ const LAYER_TITLES = Object.freeze({
   "architrino-position": "Architrino positions from EOM frame rows",
   "path-history": "Path-history traces from EOM path rows",
   "velocity-vectors": "Display-only velocity-direction rays from the current frame rows",
-  "wake-streams": "Unavailable: the EOM solver has not supplied retained wake-stream rows",
-  "boundary-shell-status": "Unavailable: the EOM solver has not supplied boundary-shell status rows",
   diagnostics: "Diagnostics are shown in the right rail",
 });
 
@@ -241,11 +247,16 @@ export function mountBorgApp(options = {}) {
 
   const dom = {
     app: queryRequiredElement(documentLike, "#borg-app"),
+    tocButton: queryRequiredElement(documentLike, "#textbook-toc-button"),
+    backButton: queryRequiredElement(documentLike, "#nav-up"),
+    forwardButton: queryRequiredElement(documentLike, "#nav-forward"),
+    homeButton: queryRequiredElement(documentLike, "#home-button"),
     diagnosticsPanel: queryRequiredElement(documentLike, "#borg-diagnostics-panel"),
     diagnosticsToggle: queryRequiredElement(documentLike, "#borg-diagnostics-toggle"),
     solverBanner: documentLike.querySelector?.("#borg-solver-banner") ?? null,
     canvas: queryRequiredElement(documentLike, "#borg-canvas"),
     layerStrip: queryRequiredElement(documentLike, "#borg-layer-strip"),
+    cameraDrawer: queryRequiredElement(documentLike, "#borg-camera-drawer"),
     envelopeSection: queryRequiredElement(documentLike, "#borg-envelope-section"),
     envelopeFields: queryRequiredElement(documentLike, "#borg-envelope-fields"),
     initialConditionFields: queryRequiredElement(documentLike, "#borg-initial-condition-fields"),
@@ -292,7 +303,6 @@ export function mountBorgApp(options = {}) {
     modeDetail: queryRequiredElement(documentLike, "#borg-mode-detail"),
     startingGeometry: queryRequiredElement(documentLike, "#borg-starting-geometry"),
     startingGeometryOptions: queryRequiredElement(documentLike, "#borg-starting-geometry-options"),
-    recordDateChip: queryRequiredElement(documentLike, "#borg-record-date-chip"),
     prescribedBranch: queryRequiredElement(documentLike, "#borg-prescribed-branch"),
     prescribedBranchProfile: queryRequiredElement(documentLike, "#borg-prescribed-branch-profile"),
     prescribedBranchStart: queryRequiredElement(documentLike, "#borg-start-prescribed-display"),
@@ -365,6 +375,10 @@ export function mountBorgApp(options = {}) {
   );
   const interpolatedFrameSetScratch = { frameIndex: 0, time: 0, frames: [] };
   const boundEventListeners = [];
+  const sceneSearchRuntime = createStandaloneAppSceneSearchRuntime({
+    document: documentLike,
+    window: windowLike,
+  }).init();
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.05, 100);
   const renderer = new THREE.WebGLRenderer({
@@ -377,7 +391,7 @@ export function mountBorgApp(options = {}) {
   renderer.setClearColor(0x12130f, 1);
 
   const rootGroup = new THREE.Group();
-  const boundaryShellGroup = new THREE.Group();
+  const simulationWindowGroup = new THREE.Group();
   const assemblyContentGroup = new THREE.Group();
   const pathGroup = new THREE.Group();
   const velocityGroup = new THREE.Group();
@@ -389,7 +403,7 @@ export function mountBorgApp(options = {}) {
     pointGroup,
     prescribedAnalysisGroup,
   );
-  rootGroup.add(boundaryShellGroup, assemblyContentGroup);
+  rootGroup.add(simulationWindowGroup, assemblyContentGroup);
   scene.add(rootGroup);
 
   scene.add(new THREE.HemisphereLight(0xf1f7ea, 0x2f352b, 1.45));
@@ -672,21 +686,21 @@ export function mountBorgApp(options = {}) {
   };
 
   function buildScene() {
-    rebuildBoundaryShell();
+    rebuildSimulationWindow();
 
     rebuildPathTrails();
 
     rebuildParticleObjects();
   }
 
-  function rebuildBoundaryShell() {
-    boundaryShellGroup.children.slice().forEach((object) => {
-      boundaryShellGroup.remove(object);
+  function rebuildSimulationWindow() {
+    simulationWindowGroup.children.slice().forEach((object) => {
+      simulationWindowGroup.remove(object);
       object.geometry?.dispose?.();
       object.material?.dispose?.();
     });
-    boundaryShellGroup.add(
-      createBoundaryShellPoints({
+    simulationWindowGroup.add(
+      createSimulationWindowGuidePoints({
         radius: activeEnvelopeRadius(),
         color: ENVELOPE_GUIDE_COLOR,
         opacity: ENVELOPE_GUIDE_OPACITY,
@@ -761,15 +775,15 @@ export function mountBorgApp(options = {}) {
     velocityLines.clear();
   }
 
-  function createBoundaryShellPoints({ radius, color, opacity }) {
+  function createSimulationWindowGuidePoints({ radius, color, opacity }) {
     const worldRadius = radius * activeWorldUnitsPerSolverUnit();
     const points = [];
-    for (let latIndex = 0; latIndex < BOUNDARY_SHELL_LATITUDE_COUNT; latIndex += 1) {
-      const theta = (latIndex / (BOUNDARY_SHELL_LATITUDE_COUNT - 1)) * Math.PI;
+    for (let latIndex = 0; latIndex < SIMULATION_WINDOW_LATITUDE_COUNT; latIndex += 1) {
+      const theta = (latIndex / (SIMULATION_WINDOW_LATITUDE_COUNT - 1)) * Math.PI;
       const y = Math.cos(theta) * worldRadius;
       const ringRadius = Math.sin(theta) * worldRadius;
-      for (let lonIndex = 0; lonIndex < BOUNDARY_SHELL_LONGITUDE_COUNT; lonIndex += 1) {
-        const phi = (lonIndex / BOUNDARY_SHELL_LONGITUDE_COUNT) * Math.PI * 2;
+      for (let lonIndex = 0; lonIndex < SIMULATION_WINDOW_LONGITUDE_COUNT; lonIndex += 1) {
+        const phi = (lonIndex / SIMULATION_WINDOW_LONGITUDE_COUNT) * Math.PI * 2;
         points.push(new THREE.Vector3(
           Math.cos(phi) * ringRadius,
           y,
@@ -1111,7 +1125,13 @@ export function mountBorgApp(options = {}) {
       }
       listen(button, "click", () => toggleLayer(layer.layer));
       dom.layerStrip.append(button);
+      if (layer.layer === "path-history") {
+        dom.layerStrip.append(dom.cameraDrawer);
+      }
     });
+    if (!dom.cameraDrawer.parentElement) {
+      dom.layerStrip.append(dom.cameraDrawer);
+    }
     syncLayerButtons();
   }
 
@@ -1352,7 +1372,6 @@ export function mountBorgApp(options = {}) {
       dom.modeDetail.textContent = activePrescribedDisplayBranch
         ? `New non-promotable EOM branch from ${activePrescribedDisplayBranch.sourceRecordId} at T=${activePrescribedDisplayBranch.selectedCutTime}.`
         : "Display- or Claim-grade EOM simulation is available after Play.";
-      dom.recordDateChip.hidden = activePrescribedDisplayBranch == null;
       return;
     }
     assemblyViewControls?.dispose?.();
@@ -1361,7 +1380,6 @@ export function mountBorgApp(options = {}) {
       session: assemblyViewSession,
       dom: {
         controls: dom.replayControls,
-        dateChip: dom.recordDateChip,
         provenance: dom.replayProvenance,
         collectionTools: dom.replayCollectionTools,
         recordControl: dom.replayRecordControl,
@@ -1498,7 +1516,7 @@ export function mountBorgApp(options = {}) {
     assemblyViewScene.setDisplayMode("animated");
     setBorgRadioGroupValue(dom.startingGeometry, geometryId);
     configureAssemblyViewControls();
-    rebuildBoundaryShell();
+    rebuildSimulationWindow();
     rebuildParticleObjects();
     rebuildPathTrails({ recreateMaterials: true });
     updateLayerVisibility();
@@ -1544,7 +1562,7 @@ export function mountBorgApp(options = {}) {
     assemblyViewScene.setHistoryDepth(state.pathTrailDuration);
     setBorgRadioGroupValue(dom.startingGeometry, geometryId);
     configureAssemblyViewControls();
-    rebuildBoundaryShell();
+    rebuildSimulationWindow();
     rebuildParticleObjects();
     rebuildPathTrails({ recreateMaterials: true });
     updateLayerVisibility();
@@ -1636,7 +1654,7 @@ export function mountBorgApp(options = {}) {
     state.liveRunRetention = createBorgLiveRunRetentionSnapshot({ frameRows: currentFrames });
     assemblyViewScene.setDisplayMode("animated");
     configureAssemblyViewControls();
-    rebuildBoundaryShell();
+    rebuildSimulationWindow();
     rebuildParticleObjects();
     rebuildPathTrails({ recreateMaterials: true });
     updateLayerVisibility();
@@ -2004,6 +2022,35 @@ export function mountBorgApp(options = {}) {
   }
 
   function bindEvents() {
+    listen(dom.tocButton, "click", () => {
+      navigateStandaloneAppHome(
+        windowLike?.location,
+        resolveStandaloneGlobalSceneHref(
+          TEXTBOOK_TOC_SCENE_PATH,
+          windowLike?.location?.href,
+        ),
+        {
+          windowLike,
+          returnHref: windowLike?.location?.href,
+        },
+      );
+    });
+    listen(dom.backButton, "click", () => {
+      windowLike?.history?.back?.();
+    });
+    listen(dom.forwardButton, "click", () => {
+      windowLike?.history?.forward?.();
+    });
+    listen(dom.homeButton, "click", () => {
+      navigateStandaloneAppHome(
+        windowLike?.location,
+        resolveStandaloneSiteHomeHref(windowLike?.location?.href),
+        {
+          windowLike,
+          returnHref: windowLike?.location?.href,
+        },
+      );
+    });
     listen(dom.timelineRange, "input", () => {
       const requestedFrameIndex = Number(dom.timelineRange.value);
       stopPlayback();
@@ -2108,7 +2155,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function updateLayerVisibility() {
-    boundaryShellGroup.visible = state.activeLayers.has("simulation-window");
+    simulationWindowGroup.visible = state.activeLayers.has("simulation-window");
     pointGroup.visible = state.activeLayers.has("architrino-position");
     pathGroup.visible = state.activeLayers.has("path-history");
     pathTrails.setVisible(pathGroup.visible && !replayActive);
@@ -2676,6 +2723,7 @@ export function mountBorgApp(options = {}) {
     }
     state.resizeObserver?.disconnect?.();
     boundEventListeners.splice(0).forEach((remove) => remove());
+    sceneSearchRuntime.destroy();
     diagnosticsPanelController.dispose();
     prescribedAnalysisCoordinator.dispose();
     prescribedAnalysisScene.dispose();
@@ -2685,7 +2733,7 @@ export function mountBorgApp(options = {}) {
       activeRunner: state.dynamicRunner,
     });
     disposeDynamicRunner();
-    boundaryShellGroup.children.slice().forEach((object) => {
+    simulationWindowGroup.children.slice().forEach((object) => {
       object.geometry?.dispose?.();
       object.material?.dispose?.();
     });
@@ -3489,7 +3537,7 @@ export function mountBorgApp(options = {}) {
     updateAdaptivePlaybackRate();
     state.playbackBufferRefilling = true;
     resetPolarityDiagnosticsHistory();
-    rebuildBoundaryShell();
+    rebuildSimulationWindow();
     state.eomRetainedHistoryStart = activePrescribedDisplayBranch
       ? Number(activePrescribedDisplayBranch.retainedHistories[0].coverageStart)
       : state.eomSeedCertificate?.historyStartTime ?? null;

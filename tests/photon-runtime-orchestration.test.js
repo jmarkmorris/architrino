@@ -1,19 +1,74 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 
 import { createDefaultPhotonState } from "../src/apps/photon/PhotonStateRuntime.js";
 import { createPhotonRuntime } from "../src/apps/photon/PhotonRuntime.js";
 import { serializePhotonSearchResults } from "../src/apps/photon/PhotonSearchRuntime.js";
+
+const PHOTON_HTML_SOURCE = readFileSync(new URL("../photon.html", import.meta.url), "utf8");
+const PHOTON_RUNTIME_SOURCE = readFileSync(
+  new URL("../src/apps/photon/PhotonRuntime.js", import.meta.url),
+  "utf8"
+);
+
+test("Photon keeps its inspector left of the canvas while preserving compact stacking", () => {
+  assert.match(
+    PHOTON_HTML_SOURCE,
+    /#photon-app\s*\{[^}]*grid-template-columns:\s*400px minmax\(0, 1fr\);[^}]*grid-template-areas:\s*"inspector main";/s
+  );
+  assert.match(PHOTON_HTML_SOURCE, /\.photon-main\s*\{[^}]*grid-area:\s*main;/s);
+  assert.match(PHOTON_HTML_SOURCE, /\.photon-inspector\s*\{[^}]*grid-area:\s*inspector;/s);
+  assert.match(
+    PHOTON_HTML_SOURCE,
+    /#photon-markdown-panel\s*\{[^}]*left:\s*414px;[^}]*width:\s*min\(760px, calc\(100vw - 436px\)\);/s
+  );
+  assert.match(
+    PHOTON_HTML_SOURCE,
+    /@media \(max-width:\s*980px\)[\s\S]*?#photon-app\s*\{[^}]*grid-template-columns:\s*1fr;[^}]*grid-template-areas:\s*"main"\s*"inspector";/s
+  );
+});
+
+test("Photon uses the shared Causal Delay Feedback webapp navigation controls", () => {
+  assert.match(
+    PHOTON_HTML_SOURCE,
+    /href="\.\/src\/apps\/navigator\/standalone-app-navigation\.css"/
+  );
+  for (const id of [
+    "scene-hud-tools",
+    "textbook-toc-button",
+    "nav-up",
+    "nav-forward",
+    "home-button",
+    "scene-search-toggle",
+    "scene-search-panel",
+    "scene-search-input",
+    "scene-search-results",
+  ]) {
+    assert.match(PHOTON_HTML_SOURCE, new RegExp(`id="${id}"`));
+  }
+  assert.doesNotMatch(PHOTON_HTML_SOURCE, /id="photon-home-button"/);
+  assert.match(PHOTON_RUNTIME_SOURCE, /createStandaloneAppSceneSearchRuntime/);
+  assert.match(PHOTON_RUNTIME_SOURCE, /TEXTBOOK_TOC_SCENE_PATH/);
+  assert.match(PHOTON_RUNTIME_SOURCE, /windowLike\.history\?\.back\?\.\(\)/);
+  assert.match(PHOTON_RUNTIME_SOURCE, /windowLike\.history\?\.forward\?\.\(\)/);
+  assert.match(PHOTON_RUNTIME_SOURCE, /resolveStandaloneSiteHomeHref/);
+});
 
 class FakeEventTarget {
   constructor() {
     this.listeners = new Map();
   }
 
-  addEventListener(type, listener) {
+  addEventListener(type, listener, options) {
     const listeners = this.listeners.get(type) ?? new Set();
     listeners.add(listener);
     this.listeners.set(type, listeners);
+    options?.signal?.addEventListener(
+      "abort",
+      () => this.removeEventListener(type, listener),
+      { once: true }
+    );
   }
 
   removeEventListener(type, listener) {
@@ -167,6 +222,11 @@ class FakeElement extends FakeEventTarget {
     });
   }
 
+  appendChild(child) {
+    this.append(child);
+    return child;
+  }
+
   setAttribute(name, value) {
     this.attributes.set(name, String(value));
   }
@@ -235,7 +295,15 @@ class FakeDocument extends FakeEventTarget {
       ["#photon-controls", "div"],
       ["#photon-diagnostics", "div"],
       ["#photon-formulas", "div"],
-      ["#photon-home-button", "button"],
+      ["#textbook-toc-button", "button"],
+      ["#nav-up", "button"],
+      ["#nav-forward", "button"],
+      ["#home-button", "button"],
+      ["#scene-search", "div"],
+      ["#scene-search-toggle", "button"],
+      ["#scene-search-panel", "div"],
+      ["#scene-search-input", "input"],
+      ["#scene-search-results", "div"],
       ["#photon-guide-doc-button", "button"],
       ["#photon-closure-doc-button", "button"],
       ["#photon-polarization-gate-doc-button", "button"],
@@ -283,7 +351,24 @@ class FakeWindow extends FakeEventTarget {
   constructor(documentLike) {
     super();
     this.document = documentLike;
-    this.location = { href: "http://127.0.0.1/photon.html" };
+    this.locationAssignments = [];
+    this.location = {
+      href: "http://127.0.0.1/photon.html",
+      assign: (href) => {
+        this.locationAssignments.push(href);
+        this.location.href = href;
+      },
+    };
+    this.historyBackCalls = 0;
+    this.historyForwardCalls = 0;
+    this.history = {
+      back: () => {
+        this.historyBackCalls += 1;
+      },
+      forward: () => {
+        this.historyForwardCalls += 1;
+      },
+    };
     this.devicePixelRatio = 1;
     this.innerHeight = 900;
     this.performance = { now: () => 10_000 };
@@ -291,6 +376,12 @@ class FakeWindow extends FakeEventTarget {
     this.animationFrames = new Map();
     this.setTimeout = setTimeout;
     this.clearTimeout = clearTimeout;
+    this.fetch = async () => ({
+      ok: true,
+      async json() {
+        return { searchEntries: [] };
+      },
+    });
   }
 
   requestAnimationFrame(callback) {
@@ -408,7 +499,7 @@ test("photon runtime is re-init safe and merges imports made during an in-flight
   assert.equal(windowLike.animationFrames.size, 0);
   assert.equal(documentLike.listenerCount("keydown"), 0);
   assert.equal(documentLike.listenerCount("click"), 0);
-  assert.equal(documentLike.querySelector("#photon-home-button").listenerCount("click"), 0);
+  assert.equal(documentLike.querySelector("#home-button").listenerCount("click"), 0);
 
   runtime.init();
   assert.equal(windowLike.animationFrames.size, 1);

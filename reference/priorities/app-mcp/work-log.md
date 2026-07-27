@@ -1,6 +1,6 @@
 # Architrino MCP Work Log
 
-This file is the chronological work log for the `app-mcp` priority area. Use it for dated implementation status, validation evidence, failed paths, deployment measurements, adjudications, and handoffs. Keep provisional ideas in [brainstorming.md](brainstorming.md), the compact live queue in [priorities.md](priorities.md), and stable architecture or contract detail in focused sibling files.
+This file is the chronological work log for the `app-mcp` priority area. Use it for dated implementation status, validation evidence, failed paths, deployment measurements, adjudications, and handoffs. Keep provisional ideas in [brainstorming.md](brainstorming.md), strategy and status in [priorities.md](priorities.md), accepted executable tasks in [work-queue.md](work-queue.md), and stable architecture or contract detail in focused sibling files.
 
 ## Log Entries
 

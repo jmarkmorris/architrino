@@ -2,14 +2,15 @@ import {
   createEomHistoryDataset,
 } from "../shared/EomHistoryDataset.mjs";
 import {
-  DEFAULT_CANVAS_ID,
-  DEFAULT_PRESET_ID,
+  createDisplayAuthority,
+} from "./CausalDelayFeedbackCausalHistory.js";
+import {
+  FIXED_WAKE_VISUAL_STYLE,
   FRAME_COUNT,
   PATH_TIME_END_X,
   PATH_TIME_START_X,
   SPACE_AXIS_TOP_Y,
   TIME_AXIS_BASELINE_Y,
-  getPresetById,
 } from "./CausalDelayFeedbackDisplayContract.js";
 
 // Causal-Delay-Feedback replay source over recorded EOM datasets.
@@ -33,15 +34,15 @@ const SPACE_MARGIN_FRACTION = 0.06;
 export function createCausalDelayFeedbackEomReplayAdapter(options = {}) {
   return {
     id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId = DEFAULT_PRESET_ID, requestOptions = {} } = {}) {
+    async createReplayAsync({ requestOptions = {} } = {}) {
       if (requestOptions?.replayDataset?.draftPreview) {
         throw new Error(
           "EOM replay datasets are recorded solver output; canvas edits cannot be recomputed by this viewer. " +
             "Author a new EOM campaign run to obtain an updated record.",
         );
       }
-      const record = await resolveEomRecord(options, { presetId, requestOptions });
-      return normalizeCausalDelayFeedbackEomReplay(record, { presetId, requestOptions });
+      const record = await resolveEomRecord(options, { requestOptions });
+      return normalizeCausalDelayFeedbackEomReplay(record, { requestOptions });
     },
   };
 }
@@ -66,13 +67,11 @@ async function resolveEomRecord(options, context) {
 }
 
 export function normalizeCausalDelayFeedbackEomReplay(recordOrDataset, {
-  presetId = DEFAULT_PRESET_ID,
   requestOptions = {},
 } = {}) {
   const historyDataset = recordOrDataset?.schema === "eom-history-dataset.v0"
     ? recordOrDataset
     : createEomHistoryDataset(recordOrDataset);
-  const preset = getPresetById(presetId);
   const roles = resolveWorldlineRoles(historyDataset, requestOptions);
   const frameCount = normalizeBoundedCount(
     requestOptions.frameCount,
@@ -128,18 +127,18 @@ export function normalizeCausalDelayFeedbackEomReplay(recordOrDataset, {
       positrino: roles.positrino.id,
       electrino: roles.electrino.id,
     },
+    displayAuthority: createDisplayAuthority("recorded_eom_path_display", {
+      label: "Recorded EOM path display",
+      recordEvidenceStatus: historyDataset.provenance.evidenceStatus,
+      delayedHitInference: false,
+    }),
     displayProjection: projection.descriptor,
     physicalPaths,
     causalEvaluation: {
       enabled: false,
       reason: "record_has_no_delayed_hit_rows",
     },
-    wakeArcDisplayMode: preset.wakeArcDisplayMode,
-    canvasColorId: preset.canvasColorId ?? DEFAULT_CANVAS_ID,
-    ...(Number.isFinite(Number(preset.assemblyThreshold))
-      ? { assemblyThreshold: Number(preset.assemblyThreshold) }
-      : {}),
-    preset,
+    wakeArcDisplayMode: FIXED_WAKE_VISUAL_STYLE.wakeArcDisplayMode,
     initialConditions,
     paths,
     history,
@@ -212,10 +211,19 @@ function createTimeSpaceCanvasProjection(recordedSamples, window, requestOptions
   const canvasBottom = TIME_AXIS_BASELINE_Y - margin;
   const xSpan = PATH_TIME_END_X - PATH_TIME_START_X;
   const yScale = (canvasBottom - canvasTop) / (spaceMax - spaceMin);
+  const meanSpace = (samples) => {
+    const values = samples.map((frame) => frame.states[0].position[spaceAxis]);
+    return values.reduce((sum, value) => sum + value, 0) / Math.max(1, values.length);
+  };
+  const positrinoMeanSpace = meanSpace(recordedSamples.positrino);
+  const electrinoMeanSpace = meanSpace(recordedSamples.electrino);
+  const increasingSpaceRendersUp = positrinoMeanSpace >= electrinoMeanSpace;
   return {
     descriptor: Object.freeze({
       rule: "time_space_canvas_fit/v1",
       spaceAxis,
+      verticalIdentityOrder: "positrino_above_electrino",
+      spaceDirection: increasingSpaceRendersUp ? "up" : "down",
       timeStart: start,
       timeEnd: end,
       spaceMin,
@@ -228,13 +236,16 @@ function createTimeSpaceCanvasProjection(recordedSamples, window, requestOptions
       return PATH_TIME_START_X + this.normalizedTime(time) * xSpan;
     },
     canvasY(spaceValue) {
-      return canvasBottom - (spaceValue - spaceMin) * yScale;
+      return increasingSpaceRendersUp
+        ? canvasBottom - (spaceValue - spaceMin) * yScale
+        : canvasTop + (spaceValue - spaceMin) * yScale;
     },
     canvasVx() {
       return xSpan;
     },
     canvasVy(spaceVelocity) {
-      return -spaceVelocity * yScale * (duration > 0 ? duration : 1);
+      const screenDirection = increasingSpaceRendersUp ? -1 : 1;
+      return screenDirection * spaceVelocity * yScale * (duration > 0 ? duration : 1);
     },
   };
 }

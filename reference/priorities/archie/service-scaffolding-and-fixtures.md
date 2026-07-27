@@ -8,18 +8,18 @@
 - Parent priority: [service-platform.md](service-platform.md)
 - Deployment architecture: [service-deployment-architecture.md](service-deployment-architecture.md)
 - Deployment option decision: [service-deployment-option-decision.md](service-deployment-option-decision.md)
-- App interface: [Archie Interface App](../app-archie-interface/priorities.md)
-- V1 product requirements: [v1-product-requirements.md](../app-archie-interface/v1-product-requirements.md)
-- Answer artifact manifest: [answer-artifact-manifest.md](../app-archie-interface/answer-artifact-manifest.md)
-- Manifest-driven service architecture: [manifest-driven-service-architecture.md](../app-archie-interface/manifest-driven-service-architecture.md)
-- Manifest service contracts: [manifest-service-contracts.md](../app-archie-interface/manifest-service-contracts.md)
-- Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](../app-archie-interface/source-ingestion-retrieval-context-contract.md)
-- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](../app-archie-interface/model-provider-capability-registry-contract.md)
-- Token ledger and privacy contract: [token-ledger-privacy-contract.md](../app-archie-interface/token-ledger-privacy-contract.md)
-- Action broker confirmation contract: [action-broker-confirmation-contract.md](../app-archie-interface/action-broker-confirmation-contract.md)
-- Issue mining signal contract: [issue-mining-signal-contract.md](../app-archie-interface/issue-mining-signal-contract.md)
-- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](../app-archie-interface/observability-public-status-incident-contract.md)
-- Service terms and account policy contract: [service-terms-account-policy-contract.md](../app-archie-interface/service-terms-account-policy-contract.md)
+- Interface product plan: [interface-product-plan.md](interface-product-plan.md)
+- V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
+- Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
+- Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
+- Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
+- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
+- Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
+- Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
+- Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md)
+- Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 
 ## Purpose
 
@@ -278,7 +278,7 @@ This scaffold must not:
 Closure goal:
 Add observability/public-status sandbox fixtures that consume manifest, provider, token-ledger, issue-mining, and action-broker safe event classes to produce redacted status and incident records without private prompt text, provider payloads, account history, credentials, or source-authority changes.
 
-Use this packet, [service-deployment-architecture.md](service-deployment-architecture.md), [manifest-service-contracts.md](../app-archie-interface/manifest-service-contracts.md), [answer-artifact-manifest.md](../app-archie-interface/answer-artifact-manifest.md), [source-ingestion-retrieval-context-contract.md](../app-archie-interface/source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](../app-archie-interface/model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](../app-archie-interface/token-ledger-privacy-contract.md), [action-broker-confirmation-contract.md](../app-archie-interface/action-broker-confirmation-contract.md), [issue-mining-signal-contract.md](../app-archie-interface/issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](../app-archie-interface/observability-public-status-incident-contract.md), and [service-terms-account-policy-contract.md](../app-archie-interface/service-terms-account-policy-contract.md) as source of truth.
+Use this packet, [service-deployment-architecture.md](service-deployment-architecture.md), [manifest-service-contracts.md](manifest-service-contracts.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), and [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md) as source of truth.
 
 Task:
 - Add observability/public-status sandbox fixtures and a check-mode observability script that verifies safe event classes, redacted status summaries, incident records, public-status visibility, and no private prompt/provider payload/account-history leakage.

@@ -8,6 +8,9 @@ const RANKING_PATH = path.join(
   ROOT_DIR,
   "reference/priorities/aaa-work-threads/priorities.md"
 );
+const PRIORITIES_DIR = path.join(ROOT_DIR, "reference/priorities");
+const LEGACY_TASK_HEADING =
+  /^##+ (Task Queue|Immediate Priority Queue|Open Work Queue|Detailed Task Inventory|Ranked Next Objects|Next Actions|Recommended Build Order|Candidate Discussion Prompts|Implementation Tickets|Release Gates)\s*$/m;
 
 function fail(message) {
   console.error(`[priority-ranking] ${message}`);
@@ -34,6 +37,48 @@ function sameNumber(actual, expected, digits) {
 if (!fs.existsSync(RANKING_PATH)) {
   fail(`missing ranking file: ${path.relative(ROOT_DIR, RANKING_PATH)}`);
   process.exit(1);
+}
+
+const activeOwnerDirectories = fs
+  .readdirSync(PRIORITIES_DIR, { withFileTypes: true })
+  .filter(
+    (entry) =>
+      entry.isDirectory() &&
+      entry.name !== "dormant-deferred" &&
+      fs.existsSync(path.join(PRIORITIES_DIR, entry.name, "priorities.md"))
+  )
+  .map((entry) => entry.name)
+  .sort();
+
+for (const owner of activeOwnerDirectories) {
+  const ownerDirectory = path.join(PRIORITIES_DIR, owner);
+  const prioritiesPath = path.join(ownerDirectory, "priorities.md");
+  const queuePath = path.join(ownerDirectory, "work-queue.md");
+  const brainstormingPath = path.join(ownerDirectory, "brainstorming.md");
+
+  if (!fs.existsSync(queuePath)) {
+    fail(`${path.relative(ROOT_DIR, ownerDirectory)} lacks work-queue.md`);
+    continue;
+  }
+
+  const queue = fs.readFileSync(queuePath, "utf8");
+  if (!/^## Ranked Next Objects\s*$/m.test(queue)) {
+    fail(`${path.relative(ROOT_DIR, queuePath)} lacks a \`## Ranked Next Objects\` section`);
+  }
+
+  const priorities = fs.readFileSync(prioritiesPath, "utf8");
+  if (LEGACY_TASK_HEADING.test(priorities)) {
+    fail(`${path.relative(ROOT_DIR, prioritiesPath)} still owns an executable task section`);
+  }
+
+  if (fs.existsSync(brainstormingPath)) {
+    const brainstorming = fs.readFileSync(brainstormingPath, "utf8");
+    if (LEGACY_TASK_HEADING.test(brainstorming)) {
+      fail(
+        `${path.relative(ROOT_DIR, brainstormingPath)} still owns an executable task section`
+      );
+    }
+  }
 }
 
 const source = fs.readFileSync(RANKING_PATH, "utf8");
@@ -160,47 +205,40 @@ for (const row of rows) {
   const trackerMatch = row.slug.match(/\]\(\.\.\/([^/]+)\/priorities\.md\)/);
   if (!trackerMatch) continue;
   const trackerPath = path.join(ROOT_DIR, "reference/priorities", trackerMatch[1], "priorities.md");
+  const queuePath = path.join(ROOT_DIR, "reference/priorities", trackerMatch[1], "work-queue.md");
   if (!fs.existsSync(trackerPath)) {
     fail(`rank ${row.rank} points to missing tracker ${path.relative(ROOT_DIR, trackerPath)}`);
     continue;
   }
+  if (!fs.existsSync(queuePath)) {
+    fail(`rank ${row.rank} points to owner without ${path.relative(ROOT_DIR, queuePath)}`);
+    continue;
+  }
   const tracker = fs.readFileSync(trackerPath, "utf8");
+  const queue = fs.readFileSync(queuePath, "utf8");
   const nextObjectId = row.nextObject.match(/`([^`]+)`/)?.[1];
   if (!nextObjectId) {
     fail(`rank ${row.rank} tracker-backed row lacks an inline local object id`);
   } else {
-    const trackerLines = tracker.split(/\r?\n/);
-    const queueHeadings = [
-      "## Ranked Next Objects",
-      "## Immediate Priority Queue",
-      "## Open Work Queue",
-      "## Current Queue",
-      "## Priority Queue",
-      "## Task Queue",
-      "## Queue",
-    ];
-    let queueIndex = -1;
-    for (const heading of queueHeadings) {
-      queueIndex = trackerLines.findIndex((line) => line === heading);
-      if (queueIndex >= 0) break;
-    }
+    const queueLines = queue.split(/\r?\n/);
+    const queueIndex = queueLines.findIndex((line) => line === "## Ranked Next Objects");
     if (queueIndex < 0) {
-      fail(`${path.relative(ROOT_DIR, trackerPath)} lacks a ranked or recognized live queue`);
+      fail(`${path.relative(ROOT_DIR, queuePath)} lacks a \`## Ranked Next Objects\` section`);
     } else {
-      const nextHeadingOffset = trackerLines
+      const nextHeadingOffset = queueLines
         .slice(queueIndex + 1)
         .findIndex((line) => line.startsWith("## "));
       const queueEnd =
-        nextHeadingOffset < 0 ? trackerLines.length : queueIndex + 1 + nextHeadingOffset;
-      const localWinnerLine = trackerLines
+        nextHeadingOffset < 0 ? queueLines.length : queueIndex + 1 + nextHeadingOffset;
+      const localWinnerLine = queueLines
         .slice(queueIndex + 1, queueEnd)
         .find((line) => /^1\.\s+`[^`]+`/.test(line));
       const localWinnerId = localWinnerLine?.match(/^1\.\s+`([^`]+)`/)?.[1];
       if (!localWinnerId) {
-        fail(`${path.relative(ROOT_DIR, trackerPath)} lacks a machine-checkable local rank 1`);
+        fail(`${path.relative(ROOT_DIR, queuePath)} lacks a machine-checkable local rank 1`);
       } else if (localWinnerId !== nextObjectId) {
         fail(
-          `${path.relative(ROOT_DIR, trackerPath)} local rank 1 ${localWinnerId} != unified object ${nextObjectId}`
+          `${path.relative(ROOT_DIR, queuePath)} local rank 1 ${localWinnerId} != unified object ${nextObjectId}`
         );
       }
     }
@@ -225,6 +263,6 @@ for (const row of rows) {
 
 if (!process.exitCode) {
   console.log(
-    `[priority-ranking] passed: ${rows.length} rows, local bucket winners aligned, scores recomputed, global ranks sorted, tracker metadata synchronized`
+    `[priority-ranking] passed: ${activeOwnerDirectories.length} active owners have queues; ${rows.length} ranked rows have aligned local winners, recomputed scores, sorted global ranks, and synchronized tracker metadata`
   );
 }

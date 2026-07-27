@@ -3,24 +3,15 @@
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `15`
+- Rank: `13`
 - Value: `6.95`
 - Cost: `4.6`
 - ROI: `1.51`
 - Status: `draft`
 
-## Task Queue
+## Work Queue
 
-1. `redshift_clock_transport` — Map redshift observations into clock-rate, transport, and Noether sea evolution gates. Status: `draft`. Depends on: none.
-2. `lorentz_preferred_frame` — Use Lorentz-invariance experiments as a preferred-frame leakage and two-way synchronization gate. Status: `draft`. Depends on: none.
-3. `rotating_moving_media` — Use Sagnac and Fizeau cases to separate rotation, moving media, drag-like effective language, and Noether sea transport. Status: `draft`. Depends on: `lorentz_preferred_frame`.
-4. `weak_field_metric_ppn` — Use weak-field GR benchmarks to force one effective-metric response object rather than observable-by-observable tuning. Status: `draft`. Depends on: `redshift_clock_transport`.
-5. `radiation_gravity_waves` — Use compact-binary radiation and gravitational-wave propagation as event-ledger and effective-metric stress tests. Status: `draft`. Depends on: `weak_field_metric_ppn`.
-6. `thermal_statistical_radiative_qed` — Use entropy, temperature, blackbody, radiative-correction, and boundary-vacuum cases to discipline statistical emergence, radiation Gate C, and regularization language. Status: `draft`. Depends on: `radiation_gravity_waves`.
-7. `quantum_phase_measure` — Use interference, gauge phase, and oscillation cases to test path-history phase and basin-measure maps. Status: `draft`. Depends on: `thermal_statistical_radiative_qed`.
-8. `spin_bell_measurement` — Use Malus' law, Stern-Gerlach, and Bell tests as hard gates for angular-momentum, photon-analyzer, detector-kernel, pair-provenance, and no-signaling closure. Status: `draft`. Depends on: `quantum_phase_measure`.
-9. `topological_transport_statistical_emergence` — Use quantum Hall and Brownian cases to test robust invariants, transport closure, and micro-to-macro emergence. Status: `draft`. Depends on: `quantum_phase_measure`.
-10. `collider_reconstruction_provenance` — Use CERN detector, LHC Run-2, Higgs, flavor, neutrino, and invisible-channel source signals to keep reconstructed objects, missing transverse momentum, flavor tags, boosted substructure, and statistical limits at observer/provenance level. Status: `draft`. Depends on: `quantum_phase_measure`, `spin_bell_measurement`.
+The locally ranked benchmark mappings, dependencies, and acceptance boundaries live in [work-queue.md](work-queue.md).
 
 ## Scope
 
@@ -98,13 +89,13 @@ This projection is a provenance channel from detector signals to benchmark varia
 
 | Draft case family | Candidate promotion target | Promotion gate |
 | --- | --- | --- |
-| Redshift and cosmology | [cosmology-closure](../cosmology-closure/priorities.md), [validation-gates](../validation-gates/priorities.md) | Redshift, clock, CMB, supernova, BAO, and $H(z)$ records consume the same Noether sea variables without tired-light image or time-dilation failure. |
+| Redshift and cosmology | [cosmology-closure](../cosmology-closure/priorities.md), [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Redshift, clock, CMB, supernova, BAO, and $H(z)$ records consume the same Noether sea variables without tired-light image or time-dilation failure. |
 | Lorentz, Sagnac, and Fizeau | braid, [master-equation-closure](../master-equation-closure/priorities.md) | Two-way light speed, time dilation, length contraction, rotation, and moving-medium transport recover observer-level formulas while bounding preferred-frame leakage. |
-| Weak-field metric | [validation-gates](../validation-gates/priorities.md), mass-map | One $\mathcal{M}_{\mathrm{sea}}^{ab}$ maps to redshift, Shapiro delay, lensing, precession, and PPN coefficients. |
+| Weak-field metric | [validation-gates](../dormant-deferred/validation-gates/priorities.md), mass-map | One $\mathcal{M}_{\mathrm{sea}}^{ab}$ maps to redshift, Shapiro delay, lensing, precession, and PPN coefficients. |
 | Radiation and gravitational waves | [Radiation](../../../content/markdown/aaa/reactions/radiation.md), [strong-field-closure](../strong-field-closure/priorities.md) | Energy, momentum, angular momentum, recoil, medium updates, and waveform phase close in one event-ledger grammar. |
 | Quantum phase, spin, and Bell | [quantum-closure](../quantum-closure/priorities.md), angular-momentum-spin | Phase, spin, photon-analyzer response, detector basins, Born weights, no-signaling, and Bell correlations derive from path history and measure closure rather than postulated probabilities. |
-| Topological and statistical emergence | [validation-gates](../validation-gates/priorities.md), mass-map | Robust integer/fractional invariants and fluctuation-dissipation limits emerge from stable basins and transport maps. |
-| Collider reconstruction provenance | [standard-model-closure](../standard-model-closure/priorities.md), angular-momentum-spin, [validation-gates](../validation-gates/priorities.md) | Reconstructed objects, missing transverse momentum, heavy-flavor tags, boosted substructure, fiducial cross sections, and upper limits are compared as observer-level projections of one event-ledger and detector-response record. |
+| Topological and statistical emergence | [validation-gates](../dormant-deferred/validation-gates/priorities.md), mass-map | Robust integer/fractional invariants and fluctuation-dissipation limits emerge from stable basins and transport maps. |
+| Collider reconstruction provenance | [standard-model-closure](../standard-model-closure/priorities.md), angular-momentum-spin, [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Reconstructed objects, missing transverse momentum, heavy-flavor tags, boosted substructure, fiducial cross sections, and upper limits are compared as observer-level projections of one event-ledger and detector-response record. |
 
 ## Failure Modes
 
@@ -120,7 +111,7 @@ This projection is a provenance channel from detector signals to benchmark varia
 
 ## Related Priorities
 
-- [validation-gates](../validation-gates/priorities.md)
+- [validation-gates](../dormant-deferred/validation-gates/priorities.md)
 - braid
 - [master-equation-closure](../master-equation-closure/priorities.md)
 - mass-map

@@ -9,104 +9,31 @@
 - ROI: `3.81`
 - Status: `design-open`
 - Claim level: `priority-design`
-- Primary design packet: [requirements-and-design](requirements-and-design.md)
-- Assembly viewer requirements: [assembly-viewer-requirements](assembly-viewer-requirements.md)
-- Boundary shell replay packet: [boundary-shell-replay](boundary-shell-replay.md)
-- Native bridge audit packet: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md)
-- Dataset manifest packet: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
-- Surface design packet: [borg-app-surface-design.v1](borg-app-surface-design.v1.md)
-- Historical release budget manifest packet: [borg-release-budget-manifest.v1](borg-release-budget-manifest.v1.json)
-- Live run retention policy: [borg-live-run-retention-policy.v1](borg-live-run-retention-policy.v1.json)
+- Execution ledger: [work queue](work-queue.md)
+- Design packet: [requirements-and-design](requirements-and-design.md)
+- Assembly-view replay packet: [assembly-viewer-requirements](assembly-viewer-requirements.md)
+- Prescribed-translation packet: [prescribed-translation](prescribed-translation.md)
+- Boundary-shell replay packet: [boundary-shell-replay](boundary-shell-replay.md)
+- Dataset manifest: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
 
-## Scope
+## Objective
 
-**Engine policy (2026-07-16).** Borg's only forward engine is the **EOM solver** (`src/eom`).  Borg constructs certified artificial retained history as part of each randomized initial condition, stays idle on ordinary startup, and publishes atomically accepted EOM extensions from $T=0$ after explicit Start. Runtime and provenance guards are pinned by `tests/borg-eom-runtime-contract.test.js`.
-
-This workstream defines the app-facing design lane for an interactive finite-window simulation surface. The app target is a spherical simulation envelope for an unbounded-universe approximation. The operator can choose scale, architrino initial conditions, path-history policy, wake-history policy, statistical boundary-shell policy, and display diagnostics while the production simulation path is the EOM engine.
-
-The same Borg surface also owns assembly-view replay. Simulation workspace and assembly-view replay are distinct modes: the former may invoke the EOM solver after explicit Start, while the latter reads sealed `assembly-view-record.v0` files only and disables every run or mutation control.
-
-The workstream is not an implementation license for a new solver. Missing motion, causal-root, delayed-hit, path-history, wake-history, boundary-shell, or simulation-window stepping capabilities must extend the EOM contracts, native implementation, bridge schema, and validation fixtures — never any non-EOM engine.
+Maintain Borg as an app-facing surface for EOM-solver simulation and sealed-record assembly-view replay. Borg must consume EOM-owned runs and sealed records; it must not add another solver, reconstruct missing physics in the app, or elevate replay/display output into independent evidence.
 
 ## Current Decisions
 
-1. Use `reference/priorities/app-borg/` as the priority-side working directory for design, requirements, and build handoffs.
-2. Keep the priority index and the detailed requirements/design packet separate. The index tracks status and task order; the design packet carries durable requirements and implementation constraints.
-3. Model architrino primitives directly. Do not introduce assembly primitives as the app's base entities.
-4. Do not assign physical mass to architrino primitives. Any numerical integration scalar must be labeled `integrationWeight` / `integrationWeights`, not physical mass.
-5. Treat the first app model as a finite spherical simulation envelope in an unbounded-universe approximation, with an outer spherical envelope and a displayed interior central ball.
-6. Treat architrinos crossing the outer boundary shell as outbound shell events; later inbound entries are boundary-generated unless retained external path history is present.
-7. Preserve path history and wake history as solver-owned data products, with app controls and visualization reading from solver manifests, streams, checkpoints, wake rows, boundary rows, and diagnostics.
-8. Keep the UI minimal, elegant, contemporary, and parsimonious by default, while still exposing required solver state, wake history, path history, boundary-shell status, velocity rays, and diagnostics required for advancement when the run or selected object needs them.
-9. Use optional viewport layers for path history, wake streams, velocity rays, boundary-shell status, and diagnostics so the default screen stays streamlined without losing inspectability.
-10. Support 3D viewport rotation and zoom as camera controls only; visual navigation must not change outer radius, causal speed, solver precision, or simulation-envelope fields.
-11. Use the first logarithmic UI prototype rules for scale, velocity rays, wake strength, and timeline navigation, while always exposing exact solver values and whether a displayed quantity is linear, logarithmic, normalized, or display-only.
-12. Use the first-screen layer control layout to keep `simulation-window` and `architrino-position` visible by default, place path history, wake streams, velocity rays, and boundary-shell status behind toggles, and route selected-object details to compact tags plus the diagnostics rail.
-13. Require every run and displayed solver-derived value to carry visible error-budget and value-authority status, including global, stage-level, and selected-object error information where available.
-14. Use the first diagnostic status vocabulary for displayed values: `authoritative-solver-output`, `app-facing-projection`, `display-only-visualization`, `missing-error-budget`, `exceeded-error-budget`, and `fail-closed-value`.
-15. Treat outbound boundary-shell architrino and wake statistics as a candidate unbounded-window boundary model; replayed statistical boundary rows must never replace retained local wake rows, retained local path history, or same-record causal-root evidence.
-16. Interpret primary results in a declared `centralBall`; the displayed `centralArchitrinoCount` is not the total solver `architrinoCount` when `radialBufferMargin` is nonzero, and the outer computed count must be derived from central number density and buffer volume.
-17. The outer spherical envelope must provide a `radialBufferMargin` that satisfies $b_{\mathrm{shell}}(\mathcal C)\ge\max(c_fh,\ v_{\max}T_{\mathcal C})$ for strict central-ball buffer status, or else statistical inbound architrinos and reconstructed wake history are admissible only when $R_{\mathrm{boundary\to central}}\le\tau_{\mathcal C}$.
-18. Measure deployment budget separately from solver throughput: static bundle transfer, static asset transfer, browser heap, GPU memory, browser storage, GitHub Pages bandwidth, GitHub Actions artifacts, and EOM solver throughput are distinct budgets.
-19. Use `borg-dataset-manifest.v1` as the first app-facing run cover sheet, but defer save, export, import, and load workflows until the first-screen contract and EOM-run dataset coverage are stable.
-20. Preserve `borg-release-budget-manifest.v1` and its sweep as reference-only historical measurements of the deleted pre-EOM browser path. Do not import either artifact into `src/apps/borg`; current run-preset ceilings require a separately authorized current EOM release budget as well as measured EOM chunks, and measurements alone do not create ceilings.
-21. Use `borg-live-run-retention-policy.v1` for forever-mode display retention: keep recent EOM frame rows for playback and current-state inspection, compact older path history into display-only sampled trail points, and keep EOM solver state and chunk requests unchanged.
-22. Use the canonical normalized field speed $c_f=1$ for Borg EOM runs. A non-unit value requires an explicit run-manifest unit transform; no run-local override is admissible.
-23. Keep assembly-view replay record-only and visibly distinct from the simulation workspace. A record produced by a Borg-triggered run is replayable only after the accepted emitter seals it and the replay path reloads the file.
-24. Preserve raw ids and source ordering in collection navigation. For tri-binary collections, optional $S_3$ grouping may use a source-carried permutation-canonical key to hide duplicate navigation rows, but it may not delete, relabel, or replace the underlying unquotiented records.
+1. The EOM solver is Borg’s only forward engine; ordinary startup remains idle until explicit Start.
+2. Simulation workspace and assembly-view replay are distinct: replay is record-only and exposes no run or mutation controls.
+3. Borg displays a finite spherical envelope and central observation ball, with path and wake history owned by solver outputs and manifests.
+4. Missing wake, interaction, residual, or boundary-shell rows remain fail-closed or display-only; the app must not fill gaps with visual tuning.
+5. Keep the UI minimal while preserving required authority, error-budget, path-history, wake-history, boundary-shell, and diagnostic state.
+6. Use normalized field speed $c_f=1$ for Borg EOM runs unless an explicit manifest transform is present.
+7. Borg owns the selected teaching surfaces for prescribed geometry, source-carried classification and polarity rows, and interaction-ledger display; the scientific owner must supply every non-display row.
 
-## Ranked Next Objects
+## Work Queue
 
-Ordered by marginal ROI on 2026-07-17. Completed design and contract foundations remain in the detailed inventory below but do not retain priority value.
+The locally ranked execution order, including deferred workflows, lives in [work-queue.md](work-queue.md).
 
-1. `native_wake_history_and_boundary_residual_fixture` — Emit retained wake/interaction rows, row-conservation counts, boundary-to-central residuals, and required acceleration-contribution diagnostics from EOM. Status: `pending`.
-2. `assembly_viewer_replay_mode` — Close the remaining record-contract carriers after the record-only replay core. Status: `blocked-on-record-contract-carriers`; implemented core includes provenance, retained-history replay, chart/evolved modes, display views, raw navigation, source filters, and controls required for advancement; blockers are declared comparison transforms, a collection carrier, required field speed, and spin/polarity-dipole vectors.
-3. `velocity_scale_sampling_research` — Produce measured boundary-shell replay sampling evidence across the declared velocity range. Status: `pending`.
-4. `assembly_explorer_surface_disposition` — Decide standalone-surface retirement only after Borg replay reaches parity. Status: `pending`.
-5. `save_export_import_load_workflows` — Design dataset persistence after EOM-run coverage stabilizes. Status: `deferred`.
+## Promotion Boundary
 
-## Detailed Task Inventory
-
-1. `requirements_design_packet` — Maintain the first requirements and design packet for the Borg app, including scale controls, initial conditions, EOM solver boundary, path-history retention, wake-history retention, boundary-shell replay, diagnostics, and claim-level limits. Status: `complete`; source: [requirements-and-design](requirements-and-design.md).
-2. `native_solver_capability_gap` — Compare the requirements packet against the current EOM solver bridge and list missing capabilities as EOM contract extensions, not app-local solver work. Status: `complete`; source: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md). Current boundary: native stepping, initial conditions, current state, checkpoints, trajectory frames, bounded trails, and the bridge-level path-history stream contract exist; Borg manifest binding, retained wake rows, statistical boundary-shell rows, path-derived boundary-shell patch influence rows, boundary shell noise policy rows, velocity sampling rows, residual decision rows, diagnostic status manifests, and 3-D first-screen app behavior remain gaps.
-3. `logarithmic_ui_prototype_rules` — Define the first logarithmic UI prototype rules for scale, velocity rays, wake strength, and timeline navigation while keeping exact solver values visible. Status: `complete`; source: [requirements-and-design](requirements-and-design.md).
-4. `first_screen_control_layout` — Define the first-screen control layout for camera navigation, layer toggles, and simulation-envelope scale controls so visual zoom and physical simulation scale are impossible to confuse. Status: `complete`; source: [requirements-and-design](requirements-and-design.md).
-5. `first_screen_layer_control_layout` — Define the first-screen layer control layout: default-visible layers, toggle-hidden layers, contextual layers, and selected-object diagnostics behavior. Status: `complete`; source: [requirements-and-design](requirements-and-design.md).
-6. `smallest_elegant_first_screen` — Identify the smallest elegant first-screen design that still shows scale, initial conditions, path history, wake history, boundary-shell status, and diagnostics required for advancement under the current native bridge boundary. Status: `complete`; source: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md).
-7. `app_surface_design` — `borg-app-surface-design.v1` defined the first screen-spec object: displayed central ball, outer spherical envelope overlay, exact simulation-envelope rail fields, initial-condition summary, layer strip, timeline, deployment/render placeholders, diagnostic status vocabulary, value-authority map, and explicit rows with a Not advanced disposition for wake history, boundary-shell rows, boundary-shell patch influence, boundary-shell policy, velocity sampling, and `R_boundary->central`. The design-owned surface object lives in `src/apps/borg/BorgAppManifest.js`. Status: `complete`; claim level: `developer-test-screen-spec`; source: [borg-app-surface-design.v1](borg-app-surface-design.v1.md).
-8. `boundary_shell_replay_schema` — Define the first unbounded-window boundary-shell schema: outbound architrino path statistics, inbound replay path rows, self-similar replay run, wake reconstruction from paths, and $R_{\mathrm{shell\ replay}}$ pass/fail threshold. Status: `complete`; source: [boundary-shell-replay](boundary-shell-replay.md).
-9. `path_only_shell_influence_model` — Define `borg-boundary-shell-influence-model.v1` as the path-derived model built from EOM path streams, path indices, kernels, time bins, and a compact spherical distribution model; per-point shell projections are display/debug caches only and must not become source evidence. Status: `complete`; source: [boundary-shell-replay](boundary-shell-replay.md), [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md).
-10. `boundary_shell_noise_policy` — Define `borg-boundary-shell-noise-policy.v1` as the self-similar reduced-model policy that turns observed outbound shell records into boundary-generated inbound path inputs after a history-hiding transform. It consumes complete shell coverage, path-derived influence rows, observed-bin time mapping, measured velocity sampling, shell-source mixture rows, polarity/correlation policies, and the boundary replay decision policy. `Benign noise` means `benignNoiseStatus = measured-reduced-pass` for the declared envelope, not visual randomness or small wake magnitude. Status: `complete`; source: [boundary-shell-replay](boundary-shell-replay.md), [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md).
-11. `velocity_scale_sampling_protocol` — Define `borg-velocity-sampling-protocol.v1` and `borg-velocity-sampling-result.v1`: observed-native-row inputs, numeric chart policy, candidate sampling policies, calibration/holdout windows, deterministic seed set, residuals for velocity distribution, tail mass, correlations, seed variance, boundary-shell patch replay, and central-ball contribution, plus v0 acceptance criteria. Status: `complete`; source: [boundary-shell-replay](boundary-shell-replay.md), [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md).
-12. `boundary_replay_decision_policy` — Define the first pass/display-only/decision ladder requiring verification before advancement for boundary-shell replay: strict buffer pass first, otherwise measured residual pass with v0 defaults $\tau_{\mathrm{self}}=5\times10^{-2}$, $\tau_{\mathrm{shell}}=10^{-2}$, and $\tau_{\mathcal C}=10^{-3}$; missing evidence may render display-only only when no value authority is consumed. Status: `complete`; source: [boundary-shell-replay](boundary-shell-replay.md), [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md).
-13. `diagnostic_status_vocabulary` — Define the first app diagnostic status vocabulary for authoritative solver output, app-facing projection, display-only visualization, missing error budget, exceeded error budget, and value with a Not advanced disposition. Status: `complete`; source: [requirements-and-design](requirements-and-design.md).
-14. `simulation_envelope_wake_row_rule` — Define the simulation-envelope rule that separates resolved wake rows, aggregated wake-noise/background rows, boundary-generated rows, and forbidden silent truncation. Status: `complete`; source: [requirements-and-design](requirements-and-design.md).
-15. `integration_weight_contract` — Keep architrino mass out of the app contract and label any numerical integration scalar as `integrationWeight` / `integrationWeights`. Status: `complete`; source: [requirements-and-design](requirements-and-design.md).
-16. `central_volume_boundary_budget` — Define the central-ball observation rule: the solver may calculate an outer spherical envelope while the viewport displays an interior central ball; boundary-generated inbound architrinos are new identities with reconstructed wake history; strict central-ball buffer status requires $b_{\mathrm{shell}}(\mathcal C)\ge\max(c_fh,\ v_{\max}T_{\mathcal C})$, otherwise central-ball values require $R_{\mathrm{boundary\to central}}\le\tau_{\mathcal C}$ or a Not advanced disposition. Status: `complete`; source: [requirements-and-design](requirements-and-design.md), [boundary-shell-replay](boundary-shell-replay.md).
-17. `population_count_split` — Derive total solver `architrinoCount` from displayed `centralArchitrinoCount`, central outer radius, and buffer margin so exterior computed architrinos protect the central ball without being counted as the primary observation set. Status: `complete`; source: [requirements-and-design](requirements-and-design.md).
-18. `deployment_budget_split` — Measure bundle size, static asset transfer, GitHub Pages bandwidth, browser heap, GPU memory, browser storage, GitHub Actions artifacts, and EOM solver throughput as separate budgets. Status: `complete`; source: [requirements-and-design](requirements-and-design.md).
-19. `dataset_manifest_contract` — Define `borg-dataset-manifest.v1` as the app-facing run cover sheet, with fields for the spherical simulation envelope, population counts, deployment budgets, initial conditions, path-history sources, diagnostics, boundary-shell replay, error budgets, row conservation, residual decisions, and value authority. Status: `complete`; source: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md).
-20. `first_native_backed_fixture` — Status: `retired`. The initial-condition policy (uniform spherical simulation-envelope placement, balanced polarity, zero initial velocity) lives in `src/apps/borg/BorgAppManifest.js` and `src/apps/borg/BorgInitialConditions.js`.
-21. `native_wake_history_and_boundary_residual_fixture` — Build `build-native-wake-history-and-boundary-residual-fixture`: extend the EOM contracts and native implementation so Borg emits retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and any required acceleration-contribution diagnostics without app-local physics or visual tuning. Status: `pending`; source: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md), [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md).
-22. `velocity_scale_sampling_research` — Compare velocity-scale-aware sampling techniques for boundary-shell replay across many orders of magnitude using EOM-run rows: logarithmic velocity bins, stratified sampling, importance sampling, quantile sketches, adaptive time bins, deterministic or low-discrepancy resampling, and error-controlled moment matching. Status: `pending`; source: [boundary-shell-replay](boundary-shell-replay.md); depends on: `velocity_scale_sampling_protocol` and `native_wake_history_and_boundary_residual_fixture`. Until measured, affected boundary replay output remains `display-only` or `fail-closed`.
-23. `save_export_import_load_workflows` — Design saving, exporting, importing, and loading app datasets after the manifest contract, first-screen app surface, and EOM-run dataset coverage are stable. Status: `deferred`; depends on: `dataset_manifest_contract` and `app_surface_design`.
-24. `assembly_viewer_replay_mode` — Complete the record-only Borg capability defined by [assembly-viewer-requirements](assembly-viewer-requirements.md). Implemented core: visible run/replay separation, persistent provenance, prescribed/evolved labels, strict retained-segment replay, coverage clamping, source-defined trail depth, chart pose, co-rotating camera, swept envelope, static image export, disabled animation-export placeholder, catalog-backed prescribed-geometry navigation, raw source-order navigation, source filters, optional source-carried $S_3$ grouping, and explicit unavailable states. Status: `blocked-on-record-contract-carriers`; blockers: ratified comparison time/unit transforms, ratified external collection carrier, required field-speed carrier, and spin/polarity-dipole vector carriers. Depends on: Braid Program instrument-gate schema action; Borg must not invent these fields.
-25. `assembly_explorer_surface_disposition` — After Borg replay has parity for raw-record navigation, source-order preservation, optional source-carried $S_3$ grouping, and source-carried search diagnostics, decide which standalone `assembly-explorer.html`, runtime, contract, scene, and test surfaces should be retired or redirected. Status: `pending`; no standalone implementation file is removed by the priority-lane consolidation.
-
-## First Static Page Artifact
-
-The canonical Borg page is [borg.html](../../../borg.html), implemented with [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js), [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js), and [main.js](../../../src/apps/borg/main.js). It consumes the design-owned `borg-app-surface-design.v1` browser snapshot and the source `borg-dataset-manifest.v1` policy object, renders one dotted outer boundary shell with Three.js, shows EOM-run current-state positions, supports frame scrubbing, path-history and velocity-vector layer toggles, and surfaces diagnostics required for advancement. All simulation-workspace motion comes from the EOM run path; no stored trajectory ships with the page. `Open prescribed geometry workspace` enters the record-only Assembly Viewer through `borg.html?eomRecord=<url>`; repeated direct parameters preserve source order for the in-memory collection model. The full requirements packet remains open only at the ratified-carrier blockers recorded above.
-
-## Current Next Build Burden
-
-Build `build-native-wake-history-and-boundary-residual-fixture`: extend the EOM contracts and native implementation so Borg can add retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics on top of the EOM run path. Replay-affected values stay not advanced until those native rows and residuals exist.
-
-## Normal Workflow Pattern
-
-Yes: this follows the normal priority workflow pattern for an app or theory-adjacent build that is not ready to become canonical corpus prose or production app code. The priority directory holds the live workstream, and the separate design packet prevents the priority index from becoming a large requirements document.
-
-The expected promotion path is:
-
-1. keep design and open obligations in this priority directory;
-2. move implementation into the appropriate app and solver paths only after the native-solver capability gap is explicit;
-3. promote only stable explanatory material into `content/markdown/aaa` when the claim level is evidence-bound and no longer merely app-design guidance.
+Promote only stable, evidence-bound explanatory material into the corpus. Design notes, implementation obligations, and execution evidence remain in this priority directory and its linked queue.

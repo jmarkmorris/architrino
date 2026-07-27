@@ -63,6 +63,7 @@ When an audit item becomes broad or long-lived, promote it out of this guide int
 | UI Element | Preference | Current Non-Matching Uses |
 | --- | --- | --- |
 | Primary UI font | `Helvetica Neue`, falling back to `Arial, sans-serif` | Canvas-drawn labels in `app.js` still use generic `sans-serif` rather than the explicit stack |
+| Shared web-app typography tokens | Use `--ui-font-family: "Helvetica Neue", Arial, sans-serif`, `--ui-body-size: 14px`, `--ui-body-weight: 400`, and `--ui-body-line-height: 1.5` for ordinary app body text; use `--ui-label-size: 12px`, `--ui-label-weight: 700`, and `--ui-label-line-height: 1.25` for interactive labels and navigation-list items. App-local navigation lists, including lesson lists, and global shell search results represent the same interaction role and must consume the same applicable `--ui-label-*` tokens rather than separate app-local literals. Reserve `10px`-`11px` compact text for non-interactive secondary metadata. | Shared `--ui-*` typography tokens are not yet defined. Global `.scene-search-item` and app-local lesson-list styles currently use separate literal sizes and weights. |
 | Reading-surface font | `Helvetica Neue`, falling back to `Arial, sans-serif` | Canvas-drawn labels in `app.js` still use generic `sans-serif` rather than the explicit stack |
 | Monospace font | `SFMono-Regular`, `Menlo`, `Consolas`, `monospace` |  |
 | Heading scale | Markdown headings use `22px` / `20px` / `18px` for `h1` / `h2` / `h3`; compact chrome titles and menu kickers typically use `10px`-`13px` uppercase text |  |

@@ -92,6 +92,10 @@ add_executable(eom_native_evolution_fixture_cli
   native/eom_native_evolution_fixture_cli.cpp
 )
 
+add_executable(eom_stationary_joint_frontier_fixture_cli
+  native/eom_stationary_joint_frontier_fixture_cli.cpp
+)
+
 add_executable(eom_borg_shadow_cli native/eom_borg_shadow_cli.cpp)
 target_link_libraries(eom_borg_shadow_cli PRIVATE eom_native)
 target_compile_options(
@@ -99,6 +103,12 @@ target_compile_options(
 )
 target_link_libraries(eom_native_evolution_fixture_cli PRIVATE eom_native)
 target_compile_options(eom_native_evolution_fixture_cli
+  PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
+)
+target_link_libraries(
+  eom_stationary_joint_frontier_fixture_cli PRIVATE eom_native
+)
+target_compile_options(eom_stationary_joint_frontier_fixture_cli
   PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
 )
 
@@ -115,6 +125,10 @@ add_test(
 add_test(
   NAME eom_native_evolution_fixture
   COMMAND eom_native_evolution_fixture_cli all
+)
+add_test(
+  NAME eom_stationary_joint_frontier_fixture
+  COMMAND eom_stationary_joint_frontier_fixture_cli
 )
 add_test(
   NAME eom_borg_shadow_protocol_version

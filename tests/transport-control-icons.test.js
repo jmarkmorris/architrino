@@ -8,11 +8,12 @@ import {
   setTransportControlButtonPresentation,
 } from "../src/runtime/TransportControlIcons.js";
 
-test("canonical transport set exposes all six controls as monoline SVG", () => {
+test("canonical transport set exposes all seven controls as monoline SVG", () => {
   assert.deepEqual(Object.values(TRANSPORT_CONTROL_ICON), [
     "play",
     "pause",
     "first-frame",
+    "last-frame",
     "rewind",
     "reset",
     "stop",
@@ -32,6 +33,32 @@ test("canonical pause is two independent strokes", () => {
   const markup = getTransportControlIconMarkup(TRANSPORT_CONTROL_ICON.PAUSE);
   assert.match(markup, /<path d="M8 5v14"><\/path><path d="M16 5v14"><\/path>/);
   assert.doesNotMatch(markup, /h3v14/);
+});
+
+test("canonical Last Frame mirrors First Frame with a right-side stop bar", () => {
+  const markup = getTransportControlIconMarkup(TRANSPORT_CONTROL_ICON.LAST_FRAME);
+  assert.match(markup, /<path d="M17 5v14"><\/path>/);
+  assert.match(markup, /<path d="M6 6l8 6-8 6z"><\/path>/);
+
+  const attributes = {};
+  const button = {
+    dataset: {},
+    innerHTML: "",
+    querySelector() {
+      return null;
+    },
+    setAttribute(name, value) {
+      attributes[name] = value;
+    },
+    removeAttribute(name) {
+      delete attributes[name];
+    },
+  };
+  setTransportControlButtonPresentation(button, {
+    kind: TRANSPORT_CONTROL_ICON.LAST_FRAME,
+  });
+  assert.equal(attributes["aria-label"], "Last frame");
+  assert.equal(button.title, "Last frame");
 });
 
 test("transport presentation keeps icon, accessible name, title, and pressed state together", () => {

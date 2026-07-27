@@ -5,6 +5,7 @@ import { test } from "node:test";
 import {
   BORG_APP_SURFACE_DESIGN_V1,
   BORG_DATASET_MANIFEST_V1,
+  BORG_FAIL_CLOSED_ROWS,
   validateBorgManifest,
 } from "../src/apps/borg/BorgAppManifest.js";
 import {
@@ -467,15 +468,16 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.match(runtimeSource, /rebuildPathTrails/);
   assert.doesNotMatch(runtimeSource, /PLAYBACK_SPEED_PRESETS|playbackSpeedPresetById/);
   assert.match(runtimeSource, /requestedRate: BORG_MAX_REALTIME_PLAYBACK_RATE/);
-  assert.match(runtimeSource, /BOUNDARY_SHELL_LATITUDE_COUNT = 25/);
-  assert.match(runtimeSource, /BOUNDARY_SHELL_LONGITUDE_COUNT = 48/);
+  assert.match(runtimeSource, /SIMULATION_WINDOW_LATITUDE_COUNT = 25/);
+  assert.match(runtimeSource, /SIMULATION_WINDOW_LONGITUDE_COUNT = 48/);
   assert.match(runtimeSource, /ENVELOPE_GUIDE_COLOR = 0xcbd0c8/);
   assert.match(runtimeSource, /ENVELOPE_GUIDE_OPACITY = 0\.88/);
   assert.match(runtimeSource, /new THREE\.OrthographicCamera\(/);
   assert.doesNotMatch(runtimeSource, /new THREE\.PerspectiveCamera\(/);
   assert.match(runtimeSource, /calculateBorgOrthographicFrustum/);
   assert.match(runtimeSource, /new THREE\.Points\(/);
-  assert.equal((runtimeSource.match(/boundaryShellGroup\.add\(\s*createBoundaryShellPoints\(\{/g) ?? []).length, 1);
+  assert.equal((runtimeSource.match(/simulationWindowGroup\.add\(\s*createSimulationWindowGuidePoints\(\{/g) ?? []).length, 1);
+  assert.doesNotMatch(runtimeSource, /boundaryShell|boundary-shell/);
   assert.doesNotMatch(runtimeSource, /centralBallGroup/);
   assert.doesNotMatch(runtimeSource, /\["xy", "xz", "yz"\]/);
   assert.doesNotMatch(runtimeSource, /new THREE\.LineLoop/);
@@ -729,6 +731,17 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   );
   assert.match(
     htmlSource,
+    /src\/apps\/navigator\/standalone-app-navigation\.css/,
+  );
+  assert.match(
+    htmlSource,
+    /id="scene-hud-tools"[^>]*class="standalone-app-navigation borg-webapp-navigation"[\s\S]*id="textbook-toc-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="home-button"[\s\S]*id="scene-search-toggle"[\s\S]*id="borg-diagnostics-toggle"/,
+  );
+  assert.match(runtimeSource, /createStandaloneAppSceneSearchRuntime/);
+  assert.match(runtimeSource, /TEXTBOOK_TOC_SCENE_PATH/);
+  assert.match(runtimeSource, /resolveStandaloneSiteHomeHref/);
+  assert.match(
+    htmlSource,
     /id="borg-diagnostics-panel"[\s\S]*aria-hidden="true"[\s\S]*inert/,
   );
   assert.match(runtimeSource, /refreshDiagnosticsPanel\(\)[\s\S]*diagnosticsPanelController\.renderIfOpen\(\)/);
@@ -739,8 +752,16 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.match(runtimeSource, /opposite-polarity close fraction/);
   assert.match(
     htmlSource,
-    /class="borg-viewport-toolbar"[\s\S]*id="borg-layer-strip"[\s\S]*class="borg-solver-banner-slot"[\s\S]*id="borg-solver-banner"[\s\S]*id="borg-reset-view-button"/,
+    /class="borg-viewport-toolbar"[\s\S]*id="borg-layer-strip"[\s\S]*id="borg-camera-drawer"[\s\S]*id="borg-reset-view-button"[\s\S]*class="borg-solver-banner-slot"[\s\S]*id="borg-solver-banner"/,
   );
+  assert.match(runtimeSource, /layer\.layer === "path-history"[\s\S]*dom\.layerStrip\.append\(dom\.cameraDrawer\)/);
+  assert.match(runtimeSource, /windowLike\?\.history\?\.back\?\.\(\)/);
+  assert.match(runtimeSource, /windowLike\?\.history\?\.forward\?\.\(\)/);
+  assert.match(
+    runtimeSource,
+    /HIDDEN_LAYER_BUTTONS = new Set\(\[[\s\S]*"wake-streams"/,
+  );
+  assert.doesNotMatch(htmlSource, />Wake<|>Shell<|borg-record-date-chip|borg-viewport-chip/);
   assert.match(
     htmlSource,
     /#borg-solver-banner \{[\s\S]*height: 32px;[\s\S]*text-overflow: ellipsis;[\s\S]*white-space: nowrap;/,
@@ -753,7 +774,10 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
     htmlSource,
     /\.borg-camera-drawer \{[\s\S]*position: relative;[\s\S]*\.borg-camera-controls \{[\s\S]*grid-template-columns: repeat\(3, 32px\);/,
   );
-  assert.match(htmlSource, /\.borg-viewport-chip \{[\s\S]*border-radius: 6px;/);
+  assert.match(
+    htmlSource,
+    /@media \(max-width: 980px\) \{[\s\S]*\.borg-title p \{[\s\S]*display: none;/,
+  );
   assert.match(htmlSource, /\.borg-replay-grid \{[\s\S]*align-items: end;/);
   assert.match(
     htmlSource,
@@ -774,9 +798,16 @@ test("Borg surface keeps EOM-native policy requiring verification for advancemen
   const wakeLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "wake-streams");
   assert.equal(wakeLayer.state, "disabled");
   assert.equal(wakeLayer.valueAuthority, "fail-closed-value");
-  const shellLayer = surfaceDesign.layerStrip.find((layer) => layer.layer === "boundary-shell-status");
-  assert.equal(shellLayer.state, "contextual-disabled");
-  assert.equal(shellLayer.valueAuthority, "fail-closed-value");
+  assert.equal(
+    surfaceDesign.layerStrip.some((layer) => layer.layer === "boundary-shell-status"),
+    false,
+  );
+  assert.equal(surfaceDesign.authorityMap.simulationWindowGuide, "app-facing-projection");
+  assert.equal(surfaceDesign.authorityMap.boundaryShellStatus, undefined);
+  assert.equal(
+    BORG_FAIL_CLOSED_ROWS.some((row) => /boundary[_-]shell/u.test(row.firstFailureCode)),
+    false,
+  );
 });
 
 test("Borg prescribed-geometry provenance presents source-carried braid taxonomy", () => {
@@ -789,6 +820,8 @@ test("Borg prescribed-geometry provenance presents source-carried braid taxonomy
   assert.match(assemblyViewControlsSource, /\["Member definition", `\$\{taxonomy\.memberId\} — \$\{taxonomy\.memberLabel\}`\]/);
   assert.match(assemblyViewControlsSource, /\["Instantiation", taxonomy\.instantiationLabel\]/);
   assert.match(assemblyViewControlsSource, /\["Canon source", taxonomy\.canonSource\]/);
+  assert.match(assemblyViewControlsSource, /\["Record date", presentation\.provenance\.date\]/);
+  assert.doesNotMatch(assemblyViewControlsSource, /dateChip/);
 });
 
 function uniqueFrameIndexes(frames) {

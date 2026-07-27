@@ -1,0 +1,166 @@
+@import url("../../../ui-tokens.css");
+
+.standalone-app-navigation {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  right: max(16px, env(safe-area-inset-right));
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.standalone-app-navigation button {
+  font: inherit;
+}
+
+.standalone-app-nav-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 999px;
+  background: rgba(8, 10, 18, 0.75);
+  color: #f5f7ff;
+  cursor: pointer;
+}
+
+.standalone-app-nav-icon-button svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.standalone-app-nav-icon-button:not(:disabled):hover,
+.standalone-app-nav-icon-button:not(:disabled):focus-visible,
+.standalone-app-toc-button:not(:disabled):hover,
+.standalone-app-toc-button:not(:disabled):focus-visible {
+  border-color: rgba(213, 220, 255, 0.6);
+  outline: none;
+}
+
+.standalone-app-nav-icon-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.standalone-app-navigation .standalone-app-toc-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 999px;
+  background: rgba(8, 10, 18, 0.75);
+  color: #f5f7ff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.standalone-app-toc-button::after {
+  content: none;
+  display: none;
+}
+
+.standalone-app-toc-button.is-active,
+.standalone-app-scene-search-toggle.is-active {
+  border-color: rgba(176, 136, 255, 0.7);
+  background: rgba(92, 36, 164, 0.92);
+}
+
+.standalone-app-nav-history {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.standalone-app-scene-search {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.standalone-app-scene-search-panel {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  z-index: 7;
+  display: none;
+  min-width: 260px;
+  max-width: 80vw;
+  padding: 10px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 8px;
+  background: rgba(8, 10, 18, 0.94);
+}
+
+.standalone-app-scene-search-panel.is-open {
+  display: block;
+}
+
+.standalone-app-scene-search-input {
+  width: 100%;
+  min-height: 32px;
+  padding: 6px 8px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 6px;
+  background: rgba(15, 18, 32, 0.9);
+  color: #f5f7ff;
+  font-size: 12px;
+}
+
+.standalone-app-scene-search-results {
+  display: flex;
+  max-height: 220px;
+  margin-top: 8px;
+  flex-direction: column;
+  gap: 6px;
+  overflow: auto;
+}
+
+.standalone-app-navigation .scene-search-item {
+  padding: 6px 8px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 8px;
+  background: rgba(15, 18, 32, 0.8);
+  color: #f5f7ff;
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-label-size);
+  font-weight: var(--ui-label-weight);
+  line-height: var(--ui-label-line-height);
+  text-align: left;
+  cursor: pointer;
+}
+
+.standalone-app-navigation .scene-search-item:hover,
+.standalone-app-navigation .scene-search-item:focus-visible {
+  border-color: rgba(213, 220, 255, 0.6);
+}
+
+@media (max-width: 820px) {
+  .standalone-app-navigation {
+    top: max(12px, env(safe-area-inset-top));
+    right: max(12px, env(safe-area-inset-right));
+  }
+}

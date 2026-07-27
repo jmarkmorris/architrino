@@ -4,7 +4,7 @@
 
 The app lets the operator build, run, inspect, and replay finite simulation windows that approximate an unbounded architrino universe with controlled scale and initial conditions. The first target is a bounded 3D window whose outbound shell statistics can generate statistically matched inbound architrinos and wake history. Solver diagnostics must remain explicit about what is retained, replayed, display-only, verification incomplete, or not advanced.
 
-The app is a design target until native-backed runs and retained same-record evidence exist.
+This packet owns the durable app requirements. The live app already consumes EOM-run rows, but no display, replay, or developer-test surface upgrades those rows beyond their source authority.
 
 ## Non-Negotiable Boundaries
 
@@ -187,6 +187,12 @@ Path history means the recorded source and receiver motion needed to replay wher
 | Replay index | Fast lookup for path id, time range, frame range, and root/wake consumers. |
 
 The app should render trails and playback from these records, but the authoritative data is the solver-owned path stream and manifest.
+
+### Live-Run Browser Retention
+
+The executable browser-retention authority is [BorgLiveRunRetentionPolicy.js](../../../src/apps/borg/BorgLiveRunRetentionPolicy.js). During an unbounded-duration display run, Borg keeps the recent EOM frame rows needed for current-state inspection and playback, then compacts older browser rows into sampled per-path trail points. Those compacted points are `display-only-compacted-path-history`; they are not EOM state, retained causal history, wake evidence, or a durable paging source.
+
+Compaction must preserve a shared boundary endpoint between the compacted trail and the exact recent trail, use stable historical frame positions when thinning older points, and keep the browser display-memory bound separate from EOM solver state and chunk requests. Authoritative inspection uses the retained recent EOM rows or a future durable path-history page source. The executable module owns all numeric limits, trigger values, strides, snapshot fields, and runtime status tokens; this packet owns only the authority boundary and required behavior.
 
 ## Wake-History Retention
 
@@ -479,11 +485,11 @@ The 3D viewport should use optional layers that can be turned on or off without 
 | --- | --- | --- | --- |
 | `simulation-window` | On and locked | Render one bright light-gray dotted sphere at the outer boundary shell; do not render great-circle guides, a second central-ball sphere, walls, panels, or filled boundary-shell patches. | `centralBall`, `centralBallRadius`, `outerRadius`, `radialBufferMargin`, and camera projection. |
 | `architrino-position` | On | Render each architrino as a stable colored point or glyph. | Current solver state. |
-| `path-history` | Off | Render recent trails with fade or bounded segment count. | Path-history stream and replay index. |
-| `wake-streams` | Off | Render expanding causal spheres or shells from retained wake rows; boundary-generated rows must be visually downgraded. | Wake-history rows, emission time, hit time, causal speed, boundary-shell status. |
+| `path-history` | On | Render adjacent source rows as straight segments with no smoothing; trail styling and any playback interpolation are display projections. | Path-history stream and replay index. |
+| `wake-streams` | Disabled until required rows exist | Render expanding causal spheres or shells only from retained wake rows; boundary-generated rows must be visually downgraded. | Wake-history rows, emission time, hit time, causal speed, boundary-shell status. |
 | `velocity-vectors` | Off by default; toggleable in staging and playback | Render each architrino's current velocity as a ray using the same stable color as the architrino, with no arrowhead. Ray length should use logarithmic sizing so slow and fast paths remain legible together. | Current velocity, scale normalization, timestep policy. |
-| `boundary-shell-status` | Contextual | Label outbound/inbound boundary-shell patch rows without cluttering local-only views. | Boundary-shell rows. |
-| `diagnostics` | Contextual | Surface halt status, failure rows, background/noise rows, boundary-generated rows, unresolved rows, and claim-level downgrades near the selected object or run summary. | Solver diagnostics and run manifest. |
+| `boundary-shell-status` | Contextual-disabled until required rows exist | Label outbound/inbound boundary-shell patch rows without cluttering local-only views. | Boundary-shell rows. |
+| `diagnostics` | On and locked | Surface halt status, failure rows, background/noise rows, boundary-generated rows, unresolved rows, and claim-level downgrades near the selected object or run summary. | Solver diagnostics and run manifest. |
 
 Velocity rays need a visual cue for magnitude beyond length alone, but persistent markings on every ray may be too busy. The first design should test a floating exponent label on the active ray only. Persistent ray markings are not part of the first app idea.
 
@@ -493,15 +499,15 @@ The first-screen layer controls should keep the workspace minimal by default whi
 
 | Layer | First-screen state | Control placement | Selected-object behavior |
 | --- | --- | --- | --- |
-| `simulation-window` | On and locked in the first prototype. | Shown as a small sphere-boundary icon in the layer strip, with lock state visible; the viewport renders the central ball edges only by default, with no sphere walls. | Selection reports `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `view zoom`, `scaleFactor`, and boundary mode in the diagnostics rail. |
+| `simulation-window` | On and locked. | The viewport renders one dotted outer boundary shell and no central-ball sphere or continuous guide. | Selection reports `outerRadius`, `centralBallRadius`, `radialBufferMargin`, `view zoom`, `scaleFactor`, and boundary mode in the diagnostics rail. |
 | `architrino-position` | On. | First visible toggle in the layer strip; cannot be hidden while no other position-bearing layer is visible. | Selecting an architrino opens a compact viewport tag with id, diagnostic status, and speed; full state appears in the diagnostics rail. |
-| `path-history` | Off. | Toggle in the layer strip, with a small history-depth indicator. | Selecting a path segment shows segment time bounds and value authority in the compact tag; interpolation/error details remain in the diagnostics rail. |
-| `wake-streams` | Off. | Toggle in the layer strip, with a retained/background/boundary split in the layer menu. | Selecting a wake shell shows wake row id, source/receiver ids, boundary-shell status, and authority; residual and threshold details remain in the diagnostics rail. |
+| `path-history` | On. | Toggle in the layer strip, with a small history-depth indicator. | Selecting a path segment shows segment time bounds and value authority in the compact tag; interpolation/error details remain in the diagnostics rail. |
+| `wake-streams` | Disabled until required rows exist. | Disabled toggle in the layer strip; when rows exist, its menu must distinguish retained, background, and boundary rows. | Selecting a wake shell shows wake row id, source/receiver ids, boundary-shell status, and authority; residual and threshold details remain in the diagnostics rail. |
 | `velocity-vectors` | Off by default; toggleable in staging and playback. | Toggle in the layer strip, with a logarithmic-scale marker when enabled. | Selecting a ray shows raw speed, transform type, and ray scale rule; vector components remain in the diagnostics rail. |
-| `boundary-shell-status` | Contextual and off for local-only runs. | Toggle is disabled or subdued when no outbound/inbound boundary-shell patch rows exist. | Selecting a boundary-shell label focuses the related wake/path row and shows whether it is retained local, boundary-generated, or display-only. |
-| `diagnostics` | Contextual. | Toggle opens or pins diagnostics overlays; default state shows only selected-object tags and alerts for Not advanced dispositions. | Selected-object diagnostics appear first as compact tags; detailed tables live in the right diagnostics rail. |
+| `boundary-shell-status` | Contextual-disabled until required rows exist. | Toggle is disabled or subdued when no outbound/inbound boundary-shell patch rows exist. | Selecting a boundary-shell label focuses the related wake/path row and shows whether it is retained local, boundary-generated, or display-only. |
+| `diagnostics` | On and locked. | Compact status and alerts remain available by default; the full rail stays collapsible. | Selected-object diagnostics appear first as compact tags; detailed tables live in the right diagnostics rail. |
 
-The default visible stack for launch is `simulation-window` and `architrino-position`. The default contextual stack is selected-object tags plus alerts for Not advanced dispositions. Velocity rays, path history, wake streams, boundary-shell status, outbound-shell background, and full diagnostics start behind toggles so the first screen remains quiet.
+The default visible stack is `simulation-window`, `architrino-position`, `path-history`, and diagnostics. Velocity rays remain available but off. Wake streams and boundary-shell status remain disabled until their required EOM rows exist, while the full diagnostics rail may stay collapsed so the first screen remains quiet.
 
 Boundary display is part of the `architrino-position` layer: an architrino crossing the outer boundary shell contributes to the boundary-shell rows. Inbound architrinos generated by the boundary policy enter through the shell as boundary-generated rows with reduced value authority unless retained external path history is present. The central ball remains the primary visible region.
 
@@ -578,7 +584,11 @@ Every run should produce a `borg-dataset-manifest.v1` manifest; see [borg-datase
 8. frame-buffer or playback dataset handles;
 9. validation status and claim level.
 
-The first screen-spec consumer is `borg-app-surface-design.v1`; see [borg-app-surface-design.v1](borg-app-surface-design.v1.md). It binds the native-backed manifest fixture into first-screen layout regions, layer defaults, simulation-envelope fields, diagnostics, deployment/render placeholders, value-authority states, and rows with a Not advanced disposition. The first static page consumer is [borg.html](../../../borg.html), with browser runtime entrypoint [main.js](../../../src/apps/borg/main.js).
+### Executable First-Screen Contract
+
+The executable `borg-app-surface-design.v1` contract is the design-owned `BORG_APP_SURFACE_DESIGN_V1` object in [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js), validated by `validateBorgManifest` and focused Borg tests. The source object owns the exact schema, source-manifest binding, layout-region list, layer states, render fields, first-failure codes, and developer-test constants. This packet does not duplicate those executable values.
+
+The browser consumer is [borg.html](../../../borg.html), with [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) and [main.js](../../../src/apps/borg/main.js). It must show the simulation before manifest detail, keep provenance detail collapsible, render recorded positions and paths without inventing geometry, and classify interpolated playback frames as display-only. Polarity-resolved diagnostics distinguish current outside-shell counts from first-crossing counts, use the evaluator's finite-width core scale for close-pair classification, and expose delayed-root source-motion ratios only as display diagnostics. None of these views is an acceleration measurement, binding result, or proof claim.
 
 ## Pass/Fail Conditions
 

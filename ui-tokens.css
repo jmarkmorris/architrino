@@ -1,0 +1,9 @@
+:root {
+  --ui-font-family: "Helvetica Neue", Arial, sans-serif;
+  --ui-body-size: 14px;
+  --ui-body-weight: 400;
+  --ui-body-line-height: 1.5;
+  --ui-label-size: 12px;
+  --ui-label-weight: 700;
+  --ui-label-line-height: 1.25;
+}

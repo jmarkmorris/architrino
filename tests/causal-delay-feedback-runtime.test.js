@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 
-import { createCausalDelayFeedbackRuntime } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js";
+import {
+  createCausalDelayFeedbackRuntime,
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js";
 import {
   EOM_REPLAY_ADAPTER,
   EOM_REPLAY_DATASET_SOURCE,
@@ -17,13 +19,28 @@ import {
   TEMPORARY_MOCK_ADAPTER,
   createMockCausalDelayReplayDataset,
   getAngleDegrees,
+  getDistance,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
 import {
-  CANVAS_COLORS,
+  ARCHITRINO_BODY_HALO_RADIUS,
+  ARCHITRINO_BODY_OUTLINE_WIDTH,
+  ARCHITRINO_BODY_RADIUS,
+  CAUSAL_PATH_STROKE_WIDTH,
+  DEFAULT_TRANSMISSION_POINT_MARKER_VARIANT,
+  FIXED_CANVAS_COLOR,
+  FIXED_WAKE_VISUAL_STYLE,
   FRAME_COUNT,
   PATH_TIME_END_X,
   PATH_TIME_START_X,
-  PRESETS,
+  ELECTRINO_WAKE,
+  POSITRINO_WAKE,
+  TRANSMISSION_POINT_MARKER_STYLES,
+  TRANSMISSION_POINT_MARKER_VARIANTS,
+  TIME_AXIS_BASELINE_Y,
+  TIME_AXIS_END_X,
+  TIME_AXIS_LABEL_POSITION,
+  TIME_AXIS_ORIGIN_X,
+  TIMELINE_RAIL_AXIS_SAFE_INSET,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackDisplayContract.js";
 import {
   createCausalDelayFeedbackEomReplayOptions,
@@ -31,6 +48,17 @@ import {
   createCausalDelayFeedbackRuntimeForPage,
   shouldUseEomReplay,
 } from "../src/apps/causal-delay-feedback/main.js";
+import {
+  createStoryScene,
+  createStoryMotionWakeComparisonFixture,
+  createStorySampledWakeFronts,
+  STORY_MOTION_SPEED_FRACTIONS,
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackStoryMode.js";
+import {
+  C1_CUBIC_HERMITE_INTERPOLATION,
+  getC1TimedPathBezierSegment,
+  sampleTimedPath,
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackTimedPath.js";
 import {
   createEomRecordFixture,
 } from "./helpers/causal-delay-feedback-eom-fixture.js";
@@ -83,6 +111,15 @@ class FakeElement {
   removeEventListener(type, handler) {
     this.listeners.get(type)?.delete(handler);
   }
+
+  emit(type, event = {}) {
+    const emittedEvent = {
+      target: this,
+      currentTarget: this,
+      ...event,
+    };
+    this.listeners.get(type)?.forEach((handler) => handler(emittedEvent));
+  }
 }
 
 class FakeDocument {
@@ -102,6 +139,15 @@ class FakeDocument {
 
   removeEventListener(type, handler) {
     this.listeners.get(type)?.delete(handler);
+  }
+
+  emit(type, event = {}) {
+    const emittedEvent = {
+      target: this,
+      currentTarget: this,
+      ...event,
+    };
+    this.listeners.get(type)?.forEach((handler) => handler(emittedEvent));
   }
 }
 
@@ -162,6 +208,22 @@ function normalizedDot(left, right) {
   assert(leftMagnitude > 0);
   assert(rightMagnitude > 0);
   return (left.x * right.x + left.y * right.y) / (leftMagnitude * rightMagnitude);
+}
+
+function assertStrictlyIncreasingDisplayedTimeAxis(runtime, kind, sampleCount = 4000) {
+  const path = runtime.dataset.paths[kind];
+  const startT = path[0].t;
+  const endT = path.at(-1).t;
+  let previous = sampleTimedPath(path, startT);
+  for (let index = 1; index <= sampleCount; index += 1) {
+    const time = startT + (endT - startT) * (index / sampleCount);
+    const current = sampleTimedPath(path, time);
+    assert(
+      current.x > previous.x,
+      `${kind} displayed time reversed between ${previous.t} and ${current.t}`,
+    );
+    previous = current;
+  }
 }
 
 function createArcRecordingContext() {
@@ -257,10 +319,10 @@ function readCausalDelayFeedbackHtml() {
   return readFileSync(new URL("../causal-delay-feedback.html", import.meta.url), "utf8");
 }
 
-function createMockEomReplayDataset(presetId, overrides = {}) {
+function createMockEomReplayDataset(fixtureId, overrides = {}) {
   return {
-    ...createMockCausalDelayReplayDataset(presetId),
-    runId: `eom:${presetId}`,
+    ...createMockCausalDelayReplayDataset(),
+    runId: `eom:${fixtureId}`,
     datasetSource: EOM_REPLAY_DATASET_SOURCE,
     solverIntegrationPath: EOM_REPLAY_ADAPTER,
     engineId: "eom-solver",
@@ -593,10 +655,350 @@ test("causal delay feedback now scrubber pauses and moves replay time", () => {
 
   assert.equal(runtime.isPlaying, false);
   assert.equal(nowInput.value, "500");
-  assert.equal(nowValue.textContent, "replay t=0.5");
+  assert.equal(nowValue.textContent, "Replay time 0.5");
+  assert.equal(nowInput.attributes["aria-valuetext"], "Replay time 0.5");
   assertNear(runtime.getCurrentReplayTime(), 0.5);
   assertNear(renderedTime, 0.5);
   assert.equal(readout.hidden, true);
+});
+
+test("causal delay feedback scrubber pointer drag and release redraw the held Story frame", () => {
+  const documentLike = new FakeDocument();
+  const windowLike = new FakeElement();
+  Object.assign(windowLike, { location: fakeWindow.location });
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: documentLike,
+    window: windowLike,
+    autoLoadReplay: false,
+  });
+  const nowInput = new FakeElement();
+  const nowValue = new FakeElement();
+  runtime.dom = {
+    playButton: new FakeElement(),
+    resetButton: new FakeElement(),
+    lastFrameButton: new FakeElement(),
+    visualSwitches: new FakeElement(),
+    nowInput,
+    nowValue,
+    readout: new FakeElement(),
+    canvas: new FakeElement(),
+  };
+  runtime.context = {};
+  const renderedTimes = [];
+  runtime.render = (replayTime = runtime.getCurrentReplayTime()) => {
+    renderedTimes.push(replayTime);
+  };
+  runtime.bindEvents();
+
+  nowInput.value = "250";
+  nowInput.emit("input", { pointerType: "mouse" });
+  nowInput.value = "640";
+  nowInput.emit("input", { pointerType: "mouse" });
+  nowInput.value = "750";
+  nowInput.emit("change", { pointerType: "mouse" });
+
+  const [start, end] = runtime.getReplayTimeRange();
+  const expectedTimes = [0.25, 0.64, 0.75].map(
+    (phase) => start + (end - start) * phase,
+  );
+  assert.equal(renderedTimes.length, 3);
+  renderedTimes.forEach((replayTime, index) => {
+    assertNear(replayTime, expectedTimes[index]);
+  });
+  assert.equal(runtime.storyHeldFrame.scene.id, createStoryScene(runtime.learnerState).id);
+  assertNear(runtime.storyHeldFrame.replayTime, expectedTimes.at(-1));
+  assertNear(runtime.getCurrentReplayTime(), expectedTimes.at(-1));
+  assert.equal(nowInput.value, "750");
+  assert.equal(
+    nowInput.attributes["aria-valuetext"],
+    `Replay time ${formatTestCompactNumber(expectedTimes.at(-1))}`,
+  );
+});
+
+test("Lesson One early pointer scrub immediately draws circular wakes from both sources", () => {
+  const documentLike = new FakeDocument();
+  const windowLike = new FakeElement();
+  Object.assign(windowLike, { location: fakeWindow.location });
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: documentLike,
+    window: windowLike,
+    autoLoadReplay: false,
+  });
+  const nowInput = new FakeElement();
+  runtime.dom = {
+    playButton: new FakeElement(),
+    resetButton: new FakeElement(),
+    lastFrameButton: new FakeElement(),
+    visualSwitches: new FakeElement(),
+    nowInput,
+    nowValue: new FakeElement(),
+    readout: new FakeElement(),
+    canvas: new FakeElement(),
+  };
+  runtime.resetStoryScenarioPlayback();
+  runtime.context = {};
+  const renderedFrames = [];
+  const bodyTimes = [];
+  runtime.drawPairedFullWakeHistory = (_context, fronts, bodyDisplayTime) => {
+    renderedFrames.push({ fronts, bodyDisplayTime });
+  };
+  runtime.drawGuidedLiveMarkers = (_context, bodyDisplayTime) => {
+    bodyTimes.push(bodyDisplayTime);
+  };
+  runtime.render = (replayTime = runtime.getCurrentReplayTime()) => {
+    runtime.drawStoryScene({}, replayTime);
+  };
+  runtime.bindEvents();
+
+  nowInput.value = "1";
+  nowInput.emit("input", { pointerType: "mouse" });
+
+  const [start, end] = runtime.getReplayTimeRange();
+  const expectedTime = start + (end - start) * 0.001;
+  const earlyFrame = renderedFrames.at(-1);
+  assertNear(runtime.storyHeldFrame.replayTime, expectedTime);
+  assertNear(runtime.getCurrentReplayTime(), expectedTime);
+  assertNear(earlyFrame.bodyDisplayTime, expectedTime);
+  assertNear(bodyTimes.at(-1), expectedTime);
+  assert.deepEqual(
+    new Set(earlyFrame.fronts.map((front) => front.transmitterId)),
+    new Set(["positrino", "electrino"]),
+  );
+  assert.equal(earlyFrame.fronts.length, 2);
+  assert.ok(earlyFrame.fronts.every((front) => front.radius > 0));
+  assert.equal(runtime.dom.canvas.dataset.storyWakeCircleCount, "2");
+  assert.equal(runtime.dom.canvas.dataset.storyWakeSourceCount, "2");
+  assert.equal(runtime.dom.canvas.dataset.storyReplayTime, expectedTime.toFixed(6));
+});
+
+test("causal delay feedback scrubber keyboard value change redraws the visible Story scene", () => {
+  const documentLike = new FakeDocument();
+  const windowLike = new FakeElement();
+  Object.assign(windowLike, { location: fakeWindow.location });
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: documentLike,
+    window: windowLike,
+    autoLoadReplay: false,
+  });
+  const nowInput = new FakeElement();
+  runtime.dom = {
+    playButton: new FakeElement(),
+    resetButton: new FakeElement(),
+    lastFrameButton: new FakeElement(),
+    visualSwitches: new FakeElement(),
+    nowInput,
+    nowValue: new FakeElement(),
+    readout: new FakeElement(),
+    canvas: new FakeElement(),
+  };
+  runtime.context = {};
+  const renderedTimes = [];
+  runtime.render = (replayTime = runtime.getCurrentReplayTime()) => {
+    renderedTimes.push(replayTime);
+  };
+  runtime.bindEvents();
+  let prevented = false;
+
+  documentLike.emit("keydown", {
+    key: "ArrowRight",
+    code: "ArrowRight",
+    target: { tagName: "INPUT" },
+    preventDefault() {
+      prevented = true;
+    },
+  });
+  nowInput.value = "501";
+  nowInput.emit("input", { inputType: "keyboard" });
+
+  const [start, end] = runtime.getReplayTimeRange();
+  const expectedTime = start + (end - start) * 0.501;
+  assert.equal(prevented, false);
+  assert.equal(renderedTimes.length, 1);
+  assertNear(renderedTimes[0], expectedTime);
+  assertNear(runtime.storyHeldFrame.replayTime, expectedTime);
+  runtime.drawWakeProgression = () => {};
+  runtime.drawPairedFullWakeHistory = () => {};
+  runtime.drawDottedArc = () => {};
+  runtime.drawTransmissionGhost = () => {};
+  runtime.drawCircle = () => {};
+  let markerReplayTime = null;
+  runtime.drawGuidedLiveMarkers = (_context, replayTime) => {
+    markerReplayTime = replayTime;
+  };
+  runtime.drawStoryScene({}, expectedTime);
+  assertNear(markerReplayTime, expectedTime);
+  assert.equal(
+    runtime.dom.canvas.dataset.storyReplayTime,
+    expectedTime.toFixed(6),
+  );
+});
+
+test("fresh Lesson One initialization synchronizes replay state, slider, held frame, and canvas", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "sandbox",
+    autoLoadReplay: false,
+  });
+  const nowInput = new FakeElement();
+  runtime.dom = {
+    playButton: new FakeElement(),
+    nowInput,
+    nowValue: new FakeElement(),
+    replayStatus: new FakeElement(),
+    readout: new FakeElement(),
+    canvas: new FakeElement(),
+  };
+  runtime.context = {};
+  const renderedTimes = [];
+  runtime.render = (replayTime = runtime.getCurrentReplayTime()) => {
+    renderedTimes.push(replayTime);
+  };
+  runtime.modeController = {
+    render() {},
+    setState(state) {
+      assert.equal(state, runtime.learnerState);
+    },
+  };
+
+  const scene = runtime.resetStoryScenarioPlayback();
+  const initialTime = scene.playbackStartTime;
+  runtime.refreshAfterReplayDatasetChange();
+
+  assertNear(runtime.learnerState.receiverTime, initialTime);
+  assertNear(runtime.getCurrentReplayTime(), initialTime);
+  assert.equal(runtime.storyHeldFrame, null);
+  assert.equal(runtime.storyPlaybackScene, null);
+  assert.equal(runtime.learnerState.playback.playing, false);
+  assert.equal(runtime.learnerState.playback.resumable, false);
+  assert.equal(nowInput.value, "0");
+  assert.equal(
+    nowInput.attributes["aria-valuetext"],
+    `Replay time ${formatTestCompactNumber(initialTime)}`,
+  );
+  assert.ok(renderedTimes.every((replayTime) => replayTime === initialTime));
+
+  runtime.drawWakeProgression = () => {};
+  runtime.drawPairedFullWakeHistory = () => {};
+  runtime.drawDottedArc = () => {};
+  runtime.drawTransmissionGhost = () => {};
+  runtime.drawCircle = () => {};
+  let markerReplayTime = null;
+  runtime.drawGuidedLiveMarkers = (_context, replayTime) => {
+    markerReplayTime = replayTime;
+  };
+  runtime.drawStoryScene({}, initialTime);
+  assertNear(markerReplayTime, initialTime);
+  assert.equal(
+    runtime.dom.canvas.dataset.storyReplayTime,
+    initialTime.toFixed(6),
+  );
+  assert.equal(runtime.dom.canvas.dataset.storyBodyTime, initialTime.toFixed(6));
+});
+
+test("Laboratory entry and First Frame use the earliest reciprocal-visible state", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  const nowInput = new FakeElement();
+  runtime.dom = {
+    nowInput,
+    nowValue: null,
+    playButton: new FakeElement(),
+    resetButton: new FakeElement(),
+    lastFrameButton: new FakeElement(),
+  };
+  runtime.context = {};
+  runtime.render = () => {};
+  runtime.elapsedSeconds = runtime.getReplayLoopSeconds() * 0.72;
+
+  runtime.handleLearnerModeChange("sandbox");
+
+  const [rangeStart, rangeEnd] = runtime.getReplayTimeRange();
+  const entryState = runtime.getLaboratoryInitialReplayState();
+  const expectedTime = Math.max(
+    entryState.directedFirstVisibilityTimes.positrino,
+    entryState.directedFirstVisibilityTimes.electrino,
+  );
+  const expectedSliderValue = Math.round(
+    ((expectedTime - rangeStart) / (rangeEnd - rangeStart)) * 1000,
+  );
+  const initialLinks = runtime.getVisibleWakeSeries(expectedTime);
+  assert.equal(entryState.hasReciprocalVisibility, true);
+  assert.equal(entryState.time, expectedTime);
+  assertNear(runtime.getCurrentReplayTime(), expectedTime);
+  assert.equal(nowInput.value, String(expectedSliderValue));
+  assert.deepEqual(
+    initialLinks.map((link) => link.sourceKind).sort(),
+    ["electrino", "positrino"],
+  );
+  initialLinks.forEach((link) => {
+    assert.equal(
+      runtime.hasVisibleLaboratoryWakeArcGeometry(link, expectedTime),
+      true,
+    );
+  });
+  assert(
+    entryState.directedFirstVisibilityTimes.electrino >
+      entryState.directedFirstVisibilityTimes.positrino,
+    "the current paths must expose the reciprocal direction later than the first direction",
+  );
+  const justBeforeReciprocalVisibility =
+    entryState.directedFirstVisibilityTimes.electrino - 1e-5;
+  assert.equal(
+    runtime.createLiveWakeSeries(
+      "electrino",
+      justBeforeReciprocalVisibility,
+    ),
+    null,
+  );
+
+  runtime.setReplayNowSliderValue(420);
+  assertNear(
+    runtime.getCurrentReplayTime(),
+    rangeStart + (rangeEnd - rangeStart) * 0.42,
+  );
+
+  runtime.resetReplayTime();
+  assertNear(runtime.getCurrentReplayTime(), expectedTime);
+});
+
+test("Laboratory playback stops at and holds its final frame without looping", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "sandbox",
+  });
+  const nowInput = new FakeElement();
+  runtime.dom = {
+    nowInput,
+    nowValue: null,
+    playButton: new FakeElement(),
+    resetButton: new FakeElement(),
+    lastFrameButton: new FakeElement(),
+  };
+  runtime.context = {};
+  runtime.render = () => {};
+  runtime.isPlaying = true;
+  runtime.learnerState.playback.playing = true;
+  runtime.elapsedSeconds = runtime.getReplayLoopSeconds() - 0.01;
+  runtime.lastFrameTime = 0;
+
+  runtime.tick(60);
+
+  const [, endTime] = runtime.getReplayTimeRange();
+  assert.equal(runtime.isPlaying, false);
+  assertNear(runtime.getCurrentReplayTime(), endTime);
+  assert.equal(nowInput.value, "1000");
+
+  runtime.tick(120);
+  assertNear(runtime.getCurrentReplayTime(), endTime);
+
+  runtime.setPlaying(true);
+  assert.equal(runtime.isPlaying, true);
+  assertNear(runtime.getCurrentReplayTime(), runtime.getLaboratoryInitialReplayTime());
 });
 
 test("causal delay feedback now scrubber updates selected wake state", () => {
@@ -645,86 +1047,10 @@ test("causal delay feedback reset resyncs now control and selected readout", () 
 
   runtime.resetReplayTime();
 
-  assert.equal(runtime.isPlaying, true);
+  assert.equal(runtime.isPlaying, false);
   assert.equal(nowInput.value, "0");
-  assert.equal(nowValue.textContent, "replay t=0");
-  assert.equal(readout.hidden, true);
-  assert.equal(readout.children.length, 0);
-});
-
-test("causal delay feedback reset preset restores the loaded preset state", async () => {
-  const replayStatus = new FakeElement();
-  const settingsPanel = new FakeElement();
-  const settingsButton = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dom = {
-    replayStatus,
-    settingsPanel,
-    settingsButton,
-  };
-  settingsPanel.hidden = false;
-  const expectedDataset = createMockCausalDelayReplayDataset(runtime.presetId);
-  const expectedStart = expectedDataset.history.positrino.find((point) => point.depth === 1);
-
-  runtime.applyRetainedPointDrag("positrino", 1, { x: 56, y: -18 });
-  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
-  assert.notEqual(runtime.dataset.history.positrino.find((point) => point.depth === 1).x, expectedStart.x);
-
-  await runtime.resetPreset();
-  const resetStart = runtime.dataset.history.positrino.find((point) => point.depth === 1);
-
-  assert.equal(settingsPanel.hidden, true);
-  assert.equal(settingsButton.attributes["aria-expanded"], "false");
-  assert.equal(runtime.dataset.datasetSource, REPRESENTATIVE_MOCK_SOLVER_REPLAY);
-  assert.equal(runtime.replayLoadState, "ready");
-  assert.equal(replayStatus.textContent, "representative replay");
-  assert.equal(resetStart.x, expectedStart.x);
-  assert.equal(resetStart.y, expectedStart.y);
-  assert.equal(runtime.dataset.draftPreview, undefined);
-});
-
-test("causal delay feedback reset preset reloads the current preset through the eom replay adapter", async () => {
-  const replayStatus = new FakeElement();
-  const settingsPanel = new FakeElement();
-  const settingsButton = new FakeElement();
-  const loadedPresets = [];
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId }) {
-      loadedPresets.push(presetId);
-      return createMockEomReplayDataset(presetId, {
-        runId: `eom:${presetId}:${loadedPresets.length}`,
-      });
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-    replayAdapter: adapter,
-    autoLoadReplay: false,
-  });
-  runtime.dom = {
-    replayStatus,
-    settingsPanel,
-    settingsButton,
-  };
-
-  await runtime.setPreset("full_circular_arcs");
-  const firstEomRunId = runtime.dataset.runId;
-  runtime.applyRetainedPointDrag("electrino", 2, { x: 28, y: -16 });
-
-  await runtime.resetPreset();
-
-  assert.deepEqual(loadedPresets, ["full_circular_arcs", "full_circular_arcs"]);
-  assert.equal(runtime.presetId, "full_circular_arcs");
-  assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
-  assert.equal(runtime.dataset.solverIntegrationPath, EOM_REPLAY_ADAPTER);
-  assert.notEqual(runtime.dataset.runId, firstEomRunId);
-  assert.equal(runtime.dataset.draftPreview, undefined);
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(nowValue.textContent, "Replay time 0");
+  assert.equal(nowInput.attributes["aria-valuetext"], "Replay time 0");
 });
 
 test("causal delay feedback reduced motion preference starts paused but allows manual play", () => {
@@ -792,6 +1118,45 @@ test("causal delay feedback edited path trails render as continuous curve stroke
   assert(commandTypes.includes("bezierCurveTo"));
   assert.equal(commandTypes.includes("lineTo"), false);
   assert.equal(commandTypes.includes("quadraticCurveTo"), false);
+});
+
+test("causal delay feedback edited path uses one C1 spline for rendering and evaluation", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const path = runtime.dataset.paths.positrino;
+  const anchor = path[90];
+
+  runtime.applyPathLineDrag("positrino", anchor.t, { x: 42, y: -64 });
+
+  assert.equal(path.interpolationMode, C1_CUBIC_HERMITE_INTERPOLATION);
+  const knotIndex = 90;
+  const incoming = getC1TimedPathBezierSegment(path, knotIndex - 1);
+  const outgoing = getC1TimedPathBezierSegment(path, knotIndex);
+  const incomingDerivative = {
+    x: 3 * (incoming.end.x - incoming.controlEnd.x) / incoming.timeSpan,
+    y: 3 * (incoming.end.y - incoming.controlEnd.y) / incoming.timeSpan,
+  };
+  const outgoingDerivative = {
+    x: 3 * (outgoing.controlStart.x - outgoing.start.x) / outgoing.timeSpan,
+    y: 3 * (outgoing.controlStart.y - outgoing.start.y) / outgoing.timeSpan,
+  };
+  assertNear(incomingDerivative.x, outgoingDerivative.x, 1e-7);
+  assertNear(incomingDerivative.y, outgoingDerivative.y, 1e-7);
+
+  const sampleTime = (path[knotIndex].t + path[knotIndex + 1].t) * 0.5;
+  assert.deepEqual(
+    runtime.getReplayPathPoint("positrino", sampleTime),
+    sampleTimedPath(path, sampleTime),
+  );
+  const link = runtime.getVisibleWakeSeries(0.7).find(
+    (candidate) => candidate.sourceKind === "positrino",
+  );
+  assert.deepEqual(
+    link.source,
+    sampleTimedPath(path, link.emissionTime),
+  );
 });
 
 test("causal delay feedback path trail smoothing uses Catmull-Rom cubic interpolation", () => {
@@ -926,12 +1291,12 @@ test("causal delay feedback aggregate summary excludes rejected solver links", (
   assert.equal(summary.inFlightCount, 0);
   assert.equal(summary.pendingCount, 0);
   assert.equal(summary.rejectedCount, 0);
-  assert.equal(summary.strongestContributionLabel, "electrino wake -> positrino now");
-  assert(summary.strongestContribution < 0);
+  assert.equal(summary.strongestContributionLabel, "positrino wake -> electrino now");
+  assert(summary.strongestContribution > 0);
   assert.equal(summary.strongestContributionMagnitude, Math.abs(summary.strongestContribution));
   assert.deepEqual(summary.invalidReasonCounts, {});
   assert.equal(readout.children[2].textContent, "received=2/2");
-  assert(readoutText.some((text) => text.startsWith("strongest=electrino_wake_->_positrino_now:")));
+  assert(readoutText.some((text) => text.startsWith("strongest=positrino_wake_->_electrino_now:")));
   assert.equal(readoutText.includes("rejected=1"), false);
 });
 
@@ -940,19 +1305,17 @@ test("causal delay feedback wake-front separation is locked to the smaller gap",
     document: new FakeDocument(),
     window: fakeWindow,
   });
-  const contrastRuntime = createCausalDelayFeedbackRuntime({
+  const secondRuntime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
-    window: {
-      location: { href: "http://localhost/causal-delay-feedback.html?preset=contrast_stress&replay=mock" },
-    },
+    window: fakeWindow,
   });
   const replayTime = 0.25;
   const link = runtime.getVisibleWakeSeries(replayTime)[0];
-  const contrastLink = contrastRuntime.getVisibleWakeSeries(replayTime)[0];
+  const secondLink = secondRuntime.getVisibleWakeSeries(replayTime)[0];
   const timing = runtime.getWakeTiming(link, replayTime);
-  const contrastTiming = contrastRuntime.getWakeTiming(contrastLink, replayTime);
+  const secondTiming = secondRuntime.getWakeTiming(secondLink, replayTime);
   const frontDistances = getWakeFrontDistances(runtime, timing, link);
-  const contrastFrontDistances = getWakeFrontDistances(contrastRuntime, contrastTiming, contrastLink);
+  const secondFrontDistances = getWakeFrontDistances(secondRuntime, secondTiming, secondLink);
   const shortTiming = {
     liveWakeSeries: true,
     source: { x: 0, y: 0 },
@@ -966,11 +1329,10 @@ test("causal delay feedback wake-front separation is locked to the smaller gap",
   const shortFronts = runtime.getWakeFrontProgresses(shortTiming);
   const longFronts = runtime.getWakeFrontProgresses(longTiming);
 
-  assert(PRESETS.every((preset) => !("wakeBands" in preset)));
   const spacing = assertConstantWakeFrontSeparation(frontDistances, getTimingDistance(timing, link));
   assertNear(spacing, 9, 1e-6);
   assertNear(
-    assertConstantWakeFrontSeparation(contrastFrontDistances, getTimingDistance(contrastTiming, contrastLink)),
+    assertConstantWakeFrontSeparation(secondFrontDistances, getTimingDistance(secondTiming, secondLink)),
     spacing,
     1e-6,
   );
@@ -984,31 +1346,33 @@ test("causal delay feedback wake-front separation is locked to the smaller gap",
   assertNear(staleGapSpacing, spacing, 1e-6);
 });
 
-test("causal delay feedback wake visual switches derive combinable rendering settings", () => {
+test("causal delay feedback wake display keeps Arcs and Full mutually exclusive", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
   });
   const sphere = runtime.getCausalIsochronSpheres("positrino", 0.82)[0];
-  const normalPreset = runtime.getWakeVisualPreset();
+  const normalStyle = runtime.getWakeVisualStyle();
   const normalSphereWeight = runtime.getCausalIsochronSphereVisualWeight(sphere);
 
   runtime.setWakeVisualSwitch("fullCircularWakesEnabled", true);
-  const combinedPreset = runtime.getWakeVisualPreset();
-  const combinedSphereWeight = runtime.getCausalIsochronSphereVisualWeight(sphere);
+  const fullStyle = runtime.getWakeVisualStyle();
+  const fullSphereWeight = runtime.getCausalIsochronSphereVisualWeight(sphere);
 
-  assert.equal(normalPreset.falloffPower, 1);
-  assert.equal(normalPreset.finalSpan, 7);
-  assert.equal(normalPreset.startSpan, 7);
-  assert.equal(normalPreset.dotRadius, 1.35);
-  assert.equal(normalPreset.alphaScale, 0.86);
-  assert.equal(combinedPreset.falloffPower, 1);
-  assert.equal(combinedPreset.finalSpan, 7);
-  assert.equal(combinedPreset.startSpan, 7);
-  assert.equal(combinedPreset.dotRadius, 1.35);
-  assert.equal(combinedPreset.alphaScale, 0.86);
-  assert.equal(runtime.getWakeVisualModeLabel(), "full circles + emission lines");
-  assert.equal(combinedSphereWeight, normalSphereWeight);
+  assert.equal(normalStyle.falloffPower, 1);
+  assert.equal(normalStyle.finalSpan, 7);
+  assert.equal(normalStyle.startSpan, 7);
+  assert.equal(normalStyle.dotRadius, 1.35);
+  assert.equal(normalStyle.alphaScale, 0.86);
+  assert.deepEqual(fullStyle, normalStyle);
+  assert.equal(runtime.wakeVisualSettings.arcWakesEnabled, false);
+  assert.equal(runtime.wakeVisualSettings.fullCircularWakesEnabled, true);
+  assert.equal(runtime.getWakeVisualModeLabel(), "full circular");
+  assert.equal(fullSphereWeight, normalSphereWeight);
+  runtime.setWakeVisualSwitch("arcWakesEnabled", true);
+  assert.equal(runtime.wakeVisualSettings.arcWakesEnabled, true);
+  assert.equal(runtime.wakeVisualSettings.fullCircularWakesEnabled, false);
+  assert.equal(runtime.getWakeVisualModeLabel(), "arc wakes");
 });
 
 test("causal delay feedback live wake series back-solves one emission point per architrino", () => {
@@ -1069,27 +1433,6 @@ test("causal delay feedback mock initial motion state spans retained path endpoi
   });
 });
 
-test("causal delay feedback contrast stress preset exercises mixed purple-background states", () => {
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: {
-      location: { href: "http://localhost/causal-delay-feedback.html?preset=contrast_stress" },
-    },
-  });
-  const statuses = runtime.dataset.wakeLinks.map((link) => runtime.getWakeStatus(link).status);
-
-  assert.equal(runtime.dataset.preset.id, "contrast_stress");
-  assert.equal(runtime.dataset.canvasColorId, "architrinoPurple");
-  assert.equal(runtime.dataset.assemblyThreshold, 0.00075);
-  assert(statuses.includes("active"));
-  assert(statuses.includes("inactive"));
-  assert(statuses.includes("stale"));
-  assert(statuses.includes("rejected"));
-  assert.equal(runtime.dataset.wakeLinks[1].rootStatus.code, "contrast_root_without_hit");
-  assert.equal(runtime.dataset.wakeLinks[2].reason, "contrast_stress_stale_solver_row");
-  assert.equal(runtime.dataset.wakeLinks[3].rootStatus.code, "contrast_no_delayed_hit");
-});
-
 test("causal delay feedback aggregate summary omits retained-link invalid root reasons", () => {
   const { runtime, readout } = createRuntimeForReadout();
   runtime.applyReplayDataset(createMockCausalDelayReplayDataset("contrast_stress"), { loadState: "ready" });
@@ -1143,19 +1486,18 @@ test("causal delay feedback aggregate summary omits solver constraint telemetry 
   assert.equal(readoutText.some((text) => text.startsWith("claim=")), false);
 });
 
-test("causal delay feedback canvas swatches match the iOS reader theme colors", () => {
-  assert.deepEqual(
-    CANVAS_COLORS.map(({ id, label, color }) => ({ id, label, color })),
-    [
-      { id: "architrinoPurple", label: "Purple", color: "#4b0082" },
-      { id: "light", label: "Light", color: "#fdfdfd" },
-      { id: "warm", label: "Warm", color: "#f4ecd8" },
-      { id: "dark", label: "Dark", color: "#0f172a" },
-    ],
-  );
+test("causal delay feedback uses one fixed learner display with no settings surface", () => {
+  const html = readCausalDelayFeedbackHtml();
+
+  assert.equal(FIXED_CANVAS_COLOR, "#4b0082");
+  assert.equal(FIXED_WAKE_VISUAL_STYLE.wakeArcDisplayMode, "partial_propagating_arcs");
+  assert.doesNotMatch(html, /causal-delay-feedback-settings/u);
+  assert.doesNotMatch(html, /causal-settings/u);
+  assert.doesNotMatch(html, /Canvas settings|Animation speed|Architrino speed|Reset preset/u);
+  assert.doesNotMatch(html, /causal-delay-feedback-(?:color-swatches|cf-speed|architrino-speed|reset-preset)/u);
 });
 
-test("causal delay feedback legend lozenges use selected canvas and trace colors", () => {
+test("causal delay feedback legend lozenges use the fixed canvas and trace colors", () => {
   const html = readCausalDelayFeedbackHtml();
   assert.equal(html.includes("background: var(--causal-selected-canvas-color, #4b0082);"), true);
   assert.match(html, /\.causal-legend-line\s*\{[^}]*height: 22px;/);
@@ -1167,118 +1509,131 @@ test("causal delay feedback legend lozenges use selected canvas and trace colors
   assert.match(html, /\.causal-legend-dots i\s*\{[^}]*width: 3px;[^}]*height: 3px;/);
   assert.match(html, /\.causal-legend-dots i:nth-child\(3\)\s*\{[^}]*top: 5px;/);
 
-  const colorSwatches = new FakeElement();
-  const appStyle = {};
-  const app = {
-    style: {
-      setProperty(name, value) {
-        appStyle[name] = value;
-      },
-    },
+});
+
+test("causal delay feedback bottom scrubber keeps every light effect keyboard-only", () => {
+  const html = readCausalDelayFeedbackHtml();
+  const themeStart = html.indexOf(".causal-timeline-range {");
+  const themeEnd = html.indexOf(".causal-readout {", themeStart);
+  const timelineTheme = html.slice(themeStart, themeEnd);
+  const webkitThumb = timelineTheme.match(
+    /\.causal-timeline-range::-webkit-slider-thumb\s*\{(?<rules>[^}]*)\}/u,
+  )?.groups?.rules;
+  const mozThumb = timelineTheme.match(
+    /\.causal-timeline-range::-moz-range-thumb\s*\{(?<rules>[^}]*)\}/u,
+  )?.groups?.rules;
+  const focusVisible = timelineTheme.match(
+    /\.causal-timeline-range:focus-visible\s*\{(?<rules>[^}]*)\}/u,
+  )?.groups?.rules;
+  const keyboardWebkitThumb = timelineTheme.match(
+    /html\[data-causal-input-modality="keyboard"\]\s*\.causal-timeline-range:focus::-webkit-slider-thumb\s*\{(?<rules>[^}]*)\}/u,
+  )?.groups?.rules;
+  const keyboardMozThumb = timelineTheme.match(
+    /html\[data-causal-input-modality="keyboard"\]\s*\.causal-timeline-range:focus::-moz-range-thumb\s*\{(?<rules>[^}]*)\}/u,
+  )?.groups?.rules;
+  const channelToLinear = (channel) => {
+    const normalized = channel / 255;
+    return normalized <= 0.04045
+      ? normalized / 12.92
+      : ((normalized + 0.055) / 1.055) ** 2.4;
   };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dom = { app, colorSwatches };
-  runtime.render = () => {};
-  runtime.populateCanvasSwatches();
+  const relativeLuminance = (hexColor) => {
+    const channels = [
+      Number.parseInt(hexColor.slice(1, 3), 16),
+      Number.parseInt(hexColor.slice(3, 5), 16),
+      Number.parseInt(hexColor.slice(5, 7), 16),
+    ].map(channelToLinear);
+    return (0.2126 * channels[0]) + (0.7152 * channels[1]) + (0.0722 * channels[2]);
+  };
+  const contrastRatio = (firstColor, secondColor) => {
+    const firstLuminance = relativeLuminance(firstColor);
+    const secondLuminance = relativeLuminance(secondColor);
+    const lighter = Math.max(firstLuminance, secondLuminance);
+    const darker = Math.min(firstLuminance, secondLuminance);
+    return (lighter + 0.05) / (darker + 0.05);
+  };
 
-  assert.equal(appStyle["--causal-selected-canvas-color"], "#4b0082");
-  assert.equal(appStyle["--causal-positrino-color"], "rgba(255, 0, 0, 1)");
-  assert.equal(appStyle["--causal-electrino-color"], "rgba(0, 0, 255, 1)");
-  assert.equal(appStyle["--causal-positrino-wake-color"], "rgba(255, 150, 166, 1)");
-  assert.equal(appStyle["--causal-electrino-wake-color"], "rgba(150, 170, 255, 1)");
-
-  runtime.setCanvasColor("warm");
-
-  assert.equal(appStyle["--causal-selected-canvas-color"], "#f4ecd8");
-  assert.equal(appStyle["--causal-legend-text-color"], "rgba(14, 9, 24, 0.88)");
-  assert.equal(appStyle["--causal-legend-border-color"], "rgba(14, 9, 24, 0.24)");
+  assert(themeStart > 0);
+  assert(themeEnd > themeStart);
+  assert(webkitThumb);
+  assert(mozThumb);
+  assert(focusVisible);
+  assert(keyboardWebkitThumb);
+  assert(keyboardMozThumb);
+  assert.match(html, /<html lang="en" data-causal-input-modality="pointer">/u);
+  assert.match(html, /id="causal-delay-feedback-now"[\s\S]*?class="causal-range causal-timeline-range"/u);
+  assert.match(timelineTheme, /\.causal-timeline-range::-webkit-slider-runnable-track/u);
+  assert.match(timelineTheme, /\.causal-timeline-range::-webkit-slider-thumb/u);
+  assert.match(timelineTheme, /\.causal-timeline-range::-moz-range-track/u);
+  assert.match(timelineTheme, /\.causal-timeline-range::-moz-range-thumb/u);
+  assert.match(timelineTheme, /\.causal-timeline-range:focus-visible/u);
+  assert.match(timelineTheme, /accent-color: #8b4fbf/u);
+  assert.match(
+    timelineTheme,
+    /\.causal-timeline-range::-webkit-slider-runnable-track[\s\S]*?background: #7a36aa/u,
+  );
+  assert.match(
+    timelineTheme,
+    /\.causal-timeline-range::-webkit-slider-thumb[\s\S]*?background: #8b4fbf/u,
+  );
+  assert.match(
+    timelineTheme,
+    /\.causal-timeline-range::-moz-range-track[\s\S]*?background: #7a36aa/u,
+  );
+  assert.match(
+    timelineTheme,
+    /\.causal-timeline-range::-moz-range-thumb[\s\S]*?background: #8b4fbf/u,
+  );
+  assert.match(webkitThumb, /border: 0;/u);
+  assert.match(mozThumb, /border: 0;/u);
+  assert.doesNotMatch(webkitThumb, /rgba\(246, 247, 255|rgba\(183, 126, 225/u);
+  assert.doesNotMatch(mozThumb, /rgba\(246, 247, 255|rgba\(183, 126, 225/u);
+  assert.match(focusVisible, /outline: none;/u);
+  assert.match(keyboardWebkitThumb, /0 0 0 3px rgba\(225, 205, 255, 0\.96\)/u);
+  assert.match(keyboardMozThumb, /0 0 0 3px rgba\(225, 205, 255, 0\.96\)/u);
+  assert.match(
+    html,
+    /document\.addEventListener\("keyup", \(\) => \{\s*document\.documentElement\.dataset\.causalInputModality = "keyboard";\s*\}, true\);/u,
+  );
+  assert.match(
+    html,
+    /document\.addEventListener\("pointerup", \(\) => \{\s*document\.documentElement\.dataset\.causalInputModality = "pointer";\s*\}, true\);/u,
+  );
+  assert.match(
+    html,
+    /document\.addEventListener\("pointercancel", \(\) => \{\s*document\.documentElement\.dataset\.causalInputModality = "pointer";\s*\}, true\);/u,
+  );
+  assert.doesNotMatch(html, /document\.addEventListener\("(?:keydown|pointerdown)"/u);
+  assert(relativeLuminance("#8b4fbf") > relativeLuminance("#7a36aa"));
+  assert(contrastRatio("#8b4fbf", "#7a36aa") >= 1.35);
+  assert.doesNotMatch(timelineTheme, /#(?:ff0000|0000ff|ff96a6|96aaff|4ae5ff)/iu);
 });
 
-test("causal delay feedback settings sliders use themed range styling", () => {
+test("causal delay feedback toolbar exposes one mutually exclusive Arcs-or-Full control", () => {
   const html = readCausalDelayFeedbackHtml();
 
-  assert.equal(html.includes(".causal-range::-webkit-slider-runnable-track"), true);
-  assert.equal(html.includes(".causal-range::-webkit-slider-thumb"), true);
-  assert.equal(html.includes(".causal-range::-moz-range-track"), true);
-  assert.equal(html.includes(".causal-range::-moz-range-thumb"), true);
-  assert.equal(html.includes("appearance: none;"), true);
-  assert.equal(html.includes("background: #4ae5ff;"), false);
-  assert.equal(html.includes("background: #f6f7ff;"), true);
-  assert.equal(html.includes("Animation speed"), true);
-  assert.equal(html.includes('aria-label="Animation speed"'), true);
-  assert.equal(html.includes('id="causal-delay-feedback-cf-speed"'), true);
-  assert.equal(html.includes('min="0.25"'), true);
-  assert.equal(html.includes('max="1.75"'), true);
-  assert.equal(html.includes('value="1"'), true);
-  assert.equal(html.includes('class="causal-range-midpoint"'), true);
-  assert.equal(html.includes('aria-hidden="true">1</span>'), true);
-  assert.equal(html.includes('<span class="causal-math-label">c<sub>f</sub></span> speed'), false);
-});
-
-test("causal delay feedback settings place architrino speed after canvas", () => {
-  const html = readCausalDelayFeedbackHtml();
-  const canvasIndex = html.indexOf('id="causal-delay-feedback-color-swatches"');
-  const architrinoSpeedIndex = html.indexOf('id="causal-delay-feedback-architrino-speed"');
-  const cfSpeedIndex = html.indexOf('id="causal-delay-feedback-cf-speed"');
-  const resetPresetIndex = html.indexOf('id="causal-delay-feedback-reset-preset"');
-
-  assert(canvasIndex > 0);
-  assert(architrinoSpeedIndex > canvasIndex);
-  assert(cfSpeedIndex > architrinoSpeedIndex);
-  assert(resetPresetIndex > cfSpeedIndex);
-});
-
-test("causal delay feedback settings popover omits promoted and deprecated controls", () => {
-  const html = readCausalDelayFeedbackHtml();
-
-  assert.equal(html.includes('id="causal-delay-feedback-reset-preset"'), true);
-  assert.equal(html.includes("Reset preset"), true);
-  assert.equal(html.includes(".causal-settings-action"), true);
-  assert.equal(html.includes('id="causal-delay-feedback-reduced-motion"'), false);
-  assert.equal(html.includes("Reduced motion"), false);
-  assert.equal(html.includes('id="causal-delay-feedback-high-contrast-paths"'), false);
-  assert.equal(html.includes("High contrast paths"), false);
-  assert.equal(html.includes('id="causal-delay-feedback-depth-field"'), false);
-  assert.equal(html.includes("Depth field"), false);
-  assert.equal(html.includes('id="causal-delay-feedback-virtual-observer"'), false);
-  assert.equal(html.includes("Virtual observer"), false);
-  assert.equal(html.includes('id="causal-delay-feedback-weak-cue"'), false);
-  assert.equal(html.includes('id="causal-delay-feedback-weak-cue-button"'), false);
-  assert.equal(html.includes("data-weak-cue-toggle"), false);
-  assert.equal(html.includes(">Weak cue</button>"), false);
-  assert.equal(html.includes('value="threshold_only"'), false);
-  assert.equal(html.includes('value="off"'), false);
-  assert.equal(html.includes('id="causal-delay-feedback-traversal-mode"'), false);
-  assert.equal(html.includes('value="fixed_speed" selected'), false);
-  assert.equal(html.includes("Fixed speed"), false);
-  assert.equal(html.includes('value="variable_speed"'), false);
-  assert.equal(html.includes("Variable speed"), false);
-  assert.equal(html.includes(".causal-toggle-row"), false);
-  assert.equal(html.includes(".causal-setting-select"), false);
-  assert.equal(html.includes("Hide path history"), false);
-  assert.equal(html.includes("Show path history"), false);
-  assert.equal(html.includes("Paths on/off"), false);
-  assert.equal(html.includes("Readout on/off"), false);
-  assert.equal(html.includes("Feedback Links"), false);
-  assert.equal(html.includes("trace count"), false);
-  assert.equal(html.includes("Root Ledger"), false);
-  assert.equal(html.includes("root ledger inspector"), false);
-  assert.equal(html.includes("diagnostic table"), false);
-  assert.equal(html.includes("diagnostics panel"), false);
-});
-
-test("causal delay feedback toolbar exposes independent wake visual switches", () => {
-  const html = readCausalDelayFeedbackHtml();
-
+  assert.match(
+    html,
+    /<div class="causal-title">\s*<div class="causal-lesson-meta" aria-hidden="true"><\/div>\s*<h1>Causal Delay Laboratory<\/h1>\s*<\/div>/u,
+  );
+  assert.doesNotMatch(
+    html,
+    /<div class="causal-title">\s*<strong>Causal Delay Feedback(?: Laboratory)?<\/strong>\s*<\/div>/u,
+  );
   assert.equal(html.includes("right: max(20px, env(safe-area-inset-right));"), true);
   assert.equal(html.includes("max-width: calc(100vw - 40px);"), false);
-  assert.equal(html.includes("flex: 1 1 520px;"), true);
-  assert.equal(html.includes("grid-template-columns: minmax(320px, 1fr) 48px;"), true);
+  assert.equal(
+    html.includes("grid-template-columns: auto auto auto minmax(0, 1fr);"),
+    true,
+  );
+  assert.equal(html.includes("grid-template-columns: minmax(320px, 1fr) 48px;"), false);
   assert.equal(html.includes("grid-template-columns: minmax(118px, 18vw) 48px;"), false);
   assert.equal(html.includes('id="causal-delay-feedback-visual-switches"'), true);
+  assert.equal(
+    html.includes('aria-label="Wake display mode: Arcs or Full"'),
+    true,
+  );
+  assert.equal(html.includes('data-selection-mode="exclusive"'), true);
   [
     "arcWakesEnabled",
     "fullCircularWakesEnabled",
@@ -1299,65 +1654,157 @@ test("causal delay feedback toolbar exposes independent wake visual switches", (
   assert.equal(html.includes(">Gap+</button>"), false);
 });
 
-test("causal delay feedback toolbar omits the preset dropdown while review presets still load", async () => {
+test("Laboratory header mirrors the Story panel treatment", () => {
   const html = readCausalDelayFeedbackHtml();
+  assert.match(
+    html,
+    /\.is-sandbox-mode \.causal-toolbar\s*\{[\s\S]*?width: min\(640px, calc\(100vw - 36px\)\);[\s\S]*?padding: 16px;[\s\S]*?border-radius: 12px;/u,
+  );
+  assert.match(
+    html,
+    /\.causal-lesson-panel h1,\s*\.is-sandbox-mode \.causal-toolbar \.causal-title h1\s*\{[\s\S]*?margin: 0;[\s\S]*?font-size: 24px;[\s\S]*?line-height: 1\.12;/u,
+  );
+  assert.match(
+    html,
+    /\.is-sandbox-mode \.causal-toolbar\s*\{[\s\S]*?align-items: flex-start;[\s\S]*?padding: 16px;/u,
+  );
+  assert.match(
+    html,
+    /\.is-sandbox-mode \.causal-toolbar \.causal-title\s*\{[\s\S]*?display: grid;[\s\S]*?gap: 10px;/u,
+  );
+  assert.match(
+    html,
+    /\.is-sandbox-mode \.causal-toolbar \.causal-switch-button\s*\{[\s\S]*?height: 34px;[\s\S]*?border-radius: 999px;/u,
+  );
+  assert.match(
+    html,
+    /@media \(max-width: 820px\)\s*\{[\s\S]*?\.is-sandbox-mode \.causal-toolbar\s*\{[\s\S]*?width: auto;[\s\S]*?padding: 13px;/u,
+  );
+  assert.match(
+    html,
+    /@media \(max-width: 820px\)\s*\{[\s\S]*?\.causal-lesson-panel h1,\s*\.is-sandbox-mode \.causal-toolbar \.causal-title h1\s*\{[\s\S]*?font-size: 20px;/u,
+  );
+  assert.doesNotMatch(html, /is-sandbox-mode[\s\S]{0,120}translateY/u);
+});
+
+test("causal delay feedback keeps timeline-only transport and hides the Laboratory status ribbon", () => {
+  const html = readCausalDelayFeedbackHtml();
+  const toolbarIndex = html.indexOf('id="causal-delay-feedback-toolbar"');
+  const firstIndex = html.indexOf('id="causal-delay-feedback-guided-first-frame"');
+  const playIndex = html.indexOf('id="causal-delay-feedback-guided-play"');
+  const lastIndex = html.indexOf('id="causal-delay-feedback-guided-last-frame"');
+  const scrubIndex = html.indexOf('id="causal-delay-feedback-now"');
+  const replayStatusIndex = html.indexOf('id="causal-delay-feedback-replay-status"');
+
+  assert(toolbarIndex > 0);
+  assert(replayStatusIndex > toolbarIndex);
+  assert(replayStatusIndex < firstIndex);
+  assert(firstIndex > 0);
+  assert(playIndex > firstIndex);
+  assert(lastIndex > playIndex);
+  assert(scrubIndex > lastIndex);
+  assert.match(html.slice(playIndex, lastIndex), /aria-label="Play"/);
+  assert.doesNotMatch(html, /id="causal-delay-feedback-pause"/);
+  assert.doesNotMatch(
+    html.slice(
+      html.indexOf('id="causal-delay-feedback-bottom-rail"'),
+      html.indexOf("</div>", scrubIndex),
+    ),
+    />Back<|>Next</u,
+  );
+  assert.doesNotMatch(html, /id="causal-delay-feedback-now-value"/u);
+  assert.match(
+    html.slice(replayStatusIndex, replayStatusIndex + 220),
+    /\shidden(?:\s|>)/u,
+  );
+  assert.match(
+    html.slice(replayStatusIndex, replayStatusIndex + 220),
+    /representative · display only/u,
+  );
+  assert.match(
+    html,
+    /\.causal-source-chip\[hidden\]\s*\{\s*display:\s*none;\s*\}/u,
+  );
+});
+
+test("Laboratory hides only the learner status ribbon while retaining replay provenance", () => {
   const replayStatus = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
+    initialMode: "sandbox",
     autoLoadReplay: false,
   });
   runtime.dom = { replayStatus };
 
-  await runtime.setPreset("contrast_stress");
+  runtime.updateReplayStatus();
 
-  assert.equal(html.includes('id="causal-delay-feedback-preset"'), false);
-  assert.equal(html.includes("causal-preset"), false);
-  assert.equal(runtime.presetId, "contrast_stress");
-  assert.equal(runtime.dataset.preset.id, "contrast_stress");
+  assert.equal(runtime.learnerState.mode, "sandbox");
+  assert.equal(replayStatus.hidden, true);
+  assert.equal(replayStatus.textContent, "representative · display only");
+  assert.equal(replayStatus.dataset.state, "representative");
+  assert.equal(replayStatus.attributes["aria-label"], replayStatus.title);
+
+  runtime.learnerState.mode = "story";
+  runtime.updateReplayStatus();
+  assert.equal(replayStatus.hidden, false);
+  assert.equal(replayStatus.textContent, "representative · display only");
 });
 
-test("causal delay feedback settings button uses a gear icon", () => {
-  const html = readCausalDelayFeedbackHtml();
-  const settingsIndex = html.indexOf('id="causal-delay-feedback-settings"');
-  const legendIndex = html.indexOf('class="causal-legend"');
-  const settingsButtonHtml = html.slice(settingsIndex, legendIndex);
-
-  assert(settingsIndex > 0);
-  assert(legendIndex > settingsIndex);
-  assert.match(settingsButtonHtml, /<circle cx="12" cy="12" r="3" \/>/);
-  assert.match(settingsButtonHtml, /a2 2 0 0 0-2-2z/);
-  assert.equal(settingsButtonHtml.includes('d="M12 2.8v3"'), false);
-  assert.equal(settingsButtonHtml.includes('d="M2.8 12h3"'), false);
+test("causal delay feedback shares one time-axis label position above the axis", () => {
+  assert.equal(TIME_AXIS_LABEL_POSITION.x, TIME_AXIS_END_X - 22);
+  assert.equal(TIME_AXIS_LABEL_POSITION.y, TIME_AXIS_BASELINE_Y - 24);
+  assert.ok(TIME_AXIS_LABEL_POSITION.y < TIME_AXIS_BASELINE_Y);
+  const source = readFileSync(
+    new URL(
+      "../src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+  assert.match(source, /"time",\s*TIME_AXIS_LABEL_POSITION/u);
 });
 
-test("causal delay feedback toolbar uses one play-pause toggle without visible source chip", () => {
-  const html = readCausalDelayFeedbackHtml();
-  const playIndex = html.indexOf('id="causal-delay-feedback-play"');
-  const scrubIndex = html.indexOf('id="causal-delay-feedback-now"');
-  const replayStatusIndex = html.indexOf('id="causal-delay-feedback-replay-status"');
+test("causal delay feedback aligns the bottom rail to the transformed time axis", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.canvasWidth = 1000;
+  runtime.viewport = {
+    scale: 0.5,
+    offsetX: 10,
+    offsetY: 20,
+  };
+  runtime.dom = {
+    bottomRail: new FakeElement(),
+  };
 
-  assert(playIndex > 0);
-  assert(scrubIndex > playIndex);
-  assert(replayStatusIndex > scrubIndex);
-  assert.match(html.slice(playIndex, scrubIndex), /aria-label="Play replay"/);
-  assert.doesNotMatch(html, /id="causal-delay-feedback-pause"/);
-  assert.match(html.slice(replayStatusIndex, replayStatusIndex + 180), /hidden/);
+  const bounds = runtime.alignBottomRailToTimeAxis();
+
+  assert.equal(bounds.left, TIME_AXIS_ORIGIN_X * 0.5 + 10);
+  assert.equal(
+    bounds.right,
+    TIME_AXIS_END_X * 0.5 + 10 - TIMELINE_RAIL_AXIS_SAFE_INSET,
+  );
+  assert.equal(runtime.dom.bottomRail.style.left, "56.00px");
+  assert.equal(runtime.dom.bottomRail.style.right, "87.00px");
+  assert.equal(runtime.dom.bottomRail.dataset.axisAlignedBounds, "56.00,913.00");
 });
 
-test("causal delay feedback legend lives inside the toolbar after settings", () => {
+test("causal delay feedback Laboratory omits the redundant polarity legend and readout lozenge", () => {
   const html = readCausalDelayFeedbackHtml();
   const toolbarIndex = html.indexOf('class="causal-toolbar"');
-  const settingsIndex = html.indexOf('id="causal-delay-feedback-settings"');
-  const legendIndex = html.indexOf('class="causal-legend"');
   const replayStatusIndex = html.indexOf('id="causal-delay-feedback-replay-status"');
 
   assert(toolbarIndex > 0);
-  assert(settingsIndex > toolbarIndex);
-  assert(legendIndex > settingsIndex);
-  assert(replayStatusIndex > legendIndex);
-  assert.match(html.slice(toolbarIndex, replayStatusIndex), /solid paths/);
-  assert.match(html.slice(toolbarIndex, replayStatusIndex), /dotted wakes/);
+  assert(replayStatusIndex > toolbarIndex);
+  assert.doesNotMatch(html, /red Positrino above · blue Electrino below/u);
+  assert.doesNotMatch(html, /class="causal-legend"/u);
+  assert.match(
+    html,
+    /id="causal-delay-feedback-readout" class="causal-readout" aria-hidden="true" hidden/u,
+  );
 });
 
 test("causal delay feedback does not render a floating hover overlay", () => {
@@ -1365,29 +1812,6 @@ test("causal delay feedback does not render a floating hover overlay", () => {
 
   assert.equal(html.includes("causal-delay-feedback-hover-label"), false);
   assert.equal(html.includes("causal-hover-label"), false);
-});
-
-test("causal delay feedback replay datasets can load preset canvas color state", () => {
-  const colorSwatches = new FakeElement();
-  const replayStatus = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dom = { colorSwatches, replayStatus };
-  runtime.populateCanvasSwatches();
-
-  runtime.applyReplayDataset(
-    {
-      ...createMockCausalDelayReplayDataset("accepted_tight_bright"),
-      canvasColorId: "warm",
-    },
-    { loadState: "ready" },
-  );
-
-  assert.equal(runtime.canvasColorId, "warm");
-  const activeSwatch = colorSwatches.children.find((button) => button.classList.contains("is-active"));
-  assert.equal(activeSwatch.dataset.colorId, "warm");
 });
 
 test("causal delay feedback retained depth setting filters history while live wake count stays continuous", () => {
@@ -1424,7 +1848,7 @@ test("causal delay feedback retained depth setting clears hidden selected rows",
   assert.equal(runtime.selectedItem, null);
 });
 
-test("causal delay feedback settings omit retained point controls", () => {
+test("causal delay feedback learner surface omits retained point controls", () => {
   const html = readCausalDelayFeedbackHtml();
 
   assert.equal(html.includes('id="causal-delay-feedback-history-depth"'), false);
@@ -1432,43 +1856,7 @@ test("causal delay feedback settings omit retained point controls", () => {
   assert.equal(html.includes("causal-depth-button"), false);
 });
 
-test("causal delay feedback animation speed setting scales the replay clock", () => {
-  const scheduledFrames = [];
-  const cfSpeedInput = new FakeElement();
-  const cfSpeedValue = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    initialMode: "sandbox",
-    window: {
-      ...fakeWindow,
-      requestAnimationFrame(callback) {
-        scheduledFrames.push(callback);
-        return scheduledFrames.length;
-      },
-    },
-  });
-  runtime.dom = { cfSpeedInput, cfSpeedValue };
-  runtime.render = () => {};
-  runtime.updateFieldSpeedControl();
-  runtime.lastFrameTime = 984;
-
-  runtime.tick(1000);
-
-  assert.equal(runtime.fieldSpeedScale, 1);
-  assert.equal(cfSpeedInput.value, "1");
-  assert.equal(cfSpeedValue.textContent, "1x");
-  assertNear(runtime.elapsedSeconds, 0.016);
-  assert.equal(runtime.replayRequestOptions.fieldSpeedScale, 1);
-  assert.equal(scheduledFrames.length, 1);
-
-  runtime.setFieldSpeedControlScale(1.25);
-
-  assert.equal(runtime.fieldSpeedScale, 1.25);
-  assert.equal(cfSpeedInput.value, "1.25");
-  assert.equal(cfSpeedValue.textContent, "1.25x");
-});
-
-test("Story play animates one complete teaching stage for more than three seconds", () => {
+test("Story 1 uses the shared eighty-percent wake-display rate", () => {
   const scheduledFrames = [];
   const replayTimes = [];
   const runtime = createCausalDelayFeedbackRuntime({
@@ -1485,15 +1873,1509 @@ test("Story play animates one complete teaching stage for more than three second
   runtime.render = (replayTime) => replayTimes.push(replayTime);
   runtime.lastFrameTime = 0;
   runtime.setPlaying(true);
+  runtime.tick(0);
 
-  for (let index = 1; index <= 56; index += 1) {
+  for (let index = 1; index <= 470; index += 1) {
     runtime.tick(index * 60);
   }
 
+  const expectedStart = Math.max(
+    runtime.learnerState.paths.positrino[0].t,
+    runtime.learnerState.paths.electrino[0].t,
+  );
+  const expectedEnd = Math.min(
+    runtime.learnerState.paths.positrino.at(-1).t,
+    runtime.learnerState.paths.electrino.at(-1).t,
+  );
   assert.equal(runtime.isPlaying, false);
-  assert.ok(replayTimes.length > 50);
-  assert.ok(replayTimes.at(-1) > replayTimes[0]);
+  assert.ok(replayTimes.length > 460);
+  assert.equal(replayTimes[0], expectedStart);
+  assert.equal(replayTimes.at(-1), expectedEnd);
+  const positiveSteps = replayTimes.slice(1).map(
+    (replayTime, index) => replayTime - replayTimes[index],
+  ).filter((step) => step > 0);
+  assert.ok(positiveSteps.length > 455);
+  assert.ok(Math.max(...positiveSteps) < (expectedEnd - expectedStart) * 0.03);
   assert.ok(scheduledFrames.length > 0);
+});
+
+test("fresh Story navigation preserves the prior shared playback clock", () => {
+  const lessonSteps = [0, 1, 3, 4];
+  const measurements = new Map();
+
+  lessonSteps.forEach((storyStep) => {
+    const runtime = createCausalDelayFeedbackRuntime({
+      document: new FakeDocument(),
+      window: {
+        ...fakeWindow,
+        requestAnimationFrame() {
+          return 1;
+        },
+      },
+      initialMode: "story",
+    });
+    runtime.resetStoryScenarioPlayback();
+    runtime.render = () => {};
+    runtime.learnerState.storyStep = storyStep;
+    runtime.handleLearnerStateChange();
+    const scene = createStoryScene(runtime.learnerState);
+    const replaySpan = scene.playbackEndTime - scene.playbackStartTime;
+    const expectedAdvance = replaySpan / scene.playbackDurationSeconds;
+    const replayTimes = [];
+
+    assert.equal(scene.wakeDisplayRateScale, 0.8);
+    assert.ok(Number.isFinite(scene.playbackDurationSeconds));
+    assert.ok(scene.playbackDurationSeconds > 3.2);
+    assert.ok(Number.isFinite(expectedAdvance));
+    assert.ok(expectedAdvance > 0);
+
+    runtime.render = (replayTime) => replayTimes.push(replayTime);
+    runtime.lastFrameTime = 0;
+    runtime.setPlaying(true);
+    runtime.tick(0);
+    for (let index = 1; index <= 16; index += 1) {
+      runtime.tick(index * 60);
+    }
+    runtime.tick(1000);
+
+    const actualAdvance = replayTimes.at(-1) - scene.playbackStartTime;
+    assertNear(runtime.storyStageElapsedSeconds, 1, 1e-12);
+    assertNear(actualAdvance, expectedAdvance, 1e-9);
+    measurements.set(storyStep, {
+      duration: scene.playbackDurationSeconds,
+      advance: actualAdvance,
+    });
+  });
+
+  assertNear(measurements.get(0).duration, 28.125);
+  assertNear(measurements.get(3).duration, 7.5);
+  assertNear(measurements.get(4).duration, 28.125);
+  assertNear(measurements.get(0).advance, measurements.get(1).advance, 1e-9);
+  assertNear(measurements.get(0).advance, measurements.get(4).advance, 1e-9);
+  assertNear(measurements.get(3).advance, 0.08, 1e-9);
+});
+
+test("navigating from fresh Lesson One gives Lesson Two both arcs and normal pacing", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: {
+      ...fakeWindow,
+      requestAnimationFrame() {
+        return 1;
+      },
+    },
+    initialMode: "story",
+  });
+  const lessonOneScene = runtime.resetStoryScenarioPlayback();
+  assertNear(lessonOneScene.playbackStartTime, 0);
+  assertNear(runtime.learnerState.receiverTime, 0);
+
+  runtime.learnerState.storyStep = 1;
+  runtime.handleLearnerStateChange();
+  const resetScene = createStoryScene(runtime.learnerState);
+  assert.equal(resetScene.id, "emission");
+  assert.ok(resetScene.playbackStartTime > 0);
+  assert.equal(resetScene.wakeDisplayRateScale, 0.8);
+  assert.ok(Number.isFinite(resetScene.playbackDurationSeconds));
+  assert.ok(resetScene.playbackDurationSeconds > 3.2);
+  assert.equal(runtime.getStoryVisibleWakeSeries(resetScene.playbackStartTime).length, 2);
+
+  runtime.render = () => {};
+  runtime.lastFrameTime = 0;
+  runtime.setPlaying(true);
+  runtime.tick(0);
+
+  for (let index = 1; index <= 300; index += 1) {
+    runtime.tick(index * 60);
+  }
+
+  const scene = runtime.storyHeldFrame.scene;
+  const expectedHoldTime = scene.playbackEndTime;
+  assert.equal(runtime.isPlaying, false);
+  assert.equal(scene.id, "emission");
+  assertNear(runtime.storyHeldFrame.replayTime, expectedHoldTime);
+  assertNear(
+    runtime.storyStageElapsedSeconds,
+    scene.playbackDurationSeconds,
+    0.02,
+  );
+  assertNear(scene.pausePathProgress, 0.5);
+  assert.equal(runtime.getStoryVisibleWakeSeries(scene.playbackStartTime).length, 2);
+  assert.equal(runtime.learnerState.playback.completed, true);
+
+  assert.equal(runtime.setPlaying(true), false);
+  assert.equal(runtime.storyHeldFrame.scene.id, "emission");
+  assertNear(runtime.storyHeldFrame.replayTime, expectedHoldTime);
+
+  runtime.setPlaying(true, { restartStory: true });
+  assert.equal(runtime.storyHeldFrame, null);
+  assert.equal(runtime.storyPlaybackScene.id, "emission");
+  assert.equal(runtime.storyStageElapsedSeconds, 0);
+});
+
+test("Story 1 renders only circles while Story 2 reuses the Sandbox partial-front primitive", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.dom = { canvas: { dataset: {} } };
+  runtime.drawGuidedLiveMarkers = () => {};
+  runtime.drawStoryLiveMarkers = () => {};
+  runtime.drawTransmissionGhost = () => {};
+  const transientRings = [];
+  runtime.drawCircle = (...args) => transientRings.push(args);
+  const circles = [];
+  const arcs = [];
+  const origins = [];
+  const sandboxProgressions = [];
+  runtime.drawSolidWakeCircle = (_ctx, center, radius) => {
+    circles.push({ center, radius });
+  };
+  runtime.drawDottedArc = (_ctx, center, radius, start, end) => {
+    arcs.push({ center, radius, start, end });
+  };
+  runtime.drawWakeProgression = (_ctx, link, replayTime) => {
+    sandboxProgressions.push({ link, replayTime });
+  };
+  runtime.drawStoryEmissionOriginMarker = (_ctx, center) => {
+    origins.push(center);
+  };
+
+  runtime.setPlaying(true);
+  runtime.drawStoryScene({}, 0.35);
+
+  assert(circles.length > 0);
+  assert.equal(arcs.length, 0);
+  assert.equal(origins.length, circles.length);
+  assert.equal(runtime.dom.canvas.dataset.storyWakeGuideArcCount, "0");
+  assert.equal(
+    runtime.dom.canvas.dataset.storyEmissionOriginMarkerCount,
+    String(origins.length),
+  );
+  runtime.drawStoryScene({}, runtime.learnerState.receiverTime);
+  assert.equal(transientRings.length, 0);
+
+  runtime.setPlaying(false);
+  runtime.learnerState.storyStep = 1;
+  circles.length = 0;
+  arcs.length = 0;
+  origins.length = 0;
+  sandboxProgressions.length = 0;
+  runtime.setPlaying(true);
+  runtime.drawStoryScene({}, 0.35);
+
+  assert.equal(circles.length, 0);
+  assert.equal(arcs.length, 0);
+  assert.equal(sandboxProgressions.length, 2);
+  assert(origins.length > 0);
+  assert.equal(runtime.dom.canvas.dataset.storyWakeCircleCount, "0");
+  assert.equal(runtime.dom.canvas.dataset.storyLiveWakeSeriesCount, "2");
+  assert.equal(runtime.dom.canvas.dataset.storyLiveWakeMaxEndpointError, "0.000000000");
+  assert(Number(runtime.dom.canvas.dataset.storyWakeGuideArcCount) > 2);
+  assert.equal(
+    runtime.dom.canvas.dataset.storyEmissionOriginMarkerCount,
+    String(origins.length),
+  );
+  sandboxProgressions.forEach(({ link, replayTime }) => {
+    assert.equal(replayTime, 0.35);
+    assert.ok(origins.some(
+      (center) => center.x === link.source.x && center.y === link.source.y,
+    ));
+    assert.deepEqual(
+      link.receiver,
+      runtime.getStoryPathPoint(link.receiverKind, replayTime),
+    );
+    assert(Math.abs(link.rootResidual) < 1e-5);
+  });
+
+  origins.length = 0;
+  sandboxProgressions.length = 0;
+  runtime.drawStoryScene({}, 0.4);
+  assert.equal(sandboxProgressions.length, 2);
+  sandboxProgressions.forEach(({ link, replayTime }) => {
+    assert.equal(replayTime, 0.4);
+    assert.ok(origins.some(
+      (center) => center.x === link.source.x && center.y === link.source.y,
+    ));
+  });
+});
+
+test("transmission-point markers retain the internal open-ring baseline and use the solid-dot standard", () => {
+  const trialRuntime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  const baselineRuntime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+    transmissionPointMarkerVariant:
+      TRANSMISSION_POINT_MARKER_VARIANTS.OPEN_RING_BASELINE,
+  });
+  const queryRuntime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: {
+      ...fakeWindow,
+      location: {
+        href:
+          "http://localhost/causal-delay-feedback.html" +
+          "?transmissionMarker=open-ring-baseline",
+      },
+    },
+    initialMode: "story",
+  });
+  const trialCalls = [];
+  const baselineCalls = [];
+  trialRuntime.drawCircle = (...args) => trialCalls.push(args);
+  baselineRuntime.drawCircle = (...args) => baselineCalls.push(args);
+
+  trialRuntime.drawTransmissionPointMarker({}, { x: 0.4, y: 0.2 });
+  baselineRuntime.drawTransmissionPointMarker({}, { x: 0.4, y: 0.2 });
+
+  const trialStyle =
+      TRANSMISSION_POINT_MARKER_STYLES[
+      TRANSMISSION_POINT_MARKER_VARIANTS.SOLID_DOT_STANDARD
+    ];
+  const baselineStyle =
+    TRANSMISSION_POINT_MARKER_STYLES[
+      TRANSMISSION_POINT_MARKER_VARIANTS.OPEN_RING_BASELINE
+    ];
+  assert.equal(
+    trialRuntime.transmissionPointMarkerVariant,
+    DEFAULT_TRANSMISSION_POINT_MARKER_VARIANT,
+  );
+  assert.equal(
+    baselineRuntime.transmissionPointMarkerVariant,
+    TRANSMISSION_POINT_MARKER_VARIANTS.OPEN_RING_BASELINE,
+  );
+  assert.equal(
+    queryRuntime.transmissionPointMarkerVariant,
+    TRANSMISSION_POINT_MARKER_VARIANTS.SOLID_DOT_STANDARD,
+  );
+  assert.equal(trialCalls.length, 1);
+  assert.equal(trialCalls[0][2], trialStyle.radius);
+  assert.equal(trialCalls[0][4], undefined);
+  assert.equal(trialStyle.radius * 2 < CAUSAL_PATH_STROKE_WIDTH, true);
+  assert.equal(baselineCalls.length, 1);
+  assert.equal(
+    baselineCalls[0][2],
+    Math.max(
+      baselineStyle.minimumRadius,
+      baselineStyle.radius * baselineRuntime.viewport.scale,
+    ),
+  );
+  assert.ok(baselineCalls[0][4]);
+  assert.equal(baselineCalls[0][5], baselineStyle.outlineWidth);
+});
+
+test("Story and guided-mode transmission markers share the selected marker renderer", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  const calls = [];
+  runtime.drawTransmissionPointMarker = (_ctx, point) => calls.push(point);
+  const storyPoint = { x: 0.25, y: 0.3 };
+  const guidedPoint = { x: 0.65, y: 0.7 };
+
+  runtime.drawStoryEmissionOriginMarker({}, storyPoint);
+  runtime.drawTransmissionGhost({}, guidedPoint, "electrino");
+
+  assert.deepEqual(calls, [storyPoint, guidedPoint]);
+});
+
+test("transmission-history dots use pale source colors while current-emission dots stay neutral", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  const circles = [];
+  runtime.drawCircle = (_ctx, point, radius, fill, outline, outlineWidth) => {
+    circles.push({ point, radius, fill, outline, outlineWidth });
+  };
+
+  runtime.drawTransmissionGhost({}, { x: 0.2, y: 0.3 }, "positrino");
+  runtime.drawTransmissionGhost({}, { x: 0.4, y: 0.5 }, "electrino");
+  runtime.drawStoryEmissionOriginMarker({}, { x: 0.6, y: 0.7 });
+
+  assert.equal(circles.length, 3);
+  assert.deepEqual(circles[0].fill, { ...POSITRINO_WAKE, a: 0.92 });
+  assert.deepEqual(circles[1].fill, { ...ELECTRINO_WAKE, a: 0.92 });
+  assert.deepEqual(circles[2].fill, { r: 246, g: 247, b: 255, a: 0.92 });
+  assert(circles.every(({ outline }) => outline === undefined));
+});
+
+test("Story 2 trails stay receiver-centered on the shared time-axis mapping", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  const frameSignatures = [];
+
+  const replayTimes = Array.from({ length: 23 }, (_unused, index) => 0.25 + index * 0.025);
+  for (const replayTime of replayTimes) {
+    const links = runtime.getStoryVisibleWakeSeries(replayTime);
+    assert.equal(links.length, 2);
+    const frame = {};
+    for (const link of links) {
+      const arcs = [];
+      runtime.drawDottedArc = (_ctx, center, radius, startDegrees, endDegrees) => {
+        arcs.push({ center, radius, startDegrees, endDegrees });
+      };
+      runtime.drawWakeProgression({}, link, replayTime);
+      assert(arcs.length > 4);
+      const outerArc = arcs.reduce(
+        (outer, arc) => arc.radius > outer.radius ? arc : outer,
+      );
+      const midpointAngle =
+        ((outerArc.startDegrees + outerArc.endDegrees) * 0.5 * Math.PI) / 180;
+      const outerMidpoint = {
+        x: outerArc.center.x + outerArc.radius * Math.cos(midpointAngle),
+        y: outerArc.center.y + outerArc.radius * Math.sin(midpointAngle),
+      };
+      assertNear(outerMidpoint.x, link.receiver.x, 1e-8);
+      assertNear(outerMidpoint.y, link.receiver.y, 1e-8);
+      assert.deepEqual(
+        link.receiver,
+        runtime.getStoryPathPoint(link.receiverKind, replayTime),
+      );
+      assert(Math.abs(link.rootResidual) < 1e-5);
+      frame[link.sourceKind] = {
+        sourceX: link.source.x,
+        sourceY: link.source.y,
+        receiverX: link.receiver.x,
+        receiverY: link.receiver.y,
+        arcCount: arcs.length,
+      };
+    }
+    frameSignatures.push(frame);
+  }
+
+  for (const sourceKind of ["positrino", "electrino"]) {
+    assert.notDeepEqual(
+      frameSignatures[0][sourceKind],
+      frameSignatures[11][sourceKind],
+    );
+    assert.notDeepEqual(
+      frameSignatures[11][sourceKind],
+      frameSignatures.at(-1)[sourceKind],
+    );
+  }
+});
+
+test("Story 2 shows only the two active arc-origin dots through the time-axis midpoint handoff", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.dom = { canvas: { dataset: {} } };
+  runtime.learnerState.storyStep = 1;
+  runtime.setPlaying(true);
+  runtime.drawWakeProgression = () => {};
+  runtime.drawGuidedLiveMarkers = () => {};
+  runtime.drawStoryLiveMarkers = () => {};
+  runtime.drawCircle = () => {};
+  runtime.drawSolidWakeCircle = () => {};
+  const scene = runtime.storyPlaybackScene;
+
+  for (const amount of [0, 0.25, 0.5, 0.75, 1]) {
+    const replayTime =
+      scene.playbackStartTime +
+      (scene.playbackEndTime - scene.playbackStartTime) * amount;
+    const expectedFronts = createStorySampledWakeFronts(
+      runtime.learnerState,
+      scene,
+      replayTime,
+    );
+    const liveLinks = runtime.getStoryVisibleWakeSeries(replayTime);
+    const markerCenters = [];
+    runtime.drawStoryEmissionOriginMarker = (_ctx, center) => {
+      markerCenters.push(center);
+    };
+
+    runtime.drawStoryScene({}, replayTime);
+
+    assert.deepEqual(expectedFronts, []);
+    assert.equal(liveLinks.length, 2);
+    assert.equal(markerCenters.length, liveLinks.length);
+    assert(Number(runtime.dom.canvas.dataset.storyEmissionMarkerMaxLeadTime) < 0);
+    liveLinks.forEach((link) => {
+      assert(link.emissionTime < replayTime);
+      assert.ok(markerCenters.some(
+        (center) =>
+          Math.abs(center.x - link.source.x) < 1e-8 &&
+          Math.abs(center.y - link.source.y) < 1e-8,
+      ));
+    });
+  }
+});
+
+test("Story 2 terminal frame exactly hands off to Story 3 synthesis", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.dom = { canvas: { dataset: {} } };
+  runtime.learnerState.storyStep = 1;
+  const storyTwoScene = createStoryScene(runtime.learnerState);
+  runtime.learnerState.storyStep = 2;
+  const scene = createStoryScene(runtime.learnerState);
+  assert.equal(storyTwoScene.playbackEndTime, scene.playbackStartTime);
+  const frames = [];
+  let currentFrame = null;
+  runtime.drawStoryEmissionOriginMarker = (_ctx, center) => {
+    currentFrame.origins.push(center);
+  };
+  runtime.drawSolidWakeCircle = (_ctx, center, radius) => {
+    currentFrame.circles.push({ center, radius });
+  };
+  runtime.drawWakeProgression = (_ctx, link, replayTime, options) => {
+    currentFrame.progressions.push({ link, replayTime, options });
+  };
+  runtime.drawLiveMarker = (_ctx, kind, _color, point) => {
+    currentFrame.bodies[String(kind).toLowerCase()] = point;
+  };
+
+  for (const progress of [0, 0.5, 1]) {
+    const displayTime =
+      scene.playbackStartTime +
+      (scene.playbackEndTime - scene.playbackStartTime) * progress;
+    currentFrame = {
+      progress,
+      displayTime,
+      circles: [],
+      progressions: [],
+      origins: [],
+      bodies: {},
+    };
+    runtime.drawStorySynthesisScene({}, scene, displayTime);
+    frames.push(currentFrame);
+  }
+
+  assert.equal(frames[0].circles.length, 0);
+  assert.equal(frames[0].progressions.length, 2);
+  assert.equal(frames[0].origins.length, 2);
+  assert.equal(frames[1].circles.length, 2);
+  assert.equal(frames[2].circles.length, 2);
+  assert.equal(runtime.dom.canvas.dataset.storyWakeCircleCount, "2");
+  assert.equal(runtime.dom.canvas.dataset.storyLiveWakeSeriesCount, "2");
+  assert.equal(runtime.dom.canvas.dataset.storySynthesisEndpointError, "0.000000000");
+  assert.equal(
+    runtime.dom.canvas.dataset.storySynthesisDisplayMapping,
+    "continuous_reception_time_from_story_2_handoff",
+  );
+  frames.forEach((frame) => {
+    frame.progressions.forEach(({ link, replayTime, options }, index) => {
+      if (frame.progress > 0) {
+        assert.deepEqual(frame.circles[index].center, link.source);
+        assertNear(frame.circles[index].radius, link.distance);
+      }
+      assert.equal(replayTime, frame.displayTime);
+      assert.equal(options, undefined);
+    });
+  });
+  assert.notDeepEqual(frames[0].bodies, frames[1].bodies);
+  assert.notDeepEqual(frames[1].bodies, frames[2].bodies);
+  for (const kind of ["positrino", "electrino"]) {
+    assert.deepEqual(
+      frames[0].bodies[kind],
+      runtime.getStoryPathPoint(kind, storyTwoScene.playbackEndTime),
+    );
+    assert.deepEqual(
+      frames[2].bodies[kind],
+      runtime.getStoryPathPoint(kind, scene.playbackEndTime),
+    );
+    assertNear(
+      frames[0].bodies[kind].x,
+      TIME_AXIS_ORIGIN_X + (TIME_AXIS_END_X - TIME_AXIS_ORIGIN_X) * 0.5,
+      1e-8,
+    );
+    assertNear(
+      frames[2].bodies[kind].x,
+      TIME_AXIS_ORIGIN_X + (TIME_AXIS_END_X - TIME_AXIS_ORIGIN_X) * 0.8,
+      1e-8,
+    );
+  }
+  const storyTwoTerminalLinks = runtime.getStoryVisibleWakeSeries(
+    storyTwoScene.playbackEndTime,
+  );
+  assert.deepEqual(
+    frames[0].progressions.map(({ link, replayTime }) => ({
+      source: link.source,
+      receiver: link.receiver,
+      replayTime,
+    })),
+    storyTwoTerminalLinks.map((link) => ({
+      source: link.source,
+      receiver: link.receiver,
+      replayTime: storyTwoScene.playbackEndTime,
+    })),
+  );
+});
+
+test("Story 4 renders all declared speed fixtures from one evaluator-backed geometry", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.dom = { canvas: { dataset: {} } };
+  runtime.learnerState.storyStep = 3;
+  const circles = [];
+  const origins = [];
+  const lines = [];
+  const bodyCircles = [];
+  const comparisonLabels = [];
+  runtime.drawSolidWakeCircle = (_ctx, center, radius) => {
+    circles.push({ center, radius });
+  };
+  runtime.drawStoryEmissionOriginMarker = (_ctx, center) => {
+    origins.push(center);
+  };
+  runtime.drawLine = (_ctx, points, _color, width) => lines.push({ points, width });
+  runtime.drawCircle = (_ctx, _point, radius, _fill, outline, outlineWidth) => {
+    bodyCircles.push({ radius, outline, outlineWidth });
+  };
+  runtime.drawScreenText = (_ctx, text, screenPoint, _size, _color, align) => {
+    comparisonLabels.push({ text, screenPoint, align });
+  };
+  runtime.drawStorySpeedLabel = () => {};
+
+  runtime.drawStoryMotionWakeComparison(
+    {},
+    createStoryScene(runtime.learnerState),
+    0.6,
+  );
+
+  assert.equal(circles.length, 15);
+  assert.equal(origins.length, circles.length + 3);
+  assert.deepEqual(
+    origins.slice(-3).map((point) => point.y),
+    Array(3).fill((182 + 908) * 0.5),
+  );
+  assert.equal(lines.length, 3);
+  assert.ok(lines.every((line) => line.width === CAUSAL_PATH_STROKE_WIDTH));
+  assert.deepEqual(
+    bodyCircles.map((circle) => circle.radius),
+    [
+      ARCHITRINO_BODY_HALO_RADIUS,
+      ARCHITRINO_BODY_RADIUS,
+      ARCHITRINO_BODY_HALO_RADIUS,
+      ARCHITRINO_BODY_RADIUS,
+      ARCHITRINO_BODY_HALO_RADIUS,
+      ARCHITRINO_BODY_RADIUS,
+    ],
+  );
+  assert.ok(
+    bodyCircles
+      .filter((circle) => circle.outline)
+      .every(
+        (circle) =>
+          circle.outlineWidth === ARCHITRINO_BODY_OUTLINE_WIDTH,
+      ),
+  );
+  assert.deepEqual(
+    comparisonLabels.map((label) => ({ text: label.text, align: label.align })),
+    [
+      { text: "Expanded", align: "left" },
+      { text: "Compressed", align: "right" },
+    ],
+  );
+  assert.equal(
+    comparisonLabels[0].screenPoint.y,
+    comparisonLabels[1].screenPoint.y,
+  );
+  const expandedWidth = "Expanded".length * 9 * 0.56;
+  const compressedWidth = "Compressed".length * 9 * 0.56;
+  assert.ok(
+    comparisonLabels[1].screenPoint.x -
+      compressedWidth -
+      (comparisonLabels[0].screenPoint.x + expandedWidth) >=
+      9 * 0.56 - 1e-9,
+  );
+  assert.equal(
+    runtime.dom.canvas.dataset.storyMotionFixture,
+    "declared_constant_speed_transmitter_history",
+  );
+  assert.equal(
+    runtime.dom.canvas.dataset.displayAuthorityKind,
+    "declared_constant_speed_teaching_fixture",
+  );
+  assert.equal(runtime.dom.canvas.dataset.displayEvidenceStatus, "display-only");
+  assert.equal(runtime.dom.canvas.dataset.displayPhysicsAcceptance, "false");
+  assert.equal(
+    runtime.dom.canvas.dataset.displayParityEstablishesPhysicsAcceptance,
+    "false",
+  );
+  assert.equal(runtime.dom.canvas.dataset.storyMotionSpeeds, "0.3,0.6,0.9");
+  assert.equal(runtime.dom.canvas.dataset.storyMotionSelectedSpeed, "0.6");
+  assert.equal(runtime.dom.canvas.dataset.storyEmissionOriginMarkerCount, "18");
+  assert(Number(runtime.dom.canvas.dataset.storyMotionMaximumResidual) < 1e-12);
+  const frontReaches = runtime.dom.canvas.dataset.storyMotionFrontReach
+    .split(",")
+    .map(Number);
+  const rearReaches = runtime.dom.canvas.dataset.storyMotionRearReach
+    .split(",")
+    .map(Number);
+  assert.ok(frontReaches[0] > frontReaches[1] && frontReaches[1] > frontReaches[2]);
+  assert.ok(rearReaches[0] < rearReaches[1] && rearReaches[1] < rearReaches[2]);
+  assert(Number(runtime.dom.canvas.dataset.storyWakeContainmentMargin) >= 0);
+});
+
+test("Story 4 compression labels begin with a two-space gap and then follow wake separation", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  const labels = [];
+  runtime.drawScreenText = (_ctx, text, screenPoint, _size, _color, align) => {
+    labels.push({ text, screenPoint, align });
+  };
+  const context = {
+    save() {},
+    restore() {},
+    measureText(text) {
+      return { width: text.length * 6 };
+    },
+  };
+
+  runtime.drawStoryCompressionLabels(
+    context,
+    { rearX: 500, frontX: 500, y: 600, visibleRingCount: 1 },
+    780,
+    { x: 500, y: 600 },
+  );
+
+  const initialExpanded = labels.find((label) => label.text === "Expanded");
+  const initialCompressed = labels.find((label) => label.text === "Compressed");
+  const initialGap =
+    initialCompressed.screenPoint.x -
+    "Compressed".length * 6 -
+    (initialExpanded.screenPoint.x + "Expanded".length * 6);
+  assertNear(initialExpanded.screenPoint.y, initialCompressed.screenPoint.y);
+  assertNear(initialGap, 12);
+  assert.equal(initialExpanded.align, "left");
+  assert.equal(initialCompressed.align, "right");
+
+  labels.length = 0;
+  runtime.drawStoryCompressionLabels(
+    context,
+    { rearX: 400, frontX: 700, y: 600, visibleRingCount: 1 },
+    780,
+    { x: 550, y: 600 },
+  );
+
+  assert.deepEqual(
+    labels.map((label) => ({
+      text: label.text,
+      x: label.screenPoint.x,
+      y: label.screenPoint.y,
+      align: label.align,
+    })),
+    [
+      { text: "Expanded", x: 400, y: 780, align: "left" },
+      { text: "Compressed", x: 700, y: 780, align: "right" },
+    ],
+  );
+});
+
+test("Story 4 labels follow the visible wake extents across speeds and frames", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.drawStorySpeedLabel = () => {};
+  runtime.drawLine = () => {};
+  runtime.drawSolidWakeCircle = () => {};
+  runtime.drawStoryEmissionOriginMarker = () => {};
+  runtime.drawCircle = () => {};
+  const context = {
+    save() {},
+    restore() {},
+    measureText(text) {
+      return { width: text.length * 6 };
+    },
+  };
+  const frames = [0, 0.06, 0.18, 0.36, 0.6];
+
+  STORY_MOTION_SPEED_FRACTIONS.forEach((speedFraction) => {
+    runtime.learnerState.storyMotionSpeedFraction = speedFraction;
+    frames.forEach((displayTime) => {
+      const labels = [];
+      runtime.drawScreenText = (_ctx, text, screenPoint, _size, _color, align) => {
+        labels.push({ text, screenPoint, align });
+      };
+      const scene = createStoryScene(runtime.learnerState);
+      runtime.drawStoryMotionWakeComparison(context, scene, displayTime);
+      const fixture = createStoryMotionWakeComparisonFixture(
+        runtime.learnerState,
+        displayTime,
+      );
+      const comparison = fixture.comparisons.find((candidate) => candidate.selected);
+      const extents = runtime.getStoryMotionWakeExtents(comparison.fronts);
+      const baselineY = comparison.currentSource.y + 180;
+      const rearScreen = runtime.worldToScreen({ x: extents.rearX, y: baselineY });
+      const frontScreen = runtime.worldToScreen({ x: extents.frontX, y: baselineY });
+      const expanded = labels.find((label) => label.text === "Expanded");
+      const compressed = labels.find((label) => label.text === "Compressed");
+
+      assert.ok(expanded, `Expanded missing at speed ${speedFraction}, frame ${displayTime}`);
+      assert.ok(compressed, `Compressed missing at speed ${speedFraction}, frame ${displayTime}`);
+      assert.equal(expanded.align, "left");
+      assert.equal(compressed.align, "right");
+      assert.ok(expanded.screenPoint.x <= rearScreen.x + 1e-9);
+      assert.ok(compressed.screenPoint.x >= frontScreen.x - 1e-9);
+      assert.ok(
+        compressed.screenPoint.x - "Compressed".length * 6 -
+          (expanded.screenPoint.x + "Expanded".length * 6) >=
+          12 - 1e-9,
+      );
+    });
+  });
+});
+
+test("Story 4 compressed-front label follows the visible outer ring through playback", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.learnerState.storyStep = 3;
+  runtime.drawStorySpeedLabel = () => {};
+  runtime.drawLine = () => {};
+  runtime.drawSolidWakeCircle = () => {};
+  runtime.drawStoryEmissionOriginMarker = () => {};
+  runtime.drawCircle = () => {};
+  const compressedX = [];
+  runtime.drawScreenText = (_ctx, text, screenPoint) => {
+    if (text === "Compressed") {
+      compressedX.push(screenPoint.x);
+    }
+  };
+  const context = {
+    save() {},
+    restore() {},
+    measureText(text) {
+      return { width: text.length * 6 };
+    },
+  };
+  const scene = createStoryScene(runtime.learnerState);
+
+  for (let index = 0; index <= 60; index += 1) {
+    const displayTime = index / 100;
+    runtime.drawStoryMotionWakeComparison(
+      context,
+      scene,
+      displayTime,
+    );
+    const fixture = createStoryMotionWakeComparisonFixture(
+      runtime.learnerState,
+      displayTime,
+    );
+    const selected = fixture.comparisons.find((comparison) =>
+      comparison.selected);
+    const extents = runtime.getStoryMotionWakeExtents(selected.fronts);
+    const expectedFront = runtime.worldToScreen({
+      x: extents.frontX,
+      y: selected.currentSource.y + 180,
+    });
+    assert.ok(compressedX.at(-1) >= expectedFront.x - 1e-9);
+  }
+
+  assert.equal(compressedX.length, 61);
+});
+
+test("Story 4 speed changes reset playing, paused, and completed scenarios", () => {
+  for (const playbackState of ["playing", "paused", "completed"]) {
+    const runtime = createCausalDelayFeedbackRuntime({
+      document: new FakeDocument(),
+      window: fakeWindow,
+      initialMode: "story",
+    });
+    runtime.learnerState.storyStep = 3;
+    runtime.isPlaying = playbackState === "playing";
+    runtime.learnerState.playback.playing = playbackState === "playing";
+    runtime.learnerState.playback.resumable = playbackState === "paused";
+    runtime.learnerState.playback.completed = playbackState === "completed";
+    runtime.storyStageElapsedSeconds = 2.5;
+    runtime.storyHeldFrame = {
+      scene: createStoryScene(runtime.learnerState),
+      replayTime: 0.4,
+    };
+    runtime.storyPlaybackScene = createStoryScene(runtime.learnerState);
+    runtime.dom = {
+      playButton: new FakeElement(),
+      resetButton: new FakeElement(),
+    };
+    let guidedRenderCount = 0;
+    runtime.modeController = {
+      render() {
+        guidedRenderCount += 1;
+      },
+    };
+
+    runtime.learnerState.storyMotionSpeedFraction = 0.9;
+    runtime.handleLearnerStateChange();
+
+    assert.equal(runtime.isPlaying, false);
+    assert.equal(runtime.storyStageElapsedSeconds, 0);
+    assert.equal(runtime.storyHeldFrame, null);
+    assert.equal(runtime.storyPlaybackScene, null);
+    assert.equal(runtime.learnerState.playback.playing, false);
+    assert.equal(runtime.learnerState.playback.resumable, false);
+    assert.equal(runtime.learnerState.playback.completed, false);
+    assert.equal(runtime.dom.playButton.disabled, false);
+    assert.equal(runtime.dom.playButton.attributes["aria-label"], "Play replay");
+    assert.equal(guidedRenderCount, 1);
+  }
+});
+
+test("dormant diagnostic history renderer preserves reciprocal geometry", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.dom = { canvas: { dataset: {} } };
+  const circles = [];
+  const arcs = [];
+  const markers = [];
+  runtime.drawSolidWakeCircle = (_ctx, center, radius) => {
+    circles.push({ center, radius });
+  };
+  runtime.drawFadingSolidWakeArc = (_ctx, center, radius, angle, color) => {
+    arcs.push({ center, radius, angle, color });
+  };
+  runtime.drawTransmissionGhost = (_ctx, point, kind) => {
+    markers.push({ point, kind });
+  };
+  runtime.drawCircle = () => {};
+
+  runtime.drawGuidedCausalHistory({}, runtime.learnerState.receiverTime);
+
+  assert.equal(circles.length, 2);
+  assert.equal(arcs.length, 0);
+  assert.equal(markers.length, 2);
+  assert.deepEqual(new Set(markers.map((marker) => marker.kind)), new Set([
+    "positrino",
+    "electrino",
+  ]));
+  assert.equal(runtime.dom.canvas.dataset.historyEmissionMarkerCount, "2");
+  assert.equal(runtime.dom.canvas.dataset.historyWakeCircleCount, "2");
+  assert.equal(runtime.dom.canvas.dataset.historyWakeGuideArcCount, "0");
+});
+
+test("Lesson Five starts at emission zero and visibly differs from Lesson One at equal body-wake speed", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.dom = { canvas: { dataset: {} } };
+  runtime.learnerState.storyStep = 4;
+  runtime.drawStoryEmissionOriginMarker = () => {};
+  runtime.drawPathTrail = () => {};
+  const renders = [];
+  const liveMarkers = [];
+  const renderSequence = [];
+  const drawForwardWakeBuildupHistory =
+    runtime.drawForwardWakeBuildupHistory.bind(runtime);
+  runtime.drawForwardWakeBuildupHistory = (_ctx, frame) => {
+    renders.push(frame);
+    renderSequence.push("wake-history");
+  };
+  runtime.drawLiveMarker = (_ctx, _label, _color, point, kind) => {
+    liveMarkers.push({ point, kind });
+    renderSequence.push(`current-emission:${kind}`);
+  };
+
+  const scene = createStoryScene(runtime.learnerState);
+  runtime.drawStoryScene({}, scene.playbackStartTime);
+  assert.equal(renders.length, 1);
+  assert.equal(renders[0].fronts.length, 0);
+  assert.equal(
+    runtime.dom.canvas.dataset.forwardWakeBuildupInheritedHistory,
+    "false",
+  );
+
+  runtime.learnerState.playback.playing = true;
+  runtime.storyPlaybackScene = scene;
+  runtime.drawStoryScene(
+    {},
+    scene.playbackStartTime +
+      (scene.playbackEndTime - scene.playbackStartTime) * 0.5,
+  );
+
+  assert.equal(renders.length, 2);
+  assert(renders[1].fronts.length > 0);
+  assert.deepEqual(
+    new Set(renders[1].fronts.map((front) => front.transmitterId)),
+    new Set(["positrino", "electrino"]),
+  );
+  assert.ok(renders[1].fronts.every((front) => front.declaredFieldSpeed));
+  assert.ok(renders[1].fronts.every(
+    (front) =>
+      Math.abs(front.bodySpeed - front.wakeExpansionSpeed) <= Number.EPSILON,
+  ));
+  assert.equal(
+    runtime.dom.canvas.dataset.forwardWakeBuildupMinimumSpeedRatio,
+    "1.000000000",
+  );
+  assert.equal(
+    runtime.dom.canvas.dataset.forwardWakeBuildupMaximumSpeedRatio,
+    "1.000000000",
+  );
+  assert.equal(
+    runtime.dom.canvas.dataset.forwardWakeBuildupDiffersFromMeet,
+    "equal-body-and-wake-speed",
+  );
+  assert.equal(
+    runtime.dom.canvas.dataset.forwardWakeBuildupMaximumLeadingError,
+    "0.000000000",
+  );
+  assert.equal(
+    runtime.dom.canvas.dataset.forwardWakeBuildupFrontClip,
+    "body-anchored-full-sphere-projection",
+  );
+  assert.deepEqual(liveMarkers.slice(-2), [
+    { point: renders[1].bodies.positrino, kind: "positrino" },
+    { point: renders[1].bodies.electrino, kind: "electrino" },
+  ]);
+  assert.deepEqual(renderSequence.slice(-3), [
+    "wake-history",
+    "current-emission:positrino",
+    "current-emission:electrino",
+  ]);
+  const assertFullSphereFrame = (frame, progress) => {
+    assert.ok(frame.fronts.length > 0);
+    assert.equal(frame.maximumLeadingCoincidenceError, 0);
+    frame.fronts.forEach((front) => {
+      assert.equal(front.currentBody, frame.bodies[front.transmitterId]);
+      assert.equal(front.leadingPoint, front.currentBody);
+      assert.equal(front.bodyAnchoredFullSphereProjection, true);
+      assert.ok(
+        Math.abs(
+          front.radius - getDistance(front.center, front.currentBody),
+        ) <= 1e-9,
+      );
+      assert.equal(front.trailingHalfPlaneOnly, true);
+      const sphere = runtime.getForwardWakeBuildupSphereGeometry(front);
+      assert(sphere);
+      assertNear(sphere.leadingProjectionError, 0);
+      assertNear(sphere.maximumDisplayedTimeLead, 0, 1e-7);
+      assertNear(sphere.minimumScreenRadius, sphere.radius, 1e-7);
+      assertNear(sphere.maximumScreenRadius, sphere.radius, 1e-7);
+      assert(sphere.upperPointCount > 0);
+      assert(sphere.lowerPointCount > 0);
+      assertNear(sphere.points[0].x, sphere.points.at(-1).x, 1e-7);
+      assertNear(sphere.points[0].y, sphere.points.at(-1).y, 1e-7);
+      assertNear(sphere.points[0].x, sphere.leadingPoint.x, 1e-7);
+      assertNear(sphere.points[0].y, sphere.leadingPoint.y, 1e-7);
+      const leadingDirection = {
+        x: (sphere.leadingPoint.x - sphere.center.x) / sphere.radius,
+        y: (sphere.leadingPoint.y - sphere.center.y) / sphere.radius,
+      };
+      sphere.points.forEach((point) => {
+        assert.ok(
+          (point.x - sphere.leadingPoint.x) * leadingDirection.x +
+              (point.y - sphere.leadingPoint.y) * leadingDirection.y <=
+            1e-7,
+          `${front.transmitterId} sphere led its current-emission dot at ${progress}`,
+        );
+      });
+      const oppositeIndex = (sphere.points.length - 1) / 2;
+      assertNear(
+        (sphere.points[0].x + sphere.points[oppositeIndex].x) * 0.5,
+        sphere.center.x,
+        1e-7,
+      );
+      assertNear(
+        (sphere.points[0].y + sphere.points[oppositeIndex].y) * 0.5,
+        sphere.center.y,
+        1e-7,
+      );
+    });
+  };
+  for (const progress of [0.05, 0.1, 0.3, 0.5, 0.7, 0.9, 1]) {
+    const frame = runtime.createStoryForwardWakeBuildupFrame(
+      scene,
+      scene.playbackStartTime +
+        (scene.playbackEndTime - scene.playbackStartTime) * progress,
+    );
+    assertFullSphereFrame(frame, progress);
+
+    const drawnSpheres = [];
+    let currentSphere = null;
+    const context = {
+      save() {},
+      restore() {},
+      beginPath() {
+        currentSphere = { points: [], closed: false };
+      },
+      moveTo(x, y) {
+        currentSphere.points.push({ x, y });
+      },
+      lineTo(x, y) {
+        currentSphere.points.push({ x, y });
+      },
+      closePath() {
+        currentSphere.closed = true;
+      },
+      stroke() {
+        drawnSpheres.push(currentSphere);
+      },
+      set lineWidth(value) {
+        this._lineWidth = value;
+      },
+      set strokeStyle(value) {
+        this._strokeStyle = value;
+      },
+    };
+    drawForwardWakeBuildupHistory(context, frame);
+    assert.equal(drawnSpheres.length, frame.fronts.length);
+    assert.ok(drawnSpheres.every((sphere) => sphere.closed));
+    assert.ok(drawnSpheres.every((sphere) => sphere.points.length === 97));
+  }
+  runtime.storyHeldFrame = { scene, replayTime: scene.playbackEndTime * 0.5 };
+  runtime.learnerState.playback.resumable = true;
+  runtime.learnerState.storyStep = 3;
+  runtime.handleLearnerStateChange();
+  runtime.learnerState.storyStep = 4;
+  runtime.handleLearnerStateChange();
+  const returnedScene = createStoryScene(runtime.learnerState);
+  assert.equal(returnedScene.id, "forward-buildup");
+  assert.equal(runtime.storyHeldFrame, null);
+  assert.equal(runtime.learnerState.playback.resumable, false);
+  assertFullSphereFrame(
+    runtime.createStoryForwardWakeBuildupFrame(
+      returnedScene,
+      returnedScene.playbackStartTime +
+        (returnedScene.playbackEndTime - returnedScene.playbackStartTime) * 0.5,
+    ),
+    "return-to-Lesson-Five",
+  );
+  const meetScene = createStoryScene({
+    ...runtime.learnerState,
+    storyStep: 0,
+  });
+  const meetFronts = createStorySampledWakeFronts(
+    runtime.learnerState,
+    meetScene,
+    meetScene.playbackStartTime +
+      (meetScene.playbackEndTime - meetScene.playbackStartTime) * 0.5,
+  );
+  assert.ok(meetFronts.length > 0);
+  assert.ok(meetFronts.every((front) => front.declaredFieldSpeed !== true));
+  assert.match(
+    runtime.dom.canvas.dataset.forwardWakeBuildupEvidenceBoundary,
+    /Declared paired-path display fixture/u,
+  );
+  assert.match(
+    runtime.dom.canvas.dataset.forwardWakeBuildupEvidenceBoundary,
+    /closed two-sided projection centered on its emission point/u,
+  );
+});
+
+test("Lesson Five wakefronts stay circular on uphill and downhill path slopes", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.viewport = {
+    offsetX: 0,
+    offsetY: 0,
+    scale: 1,
+  };
+  const slopeCases = [
+    {
+      label: "uphill",
+      center: { x: 100, y: 100 },
+      body: { x: 160, y: 130 },
+    },
+    {
+      label: "downhill",
+      center: { x: 100, y: 100 },
+      body: { x: 160, y: 70 },
+    },
+    {
+      label: "reverse-direction",
+      center: { x: 160, y: 100 },
+      body: { x: 100, y: 130 },
+    },
+  ];
+  slopeCases.forEach(({ label, center, body }) => {
+    const sphere = runtime.getForwardWakeBuildupSphereGeometry({
+      center,
+      currentBody: body,
+    });
+    assert(sphere, `${label} wakefront geometry should exist`);
+    assertNear(sphere.leadingProjectionError, 0);
+    assertNear(sphere.maximumDisplayedTimeLead, 0, 1e-7);
+    assertNear(sphere.minimumScreenRadius, sphere.radius, 1e-7);
+    assertNear(sphere.maximumScreenRadius, sphere.radius, 1e-7);
+    assert(sphere.upperPointCount > 0);
+    assert(sphere.lowerPointCount > 0);
+    sphere.points.forEach((point) => {
+      assertNear(
+        Math.hypot(point.x - sphere.center.x, point.y - sphere.center.y),
+        sphere.radius,
+        1e-7,
+      );
+    });
+  });
+});
+
+test("Lesson Six renders fixed halfway bodies with constant-rate expanding circular wakes and no rejected ornaments", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.learnerState.storyStep = 4;
+  const lessonFive = runtime.resetStoryScenarioPlayback();
+  assertNear(lessonFive.playbackStartTime, 0);
+
+  runtime.learnerState.storyStep = 5;
+  runtime.handleLearnerStateChange();
+  const scene = createStoryScene(runtime.learnerState);
+  assert.equal(scene.id, "inverse-square-spreading");
+  runtime.dom = { canvas: { dataset: {} } };
+  runtime.viewport = { offsetX: 0, offsetY: 0, scale: 1 };
+  const circles = [];
+  const markers = [];
+  runtime.drawSolidWakeCircle = (_ctx, center, radius) => {
+    circles.push({ center, radius });
+  };
+  runtime.drawLiveMarker = (_ctx, label, _color, point) => {
+    markers.push({ label, point });
+  };
+  runtime.learnerState.playback.playing = true;
+  runtime.storyPlaybackScene = scene;
+  runtime.drawStoryScene({}, scene.playbackStartTime);
+  const firstBodyPoints = markers.map(({ label, point }) => ({ label, point }));
+  assert.equal(circles.length, 0);
+  assert.equal(firstBodyPoints.length, 2);
+  assert.equal(runtime.dom.canvas.dataset.inverseSquareBodyProgress, "0.500000");
+
+  circles.length = 0;
+  markers.length = 0;
+  const middleTime =
+    scene.playbackStartTime +
+    (scene.playbackEndTime - scene.playbackStartTime) * 0.625;
+  runtime.drawStoryScene({}, middleTime);
+  assert.equal(
+    circles.length,
+    Number(runtime.dom.canvas.dataset.inverseSquareWakeCount),
+  );
+  assert.ok(circles.length > 0);
+  assert.ok(circles.every((circle) => circle.radius > 0));
+  assert.deepEqual(markers, firstBodyPoints);
+  assert.equal(
+    runtime.dom.canvas.dataset.inverseSquareFixture,
+    "shared-paired-path-fixed-halfway-constant-rate-circular-wakes",
+  );
+  assert.equal(runtime.dom.canvas.dataset.inverseSquareWakeShape, "full-circular");
+  assert.equal(
+    runtime.dom.canvas.dataset.inverseSquareEmissionCadence,
+    "equal-interval-normalized-lesson-progress",
+  );
+  assert.equal(runtime.dom.canvas.dataset.inverseSquareComparisonOrnamentCount, "0");
+  assert.equal(runtime.dom.canvas.dataset.inverseSquareFormulaLabelCount, "0");
+  assert.equal(runtime.dom.canvas.dataset.inverseSquareDotStarGraphic, "false");
+  assert.equal(runtime.dom.canvas.dataset.inverseSquareFieldAmplitudeClaim, "false");
+  assert.equal(runtime.dom.canvas.dataset.inverseSquarePhysicalLawClaim, "false");
+
+  runtime.learnerState.storyStep = 7;
+  assert.equal(
+    createStoryScene(runtime.learnerState).id,
+    "continuous-delayed-feedback",
+  );
+});
+
+test("Lesson Seven renders Lesson One labels and uniform clean-triangle white arrows through the full endpoint", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.learnerState.storyStep = 6;
+  runtime.dom = { canvas: { dataset: {} } };
+  runtime.viewport = { offsetX: 0, offsetY: 0, scale: 1 };
+  runtime.canvasWidth = 1000;
+  runtime.setCanvasDisplayAuthority = () => {};
+  runtime.drawSmoothLine = () => {};
+  runtime.drawStoryContinuousDelayedFeedbackArc = () => {};
+  runtime.drawStorySuperpositionComponentArrow = () => {};
+  runtime.drawStorySuperpositionNetArrow = () => {};
+  runtime.drawCircle = () => {};
+  const labels = [];
+  runtime.drawScreenText = (_ctx, text, point, size, color, align, weight) => {
+    labels.push({ text, point, size, color, align, weight });
+  };
+  const scene = createStoryScene(runtime.learnerState);
+
+  runtime.drawStorySuperposition({}, scene, scene.playbackEndTime);
+
+  assert.deepEqual(labels.map(({ text }) => text), [
+    "electrino",
+    "positrino",
+    "electrino",
+  ]);
+  assert.deepEqual(labels.map(({ color }) => color), [
+    { r: 143, g: 143, b: 255, a: 1 },
+    { r: 255, g: 0, b: 0, a: 0.9 },
+    { r: 143, g: 143, b: 255, a: 1 },
+  ]);
+  assert.ok(labels.every(
+    ({ size, align, weight }) =>
+      size === 14 && align === "center" && weight === "bold",
+  ));
+  assert.equal(
+    runtime.dom.canvas.dataset.superpositionBodyPathTimes,
+    "0.50,0.75,1.00",
+  );
+  assert.equal(
+    runtime.dom.canvas.dataset.superpositionLabelStyle,
+    "lesson-one-lowercase-polarity-colors",
+  );
+
+  const fixture = runtime.superpositionScene;
+  const lines = [];
+  const triangles = [];
+  runtime.worldToScreen = (point) => point;
+  runtime.drawLine = (_ctx, points, _color, width) => {
+    lines.push({ points, width });
+  };
+  runtime.drawTriangle = (_ctx, points) => {
+    triangles.push(points);
+  };
+  runtime.drawScreenText = () => {};
+  fixture.componentArrows.forEach((arrow) => {
+    Object.getPrototypeOf(runtime).drawStorySuperpositionComponentArrow.call(
+      runtime,
+      {},
+      arrow,
+    );
+  });
+  Object.getPrototypeOf(runtime).drawStorySuperpositionNetArrow.call(
+    runtime,
+    {},
+    fixture.netAccelerationArrow.origin,
+    fixture.netAccelerationArrow.vector,
+  );
+
+  assert.deepEqual(lines.map(({ width }) => width), [3.2, 3.2, 3.2]);
+  assert.equal(triangles.length, 3);
+  assert.ok(triangles.every((points) => points.length === 3));
+  lines.forEach((line, index) => {
+    const triangle = triangles[index];
+    const baseMidpoint = {
+      x: (triangle[1].x + triangle[2].x) * 0.5,
+      y: (triangle[1].y + triangle[2].y) * 0.5,
+    };
+    assert.deepEqual(line.points.at(-1), baseMidpoint);
+    assert.notDeepEqual(line.points.at(-1), triangle[0]);
+  });
+  assert.equal(
+    runtime.dom.canvas.dataset.superpositionArrowShaftEnd,
+    "triangle-base-no-terminal-marker",
+  );
+});
+
+test("Story replay restarts the stage even while playback is already running", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.render = () => {};
+  runtime.setPlaying(true);
+  runtime.storyStageElapsedSeconds = 18;
+
+  runtime.setPlaying(true, { restartStory: true });
+
+  assert.equal(runtime.isPlaying, true);
+  assert.equal(runtime.storyStageElapsedSeconds, 0);
+  assert.equal(runtime.storyHeldFrame, null);
+  assert.equal(runtime.storyPlaybackScene.id, "meet");
+});
+
+test("Story graph viewport remains fixed from initial through mid-play and end-play", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.canvasWidth = 1440;
+  runtime.canvasHeight = 900;
+  runtime.dom = {
+    canvas: {
+      getBoundingClientRect() {
+        return { left: 0, top: 0, right: 1440, bottom: 900, width: 1440, height: 900 };
+      },
+    },
+  };
+  runtime.modeController = {
+    dom: {
+      panel: {
+        getBoundingClientRect() {
+          const height = [229, 187, 243, 235][runtime.learnerState.storyStep] ?? 229;
+          return {
+            left: 12,
+            top: 12,
+            right: 652,
+            bottom: 12 + height,
+            width: 640,
+            height,
+          };
+        },
+      },
+      tabs: {
+        getBoundingClientRect() {
+          return { left: 880, top: 16, right: 1422, bottom: 60, width: 542, height: 44 };
+        },
+      },
+    },
+  };
+
+  const initial = runtime.createStoryChartViewport();
+  runtime.learnerState.playback.playing = true;
+  runtime.storyStageElapsedSeconds = 1.6;
+  const midpoint = runtime.createStoryChartViewport();
+  runtime.storyStageElapsedSeconds = 3.2;
+  const endpoint = runtime.createStoryChartViewport();
+  const stepViewports = Array.from({ length: 6 }, (_unused, storyStep) => {
+    runtime.learnerState.storyStep = storyStep;
+    return runtime.createStoryChartViewport();
+  });
+
+  for (const viewport of [midpoint, endpoint, ...stepViewports]) {
+    assert.equal(viewport.scale, initial.scale);
+    assert.equal(viewport.offsetX, initial.offsetX);
+    assert.equal(viewport.offsetY, initial.offsetY);
+    assert.deepEqual(viewport.chartBounds, initial.chartBounds);
+  }
+  assert.equal(initial.chartBounds.top, 278);
+  assert.ok(initial.chartBounds.top > 255);
+  assert.ok(
+    initial.offsetY + initial.designBounds.minY * initial.scale >=
+      initial.chartBounds.top - 1e-9,
+  );
+  assert.ok(
+    initial.offsetY + initial.designBounds.maxY * initial.scale <=
+      initial.chartBounds.bottom + 1e-9,
+  );
+});
+
+test("all Story steps use one desktop chart template despite different panel heights", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.canvasWidth = 1280;
+  runtime.canvasHeight = 720;
+  runtime.dom = {
+    canvas: {
+      getBoundingClientRect() {
+        return { left: 0, top: 0, right: 1280, bottom: 720, width: 1280, height: 720 };
+      },
+    },
+  };
+  runtime.modeController = {
+    dom: {
+      panel: {
+        getBoundingClientRect() {
+          const height = [249.5, 228.75, 263.75, 264.375, 249.5, 263.75][
+            runtime.learnerState.storyStep
+          ];
+          return {
+            left: 18,
+            top: 70,
+            right: 658,
+            bottom: 70 + height,
+            width: 640,
+            height,
+          };
+        },
+      },
+      tabs: {
+        getBoundingClientRect() {
+          return { left: 738, top: 16, right: 1262, bottom: 60, width: 524, height: 44 };
+        },
+      },
+    },
+  };
+
+  const stepViewports = Array.from({ length: 6 }, (_unused, storyStep) => {
+    runtime.learnerState.storyStep = storyStep;
+    return runtime.createStoryChartViewport();
+  });
+  const reference = stepViewports[0];
+
+  for (const viewport of stepViewports.slice(1)) {
+    assert.equal(viewport.scale, reference.scale);
+    assert.equal(viewport.offsetX, reference.offsetX);
+    assert.equal(viewport.offsetY, reference.offsetY);
+    assert.deepEqual(viewport.chartBounds, reference.chartBounds);
+  }
+  assert.equal(reference.chartBounds.top, 336);
+});
+
+test("Laboratory matches the Story chart frame at desktop and keeps a safe narrow frame", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "sandbox",
+  });
+  runtime.canvasWidth = 1440;
+  runtime.canvasHeight = 900;
+  runtime.dom = {
+    canvas: { getBoundingClientRect: () => ({ top: 0 }) },
+    bottomRail: { getBoundingClientRect: () => ({ top: 826 }) },
+  };
+  runtime.modeController = {
+    dom: { tabs: { getBoundingClientRect: () => ({ bottom: 480 }) } },
+  };
+  const laboratory = runtime.createLaboratoryViewport();
+  runtime.learnerState.mode = "story";
+  runtime.modeController.dom.panel = {
+    getBoundingClientRect: () => ({ top: 12 }),
+  };
+  const story = runtime.createStoryChartViewport();
+  assertNear(laboratory.scale, story.scale);
+  assertNear(laboratory.offsetX, story.offsetX);
+  assertNear(laboratory.offsetY, story.offsetY);
+  assert.deepEqual(laboratory.chartBounds, story.chartBounds);
+  assert.deepEqual(laboratory.designBounds, story.designBounds);
+
+  runtime.canvasWidth = 390;
+  runtime.canvasHeight = 844;
+  runtime.learnerState.mode = "sandbox";
+  runtime.dom.bottomRail = { getBoundingClientRect: () => ({ top: 747 }) };
+  runtime.modeController.dom.tabs = {
+    getBoundingClientRect: () => ({ bottom: 533 }),
+  };
+  const narrow = runtime.createLaboratoryViewport();
+  assert.deepEqual(narrow.chartBounds, {
+    left: 18,
+    right: 372,
+    top: 549,
+    bottom: 731,
+  });
+  assert.ok(narrow.scale > 0);
+  assert.ok(narrow.offsetY + narrow.designBounds.minY * narrow.scale >= 549 - 1e-9);
+  assert.ok(narrow.offsetY + narrow.designBounds.maxY * narrow.scale <= 731 + 1e-9);
 });
 
 test("causal delay feedback does not keep a frame loop alive while paused", () => {
@@ -1520,8 +3402,9 @@ test("causal delay feedback does not keep a frame loop alive while paused", () =
   assert.equal(scheduledFrames.length, 1);
 });
 
-test("guided playback refreshes learner roots and panels as replay time advances", () => {
+test("lesson playback advances its scene without polling dormant diagnostic panels", () => {
   let panelRefreshes = 0;
+  let renderCount = 0;
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: {
@@ -1530,9 +3413,11 @@ test("guided playback refreshes learner roots and panels as replay time advances
         return 1;
       },
     },
-    initialMode: "roots",
+    initialMode: "story",
   });
-  runtime.render = () => {};
+  runtime.render = () => {
+    renderCount += 1;
+  };
   runtime.modeController = {
     render() {},
     renderLiveState() {
@@ -1544,28 +3429,104 @@ test("guided playback refreshes learner roots and panels as replay time advances
 
   runtime.tick(200);
 
-  assertNear(runtime.learnerState.receiverTime, runtime.getCurrentReplayTime());
-  assert.equal(panelRefreshes, 1);
+  assert(runtime.storyStageElapsedSeconds > 0);
+  assert.equal(renderCount, 1);
+  assert.equal(panelRefreshes, 0);
 });
 
-test("causal delay feedback animation tempo and architrino speed settings keep live wake arcs visible", () => {
+test("Lesson Eight draws retained causal history plus only the active arc pair", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
+    initialMode: "story",
   });
-  const replayTime = 0.5;
-  const baseSignalSpeed = runtime.getLiveWakeSignalSpeed();
-
-  runtime.setFieldSpeedControlScale(0.25);
-  runtime.setArchitrinoSpeedIndex(9);
-
-  assert.equal(runtime.fieldSpeedScale, 0.25);
-  assert.equal(runtime.getArchitrinoSpeedFraction(), 0.999999);
-  assert.equal(runtime.getLiveWakeSignalSpeed(), baseSignalSpeed);
-  assert.deepEqual(
-    runtime.getVisibleWakeSeries(replayTime).map((link) => link.id),
-    ["live-positrino-to-electrino", "live-electrino-to-positrino"],
+  runtime.dom = { canvas: { dataset: {} } };
+  runtime.learnerState.storyStep = 7;
+  runtime.drawPathTrail = () => {};
+  runtime.drawGuidedLiveMarkers = () => {};
+  runtime.setCanvasDisplayAuthority = () => {};
+  const drawnArcs = [];
+  runtime.drawStoryContinuousDelayedFeedbackArc = (_ctx, arc, active) => {
+    drawnArcs.push({ arc, active });
+  };
+  const scene = createStoryScene(runtime.learnerState);
+  runtime.learnerState.playback.playing = true;
+  runtime.storyPlaybackScene = scene;
+  const replayTime = scene.playbackStartTime +
+    (scene.playbackEndTime - scene.playbackStartTime) * 0.55;
+  runtime.drawStoryScene({}, replayTime);
+  assert.equal(runtime.dom.canvas.dataset.continuousDelayedFeedbackFixture,
+    "shared-paired-path-frozen-history-active-pair");
+  assert.equal(runtime.dom.canvas.dataset.continuousDelayedFeedbackFrozenArcCount, "6");
+  assert.equal(runtime.dom.canvas.dataset.continuousDelayedFeedbackActiveArcCount, "2");
+  assert.equal(runtime.dom.canvas.dataset.continuousDelayedFeedbackArcVisual,
+    "curved_fading_causal_arcs");
+  assert.equal(runtime.dom.canvas.dataset.continuousDelayedFeedbackArcCadence,
+    "lesson-two-wake-front-cadence");
+  assert.equal(
+    runtime.dom.canvas.dataset.continuousDelayedFeedbackArcSpacing,
+    runtime.getWakeFrontSpacing().toFixed(6),
   );
+  assert.equal(runtime.dom.canvas.dataset.continuousDelayedFeedbackEndpointMarkerCount, "0");
+  assert.equal(runtime.dom.canvas.dataset.continuousDelayedFeedbackSourceOrigin,
+    "timed_path_emission_point");
+  assert.equal(drawnArcs.filter((entry) => entry.active).length, 2);
+  assert.equal(drawnArcs.filter((entry) => !entry.active).length, 6);
+  assert.ok(drawnArcs.filter((entry) => entry.active).every(
+    (entry) => entry.arc.progress > 0 && entry.arc.progress < 1,
+  ));
+});
+
+test("Lesson Eight reuses Lesson Two live fading-arc spacing without straight connectors or endpoint markers", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    initialMode: "story",
+  });
+  runtime.viewport = { offsetX: 0, offsetY: 0, scale: 1 };
+  const context = createArcRecordingContext();
+  const replayTime = 0.55;
+  const lessonTwoLink = runtime.getStoryVisibleWakeSeries(replayTime)[0];
+  const lessonTwoTiming = runtime.getWakeTiming(lessonTwoLink, replayTime);
+  const lessonTwoFrontProgresses = runtime.getWakeFrontProgresses(
+    lessonTwoTiming,
+    lessonTwoLink,
+  );
+  let lessonEightFrontProgresses = null;
+  const originalDrawWakeBuildProgression =
+    runtime.drawWakeBuildProgression.bind(runtime);
+  runtime.drawWakeBuildProgression = (ctx, link, geometry) => {
+    lessonEightFrontProgresses = geometry.frontProgresses;
+    return originalDrawWakeBuildProgression(ctx, link, geometry);
+  };
+  runtime.drawStoryContinuousDelayedFeedbackArc(
+    context,
+    {
+      start: lessonTwoTiming.source,
+      current: lessonTwoTiming.receiver,
+      end: lessonTwoTiming.receiver,
+      sourceKind: lessonTwoLink.sourceKind,
+      roundIndex: 0,
+      progress: 1,
+      startTime: lessonTwoTiming.sourceT,
+      endTime: lessonTwoTiming.receiverT,
+    },
+    true,
+  );
+  assert.deepEqual(lessonEightFrontProgresses, lessonTwoFrontProgresses);
+  const distance = getTimingDistance(lessonTwoTiming, lessonTwoLink);
+  const lessonTwoSpacing = assertConstantWakeFrontSeparation(
+    lessonTwoFrontProgresses.map((progress) => progress * distance),
+    distance,
+  );
+  const lessonEightSpacing = assertConstantWakeFrontSeparation(
+    lessonEightFrontProgresses.map((progress) => progress * distance),
+    distance,
+  );
+  assertNear(lessonEightSpacing, lessonTwoSpacing, 1e-9);
+  assertNear(lessonEightSpacing, runtime.getWakeFrontSpacing(), 1e-9);
+  assert.ok(context.arcs.length > lessonEightFrontProgresses.length);
+  assert.ok(context.arcs.every((arc) => arc.radius > 0));
 });
 
 test("causal delay feedback display sampler uses fixed path speed", () => {
@@ -1648,46 +3609,6 @@ test("causal delay feedback live markers use fixed path speed", () => {
   );
 });
 
-test("causal delay feedback architrino speed setting uses the requested v over c_f sequence", () => {
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-
-  assert.deepEqual(
-    Array.from({ length: 10 }, (_, index) => runtime.getArchitrinoSpeedFraction(index)),
-    [0.1, 0.3, 0.5, 0.7, 0.9, 0.99, 0.999, 0.9999, 0.99999, 0.999999],
-  );
-});
-
-test("causal delay feedback architrino speed setting rescales initial velocity magnitudes", () => {
-  const replayStatus = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dom = { replayStatus };
-  const previousMagnitudes = Object.fromEntries(
-    ["positrino", "electrino"].map((kind) => {
-      const condition = runtime.getInitialCondition(kind);
-      return [kind, Math.hypot(condition.vx, condition.vy)];
-    }),
-  );
-
-  runtime.setArchitrinoSpeedIndex(5);
-
-  assert.equal(runtime.getArchitrinoSpeedFraction(), 0.99);
-  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
-  assert.equal(runtime.dataset.draftPreview.reason, "architrino_speed_fraction_preview");
-  assert.equal(runtime.replayLoadState, "draft");
-  assert.equal(replayStatus.textContent, "draft preview");
-  assert.equal(runtime.replayRequestOptions.architrinoSpeedFraction, 0.99);
-  ["positrino", "electrino"].forEach((kind) => {
-    const condition = runtime.getInitialCondition(kind);
-    assertNear(Math.hypot(condition.vx, condition.vy), previousMagnitudes[kind] * (0.99 / 0.7));
-  });
-});
-
 test("causal delay feedback replay keeps initial conditions synced to path start history", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -1705,9 +3626,7 @@ test("causal delay feedback replay keeps initial conditions synced to path start
 });
 
 test("causal delay feedback eom normalization projects recorded worldlines onto the canvas", () => {
-  const normalized = normalizeCausalDelayFeedbackEomReplay(createEomRecordFixture(), {
-    presetId: "accepted_tight_bright",
-  });
+  const normalized = normalizeCausalDelayFeedbackEomReplay(createEomRecordFixture());
 
   assert.equal(normalized.runId, "cdf-runtime-eom-fixture");
   assert.equal(normalized.datasetSource, EOM_REPLAY_DATASET_SOURCE);
@@ -1718,7 +3637,7 @@ test("causal delay feedback eom normalization projects recorded worldlines onto 
   assert.equal(normalized.eomProvenance.runId, "cdf-runtime-eom-fixture");
   assert.equal(normalized.eomProvenance.claimGrade, "evolved-record");
   assert.deepEqual(normalized.eomWorldlineRoles, { positrino: "10", electrino: "20" });
-  assert.equal(normalized.preset.id, "accepted_tight_bright");
+  assert.equal("preset" in normalized, false);
   // Both worldlines only move along y, so the display projection picks y.
   assert.equal(normalized.displayProjection.spaceAxis, "y");
   assert.deepEqual(normalized.wakeLinks, []);
@@ -2018,8 +3937,8 @@ test("causal delay feedback runtime loads an async eom replay over the mock fall
   const replayStatus = new FakeElement();
   const adapter = {
     id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId }) {
-      return createMockEomReplayDataset(presetId);
+    async createReplayAsync() {
+      return createMockEomReplayDataset("fixed-display");
     },
   };
   const runtime = createCausalDelayFeedbackRuntime({
@@ -2032,19 +3951,18 @@ test("causal delay feedback runtime loads an async eom replay over the mock fall
 
   assert.equal(runtime.dataset.datasetSource, "representative_mock_solver_replay");
 
-  await runtime.setPreset("full_circular_arcs");
+  await runtime.loadReplay();
 
-  assert.equal(runtime.dataset.runId, "eom:full_circular_arcs");
+  assert.equal(runtime.dataset.runId, "eom:fixed-display");
   assert.equal(runtime.dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
   assert.equal(runtime.dataset.solverIntegrationPath, EOM_REPLAY_ADAPTER);
   assert.equal(runtime.replayLoadState, "ready");
   assert.equal(runtime.replayLoadError, null);
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.textContent, "EOM record · display only");
   assert.equal(replayStatus.dataset.state, "eom-replay");
-  assert.equal(
-    replayStatus.title,
-    "Showing recorded EOM paths. This viewer does not recompute the record or infer delayed hits.",
-  );
+  assert.match(replayStatus.title, /recorded EOM paths/u);
+  assert.match(replayStatus.title, /does not prove that the physics has been accepted/u);
+  assert.equal(replayStatus.hidden, false);
 });
 
 test("causal delay feedback status keeps raw recorded provenance out of learner-facing copy", () => {
@@ -2069,10 +3987,11 @@ test("causal delay feedback status keeps raw recorded provenance out of learner-
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.textContent, "EOM record · display only");
   assert.equal(replayStatus.dataset.state, "eom-replay");
   assert.match(replayStatus.title, /recorded EOM paths/u);
   assert.match(replayStatus.title, /does not recompute/u);
+  assert.match(replayStatus.title, /does not prove that the physics has been accepted/u);
   assert.doesNotMatch(replayStatus.title, /engine=|run=|claim=|evidence=|worldlines=/u);
   assert.equal(replayStatus.attributes["aria-label"], replayStatus.title);
 });
@@ -2090,7 +4009,7 @@ test("causal delay feedback status does not expose dataset-level eom provenance 
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.textContent, "EOM record · display only");
   assert.equal(replayStatus.dataset.state, "eom-replay");
   assert.match(replayStatus.title, /recorded EOM paths/u);
   assert.doesNotMatch(replayStatus.title, /engine=|run=|claim=|evidence=|worldlines=/u);
@@ -2118,7 +4037,7 @@ test("causal delay feedback status ignores legacy solver telemetry on eom datase
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.textContent, "EOM record · display only");
   assert.equal(replayStatus.dataset.state, "eom-replay");
   assert.doesNotMatch(replayStatus.title, /steps=/);
   assert.doesNotMatch(replayStatus.title, /relax/);
@@ -2141,9 +4060,10 @@ test("causal delay feedback status reports plain recorded replay for non-eom rec
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "recorded replay");
+  assert.equal(replayStatus.textContent, "recorded replay · display only");
   assert.equal(replayStatus.dataset.state, "recorded");
-  assert.equal(replayStatus.title, "Showing a recorded replay dataset.");
+  assert.match(replayStatus.title, /recorded replay dataset/u);
+  assert.match(replayStatus.title, /does not prove that the physics has been accepted/u);
   assert.equal(replayStatus.attributes["aria-label"], replayStatus.title);
 });
 
@@ -2171,9 +4091,10 @@ test("causal delay feedback recorded replay status ignores legacy path-constrain
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "recorded replay");
+  assert.equal(replayStatus.textContent, "recorded replay · display only");
   assert.equal(replayStatus.dataset.state, "recorded");
-  assert.equal(replayStatus.title, "Showing a recorded replay dataset.");
+  assert.match(replayStatus.title, /recorded replay dataset/u);
+  assert.match(replayStatus.title, /does not prove that the physics has been accepted/u);
   assert.doesNotMatch(replayStatus.title, /constraint=|relax|seedRows=|physical=/);
 });
 
@@ -2193,7 +4114,7 @@ test("causal delay feedback status remains plain when eom provenance is incomple
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.textContent, "EOM record · display only");
   assert.equal(replayStatus.dataset.state, "eom-replay");
   assert.match(replayStatus.title, /recorded EOM paths/u);
   assert.doesNotMatch(replayStatus.title, /engine=|run=|claim=/u);
@@ -2216,7 +4137,7 @@ test("causal delay feedback status treats legacy motion-policy datasets as plain
 
   runtime.updateReplayStatus();
 
-  assert.equal(replayStatus.textContent, "recorded replay");
+  assert.equal(replayStatus.textContent, "recorded replay · display only");
   assert.equal(replayStatus.dataset.state, "recorded");
   assert.doesNotMatch(replayStatus.title, /pair_initial_attraction_seed|segments=/);
   assert.equal(replayStatus.attributes["aria-label"], replayStatus.title);
@@ -2228,51 +4149,14 @@ test("causal delay feedback eom replay adapter rejects draft-preview recompute r
   assert.equal(adapter.id, EOM_REPLAY_ADAPTER);
   await assert.rejects(
     adapter.createReplayAsync({
-      presetId: "accepted_tight_bright",
       requestOptions: { replayDataset: { draftPreview: { reason: "retained_point_drag_preview" } } },
     }),
     /recorded solver output; canvas edits cannot be recomputed/,
   );
 
-  const dataset = await adapter.createReplayAsync({ presetId: "accepted_tight_bright" });
+  const dataset = await adapter.createReplayAsync();
   assert.equal(dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
   assert.equal(dataset.runId, "cdf-runtime-eom-fixture");
-});
-
-test("causal delay feedback contrast stress preset stays representative under eom replay", async () => {
-  const replayStatus = new FakeElement();
-  let eomCalls = 0;
-  const adapter = {
-    id: EOM_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId }) {
-      eomCalls += 1;
-      return createMockEomReplayDataset(presetId);
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: {
-      location: { href: "http://localhost/causal-delay-feedback.html?preset=contrast_stress" },
-    },
-    replayAdapter: adapter,
-    autoLoadReplay: false,
-  });
-  runtime.dom = { replayStatus };
-
-  await runtime.loadReplay();
-  const statuses = runtime.dataset.wakeLinks.map((link) => runtime.getWakeStatus(link).status);
-
-  assert.equal(eomCalls, 0);
-  assert.equal(runtime.dataset.preset.id, "contrast_stress");
-  assert.equal(runtime.dataset.datasetSource, REPRESENTATIVE_MOCK_SOLVER_REPLAY);
-  assert.equal(runtime.dataset.solverIntegrationPath, TEMPORARY_MOCK_ADAPTER);
-  assert.equal(runtime.replayLoadState, "ready");
-  assert.equal(replayStatus.textContent, "representative replay");
-  assert.equal(replayStatus.dataset.state, "representative");
-  assert(statuses.includes("active"));
-  assert(statuses.includes("inactive"));
-  assert(statuses.includes("stale"));
-  assert(statuses.includes("rejected"));
 });
 
 test("causal delay feedback runtime keeps the mock replay when eom replay loading fails", async () => {
@@ -2297,8 +4181,11 @@ test("causal delay feedback runtime keeps the mock replay when eom replay loadin
   assert.equal(runtime.dataset.solverIntegrationPath, "temporary_mock_adapter");
   assert.equal(runtime.replayLoadState, "fallback");
   assert.match(runtime.replayLoadError.message, /solver client missing/);
-  assert.equal(replayStatus.textContent, "representative fallback");
+  assert.equal(replayStatus.textContent, "provider unavailable · sample only");
+  assert.doesNotMatch(replayStatus.title, /\.\./u);
   assert.equal(replayStatus.dataset.state, "fallback");
+  assert.match(replayStatus.title, /solver client missing/u);
+  assert.match(replayStatus.title, /does not prove that the physics has been accepted/u);
 });
 
 test("causal delay feedback direct edit remains a local draft without calling the replay adapter", async () => {
@@ -2335,9 +4222,16 @@ test("causal delay feedback direct edit remains a local draft without calling th
   assert.equal(adapterCalls, 0);
   assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
   assert.equal(runtime.replayRequestOptions.initialConditions.electrino.x, editedX);
-  assert.equal(replayStatus.textContent, "draft preview");
+  assert.equal(replayStatus.textContent, "local preview · display only");
   assert.equal(replayStatus.dataset.state, "draft");
   assert.match(replayStatus.title, /local teaching preview/u);
+  assert.match(replayStatus.title, /does not prove that the physics has been accepted/u);
+  assert.equal(runtime.dataset.displayAuthority.kind, "local_drag_teaching_preview");
+  assert.equal(runtime.dataset.displayAuthority.physicsAcceptance, false);
+  assert.equal(
+    runtime.dataset.displayAuthority.displayParityEstablishesPhysicsAcceptance,
+    false,
+  );
   assert(readoutText.includes("preview=local_teaching_only"));
   assert(readoutText.includes("recorded_replay=unchanged"));
 });
@@ -2346,9 +4240,9 @@ test("causal delay feedback runtime ignores stale async replay responses", async
   const pending = [];
   const adapter = {
     id: EOM_REPLAY_ADAPTER,
-    createReplayAsync({ presetId }) {
+    createReplayAsync() {
       return new Promise((resolve) => {
-        pending.push({ presetId, resolve });
+        pending.push({ resolve });
       });
     },
   };
@@ -2359,8 +4253,8 @@ test("causal delay feedback runtime ignores stale async replay responses", async
     autoLoadReplay: false,
   });
 
-  const firstLoad = runtime.loadReplay({ presetId: "accepted_tight_bright" });
-  const secondLoad = runtime.loadReplay({ presetId: "full_circular_arcs" });
+  const firstLoad = runtime.loadReplay();
+  const secondLoad = runtime.loadReplay();
 
   pending[1].resolve(createMockEomReplayDataset("full_circular_arcs", { runId: "newer-eom-dataset" }));
   await secondLoad;
@@ -2369,8 +4263,7 @@ test("causal delay feedback runtime ignores stale async replay responses", async
   await firstLoad;
 
   assert.equal(runtime.dataset.runId, "newer-eom-dataset");
-  assert.equal(runtime.dataset.preset.id, "full_circular_arcs");
-  assert.equal(runtime.presetId, "full_circular_arcs");
+  assert.equal("preset" in runtime.dataset, false);
 });
 
 test("causal delay feedback page uses eom replay by default with a mock escape hatch", () => {
@@ -2536,7 +4429,7 @@ test("causal delay feedback eom replay adapter requires a recorded dataset", asy
   const emptyAdapter = createCausalDelayFeedbackEomReplayAdapter();
 
   await assert.rejects(
-    emptyAdapter.createReplayAsync({ presetId: "accepted_tight_bright" }),
+    emptyAdapter.createReplayAsync(),
     /requires a recorded eom_evolution_contract\/v0 dataset/,
   );
 
@@ -2547,10 +4440,10 @@ test("causal delay feedback eom replay adapter requires a recorded dataset", asy
       return createEomRecordFixture();
     },
   });
-  const dataset = await loaderAdapter.createReplayAsync({ presetId: "accepted_tight_bright" });
+  const dataset = await loaderAdapter.createReplayAsync();
 
   assert.equal(loaderContexts.length, 1);
-  assert.equal(loaderContexts[0].presetId, "accepted_tight_bright");
+  assert.equal("presetId" in loaderContexts[0], false);
   assert.equal(dataset.datasetSource, EOM_REPLAY_DATASET_SOURCE);
   assert.equal(dataset.solverIntegrationPath, EOM_REPLAY_ADAPTER);
   assert.equal(dataset.runId, "cdf-runtime-eom-fixture");
@@ -2578,7 +4471,7 @@ test("causal delay feedback page eom replay uses configured record from scope", 
   assert.deepEqual(runtime.dataset.eomWorldlineRoles, { positrino: "10", electrino: "20" });
   assert.deepEqual(runtime.dataset.wakeLinks, []);
   assert.equal(runtime.replayLoadState, "ready");
-  assert.equal(replayStatus.textContent, "EOM recorded replay");
+  assert.equal(replayStatus.textContent, "EOM record · display only");
   assert.equal(replayStatus.dataset.state, "eom-replay");
   assert.match(replayStatus.title, /recorded EOM paths/u);
   assert.doesNotMatch(replayStatus.title, /run=|evidence=/u);
@@ -2689,34 +4582,28 @@ test("causal delay feedback partial wake arc fronts keep radial sector boundarie
 test("causal delay feedback full circular wakes keep expanding after retained receptions", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
-    window: {
-      location: { href: "http://localhost/causal-delay-feedback.html?preset=full_circular_arcs" },
-    },
+    window: fakeWindow,
   });
   const link = runtime.dataset.wakeLinks[0];
   const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
-  const drawnArcs = [];
-  runtime.drawDottedArc = (_ctx, center, radius, startDeg, endDeg, color, dotRadius) => {
-    drawnArcs.push({ center, radius, startDeg, endDeg, color, dotRadius });
+  const drawnCircles = [];
+  runtime.drawSolidWakeCircle = (_ctx, center, radius, color) => {
+    drawnCircles.push({ center, radius, color });
   };
 
   runtime.drawFullCircularWakes({}, receiverPoint.t);
-  const retainedReceptionArcCount = drawnArcs.length;
+  const retainedReceptionCircleCount = drawnCircles.length;
 
-  drawnArcs.length = 0;
+  drawnCircles.length = 0;
   runtime.drawFullCircularWakes({}, receiverPoint.t + 0.01);
 
-  assert(retainedReceptionArcCount > 0);
-  assert(drawnArcs.length > 0);
-  drawnArcs.forEach((arc) => {
-    assert.equal(arc.startDeg, 0);
-    assert.equal(arc.endDeg, 360);
-  });
+  assert(retainedReceptionCircleCount > 0);
+  assert(drawnCircles.length > 0);
 
-  drawnArcs.length = 0;
+  drawnCircles.length = 0;
   const [, pathEnd] = runtime.getReplayTimeRange();
   runtime.drawFullCircularWakes({}, pathEnd + 10);
-  assert.equal(drawnArcs.length, 0);
+  assert.equal(drawnCircles.length, 0);
 });
 
 test("causal delay feedback full circular wakes are emitted from moving path origins", () => {
@@ -2726,10 +4613,9 @@ test("causal delay feedback full circular wakes are emitted from moving path ori
   });
   const fullRuntime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
-    window: {
-      location: { href: "http://localhost/causal-delay-feedback.html?preset=full_circular_arcs" },
-    },
+    window: fakeWindow,
   });
+  fullRuntime.setWakeVisualSwitch("fullCircularWakesEnabled", true);
   const partialLink = partialRuntime.dataset.wakeLinks[0];
   const transmitterPoint = partialRuntime.dataset.history[partialLink.sourceKind].find(
     (point) => point.depth === partialLink.sourceDepth,
@@ -2743,8 +4629,8 @@ test("causal delay feedback full circular wakes are emitted from moving path ori
   partialRuntime.drawDottedArc = (_ctx, _center, radius, startDeg, endDeg, color, dotRadius) => {
     partialCalls.push({ radius, startDeg, endDeg, color, dotRadius });
   };
-  fullRuntime.drawDottedArc = (_ctx, _center, radius, startDeg, endDeg, color, dotRadius) => {
-    fullCalls.push({ radius, startDeg, endDeg, color, dotRadius });
+  fullRuntime.drawSolidWakeCircle = (_ctx, center, radius, color) => {
+    fullCalls.push({ center, radius, color });
   };
 
   partialRuntime.drawWakeProgression({}, partialLink, replayTime);
@@ -2768,8 +4654,7 @@ test("causal delay feedback full circular wakes are emitted from moving path ori
     positrinoSpheres.map((sphere) => `${Math.round(sphere.origin.x)}:${Math.round(sphere.origin.y)}`),
   );
 
-  assert.equal(fullRuntime.dataset.preset.dotRadius, partialRuntime.dataset.preset.dotRadius);
-  assert.equal(fullRuntime.dataset.preset.alphaScale, partialRuntime.dataset.preset.alphaScale);
+  assert.deepEqual(fullRuntime.getWakeVisualStyle(), partialRuntime.getWakeVisualStyle());
   assert(fullCalls.length > partialCalls.length);
   assert(positrinoSpheres.length > 8);
   assert(distinctOrigins.size > 3);
@@ -2787,61 +4672,65 @@ test("causal delay feedback full circular wakes are emitted from moving path ori
     }
     assert(sphere.radius < positrinoSpheres[index - 1].radius);
   });
-  fullCalls.forEach((fullCall) => {
-    assert.equal(fullCall.startDeg, 0);
-    assert.equal(fullCall.endDeg, 360);
-  });
+  assert(fullCalls.every((fullCall) => fullCall.radius > 0));
 });
 
-test("causal delay feedback wake switches can combine full circles with emission lines", () => {
+test("causal delay feedback Full mode draws full circles and their emission lines without arc wakes", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
   });
-  const dottedArcs = [];
+  const solidCircles = [];
   const lines = [];
-  runtime.drawDottedArc = (_ctx, _center, _radius, startDeg, endDeg) => {
-    dottedArcs.push({ startDeg, endDeg });
+  runtime.drawSolidWakeCircle = (_ctx, center, radius, color) => {
+    solidCircles.push({ center, radius, color });
   };
   runtime.drawLine = (_ctx, points, color, width) => {
     lines.push({ points, color, width });
   };
   runtime.setWakeVisualSwitch("fullCircularWakesEnabled", true);
-  runtime.setWakeVisualSwitch("arcWakesEnabled", true);
 
   runtime.drawWakes({}, 0.5);
   const lineCountBeforeForeground = lines.length;
   runtime.drawForegroundWakeEmissionLines({}, 0.5);
 
-  assert(dottedArcs.length > 0);
+  assert(solidCircles.length > 0);
   assert.equal(lineCountBeforeForeground, 0);
   assert(lines.length > 0);
   assert(lines.every((line) => line.color.a > 0.3));
   assert(lines.every((line) => line.width > 1.4));
-  dottedArcs.forEach((arc) => {
-    assert.equal(arc.startDeg, 0);
-    assert.equal(arc.endDeg, 360);
-  });
+  assert(solidCircles.every((circle) => circle.radius > 0));
+  assert.equal(runtime.wakeVisualSettings.arcWakesEnabled, false);
+  assert.equal(runtime.wakeVisualSettings.fullCircularWakesEnabled, true);
 });
 
-test("causal delay feedback full circle emission lines render above path trails", () => {
+test("causal delay feedback full circle emission lines render above paths without endpoint ornaments", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     initialMode: "sandbox",
     window: fakeWindow,
   });
   const calls = [];
+  const liveWakeSeriesConsumers = [];
   runtime.context = {
     clearRect() {},
     setTransform() {},
   };
   runtime.drawBackground = () => calls.push("background");
-  runtime.drawWakes = () => calls.push("wakes");
+  runtime.drawWakes = (_ctx, _replayTime, visibleWakeSeries) => {
+    calls.push("wakes");
+    liveWakeSeriesConsumers.push(visibleWakeSeries);
+  };
   runtime.drawPathTrail = (_ctx, kind) => calls.push(`path:${kind}`);
-  runtime.drawForegroundWakeEmissionLines = () => calls.push("emission-lines");
-  runtime.drawPathEndpointHandles = () => calls.push("endpoint-handles");
+  runtime.drawForegroundWakeEmissionLines = (_ctx, _replayTime, visibleWakeSeries) => {
+    calls.push("emission-lines");
+    liveWakeSeriesConsumers.push(visibleWakeSeries);
+  };
   runtime.drawSelection = () => calls.push("selection");
-  runtime.drawSandboxTransmissionGhost = () => calls.push("transmission-ghost");
+  runtime.drawSandboxTransmissionGhost = (_ctx, visibleWakeSeries) => {
+    calls.push("transmission-ghost");
+    liveWakeSeriesConsumers.push(visibleWakeSeries);
+  };
   runtime.drawLiveMarkers = () => calls.push("markers");
 
   runtime.render(0.5);
@@ -2852,14 +4741,91 @@ test("causal delay feedback full circle emission lines render above path trails"
     "path:positrino",
     "path:electrino",
     "emission-lines",
-    "endpoint-handles",
     "selection",
     "transmission-ghost",
     "markers",
   ]);
+  assert.equal(liveWakeSeriesConsumers.length, 3);
+  assert(
+    liveWakeSeriesConsumers.every(
+      (visibleWakeSeries) => visibleWakeSeries === liveWakeSeriesConsumers[0],
+    ),
+    "wake arcs, foreground emission lines, and emission dots must consume one shared live frame",
+  );
 });
 
-test("causal delay feedback wake switches can hide all wake overlays", () => {
+test("causal delay feedback Sandbox draws emission markers from exact live wake sources after path drag", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    initialMode: "sandbox",
+    window: fakeWindow,
+  });
+  const replayTime = 0.7;
+  const beforeLinks = runtime.getVisibleWakeSeries(replayTime);
+  assert.equal(beforeLinks.length, 2);
+  const beforeSources = new Map(
+    beforeLinks.map((link) => [link.sourceKind, { ...link.source }]),
+  );
+  const calls = [];
+  runtime.drawTransmissionGhost = (_ctx, point, kind, options) => {
+    calls.push({ point, kind, options });
+  };
+
+  runtime.drawSandboxTransmissionGhost({}, beforeLinks);
+
+  assert.equal(calls.length, 2);
+  calls.forEach((call, index) => {
+    assert.equal(call.point, beforeLinks[index].source);
+    assert.equal(call.kind, beforeLinks[index].sourceKind);
+    assert.deepEqual(call.options, { showLabel: false });
+  });
+
+  const anchor = runtime.dataset.paths.positrino[90];
+  assert.equal(
+    runtime.applyPathLineDrag("positrino", anchor.t, { x: 24, y: -38 }),
+    true,
+  );
+  const afterLinks = runtime.getVisibleWakeSeries(replayTime);
+  assert.equal(afterLinks.length, 2);
+  calls.length = 0;
+
+  runtime.drawSandboxTransmissionGhost({}, afterLinks);
+
+  calls.forEach((call, index) => {
+    const link = afterLinks[index];
+    assert.equal(call.point, link.source);
+    assert.equal(call.kind, link.sourceKind);
+    assert.deepEqual(call.options, { showLabel: false });
+  });
+  assert(afterLinks.some((link) => {
+    const before = beforeSources.get(link.sourceKind);
+    return Math.hypot(link.source.x - before.x, link.source.y - before.y) > 0.1;
+  }));
+});
+
+test("causal delay feedback shared axes stop at both arrowhead bases", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    initialMode: "sandbox",
+    window: fakeWindow,
+  });
+  const lines = [];
+  const triangles = [];
+  runtime.dom = {};
+  runtime.drawLine = (_ctx, points) => lines.push(points);
+  runtime.drawTriangle = (_ctx, points) => triangles.push(points);
+  runtime.drawText = () => {};
+  runtime.drawBackgroundDepthField = () => {};
+
+  runtime.drawBackground({ fillStyle: "", fillRect() {} });
+
+  assert.equal(lines[0][1].x, triangles[0][1].x);
+  assert.equal(lines[0][1].x, triangles[0][2].x);
+  assert.equal(lines[1][1].y, triangles[1][1].y);
+  assert.equal(lines[1][1].y, triangles[1][2].y);
+});
+
+test("causal delay feedback wake display cannot deselect its active mode", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -2877,8 +4843,10 @@ test("causal delay feedback wake switches can hide all wake overlays", () => {
 
   runtime.drawWakes({}, 0.5);
 
-  assert.equal(dottedArcCount, 0);
+  assert(dottedArcCount > 0);
   assert.equal(lineCount, 0);
+  assert.equal(runtime.wakeVisualSettings.arcWakesEnabled, true);
+  assert.equal(runtime.wakeVisualSettings.fullCircularWakesEnabled, false);
 });
 
 test("causal delay feedback solver hit diagnostics do not desynchronize receiver-point arrivals", () => {
@@ -2929,30 +4897,37 @@ test("causal delay feedback hit testing does not expose retained reception point
   assert.notEqual(hit?.type, "history");
 });
 
-test("causal delay feedback draws path endpoint handles", () => {
+test("causal delay feedback Laboratory omits endpoint ornaments while preserving endpoint interaction", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
+    initialMode: "sandbox",
     window: fakeWindow,
   });
   const circles = [];
-  runtime.drawCircle = (_ctx, point, radius, fill, stroke, lineWidth) => {
-    circles.push({ point, radius, fill, stroke, lineWidth });
+  runtime.context = {
+    clearRect() {},
+    setTransform() {},
   };
+  runtime.drawBackground = () => {};
+  runtime.drawWakes = () => {};
+  runtime.drawPathTrail = () => {};
+  runtime.drawForegroundWakeEmissionLines = () => {};
+  runtime.drawSelection = () => {};
+  runtime.drawSandboxTransmissionGhost = () => {};
+  runtime.drawLiveMarkers = () => {};
+  runtime.drawCircle = (...args) => circles.push(args);
 
-  runtime.drawPathEndpointHandles({});
+  runtime.render(0.5);
 
-  assert.equal(circles.length, 4);
-  assert(circles.every((circle) => circle.radius > 0 && circle.radius < 8));
-  assert(circles.every((circle) => circle.fill.a > 0 && circle.stroke.a > circle.fill.a));
-  assert.deepEqual(
-    circles.map((circle) => Math.round(circle.point.x)),
-    [
-      Math.round(runtime.worldToScreen(runtime.getPathEndpointHandles("positrino")[0]).x),
-      Math.round(runtime.worldToScreen(runtime.getPathEndpointHandles("positrino")[1]).x),
-      Math.round(runtime.worldToScreen(runtime.getPathEndpointHandles("electrino")[0]).x),
-      Math.round(runtime.worldToScreen(runtime.getPathEndpointHandles("electrino")[1]).x),
-    ],
+  assert.equal(circles.length, 0);
+  assert.equal(runtime.getPathEndpointHandles("positrino").length, 2);
+  assert.equal(runtime.getPathEndpointHandles("electrino").length, 2);
+  const startPoint = runtime.getPathEndpointHandles("positrino")[0];
+  const startHit = runtime.findNearestHit(
+    runtime.worldToScreen(startPoint),
+    { includePaths: true },
   );
+  assert.equal(startHit?.type, "history");
 });
 
 test("causal delay feedback path endpoint handles are selectable", () => {
@@ -2975,7 +4950,7 @@ test("causal delay feedback path endpoint handles are selectable", () => {
   assert.equal(endHit.selection.depth, endDepth);
 });
 
-test("causal delay feedback endpoint handles remain visible under lower retained wake depth", () => {
+test("causal delay feedback endpoint editing remains available under lower retained wake depth", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -3195,45 +5170,153 @@ test("causal delay feedback path line drag keeps path endpoints fixed", () => {
   assert.notEqual(path.at(-2).y, endBefore.neighborY);
 });
 
-test("causal delay feedback path line drag fairs high-curvature bends", () => {
+test("causal delay feedback path line drag has no visible one-sided tangent kink", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
   });
-  const path = Array.from({ length: 101 }, (_unused, index) => {
-    const t = index / 100;
-    if (t <= 0.5) {
-      return { t, x: 200 * t, y: 200 * t };
-    }
-    return { t, x: 100 + 200 * (t - 0.5), y: 100 - 200 * (t - 0.5) };
-  });
-  runtime.dataset.paths.positrino = path;
-  runtime.dataset.frames = path.map((point) => ({ t: point.t, positrino: point }));
-  runtime.dataset.history.positrino = [
-    { kind: "positrino", depth: 1, t: 0, x: 0, y: 0, weight: 1 / 5, state: "older" },
-    { kind: "positrino", depth: 2, t: 0.25, x: 50, y: 50, weight: 2 / 5, state: "active" },
-    { kind: "positrino", depth: 3, t: 0.5, x: 100, y: 100, weight: 3 / 5, state: "active" },
-    { kind: "positrino", depth: 4, t: 0.75, x: 150, y: 50, weight: 4 / 5, state: "active" },
-    { kind: "positrino", depth: 5, t: 1, x: 200, y: 0, weight: 1, state: "newer" },
-  ];
+  const path = runtime.dataset.paths.positrino;
+  const anchorIndex = Math.floor(path.length * 0.5);
+  const anchorT = path[anchorIndex].t;
   const startBefore = { ...path[0] };
   const endBefore = { ...path.at(-1) };
 
-  const didEdit = runtime.applyPathLineDrag("positrino", 0.5, { x: 0, y: -24 });
+  const didEdit = runtime.applyPathLineDrag(
+    "positrino",
+    anchorT,
+    { x: 0, y: -220 },
+  );
 
-  const previous = runtime.getReplayPathPoint("positrino", 0.49);
-  const anchor = runtime.getReplayPathPoint("positrino", 0.5);
-  const next = runtime.getReplayPathPoint("positrino", 0.51);
+  const visibleHalfWindow = 0.005;
+  const previous = runtime.getReplayPathPoint(
+    "positrino",
+    anchorT - visibleHalfWindow,
+  );
+  const anchor = runtime.getReplayPathPoint("positrino", anchorT);
+  const next = runtime.getReplayPathPoint(
+    "positrino",
+    anchorT + visibleHalfWindow,
+  );
   const incoming = { x: anchor.x - previous.x, y: anchor.y - previous.y };
   const outgoing = { x: next.x - anchor.x, y: next.y - anchor.y };
-  const retainedAnchor = runtime.dataset.history.positrino.find((point) => point.depth === 3);
 
   assert.equal(didEdit, true);
   assert.deepEqual(path[0], startBefore);
   assert.deepEqual(path.at(-1), endBefore);
-  assert(normalizedDot(incoming, outgoing) > 0.55);
-  assertNear(retainedAnchor.x, anchor.x, 1e-6);
-  assertNear(retainedAnchor.y, anchor.y, 1e-6);
+  assert(
+    normalizedDot(incoming, outgoing) > 0.999,
+    "the rendered-scale incoming and outgoing chords must remain visually tangent",
+  );
+});
+
+test("causal delay feedback near-start backward drags preserve endpoint continuity and displayed time order", () => {
+  for (const [kind, yDelta] of [
+    ["positrino", -260],
+    ["electrino", 260],
+  ]) {
+    const runtime = createCausalDelayFeedbackRuntime({
+      document: new FakeDocument(),
+      window: fakeWindow,
+    });
+    const path = runtime.dataset.paths[kind];
+    const startBefore = { ...path[0] };
+    const endBefore = { ...path.at(-1) };
+    const anchor = path[Math.round((path.length - 1) * 0.025)];
+
+    assert.equal(
+      runtime.applyPathLineDrag(kind, anchor.t, { x: -900, y: yDelta }),
+      true,
+    );
+
+    assert.deepEqual(path[0], startBefore);
+    assert.deepEqual(path.at(-1), endBefore);
+    assertStrictlyIncreasingDisplayedTimeAxis(runtime, kind);
+    const h = (path.at(-1).t - path[0].t) / 4000;
+    const start = sampleTimedPath(path, path[0].t);
+    const first = sampleTimedPath(path, path[0].t + h);
+    const second = sampleTimedPath(path, path[0].t + 2 * h);
+    assert(
+      normalizedDot(
+        { x: first.x - start.x, y: first.y - start.y },
+        { x: second.x - first.x, y: second.y - first.y },
+      ) > 0.999,
+      `${kind} must leave its fixed start without an endpoint-adjacent kink`,
+    );
+  }
+});
+
+test("causal delay feedback aggressive interior drag cannot fold displayed time backward", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const kind = "electrino";
+  const path = runtime.dataset.paths[kind];
+  const anchor = path[Math.round((path.length - 1) * 0.48)];
+  const anchorT = anchor.t;
+
+  assert.equal(
+    runtime.applyPathLineDrag(kind, anchorT, { x: -1400, y: 360 }),
+    true,
+  );
+
+  assertStrictlyIncreasingDisplayedTimeAxis(runtime, kind);
+  const halfWindow = 0.005;
+  const previous = sampleTimedPath(path, anchorT - halfWindow);
+  const center = sampleTimedPath(path, anchorT);
+  const next = sampleTimedPath(path, anchorT + halfWindow);
+  assert(
+    normalizedDot(
+      { x: center.x - previous.x, y: center.y - previous.y },
+      { x: next.x - center.x, y: next.y - center.y },
+    ) > 0.999,
+    "the aggressive interior edit must retain visible C1 continuity",
+  );
+});
+
+test("causal delay feedback path drag uses a curvature-smooth truthful falloff", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const anchorT = 0.5;
+  const boundaryT = anchorT + 0.32;
+  const h = 1e-5;
+  const boundarySecondDerivative = (
+    runtime.getPathLineDragWeight(anchorT, boundaryT - 2 * h) -
+    2 * runtime.getPathLineDragWeight(anchorT, boundaryT - h) +
+    runtime.getPathLineDragWeight(anchorT, boundaryT)
+  ) / (h * h);
+  assert.equal(runtime.getPathLineDragWeight(anchorT, anchorT), 1);
+  assert.equal(runtime.getPathLineDragWeight(anchorT, boundaryT), 0);
+  assert(Math.abs(boundarySecondDerivative) < 0.05);
+
+  const beforeLinks = runtime.getVisibleWakeSeries(0.7).map((link) => ({
+    sourceKind: link.sourceKind,
+    source: { ...link.source },
+  }));
+  for (const [kind, index, delta] of [
+    ["positrino", 72, { x: 22, y: -34 }],
+    ["positrino", 104, { x: -16, y: 27 }],
+    ["electrino", 78, { x: 18, y: 31 }],
+    ["electrino", 112, { x: -20, y: -25 }],
+  ]) {
+    const anchor = runtime.dataset.paths[kind][index];
+    assert.equal(runtime.applyPathLineDrag(kind, anchor.t, delta), true);
+  }
+  const afterLinks = runtime.getVisibleWakeSeries(0.7);
+  assert.equal(afterLinks.length, 2);
+  afterLinks.forEach((link) => {
+    assert.deepEqual(
+      link.receiver,
+      runtime.getTraversalPathPoint(link.receiverKind, 0.7),
+    );
+    assert(Math.abs(link.rootResidual) < 1e-5);
+  });
+  assert(afterLinks.some((link) => {
+    const before = beforeLinks.find((candidate) => candidate.sourceKind === link.sourceKind);
+    return Math.hypot(link.source.x - before.source.x, link.source.y - before.source.y) > 0.1;
+  }));
 });
 
 test("causal delay feedback pointer drag on path line updates the path preview", () => {
@@ -3320,7 +5403,7 @@ test("causal delay feedback cancels a pending replay only when a direct edit beg
   const anchor = runtime.dataset.paths.positrino[80];
   runtime.applyPathLineDrag("positrino", anchor.t, { x: 0, y: -25 });
   assert.equal(runtime.replayLoadState, "draft");
-  resolveReplay(createMockCausalDelayReplayDataset(runtime.presetId));
+  resolveReplay(createMockCausalDelayReplayDataset());
   await pendingLoad;
   assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
 });
@@ -3572,7 +5655,7 @@ test("causal delay feedback retained point drag marks the replay as a draft prev
   assert.equal(runtime.dataset.draftPreview.reason, "retained_point_drag_preview");
   assert.equal(runtime.dataset.draftPreview.authoritative, false);
   assert.equal(runtime.replayLoadState, "draft");
-  assert.equal(replayStatus.textContent, "draft preview");
+  assert.equal(replayStatus.textContent, "local preview · display only");
   assert.equal(replayStatus.dataset.state, "draft");
 });
 
@@ -3604,7 +5687,7 @@ test("causal delay feedback path start history drag updates setup and replay pre
   assert.equal(runtime.dataset.draftPreview.reason, "retained_point_drag_preview");
   assert.equal(runtime.replayRequestOptions.initialConditions.positrino.x, condition.x);
   assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
-  assert.equal(replayStatus.textContent, "draft preview");
+  assert.equal(replayStatus.textContent, "local preview · display only");
 });
 
 test("causal delay feedback initial velocity drag updates setup and bends the preview path", () => {
@@ -3647,7 +5730,7 @@ test("causal delay feedback initial velocity drag updates setup and bends the pr
   assert.equal(runtime.dataset.draftPreview.reason, "initial_velocity_drag_preview");
   assertNear(runtime.replayRequestOptions.initialConditions.positrino.vx, condition.vx);
   assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
-  assert.equal(replayStatus.textContent, "draft preview");
+  assert.equal(replayStatus.textContent, "local preview · display only");
 });
 
 test("causal delay feedback edit release keeps a local draft and never invokes the replay adapter", async () => {
@@ -3727,11 +5810,15 @@ test("causal delay feedback live marker labels are centered above and below the 
   });
   const circles = [];
   const labels = [];
+  const currentEmissionDots = [];
   runtime.drawCircle = (_ctx, _point, radius, fill) => {
     circles.push({ radius, fill });
   };
   runtime.drawScreenText = (_ctx, text, point, _size, color, align) => {
     labels.push({ text, point, color, align });
+  };
+  runtime.drawStoryEmissionOriginMarker = (_ctx, point) => {
+    currentEmissionDots.push(point);
   };
   const replayTime = 0.42;
   const positrinoScreen = runtime.worldToScreen(runtime.getTraversalPathPoint("positrino", replayTime));
@@ -3750,8 +5837,15 @@ test("causal delay feedback live marker labels are centered above and below the 
   assert(labels[0].point.y < positrinoScreen.y - 20 * runtime.viewport.scale);
   assertNear(labels[1].point.x, electrinoScreen.x);
   assert(labels[1].point.y > electrinoScreen.y + 20 * runtime.viewport.scale);
+  assert.deepEqual(
+    currentEmissionDots,
+    [
+      runtime.getTraversalPathPoint("positrino", replayTime),
+      runtime.getTraversalPathPoint("electrino", replayTime),
+    ],
+  );
   assert.deepEqual(labels[0].color, { r: 255, g: 0, b: 0, a: 0.9 });
-  assert.deepEqual(labels[1].color, { r: 126, g: 219, b: 255, a: 1 });
+  assert.deepEqual(labels[1].color, { r: 143, g: 143, b: 255, a: 1 });
   assert.deepEqual(circles[3].fill, { r: 0, g: 0, b: 255, a: 1 });
 });
 
@@ -3819,13 +5913,23 @@ test("causal delay feedback play-pause toggle follows the shared transport state
   assert.equal(playButton.attributes["aria-pressed"], "true");
   assert.match(playButton.innerHTML, /data-transport-icon="pause"/);
   assert.match(playButton.innerHTML, /M8 5v14/);
-  assert.match(resetButton.innerHTML, /data-transport-icon="reset"/);
+  assert.match(resetButton.innerHTML, /data-transport-icon="first-frame"/);
 
   runtime.setPlaying(false);
 
-  assert.equal(playButton.attributes["aria-label"], "Play replay");
+  assert.equal(playButton.attributes["aria-label"], "Resume replay");
   assert.equal(playButton.attributes["aria-pressed"], "false");
+  assert.equal(playButton.attributes["aria-keyshortcuts"], "Space");
   assert.match(playButton.innerHTML, /data-transport-icon="play"/);
+
+  const pausedTime = runtime.storyHeldFrame.replayTime;
+  runtime.setPlaying(true);
+
+  assert.equal(playButton.attributes["aria-label"], "Pause replay");
+  assertNear(
+    runtime.getStoryPlaybackFrame(runtime.storyPlaybackScene).replayTime,
+    pausedTime,
+  );
 });
 
 test("causal delay feedback destroy removes every runtime listener and invalidates pending loads", () => {
@@ -3844,14 +5948,9 @@ test("causal delay feedback destroy removes every runtime listener and invalidat
   runtime.dom = {
     playButton: new FakeElement(),
     resetButton: new FakeElement(),
-    resetPresetButton: new FakeElement(),
-    settingsButton: new FakeElement(),
+    lastFrameButton: new FakeElement(),
     visualSwitches: new FakeElement(),
-    colorSwatches: new FakeElement(),
     nowInput: new FakeElement(),
-    cfSpeedInput: new FakeElement(),
-    architrinoSpeedInput: new FakeElement(),
-    settingsPanel: new FakeElement(),
     canvas: new FakeElement(),
   };
 
@@ -3949,7 +6048,11 @@ test("causal delay feedback arrow keys pause and step solver replay frames", () 
   assert.equal(prevented, true);
   assert.equal(runtime.isPlaying, false);
   assertNear(runtime.getCurrentReplayTime(), frameTimes[1]);
-  assert.equal(nowValue.textContent, `replay t=${formatTestCompactNumber(frameTimes[1])}`);
+  assert.equal(nowValue.textContent, `Replay time ${formatTestCompactNumber(frameTimes[1])}`);
+  assert.equal(
+    nowInput.attributes["aria-valuetext"],
+    `Replay time ${formatTestCompactNumber(frameTimes[1])}`,
+  );
 
   prevented = false;
   runtime.handleKeyDown({
@@ -3988,16 +6091,23 @@ test("causal delay feedback arrow keys leave native controls alone", () => {
   assertNear(runtime.getCurrentReplayTime(), beforeTime);
 });
 
-test("causal delay feedback runtime accepts direct full-circular preset review URL", () => {
+test("causal delay feedback ignores removed display-setting query parameters", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: {
-      location: { href: "http://localhost/causal-delay-feedback.html?preset=full_circular_arcs" },
+      location: {
+        href:
+          "http://localhost/causal-delay-feedback.html?preset=full_circular_arcs" +
+          "&canvas=warm&animationSpeed=1.75&architrinoSpeed=9",
+      },
     },
   });
 
-  assert.equal(runtime.presetId, "full_circular_arcs");
-  assert.equal(runtime.dataset.wakeArcDisplayMode, "full_circular_arcs");
-  assert.equal(runtime.wakeVisualSettings.fullCircularWakesEnabled, true);
-  assert.equal(runtime.wakeVisualSettings.arcWakesEnabled, false);
+  assert.equal("presetId" in runtime, false);
+  assert.equal("canvasColorId" in runtime, false);
+  assert.equal("architrinoSpeedIndex" in runtime, false);
+  assert.equal(runtime.fieldSpeedScale, 1);
+  assert.equal(runtime.dataset.wakeArcDisplayMode, "partial_propagating_arcs");
+  assert.equal(runtime.wakeVisualSettings.fullCircularWakesEnabled, false);
+  assert.equal(runtime.wakeVisualSettings.arcWakesEnabled, true);
 });

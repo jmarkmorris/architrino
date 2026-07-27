@@ -581,7 +581,7 @@ Uncertain claims staged for the next proof packet:
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | [cosmology-closure](../cosmology-closure/priorities.md) | Convert narrative cosmology into a component transfer-function queue. |
-| This file | [validation-gates](../validation-gates/priorities.md) | Add cosmology failure witnesses for frame split, image blur, and incompatible transport limits. |
+| This file | [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Add cosmology failure witnesses for frame split, image blur, and incompatible transport limits. |
 | This file | [Radiation](../../../content/markdown/aaa/reactions/radiation.md) | Keep CMB photon loading tied to local radiation event ledgers. |
 
 ## Failure Modes

@@ -3,35 +3,27 @@
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `22`
+- Rank: `17`
 - Value: `2.44`
 - Cost: `4.4`
 - ROI: `0.55`
 - Status: `drafting`
 
-## Ranked Next Objects
+## Work Queue
 
-Ordered by marginal ROI on 2026-07-17. Maintaining the deployed paper shell does not outrank auditing the claims it contains.
-
-1. `claim_level_audit` — Classify every chapter as `architecture-ready`, `direction-ready`, `appendix-watch`, or `exclude-for-now`. Status: `next`.
-2. `test_contracts` — Attach at least one recovery target, observable, simulation variable, source family, or falsifier to each retained architecture-ready chapter. Status: `next`.
-3. `corpus_route_map` — Map retained chapters to current corpus and priority destinations before promotion. Status: `pending`.
-4. `paper_skeleton` — Maintain the deployed draft after the higher-value claim controls are current. Status: `active`.
-
-## Detailed Task Inventory
-
-1. `paper_skeleton` - Maintain the deployed draft [solving-the-crisis.md](../../../content/markdown/aaa/philosophy-history/solving-the-crisis.md) as a readable technical paper draft grouped by major open-problem domains. Status: `active`. Depends on: none.
-2. `claim_level_audit` - For every chapter, classify the candidate as `architecture-ready`, `direction-ready`, `appendix-watch`, or `exclude-for-now`. Status: `next`. Depends on: `paper_skeleton`.
-3. `test_contracts` - Attach at least one recovery target, source family, observable, simulation variable, or falsifier to every `architecture-ready` chapter. Status: `next`. Depends on: `claim_level_audit`.
-4. `corpus_route_map` - Map every retained chapter to its current $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus and priority destinations before promotion. Status: `pending`. Depends on: `test_contracts`.
-5. `source_trace_refresh` - Replace public-list orientation with primary papers, review articles, data releases, or experiment documentation for any chapter selected for public-facing use. Status: `pending`. Depends on: `claim_level_audit`.
-6. `paper_claim_filter` - Remove or demote chapters that cannot name a native $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism and a falsifiable test surface. Status: `pending`. Depends on: `test_contracts`.
+The claim audit, test-contract, and paper-maintenance tasks live in [work-queue.md](work-queue.md).
 
 ## Scope
 
 This lane organizes a possible paper on open problems in physics, astronomy, astrophysics, and cosmology where $\mathbb{A}\mathbb{A}\mathbb{A}$ already has a plausible or stronger architectural answer.
 
 The lane is priority-control only. The draft document itself has moved to `content/markdown/aaa/philosophy-history` so it can be surfaced by the Solving the Crisis scene. This control file decides which public open problems are strong enough for a readable technical answer, which are only directional, and which should stay out of the paper until the native proof stack matures.
+
+Scientific derivations, instruments, source acquisition, and sector-specific
+closure tasks do not remain here. They belong to the scientific or operational
+workstream named in the promotion map. This lane consumes those owners' current
+status; it does not duplicate their queues or retain a second theory
+brainstorming backlog.
 
 ## Selection Rule
 
@@ -80,12 +72,12 @@ If any item is missing, the chapter should be marked `direction-ready`, `appendi
 | Cosmology and large-scale structure | [cosmology-closure](../cosmology-closure/priorities.md), [dark-sector](../dark-sector/priorities.md), [cross-theory-mapping](../cross-theory-mapping/priorities.md) | Cosmology, CMB, BBN, structure, dark-sector, and redshift documents. | The same Noether sea variables support redshift, distance, growth, CMB, lensing, and structure records. |
 | Quantum and statistical emergence | [quantum-closure](../quantum-closure/priorities.md), braid program, [cross-theory-mapping](../cross-theory-mapping/priorities.md) | Quantum, measurement, Bell, entropy, and radiation documents. | Basin measures, detector response, pair provenance, and path-history phase recover the benchmark probabilities without free collapse postulates. |
 | Standard Model and particle closure | [standard-model-closure](../standard-model-closure/priorities.md), braid program | Assemblies, fermions, bosons, gauge, mass, nuclear, and validation documents. | Branch geometry, exposure maps, mixing integrals, confinement energetics, and event provenance produce testable particle records. |
-| Astrophysical engines | [high-energy-astrophysics](../high-energy-astrophysics/priorities.md), [strong-field-closure](../strong-field-closure/priorities.md), [cosmology-closure](../cosmology-closure/priorities.md), [standard-model-closure](../standard-model-closure/priorities.md) | Radiation, reactions, compact-object, nucleosynthesis, and structure documents. | High-energy events close energy, momentum, angular momentum, composition, remnant, and medium-update ledgers before being read as native geometry evidence. |
+| Astrophysical engines | [high-energy event routing](../strong-field-closure/high-energy-astrophysics/priorities.md), [strong-field-closure](../strong-field-closure/priorities.md), [cosmology-closure](../cosmology-closure/priorities.md), [standard-model-closure](../standard-model-closure/priorities.md) | Radiation, reactions, compact-object, nucleosynthesis, and structure documents. | High-energy events close energy, momentum, angular momentum, composition, remnant, and medium-update ledgers before being read as native geometry evidence. |
 
 ## Related Priorities
 
 - [cross-theory-mapping](../cross-theory-mapping/priorities.md)
-- [high-energy-astrophysics](../high-energy-astrophysics/priorities.md)
+- [high-energy event routing](../strong-field-closure/high-energy-astrophysics/priorities.md)
 - [cosmology-closure](../cosmology-closure/priorities.md)
 - [strong-field-closure](../strong-field-closure/priorities.md)
 - [quantum-closure](../quantum-closure/priorities.md)

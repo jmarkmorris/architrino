@@ -3,34 +3,28 @@
 ## Workstream Metadata
 
 - Kind: `deferred-priority`
-- Rank: `24`
+- Rank: `19`
 - Value: `3.14`
 - Cost: `7.0`
 - ROI: `0.45`
 - Status: `deferred`
 
-## Task Queue
+## Work Queue
 
-1. `component_interfaces` — Build per-component observable interfaces against LambdaCDM. Status: `deferred`. Depends on: none.
-2. `predictive_pipeline` — Turn the CMB and three-binary cosmology story into a predictive transfer-function pipeline. Status: `deferred`. Depends on: `component_interfaces`.
-3. `age_clock_convergence` — Add an oldest-object and material-clock interface for Hubble-time/time-redshift mapping, differential-age cosmic chronometers, globular-cluster turnoff ages, white-dwarf cooling ages, Th/U/Eu radiochronometers, and presolar/interstellar-grain provenance. Status: `deferred`. Depends on: `component_interfaces`.
-4. `cmb_noether_braid_spectrum_linkage` — Examine whether the observed CMB spectrum has a derivable linkage to Noether braid ensemble modes, photon-channel provenance, Noether sea thermalization, and coherent photon-channel bundle transport, without treating the linkage as established before a spectrum-level residual exists. Status: `deferred`. Depends on: `predictive_pipeline`.
-5. `noether_sea_source_relaxation_balance` — Tie production, recycling, decay, reclassification, capture, and relaxation of Noether sea content to one continuity and energy ledger. Status: `deferred`. Depends on: `component_interfaces`.
-6. `deep_space_inventory_benchmark` — Build a deep-space component inventory for photons, neutrinos, cosmic rays, atoms, dust, and unknown Noether sea carriers before treating any sparse visible inventory as an ontology argument. Status: `deferred`. Depends on: `component_interfaces`.
-7. `quasar_population_transport_decomposition` — Separate quasar luminosity-function evolution, survey selection, obscuration, lensing, classification, and redshift-transfer law before using quasar count distributions as cosmology evidence. Status: `deferred`. Depends on: `component_interfaces`, distance-ladder transfer law, survey-selection modeling.
-8. `controversial_qso_association_audit` — Preserve older galaxy/QSO association claims only as a source lead requiring verification before advancement requiring modern selection, lensing, extinction, classification, and look-elsewhere controls. Status: `deferred`. Depends on: `quasar_population_transport_decomposition`.
-9. `distributed_release_rate_residual` — Model source-population release rate density, energy spectrum, spatial distribution, and thermalization depth before using recycling release as a CMB or expansion-equivalent source. Status: `deferred`. Depends on: `noether_sea_source_relaxation_balance`, `cmb_noether_braid_spectrum_linkage`.
-10. `nested_shell_cmb_peak_residual` — Test whether first-three-peak CMB ratios can be projected from nested shell braid energy-scale ratios without changing the transfer state used for blackbody, lensing, and growth rows. Status: `deferred`. Depends on: `predictive_pipeline`, `cmb_noether_braid_spectrum_linkage`.
-11. `dark_sector_apparentness_residual` — Separate shielded energy, neutral assemblies, Noether sea stress, projection effects, and catalogue residuals before interpreting a missing component as dark matter or dark energy. Status: `deferred`. Depends on: `deep_space_inventory_benchmark`.
-12. `horizon_computation_benchmark` — Treat finite accessible energy, horizon temperature floor, and finite computation counts as observer-horizon comparison pressure rather than information ontology. Status: `priority-only`. Depends on: `component_interfaces`, `age_clock_convergence`.
-13. `missing_baryon_inventory_guardrail` — Keep observer-level baryon inventory separate from primitive architrino and Noether sea inventories before claiming missing-baryon closure. Status: `priority-only`. Depends on: `deep_space_inventory_benchmark`, `component_interfaces`.
-14. `ordered_core_recycling_entropy_ledger_feasibility` — Apply the [scope decision](ordered-core-recycling-entropy-scope-decision.md): keep ordered-core recycling speculative, permanently exclude free-steady radiative shedding as its source, and test only the same-record coarse-grained entropy-ledger feasibility of an explicitly accelerated, gravitational, reaction, or medium-relaxation event. Status: `priority-only entropy target; mechanism-watchlist` (2026-07-12). Depends on: `noether_sea_source_relaxation_balance`, `distributed_release_rate_residual`, and a populated strong-field event record; no implementation authorized.
+The deferred locally ranked objects, dependencies, and completion boundaries live in [work-queue.md](work-queue.md).
 
 ## Scope
 
 Convert the current cosmology story from narrative strength to equation-level closure by building a predictive transfer-function pipeline.
 
 This file remains the control surface for deferred cosmology closure. No sibling detailed priority file is needed until component-interface work resumes.
+
+This lane owns observer-level inventories, production and free-streaming
+benchmarks, and CMB / BBN / growth / lensing transfer residuals. Speculative
+candidate assemblies, release channels, and dark-visible re-entry mechanisms
+remain owned by [dark-sector](../dark-sector/priorities.md). A candidate may
+enter this lane only through a declared cosmology interface and residual; that
+routing does not promote the candidate or merge the two workstreams.
 
 ## Promotion Map
 

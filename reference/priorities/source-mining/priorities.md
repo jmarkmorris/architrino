@@ -3,16 +3,15 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `23`
+- Rank: `18`
 - Value: `1.23`
 - Cost: `2.7`
 - ROI: `0.46`
 - Status: `queued`
 
-## Task Queue
+## Work Queue
 
-1. `mine_source_material` — Mine legacy and external source material. Status: `pending`.
-2. `recover_legacy_insights` — Mine deferred product, outlook, and operational notes only when they yield concrete corpus material. Status: `pending`.
+The accepted source batches, mining order, dependencies, and completion boundaries live in [work-queue.md](work-queue.md).
 
 ## Scope
 
@@ -87,27 +86,3 @@ The completed target list lives in [source-mining-history](source-mining-history
 - [QCD confinement and hadronization recovery targets](../standard-model-closure/qcd-confinement-hadronization-recovery-targets.md) captures PDG QCD, lattice-QCD, LEP event-shape, fragmentation-function, and LHC jet/hadron benchmark material for Standard Model closure without treating quarks, gluons, showers, or jets as directly observed substrate products.
 - [PDG particle mass, width, lifetime, and scheme benchmark map](pdg-particle-mass-width-lifetime-benchmark-map.md) captures scoped charged-lepton, selected light-hadron, $W/Z/H$, top, quark scheme, width, lifetime, and branching-ratio rows as downstream benchmark material without raw whole-catalog mining or standalone Koide work.
 - [Classical source-history electrodynamics](classical-source-history-electrodynamics.md) captures the Lienard-Wiechert, Jefimenko, Heaviside-Feynman, and Panofsky-Phillips comparison space for delayed source-history electrodynamics.
-
-## Legacy Operational Parking Lot
-
-- Clean up the old `neoclassical.ai` repo.
-- Try to sell the `neoclassical.ai` domain.
-
-## Candidate Source-Mining Backlog
-
-This backlog names high-value source families. Workflow details live in [source-mining-best-practice](../../op/source-mining-best-practice.md).
-
-### Video And Seminar Archives
-
-| Source family | Priority focus | $\mathbb{A}\mathbb{A}\mathbb{A}$ value |
-| --- | --- | --- |
-| Perimeter Institute [PIRSA](https://pirsa.org/node) | Foundational physics, quantum gravity, black holes, cosmology, quantum information, and PSI core lecture series with PIRSA IDs and slides. | Citable seminar records and slides; good for source leads and current expert problem framing. |
-| KITP [Online Talks](https://www.kitp.ucsb.edu/online-talks) | Program talks with slides on black holes, quantum matter, cosmology, non-equilibrium dynamics, amplitudes, and gravitational waves. | Dense frontier material with speaker-provided PDFs and discussion Q&A. |
-| IAS / Cornell / Simons Center video lecture collections | Arkani-Hamed amplitudes, positive geometry, quantum spacetime, black holes, cosmology, and mathematical-physics lectures. | Good for disciplined comparison frameworks where spacetime, locality, and quantum mechanics are derived rather than assumed. |
-| CERN videos and public detector lectures | Detector walkthroughs, event reconstruction, trigger systems, Standard Model lectures, and open-data tutorials. | High value for end-to-end measurement provenance: collision, detector response, reconstruction, particle ID, uncertainty. |
-| Sean Carroll, Quanta, Royal Institution, and similar long-form interviews/lectures | Episodes with primary researchers on black holes, cosmology tensions, quantum foundations, amplitudes, and scoped Standard Model anomalies. | Mostly explanatory and source-lead value, not closure evidence; broad beyond-Standard-Model anomaly hunting is deprioritized. |
-
-
-### Immediate Mining Order
-
-1. PIRSA, KITP, IAS / Cornell / Simons, and CERN public detector videos.

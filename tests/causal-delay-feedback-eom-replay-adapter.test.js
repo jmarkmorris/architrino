@@ -36,7 +36,6 @@ test("eom replay adapter normalizes a recorded dataset into the runtime replay s
   assert.equal(adapter.id, EOM_REPLAY_ADAPTER);
 
   const dataset = await adapter.createReplayAsync({
-    presetId: "accepted_tight_bright",
     requestOptions: { frameCount: 5 },
   });
 
@@ -46,9 +45,17 @@ test("eom replay adapter normalizes a recorded dataset into the runtime replay s
   assert.equal(dataset.claimGrade, "evolved-record");
   assert.equal(dataset.eomProvenance.claimGrade, "evolved-record");
   assert.equal(dataset.eomProvenance.evidenceStatus, "canonical");
+  assert.equal(dataset.displayAuthority.kind, "recorded_eom_path_display");
+  assert.equal(dataset.displayAuthority.evidenceStatus, "display-only");
+  assert.equal(dataset.displayAuthority.recordEvidenceStatus, "canonical");
+  assert.equal(dataset.displayAuthority.physicsAcceptance, false);
+  assert.equal(
+    dataset.displayAuthority.displayParityEstablishesPhysicsAcceptance,
+    false,
+  );
   assert.equal(dataset.eomWorldlineRoles.positrino, "10");
   assert.equal(dataset.eomWorldlineRoles.electrino, "20");
-  assert.equal(dataset.preset.id, "accepted_tight_bright");
+  assert.equal("preset" in dataset, false);
   assert.deepEqual(dataset.wakeLinks, []);
   assert.deepEqual(dataset.causalEvaluation, {
     enabled: false,
@@ -76,10 +83,40 @@ test("eom replay adapter normalizes a recorded dataset into the runtime replay s
   assert.ok(Math.abs(dataset.paths.electrino[0].y - CANVAS_BOTTOM) < 1e-6);
   assert.equal(dataset.displayProjection.rule, "time_space_canvas_fit/v1");
   assert.equal(dataset.displayProjection.spaceAxis, "y");
+  assert.equal(
+    dataset.displayProjection.verticalIdentityOrder,
+    "positrino_above_electrino",
+  );
 
   assert.equal(dataset.initialConditions.positrino.polarity, "positive");
   assert.equal(dataset.initialConditions.electrino.polarity, "negative");
   assert.equal(dataset.initialConditions.positrino.ax, 0);
+});
+
+test("eom display projection keeps positrino above electrino without changing recorded roles", () => {
+  const record = createEomRecordFixture();
+  record.histories[0].segments = [
+    inertialSegment(0, 2, [5, -2, 0], [0, 0.5, 0]),
+  ];
+  record.histories[1].segments = [
+    inertialSegment(0, 2, [5, 2, 0], [0, 0.5, 0]),
+  ];
+
+  const dataset = normalizeCausalDelayFeedbackEomReplay(record, {
+    requestOptions: { frameCount: 5 },
+  });
+  const meanCanvasY = (points) =>
+    points.reduce((sum, point) => sum + point.y, 0) / points.length;
+
+  assert.ok(
+    meanCanvasY(dataset.paths.positrino) <
+      meanCanvasY(dataset.paths.electrino),
+  );
+  assert.equal(dataset.displayProjection.spaceDirection, "down");
+  assert.equal(dataset.physicalPaths.positrino[0].y, -2);
+  assert.equal(dataset.physicalPaths.electrino[0].y, 2);
+  assert.equal(dataset.initialConditions.positrino.polarity, "positive");
+  assert.equal(dataset.initialConditions.electrino.polarity, "negative");
 });
 
 test("eom replay retained-history points span the trail with mock-compatible semantics", async () => {
@@ -209,16 +246,17 @@ test("eom replay adapter resolves records through an async loader", async () => 
   const adapter = createCausalDelayFeedbackEomReplayAdapter({
     async loadEomRecord(context) {
       loaderCalls += 1;
-      assert.equal(context.presetId, "thin_fronts");
+      assert.equal("presetId" in context, false);
+      assert.equal(context.requestOptions.frameCount, 3);
       return createEomRecordFixture();
     },
   });
   const dataset = await adapter.createReplayAsync({
-    presetId: "thin_fronts",
     requestOptions: { frameCount: 3 },
   });
   assert.equal(loaderCalls, 1);
-  assert.equal(dataset.preset.id, "thin_fronts");
+  assert.equal("preset" in dataset, false);
+  assert.equal(dataset.frames.length, 3);
 });
 
 test("shared EOM history dataset does not advance on foreign contract ids", () => {
