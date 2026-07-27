@@ -36,29 +36,24 @@ test("main scene shell uses true purple as its first-paint background", () => {
   assert.match(css, /--scene-background: #6A0DAD;/u);
 });
 
-test("main and standalone TOC lozenges share the canonical label typography", () => {
-  const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+test("standalone TOC lozenges retain the Home TOC typography", () => {
+  const homeCss = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   const sharedNavigationCss = readFileSync(
     new URL("../src/apps/navigator/standalone-app-navigation.css", import.meta.url),
     "utf8",
   );
 
-  assert.match(
-    html,
-    /href="\.\/src\/apps\/navigator\/standalone-app-navigation\.css"/u,
-  );
-  assert.match(
-    html,
-    /id="textbook-toc-button"\s+class="standalone-app-toc-button"/u,
-  );
+  const homeRule =
+    homeCss.match(/#textbook-toc-button\s*\{(?<body>[^}]*)\}/u)?.groups?.body ?? "";
 
   const tocRule =
     sharedNavigationCss.match(
       /\.standalone-app-toc-button\s*\{(?<body>[^}]*)\}/u,
     )?.groups?.body ?? "";
-  assert.match(tocRule, /font-family:\s*var\(--ui-font-family\)/u);
-  assert.match(tocRule, /font-size:\s*var\(--ui-label-size\)/u);
-  assert.match(tocRule, /font-weight:\s*var\(--ui-label-weight\)/u);
-  assert.match(tocRule, /line-height:\s*var\(--ui-label-line-height\)/u);
-  assert.doesNotMatch(tocRule, /font:\s*inherit/u);
+  for (const rule of [homeRule, tocRule]) {
+    assert.match(rule, /font:\s*inherit/u);
+    assert.match(rule, /font-size:\s*12px/u);
+    assert.match(rule, /font-weight:\s*700/u);
+    assert.match(rule, /line-height:\s*1/u);
+  }
 });
