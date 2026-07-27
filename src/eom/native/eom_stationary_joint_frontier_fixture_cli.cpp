@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <iostream>
 #include <map>
+#include <optional>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -20,7 +21,9 @@ constexpr double kHistoryDepth = 20.0;
 constexpr double kHistorySegmentStep = 0.1;
 constexpr double kCoupling = 36.0 * 0.2862286103053385;
 constexpr const char* kFrontierStart = "1.2399999999999993";
-constexpr const char* kFrontierEnd = "1.2449999999999992";
+constexpr const char* kFrontierTarget = "1.3649999999999967";
+constexpr const char* kNextProbeTarget = "1.3699999999999966";
+constexpr double kFrontierStep = 0.005;
 
 std::string token(double value) {
   std::ostringstream stream;
@@ -265,9 +268,10 @@ int main() {
           "/substep=" + substep_failure);
     }
 
-    validation_request.joint_histories = prefix.joint_histories;
-    const auto& positive = published_path(prefix.histories, "positive");
-    const auto& negative = published_path(prefix.histories, "negative");
+    auto current_histories = prefix.histories;
+    auto current_joint_histories = prefix.joint_histories;
+    const auto& positive = published_path(current_histories, "positive");
+    const auto& negative = published_path(current_histories, "negative");
     const std::string replay_start =
         positive.history.segments().back().t_end_token();
     const std::string negative_replay_start =
@@ -279,47 +283,139 @@ int main() {
           "frontier: positive=" + replay_start +
           "/negative=" + negative_replay_start);
     }
-    validation_request.start_time = replay_start;
-    validation_request.end_time = kFrontierEnd;
-    validation_request.paths = {
-        {"positive", "0.1666666666666666666666666666666667",
-         positive.history},
-        {"negative", "-0.1666666666666666666666666666666667",
-         negative.history},
-    };
-    const auto replay = eom::certify_native_atomic_coupled_step(
-        validation_request, prefix.histories, prefix.steps.size(),
-        replay_start, kFrontierEnd);
+    std::string certified_frontier = replay_start;
+    std::size_t certified_step_count = 0U;
+    std::optional<eom::NativeAtomicStepCertificate> replay;
+    bool atomic_fail_closed = true;
+    while (std::stod(certified_frontier) < std::stod(kFrontierTarget)) {
+      const std::string replay_end = token(std::min(
+          std::stod(kFrontierTarget),
+          std::stod(certified_frontier) + kFrontierStep));
+      validation_request.start_time = certified_frontier;
+      validation_request.end_time = replay_end;
+      validation_request.joint_histories = current_joint_histories;
+      const auto& current_positive =
+          published_path(current_histories, "positive");
+      const auto& current_negative =
+          published_path(current_histories, "negative");
+      validation_request.paths = {
+          {"positive", "0.1666666666666666666666666666666667",
+           current_positive.history},
+          {"negative", "-0.1666666666666666666666666666666667",
+           current_negative.history},
+      };
+      replay = eom::certify_native_atomic_coupled_step(
+          validation_request, current_histories,
+          prefix.steps.size() + certified_step_count,
+          certified_frontier, replay_end);
+      const bool step_atomic =
+          replay->status == "accepted" ||
+          published_histories_unchanged(
+              current_histories, replay->published_histories);
+      atomic_fail_closed = atomic_fail_closed && step_atomic;
+      if (!step_atomic) {
+        throw std::runtime_error(
+            "rejected stationary replay did not preserve atomic publication");
+      }
+      const eom::NativeAccelerationSnapshotCertificate* step_snapshot =
+          replay->accepted_snapshot.has_value()
+          ? &*replay->accepted_snapshot
+          : (!replay->substeps.empty() &&
+                    replay->substeps.back().endpoint_snapshot.has_value()
+                ? &*replay->substeps.back().endpoint_snapshot
+                : nullptr);
+      const bool step_certified =
+          replay->status == "accepted" &&
+          certified_cross_root(
+              step_snapshot, "positive", "negative") &&
+          certified_cross_root(
+              step_snapshot, "negative", "positive");
+      if (!step_certified) break;
+      certified_frontier = replay->accepted_time;
+      current_histories = replay->published_histories;
+      current_joint_histories = replay->published_joint_histories;
+      ++certified_step_count;
+    }
+    if (!replay.has_value()) {
+      throw std::runtime_error(
+          "stationary joint frontier target did not require a replay");
+    }
     const eom::NativeAccelerationSnapshotCertificate* snapshot =
-        replay.accepted_snapshot.has_value()
-        ? &*replay.accepted_snapshot
-        : (!replay.substeps.empty() &&
-                   replay.substeps.back().endpoint_snapshot.has_value()
-               ? &*replay.substeps.back().endpoint_snapshot
+        replay->accepted_snapshot.has_value()
+        ? &*replay->accepted_snapshot
+        : (!replay->substeps.empty() &&
+                   replay->substeps.back().endpoint_snapshot.has_value()
+               ? &*replay->substeps.back().endpoint_snapshot
                : nullptr);
     const bool positive_cross = certified_cross_root(
         snapshot, "positive", "negative");
     const bool negative_cross = certified_cross_root(
         snapshot, "negative", "positive");
     const bool certified =
-        replay.status == "accepted" && positive_cross && negative_cross;
-    const bool atomic_fail_closed =
-        replay.status == "accepted" ||
+        certified_frontier == kFrontierTarget &&
+        replay->status == "accepted" && positive_cross && negative_cross;
+    validation_request.start_time = certified_frontier;
+    validation_request.end_time = kNextProbeTarget;
+    validation_request.joint_histories = current_joint_histories;
+    const auto& probe_positive =
+        published_path(current_histories, "positive");
+    const auto& probe_negative =
+        published_path(current_histories, "negative");
+    validation_request.paths = {
+        {"positive", "0.1666666666666666666666666666666667",
+         probe_positive.history},
+        {"negative", "-0.1666666666666666666666666666666667",
+         probe_negative.history},
+    };
+    const auto next_probe = eom::certify_native_atomic_coupled_step(
+        validation_request, current_histories,
+        prefix.steps.size() + certified_step_count,
+        certified_frontier, kNextProbeTarget);
+    const bool next_probe_atomic =
+        next_probe.status == "accepted" ||
         published_histories_unchanged(
-            prefix.histories, replay.published_histories);
+            current_histories, next_probe.published_histories);
+    const eom::NativeAccelerationSnapshotCertificate* next_probe_snapshot =
+        next_probe.accepted_snapshot.has_value()
+        ? &*next_probe.accepted_snapshot
+        : (!next_probe.substeps.empty() &&
+                   next_probe.substeps.back().endpoint_snapshot.has_value()
+               ? &*next_probe.substeps.back().endpoint_snapshot
+               : nullptr);
+    const auto* next_positive_row = next_probe_snapshot == nullptr
+        ? nullptr
+        : root_row(*next_probe_snapshot, "positive", "negative");
+    const auto* next_negative_row = next_probe_snapshot == nullptr
+        ? nullptr
+        : root_row(*next_probe_snapshot, "negative", "positive");
+    const bool next_probe_fail_closed =
+        next_probe.status == "rejected" &&
+        next_probe.failure_code == "root_completeness_not_certified" &&
+        next_probe_atomic &&
+        next_positive_row != nullptr &&
+        next_negative_row != nullptr &&
+        next_positive_row->certificate.failure_code ==
+            "numeric_precision_limit_exhausted" &&
+        next_negative_row->certificate.failure_code ==
+            "numeric_precision_limit_exhausted";
     const auto& first_joint = prefix.joint_histories.begin()->second;
 
     std::cout << std::setprecision(17)
               << "{\"schema\":"
-                 "\"eom_stationary_joint_frontier_fixture/v1\""
+                 "\"eom_stationary_joint_frontier_fixture/v2\""
               << ",\"fixture_scope\":\"validation_only\""
               << ",\"campaign_1_enabled\":false"
               << ",\"field_speed\":\"1\""
               << ",\"root_tolerance\":\"1e-5\""
               << ",\"frontier_start\":";
     print_json_string(kFrontierStart);
-    std::cout << ",\"frontier_end\":";
-    print_json_string(kFrontierEnd);
+    std::cout << ",\"frontier_target\":";
+    print_json_string(kFrontierTarget);
+    std::cout << ",\"certified_frontier_end\":";
+    print_json_string(certified_frontier);
+    std::cout << ",\"certified_frontier_step\":\"0.005\""
+              << ",\"certified_frontier_step_count\":"
+              << certified_step_count;
     std::cout << ",\"replay_input_start_token\":";
     print_json_string(replay_start);
     std::cout << ",\"prefix_status\":";
@@ -334,9 +430,27 @@ int main() {
               << ",\"endpoint_corrector_joint_segment_count\":"
               << first_joint.segments().size()
               << ",\"replay_status\":";
-    print_json_string(replay.status);
+    print_json_string(replay->status);
     std::cout << ",\"replay_failure\":";
-    print_json_string(replay.failure_code);
+    print_json_string(replay->failure_code);
+    std::cout << ",\"replay_attempted_end\":";
+    print_json_string(replay->attempted_end);
+    std::cout << ",\"next_probe_target\":";
+    print_json_string(kNextProbeTarget);
+    std::cout << ",\"next_probe_status\":";
+    print_json_string(next_probe.status);
+    std::cout << ",\"next_probe_failure\":";
+    print_json_string(next_probe.failure_code);
+    std::cout << ",\"next_probe_atomic_fail_closed\":"
+              << (next_probe_atomic ? "true" : "false")
+              << ",\"next_probe_result\":";
+    print_json_string(
+        next_probe_fail_closed ? "fail_closed" : "unexpected_result");
+    std::cout << ",\"next_probe_fail_closed_row\":";
+    print_json_string(
+        next_probe_fail_closed
+            ? "stationary_rest_r0_joint_frontier_next_uncertified_v2"
+            : "");
     std::cout << ",\"atomic_fail_closed\":"
               << (atomic_fail_closed ? "true" : "false")
               << ",\"result\":";
@@ -349,12 +463,12 @@ int main() {
     print_root_row(snapshot, "positive", "negative");
     std::cout << ',';
     print_root_row(snapshot, "negative", "positive");
+    std::cout << "],\"next_probe_cross_roots\":[";
+    print_root_row(next_probe_snapshot, "positive", "negative");
+    std::cout << ',';
+    print_root_row(next_probe_snapshot, "negative", "positive");
     std::cout << "]}\n";
-    if (!atomic_fail_closed) {
-      throw std::runtime_error(
-          "rejected stationary replay did not preserve atomic publication");
-    }
-    return certified ? 0 : 2;
+    return certified && next_probe_fail_closed ? 0 : 2;
   } catch (const std::exception& error) {
     std::cerr << "stationary joint frontier fixture error: "
               << error.what() << '\n';
