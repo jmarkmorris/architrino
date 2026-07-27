@@ -876,6 +876,26 @@ void print_all() {
              ? std::string{}
              : "/" + joint_evolution.steps.back().failure_code));
   }
+  const auto joint_checkpoint = eom::create_native_evolution_checkpoint(
+      joint_evolution_request, joint_evolution);
+  const auto joint_checkpoint_roundtrip =
+      eom::deserialize_native_evolution_checkpoint(
+          eom::serialize_native_evolution_checkpoint(joint_checkpoint));
+  const auto joint_checkpoint_resumed = eom::resume_native_coupled_histories(
+      joint_evolution_request, joint_checkpoint_roundtrip, "2.02");
+  auto joint_checkpoint_direct_request = joint_evolution_request;
+  joint_checkpoint_direct_request.end_time = "2.02";
+  const auto joint_checkpoint_direct =
+      eom::evolve_native_coupled_histories(
+          joint_checkpoint_direct_request);
+  if (joint_checkpoint_roundtrip.joint_histories.size() != 2U ||
+      joint_checkpoint_resumed.status != "completed" ||
+      joint_checkpoint_resumed.joint_histories.size() != 2U ||
+      joint_checkpoint_direct.status != "completed" ||
+      joint_checkpoint_direct.joint_histories.size() != 2U) {
+    throw std::runtime_error(
+        "joint checkpoint continuation did not preserve joint histories");
+  }
   const auto static_request = request(
       "static-multistep",
       {{"p", "1", history("static-self-history", "2", {"0", "0", "0", "0"})}},
@@ -942,6 +962,8 @@ void print_all() {
   auto changed_warm_policy = checkpoint_partial_request;
   changed_warm_policy.use_warm_root_exclusion =
       !changed_warm_policy.use_warm_root_exclusion;
+  auto changed_joint_state = checkpoint_partial_request;
+  changed_joint_state.joint_histories = joint_snapshot_histories;
   const bool checkpoint_controls_bound =
       checkpoint_model_fingerprint !=
           eom::native_evolution_model_fingerprint(changed_event_fraction) &&
@@ -950,7 +972,9 @@ void print_all() {
       checkpoint_model_fingerprint !=
           eom::native_evolution_model_fingerprint(changed_traversal_limit) &&
       checkpoint_model_fingerprint !=
-          eom::native_evolution_model_fingerprint(changed_warm_policy);
+          eom::native_evolution_model_fingerprint(changed_warm_policy) &&
+      checkpoint_model_fingerprint !=
+          eom::native_evolution_model_fingerprint(changed_joint_state);
   if (!checkpoint_controls_bound) {
     throw std::runtime_error(
         "checkpoint fingerprint omits an acceptance-regime control");
@@ -1251,6 +1275,26 @@ void print_all() {
       !adjudicated_joint_event.joint_histories.empty()) {
     throw std::runtime_error(
         "adjudicated finite-width retry did not fall back from joint state");
+  }
+  const auto adjudicated_joint_checkpoint =
+      eom::create_native_evolution_checkpoint(
+          adjudicated_joint_event_request, adjudicated_joint_event);
+  const auto adjudicated_joint_checkpoint_roundtrip =
+      eom::deserialize_native_evolution_checkpoint(
+          eom::serialize_native_evolution_checkpoint(
+              adjudicated_joint_checkpoint));
+  const auto adjudicated_joint_resume =
+      eom::resume_native_coupled_histories(
+          adjudicated_joint_event_request,
+          adjudicated_joint_checkpoint_roundtrip,
+          adjudicated_joint_event.accepted_end_time);
+  if (adjudicated_joint_checkpoint_roundtrip.joint_history_mode !=
+          "ordinary_fallback" ||
+      !adjudicated_joint_checkpoint_roundtrip.joint_histories.empty() ||
+      !adjudicated_joint_resume.joint_state_fallback_applied ||
+      !adjudicated_joint_resume.joint_histories.empty()) {
+    throw std::runtime_error(
+        "joint fallback checkpoint did not preserve ordinary mode");
   }
   auto finite_event_single_thread_request = finite_event_request;
   finite_event_single_thread_request.thread_count = 1;
@@ -1610,6 +1654,8 @@ void print_all() {
             << "\",\"accepted_time\":\"" << checkpoint.accepted_time
             << "\",\"controller_step_size\":\""
             << checkpoint.controller_step_size
+            << "\",\"joint_history_mode\":\""
+            << checkpoint.joint_history_mode
             << "\",\"model_fingerprint\":\""
             << checkpoint.model_fingerprint
             << "\",\"checkpoint_fingerprint\":\""
@@ -1628,12 +1674,38 @@ void print_all() {
             << ",\"certificate_cost_cooldown_roundtrip\":"
             << certificate_cost_checkpoint_roundtrip
                    .controller_certificate_cost_cooldown_remaining
+            << ",\"joint_history_count\":"
+            << joint_checkpoint_roundtrip.joint_histories.size()
+            << ",\"joint_checkpoint_mode\":\""
+            << joint_checkpoint_roundtrip.joint_history_mode
+            << ",\"joint_history_segment_count\":"
+            << joint_checkpoint_roundtrip.joint_histories.at("joint-a")
+                   .segments().size()
+            << ",\"joint_resume_history_count\":"
+            << joint_checkpoint_resumed.joint_histories.size()
+            << ",\"joint_resume_segment_count\":"
+            << joint_checkpoint_resumed.joint_histories.at("joint-a")
+                   .segments().size()
+            << ",\"joint_fallback_mode\":\""
+            << adjudicated_joint_checkpoint_roundtrip.joint_history_mode
+            << "\",\"joint_fallback_resume_applied\":"
+            << (adjudicated_joint_resume.joint_state_fallback_applied
+                    ? "true"
+                    : "false")
             << ",\"direct_histories\":";
   print_histories(
       checkpoint_direct.histories, checkpoint_direct.accepted_end_time);
   std::cout << ",\"resumed_histories\":";
   print_histories(
       checkpoint_resumed.histories, checkpoint_resumed.accepted_end_time);
+  std::cout << ",\"joint_direct_histories\":";
+  print_histories(
+      joint_checkpoint_direct.histories,
+      joint_checkpoint_direct.accepted_end_time);
+  std::cout << ",\"joint_resumed_histories\":";
+  print_histories(
+      joint_checkpoint_resumed.histories,
+      joint_checkpoint_resumed.accepted_end_time);
   std::cout << "},\"evolutions\":[";
   print_evolution(static_result);
   std::cout << ',';

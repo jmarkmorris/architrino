@@ -8,10 +8,10 @@
 - Implementation status: `first-certified-finite-width-transit; demo-track-regulator-halt-accepted; post-transit-horizon-open`
 - Owning queue item: `coupled_retained_history_integrator`
 - Mathematical authority:
-  [master-eom-binding-v1.md](master-eom-binding-v1.md)
+  [master-eom-binding-v1.md](./master-eom-binding-v1.md)
 - Common-domain matching:
   `amendment-1-bound-and-independently-certified`
-- Evolution authority: [evolution-contract-v1.md](evolution-contract-v1.md)
+- Evolution authority: [evolution-contract-v1.md](./evolution-contract-v1.md)
 - Production authority: certified for the recorded first seed-0 transit;
   broader trajectory and encounter authority remains per-run and requires verification before advancement.
 
@@ -192,7 +192,7 @@ Second, sharp/finite-width chart agreement is tested only on a declared common
 domain $C_{ij}\subset[T_0,T_1]$ where the sharp roots and root-free complement
 are complete, every admitted root has $|D_t|\ge\nu_t>0$, and the separation is
 outside the core-active stratum. By
-[Master EOM Binding v1](master-eom-binding-v1.md), agreement is a
+[Master EOM Binding v1](./master-eom-binding-v1.md), agreement is a
 regulator-limit obligation rather than raw equality at fixed
 positive $\eta$ and $\epsilon_c$. For every component $k$, the restricted
 integrals must satisfy
@@ -310,7 +310,7 @@ Decimal oracle.
 Claim grade: `derived-implementation` for the coordinate conversion and
 outward residual construction; `measured` for the analytic containment and
 seed-0 passage recorded in
-[the regulator-limit implementation evidence](evidence/eom-fwc-regulator-matching-remainder-seed-0-2026-07-17.md).
+[the regulator-limit implementation evidence](../evidence/eom-fwc-regulator-matching-remainder-seed-0-2026-07-17.md).
 Falsifier: a nonzero $D_t$ tube violates the displayed derivative conversion;
 the analytic stationary difference lies outside the emitted remainder; a row
 passes with positive post-accounting distance or with its complete remainder

@@ -6,7 +6,7 @@
 - Stage: `measured-local-reference-baseline`
 - Date: `2026-07-13`
 - Host: Apple M3, 8 CPU cores, 10 GPU cores, 24 GiB unified memory
-- Evidence record: [performance-architecture-baseline-apple-m3-2026-07-13.json](evidence/performance-architecture-baseline-apple-m3-2026-07-13.json)
+- Evidence record: [performance-architecture-baseline-apple-m3-2026-07-13.json](../evidence/performance-architecture-baseline-apple-m3-2026-07-13.json)
 - Evidence digest: `06562cccf4b280a3aab481bae3fd54c31c88bba82da71aac2a59b4d7e6fdff8c`
 - Authority: `reference-benchmark-only`
 - Production language decision: C++20 selected by operator; production authority remains gated
@@ -41,10 +41,10 @@ projection requires at least `64 TB` merely to materialize one assumed
 ## Executed Packet
 
 The versioned composition driver is
-[`scripts/eom/performance/architecture_baseline.py`](../../../scripts/eom/performance/architecture_baseline.py).
+[`scripts/eom/performance/architecture_baseline.py`](../../../../scripts/eom/performance/architecture_baseline.py).
 The scale model and local backend probes are separated into
-[`baseline_model.py`](../../../scripts/eom/performance/baseline_model.py) and
-[`local_benchmarks.py`](../../../scripts/eom/performance/local_benchmarks.py).
+[`baseline_model.py`](../../../../scripts/eom/performance/baseline_model.py) and
+[`local_benchmarks.py`](../../../../scripts/eom/performance/local_benchmarks.py).
 It executes and records:
 
 1. exhaustive nested parity controls for the stationary block-exclusion
@@ -60,9 +60,9 @@ It executes and records:
    projections.
 
 The C++ source is
-[`native_kernel_baseline.cpp`](../../../scripts/eom/performance/native_kernel_baseline.cpp),
+[`native_kernel_baseline.cpp`](../../../../scripts/eom/performance/native_kernel_baseline.cpp),
 and the Metal probe is
-[`metal_bound_baseline.swift`](../../../scripts/eom/performance/metal_bound_baseline.swift).
+[`metal_bound_baseline.swift`](../../../../scripts/eom/performance/metal_bound_baseline.swift).
 Both identify themselves as reference-only benchmarks and implement no EOM
 acceleration or history evolution.
 
@@ -90,7 +90,7 @@ stationary population control.
 ## Native Moving-History And Exact-Pair Packet
 
 The next executable layer lives under
-[`src/eom`](../../../src/eom/README.md). It implements the versioned
+[`src/eom`](../../../../src/eom/README.md). It implements the versioned
 `eom_moving_history_block_certificate/v0` and
 `eom_native_exact_pair_certificate/v0` schemas in C++20. Regular rows use
 outward binary64 intervals. Rows whose tolerance or geometry cannot be
@@ -111,7 +111,7 @@ The difficult close-root row bypasses binary64 automatically at a requested
 tangent and exact-field-speed rail rows remain not advanced after the declared
 512-bit ceiling and return `caustic_route_required`; they do not publish a
 false complete root set. Evidence is recorded in
-[eom-native-history-layer-apple-m3-2026-07-13.json](evidence/eom-native-history-layer-apple-m3-2026-07-13.json).
+[eom-native-history-layer-apple-m3-2026-07-13.json](../evidence/eom-native-history-layer-apple-m3-2026-07-13.json).
 
 This packet proves the local certificate and exact-pair execution classes, not
 the production million-path traversal. Its root certificates now feed the
@@ -147,7 +147,7 @@ The nine native acceleration tests reproduce sharp results with the
 super-field-speed receiver, and two-root histories, then verify self-pair
 accounting, negative certification controls, complete binary receiver totals,
 and deterministic replay. Evidence is recorded in
-[eom-native-acceleration-layer-apple-m3-2026-07-13.json](evidence/eom-native-acceleration-layer-apple-m3-2026-07-13.json).
+[eom-native-acceleration-layer-apple-m3-2026-07-13.json](../evidence/eom-native-acceleration-layer-apple-m3-2026-07-13.json).
 
 This is a correctness packet, not a throughput claim. Native acceleration now
 includes the bound finite-width causal-surface integral, a tangent recovery
@@ -194,7 +194,7 @@ finite event impulse to the independent 80-decimal-digit oracle, verify
 complete $N^2$ acceleration snapshots, confirm unchanged rejection
 publication, and require byte-identical one-thread/four-thread replay.
 Evidence is recorded in
-[eom-native-coupled-evolution-layer-apple-m3-2026-07-13.json](evidence/eom-native-coupled-evolution-layer-apple-m3-2026-07-13.json).
+[eom-native-coupled-evolution-layer-apple-m3-2026-07-13.json](../evidence/eom-native-coupled-evolution-layer-apple-m3-2026-07-13.json).
 
 The finite-width packet adds
 `eom_native_fold_caustic_impulse_certificate/v0`, binary64 outward joint
@@ -202,7 +202,7 @@ quadrature over the causal triangular domain, MPFR finite-width acceleration
 replay, independent-oracle overlap, atomic event-resource rejection, and
 byte-identical one-thread/four-thread accepted-event replay. Evidence is
 recorded in
-[eom-native-finite-width-event-layer-apple-m3-2026-07-13.json](evidence/eom-native-finite-width-event-layer-apple-m3-2026-07-13.json).
+[eom-native-finite-width-event-layer-apple-m3-2026-07-13.json](../evidence/eom-native-finite-width-event-layer-apple-m3-2026-07-13.json).
 
 The MPFR and regulator-convergence packet extends that same event equation,
 not a substitute model. Its difficult-row route recomputes history
@@ -214,7 +214,7 @@ worst-case component separation between every pair of interval enclosures is
 inside the declared convergence tolerance. The coupled accepted-event fixture
 now carries two regulator-convergence certificates; cell exhaustion rejects
 atomically. Evidence is recorded in
-[eom-native-mpfr-regulator-convergence-layer-apple-m3-2026-07-13.json](evidence/eom-native-mpfr-regulator-convergence-layer-apple-m3-2026-07-13.json).
+[eom-native-mpfr-regulator-convergence-layer-apple-m3-2026-07-13.json](../evidence/eom-native-mpfr-regulator-convergence-layer-apple-m3-2026-07-13.json).
 
 This layer is still correctness-first architecture evidence. It copies history
 vectors during correction, uses binary64 local-time controller values, and

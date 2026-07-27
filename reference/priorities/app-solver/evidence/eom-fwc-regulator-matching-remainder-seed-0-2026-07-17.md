@@ -6,7 +6,7 @@
 - Binding authority:
   the ratified regulator-limit common-domain matching decision
 - Route:
-  [Finite-Width Close-Approach And Caustic Route](../finite-width-close-approach-caustic-route.md)
+  [Finite-Width Close-Approach And Caustic Route](../contracts/finite-width-close-approach-caustic-route.md)
 - Run grade: `certified`
 - Regulator and event budgets: unchanged
 - Decimal oracle: unchanged

@@ -8,7 +8,7 @@
 - Implementation status: `native-correctness-nucleus-and-borg-shadow-executable; production-conformance-open`
 - Model binding: `master_eom_binding/v1`
 - Borg live request schema: `eom_borg_shadow_request/v1`
-- Optional long-term scale amendment: [`eom_evolution_contract/v1/amendment-1`](evolution-contract-v1-amendment-1-million-path-scale.md); required only when a request or result claims the million-path profile
+- Optional long-term scale amendment: [`eom_evolution_contract/v1/amendment-1`](./evolution-contract-v1-amendment-1-million-path-scale.md); required only when a request or result claims the million-path profile
 - Initial-data type: continuous retained history functions only
 - Change control: revisions require an explicit contract amendment or successor version
 
@@ -147,7 +147,7 @@ of that serialization. The process bridge recomputes both the canonical JSON
 and the hash before encoding the native request. A mismatch rejects the request;
 the hash is an identity check, not evidence that the numerical ledger passed.
 The current preset identities are recorded in
-[Certified Error-Budget Ledger](certified-error-budget-ledger.md).
+[Certified Error-Budget Ledger](./certified-error-budget-ledger.md).
 
 ## Accepted-Step State Machine
 

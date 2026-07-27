@@ -2,10 +2,10 @@
 
 Chronological status, run narratives, handoffs, and failed paths for the
 EOM-owned profiler and checkpoint-chunked ensemble harness. Keep the live
-instrument state in [Attractor-Search Execution Instrument](attractor-search-instrument.md).
-The [Braid Program](../braid-program/priorities.md) owns the scientific
+instrument state in [Attractor-Search Execution Instrument](./attractor-search-instrument.md).
+The [Braid Program](../../braid-program/priorities.md) owns the scientific
 campaign and keeps its design in
-[Undirected Ensemble Search](../braid-program/undirected-ensemble-search.md).
+[Undirected Ensemble Search](../../braid-program/undirected-ensemble-search.md).
 
 ## 2026-07-27 — Corrected resume accounting and G3/G4 reaccepted
 
@@ -25,7 +25,7 @@ campaign and keeps its design in
   determinism, accounting, release-ledger propagation, and serialization
   identity only. It does not supply independent numerical correctness or any
   campaign outcome. See the
-  [acceptance packet](evidence/attractor-resume-g3-g4-reacceptance-2026-07-27.md).
+  [acceptance packet](../evidence/attractor-resume-g3-g4-reacceptance-2026-07-27.md).
 
 ## 2026-07-26 — Focused packet distributed to canonical owners
 
@@ -61,7 +61,7 @@ campaign and keeps its design in
 ## 2026-07-15 — Workstream opened
 
 - Bucket created by operator direction. Full context is now retained in
-  [Undirected Ensemble Search](../braid-program/undirected-ensemble-search.md).
+  [Undirected Ensemble Search](../../braid-program/undirected-ensemble-search.md).
 - Operator inputs: Borg app (eom-backed) releases show early escapes plus
   transient couplings, including an observed 2:2 assembly (anecdotal grade,
   reproduce first); the final eom performance improvement has landed, so

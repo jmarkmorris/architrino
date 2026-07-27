@@ -45,6 +45,10 @@ struct NativeCoupledEvolutionRequest {
   // geometry and ordinary fallback data before it can use one.
   std::map<std::string, JointRootBracketRequest> joint_root_point_states;
   std::map<std::string, JointAffineRetainedHistory> joint_histories;
+  // Dynamic restart state. True only when an earlier accepted controller
+  // interval permanently discarded optional joint correlation in favor of
+  // the certified ordinary finite-width route.
+  bool joint_state_fallback_already_applied = false;
   std::string start_time;
   std::string end_time;
   std::string initial_step;

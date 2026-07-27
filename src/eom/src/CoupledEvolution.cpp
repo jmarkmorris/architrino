@@ -6919,9 +6919,11 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   // A certified finite-width event may discard optional joint correlation,
   // but joint state must never silently reappear on a later controller step.
   bool joint_state_fallback_active =
+      request.joint_state_fallback_already_applied ||
       !adjudicated_finite_width_pairs.empty();
   bool joint_state_fallback_applied =
-      joint_state_fallback_active && !request.joint_histories.empty();
+      request.joint_state_fallback_already_applied ||
+      (joint_state_fallback_active && !request.joint_histories.empty());
   std::size_t certificate_cost_cooldown_remaining =
       request.certificate_cost_initial_cooldown_steps;
 

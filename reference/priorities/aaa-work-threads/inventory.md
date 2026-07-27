@@ -30,7 +30,7 @@ The rank column is mirrored from the active-only unified table. Ranks `4`, `5`,
 
 | Rank | Owner | Local rank-1 object | Present role and ownership boundary | Execution queue and focused packet |
 | ---: | --- | --- | --- | --- |
-| 1 | [`app-solver`](../app-solver/priorities.md) | `coupled_retained_history_integrator` | Sole forward solver and reusable numerical-execution owner. | [Work queue](../app-solver/work-queue.md); [attractor-search instrument](../app-solver/attractor-search-instrument.md). |
+| 1 | [`app-solver`](../app-solver/priorities.md) | `coupled_retained_history_integrator` | Sole forward solver and reusable numerical-execution owner. | [Work queue](../app-solver/work-queue.md); [attractor-search instrument](../app-solver/campaigns/attractor-search-instrument.md). |
 | 2 | [`braid-program`](../braid-program/priorities.md) | `binary_subfield_fate` | Sole scientific owner for evolution-first assembly campaigns and fate classification. | [Work queue](../braid-program/work-queue.md); [undirected ensemble design](../braid-program/undirected-ensemble-search.md). |
 | 3 | [`master-equation-closure`](../master-equation-closure/priorities.md) | `causal_wake_update_law` | Owns the independently evolving wake-state derivation, causal accounts, and branch-certificate mathematics. | [Work queue](../master-equation-closure/work-queue.md); [causal wake-state packet](../master-equation-closure/independent-causal-wake-state-closure.md). |
 | 6 | [`equation-mapping`](../equation-mapping/priorities.md) | `lorentz_envelope_closure` | Maps source-backed carriers into explicit inherited-equation comparison and failure rows. | [Work queue](../equation-mapping/work-queue.md); [equation inventory](../equation-mapping/equation.md). |

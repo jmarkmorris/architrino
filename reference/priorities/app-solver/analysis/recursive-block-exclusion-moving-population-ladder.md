@@ -8,9 +8,9 @@
 - Implementation status: `complete-for-declared-moving-population-ladder`
 - Production authority: none
 - Parent packet:
-  [recursive-block-exclusion-first-path.md](recursive-block-exclusion-first-path.md)
+  [recursive-block-exclusion-first-path.md](./recursive-block-exclusion-first-path.md)
 - Evidence:
-  [eom-recursive-block-exclusion-moving-population-apple-m3-2026-07-16.md](evidence/eom-recursive-block-exclusion-moving-population-apple-m3-2026-07-16.md)
+  [eom-recursive-block-exclusion-moving-population-apple-m3-2026-07-16.md](../evidence/eom-recursive-block-exclusion-moving-population-apple-m3-2026-07-16.md)
 
 ## Closure Target
 
@@ -110,6 +110,6 @@ history, million-path, GPU, distributed, or production-evolution performance.
 
 - scoped moving-population benchmark fixtures and tests;
 - a focused evidence record under `evidence/`;
-- a concise dated [work-log.md](work-log.md) entry;
+- a concise dated [work-log.md](../work-log.md) entry;
 - measured sparse and dense moving-population ladders;
 - claim grades and explicit falsifiers.

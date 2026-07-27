@@ -7,17 +7,17 @@
 - Production language: `C++20`
 - Accelerator stack: `not-selected`
 - Numeric library stack: `outward-binary64-fast-path; MPFR-4.2.2/GMP-6.3.0-directed-interval-escalation`
-- Numeric certification contract: `frozen-v0`; source: [precision-dynamic-range-and-certification-contract.md](precision-dynamic-range-and-certification-contract.md)
+- Numeric certification contract: `frozen-v0`; source: [precision-dynamic-range-and-certification-contract.md](./precision-dynamic-range-and-certification-contract.md)
 
 ## Decision Principle
 
 The operator selected C++20 as the EOM production host on 2026-07-13. The
 decision is recorded in
-[eom-cpp-production-host.md](../../architectural-decisions/eom-cpp-production-host.md).
+[eom-cpp-production-host.md](../../../architectural-decisions/eom-cpp-production-host.md).
 The engine must combine extremely high bulk throughput with a controlled path
 beyond hardware floating point for the subset of work whose condition demands
 it. C++ selection does not relax
-[eom_numeric_certification/v0](precision-dynamic-range-and-certification-contract.md),
+[eom_numeric_certification/v0](./precision-dynamic-range-and-certification-contract.md),
 and host or backend limitations cannot redefine the acceptance criteria.
 
 The selected host still has to pass causal-root irregularity, branch events,

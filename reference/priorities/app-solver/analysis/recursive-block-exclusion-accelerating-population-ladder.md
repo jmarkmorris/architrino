@@ -8,9 +8,9 @@
 - Implementation status: `complete-for-declared-accelerating-population-ladder`
 - Production authority: none
 - Parent packet:
-  [recursive-block-exclusion-moving-population-ladder.md](recursive-block-exclusion-moving-population-ladder.md)
+  [recursive-block-exclusion-moving-population-ladder.md](./recursive-block-exclusion-moving-population-ladder.md)
 - Evidence:
-  [eom-recursive-block-exclusion-accelerating-population-apple-m3-2026-07-16.md](evidence/eom-recursive-block-exclusion-accelerating-population-apple-m3-2026-07-16.md)
+  [eom-recursive-block-exclusion-accelerating-population-apple-m3-2026-07-16.md](../evidence/eom-recursive-block-exclusion-accelerating-population-apple-m3-2026-07-16.md)
 
 ## Closure Target
 
@@ -105,6 +105,6 @@ active-aggregation, or production-evolution performance.
 
 - scoped accelerating benchmark fixtures and tests;
 - a focused evidence record under `evidence/`;
-- a concise dated [work-log.md](work-log.md) entry;
+- a concise dated [work-log.md](../work-log.md) entry;
 - measured sparse and dense accelerating-population ladders;
 - claim grades and explicit falsifiers.

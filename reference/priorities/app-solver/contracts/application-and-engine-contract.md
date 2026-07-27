@@ -5,9 +5,9 @@
 - Stage: `priority-design`
 - Implementation: `not-started`
 - Authority: operator-selected EOM boundary
-- Frozen normative requirements: [evolution-contract-v1.md](evolution-contract-v1.md)
-- Million-path amendment: [eom_evolution_contract/v0/amendment-1](evolution-contract-v1-amendment-1-million-path-scale.md)
-- Million-path architecture: [eom_million_path_execution/v0](million-path-certified-execution-architecture.md)
+- Frozen normative requirements: [evolution-contract-v1.md](./evolution-contract-v1.md)
+- Million-path amendment: [eom_evolution_contract/v0/amendment-1](./evolution-contract-v1-amendment-1-million-path-scale.md)
+- Million-path architecture: [eom_million_path_execution/v0](./million-path-certified-execution-architecture.md)
 
 ## Defining Operation
 
@@ -129,13 +129,13 @@ The accelerator design may use a heterogeneous precision pipeline. Well-conditio
 
 A GPU path is not authoritative when it merely agrees approximately on positions while producing a different certified root count, active-root set, sign, event order, or branch identity. Promotion requires cross-precision and cross-backend convergence, plus certified enclosures or independent multiprecision evidence at the difficult cases defined by the acceptance oracle.
 
-The detailed numeric and implementation-language decision gate is defined in [language-and-numeric-architecture.md](language-and-numeric-architecture.md).
+The detailed numeric and implementation-language decision gate is defined in [language-and-numeric-architecture.md](./language-and-numeric-architecture.md).
 
 ## Language And Runtime Boundary
 
 The EOM production language has not yet been selected. The selected stack must support predictable native memory ownership, bounded multithreading, SIMD, accelerator kernels, deterministic or explicitly reproducible reductions, efficient precision escalation, profiling, checkpoint-compatible numeric representations, and a stable application interface.
 
-The compute engine should remain a headless native boundary. A thin application shell may use a different language for configuration, monitoring, and visualization, but it must not reimplement the Master EOM, root logic, integration, or acceptance decisions. Language selection follows the representative-kernel and accepted-history gate in [language-and-numeric-architecture.md](language-and-numeric-architecture.md), not ecosystem familiarity or a single microbenchmark.
+The compute engine should remain a headless native boundary. A thin application shell may use a different language for configuration, monitoring, and visualization, but it must not reimplement the Master EOM, root logic, integration, or acceptance decisions. Language selection follows the representative-kernel and accepted-history gate in [language-and-numeric-architecture.md](./language-and-numeric-architecture.md), not ecosystem familiarity or a single microbenchmark.
 
 ## Extreme-Performance Mandate
 
@@ -180,7 +180,7 @@ logical ordered relationships before multiple roots and history search are
 counted. The production engine must not evaluate this domain by serially
 calling the independent pair oracle. It must implement the certified execution
 architecture in
-[million-path-certified-execution-architecture.md](million-path-certified-execution-architecture.md),
+[million-path-certified-execution-architecture.md](./million-path-certified-execution-architecture.md),
 including:
 
 - causal space-time block enclosures that prove complete receiver-transmitter-time

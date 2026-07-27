@@ -14,7 +14,7 @@ V7 serialization measured on 2026-07-18. The later terminology migration
 renamed the serialized ordinary key from `sourceNormalFloor` to
 `transmitterFactorFloor`, leaving its value and every numerical allocation
 unchanged but necessarily changing both hashes. The current live identities are
-recorded in the [Certified Error-Budget Ledger](../certified-error-budget-ledger.md)
+recorded in the [Certified Error-Budget Ledger](../contracts/certified-error-budget-ledger.md)
 and must be used for new requests. This evidence record retains the hashes that
 actually accompanied its measurements.
 

@@ -33,7 +33,7 @@ readable equations, adjustable precision, and a separate failure surface.
 ## Implemented Layers
 
 The independent equation reference lives in
-[scripts/eom/oracle/reference_kernel.py](../../../scripts/eom/oracle/reference_kernel.py).
+[scripts/eom/oracle/reference_kernel.py](../../../../scripts/eom/oracle/reference_kernel.py).
 It implements directly from the frozen equations:
 
 - continuous inertial history functions;
@@ -46,9 +46,9 @@ It implements directly from the frozen equations:
   bracket.
 
 The certified retained-history and root layer lives in
-[scripts/eom/oracle/certified_history.py](../../../scripts/eom/oracle/certified_history.py),
+[scripts/eom/oracle/certified_history.py](../../../../scripts/eom/oracle/certified_history.py),
 with directed-rounding arithmetic in
-[scripts/eom/oracle/decimal_interval.py](../../../scripts/eom/oracle/decimal_interval.py).
+[scripts/eom/oracle/decimal_interval.py](../../../../scripts/eom/oracle/decimal_interval.py).
 For `eom_independent_oracle/v0` it provides:
 
 - exact-decimal intake that rejects binary floating-point inputs;
@@ -80,7 +80,7 @@ rail degeneracy, or enclosure too wide for a discrete decision does not advance 
 must proceed through a later finite-width or higher-order certification route.
 
 The certified acceleration layer lives in
-[scripts/eom/oracle/certified_acceleration.py](../../../scripts/eom/oracle/certified_acceleration.py).
+[scripts/eom/oracle/certified_acceleration.py](../../../../scripts/eom/oracle/certified_acceleration.py).
 For `eom_independent_oracle/v0` it provides:
 
 - sharp-chart acceleration records only from a `certified_complete` root ledger
@@ -113,7 +113,7 @@ evaluation and is not the production block-exclusion, heterogeneous batch, or
 distributed-history engine.
 
 The coupled retained-history evolution layer lives in
-[scripts/eom/oracle/certified_evolution.py](../../../scripts/eom/oracle/certified_evolution.py).
+[scripts/eom/oracle/certified_evolution.py](../../../../scripts/eom/oracle/certified_evolution.py).
 Its executable v0 nucleus provides:
 
 - rejection of any input history extending beyond the requested evolution
@@ -146,7 +146,7 @@ history, heterogeneous execution, production checkpoint storage, accelerated
 root continuation, and production authority remain outside this layer.
 
 The Phase 4 acceptance layer lives in
-[scripts/eom/oracle/phase4_acceptance.py](../../../scripts/eom/oracle/phase4_acceptance.py).
+[scripts/eom/oracle/phase4_acceptance.py](../../../../scripts/eom/oracle/phase4_acceptance.py).
 For `eom_independent_oracle/v0` it provides:
 
 - reception-time slab certificates that give persistent identities to simple
@@ -177,7 +177,7 @@ certification is not the production search accelerator.
 ## Current Controls
 
 The equation-reference test file
-[tests/test_eom_oracle_reference_kernel.py](../../../tests/test_eom_oracle_reference_kernel.py)
+[tests/test_eom_oracle_reference_kernel.py](../../../../tests/test_eom_oracle_reference_kernel.py)
 covers:
 
 1. the analytic stationary-source root and inverse-square acceleration;
@@ -194,7 +194,7 @@ These are success markers under the existing oracle requirement. They do not
 create a new physics gate or certify full EOM evolution.
 
 The certified-history test file
-[tests/test_eom_oracle_root_certification.py](../../../tests/test_eom_oracle_root_certification.py)
+[tests/test_eom_oracle_root_certification.py](../../../../tests/test_eom_oracle_root_certification.py)
 covers exact-decimal rejection, directed interval containment, one and two
 simple roots, close-root separation, root-free histories, segment-boundary
 deduplication, field-speed sensitivity, reconstruction uncertainty, tangent
@@ -203,7 +203,7 @@ endpoints below and above field speed, the exact-$c_f$ rail, resource
 exhaustion, full certificate records, and reproducible input-sensitive digests.
 
 The certified-acceleration test file
-[tests/test_eom_oracle_certified_acceleration.py](../../../tests/test_eom_oracle_certified_acceleration.py)
+[tests/test_eom_oracle_certified_acceleration.py](../../../../tests/test_eom_oracle_certified_acceleration.py)
 covers outward exponential enclosure, analytic stationary sharp acceleration,
 an exact-$c_f$ silent row, an unclamped super-$c_f$ receiver, multiple-root
 summation, explicit inactive self-pairs, tangent-root sharp failure, finite-width
@@ -213,7 +213,7 @@ row-to-total reconstruction, missing self-pairs, duplicate pairs, and
 inconsistent per-path data.
 
 The coupled-evolution test file
-[tests/test_eom_oracle_certified_evolution.py](../../../tests/test_eom_oracle_certified_evolution.py)
+[tests/test_eom_oracle_certified_evolution.py](../../../../tests/test_eom_oracle_certified_evolution.py)
 covers exact inertial self-history evolution, unclamped super-$c_f$ evolution,
 complete binary ordered-pair snapshots, symmetric coupled binary motion,
 step-budget rejection, correction exhaustion, memory-boundary rejection,
@@ -222,7 +222,7 @@ future-history input, and unchanged-history publication on every rejected
 route.
 
 The Phase 4 test file
-[tests/test_eom_oracle_phase4_acceptance.py](../../../tests/test_eom_oracle_phase4_acceptance.py)
+[tests/test_eom_oracle_phase4_acceptance.py](../../../../tests/test_eom_oracle_phase4_acceptance.py)
 covers persistent root identities across consecutive certified slabs,
 root-count event routing, certified finite-width tangent-event impulse,
 event-quadrature exhaustion, exact checkpoint roundtrip and tamper rejection,

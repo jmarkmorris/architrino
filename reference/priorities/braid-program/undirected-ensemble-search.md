@@ -7,7 +7,7 @@
 - Status: `blocked-on-instrument-reacceptance`
 - Claim level: `priority-design`
 - Execution instrument:
-  [EOM Attractor-Search Execution Instrument](../app-solver/attractor-search-instrument.md)
+  [EOM Attractor-Search Execution Instrument](../app-solver/campaigns/attractor-search-instrument.md)
 
 This packet retains the scientific rationale, seed design, observables,
 persistence criteria, and promotion rules for the undirected ensemble

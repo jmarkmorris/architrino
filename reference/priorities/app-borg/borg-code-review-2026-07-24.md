@@ -4,7 +4,7 @@ Status: reconciled against current Borg source and tests on 2026-07-26. This pac
 
 ## Current Verdict
 
-One current contract failure remains: the master-equation source snapshot hash in `reference/priorities/app-solver/master-eom-binding-v1.md:14` is stale again. One non-blocking architecture follow-up also remains: the Borg composition root and its full-row panel rendering are still large and coupled. All original correctness, state-isolation, replay-provenance, HTTP-lifecycle, and bounded-history findings are closed in current source with the evidence below.
+One current contract failure remains: the master-equation source snapshot hash in `reference/priorities/app-solver/contracts/master-eom-binding-v1.md:14` is stale again. One non-blocking architecture follow-up also remains: the Borg composition root and its full-row panel rendering are still large and coupled. All original correctness, state-isolation, replay-provenance, HTTP-lifecycle, and bounded-history findings are closed in current source with the evidence below.
 
 `node --test tests/borg-*.test.js` currently reports 164 passes and one failure. The failure is `tests/borg-eom-migration.test.js:492-516`: the binding record pins `9ec3045d316bcbcc60dc3e61fcfaad4642b83af857024856f6684364ef7cab4d`, while the live `content/markdown/aaa/dynamics/master-equation.md` hashes to `f1ae1137484b7c5367eb094ad49a0bfdfb72161d21aa06556de4e0ba2d99d72c`.
 
@@ -14,7 +14,7 @@ Plainly: the Borg repairs are still present. The suite is red because a provenan
 
 ### A1. Refresh or redesign the master-equation source snapshot binding — confirmed
 
-- **Current evidence:** `reference/priorities/app-solver/master-eom-binding-v1.md:14` and `tests/borg-eom-migration.test.js:492-516`.
+- **Current evidence:** `reference/priorities/app-solver/contracts/master-eom-binding-v1.md:14` and `tests/borg-eom-migration.test.js:492-516`.
 - **Claim grade:** measured contract-test failure plus directly recomputed SHA-256.
 - **Scope:** app-EOM provenance contract; not a Borg application-behavior defect.
 - **Remediation:** update the binding record through its owning app-EOM provenance procedure, or replace the repeatedly drifting whole-document pin with a stable, explicitly owned source snapshot whose update rule is enforced outside unrelated Borg runtime tests.

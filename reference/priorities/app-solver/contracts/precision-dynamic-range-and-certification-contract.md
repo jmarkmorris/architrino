@@ -4,8 +4,8 @@
 
 - Contract id: eom_numeric_certification/v0
 - Stage: frozen-requirements
-- Mathematical authority: [master-eom-binding-v1.md](master-eom-binding-v1.md)
-- Evolution authority: [evolution-contract-v1.md](evolution-contract-v1.md)
+- Mathematical authority: [master-eom-binding-v1.md](./master-eom-binding-v1.md)
+- Evolution authority: [evolution-contract-v1.md](./evolution-contract-v1.md)
 - Production implementation: not selected
 - Production language and accelerator stack: not selected
 - Non-EOM output of any origin: no numeric authority for EOM

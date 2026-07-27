@@ -11,7 +11,6 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 5. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
 6. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
 7. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
-8. `b1_1_score_landscape_manifest_freeze` — [BP-009](#bp-009--b11-score-landscape-manifest-freeze). Status: `Queued`.
 
 ## Queued
 
@@ -30,14 +29,6 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 - **Request / acceptance:** Adjudicate the 47 curated `mining/` leads and record one keep, route, defer, or reject disposition for each.
 - **Evidence / blocker:** Mined leads remain priority-only until accepted into a proof route or corpus edit.
 - **Completion:** No curated lead remains without a disposition.
-
-### BP-009 — B1.1 score-landscape manifest freeze
-
-- **Status:** Queued
-- **Priority object:** `b1_1_score_landscape_manifest_freeze`
-- **Request / acceptance:** Implement and validate the score-free manifest builder, exact 377-row manifest, complete-cycle protocol, write-once runner contract, and separately bound dense-root residual audit required by the [coordinator-reviewed local-landscape design](b1-1-score-landscape-diagnostic-predeclaration.md). Do not evaluate a causal root or score a row.
-- **Evidence / blocker:** The [closed retained diagnosis](evidence/2026-07-27-bc-score-landscape-diagnosis.md) identifies B1.1 sample 5 as an isolated lowest retained row but not a finite-width basin. The design remains non-executable until its machine identities are frozen.
-- **Completion:** A dry-run receipt proves the exact center identity, 377 unique declared rows, held-out construction, protocol validity, implementation hashes, and write-once paths without analytical evaluation. The separately reviewed next step is then a center-only capability pilot, not the remaining 376-row search.
 
 ## Deferred / blocked
 
@@ -90,7 +81,12 @@ No rows.
 
 ## Awaiting verification
 
-No rows.
+### BP-009 — B1.1 score-landscape manifest freeze
+
+- **Status:** Awaiting verification
+- **Priority object:** `b1_1_score_landscape_manifest_freeze`
+- **Result:** The [frozen review packet](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.md) binds the exact 377-row manifest, complete-cycle protocol, write-once output paths, implementation hashes, null-score dispositions, and separately authored dense-root audit. The dry-run receipt records zero root evaluations and zero scores.
+- **Review boundary:** Operator review may accept or reject the freeze. It does not authorize the center-only pilot, the remaining 376 rows, the multi-frequency slice, any random or broad search, threshold relaxation, or a solver campaign.
 
 ## Verified
 

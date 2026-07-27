@@ -6,8 +6,8 @@
 - Date: 2026-07-18
 - Stage: `ratified-binding-input`
 - Owning queue item: `precision_convergence_and_failure_policy`
-- Mathematical authority: [Master EOM Binding v1](master-eom-binding-v1.md)
-- Evolution authority: [Evolution Contract v1](evolution-contract-v1.md)
+- Mathematical authority: [Master EOM Binding v1](./master-eom-binding-v1.md)
+- Evolution authority: [Evolution Contract v1](./evolution-contract-v1.md)
 - Operator ratification: `accepted-2026-07-18`
 - Claim grade: `derived-ratified`
 

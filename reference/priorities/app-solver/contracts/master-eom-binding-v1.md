@@ -10,7 +10,7 @@
 - Ordinary transmitter-side folds: `finite-width-route-preserved`
 - Coincident same-transmitter root birth: `fail-closed`
 - Higher or undeclared singular strata: `fail-closed`
-- Canonical document: [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md)
+- Canonical document: [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md)
 - Source snapshot SHA-256: `9ec3045d316bcbcc60dc3e61fcfaad4642b83af857024856f6684364ef7cab4d`
 
 The two `fail-closed` labels above are retained binding values. In current human-facing terminology, verification is incomplete for both unresolved singular-event classes and their disposition is not advanced.

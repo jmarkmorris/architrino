@@ -3,6 +3,7 @@
 #include "architrino/eom/CoupledEvolution.hpp"
 
 #include <cstddef>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -20,11 +21,13 @@ struct NativeEvolutionCheckpoint {
   std::string accepted_time;
   std::string controller_step_size;
   std::size_t controller_certificate_cost_cooldown_remaining = 0;
+  std::string joint_history_mode;
   std::string model_fingerprint;
   std::string checkpoint_fingerprint;
   std::size_t accepted_step_count;
   std::size_t rejected_step_count;
   std::vector<NativeCheckpointPath> paths;
+  std::map<std::string, JointAffineRetainedHistory> joint_histories;
 };
 
 [[nodiscard]] std::string native_evolution_model_fingerprint(

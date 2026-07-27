@@ -425,8 +425,8 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   observables, persistence criteria, and promotion rules into
   [undirected-ensemble-search.md](undirected-ensemble-search.md).
 - EOM now retains the reusable profiler and checkpoint-chunked harness state in
-  its [attractor-search instrument packet](../app-solver/attractor-search-instrument.md)
-  and [work log](../app-solver/attractor-search-work-log.md).
+  its [attractor-search instrument packet](../app-solver/campaigns/attractor-search-instrument.md)
+  and [work log](../app-solver/campaigns/attractor-search-work-log.md).
 - Deleted the redundant `eom-attractor-search` directory. No gate, evidence
   status, campaign rank, or physical claim changed.
 
@@ -515,3 +515,21 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   dense-admitted and its own machine manifest is frozen. No EOM solver, path
   evolution, analytical search, threshold relaxation, or physical claim was
   made.
+
+## 2026-07-27 — BP-009 score-free manifest and instrument freeze completed
+
+- Reconstructed sealed B1.1 sample 5 from the canonical source with the
+  original score-free sampler, seed, and ordinal. Its sampled-spec and
+  exact-source SHA-256 identities match the retained declaration without
+  reading or recomputing its score.
+- Froze exactly 377 unique materialized rows: one center, 48 axial, 264
+  pairwise, and 64 independently seeded held-out Latin-hypercube rows. The
+  held-out rows retain all 1,536 full pre-conversion SHA-256 counter tokens.
+- Bound the $c_f=1$ complete-cycle protocol, 377 create-exclusive output paths,
+  unchanged handoff thresholds, root-completeness gates, null-score
+  dispositions, implementation hashes, and separately authored dense-root
+  residual contract. Focused validation passed 6/6.
+- The write-once receipt records zero causal-root evaluations, zero scores, and
+  no campaign output paths created. BP-009 now awaits operator verification;
+  the center-only pilot and every search remain separately unauthorized. See
+  the [freeze packet](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.md).

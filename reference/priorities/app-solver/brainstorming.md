@@ -4,7 +4,7 @@ This file holds provisional feature ideas, performance directions, validation po
 
 ## Routing Rules
 
-- Keep the defining evolution contract in [application-and-engine-contract.md](application-and-engine-contract.md).
+- Keep the defining evolution contract in [application-and-engine-contract.md](./contracts/application-and-engine-contract.md).
 - Keep the active queue in [work-queue.md](work-queue.md) and the strategic contract compact in [priorities.md](priorities.md).
 - Do not let performance, UI, storage, or visualization work outrank correct coupled Master EOM evolution and independent validation.
 

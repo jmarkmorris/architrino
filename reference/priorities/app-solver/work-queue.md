@@ -18,9 +18,9 @@ This is the canonical execution ledger for accepted App Solver work. [priorities
 1. `coupled_retained_history_integrator` — [EOM-002](#eom-002--coupled-retained-history-integrator). Status: `In progress`.
 2. `persistent_long_run_checkpoint_and_campaign_driver` — [EOM-003](#eom-003--persistent-long-run-checkpoint-and-campaign-driver). Status: `In progress`.
 3. `precision_convergence_and_failure_policy` — [EOM-004](#eom-004--precision-convergence-and-failure-policy). Status: `In progress`.
-4. `deterministic_cpu_multithreading_and_simd` — [EOM-005](#eom-005--deterministic-cpu-multithreading-and-simd). Status: `In progress`.
+4. `deterministic_cpu_multithreading_and_simd` — [EOM-005](#eom-005--deterministic-cpu-multithreading-and-simd). Status: `Queued`.
 5. `first_binary_and_claim_outcome_gates` — [EOM-006](#eom-006--first-binary-and-claim-outcome-gates). Status: `Deferred / blocked`.
-6. `eom_application_surface` — [EOM-007](#eom-007--eom-application-surface). Status: `In progress`.
+6. `eom_application_surface` — [EOM-007](#eom-007--eom-application-surface). Status: `Queued`.
 7. `master_eom_binding_hash_drift` — [EOM-001](#eom-001--master-eom-binding-hash-drift). Status: `Queued`.
 8. `performance_architecture_survey_and_baseline` — [EOM-008](#eom-008--performance-architecture-survey-and-baseline). Status: `Deferred / blocked`.
 9. `large_population_algorithmic_scaling` — [EOM-009](#eom-009--large-population-algorithmic-scaling). Status: `Deferred / blocked`.
@@ -54,30 +54,30 @@ This is the canonical execution ledger for accepted App Solver work. [priorities
 - **Evidence / blocker:** The open burden is live snapshot-row summation, the actual 18-by-18 endpoint-corrector Krawczyk enclosure, coefficient/remainder append and cache retention, and unchanged-hash adjudication.
 - **Completion:** Declared ladders converge against the independent oracle and difficult rows either certify or fail closed.
 
+## Queued
+
 ### EOM-005 — Deterministic CPU multithreading and SIMD
 
-- **Status:** In progress
+- **Status:** Queued
 - **Priority object:** `deterministic_cpu_multithreading_and_simd`
 - **Request / acceptance:** Optimize the measured bounded-population workload with bounded threads, SIMD, cache-aware layouts, deterministic reductions, cancellation, and single-thread replay.
-- **Evidence / blocker:** Persistent worker, cancellation, and replay exist; SIMD proof and representative long-horizon measurements remain. Depends on EOM-002.
+- **Evidence / blocker:** Persistent worker, cancellation, and replay exist; SIMD proof and representative long-horizon measurements remain. Queue this after the coupled retained-history and precision acceptance horizon are executable.
 - **Completion:** Measured speed and cost evidence accompanies deterministic agreement and independent-oracle checks.
 
 ### EOM-007 — EOM application surface
 
-- **Status:** In progress
+- **Status:** Queued
 - **Priority object:** `eom_application_surface`
 - **Request / acceptance:** Complete retained-history import, duration/step controls, precision display, progress, cancellation, checkpointing, convergence, failure diagnostics, and provenance for bounded populations.
-- **Evidence / blocker:** Borg has the active run-control consumer surface. Depends on bounded-population portions of EOM-002 through EOM-005.
+- **Evidence / blocker:** Borg already provides the current run-control consumer surface. Queue remaining surface work behind the coupled retained-history and precision acceptance boundary.
 - **Completion:** The run/inspect surface exposes no app-local solver path and passes focused consumer integration checks.
-
-## Queued
 
 ### EOM-001 — Master-EOM binding hash drift
 
 - **Status:** Queued
 - **Source:** [Borg code review A1](../app-borg/borg-code-review-2026-07-24.md)
 - **Request / acceptance:** Repair the App Solver provenance binding so the declared Master Equation source snapshot and recorded digest remain synchronized under an explicit owning procedure. Either refresh the binding through that procedure or replace the repeatedly drifting whole-document pin with a stable, explicitly owned source snapshot and enforced update rule.
-- **Current evidence:** `reference/priorities/app-solver/master-eom-binding-v1.md` pins `9ec3045d316bcbcc60dc3e61fcfaad4642b83af857024856f6684364ef7cab4d`, while the live `content/markdown/aaa/dynamics/master-equation.md` currently hashes to `f1ae1137484b7c5367eb094ad49a0bfdfb72161d21aa06556de4e0ba2d99d72c`. `tests/borg-eom-migration.test.js:492-516` therefore leaves the Borg family at 164/165.
+- **Current evidence:** `reference/priorities/app-solver/contracts/master-eom-binding-v1.md` pins `9ec3045d316bcbcc60dc3e61fcfaad4642b83af857024856f6684364ef7cab4d`, while the live `content/markdown/aaa/dynamics/master-equation.md` currently hashes to `f1ae1137484b7c5367eb094ad49a0bfdfb72161d21aa06556de4e0ba2d99d72c`. `tests/borg-eom-migration.test.js:492-516` therefore leaves the Borg family at 164/165.
 - **Boundary:** This is an App Solver provenance-contract repair, not a Borg runtime regression or an acceptance claim for solver output.
 - **Completion:** The recorded digest equals a fresh SHA-256 of its declared source under the adopted binding rule, and `node --test tests/borg-*.test.js` passes 165/165.
 

@@ -1,10 +1,10 @@
 # B1.1 Score-Landscape Diagnostic Predeclaration
 
-Status: coordinator-reviewed priority-only design. Analytical execution is
-blocked until the exact machine manifest, protocol, runner, and independent
-dense-root audit bindings below are frozen and validated without scoring a
-row. This file does not reopen or modify the sealed 2026-07-25 B1/Family-C
-campaign.
+Status: coordinator-reviewed priority-only design with BP-009 machine freeze
+complete and awaiting operator review. The exact manifest, protocol, runner,
+and independent dense-root audit bindings are frozen without scoring a row.
+Analytical execution remains unauthorized. This file does not reopen or modify
+the sealed 2026-07-25 B1/Family-C campaign.
 
 Claim grade: **measured diagnostic** for the retained-row diagnosis below;
 **declared protocol** for the proposed population, reductions, dispositions,
@@ -75,6 +75,29 @@ measurement for this stronger protocol.
 
 Plainly: first freeze what will be run, then measure one already-known center.
 Only a valid and applicable center can authorize the bounded landscape batch.
+
+## BP-009 machine freeze
+
+BP-009 produced the score-free
+[377-row manifest](campaigns/b1-1-score-landscape-manifest.v1.json), frozen
+[complete-cycle protocol](campaigns/b1-1-score-landscape-complete-cycle-protocol.v1.json),
+write-once dry-run
+[receipt](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.v1.json),
+and [review packet](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.md).
+The manifest byte SHA-256 is
+`a1e6ca5d021dab22e1aef978463f87c4057295aa619217948b7e048349f58882`;
+the protocol byte SHA-256 is
+`dbb58ffeb7e1c85214f2f7abffea85ba94b93c13ccfa3158060f0f61271611d7`;
+and the receipt byte SHA-256 is
+`1bfcefacd32ba7879e4fbc088330c4a50d33d27c79cf36dd773127c1e519a804`.
+
+All 377 rows retain null analytical state. The runner implements only
+`dry-run` and `check`, and the separately authored dense-root instrument was
+bound but not executed.
+
+Plainly: the missing machine identities are now fixed and checkable. Operator
+review, not this freeze, decides whether the separately scoped center-only
+capability pilot may be implemented or run.
 
 ## Retained-row diagnosis
 

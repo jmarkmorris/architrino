@@ -4,7 +4,7 @@
 
 - Architecture id: `eom_million_path_execution/v0`
 - Stage: `accepted-priority-design`
-- Governing amendment: [eom_evolution_contract/v0/amendment-1](evolution-contract-v1-amendment-1-million-path-scale.md)
+- Governing amendment: [eom_evolution_contract/v0/amendment-1](./evolution-contract-v1-amendment-1-million-path-scale.md)
 - Mathematical model: unchanged `master_eom_binding/v0`
 - Numeric contract: unchanged `eom_numeric_certification/v0`
 - Implementation status: not started

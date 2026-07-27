@@ -8,9 +8,9 @@
 - Implementation status: `complete-for-declared-first-path-round`
 - Production authority: none
 - Governing contracts:
-  [evolution-contract-v1-amendment-1-million-path-scale.md](evolution-contract-v1-amendment-1-million-path-scale.md)
+  [evolution-contract-v1-amendment-1-million-path-scale.md](../contracts/evolution-contract-v1-amendment-1-million-path-scale.md)
   and
-  [million-path-certified-execution-architecture.md](million-path-certified-execution-architecture.md)
+  [million-path-certified-execution-architecture.md](../contracts/million-path-certified-execution-architecture.md)
 
 ## Closure Target
 
@@ -158,7 +158,7 @@ Stop and report without weakening the certificate if:
 
 The round delivers a scoped EOM solver implementation and tests, a focused
 record under `evidence/`, a concise dated entry in
-[work-log.md](work-log.md), measured compression and performance results, and
+[work-log.md](../work-log.md), measured compression and performance results, and
 claim grades on every conclusion.
 
 Correctness is overturned by any independently detected root inside an

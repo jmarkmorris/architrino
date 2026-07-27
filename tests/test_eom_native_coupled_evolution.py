@@ -269,9 +269,10 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
     def test_checkpoint_roundtrip_is_atomic_tamper_evident_and_continuous(self) -> None:
         checkpoint = self.packet["checkpoint"]
         self.assertEqual(
-            checkpoint["schema"], "eom_native_evolution_checkpoint/v5"
+            checkpoint["schema"], "eom_native_evolution_checkpoint/v6"
         )
         self.assertGreater(checkpoint["byte_length"], 0)
+        self.assertEqual(checkpoint["joint_history_mode"], "disabled")
         self.assertEqual(
             checkpoint["checkpoint_fingerprint"],
             checkpoint["roundtrip_fingerprint"],
@@ -287,6 +288,19 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(
             checkpoint["direct_histories"], checkpoint["resumed_histories"]
         )
+        self.assertEqual(checkpoint["joint_history_count"], 2)
+        self.assertEqual(checkpoint["joint_checkpoint_mode"], "active")
+        self.assertEqual(checkpoint["joint_history_segment_count"], 2)
+        self.assertEqual(checkpoint["joint_resume_history_count"], 2)
+        self.assertEqual(checkpoint["joint_resume_segment_count"], 3)
+        self.assertEqual(
+            checkpoint["joint_direct_histories"],
+            checkpoint["joint_resumed_histories"],
+        )
+        self.assertEqual(
+            checkpoint["joint_fallback_mode"], "ordinary_fallback"
+        )
+        self.assertTrue(checkpoint["joint_fallback_resume_applied"])
 
     def test_self_root_entering_through_excluded_coincident_endpoint_is_not_a_fold(self) -> None:
         certificate = self.packet["endpoint_root_continuation"]

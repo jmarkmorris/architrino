@@ -5,7 +5,7 @@
 - Date: 2026-07-16
 - Claim level: `measured-current-binary`
 - Route packet:
-  [../finite-width-close-approach-caustic-route.md](../finite-width-close-approach-caustic-route.md)
+  [../finite-width-close-approach-caustic-route.md](../contracts/finite-width-close-approach-caustic-route.md)
 - Outcome: `adjudicated-halt`
 - Transit claim: none
 - Core-refinement claim: `certified` at $\epsilon_c=0.05$ on the fixed

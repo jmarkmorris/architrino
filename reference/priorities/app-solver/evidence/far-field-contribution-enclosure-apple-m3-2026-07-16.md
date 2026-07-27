@@ -8,7 +8,7 @@ recorded below.
 Subject: `coupled_retained_history_integrator`
 
 Specification:
-[`../far-field-contribution-enclosure.md`](../far-field-contribution-enclosure.md)
+[`../far-field-contribution-enclosure.md`](../contracts/far-field-contribution-enclosure.md)
 
 Frozen law:
 the then-current Master EOM binding

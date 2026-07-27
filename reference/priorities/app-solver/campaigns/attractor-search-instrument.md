@@ -2,12 +2,12 @@
 
 ## Packet Metadata
 
-- Parent: [EOM](priorities.md)
+- Parent: [EOM](../priorities.md)
 - Status: `accepted-for-bounded-campaign-use`
 - Claim level: `priority-design`
-- Scientific campaign owner: [Braid Program](../braid-program/priorities.md)
-- Campaign design: [Undirected Ensemble Search](../braid-program/undirected-ensemble-search.md)
-- Instrument history: [Attractor-Search Instrument Work Log](attractor-search-work-log.md)
+- Scientific campaign owner: [Braid Program](../../braid-program/priorities.md)
+- Campaign design: [Undirected Ensemble Search](../../braid-program/undirected-ensemble-search.md)
+- Instrument history: [Attractor-Search Instrument Work Log](./attractor-search-work-log.md)
 
 ## Purpose
 
@@ -17,7 +17,7 @@ instrument consists of the release-workload profiler and checkpoint-chunked
 ensemble harness, together with deterministic resume, record emission,
 performance attribution, and campaign-driver behavior.
 
-The [Braid Program](../braid-program/priorities.md) owns the scientific use of
+The [Braid Program](../../braid-program/priorities.md) owns the scientific use of
 that capability: declared seed families, persistence criteria, fate
 classification, collapse adjudication, and any physical promotion.
 
@@ -29,7 +29,7 @@ classification, collapse adjudication, and any physical promotion.
   resume, cumulative accounting, exact checkpoint-to-record token parity,
   declared cross-chunk comparison, and certified release-root propagation.
   The bounded evidence is recorded in the
-  [G3/G4 reacceptance packet](evidence/attractor-resume-g3-g4-reacceptance-2026-07-27.md).
+  [G3/G4 reacceptance packet](../evidence/attractor-resume-g3-g4-reacceptance-2026-07-27.md).
 - No persistent assembly, braid, or attractor is booked.
 - Reproduction against the harness's own uninterrupted execution establishes
   determinism and serialization identity only; campaign correctness still

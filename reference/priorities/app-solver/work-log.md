@@ -1,6 +1,6 @@
 # EOM Work Log
 
-This file holds dated decisions, implementation status, validation results, failed paths, migration handoffs, and operator/developer communication for the EOM priority area. Keep strategy and status in [priorities.md](priorities.md), accepted executable tasks in [work-queue.md](work-queue.md), provisional ideas in [brainstorming.md](brainstorming.md), and the defining contract in [application-and-engine-contract.md](application-and-engine-contract.md).
+This file holds dated decisions, implementation status, validation results, failed paths, migration handoffs, and operator/developer communication for the EOM priority area. Keep strategy and status in [priorities.md](priorities.md), accepted executable tasks in [work-queue.md](work-queue.md), provisional ideas in [brainstorming.md](brainstorming.md), and the defining contract in [application-and-engine-contract.md](./contracts/application-and-engine-contract.md).
 
 ## 2026-07-26 — Priority Directory Renamed
 
@@ -1920,10 +1920,10 @@ This file holds dated decisions, implementation status, validation results, fail
   conservation require new derived structure or an explicit restriction of
   the claimed equation domain.
 - **Artifacts:**
-  [transmitter-side singular-event analysis](analysis-transmitter-factor-fold-and-coincident-birth.md),
-  [history-only conservation obstruction](analysis-transmitter-factor-conservation-obstruction.md),
-  [going-forward walkthrough](master-equation-import-audit-walkthrough-2026-07-18.md),
-  and [promotion-readiness matrix](master-equation-promotion-readiness-matrix.md).
+  [transmitter-side singular-event analysis](./analysis/analysis-transmitter-factor-fold-and-coincident-birth.md),
+  [history-only conservation obstruction](./analysis/analysis-transmitter-factor-conservation-obstruction.md),
+  [going-forward walkthrough](./analysis/master-equation-import-audit-walkthrough-2026-07-18.md),
+  and [promotion-readiness matrix](./analysis/master-equation-promotion-readiness-matrix.md).
 
 ## 2026-07-19 — Receiver-factor change-specific promotion audit
 
@@ -1950,8 +1950,8 @@ This file holds dated decisions, implementation status, validation results, fail
 - **Unchanged authority boundary:** no canonical equation, EOM solver
   semantics, frozen evidence, or generated artifact was changed.
 - **Artifacts:**
-  [going-forward walkthrough](master-equation-import-audit-walkthrough-2026-07-18.md),
-  and [promotion-readiness matrix](master-equation-promotion-readiness-matrix.md).
+  [going-forward walkthrough](./analysis/master-equation-import-audit-walkthrough-2026-07-18.md),
+  and [promotion-readiness matrix](./analysis/master-equation-promotion-readiness-matrix.md).
 
 ## 2026-07-19 — Joint coincident-transition and conservation necessity audit
 
@@ -1977,10 +1977,10 @@ This file holds dated decisions, implementation status, validation results, fail
   remains barred; the scoped receiver-factor correction remains implemented
   and unchanged.
 - **Artifacts:**
-  [transmitter-side singular-event analysis](analysis-transmitter-factor-fold-and-coincident-birth.md),
-  [history-only conservation obstruction](analysis-transmitter-factor-conservation-obstruction.md),
-  [going-forward walkthrough](master-equation-import-audit-walkthrough-2026-07-18.md),
-  and [promotion-readiness matrix](master-equation-promotion-readiness-matrix.md).
+  [transmitter-side singular-event analysis](./analysis/analysis-transmitter-factor-fold-and-coincident-birth.md),
+  [history-only conservation obstruction](./analysis/analysis-transmitter-factor-conservation-obstruction.md),
+  [going-forward walkthrough](./analysis/master-equation-import-audit-walkthrough-2026-07-18.md),
+  and [promotion-readiness matrix](./analysis/master-equation-promotion-readiness-matrix.md).
 
 ## 2026-07-19 — Borg receiver-factor contract migration closure
 

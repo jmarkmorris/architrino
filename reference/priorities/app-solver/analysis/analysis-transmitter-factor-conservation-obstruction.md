@@ -197,7 +197,7 @@ If all wake quantities remain deterministic functions of transmitter history, th
 
 The coincident transition and the conservation accounts cannot be supplied as two independent patches.
 
-Section 3.6 of [Transmitter-Side Fold and Coincident-Birth Analysis](analysis-transmitter-factor-fold-and-coincident-birth.md) proves that a finite same-transmitter transition must change the acceleration on an open post-birth neighborhood. On the exact quadratic control, any multiplicative replacement $M$ must satisfy
+Section 3.6 of [Transmitter-Side Fold and Coincident-Birth Analysis](./analysis-transmitter-factor-fold-and-coincident-birth.md) proves that a finite same-transmitter transition must change the acceleration on an open post-birth neighborhood. On the exact quadratic control, any multiplicative replacement $M$ must satisfy
 
 $$
 \int_0^L \frac{M(T)}{T^3}\,dT<\infty.
