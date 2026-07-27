@@ -15,7 +15,7 @@ test("Braid Search is a focused standalone app with configured local data", () =
 
   assert.match(
     html,
-    /<title>architrino Braid Search<\/title>/u,
+    /<title>Braid Search<\/title>/u,
   );
   assert.match(html, /id="compact-sweep-dashboard-app"/u);
   assert.match(
