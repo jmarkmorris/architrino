@@ -6,6 +6,12 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-26 — Causal Delay Feedback and Roots deferred
+
+- Merged the former `app-roots` packet into `dormant-deferred/app-causal-delay-feedback`.
+- Removed Causal Delay Feedback from the numeric ranking because its implementation lane is closed and the advanced Roots lesson remains a deferred teaching challenge.
+- Rewrote the numeric ranks contiguously and synchronized affected tracker metadata without changing component scores.
+
 ### 2026-07-26 — Archie interface owner consolidated
 
 - Merged the former `app-archie-interface` directory into `archie`.

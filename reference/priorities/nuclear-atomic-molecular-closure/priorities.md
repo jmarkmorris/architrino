@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `14`
+- Rank: `12`
 - Value: `9.24`
 - Cost: `5.8`
 - ROI: `1.59`

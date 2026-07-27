@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `26`
+- Rank: `24`
 - Value: `0.79`
 - Cost: `2.5`
 - ROI: `0.32`
@@ -49,4 +49,4 @@ Ordered by marginal ROI on 2026-07-17.
 - [app-borg](../app-borg/priorities.md)
 - [app-equation-mapping](../app-equation-mapping/priorities.md)
 - [app-animator](../app-animator/priorities.md)
-- [app-roots technical packet](../dormant-deferred/app-causal-delay-feedback/roots-product-plan.md)
+- [Deferred Roots teaching packet](../dormant-deferred/app-causal-delay-feedback/roots-product-plan.md)
