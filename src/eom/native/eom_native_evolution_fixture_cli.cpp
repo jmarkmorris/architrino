@@ -758,7 +758,7 @@ void print_all() {
       "joint-snapshot-control",
       {{"joint-a", "1", uncertain_static_history("joint-a", "0")},
        {"joint-b", "-1", uncertain_static_history("joint-b", "1")}},
-      "2", "2.01", "0.01", "0.01");
+      "2", "2.02", "0.01", "0.01");
   joint_snapshot_request.root_tolerance = "0.01";
   joint_snapshot_request.acceleration_tolerance = "10";
   std::vector<eom::NativePublishedPath> joint_ordinary_histories;
@@ -865,9 +865,13 @@ void print_all() {
   joint_evolution_request.joint_histories = joint_snapshot_histories;
   joint_evolution_request.position_tolerance = "10";
   joint_evolution_request.velocity_tolerance = "10";
+  auto joint_checkpoint_partial_request = joint_evolution_request;
+  joint_checkpoint_partial_request.diagnostic_maximum_accepted_steps = 1U;
   const auto joint_evolution =
-      eom::evolve_native_coupled_histories(joint_evolution_request);
-  if (joint_evolution.status != "completed" ||
+      eom::evolve_native_coupled_histories(joint_checkpoint_partial_request);
+  if (joint_evolution.status != "halted" ||
+      joint_evolution.halt_code !=
+          "diagnostic_accepted_step_limit_reached" ||
       joint_evolution.joint_histories.size() != 2U ||
       joint_evolution.joint_histories.at("joint-a").segments().size() <= 1U) {
     throw std::runtime_error(
@@ -877,7 +881,7 @@ void print_all() {
              : "/" + joint_evolution.steps.back().failure_code));
   }
   const auto joint_checkpoint = eom::create_native_evolution_checkpoint(
-      joint_evolution_request, joint_evolution);
+      joint_checkpoint_partial_request, joint_evolution);
   const auto joint_checkpoint_roundtrip =
       eom::deserialize_native_evolution_checkpoint(
           eom::serialize_native_evolution_checkpoint(joint_checkpoint));
@@ -1287,7 +1291,7 @@ void print_all() {
       eom::resume_native_coupled_histories(
           adjudicated_joint_event_request,
           adjudicated_joint_checkpoint_roundtrip,
-          adjudicated_joint_event.accepted_end_time);
+          "2.9");
   if (adjudicated_joint_checkpoint_roundtrip.joint_history_mode !=
           "ordinary_fallback" ||
       !adjudicated_joint_checkpoint_roundtrip.joint_histories.empty() ||
@@ -1678,7 +1682,7 @@ void print_all() {
             << joint_checkpoint_roundtrip.joint_histories.size()
             << ",\"joint_checkpoint_mode\":\""
             << joint_checkpoint_roundtrip.joint_history_mode
-            << ",\"joint_history_segment_count\":"
+            << "\",\"joint_history_segment_count\":"
             << joint_checkpoint_roundtrip.joint_histories.at("joint-a")
                    .segments().size()
             << ",\"joint_resume_history_count\":"

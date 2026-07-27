@@ -290,9 +290,9 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         )
         self.assertEqual(checkpoint["joint_history_count"], 2)
         self.assertEqual(checkpoint["joint_checkpoint_mode"], "active")
-        self.assertEqual(checkpoint["joint_history_segment_count"], 2)
+        self.assertEqual(checkpoint["joint_history_segment_count"], 3)
         self.assertEqual(checkpoint["joint_resume_history_count"], 2)
-        self.assertEqual(checkpoint["joint_resume_segment_count"], 3)
+        self.assertEqual(checkpoint["joint_resume_segment_count"], 5)
         self.assertEqual(
             checkpoint["joint_direct_histories"],
             checkpoint["joint_resumed_histories"],
