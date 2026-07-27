@@ -2,6 +2,7 @@
 
 #include "architrino/eom/Interval.hpp"
 
+#include <span>
 #include <string>
 #include <vector>
 
@@ -17,8 +18,8 @@ struct DelayedRootSensitivityRequest {
   IntervalVector transmitter_velocity;
   Interval field_speed = Interval::point(1.0);
   Interval certified_transmitter_factor = Interval::point(1.0);
-  std::vector<IntervalVector> receiver_position_coefficients;
-  std::vector<IntervalVector> transmitter_position_coefficients;
+  std::span<const IntervalVector> receiver_position_coefficients;
+  std::span<const IntervalVector> transmitter_position_coefficients;
 };
 
 struct DelayedRootSensitivityCertificate {

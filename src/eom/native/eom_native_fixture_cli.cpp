@@ -1011,6 +1011,12 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
 }
 
 void print_all() {
+  const std::array<std::array<double, 3>, 1>
+      joint_receiver_position_coefficients{{{0.01, 0.0, 0.0}}};
+  const std::array<std::array<double, 3>, 1>
+      joint_transmitter_position_coefficients{{{0.004, 0.0, 0.0}}};
+  const std::array<std::array<double, 3>, 1>
+      joint_transmitter_velocity_coefficients{{{0.002, 0.0, 0.0}}};
   const eom::JointSharpRowRequest joint_sharp_request{
       .point_displacement = {
           eom::Interval::point(2.0), eom::Interval::point(0.0),
@@ -1030,9 +1036,12 @@ void print_all() {
       .field_speed = eom::Interval::point(1.0),
       .certified_transmitter_factor = eom::Interval(0.7, 0.8),
       .signed_coupling = eom::Interval::point(3.0),
-      .receiver_position_coefficients = {{0.01, 0.0, 0.0}},
-      .transmitter_position_coefficients = {{0.004, 0.0, 0.0}},
-      .transmitter_velocity_coefficients = {{0.002, 0.0, 0.0}},
+      .receiver_position_coefficients =
+          joint_receiver_position_coefficients,
+      .transmitter_position_coefficients =
+          joint_transmitter_position_coefficients,
+      .transmitter_velocity_coefficients =
+          joint_transmitter_velocity_coefficients,
       .receiver_position_remainder_radii = {1e-5, 1e-5, 1e-5},
       .transmitter_position_remainder_radii = {1e-5, 1e-5, 1e-5},
       .transmitter_velocity_remainder_radii = {1e-5, 1e-5, 1e-5},
@@ -1141,6 +1150,14 @@ void print_all() {
           .receiver_factor = eom::Interval::point(1.0),
           .transmitter_segment_index = 0U,
       });
+  const std::array<eom::IntervalVector, 1>
+      delayed_root_analytic_receiver_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.01), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
+  const std::array<eom::IntervalVector, 1>
+      delayed_root_analytic_transmitter_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.004), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
   const auto delayed_root_analytic =
       eom::certify_delayed_root_sensitivity({
           .displacement = {
@@ -1151,13 +1168,19 @@ void print_all() {
               eom::Interval::point(0.0)},
           .field_speed = eom::Interval::point(1.0),
           .certified_transmitter_factor = eom::Interval::point(0.75),
-          .receiver_position_coefficients = {{
-              eom::Interval::point(0.01), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
-          .transmitter_position_coefficients = {{
-              eom::Interval::point(0.004), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
+          .receiver_position_coefficients =
+              delayed_root_analytic_receiver_coefficients,
+          .transmitter_position_coefficients =
+              delayed_root_analytic_transmitter_coefficients,
       });
+  const std::array<eom::IntervalVector, 1>
+      delayed_root_zero_receiver_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.01), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
+  const std::array<eom::IntervalVector, 1>
+      delayed_root_zero_transmitter_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.004), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
   const auto delayed_root_zero_factor =
       eom::certify_delayed_root_sensitivity({
           .displacement = {
@@ -1168,13 +1191,23 @@ void print_all() {
               eom::Interval::point(0.0)},
           .field_speed = eom::Interval::point(0.25),
           .certified_transmitter_factor = eom::Interval::point(0.0),
-          .receiver_position_coefficients = {{
-              eom::Interval::point(0.01), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
-          .transmitter_position_coefficients = {{
-              eom::Interval::point(0.004), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
+          .receiver_position_coefficients =
+              delayed_root_zero_receiver_coefficients,
+          .transmitter_position_coefficients =
+              delayed_root_zero_transmitter_coefficients,
       });
+  const std::array<eom::IntervalVector, 1>
+      sharp_acceleration_receiver_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.01), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
+  const std::array<eom::IntervalVector, 1>
+      sharp_acceleration_transmitter_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.004), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
+  const std::array<eom::IntervalVector, 1>
+      sharp_acceleration_velocity_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.002), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
   const auto sharp_acceleration_analytic =
       eom::certify_sharp_acceleration_sensitivity({
           .displacement = {
@@ -1189,15 +1222,12 @@ void print_all() {
           .field_speed = eom::Interval::point(1.0),
           .certified_transmitter_factor = eom::Interval::point(0.75),
           .signed_coupling = eom::Interval::point(3.0),
-          .receiver_position_coefficients = {{
-              eom::Interval::point(0.01), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
-          .transmitter_position_coefficients = {{
-              eom::Interval::point(0.004), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
-          .transmitter_velocity_coefficients = {{
-              eom::Interval::point(0.002), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
+          .receiver_position_coefficients =
+              sharp_acceleration_receiver_coefficients,
+          .transmitter_position_coefficients =
+              sharp_acceleration_transmitter_coefficients,
+          .transmitter_velocity_coefficients =
+              sharp_acceleration_velocity_coefficients,
       });
   const auto sqrt_two_krawczyk = eom::certify_krawczyk_inclusion({
       .center = {1.4142},

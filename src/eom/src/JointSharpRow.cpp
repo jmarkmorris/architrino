@@ -26,7 +26,7 @@ double outward_sum(double left, double right) {
 
 bool affine_vector_inside(
     const IntervalVector& center,
-    const std::vector<std::array<double, 3>>& coefficients,
+    std::span<const std::array<double, 3>> coefficients,
     const std::array<double, 3>& remainder,
     const IntervalVector& box) {
   for (std::size_t axis = 0U; axis < 3U; ++axis) {
@@ -44,7 +44,7 @@ bool affine_vector_inside(
 std::string affine_containment_diagnostic(
     const char* state,
     const IntervalVector& center,
-    const std::vector<std::array<double, 3>>& coefficients,
+    std::span<const std::array<double, 3>> coefficients,
     const std::array<double, 3>& remainder,
     const IntervalVector& box) {
   double worst_ratio = 0.0;
@@ -82,7 +82,7 @@ std::string affine_containment_diagnostic(
 }
 
 std::vector<IntervalVector> interval_rows(
-    const std::vector<std::array<double, 3>>& rows) {
+    std::span<const std::array<double, 3>> rows) {
   std::vector<IntervalVector> result;
   result.reserve(rows.size());
   for (const auto& row : rows) result.push_back(point_vector(row));
@@ -217,11 +217,16 @@ JointSharpRowCertificate certify_joint_sharp_row(
       .certified_transmitter_factor =
           request.certified_transmitter_factor,
       .signed_coupling = request.signed_coupling,
-      .receiver_position_coefficients = std::move(box_receiver),
-      .transmitter_position_coefficients = std::move(box_transmitter),
-      .transmitter_velocity_coefficients =
-          std::move(box_transmitter_velocity),
+      .receiver_position_coefficients = box_receiver,
+      .transmitter_position_coefficients = box_transmitter,
+      .transmitter_velocity_coefficients = box_transmitter_velocity,
   });
+  const auto point_receiver =
+      interval_rows(request.receiver_position_coefficients);
+  const auto point_transmitter =
+      interval_rows(request.transmitter_position_coefficients);
+  const auto point_transmitter_velocity =
+      interval_rows(request.transmitter_velocity_coefficients);
   const auto point = certify_sharp_acceleration_sensitivity({
       .displacement = request.point_displacement,
       .transmitter_velocity = request.point_transmitter_velocity,
@@ -230,12 +235,9 @@ JointSharpRowCertificate certify_joint_sharp_row(
       .certified_transmitter_factor =
           request.certified_transmitter_factor,
       .signed_coupling = request.signed_coupling,
-      .receiver_position_coefficients =
-          interval_rows(request.receiver_position_coefficients),
-      .transmitter_position_coefficients =
-          interval_rows(request.transmitter_position_coefficients),
-      .transmitter_velocity_coefficients =
-          interval_rows(request.transmitter_velocity_coefficients),
+      .receiver_position_coefficients = point_receiver,
+      .transmitter_position_coefficients = point_transmitter,
+      .transmitter_velocity_coefficients = point_transmitter_velocity,
   });
   if (!box.certified || !point.certified) {
     const auto& failed = !box.certified ? box : point;
