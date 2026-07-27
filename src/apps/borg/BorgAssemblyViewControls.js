@@ -48,9 +48,6 @@ export function createBorgAssemblyViewControls({
     const presentation = createBorgAssemblyViewPresentation(entry);
     const translation = resolveBorgPrescribedTranslation(entry);
     dom.controls.hidden = false;
-    dom.dateChip.hidden = false;
-    dom.dateChip.textContent = presentation.provenance.date;
-    dom.dateChip.title = `Record date ${presentation.provenance.date}`;
     const prescribedGeometry = presentation.provenance.prescribedGeometry;
     const taxonomy = prescribedGeometry?.taxonomy;
     renderFieldRows(documentLike, dom.provenance, [
@@ -66,6 +63,7 @@ export function createBorgAssemblyViewControls({
       ["Physics invoked", prescribedGeometry ? "no — prescribed chart arithmetic only" : "see source engine provenance"],
       ["Run id", presentation.provenance.runId],
       ["Generating specification", presentation.provenance.generatingSpec],
+      ["Record date", presentation.provenance.date],
       ["Coverage", `${presentation.coverage.start} to ${presentation.coverage.end}`],
       ["Delay horizon h", presentation.delayHorizon],
     ]);
