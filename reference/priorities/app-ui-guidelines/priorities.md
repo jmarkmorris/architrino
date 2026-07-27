@@ -11,7 +11,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-ui`
-- Rank: `28`
+- Rank: `25`
 - Value: `0.76`
 - Cost: `3.5`
 - ROI: `0.22`
@@ -91,7 +91,7 @@ The detailed standard and audit live in [top-dynamic-control-bar.md](top-dynamic
 
 - [UI Guidelines](../../../content/markdown/aaa/archie/ui-guidelines.md)
 - [Navigation & Controls](../../../content/markdown/aaa/archie/navigation-and-controls.md)
-- [Equation Mapping App](../app-equation-mapping/priorities.md)
+- [Equation Mapping App](../dormant-deferred/app-equation-mapping/priorities.md)
 - [Causal Delay Feedback App](../dormant-deferred/app-causal-delay-feedback/priorities.md)
 - [Photon App](../app-photon/priorities.md)
 - [Animator Design and Interfaces](../app-animator/design-and-interfaces.md)

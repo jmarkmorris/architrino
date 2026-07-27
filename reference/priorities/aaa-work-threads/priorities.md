@@ -2,7 +2,8 @@
 
 This file is the canonical control surface for the overall `reference/priorities` ranking. Directory names are stable identities. Rank, status, classification, and task queues live here and in each workstream tracker, not in directory names.
 
-The full pre-split monolith is preserved at [dormant-deferred/priorities-legacy.md](../dormant-deferred/priorities-legacy.md).
+The pre-split monolith is retained in Git history rather than as a live
+priority document.
 
 ## Scoring System
 
@@ -26,17 +27,32 @@ The full pre-split monolith is preserved at [dormant-deferred/priorities-legacy.
 - Validate every scoring pass with `node scripts/validate-priority-ranking.mjs`; the check recomputes `Pressure`, `EWeight`, `Value`, `Cost`, and `ROI`, verifies sort order and contiguous ranks, requires a next-object description, and checks tracker metadata.
 - Treat every score as an **inferred attention score**, not as proof evidence, claim promotion, corpus readiness, or closure-score movement. A rank is falsified when its live tracker no longer exposes the scored path, its prerequisite fails, or measured effort/validation burden materially differs from the row.
 
-## Audit Scope — 2026-07-17
+## Audit Scope — 2026-07-26
 
-This marginal-object rescore read every immediate live `reference/priorities/*/priorities.md` tracker, the top-six closure join, the current EOM/braid acceptance boundaries, and the current `2026-06-28` closure-scorecard deltas. Each row now names the next unresolved object to which its value and remaining cost apply. Support subdirectories inherit their parent workstream unless they have an explicitly ranked shared packet. Dormant children remain unscored until promoted into a live priority directory.
+This active-only audit read every immediate top-level
+`reference/priorities/*/priorities.md` tracker, the current directory inventory,
+the top-six closure join, and the current EOM/Braid acceptance boundaries. The
+numeric table includes 23 top-level owner directories and four separately
+ranked shared theorem packets. `aaa-work-threads` is the control surface and
+`app-simulation` is a routing index, so neither receives a numeric rank.
 
-The central change since the prior full ranking is the EOM and campaign-ownership consolidation. `app-eom` is the sole forward solver and reusable campaign-execution owner; `braid-program` owns the evolution-first N-ladder and undirected ensemble campaigns; `master-equation-closure` owns the independent causal wake-state derivation and the first accepted branch certificate; and the former `app-simulation` queue now routes to those canonical owners and the relevant downstream scientific lanes. The concurrent assembly-viewer consolidation is also reflected: Borg owns the record-only inspection surface, while the removed standalone priority lane no longer consumes a numeric rank.
+Every child of `dormant-deferred` is excluded regardless of whether its parked
+tracker still contains historical rank metadata. A top-level tracker remains
+in the active inventory even when its internal status is `deferred` or
+`watchlist`; moving that directory under `dormant-deferred` is the action that
+removes it from this table.
+
+The audit preserves component scores for unchanged marginal objects, removes
+eight archived rows, adds the previously unranked top-level `app-mcp` owner,
+and re-sorts the remaining winners contiguously. The former
+`eom-attractor-search` packet is now distributed between EOM's reusable
+instrument packet and Braid Program's scientific campaign packet.
 
 ## Operator Discussion Queue
 
-| Rank | ID | Decision | Owning tracker task | Status | Last surfaced |
-| ---: | --- | --- | --- | --- | --- |
-| 1 | `DF-01` | Decide whether Information Relay Machines and record-preserving transduction chains should become controlled reader-facing terminology. | [`information-relay-machines` queue](../information-relay-machines/priorities.md#queue) | `discussion-scoped` | 2026-07-11 |
+No active cross-workstream discussion row is open. Discussion items parked
+under `dormant-deferred` remain excluded until the owning packet is promoted
+back to a top-level active directory.
 
 ## Unified Priority Table
 
@@ -60,51 +76,38 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | 14 | App | [`app-animator`](../app-animator/priorities.md) | `runtime_cutover` from shared scene-shell behavior to the Animator-owned runtime | 7.0 | 1.20 | 0 | 1.00 | 0.85 | 4 | 0.90 | 6.43 | 5 | 4 | 4 | 4 | 4.3 | 1.50 |
 | 15 | Shared packet | `residual-routing-event-ledger` | One concrete EOM-evolved transition with a closed event ledger | 9.5 | 1.70 | -23 | 1.23 | 0.25 | 6 | 1.10 | 5.46 | 4 | 4 | 4 | 5 | 4.2 | 1.30 |
 | 16 | Workstream | [`quantum-closure`](../quantum-closure/priorities.md) | `detector_response_kernel_acceptance` on an accepted assembly basin measure | 6.0 | 1.35 | -56 | 1.56 | 0.40 | 9 | 1.40 | 7.08 | 6 | 8 | 7 | 8 | 7.3 | 0.97 |
-| 17 | App | [`app-equation-mapping`](../dormant-deferred/app-equation-mapping/priorities.md) | `seed_review_equations_expansion`: selected equation-map review documents | 5.0 | 1.20 | 0 | 1.00 | 0.35 | 5 | 1.00 | 2.10 | 3 | 2 | 3 | 3 | 2.7 | 0.78 |
-| 18 | Candidate | [`information-relay-machines`](../dormant-deferred/information-relay-machines/priorities.md) | `terminology_and_corpus_boundary` decision for controlled and paper-local language | 4.5 | 1.30 | 0 | 1.00 | 0.35 | 6 | 1.10 | 2.25 | 3 | 3 | 4 | 3 | 3.2 | 0.70 |
-| 19 | Workstream | [`validation-gates`](../dormant-deferred/validation-gates/priorities.md) | `worked_shared_closure_record` with an extension fiber or incompatibility witness | 8.5 | 1.65 | 0 | 1.00 | 0.25 | 3 | 0.80 | 2.81 | 4 | 4 | 6 | 5 | 4.6 | 0.61 |
-| 20 | Candidate | [`open-problems`](../open-problems/priorities.md) | `claim_level_audit` of every Solving the Crisis chapter | 5.0 | 1.25 | -56 | 1.56 | 0.25 | 5 | 1.00 | 2.44 | 4 | 4 | 5 | 5 | 4.4 | 0.55 |
-| 21 | Op queue | [`source-mining`](../source-mining/priorities.md) | `mine_source_material`: one batch yielding a concrete mathematical artifact | 4.0 | 1.10 | 0 | 1.00 | 0.35 | 3 | 0.80 | 1.23 | 4 | 2 | 3 | 2 | 2.7 | 0.46 |
-| 22 | Workstream | [`cosmology-closure`](../cosmology-closure/priorities.md) | `component_interfaces` for the first cosmology transfer-function pipeline | 3.5 | 1.20 | -56 | 1.56 | 0.40 | 7 | 1.20 | 3.14 | 6 | 7 | 7 | 8 | 7.0 | 0.45 |
-| 23 | Candidate | [`lissajou`](../dormant-deferred/lissajou/priorities.md) | `lissajou_phase_closure_map` to integer braid labels | 3.0 | 1.10 | 0 | 1.00 | 0.35 | 5 | 1.00 | 1.16 | 3 | 4 | 2 | 3 | 3.2 | 0.36 |
-| 24 | App queue | [`app-ideas`](../app-ideas/priorities.md) | `next_concept_selection`: one one-page app promoted to a scoped implementation packet | 4.5 | 1.10 | 0 | 1.00 | 0.20 | 3 | 0.80 | 0.79 | 3 | 2 | 3 | 2 | 2.5 | 0.32 |
-| 25 | Design | [`archie`](../archie/priorities.md) | `platform_architecture_packet` for the future Archie service boundary | 5.0 | 1.25 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.00 | 4 | 2 | 4 | 5 | 3.5 | 0.29 |
-| 26 | App | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive`: physical iPhone/iPad QA and signed archive | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.92 | 5 | 2 | 4 | 3 | 3.4 | 0.27 |
-| 27 | Op queue | [`operations`](../operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
-| 28 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` for the shared dynamic control bar | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
-| 29 | Media | [`media-videos`](../dormant-deferred/media-videos/priorities.md) | `first_prototype_decision_stack` and reviewed YouTube outline | 3.5 | 1.15 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.56 | 5 | 3 | 4 | 3 | 3.7 | 0.15 |
-| 30 | Candidate | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` packet with release-channel predicates | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 5 | 1.00 | 0.66 | 4 | 7 | 6 | 7 | 6.1 | 0.11 |
-| 31 | Media | [`media-images`](../dormant-deferred/media-images/priorities.md) | `image_production_brief_selection` with a target, claim level, and owner | 2.5 | 1.05 | 0 | 1.00 | 0.10 | 2 | 0.70 | 0.18 | 3 | 2 | 2 | 2 | 2.3 | 0.08 |
-| 32 | Media | [`media-comics`](../dormant-deferred/media-comics/priorities.md) | `comic_production_brief_selection` with a target, claim level, and owner | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 2 | 0.70 | 0.15 | 3 | 2 | 2 | 2 | 2.3 | 0.07 |
-| 33 | Media | [`media-posts`](../dormant-deferred/media-posts/priorities.md) | `post_publication_brief_selection` with a target, claim level, and owner | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 2 | 0.70 | 0.15 | 3 | 2 | 2 | 2 | 2.3 | 0.07 |
-| 34 | Candidate | [`aaa-futures`](../aaa-futures/priorities.md) | `research_revolution_seed` with opportunity, work, risk, and claim dependencies | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 3 | 0.80 | 0.17 | 3 | 3 | 3 | 2 | 2.8 | 0.06 |
+| 17 | Candidate | [`open-problems`](../open-problems/priorities.md) | `claim_level_audit` of every Solving the Crisis chapter | 5.0 | 1.25 | -56 | 1.56 | 0.25 | 5 | 1.00 | 2.44 | 4 | 4 | 5 | 5 | 4.4 | 0.55 |
+| 18 | Op queue | [`source-mining`](../source-mining/priorities.md) | `mine_source_material`: one batch yielding a concrete mathematical artifact | 4.0 | 1.10 | 0 | 1.00 | 0.35 | 3 | 0.80 | 1.23 | 4 | 2 | 3 | 2 | 2.7 | 0.46 |
+| 19 | Workstream | [`cosmology-closure`](../cosmology-closure/priorities.md) | `component_interfaces` for the first cosmology transfer-function pipeline | 3.5 | 1.20 | -56 | 1.56 | 0.40 | 7 | 1.20 | 3.14 | 6 | 7 | 7 | 8 | 7.0 | 0.45 |
+| 20 | App | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance`: ephemeral Codex and supported ChatGPT loopback verification | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.06 | 3 | 2 | 3 | 4 | 2.9 | 0.37 |
+| 21 | App queue | [`app-ideas`](../app-ideas/priorities.md) | `next_concept_selection`: one active teaching concept promoted to a scoped implementation packet | 4.5 | 1.10 | 0 | 1.00 | 0.20 | 3 | 0.80 | 0.79 | 3 | 2 | 3 | 2 | 2.5 | 0.32 |
+| 22 | Design | [`archie`](../archie/priorities.md) | `platform_architecture_packet` for the future Archie service boundary | 5.0 | 1.25 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.00 | 4 | 2 | 4 | 5 | 3.5 | 0.29 |
+| 23 | App | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive`: physical iPhone/iPad QA and signed archive | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.92 | 5 | 2 | 4 | 3 | 3.4 | 0.27 |
+| 24 | Op queue | [`operations`](../operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
+| 25 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` for the shared dynamic control bar | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
+| 26 | Candidate | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` packet with release-channel predicates | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 5 | 1.00 | 0.66 | 4 | 7 | 6 | 7 | 6.1 | 0.11 |
+| 27 | Candidate | [`aaa-futures`](../aaa-futures/priorities.md) | `research_revolution_seed` with opportunity, work, risk, and claim dependencies | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 3 | 0.80 | 0.17 | 3 | 3 | 3 | 2 | 2.8 | 0.06 |
 
-## Marginal-Object Rescore Movement — 2026-07-17
+## Active-Only Rerank Movement — 2026-07-26
 
-- No top-ten rank changed when completed infrastructure was removed from the scored object descriptions and each row was rebound to its bucket's local rank-`1` unresolved object.
-- `app-eom` remains rank `1` because `coupled_retained_history_integrator` is still the first missing production object for claim-ready long-horizon evolution; the existing executable kernel lowers remaining cost but does not close that acceptance boundary.
-- The Archie interface product lane is now subordinate to the single `archie` owner. Removing the duplicate ranked row shifted the lower rows upward without changing their component scores.
-- The completed Causal Delay Feedback lane and its Roots teaching packet are deferred under `dormant-deferred` and no longer consume a numeric rank. The contiguous rewrite also closed the previously stale rank-`13` gap, shifting the former ranks `14` through `36` to ranks `12` through `34` without changing component scores.
-- Recomputing from the component scores corrected stale rounding for the pressure-dependent Noether sea response ROI, Animator ROI, Validation Gates value, and the Media Comics and Media Posts ROIs. These arithmetic corrections did not change the top ten.
-
-## Top-Ten Movement Since The Prior Full Ranking
-
-The comparison baseline is the last complete table before the legacy braid directories were archived. An archived row has no current numeric rank; its active obligations now route through `braid-program`, `app-eom`, `master-equation-closure`, or a downstream shared packet.
-
-| Current rank | Current row | Prior rank | Movement | Reason |
-| ---: | --- | ---: | ---: | --- |
-| 1 | `app-eom` | unranked | new | Sole forward solver target; bounded-population coupled evolution and independent-oracle path now drive every executable dynamics claim. |
-| 2 | `braid-program` | unranked | new | Consolidates the archived braid lanes into the evolution-first N-ladder and owns the first binary fate campaign. |
-| 3 | `master-equation-closure` | 1 | down 2 | Owns the independent causal wake-state derivation and first accepted branch certificate; it is no longer double-counted with EOM implementation or generic simulation protocols. |
-| 4 | `transfer-operator-basin-measure` | 9 | up 5 | Retains high cross-sector theorem leverage while remaining blocked on a persistent accepted assembly state. |
-| 5 | `pressure-dependent-noether-sea-constitutive-response` | 10 | up 5 | Now has a live focused packet under Master-Equation Closure; coefficients remain blocked on same-record EOM-evolved transmitter-side evidence and accepted causal wake accounts. |
-| 6 | `equation-mapping` | 5 | down 1 | Valuable as a carrier-discovery and inverse-clue lane, but accepted mappings still depend on EOM-evolved retained records. |
-| 7 | `app-borg` | 15 | up 8 | Owns the working EOM-backed simulation surface and the consolidated record-only assembly inspection surface; display remains non-authoritative. |
-| 8 | `standard-model-closure` | 13 | up 5 | Enters the top ten after duplicate and archived lanes were consolidated, not because its downstream mass, mixing, confinement, or weak gates closed. |
-| 9 | `app-photon` | 16 | up 7 | Remains a deployed explanatory app with no independent photon-closure authority. |
-| 10 | `exposure-quotient-theorem` | 18 | up 8 | Shared proof grammar remains visible, but stays dependency-discounted until accepted branch and sector ledgers exist to project. |
-
-Prior ranks `3`, `4`, `6`, `7`, and `8` belonged to `braid-mass-response-map`, `braid-retained-branch-closure`, `proof-programs`, `braid-nested-shell-causal-closure`, and `braid-angular-momentum-spin`. Those directories are archived and are no longer independently ranked.
+- The top ten are unchanged. Their marginal objects and component scores remain
+  current enough that removing archived rows does not alter their relative
+  order.
+- Eight `dormant-deferred` rows were removed:
+  `app-equation-mapping`, `information-relay-machines`, `validation-gates`,
+  `lissajou`, `media-videos`, `media-images`, `media-comics`, and
+  `media-posts`.
+- `app-mcp` enters at rank `20` on
+  `named_http_client_conformance`. Its score is for the remaining named-client
+  verification object, not for the already completed local service and
+  loopback adapter.
+- The active rows below rank `16` were renumbered contiguously without changing
+  component scores: `open-problems` is now `17`, `source-mining` `18`,
+  `cosmology-closure` `19`, `app-ideas` `21`, `archie` `22`, `app-ios` `23`,
+  `operations` `24`, `app-ui-guidelines` `25`, `dark-sector` `26`, and
+  `aaa-futures` `27`.
+- Borg and Strong-Field now expose machine-checkable local rank-`1` objects.
+  This changes queue representation, not their scores or evidence grade.
 
 ## Current Focus
 
@@ -116,23 +119,32 @@ Prior ranks `3`, `4`, `6`, `7`, and `8` belonged to `braid-mass-response-map`, `
 
 ## Operator Burden Triage
 
-The likely long numerical/proof campaigns are ranks `1-6`, `8`, `10-11`, `16`, and `22`. The lower-slog inspection or support surfaces are led by ranks `7`, `9`, `12-15`, and `17-21`. A lower-slog row may produce visible progress sooner, but it does not outrank the derivation spine unless a concrete upstream result is ready for it to inspect, validate, or publish.
+The likely long numerical or proof campaigns are ranks `1-6`, `8`, `10-13`,
+`15-16`, and `19`. Lower-cost inspection, app, and coordination surfaces are
+led by ranks `7`, `9`, `14`, `17-18`, and `20-25`. A lower-cost row may produce
+visible progress sooner, but it does not outrank the derivation spine unless a
+concrete upstream result is ready for it to inspect, validate, or publish.
 
-The `dormant-deferred` archive and all of its children are unscored. `information-relay-machines` and `lissajou` are now visible in the numeric table because they have live top-level trackers, but their low engine leverage keeps them below the core theory and validation stack.
+The `dormant-deferred` archive and all of its children are unscored.
 
 ## Top Cross-Workstream Next Actions
 
 1. Finish the EOM bounded-population long-horizon acceptance stack: retained-history residency, refinement and precision ladders, deterministic CPU/SIMD evidence, and the first claim-ready binary run packet.
 2. Execute Braid Program Campaign 1 under the ratified charter without changing its frozen 27-configuration, three-prehistory, three-refinement workload or its instrument in the production change.
-3. Run Braid Program's first declared undirected ensemble campaign through EOM's checkpointed harness, with a persistence criterion fixed before scoring and the targeted $2{:}2$ neighborhood at $N\in\{4,6,8\}$.
+3. Reaccept EOM's attractor-search checkpoint/resume and release-root
+   instrument, then run Braid Program's first declared undirected ensemble
+   campaign with its persistence criterion fixed before scoring.
 4. Close `causal_wake_update_law`, then accept the finite coincident same-transmitter transition and all three conserved accounts only on that same retained-history update.
 5. Populate the pressure-dependent Noether sea constitutive packet only after an accepted branch carries that wake-state closure, and require one shared response row across clock, signal, inertia, effective-metric, material, and cosmology consumers.
 6. Keep the transfer-operator, Noether sea response, equation-mapping, and Standard Model lanes downstream of persistent EOM-evolved assembly records; do not convert their current scaffolds into accepted coefficients, measures, or benchmark closure.
 
 ## Organization Status
 
-- The numeric ranks are contiguous again and include every immediate live priority tracker plus the explicitly ranked shared packets.
-- Legacy braid directories stay archived; Braid Program owns scientific search campaigns, EOM owns reusable execution capability, and the former attractor-search directory is a focused instrument/evidence packet.
+- The numeric ranks are contiguous and include every top-level rankable owner
+  plus the four explicitly ranked shared packets.
+- No `dormant-deferred` child appears in the numeric table or active discussion
+  queue.
+- Legacy braid directories stay archived; Braid Program owns scientific search campaigns, EOM owns reusable execution capability, and the former attractor-search packet is distributed between those two canonical owners.
 - The former `app-simulation` directory is a routing index, not a ranked owner; its preserved protocol detail advances only through the named canonical lane.
 - [closure-join-matrix.md](closure-join-matrix.md) remains the shared-object dependency view, and [inventory.md](inventory.md) remains the detailed file map.
 - Workstream metadata mirrors this table. Shared theorem packets do not require separate workstream metadata.

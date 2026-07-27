@@ -3,7 +3,11 @@
 ## Workstream Metadata
 
 - Kind: `priority-app-candidate`
-- Status: `seeded-unranked`
+- Rank: `20`
+- Value: `1.06`
+- Cost: `2.9`
+- ROI: `0.37`
+- Status: `active-client-conformance`
 - Claim level: `priority-only`
 
 ## Current

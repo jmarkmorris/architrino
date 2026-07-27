@@ -1,8 +1,20 @@
-# EOM Attractor Search — Work Log
+# EOM Attractor-Search Instrument Work Log
 
-Chronological agent status, run narratives, handoffs, and failed paths for
-this workstream. Keep the live queue in [priorities.md](priorities.md) and
-conceptual material in [brainstorming.md](brainstorming.md).
+Chronological status, run narratives, handoffs, and failed paths for the
+EOM-owned profiler and checkpoint-chunked ensemble harness. Keep the live
+instrument state in [Attractor-Search Execution Instrument](attractor-search-instrument.md).
+The [Braid Program](../braid-program/priorities.md) owns the scientific
+campaign and keeps its design in
+[Undirected Ensemble Search](../braid-program/undirected-ensemble-search.md).
+
+## 2026-07-26 — Focused packet distributed to canonical owners
+
+- Moved the reusable execution-instrument state and this chronological log
+  under EOM.
+- Moved the undirected ensemble campaign rationale, observables, seed design,
+  persistence criteria, and promotion rules under Braid Program.
+- Removed the redundant `eom-attractor-search` routing directory. This changes
+  no instrument acceptance, campaign gate, or physical claim.
 
 ## 2026-07-24 — Historical simulation outputs removed
 
@@ -28,8 +40,8 @@ conceptual material in [brainstorming.md](brainstorming.md).
 
 ## 2026-07-15 — Workstream opened
 
-- Bucket created by operator direction. Full context captured in
-  [brainstorming.md](brainstorming.md).
+- Bucket created by operator direction. Full context is now retained in
+  [Undirected Ensemble Search](../braid-program/undirected-ensemble-search.md).
 - Operator inputs: Borg app (eom-backed) releases show early escapes plus
   transient couplings, including an observed 2:2 assembly (anecdotal grade,
   reproduce first); the final eom performance improvement has landed, so

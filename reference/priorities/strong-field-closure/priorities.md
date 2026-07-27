@@ -11,6 +11,13 @@
 
 Current executable and deferred obligations are tracked in [work-queue.md](work-queue.md).
 
+## Ranked Next Objects
+
+1. `embedded_boundary_conditions` — Formulate one Noether sea horizon-interface case with declared $\rho_{\text{NS}}$, $\Sigma_{\text{medium}}$, $\mathbf{u}_{\text{medium}}$, admissible $\Lambda_{\text{NS}}$, and $\partial\Omega$ data. Status: `queued`; execution detail: [SF-001](work-queue.md#sf-001--embedded-horizon-interface-boundary-conditions).
+2. `observer_predictions` — Derive observer-level strong-field predictions from the accepted embedded boundary formulation. Status: `blocked-on-embedded-boundary-conditions`.
+3. `horizon_entropy_packet` — Define the horizon-interface label ensemble and block-entropy recovery target on accepted boundary data. Status: `blocked-on-observer-predictions`.
+4. `release_channel_selection` — Separate jets, diffuse outflow, dark-sector escape, and candidate photon-like release using one closed event ledger. Status: `blocked-on-boundary-and-entropy-packets`.
+
 ## Scope
 
 The main black-hole and strong-field chapter architecture is already in place. The remaining work is narrow and quantitative rather than exploratory.

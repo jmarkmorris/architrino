@@ -6,6 +6,27 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-26 — Active-only inventory and rerank
+
+- Rebuilt [inventory.md](inventory.md) from the live top-level directory tree:
+  23 ranked owners, four separately ranked shared packets, two unranked
+  control/routing surfaces, and 15 children under `dormant-deferred`.
+- Removed all eight previously ranked `dormant-deferred` rows from the unified
+  table and excluded dormant discussion items from the active discussion
+  queue.
+- Added top-level `app-mcp` at rank `20` on the remaining
+  `named_http_client_conformance` object. Completed service, fixture, and
+  loopback work received no remaining value credit.
+- Preserved component scores for unchanged marginal objects, renumbered the
+  active rows contiguously, and synchronized tracker metadata. The top ten did
+  not move.
+- Made Borg and Strong-Field local winners machine-checkable, reopened App
+  Ideas selection after Causal Delay Feedback was deferred, refreshed the
+  top-six closure join, and repaired current archive routing.
+- Claim grade: inferred attention allocation and priority-only organization.
+  No proof, campaign fate, branch, coefficient, app acceptance, or
+  closure-score row was promoted.
+
 ### 2026-07-26 — Causal Delay Feedback and Roots deferred
 
 - Merged the former `app-roots` packet into `dormant-deferred/app-causal-delay-feedback`.

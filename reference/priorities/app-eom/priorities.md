@@ -73,6 +73,8 @@ The future segment must be determined by the Master EOM. EOM must not accept a p
 - [language-and-numeric-architecture.md](language-and-numeric-architecture.md) defines the precision architecture and the evidence required to select the production language and accelerator stack.
 - [../../architectural-decisions/eom-cpp-production-host.md](../../architectural-decisions/eom-cpp-production-host.md) records the operator-selected C++20 production host and MPFR/GMP difficult-row route.
 - [performance-architecture-survey-and-baseline.md](performance-architecture-survey-and-baseline.md) records the executable Apple M3 CPU, Metal, oracle, storage, stationary block-exclusion, thread-scaling, and million-path projection baseline plus the evidence still missing for an architecture decision.
+- [attractor-search-instrument.md](attractor-search-instrument.md) owns the reusable release profiler, checkpoint-chunked ensemble harness, fresh-validation boundary, and routing to the Braid Program campaign.
+- [attractor-search-work-log.md](attractor-search-work-log.md) retains the chronological profiler and harness history; measurements whose artifacts were removed remain non-current.
 - [brainstorming.md](brainstorming.md) holds provisional features, performance ideas, and later-stage possibilities.
 - [work-log.md](work-log.md) holds dated decisions, status, validation, and handoffs.
 

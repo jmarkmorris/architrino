@@ -1,7 +1,20 @@
-# EOM Attractor Search — Brainstorming and Provisional Capture
+# Undirected Ensemble Search — Campaign Design
 
-**Opened:** 2026-07-15 by operator direction. Everything here is staged
-capture with claim levels; nothing is corpus-solid yet.
+## Packet Metadata
+
+- Parent: [Braid Program](priorities.md)
+- Opened: 2026-07-15 by operator direction
+- Status: `blocked-on-instrument-reacceptance`
+- Claim level: `priority-design`
+- Execution instrument:
+  [EOM Attractor-Search Execution Instrument](../app-eom/attractor-search-instrument.md)
+
+This packet retains the scientific rationale, seed design, observables,
+persistence criteria, and promotion rules for the undirected ensemble
+campaign. Braid Program owns those decisions. EOM owns the reusable profiler,
+checkpoint-chunked harness, deterministic resume, record emission, and cost
+instrument. Everything here is staged capture with claim levels; nothing is
+corpus-solid or a booked physical result.
 
 ## Why this workstream exists (the three-assumption diagnosis)
 

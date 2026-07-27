@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `30`
+- Rank: `26`
 - Value: `0.66`
 - Cost: `6.1`
 - ROI: `0.11`
@@ -19,7 +19,11 @@
 
 ## Scope
 
-This workstream preserves speculative dark-sector subjects when they are assembly candidates, release-channel candidates, transport modes, or dark-visible conversion hypotheses. It is a priority lane for disciplined ideation, not a ranked closure workstream yet.
+This workstream preserves speculative dark-sector subjects when they are
+assembly candidates, release-channel candidates, transport modes, or
+dark-visible conversion hypotheses. Its low numeric rank allocates attention
+to a candidate packet; it does not make the lane an accepted closure-evidence
+workstream.
 
 The lane does not replace [strong-field-closure](../strong-field-closure/priorities.md), [cosmology-closure](../cosmology-closure/priorities.md), [Radiation](../../../content/markdown/aaa/reactions/radiation.md), or the shared residual-routing event ledger. It packages candidate assemblies until one of them gains a boundary condition, equation, simulation target, or discriminating observable strong enough for promotion.
 
@@ -88,7 +92,7 @@ where $A_{\mathrm{int}}$ is the internal action or assembly record, $\mathcal{B}
 - [cosmology-closure](../cosmology-closure/priorities.md)
 - braid
 - [radiation](../../../content/markdown/aaa/reactions/radiation.md)
-- [validation-gates](../validation-gates/priorities.md)
+- [archived validation-gates](../dormant-deferred/validation-gates/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
-- Rank: `34`
+- Rank: `27`
 - Value: `0.17`
 - Cost: `2.8`
 - ROI: `0.06`
@@ -38,5 +38,5 @@ The lane is priority-only. It does not change the claim level of any $\mathbb{A}
 
 - [cosmology-closure](../cosmology-closure/priorities.md)
 - [source-mining](../source-mining/priorities.md)
-- [media-videos](../media-videos/priorities.md)
+- [media-videos](../dormant-deferred/media-videos/priorities.md)
 - [app-ideas](../app-ideas/priorities.md)

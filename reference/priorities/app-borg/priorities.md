@@ -4,6 +4,9 @@
 
 - Kind: `priority`
 - Rank: `7`
+- Value: `16.38`
+- Cost: `4.3`
+- ROI: `3.81`
 - Status: `design-open`
 - Claim level: `priority-design`
 - Execution ledger: [work queue](work-queue.md)
@@ -25,12 +28,12 @@ Maintain Borg as an app-facing surface for EOM-solver simulation and sealed-reco
 5. Keep the UI minimal while preserving required authority, error-budget, path-history, wake-history, boundary-shell, and diagnostic state.
 6. Use normalized field speed $c_f=1$ for Borg EOM runs unless an explicit manifest transform is present.
 
-## Ranked Strategic Work
+## Ranked Next Objects
 
-1. [BORG-001 — Native wake history and boundary residuals](work-queue.md#borg-001--native-wake-history-and-boundary-residuals)
-2. [BORG-002 — Assembly-viewer record-contract carriers](work-queue.md#borg-002--assembly-viewer-record-contract-carriers)
-3. [BORG-003 — Velocity-scale sampling evidence](work-queue.md#borg-003--velocity-scale-sampling-evidence)
-4. [BORG-004 — Assembly Explorer disposition](work-queue.md#borg-004--assembly-explorer-disposition)
+1. `native_wake_history_and_boundary_residual_fixture` — [BORG-001: native wake history and boundary residuals](work-queue.md#borg-001--native-wake-history-and-boundary-residuals). Status: `queued`.
+2. `assembly_viewer_record_contract_carriers` — [BORG-002: assembly-viewer record-contract carriers](work-queue.md#borg-002--assembly-viewer-record-contract-carriers). Status: `queued`.
+3. `velocity_scale_sampling_evidence` — [BORG-003: velocity-scale sampling evidence](work-queue.md#borg-003--velocity-scale-sampling-evidence). Status: `queued`.
+4. `assembly_explorer_disposition` — [BORG-004: Assembly Explorer disposition](work-queue.md#borg-004--assembly-explorer-disposition). Status: `queued`.
 5. Save, export, import, and load workflows remain deferred until EOM-run dataset coverage stabilizes.
 
 ## Promotion Boundary

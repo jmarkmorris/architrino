@@ -418,3 +418,14 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   stability, binding, or physical-realization claim is booked. See the
   [predeclared protocol](campaigns/stationary-binary-breather-diagnostic.md) and
   [diagnostic packet](evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md).
+
+## 2026-07-26 — Attractor-search packet distributed
+
+- Moved the undirected ensemble rationale, seed and campaign design,
+  observables, persistence criteria, and promotion rules into
+  [undirected-ensemble-search.md](undirected-ensemble-search.md).
+- EOM now retains the reusable profiler and checkpoint-chunked harness state in
+  its [attractor-search instrument packet](../app-eom/attractor-search-instrument.md)
+  and [work log](../app-eom/attractor-search-work-log.md).
+- Deleted the redundant `eom-attractor-search` directory. No gate, evidence
+  status, campaign rank, or physical claim changed.

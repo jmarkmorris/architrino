@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `24`
+- Rank: `21`
 - Value: `0.79`
 - Cost: `2.5`
 - ROI: `0.32`
@@ -27,17 +27,17 @@ The complete portfolio table, grouped capability backlogs, deferred ideas, desig
 
 ## Ranked Next Objects
 
-Ordered by marginal ROI on 2026-07-17.
+Ordered by marginal ROI on 2026-07-26.
 
-1. `next_concept_selection` — Selection outcome: execute [Causal Delay Feedback Learner Progression](causal-delay-feedback-advancement.md), beginning with Story and Prediction over the app's canonical causal-history state before exposing Path History, Roots, Self-Hit, Branch Lab, and Sandbox. The stable object id remains aligned with the unified ranking until its separately owned rollover. Status: `selected; implementation queued`.
+1. `next_concept_selection` — Select the next active one-page teaching app after Causal Delay Feedback and its advanced Roots material were moved to `dormant-deferred`. The selection must name one coherent learner journey, its active owner, its canonical state source, and a bounded implementation packet. Status: `selection reopened`.
 
 ## Promoted App Packets
 
-1. [Causal Delay Feedback Learner Progression](causal-delay-feedback-advancement.md). Status: `promoted implementation packet`; Story and Prediction is first, followed by Path History, Roots, Self-Hit, Branch Lab, and Sandbox as one progressive app.
+1. [Causal Delay Feedback Learner Progression](causal-delay-feedback-advancement.md). Status: `deferred`; retained as historical selection context while the active concept-selection object is reopened.
 2. [Prescribed Translation and Causal-History Tubes](prescribed-translation.md). Status: `promoted implementation packet`; this is Borg's first selected learner-facing enhancement slice.
 3. [Causal Delay Feedback Depth](../dormant-deferred/app-causal-delay-feedback/priorities.md). Status: `promoted`; Path-History Ledger, Roots, Self-Hit, Branch Geometry, and Prediction are consolidated as future capabilities of this app.
 4. [Assembly Viewer](../app-borg/assembly-viewer-requirements.md). Status: `consolidated into app-borg`.
-5. [Equation Mapping App](../app-equation-mapping/priorities.md). Status: `promoted`.
+5. [Equation Mapping App](../dormant-deferred/app-equation-mapping/priorities.md). Status: `deferred after promotion`.
 
 ## Brainstorming
 
@@ -47,6 +47,6 @@ Ordered by marginal ROI on 2026-07-17.
 
 - [app-causal-delay-feedback](../dormant-deferred/app-causal-delay-feedback/priorities.md)
 - [app-borg](../app-borg/priorities.md)
-- [app-equation-mapping](../app-equation-mapping/priorities.md)
+- [app-equation-mapping](../dormant-deferred/app-equation-mapping/priorities.md)
 - [app-animator](../app-animator/priorities.md)
 - [Deferred Roots teaching packet](../dormant-deferred/app-causal-delay-feedback/roots-product-plan.md)

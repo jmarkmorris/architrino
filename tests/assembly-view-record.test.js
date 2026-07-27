@@ -205,7 +205,7 @@ test("evolved records require retained-history provenance on every worldline", (
 test("converter bars sampled replay reconstruction from evolved-record evidence", () => {
   const record = convertBorgTrajectoryToAssemblyViewRecord(createBorgTrajectoryFixture(), {
     engineVersion: "converted-fixture-v1",
-    generatingSpec: "reference/priorities/eom-attractor-search/priorities.md",
+    generatingSpec: "reference/priorities/app-eom/attractor-search-instrument.md",
     delayHorizon: 10,
     date: "2026-07-16",
   });
