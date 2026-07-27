@@ -70,15 +70,9 @@ The detailed standard and audit live in [top-dynamic-control-bar.md](top-dynamic
 - Static review pages can use a lighter page-header policy unless they become public-facing product pages.
 - A shared icon/button primitive is useful only after the first standard is accepted. Avoid moving every app into a new abstraction before the visual and interaction contract is clear.
 
-## Task Queue
+## Work Queue
 
-1. `standard_acceptance_pass` - Review [top-dynamic-control-bar.md](top-dynamic-control-bar.md) and decide the required baseline controls, visual dimensions, ordering, and exemption classes. Status: `pending`.
-2. `shared_bar_runtime_design` - Define the smallest shared module or component for icon SVGs, home target resolution, search panel anchoring, settings popovers, focus handling, and responsive wrapping. Status: `pending`. Depends on: `standard_acceptance_pass`.
-3. `main_webapp_and_animator_hud_unification` - Remove the forked top HUD drift between [index.html](../../../index.html) and [animator.html](../../../animator.html), then route both through the shared control model. Status: `pending`. Depends on: `shared_bar_runtime_design`.
-4. `markdown_control_relocation` - Decide and implement whether layout, full-document, PDF/print, and close controls live in a reading-surface header across the main markdown panel, Photon markdown panel, and Ideal Braid markdown panel. Status: `pending`. Depends on: `standard_acceptance_pass`.
-5. `standalone_app_home_search_settings_migration` - Migrate standalone apps in batches: Equation Mapping and Assembly Explorer first, then Molecule, Causal Delay Feedback, Photon, Ideal Braid, PDG Edit, Borg, Website Stats, and Solver GPU Harness as applicable. Status: `pending`. Depends on: `shared_bar_runtime_design`.
-6. `page_exception_policy` - Mark generated reading copies, iOS reader shells, children's-book review pages, PDG Edit Review, and other static review artifacts as either exempt, lightweight-header, or full-top-bar candidates. Status: `pending`.
-7. `visual_regression_capture` - Capture desktop and mobile screenshots for the shared bar on the main webapp, one markdown display, one canvas-first app, one panel-heavy app, and one utility page. Status: `pending`. Depends on: first migration batch.
+The locally ranked standardization tasks, dependencies, and acceptance boundaries live in [work-queue.md](work-queue.md).
 
 ## Detailed Priority Files
 

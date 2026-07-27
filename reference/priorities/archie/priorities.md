@@ -50,37 +50,9 @@ The consolidation gives readers one coherent guide through the top-level `Archie
 
 The main risk is scope drift. If Archie becomes an AI persona, it must not sound more certain than the corpus. It needs source-grounded answers, visible claim levels, and clear separation between established $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, priority-only material, inherited physics summaries, and speculative comparison. The assistant interface should act like a disciplined guide over the corpus, not as an oracle that invents closure.
 
-## Candidate Modes
+## Work Queue
 
-1. `aaa_native_explainer` - Answer from inside the $\mathbb{A}\mathbb{A}\mathbb{A}$ frame as an educational working premise, including future text, speech, and image-grounded questions, while preserving visible claim/source status. Status: `investigate`.
-2. `ask_aaa` - Answer reader questions from published $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus material with citations or scene/document links. Status: `investigate`.
-3. `prior_physics_compare` - Explain how a $\mathbb{A}\mathbb{A}\mathbb{A}$ claim relates to inherited physics, separating recovery target, comparison framework, and speculation. Status: `investigate`.
-4. `site_navigator` - Route users to scenes, apps, textbook sections, PDFs, GitHub, support, and comics. Status: `investigate`.
-5. `claim_level_explainer` - Explain whether a topic is established corpus prose, derivation target, simulation target, priority-only work, or open blocker. Status: `investigate`.
-6. `app_helper` - Help users understand app controls and diagnostics for deployed apps without making proof-level claims from diagnostic visuals. Status: `investigate`.
-
-## Ranked Next Objects
-
-Ordered by marginal ROI on 2026-07-17. The external `theory_closure_first` dependency is not scored as Archie-owned implementation value.
-
-1. `platform_architecture_packet` — Fix the future service deployment route and responsibility boundary. Status: `draft`.
-2. `answer_artifact_manifest_regression_fixture` — Turn the answer manifest and communication standard into one executable source, claim, media, token, privacy, action, and issue-mining fixture. Status: `candidate`.
-3. `source_authority_boundary` — Convert source classes into the deployed-service allowlist. Status: `deferred`.
-4. `service_scaffolding_and_fixtures` — Define schema-first service contracts, fixture families, environment classes, CI gates, and rollback evidence. Status: `draft`.
-5. `privacy_security_cost_boundary` — Define data movement, providers, rate limits, retention, abuse controls, cost limits, and failure behavior. Status: `deferred`.
-6. `validation_and_qa` — Define source, answer, privacy, multimodal, deployment, and rollback acceptance. Status: `deferred`.
-
-## Detailed Task Inventory
-
-1. `theory_closure_first` - Return near-term effort to the strongest core theory-closure targets so future Archie answers have stable substance to explain. Status: `active`.
-2. `service_platform_priority` - Maintain the long-term Archie service plan in [service-platform.md](service-platform.md), including deployment, backend/serverless boundary, source authority, privacy, logging, cost, and operations. Status: `long-term`. Depends on: `assistant-mode-contract.md`.
-3. `interface_product_plan` - Maintain the consolidated user experience, product tracks, and subordinate interface queue in [interface-product-plan.md](interface-product-plan.md). Status: `priority-only`. Depends on: `assistant-mode-contract.md`.
-4. `source_authority_boundary` - Convert the contract's source classes into a deployed-service allowlist for public, operator/developer, priority-only, curated external, and excluded sources. Status: `deferred`. Depends on: `service_platform_priority`.
-5. `platform_architecture_packet` - Use [service-deployment-option-decision.md](service-deployment-option-decision.md) and [service-deployment-architecture.md](service-deployment-architecture.md) as the deployment route and boundary map for the future service. Status: `draft`. Depends on: `theory_closure_first`.
-6. `answer_artifact_manifest_regression_fixture` - Turn [answer-artifact-manifest.md](answer-artifact-manifest.md) and [ai-communication-standards.md](ai-communication-standards.md) into one executable contract fixture. Status: `candidate`. Depends on: `platform_architecture_packet`.
-7. `service_scaffolding_and_fixtures` - Use [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md) to drive schema-only service contracts, fixture locations, environment classes, CI gates, staging smoke tests, and rollback fixtures before runtime providers or public launch. Status: `draft`. Depends on: `platform_architecture_packet`.
-8. `privacy_security_cost_boundary` - For the deployed Archie platform, define what user text, speech, images, and answer history leave the browser, what model/service is used, rate limits, logs, retention, cost controls, abuse controls, and failure behavior. Status: `deferred`. Depends on: `service_scaffolding_and_fixtures`.
-9. `validation_and_qa` - Define the service validation checklist for source authority, answer citations, claim-level correctness, multimodal handling, System Card links, privacy behavior, deployment smoke tests, and rollback readiness. Status: `deferred`. Depends on: `privacy_security_cost_boundary`.
+The locally ranked service, interface, and candidate-mode execution objects live in [work-queue.md](work-queue.md). Core theory closure remains an external dependency rather than an Archie-owned task.
 
 ## Promotion Map
 
@@ -107,55 +79,3 @@ Ordered by marginal ROI on 2026-07-17. The external `theory_closure_first` depen
 - Treat server-backed AI, speech, image intake, and durable user history as long-term platform features after theory closure and after source-authority, privacy, logging, cost, deployment, operations, and failure boundaries are explicit.
 - Do not route public-support, GitHub, PDF, comics, or app entry points behind a hidden or non-obvious branch.
 - Keep scene consolidation separate from public answer generation.
-
-## Next Implementation Prompt
-
-```text
-Closure goal:
-Design the long-term Archie service platform so the eventual question interface is deployed correctly instead of becoming a static/local-source UI prototype.
-
-Use the compatibility-identifier `aaa-corpus-advancement` skill in edit-batch mode.
-
-Context:
-- The main-ring sphere now routes to `content/scenes/archie/archie.json`.
-- The Archie root scene includes the existing Archie groups plus public entries.
-- The top-right Archie icon has been removed; Archie is entered through the top-level sphere.
-- The old Outreach root scene has been removed.
-- Comics scene and markdown paths have moved under `content/scenes/archie/` and `content/markdown/aaa/archie/`.
-- Public reference material and public image assets use `reference/archie/` and `content/assets/images/archie/`.
-- The first assistant behavior contract is captured in `reference/priorities/archie/assistant-mode-contract.md`.
-- The CTO objective now includes public education and outreach through text, speech, and image-grounded Archie interactions.
-- The Archie sphere now includes a System Card sphere with routes for overview, closure scorecard, validation, caveats, and launch-status surfaces.
-- The deployed site currently runs through GitHub Pages via `architrino.com`.
-- The operator does not want a static/local-source Archie UI prototype.
-- The desired Archie question interface is long-term platform work with deployment, backend/serverless runtime, model/provider boundary, privacy, logging, rate limits, cost controls, source authority, System Card disclosure, operations, monitoring, and rollback.
-- The deployment option decision is captured in `reference/priorities/archie/service-deployment-option-decision.md`.
-- The deployment boundary map is captured in `reference/priorities/archie/service-deployment-architecture.md`.
-- The schema-only scaffolding target is captured in `reference/priorities/archie/service-scaffolding-and-fixtures.md`.
-- This work should wait behind core theory closure unless platform design directly unblocks public readiness.
-
-Task:
-- Use `reference/priorities/archie/service-platform.md` as the long-term platform priority.
-- Use the deployment option decision and deployment architecture packet as the current deployment source of truth.
-- Use the service scaffolding and fixtures packet as the current schema-only implementation target.
-- Define the source-ingestion pipeline, answer-engine boundary, model/provider abstraction, privacy/security/cost policy, observability, staging/production split, and rollback plan.
-- Identify the minimum theory-closure and corpus-readiness gates before public beta.
-
-Scope:
-- Inspect `reference/priorities/archie/service-platform.md`, `reference/priorities/archie/service-deployment-option-decision.md`, `reference/priorities/archie/service-deployment-architecture.md`, `reference/priorities/archie/service-scaffolding-and-fixtures.md`, `reference/priorities/archie/assistant-mode-contract.md`, `reference/priorities/archie/priorities.md`, `content/scenes/archie/archie.json`, `content/scenes/archie/system_card.json`, `content/markdown/aaa/archie/system-card.md`, `README.md`, deployment files, runtime entry points, and generated scene/markdown index behavior.
-- Do not promote priority-only material into reader-facing corpus prose.
-- Do not build runtime code unless explicitly requested.
-
-Constraints:
-- Preserve TeX exactly.
-- Use canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ terminology.
-- Keep priority-only material visibly priority-only.
-- Edit authority: priority/design capture is authorized; stop before adding runtime AI generation, external-source live search, logging, deployment config, or changing theory/canon claims.
-- Do not add browser-side model API calls or private credentials.
-
-Expected output:
-- Long-term platform architecture options.
-- Required platform decisions.
-- Public beta gates.
-- Concrete implementation phases.
-```

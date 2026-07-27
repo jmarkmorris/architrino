@@ -6,19 +6,13 @@
 - Parent: [strong-field-closure](priorities.md)
 - Status: `watchlist`
 
-## Task Queue
-
-Discussion disposition: operator option (a), 2026-07-11. The [scope decision](terminal-barrel-horizon-release-scope-decision.md) routes the all-rail barrel and horizon-interface alignment into separate priority-only theorem targets, retains `4:2:1` and dark-sector photon-like release as watchlists, and forbids horizon/light-ring identification by assumption.
-
-1. `keep_hypothesis_registry` — Keep the strong-field hypothesis registry current as quantitative work sharpens. Status: `ongoing`. Depends on: none.
-2. `protect_421_model` — Preserve the 4:2:1 model idea as a hypothesis, not a foundation. Status: `ongoing`. Depends on: none.
-3. `dark_sector_photon_like_modes` — Preserve the speculative SMBH-release hypothesis that horizon interfaces may emit dark-sector photon-like modes that later redshift, thermalize, convert, or re-enter visible photon channels. Status: `watchlist`. Depends on: `release_channel_selection`, radiation Gate C, cosmology transfer-function closure.
+The accepted watchlist-maintenance tasks and their blockers live in [work-queue.md](work-queue.md). Discussion disposition remains operator option (a), 2026-07-11: the [scope decision](terminal-barrel-horizon-release-scope-decision.md) routes the all-rail barrel and horizon-interface alignment into separate priority-only theorem targets, retains `4:2:1` and dark-sector photon-like release as watchlists, and forbids horizon/light-ring identification by assumption.
 
 ## Scope
 
 This is a sibling brainstorming file for [strong-field-closure](priorities.md). It exists to keep strong-field and three-binary ideas alive while the quantitative closures tighten, without letting them outrank the derivation spine.
 
-This file should not grow into a proof queue. Any hypothesis that becomes actionable should be promoted into [strong-field-closure](priorities.md), doubling-frequency-lock, or another active workstream.
+This file should not grow into a proof queue. Any hypothesis that becomes actionable should be promoted into [work-queue.md](work-queue.md), doubling-frequency-lock, or another active workstream.
 
 ## Routing Map
 

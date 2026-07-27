@@ -270,7 +270,7 @@ Use this only after the operator explicitly ratifies Amendment 2:
 ```text
 Closure goal: implement the ratified two-preset certified error-budget contract end to end while preserving the EOM publication policy—verification required for advancement—and proving independent containment for both event budgets.
 
-Operator decision: Amendment 2 and the proposed Interactive and Research records in reference/priorities/app-eom/certified-error-budget-ledger.md are ratified. Treat that ledger and the ratified amendment as binding input.
+Operator decision: Amendment 2 and the proposed Interactive and Research records in reference/priorities/app-solver/certified-error-budget-ledger.md are ratified. Treat that ledger and the ratified amendment as binding input.
 
 Implement one canonical budget registry; make Borg default to Interactive certified budget; add the plain-language selector and Custom certified budget advanced path; validate the complete dimensional ledger; propagate every acceleration, correction, event, retained-history, interpolation, rounding, and shortcut remainder into published position and velocity intervals; carry receiver-total impulse and position-moment budgets explicitly; preserve zero independent overlap allowance; record the complete allocation and deterministic hash in request and response provenance; advance V6 once with one exact producer and parser and no compatibility route; update every fixture and call site; keep all FWC gates, Amendment 1 matching, outward rounding, sharp-chart prohibitions, atomic publication, and behavior for a Not advanced disposition unchanged.
 

@@ -92,13 +92,9 @@ Release-prep checklist:
 - Archive from Xcode with a signed Release build and upload through App Store Connect.
 - Smoke-test the TestFlight build on physical iPhone and iPad hardware before App Review submission.
 
-## Ranked Next Objects
+## Work Queue
 
-Ordered by marginal ROI on 2026-07-17. Implemented reader features remain prerequisites and regression surfaces, not remaining priority value.
-
-1. `first_release_device_qa_and_archive` — Refresh the canonical package, pass strict package validation, complete physical iPhone and iPad smoke tests, capture release screenshots, and produce the signed App Store archive packet. Status: `next`.
-2. `app_store_distribution_pricing_plan` — Reconfirm unlisted-distribution requirements and finalize price, agreements, tax, banking, and Small Business Program posture before submission. Status: `planned`.
-3. `app_review_and_unlisted_distribution` — Submit the accepted archive through App Review, request the unlisted link, and publish the approved direct install route. Status: `pending`.
+Remaining release and post-v1 tasks live in [work-queue.md](work-queue.md). Implemented reader features remain prerequisites and regression surfaces, not live task value.
 
 ## Implemented Prototype Inventory
 
@@ -108,13 +104,12 @@ Build the smallest useful iOS prototype as an in-repo, offline reader:
 2. `textbook_package_export` - Add or define an export step that packages `textbook_toc.json`, chapter reading-copy markdown, local assets, link metadata, and a lightweight search index for app-bundle inclusion. Status: `implemented`. Depends on: `in_repo_xcode_project`.
 3. `native_reader_shell` - Create a SwiftUI app shell with a Textbook tab, iPhone navigation stack, iPad sidebar, persistent reading position, and local bundle content loading. Status: `implemented`. Depends on: `textbook_package_export`.
 4. `toc_and_internal_links` - Render the generated textbook TOC as navigable app state and route scene links plus markdown section links inside the app. Status: `implemented`. Depends on: `native_reader_shell`.
-5. `math_and_markdown_rendering` - Prove that TeX, KaTeX, headings, tables, callouts, and internal anchors render correctly on iPhone and iPad. Status: `implemented; first-release iPad device QA pending`. Depends on: `native_reader_shell`.
+5. `math_and_markdown_rendering` - Prove that TeX, KaTeX, headings, tables, callouts, and internal anchors render correctly on iPhone and iPad. Status: `implemented`; first-release device QA is tracked in [work-queue.md](work-queue.md). Depends on: `native_reader_shell`.
 6. `reader_basics` - Add search, bookmarks, reading position, text size controls, theme controls, margin controls, and next/previous section navigation. Status: `implemented`. Depends on: `math_and_markdown_rendering`.
-7. `molecule_visualization` - Defer to a later milestone. Status: `deferred`. Depends on: `reader_basics`.
 
-## Implementation Tickets
+## Completed Implementation Record
 
-Treat these as backlog tickets in execution order. Keep each ticket one engineer-week or less where feasible:
+These closed prototype tickets document the implemented baseline. They are not live queue rows.
 
 ### Phase 0: Foundation
 
@@ -141,36 +136,10 @@ Treat these as backlog tickets in execution order. Keep each ticket one engineer
 
 ### Phase 2: Reader Quality
 
-10. `math_and_anchor_rendering` - Verify representative math-heavy, equation-heavy, and table-heavy sections render in local WebKit and keep TeX delimiters stable. Status: `implemented; continue regression testing during release QA`.
+10. `math_and_anchor_rendering` - Verify representative math-heavy, equation-heavy, and table-heavy sections render in local WebKit and keep TeX delimiters stable. Status: `implemented`; release regression testing is tracked in [work-queue.md](work-queue.md).
 11. `full_text_indexing` - Add index generation from reading-copy markdown for title/section/body search and structured result snippets. Status: `implemented`.
 12. `search_and_bookmarks_ux` - Build dedicated search and bookmarks screens/panes with deterministic navigation into active sections. Status: `implemented`.
-13. `iPad_reading_layout` - Implement split-view reading workspace with a persistent TOC sidebar, reading pane, adaptive reader controls, and constrained modal sheet content. Status: `implemented; physical iPad smoke test required before first release`.
-
-### Phase 2.5: App Store Release Planning
-
-14. `app_store_distribution_pricing_plan` - Finalize the first-release App Store distribution and pricing plan before archive submission. Status: `planned`.
-    - Confirm that Unlisted App Store distribution still requires Apple Developer Program membership, App Store Connect setup, ordinary App Review, and the unlisted-app request flow.
-    - Keep the first public distribution target as Unlisted App Store distribution unless the release goal changes from direct-link distribution to public App Store discovery.
-    - Choose the first-release price from an explicit set that includes free, low-friction paid, textbook/reference paid, and premium technical-reference paid options.
-    - If charging for the app, complete the Paid Apps Agreement, tax, and banking setup before App Review submission.
-    - Evaluate App Store Small Business Program eligibility before launch so commission planning uses the right 15 percent or 30 percent Apple cut.
-    - Document any temporary launch promotion in App Store Connect as a scheduled price change, for example a one-day 99-cent launch price that returns to the regular price afterward.
-    - Use promo codes for selected free access without changing the public App Store price when reviewer, collaborator, or early-reader access is the real need.
-    - Re-check Apple's current App Store Connect pricing, promo-code, and unlisted-distribution docs immediately before submission because storefront policy and price-point behavior can change.
-
-### Phase 3: Visualization (Post-v1)
-
-15. `molecule_entry_points` - Add deep links from canonical textbook sections into Molecule routes. Status: `deferred`.
-16. `molecule_embed_or_bridge` - Choose and implement one of two concrete paths for version 0:
-    1. embed existing Molecule web runtime in a SwiftUI/WebKit container using canonical scene JSON and runtime bundle;
-    2. implement native SwiftUI/SceneKit equivalent for Molecule interaction if the embedding path blocks launch quality.
-    Status: `deferred`.
-17. `molecule_tab_integration` - Add Visualizations tab item with list-detail flow and only minimal controls needed for the concept. Status: `deferred`.
-
-### Post-Prototype
-
-18. `download_update_path` - Add a non-blocking background plan for remote updates after app-bundle contract stabilizes.
-19. `sync_and_export` - Add optional cross-device sync and optional sharing links once core package and reader parity are stable.
+13. `iPad_reading_layout` - Implement split-view reading workspace with a persistent TOC sidebar, reading pane, adaptive reader controls, and constrained modal sheet content. Status: `implemented`; physical-device acceptance is tracked in [work-queue.md](work-queue.md).
 
 ## Required Capabilities
 
@@ -278,13 +247,6 @@ Visualizations are out of v1 scope; the list-detail pattern is a post-v1 integra
 - Do not make a marketing landing page the first app screen.
 - Do not make Visualizations block the first Textbook reader prototype.
 - Do not build broad editing, proof-checking, simulation-authoring, or visualization tools into the first iOS app.
-
-## Remaining Release Gates
-
-1. Capture App Store Connect screenshots for iPhone and iPad.
-2. Verify the refreshed package version and package date in the About screen on a physical device.
-3. Run TestFlight smoke tests on physical iPhone and iPad hardware.
-4. Upload through App Store Connect, pass App Review, and request Unlisted App Store distribution.
 
 ## First Done Criteria
 

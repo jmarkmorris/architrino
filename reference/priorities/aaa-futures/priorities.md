@@ -9,10 +9,9 @@
 - ROI: `0.06`
 - Status: `idea`
 
-## Task Queue
+## Work Queue
 
-1. `research_revolution_seed` - Populate the research-revolution working note with funding, academic and institutional research, publishing, impact, and corporate R&D implications. Status: `active`. Depends on: none.
-2. `promotion_readiness` - Decide whether any section has matured into reader-facing corpus prose, public strategy material, or a separate operational plan. Status: `pending`. Depends on: `research_revolution_seed`.
+The locally ranked execution order, lifecycle state, and completion boundaries live in [work-queue.md](work-queue.md).
 
 ## Scope
 

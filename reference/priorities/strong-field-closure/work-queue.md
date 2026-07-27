@@ -1,5 +1,15 @@
 # Strong-Field Closure work queue
 
+## Ranked Next Objects
+
+1. `embedded_boundary_conditions` — [SF-001](#sf-001--embedded-horizon-interface-boundary-conditions). Status: `Queued`.
+2. `observer_predictions` — [SF-002](#sf-002--observer-level-strong-field-predictions). Status: `Queued`.
+3. `horizon_entropy_packet` — [SF-003](#sf-003--horizon-entropy-packet). Status: `Queued`.
+4. `release_channel_selection` — [SF-004](#sf-004--release-channel-selection). Status: `Queued`.
+5. `discriminating_observable` — [SF-005](#sf-005--discriminating-strong-field-observable). Status: `Queued`.
+6. `high_energy_source_sink_taxonomy` — [SF-006](#sf-006--high-energy-sourcesink-taxonomy). Status: `Queued`.
+7. `gw_public_waveform_packet` — [SF-007](#sf-007--public-gravitational-wave-benchmark-packet). Status: `Queued`.
+
 ## Queued
 
 ### SF-001 — Embedded horizon-interface boundary conditions

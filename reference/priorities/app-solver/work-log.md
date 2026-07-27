@@ -1,6 +1,20 @@
 # EOM Work Log
 
-This file holds dated decisions, implementation status, validation results, failed paths, migration handoffs, and operator/developer communication for the EOM priority area. Keep the live queue in [priorities.md](priorities.md), provisional ideas in [brainstorming.md](brainstorming.md), and the defining contract in [application-and-engine-contract.md](application-and-engine-contract.md).
+This file holds dated decisions, implementation status, validation results, failed paths, migration handoffs, and operator/developer communication for the EOM priority area. Keep strategy and status in [priorities.md](priorities.md), accepted executable tasks in [work-queue.md](work-queue.md), provisional ideas in [brainstorming.md](brainstorming.md), and the defining contract in [application-and-engine-contract.md](application-and-engine-contract.md).
+
+## 2026-07-26 — Priority Directory Renamed
+
+- Renamed the priority owner directory from `app-eom` to `app-solver`.
+- Preserved `EOM solver` as the engine and product name; the change affects the
+  repository owner slug, links, contracts, tests, and ranking references only.
+- Preserved the original absolute paths inside the July 2026 parallel-stream
+  pilot lock, report, and checksum inventory as immutable run provenance.
+- Ownership remains unchanged: this lane owns reusable solver execution,
+  checkpointing, deterministic replay, provenance, and campaign-driver
+  capability; scientific campaigns and independent theory acceptance remain
+  with their existing owners.
+- Claim grade: priority-only path migration. No solver capability, numerical
+  result, evidence grade, or rank changed.
 
 ## 2026-07-20 — Solver-Owned Fixed-Envelope Causal Retirement
 
@@ -29,7 +43,7 @@ This file holds dated decisions, implementation status, validation results, fail
 
 ## 2026-07-13 — Priority Area Created
 
-- Created `reference/priorities/app-eom/` for the operator-selected `EOM` Equation of Motion application.
+- Created `reference/priorities/app-solver/` for the operator-selected `EOM` Equation of Motion application.
 - Recorded the defining contract as retained past paths plus an absolute-time interval in, Master-EOM-evolved paths out.
 - Prohibited prescribed future paths, path constraints, guidance, snapping, analytic target orbits, and display curves from serving as EOM evolution.
 - Recorded the decision to build EOM standalone, without coupling to any other code in the repo.

@@ -13,6 +13,14 @@ This is the canonical execution ledger for accepted Borg work. `priorities.md` o
 
 `BORG-001` — native wake-history and boundary-residual fixture.
 
+## Ranked Next Objects
+
+1. `native_wake_history_and_boundary_residual_fixture` — [BORG-001](#borg-001--native-wake-history-and-boundary-residuals). Status: `Queued`.
+2. `assembly_viewer_record_contract_carriers` — [BORG-002](#borg-002--assembly-viewer-record-contract-carriers). Status: `Queued`.
+3. `velocity_scale_sampling_evidence` — [BORG-003](#borg-003--velocity-scale-sampling-evidence). Status: `Queued`.
+4. `assembly_explorer_disposition` — [BORG-004](#borg-004--assembly-explorer-disposition). Status: `Queued`.
+5. `borg_runtime_decomposition` — [BORG-005](#borg-005--borg-runtime-decomposition). Status: `Queued`.
+
 ## Awaiting verification
 
 No rows.

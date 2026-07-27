@@ -94,9 +94,9 @@ const WORKFLOWS = [
     read: [
       "reference/entourage/archie/prompts/priority-lane-resume.md",
       "reference/priorities/README.md",
-      "lane tracker, brainstorming.md, and work-log.md",
+      "priorities.md, work-queue.md, brainstorming.md, and work-log.md",
     ],
-    live: "Do not rely on memory for queue state; read the lane tracker and owning packet.",
+    live: "Do not rely on memory for queue state; read work-queue.md and its owning packet.",
   },
   {
     name: "Core geometry theorem review",

@@ -4,11 +4,11 @@ Hand the block below to an implementing thread. It inherits `reference/op/codex-
 
 ---
 
-Closure goal: Close every remaining finding in `reference/priorities/app-eom/eom-code-review-2026-07-24.md` — land the mechanical soundness and consistency fixes (S1, S2, S4, S6, S7), profile before optimizing (S3, then S5), pin the untested halt code (S8), and return the two scope questions and the M10 contract question to the operator rather than deciding them unilaterally.
+Closure goal: Close every remaining finding in `reference/priorities/app-solver/eom-code-review-2026-07-24.md` — land the mechanical soundness and consistency fixes (S1, S2, S4, S6, S7), profile before optimizing (S3, then S5), pin the untested halt code (S8), and return the two scope questions and the M10 contract question to the operator rather than deciding them unilaterally.
 
 # Objective
 
-Four remediation rounds have already landed against `reference/priorities/app-eom/eom-code-review-2026-07-24.md`. Read that report first; the `Round-four findings` section (S1–S9) is the live work list, and the status header records what is already closed. Everything below refers to findings by their S-number.
+Four remediation rounds have already landed against `reference/priorities/app-solver/eom-code-review-2026-07-24.md`. Read that report first; the `Round-four findings` section (S1–S9) is the live work list, and the status header records what is already closed. Everything below refers to findings by their S-number.
 
 No finding remaining is a soundness regression. The work is: one surviving instance of an already-fixed class, two tier/route consistency gaps, one lifetime-contract cleanup that closes two items at once, a measured-before-optimized performance question, and a set of small cleanups. Two items are operator decisions and one is a contract question — do not resolve those in code.
 
@@ -91,6 +91,6 @@ Per-item, the falsifier is named above (a fixture for S2, profile numbers for S3
 
 Follow `reference/op/operator-explanation-standard.md`: inline `Plainly:` interludes after every technical unit, never more than three consecutive technical paragraphs without one. A closing recap does not substitute.
 
-On completion, report: executive summary; per-S-item disposition (fixed / measured / returned to operator, with evidence); the S3 profile numbers before and after; which verification suites ran and their results; key decisions, especially the S4 iterator-tag choice and the S5 rebase-or-delete choice with the evidence behind each; durable capture decision — update `reference/priorities/app-eom/eom-code-review-2026-07-24.md` status header and note anything worth promoting; and a `Closure goal:` line naming the next objective or `none required`.
+On completion, report: executive summary; per-S-item disposition (fixed / measured / returned to operator, with evidence); the S3 profile numbers before and after; which verification suites ran and their results; key decisions, especially the S4 iterator-tag choice and the S5 rebase-or-delete choice with the evidence behind each; durable capture decision — update `reference/priorities/app-solver/eom-code-review-2026-07-24.md` status header and note anything worth promoting; and a `Closure goal:` line naming the next objective or `none required`.
 
 Update the review report's status header as you go, so it stays the live source of truth rather than a historical document.

@@ -60,7 +60,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 | Rank | Kind | Slug or packet | Bucket #1 next unresolved evidence object | Base | Cascade | MinDelta | Pressure | Engine | Eureka | EWeight | Value | Exec | Intuition | Deps | Valid | Cost | ROI |
 | ---: | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 1 | Engine | [`app-eom`](../app-eom/priorities.md) | `coupled_retained_history_integrator`: claim-ready bounded-population long-horizon kernel | 10.0 | 1.75 | -56 | 1.56 | 1.55 | 10 | 1.50 | 63.47 | 5 | 3 | 5 | 7 | 4.7 | 13.50 |
+| 1 | Engine | [`app-solver`](../app-solver/priorities.md) | `coupled_retained_history_integrator`: claim-ready bounded-population long-horizon kernel | 10.0 | 1.75 | -56 | 1.56 | 1.55 | 10 | 1.50 | 63.47 | 5 | 3 | 5 | 7 | 4.7 | 13.50 |
 | 2 | Program | [`braid-program`](../braid-program/priorities.md) | `binary_subfield_fate`: Campaign 1 opposite-polarity binary fate packet | 10.0 | 1.75 | -56 | 1.56 | 1.35 | 10 | 1.50 | 55.28 | 5 | 3 | 4 | 6 | 4.3 | 12.86 |
 | 3 | Workstream | [`master-equation-closure`](../master-equation-closure/priorities.md) | `causal_wake_update_law`: one independently evolving wake state with declared causal updates and a regular transmitter-side reduction | 10.0 | 1.70 | -56 | 1.56 | 1.45 | 9 | 1.40 | 53.84 | 6 | 6 | 5 | 7 | 6.0 | 8.97 |
 | 4 | Shared packet | [`transfer-operator-basin-measure`](../quantum-closure/transfer-operator-basin-measure.md) | Explicit transfer operator and invariant measure on one persistent accepted assembly state | 9.0 | 1.70 | -56 | 1.56 | 0.90 | 9 | 1.40 | 30.07 | 5 | 7 | 5 | 7 | 6.1 | 4.93 |
@@ -111,7 +111,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 ## Current Focus
 
-- **Measured/derived:** `app-eom` has the live production kernel, independent acceptance oracle, persistent worker foundations, exact checkpoint-backed record emission, deterministic thread replay, and measured recursive block-exclusion ladders. **Inferred rank claim:** it is first because completing long-horizon bounded evolution and precision/refinement acceptance unlocks every physical campaign. **Falsifier:** demote it if the live EOM queue becomes maintenance-only or a different active lane can produce accepted dynamics without further EOM work.
+- **Measured/derived:** `app-solver` has the live production kernel, independent acceptance oracle, persistent worker foundations, exact checkpoint-backed record emission, deterministic thread replay, and measured recursive block-exclusion ladders. **Inferred rank claim:** it is first because completing long-horizon bounded evolution and precision/refinement acceptance unlocks every physical campaign. **Falsifier:** demote it if the live EOM queue becomes maintenance-only or a different active lane can produce accepted dynamics without further EOM work.
 - **Measured/derived:** `braid-program` has a ratified charter and instrument gate, a fully constructed 243-row Campaign 1 workload, one diagnostic transverse inward-to-outward reversal, and no booked physics fate. **Inferred rank claim:** it is second because completing the first opposite-polarity binary fate remains the shortest route to a real assembly object or a decisive no-go. **Falsifier:** demote it if Campaign 1 cannot run under a source-frozen EOM/instrument contract or another lane obtains a shorter accepted route to a persistent assembly.
 - **Measured/inferred:** the former attractor-search lane has a checkpointed harness, deterministic resume, native assembly-view records, and a measured small-population cost model. Those instrument capabilities now belong to EOM, while Braid Program owns the first statistical campaign. **Falsifier:** reopen a separate rank only if multiple non-braid scientific programs require an independent instrument roadmap and acceptance boundary.
 - **Derived target:** `master-equation-closure` owns the causal wake update law, the finite coincident same-transmitter transition, and energy, momentum, and angular momentum accounts on that same update. Certified-braid construction and observer-level recovery remain downstream. **Falsifier:** demote it if no declared wake-state update reduces to the transmitter-side acceleration law on regular charts while crossing coincident same-transmitter birth finitely and closing the conserved accounts.
@@ -127,16 +127,9 @@ concrete upstream result is ready for it to inspect, validate, or publish.
 
 The `dormant-deferred` archive and all of its children are unscored.
 
-## Top Cross-Workstream Next Actions
+## Work Queue
 
-1. Finish the EOM bounded-population long-horizon acceptance stack: retained-history residency, refinement and precision ladders, deterministic CPU/SIMD evidence, and the first claim-ready binary run packet.
-2. Execute Braid Program Campaign 1 under the ratified charter without changing its frozen 27-configuration, three-prehistory, three-refinement workload or its instrument in the production change.
-3. Reaccept EOM's attractor-search checkpoint/resume and release-root
-   instrument, then run Braid Program's first declared undirected ensemble
-   campaign with its persistence criterion fixed before scoring.
-4. Close `causal_wake_update_law`, then accept the finite coincident same-transmitter transition and all three conserved accounts only on that same retained-history update.
-5. Populate the pressure-dependent Noether sea constitutive packet only after an accepted branch carries that wake-state closure, and require one shared response row across clock, signal, inertia, effective-metric, material, and cosmology consumers.
-6. Keep the transfer-operator, Noether sea response, equation-mapping, and Standard Model lanes downstream of persistent EOM-evolved assembly records; do not convert their current scaffolds into accepted coefficients, measures, or benchmark closure.
+The routed next actions now live in [work-queue.md](work-queue.md). Each implementation remains owned by the linked workstream queue.
 
 ## Organization Status
 

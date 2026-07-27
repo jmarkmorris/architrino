@@ -5,7 +5,7 @@ This file preserves ideas and insights that are working toward promotion to an e
 ## Routing Rules
 
 - Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote material into the control file only when it becomes a queue item, proof route, app task, or document/app destination.
+- Promote an accepted, testable task into [work-queue.md](work-queue.md); route proof and document/app destinations through [priorities.md](priorities.md).
 - Keep speculative notes claim-limited and identify the existing or new document or app they may support.
 
 ## Ideas And Insights
@@ -14,6 +14,17 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 - Derivation-closure target: discrete charge quantization with $\epsilon=e/6$ should be tested as a consequence of six retained polarity sites plus causal linking, winding, and stability selection, not as an arbitrary charge table. Promotion requires a branch-derived sign-pattern rule and a failure case excluding unobserved low-energy stable charge patterns.
 - Gauge-structure implication: if causal linking selects allowed six-site sign counts, route the result into the low-energy charge and gauge mapping only after the same branch evidence also satisfies dynamical exclusion of non-Standard-Model stable assemblies.
+- Three-axis anomaly-chain target: the current corpus uses three indexed
+  Noether braid axes to define the color triplet and then obtains an even
+  Standard Model doublet count for the Witten check. The missing first link is
+  not the anomaly arithmetic; it is a branch-derived lemma showing why the
+  admitted assembly has exactly three independent polar-dyad normals from its
+  three-dimensional Euclidean void geometry and closure conditions. The proof
+  must exclude stable lower- or higher-rank alternatives rather than assume
+  the observed color count. Only then may the Witten consistency row be read
+  as a consequence of the assembly geometry. Falsifier: an accepted stable
+  branch with a different independent-axis count that still projects to the
+  same claimed color record.
 
 ### Collider-Anomaly Comparison — 2026-07-11
 

@@ -491,15 +491,15 @@ test("Borg Display host memory keeps a proportional Mac reserve and admits avail
 
 test("Borg live contract and certified-budget records match the runtime identities", () => {
   const bindingRecord = readFileSync(new URL(
-    "../reference/priorities/app-eom/master-eom-binding-v1.md",
+    "../reference/priorities/app-solver/master-eom-binding-v1.md",
     import.meta.url,
   ), "utf8");
   const contractRecord = readFileSync(new URL(
-    "../reference/priorities/app-eom/evolution-contract-v1.md",
+    "../reference/priorities/app-solver/evolution-contract-v1.md",
     import.meta.url,
   ), "utf8");
   const budgetLedger = readFileSync(new URL(
-    "../reference/priorities/app-eom/certified-error-budget-ledger.md",
+    "../reference/priorities/app-solver/certified-error-budget-ledger.md",
     import.meta.url,
   ), "utf8");
   const masterEquation = readFileSync(new URL(

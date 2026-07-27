@@ -28,13 +28,9 @@ Maintain Borg as an app-facing surface for EOM-solver simulation and sealed-reco
 5. Keep the UI minimal while preserving required authority, error-budget, path-history, wake-history, boundary-shell, and diagnostic state.
 6. Use normalized field speed $c_f=1$ for Borg EOM runs unless an explicit manifest transform is present.
 
-## Ranked Next Objects
+## Work Queue
 
-1. `native_wake_history_and_boundary_residual_fixture` — [BORG-001: native wake history and boundary residuals](work-queue.md#borg-001--native-wake-history-and-boundary-residuals). Status: `queued`.
-2. `assembly_viewer_record_contract_carriers` — [BORG-002: assembly-viewer record-contract carriers](work-queue.md#borg-002--assembly-viewer-record-contract-carriers). Status: `queued`.
-3. `velocity_scale_sampling_evidence` — [BORG-003: velocity-scale sampling evidence](work-queue.md#borg-003--velocity-scale-sampling-evidence). Status: `queued`.
-4. `assembly_explorer_disposition` — [BORG-004: Assembly Explorer disposition](work-queue.md#borg-004--assembly-explorer-disposition). Status: `queued`.
-5. Save, export, import, and load workflows remain deferred until EOM-run dataset coverage stabilizes.
+The locally ranked execution order, including deferred workflows, lives in [work-queue.md](work-queue.md).
 
 ## Promotion Boundary
 

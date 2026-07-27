@@ -25,11 +25,9 @@ The complete portfolio table, grouped capability backlogs, deferred ideas, desig
 - Keep apps candidate-level unless the underlying corpus already supplies a derivation.
 - Reuse existing visual grammar from Ideal Braid, Photon, Animator, and solver diagnostics where possible.
 
-## Ranked Next Objects
+## Work Queue
 
-Ordered by marginal ROI on 2026-07-26.
-
-1. `next_concept_selection` — Select the next active one-page teaching app after Causal Delay Feedback and its advanced Roots material were moved to `dormant-deferred`. The selection must name one coherent learner journey, its active owner, its canonical state source, and a bounded implementation packet. Status: `selection reopened`.
+The accepted portfolio decision object and its completion boundary live in [work-queue.md](work-queue.md). Unselected concepts remain in [brainstorming.md](brainstorming.md).
 
 ## Promoted App Packets
 

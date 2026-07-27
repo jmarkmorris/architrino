@@ -1,6 +1,6 @@
 # Braid Program — Work Log
 
-Append-only. Dated entries, newest last. One entry per completed unit of work: what ran, what it showed (graded), where the evidence landed, what it unblocks. No entry rewrites; corrections are new dated entries.
+Append-only. Dated entries, newest last. One entry per completed unit of work: what ran, what it showed (graded), where the evidence landed, what it unblocks. No entry rewrites; corrections are new dated entries. Live executable tasks and their local order remain in [work-queue.md](work-queue.md).
 
 ## 2026-07-15 — Program opened
 
@@ -425,7 +425,7 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   observables, persistence criteria, and promotion rules into
   [undirected-ensemble-search.md](undirected-ensemble-search.md).
 - EOM now retains the reusable profiler and checkpoint-chunked harness state in
-  its [attractor-search instrument packet](../app-eom/attractor-search-instrument.md)
-  and [work log](../app-eom/attractor-search-work-log.md).
+  its [attractor-search instrument packet](../app-solver/attractor-search-instrument.md)
+  and [work log](../app-solver/attractor-search-work-log.md).
 - Deleted the redundant `eom-attractor-search` directory. No gate, evidence
   status, campaign rank, or physical claim changed.

@@ -5,7 +5,7 @@ This file preserves ideas and insights that are working toward promotion to an e
 ## Routing Rules
 
 - Keep loose future-facing research, funding, institutional, publishing, public-impact, and corporate R&D ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote material into [priorities.md](priorities.md) only when it becomes a queue item, working note, strategy packet, or document/app destination.
+- Promote an accepted, testable task into [work-queue.md](work-queue.md); route strategy packets and document/app destinations through [priorities.md](priorities.md).
 - Keep speculative notes claim-limited and identify the existing or new document or app they may support.
 
 ## Ideas And Insights

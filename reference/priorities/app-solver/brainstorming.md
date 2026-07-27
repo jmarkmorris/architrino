@@ -5,7 +5,7 @@ This file holds provisional feature ideas, performance directions, validation po
 ## Routing Rules
 
 - Keep the defining evolution contract in [application-and-engine-contract.md](application-and-engine-contract.md).
-- Keep the active queue compact in [priorities.md](priorities.md).
+- Keep the active queue in [work-queue.md](work-queue.md) and the strategic contract compact in [priorities.md](priorities.md).
 - Do not let performance, UI, storage, or visualization work outrank correct coupled Master EOM evolution and independent validation.
 
 ## Feature Candidates
@@ -62,6 +62,30 @@ This file holds provisional feature ideas, performance directions, validation po
 - **2026-07-20 operator observation, Display grade, 2:3 run:** one red/blue pair presents as a binary candidate in the supplied camera view: its two three-dimensional trails share a long-scale direction while winding around one another, although the appearance changes from other viewing angles. Claim grade: observed screen-space morphology only. The candidate is falsified as a binary if the raw three-dimensional relative separation is not bounded over the nominated interval, pair identity swaps, the pair's center path is not shared on the long scale, or the appearance disappears under a camera-invariant path analysis.
 - **First measurement target:** record the four-path separation matrix across $T$, assign the minimum-cost opposite-polarity pairing at each frame, and report pair swaps, each pair's separation band and relative speed, the ratio of within-pair to between-pair separation, and persistence duration. Repeat over declared seeds and timestep/sample ladders. The candidate fails if pair identity repeatedly swaps, within-pair separation grows without bound, the separation gap disappears, or the behavior vanishes under refinement.
 - **Promotion route:** a Display-grade run can nominate the geometry and measurement window. Assembly status requires an EOM-evolved claim-grade record plus the owning assembly program's branch, convergence, perturbation, and independent-evidence gates.
+
+### Moving-Branch Drift Relaxation Instrument
+
+Claim level: instrument target. This capability can measure a moving branch; it
+does not establish Lorentz recovery by itself.
+
+- Consume an accepted rest-branch record and apply declared axial and
+  two-axis drift seeds with $c_f=1$, without prescribing the target
+  contraction or phase split.
+- Evolve each seed until the same branch either reaches a certified
+  relative-periodic state, changes identity, disperses, collapses, or remains
+  unresolved within the declared budget.
+- On the retained branch, emit the cycle-averaged shape tensor, drift-axis
+  semiaxes $R_{\parallel}(u)$ and $R_{\perp}(u)$, clock phase, bidirectional
+  one-way leg offsets, transverse eigenvalue split after composed drifts, root
+  identity, history coverage, and convergence ladders.
+- Include a direct-drift versus sequential-drift comparison at the same
+  resultant velocity. The scientific consumer can then test attractor
+  uniqueness and path independence without asking the solver to label a
+  Lorentz pass.
+- Route seed choice and branch identity through the Braid Program; route
+  observer-level clock, ruler, synchronization, and preferred-frame
+  acceptance through
+  [Cross-Theory Mapping](../cross-theory-mapping/lorentz-invariance-test-suite.md).
 
 ### CPU Performance
 

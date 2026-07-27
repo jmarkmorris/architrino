@@ -9,19 +9,9 @@
 - ROI: `3.43`
 - Status: `tolerance-rule-scaffolded`
 
-## Task Queue
+## Work Queue
 
-1. `quark_mass_predictions` — Extend quark geometry from catalog closure to first-pass mass predictions. Status: `next`. Depends on: none.
-2. `overlap_integrals` — Derive CKM and PMNS overlap integrals from geometry. Status: `pending`. Depends on: `quark_mass_predictions`.
-3. `confinement_energetics` — Derive confinement-scale behavior from topological or strain energetics. Status: `pending`. Depends on: `overlap_integrals`.
-4. `weak_sector_gauge_closure` — Unify weak axial-frame exposure, `V-A`, CKM/PMNS overlap, weak-corridor provenance, and effective gauge covariance into one closure packet. Status: `review`. Depends on: `overlap_integrals`.
-5. `scalar_boson_acceptance` — Add the ATLAS Higgs discovery benchmark as a Standard Model closure target: scalar mass $126.0\pm0.4\text{ (stat)}\pm0.4\text{ (sys)}\,\mathrm{GeV}$, signal strength $\hat{\mu}=1.4\pm0.3$, channel-rate compatibility for $ZZ^{(*)}4\ell$, $\gamma\gamma$, and $WW^{(*)}\ell\nu\ell\nu$, and excluded-scalar-window pressure. Status: `pending`. Depends on: `weak_sector_gauge_closure`, mass-map scalar-response handoff.
-6. `nuclear_potential_derivation` — Consume the promoted nuclear benchmark ladder and derive or constrain the signs, ranges, and saturation behavior of $V_{\text{excl}}$, $V_{\text{Coul}}$, $V_{\pi/\text{corr}}$, and $V_{\text{sea-pol}}$ from hadronic geometry, meson-like corridors, and Noether sea polarization. Status: `derivation-pending`; benchmark gates already promoted. Depends on: `confinement_energetics`.
-7. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether sea coarse-graining boundaries. Status: `tolerance-rule-scaffolded`. Depends on: `confinement_energetics`, `nuclear_potential_derivation`.
-8. `supersymmetry_internal_partner_comparison` — Treat supersymmetry-like organization as a comparison framework for internal branch degrees of freedom and null-result pressure, not as a prediction of external low-energy superpartner particles. Status: `deferred-low-priority`. Depends on: gauge-running residuals, LHC null-result bounds, and branch-record algebra.
-9. `lattice_qcd_direct_assembly_comparison` — Compare lattice-QCD benchmark observables against a future finite-assembly nucleon simulation without claiming lattice QCD is obsolete before masses, form factors, and scattering rows are recovered. Status: `pending`. Depends on: `confinement_energetics`, `nuclear_potential_derivation`, and simulations `direct_nucleon_assembly_monte_carlo`.
-10. `e8_redundancy_heuristic_audit` — Treat $248=256-8$ only as a speculative quotient/redundancy clue for algebra mapping, not as evidence that E8 is native ontology. Status: `deferred-low-priority`. Depends on: accepted branch-state records and gauge-record rows.
-11. `quark_vortex_coupling_simulation` — Build a finite-assembly quark-era simulation target that tests whether vortex-like wake coupling can recover confinement behavior, quark stability, and gluon-comparison observables without bypassing the color-singlet ledger. Status: `pending`. Depends on: `confinement_energetics`, `lattice_qcd_direct_assembly_comparison`.
+The locally ranked Standard Model recovery tasks, dependencies, and acceptance boundaries live in [work-queue.md](work-queue.md).
 
 ## Scope
 
