@@ -31,9 +31,14 @@ import {
 } from "./PhotonBraidVisualRuntime.js";
 import { PRESCRIBED_PATH_ANALYSIS_ID } from "../../prescribed-path-analysis/PrescribedPathAnalysis.mjs";
 import {
-  STANDALONE_APP_HOME_HREF,
   navigateStandaloneAppHome,
+  resolveStandaloneSiteHomeHref,
 } from "../navigator/StandaloneAppHomeRuntime.js";
+import {
+  createStandaloneAppSceneSearchRuntime,
+  resolveStandaloneGlobalSceneHref,
+  TEXTBOOK_TOC_SCENE_PATH,
+} from "../navigator/StandaloneAppSceneSearchRuntime.js";
 
 const PHOTON_DOCS = {
   guide: {
@@ -396,7 +401,6 @@ function createPhotonDownload(documentLike, windowLike, filename, text) {
 export function createPhotonRuntime({
   documentLike = globalThis.document,
   windowLike = globalThis.window,
-  homeHref = STANDALONE_APP_HOME_HREF,
   prescribedPathAnalysisOptions = {},
   configurationSearchFactory =
     createPhotonConfigurationSearchResultsWithPrescribedPathAnalysis,
@@ -407,7 +411,10 @@ export function createPhotonRuntime({
   const controlsElement = queryPhotonElement(documentLike, "#photon-controls");
   const diagnosticsElement = queryPhotonElement(documentLike, "#photon-diagnostics");
   const formulasElement = queryPhotonElement(documentLike, "#photon-formulas");
-  const homeButton = queryPhotonElement(documentLike, "#photon-home-button");
+  const tocButton = queryPhotonElement(documentLike, "#textbook-toc-button");
+  const backButton = queryPhotonElement(documentLike, "#nav-up");
+  const forwardButton = queryPhotonElement(documentLike, "#nav-forward");
+  const homeButton = queryPhotonElement(documentLike, "#home-button");
   const guideDocButton = queryPhotonElement(documentLike, "#photon-guide-doc-button");
   const photonClosureDocButton = queryPhotonElement(
     documentLike,
@@ -440,6 +447,7 @@ export function createPhotonRuntime({
   let modelTime = 0;
   let lastFrame = 0;
   let controlsRuntime = null;
+  let sceneSearchRuntime = null;
   let animationFrame = 0;
   let solverSnapshot = null;
   let solverSnapshotPromise = null;
@@ -1093,10 +1101,38 @@ export function createPhotonRuntime({
       onExportSelectedSearchResults: exportSelectedSearchResults,
       onImportSearchResults: importSearchResults,
     });
+    sceneSearchRuntime = createStandaloneAppSceneSearchRuntime({
+      document: documentLike,
+      window: windowLike,
+    }).init();
+    addRuntimeEventListener(tocButton, "click", () => {
+      navigateStandaloneAppHome(
+        windowLike.location,
+        resolveStandaloneGlobalSceneHref(
+          TEXTBOOK_TOC_SCENE_PATH,
+          windowLike.location?.href
+        ),
+        {
+          windowLike,
+          returnHref: windowLike.location?.href,
+        }
+      );
+    });
+    addRuntimeEventListener(backButton, "click", () => {
+      windowLike.history?.back?.();
+    });
+    addRuntimeEventListener(forwardButton, "click", () => {
+      windowLike.history?.forward?.();
+    });
     addRuntimeEventListener(homeButton, "click", () => {
-      navigateStandaloneAppHome(windowLike.location, homeHref, {
-        windowLike,
-      });
+      navigateStandaloneAppHome(
+        windowLike.location,
+        resolveStandaloneSiteHomeHref(windowLike.location?.href),
+        {
+          windowLike,
+          returnHref: windowLike.location?.href,
+        }
+      );
     });
     addRuntimeEventListener(guideDocButton, "click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.guide);
@@ -1147,6 +1183,8 @@ export function createPhotonRuntime({
     runtimeEventListeners = [];
     controlsRuntime?.destroy();
     controlsRuntime = null;
+    sceneSearchRuntime?.destroy?.();
+    sceneSearchRuntime = null;
     markdownRuntime.hideMarkdownPanel();
   }
 

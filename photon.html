@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#080b12" />
     <title>Photon and Polarization Visualization</title>
+    <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
     <link
       rel="stylesheet"
       href="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css"
@@ -37,7 +38,8 @@
       #photon-app {
         position: relative;
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 400px;
+        grid-template-columns: 400px minmax(0, 1fr);
+        grid-template-areas: "inspector main";
         grid-template-rows: 1fr;
         width: 100%;
         height: 100%;
@@ -47,6 +49,7 @@
       }
 
       .photon-main {
+        grid-area: main;
         min-width: 0;
         min-height: 0;
         display: grid;
@@ -116,6 +119,7 @@
       }
 
       .photon-inspector {
+        grid-area: inspector;
         min-height: 0;
         overflow: auto;
         padding: 12px;
@@ -145,38 +149,6 @@
         margin: 2px 0 0;
         color: rgba(203, 213, 225, 0.72);
         font-size: 11px;
-      }
-
-      .photon-inspector-actions {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        flex: 0 0 auto;
-      }
-
-      #photon-home-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-        padding: 0;
-        border: 1px solid rgba(148, 163, 184, 0.25);
-        border-radius: 999px;
-        background: rgba(17, 24, 39, 0.85);
-        color: rgba(238, 243, 255, 0.88);
-        cursor: pointer;
-      }
-
-      #photon-home-button:hover,
-      #photon-home-button:focus-visible {
-        border-color: rgba(125, 211, 252, 0.58);
-        outline: none;
-      }
-
-      #photon-home-button svg {
-        width: 18px;
-        height: 18px;
       }
 
       .photon-doc-row {
@@ -856,7 +828,7 @@
       #photon-markdown-panel {
         position: absolute;
         top: 14px;
-        right: 414px;
+        left: 414px;
         bottom: 14px;
         width: min(760px, calc(100vw - 436px));
         z-index: 30;
@@ -1059,6 +1031,9 @@
           min-height: 100%;
           height: auto;
           grid-template-columns: 1fr;
+          grid-template-areas:
+            "main"
+            "inspector";
         }
 
         .photon-main {
@@ -1089,6 +1064,59 @@
   </head>
   <body>
     <div id="photon-app">
+      <div id="scene-hud-tools" class="standalone-app-navigation" aria-label="Webapp navigation">
+        <button
+          id="textbook-toc-button"
+          class="standalone-app-toc-button"
+          type="button"
+          aria-label="Open textbook table of contents"
+          title="Table of Contents"
+        >TOC</button>
+        <div id="scene-nav-history" class="standalone-app-nav-history" role="group" aria-label="Browser history">
+          <button id="nav-up" class="standalone-app-nav-icon-button" type="button" aria-label="Go back" title="Back">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="15 5 8 12 15 19"></polyline>
+            </svg>
+          </button>
+          <button id="nav-forward" class="standalone-app-nav-icon-button" type="button" aria-label="Go forward" title="Forward">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="9 5 16 12 9 19"></polyline>
+            </svg>
+          </button>
+        </div>
+        <button id="home-button" class="standalone-app-nav-icon-button" type="button" aria-label="Go to home" title="Home">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"></path>
+          </svg>
+        </button>
+        <div id="scene-search" class="standalone-app-scene-search">
+          <button
+            id="scene-search-toggle"
+            class="standalone-app-nav-icon-button standalone-app-scene-search-toggle"
+            type="button"
+            aria-label="Search scenes"
+            aria-controls="scene-search-panel"
+            aria-expanded="false"
+            title="Search"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5"></circle>
+              <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+            </svg>
+          </button>
+          <div id="scene-search-panel" class="standalone-app-scene-search-panel" aria-hidden="true" inert>
+            <input
+              id="scene-search-input"
+              class="standalone-app-scene-search-input"
+              type="search"
+              placeholder="Search scenes"
+              autocomplete="off"
+              aria-label="Search scenes"
+            />
+            <div id="scene-search-results" class="standalone-app-scene-search-results"></div>
+          </div>
+        </div>
+      </div>
       <main class="photon-main">
         <section class="photon-stage">
           <canvas id="photon-stage-canvas" aria-label="Photon planar-pair braid visualization"></canvas>
@@ -1122,20 +1150,6 @@
         <header class="photon-inspector-header">
           <div class="photon-inspector-title">
             <h1>Photon and Polarization Visualization</h1>
-          </div>
-          <div class="photon-inspector-actions">
-            <button id="photon-home-button" type="button" aria-label="Go to home">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M3 11.5 12 4l9 7.5M5.5 10.5V20h5v-5h3v5h5v-9.5"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
           </div>
         </header>
         <div class="photon-doc-row" aria-label="Photon documentation">
