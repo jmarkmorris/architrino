@@ -1238,6 +1238,17 @@ void run(
             << result.timing.exact_root_batch_wall_seconds
             << ",\"rootBinary64WorkerWallSeconds\":"
             << result.timing.root_binary64_worker_wall_seconds
+            << ",\"rootBinary64SetupWorkerWallSeconds\":"
+            << result.timing.root_binary64_setup_worker_wall_seconds
+            << ",\"rootBinary64WarmStartWorkerWallSeconds\":"
+            << result.timing.root_binary64_warm_start_worker_wall_seconds
+            << ",\"rootBinary64CellSetupWorkerWallSeconds\":"
+            << result.timing.root_binary64_cell_setup_worker_wall_seconds
+            << ",\"rootBinary64CellClassificationWorkerWallSeconds\":"
+            << result.timing
+                   .root_binary64_cell_classification_worker_wall_seconds
+            << ",\"rootBinary64FinalizationWorkerWallSeconds\":"
+            << result.timing.root_binary64_finalization_worker_wall_seconds
             << ",\"rootPairCount\":"
             << result.timing.root_pair_count
             << ",\"rootReevaluatedCells\":"
@@ -1268,12 +1279,40 @@ void run(
             << result.timing.acceleration_precision_escalation_worker_seconds
             << ",\"accelerationPrecisionEscalationAttemptCount\":"
             << result.timing.acceleration_precision_escalation_attempt_count
+            << ",\"jointSnapshotWallSeconds\":"
+            << result.timing.joint_snapshot_wall_seconds
+            << ",\"jointReceiverStateWallSeconds\":"
+            << result.timing.joint_receiver_state_wall_seconds
+            << ",\"jointRowCertificationWallSeconds\":"
+            << result.timing.joint_row_certification_wall_seconds
+            << ",\"jointDeterministicReductionWallSeconds\":"
+            << result.timing.joint_deterministic_reduction_wall_seconds
+            << ",\"jointSnapshotCount\":"
+            << result.timing.joint_snapshot_count
+            << ",\"reusedJointStartSnapshotCount\":"
+            << result.timing.reused_joint_start_snapshot_count
+            << ",\"jointStartSnapshotWallSeconds\":"
+            << result.timing.joint_start_snapshot_wall_seconds
+            << ",\"jointPredictorSnapshotWallSeconds\":"
+            << result.timing.joint_predictor_snapshot_wall_seconds
+            << ",\"jointCorrectionSnapshotWallSeconds\":"
+            << result.timing.joint_correction_snapshot_wall_seconds
+            << ",\"jointEndpointContractionWallSeconds\":"
+            << result.timing.joint_endpoint_contraction_wall_seconds
             << ",\"regulatorLadderWallSeconds\":"
             << result.timing.regulator_ladder_wall_seconds
             << ",\"commonDomainWallSeconds\":"
             << result.timing.common_domain_wall_seconds
             << ",\"historyCopyHashWallSeconds\":"
             << result.timing.history_copy_hash_wall_seconds
+            << ",\"endpointStateLookupWallSeconds\":"
+            << result.timing.history.endpoint_state_lookup.wall_seconds
+            << ",\"endpointStateLookupDiskBlockLoads\":"
+            << result.timing.history.endpoint_state_lookup
+                   .disk_block_load_count
+            << ",\"endpointStateLookupDiskCacheMisses\":"
+            << result.timing.history.endpoint_state_lookup
+                   .disk_cache_miss_count
             << ",\"endpointPositionLookupWallSeconds\":"
             << result.timing.history.endpoint_position_lookup.wall_seconds
             << ",\"endpointPositionLookupDiskBlockLoads\":"

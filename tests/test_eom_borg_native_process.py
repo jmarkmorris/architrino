@@ -148,6 +148,7 @@ class NativeBorgProcessTests(unittest.TestCase):
             len(response["publishedExtensions"][0]["segments"]), 0
         )
         history_phase_fields = (
+            "endpointStateLookupWallSeconds",
             "endpointPositionLookupWallSeconds",
             "endpointVelocityLookupWallSeconds",
             "segmentConstructionWallSeconds",
@@ -164,6 +165,34 @@ class NativeBorgProcessTests(unittest.TestCase):
             sum(response["timing"][field] for field in history_phase_fields),
             delta=1e-7,
         )
+        root_binary64_phase_fields = (
+            "rootBinary64SetupWorkerWallSeconds",
+            "rootBinary64WarmStartWorkerWallSeconds",
+            "rootBinary64CellSetupWorkerWallSeconds",
+            "rootBinary64CellClassificationWorkerWallSeconds",
+            "rootBinary64FinalizationWorkerWallSeconds",
+        )
+        joint_phase_fields = (
+            "jointReceiverStateWallSeconds",
+            "jointRowCertificationWallSeconds",
+            "jointDeterministicReductionWallSeconds",
+        )
+        self.assertTrue(all(
+            response["timing"][field] >= 0
+            for field in root_binary64_phase_fields + joint_phase_fields
+        ))
+        self.assertLessEqual(
+            sum(response["timing"][field] for field in root_binary64_phase_fields),
+            response["timing"]["rootBinary64WorkerWallSeconds"] + 1e-7,
+        )
+        self.assertLessEqual(
+            sum(response["timing"][field] for field in joint_phase_fields),
+            response["timing"]["jointSnapshotWallSeconds"] + 1e-7,
+        )
+        if response["jointStatePathCount"] > 0:
+            self.assertGreater(
+                response["timing"]["reusedJointStartSnapshotCount"], 0
+            )
 
     def test_display_grade_preserves_numerical_path_but_marks_every_output_display_only(self) -> None:
         protocol = "\n".join((
@@ -909,6 +938,7 @@ class NativeBorgProcessTests(unittest.TestCase):
             phase_disk_loads = sum(
                 paged["timing"][field]
                 for field in (
+                    "endpointStateLookupDiskBlockLoads",
                     "endpointPositionLookupDiskBlockLoads",
                     "endpointVelocityLookupDiskBlockLoads",
                     "segmentConstructionDiskBlockLoads",
@@ -920,6 +950,7 @@ class NativeBorgProcessTests(unittest.TestCase):
             phase_cache_misses = sum(
                 paged["timing"][field]
                 for field in (
+                    "endpointStateLookupDiskCacheMisses",
                     "endpointPositionLookupDiskCacheMisses",
                     "endpointVelocityLookupDiskCacheMisses",
                     "segmentConstructionDiskCacheMisses",

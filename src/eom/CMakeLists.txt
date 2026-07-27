@@ -123,6 +123,10 @@ add_test(
   COMMAND eom_history_profile_cli pin-lifetime
 )
 add_test(
+  NAME eom_history_terminal_state_equivalence
+  COMMAND eom_history_profile_cli terminal-state-equivalence
+)
+add_test(
   NAME eom_native_evolution_fixture
   COMMAND eom_native_evolution_fixture_cli all
 )

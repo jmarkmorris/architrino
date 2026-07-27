@@ -144,6 +144,11 @@ struct DoubleAttempt {
   bool stable_negative_prefix_certified = false;
   double stable_negative_prefix_upper = 0.0;
   std::size_t incremental_prefix_reuse_count = 0;
+  double setup_wall_seconds = 0.0;
+  double warm_start_wall_seconds = 0.0;
+  double cell_setup_wall_seconds = 0.0;
+  double cell_classification_wall_seconds = 0.0;
+  double finalization_wall_seconds = 0.0;
   std::vector<DoubleRoot> roots;
   std::vector<DoubleRootFreeCell> root_free_cells;
 };
@@ -528,7 +533,9 @@ std::optional<DoubleRoot> surround_double_segment_join_root(
 }
 
 DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
+  using RootClock = std::chrono::steady_clock;
   DoubleAttempt attempt;
+  auto phase_start = RootClock::now();
   const double reception_value =
       parse_double(request.reception_time, "reception time");
   const double search_lower =
@@ -558,6 +565,8 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       tolerance < 128.0 * std::numeric_limits<double>::epsilon() * scale) {
     attempt.complete = false;
     attempt.difficult_cells = 1;
+    attempt.setup_wall_seconds =
+        std::chrono::duration<double>(RootClock::now() - phase_start).count();
     return attempt;
   }
   const bool same_retained_history =
@@ -577,7 +586,10 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       request.receiver->segment_index_at(reception_value));
   const auto& receiver_segment = *receiver_segment_pin;
   attempt.stable_negative_prefix_upper = search_lower;
+  attempt.setup_wall_seconds =
+      std::chrono::duration<double>(RootClock::now() - phase_start).count();
 
+  phase_start = RootClock::now();
   bool warm_start_eligible = false;
   double incremental_search_lower = search_lower;
   if (request.warm_start != nullptr &&
@@ -665,7 +677,10 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       }
     }
   }
+  attempt.warm_start_wall_seconds =
+      std::chrono::duration<double>(RootClock::now() - phase_start).count();
 
+  phase_start = RootClock::now();
   struct WarmCellView {
     double lower;
     double upper;
@@ -817,7 +832,10 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
         norm(segment.velocity_interval(Interval(cell.lower, upper))).upper() <
             field_speed.lower();
   };
+  attempt.cell_setup_wall_seconds =
+      std::chrono::duration<double>(RootClock::now() - phase_start).count();
 
+  phase_start = RootClock::now();
   auto add_token_dominated_endpoint_root = [&] (
       const CubicHistorySegment& transmitter_segment,
       std::size_t segment_index,
@@ -1130,6 +1148,9 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
           "] failed: " + error.what());
     }
   }
+  attempt.cell_classification_wall_seconds =
+      std::chrono::duration<double>(RootClock::now() - phase_start).count();
+  phase_start = RootClock::now();
   if (attempt.complete) {
     std::vector<const DoubleRootFreeCell*> ordered_cells;
     ordered_cells.reserve(attempt.root_free_cells.size());
@@ -1195,6 +1216,8 @@ DoubleAttempt run_double_attempt(const ExactPairRequest& request) {
       }
     }
   }
+  attempt.finalization_wall_seconds =
+      std::chrono::duration<double>(RootClock::now() - phase_start).count();
   return attempt;
 }
 
@@ -3376,6 +3399,15 @@ ExactPairCertificate double_certificate(
   }
   certificate.warm_excluded_cells = attempt.warm_excluded_cells;
   certificate.reevaluated_cells = attempt.visited_cells;
+  certificate.binary64_setup_wall_seconds = attempt.setup_wall_seconds;
+  certificate.binary64_warm_start_wall_seconds =
+      attempt.warm_start_wall_seconds;
+  certificate.binary64_cell_setup_wall_seconds =
+      attempt.cell_setup_wall_seconds;
+  certificate.binary64_cell_classification_wall_seconds =
+      attempt.cell_classification_wall_seconds;
+  certificate.binary64_finalization_wall_seconds =
+      attempt.finalization_wall_seconds;
   certificate.warm_residual_drift_upper =
       attempt.warm_residual_drift_upper;
   certificate.stable_negative_prefix_certified =
@@ -3795,6 +3827,15 @@ ExactPairCertificate certify_exact_pair(const ExactPairRequest& request) {
     if (latest.complete) {
       auto certificate = mpfr_certificate(request, latest, bits, false);
       certificate.binary64_worker_wall_seconds = binary64_seconds;
+      certificate.binary64_setup_wall_seconds = fast.setup_wall_seconds;
+      certificate.binary64_warm_start_wall_seconds =
+          fast.warm_start_wall_seconds;
+      certificate.binary64_cell_setup_wall_seconds =
+          fast.cell_setup_wall_seconds;
+      certificate.binary64_cell_classification_wall_seconds =
+          fast.cell_classification_wall_seconds;
+      certificate.binary64_finalization_wall_seconds =
+          fast.finalization_wall_seconds;
       certificate.mpfr_worker_wall_seconds = mpfr_seconds;
       certificate.mpfr_attempt_count = mpfr_attempt_count;
       certificate.mpfr_escalation_worker_wall_seconds =
@@ -3806,6 +3847,15 @@ ExactPairCertificate certify_exact_pair(const ExactPairRequest& request) {
     if (bits >= request.maximum_mpfr_bits) {
       auto certificate = mpfr_certificate(request, latest, bits, true);
       certificate.binary64_worker_wall_seconds = binary64_seconds;
+      certificate.binary64_setup_wall_seconds = fast.setup_wall_seconds;
+      certificate.binary64_warm_start_wall_seconds =
+          fast.warm_start_wall_seconds;
+      certificate.binary64_cell_setup_wall_seconds =
+          fast.cell_setup_wall_seconds;
+      certificate.binary64_cell_classification_wall_seconds =
+          fast.cell_classification_wall_seconds;
+      certificate.binary64_finalization_wall_seconds =
+          fast.finalization_wall_seconds;
       certificate.mpfr_worker_wall_seconds = mpfr_seconds;
       certificate.mpfr_attempt_count = mpfr_attempt_count;
       certificate.mpfr_escalation_worker_wall_seconds =
