@@ -502,7 +502,7 @@ The theorem can promote into [quantum-summary](../../../content/markdown/aaa/qua
 - doubling-frequency-lock
 - angular-momentum-spin
 - [app-simulation](../app-simulation/priorities.md)
-- [validation-gates](../validation-gates/priorities.md)
+- [validation-gates](../dormant-deferred/validation-gates/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

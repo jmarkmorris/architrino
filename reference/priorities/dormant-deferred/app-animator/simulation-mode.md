@@ -91,12 +91,12 @@ Each implementation step should follow the same loop:
 
 ## Related Priorities
 
-- [app-simulation](../app-simulation/priorities.md)
+- [app-simulation](../../app-simulation/priorities.md)
 - [app-animator](priorities.md)
 
 ## Related AAA Notes
 
-- [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md)
-- [architrino](../../../content/markdown/aaa/validation/simulations/architrino.md)
-- [about-the-webapp](../../../content/markdown/aaa/archie/about-the-webapp.md)
-- [scene-taxonomy](../../design/scene-taxonomy.md)
+- [run-protocols](../../../../content/markdown/aaa/validation/simulations/run-protocols.md)
+- [architrino](../../../../content/markdown/aaa/validation/simulations/architrino.md)
+- [about-the-webapp](../../../../content/markdown/aaa/archie/about-the-webapp.md)
+- [scene-taxonomy](../../../design/scene-taxonomy.md)

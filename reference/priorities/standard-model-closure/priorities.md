@@ -706,7 +706,7 @@ Failure modes:
 - mass-map
 - [3x3](../dormant-deferred/3x3/priorities.md)
 - [master-equation-closure](../master-equation-closure/priorities.md)
-- [validation-gates](../validation-gates/priorities.md)
+- [validation-gates](../dormant-deferred/validation-gates/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

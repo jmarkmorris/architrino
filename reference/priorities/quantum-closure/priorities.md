@@ -194,7 +194,7 @@ Preserved quantum side questions have been moved to [brainstorming.md](brainstor
 - [app-simulation](../app-simulation/priorities.md)
 - mass-map
 - [standard-model-closure](../standard-model-closure/priorities.md)
-- [validation-gates](../validation-gates/priorities.md)
+- [validation-gates](../dormant-deferred/validation-gates/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

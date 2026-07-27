@@ -15,7 +15,7 @@
 2. `ensemble_temperature_definition` - Convert the radiation chapter's ensemble-temperature relation into a reusable condition for when temperature is available. Status: `draft`. Depends on: [entropy](entropy.md).
 3. `kelvin_kb_bridge` - Route the Kelvin and $k_B$ discussion through Noether sea ensemble dynamics without treating a single Noether braid as thermodynamically hot. Status: `draft`. Depends on: `ensemble_temperature_definition`, mass-map.
 4. `blackbody_temperature_gate` - Tie Planck-spectrum recovery to Gate A, Gate B, Gate C, detailed balance, and thermalization depth. Status: `draft`. Depends on: braid.
-5. `cosmology_temperature_handoff` - Separate intrinsic Noether braid energy, local emissive ensemble temperature, and observer-inferred CMB temperature. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/priorities.md), [validation-gates](../validation-gates/priorities.md).
+5. `cosmology_temperature_handoff` - Separate intrinsic Noether braid energy, local emissive ensemble temperature, and observer-inferred CMB temperature. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/priorities.md), [validation-gates](../dormant-deferred/validation-gates/priorities.md).
 6. `high_energy_reaction_stage_temperature_split` - Separate free-architrino kinetic width, assembly apparent temperature, photon-bath temperature, and Noether sea emissive temperature in early-chronology or strong-field reaction-stage prose. Status: `draft`. Depends on: `cosmology_temperature_handoff`.
 7. `medium_excitation_temperature_guardrail` - Keep Noether sea excitation, RMS wake loading, lapse response, and thermodynamic temperature separate unless an ensemble relation is declared. Status: `draft`. Depends on: `ensemble_temperature_definition`.
 8. `accessible_temperature_store_split` - Keep observer-accessible kinetic or ensemble temperature separate from shielded/stored configuration energy. Status: `draft`. Depends on: `ensemble_temperature_definition`.
@@ -326,7 +326,7 @@ may be useful as a Noether sea RMS loading coordinate for effective gravity or t
 - [cosmology-closure](../cosmology-closure/priorities.md)
 - braid
 - mass-map
-- [validation-gates](../validation-gates/priorities.md)
+- [validation-gates](../dormant-deferred/validation-gates/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

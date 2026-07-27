@@ -88,4 +88,4 @@ The locally ranked standardization tasks, dependencies, and acceptance boundarie
 - [Equation Mapping App](../dormant-deferred/app-equation-mapping/priorities.md)
 - [Causal Delay Feedback App](../dormant-deferred/app-causal-delay-feedback/priorities.md)
 - [Photon App](../app-photon/priorities.md)
-- [Animator Design and Interfaces](../app-animator/design-and-interfaces.md)
+- [Animator Design and Interfaces](../dormant-deferred/app-animator/design-and-interfaces.md)

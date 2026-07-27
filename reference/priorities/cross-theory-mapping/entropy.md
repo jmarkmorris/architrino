@@ -14,7 +14,7 @@
 1. `windowed_entropy_functional` - Promote the existing coarse-graining / access-window formula into a reusable entropy closure packet. Status: `draft`. Depends on: none.
 2. `record_locking_entropy` - Connect measurement-record entropy locking to the same coarse-grained entropy grammar. Status: `draft`. Depends on: `windowed_entropy_functional`, [quantum-closure](../quantum-closure/priorities.md).
 3. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, the RT horizon-wrapping ratio $\eta_H(A;\theta)$, and the Page-curve release-channel target. Status: `kernel-handoff-ready`; terminal enumerator consumption, coefficient derivation, and thermal-limit reduction pending. Depends on: [strong-field-closure](../strong-field-closure/priorities.md), `windowed_entropy_functional`.
-4. `cosmology_entropy_balance` - State when Noether sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/priorities.md), [validation-gates](../validation-gates/priorities.md).
+4. `cosmology_entropy_balance` - State when Noether sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/priorities.md), [validation-gates](../dormant-deferred/validation-gates/priorities.md).
 
 ## Scope
 
@@ -288,7 +288,7 @@ The proof burden is to derive $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native hori
 - [holographic-entropy-boundary-data-benchmark](../strong-field-closure/holographic-entropy-boundary-data-benchmark.md)
 - [quantum-closure](../quantum-closure/priorities.md)
 - [cosmology-closure](../cosmology-closure/priorities.md)
-- [validation-gates](../validation-gates/priorities.md)
+- [validation-gates](../dormant-deferred/validation-gates/priorities.md)
 - [radiation](../../../content/markdown/aaa/reactions/radiation.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

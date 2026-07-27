@@ -2,7 +2,7 @@
 
 ## LLM Instructions
 
-- Keep this packet focused on the equation-mapping app. Do not move equation-row scoring, source evidence, or theorem-closure material out of [../equation-mapping/priorities.md](../equation-mapping/priorities.md).
+- Keep this packet focused on the equation-mapping app. Do not move equation-row scoring, source evidence, or theorem-closure material out of [../equation-mapping/priorities.md](../../equation-mapping/priorities.md).
 - Treat app output as an explanatory working surface, not as accepted equation-mapping evidence or score movement.
 - Keep user-facing app language plain. Use `equation`, `comment`, `pointer line`, `section of the formula`, `subject`, and `background`; do not expose animation-engine or scene-language terminology.
 - Keep [requirements-and-design.md](requirements-and-design.md) stable and descriptive. Move task-shaped implementation work into `Task Queue`.
@@ -22,7 +22,7 @@ This folder owns the priority packet for the equation-mapping app that helps the
 
 The app is intended to feel like a simple static equation annotation surface: one centered equation layer, explanatory overlay comments, and thin pointer lines that point to exact terms or sections of the formula.
 
-The first implementation is now a static shell with a local draft editor at [equation-mapping.html](../../../equation-mapping.html). It supports static text layers before any timing, transition, or scripted-animation feature is considered.
+The first implementation is now a static shell with a local draft editor at [equation-mapping.html](../../../../equation-mapping.html). It supports static text layers before any timing, transition, or scripted-animation feature is considered.
 
 ## Objective
 
@@ -56,13 +56,13 @@ The first useful version should let the operator:
 
 ## Implemented Baseline
 
-- Route: [equation-mapping.html](../../../equation-mapping.html).
-- Runtime: [EquationMappingData.js](../../../src/apps/equation-mapping/EquationMappingData.js), [EquationMappingRuntime.js](../../../src/apps/equation-mapping/EquationMappingRuntime.js), and [main.js](../../../src/apps/equation-mapping/main.js).
+- Route: [equation-mapping.html](../../../../equation-mapping.html).
+- Runtime: [EquationMappingData.js](../../../../src/apps/equation-mapping/EquationMappingData.js), [EquationMappingRuntime.js](../../../../src/apps/equation-mapping/EquationMappingRuntime.js), and [main.js](../../../../src/apps/equation-mapping/main.js).
 - Seed document: `poisson-weak-field-source-map`.
 - Static layer model: equation TeX parts, named anchors, overlay comments, pointer-line side, section-line placement, subject area, claim level, and background setting.
 - UI: centered equation layer, collapsible subject index, top-right home/search/edit/settings controls, four background colors, KaTeX rendering, and pointer lines attached to measured formula sections.
 - Editor: local draft editing for formula-section labels/formula text/search text, overlay comment title/status/text/equation, pointer target, section-line placement, and comment placement.
-- Browser QA proofs: [desktop 1280x720](browser-qa/equation-mapping-desktop-1280x720.png), [mobile 390x844](browser-qa/equation-mapping-mobile-390x844.png), and [editor desktop 1280x720](browser-qa/equation-mapping-editor-desktop-1280x720.png).
+- Browser QA capture filenames (not retained in this checkout): `equation-mapping-desktop-1280x720.png`, `equation-mapping-mobile-390x844.png`, and `equation-mapping-editor-desktop-1280x720.png`.
 
 ## Task Queue
 
@@ -77,4 +77,4 @@ The first useful version should let the operator:
 
 ## Related Priority Notes
 
-- [Equation Mapping](../equation-mapping/priorities.md)
+- [Equation Mapping](../../equation-mapping/priorities.md)

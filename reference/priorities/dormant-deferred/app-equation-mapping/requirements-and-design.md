@@ -168,8 +168,8 @@ V1 is not complete until screenshots prove:
 - equations inside comments render through KaTeX;
 - and no text overlaps incoherently.
 
-Current v1 proof artifacts:
+Current v1 proof-artifact filenames (captures are not retained in this checkout):
 
-- [equation-mapping-desktop-1280x720.png](browser-qa/equation-mapping-desktop-1280x720.png)
-- [equation-mapping-mobile-390x844.png](browser-qa/equation-mapping-mobile-390x844.png)
-- [equation-mapping-editor-desktop-1280x720.png](browser-qa/equation-mapping-editor-desktop-1280x720.png)
+- `equation-mapping-desktop-1280x720.png`
+- `equation-mapping-mobile-390x844.png`
+- `equation-mapping-editor-desktop-1280x720.png`

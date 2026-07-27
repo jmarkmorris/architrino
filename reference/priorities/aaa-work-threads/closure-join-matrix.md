@@ -169,7 +169,7 @@ The derivation-side home for this contract is [transfer-operator-basin-measure](
 | [simulation protocol routing index](../app-simulation/priorities.md) | Preserved protocol definitions routed to EOM, Braid Program, Master-Equation Closure, and downstream scientific owners. | No independent join key. | No independent acceptance row. | Use only to locate preserved definitions; ask the canonical owner whether the corresponding diagnostic is executable. |
 | Archived [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Reference schema for acceptance intersection and no-go routing; not a ranked owner. | $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ | Cross-sector acceptance. | Ask the active sector owners whether any local derivation empties another sector's acceptance set. |
 | [app-mcp](../app-mcp/priorities.md) | Source-grounded retrieval and graph access. | No independent theory join key. | No proof or acceptance upgrade. | Use it to retrieve authoritative sources and declared relationships; never treat retrieval as evidence. |
-| [app-animator](../app-animator/priorities.md) | Visual structure, observer/framing, and timeline-object presentation. | Displayed subset of $\mathcal{J}_{\mathrm{closure}}$ | Branch state; causal-wake ledger; event ledger. | Ask which shared closure objects need visual grammar so humans can inspect the product join. |
+| [app-animator](../dormant-deferred/app-animator/priorities.md) | Visual structure, observer/framing, and timeline-object presentation. | Displayed subset of $\mathcal{J}_{\mathrm{closure}}$ | Branch state; causal-wake ledger; event ledger. | Ask which shared closure objects need visual grammar so humans can inspect the product join. |
 
 ## Similarity Clusters
 
