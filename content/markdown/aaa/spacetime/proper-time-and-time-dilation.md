@@ -154,7 +154,9 @@ c_0
 \frac{2L_{\mathrm{obs}}(W_0)}
 {\Delta\tau_{\gamma,\mathrm{rt}}(W_0)}.
 $$
-The numerator is a ruler response, the denominator is a clock readout, and the photon path samples the photon-channel speed $c_\gamma$. The closure burden is to derive why $c_f$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$ collapse to one weak-homogeneous measured limit within the preferred-frame leakage budget; the equality cannot be supplied by notation alone.
+The numerator is a ruler response, the denominator is a clock readout, and the photon path samples the photon-channel speed $c_\gamma$. The closure burden is to derive why $c_{\text{eff}}$, $c_\gamma$, and $c_0$ share one weak-homogeneous measured limit within the preferred-frame leakage budget, then separately determine that common value's relationship to primitive $c_f$; neither identification can be supplied by notation alone.
+
+The [weak-homogeneous speed-factorization lemma](./lorentz-kinematics.md#weak-homogeneous-speed-factorization-lemma) separates that burden into two statements. Calibration closure and photon common-mode closure can establish $c_\gamma=c_{\text{eff}}=c_0$, while the additional constitutive condition $\chi_{\mathrm{sea},0}=1$ is required to identify their common value with primitive $c_f$. If instead $\chi_{\mathrm{sea},0}>1$, the observer channels may still close on one speed while $c_f>c_0$ remains a substrate-to-observer hierarchy.
 
 The simple clock-budget target is that the declared channel speed splits into center-of-mass drift and transverse closure:
 $$

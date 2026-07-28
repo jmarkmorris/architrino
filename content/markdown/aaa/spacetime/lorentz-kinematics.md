@@ -1031,6 +1031,117 @@ This lemma proves only a conditional reabsorption statement: if one branch suppl
 
 The same caution applies to speed identification. Let $c_{\mathrm{clk}}$ denote the limiting speed that appears in the moving-assembly clock law and let $c_\gamma$ denote the photon-channel speed used for synchronization. The conditional reabsorption above requires $\gamma_{\mathrm{clk}}=\gamma_\gamma$ in the tested homogeneous branch. If a primitive calculation supplies $\gamma_f(v)$ using $c_f$ while the photon row uses $\gamma_\gamma(v)$ with a different speed, the mismatch appears as an $O(\beta_\star^2)$ two-way residual rather than as Lorentz closure. The accepted target is therefore common-mode dressing: the observer-facing clock, ruler, photon, and effective gravitational channels must share the same homogeneous limiting speed after the Noether sea response is declared. It is not legitimate to collapse $c_f$, $c_\gamma$, $c_{\text{eff}}$, and $c_{\mathrm{GW}}^{\mathrm{eff}}$ by notation before that derivation is supplied.
 
+### Weak-homogeneous speed-factorization lemma
+
+The observer-channel coincidence and the relation to primitive wake speed are two distinct closure statements. Let $W_0$ be a weak homogeneous calibration cell and define
+$$
+\chi_{\mathrm{sea},0}
+\equiv
+\chi_{\mathrm{sea}}(W_0)
+=
+\frac{c_f}{c_{\mathrm{eff}}(W_0)},
+\qquad
+\chi_{\gamma,0}
+\equiv
+\chi_\gamma(W_0)
+=
+\frac{c_0}{c_\gamma(W_0)}.
+$$
+When $W_0$ realizes the asymptotic observer calibration, $c_{\mathrm{eff}}(W_0)=c_0$ by the definition $c_0\equiv c_{\mathrm{eff}}(\infty)$. The speed factorization is then
+$$
+c_{\mathrm{eff}}(W_0)
+=
+c_0
+=
+\frac{c_f}{\chi_{\mathrm{sea},0}},
+\qquad
+c_\gamma(W_0)
+=
+\frac{c_0}{\chi_{\gamma,0}}
+=
+\frac{c_f}{\chi_{\mathrm{sea},0}\chi_{\gamma,0}}.
+$$
+
+Plainly: calibrating clocks and rulers fixes how the dressed observer speed compares with $c_f$; photon Gate A separately decides whether the photon channel shares that calibrated speed. Equality of the observer channels does not by itself remove the Noether sea dressing between their common value and the primitive wake speed.
+
+It follows immediately that
+$$
+c_\gamma(W_0)
+=
+c_{\mathrm{eff}}(W_0)
+=
+c_0
+\quad\Longleftrightarrow\quad
+c_{\mathrm{eff}}(W_0)=c_0
+\ \text{and}\
+\chi_{\gamma,0}=1.
+$$
+Plainly: the selected cell must actually realize the asymptotic clock-and-ruler calibration, and the photon channel must have no residual offset from that calibration.
+
+The first condition says that the selected cell is the asymptotic weak homogeneous calibration state. The second is the photon common-mode condition. For a finite leakage budget, define
+$$
+r_0
+\equiv
+\frac{c_{\mathrm{eff}}(W_0)}{c_0}-1,
+\qquad
+r_{\gamma\mathrm{e}}
+\equiv
+\frac{c_\gamma(W_0)}{c_{\mathrm{eff}}(W_0)}-1.
+$$
+Then the exact composition identity is
+$$
+\frac{c_\gamma(W_0)}{c_0}-1
+=
+r_0+r_{\gamma\mathrm{e}}+r_0r_{\gamma\mathrm{e}}.
+$$
+Theorem G requires both residuals to come from the same retained Noether sea and branch record and to remain inside the declared channel bounds. A numerical cancellation in their sum does not establish structural closure if the two residuals were fitted independently.
+
+Plainly: exact three-speed coincidence requires both calibration closure and photon-to-clock/ruler closure. Approximate coincidence is controlled by two named residuals whose product is retained rather than hidden inside one fitted error bar.
+
+The remaining relation to primitive wake speed is
+$$
+\frac{c_0}{c_f}
+=
+\frac{1}{\chi_{\mathrm{sea},0}},
+\qquad
+\delta_0
+\equiv
+1-\frac{c_0}{c_f}
+=
+1-\frac{1}{\chi_{\mathrm{sea},0}}.
+$$
+In normalized wake-speed units with $c_f=1$, the same row is
+$$
+c_0
+=
+\chi_{\mathrm{sea},0}^{-1},
+\qquad
+c_\gamma(W_0)
+=
+\left(\chi_{\mathrm{sea},0}\chi_{\gamma,0}\right)^{-1}.
+$$
+Plainly: once $c_f$ is set to one, the two delay factors themselves determine the dressed clock/ruler calibration and the photon-channel speed.
+
+Therefore all four speeds coincide only under the additional undressed fixed-point condition $\chi_{\mathrm{sea},0}=1$. A persistent weak-homogeneous dressing with $\chi_{\mathrm{sea},0}>1$ instead gives $c_f>c_0$ while preserving $c_\gamma=c_{\mathrm{eff}}=c_0$ at the observer level. The case $\chi_{\mathrm{sea},0}<1$ would make the record-bearing observer channel outrun the primitive causal-wake support and is inadmissible under the present causal-front definition unless a separate support theorem shows that no record is available before the $c_f$ front.
+
+On the proportional-collapse candidate in photon Gate A, common-mode closure gives
+$$
+d(\omega,\delta_0)
+\sim
+\Lambda_\gamma\frac{c_f-c_0}{\omega}
+=
+\Lambda_\gamma\frac{c_f\delta_0}{\omega}.
+$$
+Plainly: on this candidate, the planar-pair separation is proportional to the gap between primitive wake speed and the common observer speed.
+
+Thus the exact undressed limit $\chi_{\mathrm{sea},0}\to1$ forces $d\to0$ on that candidate at fixed finite $\omega$, whereas a finite-separation branch requires either $\chi_{\mathrm{sea},0}>1$ or a separately derived phase-locking cancellation. This is a conditional consequence of the current Gate A scaffold, not evidence that the photon branch exists or that $c_f>c_0$ has been measured.
+
+> Claim grade: derived. The factorization, coincidence criterion, and residual-composition identity follow algebraically from the declared speed definitions. Falsifier: a same-record retained branch that satisfies the declared definitions while violating any of those identities.
+>
+> Claim grade: inferred. The present record-bearing causal-front definition requires $\chi_{\mathrm{sea},0}\ge1$. Falsifier: an accepted channel with $c_0>c_f$ that still produces no record before the primitive $c_f$ support.
+>
+> Claim grade: guessed. The proportional-collapse Gate A branch is a candidate physical realization. Falsifier: failure to retain that photon branch, or a finite-separation Gate A branch at $c_\gamma=c_f$ produced by a different phase-locking cancellation.
+
 The same criterion has a long-baseline photon consequence. If the photon branch uses a frequency-dependent delay factor, then a distant transient comparison accumulates
 $$
 \Delta t_{\gamma}^{\mathrm{model}}(\omega_a,\omega_b;z)

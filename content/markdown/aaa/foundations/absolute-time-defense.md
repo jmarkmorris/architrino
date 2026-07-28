@@ -43,18 +43,18 @@ H_T,
 $$
 where $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
 
-The branch-chart entry is not an observer bookkeeping choice imported into the substrate. $\mathcal{B}_T$ is ontic only insofar as it records which attractor basin, active causal-root labels, and regularization regime the deterministic history $H_T$ actually occupies. A different analyst may choose different coordinates for describing that branch, but cannot choose a different occupied basin without changing $S(T)$ itself.
+The branch-chart entry is not an observer bookkeeping choice imported into the substrate. $\mathcal{B}_T$ is ontic only insofar as it records the dynamically occupied branch, active causal-root labels, and regularization regime of the deterministic history $H_T$. Where a reduced subsystem has a proved contraction after its exported fluxes are included, the record may also identify its attractor basin. A different analyst may choose different coordinates for describing the branch, but cannot choose a different occupied branch without changing $S(T)$ itself.
 
-**Deterministic evolution and basin selection**
+**Deterministic evolution and branch selection**
 - The delay-differential master equation is deterministic: where the declared branch chart or regularization makes the evolution well posed, a fully specified $\mathbb{U}_{\text{now}}\equiv S(T_\ast)$, including the required path-history and provenance ledger, generates a unique trajectory $S(T)$ for $T>T_\ast$.
-- Apparent branching is multistability, not stochastic evolution: near separatrices, infinitesimal perturbations in initial microstate direct trajectories into different attractor basins.
-- Therefore the correct statement is basin selection under deterministic flow, not a "distribution of allowed configurations" from one exact state.
+- Apparent branching is multistability, not stochastic evolution: near separatrices, infinitesimal perturbations in initial microstate direct trajectories into different stable branch neighborhoods.
+- Therefore the general statement is branch selection under deterministic flow, not a "distribution of allowed configurations" from one exact state. The stronger phrase *attractor-basin selection* is reserved for a declared retained subsystem whose contraction and exported wake, Noether sea, and memory-boundary fluxes have been established.
 
-This is a claim about the exact substrate flow, not about practical prediction. A finite observer may lack the path-history resolution needed to know which basin the system occupies, but that ignorance is inferential. It does not convert a single exact state into many simultaneous ontic futures.
+This is a claim about deterministic selection in the complete history state, not a classification of the exact full flow as dissipative or attracting. A finite observer may lack the path-history resolution needed to know which branch the system occupies, but that ignorance is inferential. It does not convert a single exact state into many simultaneous ontic futures.
 
 **Proper time $\tau$ for physical observers**
 
-Physical clocks are Noether braid assemblies. Their ticks are internal limit-cycle phase advances, so the primary definition is phase extraction, not an arbitrary scalar fit:
+Physical clocks are Noether braid assemblies. Their ticks are internal periodic-branch phase advances, so the primary definition is phase extraction, not an arbitrary scalar fit:
 $$
 d\tau_{\mathcal A}
 =
@@ -84,7 +84,7 @@ u^i_{\mathrm{sea,eff}}
 $$
 for the clock worldline $x^i_{\mathcal A,\mathrm{eff}}(t_{\mathrm{eff}})$.
 
-This phase extraction is admissible only on a clock branch whose internal return map retains a hyperbolic attracting limit cycle with a unique rotation number. In plain terms, the assembly must keep returning to the same countable cycle before it can function as a clock. More explicitly, let $P_{\mathcal A}$ be the Poincare return map on the retained clock branch and let $\tilde P_{\mathcal A}$ be a lift of its action on the invariant phase circle. The clock rotation number is
+This phase extraction is admissible only on a clock branch whose internal return map retains a normally hyperbolic invariant cycle with a unique rotation number. In plain terms, the assembly must keep returning to the same countable cycle before it can function as a clock. More explicitly, let $P_{\mathcal A}$ be the Poincare return map on the retained clock branch and let $\tilde P_{\mathcal A}$ be a lift of its action on the invariant phase circle. The clock rotation number is
 $$
 \rho_{\mathcal A}
 =
@@ -102,7 +102,7 @@ $$
 \qquad
 \Delta_{\mathrm{Floquet}}^{\perp}(\mathcal A)>0.
 $$
-The certificate condition is open: a normally hyperbolic phase-locked cycle with positive Floquet margin persists under small perturbations of the dressing and retained record, which is why certified clocks are robust standards rather than fine-tuned branches. Loss of this certificate is the clock instance of branch de-certification: the phase coordinate ceases to be single-valued, and $d\tau_{\mathcal A}$ is not exported.
+The certificate condition is open: a normally hyperbolic phase-locked cycle with positive Floquet margin persists under small perturbations of the dressing and retained record, which is why certified clocks are robust standards rather than fine-tuned branches. This certificate establishes transverse persistence on the retained clock branch; it does not by itself prove contraction of the complete history flow. The stronger word *attracting* applies only after a declared reduced clock subsystem includes the wake, Noether sea, and memory-boundary fluxes crossing its retained boundary and proves the required contraction. Loss of the clock certificate is the clock instance of branch de-certification: the phase coordinate ceases to be single-valued, and $d\tau_{\mathcal A}$ is not exported.
 
 The same condition has a memory-boundary form. A valid clock branch must replay the retained path-history window over one return, so that the memory-corrected symplectic flux has no secular remainder:
 $$
@@ -185,6 +185,29 @@ O\!\left(
 O(\epsilon_{\mathrm{chart}})
 $$
 Here $D_{\mathrm{br}}$ denotes transport along the retained branch-label flow and $\epsilon_{\mathrm{chart}}$ collects declared chart and regularization remainders. This is not yet a proof of universality; it states the topological route by which a single dressing map could move every admitted clock and ruler branch together.
+
+The topological route also needs a spectral separation condition. Primitive-wake commonality alone does not imply one effective clock/ruler channel. Let $\Delta_{\mathrm{sea,gap}}>0$ be the lowest frequency gap from the shared long-wavelength Noether sea sector to any other collective sector that couples to the admitted clock and ruler branches, and let $\omega_{\mathrm{test}}$ be the highest frequency in the declared comparison regime. The single-sector reduction requires
+$$
+\frac{\omega_{\mathrm{test}}}{\Delta_{\mathrm{sea,gap}}}
+\ll
+1
+$$
+and can be organized schematically as
+$$
+\epsilon_{\mathrm{univ}}
+\le
+\epsilon_{\mathrm{intra}}
++
+\epsilon_{\mathrm{mix}}
+\left(
+\frac{\omega_{\mathrm{test}}}{\Delta_{\mathrm{sea,gap}}}
+\right),
+\qquad
+\lim_{r\to0}\epsilon_{\mathrm{mix}}(r)=0,
+$$
+where $\epsilon_{\mathrm{intra}}$ is the connected-moduli commutator and chart remainder above, while $\epsilon_{\mathrm{mix}}$ measures contamination by the gapped sectors. This is a conditional reduction target, not an automatic consequence of one microscopic law. A second gapless sector with a nonzero species-dependent leading coupling makes $\Delta_{\mathrm{sea,gap}}=0$ for this purpose and structurally defeats this route to clock universality.
+
+Plainly: common microscopic ingredients are not enough. The tested clocks and rulers must share one low-frequency medium response, while every competing response either decouples or remains above the tested frequency band.
 
 This is the clock-side analogue of the mass-map universality residual $\mathcal R_{\alpha}$ in [Energy](../dynamics/energy.md#emergent-inertia-mass-from-shielded-energy). Both are flatness conditions over the connected component of realized assembly moduli: $\epsilon_{\mathrm{univ}}$ tests whether clock and ruler functionals $(A,B_{ij})$ are transported together, while $\mathcal R_{\alpha}$ tests whether the exposed inertial coefficient is transported together. If compared species lie in one connected dressed certified-braid component, the two residuals should be controlled by the same holonomy and chart remainders. If they lie in disconnected assembly topological charge sectors, composition-dependent clock leakage and mass-map non-universality can become one inter-class obstruction rather than two unrelated failures.
 
@@ -371,7 +394,40 @@ B_{ij}\xi^i\xi^j>0
 \quad
 \text{for }\xi\ne0
 $$
-These inequalities have a physical meaning. $A>0$ says the declared clock phase remains monotone in absolute time, so the branch still supplies a usable clock. Positive-definite $B_{ij}$ says the local ruler/signal compliance remains an ordinary spatial quadratic form, so one observer-level light cone can be exported from the branch. The handoff fails when a stable clock limit cycle is lost, when a separator or branch-chart transition makes the causal-root ledger discontinuous, when a Jacobian floor collapses, or when a strong-field channel becomes dispersive, birefringent, or multi-valued enough that no single $B_{ij}$ represents the local response. In those regimes the effective metric description is suspended and the analysis must return to finite branch data, as in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#causal-root-ledger-progression-as-a-lorentz-prediction) and the strong-field continuation criteria in [Singularity Resolution](../spacetime/singularity-resolution.md).
+These inequalities have a physical meaning. $A>0$ says the declared clock phase remains monotone in absolute time, so the branch still supplies a usable clock. Positive-definite $B_{ij}$ says the local ruler/signal compliance remains an ordinary spatial quadratic form, so one observer-level light cone can be exported from the branch. The handoff fails when a certified clock cycle is lost, when a separator or branch-chart transition makes the causal-root ledger discontinuous, when a Jacobian floor collapses, or when a strong-field channel becomes dispersive, birefringent, or multi-valued enough that no single $B_{ij}$ represents the local response. In those regimes the effective metric description is suspended and the analysis must return to finite branch data, as in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#causal-root-ledger-progression-as-a-lorentz-prediction) and the strong-field continuation criteria in [Singularity Resolution](../spacetime/singularity-resolution.md).
+
+**Conditional uniform-flow affine-equivalence lemma.** Suppose that, on one comparison window, $A$ is a positive constant, $B_{ij}$ is a constant symmetric positive-definite matrix, and $u^i_{\mathrm{sea,eff}}$ is constant. Suppose also that every admitted clock, ruler, and signal in that window couples only through this same effective handoff. Choose a constant matrix $L^a{}_i$ satisfying
+$$
+B_{ij}
+=
+\delta_{ab}L^a{}_iL^b{}_j
+$$
+and define
+$$
+t'_{\mathrm{eff}}
+=
+A\,t_{\mathrm{eff}},
+\qquad
+y^a_{\mathrm{eff}}
+=
+\frac{1}{c_0}
+L^a{}_i
+\left(
+x^i_{\mathrm{eff}}
+-
+u^i_{\mathrm{sea,eff}}t_{\mathrm{eff}}
+\right).
+$$
+The handoff then becomes
+$$
+d\tau^2
+=
+dt_{\mathrm{eff}}'^2
+-
+\delta_{ab}\,dy^a_{\mathrm{eff}}dy^b_{\mathrm{eff}}.
+$$
+
+Plainly: a uniform sea flow with constant universal clock, ruler, and signal response is removable from the effective record by an affine coordinate change. This lemma does not remove the substrate preferred frame or establish universality. It localizes observable preferred-frame leakage to gradients or time dependence in the sea record, dispersion, non-universal assembly coupling, or channels not captured by the single metric handoff.
 
 Equivalently, the metric handoff is a local-invertibility claim. Let the reduced clock/ruler branch map be written schematically as
 $$

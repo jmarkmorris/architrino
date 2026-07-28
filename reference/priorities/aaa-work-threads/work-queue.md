@@ -73,9 +73,9 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 
 ### AWT-007 — Spacetime review cleanup
 
-- **Status:** Deferred / blocked
+- **Status:** In progress
 - **Request / acceptance:** Resolve the $c_0^2$ versus $c_f^2$ convention, deduplicate derivations by owner reference, repair named imports, and audit the listed symbol collisions.
-- **Evidence / blocker:** Requires owner-by-owner terminology and equation checks.
+- **Evidence / blocker:** The speed-factorization lemma in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#weak-homogeneous-speed-factorization-lemma) now proves the role split: primitive causal-root equations use $c_f$, observer formulas use $c_0$, and $c_0/c_f=1/\chi_{\mathrm{sea},0}$. The remaining blocker is an accepted same-record constitutive and photon branch that decides whether $\chi_{\mathrm{sea},0}=1$ or $\chi_{\mathrm{sea},0}>1$, plus the outstanding owner-by-owner derivation deduplication, named-import repairs, and symbol-collision audit.
 - **Completion:** Every named drift class has one canonical owner and no unresolved occurrence in the scoped files.
 
 ### AWT-008 — Lorentz composition target

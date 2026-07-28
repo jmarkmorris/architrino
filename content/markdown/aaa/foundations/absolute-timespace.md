@@ -462,7 +462,7 @@ c_\gamma
 c_0
 \left[1+O(\epsilon_{\mathrm{LV}})\right]
 $$
-The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost rows missing from the substrate symmetry group, so the seven substrate conservation rows extend to the ten-row observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget.
+The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost generators missing from the substrate dynamical symmetry group, so the seven proved substrate generators participate in a ten-generator observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget. The associated effective energy, momentum, angular-momentum, and boost charges remain closure targets of the same action and history ledger; generator counting alone does not establish their conservation.
 It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
 $$
 \frac{R_{\parallel}}{R_{\perp}}
@@ -591,6 +591,10 @@ $$
 \sum_{n=1}^{\infty}\mathbb{E}\|S_n\|^2<\infty
 $$
 The shell series converges in $L^2$ and almost surely by the standard square-summable fluctuation criterion. Thus a homogeneous locally neutral Noether sea record supplies a convergent receiver-centered exhaustion under these assumptions. This result does not prove convergence for arbitrary inhomogeneous or coherent far populations. A coherent far dipole texture, long-range orientational correlation, or anisotropic source family can defeat vector cancellation even when scalar polarity neutrality holds. Every coherent assembly, anisotropic source family, or long-range correlated medium feature on top of the background must supply its own shielding, screening, finite active horizon, or explicit subtraction prescription before its many-source wake sum is treated as closed.
+
+The first inhomogeneous obligation is isolated in [Noether Sea](../spacetime/noether-sea.md). For a weak density gradient $\rho_{\mathrm{NS}}=\rho_0+\mathbf g_\rho\cdot\mathbf X+\cdots$, the neutral-cell multipole and the conditional shell mean must be derived and shown convergent. The homogeneous variance theorem therefore does not by itself imply an acceleration proportional to $-\nabla\rho_{\mathrm{NS}}$, fix the sign or coefficient of a weak-gradient response, or close the gravity, clock, and ruler maps.
+
+Plainly: cancellation in a uniform sea does not determine the response of a tilted sea. That response remains a separate derivation.
 
 These assumptions are not additional ontology. They are the analytic conditions needed for the master equation and simulation approximations to be well-defined on the product background.
 
