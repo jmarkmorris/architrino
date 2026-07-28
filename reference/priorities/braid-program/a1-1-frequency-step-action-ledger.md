@@ -5,7 +5,9 @@ Status: `plan-approved`, `solver-less-static-level-derivation`,
 `prescribed-path-interval-certifier-implemented`,
 `root-sheet-36-channel-diagnostic-closure`,
 `prescribed-structural-root-ledger-complete`,
-`receiver-phase-projection-monotonicity-certified`, `null-score`, and
+`receiver-phase-projection-monotonicity-certified`,
+`first-outer-radius-band-expansion-certified`,
+`second-outer-radius-band-topology-boundary-located`, `null-score`, and
 `priority-only`. This
 document does not authorize an EOM solver run or
 advance a claim beyond the prescribed A1.1 chart, the symbolic kinematic and
@@ -13,9 +15,12 @@ causal-root-topology consequences derived in Sections 5.1 and 5.2, and the
 diagnostic capability receipts in Section 5.2.9.
 
 Promotion classification: `priority-only`. The frozen prescribed-path family
-now has a complete, null-score diagnostic disposition across all $36$ ordered
-channels. That closure does not establish an EOM-retained branch or any
-physical candidate, so nothing in this document is ready for promotion into reader-facing
+and its first controlled outer-radius expansion have complete, null-score
+diagnostic dispositions across all $36$ ordered channels. The attempted next
+strip stops at an exact outer-self history-edge topology boundary while the
+other root and projection obligations remain certified through that edge.
+Neither result establishes an EOM-retained branch or any physical candidate,
+so nothing in this document is ready for promotion into reader-facing
 $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
 
 ## 1. Purpose
@@ -1847,6 +1852,94 @@ with the degree-one phase seam, this converts each certified one-root
 emission sheet into a one-root reception-phase sheet within the same imposed
 circular family. It remains a prescribed-path diagnostic result, not an EOM,
 stability, or physical claim.
+
+**First controlled outer-radius expansion.** The separately predeclared
+[one-band expansion protocol](../../../src/prescribed-path-analysis/protocols/a1-1-outer-radius-band-expansion-protocol.v1.json),
+[receipt](evidence/2026-07-28-a1-1-outer-radius-band-expansion.md), and
+[durable summary](evidence/a1-1-outer-radius-band-expansion-summary.v1.json)
+retain the frozen inner band, $\alpha_2=1$, the symmetric relative phases,
+$\chi=9/4$, all numerical floors, every resource ceiling, the null score, and
+the fail-closed claim boundary. Only the adjacent outer band
+$9/8\le\alpha_3\le19/16$ is added, giving the combined domain
+$17/16\le\alpha_3\le19/16$.
+
+The original box was re-executed as an exact control. Its root-sheet,
+structural-ledger, projection, summary, and raw-ledger hashes all reproduced.
+Across the combined box, all $36$ ordered channels again received complete
+diagnostic dispositions: four self channels remain root-free, the two outer
+self channels retain one root, and the remaining $30$ ordered channels retain
+one root. Twelve inter-binary representatives and twelve endpoint-inversion
+reuses completed with no unresolved box under the unchanged limits.
+
+Plainly: the first new outer-radius strip keeps the same root-count map as the
+old box. The radius-sensitive outer self root moves, but it does not reach the
+history edge or change topology inside this strip.
+
+The continuous receiver-phase projection also remains strictly increasing.
+For the expanded outer-transmitter class, the conservative projection bound is
+
+$$
+\frac{33}{28186}
+\le
+\frac{d\theta}{d\epsilon}
+\le
+\frac{829}{2}.
+$$
+
+Twelve independent boundary witnesses passed the retained residual and
+finite-difference derivative floors. The deterministic replay reproduces the
+expansion result hash
+`389fe1a37065198fe4f6c5139b9359c733b22a08dd5f800c2e7d66703977bc57`
+and summary hash
+`a8c789f826ff286ef01f02f0a9aacc6faa72991e5e8535a436bc0531027eb23a`.
+
+Plainly: phase order remains continuous through the new upper boundary. The
+execution stopped after this one band, so $\alpha_3>19/16$ remains the exact
+uncertified boundary and no claim is made there.
+
+**Second controlled outer-radius expansion.** The separately predeclared
+[second-band protocol](../../../src/prescribed-path-analysis/protocols/a1-1-outer-radius-second-band-expansion-protocol.v1.json),
+[boundary receipt](evidence/2026-07-28-a1-1-outer-radius-second-band-boundary.md),
+and
+[durable summary](evidence/a1-1-outer-radius-second-band-expansion-summary.v1.json)
+retain the exact prior combined box as a hash-checked replay control. They add
+only $19/16\le\alpha_3\le5/4$, with the inner interval, $\alpha_2=1$,
+relative phases, $\chi=9/4$, numerical floors, resource ceilings, null score,
+and fail-closed rules unchanged.
+
+The execution stopped inside the strip at
+
+$$
+\alpha_{3,\star}
+=
+\frac{9}{8\sin(9/8)}
+=
+1.2468584789674295,
+$$
+
+where both outer same-endpoint self roots reach the retained history edge
+$\delta=\chi=9/4$. Direct-coordinate residual recomputation is exactly zero
+on both rows, while the causal-residual delay derivative is
+`-0.4623839040979407`, establishing a simple history-edge root rather than a
+fold. Below this radius each outer self row has one interior root; above it
+the root lies outside the unchanged history reach.
+
+Plainly: the next strip cannot be certified to $5/4$ under the frozen history
+window. The first exact obstruction is the outer self-root crossing at
+$\alpha_{3,\star}$, so execution stops there.
+
+All $36$ ordered channels were accounted for through the edge. The other four
+self rows remain root-free, the six partner rows and all $24$ inter-binary
+ordered rows retain one root, and the six receiver-phase projection sheets
+remain strictly increasing. The prior expansion result and summary hashes
+reproduced exactly. The second-band result hash is
+`ae2596b32d046c4657de805777732e4695d455e2ad247546f7f5d1fbb9900e95`;
+the summary hash is
+`284bf4e33f82a996d31ce04547f52fa49f1e4f144e10753a18602232c26be37c`.
+
+Plainly: topology, not projection monotonicity or a resource ceiling, is the
+first boundary. This remains a null-score prescribed-path diagnostic and does
+not change candidate status or authorize a different history reach.
 
 ### 5.3 How radii could be determined, not assumed
 
