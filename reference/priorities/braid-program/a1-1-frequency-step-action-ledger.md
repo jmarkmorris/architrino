@@ -3,15 +3,19 @@
 Status: `plan-approved`, `solver-less-static-level-derivation`,
 `bounded-root-predeclaration-frozen`,
 `prescribed-path-interval-certifier-implemented`,
-`first-inventory-drawn-not-evaluated`, and `priority-only`. This document does
-not authorize an EOM solver run or advance a claim beyond the prescribed A1.1
-chart, the symbolic kinematic and causal-root-topology consequences derived in
-Sections 5.1 and 5.2, and the diagnostic capability receipt in Section 5.2.9.
+`root-sheet-36-channel-diagnostic-closure`,
+`prescribed-structural-root-ledger-complete`,
+`receiver-phase-projection-monotonicity-certified`, `null-score`, and
+`priority-only`. This
+document does not authorize an EOM solver run or
+advance a claim beyond the prescribed A1.1 chart, the symbolic kinematic and
+causal-root-topology consequences derived in Sections 5.1 and 5.2, and the
+diagnostic capability receipts in Section 5.2.9.
 
-Promotion classification: `priority-only`. The first executable protocol is
-fixed, but its inter-binary interval inventory remains unresolved under the
-declared depth and resource ceilings. Nothing in this document is ready for
-promotion into reader-facing
+Promotion classification: `priority-only`. The frozen prescribed-path family
+now has a complete, null-score diagnostic disposition across all $36$ ordered
+channels. That closure does not establish an EOM-retained branch or any
+physical candidate, so nothing in this document is ready for promotion into reader-facing
 $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
 
 ## 1. Purpose
@@ -1466,27 +1470,25 @@ predeclaration:
 | Radius freedom | $(\alpha_{1,n},\alpha_{3,n})\in\mathcal D_n^{(p=2)}$. | Two continuous dimensionless degrees of freedom remain. |
 | Bounded inventory ratio box | $7/8\le\alpha_{1,n}\le15/16$ and $17/16\le\alpha_{3,n}\le9/8$. | Operator-approved and frozen for the first retained-root inventory; no point in the box is selected physically. |
 | Inventory history reach | $\chi_n=9/4$. | Operator-approved and frozen certificate-level reach. |
-| Root/fold protocol | The nine rules in Section 5.2.9 covering all $36$ ordered channels. | Operator-approved and frozen; execution remains unauthorized. |
+| Root/fold protocol | The nine rules in Section 5.2.9 covering all $36$ ordered channels. | Operator-approved, frozen, and completed at prescribed-path diagnostic grade by the root-sheet treatment recorded below. |
 
-Plainly: these rows should not be chosen again before a root inventory. They
-are either operator-approved assumptions or consequences of those assumptions.
+Plainly: these rows were fixed before the root inventory and were not retuned
+after its result. They are either operator-approved assumptions or
+consequences of those assumptions.
 
 Section 5.2.9 freezes the bounded ratio region, retained-history reach, complete
 $36$-channel inventory, and fail-closed root/fold logic. The speed bands, locus
 gaps, causal-delay bounds, and full-past self-root-capability rows are derived
 from the frozen ratio box and may not be independently tuned.
 
-The next unresolved choice is not another geometry or history choice. It is the
-executable instrument owner needed to materialize one exact source/protocol,
-continuous-box certification method, numerical floors, resource limits, fold
-schema, and independent residual recomputation. Section 5.2.9 records the two
-live-contract-compatible routes and stops at that decision.
+The prescribed-path interval instrument and the later root-sheet treatment now
+materialize the executable declarations. Their diagnostic execution is
+recorded in Section 5.2.9. This completion still cannot establish retention,
+stability, action, energy, angular-momentum dynamics, radiation, pressure, GR
+recovery, physical superluminal transport, or physical-candidate selection.
 
-Plainly: the bounded mathematical packet is fixed. No root inventory can start
-until the operator chooses which instrument family will make the frozen packet
-executable, and that choice still cannot establish retention, stability,
-action, energy, angular-momentum dynamics, radiation, pressure, GR recovery,
-physical superluminal transport, or physical-candidate selection.
+Plainly: the bounded root bookkeeping is now executable and complete for the
+prescribed circles. Its authority stops before any EOM or physical claim.
 
 #### 5.2.9 Frozen bounded retained-root predeclaration
 
@@ -1679,11 +1681,13 @@ track intersection. The history reach contains every possible exact-circular
 root admitted by the box. The protocol covers every ordered endpoint channel,
 the full common reception cycle, both derivative signs, and every root-count
 boundary named by the live owners. These facts are sufficient to define a
-bounded, reproducible, fail-closed root-topology inventory; they are not
-sufficient to prove that the inventory can be completed with a chosen
-instrument or resource budget.
+bounded, reproducible, fail-closed root-topology inventory; they are not by
+themselves sufficient to prove completion. The executable protocols and
+receipts below supply that separate result.
 
-The frozen packet does not supply the following executable declarations:
+The frozen mathematical packet alone does not supply the following executable
+declarations; the prescribed-path protocols below supply them for this
+bounded root inventory only:
 
 1. the exact static level and materialized source/protocol identity;
 2. the endpoint polarity and common circulation provenance for that source;
@@ -1698,10 +1702,10 @@ The frozen packet does not supply the following executable declarations:
    recomputation required before any result exceeds diagnostic grade; and
 8. separate execution authority.
 
-Plainly: the frozen packet fixes the bounded geometry, history length, channel
-inventory, and fail-closed logic. It still needs one exact source identity,
-one certified parameter-partition method, numerical certification floors, a
-resource budget, and explicit permission before anything is evaluated.
+Plainly: the frozen mathematical packet fixes the geometry, history length,
+channel inventory, and fail-closed logic. The executable protocols add the
+source identity, interval method, floors, resource budget, and granted
+execution authority without changing that frozen family.
 
 **Implemented prescribed-path executable boundary.** The operator selected a
 new prescribed-path interval certifier as the diagnostic owner. The exact
@@ -1734,6 +1738,115 @@ Plainly: the selected prescribed-path instrument now accounts for every
 channel and fails closed where its interval reach ends. It has not completed
 the inter-binary topology and has not selected, rejected, or physically
 realized a braid.
+
+**Exact-circular inter-binary reduction.** A follow-up
+[diagnostic receipt](evidence/2026-07-27-a1-1-exact-circular-inter-binary-reduction.md)
+and
+[version-2 summary](evidence/a1-1-continuous-ratio-phase-root-inventory-summary.v2.json)
+record the exact distance-identity, phase-coordinate, interval-preconditioning,
+and endpoint-inversion reduction. The frozen box, $\chi_n=9/4$, all numerical
+floors, subdivision and resource ceilings, nine fail-closed rules, all $36$
+channel rows, fold visibility, independent residual recomputation, null score,
+and diagnostic-only authority remain unchanged.
+
+The reduction evaluates $12$ exact endpoint-inversion symmetry
+representatives for the $24$ inter-binary channels. It closes six
+inter-binary channels, leaves eighteen `drawn-not-evaluated`, and reduces
+actual interval evaluations from $480{,}018$ to $180{,}210$ without raising a
+resource cap. The remaining represented unresolved partitions comprise
+$97{,}016$ depth-limit rows and $1{,}136$ resource-pending rows. No possible
+fold row was emitted, but the pending unresolved domain prevents an
+absence-of-fold claim.
+
+That prerequisite is now satisfied by the separately declared
+[root-sheet treatment](../../../src/prescribed-path-analysis/protocols/a1-1-root-sheet-monotonic-enclosure-treatment-protocol.v1.json),
+its
+[receipt](evidence/2026-07-28-a1-1-root-sheet-monotonic-enclosure-treatment.md),
+and its
+[durable summary](evidence/a1-1-root-sheet-monotonic-enclosure-treatment-summary.v1.json).
+The treatment uses the squared residual
+$G=D^2-\delta^2$ with $\delta$ as the dependent root variable. Six
+representatives use exact reception-fixed or emission-fixed phase charts: if
+the inner layer is the moving endpoint in the applicable chart, its
+prescribed speed is at most $15/16$, so the causal residual has delay
+derivative at most $-1/16$ and cannot fold. The other three representatives
+use the declared interval enclosure of $G$ and $\partial_\delta G$.
+
+All nine representatives satisfy the endpoint, seam, no-fold, anchor-count,
+and independent residual obligations without increasing a resource ceiling.
+The three interval-treated representatives used $5{,}404$ evaluated boxes and
+reached maximum depth $12$; the nine anchor inventories used $288$ boxes. The
+largest independently recomputed normalized anchor residual was
+$3.101836110544228\times10^{-16}$. The prior six inter-binary channels remain
+sealed regression controls and were not re-evaluated.
+
+The complete accounting is twelve sealed self/partner channels, six sealed
+inter-binary channels, nine newly evaluated representatives, and nine exact
+endpoint-inversion reuses. Thus all $36$ ordered channels have a diagnostic
+disposition and none remains unresolved. The packet status is
+`evaluated-diagnostic` with null score.
+
+Plainly: the separately declared phase charts remove the two resource
+blockers without raising a cap, and the remaining interval cases finish under
+the old ceilings. This completes the root topology of the imposed circular
+family only; it does not select or physically realize a braid.
+
+**Bounded prescribed structural ledger.** A separately predeclared
+[structural-ledger protocol](../../../src/prescribed-path-analysis/protocols/a1-1-prescribed-structural-root-ledger-protocol.v1.json),
+[receipt](evidence/2026-07-28-a1-1-prescribed-structural-root-ledger.md), and
+[durable summary](evidence/a1-1-prescribed-structural-root-ledger-summary.v1.json)
+use the sealed $36$-channel inventory as input. The ledger has no composite
+score. It retains root-count provenance, sampled delay witnesses, sheet and
+reception conditioning, phase and ratio sensitivities, receiver-phase
+projection rows, endpoint-inversion symmetry, and raw provenance.
+
+The bounded execution retained $5{,}204$ sampled roots. All declared
+topology, independent-residual, direct-derivative, endpoint-inversion,
+phase-seam, and synthetic projection-detector controls passed. The largest
+independently recomputed normalized residual was
+$2.5089753066770497\times10^{-15}$. The sampled inter-binary delays ranged
+from $0.2603788643805174$ to $2.088421952853519$. The smallest absolute
+sampled root derivative was $0.12275221068428979$ on an outer self-root row,
+and the largest sampled radius sensitivity was also on an outer self-root
+row.
+
+Plainly: the imposed circular family now has a reproducible structural map of
+its roots on the declared grid. The relatively shallow and radius-sensitive
+outer self rows identify where later diagnostics deserve care; they do not
+establish instability, retention, or physical transport.
+
+The structural ledger first found positive receiver-phase projection
+derivatives at all $24$ declared phase nodes for the six emission-fixed
+classes. The separately predeclared
+[continuous projection protocol](../../../src/prescribed-path-analysis/protocols/a1-1-receiver-phase-projection-monotonicity-protocol.v1.json),
+[receipt](evidence/2026-07-28-a1-1-receiver-phase-projection-monotonicity.md),
+and
+[durable summary](evidence/a1-1-receiver-phase-projection-monotonicity-summary.v1.json)
+now replace that sampled boundary with an exact continuous enclosure.
+
+At a causal root, the shared-coordinate dot component $q$ and its
+reception-fixed delay derivative $q_\delta$ obey
+$q^2+q_\delta^2\le1$. Combining this identity with the frozen radius
+intervals gives strictly negative reception-fixed and emission-fixed
+squared-root derivatives over all three symmetry representatives. Therefore
+
+$$
+\frac{d\theta}{d\epsilon}
+=
+\frac{\left.\partial_\delta G\right|_\theta}
+{\left.\partial_\delta G\right|_\epsilon}
+>0
+$$
+
+continuously. The conservative lower bound is $8/22103$ for the two
+middle-transmitter channels and $1/798$ for the four outer-transmitter
+channels. Endpoint inversion supplies the paired ordered rows.
+
+Plainly: phase order cannot reverse between the old sample nodes. Together
+with the degree-one phase seam, this converts each certified one-root
+emission sheet into a one-root reception-phase sheet within the same imposed
+circular family. It remains a prescribed-path diagnostic result, not an EOM,
+stability, or physical claim.
 
 ### 5.3 How radii could be determined, not assumed
 
@@ -2118,9 +2231,11 @@ This initial pass excludes:
 - choosing or evaluating any GR relation;
 - numerically evaluating the field-speed/radius target;
 - changing the A1.1 prescribed source or generating a new record;
-- running the prescribed-path evaluator, EOM solver, campaign harness, oracle,
+- running any further prescribed-path evaluator outside the completed bounded
+  root treatment, or running the EOM solver, campaign harness, oracle,
   benchmark, or browser;
-- implementing a new packet, reducer, schema, checker, gate, or fixture;
+- implementing any new packet, reducer, schema, checker, gate, or fixture
+  outside the completed bounded root treatment;
 - modifying the Braid Program queue, priorities, brainstorming log, work log,
   evidence records, or corpus prose;
 - asserting the working field-speed pin as a derived or physically retained
@@ -2148,10 +2263,10 @@ This initial pass excludes:
   difference; and
 - committing unrelated shared-checkout work.
 
-## 12. Declaration Block for a Future Review
+## 12. Declaration Block for a Future Non-Root Review
 
-Before this plan can become an executable predeclaration, an operator-reviewed
-revision must fill these fields:
+Before any later non-root stage can become an executable predeclaration, an
+operator-reviewed revision must fill the applicable fields:
 
 - static level index $n$ and exact source identity:
 - within-level common angular frequency $\omega_n$:
@@ -2168,8 +2283,9 @@ revision must fill these fields:
 - reference-radius convention: fixed
   $R_{\star,n}=R_{2,n}=c_f/\omega_n$ under the working pin:
 - independent constraints allowed to narrow the radius family:
-- cyclic plane-basis: fixed by Section 5.2.1; circulation convention still to
-  be declared:
+- cyclic plane-basis and root-inventory circulation convention: fixed by
+  Section 5.2.1 and the executed root protocol; any later-stage circulation
+  meaning must be declared:
 - swept-locus and same-time point separation: derived; any finite-envelope
   clearance still to be declared:
 - pinning scope: fixed to middle layer $p=2$ for this working baseline:
@@ -2179,12 +2295,17 @@ revision must fill these fields:
   order and common frequency; permitted only as prescribed/static-level
   geometry, not as a retained-branch or physical-transport claim:
 - isolation or Noether-sea environment:
-- required self, same-binary partner, and inter-binary root classes:
+- required self, same-binary partner, and inter-binary root classes: complete
+  at prescribed-path diagnostic grade for the frozen bounded family:
+- emission-to-reception phase-chart conversion: complete at prescribed-path
+  diagnostic grade for the six emission-fixed classes under the frozen
+  relative phases; the continuous projection derivative is strictly positive:
 - outer-layer root/topology coverage: complete inside the declared horizon and
-  fail closed on every unresolved root, fold, or topology boundary:
+  fail closed on every unresolved root, fold, or topology boundary; completed
+  at prescribed-path diagnostic grade for the frozen bounded family:
 - simple-root and fold policy: operator-approved and frozen as the nine-rule
   complete, fail-closed protocol in Section 5.2.9; certification floors and
-  resource limits remain to be declared:
+  resource limits are fixed by the two executed prescribed-path protocols:
 - regulator, core, and memory ladder:
 - dimensionless history reach $\chi_n=c_fH_n/R_{\star,n}$:
   operator-approved and frozen as $\chi_n=9/4$:
@@ -2227,9 +2348,10 @@ revision must fill these fields:
 - tolerances and fail-closed dispositions:
 - estimated cost and execution authority:
 
-Plainly: these blank fields are intentional. Filling them is the next design
-decision; leaving them blank prevents the planning document from quietly
-becoming execution authority.
+Plainly: the bounded prescribed-path root fields are complete. The remaining
+blank fields belong to later, separately authorized stages; leaving them blank
+prevents root closure from quietly becoming energy, action, EOM, collective,
+equivalence, scaling, or GR execution authority.
 
 ## 13. Owner References
 

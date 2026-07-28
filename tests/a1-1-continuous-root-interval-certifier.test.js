@@ -76,6 +76,11 @@ test("A1.1 point controls distinguish outer self roots from inner no-root rows",
   assert.equal(result.channelCoverage.orderedChannelCount, 36);
   assert.equal(result.controls.positiveControl.passed, true);
   assert.equal(result.controls.negativeControl.passed, true);
+  assert.equal(result.controls.analyticReductionControl.passed, true);
+  assert.equal(
+    result.controls.analyticReductionControl.grade,
+    "same-change-diagnostic-conformance-only",
+  );
   assert.equal(result.controls.independentResidualRecomputation.passed, true);
   assert.equal(result.controls.rootSeparationControl.passed, true);
   assert.equal(result.controls.rootSeparationControl.violations.length, 0);
@@ -98,4 +103,30 @@ test("resource exhaustion fails closed with drawn-not-evaluated and null score",
   assert.ok(result.counts.unresolvedPartitionCount > 0);
   assert.ok(result.unresolvedPartitions.every((row) =>
     row.disposition.startsWith("unresolved-")));
+});
+
+test("exact circular reduction closes six inter-binary channels without raising caps", () => {
+  const result = evaluateA11ContinuousRootInventory({ protocol });
+  const closedInterBinaryChannelIds = result.channelResults
+    .filter((row) =>
+      row.channel.kind === "inter-binary" &&
+      row.status === "evaluated-diagnostic")
+    .map((row) => row.channel.channelId);
+
+  assert.deepEqual(closedInterBinaryChannelIds, [
+    "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-1",
+    "a1-1-binary-1-endpoint-2<-a1-1-binary-2-endpoint-2",
+    "a1-1-binary-2-endpoint-1<-a1-1-binary-3-endpoint-1",
+    "a1-1-binary-2-endpoint-2<-a1-1-binary-3-endpoint-2",
+    "a1-1-binary-3-endpoint-1<-a1-1-binary-1-endpoint-1",
+    "a1-1-binary-3-endpoint-2<-a1-1-binary-1-endpoint-2",
+  ]);
+  assert.equal(result.channelCoverage.orderedChannelCount, 36);
+  assert.equal(result.channelCoverage.interBinarySymmetryClassCount, 12);
+  assert.equal(result.channelCoverage.interBinarySymmetryReusedChannelCount, 12);
+  assert.equal(result.counts.possibleFoldCells, 0);
+  assert.equal(result.status.code, "drawn-not-evaluated");
+  assert.equal(result.status.score, null);
+  assert.equal(result.controls.analyticReductionControl.passed, true);
+  assert.equal(result.controls.independentResidualRecomputation.passed, true);
 });

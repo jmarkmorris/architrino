@@ -1,0 +1,1942 @@
+{
+  "schema": "prescribed-path-analysis/a1-1-prescribed-structural-root-ledger-summary.v1",
+  "evaluator": {
+    "id": "a1-1-prescribed-structural-root-ledger",
+    "version": 1,
+    "prescribedPathAnalyticsOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "eomIntervalMachineryInvoked": false,
+    "eomCampaignInvoked": false,
+    "diagnosticOnly": true
+  },
+  "ledgerProtocolHash": "40e01f1c2ee592b6735ba11f76a731df08ec0f3f3b15431a21d20ceb0c09171b",
+  "sealedInputs": {
+    "baseProtocol": {
+      "path": "src/prescribed-path-analysis/protocols/a1-1-continuous-ratio-phase-root-inventory-protocol.v1.json",
+      "sha256": "7b2a3a2a56abbe97971d3fae447cd3406724cb2c5916e8ba3a0d39ad80772849"
+    },
+    "continuousInventorySummary": {
+      "path": "reference/priorities/braid-program/evidence/a1-1-continuous-ratio-phase-root-inventory-summary.v2.json",
+      "summaryHash": "624f5350ac3a0e4e57cf9da08225c1d7a635daa16c959dd96dc0778440256cdb",
+      "resultHash": "c2673e581fed4948536c18478b364f516ea821761e8d45c03d38dfeed814ab9f"
+    },
+    "rootSheetSummary": {
+      "path": "reference/priorities/braid-program/evidence/a1-1-root-sheet-monotonic-enclosure-treatment-summary.v1.json",
+      "summaryHash": "d43a763f11198a0bb2d1ce29eed8462ae08576980a739fecd72788d2c5b2a74a",
+      "resultHash": "7d930245906fef42966a883d93e8afddb57b7d4320acd1d5c1be25f776d45e1e"
+    }
+  },
+  "resultHash": "e0fb41da7fa55f3ee73cd41e00aa8c66232b071415db122f5395a0f691c2b316",
+  "status": {
+    "code": "evaluated-diagnostic",
+    "score": null,
+    "reason": "all-predeclared-structural-ledger-rows-and-controls-complete"
+  },
+  "sampling": {
+    "alpha1": [
+      0.875,
+      0.90625,
+      0.9375
+    ],
+    "alpha2": [
+      1
+    ],
+    "alpha3": [
+      1.0625,
+      1.09375,
+      1.125
+    ],
+    "ratioRule": "closed-box-endpoints-and-midpoint.v1",
+    "phaseNodeCount": 24,
+    "phaseNodeRule": "theta-or-epsilon=2*pi*k/24-for-k=0-through-23.v1",
+    "phaseSeamRule": "node-23-connects-to-node-0-plus-2*pi.v1",
+    "dimensionlessDelay": [
+      0.03125,
+      2.25
+    ],
+    "sameBinaryPhaseReduction": "phase-independent-exact-circular-equations.v1"
+  },
+  "resources": {
+    "declared": {
+      "maximumSampledRootRows": 5400,
+      "maximumProjectionFoldBrackets": 512,
+      "maximumBisectionEvaluations": 800000
+    },
+    "sampledRootRows": 5204,
+    "bisectionEvaluations": 710020,
+    "projectionFoldBrackets": 0
+  },
+  "controls": {
+    "sealedTopology": {
+      "id": "a1-1-structural-ledger-sealed-topology-control.v1",
+      "orderedChannelCount": 36,
+      "noRootSelfChannelCount": 4,
+      "outerSelfChannelCount": 2,
+      "allOtherDeclaredSheetCountsOne": true,
+      "passed": true
+    },
+    "independentResidualAndDerivative": {
+      "id": "a1-1-structural-ledger-independent-root-control.v1",
+      "sampledRootCount": 5204,
+      "maximumIndependentNormalizedResidual": 2.5089753066770497e-15,
+      "independentNormalizedResidualFloor": 1e-9,
+      "maximumPrimaryDirectDerivativeDifference": 3.552713678800501e-15,
+      "derivativeAgreementTolerance": 1e-7,
+      "passed": true
+    },
+    "endpointInversionSymmetry": {
+      "id": "a1-1-endpoint-inversion-structural-ledger-control.v1",
+      "comparisonCount": 2592,
+      "maximumDelayDifference": 0,
+      "maximumProjectionDerivativeDifference": 0,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    "phaseSeamReplay": {
+      "id": "a1-1-structural-ledger-phase-seam-replay.v1",
+      "replayCount": 216,
+      "maximumDelayDifference": 3.552713678800501e-15,
+      "maximumProjectionDerivativeDifference": 8.43769498715119e-15,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    "syntheticProjectionDetector": {
+      "id": "a1-1-projection-sign-change-detector-controls.v1",
+      "syntheticFold": {
+        "derivative": "cos(phase)",
+        "adjacentSignChangeDetected": true,
+        "passed": true
+      },
+      "syntheticMonotone": {
+        "derivative": "1",
+        "adjacentSignChangeDetected": false,
+        "passed": true
+      },
+      "passed": true
+    }
+  },
+  "observations": {
+    "receiverPhaseProjectionFoldBracketCount": 0,
+    "channelsWithProjectionFoldBrackets": [],
+    "minimumAbsoluteSampledSheetCausalDerivative": 0.12275221068428979,
+    "minimumAbsoluteSampledReceptionCausalDerivative": 0.12275221068428979,
+    "claimBoundary": "sampled prescribed-path structural observations only; no composite score or physical disposition"
+  },
+  "channelSummaries": [
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-1-endpoint-1",
+      "channelKind": "same-transmitter-self",
+      "symmetryKey": "same-transmitter-self:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 0,
+      "receptionPhaseRootCountStatus": 0,
+      "sampledRootRowCount": 0,
+      "sampledDelayRange": null,
+      "sampledDelayWitnesses": null,
+      "sampledSheetCausalDerivativeRange": null,
+      "sampledReceptionCausalDerivativeRange": null,
+      "minimumAbsoluteSampledSheetCausalDerivative": null,
+      "minimumAbsoluteSampledReceptionCausalDerivative": null,
+      "sampledReceiverPhaseProjectionDerivativeRange": null,
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": null,
+        "absoluteDelayToAlpha1": null,
+        "absoluteDelayToAlpha3": null
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-1-endpoint-2",
+      "channelKind": "same-binary-opposite-endpoint",
+      "symmetryKey": "same-binary-opposite-endpoint:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 3,
+      "sampledDelayRange": [
+        1.3604852410840484,
+        1.4211968654356775
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-1-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.09375,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.3604852410840484
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-1-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.09375,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.4211968654356775
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.6115195151578987,
+        -1.5503589530462094
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.6115195151578987,
+        -1.5503589530462094
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 1.5503589530462094,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 1.5503589530462094,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0,
+        "absoluteDelayToAlpha1": 1.0028905064015092,
+        "absoluteDelayToAlpha3": 0
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-1",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:1:2:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        1.250062161210812,
+        1.7621288323051325
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 0.26179938779914913,
+          "receptionPhase": 0.26179938779914913,
+          "delay": 1.250062161210812
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 2.094395102393195,
+          "receptionPhase": 2.094395102393195,
+          "delay": 1.7621288323051325
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.561818030436267,
+        -0.9471763025503132
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.561818030436267,
+        -0.9471763025503132
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.9471763025503132,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.9471763025503132,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0.6423842028064869,
+        "absoluteDelayToAlpha1": 0.8338333949194268,
+        "absoluteDelayToAlpha3": 0
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:1:2:-1",
+      "declaredSheetChart": "emission-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": "not-inferred-from-emission-chart; inspect-projection-fold-brackets",
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        0.2603788643805174,
+        1.51792443606465
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+          "chart": "emission-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 1.3089969389957474,
+          "receptionPhase": 1.5693758033762641,
+          "delay": 0.2603788643805174
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+          "chart": "emission-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 2.094395102393195,
+          "receptionPhase": 3.612319538457845,
+          "delay": 1.51792443606465
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.9320008229270478,
+        -0.3174137826513403
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.9318828951344977,
+        -0.2940507384098502
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.3174137826513403,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.2940507384098502,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        0.20903868693957398,
+        3.9433508955692322
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 2.9433508955692327,
+        "absoluteDelayToAlpha1": 1.4814191833042794,
+        "absoluteDelayToAlpha3": 0
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:1:3:1",
+      "declaredSheetChart": "emission-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": "not-inferred-from-emission-chart; inspect-projection-fold-brackets",
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        1.0032752590373688,
+        1.6204577780165446
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+          "chart": "emission-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 1.3089969389957474,
+          "receptionPhase": 2.312272198033117,
+          "delay": 1.0032752590373688
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+          "chart": "emission-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.125,
+          "phaseCoordinate": 2.617993877991495,
+          "receptionPhase": 4.2384516560080385,
+          "delay": 1.6204577780165446
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.804434346964291,
+        -0.9999999999999999
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.8048180605051296,
+        -0.9823043710224868
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.9999999999999999,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.9823043710224868,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        0.5560795294109339,
+        1.787677525842535
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0.7876775258425349,
+        "absoluteDelayToAlpha1": 0.6616216370868465,
+        "absoluteDelayToAlpha3": 0.7893522173763263
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:1:3:-1",
+      "declaredSheetChart": "emission-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": "not-inferred-from-emission-chart; inspect-projection-fold-brackets",
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        0.9277145807045526,
+        2.0162999027750406
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2",
+          "chart": "emission-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 2.879793265790644,
+          "receptionPhase": 3.807507846495195,
+          "delay": 0.9277145807045526
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2",
+          "chart": "emission-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.125,
+          "phaseCoordinate": 0.7853981633974483,
+          "receptionPhase": 2.801698066172488,
+          "delay": 2.0162999027750406
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.062054863336129,
+        -0.3068124806078512
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.0634192556879951,
+        -0.3056607923596411
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.3068124806078512,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.3056607923596411,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        0.33649822330668167,
+        2.8175421660065
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 1.8175421660064999,
+        "absoluteDelayToAlpha1": 1.8163590643947962,
+        "absoluteDelayToAlpha3": 2.2506239302927873
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-1-endpoint-1",
+      "channelKind": "same-binary-opposite-endpoint",
+      "symmetryKey": "same-binary-opposite-endpoint:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 3,
+      "sampledDelayRange": [
+        1.3604852410840484,
+        1.4211968654356775
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-1-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.09375,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.3604852410840484
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-1-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.09375,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.4211968654356775
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.6115195151578987,
+        -1.5503589530462094
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.6115195151578987,
+        -1.5503589530462094
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 1.5503589530462094,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 1.5503589530462094,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0,
+        "absoluteDelayToAlpha1": 1.0028905064015092,
+        "absoluteDelayToAlpha3": 0
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-1-endpoint-2",
+      "channelKind": "same-transmitter-self",
+      "symmetryKey": "same-transmitter-self:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 0,
+      "receptionPhaseRootCountStatus": 0,
+      "sampledRootRowCount": 0,
+      "sampledDelayRange": null,
+      "sampledDelayWitnesses": null,
+      "sampledSheetCausalDerivativeRange": null,
+      "sampledReceptionCausalDerivativeRange": null,
+      "minimumAbsoluteSampledSheetCausalDerivative": null,
+      "minimumAbsoluteSampledReceptionCausalDerivative": null,
+      "sampledReceiverPhaseProjectionDerivativeRange": null,
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": null,
+        "absoluteDelayToAlpha1": null,
+        "absoluteDelayToAlpha3": null
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-2-endpoint-1",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:1:2:-1",
+      "declaredSheetChart": "emission-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": "not-inferred-from-emission-chart; inspect-projection-fold-brackets",
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        0.2603788643805174,
+        1.51792443606465
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-2-endpoint-1",
+          "chart": "emission-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 1.3089969389957474,
+          "receptionPhase": 1.5693758033762641,
+          "delay": 0.2603788643805174
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-2-endpoint-1",
+          "chart": "emission-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 2.094395102393195,
+          "receptionPhase": 3.612319538457845,
+          "delay": 1.51792443606465
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.9320008229270478,
+        -0.3174137826513403
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.9318828951344977,
+        -0.2940507384098502
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.3174137826513403,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.2940507384098502,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        0.20903868693957398,
+        3.9433508955692322
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 2.9433508955692327,
+        "absoluteDelayToAlpha1": 1.4814191833042794,
+        "absoluteDelayToAlpha3": 0
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-2-endpoint-2",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:1:2:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        1.250062161210812,
+        1.7621288323051325
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-2-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 0.26179938779914913,
+          "receptionPhase": 0.26179938779914913,
+          "delay": 1.250062161210812
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-2-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 2.094395102393195,
+          "receptionPhase": 2.094395102393195,
+          "delay": 1.7621288323051325
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.561818030436267,
+        -0.9471763025503132
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.561818030436267,
+        -0.9471763025503132
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.9471763025503132,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.9471763025503132,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0.6423842028064869,
+        "absoluteDelayToAlpha1": 0.8338333949194268,
+        "absoluteDelayToAlpha3": 0
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-1",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:1:3:-1",
+      "declaredSheetChart": "emission-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": "not-inferred-from-emission-chart; inspect-projection-fold-brackets",
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        0.9277145807045526,
+        2.0162999027750406
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-1",
+          "chart": "emission-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 2.879793265790644,
+          "receptionPhase": 3.807507846495195,
+          "delay": 0.9277145807045526
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-1",
+          "chart": "emission-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.125,
+          "phaseCoordinate": 0.7853981633974483,
+          "receptionPhase": 2.801698066172488,
+          "delay": 2.0162999027750406
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.062054863336129,
+        -0.3068124806078512
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.0634192556879951,
+        -0.3056607923596411
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.3068124806078512,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.3056607923596411,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        0.33649822330668167,
+        2.8175421660065
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 1.8175421660064999,
+        "absoluteDelayToAlpha1": 1.8163590643947962,
+        "absoluteDelayToAlpha3": 2.2506239302927873
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-2",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:1:3:1",
+      "declaredSheetChart": "emission-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": "not-inferred-from-emission-chart; inspect-projection-fold-brackets",
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        1.0032752590373688,
+        1.6204577780165446
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-2",
+          "chart": "emission-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 1.3089969389957474,
+          "receptionPhase": 2.312272198033117,
+          "delay": 1.0032752590373688
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-2",
+          "chart": "emission-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.125,
+          "phaseCoordinate": 2.617993877991495,
+          "receptionPhase": 4.2384516560080385,
+          "delay": 1.6204577780165446
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.804434346964291,
+        -0.9999999999999999
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.8048180605051296,
+        -0.9823043710224868
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.9999999999999999,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.9823043710224868,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        0.5560795294109339,
+        1.787677525842535
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0.7876775258425349,
+        "absoluteDelayToAlpha1": 0.6616216370868465,
+        "absoluteDelayToAlpha3": 0.7893522173763263
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-1-endpoint-1",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:2:1:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        0.9768696067816514,
+        1.5402149748211027
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-1-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 0.26179938779914913,
+          "receptionPhase": 0.26179938779914913,
+          "delay": 0.9768696067816514
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-1-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 2.094395102393195,
+          "receptionPhase": 2.094395102393195,
+          "delay": 1.5402149748211027
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.756592880591871,
+        -1
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.756592880591871,
+        -1
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 1,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 1,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0.7153263874849499,
+        "absoluteDelayToAlpha1": 0.6839411288813296,
+        "absoluteDelayToAlpha3": 0
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-1-endpoint-2",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:2:1:-1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        0.8633847951568685,
+        1.8641875025041332
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-1-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 1.8325957145940457,
+          "receptionPhase": 1.8325957145940457,
+          "delay": 0.8633847951568685
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-1-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 0.7853981633974483,
+          "receptionPhase": 0.7853981633974483,
+          "delay": 1.8641875025041332
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.0352412346144158,
+        -0.31741378265134085
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.0352412346144158,
+        -0.31741378265134085
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.31741378265134085,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.31741378265134085,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 1.6521108155479478,
+        "absoluteDelayToAlpha1": 1.8808603078753416,
+        "absoluteDelayToAlpha3": 0
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-2-endpoint-1",
+      "channelKind": "same-transmitter-self",
+      "symmetryKey": "same-transmitter-self:2",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 0,
+      "receptionPhaseRootCountStatus": 0,
+      "sampledRootRowCount": 0,
+      "sampledDelayRange": null,
+      "sampledDelayWitnesses": null,
+      "sampledSheetCausalDerivativeRange": null,
+      "sampledReceptionCausalDerivativeRange": null,
+      "minimumAbsoluteSampledSheetCausalDerivative": null,
+      "minimumAbsoluteSampledReceptionCausalDerivative": null,
+      "sampledReceiverPhaseProjectionDerivativeRange": null,
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": null,
+        "absoluteDelayToAlpha1": null,
+        "absoluteDelayToAlpha3": null
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-2-endpoint-2",
+      "channelKind": "same-binary-opposite-endpoint",
+      "symmetryKey": "same-binary-opposite-endpoint:2",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 1,
+      "sampledDelayRange": [
+        1.4781702664303213,
+        1.4781702664303213
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-2-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.90625,
+          "alpha3": 1.09375,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.4781702664303213
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-2-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.90625,
+          "alpha3": 1.09375,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.4781702664303213
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.6736120291832148,
+        -1.6736120291832148
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.6736120291832148,
+        -1.6736120291832148
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 1.6736120291832148,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 1.6736120291832148,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 0
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-3-endpoint-1",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:2:3:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        1.347190754600374,
+        1.8950312437834058
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-3-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 4.71238898038469,
+          "receptionPhase": 4.71238898038469,
+          "delay": 1.347190754600374
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-3-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.125,
+          "phaseCoordinate": 0.26179938779914913,
+          "receptionPhase": 0.26179938779914913,
+          "delay": 1.8950312437834058
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.6507480953859346,
+        -0.9666867433517615
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.6507480953859346,
+        -0.9666867433517615
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.9666867433517615,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.9666867433517615,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0.6801532326667225,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 0.8404913887418991
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-3-endpoint-2",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:2:3:-1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        0.26904272035084187,
+        1.7232375006869862
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-3-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 5.759586531581288,
+          "receptionPhase": 5.759586531581288,
+          "delay": 0.26904272035084187
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-3-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.125,
+          "phaseCoordinate": 4.71238898038469,
+          "receptionPhase": 4.71238898038469,
+          "delay": 1.7232375006869862
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.994467650237524,
+        -0.2953363416833938
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.994467650237524,
+        -0.2953363416833938
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.2953363416833938,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.2953363416833938,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 2.8725554785274787,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 2.292743007368823
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-1-endpoint-1",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:2:1:-1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        0.8633847951568685,
+        1.8641875025041332
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-1-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 1.8325957145940457,
+          "receptionPhase": 1.8325957145940457,
+          "delay": 0.8633847951568685
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-1-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 0.7853981633974483,
+          "receptionPhase": 0.7853981633974483,
+          "delay": 1.8641875025041332
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.0352412346144158,
+        -0.31741378265134085
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.0352412346144158,
+        -0.31741378265134085
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.31741378265134085,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.31741378265134085,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 1.6521108155479478,
+        "absoluteDelayToAlpha1": 1.8808603078753416,
+        "absoluteDelayToAlpha3": 0
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-1-endpoint-2",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:2:1:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        0.9768696067816514,
+        1.5402149748211027
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-1-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 0.26179938779914913,
+          "receptionPhase": 0.26179938779914913,
+          "delay": 0.9768696067816514
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-1-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 2.094395102393195,
+          "receptionPhase": 2.094395102393195,
+          "delay": 1.5402149748211027
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.756592880591871,
+        -1
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.756592880591871,
+        -1
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 1,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 1,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0.7153263874849499,
+        "absoluteDelayToAlpha1": 0.6839411288813296,
+        "absoluteDelayToAlpha3": 0
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-2-endpoint-1",
+      "channelKind": "same-binary-opposite-endpoint",
+      "symmetryKey": "same-binary-opposite-endpoint:2",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 1,
+      "sampledDelayRange": [
+        1.4781702664303213,
+        1.4781702664303213
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-2-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.90625,
+          "alpha3": 1.09375,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.4781702664303213
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-2-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.90625,
+          "alpha3": 1.09375,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.4781702664303213
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.6736120291832148,
+        -1.6736120291832148
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.6736120291832148,
+        -1.6736120291832148
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 1.6736120291832148,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 1.6736120291832148,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 0
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-2-endpoint-2",
+      "channelKind": "same-transmitter-self",
+      "symmetryKey": "same-transmitter-self:2",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 0,
+      "receptionPhaseRootCountStatus": 0,
+      "sampledRootRowCount": 0,
+      "sampledDelayRange": null,
+      "sampledDelayWitnesses": null,
+      "sampledSheetCausalDerivativeRange": null,
+      "sampledReceptionCausalDerivativeRange": null,
+      "minimumAbsoluteSampledSheetCausalDerivative": null,
+      "minimumAbsoluteSampledReceptionCausalDerivative": null,
+      "sampledReceiverPhaseProjectionDerivativeRange": null,
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": null,
+        "absoluteDelayToAlpha1": null,
+        "absoluteDelayToAlpha3": null
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-3-endpoint-1",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:2:3:-1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        0.26904272035084187,
+        1.7232375006869862
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-3-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 5.759586531581288,
+          "receptionPhase": 5.759586531581288,
+          "delay": 0.26904272035084187
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-3-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.125,
+          "phaseCoordinate": 4.71238898038469,
+          "receptionPhase": 4.71238898038469,
+          "delay": 1.7232375006869862
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.994467650237524,
+        -0.2953363416833938
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.994467650237524,
+        -0.2953363416833938
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.2953363416833938,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.2953363416833938,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 2.8725554785274787,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 2.292743007368823
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-3-endpoint-2",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:2:3:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        1.347190754600374,
+        1.8950312437834058
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-3-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 4.71238898038469,
+          "receptionPhase": 4.71238898038469,
+          "delay": 1.347190754600374
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-3-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.125,
+          "phaseCoordinate": 0.26179938779914913,
+          "receptionPhase": 0.26179938779914913,
+          "delay": 1.8950312437834058
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.6507480953859346,
+        -0.9666867433517615
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.6507480953859346,
+        -0.9666867433517615
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.9666867433517615,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.9666867433517615,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0.6801532326667225,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 0.8404913887418991
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-1-endpoint-1",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:3:1:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        1.2892570390172593,
+        1.850129727585085
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-1-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 2.356194490192344,
+          "receptionPhase": 2.356194490192344,
+          "delay": 1.2892570390172593
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-1-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.125,
+          "phaseCoordinate": 1.3089969389957474,
+          "receptionPhase": 1.3089969389957474,
+          "delay": 1.850129727585085
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.6170476340690285,
+        -0.9539369388052807
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.6170476340690285,
+        -0.9539369388052807
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.9539369388052807,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.9539369388052807,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0.6643472288004418,
+        "absoluteDelayToAlpha1": 0.8114946810400965,
+        "absoluteDelayToAlpha3": 0.8801646612595329
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-1-endpoint-2",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:3:1:-1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        0.2761954799925186,
+        1.6581863181480117
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-1-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 0.5235987755982991,
+          "receptionPhase": 0.5235987755982991,
+          "delay": 0.2761954799925186
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-1-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.125,
+          "phaseCoordinate": 2.617993877991495,
+          "receptionPhase": 2.617993877991495,
+          "delay": 1.6581863181480117
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.8831808486296104,
+        -0.30681248060785116
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.8831808486296104,
+        -0.30681248060785116
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.30681248060785116,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.30681248060785116,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 2.878114508368196,
+        "absoluteDelayToAlpha1": 1.6397345177351639,
+        "absoluteDelayToAlpha3": 2.2506239302927873
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-2-endpoint-1",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:3:2:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        1.0376122833661166,
+        1.6561932053218258
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-2-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 1.3089969389957474,
+          "receptionPhase": 1.3089969389957474,
+          "delay": 1.0376122833661166
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-2-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.125,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.6561932053218258
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.8408994157521879,
+        -1
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.8408994157521879,
+        -1
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 1,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 1,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0.8327399436197043,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 0.7474093186836597
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-2-endpoint-2",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:3:2:-1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        1.017519400537696,
+        2.088421952853519
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-2-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 2.879793265790644,
+          "receptionPhase": 2.879793265790644,
+          "delay": 1.017519400537696
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-2-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.125,
+          "phaseCoordinate": 1.8325957145940457,
+          "receptionPhase": 1.8325957145940457,
+          "delay": 2.088421952853519
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.0790504120414222,
+        -0.29533634168339334
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.0790504120414222,
+        -0.29533634168339334
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.29533634168339334,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.29533634168339334,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 2.0284808436455966,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 2.2927430073688226
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-3-endpoint-1",
+      "channelKind": "same-transmitter-self",
+      "symmetryKey": "same-transmitter-self:3",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 3,
+      "sampledDelayRange": [
+        1.1989037761900652,
+        1.6614335916532563
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-3-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.90625,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.1989037761900652
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-3-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.90625,
+          "alpha3": 1.125,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.6614335916532563
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -0.24136002930801212,
+        -0.12275221068428979
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -0.24136002930801212,
+        -0.12275221068428979
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.12275221068428979,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.12275221068428979,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 9.19233974165719
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-3-endpoint-2",
+      "channelKind": "same-binary-opposite-endpoint",
+      "symmetryKey": "same-binary-opposite-endpoint:3",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 3,
+      "sampledDelayRange": [
+        1.5316919727828178,
+        1.5820293752336019
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-3-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.90625,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.5316919727828178
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-3-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.90625,
+          "alpha3": 1.125,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.5820293752336019
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.7999504759511646,
+        -1.7364687197214626
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.7999504759511646,
+        -1.7364687197214626
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 1.7364687197214626,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 1.7364687197214626,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 0.8301862444163706
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-1-endpoint-1",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:3:1:-1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        0.2761954799925186,
+        1.6581863181480117
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-1-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 0.5235987755982991,
+          "receptionPhase": 0.5235987755982991,
+          "delay": 0.2761954799925186
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-1-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.125,
+          "phaseCoordinate": 2.617993877991495,
+          "receptionPhase": 2.617993877991495,
+          "delay": 1.6581863181480117
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.8831808486296104,
+        -0.30681248060785116
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.8831808486296104,
+        -0.30681248060785116
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.30681248060785116,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.30681248060785116,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 2.878114508368196,
+        "absoluteDelayToAlpha1": 1.6397345177351639,
+        "absoluteDelayToAlpha3": 2.2506239302927873
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-1-endpoint-2",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:3:1:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        1.2892570390172593,
+        1.850129727585085
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-1-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 2.356194490192344,
+          "receptionPhase": 2.356194490192344,
+          "delay": 1.2892570390172593
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-1-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.9375,
+          "alpha3": 1.125,
+          "phaseCoordinate": 1.3089969389957474,
+          "receptionPhase": 1.3089969389957474,
+          "delay": 1.850129727585085
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.6170476340690285,
+        -0.9539369388052807
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.6170476340690285,
+        -0.9539369388052807
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.9539369388052807,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.9539369388052807,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0.6643472288004418,
+        "absoluteDelayToAlpha1": 0.8114946810400965,
+        "absoluteDelayToAlpha3": 0.8801646612595329
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-2-endpoint-1",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:3:2:-1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        1.017519400537696,
+        2.088421952853519
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-2-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 2.879793265790644,
+          "receptionPhase": 2.879793265790644,
+          "delay": 1.017519400537696
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-2-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.125,
+          "phaseCoordinate": 1.8325957145940457,
+          "receptionPhase": 1.8325957145940457,
+          "delay": 2.088421952853519
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.0790504120414222,
+        -0.29533634168339334
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.0790504120414222,
+        -0.29533634168339334
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.29533634168339334,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.29533634168339334,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 2.0284808436455966,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 2.2927430073688226
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-2-endpoint-2",
+      "channelKind": "inter-binary",
+      "symmetryKey": "inter-binary:3:2:1",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 216,
+      "sampledDelayRange": [
+        1.0376122833661166,
+        1.6561932053218258
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-2-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 1.3089969389957474,
+          "receptionPhase": 1.3089969389957474,
+          "delay": 1.0376122833661166
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-2-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.875,
+          "alpha3": 1.125,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.6561932053218258
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.8408994157521879,
+        -1
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.8408994157521879,
+        -1
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 1,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 1,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0.8327399436197043,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 0.7474093186836597
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-3-endpoint-1",
+      "channelKind": "same-binary-opposite-endpoint",
+      "symmetryKey": "same-binary-opposite-endpoint:3",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 3,
+      "sampledDelayRange": [
+        1.5316919727828178,
+        1.5820293752336019
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-3-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.90625,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.5316919727828178
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-3-endpoint-1",
+          "chart": "reception-fixed",
+          "alpha1": 0.90625,
+          "alpha3": 1.125,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.5820293752336019
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -1.7999504759511646,
+        -1.7364687197214626
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -1.7999504759511646,
+        -1.7364687197214626
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 1.7364687197214626,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 1.7364687197214626,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 0.8301862444163706
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-3-endpoint-2",
+      "channelKind": "same-transmitter-self",
+      "symmetryKey": "same-transmitter-self:3",
+      "declaredSheetChart": "reception-fixed",
+      "sealedRootCountByDeclaredSheetChart": 1,
+      "receptionPhaseRootCountStatus": 1,
+      "sampledRootRowCount": 3,
+      "sampledDelayRange": [
+        1.1989037761900652,
+        1.6614335916532563
+      ],
+      "sampledDelayWitnesses": {
+        "minimum": {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-3-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.90625,
+          "alpha3": 1.0625,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.1989037761900652
+        },
+        "maximum": {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-3-endpoint-2",
+          "chart": "reception-fixed",
+          "alpha1": 0.90625,
+          "alpha3": 1.125,
+          "phaseCoordinate": 0,
+          "receptionPhase": 0,
+          "delay": 1.6614335916532563
+        }
+      },
+      "sampledSheetCausalDerivativeRange": [
+        -0.24136002930801212,
+        -0.12275221068428979
+      ],
+      "sampledReceptionCausalDerivativeRange": [
+        -0.24136002930801212,
+        -0.12275221068428979
+      ],
+      "minimumAbsoluteSampledSheetCausalDerivative": 0.12275221068428979,
+      "minimumAbsoluteSampledReceptionCausalDerivative": 0.12275221068428979,
+      "sampledReceiverPhaseProjectionDerivativeRange": [
+        1,
+        1
+      ],
+      "receiverPhaseProjectionFoldBrackets": [],
+      "sampledSensitivityMaxima": {
+        "absoluteDelayToSheetPhase": 0,
+        "absoluteDelayToAlpha1": 0,
+        "absoluteDelayToAlpha3": 9.19233974165719
+      }
+    }
+  ],
+  "rawLedger": {
+    "rowCount": 5204,
+    "hash": "e28835c1df045bfbbbbc3f419b7a31b1474d0bc51e99381a0bd54e75fa4be4b4",
+    "location": "full result artifact bound by resultHash"
+  },
+  "claimBoundary": {
+    "prescribedPathAnalyticsOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "eomIntervalMachineryInvoked": false,
+    "eomCampaignInvoked": false,
+    "diagnosticOnly": true,
+    "candidateScore": null,
+    "candidateSelection": false,
+    "excludedClaims": [
+      "retention",
+      "stability",
+      "binding",
+      "physical-candidate-selection",
+      "physical-realization",
+      "physical-superluminal-transport",
+      "energy",
+      "action",
+      "angular-momentum-dynamics",
+      "radiation",
+      "pressure",
+      "general-relativity-recovery"
+    ]
+  },
+  "summaryHash": "8293182ca383dd9414de1a01b42945da937b9ce904bf91e20d74324cc4c27474"
+}

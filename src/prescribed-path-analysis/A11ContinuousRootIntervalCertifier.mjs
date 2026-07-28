@@ -153,6 +153,15 @@ function sqrtInterval(value, ulps) {
   return outward(Math.sqrt(value.lower), Math.sqrt(value.upper), ulps);
 }
 
+function intersectInterval(left, right) {
+  const lower = Math.max(left.lower, right.lower);
+  const upper = Math.min(left.upper, right.upper);
+  if (lower > upper) {
+    throw new RangeError("interval intersection is empty.");
+  }
+  return interval(lower, upper);
+}
+
 function containsPeriodicPoint(value, origin, period) {
   const first = Math.ceil((value.lower - origin) / period);
   const last = Math.floor((value.upper - origin) / period);
@@ -442,61 +451,6 @@ function radiusIntervalFor(worldline, cell) {
   throw new TypeError(`unsupported radius parameter ${worldline.radiusParameter}.`);
 }
 
-function scalarVectorInterval(vector, scalar) {
-  return vector.map((component) =>
-    component === 0
-      ? interval(0)
-      : component === 1
-        ? scalar
-        : interval(-scalar.upper, -scalar.lower));
-}
-
-function addVectorInterval(left, right, ulps) {
-  return left.map((component, index) => addInterval(component, right[index], ulps));
-}
-
-function subtractVectorInterval(left, right, ulps) {
-  return left.map((component, index) => subtractInterval(component, right[index], ulps));
-}
-
-function dotVectorInterval(left, right, ulps) {
-  return left.reduce(
-    (sum, component, index) =>
-      addInterval(sum, multiplyInterval(component, right[index], ulps), ulps),
-    interval(0),
-  );
-}
-
-function pointIntervalFor(worldline, commonPhase, radius, ulps) {
-  const angle = addInterval(commonPhase, interval(worldline.phase), ulps);
-  const cosine = cosInterval(angle, ulps);
-  const sine = sinInterval(angle, ulps);
-  const direction = addVectorInterval(
-    scalarVectorInterval(worldline.plane.e1, cosine),
-    scalarVectorInterval(worldline.plane.e2, sine),
-    ulps,
-  );
-  const signedRadius = worldline.endpointSign === 1
-    ? radius
-    : interval(-radius.upper, -radius.lower);
-  return direction.map((component) => multiplyInterval(component, signedRadius, ulps));
-}
-
-function tangentIntervalFor(worldline, commonPhase, radius, ulps) {
-  const angle = addInterval(commonPhase, interval(worldline.phase), ulps);
-  const negativeSine = multiplyInterval(interval(-1), sinInterval(angle, ulps), ulps);
-  const cosine = cosInterval(angle, ulps);
-  const direction = addVectorInterval(
-    scalarVectorInterval(worldline.plane.e1, negativeSine),
-    scalarVectorInterval(worldline.plane.e2, cosine),
-    ulps,
-  );
-  const signedRadius = worldline.endpointSign === 1
-    ? radius
-    : interval(-radius.upper, -radius.lower);
-  return direction.map((component) => multiplyInterval(component, signedRadius, ulps));
-}
-
 function analyticSameBinaryEnclosures(channel, cell, ulps) {
   const radius = radiusIntervalFor(channel.receiver, cell);
   const halfDelay = multiplyInterval(cell.delay, interval(0.5), ulps);
@@ -532,56 +486,416 @@ function analyticSameBinaryEnclosures(channel, cell, ulps) {
   return { residual, derivative, distance };
 }
 
-function genericEnclosures(channel, cell, ulps) {
-  const receptionPhase = cell.theta;
-  const emissionPhase = subtractInterval(cell.theta, cell.delay, ulps);
+function exactVectorDot(left, right) {
+  return left.reduce(
+    (sum, component, index) => sum + component * right[index],
+    0,
+  );
+}
+
+function interBinarySharedCoordinateMode(channel) {
+  const receiver = channel.receiver.plane;
+  const transmitter = channel.transmitter.plane;
+  const coefficients = {
+    cosineCosine: exactVectorDot(receiver.e1, transmitter.e1),
+    cosineSine: exactVectorDot(receiver.e1, transmitter.e2),
+    sineCosine: exactVectorDot(receiver.e2, transmitter.e1),
+    sineSine: exactVectorDot(receiver.e2, transmitter.e2),
+  };
+  const nonzero = Object.entries(coefficients).filter(([, value]) => value !== 0);
+  if (nonzero.length !== 1 || nonzero[0][1] !== 1 ||
+      !["cosineSine", "sineCosine"].includes(nonzero[0][0])) {
+    throw new TypeError(
+      `unsupported inter-binary frame relation for ${channel.channelId}.`,
+    );
+  }
+  return nonzero[0][0];
+}
+
+function analyticInterBinaryEnclosures(channel, cell, ulps) {
   const receiverRadius = radiusIntervalFor(channel.receiver, cell);
   const transmitterRadius = radiusIntervalFor(channel.transmitter, cell);
-  const receiverPoint = pointIntervalFor(
-    channel.receiver,
-    receptionPhase,
-    receiverRadius,
+  const phaseSum = addInterval(
+    subtractInterval(
+      multiplyInterval(interval(2), cell.theta, ulps),
+      cell.delay,
+      ulps,
+    ),
+    interval(channel.receiver.phase + channel.transmitter.phase),
     ulps,
   );
-  const transmitterPoint = pointIntervalFor(
-    channel.transmitter,
-    emissionPhase,
+  const phaseDifference = addInterval(
+    cell.delay,
+    interval(channel.receiver.phase - channel.transmitter.phase),
+    ulps,
+  );
+  const sineSum = sinInterval(phaseSum, ulps);
+  const sineDifference = sinInterval(phaseDifference, ulps);
+  const cosineSum = cosInterval(phaseSum, ulps);
+  const cosineDifference = cosInterval(phaseDifference, ulps);
+  const half = interval(0.5);
+  const mode = interBinarySharedCoordinateMode(channel);
+  const unsignedDot = mode === "sineCosine"
+    ? multiplyInterval(
+      half,
+      addInterval(sineSum, sineDifference, ulps),
+      ulps,
+    )
+    : multiplyInterval(
+      half,
+      subtractInterval(sineSum, sineDifference, ulps),
+      ulps,
+    );
+  const unsignedDotDerivative = mode === "sineCosine"
+    ? multiplyInterval(
+      half,
+      addInterval(
+        multiplyInterval(interval(-1), cosineSum, ulps),
+        cosineDifference,
+        ulps,
+      ),
+      ulps,
+    )
+    : multiplyInterval(
+      half,
+      subtractInterval(
+        multiplyInterval(interval(-1), cosineSum, ulps),
+        cosineDifference,
+        ulps,
+      ),
+      ulps,
+    );
+  const endpointProduct =
+    channel.receiver.endpointSign * channel.transmitter.endpointSign;
+  const dot = endpointProduct === 1
+    ? intersectInterval(unsignedDot, interval(-1, 1))
+    : multiplyInterval(
+      interval(-1),
+      intersectInterval(unsignedDot, interval(-1, 1)),
+      ulps,
+    );
+  const dotDerivative = endpointProduct === 1
+    ? intersectInterval(unsignedDotDerivative, interval(-1, 1))
+    : multiplyInterval(
+      interval(-1),
+      intersectInterval(unsignedDotDerivative, interval(-1, 1)),
+      ulps,
+    );
+  const radiusGap = subtractInterval(receiverRadius, transmitterRadius, ulps);
+  const radiusProduct = multiplyInterval(
+    receiverRadius,
     transmitterRadius,
     ulps,
   );
-  const displacement = subtractVectorInterval(receiverPoint, transmitterPoint, ulps);
-  const distanceSquared = displacement.reduce(
-    (sum, component) => addInterval(sum, squareInterval(component, ulps), ulps),
-    interval(0),
+  const distanceSquared = addInterval(
+    squareInterval(radiusGap, ulps),
+    multiplyInterval(
+      multiplyInterval(interval(2), radiusProduct, ulps),
+      subtractInterval(interval(1), dot, ulps),
+      ulps,
+    ),
+    ulps,
   );
   const distance = sqrtInterval(distanceSquared, ulps);
   const residual = subtractInterval(distance, cell.delay, ulps);
-  let derivative = interval(-Number.MAX_VALUE, Number.MAX_VALUE);
-  if (distance.lower > 0) {
-    const transmitterTangent = tangentIntervalFor(
-      channel.transmitter,
-      emissionPhase,
-      transmitterRadius,
+  const squaredResidual = subtractInterval(
+    distanceSquared,
+    squareInterval(cell.delay, ulps),
+    ulps,
+  );
+  const squaredDelayDerivative = subtractInterval(
+    multiplyInterval(
+      interval(-2),
+      multiplyInterval(radiusProduct, dotDerivative, ulps),
       ulps,
-    );
-    derivative = subtractInterval(
-      divideInterval(
-        dotVectorInterval(displacement, transmitterTangent, ulps),
-        distance,
+    ),
+    multiplyInterval(interval(2), cell.delay, ulps),
+    ulps,
+  );
+  const derivative = subtractInterval(
+    divideInterval(
+      multiplyInterval(
+        interval(-1),
+        multiplyInterval(radiusProduct, dotDerivative, ulps),
         ulps,
       ),
-      interval(1),
+      distance,
       ulps,
-    );
-  }
-  return { residual, derivative, distance };
+    ),
+    interval(1),
+    ulps,
+  );
+  return {
+    residual,
+    derivative,
+    distance,
+    squaredResidual,
+    squaredDelayDerivative,
+  };
 }
 
 function enclosures(channel, cell, ulps) {
   if (channel.kind === "inter-binary") {
-    return genericEnclosures(channel, cell, ulps);
+    return analyticInterBinaryEnclosures(channel, cell, ulps);
   }
   return analyticSameBinaryEnclosures(channel, cell, ulps);
+}
+
+function declaredBoxInterval(value, label) {
+  if (!Array.isArray(value) || value.length !== 2) {
+    throw new TypeError(`${label} must be a [lower, upper] interval.`);
+  }
+  return interval(
+    finiteNumber(value[0], `${label}[0]`),
+    finiteNumber(value[1], `${label}[1]`),
+  );
+}
+
+export function createA11InterBinaryRootFoldEvaluator(rawProtocol) {
+  const protocol = validateA11ContinuousRootInventoryProtocol(rawProtocol);
+  const channels = buildA11OrderedChannelInventory(protocol)
+    .filter((channel) => channel.kind === "inter-binary");
+  const channelById = new Map(channels.map((channel) => [
+    channel.channelId,
+    channel,
+  ]));
+  const ulps = protocol.rootPolicy.intervalPaddingUlps;
+  return Object.freeze({
+    protocolHash: sha256A11Interval(rawProtocol),
+    channelIds: Object.freeze(channels.map((channel) => channel.channelId)),
+    evaluate({
+      channelId,
+      alpha1,
+      alpha3,
+      receptionPhase,
+      dimensionlessDelay,
+    }) {
+      const channel = channelById.get(channelId);
+      if (!channel) {
+        throw new TypeError(`unknown A1.1 inter-binary channel ${channelId}.`);
+      }
+      const cell = {
+        alpha1: declaredBoxInterval(alpha1, "alpha1"),
+        alpha3: declaredBoxInterval(alpha3, "alpha3"),
+        theta: declaredBoxInterval(receptionPhase, "receptionPhase"),
+        delay: declaredBoxInterval(dimensionlessDelay, "dimensionlessDelay"),
+        depth: 0,
+      };
+      const enclosure = analyticInterBinaryEnclosures(channel, cell, ulps);
+      return {
+        channelId,
+        squaredResidualEnclosure: intervalRecord(enclosure.squaredResidual),
+        squaredDelayDerivativeEnclosure:
+          intervalRecord(enclosure.squaredDelayDerivative),
+        causalResidualEnclosure: intervalRecord(enclosure.residual),
+        delayDerivativeEnclosure: intervalRecord(enclosure.derivative),
+        distanceEnclosure: intervalRecord(enclosure.distance),
+      };
+    },
+  });
+}
+
+function analyticEmissionFixedProjectionEnclosures(channel, cell, ulps) {
+  const receiverRadius = radiusIntervalFor(channel.receiver, cell);
+  const transmitterRadius = radiusIntervalFor(channel.transmitter, cell);
+  const receiverAngle = addInterval(
+    addInterval(cell.epsilon, cell.delay, ulps),
+    interval(channel.receiver.phase),
+    ulps,
+  );
+  const transmitterAngle = addInterval(
+    cell.epsilon,
+    interval(channel.transmitter.phase),
+    ulps,
+  );
+  const receiverSine = sinInterval(receiverAngle, ulps);
+  const receiverCosine = cosInterval(receiverAngle, ulps);
+  const transmitterSine = sinInterval(transmitterAngle, ulps);
+  const transmitterCosine = cosInterval(transmitterAngle, ulps);
+  const mode = interBinarySharedCoordinateMode(channel);
+  const unsignedDot = mode === "sineCosine"
+    ? multiplyInterval(receiverSine, transmitterCosine, ulps)
+    : multiplyInterval(receiverCosine, transmitterSine, ulps);
+  const unsignedReceptionDelayDerivative = mode === "sineCosine"
+    ? multiplyInterval(receiverSine, transmitterSine, ulps)
+    : multiplyInterval(
+      interval(-1),
+      multiplyInterval(receiverCosine, transmitterCosine, ulps),
+      ulps,
+    );
+  const unsignedEmissionDelayDerivative = mode === "sineCosine"
+    ? multiplyInterval(receiverCosine, transmitterCosine, ulps)
+    : multiplyInterval(
+      interval(-1),
+      multiplyInterval(receiverSine, transmitterSine, ulps),
+      ulps,
+    );
+  const endpointProduct =
+    channel.receiver.endpointSign * channel.transmitter.endpointSign;
+  const signed = (value) => endpointProduct === 1
+    ? value
+    : multiplyInterval(interval(-1), value, ulps);
+  const dot = intersectInterval(signed(unsignedDot), interval(-1, 1));
+  const receptionDotDerivative = intersectInterval(
+    signed(unsignedReceptionDelayDerivative),
+    interval(-1, 1),
+  );
+  const emissionDotDerivative = intersectInterval(
+    signed(unsignedEmissionDelayDerivative),
+    interval(-1, 1),
+  );
+  const radiusGap = subtractInterval(receiverRadius, transmitterRadius, ulps);
+  const radiusProduct = multiplyInterval(
+    receiverRadius,
+    transmitterRadius,
+    ulps,
+  );
+  const distanceSquared = addInterval(
+    squareInterval(radiusGap, ulps),
+    multiplyInterval(
+      multiplyInterval(interval(2), radiusProduct, ulps),
+      subtractInterval(interval(1), dot, ulps),
+      ulps,
+    ),
+    ulps,
+  );
+  const distance = sqrtInterval(distanceSquared, ulps);
+  const causalResidual = subtractInterval(distance, cell.delay, ulps);
+  const squaredResidual = subtractInterval(
+    distanceSquared,
+    squareInterval(cell.delay, ulps),
+    ulps,
+  );
+  const squaredDerivative = (dotDerivative) => subtractInterval(
+    multiplyInterval(
+      interval(-2),
+      multiplyInterval(radiusProduct, dotDerivative, ulps),
+      ulps,
+    ),
+    multiplyInterval(interval(2), cell.delay, ulps),
+    ulps,
+  );
+  return {
+    causalResidual,
+    squaredResidual,
+    receptionSquaredDelayDerivative:
+      squaredDerivative(receptionDotDerivative),
+    emissionSquaredDelayDerivative:
+      squaredDerivative(emissionDotDerivative),
+  };
+}
+
+export function createA11EmissionFixedProjectionEvaluator(rawProtocol) {
+  const protocol = validateA11ContinuousRootInventoryProtocol(rawProtocol);
+  const channels = buildA11OrderedChannelInventory(protocol)
+    .filter((channel) => channel.kind === "inter-binary");
+  const channelById = new Map(channels.map((channel) => [
+    channel.channelId,
+    channel,
+  ]));
+  const ulps = protocol.rootPolicy.intervalPaddingUlps;
+  return Object.freeze({
+    protocolHash: sha256A11Interval(rawProtocol),
+    channelIds: Object.freeze(channels.map((channel) => channel.channelId)),
+    evaluate({
+      channelId,
+      alpha1,
+      alpha3,
+      emissionPhase,
+      dimensionlessDelay,
+    }) {
+      const channel = channelById.get(channelId);
+      if (!channel) {
+        throw new TypeError(`unknown A1.1 inter-binary channel ${channelId}.`);
+      }
+      const cell = {
+        alpha1: declaredBoxInterval(alpha1, "alpha1"),
+        alpha3: declaredBoxInterval(alpha3, "alpha3"),
+        epsilon: declaredBoxInterval(emissionPhase, "emissionPhase"),
+        delay: declaredBoxInterval(
+          dimensionlessDelay,
+          "dimensionlessDelay",
+        ),
+      };
+      const enclosure = analyticEmissionFixedProjectionEnclosures(
+        channel,
+        cell,
+        ulps,
+      );
+      return {
+        channelId,
+        squaredResidualEnclosure:
+          intervalRecord(enclosure.squaredResidual),
+        causalResidualEnclosure:
+          intervalRecord(enclosure.causalResidual),
+        receptionSquaredDelayDerivativeEnclosure:
+          intervalRecord(enclosure.receptionSquaredDelayDerivative),
+        emissionSquaredDelayDerivativeEnclosure:
+          intervalRecord(enclosure.emissionSquaredDelayDerivative),
+      };
+    },
+  });
+}
+
+function endpointInversionSymmetryKey(channel) {
+  if (channel.kind !== "inter-binary") return null;
+  return [
+    channel.receiver.binaryIndex,
+    channel.transmitter.binaryIndex,
+    channel.receiver.endpointSign * channel.transmitter.endpointSign,
+  ].join(":");
+}
+
+function cloneChannelResultByEndpointInversion(representative, channel) {
+  const cloneRow = (row) => ({
+    ...structuredClone(row),
+    channelId: channel.channelId,
+  });
+  return {
+    channel,
+    status: representative.status,
+    ledger: representative.ledger.map(cloneRow),
+    unresolved: representative.unresolved.map(cloneRow),
+    counts: {
+      ...representative.counts,
+      evaluatedCells: 0,
+      symmetryReusedCells: representative.counts.evaluatedCells,
+    },
+    symmetry: {
+      role: "exact-endpoint-inversion-reuse",
+      representativeChannelId: representative.channel.channelId,
+      key: endpointInversionSymmetryKey(channel),
+      exactReason:
+        "the circular distance and delay derivative depend on endpoint signs " +
+        "only through their product",
+    },
+  };
+}
+
+function certifyChannelWithSymmetry(
+  channel,
+  protocol,
+  packetBudget,
+  representatives,
+) {
+  const key = endpointInversionSymmetryKey(channel);
+  if (key !== null && representatives.has(key)) {
+    return cloneChannelResultByEndpointInversion(
+      representatives.get(key),
+      channel,
+    );
+  }
+  const result = certifyChannel(channel, protocol, packetBudget);
+  result.counts.symmetryReusedCells = 0;
+  if (key !== null) {
+    representatives.set(key, result);
+    result.symmetry = {
+      role: "evaluated-representative",
+      representativeChannelId: channel.channelId,
+      key,
+    };
+  }
+  return result;
 }
 
 function midpoint(value) {
@@ -850,6 +1164,7 @@ function classifySimpleRootSheet(channel, cell, enclosure, protocol, ulps) {
       recomputation,
       lowerFace,
       upperFace,
+      method: "uniform-delay-face-signs.v1",
     };
   }
   return {
@@ -858,6 +1173,7 @@ function classifySimpleRootSheet(channel, cell, enclosure, protocol, ulps) {
     recomputation,
     lowerFace,
     upperFace,
+    method: "uniform-delay-face-signs.v1",
   };
 }
 
@@ -1027,6 +1343,7 @@ function certifyChannel(channel, protocol, packetBudget) {
       enclosure,
       {
         delayDerivativeSign: rootSheet.derivativeSign,
+        rootSheetCertificationMethod: rootSheet.method,
         lowerDelayFaceResidualEnclosure: intervalRecord(rootSheet.lowerFace),
         upperDelayFaceResidualEnclosure: intervalRecord(rootSheet.upperFace),
         sampleRoot: rootSheet.recomputation,
@@ -1083,6 +1400,7 @@ function certifyChannel(channel, protocol, packetBudget) {
     if (rootSheet && !rootSheet.failedIndependentRecomputation) {
       ledger.push(dispositionRow(channel, cell, "certified-simple-root-sheet", enclosure, {
         delayDerivativeSign: rootSheet.derivativeSign,
+        rootSheetCertificationMethod: rootSheet.method,
         lowerDelayFaceResidualEnclosure: intervalRecord(rootSheet.lowerFace),
         upperDelayFaceResidualEnclosure: intervalRecord(rootSheet.upperFace),
         sampleRoot: rootSheet.recomputation,
@@ -1242,6 +1560,103 @@ function scanPointRoots(channel, protocol, point, subdivisions = 4096) {
   };
 }
 
+function runAnalyticReductionControls(protocol, channels) {
+  const point = protocol.controls.point;
+  const delays = [
+    protocol.frozenDomain.nearZeroDelayUpper,
+    0.5,
+    1,
+    1.5,
+    2,
+    EXPECTED_CHI,
+  ];
+  const ulps = protocol.rootPolicy.intervalPaddingUlps;
+  const rows = channels
+    .filter((channel) => channel.kind === "inter-binary")
+    .flatMap((channel) => delays.map((delay) => {
+      const cell = {
+        alpha1: interval(point.alpha1),
+        alpha3: interval(point.alpha3),
+        theta: interval(point.receptionPhase),
+        delay: interval(delay),
+        depth: 0,
+      };
+      const enclosure = analyticInterBinaryEnclosures(channel, cell, ulps);
+      const directResidual = pointResidual(
+        channel,
+        point.alpha1,
+        point.alpha3,
+        point.receptionPhase,
+        delay,
+      );
+      const directDerivative = pointDelayDerivative(
+        channel,
+        point.alpha1,
+        point.alpha3,
+        point.receptionPhase,
+        delay,
+      );
+      const independent = recomputeA11SquaredCausalResidual({
+        protocol,
+        receiver: channel.receiver,
+        transmitter: channel.transmitter,
+        alpha1: point.alpha1,
+        alpha3: point.alpha3,
+        receptionPhase: point.receptionPhase,
+        delay,
+      });
+      const residualContained =
+        directResidual >= enclosure.residual.lower &&
+        directResidual <= enclosure.residual.upper;
+      const derivativeTolerance = 1e-7;
+      const derivativeContained =
+        directDerivative >= enclosure.derivative.lower - derivativeTolerance &&
+        directDerivative <= enclosure.derivative.upper + derivativeTolerance;
+      return {
+        channelId: channel.channelId,
+        symmetryKey: endpointInversionSymmetryKey(channel),
+        delay,
+        analyticResidualEnclosure: intervalRecord(enclosure.residual),
+        analyticDerivativeEnclosure: intervalRecord(enclosure.derivative),
+        directCoordinateResidual: directResidual,
+        directCoordinateDerivative: directDerivative,
+        independentNormalizedResidual: independent.normalizedResidual,
+        residualContained,
+        derivativeContained,
+      };
+    }));
+  const maximumEndpointInversionResidualDifference = Math.max(
+    0,
+    ...[...new Set(rows.map((row) => row.symmetryKey))].flatMap((key) => {
+      const symmetryRows = rows.filter((row) => row.symmetryKey === key);
+      return delays.map((delay) => {
+        const delayRows = symmetryRows.filter((row) => row.delay === delay);
+        return Math.abs(
+          delayRows[0].directCoordinateResidual -
+          delayRows[1].directCoordinateResidual,
+        );
+      });
+    }),
+  );
+  return {
+    id: "a1-1-exact-circular-inter-binary-reduction-controls.v1",
+    grade: "same-change-diagnostic-conformance-only",
+    sampleCount: rows.length,
+    derivativeContainmentTolerance: 1e-7,
+    directCoordinateResidualContainmentPassed:
+      rows.every((row) => row.residualContained),
+    directCoordinateDerivativeContainmentPassed:
+      rows.every((row) => row.derivativeContained),
+    endpointInversionSymmetryPassed:
+      maximumEndpointInversionResidualDifference <= 1e-12,
+    maximumEndpointInversionResidualDifference,
+    passed:
+      rows.every((row) => row.residualContained && row.derivativeContained) &&
+      maximumEndpointInversionResidualDifference <= 1e-12,
+    rows,
+  };
+}
+
 function runControls(protocol, channels) {
   const point = protocol.controls.point;
   const pointRows = channels.map((channel) => {
@@ -1278,6 +1693,8 @@ function runControls(protocol, channels) {
   return {
     schema: "prescribed-path-analysis/a1-1-continuous-root-inventory-controls.v1",
     point,
+    analyticReductionControl:
+      runAnalyticReductionControls(protocol, channels),
     positiveControl: {
       id: "outer-same-transmitter-nontrivial-root",
       passed: outerSelfRows.length === 2 &&
@@ -1347,13 +1764,20 @@ export function evaluateA11ContinuousRootInventory({
   }
   const channels = buildA11OrderedChannelInventory(protocol);
   const packetBudget = { evaluatedCells: 0 };
+  const symmetryRepresentatives = new Map();
   const channelResults = channels.map((channel) =>
-    certifyChannel(channel, protocol, packetBudget));
+    certifyChannelWithSymmetry(
+      channel,
+      protocol,
+      packetBudget,
+      symmetryRepresentatives,
+    ));
   const controls = runControls(protocol, channels);
   const unresolvedPartitions = channelResults.flatMap((row) => row.unresolved);
   const statusCode = unresolvedPartitions.length === 0 &&
       controls.positiveControl.passed &&
       controls.negativeControl.passed &&
+      controls.analyticReductionControl.passed &&
       controls.independentResidualRecomputation.passed &&
       controls.transversalityControl.passed &&
       controls.rootSeparationControl.passed
@@ -1363,12 +1787,27 @@ export function evaluateA11ContinuousRootInventory({
     schema: A11_INTERVAL_RESULT_SCHEMA,
     evaluator: {
       id: "a1-1-continuous-ratio-phase-prescribed-path-interval-certifier",
-      version: 1,
+      version: 2,
       prescribedPathAnalyticsOnly: true,
       pathEvolutionInvoked: false,
       eomSolverInvoked: false,
       eomIntervalMachineryInvoked: false,
       diagnosticOnly: true,
+      interBinaryReduction: {
+        distanceIdentity:
+          "gap-square-plus-two-radius-product-times-one-minus-signed-plane-dot",
+        phaseCoordinates: [
+          "2*reception-phase-delay+receiver-phase+transmitter-phase",
+          "delay+receiver-phase-transmitter-phase",
+        ],
+        intervalPreconditioning: [
+          "exact-radius-gap-square",
+          "analytic-plane-dot-range-intersection",
+          "analytic-distance-derivative",
+        ],
+        symmetry:
+          "simultaneous-receiver-transmitter-endpoint-inversion.v1",
+      },
     },
     source: {
       identity: protocol.sourceFamily.identity,
@@ -1401,10 +1840,17 @@ export function evaluateA11ContinuousRootInventory({
         row.kind === "same-binary-opposite-endpoint").length,
       interBinaryChannelCount: channels.filter((row) =>
         row.kind === "inter-binary").length,
+      interBinarySymmetryClassCount: symmetryRepresentatives.size,
+      interBinarySymmetryReusedChannelCount: channelResults.filter((row) =>
+        row.symmetry?.role === "exact-endpoint-inversion-reuse").length,
     },
     counts: {
       evaluatedCells: channelResults.reduce(
         (sum, row) => sum + row.counts.evaluatedCells,
+        0,
+      ),
+      symmetryReusedCells: channelResults.reduce(
+        (sum, row) => sum + row.counts.symmetryReusedCells,
         0,
       ),
       rootFreeCells: channelResults.reduce(
@@ -1465,6 +1911,10 @@ export function summarizeA11ContinuousRootInventory(result) {
     controls: {
       positiveControl: result.controls.positiveControl,
       negativeControl: result.controls.negativeControl,
+      analyticReductionControl: Object.fromEntries(
+        Object.entries(result.controls.analyticReductionControl)
+          .filter(([key]) => key !== "rows"),
+      ),
       independentResidualRecomputation:
         result.controls.independentResidualRecomputation,
       transversalityControl: result.controls.transversalityControl,
@@ -1476,6 +1926,7 @@ export function summarizeA11ContinuousRootInventory(result) {
       status: row.status,
       counts: row.counts,
       unresolvedPartitionCount: row.unresolved.length,
+      symmetry: row.symmetry ?? null,
     })),
     unresolvedPartitionLedger: {
       completeLedgerLocation: "full result artifact bound by resultHash",
