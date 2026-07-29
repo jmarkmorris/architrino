@@ -1,4 +1,4 @@
-# Technical Proof-Burden Map: Research Revolution
+# Scientific Transition Readiness Map: Research Revolution
 
 A responsible research transition depends on tying institutional action to evidence thresholds, proof obligations, and failure conditions. The technical burden is not only to test a candidate implementation, but to decide when governance, funding, workforce, capital, and application actions become justified.
 
@@ -114,6 +114,10 @@ This creates a cumulative path: first map the existing record with specialists w
 The durable professional role is not loyalty to either an inherited narrative or a candidate ontology. It is the ability to relate three distinct layers without collapsing them: detector-facing measurements and uncertainty records; inherited effective theories, computations, and domain-limited successes; and the candidate architecture, its derivations, and its declared failure conditions. Such translators can make bridge claims reviewable, identify what survives a reinterpretation, and state which new prediction would genuinely distinguish the candidate.
 
 At `reviewable object`, this capacity supports skeptical review, translation papers, and technical advising. At `benchmark pressure`, it supports reproducible case studies, curriculum prototypes, and supervised training around the benchmark artifacts. Only after stronger threshold movement should it govern formal degree expectations, professional requalification, or institution-scale consulting. The educational aim is not to teach a replacement narrative by assertion; it is to train researchers to derive, compare, test, and explain the mappings among measurement, effective theory, and candidate implementation.
+
+### Educational On-Ramps
+
+The [Learning Pathways For A Scientific Transition](learning-pathways.md) sets out the detailed developmental and professional route. Its governing constraint is that on-ramps may widen access at every stage, but textbook replacement, credential change, and institutional adoption remain evidence-gated rather than narrative-led.
 
 ## 6. Capital And Application Gating
 

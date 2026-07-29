@@ -35,9 +35,9 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [ ] For broad advancement prompts, let the agent continue into the next safe scoped action rather than stopping at a menu.
 - [x] Treat "continue..." as approval to execute the last safe scoped recommendation or closure goal unless it requires a theory/canon decision, destructive action, or broad scope expansion.
 - [ ] Treat `run codex-pr-branch.md` and either `merged, continue` or `merged, complete` as standing authorization for the guarded Git lifecycle, so the agent pauses only at PR review or a documented stop condition.
-- [ ] Verify three consecutive `codex-pr-branch.md` lifecycles with zero operator decision prompts and zero interactive host permission prompts per handoff; record all permission counters in [the unattended-execution ledger](reference/op/git/codex-pr-unattended-verification.md).
+- [ ] Verify three consecutive `codex-pr-branch.md` lifecycles with zero operator decision prompts and zero interactive host permission prompts per handoff; record all permission counters in [the unattended-execution ledger](git/codex-pr-unattended-verification.md).
 - [ ] For a multi-hour theory pass, state the desired checkpoint cadence or final artifact threshold when it differs from the default.
-- [ ] Add optional heartbeat diagnostics to long-running theory tests so healthy multi-minute artifact builds are distinguishable from hung runs; detailed recurrence notes live in [reference/op/long-running-test-heartbeats.md](reference/op/long-running-test-heartbeats.md).
+- [ ] Add optional heartbeat diagnostics to long-running theory tests so healthy multi-minute artifact builds are distinguishable from hung runs; detailed recurrence notes live in [long-running-test-heartbeats.md](long-running-test-heartbeats.md).
 
 ## Clarity
 

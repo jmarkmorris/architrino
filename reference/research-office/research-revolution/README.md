@@ -6,7 +6,8 @@ Research Revolution needs separate review materials for decision makers, skeptic
 | --- | --- |
 | [Science And Technology Leaders Review](science-technology-leaders-review.md) | A compact decision brief for science and technology leaders, funders, institutional executives, and transition planners. |
 | [External Reviewer Brief](external-reviewer-brief.md) | A review brief for skeptical technical readers who need to evaluate the transition claim without accepting the ontology first. |
-| [Technical Proof-Burden Map](technical-proof-burden-map.md) | A structured map connecting evidence thresholds, proof obligations, governance actions, and stop conditions. |
+| [Scientific Transition Readiness Map](scientific-transition-readiness-map.md) | A conditional map connecting evidence thresholds, benchmark recovery, institutional readiness, and stop conditions. |
+| [Learning Pathways For A Scientific Transition](learning-pathways.md) | Evidence-gated on-ramps from early learning through professional translation, curriculum pilots, and eventual curricular transition. |
 
 The core distinction is simple: an **evidence threshold** controls what kind of institutional action is justified, and a **reviewable object** is the minimum technical object that lets a skeptical expert judge primitives, update laws, equations or algorithms, assumptions, benchmark targets, and failure conditions.
 
