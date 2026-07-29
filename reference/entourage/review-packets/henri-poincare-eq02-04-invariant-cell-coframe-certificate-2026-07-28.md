@@ -434,7 +434,13 @@ The decisive falsifier is equally narrow: if no neighborhood of the candidate ca
 - **Claim grade:** proposed theorem target.
 - **Falsifier:** failure of any stated chart, differentiability, interval-inclusion, or refinement prerequisite.
 
-## Proposed Changes To The Proof Program
+## Proposed Changes
+
+**Readiness gate.** Changes 1–5 are retained as terminology, theorem-domain,
+proof-order, identity, and overclaim corrections. They do not assert that a
+finite-memory point, full delayed history, drift branch, or stable set exists.
+The executable contract migration is deferred under
+[Disposition of Open Questions](#disposition-of-open-questions).
 
 ### Change 1: Correct The Support Terminology
 
@@ -497,23 +503,6 @@ Do not require or claim positive basin measure merely because the validation box
 
 Plainly: this avoids turning a numerical box size into a physical or probabilistic claim.
 
-### Change 6: Propagate The Correction Through Existing Contracts Only As A Separate Migration
-
-The following live surfaces currently encode invariant-cell-first terminology or a Krawczyk object attached directly to $P_N$:
-
-- `reference/priorities/equation-mapping/equation.md`;
-- `reference/priorities/equation-mapping/equation-score-5-closure-ladder.md`;
-- `reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md`;
-- `reference/entourage/review-packets/andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md`;
-- `scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs`;
-- the associated `eq02-04-invariant-cell-coframe-source-*.v1.json` fixtures and same-branch checks.
-
-The migration should preserve the current fail-closed behavior while separating point existence, refinement, continuation, and stability. It should not be performed as an unreviewed field rename because the existing producer and fixtures share machine contracts.
-
-Plainly: the research correction affects several documents and executable checks. They should change together in a bounded implementation pass so current negative controls do not silently stop testing the intended failures.
-
-The downstream no-retune transport question remains separate and is addressed by [the no-retune transport research findings](elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md). That work should consume a validated drift family rather than stand in for one.
-
 ## Deferred Or Rejected Moves
 
 - **Deferred with blocker:** full-history branch acceptance, until the history topology, reconstruction, compactness, consistency, and tail estimates are defined.
@@ -525,6 +514,42 @@ The downstream no-retune transport question remains separate and is addressed by
 - **Priority-only:** migration of the existing equation-mapping producer, fixtures, score ladder, and terminology.
 
 Plainly: the valuable outcome is a sharper proof target, not a new accepted physics result. The current score and branch status do not move.
+
+## Disposition of Open Questions
+
+### Deferred Proposed Change
+
+| Deferred item | Live owner and status | Reason it is not apply-now | Next acceptance test and backlink |
+| --- | --- | --- | --- |
+| Change 6 — migrate invariant-cell-first terminology and $\mathcal K_{P_N}$ machine contracts across equation-mapping documents, the producer, fixtures, and same-branch checks | [`EQ-02` through `EQ-04` `S_eq` retained-domain evidence object](../../priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md), status `draft`; work-queue owner `EQM-001`, status `Queued` | This is a coupled executable migration, not a safe field rename. It must preserve current negative controls and cannot run in this no-regeneration batch. Complete-state reconstruction depends on `MEC-002` where wake state is consumed; dynamic causal-root identity and no-double-booking depend on `MEC-005`; derivative rows involving receiver/self acceleration depend on `MEC-006`. These dependencies gate only the corresponding fields, not the finite-memory theorem correction itself. | In one separately authorized migration, update the canonical source contract, producer, fixtures, and separately authored checks together; require old invariant-cell or $\mathcal K_{P_N}$ forms to fail at their intended stage, rerun check-only validation, and preserve the existing backlink from the `S_eq` owner. |
+
+The affected live surfaces remain:
+
+- `reference/priorities/equation-mapping/equation.md`;
+- `reference/priorities/equation-mapping/equation-score-5-closure-ladder.md`;
+- `reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md`;
+- the retained June Kolmogorov response material as preserved by the canonical 2026-07-29 reconciliation packet;
+- `scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs`;
+- the associated `eq02-04-invariant-cell-coframe-source-*.v1.json` fixtures and same-branch checks.
+
+The downstream no-retune transport question remains separately owned by
+[the no-retune transport research findings](elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md).
+It must consume a validated drift family rather than stand in for one.
+
+Plainly: the mathematical correction can be stated now. Changing the executable
+contract waits for a bounded migration in which every deliberately bad fixture
+still fails for the intended reason.
+
+| Open question | Live owner and status | Next acceptance test | Routing disposition |
+| --- | --- | --- | --- |
+| What full-history topology and tail norm make finite-memory histories converge to an admissible delayed history? | [`EQ-02` through `EQ-04` `S_eq` retained-domain evidence object](../../priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md), status `draft`; work-queue owner `EQM-001`, status `Queued`; `MEC-002` is `In progress` where the topology claims a complete wake state | Declare the topology and tail norm, then prove compactness, consistency of reconstructed histories, vanishing tail error, and uniform root, section, and collision margins along refinement on the state components actually accepted by their owners. | Open upstream obligation. No full-history point or branch is established; prescribed finite-memory point research remains valid within its narrower domain. |
+| Which reconstruction maps carry finite-memory coordinates into the complete evolution-defining state? | Same `S_eq` owner, status `draft`; `EQM-001` remains `Queued`; wake reconstruction is gated by `MEC-002`, status `In progress` | Construct source-bound reconstruction maps that recover every accepted path, root, wake, phase, boundary-memory, and Noether sea coordinate needed for the next return, with refinement-stable enclosure error. | Open. Diagnostic or comparison rows cannot substitute for state coordinates, and an unresolved wake representation cannot be filled by a fixture field. |
+| What is the exact neutral symmetry group of the complete delayed dynamics? | Same `S_eq` owner, status `draft`; `EQM-001` remains `Queued`; root-labeled neutrality uses `MEC-005`, status `Queued`, where provenance is part of the claim | For each proposed generator, prove neutrality against the complete delayed state, add one pinning condition per admitted generator, and require the fake-symmetry negative control to fail before interval inclusion is accepted. | Open. A quotient chosen because it improves a residual remains barred. |
+| Can the derivative and return-map enclosures be validated independently on one regular labeled chart? | Same `S_eq` owner, status `draft`; `EQM-001` remains `Queued`; receiver/self acceleration-gradient rows use `MEC-006`, status `Awaiting verification` | Build the square residual $F_{N,u_0}$ on one predeclared chart, enclose its complete derivative with a separately authored reference or theorem, and require the Krawczyk inclusion and any stated uniqueness bound to pass while itinerary-straddle controls fail. | First finite-memory existence test; no positive-width invariant-set claim follows. MEC-006 gates only the derivative terms it actually owns. |
+| Does the finite-memory point continue to a full-history drift branch with dynamic strand identity? | [`EQ-02` through `EQ-04` translating-binary shared-record instantiation](../../priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md), status `draft`; `EQM-001` remains `Queued`; full root provenance uses `MEC-005`, status `Queued` | After the full-history point is validated, continue it over a declared drift interval with one certified event/root itinerary, overlap continuation, allowed permutation fixed in advance, and no duplicated root ownership. | Deferred until point existence and the full-history lift pass. |
+| Is the resulting point or branch stable, trapping, or associated with a basin? | Same translating-binary owner; deferred within the queued `EQM-001` lane | Only after existence, validate every nonsymmetry return direction and the retained-tail spectrum using the theorem appropriate to the claim: multipliers, cone conditions, graph transform, trapping inclusion, or a declared basin measure. | Deferred. Validation-box width grants none of these claims. |
+
+Plainly: the open questions remain in the existing `EQM-001` lane and its two live priority owners. The routing changes no status and preserves the strict order from point existence through full-history persistence, continuation, and only then stability.
 
 ## Compact Research Conclusions
 

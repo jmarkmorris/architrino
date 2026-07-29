@@ -568,28 +568,7 @@ The supplied material does not justify:
 - that a prescribed map, implementation replay, or same-path comparison provides independent physical evidence;
 - any Master Equation, wake ontology, solver, conserved-quantity, retained-branch, or recovery-mechanism promotion.
 
-## 6. Safe corrections
-
-1. Replace “finite impulse hence \(M(T)=O(T^{2+\delta})\)” with:
-   “Finite impulse is equivalent to \(M\in L^1((0,L),T^{-3}dT)\). A pointwise \(O(T^{2+\delta})\) bound is sufficient but not necessary.”
-
-2. Add:
-   “For nonnegative nondecreasing \(M\), integrability implies \(M=o(T^2)\), but this remains insufficient without the weighted integral condition.”
-
-3. Replace “analytic first admits cubic” with:
-   “If \(M\) is analytic in a variable asymptotically linear in \(T\), any nonzero leading Taylor order must be at least three; cubic is the first allowed order, not a uniquely selected order.”
-
-4. Add the required change-of-variable hypothesis \(z(T)\sim aT\), or state the general criterion \(\beta k>2\) when \(z\sim aT^\beta\).
-
-5. Distinguish stored transported maturity from reception-time effective coupling. If \(m\) changes along a free characteristic, the zero-source transport equation must be replaced or supplemented by a constitutive output map.
-
-6. Specify whether \(e\) and \(\boldsymbol\pi\) are densities, finite measures, or patch-integrated quantities. A point reception cannot create a finite integral change in an ordinary density by changing one point.
-
-7. Under strictly local atomic line-of-action exchange with no intrinsic angular account, record the conditional compatibility requirement \(P(s)=a s\), without interpreting \(a\) as primitive mass.
-
-8. State that finite impulse and local uniqueness are separate gates; uniqueness requires an integrable state-sensitivity bound.
-
-## 7. Rejected paths
+## 6. Rejected paths
 
 - **Dimensional counting of \((m,e,\boldsymbol\pi)\):** fails without reachability and regular-encoding assumptions.
 - **Pointwise big-\(O\) inferred from an integral:** fails because integrable spikes and logarithmic borderline laws are counterexamples.
@@ -603,7 +582,7 @@ The supplied material does not justify:
 - **Finite impulse used as proof of uniqueness:** ignores state sensitivity, branch choice, simultaneous events, and event accumulation.
 - **Boundary deletion:** manufactures loss unless the deleted account appears in \(\Phi_E,\boldsymbol\Phi_P,\boldsymbol\Phi_J\).
 
-## 8. Decisive next calculation
+## 7. Decisive next calculation
 
 Perform one **certified coincident-birth normal-form and state-sensitivity calculation** before choosing any maturity interpolation.
 
@@ -657,7 +636,7 @@ It must also give one certified outgoing continuation from each admissible incom
 
 A pass would raise only the coincident-birth continuation from “unresolved” to “derived local mathematical well-posedness for the declared constitutive candidate.” It would not establish conservation, physical interpretation, global existence, retained-branch status, or solver acceptance. A fail would provide a decisive analytic no-go for that candidate maturity/reception map.
 
-## 9. Unresolved context
+## 8. Unresolved context
 
 The supplied packet does not determine:
 
@@ -998,108 +977,6 @@ $$
 
 Plainly: both give finite impulse, but only the second is analytic at birth. Their disagreement confirms that finiteness does not select a constitutive law.
 
-## Proposed Changes From The Coincident-Birth Analysis
-
-### 1. `reference/priorities/master-equation-closure/analysis-independent-causal-wake-state.md`
-
-Heading: `## 3. Coincident-birth requirement`
-
-Replace the implication beginning with “Hence” by:
-
-> On the exact quadratic control, $z=(\alpha/c_f)T$ exactly. The sharp necessary-and-sufficient local condition is
-> $$
-> \int_0^\varepsilon \frac{M(z)}{z^3}\,dz<\infty.
-> $$
-> Nonnegativity and local regularity alone imply no pointwise bound
-> $M(z)=O(z^{2+\delta})$. That bound is sufficient but not necessary. If
-> $M(z)\sim Cz^p$ with $C>0$, finiteness is equivalent to $p>2$. If $M$ is
-> analytic at $z=0$, its coefficients through quadratic order must vanish, so
-> $M(z)=O(z^3)$; cubic is the first possible nonzero analytic order, not a
-> selected maturity law.
-
-Plainly: this preserves the obstruction while correcting its strongest mathematical statement.
-
-Claim grade: **derived on the exact prescribed quadratic control; conditional derived corollary under analyticity**.
-
-Operator-checkable falsifier: a valid proof that the stated nonnegative locally regular class excludes
-$M(z)=z^2/\log^2(1/z)$, or an analytic nonnegative $M$ with a nonzero coefficient of degree at most two and finite weighted integral.
-
-Also replace “more-than-quadratic suppression” in the finding and disposition with “weighted-integrable coincident-birth suppression; equivalently, vanishing through quadratic Taylor order for analytic candidates.”
-
-Plainly: this prevents the corrected theorem from drifting back to an unjustified pointwise claim.
-
-### 2. `reference/priorities/app-solver/analysis/analysis-transmitter-factor-fold-and-coincident-birth.md`
-
-Heading: `### 3.6 Why an event-only repair cannot work`
-
-After the exact $D_t=\alpha T$ equation, add
-
-$$
-z=\frac{|D_t|}{c_f}=\frac{\alpha}{c_f}T
-$$
-
-and replace the general $O(z^{2+\delta})$ assertion with the weighted-integrability criterion and the pure-power/analytic corollaries above.
-
-Plainly: this file owns the exact control, so it should own the exact $z$ conversion and the sharp theorem.
-
-Claim grade: **derived prescribed-control identity and derived integrability criterion**.
-
-Operator-checkable falsifier: direct substitution into the displayed quadratic history produces a different local newborn root, separation, or $D_t$, or the logarithmic counterexample fails the declared activation assumptions.
-
-### 3. `reference/priorities/master-equation-closure/characteristic-tail.md`
-
-Heading: `### Step 12 — Confront coincident same-transmitter birth`
-
-Replace the paired integral-plus-$O(T^{2+\delta})$ display with the weighted integral alone as the unconditional pass condition. Add the pure-power and analytic consequences as explicitly conditional sentences.
-
-Plainly: Step 12 should test the true acceptance condition and must not reject a finite logarithmically corrected maturity merely because it lacks a fixed positive power margin.
-
-Claim grade: **safe mathematical correction to a priority acceptance test**.
-
-Operator-checkable falsifier: a tail candidate satisfying the weighted integral but failing the actual finite accumulated-acceleration calculation on the exact control.
-
-### 4. `reference/priorities/master-equation-closure/brainstorming.md`
-
-Heading: `### Reception-Active Cubic Maturity and Account-Transfer Candidate`
-
-Change “The derived part is only the endpoint order condition” to say that the derived part is weighted integrability; cubic is the first analytic order. Keep the clipped-cubic function explicitly unproven and unselected.
-
-Plainly: the clipped cubic remains a useful candidate without being mistaken for the general theorem.
-
-Claim grade: **safe clarification; proposal grade unchanged**.
-
-Operator-checkable falsifier: a current primitive derivation selecting the clipped cubic’s scale and global form would supersede its unselected status.
-
-### 5. `reference/priorities/master-equation-closure/work-log.md`
-
-Entries dated `2026-07-24` and `2026-07-20`
-
-Replace “must vanish more than quadratically” with “must satisfy the weighted-integrability condition; within an analytic ansatz its Taylor coefficients through degree two vanish.”
-
-Plainly: this corrects the durable summary without changing queue status.
-
-Claim grade: **safe summary correction**.
-
-Operator-checkable falsifier: the owning packet retains a valid proof of the stronger unconditional pointwise statement.
-
-### 6. `reference/priorities/app-solver/analysis/master-equation-import-audit-walkthrough-2026-07-18.md`
-
-Heading: `### 6.1 Mathematical checks`, item 7
-
-Make the same summary correction.
-
-Plainly: this prevents an older audit summary from reintroducing the overstatement after the owner is repaired.
-
-Claim grade: **safe duplicate-summary correction**.
-
-Operator-checkable falsifier: mismatch with the corrected owning theorem.
-
-### Reader-facing corpus disposition
-
-No immediate reader-facing edit is required. The searched dynamics files state only the nonintegrable birth warning and fail-closed status; they do not currently repeat the false pointwise implication.
-
-Plainly: the correction belongs first in the priority research record. The corpus should receive it only if a future reader-facing section explicitly states the maturity theorem.
-
 ## Rejected promotions
 
 - Reject promotion of $M=O(z^{2+\delta})$ as a necessary condition under mere local regularity.
@@ -1394,77 +1271,24 @@ Plainly: the mismatch is one full unit of angular account even though linear mom
 
 ## Evidence classification
 
-| Item | Verdict | Grade and falsifier | Exact destination and disposition |
-|---|---|---|---|
-| Singleton \(L^1\) obstruction | Mathematical advance | Derived conditional theorem. Falsified only by a nonzero \(dT_e\,d\Omega\) integral supported on one singleton, or by showing the owner uses a different non-null base measure. | `analysis-independent-causal-wake-state.md`, new measure-class subsection under §2 or §4. Promote now to priority only. |
-| Radon atom | Useful clarification | Valid mathematical construction, not physical closure. Fails if the measure has infinite total variation or if its coefficient is chosen from the residual afterward. | Same packet; list as one admissible representation requiring a constitutive rule. |
-| Finite patch | Useful clarification | Valid \(L^1\) construction. Fails point-locality or becomes arbitrary if patch width/kernel is not predeclared. | Same packet; candidate only. |
-| Nonlocal redistribution | Operator discussion | Mathematically valid but changes the locality premise and may trigger the regular-law visibility trilemma. | MEC-002/MEC-004 research route; do not promote as accepted mechanism. |
-| \(P'=K'/s\) | Duplicate | Already in `energy.md` lines 37–43 and `master-equation.md` lines 4624–4627. Falsifier: a \(C^1\) pair satisfying work-power equality for arbitrary acceleration while violating the relation. | No duplicate equation needed. Tighten assumptions and interpretation in Energy. |
-| Near-zero regularity | Safe correction | Derived domain correction. Counterexample \(K=s+s^2\) falsifies the current sufficiency of strict convexity, monotonicity, and \(K(0)=0\). | `energy.md`, “Kinetic Energy and Momentum of a Single Architrino.” |
-| \(\ell_K=sP-K\) reconstruction | Mathematical advance | Derived identity. Falsified by direct failure of \(\ell_K'=P\) or \(\mathbf p\cdot\mathbf V-\ell_K=K\). | `energy.md`; cross-reference from `effective-lagrangian.md`. |
-| Linear-\(P\) theorem | Mathematical advance | Derived conditional theorem. Falsified by one admissible oblique hit with nonlinear \(P\) and exact radial-only local closure without another account. | Ontology-neutral lemma in `energy.md`; wake-state application in the priority packet. |
-| Quadratic-\(K\) corollary | Mathematical advance | Derived under both compatibility conditions. Falsified if \(P=as\), \(K'=sP'\), \(K(0)=0\), but \(K\neq as^2/2\). | Energy clarification and priority obstruction. |
-| Instant same-lever-arm cancellation | Safe correction | Exact vector identity. Falsified if the two account updates occur at the same point with equal/opposite momentum but leave nonzero instantaneous angular residual. | Priority packet §1–§2 angular-account paragraph. |
-| Free-propagation radial condition | Mathematical advance | Derived pointwise; globally only the integrated condition is necessary. Falsifier: constant \(\boldsymbol\pi\), radial \(\dot{\mathbf Y}\), no other account, and constant \(\mathbf Y\times\boldsymbol\pi\) with \(\boldsymbol\omega\times\boldsymbol\pi\neq0\). | Priority packet; concise conditional clarification may later enter Energy. |
-| “No intrinsic angular account is needed” without qualifications | Unsupported inference | False unless reception lever arms match and free transport satisfies the pointwise or integrated torque condition. | Correct locally in the priority packet; do not propagate unqualified. |
-| Radon atom as proof of conservation | Rejected comment | Representation does not derive coefficients, lower bounds, emission capacity, or visibility. | No corpus promotion. |
-| Treat \(a\) as primitive mass | Unsafe import | Barred by substrate ontology and unnecessary mathematically. | Reject everywhere. |
+| Item | Verdict | Grade and operator-checkable falsifier |
+|---|---|---|
+| Singleton \(L^1\) obstruction | Mathematical advance | Derived conditional theorem. Falsified only by a nonzero \(dT_e\,d\Omega\) integral supported on one singleton, or by showing that the account uses a different non-null base measure. |
+| Radon atom | Useful clarification | Valid mathematical construction, not physical closure. Fails if the measure has infinite total variation or if its coefficient is chosen from the residual afterward. |
+| Finite patch | Useful clarification | Valid \(L^1\) construction. Fails point-locality or becomes arbitrary if patch width or kernel is not predeclared. |
+| Nonlocal redistribution | Conditional alternative | Mathematically valid but changes the locality premise and may trigger the regular-law visibility trilemma. |
+| \(P'=K'/s\) | Duplicate equation with a domain correction | Already present in the reader-facing kinetic scaffold. Falsifier: a \(C^1\) pair satisfying work-power equality for arbitrary acceleration while violating the relation. |
+| Near-zero regularity | Safe correction | Derived domain correction. The counterexample \(K=s+s^2\) falsifies the sufficiency of strict convexity, monotonicity, and \(K(0)=0\). |
+| \(\ell_K=sP-K\) reconstruction | Mathematical advance | Derived identity. Falsified by direct failure of \(\ell_K'=P\) or \(\mathbf p\cdot\mathbf V-\ell_K=K\). |
+| Linear-\(P\) theorem | Mathematical advance | Derived conditional theorem. Falsified by one admissible oblique hit with nonlinear \(P\) and exact radial-only local closure without another account. |
+| Quadratic-\(K\) corollary | Mathematical advance | Derived under both compatibility conditions. Falsified if \(P=as\), \(K'=sP'\), and \(K(0)=0\), but \(K\neq as^2/2\). |
+| Instant same-lever-arm cancellation | Safe correction | Exact vector identity. Falsified if two account updates occur at the same point with equal and opposite momentum but leave a nonzero instantaneous angular residual. |
+| Free-propagation radial condition | Mathematical advance | Derived pointwise; globally only the integrated condition is necessary. Falsifier: constant \(\boldsymbol\pi\), radial \(\dot{\mathbf Y}\), no other account, and constant \(\mathbf Y\times\boldsymbol\pi\) with \(\boldsymbol\omega\times\boldsymbol\pi\neq0\). |
+| “No intrinsic angular account is needed” without qualifications | Unsupported inference | False unless reception lever arms match and free transport satisfies the pointwise or integrated torque condition. |
+| Radon atom as proof of conservation | Rejected inference | Representation does not derive coefficients, lower bounds, emission capacity, or visibility. |
+| Treat \(a\) as primitive mass | Unsafe import | Barred by substrate ontology and unnecessary mathematically. |
 
 Plainly: the durable advances are the measure obstruction, corrected kinetic-account theorem, and angular lever-arm conditions; none derives the missing reception coefficients.
-
-## Proposed corpus and priority changes
-
-### Safe corpus corrections
-
-- In `content/markdown/aaa/dynamics/energy.md`, under “Kinetic Energy and Momentum of a Single Architrino”:
-
-  - retain \(P'=K'/s\);
-  - state the needed assumptions \(K'(0)=0\) and local integrability of \(K'(s)/s\);
-  - describe it as work-power compatibility;
-  - add \(\ell_K=sP-K\) as the kinetic Lagrangian that generates \(\mathbf p\);
-  - add the ontology-neutral radial-collinearity lemma.
-
-  Claim grade: derived mathematical identity. Falsifier: the explicit derivative tests above.
-
-- In `content/markdown/aaa/dynamics/effective-lagrangian.md`, under “Regularized Nonlocal Action and Variation”:
-
-  - state that the displayed action currently uses the quadratic bookkeeping proxy;
-  - do not replace its kinetic term by the energy \(K(s)\);
-  - a general kinetic chart would require \(\ell_K=sP-K\) and a complete revariation;
-  - preserving arbitrary radial per-hit acceleration with a scalar radial momentum exchange forces the quadratic family.
-
-  Claim grade: safe correction plus conditional no-go. Falsifier: a fully varied nonquadratic action reproducing the same arbitrary line-of-action acceleration while retaining radial-only local momentum exchange.
-
-- In `content/markdown/aaa/dynamics/effective-lagrangian.md`, under “Symmetries and History-Aware Conservation Laws,” use \(K_\mu\), not an unrestricted \(K\), for conservation claims derived from the currently displayed quadratic action unless the generalized kinetic action is separately supplied.
-
-  Claim grade: safe scope correction. Falsifier: a live derivation in that section already using \(\ell_K\) and reproducing the Master EOM for general \(K\); none is present.
-
-- In `content/markdown/aaa/dynamics/master-equation.md`, “Generalized Momentum and Angular Momentum,” retain the existing cross-reference as the duplicate authority. Add only a scope sentence that the displayed action-derived charges use the quadratic proxy; general \(K\) requires the separate kinetic-action construction.
-
-  Claim grade: useful clarification. Falsifier: same as above.
-
-### Priority-only advances
-
-Add to `reference/priorities/master-equation-closure/analysis-independent-causal-wake-state.md`:
-
-1. the \(L^1\) singleton obstruction and explicit account-measure definition;
-2. the three admissible representation classes, without selecting one;
-3. the same-reception-point lever-arm lemma;
-4. the free-propagation torque condition;
-5. the conditional linear-\(P\)/quadratic-\(K\) no-go;
-6. the consequence that a nonquadratic motion account requires at least one of:
-
-   - nonradial or cross-sector wake momentum redistribution;
-   - an additional angular account;
-   - a nonlocal action-derived boundary charge;
-   - a restriction excluding oblique hit geometries.
-
-Plainly: this turns the conservation gap into a sharper fork rather than pretending to solve it.
-
-The result narrows MEC-002 and MEC-004 but resolves neither. No work-queue status should change: reception coefficients, emission capacity, boundedness, and dynamically visible versus inert account behavior remain unselected.
-
-Plainly: the queue blocker is smaller and more precise, but still active.
 
 ## Rejected Claims
 
@@ -1487,103 +1311,28 @@ If no, strict exact point-local reception is closed negatively for ordinary \(L^
 
 Plainly: the next step is not another broad conservation discussion; it is a choice of account measure followed by one oblique-hit falsification test.
 
-## Proposed corpus changes
+## Cross-cutting evidence assessment
 
-### Evidence-conscious assessment
-
-| Research item | Verdict | Evidence and claim grade | Operator-checkable falsifier | Exact destination | Recommended disposition |
-| --- | --- | --- | --- | --- | --- |
-| Direction-resolution quotient | Useful clarification | The live owner already says different wake directions must be distinguishable and that $(m,e,\boldsymbol\pi)$ need not be independent coordinates. The operational quotient sharpens that statement. Grade: inferred representation theorem under Markov, locality, and independent-reception assumptions. | A sufficient present state that identifies two independently updatable, reception-distinguishable directions while predicting both futures uniquely. | `reference/priorities/master-equation-closure/analysis-independent-causal-wake-state.md`, §1 | Add the quotient formulation at priority grade; do not promote a three-independent-coordinate ontology. |
-| Weighted-integrability correction | Safe correction and mathematical advance | The exact quadratic control gives $D_t=\alpha T$, $z=(\alpha/c_f)T$, and acceleration proportional to $T^{-3}$. The continuous example $M(T)=T^2/\log^2(1/T)$ has finite weighted integral but violates every $O(T^{2+\delta})$ bound. Grade: derived on the prescribed control. | Direct substitution into the exact control yields a different $D_t$ or the logarithmic example fails the stated integral. | Owning priority §3; exact-control analysis §3.6; characteristic-tail Step 12; work-log summaries | Correct the unconditional implication. Retain cubic only as the first possible analytic order. |
-| Explicit maturity nonuniqueness | Mathematical advance | Cubic and quartic controls with the same matching threshold give different finite impulses. Grade: derived counterexample family; the functions are inverse constructions, not candidates selected by the theory. | An allowed native functional equation uniquely fixes the complete maturity law and scale. | Owning priority §3 | Add one explicit two-law counterexample and preserve underdetermination. |
-| Homogeneous transport versus age-changing maturity | Safe correction | The displayed free law transports stored $m$ unchanged along a characteristic. An age-changing maturity therefore needs a sourced evolution or a reception-time output map. Grade: derived compatibility observation. | A definition showing that the stored variable changes with age while still satisfying the homogeneous transport equation. | Owning priority §§2–3 | Define whether $m$ is stored state or an output computed from stored state and root geometry. |
-| Singleton $L^1$ reception obstruction | Mathematical advance | A singleton has zero $dT_e\,d\boldsymbol\omega$ measure, so changing an ordinary density only there changes no integrated total. Grade: derived conditional theorem. | A nonzero ordinary-density integral whose update is supported on one singleton under the stated base measure. | Owning priority, new measure-class subsection under §2 or §4 | Promote to priority grade. List atom, finite patch, and nonlocal redistribution as unselected alternatives. |
-| $P'(s)=K'(s)/s$ | Duplicate with useful domain correction | The equation already appears in `content/markdown/aaa/dynamics/energy.md` and is cross-referenced by `master-equation.md`. The integral for $P$ additionally needs local integrability of $K'(s)/s$ near zero. Grade: existing scaffold plus derived domain correction. | A differentiable pair satisfying work-power equality for arbitrary acceleration while violating the equation, or a proof that the existing assumptions alone make the integral finite at zero. | Energy, “Kinetic Energy and Momentum of a Single Architrino” | Do not duplicate the equation. Add its near-zero assumptions and identify it as work-power compatibility. |
-| $\ell_K=sP-K$ reconstruction | Mathematical advance | Given $K'=sP'$, direct differentiation gives $\ell_K'=P$ and $\mathbf p\cdot\mathbf V-\ell_K=K$. Grade: derived identity. | Direct differentiation fails under the stated smoothness assumptions. | Energy kinetic section; Effective Lagrangian kinetic-term scope note | Add as the general kinetic-Lagrangian reconstruction; do not substitute $K$ itself as a Lagrangian. |
-| Conditional linear-$P$/quadratic-$K$ theorem | Mathematical advance with narrow hypotheses | If every oblique radial hit must produce a radial local momentum-account transfer, with no cross-sector redistribution or intrinsic angular account, then $P'=P/s$, hence $P=as$; compatibility then gives $K=as^2/2$. Grade: derived conditional theorem. | One admitted oblique hit with nonlinear $P$ and exact radial-only local closure under all stated exclusions. | Ontology-neutral lemma in Energy; wake-state application in the owning priority | Propose the lemma for corpus inclusion, but keep its wake-state consequence priority-only until the representation is accepted. |
-| Angular lever-arm and transport conditions | Safe correction and mathematical advance | Instantaneous angular cancellation requires equal and opposite momentum updates at the same reception point. Free pointwise orbital closure additionally requires $\boldsymbol\omega\times\boldsymbol\pi=0$, or the weaker integrated torque cancellation when cross-sector balance is allowed. Grade: derived conditional identities. | Same-point equal/opposite transfers leave a nonzero instant residual, or a freely transported nonradial sector keeps constant orbital angular account without compensation. | Owning priority §§1–4; later concise Energy clarification | Qualify the current statement that no intrinsic angular account is needed. |
-| Visibility trilemma | Useful clarification | A reception-updated component that changes later acceleration makes the later law depend on more than transmitter history; a passive component avoids that conflict but does not derive bounded or physical accounts. Grade: derived under operational visibility and independent-reception assumptions. | Two histories differing only in an operationally visible earlier reception yield identical acceleration for every admissible future reception. | Owning priority §5 | State as a conditional visibility theorem, not an exhaustive ontology theorem. |
-| Positive-emission obstruction | Useful clarification | Finite-window balance is exact, while infinite growth requires a nonintegrable positive emission rate. Grade: derived bookkeeping estimate, physical interpretation missing. | A lower-bounded global account sustains nonintegrable positive isolated emission without debit, return, or boundary term. | Owning priority §6 | Add the finite/infinite-window distinction; do not treat a boundary flux as removal of global account. |
-| Well-posedness architecture | Proposed testable route | Finite impulse alone does not control state sensitivity, event accumulation, or branch selection. Grade: inferred theorem architecture, not a proof for an unspecified map. | A declared update satisfies the proposed state-space, Lipschitz, event, and integral assumptions but has two local continuations. | MEC-002/MEC-003 focused proof packet or owner §8 | Use as the acceptance design for a future concrete map, not as a new generic gate. |
+| Research item | Verdict | Evidence and claim grade | Operator-checkable falsifier |
+| --- | --- | --- | --- |
+| Direction-resolution quotient | Useful clarification | Different wake directions must be distinguishable, while $(m,e,\boldsymbol\pi)$ need not be independent coordinates. Grade: inferred representation theorem under Markov, locality, and independent-reception assumptions. | A sufficient present state that identifies two independently updatable, reception-distinguishable directions while predicting both futures uniquely. |
+| Weighted-integrability correction | Safe correction and mathematical advance | The exact quadratic control gives $D_t=\alpha T$, $z=(\alpha/c_f)T$, and acceleration proportional to $T^{-3}$. The continuous example $M(T)=T^2/\log^2(1/T)$ has finite weighted integral but violates every $O(T^{2+\delta})$ bound. Grade: derived on the prescribed control. | Direct substitution into the exact control yields a different $D_t$ or the logarithmic example fails the stated integral. |
+| Explicit maturity nonuniqueness | Mathematical advance | Cubic and quartic controls with the same matching threshold give different finite impulses. Grade: derived counterexample family; the functions are inverse constructions, not candidates selected by the theory. | An allowed native functional equation uniquely fixes the complete maturity law and scale. |
+| Homogeneous transport versus age-changing maturity | Safe correction | The displayed free law transports stored $m$ unchanged along a characteristic. An age-changing maturity therefore needs a sourced evolution or a reception-time output map. Grade: derived compatibility observation. | A definition showing that the stored variable changes with age while still satisfying the homogeneous transport equation. |
+| Singleton $L^1$ reception obstruction | Mathematical advance | A singleton has zero $dT_e\,d\boldsymbol\omega$ measure, so changing an ordinary density only there changes no integrated total. Grade: derived conditional theorem. | A nonzero ordinary-density integral whose update is supported on one singleton under the stated base measure. |
+| $P'(s)=K'(s)/s$ | Duplicate with useful domain correction | The kinetic scaffold already contains the equation. The integral for $P$ additionally needs local integrability of $K'(s)/s$ near zero. Grade: existing scaffold plus derived domain correction. | A differentiable pair satisfying work-power equality for arbitrary acceleration while violating the equation, or a proof that the existing assumptions alone make the integral finite at zero. |
+| $\ell_K=sP-K$ reconstruction | Mathematical advance | Given $K'=sP'$, direct differentiation gives $\ell_K'=P$ and $\mathbf p\cdot\mathbf V-\ell_K=K$. Grade: derived identity. | Direct differentiation fails under the stated smoothness assumptions. |
+| Conditional linear-$P$/quadratic-$K$ theorem | Mathematical advance with narrow hypotheses | If every oblique radial hit must produce a radial local momentum-account transfer, with no cross-sector redistribution or intrinsic angular account, then $P'=P/s$, hence $P=as$; compatibility then gives $K=as^2/2$. Grade: derived conditional theorem. | One admitted oblique hit with nonlinear $P$ and exact radial-only local closure under all stated exclusions. |
+| Angular lever-arm and transport conditions | Safe correction and mathematical advance | Instantaneous angular cancellation requires equal and opposite momentum updates at the same reception point. Free pointwise orbital closure additionally requires $\boldsymbol\omega\times\boldsymbol\pi=0$, or the weaker integrated torque cancellation when cross-sector balance is allowed. Grade: derived conditional identities. | Same-point equal and opposite transfers leave a nonzero instant residual, or a freely transported nonradial sector keeps constant orbital angular account without compensation. |
+| Visibility trilemma | Useful clarification | A reception-updated component that changes later acceleration makes the later law depend on more than transmitter history; a passive component avoids that conflict but does not derive bounded or physical accounts. Grade: derived under operational visibility and independent-reception assumptions. | Two histories differing only in an operationally visible earlier reception yield identical acceleration for every admissible future reception. |
+| Positive-emission obstruction | Useful clarification | Finite-window balance is exact, while infinite growth requires a nonintegrable positive emission rate. Grade: derived bookkeeping estimate, physical interpretation missing. | A lower-bounded global account sustains nonintegrable positive isolated emission without debit, return, or boundary term. |
+| Well-posedness architecture | Testable route | Finite impulse alone does not control state sensitivity, event accumulation, or branch selection. Grade: inferred theorem architecture, not a proof for an unspecified map. | A declared update satisfies the proposed state-space, Lipschitz, event, and integral assumptions but has two local continuations. |
 
 Plainly: only the weighted-integrability statement is an unconditional
 correction to the current owner. The measure and momentum results are rigorous
 only after their stated representation and locality assumptions are chosen.
 
-### Proposed change batch A — priority mathematical corrections
-
-1. In
-   `reference/priorities/master-equation-closure/analysis-independent-causal-wake-state.md`,
-   replace the implication from weighted integrability to
-   $O(T^{2+\delta})$ with the exact weighted-integrability condition. State
-   separately that a pure power needs exponent greater than two and that an
-   analytic law must vanish through quadratic order.
-2. In that same owner, add the exact-control relation
-   $z=(\alpha/c_f)T$, the logarithmic counterexample, and one explicit
-   cubic-versus-quartic nonuniqueness calculation.
-3. In that same owner, declare the mathematical class of $e$ and
-   $\boldsymbol\pi$. If exact reception remains point-local, ordinary
-   $L^1(dT_e\,d\boldsymbol\omega)$ densities are insufficient for a finite
-   transfer.
-4. Qualify the angular-account paragraph with the same-reception-point lever
-   arm and free-propagation torque conditions.
-5. Propagate only the corrected maturity summary into
-   `reference/priorities/app-solver/analysis/analysis-transmitter-factor-fold-and-coincident-birth.md`,
-   `reference/priorities/master-equation-closure/characteristic-tail.md`,
-   `reference/priorities/master-equation-closure/brainstorming.md`,
-   `reference/priorities/master-equation-closure/work-log.md`, and the directly
-   dependent import-audit summary.
-
-Plainly: this batch repairs the proof record and makes the remaining state-space
-choice explicit. It does not choose a maturity law or account measure.
-
-Promotion classification: `promote now` inside the priority research record;
-`defer with blocker` for reader-facing wake-state prose until a representation
-is selected.
-
-### Proposed change batch B — reader-facing kinetic-account corrections
-
-1. In `content/markdown/aaa/dynamics/energy.md`, retain the existing
-   $P'=K'/s$ equation, add the needed near-zero integrability assumptions, and
-   describe it as work-power compatibility.
-2. Add the reconstruction $\ell_K=sP-K$ as the kinetic Lagrangian whose
-   velocity derivative is the declared momentum account.
-3. Add an ontology-neutral radial-collinearity lemma: arbitrary oblique radial
-   increments can remain radial in momentum space only for $P(s)=as$; combined
-   with work-power compatibility and $K(0)=0$, this yields
-   $K(s)=as^2/2$.
-4. In `content/markdown/aaa/dynamics/effective-lagrangian.md`, state that the
-   displayed action uses the quadratic bookkeeping kinetic term. A general
-   kinetic chart requires $\ell_K$, followed by a complete revariation.
-5. In `content/markdown/aaa/dynamics/master-equation.md`, retain Energy as the
-   authority and add only the corresponding scope sentence where generalized
-   momentum is discussed.
-
-Plainly: this batch corrects mathematical generation and scope. The coefficient
-$a$ remains a universal bookkeeping coefficient and is not primitive physical
-mass.
-
-Promotion classification: `promote now` as safe mathematical clarification,
-provided the live concurrent Energy and action edits are reconciled before any
-implementation batch.
-
-### Priority impact
-
-- MEC-002 should remain `In progress`. Its blocker becomes more precise:
-  select and derive a reception-account measure class and a complete
-  constitutive transfer map.
-- MEC-003 should remain `Deferred / blocked`. Weighted integrability is now
-  stated correctly, but no maturity law, transition scale, or uniqueness
-  estimate is selected.
-- MEC-004 should remain `Deferred / blocked`. The account representation and
-  conditional momentum/angular constraints are sharper, but emission capacity,
-  transfer coefficients, boundedness, and independent conservation remain
-  absent.
-
-Plainly: the work moved from a broad conservation gap to two explicit forks,
-but no completion criterion has been met.
-
-### Decisive next research calculation
+## Decisive next research calculation
 
 After the operator selects an admissible reception-account measure class,
 execute one oblique point-reception control with $c_f=1$, a finite
@@ -1661,7 +1410,7 @@ an available retained-history velocity. The second term shows exactly why
 rotational equivariance does not force radial transfer once the reception map
 may inspect another vector.
 
-This matches the independently completed the partial assessment theorem and counterexample.
+This matches the independently completed partial-assessment theorem and counterexample.
 The external result is therefore a **corroborating duplicate**, not independent
 physical evidence. Its claim grade remains **derived mathematical result,
 conditional on sector blindness for the radial conclusion**.
@@ -1669,12 +1418,6 @@ conditional on sector blindness for the radial conclusion**.
 Falsifier: exhibit a sector-blind, proper-rotation-equivariant one-vector map
 with a nonzero transverse output, or show that the displayed two-vector
 counterexample fails rotational covariance.
-
-Exact destination: proposed priority change batch A, in the state-
-representation discussion of the owning packet. Recommended disposition:
-retain as a priority-only theorem/counterexample pair until the allowed inputs
-to the reception map are selected.
-
 
 ### Exact angular-booking identities
 
@@ -1726,12 +1469,6 @@ conservation law.
 
 Falsifier: direct substitution into the declared debit, lever arm, and
 free-propagation definitions produces a different residual or derivative.
-
-Exact destination: proposed priority change batch A, beside the explicit
-booking-choice obligation. Recommended disposition: safe priority-level
-clarification; do not promote to wake ontology, the Master Equation, or a
-conservation claim.
-
 
 ### Finite-increment affine rigidity with an explicit richness hypothesis
 
@@ -1818,18 +1555,6 @@ Falsifier: a non-affine map on a connected open domain satisfying the displayed
 collinearity condition for every pair, or failure of additivity on one
 non-collinear triangle.
 
-Exact destinations:
-
-- proposed Batch A, beside the booking-choice obligation in
-  `reference/priorities/master-equation-closure/analysis-independent-causal-wake-state.md`;
-- proposed Batch B's ontology-neutral radial-collinearity lemma in
-  `content/markdown/aaa/dynamics/energy.md`.
-
-Recommended disposition: promote the theorem only with its booking and
-richness hypotheses. Do not infer it from the Master Equation's radial
-acceleration direction or from one realized trajectory's increment set.
-
-
 ### Observation operators and atomic visibility
 
 The Lebesgue decomposition
@@ -1881,10 +1606,6 @@ Verdict:
 - Universal kernel divergence from normalization: **unsupported as stated;
   repairable with approximate-identity hypotheses**.
 - Automatic root–atom recurrence: **unsupported inference**.
-Exact destination: proposed Batch A, in a new observation-operator paragraph
-next to the reception-account measure-class choice. Recommended disposition:
-priority-only until the reception representation and observation map are
-selected together.
 
 
 ### Final atom-visibility adjudication
@@ -1929,9 +1650,8 @@ atom-aware operator, a singular-continuous reader, nonlocal redistribution, a
 derived finite patch, or a nonlinear saturating observation map. Listing
 these does not select them as ontology.
 
-Exact destination: proposed Batch A, in the owning packet's measure-class and
-observation-map discussion. Claim grade: priority-only conditional
-mathematics. Falsifier: an exhaustive theorem from the allowed primitives
+Claim grade: **priority-only conditional mathematics**. Falsifier: an
+exhaustive theorem from the allowed primitives
 proving that every bounded causal observation/update pair falls into exactly
 the two proposed horns.
 
@@ -1990,10 +1710,9 @@ this angular marginal by construction. Regulator-path independence on the
 full emission-label-by-direction space still requires a declared joint law;
 it cannot be inferred from the marginal calculation.
 
-Exact destination: proposed Batch A, beside the account measure-class choice.
-Recommended disposition: promote at priority grade after fixing the geometric
-definition; do not call a fixed nonzero $\varepsilon$ a physical constant
-without a constitutive derivation.
+Authority limit: the geometric definition must be fixed before this scaling is
+used, and a fixed nonzero $\varepsilon$ is not a physical constant without a
+constitutive derivation.
 
 
 ### Local well-posedness counterexample and corrected theorem burden
@@ -2063,9 +1782,8 @@ in `content/markdown/aaa/dynamics/master-equation.md`, which uses an
 infinite-dimensional history space and explicitly leaves verification of the
 state-dependent-delay framework open.
 
-Exact destination: proposed Batch A and the future MEC-003 proof design.
-Recommended disposition: incorporate the counterexample and corrected
-obligation list; do not promote Theorem Q5 as proved.
+Authority limit: the counterexample and obligation list do not prove Theorem
+Q5 for the wake-state system.
 
 
 ### Photon guard, final scope, and priority effect
@@ -2096,17 +1814,7 @@ proposed changes and detailed findings.
 Plainly: the research has sharpened the proof burden. It has
 not selected the missing constitutive update.
 
-### Final priority effect
-
-- MEC-002 remains `In progress`.
-- MEC-003 remains `Deferred / blocked`.
-- MEC-004 remains `Deferred / blocked`.
-
-No work-queue row should change. The completed response supplies safe
-priority-level corrections and a better proof architecture, but no queue
-completion condition.
-
-## Consolidated Proposed Changes
+## Proposed Changes
 
 ### Batch A — owning priority corrections
 
@@ -2116,10 +1824,18 @@ and its directly dependent priority summaries.
 
 1. Replace the claimed implication from finite weighted impulse to
    $M(T)=O(T^{2+\delta})$ with the exact weighted-integrability condition.
-2. Preserve cubic order only as the first possible analytic order on the exact
-   linear birth chart.
+   State that the pointwise bound is sufficient but not necessary and that,
+   for nonnegative nondecreasing $M$, integrability implies $M=o(T^2)$ while
+   that pointwise limit remains insufficient.
+2. Record the exact linear relation $z=(\alpha/c_f)T$ on the prescribed birth
+   chart and preserve cubic order only as the first possible analytic order;
+   for a general chart $z\sim aT^\beta$, retain the conditional criterion
+   $\beta k>2$.
 3. Add the logarithmic counterexample and an explicit cubic-versus-quartic
-   nonuniqueness pair.
+   nonuniqueness pair. Distinguish stored $m$, which the homogeneous transport
+   law carries unchanged, from a reception-time effective coupling; any
+   age-changing stored maturity requires a sourced law or constitutive output
+   map.
 4. Declare whether reception accounts are ordinary densities, finite Radon
    measures, finite patches, or nonlocal redistributions.
 5. Add the sector-blind equivariance theorem, its retained-history
@@ -2157,16 +1873,19 @@ Targets:
 `content/markdown/aaa/dynamics/master-equation.md`.
 
 1. Retain the existing work-power compatibility equation
-   $P'(s)=K'(s)/s$ and add its near-zero domain assumptions.
-2. Add the kinetic-Lagrangian reconstruction
+   $P'(s)=K'(s)/s$ and add its near-zero domain assumptions in
+   `content/markdown/aaa/dynamics/energy.md`.
+2. In Energy, add the kinetic-Lagrangian reconstruction
    $\ell_K(s)=sP(s)-K(s)$ under the stated differentiability assumptions.
-3. Add the ontology-neutral conditional theorem that arbitrary oblique radial
-   increments can remain radial in momentum-account space only when
-   $P(s)=as$, and hence $K(s)=as^2/2$ under work-power compatibility and
+3. In Energy, add the ontology-neutral conditional theorem that arbitrary
+   oblique radial increments can remain radial in momentum-account space only
+   when $P(s)=as$, and hence $K(s)=as^2/2$ under work-power compatibility and
    $K(0)=0$.
-4. State that a generalized kinetic chart requires revariation of the complete
-   action; it cannot be obtained by substituting $K$ directly as the kinetic
-   Lagrangian.
+4. In `content/markdown/aaa/dynamics/effective-lagrangian.md`, state that a
+   generalized kinetic chart requires revariation of the complete action and
+   cannot be obtained by substituting $K$ directly as the kinetic Lagrangian.
+   In `content/markdown/aaa/dynamics/master-equation.md`, preserve Energy as
+   the authority and add only the corresponding scope sentence.
 
 Plainly: Batch B corrects mathematical scope in the existing kinetic-account
 scaffold. The coefficient $a$ is bookkeeping and is not primitive architrino
@@ -2175,16 +1894,27 @@ mass.
 Promotion classification: `promote now` as safe mathematical clarification,
 subject to reconciliation with concurrent edits in those files.
 
-### Priority disposition
+### Canonical routing of unresolved questions
 
-- MEC-002 remains `In progress`: select and derive the reception-account
-  representation and a complete constitutive transfer map.
-- MEC-003 remains `Deferred / blocked`: no maturity law, transition scale,
-  branch rule, or uniqueness estimate is selected.
-- MEC-004 remains `Deferred / blocked`: emission capacity, bounded accounts,
-  transfer coefficients, and independently derived conservation remain absent.
+The live work queue owns the questions below. This packet does not change their
+status or acceptance criteria.
 
-Plainly: the proposed edits sharpen the live blockers; they do not satisfy a
+| Unresolved question | Live owner and current status | Next acceptance test |
+| --- | --- | --- |
+| Reception-state representation and update: ordinary density, finite Radon measure, finite patch, or nonlocal redistribution; stored maturity versus reception-time effective coupling; observation operator and atomic visibility; reception, booking, event, boundary, and history-state declarations | [MEC-002 — causal wake update law](../../priorities/master-equation-closure/work-queue.md#mec-002--causal-wake-update-law), `In progress` | One predeclared Architrino-native update evolves emission, propagation, reception, maturity, and boundary data without future receiver history or a residual-defined wake state, and reduces to the canonical transmitter-side acceleration on regular charts. |
+| Coincident-birth continuation and well-posedness: branch selection, state-sensitivity integrability, event ordering or simultaneity, jump regularity, solution class, Zeno handling, and regular-chart matching | [MEC-003 — finite coincident same-transmitter transition](../../priorities/master-equation-closure/work-queue.md#mec-003--finite-coincident-same-transmitter-transition), `Deferred / blocked` on MEC-002 and joint acceptance with MEC-004 | The MEC-002 update has a finite, unique, regulator-path-independent continuation through complete coincident same-transmitter birth on an open neighborhood, not an event-only patch. |
+| Bounded scalar and vector accounts: emission capacity, transfer coefficients, account lower bounds, intrinsic-versus-orbital angular booking, retained-boundary geometry and flux, and independently derived energy, momentum, and angular-momentum closure | [MEC-004 — same-update conserved accounts](../../priorities/master-equation-closure/work-queue.md#mec-004--same-update-conserved-accounts), `Deferred / blocked` on MEC-002 and MEC-005 and joint acceptance with MEC-003 | Motion, wake, and boundary accounts for all three quantities close on exactly the MEC-002 update under predeclared maps and independent checks, without imported single-Architrino mechanical formulas or residual-defined cancellation. |
+| Pairwise root, emission, and boundary ownership; no double booking; and the pairwise prerequisite for any later superposition extension | [MEC-005 — pairwise causal-root ledger closure](../../priorities/master-equation-closure/work-queue.md#mec-005--pairwise-causal-root-ledger-closure), `Queued` | A separately authored verifier accepts the declared two-Architrino encounter's full root census, finite ordered-bundle stratification, multiplicity, acceleration-operator rows, boundary flux, provenance, no-double-booking rows, and matched incoming/outgoing observable. MEC-005 supplies neither a signed account map nor a many-body superposition theorem. |
+| Acceleration-operator completeness across regular partner roots, admitted self roots, folds, and boundaries, including whether one complete action or causal-wake account derives the same operator | [MEC-005](../../priorities/master-equation-closure/work-queue.md#mec-005--pairwise-causal-root-ledger-closure), `Queued`, owns the root-by-root readiness gate; [MEC-001](../../priorities/master-equation-closure/work-queue.md#mec-001--characteristic-tail-action-adjudication), `Awaiting verification`, owns the current characteristic-tail action candidate | The kinematic gate requires an independent oracle for the regular partner row, any admitted self row, and a fold or boundary negative control. A conservation interpretation additionally requires the same accepted action or MEC-002 update to derive the acceleration operator, signed account maps, and boundary fluxes; MEC-001 must first repair and independently vary its complete self-diagonal functional. |
+
+The exact prescribed quadratic birth chart already fixes
+$z=(\alpha/c_f)T$; it is not an unresolved queue item. General maturity-law
+selection remains with MEC-002, while continuation for the selected update
+remains with MEC-003. Photon Gate B, retained-branch, stability, and EOM solver
+authority remain explicit non-promotions rather than new queue claims.
+
+Plainly: every open construction or proof question now points to its live
+owner and next test. The routes sharpen the blockers but do not satisfy a
 queue completion condition.
 
 ## Final Evidence Boundary

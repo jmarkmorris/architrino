@@ -241,6 +241,21 @@ Plainly: the same universal conversion used in the kinetic row must also
 multiply the interaction row; dividing by the wake speed does not repair the
 units.
 
+The displayed action uses the quadratic bookkeeping kinetic Lagrangian
+$\ell_\mu(s)=\frac12\mu_{\text{arch}}s^2$. It therefore derives only the
+quadratic conjugate momentum $\mu_{\text{arch}}\mathbf V$ on the charts where
+the complete delayed variation succeeds. For a general kinetic-energy scalar
+$K(s)$, [Energy](energy.md#kinetic-energy-and-momentum-of-a-single-architrino)
+owns the work-power compatibility conditions and the reconstruction
+$\ell_K(s)=sP(s)-K(s)$.
+
+Plainly: the energy scalar $K$ cannot be substituted directly for the kinetic
+Lagrangian. A generalized kinetic chart must use the reconstructed $\ell_K$
+and then rederive the complete action variation, including the interaction
+normalization, constraint residual, boundary charge, and momentum and energy
+functionals. No general conservation claim follows from the quadratic
+calculation without that revariation.
+
 Here:
 - $\mathbf X_i(T)$ is the trajectory of architrino $i$.
 - $T$ is the generic dummy variable of the action integral. At a retained causal hit it takes the receiver role $T_r$, while $T_t$ remains the transmitter emission time.

@@ -78,9 +78,12 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas, insights, concep
      inward-radial tangential zero on $1<\beta_f<20$. It is a sensitivity
      diagnostic, not authority to replace the canonical wake-surface normal.
      This is owned by the two dynamics chapters.
-  8. **Derived necessity:** a coincident-birth maturity factor must vanish more
-     than quadratically; an analytic candidate begins at cubic order. The
-     current primitives select no unique maturity function. This is owned by
+  8. **Derived necessity:** a coincident-birth maturity factor must satisfy the
+     exact weighted condition
+     $M\in L^1((0,L),T^{-3}dT)$. A more-than-quadratic pointwise bound is
+     sufficient but not necessary; on the exact linear birth chart, cubic is
+     only the first possible nonzero analytic order. The current primitives
+     select no unique maturity function. This is owned by
      `analysis-independent-causal-wake-state.md`.
   9. **Unproven proposal:** the particular clipped-cubic maturity,
      $\mathbf p=\mu_{\text{arch}}\mathbf V$ account choice, and
@@ -109,9 +112,10 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas, insights, concep
 - 2026-07-20: Executed the independently evolving causal wake-state route. The
   derived result is a minimum information requirement: direction-resolved
   coupling, scalar energy, vector momentum, and explicit boundary flux. The
-  same-transmitter endpoint requires more-than-quadratic suppression, but the
-  current primitives do not select the suppression, motion-account maps,
-  emission capacity, or reception transfer. The route therefore closed
+  same-transmitter endpoint requires exact weighted integrability; a stronger
+  pointwise power bound is only sufficient. The current primitives do not
+  select the maturity law, motion-account maps, emission capacity, or reception
+  transfer. The route therefore closed
   negatively under the current primitive set; no ontology, canon, EOM solver,
   transition, or conservation claim was promoted.
 

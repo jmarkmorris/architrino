@@ -8,6 +8,7 @@
 - Source fixture: [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json)
 - Source-attempt fixture: [planck-alpha-braid-theta-bb-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-bb-source-attempt.v1.json)
 - Coordination-source negative control: [planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-gamma-coordination-source-negative-control.v1.json)
+- Review synthesis: [Planck Action Period, Blackbody, and Fine-Structure Coupling](../../entourage/review-packets/planck-action-period-blackbody-alpha-reconciliation-2026-07-29.md)
 - Rows served: `EQ-22A`, with support from `EQ-12`, `EQ-12A`, `EQ-22`, and `EQ-25`
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only

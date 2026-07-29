@@ -12,27 +12,14 @@ Each packet should frame the research question, preserve the mathematical findin
 
 | Packet | AI persona lens | Status |
 | --- | --- | --- |
-| [emmy-noether-planck-alpha-2026-06-24.md](emmy-noether-planck-alpha-2026-06-24.md) | Emmy Noether | Response integrated |
-| [emmy-noether-planck-alpha-response-2026-06-24.md](emmy-noether-planck-alpha-response-2026-06-24.md) | Emmy Noether | Source response integrated |
-| [terence-tao-period-quantization-2026-06-24.md](terence-tao-period-quantization-2026-06-24.md) | Terence Tao | Response integrated |
-| [terence-tao-period-quantization-response-2026-06-24.md](terence-tao-period-quantization-response-2026-06-24.md) | Terence Tao | Source response integrated |
-| [henri-poincare-retained-orbit-reduction-2026-06-24.md](henri-poincare-retained-orbit-reduction-2026-06-24.md) | Henri Poincare | Response integrated |
-| [henri-poincare-retained-orbit-reduction-response-2026-06-24.md](henri-poincare-retained-orbit-reduction-response-2026-06-24.md) | Henri Poincare | Source response integrated |
-| [terence-tao-constant-delay-action-period-2026-06-24.md](terence-tao-constant-delay-action-period-2026-06-24.md) | Terence Tao | Response integrated |
-| [terence-tao-constant-delay-action-period-response-2026-06-24.md](terence-tao-constant-delay-action-period-response-2026-06-24.md) | Terence Tao | Source response integrated |
-| [andrey-kolmogorov-eq02-04a-retained-evidence-2026-06-24.md](andrey-kolmogorov-eq02-04a-retained-evidence-2026-06-24.md) | Andrey Kolmogorov | Response integrated |
-| [andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md](andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md) | Andrey Kolmogorov | Source response integrated |
-| [elie-cartan-eq02-04a-retained-evidence-2026-06-24.md](elie-cartan-eq02-04a-retained-evidence-2026-06-24.md) | Elie Cartan | Response integrated |
-| [elie-cartan-eq02-04a-retained-evidence-response-2026-06-24.md](elie-cartan-eq02-04a-retained-evidence-response-2026-06-24.md) | Elie Cartan | Source response integrated |
-| [elie-cartan-eq02-04-source-contract-split-2026-06-24.md](elie-cartan-eq02-04-source-contract-split-2026-06-24.md) | Elie Cartan | Superseded by narrower connection/holonomy packet |
-| [elie-cartan-eq02-04-connection-holonomy-transport-2026-06-24.md](elie-cartan-eq02-04-connection-holonomy-transport-2026-06-24.md) | Elie Cartan | Superseded by narrower no-retune holonomy guardrails packet |
-| [elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md](elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md) | Elie Cartan | Research findings and proposed changes |
-| [henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md](henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md) | Henri Poincare | Research findings and proposed changes |
-| [andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md](andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md) | Andrey Kolmogorov | Review brief; not part of the July 28 findings batch |
-| [bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md](bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md) | Bill Thurston | Research findings and proposed changes |
-| [terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md](terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) | Terence Tao | Research findings and proposed changes; parallel to the causal-wake-state-closure note |
+| [planck-action-period-blackbody-alpha-reconciliation-2026-07-29.md](planck-action-period-blackbody-alpha-reconciliation-2026-07-29.md) | Consolidated symmetry, analysis, and nonlinear-dynamics lenses | Canonical research findings, proposed changes, and open-question routing |
+| [eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md](eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md) | Consolidated validated-dynamics and moving-frame lenses | Canonical research findings, proposed changes, and open-question routing |
+| [elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md](elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md) | Elie Cartan | Readiness-gated research findings, apply-now corrections, and deferred-owner routing |
+| [henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md](henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md) | Henri Poincare | Readiness-gated research findings, apply-now corrections, and deferred-owner routing |
+| [bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md](bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md) | Bill Thurston | Readiness-gated research findings, apply-now corrections, and deferred-owner routing |
+| [terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md](terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) | Terence Tao | Readiness-gated research findings and deferred MEC ownership; parallel to the causal-wake-state-closure note |
 | [terence-tao-causal-wake-state-closure-research-findings-and-proposed-incorporation-2026-07-28.md](terence-tao-causal-wake-state-closure-research-findings-and-proposed-incorporation-2026-07-28.md) | Terence Tao | Research findings and proposed changes |
-| [hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md](hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md) | Hendrik Lorentz | Research findings and proposed changes |
+| [hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md](hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md) | Hendrik Lorentz | Readiness-gated research findings, apply-now corrections, and deferred-owner routing |
 
 ## Packet Discipline
 

@@ -669,16 +669,22 @@ scale $\tau_*$ is likewise conditional.
 | D4 | Is capacity built from F2's constants, or a new $\varepsilon_0$? | F2 shows $\lvert q\rvert$-scaling and $q^{-2}$-scaling are inconsistent | An avoidable constant may be introduced silently |
 | D5 | Where is the emission debit taken from? | F8 shows the motion-account option halts free carriers | The bounded-energy obligation stays open |
 
-Plainly: D2 is now the decision. Everything else in the maturity chain is
-settled; the theory either declares one angular constant or it does not get a
-suppression law from capacity at all.
+Plainly: D2 is one decisive unresolved branch in the current capacity route.
+The eliminations narrow that route, but D1 and D3 through D5, the update law,
+birth continuation, provenance, and the conserved accounts remain open.
 
 ---
 
-## 6. Proposed changes
+## Proposed Changes
 
-None applied. Every item changes no ontology, no canonical Master Equation, and
-no terminology policy.
+**Readiness gate.** The retained items are negative results, scope corrections,
+missing-object declarations, or acceptance conditions that do not choose a wake
+representation, allocation law, capacity law, birth continuation, or conserved
+account. Every proposed change that would make one of those choices or promote
+its consequence is moved to
+[Disposition of Open Questions](#disposition-of-open-questions).
+
+No reader-facing corpus change is applied by this packet.
 
 **Sequencing constraint.** Reconcile this change batch with the parallel
 causal-wake-state packet before editing
@@ -696,15 +702,11 @@ even though the findings do not.
 
 | # | Section | Change | Grade after |
 | --- | --- | --- | --- |
-| P1 | §1 | Replace "the accounts are undetermined" with F2's unique monomials, the no-dimensionless-group proof, the $C_e=C_\pi\Rightarrow e=c_f\lVert\boldsymbol\pi\rVert$ remark, the $\ell_q$ reading of $q_t^{-2}$, and the note that $dT_e$ cannot appear in the density | derived conditional |
-| P2 | §1 | Promote "no separate intrinsic angular-momentum variable is needed" from inferred to derived-conditional with the $\mathbf Y\times\boldsymbol\pi=\mathbf C\times\boldsymbol\pi$ proof; add F3's zero pre-reception momentum | derived conditional |
 | P3 | §2 | Insert the **allocation rule** as item 0 of the missing-objects list, with the density-versus-measure difficulty that motivates it | derived necessity |
 | P4 | §3 | Replace the bare $T^{-3}$ assertion with F1's normal form, including $dT_e/dT_r=-1$ and the prefactor | derived on the quadratic control |
 | P5 | §3 | Add F6's elimination table and the double-drain counterexample; state $M\propto z^3$ as conditional on a declared angular fraction, **not** as derived | derived eliminations |
 | P6 | §3 | Add F5's corrected acceptance condition — $M\ge0$, weighted integrability, declared dominated regulator class, plus a continuation-uniqueness certificate — retaining the spike family as the reason the class must be declared | derived |
-| P7 | §3 | Add F7's conditional floor $r_*=\ell_q/\sqrt{Cz}$ and its dichotomy | derived conditional |
 | P8 | §4 | Add F9's two non-circularity criteria and the receiver-velocity requirement, with the note that this does not put $\mathbf V_r$ into the acceleration; delete the empty shell-age variation | derived |
-| P9 | §5 | Quantify universality as $z\ge z_{\min}>0$; add axiom (V); restate as a conditional proposition; add all four fourth-branch costs | derived conditional |
 | P10 | §6 | Replace the two-horn positive-energy argument with F8's trilemma and the finite-time-halt calculation; relocate the pressure onto the uniform-emission postulate | derived conditional |
 
 ### Closure packet — `independent-causal-wake-state-closure.md`
@@ -715,9 +717,8 @@ even though the findings do not.
 
 ### Characteristic-tail packet
 
-| # | Change |
-| --- | --- |
-| P12 | Annotate the $K_\mu$, $\mathbf P_\mu$, $\mathbf J_\mu$ chart with F4, upgrading it from proxy-grade to derived-conditional, with the $R$-linear angular falsifier |
+No apply-now change. P12 is deferred because its grade depends on unresolved
+momentum and angular-momentum accounts.
 
 ### Work queue
 
@@ -727,44 +728,49 @@ even though the findings do not.
 
 ### Reader-facing corpus changes
 
-| # | File and place | Change | Grade |
-| --- | --- | --- | --- |
-| P14 | `master-equation.md`, after the state-reduction paragraph | Two sentences with `Plainly:` glosses: under the promoted isotropic label, $\boldsymbol\pi\parallel\boldsymbol\omega$ forces $\mathbf P_{\text{shell}}=\mathbf 0$ before any reception and $\mathbf J_{\mathcal W}=\mathbf C\times\mathbf P_{\text{shell}}$, so the wake momentum budget is entirely reception-generated and no intrinsic wake spin exists | derived conditional |
-| P15 | `master-equation.md`, "Receiver Turning Is Not an Acceleration Singularity" | One sentence recording that this section also excludes any wake-account allocation rule whose extraction cap depends on $D_r$, naming that as a live constraint on the reception map | derived |
+None apply now. P14 and P15 are preserved in the deferred-change table because
+their reader-facing authority depends on the unresolved MEC-002 representation
+and reception rule.
 
-Plainly: P14 and P15 are the only reader-facing changes, and neither adds a new
-object. P15 is worth writing because an existing promoted rule turned out to do
-load-bearing work in an unexpected place — it eliminates a candidate reception
-rule — and that is the kind of constraint that otherwise gets rediscovered
-expensively.
+Plainly: the negative constraints remain useful now, but the textbook should
+not present their wake-account consequences before the update and representation
+that give those accounts meaning.
 
 ---
 
-## 7. Priority impact
+### Readiness-Gate Priority Impact
 
-Recommended, not applied.
+P13's blocker clarification is applied to the existing MEC-002 row. No rank,
+lifecycle status, theory disposition, or completion boundary changes.
 
 - **No rank change.** Nothing closed. MEC-002 stays local rank `1`; MEC-003 and
   MEC-004 stay blocked behind it.
-- **The blocker line should gain one item.** The **allocation rule** joins the
-  missing-objects list and is prior to the rest.
+- **The blocker line gains one item.** The **allocation rule** joins the
+  missing-objects list as a prerequisite to any capacity, maturity, or account
+  consequence.
 - **No `Intuition` reduction should be booked.** An earlier draft argued the
   conceptual-invention burden had dropped because the maturity law had become
   derivable. F6 withdraws that. The burden is *relocated*, not reduced: from
   "choose among infinitely many suppression laws" to "declare one angular
   constant, or accept that capacity yields no suppression law."
-- **MEC-004 can gain one independent check:** F4's $R$-linear angular residual,
-  distinct from the three balance equations.
+- **MEC-004 can gain one independent check after its prerequisites close:**
+  F4's $R$-linear angular residual, distinct from the three balance equations.
 
 ---
 
-## 8. Decisive next calculation
+### Immediate Diagnostic Calculation
 
 **Leg 0 — playback identity.** On the quadratic self-hit control, verify
 $dT_e/dT_r=-1$, $r/(2c_f\tau)\to1$, $D_t/(\tau g')\to1$. Minutes, no accounts
 needed. Fails only if F1 is wrong.
 
-**Leg 1 — the cumulative extraction bound.** This calculation remains open. On
+## Deferred Acceptance Calculations
+
+Legs 1–3 are preserved here as research designs and are routed explicitly in
+the deferred-change table below. They must not be run or interpreted as account,
+birth, or conservation evidence before their named owners close.
+
+**Leg 1 — deferred to MEC-002, MEC-005, and MEC-004: the cumulative extraction bound.** This calculation remains open. On
 a **nonsymmetric two-carrier retained history**
 — transmitter at rest at the origin, receiver released from rest at $r_0$, like
 polarity so the canonical law repels — compute total energy extracted over a
@@ -775,14 +781,14 @@ outright, or the bound requires unbounded per-shell capacity. The radial
 equation still lacks the closing term needed to complete the calculation;
 supplying that closure is part of the proposed research.
 
-**Leg 2 — continuation uniqueness.** With $M\ge0$ and weighted integrability
+**Leg 2 — deferred to MEC-003: continuation uniqueness.** With $M\ge0$ and weighted integrability
 assumed, establish or refute uniqueness of the limit continuation through birth
 (local Lipschitz or Osgood away from the singular time, plus the finite-impulse
 crossing property). This is the only remaining gap in F5. **Fail:** different
 dominated regulators select different branches, and the birth transition stays
 fail-closed regardless of $M$.
 
-**Leg 3 — the angular pin.** Evaluate
+**Leg 3 — deferred to MEC-004 after MEC-005: the angular pin.** Evaluate
 $\|\Delta\mathbf J_{\mathrm{tot}}\|=R\,v|(P/v)'|\|\Delta\mathbf V\|\cos\theta\sin\theta$
 across $\theta\in[0,\pi/2]$ and three shell ages, for $P=\mu_{\mathrm{arch}}v$
 and one non-proportional $P$. Confirms or kills F4.
@@ -791,21 +797,38 @@ All numerics at $c_f=1$.
 
 ---
 
-## 9. Not settled
+## Disposition of Open Questions
 
-1. **Genericity of $r\propto z$ at coincident birth.** F1 is exact on the
-   quadratic control only. A control with $r\propto z^p$ changes the weighted
-   condition. A symbolic check on a cubic control is cheap and should precede
-   Leg 1.
-2. **The cumulative extraction bound** — Leg 1. Raised twice, computed never.
-3. **Continuation uniqueness through birth** — Leg 2.
-4. **Whether momentum closure holds at all**, which F4 assumes. F4 is conditional
-   and must not be cited otherwise.
-5. **Whether the regulator class admits finite-core regularization.** If it does,
-   a spurious near-core self-hit may make the birth limit regulator-dependent for
-   every $M$, and the acceptance condition cannot be met until the class is
-   narrowed. This is a protocol question and it gates Leg 2.
+### Deferred Proposed Changes
 
-Plainly: item 5 is the quiet one. If the allowed set of regularizations is too
-wide, no choice of suppression law produces a stable answer, and the problem is
-in the acceptance protocol rather than in the physics.
+| Deferred item | Live owner and status | Reason it is not apply-now | Next acceptance test and backlink |
+| --- | --- | --- | --- |
+| P1 — replace undetermined accounts with the F2 monomials and charge-scale interpretation | [`MEC-002` causal wake update law](../../priorities/master-equation-closure/work-queue.md#mec-002--causal-wake-update-law), status `In progress`; mathematical owner [Independent Causal Wake-State Closure](../../priorities/master-equation-closure/independent-causal-wake-state-closure.md) | The dimensional result is conditional on the unresolved emission label and account representation. Applying it as the account form would select a constitutive representation. | Derive the label and measure class from the same independently evolving update, then recheck the no-dimensionless-group and scaling arguments. The MEC-002 owner already backlinks this packet. |
+| P2 — promote zero pre-reception momentum and no intrinsic wake spin | `MEC-002`, status `In progress` | The conclusion depends on the isotropic shell label challenged by D1 and on the unresolved account representation. | Accept the emission label and account observation map first, then independently verify the conditional angular identity without defining momentum from a conservation residual. |
+| P7 — add the conditional separation floor | [`MEC-003` finite coincident same-transmitter transition](../../priorities/master-equation-closure/work-queue.md#mec-003--finite-coincident-same-transmitter-transition), status `Deferred / blocked`, downstream of MEC-002 | A floor is a consequence only of an accepted capacity law; writing it now risks turning the consequence into a premise. | Derive capacity on MEC-002, then test $r_*=\ell_q/\sqrt{Cz}$ under normalized $c_f=1$ controls and reject any post-fit floor. |
+| P9 — add axiom (V), quantify universality, and state the fourth-branch costs | `MEC-002`, status `In progress`, with birth consequences owned by `MEC-003`, status `Deferred / blocked` | Adding axiom (V) would choose the missing constitutive branch. The fourth-branch costs remain conditional research consequences. | Supply one Architrino-native allocation and maturity rule, then test the stated universality and birth consequences without inserting them as axioms. |
+| P12 — upgrade the characteristic-tail angular chart | [`MEC-004` same-update conserved accounts](../../priorities/master-equation-closure/work-queue.md#mec-004--same-update-conserved-accounts), status `Deferred / blocked`, after [`MEC-005`](../../priorities/master-equation-closure/work-queue.md#mec-005--pairwise-causal-root-ledger-closure), status `Queued`; any acceleration-gradient input must respect `MEC-006`, status `Awaiting verification` | F4 assumes momentum closure and a valid account map. Its $R$-linear residual is a useful falsifier, not authority to upgrade the account chart. | Run the angular-pin control on the same MEC-002 update and MEC-005 provenance ledger, with independently accepted gradient rows where used, and require momentum and angular momentum to close together. |
+| P14 — promote zero pre-reception shell momentum and no intrinsic wake spin into `master-equation.md` | `MEC-002`, status `In progress` | Reader-facing promotion would make the unresolved label and account representation look canonical. | Pass the P2 acceptance test, then promote only the resulting scoped theorem and falsifier. |
+| P15 — promote the $D_r$-independent allocation-cap constraint into `master-equation.md` | `MEC-002`, status `In progress`; `MEC-006`, status `Awaiting verification`, owns receiver/self acceleration-gradient distinctions where they are invoked | The current acceleration law excludes a receiver factor from hit strength, but no accepted reception allocation exists. The constraint belongs first to the MEC-002 candidate test. | Test each proposed reception rule with unchanged canonical regular acceleration and independently accepted receiver/self derivative rows where relevant; promote only after the update survives. |
+| Leg 1 — cumulative extraction bound | `MEC-002`, status `In progress`, with later MEC-005 provenance and MEC-004 account checks | No accepted capacity, reception update, or account ledger exists, so the calculation cannot yet distinguish physical exhaustion from a bookkeeping choice. | Execute the declared nonsymmetric two-carrier history only after the update, root ownership, and account maps are predeclared. |
+| Leg 2 — continuation uniqueness | `MEC-003`, status `Deferred / blocked` | Finite impulse and weighted integrability do not select a unique regulator-independent post-birth branch. | Prove the Osgood or local-Lipschitz control and finite-impulse crossing for the full admitted regulator class, returning `Not advanced` if branches differ. |
+| Leg 3 — angular pin | `MEC-004`, status `Deferred / blocked`, after MEC-005 | The test is account evidence only when each root and boundary contribution has unique provenance and the same update supplies the account maps. | Run the oblique control on a nonsymmetric MEC-005 ledger and require independent momentum and angular-momentum closure. |
+
+Plainly: the deferred changes remain research results or test designs. They are
+not rejected wholesale; each waits only on the owner whose missing object it
+actually consumes.
+
+| Open question | Live owner and status | Next acceptance test | Routing disposition |
+| --- | --- | --- | --- |
+| D1. May $\mathbf V_t(T_e)$ enter the shell label? | [`MEC-002` causal wake update law](../../priorities/master-equation-closure/work-queue.md#mec-002--causal-wake-update-law), status `In progress`; mathematical owner [Independent Causal Wake-State Closure](../../priorities/master-equation-closure/independent-causal-wake-state-closure.md) | Derive any transmitter-velocity label dependence from Architrino primitives before evolution and recheck the surface-density uniqueness, zero pre-reception momentum, fixed-speed propagation, and regular-chart reduction. | Unresolved theory decision. It is not adopted here because it changes the declared emission label and invalidates F2/F3. |
+| D2. Is there an Architrino-native angular-allocation constant or rule? | `MEC-002`, status `In progress` | Supply a predeclared reception allocation that survives the singleton-measure obstruction, the double-drain control, direction resolution, and the prohibition on $D_r$-dependent acceleration strength. | Decisive MEC-002 blocker. Merely declaring $f$ would be a theory choice, not an accepted derivation. |
+| D3. Does a capacity law derive a separation floor $r_{\min}$? | [`MEC-003` finite coincident same-transmitter transition](../../priorities/master-equation-closure/work-queue.md#mec-003--finite-coincident-same-transmitter-transition), status `Deferred / blocked` | Derive the floor from the same accepted update and allocation law, then test $r_*=\ell_q/\sqrt{Cz}$ under normalized $c_f=1$ controls without inserting the floor as a premise. | Deferred behind MEC-002; no canonical separation floor is created. |
+| D4. Is capacity fixed by F2's constants or by a new $\varepsilon_0$? | Primary owner `MEC-002`, status `In progress`; downstream account owner [`MEC-004`](../../priorities/master-equation-closure/work-queue.md#mec-004--same-update-conserved-accounts), status `Deferred / blocked` | Derive one capacity map and its charge scaling from the same update, then require consistent energy, momentum, angular-momentum, and boundary rows with no post-fit constant. | Cross-owner dependency, not a new queue: MEC-002 must define the update before MEC-004 can test the accounts. |
+| D5. Where is the emission debit taken from? | `MEC-004`, status `Deferred / blocked`, with provenance dependency on queued [`MEC-005`](../../priorities/master-equation-closure/work-queue.md#mec-005--pairwise-causal-root-ledger-closure) | On one predeclared nonsymmetric two-Architrino retained history, bind emission, reception, wake, motion, and boundary debits to the MEC-002 update and MEC-005 root provenance, then close all three accounts under independent checks. | Open. F8 excludes a simple motion-account debit but supplies no replacement. |
+| Is $r\propto z$ generic at coincident birth? | `MEC-003`, status `Deferred / blocked` | Repeat the local asymptotic derivation on cubic and higher-order controls, classify the possible $r\propto z^p$ charts, and update the weighted-integrability condition without selecting a favorable exponent. | Open beyond the exact quadratic control. |
+| Is cumulative extraction from one transmitter bounded without changing the canonical regular acceleration? | `MEC-002`, status `In progress`, with later MEC-005/MEC-004 provenance and account checks | Execute Leg 1 on the declared nonsymmetric two-carrier retained history and show either a predeclared per-shell bound with unchanged regular acceleration or a clean exhaustion/unbounded-capacity falsifier. | Open; raised twice and not yet computed. |
+| Is continuation through coincident birth unique and regulator-path independent? | `MEC-003`, status `Deferred / blocked` | Under $M\ge0$ and the exact weighted-integrability condition, prove local Lipschitz or Osgood control away from birth plus a unique finite-impulse crossing, then compare every regulator in the declared class. | Open. Finite impulse alone does not select a continuation. |
+| Does momentum closure hold under the assumptions used by F4? | `MEC-004`, status `Deferred / blocked`, with queued MEC-005 provenance first | Run the oblique angular-pin control and a nonsymmetric pairwise ledger; require the same update to close momentum and angular momentum without symmetry-only cancellation or residual-defined wake values. | Open. F4 remains conditional and cannot be cited as conservation. |
+| Does the admitted regulator class include finite-core regularizations that change the birth limit? | `MEC-003`, status `Deferred / blocked`; any action-level core change must also respect the separately owned characteristic-tail adjudication | Predeclare the regulator class, include finite-core candidates if admitted, and require the birth impulse and continuation branch to agree under refinement; otherwise narrow the class before testing. | Protocol gate. If the class is too broad, no maturity choice can earn regulator-path independence. |
+
+Plainly: the five constitutive decisions and five unresolved calculations stay in the existing MEC-002 through MEC-005 ownership graph. The routing adds no queue and changes no status. The regulator-class row remains the quiet gate: an overbroad class can defeat every maturity proposal before any physics conclusion is available.

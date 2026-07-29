@@ -1201,28 +1201,27 @@ or any change in the frozen connection enclosure under the source-preserving per
 
 Plainly: loss of margin, an unexplained symmetry reset, failed held-out transport, or an insensitive or leaky negative control is sufficient for rejection.
 
-## Proposed Changes To The EQ-02 Through EQ-04 Proof Program
+## Proposed Changes
 
-1. **Retain $W_{\mathrm{supp}}$ unchanged in role.** It remains the set-level witness that all rows use one accepted retained carrier and domain.
-2. **Retire drift-only loop holonomy as the primary meaning of $W_{\mathrm{hol}}$.** Zero curvature, trivial loops, and cocycle composition on $I_u$ are implementation facts, not no-retune evidence.
-3. **Adopt frozen-source held-out parallelism as the primary no-retune target.** Use $W_{\parallel}$ for full-interval sections or $W_{\mathrm{end}}$ for independently extracted endpoints.
-4. **Use $W_{\mathrm{NR}}$ only as a composite label.** It may combine primary parallelism with $W_{\mathrm{loop}}$ after a genuine second retained modulus exists.
-5. **Keep torsion and zero phase-holonomy fields diagnostic.** They remain negative-control guardrails until a soldered geometry and a source-derived phase-return conjugacy class are defined.
-6. **Reduce the structure group from source geometry.** Construct $G_{\mathrm{aut}}$ from $\mathcal Q_{\mathrm{src}}$, retain only the smallest closed $G_{\min}$ required by source transitions, and derive every $\rho_\alpha$ through a source-equivariant construction.
-7. **Replace exact kernel equality with a validated quotient margin.** Require $\underline\lambda_{\mathrm{id}}>0$ over each closed constant-orbit-type block after the complete source, memory, discretization, derivative, action, solver, and arithmetic error budget is included.
-8. **Propagate connection uncertainty.** Convert source uncertainty into a quotient connection enclosure, carry that enclosure through parallel transport, and include the accumulated transport error in every endpoint tolerance.
-9. **Certify refinement stability.** Preserve a positive interval lower bound under finer histories, drift subdivision, and arithmetic; point samples and floating-point full rank are insufficient.
-10. **Treat stabilizer changes as stratum junctions.** At an enhanced-symmetry point, require bounded one-sided connection classes, convergent transport, and a junction match modulo one common harmless stabilizer; otherwise use a source-derived slice or source jet.
-11. **Use intrinsic nonlinear-fiber residuals.** Prefer invariant endpoint distance and covariant tangent norms, minimize only over one predeclared common harmless gauge, and use logarithm maps only inside a validated injectivity radius.
-12. **Use a blocked holdout design.** Exclude every claimed observer row from construction and reserve one connected drift interval from all constructor, representation, gauge, regularization, and stopping-rule selection.
-13. **Separate leakage evidence from correctness evidence.** Give every claimed row an independent held-out projection and give at least one representative action class an analytic or genuinely independent reference.
-14. **Require a source-preserving permutation control.** The frozen connection enclosure must remain unchanged while $W_{\mathrm{NL}}^{\mathrm{perm}}>1$.
-15. **Derive phase targets from source-frame monodromy.** Use $[h_{\mathrm{src}}(n)]$ rather than winding number or identity holonomy alone.
-16. **Defer two-path holonomy.** Add a drift–phase or drift–physical-modulus rectangle only after both directions are certified as retained-state continuations under the same microscopic rule.
+**Readiness gate.** The items retained here are safe claim-boundary and
+evidence-design corrections that can be applied without asserting that a
+retained branch, complete wake state, source-derived connection, or physical
+transport law exists. The construction and certificate items that need those
+objects are preserved under [Disposition of Open Questions](#disposition-of-open-questions).
 
-Plainly: the proposed change now has two stages. First certify with a positive numerical margin that the source fixes the transport rule across every stratum, then show that the enclosed rule predicts unused rows over unused drift values while a wrong association fails. Only later, if the retained family has two real continuation directions, ask whether their loop transport carries meaningful curvature.
+1. **C1 — retain $W_{\mathrm{supp}}$ unchanged in role.** It remains the set-level witness that all rows use one accepted retained carrier and domain.
+2. **C2 — retire drift-only loop holonomy as the primary meaning of $W_{\mathrm{hol}}$.** Zero curvature, trivial loops, and cocycle composition on $I_u$ are implementation facts, not no-retune evidence.
+3. **C3 — state frozen-source held-out parallelism as a conditional no-retune target.** Use $W_{\parallel}$ for full-interval sections or $W_{\mathrm{end}}$ for independently extracted endpoints only after the source constructor and retained branch are independently fixed.
+4. **C4 — use $W_{\mathrm{NR}}$ only as a composite label.** It may combine primary parallelism with $W_{\mathrm{loop}}$ after a genuine second retained modulus exists.
+5. **C5 — keep torsion and zero phase-holonomy fields diagnostic.** They remain negative-control guardrails until a soldered geometry and a source-derived phase-return conjugacy class are defined.
+6. **C13 — separate leakage evidence from correctness evidence.** Give every claimed row an independent held-out projection and give at least one representative action class an analytic or genuinely independent reference.
 
-## Proposed Dependency On The Point-First Existence Ladder
+Plainly: the apply-now corrections prevent trivial one-dimensional holonomy,
+shared implementation paths, or diagnostic torsion fields from being presented
+as physical transport evidence. They do not choose the missing geometry or
+certify a branch.
+
+### Point-First Dependency For The EQ-02 Through EQ-04 Proof Program
 
 The no-retune certificate must consume the theorem stage that matches the strength of its claim. The proposed upstream order is:
 
@@ -1321,6 +1320,32 @@ Plainly: these findings close the conceptual construction questions and supply t
 6. Scale heterogeneous endpoint residuals by independently established gauge-invariant total uncertainty, including accumulated transport uncertainty.
 
 Plainly: the remaining work is an implementation and evidence campaign against an actual retained branch, not more definition-level review.
+
+## Disposition of Open Questions
+
+### Deferred Proposed Changes
+
+| Deferred item | Live owner and status | Reason it is not apply-now | Next acceptance test and backlink |
+| --- | --- | --- | --- |
+| C6 — derive $G_{\mathrm{aut}}$, $G_{\min}$, and every associated action from source geometry | [`EQ-02` through `EQ-04` translating-binary shared-record instantiation](../../priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md), status `draft`; work-queue owner `EQM-001`, status `Queued` | The source reduction is a construction choice, not an editorial correction. Where the claimed source includes evolving wake variables or root-labeled actions, it also depends respectively on `MEC-002` complete wake representation and `MEC-005` provenance; this does not block source-independent algebraic research. | Freeze one complete source object, prove its automorphisms and source-equivariant actions without target-row input, and retain the existing review-packet backlink in the shared-record owner. |
+| C7–C10 — quotient margin, connection enclosure, refinement stability, and stratum-junction certificate | Same `EQM-001` owner, status `Queued` | These are executable certificate obligations over a validated full-history drift family. No such family or complete error budget exists. Any receiver/self acceleration derivative used in the enclosure must also satisfy `MEC-006`, status `Awaiting verification`; root identity and no-double-booking used by the certificate must satisfy `MEC-005`, status `Queued`. | Establish the L1–L3 point/full-history/continuation ladder, then validate positive margins and junction transport with independent derivative and root-provenance checks. |
+| C11–C12 — intrinsic nonlinear-fiber residuals and blocked holdout construction | Same `EQM-001` owner, status `Queued` | The residual, gauge, norm, and holdout block cannot be frozen before the actual retained fiber and source constructor exist. | On the accepted L3 branch, predeclare the metric, harmless gauge, injectivity radius, constructor inputs, and excluded connected drift block before evaluating any held-out row. |
+| C14 — source-preserving permutation control | Same `EQM-001` owner, status `Queued` | The negative control needs the frozen connection enclosure that C6–C10 have not yet produced. | Hold the accepted source-side enclosure fixed, permute only the declared association, and require $W_{\mathrm{NL}}^{\mathrm{perm}}>1$ while the unpermuted holdout passes. |
+| C15 — source-frame monodromy target | Same `EQM-001` owner, status `Queued` | Selecting $[h_{\mathrm{src}}(n)]$ requires a source-derived phase-return conjugacy class; winding number or identity holonomy cannot supply it. | Derive the phase-return class from the same accepted retained history and show that it is invariant under the predeclared harmless gauge. |
+| C16 — two-path holonomy on a drift–phase or drift–physical-modulus rectangle | Same `EQM-001` owner, status `Queued` | A second retained continuation direction has not been certified. Adding one now would select an unsupported modulus. | Certify both directions under the same microscopic update and compare the closed rectangle without refitting the connection, actions, gauge, norms, or tolerances. |
+
+Plainly: the deferred items remain valuable research designs. They are not
+invalidated by the missing closures; they are simply ineligible for application
+until their actual inputs and independent checks exist.
+
+| Open question | Live owner and status | Next acceptance test | Routing disposition |
+| --- | --- | --- | --- |
+| Does a source-backed retained translating object exist at one drift and persist to a full delayed history? | [`EQ-02` through `EQ-04` `S_eq` retained-domain evidence object](../../priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md), status `draft`; work-queue owner `EQM-001`, status `Queued` | Produce one source-backed positive-width return object whose accepted `raw_labeled_rows_preserved_on_retained_history` row and support share `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"`, then pass the producer and same-branch checker without changing their acceptance rules. | Remains upstream. This packet supplies no retained point, branch, or acceptance evidence. |
+| Does the same full-history solution continue over a drift interval with one certified event itinerary? | [`EQ-02` through `EQ-04` translating-binary shared-record instantiation](../../priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md), status `draft`; work-queue owner `EQM-001`, status `Queued` | Validate the L3 drift continuation with bounded root, fold, denominator, transversality, collision, and tail errors before constructing any drift connection. | Remains blocked by the point-first L1/L2 ladder. |
+| Is the frozen source-side constructor identifiable and predictive on unused rows and an unused drift block? | Same translating-binary shared-record owner, status `draft`; work-queue owner `EQM-001`, status `Queued` | Prove $\underline\lambda_{\mathrm{id}}>0$ after the complete error budget, propagate the resulting connection enclosure, require $W_{\mathrm{NL}}\leq1$ on the blocked interval, and require the source-preserving permutation control to leave the enclosure unchanged while giving $W_{\mathrm{NL}}^{\mathrm{perm}}>1$. | This is the first no-hidden-retune acceptance test proposed by the packet; it has not been implemented or accepted. |
+| Can a genuine loop-holonomy or curvature claim be made? | Same translating-binary shared-record owner; deferred within the queued `EQM-001` lane | First certify a second retained continuation modulus under the same microscopic rule, then compare the two directions or a closed rectangle without refitting the connection, actions, gauge, norms, or tolerances. | Deferred. Drift-only curvature, loop composition, and endpoint agreement do not answer this question. |
+
+Plainly: all open questions remain in the existing `EQM-001` equation-mapping lane. The routing adds no queue, changes no status, and does not turn this research design into retained evidence or an accepted transport law.
 
 ## Remaining Evidence Burden
 

@@ -2130,26 +2130,22 @@ an event-only correction.
 
 ### Step 12 — Confront coincident same-transmitter birth
 
-Test whether the tail action itself supplies the more-than-quadratic
-near-birth suppression already proved necessary:
+Test whether the tail action itself supplies the exact weighted-integrability
+condition required near birth:
 
 $$
 \int_0^L
 \frac{M(T)}{T^3}\,dT
 <
-\infty,
-\qquad
-M(T)
-=
-O(T^{2+\delta}),
-\quad
-\delta>0.
+\infty.
 $$
 
 Plainly: the bare coincident self contribution behaves like $T^{-3}$. The
-effective maturity $M(T)$ must go to zero faster than $T^2$ for the total
-velocity change to remain finite. If the tail action supplies no such
-suppression, it does not close the full Master Equation transition problem.
+weighted area of the effective maturity must be finite. A
+$T^{2+\delta}$ bound is sufficient but not necessary; on the exact linear
+birth chart, cubic is only the first possible nonzero analytic order. If the
+tail action does not satisfy the weighted condition, it does not close the full
+Master Equation transition problem.
 
 **Pass:** one unique, open-neighborhood, regulator-independent continuation is
 derived from the same candidate.
@@ -2260,10 +2256,10 @@ history $\mathcal H^T$ and present wake state $\mathcal W_t$. It may not inspect
 a future receiver or be chosen from a measured conservation residual.
 
 That map must be derived together with the conjugate motion functions, emission
-capacity, more-than-quadratic coincident-birth suppression, and retained-boundary
-flux. The current primitive set selects none of those objects, so the remaining
-route is fail closed until one construction supplies them together or a broader
-impossibility theorem closes it.
+capacity, a coupling satisfying exact coincident-birth weighted integrability,
+and retained-boundary flux. The current primitive set selects none of those
+objects, so the remaining route is fail closed until one construction supplies
+them together or a broader impossibility theorem closes it.
 
 Plainly: the characteristic tail does not supply the missing rule. The next
 legitimate advance must explain how a present wake changes and carries all

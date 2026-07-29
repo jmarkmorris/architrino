@@ -11,15 +11,21 @@
 
 ## Work Queue
 
-The three jointly accepted closure obligations, their blockers, and their completion boundaries live in [work-queue.md](work-queue.md).
+The coupled closure obligations, their blockers, the MEC-005 pairwise
+causal-root accounting foundation, the MEC-006 receiver-gradient foundation,
+and their completion boundaries live in [work-queue.md](work-queue.md).
 
 ## Scope
 
-This workstream owns only the three coupled obligations above: the causal wake
-update law, the finite coincident same-transmitter transition, and all three
-conserved accounts on that same update. A certified braid belongs to the Braid
-Program, while observer-level recovery belongs to its downstream theory lanes.
-Neither is a Master Equation closure task.
+This workstream owns the causal wake update law, the finite coincident
+same-transmitter transition, all three conserved accounts on that same update,
+the pairwise causal-root provenance foundation needed to audit those accounts
+without duplicate attribution, and the receiver/self acceleration-gradient
+admissibility boundary needed to audit the complete operator row. MEC-005 does
+not itself derive an account map or conservation law, and MEC-006 does not add
+a new acceleration term or close the self diagonal. A certified braid belongs
+to the Braid Program, while observer-level recovery belongs to its downstream
+theory lanes. Neither is a Master Equation closure task.
 
 The live global blocker is not another receiver-weighted branch certificate.
 It is the absence of one Architrino-native causal state update that both crosses

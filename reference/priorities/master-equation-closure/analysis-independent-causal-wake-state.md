@@ -4,11 +4,12 @@
 
 - Purpose: execute the independently evolving wake-state route selected for
   Master Equation closure.
-- Claim grade: derived minimum-state requirements and derived obstruction under
-  the current Architrino primitives.
-- Result: a smallest necessary state class can be written, but its coupling and
-  conserved accounts are not determined by the current primitives. No finite
-  accepted coincident same-transmitter transition follows.
+- Claim grade: derived minimum-information requirements and derived obstruction
+  under the current Architrino primitives.
+- Result: necessary direction-resolved output obligations can be written, but
+  no coordinate-minimal representation, coupling, or conserved accounts are
+  determined by the current primitives. No finite accepted coincident
+  same-transmitter transition follows.
 - Promotion: priority-only; no ontology, canon, or EOM solver change is licensed.
 
 ## Finding in plain language
@@ -21,19 +22,21 @@ strongly that surface can accelerate a receiver, its scalar energy account, and
 its vector momentum account. These need not be three independent stored
 numbers; a later constitutive rule could derive them from fewer underlying
 variables. No such rule is presently available. Orbital angular momentum can
-then be computed as position crossed with wake momentum; an additional intrinsic
-angular account would be required only if a future construction introduces one.
+then be computed as position crossed with wake momentum only after the account
+booking point and free-propagation torque are declared. Whether an additional
+intrinsic angular account is required remains representation-dependent.
 
-That minimum state exposes a hard obstruction. The current primitives do not say
-how much energy or momentum is placed into a newly emitted wake, how reception
-changes that wake, or which kinetic and momentum functions convert the
-acceleration-first update into conserved motion accounts. They also do not select
-the more-than-quadratic suppression required at coincident same-transmitter
-birth. Filling those gaps by subtracting whatever the receiver just gained is
-post hoc balancing, not a derived update.
+That minimum information requirement exposes a hard obstruction. The current
+primitives do not say how much energy or momentum is placed into a newly
+emitted wake, how reception changes that wake, or which kinetic and momentum
+functions convert the acceleration-first update into conserved motion accounts.
+They also do not select any coupling satisfying the exact
+weighted-integrability requirement at coincident same-transmitter birth.
+Filling those gaps by subtracting whatever the receiver just gained is post hoc
+balancing, not a derived update.
 
-The selected wake-state route has therefore advanced to a minimum-state theorem
-and a no-go boundary, not to an accepted new Master Equation.
+The selected wake-state route has therefore advanced to a minimum-information
+theorem and a no-go boundary, not to an accepted new Master Equation.
 
 ## 1. Smallest information that any candidate state must determine
 
@@ -68,9 +71,10 @@ not a proof that they must be independent primitive variables:
 2. $e_i$ is its scalar energy account.
 3. $\boldsymbol\pi_i$ is its vector momentum account.
 
-No separate intrinsic angular-momentum variable is needed under the present
-line-of-action exchange assumption. The wake orbital angular momentum about a
-fixed origin is
+No separate intrinsic angular-momentum variable is needed only under a
+representation whose reception booking and free-propagation torque make the
+orbital account sufficient. Under that conditional representation, the wake
+orbital angular momentum about a fixed origin is
 
 $$
 \mathbf J_{\mathcal W}(T)
@@ -99,12 +103,51 @@ of an expanding wake. That resolution is necessary because two receivers can
 intersect different parts of the same emitted surface. One scalar per emission
 cannot update one intersection without silently changing all the others.
 
+Operationally, a Markov present state must distinguish any two wake sectors
+that can be updated independently and later distinguished by an admitted
+reception observation. This is a quotient requirement on the complete state,
+not a component-count proof for $(m,e,\boldsymbol\pi)$.
+
+Under the narrower assumption that a reception map can inspect only one unit
+direction $\boldsymbol\omega$ and is equivariant under proper rotations, its
+vector output has the form
+
+$$
+\Delta\boldsymbol\pi
+=
+\alpha\,\boldsymbol\omega.
+$$
+
+Plainly: sector blindness plus rotational covariance forces a radial vector
+output, but only because no other vector is available to the map.
+
+If the map can also inspect a retained-history velocity $\mathbf V_r^-$, then
+the rotationally covariant counterexample
+
+$$
+\Delta\boldsymbol\pi
+=
+\alpha\boldsymbol\omega
++
+\beta\left(
+\mathbf V_r^-
+-
+(\mathbf V_r^-\cdot\boldsymbol\omega)\boldsymbol\omega
+\right)
+$$
+
+contains an allowed transverse term. Rotational symmetry therefore does not
+select radial transfer until the map's admissible inputs are fixed.
+
+Plainly: representation choice comes before a radiality theorem; retained
+history can supply a second direction.
+
 Claim grade: **derived information requirement, inferred minimal
 representation**. A smaller state would falsify the inferred representation if
 it independently changed one local reception, determined bounded energy and
 vector momentum, and distinguished different directions on the same emitted
-wake. A non-line-of-action wake exchange would also require the angular account
-to be enlarged.
+wake. A sector-blind equivariant map with a nonzero transverse output would
+falsify the radial one-vector theorem.
 
 ## 2. Causal update form
 
@@ -121,7 +164,12 @@ $$
 
 This equation is only the statement that each stored surface element advances
 outward by $c_f\,dT$ in absolute time. It is not an imported observer-level field
-law.
+law. In particular, it transports the stored value $m_i$ unchanged along a free
+characteristic. An age-changing effective maturity must therefore be either a
+reception-time output computed from invariant stored state and current root
+geometry, an event update, or the solution of a separately declared sourced
+transport law. The homogeneous transport equation cannot also make stored
+$m_i$ mature continuously.
 
 At a reception event $\mathsf h=(r,t,T_r,T_t)$, one predeclared local map must
 produce both the receiver continuation and the wake continuation:
@@ -156,49 +204,211 @@ opposite polarity gives $\sigma_{tr}=-1$ and therefore inward acceleration.
 The polarity test is passed by the required receiver component. It does not by
 itself determine the wake-account changes.
 
+### 2.1 Reception representation and observation
+
+This owner does not select whether $e_i$ and $\boldsymbol\pi_i$ are ordinary
+densities, finite Radon measures, finite-patch accounts, or outputs of a
+nonlocal redistribution. Each proposed reception law must declare one of these
+classes before its finite-transfer claim can be evaluated.
+
+If they are ordinary $L^1(dT_t\,d\boldsymbol\omega)$ densities and an exact
+reception changes them only at one coordinate
+$a=(T_t,\boldsymbol\omega_{\mathsf h})$, then
+
+$$
+\int\Delta e_i\,dT_t\,d\boldsymbol\omega=0,
+\qquad
+\int\Delta\boldsymbol\pi_i\,dT_t\,d\boldsymbol\omega=\mathbf0.
+$$
+
+Plainly: one point has zero measure for an ordinary density, so a pointwise
+change cannot book a finite account transfer.
+
+An atom, a derived finite patch, or an explicitly nonlocal redistribution can
+represent a finite transfer, but the present primitives select none of them.
+If a finite Radon account $\mu$ is proposed, its later observation operator
+must be declared with it. For any bounded linear observation $\mathcal O$,
+
+$$
+\mathcal O[\mu+q\delta_p]-\mathcal O[\mu]
+=
+q\,\mathcal O[\delta_p].
+$$
+
+Plainly: an atom is visible exactly when the declared reader assigns a nonzero
+value to that point mass; measure class alone does not decide visibility.
+
+If $\mathcal O[\delta_p]=0$ on every realizable point, then $\mathcal O$
+factors through the quotient by the closed atomic subspace. It need not factor
+through the absolutely continuous part because singular-continuous content may
+remain visible. No current root theorem proves that a later self-hit revisits
+every earlier reception atom.
+
+A finite-patch proposal must also declare its geometry. If $\varepsilon<r$ is
+the Euclidean transverse radius of a circular spherical cap on a shell of
+radius $r$, then
+
+$$
+\theta_\varepsilon=\arcsin(\varepsilon/r),
+\qquad
+|\Omega_\varepsilon|
+=
+2\pi(1-\cos\theta_\varepsilon)
+=
+\pi\frac{\varepsilon^2}{r^2}
+\left(
+1+\frac14\frac{\varepsilon^2}{r^2}
++O(\varepsilon^4/r^4)
+\right).
+$$
+
+Plainly: this coefficient belongs to the stated spherical-cap convention; a
+planar-disc convention has a different higher-order correction.
+
+For a uniform finite account $\Delta Q$ on a controlled shrinking cap family,
+
+$$
+\Delta\mu_\varepsilon
+\overset{*}{\rightharpoonup}
+\Delta Q\,\delta_{\boldsymbol\omega_{\mathsf h}},
+\qquad
+\frac{\Delta Q}{|\Omega_\varepsilon|}
+\sim
+\frac{\Delta Q\,r^2}{\pi\varepsilon^2}.
+$$
+
+Plainly: the total account stays finite while the density grows like inverse
+patch area and converges weakly to an atom.
+
+The transverse patch radius $\varepsilon$, wake thickness, and any
+emission-time regulator are distinct controls. This angular marginal supplies
+no regulator-path-independence theorem for the full
+emission-label-by-direction state.
+
+Claim grade: **derived conditional representation obstructions and cap
+scaling; representation and observation choices unresolved**. A nonzero
+ordinary-density integral supported on one singleton, or a direct calculation
+contradicting the declared cap geometry, would falsify the corresponding
+mathematical statement.
+
 ## 3. Coincident-birth requirement
 
 On the exact quadratic same-transmitter control, the unsuppressed acceleration
-is proportional to $T^{-3}$. If the wake-state coupling replaces it by
-$M(T)T^{-3}$, finite accumulated acceleration requires
+is proportional to $T^{-3}$ and
+
+$$
+D_t=\alpha T,
+\qquad
+z=\frac{|D_t|}{c_f}=\frac{\alpha}{c_f}T.
+$$
+
+Plainly: on this prescribed control, the native birth coordinate is exactly
+linear in time.
+
+For nonnegative measurable $M$, if the wake-state coupling replaces the
+singular term by $M(T)T^{-3}$, finite accumulated acceleration is equivalent to
 
 $$
 \int_0^L\frac{M(T)}{T^3}\,dT<\infty.
 $$
 
-Hence
+Plainly: the exact requirement is weighted integrability, not a pointwise
+power-law bound.
+
+A bound $M(T)=O(T^{2+\delta})$ for some $\delta>0$ is sufficient but not
+necessary. After nondimensionalizing $T$ by $L$, the continuous example
 
 $$
-M(T)=O\!\left(T^{2+\delta}\right)
+M(T)
+=
+\frac{(T/L)^2}{\log^2(eL/T)}
+$$
+
+has a finite weighted integral but is not
+$O(T^{2+\delta})$ for any $\delta>0$.
+
+Plainly: logarithmic decay beyond the quadratic borderline can be integrable
+without gaining any fixed positive power.
+
+If $M$ is nonnegative and nondecreasing as $T$ moves away from birth, weighted
+integrability implies $M(T)=o(T^2)$ as $T\downarrow0$. That pointwise
+condition is still not sufficient: after the same nondimensionalization,
+
+$$
+M(T)
+=
+\frac{(T/L)^2}{\log(eL/T)}
+$$
+
+is $o(T^2)$ and nondecreasing near birth, but its weighted integral diverges.
+
+Plainly: monotonicity rules out narrow spikes and yields a sharper necessary
+pointwise limit, but only the weighted integral decides finiteness.
+
+For a pure power $M(T)\sim C T^p$ with $C>0$, weighted integrability is
+equivalent to $p>2$. If $M$ is analytic in the exact linear variable $z$ and
+is not identically zero, write
+
+$$
+M(z)=a_kz^k+O(z^{k+1}),
 \qquad
-\text{for some }\delta>0.
+a_k\ne0.
 $$
 
-Using the native dimensionless variable $z=|D_t|/c_f$, the same condition is
+Then $k>2$. Cubic is therefore the first possible nonzero analytic order, not
+a selected term; quartic and every higher leading order remain admissible.
+
+Plainly: analyticity turns the integral test into an integer-order test, but it
+does not require a nonzero cubic coefficient.
+
+The integral condition also fails to select the complete law or its scale.
+Let $z_0>0$, set $\tau=c_fz_0/\alpha$, and consider the inverse constructions
 
 $$
-M(z)=O\!\left(z^{2+\delta}\right).
+M_3(z)
+=
+\begin{cases}
+(z/z_0)^3,&0\le z<z_0,\\
+1,&z\ge z_0,
+\end{cases}
+\qquad
+M_4(z)
+=
+\begin{cases}
+(z/z_0)^4,&0\le z<z_0,\\
+1,&z\ge z_0.
+\end{cases}
 $$
 
-If the near-birth update is analytic in $z$, the first admissible integer power
-is cubic. The wake-state route must therefore make its effective maturity obey
+For a scalar singular coefficient $A\,T^{-3}$, their birth-region accumulated
+accelerations are
 
 $$
-m_i=O(z^3)
+I_3
+=
+A\int_0^\tau\frac{(T/\tau)^3}{T^3}\,dT
+=
+\frac{A}{\tau^2},
+\qquad
+I_4
+=
+A\int_0^\tau\frac{(T/\tau)^4}{T^3}\,dT
+=
+\frac{A}{2\tau^2}.
 $$
 
-on the endpoint-born same-transmitter branch, while recovering $m_i=1$ on the
-declared regular domain.
+Plainly: both laws are finite and match the regular value at the same declared
+threshold, yet they produce different outgoing velocity changes.
 
-This condition is necessary, not sufficient. Functions such as
-$z^3/(1+z^3)$, $z^4/(1+z^4)$, and infinitely many others all make the local
-impulse finite and produce different outgoing histories. The current primitives
-select none of them and supply no transition scale or matching condition.
+Smooth perturbations supported inside $(0,z_0)$ preserve weighted
+integrability and endpoint matching while changing the accumulated
+acceleration. These functions are counterexamples, not candidate laws selected
+by $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 Claim grade: **derived necessity and underdetermination**. A finite accepted
 transition with $M$ failing the displayed integrability condition would falsify
-the necessity claim. A unique $M$ derived from existing primitives would
-falsify the underdetermination claim.
+the necessity claim. An allowed native functional equation that uniquely fixes
+the complete law and scale would falsify the underdetermination claim.
 
 ## 4. Conservation equations expose missing information
 
@@ -259,6 +469,78 @@ Claim grade: **derived obstruction**. A predeclared Architrino-native $K$, $P$,
 emission map, and reception map that close the three equations on nonsymmetric
 histories would falsify it.
 
+### 4.1 Angular booking and finite-increment scope
+
+Let $\Delta\mathbf p_r$ be the receiver momentum-account increment and let the
+wake debit be $-\Delta\mathbf p_r$. Under same-reception-point booking,
+
+$$
+\int\mathbf Y\times d\boldsymbol{\mathsf\Pi}
+=
+-\mathbf X_r\times\Delta\mathbf p_r.
+$$
+
+Plainly: the two angular increments use the same lever arm and cancel for every
+transfer direction; this booking choice does not force radial transfer.
+
+If the wake debit is instead booked at the emission center $\mathbf C$, the
+event residual is
+
+$$
+\mathbf X_r\times\Delta\mathbf p_r
+-
+\mathbf C\times\Delta\mathbf p_r
+=
+R\boldsymbol\omega_{\mathsf h}\times\Delta\mathbf p_r.
+$$
+
+Plainly: under emission-center booking with $R>0$, event-wise orbital closure
+requires a radial transfer unless another account supplies the residual.
+
+For a freely propagating wake element with constant stored momentum account,
+
+$$
+\frac{d}{dT}
+\left(
+\mathbf Y\times\boldsymbol\pi
+\right)
+=
+c_f\boldsymbol\omega\times\boldsymbol\pi.
+$$
+
+Plainly: a nonradial stored vector changes this orbital account during
+propagation unless another sector supplies the torque.
+
+A finite-increment affine-rigidity theorem is available only under an explicit
+richness hypothesis. Let $D\subseteq\mathbb R^3$ be connected and open, and
+assume for every $\mathbf u,\mathbf w\in D$ that
+
+$$
+\mathbf p(\mathbf w)-\mathbf p(\mathbf u)
+\parallel
+\mathbf w-\mathbf u.
+$$
+
+Non-collinear velocity triangles force one common scale on every edge, and
+overlapping neighborhoods propagate it across $D$:
+
+$$
+\mathbf p(\mathbf V)=a\mathbf V+\mathbf b.
+$$
+
+If $\mathbf0\in D$ and $\mathbf p(\mathbf0)=\mathbf0$, or if proper-rotation
+equivariance removes the offset, then $\mathbf p(\mathbf V)=a\mathbf V$.
+
+Plainly: the linear form follows from the all-pairs or separately proved
+triangle-connected increment condition. It does not follow from radial
+acceleration alone or from one realized trajectory.
+
+This theorem is conditional on emission-center booking, event-wise angular
+closure, and the stated richness of admissible increments. The coefficient
+$a$ is an undetermined account scale, not primitive architrino mass. None of
+these booking identities derives physical conservation or selects a momentum
+account.
+
 ## 5. Regular-law and conservation trilemma
 
 An independently evolving wake can respond to reception in only three relevant
@@ -312,16 +594,82 @@ $\boldsymbol\pi_i$ when a stored surface element exits the retained domain.
 Silently dropping it would manufacture conservation loss. Missing history still
 routes to handling requiring verification before advancement.
 
-## 8. Disposition
+## 8. One-sided well-posedness burden
+
+Finite accumulated acceleration does not prove unique continuation. The scalar
+control
+
+$$
+\dot S
+=
+T^{-1/2}\operatorname{sgn}(S)\sqrt{|S|},
+\qquad
+S(0)=0
+$$
+
+has an integrable time envelope but admits the zero solution and, for every
+$a\ge0$,
+
+$$
+S_a(T)
+=
+\left(
+\max(0,\sqrt T-\sqrt a)
+\right)^2.
+$$
+
+Plainly: a solution can wait at zero for an arbitrary time and then leave, so
+finite accumulated size alone does not prevent branching.
+
+A future coincident-birth theorem must therefore declare:
+
+1. one complete retained-history phase space;
+2. a one-sided birth normal form and predeclared branch rule;
+3. integrable acceleration and state sensitivity on that chart;
+4. continuous and transverse event-time or root maps;
+5. single-valued jump maps with Lipschitz or Osgood control;
+6. an event-ordering rule and a nonaccumulation or controlled-Zeno theorem; and
+7. a solution class, such as BV or càdlàg, compatible with any genuine jumps.
+
+A useful local sensitivity target is
+
+$$
+\int_0^\varepsilon
+\left(
+\|A(T,S)\|
++
+\operatorname{Lip}_S A(T,\cdot)
+\right)dT
+<
+\infty.
+$$
+
+Plainly: both the accumulated acceleration and the sensitivity of that
+acceleration to the present state need finite area near birth.
+
+This is a proof architecture, not a new generic gate or a theorem for an
+unspecified reception map. It must be checked on one complete predeclared
+constitutive system, including its events and boundary behavior.
+
+This center-relative account analysis supplies no constraint on
+assembly-level angular structure and no consequence for photon Gate B. No
+photon status or cross-reference follows.
+
+## 9. Disposition
 
 The independently evolving wake-state route is not closed. The analysis has
-derived the smallest necessary state class and four mandatory conditions:
+derived a conditional state class and six mandatory obligations:
 
 1. directional surface resolution;
-2. a coupling variable with more-than-quadratic coincident-birth suppression;
-3. scalar energy and vector momentum wake accounts;
-4. one predeclared emission, propagation, reception, and boundary update tied to
-   fixed motion-account functions.
+2. a coupling output satisfying exact weighted integrability at coincident
+   birth, with cubic only the first possible analytic order;
+3. scalar energy and vector momentum account outputs in a declared density,
+   measure, patch, or nonlocal representation;
+4. a declared observation operator and angular-booking convention;
+5. one predeclared emission, propagation, reception, and boundary update tied
+   to fixed motion-account functions; and
+6. a one-sided birth, event, and jump architecture sufficient for local
+   well-posedness.
 
 The current primitives determine free propagation and the regular receiver
 acceleration, but not the maturity law, motion-account functions, emission
@@ -333,8 +681,8 @@ The regular part of that statement now has an executable state reduction:
 emission-site centers and radii at $c_f$, derives the surface-normal line of
 action, and reproduces $c_f/|D_t|$ by fixed-reception source-time collapse.
 This closes the regular kinematic substate only. It does not supply any of the
-four missing constitutive objects named above, so the obstruction and
-fail-closed disposition are unchanged.
+missing constitutive objects named above, so the obstruction and fail-closed
+disposition are unchanged.
 
 Promotion classification: **closed negatively under the current primitive set;
 retain as the first-ranked derivation target, with singular evolution fail

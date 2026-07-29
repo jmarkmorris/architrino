@@ -6,6 +6,7 @@
 - Status: `priority-only`
 - Assigned IDs: `EQ-02`, `EQ-03`, `EQ-04`
 - Scope: Lorentz factor, moving-clock/ruler retuning, oblate spheroidal envelope, and energy-momentum/rest-energy closure.
+- Review synthesis: [EQ-02 Through EQ-04A Retained Point, Coframe, No-Retune, and Koide](../../entourage/review-packets/eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md)
 - Edit boundary: this packet only. Do not update `equation.md` from this worker packet.
 
 ## Standard Equation And Regime
@@ -77,6 +78,8 @@ This is not a substrate metric claim. It is an observer-level recovery target fo
 - Smallest accepted evidence object: one source-backed retained support carrying raw labeled rows, same-branch chart identity, extracted coframe legs, holonomy witness, clock/envelope rows, energy-momentum rows, rest-invariance row, and Noether sea response row on one branch record.
 - Smallest next artifact: one retained-support source object for `S_eq` whose raw labels, support id, coframe-source id, holonomy id, and retained-record row ids can be consumed by both the same-branch checker and retained-record runner.
 - Runnable route: run the retained-domain and retained-record attempts; both must remain blocked at the retained-evidence boundary until accepted `S_eq` support lands.
+
+Research input: [Translating-Binary Lorentz Closure](../../entourage/review-packets/hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md) records the conditional root, continuation, fold, kernel, coframe, conservation, and high-drift findings that sharpen this packet's proof burden. It is priority-only research and does not populate a retained branch, conservation ledger, mass-shell row, or Lorentz-recovery result.
 
 ```sh
 node scripts/equation-mapping/check-same-branch-chart-identity.mjs --input scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json --summary --pretty

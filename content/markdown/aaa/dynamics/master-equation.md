@@ -4625,7 +4625,12 @@ general primitive kinetic-scalar chart, each
 $\mu_{\text{arch}}\mathbf V_i$ is replaced by the declared conjugate momentum
 $\mathbf p_i=P(\|\mathbf V_i\|)\hat{\mathbf V}_i$, with
 $P'(s)=K'(s)/s$ as specified in [Energy](energy.md#kinetic-energy-and-momentum-of-a-single-architrino).
-Neither construction assigns primitive mass to an architrino.
+Energy also owns the near-zero assumptions and the kinetic-Lagrangian
+reconstruction for a general $K$. The action-derived charges displayed here
+use the quadratic bookkeeping proxy; a general kinetic chart requires that
+reconstructed kinetic Lagrangian and a complete revariation of the delayed
+action. Neither construction assigns primitive mass to an architrino, and no
+general conservation claim follows by substitution alone.
 
 Because the accelerations are delayed, $d\mathbf{P}_{\text{mech}}/dT$ is generally nonzero.
 

@@ -772,23 +772,56 @@ The finite-presentation architecture is falsified on a purportedly certified cla
 
 Plainly: certified finite data must determine the delayed evaluation on the exact class claimed. If it does not, the certification architecture cannot support candidate or scoped-negative claims there.
 
-## Proposed change plan
+## Proposed Changes
 
-| Priority | Proposed change | Required result before promotion |
+**Readiness gate.** The retained items are corrections to scope, theorem
+hypotheses, and diagnostic authority. They can be applied without selecting an
+atlas architecture, claiming complete wake representation, or deciding whether
+any candidate persists. The construction and implementation proposals are
+preserved under
+[Disposition of Open Questions](#disposition-of-open-questions).
+
+| ID | Apply-now correction | Required boundary |
 | --- | --- | --- |
-| Required | Replace a single finite atlas model with the topological symmetry groupoid and certified pro-presentation architecture | Live specification of objects, arrows, compatible restriction maps, and conservative uncertainty transport |
-| Required | Make the prehistory-tail contract mandatory | Explicit prehistory, the verified sharp-root theorem’s premises, and a separate quantitative bound for every finite-width omitted tail |
-| Required | Downgrade the current scalar labels from provisional classifiers to scoped diagnostic rows | The sub-field-speed knot counterexample retained as a negative control |
-| Required | Preserve the audited bounded uniformly sub-field-speed sharp-root theorem | Fixed-enclosure, positive-separation, inventory, and longer-horizon control |
-| Required | Derive a quantitative finite-width history-tail bound | A nonzero error bound compatible with the live Gaussian regulator and solver tolerances |
-| Required | Prove the corrected regular-stratum persistence and reconstruction lemma | A complete proof with cross-time orientation, root-boundary, closure, thickness, framing, and phase hypotheses |
-| High value | Define the binary-coherence predicate and matching-uniqueness margin | Predeclared weights and coherence term plus a tracker that distinguishes reassignment from certificate gain or loss |
-| High value | Implement the typed chart-to-instrument record | Schema validation plus reconstruction, root-completeness, closure validity, and refinement witnesses |
-| High value | Add the topology benchmark suite | Independent expected classifications for each diagnostic row |
-| High value | Implement full-record symmetry deduplication | Recomputed causal-root and acceleration parity under each admitted action |
-| Optional | Add higher-order complement or braid data | Evidence that cheaper component and pairwise invariants leave a live ambiguity |
+| T2 | Make the prehistory contract explicit for every atlas or campaign claim. | Name the declared retained interval and prehistory, state the verified sharp-root theorem's premises, and label every unbounded-past or omitted-tail conclusion unresolved unless a separate quantitative bound exists. This is a scope rule, not an exact finite-width tail certificate. |
+| T3 | Downgrade the current scalar labels from provisional classifiers to scoped diagnostic rows. | Retain the sub-field-speed knot counterexample as a negative control and do not infer topology, retention, or physical identity from the scalar rows. |
+| T4 | Preserve the audited bounded uniformly sub-field-speed sharp-root theorem. | State the fixed-enclosure, positive-separation, complete-inventory, and longer-horizon hypotheses wherever the result is used. |
+| T-C | Correct reader-facing statements about the sharp-root delay bound, sub-field-speed transversality and self-hit exclusion, cross-time reconstruction, and scalar-label incompleteness. | Preserve the exact local hypotheses and falsifiers; do not claim exact finite-width tail exclusion or candidate persistence. |
 
-Plainly: the required items make search claims mathematically scoped. The high-value items make that scope executable. The optional topology rows should be added only when a declared ambiguity requires them.
+Plainly: the safe corrections say exactly what a represented finite history can
+and cannot establish. They do not choose the future atlas data model or turn a
+topology diagnostic into a physical result.
+
+## Disposition of Open Questions
+
+### Deferred Proposed Changes
+
+| Deferred item | Live owner and status | Reason it is not apply-now | Next acceptance test and backlink |
+| --- | --- | --- | --- |
+| T1 — replace a single finite atlas with a topological symmetry groupoid and certified pro-presentation | [`BP-002` configuration chart completion](../../priorities/braid-program/work-queue.md#bp-002--configuration-chart-completion), status `Queued`; canonical owner [configuration-chart.md](../../priorities/braid-program/configuration-chart.md), status `DRAFT SKELETON` | This selects an atlas architecture. The current topological findings motivate it but do not prove that it is the minimum or correct executable representation. | Specify objects, arrows, restrictions, uncertainty transport, and conservative abstention, then prove reconstruction on independently classified controls. The configuration-chart owner already backlinks this packet. |
+| T5 — derive a quantitative finite-width Gaussian-history tail bound | `BP-002`, status `Queued`, for campaign scope; the [EOM evolution contract](../../priorities/app-solver/contracts/evolution-contract-v1.md) owns retained-interval computation | No nonzero bound compatible with the live regulator, history class, and tolerances has been derived. This is the existing routing ambiguity; it does not justify a new queue. | Produce a separately checked regulator-, history-, and tolerance-dependent bound, or restrict the certified claim to the declared retained interval. |
+| T6 — prove regular-stratum persistence and reconstruction | `BP-002`, status `Queued`; complete physical-history use additionally depends on `MEC-002` (`In progress`) for wake representation, `MEC-005` (`Queued`) for root provenance, and `MEC-006` (`Awaiting verification`) wherever the persistence derivative consumes receiver/self acceleration gradients | The lemma needs the complete evolution-defining state, dynamic root identity, and admitted derivative rows. Those prerequisites are not established. This does not prevent finite prescribed-history topology research. | Prove the lemma first on one declared regular prescribed-history chart, then extend only to the state components and derivatives independently accepted by the named owners. |
+| T7 — define binary coherence and a matching-uniqueness margin | `BP-002`, status `Queued` | Choosing weights or a coherence term from the desired decomposition would select the result. | Predeclare the functional from native geometry and pass reassignment and false-coherence controls on independently classified histories. |
+| T8 — implement the typed chart-to-instrument record | `BP-002`, status `Queued` | The schema depends on the unresolved chart architecture and reconstruction contract. | Freeze the chart axes and claim scope, then validate reconstruction, root completeness, closure validity, and refinement witnesses without granting fate authority. |
+| T9 — add the topology benchmark suite | `BP-002`, status `Queued` | Expected classifications and closure conventions are not yet independently fixed. | Predeclare the validity domain and independent expected classifications for every benchmark, including explicit abstention on ambiguity. |
+| T10 — implement full-record symmetry deduplication | `BP-002`, status `Queued`, with `MEC-005` root-provenance dependency for any causal-root no-double-booking claim | Position-level symmetry is insufficient; the complete root and acceleration record must transform consistently, and shared provenance cannot be copied between bundles. | Recompute causal-root and acceleration parity under every admitted action and require MEC-005 provenance checks where the record is used as more than a prescribed-history diagnostic. |
+| T11 — add higher-order complement or braid data | `BP-002`, status `Queued` | No live ambiguity has been shown to survive the cheaper component and pairwise invariants. | Add the higher-order row only after one declared ambiguity survives the lower-cost inventory and the new row has an independent expected classification. |
+
+Plainly: these items remain possible research directions. The unresolved Master
+Equation owners gate only the claims that actually consume complete evolving
+wake, provenance, or gradient records; they do not invalidate prescribed-history
+atlas mathematics.
+
+| Open question | Live owner and status | Next acceptance test | Routing disposition |
+| --- | --- | --- | --- |
+| Do the relevant finite-dimensional strata carry proper smooth actions sufficient for an orbifold or differentiable-stack presentation? | [`BP-002` configuration chart completion](../../priorities/braid-program/work-queue.md#bp-002--configuration-chart-completion), status `Queued`; canonical owner [configuration-chart.md](../../priorities/braid-program/configuration-chart.md), status `DRAFT SKELETON` | Author the admitted objects, arrows, coordinate domains, stabilizers, and symmetry reductions, then prove properness and the required local smooth structure on each claimed stratum. | Remains priority-only architecture. The topological groupoid does not imply the stronger smooth presentation. |
+| What weights and root/phase incoherence term define an atlas-level binary-coherence functional? | Same `BP-002` owner, status `Queued` | Predeclare the functional and weights from native geometry, then test matching persistence and reassignment on independently classified prescribed histories without selecting weights from the desired outcome. | Open. Exact matching coordinates alone do not select a physical binary decomposition. |
+| What is the minimum topology inventory for histories with dynamically meaningful closures? | Same `BP-002` owner, status `Queued` | Fix the closure convention and validity domain first, then run the unlink, square-knot, Hopf-link, Whitehead-link, and Borromean controls with independent expected classifications and explicit abstention on ambiguity. | Open. Higher-order invariants remain optional until a declared ambiguity requires them. |
+| What tail contract covers drifting but relatively bounded histories or undeclared ambient transmitters outside one fixed enclosure? | Same `BP-002` owner, status `Queued`; the live EOM solver contracts define computation on a declared retained interval | Prove a horizon/restriction theorem for the declared drifting enclosure and complete transmitter inventory, or keep the campaign claim explicitly limited to the retained interval and mark any external inventory unresolved. | Open. The fixed-enclosure sharp-root theorem does not extend automatically. |
+| What quantitative omitted-tail bound applies to the EOM solver’s finite-width Gaussian acceleration kernel? | `BP-002` owns the campaign/chart declaration; the [EOM evolution contract](../../priorities/app-solver/contracts/evolution-contract-v1.md) owns the retained-interval computation. No separate live queue row was found for an infinite-past Gaussian-tail claim. | Either derive a regulator-, history-, and tolerance-bound outside the retained interval with an independent analytical check, or state that the certified quantity is only the declared retained-interval integral. | Routing ambiguity: a future implementation change would belong to App Solver, while claim scoping belongs to `BP-002`. This packet creates neither queue nor implementation obligation. |
+| Is any atlas candidate retained, stable, physically realized, or preferred by the EOM solver? | Candidate-specific Braid Program rows: `BP-001` binary fate, `BP-003` collinear breather, and `BP-004` undirected ensemble, each `Deferred / blocked`; a physical full-state interpretation also depends on `MEC-002`, status `In progress` | Apply the relevant predeclared EOM evolution, complete-root, multiple-prehistory, refinement, fate, and independent-instrument gates to the exact candidate class; where a claim consumes a mature wake state, first use the accepted MEC-002 update. | Routing remains candidate-specific. Atlas coordinates and topology diagnostics can advance independently within their declared scope, but cannot choose among these owners or advance any physical fate. |
+
+Plainly: the architecture questions stay with the queued configuration-chart owner; fate questions stay with the existing candidate-specific blocked campaigns. The Gaussian-tail question crosses a scientific-scope owner and an implementation-contract owner, so it is recorded as an ambiguity rather than assigned a new queue.
 
 ## Promotion disposition
 

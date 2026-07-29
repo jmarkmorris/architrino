@@ -497,28 +497,34 @@ Curvature, loop holonomy, and the cocycle law are automatically trivial on the o
 
 ## Proposed Changes
 
+**Readiness gate.** The retained items below are claim grades, exact scope
+conditions, negative results, corrected formulas, or priority-record
+clarifications. They can be applied without claiming that a translating branch,
+complete wake update, conserved ledger, or Lorentz recovery exists. Items that
+need those objects are moved to
+[Disposition of Open Questions](#disposition-of-open-questions).
+
 ### Batch A — reader-facing corpus corrections
 
-Items A1 through A5 add a grade, a hedge, or a companion estimate. **A6 and A7 are substantive additions** and should be reviewed as such.
+Items A1 through A5 are scoped corrections. A7 is retained only as a
+conditional theorem and exact no-go under its stated hypotheses.
 
-1. **`content/markdown/aaa/spacetime/lorentz-kinematics.md`, closed-return derivation section.** Add an explicit `> Claim grade:` line. The section already carries the correct caveat that the axial-factor selection is not a stability theorem, but the file's only graded claims sit elsewhere. Grade the selection as derived conditional on a single-speed closed return and orientation independence, with the falsifier from Finding 13.
-2. **Same file, same section.** Add the two-root itinerary condition of Finding 13 and the statement that the reduction is exact only for fixed, non-orbiting, co-moving endpoints.
-3. **Same file, residual-triple definition.** Add a grade line recording that the triple defines a test, and that no value of it has been produced by evolving the delayed law at any drift speed.
-4. **Same file, causal-root ledger progression section.** Record the fold normal form and the **integrability** result of Finding 10: the acceleration diverges as the inverse square root of the time offset, but the impulse across a shrinking window vanishes, velocity stays continuous, and position stays $C^1$. State plainly that a finite change in an observable comes from the newborn branch persisting, not from the singular instant — and list the five cases the argument does not cover.
-5. **`content/markdown/aaa/dynamics/master-equation.md`, forward partner-root starvation proposition, and `content/markdown/aaa/dynamics/binary-dynamics.md`, translating binary handoff section.** Add the weight-decay companion of Finding 11. The starvation statement is correct, but the sentence contrasting the two divergence rates invites the unsupported inference that the branch period must diverge at the faster rate. Record that the forward hit's contribution decays linearly in the gap, so with unlimited retained history the channel fades smoothly, while a finite window deletes it abruptly — and that telling those apart is the difference between physics and a memory-depth artifact.
-6. **Substantive addition — `content/markdown/aaa/dynamics/master-equation.md`, near the emission-rule statement.** Promote the weight derivation of Finding 9: with a constant positive emission measure, the root-counting identity yields the first denominator power, the absolute value, and the sum over all roots. State the accompanying interpretation explicitly — the weight is **event-local wake-surface density**, not arrivals per unit receiver time, which would instead give $|D_r/D_t|$ — and note that this is what makes receiver-velocity independence of hit strength consistent rather than stipulated. This converts a postulate into a conditional derivation and should be routed through the operator before landing.
-7. **Substantive addition — `content/markdown/aaa/dynamics/binary-dynamics.md`, translating binary handoff section.** Record the first-order vanishing proposition of Finding 4, including the two symmetry operations, the global polarity-reversal step, and the observation that the reflection is available **because the kernel contains no cross product**, so it is invariant under the full orthogonal group. State the four hypotheses and the falsifiers. Also record Finding 2's exact no-go, so the textbook no longer leaves open the possibility that the moving branch is a transported rest branch.
+1. **A1 — `content/markdown/aaa/spacetime/lorentz-kinematics.md`, closed-return derivation section.** Add an explicit `> Claim grade:` line. The section already carries the correct caveat that the axial-factor selection is not a stability theorem, but the file's only graded claims sit elsewhere. Grade the selection as derived conditional on a single-speed closed return and orientation independence, with the falsifier from Finding 13.
+2. **A2 — same file, same section.** Add the two-root itinerary condition of Finding 13 and the statement that the reduction is exact only for fixed, non-orbiting, co-moving endpoints.
+3. **A3 — same file, residual-triple definition.** Add a grade line recording that the triple defines a test, and that no value of it has been produced by evolving the delayed law at any drift speed.
+4. **A4 — same file, causal-root ledger progression section.** Record the fold normal form and the **integrability** result of Finding 10: the acceleration diverges as the inverse square root of the time offset, but the impulse across a shrinking window vanishes, velocity stays continuous, and position stays $C^1$. State plainly that a finite change in an observable comes from the newborn branch persisting, not from the singular instant — and list the five cases the argument does not cover.
+5. **A5 — `content/markdown/aaa/dynamics/master-equation.md`, forward partner-root starvation proposition, and `content/markdown/aaa/dynamics/binary-dynamics.md`, translating binary handoff section.** Add the conditional weight-decay companion of Finding 11. Record that the forward hit's contribution decays linearly in the gap on the declared simple-root history, while a finite window can delete it abruptly; do not infer branch-period behavior or unlimited physical memory from that local result.
+6. **A7 — `content/markdown/aaa/dynamics/binary-dynamics.md`, translating binary handoff section.** Record the first-order vanishing proposition of Finding 4 and Finding 2's exact no-go only as conditional statements under their complete listed hypotheses, with the symmetry and root-itinerary falsifiers. Do not present either as evidence that a moving branch exists.
 
 ### Batch B — priority corrections
 
-1. **`reference/priorities/equation-mapping/eq-02-04-lorentz-energy-packet.md`.** Replace the derivation target with the **corrected** second-order solvability system of Finding 5, including the three terms in the first-order shape correction, and record that the uncorrected quotient must not be used. Add Finding 6's five chart hypotheses as declared side conditions and Finding 7's unknown-versus-condition count as the existence pre-test.
-2. **Same file.** Record Finding 15: no conservation law has been derived for this kernel, so the shell row cannot be treated as available bookkeeping, and a wake ledger fitted after the moving branch is known carries no evidential weight. Add the shell-weakness note so a shell residual is never read as sufficient.
-3. **`reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md`, connection and holonomy section.** Add the six normalization conditions of Finding 14 as declared prerequisites of the reciprocity test, record the leg-rescaling freedom, and add a `leg_rescaled_coframe` negative control that must fail — neither existing control tests that freedom.
-4. **Same file.** Restate the no-retune witness per the accepted earlier disposition and remove the drift-only loop-holonomy reading (Finding 17).
-5. **Same file or the owning analysis note.** Add Finding 16's explicit no-fold bound with its dimensions, replacing the self-referential form, together with the caveat that its first sensitivity constant cannot be measured from frozen rest geometry alone.
-6. **`reference/priorities/equation-mapping/equation.md` and the energy packet.** Reconcile the two residual notations — the corpus triple including a shape residual against the branch-indexed vector — declaring one canonical form and cross-referencing the other as an alias.
-7. **`reference/priorities/equation-mapping/work-queue.md`.** Replace the Lorentz envelope closure success marker with the ordered programme below.
-8. **`reference/priorities/equation-mapping/work-log.md`.** Record the research synthesis, corrected root defect, exact no-go, withdrawn fold verdict, and claim-map regrades.
+1. **B1 — `reference/priorities/equation-mapping/eq-02-04-lorentz-energy-packet.md`.** Replace the derivation target with the **corrected** second-order solvability system of Finding 5, including the three terms in the first-order shape correction, and record that the uncorrected quotient must not be used. Add Finding 6's five chart hypotheses as declared side conditions and Finding 7's unknown-versus-condition count as the existence pre-test.
+2. **B2 — same file.** Record Finding 15: no conservation law has been derived for this kernel, so the shell row cannot be treated as available bookkeeping, and a wake ledger fitted after the moving branch is known carries no evidential weight. Add the shell-weakness note so a shell residual is never read as sufficient.
+3. **B3 — `reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md`, connection and holonomy section.** Add the six normalization conditions of Finding 14 as declared prerequisites of the reciprocity test, record the leg-rescaling freedom, and add a `leg_rescaled_coframe` negative control that must fail — neither existing control tests that freedom.
+4. **B4 — same file.** Restate the no-retune witness per the accepted earlier disposition and remove the drift-only loop-holonomy reading (Finding 17).
+5. **B5 — same file or the owning analysis note.** Add Finding 16's explicit no-fold bound with its dimensions, replacing the self-referential form, together with the caveat that its first sensitivity constant cannot be measured from frozen rest geometry alone. Treat numerical evaluation as deferred until the required derivative and branch records exist.
+6. **B6 — `reference/priorities/equation-mapping/equation.md` and the energy packet.** Reconcile the two residual notations — the corpus triple including a shape residual against the branch-indexed vector — declaring one canonical form and cross-referencing the other as an alias.
+7. **B8 — `reference/priorities/equation-mapping/work-log.md`.** Record the research synthesis, corrected root defect, exact no-go, withdrawn fold verdict, and claim-map regrades without changing any queue status or claim grade beyond the packet's stated corrections.
 
 ### Non-changes — already present, do not duplicate
 
@@ -527,7 +533,12 @@ Items A1 through A5 add a grade, a hedge, or a companion estimate. **A6 and A7 a
 
 *Plainly: one part of the analysis restated something the textbook already has, in a weaker form. That part is dropped and only the new piece kept.*
 
-## Ordered Computation Programme
+## Deferred Computation Programme
+
+The programme below remains a preserved research design, not an apply-now
+change. Its execution and any work-queue success-marker replacement remain
+owned by `EQM-001` and the dependency rows in
+[Disposition of Open Questions](#disposition-of-open-questions).
 
 Work in normalized wake-speed units, $c_f=1$. The second-order programme is legitimate only after three certificates close. Run the three gating certificates in this order; the first two are cheap and either can end the programme locally. After Certificate 3, return to Finding 16 to extend the rest-ledger Jacobian certificate to a positive-drift neighbourhood.
 
@@ -582,15 +593,31 @@ with $\varepsilon_G$ the certified root residual and $C_J\sqrt{\varepsilon_G}$ c
 - **The coframe reciprocity test as a circularity-proof theorem.** Not promoted; retainable as a packaging test once the six normalizations are declared.
 - **A linear-in-drift period shift as a cheap falsifier.** Closed: forbidden by symmetry for this orbit (Finding 4).
 
-## Remaining Open Questions
+## Disposition of Open Questions
 
-1. What is $d_J$ on the accepted rest ledger, and does any positive fold-free drift interval exist? This gates everything.
-2. What is $\dim\ker L^\ast$, and does it exceed the free-constant count at first or second order?
-3. What is $\boldsymbol\rho_1$, and how much does its feedback move $a_2$?
-4. Is the weak continuation through a fold unique, and does it survive tangential crossings and fold accumulation?
-5. Does any action or history-space balance law reproduce the all-root delayed acceleration, so that a conserved ledger exists at all?
-6. Does the harmonic content of the second-order defect exceed the two dials a scalar denominator family provides?
-7. Does the rear-and-self-supported high-drift branch have a nondegenerate limiting orbit, giving the sharp dichotomy of Finding 12 something to bite on?
+### Deferred Proposed Changes
+
+| Deferred item | Live owner and status | Reason it is not apply-now | Next acceptance test and backlink |
+| --- | --- | --- | --- |
+| A6 — promote the event-local wake-surface-density interpretation into the Master Equation | [`MEC-002` causal wake update law](../../priorities/master-equation-closure/work-queue.md#mec-002--causal-wake-update-law), status `In progress`; mathematical owner [Independent Causal Wake-State Closure](../../priorities/master-equation-closure/independent-causal-wake-state-closure.md) | The root-counting identity is a conditional derivation, but promoting one wake-surface interpretation would select a representation before emission, reception, maturity, and boundary updates close. | Derive the interpretation from the same independently evolving wake update, preserve the regular $c_f/|D_t|$ acceleration, and pass the representation and future-path falsifiers. The MEC-002 owner already links this research family. |
+| B7 — replace the `EQM-001` success marker with the ordered programme | [`EQM-001` Lorentz envelope closure](../../priorities/equation-mapping/work-queue.md), status `Queued` | The programme has not passed its first retained-ledger certificate. Replacing the success marker now would make an unexecuted research design look like the accepted completion boundary. | After operator review of the ordered certificates, update the existing queue row without changing its lifecycle status and retain the live Lorentz-energy and shared-record backlinks. |
+| Certificates 1–3, neighbourhood extension, and continuation run | `EQM-001`, status `Queued`, through the `draft` shared-record and `priority-only` Lorentz-energy owners | No accepted rest ledger or retained branch exists. Complete root provenance is required where all-root or account conclusions are made (`MEC-005`, `Queued`), and the $M,C$ derivative enclosure must use an accepted receiver/self acceleration gradient where applicable (`MEC-006`, `Awaiting verification`). | Establish accepted `S_eq` support, close the root inventory and adjoint dimension count, solve $\boldsymbol\rho_1$, independently validate every derivative used in $u_{\mathrm{safe}}$, then run only inside the certified chart. |
+
+Plainly: these items remain legitimate research. The gate prevents their
+representation, execution order, or conditional estimates from being mistaken
+for an accepted wake model, branch, or Lorentz result.
+
+| Open question | Live owner and status | Next acceptance test | Routing disposition |
+| --- | --- | --- | --- |
+| 1. What is $d_J$ on the accepted rest ledger, and does any positive fold-free drift interval exist? | [`EQ-02` through `EQ-04` translating-binary shared-record instantiation](../../priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md), status `draft`; work-queue owner `EQM-001`, status `Queued` | After accepted `S_eq` retained support lands, enumerate the complete rest-ledger root itinerary, certify $d_J>0$, solve the first-order continuation needed to bound $M$ and $C$, and then evaluate the explicit $u_{\mathrm{safe}}$ bound. | First gate; no positive fold-free interval is currently certified. |
+| 2. What is $\dim\ker L^\ast$, and does it exceed the free-constant count at first or second order? | [`EQ-02` through `EQ-04` Lorentz-energy closure packet](../../priorities/equation-mapping/eq-02-04-lorentz-energy-packet.md), status `priority-only`; `EQM-001` remains `Queued` | On the accepted rest ledger and fold-free chart, compute the adjoint-kernel dimension and compare it with the declared free constants at each order. | Remains a conditional existence pre-test, not a branch or Lorentz result. |
+| 3. What is $\boldsymbol\rho_1$, and how much does its feedback move $a_2$? | Same Lorentz-energy owner, status `priority-only`; solver-facing execution remains in the `draft` shared-record instantiation | Solve $L\boldsymbol\rho_1+\mathcal F_b=0$ with the declared gauge conditions, then evaluate the corrected second-order solvability system including every first-order shape-feedback term. | Open. Any quotient with $\boldsymbol\rho_1$ suppressed remains rejected as incomplete. |
+| 4. Is weak continuation through a fold unique, including tangential crossings and fold accumulation? | Shared-record instantiation, status `draft`; deferred within `EQM-001` until the smooth-chart test reaches a fold | Supply a separately declared weak formulation and an independent uniqueness or counterexample analysis covering tangential crossings and possible event accumulation. | Deferred. The integrable local fold normal form does not establish continuation uniqueness. |
+| 5. Does an action or history-space balance law reproduce the all-root delayed acceleration and yield a conserved ledger? | Lorentz-energy closure packet, status `priority-only`; upstream [`MEC-002`](../../priorities/master-equation-closure/work-queue.md#mec-002--causal-wake-update-law) is `In progress`, [`MEC-005`](../../priorities/master-equation-closure/work-queue.md#mec-005--pairwise-causal-root-ledger-closure) is `Queued`, and [`MEC-004`](../../priorities/master-equation-closure/work-queue.md#mec-004--same-update-conserved-accounts) is `Deferred / blocked` | Derive the balance law and account maps on the same accepted MEC-002 update, bind every root and boundary debit through MEC-005 without double booking, and require all three MEC-004 accounts to close under independent checks on the same retained branch. | Open. No conservation or mass-shell authority follows from the current residual grammar, and the equation-mapping shell row cannot substitute for the MEC ownership chain. |
+| 6. Does the second-order defect contain more independent harmonics than a scalar denominator family can satisfy? | Lorentz-energy closure packet, status `priority-only`; `EQM-001` remains `Queued` | On the accepted fold-free chart, decompose the complete second-order defect after solving $\boldsymbol\rho_1$ and compare its independent solvability conditions with the available scalar parameters. | Open dimension-count falsifier for the proposed kernel class. |
+| 7. Does the rear-and-self-supported high-drift branch have a nondegenerate limiting orbit? | Shared-record instantiation, status `draft`; deferred within the queued `EQM-001` lane | First establish the local retained translating branch, then continue it with full root inventory and refinement controls toward high drift and test whether a nondegenerate limiting orbit exists. | Deferred. The sharp dichotomy is conditional and currently has no accepted branch on which to operate. |
+
+*Plainly: the seven questions remain in the existing `EQM-001` Lorentz-envelope lane. The routing changes no work-queue status and grants no branch, conservation, mass-shell, or Lorentz authority.*
 
 ---
 

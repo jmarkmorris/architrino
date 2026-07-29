@@ -6,6 +6,8 @@ Status: DRAFT SKELETON, pending authoring (queue item 2) and operator ratificati
 
 One coordinate system for every configuration the program screens or evolves, so that every negative is a statement of the form "no solution in this declared region of the chart" and every candidate is a point or slice with declared coordinates. The chart is what makes the searched-territory record compact and honest.
 
+Research input: [Neutral-Braid Configuration Atlas](../../entourage/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md) proposes a stratified history-groupoid and certified finite-presentation architecture, with exact sharp-root bounds and explicit finite-width-tail authority limits. It is priority-only research guidance; it does not complete this chart or establish retention, stability, physical realization, solver preference, or particle identity.
+
 ## Obligations on the authored version
 
 1. **Shape axes.** Number of architrinos and their polarity assignment; grouping into rings/layers; per-layer radius, axial position, tilt, phase, circulation sense; assembly drift velocity.

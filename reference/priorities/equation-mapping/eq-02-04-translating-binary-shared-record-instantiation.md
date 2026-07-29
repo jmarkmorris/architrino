@@ -8,6 +8,7 @@
 - Common architecture: [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
 - Owned IDs: `EQ-02`, `EQ-03`, `EQ-04`
 - Related downstream ID: `EQ-04A`
+- Review synthesis: [EQ-02 Through EQ-04A Retained Point, Coframe, No-Retune, and Koide](../../entourage/review-packets/eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md)
 - Claim level: derivation/closure target and simulation target
 - Promotion status: priority-only
 
@@ -659,6 +660,8 @@ This rule prevents a common failure mode: treating a numerically coherent attemp
 ### Connection And Holonomy No-Retune Target
 
 The invariant-cell certificate proves shared support. It does not by itself prove no-retune. The no-retune target is stronger: the clock, envelope, two-way signal, energy, momentum, mass-shell, phase, and Noether sea rows must be parallel readings of one connection over the drift branch, not merely separately tuned fibers above the same carrier label.
+
+Research input: [No-Retune Transport Beyond Drift-Only Holonomy](../../entourage/review-packets/elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md) proposes a source-identified, frozen-source held-out transport test and a point-first dependency ladder. It is priority-only research guidance; it does not populate this packet's retained support, branch continuation, connection, or acceptance rows.
 
 Use the one-dimensional drift base
 

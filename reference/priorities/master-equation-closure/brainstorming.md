@@ -19,11 +19,13 @@ the derived obstruction in
 does not define accepted architrino momentum, and is not a corpus or EOM solver
 update.
 
-The derived part is only the endpoint order condition. With
-$z=|D_t|/c_f$, finite accumulated acceleration at exact quadratic coincident
-self-birth requires more-than-quadratic suppression; an analytic maturity
-therefore begins at cubic order. One smallest explicit but unselected
-realization is
+The derived part is only the endpoint integrability condition. On the exact
+quadratic coincident self-birth control,
+$z=|D_t|/c_f=(\alpha/c_f)T$, and finite accumulated acceleration requires
+$M\in L^1((0,L),T^{-3}dT)$. A $T^{2+\delta}$ bound is sufficient but not
+necessary. If maturity is analytic in this exact linear birth coordinate, its
+first nonzero order is at least cubic; cubic is the first possible analytic
+order, not a selected law. One smallest explicit but unselected realization is
 
 $$
 b_{z_\ast}(z)
