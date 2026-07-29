@@ -12,6 +12,14 @@
   same-transmitter transition follows.
 - Promotion: priority-only; no ontology, canon, or EOM solver change is licensed.
 
+Research provenance: [Causal Wake-State Closure Research Findings and Proposed
+Incorporation](../../entourage/review-packets/terence-tao-causal-wake-state-closure-research-findings-and-proposed-incorporation-2026-07-28.md)
+supplies the weighted-integrability correction, representation forks, angular
+identities, well-posedness obligations, and kinetic-account scope used here. It
+is reference evidence only; it selects no constitutive update and establishes
+no conservation law, wake ontology, retained branch, stability, photon Gate B
+result, or EOM solver authority.
+
 ## Finding in plain language
 
 Replacing the future-reception part of the two-time action requires a wake state

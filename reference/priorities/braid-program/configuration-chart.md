@@ -8,6 +8,8 @@ One coordinate system for every configuration the program screens or evolves, so
 
 Research input: [Neutral-Braid Configuration Atlas](../../entourage/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md) proposes a stratified history-groupoid and certified finite-presentation architecture, with exact sharp-root bounds and explicit finite-width-tail authority limits. It is priority-only research guidance; it does not complete this chart or establish retention, stability, physical realization, solver preference, or particle identity.
 
+Family A, Family B, Family C, their members and constrained variants, and every other admitted proposal remain finite ansatz subcharts. The chart adds a common scope-and-provenance overlay; it does not replace the family taxonomy or turn any subchart into an exhaustive classification.
+
 ## Finite-Width Tail Handoff
 
 `BP-002` owns the scientific and certification question for any omitted
@@ -55,6 +57,13 @@ diagnostic authority.
 3. **Field-speed structure.** For each configuration, whether any worldline's retained history reaches field speed (self-hit channel open or closed) is a chart-level label, because it partitions the physics and the instrument requirements.
 4. **Polarity structure.** Net polarity, polarity-conjugate relations between members, and (where three-dimensional retained order exists) the pro/anti orientation label — using the canon two-label discipline in `content/markdown/aaa/archie/terminology-usage.md`.
 5. **Chart-to-instrument contract.** For each axis: which instrument can vary it, which holds it frozen. A frozen axis in the instrument is a scoping clause in every verdict.
+6. **Scope-and-provenance overlay.** For every admitted subchart, record its source and scope; histories and prehistory; declared architrino and ambient inventory; boundary and tail status; free and frozen coordinates; discrete choices; record-preserving symmetry assumptions; numerical representation, resolution, and approximation status; topology closure convention; and whether collision, causal-root-fold, field-speed, matching, or stabilizer-change strata are excluded, crossed, or unresolved. Type derived diagnostics separately from inputs. Declare the expressible domain, the actually evaluated domain, and the separately coverage-certified domain with exclusions and abstentions. A finite scan cannot support a family-level negative without a separate coverage proof over the exact stated domain.
+
+## Minimal completion sequence
+
+1. Inventory the admitted family and campaign subcharts without changing their definitions.
+2. Attach one scope-and-provenance overlay row to each subchart.
+3. Submit the chart for ratification only after every admitted campaign family has explicit coordinates, frozen axes, exclusions, ownership, and a reviewable coverage boundary.
 
 ## Open questions for the authoring pass
 

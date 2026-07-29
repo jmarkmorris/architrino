@@ -719,7 +719,13 @@ T^A_u
 de^A_u+\omega^A{}_{B,u}\wedge e^B_u.
 $$
 
-In the primitive homogeneous cell, the expected torsion row is $T^A_u=0$. In dressed wake-tail or self-hit-asymmetric rows, nonzero $T^A_u$ becomes a falsifiable wake-tail invariant rather than an unnamed residual.
+In the current producer, both zero and nonzero values of the field labeled
+$T^A_u$ remain diagnostic: zero is a negative-control guardrail, while a
+dressed wake-tail or self-hit-asymmetric nonzero value is only a source-side
+defect observable. Neither is Cartan torsion, nor may a nonzero value be called
+a wake-tail invariant, until a soldered geometry gives the displayed
+expression its geometric basis. The phase-holonomy field likewise remains
+diagnostic until a source-derived phase-return conjugacy class is defined.
 
 The coframe construction has a hard forbidden-input declaration. It may reference $c_f$, $u$, $\mathcal L_{\mathrm{root}}(u)$, $\mathcal L_{\mathrm{wake}}(u)$, and retained boundary history. It may not reference $\gamma_f(u)$, the Lorentz target coefficients, the shell residual, or any fitted clock/envelope row as an input. Under this discipline, $\gamma_f$ can be compared only after the coframe is built.
 
