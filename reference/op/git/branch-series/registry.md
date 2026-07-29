@@ -13,8 +13,8 @@ Dakota becomes `codex/north-dakota`.
 
 | Order | Series | Count | Registry file | Status |
 | ---: | --- | ---: | --- | --- |
-| 1 | Periodic table elements | 118 | Canonical element order in [codex-pr-branch.md](../codex-pr-branch.md) | consumed |
-| 2 | IAU planets | 8 | Canonical planet order in [codex-pr-branch.md](../codex-pr-branch.md) | consumed |
+| 1 | Periodic table elements | 118 | [elements.md](elements.md) | consumed |
+| 2 | IAU planets | 8 | [planets.md](planets.md) | consumed |
 | 3 | Moons in our solar system | 43 | [moons.md](moons.md) | consumed |
 | 4 | Minerals and gemstones | 48 | [minerals-gemstones.md](minerals-gemstones.md) | active |
 | 5 | NASA space missions and probes | 64 | `nasa-space-mission-branch-registry.md` | pending |
