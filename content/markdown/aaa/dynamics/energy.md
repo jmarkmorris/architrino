@@ -348,7 +348,7 @@ For reaction or radiation events, energy can leave the source assembly as photon
 
 This is a boundary-accounting idea, not a new energy reservoir. If a wake leaves the chosen local window before any retained receiver crosses it, the local work ledger cannot spend that wake internally. The accounting must therefore mark it as escaped flux, recoil, boundary exchange, or another declared handoff rather than hiding it inside the local assembly.
 
-For a finite local window $W\subset\Sigma_T$, **wake escapement** is the subset of emitted causal isochrons that exit the retained window without intersecting any retained receiver inside that window. More explicitly, if architrino $a$ emits at $T_t$, define the causal isochron at later time $T$ by
+For a finite local window $W\subset\Sigma_T$, the **wake-escapement diagnostic set** is the set of emitted causal isochrons whose first retained boundary crossing occurs before any retained receiver intersection inside that window. More explicitly, if architrino $a$ emits at $T_t$, define the causal isochron at later time $T$ by
 
 $$
 C_a(T;T_t)
@@ -376,6 +376,14 @@ T_t<T_r<T_{\partial W},
 \quad
 \mathbf X_b(T_r)\in C_a(T_r;T_t)
 $$
+
+This isochron-level set is an earliest-crossing diagnostic, not a measure of
+the escaped fraction of a wake. When only some surface sectors cross
+$\partial W$, or when retained receivers intersect other sectors, quantitative
+escapement is the surface-resolved boundary flux through $\partial W$, with a
+declared solid-angle or surface partition when needed. A receiver intersection
+records local work; it does not imply depletion or absorption of the remaining
+isochron unless that mechanism is separately derived from the action.
 
 Wake escapement is therefore a finite-window boundary classification, not a new substance in the Euclidean void. It names the portion of causal-wake history that cannot be balanced by local receiver work because no local receiver intercepted it. In a contracting binary, the persistent positive tangential drive identified in [Binary Dynamics](binary-dynamics.md#tangential-drive-and-wake-escapement) should be read against this boundary ledger: particle kinetic gain, local interaction-energy change, recoil, and escaped wake flux are parts of one balance law.
 

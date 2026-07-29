@@ -1762,6 +1762,13 @@ The instantaneous mechanical momentum is:
 $$
 \mathbf{P}_{\text{mech}}(T) = \sum_{i} \mu_{\text{arch}} \mathbf V_i(T)
 $$
+This is the mechanical momentum of the optional quadratic kinetic proxy. On a
+general primitive kinetic-scalar chart, each
+$\mu_{\text{arch}}\mathbf V_i$ is replaced by the declared conjugate momentum
+$\mathbf p_i=P(\|\mathbf V_i\|)\hat{\mathbf V}_i$, with
+$P'(s)=K'(s)/s$ as specified in [Energy](energy.md#kinetic-energy-and-momentum-of-a-single-architrino).
+Neither construction assigns primitive mass to an architrino.
+
 Because of the delay, $\frac{d}{dT}\mathbf{P}_{\text{mech}} \neq 0$ generally.
 
 #### Conservation Target (Total Momentum Functional)

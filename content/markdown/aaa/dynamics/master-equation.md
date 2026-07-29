@@ -4949,6 +4949,13 @@ The delayed theory separates ordinary mechanical motion from the causal-wake his
 $$
 \mathbf{P}_{\text{mech}}(T) = \sum_i \mu_{\text{arch}} \mathbf V_i(T)
 $$
+This is the mechanical momentum of the optional quadratic kinetic proxy. On a
+general primitive kinetic-scalar chart, each
+$\mu_{\text{arch}}\mathbf V_i$ is replaced by the declared conjugate momentum
+$\mathbf p_i=P(\|\mathbf V_i\|)\hat{\mathbf V}_i$, with
+$P'(s)=K'(s)/s$ as specified in [Energy](energy.md#kinetic-energy-and-momentum-of-a-single-architrino).
+Neither construction assigns primitive mass to an architrino.
+
 Because the accelerations are delayed, $d\mathbf{P}_{\text{mech}}/dT$ is generally nonzero.
 
 **Definition (Wake momentum functional).** For an isolated system, define
