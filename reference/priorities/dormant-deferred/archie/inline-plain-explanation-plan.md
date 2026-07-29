@@ -14,7 +14,7 @@ Operator decisions:
 
 Three mechanisms produced summaries instead of inline explanation:
 
-1. The Bright First Reader pattern (`bright5`) in [academic-style-guide.md](../../../content/markdown/aaa/archie/academic-style-guide.md) is a textbook *section-entry ordering* rule. It governs how a corpus section introduces ideas; it says nothing about agent-to-operator communication, so invoking it in chat produced inconsistent results.
+1. The Bright First Reader pattern (`bright5`) in [academic-style-guide.md](../../../../content/markdown/aaa/archie/academic-style-guide.md) is a textbook *section-entry ordering* rule. It governs how a corpus section introduces ideas; it says nothing about agent-to-operator communication, so invoking it in chat produced inconsistent results.
 2. The AP-STEM guidance was captured as an *end-of-response recap* requirement. Agents complied literally: full jargon-dense analysis, one accessible paragraph at the end.
 3. AGENTS.md's comprehension bullet ("plain language before the mathematics; define terms in one clause") is a soft rule surrounded by hard, checkable rules (`Closure goal:` line, claim grading, falsifiers). Agents satisfy the checkable rules and discharge the soft one with topic sentences. Nothing anywhere requires *interleaved* explanation, so none appears.
 
@@ -45,7 +45,7 @@ Create `reference/op/operator-explanation-standard.md` as the single detailed au
 ### 1. Create the owner document
 
 - Write `reference/op/operator-explanation-standard.md` with the content above.
-- Add it to the procedure index in [reference/op/README.md](../../op/README.md).
+- Add it to the procedure index in [reference/op/README.md](../../../op/README.md).
 
 ### 2. Wire into AGENTS.md
 
@@ -58,12 +58,12 @@ Keep the existing one-clause-definition rule; it is subsumed but harmless as rei
 
 ### 3. Wire into the Codex template
 
-In [codex-goal-seeking-prompt-template.md](../../op/codex-goal-seeking-prompt-template.md):
+In [codex-goal-seeking-prompt-template.md](../../../op/codex-goal-seeking-prompt-template.md):
 
 - Operator/Developer Communication section: replace the plain-language bullets with the unit rule, cadence rule, and pointer to the standard.
 - Reporting section: state that milestone and completion reports follow the operator-explanation standard, so dispatched Codex threads inherit it without the operator re-asking.
 
-Check [codex-multiprompt.md](../../op/codex-multiprompt.md) and [entourage-prompt-template.md](../../op/entourage-prompt-template.md) for parallel communication sections and apply the same pointer if present.
+Check [codex-multiprompt.md](../../../op/codex-multiprompt.md) and [entourage-prompt-template.md](../../../op/entourage-prompt-template.md) for parallel communication sections and apply the same pointer if present.
 
 ### 4. Remove bright5 (full inventory, verified 2026-07-24)
 

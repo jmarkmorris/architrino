@@ -219,7 +219,7 @@ If a cluster cannot be understood without private prompt text, the report should
 
 ## Regression Fixtures
 
-The current schema-only service scaffold includes [issue-mining-sandbox.v1.json](../../../tests/archie-service/fixtures/issue-mining/issue-mining-sandbox.v1.json) and [validate-issue-mining-sandbox.mjs](../../../scripts/archie-service/validate-issue-mining-sandbox.mjs). These fixtures cover manifest-derived issue signals, unsubmitted draft exclusion, unsupported source gaps, private-material exclusion, stale-terms blocks, ambiguous owner routing, source-authority fixture candidates, safe receipt id linkage, action-preflight inheritance, report clusters, noise summaries, owner fix queues, no hidden GitHub writes, and no private prompt expansion.
+The current schema-only service scaffold includes [issue-mining-sandbox.v1.json](../../../../tests/archie-service/fixtures/issue-mining/issue-mining-sandbox.v1.json) and [validate-issue-mining-sandbox.mjs](../../../../scripts/archie-service/validate-issue-mining-sandbox.mjs). These fixtures cover manifest-derived issue signals, unsubmitted draft exclusion, unsupported source gaps, private-material exclusion, stale-terms blocks, ambiguous owner routing, source-authority fixture candidates, safe receipt id linkage, action-preflight inheritance, report clusters, noise summaries, owner fix queues, no hidden GitHub writes, and no private prompt expansion.
 
 The future implementation should include issue-mining fixtures for:
 

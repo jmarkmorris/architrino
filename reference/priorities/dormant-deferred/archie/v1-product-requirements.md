@@ -223,7 +223,7 @@ Hosted-service terms, account policy, token/subscription notices, generated-medi
 
 The contract controls:
 
-1. links between the hosted service and the public [Legal Terms](../../../content/markdown/aaa/archie/legal-terms.md) page;
+1. links between the hosted service and the public [Legal Terms](../../../../content/markdown/aaa/archie/legal-terms.md) page;
 2. service terms, privacy notices, token/subscription terms, generated-media terms, GitHub handoff notices, saved-notebook terms, support routes, abuse controls, and terms-change notices;
 3. terms-version and acceptance state needed before paid, durable, retained, public, generated-media, or credentialed actions;
 4. auto-fund, refunds, cancellation, failed payment, cap changes, and no-proof-authority behavior;
@@ -783,7 +783,7 @@ Pass conditions:
 Pass conditions:
 
 - service terms behavior follows [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md);
-- the hosted service links to the public [Legal Terms](../../../content/markdown/aaa/archie/legal-terms.md) page;
+- the hosted service links to the public [Legal Terms](../../../../content/markdown/aaa/archie/legal-terms.md) page;
 - service terms, privacy notice, token/subscription terms, generated-media terms, GitHub handoff notice, saved-notebook terms, support/refund route, abuse policy, and terms-change notice exist;
 - provider data-use notices and provider terms state exist for provider-backed features;
 - terms-version and acceptance state are available to validators without exposing private prompt text;

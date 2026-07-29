@@ -8,6 +8,17 @@ Despite the filename, this document is not only a usage sheet in the narrow copy
 
 Use this document alongside [academic-style-guide.md](./academic-style-guide.md), [mathematics-style-guide.md](./mathematics-style-guide.md), [mathematics-terminology.md](./mathematics-terminology.md), and [comparative-glossary.md](./comparative-glossary.md).
 
+## Canon Ownership and Precedence
+
+The four references overlap by design but do not have equal ownership of the same question:
+
+1. [Mathematics Style Guide](./mathematics-style-guide.md) owns formal equation construction, notation layers, TeX form, and mathematical presentation.
+2. [Mathematical Terminology](./mathematics-terminology.md) owns canonical cross-chapter symbols and their sole meanings.
+3. This document owns reader-facing term selection, level-qualified usage, and terminology rationale.
+4. [Comparative Glossary](./comparative-glossary.md) is a translation aid between frameworks. It does not override native terminology or mathematical symbol canon.
+
+When two references appear to conflict, apply the owner above and repair the non-owner. A chapter-local definition may specialize an unreserved symbol, but it may not silently redefine a canonical glyph or term.
+
 ## Core Principle
 
 Choose terms by ontological level.
@@ -59,7 +70,7 @@ Sentence guidance:
 
 Use `ledger` for the $\mathbb{A}\mathbb{A}\mathbb{A}$ accounting structure that keeps related readouts, sources, carriers, and response terms tied together. A ledger is not just a data table; it is the named bookkeeping structure that lets the theory say which quantities belong to the same retained causal history or Noether sea response.
 
-Use `ledger entry` for a specific channel inside that shared accounting structure. Avoid `row` in reader-facing prose unless the word literally means a table row or layout row. In explanatory app language, name the entry, contribution, record, or channel directly.
+Use `ledger entry` for a specific channel inside that shared accounting structure. Bare, unqualified `row` is not reader-facing terminology. A qualified row term is acceptable only when the subject is literally a data, table, coefficient, support, or protocol row and the row structure matters. Otherwise name the entry, contribution, record, or channel directly.
 
 `Record` and `ledger` are a ratified level distinction, not synonyms. Use `record` (specifically `path-history record`, `the record`) for the ontic history itself at the substrate level: the worldlines, polarities, and identities that constitute the complete state, including the causal-wake structure those worldlines fix. Use `ledger` for the accounting kept against that record: the bookkeeping structure of entries for energy, momentum, angular momentum, polarity count, and response terms whose balances are computed from the record. The record is ontology; the ledger is bookkeeping about it. Ledger entries are functionals of the record, not automatically independent contents carried by a wake; the substrate-level development of this distinction is [Information and the Wake](../philosophy-history/information-and-the-wake.md).
 
@@ -283,7 +294,7 @@ Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space
 
 ## Noether Braid Usage
 
-Use `Noether braid` as the canonical reader-facing term for the neutral six-architrino assembly scaffold made from three electrinos and three positrinos. It names the retained six-worldline branch and its causal-return ledger before an exact three-binary decomposition or any family-member coordinates have been certified.
+Use `Noether braid` as the canonical reader-facing term for a neutral braided assembly scaffold. The base, Family-A, and Family-B inventories contain six architrinos in three neutral binaries; Family C contains twelve architrinos in six neutral binaries. The term names the retained top-level branch and its causal-return ledger before an exact family member or coordinate record has been certified.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |

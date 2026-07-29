@@ -25,7 +25,7 @@ The product may support an $\mathbb{A}\mathbb{A}\mathbb{A}$-native explanatory s
 
 The System Card is the public status sphere for Archie. It should be linked from the Archie sphere and from any public question interface. It collects:
 
-- the [Closure Scorecard](../../../content/markdown/aaa/validation/closure-scorecard.md);
+- the [Closure Scorecard](../../../../content/markdown/aaa/validation/closure-scorecard.md);
 - validation protocols, failure criteria, known tensions, no-go constraints, and parameter status;
 - source-authority policy for answers;
 - enabled input modes: typed questions, speech, and image-grounded questions;

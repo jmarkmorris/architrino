@@ -7,7 +7,7 @@
 - Claim level: `priority-only`
 - Parent priority: [priorities.md](priorities.md)
 - Assistant contract: [assistant-mode-contract.md](assistant-mode-contract.md)
-- System Card markdown: [System Card markdown](../../../content/markdown/aaa/archie/system-card.md)
+- System Card markdown: [System Card markdown](../../../../content/markdown/aaa/archie/system-card.md)
 - Service deployment option decision: [service-deployment-option-decision.md](service-deployment-option-decision.md)
 - Service deployment architecture: [service-deployment-architecture.md](service-deployment-architecture.md)
 - Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md)

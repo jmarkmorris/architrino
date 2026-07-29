@@ -6,7 +6,7 @@
 - Status: `draft`
 - Claim level: `priority-only`
 - Parent priority: [Archie](priorities.md)
-- Public legal terms: [Legal Terms](../../../content/markdown/aaa/archie/legal-terms.md)
+- Public legal terms: [Legal Terms](../../../../content/markdown/aaa/archie/legal-terms.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
@@ -24,7 +24,7 @@
 
 This packet defines the service terms and account policy contract for the future token-based Archie question service.
 
-The public [Legal Terms](../../../content/markdown/aaa/archie/legal-terms.md) page already states the general project posture: MIT license, good-faith publication, no warranty, use at your own risk, generated media as explanatory artifacts, and professional public conduct. The hosted Archie service needs a narrower account-service layer on top of that baseline because it may add tokens, subscriptions, auto-fund, account history, saved notebooks, generated media, public GitHub handoff, support routes, and abuse controls.
+The public [Legal Terms](../../../../content/markdown/aaa/archie/legal-terms.md) page already states the general project posture: MIT license, good-faith publication, no warranty, use at your own risk, generated media as explanatory artifacts, and professional public conduct. The hosted Archie service needs a narrower account-service layer on top of that baseline because it may add tokens, subscriptions, auto-fund, account history, saved notebooks, generated media, public GitHub handoff, support routes, and abuse controls.
 
 This packet is not final legal language and is not legal advice. It is the product and platform contract that future legal copy, UI notices, validators, receipts, account surfaces, and launch gates must satisfy before a paid or authenticated Archie service ships.
 
@@ -236,7 +236,7 @@ The future implementation should include service-terms fixtures for:
 Closure goal:
 Turn the Service Terms And Account Policy Contract into terms-version schemas, account acceptance validators, service-term launch gates, token/subscription disclosures, privacy/retention disclosures, public issue notices, and regression fixtures for the Archie service.
 
-Use this packet, [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [corporate-media-standards.md](corporate-media-standards.md), [v1-product-requirements.md](v1-product-requirements.md), and the public [Legal Terms](../../../content/markdown/aaa/archie/legal-terms.md) page as the source of truth.
+Use this packet, [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [corporate-media-standards.md](corporate-media-standards.md), [v1-product-requirements.md](v1-product-requirements.md), and the public [Legal Terms](../../../../content/markdown/aaa/archie/legal-terms.md) page as the source of truth.
 
 Task:
 - Define service terms, privacy notice, provider data-use notice, token/subscription terms, generated-media terms, GitHub handoff notice, saved-notebook/account-history terms, support route, status/incident notice, abuse policy, and terms-change notice.

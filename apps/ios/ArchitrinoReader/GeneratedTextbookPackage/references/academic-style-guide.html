@@ -130,7 +130,7 @@
 <h2 id="preferred-sentence-patterns">Preferred Sentence Patterns</h2>
 <p>Good sentence patterns for this project include:</p>
 <ul>
-<li>“The question is whether…”</li>
+<li>“The question is whether…” only when the sentence introduces a genuinely open, explicitly named closure target</li>
 <li>“The framework treats X as…, while Y is treated as…”</li>
 <li>“What survives is…”</li>
 <li>“The limitation appears when…”</li>
@@ -138,6 +138,20 @@
 <li>“The comparison is strongest at the level of…, and weakest at the level of…”</li>
 </ul>
 <p>These patterns keep the prose analytic and layered.</p>
+<h2 id="claim-grades-and-falsifiers">Claim Grades and Falsifiers</h2>
+<p>Use one fixed label in evidence blocks: <code>Claim grade:</code>. The allowed values are:</p>
+<ul>
+<li><code>derived</code>: follows from declared premises by a shown proof or exact derivation</li>
+<li><code>measured</code>: reported by a named instrument over a declared domain</li>
+<li><code>inferred</code>: a stated conclusion drawn from derived or measured premises, with the extra inference identified</li>
+<li><code>guessed</code>: a candidate interpretation or hypothesis that is not yet derived, measured, or securely inferred</li>
+</ul>
+<p>Every claim block must state an operator-checkable falsifier: the observation that would overturn the claim and the file, instrument, command, or artifact where that observation can be checked. A measured claim also names its instrument, the instrument’s evidence grade, and the boundary of what it can establish. Agreement with a replay, golden output, or same-implementation control is determinism evidence unless an independent reference is named.</p>
+<p>Example:</p>
+<blockquote>
+<p>Claim grade: measured. The independent closed-form root oracle found one simple root on the declared interval. Falsifier: rerun the named oracle artifact and find zero, multiple, or non-simple roots on that same interval.</p>
+</blockquote>
+<p>Use these tags for explicit claim or evidence blocks, not as status flags scattered through ordinary explanatory prose.</p>
 <h2 id="what-to-avoid">What To Avoid</h2>
 <p>Avoid the following unless there is a specific reason to retain them:</p>
 <ul>
@@ -187,9 +201,15 @@
 <li>Use <code>$...$</code> for inline math in prose sentences.</li>
 <li>Use <code>$$...$$</code> only for standalone equations, not for sentence fragments or preview-style summary lines.</li>
 <li>Treat <code>\(...\)</code> and <code>\[...\]</code> as compatibility forms for literal examples or renderer-specific validated cases, not as default authoring syntax.</li>
-<li>Do not place <code>$$...$$</code> inline inside headings, list items, callouts, captions, or notebook summary sentences.</li>
+<li>Do not place <code>$$...$$</code> inline inside headings, list labels, callouts, captions, or running sentences. A list item may introduce a following standalone display equation.</li>
 <li>For inline inequalities or expressions containing <code>&lt;</code> or <code>&gt;</code> in prose, keep them in <code>$...$</code> with spaces, for example <code>$1 &lt; m &lt; n$</code>.</li>
 <li>When a short formula is part of a narrative sentence, prefer one inline expression over a stacked display unless the derivation truly needs display layout.</li>
+</ul>
+<h3 id="links">Links</h3>
+<ul>
+<li>Use relative link targets resolved from the current document.</li>
+<li>Do not use root-absolute deployment paths such as <code>/content/...</code> or machine-local paths such as <code>/Users/...</code>.</li>
+<li>Documents under <code>content/markdown/aaa</code> must not link into <code>reference/priorities</code>; promote or restate the required material inside the reader-facing corpus.</li>
 </ul>
 <h3 id="causal-delay-terminology">Causal-delay terminology</h3>
 <p>Prefer:</p>

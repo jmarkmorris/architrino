@@ -291,7 +291,7 @@ Responses with a Not advanced disposition should return a manifest-shaped refusa
 
 ## Regression Fixtures
 
-The current schema-only service scaffold includes [token-receipt.v1.json](../../../tests/archie-service/fixtures/token-ledger/token-receipt.v1.json), [token-ledger-sandbox.v1.json](../../../tests/archie-service/fixtures/token-ledger/token-ledger-sandbox.v1.json), and [validate-token-ledger-sandbox.mjs](../../../scripts/archie-service/validate-token-ledger-sandbox.mjs). These fixtures cover provider-gateway accounting for normal answer holds/charges/refunds, high-quality speech charges, terms-blocked generated media, provider-cost-map blocks, auto-fund-pending blocks, cap-exceeded blocks, safe provider capability refs, safe terms refs, payment-disabled state, and no private prompt expansion.
+The current schema-only service scaffold includes [token-receipt.v1.json](../../../../tests/archie-service/fixtures/token-ledger/token-receipt.v1.json), [token-ledger-sandbox.v1.json](../../../../tests/archie-service/fixtures/token-ledger/token-ledger-sandbox.v1.json), and [validate-token-ledger-sandbox.mjs](../../../../scripts/archie-service/validate-token-ledger-sandbox.mjs). These fixtures cover provider-gateway accounting for normal answer holds/charges/refunds, high-quality speech charges, terms-blocked generated media, provider-cost-map blocks, auto-fund-pending blocks, cap-exceeded blocks, safe provider capability refs, safe terms refs, payment-disabled state, and no private prompt expansion.
 
 The future implementation should include token/privacy fixtures for:
 

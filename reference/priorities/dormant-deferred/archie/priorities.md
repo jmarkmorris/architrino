@@ -9,12 +9,12 @@
 - ROI: `0.29`
 - Status: `active`
 - Claim level: `priority-only`
-- Primary scene: [Archie scene](../../../content/scenes/archie/archie.json)
-- Main-ring route: [main architecture scene](../../../content/scenes/architrino_assembly_architecture.json)
-- Comics scene: [Comics scene](../../../content/scenes/archie/comics.json)
-- Comics markdown: [Comics markdown](../../../content/markdown/aaa/archie/comics.md)
-- System Card sphere: [System Card scene](../../../content/scenes/archie/system_card.json)
-- System Card markdown: [System Card markdown](../../../content/markdown/aaa/archie/system-card.md)
+- Primary scene: [Archie scene](../../../../content/scenes/archie/archie.json)
+- Main-ring route: [main architecture scene](../../../../content/scenes/architrino_assembly_architecture.json)
+- Comics scene: [Comics scene](../../../../content/scenes/archie/comics.json)
+- Comics markdown: [Comics markdown](../../../../content/markdown/aaa/archie/comics.md)
+- System Card sphere: [System Card scene](../../../../content/scenes/archie/system_card.json)
+- System Card markdown: [System Card markdown](../../../../content/markdown/aaa/archie/system-card.md)
 - Assistant contract: [assistant-mode-contract.md](assistant-mode-contract.md)
 - Interface product plan: [interface-product-plan.md](interface-product-plan.md)
 - Interface brainstorming: [interface-brainstorming.md](interface-brainstorming.md)
@@ -25,7 +25,7 @@
 - Service deployment option decision: [service-deployment-option-decision.md](service-deployment-option-decision.md)
 - Service deployment architecture: [service-deployment-architecture.md](service-deployment-architecture.md)
 - Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md)
-- Runtime files to inspect: [AppSceneChromeRuntime](../../../src/runtime/AppSceneChromeRuntime.js), [ArchitrinoSceneAppRuntime](../../../src/apps/architrino/ArchitrinoSceneAppRuntime.js), and [index.html](../../../index.html)
+- Runtime files to inspect: [AppSceneChromeRuntime](../../../../src/runtime/AppSceneChromeRuntime.js), [ArchitrinoSceneAppRuntime](../../../../src/apps/architrino/ArchitrinoSceneAppRuntime.js), and [index.html](../../../../index.html)
 
 ## Current State
 

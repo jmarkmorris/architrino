@@ -7233,7 +7233,7 @@ $$
 \mathcal R_B^{\mathrm{act}}\big|_W
 $$
 
-The same row set must also use the same regularization $\eta$, coupling tolerance $\epsilon_c$, endpoint convention, branch identity, and characteristic-tail kernel. Only then may the angular-momentum residual be evaluated as
+The same row set must also use the same regularization $\eta$, coupling tolerance $\epsilon_c$, endpoint convention, branch identity, and accepted motion-plus-wake update. Only then may the angular-momentum residual be evaluated as
 
 $$
 \mathcal R_{\mathbf J}^{B}
@@ -7253,7 +7253,7 @@ $$
 }
 $$
 
-The first proof step is to differentiate $\mathbf J_{\mathrm{mech}}^B+\mathbf J_{\mathrm{wake}}^B$ on $W$ and match the torque sum to the normalized wake-history boundary increment emitted by the same regularized action kernel. If any term is evaluated on a different retained row set, endpoint convention, or characteristic-tail kernel, the scalar $\hbar$ partition is only a diagnostic partition, not a conserved angular-momentum certificate.
+The first proof step is to differentiate $\mathbf J_{\mathrm{mech}}^B+\mathbf J_{\mathrm{wake}}^B$ on $W$ and match the torque sum to the wake-history boundary increment derived from the same accepted motion-plus-wake update. If any term is evaluated on a different retained row set, endpoint convention, or update, the scalar $\hbar$ partition is only a diagnostic partition, not a conserved angular-momentum certificate.
 
 The conservation result for this branch is therefore explicit:
 

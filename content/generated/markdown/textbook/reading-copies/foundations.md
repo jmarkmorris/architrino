@@ -94,6 +94,7 @@ Many projections also need regularity. A reconstruction or projection map is loc
 |:---|:---|:---|:---|
 | $\kappa_{\mathrm{hit}}>0$ | causal-root chart | fold, caustic, or root-count transition | [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#causal-time-map-and-root-topology) |
 | $\sin\theta_{\min}>0$ | ordered-tuple frame construction | collinear or ill-conditioned basis | [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#reconstruction-existence-lemma) |
+| positive framing-conditioning floor | framed self-linking and chirality projection | framing slip, unresolved fold contact, or suspended chirality label | [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality) |
 | $\omega_{\min}>0$ or $\lambda_{\min}(G_a)\ge\lambda_{\min}^{\mathrm{ctr}}>0$ | wake-center inverse | insufficient aperture or rank-deficient center fit | [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md#detecting-absolute-rest-the-causal-wake-diagnostic) |
 | $\kappa_{\mathrm{sep}}>0$ | basin separator | unstable, riddled, or unresolved branch partition | [Emergence of Structure](../../../../markdown/aaa/foundations/emergence-of-structure.md#context-as-constraint-on-basin-selection) |
 | $\sigma_{\mathrm{cr}}>0$ | clock/ruler handoff | rank loss or locally multivalued metric export | [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md#absolute-time-global-foliation-and-proper-time) |
@@ -599,6 +600,8 @@ The word **uniformly** is a dynamical normalization statement, not an extra cloc
 
 A rescaling of $T$ is therefore a unit change involving $T_0$, $L_0$, $c_f$, and the coupling normalizations. It is not a second physical freedom to choose a different flow of time. Constancy of $c_f$ together with form-invariance of the receiving law pins $T$ to its affine class; a smooth nonlinear reclock $T\mapsto\phi(T)$ would introduce time-dependent propagation and derivative factors, so $\operatorname{Diff}^+(\mathbb{R})$ is not a substrate symmetry.
 
+The [constant-time emission measure](../../../../markdown/aaa/foundations/architrino.md#constant-time-emission-measure-postulate), $dT_t$ with motion-independent per-wavefront amplitude, supplies a second consistency condition on that same affine parameter. Under a nonlinear reclocking, the emission density would acquire a time-dependent Jacobian. This condition does not furnish another primitive clock or remove the remaining overall unit rescaling.
+
 After that scale fixing, the remaining freedom is only translation by $b$. The background time line is therefore best understood as a principal homogeneous space for $(\mathbb{R},+)$: it has a global orientation and duration scale, but no marked origin. This makes the conventional status of $T=0$ precise without weakening the physical status of the affine scale chosen by the receiving law.
 
 ### Time Implementation Ladder
@@ -786,7 +789,7 @@ $$
 $$
 where $I$ is an interval and $T$ is **strictly increasing** with respect to the time orientation.
 
-**Key property:** Worldlines are **graphs over $T$**: each worldline is a map $T\mapsto\mathbf X(T)$ on its interval, so there is no admissible parametrization in which $T$ decreases, and closed timelike curves and backward segments are excluded by construction. Branching, when it occurs, is **deterministic multistability in the dynamics** (multiple coexisting attractors), not a splitting of the time parameter itself.
+**Key property:** Worldlines are **graphs over $T$**: each worldline is a map $T\mapsto\mathbf X(T)$ on its interval, so there is no admissible parametrization in which $T$ decreases, and closed timelike curves and backward segments are excluded by construction. Branching, when it occurs, is **deterministic multistability in the dynamics**: the complete history state selects among dynamically admitted branches, while an attractor description is reserved for a declared retained subsystem with established contraction and exported-flux accounting. This is not a splitting of the time parameter itself.
 
 ### Causality and Finite Propagation Speed
 
@@ -1293,7 +1296,7 @@ h_{ij}(T)=a_{\mathrm{eff}}^2(t_{\mathrm{eff}})\delta_{ij}
 $$
 for the Euclidean void. The substrate spatial metric remains $h_{ij}=\delta_{ij}$, flat and unchanging. Any effective cosmological expansion factor belongs to observer-level metric reconstruction.
 
-The no-expanding-void commitment creates a specific observational burden. Any medium-and-observer redshift mechanism must still recover the tested expansion signatures normally carried by an FRW scale factor: the Tolman surface-brightness scaling $B_{\mathrm{obs}}\propto(1+z)^{-4}$ after the declared distance map is applied, supernova light-curve time dilation $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, and CMB temperature-redshift scaling $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$ in the appropriate thermal record.
+The no-expanding-void commitment creates a specific observational burden. Any medium-and-observer redshift mechanism must still recover the tested expansion signatures normally carried by an FRW scale factor: the Tolman surface-brightness scaling $B_{\mathrm{obs}}\propto(1+z)^{-4}$ after the declared distance map is applied, supernova light-curve time dilation $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, CMB temperature-redshift scaling $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$ in the appropriate thermal record, frequency-independent fractional redshift across declared clean spectral-line families, and photon-channel group-delay dispersion below the admitted time-of-flight tolerance.
 
 The mechanism filter is transport rather than loss. Redshift must retune the signal clock rate through Noether sea transport, clock/ruler response, or both. Operationally, an admissible transport redshift is a phase-clock reparametrization of the received signal together with the matching distance and intensity bookkeeping. It is not merely attenuation of amplitude or untracked energy loss. Pure propagation loss can lower received energy, but it does not supply the observed time-dilation or thermal scaling rows. A fixed-void model that supplies redshift only by generic scattering loss, phase degradation, or photon fatigue falls into the excluded tired-light class.
 
@@ -1804,7 +1807,7 @@ c_\gamma
 c_0
 \left[1+O(\epsilon_{\mathrm{LV}})\right]
 $$
-The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost rows missing from the substrate symmetry group, so the seven substrate conservation rows extend to the ten-row observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget.
+The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost generators missing from the substrate dynamical symmetry group, so the seven proved substrate generators participate in a ten-generator observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget. The associated effective energy, momentum, angular-momentum, and boost charges remain closure targets of the same action and history ledger; generator counting alone does not establish their conservation.
 It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
 $$
 \frac{R_{\parallel}}{R_{\perp}}
@@ -1934,6 +1937,10 @@ $$
 $$
 The shell series converges in $L^2$ and almost surely by the standard square-summable fluctuation criterion. Thus a homogeneous locally neutral Noether sea record supplies a convergent receiver-centered exhaustion under these assumptions. This result does not prove convergence for arbitrary inhomogeneous or coherent far populations. A coherent far dipole texture, long-range orientational correlation, or anisotropic source family can defeat vector cancellation even when scalar polarity neutrality holds. Every coherent assembly, anisotropic source family, or long-range correlated medium feature on top of the background must supply its own shielding, screening, finite active horizon, or explicit subtraction prescription before its many-source wake sum is treated as closed.
 
+The first inhomogeneous obligation is isolated in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md). For a weak density gradient $\rho_{\mathrm{NS}}=\rho_0+\mathbf g_\rho\cdot\mathbf X+\cdots$, the neutral-cell multipole and the conditional shell mean must be derived and shown convergent. The homogeneous variance theorem therefore does not by itself imply an acceleration proportional to $-\nabla\rho_{\mathrm{NS}}$, fix the sign or coefficient of a weak-gradient response, or close the gravity, clock, and ruler maps.
+
+Plainly: cancellation in a uniform sea does not determine the response of a tilted sea. That response remains a separate derivation.
+
 These assumptions are not additional ontology. They are the analytic conditions needed for the master equation and simulation approximations to be well-defined on the product background.
 
 ### Relation to Relativistic Spacetime
@@ -2039,18 +2046,18 @@ H_T,
 $$
 where $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
 
-The branch-chart entry is not an observer bookkeeping choice imported into the substrate. $\mathcal{B}_T$ is ontic only insofar as it records which attractor basin, active causal-root labels, and regularization regime the deterministic history $H_T$ actually occupies. A different analyst may choose different coordinates for describing that branch, but cannot choose a different occupied basin without changing $S(T)$ itself.
+The branch-chart entry is not an observer bookkeeping choice imported into the substrate. $\mathcal{B}_T$ is ontic only insofar as it records the dynamically occupied branch, active causal-root labels, and regularization regime of the deterministic history $H_T$. Where a reduced subsystem has a proved contraction after its exported fluxes are included, the record may also identify its attractor basin. A different analyst may choose different coordinates for describing the branch, but cannot choose a different occupied branch without changing $S(T)$ itself.
 
-**Deterministic evolution and basin selection**
+**Deterministic evolution and branch selection**
 - The delay-differential master equation is deterministic: where the declared branch chart or regularization makes the evolution well posed, a fully specified $\mathbb{U}_{\text{now}}\equiv S(T_\ast)$, including the required path-history and provenance ledger, generates a unique trajectory $S(T)$ for $T>T_\ast$.
-- Apparent branching is multistability, not stochastic evolution: near separatrices, infinitesimal perturbations in initial microstate direct trajectories into different attractor basins.
-- Therefore the correct statement is basin selection under deterministic flow, not a "distribution of allowed configurations" from one exact state.
+- Apparent branching is multistability, not stochastic evolution: near separatrices, infinitesimal perturbations in initial microstate direct trajectories into different stable branch neighborhoods.
+- Therefore the general statement is branch selection under deterministic flow, not a "distribution of allowed configurations" from one exact state. The stronger phrase *attractor-basin selection* is reserved for a declared retained subsystem whose contraction and exported wake, Noether sea, and memory-boundary fluxes have been established.
 
-This is a claim about the exact substrate flow, not about practical prediction. A finite observer may lack the path-history resolution needed to know which basin the system occupies, but that ignorance is inferential. It does not convert a single exact state into many simultaneous ontic futures.
+This is a claim about deterministic selection in the complete history state, not a classification of the exact full flow as dissipative or attracting. A finite observer may lack the path-history resolution needed to know which branch the system occupies, but that ignorance is inferential. It does not convert a single exact state into many simultaneous ontic futures.
 
 **Proper time $\tau$ for physical observers**
 
-Physical clocks are Noether braid assemblies. Their ticks are internal limit-cycle phase advances, so the primary definition is phase extraction, not an arbitrary scalar fit:
+Physical clocks are Noether braid assemblies. Their ticks are internal periodic-branch phase advances, so the primary definition is phase extraction, not an arbitrary scalar fit:
 $$
 d\tau_{\mathcal A}
 =
@@ -2080,7 +2087,7 @@ u^i_{\mathrm{sea,eff}}
 $$
 for the clock worldline $x^i_{\mathcal A,\mathrm{eff}}(t_{\mathrm{eff}})$.
 
-This phase extraction is admissible only on a clock branch whose internal return map retains a hyperbolic attracting limit cycle with a unique rotation number. In plain terms, the assembly must keep returning to the same countable cycle before it can function as a clock. More explicitly, let $P_{\mathcal A}$ be the Poincare return map on the retained clock branch and let $\tilde P_{\mathcal A}$ be a lift of its action on the invariant phase circle. The clock rotation number is
+This phase extraction is admissible only on a clock branch whose internal return map retains a normally hyperbolic invariant cycle with a unique rotation number. In plain terms, the assembly must keep returning to the same countable cycle before it can function as a clock. More explicitly, let $P_{\mathcal A}$ be the Poincare return map on the retained clock branch and let $\tilde P_{\mathcal A}$ be a lift of its action on the invariant phase circle. The clock rotation number is
 $$
 \rho_{\mathcal A}
 =
@@ -2098,7 +2105,7 @@ $$
 \qquad
 \Delta_{\mathrm{Floquet}}^{\perp}(\mathcal A)>0.
 $$
-The certificate condition is open: a normally hyperbolic phase-locked cycle with positive Floquet margin persists under small perturbations of the dressing and retained record, which is why certified clocks are robust standards rather than fine-tuned branches. Loss of this certificate is the clock instance of branch de-certification: the phase coordinate ceases to be single-valued, and $d\tau_{\mathcal A}$ is not exported.
+The certificate condition is open: a normally hyperbolic phase-locked cycle with positive Floquet margin persists under small perturbations of the dressing and retained record, which is why certified clocks are robust standards rather than fine-tuned branches. This certificate establishes transverse persistence on the retained clock branch; it does not by itself prove contraction of the complete history flow. The stronger word *attracting* applies only after a declared reduced clock subsystem includes the wake, Noether sea, and memory-boundary fluxes crossing its retained boundary and proves the required contraction. Loss of the clock certificate is the clock instance of branch de-certification: the phase coordinate ceases to be single-valued, and $d\tau_{\mathcal A}$ is not exported.
 
 The same condition has a memory-boundary form. A valid clock branch must replay the retained path-history window over one return, so that the memory-corrected symplectic flux has no secular remainder:
 $$
@@ -2181,6 +2188,29 @@ O\!\left(
 O(\epsilon_{\mathrm{chart}})
 $$
 Here $D_{\mathrm{br}}$ denotes transport along the retained branch-label flow and $\epsilon_{\mathrm{chart}}$ collects declared chart and regularization remainders. This is not yet a proof of universality; it states the topological route by which a single dressing map could move every admitted clock and ruler branch together.
+
+The topological route also needs a spectral separation condition. Primitive-wake commonality alone does not imply one effective clock/ruler channel. Let $\Delta_{\mathrm{sea,gap}}>0$ be the lowest frequency gap from the shared long-wavelength Noether sea sector to any other collective sector that couples to the admitted clock and ruler branches, and let $\omega_{\mathrm{test}}$ be the highest frequency in the declared comparison regime. The single-sector reduction requires
+$$
+\frac{\omega_{\mathrm{test}}}{\Delta_{\mathrm{sea,gap}}}
+\ll
+1
+$$
+and can be organized schematically as
+$$
+\epsilon_{\mathrm{univ}}
+\le
+\epsilon_{\mathrm{intra}}
++
+\epsilon_{\mathrm{mix}}
+\left(
+\frac{\omega_{\mathrm{test}}}{\Delta_{\mathrm{sea,gap}}}
+\right),
+\qquad
+\lim_{r\to0}\epsilon_{\mathrm{mix}}(r)=0,
+$$
+where $\epsilon_{\mathrm{intra}}$ is the connected-moduli commutator and chart remainder above, while $\epsilon_{\mathrm{mix}}$ measures contamination by the gapped sectors. This is a conditional reduction target, not an automatic consequence of one microscopic law. A second gapless sector with a nonzero species-dependent leading coupling makes $\Delta_{\mathrm{sea,gap}}=0$ for this purpose and structurally defeats this route to clock universality.
+
+Plainly: common microscopic ingredients are not enough. The tested clocks and rulers must share one low-frequency medium response, while every competing response either decouples or remains above the tested frequency band.
 
 This is the clock-side analogue of the mass-map universality residual $\mathcal R_{\alpha}$ in [Energy](../../../../markdown/aaa/dynamics/energy.md#emergent-inertia-mass-from-shielded-energy). Both are flatness conditions over the connected component of realized assembly moduli: $\epsilon_{\mathrm{univ}}$ tests whether clock and ruler functionals $(A,B_{ij})$ are transported together, while $\mathcal R_{\alpha}$ tests whether the exposed inertial coefficient is transported together. If compared species lie in one connected dressed certified-braid component, the two residuals should be controlled by the same holonomy and chart remainders. If they lie in disconnected assembly topological charge sectors, composition-dependent clock leakage and mass-map non-universality can become one inter-class obstruction rather than two unrelated failures.
 
@@ -2367,7 +2397,40 @@ B_{ij}\xi^i\xi^j>0
 \quad
 \text{for }\xi\ne0
 $$
-These inequalities have a physical meaning. $A>0$ says the declared clock phase remains monotone in absolute time, so the branch still supplies a usable clock. Positive-definite $B_{ij}$ says the local ruler/signal compliance remains an ordinary spatial quadratic form, so one observer-level light cone can be exported from the branch. The handoff fails when a stable clock limit cycle is lost, when a separator or branch-chart transition makes the causal-root ledger discontinuous, when a Jacobian floor collapses, or when a strong-field channel becomes dispersive, birefringent, or multi-valued enough that no single $B_{ij}$ represents the local response. In those regimes the effective metric description is suspended and the analysis must return to finite branch data, as in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#causal-root-ledger-progression-as-a-lorentz-prediction) and the strong-field continuation criteria in [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md).
+These inequalities have a physical meaning. $A>0$ says the declared clock phase remains monotone in absolute time, so the branch still supplies a usable clock. Positive-definite $B_{ij}$ says the local ruler/signal compliance remains an ordinary spatial quadratic form, so one observer-level light cone can be exported from the branch. The handoff fails when a certified clock cycle is lost, when a separator or branch-chart transition makes the causal-root ledger discontinuous, when a Jacobian floor collapses, or when a strong-field channel becomes dispersive, birefringent, or multi-valued enough that no single $B_{ij}$ represents the local response. In those regimes the effective metric description is suspended and the analysis must return to finite branch data, as in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#causal-root-ledger-progression-as-a-lorentz-prediction) and the strong-field continuation criteria in [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md).
+
+**Conditional uniform-flow affine-equivalence lemma.** Suppose that, on one comparison window, $A$ is a positive constant, $B_{ij}$ is a constant symmetric positive-definite matrix, and $u^i_{\mathrm{sea,eff}}$ is constant. Suppose also that every admitted clock, ruler, and signal in that window couples only through this same effective handoff. Choose a constant matrix $L^a{}_i$ satisfying
+$$
+B_{ij}
+=
+\delta_{ab}L^a{}_iL^b{}_j
+$$
+and define
+$$
+t'_{\mathrm{eff}}
+=
+A\,t_{\mathrm{eff}},
+\qquad
+y^a_{\mathrm{eff}}
+=
+\frac{1}{c_0}
+L^a{}_i
+\left(
+x^i_{\mathrm{eff}}
+-
+u^i_{\mathrm{sea,eff}}t_{\mathrm{eff}}
+\right).
+$$
+The handoff then becomes
+$$
+d\tau^2
+=
+dt_{\mathrm{eff}}'^2
+-
+\delta_{ab}\,dy^a_{\mathrm{eff}}dy^b_{\mathrm{eff}}.
+$$
+
+Plainly: a uniform sea flow with constant universal clock, ruler, and signal response is removable from the effective record by an affine coordinate change. This lemma does not remove the substrate preferred frame or establish universality. It localizes observable preferred-frame leakage to gradients or time dependence in the sea record, dispersion, non-universal assembly coupling, or channels not captured by the single metric handoff.
 
 Equivalently, the metric handoff is a local-invertibility claim. Let the reduced clock/ruler branch map be written schematically as
 $$
@@ -2585,6 +2648,8 @@ G_a=\sum_k w_k\,\hat{\mathbf{n}}_k\hat{\mathbf{n}}_k^{T}
 $$
 The finite-aperture inverse is accepted only when $\lambda_{\min}(G_a)\ge\lambda_{\min}^{\mathrm{ctr}}>0$ on the reconstruction window, or when an equivalent continuous-support bound is supplied. A direction cloud concentrated in a small cap or nearly planar arc is rank-deficient in the same way that a near-collinear tuple is rank-deficient in frame construction. Thus $\omega_{\min}$, the basis floor $\sin\theta_{\min}$, separatrix regularity, and the causal-root transversality floor $\kappa_{\mathrm{hit}}$ are all instances of one non-degeneracy requirement: the retained reconstruction map must have a bounded local inverse on the chart being used.
 
+A future finite reconstruction must fail closed, returning no absolute-rest verdict, when transmitter tags are absent, $\omega_a<\omega_{\min}$, or the declared rank floor fails. These are implementation acceptance conditions for a reconstruction that does not yet exist, not evidence supplied by the complete-state injectivity lemma itself; executable negative controls belong with that implementation when it is built.
+
 For a target architrino $a$ and emission interval $I$, define the transmitter-tagged center set
 $$
 Z_a(I)=\{\mathbf Z_a(T_t):T_t\in I\}
@@ -2646,7 +2711,9 @@ This prevents the preferred-frame claim from being empty inside the formal ontol
 
 #### Conservation-Law Counting as a Frame Diagnostic
 
-The absolute frame also leaves a fingerprint in pure bookkeeping: the number of continuous conservation rows the substrate supports. The [proved invariance group of the Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group) is time translation plus the Euclidean motions of the void, one time translation, three space translations, and three rotations, yielding exactly seven continuous rows: energy, three of momentum, and three of angular momentum. Newtonian mechanics with Galilean invariance supports ten rows, the boosts supplying the center-of-mass theorem, and relativistic mechanics supports the ten rows of the Poincare group. The substrate count is seven, not ten, because boosts are not substrate symmetries: $c_f$ anchors a preferred frame, and the three missing boost rows are that frame's signature expressed as absent theorems rather than as any measured velocity. Counting conservation laws is therefore a frame-detection diagnostic in its own right, complementary to the concentricity test. The Lorentz-recovery program carries the corresponding obligation: the three missing boost rows must re-emerge as part of the effective ten-row structure in [Theorem G](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), with the conservation-accounting side of the seven substrate rows surveyed in [Information and the Wake](../../../../markdown/aaa/philosophy-history/information-and-the-wake.md).
+The absolute frame also leaves a fingerprint in the dynamical symmetry group. The [proved invariance group of the Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group) is time translation plus the Euclidean motions of the void: one time translation, three space translations, and three rotations. It therefore has exactly seven continuous generators. In a symmetry-preserving delayed action, those generators organize one energy-charge target, three momentum-charge targets, and three angular-momentum-charge targets as particle-plus-wake history functionals. The generator count is proved; exact conservation of those seven charges is conditional on deriving them from the same action and closing its history-boundary, wake-ledger, and regularization residuals independently.
+
+Newtonian mechanics with Galilean invariance has three additional boost generators, which supply the center-of-mass theorem once its mass and momentum structure is declared, while relativistic mechanics has the corresponding ten generators of the Poincare group. The substrate count is seven, not ten, because boosts are not substrate symmetries: $c_f$ anchors a preferred frame, and the three missing boost generators are that frame's signature as absent substrate theorems rather than as a measured velocity. Generator counting is therefore a formal frame signature complementary to the concentricity test, not by itself an observer-level detection measurement. The Lorentz-recovery program carries the corresponding obligation: three effective boost generators must join the seven substrate generators in the effective ten-generator structure of [Theorem G](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), while [Information and the Wake](../../../../markdown/aaa/philosophy-history/information-and-the-wake.md) surveys the separate conservation-accounting burden.
 
 ### Ontological Clarifications
 
@@ -2935,11 +3002,11 @@ The closer pedagogical analogy is a population of coupled delayed-feedback oscil
 -   **Absolute time and Euclidean void:** Unlike the Game of Life's grid and time steps, architrinos occupy positions in the Euclidean void indexed by absolute time. Their interactions are not clocked updates; they occur whenever an architrino intersects a causal isochron.
 -   **Delayed causal roots:** The active interaction terms depend on past transmitter positions and, in self-hit regimes, on an architrino's own earlier path. The state needed to evaluate the next motion is therefore path-history dependent rather than Markovian.
 -   **Infinite-range but convergence-controlled coupling:** Causal wake surfaces are not nearest-neighbor links. Their density falls as $1/r^2$, so distant structure can contribute in principle, but inverse-square dilution alone does not make an infinite three-dimensional source sum convergent. A valid branch must also declare the cancellation, screening, finite active horizon, or summation prescription that makes the retained wake sum well-defined.
--   **Emergent assemblies:** Through these continuous delayed interactions, architrinos can self-organize into complex, stable or metastable configurations called **assemblies**. An assembly is not a new primitive; it is an attractor-basin structure of the delay-differential dynamics, comparable in pedagogy to synchronized oscillator clusters, vortices, or soliton-like coherent structures.
+-   **Emergent assemblies:** Through these continuous delayed interactions, architrinos can self-organize into complex, stable or metastable configurations called **assemblies**. An assembly is not a new primitive; it is a retained branch structure of the delay-differential dynamics, comparable in pedagogy to synchronized oscillator clusters, vortices, or soliton-like coherent structures. It becomes an attractor-basin structure only where the reduced assembly flow has the contraction and exported-flux account stated below.
 
-The stability of an assembly is therefore dynamic rather than static. It is not a fixed object held in place by definition. It persists because its trajectory remains inside a stable or metastable attractor basin while all dynamically active wakes continue to balance. It can dissolve, branch, or reconfigure when perturbations or self-hit thresholds push it across a basin boundary.
+The stability of an assembly is therefore dynamic rather than static. It is not a fixed object held in place by definition. It persists because its trajectory remains inside a stable or metastable branch neighborhood while all dynamically active wakes continue to balance. Where reduced-flow contraction has been established, that neighborhood is an attractor basin. The assembly can dissolve, branch, or reconfigure when perturbations or self-hit thresholds push it across the corresponding branch boundary.
 
-This makes persistence a finite-window dynamical statement. For a declared observation window $W$ and surrounding context $c$, an assembly branch persists only while its path-history remains in an admitted stable or metastable basin and the retained causal-root, shielding, and provenance rows continue to close. If those rows fail, the branch has reconfigured or dissolved even when a coarse observer label could still be reused.
+This makes persistence a finite-window dynamical statement. For a declared observation window $W$ and surrounding context $c$, an assembly branch persists only while its path-history remains in an admitted stable or metastable branch neighborhood and the retained causal-root, shielding, and provenance rows continue to close. If those rows fail, the branch has reconfigured or dissolved even when a coarse observer label could still be reused.
 
 ### Context as Constraint on Basin Selection
 
@@ -3055,6 +3122,8 @@ $$
 Here $K_{\mathrm{mech}}$ is the $\mu_{\text{arch}}$-weighted kinetic bookkeeping term from the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md)'s regularized energy diagnostic for the retained architrino degrees of freedom, with assembly-level kinetic entries allowed only as derived ledger summaries after their constituent account is declared. The subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is boundary work, positive for work done on the retained subsystem. The term $E_{\mathrm{sea}}$ records retained Noether sea energy changes.
 
 The no-double-counting rule is explicit: a Noether sea update included in retained $E_{\mathrm{sea}}$ must not also appear as an outgoing row in $Y_{\mathsf e}$, while a Noether sea change exported outside the retained subsystem belongs in $Y_{\mathsf e}$ rather than in retained $E_{\mathrm{sea}}$. If a local potential reconstruction is used, it may replace $E_{\text{wake}}$ as an equivalent work-integral account on the declared window; it must not be added as a second independent energy store without a crosswalk. Radiation, recoil, reaction products, remnant excitation, and unresolved medium updates must be named inside $Y_{\mathsf e}$ and closed through [Reaction Ledger and Channel Closure](../../../../markdown/aaa/validation/reaction-ledger.md) rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
+
+This ledger also separates full-history conservation from reduced assembly behavior. A retained assembly branch can be contractive while a complete particle-plus-wake history ledger is conserved, but that combination is established only when one branch calculation balances its retained mechanical change against $E_{\mathrm{wake}}$, $E_{\mathrm{sea}}$, the declared outgoing channels, and boundary work on the same window. The partner-only positive-work diagnostic does not establish that balance. It identifies an exchange or export contribution that the complete branch calculation must account for.
 
 ### Assembly Theory and Recursion
 

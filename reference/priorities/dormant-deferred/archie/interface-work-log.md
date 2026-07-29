@@ -15,7 +15,7 @@ Use [interface-brainstorming.md](interface-brainstorming.md) for provisional pro
 ### 2026-07-02 - Resume Under Priority-File Partitioning
 
 - Resumed the paused Answer Artifact Manifest / Archie interface lane under the current priority-directory partitioning.
-- Read [../README.md](../README.md), [priorities.md](priorities.md), [interface-brainstorming.md](interface-brainstorming.md), and this work log before editing.
+- Read [../../README.md](../../README.md), [priorities.md](priorities.md), [interface-brainstorming.md](interface-brainstorming.md), and this work log before editing.
 - Current branch at resume check: `codex/galatea`, latest commit `c4a70b775 Refactor corpus and runtime wiring`.
 - Ambient dirty state at resume check was outside this lane: `reference/priorities/aaa-futures/work-log.md`.
 - Partition decision: status history and handoff notes belong here; the plain-language manifest rendering idea belongs in [interface-brainstorming.md](interface-brainstorming.md); the compact live queue belongs in [priorities.md](priorities.md).

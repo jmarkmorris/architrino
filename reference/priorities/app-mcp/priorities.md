@@ -43,11 +43,11 @@ No blocker remains for the loopback HTTP implementation or official SDK conforma
 
 ## Related Work
 
-- [Archie service source ingestion and retrieval context](../archie/source-ingestion-retrieval-context-contract.md)
-- [Archie manifest-driven service architecture](../archie/manifest-driven-service-architecture.md)
-- [Archie service deployment architecture](../archie/service-deployment-architecture.md)
-- [Archie service scaffolding and fixtures](../archie/service-scaffolding-and-fixtures.md)
-- [Archie interface product plan](../archie/interface-product-plan.md)
+- [Archie service source ingestion and retrieval context](../dormant-deferred/archie/source-ingestion-retrieval-context-contract.md)
+- [Archie manifest-driven service architecture](../dormant-deferred/archie/manifest-driven-service-architecture.md)
+- [Archie service deployment architecture](../dormant-deferred/archie/service-deployment-architecture.md)
+- [Archie service scaffolding and fixtures](../dormant-deferred/archie/service-scaffolding-and-fixtures.md)
+- [Archie interface product plan](../dormant-deferred/archie/interface-product-plan.md)
 
 ## Promotion Map
 

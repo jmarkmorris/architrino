@@ -4057,9 +4057,9 @@ y_{\mathrm{eff}}^i
 =
 x_{\mathrm{eff}}^i
 -
-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i),
+(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i),
 \qquad
-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i)
+(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i)
 =
 2\kappa_{\mathrm{eff}}(x_{\mathrm{eff}}^i)
 $$
@@ -4401,7 +4401,7 @@ with every environment projection derived from one constitutive and assembly his
 **Coupled equations (schematic).** Let $\rho_A(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ denote the observer-level neutral-assembly density and $\rho_{\text{NS}}(\mathbf X,T)$ the native Noether braid density. In the Newtonian limit, the effective Poisson equation becomes:
 
 $$
-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}(\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}},\rho_{\text{NS}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{NS}}^{(\mathrm{pert})}\bigr)
+(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}((\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}},\rho_{\text{NS}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{NS}}^{(\mathrm{pert})}\bigr)
 $$
 
 where $\rho_b$ is baryonic density, $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the Noether sea response modification. This linearization is conditional on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics — an open closure item of the [Noether sea program](../../../../markdown/aaa/spacetime/noether-sea.md). In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})} \to 0$; in a positive-response low-acceleration branch, the effective coupling is enhanced above $G_N$ because the Noether sea is more compliant, and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
