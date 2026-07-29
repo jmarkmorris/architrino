@@ -1,35 +1,17 @@
 # Master-Equation Closure Work Queue
 
 This is the canonical execution ledger for the characteristic-tail action
-adjudication and the three jointly accepted Master-Equation closure obligations.
+adjudication and the three jointly accepted Master-Equation closure
+obligations.
 
 ## Ranked Next Objects
 
-1. `characteristic_tail_action_adjudication` — [MEC-001](#mec-001--characteristic-tail-action-adjudication). Status: `In progress`.
+1. `characteristic_tail_action_adjudication` — [MEC-001](#mec-001--characteristic-tail-action-adjudication). Status: `Awaiting verification`.
 2. `causal_wake_update_law` — [MEC-002](#mec-002--causal-wake-update-law). Status: `In progress`.
 3. `finite_coincident_same_transmitter_transition` — [MEC-003](#mec-003--finite-coincident-same-transmitter-transition). Status: `Deferred / blocked`.
 4. `same_update_conserved_accounts` — [MEC-004](#mec-004--same-update-conserved-accounts). Status: `Deferred / blocked`.
 
 ## In progress
-
-### MEC-001 — Characteristic-tail action adjudication
-
-- **Status:** In progress
-- **Priority object:** `characteristic_tail_action_adjudication`
-- **Request / acceptance:** Freeze one characteristic-tail candidate and
-  execute the full receiver-plus-transmitter variation, causal-update,
-  endpoint, symmetry, same-record conservation, fold, and coincident-birth
-  investigation defined in [Characteristic-Tail Action Repair: Explanation and
-  Investigation Program](characteristic-tail.md).
-- **Evidence / blocker:** The normalized tail has the required receiver-gradient
-  identity, while the pure scalar $1/r$ action is falsified as a universal exact
-  action. Full worldline variation, past-only evolution, endpoint closure, all
-  three conserved accounts, and singular-transition closure remain unresolved.
-- **Completion:** One frozen candidate receives an explicit verdict on every
-  investigation step in the owning packet. Promotion requires the entire
-  acceptance chain; any surviving future-supported or extra interior
-  acceleration term closes the worldline-only action route negatively without
-  changing the canonical Master Equation.
 
 ### MEC-002 — Causal wake update law
 
@@ -59,7 +41,27 @@ adjudication and the three jointly accepted Master-Equation closure obligations.
 
 ## Awaiting verification
 
-No rows.
+### MEC-001 — Characteristic-tail action adjudication
+
+- **Status:** Awaiting verification
+- **Priority object:** `characteristic_tail_action_adjudication`
+- **Request / acceptance:** Freeze one characteristic-tail candidate and
+  execute an independently checked complete receiver-plus-transmitter
+  variation before downstream simulation or promotion work.
+- **Evidence:** The receiver-gradient identity survives. Direct variation and
+  an independently authored finite-difference action check reproduce the
+  future-transmitter coefficient on the regular cross-worldline sector.
+- **Blocker:** `CT-FH-1` retains all nontrivial $i=j$, $t>s$ self-history terms
+  while excluding only $t=s$. For every $C^1$ history the separation approaches
+  zero at that diagonal, contradicting the declared positive separation floor,
+  and the finite-width kernel gives a nonintegrable self contribution. The
+  displayed static transverse histories are therefore not admissible histories
+  of the whole frozen action.
+- **Completion:** Freeze a finite self-diagonal or core prescription, name it
+  as a new candidate if it changes `CT-FH-1`, and independently vary that
+  complete functional. Record whether the future coefficient and transverse
+  control survive or are removed under the repaired pair, endpoint, and
+  variation conventions, then issue `CONFIRMED` or `OVERTURNED`.
 
 ## Verified
 

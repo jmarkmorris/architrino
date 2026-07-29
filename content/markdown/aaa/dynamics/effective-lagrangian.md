@@ -291,7 +291,7 @@ $$
 \right]
 $$
 
-This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf X_i(T)$ and as a transmitter coordinate inside transposed kernels. The full branch-resolved variation is carried out in [Master Equation](./master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(\tilde g_{ij})$ is an action-variation residual. It is not an independently justified architrino acceleration. The action candidate succeeds only if the complete variation cancels this term or converts it into a declared boundary contribution while retaining the transmitter-side acceleration law.
+This receiver-side gradient is one ingredient in a complete first variation, but it is not the complete Euler-Lagrange expression. The term proportional to $\phi_\eta'(\tilde g_{ij})$ is an action-variation residual. It is not an independently justified architrino acceleration. An action candidate succeeds only if its complete variation reproduces the Master EOM and converts every additional interior contribution into a valid boundary term or a vanishing residual under the declared endpoint convention.
 
 On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the branch-reduced target is the transmitter-side delayed acceleration law
 $$
@@ -363,7 +363,7 @@ $$
 $$
 The transmitter-side branch target is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. Otherwise the local effective Lagrangian remains a fitted chart. The surviving derivative-of-constraint term is evidence against this action candidate; it does not license a new acceleration term, a vector potential, or a magnetic-like mechanism.
 
-The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [master-equation](./master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. The currently minimal known scale-only repair is the delayed-interior characteristic-tail kernel stated there. With
+The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [Master Equation](./master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. A useful receiver-coordinate identity is obtained by integrating along the causal characteristic. With
 $$
 u=\tilde g+\frac{r}{c_f}
 $$
@@ -386,7 +386,7 @@ K_{\mathrm{eff}}^{(\eta)}
 -
 \frac{\delta_\eta(\tilde g)}{r^2}
 $$
-so it cancels the derivative-of-constraint residual without changing the accepted inverse-square scale term. Effective Lagrangian reductions should still inherit the Master EOM directly unless they explicitly choose the normalized characteristic-tail kernel and carry its boundary-increment convention on the retained chart.
+so the receiver-coordinate derivative contains the accepted inverse-square scale term without a derivative-of-constraint remainder.
 
 The operator in this identity is the derivative along the causal characteristic. With
 $$
@@ -396,9 +396,7 @@ D_{\mathrm{char}}
 \qquad
 u=\tilde g+\frac{r}{c_f},
 $$
-one has $D_{\mathrm{char}}u=0$. The tail kernel is therefore the characteristic integral of the regularized hit density along $u=\mathrm{const}$. This is why it carries an endpoint convention: the repair is energy-conserving only when the endpoint boundary is characteristic to the same order as the retained chart. If the endpoint cuts across the characteristic foliation, the endpoint term is an interior Euler source and the repair has changed the acceleration law rather than merely clearing a boundary.
-
-The normalized characteristic-tail kernel carries explicit energy, momentum, and angular-momentum wake-history increments in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). An effective Lagrangian reduction may therefore choose that kernel only when it also carries the same boundary-increment convention and reports the corresponding variation and conservation residuals on its branch chart. Without those residuals, the reduced Lagrangian remains a scaffold for the Master EOM rather than an independent proof of the branch acceleration.
+one has $D_{\mathrm{char}}u=0$. The kernel is therefore a characteristic integral of the regularized hit density along $u=\mathrm{const}$. This establishes a local receiver-gradient construction only. It is not an accepted action, a causal-wake update, or a source of Noether charges. Effective Lagrangian reductions therefore inherit the Master EOM from retained solutions and must derive any action and conservation boundary functional independently.
 
 ### Symmetries and History-Aware Conservation Laws
 
@@ -461,19 +459,6 @@ $$
 \frac{\delta\!\big(\tilde g_{ij}(T_1,T_t)\big)}
 {r_{ij}(T_1,T_t)}
 $$
-For the delayed-interior characteristic-tail candidate, the Noether-energy kernel must instead be built from the same normalized action kernel,
-$$
-\mathcal{K}_{ij,\mathrm{eff}}^{E}(T_1,T_t)
-=
-\mu_{\text{arch}}\kappa\,\sigma_{ij}\,|q_iq_j|
-\Theta(T_1-T_t)
-K_{\mathrm{eff}}^{(\eta)}
-\!\left(
-r_{ij}(T_1,T_t),
-\tilde g_{ij}(T_1,T_t)
-\right)
-$$
-The scalar $1/r$ expression remains the diagnostic scaffold only when this replacement has not been declared for the chart.
 Then:
 
 $$
@@ -521,15 +506,7 @@ $$
 $$
 Here $\mathcal{B}_E^{(\eta)}$ is the declared endpoint or period-cut leakage. For isolated period-matched tests, $\epsilon_{\mathrm{var}}^{(\eta)}\to0$, $\mathcal{B}_E^{(\eta)}\to0$, and $\epsilon_E^{(\eta)}\to0$ are the minimal conservation checks before the effective Hamiltonian is promoted beyond a diagnostic fit.
 
-For a branch chart that explicitly chooses the normalized delayed-interior characteristic-tail kernel, the conservation object is not the generic scalar $1/r$ scaffold above but the pullback
-$$
-K_{\mu,\mathfrak{B}}+E_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)},
-\qquad
-\mathbf{P}_{\mathrm{mech},\mathfrak{B}}+\mathbf{P}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)},
-\qquad
-\mathbf{J}_{\mathrm{mech},\mathfrak{B}}+\mathbf{J}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}
-$$
-defined on the same retained branch records that enter the acceleration residual. The energy residual above is theorem-level only after this chart declares the action-level $\tilde g$, endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(T)$ remains a trajectory diagnostic unless it is derived from that same normalized kernel and boundary convention.
+The energy residual above is theorem-level only after the chart declares one symmetry-preserving action or independently derived causal-wake update, its endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(T)$ remains a trajectory diagnostic unless it is derived from that same construction and boundary convention.
 
 **Generalized Momentum:**
 Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(T) + \mathbf{P}_{\text{wake}}(T)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
@@ -540,7 +517,7 @@ $$
 =
 \frac{
 \left\|
-\Delta_W\left(\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}\right)
+\Delta_W\left(\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}^{(\eta)}\right)
 -
 \int_W\sum_i\mathbf{R}_i^{(\eta)}\,dT
 -
@@ -549,7 +526,7 @@ $$
 }{
 \left\|\Delta_W\mathbf{P}_{\mathrm{mech}}\right\|
 +
-\left\|\Delta_W\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}\right\|
+\left\|\Delta_W\mathbf{P}_{\mathrm{wake}}^{(\eta)}\right\|
 +
 \varepsilon
 }
@@ -560,7 +537,7 @@ $$
 =
 \frac{
 \left\|
-\Delta_W\left(\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}\right)
+\Delta_W\left(\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake}}^{(\eta)}\right)
 -
 \int_W\sum_i\mathbf X_i(T)\times\mathbf{R}_i^{(\eta)}\,dT
 -
@@ -569,7 +546,7 @@ $$
 }{
 \left\|\Delta_W\mathbf{J}_{\mathrm{mech}}\right\|
 +
-\left\|\Delta_W\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}\right\|
+\left\|\Delta_W\mathbf{J}_{\mathrm{wake}}^{(\eta)}\right\|
 +
 \varepsilon
 }

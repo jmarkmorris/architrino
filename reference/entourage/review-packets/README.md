@@ -24,12 +24,14 @@ Each packet should include enough context, equations, assumptions, and questions
 | [andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md](andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md) | Andrey Kolmogorov | Source response integrated |
 | [elie-cartan-eq02-04a-retained-evidence-2026-06-24.md](elie-cartan-eq02-04a-retained-evidence-2026-06-24.md) | Elie Cartan | Response integrated |
 | [elie-cartan-eq02-04a-retained-evidence-response-2026-06-24.md](elie-cartan-eq02-04a-retained-evidence-response-2026-06-24.md) | Elie Cartan | Source response integrated |
-| [elie-cartan-gamma-free-coframe-reciprocity-2026-06-24.md](elie-cartan-gamma-free-coframe-reciprocity-2026-06-24.md) | Elie Cartan | Prompt ready |
 | [elie-cartan-eq02-04-source-contract-split-2026-06-24.md](elie-cartan-eq02-04-source-contract-split-2026-06-24.md) | Elie Cartan | Superseded by narrower connection/holonomy packet |
 | [elie-cartan-eq02-04-connection-holonomy-transport-2026-06-24.md](elie-cartan-eq02-04-connection-holonomy-transport-2026-06-24.md) | Elie Cartan | Superseded by narrower no-retune holonomy guardrails packet |
-| [elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-06-24.md](elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-06-24.md) | Elie Cartan | Prompt ready |
+| [elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md](elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md) | Elie Cartan | Three response rounds integrated; research findings and proposed change |
 | [henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-06-24.md](henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-06-24.md) | Henri Poincare | Prompt ready |
-| [andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md](andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md) | Andrey Kolmogorov | Prompt ready |
+| [andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-07-28.md](andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-07-28.md) | Andrey Kolmogorov | Prompt ready |
+| [terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md](terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) | Terence Tao | Two response rounds integrated; research findings and proposed incorporation; parallel to the causal-wake-state-closure note |
+| [terence-tao-causal-wake-state-closure-research-findings-and-proposed-incorporation-2026-07-28.md](terence-tao-causal-wake-state-closure-research-findings-and-proposed-incorporation-2026-07-28.md) | Terence Tao | Substantively complete consultation assembled and assessed; research findings and proposed incorporation plan |
+| [hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md](hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md) | Hendrik Lorentz | One response round integrated; research findings and proposed changes, with the prompt superseded and the substrate statement retained in an appendix |
 
 ## Packet Discipline
 

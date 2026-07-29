@@ -82,20 +82,20 @@ The packet must declare $\mu_{\text{arch}}$ in `campaign.json`, record units for
 
 ## Branch-Chart Conservation Pullback
 
-The projected action increment is a diagnostic until the exact nonlocal Noether charges close on the same live-ledger branch chart. For each accepted transition, pull the normalized delayed-interior characteristic-tail increments from [Master Equation](../../dynamics/master-equation.md#exact-nonlocal-lagrangian) back to the candidate branch rows and report
+The projected action increment is a diagnostic until one accepted action or independently derived causal-wake update supplies the motion and all three conserved accounts on the same live-ledger branch chart. For each accepted transition, report
 $$
 \mathcal{E}_{\mathrm{tot}}^{(\eta)}
 =
-K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)},
+K_{\mu}+E_{\mathrm{wake}}^{(\eta)},
 \qquad
 \boldsymbol{\mathcal{P}}_{\mathrm{tot}}^{(\eta)}
 =
-\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}
+\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}^{(\eta)}
 $$
 $$
 \boldsymbol{\mathcal{J}}_{\mathrm{tot}}^{(\eta)}
 =
-\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}
+\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake}}^{(\eta)}
 $$
 The residuals $\mathcal{R}_{E}$, $\mathcal{R}_{P}$, and $\mathcal{R}_{J}$ are the normalized window changes of these three totals after subtracting the declared Euler-residual and endpoint-leakage terms. They must use the same branch rows as the root ledger, acceleration residual, and $\Delta I_{\mathrm{ME}}$ calculation. A work-integral energy reconstruction or torque projection may be reported as a diagnostic, but it does not replace the exact wake-history pullback.
 
@@ -166,8 +166,8 @@ The minimum campaign packet contains:
 | `torque_integrals.csv` | diagnostic $\int\boldsymbol{\tau}^{(A)}_1\,dT$, $\int\boldsymbol{\tau}^{(A)}_2\,dT$, $\int\boldsymbol{\tau}^{(A)}_3\,dT$, $\Delta\mathbf L_{\mathrm{wake},\partial}^{\mathrm{spec}}$, and projection onto $\hat{\mathbf n}_{\mathrm{txn}}$ |
 | `action_increment_rows.csv` | $\Delta I_{\mathrm{ME}}$, absolute value, cluster id, accepted/rejected status, and failure code |
 | `field_speed_approach_scan.csv` | scan-family id, speed-window label, layer speed ratios, active partner/self/inter-layer root counts, minimum accepted $|J|$, separator status, root-ledger stability, $\Delta I_{\mathrm{ME}}$, cluster id, accepted/rejected status, and failure code |
-| `energy_ledger.csv` | $\sum_{a\in\{1,2,3\}}\int\omega_a\,dI_a$, $\Delta E_{\mathrm{wake}}$, $\Delta E_{\mathrm{coupl}}$, exact $E_{\mathrm{wake,eff}}^{(\eta)}$, diagnostic $U$ if used, and $\mathcal{R}_E$ |
-| `conservation_pullback.csv` | branch-chart id, cut/window id, $\eta$, $\epsilon_c$, `history_horizon`, endpoint convention, $\nu_J$, inactive-gap minimum, `memory_depth`, $K_{\mu}$, $E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}$, $\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{J}_{\mathrm{mech}}$, $\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathcal{R}_E$, $\mathcal{R}_P$, $\mathcal{R}_J$, and verdict. The two history fields carry absolute-time durations and are distinct from the observer-level Planck benchmark $h$. |
+| `energy_ledger.csv` | $\sum_{a\in\{1,2,3\}}\int\omega_a\,dI_a$, $\Delta E_{\mathrm{wake}}$, $\Delta E_{\mathrm{coupl}}$, accepted $E_{\mathrm{wake}}^{(\eta)}$ when available, diagnostic $U$ if used, and $\mathcal{R}_E$ |
+| `conservation_pullback.csv` | branch-chart id, cut/window id, $\eta$, $\epsilon_c$, `history_horizon`, endpoint convention, $\nu_J$, inactive-gap minimum, `memory_depth`, $K_{\mu}$, $E_{\mathrm{wake}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}$, $\mathbf{P}_{\mathrm{wake}}^{(\eta)}$, $\mathbf{J}_{\mathrm{mech}}$, $\mathbf{J}_{\mathrm{wake}}^{(\eta)}$, $\mathcal{R}_E$, $\mathcal{R}_P$, $\mathcal{R}_J$, provenance of the accepted motion-plus-wake update, and verdict. The two history fields carry absolute-time durations and are distinct from the observer-level Planck benchmark $h$. |
 | `phase_closure_residuals.csv` | layer and inter-layer phase closure residuals, winding labels, and tolerance status |
 | `floquet_report.json` | monodromy or finite-difference return map, excluded symmetry modes, multipliers, and $\Delta_{\mathbf{k}}$ |
 | `cluster_summary.json` | $\Delta I_*$, class means, class standard deviations, $\delta_I$, $h_{\mathbb{A}\mathbb{A}\mathbb{A}}$, $\delta_h$, and promotion status |
