@@ -36,7 +36,7 @@ These files contain reusable prompt material or prompt procedures. They were not
 | [../../research-lead/review-packets/README.md](../../research-lead/review-packets/README.md) and `reference/research-office/research-lead/review-packets/*.md` | Historical self-contained review packets. Keep in place as review artifacts, not reusable prompt templates. |
 | [../../../priorities/equation-mapping/equation-breakthrough-search-prompt.md](../../../priorities/equation-mapping/equation-breakthrough-search-prompt.md) | Priority-specific live breakthrough-search prompt. It resolves queue state from the current tracker and score ladder instead of embedding a dated checkpoint. |
 | [../../../../content/markdown/aaa/validation/closure-scorecard.md](../../../../content/markdown/aaa/validation/closure-scorecard.md) | Reader-facing reusable assessment prompt embedded in its owning scorecard chapter. Keep local so scoring instructions remain self-contained. |
-| [../../../archie/childrens-books/production/prompts/here-there-back-book-1-imagegen-prompts.md](../../../archie/childrens-books/production/prompts/here-there-back-book-1-imagegen-prompts.md) | Production asset prompts. Keep in the children's-books production lane. |
+| [../../../learning-office/childrens-books/production/prompts/here-there-back-book-1-imagegen-prompts.md](../../../learning-office/childrens-books/production/prompts/here-there-back-book-1-imagegen-prompts.md) | Production asset prompts. Keep in the children's-books production lane. |
 
 ## Maintenance Rule
 

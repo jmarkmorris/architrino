@@ -1,4 +1,4 @@
-# Archie Reference
+# Learning Office
 
 Archie brings the $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture to different audiences without lowering claim discipline. The materials here turn the open-source, zero-price offer into direct invitations to read, question, test, explain, and improve the work.
 

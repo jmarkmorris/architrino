@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 
 REPO = Path(__file__).resolve().parents[4]
-PRODUCTION = REPO / "reference/archie/childrens-books/production"
+PRODUCTION = REPO / "reference/learning-office/childrens-books/production"
 MANIFEST = PRODUCTION / "generation-manifest.json"
 FONT_CANDIDATES = [
     Path("/System/Library/Fonts/Supplemental/Arial.ttf"),

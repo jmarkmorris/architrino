@@ -102,7 +102,7 @@ The bar is dynamic, so not every surface shows every action. The visible order s
 | [pdgedit-review.html](../../../pdgedit-review.html) | Static review page header and form controls. | Exempt or lightweight-header | Keep as review artifact unless it becomes a public product page. |
 | Generated reading-copy HTML | Content-only generated HTML files under `apps/ios/.../GeneratedTextbookPackage/`. | Exempt | Do not manually add chrome to generated content-only files. Reader shells own navigation. |
 | iOS reader shells | `ReaderShell.html` and `SearchSnippetShell.html` mount native reader content. | Exempt or native-parity | Native SwiftUI shell should own top controls; the web shell stays minimal. |
-| Children's-book review pages | Static source-review pages under `reference/archie/childrens-books/production/review/`. | Exempt | Keep simple review links unless promoted to a public-facing product surface. |
+| Children's-book review pages | Static source-review pages under `reference/learning-office/childrens-books/production/review/`. | Exempt | Keep simple review links unless promoted to a public-facing product surface. |
 
 ## Markdown Display Audit
 

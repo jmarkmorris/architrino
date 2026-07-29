@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 
 REPO = Path(__file__).resolve().parents[4]
-MANIFEST = REPO / "reference/archie/childrens-books/production/generation-manifest.json"
+MANIFEST = REPO / "reference/learning-office/childrens-books/production/generation-manifest.json"
 FONT_CANDIDATES = [
     Path("/System/Library/Fonts/Supplemental/Georgia.ttf"),
     Path("/System/Library/Fonts/Supplemental/Times New Roman.ttf"),

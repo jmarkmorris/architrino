@@ -18,7 +18,7 @@ from typing import Callable
 
 
 REPO = Path(__file__).resolve().parents[4]
-OUT_ROOT = REPO / "reference/archie/play-surface/model-checks"
+OUT_ROOT = REPO / "reference/learning-office/play-surface/model-checks"
 
 TILE_SIZE = 11.0
 BODY_HEIGHT = 3.0

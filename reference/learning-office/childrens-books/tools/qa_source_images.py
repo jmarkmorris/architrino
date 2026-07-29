@@ -11,7 +11,7 @@ from PIL import Image
 
 
 REPO = Path(__file__).resolve().parents[4]
-MANIFEST = REPO / "reference/archie/childrens-books/production/generation-manifest.json"
+MANIFEST = REPO / "reference/learning-office/childrens-books/production/generation-manifest.json"
 
 
 def saturated_non_palette_fraction(image: Image.Image) -> float:
@@ -120,7 +120,7 @@ def main() -> None:
     if not entries:
         raise SystemExit(f"no manifest entries for book {args.book}")
 
-    qa_root = REPO / "reference/archie/childrens-books/production/qa" / args.book
+    qa_root = REPO / "reference/learning-office/childrens-books/production/qa" / args.book
     qa_root.mkdir(parents=True, exist_ok=True)
     summary = []
     for entry in entries:

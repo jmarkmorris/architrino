@@ -301,11 +301,11 @@ def entry_paths(entry: dict) -> dict:
     eid = entry["id"]
     return {
         "source_png": f"content/assets/images/archie/childrens-books/source/{slug}/{eid}.png",
-        "qa_json": f"reference/archie/childrens-books/production/qa/{slug}/{eid}.qa.json",
-        "qa_markdown": f"reference/archie/childrens-books/production/qa/{slug}/{eid}.qa.md",
+        "qa_json": f"reference/learning-office/childrens-books/production/qa/{slug}/{eid}.qa.json",
+        "qa_markdown": f"reference/learning-office/childrens-books/production/qa/{slug}/{eid}.qa.md",
         "page_landscape_png": f"content/assets/images/archie/childrens-books/pages/{slug}/landscape/{eid}.png",
-        "derivative_4x5_png": f"reference/archie/childrens-books/production/derivatives/{slug}/4x5/{eid}.png",
-        "derivative_9x16_png": f"reference/archie/childrens-books/production/derivatives/{slug}/9x16/{eid}.png",
+        "derivative_4x5_png": f"reference/learning-office/childrens-books/production/derivatives/{slug}/4x5/{eid}.png",
+        "derivative_9x16_png": f"reference/learning-office/childrens-books/production/derivatives/{slug}/9x16/{eid}.png",
     }
 
 
@@ -399,7 +399,7 @@ def build_manifest() -> dict:
     return {
         "schema_version": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "root": "reference/archie/childrens-books",
+        "root": "reference/learning-office/childrens-books",
         "total_source_images": total,
         "generation_order": [book["slug"] for book in BOOKS],
         "books": books_out,
