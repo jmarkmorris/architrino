@@ -396,7 +396,24 @@ The same extractor also consumes [same-branch-retained-domain-attempt.v1.json](.
 
 The retained-domain summary now reports `retainedRequirementStatuses`, `retainedRequirementReasons`, `domainWitnessStatuses`, `domainWitnessReasons`, and `nextBlocker`; the current direct attempt reports all retained requirements and all split/retune/overlap witnesses as `attempt`, with row and witness reasons remaining `row_not_accepted`, `support_not_accepted`, or `witness_not_accepted`. Accepted-looking rows whose source reference does not resolve to an existing file are rejected with source-not-found reasons instead of being counted as retained evidence.
 
-No score change follows from that result. `EQ-02`, `EQ-03`, and `EQ-04` still need a positive-width invariant cell in truncated delay-state space. The preferred evidence object is a transverse section $\Sigma_N$, first-return map $P_N$, box $B_N\subset\Sigma_N$ with $\mu_{\perp}(B_N)>0$, and Krawczyk or interval Newton inclusion $\mathcal K_{P_N}(B_N)\subset B_N$. Only on that certified support should the packet accept raw row labels, inventory, role map, path history, causal roots, wake tails, energy/action, momentum/angular momentum, phase, plane orientation, response center, group velocity, Noether sea record, and binary-to-binary phase identity on the same branch chart.
+No score change follows from that result. `EQ-02`, `EQ-03`, and `EQ-04` first
+need one validated finite-memory relative-periodic point in a declared
+validation box. The operator acts on the square group-reduced residual
+$F_{N,u}(x)=P_{N,u}(x)-g\mathbin{\cdot}x$:
+
+$$
+\mathcal K_{F_{N,u}}(\bar x,B_{N,u})
+\subset
+\operatorname{int}(B_{N,u}).
+$$
+
+This proves one point in the declared slice under the stated chart hypotheses;
+box width is not invariant-set width, stability, trapping, or basin measure.
+Raw labels become dynamic identity only with a validated root itinerary,
+predeclared allowed permutation, and overlap continuation. Full-history
+persistence, drift continuation, and stability are later ordered theorems.
+Legacy invariant-cell and $\mathcal K_{P_N}$ machine fields retain only their
+literal contract role until the separately authorized coupled migration.
 
 [eq02-04-translating-binary-retained-record.mjs](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs) now evaluates the direct retained-record shape for $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$. The attempt fixture [eq02-04-translating-binary-retained-record-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record-attempt.v1.json) reports `blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its numeric residual diagnostics, gamma-free coframe reciprocity diagnostic, support/holonomy witness diagnostics, and six negative-control diagnostics pass for the illustrative $\beta_f=0.6$ row. The coframe reciprocity diagnostic reports $e^0_u(\partial_t)=1.25$, $e^\parallel_u/e^\perp_u=0.8$, and product $1$, with $\gamma_f$ used only as a comparison output. The separate `coframeExtraction` diagnostic loads [eq02-04-coframe-extraction-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-coframe-extraction-attempt.v1.json) and is `not_evaluated` with `reason=coframe_extraction_evidence_not_accepted`, because the certificate is still attempt-level. This is still not score evidence: every retained-record row and witness is `attempt`, and a single operating point is not invariant-branch evidence. `EQ-02`, `EQ-03`, and `EQ-04` remain at `4` until the support certificate persists under refinement, window-length, transverse-displacement, section-placement, and phase-permutation controls.
 
@@ -416,7 +433,25 @@ The gamma-free input boundary now has a source-internal negative control as well
 
 The scalar transport side is now split into support transport and holonomy transport. A source report with source-backed support, row bindings, stable refinement steps, reciprocal coframe legs, zero torsion, zero phase holonomy, and zero support-transport residual blocks exactly at `connection_holonomy_transport_residual_bound` when `connection.holonomyTransportResidual` exceeds tolerance. This prevents a passing support-transport residual from hiding a holonomy mismatch, but it is still only a guardrail for $W_{\mathrm{hol}}$, not a proof that the connection was constructed independently of the fitted target rows.
 
-The retained-domain fiber product is necessary but not sufficient for no-retune. The strengthened reducer should split the witness into $W_{\mathrm{supp}}$, which proves shared support on the accepted invariant cell, and $W_{\mathrm{hol}}$, which proves that all row sections are parallel transports under one connection over the drift base. The first raw-label row should therefore become a flat reference section at $u=0$ plus a recorded transport rule to $u\neq0$, not just a list of preserved labels.
+The retained-domain fiber product is necessary but not sufficient for no-retune.
+$W_{\mathrm{supp}}$ proves shared support only. On the one-dimensional drift
+base, loop holonomy and curvature are trivial implementation facts, so the
+primary theorem target is frozen-source held-out parallelism
+$W_{\parallel}$, or $W_{\mathrm{end}}$ when only independently extracted
+endpoints are available. $W_{\mathrm{NR}}$ is a composite label, and a
+nontrivial $W_{\mathrm{loop}}$ becomes admissible only after a second retained
+continuation modulus exists. Current `W_hol`, torsion, and phase-holonomy fields
+remain diagnostic guardrails pending the separately authorized contract
+migration; they do not by themselves establish no-retune.
+
+Residual notation is now explicit. The corpus triple
+$(R_T^{\mathrm{bin}},R_\xi^{\mathrm{bin}},R_{\mathrm{shape}}^{\mathrm{bin}})$
+is the local translating-binary branch-shape test. The priority vector
+$\mathcal R_{02-04}^{(q)}$ is its broader same-record extension and must retain
+that triple's carrier identity and shape row before adding signal, account,
+shell, rest-invariance, or Noether sea coordinates. A small shell row cannot
+stand in for the triple or for independently derived energy and momentum
+accounts.
 
 ## EQ-04A: Koide Charged-Lepton Mass Relation
 

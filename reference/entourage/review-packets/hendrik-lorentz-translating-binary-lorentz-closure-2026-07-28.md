@@ -504,6 +504,13 @@ complete wake update, conserved ledger, or Lorentz recovery exists. Items that
 need those objects are moved to
 [Disposition of Open Questions](#disposition-of-open-questions).
 
+**Applied disposition, 2026-07-29.** A1–A5, A7, B1–B6, and B8 now live in
+their named corpus, priority, and work-log owners at the packet's stated
+authority. Every deferred programme item and open question is recorded in the
+canonical [July 28 translating-binary review action
+register](../../priorities/equation-mapping/work-queue.md#july-28-translating-binary-review-action-register).
+This packet is reference evidence only and owns no outstanding action.
+
 ### Batch A — reader-facing corpus corrections
 
 Items A1 through A5 are scoped corrections. A7 is retained only as a

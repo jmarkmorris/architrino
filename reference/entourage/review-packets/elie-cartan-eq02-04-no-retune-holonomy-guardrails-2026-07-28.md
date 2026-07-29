@@ -1209,6 +1209,13 @@ retained branch, complete wake state, source-derived connection, or physical
 transport law exists. The construction and certificate items that need those
 objects are preserved under [Disposition of Open Questions](#disposition-of-open-questions).
 
+**Applied disposition, 2026-07-29.** C1–C5 and C13 now live in the translating
+shared-record, equation detail, score-ladder, and work-log owners at their
+stated priority-only authority. Every deferred item and open question is
+recorded in the canonical [July 28 translating-binary review action
+register](../../priorities/equation-mapping/work-queue.md#july-28-translating-binary-review-action-register).
+This packet is reference evidence only and owns no outstanding action.
+
 1. **C1 — retain $W_{\mathrm{supp}}$ unchanged in role.** It remains the set-level witness that all rows use one accepted retained carrier and domain.
 2. **C2 — retire drift-only loop holonomy as the primary meaning of $W_{\mathrm{hol}}$.** Zero curvature, trivial loops, and cocycle composition on $I_u$ are implementation facts, not no-retune evidence.
 3. **C3 — state frozen-source held-out parallelism as a conditional no-retune target.** Use $W_{\parallel}$ for full-interval sections or $W_{\mathrm{end}}$ for independently extracted endpoints only after the source constructor and retained branch are independently fixed.

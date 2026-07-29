@@ -442,6 +442,13 @@ finite-memory point, full delayed history, drift branch, or stable set exists.
 The executable contract migration is deferred under
 [Disposition of Open Questions](#disposition-of-open-questions).
 
+**Applied disposition, 2026-07-29.** Changes 1–5 now live in the `S_eq`,
+shared-record, equation-detail, and score-ladder owners at terminology and
+theorem-boundary authority only. Change 6 and every open question are recorded
+in the canonical [July 28 translating-binary review action
+register](../../priorities/equation-mapping/work-queue.md#july-28-translating-binary-review-action-register).
+This packet is reference evidence only and owns no outstanding action.
+
 ### Change 1: Correct The Support Terminology
 
 Replace the current minimum-support phrase “positive-width invariant cell” with:

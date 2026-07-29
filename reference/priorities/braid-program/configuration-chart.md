@@ -8,6 +8,45 @@ One coordinate system for every configuration the program screens or evolves, so
 
 Research input: [Neutral-Braid Configuration Atlas](../../entourage/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md) proposes a stratified history-groupoid and certified finite-presentation architecture, with exact sharp-root bounds and explicit finite-width-tail authority limits. It is priority-only research guidance; it does not complete this chart or establish retention, stability, physical realization, solver preference, or particle identity.
 
+## Finite-Width Tail Handoff
+
+`BP-002` owns the scientific and certification question for any omitted
+finite-width Gaussian history tail and owns the resulting atlas or campaign
+claim scope. The [EOM evolution contract](../app-solver/contracts/evolution-contract-v1.md)
+owns computation on the declared retained interval and any implementation of a
+declared tolerance-bound evaluation; it does not decide whether the Braid
+Program may certify an infinite-past or omitted-tail claim.
+
+The shared acceptance boundary is exact: either derive an independently checked
+regulator-, history-, and tolerance-dependent omitted-tail bound, or limit
+certified claims strictly to the declared retained-interval integral. This
+handoff creates no new queue, changes no status, and grants no retention,
+stability, physical-realization, solver-preference, or particle-identity
+authority.
+
+## Certified Scope Guardrails
+
+Every atlas or campaign row must name its declared retained interval,
+prehistory, complete transmitter inventory, and any fixed enclosure. The audited
+sharp-root theorem applies only to a bounded uniformly sub-field-speed history
+with positive separation, complete root inventory, and the declared
+longer-horizon comparison. It excludes nontrivial same-transmitter roots on that
+interval and supports cross-time reconstruction only within those hypotheses.
+
+Unbounded-past, external-transmitter, drifting-enclosure, or omitted-tail claims
+remain unresolved unless their separate quantitative theorem passes. A
+retained-interval EOM computation is not an omitted finite-width Gaussian-tail
+certificate.
+
+Current scalar rows are scoped diagnostics, not topology classifiers. The
+sub-field-speed knot counterexample remains a negative control, but no scalar
+label alone may establish topology, retention, stability, physical realization,
+solver preference, or particle identity.
+
+Plainly: the chart may classify exactly the history it was given. It may not
+silently extend that answer beyond its time window, transmitter inventory, or
+diagnostic authority.
+
 ## Obligations on the authored version
 
 1. **Shape axes.** Number of architrinos and their polarity assignment; grouping into rings/layers; per-layer radius, axial position, tilt, phase, circulation sense; assembly drift velocity.

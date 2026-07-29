@@ -325,6 +325,75 @@ with the error budget allocated to named causal-root features, Noether sea dress
 | `EQ-03` | `4` | The oblate spheroidal envelope map $\xi\to1/\gamma_{\text{eff}}$ has a strong closed-return derivation and canonical terminology, but still needs the all-layer branch ledger to prove the envelope ratio rather than assign it. |
 | `EQ-04` | `4` | Upgrade from the first-round `3` is justified once this packet is accepted as the shared residual grammar: the canonical variables, tensor response, rest-invariance row, and mass-shell residuals are now explicit. It is not a `5` because $E_{\text{internal}}$, $\zeta(A)$, $\mathcal{M}_{\text{sea}}^{ab}$, and $M_0$ remain uncomputed for an accepted branch. |
 
+## Translating-Binary Solvability And Account Boundary
+
+For $b=u/c_f$, write the periodic branch equation as
+$\mathcal F(\boldsymbol\rho,\Omega,b)=0$ and let $L$ be its complete
+linearization, including implicit variation of every retained causal root.
+Symmetry gives $a_1=0$ on the exact circular planar control, but it does not
+give $\boldsymbol\rho_1=0$. The ordered system is
+
+$$
+L\boldsymbol\rho_1+\mathcal F_b=0,
+$$
+
+$$
+L\boldsymbol\rho_2-a_2\Omega_0\mathcal F_\Omega
+=
+-\frac12\mathcal F_{bb}
+-\mathcal F_{\rho b}\boldsymbol\rho_1
+-\frac12\mathcal F_{\rho\rho}
+[\boldsymbol\rho_1,\boldsymbol\rho_1].
+$$
+
+For each $\psi\in\ker L^\ast$, the admissible quotient is therefore
+
+$$
+a_2
+=
+\frac{
+\left\langle
+\psi,\,
+\frac12\mathcal F_{bb}
++\mathcal F_{\rho b}\boldsymbol\rho_1
++\frac12\mathcal F_{\rho\rho}
+[\boldsymbol\rho_1,\boldsymbol\rho_1]
+\right\rangle
+}{
+\left\langle\psi,\Omega_0\mathcal F_\Omega\right\rangle
+},
+$$
+
+when the denominator is nonzero. Any quotient that omits the three displayed
+numerator terms, including either contribution from $\boldsymbol\rho_1$, is
+incomplete and must not be used.
+
+This reduction is declared only on a chart with finitely many retained roots,
+every root simple, a uniform positive transmitter-Jacobian floor, fixed root
+cardinality throughout the neighborhood, and a positive collision-separation
+floor. Before continuation, compare $\dim\ker L^\ast$ with the free constants
+at first and second order. More independent solvability conditions than free
+constants is a local nonexistence result, not a request for a longer run.
+
+Plainly: solve the first-order shape and count equations versus available dials
+before interpreting a second-order period coefficient.
+
+No conservation law has been derived for the delayed receiver-local kernel.
+The wake, boundary, energy, momentum, and angular-momentum rows are therefore
+unavailable until a predeclared MEC-002 update and its MEC-004 accounts close
+with MEC-005 provenance. Fitting a wake ledger after the moving branch is known
+has no evidential weight. In particular, $R_{\mathrm{shell}}$ is one scalar
+consequence of stronger energy and momentum readouts; it is necessary when
+those accounts exist but never sufficient by itself.
+
+The corpus binary triple
+$(R_T^{\mathrm{bin}},R_\xi^{\mathrm{bin}},R_{\mathrm{shape}}^{\mathrm{bin}})$
+is the local branch-shape test. The vector
+$\mathcal R_{02-04}^{(q)}$ below is its broader same-record ledger extension.
+They are related interfaces, not interchangeable claims: the vector must carry
+the triple's branch identity and shape row before adding signal, account, shell,
+rest-invariance, or sea-response coordinates.
+
 ## First Mathematical Object To Add Next
 
 Historical supersession note is preserved in [work-log.md](work-log.md#2026-07-02-eq-02-04-supersession-note). Compact current state: the residual vector remains useful grammar, but the current solver-facing boundary is source-backed retained support plus the Cartan witness split $W_{\mathrm{supp}}/W_{\mathrm{hol}}$.

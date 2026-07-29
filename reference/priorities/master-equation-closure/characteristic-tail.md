@@ -51,6 +51,12 @@ Closure](independent-causal-wake-state-closure.md), with its current obstruction
 proved in [Independent Causal Wake-State Minimum and
 Obstruction](analysis-independent-causal-wake-state.md).
 
+The [wake-reception review
+packet](../../entourage/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md)
+supplies a conditional angular-pin falsifier for this packet's momentum chart.
+Execution remains owned by MEC-004 after MEC-005; this backlink does not supply
+an account map, conservation result, or action adjudication.
+
 Plainly: the Master Equation chapter owns the equations summarized here. This
 file is the focused research packet: it explains what they mean, separates proof
 from proposal, and records why the action route was not promoted.

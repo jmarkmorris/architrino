@@ -262,6 +262,36 @@ $$
 $$
 The exact residual definitions and Theorem G role are recorded in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#translating-binary-benchmark). A Lorentzian result would make the two-body branch the first derived substrate clock. A non-Lorentzian residual would be equally informative because it would identify the first place where the primitive two-body kernel pressures the larger Lorentz-closure program.
 
+Two conditional results constrain this handoff without producing a moving
+branch. First, for the exactly circular planar rest record, full spatial
+equivariance, global polarity-reversal invariance, smooth drift dependence, and
+local branch uniqueness modulo center and phase imply
+$T(\mathbf u)=T(-\mathbf u)$, so the first-order period coefficient vanishes.
+This fails as a branch statement if the symmetry exchanges two inequivalent
+moving branches, the rest record is chiral or nonplanar, or the retained-history
+rule distinguishes drift directions.
+
+Second, no real linear map of the restricted form
+
+$$
+T'=\alpha T+\lambda x_\parallel,
+\qquad
+x_\parallel'=\frac{x_\parallel}{\gamma_f}+\beta T,
+\qquad
+\mathbf x_\perp'=\mathbf x_\perp
+$$
+
+preserves every causal-root quadratic at nonzero drift, because coefficient
+matching requires
+$c_f^2\lambda^2=\gamma_f^{-2}-1=-u^2/c_f^2<0$. This is an exact no-go only for
+that complete map class; a wider class that also changes transverse lengths
+lies outside the claim. Neither result is evidence that a translating branch
+exists.
+
+Plainly: symmetry removes one cheap linear-period test, and the restricted map
+cannot manufacture the desired branch. The delayed dynamics still has to find
+or reject the branch directly.
+
 The moving-branch test also has a root-starvation obligation. If a forward transmitter root has minimum forward separation $d_{\min}$ in the direction of motion, then the causal delay needed to receive that root obeys the elementary bound
 $$
 \Delta_{\mathrm{forward}}(u)\geq \frac{d_{\min}}{c_f-u}.
@@ -280,6 +310,24 @@ $$
 M_b^{\mathrm{mem}}(u)=\frac{h_b^{\mathrm{lock}}(u)}{T_u},
 $$
 where $h_b^{\mathrm{lock}}$ is the declared retained-history depth of the moving branch and $\epsilon_h>0$ is a fixed normalization floor. If this residual diverges on the finite-$\eta$ moving chart, the two-body branch has run out of retained causal roots before it has derived Lorentz closure; the handoff must then move to a Noether-sea or larger assembly response rather than being booked as a bare-binary result.
+
+On a declared smooth simple-root history, the companion canonical weight scales
+as
+
+$$
+\frac{1}{r^2}\frac{c_f}{|D_t|}
+\sim
+\frac{c_f-u}{c_fd_{\min}^2}.
+$$
+
+The forward hit therefore weakens linearly in the gap while its delay diverges.
+A finite window can still remove it discontinuously at the retained boundary.
+This local result neither fixes the branch period nor interprets numerical
+history truncation as a physical memory law; it also fails if the same root
+approaches a transmitter-side fold.
+
+Plainly: an older forward hit can become weaker while remaining necessary to the
+declared ledger. Losing it at a finite window is a separate boundary event.
 
 The branch-qualified symbol matters: $h_b^{\mathrm{lock}}$ is the measured retained-history depth of this locked moving branch, whereas bare $h$ later denotes a generic history-space horizon. A translating-branch certificate must report $h_b^{\mathrm{lock}}$ rather than silently substituting the generic horizon.
 

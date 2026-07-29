@@ -9,6 +9,7 @@
 - Score ladder: [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md)
 - Common architecture: [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
 - Review synthesis: [EQ-02 Through EQ-04A Retained Point, Coframe, No-Retune, and Koide](../../entourage/review-packets/eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md)
+- Theorem correction: [Invariant-Cell Coframe Certificate](../../entourage/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md)
 - Merge basis: the consolidated row-classification pass identified `S_eq` as the shared retained-domain carrier for `EQ-02` through `EQ-04`; that classification was score-neutral and supplied no accepted retained evidence.
 - Claim level: smallest accepted retained-domain evidence object for `EQ-02` through `EQ-04`
 - Promotion status: priority-only
@@ -17,8 +18,15 @@
 
 - Current score effect: no score change; this is a priority-only retained-domain evidence-object contract.
 - Exact first blocker: `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
-- First accepted route: source-backed positive-width invariant-cell source report for `S_eq`, with matching `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"` across support, row bindings, witnesses, coframe extraction, and retained-record consumption.
-- Smallest accepted evidence object: one durable retained-geometry evidence object whose raw-row, invariant-cell, refinement-step, connection, residual, and negative-control provenance is accepted by the producer, same-branch checker, and retained-record evaluator on the same carrier.
+- First accepted route: one source-backed validated finite-memory
+  relative-periodic point enclosed by a validation box, followed by its
+  full-history lift; matching `domainId`, `commonCarrierId`, `supportId`, and
+  `retainedRowSetId: "S_eq"` bind support, rows, witnesses, coframe extraction,
+  and retained-record consumption.
+- Smallest accepted evidence object: one durable retained-geometry evidence
+  object whose raw-row, point-enclosure, refinement-step, connection, residual,
+  and negative-control provenance is accepted by the producer, same-branch
+  checker, and retained-record evaluator on the same carrier.
 - Score-neutral exclusions: priority prose, generated files, mocks, attempt fixtures, source-contract shells, negative controls, synthetic provenance shells, and accepted-looking row labels are not accepted retained evidence.
 
 ## Coordinator Decision
@@ -29,7 +37,7 @@ The packet target is:
 
 $$
 \left(
-B_N,\Sigma_N,P_N,\mathcal K_{P_N}
+B_{N,u},\Sigma_N,F_{N,u},\mathcal K_{F_{N,u}}
 \right)
 \longrightarrow
 \mathfrak D_{S_{\mathrm{eq}}}^{02\text{-}04}
@@ -39,7 +47,32 @@ B_N,\Sigma_N,P_N,\mathcal K_{P_N}
 \Theta_{02\text{-}04}^{\mathrm{bin}}(u_k).
 $$
 
-Here $B_N\subset\Sigma_N$ must be a positive-width invariant cell in the truncated delay-state space, not a single sampled crossing. The retained-domain packet becomes score-review eligible only when all accepted row bindings, witnesses, and coframe extraction rows resolve to durable source evidence on the same `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"`.
+Here
+$F_{N,u}(x)=P_{N,u}(x)-g\mathbin{\cdot}x$ is the declared square,
+group-reduced return residual with one pinning condition per admitted neutral
+generator. The inclusion
+$\mathcal K_{F_{N,u}}(\bar x,B_{N,u})\subset
+\operatorname{int}(B_{N,u})$ encloses one validated relative-periodic point in
+the declared slice. The width of $B_{N,u}$ is enclosure width only: it is not
+invariant-set width, a trapping region, branch width, stability, or basin
+measure.
+
+Legacy `invariant-cell` and `K_{P_N}` field names remain literal machine
+contract identifiers until the separately authorized coupled migration. They
+carry only the corrected point-enclosure meaning in this document and must not
+be cited at their old strength.
+
+Raw labels are provenance, not dynamic identity. Acceptance additionally
+requires a labeled cover, one validated root itinerary, a predeclared allowed
+permutation, and overlap continuation showing that the same delayed strands and
+root rows return. Full-history persistence then requires a declared history
+topology, reconstruction, compactness, consistency, vanishing tail error, and
+uniform root, section, transversality, and collision margins. Drift transport
+requires a later validated continuation of that same full history; stability,
+trapping, and basin claims begin only after existence and continuation.
+
+Plainly: the first theorem encloses one returned point. Every stronger word
+needs its own later proof.
 
 ## Bucket Merge
 

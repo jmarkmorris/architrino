@@ -174,6 +174,26 @@ $m_i$ mature continuously.
 At a reception event $\mathsf h=(r,t,T_r,T_t)$, one predeclared local map must
 produce both the receiver continuation and the wake continuation:
 
+Before that map can be evaluated, the missing objects must be supplied in this
+logical order:
+
+0. an allocation rule stating how much of one emitted surface account a single
+   reception may claim;
+1. the account representation and measure class;
+2. the observation operator that reads that representation;
+3. the reception transfer;
+4. any maturity or suppression output;
+5. the motion, wake, and boundary account maps; and
+6. the account-bearing retained-boundary update.
+
+The allocation rule is prior because the acceleration samples a surface density
+at one direction, while a finite account debit removes a measure. An exact point
+receiver intercepts a singleton of zero surface measure, so density evaluation
+alone does not define a finite share.
+
+Plainly: before asking how much a receiver takes, the update must say what counts
+as that receiver's share of the emitted surface.
+
 $$
 \left(
 \Delta\mathbf V_r,
@@ -293,17 +313,63 @@ mathematical statement.
 
 ## 3. Coincident-birth requirement
 
-On the exact quadratic same-transmitter control, the unsuppressed acceleration
-is proportional to $T^{-3}$ and
+On
 
 $$
-D_t=\alpha T,
+\mathbf X(T)
+=
+\mathbf X_0+\mathbf V_0T+\frac12\mathbf A_0T^2,
+$$
+
+write $s=T_r-T_e$ and $T_m=\tfrac12(T_r+T_e)$. The exact displacement is
+
+$$
+\mathbf X(T_r)-\mathbf X(T_e)
+=
+s\,\mathbf V(T_m).
+$$
+
+The self-hit condition therefore becomes $\|\mathbf V(T_m)\|=c_f$. If
+$g(T)=\|\mathbf V(T)\|-c_f$ has a simple zero at $T_c$, $g'(T_c)\ne0$, and
+$\tau=T_r-T_c$, then
+
+$$
+s=2\tau,
 \qquad
-z=\frac{|D_t|}{c_f}=\frac{\alpha}{c_f}T.
+r=2c_f\tau,
+\qquad
+D_t=\tau g'(T_c),
+\qquad
+D_r=-\tau g'(T_c),
+\qquad
+\frac{dT_e}{dT_r}=-1,
 $$
 
-Plainly: on this prescribed control, the native birth coordinate is exactly
-linear in time.
+and
+
+$$
+\left\|\mathbf A_{ii}\right\|
+=
+\frac{\kappa q^2}{4c_f|g'(T_c)|\,\tau^3}.
+$$
+
+The normalized-$c_f=1$ Leg 0 playback check is therefore exact on this control:
+
+$$
+\frac{r}{2c_f\tau}=1,
+\qquad
+\frac{D_t}{\tau g'(T_c)}=1,
+\qquad
+\frac{dT_e}{dT_r}=-1.
+$$
+
+Plainly: the approved playback leg closes analytically on the quadratic control.
+It checks the local identity only; it supplies no wake account, birth
+continuation, or conserved branch.
+
+Because $z=|g'(T_c)|\tau/c_f$ is linear in $\tau$, conditions written in $z$
+and $\tau$ are equivalent on this control. That equivalence is not yet proved
+for generic higher-order controls.
 
 For nonnegative measurable $M$, if the wake-state coupling replaces the
 singular term by $M(T)T^{-3}$, finite accumulated acceleration is equivalent to
@@ -314,6 +380,41 @@ $$
 
 Plainly: the exact requirement is weighted integrability, not a pointwise
 power-law bound.
+
+At impulse level, nonnegativity makes this absolute integrability. Within a
+predeclared regulator class admitting one uniform integrable dominator,
+dominated convergence gives a regulator-family-independent impulse. The
+compact-bump multiplicative cutoff, Gaussian mollification, and hard cutoff
+families satisfy this only when their shared dominator is part of the declared
+protocol.
+
+The family
+
+$$
+M_\eta(z)
+=
+z^3+a\eta^2\varphi(z/\eta),
+$$
+
+with $\varphi$ supported on $[1,2]$, converges pointwise to $z^3$ but can leave
+a nonzero weighted residue. It lies outside the dominated class and shows why
+the class must be declared. For the full nonlinear state, impulse convergence
+still does not select a continuation; uniqueness of the limiting integral
+equation is an additional obligation.
+
+The apply-now acceptance condition is therefore
+
+$$
+M\ge0,
+\qquad
+\int_0^L M(T)T^{-3}\,dT<\infty,
+$$
+
+together with a declared uniformly dominated regulator class and a uniqueness
+certificate for the post-birth limit continuation.
+
+Plainly: the birth kick can be regulator-independent inside a controlled class
+while the outgoing trajectory remains nonunique. Both questions must pass.
 
 A bound $M(T)=O(T^{2+\delta})$ for some $\delta>0$ is sufficient but not
 necessary. After nondimensionalizing $T$ by $L$, the continuous example
@@ -360,6 +461,24 @@ a selected term; quartic and every higher leading order remain admissible.
 
 Plainly: analyticity turns the integral test into an integer-order test, but it
 does not require a nonzero cubic coefficient.
+
+No current allocation candidate derives that cubic order:
+
+| Allocation rule | $M$ near birth | Order | Disposition |
+| --- | --- | ---: | --- |
+| strict per-patch, point receiver | $0$ | — | eliminated: a singleton has zero measure |
+| geometric cross-section $\sigma/R^2$ | $\propto z$ | $1$ | eliminated: nonintegrable and makes the cap depend on $D_r$ |
+| whole-label allocation | $\min(1,(\tau/\tau_*)^3)$ | $3$ | eliminated: drains directions away from the interception |
+| fixed angular fraction $f$ | $\propto z^3$ | $3$ | conditional on a new declared allocation postulate |
+
+The whole-label failure is witnessed by two receivers intercepting antipodal
+directions of one emission label. If the first reception drains the label, the
+second receiver's otherwise identical regular acceleration depends on a remote
+earlier reception; if both claim the full label, the account becomes negative.
+Reception order changes the result.
+
+Plainly: cubic suppression appears only after declaring how much angular surface
+one reception owns. The current primitives do not select that share.
 
 The integral condition also fails to select the complete law or its scale.
 Let $z_0>0$, set $\tau=c_fz_0/\alpha$, and consider the inverse constructions
@@ -469,6 +588,34 @@ Claim grade: **derived obstruction**. A predeclared Architrino-native $K$, $P$,
 emission map, and reception map that close the three equations on nonsymmetric
 histories would falsify it.
 
+Two non-circularity requirements sharpen that obstruction:
+
+1. The balances must hold as identities in inputs not fixed by the acceleration
+   geometry. At fixed $(r,\hat{\mathbf r},D_t)$ these include the present
+   receiver velocity $\mathbf V_r$ and higher transmitter-history derivatives.
+   Varying shell age while holding $r$ fixed is not an independent test because
+   reception fixes $T_r-T_e=r/c_f$.
+2. The debit must follow from an independently declared allocation or extraction
+   rule and remain bounded by available capacity. Defining it as the negative
+   motion change has no falsifiable content.
+
+To first order,
+
+$$
+\Delta E_{\mathrm{motion}}
+=
+K'(v_r)\hat{\mathbf V}_r\cdot\Delta\mathbf V_r.
+$$
+
+At fixed causal geometry $\Delta\mathbf V_r$ is fixed while
+$\mathbf V_r$ can vary. Unless $K'\equiv0$, an energy-closing reception map
+must therefore read the present receiver velocity. This requirement belongs to
+the account update only: it does not insert $\mathbf V_r$ or $D_r$ into the
+canonical acceleration.
+
+Plainly: the account may need to know the receiver's present motion even though
+the acceleration law must remain receiver-velocity independent.
+
 ### 4.1 Angular booking and finite-increment scope
 
 Let $\Delta\mathbf p_r$ be the receiver momentum-account increment and let the
@@ -568,19 +715,39 @@ the current primitives do not say where or how it is carried.
 
 ## 6. Positive-energy emission obstruction
 
-Suppose every uniformly emitted wake element carries positive energy before any
-reception. Continuous emission then increases wake energy even for a stationary,
-isolated transmitter. Conservation requires a simultaneous debit from some
-declared account, but the present primitives provide no emission debit rule.
+If every wake element emitted uniformly in absolute time carries the positive
+energy fixed by the conditional account-density result, an isolated stationary
+transmitter's stored wake energy grows linearly unless the corresponding
+coefficient $C_e$ is zero.
 
-Suppose instead that a newly emitted wake has zero energy and acquires the
-negative of a receiver's energy gain only at reception. Repeated like-polarity
-acceleration can then drive the wake account downward without a derived lower
-bound. That balances algebraically but fails bounded energy.
+The resulting alternatives are:
 
-Thus a bounded-energy wake state needs a predeclared emission capacity and a
-rule that supplies that capacity from the complete state. Neither follows from
-uniform causal-surface emission or polarity alone.
+1. $C_e=0$, so the proposed wake energy account is vacuous;
+2. emission has a predeclared debit from another bounded account; or
+3. uniform fixed-capacity emission in absolute time is not the correct
+   constitutive rule.
+
+If the debit is assigned to a motion account at constant rate
+$\varepsilon_0|q|$, the comparison bookkeeping
+$K=\tfrac12\mu_{\mathrm{arch}}v^2$ gives
+
+$$
+v^2(T)
+=
+v_0^2-\frac{2\varepsilon_0|q|}{\mu_{\mathrm{arch}}}T,
+\qquad
+T_{\mathrm{stop}}
+=
+\frac{\mu_{\mathrm{arch}}v_0^2}{2\varepsilon_0|q|}.
+$$
+
+Here $\mu_{\mathrm{arch}}$ is only the declared units constant used by that
+comparison account, not architrino mass. The finite stopping time rejects this
+simple motion-debit construction; it does not select another source.
+
+Plainly: fixed positive capacity emitted every second needs a source. Charging
+ordinary motion would halt a free carrier on a schedule, so the open pressure
+falls on the uniform-emission assumption or on a different derived account.
 
 ## 7. Ordinary folds and causal boundaries
 
@@ -658,17 +825,19 @@ photon status or cross-reference follows.
 ## 9. Disposition
 
 The independently evolving wake-state route is not closed. The analysis has
-derived a conditional state class and six mandatory obligations:
+derived a conditional state class and seven mandatory obligations:
 
-1. directional surface resolution;
-2. a coupling output satisfying exact weighted integrability at coincident
+1. a reception allocation rule compatible with direction resolution and finite
+   account measure;
+2. directional surface resolution;
+3. a coupling output satisfying exact weighted integrability at coincident
    birth, with cubic only the first possible analytic order;
-3. scalar energy and vector momentum account outputs in a declared density,
+4. scalar energy and vector momentum account outputs in a declared density,
    measure, patch, or nonlocal representation;
-4. a declared observation operator and angular-booking convention;
-5. one predeclared emission, propagation, reception, and boundary update tied
+5. a declared observation operator and angular-booking convention;
+6. one predeclared emission, propagation, reception, and boundary update tied
    to fixed motion-account functions; and
-6. a one-sided birth, event, and jump architecture sufficient for local
+7. a one-sided birth, event, and jump architecture sufficient for local
    well-posedness.
 
 The current primitives determine free propagation and the regular receiver

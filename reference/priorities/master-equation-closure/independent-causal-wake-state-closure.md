@@ -166,6 +166,14 @@ The candidate fails if:
   geometry;
 - the same-transmitter transition depends on regulator path or resumes a
   nonintegrable open post-birth branch;
+- a reception map claims energy closure without reading the present receiver
+  velocity, except under a separately derived constant motion-energy account;
+- an allocation rule makes the extraction cap depend on $D_r$ and thereby
+  changes regular acceleration at a receiver-side playback fold;
+- one reception updates account content away from the intercepted direction
+  without a separately derived nonlocal redistribution rule;
+- two regulator families inside the declared dominated class produce different
+  birth impulses;
 - energy closes while momentum or angular momentum does not;
 - a boundary loss is omitted rather than emitted as flux;
 - the construction imports electromagnetic potentials, gauge theory, Lorentz

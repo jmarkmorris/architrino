@@ -8,6 +8,41 @@ acceleration operator.
 
 Review provenance: [Planck Action Period, Blackbody, and Fine-Structure Coupling](../../entourage/review-packets/planck-action-period-blackbody-alpha-reconciliation-2026-07-29.md) routes its variational and same-update balance questions to `MEC-001`, `MEC-002`, and `MEC-004`; it supplies no action, wake state, conserved account, or status change.
 
+## Wake-Reception Review Action Register
+
+This register owns every deferred action from [Wake Reception Transfer, Motion
+Accounts, and Coincident-Birth
+Maturity](../../entourage/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md).
+It creates no priority object and changes no status. The review packet is
+reference evidence; execution belongs to the existing MEC owners below.
+
+| Packet item | Live owner and current status | Acceptance action |
+| --- | --- | --- |
+| P1 — account monomials and charge scaling | MEC-002, `In progress` | Derive the emission label and account measure from the same causal update, then independently recheck the conditional dimensional uniqueness and charge scaling. |
+| P2 — zero pre-reception momentum and no intrinsic wake spin | MEC-002, `In progress` | Fix the admissible label and observation inputs, then prove the scoped radial-account result without defining momentum from a balance residual. |
+| P7 — conditional separation floor | MEC-003, `Deferred / blocked`, after MEC-002 | Derive any floor from an accepted capacity rule, then test $r_*=\ell_q/\sqrt{Cz}$ at $c_f=1$ without inserting the floor as a premise. |
+| P9 — visibility, universality range, and fourth-branch costs | MEC-002, `In progress`; birth consequence at MEC-003, `Deferred / blocked` | Derive one allocation and maturity rule, then test visibility and the declared $z\ge z_{\min}>0$ regular range without adopting visibility as an axiom. |
+| P12 — characteristic-tail angular chart | MEC-004, `Deferred / blocked`, after MEC-005, `Queued`; technical locus [MEC-001](characteristic-tail.md); MEC-006 applies only if an acceleration-gradient input is used | Run the oblique angular pin on the same MEC-002 update and provenance-complete MEC-005 ledger, then require independently checked momentum and angular-momentum closure together. |
+| P14 — reader-facing zero-momentum/no-spin theorem | MEC-002, `In progress` | Pass P2 first, then promote only the scoped theorem and its falsifier. |
+| P15 — reader-facing $D_r$-independent allocation constraint | MEC-002, `In progress`; MEC-006, `Awaiting verification`, only for candidates that invoke receiver/self acceleration gradients | Test each allocation with unchanged canonical regular acceleration; promote only a surviving update, using independently accepted gradient rows if the candidate actually consumes them. |
+| Leg 1 — cumulative extraction bound | MEC-002, `In progress`, then MEC-005 and MEC-004 | On the predeclared nonsymmetric two-carrier retained history, test a per-shell capacity with unchanged regular acceleration after the update, root ownership, and account maps exist. |
+| Leg 2 — continuation uniqueness | MEC-003, `Deferred / blocked` | Prove or falsify Osgood or local-Lipschitz control and a unique finite-impulse crossing for every regulator in the declared class. |
+| Leg 3 — angular pin | MEC-004, `Deferred / blocked`, after MEC-005 | Run the oblique control on a nonsymmetric provenance ledger and require independent momentum and angular-momentum closure on the same update. |
+| D1 — transmitter velocity in the shell label | MEC-002, `In progress` | Derive any such dependence from Architrino primitives before evolution, then recheck surface-account uniqueness and regular-chart reduction. |
+| D2 — angular-allocation constant or rule | MEC-002, `In progress` | Supply a predeclared rule that survives the singleton-measure, double-drain, direction-resolution, and $D_r$-dependence falsifiers. |
+| D3 — capacity-derived separation floor | MEC-003, `Deferred / blocked`, after MEC-002 | Derive and test the floor from the accepted update and allocation; do not create a canonical floor from the conditional consequence. |
+| D4 — capacity scale | MEC-002, `In progress`; downstream MEC-004, `Deferred / blocked` | Derive one capacity map and charge scaling from MEC-002, then test all three accounts with no post-fit constant. |
+| D5 — emission debit owner | MEC-004, `Deferred / blocked`, after MEC-005 | Bind emission, reception, wake, motion, and boundary rows to the MEC-002 update and MEC-005 provenance, then close all three accounts independently. |
+| Genericity of $r\propto z$ | MEC-003, `Deferred / blocked` | Classify cubic and higher-order birth controls as $r\propto z^p$ and update the integrability condition without selecting a favorable exponent. |
+| Bounded cumulative extraction | MEC-002, `In progress`, then MEC-005 and MEC-004 | Execute Leg 1 and return the predeclared capacity bound or the exhaustion/unbounded-capacity falsifier. |
+| Unique regulator-independent continuation | MEC-003, `Deferred / blocked` | Execute Leg 2 across the complete declared dominated regulator class. |
+| Momentum closure under the angular-pin assumptions | MEC-004, `Deferred / blocked`, after MEC-005 | Execute Leg 3 with nonsymmetric root provenance and require the same update to close momentum and angular momentum. |
+| Finite-core regulators in the admitted class | MEC-003, `Deferred / blocked`; MEC-001, `Awaiting verification`, only if the candidate changes the action-level self core | Predeclare the regulator class and require identical birth impulse and continuation under refinement; separately amend and vary any changed action candidate before citing it. |
+
+Plainly: every deferred review question now has a live owner and a test. Cross-owner
+rows are handoffs between existing obligations, not new queues, and MEC-006 is a
+conditional dependency rather than a blanket veto.
+
 ## Ranked Next Objects
 
 1. `causal_wake_update_law` — [MEC-002](#mec-002--causal-wake-update-law). Status: `In progress`.

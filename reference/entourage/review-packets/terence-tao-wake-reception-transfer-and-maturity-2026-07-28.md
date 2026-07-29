@@ -686,6 +686,12 @@ its consequence is moved to
 
 No reader-facing corpus change is applied by this packet.
 
+**Applied disposition, 2026-07-29.** P3, P4, P5, P6, P8, P10, P11, P13, and
+Leg 0 now live in the mathematical and queue owners named below. Every deferred
+item and open question is recorded in the canonical [wake-reception review
+action register](../../priorities/master-equation-closure/work-queue.md#wake-reception-review-action-register).
+This packet is reference evidence only and owns no outstanding action.
+
 **Sequencing constraint.** Reconcile this change batch with the parallel
 causal-wake-state packet before editing
 `analysis-independent-causal-wake-state.md` §3. Apply the shared

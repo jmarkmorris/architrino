@@ -12,6 +12,10 @@
   [topological causal-root ledger capture](brainstorming.md#topological-causal-root-ledger-discussion-capture-2026-06-29)
   and
   [universal conservation ledger capture](brainstorming.md#universal-conservation-ledger-discussion-capture-2026-07-10)
+- Routed research input:
+  [wake reception, transfer, and maturity](../../entourage/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md)
+  requires MEC-005 provenance before its cumulative-extraction and angular-pin
+  account tests can run; it supplies no account values or conservation claim.
 - Promotion status: not promoted
 
 ## Closure Question
