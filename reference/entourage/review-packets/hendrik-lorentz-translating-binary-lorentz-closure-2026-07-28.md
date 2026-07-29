@@ -8,8 +8,8 @@ Record the Lorentz-closure research findings for the translating maximum-curvatu
 - **Date:** 2026-07-28
 - **Artifact type:** research findings and proposed changes.
 - **Review lens:** Hendrik Lorentz-style microphysical derivation of contraction and local time from finite-speed delayed interactions, with mechanism held apart from compensation.
-- **Research basis:** two bounded mathematical analyses are synthesized by result; prompts, replies, response-format instructions, and the repeated substrate statement are superseded and omitted.
-- **Claim authority:** conditional mathematical analysis, with every load-bearing algebraic step independently recomputed here.
+- **Research basis:** two bounded mathematical analyses are synthesized by result, retaining their derivations, evidence boundaries, rejected claims, and proposed destinations.
+- **Claim authority:** conditional mathematical analysis, with every load-bearing algebraic step recomputed from the displayed equations rather than inherited from the source analyses. These checks do not constitute independent evidence about the substrate.
 - **Promotion classification:** priority-only, with seven named reader-facing corpus corrections. Two of them are substantive additions rather than hedges and are marked as such.
 - **Not established:** existence of a translating branch, its stability, the second-order clock and shape coefficients, any conservation law for this kernel, or Lorentz recovery at any drift speed.
 
@@ -37,7 +37,7 @@ to preserve the root relation for every pair forces $c_f^2\lambda^2=\gamma_f^{-2
 
 **One hoped-for cheap falsifier is closed.** The first-order period coefficient $a_1$ is forced to vanish for the exactly circular planar binary, by ordinary spatial symmetries of that orbit together with the kernel's invariance under global polarity reversal (Finding 4). There is no linear-in-drift period shift to look for. The first-order *shape* correction $\boldsymbol\rho_1$ need not vanish, however, and it feeds three additional terms into the second-order solvability equation (Finding 5).
 
-**One foundation is missing outright.** Euclidean and time-translation covariance do **not** by themselves supply conserved energy or momentum; Noether's theorem needs an action or an independent balance identity, and none has been given for a strictly delayed, receiver-local acceleration law. So $E_{\mathrm{wake}}$ and $\mathbf P_{\mathrm{wake}}$ cannot presently be written down at all, and the mass-shell programme with a drift-independent $M_0$ is an unresolved target rather than available bookkeeping (Finding 16).
+**One foundation is missing outright.** Euclidean and time-translation covariance do **not** by themselves supply conserved energy or momentum; Noether's theorem needs an action or an independent balance identity, and none has been given for a strictly delayed, receiver-local acceleration law. So $E_{\mathrm{wake}}$ and $\mathbf P_{\mathrm{wake}}$ cannot presently be written down at all, and the mass-shell programme with a drift-independent $M_0$ is an unresolved target rather than available bookkeeping (Finding 15).
 
 *Plainly: the law looks the same if you move or rotate the whole experiment, but that alone does not mean anything is conserved. Until someone writes down what the wake carries, the energy story has nothing underneath it.*
 
@@ -50,9 +50,9 @@ Balance of judgment: exact closure is unlikely; approximate closure over a restr
 Regrades of the original research ledger, using its established labels:
 
 - **(D1)–(D3) directional delays and anisotropies.** Derived only on the uniformly translating, fixed-separation kinematic chart. Not yet properties of the moving binary, whose separation is itself an unknown periodic function.
-- **(D4) forward-root starvation bound.** Derived, conditionally on the declared minimum forward separation. Its conclusion concerns delay length and finite-memory exclusion, **not** orbital period (Finding 12).
-- **(K1) closed-return axis-ratio selection.** Conditional kinematics, as originally graded. Not a coarse-graining of the binary ledger until an actual root itinerary is named (Finding 14).
-- **(P1) coframe reciprocity test.** Presently underdefined: the reciprocity product is normalization-dependent (Finding 15).
+- **(D4) forward-root starvation bound.** Derived, conditionally on the declared minimum forward separation. Its conclusion concerns delay length and finite-memory exclusion, **not** orbital period (Finding 11).
+- **(K1) closed-return axis-ratio selection.** Conditional kinematics, as originally graded. Not a coarse-graining of the binary ledger until an actual root itinerary is named (Finding 13).
+- **(P1) coframe reciprocity test.** Presently underdefined: the reciprocity product is normalization-dependent (Finding 14).
 - **(P2) no-retune as drift-only holonomy.** Superseded by frozen-source held-out parallelism (Finding 17).
 - **(P3) branch-quantized Lorentz response.** Not established, but **not disqualified**: fold singularities are integrable and a regulator-free weak reading is plausible for isolated transverse crossings. The operative mechanism is the *persistence of the newborn branch*, not a finite kick at the singular point, whose impulse vanishes in the shrinking limit (Finding 10).
 - **(U1) existence, (U2) stability, (U3) no evolved confirmation, (U5) kernel capability.** Unresolved.
@@ -69,8 +69,8 @@ New results established in the research:
 - **Derived, conditionally:** the linearized delayed operator is Fredholm on a fixed simple-root chart with a uniform Jacobian floor, after gauge fixing (Finding 6).
 - **Derived:** the transmitter weight, including the absolute value, follows from a constant positive emission measure; the *temporal arrival rate at a moving receiver* is a different quantity, $|D_r/D_t|$ (Finding 9).
 - **Derived:** the fold acceleration singularity is integrable in time; the impulse across a shrinking window vanishes (Finding 10).
-- **Derived obstruction:** covariance does not supply conservation laws for this kernel, and an ordinary single-copy path action is obstructed (Finding 16).
-- **Derived dichotomy:** any nondegenerate finite-width limiting orbit near $c_f$ disagrees decisively with Lorentz contraction (Finding 13).
+- **Derived obstruction:** covariance does not supply conservation laws for this kernel, and an ordinary single-copy path action is obstructed (Finding 15).
+- **Derived dichotomy:** any nondegenerate finite-width limiting orbit near $c_f$ disagrees decisively with Lorentz contraction (Finding 12).
 
 *Plainly: the theory lost a hoped-for cheap test and its energy foundation, gained a derivation of its own weighting factor, and had one proposed innovation partly rescued from an earlier negative verdict.*
 
@@ -104,7 +104,7 @@ The quadratic terms do not cancel: an expression of the form $2u\Delta t_0x_\par
 | $\Delta X$ | $0.75+0.8=1.55$ |
 | $\Delta X^2-\Delta T^2$ | $2.4025-1.5625=0.84$ |
 | corrected form $2ux_\parallel\Delta t_0-u^2x_\parallel^2$ | $1.2-0.36=0.84$ |
-| round-one form $2ux_\parallel\Delta t_0$ | $1.2$ |
+| incomplete linear-only form $2ux_\parallel\Delta t_0$ | $1.2$ |
 
 Verified additionally against direct evaluation over $2\times10^5$ randomly sampled causal pairs, maximum discrepancy $2\times10^{-11}$.
 
@@ -254,7 +254,7 @@ The solvability reduction of Finding 5 requires the linearized delayed operator 
 4. root labels retain fixed cardinality across the neighbourhood;
 5. the orbit and kernel stay bounded away from collisions, $\inf_{q,\theta}r_q(\theta)>0$.
 
-*Plainly: away from a fold, each old wake can be tracked as its own smooth labelled channel, so the equation behaves locally like an ordinary problem with a fixed finite list of delays.*
+*Plainly: under those hypotheses, the delay terms are controlled additions to the periodic second-derivative operator. That makes the adjoint solvability test legitimate on this chart, but says nothing at a fold where the root labels cease to vary smoothly.*
 
 The implicit function theorem then makes each delay functional locally smooth, and the operator takes the form
 
@@ -342,7 +342,7 @@ which reduces to $c_f/|D_t|$ only for a stationary receiver. So the postulated l
 
 *Plainly: counting how many surfaces are sitting on you right now gives the emitter factor alone. Counting how fast you sweep through them also depends on how fast you are moving. The law uses the first count, and that choice should be stated rather than assumed.*
 
-Finally, the absolute value is now justified rather than suspect: a signed $1/D_t$ would be the Jacobian of an *oriented flux*, a different microscopic coupling rule under which fold-born pairs cancel instead of adding. The round-one worry that the absolute value might be a transcription artifact is resolved — it is the correct choice for a positive count.
+Finally, the absolute value is now justified rather than suspect: a signed $1/D_t$ would be the Jacobian of an *oriented flux*, a different microscopic coupling rule under which fold-born pairs cancel instead of adding. The earlier concern that the absolute value might be a transcription artifact is resolved — it is the correct choice for a positive count.
 
 > Claim grade: derived, conditional on constant positive emission measure and event-local shell-density coupling. Falsifier: a declared microscopic rule in which each crossing supplies a fixed acceleration increment per unit receiver time would require $|D_r/D_t|$ and would contradict the stated law for moving receivers. Choosing a different emission measure, or a signed oriented flux, also breaks the derivation.
 
@@ -444,7 +444,7 @@ An ordinary single-copy path action is obstructed by three features of the state
 
 The consequence for the shell programme is severe. No explicit wake dynamics has been supplied, so $E_{\mathrm{wake}}$ and $\mathbf P_{\mathrm{wake}}$ **cannot presently be computed at all** — they can only be fitted after the moving branch is known, which is precisely the construction that carries no evidential weight. A drift-independent $M_0$ and a mass-shell relation are therefore unresolved targets, not available bookkeeping.
 
-Two further points stand from the earlier round. Matching $\gamma$-shaped targets order by order forces
+Two further points follow from the earlier analysis. Matching $\gamma$-shaped targets order by order forces
 
 $$
 E_{\mathrm{wake}}(u)-E_{\mathrm{wake}}(0)
@@ -474,10 +474,10 @@ $$
 \qquad(C>0),
 \qquad
 |u|<\min\left(u_0,\ \frac{d_J}{M}\right)
-\qquad(C=0).
+\qquad(C=0,\ M>0).
 $$
 
-The root formula was verified symbolically. This supersedes the earlier self-referential form.
+Here $M\ge0$ and $C\ge0$ because they are bound constants. In the degenerate case $M=C=0$, the estimate is independent of drift and gives $u_{\mathrm{safe}}=u_0$. The root formula was verified symbolically. This supersedes the earlier self-referential form.
 
 *Plainly: measure how far the resting orbit's hits are from the edge of being born or dying, then subtract the largest certified change a drift can cause. What is left must stay positive.*
 
@@ -511,7 +511,7 @@ Items A1 through A5 add a grade, a hedge, or a companion estimate. **A6 and A7 a
 
 ### Batch B — priority corrections
 
-1. **`reference/priorities/equation-mapping/eq-02-04-lorentz-energy-packet.md`.** Replace the derivation target with the **corrected** second-order solvability system of Finding 5, including the three terms in the first-order shape correction, and record that the round-one uncorrected quotient must not be used. Add Finding 6's five chart hypotheses as declared side conditions and Finding 7's unknown-versus-condition count as the existence pre-test.
+1. **`reference/priorities/equation-mapping/eq-02-04-lorentz-energy-packet.md`.** Replace the derivation target with the **corrected** second-order solvability system of Finding 5, including the three terms in the first-order shape correction, and record that the uncorrected quotient must not be used. Add Finding 6's five chart hypotheses as declared side conditions and Finding 7's unknown-versus-condition count as the existence pre-test.
 2. **Same file.** Record Finding 15: no conservation law has been derived for this kernel, so the shell row cannot be treated as available bookkeeping, and a wake ledger fitted after the moving branch is known carries no evidential weight. Add the shell-weakness note so a shell residual is never read as sufficient.
 3. **`reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md`, connection and holonomy section.** Add the six normalization conditions of Finding 14 as declared prerequisites of the reciprocity test, record the leg-rescaling freedom, and add a `leg_rescaled_coframe` negative control that must fail — neither existing control tests that freedom.
 4. **Same file.** Restate the no-retune witness per the accepted earlier disposition and remove the drift-only loop-holonomy reading (Finding 17).
@@ -525,13 +525,13 @@ Items A1 through A5 add a grade, a hedge, or a companion estimate. **A6 and A7 a
 - The round-trip anisotropy budget through fourth order is already derived in the corpus, in a more general two-parameter gauge, and already yields the required coefficients in the transverse gauge. Independent recomputation here confirms those coefficients are exactly equivalent to the Lorentz axial factor through sixth order. A fixed-arm restatement adds nothing and should not be promoted. Only the observation that the orbiting binary supplies additional fourth-order harmonics — phase, weight, root-shift, and non-elliptic shape contributions, so a single fitted axis ratio is insufficient — is new, and only as a proposed ledger budget.
 - The starvation proposition's kinematic content and separator taxonomy are correct and appropriately hedged; only the weight-decay companion is missing.
 
-*Plainly: one of the review's answers restated something the textbook already has, in a weaker form. That part is dropped and only the new piece kept.*
+*Plainly: one part of the analysis restated something the textbook already has, in a weaker form. That part is dropped and only the new piece kept.*
 
 ## Ordered Computation Programme
 
-Work in normalized wake-speed units, $c_f=1$. The second-order programme is legitimate only after three certificates close. Run them in this order; the first two are cheap and either can end the programme locally.
+Work in normalized wake-speed units, $c_f=1$. The second-order programme is legitimate only after three certificates close. Run the three gating certificates in this order; the first two are cheap and either can end the programme locally. After Certificate 3, return to Finding 16 to extend the rest-ledger Jacobian certificate to a positive-drift neighbourhood.
 
-**Certificate 1 — root inventory and Jacobian floor.** On the accepted $u=0$ ledger, enumerate every root in the retained-history interval and measure $d_J=\min_{q,\theta}|D_{t,q}|$. If $d_J=0$, the ordinary second-order programme cannot start and the analysis must move to a fold-resolved or weak formulation. If $d_J>0$, also bound $M$ and $C$ and evaluate $u_{\mathrm{safe}}$ from Finding 16, remembering that $M$ generally requires the first-order problem.
+**Certificate 1 — root inventory and rest-ledger Jacobian floor.** On the accepted $u=0$ ledger, enumerate every root in the retained-history interval and measure $d_J=\min_{q,\theta}|D_{t,q}|$. If $d_J=0$, the ordinary second-order programme cannot start and the analysis must move to a fold-resolved or weak formulation. If $d_J>0$, record the certified rest-ledger margin; do not yet claim a positive-drift interval.
 
 *Plainly: first find out whether the resting orbit's hits are safely away from the edge of being born or dying, because everything downstream assumes they are.*
 
@@ -540,6 +540,8 @@ Work in normalized wake-speed units, $c_f=1$. The second-order programme is legi
 **Certificate 3 — first-order shape.** Solve $L\boldsymbol\rho_1+\mathcal F_b=0$ with gauge conditions. This is a prerequisite, not a refinement: Finding 5 shows the second-order coefficient depends on it.
 
 *Plainly: before running anything, check that the hits are countable and not on the edge of birth, check that the drift does not force more equations than the orbit has dials, and solve how the shape leans at first order. Any of the three can settle the question by itself.*
+
+**Neighbourhood extension of Certificate 1.** With $\boldsymbol\rho_1$ available, bound $M$ and $C$ jointly with the first-order continuation and evaluate $u_{\mathrm{safe}}$ from Finding 16. Continuation may sample only inside that certified interval. This ordering avoids using frozen rest geometry to estimate a sensitivity that depends on the moving shape.
 
 **Then the continuation.** Use a periodic collocation boundary-value formulation, not fixed-delay time stepping. Represent each orbit in a high-order piecewise-polynomial or Fourier basis; at every collocation phase enumerate every root in the retained interval and solve each with safeguarded Newton bracketing *inside* each residual evaluation; evaluate the complete acceleration sum; impose periodicity, center, orientation, and phase conditions; and run pseudo-arclength continuation in the combined orbit, period, and drift unknowns. Sample
 
@@ -563,7 +565,7 @@ with $\varepsilon_G$ the certified root residual and $C_J\sqrt{\varepsilon_G}$ c
 
 **Refinement axes, all required.** Collocation order; mesh density; root tolerance; retained-history depth; arithmetic precision; and the Jacobian floor. Root enumeration needs an independent interval or bracketing check. Near a root birth the continuation Jacobian becomes badly conditioned *before* the fold itself, and an ordinary Newton step must not be used to conceal that.
 
-**Clean pass at second order.** Simultaneously $|a_1|,|g_1|<\varepsilon$; $|a_2-\tfrac12|<\varepsilon$; $|g_2+\tfrac12|<\varepsilon$; and $\sup_\theta\|\mathcal E_L(\theta,u)\|\le Cu^4$ under refinement, with $\varepsilon=10^{-3}$ and reported numerical uncertainty below $3\times10^{-4}$. Note that Finding 4 predicts $a_1=0$ independently, so a nonzero $a_1$ indicates a broken hypothesis or a numerical fault rather than a physical result.
+**Clean pass at second order.** Simultaneously $|a_1|,|g_1|<\varepsilon$; $|a_2-\tfrac12|<\varepsilon$; $|g_2+\tfrac12|<\varepsilon$; and $\sup_\theta\|\mathcal E_L(\theta,u)\|\le C_Lu^4$ under refinement for a drift-independent residual bound $C_L$, with $\varepsilon=10^{-3}$ and reported numerical uncertainty below $3\times10^{-4}$. Note that Finding 4 predicts $a_1=0$ independently, so a nonzero $a_1$ indicates a broken hypothesis or a numerical fault rather than a physical result.
 
 **Clean failure.** Any one of: the rest balance does not converge; no nearby translating periodic branch exists; $d_J=0$ or an unavoidable fold occurs arbitrarily close to zero drift; the confidence interval for $a_2$ excludes $\tfrac12$; the interval for $g_2$ excludes $-\tfrac12$; the Lorentz-candidate residual converges to a nonzero quadratic coefficient; or the result moves under any refinement axis.
 
@@ -594,7 +596,7 @@ with $\varepsilon_G$ the certified root residual and $C_J\sqrt{\varepsilon_G}$ c
 
 ## Research Basis And Scope
 
-This document synthesizes two bounded mathematical analyses by result. Their prompts, replies, response-format instructions, and repeated substrate statement are superseded and omitted.
+This document synthesizes two bounded mathematical analyses by result, preserving the complete research substance needed to audit the conclusions while omitting conversational and duplicated process material.
 
 The derivations use only the declared substrate assumptions carried throughout the findings:
 
@@ -605,11 +607,11 @@ The derivations use only the declared substrate assumptions carried throughout t
 - all active roots, including self-hits;
 - and normalized units $c_f=1$ for numerical instantiations.
 
-*Plainly: the packet is self-contained at the level needed to understand and audit its findings. It does not preserve the conversation that elicited them, and it does not import Lorentz symmetry, a speed limit for matter, force, mass, or a conservation law as a premise.*
+*Plainly: the packet is self-contained at the level needed to understand and audit its findings. It does not import Lorentz symmetry, a speed limit for matter, force, mass, or a conservation law as a premise.*
 
 ### Evidence boundary
 
-- **Independently recomputed here**, symbolically or numerically: the root defect of Finding 1, including a $2\times10^5$-sample check against direct evaluation; the three coefficient conditions and the negative square of Finding 2; the four transformed-acceleration and weight identities of Finding 3; the root-function derivative identity underlying Finding 9; the fold impulse of Finding 10; the denominator expansions of Finding 8; the no-fold root formula of Finding 16; the two-way anisotropy coefficients listed as non-changes; and the shell-weakness demonstration in Finding 15.
+- **Recomputed from the displayed equations rather than inherited from the source analyses**, symbolically or numerically: the root defect of Finding 1, including an ad hoc $2\times10^5$-sample direct-evaluation cross-check; the three coefficient conditions and the negative square of Finding 2; the four transformed-acceleration and weight identities of Finding 3; the root-function derivative identity underlying Finding 9; the fold impulse of Finding 10; the denominator expansions of Finding 8; the no-fold root formula of Finding 16; the two-way anisotropy coefficients listed as non-changes; and the shell-weakness demonstration in Finding 15. These are same-packet checks, not independent acceptance evidence.
 - **Accepted on stated hypotheses, not independently verified**: the Fredholm argument of Finding 6, which rests on a compact-embedding claim for the delay and evaluation terms; and the fold normal-form genericity of Finding 10.
 - **Nothing here rests on evolving the delayed law.** No quantity has been measured on an actual causal-root ledger, so every certificate in the computation programme is currently open — including the Jacobian floor on which several findings' hypotheses depend.
 - **Agreement between two review lenses is corroboration of a reading, not independent evidence about the substrate** (Finding 17).
