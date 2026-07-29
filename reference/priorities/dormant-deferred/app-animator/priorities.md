@@ -67,7 +67,7 @@ The locally ranked execution order, current-state notes, blockers, and acceptanc
 
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
-| [design-and-interfaces.md](design-and-interfaces.md) | Stable animator design doctrine, viewport model, observer/framing model, media and overlay boundaries, structure editing direction, inputs, outputs, and app boundaries. | [about-the-webapp](../../../../content/markdown/aaa/archie/about-the-webapp.md), [scene-taxonomy](../../../design/scene-taxonomy.md), [navigation-and-controls](../../../../content/markdown/aaa/archie/navigation-and-controls.md) |
+| [design-and-interfaces.md](design-and-interfaces.md) | Stable animator design doctrine, viewport model, observer/framing model, media and overlay boundaries, structure editing direction, inputs, outputs, and app boundaries. | [about-the-webapp](../../../../content/markdown/aaa/archie/about-the-webapp.md), [scene-taxonomy](../../../learning-office/design/scene-taxonomy.md), [navigation-and-controls](../../../../content/markdown/aaa/archie/navigation-and-controls.md) |
 | [simulation-mode.md](simulation-mode.md) | Detailed packet for solver-derived Animator simulation mode, dataset playback, field shells, delayed hits, authoring controls, offline/cache workflow, and production solver cleanup. | [run-protocols](../../../../content/markdown/aaa/validation/simulations/run-protocols.md), [about-the-webapp](../../../../content/markdown/aaa/archie/about-the-webapp.md), and Animator runtime documentation. |
 
 ## Promotion Map
@@ -83,5 +83,5 @@ The locally ranked execution order, current-state notes, blockers, and acceptanc
 ## Related AAA Notes
 
 - [about-the-webapp](../../../../content/markdown/aaa/archie/about-the-webapp.md)
-- [scene-taxonomy](../../../design/scene-taxonomy.md)
+- [scene-taxonomy](../../../learning-office/design/scene-taxonomy.md)
 - [navigation-and-controls](../../../../content/markdown/aaa/archie/navigation-and-controls.md)

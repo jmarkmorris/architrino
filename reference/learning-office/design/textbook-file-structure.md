@@ -10,11 +10,11 @@ This note defines the current file-structure standard for textbook-facing conten
 
 This guide should be read alongside:
 
-- [academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md)
-- [mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md)
-- [mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md)
+- [academic-style-guide.md](../../../content/markdown/aaa/archie/academic-style-guide.md)
+- [mathematics-style-guide.md](../../../content/markdown/aaa/archie/mathematics-style-guide.md)
+- [mathematics-terminology.md](../../../content/markdown/aaa/archie/mathematics-terminology.md)
 - [scene-taxonomy.md](scene-taxonomy.md)
-- [navigation-and-controls.md](../../content/markdown/aaa/archie/navigation-and-controls.md)
+- [navigation-and-controls.md](../../../content/markdown/aaa/archie/navigation-and-controls.md)
 
 ## Core Principle
 
@@ -165,13 +165,13 @@ Use relative markdown links relative to the current document.
 Example from an Archie document linking into foundations:
 
 ```markdown
-See [Absolute Time Defense](../../content/markdown/aaa/foundations/absolute-time-defense.md).
+See [Absolute Time Defense](../../../content/markdown/aaa/foundations/absolute-time-defense.md).
 ```
 
 Example from one philosophy-history document linking to another in the same directory:
 
 ```markdown
-See [major-thinkers.md](../../content/markdown/aaa/philosophy-history/major-thinkers.md).
+See [major-thinkers.md](../../../content/markdown/aaa/philosophy-history/major-thinkers.md).
 ```
 
 Do not use:
@@ -254,9 +254,9 @@ File structure and style are connected.
 
 In practice:
 
-- prose should follow [academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md),
-- notation and formal dialect should follow [mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md),
-- canonical symbol use should follow [mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md).
+- prose should follow [academic-style-guide.md](../../../content/markdown/aaa/archie/academic-style-guide.md),
+- notation and formal dialect should follow [mathematics-style-guide.md](../../../content/markdown/aaa/archie/mathematics-style-guide.md),
+- canonical symbol use should follow [mathematics-terminology.md](../../../content/markdown/aaa/archie/mathematics-terminology.md).
 
 A structurally correct file that ignores these standards is still editorially out of conformance.
 

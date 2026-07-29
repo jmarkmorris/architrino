@@ -10,6 +10,7 @@ The Archie path should therefore build many on-ramps: caregiver-led early learni
 
 ## Files
 
+- [design/](design/README.md): canonical learning-model standards for reader-facing scene behavior and textbook structure.
 - [50-word-descriptions.md](50-word-descriptions.md): short descriptions constrained to 50 words each.
 - [elevator-stories.md](elevator-stories.md): short spoken-story versions for different audiences.
 - [early-learning.md](early-learning.md): age-banded curriculum sketch for introducing $\mathbb{A}\mathbb{A}\mathbb{A}$ concepts to children with AI-assisted learning.
