@@ -93,4 +93,4 @@ The main thread owns integration. It should:
 
 ## Feedback Loop
 
-When parallel Codex threads create overlap, ambiguity, duplicated work, or idle integration time, add a one-line unchecked task to [README-op.md](../../README-op.md) under `Multi-Agent Use`.
+When parallel Codex threads create overlap, ambiguity, duplicated work, or idle integration time, add a one-line unchecked task to [README-op.md](README-op.md) under `Multi-Agent Use`.

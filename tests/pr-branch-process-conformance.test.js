@@ -51,7 +51,7 @@ test("PR procedure makes unattended execution measurable and requires verificati
   const verification = read(
     "reference/op/git/codex-pr-unattended-verification.md"
   );
-  const operatorFeedback = read("README-op.md");
+  const operatorFeedback = read("reference/op/README-op.md");
 
   for (const counter of [
     "operatorDecisionPromptCount",

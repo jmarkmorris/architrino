@@ -44,6 +44,14 @@ A responsible research transition depends on tying institutional action to evide
 - preserve detector-facing records and uncertainty discipline;
 - publish benchmark artifacts that independent skeptics can rerun or attack.
 
+### Existing-Evidence Validation Protocol
+
+Existing measurements remain valid test material even when their original interpretation is later questioned. The discipline is to preserve the measurement record while making the candidate's mapping, success criteria, tolerances, and failure cases explicit before the decisive comparison. Where practical, use held-out records, blinded labels, or an independent analyst who applies the frozen mapping without sharing its expected outcome.
+
+The resulting benchmark artifact must distinguish four layers: detector-facing observations, inherited effective equations or computational tools, the original interpretive narrative, and the candidate recovery or replacement claim. It is not enough to redescribe a familiar result after seeing it. A credible recovery must constrain how the same mapping handles multiple records, name where it should fail, and expose residuals or negative controls that a skeptical reviewer can inspect.
+
+This creates a cumulative path: first map the existing record with specialists who understand the measurements, inherited effective theory, and candidate architecture; then use the constrained map to identify genuinely new measurements, regimes, or observables where the candidate makes a distinct prediction.
+
 **Failure mode:** if each benchmark family needs a separate rescue mechanism, the program has not shown a deeper implementation basis.
 
 ## 3. Classification Discipline
@@ -93,12 +101,19 @@ A responsible research transition depends on tying institutional action to evide
 **Acceptance conditions:**
 
 - legacy experts can renew authority through baseline stewardship, translation, validation, teaching, or applied rebuild work;
+- translation work pairs measurement literacy, inherited-theory literacy, and candidate-architecture literacy, so that bridge claims can be derived and independently challenged rather than asserted by analogy;
 - students are not admitted into programs whose future has become structurally doubtful;
 - senior authority becomes non-veto unless requalified against the new implementation basis;
 - narrative revision is treated as a legitimate scholarly contribution;
 - personnel actions follow ordinary legal and contractual constraints.
 
 **Failure mode:** a transition that humiliates useful experts or traps students will create denial, sabotage, and bad review incentives; a transition that leaves unrequalified authorities in control will not correct the false-prior risk.
+
+### Translation, Education, And Advisory Capacity
+
+The durable professional role is not loyalty to either an inherited narrative or a candidate ontology. It is the ability to relate three distinct layers without collapsing them: detector-facing measurements and uncertainty records; inherited effective theories, computations, and domain-limited successes; and the candidate architecture, its derivations, and its declared failure conditions. Such translators can make bridge claims reviewable, identify what survives a reinterpretation, and state which new prediction would genuinely distinguish the candidate.
+
+At `reviewable object`, this capacity supports skeptical review, translation papers, and technical advising. At `benchmark pressure`, it supports reproducible case studies, curriculum prototypes, and supervised training around the benchmark artifacts. Only after stronger threshold movement should it govern formal degree expectations, professional requalification, or institution-scale consulting. The educational aim is not to teach a replacement narrative by assertion; it is to train researchers to derive, compare, test, and explain the mappings among measurement, effective theory, and candidate implementation.
 
 ## 6. Capital And Application Gating
 

@@ -54,7 +54,7 @@ This document distinguishes three audience scopes:
 - Include a concise `Closure goal:` line near the end of every substantive response and at the start of every generated or recommended prompt.
 - Use established project terminology. Resolve overlapping terms against canon, and ask before introducing a new project term.
 - Refer to the endorsed solver under `src/eom` as the `EOM solver` in operator/developer communication, end-user UI, and prose. Do not call it the `native solver` or `native EOM solver`. Preserve `native` only in established code identifiers, executable names, schema fields, provenance tokens, and literal compatibility interfaces where renaming would change a machine contract.
-- Maintain recurring operator/developer workflow feedback as one-line tasks in [README-op.md](README-op.md); detailed procedures belong under `reference/op/`.
+- Maintain recurring operator/developer workflow feedback as one-line tasks in [README-op.md](reference/op/README-op.md); detailed procedures belong under `reference/op/`.
 
 ### Workspace Workflow
 

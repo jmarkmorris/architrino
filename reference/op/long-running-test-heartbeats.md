@@ -1,6 +1,6 @@
 # Long-Running Job Policy and Heartbeat Notes
 
-This file owns the operating procedure and recurrence evidence for long-running tests, simulations, rebuilds, and analytical campaigns. Keep the root guidance and [README-op.md](../../README-op.md) checklist concise; put operational detail and dated evidence here.
+This file owns the operating procedure and recurrence evidence for long-running tests, simulations, rebuilds, and analytical campaigns. Keep the [README-op.md](README-op.md) checklist concise; put operational detail and dated evidence here.
 
 ## Operating Procedure
 

@@ -28,4 +28,4 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 
 Files named `research-lead-*` in this directory belong to the Research Lead workflow. Do not treat them as general Codex task-start guidance unless the operator/developer explicitly requests that workflow.
 
-The living operator feedback checklist is [README-op.md](../../README-op.md). Keep detailed procedures here, but put recurring one-line operator improvement tasks in that root checklist.
+The living operator feedback checklist is [README-op.md](README-op.md). Keep detailed procedures here, but put recurring one-line operator improvement tasks in that checklist.
