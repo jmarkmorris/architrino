@@ -10,16 +10,16 @@
 
 Ordered by marginal ROI on 2026-07-17. Dependency burden is included in the ranking rather than used to hide the highest-value object.
 
-1. `source_window_carrier_map` — Bind one retained event class to its source-window carrier, event-ledger rows, observer benchmarks, first verification incomplete blocker, and owning closure lane. Status: `pending`.
+1. `source_window_carrier_map` — Bind one retained event class to its source window and history, channel-resolved event ledger, observer benchmarks and validity regime, uncertainty/cross-channel covariance, remnant and medium update, no-hidden-retune witness, first verification incomplete blocker, and owning closure lane. First scoped trial: prepare an EQ-07A compact-star observer-routing record with the native carrier field unresolved. Status: `pending`.
 2. `equation_family_survey` — Assign the retained standard benchmark families to same-record carrier targets. Status: `started`.
-3. `event_scale_taxonomy` — Complete the operator-facing event-class map needed by the carrier selection. Status: `next`.
+3. `event_scale_taxonomy` — Complete the operator-facing event-class map needed by the carrier selection. First scoped action: apply the carrier-satisfiability equivalence relation below and record failures to join visually similar, label-similar, or far-field-similar events. Status: `next`.
 4. `geometry_handoff_map` — Route retained event-scale clues to their existing owner lanes without promoting observations as native geometry. Status: `pending`.
 
 ## Detailed Task Inventory
 
-1. `event_scale_taxonomy` - Build the operator-facing event-class map for neutron stars, compact-star collapse, black holes, AGN and quasar jets, supernovae, kilonovae, mergers, gamma-ray bursts, high-energy neutrinos, cosmic rays, and catastrophic or diffuse release candidates. Status: `next`. Depends on: none.
+1. `event_scale_taxonomy` - Build the operator-facing event-class map for neutron stars, compact-star collapse, black holes, AGN and quasar jets, supernovae, kilonovae, mergers, gamma-ray bursts, high-energy neutrinos, cosmic rays, and catastrophic or diffuse release candidates. Group records only when one declared carrier target, under predeclared parameter variation, can satisfy each complete record within declared uncertainty and cross-channel covariance without hidden retuning. Status: `next`. Depends on: none.
 2. `equation_family_survey` - Examine the standard equation families for black holes proper, neutron-star support, black-hole / neutron-star / mixed compact-object mergers, jet and wind release, black-hole formation by collapse, and CMB energy distribution by scale, then assign each family to one same-record carrier target. Status: `started`; black-hole-proper is now split into [EQ-07C](../../equation-mapping/eq-07c-black-hole-horizon-interface-noether-braid-map.md). Depends on: `event_scale_taxonomy`.
-3. `source_window_carrier_map` - For each retained event class, name the source-window carrier, event-ledger rows, observer benchmarks, first verification incomplete blocker, and owning closure lane before sending it into equation mapping or strong-field closure. Status: `pending`. Depends on: `event_scale_taxonomy`, `equation_family_survey`.
+3. `source_window_carrier_map` - For each retained event class, distinguish source window and history, observer benchmark and validity regime, channel-resolved event ledger, remnant and medium update, uncertainty and cross-channel covariance, owning route, no-hidden-retune witness, and first verification incomplete blocker before sending it into equation mapping or strong-field closure. Require the detachability test below before observer pressure is admitted. The first scoped trial is an EQ-07A compact-star observer-routing record with the native carrier field left unresolved. Status: `pending`. Depends on: `event_scale_taxonomy`, `equation_family_survey`.
 4. `geometry_handoff_map` - Route event-scale clues into [strong-field-closure](../priorities.md), [EQ-07A](../../equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md), [EQ-07B](../../equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md), [EQ-07C](../../equation-mapping/eq-07c-black-hole-horizon-interface-noether-braid-map.md), [EQ-11A](../../equation-mapping/eq-11a-gravitational-wave-source-recovery.md), [EQ-23A](../../equation-mapping/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md), [EQ-25 CMB thermalization](../../equation-mapping/eq-25-theta-therm-cmb-source-field-map.md), radiation, cosmology, and nuclear / Standard Model closure without promoting observations as native geometry. Status: `pending`. Depends on: `source_window_carrier_map`.
 5. `observational_constraint_shelf` - Keep candidate source families and observation leads visible only when they supply a benchmark equation, source-window record, event ledger, source-mining target, or discriminating observable. Status: `pending`. Depends on: `event_scale_taxonomy`.
 
@@ -53,18 +53,62 @@ C,
 W_{\mathrm{src}},
 T,
 \Theta_{\mathrm{src}},
+\mathcal{H}_{\mathrm{src}},
 \mathcal{L}_{E\mathbf{p}\mathbf{J}},
 \mathcal{N}_{\mathrm{sea}},
 \mathcal{B}_{\mathrm{std}},
+\mathcal{V}_{\mathrm{std}},
 \mathcal{O}_{\mathrm{obs}},
+\Sigma_{\mathrm{obs}},
 \Pi_{\mathrm{route}},
 \mathcal{S}_{\mathrm{retune}}
 \right).
 $$
 
-Here $\Theta_{\mathrm{src}}$ is the declared source state, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger for energy, momentum, angular momentum, remnant, recoil, and medium update, $\mathcal{N}_{\mathrm{sea}}$ records the relevant Noether sea state or update, $\mathcal{B}_{\mathrm{std}}$ carries observer-level benchmark equations, $\mathcal{O}_{\mathrm{obs}}$ carries the observation family, $\Pi_{\mathrm{route}}$ names the owning equation or geometry packet, and $\mathcal{S}_{\mathrm{retune}}$ is the no-hidden-retune witness.
+Here $\Theta_{\mathrm{src}}$ is the declared source state, $\mathcal{H}_{\mathrm{src}}$ is the relevant source history, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the channel-resolved event ledger for energy, momentum, angular momentum, remnant, recoil, and medium update, $\mathcal{N}_{\mathrm{sea}}$ records the relevant Noether sea state or update, $\mathcal{B}_{\mathrm{std}}$ carries observer-level benchmark equations, $\mathcal{V}_{\mathrm{std}}$ declares their validity regime, $\mathcal{O}_{\mathrm{obs}}$ carries the observation family and declared observable map, $\Sigma_{\mathrm{obs}}$ carries uncertainty including cross-channel covariance, $\Pi_{\mathrm{route}}$ names the owning equation or geometry packet, and $\mathcal{S}_{\mathrm{retune}}$ is the no-hidden-retune witness.
 
 This shell is not accepted evidence. It becomes useful only when the same source window and support record bind the event ledger, observer benchmark, remnant or medium update, and downstream geometry route. If those rows require separate source windows or private fitted states, the event remains a comparison clue rather than a closure object.
+
+### Event-Class Equivalence
+
+For two event records $D_a$ and $D_b$, write $D_a\sim_{\mathrm{HEA}}D_b$ only if there is one declared carrier target $\Theta_\Pi(\lambda)$ and one predeclared allowed parameter domain $\Lambda_\Pi$ such that parameters $\lambda_a,\lambda_b\in\Lambda_\Pi$ satisfy both complete covariance-aware observer residuals and both no-hidden-retune witnesses:
+
+$$
+\mathcal{R}_{\mathrm{obs}}
+\left(
+D_k\mid\Theta_\Pi(\lambda_k),\Sigma_k
+\right)
+\le \epsilon_k,
+\qquad
+\mathcal{S}_{\mathrm{retune},k}
+\ \text{passes},
+\qquad
+k\in\{a,b\}.
+$$
+
+Plainly: two records share an event class only when one declared kind of carrier target can cover both within their stated uncertainty using only the parameter changes allowed in advance. A shared object label, visual resemblance, waveform resemblance, release-channel resemblance, or far-field likeness is insufficient.
+
+Compact-star and black-hole records remain separate under this relation unless the full source-window records satisfy it. Black-hole/black-hole, neutron-star/neutron-star, and mixed merger records also remain separate unless their waveform, matter/ejecta, remnant, release, and medium-update rows pass the same declared target. Similar release channels do not establish equivalent source windows.
+
+### Observer-Benchmark Detachability
+
+An observation supplies legitimate observer-level benchmark pressure only when it enters through a declared observable map, its uncertainty-aware residual can fail, and removing that observation leaves the substrate premise set unchanged. This is a proposed routing test, not an accepted theorem or a claim that any current observable map has passed it.
+
+Plainly: an observation may test the candidate theory, but it may not silently become one of the architrino-level rules used to construct the candidate.
+
+### First Scoped Trial: EQ-07A Compact-Star Support
+
+The smallest safe first implementation step is to prepare one EQ-07A compact-star observer-routing record containing:
+
+- one quasi-static source window and its relevant source history;
+- the selected Chandrasekhar or TOV observer benchmark rows and declared validity regime;
+- channel-resolved support/readout rows, with any remnant and medium update stated explicitly;
+- the uncertainty record and cross-channel covariance used by the observer residual;
+- the EQ-07A owner route and current first blocker;
+- the no-hidden-retune witness; and
+- the detachability disposition for each observer benchmark.
+
+Leave the native carrier field unresolved. The trial is a coordination record shape only: it does not name or promote a compact-region carrier, establish retention or stability, supply a dense-matter branch, demonstrate physical realization, create accepted evidence, or change the EQ-07A score. Population rates, distributions, selection effects, and other ensemble statistics are out of scope for this single-event trial unless an existing owner later supplies an explicit ensemble route.
 
 ## Equation Examination Capture
 

@@ -28,7 +28,7 @@ It creates no queue and changes no status.
 | T9 — topology benchmark suite | BP-002, `Queued` | Predeclare each validity domain and independent expected classification, including abstention on ambiguity. |
 | T10 — full-record symmetry deduplication | BP-002, `Queued`; MEC-005 only for causal-root no-double-booking claims | Recompute root and acceleration parity under every admitted action and require unique provenance for every used root row. |
 | T11 — higher-order complement or braid data | BP-002, `Queued` | Add the row only after a declared ambiguity survives the cheaper inventory and an independent expected classification exists. |
-| Open — smooth proper strata for an orbifold or differentiable stack | BP-002, `Queued`; configuration chart `DRAFT SKELETON` | Prove properness, local smooth structure, stabilizers, and slice data on each claimed finite-dimensional stratum. |
+| Open — smooth proper strata for an orbifold or differentiable stack | BP-002, `Queued`; configuration chart `DRAFT INVENTORY` | Prove properness, local smooth structure, stabilizers, and slice data on each claimed finite-dimensional stratum. |
 | Open — atlas binary-coherence weights | BP-002, `Queued` | Freeze weights and root/phase incoherence from native geometry before testing independently classified histories. |
 | Open — minimum topology inventory | BP-002, `Queued` | Freeze closure conventions, then run unlink, square-knot, Hopf, Whitehead, and Borromean controls with independent classifications. |
 | Open — drifting enclosure or undeclared transmitter tail contract | BP-002, `Queued`; EOM contracts own only declared retained computation | Prove the horizon/restriction theorem or keep the claim limited to the declared retained interval and inventory. |
@@ -49,6 +49,15 @@ question keeps its two-owner handoff.
 - **Evidence / blocker:** The chart is a search-space coordinate system, not evidence that any configuration persists.
 - **Review backlink:** The neutral-atlas action register above owns T1 and
   T5–T11 plus the architecture questions without changing this status.
+- **Scoped action completed (2026-07-29):** [Configuration chart](configuration-chart.md)
+  now inventories every admitted A1/A2/A3, B1, and C1–C6 taxonomy subchart,
+  attaches the scope-and-provenance profile to each constrained member, and
+  records the five current campaign-restricted slices plus explicit
+  abstentions for live queue targets that lack a frozen subchart.
+- **Remaining action:** Review the inventory for omission and ratify or return
+  the chart. Ratification would fix search scope only; it would not authorize
+  a family-level negative or any retention, stability, physical-realization,
+  solver-preference, particle-identity, or EOM claim.
 - **Completion:** Every admitted campaign family has explicit coordinates, symmetry reductions, exclusions, and ownership.
 
 ### BP-005 — Mining disposition review
