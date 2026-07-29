@@ -6,7 +6,7 @@
   "carrier": {
     "status": "accepted",
     "id": "theta_gwsrc_quadrupole_source_row_source_contract_attempt_0001",
-    "sourcePath": "reference/entourage/archie/reports/corpus-exploration-claims/20260519-162716-tier1-gwosc-lvk.md",
+    "sourcePath": "reference/research-office/cto/reports/corpus-exploration-claims/20260519-162716-tier1-gwosc-lvk.md",
     "sourceEvidence": {
       "kind": "eq11a_gw_source_field_support",
       "supportsEquationRows": [
@@ -48,7 +48,7 @@
         "sourceWindowId": "GW150914-v3",
         "supportId": "H1L1_GWTC1_PE_v3",
         "eventId": "GWTC-1-confident/GW150914/v3",
-        "sourcePath": "reference/entourage/archie/reports/corpus-exploration-claims/20260519-162716-tier1-gwosc-lvk.md",
+        "sourcePath": "reference/research-office/cto/reports/corpus-exploration-claims/20260519-162716-tier1-gwosc-lvk.md",
         "sourceEvidence": {
           "kind": "eq11a_gw_source_field_support",
           "supportsEquationRows": [

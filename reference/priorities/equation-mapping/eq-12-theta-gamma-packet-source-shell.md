@@ -5,7 +5,7 @@
 - Kind: `priority`
 - Scope: focused source shell for `missing_accepted_theta_gamma_packet`
 - Rows served: `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-26A`, and downstream photon consumers such as `EQ-28A`
-- Review synthesis: [Planck Action Period, Blackbody, and Fine-Structure Coupling](../../entourage/review-packets/planck-action-period-blackbody-alpha-reconciliation-2026-07-29.md)
+- Review synthesis: [Planck Action Period, Blackbody, and Fine-Structure Coupling](../../research-office/research-lead/review-packets/planck-action-period-blackbody-alpha-reconciliation-2026-07-29.md)
 - Claim level: blocked accepted-object contract; not accepted retained evidence
 - Score disposition: no score changes
 

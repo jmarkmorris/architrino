@@ -32,7 +32,7 @@ maturity law, the motion-account functions, an emission capacity, or a
 reception transfer. The route therefore remains not advanced until one new
 Architrino-native construction supplies all four together.
 
-Research input: [Wake Reception Transfer, Motion Accounts, and Coincident-Birth Maturity](../../entourage/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) sharpens the allocation, account-measure, birth-integrability, regulator, extraction, and angular-booking questions. It is priority-only research guidance; it does not amend this closure status, select a constitutive update, or establish conservation or unique continuation.
+Research input: [Wake Reception Transfer, Motion Accounts, and Coincident-Birth Maturity](../../research-office/research-lead/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) sharpens the allocation, account-measure, birth-integrability, regulator, extraction, and angular-booking questions. It is priority-only research guidance; it does not amend this closure status, select a constitutive update, or establish conservation or unique continuation.
 
 ## Regular Kinematic Substate Result
 

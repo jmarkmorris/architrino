@@ -63,7 +63,7 @@ In [codex-goal-seeking-prompt-template.md](../../../op/codex-goal-seeking-prompt
 - Operator/Developer Communication section: replace the plain-language bullets with the unit rule, cadence rule, and pointer to the standard.
 - Reporting section: state that milestone and completion reports follow the operator-explanation standard, so dispatched Codex threads inherit it without the operator re-asking.
 
-Check [codex-multiprompt.md](../../../op/codex-multiprompt.md) and [entourage-prompt-template.md](../../../op/entourage-prompt-template.md) for parallel communication sections and apply the same pointer if present.
+Check [codex-multiprompt.md](../../../op/codex-multiprompt.md) and [research-lead-prompt-template.md](../../../op/research-lead-prompt-template.md) for parallel communication sections and apply the same pointer if present.
 
 ### 4. Remove bright5 (full inventory, verified 2026-07-24)
 

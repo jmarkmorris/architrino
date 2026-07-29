@@ -726,7 +726,11 @@ function isEvidenceSourcePath(filePath) {
   if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
     return false;
   }
-  if (relative.startsWith(`reference${path.sep}entourage${path.sep}`)) {
+  if (
+    relative.startsWith(
+      `reference${path.sep}research-office${path.sep}`
+    )
+  ) {
     return false;
   }
   if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {

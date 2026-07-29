@@ -12,7 +12,7 @@
   and
   [MEC-005 pairwise causal-root ledger closure](pairwise-causal-root-ledger-closure.md)
 - Routed research input:
-  [wake reception, transfer, and maturity](../../entourage/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md)
+  [wake reception, transfer, and maturity](../../research-office/research-lead/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md)
   invokes MEC-006 only when a reception candidate actually consumes a
   receiver/self acceleration-gradient row; it is not a blanket gate on
   allocation research.

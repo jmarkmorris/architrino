@@ -6,7 +6,7 @@ Status: DRAFT INVENTORY, pending scope review and operator ratification. This do
 
 One coordinate system for every configuration the program screens or evolves, so that every negative is a statement of the form "no solution in this declared region of the chart" and every candidate is a point or slice with declared coordinates. The chart is what makes the searched-territory record compact and honest.
 
-Research input: [Neutral-Braid Configuration Atlas](../../entourage/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md) proposes a stratified history-groupoid and certified finite-presentation architecture, with exact sharp-root bounds and explicit finite-width-tail authority limits. It is priority-only research guidance; it does not complete this chart or establish retention, stability, physical realization, solver preference, or particle identity.
+Research input: [Neutral-Braid Configuration Atlas](../../research-office/research-lead/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md) proposes a stratified history-groupoid and certified finite-presentation architecture, with exact sharp-root bounds and explicit finite-width-tail authority limits. It is priority-only research guidance; it does not complete this chart or establish retention, stability, physical realization, solver preference, or particle identity.
 
 Family A, Family B, Family C, their members and constrained variants, and every other admitted proposal remain finite ansatz subcharts. The chart adds a common scope-and-provenance overlay; it does not replace the family taxonomy or turn any subchart into an exhaustive classification.
 

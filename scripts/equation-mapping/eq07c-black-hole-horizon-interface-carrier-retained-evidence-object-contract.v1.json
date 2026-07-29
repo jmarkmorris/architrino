@@ -70,7 +70,7 @@
     ],
     "excludedEvidenceSources": [
       "reference/priorities prose",
-      "reference/entourage review packets",
+      "reference/research-office/research-lead/review-packets",
       "content/markdown/aaa prose",
       "generated files",
       "attempt fixtures",

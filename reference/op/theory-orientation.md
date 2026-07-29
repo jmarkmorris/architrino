@@ -8,7 +8,7 @@ Read the smallest set that can ground the current claim. Do not bulk-load the en
 
 Before any physics reasoning, apply the Theory Layer Discipline section of [AGENTS.md](../../AGENTS.md): standard physics is emergent output to recover, never input to assume at the architrino level.
 
-For active corpus convergence, use the shared [convergence campaign](../entourage/archie/prompts/convergence-campaign.md). For external sources, use the [source-mining best-practice guide](source-mining-best-practice.md).
+For active corpus convergence, use the shared [convergence campaign](../research-office/cto/prompts/convergence-campaign.md). For external sources, use the [source-mining best-practice guide](source-mining-best-practice.md).
 
 ## Current Convergence Frontier
 
