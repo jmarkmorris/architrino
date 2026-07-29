@@ -16,9 +16,9 @@ The Archie path should therefore build many on-ramps: caregiver-led early learni
 - [childrens-books/](childrens-books/README.md): children's book series map and pilot manuscripts with page-level AAA geometry and image prompts.
 - [comics/](comics/README.md): comics strategy, continuity model, format families, arcs, and starter series candidates.
 - [250-word-to-one-page-descriptions.md](250-word-to-one-page-descriptions.md): longer descriptions for profiles, handouts, posts, or short pages.
-- [technical-brief-master-equation.md](technical-brief-master-equation.md): longer technical brief with the master equation, definitions, interpretation, and validation burden.
-- [treasure-physics-overlooked/](treasure-physics-overlooked/README.md): review briefs for the treasure-physics argument and its proof burdens.
-- [research-revolution/](research-revolution/README.md): review briefs for research transition, governance, and proof-burden audiences.
+- [technical-brief-master-equation.md](../research-office/cto/technical-brief-master-equation.md): longer technical brief with the master equation, definitions, interpretation, and validation burden.
+- [treasure-physics-overlooked/](../research-office/treasure-physics-overlooked/README.md): review briefs for the treasure-physics argument and its proof burdens.
+- [research-revolution/](../research-office/research-revolution/README.md): review briefs for research transition, governance, and proof-burden audiences.
 - [archie-plan.md](archie-plan.md): audience, channel, and return-on-investment strategy.
 - [CTO prompt library](../research-office/cto/prompts/README.md): reusable agent/operator prompts for corpus review, review integration, priority-lane resumes, and theorem-review workflows.
 
