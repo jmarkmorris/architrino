@@ -72,7 +72,7 @@ This document distinguishes three audience scopes:
 
 - Do not manually edit generated artifacts unless the generator is missing, stale, or broken and the manual edit is explicitly called out.
 - During ordinary edit batches, edit canonical source files first and run generator `--check` commands when validation is needed. Do not run generator `--write` commands after every small code, prose, or priority edit.
-- Run generator `--write` commands only when the operator/developer explicitly requests regeneration, explicitly asks to fix generated drift, or the work is in the final branch/PR process described in [reference/op/codex-pr-branch.md](reference/op/codex-pr-branch.md).
+- Run generator `--write` commands only when the operator/developer explicitly requests regeneration, explicitly asks to fix generated drift, or the work is in the final branch/PR process described in [reference/op/git/codex-pr-branch.md](reference/op/git/codex-pr-branch.md).
 - Outside an explicit regeneration/fix-drift request or the final branch/PR process, if a generator `--check` reports generated drift, report the drift and the exact `--write` command needed instead of running it.
 - If regeneration is performed, rerun the corresponding `--check` commands before reporting the work complete.
 
@@ -139,4 +139,4 @@ This section governs every claim in this repository, at every tier, in code, pro
 ## Commit Audits
 
 - Git hooks are configured via `core.hooksPath=.githooks`.
-- Treat the hook scripts under `.githooks` as the executable source of truth and [reference/op/codex-pr-branch.md](reference/op/codex-pr-branch.md) as the procedural source of truth. Do not copy exact hook command inventories into this file.
+- Treat the hook scripts under `.githooks` as the executable source of truth and [reference/op/git/codex-pr-branch.md](reference/op/git/codex-pr-branch.md) as the procedural source of truth. Do not copy exact hook command inventories into this file.

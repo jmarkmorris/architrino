@@ -1,7 +1,7 @@
 # Moon Branch Registry
 
 This registry freezes the moon-series branch order required by
-[codex-pr-branch.md](codex-pr-branch.md). Branch names use lowercase
+[codex-pr-branch.md](../codex-pr-branch.md). Branch names use lowercase
 hyphenated moon names after `codex/`.
 
 The sequence follows the eight IAU planets outward from the Sun. Mercury and

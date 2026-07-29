@@ -150,7 +150,7 @@ node scripts/build-scene-graph.mjs --check --strict
 node scripts/build-textbook-md-pdf.mjs --check
 ```
 
-Use [codex-pr-branch.md](codex-pr-branch.md) for the full branch, commit, push, and PR validation set.
+Use [codex-pr-branch.md](git/codex-pr-branch.md) for the full branch, commit, push, and PR validation set.
 
 For iOS Reader package work, typical checks are:
 
@@ -171,7 +171,7 @@ If a command cannot run, record:
 
 ## Pull Request Process
 
-Follow [codex-pr-branch.md](codex-pr-branch.md) for branch, commit, push, and PR mechanics.
+Follow [codex-pr-branch.md](git/codex-pr-branch.md) for branch, commit, push, and PR mechanics.
 
 The PR body for an issue fix should include:
 

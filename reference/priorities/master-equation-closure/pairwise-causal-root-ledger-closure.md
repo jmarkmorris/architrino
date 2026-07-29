@@ -16,16 +16,20 @@
   [wake reception, transfer, and maturity](../../research-office/research-lead/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md)
   requires MEC-005 provenance before its cumulative-extraction and angular-pin
   account tests can run; it supplies no account values or conservation claim.
+- Certificate synthesis:
+  [two-history causal-root ledger certificate](../../research-office/research-lead/review-packets/mec-005-two-history-causal-root-ledger-certificate-2026-07-29.md)
+  supplies the prescription-neutral full-domain envelope integrated below; it
+  supplies no root-finder, boundary value, account map, or status change.
 - Promotion status: not promoted
 
 ## Closure Question
 
 Begin with exactly two Architrinos whose complete history inputs are declared on
 a bounded absolute-time slab. Treat each ordered receiver-transmitter pair as
-its own causal-root bundle, retain multiple roots and folds, and declare the
-self-pair convention separately. Determine whether the resulting root set
-admits a finite, provenance-complete, signed, non-duplicated accounting
-description.
+its own causal-root bundle, retain multiple roots and folds, enumerate every
+positive-delay self root separately from the unresolved diagonal semantics,
+and determine whether the resulting root set admits a finite,
+provenance-complete, signed, non-duplicated accounting description.
 
 This is a proof-design question, not a conservation theorem. A finite signed
 root ledger would establish only that the causal-root geometry can be
@@ -64,9 +68,34 @@ $$
 a\in\{1,2\},
 $$
 
-with receiver times $T\in[T_0,T_1]$ and retained emission times
-$s\in[S_0,S_1]$, where $S_1<T_0$. For ordered receiver $i$ and transmitter
-$j$, define
+with receiver interval $I=[T_0,T_1]$ and one declared continuous
+retained-history lower rule $L(T)$ satisfying
+
+$$
+S_0\le L(T)<T
+\qquad
+\text{for every }T\in I.
+$$
+
+The full encounter search domain is the compact causal closure
+
+$$
+\mathcal D
+=
+\left\{
+(T,s):
+T\in I,\,
+L(T)\le s\le T
+\right\}.
+$$
+
+Admitted delayed roots lie in the strict causal interior
+$L(T)<s<T$. The face $s=L(T)$ is the retained-history boundary and
+$s=T$ is the diagonal closure face. A finite family of search cells may replace
+direct work on $\mathcal D$ only when their interiors are disjoint, their union
+is exactly $\mathcal D$, and every shared face has one declared owner.
+
+For ordered receiver $i$ and transmitter $j$, define
 
 $$
 G_{ij}(T,s)
@@ -80,45 +109,73 @@ $$
 \mathcal Z_{ij}
 =
 \left\{
-(T,s)\in[T_0,T_1]\times[S_0,S_1]:
+(T,s)\in\mathcal D:
+L(T)<s<T,\,
 G_{ij}(T,s)=0
 \right\}.
 $$
 
 Plainly: $\mathcal Z_{12}$ and $\mathcal Z_{21}$ are different ledgers because
 they reverse receiver and transmitter. A root in one must never be silently
-reused as a root in the other.
+reused as a root in the other. A fixed rectangle
+$[T_0,T_1]\times[S_0,S_1]$ with $S_1<T_0$ is an allowed old-prehistory
+subdomain, not a full encounter certificate: it omits emissions produced
+during the receiver interval and cannot carry diagonal attachments.
 
-The cross-pair domain is
+The complete ordered-bundle domain is
 
 $$
-\mathcal Z_{\mathrm{cross}}
+\mathcal Z_{\mathrm{ord}}
 =
-\mathcal Z_{12}\sqcup\mathcal Z_{21}.
+\mathcal Z_{11}\sqcup
+\mathcal Z_{12}\sqcup
+\mathcal Z_{21}\sqcup
+\mathcal Z_{22}.
 $$
 
-The self-pair domain is declared independently:
+Positive-delay self-root admission is frozen independently of diagonal
+evaluation:
 
 $$
-\mathcal Z_{\mathrm{self}}^{(\chi)}
+\mathcal Z_{\mathrm{self}}^+
 =
-\begin{cases}
-\varnothing,
-& \chi=\texttt{excluded},\\[4pt]
-\mathcal Z_{11}^{(\epsilon_c)}
-\sqcup
-\mathcal Z_{22}^{(\epsilon_c)},
-& \chi=\texttt{core\_declared},
-\end{cases}
+\mathcal Z_{11}\sqcup\mathcal Z_{22},
+\qquad
+\texttt{self\_root\_admission}
+=
+\texttt{all\_positive\_delay\_roots}.
 $$
 
-where `core_declared` must exclude the trivial diagonal $s=T$ with a fixed
-core or diagonal convention $\epsilon_c$ before roots are enumerated. MEC-005
-does not permit a mixed packet in which self roots are included opportunistically.
+For each self bundle, the structural diagonal
+
+$$
+\Delta_i
+=
+\left\{
+(T,T):
+T\in I
+\right\}
+$$
+
+is a boundary carrier rather than an active root stratum. Its specification is
+
+```yaml
+diagonal_boundary_semantics: quarantined_unresolved
+value_status: not_derived
+prescription_ref: absent
+consumer_allowed: false
+disposition: Not advanced
+```
+
+This declaration assigns no diagonal acceleration, gradient, account value,
+continuation, core, or outgoing history. Any later accepted boundary
+prescription must attach to one separately owned boundary row without changing
+which positive-delay self roots the topology certificate enumerates.
 
 Plainly: partner contact does not prove self-contact. A topology-only negative
-control may exclude self-pairs, but the dynamical encounter must use the
-declared model convention and enumerate every self root that convention admits.
+control may use histories with no positive-delay self root, but it may not
+exclude an admitted self bundle by convention. The diagonal remains visible as
+an unresolved boundary even when no positive-delay self root exists.
 
 ## What Counts As One Ledger Row
 
@@ -134,7 +191,8 @@ $$
 i\leftarrow j,\,
 \beta,\,
 \mu,\,
-\chi,\,
+\mathsf S_+,\,
+\mathsf Q_\Delta,\,
 \omega,\,
 \mathsf B
 \right),
@@ -146,7 +204,9 @@ where:
 - $i\leftarrow j$ is the ordered receiver-transmitter owner;
 - $\beta$ is the connected root-stratum identifier;
 - $\mu$ is the declared local multiplicity;
-- $\chi$ is the self-pair convention;
+- $\mathsf S_+$ records positive-delay self-root admission;
+- $\mathsf Q_\Delta$ records the separately declared diagonal-boundary
+  disposition;
 - $\omega$ is the winding owner when a torus lift is used and is `none` in the
   Euclidean first control; and
 - $\mathsf B$ identifies the independently checkable root bracket, inactive
@@ -156,19 +216,147 @@ Plainly: repeated samples along the same root branch are evidence about one
 row, not new rows. Reversing the ordered pair, changing the history, or crossing
 a genuine fold creates different provenance.
 
+The canonical identifier $\beta$ must be content-addressed from the exact
+history and domain identities, ordered-bundle owner, and an independently
+checkable invariant stratum descriptor. A root rank, row number, solver
+discovery order, or current numerical bracket is evidence metadata, not a
+canonical identity. Refinement must provide a bijection from each parent
+stratum to the same canonical stratum or to explicitly proved child strata at
+a newly resolved genuine event.
+
+## Two-History Certificate Envelope
+
+The desired proof object has literal claim scope
+`pairwise_root_ledger_topology_and_provenance_only` and schema
+`mec005_two_history_causal_root_ledger_certificate/v1`. It is a
+prescription-neutral envelope around reusable per-reception and event-free-slab
+root certificates, not another root finder. Its minimum record groups are:
+
+1. `scope`, fixing the literal claim, schema version, certificate and producer
+   identities, $c_f=1$, $I$, $L(T)$, the full domain $\mathcal D$, and an
+   explicit nonclaims list;
+2. `histories`, containing exactly two persistent labels, opposite-polarity
+   provenance, exact history identities and digests, representation and
+   segment metadata, reconstruction-error bounds, and the tameness evidence;
+3. `ordered_bundles`, containing exactly the four owners
+   $1\leftarrow1$, $1\leftarrow2$, $2\leftarrow1$, and
+   $2\leftarrow2$;
+4. `coverage_cells`, proving an exact partition of every ordered copy of
+   $\mathcal D$ with no gap or double-covered interior;
+5. `root_strata` and `boundary_strata`, with stable identifiers,
+   multiplicity, orientation, classification, brackets or tubes, and
+   independent evidence references;
+6. `incidence`, recording every incident half-branch exactly once in both the
+   stratum-to-event and event-to-stratum directions;
+7. `emission_provenance_cells` and `ownership_index`, assigning each root,
+   emission, and boundary event to exactly one owner without copying a source
+   row for each reception;
+8. `independent_verification`, naming the independently authored theorem,
+   exact instrument, or interval checker and the precise reach of its check;
+   and
+9. `verdict`, separating full-domain topology/provenance from every unresolved
+   boundary-semantic and downstream account claim.
+
+The nonclaims list must cover conservation, action, continuation, physical
+boundary values, retained branches, MEC-006 closure, and solver acceptance.
+Every `coverage_cells` leaf has exactly one class: `root_free`,
+`simple_root_tube`, `boundary_stratum`, or `unresolved_search_cell`. An
+unresolved cell remains inside the possible-zero cover and blocks the
+full-domain verdict; it is never converted to an empty cell.
+
+Multiplicity must come from a declared local factorization, intersection
+number, or independently checked derivative hierarchy. An ordinary fold has
+one event owner and two incident simple half-branches with opposite topology
+orientations. A higher or simultaneous singularity requires its own certified
+chart; otherwise its geometry and incidence remain unresolved. Each boundary
+row records its bundle-local or shared-geometric-event scope, combinatorial
+root-count flux, incident branch germs and coefficients, and either proved
+local multiplicity or `not_applicable_structural_boundary`. One shared
+geometric occurrence may have one ledger-level event group referenced by
+several bundle-local cells; simultaneous events generated independently in
+different ordered bundles remain distinct.
+
+Every certified boundary with unknown evaluation semantics carries
+`quarantined_unresolved`, `value_status: not_derived`,
+`consumer_allowed: false`, and `Not advanced`. This differs from an
+`unresolved_search_cell`: unknown geometry, incidence, multiplicity, or
+ownership makes the full-domain topology/provenance verdict
+`Verification incomplete` and `Not advanced`. Certified geometry may support a
+narrow topology/provenance result while its quarantined semantic row and every
+consumer that needs a value remain `Not advanced`. MEC-005 itself remains
+`Queued`. `consumer_allowed` remains false at and beyond the earliest receiver
+projection of a quarantined boundary.
+
+Existing `eom_root_completeness_certificate/v1` and
+`eom_root_continuation_certificate/v1` records may be reused only as leaf
+evidence. The full-domain verifier must reconstruct the partition and
+re-evaluate $G_{ij}$, the relevant derivatives, signs, incidence predicates,
+and refinement correspondence from the raw history representation. It may not
+import the producer's root ownership, canonicalization, expected output, or
+rank-derived identity. Agreement between two paths that share those components
+is same-implementation parity, not independent verification. In particular,
+the current slab producer's rank-bearing identity is leaf provenance only, not
+the envelope's canonical `stratum_id`.
+
+The live independent-oracle owner still documents the root-completeness record
+as `eom_root_completeness_certificate/v0`, while live code and its test assert
+`eom_root_completeness_certificate/v1`. The oracle owner must reconcile that
+documentation drift before the MEC-005 envelope binds to the exact leaf schema;
+the mismatch supplies no status or evidence upgrade.
+
+### Mandatory negative controls
+
+The `/v1` envelope returns `Verification incomplete` and `Not advanced` if any
+of these controls fires:
+
+1. an older or second root is omitted;
+2. $1\leftarrow2$ is reused as $2\leftarrow1$;
+3. a self row is omitted, replaced by a partner row, or deleted because the
+   diagonal prescription is unknown;
+4. one connected stratum is split into duplicate canonical rows;
+5. one event payload is copied into each incident branch;
+6. a tangent or higher singularity is encoded as ordinary simple roots;
+7. a diagonal or coincident boundary is represented only by an exclusion
+   boolean, empty root list, numeric zero, `null`, or omission;
+8. a retained-history edge is truncated and called inactive;
+9. equal endpoint root counts are used to miss an interior fold-pair birth and
+   death;
+10. a simultaneous fold and history-edge event is flattened to one unsupported
+    ordinary reason;
+11. a root interval, accumulation, or non-tame history is admitted as a finite
+    ledger;
+12. persistent identity changes with root rank, row or traversal order,
+    subdivision, or refinement;
+13. an undeclared $s\ge T$ value or post-reception history enters the
+    certificate;
+14. a quarantine disappears under refinement without child proofs; or
+15. the verifier shares producer root enumeration, canonicalization, expected
+    outputs, or digest construction while their agreement is described as
+    independent.
+
+The master falsifier is any declared domain point that is neither certified
+root-free nor covered by a regular, boundary, or unresolved search cell, or any
+overlap without explicit incidence. A `/v0` leaf label consumed as `/v1`
+without explicit schema reconciliation also blocks the certificate.
+
+Plainly: the envelope must prove how all four root bundles fit together over
+the whole encounter. It fails when a root or event is missing, when refinement
+renames the same geometry, or when an unresolved boundary is disguised as a
+usable value.
+
 ## Assumption Ledger
 
 | Obligation | Minimum assumption needed before a proof attempt | Failure disposition |
 | --- | --- | --- |
-| Root enumeration | Each $G_{ij}$ is continuous on a compact slab and belongs to a declared tame class, such as piecewise polynomial, semialgebraic, or real analytic with a finite stratification and no zero component on which $G_{ij}$ vanishes identically. | `root_enumeration_not_finite` |
+| Root enumeration | Each $G_{ij}$ is continuous on the compact causal domain $\mathcal D$ or a proved exact partition and belongs to a declared tame class, such as piecewise polynomial, semialgebraic, or real analytic with a finite stratification and no zero component on which $G_{ij}$ vanishes identically. | `root_enumeration_not_finite` |
 | Completeness | An independently checkable active-root isolation covers every zero, and the complementary cells have certified nonzero gaps. | `root_row_omitted` |
-| Root birth/death | Regular strata meet only finitely many declared endpoint, memory-edge, core, seam, or finite-order singular events; an ordinary fold has local multiplicity two. | `boundary_flux_unclassified` |
+| Root birth/death | Regular strata meet only finitely many declared diagonal, endpoint, memory-edge, seam, separately declared core, or finite-order singular events; an ordinary fold has local multiplicity two. | `boundary_flux_unclassified` |
 | Attribution | Every stratum and event names one history record, one ordered-pair owner, one emission coordinate, one receiver coordinate, and one root or boundary certificate. | `root_provenance_incomplete` |
 | Signed maps | Debit, credit, and boundary map domains, codomains, signs, and allowed inputs are frozen before evaluating a balance; no map may be defined from the residual it is intended to close. | `signed_map_residual_defined` |
 | Multiplicity | Local multiplicity is obtained from a declared factorization, intersection number, or separately checked derivative hierarchy; a tangent root is not duplicated merely because a numerical solver returns two brackets. | `root_multiplicity_unowned` |
-| Self-interactions | The packet declares either `excluded` or one fixed diagonal/core convention; partner-pair lemmas are not reused as self-hit proofs. | `self_pair_convention_mixed` |
-| Finiteness | The stratified root set has finitely many connected regular cells and finitely many incident event cells on the compact slab. Compactness without tameness is insufficient. | `root_accumulation_or_interval` |
-| No double booking | Canonicalization maps every physical root stratum and every boundary event to exactly one row key; emission provenance and reception roots are indexed separately. | `duplicate_or_replayed_entry` |
+| Self-interactions | Every positive-delay self root is enumerated under the same root equation as partner roots, while the structural diagonal has a separate `quarantined_unresolved` semantic row; partner-pair lemmas are not reused as self-hit proofs. | `self_pair_convention_mixed` |
+| Finiteness | The stratified root set has finitely many connected regular cells and finitely many incident event cells on the compact causal domain. Compactness without tameness is insufficient. | `root_accumulation_or_interval` |
+| No double booking | Refinement-stable canonicalization maps every geometric root stratum and boundary event to exactly one row key; emission provenance and reception roots are indexed separately, and rank or traversal order is not identity. | `duplicate_or_replayed_entry` |
 
 Plainly: smooth bounded histories are not enough. A smooth function can have
 infinitely many zeros accumulating inside a compact interval, so the allowed
@@ -380,8 +568,8 @@ singular-event data.
 | --- | --- | --- |
 | Canonical regular-root acceleration value | **Resolved as a declared target.** The Master Equation derives the arriving spatial normal, inverse-square factor, polarity sign, and $c_f/|D_t|$ transmitter-side root factor, with $D_r/D_t$ retained only for playback. | The symmetric control must bind to this exact row structure rather than to a scalar $1/r$ or unweighted $1/r^2$ surrogate. |
 | EOM solver regular-root path | **Implemented for the declared regular rows.** [CoupledEvolution.cpp](../../../src/eom/src/CoupledEvolution.cpp), [JointAccelerationSnapshot.cpp](../../../src/eom/src/JointAccelerationSnapshot.cpp), and [SharpAccelerationSensitivity.cpp](../../../src/eom/src/SharpAccelerationSensitivity.cpp) evaluate the delayed displacement direction, inverse-square vector, transmitter factor, acceleration weight, and root-time/direction/factor sensitivities. | A run packet must expose those per-root fields and prove that the encounter used that path without fallback to a different operator. |
-| Complete receiver/self acceleration gradient | **Regular domain independently verified; singular boundary awaiting disposition.** [MEC-006](receiver-wake-gradient-closure.md) now has an independent analytic audit and a separately structured three-dimensional numerical verifier for the fixed-reception regular partner-root tensor. Its positive-delay same-history specialization remains conditional on separation and transmitter-factor floors. No unique self-diagonal, fold, or coincident-birth prescription follows from the regular mathematics. | The kinematic control may consume accepted regular rows only. Every excluded boundary row remains unresolved. A two-body conservation interpretation remains gated on an accepted self-compatible MEC-006 disposition and the separate same-update account derivation. |
-| Self-pair acceleration | **Declared but conditional.** A nontrivial same-transmitter root needs the diagonal exclusion or core convention, complete self-root census, separation and $D_t$ control, finite memory, and a singular-event route when a fold is reached. | The encounter cannot exclude self rows after the trajectory enters a regime in which the declared self rule admits them. |
+| Complete receiver/self acceleration gradient | **Regular domain independently verified; singular boundary awaiting disposition.** [MEC-006](receiver-wake-gradient-closure.md) now has an independent analytic audit and a separately structured three-dimensional numerical verifier for the fixed-reception regular partner-root tensor. Its positive-delay same-history specialization remains conditional on separation and transmitter-factor floors. No unique self-diagonal, fold, or coincident-birth prescription follows from the regular mathematics. | The kinematic control may consume accepted regular rows only. Every quarantined boundary row remains unresolved and consumer-ineligible. A two-body conservation interpretation remains gated on an accepted self-compatible MEC-006 disposition and the separate same-update account derivation. |
+| Self-pair acceleration | **Declared but conditional.** Every positive-delay same-transmitter root is admitted to the topology census; consuming a regular self row still requires separation and $D_t$ control, finite memory, and a singular-event route when a fold is reached. The structural diagonal has no assigned value. | The encounter cannot suppress an admitted positive-delay self row, and it cannot consume the quarantined diagonal as an acceleration row. |
 | Pure scalar $1/r$ action route | **Established incomplete.** The live Master Equation records an uncancelled receiver-variation interior derivative and an unclosed derivation of the transmitter-side weight. | Agreement with a scalar action diagnostic cannot establish acceleration-operator or conservation readiness. |
 | Characteristic-tail action candidate | **Awaiting verification.** The cross-pair receiver-gradient identity survives, but the complete self-diagonal functional remains inadmissible under its frozen convention. | It cannot yet supply the encounter's conserved account or boundary charge. |
 | Circular growth statement | **Derived diagnostic, not an evolved conservation result.** The principal partner branch on the declared symmetric circular chart has forward tangential acceleration and is anti-damped; complete simple-root algebraic balance points do not certify a retained branch. | The concern that a current growth result came from an omitted full wake gradient is not established for the canonical acceleration operator. Whether a complete action/account operator reproduces the same result remains unresolved. |
@@ -404,8 +592,9 @@ The gate passes for a kinematic encounter only if:
    history record;
 4. folds, coincident births, core contacts, and root accumulations use their
    declared non-regular routes rather than the simple-root formula;
-5. the self rule is frozen before evolution and is applied whenever its
-   admissibility conditions fire; and
+5. positive-delay self-root admission is frozen before evolution, every such
+   root is retained, and diagonal-boundary semantics remain separately
+   quarantined; and
 6. an independently authored oracle checks at least the regular partner row,
    one admitted self row if present, and one fold or boundary negative control.
 
@@ -426,15 +615,16 @@ an unowned finite value at a singular root.
 
 ### MEC-006 singular-boundary intake rule
 
-The MEC-006 boundary-option matrix does not authorize a new MEC-005
-self-pair convention. Until one option is explicitly accepted, the ledger must
-retain:
+The MEC-006 boundary-option matrix does not authorize a new MEC-005 diagonal
+semantics. Until one option is explicitly accepted, the ledger must retain:
 
-1. each incident regular root stratum with its existing ordered-pair identity;
+1. each incident regular root stratum with its refinement-stable canonical
+   identity and ordered-pair owner;
 2. one distinct unresolved boundary-event cell;
-3. the self-pair convention that was frozen before enumeration; and
-4. `not_derived` for every boundary acceleration-gradient or signed-account
-   field.
+3. `self_root_admission: all_positive_delay_roots`;
+4. `diagonal_boundary_semantics: quarantined_unresolved`; and
+5. `not_derived` for every boundary acceleration-gradient, continuation, or
+   signed-account field.
 
 A later core, smoothing profile, event map, distributional term, or
 counterterm must receive one new boundary owner and may not also be copied
@@ -487,8 +677,9 @@ $$
 Each initial Architrino speed is below $c_f$, so the affine prehistory supplies
 no nontrivial self root. The evolution must not assume a breather, periodic
 return, rebound, or eventual departure. For the evolved interval,
-`self_pair_convention = excluded` is not an admissible shortcut when the
-declared acceleration law permits nontrivial self roots.
+`self_root_admission = all_positive_delay_roots` remains fixed, while
+`diagonal_boundary_semantics = quarantined_unresolved` supplies no diagonal
+value or continuation.
 
 Plainly: the control starts with two widely separated opposite polarities
 moving directly toward one another. “Asymptotic” means a sequence of larger
@@ -517,7 +708,8 @@ state.
 For every accepted time cell through the encounter, record:
 
 1. both ordered partner bundles $\mathcal Z_{12}$ and $\mathcal Z_{21}$;
-2. both self bundles under the frozen self convention;
+2. both positive-delay self bundles $\mathcal Z_{11}$ and $\mathcal Z_{22}$,
+   plus both structural diagonal boundary carriers under the frozen quarantine;
 3. every simple-root branch, multiplicity, $D_t$ sign and floor, $D_r/D_t$
    playback row, and acceleration weight;
 4. every fold birth or death, higher singularity, memory-edge crossing, core
@@ -648,11 +840,11 @@ update and MEC-005 must attribute each resulting boundary row once. A residual
 or a duplicated incident-root entry is not a signed-map derivation.
 
 Many-body superposition may be considered only after the pairwise construction
-passes P1–P6 for both ordered cross-pairs and the separately declared self-pair
-convention. A many-body sum must then prove that shared emission provenance and
-shared boundary events are not copied across pair bundles. Pairwise closure
-cannot be inferred from a many-body residual that cancels only after
-aggregation.
+passes P1–P6 for all four ordered bundles with positive-delay self-root
+admission and separately quarantined diagonal semantics. A many-body sum must
+then prove that shared emission provenance and shared boundary events are not
+copied across pair bundles. Pairwise closure cannot be inferred from a
+many-body residual that cancels only after aggregation.
 
 This packet is `priority-only`. Its intended corpus destination is the Master
 Equation accounting discussion only after a theorem-grade pairwise result and

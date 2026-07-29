@@ -20,7 +20,7 @@ const SOURCE_PATHS = [
   "reference/op/theory-orientation.md",
   "reference/op/long-running-test-heartbeats.md",
   "reference/op/source-mining-best-practice.md",
-  "reference/op/codex-pr-branch.md",
+  "reference/op/git/codex-pr-branch.md",
   "reference/priorities/README.md",
   "reference/research-office/cto/prompts/README.md",
   "reference/research-office/cto/prompts/start-pi.md",
@@ -124,7 +124,7 @@ const WORKFLOWS = [
     name: "Branch, commit, push, and PR",
     use: "Run the explicit branch/PR process, including validation, scoped staging, push, PR state checks, and rollover when requested.",
     read: [
-      "reference/op/codex-pr-branch.md",
+      "reference/op/git/codex-pr-branch.md",
       ".githooks/pre-commit",
       ".githooks/pre-push",
     ],

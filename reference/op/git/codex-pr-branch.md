@@ -8,13 +8,13 @@ This document defines the standard repo process for ending a work session, publi
 
 The active branch series for this repo is currently the minerals/gemstones
 sequence, using the committed
-[mineral/gemstone branch registry](mineral-gemstone-branch-registry.md). The
+[mineral/gemstone branch registry](branch-series/minerals-gemstones.md). The
 moon sequence ended at `codex/sao` and is consumed. When a branch series is
 exhausted, continue with the next series in
 [Branch Series Rollover Order](#branch-series-rollover-order) rather than
 reusing retired branch names.
 The branch-series index and configured counts are tracked in
-[branch-series-registry.md](branch-series-registry.md).
+[branch-series registry](branch-series/registry.md).
 
 - Working branches should use `codex/<series-item-name>` by default.
 - If a short topic suffix materially improves clarity, use `codex/<series-item-name>-<topic>`.
@@ -32,7 +32,7 @@ This keeps the branch series ordered, memorable, and easy to reason about during
 
 ## Branch Series Rollover Order
 
-The canonical series index, counts, registry status, and concrete registry files live in [branch-series-registry.md](branch-series-registry.md). Use that file and the active series registry to select the next token. Do not duplicate the full series list here; update the registry when policy changes.
+The canonical series index, counts, registry status, and concrete registry files live in [branch-series/registry.md](branch-series/registry.md). Use that file and the active series registry to select the next token. Do not duplicate the full series list here; update the registry when policy changes.
 
 ## Principles
 

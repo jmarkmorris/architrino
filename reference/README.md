@@ -23,7 +23,7 @@ The repo-local best-fit split for developer meta:
 
 - [README.md](../README.md) for project overview and setup;
 - [AGENTS.md](../AGENTS.md) for stable repo-wide operating rules and constraints;
-- [reference/op/codex-setup.md](./op/codex-setup.md) for codex/operator-specific process notes;
+- [reference/op/codex-authentication.md](./op/codex-authentication.md) for Codex authentication and operator-specific process notes;
 - `reference/priorities/` for live backlog and current-state tracking;
 - `reference/design/` for durable developer-facing design documentation;
 - `reference/learning-office/` for learning materials, Archie public descriptions, channel planning, and message-testing material;

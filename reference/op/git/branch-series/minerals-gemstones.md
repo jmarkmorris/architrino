@@ -1,7 +1,7 @@
 # Mineral and Gemstone Branch Registry
 
 This registry freezes the minerals/gemstones branch order required by
-[codex-pr-branch.md](codex-pr-branch.md). Branch names use lowercase
+[codex-pr-branch.md](../codex-pr-branch.md). Branch names use lowercase
 hyphenated mineral or gemstone names after `codex/`.
 
 The sequence starts with common rock-forming and field-identification minerals,

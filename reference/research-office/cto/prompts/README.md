@@ -31,7 +31,7 @@ These files contain reusable prompt material or prompt procedures. They were not
 | --- | --- |
 | [../../../op/codex-goal-seeking-prompt-template.md](../../../op/codex-goal-seeking-prompt-template.md) | High-value general wrapper. Consider moving or mirroring here after updating links from `reference/op/README.md` and other process docs. |
 | [../../../op/codex-multiprompt.md](../../../op/codex-multiprompt.md) | General multi-thread procedure. Keep in `reference/op/` unless Op wants all Codex operating procedures mirrored here. |
-| [../../../op/research-lead-prompt-template.md](../../../op/research-lead-prompt-template.md) | Generalized here as [core-geometry-theorem-reviewer.md](core-geometry-theorem-reviewer.md). Consider deprecating the older file after checking references. |
+| Retired `reference/op/research-lead-prompt-template.md` | Generalized here as [core-geometry-theorem-reviewer.md](core-geometry-theorem-reviewer.md). |
 | [../../../op/source-mining-best-practice.md](../../../op/source-mining-best-practice.md) | Source-intake specialization with many source-family prompt addenda. Keep in `reference/op/` because it owns procedure, not only prompt text. |
 | [../../research-lead/review-packets/README.md](../../research-lead/review-packets/README.md) and `reference/research-office/research-lead/review-packets/*.md` | Historical self-contained review packets. Keep in place as review artifacts, not reusable prompt templates. |
 | [../../../priorities/equation-mapping/equation-breakthrough-search-prompt.md](../../../priorities/equation-mapping/equation-breakthrough-search-prompt.md) | Priority-specific live breakthrough-search prompt. It resolves queue state from the current tracker and score ladder instead of embedding a dated checkpoint. |
