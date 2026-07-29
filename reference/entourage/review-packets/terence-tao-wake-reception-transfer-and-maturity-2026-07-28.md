@@ -1,17 +1,18 @@
 Closure goal:
-Record what the wake-account consultation established about the independent causal wake-state route, and route every surviving result to an exact destination.
+Record the wake-reception research findings about the independent causal wake-state route, and route every surviving result to an exact corpus or priority destination.
 
-# Wake Reception Transfer, Motion Accounts, and Coincident-Birth Maturity
+# Wake Reception Transfer, Motion Accounts, and Coincident-Birth Maturity: Research Findings and Proposed Changes
 
-## Status and authority
+## Research framing and authority
 
+- **Date:** 2026-07-28
+- **Artifact type:** research findings and proposed changes
 - **Owning object:** `causal_wake_update_law` (MEC-002), local rank `1` of the
   Master-Equation closure workstream, rank `3` program-wide.
-- **Attribution:** this document contains no response from Terence Tao or any
-  other external human. The role label selected an analysis-and-well-posedness
-  review lens only. Results came from an internal agent and from an external
-  service supplied by the operator, over two rounds; neither had repository
-  access, and neither saw the other's work.
+- **Research lens:** analysis and well-posedness of reception transfer,
+  account measures, and coincident-root birth. The filename is an internal
+  routing label, not an attribution to Terence Tao or any other external
+  human.
 - **Claim level:** `priority-only`. It proposes changes; it makes none. No
   ontology change, no Master Equation change, and no terminology change is
   applied here.
@@ -35,14 +36,13 @@ corpus destinations are the state-reduction section and the receiver-turning
 section of the [Master
 Equation](../../../content/markdown/aaa/dynamics/master-equation.md).
 
-### Relation to the parallel consultation
+### Relation to the parallel research packet
 
-A second, independently issued consultation on the same owning object is
+A second analysis of the same owning object is
 recorded in [Causal Wake-State Closure: Research Findings and Proposed
-Incorporation](terence-tao-causal-wake-state-closure-research-findings-and-proposed-incorporation-2026-07-28.md),
-which also preserves its own source responses. Overlap is **corroboration, not
-duplication**. Two of its results are adopted here and supersede positions taken
-in this thread's first round:
+Incorporation](terence-tao-causal-wake-state-closure-research-findings-and-proposed-incorporation-2026-07-28.md).
+Overlap is **corroboration, not independent physical evidence**. Two of its
+results are adopted here and supersede earlier positions:
 
 - The necessity direction of $M=O(T^{2+\delta})$ is **false**. The sharp
   condition is $\int_0^LM(T)T^{-3}\,dT<\infty$, with a narrow-spike
@@ -148,8 +148,8 @@ packet asserts, now with its prefactor.
 Because $z=|g'|\tau/c_f$ is linear in $\tau$, conditions in $\tau$ and in $z$ are
 equivalent on this family — an equivalence the packet assumes without proof.
 
-- **Sources:** corroborated three times (internal agent; external service; the
-  parallel note's independent $z=(\alpha/c_f)T$ derivation).
+- **Research status:** multiply derived within the bounded analyses, including
+  an independent $z=(\alpha/c_f)T$ derivation.
 - **Numerically confirmed 2026-07-28** on a random 3D quadratic control at
   $c_f=1$: the midpoint identity holds to $3.6\times10^{-15}$ over $2\times10^5$
   random time pairs; birth lands at $\|\mathbf V(T_c)\|=1.000000000000000$; and
@@ -234,8 +234,8 @@ analysis scales as $|q|$, while this analysis demands $q^{-2}$. Both cannot hold
 unless $\varepsilon_0$ carries hidden dimensions — that is, unless it is a new
 constitutive constant rather than something derivable.
 
-- **Sources:** external service, both rounds. The internal agent got the coupling
-  dimension wrong and reached the opposite conclusion (§4).
+- **Research status:** derived after correcting an earlier coupling-dimension
+  error that had reversed the conclusion.
 - **Claim grade:** derived, conditional on the ingredient list being exactly the
   promoted label plus $\{c_f,\kappa,\mu_{\mathrm{arch}}\}$.
 - **Falsifier:** admitting $\mathbf V_t(T_e)$ or any second vector supplies a
@@ -272,8 +272,8 @@ This **proves** the item carried as *proposed* in the owning packet — that no
 separate intrinsic angular-momentum variable is needed — and names its
 hypothesis.
 
-- **Sources:** corroborated (internal agent; external service; the parallel
-  note's reduction lemma).
+- **Research status:** multiply derived, including the parallel packet's
+  reduction lemma.
 - **Claim grade:** derived, conditional on $\boldsymbol\pi\parallel
   \boldsymbol\omega$ and isotropic emission.
 - **Falsifier:** any non-line-of-action wake exchange reinstates a fourth stored
@@ -322,8 +322,9 @@ with the age of the intercepted shell. Easy to detect.
 $\mu_{\mathrm{arch}}$ is the declared units constant, not a carrier mass; the
 input was a statement about lever arms in the void.
 
-- **Sources:** internal agent; corroborated by the parallel note's oblique-pair
-  theorem, which supplies the hypothesis this version leaves implicit.
+- **Research status:** derived here and corroborated by the parallel packet's
+  oblique-pair theorem, which supplies the hypothesis this version leaves
+  implicit.
 - **Claim grade:** derived, conditional on $\boldsymbol\pi\parallel
   \boldsymbol\omega$, momentum closure, and the emission-site line of action.
 - **Falsifier:** one certified hit with $\mathbf V_r$ at $45^\circ$ to
@@ -334,7 +335,7 @@ input was a statement about lever arms in the void.
 
 ### F5 — Regulator-path independence: impulse-level yes, continuation-level open
 
-This revises the first-round position that weighted integrability was
+This corrects the earlier position that weighted integrability was
 insufficient in general.
 
 **Impulse level.** Because $M$ is a suppression factor it is **non-negative**, so
@@ -358,7 +359,7 @@ Plainly: because the suppression factor can never be negative, no regulator can
 smuggle in a cancellation that survives the limit. Inside the standard families
 the birth kick is well defined.
 
-**Where the first-round counterexample actually bites.** The family
+**Scope of the counterexample.** The family
 $M_\eta(z)=z^3+a\eta^2\varphi(z/\eta)$, with $\varphi$ supported on $[1,2]$ and
 $J=\int\varphi(u)u^{-3}du$, satisfies $\int_0^LM_\eta z^{-3}dz=L+aJ$ while
 $M_\eta\to z^3$ pointwise.
@@ -383,16 +384,16 @@ trajectory comes out the other side. That is a separate theorem.
 restricted to the declared dominated families; **and** a uniqueness certificate
 for the limit continuation.
 
-- **Sources:** internal agent (counterexample); external service, round two (the
-  positive result and its correct scope).
+- **Research status:** the counterexample and the positive impulse-level result
+  were derived separately and agree on this limited scope.
 - **Claim grade:** derived at impulse level; the continuation-uniqueness burden
   is a derived open obligation.
 - **Destination:** owning packet §3; falsifier list in the closure packet.
 
 ### F6 — The allocation rule is the blocker, and all three candidates fail
 
-This is the central result, and it **retracts** the first-round conclusion
-recorded in §4.
+This is the central result, and it retracts the earlier conclusion recorded in
+§4.
 
 **The missing object.** The owning packet lists six missing items. There is a
 seventh, logically prior to all of them:
@@ -477,9 +478,8 @@ $D_r$-dependence}, capacity limitation does **not** derive a maturity law.
 $M\propto z^3$ is **conditional on a new angular-allocation constant**, not
 derived from the promoted primitives.
 
-- **Sources:** external service, round two, extending its own round-one
-  allocation analysis. The $D_r$ observation is the reviewer's; the elimination
-  against canon is this thread's step, since the reviewer could not see canon.
+- **Research status:** the allocation analysis supplies the $D_r$ observation;
+  this synthesis performs the separate elimination against live canon.
 - **Claim grade:** the allocation rule is a **derived necessity**; the three
   eliminations are **derived**; $M\propto z^3$ under a declared fraction is
   **conditional on a new postulate**.
@@ -510,7 +510,7 @@ capacity cap and the canonical law holds down to $r\to0$, or a cap exists and
 there is a floor with this scaling. The certified regular domain currently
 declares only $z\ge z_{\min}$; a floor $r\ge r_{\min}$ is declared nowhere.
 
-- **Sources:** external service, round two.
+- **Research status:** derived in the capacity-bound analysis.
 - **Claim grade:** derived, conditional on an allocation postulate and on
   per-receiver-time capacity.
 - **Falsifier:** probing the canonical law at separations below
@@ -546,7 +546,8 @@ The pressure therefore lands on the **named constant-time emission postulate**,
 not on the wake state: either emission is not uniform in absolute time at fixed
 capacity, or the debit comes from elsewhere, or $C_e=0$.
 
-- **Sources:** corroborated (internal agent; external service).
+- **Research status:** independently re-derived within the bounded source
+  analyses.
 - **Claim grade:** derived, conditional on F2 and uniform-in-$T$ emission.
 - **Destination:** owning packet §6, replacing the two-horn argument.
 
@@ -580,7 +581,8 @@ This is a **present-time input to the account**, not a receiver-velocity term in
 the acceleration. The canonical magnitude remains free of $\mathbf V_r$ and $D_r$
 remains playback only — the same boundary that eliminates Rule 2 in F6.
 
-- **Sources:** internal agent (first criterion); external service (second).
+- **Research status:** the two criteria were derived separately and are
+  complementary.
 - **Claim grade:** derived, to first order in $\|\Delta\mathbf V\|$.
 - **Destination:** owning packet §4; falsifier list in the closure packet.
 
@@ -603,7 +605,7 @@ impulse forces $\exists z_*>0$ with $M\not\equiv1$ on $(0,z_*)$. Every
 universality statement must be quantified as $z\ge z_{\min}>0$.
 
 The fourth branch — reception visible only on singular support — is logically
-valid but carries four costs, the last two from the external service:
+valid but carries four costs:
 
 1. $z_{\min}$ is a new threshold not fixed by primitives.
 2. The birth impulse becomes history-dependent, so the continuation is no longer
@@ -627,24 +629,23 @@ nonsymmetric two-carrier retained history, where symmetry cannot do the work.
 
 ## 4. Retracted and rejected
 
-**Retracted from this thread's first round.** An earlier draft recorded that
+**Retracted from the earlier draft.** The draft recorded that
 whole-label allocation "survives" and that $M\propto z^3$ was therefore
 **derived** from capacity plus geometry. F6 withdraws that. The double-drain
 counterexample shows whole-label allocation violates surface resolution, and the
 exponent is recoverable only by declaring a new angular fraction. The transition
 scale $\tau_*$ is likewise conditional.
 
-**Rejected reviewer claims.**
+**Rejected research claims.**
 
-- **$[\kappa q^2]=L^2T^{-1}$** (internal agent). Wrong — the dimension of
-  $|D_t|$ was dropped. The correct $L^3T^{-2}$ was obtained independently by the
-  external service. The agent's conclusion that a new constant is *dimensionally
-  forced* is false; F2 exhibits the unique admissible forms. This error changed a
-  verdict, which is why the second source was decisive.
-- **"Momentum closure fails outright"** (internal agent). Overreach — depletion
+- **$[\kappa q^2]=L^2T^{-1}$.** Wrong — the dimension of
+  $|D_t|$ was dropped. The corrected dimension is $L^3T^{-2}$, and the
+  conclusion that a new constant is *dimensionally forced* is false; F2
+  exhibits the unique admissible forms.
+- **"Momentum closure fails outright."** Overreach — depletion
   makes the remainder anisotropic, and the two increments are both radial and can
   cancel. F3 records the correct weaker statement.
-- **"No $\beta\to1$ barrier, therefore births are generic"** (internal agent).
+- **"No $\beta\to1$ barrier, therefore births are generic."**
   Unsafe import: $K$ is a bookkeeping account, not a dynamical barrier, and
   nothing in the substrate says an account limits a speed. Motion is determined
   by the acceleration law alone. The kinematic fact that birth requires reaching
@@ -653,13 +654,12 @@ scale $\tau_*$ is likewise conditional.
   Changes a named postulate, alters the $\varrho^{\mathrm{surf}}$ form on which
   the inverse-square argument rests, and destroys F2's uniqueness. Operator
   decision D1, not a safe correction.
-- **$M=O(T^{2+\delta})$ as a necessity** (carried into the prompt from the owning
-  packet and accepted by the internal agent). Superseded by the parallel note's
+- **$M=O(T^{2+\delta})$ as a necessity.** Superseded by the parallel note's
   weighted-integrability correction, adopted throughout above.
 
 ---
 
-## 5. Requiring operator decision
+## 5. Unresolved constitutive choices
 
 | ID | Decision | Why it blocks | Cost of deferring |
 | --- | --- | --- | --- |
@@ -675,26 +675,18 @@ suppression law from capacity at all.
 
 ---
 
-## 6. Proposed items to incorporate
+## 6. Proposed changes
 
 None applied. Every item changes no ontology, no canonical Master Equation, and
 no terminology policy.
 
-> **Sequencing warning — do not apply this batch in isolation.** The parallel
-> consultation proposes its own change batch against the **same file and the
-> same sections**, principally `analysis-independent-causal-wake-state.md` §3.
-> The two overlap: this batch adds the allocation eliminations (P5) and the
-> corrected regulator acceptance condition (P6), while that batch adds the
-> weighted-integrability correction and the account measure-class declaration.
-> Applied independently they will fight over the same paragraphs, and the
-> weighted-integrability correction must land *before* P5 and P6 because both
-> are written against the corrected condition.
->
-> The two batches should first be merged into one ordered edit list against the
-> owning packet. That merge should follow disposition, not precede it, since
-> rejected items should not be merged. Its output is an edit list, not a
-> combined document: the two consultation records stay separate, because their
-> independence is what makes the corroboration recorded in §2 mean anything.
+**Sequencing constraint.** Reconcile this change batch with the parallel
+causal-wake-state packet before editing
+`analysis-independent-causal-wake-state.md` §3. Apply the shared
+weighted-integrability and account-measure corrections first, then land the
+allocation eliminations and regulator acceptance condition below. The two
+documents remain separate research records because their scopes and
+derivations differ.
 
 Plainly: two threads reached this file at once. Their conclusions mostly agree,
 but their edits target the same paragraphs, so the edits have to be reconciled
@@ -733,7 +725,7 @@ even though the findings do not.
 | --- | --- |
 | P13 | Append the allocation rule to MEC-002's missing-objects list, marked as prior to the other six |
 
-### Corpus — both want operator sign-off
+### Reader-facing corpus changes
 
 | # | File and place | Change | Grade |
 | --- | --- | --- | --- |
@@ -772,16 +764,16 @@ Recommended, not applied.
 $dT_e/dT_r=-1$, $r/(2c_f\tau)\to1$, $D_t/(\tau g')\to1$. Minutes, no accounts
 needed. Fails only if F1 is wrong.
 
-**Leg 1 — the cumulative extraction bound.** The one calculation both reviewers
-raised and neither completed. On a **nonsymmetric two-carrier retained history**
+**Leg 1 — the cumulative extraction bound.** This calculation remains open. On
+a **nonsymmetric two-carrier retained history**
 — transmitter at rest at the origin, receiver released from rest at $r_0$, like
 polarity so the canonical law repels — compute total energy extracted over a
 window $W$ and test the §3 item-4 dilemma. **Pass:** the total is bounded by a
 per-shell capacity without the acceleration departing from canonical anywhere on
 $z\ge z_{\min}$. **Fail:** either capacity exhausts, killing the fourth branch
-outright, or the bound requires unbounded per-shell capacity. The external
-reviewer stalled here for want of a closing term in the radial equation;
-supplying that closure is part of the task.
+outright, or the bound requires unbounded per-shell capacity. The radial
+equation still lacks the closing term needed to complete the calculation;
+supplying that closure is part of the proposed research.
 
 **Leg 2 — continuation uniqueness.** With $M\ge0$ and weighted integrability
 assumed, establish or refute uniqueness of the limit continuation through birth

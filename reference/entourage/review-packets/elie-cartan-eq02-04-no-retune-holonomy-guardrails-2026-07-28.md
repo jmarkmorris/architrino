@@ -1,16 +1,19 @@
-# Research Findings And Proposed Change: No-Retune Transport Beyond Drift-Only Holonomy
+Closure goal:
+Replace drift-only holonomy language with a source-identified, frozen-source held-out transport test whose quantitative margin can be evaluated only after point-first retained-branch existence is established.
 
-## Document Status
+# Research Findings And Proposed Changes: No-Retune Transport Beyond Drift-Only Holonomy
+
+## Research Framing And Status
 
 - **Date:** 2026-07-28
-- **Artifact type:** research findings and proposed change
+- **Artifact type:** research findings and proposed changes
 - **Review lens:** Elie Cartan-style principal bundles, associated bundles, moving frames, connections, curvature, torsion, and holonomy
-- **Source disposition:** the three no-retune review responses and the point-first dependency response have been integrated into this document; the former review prompt and its open questions are superseded
+- **Research basis:** four rounds of mathematical analysis are synthesized by result; prompts, replies, and round-by-round dialogue are superseded and omitted
 - **Claim authority:** conditional mathematical analysis and proposed proof target
 - **Promotion classification:** priority-only
 - **Not established:** a source-backed translating branch, an accepted connection, no-hidden-retune, Lorentz recovery, or an effective observer-spacetime geometry
 
-Plainly: this document records what the review established mathematically and what should change in the proof program. It does not claim that the required retained branch or transport law already exists.
+Plainly: this document records what the research established mathematically and what should change in the proof program. It does not claim that the required retained branch or transport law already exists.
 
 ## Overall Finding
 
@@ -60,11 +63,11 @@ where $\rho_\alpha$ is the source-derived action of the common structure group o
 
 Plainly: an interval can still host a real prediction. The evidence comes from freezing one source-built rule and then testing it against rows computed independently, not from calling the result drift holonomy.
 
-The second review sharpens this conclusion. Construction noninterference is necessary but insufficient. The permitted source record must also identify the connection uniquely modulo one declared gauge stabilizer, the structure group and associated actions must be reduced from source geometry rather than merely announced in advance, and the test must include an unused drift block. Otherwise an invisible Lie-algebra direction or an overexpressive source constructor can still tune held-out behavior.
+The source-identifiability analysis sharpens this conclusion. Construction noninterference is necessary but insufficient. The permitted source record must also identify the connection uniquely modulo one declared gauge stabilizer, the structure group and associated actions must be reduced from source geometry rather than merely announced in advance, and the test must include an unused drift block. Otherwise an invisible Lie-algebra direction or an overexpressive source constructor can still tune held-out behavior.
 
 Plainly: hiding the answer from the connection builder is only the first safeguard. The source data must leave no unseen connection knob that can affect a tested row, and the final test must predict behavior over drift values that did not shape the construction.
 
-The third review makes the source-identification condition numerical. Exact kernel equality is replaced by a validated positive lower bound for the smallest quotient singular value after source, finite-memory, discretization, derivative, action, solver, and arithmetic errors are included. The bound is required on each constant-orbit-type stratum. An enhanced-symmetry point such as $u=0$ is handled by bounded one-sided continuation and a junction match modulo one predeclared stabilizer subgroup that acts trivially on all tested fibers.
+The quantitative analysis makes the source-identification condition numerical. Exact kernel equality is replaced by a validated positive lower bound for the smallest quotient singular value after source, finite-memory, discretization, derivative, action, solver, and arithmetic errors are included. The bound is required on each constant-orbit-type stratum. An enhanced-symmetry point such as $u=0$ is handled by bounded one-sided continuation and a junction match modulo one predeclared stabilizer subgroup that acts trivially on all tested fibers.
 
 Plainly: floating-point full rank is not enough. The calculation must prove that numerical uncertainty cannot hide a connection direction, and extra symmetry at rest must not permit an undeclared reset between the two sides of the drift family.
 
@@ -1198,7 +1201,7 @@ or any change in the frozen connection enclosure under the source-preserving per
 
 Plainly: loss of margin, an unexplained symmetry reset, failed held-out transport, or an insensitive or leaky negative control is sufficient for rejection.
 
-## Proposed Change To The EQ-02 Through EQ-04 Proof Program
+## Proposed Changes To The EQ-02 Through EQ-04 Proof Program
 
 1. **Retain $W_{\mathrm{supp}}$ unchanged in role.** It remains the set-level witness that all rows use one accepted retained carrier and domain.
 2. **Retire drift-only loop holonomy as the primary meaning of $W_{\mathrm{hol}}$.** Zero curvature, trivial loops, and cocycle composition on $I_u$ are implementation facts, not no-retune evidence.
@@ -1299,16 +1302,16 @@ Passing the proposed theorem would establish common parallelism for the tested r
 
 Plainly: the theorem can close one precise no-retune question without carrying the much larger burden of proving the branch, spacetime recovery, or the full observer-level theory.
 
-## Questions Resolved By The Second Review
+## Resolved Research Questions: Construction And Identifiability
 
 1. The structure group must be the smallest closed source-reduced subgroup $G_{\min}$, and every associated action must arise from a source-equivariant construction.
 2. Row-family holdout is insufficient; the minimum one-family claim also requires a blocked connected drift interval.
 3. Shared primitive retained data are permissible, but source and endpoint branches must not share derived transformations; at least one representative action class needs an analytic or genuinely independent correctness reference.
 4. Phase-holonomy targets come from source-frame monodromy classes $[h_{\mathrm{src}}(n)]$, not from winding number or identity holonomy alone.
 
-Plainly: the second response closes the four conceptual questions from the first round. The third response supplies the quantitative form needed to make those conditions numerically testable.
+Plainly: these findings close the conceptual construction questions and supply the quantitative form needed to make the conditions numerically testable.
 
-## Questions Resolved By The Third Review
+## Resolved Research Questions: Quantitative Certification
 
 1. Replace exact kernel equality with a validated positive lower bound for the smallest quotient singular value on each constant-orbit-type block.
 2. Subtract the full source-action and singular-value error enclosure from the computed margin, then propagate derivative and solve errors through a separate connection enclosure.
@@ -1317,7 +1320,7 @@ Plainly: the second response closes the four conceptual questions from the first
 5. On nonlinear fibers, use covariant tangent norms and invariant endpoint distance, with only one predeclared common gauge minimization.
 6. Scale heterogeneous endpoint residuals by independently established gauge-invariant total uncertainty, including accumulated transport uncertainty.
 
-Plainly: the third response closes the remaining mathematical design questions. What remains is an implementation and evidence campaign against an actual retained branch, not another definition-level consultation.
+Plainly: the remaining work is an implementation and evidence campaign against an actual retained branch, not more definition-level review.
 
 ## Remaining Evidence Burden
 

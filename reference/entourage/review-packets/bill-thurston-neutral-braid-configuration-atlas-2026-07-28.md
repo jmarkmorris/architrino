@@ -1,38 +1,40 @@
 Closure goal:
-Turn the neutral six-architrino configuration-atlas consultation into a precise research architecture and a bounded change plan, so every candidate or negative search result declares its history domain without implying retention, stability, or physical realization.
+Turn the neutral six-architrino configuration-atlas research into a precise architecture and a bounded corpus-change plan, so every candidate or negative search result declares its history domain without implying retention, stability, or physical realization.
 
 # Neutral-Braid Configuration Atlas: Research Findings and Proposed Changes
 
 - Date: 2026-07-28
-- Status: initial and follow-up AI-persona consultation responses integrated; architecture formalized but not adopted
-- Source status: the Bill Thurston role label selected a topological and geometric review lens. This document does not contain a response from William Thurston or any other external human.
+- Last audit: 2026-07-29
+- Artifact type: research findings and proposed changes
+- Status: research findings and proposed changes; architecture formalized, analytically audited, and not adopted
+- Research lens: topological and geometric analysis of neutral six-history configuration space. The filename is an internal routing label, not an attribution to William Thurston or any other external human.
 - Authority: research findings and proposed changes only; no corpus, ontology, retained-branch, certified-braid, solver, or particle-identity promotion
 
-## Executive finding
+## Research framing and executive finding
 
 The configuration atlas should not be one finite-dimensional moduli space. The smallest justified model is a **stratified topological symmetry groupoid of polarity-labeled histories**, represented computationally by a pro-system of certified finite-history approximation groupoids. Exact-binary descriptions belong in matching-decorated subcharts. Causal-root and spatial-topology rows are derived, validity-scoped diagnostics; they are not free coordinates and do not establish dynamical retention.
 
 Plainly: the mathematical object is the six recorded paths and the boundary information needed to evaluate delayed interactions. A numerical parameterization is only one controlled view of that object. Searching that view cannot support a claim about histories outside it.
 
-The consultation also gives a decisive counterexample to the current provisional invariant families. In the bounded sub-field-speed class, the elementary causal-root counts and signed degrees can remain fixed while one spatial support component changes from an unknot to a nontrivial knot. Therefore neither $(N_s,M_p,c_1)$ nor $(D_{\mathrm{self}},D_p,c_1)$, even with $D_{\mathrm{plane}}$ and one chirality bit, can classify the topology of six histories.
+The research gives a decisive counterexample to the current provisional invariant families. In the bounded sub-field-speed class, the elementary causal-root counts and signed degrees can remain fixed while one spatial support component changes from an unknot to a nontrivial knot. Therefore neither $(N_s,M_p,c_1)$ nor $(D_{\mathrm{self}},D_p,c_1)$, even with $D_{\mathrm{plane}}$ and one chirality bit, can classify the topology of six histories.
 
 Plainly: causal-root topology and spatial knot topology measure different structure. Both may be useful, but neither can stand in for the other.
 
-The follow-up consultation supplies one exact nontrivial tail theorem. If the complete declared transmitter inventory remains inside a common region of diameter $D$, every causal-root delay is at most $D$. A retained horizon $H>D$ therefore contains every causal root. A uniform speed ceiling $\|\mathbf V_i\|\le1-\varepsilon$ is not needed for tail exclusion, but it also makes every partner root unique, simple, and positive-sign while excluding nontrivial self-hits.
+The analysis supplies one exact nontrivial sharp-root tail theorem. If the complete declared transmitter inventory remains inside one fixed region of diameter $D$, every sharp causal-root delay is at most $D$. A retained horizon $H>D$ therefore contains every sharp causal root. A uniform speed ceiling $\|\mathbf V_i\|\le1-\varepsilon$ is not needed for sharp-root exclusion, but it also makes any admitted root unique, simple, and positive-sign while excluding nontrivial self-hits. Existence of a nontrivial partner root additionally requires positive receiver–transmitter separation at reception.
 
-Plainly: on this bounded class, finite prehistory can be exact rather than approximate. The result concerns causal-root completeness only; it does not establish a returned or stable branch.
+Plainly: on this bounded class, the sharp causal-root inventory can be exact. The EOM solver’s finite-width Gaussian acceleration kernel has noncompact tails, so $H>D$ does not make its omitted acceleration contribution exactly zero. Neither result establishes a returned or stable branch.
 
 ## Claim-grade boundary
 
-### Derived within the consultation
+### Derived in this research synthesis
 
 - Simultaneous positions alone cannot determine delayed acceleration because active causal roots depend on retained history.
 - Pointwise centered Gram data reconstruct each labeled rank-three simultaneous shape only up to an independently chosen orthogonal transformation at each time; they do not reconstruct a history modulo one constant rotation.
 - Centered vector history $Q(T)$, or the cross-time kernel $K(T,S)=Q(T)^{\mathsf T}Q(S)$ with one rank-three oriented anchor, restores the missing temporal orientation relation.
 - Every opposite-polarity perfect matching supplies algebraic midpoint and half-separation rows, so the mere existence of those rows does not define a persistent binary locus.
 - A generic simple root persists locally under a positive transversality margin, and an ordinary root fold changes unsigned root count by two while preserving signed degree.
-- A complete transmitter inventory confined for all relevant past times to a region of diameter $D$ has no causal-root delay greater than $D$.
-- In bounded histories with all speeds strictly below $1$, every ordered distinct pair has one positive-sign simple causal root and no path has a nontrivial self-hit.
+- A complete transmitter inventory confined for all relevant past times to one fixed region of diameter $D$ has no sharp causal-root delay greater than $D$.
+- In bounded histories with all speeds strictly below $1$, every admitted root is unique, simple, and positive-sign; a distinct ordered pair has one nontrivial partner root when its receiver–transmitter separation at reception is positive; and no path has a nontrivial self-hit.
 - Spatial knot or link type is preserved under collision-free ambient isotopy with a fixed closure convention.
 
 Plainly: these are mathematical consequences of the supplied setup and stated regularity assumptions. They do not show that the equation of motion realizes any proposed braid.
@@ -54,7 +56,50 @@ Plainly: these are mathematical consequences of the supplied setup and stated re
 - the justified weights and root/phase incoherence term for an atlas-level binary-coherence functional;
 - the minimum topology inventory on histories whose closures are dynamically meaningful;
 - a sharp tail contract for drifting but relatively bounded histories or for histories with declared ambient transmitters outside one bounded enclosure;
+- a quantitative omitted-tail bound for the EOM solver’s finite-width Gaussian acceleration kernel;
 - whether any atlas candidate is retained, stable, physically realized, or preferred by the EOM solver.
+
+## Independent analytical audit
+
+An independent read-only analysis rederived the central mathematics and compared it with the live EOM solver contracts and implementation. Its result is a partial acceptance with two required corrections. This is an analytical audit, not an independently authored numerical instrument or measured acceptance record.
+
+### Verified as derived
+
+- **Sharp-root delay bound:** for a complete declared inventory contained through all relevant times in one fixed region $\Omega$ of diameter $D$, every sharp causal-root delay is at most $D$.
+- **Sub-field-speed regularity:** $\|\mathbf V_j\|\le1-\varepsilon$ implies $D_{t,ij}\ge\varepsilon$, so any root is simple, positive-sign, and unique for its ordered pair.
+- **Partner-root existence with qualification:** exactly one nontrivial partner root exists when the ordered pair has positive receiver–transmitter separation at reception and the bounded-history old-boundary sign is negative.
+- **Self-hit exclusion:** a uniformly sub-field-speed path has no nontrivial self-root.
+- **Cross-time reconstruction:** pointwise Gram histories plus orientation signs are incomplete; $Q(T)$ is the direct fixed-frame coordinate, while $K(T,S)=Q(T)^{\mathsf T}Q(S)$ plus a rank-three oriented anchor reconstructs centered history modulo one constant proper rotation. The barycenter history remains separate.
+- **Scalar-label incompleteness:** the unlink/square-knot construction verifies that $(N_s,M_p,c_1)$ and $(D_{\mathrm{self}},D_p,c_1)$ are not complete spatial knot or link classifiers for prescribed closed histories.
+
+Plainly: the audit confirms the sharp-root, reconstruction, and classifier-scope corrections. It does not produce retained EOM branches with different knot types and therefore does not establish a realized assembly classification.
+
+### Refuted or narrowed
+
+- The statement that $H>D$ omits exactly zero acceleration contribution is false for finite regulator width. A Gaussian kernel has noncompact support, so the omitted tail may be tolerance-small but is not identically zero.
+- The statement that every distinct ordered pair has a partner root is false at a receiver–transmitter collision unless a separate nontrivial-root convention and collision treatment supply it.
+- The horizon-clearance margin must not use $\eta$, which already denotes regulator width; this packet uses $\delta_H>0$ instead.
+
+For two static paths separated by $1$, with $H=2$ and a Gaussian regulator of width $\eta>0$, the omitted factor contains
+
+$$
+\int_2^\infty
+\delta_\eta(1-u)\,du
+=
+\frac12
+\operatorname{erfc}
+\left(
+\frac{1}{\sqrt2\,\eta}
+\right)
+>
+0.
+$$
+
+Plainly: the finite-width contribution can be very small, but it is not exactly zero.
+
+The live [evolution contract](../../priorities/app-solver/contracts/evolution-contract-v1.md) integrates the finite-width kernel only over retained history and does not claim earlier contributions are zero. The EOM solver fails closed with `insufficient_history_depth` when the stored boundary is inadequate. The [master EOM binding](../../priorities/app-solver/contracts/master-eom-binding-v1.md) defines the noncompact Gaussian regulator relevant to this distinction.
+
+Plainly: the sharp causal-root theorem and the finite-width acceleration-tail problem are different obligations. The former is accepted with hypotheses; the latter remains unresolved.
 
 ## Research findings
 
@@ -582,7 +627,7 @@ A campaign-ready record should type each field as intrinsic data, a derived row,
 | Evaluation and history intervals | Compact $J$ and finite or complete past interval | Intrinsic/metadata | Contains every required root | No root-completeness claim |
 | History representation | $C^r$ paths or finite coefficients with error set | Intrinsic | Reconstruction enclosure in declared norm | Widen enclosure or reject |
 | Center and shape history | $\mathbf b(T)$ with $Q(T)$ or $K(T,S)$ | Intrinsic coordinates | Labeled reconstruction with constant-isometry anchor | Switch chart or reject |
-| Prehistory contract | Complete past, exact tail theorem, or certified bound | Metadata/fiber | Root and acceleration exclusion proof | No finite-history claim |
+| Prehistory contract | Complete past, exact sharp-root theorem, or certified finite-width bound | Metadata/fiber | Separate sharp-root and regulated-tail proofs | No finite-history claim |
 | Ambient state | Complete declared record or explicit none | Intrinsic fiber | Transmitter-inventory closure | No tail or EOM claim |
 | Motion class and coefficient domain | Tagged $\mathcal M$ and compact $K_N$ | Metadata | Membership and complete cell enclosure | Narrow the negative |
 | Collision and field-speed margins | Validated real enclosures | Derived | Pair-distance and velocity bounds | Mark singular-wall box |
@@ -623,9 +668,9 @@ $$
 \le D.
 $$
 
-Therefore a retained horizon $H>D$ contains every causal root and omits zero acceleration contributions from the declared transmitter inventory.
+Therefore a retained horizon $H>D$ contains every sharp causal root from the declared transmitter inventory.
 
-Plainly: a wake arriving now cannot have traveled longer than the maximum separation allowed by the complete spatial enclosure.
+Plainly: a sharp wake arriving now cannot have traveled longer than the maximum separation allowed by the complete spatial enclosure. This conclusion does not make the omitted tail of a finite-width Gaussian acceleration kernel exactly zero.
 
 For evaluation interval $[T_0,T_1]$, the exact finite record must begin at $T_0-H$. The theorem’s inequality then places every required emission time inside $[T_0-H,T_1]$.
 
@@ -651,11 +696,11 @@ $$
 \varepsilon.
 $$
 
-Plainly: every admitted root is simple and positive-sign, each distinct ordered pair has exactly one partner root, and no path has a nontrivial self-hit.
+Plainly: every admitted root is simple and positive-sign. A distinct ordered pair with positive receiver–transmitter separation at reception has exactly one nontrivial partner root under the bounded-history boundary signs, and no path has a nontrivial self-hit.
 
-The theorem applies only when the enclosure covers the complete relevant past and the complete transmitter inventory. Undeclared ambient transmitters, an enclosure known only on the retained segment, or unresolved collision/regulator behavior invalidate the certificate.
+The theorem applies only when one fixed enclosure covers the complete relevant past and the complete transmitter inventory. A bounded simultaneous diameter in a drifting enclosure is insufficient. Undeclared ambient transmitters, an enclosure known only on the retained segment, a receiver–transmitter collision, or unresolved regulator behavior invalidates the corresponding stronger conclusion.
 
-**Required certificate fields.** Record $D\le D_{\max}$, $H\ge D_{\max}+\eta$ with $\eta>0$, the transmitter inventory, the ambient-state declaration, and—when uniqueness and self-hit exclusion are claimed—the bound $\|\mathbf V_j\|_\infty\le1-\varepsilon$.
+**Required certificate fields.** Record the fixed enclosure, $D\le D_{\max}$, $H\ge D_{\max}+\delta_H$ with $\delta_H>0$, the transmitter inventory, the ambient-state declaration, and—when uniqueness and self-hit exclusion are claimed—the bound $\|\mathbf V_j\|_\infty\le1-\varepsilon$. Record a separate finite-width omitted-tail bound whenever the EOM solver’s regulated acceleration is evaluated.
 
 ## Corrected local theorem target
 
@@ -691,7 +736,7 @@ A finite open path segment has no intrinsic knot type. The statement that a hist
 
 ### Bounded-tail control
 
-Use six prescribed collision-free $C^1$ histories enclosed in a verified region of diameter $D$, with speed ceiling $1-\varepsilon$, no ambient transmitters, and horizon $H=D+\eta$. An independent reference must establish:
+Use six prescribed $C^1$ histories with a positive collision margin, enclosed through all relevant times in one verified fixed region of diameter $D$, with speed ceiling $1-\varepsilon$, no ambient transmitters, and horizon $H=D+\delta_H$. An independent reference must establish:
 
 - exactly one partner root for every ordered $i\ne j$;
 - no nontrivial self-root;
@@ -699,9 +744,9 @@ Use six prescribed collision-free $C^1$ histories enclosed in a verified region 
 - no ledger change under extension to substantially longer horizons;
 - agreement with the analytic delay and boundary bounds.
 
-Plainly: this control tests the exact tail theorem, root completeness, sign convention, and horizon restriction maps without testing retention.
+Plainly: this control tests the exact sharp-root theorem, root completeness, sign convention, and horizon restriction maps without testing finite-width tail truncation or retention.
 
-An independent proof would grade the tail contract as derived on this bounded class. A passed control would grade only the instrument’s compliance as measured, scoped to the fixture, tolerances, and independent reference. Neither result changes the claim grade of existence, retention, stability, or physical realization.
+The separate-thread derivation grades the sharp-root tail contract as derived on this bounded class. A passed independently referenced control would grade only the instrument’s compliance as measured, scoped to the fixture and its tolerances. Neither result changes the claim grade of existence, retention, stability, or physical realization.
 
 ### Three-way negative control
 
@@ -732,9 +777,10 @@ Plainly: certified finite data must determine the delayed evaluation on the exac
 | Priority | Proposed change | Required result before promotion |
 | --- | --- | --- |
 | Required | Replace a single finite atlas model with the topological symmetry groupoid and certified pro-presentation architecture | Live specification of objects, arrows, compatible restriction maps, and conservative uncertainty transport |
-| Required | Make the prehistory-tail contract mandatory | Explicit prehistory, the bounded-history theorem’s verified premises, or another quantitative omitted-contribution bound |
+| Required | Make the prehistory-tail contract mandatory | Explicit prehistory, the verified sharp-root theorem’s premises, and a separate quantitative bound for every finite-width omitted tail |
 | Required | Downgrade the current scalar labels from provisional classifiers to scoped diagnostic rows | The sub-field-speed knot counterexample retained as a negative control |
-| Required | Independently audit and test the bounded uniformly sub-field-speed tail theorem | Independent analytic reference plus the longer-horizon bounded control |
+| Required | Preserve the audited bounded uniformly sub-field-speed sharp-root theorem | Fixed-enclosure, positive-separation, inventory, and longer-horizon control |
+| Required | Derive a quantitative finite-width history-tail bound | A nonzero error bound compatible with the live Gaussian regulator and solver tolerances |
 | Required | Prove the corrected regular-stratum persistence and reconstruction lemma | A complete proof with cross-time orientation, root-boundary, closure, thickness, framing, and phase hypotheses |
 | High value | Define the binary-coherence predicate and matching-uniqueness margin | Predeclared weights and coherence term plus a tracker that distinguishes reassignment from certificate gain or loss |
 | High value | Implement the typed chart-to-instrument record | Schema validation plus reconstruction, root-completeness, closure validity, and refinement witnesses |
@@ -746,7 +792,9 @@ Plainly: the required items make search claims mathematically scoped. The high-v
 
 ## Promotion disposition
 
-This packet is **priority-only research architecture**. The bounded-history tail theorem and the pointwise-Gram counterexample are derived within the consultation, but they have not received independent repository-level acceptance. The architecture should not be promoted into reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose until the theorem is independently audited, the bounded control passes against an independent reference, the corrected local persistence lemma is proved, and the typed instrument fields are checked against the live EOM solver contract. Even after those steps, the atlas would classify represented histories and campaign coverage; retention and stability would still require the same-record delayed return and stability certificates.
+The audit authorizes reader-facing correction of the sharp-root delay bound, sub-field-speed transversality and self-hit exclusion, cross-time reconstruction, and scalar-label incompleteness with the hypotheses stated above. It does not authorize exact finite-width tail exclusion.
+
+The global groupoid/pro-system architecture, full topology inventory, matching functional, typed instrument contract, and regular-stratum persistence lemma remain **priority-only research architecture**. They should not be promoted into reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose until their separate proof and implementation obligations close. Even after those steps, the atlas would classify represented histories and campaign coverage; retention and stability would still require same-record delayed return and stability certificates.
 
 No finding here establishes:
 
