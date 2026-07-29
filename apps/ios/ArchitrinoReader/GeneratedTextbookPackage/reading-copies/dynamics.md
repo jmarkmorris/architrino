@@ -4231,7 +4231,7 @@ The variation of
 $$
 \delta(\tilde g_{ij})
 $$
-is the remaining distributional part of the proof. After the transmitter-side variation, integration by parts on the root-selected chart, and boundary terms are accounted for, the target branch-resolved Euler-Lagrange term is proportional to
+is the remaining distributional part of the receiver-coordinate calculation. After integration by parts on the root-selected chart and its declared boundary terms are accounted for, the target branch-resolved term is proportional to
 $$
 \frac{W_{ij}^{\mathrm{acc}}\hat{\mathbf r}_{ij}}{r_{ij}^2}
 $$
@@ -4269,53 +4269,6 @@ $$
 \right]
 $$
 The first term is an endpoint or excluded-coincidence contribution; the second is the root-chart interior derivative that must be accounted for before the pure scalar kernel can be claimed to derive any branch-resolved acceleration law. Therefore the action proof does not license dropping $\delta_\eta'(\tilde g_{ij})$ by fiat. It requires the symmetry-preserving regularization to make this interior derivative vanish, become a boundary/transmitter-side contribution under the allowed variations, or be cancelled by an explicit counterterm. In the canonical Master EOM the branch-resolved target is $W_{ij}^{\mathrm{acc}}\hat{\mathbf r}_{ij}/r_{ij}^2$, so this residual must be rebuilt inside the receiver-side proof rather than reused as closure evidence.
-
-The transmitter-side variation narrows the issue further. Holding the receiver point fixed and varying the emission point gives
-$$
-\delta r_{ij}
-=
--\hat{\mathbf r}_{ij}\cdot\delta\mathbf X_j(T'),
-\qquad
-\delta \tilde g_{ij}
-=
-\frac{1}{c_f}\hat{\mathbf r}_{ij}\cdot\delta\mathbf X_j(T')
-$$
-so
-$$
-\delta_{\mathrm{src}}\!\left(\frac{\delta_\eta(\tilde g_{ij})}{r_{ij}}\right)
-=
-\left[
-\frac{\delta_\eta(\tilde g_{ij})}{r_{ij}^2}
-+
-\frac{\delta_\eta'(\tilde g_{ij})}{c_f r_{ij}}
-\right]
-\hat{\mathbf r}_{ij}\cdot\delta\mathbf X_j(T')
-$$
-Selecting the future reception time as the root gives
-$$
-\partial_T \tilde g_{ij}(T,T')
-=
-1-\frac{\hat{\mathbf r}_{ij}(T,T')\cdot\mathbf V_i(T)}{c_f}
-$$
-and hence the transmitter-side derivative-of-delta term integrates by parts as
-$$
-\int dT\,
-\Theta(T-T')
-\frac{\delta_\eta'(\tilde g_{ij})}{c_f r_{ij}}
-\hat{\mathbf r}_{ij}
-=
-\widetilde{\mathcal{B}}_{ij}^{(\eta)}(T')
--
-\int dT\,
-\delta_\eta(\tilde g_{ij})
-\partial_T
-\left[
-\Theta(T-T')
-\frac{\hat{\mathbf r}_{ij}}
-{c_f r_{ij}\left(1-\hat{\mathbf r}_{ij}\cdot\mathbf V_i(T)/c_f\right)}
-\right]
-$$
-This is a coefficient of $\delta\mathbf X_j(T')$, not of $\delta\mathbf X_i(T)$. For arbitrary compactly supported interior variations, the receiver and transmitter variations are independent. The transmitter-side term therefore does not generically cancel the receiver-side root-chart derivative in the Euler-Lagrange equation for $\mathbf X_i(T)$. Noether boundary terms control endpoint contributions and global time-translation, spatial-translation, and rotation charges; they do not remove an interior coefficient under compact variations.
 
 In the sharp positive-delay transmitter-time-collapse limit,
 $$
@@ -4364,11 +4317,9 @@ $$
 =
 \mathbf{C}_{ij,r}^{(\eta)}(T)
 +
-\mathbf{C}_{ij,t}^{(\eta)}(T)
-+
 \mathbf{C}_{ij,\mathrm{bdry}}^{(\eta)}(T)
 $$
-where $\mathbf{C}_{ij,r}^{(\eta)}$ is the receiver-side interior derivative displayed above, $\mathbf{C}_{ij,t}^{(\eta)}$ is the transmitter-side coefficient on $\delta\mathbf X_j(T')$, and $\mathbf{C}_{ij,\mathrm{bdry}}^{(\eta)}$ is the boundary contribution. On a regularized chart the action-derived equation has the diagnostic form
+where $\mathbf{C}_{ij,r}^{(\eta)}$ is the receiver-side interior derivative displayed above and $\mathbf{C}_{ij,\mathrm{bdry}}^{(\eta)}$ is its declared boundary contribution. On a regularized chart the receiver-coordinate action diagnostic has the form
 $$
 \mu_{\text{arch}}\mathbf A_i(T)
 =
@@ -4392,7 +4343,7 @@ $$
 $$
 with the same branch floors and boundary convention used to define the action. This windowed residual condition is the minimal proof obligation for upgrading the variational scaffold to an exact action derivation of the Master EOM.
 
-**Decision (pure scalar action).** The pure scalar $1/r$ Fokker-type scaffold remains unpromoted. The receiver-factor obstruction has been removed from its target, but the local derivative-of-delta residual and the future-reception boundary problem still must be resolved on the same causal retained-history update.
+**Decision (pure scalar action).** The pure scalar $1/r$ Fokker-type scaffold remains unpromoted because its receiver-coordinate variation leaves the local derivative-of-delta residual above.
 
 Equivalently, on an admissible branch with $r_{ij}>0$ and $|J_{ij}|>J_{\min}>0$,
 $$
@@ -4476,7 +4427,7 @@ D_{ij}K_{\mathrm{ct}}^{(\eta)}
 $$
 without adding another $\delta_\eta(g)/r^2$ scale term. For $N\ge1$, the highest derivative coefficient is $-a_N(r)\delta_\eta^{(N+1)}(g)/c_f$, so $a_N=0$; descending through the jet order forces $a_n=0$ for every $n\ge1$. The remaining $N=0$ case requires $a_0(r)=-1/r$, but then $\partial_r a_0=1/r^2$, so the counterterm again changes the inverse-square scale term it was supposed to preserve.
 
-The conclusion is narrow but decisive for local repairs: no finite same-support local scalar or delta-jet counterterm cancels the scalar-kernel residual while leaving the canonical branch strength intact. A viable action-level repair must instead be nonlocal along the $(r,g)$ characteristic, or must use a richer velocity/history-dependent invariant action. Either route changes the action ontology enough that it should be discussed explicitly before canonization.
+The conclusion is narrow but decisive for local repairs: no finite same-support local scalar or delta-jet counterterm cancels the scalar-kernel residual while leaving the canonical branch strength intact. A receiver-gradient construction that preserves the inverse-square term must leave the finite same-support delta-jet class, for example by integrating along the $(r,g)$ characteristic. An exact action requires a separate complete derivation.
 
 The terminal common-center inter-layer chart gives a concrete obstruction to the remaining per-branch stationarity route. In that specialization, stationarity of $\hat{\mathbf r}/(rJ)$ forces the transmitter tangent to be parallel to the transmitter-receiver separation. The scalar part then reduces to $\rho_\delta(1-\rho_\delta)=0$, where $\rho_\delta$ denotes the branch value of $\partial_\delta\rho_b$: the first factor collapses a positive-delay branch when the transmitter speed is nonzero, and the second factor is $J=0$, a grazing branch excluded by the Jacobian floor. Thus terminal inter-layer charts should not expect the scalar scaffold to close by per-branch stationarity. The remaining local target is branch-summed residual closure for a scalar scaffold or a different action candidate derived from Architrino primitives.
 
@@ -4492,338 +4443,58 @@ $$
 $$
 with the same positive-delay, Jacobian-floor, and boundary convention used by the branch chart. This is not the Master EOM acceleration residual and not the Noether conservation ledger. It is the additional condition needed for the scalar action scaffold to have no leftover interior Euler derivative on that receiver. If the signed sum is nonzero, the scalar action candidate fails on that chart; the residual does not become a new acceleration term.
 
-**Nonlocal characteristic repair target.** The least invasive remaining action-level route is to solve the counterterm equation before imposing causal-surface support. In the reduced scalar variables, the required receiver-gradient correction has the form
+**Characteristic-tail receiver-gradient identity.** The receiver-coordinate
+counterterm equation can be integrated along the characteristic operator
 $$
-D_{ij}K_{\mathrm{ct}}^{(\eta)}(r,g)
-=
-\frac{\delta_\eta'(g)}{c_f r},
-\qquad
 D_{ij}
-=
-\partial_r-\frac{1}{c_f}\partial_g
-$$
-The characteristics of $D_{ij}$ preserve
-$$
-u
-=
-g+\frac{r}{c_f}
-$$
-Thus a formal characteristic solution is
-$$
-K_{\mathrm{ct}}^{(\eta)}(r,g)
-=
-H_{\mathrm{ct}}^{(\eta)}\!\left(g+\frac{r}{c_f}\right)
-+
-\int_{r_\ast}^{r}
-\frac{1}{c_f\rho}\,
-\delta_\eta'\!\left(g+\frac{r-\rho}{c_f}\right)
-d\rho
-$$
-with $H_{\mathrm{ct}}^{(\eta)}$ and the lower characteristic endpoint $r_\ast$ fixed by the history-window, core-regularization, or boundary convention. This expression is invariant under time translation, spatial translation, and spatial rotation because it depends only on the causal scalar $g$, the Euclidean separation $r$, and declared scalar endpoints. It is not a same-support wake-surface term: it carries a characteristic tail in $(r,g)$ and therefore changes the action scaffold.
-
-This gives a concrete proof target rather than a completed replacement action. A candidate nonlocal action may be promoted only if its endpoint convention preserves $H(0)=0$, its Euler derivative cancels the residual above without changing the accepted inverse-square branch term, and its Noether boundary terms close the same energy, momentum, and angular-momentum ledger used by the Master EOM.
-
-The endpoint calculation sharpens that target. The lower-endpoint form above is only the formal characteristic integral. A delayed-interior tail should instead be oriented toward an outgoing endpoint:
-$$
-K_{\mathrm{ct},+}^{(\eta)}(r,g)
-=
-H_{+}^{(\eta)}\!\left(g+\frac{r}{c_f}\right)
--
-\int_{r}^{R_{+}}
-\frac{1}{c_f\rho}\,
-\delta_\eta'\!\left(u-\frac{\rho}{c_f}\right)
-d\rho,
-\qquad
-u=g+\frac{r}{c_f}
-$$
-with $R_{+}\ge r$ on the retained finite history chart, or with an explicitly controlled $R_{+}=\infty$ limit. A characteristic endpoint is the special case $R_{+}=R_{+}(u)$. Since $D_{ij}u=0$, differentiation gives
-$$
-D_{ij}K_{\mathrm{ct},+}^{(\eta)}
-=
-\frac{\delta_\eta'(g)}{c_f r}
--
-\frac{D_{ij}R_{+}}{c_fR_{+}}\,
-\delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right)
-$$
-Thus the desired interior cancellation holds without an extra endpoint contribution only when $R_{+}$ is itself a characteristic endpoint, $D_{ij}R_{+}=0$.
-
-**Endpoint-ledger decision.** The displayed endpoint term is not automatically a Noether boundary term. Its support is
-$$
-u=\frac{R_{+}}{c_f},
-\qquad
-g=\frac{R_{+}-r}{c_f}
-$$
-which is generally an interior tail surface of the retained delayed chart, not the primary arrival surface $g=0$. If $D_{ij}R_{+}\ne0$, compact receiver variations inside the retained chart see
-$$
--\frac{D_{ij}R_{+}}{c_fR_{+}}\,
-\delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right)
-$$
-as an Euler coefficient. Moving that term into the Noether wake-history ledger would hide an acceleration-law change unless the endpoint is a declared fixed history boundary whose variation is held fixed. Therefore the characteristic-tail repair preserves the accepted Master EOM branch acceleration only under one of the following conditions:
-$$
-D_{ij}R_{+}=0,
-\qquad\text{or}\qquad
-\lim_{\eta\to0^+}
-\int_W
-\left\|
-\frac{D_{ij}R_{+}}{c_fR_{+}}\,
-\delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right)
-\right\|dT
-=0
-$$
-for the declared branch chart and fixed endpoint convention. In that admissible case the endpoint contributes only a boundary wake-history flux, not a new receiver acceleration. In the generic non-characteristic case, the repair is a no-go for the canonical Master EOM because it adds an extra interior action-level acceleration.
-
-In the sharp-support limit, the outgoing form is supported on
-$$
-0
-\le
-g
-\le
-\frac{R_{+}-r}{c_f}
-$$
-so it is a causal interior tail behind the arriving wake surface, not a same-support surface density. Conversely, a lower endpoint $r_\ast<r$ supports a tail with $g\le0$ and is not delayed-interior causal support unless the boundary convention supplies a separate interpretation. This proves a useful but limited result: the characteristic-tail equation can cancel the scalar scaffold's interior derivative residual at the level of the Euler derivative, but it does so by adding a nonlocal tail and endpoint ledger obligation. It is not yet an exact action for the Master EOM.
-
-A nondegenerate characteristic endpoint gives the cleanest candidate. On a retained chart choose
-$$
-R_{+}(u)
-=
-c_f(u+h_{+}),
-\qquad
-h_{+}>0
-$$
-or take the controlled $R_{+}=\infty$ limit. Since $R_{+}=R_{+}(u)$ and $D_{ij}u=0$, the endpoint is characteristic and the Euler leakage term proportional to $D_{ij}R_{+}$ vanishes. The outgoing counterterm can then be written, after the change of variable $s=u-\rho/c_f$, as
-$$
-K_{\mathrm{ct},+}^{(\eta)}(r,g)
-=
-H_{+}^{(\eta)}(u)
--
-\int_{-h_{+}}^{g}
-\frac{\delta_\eta'(s)}
-{c_f(u-s)}
-ds
-$$
-Integrating by parts gives
-$$
-\frac{\delta_\eta(g)}{r}
-+
-K_{\mathrm{ct},+}^{(\eta)}(r,g)
-=
-H_{+}^{(\eta)}(u)
-+
-\frac{\delta_\eta(-h_{+})}
-{c_f(u+h_{+})}
-+
-\int_{-h_{+}}^{g}
-\frac{\delta_\eta(s)}
-{c_f(u-s)^2}
-ds
-$$
-The finite-endpoint clearance condition is therefore
-$$
-\mathcal{B}_{+}^{(\eta)}(u,h_{+})
 \equiv
-\frac{\delta_\eta(-h_{+})}
-{c_f(u+h_{+})}
-=0
-$$
-for a compactly supported mollifier with $h_{+}$ outside the support, or $\mathcal{B}_{+}^{(\eta)}\to0$ in the declared weak limit for a Gaussian mollifier. If finite-$\eta$ endpoint clearance is not exact, the characteristic gauge must be fixed by
-$$
-H_{+}^{(\eta)}(u)
-=
--
-\mathcal{B}_{+}^{(\eta)}(u,h_{+})
-$$
-before the kernel is treated as a normalized action object. This condition is invisible to the receiver Euler derivative because it depends only on $u$, but it is visible to the Noether wake-history charge.
-
-With the endpoint-clear normalization imposed, the delayed-interior effective kernel is
-$$
-K_{\mathrm{eff},h_{+}}^{(\eta)}(r,g)
-=
-\int_{-h_{+}}^{g}
-\frac{\delta_\eta(s)}
-{c_f(u-s)^2}
-ds,
+\partial_r-\frac{1}{c_f}\partial_g,
 \qquad
-u=g+\frac{r}{c_f}
+u
+\equiv
+g+\frac{r}{c_f},
+\qquad
+D_{ij}u=0
 $$
-In the infinite-endpoint form,
+For a compactly supported regularizer and a declared depth $h_+>0$ with
+$\delta_\eta(-h_+)=0$, define
 $$
-K_{\mathrm{eff}}^{(\eta)}(r,g)
+K_{\mathrm{eff},h_+}^{(\eta)}(r,g)
 =
-\int_{-\infty}^{g}
+\int_{-h_+}^{g}
 \frac{\delta_\eta(s)}
 {c_f(u-s)^2}
 ds
 $$
-Both forms satisfy the receiver-gradient identity
+The infinite-depth form replaces the lower limit by $-\infty$ when the integral
+converges. Because $D_{ij}$ preserves $u$ and moves the upper limit at rate
+$-1/c_f$,
 $$
-D_{ij}K_{\mathrm{eff}}^{(\eta)}
+D_{ij}K_{\mathrm{eff},h_+}^{(\eta)}
+=
+-
+\frac{\delta_\eta(g)}
+{c_f^2(u-g)^2}
 =
 -
 \frac{\delta_\eta(g)}{r^2}
 $$
-with the finite form using the same identity after endpoint clearance. Thus the delayed-interior characteristic-tail kernel cancels the derivative-of-constraint residual without adding a second inverse-square scale term. The accompanying Noether boundary terms for energy, momentum, and angular momentum must be taken from the same normalized kernel, as below; replacement of a diagnostic inverse-square adapter on any concrete branch still requires the branch-chart residual and conservation checks.
+This is the useful characteristic-tail result: a controlled history integral
+has exactly the desired inverse-square receiver gradient without the
+derivative-of-constraint term of the direct $1/r$ kernel.
 
-**Noether boundary increments for the normalized tail.** With the endpoint-clear normalization imposed, there is no remaining free $H_{+}^{(\eta)}(u)$ gauge term that can shift the wake-history charge. Define the weighted effective action kernel
-$$
-\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(T_1,T_t)
-=
-\mu_{\text{arch}}\kappa\,\sigma_{ij}|q_iq_j|
-\Theta(T_1-T_t)
-K_{\mathrm{eff}}^{(\eta)}
-\!\left(
-r_{ij}(T_1;T_t),
-\tilde g_{ij}(T_1,T_t)
-\right)
-$$
-with the same finite-endpoint version when the chart uses $h_{+}<\infty$. For a time cut $T_\ast$, let
-$$
-X_{ij}(T_\ast)
-=
-\{(T_1,T_t):T_t\le T_\ast<T_1,\ T_1>T_t\}
-$$
-with the trivial self-coincidence branch excluded when $i=j$. The normalized characteristic-tail wake increments are
-$$
-E_{\mathrm{wake,eff}}^{(\eta)}(T_\ast)
-=
--\frac{1}{2}\sum_{i,j}
-\int_{X_{ij}(T_\ast)}
-\partial_{T_1}
-\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(T_1,T_t)
-\,dT_t\,dT_1
-$$
-$$
-\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}(T_\ast)
-=
--\frac{1}{2}\sum_{i,j}
-\int_{X_{ij}(T_\ast)}
-\nabla_{\mathbf X_i(T_1)}
-\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(T_1,T_t)
-\,dT_t\,dT_1
-$$
-and
-$$
-\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}(T_\ast)
-=
--\frac{1}{2}\sum_{i,j}
-\int_{X_{ij}(T_\ast)}
-\mathbf X_i(T_1)\times
-\nabla_{\mathbf X_i(T_1)}
-\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(T_1,T_t)
-\,dT_t\,dT_1
-$$
-The minus signs in the spatial charges follow the sign convention that the interaction contribution appears with a minus sign in the action. The receiver-gradient identity gives
-$$
-\nabla_{\mathbf X_i(T_1)}
-K_{\mathrm{eff}}^{(\eta)}
-=
-\hat{\mathbf r}_{ij}D_{ij}K_{\mathrm{eff}}^{(\eta)}
-=
--
-\frac{\delta_\eta(\tilde g_{ij})}{r_{ij}^{2}}
-\hat{\mathbf r}_{ij}
-$$
-while the transmitter-end gradient is the opposite. Therefore a global spatial translation or rotation of both endpoints changes no interior action density, and a step translation or step rotation across $T_\ast$ exposes exactly the boundary increments above. The characteristic endpoint condition $D_{ij}R_{+}=0$, together with endpoint clearance, is the local reason these increments are wake-history boundary terms rather than a hidden extra receiver acceleration.
-
-This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or Noether braid attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive transmitter-side Jacobian floors, retained same-record transmitter-side acceleration-weight records, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
-
-**Branch-chart conservation pullback.** Let $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ be a retained branch chart with active causal-root records $\mathcal{R}^{\mathrm{act}}$, positive inactive-root gaps, positive transmitter-side Jacobian floor, a retained transmitter-side acceleration-weight floor $\nu_{\mathrm{rec}}$, finite memory depth, and declared endpoint convention. For a time cut $T_\ast$, define the chart-restricted crossing domain
-$$
-X_{ij}^{\mathfrak{B}}(T_\ast)
-\equiv
-X_{ij}(T_\ast)
-\cap
-\{(T_1,T_t): (i,j,T_1,T_t)\ \text{lies on a retained record of }\mathcal{R}^{\mathrm{act}}\}
-$$
-with trivial self-coincidence excluded when $i=j$. The pulled-back wake-history charges are the same Noether boundary terms above, restricted to $X_{ij}^{\mathfrak{B}}(T_\ast)$:
-$$
-E_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}(T_\ast)
-=
--\frac{1}{2}\sum_{i,j}
-\int_{X_{ij}^{\mathfrak{B}}(T_\ast)}
-\partial_{T_1}
-\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(T_1,T_t)
-\,dT_t\,dT_1
-$$
-$$
-\mathbf{P}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}(T_\ast)
-=
--\frac{1}{2}\sum_{i,j}
-\int_{X_{ij}^{\mathfrak{B}}(T_\ast)}
-\nabla_{\mathbf X_i(T_1)}
-\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(T_1,T_t)
-\,dT_t\,dT_1
-$$
-and
-$$
-\mathbf{J}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}(T_\ast)
-=
--\frac{1}{2}\sum_{i,j}
-\int_{X_{ij}^{\mathfrak{B}}(T_\ast)}
-\mathbf X_i(T_1)\times
-\nabla_{\mathbf X_i(T_1)}
-\mathcal{K}_{ij,\mathrm{eff}}^{(\eta)}(T_1,T_t)
-\,dT_t\,dT_1
-$$
-The matching mechanical charges on the same chart are
-$$
-K_{\mu,\mathfrak{B}}(T)=\sum_{i\in\mathfrak{B}}\frac{1}{2}\mu_{\text{arch}}\|\mathbf V_i(T)\|^2,
-\qquad
-\mathbf{P}_{\mathrm{mech},\mathfrak{B}}(T)=\sum_{i\in\mathfrak{B}}\mu_{\text{arch}}\mathbf V_i(T)
-$$
-$$
-\mathbf{J}_{\mathrm{mech},\mathfrak{B}}(T)
-=
-\sum_{i\in\mathfrak{B}}
-\mathbf X_i(T)\times\mu_{\text{arch}}\mathbf V_i(T)
-$$
-For a retained window $W=[T_a,T_b]$, the branch-chart conservation test is
-$$
-\Delta_W\left(K_{\mu,\mathfrak{B}}+E_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}\right)
-=
-\int_W\sum_i\mathbf V_i(T)\cdot\mathbf{R}_{i,\mathrm{eff},\mathfrak{B}}^{(\eta)}(T)\,dT
-+
-\int_W\mathcal{B}_{E,\mathfrak{B}}^{(\eta)}(T)\,dT
-$$
-$$
-\Delta_W\left(\mathbf{P}_{\mathrm{mech},\mathfrak{B}}+\mathbf{P}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}\right)
-=
-\int_W\sum_i\mathbf{R}_{i,\mathrm{eff},\mathfrak{B}}^{(\eta)}(T)\,dT
-+
-\int_W\boldsymbol{\mathcal{B}}_{P,\mathfrak{B}}^{(\eta)}(T)\,dT
-$$
-$$
-\Delta_W\left(\mathbf{J}_{\mathrm{mech},\mathfrak{B}}+\mathbf{J}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}\right)
-=
-\int_W\sum_i\mathbf X_i(T)\times\mathbf{R}_{i,\mathrm{eff},\mathfrak{B}}^{(\eta)}(T)\,dT
-+
-\int_W\boldsymbol{\mathcal{B}}_{J,\mathfrak{B}}^{(\eta)}(T)\,dT
-$$
-The theorem-level branch claim requires the three residual balances to converge to zero with $\epsilon_{\mathrm{var}}^{(\eta)}(W)\to0$, vanishing declared endpoint or period-cut leakage, stable branch floors, and the same retained record set in the acceleration residuals and in the three wake-history charges. A work-integral reconstruction $U(T)$ or a projected torque increment is only a numerical diagnostic unless it is derived from this same action kernel, endpoint convention, and retained branch chart.
-
-For a finite spatial window, the energy boundary record can be read as the wake-escapement flux defined in [Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement). In that notation, a theorem-level conservation packet should be able to rewrite the energy balance in the form
-$$
-\frac{dE_W}{dT}
-=
--\Phi_{\mathrm{wake},\partial W}(T)
-+P_{\mathrm{ext},W}(T)
-+\mathcal{R}_{E,W}(T),
-\qquad
-\Phi_{\mathrm{wake},\partial W}(T)
-=
-\frac{d}{dT}
-\sum_{\alpha\in\mathcal{E}_{\mathrm{esc}}(W)}
-E_\alpha^{\mathrm{emit}}.
-$$
-This does not add a second energy channel. It identifies the endpoint and boundary term of the delayed action with the causal-wake history that exits the retained window without a retained receiver. The same boundary object is the entropy-arrow theorem target in [Entropy](../../../../markdown/aaa/dynamics/entropy.md#second-law-and-same-record-monotonicity): energy flux, wake escapement, and observer-window entropy production are three projections of one finite-window path-history defect.
-
-Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $T'=T$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $T_t<T_r$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
+The identity is a receiver-coordinate construction. It does not by itself
+define an action principle, an independently evolving causal-wake state, a
+Noether boundary charge, or a modification of the Master EOM. Any action or
+conservation construction must be derived separately from Architrino
+primitives and must reproduce the same retained motion and boundary records.
 
 Thus:
 
 - The scalar $1/r$ action above is a nonlocal variational scaffold for the delayed dynamics under the stated branch and regularization assumptions,
-- It becomes an exact action derivation of the Master EOM only on branch charts where the constraint residual vanishes or is cancelled by an invariant action-level counterterm,
+- An exact action derivation requires the complete variation, endpoint convention, and symmetry charges to reproduce the same Master EOM and retained boundary records,
 - A finite same-support local scalar or delta-jet counterterm has been ruled out because it cancels the derivative residual only by disturbing the inverse-square scale term,
-- The currently minimal known action repair is the delayed-interior characteristic-tail kernel above; its receiver Euler derivative has the desired inverse-square identity, and its normalized wake-history boundary increments are explicit,
+- The characteristic-tail integral above is retained as an exact receiver-gradient identity, not as an accepted action or conservation kernel,
 - Without such closure, the pure scalar action is falsified as the universal exact action for the Master EOM and should be treated as a diagnostic scaffold,
 - Any $\delta_\eta$ replacement must preserve the symmetries that supply the Noether charges if conservation claims are to remain exact.
 
@@ -4948,6 +4619,13 @@ The delayed theory separates ordinary mechanical motion from the causal-wake his
 $$
 \mathbf{P}_{\text{mech}}(T) = \sum_i \mu_{\text{arch}} \mathbf V_i(T)
 $$
+This is the mechanical momentum of the optional quadratic kinetic proxy. On a
+general primitive kinetic-scalar chart, each
+$\mu_{\text{arch}}\mathbf V_i$ is replaced by the declared conjugate momentum
+$\mathbf p_i=P(\|\mathbf V_i\|)\hat{\mathbf V}_i$, with
+$P'(s)=K'(s)/s$ as specified in [Energy](../../../../markdown/aaa/dynamics/energy.md#kinetic-energy-and-momentum-of-a-single-architrino).
+Neither construction assigns primitive mass to an architrino.
+
 Because the accelerations are delayed, $d\mathbf{P}_{\text{mech}}/dT$ is generally nonzero.
 
 **Definition (Wake momentum functional).** For an isolated system, define
@@ -5550,7 +5228,7 @@ Plainly: the wake-energy row must come from the same $1/r$ action kernel as the
 acceleration derivation. Reusing the $1/r^2$ acceleration formula as energy
 gives the wrong units and double-counts the root weight.
 
-In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the acceleration contribution and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
+In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or another history-kernel construction is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same symmetry-preserving action or independently derived causal-wake update supplies both the acceleration contribution and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
 
 The finite-$\eta$ pathology theorem target in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#finite-regulator-pathology-quarantine-theorem-target) uses this conservation status in a restricted way. The no-runaway conclusion is available only when the action-derived $E_{\text{wake}}^{(\eta)}$, or a compatible realized-trajectory reconstruction, has a declared lower bound on the same admissible branch chart. If the lower bound is absent, the run is not promoted as a closed solution; it is routed to the continuation boundary where collapse, missing wake-history bookkeeping, regulator dependence, or endpoint leakage must be resolved.
 
@@ -5560,7 +5238,7 @@ For reaction or radiation events, energy can leave the source assembly as photon
 
 This is a boundary-accounting idea, not a new energy reservoir. If a wake leaves the chosen local window before any retained receiver crosses it, the local work ledger cannot spend that wake internally. The accounting must therefore mark it as escaped flux, recoil, boundary exchange, or another declared handoff rather than hiding it inside the local assembly.
 
-For a finite local window $W\subset\Sigma_T$, **wake escapement** is the subset of emitted causal isochrons that exit the retained window without intersecting any retained receiver inside that window. More explicitly, if architrino $a$ emits at $T_t$, define the causal isochron at later time $T$ by
+For a finite local window $W\subset\Sigma_T$, the **wake-escapement diagnostic set** is the set of emitted causal isochrons whose first retained boundary crossing occurs before any retained receiver intersection inside that window. More explicitly, if architrino $a$ emits at $T_t$, define the causal isochron at later time $T$ by
 
 $$
 C_a(T;T_t)
@@ -5589,6 +5267,14 @@ T_t<T_r<T_{\partial W},
 \mathbf X_b(T_r)\in C_a(T_r;T_t)
 $$
 
+This isochron-level set is an earliest-crossing diagnostic, not a measure of
+the escaped fraction of a wake. When only some surface sectors cross
+$\partial W$, or when retained receivers intersect other sectors, quantitative
+escapement is the surface-resolved boundary flux through $\partial W$, with a
+declared solid-angle or surface partition when needed. A receiver intersection
+records local work; it does not imply depletion or absorption of the remaining
+isochron unless that mechanism is separately derived from the action.
+
 Wake escapement is therefore a finite-window boundary classification, not a new substance in the Euclidean void. It names the portion of causal-wake history that cannot be balanced by local receiver work because no local receiver intercepted it. In a contracting binary, the persistent positive tangential drive identified in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#tangential-drive-and-wake-escapement) should be read against this boundary ledger: particle kinetic gain, local interaction-energy change, recoil, and escaped wake flux are parts of one balance law.
 
 For a finite spatial window $W\subset\Sigma_T$, conservation is a balance law rather than a claim that the window is isolated. This is the conservation-law upgrade relative to instantaneous mechanics: energy, momentum, and angular momentum are not generally conserved equal-time particle snapshots, but finite-window history functionals whose apparent deficits must be carried by causal-wake fluxes or by an explicit residual. Write
@@ -5613,15 +5299,7 @@ P_{\mathrm{ext},W}
 $$
 Here $\mathbf{J}_E$ is the boundary flux of causal-wake energy bookkeeping, including any wake escapement through $\partial W$; $P_{\mathrm{ext},W}$ is declared external work through sources or controls not included in $W$; and $\mathcal{R}_E$ records mollifier, timestep, and omitted-boundary-history error. A finite-window conservation claim is mature only when $\mathcal{R}_E\to0$ under the same regularized causal action used for the local equation of motion.
 
-The characteristic-tail repair target in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian) inherits this same rule. If the outgoing tail kernel $K_{\mathrm{ct},+}^{(\eta)}$ is used, its endpoint contribution may be counted as a Noether wake-history boundary flux only when the endpoint is characteristic, or when it is a declared fixed history boundary whose leakage residual vanishes:
-$$
-\mathcal{B}_{E,+}^{(\eta)}
-\sim
-\frac{D_{ij}R_{+}}{c_fR_{+}}\,
-\delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right)
-\longrightarrow 0
-$$
-on the retained branch chart. If $D_{ij}R_{+}\ne0$ and this residual does not vanish, the endpoint is an interior Euler source rather than a conservation-boundary term. In that case the characteristic-tail action changes the accepted branch acceleration and cannot be used to close exact energy conservation for the canonical Master EOM.
+A receiver-gradient kernel identity does not by itself define a wake-energy boundary flux. Any proposed boundary contribution must be derived from the same accepted action or causal-wake update as the motion law, and its finite-window leakage must vanish or appear explicitly in $\mathbf J_E$. Otherwise it remains a diagnostic partition rather than exact energy conservation.
 
 The analogous momentum and angular-momentum closures must also remain tied to the same window and boundary data. The finite-window momentum functional $P_W^i$ contains the mechanical momentum retained in $W$ plus the retained wake-history momentum record:
 $$
@@ -5729,6 +5407,8 @@ e_{\text{internal}}(\mathbf X,T)\,dV
 $$
 whenever the denominator is positive and the window contains the exposed assembly record on the native slice $\Sigma_T$. The tensor $M_A^{ij}$ must then reduce to the independently extracted response tensor $\mathsf{I}_A^{ij}$ on the same branch chart. Only when these independently defined objects satisfy the balance with $\mathcal{R}_{\mathrm{resp}}^i\to0$ does it reduce to the familiar center-of-mass form. A non-vanishing irreducible residual means the exposed-energy center is not the inertial response center for that branch, rather than a license to redefine the center. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously.
 Equivalently, $\mathbf{X}_{\mathrm{resp}}$ and the inertial-response center are two different moment maps on the same retained assembly record: one weights exposed internal energy, while the other is inferred from momentum response. Their coincidence is a theorem target, not a definition. The obstruction is the finite-window wake-momentum flux across $\partial W_A$; if that boundary record has a secular or nonrecurrent component, the two centers can differ even when the equal-time particle picture looks nearly balanced. This is the center-of-response version of the memory-boundary recurrence condition used by the effective-Lagrangian symplectic-promotion row.
+
+Particle-only recoil is therefore not anomalous merely because mechanical momentum changes. The anomalous-recoil row is the already defined irreducible $\mathcal R_{\mathrm{resp}}^i$ after the independently defined response center, external contribution, and boundary wake-momentum flux have been fixed on the same window. A nonzero mechanical recoil balanced by that ledger is ordinary delayed exchange, not isolated self-acceleration.
 
 In practice, finite systems or simulation domains should monitor $E_W(T)$, $P_W^i(T)$, and $L_W^i(T)$ together with their boundary fluxes and residuals. $E_{\text{total}}(T)$ is the isolated-system limit when the declared window contains the full wake-history record and the boundary terms vanish.
 
@@ -10792,6 +10472,13 @@ The instantaneous mechanical momentum is:
 $$
 \mathbf{P}_{\text{mech}}(T) = \sum_{i} \mu_{\text{arch}} \mathbf V_i(T)
 $$
+This is the mechanical momentum of the optional quadratic kinetic proxy. On a
+general primitive kinetic-scalar chart, each
+$\mu_{\text{arch}}\mathbf V_i$ is replaced by the declared conjugate momentum
+$\mathbf p_i=P(\|\mathbf V_i\|)\hat{\mathbf V}_i$, with
+$P'(s)=K'(s)/s$ as specified in [Energy](../../../../markdown/aaa/dynamics/energy.md#kinetic-energy-and-momentum-of-a-single-architrino).
+Neither construction assigns primitive mass to an architrino.
+
 Because of the delay, $\frac{d}{dT}\mathbf{P}_{\text{mech}} \neq 0$ generally.
 
 ##### Conservation Target (Total Momentum Functional)
@@ -11411,7 +11098,7 @@ $$
 \right]
 $$
 
-This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf X_i(T)$ and as a transmitter coordinate inside transposed kernels. The full branch-resolved variation is carried out in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(\tilde g_{ij})$ is an action-variation residual. It is not an independently justified architrino acceleration. The action candidate succeeds only if the complete variation cancels this term or converts it into a declared boundary contribution while retaining the transmitter-side acceleration law.
+This receiver-side gradient is one ingredient in a complete first variation, but it is not the complete Euler-Lagrange expression. The term proportional to $\phi_\eta'(\tilde g_{ij})$ is an action-variation residual. It is not an independently justified architrino acceleration. An action candidate succeeds only if its complete variation reproduces the Master EOM and converts every additional interior contribution into a valid boundary term or a vanishing residual under the declared endpoint convention.
 
 On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the branch-reduced target is the transmitter-side delayed acceleration law
 $$
@@ -11483,7 +11170,7 @@ $$
 $$
 The transmitter-side branch target is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. Otherwise the local effective Lagrangian remains a fitted chart. The surviving derivative-of-constraint term is evidence against this action candidate; it does not license a new acceleration term, a vector potential, or a magnetic-like mechanism.
 
-The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [master-equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. The currently minimal known scale-only repair is the delayed-interior characteristic-tail kernel stated there. With
+The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. A useful receiver-coordinate identity is obtained by integrating along the causal characteristic. With
 $$
 u=\tilde g+\frac{r}{c_f}
 $$
@@ -11506,7 +11193,7 @@ K_{\mathrm{eff}}^{(\eta)}
 -
 \frac{\delta_\eta(\tilde g)}{r^2}
 $$
-so it cancels the derivative-of-constraint residual without changing the accepted inverse-square scale term. Effective Lagrangian reductions should still inherit the Master EOM directly unless they explicitly choose the normalized characteristic-tail kernel and carry its boundary-increment convention on the retained chart.
+so the receiver-coordinate derivative contains the accepted inverse-square scale term without a derivative-of-constraint remainder.
 
 The operator in this identity is the derivative along the causal characteristic. With
 $$
@@ -11516,9 +11203,7 @@ D_{\mathrm{char}}
 \qquad
 u=\tilde g+\frac{r}{c_f},
 $$
-one has $D_{\mathrm{char}}u=0$. The tail kernel is therefore the characteristic integral of the regularized hit density along $u=\mathrm{const}$. This is why it carries an endpoint convention: the repair is energy-conserving only when the endpoint boundary is characteristic to the same order as the retained chart. If the endpoint cuts across the characteristic foliation, the endpoint term is an interior Euler source and the repair has changed the acceleration law rather than merely clearing a boundary.
-
-The normalized characteristic-tail kernel carries explicit energy, momentum, and angular-momentum wake-history increments in [master-equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian). An effective Lagrangian reduction may therefore choose that kernel only when it also carries the same boundary-increment convention and reports the corresponding variation and conservation residuals on its branch chart. Without those residuals, the reduced Lagrangian remains a scaffold for the Master EOM rather than an independent proof of the branch acceleration.
+one has $D_{\mathrm{char}}u=0$. The kernel is therefore a characteristic integral of the regularized hit density along $u=\mathrm{const}$. This establishes a local receiver-gradient construction only. It is not an accepted action, a causal-wake update, or a source of Noether charges. Effective Lagrangian reductions therefore inherit the Master EOM from retained solutions and must derive any action and conservation boundary functional independently.
 
 #### Symmetries and History-Aware Conservation Laws
 
@@ -11581,19 +11266,6 @@ $$
 \frac{\delta\!\big(\tilde g_{ij}(T_1,T_t)\big)}
 {r_{ij}(T_1,T_t)}
 $$
-For the delayed-interior characteristic-tail candidate, the Noether-energy kernel must instead be built from the same normalized action kernel,
-$$
-\mathcal{K}_{ij,\mathrm{eff}}^{E}(T_1,T_t)
-=
-\mu_{\text{arch}}\kappa\,\sigma_{ij}\,|q_iq_j|
-\Theta(T_1-T_t)
-K_{\mathrm{eff}}^{(\eta)}
-\!\left(
-r_{ij}(T_1,T_t),
-\tilde g_{ij}(T_1,T_t)
-\right)
-$$
-The scalar $1/r$ expression remains the diagnostic scaffold only when this replacement has not been declared for the chart.
 Then:
 
 $$
@@ -11641,15 +11313,7 @@ $$
 $$
 Here $\mathcal{B}_E^{(\eta)}$ is the declared endpoint or period-cut leakage. For isolated period-matched tests, $\epsilon_{\mathrm{var}}^{(\eta)}\to0$, $\mathcal{B}_E^{(\eta)}\to0$, and $\epsilon_E^{(\eta)}\to0$ are the minimal conservation checks before the effective Hamiltonian is promoted beyond a diagnostic fit.
 
-For a branch chart that explicitly chooses the normalized delayed-interior characteristic-tail kernel, the conservation object is not the generic scalar $1/r$ scaffold above but the pullback
-$$
-K_{\mu,\mathfrak{B}}+E_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)},
-\qquad
-\mathbf{P}_{\mathrm{mech},\mathfrak{B}}+\mathbf{P}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)},
-\qquad
-\mathbf{J}_{\mathrm{mech},\mathfrak{B}}+\mathbf{J}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}
-$$
-defined on the same retained branch records that enter the acceleration residual. The energy residual above is theorem-level only after this chart declares the action-level $\tilde g$, endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(T)$ remains a trajectory diagnostic unless it is derived from that same normalized kernel and boundary convention.
+The energy residual above is theorem-level only after the chart declares one symmetry-preserving action or independently derived causal-wake update, its endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(T)$ remains a trajectory diagnostic unless it is derived from that same construction and boundary convention.
 
 **Generalized Momentum:**
 Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(T) + \mathbf{P}_{\text{wake}}(T)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
@@ -11660,7 +11324,7 @@ $$
 =
 \frac{
 \left\|
-\Delta_W\left(\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}\right)
+\Delta_W\left(\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}^{(\eta)}\right)
 -
 \int_W\sum_i\mathbf{R}_i^{(\eta)}\,dT
 -
@@ -11669,7 +11333,7 @@ $$
 }{
 \left\|\Delta_W\mathbf{P}_{\mathrm{mech}}\right\|
 +
-\left\|\Delta_W\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}\right\|
+\left\|\Delta_W\mathbf{P}_{\mathrm{wake}}^{(\eta)}\right\|
 +
 \varepsilon
 }
@@ -11680,7 +11344,7 @@ $$
 =
 \frac{
 \left\|
-\Delta_W\left(\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}\right)
+\Delta_W\left(\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake}}^{(\eta)}\right)
 -
 \int_W\sum_i\mathbf X_i(T)\times\mathbf{R}_i^{(\eta)}\,dT
 -
@@ -11689,7 +11353,7 @@ $$
 }{
 \left\|\Delta_W\mathbf{J}_{\mathrm{mech}}\right\|
 +
-\left\|\Delta_W\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}\right\|
+\left\|\Delta_W\mathbf{J}_{\mathrm{wake}}^{(\eta)}\right\|
 +
 \varepsilon
 }
@@ -11703,7 +11367,7 @@ The continuum Lagrangian belongs to a coarse-grained level. To describe emergent
 At the level of a branch-collapsed delayed causal action, the exact multi-time interaction double sum suggests the continuum delayed functional
 
 $$
-S_{\text{int}}^{\text{cg}} = - \frac{\kappa}{2c_f} \int dT \int d^3X \int d^3X' \,
+S_{\text{int}}^{\text{cg}} = - \frac{\mu_{\text{arch}}\kappa}{2} \int dT \int d^3X \int d^3X' \,
 \frac{\rho_q(\mathbf X, T) \rho_q(\mathbf X', T - \|\mathbf X-\mathbf X'\|/c_f)}
 {\|\mathbf X-\mathbf X'\|}
 $$
@@ -11723,6 +11387,13 @@ $$
 \frac{\mathbf{j}_q(\mathbf X',T')}{\rho_q(\mathbf X',T')}
 \qquad (\rho_q\neq 0)
 $$
+Here $\rho_q$ has polarity-density units. The emission-time delta collapse has
+already been absorbed into the delayed Eulerian density, and the discrete
+action uses the time-normalized causal constraint. No additional $1/c_f$
+therefore remains in the continuum prefactor; the same universal
+$\mu_{\text{arch}}\kappa$ conversion that supplies the discrete interaction
+action supplies this coarse-grained row.
+
 This Eulerian double-space functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. It contains no additional transmitter-side factor: the delayed density $\rho_q(\mathbf X',T')$ already carries the transmitter-side compression or dilation produced by the Lagrangian-to-Eulerian coarse-graining. For a point transmitter, the familiar transmitter-velocity factor appears when the particle delta is collapsed through its emission-time root; it is not an extra denominator to multiply into the Eulerian density kernel. A corrected delayed action must reproduce the canonical inverse-square acceleration density weighted by $W^{\mathrm{acc}}=c_f/|D_t|$. Receiver velocity may enter the full variation, root playback, and conserved accounts, but it may not reappear as an extra multiplier on the instantaneous acceleration.
 
 The remaining action correction is also one continuum location where delayed pairwise mechanical acceleration fails to cancel. The branch chart must distinguish transmitter-side acceleration weight from receiver-side root playback, so the receiver/transmitter exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as

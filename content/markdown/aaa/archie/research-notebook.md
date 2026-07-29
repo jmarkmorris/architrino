@@ -231,9 +231,9 @@ The strongest evidence came from the combination of row lineage, self-hit parity
 
 This milestone matters because it replaced a broad question about whether a rank-three rotational-action pattern could carry angular-momentum and spin structure with a narrower branch-certificate problem. The live question is whether the route-authorized point-event and wake payloads can be lifted into one retained row set with accepted transport, partition, torque, phase, stability, and energy-routing rows. That is a much better mathematical target.
 
-## 2026-06-20 Closure Scorecard Update
+## 2026-06-20: Closure Scorecard Snapshot
 
-The 2026-06-20 scorecard cycle applied the validated-closure lens to the current corpus and recorded a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `65` after a full read of the `163` markdown files under `content/markdown/aaa`. The same table gives modern physics an operational score of `88` and a mechanism score of `67`, so the latest total $\Delta$ remains `-23`. The result is a stronger score than the early validated-closure baseline, but it still treats missing coefficients, unfixed parameters, and unvalidated benchmark recovery as real deficits.
+The 2026-06-20 scorecard cycle recorded a dated snapshot: a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `65` after a full read of the `163` markdown files then under `content/markdown/aaa`. That snapshot gave modern physics an operational score of `88` and a mechanism score of `67`, for total $\Delta=-23$. These values are historical and are not the current scorecard.
 
 Relevant files:
 
@@ -241,11 +241,11 @@ Relevant files:
 - [Assessment table](../validation/closure-scorecard.md#assessment-table)
 - [2026-06-20 assessment notes](../validation/closure-scorecard.md#2026-06-20-assessment-notes)
 
-The strongest rows show where the corpus has become unusually coherent. Axiom+Notation and Theory Architecture+Ontic Logic both score `99`, Coverage+Interface Readiness scores `96`, Falsification Gates scores `95`, Master EOM+Local Dynamics scores `80`, and Internal Constituent Dynamics scores `78`. Those numbers reflect stable canonical language, broad interface coverage, explicit failure conditions, stronger delayed path-history dynamics, and a more developed Family-A and Noether braid account.
+The strongest rows in that snapshot were Axiom+Notation and Theory Architecture+Ontic Logic at `99`, Coverage+Interface Readiness at `96`, Falsification Gates at `95`, Master EOM+Local Dynamics at `80`, and Internal Constituent Dynamics at `78`.
 
-The same update keeps the main closure burdens visible. Empirical Precision+Benchmark Validation is `39` with $\Delta=-59$, Formula+Coefficient Recovery is `48` with $\Delta=-48$, Parameter+Scale Closure is `42` with $\Delta=-28$, Potential+Action Closure and Conservation+Invariant Closure are both `71` with $\Delta=-27$, and UV/IR+Regularization Completion is `49` with $\Delta=-21$. The scorecard therefore refuses to let architecture substitute for a retained native record that derives central constants, Lorentz/PPN coefficients, photon-channel coefficients, Born/Bell measures, Standard Model mass and mixing values, radiation benchmarks, and shared cosmology residual fits.
+The same snapshot kept the main closure burdens visible. Empirical Precision+Benchmark Validation was `39` with $\Delta=-59$, Formula+Coefficient Recovery was `48` with $\Delta=-48$, Parameter+Scale Closure was `42` with $\Delta=-28$, Potential+Action Closure and Conservation+Invariant Closure were both `71` with $\Delta=-27$, and UV/IR+Regularization Completion was `49` with $\Delta=-21`.
 
-This milestone matters because it turns the project's strongest and weakest mathematical surfaces into a single repeatable assessment. The corpus now has high auditability, strong ontology, and near-modern falsification discipline, but the validated-closure total remains below modern operational physics until branch-derived coefficients, fixed parameters, and benchmark passes arrive under the same native record.
+The next retained rescore on 2026-06-26 raised the displayed $\mathbb{A}\mathbb{A}\mathbb{A}$ total to `68` over the then-current `167` markdown files. The 2026-06-28 anti-ratchet rescore kept the raw total at `67.90` (displayed `68`), revised the modern comparator to `86` operational and `56` mechanism, raised Falsification Gates to `98` and Internal Constituent Dynamics to `82`, and changed the displayed total deficit to `-18`. The linked scorecard owns all current values.
 
 ## 2026-06-17: iOS and iPadOS Textbook Reader
 
@@ -304,9 +304,9 @@ Relevant files:
 
 The standalone [Photon and Polarization Visualization App](../../../../photon.html) became the workbench for one simple photon idea: a photon-like packet might be modeled as two flat Noether braids moving together along $x$. The trailing braid rotates counter-clockwise, the leading braid rotates clockwise, and the app shows both a face-on view for inspection and a side view closer to the actual geometry.
 
-The app lets the reader change the candidate instead of only looking at a picture. Each braid has `I`, `M`, and `O` binaries with enable switches, frequency, radius, and phase controls. The $\Delta x$ control changes the gap between the two braids in the side view, while the Virtual Observer controls choose the $(x,y,z)$ point where the app calculates the displayed electric-field readout.
+The app lets the reader change the candidate instead of only looking at a picture. Each braid has binary 1, 2, and 3 controls with enable switches, frequency, radius, and phase settings. The $\Delta x$ control changes the gap between the two braids in the side view, while the Virtual Observer controls choose the $(x,y,z)$ point where the app calculates the displayed electric-field readout.
 
-That electric-field readout is not hand-drawn. The runtime sums delayed contributions from the active architrinos, finds causal roots, weights them by the transmitter-side acceleration weight $W^{\mathrm{acc}}/R^2$ on the same retained root, and reconstructs the transverse $\mathbf E$ signal at the Virtual Observer. The separate $\mathbf B$ graph is omitted because, in the plane-wave comparison case, $\mathbf B$ follows from $\mathbf E$ by $\mathbf B=(1/c_f)\hat{\mathbf x}\times\mathbf E$.
+That electric-field readout is not hand-drawn. The runtime sums delayed contributions from the active architrinos, finds causal roots, weights them by the transmitter-side acceleration weight $W^{\mathrm{acc}}/R^2$ on the same retained root, and reconstructs the transverse $\mathbf E$ signal at the Virtual Observer. The separate $\mathbf B$ graph is omitted because, in the app’s plane-wave comparison case, $\mathbf B$ follows from $\mathbf E$ by $\mathbf B=(1/c_{\mathrm{sig}})\hat{\mathbf x}\times\mathbf E$.
 
 The polarization panel asks what kind of field the candidate actually produces. It fits $E_y(t)$ and $E_z(t)$ over one cycle and reports whether the observed signal looks weak, linear, circular, or elliptical. This is a diagnostic result, not a proof: the app helps find promising planar-pair settings, but photon closure still requires a separate branch-ledger argument.
 
@@ -365,7 +365,7 @@ The conceptual gain is that the note now separates three different burdens clean
 
 This mattered for the larger program because the A1 candidate has to satisfy several closure burdens at once: frequency hierarchy, horizon behavior, radiation suppression, and eventually an effective stress-tensor story for higher assemblies. The revised note now reads as a live research surface with explicit assumptions and explicit non-assumptions.
 
-## Master Equation Canon
+## 2026-03-12: Master Equation Canon Handoff
 
 Relevant files:
 
@@ -377,20 +377,20 @@ Relevant files:
 
 The master equation uses the transmitter-side acceleration weight in the canonical per-hit law:
 $$
-\mathbf{a}_{ij}(t; t_0)
+\mathbf A_{i\leftarrow j}(T_r;T_t)
 =
 \kappa\,\sigma_{ij}\,
-\frac{|q_i q_j|}{r_{ij}^2(t;t_0)}\,
-W_{ij}^{\mathrm{acc}}(t;t_0)\,
-\hat{\mathbf{r}}_{ij}(t;t_0),
+\frac{|q_i q_j|}{r_{ij}^2(T_r;T_t)}\,
+W_{ij}^{\mathrm{acc}}(T_r;T_t)\,
+\hat{\mathbf r}_{ij}(T_r;T_t),
 \qquad
 W_{ij}^{\mathrm{acc}}=\frac{c_f}{|D_{t,ij}|}
 $$
 with
 $$
-D_{t,ij}=c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0),
+D_{t,ij}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf r}_{ij}(T_r;T_t),
 \qquad
-D_{r,ij}=c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij}(t;t_0).
+D_{r,ij}=c_f-\mathbf V_i(T_r)\cdot\hat{\mathbf r}_{ij}(T_r;T_t).
 $$
 The transmitter emits according to the same constant-cadence rule. Transmitter motion changes how the emitted wake surfaces bunch or dilate through $D_t$. Receiver motion changes the signed playback of successive emission times through $D_r/D_t$, but it does not change the acceleration strength of a surface that has already arrived.
 
@@ -482,15 +482,15 @@ Relevant files:
 
 - [Comparative glossary](comparative-glossary.md)
 - [Cosmology lineage terms](comparative-glossary.md#cosmology-lineage-terms)
-- [Key regime terms](comparative-glossary.md#key-regime-terms)
+- [Key speed-regime terms](comparative-glossary.md#key-speed-regime-terms)
 
 The glossary works as a controlled translation layer. It pairs familiar modern terms with $\mathbb{A}\mathbb{A}\mathbb{A}$ replacements, clarifies which inherited phrases should be phased out, and gives compact bridge language for major regime distinctions. That makes it useful both for prose consistency and for helping new readers understand where the framework is reusing language, where it is redefining it, and where it is introducing genuinely different concepts.
 
-## 2026-03-03: CKM Closure Reaches Three-Digit Predictive Accuracy
+## 2026-03-03: CKM Holonomy Relation Fixes the CP Phase
 
-Progress in the CKM realm crossed an important threshold. In the [weak-mixing and CKM note](../philosophy-history/theory-bridges/weak-mixing-ckm.md), the current $\mathbb{A}\mathbb{A}\mathbb{A}$ closure uses only three calibrated CKM magnitudes,
+The [weak-mixing and CKM note](../philosophy-history/theory-bridges/weak-mixing-ckm.md) uses three calibrated CKM magnitudes,
 $\lvert V_{us}\rvert = 0.225$, $\lvert V_{cb}\rvert = 0.041$, and $\lvert V_{ub}\rvert = 0.0037$,
-and then predicts the remaining magnitude entries to approximately three-digit accuracy.
+as the standard three-angle parametrization inputs.
 
 Relevant files:
 
@@ -508,12 +508,12 @@ c & 0.22487 & 0.97353 & 0.04100^{*}\\
 t & 0.00845 & 0.04029 & 0.99915
 \end{array}
 $$
-with the starred entries used only as calibration anchors. The remaining entries
+with the starred entries used as calibration anchors. The remaining entries
 $\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$
-come out numerically close to the PDG hierarchy from closure rather than direct fitting.
+are algebraic consequences of the imported standard three-angle parametrization. The table is therefore a comparison-grade reconstruction, not six independent $\mathbb{A}\mathbb{A}\mathbb{A}$ predictions.
 
-The same closure step also fixes the CP structure. Using the holonomy relation
+The non-trivial model content is the holonomy relation
 $$
 \cos\delta = \frac{s_{13}}{s_{12}s_{23}}
 $$
-the model gives $\delta = 66.35^\circ$ and $J = 3.04 \times 10^{-5}$, with the phase landing within $1\sigma$ of the quoted benchmark in the current writeup. The significance of this date is not that flavor closure is finished. It is that the project moved from a qualitative CKM story to a quantitatively constrained statement: three cells can set the rest of the matrix to the right three-digit scale.
+which gives $\delta = 66.35^\circ$ and $J = 3.04 \times 10^{-5}$ from those inputs. The claim is restricted to that phase relation and its Jarlskog output; it is not full flavor closure.

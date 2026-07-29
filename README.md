@@ -226,3 +226,10 @@ wiring.
 
 The pre-push hook runs the Content Integrity gate and animator runtime wiring
 audit.
+
+## License
+
+Project-authored code and documents are licensed under the [MIT License](LICENSE),
+Copyright (c) 2026 J Mark Morris. Bundled third-party libraries, datasets, images,
+and derivatives retain their own licenses and attribution requirements; see
+[Licenses & Attributions](content/markdown/aaa/archie/licenses-attributions.md).

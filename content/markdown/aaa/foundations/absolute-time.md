@@ -16,6 +16,8 @@ The word **uniformly** is a dynamical normalization statement, not an extra cloc
 
 A rescaling of $T$ is therefore a unit change involving $T_0$, $L_0$, $c_f$, and the coupling normalizations. It is not a second physical freedom to choose a different flow of time. Constancy of $c_f$ together with form-invariance of the receiving law pins $T$ to its affine class; a smooth nonlinear reclock $T\mapsto\phi(T)$ would introduce time-dependent propagation and derivative factors, so $\operatorname{Diff}^+(\mathbb{R})$ is not a substrate symmetry.
 
+The [constant-time emission measure](architrino.md#constant-time-emission-measure-postulate), $dT_t$ with motion-independent per-wavefront amplitude, supplies a second consistency condition on that same affine parameter. Under a nonlinear reclocking, the emission density would acquire a time-dependent Jacobian. This condition does not furnish another primitive clock or remove the remaining overall unit rescaling.
+
 After that scale fixing, the remaining freedom is only translation by $b$. The background time line is therefore best understood as a principal homogeneous space for $(\mathbb{R},+)$: it has a global orientation and duration scale, but no marked origin. This makes the conventional status of $T=0$ precise without weakening the physical status of the affine scale chosen by the receiving law.
 
 ## Time Implementation Ladder
@@ -203,7 +205,7 @@ $$
 $$
 where $I$ is an interval and $T$ is **strictly increasing** with respect to the time orientation.
 
-**Key property:** Worldlines are **graphs over $T$**: each worldline is a map $T\mapsto\mathbf X(T)$ on its interval, so there is no admissible parametrization in which $T$ decreases, and closed timelike curves and backward segments are excluded by construction. Branching, when it occurs, is **deterministic multistability in the dynamics** (multiple coexisting attractors), not a splitting of the time parameter itself.
+**Key property:** Worldlines are **graphs over $T$**: each worldline is a map $T\mapsto\mathbf X(T)$ on its interval, so there is no admissible parametrization in which $T$ decreases, and closed timelike curves and backward segments are excluded by construction. Branching, when it occurs, is **deterministic multistability in the dynamics**: the complete history state selects among dynamically admitted branches, while an attractor description is reserved for a declared retained subsystem with established contraction and exported-flux accounting. This is not a splitting of the time parameter itself.
 
 ## Causality and Finite Propagation Speed
 

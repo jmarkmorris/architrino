@@ -4,7 +4,7 @@ The Archie system card is the public status sphere for the Archie question inter
 
 The ordinary answer can be direct. The system card carries the heavier context: what is validated, what is open, what is only an app diagnostic, and what still has to be built before a public question service is safe.
 
-Archie can answer from an $\mathbb{A}\mathbb{A}\mathbb{A}$-native educational stance: the answer may use the framework as the working premise so the explanation can flow. The system card is where readers can inspect how that stance relates to validated closure, open proof burdens, known tensions, and launch gates.
+The planned Archie question service is designed to answer from an $\mathbb{A}\mathbb{A}\mathbb{A}$-native educational stance so an explanation can use the framework as its working premise. That public service is not currently shipped. The contracts and fixtures under `src/archie-service` are implementation scaffolding, not a live reader capability. This system card records how the planned stance must relate to validated closure, open proof burdens, known tensions, and launch gates.
 
 ## Core Status Surfaces
 

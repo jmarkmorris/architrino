@@ -573,7 +573,7 @@ The following observer-level quantities are closure targets, not primitive input
 - $e$,
 - $h,\hbar$,
 - $G$,
-- $\gamma_{\text{eff}},\beta_{\text{eff}},\alpha_i$,
+- $\gamma_{\mathrm{PPN}},\beta_{\mathrm{PPN}},\alpha_i$,
 - particle masses and electroweak angles,
 - observer-level redshift and expansion summaries such as $Z_X$, $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, and $H_{\mathrm{eff}}$.
 
@@ -802,8 +802,8 @@ These symbols control the handoff from the Euclidean substrate plus Noether sea 
 | C4 | $\Phi_{\text{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
 | C5 | $c_{\text{eff}}(\mathbf X,T)$ | State variable / field | Derived field | Noether sea dressed assembly-channel propagation speed used for clock/ruler closure and effective-metric comparisons, with $c_{\text{eff}}\to c_f$ in weak homogeneous conditions; separate from photon-channel speed $c_\gamma$ unless Gate A closes that identification | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
 | C5a | $\chi_{\text{sea}}(\mathbf X,T)$ | Derived response field | Derived from $c_{\text{eff}}$ | Noether sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; replaces optical refractive-index notation in Noether sea propagation maps | [../spacetime/noether-sea.md](../../../../markdown/aaa/spacetime/noether-sea.md), [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
-| C6 | $\gamma_{\text{eff}}$ | Constitutive closure target with observable meaning | Open | first-order refraction / space-curvature coefficient in the weak-field map | [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
-| C7 | $C_2$ or $\beta_{\text{eff}}$ | Constitutive closure target with observable meaning | Open | second-order clock-channel nonlinearity entering the $g_{00}$ expansion | [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
+| C6 | $\gamma_{\mathrm{PPN}}$ | Constitutive closure target with observable meaning | Open | first-order refraction / space-curvature coefficient in the weak-field map | [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
+| C7 | $C_2$ or $\beta_{\mathrm{PPN}}$ | Constitutive closure target with observable meaning | Open | second-order clock-channel nonlinearity entering the $g_{00}$ expansion | [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
 | C8 | $\Xi_1,\Xi_2,\Xi_3,\Xi_4$ | Constitutive closure target | Open | preferred-frame leakage coefficients in the weak-field constitutive expansion | [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
 | C9 | $\mathcal{M}_{\text{sea}}^{ab}$ | Constitutive closure target | Open | medium-response tensor that maps shielded internal assembly energy to inertial momentum response, reducing to $h^{ab}/c_{\text{eff}}^2$ in a homogeneous isotropic Noether sea cell | [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
 
@@ -890,12 +890,12 @@ $$
 \equiv
 \frac{c_f}{c_{\text{eff}}(\mathbf X,T)}
 =
-1-(1+\gamma_{\text{eff}})\frac{\Phi_N(x_{\mathrm{eff}}^i)}{c_f^2}
+1-(1+\gamma_{\mathrm{PPN}})\frac{\Phi_N(x_{\mathrm{eff}}^i)}{c_f^2}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right)
 $$
 and
 $$
-\beta_{\text{eff}}=\frac{1+2C_2}{2}
+\beta_{\mathrm{PPN}}=\frac{1+2C_2}{2}
 $$
 
 Preferred-frame leakage is encoded by
@@ -1004,7 +1004,7 @@ The corpus supports the following conservative closure assessment.
 - the actual indexed A1 radii/frequency record,
 - the shielding map $\zeta(A)$ across the fermion spectrum,
 - the medium-response tensor $\mathcal{M}_{\text{sea}}^{ab}$ that turns shielded internal energy into inertial and gradient response,
-- the constitutive functions $(\Omega,\xi)$ and the weak-field coefficient set $(\gamma_{\text{eff}},C_2,\Xi_i)$,
+- the constitutive functions $(\Omega,\xi)$ and the weak-field coefficient set $(\gamma_{\mathrm{PPN}},C_2,\Xi_i)$,
 - the Planck-alignment identification of $(R_{\text{align}},\mathcal{A}_{\text{align}}^{\text{cycle}},I_{\text{align}},h,\hbar,G)$,
 - and the reduction of weak-mixing branch labels to a predictive electroweak closure.
 
@@ -2015,7 +2015,7 @@ This constraint explains how apparent metric deviations (Shapiro delay and light
 
 * **Constraint** – Shapiro delay and light bending must match GR within the Cassini-scale PPN bound, conventionally summarized as $\gamma-1=(2.1\pm2.3)\times10^{-5}$ or a few $\times10^{-5}$.
 * **Architrino Interpretation** – signals propagate through Euclidean space, but observer-level paths are effective travel-time extremals in the Noether sea delay map. The perceived delay or curvature arises from $\chi_{\text{sea}}$ responding to spatial variations in $\rho_{\text{NS}}$ and related Noether sea state variables.
-* **Validation Target** – map $g_{00} \approx 1 + 2\Phi/c^2$ onto the refractive slowing experienced by Noether sea signals moving through the Euclidean void with Noether sea delay.
+* **Validation Target** – in the corpus-wide $(-,+,+,+)$ convention, map $g_{00}^{\mathrm{eff}} \approx -(1+2\Phi_N/c_0^2)$ onto the refractive slowing experienced by Noether sea signals moving through the Euclidean void with Noether sea delay.
 
 #### Gravitational Time Dilation
 
@@ -4932,20 +4932,20 @@ The packet must declare $\mu_{\text{arch}}$ in `campaign.json`, record units for
 
 ##### Branch-Chart Conservation Pullback
 
-The projected action increment is a diagnostic until the exact nonlocal Noether charges close on the same live-ledger branch chart. For each accepted transition, pull the normalized delayed-interior characteristic-tail increments from [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian) back to the candidate branch rows and report
+The projected action increment is a diagnostic until one accepted action or independently derived causal-wake update supplies the motion and all three conserved accounts on the same live-ledger branch chart. For each accepted transition, report
 $$
 \mathcal{E}_{\mathrm{tot}}^{(\eta)}
 =
-K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)},
+K_{\mu}+E_{\mathrm{wake}}^{(\eta)},
 \qquad
 \boldsymbol{\mathcal{P}}_{\mathrm{tot}}^{(\eta)}
 =
-\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}
+\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}^{(\eta)}
 $$
 $$
 \boldsymbol{\mathcal{J}}_{\mathrm{tot}}^{(\eta)}
 =
-\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}
+\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake}}^{(\eta)}
 $$
 The residuals $\mathcal{R}_{E}$, $\mathcal{R}_{P}$, and $\mathcal{R}_{J}$ are the normalized window changes of these three totals after subtracting the declared Euler-residual and endpoint-leakage terms. They must use the same branch rows as the root ledger, acceleration residual, and $\Delta I_{\mathrm{ME}}$ calculation. A work-integral energy reconstruction or torque projection may be reported as a diagnostic, but it does not replace the exact wake-history pullback.
 
@@ -5016,8 +5016,8 @@ The minimum campaign packet contains:
 | `torque_integrals.csv` | diagnostic $\int\boldsymbol{\tau}^{(A)}_1\,dT$, $\int\boldsymbol{\tau}^{(A)}_2\,dT$, $\int\boldsymbol{\tau}^{(A)}_3\,dT$, $\Delta\mathbf L_{\mathrm{wake},\partial}^{\mathrm{spec}}$, and projection onto $\hat{\mathbf n}_{\mathrm{txn}}$ |
 | `action_increment_rows.csv` | $\Delta I_{\mathrm{ME}}$, absolute value, cluster id, accepted/rejected status, and failure code |
 | `field_speed_approach_scan.csv` | scan-family id, speed-window label, layer speed ratios, active partner/self/inter-layer root counts, minimum accepted $|J|$, separator status, root-ledger stability, $\Delta I_{\mathrm{ME}}$, cluster id, accepted/rejected status, and failure code |
-| `energy_ledger.csv` | $\sum_{a\in\{1,2,3\}}\int\omega_a\,dI_a$, $\Delta E_{\mathrm{wake}}$, $\Delta E_{\mathrm{coupl}}$, exact $E_{\mathrm{wake,eff}}^{(\eta)}$, diagnostic $U$ if used, and $\mathcal{R}_E$ |
-| `conservation_pullback.csv` | branch-chart id, cut/window id, $\eta$, $\epsilon_c$, `history_horizon`, endpoint convention, $\nu_J$, inactive-gap minimum, `memory_depth`, $K_{\mu}$, $E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}$, $\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{J}_{\mathrm{mech}}$, $\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathcal{R}_E$, $\mathcal{R}_P$, $\mathcal{R}_J$, and verdict. The two history fields carry absolute-time durations and are distinct from the observer-level Planck benchmark $h$. |
+| `energy_ledger.csv` | $\sum_{a\in\{1,2,3\}}\int\omega_a\,dI_a$, $\Delta E_{\mathrm{wake}}$, $\Delta E_{\mathrm{coupl}}$, accepted $E_{\mathrm{wake}}^{(\eta)}$ when available, diagnostic $U$ if used, and $\mathcal{R}_E$ |
+| `conservation_pullback.csv` | branch-chart id, cut/window id, $\eta$, $\epsilon_c$, `history_horizon`, endpoint convention, $\nu_J$, inactive-gap minimum, `memory_depth`, $K_{\mu}$, $E_{\mathrm{wake}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}$, $\mathbf{P}_{\mathrm{wake}}^{(\eta)}$, $\mathbf{J}_{\mathrm{mech}}$, $\mathbf{J}_{\mathrm{wake}}^{(\eta)}$, $\mathcal{R}_E$, $\mathcal{R}_P$, $\mathcal{R}_J$, provenance of the accepted motion-plus-wake update, and verdict. The two history fields carry absolute-time durations and are distinct from the observer-level Planck benchmark $h$. |
 | `phase_closure_residuals.csv` | layer and inter-layer phase closure residuals, winding labels, and tolerance status |
 | `floquet_report.json` | monodromy or finite-difference return map, excluded symmetry modes, multipliers, and $\Delta_{\mathbf{k}}$ |
 | `cluster_summary.json` | $\Delta I_*$, class means, class standard deviations, $\delta_I$, $h_{\mathbb{A}\mathbb{A}\mathbb{A}}$, $\delta_h$, and promotion status |
@@ -5285,7 +5285,7 @@ for $i\in\{n,\chi,\lambda,R\}$.
 The Shapiro-delay neighbor supplies
 
 $$
-a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}
+a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}
 $$
 
 so the shared clock/signal delay residual is
@@ -5301,7 +5301,7 @@ The branch is shared-delay closed only when $\Delta_\chi^{\mathrm{clk\text{-}sig
 The same arithmetic also exposes the lensing/dynamics equality burden used by dark-sector comparisons. In the weak static row, the signal-deflection channel is closed only when the spatial-compliance response gives
 
 $$
-\gamma_{\text{eff}}=1,
+\gamma_{\mathrm{PPN}}=1,
 \qquad
 a_\chi^{\mathrm{sig}}=2
 $$
@@ -5313,7 +5313,7 @@ while the clock/dynamical endpoint row still satisfies the cadence and inverse-c
 The first admissible static endpoint packet is the shared scalar delay response specialization of the equations above. Define
 
 $$
-A_\chi\equiv1+\gamma_{\text{eff}}
+A_\chi\equiv1+\gamma_{\mathrm{PPN}}
 $$
 
 The minimal response vector is
@@ -5429,7 +5429,7 @@ a_i^{P\to\Gamma}
 \frac{\delta g_i^P}{\delta\ln\Gamma_N}
 $$
 
-This normalization makes pressure rows replayable by the same endpoint arithmetic, but it does not convert pressure loading into a gravitational PPN branch. The `gamma_eff_sweep` diagnostic is only an algebraic comparison against $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$; a pressure-normalized value that closes for some formal $\gamma_{\text{eff}}$ is not a solar-system Shapiro result.
+This normalization makes pressure rows replayable by the same endpoint arithmetic, but it does not convert pressure loading into a gravitational PPN branch. The `gamma_eff_sweep` diagnostic is only an algebraic comparison against $a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}$; a pressure-normalized value that closes for some formal $\gamma_{\mathrm{PPN}}$ is not a solar-system Shapiro result.
 
 Anisotropic pressure entries, such as $\Delta\Pi^{\parallel-\perp}$ or deviatoric strain, must be either projected out before the isotropic static row is evaluated or carried in `anisotropic_residuals`. The isotropic $\Gamma_N$ row must not absorb directional pressure response as a hidden scalar coefficient.
 
@@ -5439,8 +5439,8 @@ Each scenario supplies:
 
 | Field | Meaning |
 | --- | --- |
-| `gamma_eff` | PPN Shapiro-delay coefficient through $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$ |
-| `gamma_eff_sweep` | optional list of trial $\gamma_{\text{eff}}$ values for the shared-delay diagnostic |
+| `gamma_eff` | PPN Shapiro-delay coefficient through $a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}$ |
+| `gamma_eff_sweep` | optional list of trial $\gamma_{\mathrm{PPN}}$ values for the shared-delay diagnostic |
 | `response` | static weak-potential response vector $(a_n,a_\chi,a_\lambda,a_R)$ |
 | `pressure_bridge` | optional pressure row used to derive a normalized static-equivalent response vector |
 | `cadence_row` | cadence-stretch coefficients $(b_n,b_\chi,b_\lambda,b_R)$ for $\ln\Gamma_N$ |
@@ -5456,7 +5456,7 @@ The fixture reports:
 | --- | --- |
 | `diagnostics.a_chi_sig` | signal-delay coefficient fixed by the PPN Shapiro map |
 | `diagnostics.delta_chi_clk_sig` | shared clock/signal delay residual |
-| `diagnostics.gamma_eff_sweep` | optional sweep of shared-delay residuals over trial $\gamma_{\text{eff}}$ values |
+| `diagnostics.gamma_eff_sweep` | optional sweep of shared-delay residuals over trial $\gamma_{\mathrm{PPN}}$ values |
 | `diagnostics.endpoint_sum` | cadence-stretch row sum |
 | `diagnostics.endpoint_residual` | endpoint residual relative to $1$ |
 | `diagnostics.clock_rate_sum` | inverse clock-rate row sum |
@@ -5472,7 +5472,7 @@ The default mock packet has five rows.
 
 | Scenario | Expected behavior |
 | --- | --- |
-| `shared_delay_clean_gr_branch` | Passes with $\gamma_{\text{eff}}=1$, $a_\chi=2$, and $b_\chi=0.5$. |
+| `shared_delay_clean_gr_branch` | Passes with $\gamma_{\mathrm{PPN}}=1$, $a_\chi=2$, and $b_\chi=0.5$. |
 | `density_scale_compensated_branch` | Passes with nonzero density, scale, and core-radius responses while preserving the endpoint and row-inverse constraints. |
 | `split_clock_signal_delay_branch` | Fails shared-delay closure even though its endpoint and clock-rate rows close arithmetically. |
 | `underclosed_clock_row` | Fails the endpoint and clock-rate sums while satisfying the shared-delay residual. |
@@ -5925,7 +5925,7 @@ for $i\in\{n,\chi,\lambda,R\}$. A branch may additionally impose shared clock/si
 $$
 a_\chi
 =
-1+\gamma_{\text{eff}}
+1+\gamma_{\mathrm{PPN}}
 $$
 
 The spectral coefficient row is therefore a constrained row inherited from clock closure. It is not a spectral nuisance parameter and not a per-line normalization constant.
@@ -6698,7 +6698,7 @@ r_{\mathrm{cl}}
 \frac{P_{\mathrm{SZ}}^\theta(r)-P_{\mathrm{SZ}}^{\mathrm{obs}}(r)}{\sigma_P},
 \frac{\Phi_{\mathrm{lens}}^\theta(r)-\Phi_{\mathrm{lens}}^{\mathrm{obs}}(r)}{\sigma_{\Phi_{\mathrm{lens}}}},
 \frac{\Phi_{\mathrm{dyn}}^\theta(r)-\Phi_{\mathrm{dyn}}^{\mathrm{obs}}(r)}{\sigma_{\Phi_{\mathrm{dyn}}}},
-\frac{\gamma_{\text{eff}}^\theta(r)-1}{\sigma_\gamma},
+\frac{\gamma_{\mathrm{PPN}}^\theta(r)-1}{\sigma_\gamma},
 \frac{d_{\mathrm{lens-gal}}^\theta-d_{\mathrm{lens-gal}}^{\mathrm{obs}}}{\sigma_{d,\mathrm{lg}}},
 \frac{d_{\mathrm{lens-gas}}^\theta-d_{\mathrm{lens-gas}}^{\mathrm{obs}}}{\sigma_{d,\mathrm{lgas}}}
 \right)
@@ -7107,7 +7107,7 @@ b_R
 \right)
 $$
 
-with the weak static condition $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$, or $b_n a_n+b_\chi(1+\gamma_{\text{eff}})+b_\lambda a_\lambda+b_R a_R=1$ when the shared clock/signal delay closure is imposed. This fixture does not determine the individual endpoint coefficients; it checks whether endpoint records are replayed as endpoint cadence rather than hidden inside propagation or source factors.
+with the weak static condition $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$, or $b_n a_n+b_\chi(1+\gamma_{\mathrm{PPN}})+b_\lambda a_\lambda+b_R a_R=1$ when the shared clock/signal delay closure is imposed. This fixture does not determine the individual endpoint coefficients; it checks whether endpoint records are replayed as endpoint cadence rather than hidden inside propagation or source factors.
 
 The launch extraction tests the separate relative-motion term. In a homogeneous record with no source-branch or path-history contribution, the replay must reduce to
 
@@ -7329,7 +7329,7 @@ The latest $\mathbb{A}\mathbb{A}\mathbb{A}$ column is also replaced with the 202
 
 The 2026-06-26 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `68` after assessing the current `167` markdown files under `content/markdown/aaa` through the validated-closure lens. The gain over the prior retained assessment is real but intentionally bounded. The corpus now has a sharper proof and validation spine: shared closure is expressed as an intersection of sector acceptance sets, null-result residuals now include same-record split penalties, simulation campaigns require artifact-bearing proof handoffs, and equation-mapping checkers more aggressively reject priority prose, generated shells, probes, mocks, and source-evidence fixtures as accepted retained evidence.
 
-The strongest score movement is in action, conservation, regularization, and interface discipline. The Master Equation chapter now distinguishes the accepted delayed branch law from the pure scalar $1/r$ action scaffold, records a local no-go for finite same-support scalar and delta-jet counterterms, and gives a delayed-interior characteristic-tail repair target with normalized wake-history energy, momentum, and angular-momentum increments. This raises Potential+Action Closure and Conservation+Invariant Closure, but not to theorem closure: a retained branch chart still has to show vanishing Euler residual, positive transmitter-side Jacobian floors, retained transmitter-side acceleration-weight rows, finite memory depth, and closed particle-plus-wake history charges on the same row set.
+The strongest score movement is in action, conservation, regularization, and interface discipline. The Master Equation chapter now distinguishes the accepted delayed branch law from the pure scalar $1/r$ action scaffold, records a local no-go for finite same-support scalar and delta-jet counterterms, and preserves a characteristic-direction receiver-gradient identity without treating it as an accepted action or conservation construction. This sharpens Potential+Action Closure and Conservation+Invariant Closure, but does not establish theorem closure: a retained branch chart still has to show an accepted motion derivation, positive transmitter-side Jacobian floors, retained transmitter-side acceleration-weight rows, finite memory depth, and closed motion-plus-wake history accounts on the same row set.
 
 Formula and cross-regime scores rise because the equation-mapping work now covers a wider physics inventory with explicit first blockers: compact-star support, gravitational-wave source recovery, recombination/acoustic transfer, inverse-Compton/SZ path-frequency exchange, finite-window scattering/resonance carriers, weak-visible ledgers, ordered-frame magnetic rows, radiation source ledgers, and shared observation records. Those packets improve the formula interface and make hidden-retune failures easier to locate. They do not yet supply retained branch-derived coefficients, accepted Noether sea response tensors, or benchmark passes, so Formula+Coefficient Recovery remains only low-`50s`, and Empirical Precision+Benchmark Validation remains in the low `40s`.
 

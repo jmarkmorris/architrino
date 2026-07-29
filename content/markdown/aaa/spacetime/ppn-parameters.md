@@ -12,6 +12,10 @@ the spacetime constitutive map.
 - $\Phi_{\text{eff}}$: constitutive effective potential from the clock channel.
 - $U\equiv -\Phi_N>0$: positive PPN expansion variable (default).
 - $U_{\Phi}\equiv -\Phi_{\text{eff}}>0$: constitutive-channel variant used when expanding directly in $\Phi_{\text{eff}}$.
+- $C_2^{(U)}$ and $C_2^{(\Phi)}$: second-order clock coefficients in expansions using $U$ and $U_{\Phi}$, respectively. The undecorated $C_2$ in the numerical reduced-fit sections means $C_2^{(U)}$.
+- $a_\chi$: first-order clock-channel response defined by $\ln\chi_{\text{sea}}=a_\chi U/c_0^2+O(U^2/c_0^4)$; the signal-channel value is $a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}$.
+- $U_{ij}$: standard PPN anisotropic potential, with $U_{ij}=G\int \rho' (x-x')_i(x-x')_j/|\mathbf x-\mathbf x'|^3\,d^3x'$ in the comparison chart.
+- $V_i$: standard PPN matter-current potential, with $V_i=G\int \rho'v_i'/|\mathbf x-\mathbf x'|\,d^3x'$; it has units of potential times velocity.
 
 ## Mapping to PPN Constraints
 
@@ -20,6 +24,23 @@ the spacetime constitutive map.
 3. **Geodetic Precession**: Match the transport of an assembly's spin-orientation frame through the same weak-field effective metric used for clock, signal, and orbital tests.
 
 Here, geodetic precession means the de Sitter precession of a carried gyroscope: after the gyroscope moves through a weak gravitational field, its spin axis is rotated relative to a distant reference frame. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this should not be introduced as a separate torque law between angular momentum and a potential gradient. It is a closure target for the effective metric: the Noether sea-induced clock, ruler, and signal-response map must make transported assembly orientations precess by the same amount that GR predicts in the validated weak-field regime. Frame dragging from a rotating source is a separate test channel.
+
+For a slowly moving gyroscope in the stationary weak-field comparison chart, the PPN estimator is
+$$
+\boldsymbol\Omega_{\mathrm{dS}}
+=
+\frac{1+2\gamma_{\mathrm{PPN}}}{2c_0^2}
+\mathbf v\times\nabla U.
+$$
+For a central source this becomes
+$$
+\boldsymbol\Omega_{\mathrm{dS}}
+=
+\frac{1+2\gamma_{\mathrm{PPN}}}{2}
+\frac{GM}{c_0^2r^3}
+\mathbf r\times\mathbf v,
+$$
+giving the GR coefficient $3/2$ when $\gamma_{\mathrm{PPN}}=1$. The closure residual must compare the transported assembly-orientation frame with this estimator using the same effective metric record as Shapiro delay and lensing.
 
 
 ## Testing the Euclidean Anchor (Shapiro Delay)
@@ -38,14 +59,14 @@ $$
 \frac{c_0}{c_{\text{eff}}(\mathbf X,T)}
 =
 \frac{c_0}{c_f}\chi_{\text{sea}}(\mathbf X,T)
-= 1 - (1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf X,T)}{c_0^2}
+= 1 - (1+\gamma_{\mathrm{PPN}})\frac{\Phi_N(\mathbf X,T)}{c_0^2}
 + \mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 with $\Phi_N<0$ near a mass source. For a point mass $M$,
 $$
 \Phi_N(r)=-\frac{GM}{r}
 \quad\Rightarrow\quad
-\bar{\chi}_{\text{sea}}(r)=1+(1+\gamma_{\text{eff}})\frac{GM}{c_0^2 r}
+\bar{\chi}_{\text{sea}}(r)=1+(1+\gamma_{\mathrm{PPN}})\frac{GM}{c_0^2 r}
 +\mathcal{O}\!\left(\frac{G^2M^2}{c_0^4 r^2}\right)
 $$
 
@@ -59,22 +80,22 @@ where $R=\int_\Gamma ds$ is Euclidean path length and
 $$
 \Delta t_{\mathrm{eff}}^{(\mathbb{A}\mathbb{A}\mathbb{A})}
 =\frac{1}{c_0}\int_\Gamma (\bar{\chi}_{\text{sea}}-1)\,ds
-=\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}\int_\Gamma \frac{ds}{r(s)}
+=\frac{(1+\gamma_{\mathrm{PPN}})GM}{c_0^3}\int_\Gamma \frac{ds}{r(s)}
 +\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right)
 $$
 
 Evaluating the line integral for endpoint radii $r_1,r_2$ and Euclidean endpoint separation $R$ gives
 $$
 \Delta t_{\mathrm{eff}}^{(\mathbb{A}\mathbb{A}\mathbb{A})}
-=\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
+=\frac{(1+\gamma_{\mathrm{PPN}})GM}{c_0^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
 +\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right)
 $$
-which is the standard 1PN Shapiro form with $\gamma\to\gamma_{\text{eff}}$ and $c\to c_0$. The primitive wake speed $c_f$ remains in the unnormalized delay factor $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; observer-facing PPN timing uses the asymptotic dressed speed $c_0$.
+which is the standard 1PN Shapiro form with $\gamma\to\gamma_{\mathrm{PPN}}$ and $c\to c_0$. The primitive wake speed $c_f$ remains in the unnormalized delay factor $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; observer-facing PPN timing uses the asymptotic dressed speed $c_0$.
 
 So the operational estimator is
 $$
-\gamma_{\text{eff}}
+\gamma_{\mathrm{PPN}}
 =
 \frac{c_0^3\,\Delta t_{\text{obs}}}
 {GM\ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)}
@@ -82,12 +103,12 @@ $$
 $$
 with $\Delta t_{\text{obs}}=t_{\text{obs}}-R/c_0$.
 
-In the weak-field solar-system regime, $\gamma_{\text{eff}}$ is the direct refractive-space-curvature map parameter.
+In the weak-field solar-system regime, $\gamma_{\mathrm{PPN}}$ is the direct refractive-space-curvature map parameter.
 
 The same Shapiro map also fixes the first-order signal-delay response coefficient
 
 $$
-a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}
+a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}
 $$
 
 This is not automatically the clock coefficient $a_\chi$ used in the static $\Gamma_N$ endpoint row. The shared clock/signal delay branch is the additional condition
@@ -120,17 +141,17 @@ $$
 =
 \frac{4GM}{b\,c_0^2}
 $$
-In the forward projection below, the missing half is precisely the $\gamma_{\text{eff}}$ spatial-compliance contribution. Therefore a constitutive map cannot claim PPN closure by matching Shapiro delay with a scalar delay factor while leaving the ruler/spatial-compliance row undefined.
+In the forward projection below, the missing half is precisely the $\gamma_{\mathrm{PPN}}$ spatial-compliance contribution. Therefore a constitutive map cannot claim PPN closure by matching Shapiro delay with a scalar delay factor while leaving the ruler/spatial-compliance row undefined.
 
 ### Parameter $\beta$ (Non-linearity of Gravity)
 * **GR Context:** Measures the non-linearity in the superposition of gravitational fields.
 * **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether sea constitutive nonlinearity.
-* **Explicit map from constitutive expansion:** Let $U\equiv-\Phi_N>0$. For a declared weak-field branch — conditional, like every weak-field expansion in this chapter, on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics, an open closure item of the [Noether sea program](noether-sea.md) — expand the static clock law with branch-local constitutive coefficient $C_2$:
+* **Explicit map from constitutive expansion:** Let $U\equiv-\Phi_N>0$. For a declared weak-field branch — conditional, like every weak-field expansion in this chapter, on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics, an open closure item of the [Noether sea program](noether-sea.md) — expand the static clock law with branch-local constitutive coefficient $C_2^{(U)}$:
 $$
 \frac{d\tau}{dt_{\mathrm{eff}}}\bigg|_{v=0}
 =
 1-\frac{U}{c_0^2}
-+C_2\frac{U^2}{c_0^4}
++C_2^{(U)}\frac{U^2}{c_0^4}
 +\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right)
 $$
 Since $-g_{00}=(d\tau/dt_{\mathrm{eff}})^2$ for a static observer,
@@ -139,31 +160,32 @@ g_{00}
 =
 -1
 +2\frac{U}{c_0^2}
--\bigl[1+2C_2\bigr]\frac{U^2}{c_0^4}
+-\bigl[1+2C_2^{(U)}\bigr]\frac{U^2}{c_0^4}
 +\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right)
 $$
-Match to the PPN form
+In the static isolated-source subclass where the remaining standard PPN potentials already take their GR values or vanish, match to the PPN form
 $$
 g_{00}^{\mathrm{PPN}}
 =
--1+2\frac{U}{c_0^2}-2\beta_{\mathrm{eff}}\frac{U^2}{c_0^4}+\cdots
+-1+2\frac{U}{c_0^2}-2\beta_{\mathrm{PPN}}\frac{U^2}{c_0^4}+\cdots
 $$
 to obtain
 $$
-\boxed{\beta_{\mathrm{eff}}=\frac{1+2C_2}{2}}
+\boxed{\beta_{\mathrm{PPN}}=\frac{1+2C_2^{(U)}}{2}}.
 $$
+The superscript is essential: $C_2^{(U)}$ is the coefficient after the clock law has been expanded in the Newtonian comparison potential $U$. Reading $\beta_{\mathrm{PPN}}$ from this coefficient alone is not valid in a general source where $\Phi_{\mathrm W}$, $\Phi_1,\ldots,\Phi_4$, $\mathcal A$, or preferred-frame potentials carry independent non-GR coefficients.
 No cosmological $(a,k)$ dependence is implied here; those arguments are reserved for effective cosmology transfer variables such as $\mu(a,k)$ and $G_{\mathrm{eff}}(a,k)$.
 * **Observable:** Perihelion precession and other 1PN nonlinear-potential tests.
 
 ### Exponential clock-law subclass (direct map)
 
-If the constitutive clock channel is exactly
+The identity
 $$
 \Omega\xi=e^{\Phi_{\text{eff}}/c_0^2},
 \qquad
 g_{00}=-(\Omega\xi)^2
 $$
-then with $U_{\Phi}\equiv -\Phi_{\text{eff}}$:
+follows from the observer-side definition $\Phi_{\text{eff}}\equiv c_0^2\ln(\Omega\xi)$; it does not by itself determine a PPN parameter. With $U_{\Phi}\equiv -\Phi_{\text{eff}}$, it gives
 $$
 g_{00}
 =
@@ -171,16 +193,28 @@ g_{00}
 =
 -1+2\frac{U_{\Phi}}{c_0^2}-2\frac{U_{\Phi}^2}{c_0^4}+O(c_0^{-6})
 $$
-so this subclass yields
+and therefore fixes only the coefficient in the constitutive-potential expansion:
 $$
-\boxed{\beta_{\text{PPN}}=1}
+\boxed{C_2^{(\Phi)}=\frac12}.
 $$
-without additional fit freedom.
 
-Here $\Omega\xi$ is the local clock-rate factor $d\tau/dt_{\mathrm{eff}}$ in this subclass. The Noether sea cadence-stretch factor used in redshift bookkeeping is its inverse, $\Gamma_N=(\Omega\xi)^{-1}$, when the same local clock channel is being compared.
+Write the second-order potential conversion as
+$$
+\frac{U_{\Phi}}{c_0^2}
+=
+\frac{U}{c_0^2}
++D_2\frac{U^2}{c_0^4}
++O\!\left(\frac{U^3}{c_0^6}\right).
+$$
+Then
+$$
+C_2^{(U)}=C_2^{(\Phi)}-D_2,
+\qquad
+\beta_{\mathrm{PPN}}=1-D_2.
+$$
+Thus the exponential clock-coordinate identity yields $\beta_{\mathrm{PPN}}=1$ if and only if $D_2=0$, equivalently $U_{\Phi}/c_0^2=U/c_0^2+O(U^3/c_0^6)$. Deriving or bounding $D_2$ from the shared Noether sea response is the actual nonlinear-potential obligation.
 
-The general $C_2$ map above remains the umbrella constitutive form; the exponential channel is the closure-special case where it collapses to GR's $\beta=1$ exactly.
-When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_f^2)$ at the native constitutive level, one has $U_{\Phi}=U+O(U^2/c_f^2)$ at weak field before observer-channel normalization to the $c_0$-based PPN expansion.
+Here $\Omega\xi$ is the local clock-rate factor $d\tau/dt_{\mathrm{eff}}$. The Noether sea cadence-stretch factor used in redshift bookkeeping is its inverse, $\Gamma_N=(\Omega\xi)^{-1}$, when the same local clock channel is being compared.
 
 ### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
 * **Crucial test:** In the effective relativistic limit these must vanish (no measurable preferred-frame leakage).
@@ -196,7 +230,7 @@ g_{00}^{\text{leak}}
 =
 -\Xi_3\frac{w^2 U}{c_0^4}
 -\Xi_2\frac{w^i w^j U_{ij}}{c_0^4}
-+\Xi_4\frac{w^i V_i}{c_0^3}
++\Xi_4\frac{w^i V_i}{c_0^4}
 $$
 Matching to standard PPN preferred-frame structure gives
 $$
@@ -214,7 +248,7 @@ If a comparison source instead defines $\mathbf w_{\mathrm{sea}}=-\mathbf w$, al
 
 ### Terrestrial Working Drift Profiles
 
-Terrestrial preferred-frame rows need a declared $\mathbf u_{\mathrm{sea}}$ profile before their $\beta_\oplus$ dependence can be evaluated numerically. Use the CMB dipole only as an observer-level comparison direction, not as proof that the CMB frame is the substrate's absolute rest frame. In that comparison chart, decompose a laboratory velocity as
+Terrestrial preferred-frame rows need a declared $\mathbf u_{\mathrm{sea}}$ profile before their $\beta_{0,\oplus}\equiv|\mathbf w_\oplus|/c_0$ dependence can be evaluated numerically. Use the CMB dipole only as an observer-level comparison direction, not as proof that the CMB frame is the substrate's absolute rest frame. In that comparison chart, decompose a laboratory velocity as
 
 $$
 \mathbf V_{\mathrm{lab}}(t_{\mathrm{eff}})
@@ -262,7 +296,7 @@ $$
 \mathbf v_A.
 $$
 
-The non-entrained comparison is $(f_{\mathrm{tr}},f_{\mathrm{rot}})=(0,0)$. Ignoring the smaller annual, daily, and apparatus contributions, the [measured CMB dipole](https://lambda.gsfc.nasa.gov/education/lambda_graphics/cmb_dipole.html) gives $|\mathbf w_\oplus|\approx369\,\mathrm{km\,s^{-1}}$ and therefore $\beta_\oplus\approx1.23\times10^{-3}$ when $c_0$ is the comparison speed. Translational entrainment uses $f_{\mathrm{tr}}\to1$ while leaving the rotational row independently testable; local co-rotation also takes $f_{\mathrm{rot}}\to1$. These are evaluation profiles, not derived constitutive solutions.
+The non-entrained comparison is $(f_{\mathrm{tr}},f_{\mathrm{rot}})=(0,0)$. Ignoring the smaller annual, daily, and apparatus contributions, the [measured CMB dipole](https://lambda.gsfc.nasa.gov/education/lambda_graphics/cmb_dipole.html) gives $|\mathbf w_\oplus|\approx369\,\mathrm{km\,s^{-1}}$ and therefore $\beta_{0,\oplus}\approx1.23\times10^{-3}$. Translational entrainment uses $f_{\mathrm{tr}}\to1$ while leaving the rotational row independently testable; local co-rotation also takes $f_{\mathrm{rot}}\to1$. These are evaluation profiles, not derived constitutive solutions.
 
 The existing preferred-motion bundle separates the profiles through their predicted annual and sidereal phase and amplitude. Ground-to-orbit clock and resonator comparisons add the radial discriminator: a profile that becomes less entrained with altitude changes $\mathbf w_A^{(f)}$ across the trajectory, whereas a CMB-comoving profile preserves the leading dipole-scale drift. The same $(f_{\mathrm{tr}},f_{\mathrm{rot}})$ values must be used in clock, interferometer, matter-sector, and PPN rows; fitting a different terrestrial drift profile to each channel would not close the preferred-frame map.
 
@@ -321,6 +355,18 @@ $$
 =0.
 $$
 Here $\xi_{\mathrm W}$ tests preferred-location leakage, while nonzero $\zeta_i$ would signal failure of the effective momentum/conservation bookkeeping. A wake-ledger theory cannot infer these zeros from notation: the same architrino-plus-wake-plus-medium record that closes total energy and momentum must project them below their observer-level bounds.
+
+The missing decision rows are not equally well measured. Representative Will-style comparison pressures are
+
+| Parameter | Representative bound or relation | Required estimator |
+| --- | --- | --- |
+| $\xi_{\mathrm W}$ | $|\xi_{\mathrm W}|\lesssim4\times10^{-9}$ from strong-field preferred-location torque tests | orientation precession relative to the external-potential direction |
+| $\zeta_1$ | $|\zeta_1|\lesssim2\times10^{-2}$, mainly indirect | Nordtvedt/self-acceleration combination after the other PPN rows are fixed |
+| $\zeta_2$ | $|\zeta_2|\lesssim4\times10^{-5}$ | binary-center-of-mass acceleration and pulsar timing |
+| $\zeta_3$ | $|\zeta_3|\lesssim10^{-8}$ | active/passive mass and momentum-balance residual |
+| $\zeta_4$ | no comparably direct standalone bound; $6\zeta_4=3\alpha_3+2\zeta_1-3\zeta_3$ under the standard pressure-gravity consistency assumption | pressure contribution to the same full PPN metric |
+
+The pulsar-derived rows are strong-field analogues, not solar-system measurements. They remain legitimate closure pressure only if the model declares how its weak-field PPN parameters export into self-gravitating bodies. In particular, $\zeta_3$ is not automatically zero in a delayed pairwise interaction: the native estimator must cycle-average the complete matter-plus-wake-plus-Noether-sea momentum ledger before projecting the observer-level active/passive-mass residual.
 
 ## Zero-Leakage Conditions (Preferred-Frame Closure)
 
@@ -386,8 +432,9 @@ Use this table to close the constitutive loop against modern benchmarks.
 | Channel | Model estimator | GR/PPN target | Closure requirement |
 | --- | --- | --- | --- |
 | Time nonlinearity | $\beta_{\text{PPN}}$ from $g_{00}$ expansion | $\beta_{\text{PPN}}=1$ | Residual inside ledger tolerance |
-| Space curvature/refraction | $\gamma_{\text{eff}}$ from the shared spatial-compliance row, with Shapiro and lensing as projections | $\gamma_{\text{PPN}}=1$ | Residual inside ledger tolerance |
+| Space curvature/refraction | $\gamma_{\mathrm{PPN}}$ from the shared spatial-compliance row, with Shapiro and lensing as projections | $\gamma_{\text{PPN}}=1$ | Residual inside ledger tolerance |
 | Preferred-frame leakage | $(\alpha_1,\alpha_2,\alpha_3)$ from $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ | all $\approx 0$ | No significant nonzero leakage |
+| Geodetic precession | $\boldsymbol\Omega_{\mathrm{dS}}$ from transported assembly orientation in the shared metric | $(1+2\gamma_{\mathrm{PPN}})\mathbf v\times\nabla U/(2c_0^2)$ | GP-B/LLR residual inside the declared covariance |
 | Rotating-source frame dragging | $g_{0i}^{\mathrm{drag}}(\mathbf J)$ and $\boldsymbol\Omega_{\mathrm{LT}}$ from the source-current row | Lense-Thirring comparison | Recover the nonzero source response without preferred-frame leakage |
 | Preferred-location leakage | $\xi_{\mathrm W}$ from the same effective metric record | $\xi_{\mathrm W}=0$ | No significant nonzero leakage |
 | Conservation-law leakage | $(\zeta_1,\zeta_2,\zeta_3,\zeta_4)$ from the full architrino-plus-wake-plus-medium ledger | all $=0$ | No observer-level nonconservation residual |
@@ -462,8 +509,8 @@ Define the PPN decision vector:
 $$
 \mathbf{p}_{\mathrm{PPN}}=
 \bigl(
-\gamma_{\mathrm{eff}}-1,\,
-\beta_{\mathrm{eff}}-1,\,
+\gamma_{\mathrm{PPN}}-1,\,
+\beta_{\mathrm{PPN}}-1,\,
 \xi_{\mathrm W},\,
 \alpha_1,\,
 \alpha_2,\,
@@ -480,7 +527,7 @@ $$
 $$
 within the benchmark tolerances listed in the validation ledger.
 
-The synthetic calibration and likelihood sections below remain explicitly reduced fits over $(\gamma_{\mathrm{eff}},C_2,\Xi_1,\Xi_2,\Xi_3)$. They do not numerically evaluate $\xi_{\mathrm W}$, $\zeta_i$, or the Lense-Thirring source-current row, so passing those reduced examples is not full PPN closure.
+The synthetic calibration and likelihood sections below remain explicitly reduced fits over $(\gamma_{\mathrm{PPN}},C_2,\Xi_1,\Xi_2,\Xi_3)$. They do not numerically evaluate $\xi_{\mathrm W}$, $\zeta_i$, or the Lense-Thirring source-current row, so passing those reduced examples is not full PPN closure.
 
 Cross-chapter integration:
 - constitutive map source: [spacetime/emergent-metric.md](./emergent-metric.md)
@@ -517,7 +564,7 @@ $$
 N
 =
 1-\frac{U_{\Phi}}{c_0^2}
-+C_2\frac{U_{\Phi}^2}{c_0^4}
++C_2^{(\Phi)}\frac{U_{\Phi}^2}{c_0^4}
 +O(c_0^{-6},\epsilon_{\mathrm{LV}})
 $$
 and extract
@@ -530,7 +577,7 @@ $$
 \right)
 +O(U_{\Phi}/c_0^2,\epsilon_{\mathrm{LV}}),
 \qquad
-\beta_{\mathrm{PPN}}-1=C_2-\frac12
+\beta_{\mathrm{PPN}}-1=C_2^{(U)}-\frac12
 $$
 The preferred-frame coefficients are the retained drift coefficients in $g_{0i}^{\mathrm{eff}}$ and $g_{00}^{\mathrm{eff}}$ under the $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ expansion above, with
 $$
@@ -538,6 +585,38 @@ $$
 \alpha_2=\Xi_2,\qquad
 \alpha_3=\Xi_1-\Xi_2-\Xi_3
 $$
+
+This extraction is the dictionary for the coefficient scaffold in [Emergent Metric](./emergent-metric.md#admcartan-reconstruction-surface). If
+$$
+\delta n=a_n\frac{U}{c_0^2},\qquad
+\delta\chi=a_\chi\frac{U}{c_0^2},\qquad
+\varphi=-\frac{U}{c_0^2}+O(U^2/c_0^4),
+$$
+then its scalar and spatial first-order rows must satisfy
+$$
+A_N^n a_n+A_N^\chi a_\chi-A_N^\Phi=-1,
+\qquad
+2\gamma_{\mathrm{PPN}}
+=
+A_\gamma^n a_n+A_\gamma^\chi a_\chi-A_\gamma^\Phi.
+$$
+The coefficient $C_2^{(U)}$ is the complete coefficient of $(U/c_0^2)^2$ after $Q_N$ and the second-order pieces of $\delta n$, $\delta\chi$, and $\varphi$ are combined. It cannot be read from $Q_N$ alone.
+
+The drift row must contain both scalar and anisotropic PPN potentials:
+$$
+u^i_{\mathrm{sea,eff}}
+=
+D_U w^i\frac{U}{c_0^2}
++D_{\mathrm{aniso}} w^j\frac{U^i{}_j}{c_0^2}
++O(c_0^{-4},\epsilon_{\mathrm{LV}}).
+$$
+At leading order in $g_{0i}^{\mathrm{eff}}=-\gamma_{ij}^{\mathrm{eff}}u^j_{\mathrm{sea,eff}}/c_0$, this gives
+$$
+D_U=\frac{\Xi_1}{2},
+\qquad
+D_{\mathrm{aniso}}=\Xi_2.
+$$
+The remaining $\Xi_3$ and $\Xi_4$ require the quadratic drift terms in the lapse scaffold together with the shift-squared contribution to $g_{00}^{\mathrm{eff}}$. A scalar-only drift row has no $\Xi_2$ slot and therefore cannot be tested against the tight $\alpha_2$ channel.
 
 For a declared observation window $W$ and retained record tuple $\theta$, the shared weak-field residual can be recorded as
 $$
@@ -559,8 +638,8 @@ with
 $$
 R_{\mathrm{acc}}
 =
-\frac{\left\|\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}+\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W}
-{\left\|\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W+\varepsilon}
+\frac{\left\|\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}+(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W}
+{\left\|(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W+\varepsilon}
 $$
 The other residuals are the redshift, Shapiro, and lensing differences computed from the same retained record tuple $\theta$ and the forward projection below. This strengthens the existing decision layer; it is not a separate gate.
 
@@ -573,7 +652,7 @@ $$
 \boldsymbol{\vartheta}_{\mathrm{PPN}}
 \equiv
 \begin{pmatrix}
-\gamma_{\text{eff}}\\
+\gamma_{\mathrm{PPN}}\\
 C_2\\
 \Xi_1\\
 \Xi_2\\
@@ -668,7 +747,7 @@ Using the weak-field constitutive map of $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
 1. Shapiro delay:
 $$
-O_1(\boldsymbol{\vartheta}_{\mathrm{PPN}})=K_{\text{Shap}}(1+\gamma_{\text{eff}}),
+O_1(\boldsymbol{\vartheta}_{\mathrm{PPN}})=K_{\text{Shap}}(1+\gamma_{\mathrm{PPN}}),
 \qquad
 K_{\text{Shap}}=
 \frac{GM}{c_0^3}
@@ -677,7 +756,7 @@ $$
 For two-way radar-style Shapiro measurements, apply the same kernel on each leg and sum the two one-way contributions.
 2. Light deflection:
 $$
-O_2(\boldsymbol{\vartheta}_{\mathrm{PPN}})=K_{\text{Def}}(1+\gamma_{\text{eff}}),
+O_2(\boldsymbol{\vartheta}_{\mathrm{PPN}})=K_{\text{Def}}(1+\gamma_{\mathrm{PPN}}),
 \qquad
 K_{\text{Def}}=\frac{2GM}{b\,c_0^2}
 $$
@@ -687,7 +766,7 @@ O_3(\boldsymbol{\vartheta}_{\mathrm{PPN}})
 =
 K_{\text{Prec}}\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
 =
-K_{\text{Prec}}\left(1.5+2\gamma_{\text{eff}}-C_2\right)
+K_{\text{Prec}}\left(1.5+2\gamma_{\mathrm{PPN}}-C_2\right)
 $$
 $$
 K_{\text{Prec}}=\frac{2\pi GM}{a(1-e^2)c_0^2}
@@ -817,7 +896,7 @@ $$
 with
 $$
 \boldsymbol{\vartheta}_{\mathrm{PPN}}=
-\left(\gamma_{\text{eff}},C_2,\Xi_1,\Xi_2,\Xi_3\right)^{\mathsf T}
+\left(\gamma_{\mathrm{PPN}},C_2,\Xi_1,\Xi_2,\Xi_3\right)^{\mathsf T}
 $$
 
 Benchmark observable inputs for the classical weak-field suite are:
@@ -838,9 +917,9 @@ $$
 $$
 so the Fisher matrix is rank-2 in this fit and $(\Xi_1,\Xi_2,\Xi_3)$ remain unconstrained by this subset alone.
 
-The following is an inline reduced-fit example; no archived artifact, reproducible from the declared formulas and inputs above.
+The following is an inline reduced-fit example using the first three declared rows above. The Galileo/GPA row is not included because no second-order central value and covariance are specified here.
 
-Reducing to $\boldsymbol{\vartheta}_{\mathrm{red}}=(\gamma_{\text{eff}},C_2)^{\mathsf T}$, the inferred covariance is
+Reducing to $\boldsymbol{\vartheta}_{\mathrm{red}}=(\gamma_{\mathrm{PPN}},C_2)^{\mathsf T}$, the inferred covariance is
 $$
 \Sigma_{\mathrm{red}}
 =
@@ -851,19 +930,19 @@ $$
 $$
 with maximum-likelihood point
 $$
-\gamma_{\text{eff}}=1+(2.03\pm2.26)\times 10^{-5},
+\gamma_{\mathrm{PPN}}=1+(1.74\pm2.26)\times 10^{-5},
 \qquad
-C_2=0.5+(4.06\pm5.42)\times 10^{-5}
+C_2=0.5+(3.48\pm5.42)\times 10^{-5}
 $$
 and correlation
 $$
-\rho(\gamma_{\text{eff}},C_2)=+0.83
+\rho(\gamma_{\mathrm{PPN}},C_2)=+0.83
 $$
 
 Interpretation for closure:
 1. A single constitutive vector can fit the selected classical observables without per-observable retuning; read this as consistency of the projection algebra, not independent evidence for the constitutive map.
 2. Preferred-frame channels require additional drift-sensitive observables (LLR, pulsar timing, dedicated anisotropy tests) to close $(\Xi_1,\Xi_2,\Xi_3)$.
-3. The positive $\gamma_{\text{eff}}$-$C_2$ covariance defines the accepted trade-off direction when matching precession jointly with refractive observables.
+3. The positive $\gamma_{\mathrm{PPN}}$-$C_2$ covariance defines the accepted trade-off direction when matching precession jointly with refractive observables.
 
 ## Preferred-Frame Parameter Degeneracy Resolution (Augmented Likelihood)
 

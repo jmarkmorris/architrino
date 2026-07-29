@@ -154,7 +154,9 @@ c_0
 \frac{2L_{\mathrm{obs}}(W_0)}
 {\Delta\tau_{\gamma,\mathrm{rt}}(W_0)}.
 $$
-The numerator is a ruler response, the denominator is a clock readout, and the photon path samples the photon-channel speed $c_\gamma$. The closure burden is to derive why $c_f$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$ collapse to one weak-homogeneous measured limit within the preferred-frame leakage budget; the equality cannot be supplied by notation alone.
+The numerator is a ruler response, the denominator is a clock readout, and the photon path samples the photon-channel speed $c_\gamma$. The closure burden is to derive why $c_{\text{eff}}$, $c_\gamma$, and $c_0$ share one weak-homogeneous measured limit within the preferred-frame leakage budget, then separately determine that common value's relationship to primitive $c_f$; neither identification can be supplied by notation alone.
+
+The [weak-homogeneous speed-factorization lemma](./lorentz-kinematics.md#weak-homogeneous-speed-factorization-lemma) separates that burden into two statements. Calibration closure and photon common-mode closure can establish $c_\gamma=c_{\text{eff}}=c_0$, while the additional constitutive condition $\chi_{\mathrm{sea},0}=1$ is required to identify their common value with primitive $c_f$. If instead $\chi_{\mathrm{sea},0}>1$, the observer channels may still close on one speed while $c_f>c_0$ remains a substrate-to-observer hierarchy.
 
 The simple clock-budget target is that the declared channel speed splits into center-of-mass drift and transverse closure:
 $$
@@ -452,7 +454,7 @@ $$
 =
 \frac{c_0}{c_{\text{eff}}}
 =
-1+(1+\gamma_{\text{eff}})\frac{U}{c_0^2}
+1+(1+\gamma_{\mathrm{PPN}})\frac{U}{c_0^2}
 +O\!\left(\frac{U^2}{c_0^4}\right)
 $$
 
@@ -461,11 +463,11 @@ so its logarithmic response is
 $$
 \delta\ln\bar{\chi}_{\text{sea}}
 =
-(1+\gamma_{\text{eff}})\frac{U}{c_0^2}
+(1+\gamma_{\mathrm{PPN}})\frac{U}{c_0^2}
 +O\!\left(\frac{U^2}{c_0^4}\right)
 $$
 
-This fixes a signal-delay response coefficient $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$, giving $a_\chi^{\mathrm{sig}}\approx2$ in the GR-matching solar-system branch. It becomes the clock-row coefficient $a_\chi$ only if the clock cadence and signal-propagation channel share the same scalar delay response in the tested branch. If they do not, the difference is not fit freedom; it is a channel-splitting residual that must be carried into PPN, redshift, and pressure-response comparisons.
+This fixes a signal-delay response coefficient $a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}$, giving $a_\chi^{\mathrm{sig}}\approx2$ in the GR-matching solar-system branch. It becomes the clock-row coefficient $a_\chi$ only if the clock cadence and signal-propagation channel share the same scalar delay response in the tested branch. If they do not, the difference is not fit freedom; it is a channel-splitting residual that must be carried into PPN, redshift, and pressure-response comparisons.
 
 #### Shared Clock/Signal Delay Closure
 
@@ -476,7 +478,7 @@ $$
 \equiv
 a_\chi-a_\chi^{\mathrm{sig}}
 =
-a_\chi-(1+\gamma_{\text{eff}}),
+a_\chi-(1+\gamma_{\mathrm{PPN}}),
 \qquad
 \Delta_\chi^{\mathrm{clk\text{-}sig}}=0
 $$
@@ -486,21 +488,21 @@ A branch may impose this condition only when the same first-order Noether sea de
 Under this shared-delay closure, the static endpoint constraint becomes
 
 $$
-b_n a_n+b_\chi(1+\gamma_{\text{eff}})+b_\lambda a_\lambda+b_R a_R=1
+b_n a_n+b_\chi(1+\gamma_{\mathrm{PPN}})+b_\lambda a_\lambda+b_R a_R=1
 $$
 
 or, equivalently in clock-rate-row language,
 
 $$
-\omega_n a_n+\omega_\chi(1+\gamma_{\text{eff}})+\omega_\lambda a_\lambda+\omega_R a_R=-1
+\omega_n a_n+\omega_\chi(1+\gamma_{\mathrm{PPN}})+\omega_\lambda a_\lambda+\omega_R a_R=-1
 $$
 
-In the GR-matching weak solar-system branch, $\gamma_{\text{eff}}=1$ makes the delay contribution $2b_\chi$ in the cadence-stretch row and $2\omega_\chi$ in the clock-rate row. If $\Delta_\chi^{\mathrm{clk\text{-}sig}}\neq0$, the branch has not failed by definition, but it must carry $\Delta_\chi^{\mathrm{clk\text{-}sig}}$ as a measured residual across clock redshift, Shapiro delay, pressure-response, and cosmological redshift comparisons rather than absorbing it into a fitted coefficient.
+In the GR-matching weak solar-system branch, $\gamma_{\mathrm{PPN}}=1$ makes the delay contribution $2b_\chi$ in the cadence-stretch row and $2\omega_\chi$ in the clock-rate row. If $\Delta_\chi^{\mathrm{clk\text{-}sig}}\neq0$, the branch has not failed by definition, but it must carry $\Delta_\chi^{\mathrm{clk\text{-}sig}}$ as a measured residual across clock redshift, Shapiro delay, pressure-response, and cosmological redshift comparisons rather than absorbing it into a fitted coefficient.
 
 The first admissible static packet is the minimal shared-delay specialization of this row. Let
 
 $$
-A_\chi\equiv1+\gamma_{\text{eff}}
+A_\chi\equiv1+\gamma_{\mathrm{PPN}}
 $$
 
 If the weak static endpoint cadence is assigned entirely to the shared scalar delay response at first order, then
@@ -952,7 +954,7 @@ $$
 E_{\text{CM}}=\gamma_\star M_0c_{\text{eff}}^2,\qquad
 p_{\text{CM}}=\gamma_\star M_0v.
 $$
-Here $\gamma_\star$ is the kinematic Lorentz-response factor for the declared speed channel. It is distinct from the scalar PPN spatial-compliance parameter $\gamma_{\text{eff}}$ and from the index-bearing spatial metric $\gamma_{\mathrm{eff}}^{ij}$.
+Here $\gamma_\star$ is the kinematic Lorentz-response factor for the declared speed channel. It is distinct from the scalar PPN spatial-compliance parameter $\gamma_{\mathrm{PPN}}$ and from the index-bearing spatial metric family $\gamma_{ij}^{\mathrm{eff}}$ and $(\gamma_{\mathrm{eff}}^{-1})^{ij}$.
 This is a cross-check on the emergent clock model, not an independent axiom at the architrino substrate level.
 For definitions and interpretation, see [Effective Energy-Momentum Closure](../dynamics/energy.md#effective-energy-momentum-closure).
 
@@ -1122,9 +1124,9 @@ $$
 $$
 and the PPN map used in [PPN Parameters](./ppn-parameters.md) is
 $$
-\beta_{\mathrm{eff}}=\frac{1+2C_2}{2}
+\beta_{\mathrm{PPN}}=\frac{1+2C_2}{2}
 $$
-So the GR target $\beta_{\mathrm{eff}}=1$ implies
+So the GR target $\beta_{\mathrm{PPN}}=1$ implies
 $$
 C_2^\star=\frac{1}{2}
 $$
@@ -1173,7 +1175,7 @@ The clock-to-PPN closure checklist is:
 1. Define a reference clock assembly and extraction window for $\omega_0$.
 2. Run controlled perturbations over $(U_j,v_j)$ in the weak-field, low-velocity regime.
 3. Fit $(A_U,A_v,C_2,C_{Uv},C_{v4})$ from the extracted clock ratios.
-4. Forward $\hat\beta_{\mathrm{eff}}$ and the leakage coefficient $\hat C_{Uv}$ to [PPN Parameters](./ppn-parameters.md).
+4. Forward $\hat\beta_{\mathrm{PPN}}$ and the leakage coefficient $\hat C_{Uv}$ to [PPN Parameters](./ppn-parameters.md).
 5. Record pass/fail status in [Closure Scorecard](../validation/closure-scorecard.md) against [Constraint Ledger](../validation/constraint-ledger.md) bounds.
 
 Given extracted coefficients
@@ -1182,7 +1184,7 @@ $$
 $$
 map to
 $$
-\hat\beta_{\mathrm{eff}}=\frac{1+2\hat C_2}{2}
+\hat\beta_{\mathrm{PPN}}=\frac{1+2\hat C_2}{2}
 $$
 and forward to the PPN decision vector in [spacetime/ppn-parameters.md](./ppn-parameters.md).
 
@@ -1195,7 +1197,7 @@ $$
 $$
 with
 $$
-\hat{\mathbf{q}}=(\hat A_U,\hat A_v,\hat\beta_{\mathrm{eff}},\hat C_{Uv}),\qquad
+\hat{\mathbf{q}}=(\hat A_U,\hat A_v,\hat\beta_{\mathrm{PPN}},\hat C_{Uv}),\qquad
 \mathbf{q}_\star=(1,\tfrac12,1,0)
 $$
 Low $\chi^2_{\mathrm{closure}}$ with no preferred-direction leakage is the acceptance condition for the clock-law sector.

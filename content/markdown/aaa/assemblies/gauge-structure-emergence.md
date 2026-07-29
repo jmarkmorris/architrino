@@ -393,7 +393,7 @@ W_{r\leftarrow t}^{\mathrm{acc}}
 \frac{c_f}{\left|c_f-\mathbf V_t(T_t)\cdot\hat{\mathbf r}_t\right|}.
 $$
 
-This preserves the receiver-side causal-root geometry and keeps substrate dynamics acceleration-first. A previous Fokker-type action scaffold is not a premise here: its variation retains an unresolved derivative-of-delta contribution and a future-reception boundary. Fast-mode averaging and coarse-graining must therefore be performed on retained Master Equation solutions, and the effective action below must be derived from those records rather than assumed.
+This preserves the receiver-side causal-root geometry and keeps substrate dynamics acceleration-first. The effective action below is a coarse-grained recovery target derived from retained Master Equation histories; it is not a premise of the substrate dynamics.
 
 After fast-mode averaging of the declared fast binary phases and coarse-graining to $q^2\ll \omega_{\mathrm{fast}}^2$, the target observer-level action is
 $$

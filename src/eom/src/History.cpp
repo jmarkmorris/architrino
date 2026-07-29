@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <cerrno>
+#include <chrono>
 #include <cmath>
 #include <cstdint>
 #include <cstdlib>
@@ -23,6 +24,19 @@ namespace architrino::eom {
 namespace {
 
 using ExactRational = boost::multiprecision::cpp_rational;
+using HistoryDiagnosticCounterArray = std::array<
+    HistoryDiagnosticCounters,
+    static_cast<std::size_t>(HistoryDiagnosticPhase::count)>;
+
+thread_local HistoryDiagnosticPhase current_history_diagnostic_phase =
+    HistoryDiagnosticPhase::unclassified;
+thread_local HistoryDiagnosticCounterArray history_diagnostic_counters{};
+
+std::size_t history_diagnostic_phase_index(
+    HistoryDiagnosticPhase phase) noexcept {
+  const auto index = static_cast<std::size_t>(phase);
+  return index < history_diagnostic_counters.size() ? index : 0U;
+}
 
 void fingerprint_token(std::uint64_t& state, const std::string& token) {
   const std::string length = std::to_string(token.size());
@@ -150,44 +164,66 @@ bool exact_enclosures_overlap(
          right - right_error <= left + left_error;
 }
 
+struct ExactSegmentEndpoint {
+  ExactRational time;
+  std::array<ExactRational, 3> position;
+  std::array<ExactRational, 3> velocity;
+  std::array<ExactRational, 3> position_error;
+  std::array<ExactRational, 3> velocity_error;
+};
+
+ExactSegmentEndpoint exact_segment_endpoint(
+    const CubicHistorySegment& segment) {
+  ExactSegmentEndpoint result;
+  result.time = exact_decimal(segment.t_end_token());
+  const ExactRational local_time =
+      result.time - exact_decimal(segment.t_start_token());
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    result.position[axis] =
+        exact_polynomial(segment.coefficient_tokens()[axis], local_time);
+    result.velocity[axis] =
+        exact_velocity(segment.coefficient_tokens()[axis], local_time);
+    result.position_error[axis] =
+        exact_decimal(segment.position_error_tokens()[axis]);
+    result.velocity_error[axis] =
+        exact_decimal(segment.velocity_error_tokens()[axis]);
+  }
+  return result;
+}
+
 void validate_segment_join(
-    const CubicHistorySegment& prior,
+    const ExactSegmentEndpoint& prior,
     const CubicHistorySegment& next) {
-  const ExactRational prior_end = exact_decimal(prior.t_end_token());
   const ExactRational next_start = exact_decimal(next.t_start_token());
-  if (prior_end != next_start) {
+  if (prior.time != next_start) {
     throw std::invalid_argument("retained-history segments must be contiguous");
   }
-  const ExactRational prior_local_time =
-      prior_end - exact_decimal(prior.t_start_token());
-  for (std::size_t axis = 0; axis < 3; ++axis) {
-    const ExactRational prior_position_error =
-        exact_decimal(prior.position_error_tokens()[axis]);
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
     const ExactRational next_position_error =
         exact_decimal(next.position_error_tokens()[axis]);
-    const ExactRational prior_velocity_error =
-        exact_decimal(prior.velocity_error_tokens()[axis]);
     const ExactRational next_velocity_error =
         exact_decimal(next.velocity_error_tokens()[axis]);
-    const ExactRational prior_position =
-        exact_polynomial(prior.coefficient_tokens()[axis], prior_local_time);
     const ExactRational next_position =
         exact_decimal(next.coefficient_tokens()[axis][0]);
     if (!exact_enclosures_overlap(
-            prior_position, prior_position_error,
+            prior.position[axis], prior.position_error[axis],
             next_position, next_position_error)) {
       throw std::invalid_argument("retained-history position is discontinuous");
     }
-    const ExactRational prior_velocity =
-        exact_velocity(prior.coefficient_tokens()[axis], prior_local_time);
     const ExactRational next_velocity =
         exact_decimal(next.coefficient_tokens()[axis][1]);
     if (!exact_enclosures_overlap(
-            prior_velocity, prior_velocity_error,
+            prior.velocity[axis], prior.velocity_error[axis],
             next_velocity, next_velocity_error)) {
       throw std::invalid_argument("retained-history velocity is discontinuous");
     }
   }
+}
+
+void validate_segment_join(
+    const CubicHistorySegment& prior,
+    const CubicHistorySegment& next) {
+  validate_segment_join(exact_segment_endpoint(prior), next);
 }
 
 double parse_decimal(const std::string& token, const char* label) {
@@ -340,6 +376,21 @@ IntervalVector correlated_segment_position_from_join(
 }
 
 }  // namespace
+
+ScopedHistoryDiagnosticPhase::ScopedHistoryDiagnosticPhase(
+    HistoryDiagnosticPhase phase) noexcept
+    : previous_(current_history_diagnostic_phase) {
+  current_history_diagnostic_phase = phase;
+}
+
+ScopedHistoryDiagnosticPhase::~ScopedHistoryDiagnosticPhase() {
+  current_history_diagnostic_phase = previous_;
+}
+
+HistoryDiagnosticCounters current_thread_history_diagnostic_counters(
+    HistoryDiagnosticPhase phase) noexcept {
+  return history_diagnostic_counters[history_diagnostic_phase_index(phase)];
+}
 
 CubicHistorySegment::CubicHistorySegment(
     std::string t_start,
@@ -717,6 +768,7 @@ HistoryDiskStorageStats history_disk_storage_stats() noexcept {
 
 struct HistorySegmentSequence::Storage {
   static constexpr std::size_t kBlockSize = 64U;
+  static constexpr std::size_t kTailCacheSize = 2U;
   using Block = std::vector<CubicHistorySegment>;
 
   struct Slot {
@@ -725,8 +777,28 @@ struct HistorySegmentSequence::Storage {
     std::size_t size = 0U;
   };
 
+  struct CachedSegment {
+    std::shared_ptr<const void> owner;
+    const CubicHistorySegment* segment = nullptr;
+  };
+
+  struct ExactTerminalCache {
+    std::mutex mutex;
+    std::shared_ptr<const ExactSegmentEndpoint> endpoint;
+  };
+
   std::vector<Slot> blocks;
   std::vector<std::size_t> cumulative_ends;
+  // Exact immutable references to the terminal segment and, when present, its
+  // predecessor, with compact copies only when their full block is on disk.
+  // They keep accepted-endpoint state lookup and the next append join
+  // validation independent of paging. The display memory envelope already
+  // reserves one full block per path for tail mutation, so these two entries
+  // remain inside that reserve.
+  std::vector<CachedSegment> tail_cache;
+  std::size_t tail_cache_start = 0U;
+  std::shared_ptr<ExactTerminalCache> exact_terminal_cache =
+      std::make_shared<ExactTerminalCache>();
   std::size_t size = 0U;
 
   void rebuild_index() {
@@ -866,7 +938,11 @@ std::shared_ptr<const ExactHistoryBlock> exact_history_slot_block(
       return entry.block;
     }
   }
+  auto& phase_counters = history_diagnostic_counters[
+      history_diagnostic_phase_index(current_history_diagnostic_phase)];
+  ++phase_counters.disk_cache_miss_count;
   auto loaded = read_exact_history_block(*slot.disk);
+  ++phase_counters.disk_block_load_count;
   std::size_t limit;
   {
     auto& runtime = exact_history_disk_runtime();
@@ -915,6 +991,18 @@ std::pair<std::size_t, std::size_t> locate_exact_history_segment(
 HistorySegmentSequence::HistorySegmentSequence(
     std::vector<CubicHistorySegment> segments) {
   auto storage = std::make_shared<Storage>();
+  storage->tail_cache_start =
+      segments.size() > Storage::kTailCacheSize
+      ? segments.size() - Storage::kTailCacheSize
+      : 0U;
+  std::vector<std::shared_ptr<const CubicHistorySegment>> tail_fallbacks;
+  tail_fallbacks.reserve(
+      std::min(segments.size(), Storage::kTailCacheSize));
+  for (std::size_t index = storage->tail_cache_start;
+       index < segments.size(); ++index) {
+    tail_fallbacks.push_back(
+        std::make_shared<const CubicHistorySegment>(segments[index]));
+  }
   storage->blocks.reserve(
       (segments.size() + Storage::kBlockSize - 1U) / Storage::kBlockSize);
   for (std::size_t offset = 0U; offset < segments.size();
@@ -929,6 +1017,26 @@ HistorySegmentSequence::HistorySegmentSequence(
     storage->blocks.push_back(make_exact_history_slot(std::move(block)));
   }
   storage->rebuild_index();
+  storage->tail_cache.reserve(tail_fallbacks.size());
+  for (std::size_t index = storage->tail_cache_start;
+       index < storage->size; ++index) {
+    const auto [block_index, local_index] =
+        locate_exact_history_segment(*storage, index);
+    const auto& slot = storage->blocks[block_index];
+    if (slot.memory) {
+      storage->tail_cache.push_back({
+          .owner = slot.memory,
+          .segment = &(*slot.memory)[local_index],
+      });
+    } else {
+      const auto& fallback =
+          tail_fallbacks[index - storage->tail_cache_start];
+      storage->tail_cache.push_back({
+          .owner = fallback,
+          .segment = fallback.get(),
+      });
+    }
+  }
   storage_ = std::move(storage);
 }
 
@@ -940,6 +1048,13 @@ HistorySegmentSequence::PinnedSegment HistorySegmentSequence::pin(
     std::size_t index) const {
   if (index >= size()) {
     throw std::out_of_range("history segment index lies outside the sequence");
+  }
+  if (index >= storage_->tail_cache_start) {
+    const std::size_t cache_index = index - storage_->tail_cache_start;
+    if (cache_index < storage_->tail_cache.size()) {
+      const auto& cached = storage_->tail_cache[cache_index];
+      return PinnedSegment(cached.owner, cached.segment);
+    }
   }
   const auto [block_index, local_index] =
       locate_exact_history_segment(*storage_, index);
@@ -970,6 +1085,25 @@ CubicHistorySegment HistorySegmentSequence::back() const {
   return at(size() - 1U);
 }
 
+void HistorySegmentSequence::validate_append(
+    const CubicHistorySegment& segment) const {
+  if (empty()) {
+    throw std::out_of_range(
+        "empty history segment sequence cannot validate an append");
+  }
+  const auto cache = storage_->exact_terminal_cache;
+  std::shared_ptr<const ExactSegmentEndpoint> endpoint;
+  {
+    std::lock_guard lock(cache->mutex);
+    if (!cache->endpoint) {
+      cache->endpoint = std::make_shared<const ExactSegmentEndpoint>(
+          exact_segment_endpoint(*pin(size() - 1U)));
+    }
+    endpoint = cache->endpoint;
+  }
+  validate_segment_join(*endpoint, segment);
+}
+
 std::size_t HistorySegmentSequence::resident_segment_count() const noexcept {
   std::size_t count = 0U;
   for (const auto& slot : storage_->blocks) {
@@ -989,11 +1123,18 @@ std::size_t HistorySegmentSequence::disk_backed_block_count() const noexcept {
 HistorySegmentSequence HistorySegmentSequence::appended(
     CubicHistorySegment segment) const {
   auto storage = std::make_shared<Storage>(*storage_);
+  storage->exact_terminal_cache =
+      std::make_shared<Storage::ExactTerminalCache>();
+  std::shared_ptr<const CubicHistorySegment> disk_terminal_fallback;
   if (!storage->blocks.empty() &&
       storage->blocks.back().size < Storage::kBlockSize) {
     auto block = std::make_shared<Storage::Block>(
         *exact_history_slot_block(storage->blocks.back()));
     block->push_back(std::move(segment));
+    if (block->size() == Storage::kBlockSize) {
+      disk_terminal_fallback =
+          std::make_shared<const CubicHistorySegment>(block->back());
+    }
     storage->blocks.back() = make_exact_history_slot(std::move(block));
   } else {
     auto block = std::make_shared<Storage::Block>();
@@ -1002,6 +1143,47 @@ HistorySegmentSequence HistorySegmentSequence::appended(
     storage->blocks.push_back(make_exact_history_slot(std::move(block)));
   }
   storage->rebuild_index();
+  const auto& terminal_slot = storage->blocks.back();
+  Storage::CachedSegment appended_terminal;
+  if (terminal_slot.memory) {
+    appended_terminal = {
+        .owner = terminal_slot.memory,
+        .segment = &terminal_slot.memory->back(),
+    };
+  } else {
+    if (!disk_terminal_fallback) {
+      throw std::logic_error(
+          "disk-backed terminal history segment lacks its tail cache");
+    }
+    appended_terminal = {
+        .owner = disk_terminal_fallback,
+        .segment = disk_terminal_fallback.get(),
+    };
+  }
+  std::vector<Storage::CachedSegment> tail_cache;
+  tail_cache.reserve(Storage::kTailCacheSize);
+  if (storage->size > 1U) {
+    const std::size_t preceding_index = storage->size - 2U;
+    const auto [preceding_block_index, preceding_local_index] =
+        locate_exact_history_segment(*storage, preceding_index);
+    const auto& preceding_slot = storage->blocks[preceding_block_index];
+    if (preceding_slot.memory) {
+      tail_cache.push_back({
+          .owner = preceding_slot.memory,
+          .segment = &(*preceding_slot.memory)[preceding_local_index],
+      });
+    } else {
+      if (storage_->tail_cache.empty()) {
+        throw std::logic_error(
+            "disk-backed preceding history segment lacks its tail cache");
+      }
+      tail_cache.push_back(storage_->tail_cache.back());
+    }
+  }
+  tail_cache.push_back(std::move(appended_terminal));
+  storage->tail_cache = std::move(tail_cache);
+  storage->tail_cache_start =
+      storage->size - storage->tail_cache.size();
   return HistorySegmentSequence(std::move(storage));
 }
 
@@ -1036,6 +1218,17 @@ HistorySegmentSequence HistorySegmentSequence::retained_suffix(
         storage_->blocks.end());
   }
   storage->rebuild_index();
+  storage->tail_cache = storage_->tail_cache;
+  storage->exact_terminal_cache = storage_->exact_terminal_cache;
+  if (storage->tail_cache.size() > storage->size) {
+    storage->tail_cache.erase(
+        storage->tail_cache.begin(),
+        storage->tail_cache.begin() +
+            static_cast<std::ptrdiff_t>(
+                storage->tail_cache.size() - storage->size));
+  }
+  storage->tail_cache_start =
+      storage->size - storage->tail_cache.size();
   return HistorySegmentSequence(std::move(storage));
 }
 
@@ -1298,20 +1491,112 @@ RetainedHistory::RetainedHistory(
       uniform_circular_endpoint_certificate_(
           std::move(uniform_circular_endpoint_certificate)) {}
 
-RetainedHistory RetainedHistory::appended(CubicHistorySegment segment) const {
-  validate_segment_join(segments_.back(), segment);
-  std::uint64_t fingerprint_state = fingerprint_state_;
-  fingerprint_segment(fingerprint_state, segment);
-  const IntervalVector position = complete_segment_position_hull(segment);
-  const double speed_upper = std::max(
-      nominal_speed_upper_bound_, segment.nominal_speed_upper_bound());
-  return RetainedHistory(
-      history_id_, segments_.appended(std::move(segment)), fingerprint_state,
-      hull(*full_position_hull_, position), speed_upper,
-      // Appending preserves the analytic circular prefix and extends only the
-      // ordinary cubic approximation. The certificate remains valid on its
-      // original, explicitly bounded reception interval.
-      uniform_circular_endpoint_certificate_);
+RetainedHistory RetainedHistory::appended(
+    CubicHistorySegment segment,
+    HistoryAppendDiagnostics* diagnostics) const {
+  if (diagnostics == nullptr) {
+    segments_.validate_append(segment);
+    std::uint64_t fingerprint_state = fingerprint_state_;
+    fingerprint_segment(fingerprint_state, segment);
+    const IntervalVector position = complete_segment_position_hull(segment);
+    const double speed_upper = std::max(
+        nominal_speed_upper_bound_, segment.nominal_speed_upper_bound());
+    return RetainedHistory(
+        history_id_, segments_.appended(std::move(segment)),
+        fingerprint_state, hull(*full_position_hull_, position), speed_upper,
+        uniform_circular_endpoint_certificate_);
+  }
+  using DiagnosticClock = std::chrono::steady_clock;
+  const auto metadata_start = DiagnosticClock::now();
+  const auto metadata_counters_before =
+      current_thread_history_diagnostic_counters(
+          HistoryDiagnosticPhase::fingerprint_metadata_update);
+  std::uint64_t fingerprint_state;
+  IntervalVector position{
+      Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
+  double speed_upper;
+  DiagnosticClock::time_point join_start;
+  DiagnosticClock::time_point join_finish;
+  DiagnosticClock::time_point fingerprint_finish;
+  DiagnosticClock::time_point segment_metadata_finish;
+  {
+    ScopedHistoryDiagnosticPhase phase(
+        HistoryDiagnosticPhase::fingerprint_metadata_update);
+    join_start = DiagnosticClock::now();
+    segments_.validate_append(segment);
+    join_finish = DiagnosticClock::now();
+    fingerprint_state = fingerprint_state_;
+    fingerprint_segment(fingerprint_state, segment);
+    fingerprint_finish = DiagnosticClock::now();
+    position = complete_segment_position_hull(segment);
+    speed_upper = std::max(
+        nominal_speed_upper_bound_, segment.nominal_speed_upper_bound());
+    segment_metadata_finish = DiagnosticClock::now();
+  }
+  const auto metadata_counters_after =
+      current_thread_history_diagnostic_counters(
+          HistoryDiagnosticPhase::fingerprint_metadata_update);
+
+  const auto tail_start = DiagnosticClock::now();
+  const auto tail_counters_before =
+      current_thread_history_diagnostic_counters(
+          HistoryDiagnosticPhase::tail_block_copy);
+  HistorySegmentSequence appended_segments = [&] {
+    ScopedHistoryDiagnosticPhase phase(
+        HistoryDiagnosticPhase::tail_block_copy);
+    return segments_.appended(std::move(segment));
+  }();
+  const auto tail_counters_after =
+      current_thread_history_diagnostic_counters(
+          HistoryDiagnosticPhase::tail_block_copy);
+
+  const auto metadata_finish_start = DiagnosticClock::now();
+  RetainedHistory result = [&] {
+    ScopedHistoryDiagnosticPhase phase(
+        HistoryDiagnosticPhase::fingerprint_metadata_update);
+    return RetainedHistory(
+        history_id_, std::move(appended_segments), fingerprint_state,
+        hull(*full_position_hull_, position), speed_upper,
+        // Appending preserves the analytic circular prefix and extends only
+        // the ordinary cubic approximation. The certificate remains valid on
+        // its original, explicitly bounded reception interval.
+        uniform_circular_endpoint_certificate_);
+  }();
+  const auto metadata_finish = DiagnosticClock::now();
+  if (diagnostics != nullptr) {
+    diagnostics->fingerprint_metadata_update_wall_seconds +=
+        std::chrono::duration<double>(tail_start - metadata_start).count() +
+        std::chrono::duration<double>(
+            metadata_finish - metadata_finish_start).count();
+    diagnostics->terminal_join_validation_wall_seconds +=
+        std::chrono::duration<double>(
+            join_finish - join_start).count();
+    diagnostics->fingerprint_update_wall_seconds +=
+        std::chrono::duration<double>(
+            fingerprint_finish - join_finish).count();
+    diagnostics->segment_metadata_wall_seconds +=
+        std::chrono::duration<double>(
+            segment_metadata_finish - fingerprint_finish).count();
+    diagnostics->history_wrapper_construction_wall_seconds +=
+        std::chrono::duration<double>(
+            metadata_finish - metadata_finish_start).count();
+    diagnostics->tail_block_copy_wall_seconds +=
+        std::chrono::duration<double>(
+            metadata_finish_start - tail_start).count();
+    diagnostics->fingerprint_metadata_update_disk_block_load_count +=
+        metadata_counters_after.disk_block_load_count -
+        metadata_counters_before.disk_block_load_count;
+    diagnostics->fingerprint_metadata_update_disk_cache_miss_count +=
+        metadata_counters_after.disk_cache_miss_count -
+        metadata_counters_before.disk_cache_miss_count;
+    diagnostics->tail_block_copy_disk_block_load_count +=
+        tail_counters_after.disk_block_load_count -
+        tail_counters_before.disk_block_load_count;
+    diagnostics->tail_block_copy_disk_cache_miss_count +=
+        tail_counters_after.disk_cache_miss_count -
+        tail_counters_before.disk_cache_miss_count;
+  }
+  return result;
 }
 
 RetainedHistory RetainedHistory::retained_suffix(
@@ -1427,8 +1712,12 @@ std::size_t RetainedHistory::segment_index_at(double time) const {
 }
 
 IntervalVector RetainedHistory::position_hull(const Interval& time) const {
-  const auto retained_start_segment = segments_.pin(0U);
   const auto retained_end_segment = segments_.pin(segments_.size() - 1U);
+  if (time.lower() == time.upper() &&
+      time.lower() == retained_end_segment->t_end()) {
+    return retained_end_segment->position_interval(time);
+  }
+  const auto retained_start_segment = segments_.pin(0U);
   const Interval& retained_start =
       retained_start_segment->t_start_interval();
   const Interval& retained_end = retained_end_segment->t_end_interval();
@@ -1441,6 +1730,12 @@ IntervalVector RetainedHistory::position_hull(const Interval& time) const {
 
 IntervalVector RetainedHistory::correlated_position_hull(
     const Interval& time) const {
+  if (time.lower() == time.upper()) {
+    const auto endpoint_segment = segments_.pin(segments_.size() - 1U);
+    if (time.lower() == endpoint_segment->t_end()) {
+      return endpoint_state_hull().position;
+    }
+  }
   if (!covers(time)) {
     throw std::out_of_range("history interval lies outside retained coverage");
   }
@@ -1494,6 +1789,12 @@ IntervalVector RetainedHistory::correlated_position_hull(
 }
 
 IntervalVector RetainedHistory::velocity_hull(const Interval& time) const {
+  if (time.lower() == time.upper()) {
+    const auto endpoint_segment = segments_.pin(segments_.size() - 1U);
+    if (time.lower() == endpoint_segment->t_end()) {
+      return endpoint_segment->velocity_interval(time);
+    }
+  }
   return segment_hull(*this, time, true);
 }
 
@@ -1501,6 +1802,9 @@ IntervalVector RetainedHistory::correlated_velocity_hull(
     const Interval& time) const {
   IntervalVector result = velocity_hull(time);
   if (time.lower() != time.upper()) {
+    return result;
+  }
+  if (time.lower() == t_end()) {
     return result;
   }
   const double point_value = time.lower();
@@ -1511,6 +1815,30 @@ IntervalVector RetainedHistory::correlated_velocity_hull(
     result = intersect_vectors(result, segment.velocity_interval(time));
   }
   return result;
+}
+
+HistoryEndpointState RetainedHistory::endpoint_state_hull() const {
+  const std::size_t endpoint_index = segments_.size() - 1U;
+  const auto endpoint_pin = segments_.pin(endpoint_index);
+  const auto& endpoint_segment = *endpoint_pin;
+  const Interval endpoint = Interval::point(endpoint_segment.t_end());
+  IntervalVector position = endpoint_segment.position_interval(endpoint);
+  if (endpoint_index > 0U) {
+    const auto preceding_pin = segments_.pin(endpoint_index - 1U);
+    const auto& preceding_segment = *preceding_pin;
+    const double join_time = preceding_segment.t_end();
+    const Interval join = Interval::point(join_time);
+    const IntervalVector shared = intersect_vectors(
+        preceding_segment.position_interval(join),
+        endpoint_segment.position_interval(join));
+    position = intersect_vectors(
+        position, correlated_segment_position_from_join(
+                      endpoint_segment, shared, join_time, endpoint));
+  }
+  return {
+      .position = std::move(position),
+      .velocity = endpoint_segment.velocity_interval(endpoint),
+  };
 }
 
 std::array<double, 3> RetainedHistory::nominal_position(double time) const {

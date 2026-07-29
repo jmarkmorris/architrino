@@ -29,6 +29,11 @@ struct JointAccelerationSnapshotCertificate {
   std::size_t consumed_finite_width_rows = 0U;
   std::size_t consumed_far_field_rows = 0U;
   std::size_t accepted_acceleration_fallback_rows = 0U;
+  // Additive diagnostic subphases of the owning call's measured wall time.
+  // They do not participate in certification or accepted-state construction.
+  double receiver_state_wall_seconds = 0.0;
+  double row_certification_wall_seconds = 0.0;
+  double deterministic_reduction_wall_seconds = 0.0;
   double failure_max_projection_to_ordinary_ratio = 0.0;
   double failure_projection_upper = 0.0;
   double failure_ordinary_radius = 0.0;

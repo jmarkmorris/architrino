@@ -59,7 +59,7 @@ Sphere labels may also use more than one text row when the scene author provides
 1. Click a glowing sphere to descend.
 2. Use `Back` / `Forward` to move through scene history.
 3. Use `Home` to return to root.
-4. Open notes with the document icon when available.
+4. Open the current full document with the document icon when available.
 5. Select the `Archie` sphere for app help, project references, downloads, support, comics, and future guided question modes.
 
 ## Camera and Interaction
@@ -74,14 +74,18 @@ Sphere labels may also use more than one text row when the scene author provides
 - `Forward`: step forward in history
 - `Home`: jump to root scene
 - `Search` (magnifier): open scene search
-- `Info` (circle-i): reopen element detail panel when supported
-- `Notes` (document): open scene notes for current scene
+- `TOC`: open the textbook table of contents
+- `Open full document` (document): open the complete source behind the current section
+- `Save markdown as PDF`: export the open reading surface
+- Textbook previous/next: move between adjacent textbook pages when that route is active
 
 ## Markdown Panel
 
-- Toggle layout (1/2 column): layout icon in notes header
-- Open full document from section/index: document icon in notes header
-- Close notes panel: `Close`
+- Toggle layout (1/2 column): layout icon in the global document controls
+- Open full document from section/index: document icon in the global document controls
+- Export the open reading surface: PDF icon in the global document controls
+
+The main scene markdown panel has no dedicated `Close` button. It is replaced when navigation opens another scene or reading surface. Some standalone applications use their own markdown overlay with an explicit close control; that local control does not imply one exists in the main scene shell.
 
 When a split or tree source is section-based, opening the full document is often the fastest way to regain the surrounding overview before returning to the local node.
 

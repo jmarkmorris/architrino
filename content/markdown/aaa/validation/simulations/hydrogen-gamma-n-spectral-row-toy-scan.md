@@ -342,7 +342,7 @@ for $i\in\{n,\chi,\lambda,R\}$. A branch may additionally impose shared clock/si
 $$
 a_\chi
 =
-1+\gamma_{\text{eff}}
+1+\gamma_{\mathrm{PPN}}
 $$
 
 The spectral coefficient row is therefore a constrained row inherited from clock closure. It is not a spectral nuisance parameter and not a per-line normalization constant.

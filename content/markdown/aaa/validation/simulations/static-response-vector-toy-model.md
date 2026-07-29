@@ -54,7 +54,7 @@ for $i\in\{n,\chi,\lambda,R\}$.
 The Shapiro-delay neighbor supplies
 
 $$
-a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}
+a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}
 $$
 
 so the shared clock/signal delay residual is
@@ -70,7 +70,7 @@ The branch is shared-delay closed only when $\Delta_\chi^{\mathrm{clk\text{-}sig
 The same arithmetic also exposes the lensing/dynamics equality burden used by dark-sector comparisons. In the weak static row, the signal-deflection channel is closed only when the spatial-compliance response gives
 
 $$
-\gamma_{\text{eff}}=1,
+\gamma_{\mathrm{PPN}}=1,
 \qquad
 a_\chi^{\mathrm{sig}}=2
 $$
@@ -82,7 +82,7 @@ while the clock/dynamical endpoint row still satisfies the cadence and inverse-c
 The first admissible static endpoint packet is the shared scalar delay response specialization of the equations above. Define
 
 $$
-A_\chi\equiv1+\gamma_{\text{eff}}
+A_\chi\equiv1+\gamma_{\mathrm{PPN}}
 $$
 
 The minimal response vector is
@@ -198,7 +198,7 @@ a_i^{P\to\Gamma}
 \frac{\delta g_i^P}{\delta\ln\Gamma_N}
 $$
 
-This normalization makes pressure rows replayable by the same endpoint arithmetic, but it does not convert pressure loading into a gravitational PPN branch. The `gamma_eff_sweep` diagnostic is only an algebraic comparison against $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$; a pressure-normalized value that closes for some formal $\gamma_{\text{eff}}$ is not a solar-system Shapiro result.
+This normalization makes pressure rows replayable by the same endpoint arithmetic, but it does not convert pressure loading into a gravitational PPN branch. The `gamma_eff_sweep` diagnostic is only an algebraic comparison against $a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}$; a pressure-normalized value that closes for some formal $\gamma_{\mathrm{PPN}}$ is not a solar-system Shapiro result.
 
 Anisotropic pressure entries, such as $\Delta\Pi^{\parallel-\perp}$ or deviatoric strain, must be either projected out before the isotropic static row is evaluated or carried in `anisotropic_residuals`. The isotropic $\Gamma_N$ row must not absorb directional pressure response as a hidden scalar coefficient.
 
@@ -208,8 +208,8 @@ Each scenario supplies:
 
 | Field | Meaning |
 | --- | --- |
-| `gamma_eff` | PPN Shapiro-delay coefficient through $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$ |
-| `gamma_eff_sweep` | optional list of trial $\gamma_{\text{eff}}$ values for the shared-delay diagnostic |
+| `gamma_eff` | PPN Shapiro-delay coefficient through $a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}$ |
+| `gamma_eff_sweep` | optional list of trial $\gamma_{\mathrm{PPN}}$ values for the shared-delay diagnostic |
 | `response` | static weak-potential response vector $(a_n,a_\chi,a_\lambda,a_R)$ |
 | `pressure_bridge` | optional pressure row used to derive a normalized static-equivalent response vector |
 | `cadence_row` | cadence-stretch coefficients $(b_n,b_\chi,b_\lambda,b_R)$ for $\ln\Gamma_N$ |
@@ -225,7 +225,7 @@ The fixture reports:
 | --- | --- |
 | `diagnostics.a_chi_sig` | signal-delay coefficient fixed by the PPN Shapiro map |
 | `diagnostics.delta_chi_clk_sig` | shared clock/signal delay residual |
-| `diagnostics.gamma_eff_sweep` | optional sweep of shared-delay residuals over trial $\gamma_{\text{eff}}$ values |
+| `diagnostics.gamma_eff_sweep` | optional sweep of shared-delay residuals over trial $\gamma_{\mathrm{PPN}}$ values |
 | `diagnostics.endpoint_sum` | cadence-stretch row sum |
 | `diagnostics.endpoint_residual` | endpoint residual relative to $1$ |
 | `diagnostics.clock_rate_sum` | inverse clock-rate row sum |
@@ -241,7 +241,7 @@ The default mock packet has five rows.
 
 | Scenario | Expected behavior |
 | --- | --- |
-| `shared_delay_clean_gr_branch` | Passes with $\gamma_{\text{eff}}=1$, $a_\chi=2$, and $b_\chi=0.5$. |
+| `shared_delay_clean_gr_branch` | Passes with $\gamma_{\mathrm{PPN}}=1$, $a_\chi=2$, and $b_\chi=0.5$. |
 | `density_scale_compensated_branch` | Passes with nonzero density, scale, and core-radius responses while preserving the endpoint and row-inverse constraints. |
 | `split_clock_signal_delay_branch` | Fails shared-delay closure even though its endpoint and clock-rate rows close arithmetically. |
 | `underclosed_clock_row` | Fails the endpoint and clock-rate sums while satisfying the shared-delay residual. |

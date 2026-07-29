@@ -5133,6 +5133,33 @@ $$
 $$
 for the transverse scale ratio relative to a stated reference envelope. The pair $(\xi,\lambda)$ belongs first to braid envelope geometry: $\xi$ records shape and $\lambda$ records scale.
 
+The oblate spheroidal envelope volume is
+
+$$
+V_{\mathrm{env}}(v)
+=
+\frac{4\pi}{3}R_{\perp}^2(v)R_{\parallel}(v)
+$$
+
+Relative to the declared rest envelope,
+
+$$
+\frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
+=
+\lambda^3(v)\,\xi(v)
+$$
+
+This identity is geometric. If a homogeneous moving branch independently closes the Lorentz projection $\xi(v)=1/\gamma_{\mathrm{eff}}(v)+O(\epsilon_{\mathrm{LV}})$, then
+
+$$
+\frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
+=
+\frac{\lambda^3(v)}{\gamma_{\mathrm{eff}}(v)}
++O(\epsilon_{\mathrm{LV}})
+$$
+
+and the zero-extra-scale subclass $\lambda=1$ reduces to $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)=1/\gamma_{\mathrm{eff}}+O(\epsilon_{\mathrm{LV}})$. The volume law does not establish $\lambda=1$ or Lorentz closure; it exposes the packing and exclusion-volume quantity once those branch relations are supplied.
+
 Observer clock behavior is a downstream readout, not the definition of either geometry variable. In a successful homogeneous Lorentz-closure regime, the theory should derive
 $$
 \frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma}

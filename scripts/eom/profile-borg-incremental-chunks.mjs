@@ -252,6 +252,7 @@ const measuredClient = {
       claimGrade: response.claimGrade,
       memoryBudgetBytes: response.memoryBudgetBytes,
       memoryEstimateBytes: response.memoryEstimateBytes,
+      historyStorage: response.historyStorage ?? null,
       traversalEnclosedPairs: finalStepFailure?.traversalEnclosedPairs ?? 0,
       enclosedErrorWidthTotal: finalStepFailure?.enclosedErrorWidthTotal ?? 0,
       enclosedErrorWidthMaxReceiver:
@@ -473,6 +474,11 @@ const timingFieldTotals = Object.fromEntries(
     "traversalWallSeconds",
     "rootBatchWallSeconds",
     "rootBinary64WorkerWallSeconds",
+    "rootBinary64SetupWorkerWallSeconds",
+    "rootBinary64WarmStartWorkerWallSeconds",
+    "rootBinary64CellSetupWorkerWallSeconds",
+    "rootBinary64CellClassificationWorkerWallSeconds",
+    "rootBinary64FinalizationWorkerWallSeconds",
     "rootPairCount",
     "rootReevaluatedCells",
     "rootWarmExcludedCells",
@@ -488,9 +494,40 @@ const timingFieldTotals = Object.fromEntries(
     "accelerationWorkerIdleOrchestrationWallSeconds",
     "accelerationPrecisionEscalationWorkerSeconds",
     "accelerationPrecisionEscalationAttemptCount",
+    "jointSnapshotWallSeconds",
+    "jointReceiverStateWallSeconds",
+    "jointRowCertificationWallSeconds",
+    "jointDeterministicReductionWallSeconds",
+    "jointSnapshotCount",
+    "reusedJointStartSnapshotCount",
+    "jointStartSnapshotWallSeconds",
+    "jointPredictorSnapshotWallSeconds",
+    "jointCorrectionSnapshotWallSeconds",
+    "jointEndpointContractionWallSeconds",
     "regulatorLadderWallSeconds",
     "commonDomainWallSeconds",
     "historyCopyHashWallSeconds",
+    "endpointStateLookupWallSeconds",
+    "endpointStateLookupDiskBlockLoads",
+    "endpointStateLookupDiskCacheMisses",
+    "endpointPositionLookupWallSeconds",
+    "endpointPositionLookupDiskBlockLoads",
+    "endpointPositionLookupDiskCacheMisses",
+    "endpointVelocityLookupWallSeconds",
+    "endpointVelocityLookupDiskBlockLoads",
+    "endpointVelocityLookupDiskCacheMisses",
+    "segmentConstructionWallSeconds",
+    "segmentConstructionDiskBlockLoads",
+    "segmentConstructionDiskCacheMisses",
+    "tailBlockCopyWallSeconds",
+    "tailBlockCopyDiskBlockLoads",
+    "tailBlockCopyDiskCacheMisses",
+    "fingerprintMetadataUpdateWallSeconds",
+    "fingerprintMetadataUpdateDiskBlockLoads",
+    "fingerprintMetadataUpdateDiskCacheMisses",
+    "historyInflationWallSeconds",
+    "historyInflationDiskBlockLoads",
+    "historyInflationDiskCacheMisses",
     "correctionWallSeconds",
     "reusedStartSnapshotCount",
     "recertificationWallSeconds",
@@ -517,6 +554,13 @@ const regulatorEventVisitedCellsTotal = nativeChunks.reduce(
 const regulatorLevelEvaluationCountTotal = nativeChunks.reduce(
   (sum, chunk) => sum + chunk.regulatorLevelEvaluationCount,
   0,
+);
+const maximumHistoryDiskBytes = maximum(
+  nativeChunks.map((chunk) => Number(chunk.historyStorage?.diskBytes ?? 0)),
+);
+const maximumHistoryBlockFileCount = maximum(
+  nativeChunks.map((chunk) =>
+    Number(chunk.historyStorage?.blockFileCount ?? 0)),
 );
 const attemptedHeights = nativeChunks.flatMap((chunk) =>
   chunk.attemptedSteps.map((step) =>
@@ -577,12 +621,21 @@ process.stdout.write(`${JSON.stringify({
     correctionWallSeconds,
     nestedTimingWarning:
       "correction, snapshot, root, acceleration, history-copy, recertification, " +
-      "regulator, common-domain, and rejection fields overlap and must not be " +
-      "summed as disjoint wall time",
+      "joint-state, regulator, common-domain, and rejection fields overlap and must not be " +
+      "summed as disjoint wall time; the reported history-state phase fields are " +
+      "additive components of historyCopyHashWallSeconds",
     processProtocolAndMergeWallSeconds: Math.max(
       0,
       outerTotalWallSeconds - nativeTotalWallSeconds,
     ),
+  },
+  historyStorage: {
+    schema: nativeChunks.at(-1)?.historyStorage?.schema ?? null,
+    mode: nativeChunks.at(-1)?.historyStorage?.mode ?? null,
+    maximumDiskBytesObserved: maximumHistoryDiskBytes,
+    maximumBlockFileCountObserved: maximumHistoryBlockFileCount,
+    cachedBlocksPerThread:
+      nativeChunks.at(-1)?.historyStorage?.cachedBlocksPerThread ?? null,
   },
   chunkWallTime: {
     nativeMedianSeconds: median(nativeChunkWallTimes),
@@ -799,6 +852,14 @@ function wallTimeShares(totals, denominator) {
     "historyWindowWallSeconds",
     "traversalWallSeconds",
     "rootBatchWallSeconds",
+    "jointSnapshotWallSeconds",
+    "jointReceiverStateWallSeconds",
+    "jointRowCertificationWallSeconds",
+    "jointDeterministicReductionWallSeconds",
+    "jointStartSnapshotWallSeconds",
+    "jointPredictorSnapshotWallSeconds",
+    "jointCorrectionSnapshotWallSeconds",
+    "jointEndpointContractionWallSeconds",
     "accelerationWallSeconds",
     "finiteWidthExecutionUnionWallSeconds",
     "sharpExecutionUnionWallSeconds",
@@ -807,6 +868,13 @@ function wallTimeShares(totals, denominator) {
     "regulatorLadderWallSeconds",
     "commonDomainWallSeconds",
     "historyCopyHashWallSeconds",
+    "endpointStateLookupWallSeconds",
+    "endpointPositionLookupWallSeconds",
+    "endpointVelocityLookupWallSeconds",
+    "segmentConstructionWallSeconds",
+    "tailBlockCopyWallSeconds",
+    "fingerprintMetadataUpdateWallSeconds",
+    "historyInflationWallSeconds",
     "correctionWallSeconds",
     "recertificationWallSeconds",
     "rejectionWallSeconds",

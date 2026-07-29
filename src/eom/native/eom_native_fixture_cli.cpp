@@ -16,6 +16,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <map>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -484,6 +485,131 @@ void print_traversal_exact_batch(
   std::cout << "]}";
 }
 
+struct JointTraversalCarrierControl {
+  eom::ExactPairCertificate direct;
+  eom::CertifiedTraversalExactBatchCertificate carried;
+  eom::CertifiedTraversalExactBatchCertificate missing;
+};
+
+JointTraversalCarrierControl joint_traversal_carrier_control() {
+  const eom::RetainedHistory receiver(
+      "joint-traversal-receiver",
+      {segment("0", "3", {"1", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.010200000000001", "0")});
+  const eom::RetainedHistory source(
+      "joint-traversal-source",
+      {segment("0", "3", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "0.009800000000001", "0")});
+  eom::JointAffineCubicSegment receiver_segment;
+  eom::JointAffineCubicSegment source_segment;
+  receiver_segment.start_time = source_segment.start_time = 0.0;
+  receiver_segment.end_time = source_segment.end_time = 3.0;
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    for (std::size_t degree = 0U; degree < 4U; ++degree) {
+      receiver_segment.position_coefficients[axis][degree] = {0.0};
+      source_segment.position_coefficients[axis][degree] = {0.0};
+    }
+  }
+  receiver_segment.position_coefficients[0][0] = {1.02e-2};
+  source_segment.position_coefficients[0][0] = {9.8e-3};
+  const std::map<std::string, eom::JointAffineRetainedHistory>
+      joint_histories{
+          {"joint-traversal-receiver",
+           eom::JointAffineRetainedHistory(
+               "joint-traversal-receiver", {"shared-translation"},
+               {receiver_segment})},
+          {"joint-traversal-source",
+           eom::JointAffineRetainedHistory(
+               "joint-traversal-source", {"shared-translation"},
+               {source_segment})},
+      };
+  const auto direct = eom::certify_exact_pair({
+      .row_id = "joint_traversal_direct_control",
+      .receiver = &receiver,
+      .source = &source,
+      .receiver_path_id = "joint-traversal-receiver",
+      .source_path_id = "joint-traversal-source",
+      .reception_time = "2",
+      .search_lower = "0",
+      .search_upper = "1.9",
+      .field_speed = "1",
+      .root_tolerance = "0.001",
+      .max_depth = 256,
+      .max_cells = 500000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .force_precision_escalation = true,
+      .joint_receiver_history =
+          &joint_histories.at("joint-traversal-receiver"),
+      .joint_transmitter_history =
+          &joint_histories.at("joint-traversal-source"),
+  });
+  const eom::CertifiedTraversalRequest traversal_request{
+      .traversal_id = "joint-traversal-carrier-control",
+      .receivers = {{
+          "joint-traversal-receiver", &receiver, true}},
+      .sources = {{
+          "joint-traversal-source", &source, true}},
+      .reception = {"2", "2"},
+      .emission = {"0", "1.9"},
+      .field_speed = "1",
+      .exact_tile_pair_limit = 1,
+      .maximum_nodes = 8,
+      .maximum_emission_depth = 0,
+  };
+  const auto traversal =
+      eom::certify_moving_history_traversal(traversal_request);
+  const eom::CertifiedTraversalExactBatchRequest carried_request{
+      .traversal_request = &traversal_request,
+      .traversal_certificate = &traversal,
+      .reception_time = "2",
+      .search_lower = "0",
+      .search_upper = "1.9",
+      .root_tolerance = "0.001",
+      .root_max_depth = 256,
+      .root_max_cells = 500000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .maximum_exact_pairs = 1,
+      .thread_count = 1,
+      .joint_histories = &joint_histories,
+  };
+  auto missing_request = carried_request;
+  missing_request.joint_histories = nullptr;
+  return {
+      .direct = direct,
+      .carried =
+          eom::certify_traversal_exact_pair_batch(carried_request),
+      .missing =
+          eom::certify_traversal_exact_pair_batch(missing_request),
+  };
+}
+
+void print_joint_traversal_carrier_control(
+    const JointTraversalCarrierControl& control) {
+  std::cout << "{\"direct\":";
+  print_pair(control.direct);
+  std::cout << ",\"carried_batch_status\":\""
+            << control.carried.status
+            << "\",\"carried\":";
+  if (control.carried.exact_pair_certificates.size() != 1U) {
+    throw std::runtime_error(
+        "joint traversal carrier control lacks its exact row");
+  }
+  print_pair(control.carried.exact_pair_certificates.front());
+  std::cout << ",\"missing_batch_status\":\""
+            << control.missing.status
+            << "\",\"missing\":";
+  if (control.missing.exact_pair_certificates.size() != 1U) {
+    throw std::runtime_error(
+        "joint traversal missing-carrier control lacks its exact row");
+  }
+  print_pair(control.missing.exact_pair_certificates.front());
+  std::cout << '}';
+}
+
 std::vector<eom::ExactPairCertificate> pair_fixture() {
   const auto receiver = history("receiver-origin", {"0", "0", "0", "0"});
   const auto moving_receiver =
@@ -885,6 +1011,12 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
 }
 
 void print_all() {
+  const std::array<std::array<double, 3>, 1>
+      joint_receiver_position_coefficients{{{0.01, 0.0, 0.0}}};
+  const std::array<std::array<double, 3>, 1>
+      joint_transmitter_position_coefficients{{{0.004, 0.0, 0.0}}};
+  const std::array<std::array<double, 3>, 1>
+      joint_transmitter_velocity_coefficients{{{0.002, 0.0, 0.0}}};
   const eom::JointSharpRowRequest joint_sharp_request{
       .point_displacement = {
           eom::Interval::point(2.0), eom::Interval::point(0.0),
@@ -904,9 +1036,12 @@ void print_all() {
       .field_speed = eom::Interval::point(1.0),
       .certified_transmitter_factor = eom::Interval(0.7, 0.8),
       .signed_coupling = eom::Interval::point(3.0),
-      .receiver_position_coefficients = {{0.01, 0.0, 0.0}},
-      .transmitter_position_coefficients = {{0.004, 0.0, 0.0}},
-      .transmitter_velocity_coefficients = {{0.002, 0.0, 0.0}},
+      .receiver_position_coefficients =
+          joint_receiver_position_coefficients,
+      .transmitter_position_coefficients =
+          joint_transmitter_position_coefficients,
+      .transmitter_velocity_coefficients =
+          joint_transmitter_velocity_coefficients,
       .receiver_position_remainder_radii = {1e-5, 1e-5, 1e-5},
       .transmitter_position_remainder_radii = {1e-5, 1e-5, 1e-5},
       .transmitter_velocity_remainder_radii = {1e-5, 1e-5, 1e-5},
@@ -937,6 +1072,32 @@ void print_all() {
       "joint-history-control", {"epsilon-0"}, {joint_history_segment});
   const auto joint_affine_evaluation = joint_affine_history.evaluate(
       0.5, {0.1, 1e-15, 1e-15}, {0.1, 1e-15, 1e-15});
+  const auto direct_joint_affine_evaluation =
+      joint_affine_history.evaluate_segment(
+          0U, 0.5, {0.1, 1e-15, 1e-15}, {0.1, 1e-15, 1e-15});
+  if (direct_joint_affine_evaluation.position.path_id !=
+          joint_affine_evaluation.position.path_id ||
+      direct_joint_affine_evaluation
+              .position.shared_symbol_coefficients !=
+          joint_affine_evaluation.position.shared_symbol_coefficients ||
+      direct_joint_affine_evaluation
+              .position.independent_remainder_radii !=
+          joint_affine_evaluation.position.independent_remainder_radii ||
+      direct_joint_affine_evaluation.position.ordinary_position_radii !=
+          joint_affine_evaluation.position.ordinary_position_radii ||
+      direct_joint_affine_evaluation.velocity_shared_coefficients !=
+          joint_affine_evaluation.velocity_shared_coefficients ||
+      direct_joint_affine_evaluation.velocity_remainder_radii !=
+          joint_affine_evaluation.velocity_remainder_radii ||
+      direct_joint_affine_evaluation.ordinary_velocity_radii !=
+          joint_affine_evaluation.ordinary_velocity_radii ||
+      direct_joint_affine_evaluation.position_fallback_dominates !=
+          joint_affine_evaluation.position_fallback_dominates ||
+      direct_joint_affine_evaluation.velocity_fallback_dominates !=
+          joint_affine_evaluation.velocity_fallback_dominates) {
+    throw std::runtime_error(
+        "direct joint segment evaluation changed the exact point image");
+  }
   const auto centered_square = eom::certify_centered_affine_map({
       .output_center = {1.0},
       .output_center_enclosure = {eom::Interval::point(1.0)},
@@ -989,6 +1150,14 @@ void print_all() {
           .receiver_factor = eom::Interval::point(1.0),
           .transmitter_segment_index = 0U,
       });
+  const std::array<eom::IntervalVector, 1>
+      delayed_root_analytic_receiver_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.01), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
+  const std::array<eom::IntervalVector, 1>
+      delayed_root_analytic_transmitter_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.004), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
   const auto delayed_root_analytic =
       eom::certify_delayed_root_sensitivity({
           .displacement = {
@@ -999,13 +1168,19 @@ void print_all() {
               eom::Interval::point(0.0)},
           .field_speed = eom::Interval::point(1.0),
           .certified_transmitter_factor = eom::Interval::point(0.75),
-          .receiver_position_coefficients = {{
-              eom::Interval::point(0.01), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
-          .transmitter_position_coefficients = {{
-              eom::Interval::point(0.004), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
+          .receiver_position_coefficients =
+              delayed_root_analytic_receiver_coefficients,
+          .transmitter_position_coefficients =
+              delayed_root_analytic_transmitter_coefficients,
       });
+  const std::array<eom::IntervalVector, 1>
+      delayed_root_zero_receiver_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.01), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
+  const std::array<eom::IntervalVector, 1>
+      delayed_root_zero_transmitter_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.004), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
   const auto delayed_root_zero_factor =
       eom::certify_delayed_root_sensitivity({
           .displacement = {
@@ -1016,13 +1191,23 @@ void print_all() {
               eom::Interval::point(0.0)},
           .field_speed = eom::Interval::point(0.25),
           .certified_transmitter_factor = eom::Interval::point(0.0),
-          .receiver_position_coefficients = {{
-              eom::Interval::point(0.01), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
-          .transmitter_position_coefficients = {{
-              eom::Interval::point(0.004), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
+          .receiver_position_coefficients =
+              delayed_root_zero_receiver_coefficients,
+          .transmitter_position_coefficients =
+              delayed_root_zero_transmitter_coefficients,
       });
+  const std::array<eom::IntervalVector, 1>
+      sharp_acceleration_receiver_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.01), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
+  const std::array<eom::IntervalVector, 1>
+      sharp_acceleration_transmitter_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.004), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
+  const std::array<eom::IntervalVector, 1>
+      sharp_acceleration_velocity_coefficients{eom::IntervalVector{
+          eom::Interval::point(0.002), eom::Interval::point(0.0),
+          eom::Interval::point(0.0)}};
   const auto sharp_acceleration_analytic =
       eom::certify_sharp_acceleration_sensitivity({
           .displacement = {
@@ -1037,15 +1222,12 @@ void print_all() {
           .field_speed = eom::Interval::point(1.0),
           .certified_transmitter_factor = eom::Interval::point(0.75),
           .signed_coupling = eom::Interval::point(3.0),
-          .receiver_position_coefficients = {{
-              eom::Interval::point(0.01), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
-          .transmitter_position_coefficients = {{
-              eom::Interval::point(0.004), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
-          .transmitter_velocity_coefficients = {{
-              eom::Interval::point(0.002), eom::Interval::point(0.0),
-              eom::Interval::point(0.0)}},
+          .receiver_position_coefficients =
+              sharp_acceleration_receiver_coefficients,
+          .transmitter_position_coefficients =
+              sharp_acceleration_transmitter_coefficients,
+          .transmitter_velocity_coefficients =
+              sharp_acceleration_velocity_coefficients,
       });
   const auto sqrt_two_krawczyk = eom::certify_krawczyk_inclusion({
       .center = {1.4142},
@@ -1382,6 +1564,9 @@ void print_all() {
   print_traversal_exact_batch(accelerating_exact);
   std::cout << ",\"accelerating_traversal_exact_batch_single_thread\":";
   print_traversal_exact_batch(accelerating_exact_single);
+  std::cout << ",\"joint_traversal_carrier_control\":";
+  print_joint_traversal_carrier_control(
+      joint_traversal_carrier_control());
   std::cout << ",\"pairs\":[";
   const auto pairs = pair_fixture();
   for (std::size_t index = 0; index < pairs.size(); ++index) {

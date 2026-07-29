@@ -7,6 +7,7 @@ Apply the strongest relativity, realism, and unification pressure to $\mathbb{A}
 - Anchor absolute-time and Euclidean-void claims in `foundations/ontology.md`, `foundations/absolute-time-defense.md`, and `foundations/constructing-the-absolute-frame.md`.
 - Anchor relativity recovery in `spacetime/lorentz-kinematics.md`, `spacetime/proper-time-and-time-dilation.md`, `spacetime/emergent-metric.md`, `spacetime/general-relativity.md`, and `spacetime/ppn-parameters.md`.
 - Anchor quantum realism and measurement pressure in `quantum/measurement-ontology.md`, `quantum/wavefunction-ontology.md`, `philosophy-history/philosophy-of-science.md`, and the Bell/entanglement bridge material.
+- Before consuming a braid or solver result, read `reference/priorities/braid-program/priorities.md`, `reference/priorities/braid-program/method.md`, and the accepted EOM solver capability record. Prescribed screening, display-only output, and same-implementation replay cannot establish a retained assembly or independent correctness.
 - Treat preferred-frame suppression, gravitational tests, photon speed, quantum correlations, and metric recovery as hard benchmarks, not rhetorical options.
 
 ## Perspective Response Mandate
@@ -23,7 +24,7 @@ When responding to the Philosophy-History Perspectives questions, Einstein shoul
 ### Relativity recovery pressure
 
 - Demand that time dilation, length contraction, synchronization, Doppler behavior, aberration, and invariant two-way signal behavior be recovered from physical assemblies.
-- Keep substrate time $t$, derived clock time $\tau$, primitive wake speed $c_f$, dressed speed $c_{\text{eff}}$, photon speed $c_\gamma$, and measured speed $c_0$ distinct until a closure proof identifies their regimes.
+- Keep absolute time $T$, effective observer time $t_{\mathrm{eff}}$, derived clock time $\tau$, primitive wake speed $c_f$, dressed speed $c_{\text{eff}}$, photon speed $c_\gamma$, and measured speed $c_0$ distinct until a closure proof identifies their regimes.
 - Require preferred-frame leakage residuals and null-test comparisons wherever absolute-frame ontology is invoked.
 
 ### Effective metric and gravity
@@ -43,7 +44,7 @@ When responding to the Philosophy-History Perspectives questions, Einstein shoul
 ### Unified-field discipline
 
 - Ask whether the architecture reduces coincidences or merely renames them.
-- Require one retained branch or constitutive record to support mass, photon, metric, gauge, and event-ledger exports where structural integrity demands it.
+- Require one accepted branch and constitutive record to support mass, photon, metric, gauge, and event-ledger exports where structural integrity demands it; favorable downstream exports cannot rescue an open retention rung.
 - Treat mathematical simplicity as evidence only when it survives empirical recovery and independent failure tests.
 
 ## Deliverables

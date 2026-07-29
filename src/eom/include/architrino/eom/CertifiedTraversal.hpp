@@ -2,9 +2,12 @@
 
 #include "architrino/eom/BlockExclusion.hpp"
 #include "architrino/eom/ExactPairBatch.hpp"
+#include "architrino/eom/JointAffineHistory.hpp"
+#include "architrino/eom/JointRootBracket.hpp"
 
 #include <cstddef>
 #include <cstdint>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -93,6 +96,13 @@ struct CertifiedTraversalExactBatchRequest {
   std::uint64_t maximum_exact_pairs = 10000000;
   std::size_t thread_count = 1;
   const std::vector<ExactPairWarmStart>* warm_starts = nullptr;
+  // Optional coupled-state carriers for difficult exact fallbacks. The
+  // traversal still owns only pair selection; ExactPairBatch independently
+  // recomputes ordinary geometry before it may consume either carrier.
+  const std::map<std::string, JointRootBracketRequest>*
+      joint_root_point_states = nullptr;
+  const std::map<std::string, JointAffineRetainedHistory>*
+      joint_histories = nullptr;
 };
 
 struct CertifiedTraversalExactBatchCertificate {

@@ -76,6 +76,61 @@ struct HistoryDiskStorageStats {
   std::string run_id;
 };
 
+enum class HistoryDiagnosticPhase : std::uint8_t {
+  unclassified = 0,
+  endpoint_state_lookup,
+  endpoint_position_lookup,
+  endpoint_velocity_lookup,
+  segment_construction,
+  tail_block_copy,
+  fingerprint_metadata_update,
+  history_inflation,
+  count,
+};
+
+struct HistoryDiagnosticCounters {
+  std::uint64_t disk_block_load_count = 0U;
+  std::uint64_t disk_cache_miss_count = 0U;
+};
+
+// Phase selection and counters are thread-local diagnostics. They do not
+// participate in history storage, lookup, fingerprints, or solver decisions.
+class ScopedHistoryDiagnosticPhase {
+ public:
+  explicit ScopedHistoryDiagnosticPhase(
+      HistoryDiagnosticPhase phase) noexcept;
+  ~ScopedHistoryDiagnosticPhase();
+
+  ScopedHistoryDiagnosticPhase(const ScopedHistoryDiagnosticPhase&) = delete;
+  ScopedHistoryDiagnosticPhase& operator=(
+      const ScopedHistoryDiagnosticPhase&) = delete;
+
+ private:
+  HistoryDiagnosticPhase previous_;
+};
+
+[[nodiscard]] HistoryDiagnosticCounters
+current_thread_history_diagnostic_counters(
+    HistoryDiagnosticPhase phase) noexcept;
+
+struct HistoryAppendDiagnostics {
+  double tail_block_copy_wall_seconds = 0.0;
+  double fingerprint_metadata_update_wall_seconds = 0.0;
+  double terminal_join_validation_wall_seconds = 0.0;
+  double fingerprint_update_wall_seconds = 0.0;
+  double segment_metadata_wall_seconds = 0.0;
+  double history_wrapper_construction_wall_seconds = 0.0;
+  std::uint64_t tail_block_copy_disk_block_load_count = 0U;
+  std::uint64_t tail_block_copy_disk_cache_miss_count = 0U;
+  std::uint64_t fingerprint_metadata_update_disk_block_load_count = 0U;
+  std::uint64_t fingerprint_metadata_update_disk_cache_miss_count = 0U;
+};
+
+struct HistoryEndpointState {
+  IntervalVector position;
+  IntervalVector velocity;
+};
+
 // The Borg persistent worker owns this lifecycle. Configuration removes stale
 // files under the dedicated root; begin replaces the preceding run; release
 // removes the active run. Full immutable blocks are exact token records.
@@ -271,6 +326,10 @@ class HistorySegmentSequence {
   [[nodiscard]] PinnedSegment pin(std::size_t index) const;
   [[nodiscard]] CubicHistorySegment front() const;
   [[nodiscard]] CubicHistorySegment back() const;
+  // Validate a prospective append against the immutable terminal segment.
+  // The exact terminal endpoint is cached lazily by the sequence owner so
+  // repeated predictor/corrector branches do not reconstruct the same state.
+  void validate_append(const CubicHistorySegment& segment) const;
   [[nodiscard]] std::size_t resident_segment_count() const noexcept;
   [[nodiscard]] std::size_t disk_backed_block_count() const noexcept;
   [[nodiscard]] const_iterator begin() const { return {this, 0U}; }
@@ -332,6 +391,10 @@ class RetainedHistory {
   [[nodiscard]] IntervalVector velocity_hull(const Interval& time) const;
   [[nodiscard]] IntervalVector correlated_velocity_hull(
       const Interval& time) const;
+  // The terminal accepted-history state is a hot evolution boundary. Evaluate
+  // its position and velocity together from the indexed tail rather than
+  // routing the point query through general retained-interval scans.
+  [[nodiscard]] HistoryEndpointState endpoint_state_hull() const;
   [[nodiscard]] std::array<double, 3> nominal_position(double time) const;
   [[nodiscard]] std::array<double, 3> nominal_velocity(double time) const;
   [[nodiscard]] std::optional<IntervalVector>
@@ -341,7 +404,9 @@ class RetainedHistory {
   [[nodiscard]] std::optional<IntervalVector> correlated_self_displacement(
       const Interval& reception,
       const Interval& emission) const;
-  [[nodiscard]] RetainedHistory appended(CubicHistorySegment segment) const;
+  [[nodiscard]] RetainedHistory appended(
+      CubicHistorySegment segment,
+      HistoryAppendDiagnostics* diagnostics = nullptr) const;
   [[nodiscard]] RetainedHistory retained_suffix(
       std::size_t first_segment_index) const;
 

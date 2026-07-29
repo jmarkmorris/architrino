@@ -2,6 +2,7 @@
 #include "architrino/eom/Decimal.hpp"
 
 #include <algorithm>
+#include <chrono>
 #include <cmath>
 #include <cstdlib>
 #include <iomanip>
@@ -215,6 +216,7 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
     const NativeAccelerationSnapshotCertificate& snapshot,
     const std::vector<NativePublishedPath>& ordinary_histories,
     const std::map<std::string, JointAffineRetainedHistory>& joint_histories) {
+  using JointClock = std::chrono::steady_clock;
   JointAccelerationSnapshotCertificate result;
   if (snapshot.status != "certified_complete") {
     result.failure_code = "joint_snapshot_requires_certified_snapshot";
@@ -239,6 +241,7 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
   const Interval reception_interval =
       Interval::decimal_token(snapshot.reception_time);
   for (const auto& receiver_id : snapshot.acceleration.path_ids) {
+    auto phase_start = JointClock::now();
     const auto receiver_joint_found = joint_histories.find(receiver_id);
     if (receiver_joint_found == joint_histories.end()) {
       result.failure_code = "joint_snapshot_lacks_receiver_history";
@@ -252,6 +255,8 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
         receiver_ordinary.velocity_hull(reception_interval);
     const auto receiver_joint = receiver_joint_found->second.evaluate(
         reception, radii(receiver_position_box), radii(receiver_velocity_box));
+    result.receiver_state_wall_seconds += std::chrono::duration<double>(
+        JointClock::now() - phase_start).count();
     if (!receiver_joint.position_fallback_dominates ||
         !receiver_joint.velocity_fallback_dominates) {
       for (std::size_t axis = 0U; axis < 3U; ++axis) {
@@ -296,6 +301,7 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
       return result;
     }
 
+    phase_start = JointClock::now();
     std::vector<JointSharpRowCertificate> rows;
     std::size_t receiver_fallback_rows = 0U;
     for (const auto& pair : snapshot.acceleration.pair_certificates) {
@@ -362,13 +368,10 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
             Interval::point(emission_center));
         const auto source_velocity_box = source_segment.velocity_interval(
             Interval::point(emission_center));
-        const JointAffineRetainedHistory source_joint_history(
-            pair.transmitter_path_id,
-            transmitter_joint_found->second.symbol_registry(),
-            {transmitter_joint_found->second.segments()[source_segment_index]});
-        const auto transmitter_joint = source_joint_history.evaluate(
-            emission_center, radii(source_position_box),
-            radii(source_velocity_box));
+        const auto transmitter_joint =
+            transmitter_joint_found->second.evaluate_segment(
+                source_segment_index, emission_center,
+                radii(source_position_box), radii(source_velocity_box));
         if (!transmitter_joint.position_fallback_dominates ||
             !transmitter_joint.velocity_fallback_dominates) {
           for (std::size_t axis = 0U; axis < 3U; ++axis) {
@@ -435,7 +438,8 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
           for (std::size_t axis = 0U; axis < 3U; ++axis) {
             for (std::size_t degree = 0U; degree < 4U; ++degree) {
               for (const double coefficient :
-                   source_joint_history.segments()[0]
+                   transmitter_joint_found->second
+                       .segments()[source_segment_index]
                        .position_coefficients[axis][degree]) {
                 if (coefficient == 0.0) continue;
                 ++raw_nonzero_coefficients;
@@ -532,7 +536,10 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
         ++result.consumed_sharp_rows;
       }
     }
+    result.row_certification_wall_seconds += std::chrono::duration<double>(
+        JointClock::now() - phase_start).count();
 
+    phase_start = JointClock::now();
     JointReceiverAccelerationState receiver_state;
     receiver_state.path_id = receiver_id;
     receiver_state.shared_symbol_coefficients.resize(result.shared_symbol_count);
@@ -639,6 +646,9 @@ JointAccelerationSnapshotCertificate certify_joint_acceleration_snapshot(
           total_failure_detail;
       return result;
     }
+    result.deterministic_reduction_wall_seconds +=
+        std::chrono::duration<double>(
+            JointClock::now() - phase_start).count();
     result.receivers.push_back(std::move(receiver_state));
   }
   result.certified = true;

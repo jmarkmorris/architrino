@@ -21,3 +21,4 @@ tmp/
 
 # Local Archie corpus-exploration coordination cards
 reference/entourage/archie/reports/corpus-exploration-claims/
+.fuse_hidden*

@@ -82,6 +82,34 @@ Object keys are sorted recursively before hashing; array order remains part of t
 
 The result claim grade is `derived`: it is conditional on the prescribed source record and protocol. The packet explicitly excludes stability, energy, retention, and physical-realization claims.
 
+## A1.1 Continuous Ratio–Phase Root Inventory
+
+`evaluateA11ContinuousRootInventory({ protocol })` owns the diagnostic-only
+A1.1 continuous ratio–phase inventory. Its V1 protocol is locked to the
+operator-approved middle-pinned ratio box, $\chi_n=9/4$, symmetric phase
+baseline, all $36$ ordered endpoint channels, and the nine-rule fail-closed
+root/fold policy.
+
+This instrument uses prescribed exact circles and its own outward-rounded
+interval implementation. It does not call the EOM solver, use EOM interval
+machinery, or evolve paths. Every root-free cell, simple-root-sheet cell,
+boundary stratum, and unresolved partition is preserved in the full topology
+ledger. If a possible root or fold remains after a declared depth or cell
+limit, the result is `drawn-not-evaluated` with `score: null`.
+
+The secondary
+`recomputeA11SquaredCausalResidual(...)` path evaluates
+$\lVert\mathbf x_r-\mathbf x_t\rVert^2-\delta^2$ from direct coordinates. It
+does not participate in interval certification decisions. Because both
+implementations entered in the same change, their agreement is a diagnostic
+implementation-parity control rather than independent mathematical
+acceptance.
+
+Plainly: the A1.1 instrument can certify or reject pieces of the frozen
+drawing-level parameter family and can expose its own incomplete reach. It
+cannot establish an EOM-retained braid, stability, energy, or physical
+realization.
+
 ## Pointwise Summed-Acceleration Screen
 
 The complete-cycle moving-endpoint reducer reports

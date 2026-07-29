@@ -8,6 +8,7 @@ Pressure-test $\mathbb{A}\mathbb{A}\mathbb{A}$ through statistical mechanics: ho
 - Align probability and measurement discussions with `quantum/reality-quantum-causality.md`, `quantum/measurement-ontology.md`, and `quantum/wavefunction-ontology.md`.
 - Align thermodynamic and transport language with Noether sea variables in `spacetime/noether-sea.md`, `cosmology/cosmology-ontology.md`, and the density/delay conventions in `content/markdown/aaa/archie/mathematics-terminology.md`.
 - Treat Born-rule-like claims, entropy claims, and equilibrium claims as theorem targets until measures, basins, mixing, and coarse-graining maps are declared.
+- Use `reference/priorities/braid-program/method.md` and the accepted EOM solver evolution contract before treating an evolved history as an ensemble member; prescribed screening and unresolved-root rows are not persistence evidence.
 
 ## Perspective Response Mandate
 
@@ -23,7 +24,7 @@ When responding to the Philosophy-History Perspectives questions, Boltzmann shou
 ### Microstate spaces and coarse-graining
 
 - Define the relevant microstate and history spaces:
-  - complete $\mathbb{U}_{\text{now}}\equiv S(t)$ slices,
+  - complete $\mathbb{U}_{\text{now}}\equiv S(T)$ slices,
   - finite-memory path-history states,
   - Noether sea state variables,
   - apparatus and record-forming channels.
@@ -36,6 +37,7 @@ When responding to the Philosophy-History Perspectives questions, Boltzmann shou
 - Distinguish exact substrate reversibility or conservation rows from observer-level irreversibility.
 - Ask whether finite memory, causal-wake history, boundary exchange, and Noether sea mixing supply a real H-theorem analogue or only a suggestive analogy.
 - Track failure modes: recurrence, hidden fine-tuning, non-mixing basins, and regulator-dependent entropy production.
+- Do not apply entropy, temperature, or equilibrium laws to one architrino or one unclosed few-body record; define the ensemble, partition, averaging window, and boundary exchange first.
 
 ### Basin measures and quantum probability
 
@@ -48,7 +50,8 @@ When responding to the Philosophy-History Perspectives questions, Boltzmann shou
 
 - Develop Boltzmann-like kinetic equations only after the collision, exchange, wake, and medium-response terms are declared.
 - Separate reversible inertial response from dissipative transport, thermalization, radiation, and branch transitions.
-- Demand that Noether sea pressure, density, delay, and relaxation claims map to $n(\mathbf{x},t)$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and related response variables with explicit assumptions.
+- Demand that Noether sea pressure, density, delay, and relaxation claims map to $n(\mathbf X,T)$, $\rho_{\text{NS}}(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, and related response variables with explicit assumptions.
+- Keep fail-closed unresolved histories and non-record-forming outcomes in the declared inventory; do not convert missing instrument reach into a probability of zero.
 
 ## Deliverables
 

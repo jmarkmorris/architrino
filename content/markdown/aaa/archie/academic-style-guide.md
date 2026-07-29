@@ -163,7 +163,7 @@ Where a strong claim is made, the prose should earn it through distinctions and 
 
 Good sentence patterns for this project include:
 
-- "The question is whether..."
+- "The question is whether..." only when the sentence introduces a genuinely open, explicitly named closure target
 - "The framework treats X as..., while Y is treated as..."
 - "What survives is..."
 - "The limitation appears when..."
@@ -171,6 +171,23 @@ Good sentence patterns for this project include:
 - "The comparison is strongest at the level of..., and weakest at the level of..."
 
 These patterns keep the prose analytic and layered.
+
+## Claim Grades and Falsifiers
+
+Use one fixed label in evidence blocks: `Claim grade:`. The allowed values are:
+
+- `derived`: follows from declared premises by a shown proof or exact derivation
+- `measured`: reported by a named instrument over a declared domain
+- `inferred`: a stated conclusion drawn from derived or measured premises, with the extra inference identified
+- `guessed`: a candidate interpretation or hypothesis that is not yet derived, measured, or securely inferred
+
+Every claim block must state an operator-checkable falsifier: the observation that would overturn the claim and the file, instrument, command, or artifact where that observation can be checked. A measured claim also names its instrument, the instrument’s evidence grade, and the boundary of what it can establish. Agreement with a replay, golden output, or same-implementation control is determinism evidence unless an independent reference is named.
+
+Example:
+
+> Claim grade: measured. The independent closed-form root oracle found one simple root on the declared interval. Falsifier: rerun the named oracle artifact and find zero, multiple, or non-simple roots on that same interval.
+
+Use these tags for explicit claim or evidence blocks, not as status flags scattered through ordinary explanatory prose.
 
 ## What To Avoid
 
@@ -232,9 +249,15 @@ KaTeX authoring rules:
 - Use `$...$` for inline math in prose sentences.
 - Use `$$...$$` only for standalone equations, not for sentence fragments or preview-style summary lines.
 - Treat `\(...\)` and `\[...\]` as compatibility forms for literal examples or renderer-specific validated cases, not as default authoring syntax.
-- Do not place `$$...$$` inline inside headings, list items, callouts, captions, or notebook summary sentences.
+- Do not place `$$...$$` inline inside headings, list labels, callouts, captions, or running sentences. A list item may introduce a following standalone display equation.
 - For inline inequalities or expressions containing `<` or `>` in prose, keep them in `$...$` with spaces, for example `$1 < m < n$`.
 - When a short formula is part of a narrative sentence, prefer one inline expression over a stacked display unless the derivation truly needs display layout.
+
+### Links
+
+- Use relative link targets resolved from the current document.
+- Do not use root-absolute deployment paths such as `/content/...` or machine-local paths such as `/Users/...`.
+- Documents under `content/markdown/aaa` must not link into `reference/priorities`; promote or restate the required material inside the reader-facing corpus.
 
 ### Causal-delay terminology
 

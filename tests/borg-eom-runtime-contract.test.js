@@ -611,8 +611,8 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
     htmlSource,
     /κ coupling[\s\S]*class="borg-step-control-group"[\s\S]*Step height[\s\S]*Adaptive minimum/,
   );
-  assert.match(htmlSource, /Max per-axis speed relative to c<sub>f<\/sub> = 1/);
-  assert.match(htmlSource, /Minimum total speed relative to c<sub>f<\/sub> = 1/);
+  assert.match(htmlSource, /<span>Max per-axis speed vs\. C<sub>f<\/sub> = 1<\/span>/);
+  assert.match(htmlSource, /<span>Minimum total speed vs\. C<sub>f<\/sub> = 1<\/span>/);
   assert.match(
     htmlSource,
     /id="borg-eom-controls"[\s\S]*id="borg-initial-condition-form"[\s\S]*id="borg-initial-condition-fields"/,

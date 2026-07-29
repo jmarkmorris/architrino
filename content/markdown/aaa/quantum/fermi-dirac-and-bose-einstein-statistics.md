@@ -22,7 +22,7 @@ The relevant object is the Noether braid described in [Noether Braid](../noether
 
 The family flag must remain explicit. A prescribed B1 candidate—with one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense—can be assigned a fusiform envelope, while a Family-A candidate whose axes follow the prescribed orthogonal-to-coincident response can be assigned an oblate spheroidal envelope. The envelope assignments and matter interpretation are hypotheses beyond the coordinate definitions. Either form can remain genuinely three-dimensional and volume-excluding. The statistics hypothesis therefore consumes a retained family-declared envelope and its packing interface, not the oblate sign $\xi<1$ as a universal Noether braid property.
 
-The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for fermionic exclusion: another same-channel assembly cannot be inserted into the same effective state without disturbing the retained branch.
+The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for the packing part of fermionic exclusion: another same-channel assembly cannot occupy the same complete spatial-mode and ordered-frame row without disturbing the retained branch.
 
 The good news for the pressure story is that this is not an alien mechanism. Electron degeneracy already teaches the observer-level lesson: when a population carries an exclusion rule, compression does not merely make the objects closer together; it changes the available state volume and produces a pressure response. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the same logic is pushed down one level. Retained Noether braid families have finite exclusion envelopes, so dense packing should produce an effective packing pressure before the language of a smooth continuum equation of state is introduced.
 
@@ -30,9 +30,9 @@ That statement has a controlled burden. The exclusion envelope can supply the ge
 
 ## Fermi-Dirac Regime: 3D Exclusion
 
-Fermi-Dirac behavior corresponds to Noether braid assemblies whose multi-binary orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
+Fermi-Dirac behavior corresponds to Noether braid assemblies whose multi-binary orbital support remains volumetric. The exclusion applies to the full effective row — spatial mode together with the retained ordered-frame spin row $r_\star$ — not to the spatial envelope alone. Two fermionic assemblies may occupy the same spatial mode when their ordered-frame rows are orthogonal, as the two electrons in a helium $1s$ shell require; exclusion applies when the complete effective rows coincide.
 
-In plain terms, the exclusion is not a command written onto a point particle. It is the cost of trying to make two retained assembly ledgers occupy one record-facing state while their wake histories, branch closures, and exclusion envelopes still need separate room.
+In plain terms, the exclusion is not a command written onto a point particle. It is the cost of making two complete retained rows coincide. Spatial overlap alone is allowed when the ordered-frame rows differ; the obstruction appears when spatial mode, ordered-frame row, wake history, and branch closure are all identified.
 
 The exclusion is not a hard material wall. It is a path-history and wake-geometry obstruction:
 
@@ -41,7 +41,7 @@ The exclusion is not a hard material wall. It is a path-history and wake-geometr
 - all three indexed binaries contribute to the internal stabilizing density,
 - and nearby braids cannot share the same local state without disrupting those orbit closures.
 
-At the effective quantum level, that obstruction must appear as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the candidate inability of two volumetric Noether braid envelopes to occupy the same state without losing stable Noether braid identity. The exchange sign still has to come from the ordered-frame spinor proof, not from volume exclusion alone.
+At the effective quantum level, that obstruction must appear as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the candidate inability of two volumetric Noether braid envelopes to occupy the same complete effective row without losing stable Noether braid identity; sharing a spatial mode with orthogonal ordered-frame rows remains allowed. The exchange sign still has to come from the ordered-frame spinor proof, not from volume exclusion alone.
 
 The blocker can be stated directly. Fermionic exchange-sign recovery cannot be credited to the 3D exclusion envelope until the same ordered-frame program supplies a retained non-gauge row $r_\star$ with
 
@@ -79,13 +79,21 @@ As on the fermionic side, this dimensional reduction is necessary but not suffic
 
 Atomic Bose-Einstein condensates rule out any universal identification of bosonic statistics with $\xi\to0$. Bosonic isotopes such as helium-4 and rubidium-87 are three-dimensional composite assemblies in their rest regime, and Cooper pairs are composite channels whose bosonic exchange behavior does not require a planar constituent envelope. Massive bosonic electroweak channels likewise show that bosonic statistics cannot be equated with the null endpoint.
 
-The effective exchange contract already contains the repair. Suppose a retained composite $C$ contains $m$ matched constituent exchange rows $r_a$ and that exchanging two copies of $C$ can be continuously decomposed into exchange of the corresponding constituent rows without changing the internal composite state. The composite exchange sign is then
+The effective exchange contract already contains the repair for three-dimensional or otherwise contractible exchanges represented by the permutation group. Suppose a retained composite $C$ contains $m$ matched constituent exchange rows $r_a$ and that exchanging two copies of $C$ can be continuously decomposed into exchange of the corresponding constituent rows without changing the internal composite state. The composite exchange sign is then
 $$
 \epsilon_{\mathrm{ex}}(C)
 =
 \prod_{a=1}^{m}\epsilon_{\mathrm{ex}}(r_a).
 $$
 If exactly $f$ of those rows are fermionic and the remaining rows have trivial bosonic sign, then $\epsilon_{\mathrm{ex}}(C)=(-1)^f$. An even number of fermionic rows therefore gives the symmetric composite sign $+1$, while an odd number gives $-1$. This is the observer-level exchange-composition target; it does not assert that the constituents lose identity or that a product sign alone guarantees condensation.
+
+That product law is not the general two-dimensional braid rule. For an Abelian anyon representation with single-anyon generator phase $e^{i\alpha}$, exchanging two identical composites containing $m$ matched anyons winds every constituent of one composite around every constituent of the other and gives
+$$
+U_{\mathrm{comp}}(\sigma)
+=
+e^{im^2\alpha}
+$$
+when the composites remain bound and the braid is adiabatic. The fermionic endpoint agrees with parity because $m^2\equiv m\pmod 2$ at $\alpha=\pi$; intermediate anyonic phases retain the $m^2$ dependence.
 
 The derivation burden is stricter than parity counting. The same retained composite record must show that whole-composite exchange preserves binding, returns the internal state to the same gauge class, keeps constituent overlap corrections below tolerance, and supplies the effective center-of-assembly state on which $P_+$ acts. At densities where the constituent wave or wake histories overlap strongly enough to expose their internal labels, ideal composite-boson behavior may fail. Atomic condensates, paired-electron channels, and massive bosonic assemblies therefore constrain this composition map independently of the planar photon-like route.
 
@@ -114,7 +122,13 @@ $$
 
 For compact notation, let $\xi_{\mathrm{stat}}$ denote the statistics-classifying ratio: $\xi_{\mathrm{stat}}=\xi_q(0)$ when an admissible rest branch exists, and otherwise the direct axis ratio of the retained null-channel support. It never denotes the Lorentz moving-branch projection $\xi_q(v)/\xi_q(0)$. A boosted massive fermion may therefore satisfy $\xi_q(v)/\xi_q(0)\to0$ while its rest-envelope class and fermionic exchange row remain unchanged. A photon-like carrier with no admissible rest branch must instead earn the planar classification from its null-channel support and exchange holonomy.
 
-The elementary fermion candidate regime has $\xi_{\mathrm{stat}}$ bounded away from zero. The rest envelope is oblate but still volumetric. The candidate planar coherent-channel regime is approached along an intrinsic carrier-family continuation as $\xi_{\mathrm{stat}}\to 0$, or at a rest-chartless null endpoint whose support is independently shown to be planar. Composite-boson exchange is not classified by this axis ratio.
+The thresholds are predeclared apparatus-and-family parameters satisfying
+$$
+0\le\xi_B<\xi_F\le1
+$$
+where $\xi_{\mathrm{stat}}\ge\xi_F$ is the calibrated volumetric regime and $\xi_{\mathrm{stat}}\le\xi_B$ is the calibrated planar-support regime. The intermediate window $\xi_B<\xi_{\mathrm{stat}}<\xi_F$ is unresolved by geometry alone. It is not automatically an anyonic sector: an anyonic classification additionally requires a two-dimensional non-contractible braid record and a measured nontrivial exchange holonomy. If a claimed elementary family crosses this window, closure requires either a theorem excluding stable retained branches there or an explicit exchange classification throughout it.
+
+The elementary fermion candidate regime has $\xi_{\mathrm{stat}}\ge\xi_F$. The rest envelope is oblate but still volumetric. The candidate planar coherent-channel regime has $\xi_{\mathrm{stat}}\le\xi_B$ along an intrinsic carrier-family continuation, or reaches a rest-chartless null endpoint whose support is independently shown to be planar. Composite-boson exchange is not classified by this axis ratio.
 
 The same zero-ratio endpoint appears in two other routes in the corpus. It is the light-speed limit of the normalized moving-branch Lorentz ratio, $\xi_q(v)/\xi_q(0)=1/\gamma_\star\to0$ as $\beta_\star\to1$, in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio); and it is the dimensional pinch toward a near-planar disk at the alignment interface of a black-hole horizon in [Black Holes](../spacetime/black-holes.md). Numerical coincidence at zero does not identify these charted limits: boosted massive fermions remain classified by their rest branch. The proposed identification is narrower — a carrier with no admissible rest branch may join the planar coherent, null-channel, and horizon-interface endpoints only if its supported geometry and exchange holonomy close on the same retained record. A rest-chartless null carrier that retains fermionic exchange holonomy, or reaches the null endpoint without the symmetric channel projection, falsifies that identification.
 

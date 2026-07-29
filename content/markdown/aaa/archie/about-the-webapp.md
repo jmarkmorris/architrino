@@ -57,13 +57,23 @@ The Archie branch also includes reader-facing reference documents that explain t
 
 The webapp also includes non-document surfaces where interaction is primary.
 
-Current examples include:
+The authored application index at `content/scenes/archie/applications.json` is the source of truth. Its current thirteen entries are:
 
-- image, reaction-diagram, and animation tools for selected assembly examples, with PDG-derived reaction data used only where provenance is clear enough for curated presentation.
-- the A1 Lorentz Geometry lesson, which links a prescribed A1 oblate spheroidal envelope, $\beta_f$, $\gamma_f$, length contraction, time dilation, and the normalized energy ledger in one inspection surface.
-- the Photon and Polarization Visualization App, which exposes a candidate planar pair, Virtual Observer electric-field reconstruction, and derived polarization diagnostics in one inspection surface.
-- periodic-table and element navigation overlays,
-- other domain-specific scene behaviors where the scene is more than a reading panel.
+- Lorentz Geometry
+- Photon and Polarization Visualization
+- Hyde Periodic Table
+- Periodic Table
+- Atom
+- Standard Model
+- Molecule Visualization
+- Causal Delay Feedback
+- Equation Mapping
+- It’s Greek to Me!
+- Animator
+- Borg
+- Braid Search
+
+These include display-only lessons, diagnostic workbenches, content-navigation surfaces, and application-specific runtimes. Inclusion in the index is not an evidence or proof grade.
 
 ## Information Architecture Claim
 

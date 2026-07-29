@@ -92,6 +92,7 @@ Many projections also need regularity. A reconstruction or projection map is loc
 |:---|:---|:---|:---|
 | $\kappa_{\mathrm{hit}}>0$ | causal-root chart | fold, caustic, or root-count transition | [Master Equation](../dynamics/master-equation.md#causal-time-map-and-root-topology) |
 | $\sin\theta_{\min}>0$ | ordered-tuple frame construction | collinear or ill-conditioned basis | [Constructing the Absolute Frame](./constructing-the-absolute-frame.md#reconstruction-existence-lemma) |
+| positive framing-conditioning floor | framed self-linking and chirality projection | framing slip, unresolved fold contact, or suspended chirality label | [Constructing the Absolute Frame](./constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality) |
 | $\omega_{\min}>0$ or $\lambda_{\min}(G_a)\ge\lambda_{\min}^{\mathrm{ctr}}>0$ | wake-center inverse | insufficient aperture or rank-deficient center fit | [Detecting the Absolute Frame](./detecting-the-absolute-frame.md#detecting-absolute-rest-the-causal-wake-diagnostic) |
 | $\kappa_{\mathrm{sep}}>0$ | basin separator | unstable, riddled, or unresolved branch partition | [Emergence of Structure](./emergence-of-structure.md#context-as-constraint-on-basin-selection) |
 | $\sigma_{\mathrm{cr}}>0$ | clock/ruler handoff | rank loss or locally multivalued metric export | [Absolute Time Defense](./absolute-time-defense.md#absolute-time-global-foliation-and-proper-time) |

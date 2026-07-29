@@ -7,13 +7,14 @@ Provide the **statistical foundation** for deterministic, path-history microdyna
 - Statistical models should be built on `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and the path-history/self-hit structure used there.
 - Ensemble and coarse-graining assumptions must remain consistent with `foundations/ontology.md` and `cosmology/cosmology-ontology.md` (absolute-state vs observer-level projection).
 - Branch statistics must respect retained-record fields from `noether-braid/braid-a1-dynamics.md`: active causal-root ledger, finite memory depth, branch-Jacobian floor, inactive-root gap, Floquet gap, and event ledger.
-- Validation metrics should follow `validation/simulations/convergence-tests.md`, `validation/simulations/a0-branch-certificate-protocol.md`, `validation/constraint-ledger.md`, and `validation/no-go-theorems.md`.
+- Candidate status and persistence claims must follow `noether-braid/braid-analysis-methodology.md`, `noether-braid/braid-recovery-requirements.md`, `reference/priorities/braid-program/method.md`, and the accepted EOM solver evolution contract.
+- Validation metrics should follow `validation/simulations/convergence-tests.md`, `validation/constraint-ledger.md`, and `validation/no-go-theorems.md`; legacy `$A_0$` protocols are not current program authority.
 
 **Core responsibilities**:
 
 1. **Measures on state and branch-history spaces**
    - Define appropriate **probability measures** over:
-     - complete $\mathbb{U}_{\text{now}}\equiv S(t)$ microstates,
+     - complete $\mathbb{U}_{\text{now}}\equiv S(T)$ microstates,
      - finite-memory path-history states,
      - causal-root ledgers,
      - branch charts and return maps,
@@ -48,7 +49,8 @@ Provide the **statistical foundation** for deterministic, path-history microdyna
      - Transport properties (diffusion, drift) in the Noether sea,
      - Relaxation times to equilibrium (e.g., equilibration of Noether braid assemblies after violent events).
    - Keep reversible medium-dressed inertial response separate from dissipative transport, action shedding, radiation, and branch transitions.
-   - Connect pressure, density, and delay statistics to $n(\mathbf{x},t)$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\mathcal{M}_{\text{sea}}^{ab}$ only through declared constitutive assumptions.
+   - Connect pressure, density, and delay statistics to $n(\mathbf X,T)$, $\rho_{\text{NS}}(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, and $\mathcal{M}_{\text{sea}}^{ab}$ only through declared constitutive assumptions.
+   - Do not apply thermodynamic laws to one architrino or one unclosed few-body record; derive ensemble variables and averaging windows first.
 
 5. **Statistical diagnostics for simulations**
    - Specify statistical observables simulations should compute:
@@ -60,5 +62,6 @@ Provide the **statistical foundation** for deterministic, path-history microdyna
      - Genuine emergent probabilistic laws from
      - Finite-size or numerical artifacts.
    - Require convergence under time-step, memory-window, root-ledger, and mollifier refinement before a probability law is treated as branch evidence.
+   - Treat fail-closed unresolved roots, missing histories, and non-record-forming outcomes as unresolved or rejected inventory, not as zero-probability events.
 
 ---

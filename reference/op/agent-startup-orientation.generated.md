@@ -72,8 +72,8 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 141 | `a6503da48351732d` |
-| [README.md](../../README.md) | 229 | `9586b2bb3becaec3` |
+| [AGENTS.md](../../AGENTS.md) | 141 | `d0d5bf7800eb245c` |
+| [README.md](../../README.md) | 236 | `4aad615ff8897677` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 111 | `688e42e5fd54a5eb` |
@@ -93,8 +93,8 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/entourage/archie/prompts/review-closure-verifier.md](../entourage/archie/prompts/review-closure-verifier.md) | 59 | `4c2ae8888fd20722` |
 | [reference/entourage/archie/prompts/core-geometry-theorem-reviewer.md](../entourage/archie/prompts/core-geometry-theorem-reviewer.md) | 59 | `fef7b4e05ccc9501` |
 | [reference/entourage/archie/prompts/priority-lane-resume.md](../entourage/archie/prompts/priority-lane-resume.md) | 79 | `b003a1d04dc09176` |
-| [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 369 | `5ef576c5a0f1a61d` |
-| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 307 | `adf1ac4839d4cba4` |
-| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 141 | `d7bc201e02843464` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 583 | `e4ccc2375a990888` |
-| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 172 | `ad0220d9d6db9e0c` |
+| [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 392 | `004b5725dabe1fa1` |
+| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 307 | `6456d57b3e321d64` |
+| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 148 | `dacde5354c51c55e` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 594 | `35b76ef57b4bad0a` |
+| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 176 | `c22e1fd268c66e4f` |

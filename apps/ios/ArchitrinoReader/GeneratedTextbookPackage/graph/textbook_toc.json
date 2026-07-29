@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 183,
-      "sections": 1524
+      "sections": 1532
     }
   },
   "tocRoot": {
@@ -6209,6 +6209,14 @@
             "sections": [
               {
                 "kind": "markdown-section",
+                "title": "Current Status",
+                "markdownPath": "content/markdown/aaa/quantum/quantum-summary.md",
+                "markdownSection": "Current Status",
+                "sectionKey": "current status",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Core Quantum Spine",
                 "markdownPath": "content/markdown/aaa/quantum/quantum-summary.md",
                 "markdownSection": "Core Quantum Spine",
@@ -6279,6 +6287,30 @@
                 "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
                 "markdownSection": "Agency and Decision",
                 "sectionKey": "agency and decision",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Core Reinterpretations of Quantum Language",
+                "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
+                "markdownSection": "Core Reinterpretations of Quantum Language",
+                "sectionKey": "core reinterpretations of quantum language",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Operational Mapping (Phenomenological)",
+                "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
+                "markdownSection": "Operational Mapping (Phenomenological)",
+                "sectionKey": "operational mapping phenomenological",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Historical Note (Late Nineteenth Century–Present): From Operational Success to Ontological Drift",
+                "markdownPath": "content/markdown/aaa/quantum/reality-quantum-causality.md",
+                "markdownSection": "Historical Note (Late Nineteenth Century–Present): From Operational Success to Ontological Drift",
+                "sectionKey": "historical note late nineteenth century present from operational success to ontological drift",
                 "headingLevel": 2
               },
               {
@@ -6361,6 +6393,22 @@
                 "markdownPath": "content/markdown/aaa/quantum/wavefunction-ontology.md",
                 "markdownSection": "Closure Interface: Basin-Measure Formalization",
                 "sectionKey": "closure interface basin measure formalization",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Targets",
+                "markdownPath": "content/markdown/aaa/quantum/wavefunction-ontology.md",
+                "markdownSection": "Closure Targets",
+                "sectionKey": "closure targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/quantum/wavefunction-ontology.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
                 "headingLevel": 2
               }
             ]
@@ -6565,6 +6613,22 @@
                 "markdownPath": "content/markdown/aaa/quantum/algorithmic-resonance.md",
                 "markdownSection": "Falsifiability and Scaling Limits",
                 "sectionKey": "falsifiability and scaling limits",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Targets",
+                "markdownPath": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+                "markdownSection": "Closure Targets",
+                "sectionKey": "closure targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Related Chapters",
+                "markdownPath": "content/markdown/aaa/quantum/algorithmic-resonance.md",
+                "markdownSection": "Related Chapters",
+                "sectionKey": "related chapters",
                 "headingLevel": 2
               }
             ]

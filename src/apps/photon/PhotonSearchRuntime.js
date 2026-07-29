@@ -178,10 +178,10 @@ function buildPhotonSearchCandidates(baseState) {
   });
 
   [
-    ["Outer only", ["O"]],
-    ["Middle only", ["M"]],
-    ["Inner only", ["I"]],
-    ["Middle and Outer", ["M", "O"]],
+    ["Binary 3 only", ["O"]],
+    ["Binary 2 only", ["M"]],
+    ["Binary 1 only", ["I"]],
+    ["Binaries 2 and 3", ["M", "O"]],
     ["All layers", ["I", "M", "O"]],
   ].forEach(([name, enabledLayers]) => {
     pushCandidate(
@@ -253,7 +253,7 @@ function buildPhotonSearchCandidates(baseState) {
   });
 
   pushCandidate(
-    "Outer-only transverse observer",
+    "Binary-3-only transverse observer",
     mutateCandidateState(base, (state) => {
       setEnabledLayers(state, ["O"]);
       setVirtualObserver(state, { x: 0, y: 4, z: 0 });

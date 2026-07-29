@@ -628,10 +628,15 @@ $$
 U_{\text{eff}}=\frac{1}{2}K_{\parallel}(v)\,r_{\parallel}^2+\frac{1}{2}K_{\perp}(v)\left(r_{\perp,1}^2+r_{\perp,2}^2\right)
 $$
 Notation guardrail: in this chapter, $U_{\text{eff}}$ denotes the cycle-averaged mechanical potential on the translating attractor; it is distinct from the positive weak-field PPN variables $U$ and $U_{\Phi}$ used in [spacetime/ppn-parameters.md](./ppn-parameters.md).
-For fixed action shell, semiaxes scale as $a_i\propto K_i^{-1/2}$, hence
+Do not identify a fixed-energy shell with a fixed-action shell. Parameterize the amplitude response by
 $$
-\frac{a_{\parallel}}{a_{\perp}}=\sqrt{\frac{K_{\perp}}{K_{\parallel}}}
+a_i\propto K_i^{-p},
+\qquad
+\frac{a_{\parallel}}{a_{\perp}}
+=
+\left(\frac{K_{\perp}}{K_{\parallel}}\right)^p.
 $$
+The fixed-energy harmonic scaling is $p=1/2$, while conservative adiabatic-action scaling is $p=1/4$. A strictly attracting delayed branch need not preserve either shell: its effective exponent must be extracted from the settled branch $\boldsymbol\rho^\star(s;\beta_f)$, and the constant-$p$ form below is only a local response ansatz.
 Write
 $$
 \frac{K_{\parallel}}{K_0}=1+k_2\beta_f^2+k_4\beta_f^4+O(\beta_f^6)+\Delta_{\parallel}^{\text{LV}}
@@ -642,12 +647,12 @@ $$
 with $|\Delta_i^{\text{LV}}|\le C_i\epsilon_{\text{LV}}$. Then
 $$
 \frac{a_{\parallel}}{a_{\perp}}
-=1+\frac{\ell_2-k_2}{2}\beta_f^2
+=1+p(\ell_2-k_2)\beta_f^2
 +\left[
-\frac{\ell_4-k_4}{2}
-+\frac{3k_2^2}{8}
--\frac{k_2\ell_2}{4}
--\frac{\ell_2^2}{8}
+p(\ell_4-k_4)
++\frac{p(p+1)}{2}k_2^2
+-p^2k_2\ell_2
++\frac{p(p-1)}{2}\ell_2^2
 \right]\beta_f^4
 +O(\beta_f^6)+O(\epsilon_{\text{LV}})
 $$
@@ -657,10 +662,14 @@ $$
 $$
 imposes
 $$
-\ell_2-k_2=-1
+p(\ell_2-k_2)=-\frac12
 $$
 $$
-4(\ell_4-k_4)+3k_2^2-2k_2\ell_2-\ell_2^2=-1
+p(\ell_4-k_4)
++\frac{p(p+1)}{2}k_2^2
+-p^2k_2\ell_2
++\frac{p(p-1)}{2}\ell_2^2
+=-\frac18.
 $$
 
 ### Stiffness tensor from causal-wake surface integrals
@@ -764,15 +773,27 @@ $$
 -\frac{k_4+\ell_2^2+2\ell_4+2k_2\ell_2}{6}
 =\frac{3}{8}
 $$
-Combining with shape closure yields a minimal matched coefficient set
+Combining with shape closure yields the exponent-conditional matched coefficient set
 $$
-k_2=-\frac{1}{3}\qquad \ell_2=-\frac{4}{3}
+k_2=\frac{1/3-p}{p},
+\qquad
+\ell_2=-\frac{p+1/6}{p},
 $$
 and, at $O(\beta_f^4)$,
 $$
-k_4=-\frac{1}{9}\qquad \ell_4=\frac{2}{9}
+k_4=\frac{1-3p}{18p^2},
+\qquad
+\ell_4=\frac{6p+1}{72p^2}.
 $$
-before leakage terms are added. This coefficient vector is conditional on the two declared ansatzes: the fixed-action harmonic-shell scaling $a_i\propto K_i^{-1/2}$ used in shape closure and the $1/6$-power geometric-mean clock aggregator above; neither is yet derived from primitives.
+For fixed energy ($p=1/2$) this reduces to
+$$
+\left(-\frac13,-\frac43,-\frac19,\frac29\right),
+$$
+while conservative fixed action ($p=1/4$) gives
+$$
+\left(\frac13,-\frac53,\frac29,\frac59\right).
+$$
+Neither vector is a primitive prediction until the moving delayed branch supplies its amplitude law. The $1/6$-power geometric-mean clock aggregator is a second independent ansatz and remains to be derived.
 
 ### binary-3 transduction hypothesis (working)
 
@@ -865,19 +886,23 @@ R_\parallel=\frac{R_\perp}{\gamma_\star}\qquad \gamma_\star=\frac{1}{\sqrt{1-\be
 $$
 with $c_\star=c_{\text{eff}}$ for Noether sea dressed clock/ruler closure and $c_\star=c_f$ only for a primitive branch-chart calculation. For the scale channel, use
 $$
-R_\perp=R_\perp(E)\qquad \frac{dR_\perp}{dE}<0
+R_\perp=R_\perp(E_{\mathrm{int}})\qquad \frac{dR_\perp}{dE_{\mathrm{int}}}<0
 $$
-as a working prior in energized regimes; a certified energized-branch record exhibiting $dR_\perp/dE\ge 0$ is the observable that would flip this sign choice.
+as a working prior in internally excited regimes, with translational drift held fixed. Pure translation must separately satisfy
+$$
+\left.\frac{\partial R_\perp}{\partial\beta_\star}\right|_{E_{\mathrm{int}}}=0
+$$
+in the no-extra-scale return-cycle benchmark; otherwise $T_q(v)=\gamma_\star T_0$ does not follow from the displayed geometry. A certified energized-branch record exhibiting $dR_\perp/dE_{\mathrm{int}}\ge 0$ is the observable that would flip the internal-excitation sign choice.
 
 The corresponding exclusion volume model is
 $$
-V(\beta_\star,E)=\frac{4\pi}{3}R_\perp(E)^2R_\parallel(E,\beta_\star)
-=\frac{4\pi}{3}R_\perp(E)^3\sqrt{1-\beta_\star^2}
+V(\beta_\star,E_{\mathrm{int}})=\frac{4\pi}{3}R_\perp(E_{\mathrm{int}})^2R_\parallel(E_{\mathrm{int}},\beta_\star)
+=\frac{4\pi}{3}R_\perp(E_{\mathrm{int}})^3\sqrt{1-\beta_\star^2}
 $$
 
 This gives a direct state-space channel from energy and translation into local Noether sea geometry:
 $$
-(\beta_\star,E)\longmapsto (R_\parallel,R_\perp,V)
+(\beta_\star,E_{\mathrm{int}})\longmapsto (R_\parallel,R_\perp,V)
 $$
 
 ### Local deformation fields and effective geometry handoff
@@ -1006,6 +1031,117 @@ This lemma proves only a conditional reabsorption statement: if one branch suppl
 
 The same caution applies to speed identification. Let $c_{\mathrm{clk}}$ denote the limiting speed that appears in the moving-assembly clock law and let $c_\gamma$ denote the photon-channel speed used for synchronization. The conditional reabsorption above requires $\gamma_{\mathrm{clk}}=\gamma_\gamma$ in the tested homogeneous branch. If a primitive calculation supplies $\gamma_f(v)$ using $c_f$ while the photon row uses $\gamma_\gamma(v)$ with a different speed, the mismatch appears as an $O(\beta_\star^2)$ two-way residual rather than as Lorentz closure. The accepted target is therefore common-mode dressing: the observer-facing clock, ruler, photon, and effective gravitational channels must share the same homogeneous limiting speed after the Noether sea response is declared. It is not legitimate to collapse $c_f$, $c_\gamma$, $c_{\text{eff}}$, and $c_{\mathrm{GW}}^{\mathrm{eff}}$ by notation before that derivation is supplied.
 
+### Weak-homogeneous speed-factorization lemma
+
+The observer-channel coincidence and the relation to primitive wake speed are two distinct closure statements. Let $W_0$ be a weak homogeneous calibration cell and define
+$$
+\chi_{\mathrm{sea},0}
+\equiv
+\chi_{\mathrm{sea}}(W_0)
+=
+\frac{c_f}{c_{\mathrm{eff}}(W_0)},
+\qquad
+\chi_{\gamma,0}
+\equiv
+\chi_\gamma(W_0)
+=
+\frac{c_0}{c_\gamma(W_0)}.
+$$
+When $W_0$ realizes the asymptotic observer calibration, $c_{\mathrm{eff}}(W_0)=c_0$ by the definition $c_0\equiv c_{\mathrm{eff}}(\infty)$. The speed factorization is then
+$$
+c_{\mathrm{eff}}(W_0)
+=
+c_0
+=
+\frac{c_f}{\chi_{\mathrm{sea},0}},
+\qquad
+c_\gamma(W_0)
+=
+\frac{c_0}{\chi_{\gamma,0}}
+=
+\frac{c_f}{\chi_{\mathrm{sea},0}\chi_{\gamma,0}}.
+$$
+
+Plainly: calibrating clocks and rulers fixes how the dressed observer speed compares with $c_f$; photon Gate A separately decides whether the photon channel shares that calibrated speed. Equality of the observer channels does not by itself remove the Noether sea dressing between their common value and the primitive wake speed.
+
+It follows immediately that
+$$
+c_\gamma(W_0)
+=
+c_{\mathrm{eff}}(W_0)
+=
+c_0
+\quad\Longleftrightarrow\quad
+c_{\mathrm{eff}}(W_0)=c_0
+\ \text{and}\
+\chi_{\gamma,0}=1.
+$$
+Plainly: the selected cell must actually realize the asymptotic clock-and-ruler calibration, and the photon channel must have no residual offset from that calibration.
+
+The first condition says that the selected cell is the asymptotic weak homogeneous calibration state. The second is the photon common-mode condition. For a finite leakage budget, define
+$$
+r_0
+\equiv
+\frac{c_{\mathrm{eff}}(W_0)}{c_0}-1,
+\qquad
+r_{\gamma\mathrm{e}}
+\equiv
+\frac{c_\gamma(W_0)}{c_{\mathrm{eff}}(W_0)}-1.
+$$
+Then the exact composition identity is
+$$
+\frac{c_\gamma(W_0)}{c_0}-1
+=
+r_0+r_{\gamma\mathrm{e}}+r_0r_{\gamma\mathrm{e}}.
+$$
+Theorem G requires both residuals to come from the same retained Noether sea and branch record and to remain inside the declared channel bounds. A numerical cancellation in their sum does not establish structural closure if the two residuals were fitted independently.
+
+Plainly: exact three-speed coincidence requires both calibration closure and photon-to-clock/ruler closure. Approximate coincidence is controlled by two named residuals whose product is retained rather than hidden inside one fitted error bar.
+
+The remaining relation to primitive wake speed is
+$$
+\frac{c_0}{c_f}
+=
+\frac{1}{\chi_{\mathrm{sea},0}},
+\qquad
+\delta_0
+\equiv
+1-\frac{c_0}{c_f}
+=
+1-\frac{1}{\chi_{\mathrm{sea},0}}.
+$$
+In normalized wake-speed units with $c_f=1$, the same row is
+$$
+c_0
+=
+\chi_{\mathrm{sea},0}^{-1},
+\qquad
+c_\gamma(W_0)
+=
+\left(\chi_{\mathrm{sea},0}\chi_{\gamma,0}\right)^{-1}.
+$$
+Plainly: once $c_f$ is set to one, the two delay factors themselves determine the dressed clock/ruler calibration and the photon-channel speed.
+
+Therefore all four speeds coincide only under the additional undressed fixed-point condition $\chi_{\mathrm{sea},0}=1$. A persistent weak-homogeneous dressing with $\chi_{\mathrm{sea},0}>1$ instead gives $c_f>c_0$ while preserving $c_\gamma=c_{\mathrm{eff}}=c_0$ at the observer level. The case $\chi_{\mathrm{sea},0}<1$ would make the record-bearing observer channel outrun the primitive causal-wake support and is inadmissible under the present causal-front definition unless a separate support theorem shows that no record is available before the $c_f$ front.
+
+On the proportional-collapse candidate in photon Gate A, common-mode closure gives
+$$
+d(\omega,\delta_0)
+\sim
+\Lambda_\gamma\frac{c_f-c_0}{\omega}
+=
+\Lambda_\gamma\frac{c_f\delta_0}{\omega}.
+$$
+Plainly: on this candidate, the planar-pair separation is proportional to the gap between primitive wake speed and the common observer speed.
+
+Thus the exact undressed limit $\chi_{\mathrm{sea},0}\to1$ forces $d\to0$ on that candidate at fixed finite $\omega$, whereas a finite-separation branch requires either $\chi_{\mathrm{sea},0}>1$ or a separately derived phase-locking cancellation. This is a conditional consequence of the current Gate A scaffold, not evidence that the photon branch exists or that $c_f>c_0$ has been measured.
+
+> Claim grade: derived. The factorization, coincidence criterion, and residual-composition identity follow algebraically from the declared speed definitions. Falsifier: a same-record retained branch that satisfies the declared definitions while violating any of those identities.
+>
+> Claim grade: inferred. The present record-bearing causal-front definition requires $\chi_{\mathrm{sea},0}\ge1$. Falsifier: an accepted channel with $c_0>c_f$ that still produces no record before the primitive $c_f$ support.
+>
+> Claim grade: guessed. The proportional-collapse Gate A branch is a candidate physical realization. Falsifier: failure to retain that photon branch, or a finite-separation Gate A branch at $c_\gamma=c_f$ produced by a different phase-locking cancellation.
+
 The same criterion has a long-baseline photon consequence. If the photon branch uses a frequency-dependent delay factor, then a distant transient comparison accumulates
 $$
 \Delta t_{\gamma}^{\mathrm{model}}(\omega_a,\omega_b;z)
@@ -1127,9 +1263,9 @@ The $c_0^2$ prefactor marks this as an observer-sector potential calibration: $c
 Then the nonrelativistic geodesic limit becomes
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
-=-\xi^{2}\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
+=-\xi^{2}(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
 +O\!\left(\frac{\|\mathbf V\|^2}{c_0^2},\epsilon_{\text{LV}}\right)
-=-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
+=-(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
 +O\!\left(
 \left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|,
 \frac{\|\mathbf V\|^2}{c_0^2},
@@ -1208,15 +1344,21 @@ $$
 
 ### Analytic derivation of kinematic closure coefficients
 
-On the circular benchmark branch, take the rest-frame attractor $\boldsymbol{\rho}^\star(s;0)$ as a stable planar orbit of radius $r_0$ and frequency $\omega_0$. The cycle carries emergent phase symmetry $\phi\mapsto \phi+\text{const}$ with adiabatic invariant
+On the circular benchmark branch, take the rest-frame attractor $\boldsymbol{\rho}^\star(s;0)$ as a stable planar orbit of radius $r_0$ and frequency $\omega_0$. Phase symmetry $\phi\mapsto\phi+\text{const}$ supplies a neutral phase direction, but it does not by itself supply a conserved transverse action on a strictly attracting delayed orbit. For a near-integrable conservative oscillator one may define
 $$
 J=\oint \mathbf{p}_{\text{eff}}\cdot d\mathbf{r}
 $$
-For each principal oscillator channel, $J_i\propto \sqrt{K_i}\,A_i^2$, so adiabatic drift retuning implies
+and obtain $J_i\propto \sqrt{K_i}\,A_i^2$, so fixed action would imply
 $$
 A_i(\beta_f)=A_i(0)\left(\frac{K_i(0)}{K_i(\beta_f)}\right)^{1/4}
 $$
-This provides the fixed-action retuning route from stiffness expansion to the coefficient extraction in [Stiffness Tensor from Causal-Wake Surface Integrals](#stiffness-tensor-from-causal-wake-surface-integrals).
+This is the $p=1/4$ comparison route, not an attractor theorem. Fixed energy instead gives $p=1/2$. For the admitted delay-Floquet branch, the valid route is to measure the settled amplitudes directly from $\boldsymbol\rho^\star(s;\beta_f)$ and extract
+$$
+p_i^{\mathrm{att}}(\beta_f)
+\equiv
+-\frac{d\ln A_i}{d\ln K_i}.
+$$
+The constant-$p$ coefficient family in [Quadratic Closure and Coefficient Constraints](#quadratic-closure-and-coefficient-constraints) is usable only on a band where $p_\parallel^{\mathrm{att}}$ and $p_\perp^{\mathrm{att}}$ agree within the declared leakage tolerance.
 
 The simplest scalar kernel is useful mainly because it fails in a controlled way. For translation $\mathbf V=v\hat{\mathbf e}_{\parallel}$ with primitive $\beta_f=v/c_f$, suppose one tries the causal-delay potential form
 $$
@@ -1251,7 +1393,7 @@ $$
 \mathcal{I}_0\int_0^{2\pi}\frac{d\theta}{2\pi}
 \frac{\sin^2\theta}{(1-\beta_f\cos\theta)^3}
 $$
-This naive block is not a derivation of the Lorentz-matching vector. With the displayed normalization it gives positive normalized stiffness growth rather than the required negative coefficient pattern, and any sign reversal would require an additional channel normalization that is not present in the scalar kernel. The block is therefore a failure diagnostic: the target vector must come from the completed action kernel on the same causal-root ledger, with branch phase closure and fixed-action retuning included before the stiffness derivatives are taken.
+This naive block is not a derivation of a Lorentz-matching vector. With the displayed normalization it gives positive normalized stiffness growth in both channels, whereas every positive-$p$ member of the matched family requires $\ell_2<0$. Any sign reversal would require an additional channel normalization that is not present in the scalar kernel. The block is therefore a failure diagnostic: the target vector must come from the completed action kernel on the same causal-root ledger, with branch phase closure and the measured attractor-amplitude response included before the stiffness derivatives are taken.
 
 The valid theorem target keeps the [Stiffness Tensor from Causal-Wake Surface Integrals](#stiffness-tensor-from-causal-wake-surface-integrals) extraction rules,
 $$
@@ -1272,13 +1414,18 @@ k_4=
 \frac{\partial_{\beta_f}^4\mathcal{I}_{\perp}\big|_{\beta_f=0}}
 {24\,\mathcal{I}_{\perp}(0)}
 $$
-but now requires the branch-action integrals $\mathcal{I}_{\parallel},\mathcal{I}_{\perp}$ to be computed from the completed delayed action and the admitted moving branch chart. The Lorentz-matching closure condition (ansatz-conditional) remains
+but now requires the branch-action integrals $\mathcal{I}_{\parallel},\mathcal{I}_{\perp}$ to be computed from the completed delayed action and the admitted moving branch chart. Conditional on a common constant amplitude exponent $p>0$, the Lorentz-matching closure condition is
 $$
 (k_2,\ell_2,k_4,\ell_4)
 =
-\left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right)
+\left(
+\frac{1/3-p}{p},
+-\frac{p+1/6}{p},
+\frac{1-3p}{18p^2},
+\frac{6p+1}{72p^2}
+\right).
 $$
-The target vector is not a fit parameter, but this section no longer claims that the displayed scalar kernel derives it. A valid derivation must show that the completed action kernel, the causal-root ledger, branch phase closure, and fixed-action retuning together yield the derivative identities above on the same branch.
+The target vector is not a fit parameter, but neither may $p$ be selected to rescue a failed kernel. A valid derivation must show that the completed action kernel, the causal-root ledger, branch phase closure, and evolved attractor response together yield both $p$ and the derivative identities above on the same branch.
 
 ### Causal-root ledger progression as a Lorentz prediction
 
@@ -1348,17 +1495,29 @@ satisfies the ansatz-conditional target
 $$
 \mathbf{c}_{\mathrm{L}}(\mathfrak{B}_{\mathrm{mov}})
 =
-\left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right)
-+O(\epsilon_{\mathrm{br}}+\epsilon_{\mathrm{hier}}+\epsilon_{\mathrm{reg}})
+\mathbf c_{\mathrm L}^{(p)}
++O(\epsilon_{\mathrm{br}}+\epsilon_{\mathrm{hier}}+\epsilon_{\mathrm{reg}}+\epsilon_p)
 $$
-The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, and $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma_f$ and $T(v)=\gamma_f T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
+where
+$$
+\mathbf c_{\mathrm L}^{(p)}
+\equiv
+\left(
+\frac{1/3-p}{p},
+-\frac{p+1/6}{p},
+\frac{1-3p}{18p^2},
+\frac{6p+1}{72p^2}
+\right)
+$$
+and the same evolved branch must supply the common exponent $p$.
+The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error, and $\epsilon_p$ measures uncertainty or longitudinal/transverse mismatch in the extracted attractor-amplitude exponent. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma_f$ and $T(v)=\gamma_f T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
 
 This gives a possible prediction of the framework. If Lorentz behavior is rooted in causal-root progression, then the first nonzero deviations from exact Lorentz closure should not be arbitrary smooth functions of speed. They should inherit the structure of branch charts: smooth even-power drift terms inside a fixed chart, plus localized or resonant leakage near separator events, small-divisor interlayer resonances, or changes in admissible root multiplicity. In a nonresonant chart the leakage should obey
 $$
 \left\|
 \mathbf{c}_{\mathrm{L}}(\beta_f)
 -
-\left(-\frac{1}{3},-\frac{4}{3},-\frac{1}{9},\frac{2}{9}\right)
+\mathbf c_{\mathrm L}^{(p)}
 \right\|_W
 \le
 C_{\mathrm{br}}\epsilon_{\mathrm{br}}
@@ -1474,7 +1633,7 @@ c_{\mathrm{mat}}^{\mathrm{lim}}\le c_f
 $$
 for that class of material branches. The remaining Lorentz program is the constructive side: proving that stable branch families exist for $u<c_f$, that their deformation and periods approach the common envelope, and that Noether sea dressing maps the primitive bound to the observer-channel speeds without an independent fit.
 
-### Theorem A1 (translating binary Lorentz residual)
+### Theorem LK1 (translating binary Lorentz residual)
 
 The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the declared reference rest binary (certificate packet pending; see the closure-packet contract in [Binary Dynamics](../dynamics/binary-dynamics.md)) with radius $R_0$, period $T_0$, active root ledger $b_0$, positive Jacobian floors, and bounded transmitter-side acceleration weights. For each $0<u<c_f$, solve the absolute-time delayed root equations for
 $$
@@ -1561,11 +1720,26 @@ uniformly on $0\le\beta_\star\le\beta_{\max}$.
 
 ### Theorem E (coefficient identifiability from attractor statistics)
 
-Given smooth attracting branches and nondegenerate Jacobian of the map
+For the constant-$p$ response family with $p\ne0$, write the measured expansions as
+$$
+\frac{a_\parallel}{a_\perp}
+=1+\alpha_2\beta_f^2+\alpha_4\beta_f^4+O(\beta_f^6),
+\qquad
+\frac{T}{T_0}
+=1+\tau_2\beta_f^2+\tau_4\beta_f^4+O(\beta_f^6).
+$$
+The coefficient map
 $$
 (k_2,\ell_2,k_4,\ell_4)\mapsto (\alpha_2,\alpha_4,\tau_2,\tau_4)
 $$
-the drift-response coefficients are locally identifiable from $(a_{\parallel}/a_{\perp},T/T_0)$ data up to the leakage scale $O(\epsilon_{\text{LV}})$.
+has block-triangular Jacobian with
+$$
+\det
+\frac{\partial(\alpha_2,\alpha_4,\tau_2,\tau_4)}
+{\partial(k_2,\ell_2,k_4,\ell_4)}
+=-\frac{p^2}{4}\ne0.
+$$
+The inverse-function theorem therefore gives local identifiability of the four stiffness coefficients from shape and period data, up to the leakage scale $O(\epsilon_{\text{LV}})$, once $p$ has been independently extracted from the same attractor family. This is a proved algebraic property of the ansatz, not proof that a physical moving branch exists or that its amplitude response has constant $p$.
 
 ### Theorem F (cross-regime universality of closure coefficients)
 
@@ -1592,7 +1766,7 @@ In particular, if $(r_2/r_3)^2\le C_{23}\epsilon_{\text{LV}}$, operational Loren
 
 ### Theorem G (structural-integrity common-limit closure)
 
-This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. Theorem A0 supplies the primitive kinematic obstruction: a material branch that needs forward partner-hit closure cannot have a sustained translating ledger with $c_{\mathrm{mat}}^{\mathrm{lim}}>c_f$. Theorem A1 supplies the first constructive clock/ruler decision surface by asking whether the translating two-body branch returns $R_T^{\mathrm{bin}}=0$ and $R_{\xi}^{\mathrm{bin}}=0$ before Noether braid averaging or Noether sea dressing is invoked. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
+This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. Theorem A0 supplies the primitive kinematic obstruction: a material branch that needs forward partner-hit closure cannot have a sustained translating ledger with $c_{\mathrm{mat}}^{\mathrm{lim}}>c_f$. Theorem LK1 supplies the first constructive clock/ruler decision surface by asking whether the translating two-body branch returns $R_T^{\mathrm{bin}}=0$ and $R_{\xi}^{\mathrm{bin}}=0$ before Noether braid averaging or Noether sea dressing is invoked. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
 $$
 c_{\mathrm{mat}}^{\mathrm{lim}}
 =

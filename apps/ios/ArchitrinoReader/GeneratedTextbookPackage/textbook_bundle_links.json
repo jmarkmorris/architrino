@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-25T12:21:21.488Z",
-  "total_links": 2059,
+  "generated_at": "2026-07-29T04:40:57.122Z",
+  "total_links": 2091,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -78,10 +78,34 @@
     {
       "sourceChapterId": "archie-terminology-usage",
       "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "./comparative-glossary.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/comparative-glossary.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
       "target": "./mathematics-style-guide.md",
       "kind": "markdown",
       "status": "bundled_reference",
       "targetBundlePath": "references/mathematics-style-guide.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "./mathematics-style-guide.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/mathematics-style-guide.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "./mathematics-terminology.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/mathematics-terminology.md"
     },
     {
       "sourceChapterId": "archie-terminology-usage",
@@ -2614,7 +2638,15 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/energy.md#wake-escapement",
+      "target": "../../../../markdown/aaa/dynamics/energy.md#kinetic-energy-and-momentum-of-a-single-architrino",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md#kinetic-energy-and-momentum-of-a-single-architrino",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
@@ -2631,14 +2663,6 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/entropy.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/entropy.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/entropy.md#second-law-and-same-record-monotonicity",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/entropy.md"
@@ -2735,30 +2759,6 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-causal-delay-fokker-type-interaction-term",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
@@ -4086,6 +4086,14 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/foundations/architrino.md#constant-time-emission-measure-postulate",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/architrino.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/foundations/architrino.md#point-transceiver-status",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4143,6 +4151,14 @@
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md"
@@ -4746,6 +4762,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -10726,6 +10750,14 @@
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -10942,10 +10974,18 @@
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md#bell-closure-diagnostics",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md"
     },
     {
       "sourceChapterId": "quantum",
@@ -10966,10 +11006,18 @@
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md"
     },
     {
       "sourceChapterId": "quantum",
@@ -10998,10 +11046,10 @@
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md"
     },
     {
       "sourceChapterId": "quantum",
@@ -11042,6 +11090,38 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md"
     },
     {
       "sourceChapterId": "quantum",
@@ -11166,10 +11246,10 @@
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "target": "../../../../markdown/aaa/quantum/algorithmic-resonance.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+      "targetBundlePath": "content/markdown/aaa/quantum/algorithmic-resonance.md"
     },
     {
       "sourceChapterId": "quantum",
@@ -11186,6 +11266,38 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
     },
     {
       "sourceChapterId": "quantum",
@@ -11295,6 +11407,22 @@
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
       "target": "../../../../markdown/aaa/quantum/measurement-ontology.md#weak-probe-limit",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/measurement-ontology.md#weak-probe-limit",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/measurement-ontology.md#what-makes-an-interaction-a-record",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
@@ -11422,6 +11550,30 @@
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/wavefunction-ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/wavefunction-ontology.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/wavefunction-ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/wavefunction-ontology.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/wavefunction-ontology.md#falsifiability-and-predictions",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/wavefunction-ontology.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
       "target": "../../../../markdown/aaa/quantum/wavefunction-ontology.md#lower-bound-on-recordable-basin-measure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -11442,6 +11594,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/lorentz-kinematics.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
     },
     {
       "sourceChapterId": "quantum",
@@ -11478,6 +11646,14 @@
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/spacetime/observer-framework.md#physical-observers",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/observer-framework.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
       "target": "../../../../markdown/aaa/validation/massive-superposition-gravity.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -11490,6 +11666,30 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/validation/massive-superposition-gravity.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/validation/no-go-theorems.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/no-go-theorems.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/validation/no-go-theorems.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/no-go-theorems.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/validation/no-go-theorems.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/no-go-theorems.md"
     },
     {
       "sourceChapterId": "quantum",
@@ -12574,6 +12774,14 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -12934,6 +13142,14 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/emergent-metric.md#admcartan-reconstruction-surface",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/emergent-metric.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -12998,6 +13214,14 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/horizon-chirality.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/horizon-chirality.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/spacetime/horizon-chirality.md#proanti-before-planar-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -13030,6 +13254,14 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/lorentz-kinematics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/lorentz-kinematics.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -13039,6 +13271,14 @@
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/lorentz-kinematics.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/lorentz-kinematics.md#weak-homogeneous-speed-factorization-lemma",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/lorentz-kinematics.md"
@@ -13166,7 +13406,23 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/spacetime/noether-sea.md#ambient-branch-acceptance",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md#composition",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
@@ -13178,6 +13434,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/observer-framework.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/observer-framework.md"
     },
     {
       "sourceChapterId": "spacetime",
@@ -13302,7 +13566,7 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/spacetime/ppn-parameters.md",
+      "target": "../../../../markdown/aaa/spacetime/ppn-parameters.md#admcartan-extraction-equations",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/ppn-parameters.md"
@@ -13750,7 +14014,7 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "#stiffness-tensor-from-causal-wake-surface-integrals",
+      "target": "#quadratic-closure-and-coefficient-constraints",
       "kind": "anchor",
       "status": "skip_anchor",
       "targetBundlePath": ""
@@ -14527,14 +14791,6 @@
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "validation",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"

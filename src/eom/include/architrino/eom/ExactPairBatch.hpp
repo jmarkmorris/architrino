@@ -116,6 +116,13 @@ struct ExactPairCertificate {
   std::string diagnostic_detail;
   std::vector<NativeRootBracket> roots;
   double binary64_worker_wall_seconds = 0.0;
+  // Additive subphases of binary64_worker_wall_seconds. These are diagnostic
+  // only and do not participate in certificate identity or acceptance.
+  double binary64_setup_wall_seconds = 0.0;
+  double binary64_warm_start_wall_seconds = 0.0;
+  double binary64_cell_setup_wall_seconds = 0.0;
+  double binary64_cell_classification_wall_seconds = 0.0;
+  double binary64_finalization_wall_seconds = 0.0;
   double mpfr_worker_wall_seconds = 0.0;
   std::size_t mpfr_attempt_count = 0;
   double mpfr_escalation_worker_wall_seconds = 0.0;

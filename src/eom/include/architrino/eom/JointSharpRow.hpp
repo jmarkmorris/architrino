@@ -3,6 +3,7 @@
 #include "architrino/eom/SharpAccelerationSensitivity.hpp"
 
 #include <array>
+#include <span>
 #include <string>
 #include <vector>
 
@@ -17,9 +18,9 @@ struct JointSharpRowRequest {
   Interval field_speed = Interval::point(1.0);
   Interval certified_transmitter_factor = Interval::point(1.0);
   Interval signed_coupling = Interval::point(1.0);
-  std::vector<std::array<double, 3>> receiver_position_coefficients;
-  std::vector<std::array<double, 3>> transmitter_position_coefficients;
-  std::vector<std::array<double, 3>> transmitter_velocity_coefficients;
+  std::span<const std::array<double, 3>> receiver_position_coefficients;
+  std::span<const std::array<double, 3>> transmitter_position_coefficients;
+  std::span<const std::array<double, 3>> transmitter_velocity_coefficients;
   std::array<double, 3> receiver_position_remainder_radii{};
   std::array<double, 3> transmitter_position_remainder_radii{};
   std::array<double, 3> transmitter_velocity_remainder_radii{};

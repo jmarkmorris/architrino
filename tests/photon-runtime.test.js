@@ -1235,7 +1235,7 @@ test("frequency controls use powers of two", () => {
 test("layer metadata exposes user-facing orbit names", () => {
   assert.deepEqual(
     ["I", "M", "O"].map((layerId) => PHOTON_LAYER_META[layerId].label),
-    ["Inner", "Middle", "Outer"]
+    ["Binary 1", "Binary 2", "Binary 3"]
   );
 });
 

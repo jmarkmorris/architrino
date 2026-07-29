@@ -6,6 +6,40 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas, insights, concep
 
 ## Log Entries
 
+- 2026-07-28: Withheld independent verification of the worldline-only
+  characteristic-tail adjudication and moved MEC-001 to `Awaiting
+  verification`. The receiver-gradient identity and the
+  $-\mathbf F_a^{\mathrm{future}}/2$ regular cross-worldline coefficient both
+  survived direct derivation. A separately authored finite-difference
+  cross-pair action check at $c_f=1$ converged to the predicted transverse
+  coefficient under independent refinements of regulator width, time spacing,
+  action-probe amplitude, and future-bump amplitude. The frozen whole action is
+  nevertheless undefined on its declared self sector: retaining every $i=j$,
+  $t>s$ pair while excluding only $t=s$ contradicts the positive separation
+  floor and produces a nonintegrable near-diagonal tail for $C^1$ histories.
+  The earlier same-day negative-closure entry below is therefore provisional,
+  not verification evidence. No reader-facing identity, Master Equation,
+  causal-wake ontology, conservation claim, or EOM solver behavior changed.
+
+- 2026-07-28: Completed the reader-facing characteristic-tail convergence
+  pass. The dynamics corpus now preserves the exact characteristic-direction
+  receiver-gradient identity while no longer treating that integral as an
+  accepted action, Noether-charge kernel, causal-wake update, or branch
+  certificate input. The complete action adjudication remains in
+  `characteristic-tail.md`; no Master Equation acceleration term, wake
+  ontology, EOM solver behavior, or conservation claim was changed.
+
+- 2026-07-28: Closed the worldline-only characteristic-tail action negatively.
+  The frozen `CT-FH-1` candidate retains the exact receiver-gradient identity,
+  but complete variation produces a future-reception coefficient when the
+  varied point appears as a transmitter. An independent future-only transverse
+  bump changes the present Euler coefficient while preserving the complete
+  state through that time. Exact auxiliary elimination preserves the same
+  reduced Euler derivative, so localization cannot turn this action into the
+  missing causal wake state. No Master Equation, wake ontology, EOM solver,
+  conservation, branch, fold, or coincident-birth claim was changed or
+  promoted. MEC-002 is now the first live closure object.
+
 - 2026-07-24: Completed the no-edit preservation audit for the circular
   self-hit energy-balance and causal-wake follow-on. The durable findings and
   their authority remain:

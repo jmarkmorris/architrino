@@ -21,8 +21,8 @@ constexpr double kHistoryDepth = 20.0;
 constexpr double kHistorySegmentStep = 0.1;
 constexpr double kCoupling = 36.0 * 0.2862286103053385;
 constexpr const char* kFrontierStart = "1.2399999999999993";
-constexpr const char* kFrontierTarget = "1.3649999999999967";
-constexpr const char* kNextProbeTarget = "1.3699999999999966";
+constexpr const char* kFrontierTarget = "1.394999999999996";
+constexpr const char* kNextProbeTarget = "1.3999999999999959";
 constexpr double kFrontierStep = 0.005;
 
 std::string token(double value) {
@@ -87,7 +87,7 @@ eom::NativeCoupledEvolutionRequest request(
   result.start_time = "0";
   result.end_time = kFrontierStart;
   result.initial_step = "0.02";
-  result.minimum_step = "0.005";
+  result.minimum_step = "0.0025";
   result.maximum_step = "0.02";
   result.field_speed = "1";
   result.coupling = token(kCoupling);
@@ -214,6 +214,50 @@ bool certified_cross_root(
       row->certificate.status == "certified_complete" &&
       row->certificate.root_free_complement &&
       row->certificate.roots.size() == 1U;
+}
+
+bool same_cross_root_result(
+    const eom::NativeAccelerationSnapshotCertificate& left,
+    const eom::NativeAccelerationSnapshotCertificate& right,
+    const std::string& receiver, const std::string& transmitter) {
+  const auto* left_row = root_row(left, receiver, transmitter);
+  const auto* right_row = root_row(right, receiver, transmitter);
+  if (left_row == nullptr || right_row == nullptr) return false;
+  const auto& left_certificate = left_row->certificate;
+  const auto& right_certificate = right_row->certificate;
+  if (left_certificate.status != right_certificate.status ||
+      left_certificate.failure_code != right_certificate.failure_code ||
+      left_certificate.root_free_complement !=
+          right_certificate.root_free_complement ||
+      left_certificate.memory_boundary_contact !=
+          right_certificate.memory_boundary_contact ||
+      left_certificate.roots.size() != right_certificate.roots.size()) {
+    return false;
+  }
+  for (std::size_t index = 0U;
+       index < left_certificate.roots.size(); ++index) {
+    const auto& left_root = left_certificate.roots[index];
+    const auto& right_root = right_certificate.roots[index];
+    if (left_root.lower != right_root.lower ||
+        left_root.upper != right_root.upper ||
+        left_root.transmitter_factor_lower !=
+            right_root.transmitter_factor_lower ||
+        left_root.transmitter_factor_upper !=
+            right_root.transmitter_factor_upper ||
+        left_root.receiver_factor_lower !=
+            right_root.receiver_factor_lower ||
+        left_root.receiver_factor_upper !=
+            right_root.receiver_factor_upper ||
+        left_root.transmitter_factor_sign !=
+            right_root.transmitter_factor_sign ||
+        left_root.transmitter_segment_indices !=
+            right_root.transmitter_segment_indices ||
+        left_root.precision_route != right_root.precision_route ||
+        left_root.precision_bits != right_root.precision_bits) {
+      return false;
+    }
+  }
+  return true;
 }
 
 bool published_histories_unchanged(
@@ -354,6 +398,26 @@ int main() {
     const bool certified =
         certified_frontier == kFrontierTarget &&
         replay->status == "accepted" && positive_cross && negative_cross;
+    auto direct_request = validation_request;
+    direct_request.use_certified_traversal = false;
+    direct_request.start_time = certified_frontier;
+    direct_request.end_time = certified_frontier;
+    direct_request.joint_histories = current_joint_histories;
+    direct_request.paths = {
+        {"positive", "0.1666666666666666666666666666666667",
+         published_path(current_histories, "positive").history},
+        {"negative", "-0.1666666666666666666666666666666667",
+         published_path(current_histories, "negative").history},
+    };
+    const auto direct_snapshot = eom::certify_native_acceleration_snapshot(
+        direct_request, current_histories, certified_frontier);
+    const bool direct_route_parity =
+        snapshot != nullptr &&
+        direct_snapshot.status == "certified_complete" &&
+        same_cross_root_result(
+            *snapshot, direct_snapshot, "positive", "negative") &&
+        same_cross_root_result(
+            *snapshot, direct_snapshot, "negative", "positive");
     validation_request.start_time = certified_frontier;
     validation_request.end_time = kNextProbeTarget;
     validation_request.joint_histories = current_joint_histories;
@@ -388,25 +452,35 @@ int main() {
     const auto* next_negative_row = next_probe_snapshot == nullptr
         ? nullptr
         : root_row(*next_probe_snapshot, "negative", "positive");
+    const auto expected_next_row = [](const auto* row) {
+      return row != nullptr &&
+          row->certificate.status == "uncertified" &&
+          row->certificate.failure_code ==
+              "numeric_precision_limit_exhausted" &&
+          row->certificate.diagnostic_detail.starts_with(
+              "interior_root_not_surrounded/joint_root/"
+              "root_time_budget_exceeded/") &&
+          row->certificate.achieved_precision_bits == 512U &&
+          row->certificate.roots.empty() &&
+          !row->certificate.root_free_complement;
+    };
     const bool next_probe_fail_closed =
         next_probe.status == "rejected" &&
         next_probe.failure_code == "root_completeness_not_certified" &&
         next_probe_atomic &&
-        next_positive_row != nullptr &&
-        next_negative_row != nullptr &&
-        next_positive_row->certificate.failure_code ==
-            "numeric_precision_limit_exhausted" &&
-        next_negative_row->certificate.failure_code ==
-            "numeric_precision_limit_exhausted";
+        expected_next_row(next_positive_row) &&
+        expected_next_row(next_negative_row);
     const auto& first_joint = prefix.joint_histories.begin()->second;
 
     std::cout << std::setprecision(17)
               << "{\"schema\":"
-                 "\"eom_stationary_joint_frontier_fixture/v2\""
+                 "\"eom_stationary_joint_frontier_fixture/v4\""
               << ",\"fixture_scope\":\"validation_only\""
               << ",\"campaign_1_enabled\":false"
               << ",\"field_speed\":\"1\""
               << ",\"root_tolerance\":\"1e-5\""
+              << ",\"prefix_minimum_step\":\"0.0025\""
+              << ",\"prefix_maximum_step\":\"0.02\""
               << ",\"frontier_start\":";
     print_json_string(kFrontierStart);
     std::cout << ",\"frontier_target\":";
@@ -429,6 +503,15 @@ int main() {
               << first_joint.symbol_registry().size()
               << ",\"endpoint_corrector_joint_segment_count\":"
               << first_joint.segments().size()
+              << ",\"certified_joint_history_path_count\":"
+              << current_joint_histories.size()
+              << ",\"traversal_pair_selection_route\":";
+    print_json_string(
+        snapshot == nullptr ? "" : snapshot->pair_selection_route);
+    std::cout << ",\"direct_pair_selection_route\":";
+    print_json_string(direct_snapshot.pair_selection_route);
+    std::cout << ",\"direct_route_exact_token_parity\":"
+              << (direct_route_parity ? "true" : "false")
               << ",\"replay_status\":";
     print_json_string(replay->status);
     std::cout << ",\"replay_failure\":";
@@ -449,7 +532,7 @@ int main() {
     std::cout << ",\"next_probe_fail_closed_row\":";
     print_json_string(
         next_probe_fail_closed
-            ? "stationary_rest_r0_joint_frontier_next_uncertified_v2"
+            ? "stationary_rest_r0_joint_frontier_next_uncertified_v4"
             : "");
     std::cout << ",\"atomic_fail_closed\":"
               << (atomic_fail_closed ? "true" : "false")
@@ -468,7 +551,7 @@ int main() {
     std::cout << ',';
     print_root_row(next_probe_snapshot, "negative", "positive");
     std::cout << "]}\n";
-    return certified && next_probe_fail_closed ? 0 : 2;
+    return certified && direct_route_parity && next_probe_fail_closed ? 0 : 2;
   } catch (const std::exception& error) {
     std::cerr << "stationary joint frontier fixture error: "
               << error.what() << '\n';

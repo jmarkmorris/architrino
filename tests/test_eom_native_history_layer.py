@@ -450,6 +450,30 @@ class NativeHistoryLayerTests(unittest.TestCase):
             "joint_affine_outward_with_mpfr_factor",
         )
 
+    def test_traversal_exact_fallback_preserves_joint_carriers(self) -> None:
+        control = self.packet["joint_traversal_carrier_control"]
+        direct = control["direct"]
+        carried = control["carried"]
+        missing = control["missing"]
+
+        self.assertEqual(control["carried_batch_status"], "certified_complete")
+        self.assertEqual(carried["status"], "certified_complete")
+        self.assertTrue(carried["root_free_complement"])
+        self.assertEqual(len(carried["roots"]), 1)
+        self.assertEqual(
+            carried["roots"][0]["precision_route"],
+            "joint_affine_outward_with_mpfr_factor",
+        )
+        self.assertEqual(carried["roots"], direct["roots"])
+
+        self.assertEqual(control["missing_batch_status"], "uncertified")
+        self.assertEqual(missing["status"], "uncertified")
+        self.assertFalse(missing["root_free_complement"])
+        self.assertEqual(
+            missing["failure_code"], "numeric_precision_limit_exhausted"
+        )
+        self.assertEqual(missing["roots"], [])
+
     def test_joint_affine_history_charges_horner_rounding(self) -> None:
         row = self.joint_affine_history_evaluation("cubic")
 

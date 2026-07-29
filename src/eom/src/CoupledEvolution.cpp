@@ -19,6 +19,7 @@
 #include <stdexcept>
 #include <string>
 #include <tuple>
+#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -95,6 +96,120 @@ double elapsed_seconds(const SteadyClock::time_point& start) {
   return std::chrono::duration<double>(SteadyClock::now() - start).count();
 }
 
+void accumulate_history_phase_timing(
+    NativeHistoryPhaseTiming& total,
+    const NativeHistoryPhaseTiming& addition) {
+  total.wall_seconds += addition.wall_seconds;
+  total.disk_block_load_count += addition.disk_block_load_count;
+  total.disk_cache_miss_count += addition.disk_cache_miss_count;
+}
+
+void accumulate_history_timing(
+    NativeHistoryTiming& total,
+    const NativeHistoryTiming& addition) {
+  accumulate_history_phase_timing(
+      total.endpoint_state_lookup, addition.endpoint_state_lookup);
+  accumulate_history_phase_timing(
+      total.endpoint_position_lookup, addition.endpoint_position_lookup);
+  accumulate_history_phase_timing(
+      total.endpoint_velocity_lookup, addition.endpoint_velocity_lookup);
+  accumulate_history_phase_timing(
+      total.segment_construction, addition.segment_construction);
+  accumulate_history_phase_timing(
+      total.tail_block_copy, addition.tail_block_copy);
+  accumulate_history_phase_timing(
+      total.fingerprint_metadata_update,
+      addition.fingerprint_metadata_update);
+  accumulate_history_phase_timing(
+      total.history_inflation, addition.history_inflation);
+}
+
+template <typename Function>
+auto measure_history_phase(
+    NativeHistoryTiming* timing,
+    double* compatibility_wall_seconds,
+    NativeHistoryPhaseTiming NativeHistoryTiming::* member,
+    HistoryDiagnosticPhase phase,
+    Function&& function) -> std::invoke_result_t<Function> {
+  using Result = std::invoke_result_t<Function>;
+  if (timing == nullptr) {
+    if constexpr (std::is_void_v<Result>) {
+      std::invoke(std::forward<Function>(function));
+      return;
+    } else {
+      return std::invoke(std::forward<Function>(function));
+    }
+  }
+  const auto counters_before =
+      current_thread_history_diagnostic_counters(phase);
+  const auto wall_start = SteadyClock::now();
+  if constexpr (std::is_void_v<Result>) {
+    {
+      ScopedHistoryDiagnosticPhase diagnostic_phase(phase);
+      std::invoke(std::forward<Function>(function));
+    }
+    auto& phase_timing = timing->*member;
+    const double wall_seconds = elapsed_seconds(wall_start);
+    const auto counters_after =
+        current_thread_history_diagnostic_counters(phase);
+    phase_timing.wall_seconds += wall_seconds;
+    phase_timing.disk_block_load_count +=
+        counters_after.disk_block_load_count -
+        counters_before.disk_block_load_count;
+    phase_timing.disk_cache_miss_count +=
+        counters_after.disk_cache_miss_count -
+        counters_before.disk_cache_miss_count;
+    if (compatibility_wall_seconds != nullptr) {
+      *compatibility_wall_seconds += wall_seconds;
+    }
+    return;
+  } else {
+    Result result = [&]() -> Result {
+      ScopedHistoryDiagnosticPhase diagnostic_phase(phase);
+      return std::invoke(std::forward<Function>(function));
+    }();
+    auto& phase_timing = timing->*member;
+    const double wall_seconds = elapsed_seconds(wall_start);
+    const auto counters_after =
+        current_thread_history_diagnostic_counters(phase);
+    phase_timing.wall_seconds += wall_seconds;
+    phase_timing.disk_block_load_count +=
+        counters_after.disk_block_load_count -
+        counters_before.disk_block_load_count;
+    phase_timing.disk_cache_miss_count +=
+        counters_after.disk_cache_miss_count -
+        counters_before.disk_cache_miss_count;
+    if (compatibility_wall_seconds != nullptr) {
+      *compatibility_wall_seconds += wall_seconds;
+    }
+    return result;
+  }
+}
+
+void accumulate_history_append_diagnostics(
+    NativeHistoryTiming* timing,
+    double* compatibility_wall_seconds,
+    const HistoryAppendDiagnostics& diagnostics) {
+  if (timing == nullptr) return;
+  timing->tail_block_copy.wall_seconds +=
+      diagnostics.tail_block_copy_wall_seconds;
+  timing->tail_block_copy.disk_block_load_count +=
+      diagnostics.tail_block_copy_disk_block_load_count;
+  timing->tail_block_copy.disk_cache_miss_count +=
+      diagnostics.tail_block_copy_disk_cache_miss_count;
+  timing->fingerprint_metadata_update.wall_seconds +=
+      diagnostics.fingerprint_metadata_update_wall_seconds;
+  timing->fingerprint_metadata_update.disk_block_load_count +=
+      diagnostics.fingerprint_metadata_update_disk_block_load_count;
+  timing->fingerprint_metadata_update.disk_cache_miss_count +=
+      diagnostics.fingerprint_metadata_update_disk_cache_miss_count;
+  if (compatibility_wall_seconds != nullptr) {
+    *compatibility_wall_seconds +=
+        diagnostics.tail_block_copy_wall_seconds +
+        diagnostics.fingerprint_metadata_update_wall_seconds;
+  }
+}
+
 double upward_nonnegative_sum(double left, double right) {
   if (!(left >= 0.0) || !(right >= 0.0) || !std::isfinite(left) ||
       !std::isfinite(right)) {
@@ -110,10 +225,26 @@ double upward_nonnegative_sum(double left, double right) {
 using SnapshotTotals = std::map<std::string, IntervalVector>;
 
 struct SubstepAttempt {
+  SubstepAttempt(
+      NativeCorrectedSubstepCertificate certificate_value,
+      std::optional<std::vector<NativePublishedPath>> histories_value,
+      std::optional<std::map<std::string, JointAffineRetainedHistory>>
+          joint_histories_value,
+      std::optional<JointAccelerationSnapshotCertificate>
+          start_joint_snapshot_value = std::nullopt)
+      : certificate(std::move(certificate_value)),
+        histories(std::move(histories_value)),
+        joint_histories(std::move(joint_histories_value)),
+        start_joint_snapshot(std::move(start_joint_snapshot_value)) {}
+
   NativeCorrectedSubstepCertificate certificate;
   std::optional<std::vector<NativePublishedPath>> histories;
   std::optional<std::map<std::string, JointAffineRetainedHistory>>
       joint_histories;
+  // Internal same-calculation reuse only. These are never published as
+  // acceptance evidence; they avoid recomputing a deterministic joint image
+  // when the immediately following substep has the identical accepted inputs.
+  std::optional<JointAccelerationSnapshotCertificate> start_joint_snapshot;
 };
 
 void accumulate_substep_snapshot_timing(
@@ -128,6 +259,16 @@ void accumulate_substep_snapshot_timing(
       snapshot.timing.exact_root_batch_wall_seconds;
   total.root_binary64_worker_wall_seconds +=
       snapshot.timing.root_binary64_worker_wall_seconds;
+  total.root_binary64_setup_worker_wall_seconds +=
+      snapshot.timing.root_binary64_setup_worker_wall_seconds;
+  total.root_binary64_warm_start_worker_wall_seconds +=
+      snapshot.timing.root_binary64_warm_start_worker_wall_seconds;
+  total.root_binary64_cell_setup_worker_wall_seconds +=
+      snapshot.timing.root_binary64_cell_setup_worker_wall_seconds;
+  total.root_binary64_cell_classification_worker_wall_seconds +=
+      snapshot.timing.root_binary64_cell_classification_worker_wall_seconds;
+  total.root_binary64_finalization_worker_wall_seconds +=
+      snapshot.timing.root_binary64_finalization_worker_wall_seconds;
   total.root_pair_count += snapshot.timing.root_pair_count;
   total.root_reevaluated_cells += snapshot.timing.root_reevaluated_cells;
   total.root_warm_excluded_cells += snapshot.timing.root_warm_excluded_cells;
@@ -152,6 +293,20 @@ void accumulate_substep_snapshot_timing(
       snapshot.timing.acceleration_precision_escalation_worker_seconds;
   total.acceleration_precision_escalation_attempt_count +=
       snapshot.timing.acceleration_precision_escalation_attempt_count;
+}
+
+void accumulate_joint_snapshot_timing(
+    NativeCorrectedSubstepTiming& total,
+    const JointAccelerationSnapshotCertificate& snapshot,
+    double measured_wall_seconds) {
+  ++total.joint_snapshot_count;
+  total.joint_snapshot_wall_seconds += measured_wall_seconds;
+  total.joint_receiver_state_wall_seconds +=
+      snapshot.receiver_state_wall_seconds;
+  total.joint_row_certification_wall_seconds +=
+      snapshot.row_certification_wall_seconds;
+  total.joint_deterministic_reduction_wall_seconds +=
+      snapshot.deterministic_reduction_wall_seconds;
 }
 
 const NativePairAccelerationCertificate& snapshot_pair(
@@ -492,6 +647,7 @@ JointAccelerationAffineStates joint_acceleration_states(
 std::map<std::string, JointAffineRetainedHistory>
 append_joint_candidate_segments(
     const std::vector<NativePublishedPath>& ordinary_histories,
+    const std::vector<HistoryEndpointState>& endpoint_states,
     const std::map<std::string, JointAffineRetainedHistory>& joint_histories,
     const std::string& start_time,
     const std::string& end_time,
@@ -501,12 +657,16 @@ append_joint_candidate_segments(
   const double start = scalar_token(start_time);
   const double end = scalar_token(end_time);
   const double step = end - start;
-  if (!(step > 0.0) || joint_histories.size() != ordinary_histories.size()) {
+  if (!(step > 0.0) ||
+      joint_histories.size() != ordinary_histories.size() ||
+      endpoint_states.size() != ordinary_histories.size()) {
     throw std::invalid_argument(
         "joint candidate segment domain is invalid");
   }
   std::map<std::string, JointAffineRetainedHistory> result;
-  for (const auto& ordinary : ordinary_histories) {
+  for (std::size_t path_index = 0U;
+       path_index < ordinary_histories.size(); ++path_index) {
+    const auto& ordinary = ordinary_histories[path_index];
     const auto joint_found = joint_histories.find(ordinary.path_id);
     const auto start_found = start_acceleration.find(ordinary.path_id);
     const auto end_found = end_acceleration.find(ordinary.path_id);
@@ -523,10 +683,8 @@ append_joint_candidate_segments(
       throw std::invalid_argument(
           "joint candidate acceleration registry is not aligned");
     }
-    const Interval start_point = Interval::point(start);
-    const auto position_box =
-        ordinary.history.correlated_position_hull(start_point);
-    const auto velocity_box = ordinary.history.velocity_hull(start_point);
+    const auto& position_box = endpoint_states[path_index].position;
+    const auto& velocity_box = endpoint_states[path_index].velocity;
     const auto initial = joint_found->second.evaluate(
         start, component_radii(position_box), component_radii(velocity_box));
     if (!initial.position_fallback_dominates ||
@@ -604,6 +762,7 @@ struct JointEndpointContraction {
 JointEndpointContraction contract_joint_endpoint(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& input_ordinary_histories,
+    const std::vector<HistoryEndpointState>& input_endpoint_states,
     const std::vector<NativePublishedPath>& candidate_ordinary_histories,
     const std::string& start_time,
     const std::string& end_time,
@@ -623,7 +782,7 @@ JointEndpointContraction contract_joint_endpoint(
     state.remainder_radii = {0.0, 0.0, 0.0};
   }
   const auto base_histories = append_joint_candidate_segments(
-      input_ordinary_histories, request.joint_histories,
+      input_ordinary_histories, input_endpoint_states, request.joint_histories,
       start_time, end_time, start_acceleration, endpoint_without_remainder,
       right_endpoint_acceleration_paths);
   const auto ids = path_ids(request);
@@ -775,7 +934,7 @@ JointEndpointContraction contract_joint_endpoint(
         corrector.endpoint_remainder_radii.at(id);
   }
   result.histories = append_joint_candidate_segments(
-      input_ordinary_histories, request.joint_histories,
+      input_ordinary_histories, input_endpoint_states, request.joint_histories,
       start_time, end_time, start_acceleration, contracted_endpoint,
       right_endpoint_acceleration_paths);
   result.certified = true;
@@ -1203,15 +1362,34 @@ certify_coincident_endpoint_root_continuation_impl(
   };
 }
 
+using HistoryEndpointStates = std::vector<HistoryEndpointState>;
+
+HistoryEndpointStates collect_history_endpoint_states(
+    const std::vector<NativePublishedPath>& histories,
+    NativeCorrectedSubstepTiming* timing) {
+  HistoryEndpointStates states;
+  states.reserve(histories.size());
+  for (const auto& path : histories) {
+    states.push_back(measure_history_phase(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        &NativeHistoryTiming::endpoint_state_lookup,
+        HistoryDiagnosticPhase::endpoint_state_lookup,
+        [&] { return path.history.endpoint_state_hull(); }));
+  }
+  return states;
+}
+
 std::vector<NativePublishedPath> append_candidate_segments(
     const std::vector<NativePublishedPath>& histories,
+    const HistoryEndpointStates& endpoint_states,
     const std::string& start_time,
     const std::string& end_time,
     const SnapshotTotals& start_acceleration,
     const SnapshotTotals& end_acceleration,
     const std::set<std::string>& right_endpoint_acceleration_paths,
     NativeCorrectedSubstepTiming* timing) {
-  const auto timing_start = SteadyClock::now();
   const double start = scalar_token(start_time);
   const double end = scalar_token(end_time);
   const double step = end - start;
@@ -1220,71 +1398,94 @@ std::vector<NativePublishedPath> append_candidate_segments(
         "candidate segment requires a positive step: start=" + start_time +
         ", end=" + end_time);
   }
+  if (endpoint_states.size() != histories.size()) {
+    throw std::invalid_argument(
+        "candidate endpoint-state domain does not match histories");
+  }
   std::vector<NativePublishedPath> result;
   result.reserve(histories.size());
-  for (const auto& path : histories) {
-    const Interval time = Interval::point(start);
-    const IntervalVector position_interval =
-        path.history.correlated_position_hull(time);
-    const IntervalVector velocity_interval =
-        path.history.correlated_velocity_hull(time);
-    const auto position = midpoints(position_interval);
-    const auto velocity = midpoints(velocity_interval);
-    const auto start_found = start_acceleration.find(path.path_id);
-    const auto end_found = end_acceleration.find(path.path_id);
-    if (start_found == start_acceleration.end() ||
-        end_found == end_acceleration.end()) {
-      throw std::invalid_argument("candidate segment lacks path acceleration");
-    }
-    CubicCoefficientTokens coefficients{};
-    for (std::size_t axis = 0; axis < 3; ++axis) {
-      const double acceleration_start =
-          right_endpoint_acceleration_paths.contains(path.path_id)
-          ? end_found->second[axis].midpoint()
-          : start_found->second[axis].midpoint();
-      const double acceleration_end = end_found->second[axis].midpoint();
-      coefficients[axis] = {
-          decimal_token(position[axis]),
-          decimal_token(velocity[axis]),
-          decimal_token(acceleration_start * 0.5),
-          decimal_token(
-              (acceleration_end - acceleration_start) / (6.0 * step)),
-      };
-    }
-    const auto position_radii = component_radii(position_interval);
-    const auto velocity_radii = component_radii(velocity_interval);
-    const auto acceleration_start_radii = component_radii(
-        right_endpoint_acceleration_paths.contains(path.path_id)
-            ? end_found->second
-            : start_found->second);
-    const auto acceleration_end_radii = component_radii(end_found->second);
-    // The published cubic uses acceleration midpoints.  Its explicit error
-    // radius must therefore carry the entire interval input through the
-    // accepted step: integral_0^h a_err dt <= h r_a and
-    // integral_0^h (h-t) a_err dt <= h^2 r_a / 2.  Retained position and
-    // velocity radii propagate through the same map.
-    HistoryErrorTokens position_error_tokens{};
-    HistoryErrorTokens velocity_error_tokens{};
-    for (std::size_t axis = 0U; axis < 3U; ++axis) {
-      const double acceleration_radius = std::max(
-          acceleration_start_radii[axis], acceleration_end_radii[axis]);
-      position_error_tokens[axis] = error_token(upward_nonnegative_sum(
-          upward_nonnegative_sum(
-              position_radii[axis], step * velocity_radii[axis]),
-          0.5 * step * step * acceleration_radius));
-      velocity_error_tokens[axis] = error_token(upward_nonnegative_sum(
-          velocity_radii[axis], step * acceleration_radius));
-    }
-    CubicHistorySegment segment(
-        start_time, end_time, coefficients, position_error_tokens,
-        velocity_error_tokens);
+  for (std::size_t path_index = 0U;
+       path_index < histories.size(); ++path_index) {
+    const auto& path = histories[path_index];
+    const auto& position_interval = endpoint_states[path_index].position;
+    const auto& velocity_interval = endpoint_states[path_index].velocity;
+    CubicHistorySegment segment = measure_history_phase(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        &NativeHistoryTiming::segment_construction,
+        HistoryDiagnosticPhase::segment_construction,
+        [&] {
+          const auto position = midpoints(position_interval);
+          const auto velocity = midpoints(velocity_interval);
+          const auto start_found = start_acceleration.find(path.path_id);
+          const auto end_found = end_acceleration.find(path.path_id);
+          if (start_found == start_acceleration.end() ||
+              end_found == end_acceleration.end()) {
+            throw std::invalid_argument(
+                "candidate segment lacks path acceleration");
+          }
+          CubicCoefficientTokens coefficients{};
+          for (std::size_t axis = 0; axis < 3; ++axis) {
+            const double acceleration_start =
+                right_endpoint_acceleration_paths.contains(path.path_id)
+                ? end_found->second[axis].midpoint()
+                : start_found->second[axis].midpoint();
+            const double acceleration_end = end_found->second[axis].midpoint();
+            coefficients[axis] = {
+                decimal_token(position[axis]),
+                decimal_token(velocity[axis]),
+                decimal_token(acceleration_start * 0.5),
+                decimal_token(
+                    (acceleration_end - acceleration_start) / (6.0 * step)),
+            };
+          }
+          const auto position_radii = component_radii(position_interval);
+          const auto velocity_radii = component_radii(velocity_interval);
+          const auto acceleration_start_radii = component_radii(
+              right_endpoint_acceleration_paths.contains(path.path_id)
+                  ? end_found->second
+                  : start_found->second);
+          const auto acceleration_end_radii =
+              component_radii(end_found->second);
+          // The published cubic uses acceleration midpoints.  Its explicit
+          // error radius must therefore carry the entire interval input
+          // through the accepted step: integral_0^h a_err dt <= h r_a and
+          // integral_0^h (h-t) a_err dt <= h^2 r_a / 2.  Retained position and
+          // velocity radii propagate through the same map.
+          HistoryErrorTokens position_error_tokens{};
+          HistoryErrorTokens velocity_error_tokens{};
+          for (std::size_t axis = 0U; axis < 3U; ++axis) {
+            const double acceleration_radius = std::max(
+                acceleration_start_radii[axis],
+                acceleration_end_radii[axis]);
+            position_error_tokens[axis] =
+                error_token(upward_nonnegative_sum(
+                    upward_nonnegative_sum(
+                        position_radii[axis],
+                        step * velocity_radii[axis]),
+                    0.5 * step * step * acceleration_radius));
+            velocity_error_tokens[axis] =
+                error_token(upward_nonnegative_sum(
+                    velocity_radii[axis],
+                    step * acceleration_radius));
+          }
+          return CubicHistorySegment(
+              start_time, end_time, coefficients, position_error_tokens,
+              velocity_error_tokens);
+        });
+    HistoryAppendDiagnostics append_diagnostics;
     result.push_back({
         path.path_id,
-        path.history.appended(std::move(segment)),
+        path.history.appended(
+            std::move(segment), timing == nullptr ? nullptr
+                                                 : &append_diagnostics),
     });
-  }
-  if (timing != nullptr) {
-    timing->history_copy_hash_wall_seconds += elapsed_seconds(timing_start);
+    accumulate_history_append_diagnostics(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        append_diagnostics);
   }
   return result;
 }
@@ -1299,6 +1500,7 @@ struct EventAwareCandidate {
 
 EventAwareCandidate append_event_aware_candidate_segments(
     const std::vector<NativePublishedPath>& histories,
+    const HistoryEndpointStates& endpoint_states,
     const std::string& start_time,
     const std::string& end_time,
     const NativeAccelerationSnapshotCertificate& start_snapshot,
@@ -1310,7 +1512,6 @@ EventAwareCandidate append_event_aware_candidate_segments(
     throw std::invalid_argument(
         "event-aware reconstruction pair/event domain mismatch");
   }
-  const auto timing_start = SteadyClock::now();
   const double start = scalar_token(start_time);
   const double end = scalar_token(end_time);
   const double step = end - start;
@@ -1318,121 +1519,155 @@ EventAwareCandidate append_event_aware_candidate_segments(
     throw std::invalid_argument(
         "event-aware reconstruction requires a positive step");
   }
+  // Acceleration remains owned by the accepted same-calculation snapshot.
+  // A retained cubic's second derivative is an integration representation,
+  // not a certified acceleration enclosure, so terminal history lookup must
+  // not substitute it for the causal-root sum.
   const SnapshotTotals start_totals = snapshot_totals(start_snapshot);
   const SnapshotTotals end_totals = snapshot_totals(end_snapshot);
   const Interval zero = Interval::point(0.0);
   const IntervalVector zero_vector{zero, zero, zero};
   EventAwareCandidate result;
+  if (endpoint_states.size() != histories.size()) {
+    throw std::invalid_argument(
+        "event-aware endpoint-state domain does not match histories");
+  }
   result.histories.reserve(histories.size());
-  for (const auto& path : histories) {
-    const Interval start_point = Interval::point(start);
-    const IntervalVector x0 =
-        path.history.correlated_position_hull(start_point);
-    const IntervalVector v0 =
-        path.history.correlated_velocity_hull(start_point);
+  for (std::size_t path_index = 0U;
+       path_index < histories.size(); ++path_index) {
+    const auto& path = histories[path_index];
+    const auto& x0 = endpoint_states[path_index].position;
+    const auto& v0 = endpoint_states[path_index].velocity;
     IntervalVector background_start = start_totals.at(path.path_id);
     IntervalVector background_end = end_totals.at(path.path_id);
     IntervalVector event_impulse = zero_vector;
     IntervalVector event_moment = zero_vector;
     bool has_event = false;
-    for (std::size_t index = 0; index < event_pairs.size(); ++index) {
-      const auto& pair = event_pairs[index];
-      if (pair.first != path.path_id) continue;
-      const auto& event = events[index];
-      if (!event.impulse.has_value() ||
-          !event.position_moment.has_value()) {
-        throw std::invalid_argument(
-            "event-aware reconstruction requires certified event rows");
-      }
-      const auto& start_pair =
-          snapshot_pair(start_snapshot, pair.first, pair.second);
-      const auto& end_pair =
-          snapshot_pair(end_snapshot, pair.first, pair.second);
-      if (!start_pair.total_acceleration.has_value() ||
-          !end_pair.total_acceleration.has_value()) {
-        throw std::invalid_argument(
-            "event-aware reconstruction lacks endpoint pair acceleration");
-      }
-      background_start = subtract(
-          background_start, *start_pair.total_acceleration);
-      background_end = subtract(
-          background_end, *end_pair.total_acceleration);
-      event_impulse = add(event_impulse, *event.impulse);
-      event_moment = add(event_moment, *event.position_moment);
-      has_event = true;
-    }
+    measure_history_phase(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        &NativeHistoryTiming::segment_construction,
+        HistoryDiagnosticPhase::segment_construction,
+        [&] {
+          for (std::size_t index = 0; index < event_pairs.size(); ++index) {
+            const auto& pair = event_pairs[index];
+            if (pair.first != path.path_id) continue;
+            const auto& event = events[index];
+            if (!event.impulse.has_value() ||
+                !event.position_moment.has_value()) {
+              throw std::invalid_argument(
+                  "event-aware reconstruction requires certified event rows");
+            }
+            const auto& start_pair =
+                snapshot_pair(start_snapshot, pair.first, pair.second);
+            const auto& end_pair =
+                snapshot_pair(end_snapshot, pair.first, pair.second);
+            if (!start_pair.total_acceleration.has_value() ||
+                !end_pair.total_acceleration.has_value()) {
+              throw std::invalid_argument(
+                  "event-aware reconstruction lacks endpoint pair acceleration");
+            }
+            background_start = subtract(
+                background_start, *start_pair.total_acceleration);
+            background_end = subtract(
+                background_end, *end_pair.total_acceleration);
+            event_impulse = add(event_impulse, *event.impulse);
+            event_moment = add(event_moment, *event.position_moment);
+            has_event = true;
+          }
+        });
     if (!has_event) {
       auto ordinary = append_candidate_segments(
-          {path}, start_time, end_time,
+          {path}, {endpoint_states[path_index]}, start_time, end_time,
           {{path.path_id, start_totals.at(path.path_id)}},
-          {{path.path_id, end_totals.at(path.path_id)}}, {}, nullptr);
+          {{path.path_id, end_totals.at(path.path_id)}}, {}, timing);
       result.histories.push_back(std::move(ordinary.front()));
       continue;
     }
 
-    const IntervalVector background_impulse = scale(
-        Interval::point(step * 0.5),
-        add(background_start, background_end));
-    const IntervalVector background_moment = scale(
-        Interval::point(step * step / 6.0),
-        add(scale(Interval::point(2.0), background_start), background_end));
-    const IntervalVector v1 = add(v0, add(background_impulse, event_impulse));
-    const IntervalVector x1 = add(
-        add(x0, scale(Interval::point(step), v0)),
-        add(background_moment, event_moment));
-    result.background_impulses.insert_or_assign(
-        path.path_id, background_impulse);
-    result.background_position_moments.insert_or_assign(
-        path.path_id, background_moment);
-    result.endpoint_positions.insert_or_assign(path.path_id, x1);
-    result.endpoint_velocities.insert_or_assign(path.path_id, v1);
+    CubicHistorySegment segment = measure_history_phase(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        &NativeHistoryTiming::segment_construction,
+        HistoryDiagnosticPhase::segment_construction,
+        [&] {
+          const IntervalVector background_impulse = scale(
+              Interval::point(step * 0.5),
+              add(background_start, background_end));
+          const IntervalVector background_moment = scale(
+              Interval::point(step * step / 6.0),
+              add(scale(Interval::point(2.0), background_start),
+                  background_end));
+          const IntervalVector v1 = add(
+              v0, add(background_impulse, event_impulse));
+          const IntervalVector x1 = add(
+              add(x0, scale(Interval::point(step), v0)),
+              add(background_moment, event_moment));
+          result.background_impulses.insert_or_assign(
+              path.path_id, background_impulse);
+          result.background_position_moments.insert_or_assign(
+              path.path_id, background_moment);
+          result.endpoint_positions.insert_or_assign(path.path_id, x1);
+          result.endpoint_velocities.insert_or_assign(path.path_id, v1);
 
-    CubicCoefficientTokens coefficients{};
-    for (std::size_t axis = 0; axis < 3U; ++axis) {
-      const double x0_mid = x0[axis].midpoint();
-      const double v0_mid = v0[axis].midpoint();
-      const double x1_mid = x1[axis].midpoint();
-      const double v1_mid = v1[axis].midpoint();
-      coefficients[axis] = {
-          decimal_token(x0_mid),
-          decimal_token(v0_mid),
-          decimal_token(
-              (3.0 * (x1_mid - x0_mid) -
-               step * (2.0 * v0_mid + v1_mid)) /
-              (step * step)),
-          decimal_token(
-              (2.0 * (x0_mid - x1_mid) +
-               step * (v0_mid + v1_mid)) /
-              (step * step * step)),
-      };
-    }
-    const auto x0_radii = component_radii(x0);
-    const auto v0_radii = component_radii(v0);
-    const auto x1_radii = component_radii(x1);
-    const auto v1_radii = component_radii(v1);
-    // These are uniform Hermite-basis bounds, not endpoint-only radii.  They
-    // enclose every convex position basis term and every differentiated basis
-    // term on 0 <= (T-T0)/h <= 1.
-    HistoryErrorTokens position_error_tokens{};
-    HistoryErrorTokens velocity_error_tokens{};
-    for (std::size_t axis = 0U; axis < 3U; ++axis) {
-      position_error_tokens[axis] = error_token(upward_nonnegative_sum(
-          upward_nonnegative_sum(x0_radii[axis], x1_radii[axis]),
-          step * upward_nonnegative_sum(
-              v0_radii[axis], v1_radii[axis])));
-      velocity_error_tokens[axis] = error_token(upward_nonnegative_sum(
-          1.5 * (x0_radii[axis] + x1_radii[axis]) / step,
-          2.0 * (v0_radii[axis] + v1_radii[axis])));
-    }
+          CubicCoefficientTokens coefficients{};
+          for (std::size_t axis = 0; axis < 3U; ++axis) {
+            const double x0_mid = x0[axis].midpoint();
+            const double v0_mid = v0[axis].midpoint();
+            const double x1_mid = x1[axis].midpoint();
+            const double v1_mid = v1[axis].midpoint();
+            coefficients[axis] = {
+                decimal_token(x0_mid),
+                decimal_token(v0_mid),
+                decimal_token(
+                    (3.0 * (x1_mid - x0_mid) -
+                     step * (2.0 * v0_mid + v1_mid)) /
+                    (step * step)),
+                decimal_token(
+                    (2.0 * (x0_mid - x1_mid) +
+                     step * (v0_mid + v1_mid)) /
+                    (step * step * step)),
+            };
+          }
+          const auto x0_radii = component_radii(x0);
+          const auto v0_radii = component_radii(v0);
+          const auto x1_radii = component_radii(x1);
+          const auto v1_radii = component_radii(v1);
+          // These are uniform Hermite-basis bounds, not endpoint-only radii.
+          // They enclose every convex position basis term and every
+          // differentiated basis term on 0 <= (T-T0)/h <= 1.
+          HistoryErrorTokens position_error_tokens{};
+          HistoryErrorTokens velocity_error_tokens{};
+          for (std::size_t axis = 0U; axis < 3U; ++axis) {
+            position_error_tokens[axis] =
+                error_token(upward_nonnegative_sum(
+                    upward_nonnegative_sum(
+                        x0_radii[axis], x1_radii[axis]),
+                    step * upward_nonnegative_sum(
+                        v0_radii[axis], v1_radii[axis])));
+            velocity_error_tokens[axis] =
+                error_token(upward_nonnegative_sum(
+                    1.5 * (x0_radii[axis] + x1_radii[axis]) / step,
+                    2.0 * (v0_radii[axis] + v1_radii[axis])));
+          }
+          return CubicHistorySegment(
+              start_time, end_time, coefficients,
+              position_error_tokens, velocity_error_tokens);
+        });
+    HistoryAppendDiagnostics append_diagnostics;
     result.histories.push_back({
         path.path_id,
-        path.history.appended(CubicHistorySegment(
-            start_time, end_time, coefficients,
-            position_error_tokens, velocity_error_tokens)),
+        path.history.appended(
+            std::move(segment), timing == nullptr ? nullptr
+                                                 : &append_diagnostics),
     });
-  }
-  if (timing != nullptr) {
-    timing->history_copy_hash_wall_seconds += elapsed_seconds(timing_start);
+    accumulate_history_append_diagnostics(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        append_diagnostics);
   }
   return result;
 }
@@ -2322,7 +2557,8 @@ std::vector<NativePathLocalError> endpoint_local_errors(
 std::vector<NativePublishedPath> inflate_fine_histories(
     const std::vector<NativePublishedPath>& input_histories,
     const std::vector<NativePublishedPath>& fine_histories,
-    const std::vector<NativePathLocalError>& local_errors) {
+    const std::vector<NativePathLocalError>& local_errors,
+    NativeAtomicStepTiming* timing) {
   std::vector<NativePublishedPath> result;
   result.reserve(fine_histories.size());
   for (const auto& fine : fine_histories) {
@@ -2337,22 +2573,41 @@ std::vector<NativePublishedPath> inflate_fine_histories(
     RetainedHistory inflated = input.history;
     for (std::size_t index = input.history.segments().size();
          index < fine.history.segments().size(); ++index) {
-      const auto segment_pin = fine.history.segments().pin(index);
-      const auto& segment = *segment_pin;
-      HistoryErrorTokens position_error_tokens{};
-      HistoryErrorTokens velocity_error_tokens{};
-      for (std::size_t axis = 0U; axis < 3U; ++axis) {
-        position_error_tokens[axis] = error_token(upward_nonnegative_sum(
-            scalar_token(segment.position_error_tokens()[axis]),
-            error_found->position_errors[axis]));
-        velocity_error_tokens[axis] = error_token(upward_nonnegative_sum(
-            scalar_token(segment.velocity_error_tokens()[axis]),
-            error_found->velocity_errors[axis]));
-      }
-      inflated = inflated.appended(CubicHistorySegment(
-          segment.t_start_token(), segment.t_end_token(),
-          segment.coefficient_tokens(), position_error_tokens,
-          velocity_error_tokens));
+      CubicHistorySegment inflated_segment = measure_history_phase(
+          timing == nullptr ? nullptr : &timing->history,
+          timing == nullptr
+              ? nullptr : &timing->history_copy_hash_wall_seconds,
+          &NativeHistoryTiming::history_inflation,
+          HistoryDiagnosticPhase::history_inflation,
+          [&] {
+            const auto segment_pin = fine.history.segments().pin(index);
+            const auto& segment = *segment_pin;
+            HistoryErrorTokens position_error_tokens{};
+            HistoryErrorTokens velocity_error_tokens{};
+            for (std::size_t axis = 0U; axis < 3U; ++axis) {
+              position_error_tokens[axis] =
+                  error_token(upward_nonnegative_sum(
+                      scalar_token(segment.position_error_tokens()[axis]),
+                      error_found->position_errors[axis]));
+              velocity_error_tokens[axis] =
+                  error_token(upward_nonnegative_sum(
+                      scalar_token(segment.velocity_error_tokens()[axis]),
+                      error_found->velocity_errors[axis]));
+            }
+            return CubicHistorySegment(
+                segment.t_start_token(), segment.t_end_token(),
+                segment.coefficient_tokens(), position_error_tokens,
+                velocity_error_tokens);
+          });
+      HistoryAppendDiagnostics append_diagnostics;
+      inflated = inflated.appended(
+          std::move(inflated_segment),
+          timing == nullptr ? nullptr : &append_diagnostics);
+      accumulate_history_append_diagnostics(
+          timing == nullptr ? nullptr : &timing->history,
+          timing == nullptr
+              ? nullptr : &timing->history_copy_hash_wall_seconds,
+          append_diagnostics);
     }
     result.push_back({
         fine.path_id,
@@ -2620,10 +2875,9 @@ lift_joint_endpoint_remainders(
       throw std::invalid_argument(
           "joint endpoint lift lacks a path history");
     }
-    const Interval endpoint_point = Interval::point(endpoint);
-    const auto position_box =
-        ordinary.history.correlated_position_hull(endpoint_point);
-    const auto velocity_box = ordinary.history.velocity_hull(endpoint_point);
+    const auto endpoint_state = ordinary.history.endpoint_state_hull();
+    const auto& position_box = endpoint_state.position;
+    const auto& velocity_box = endpoint_state.velocity;
     const auto position_radii = component_radii(position_box);
     const auto velocity_radii = component_radii(velocity_box);
     const auto evaluation = joint_found->second.evaluate(
@@ -2728,10 +2982,11 @@ MultiratePublication synchronized_multirate_histories(
     const std::vector<NativePublishedPath>& input_histories,
     const std::vector<NativePublishedPath>& full_histories,
     const std::vector<NativePublishedPath>& fine_histories,
-    const std::vector<NativePathLocalError>& endpoint_errors) {
+    const std::vector<NativePathLocalError>& endpoint_errors,
+    NativeAtomicStepTiming* timing) {
   MultiratePublication result{
       .histories = inflate_fine_histories(
-          input_histories, fine_histories, endpoint_errors),
+          input_histories, fine_histories, endpoint_errors, timing),
   };
   const double fraction = exact_decimal_value(
       request.multirate_synchronization_fraction);
@@ -2822,11 +3077,27 @@ MultiratePublication synchronized_multirate_histories(
           coarse_segment.velocity_errors()[axis],
           maximum_fine_velocity_errors[axis] + dense_velocity_errors[axis]));
     }
+    CubicHistorySegment inflated_coarse_segment = measure_history_phase(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        &NativeHistoryTiming::history_inflation,
+        HistoryDiagnosticPhase::history_inflation,
+        [&] {
+          return CubicHistorySegment(
+              coarse_segment.t_start_token(), coarse_segment.t_end_token(),
+              coarse_segment.coefficient_tokens(),
+              coarse_position_error_tokens, coarse_velocity_error_tokens);
+        });
+    HistoryAppendDiagnostics append_diagnostics;
     RetainedHistory coarse_history = input.history.appended(
-        CubicHistorySegment(
-            coarse_segment.t_start_token(), coarse_segment.t_end_token(),
-            coarse_segment.coefficient_tokens(),
-            coarse_position_error_tokens, coarse_velocity_error_tokens));
+        std::move(inflated_coarse_segment),
+        timing == nullptr ? nullptr : &append_diagnostics);
+    accumulate_history_append_diagnostics(
+        timing == nullptr ? nullptr : &timing->history,
+        timing == nullptr
+            ? nullptr : &timing->history_copy_hash_wall_seconds,
+        append_diagnostics);
     result.histories[path_index] = {
         input.path_id, std::move(coarse_history)};
     result.coarse_path_ids.push_back(input.path_id);
@@ -2934,6 +3205,8 @@ SubstepAttempt corrected_substep_impl(
     const std::string& end_time,
     NativeCorrectedSubstepTiming* timing,
     const NativeAccelerationSnapshotCertificate* reusable_start_snapshot,
+    const JointAccelerationSnapshotCertificate*
+        reusable_start_joint_snapshot,
     bool defer_endpoint_root_precision_escalation) {
   NativeAccelerationSnapshotCertificate start_snapshot;
   if (reusable_start_snapshot != nullptr) {
@@ -2985,35 +3258,71 @@ SubstepAttempt corrected_substep_impl(
   for (const auto& certificate : pinned_fold_onset_certificates) {
     pinned_fold_onset_path_set.insert(certificate.path_id);
   }
+  const HistoryEndpointStates endpoint_states =
+      collect_history_endpoint_states(histories, timing);
   const bool joint_enabled = !request.joint_histories.empty();
   JointAccelerationAffineStates start_joint_states;
+  std::optional<JointAccelerationSnapshotCertificate> start_joint_snapshot;
   if (joint_enabled) {
-    const auto joint_start = certify_joint_acceleration_snapshot(
-        Interval::decimal_token(request.field_speed), start_snapshot,
-        histories, request.joint_histories);
-    if (!joint_start.certified) {
+    const JointAccelerationSnapshotCertificate* joint_start = nullptr;
+    if (reusable_start_joint_snapshot != nullptr) {
+      const auto& registry =
+          request.joint_histories.begin()->second.symbol_registry();
+      const bool paths_match =
+          reusable_start_joint_snapshot->receivers.size() == histories.size() &&
+          std::all_of(
+              histories.begin(), histories.end(), [&](const auto& history) {
+                return std::any_of(
+                    reusable_start_joint_snapshot->receivers.begin(),
+                    reusable_start_joint_snapshot->receivers.end(),
+                    [&](const auto& receiver) {
+                      return receiver.path_id == history.path_id;
+                    });
+              });
+      if (!reusable_start_joint_snapshot->certified ||
+          reusable_start_joint_snapshot->shared_symbol_count !=
+              registry.size() ||
+          !paths_match) {
+        throw std::invalid_argument(
+            "reusable joint start snapshot does not match the requested "
+            "substep");
+      }
+      joint_start = reusable_start_joint_snapshot;
+      ++timing->reused_joint_start_snapshot_count;
+    } else {
+      const auto joint_start_timing = SteadyClock::now();
+      start_joint_snapshot = certify_joint_acceleration_snapshot(
+          Interval::decimal_token(request.field_speed), start_snapshot,
+          histories, request.joint_histories);
+      const double joint_start_seconds = elapsed_seconds(joint_start_timing);
+      timing->joint_start_snapshot_wall_seconds += joint_start_seconds;
+      accumulate_joint_snapshot_timing(
+          *timing, *start_joint_snapshot, joint_start_seconds);
+      joint_start = &*start_joint_snapshot;
+    }
+    if (!joint_start->certified) {
       return {
           failed_substep_certificate(
               start_time, end_time, std::move(start_snapshot), std::nullopt,
-              0U, std::nullopt, joint_start.failure_code, std::nullopt,
+              0U, std::nullopt, joint_start->failure_code, std::nullopt,
               pinned_fold_onset_certificates),
           std::nullopt,
           std::nullopt,
       };
     }
-    start_joint_states = joint_acceleration_states(joint_start);
+    start_joint_states = joint_acceleration_states(*joint_start);
   }
   const SnapshotTotals start_totals = snapshot_totals(start_snapshot);
   auto predictor_histories = append_candidate_segments(
-      histories, start_time, end_time, start_totals, start_totals, {},
-      timing);
+      histories, endpoint_states, start_time, end_time, start_totals,
+      start_totals, {}, timing);
   std::map<std::string, JointAffineRetainedHistory>
       predictor_joint_histories;
   auto predictor_request = request;
   if (joint_enabled) {
     predictor_joint_histories = append_joint_candidate_segments(
-        histories, request.joint_histories, start_time, end_time,
-        start_joint_states, start_joint_states, {});
+        histories, endpoint_states, request.joint_histories, start_time,
+        end_time, start_joint_states, start_joint_states, {});
     predictor_request.joint_histories = predictor_joint_histories;
   }
   auto predictor_snapshot = certify_native_acceleration_snapshot(
@@ -3046,9 +3355,16 @@ SubstepAttempt corrected_substep_impl(
   SnapshotTotals endpoint_guess = snapshot_totals(predictor_snapshot);
   JointAccelerationAffineStates endpoint_joint_guess;
   if (joint_enabled) {
+    const auto joint_predictor_timing = SteadyClock::now();
     const auto joint_predictor = certify_joint_acceleration_snapshot(
         Interval::decimal_token(request.field_speed), predictor_snapshot,
         predictor_histories, predictor_joint_histories);
+    const double joint_predictor_seconds =
+        elapsed_seconds(joint_predictor_timing);
+    timing->joint_predictor_snapshot_wall_seconds +=
+        joint_predictor_seconds;
+    accumulate_joint_snapshot_timing(
+        *timing, joint_predictor, joint_predictor_seconds);
     if (!joint_predictor.certified) {
       return {
           failed_substep_certificate(
@@ -3070,15 +3386,15 @@ SubstepAttempt corrected_substep_impl(
   for (std::size_t iteration = 1;
        iteration <= request.max_correction_iterations; ++iteration) {
     auto candidate_histories = append_candidate_segments(
-        histories, start_time, end_time, start_totals, endpoint_guess,
-        pinned_fold_onset_path_set, timing);
+        histories, endpoint_states, start_time, end_time, start_totals,
+        endpoint_guess, pinned_fold_onset_path_set, timing);
     std::map<std::string, JointAffineRetainedHistory>
         candidate_joint_histories;
     auto candidate_request = request;
     if (joint_enabled) {
       candidate_joint_histories = append_joint_candidate_segments(
-          histories, request.joint_histories, start_time, end_time,
-          start_joint_states, endpoint_joint_guess,
+          histories, endpoint_states, request.joint_histories, start_time,
+          end_time, start_joint_states, endpoint_joint_guess,
           pinned_fold_onset_path_set);
       candidate_request.joint_histories = candidate_joint_histories;
     }
@@ -3111,9 +3427,16 @@ SubstepAttempt corrected_substep_impl(
     const SnapshotTotals evaluated = snapshot_totals(endpoint_snapshot);
     JointAccelerationAffineStates evaluated_joint_states;
     if (joint_enabled) {
-      const auto evaluated_joint = certify_joint_acceleration_snapshot(
+      const auto joint_correction_timing = SteadyClock::now();
+      auto evaluated_joint = certify_joint_acceleration_snapshot(
           Interval::decimal_token(request.field_speed), endpoint_snapshot,
           candidate_histories, candidate_joint_histories);
+      const double joint_correction_seconds =
+          elapsed_seconds(joint_correction_timing);
+      timing->joint_correction_snapshot_wall_seconds +=
+          joint_correction_seconds;
+      accumulate_joint_snapshot_timing(
+          *timing, evaluated_joint, joint_correction_seconds);
       if (!evaluated_joint.certified) {
         return {
             failed_substep_certificate(
@@ -3184,10 +3507,14 @@ SubstepAttempt corrected_substep_impl(
         };
       }
       if (joint_enabled) {
+        const auto contraction_timing_start = SteadyClock::now();
         const auto contraction = contract_joint_endpoint(
-            request, histories, candidate_histories, start_time, end_time,
-            endpoint_snapshot, start_joint_states, endpoint_joint_guess,
-            endpoint_guess, pinned_fold_onset_path_set);
+            request, histories, endpoint_states, candidate_histories,
+            start_time, end_time, endpoint_snapshot, start_joint_states,
+            endpoint_joint_guess, endpoint_guess,
+            pinned_fold_onset_path_set);
+        timing->joint_endpoint_contraction_wall_seconds +=
+            elapsed_seconds(contraction_timing_start);
         if (!contraction.certified) {
           return {
               failed_substep_certificate(
@@ -3309,7 +3636,7 @@ SubstepAttempt corrected_substep_impl(
              event_iteration < request.max_correction_iterations;
              ++event_iteration) {
           assembly = append_event_aware_candidate_segments(
-              histories, start_time, end_time, start_snapshot,
+              histories, endpoint_states, start_time, end_time, start_snapshot,
               event_endpoint_snapshot, routed_event_pairs, event_impulses,
               timing);
           const Interval endpoint =
@@ -3561,7 +3888,8 @@ SubstepAttempt corrected_substep_impl(
       };
       return {
           std::move(certificate), std::move(candidate_histories),
-          std::move(contracted_joint_histories)};
+          std::move(contracted_joint_histories),
+          std::move(start_joint_snapshot)};
     }
     endpoint_guess = evaluated;
     if (joint_enabled) {
@@ -3609,12 +3937,15 @@ SubstepAttempt corrected_substep(
     const std::string& end_time,
     const NativeAccelerationSnapshotCertificate* reusable_start_snapshot =
         nullptr,
+    const JointAccelerationSnapshotCertificate*
+        reusable_start_joint_snapshot = nullptr,
     bool defer_endpoint_root_precision_escalation = false) {
   const auto timing_start = SteadyClock::now();
   NativeCorrectedSubstepTiming timing;
   auto attempt = corrected_substep_impl(
       request, histories, start_time, end_time, &timing,
-      reusable_start_snapshot, defer_endpoint_root_precision_escalation);
+      reusable_start_snapshot, reusable_start_joint_snapshot,
+      defer_endpoint_root_precision_escalation);
   timing.total_wall_seconds = elapsed_seconds(timing_start);
   attempt.certificate.timing = timing;
   return attempt;
@@ -5841,6 +6172,8 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
           .warm_starts = warm_snapshot != nullptr && warm_histories != nullptr
               ? &warm_starts
               : nullptr,
+          .joint_root_point_states = &request.joint_root_point_states,
+          .joint_histories = &request.joint_histories,
       });
       timing.exact_root_batch_wall_seconds +=
           elapsed_seconds(exact_root_timing_start);
@@ -6136,6 +6469,16 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     timing.root_warm_excluded_cells += root.warm_excluded_cells;
     timing.root_binary64_worker_wall_seconds +=
         root.binary64_worker_wall_seconds;
+    timing.root_binary64_setup_worker_wall_seconds +=
+        root.binary64_setup_wall_seconds;
+    timing.root_binary64_warm_start_worker_wall_seconds +=
+        root.binary64_warm_start_wall_seconds;
+    timing.root_binary64_cell_setup_worker_wall_seconds +=
+        root.binary64_cell_setup_wall_seconds;
+    timing.root_binary64_cell_classification_worker_wall_seconds +=
+        root.binary64_cell_classification_wall_seconds;
+    timing.root_binary64_finalization_worker_wall_seconds +=
+        root.binary64_finalization_wall_seconds;
     timing.root_mpfr_worker_wall_seconds += root.mpfr_worker_wall_seconds;
     timing.root_mpfr_pair_count += root.mpfr_attempt_count > 0U ? 1U : 0U;
     timing.root_mpfr_attempt_count += root.mpfr_attempt_count;
@@ -6394,11 +6737,14 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   validate_step_inputs(request, histories, start_time, end_time);
   auto full = corrected_substep(
       request, histories, start_time, end_time, reusable_start_snapshot,
+      nullptr,
       defer_endpoint_root_precision_escalation);
   timing->corrected_substeps_wall_seconds +=
       full.certificate.timing.total_wall_seconds;
   timing->history_copy_hash_wall_seconds +=
       full.certificate.timing.history_copy_hash_wall_seconds;
+  accumulate_history_timing(
+      timing->history, full.certificate.timing.history);
   timing->reused_start_snapshot_count +=
       full.certificate.timing.reused_start_snapshot_count;
   if (!full.histories.has_value()) {
@@ -6420,11 +6766,15 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   auto first_half = corrected_substep(
       first_half_request, histories, start_time, midpoint,
       &full.certificate.start_snapshot,
+      full.start_joint_snapshot.has_value()
+          ? &*full.start_joint_snapshot : nullptr,
       defer_endpoint_root_precision_escalation);
   timing->corrected_substeps_wall_seconds +=
       first_half.certificate.timing.total_wall_seconds;
   timing->history_copy_hash_wall_seconds +=
       first_half.certificate.timing.history_copy_hash_wall_seconds;
+  accumulate_history_timing(
+      timing->history, first_half.certificate.timing.history);
   timing->reused_start_snapshot_count +=
       first_half.certificate.timing.reused_start_snapshot_count;
   if (!first_half.histories.has_value()) {
@@ -6460,11 +6810,14 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   auto second_half = corrected_substep(
       second_half_request, *first_half.histories, midpoint, end_time,
       &*first_half.certificate.endpoint_snapshot,
+      nullptr,
       defer_endpoint_root_precision_escalation);
   timing->corrected_substeps_wall_seconds +=
       second_half.certificate.timing.total_wall_seconds;
   timing->history_copy_hash_wall_seconds +=
       second_half.certificate.timing.history_copy_hash_wall_seconds;
+  accumulate_history_timing(
+      timing->history, second_half.certificate.timing.history);
   timing->reused_start_snapshot_count +=
       second_half.certificate.timing.reused_start_snapshot_count;
   if (!second_half.histories.has_value()) {
@@ -6495,6 +6848,10 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
     const std::vector<NativePublishedPath>* quarter_input = &histories;
     const NativeAccelerationSnapshotCertificate* quarter_start_snapshot =
         &full.certificate.start_snapshot;
+    const JointAccelerationSnapshotCertificate*
+        quarter_start_joint_snapshot =
+            full.start_joint_snapshot.has_value()
+            ? &*full.start_joint_snapshot : nullptr;
     for (std::size_t quarter = 0U; quarter < 4U; ++quarter) {
       auto quarter_request = request;
       if (!request.joint_histories.empty() && !quarter_attempts.empty()) {
@@ -6518,11 +6875,14 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       auto attempt = corrected_substep(
           quarter_request, *quarter_input, quarter_times[quarter],
           quarter_times[quarter + 1U], quarter_start_snapshot,
+          quarter_start_joint_snapshot,
           defer_endpoint_root_precision_escalation);
       timing->corrected_substeps_wall_seconds +=
           attempt.certificate.timing.total_wall_seconds;
       timing->history_copy_hash_wall_seconds +=
           attempt.certificate.timing.history_copy_hash_wall_seconds;
+      accumulate_history_timing(
+          timing->history, attempt.certificate.timing.history);
       timing->reused_start_snapshot_count +=
           attempt.certificate.timing.reused_start_snapshot_count;
       const bool succeeded = attempt.histories.has_value();
@@ -6554,6 +6914,8 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       quarter_input = &*quarter_attempts.back().histories;
       quarter_start_snapshot =
           &*quarter_attempts.back().certificate.endpoint_snapshot;
+      quarter_start_joint_snapshot =
+          nullptr;
     }
   }
 
@@ -6599,7 +6961,6 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
         fine_histories, std::move(local_errors));
   }
 
-  const auto inflation_timing_start = SteadyClock::now();
   MultiratePublication multirate_publication;
   if (!request.joint_histories.empty() &&
       request.use_synchronized_multirate_publication) {
@@ -6609,16 +6970,21 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   auto accepted_histories = request.use_synchronized_multirate_publication
       ? (multirate_publication = synchronized_multirate_histories(
              request, histories, *full.histories, *second_half.histories,
-             local_errors),
+             local_errors, timing),
          multirate_publication.histories)
       : inflate_fine_histories(
-            histories, fine_histories, local_errors);
+            histories, fine_histories, local_errors, timing);
   auto accepted_joint_histories = fine_joint_histories == nullptr
       ? std::map<std::string, JointAffineRetainedHistory>{}
-      : inflate_joint_histories(
-            request.joint_histories, *fine_joint_histories, local_errors);
-  timing->history_copy_hash_wall_seconds +=
-      elapsed_seconds(inflation_timing_start);
+      : measure_history_phase(
+            &timing->history, &timing->history_copy_hash_wall_seconds,
+            &NativeHistoryTiming::history_inflation,
+            HistoryDiagnosticPhase::history_inflation,
+            [&] {
+              return inflate_joint_histories(
+                  request.joint_histories, *fine_joint_histories,
+                  local_errors);
+            });
   if (!substeps.back().endpoint_snapshot.has_value()) {
     throw std::runtime_error("accepted candidate substep lacks endpoint snapshot");
   }
@@ -6656,13 +7022,19 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
     return rejection;
   }
 
-  const auto fingerprint_timing_start = SteadyClock::now();
-  const auto input_fingerprints = fingerprints(histories);
-  const auto candidate_fingerprints = fingerprints(accepted_histories);
-  const bool publication_atomic = publication_extension_is_atomic(
-      histories, accepted_histories, end_time);
-  timing->history_copy_hash_wall_seconds +=
-      elapsed_seconds(fingerprint_timing_start);
+  std::vector<NativeHistoryFingerprint> input_fingerprints;
+  std::vector<NativeHistoryFingerprint> candidate_fingerprints;
+  bool publication_atomic = false;
+  measure_history_phase(
+      &timing->history, &timing->history_copy_hash_wall_seconds,
+      &NativeHistoryTiming::fingerprint_metadata_update,
+      HistoryDiagnosticPhase::fingerprint_metadata_update,
+      [&] {
+        input_fingerprints = fingerprints(histories);
+        candidate_fingerprints = fingerprints(accepted_histories);
+        publication_atomic = publication_extension_is_atomic(
+            histories, accepted_histories, end_time);
+      });
   // Acceptance moves accepted_histories directly into the published field;
   // atomicity is structural rather than a same-vector replay comparison.
   return {
@@ -6729,6 +7101,16 @@ void accumulate_snapshot_timing(
       snapshot.timing.exact_root_batch_wall_seconds;
   total.root_binary64_worker_wall_seconds +=
       snapshot.timing.root_binary64_worker_wall_seconds;
+  total.root_binary64_setup_worker_wall_seconds +=
+      snapshot.timing.root_binary64_setup_worker_wall_seconds;
+  total.root_binary64_warm_start_worker_wall_seconds +=
+      snapshot.timing.root_binary64_warm_start_worker_wall_seconds;
+  total.root_binary64_cell_setup_worker_wall_seconds +=
+      snapshot.timing.root_binary64_cell_setup_worker_wall_seconds;
+  total.root_binary64_cell_classification_worker_wall_seconds +=
+      snapshot.timing.root_binary64_cell_classification_worker_wall_seconds;
+  total.root_binary64_finalization_worker_wall_seconds +=
+      snapshot.timing.root_binary64_finalization_worker_wall_seconds;
   total.root_pair_count += snapshot.timing.root_pair_count;
   total.root_reevaluated_cells += snapshot.timing.root_reevaluated_cells;
   total.root_warm_excluded_cells += snapshot.timing.root_warm_excluded_cells;
@@ -6766,6 +7148,16 @@ void accumulate_corrected_substep_timing(
       substep.exact_root_batch_wall_seconds;
   total.root_binary64_worker_wall_seconds +=
       substep.root_binary64_worker_wall_seconds;
+  total.root_binary64_setup_worker_wall_seconds +=
+      substep.root_binary64_setup_worker_wall_seconds;
+  total.root_binary64_warm_start_worker_wall_seconds +=
+      substep.root_binary64_warm_start_worker_wall_seconds;
+  total.root_binary64_cell_setup_worker_wall_seconds +=
+      substep.root_binary64_cell_setup_worker_wall_seconds;
+  total.root_binary64_cell_classification_worker_wall_seconds +=
+      substep.root_binary64_cell_classification_worker_wall_seconds;
+  total.root_binary64_finalization_worker_wall_seconds +=
+      substep.root_binary64_finalization_worker_wall_seconds;
   total.root_pair_count += substep.root_pair_count;
   total.root_reevaluated_cells += substep.root_reevaluated_cells;
   total.root_warm_excluded_cells += substep.root_warm_excluded_cells;
@@ -6790,6 +7182,24 @@ void accumulate_corrected_substep_timing(
       substep.acceleration_precision_escalation_worker_seconds;
   total.acceleration_precision_escalation_attempt_count +=
       substep.acceleration_precision_escalation_attempt_count;
+  total.joint_snapshot_wall_seconds += substep.joint_snapshot_wall_seconds;
+  total.joint_receiver_state_wall_seconds +=
+      substep.joint_receiver_state_wall_seconds;
+  total.joint_row_certification_wall_seconds +=
+      substep.joint_row_certification_wall_seconds;
+  total.joint_deterministic_reduction_wall_seconds +=
+      substep.joint_deterministic_reduction_wall_seconds;
+  total.joint_snapshot_count += substep.joint_snapshot_count;
+  total.reused_joint_start_snapshot_count +=
+      substep.reused_joint_start_snapshot_count;
+  total.joint_start_snapshot_wall_seconds +=
+      substep.joint_start_snapshot_wall_seconds;
+  total.joint_predictor_snapshot_wall_seconds +=
+      substep.joint_predictor_snapshot_wall_seconds;
+  total.joint_correction_snapshot_wall_seconds +=
+      substep.joint_correction_snapshot_wall_seconds;
+  total.joint_endpoint_contraction_wall_seconds +=
+      substep.joint_endpoint_contraction_wall_seconds;
   total.regulator_ladder_wall_seconds +=
       substep.regulator_ladder_wall_seconds;
   total.common_domain_wall_seconds += substep.common_domain_wall_seconds;
@@ -6801,6 +7211,7 @@ NativeEvolutionTiming summarize_evolution_timing(
   for (const auto& step : steps) {
     timing.history_copy_hash_wall_seconds +=
         step.timing.history_copy_hash_wall_seconds;
+    accumulate_history_timing(timing.history, step.timing.history);
     timing.correction_wall_seconds +=
         step.timing.corrected_substeps_wall_seconds;
     timing.reused_start_snapshot_count +=

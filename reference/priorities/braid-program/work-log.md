@@ -493,6 +493,7 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   root gate did not pass, so Campaign 1 evolution and fate classification did
   not start. See the
   [frontier-extension packet](evidence/2026-07-27-stationary-rest-joint-frontier-extension.md).
+
 ## 2026-07-27 — B/C retained landscape diagnosed; new searches remain frozen
 
 - Closed BP-008 at documentary diagnostic grade without rerunning or changing
@@ -533,3 +534,38 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   no campaign output paths created. BP-009 now awaits operator verification;
   the center-only pilot and every search remain separately unauthorized. See
   the [freeze packet](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.md).
+
+## 2026-07-27 — Traversal joint carrier repaired; frontier extended again
+
+- The certified-traversal exact-fallback wrapper omitted coupled path
+  identities and optional joint carriers when constructing exact-pair
+  requests. A scoped EOM solver repair now forwards those existing carriers
+  without changing the root theorem, `1e-5` tolerance, or 512-bit ceiling.
+- A direct-versus-traversal control returns exact-token-identical difficult
+  roots, while a missing-carrier negative control remains fail-closed at 512
+  bits. Fresh release fixtures passed 6/6, focused sanitizer fixtures passed
+  2/2, and the native/Python history-layer suite passed 35/35.
+- The stationary frontier now certifies through `1.3799999999999963`. The next
+  step to `1.3849999999999962` rejects atomically because its certified joint
+  root-time width is `1.0036629916485125e-05`, above the unchanged `1e-5`
+  tolerance. This is a retained-history remainder/contraction blocker, not a
+  request for more MPFR bits and not candidate failure.
+- The full root gate remains blocked, so Campaign 1, evolution evidence, and
+  fate classification did not start. See the
+  [carrier and frontier packet](evidence/2026-07-27-joint-traversal-carrier-and-frontier-extension.md).
+
+## 2026-07-27 — Refined prefix clears the retained-history width blocker
+
+- The validation-only stationary fixture now constructs its retained-history
+  prefix with minimum step `0.0025` while retaining fixed `0.005` frontier
+  steps, the `1e-5` root-time tolerance, and the 512-bit precision ceiling.
+- The former `1.3849999999999962` blocker now certifies at 128 bits. Two more
+  fixed steps certify, extending the current frontier through
+  `1.394999999999996`.
+- The next step to `1.3999999999999959` rejects atomically. Both cross rows
+  report joint width `1.0205062366854167e-05`, zero roots, and no root-free
+  complement at 512 bits.
+- This remains a validation-only root-capability result. Full root
+  completeness is not established, so Campaign 1 and fate classification did
+  not start. See the
+  [refined-prefix frontier packet](evidence/2026-07-27-refined-prefix-joint-frontier-extension.md).

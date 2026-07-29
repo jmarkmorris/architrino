@@ -99,7 +99,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 ### 2026-07-26 — Archie interface owner consolidated
 
 - Merged the former `app-archie-interface` directory into `archie`.
-- Kept [archie/priorities.md](../archie/priorities.md) as the sole ranked owner and retained the detailed product lane in [interface-product-plan.md](../archie/interface-product-plan.md).
+- Kept [archie/priorities.md](../dormant-deferred/archie/priorities.md) as the sole ranked owner and retained the detailed product lane in [interface-product-plan.md](../dormant-deferred/archie/interface-product-plan.md).
 - Removed the duplicate global row and shifted the lower ranks upward without changing their component scores.
 
 ### 2026-07-17 — Marginal-object scoring and mandatory two-level sorting

@@ -22,30 +22,30 @@ The speed assignments to binaries 2 and 3 belong to this source record; the taxo
 
 ## Pro/Anti Before Planar Lock
 
-Away from the horizon, the project treats `pro/anti` as an ordering property of the 3D Family-A braid scaffold rather than as polarity conjugation, matter/antimatter, or a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis):
+Away from the horizon, the project treats `pro/anti` as an orientation property of the 3D Family-A braid scaffold rather than as polarity conjugation, matter/antimatter, or a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis):
 
-- `pro`: $1 \to 2 \to 3$ ordering in time;
-- `anti`: $1 \to 3 \to 2$ ordering in time.
+- `pro`: deformation-stable indexed-frame orientation $o_{\mathrm{PA}}=+1$, conventionally represented by `123`;
+- `anti`: deformation-stable indexed-frame orientation $o_{\mathrm{PA}}=-1$, conventionally represented by `132`.
 
-That distinction is natural in the ordinary Family-A braid because the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure. In that regime, `pro/anti` is a 3D chirality datum.
+The `123/132` strings are orientation mnemonics in a declared indexed frame, not temporal orderings of labelled events. Parity cannot reverse a bare temporal ordering. The $P$-odd claim belongs to the retained path or angular-momentum-frame row $o_{\mathrm{PA}}$, whose deformation stability and parity action must be demonstrated. In the ordinary Family-A braid, the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure, so that row is a candidate 3D chirality datum.
 
 The strongest mathematical candidate beneath that datum comes from [causal-action-functional.md](../dynamics/causal-action-functional.md): the causal writhe
 
 $$
 Wr_c(\mathfrak B)
 =
-\sum_{\alpha,\beta}
-\operatorname{sgn}(\alpha,\beta)\,
-\chi_{\mathrm{causal}}(\alpha,\beta)
+\sum_{a,b}
+\operatorname{sgn}(a,b)\,
+\chi_{\mathrm{causal}}(a,b)
 $$
 
-records signed causal-locus crossings or linkages in the retained branch record $\mathfrak B$. The indices $\alpha$ and $\beta$ label oriented retained causal-locus strands or strand segments in the declared projection; $\chi_{\mathrm{causal}}(\alpha,\beta)$ is $1$ only for an admissible same-record crossing or linkage event, and $0$ otherwise. The sign $\operatorname{sgn}(\alpha,\beta)$ is defined only relative to the declared branch framing and is not defined at a fold, framing slip, or unresolved collision row.
+records signed causal-locus crossings or linkages in the retained branch record $\mathfrak B$. The indices $a$ and $b$ label oriented retained causal-locus strands or strand segments in the declared projection; $\chi_{\mathrm{causal}}(a,b)$ is $1$ only for an admissible same-record crossing or linkage event, and $0$ otherwise. The sign $\operatorname{sgn}(a,b)$ is defined only relative to the declared branch framing and is not defined at a fold, framing slip, or unresolved collision row.
 
 So the cleanest reading is:
 
 - the surface convention for `pro/anti` remains the ordered `123/132` Family-A braid distinction;
 - the best formalization candidate is a topological branch label carried by the retained causal-locus and framed-topology record, with $Wr_c$ as a leading crossing statistic only when the same retained branch record also supplies $D_t$, $D_r$, and $W^{\mathrm{acc}}$.
-- polarity conjugation $C$ leaves that order unchanged because it relabels polarities at fixed worldlines; parity $P$ reverses the order.
+- polarity conjugation $C$ leaves $o_{\mathrm{PA}}$ unchanged because it relabels polarities at fixed worldlines; the proposed parity row is $P:o_{\mathrm{PA}}\mapsto-o_{\mathrm{PA}}$.
 
 The horizon state is different. Once the planes collapse into one planar lock and precession ceases, some of the ordinary 3D chirality data are suppressed. That makes it plausible that the horizon exposes only a reduced exterior signature of the deeper `pro/anti` distinction.
 
@@ -71,7 +71,7 @@ To keep terms from sliding into one another, use the following provisional dicti
 
 | Label | Meaning in this note | Typical regime |
 | --- | --- | --- |
-| `pro/anti` | the deeper 3D Noether braid ordered orientation, tracked by structure such as `123` versus `132`; $C$-even and $P$-odd | pre-planar 3D braid |
+| `pro/anti` | the deeper 3D Noether braid orientation $o_{\mathrm{PA}}$, represented by `123` versus `132` only after an indexed frame is declared; $C$-even, with $P$-oddness a retained-row obligation | pre-planar 3D braid |
 | polarity-conjugate pair | one retained record $\mathfrak B$ and its fixed-worldline polarity-reversed image $C(\mathfrak B)$ | any regime, including the planar limit |
 | `CW/CCW` | the exterior planar angular-momentum sign seen from one chosen viewing side of a planarized Noether braid | horizon / planar lock |
 | `left/right` | a possible axial sign relative to translation, for example $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$, if that later proves to control forward exposure of the weak-active structure | high-velocity aligned regime |
@@ -148,7 +148,7 @@ The next question is whether a rapidly translating Family-A braid should drive t
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
 
-The stronger argument comes from the high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native center-drift speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Then the geometry inherited from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md) and its dynamics treatment in [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics) is
+The stronger argument is a conditional cross-section test within the proposed high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native center-drift speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Assume, rather than derive here, the ruler-law target from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md) and its dynamics treatment in [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics):
 
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_\perp^2}
@@ -163,21 +163,21 @@ R_\parallel = \frac{R_\perp}{\gamma_f},
 \beta_f = \frac{v_{\text{trans}}}{c_f}
 $$
 
-Now let one binary orbit in a plane whose unit normal $\hat n$ makes angle $\alpha$ with the translation axis $\hat z$. The central cross-section of the oblate spheroidal envelope cut by that orbital plane has area
+Now let one binary orbit in a plane whose unit normal $\hat n$ makes angle $\vartheta$ with the translation axis $\hat z$. The central cross-section of the assumed oblate spheroidal envelope cut by that orbital plane has area
 
 $$
-A(\alpha)
+A(\vartheta)
 =
 \frac{\pi R_\perp^2 R_\parallel}
-{\sqrt{R_\perp^2\sin^2\alpha + R_\parallel^2\cos^2\alpha}}
+{\sqrt{R_\perp^2\sin^2\vartheta + R_\parallel^2\cos^2\vartheta}}
 =
 \frac{\pi R_\perp^2}
-{\sqrt{\gamma_f^2\sin^2\alpha + \cos^2\alpha}}
+{\sqrt{\gamma_f^2\sin^2\vartheta + \cos^2\vartheta}}
 $$
 
-This area is maximal at $\alpha = 0$ or $\alpha = \pi$, meaning the orbital normal is parallel or antiparallel to the line of translation. It is minimal at $\alpha = \pi/2$, when the orbital normal is transverse to the motion.
+This area is maximal at $\vartheta = 0$ or $\vartheta = \pi$, meaning the orbital normal is parallel or antiparallel to the line of translation. It is minimal at $\vartheta = \pi/2$, when the orbital normal is transverse to the motion.
 
-So the delayed geometry creates a real high-speed bias:
+Thus the assumed oblate geometry supplies a cross-section bias:
 
 - planes with normals parallel or antiparallel to the line of translation inherit the largest available cross-section;
 - tilted planes suffer stronger anisotropic squeezing;
@@ -186,17 +186,17 @@ So the delayed geometry creates a real high-speed bias:
 For small tilt,
 
 $$
-A(\alpha)
+A(\vartheta)
 \approx
 \pi R_\perp^2
 \left[
-1-\frac{\gamma_f^2-1}{2}\alpha^2
+1-\frac{\gamma_f^2-1}{2}\vartheta^2
 \right]
 $$
 
-so the restoring pressure toward axial alignment strengthens as $v_{\text{trans}} \to c_f$.
+This expression does not by itself supply a restoring acceleration. Axialization follows only if the native constitutive dynamics independently show that increasing available cross-section lowers the same-record closure residual.
 
-This gives a precise version of the intuition: a high-velocity Family-A braid should be driven toward a state in which the three orbital angular-momentum vectors are **coaxial with the line of translation**, not because momentum conservation alone demands it, but because delayed closure becomes least frustrated there.
+The resulting closure target is precise: derive the ruler law without assuming axialization, then show from the evolved retained branch that the three orbital angular-momentum vectors are driven **coaxial with the line of translation** and that the closure residual decreases along that motion. The cross-section calculation alone proves neither step.
 
 ## Exact Conservation Versus Dynamical Selection
 

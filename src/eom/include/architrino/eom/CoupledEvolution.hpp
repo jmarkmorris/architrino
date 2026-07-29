@@ -279,6 +279,11 @@ struct NativeSnapshotTiming {
   double exact_root_batch_wall_seconds = 0.0;
   // Worker wall-time sums can exceed elapsed wall time when pairs overlap.
   double root_binary64_worker_wall_seconds = 0.0;
+  double root_binary64_setup_worker_wall_seconds = 0.0;
+  double root_binary64_warm_start_worker_wall_seconds = 0.0;
+  double root_binary64_cell_setup_worker_wall_seconds = 0.0;
+  double root_binary64_cell_classification_worker_wall_seconds = 0.0;
+  double root_binary64_finalization_worker_wall_seconds = 0.0;
   std::size_t root_pair_count = 0;
   std::size_t root_reevaluated_cells = 0;
   std::size_t root_warm_excluded_cells = 0;
@@ -319,8 +324,25 @@ struct NativeAccelerationSnapshotCertificate {
   NativeSnapshotTiming timing;
 };
 
+struct NativeHistoryPhaseTiming {
+  double wall_seconds = 0.0;
+  std::uint64_t disk_block_load_count = 0U;
+  std::uint64_t disk_cache_miss_count = 0U;
+};
+
+struct NativeHistoryTiming {
+  NativeHistoryPhaseTiming endpoint_state_lookup;
+  NativeHistoryPhaseTiming endpoint_position_lookup;
+  NativeHistoryPhaseTiming endpoint_velocity_lookup;
+  NativeHistoryPhaseTiming segment_construction;
+  NativeHistoryPhaseTiming tail_block_copy;
+  NativeHistoryPhaseTiming fingerprint_metadata_update;
+  NativeHistoryPhaseTiming history_inflation;
+};
+
 struct NativeCorrectedSubstepTiming {
   double history_copy_hash_wall_seconds = 0.0;
+  NativeHistoryTiming history;
   std::size_t reused_start_snapshot_count = 0;
   double snapshot_total_wall_seconds = 0.0;
   std::size_t snapshot_count = 0;
@@ -328,6 +350,11 @@ struct NativeCorrectedSubstepTiming {
   double traversal_wall_seconds = 0.0;
   double exact_root_batch_wall_seconds = 0.0;
   double root_binary64_worker_wall_seconds = 0.0;
+  double root_binary64_setup_worker_wall_seconds = 0.0;
+  double root_binary64_warm_start_worker_wall_seconds = 0.0;
+  double root_binary64_cell_setup_worker_wall_seconds = 0.0;
+  double root_binary64_cell_classification_worker_wall_seconds = 0.0;
+  double root_binary64_finalization_worker_wall_seconds = 0.0;
   std::size_t root_pair_count = 0;
   std::size_t root_reevaluated_cells = 0;
   std::size_t root_warm_excluded_cells = 0;
@@ -343,6 +370,16 @@ struct NativeCorrectedSubstepTiming {
   double acceleration_worker_idle_orchestration_wall_seconds = 0.0;
   double acceleration_precision_escalation_worker_seconds = 0.0;
   std::size_t acceleration_precision_escalation_attempt_count = 0;
+  double joint_snapshot_wall_seconds = 0.0;
+  double joint_receiver_state_wall_seconds = 0.0;
+  double joint_row_certification_wall_seconds = 0.0;
+  double joint_deterministic_reduction_wall_seconds = 0.0;
+  std::size_t joint_snapshot_count = 0;
+  std::size_t reused_joint_start_snapshot_count = 0;
+  double joint_start_snapshot_wall_seconds = 0.0;
+  double joint_predictor_snapshot_wall_seconds = 0.0;
+  double joint_correction_snapshot_wall_seconds = 0.0;
+  double joint_endpoint_contraction_wall_seconds = 0.0;
   double regulator_ladder_wall_seconds = 0.0;
   double common_domain_wall_seconds = 0.0;
   double total_wall_seconds = 0.0;
@@ -501,6 +538,7 @@ certify_native_pinned_fold_temporal_onset(
 struct NativeAtomicStepTiming {
   double corrected_substeps_wall_seconds = 0.0;
   double history_copy_hash_wall_seconds = 0.0;
+  NativeHistoryTiming history;
   std::size_t reused_start_snapshot_count = 0;
   double recertification_wall_seconds = 0.0;
   double rejection_wall_seconds = 0.0;
@@ -551,6 +589,11 @@ struct NativeEvolutionTiming {
   double traversal_wall_seconds = 0.0;
   double exact_root_batch_wall_seconds = 0.0;
   double root_binary64_worker_wall_seconds = 0.0;
+  double root_binary64_setup_worker_wall_seconds = 0.0;
+  double root_binary64_warm_start_worker_wall_seconds = 0.0;
+  double root_binary64_cell_setup_worker_wall_seconds = 0.0;
+  double root_binary64_cell_classification_worker_wall_seconds = 0.0;
+  double root_binary64_finalization_worker_wall_seconds = 0.0;
   std::size_t root_pair_count = 0;
   std::size_t root_reevaluated_cells = 0;
   std::size_t root_warm_excluded_cells = 0;
@@ -566,9 +609,20 @@ struct NativeEvolutionTiming {
   double acceleration_worker_idle_orchestration_wall_seconds = 0.0;
   double acceleration_precision_escalation_worker_seconds = 0.0;
   std::size_t acceleration_precision_escalation_attempt_count = 0;
+  double joint_snapshot_wall_seconds = 0.0;
+  double joint_receiver_state_wall_seconds = 0.0;
+  double joint_row_certification_wall_seconds = 0.0;
+  double joint_deterministic_reduction_wall_seconds = 0.0;
+  std::size_t joint_snapshot_count = 0;
+  std::size_t reused_joint_start_snapshot_count = 0;
+  double joint_start_snapshot_wall_seconds = 0.0;
+  double joint_predictor_snapshot_wall_seconds = 0.0;
+  double joint_correction_snapshot_wall_seconds = 0.0;
+  double joint_endpoint_contraction_wall_seconds = 0.0;
   double regulator_ladder_wall_seconds = 0.0;
   double common_domain_wall_seconds = 0.0;
   double history_copy_hash_wall_seconds = 0.0;
+  NativeHistoryTiming history;
   // Correction wall time includes its nested snapshot and history phases.
   double correction_wall_seconds = 0.0;
   std::size_t reused_start_snapshot_count = 0;
