@@ -2,7 +2,7 @@ Closure goal: Prepare to review every file in an Op-provided directory in the re
 
 # Corpus Reviewer Prompt
 
-Current reviewer role label: Claude Fable.
+Current reviewer role: independent corpus reviewer.
 
 Use this prompt for a review-only pass across a directory of corpus files. Op will provide the directory after preparation. Do not edit files unless Op explicitly redirects the task from review into implementation.
 

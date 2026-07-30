@@ -26,6 +26,6 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 - Plain-language explanation in operator-facing output: [operator-explanation-standard.md](operator-explanation-standard.md).
 - Closure curation (milestone corpus reorganization and the volume-split plan): [closure-curation-procedure.md](closure-curation-procedure.md).
 
-Research Lead procedures and historical checkpoints live under [Research Office](../research-office/research-lead/). Do not treat them as general Codex task-start guidance unless the operator/developer explicitly requests that workflow.
+Research Lead procedures and historical checkpoints live in [Research Office](../research-office/research-lead/research-lead.md). Do not treat them as general Codex task-start guidance unless the operator/developer explicitly requests that workflow.
 
 The living operator feedback checklist is [README-op.md](README-op.md). Keep detailed procedures here, but put recurring one-line operator improvement tasks in that checklist.

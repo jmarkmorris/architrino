@@ -19,6 +19,8 @@ The highest-value use of this prompt is not mere phrase cleanup, a skimmed highl
 
 This file is the shared protocol authority for AAA corpus convergence. It owns the common rules for mode selection, default edit authority, promotion triage, mathematics-first discipline, `Closure goal:` prompt structure, Priority Action Menu format, thread-state handoffs, self-running exploration, and team-agent coordination.
 
+The durable rationale and operating vocabulary live in the [Theory Closure and Corpus Convergence decision](../../../architectural-decisions/theory-closure-and-corpus-convergence.md); this prompt supplies the reusable procedure.
+
 The installed `aaa-corpus-advancement` skill is only a router. It should trigger this protocol, choose the relevant mode, perform the required start, and preserve non-negotiable reminders without duplicating this file's detailed handoff, Priority Action Menu, math-first, or source-mining text.
 
 The [source-mining best-practice guide](../../../op/source-mining-best-practice.md) is the source-intake specialization. It owns acquisition workflows, source-family templates, traceability expectations, mining history routing, creative reframing, and external technique anchors. When source mining is in scope, apply this shared protocol first, then apply the source-family specialization from that guide.

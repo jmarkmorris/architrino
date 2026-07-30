@@ -18,7 +18,7 @@ This package documents platform-named social branding exports. Avatar and icon f
 
 ## Banner Assets
 
-- Working master: `../../banners/working/noether-braid-sea/noether-braid-youtube-banner-sea-2048x1152.png`
+- Working master: `../../banners/history/historical-noether-braid-sea/noether-braid-youtube-banner-sea-2048x1152.png`
 - Deployed family: `../../../../content/assets/images/brand/banners/noether-braid-sea/`
 - YouTube channel banner: `../../../../content/assets/images/brand/banners/noether-braid-sea/noether-braid-youtube-channel-banner-2560x1440.png`
 - Discord server banner: `../../../../content/assets/images/brand/banners/noether-braid-sea/noether-braid-discord-server-banner-960x540.png`

@@ -13,8 +13,8 @@ The compact cross-agent startup map is generated at [../../../op/agent-startup-o
 | [start-pi.md](start-pi.md) | Launch one Principal Investigator with a self-contained brief, claim boundary, live-owner routing, repository authority, and evidence-bounded return contract. |
 | [start-research.md](start-research.md) | Guide a Principal Investigator in selecting and launching only the necessary role-based Specialists and integrating their reports. |
 | [convergence-campaign.md](convergence-campaign.md) | Shared AAA corpus convergence protocol, including audit/report, edit-batch, self-running exploration, and team-agent variants. |
-| [corpus-reviewer.md](corpus-reviewer.md) | Review every file in an Op-provided directory in scene/textbook reading order, one file per turn. Current reviewer label: Claude Fable. |
-| [integrator-reviewer.md](integrator-reviewer.md) | Integrate Fable review comments, then perform a full document closure review and improve the target as needed. |
+| [corpus-reviewer.md](corpus-reviewer.md) | Review every file in an Op-provided directory in scene/textbook reading order, one file per turn. |
+| [integrator-reviewer.md](integrator-reviewer.md) | Integrate supplied review comments, then perform a full document closure review and improve the target as needed. |
 | [review-comment-assessor.md](review-comment-assessor.md) | Assess pasted review comments against current repo canon without editing files. |
 | [review-closure-verifier.md](review-closure-verifier.md) | Verify whether another agent's edits resolved a specific review, without editing files. |
 | [core-geometry-theorem-reviewer.md](core-geometry-theorem-reviewer.md) | Request heavy mathematical review of one theorem target, equation stack, branch certificate, or proof gap. |

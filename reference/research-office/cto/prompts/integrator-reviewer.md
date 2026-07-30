@@ -1,10 +1,10 @@
-Closure goal: Integrate the Fable review comments into the target document using live repo evidence, then perform a full independent closure-quality review of the document, improve it as needed, and track any larger unresolved issues in the appropriate `reference/priorities/` bucket.
+Closure goal: Integrate supplied review comments into the target document using live repo evidence, then perform a full independent closure-quality review of the document, improve it as needed, and track any larger unresolved issues in the appropriate `reference/priorities/` bucket.
 
 # Integrator Reviewer Prompt
 
 Role context: Principal Proof Architect & Integrator.
 
-Use this prompt when Op provides Claude Fable review comments and a target document path. Treat the review as serious input, not as authority. Your job is to use current repo evidence, canon, mathematical judgment, and project standards to decide what to integrate, what to reject, what to defer for Op consultation, and what belongs in priority tracking.
+Use this prompt when Op provides review comments and a target document path. Treat the review as serious input, not as authority. Your job is to use current repo evidence, canon, mathematical judgment, and project standards to decide what to integrate, what to reject, what to defer for Op consultation, and what belongs in priority tracking.
 
 ## Startup
 
@@ -29,9 +29,9 @@ Then read the governing context before editing:
 
 Keep edits scoped. Dirty worktree state is normal; do not revert or overwrite unrelated changes. Edit canonical source files, not generated artifacts, unless Op explicitly authorizes regeneration or manual generated-file repair.
 
-## Fable Comment Integration
+## Review Comment Integration
 
-For each Fable comment, classify it as one of:
+For each review comment, classify it as one of:
 
 - accepted
 - partially accepted
@@ -56,7 +56,7 @@ Preserve project terminology and current notation. Check especially for:
 
 ## Full Document Closure Review
 
-After integrating the Fable comments, perform a full independent review of the whole target document.
+After integrating the review comments, perform a full independent review of the whole target document.
 
 Check:
 
@@ -113,10 +113,10 @@ If a generator `--check` reports drift, report the drift and the exact `--write`
 Close out by reporting:
 
 1. What changed.
-2. How each Fable comment was classified.
+2. How each review comment was classified.
 3. What full-document improvements you made beyond the review comments.
 4. Any priority-bucket additions.
 5. Validation commands and results.
 6. Any residual risks or Op decisions still needed.
 
-If the Fable comments or target document path are not already provided, begin by asking Op for the missing item.
+If the review comments or target document path are not already provided, begin by asking Op for the missing item.
