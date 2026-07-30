@@ -301,14 +301,15 @@ function activeDimensions(channel) {
 }
 
 function initialFoldBoxes(channel, protocol) {
+  const domain = protocol.rootSheet.domain;
   const dimensions = activeDimensions(channel);
   const ratioCount = protocol.foldExclusion.initialRatioSubdivisions;
   const alpha1 = dimensions.includes("alpha1")
-    ? partitionInterval(EXPECTED_ALPHA1, ratioCount)
-    : [EXPECTED_ALPHA1];
+    ? partitionInterval(domain.alpha1, ratioCount)
+    : [domain.alpha1];
   const alpha3 = dimensions.includes("alpha3")
-    ? partitionInterval(EXPECTED_ALPHA3, ratioCount)
-    : [EXPECTED_ALPHA3];
+    ? partitionInterval(domain.alpha3, ratioCount)
+    : [domain.alpha3];
   const phase = partitionInterval(
     [0, TWO_PI],
     protocol.foldExclusion.initialReceptionPhaseSubdivisions,
@@ -321,7 +322,7 @@ function initialFoldBoxes(channel, protocol) {
           alpha1: [...alpha1Box],
           alpha3: [...alpha3Box],
           receptionPhase: [...phaseBox],
-          dimensionlessDelay: [...EXPECTED_DELAY],
+          dimensionlessDelay: [...domain.dimensionlessDelayInterior],
           depth: 0,
         });
       }
@@ -335,11 +336,12 @@ function excludesZero(value, floor) {
 }
 
 function selectSplitDimension(channel, box, protocol) {
+  const domain = protocol.rootSheet.domain;
   const fullWidths = {
-    alpha1: width(EXPECTED_ALPHA1),
-    alpha3: width(EXPECTED_ALPHA3),
+    alpha1: width(domain.alpha1),
+    alpha3: width(domain.alpha3),
     receptionPhase: TWO_PI,
-    dimensionlessDelay: width(EXPECTED_DELAY),
+    dimensionlessDelay: width(domain.dimensionlessDelayInterior),
   };
   const minimumWidths = {
     alpha1: protocol.foldExclusion.minimumAlphaWidth,
@@ -383,7 +385,8 @@ function foldLedgerRow(channel, box, disposition, enclosure, reason = null) {
 
 function subFieldSpeedCoordinateChart(channel, protocol) {
   const charts = protocol.rootSheet.subFieldSpeedCoordinateCharts;
-  const derivativeUpperBound = EXPECTED_ALPHA1[1] - 1;
+  const alpha1Upper = protocol.rootSheet.domain.alpha1[1];
+  const derivativeUpperBound = alpha1Upper - 1;
   if (channel.transmitter.radiusParameter === "alpha1") {
     return {
       id: charts.id,
@@ -392,7 +395,7 @@ function subFieldSpeedCoordinateChart(channel, protocol) {
       dependentVariable: charts.receptionFixed.dependentVariable,
       movingEndpointAtFixedPhase:
         charts.receptionFixed.movingEndpointAtFixedPhase,
-      radiusUpperBound: EXPECTED_ALPHA1[1],
+      radiusUpperBound: alpha1Upper,
       causalResidualDerivativeUpperBound: derivativeUpperBound,
       squaredResidualFoldExcludedAtPositiveDelayRoots: true,
       domainCoverage: charts.chartTransition.domainCoverage,
@@ -408,7 +411,7 @@ function subFieldSpeedCoordinateChart(channel, protocol) {
       dependentVariable: charts.emissionFixed.dependentVariable,
       movingEndpointAtFixedPhase:
         charts.emissionFixed.movingEndpointAtFixedPhase,
-      radiusUpperBound: EXPECTED_ALPHA1[1],
+      radiusUpperBound: alpha1Upper,
       causalResidualDerivativeUpperBound: derivativeUpperBound,
       squaredResidualFoldExcludedAtPositiveDelayRoots: true,
       domainCoverage: charts.chartTransition.domainCoverage,
@@ -438,10 +441,12 @@ function certifyRepresentativeNoFold({
         channelId: channel.channelId,
         disposition: "certified-root-capable-no-fold-domain",
         parameterBox: {
-          alpha1: [...EXPECTED_ALPHA1],
-          alpha3: [...EXPECTED_ALPHA3],
+          alpha1: [...protocol.rootSheet.domain.alpha1],
+          alpha3: [...protocol.rootSheet.domain.alpha3],
           receptionPhase: [0, TWO_PI],
-          dimensionlessDelay: [...EXPECTED_DELAY],
+          dimensionlessDelay: [
+            ...protocol.rootSheet.domain.dimensionlessDelayInterior,
+          ],
         },
         squaredResidualEnclosure: null,
         squaredDelayDerivativeEnclosure: null,
@@ -663,7 +668,7 @@ function certifyAnchorRootInventory({
   const point = anchor.point;
   const coordinateChart = subFieldSpeedCoordinateChart(channel, protocol);
   const stack = partitionInterval(
-    EXPECTED_DELAY,
+    protocol.rootSheet.domain.dimensionlessDelayInterior,
     anchor.initialDelaySubdivisions,
   ).reverse().map((dimensionlessDelay) => ({
     dimensionlessDelay,
@@ -852,8 +857,22 @@ function certifyAnchorRootInventory({
 }
 
 function endpointAndSeamControl(protocol) {
-  const nearZeroMargin = (1 / 16) ** 2 - (1 / 32) ** 2;
-  const historyEdgeMargin = (17 / 8) ** 2 - (9 / 4) ** 2;
+  const domain = protocol.rootSheet.domain;
+  const nearDelay = domain.dimensionlessDelayInterior[0];
+  const historyEdge = domain.dimensionlessDelayInterior[1];
+  const minimumRadiusGap = Math.min(
+    1 - domain.alpha1[1],
+    domain.alpha3[0] - 1,
+    domain.alpha3[0] - domain.alpha1[1],
+  );
+  const maximumInterBinaryRadiusSum = Math.max(
+    domain.alpha1[1] + 1,
+    domain.alpha1[1] + domain.alpha3[1],
+    1 + domain.alpha3[1],
+  );
+  const nearZeroMargin = minimumRadiusGap ** 2 - nearDelay ** 2;
+  const historyEdgeMargin =
+    maximumInterBinaryRadiusSum ** 2 - historyEdge ** 2;
   const phaseSeamExact =
     protocol.rootSheet.phaseSeam ===
       "theta-zero-identified-with-two-pi/exact-four-pi-sigma-periodicity.v1";
@@ -1321,3 +1340,13 @@ export function summarizeA11RootSheetMonotonicEnclosureTreatment(result) {
     summaryHash: sha256A11Interval(summaryWithoutHash),
   };
 }
+
+export {
+  applyExecutionLimits as applyA11RootSheetExecutionLimits,
+  certifyAnchorRootInventory as certifyA11RootSheetAnchorInventory,
+  certifyRepresentativeNoFold as certifyA11RootSheetRepresentativeNoFold,
+  endpointAndSeamControl as runA11RootSheetEndpointAndSeamControl,
+  runResourceExhaustionControl as runA11RootSheetResourceExhaustionControl,
+  subFieldSpeedCoordinateChart as selectA11RootSheetCoordinateChart,
+  syntheticFoldControl as runA11RootSheetSyntheticFoldControl,
+};

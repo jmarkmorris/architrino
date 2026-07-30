@@ -1,0 +1,230 @@
+{
+  "schema": "prescribed-path-analysis/a1-1-outer-radius-second-band-expansion-protocol.v1",
+  "protocolId": "a1-1-outer-radius-second-adjacent-band-expansion-v1",
+  "claimGrade": "diagnostic",
+  "claimBoundary": {
+    "prescribedPathAnalyticsOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "eomIntervalMachineryInvoked": false,
+    "eomCampaignInvoked": false,
+    "diagnosticOnly": true,
+    "score": null,
+    "candidateSelection": false,
+    "excludedClaims": [
+      "retention",
+      "stability",
+      "binding",
+      "physical-candidate-selection",
+      "physical-realization",
+      "physical-superluminal-transport",
+      "energy",
+      "action",
+      "angular-momentum-dynamics",
+      "radiation",
+      "pressure",
+      "general-relativity-recovery"
+    ]
+  },
+  "sealedBaseline": {
+    "baseProtocol": {
+      "path": "src/prescribed-path-analysis/protocols/a1-1-continuous-ratio-phase-root-inventory-protocol.v1.json",
+      "sha256": "7b2a3a2a56abbe97971d3fae447cd3406724cb2c5916e8ba3a0d39ad80772849"
+    },
+    "rootSheet": {
+      "protocolPath": "src/prescribed-path-analysis/protocols/a1-1-root-sheet-monotonic-enclosure-treatment-protocol.v1.json",
+      "protocolHash": "f750ae72e6da9005d23104218a5dbe9fdc4524ef471cd93233fdeb4f2e6f8e1f",
+      "summaryPath": "reference/priorities/braid-program/evidence/a1-1-root-sheet-monotonic-enclosure-treatment-summary.v1.json",
+      "resultHash": "7d930245906fef42966a883d93e8afddb57b7d4320acd1d5c1be25f776d45e1e",
+      "summaryHash": "d43a763f11198a0bb2d1ce29eed8462ae08576980a739fecd72788d2c5b2a74a"
+    },
+    "structuralLedger": {
+      "protocolPath": "src/prescribed-path-analysis/protocols/a1-1-prescribed-structural-root-ledger-protocol.v1.json",
+      "protocolHash": "40e01f1c2ee592b6735ba11f76a731df08ec0f3f3b15431a21d20ceb0c09171b",
+      "summaryPath": "reference/priorities/braid-program/evidence/a1-1-prescribed-structural-root-ledger-summary.v1.json",
+      "resultHash": "e0fb41da7fa55f3ee73cd41e00aa8c66232b071415db122f5395a0f691c2b316",
+      "summaryHash": "8293182ca383dd9414de1a01b42945da937b9ce904bf91e20d74324cc4c27474",
+      "rawLedgerHash": "e28835c1df045bfbbbbc3f419b7a31b1474d0bc51e99381a0bd54e75fa4be4b4"
+    },
+    "projectionMonotonicity": {
+      "protocolPath": "src/prescribed-path-analysis/protocols/a1-1-receiver-phase-projection-monotonicity-protocol.v1.json",
+      "protocolHash": "6dc5b65ae6d8ffce78018c75142a74ba02169522e34eb191c4b7c441caabc237",
+      "summaryPath": "reference/priorities/braid-program/evidence/a1-1-receiver-phase-projection-monotonicity-summary.v1.json",
+      "resultHash": "75de3038ee36b4058ae86a44f1045b421a344f4cd3c91cb1cf080ba00758a447",
+      "summaryHash": "15a8c88c64792797f6b4bae16cd9876ad1cde4a3a56bac7133a09382fa9152df"
+    }
+  },
+  "sealedPriorCombinedBox": {
+    "protocolPath": "src/prescribed-path-analysis/protocols/a1-1-outer-radius-band-expansion-protocol.v1.json",
+    "protocolHash": "ba964f401401b36a46e96683e7329fa21ac13ce04331d1c909648a6df237b8bd",
+    "summaryPath": "reference/priorities/braid-program/evidence/a1-1-outer-radius-band-expansion-summary.v1.json",
+    "resultHash": "389fe1a37065198fe4f6c5139b9359c733b22a08dd5f800c2e7d66703977bc57",
+    "summaryHash": "a8c789f826ff286ef01f02f0a9aacc6faa72991e5e8535a436bc0531027eb23a"
+  },
+  "radiusExpansion": {
+    "order": 2,
+    "variedBand": "outer-radius-upper-adjacent-band-only",
+    "baseline": {
+      "alpha1": [0.875, 0.9375],
+      "alpha2": [1, 1],
+      "alpha3": [1.0625, 1.1875]
+    },
+    "addedOuterBand": [1.1875, 1.25],
+    "combinedBox": {
+      "alpha1": [0.875, 0.9375],
+      "alpha2": [1, 1],
+      "alpha3": [1.0625, 1.25],
+      "receptionPhase": [0, 6.283185307179586],
+      "dimensionlessDelayInterior": [0.03125, 2.25]
+    },
+    "innerBandChanged": false,
+    "middleRadiusFieldSpeedPin": 1,
+    "relativePhases": ["0", "2*pi/3", "4*pi/3"],
+    "relativePhaseOffsetsVary": false,
+    "historyReachChi": 2.25
+  },
+  "targetRepresentatives": [
+    "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-1",
+    "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+    "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+    "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2",
+    "a1-1-binary-2-endpoint-1<-a1-1-binary-1-endpoint-1",
+    "a1-1-binary-2-endpoint-1<-a1-1-binary-1-endpoint-2",
+    "a1-1-binary-2-endpoint-1<-a1-1-binary-3-endpoint-1",
+    "a1-1-binary-2-endpoint-1<-a1-1-binary-3-endpoint-2",
+    "a1-1-binary-3-endpoint-1<-a1-1-binary-1-endpoint-1",
+    "a1-1-binary-3-endpoint-1<-a1-1-binary-1-endpoint-2",
+    "a1-1-binary-3-endpoint-1<-a1-1-binary-2-endpoint-1",
+    "a1-1-binary-3-endpoint-1<-a1-1-binary-2-endpoint-2"
+  ],
+  "rootSheet": {
+    "rootFunction": "G(alpha1,alpha3,theta,delta)=squared-distance-delta^2",
+    "dependentVariable": "dimensionlessDelay",
+    "parameterVariables": ["active-radius-ratios", "receptionPhase"],
+    "domain": {
+      "alpha1": [0.875, 0.9375],
+      "alpha2": [1, 1],
+      "alpha3": [1.0625, 1.25],
+      "receptionPhase": [0, 6.283185307179586],
+      "dimensionlessDelayInterior": [0.03125, 2.25]
+    },
+    "phaseSeam": "theta-zero-identified-with-two-pi/exact-four-pi-sigma-periodicity.v1",
+    "rootCountInvarianceTheorem": {
+      "id": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1"
+    },
+    "subFieldSpeedCoordinateCharts": {
+      "id": "a1-1-sub-field-endpoint-root-sheet-coordinate-charts.v1",
+      "receptionFixed": {
+        "parameterPhase": "theta",
+        "dependentVariable": "dimensionlessDelay",
+        "movingEndpointAtFixedPhase": "transmitter"
+      },
+      "emissionFixed": {
+        "parameterPhase": "epsilon=(theta-delta)-modulo-two-pi",
+        "dependentVariable": "dimensionlessDelay",
+        "movingEndpointAtFixedPhase": "receiver"
+      },
+      "chartTransition": {
+        "map": "(theta,delta)<->(epsilon=theta-delta modulo 2*pi,delta)",
+        "domainCoverage": "bijection of the phase-circle times the declared delay interval",
+        "seamRule": "zero-and-two-pi-are-one-phase-circle-point"
+      }
+    }
+  },
+  "foldExclusion": {
+    "squaredResidualExclusionFloor": 1e-10,
+    "squaredDelayDerivativeExclusionFloor": 1e-8,
+    "intervalPaddingUlps": 4,
+    "initialRatioSubdivisions": 2,
+    "initialReceptionPhaseSubdivisions": 24,
+    "maximumSubdivisionDepth": 18,
+    "maximumBoxesPerRepresentative": 20000,
+    "maximumBoxesPerPacket": 180000,
+    "minimumAlphaWidth": 0.0000152587890625,
+    "minimumReceptionPhaseWidth": 0.00009587379924285257,
+    "minimumDelayWidth": 0.000034332275390625,
+    "splitPolicy": "largest-active-normalized-width.v1"
+  },
+  "anchorRootInventory": {
+    "point": {
+      "alpha1": 0.90625,
+      "alpha3": 1.125,
+      "coordinatePhase": 0.4487989505128276,
+      "coordinateRule": "use-epsilon-in-emission-fixed-chart; otherwise-use-theta"
+    },
+    "expectedRootCountPerRepresentative": 1,
+    "initialDelaySubdivisions": 32,
+    "maximumSubdivisionDepth": 48,
+    "maximumBoxesPerRepresentative": 4096,
+    "minimumDelayWidth": 1e-10,
+    "rootResidualFloor": 1e-10,
+    "rootTransversalityFloor": 1e-8,
+    "independentNormalizedResidualFloor": 1e-9,
+    "rootSeparationFloor": 1e-7,
+    "boundaryOwnership": "left-open-right-closed/internal; near-zero-and-history-edge-owned-by-endpoint-proofs.v1"
+  },
+  "projectionCertificate": {
+    "targetOrderedChannelIds": [
+      "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+      "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+      "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2",
+      "a1-1-binary-1-endpoint-2<-a1-1-binary-2-endpoint-1",
+      "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-1",
+      "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-2"
+    ],
+    "representativeChannelIds": [
+      "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+      "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+      "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2"
+    ],
+    "middleTransmitter": {
+      "positivePolynomialLowerBound": 0.015625,
+      "receptionSquaredDelayDerivativeUpperBound": -0.002717391304347826,
+      "emissionSquaredDelayDerivativeUpperBound": -0.0078125,
+      "projectionDerivativeLowerBound": 0.0003619418178527802,
+      "projectionDerivativeUpperBound": 736
+    },
+    "outerTransmitter": {
+      "transmitterRadiusInterval": [1.0625, 1.25],
+      "positivePolynomialLowerBound": 0.06243896484375,
+      "receptionSquaredDelayDerivativeUpperBound": -0.009293241279069768,
+      "emissionSquaredDelayDerivativeUpperBound": -0.015625,
+      "projectionDerivativeLowerBound": 0.0010963455149501661,
+      "projectionDerivativeUpperBound": 430
+    },
+    "continuousConclusionWhenComplete": "the-receiver-phase-projection-is-strictly-increasing-on-each-declared-emission-fixed-root-sheet.v1"
+  },
+  "controls": {
+    "baselineExactReplayRequired": true,
+    "priorCombinedBoxExactReplayRequired": true,
+    "complete36ChannelAccountingRequired": true,
+    "sameAndPartnerChannelsReexecuted": true,
+    "endpointInversionReuseRequired": true,
+    "phaseSeamReplayRequired": true,
+    "independentResidualAndDerivativeRequired": true,
+    "independentWitnessCount": 12,
+    "independentNormalizedResidualFloor": 1e-9,
+    "independentDerivativeDifferenceTolerance": 0.000001,
+    "finiteDifferenceStep": 9.5367431640625e-7,
+    "refinedHistoryEdgeRequired": true,
+    "historyEdgePhaseSubdivisions": 24,
+    "syntheticFold": {
+      "rootFunction": "(delta-1)^2",
+      "foldPoint": 1,
+      "requiredDisposition": "unresolved-possible-fold-box"
+    },
+    "resourceExhaustion": {
+      "maximumBoxesPerRepresentative": 1,
+      "requiredStatus": "drawn-not-evaluated",
+      "requiredScore": null
+    }
+  },
+  "completionRule": {
+    "statusWhenComplete": "evaluated-diagnostic",
+    "statusWhenCounterexampleFound": "counterexample-diagnostic",
+    "statusWhenAnyObligationUnresolved": "drawn-not-evaluated",
+    "score": null,
+    "noCandidateDisposition": true,
+    "stopAfterThisBand": true
+  }
+}
