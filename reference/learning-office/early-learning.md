@@ -115,7 +115,7 @@ Students build or inspect a delayed-interaction model. They do not only ask wher
 
 Student-facing sentence:
 
-> A present force calculation is incomplete unless it carries the admissible causal history.
+> A present acceleration calculation is incomplete unless it carries the admissible causal history.
 
 Later bridge:
 

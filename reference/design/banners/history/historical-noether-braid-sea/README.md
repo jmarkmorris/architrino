@@ -1,5 +1,7 @@
 # Noether Braid Sea Banner
 
+Status: historical source family; non-default.
+
 This working package owns the first Noether Braid banner family.
 
 - Working master: `noether-braid-youtube-banner-sea-2048x1152.png`

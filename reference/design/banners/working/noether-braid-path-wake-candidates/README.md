@@ -1,6 +1,6 @@
 # Noether Braid Path/Wake Banner Candidates
 
-Status: selected candidate set.
+Status: retained review alternatives; non-default.
 
 These candidates are generated social banner backgrounds intended to sit behind the Noether Braid social profile logo. They do not include the logo, QR code, brand text, chalkboards, or equations inside the banner itself.
 

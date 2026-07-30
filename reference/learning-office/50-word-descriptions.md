@@ -4,7 +4,7 @@ Six 50-word options give different audiences one clear emphasis and one invitati
 
 ## General Architecture
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ is an open research architecture for rebuilding physics from one primitive: the architrino, a point transceiver moving in absolute time through a Euclidean void. Particles, clocks, gravity, and quantum behavior are treated as assembly-level effects of causal wakes, Noether sea response, and delayed deterministic dynamics with explicit validation burdens.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ is an open research architecture built from a small substrate basis: architrinos, absolute time, Euclidean void, polarity, and finite-speed causal wakes. Particles, clocks, gravity, and quantum behavior are assembly-level recovery targets, with delayed deterministic dynamics and explicit validation burdens.
 
 ## Physics-Curious Reader
 

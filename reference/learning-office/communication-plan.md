@@ -1,14 +1,14 @@
-# Archie Plan
+# Learning Office Communication Plan
 
 ## Purpose
 
-This plan treats Archie as the public communication layer for the open-source, zero-price $\mathbb{A}\mathbb{A}\mathbb{A}$ offer. The immediate goal is not mass persuasion. The immediate goal is to attract informed attention from people who can read, question, test, explain, or improve the architecture.
+This plan treats Learning Office as the public communication layer for the open-source, zero-price $\mathbb{A}\mathbb{A}\mathbb{A}$ offer. The immediate goal is not mass persuasion. The immediate goal is to attract informed attention from people who can read, question, test, explain, or improve the architecture.
 
 ## Long-Term Accessibility Thesis
 
 The long-term goal is broader than attracting the small population that can already work with GR, QM, or professional fundamental-physics literature. $\mathbb{A}\mathbb{A}\mathbb{A}$ should test whether a more explicit level structure, visual causal geometry, simulations, children's books, and AI-assisted learning can let far more people understand how nature works from fundamentals.
 
-The scale argument is motivational, not demographic precision. If only about `100,000` people worldwide can currently follow foundational physics deeply, then against a public measured in billions that is an order-of-magnitude signal of how narrow the current doorway is. Archie should widen the doorway without weakening claim discipline.
+The scale argument is motivational, not demographic precision. If only about `100,000` people worldwide can currently follow foundational physics deeply, then against a public measured in billions that is an order-of-magnitude signal of how narrow the current doorway is. Learning Office should widen the doorway without weakening claim discipline.
 
 AI is part of the accessibility strategy when it helps a learner animate hidden histories, run safe simulations, translate the same concept across ages, identify assumptions, and name claim levels. It should not make unfinished theory sound complete or replace physical play, reproducible checks, or careful criticism.
 
@@ -112,8 +112,8 @@ Legend: `H` = high projected ROI, `M` = medium projected ROI, `L` = low projecte
 
 - Highest early ROI likely comes from the project website, GitHub, GitHub Discussions, blog posts, email capture, and focused long-form video.
 - Short-form video can produce discovery, but it needs a strong route into deeper material or it will generate weak attention.
-- Physicist-facing Archie material should lead with one narrow derivation, simulation, or closure burden, not the whole architecture.
-- Open-source Archie material should lead with concrete contribution paths: docs, validation, simulations, issues, and reproducible checks.
+- Physicist-facing Learning Office material should lead with one narrow derivation, simulation, or closure burden, not the whole architecture.
+- Open-source Learning Office material should lead with concrete contribution paths: docs, validation, simulations, issues, and reproducible checks.
 - Local posters and flyers may work best as QR-code gateways to a "start here" page rather than as standalone explanations.
 - Print ads are probably low ROI until a high-performing message and landing page have already been validated elsewhere.
 
@@ -148,7 +148,7 @@ Every channel should route to a page that answers five questions quickly:
 
 ## Next Planning Steps
 
-1. Select one primary audience for the first Archie cycle.
+1. Select one primary audience for the first Learning Office cycle.
 2. Choose one high-bandwidth channel and one discovery channel.
 3. Create one landing page matched to that audience.
 4. Run a small test with a clear return metric.
