@@ -404,10 +404,11 @@ A_{\mathrm{self}}
 \frac{K_{\mathrm{self}}}{4a\,\delta^3}.
 $$
 
-This reproduces the live MEC-006 same-history near-diagonal family. Its
-time-integrated absolute acceleration is not locally finite. It therefore
-rules out an ordinary $C^2$ transverse continuation that simply evaluates the
-bare canonical self row on the emerging branch.
+This has the same near-diagonal scaling family recorded by MEC-006 for the
+singular derivative boundary. Its time-integrated absolute acceleration is not
+locally finite, and that encounter-measure consequence belongs to MEC-007. It
+therefore rules out an ordinary $C^2$ transverse continuation that simply
+evaluates the bare canonical self row on the emerging branch.
 
 Claim class: **derived conditional local no-go** for the transverse
 prescribed-extension class. A tangential crossing, a field-speed plateau,
@@ -447,14 +448,14 @@ birth singularity. It cannot yet say whether the paths pass, turn, develop a
 partner fold, or reach some later boundary.
 
 No continuation, passage, rebound, fold resolution, physical interpretation,
-conserved account, stability, MEC-005 closure, MEC-006 closure, or acceptance
+conserved account, stability, MEC-005 closure, MEC-007 closure, or acceptance
 is advanced.
 
 # Proposed changes
 
 ## Record the theorem and replace the completed incoming proof target
 
-Record under MEC-006 that the canonical identity
+Record under MEC-007 that the canonical identity
 
 $$
 \frac{\mathrm du}{\mathrm dR}
@@ -507,17 +508,19 @@ Plainly: Certify the root that is born at the threshold and test whether its
 accumulated acceleration can define one unique outgoing history. If it cannot,
 record the obstruction without inventing a continuation.
 
-This is one refinement of the existing MEC-006 boundary program, not a new
-gate or a new owner. It preserves the separate MEC-003 coincident-transition
-closure burden and supplies no result for MEC-005 consumption.
+This is one refinement of the MEC-007 mirror boundary program, not a new gate.
+It preserves the separate MEC-003 coincident-transition closure burden, the
+MEC-006 singular derivative boundary, and supplies no result for MEC-005
+consumption.
 
 # Items to disposition into the priorities directory
 
 | Item | Live owner | Disposition | Exact result or next action | Claim boundary |
 | --- | --- | --- | --- | --- |
-| Positive-range field-speed first boundary | `MEC-006` receiver wake-gradient closure | `derived priority result`; status unchanged | Record that the verified reduced identity and complete stationary-history census force $u(T_\ast)=1$ at $R_\ast>0$, with a simple partner root and no positive-delay self root at the event | Not a partner fold, continuation, passage, or MEC closure |
-| Immediate post-threshold self-root topology | `MEC-006` receiver wake-gradient closure, with the existing MEC-003 coincident-transition burden preserved | `priority-only` proof target | Certify the one-sided partner/self root tube, exact average-speed-one self-root birth, contact-order asymptotics, retained-history margin, and signed-integral and total-variation limits | No outgoing history or boundary value unless existence, local finiteness, uniqueness, and family-independence are proved |
+| Positive-range field-speed first boundary | `MEC-007` mirror close-approach causal-root boundary | `derived priority result`; status unchanged | Record that the verified reduced identity and complete stationary-history census force $u(T_\ast)=1$ at $R_\ast>0$, with a simple partner root and no positive-delay self root at the event | Not a partner fold, continuation, passage, or MEC closure |
+| Immediate post-threshold self-root topology | `MEC-007` mirror close-approach causal-root boundary, with the existing MEC-003 coincident-transition burden preserved | `priority-only` proof target | Certify the one-sided partner/self root tube, exact average-speed-one self-root birth, contact-order asymptotics, retained-history margin, and signed-integral and total-variation limits | No outgoing history or boundary value unless existence, local finiteness, uniqueness, and family-independence are proved |
 
-Plainly: MEC-006 should record the completed incoming theorem and own the
-smallest next root-topology calculation. The unresolved coincident-transition
-law remains where it already belongs and is not silently closed.
+Plainly: MEC-007 records the completed incoming theorem and owns the smallest
+next root-topology calculation. MEC-006 retains the receiver-gradient
+derivative, while the unresolved coincident-transition law remains with
+MEC-003 and is not silently closed.

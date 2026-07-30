@@ -347,7 +347,7 @@ Neither candidate is selected or queued by this packet.
 
 | Item | Live owner | Disposition | Exact next action | Nonclaims |
 | --- | --- | --- | --- | --- |
-| Pre-boundary root-and-singularity ledger calculation | `MEC-006` receiver wake-gradient closure, because it owns the singular-boundary admissibility question | `priority-only`; no status change | Execute the bounded regular approach and section contract above; stop fail-closed at the first uncertified root, zero-containing delayed-range or transmitter-Jacobian interval, retained-history loss, or oracle disagreement | This is not a continuation, boundary value, MEC-005 provenance closure, MEC-006 completion result, conserved account, stability or retention result, physical realization, or solver acceptance |
+| Pre-boundary root-and-singularity ledger calculation | `MEC-007` mirror close-approach causal-root boundary | `priority-only`; no status change | Execute the bounded regular approach and section contract above; stop fail-closed at the first uncertified root, zero-containing delayed-range or transmitter-Jacobian interval, retained-history loss, or oracle disagreement | This is not a continuation, boundary value, MEC-005 provenance closure, MEC-007 completion result, conserved account, stability or retention result, physical realization, or solver acceptance |
 
 The missing eighth response receives no priority disposition. The proposed
 pushforward, measure-valued continuation, Caratheodory continuation, matched

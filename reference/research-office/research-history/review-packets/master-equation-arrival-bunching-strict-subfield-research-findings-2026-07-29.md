@@ -291,13 +291,13 @@ present-time shortcut, must decide what happens first.
 
 The completed reviews do not select passage, rebound, a boundary value, an
 outgoing retained history, a physical interpretation, a conserved account,
-stability, MEC-005 closure, or MEC-006 closure.
+stability, MEC-005 closure, or MEC-007 closure.
 
 # Proposed changes
 
 ## Priority-only proof program
 
-Retain the result as priority-only research guidance and add one MEC-006 proof
+Retain the result as priority-only research guidance and add one MEC-007 proof
 target with three obligations:
 
 1. Independently verify
@@ -347,14 +347,14 @@ but its disposition is `Not advanced`.
 No part of this program authorizes a continuation, deletes a root, inserts a
 receiver playback factor into the acceleration weight, introduces finite
 width, fits an impulse, substitutes a scalar surrogate, or advances MEC-005 or
-MEC-006.
+MEC-007.
 
 # Items to disposition into the priorities directory
 
 | Item | Live owner | Disposition | Exact next action | Claim boundary |
 | --- | --- | --- | --- | --- |
-| Strict-subfield arrival-bunching balance and first-boundary certification | `MEC-006` receiver wake-gradient closure | `priority-only`; status unchanged | Independently verify the two boxed range-evolution identities, then use them with the complete root census and retained-history margin to certify the first boundary reached; preserve the refined signed-integral and total-variation test in the unresolved $u\to1^{-}$ regime | No continuation, boundary value, outgoing history, physical claim, conserved account, stability, MEC-005 closure, or MEC-006 closure |
+| Strict-subfield arrival-bunching balance and first-boundary certification | `MEC-007` mirror close-approach causal-root boundary | `priority-only`; status unchanged | Independently verify the two boxed range-evolution identities, then use them with the complete root census and retained-history margin to certify the first boundary reached; preserve the refined signed-integral and total-variation test in the unresolved $u\to1^{-}$ regime | No continuation, boundary value, outgoing history, physical claim, conserved account, stability, MEC-005 closure, or MEC-007 closure |
 
-Plainly: MEC-006 owns the boundary admissibility question, so it should own
-this next calculation. The new row narrows the next proof without claiming its
-answer.
+Plainly: MEC-007 now owns this mirror boundary calculation. The row narrows the
+next proof without claiming its answer, while MEC-006 retains only the
+receiver-gradient program.

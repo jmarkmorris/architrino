@@ -493,15 +493,15 @@ receiver field-speed arrival, a coincident same-transmitter birth, a partner
 fold, a history edge, or any other boundary. It establishes no passage,
 rebound, coordinate crossing, outgoing retained history, boundary value,
 physical interpretation, conserved account, stability, MEC-005 closure,
-MEC-006 closure, or acceptance.
+MEC-007 closure, or acceptance.
 
 # Proposed changes
 
 ## Queue disposition
 
-The newly added MEC-006 priority-only theorem target already states the
+The MEC-007 priority-only theorem owner states the
 necessary admissible class, proof obligations, outside-class exclusions, and
-nonclaims. No corrective queue edit is required after this investigation.
+nonclaims. The ownership split from MEC-006 changes no theorem status.
 
 Its proof disposition should be read as follows:
 
@@ -519,7 +519,7 @@ proof and the exact limits of that wording.
 ## Minimal reusable proof certificate
 
 Any later calculation invoking this theorem should provide only the existing
-MEC-006 evidence fields needed to instantiate the proof:
+MEC-007 evidence fields needed to instantiate the proof:
 
 1. the initial retained-history partner-root sign bracket;
 2. the complete ordered partner and self-root census;
@@ -540,8 +540,8 @@ build another layer of process around the theorem.
 
 | Item | Owner | Disposition | Exact result | Boundary |
 | --- | --- | --- | --- | --- |
-| Admissible-history pre-coincidence first-exit ordering | `MEC-006` receiver wake-gradient closure | `proved priority result` on $\mathcal H_{\mathrm{att}}^{\mathrm{reg}}$; status unchanged | With a complete subfield monotone mirror census, active bracketed partner root, positive history margin, and nonzero attractive canonical contribution, either receiver field speed or a certified regular-sector boundary occurs strictly before $q=0$ | No claim for initially superfield, nonmonotone, initially multi-root, incomplete-history, zero-root, or nonattractive data |
-| Post-exit behavior | Existing MEC-006 boundary program and separate coincident-transition owner | `unresolved` | Preserve the first-exit event and all incident root provenance; do not assign an outgoing history | No continuation, passage, physical claim, MEC closure, or acceptance |
+| Admissible-history pre-coincidence first-exit ordering | `MEC-007` mirror close-approach causal-root boundary | `proved priority result` on $\mathcal H_{\mathrm{att}}^{\mathrm{reg}}$; status unchanged | With a complete subfield monotone mirror census, active bracketed partner root, positive history margin, and nonzero attractive canonical contribution, either receiver field speed or a certified regular-sector boundary occurs strictly before $q=0$ | No claim for initially superfield, nonmonotone, initially multi-root, incomplete-history, zero-root, or nonattractive data |
+| Post-exit behavior | Existing MEC-007 mirror boundary program and separate MEC-003 coincident-transition owner | `unresolved` | Preserve the first-exit event and all incident root provenance; do not assign an outgoing history | No continuation, passage, physical claim, MEC closure, or acceptance |
 
 Plainly: The theorem closes the ordering question only for its admissible
 history class. Every boundary value remains open.

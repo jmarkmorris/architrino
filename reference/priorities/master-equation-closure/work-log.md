@@ -6,6 +6,35 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas, insights, concep
 
 ## Log Entries
 
+- 2026-07-30: Split the mirror-symmetric collinear close-approach and
+  causal-root boundary program out of MEC-006 into the new MEC-007
+  `mirror_close_approach_causal_root_boundary` owner. MEC-006 now retains only
+  the fixed-reception receiver-position acceleration gradient, its verified
+  regular-domain tensor, and its singular derivative boundary. MEC-007 owns the
+  stationary-mirror first-field-speed result at positive delayed range, the
+  admissible-history pre-coordinate-coincidence first-exit theorem, the
+  pre-boundary root and measure ledger, exact same-event admission question,
+  conditional diagnostic sandbox, and the unchanged-sharp-law post-threshold
+  obstruction. Both rows remain `Awaiting verification`; the obstruction
+  remains `Not advanced`. Reconciled MEC-002, MEC-003, MEC-004, and MEC-005
+  dependencies without selecting a continuation, passage, rebound, boundary
+  value, account map, conservation result, physical realization, MEC closure,
+  or acceptance.
+
+- 2026-07-29: Added the separately authored MEC-005 bounded
+  structural-contract stage for
+  `mec005_two_history_causal_root_ledger_certificate/v1` and nine focused
+  tests. The stage checks the exact four ordered bundles, declared finite
+  entity sets, stable identity, multiplicity, reciprocal incidence, unique
+  ownership, boundary quarantine, exact `/v1` leaf labels, and implemented
+  negative controls. Its report names the unimplemented structural obligations
+  and independent raw-history mathematics, so it always reports
+  `Verification incomplete`, `Not advanced`, consumer-disabled, and `Queued`.
+  Reconciled the independent-oracle root-completeness schema documentation from
+  `/v0` to its live emitted and tested `/v1`; the separate piecewise-cubic v0
+  history-representation label remains unchanged. No boundary semantics, update
+  law, continuation, account map, or conservation claim was selected.
+
 - 2026-07-28: Withheld independent verification of the worldline-only
   characteristic-tail adjudication and moved MEC-001 to `Awaiting
   verification`. The receiver-gradient identity and the

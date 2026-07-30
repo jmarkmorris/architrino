@@ -298,11 +298,24 @@ is same-implementation parity, not independent verification. In particular,
 the current slab producer's rank-bearing identity is leaf provenance only, not
 the envelope's canonical `stratum_id`.
 
-The live independent-oracle owner still documents the root-completeness record
-as `eom_root_completeness_certificate/v0`, while live code and its test assert
-`eom_root_completeness_certificate/v1`. The oracle owner must reconcile that
-documentation drift before the MEC-005 envelope binds to the exact leaf schema;
-the mismatch supplies no status or evidence upgrade.
+The independent-oracle owner now documents the live
+`eom_root_completeness_certificate/v1` schema emitted by
+`certified_history.py` and asserted by its root-certification test. The
+piecewise-cubic v0 history-representation label is separate and unchanged.
+This documentation reconciliation supplies no status or evidence upgrade.
+
+The separately authored
+[`verify-mec005-two-history-causal-root-ledger.mjs`](../../../scripts/eom/verify-mec005-two-history-causal-root-ledger.mjs)
+bounded structural-contract stage checks the frozen envelope identity, the
+exact four ordered bundles, finite declared entity sets, reciprocal incidence,
+multiplicity, refinement-stable identity, unique ownership, boundary
+quarantine, exact `/v1` leaf labels, and the implemented negative controls. Its
+report explicitly places full metadata binding, exact partition-tree
+coverage/disjointness, complete root and boundary evidence shape, the remainder
+of the fifteen mandatory negative controls, and independent reconstruction
+from raw histories outside its current reach. Its mathematical stage is
+therefore `not_implemented`, and every result remains
+`Verification incomplete`, `Not advanced`, consumer-disabled, and `Queued`.
 
 ### Mandatory negative controls
 
@@ -568,7 +581,7 @@ singular-event data.
 | --- | --- | --- |
 | Canonical regular-root acceleration value | **Resolved as a declared target.** The Master Equation derives the arriving spatial normal, inverse-square factor, polarity sign, and $c_f/|D_t|$ transmitter-side root factor, with $D_r/D_t$ retained only for playback. | The symmetric control must bind to this exact row structure rather than to a scalar $1/r$ or unweighted $1/r^2$ surrogate. |
 | EOM solver regular-root path | **Implemented for the declared regular rows.** [CoupledEvolution.cpp](../../../src/eom/src/CoupledEvolution.cpp), [JointAccelerationSnapshot.cpp](../../../src/eom/src/JointAccelerationSnapshot.cpp), and [SharpAccelerationSensitivity.cpp](../../../src/eom/src/SharpAccelerationSensitivity.cpp) evaluate the delayed displacement direction, inverse-square vector, transmitter factor, acceleration weight, and root-time/direction/factor sensitivities. | A run packet must expose those per-root fields and prove that the encounter used that path without fallback to a different operator. |
-| Complete receiver/self acceleration gradient | **Regular domain independently verified; singular boundary awaiting disposition.** [MEC-006](receiver-wake-gradient-closure.md) now has an independent analytic audit and a separately structured three-dimensional numerical verifier for the fixed-reception regular partner-root tensor. Its positive-delay same-history specialization remains conditional on separation and transmitter-factor floors. No unique self-diagonal, fold, or coincident-birth prescription follows from the regular mathematics. | The kinematic control may consume accepted regular rows only. Every quarantined boundary row remains unresolved and consumer-ineligible. A two-body conservation interpretation remains gated on an accepted self-compatible MEC-006 disposition and the separate same-update account derivation. |
+| Complete receiver/self acceleration gradient | **Regular domain independently verified; singular derivative boundary awaiting disposition.** [MEC-006](receiver-wake-gradient-closure.md) now has an independent analytic audit and a separately structured three-dimensional numerical verifier for the fixed-reception regular partner-root tensor. Its positive-delay same-history specialization remains conditional on separation and transmitter-factor floors. No unique self-diagonal, fold, or coincident-birth derivative prescription follows from the regular mathematics. | The kinematic control may consume accepted regular rows only. Every quarantined derivative row remains unresolved and consumer-ineligible. A two-body conservation interpretation remains gated wherever MEC-006 derivative rows are consumed, and separately on MEC-007's encounter boundary and the same-update account derivation. |
 | Self-pair acceleration | **Declared but conditional.** Every positive-delay same-transmitter root is admitted to the topology census; consuming a regular self row still requires separation and $D_t$ control, finite memory, and a singular-event route when a fold is reached. The structural diagonal has no assigned value. | The encounter cannot suppress an admitted positive-delay self row, and it cannot consume the quarantined diagonal as an acceleration row. |
 | Pure scalar $1/r$ action route | **Established incomplete.** The live Master Equation records an uncancelled receiver-variation interior derivative and an unclosed derivation of the transmitter-side weight. | Agreement with a scalar action diagnostic cannot establish acceleration-operator or conservation readiness. |
 | Characteristic-tail action candidate | **Awaiting verification.** The cross-pair receiver-gradient identity survives, but the complete self-diagonal functional remains inadmissible under its frozen convention. | It cannot yet supply the encounter's conserved account or boundary charge. |
@@ -604,7 +617,9 @@ the acceleration operator, signed account maps, and all encounter-boundary
 fluxes without residual-defined cancellation. That stronger condition is not
 currently met. It is also gated on an independently accepted MEC-006
 receiver/self gradient disposition, because an undeclared near-diagonal
-sensitivity cannot be hidden inside the two-body account residual. These
+sensitivity cannot be hidden inside the two-body account residual, wherever
+that derivative is consumed. The collinear encounter is separately gated on
+MEC-007's unresolved same-event and limiting-measure disposition. These
 requirements must be met before either the collinear encounter below or a
 symmetric circular control can carry a conservation interpretation.
 
@@ -634,6 +649,20 @@ simple-root row under the unchanged canonical acceleration operator.
 Plainly: a fold has two incident root histories and one boundary event. The
 ledger must show all three without counting the event twice or disguising an
 unresolved value as zero.
+
+### MEC-007 mirror-encounter intake rule
+
+The [MEC-007 mirror close-approach program](mirror-close-approach-causal-root-boundary.md)
+uses this packet's symmetric collinear encounter, but it does not replace
+MEC-005 ownership. Its first-boundary theorems and unchanged-law obstruction
+may enter as bounded event geometry only. Every root, event, and unresolved
+boundary cell still needs one refinement-stable MEC-005 identity, and no
+MEC-007 acceleration integral may be interpreted as a provenance or
+no-double-booking pass.
+
+Plainly: MEC-007 can show where the encounter becomes singular. MEC-005 must
+still show that every root and boundary event was found and booked exactly
+once.
 
 ## Smallest Bounded First Control
 
@@ -830,14 +859,22 @@ MEC-005 decides which regular and singular rows exist and who owns them;
 MEC-006 decides whether the derivative of each admitted regular acceleration
 row is complete and where the self/diagonal formula stops. The regular
 partner-root derivative is now independently verified on its declared open
-domain. MEC-005's symmetric two-body control remains kinematic-only until
-MEC-006 receives an accepted singular-boundary disposition and the separate
-account maps close.
+domain.
 
-No MEC-006 boundary choice can fill an MEC-004 row by itself. If a boundary
-update is later accepted, MEC-004 must derive its signed maps on exactly that
-update and MEC-005 must attribute each resulting boundary row once. A residual
-or a duplicated incident-root entry is not a signed-map derivation.
+MEC-007 is the mirror close-approach boundary companion. It owns the
+stationary-mirror first-boundary theorem, admissible-history first-exit
+ordering, pre-boundary root and measure ledger, exact same-event admission
+question, and unchanged-law post-threshold obstruction. It does not own root
+provenance, choose a boundary law, or provide an account map. MEC-005's
+symmetric two-body control remains kinematic-only until the relevant MEC-006
+derivative disposition, MEC-007 encounter-boundary disposition, and separate
+account maps are accepted for the exact rows consumed.
+
+No MEC-006 derivative choice or MEC-007 encounter result can fill an MEC-004
+row by itself. If a boundary update is later accepted, MEC-004 must derive its
+signed maps on exactly that update and MEC-005 must attribute each resulting
+boundary row once. A residual or a duplicated incident-root entry is not a
+signed-map derivation.
 
 Many-body superposition may be considered only after the pairwise construction
 passes P1–P6 for all four ordered bundles with positive-delay self-root

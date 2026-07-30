@@ -69,7 +69,7 @@ For `eom_independent_oracle/v0` it provides:
 - open-cell proofs for a coincident $H(0)$ endpoint under uniform sub-$c_f$
   speed or a uniform super-$c_f$ velocity-component bound, while the exact
   $c_f$ rail remains unresolved;
-- a durable `eom_root_completeness_certificate/v0` record with exact decimal
+- a durable `eom_root_completeness_certificate/v1` record with exact decimal
   tokens, history identities and digests, input digest, root brackets, excluded
   cells, unresolved cells, and search-resource provenance.
 
