@@ -33,7 +33,9 @@ This document distinguishes three audience scopes:
 ### Workspace Identity
 
 - Do not address the agent by name in prompts or operator/developer communication. Start directly with the task or `Closure goal:`.
-- When a role label is useful, use `Principal Proof Architect & Integrator`; the fuller role description lives in [reference/entourage/archie/archie.md](reference/entourage/archie/archie.md).
+- When a role label is useful, use `Principal Proof Architect & Integrator`;
+  the fuller CTO role description lives in
+  [reference/research-office/cto/cto.md](reference/research-office/cto/cto.md).
 - For all Python work, including live PDG commands, use the shared venv exposed as `$AAA_VENV`, falling back to the repo-adjacent `../.venv`; prefer `VIRTUAL_ENV="${AAA_VENV:-../.venv}"` and `"${AAA_VENV:-../.venv}/bin/python"` over system `python` or `python3`.
 
 ### Math and TeX Rendering
@@ -52,7 +54,7 @@ This document distinguishes three audience scopes:
 - Include a concise `Closure goal:` line near the end of every substantive response and at the start of every generated or recommended prompt.
 - Use established project terminology. Resolve overlapping terms against canon, and ask before introducing a new project term.
 - Refer to the endorsed solver under `src/eom` as the `EOM solver` in operator/developer communication, end-user UI, and prose. Do not call it the `native solver` or `native EOM solver`. Preserve `native` only in established code identifiers, executable names, schema fields, provenance tokens, and literal compatibility interfaces where renaming would change a machine contract.
-- Maintain recurring operator/developer workflow feedback as one-line tasks in [README-op.md](README-op.md); detailed procedures belong under `reference/op/`.
+- Maintain recurring operator/developer workflow feedback as one-line tasks in [README-op.md](reference/op/README-op.md); detailed procedures belong under `reference/op/`.
 
 ### Workspace Workflow
 
@@ -70,7 +72,7 @@ This document distinguishes three audience scopes:
 
 - Do not manually edit generated artifacts unless the generator is missing, stale, or broken and the manual edit is explicitly called out.
 - During ordinary edit batches, edit canonical source files first and run generator `--check` commands when validation is needed. Do not run generator `--write` commands after every small code, prose, or priority edit.
-- Run generator `--write` commands only when the operator/developer explicitly requests regeneration, explicitly asks to fix generated drift, or the work is in the final branch/PR process described in [reference/op/codex-pr-branch.md](reference/op/codex-pr-branch.md).
+- Run generator `--write` commands only when the operator/developer explicitly requests regeneration, explicitly asks to fix generated drift, or the work is in the final branch/PR process described in [reference/op/git/codex-pr-branch.md](reference/op/git/codex-pr-branch.md).
 - Outside an explicit regeneration/fix-drift request or the final branch/PR process, if a generator `--check` reports generated drift, report the drift and the exact `--write` command needed instead of running it.
 - If regeneration is performed, rerun the corresponding `--check` commands before reporting the work complete.
 
@@ -96,7 +98,7 @@ This section governs every claim in this repository, at every tier, in code, pro
 ### Theory-Facing Routing
 
 - Use [reference/op/theory-orientation.md](reference/op/theory-orientation.md) for the current convergence frontier, document-selection path, mathematical-artifact bias, and durable-capture procedure.
-- Use [reference/entourage/archie/prompts/convergence-campaign.md](reference/entourage/archie/prompts/convergence-campaign.md) for corpus convergence modes, edit authority, promotion triage, and handoff format.
+- Use [reference/research-office/cto/prompts/convergence-campaign.md](reference/research-office/cto/prompts/convergence-campaign.md) for corpus convergence modes, edit authority, promotion triage, and handoff format.
 
 ### Authoring and Editorial Policy
 
@@ -114,7 +116,7 @@ This section governs every claim in this repository, at every tier, in code, pro
 - Prefer native derivations and concrete success markers over new gates, checkers, fixtures, or ledgers. Add an obligation artifact only when it protects a tested observable or accepted mathematical condition, has a current consumer, and cannot be replaced by improving the derivation or an existing gate.
 - Write textbook-facing AAA prose from the perspective of the era in which AAA is accepted as the working theory. The proposed-theory caveat belongs in global framing, claim-level metadata, priority status, or an explicit local uncertainty note, not repeated as sentence-level hedging. Do not dilute ordinary explanatory prose with default phrases such as "if accepted," "might," "could," or "should." Use "the question is whether" only when introducing a genuinely open, explicitly named closure target.
 - In authored documentation and AAA prose, do not use `retard`, `retarded`, or related variants, including in full quotations. These terms are disallowed here because semantic displacement has made them unsuitable for the intended documentation use. Use causal-delay terminology instead (`causal`, `delayed`, `path-history`), and when source material contains those terms, paraphrase or omit the quotation rather than reproducing them.
-- Do not reference the entourage or any entourage member names in `content/markdown/aaa` documents.
+- Do not reference Research Office workflow material or Specialist role names in `content/markdown/aaa` documents.
 
 ### End-User App Language
 
@@ -137,4 +139,4 @@ This section governs every claim in this repository, at every tier, in code, pro
 ## Commit Audits
 
 - Git hooks are configured via `core.hooksPath=.githooks`.
-- Treat the hook scripts under `.githooks` as the executable source of truth and [reference/op/codex-pr-branch.md](reference/op/codex-pr-branch.md) as the procedural source of truth. Do not copy exact hook command inventories into this file.
+- Treat the hook scripts under `.githooks` as the executable source of truth and [reference/op/git/codex-pr-branch.md](reference/op/git/codex-pr-branch.md) as the procedural source of truth. Do not copy exact hook command inventories into this file.

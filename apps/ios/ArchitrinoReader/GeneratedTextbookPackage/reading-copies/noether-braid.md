@@ -3171,6 +3171,31 @@ The results divide by strength, and the division is stated with each result. Exa
 
 This chapter owns the shared mathematical machinery of the braid family: the substrate levels and speed hierarchy with the transverse speed-budget lemmas, the spiral-helical motion picture and mass thesis, the hinge equation sketch, the bounded-weight inverse-square escape lemma, the acceleration-gradient comparison, the scoped anti-damping negative results, the eigen-braid spectrum framing, the action-click mechanism, and the Accessory Configuration moment analysis. The neutral six-body base lives in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md#neutral-braid-base); prescribed coordinates and definitions live in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md), and [Braid Family B](../../../../markdown/aaa/noether-braid/braid-family-b.md). The realization-independent proof obligations live in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md). Realization chapters state which of this machinery their configurations inherit and what fixture-specific evidence they add.
 
+**Represented-history atlas boundary.** An atlas row describes a declared
+retained history, not an unbounded past. It
+must name the retained interval, prehistory, complete transmitter inventory,
+and any fixed spatial enclosure. On a bounded history whose transmitters remain
+uniformly below $c_f$, whose pairwise separations stay positive, and whose root
+inventory is complete, the sharp causal-root map is transverse and finite. A
+nontrivial same-transmitter root is excluded on the strictly sub-field-speed
+interval, and the represented history can be reconstructed across time from
+its declared charts while those hypotheses persist.
+
+These statements do not bound an omitted finite-width Gaussian tail, cover an
+undeclared transmitter, or extend automatically to a drifting enclosure or an
+unbounded past. Without a separately checked quantitative tail theorem, the
+certified quantity stops at the declared retained-interval integral.
+
+Scalar rows extracted from the history are diagnostics. They may distinguish a
+declared negative control, but they do not by themselves classify topology,
+prove persistence or stability, identify a physical assembly, or select a
+particle interpretation. Those conclusions require their own branch and
+reconstruction certificates.
+
+Plainly: a finite history can be classified exactly within its stated window.
+Nothing in that classification silently supplies the missing past or turns a
+diagnostic number into a physical fate.
+
 ### Substrate and Effective Levels
 
 Braid dynamics uses four levels of description:

@@ -16,16 +16,16 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 
 - Default meta-optimization wrapper for any Codex thread: [codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md).
 - Multiple parallel Codex threads: start from [codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md), then use [codex-multiprompt.md](codex-multiprompt.md) for worker boundaries and integration.
-- GitHub issue resolution: [issue-resolution.md](issue-resolution.md), then [codex-pr-branch.md](codex-pr-branch.md) if the work needs a branch, commit, push, or PR.
-- Branch, commit, push, and PR mechanics: [codex-pr-branch.md](codex-pr-branch.md).
-- Unattended PR lifecycle verification: [codex-pr-unattended-verification.md](codex-pr-unattended-verification.md).
-- Corpus convergence: [convergence-campaign.md](../entourage/archie/prompts/convergence-campaign.md), with [theory-orientation.md](theory-orientation.md) for the smallest relevant live theory read.
+- GitHub issue resolution: [issue-resolution.md](issue-resolution.md), then [codex-pr-branch.md](git/codex-pr-branch.md) if the work needs a branch, commit, push, or PR.
+- Branch, commit, push, and PR mechanics: [codex-pr-branch.md](git/codex-pr-branch.md).
+- Unattended PR lifecycle verification: [codex-pr-unattended-verification.md](git/codex-pr-unattended-verification.md).
+- Corpus convergence: [convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md), with [theory-orientation.md](theory-orientation.md) for the smallest relevant live theory read.
 - Source mining: [source-mining-best-practice.md](source-mining-best-practice.md).
 - Theory orientation for core geometry and corpus sessions: [theory-orientation.md](theory-orientation.md).
 - Long-running tests, simulations, rebuilds, and analytical campaigns: [long-running-test-heartbeats.md](long-running-test-heartbeats.md).
 - Plain-language explanation in operator-facing output: [operator-explanation-standard.md](operator-explanation-standard.md).
 - Closure curation (milestone corpus reorganization and the volume-split plan): [closure-curation-procedure.md](closure-curation-procedure.md).
 
-Files named `entourage-*` in this directory belong to a separate workflow. Do not treat them as Codex thread-start guidance unless the operator/developer explicitly requests that workflow.
+Research Lead procedures and historical checkpoints live in [Research Office](../research-office/research-lead/research-lead.md). Do not treat them as general Codex task-start guidance unless the operator/developer explicitly requests that workflow.
 
-The living operator feedback checklist is [README-op.md](../../README-op.md). Keep detailed procedures here, but put recurring one-line operator improvement tasks in that root checklist.
+The living operator feedback checklist is [README-op.md](README-op.md). Keep detailed procedures here, but put recurring one-line operator improvement tasks in that checklist.

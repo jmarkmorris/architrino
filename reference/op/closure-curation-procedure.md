@@ -48,7 +48,7 @@ Re-sequence the affected chapters for a learning reader. At a major closure, exe
 
 ### Phase 5 — Regeneration and validation
 
-Rebuild generated artifacts (scene graph, reading-copy markdown, PDFs, orientation) with the generator `--write` commands, then rerun the `--check` gates and the content-integrity gate. Per standing policy, outside an explicit regeneration request this phase reports the exact `--write` commands rather than running them; during a curation pass it runs them and re-checks.
+When the accepted curation brief explicitly includes regeneration, rebuild the affected generated artifacts (scene graph, reading-copy markdown, PDFs, orientation) with their generator `--write` commands, then rerun the `--check` gates and the content-integrity gate. Otherwise, report the exact `--write` commands needed; a curation pass by itself does not authorize generated writes.
 
 ## Target canonical architecture — the volume split
 
@@ -72,4 +72,7 @@ Volumes are a **reader-facing** organization; the convergence lanes and priority
 
 ## Ownership
 
-Claim-level integrity, promotion decisions, and canonical placement are the CSO sphere (`jughead`). Regeneration mechanics, validation gates, and the build of the volume partition are the CTO sphere (`archie`). The volume architecture and any major re-sequencing are ratified with the operator (CEO) before execution.
+Claim-level integrity, promotion decisions, and canonical placement are the CSO
+sphere. Regeneration mechanics, validation gates, and the build of the volume
+partition are the CTO sphere. The volume architecture and any major
+re-sequencing are ratified with the operator (CEO) before execution.

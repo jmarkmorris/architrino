@@ -8,6 +8,8 @@
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Score ladder: [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md)
 - Common architecture: [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
+- Review synthesis: [EQ-02 Through EQ-04A Retained Point, Coframe, No-Retune, and Koide](../../research-office/research-history/review-packets/eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md)
+- Theorem correction: [Invariant-Cell Coframe Certificate](../../research-office/research-history/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md)
 - Merge basis: the consolidated row-classification pass identified `S_eq` as the shared retained-domain carrier for `EQ-02` through `EQ-04`; that classification was score-neutral and supplied no accepted retained evidence.
 - Claim level: smallest accepted retained-domain evidence object for `EQ-02` through `EQ-04`
 - Promotion status: priority-only
@@ -16,8 +18,15 @@
 
 - Current score effect: no score change; this is a priority-only retained-domain evidence-object contract.
 - Exact first blocker: `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
-- First accepted route: source-backed positive-width invariant-cell source report for `S_eq`, with matching `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"` across support, row bindings, witnesses, coframe extraction, and retained-record consumption.
-- Smallest accepted evidence object: one durable retained-geometry evidence object whose raw-row, invariant-cell, refinement-step, connection, residual, and negative-control provenance is accepted by the producer, same-branch checker, and retained-record evaluator on the same carrier.
+- First accepted route: one source-backed validated finite-memory
+  relative-periodic point enclosed by a validation box, followed by its
+  full-history lift; matching `domainId`, `commonCarrierId`, `supportId`, and
+  `retainedRowSetId: "S_eq"` bind support, rows, witnesses, coframe extraction,
+  and retained-record consumption.
+- Smallest accepted evidence object: one durable retained-geometry evidence
+  object whose raw-row, point-enclosure, refinement-step, connection, residual,
+  and negative-control provenance is accepted by the producer, same-branch
+  checker, and retained-record evaluator on the same carrier.
 - Score-neutral exclusions: priority prose, generated files, mocks, attempt fixtures, source-contract shells, negative controls, synthetic provenance shells, and accepted-looking row labels are not accepted retained evidence.
 
 ## Coordinator Decision
@@ -28,7 +37,7 @@ The packet target is:
 
 $$
 \left(
-B_N,\Sigma_N,P_N,\mathcal K_{P_N}
+B_{N,u},\Sigma_N,F_{N,u},\mathcal K_{F_{N,u}}
 \right)
 \longrightarrow
 \mathfrak D_{S_{\mathrm{eq}}}^{02\text{-}04}
@@ -38,7 +47,32 @@ B_N,\Sigma_N,P_N,\mathcal K_{P_N}
 \Theta_{02\text{-}04}^{\mathrm{bin}}(u_k).
 $$
 
-Here $B_N\subset\Sigma_N$ must be a positive-width invariant cell in the truncated delay-state space, not a single sampled crossing. The retained-domain packet becomes score-review eligible only when all accepted row bindings, witnesses, and coframe extraction rows resolve to durable source evidence on the same `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"`.
+Here
+$F_{N,u}(x)=P_{N,u}(x)-g\mathbin{\cdot}x$ is the declared square,
+group-reduced return residual with one pinning condition per admitted neutral
+generator. The inclusion
+$\mathcal K_{F_{N,u}}(\bar x,B_{N,u})\subset
+\operatorname{int}(B_{N,u})$ encloses one validated relative-periodic point in
+the declared slice. The width of $B_{N,u}$ is enclosure width only: it is not
+invariant-set width, a trapping region, branch width, stability, or basin
+measure.
+
+Legacy `invariant-cell` and `K_{P_N}` field names remain literal machine
+contract identifiers until the separately authorized coupled migration. They
+carry only the corrected point-enclosure meaning in this document and must not
+be cited at their old strength.
+
+Raw labels are provenance, not dynamic identity. Acceptance additionally
+requires a labeled cover, one validated root itinerary, a predeclared allowed
+permutation, and overlap continuation showing that the same delayed strands and
+root rows return. Full-history persistence then requires a declared history
+topology, reconstruction, compactness, consistency, vanishing tail error, and
+uniform root, section, transversality, and collision margins. Drift transport
+requires a later validated continuation of that same full history; stability,
+trapping, and basin claims begin only after existence and continuation.
+
+Plainly: the first theorem encloses one returned point. Every stronger word
+needs its own later proof.
 
 ## Bucket Merge
 
@@ -197,7 +231,7 @@ node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs \
 
 The fixture [eq02-04-translating-binary-retained-record-blocked-source-shell.v1.json](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record-blocked-source-shell.v1.json) deliberately leaves retained-record rows, witnesses, diagnostics, and negative controls unpopulated. Its only job is to make the retained-record evaluator consume the existing blocked same-branch shell and not advance at the first accepted-row boundary. The same command with `--require-populated` exits nonzero because the status remains `blocked_same_branch_identity`.
 
-The repo-local source search found review material that defines the needed object, but no dormant accepted source report that can be wired directly. The invariant-cell source review packet [andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md](../../entourage/review-packets/andrey-kolmogorov-eq02-04-invariant-cell-source-report-2026-06-24.md) and retained-evidence response [andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md](../../entourage/review-packets/andrey-kolmogorov-eq02-04a-retained-evidence-response-2026-06-24.md) both identify the next accepted object as a positive-width return-map certificate $B_N\subset\Sigma_N$ with $\mathcal K_{P_N}(B_N)\subset B_N$, refinement persistence, calibrated negative controls, and the retained rows evaluated only on that enclosed support. The coframe research packet [henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md](../../entourage/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md) likewise treats the current reciprocal coframe arithmetic as insufficient until it is replaced by accepted wake-return extraction evidence on the same invariant support. Those files are source-contract and research material, not retained-domain evidence objects.
+The repo-local source search found review material that defines the evidence sequence, but no dormant accepted source report that can be wired directly. The consolidated [retained-point, coframe, no-retune, and Koide research synthesis](../../research-office/research-history/review-packets/eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md) preserves the June source work and records the live point-first correction: a Krawczyk or interval-Newton inclusion applies to the square residual $F_{N,u}=P_{N,u}-g\mathbin{\cdot}x$ and can enclose a finite-memory relative-periodic point; it does not by itself establish an invariant cell, attraction, or basin measure. The live [relative-periodic-point research packet](../../research-office/research-history/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md) owns that correction, while the live [no-retune transport research packet](../../research-office/research-history/review-packets/elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md) keeps drift-family transport downstream of point existence and full-history persistence. All three files are research or source-contract material, not retained-domain evidence objects; the broader executable-contract migration remains separate work.
 
 ### 2026-06-26 Bucket A Worker Constraint
 
@@ -256,7 +290,7 @@ The accepted retained-domain fixture must include these top-level fields:
 
 Every accepted row binding must include concrete `rowId`, `status`, matching `retainedRowSetId`, matching `commonCarrierId`, matching `domainId`, matching `supportId`, and a durable source reference that resolves to an evidence file in the repository.
 
-The producer now distinguishes a durable source reference from an evidence source reference. A retained-domain source path is not evidence if it lives under `reference/priorities/`, `reference/entourage/`, or `content/markdown/aaa/`, or if the basename marks an attempt, toy, probe, mock, or negative control. It is also not evidence when a support field, row binding, or refinement step points back to the source report being evaluated; self-referential source shells fail with `source_path_is_input_report` rather than counting their own accepted-looking fields as retained geometry. Separate JSON files are not enough either: backing sources for support fields, row bindings, and refinement steps must be retained-geometry evidence records with their own raw-row, invariant-cell, and refinement-step provenance records rather than arbitrary durable provider shells, syntactic payloads, or provenance records that identify themselves as synthetic, fixture, shell, attempt, toy, probe, mock, negative-control, score-neutral, or not evidence. This preserves focused negative-control fixtures while preventing an accepted-looking shell from passing merely because its JSON file exists.
+The producer now distinguishes a durable source reference from an evidence source reference. A retained-domain source path is not evidence if it lives under `reference/priorities/`, `reference/research-office/`, or `content/markdown/aaa/`, or if the basename marks an attempt, toy, probe, mock, or negative control. It is also not evidence when a support field, row binding, or refinement step points back to the source report being evaluated; self-referential source shells fail with `source_path_is_input_report` rather than counting their own accepted-looking fields as retained geometry. Separate JSON files are not enough either: backing sources for support fields, row bindings, and refinement steps must be retained-geometry evidence records with their own raw-row, invariant-cell, and refinement-step provenance records rather than arbitrary durable provider shells, syntactic payloads, or provenance records that identify themselves as synthetic, fixture, shell, attempt, toy, probe, mock, negative-control, score-neutral, or not evidence. This preserves focused negative-control fixtures while preventing an accepted-looking shell from passing merely because its JSON file exists.
 
 ## Missing Accepted Rows
 

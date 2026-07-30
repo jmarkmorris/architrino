@@ -578,15 +578,25 @@ $$
 p>2.
 $$
 
-Using the native dimensionless variable $z=D_t/c_f$, this condition is
+On this exact control the native dimensionless variable is linear in time:
 
 $$
-M(z)=O\!\left(z^{2+\delta}\right)
-\quad
-\text{for some }\delta>0.
+z=\frac{D_t}{c_f}=\frac{\alpha}{c_f}T.
 $$
 
-For a smooth integer-power activation, the first admissible power is therefore cubic. The fixed-core kernel has exactly this effect:
+For a general nonnegative activation, the exact condition is only
+
+$$
+\int_0^L\frac{M(T)}{T^3}\,dT<\infty.
+$$
+
+A pointwise $O(T^{2+\delta})$ bound is sufficient but not necessary. For
+example, after nondimensionalizing $T$ by $L$,
+$M(T)=(T/L)^2/\log^2(eL/T)$ has a finite weighted integral while violating
+every such positive-power improvement. If the activation is analytic in the
+exact linear variable $z$, its first nonzero Taylor order must exceed two.
+Cubic is therefore the first possible analytic order, not a selected order.
+The fixed-core kernel has exactly this cubic-order effect:
 
 $$
 \frac{r^3}{(r^2+\epsilon_c^2)^{3/2}}

@@ -7,6 +7,7 @@
 - Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Related corpus material: [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md)
+- Review synthesis: [EQ-02 Through EQ-04A Retained Point, Coframe, No-Retune, and Koide](../../research-office/research-history/review-packets/eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md)
 - Claim level: speculative charged-lepton benchmark and residual target
 - Promotion status: priority-only
 

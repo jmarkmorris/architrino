@@ -278,6 +278,10 @@ R_0\left(
 $$
 in the planar orientation where the drift direction lies in the binary plane. A clean primitive result has $\mathcal{R}_{\mathrm{bin}}=0$ or a controlled residual traceable to named branch-ledger features. A nonzero residual is not a rhetorical failure; it is the first foundation-level pressure on the Lorentz-closure program, because the binary is the first available internal clock and ruler.
 
+> Claim grade: **test definition**. No value of this residual triple has been
+> produced by evolving the delayed law at any drift speed. A prescribed or
+> algebraically deformed history does not supply that missing branch evidence.
+
 ### Exact substrate symmetries and delay currents
 
 At action level, use a causal path-history functional
@@ -468,6 +472,28 @@ $$
 g(\beta_\star)=\sqrt{1-\beta_\star^2}
 $$
 in the zero-leakage homogeneous limit. This selects the Lorentz contraction law as the unique axial deformation that removes matter-sector orientation leakage for this closed-return benchmark. It is still not a stability theorem: the delayed acceleration law must also show that the contracted branch is an attracting solution of the boosted delay dynamics.
+
+An actual two-hit return must additionally name its root itinerary:
+
+$$
+G_{-+}(\tau_{+-};\theta_1,u)=0,
+\qquad
+G_{+-}(\tau_{-+};\theta_1+\Omega_u\tau_{+-},u)=0,
+$$
+
+with a declared integer phase return, both transmitter-side weights, and the
+same evolved branch shape in both equations. The scalar reduction above is
+exact only for fixed, non-orbiting, co-moving endpoints. On an orbiting binary,
+residual phase dependence after optimizing the period falsifies it as an exact
+reduction of that itinerary.
+
+Plainly: the simple round trip works exactly only when its endpoints do not
+orbit. A binary must close two actual delayed hits on the same evolved orbit.
+
+> Claim grade: **derived conditional** on a single-speed closed return,
+> orientation independence, and the named two-root itinerary. This is a
+> kinematic selection rule, not evidence that a translating branch exists or is
+> stable.
 
 The same equations give a direct geometry dictionary for the oblate spheroidal envelope. In the no-extra-scale channel, take $R_{\perp}=R_0$ and $R_{\parallel}=R_0/\gamma_\star$. Then
 $$
@@ -1474,6 +1500,19 @@ m\in\mathcal{R}^{\mathrm{act}}_{ab}(\beta_f)
 \right\}
 $$
 Here $a$ is the receiver, $b$ is the source, $m$ labels an active delayed branch, $T_{t,m}$ is the emission time, $J_{ab}^{(m)}$ is the causal Jacobian, and $\sigma_{ab}^{(m)}$ records the interaction sign or channel orientation used by the local branch chart. The ledger is quantum-facing because stable assembly states depend on integer branch counts, separator events, and admissible self-hit / partner-hit histories. It is Lorentz-facing because the same roots determine the cycle-averaged stiffness tensor and clock period.
+
+At a generic transverse transmitter-side fold, the two newborn roots have
+acceleration magnitude proportional to
+$|T-T_\ast|^{-1/2}$. This divergence is locally integrable: the impulse across
+a shrinking window tends to zero, velocity remains continuous, and position
+remains $C^1$. Any finite observable change comes from the newborn branch
+persisting after the fold, not from the singular instant. This statement does
+not cover tangential crossings, repeated fold accumulation, simultaneous
+collision singularities, nonunique ledger continuation, or a numerical method
+that samples the singular point directly.
+
+> Claim grade: **derived local integrability** for a generic transverse
+> positive-separation fold; no global continuation or branch claim follows.
 
 The local prediction can be stated as a closure condition. There must exist one admissible branch-chart class $\mathfrak{B}_{\mathrm{mov}}(\beta_f)$ on a drift band $0\le\beta_f\le\beta_{\max}$ such that
 $$

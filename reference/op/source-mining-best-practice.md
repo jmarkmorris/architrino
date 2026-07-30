@@ -6,9 +6,13 @@ This is the current operator-process guide for source mining. It is not a priori
 
 The goal is high-quality extraction of insights, linkages, mappings, and theory advancements from source material. The process should sharpen the active $\mathbb{A}\mathbb{A}\mathbb{A}$ theory stack without importing another framework as doctrine, inventing new terminology, or adding more gates, certificates, residual inventories, live-ledger checklists, or similar hurdle infrastructure to the corpus.
 
+## Active Program
+
+Use the [Source Mining priority](../priorities/source-mining/priorities.md) for the live queue, work log, completed-source history, active video batches, and source-specific comparison packets. This file owns the reusable method; the priority owns the current work.
+
 ## Authority Map
 
-- The [convergence campaign](../entourage/archie/prompts/convergence-campaign.md) is the shared protocol authority for convergence behavior: mode selection, edit authority, promotion triage, mathematics-first discipline, closure-goal prompt structure, follow-up prompt format, and handoff fields.
+- The [convergence campaign](../research-office/cto/prompts/convergence-campaign.md) is the shared protocol authority for convergence behavior: mode selection, edit authority, promotion triage, mathematics-first discipline, closure-goal prompt structure, follow-up prompt format, and handoff fields.
 - This guide is the source-intake specialization. It owns source-family acquisition, traceability, source maps, source-specific prompt addenda, mining-history routing, creative reframing, and external technique anchors.
 - The compatibility-identifier `aaa-corpus-advancement` skill is a thin router. It should point source-mining work here after loading the shared convergence campaign protocol.
 - Source-mining history remains in [source-mining-history.md](../priorities/source-mining/source-mining-history.md). This guide describes process; the history file records completed sources.
@@ -70,7 +74,7 @@ Source-family addendum:
 [PASTE OR SUMMARIZE THE RELEVANT SOURCE-FAMILY ADDENDUM BELOW]
 
 Required method:
-1. Read `reference/entourage/archie/prompts/convergence-campaign.md`.
+1. Read `reference/research-office/cto/prompts/convergence-campaign.md`.
 2. Read `reference/op/source-mining-best-practice.md`.
 3. Identify the source type or mixed source types.
 4. Apply the relevant source-family acquisition steps and traceability rules.

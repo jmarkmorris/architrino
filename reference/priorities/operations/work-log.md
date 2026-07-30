@@ -6,4 +6,10 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+### 2026-07-29 — Historical Codex Product Feedback
+
+The following feedback records were migrated from the retired `reference/op/codex-feedback.md` note. They are product-feedback history, not active operating procedure:
+
+- `73594169-76cb-4bb1-9c84-956a0c8d3d8b`: add a visible Feedback button or menu entry; slash commands are not a substitute.
+- `c155751a-f2ba-47a6-97c9-7ad1b48a5a21`: make Commit and Push the default commit action.
+- No feedback ID received after three attempts: after a commit, the Action button changed to Create PR but did not return to Commit when files changed; switching away from and back to a thread refreshed it.

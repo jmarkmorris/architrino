@@ -6,6 +6,7 @@
 - Status: `priority-only`
 - Assigned IDs: `EQ-02`, `EQ-03`, `EQ-04`
 - Scope: Lorentz factor, moving-clock/ruler retuning, oblate spheroidal envelope, and energy-momentum/rest-energy closure.
+- Review synthesis: [EQ-02 Through EQ-04A Retained Point, Coframe, No-Retune, and Koide](../../research-office/research-history/review-packets/eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md)
 - Edit boundary: this packet only. Do not update `equation.md` from this worker packet.
 
 ## Standard Equation And Regime
@@ -77,6 +78,8 @@ This is not a substrate metric claim. It is an observer-level recovery target fo
 - Smallest accepted evidence object: one source-backed retained support carrying raw labeled rows, same-branch chart identity, extracted coframe legs, holonomy witness, clock/envelope rows, energy-momentum rows, rest-invariance row, and Noether sea response row on one branch record.
 - Smallest next artifact: one retained-support source object for `S_eq` whose raw labels, support id, coframe-source id, holonomy id, and retained-record row ids can be consumed by both the same-branch checker and retained-record runner.
 - Runnable route: run the retained-domain and retained-record attempts; both must remain blocked at the retained-evidence boundary until accepted `S_eq` support lands.
+
+Research input: [Translating-Binary Lorentz Closure](../../research-office/research-history/review-packets/hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md) records the conditional root, continuation, fold, kernel, coframe, conservation, and high-drift findings that sharpen this packet's proof burden. It is priority-only research and does not populate a retained branch, conservation ledger, mass-shell row, or Lorentz-recovery result.
 
 ```sh
 node scripts/equation-mapping/check-same-branch-chart-identity.mjs --input scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json --summary --pretty
@@ -321,6 +324,75 @@ with the error budget allocated to named causal-root features, Noether sea dress
 | `EQ-02` | `4` | The clock-rate and Lorentz-factor map has canonical variables and explicit residuals, but no retained branch ledger has yet derived $T_q/T_0=\gamma_{\star}$ across the required drift range. |
 | `EQ-03` | `4` | The oblate spheroidal envelope map $\xi\to1/\gamma_{\text{eff}}$ has a strong closed-return derivation and canonical terminology, but still needs the all-layer branch ledger to prove the envelope ratio rather than assign it. |
 | `EQ-04` | `4` | Upgrade from the first-round `3` is justified once this packet is accepted as the shared residual grammar: the canonical variables, tensor response, rest-invariance row, and mass-shell residuals are now explicit. It is not a `5` because $E_{\text{internal}}$, $\zeta(A)$, $\mathcal{M}_{\text{sea}}^{ab}$, and $M_0$ remain uncomputed for an accepted branch. |
+
+## Translating-Binary Solvability And Account Boundary
+
+For $b=u/c_f$, write the periodic branch equation as
+$\mathcal F(\boldsymbol\rho,\Omega,b)=0$ and let $L$ be its complete
+linearization, including implicit variation of every retained causal root.
+Symmetry gives $a_1=0$ on the exact circular planar control, but it does not
+give $\boldsymbol\rho_1=0$. The ordered system is
+
+$$
+L\boldsymbol\rho_1+\mathcal F_b=0,
+$$
+
+$$
+L\boldsymbol\rho_2-a_2\Omega_0\mathcal F_\Omega
+=
+-\frac12\mathcal F_{bb}
+-\mathcal F_{\rho b}\boldsymbol\rho_1
+-\frac12\mathcal F_{\rho\rho}
+[\boldsymbol\rho_1,\boldsymbol\rho_1].
+$$
+
+For each $\psi\in\ker L^\ast$, the admissible quotient is therefore
+
+$$
+a_2
+=
+\frac{
+\left\langle
+\psi,\,
+\frac12\mathcal F_{bb}
++\mathcal F_{\rho b}\boldsymbol\rho_1
++\frac12\mathcal F_{\rho\rho}
+[\boldsymbol\rho_1,\boldsymbol\rho_1]
+\right\rangle
+}{
+\left\langle\psi,\Omega_0\mathcal F_\Omega\right\rangle
+},
+$$
+
+when the denominator is nonzero. Any quotient that omits the three displayed
+numerator terms, including either contribution from $\boldsymbol\rho_1$, is
+incomplete and must not be used.
+
+This reduction is declared only on a chart with finitely many retained roots,
+every root simple, a uniform positive transmitter-Jacobian floor, fixed root
+cardinality throughout the neighborhood, and a positive collision-separation
+floor. Before continuation, compare $\dim\ker L^\ast$ with the free constants
+at first and second order. More independent solvability conditions than free
+constants is a local nonexistence result, not a request for a longer run.
+
+Plainly: solve the first-order shape and count equations versus available dials
+before interpreting a second-order period coefficient.
+
+No conservation law has been derived for the delayed receiver-local kernel.
+The wake, boundary, energy, momentum, and angular-momentum rows are therefore
+unavailable until a predeclared MEC-002 update and its MEC-004 accounts close
+with MEC-005 provenance. Fitting a wake ledger after the moving branch is known
+has no evidential weight. In particular, $R_{\mathrm{shell}}$ is one scalar
+consequence of stronger energy and momentum readouts; it is necessary when
+those accounts exist but never sufficient by itself.
+
+The corpus binary triple
+$(R_T^{\mathrm{bin}},R_\xi^{\mathrm{bin}},R_{\mathrm{shape}}^{\mathrm{bin}})$
+is the local branch-shape test. The vector
+$\mathcal R_{02-04}^{(q)}$ below is its broader same-record ledger extension.
+They are related interfaces, not interchangeable claims: the vector must carry
+the triple's branch identity and shape row before adding signal, account, shell,
+rest-invariance, or sea-response coordinates.
 
 ## First Mathematical Object To Add Next
 

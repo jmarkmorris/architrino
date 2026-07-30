@@ -99,4 +99,4 @@ Each implementation step should follow the same loop:
 - [run-protocols](../../../../content/markdown/aaa/validation/simulations/run-protocols.md)
 - [architrino](../../../../content/markdown/aaa/validation/simulations/architrino.md)
 - [about-the-webapp](../../../../content/markdown/aaa/archie/about-the-webapp.md)
-- [scene-taxonomy](../../../design/scene-taxonomy.md)
+- [scene-taxonomy](../../../learning-office/design/scene-taxonomy.md)

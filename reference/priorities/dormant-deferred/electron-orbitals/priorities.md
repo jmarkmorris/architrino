@@ -4,7 +4,7 @@
 
 Base priority document for electron-orbital notes, terminology, notation, and related follow-up work. This document is intended to accumulate merge-inserted content over time rather than append disconnected fragments.
 
-## Entourage Input
+## Research Lead Input
 
 The symbology of electron orbitals is the language chemists and physicists use to describe the quantum addresses of electrons within an atom. Rather than planetary orbits, electrons exist in probability clouds. The notation maps out where these clouds belong, what shape family they take, how many electrons occupy them, and how the atom's structure connects to periodic behavior, bonding, magnetism, and spectra.
 

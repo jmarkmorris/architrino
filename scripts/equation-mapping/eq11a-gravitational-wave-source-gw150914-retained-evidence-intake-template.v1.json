@@ -11,15 +11,15 @@
   "requiredCarrier": "Theta_GWsrc(W,P)",
   "durableSeedReports": [
     {
-      "path": "reference/entourage/archie/reports/corpus-exploration-claims/20260519-162716-tier1-gwosc-lvk.md",
+      "path": "reference/research-office/research-history/exploration-reports/20260519-162716-tier1-gwosc-lvk.md",
       "role": "source-mining summary seed only; can seed source_provenance fields but is not retained event evidence"
     },
     {
-      "path": "reference/entourage/archie/reports/corpus-exploration-claims/20260522-152039-sim-gw-public-artifact-manifest.md",
+      "path": "reference/research-office/research-history/exploration-reports/20260522-152039-sim-gw-public-artifact-manifest.md",
       "role": "document-level manifest boundary only"
     },
     {
-      "path": "reference/entourage/archie/reports/corpus-exploration-claims/20260522-153152-sim-gw-local-artifact-readiness.md",
+      "path": "reference/research-office/research-history/exploration-reports/20260522-153152-sim-gw-local-artifact-readiness.md",
       "role": "readiness report; records that local strain, PE, release metadata, hash, HDF5, GWF, and residual packet files were absent"
     }
   ],

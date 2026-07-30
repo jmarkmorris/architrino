@@ -10,6 +10,29 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ## Ideas And Insights
 
+### Concave/Inside Versus Convex/Outside Wake-Side Response Audit (2026-07-29)
+
+Claim level: **explicit speculation / existing-law audit first**. With polarity
+held fixed, test paired causal-root events to determine whether the canonical
+root normal $\hat{\mathbf r}$, inverse-square range dependence, oriented
+surface curvature, transmitter factor $D_t$, receiver incidence and playback
+$D_r/D_t$, and complete root multiplicity already distinguish reception from
+the concave/inside versus convex/outside side of a causal wake surface. Keep
+the instantaneous acceleration row separate from root playback: $D_r$ can
+reverse how a root is traversed without becoming an extra acceleration
+multiplier.
+
+Plainly: First check whether the current delayed geometry already produces the
+suspected asymmetry when every causal root is retained.
+
+**Test question:** After matching polarity, delayed range, root multiplicity,
+and every canonical normal and Jacobian input, does reversing only the
+inside/outside incidence leave any acceleration difference unexplained? Only
+if it does, consider a possible new constitutive dependence on oriented wake
+side or incidence. Such a dependence would supplement rather than replace
+polarity and would require an Architrino-native derivation and an independent
+falsifier. No conclusion or promotion is asserted here.
+
 ### Reception-Active Cubic Maturity and Account-Transfer Candidate (2026-07-24)
 
 Claim level: **unproven proposal**. This note preserves one explicit candidate
@@ -19,11 +42,13 @@ the derived obstruction in
 does not define accepted architrino momentum, and is not a corpus or EOM solver
 update.
 
-The derived part is only the endpoint order condition. With
-$z=|D_t|/c_f$, finite accumulated acceleration at exact quadratic coincident
-self-birth requires more-than-quadratic suppression; an analytic maturity
-therefore begins at cubic order. One smallest explicit but unselected
-realization is
+The derived part is only the endpoint integrability condition. On the exact
+quadratic coincident self-birth control,
+$z=|D_t|/c_f=(\alpha/c_f)T$, and finite accumulated acceleration requires
+$M\in L^1((0,L),T^{-3}dT)$. A $T^{2+\delta}$ bound is sufficient but not
+necessary. If maturity is analytic in this exact linear birth coordinate, its
+first nonzero order is at least cubic; cubic is the first possible analytic
+order, not a selected law. One smallest explicit but unselected realization is
 
 $$
 b_{z_\ast}(z)

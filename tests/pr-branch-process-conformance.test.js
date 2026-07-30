@@ -16,7 +16,7 @@ function bashBlocks(markdown) {
 }
 
 test("PR procedure executable blocks preserve commands required for advancement verification", () => {
-  const procedure = read("reference/op/codex-pr-branch.md");
+  const procedure = read("reference/op/git/codex-pr-branch.md");
   const executable = bashBlocks(procedure).join("\n");
 
   assert.equal(executable.includes("gh pr create --fill"), false);
@@ -28,7 +28,7 @@ test("PR procedure executable blocks preserve commands required for advancement 
 });
 
 test("PR procedure, pre-push hook, and CI share the aggregate gate", () => {
-  const procedure = read("reference/op/codex-pr-branch.md");
+  const procedure = read("reference/op/git/codex-pr-branch.md");
   const hook = read(".githooks/pre-push");
   const workflow = read(".github/workflows/content-integrity.yml");
   const aggregate = read("scripts/check-content-integrity.mjs");
@@ -47,11 +47,11 @@ test("PR procedure, pre-push hook, and CI share the aggregate gate", () => {
 });
 
 test("PR procedure makes unattended execution measurable and requires verification for advancement", () => {
-  const procedure = read("reference/op/codex-pr-branch.md");
+  const procedure = read("reference/op/git/codex-pr-branch.md");
   const verification = read(
-    "reference/op/codex-pr-unattended-verification.md"
+    "reference/op/git/codex-pr-unattended-verification.md"
   );
-  const operatorFeedback = read("README-op.md");
+  const operatorFeedback = read("reference/op/README-op.md");
 
   for (const counter of [
     "operatorDecisionPromptCount",

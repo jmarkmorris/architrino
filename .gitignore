@@ -19,6 +19,6 @@ tmp/
 **/xcuserdata/
 *.xcuserstate
 
-# Local Archie corpus-exploration coordination cards
-reference/entourage/archie/reports/corpus-exploration-claims/
+# Local CTO corpus-exploration coordination cards
+reference/research-office/cto/reports/corpus-exploration-claims/
 .fuse_hidden*

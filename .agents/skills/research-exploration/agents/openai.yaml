@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Exploration"
+  short_description: "Route brainstorming and idea capture."
+  default_prompt: "Use $research-exploration to brainstorm and capture this Architrino idea."

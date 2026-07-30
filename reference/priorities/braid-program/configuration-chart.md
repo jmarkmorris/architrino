@@ -1,10 +1,53 @@
 # Braid Program — Configuration Chart
 
-Status: DRAFT SKELETON, pending authoring (queue item 2) and operator ratification. This document will define the program's search-space coordinate system. Until it is ratified, no campaign may claim a family-level negative, because scope is defined against this chart.
+Status: DRAFT INVENTORY, pending scope review and operator ratification. This document defines the current admitted subcharts and their search-space scope. Until it is ratified, no campaign may claim a family-level negative, because scope is defined against this chart.
 
 ## Purpose
 
 One coordinate system for every configuration the program screens or evolves, so that every negative is a statement of the form "no solution in this declared region of the chart" and every candidate is a point or slice with declared coordinates. The chart is what makes the searched-territory record compact and honest.
+
+Research input: [Neutral-Braid Configuration Atlas](../../research-office/research-history/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md) proposes a stratified history-groupoid and certified finite-presentation architecture, with exact sharp-root bounds and explicit finite-width-tail authority limits. It is priority-only research guidance; it does not complete this chart or establish retention, stability, physical realization, solver preference, or particle identity.
+
+Family A, Family B, Family C, their members and constrained variants, and every other admitted proposal remain finite ansatz subcharts. The chart adds a common scope-and-provenance overlay; it does not replace the family taxonomy or turn any subchart into an exhaustive classification.
+
+## Finite-Width Tail Handoff
+
+`BP-002` owns the scientific and certification question for any omitted
+finite-width Gaussian history tail and owns the resulting atlas or campaign
+claim scope. The [EOM evolution contract](../app-solver/contracts/evolution-contract-v1.md)
+owns computation on the declared retained interval and any implementation of a
+declared tolerance-bound evaluation; it does not decide whether the Braid
+Program may certify an infinite-past or omitted-tail claim.
+
+The shared acceptance boundary is exact: either derive an independently checked
+regulator-, history-, and tolerance-dependent omitted-tail bound, or limit
+certified claims strictly to the declared retained-interval integral. This
+handoff creates no new queue, changes no status, and grants no retention,
+stability, physical-realization, solver-preference, or particle-identity
+authority.
+
+## Certified Scope Guardrails
+
+Every atlas or campaign row must name its declared retained interval,
+prehistory, complete transmitter inventory, and any fixed enclosure. The audited
+sharp-root theorem applies only to a bounded uniformly sub-field-speed history
+with positive separation, complete root inventory, and the declared
+longer-horizon comparison. It excludes nontrivial same-transmitter roots on that
+interval and supports cross-time reconstruction only within those hypotheses.
+
+Unbounded-past, external-transmitter, drifting-enclosure, or omitted-tail claims
+remain unresolved unless their separate quantitative theorem passes. A
+retained-interval EOM computation is not an omitted finite-width Gaussian-tail
+certificate.
+
+Current scalar rows are scoped diagnostics, not topology classifiers. The
+sub-field-speed knot counterexample remains a negative control, but no scalar
+label alone may establish topology, retention, stability, physical realization,
+solver preference, or particle identity.
+
+Plainly: the chart may classify exactly the history it was given. It may not
+silently extend that answer beyond its time window, transmitter inventory, or
+diagnostic authority.
 
 ## Obligations on the authored version
 
@@ -14,8 +57,95 @@ One coordinate system for every configuration the program screens or evolves, so
 3. **Field-speed structure.** For each configuration, whether any worldline's retained history reaches field speed (self-hit channel open or closed) is a chart-level label, because it partitions the physics and the instrument requirements.
 4. **Polarity structure.** Net polarity, polarity-conjugate relations between members, and (where three-dimensional retained order exists) the pro/anti orientation label — using the canon two-label discipline in `content/markdown/aaa/archie/terminology-usage.md`.
 5. **Chart-to-instrument contract.** For each axis: which instrument can vary it, which holds it frozen. A frozen axis in the instrument is a scoping clause in every verdict.
+6. **Scope-and-provenance overlay.** For every admitted subchart, record its source and scope; histories and prehistory; declared architrino and ambient inventory; boundary and tail status; free and frozen coordinates; discrete choices; record-preserving symmetry assumptions; numerical representation, resolution, and approximation status; topology closure convention; and whether collision, causal-root-fold, field-speed, matching, or stabilizer-change strata are excluded, crossed, or unresolved. Type derived diagnostics separately from inputs. Declare the expressible domain, the actually evaluated domain, and the separately coverage-certified domain with exclusions and abstentions. A finite scan cannot support a family-level negative without a separate coverage proof over the exact stated domain.
 
-## Open questions for the authoring pass
+## Admitted taxonomy subcharts
+
+The live family definitions are [Braid Taxonomy](../../../content/markdown/aaa/noether-braid/braid-taxonomy.md), [Braid Family A](../../../content/markdown/aaa/noether-braid/braid-family-a.md), [Braid Family B](../../../content/markdown/aaa/noether-braid/braid-family-b.md), and [Braid Family C](../../../content/markdown/aaa/noether-braid/braid-family-c.md). The [Borg catalog](../../../src/apps/borg/BorgBraidRecordCatalog.js) materializes twenty active representatives: eleven Family-A members, B1.1 through B1.3, and C1 through C6. The admitted B1 parent remains a subchart without a separate catalog representative, giving the twenty-one active taxonomy rows below. Each row inherits one complete scope profile:
+
+| Profile | History, prehistory, and declared inventory | Numerical representation and reach | Exclusions, abstentions, and claim boundary |
+| --- | --- | --- | --- |
+| `T6` | A prescribed-history class with six architrinos in three neutral binaries. Each member source record defines one path; the taxonomy supplies no Stage-E prehistory, retained horizon, Noether sea inventory, or omitted-tail certificate. | Exact analytic coordinate and path relations. Expressible: the listed member locus. Evaluated: none at taxonomy level. Coverage-certified: none at taxonomy level; campaign rows below own any evaluation. | Persistent indices are not quotiented, and only the member row's exact relations are assumed. Fixed-coordinate prescribed motion only unless a campaign explicitly extends it. No topology closure is declared; collision, causal-root-fold, field-speed, matching, and stabilizer-change strata are unresolved at taxonomy level. The row is geometry-and-motion taxonomy, not a family negative, retained branch, stability result, physical realization, solver preference, particle identity, or EOM result. |
+| `T12` | A prescribed-history class with twelve architrinos in six neutral binaries. Each member source record defines one path. An optional six-worldline Accessory Configuration is separate declared inventory and changes the source record, not the C-member identifier. The taxonomy supplies no Stage-E prehistory, retained horizon, Noether sea inventory, or omitted-tail certificate. | Exact analytic coordinate and path relations. Expressible: the listed member locus. Evaluated: none at taxonomy level. Coverage-certified: none at taxonomy level; campaign rows below own any evaluation. | Persistent worldline indices and the declared pairing map are not quotiented, and only the member row's exact relations are assumed. Fixed-coordinate prescribed motion only unless a campaign explicitly extends it. No topology closure is declared; collision, causal-root-fold, field-speed, matching, and stabilizer-change strata are unresolved at taxonomy level. The row is geometry-and-motion taxonomy, not a family negative, retained branch, stability result, binding result, physical realization, solver preference, particle identity, or EOM result. |
+
+Plainly: a taxonomy profile says which histories a member can describe. It does not say that any point was run, covered, or dynamically realized.
+
+Every Family-A row also carries the prescribed flattening coordinate $\lambda_A\in[0,1]$, group translation speed $s_{\mathrm{grp}}$, common braid center, persistent binary identities, and source-declared frame and circulation unless the member row fixes them.
+
+| Subchart | Profile | Free axes | Frozen axes and discrete relations |
+| --- | --- | --- | --- |
+| `A1` | `T6` | $R_1,R_2,R_3$, $f_1,f_2,f_3$, $\phi_1,\phi_2,\phi_3$, $\lambda_A$, $s_{\mathrm{grp}}$, and source-declared circulation | Common center; $h_a=0$ and $\rho_a=R_a$ for all three binaries |
+| `A1.1` | `T6` | $R_1,R_2,R_3$, common $f$, $\phi_1,\phi_2,\phi_3$, $\lambda_A$, $s_{\mathrm{grp}}$, and source-declared circulation | A1 relations plus one common frequency |
+| `A1.2` | `T6` | Common $R$, common $f$, $\lambda_A$, $s_{\mathrm{grp}}$, and source-declared circulation | A1 relations; equal radii; phases $0,2\pi/3,4\pi/3$ |
+| `A1.3` | `T6` | $R_1,R_2,R_3$, frequency scale $f$, $\phi_1,\phi_2,\phi_3$, $\lambda_A$, $s_{\mathrm{grp}}$, and source-declared circulation | A1 relations; indexed frequency ratio $4{:}2{:}1$ |
+| `A1.4` | `T6` | $R_1,R_2,R_3$, frequency scale $f$, $\phi_1,\phi_2,\phi_3$, $\lambda_A$, $s_{\mathrm{grp}}$, and source-declared circulation | A1 relations; indexed frequency ratio $3{:}2{:}1$ |
+| `A2` | `T6` | Common $R$, $h$, $\rho$, and $f$ subject to $R^2=h^2+\rho^2$; $\lambda_A$ and $s_{\mathrm{grp}}$ | Common geometry and circulation; phases $0,2\pi/3,4\pi/3$; cyclic binary equivalence |
+| `A3` | `T6` | $R_a,h_a,\rho_a,f_a,\phi_a$ for each persistent binary subject to $R_a^2=h_a^2+\rho_a^2$; $\lambda_A$, $s_{\mathrm{grp}}$, and source-declared circulation | Common braid center; no radius, frequency, or phase equality required |
+| `A3.1` | `T6` | $R_a,h_a,\rho_a,\phi_a$, common $f$, $\lambda_A$, $s_{\mathrm{grp}}$, and source-declared circulation | A3 relations plus one common frequency |
+| `A3.2` | `T6` | $h_a,\rho_a$ subject to one common $R$, common $f$, $\lambda_A$, $s_{\mathrm{grp}}$, and source-declared circulation | A3 relations; equal radii; phases $0,2\pi/3,4\pi/3$ |
+| `A3.3` | `T6` | $R_a,h_a,\rho_a$, frequency scale $f$, $\phi_a$, $\lambda_A$, $s_{\mathrm{grp}}$, and source-declared circulation | A3 relations; indexed frequency ratio $4{:}2{:}1$ |
+| `A3.4` | `T6` | $R_a,h_a,\rho_a$, frequency scale $f$, $\phi_a$, $\lambda_A$, $s_{\mathrm{grp}}$, and source-declared circulation | A3 relations; indexed frequency ratio $3{:}2{:}1$ |
+
+Plainly: the Family-A suffixes restrict coordinates inside A1 or A3. They do not replace those parent charts or establish that the prescribed flattening path is retained.
+
+Every Family-B row carries one common midpoint, one common oriented axis, one common frequency, one common circulation sense, three persistent neutral-binary identities, and the exact fixed-coordinate path equations of B1.
+
+| Subchart | Profile | Free axes | Frozen axes and discrete relations |
+| --- | --- | --- | --- |
+| `B1` | `T6` | $R_a,h_a,\rho_a,\phi_a$ subject to $R_a^2=h_a^2+\rho_a^2$; common $f$, $s_{\mathrm{grp}}$, frame, and translation direction | Common midpoint, axis, frequency, and circulation; active-candidate locus requires $\sum_a\rho_a^2>0$ |
+| `B1.1` | `T6` | B1 axes within $h_a>0$ and $\rho_a>0$ | B1 relations plus the all-interior inequalities |
+| `B1.2` | `T6` | B1 axes within $h_a>\rho_a>0$ | B1 relations plus the high-axial inequalities |
+| `B1.3` | `T6` | $R_a,\phi_a$, common $f$, $s_{\mathrm{grp}}$, frame, and translation direction | B1 relations; $h_a=0$ and $\rho_a=R_a$ for all three binaries |
+
+The all-axial `B1.4` record is excluded from the admitted active inventory. It remains a deprecated null control and coordinate boundary only.
+
+Plainly: B1.1 through B1.3 are live constrained selections inside B1. B1.4 is not an active taxonomy member or campaign candidate.
+
+Every Family-C row carries twelve persistent coaxial worldlines, a fixed-point-free neutral-binary map $\pi$, ordered axial coordinates or spacings, source-declared polarities, one common axis, and the exact prescribed path relation. An Accessory Configuration is always separate inventory.
+
+| Subchart | Profile | Free axes | Frozen axes and discrete relations |
+| --- | --- | --- | --- |
+| `C1` | `T12` | Ordered spacings $\mathbf d_C$, $\rho_m,\omega_m,\phi_m$, pairing map $\pi$, circulation choice $q_C$, $s_{\mathrm{grp}}$, and frame | One common axis and circulation relation; $L_C=\sum_m d_m$ is derived; no two-B1 decomposition required |
+| `C2` | `T12` | Ordered spacings $\mathbf d_C$, $\rho_m,\omega_m,\phi_m$, pairing map $\pi$, circulation choice $q_C$, $s_{\mathrm{grp}}$, and frame | One common axis; opposite circulation on declared subsets $\mathcal I_1$ and $\mathcal I_2$; $L_C=\sum_m d_m$ is derived; no two-B1 decomposition required |
+| `C3` | `T12` | Two component-B1 coordinate sets, axial center separation $d_C>0$, component frequencies and phases, $s_{\mathrm{grp}}$, and frame | C1 constrained to two coaxial B1 components with common circulation |
+| `C4` | `T12` | Two component-B1 coordinate sets, axial center separation $d_C>0$, component frequencies and phases, $s_{\mathrm{grp}}$, and frame | C2 constrained to two coaxial B1 components with opposite component circulation |
+| `C5` | `T12` | Two component-B1.3 radius and phase sets, $d_C>0$, component frequencies, relative phase, $s_{\mathrm{grp}}$, and frame | C3 with $h_{ba}=0$ and $\rho_{ba}=R_{ba}$ for all six component binaries |
+| `C6` | `T12` | Two component-B1.3 radius and phase sets, $d_C>0$, component frequencies, relative phase, $s_{\mathrm{grp}}$, and frame | C4 with $h_{ba}=0$ and $\rho_{ba}=R_{ba}$ for all six component binaries |
+
+Plainly: C3 through C6 are constrained loci inside the general C1 or C2 charts. Neither a two-B1 decomposition nor an Accessory Configuration is inferred when the source record does not declare it.
+
+## Current campaign-restricted subcharts
+
+These rows are the only current live campaign specifications with enough frozen detail to define an additional executable or pre-executable slice. They do not inherit evaluation or coverage from the taxonomy rows.
+
+| Campaign subchart and owner | History, prehistory, and declared inventory | Free and frozen axes | Numerical representation | Expressible, evaluated, and coverage-certified reach | Exclusions, abstentions, and claim boundary |
+| --- | --- | --- | --- | --- | --- |
+| `binary_subfield_fate` — [Campaign 1](campaigns/campaign-1-subfield-binary.md), BP-001 `Deferred / blocked` | Two opposite-polarity architrino paths; exact retained depth $H=20$; three endpoint-matched prehistories `P0-inertial`, `P1-lateral`, and `P2-longitudinal`; no additional transmitter or Noether sea inventory is declared, and no claim extends before the retained interval | Free grid: $d\in\{1,2,4\}$, $s\in\{0.25,0.50,0.75\}$, $\theta\in\{0,\pi/4,\pi/2\}$, prehistory id, and refinement. Frozen: $c_f=1$, release symmetry, persistent identities and polarities, coupling, prehistory formulas, tolerances, and R0/R1/R2 ladder | Exact cubic input histories materialized as piecewise-cubic retained segments; intended Stage-E EOM-solver evolution | Expressible: exactly $27$ configurations, $81$ configuration/prehistory coordinates, and $243$ refinement rows. Evaluated: construction-only instantiation and analytic probes; no production evolution. Coverage-certified: the $243$-row workload identity and construction manifest only, not causal-root, residual, oracle, collapse, or fate coverage | No topology closure or identity quotient. Field-speed contact, incomplete roots, missing clearance, failed oracle, and prehistory non-collapse cause abstention; collision, matching, and stabilizer-change strata have no separate classification. Any future result is finite-window and seed/collapse scoped; no eternal stability, family negative, or canonical-object claim |
+| `collinear_breather_campaign` — [stationary binary diagnostic](campaigns/stationary-binary-breather-diagnostic.md), BP-003 `Deferred / blocked` | Two opposite-polarity architrino paths; stationary prehistory on $[-20,0]$; horizon sensitivities $H=10,40$ reuse the same constant history and are not a materially different-prehistory collapse test; no additional transmitter or Noether sea inventory is declared, and no claim extends before the retained interval | Baseline release position, zero velocity, persistent identities and polarities, $c_f=1$, coupling, and R0/R1/R2 ladder are frozen; only refinement and the two declared horizon sensitivities vary | Constant piecewise-cubic prehistory followed by Stage-E EOM-solver evolution and sampled return-map reduction | Expressible: the one stationary release, three refinements, and two R1 horizon sensitivities. Evaluated: current partial refined-prefix runs recorded by BP-003. Coverage-certified: no complete minimum–maximum–minimum sequence or claim window; no breather or fate domain is covered | No topology closure or identity quotient. Stop at incomplete roots, solver halt, field-speed contact, or refinement disagreement; collision, matching, and stabilizer-change strata have no separate classification. The row is non-booking diagnostic only; no eternal breathing, retention, stability, energy account, or physical object |
+| `common_axis_braid_train_analytics` — [current common-axis owner](common-axis-braid-train-analytics.md) and protocol `common-axis-braid-prescribed-path-pilot-v2` | Exact prescribed histories on protocol interval $[-4,8]$; defining inventories of $6$ or $12$ worldlines and declared $9$- or $18$-worldline cases when an Accessory Configuration is present; no Stage-E prehistory, path evolution, Noether sea inventory, or omitted-tail certificate | Free bounded strata include spacings, radii, phases, declared rational frequencies, circulation, pairing, reflection, and Accessory Configuration placement. Frozen: persistent source order, $c_f=1$, center velocity $(0.1,0,0)$, return period $4$, seeds, resolution, root policy, and failure gates | Exact analytic common-axis paths evaluated by the prescribed-path protocol at primary/refined complete-cycle resolutions | Expressible: only the protocol-v2 applicability classes and its declared bounded strata. Evaluated: no current protocol-v2 campaign row. Coverage-certified: none. The twelve $c_f=4$ pilot rows are historical diagnostics and excluded from current reach | No EOM solver, evolution, topology closure, or undeclared quotient. The protocol excludes collision, root-fold, and field-speed strata from an accepted row; matching and stabilizer changes remain unevaluated. No retention, stability, binding, photon identity, quantization, family ranking, or verdict over unsampled regions |
+| `a1_1_bounded_root_diagnostic` — [A1.1 static-level owner](a1-1-frequency-step-action-ledger.md), prescribed-path diagnostic only | Six exact circular A1.1 worldlines in three persistent neutral binaries; zero group velocity; declared symmetric phase baseline distinct from the display-source phases; dimensionless retained-history reach $\chi_n=9/4$; no Stage-E prehistory, Noether sea inventory, or omitted-tail claim | Free within the packet: $\alpha_{1,n}\in[7/8,15/16]$, $\alpha_{3,n}\in[17/16,9/8]$, reception phase, endpoint channel, and root sheet. Frozen: $\alpha_{2,n}=1$, $R_{\star,n}=R_{2,n}=c_f/\omega_n$, middle-layer pinning as an assumption, cyclic planes, phases $(0,2\pi/3,4\pi/3)$, identities, polarities, circulation, history reach, and protocol ceilings | Exact circular equations, symbolic reductions, interval enclosures, certified finite partitions, and a separately checked structural ledger | Expressible: the closed two-ratio box, full reception cycle, and all $36$ ordered endpoint channels. Evaluated: every channel has a diagnostic disposition; the structural ledger sampled $5{,}204$ roots. Coverage-certified: complete root topology of this imposed bounded circular family under the declared simple-root/fold protocol, including endpoint-inversion reuse; not the full A1.1 chart | No knot/link closure or identity quotient. Swept loci are disjoint and same-time collision is absent in the declared box; the inner, middle, and outer layers are respectively sub-field, field-speed-pinned by assumption, and super-field-speed prescribed geometry. Root-fold handling is packet-scoped; matching and stabilizer strata are not defined. The result is null-score diagnostic classification, not retention, stability, binding, transport, physical realization, action, conservation, particle identity, or an EOM result |
+| `b1_1_score_landscape_manifest_freeze` — [B1.1 predeclaration](b1-1-score-landscape-diagnostic-predeclaration.md) and [frozen manifest](campaigns/b1-1-score-landscape-manifest.v1.json), BP-009 `Awaiting verification` | Six prescribed B1.1 paths in three neutral binaries over return period $4$; no Stage-E prehistory, path evolution, Noether sea inventory, or omitted-tail certificate | Free: the manifest’s twelve coordinates $(R_a,u_a,\theta_a,\kappa,\psi,\sigma)$ inside the sealed local box. Frozen: common midpoint and axis, $f=0.75$, circulation $-1$, persistent identities and polarities, source order, envelope, phase offset, seeds, row order, and no score-dependent mutation | Exactly $377$ immutable manifest specifications: one center, $48$ axial, $264$ pairwise, and $64$ held-out rows; frozen 24/48 complete-cycle protocol | Expressible: the exact $377$ manifest rows, not arbitrary later points in the surrounding box. Evaluated: dry-run identity checks only; zero causal-root evaluations and zero scores. Coverage-certified: manifest count, uniqueness, source identity, and ordering only; no score-landscape or neighborhood coverage | No topology closure or undeclared quotient. The future protocol excludes collision, root-fold, and field-speed strata from a scored row; matching and stabilizer changes are unevaluated. Operator review may accept or reject the freeze; it does not authorize the center pilot or remaining $376$ rows. No basin, descent, threshold change, retention, stability, binding, particle identity, catalog acceptance, or physical realization |
+
+Plainly: each campaign row says exactly what can be instantiated, what has actually run, and what the existing checks cover. A frozen manifest or partial run is not a scientific verdict over its surrounding family.
+
+Proposed downstream frequency and B1-outward protocols are not current slices because their prerequisite anchors or compact sweep are not closed. Closed calibration packets, deprecated controls, superseded source identities, and provenance-bound legacy or $c_f=4$ runs remain excluded.
+
+## Live queue targets without an admitted subchart
+
+| Queue target | Current abstention |
+| --- | --- |
+| BP-004 `undirected_ensemble_campaign` | A priority-design packet exists, but its executable seed distributions, exact population counts, endpoint-matched histories, horizon, and persistence classifier are not yet frozen. It therefore has no admitted expressible, evaluated, or coverage-certified campaign subchart in this inventory. |
+| BP-007 `a1_3_c5_v2_adjudication_packet` | A1.3 and C5 remain admitted taxonomy rows, but no V2 packet defines the proposed $172$-row adjudication representation. V1 is closed as calibration-insufficient and does not supply current executable coverage. |
+
+BP-006 is a product/record-consumer target rather than a scientific configuration subchart. BP-008 is a completed documentary diagnosis, not a current campaign slice. Neither receives an overlay row here. No row in this inventory consumes an MEC-005 or MEC-006 result.
+
+Plainly: a queue label without a frozen scientific specification is not an admitted search region. Recording that absence is safer than filling the row from an obsolete campaign or an intended future design.
+
+## Remaining completion sequence
+
+The admitted taxonomy inventory and current campaign overlay rows are complete for the live owners named above. The remaining BP-002 step is scope review and operator ratification. Ratification must confirm that no current campaign specification is missing and that every admitted row’s frozen axes, exclusions, ownership, and coverage boundary are reviewable; it still does not authorize a family-level negative.
+
+## Open questions after inventory
 
 - Minimal parameterization that spans the shape axes without redundancy, with the natural coordinates for residual-type responses established fresh from the master equation rather than assumed.
 - Whether prehistory class should be a chart axis (it scopes every evolution result) or a per-campaign declaration.

@@ -889,6 +889,27 @@ $$
 $$
 so the required memory depth diverges as $u\to c_f^-$.
 
+On a declared smooth chasing-root history with
+$r\sim c_fd_{\min}/(c_f-u)$ and $D_t\sim c_f-u$, the same root's canonical
+acceleration weight has the conditional companion scaling
+
+$$
+\frac{1}{r^2}\frac{c_f}{|D_t|}
+\sim
+\frac{c_f-u}{c_fd_{\min}^2}.
+$$
+
+Thus the retained forward contribution decays linearly in the gap on that
+simple-root chart even as its delay diverges. A finite retained window can
+nevertheless delete the row abruptly when the root crosses the history
+boundary. Neither statement determines the branch period or licenses
+unbounded physical memory; a simultaneous Jacobian-floor loss falsifies the
+smooth-decay estimate.
+
+Plainly: the forward root can become very old and very weak at the same time.
+A finite history boundary can still remove it suddenly, and neither fact fixes
+the orbit period.
+
 This is a kinematic starvation result, not an acceleration-balance approximation. It says that a forward structural partner root cannot be retained at or above field-speed center drift because the causal wake cannot catch the leading receiver. A bound assembly branch that requires at least one such forward partner root for structural closure therefore cannot preserve the same causal-root ledger for sustained drift $u\ge c_f$. The proposition does not impose a speed cap on a single architrino, on internal curved self-hit motion, or on history-supported super-field-speed components; it applies to center translation of an internally bound branch whose leading-side partner closure is part of the retained ledger.
 
 With finite retained memory $h$ and internal branch period $T_{\mathrm{int}}$, the same obstruction has a graded scale:
@@ -4625,7 +4646,12 @@ general primitive kinetic-scalar chart, each
 $\mu_{\text{arch}}\mathbf V_i$ is replaced by the declared conjugate momentum
 $\mathbf p_i=P(\|\mathbf V_i\|)\hat{\mathbf V}_i$, with
 $P'(s)=K'(s)/s$ as specified in [Energy](energy.md#kinetic-energy-and-momentum-of-a-single-architrino).
-Neither construction assigns primitive mass to an architrino.
+Energy also owns the near-zero assumptions and the kinetic-Lagrangian
+reconstruction for a general $K$. The action-derived charges displayed here
+use the quadratic bookkeeping proxy; a general kinetic chart requires that
+reconstructed kinetic Lagrangian and a complete revariation of the delayed
+action. Neither construction assigns primitive mass to an architrino, and no
+general conservation claim follows by substitution alone.
 
 Because the accelerations are delayed, $d\mathbf{P}_{\text{mech}}/dT$ is generally nonzero.
 

@@ -6,6 +6,30 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-29 July 28 translating-binary review synthesis
+
+Applied the approved research-only corrections from the Lorentz, Cartan, and
+Poincare review packets without changing any queue or score status. The
+translating-binary solvability target now retains the first-order shape
+feedback in the second-order quotient, declares the five fold-free chart
+hypotheses, and runs the adjoint condition count before continuation. The
+restricted root-preserving linear-map route is closed negatively; the
+linear-in-drift period coefficient vanishes only under the declared circular
+symmetries. Generic transverse folds are locally integrable rather than a
+standalone disqualification.
+
+The shell row remains a diagnostic consequence, not a conservation foundation.
+No wake or conserved ledger may be fitted after the branch is known. Coframe
+reciprocity now carries frozen leg normalizations and a leg-rescaling
+falsifier; drift-only loop holonomy, torsion, and phase holonomy remain
+diagnostic. The first existence theorem is one relative-periodic point enclosed
+by a validation box under the square group-reduced residual. Full-history
+persistence, drift continuation, no-retune transport, and stability remain
+separate later stages.
+
+Plainly: the proof order and claim boundaries changed; no retained branch,
+conservation law, Lorentz recovery, score, or lifecycle state advanced.
+
 ### 2026-07-02 Tracker Partition Cleanup
 
 The tracker previously embedded the full closure-pass chronology and a broad related-material index. That status history is now routed here while [priorities.md](priorities.md) keeps the compact current queue, blockers, promotion routing, failure modes, and grouped support links.
