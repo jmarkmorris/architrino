@@ -13,6 +13,13 @@
   [MEC-006 receiver wake-gradient closure](receiver-wake-gradient-closure.md)
   owns the fixed-reception receiver-position derivative of one admitted
   acceleration row, not this encounter-boundary program.
+- Routed evidence:
+  [close-approach synthesis](../../research-office/research-history/review-packets/close-approach-causal-delay-seven-council-research-findings-2026-07-29.md),
+  [arrival-bunching analysis](../../research-office/research-history/review-packets/master-equation-arrival-bunching-strict-subfield-research-findings-2026-07-29.md),
+  [stationary first-boundary and self-root topology](../../research-office/research-history/review-packets/master-equation-field-speed-first-boundary-self-root-topology-2026-07-29.md),
+  [admissible-history first-exit theorem](../../research-office/research-history/review-packets/master-equation-admissible-history-pre-coincidence-first-exit-theorem-2026-07-29.md),
+  and
+  [unchanged-law post-threshold obstruction](../../research-office/research-history/review-packets/master-equation-post-field-speed-existing-law-continuation-obstruction-2026-07-29.md).
 
 ## Scope
 

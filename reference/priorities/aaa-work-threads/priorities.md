@@ -50,9 +50,13 @@ instrument packet and Braid Program's scientific campaign packet.
 
 ## Operator Discussion Queue
 
-No active cross-workstream discussion row is open. Discussion items parked
-under `dormant-deferred` remain excluded until the owning packet is promoted
-back to a top-level active directory.
+- **[`field-speed-ceiling`](../field-speed-ceiling/priorities.md) —
+  `FSC-001`, discussion-scoped.** Assess the operator-proposed primitive
+  domain $\|\mathbf V\|\le c_f$, including exact-boundary root admission and
+  evolution semantics. This crosses the Master Equation, MEC-007, EOM solver,
+  Braid prescribed diagnostics, and several reader-facing closure hypotheses.
+  It changes no existing theory status while the compatibility map is pending.
+  See [its work queue](../field-speed-ceiling/work-queue.md).
 
 ## Unified Priority Table
 

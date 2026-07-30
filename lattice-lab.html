@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d0a17" />
+    <meta
+      name="description"
+      content="Inspect a static, display-only simple-cubic checkerboard of red and blue architrinos."
+    />
+    <title>Architrino Lattice Lab</title>
+    <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
+    <link rel="stylesheet" href="./src/apps/lattice-lab/lattice-lab.css" />
+  </head>
+  <body>
+    <div id="lattice-lab-app" data-panel-collapsed="false">
+      <aside id="lattice-lab-left-rail" class="lattice-lab-left-rail" aria-label="Lattice Lab controls">
+        <header class="lattice-lab-rail-header">
+          <div class="lattice-lab-title">
+            <span class="lattice-lab-kicker">Display-only core</span>
+            <h1>Architrino Lattice Lab</h1>
+          </div>
+          <button
+            id="lattice-lab-panel-collapse"
+            class="lattice-lab-icon-button lattice-lab-panel-collapse"
+            type="button"
+            aria-controls="lattice-lab-panel-content"
+            aria-expanded="true"
+            aria-label="Collapse Lattice Lab panel"
+          ></button>
+        </header>
+
+        <div id="lattice-lab-panel-content" class="lattice-lab-panel-content">
+          <section class="lattice-lab-card lattice-lab-seeing-card" aria-labelledby="lattice-lab-seeing-title">
+            <span class="lattice-lab-card-kicker">What You’re Seeing</span>
+            <h2 id="lattice-lab-seeing-title">Simple-cubic checkerboard</h2>
+            <p id="lattice-lab-what-seeing"></p>
+          </section>
+
+          <section class="lattice-lab-card" aria-labelledby="lattice-lab-case-title">
+            <div class="lattice-lab-card-heading">
+              <div>
+                <span class="lattice-lab-card-kicker">Guided case 1</span>
+                <h2 id="lattice-lab-case-title">Case record</h2>
+              </div>
+              <span id="lattice-lab-configuration-state" class="lattice-lab-state-chip"></span>
+            </div>
+            <dl class="lattice-lab-facts">
+              <div>
+                <dt>Geometry</dt>
+                <dd>Simple cubic; alternating parity</dd>
+              </div>
+              <div>
+                <dt>Nearest shell</dt>
+                <dd>6 at distance d</dd>
+              </div>
+              <div>
+                <dt>Next local shell</dt>
+                <dd>12 at distance √2d</dd>
+              </div>
+              <div>
+                <dt>Displayed local total</dt>
+                <dd>18 geometry neighbors</dd>
+              </div>
+              <div>
+                <dt>Geometric site density</dt>
+                <dd>n = 1/d³</dd>
+              </div>
+              <div>
+                <dt>Population</dt>
+                <dd id="lattice-lab-population"></dd>
+              </div>
+              <div>
+                <dt>Display shape</dt>
+                <dd>Spherical site-center crop</dd>
+              </div>
+              <div>
+                <dt>Selected site</dt>
+                <dd id="lattice-lab-selected-site"></dd>
+              </div>
+              <div>
+                <dt>Boundary treatment</dt>
+                <dd>Every lattice site center within the dotted sphere; continuation not shown</dd>
+              </div>
+              <div>
+                <dt>Calculation scope</dt>
+                <dd>Stationary ideal repeat; receiver-centered inversion-symmetric exhaustion</dd>
+              </div>
+            </dl>
+            <p class="lattice-lab-scope-note">
+              The light-purple lines show nearest-neighbor geometry, not bonds, wakes, or acceleration vectors.
+            </p>
+          </section>
+
+          <section class="lattice-lab-card" aria-labelledby="lattice-lab-edit-title">
+            <span class="lattice-lab-card-kicker">Neutrality-preserving edit</span>
+            <h2 id="lattice-lab-edit-title">Two-site polarity swap</h2>
+            <div class="lattice-lab-action-row">
+              <button id="lattice-lab-swap-button" class="lattice-lab-button" type="button" aria-pressed="false">
+                Start A–B swap
+              </button>
+              <button id="lattice-lab-reset-case" class="lattice-lab-button lattice-lab-button-secondary" type="button">
+                Reset case
+              </button>
+            </div>
+            <p id="lattice-lab-swap-status" class="lattice-lab-status" role="status" aria-live="polite">
+              Choose A, then an opposite-polarity B; both sites exchange together.
+            </p>
+          </section>
+
+          <details class="lattice-lab-card lattice-lab-primer" open>
+            <summary>
+              <span>
+                <span class="lattice-lab-card-kicker">Lattice Primer</span>
+                <strong>Simple cubic</strong>
+              </span>
+            </summary>
+            <div class="lattice-lab-primer-body">
+              <p>
+                Equal rows of sites meet at right angles. Each interior site has six nearest neighbors: left, right, up, down, forward, and back.
+              </p>
+              <p>
+                The checkerboard polarity rule changes red to blue at every one-step move. Its smallest polarity pattern repeats every two site spacings. The main view includes every lattice site center that fits inside the dotted spherical crop.
+              </p>
+              <p>
+                The geometric density n = 1/d³ counts sites per volume for spacing d. It is not mass density and does not establish a physical medium.
+              </p>
+            </div>
+          </details>
+        </div>
+      </aside>
+
+      <main class="lattice-lab-stage">
+        <canvas
+          id="lattice-lab-canvas"
+          tabindex="0"
+          aria-label="Rotatable three-dimensional simple-cubic checkerboard lattice"
+          aria-describedby="lattice-lab-display-crop-note"
+        ></canvas>
+
+        <div
+          id="scene-hud-tools"
+          class="standalone-app-navigation lattice-lab-navigation"
+          aria-label="Webapp navigation"
+        >
+          <button
+            id="textbook-toc-button"
+            class="standalone-app-toc-button"
+            type="button"
+            aria-label="Open textbook table of contents"
+            title="Table of Contents"
+          >TOC</button>
+          <div id="scene-nav-history" class="standalone-app-nav-history" role="group" aria-label="Browser history">
+            <button id="nav-up" class="standalone-app-nav-icon-button" type="button" aria-label="Go back" title="Back">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <polyline points="15 5 8 12 15 19"></polyline>
+              </svg>
+            </button>
+            <button id="nav-forward" class="standalone-app-nav-icon-button" type="button" aria-label="Go forward" title="Forward">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <polyline points="9 5 16 12 9 19"></polyline>
+              </svg>
+            </button>
+          </div>
+          <button id="home-button" class="standalone-app-nav-icon-button" type="button" aria-label="Go to Applications" title="Applications">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"></path>
+            </svg>
+          </button>
+          <div id="scene-search" class="standalone-app-scene-search">
+            <button
+              id="scene-search-toggle"
+              class="standalone-app-nav-icon-button standalone-app-scene-search-toggle"
+              type="button"
+              aria-label="Search scenes"
+              aria-controls="scene-search-panel"
+              aria-expanded="false"
+              title="Search"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5"></circle>
+                <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+              </svg>
+            </button>
+            <div id="scene-search-panel" class="standalone-app-scene-search-panel" aria-hidden="true" inert>
+              <input
+                id="scene-search-input"
+                class="standalone-app-scene-search-input"
+                type="search"
+                placeholder="Search scenes"
+                autocomplete="off"
+                aria-label="Search scenes"
+              />
+              <div id="scene-search-results" class="standalone-app-scene-search-results"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lattice-lab-view-controls" role="group" aria-label="Named lattice orientations">
+          <button type="button" data-lattice-view="cell">Cell</button>
+          <button type="button" data-lattice-view="plane">Plane</button>
+          <button type="button" data-lattice-view="shell">Shell</button>
+          <button type="button" data-lattice-view="selected">Selected</button>
+          <button type="button" data-lattice-view="front">Front</button>
+          <button type="button" data-lattice-view="side">Side</button>
+          <button type="button" data-lattice-view="top">Top</button>
+          <button type="button" data-lattice-view="reset">Reset</button>
+        </div>
+
+        <svg
+          id="lattice-lab-tripod"
+          class="lattice-lab-tripod"
+          viewBox="0 0 72 66"
+          role="img"
+          aria-label="XYZ orientation tripod"
+        >
+          <circle cx="31" cy="31" r="2.2"></circle>
+          <line data-axis-line="x" x1="31" y1="31" x2="52" y2="31"></line>
+          <line data-axis-line="y" x1="31" y1="31" x2="31" y2="10"></line>
+          <line data-axis-line="z" x1="31" y1="31" x2="16" y2="46"></line>
+          <text data-axis-label="x" x="55" y="34">X</text>
+          <text data-axis-label="y" x="34" y="12">Y</text>
+          <text data-axis-label="z" x="10" y="52">Z</text>
+        </svg>
+
+        <p id="lattice-lab-display-crop-note" class="lattice-lab-display-crop-note">
+          Dotted sphere: visual display crop only · continuation not shown
+        </p>
+
+        <aside class="lattice-lab-inspector-stack" aria-label="Selected-site inspection">
+          <section class="lattice-lab-miniature-card" aria-labelledby="lattice-lab-miniature-title">
+            <div>
+              <span>Polarity Repeat Cell</span>
+              <strong id="lattice-lab-miniature-title">Synchronized orientation</strong>
+              <small id="lattice-lab-miniature-state"></small>
+            </div>
+            <canvas
+              id="lattice-lab-miniature-canvas"
+              aria-label="Synchronized, non-interactive polarity repeat-cell miniature"
+            ></canvas>
+          </section>
+
+          <section class="lattice-lab-ledger" aria-labelledby="lattice-lab-ledger-title">
+            <div class="lattice-lab-ledger-heading">
+              <div>
+                <span>Selected-site ledger</span>
+                <h2 id="lattice-lab-ledger-title">Acceleration Cancellation Ledger</h2>
+              </div>
+              <strong id="lattice-lab-ledger-state"></strong>
+            </div>
+            <dl class="lattice-lab-ledger-meta">
+              <div>
+                <dt>Receiver</dt>
+                <dd id="lattice-lab-ledger-receiver"></dd>
+              </div>
+              <div>
+                <dt>Coverage</dt>
+                <dd id="lattice-lab-ledger-coverage"></dd>
+              </div>
+            </dl>
+            <p id="lattice-lab-ledger-unavailable" class="lattice-lab-ledger-warning"></p>
+            <div id="lattice-lab-ledger-shells" class="lattice-lab-ledger-shells"></div>
+            <p id="lattice-lab-ledger-residual" class="lattice-lab-ledger-residual"></p>
+          </section>
+        </aside>
+      </main>
+    </div>
+    <script type="module" src="./src/apps/lattice-lab/main.js"></script>
+  </body>
+</html>

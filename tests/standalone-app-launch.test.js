@@ -48,6 +48,7 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
   assert.equal(getStandaloneAppPathForScene("causal-delay-feedback"), "causal-delay-feedback.html");
   assert.equal(getStandaloneAppPathForScene("equation-mapping"), "equation-mapping.html");
   assert.equal(getStandaloneAppPathForScene("greek-letter-match"), "greek-letter-match.html");
+  assert.equal(getStandaloneAppPathForScene("lattice-lab"), "lattice-lab.html");
   assert.equal(getStandaloneAppPathForScene("animator"), "animator.html");
   assert.equal(getStandaloneAppPathForScene("borg"), "borg.html");
   assert.equal(getStandaloneAppPathForScene("braid-search"), "braid-search.html");
@@ -66,6 +67,10 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
   assert.equal(
     getStandaloneAppPathForScene("content/scenes/archie/greek_letter_match.json"),
     "greek-letter-match.html"
+  );
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/archie/lattice_lab.json"),
+    "lattice-lab.html"
   );
   assert.equal(getStandaloneAppPathForScene("content/scenes/archie/animator.json"), "animator.html");
   assert.equal(getStandaloneAppPathForScene("content/scenes/archie/borg.json"), "borg.html");
@@ -93,6 +98,13 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
       "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fequation_mapping.json"
     ),
     "http://127.0.0.1:5173/equation-mapping.html"
+  );
+  assert.equal(
+    resolveStandaloneAppHrefForScene(
+      "content/scenes/archie/lattice_lab.json",
+      "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Flattice_lab.json"
+    ),
+    "http://127.0.0.1:5173/lattice-lab.html"
   );
   assert.equal(
     resolveStandaloneAppHrefForScene(
