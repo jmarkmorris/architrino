@@ -6,6 +6,10 @@ This is the current operator-process guide for source mining. It is not a priori
 
 The goal is high-quality extraction of insights, linkages, mappings, and theory advancements from source material. The process should sharpen the active $\mathbb{A}\mathbb{A}\mathbb{A}$ theory stack without importing another framework as doctrine, inventing new terminology, or adding more gates, certificates, residual inventories, live-ledger checklists, or similar hurdle infrastructure to the corpus.
 
+## Active Program
+
+Use the [Source Mining priority](../priorities/source-mining/priorities.md) for the live queue, work log, completed-source history, active video batches, and source-specific comparison packets. This file owns the reusable method; the priority owns the current work.
+
 ## Authority Map
 
 - The [convergence campaign](../research-office/cto/prompts/convergence-campaign.md) is the shared protocol authority for convergence behavior: mode selection, edit authority, promotion triage, mathematics-first discipline, closure-goal prompt structure, follow-up prompt format, and handoff fields.
