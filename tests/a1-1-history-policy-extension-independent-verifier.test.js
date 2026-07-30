@@ -185,7 +185,7 @@ test("independent verifier closes topology and projection on the new slice", () 
   assert.equal(summary.claimBoundary.candidateSelection, false);
 });
 
-test("independent verifier fails closed on reduced resources or replay drift", () => {
+test("independent verifier stops advancement on reduced resources or replay drift", () => {
   const reduced = evaluate({
     executionLimits: {
       maximumBoxesPerRepresentative: 1,
