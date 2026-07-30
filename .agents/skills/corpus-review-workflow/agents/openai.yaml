@@ -1,0 +1,4 @@
+interface:
+  display_name: "Corpus Review Workflow"
+  short_description: "Route review and closure work."
+  default_prompt: "Use $corpus-review-workflow for this Architrino review task."
