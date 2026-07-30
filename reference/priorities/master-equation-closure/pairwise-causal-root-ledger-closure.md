@@ -13,11 +13,11 @@
   and
   [universal conservation ledger capture](brainstorming.md#universal-conservation-ledger-discussion-capture-2026-07-10)
 - Routed research input:
-  [wake reception, transfer, and maturity](../../research-office/research-lead/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md)
+  [wake reception, transfer, and maturity](../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md)
   requires MEC-005 provenance before its cumulative-extraction and angular-pin
   account tests can run; it supplies no account values or conservation claim.
 - Certificate synthesis:
-  [two-history causal-root ledger certificate](../../research-office/research-lead/review-packets/mec-005-two-history-causal-root-ledger-certificate-2026-07-29.md)
+  [two-history causal-root ledger certificate](../../research-office/research-history/review-packets/mec-005-two-history-causal-root-ledger-certificate-2026-07-29.md)
   supplies the prescription-neutral full-domain envelope integrated below; it
   supplies no root-finder, boundary value, account map, or status change.
 - Promotion status: not promoted

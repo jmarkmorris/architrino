@@ -52,7 +52,7 @@ proved in [Independent Causal Wake-State Minimum and
 Obstruction](analysis-independent-causal-wake-state.md).
 
 The [wake-reception review
-packet](../../research-office/research-lead/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md)
+packet](../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md)
 supplies a conditional angular-pin falsifier for this packet's momentum chart.
 Execution remains owned by MEC-004 after MEC-005; this backlink does not supply
 an account map, conservation result, or action adjudication.

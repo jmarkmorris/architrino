@@ -354,10 +354,10 @@ Parallel-thread coordination:
 Use this protocol when Op starts multiple threads with this same prompt and wants broad coverage without overlap.
 
 1. Check for existing claim cards:
-   - `rg --files reference/research-office/cto/reports/corpus-exploration-claims 2>/dev/null`
+   - `rg --files reference/research-office/research-history/exploration-reports 2>/dev/null`
    - If claim cards exist, read the recent active ones before choosing lanes or path shards.
 2. Create a short claim card before deep work. This metadata write is allowed for coordination in this exploration variant. In a multi-thread or team-agent run, do not edit AAA content unless Op assigned explicit non-overlapping edit authority; return detailed prompt options instead.
-   - Claim directory: `reference/research-office/cto/reports/corpus-exploration-claims/`
+   - Claim directory: `reference/research-office/research-history/exploration-reports/`
    - Filename pattern: `YYYYMMDD-HHMMSS-short-focus.md`
    - Include: thread label, timestamp, selected lanes, selected path shard, excluded claims read, search patterns planned, and expected output.
    - If the environment cannot write a claim card, print the same claim information at the top of the response and proceed with the least-overlapping visible territory.

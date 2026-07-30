@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageFont
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SOURCE_PATH = (
     REPO_ROOT
-    / "reference/design/banners/working/noether-braid-sea/noether-braid-youtube-banner-sea-2048x1152.png"
+    / "reference/design/banners/history/historical-noether-braid-sea/noether-braid-youtube-banner-sea-2048x1152.png"
 )
 MANIFEST_PATH = (
     REPO_ROOT
@@ -22,7 +22,7 @@ MANIFEST_PATH = (
 )
 CONTACT_SHEET_PATH = (
     REPO_ROOT
-    / "reference/design/banners/working/noether-braid-sea/noether-braid-sea-platform-contact-sheet.jpg"
+    / "reference/design/banners/history/historical-noether-braid-sea/noether-braid-sea-platform-contact-sheet.jpg"
 )
 
 BANNER_ROLES = {

@@ -20,11 +20,11 @@ This is the canonical execution ledger for inherited-equation mappings and score
 ## July 28 Translating-Binary Review Action Register
 
 This register moves every deferred action from the [Cartan no-retune
-review](../../research-office/research-lead/review-packets/elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md),
+review](../../research-office/research-history/review-packets/elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md),
 [Lorentz translating-binary
-review](../../research-office/research-lead/review-packets/hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md),
+review](../../research-office/research-history/review-packets/hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md),
 and [Poincare point-certificate
-review](../../research-office/research-lead/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md)
+review](../../research-office/research-history/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md)
 into the existing `EQM-001` lane. It creates no queue and changes no status.
 
 | Review item | Live owner and status | Acceptance action |
