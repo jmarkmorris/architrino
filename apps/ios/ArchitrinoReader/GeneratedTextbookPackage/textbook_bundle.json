@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-07-29T04:40:57.122Z",
+  "generated_at": "2026-07-30T01:29:15.750Z",
   "package_version": "1.0.0-fdec147b",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -212,16 +212,16 @@
       "sourcePath": "__generated__/reading-copies/dynamics.html",
       "role": "chapter",
       "type": "html",
-      "size": 11827390,
-      "sha256": "7c4427f76b90e13f854595c8ea889e0b107c075b6266849a8a7d76a1945a58a5"
+      "size": 11904492,
+      "sha256": "f8cfaf30ca810d9ad0d078d6dd4917870b129c2c311f3e7e646f087bdb222240"
     },
     {
       "path": "reading-copies/dynamics.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 714078,
-      "sha256": "657ff5461f554b4174c76eec0106b663a93a1491050dce18d9d241793b47af4c"
+      "size": 722576,
+      "sha256": "fe8cee27355461a006e7c4aee400ad2dec92ffd96fd575bd26378e377300109c"
     },
     {
       "path": "reading-copies/foundations.html",
@@ -244,32 +244,32 @@
       "sourcePath": "__generated__/reading-copies/noether-braid.html",
       "role": "chapter",
       "type": "html",
-      "size": 4704509,
-      "sha256": "49c97a8f4930faf9bbb6ce42e1bf7440a66d4f836aeb8d24091f1d9979924e2e"
+      "size": 4707061,
+      "sha256": "0b24744d28254b012cd817330b203bf06c0d8401386fa9a8e7bd17e0d6dee06d"
     },
     {
       "path": "reading-copies/noether-braid.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 404384,
-      "sha256": "913f436af9fbaba456f2afb22cc638b8a11949d00c8905783a235311212ee837"
+      "size": 405851,
+      "sha256": "ed6817161585b8ec723d8282d8bb61c078ac4ada45563fe0ce1cadc0f96f5d5f"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.html",
       "sourcePath": "__generated__/reading-copies/noether-sea-and-effective-spacetime.html",
       "role": "chapter",
       "type": "html",
-      "size": 8456631,
-      "sha256": "c64d05730378e86b0a2f95256817e6af117802f045c4f64182d4276a958229db"
+      "size": 8468885,
+      "sha256": "da002c9b72f1bf20ac331a6afeb82b8d97218acb8092e9e0a9d6d7efdc2b9900"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 556091,
-      "sha256": "25564838558a56696e18e3ef8a2b66a074719544ba6fa878c77bd3a5d7bef6b4"
+      "size": 557983,
+      "sha256": "453f5491507744115429e68b4d5541dea4ac0b5d8338aabf47c84be87003f3a6"
     },
     {
       "path": "reading-copies/philosophy-history.html",
@@ -436,8 +436,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8742887,
-      "sha256": "9249299f9508c8cb19042874c2b223363e3897197025ad52a4fcbba214d3e020"
+      "size": 8752742,
+      "sha256": "9c26395207f161e9b13042983fc41669fba2b84d011d55cb5804c8454b6b7953"
     }
   ],
   "links": []
