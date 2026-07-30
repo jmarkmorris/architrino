@@ -39,7 +39,7 @@ The relative phases remain exactly $(0,2\pi/3,4\pi/3)$, the middle radius
 remains the normalized field-speed pin, and the history reach remains
 $\chi=9/4$. The original numerical floors, subdivision depth, per-channel and
 packet resource ceilings, endpoint ownership, fold visibility, null score,
-and fail-closed dispositions remain unchanged. No inner-radius expansion,
+and verification/advancement dispositions remain unchanged. No inner-radius expansion,
 relative-phase variation, second outer band, EOM evolution, energy or action
 calculation, GR calculation, or candidate selection was authorized.
 

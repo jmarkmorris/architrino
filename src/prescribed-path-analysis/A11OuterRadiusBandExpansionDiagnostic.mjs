@@ -42,6 +42,15 @@ export const A11_OUTER_RADIUS_SECOND_EXPANSION_RESULT_SCHEMA =
 export const A11_OUTER_RADIUS_SECOND_EXPANSION_SUMMARY_SCHEMA =
   "prescribed-path-analysis/" +
   "a1-1-outer-radius-second-band-expansion-summary.v1";
+export const A11_OUTER_RADIUS_HISTORY_EXTENSION_PROTOCOL_SCHEMA =
+  "prescribed-path-analysis/" +
+  "a1-1-outer-radius-history-policy-extension-protocol.v1";
+export const A11_OUTER_RADIUS_HISTORY_EXTENSION_RESULT_SCHEMA =
+  "prescribed-path-analysis/" +
+  "a1-1-outer-radius-history-policy-extension-result.v1";
+export const A11_OUTER_RADIUS_HISTORY_EXTENSION_SUMMARY_SCHEMA =
+  "prescribed-path-analysis/" +
+  "a1-1-outer-radius-history-policy-extension-summary.v1";
 
 const TWO_PI = 2 * Math.PI;
 const EXPECTED_ALPHA1 = Object.freeze([7 / 8, 15 / 16]);
@@ -51,7 +60,13 @@ const EXPECTED_ALPHA3 = Object.freeze([17 / 16, 19 / 16]);
 const EXPECTED_SECOND_BASELINE_ALPHA3 = Object.freeze([17 / 16, 19 / 16]);
 const EXPECTED_SECOND_ADDED_BAND = Object.freeze([19 / 16, 5 / 4]);
 const EXPECTED_SECOND_ALPHA3 = Object.freeze([17 / 16, 5 / 4]);
+const EXPECTED_HISTORY_BOUNDARY_ALPHA3 = 9 / (8 * Math.sin(9 / 8));
+const EXPECTED_HISTORY_EXTENSION_ALPHA3 = Object.freeze([
+  EXPECTED_HISTORY_BOUNDARY_ALPHA3,
+  5 / 4,
+]);
 const EXPECTED_DELAY = Object.freeze([1 / 32, 9 / 4]);
+const EXPECTED_EXTENDED_DELAY = Object.freeze([1 / 32, 145 / 64]);
 const EXPECTED_PHASES = Object.freeze(["0", "2*pi/3", "4*pi/3"]);
 const EXPECTED_REPRESENTATIVES = Object.freeze([
   "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-1",
@@ -232,7 +247,9 @@ export function validateA11OuterRadiusExpansionProtocol(rawProtocol) {
       rawProtocol.completionRule?.score !== null ||
       rawProtocol.completionRule?.noCandidateDisposition !== true ||
       rawProtocol.completionRule?.stopAfterThisBand !== true) {
-    throw new TypeError("A1.1 outer-radius fail-closed controls drifted.");
+    throw new TypeError(
+      "A1.1 outer-radius verification/advancement controls drifted.",
+    );
   }
   return structuredClone(rawProtocol);
 }
@@ -398,7 +415,221 @@ export function validateA11OuterRadiusSecondBandExpansionProtocol(rawProtocol) {
       rawProtocol.completionRule?.score !== null ||
       rawProtocol.completionRule?.noCandidateDisposition !== true ||
       rawProtocol.completionRule?.stopAfterThisBand !== true) {
-    throw new TypeError("A1.1 second-band fail-closed controls drifted.");
+    throw new TypeError(
+      "A1.1 second-band verification/advancement controls drifted.",
+    );
+  }
+  return structuredClone(rawProtocol);
+}
+
+export function validateA11OuterRadiusHistoryPolicyExtensionProtocol(
+  rawProtocol,
+) {
+  if (!rawProtocol || typeof rawProtocol !== "object" ||
+      Array.isArray(rawProtocol)) {
+    throw new TypeError(
+      "A1.1 outer-radius history-policy extension protocol must be an object.",
+    );
+  }
+  if (rawProtocol.schema !==
+      A11_OUTER_RADIUS_HISTORY_EXTENSION_PROTOCOL_SCHEMA) {
+    throw new TypeError(
+      `A1.1 outer-radius history-policy extension requires schema ` +
+      `${A11_OUTER_RADIUS_HISTORY_EXTENSION_PROTOCOL_SCHEMA}.`,
+    );
+  }
+  const boundary = rawProtocol.claimBoundary;
+  if (rawProtocol.claimGrade !== "diagnostic" ||
+      boundary?.prescribedPathAnalyticsOnly !== true ||
+      boundary?.pathEvolutionInvoked !== false ||
+      boundary?.eomSolverInvoked !== false ||
+      boundary?.eomIntervalMachineryInvoked !== false ||
+      boundary?.eomCampaignInvoked !== false ||
+      boundary?.diagnosticOnly !== true ||
+      boundary?.score !== null ||
+      boundary?.candidateSelection !== false) {
+    throw new TypeError(
+      "A1.1 history-policy extension must remain prescribed-only " +
+      "and null-score.",
+    );
+  }
+  const history = rawProtocol.historyPolicyExtension;
+  if (history?.previousRetainedReachChi !== 9 / 4 ||
+      history?.retainedReachChi !== 145 / 64 ||
+      history?.retainedReachExact !== "145/64" ||
+      history?.reachPolicyStep !== 1 / 64 ||
+      history?.smallerTestReachChi !== 289 / 128 ||
+      history?.previousBoundaryAlpha3 !== EXPECTED_HISTORY_BOUNDARY_ALPHA3 ||
+      history?.previousBoundaryStatus !==
+        "exact-history-edge-root-topology-boundary" ||
+      history?.leftBoundaryOwnership !==
+        "previous-boundary-control-owned/new-slice-left-open-right-closed") {
+    throw new TypeError(
+      "A1.1 retained-history declaration or prior-boundary ownership drifted.",
+    );
+  }
+  exactArray(
+    history.addedHistoryInterval,
+    [9 / 4, 145 / 64],
+    "historyPolicyExtension.addedHistoryInterval",
+  );
+  const expansion = rawProtocol.radiusExpansion;
+  if (expansion?.order !== 3 ||
+      expansion?.variedBand !==
+        "previously-unadjudicated-outer-radius-slice-only" ||
+      expansion?.innerBandChanged !== false ||
+      expansion?.middleRadiusFieldSpeedPin !== 1 ||
+      expansion?.relativePhaseOffsetsVary !== false ||
+      expansion?.historyReachChi !== 145 / 64) {
+    throw new TypeError(
+      "A1.1 history-policy extension scope or fixed coordinate drifted.",
+    );
+  }
+  exactArray(expansion.baseline?.alpha1, EXPECTED_ALPHA1, "baseline.alpha1");
+  exactArray(expansion.baseline?.alpha2, [1, 1], "baseline.alpha2");
+  exactArray(
+    expansion.baseline?.alpha3,
+    EXPECTED_SECOND_ALPHA3,
+    "baseline.alpha3",
+  );
+  exactArray(
+    expansion.addedOuterBand,
+    EXPECTED_HISTORY_EXTENSION_ALPHA3,
+    "addedOuterBand",
+  );
+  exactArray(
+    expansion.combinedBox?.alpha1,
+    EXPECTED_ALPHA1,
+    "combinedBox.alpha1",
+  );
+  exactArray(expansion.combinedBox?.alpha2, [1, 1], "combinedBox.alpha2");
+  exactArray(
+    expansion.combinedBox?.alpha3,
+    EXPECTED_HISTORY_EXTENSION_ALPHA3,
+    "combinedBox.alpha3",
+  );
+  exactArray(
+    expansion.combinedBox?.dimensionlessDelayInterior,
+    EXPECTED_EXTENDED_DELAY,
+    "combinedBox.dimensionlessDelayInterior",
+  );
+  exactArray(expansion.relativePhases, EXPECTED_PHASES, "relativePhases");
+  exactArray(
+    rawProtocol.targetRepresentatives,
+    EXPECTED_REPRESENTATIVES,
+    "targetRepresentatives",
+  );
+  const rootSheet = rawProtocol.rootSheet;
+  exactArray(rootSheet?.domain?.alpha1, EXPECTED_ALPHA1, "rootSheet.domain.alpha1");
+  exactArray(rootSheet?.domain?.alpha2, [1, 1], "rootSheet.domain.alpha2");
+  exactArray(
+    rootSheet?.domain?.alpha3,
+    EXPECTED_HISTORY_EXTENSION_ALPHA3,
+    "rootSheet.domain.alpha3",
+  );
+  exactArray(
+    rootSheet?.domain?.dimensionlessDelayInterior,
+    EXPECTED_EXTENDED_DELAY,
+    "rootSheet.domain.dimensionlessDelayInterior",
+  );
+  if (rootSheet?.dependentVariable !== "dimensionlessDelay" ||
+      rootSheet?.phaseSeam !==
+        "theta-zero-identified-with-two-pi/exact-four-pi-sigma-periodicity.v1" ||
+      rootSheet?.rootCountInvarianceTheorem?.id !==
+        "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1") {
+    throw new TypeError("A1.1 extended-history root-sheet declaration drifted.");
+  }
+  const fold = rawProtocol.foldExclusion;
+  if (fold?.squaredResidualExclusionFloor !== 1e-10 ||
+      fold?.squaredDelayDerivativeExclusionFloor !== 1e-8 ||
+      fold?.intervalPaddingUlps !== 4 ||
+      fold?.initialRatioSubdivisions !== 2 ||
+      fold?.initialReceptionPhaseSubdivisions !== 24 ||
+      fold?.maximumSubdivisionDepth !== 18 ||
+      fold?.maximumBoxesPerRepresentative !== 20000 ||
+      fold?.maximumBoxesPerPacket !== 180000 ||
+      fold?.minimumAlphaWidth !== 1 / 65536 ||
+      fold?.minimumReceptionPhaseWidth !== TWO_PI / 65536 ||
+      fold?.minimumDelayWidth !== (9 / 4) / 65536 ||
+      fold?.splitPolicy !== "largest-active-normalized-width.v1") {
+    throw new TypeError(
+      "A1.1 history-policy extension may not alter precision, tolerances, " +
+      "or resources.",
+    );
+  }
+  const anchor = rawProtocol.anchorRootInventory;
+  if (anchor?.point?.alpha1 !== 29 / 32 ||
+      anchor?.point?.alpha3 !== 5 / 4 ||
+      anchor?.point?.coordinatePhase !== Math.PI / 7 ||
+      anchor?.expectedRootCountPerRepresentative !== 1 ||
+      anchor?.initialDelaySubdivisions !== 32 ||
+      anchor?.maximumSubdivisionDepth !== 48 ||
+      anchor?.maximumBoxesPerRepresentative !== 4096 ||
+      anchor?.minimumDelayWidth !== 1e-10 ||
+      anchor?.rootResidualFloor !== 1e-10 ||
+      anchor?.rootTransversalityFloor !== 1e-8 ||
+      anchor?.independentNormalizedResidualFloor !== 1e-9 ||
+      anchor?.rootSeparationFloor !== 1e-7) {
+    throw new TypeError("A1.1 history-policy anchor or root gates drifted.");
+  }
+  const projection = rawProtocol.projectionCertificate;
+  exactArray(
+    projection?.outerTransmitter?.transmitterRadiusInterval,
+    EXPECTED_HISTORY_EXTENSION_ALPHA3,
+    "projectionCertificate.outerTransmitter.transmitterRadiusInterval",
+  );
+  if (projection?.middleTransmitter?.positivePolynomialLowerBound !== 1 / 64 ||
+      projection?.middleTransmitter
+        ?.receptionSquaredDelayDerivativeUpperBound !== -1 / 368 ||
+      projection?.middleTransmitter
+        ?.emissionSquaredDelayDerivativeUpperBound !== -1 / 128 ||
+      projection?.middleTransmitter?.projectionDerivativeLowerBound !==
+        8 / 22103 ||
+      projection?.middleTransmitter?.projectionDerivativeUpperBound !== 736 ||
+      projection?.outerTransmitter?.positivePolynomialLowerBound !==
+        1023 / 16384 ||
+      projection?.outerTransmitter
+        ?.receptionSquaredDelayDerivativeUpperBound !== -1023 / 110080 ||
+      projection?.outerTransmitter
+        ?.emissionSquaredDelayDerivativeUpperBound !== -1 / 64 ||
+      projection?.outerTransmitter?.projectionDerivativeLowerBound !==
+        33 / 30100 ||
+      projection?.outerTransmitter?.projectionDerivativeUpperBound !== 430) {
+    throw new TypeError("A1.1 extended-history projection bounds drifted.");
+  }
+  const previous = rawProtocol.sealedPreviousBoundary;
+  if (previous?.protocolHash !==
+        "79c93f59eb113fbeb7ad05aa9f6067b06ccc129bd4df9d2ca3a7f5e3ce9a1cfd" ||
+      previous?.resultHash !==
+        "ae2596b32d046c4657de805777732e4695d455e2ad247546f7f5d1fbb9900e95" ||
+      previous?.summaryHash !==
+        "284bf4e33f82a996d31ce04547f52fa49f1e4f144e10753a18602232c26be37c") {
+    throw new TypeError("A1.1 previous boundary control identity drifted.");
+  }
+  const controls = rawProtocol.controls;
+  if (controls?.previousBoundaryExactReplayRequired !== true ||
+      controls?.complete36ChannelAccountingRequired !== true ||
+      controls?.sameAndPartnerChannelsReexecuted !== true ||
+      controls?.historyPolicySufficiencyRequired !== true ||
+      controls?.independentResidualAndDerivativeRequired !== true ||
+      controls?.independentWitnessCount !== 12 ||
+      controls?.independentNormalizedResidualFloor !== 1e-9 ||
+      controls?.independentDerivativeDifferenceTolerance !== 1e-6 ||
+      controls?.finiteDifferenceStep !== 2 ** -20 ||
+      controls?.refinedHistoryEdgeRequired !== true ||
+      controls?.historyEdgePhaseSubdivisions !== 24 ||
+      controls?.resourceExhaustion?.maximumBoxesPerRepresentative !== 1 ||
+      rawProtocol.completionRule?.statusWhenComplete !== "evaluated-diagnostic" ||
+      rawProtocol.completionRule?.statusWhenCounterexampleFound !==
+        "counterexample-diagnostic" ||
+      rawProtocol.completionRule?.statusWhenAnyObligationUnresolved !==
+        "drawn-not-evaluated" ||
+      rawProtocol.completionRule?.score !== null ||
+      rawProtocol.completionRule?.noCandidateDisposition !== true ||
+      rawProtocol.completionRule?.stopAfterThisSlice !== true) {
+    throw new TypeError(
+      "A1.1 history-policy verification/advancement controls drifted.",
+    );
   }
   return structuredClone(rawProtocol);
 }
@@ -1459,6 +1690,173 @@ function runPriorCombinedBoxReplay({
   };
 }
 
+function runPreviousBoundaryReplay({
+  protocol,
+  previousBoundaryProtocol,
+  previousBoundarySummary,
+  priorExpansionProtocol,
+  priorExpansionSummary,
+  baseProtocol,
+  baselineRootSheetProtocol,
+  baselineContinuousSummary,
+  baselineRootSheetSummary,
+  baselineStructuralProtocol,
+  baselineStructuralSummary,
+  baselineProjectionProtocol,
+  baselineProjectionSummary,
+}) {
+  const declaration = protocol.sealedPreviousBoundary;
+  if (sha256A11Interval(previousBoundaryProtocol) !==
+      declaration.protocolHash) {
+    throw new TypeError("A1.1 previous boundary protocol hash drifted.");
+  }
+  validateSealedSummary(
+    previousBoundarySummary,
+    declaration,
+    "previous boundary summary",
+  );
+  const result = evaluateA11OuterRadiusBandExpansion({
+    expansionProtocol: previousBoundaryProtocol,
+    baseProtocol,
+    baselineRootSheetProtocol,
+    baselineContinuousSummary,
+    baselineRootSheetSummary,
+    baselineStructuralProtocol,
+    baselineStructuralSummary,
+    baselineProjectionProtocol,
+    baselineProjectionSummary,
+    priorExpansionProtocol,
+    priorExpansionSummary,
+  });
+  const summary = summarizeA11OuterRadiusBandExpansion(result);
+  return {
+    id: "a1-1-previous-history-edge-boundary-exact-replay.v1",
+    expectedProtocolHash: declaration.protocolHash,
+    observedProtocolHash: sha256A11Interval(previousBoundaryProtocol),
+    expectedResultHash: declaration.resultHash,
+    observedResultHash: result.resultHash,
+    expectedSummaryHash: declaration.summaryHash,
+    observedSummaryHash: summary.summaryHash,
+    preservedStatus: result.status,
+    preservedBoundary: result.stopBoundary.firstUncertifiedBoundary,
+    passed:
+      result.resultHash === declaration.resultHash &&
+      summary.summaryHash === declaration.summaryHash &&
+      result.status.code === "counterexample-diagnostic" &&
+      result.stopBoundary.firstUncertifiedBoundary?.status ===
+        "exact-history-edge-root-topology-boundary",
+  };
+}
+
+function runHistoryPolicySufficiencyControl({
+  protocol,
+  baseProtocol,
+  allChannels,
+}) {
+  const history = protocol.historyPolicyExtension;
+  const upperRadius = protocol.radiusExpansion.addedOuterBand[1];
+  const previousReach = history.previousRetainedReachChi;
+  const retainedReach = history.retainedReachChi;
+  const smallerTestReach = history.smallerTestReachChi;
+  const upperRadiusRoot = bisectExactCircular(
+    "same-transmitter-self",
+    upperRadius,
+    previousReach,
+    retainedReach,
+  );
+  const outerSelfChannels = allChannels.filter((channel) =>
+    channel.kind === "same-transmitter-self" &&
+    channel.receiver.binaryIndex === 3);
+  const independentWitnesses = upperRadiusRoot
+    ? outerSelfChannels.map((channel) => {
+      const independent = recomputeA11SquaredCausalResidual({
+        protocol: baseProtocol,
+        receiver: channel.receiver,
+        transmitter: channel.transmitter,
+        alpha1: midpoint(protocol.radiusExpansion.combinedBox.alpha1),
+        alpha3: upperRadius,
+        receptionPhase: Math.PI / 7,
+        delay: upperRadiusRoot.delay,
+      });
+      return {
+        channelId: channel.channelId,
+        instrumentId: independent.evaluatorId,
+        delay: upperRadiusRoot.delay,
+        squaredResidual: independent.squaredResidual,
+        normalizedResidual: independent.normalizedResidual,
+        passed:
+          Math.abs(independent.normalizedResidual) <=
+            protocol.controls.independentNormalizedResidualFloor,
+      };
+    })
+    : [];
+  const nextHistoryEdgeBoundaryAlpha3 =
+    retainedReach / (2 * Math.sin(retainedReach / 2));
+  const previousReachResidualAtUpperRadius =
+    exactCircularResidual(
+      "same-transmitter-self",
+      upperRadius,
+      previousReach,
+    );
+  const retainedReachResidualAtUpperRadius =
+    exactCircularResidual(
+      "same-transmitter-self",
+      upperRadius,
+      retainedReach,
+    );
+  const smallerTestReachResidualAtUpperRadius =
+    exactCircularResidual(
+      "same-transmitter-self",
+      upperRadius,
+      smallerTestReach,
+    );
+  const delayDerivativeAtUpperRadiusRoot = upperRadiusRoot
+    ? upperRadius * Math.cos(upperRadiusRoot.delay / 2) - 1
+    : null;
+  const passed =
+    previousReachResidualAtUpperRadius > 0 &&
+    smallerTestReachResidualAtUpperRadius > 0 &&
+    retainedReachResidualAtUpperRadius <
+      -protocol.foldExclusion.squaredResidualExclusionFloor &&
+    upperRadiusRoot !== null &&
+    upperRadiusRoot.delay > previousReach &&
+    upperRadiusRoot.delay < retainedReach &&
+    delayDerivativeAtUpperRadiusRoot <
+      -protocol.foldExclusion.squaredDelayDerivativeExclusionFloor &&
+    nextHistoryEdgeBoundaryAlpha3 > upperRadius &&
+    independentWitnesses.length === 2 &&
+    independentWitnesses.every((row) => row.passed);
+  return {
+    id: "a1-1-outer-radius-retained-history-sufficiency.v1",
+    claimGrade: "derived-with-independent-direct-coordinate-controls",
+    previousRetainedReachChi: previousReach,
+    retainedReachChi: retainedReach,
+    retainedReachExact: history.retainedReachExact,
+    reachPolicyStep: history.reachPolicyStep,
+    smallerTestReachChi: smallerTestReach,
+    addedHistoryInterval: [...history.addedHistoryInterval],
+    upperRadius,
+    previousReachResidualAtUpperRadius,
+    smallerTestReachResidualAtUpperRadius,
+    retainedReachResidualAtUpperRadius,
+    upperRadiusRoot: upperRadiusRoot
+      ? {
+        delay: upperRadiusRoot.delay,
+        bracket: upperRadiusRoot.bracket,
+        endpointResiduals: upperRadiusRoot.endpointResiduals,
+        delayDerivative: delayDerivativeAtUpperRadiusRoot,
+      }
+      : null,
+    nextHistoryEdgeBoundaryAlpha3,
+    independentWitnesses,
+    falsifier:
+      "fails if the retained-edge residual is nonnegative, the upper-radius " +
+      "root is not simple and interior, the next topology boundary is at or " +
+      "below 5/4, or either independent residual exceeds its frozen floor",
+    passed,
+  };
+}
+
 export function evaluateA11OuterRadiusBandExpansion({
   expansionProtocol: rawExpansionProtocol,
   baseProtocol: rawBaseProtocol,
@@ -1471,14 +1869,21 @@ export function evaluateA11OuterRadiusBandExpansion({
   baselineProjectionSummary,
   priorExpansionProtocol = null,
   priorExpansionSummary = null,
+  previousBoundaryProtocol = null,
+  previousBoundarySummary = null,
   executionLimits = null,
 } = {}) {
   const secondBand =
     rawExpansionProtocol?.schema ===
       A11_OUTER_RADIUS_SECOND_EXPANSION_PROTOCOL_SCHEMA;
-  const protocol = secondBand
-    ? validateA11OuterRadiusSecondBandExpansionProtocol(rawExpansionProtocol)
-    : validateA11OuterRadiusExpansionProtocol(rawExpansionProtocol);
+  const historyExtension =
+    rawExpansionProtocol?.schema ===
+      A11_OUTER_RADIUS_HISTORY_EXTENSION_PROTOCOL_SCHEMA;
+  const protocol = historyExtension
+    ? validateA11OuterRadiusHistoryPolicyExtensionProtocol(rawExpansionProtocol)
+    : secondBand
+      ? validateA11OuterRadiusSecondBandExpansionProtocol(rawExpansionProtocol)
+      : validateA11OuterRadiusExpansionProtocol(rawExpansionProtocol);
   const baseProtocol = validateA11ContinuousRootInventoryProtocol(
     rawBaseProtocol,
   );
@@ -1497,14 +1902,29 @@ export function evaluateA11OuterRadiusBandExpansion({
     baselineProjectionProtocol,
     baselineProjectionSummary,
   };
-  const baselineReplay = secondBand
-    ? runPriorCombinedBoxReplay({
+  const baselineReplay = historyExtension
+    ? runPreviousBoundaryReplay({
       ...replayArguments,
+      previousBoundaryProtocol,
+      previousBoundarySummary,
       priorExpansionProtocol,
       priorExpansionSummary,
     })
-    : runBaselineReplay(replayArguments);
+    : secondBand
+      ? runPriorCombinedBoxReplay({
+        ...replayArguments,
+        priorExpansionProtocol,
+        priorExpansionSummary,
+      })
+      : runBaselineReplay(replayArguments);
   const allChannels = buildA11OrderedChannelInventory(baseProtocol);
+  const historyPolicySufficiency = historyExtension
+    ? runHistoryPolicySufficiencyControl({
+      protocol,
+      baseProtocol,
+      allChannels,
+    })
+    : null;
   const sameAndPartner = runSameAndPartnerInventory({
     protocol,
     baseProtocol,
@@ -1566,6 +1986,7 @@ export function evaluateA11OuterRadiusBandExpansion({
       row.receiverPhaseProjectionDerivativeEnclosure[0] <= 0);
   const anyObligationUnresolved =
     !baselineReplay.passed ||
+    (historyExtension && !historyPolicySufficiency.passed) ||
     !interBinary.passed ||
     !projection.passed ||
     (!sameAndPartner.passed && topologyBoundary === null);
@@ -1575,6 +1996,7 @@ export function evaluateA11OuterRadiusBandExpansion({
       : null;
   const allControlsPassed =
     baselineReplay.passed &&
+    (!historyExtension || historyPolicySufficiency.passed) &&
     sameAndPartner.passed &&
     interBinary.passed &&
     projection.passed &&
@@ -1587,13 +2009,17 @@ export function evaluateA11OuterRadiusBandExpansion({
         ? protocol.completionRule.statusWhenComplete
         : protocol.completionRule.statusWhenAnyObligationUnresolved;
   const resultWithoutHash = {
-    schema: secondBand
-      ? A11_OUTER_RADIUS_SECOND_EXPANSION_RESULT_SCHEMA
-      : A11_OUTER_RADIUS_EXPANSION_RESULT_SCHEMA,
+    schema: historyExtension
+      ? A11_OUTER_RADIUS_HISTORY_EXTENSION_RESULT_SCHEMA
+      : secondBand
+        ? A11_OUTER_RADIUS_SECOND_EXPANSION_RESULT_SCHEMA
+        : A11_OUTER_RADIUS_EXPANSION_RESULT_SCHEMA,
     evaluator: {
-      id: secondBand
-        ? "a1-1-outer-radius-second-band-expansion-diagnostic"
-        : "a1-1-outer-radius-band-expansion-diagnostic",
+      id: historyExtension
+        ? "a1-1-outer-radius-history-policy-extension-diagnostic"
+        : secondBand
+          ? "a1-1-outer-radius-second-band-expansion-diagnostic"
+          : "a1-1-outer-radius-band-expansion-diagnostic",
       version: 1,
       prescribedPathAnalyticsOnly: true,
       pathEvolutionInvoked: false,
@@ -1605,6 +2031,9 @@ export function evaluateA11OuterRadiusBandExpansion({
     expansionProtocolHash: sha256A11Interval(rawExpansionProtocol),
     baseProtocolHash: baseHash,
     radiusExpansion: protocol.radiusExpansion,
+    ...(historyExtension
+      ? { historyPolicyExtension: protocol.historyPolicyExtension }
+      : {}),
     ...(confirmedTopologyBoundary
       ? {
         adjudicatedPrefix: {
@@ -1622,9 +2051,11 @@ export function evaluateA11OuterRadiusBandExpansion({
       code: statusCode,
       score: null,
       reason: statusCode === "evaluated-diagnostic"
-        ? secondBand
-          ? "complete-root-topology-and-positive-projection-certified-on-second-outer-radius-band-expansion"
-          : "complete-root-topology-and-positive-projection-certified-on-one-outer-radius-band-expansion"
+        ? historyExtension
+          ? "complete-root-topology-and-positive-projection-certified-on-extended-history-outer-radius-slice"
+          : secondBand
+            ? "complete-root-topology-and-positive-projection-certified-on-second-outer-radius-band-expansion"
+            : "complete-root-topology-and-positive-projection-certified-on-one-outer-radius-band-expansion"
         : statusCode === "counterexample-diagnostic"
           ? confirmedTopologyBoundary
             ? "exact-outer-self-root-history-edge-topology-boundary-found"
@@ -1632,25 +2063,34 @@ export function evaluateA11OuterRadiusBandExpansion({
           : "one-or-more-topology-projection-control-or-resource-obligations-remain-unresolved",
     },
     stopBoundary: {
-      stoppedAfterDeclaredBand: confirmedTopologyBoundary === null,
+      ...(historyExtension
+        ? { stoppedAfterDeclaredSlice: confirmedTopologyBoundary === null }
+        : { stoppedAfterDeclaredBand: confirmedTopologyBoundary === null }),
       ...(confirmedTopologyBoundary
         ? { stoppedAtFirstBoundary: true }
         : {}),
       nextBandExecuted: false,
       firstUncertifiedBoundary: confirmedTopologyBoundary ?? (
         statusCode === "evaluated-diagnostic"
-        ? secondBand
-          ? "alpha3-greater-than-5/4-not-evaluated"
-          : "alpha3-greater-than-19/16-not-evaluated"
+        ? historyExtension
+          ? "alpha3-greater-than-5/4-not-evaluated-under-145/64-history-policy"
+          : secondBand
+            ? "alpha3-greater-than-5/4-not-evaluated"
+            : "alpha3-greater-than-19/16-not-evaluated"
         : interBinary.unresolved[0] ?? projection.representativeRows.find((row) =>
           row.disposition !==
             "certified-continuous-positive-projection-root-sheet") ?? null
       ),
     },
     controls: {
-      ...(secondBand
-        ? { priorCombinedBoxExactReplay: baselineReplay }
-        : { baselineExactReplay: baselineReplay }),
+      ...(historyExtension
+        ? {
+          previousBoundaryExactReplay: baselineReplay,
+          historyPolicySufficiency,
+        }
+        : secondBand
+          ? { priorCombinedBoxExactReplay: baselineReplay }
+          : { baselineExactReplay: baselineReplay }),
       sameAndPartner,
       interBinary: {
         id: interBinary.id,
@@ -1688,6 +2128,7 @@ export function summarizeA11OuterRadiusBandExpansion(result) {
       ![
         A11_OUTER_RADIUS_EXPANSION_RESULT_SCHEMA,
         A11_OUTER_RADIUS_SECOND_EXPANSION_RESULT_SCHEMA,
+        A11_OUTER_RADIUS_HISTORY_EXTENSION_RESULT_SCHEMA,
       ].includes(result.schema)) {
     throw new TypeError(
       "result must use a supported A1.1 outer-radius expansion schema.",
@@ -1695,6 +2136,8 @@ export function summarizeA11OuterRadiusBandExpansion(result) {
   }
   const secondBand =
     result.schema === A11_OUTER_RADIUS_SECOND_EXPANSION_RESULT_SCHEMA;
+  const historyExtension =
+    result.schema === A11_OUTER_RADIUS_HISTORY_EXTENSION_RESULT_SCHEMA;
   const compactRepresentative = (row) => ({
     channelId: row.channelId,
     endpointInversionKey: row.endpointInversionKey,
@@ -1720,14 +2163,19 @@ export function summarizeA11OuterRadiusBandExpansion(result) {
     },
   });
   const summaryWithoutHash = {
-    schema: secondBand
-      ? A11_OUTER_RADIUS_SECOND_EXPANSION_SUMMARY_SCHEMA
-      : A11_OUTER_RADIUS_EXPANSION_SUMMARY_SCHEMA,
+    schema: historyExtension
+      ? A11_OUTER_RADIUS_HISTORY_EXTENSION_SUMMARY_SCHEMA
+      : secondBand
+        ? A11_OUTER_RADIUS_SECOND_EXPANSION_SUMMARY_SCHEMA
+        : A11_OUTER_RADIUS_EXPANSION_SUMMARY_SCHEMA,
     evaluator: result.evaluator,
     expansionProtocolHash: result.expansionProtocolHash,
     baseProtocolHash: result.baseProtocolHash,
     resultHash: result.resultHash,
     radiusExpansion: result.radiusExpansion,
+    ...(result.historyPolicyExtension
+      ? { historyPolicyExtension: result.historyPolicyExtension }
+      : {}),
     ...(result.adjudicatedPrefix
       ? { adjudicatedPrefix: result.adjudicatedPrefix }
       : {}),

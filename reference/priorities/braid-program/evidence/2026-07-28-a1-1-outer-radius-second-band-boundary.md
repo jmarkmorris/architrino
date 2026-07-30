@@ -29,7 +29,8 @@ $$
 The relative phases remain exactly $(0,2\pi/3,4\pi/3)$ and the history reach
 remains $\chi=9/4$. The inner-radius interval, normalized field-speed pin,
 numerical floors, subdivision rules, resource ceilings, endpoint ownership,
-fold visibility, null score, and fail-closed dispositions are unchanged. No
+fold visibility, null score, and verification/advancement dispositions are
+unchanged. No
 inner-radius expansion, phase variation, later outer band, EOM evolution,
 energy or action calculation, GR calculation, or candidate disposition was
 authorized.

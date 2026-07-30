@@ -295,14 +295,15 @@ function activeDimensions(channel) {
 }
 
 function initialBoxes(channel, protocol) {
+  const domain = protocol.certificate.domain;
   const dimensions = activeDimensions(channel);
   const ratioCount = protocol.intervalTreatment.initialRatioSubdivisions;
   const alpha1 = dimensions.includes("alpha1")
-    ? partitionInterval(EXPECTED_ALPHA1, ratioCount)
-    : [EXPECTED_ALPHA1];
+    ? partitionInterval(domain.alpha1, ratioCount)
+    : [domain.alpha1];
   const alpha3 = dimensions.includes("alpha3")
-    ? partitionInterval(EXPECTED_ALPHA3, ratioCount)
-    : [EXPECTED_ALPHA3];
+    ? partitionInterval(domain.alpha3, ratioCount)
+    : [domain.alpha3];
   const phases = partitionInterval(
     [0, TWO_PI],
     protocol.intervalTreatment.initialEmissionPhaseSubdivisions,
@@ -315,7 +316,7 @@ function initialBoxes(channel, protocol) {
           alpha1: [...alpha1Box],
           alpha3: [...alpha3Box],
           emissionPhase: [...emissionPhase],
-          dimensionlessDelay: [...EXPECTED_DELAY],
+          dimensionlessDelay: [...domain.dimensionlessDelay],
           depth: 0,
         });
       }
@@ -409,9 +410,10 @@ function classifyProjectionEnclosure(enclosure, protocol) {
 }
 
 function selectSplitDimension(channel, box, protocol) {
+  const domain = protocol.certificate.domain;
   const fullWidths = {
-    alpha1: width(EXPECTED_ALPHA1),
-    alpha3: width(EXPECTED_ALPHA3),
+    alpha1: width(domain.alpha1),
+    alpha3: width(domain.alpha3),
     emissionPhase: TWO_PI,
   };
   const minimumWidths = {
@@ -799,12 +801,25 @@ function endpointInversionControl({
   channelById,
   evaluator,
 }) {
+  const domain = protocol.certificate.domain;
   let comparisonCount = 0;
   let maximumDifference = 0;
-  const auditAlpha1 = [EXPECTED_ALPHA1[0], midpoint(EXPECTED_ALPHA1), EXPECTED_ALPHA1[1]];
-  const auditAlpha3 = [EXPECTED_ALPHA3[0], midpoint(EXPECTED_ALPHA3), EXPECTED_ALPHA3[1]];
+  const auditAlpha1 = [
+    domain.alpha1[0],
+    midpoint(domain.alpha1),
+    domain.alpha1[1],
+  ];
+  const auditAlpha3 = [
+    domain.alpha3[0],
+    midpoint(domain.alpha3),
+    domain.alpha3[1],
+  ];
   const auditPhases = [0, Math.PI / 7, Math.PI, TWO_PI];
-  const auditDelays = [EXPECTED_DELAY[0], midpoint(EXPECTED_DELAY), EXPECTED_DELAY[1]];
+  const auditDelays = [
+    domain.dimensionlessDelay[0],
+    midpoint(domain.dimensionlessDelay),
+    domain.dimensionlessDelay[1],
+  ];
   for (const mapping of protocol.endpointInversionReuse) {
     const representative = channelById.get(mapping.representative);
     const reused = channelById.get(mapping.reused);
@@ -856,18 +871,20 @@ function endpointInversionControl({
 }
 
 function phaseSeamControl({
+  protocol,
   representatives,
   evaluator,
 }) {
+  const domain = protocol.certificate.domain;
   let maximumDifference = 0;
   let replayCount = 0;
   for (const channel of representatives) {
-    for (const alpha1 of EXPECTED_ALPHA1) {
-      for (const alpha3 of EXPECTED_ALPHA3) {
+    for (const alpha1 of domain.alpha1) {
+      for (const alpha3 of domain.alpha3) {
         for (const delay of [
-          EXPECTED_DELAY[0],
-          midpoint(EXPECTED_DELAY),
-          EXPECTED_DELAY[1],
+          domain.dimensionlessDelay[0],
+          midpoint(domain.dimensionlessDelay),
+          domain.dimensionlessDelay[1],
         ]) {
           const common = {
             channelId: channel.channelId,
@@ -1145,7 +1162,11 @@ export function evaluateA11ReceiverPhaseProjectionMonotonicity({
     channelById,
     evaluator,
   });
-  const phaseSeam = phaseSeamControl({ representatives, evaluator });
+  const phaseSeam = phaseSeamControl({
+    protocol,
+    representatives,
+    evaluator,
+  });
   const independentWitness = independentWitnessControl({
     protocol,
     baseProtocol,
@@ -1315,3 +1336,12 @@ export function summarizeA11ReceiverPhaseProjectionMonotonicity(result) {
     summaryHash: sha256A11Interval(summaryWithoutHash),
   };
 }
+
+export {
+  analyticRepresentativeCertificate as
+    certifyA11ProjectionAnalyticRepresentative,
+  certifyRepresentative as certifyA11ProjectionRepresentativeInterval,
+  endpointInversionControl as runA11ProjectionEndpointInversionControl,
+  phaseSeamControl as runA11ProjectionPhaseSeamControl,
+  syntheticControls as runA11ProjectionSyntheticControls,
+};

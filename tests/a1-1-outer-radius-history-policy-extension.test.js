@@ -5,7 +5,7 @@ import test from "node:test";
 import {
   evaluateA11OuterRadiusBandExpansion,
   summarizeA11OuterRadiusBandExpansion,
-  validateA11OuterRadiusSecondBandExpansionProtocol,
+  validateA11OuterRadiusHistoryPolicyExtensionProtocol,
 } from "../src/prescribed-path-analysis/A11OuterRadiusBandExpansionDiagnostic.mjs";
 
 async function readJson(path) {
@@ -14,13 +14,19 @@ async function readJson(path) {
 
 const expansionProtocol = await readJson(
   "src/prescribed-path-analysis/protocols/" +
-    "a1-1-outer-radius-second-band-expansion-protocol.v1.json",
+    "a1-1-outer-radius-history-policy-extension-protocol.v1.json",
+);
+const previousBoundaryProtocol = await readJson(
+  expansionProtocol.sealedPreviousBoundary.protocolPath,
+);
+const previousBoundarySummary = await readJson(
+  expansionProtocol.sealedPreviousBoundary.summaryPath,
 );
 const priorExpansionProtocol = await readJson(
-  expansionProtocol.sealedPriorCombinedBox.protocolPath,
+  previousBoundaryProtocol.sealedPriorCombinedBox.protocolPath,
 );
 const priorExpansionSummary = await readJson(
-  expansionProtocol.sealedPriorCombinedBox.summaryPath,
+  previousBoundaryProtocol.sealedPriorCombinedBox.summaryPath,
 );
 const baseProtocol = await readJson(
   expansionProtocol.sealedBaseline.baseProtocol.path,
@@ -60,79 +66,100 @@ function evaluate(executionLimits = null) {
     baselineProjectionSummary,
     priorExpansionProtocol,
     priorExpansionSummary,
+    previousBoundaryProtocol,
+    previousBoundarySummary,
     executionLimits,
   });
 }
 
-test("second expansion freezes only the adjacent 19/16-to-5/4 strip", () => {
+test("history extension freezes only the old-boundary-to-5/4 slice", () => {
   const validated =
-    validateA11OuterRadiusSecondBandExpansionProtocol(expansionProtocol);
-  assert.deepEqual(validated.radiusExpansion.addedOuterBand, [19 / 16, 5 / 4]);
+    validateA11OuterRadiusHistoryPolicyExtensionProtocol(expansionProtocol);
+  const oldBoundary = 9 / (8 * Math.sin(9 / 8));
+  assert.deepEqual(
+    validated.radiusExpansion.addedOuterBand,
+    [oldBoundary, 5 / 4],
+  );
   assert.deepEqual(
     validated.radiusExpansion.combinedBox.alpha1,
     [7 / 8, 15 / 16],
   );
   assert.deepEqual(
     validated.radiusExpansion.combinedBox.alpha3,
-    [17 / 16, 5 / 4],
+    [oldBoundary, 5 / 4],
   );
   assert.equal(validated.radiusExpansion.middleRadiusFieldSpeedPin, 1);
   assert.deepEqual(
     validated.radiusExpansion.relativePhases,
     ["0", "2*pi/3", "4*pi/3"],
   );
-  assert.equal(validated.radiusExpansion.historyReachChi, 9 / 4);
-  assert.equal(validated.foldExclusion.maximumBoxesPerRepresentative, 20000);
+  assert.equal(
+    validated.historyPolicyExtension.previousRetainedReachChi,
+    9 / 4,
+  );
+  assert.equal(validated.historyPolicyExtension.retainedReachChi, 145 / 64);
+  assert.equal(validated.historyPolicyExtension.smallerTestReachChi, 289 / 128);
+  assert.equal(validated.foldExclusion.minimumDelayWidth, (9 / 4) / 65536);
   assert.equal(validated.completionRule.score, null);
 });
 
-test("second expansion rejects radius, phase, replay, and resource drift", () => {
+test("history extension rejects geometry, reach, replay, and gate drift", () => {
   const innerDrift = structuredClone(expansionProtocol);
   innerDrift.radiusExpansion.combinedBox.alpha1[0] -= 1 / 64;
   assert.throws(
-    () => validateA11OuterRadiusSecondBandExpansionProtocol(innerDrift),
+    () => validateA11OuterRadiusHistoryPolicyExtensionProtocol(innerDrift),
     /combinedBox\.alpha1/,
   );
 
-  const phaseDrift = structuredClone(expansionProtocol);
-  phaseDrift.radiusExpansion.relativePhases[1] = "pi/2";
+  const reachDrift = structuredClone(expansionProtocol);
+  reachDrift.historyPolicyExtension.retainedReachChi += 1 / 128;
   assert.throws(
-    () => validateA11OuterRadiusSecondBandExpansionProtocol(phaseDrift),
-    /relativePhases/,
+    () => validateA11OuterRadiusHistoryPolicyExtensionProtocol(reachDrift),
+    /retained-history declaration/,
   );
 
   const replayDrift = structuredClone(expansionProtocol);
-  replayDrift.sealedPriorCombinedBox.resultHash = "0".repeat(64);
+  replayDrift.sealedPreviousBoundary.resultHash = "0".repeat(64);
   assert.throws(
-    () => validateA11OuterRadiusSecondBandExpansionProtocol(replayDrift),
-    /prior combined-box control identity/,
+    () => validateA11OuterRadiusHistoryPolicyExtensionProtocol(replayDrift),
+    /previous boundary control identity/,
   );
 
-  const resourceDrift = structuredClone(expansionProtocol);
-  resourceDrift.foldExclusion.maximumBoxesPerRepresentative += 1;
+  const toleranceDrift = structuredClone(expansionProtocol);
+  toleranceDrift.foldExclusion.squaredResidualExclusionFloor *= 10;
   assert.throws(
-    () => validateA11OuterRadiusSecondBandExpansionProtocol(resourceDrift),
-    /may not relax/,
+    () => validateA11OuterRadiusHistoryPolicyExtensionProtocol(toleranceDrift),
+    /may not alter precision, tolerances, or resources/,
   );
 });
 
-test("second strip stops at the exact outer-self history-edge topology boundary", () => {
+test("extended history adjudicates the remaining outer slice", () => {
   const result = evaluate();
   const summary = summarizeA11OuterRadiusBandExpansion(result);
-  const expectedEdge = 9 / (8 * Math.sin(9 / 8));
-  const boundary = result.stopBoundary.firstUncertifiedBoundary;
+  const control = result.controls.historyPolicySufficiency;
 
-  assert.equal(result.status.code, "counterexample-diagnostic");
+  assert.equal(result.status.code, "evaluated-diagnostic");
   assert.equal(result.status.score, null);
-  assert.equal(result.stopBoundary.stoppedAtFirstBoundary, true);
-  assert.equal(boundary.status, "exact-history-edge-root-topology-boundary");
-  assert.equal(boundary.alpha3, expectedEdge);
-  assert.equal(boundary.historyReachChi, 9 / 4);
-  assert.equal(boundary.channelIds.length, 2);
-  assert.equal(boundary.historyEdgeCausalResidualAtBoundary, 0);
-  assert.ok(boundary.causalResidualDelayDerivativeAtBoundary < 0);
-  assert.ok(boundary.independentWitnesses.every((row) => row.passed));
-  assert.equal(result.controls.priorCombinedBoxExactReplay.passed, true);
+  assert.equal(result.stopBoundary.stoppedAfterDeclaredSlice, true);
+  assert.equal(
+    result.stopBoundary.firstUncertifiedBoundary,
+    "alpha3-greater-than-5/4-not-evaluated-under-145/64-history-policy",
+  );
+  assert.equal(result.controls.previousBoundaryExactReplay.passed, true);
+  assert.equal(
+    result.controls.previousBoundaryExactReplay.preservedStatus.code,
+    "counterexample-diagnostic",
+  );
+  assert.equal(control.passed, true);
+  assert.ok(control.previousReachResidualAtUpperRadius > 0);
+  assert.ok(control.smallerTestReachResidualAtUpperRadius > 0);
+  assert.ok(control.retainedReachResidualAtUpperRadius < 0);
+  assert.ok(control.upperRadiusRoot.delay > 9 / 4);
+  assert.ok(control.upperRadiusRoot.delay < 145 / 64);
+  assert.ok(control.upperRadiusRoot.delayDerivative < 0);
+  assert.ok(control.nextHistoryEdgeBoundaryAlpha3 > 5 / 4);
+  assert.ok(control.independentWitnesses.every((row) => row.passed));
+  assert.equal(result.controls.sameAndPartner.passed, true);
   assert.equal(result.controls.interBinary.passed, true);
   assert.equal(result.controls.projection.passed, true);
   assert.equal(
@@ -141,24 +168,20 @@ test("second strip stops at the exact outer-self history-edge topology boundary"
   );
   assert.equal(
     result.controls.completeChannelAccounting.unresolvedChannelCount,
-    2,
-  );
-  assert.deepEqual(
-    result.adjudicatedPrefix.alpha3,
-    [17 / 16, expectedEdge],
+    0,
   );
   assert.equal(summary.status.score, null);
   assert.equal(
     result.resultHash,
-    "ae2596b32d046c4657de805777732e4695d455e2ad247546f7f5d1fbb9900e95",
+    "edae3d88d1347656519f7efba4d0f9f530aec4eab7fce78bf687f4c28125145c",
   );
   assert.equal(
     summary.summaryHash,
-    "284bf4e33f82a996d31ce04547f52fa49f1e4f144e10753a18602232c26be37c",
+    "ddf8e622f0556b64c6cf348b6d9ee9cb109f7c28fc19dac508e356c9d540f57e",
   );
 });
 
-test("reduced second-band resources stop with incomplete verification before boundary adjudication", () => {
+test("reduced history-extension resources return incomplete verification", () => {
   const result = evaluate({
     maximumBoxesPerRepresentative: 1,
     maximumBoxesPerPacket: 12,

@@ -125,7 +125,7 @@ test("one outer band preserves the complete 36-channel topology and projection",
   );
 });
 
-test("reduced expansion resources fail closed with null score", () => {
+test("reduced expansion resources return incomplete verification with null score", () => {
   const result = evaluate({
     maximumBoxesPerRepresentative: 1,
     maximumBoxesPerPacket: 12,
