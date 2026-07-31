@@ -708,6 +708,120 @@ $$
 \text{when }\|\mathbf V\|=c_f.
 $$
 
+#### Proposed wash-over rule: three regular boundary cases
+
+For this regular-chart calculation only, call the proposed map
+
+$$
+\mathcal W_{\mathbf V}\!\left(\mathbf A_{\mathrm{ord}}\right)
+=
+\mathbf A_{\mathrm{ord}}
+-
+(a_\parallel)_+\hat{\mathbf v}
+$$
+
+the **wash-over rule**: the positive outward longitudinal part washes over the
+velocity boundary, while no transverse or inward part is removed. This is only
+another name for the proposed tangent-cone projection above; it is not a
+second axiom or a geometry-derived rule.
+
+- **Pure forward.** If
+  $\mathbf A_{\mathrm{ord}}=a_+\hat{\mathbf v}$ with $a_+>0$, then
+  $\mathbf A_{\mathrm{eff}}=\mathbf0$ and
+  $d\|\mathbf V\|/dT=0$ at the boundary.
+- **Pure transverse.** If
+  $\mathbf A_{\mathrm{ord}}=\mathbf A_\perp$ with
+  $\hat{\mathbf v}\mathbin{\cdot}\mathbf A_\perp=0$, then
+  $\mathbf A_{\mathrm{eff}}=\mathbf A_\perp$ and
+  $d\|\mathbf V\|/dT=0$ at that boundary instant.
+- **Pure backward.** If
+  $\mathbf A_{\mathrm{ord}}=-a_-\hat{\mathbf v}$ with $a_->0$, then
+  $\mathbf A_{\mathrm{eff}}=-a_-\hat{\mathbf v}$ and
+  $d\|\mathbf V\|/dT=-a_-<0$.
+
+These are pointwise regular-boundary calculations. They assume no maximum
+acceleration: a transverse acceleration of any finite magnitude is
+kinematically admissible at that instant. The speed inequality constrains the
+instantaneous radial derivative, not a separately specified path shape. For
+the closed ball to remain invariant over an interval, the proposed response
+map must apply at every boundary time along a differentiable regular-history
+solution; a tangent acceleration by itself neither establishes a
+physical-space circle nor supplies a contact continuation.
+
+Plainly: the candidate rule discards only the part of the total ordinary
+acceleration that would increase an already maximal speed. A sideways total
+can remain, and a backward total can slow the architrino. That says nothing
+about how tightly it turns or what happens at a nonordinary event.
+
+#### Regular non-contact two-wake superposition example
+
+Take a receiver at the field-speed boundary with
+
+$$
+\mathbf V=c_f\mathbf e_x,
+\qquad
+a_0>0,
+$$
+
+and suppose its complete finite ordinary ledger contains two individually
+admitted incoming contributions
+
+$$
+\mathbf a_1=2a_0\mathbf e_x,
+\qquad
+\mathbf a_2=a_0(-\mathbf e_x+\mathbf e_y).
+$$
+
+They are first retained exactly as ordinary ledger entries and summed:
+
+$$
+\mathbf A_{\mathrm{ord}}
+=
+\mathbf a_1+\mathbf a_2
+=
+a_0\mathbf e_x+a_0\mathbf e_y.
+$$
+
+Thus $a_\parallel=a_0>0$ and
+$\mathbf A_\perp=a_0\mathbf e_y$. Applying the proposed wash-over rule once
+to this combined total gives
+
+$$
+\mathbf A_{\mathrm{eff}}
+=
+\mathcal W_{\mathbf V}\!\left(\mathbf A_{\mathrm{ord}}\right)
+=
+a_0\mathbf e_y,
+\qquad
+\frac{d}{dT}\|\mathbf V\|=0
+\quad\text{at this instant}.
+$$
+
+In particular, the prohibited per-row operation would give a different
+answer:
+
+$$
+\mathcal W_{\mathbf V}(\mathbf a_1)
++
+\mathcal W_{\mathbf V}(\mathbf a_2)
+=
+\mathbf0+a_0(-\mathbf e_x+\mathbf e_y)
+\ne
+a_0\mathbf e_y.
+$$
+
+The local response therefore neither absorbs, reflects, weakens, nor
+terminates either wake. Both source-emission records and both propagating wake
+contributions remain unchanged; only their one completed ordinary total is
+used to calculate the candidate receiver response. This is a hand-checkable
+regular non-contact example of the proposed response law, not an adopted law
+or a universal physical conclusion.
+
+Plainly: the two wakes are not handled one at a time. Their original arrows
+are both kept, added together, and only then passed through the proposed
+speed-boundary rule. Here the combined forward part is removed, leaving the
+combined sideways part.
+
 #### Kinematic tangent-sphere statement
 
 Independently of the proposed response map, let a differentiable path satisfy
