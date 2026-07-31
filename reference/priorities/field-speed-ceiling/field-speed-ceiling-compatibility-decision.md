@@ -1,8 +1,8 @@
 # FSC-001 Field-Speed Ceiling Compatibility Decision
 
-**Date:** 2026-07-30  
-**Status:** compatibility decision packet complete; foundational choice unselected  
-**Claim level:** discussion-scoped compatibility analysis  
+**Date:** 2026-07-30
+**Status:** compatibility decision packet complete; foundational choice unselected
+**Claim level:** discussion-scoped compatibility analysis
 **Decision authority:** this packet does not change the canonical
 $\mathbb{A}\mathbb{A}\mathbb{A}$ velocity domain, Master Equation, EOM solver
 contract, or closure score.

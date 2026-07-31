@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 602,
-      "edges": 1368,
-      "scenes": 386,
+      "nodes": 603,
+      "edges": 1369,
+      "scenes": 387,
       "markdownIndexes": 0,
       "markdownDocs": 199,
       "runtimeEdges": 476,
@@ -2465,6 +2465,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "lattice-lab",
+      "name": "Architrino Lattice Lab",
+      "path": "content/scenes/archie/lattice_lab.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -3982,6 +3988,15 @@
       "name": "A1 Lorentz Geometry",
       "path": "content/scenes/archie/ideal_braid.json",
       "searchTarget": "content/scenes/archie/ideal_braid.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/lattice_lab.json",
+      "nodeType": "scene",
+      "id": "lattice-lab",
+      "name": "Architrino Lattice Lab",
+      "path": "content/scenes/archie/lattice_lab.json",
+      "searchTarget": "content/scenes/archie/lattice_lab.json",
       "implicit": false
     },
     {
@@ -9085,91 +9100,98 @@
       "to": "scene:content/scenes/archie/animator.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/borg.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/braid_search.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/causal_delay_feedback.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/equation_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/greek_letter_match.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/ideal_braid.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/lattice_lab.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/molecule.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/photon.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/chemistry/periodic_table_scene.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/nuclear/atom.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/standard-model-particles/standard_model.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",

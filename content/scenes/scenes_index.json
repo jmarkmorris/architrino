@@ -1929,6 +1929,11 @@
       "id": "noether_braid__braid_family_a_overview",
       "name": "Braid Family A",
       "path": "content/scenes/noether-braid/braid_family_a_overview.json"
+    },
+    {
+      "id": "lattice-lab",
+      "name": "Architrino Lattice Lab",
+      "path": "content/scenes/archie/lattice_lab.json"
     }
   ]
 }

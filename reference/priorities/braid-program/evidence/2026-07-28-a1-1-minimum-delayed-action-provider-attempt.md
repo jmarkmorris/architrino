@@ -1,11 +1,11 @@
 # A1.1 Minimum Delayed-Action Provider Attempt
 
-Date: 2026-07-28  
-Verification: incomplete at the future-boundary causal-update gate  
-Advancement: `Not advanced`  
-Machine status: `blocked-future-boundary-causal-update`  
-Disposition: `priority-only`, `diagnostic-only`, `null-score`  
-Claim grade: derived local identity plus bounded numerical implementation check  
+Date: 2026-07-28
+Verification: incomplete at the future-boundary causal-update gate
+Advancement: `Not advanced`
+Machine status: `blocked-future-boundary-causal-update`
+Disposition: `priority-only`, `diagnostic-only`, `null-score`
+Claim grade: derived local identity plus bounded numerical implementation check
 Execution boundary: stopped before branch and angular-momentum-ledger execution
 
 ## Outcome

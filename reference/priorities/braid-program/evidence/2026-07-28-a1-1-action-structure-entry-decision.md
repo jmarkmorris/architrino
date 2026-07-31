@@ -1,9 +1,9 @@
 # A1.1 Action-Structure Entry Decision
 
-Date: 2026-07-28  
-Status: `blocked-before-execution`  
-Disposition: `priority-only`, `null-score`, `diagnostic-boundary`  
-Claim grade: derived from live declared model and evidence boundaries  
+Date: 2026-07-28
+Status: `blocked-before-execution`
+Disposition: `priority-only`, `null-score`, `diagnostic-boundary`
+Claim grade: derived from live declared model and evidence boundaries
 Execution: none
 
 ## Decision

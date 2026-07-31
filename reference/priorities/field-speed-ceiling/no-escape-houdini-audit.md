@@ -1,8 +1,8 @@
 # Field-Speed Ceiling No-Escape ("Houdini") Audit
 
-**Date:** 2026-07-30  
-**Status:** review artifact complete; no boundary law selected  
-**Claim level:** assumption and ownership audit  
+**Date:** 2026-07-30
+**Status:** review artifact complete; no boundary law selected
+**Claim level:** assumption and ownership audit
 **Authority:** this artifact neither changes the canonical open model nor
 proves a closed-model continuation.
 

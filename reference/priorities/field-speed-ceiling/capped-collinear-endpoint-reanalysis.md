@@ -1,6 +1,6 @@
 # Capped Collinear Endpoint Reanalysis
 
-**Date:** 2026-07-30  
+**Date:** 2026-07-30
 **Status:** conditional bounded analytic recheck complete; continuation `Not advanced`
 **Scope:** stationary mirror-symmetric collinear release under the proposed closed primitive domain $\|\mathbf V\|\le c_f=1$.
 
