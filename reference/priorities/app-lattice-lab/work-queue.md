@@ -12,21 +12,18 @@ No rows.
 
 ## In progress
 
-No rows.
+### LAT-011 — Ledger visibility and hierarchy redesign
+
+- **Status:** In progress; rendered mathematical content temporarily cleared
+- **Observed problems:** The prior ledger was a dense tight-text audit trail and did not meet the at-a-glance teaching goal at the live narrow viewport.
+- **Current safe state:** The rendered panel now says only `Site ledger is being redesigned.` It displays no mathematical zero, shell row, vector, magnitude, or stale certification status while the replacement is unfinished. The panel footprint remains stable.
+- **Acceptance:** Restore a large icon-plus-text outcome, relative magnitude and vector where available, and two readable shell summaries, with individual contributions behind `Show calculation`. Certified checkerboard may use `In this ideal repeating pattern, matching pulls cancel at every site at release.` Non-certified cases must not inherit that sentence or a zero result.
 
 ## Awaiting verification
 
 No rows.
 
 ## Verified
-
-### LAT-011 — Ledger visibility and hierarchy redesign
-
-- **Status:** Verified
-- **Observed problems:** At the live 696 × 840 viewport, the miniature pushed shell totals and the final result below the fold; badge, coverage, warning, shell rows, and closing copy repeated the conclusion; the receiver read `Electrino site site …`; heading and badge competed at narrow width; and the scoped result/vector was not first.
-- **Verified result:** The ledger now leads with a large icon-plus-text outcome, relative magnitude, vector, and one plain scope sentence. Two readable shell-summary cards follow; individual contributions are hidden behind intentional `Show calculation` disclosures. The redundant receiver/coverage/warning audit block is removed. Certified checkerboard uses the green `✓ Zero in certified scope` treatment and the sentence `In this ideal repeating pattern, matching pulls cancel at every site at release.` Non-certified cases use amber `○ Not established`, `Relative magnitude: not established`, and do not inherit the checkerboard sentence.
-- **Browser check:** Certified checkerboard and diagnostic-only BCC were inspected at the live viewport. The BCC card shows no green state, no zero vector, and no inherited checkerboard certificate.
-- **Completion:** Satisfied.
 
 ### LAT-012 — Gallery-wide static uniaxial compression
 

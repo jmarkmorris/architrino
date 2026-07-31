@@ -673,14 +673,12 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
   assert.equal(html.includes("lattice-lab-miniature-legend"), false);
   assert.equal(html.includes("Synchronized orientation"), false);
   assert.match(html, /id="lattice-lab-case-select"/u);
-  assert.match(html, /id="lattice-lab-ledger-shells"/u);
-  assert.match(html, /Selected-Site Ledger/u);
-  assert.match(html, /id="lattice-lab-ledger-result"/u);
-  assert.match(
-    html,
-    /id="lattice-lab-ledger-result-scope"/u,
-  );
+  assert.match(html, /Site ledger is being redesigned\./u);
+  assert.equal(html.includes("Selected-Site Ledger"), false);
+  assert.equal(html.includes("lattice-lab-ledger-result"), false);
+  assert.equal(html.includes("lattice-lab-ledger-shells"), false);
   assert.equal(html.includes("Scope and calculation basis"), false);
+  assert.equal(html.includes("lattice-lab-configuration-state"), false);
   assert.match(
     html,
     /Each curated geometry has equal numbers of electrinos and positrinos\./u,
@@ -784,8 +782,10 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   );
   assert.match(
     css,
-    /\.lattice-lab-ledger-pair code \{[\s\S]*font-size: 10px;/u,
+    /\.lattice-lab-ledger-placeholder \{[\s\S]*font-size: 12px;/u,
   );
+  assert.doesNotMatch(css, /lattice-lab-ledger-pair|lattice-lab-shell-status/u);
+  assert.match(css, /background-image: url\("data:image\/svg\+xml/u);
   assert.match(runtime, /function updateUsableCanvasCenter\(\)/u);
   assert.match(
     runtime,

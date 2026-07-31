@@ -51,13 +51,6 @@ function clamp(value, minimum, maximum) {
   return Math.max(minimum, Math.min(maximum, value));
 }
 
-function formatVector(vector) {
-  if (!vector) {
-    return "not shown";
-  }
-  return `⟨${vector.map((value) => value === 0 ? "0" : value > 0 ? `+${value}` : String(value)).join(", ")}⟩`;
-}
-
 function formatTranslationVector(label, vector) {
   const values = vector.map((value) => {
     if (Math.abs(value) < 1e-10) {
@@ -80,28 +73,6 @@ function formatPolarityLabel(polarity) {
     return "positrino";
   }
   return "unavailable";
-}
-
-function formatNormalizedAcceleration(accelerationRow) {
-  if (!accelerationRow) {
-    return "unavailable";
-  }
-  const squared = accelerationRow.separationSquared;
-  const squareRoot = Math.sqrt(squared);
-  const denominator = Number.isInteger(squareRoot)
-    ? String(squared * squareRoot)
-    : `${squared}√${squared}`;
-  return `a₀·⟨${accelerationRow.accelerationNumerator.map((numerator) => {
-    if (numerator === 0) {
-      return "0";
-    }
-    const sign = numerator > 0 ? "+" : "−";
-    const magnitude = Math.abs(numerator);
-    if (denominator === "1") {
-      return `${sign}${magnitude}`;
-    }
-    return `${sign}${magnitude === 1 ? "1" : magnitude}/(${denominator})`;
-  }).join(", ")}⟩`;
 }
 
 function summarizeShellPolarities(shell) {
@@ -253,17 +224,8 @@ export function mountLatticeLab(options = {}) {
     compressionFactor: queryRequiredElement(documentLike, "#lattice-lab-compression-factor"),
     compressionValue: queryRequiredElement(documentLike, "#lattice-lab-compression-value"),
     compressionStatus: queryRequiredElement(documentLike, "#lattice-lab-compression-status"),
-    configurationState: queryRequiredElement(documentLike, "#lattice-lab-configuration-state"),
     population: queryRequiredElement(documentLike, "#lattice-lab-population"),
     whatSeeing: queryRequiredElement(documentLike, "#lattice-lab-what-seeing"),
-    ledgerResult: queryRequiredElement(documentLike, "#lattice-lab-ledger-result"),
-    ledgerState: queryRequiredElement(documentLike, "#lattice-lab-ledger-state"),
-    ledgerMagnitude: queryRequiredElement(documentLike, "#lattice-lab-ledger-magnitude"),
-    ledgerVector: queryRequiredElement(documentLike, "#lattice-lab-ledger-vector"),
-    ledgerResultScope: queryRequiredElement(documentLike, "#lattice-lab-ledger-result-scope"),
-    ledgerShells: queryRequiredElement(documentLike, "#lattice-lab-ledger-shells"),
-    ledgerResidual: queryRequiredElement(documentLike, "#lattice-lab-ledger-residual"),
-    ledgerTitle: queryRequiredElement(documentLike, "#lattice-lab-ledger-title"),
     inspectorStack: queryRequiredElement(documentLike, ".lattice-lab-inspector-stack"),
     miniatureKind: queryRequiredElement(documentLike, "#lattice-lab-miniature-kind"),
     miniatureState: queryRequiredElement(documentLike, "#lattice-lab-miniature-state"),
@@ -1069,8 +1031,6 @@ export function mountLatticeLab(options = {}) {
   }
 
   function updateConfigurationPresentation() {
-    dom.configurationState.textContent = "reference configuration";
-    dom.configurationState.dataset.state = "reference";
     dom.population.textContent =
       "Each curated geometry has equal numbers of electrinos and positrinos.";
     dom.miniatureKind.textContent = "Polarity Repeat Cell";
@@ -1096,10 +1056,6 @@ export function mountLatticeLab(options = {}) {
         compressionFactor,
       },
     );
-    const configurationState = isReferenceLatticeConfiguration(
-      caseRecord,
-      polarityBySiteId,
-    ) ? "reference configuration" : "modified configuration";
     const nearestShell = ledger.shells.find((shell) => shell.id === "nearest");
     const nextLocalShell = ledger.shells.find((shell) => shell.id === "next-local");
     const receiverPolarity = formatPolarityLabel(ledger.receiverPolarity);
@@ -1141,118 +1097,6 @@ export function mountLatticeLab(options = {}) {
         `This is a static geometry/reference case, ` +
         `not an acceleration, all-lattice cancellation, stability, or evolution result.`;
     }
-    dom.ledgerTitle.textContent = "Selected-Site Ledger";
-    dom.ledgerState.textContent = ledger.certificateApplies
-      ? "✓ Zero in certified scope"
-      : "○ Not established";
-    dom.ledgerState.dataset.certified = String(ledger.certificateApplies);
-    dom.ledgerResult.dataset.outcome = ledger.certificateApplies
-      ? "zero"
-      : "unavailable";
-    dom.ledgerMagnitude.textContent = ledger.certificateApplies
-      ? "Relative magnitude: 0"
-      : "Relative magnitude: not established";
-    dom.ledgerVector.textContent = ledger.certificateApplies
-      ? "Vector: ⟨0, 0, 0⟩ a₀"
-      : "Vector: not established";
-    dom.ledgerResultScope.textContent = ledger.certificateApplies
-      ? "In this ideal repeating pattern, matching pulls cancel at every site at release."
-      : "Acceleration is not established for this static geometry case.";
-    dom.ledgerShells.textContent = "";
-    ledger.shells.forEach((shell) => {
-      const shellSection = documentLike.createElement("section");
-      shellSection.className = "lattice-lab-ledger-shell";
-
-      const shellHeading = documentLike.createElement("header");
-      const shellTitle = documentLike.createElement("div");
-      const shellName = documentLike.createElement("strong");
-      shellName.textContent = shell.label;
-      const shellMeta = documentLike.createElement("small");
-      shellMeta.textContent =
-        `${summarizeShellPolarities(shell)} · distance ${shell.distance}`;
-      shellTitle.append(shellName, shellMeta);
-
-      const shellStatus = documentLike.createElement("span");
-      shellStatus.className = "lattice-lab-shell-status";
-      shellStatus.dataset.cancelled = String(Boolean(
-        shell.normalizedAccelerationResidual &&
-        shell.cancellingAccelerationPairs === shell.pairs.length,
-      ));
-      shellStatus.textContent = shell.normalizedAccelerationResidual
-        ? `${shell.visibleCount} neighbors → ` +
-          (
-            shell.normalizedAccelerationResidual.every((value) => value === 0)
-              ? "zero shell residual"
-              : `residual ${formatVector(shell.normalizedAccelerationResidual)} a₀`
-          )
-        : `${shell.visibleCount} neighbors → acceleration not established`;
-      shellHeading.append(shellTitle, shellStatus);
-      shellSection.append(shellHeading);
-
-      const shellDetails = documentLike.createElement("details");
-      shellDetails.className = "lattice-lab-shell-details";
-      const shellDetailsSummary = documentLike.createElement("summary");
-      const shellDetailsBody = documentLike.createElement("div");
-      if (shell.rows.every((row) => row.accelerationRow)) {
-        shellDetailsSummary.textContent = "Show calculation";
-        shell.pairs.forEach((pair) => {
-          const pairRow = documentLike.createElement("div");
-          pairRow.className = "lattice-lab-ledger-pair";
-          pairRow.dataset.cancelled = String(pair.accelerationCancelsExactly);
-
-          const pairHeading = documentLike.createElement("div");
-          const pairName = documentLike.createElement("strong");
-          pairName.textContent = pair.label;
-          const pairPolarity = documentLike.createElement("span");
-          pairPolarity.className = "lattice-lab-polarity-pair";
-          if (pair.equalPolarity) {
-            pairPolarity.dataset.polarity = pair.positions[0].polarity;
-          }
-          pairPolarity.textContent = pair.positions.map(
-            (position) => formatPolarityLabel(position.polarity),
-          ).join(" + ");
-          pairHeading.append(pairName, pairPolarity);
-
-          const pairPositions = documentLike.createElement("small");
-          pairPositions.textContent = pair.positions.map(
-            (position) => position.neighborLabel,
-          ).join(" ↔ ");
-
-          const pairContribution = documentLike.createElement("code");
-          pairContribution.textContent =
-            pair.availability === "resolved-antipodal-pair"
-              ? `${formatNormalizedAcceleration(pair.positions[0].accelerationRow)} + ${formatNormalizedAcceleration(pair.positions[1].accelerationRow)} = a₀·${formatVector(pair.normalizedAccelerationResidual)}`
-              : "Displayed contribution unavailable: continuation not shown";
-          pairRow.append(pairHeading, pairPositions, pairContribution);
-          shellDetailsBody.append(pairRow);
-        });
-      } else {
-        shellDetailsSummary.textContent = "Show calculation";
-        const rowList = documentLike.createElement("div");
-        rowList.className = "lattice-lab-geometry-rows";
-        shell.rows.forEach((row) => {
-          const rowElement = documentLike.createElement("div");
-          const polarity = documentLike.createElement("span");
-          polarity.className = "lattice-lab-polarity-pair";
-          polarity.dataset.polarity = row.polarity ?? "";
-          polarity.textContent = formatPolarityLabel(row.polarity);
-          const direction = documentLike.createElement("code");
-          direction.textContent = row.unitDirection
-            ? formatVector(row.unitDirection.map((value) =>
-              Math.abs(value) < 1e-10 ? 0 : Number(value.toFixed(3))
-            ))
-            : "direction unavailable";
-          rowElement.append(polarity, direction);
-          rowList.append(rowElement);
-        });
-        shellDetailsBody.append(rowList);
-      }
-      shellDetails.append(shellDetailsSummary, shellDetailsBody);
-      shellSection.append(shellDetails);
-      dom.ledgerShells.append(shellSection);
-    });
-    dom.ledgerResidual.textContent = "";
-
     updatePolarityMaterials();
     updateFixedMarkerSizes();
   }
