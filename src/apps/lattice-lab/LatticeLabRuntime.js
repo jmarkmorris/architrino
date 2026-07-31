@@ -605,17 +605,7 @@ export function mountLatticeLab(options = {}) {
   function rebuildMiniatureNetwork() {
     const network = createRepeatCellNearestNeighborNetwork(caseRecord);
     const rawPositions = [];
-    const miniatureSiteRows = [
-      ...caseRecord.repeatCell.sites.map((site) => ({
-        ...site,
-        continuation: false,
-      })),
-      ...network.continuationSites.map((site) => ({
-        ...site,
-        continuation: true,
-      })),
-    ];
-    miniatureSiteRows.forEach((site) => {
+    network.displaySites.forEach((site) => {
       const position = transformDisplayPosition(site.position);
       rawPositions.push(position);
       const material = site.continuation
@@ -644,7 +634,12 @@ export function mountLatticeLab(options = {}) {
       if (distance <= 0.26) {
         return;
       }
-      const segment = createClippedNeighborSegment(start, end, 0.13);
+      const segment = createClippedNeighborSegment(
+        start,
+        end,
+        edge.startContinuation ? 0.075 : 0.13,
+        edge.endContinuation ? 0.075 : 0.13,
+      );
       const geometry = new THREE.BufferGeometry().setFromPoints([
         new THREE.Vector3(...segment.start),
         new THREE.Vector3(...segment.end),
@@ -702,6 +697,8 @@ export function mountLatticeLab(options = {}) {
       network.expectedRelationshipCount;
     dom.miniatureCanvas.dataset.relationshipCount =
       String(network.relationshipCount);
+    dom.miniatureCanvas.dataset.displayEdgeCount =
+      String(network.edges.length);
     dom.miniatureCanvas.dataset.periodicContinuationCount =
       String(network.continuationSites.length);
   }

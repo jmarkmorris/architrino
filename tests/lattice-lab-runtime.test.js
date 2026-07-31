@@ -309,6 +309,11 @@ test("every miniature resolves the complete nearest-neighbor periodic network", 
       caseRecord.id,
     );
     assert.ok(network.edges.length > 0, caseRecord.id);
+    assert.equal(
+      network.displaySites.length,
+      caseRecord.repeatCell.sites.length + network.continuationSites.length,
+      caseRecord.id,
+    );
     assert.ok(network.continuationSites.length > 0, caseRecord.id);
     assert.equal(
       network.relationships.some(
@@ -340,7 +345,13 @@ test("checkerboard periodic network rejects diagonal graph bridges", () => {
   const checkerboard = createSimpleCubicCheckerboardCase();
   const network = createRepeatCellNearestNeighborNetwork(checkerboard);
   assert.equal(network.relationships.length, 12);
-  assert.equal(network.edges.length, 11);
+  assert.equal(network.edges.length, 15);
+  assert.equal(
+    network.edges.filter(
+      (edge) => edge.startContinuation && edge.endContinuation,
+    ).length,
+    4,
+  );
   assert.equal(
     network.relationships.every((relationship) =>
       Math.abs(
@@ -448,6 +459,30 @@ test("main and repeat-cell displays contain all and only nearest-neighbor links"
       )),
       repeatExpected,
       `${caseRecord.id} repeat-cell nearest-neighbor graph`,
+    );
+    const displayedExpected = new Set();
+    network.displaySites.forEach((site, siteIndex) => {
+      network.displaySites.slice(siteIndex + 1).forEach((neighbor) => {
+        const distance = Math.hypot(...neighbor.position.map(
+          (value, coordinate) => value - site.position[coordinate],
+        ));
+        if (
+          Math.abs(distance - caseRecord.nearestNeighborDistanceValue) < 1e-7
+        ) {
+          displayedExpected.add(
+            [positionKey(site.position), positionKey(neighbor.position)]
+              .sort()
+              .join("|"),
+          );
+        }
+      });
+    });
+    assert.deepEqual(
+      new Set(network.edges.map((edge) =>
+        [positionKey(edge.start), positionKey(edge.end)].sort().join("|")
+      )),
+      displayedExpected,
+      `${caseRecord.id} complete displayed nearest-neighbor graph`,
     );
     network.edges.forEach((edge) => {
       assert.ok(
@@ -647,6 +682,13 @@ test("nearest-neighbor geometry segments terminate at both sphere surfaces", () 
     {
       start: [0.2, 0, 0],
       end: [0.8, 0, 0],
+    },
+  );
+  assert.deepEqual(
+    createClippedNeighborSegment([0, 0, 0], [1, 0, 0], 0.2, 0.1),
+    {
+      start: [0.2, 0, 0],
+      end: [0.9, 0, 0],
     },
   );
 });

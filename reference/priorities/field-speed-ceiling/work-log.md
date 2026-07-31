@@ -66,8 +66,10 @@
   dynamical model: retain the point-delta emission limit and ordinary
   inverse-square wake at every positive radius; do not introduce a maturity
   radius merely to manage the cap-state motion.
-- At field speed, a speed-increasing received contribution has zero effective
-  velocity-changing effect before it is accumulated into constrained motion.
+- At field speed, the desired zero effective impact from a speed-increasing
+  contribution was recorded provisionally. The later complete axiom clarifies
+  that this rule applies to the net forward component only after the full
+  canonical finite ordinary ledger is summed, not separately per reception.
   Full wake measure/provenance for later account claims remains open.
 
 ## 2026-07-30 — Geometry-to-dynamics buildout
@@ -323,3 +325,54 @@
   $H$, conservation, Planck-scale, or Lorentz result is assumed.
 - The artifact closes bookkeeping shortcuts only. It adds no law, selects no
   event disposition, proves no continuation, and moves no closure score.
+
+## 2026-07-30 — Complete constrained-response axiom made explicit
+
+- Reorganized the mathematics foundation around one complete proposed
+  regular-chart axiom: the closed velocity ball, exact recovery of the
+  canonical complete finite ordinary net ledger below $c_f$, and its
+  least-change tangent-cone projection at $\|\mathbf V\|=c_f$ after every
+  ordinary row has been summed at canonical weight.
+- Added the coordinate-free tangent-cone minimization formula and derived the
+  forward, transverse, and backward decomposition. The axiom introduces no new
+  numerical scale; its least-change and total-ledger ordering clauses are
+  proposed law, not consequences of the bare velocity inequality.
+- Reconciled the provenance/status map, FSC-001 axiom budget, and no-escape
+  audit so they treat the domain and finite-ledger response as clauses of one
+  proposed foundational law.
+- Kept the nonordinary partner-contact question separate. Its strict
+  positive-delay members have positive causal separation; the ordinary chart
+  fails because the family is nonisolated with $D_t=0$ and lacks event
+  admission, measure, ownership, and disposition. This is an event-domain
+  question, not an inverse-square infinity prescription.
+- No ceiling, event disposition, outgoing collinear history, conservation,
+  retention, $H$, Planck-scale, Lorentz-recovery, MEC, or closure-score claim
+  was adopted or advanced.
+
+## 2026-07-30 — Minimal collinear partner-contact postulate selected for review
+
+- Added the operator-selected Minimal Collinear Partner-Contact Postulate as a
+  proposed, noncanonical event law for the exact stated mirror-collinear
+  same-path coincidence.
+- The postulate declares that the ordinary positive-separation,
+  isolated-reception ledger has no contact row at the event, the zero-radius
+  point-emission delta is source bookkeeping rather than a partner
+  acceleration contribution, and the separately owned contact event supplies
+  $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$.
+- Derived the bounded consequence that continuous velocity preserves each
+  incoming labeled velocity through the contact, producing event-local
+  pass-through. This does not generalize to arbitrary nonordinary contact.
+- Preserved the unaccelerated straight-passage negative. The first ordinary
+  post-contact slowing row still scales as $\delta^{-2}$, so a finite, unique
+  solution on an open post-contact interval remains unproved.
+- Reconciled the mathematics packet, endpoint reanalysis, FSC-001
+  compatibility decision, no-escape audit, priorities, and queue. FSC-002
+  remains blocked because the narrow collinear postulate supplies no
+  noncollinear or braid event law and adopts no ceiling.
+- Added the
+  [First Entourage Review Readiness Check](first-entourage-review-readiness.md).
+  The packet is ready for a narrow foundational-mathematics critique and is not
+  ready for broader theory validation.
+- No Entourage reviewer was contacted and nothing was published. No canonical
+  prose, EOM solver contract, conservation or stability result, physical
+  conclusion, MEC status, or closure score was changed.

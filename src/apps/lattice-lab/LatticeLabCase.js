@@ -751,27 +751,6 @@ export function createRepeatCellNearestNeighborNetwork(caseRecord) {
     );
   }
 
-  const edgeKeys = new Set();
-  const edges = [];
-  relationships.forEach((relationship) => {
-    const endpoints = [
-      relationship.fromPosition,
-      relationship.toPosition,
-    ].map((position) =>
-      position.map((value) => Number(value.toFixed(9))).join(",")
-    ).sort();
-    const key = endpoints.join("|");
-    if (edgeKeys.has(key)) {
-      return;
-    }
-    edgeKeys.add(key);
-    edges.push(Object.freeze({
-      start: relationship.fromPosition,
-      end: relationship.toPosition,
-      periodicContinuation: relationship.periodicContinuation,
-    }));
-  });
-
   const continuationKeys = new Set();
   const centralPositionKeys = new Set(repeatCell.sites.map((site) =>
     site.position.map((value) => Number(value.toFixed(9))).join(",")
@@ -796,11 +775,49 @@ export function createRepeatCellNearestNeighborNetwork(caseRecord) {
     })];
   });
 
+  const displaySites = Object.freeze([
+    ...repeatCell.sites.map((site) => Object.freeze({
+      id: site.id,
+      position: site.position,
+      polarity: site.polarity,
+      continuation: false,
+    })),
+    ...continuationSites.map((site) => Object.freeze({
+      ...site,
+      continuation: true,
+    })),
+  ]);
+  const edges = [];
+  displaySites.forEach((fromSite, fromIndex) => {
+    displaySites.slice(fromIndex + 1).forEach((toSite) => {
+      const distance = Math.hypot(...toSite.position.map(
+        (value, index) => value - fromSite.position[index],
+      ));
+      if (
+        Math.abs(distance - caseRecord.nearestNeighborDistanceValue) >
+          EPSILON
+      ) {
+        return;
+      }
+      edges.push(Object.freeze({
+        fromSiteId: fromSite.id,
+        toSiteId: toSite.id,
+        start: fromSite.position,
+        end: toSite.position,
+        startContinuation: fromSite.continuation,
+        endContinuation: toSite.continuation,
+        periodicContinuation:
+          fromSite.continuation || toSite.continuation,
+      }));
+    });
+  });
+
   return Object.freeze({
     relationshipCount: relationships.length,
     expectedRelationshipCount,
     relationships: Object.freeze(relationships),
     edges: Object.freeze(edges),
+    displaySites,
     continuationSites: Object.freeze(continuationSites),
   });
 }
@@ -1166,30 +1183,37 @@ export function createSelectedSiteLedger(
   });
 }
 
-export function createClippedNeighborSegment(start, end, endpointRadius) {
+export function createClippedNeighborSegment(
+  start,
+  end,
+  startEndpointRadius,
+  endEndpointRadius = startEndpointRadius,
+) {
   const startVector = start.map(Number);
   const endVector = end.map(Number);
-  const radius = Number(endpointRadius);
+  const startRadius = Number(startEndpointRadius);
+  const endRadius = Number(endEndpointRadius);
   if (
     startVector.length !== 3 ||
     endVector.length !== 3 ||
-    ![...startVector, ...endVector, radius].every(Number.isFinite) ||
-    radius < 0
+    ![...startVector, ...endVector, startRadius, endRadius].every(Number.isFinite) ||
+    startRadius < 0 ||
+    endRadius < 0
   ) {
-    throw new TypeError("A clipped neighbor segment requires finite 3D endpoints and a nonnegative radius.");
+    throw new TypeError("A clipped neighbor segment requires finite 3D endpoints and nonnegative radii.");
   }
   const delta = endVector.map((value, index) => value - startVector[index]);
   const distance = Math.hypot(...delta);
-  if (!(distance > 2 * radius)) {
-    throw new RangeError("A clipped neighbor segment must be longer than both endpoint radii.");
+  if (!(distance > startRadius + endRadius)) {
+    throw new RangeError("A clipped neighbor segment must be longer than the combined endpoint radii.");
   }
   const direction = delta.map((value) => value / distance);
   return Object.freeze({
     start: freezeVector(startVector.map(
-      (value, index) => value + direction[index] * radius,
+      (value, index) => value + direction[index] * startRadius,
     )),
     end: freezeVector(endVector.map(
-      (value, index) => value - direction[index] * radius,
+      (value, index) => value - direction[index] * endRadius,
     )),
   });
 }
