@@ -1,0 +1,649 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0d0a17;
+  color: #f8f5ff;
+  font-family: var(--ui-font-family, "Helvetica Neue", Arial, sans-serif);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+#lattice-lab-app {
+  --rail-width: 413.4px;
+  display: grid;
+  grid-template-columns: var(--rail-width) minmax(0, 1fr);
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  background: #0d0a17;
+  transition: grid-template-columns 140ms ease;
+}
+
+#lattice-lab-app[data-panel-collapsed="true"] {
+  --rail-width: 58px;
+}
+
+.lattice-lab-left-rail {
+  position: relative;
+  z-index: 8;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-right: 1px solid rgba(198, 182, 255, 0.22);
+  background: rgba(18, 13, 30, 0.98);
+}
+
+.lattice-lab-rail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 68px;
+  padding: 14px;
+  border-bottom: 1px solid rgba(198, 182, 255, 0.18);
+}
+
+.lattice-lab-title {
+  min-width: 0;
+}
+
+.lattice-lab-kicker,
+.lattice-lab-card-kicker,
+.lattice-lab-miniature-card span,
+.lattice-lab-ledger-heading span {
+  display: block;
+  color: #bdaeff;
+  font-size: 10px;
+  font-weight: 780;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.lattice-lab-title h1 {
+  margin: 4px 0 0;
+  font-size: 19px;
+  line-height: 1.08;
+}
+
+.lattice-lab-icon-button {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid rgba(198, 182, 255, 0.26);
+  border-radius: 999px;
+  background: rgba(10, 8, 18, 0.82);
+  cursor: pointer;
+}
+
+.lattice-lab-icon-button svg {
+  width: 17px;
+  height: 17px;
+}
+
+.lattice-lab-icon-button:hover,
+.lattice-lab-icon-button:focus-visible {
+  border-color: rgba(224, 216, 255, 0.7);
+  outline: 1px solid rgba(224, 216, 255, 0.42);
+}
+
+#lattice-lab-app[data-panel-collapsed="true"] .lattice-lab-rail-header {
+  justify-content: center;
+  padding-inline: 12px;
+}
+
+#lattice-lab-app[data-panel-collapsed="true"] .lattice-lab-title,
+#lattice-lab-app[data-panel-collapsed="true"] .lattice-lab-panel-content {
+  display: none;
+}
+
+.lattice-lab-panel-content {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  height: calc(100vh - 68px);
+  height: calc(100dvh - 68px);
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 10px;
+}
+
+.lattice-lab-card,
+.lattice-lab-miniature-card,
+.lattice-lab-ledger {
+  border: 1px solid rgba(198, 182, 255, 0.2);
+  border-radius: 10px;
+  background: rgba(27, 20, 43, 0.88);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
+}
+
+.lattice-lab-card {
+  padding: 12px;
+}
+
+.lattice-lab-case-selector-card {
+  padding: 8px 10px 10px;
+  border: 1px solid rgba(198, 182, 255, 0.48);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(77, 55, 116, 0.76), rgba(34, 24, 53, 0.94));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.lattice-lab-seeing-card {
+  border-color: rgba(198, 182, 255, 0.42);
+  background: rgba(48, 34, 76, 0.9);
+}
+
+.lattice-lab-card h2,
+.lattice-lab-ledger h2 {
+  margin: 3px 0 0;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.lattice-lab-card p {
+  margin: 8px 0 0;
+  color: #d1c9df;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.lattice-lab-card-heading,
+.lattice-lab-ledger-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.lattice-lab-case-selector {
+  display: grid;
+  gap: 6px;
+}
+
+.lattice-lab-case-selector select {
+  appearance: none;
+  width: 100%;
+  height: 36px;
+  padding: 0 34px 0 10px;
+  border: 1px solid rgba(198, 182, 255, 0.32);
+  border-radius: 7px;
+  background-color: rgba(14, 10, 24, 0.88);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 2h8L5 7z' fill='%23d8cff0'/%3E%3C/svg%3E");
+  background-position: calc(100% - 12px) center;
+  background-repeat: no-repeat;
+  background-size: 10px 8px;
+  color: #f8f5ff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 720;
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.lattice-lab-case-selector select:focus-visible {
+  border-color: rgba(226, 219, 255, 0.8);
+  outline: 1px solid rgba(226, 219, 255, 0.44);
+  outline-offset: 1px;
+}
+
+.lattice-lab-case-selector option {
+  background: #151020;
+  color: #f8f5ff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.lattice-lab-facts {
+  display: grid;
+  gap: 0;
+  margin: 10px 0 0;
+}
+
+.lattice-lab-facts > div {
+  display: grid;
+  grid-template-columns: minmax(88px, 0.8fr) minmax(0, 1.2fr);
+  gap: 8px;
+  padding: 6px 0;
+  border-top: 1px solid rgba(198, 182, 255, 0.12);
+}
+
+.lattice-lab-facts dt {
+  color: #aaa0bc;
+  font-size: 10px;
+  font-weight: 720;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.lattice-lab-facts dd {
+  margin: 0;
+  color: #eee9f7;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.lattice-lab-scope-note {
+  padding: 8px;
+  border-radius: 7px;
+  background: rgba(198, 182, 255, 0.08);
+}
+
+.lattice-lab-status {
+  min-height: 34px;
+}
+
+.lattice-lab-compression-controls {
+  margin-top: 10px;
+}
+
+.lattice-lab-compression-slider {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.lattice-lab-compression-slider input {
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  margin: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(198, 182, 255, 0.28);
+  cursor: ew-resize;
+}
+
+.lattice-lab-compression-slider input::-webkit-slider-thumb {
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #f8f5ff;
+  border-radius: 50%;
+  background: #8873dd;
+  box-shadow: 0 0 0 3px rgba(136, 115, 221, 0.22);
+}
+
+.lattice-lab-compression-slider input::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #f8f5ff;
+  border-radius: 50%;
+  background: #8873dd;
+}
+
+.lattice-lab-compression-slider input:focus-visible {
+  outline: 2px solid rgba(226, 219, 255, 0.72);
+  outline-offset: 5px;
+}
+
+.lattice-lab-compression-slider output {
+  min-width: 58px;
+  color: #f8f5ff;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 760;
+  text-align: right;
+}
+
+.lattice-lab-compression-card[data-available="false"] {
+  opacity: 0.72;
+}
+
+.lattice-lab-compression-controls :disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.lattice-lab-primer {
+  height: max-content;
+  padding: 0;
+  overflow: hidden;
+}
+
+.lattice-lab-primer-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 10px 12px;
+}
+
+.lattice-lab-primer-toggle {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border: 1px solid rgba(198, 182, 255, 0.26);
+  border-radius: 999px;
+  background: rgba(10, 8, 18, 0.82);
+  color: #c6b6ff;
+  font-size: 0;
+  cursor: pointer;
+}
+
+.lattice-lab-primer-toggle[hidden] {
+  display: none;
+}
+
+.lattice-lab-primer-toggle::after {
+  content: "›";
+  display: block;
+  font-size: 22px;
+  line-height: 26px;
+  transform: rotate(90deg);
+  transition: transform 120ms ease;
+}
+
+.lattice-lab-primer[data-primer-collapsed="true"] .lattice-lab-primer-toggle::after {
+  transform: rotate(0deg);
+}
+
+.lattice-lab-primer-heading strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 14px;
+}
+
+.lattice-lab-primer-body {
+  min-height: 0;
+  padding: 0 12px 12px;
+  border-top: 1px solid rgba(198, 182, 255, 0.12);
+  overflow: visible;
+}
+
+.lattice-lab-primer[data-primer-collapsed="true"] .lattice-lab-primer-body {
+  display: none;
+}
+
+.lattice-lab-stage {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(64, 44, 97, 0.26), transparent 46%),
+    #0d0a17;
+}
+
+#lattice-lab-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  touch-action: none;
+}
+
+#lattice-lab-canvas:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(198, 182, 255, 0.62);
+}
+
+.lattice-lab-navigation {
+  position: absolute;
+}
+
+.lattice-lab-tripod {
+  position: absolute;
+  left: 16px;
+  bottom: 18px;
+  z-index: 4;
+  width: 72px;
+  height: 66px;
+  padding: 5px;
+  border: 1px solid rgba(198, 182, 255, 0.2);
+  border-radius: 9px;
+  background: rgba(8, 7, 14, 0.7);
+  pointer-events: none;
+}
+
+.lattice-lab-tripod circle {
+  fill: #ffffff;
+}
+
+.lattice-lab-tripod line {
+  stroke: #c6b6ff;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.lattice-lab-tripod text {
+  fill: #f8f5ff;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.lattice-lab-inspector-stack {
+  --miniature-size: min(100%, max(190px, calc(100dvh - 610px)));
+  position: absolute;
+  top: 58px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 5;
+  display: grid;
+  align-content: start;
+  grid-template-rows: auto auto;
+  gap: 8px;
+  width: min(420px, calc(100% - 32px));
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+  pointer-events: auto;
+}
+
+.lattice-lab-miniature-card,
+.lattice-lab-ledger {
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
+}
+
+.lattice-lab-miniature-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
+  padding: 10px;
+  background: rgba(18, 13, 30, 0.9);
+  box-shadow: none;
+}
+
+.lattice-lab-miniature-card strong,
+.lattice-lab-miniature-card small {
+  display: block;
+}
+
+.lattice-lab-miniature-card strong {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.lattice-lab-miniature-card small {
+  margin-top: 5px;
+  color: #aaa0bc;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+#lattice-lab-miniature-canvas {
+  display: block;
+  width: var(--miniature-size);
+  height: auto;
+  aspect-ratio: 1;
+  justify-self: center;
+  border: 1px solid rgba(198, 182, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(9, 7, 15, 0.46);
+  cursor: grab;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+#lattice-lab-miniature-canvas:active {
+  cursor: grabbing;
+}
+
+#lattice-lab-miniature-canvas:focus-visible {
+  outline: 2px solid rgba(198, 182, 255, 0.62);
+  outline-offset: -2px;
+}
+
+.lattice-lab-repeat-rule {
+  display: grid;
+  gap: 5px;
+  padding-top: 7px;
+  border-top: 1px solid rgba(198, 182, 255, 0.14);
+}
+
+.lattice-lab-repeat-rule-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.lattice-lab-repeat-rule-heading > strong {
+  margin: 0;
+  font-size: 11px;
+}
+
+.lattice-lab-repeat-rule-heading label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #cfc6df;
+  font-size: 10px;
+  font-weight: 680;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.lattice-lab-repeat-rule-heading input {
+  width: 13px;
+  height: 13px;
+  margin: 0;
+  accent-color: #bdaeff;
+}
+
+.lattice-lab-repeat-vectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.lattice-lab-repeat-vectors code {
+  padding: 3px 5px;
+  border: 1px solid rgba(198, 182, 255, 0.16);
+  border-radius: 5px;
+  color: #ddd4ef;
+  background: rgba(198, 182, 255, 0.05);
+  font-size: 9px;
+  line-height: 1.2;
+}
+
+.lattice-lab-repeat-highlight-state {
+  display: block;
+  margin-top: 1px;
+  color: #aaa0bc;
+  font-size: 9px;
+  line-height: 1.3;
+}
+
+.lattice-lab-ledger {
+  min-height: 240px;
+  overflow: visible;
+  padding: 11px;
+  background: rgba(18, 13, 30, 0.94);
+}
+
+.lattice-lab-ledger-placeholder {
+  margin: 10px 0 0;
+  padding: 12px;
+  border: 1px solid rgba(198, 182, 255, 0.14);
+  border-radius: 8px;
+  color: #aaa0bc;
+  background: rgba(198, 182, 255, 0.035);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.lattice-lab-boot-error {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 40;
+  max-width: min(560px, calc(100vw - 32px));
+  padding: 14px;
+  border: 1px solid rgba(255, 110, 110, 0.65);
+  border-radius: 10px;
+  background: #2b111a;
+  color: #ffd4d4;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 980px) {
+  #lattice-lab-app {
+    --rail-width: 286px;
+  }
+
+  .lattice-lab-inspector-stack {
+    width: min(330px, calc(100% - 32px));
+  }
+}
+
+@media (max-width: 720px) {
+  #lattice-lab-app {
+    --rail-width: min(82vw, 300px);
+  }
+
+  #lattice-lab-app[data-panel-collapsed="true"] {
+    --rail-width: 52px;
+  }
+
+  .lattice-lab-inspector-stack {
+    top: 204px;
+    right: 10px;
+    bottom: 10px;
+    max-height: none;
+  }
+
+  .lattice-lab-miniature-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #lattice-lab-miniature-canvas {
+    width: var(--miniature-size);
+    height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #lattice-lab-app,
+  .lattice-lab-primer-toggle::after {
+    transition: none;
+  }
+}

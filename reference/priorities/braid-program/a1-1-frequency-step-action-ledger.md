@@ -5,17 +5,28 @@ Status: `plan-approved`, `solver-less-static-level-derivation`,
 `prescribed-path-interval-certifier-implemented`,
 `root-sheet-36-channel-diagnostic-closure`,
 `prescribed-structural-root-ledger-complete`,
-`receiver-phase-projection-monotonicity-certified`, `null-score`, and
-`priority-only`. This
+`receiver-phase-projection-monotonicity-certified`,
+`first-outer-radius-band-expansion-certified`,
+`second-outer-radius-band-topology-boundary-located`,
+`narrow-history-policy-outer-slice-certified`,
+`independent-acceptance-passed`, `null-score`, and `priority-only`. This
 document does not authorize an EOM solver run or
 advance a claim beyond the prescribed A1.1 chart, the symbolic kinematic and
 causal-root-topology consequences derived in Sections 5.1 and 5.2, and the
 diagnostic capability receipts in Section 5.2.9.
 
 Promotion classification: `priority-only`. The frozen prescribed-path family
-now has a complete, null-score diagnostic disposition across all $36$ ordered
-channels. That closure does not establish an EOM-retained branch or any
-physical candidate, so nothing in this document is ready for promotion into reader-facing
+and its first controlled outer-radius expansion have complete, null-score
+diagnostic dispositions across all $36$ ordered channels. The attempted next
+strip stops at an exact outer-self history-edge topology boundary while the
+other root and projection obligations remain certified through that edge. A
+separately authorized narrow history-policy extension then certifies only the
+previously unadjudicated slice through $\alpha_3=5/4$ without reclassifying the
+old boundary. A separately authorized extension of the original full-domain
+verifier then independently accepts the new-slice endpoint, fold, root-count,
+continuation, inversion, and projection mathematics. None of these results
+establishes an EOM-retained branch or any physical candidate, so nothing in
+this document is ready for promotion into reader-facing
 $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
 
 ## 1. Purpose
@@ -1847,6 +1858,243 @@ with the degree-one phase seam, this converts each certified one-root
 emission sheet into a one-root reception-phase sheet within the same imposed
 circular family. It remains a prescribed-path diagnostic result, not an EOM,
 stability, or physical claim.
+
+**First controlled outer-radius expansion.** The separately predeclared
+[one-band expansion protocol](../../../src/prescribed-path-analysis/protocols/a1-1-outer-radius-band-expansion-protocol.v1.json),
+[receipt](evidence/2026-07-28-a1-1-outer-radius-band-expansion.md), and
+[durable summary](evidence/a1-1-outer-radius-band-expansion-summary.v1.json)
+retain the frozen inner band, $\alpha_2=1$, the symmetric relative phases,
+$\chi=9/4$, all numerical floors, every resource ceiling, the null score, and
+the verification/advancement claim boundary. Only the adjacent outer band
+$9/8\le\alpha_3\le19/16$ is added, giving the combined domain
+$17/16\le\alpha_3\le19/16$.
+
+The original box was re-executed as an exact control. Its root-sheet,
+structural-ledger, projection, summary, and raw-ledger hashes all reproduced.
+Across the combined box, all $36$ ordered channels again received complete
+diagnostic dispositions: four self channels remain root-free, the two outer
+self channels retain one root, and the remaining $30$ ordered channels retain
+one root. Twelve inter-binary representatives and twelve endpoint-inversion
+reuses completed with no unresolved box under the unchanged limits.
+
+Plainly: the first new outer-radius strip keeps the same root-count map as the
+old box. The radius-sensitive outer self root moves, but it does not reach the
+history edge or change topology inside this strip.
+
+The continuous receiver-phase projection also remains strictly increasing.
+For the expanded outer-transmitter class, the conservative projection bound is
+
+$$
+\frac{33}{28186}
+\le
+\frac{d\theta}{d\epsilon}
+\le
+\frac{829}{2}.
+$$
+
+Twelve independent boundary witnesses passed the retained residual and
+finite-difference derivative floors. The deterministic replay reproduces the
+expansion result hash
+`389fe1a37065198fe4f6c5139b9359c733b22a08dd5f800c2e7d66703977bc57`
+and summary hash
+`a8c789f826ff286ef01f02f0a9aacc6faa72991e5e8535a436bc0531027eb23a`.
+
+Plainly: phase order remains continuous through the new upper boundary. The
+execution stopped after this one band, so $\alpha_3>19/16$ remains the exact
+uncertified boundary and no claim is made there.
+
+**Second controlled outer-radius expansion.** The separately predeclared
+[second-band protocol](../../../src/prescribed-path-analysis/protocols/a1-1-outer-radius-second-band-expansion-protocol.v1.json),
+[boundary receipt](evidence/2026-07-28-a1-1-outer-radius-second-band-boundary.md),
+and
+[durable summary](evidence/a1-1-outer-radius-second-band-expansion-summary.v1.json)
+retain the exact prior combined box as a hash-checked replay control. They add
+only $19/16\le\alpha_3\le5/4$, with the inner interval, $\alpha_2=1$,
+relative phases, $\chi=9/4$, numerical floors, resource ceilings, null score,
+and verification/advancement rules unchanged.
+
+The execution stopped inside the strip at
+
+$$
+\alpha_{3,\star}
+=
+\frac{9}{8\sin(9/8)}
+=
+1.2468584789674295,
+$$
+
+where both outer same-endpoint self roots reach the retained history edge
+$\delta=\chi=9/4$. Direct-coordinate residual recomputation is exactly zero
+on both rows, while the causal-residual delay derivative is
+`-0.4623839040979407`, establishing a simple history-edge root rather than a
+fold. Below this radius each outer self row has one interior root; above it
+the root lies outside the unchanged history reach.
+
+Plainly: the next strip cannot be certified to $5/4$ under the frozen history
+window. The first exact obstruction is the outer self-root crossing at
+$\alpha_{3,\star}$, so execution stops there.
+
+All $36$ ordered channels were accounted for through the edge. The other four
+self rows remain root-free, the six partner rows and all $24$ inter-binary
+ordered rows retain one root, and the six receiver-phase projection sheets
+remain strictly increasing. The prior expansion result and summary hashes
+reproduced exactly. The second-band result hash is
+`ae2596b32d046c4657de805777732e4695d455e2ad247546f7f5d1fbb9900e95`;
+the summary hash is
+`284bf4e33f82a996d31ce04547f52fa49f1e4f144e10753a18602232c26be37c`.
+
+Plainly: topology, not projection monotonicity or a resource ceiling, is the
+first boundary. This remains a null-score prescribed-path diagnostic and does
+not change candidate status or authorize a different history reach.
+
+**Separately authorized narrow history-policy extension.** The
+[extension protocol](../../../src/prescribed-path-analysis/protocols/a1-1-outer-radius-history-policy-extension-protocol.v1.json),
+[receipt](evidence/2026-07-28-a1-1-outer-radius-history-policy-extension.md),
+and
+[durable summary](evidence/a1-1-outer-radius-history-policy-extension-summary.v1.json)
+preserve the earlier $\chi=9/4$ boundary and its
+`counterexample-diagnostic` status as an exact replay control. They execute
+only
+
+$$
+\frac{9}{8\sin(9/8)}<\alpha_3\le\frac54
+$$
+
+under the separately declared exact reach
+
+$$
+\chi_{\mathrm{new}}=\frac{145}{64}.
+$$
+
+The smaller half-step $289/128$ remains too short at $\alpha_3=5/4$.
+At $145/64$, the outer self root
+$\delta_\star=2.2622051713025657$ is simple and interior, with independent
+normalized residual `1.9630810480128044e-16` on both affected rows. The next
+history-edge crossing is at
+$\alpha_3=1.2508853279964334>5/4$.
+
+Plainly: the old boundary stays valid under its old history rule. The new
+policy supplies just enough additional declared history to adjudicate the
+remaining requested radius slice.
+
+All $36$ ordered channels close with no unresolved row on the new slice, and
+all six receiver-phase projection sheets remain strictly increasing. The
+tolerance floors, precision floors, phase declaration, geometry, and resource
+ceilings are unchanged. The extension result hash is
+`edae3d88d1347656519f7efba4d0f9f530aec4eab7fce78bf687f4c28125145c`;
+the summary hash is
+`ddf8e622f0556b64c6cf348b6d9ee9cb109f7c28fc19dac508e356c9d540f57e`.
+The first unadjudicated radius is now $\alpha_3>5/4$ under the
+$145/64$ history policy.
+
+Plainly: the prescribed chart closes through the requested endpoint, but the
+result remains null-score, diagnostic-only, and unrelated to Campaign 1 or
+physical candidate selection.
+
+**Independent acceptance review.** The
+[strict review receipt](evidence/2026-07-28-a1-1-outer-radius-history-policy-independent-acceptance-review.md)
+confirms the frozen scope, exact replay of the prior $\chi=9/4$ boundary,
+closed-form history sufficiency and insufficiency controls, deterministic
+extension hashes, full producer inventory, negative controls, null score, and
+all claim exclusions. The scoped suite passes `33/33` tests.
+
+The review does not independently accept the continuous interbinary topology
+or six phase-projection sheets. The first unresolved acceptance edge is
+
+$$
+\alpha_3=\frac{9}{8\sin(9/8)}.
+$$
+
+Immediately above that preserved boundary, the producer interval certifier is
+the only full-domain enclosure instrument. The separate direct-coordinate
+residual and finite-difference derivative controls are point witnesses; their
+own baseline protocol limits their agreement to diagnostic parity rather than
+independent acceptance. A separately authored verifier must independently
+close endpoint exclusion, fold exclusion, anchor root count, connected-family
+continuation, endpoint inversion, and projection positivity over the complete
+new slice before acceptance can advance.
+
+Plainly: the extension remains a complete evaluated diagnostic packet, not an
+independently accepted continuous-family result. No numerical failure or
+physics claim was introduced; the blocker is the missing independent
+full-domain verifier.
+
+**Subsequent independent acceptance.** The separately authorized
+[independent acceptance receipt](evidence/2026-07-28-a1-1-history-policy-extension-independent-acceptance.md),
+[verifier protocol](../../../src/prescribed-path-analysis/protocols/a1-1-history-policy-extension-independent-verifier-protocol.v1.json),
+and
+[durable summary](evidence/a1-1-history-policy-extension-independent-verifier-summary.v1.json)
+close the exact blocker recorded by the review above. The original root-sheet
+and projection verifier result and summary hashes reproduce exactly, as do
+the earlier $\chi=9/4$ boundary protocol, result, and summary hashes.
+
+On only
+
+$$
+\frac{9}{8\sin(9/8)}<\alpha_3\le\frac54,
+$$
+
+the verifier independently closes endpoint exclusion, fold exclusion, one
+anchor root for each of $12$ interbinary representatives, connected
+continuation, exact inversion coverage of the other $12$ interbinary ordered
+channels, and positive receiver-phase projection on all six declared sheets.
+It evaluates $5{,}316$ fold boxes and $384$ anchor boxes with zero unresolved
+box. The result hash is
+`2b42529ac0429d8581767ce39af91ac5787cb957086a95c0fc1b2f480628fb1c`;
+the summary hash is
+`89e58f035dc3199cdd5a2a3a2c0fb0d936e006ab891d21ca781150c39ec15884`.
+
+Plainly: the earlier review remains an accurate record of the prior evidence
+gap, and the later verifier extension now closes that gap. The acceptance is
+still null-score, prescribed-path-only, and unrelated to candidate selection,
+physical realization, or Campaign 1.
+
+**Action-structure entry decision.** The next bounded review is recorded in
+the
+[action-structure entry decision](evidence/2026-07-28-a1-1-action-structure-entry-decision.md).
+It finds no canonical executable A1.1 action or angular-momentum increment at
+the present evidence boundary. The pure scalar delayed-action scaffold remains
+unpromoted because its Euler/constraint residual is unresolved, and the A1.1
+packet contains prescribed paths rather than an EOM-retained six-body branch.
+Therefore no action-parameter screen was opened and no action proxy was
+substituted.
+
+The first admissible provider is one actual retained periodic branch bound to
+one symmetry-preserving delayed action, independently checked Euler residual,
+derived conjugate momentum, complete mechanical/wake/environment/boundary
+angular-momentum ledger, and controls that return the appropriate Verification
+incomplete, Verification failed, and Not advanced outcomes. Only after that
+provider and an EOM-retained A1.1 branch exist may the `S3` through `S6`
+sequence below predeclare a smallest neighboring-level comparison.
+
+Plainly: the accepted root geometry remains intact, but it cannot yet answer
+whether action increments repeat. The missing object is the dynamics-derived
+action and its complete rotational ledger, not another radius or history
+sample.
+
+**Minimum delayed-action provider attempt.** The bounded follow-up is recorded
+in the
+[minimum delayed-action provider attempt](evidence/2026-07-28-a1-1-minimum-delayed-action-provider-attempt.md).
+It preserves the accepted A1.1 hashes and first rules out the already closed
+same-support scalar-repair route. The canonical normalized
+delayed-interior characteristic-tail kernel passes its local derivative
+implementation check on the declared two-body rotating chart, but its Noether
+crossing charge depends on receiver data after the time cut. The current causal
+state has no independently evolving wake account that determines that charge.
+
+The attempt consequently stops at
+`blocked-future-boundary-causal-update`. It does not claim the prescribed chart
+is an EOM solution, and it does not execute a retained periodic branch,
+conjugate-momentum promotion, complete angular-momentum ledger, or A1.1 action
+screen.
+
+Human-facing classification: Verification is incomplete because the causal
+wake account needed at the future-boundary gate is missing. The provider is
+Not advanced.
+
+Plainly: the action kernel's local calculus works, but the present-state ledger
+still asks for information from the future. The next admissible work is the
+causal wake-state derivation owned by Master Equation closure.
 
 ### 5.3 How radii could be determined, not assumed
 

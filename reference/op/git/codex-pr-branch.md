@@ -38,7 +38,10 @@ The canonical series index, counts, registry status, and concrete registry files
 
 - Keep one clear canonical working branch at a time.
 - Do not leave a session with unclear local state.
-- Do not push mixed-scope work.
+- A shared working branch may contain several coordinated workstreams. Publish
+  that combined branch when its full branch-tip diff is coherent and
+  reviewable; name every included workstream in the PR title or body rather
+  than treating interleaved commits as a reason to split, rewrite, or stop.
 - A merged pull request does not retire the local branch automatically. If you keep committing on that branch after merge, those later commits are new unmerged work.
 - Do not delete a branch until its pull request is merged and local `main` matches remote `main`.
 - Treat `git fetch origin` as remote-tracking refresh only. It does not update local `main`.
@@ -47,6 +50,46 @@ The canonical series index, counts, registry status, and concrete registry files
 - A green PR check run is not enough by itself. A ready PR must also be mergeable into the current base branch without conflicts.
 - If a git command in the cleanup or rollover sequence fails, stop and resolve that exact failure before continuing to the next git step.
 - In sandboxed environments, some local ref-updating commands may require escalation because Git needs to create lockfiles under `.git/refs`.
+
+## Shared-Checkout Coordination
+
+This repository normally uses one direct shared checkout. Multiple agents may
+edit, validate, commit, and push coordinated work on the same active branch.
+Git worktrees are not the default isolation mechanism here and must not be
+proposed merely because several agents are active.
+
+- Define PR scope from the committed branch-tip diff and the operator's active
+  directions, not from which agent made a commit or whether commits from
+  several workstreams interleave.
+- A combined PR is acceptable when its included workstreams can be stated
+  plainly, its complete diff is reviewable together, and validation covers the
+  resulting exact state. A coordinator should write that combined scope into
+  the PR body.
+- Do not ask for approval, require branch surgery, or propose a split merely
+  because the branch contains coordinated lattice, theory, documentation,
+  application, or mechanical-maintenance work.
+- Preserve unrelated ambient edits by keeping them out of the candidate
+  branch-tip scope. Stop only when ownership or overlap cannot be determined,
+  when an edit would be overwritten or endangered, or when resolving it would
+  require a substantive decision.
+
+### Routine authority through the review handoff
+
+An explicit instruction to run this procedure authorizes the healthy path all
+the way to the operator's PR-review handoff. Do not re-ask for approval for
+routine inspection, deterministic whitespace or generated-file repair,
+validation and retry, deliberate staging of the declared branch-tip scope,
+commit, ordinary non-force push, PR title/body preparation, PR creation or
+update, draft-to-ready transition, remote-check watching, or mergeability
+verification.
+
+Ask only for a new decision: a semantic or product-design change not already
+directed, uncertain file ownership or destructive overlap, a non-deterministic
+validation failure, force push/history rewrite/rebase/reset/stash/discard,
+branch deletion outside the verified post-merge path, or merging the PR. Host
+permission dialogs remain host-controlled; request the narrow reusable
+approval needed by the documented command rather than asking the operator to
+re-authorize the repository step.
 
 ## Two-Handoff Invocation Contract
 
@@ -59,8 +102,9 @@ The explicit instruction `run codex-pr-branch.md`, including the equivalent
 linked-file instruction, is standing authorization to execute the complete
 guarded publication path in this document:
 
-- inspect the current working branch and separate its intended scope from
-  unrelated ambient worktree state;
+- inspect the current working branch, identify the complete intended
+  branch-tip scope (which may include several coordinated workstreams), and
+  separate it from unrelated ambient worktree state;
 - run the required regeneration and validation steps;
 - repair branch-scoped mechanical drift when the repair is determined by an
   existing generator, validator, schema, index, path, or established
@@ -209,8 +253,10 @@ consecutive qualifying runs.
 Standing authorization ends and the agent must stop with an exact blocker map
 if any of the following occurs:
 
-- intended scope is ambiguous, or ambient edits overlap the files, staging
-  area, validation result, or branch checkout needed by this procedure;
+- intended scope cannot be identified from the branch-tip diff and active
+  operator directions, or ambient edits overlap the files, staging area,
+  validation result, or branch checkout needed by this procedure. Several
+  coordinated workstreams or interleaved commits alone are not ambiguity;
 - a merge conflict appears or local `main` cannot fast-forward;
 - a branch has post-merge commits or its local, remote, and PR identities do
   not agree;
@@ -232,7 +278,9 @@ Use this process whenever a work session is being wrapped up and the work is int
 
 ### 1. Confirm scope
 
-- Confirm that the scoped files for this branch contain only the intended changes.
+- Confirm that the branch-tip diff contains the intended combined scope. It
+  may contain several coordinated workstreams; record those workstreams
+  plainly for review.
 - This repo often has concurrent agents in the same checkout, so unrelated dirty files can be normal ambient state. Keep them out of staging and committing unless the operator explicitly brings them into scope.
 - If unrelated edits overlap the files needed for the PR, separate or resolve that overlap before staging or committing.
 
@@ -578,7 +626,8 @@ This check should happen even if you believe you are "just updating the PR," bec
   - any remaining ambient edits are outside PR scope and will not be
     endangered by the remaining branch operations;
   - the branch is mergeable into the current base branch;
-  - the diff represents one logically complete reviewable unit;
+  - the diff represents one coherent reviewable unit; it may contain multiple
+    coordinated workstreams when the PR body states them plainly;
   - the PR title and body are intentionally written rather than left to default autofill;
   - the remote PR checks have completed successfully;
   - and GitHub reports the PR as mergeable rather than conflicted.

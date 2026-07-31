@@ -569,3 +569,31 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
   completeness is not established, so Campaign 1 and fate classification did
   not start. See the
   [refined-prefix frontier packet](evidence/2026-07-27-refined-prefix-joint-frontier-extension.md).
+
+## 2026-07-28 — A1.1 history extension accepted; action provider not advanced
+
+- Preserved the independently accepted A1.1 radius/history packet as an exact
+  hashed control and opened no new radius, history, score, or candidate scope.
+- Extended the declared retained-history reach only from $\chi=9/4$ to
+  $\chi=145/64$ for the previously unadjudicated slice
+  $9/(8\sin(9/8))<\alpha_3\le5/4$. The prior history-edge boundary replayed
+  unchanged.
+- The separately authored full-domain verifier independently accepted endpoint
+  and fold exclusion, anchor root counts, connected continuation, inversion
+  coverage, and positive projection over the new slice. The result remains
+  diagnostic-only and null-score.
+- Reconfirmed the canonical no-go for a finite same-support scalar repair and
+  checked the available normalized delayed-interior characteristic-tail
+  kernel on one bounded prescribed rotating chart. Its local derivative
+  implementation passed at maximum absolute error
+  `3.3352485531157328e-6` against the predeclared `5e-6` tolerance.
+- Future-boundary verification is incomplete: the normalized-tail Noether
+  crossing charge depends on receiver data after the time cut, while the
+  current causal state has no independently evolving wake account that
+  determines it. A two-future witness differed by
+  `0.007092398897046797` against the declared `0.001` floor.
+- Stopped before any actual retained periodic branch, complete mechanical,
+  wake, environment, and boundary angular-momentum ledger, or action-increment
+  screen. The action provider is Not advanced; its retained machine status is
+  `blocked-future-boundary-causal-update`. See the
+  [minimum provider packet](evidence/2026-07-28-a1-1-minimum-delayed-action-provider-attempt.md).

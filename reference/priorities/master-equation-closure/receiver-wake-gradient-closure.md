@@ -8,9 +8,10 @@
 - Claim level: `priority-only derivation and proof design`
 - Workstream: [master-equation-closure](priorities.md)
 - Related queue items:
-  [MEC-001 characteristic-tail action adjudication](work-queue.md#mec-001--characteristic-tail-action-adjudication)
+  [MEC-001 characteristic-tail action adjudication](work-queue.md#mec-001--characteristic-tail-action-adjudication),
+  [MEC-005 pairwise causal-root ledger closure](pairwise-causal-root-ledger-closure.md),
   and
-  [MEC-005 pairwise causal-root ledger closure](pairwise-causal-root-ledger-closure.md)
+  [MEC-007 mirror close-approach causal-root boundary](mirror-close-approach-causal-root-boundary.md)
 - Routed research input:
   [wake reception, transfer, and maturity](../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md)
   invokes MEC-006 only when a reception candidate actually consumes a
@@ -74,7 +75,13 @@ smallest symmetric two-body check. It does not establish:
 - stability, binding, retention, rebound, or a physical energy account;
 - an EOM solver acceptance result;
 - a finite fold or coincident same-transmitter continuation; or
-- closure of MEC-001 or MEC-005.
+- closure of MEC-001, MEC-005, or MEC-007.
+
+The stationary mirror first-boundary theorem, complete pre-boundary root and
+singularity ledger, same-event root-admission question, and unchanged
+sharp-law post-threshold obstruction are owned separately by
+[MEC-007](mirror-close-approach-causal-root-boundary.md). They are not
+MEC-006 verification or completion evidence.
 
 MEC-005 may use this result only as an acceleration-operator readiness
 obligation. Its two-body conservation interpretation remains gated on an
@@ -1181,16 +1188,22 @@ boundary.
 MEC-006 also sharpens MEC-005 rather than replacing it. MEC-005 owns root
 enumeration, multiplicity, provenance, and boundary attribution. MEC-006 owns
 the derivative of each admitted regular acceleration row. Any future boundary
-rule must retain both incident root identities, give the boundary transition a
-single owner, and prohibit duplicate booking as both a root row and a boundary
-row.
+derivative rule must retain both incident root identities, give the derivative
+boundary transition a single owner, and prohibit duplicate booking as both a
+root row and a boundary row.
+
+MEC-007 separately owns the mirror close-approach event geometry, incoming
+first-boundary theorems, same-event measure test, and unchanged-law
+post-threshold obstruction. MEC-006 applies to that program only if a
+calculation consumes a receiver/self acceleration-gradient row.
 
 MEC-004 remains separate. No boundary acceleration-gradient prescription
 supplies a signed account value. If a future boundary update is accepted,
 MEC-004 must derive its signed maps on that identical update rather than
 constructing them from a residual. MEC-005's two-body conservation
-interpretation remains gated on an accepted MEC-006 self-compatible
-disposition and the separately required account closure on the same encounter
+interpretation remains gated on MEC-007's unresolved encounter boundary, on an
+accepted MEC-006 self-compatible derivative disposition wherever such rows are
+consumed, and on the separately required account closure on the same encounter
 record.
 
 Plainly: the regular mathematical derivative is now independently checked

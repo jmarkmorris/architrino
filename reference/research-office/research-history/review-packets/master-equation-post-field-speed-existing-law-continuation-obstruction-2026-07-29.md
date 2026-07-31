@@ -510,8 +510,8 @@ Plainly: Assigning no value at the single threshold event cannot cure the
 infinite accumulation from all positive-delay events immediately beside it.
 
 No continuation, passage, rebound, coordinate crossing, boundary value,
-physical claim, conserved account, stability, MEC-005 closure, MEC-006
-closure, or acceptance is advanced.
+physical claim, conserved account, stability, MEC-005 closure, MEC closure, or
+acceptance is advanced.
 
 # Proposed changes
 
@@ -526,14 +526,14 @@ same-transmitter transition remains unresolved.
 Plainly: The useful result is a precise stopping reason, not a replacement
 evolution.
 
-## No new MEC-006 queue target
+## No additional MEC-007 queue target
 
-No queue edit is needed. The live MEC-006 row already requires the one-sided
-self-root tube, complete root census, delayed-range and Jacobian asymptotics,
-signed acceleration integral, total variation, retained-history margin, and
-family-independent outgoing history. The calculation above resolves the
+The MEC-007 row owns the one-sided self-root tube, complete root census,
+delayed-range and Jacobian asymptotics, signed acceleration integral, total
+variation, retained-history margin, and family-independent disposition of any
+claimed outgoing history. The calculation above resolves the
 local-integrability and sign subquestion negatively for the unchanged
-stationary mirror law.
+stationary mirror law, so it creates no additional unchanged-law target.
 
 The remaining queue burden is not another audit of the same open-domain
 kernel. It is the already-owned question whether any separately authorized
@@ -547,8 +547,8 @@ one branch with `Not advanced` and leaves the boundary-law owner unchanged.
 
 | Item | Live owner | Disposition | Exact result | Claim boundary |
 | --- | --- | --- | --- | --- |
-| Stationary mirror post-field-speed continuation under the unchanged sharp-root law | `MEC-006` receiver wake-gradient closure | `priority-only` obstruction evidence; status unchanged | One regular inward partner root persists; one inward self root is born per label; older self and additional local partner roots are absent; the exact self delay measure is non-locally-finite | No regular continuation or finite braking contribution under the existing law |
-| Coincident same-transmitter transition | Existing MEC-003/MEC-006 boundary ownership | `unresolved`; no new target added | Any finite outgoing history requires a separately derived and authorized boundary law, which this packet does not propose | No passage, rebound, boundary value, physical claim, MEC closure, or acceptance |
+| Stationary mirror post-field-speed continuation under the unchanged sharp-root law | `MEC-007` mirror close-approach causal-root boundary | `priority-only` obstruction evidence; status unchanged | One regular inward partner root persists; one inward self root is born per label; older self and additional local partner roots are absent; the exact self delay measure is non-locally-finite | No regular continuation or finite braking contribution under the existing law |
+| Coincident same-transmitter transition | MEC-003 transition-law ownership with MEC-007 encounter-boundary evidence | `unresolved`; no new target added | Any finite outgoing history requires a separately derived and authorized boundary law, which this packet does not propose | No passage, rebound, boundary value, physical claim, MEC closure, or acceptance |
 
 Plainly: The existing law supplies a proof of obstruction, not the missing
 transition.

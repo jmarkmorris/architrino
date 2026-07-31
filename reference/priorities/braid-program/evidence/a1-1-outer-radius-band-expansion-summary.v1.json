@@ -1,0 +1,1447 @@
+{
+  "schema": "prescribed-path-analysis/a1-1-outer-radius-band-expansion-summary.v1",
+  "evaluator": {
+    "id": "a1-1-outer-radius-band-expansion-diagnostic",
+    "version": 1,
+    "prescribedPathAnalyticsOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "eomIntervalMachineryInvoked": false,
+    "eomCampaignInvoked": false,
+    "diagnosticOnly": true
+  },
+  "expansionProtocolHash": "ba964f401401b36a46e96683e7329fa21ac13ce04331d1c909648a6df237b8bd",
+  "baseProtocolHash": "7b2a3a2a56abbe97971d3fae447cd3406724cb2c5916e8ba3a0d39ad80772849",
+  "resultHash": "389fe1a37065198fe4f6c5139b9359c733b22a08dd5f800c2e7d66703977bc57",
+  "radiusExpansion": {
+    "order": 1,
+    "variedBand": "outer-radius-upper-adjacent-band-only",
+    "baseline": {
+      "alpha1": [
+        0.875,
+        0.9375
+      ],
+      "alpha2": [
+        1,
+        1
+      ],
+      "alpha3": [
+        1.0625,
+        1.125
+      ]
+    },
+    "addedOuterBand": [
+      1.125,
+      1.1875
+    ],
+    "combinedBox": {
+      "alpha1": [
+        0.875,
+        0.9375
+      ],
+      "alpha2": [
+        1,
+        1
+      ],
+      "alpha3": [
+        1.0625,
+        1.1875
+      ],
+      "receptionPhase": [
+        0,
+        6.283185307179586
+      ],
+      "dimensionlessDelayInterior": [
+        0.03125,
+        2.25
+      ]
+    },
+    "innerBandChanged": false,
+    "middleRadiusFieldSpeedPin": 1,
+    "relativePhases": [
+      "0",
+      "2*pi/3",
+      "4*pi/3"
+    ],
+    "relativePhaseOffsetsVary": false,
+    "historyReachChi": 2.25
+  },
+  "status": {
+    "code": "evaluated-diagnostic",
+    "score": null,
+    "reason": "complete-root-topology-and-positive-projection-certified-on-one-outer-radius-band-expansion"
+  },
+  "stopBoundary": {
+    "stoppedAfterDeclaredBand": true,
+    "nextBandExecuted": false,
+    "firstUncertifiedBoundary": "alpha3-greater-than-19/16-not-evaluated"
+  },
+  "controls": {
+    "baselineExactReplay": {
+      "id": "a1-1-original-radius-box-exact-deterministic-replay.v1",
+      "passed": true,
+      "controls": {
+        "rootSheet": {
+          "expectedResultHash": "7d930245906fef42966a883d93e8afddb57b7d4320acd1d5c1be25f776d45e1e",
+          "observedResultHash": "7d930245906fef42966a883d93e8afddb57b7d4320acd1d5c1be25f776d45e1e",
+          "expectedSummaryHash": "d43a763f11198a0bb2d1ce29eed8462ae08576980a739fecd72788d2c5b2a74a",
+          "observedSummaryHash": "d43a763f11198a0bb2d1ce29eed8462ae08576980a739fecd72788d2c5b2a74a",
+          "passed": true
+        },
+        "structuralLedger": {
+          "expectedResultHash": "e0fb41da7fa55f3ee73cd41e00aa8c66232b071415db122f5395a0f691c2b316",
+          "observedResultHash": "e0fb41da7fa55f3ee73cd41e00aa8c66232b071415db122f5395a0f691c2b316",
+          "expectedSummaryHash": "8293182ca383dd9414de1a01b42945da937b9ce904bf91e20d74324cc4c27474",
+          "observedSummaryHash": "8293182ca383dd9414de1a01b42945da937b9ce904bf91e20d74324cc4c27474",
+          "expectedRawLedgerHash": "e28835c1df045bfbbbbc3f419b7a31b1474d0bc51e99381a0bd54e75fa4be4b4",
+          "observedRawLedgerHash": "e28835c1df045bfbbbbc3f419b7a31b1474d0bc51e99381a0bd54e75fa4be4b4",
+          "passed": true
+        },
+        "projectionMonotonicity": {
+          "expectedResultHash": "75de3038ee36b4058ae86a44f1045b421a344f4cd3c91cb1cf080ba00758a447",
+          "observedResultHash": "75de3038ee36b4058ae86a44f1045b421a344f4cd3c91cb1cf080ba00758a447",
+          "expectedSummaryHash": "15a8c88c64792797f6b4bae16cd9876ad1cde4a3a56bac7133a09382fa9152df",
+          "observedSummaryHash": "15a8c88c64792797f6b4bae16cd9876ad1cde4a3a56bac7133a09382fa9152df",
+          "passed": true
+        }
+      }
+    },
+    "sameAndPartner": {
+      "id": "a1-1-expanded-same-and-partner-root-inventory.v1",
+      "passed": true,
+      "orderedChannelCount": 12,
+      "noRootChannelCount": 4,
+      "oneRootChannelCount": 8,
+      "maximumIndependentNormalizedResidual": 5.614171478762693e-16,
+      "rows": [
+        {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-1-endpoint-1",
+          "channelKind": "same-transmitter-self",
+          "radiusInterval": [
+            0.875,
+            0.9375
+          ],
+          "continuousRootCount": 0,
+          "method": "exact-circular-self-sine-strict-inequality-no-root-certificate.v1",
+          "endpointSigns": {
+            "positiveDelay": "strictly-negative-or-zero-only-at-delay-zero"
+          }
+        },
+        {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-1-endpoint-2",
+          "channelKind": "same-binary-opposite-endpoint",
+          "radiusInterval": [
+            0.875,
+            0.9375
+          ],
+          "continuousRootCount": 1,
+          "method": "exact-circular-partner-strictly-decreasing-endpoint-sign-certificate.v1",
+          "endpointSigns": {
+            "nearZeroLower": 1.7185363812992616,
+            "historyEdgeUpper": -1.441544031002501
+          }
+        },
+        {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-1-endpoint-1",
+          "channelKind": "same-binary-opposite-endpoint",
+          "radiusInterval": [
+            0.875,
+            0.9375
+          ],
+          "continuousRootCount": 1,
+          "method": "exact-circular-partner-strictly-decreasing-endpoint-sign-certificate.v1",
+          "endpointSigns": {
+            "nearZeroLower": 1.7185363812992616,
+            "historyEdgeUpper": -1.441544031002501
+          }
+        },
+        {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-1-endpoint-2",
+          "channelKind": "same-transmitter-self",
+          "radiusInterval": [
+            0.875,
+            0.9375
+          ],
+          "continuousRootCount": 0,
+          "method": "exact-circular-self-sine-strict-inequality-no-root-certificate.v1",
+          "endpointSigns": {
+            "positiveDelay": "strictly-negative-or-zero-only-at-delay-zero"
+          }
+        },
+        {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-2-endpoint-1",
+          "channelKind": "same-transmitter-self",
+          "radiusInterval": [
+            1,
+            1
+          ],
+          "continuousRootCount": 0,
+          "method": "exact-circular-self-sine-strict-inequality-no-root-certificate.v1",
+          "endpointSigns": {
+            "positiveDelay": "strictly-negative-or-zero-only-at-delay-zero"
+          }
+        },
+        {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-2-endpoint-2",
+          "channelKind": "same-binary-opposite-endpoint",
+          "radiusInterval": [
+            1,
+            1
+          ],
+          "continuousRootCount": 1,
+          "method": "exact-circular-partner-strictly-decreasing-endpoint-sign-certificate.v1",
+          "endpointSigns": {
+            "nearZeroLower": 1.9685058643420132,
+            "historyEdgeUpper": -1.3876469664026676
+          }
+        },
+        {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-2-endpoint-1",
+          "channelKind": "same-binary-opposite-endpoint",
+          "radiusInterval": [
+            1,
+            1
+          ],
+          "continuousRootCount": 1,
+          "method": "exact-circular-partner-strictly-decreasing-endpoint-sign-certificate.v1",
+          "endpointSigns": {
+            "nearZeroLower": 1.9685058643420132,
+            "historyEdgeUpper": -1.3876469664026676
+          }
+        },
+        {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-2-endpoint-2",
+          "channelKind": "same-transmitter-self",
+          "radiusInterval": [
+            1,
+            1
+          ],
+          "continuousRootCount": 0,
+          "method": "exact-circular-self-sine-strict-inequality-no-root-certificate.v1",
+          "endpointSigns": {
+            "positiveDelay": "strictly-negative-or-zero-only-at-delay-zero"
+          }
+        },
+        {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-3-endpoint-1",
+          "channelKind": "same-transmitter-self",
+          "radiusInterval": [
+            1.0625,
+            1.1875
+          ],
+          "continuousRootCount": 1,
+          "method": "exact-circular-self-one-maximum-endpoint-sign-certificate.v1",
+          "endpointSigns": {
+            "nearZero": "positive-for-alpha3>1",
+            "historyEdgeUpper": -0.10711446401464908
+          }
+        },
+        {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-3-endpoint-2",
+          "channelKind": "same-binary-opposite-endpoint",
+          "radiusInterval": [
+            1.0625,
+            1.1875
+          ],
+          "continuousRootCount": 1,
+          "method": "exact-circular-partner-strictly-decreasing-endpoint-sign-certificate.v1",
+          "endpointSigns": {
+            "nearZeroLower": 2.093490605863389,
+            "historyEdgeUpper": -1.2259557726031678
+          }
+        },
+        {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-3-endpoint-1",
+          "channelKind": "same-binary-opposite-endpoint",
+          "radiusInterval": [
+            1.0625,
+            1.1875
+          ],
+          "continuousRootCount": 1,
+          "method": "exact-circular-partner-strictly-decreasing-endpoint-sign-certificate.v1",
+          "endpointSigns": {
+            "nearZeroLower": 2.093490605863389,
+            "historyEdgeUpper": -1.2259557726031678
+          }
+        },
+        {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-3-endpoint-2",
+          "channelKind": "same-transmitter-self",
+          "radiusInterval": [
+            1.0625,
+            1.1875
+          ],
+          "continuousRootCount": 1,
+          "method": "exact-circular-self-one-maximum-endpoint-sign-certificate.v1",
+          "endpointSigns": {
+            "nearZero": "positive-for-alpha3>1",
+            "historyEdgeUpper": -0.10711446401464908
+          }
+        }
+      ],
+      "sampledRoots": [
+        {
+          "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-1-endpoint-2",
+          "radius": 0.90625,
+          "delay": 1.3913269396540122,
+          "bracket": [
+            1.391326939654012,
+            1.3913269396540122
+          ],
+          "endpointResiduals": [
+            2.220446049250313e-16,
+            0
+          ],
+          "independentNormalizedResidual": 7.979598417761112e-17,
+          "passed": true
+        },
+        {
+          "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-1-endpoint-1",
+          "radius": 0.90625,
+          "delay": 1.3913269396540122,
+          "bracket": [
+            1.391326939654012,
+            1.3913269396540122
+          ],
+          "endpointResiduals": [
+            2.220446049250313e-16,
+            0
+          ],
+          "independentNormalizedResidual": 7.979598417761112e-17,
+          "passed": true
+        },
+        {
+          "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-2-endpoint-2",
+          "radius": 1,
+          "delay": 1.4781702664303213,
+          "bracket": [
+            1.4781702664303211,
+            1.4781702664303213
+          ],
+          "endpointResiduals": [
+            2.220446049250313e-16,
+            0
+          ],
+          "independentNormalizedResidual": -1.5021585129110575e-16,
+          "passed": true
+        },
+        {
+          "channelId": "a1-1-binary-2-endpoint-2<-a1-1-binary-2-endpoint-1",
+          "radius": 1,
+          "delay": 1.4781702664303213,
+          "bracket": [
+            1.4781702664303211,
+            1.4781702664303213
+          ],
+          "endpointResiduals": [
+            2.220446049250313e-16,
+            0
+          ],
+          "independentNormalizedResidual": -1.5021585129110575e-16,
+          "passed": true
+        },
+        {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-3-endpoint-1",
+          "radius": 1.1875,
+          "delay": 1.9957843567706544,
+          "bracket": [
+            1.9957843567706541,
+            1.9957843567706544
+          ],
+          "endpointResiduals": [
+            2.220446049250313e-16,
+            0
+          ],
+          "independentNormalizedResidual": 1.1125681197557736e-16,
+          "passed": true
+        },
+        {
+          "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-3-endpoint-2",
+          "radius": 1.125,
+          "delay": 1.5820293752336019,
+          "bracket": [
+            1.5820293752336019,
+            1.582029375233602
+          ],
+          "endpointResiduals": [
+            4.440892098500626e-16,
+            0
+          ],
+          "independentNormalizedResidual": 5.614171478762693e-16,
+          "passed": true
+        },
+        {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-3-endpoint-1",
+          "radius": 1.125,
+          "delay": 1.5820293752336019,
+          "bracket": [
+            1.5820293752336019,
+            1.582029375233602
+          ],
+          "endpointResiduals": [
+            4.440892098500626e-16,
+            0
+          ],
+          "independentNormalizedResidual": 5.614171478762693e-16,
+          "passed": true
+        },
+        {
+          "channelId": "a1-1-binary-3-endpoint-2<-a1-1-binary-3-endpoint-2",
+          "radius": 1.1875,
+          "delay": 1.9957843567706544,
+          "bracket": [
+            1.9957843567706541,
+            1.9957843567706544
+          ],
+          "endpointResiduals": [
+            2.220446049250313e-16,
+            0
+          ],
+          "independentNormalizedResidual": 1.1125681197557736e-16,
+          "passed": true
+        }
+      ]
+    },
+    "interBinary": {
+      "id": "a1-1-expanded-inter-binary-root-sheet-inventory.v1",
+      "passed": true,
+      "representativeCount": 12,
+      "endpointInversionReusedChannelCount": 12,
+      "continuousOneRootOrderedChannelCount": 24,
+      "resources": {
+        "declared": {
+          "squaredResidualExclusionFloor": 1e-10,
+          "squaredDelayDerivativeExclusionFloor": 1e-8,
+          "intervalPaddingUlps": 4,
+          "initialRatioSubdivisions": 2,
+          "initialReceptionPhaseSubdivisions": 24,
+          "maximumSubdivisionDepth": 18,
+          "maximumBoxesPerRepresentative": 20000,
+          "maximumBoxesPerPacket": 180000,
+          "minimumAlphaWidth": 0.0000152587890625,
+          "minimumReceptionPhaseWidth": 0.00009587379924285257,
+          "minimumDelayWidth": 0.000034332275390625,
+          "splitPolicy": "largest-active-normalized-width.v1"
+        },
+        "effective": {
+          "maximumBoxesPerRepresentative": 20000,
+          "maximumBoxesPerPacket": 180000
+        },
+        "totalEvaluatedBoxes": 6508,
+        "foldEvaluatedBoxCount": 6124,
+        "anchorEvaluatedBoxCount": 384,
+        "maximumDepthReached": 12
+      },
+      "controls": {
+        "endpointAndSeam": {
+          "id": "a1-1-root-sheet-endpoint-and-phase-seam-control.v1",
+          "nearZeroSquaredResidualLowerMargin": 0.0029296875,
+          "historyEdgeSquaredResidualUpperMargin": -0.27734375,
+          "nearZeroRootFree": true,
+          "historyEdgeRootFree": true,
+          "phaseSeamIdentity": "theta-zero-identified-with-two-pi/exact-four-pi-sigma-periodicity.v1",
+          "phaseSeamExact": true,
+          "phaseSeamProof": "the declared trigonometric arguments change by exact integer multiples of two-pi under theta->theta+two-pi",
+          "passed": true
+        },
+        "syntheticFold": {
+          "id": "synthetic-exact-fold-negative-control.v1",
+          "rootFunction": "(delta-1)^2",
+          "foldPoint": 1,
+          "squaredResidualEnclosure": [
+            0,
+            0
+          ],
+          "squaredDelayDerivativeEnclosure": [
+            0,
+            0
+          ],
+          "disposition": "unresolved-possible-fold-box",
+          "passed": true
+        },
+        "resourceExhaustion": {
+          "id": "resource-exhaustion-fail-closed-negative-control.v1",
+          "status": "drawn-not-evaluated",
+          "score": null,
+          "unresolvedBoxCount": 49,
+          "passed": true
+        }
+      }
+    },
+    "projection": {
+      "id": "a1-1-expanded-receiver-phase-projection-monotonicity.v1",
+      "passed": true,
+      "continuousConclusion": "the-receiver-phase-projection-is-strictly-increasing-on-each-declared-emission-fixed-root-sheet.v1",
+      "controls": {
+        "endpointInversion": {
+          "id": "a1-1-expanded-projection-endpoint-inversion-control.v1",
+          "comparisonCount": 324,
+          "maximumEnclosureEndpointDifference": 0,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        "phaseSeam": {
+          "id": "a1-1-expanded-projection-phase-seam-control.v1",
+          "replayCount": 36,
+          "maximumEnclosureEndpointDifference": 1.9984014443252818e-14,
+          "tolerance": 1e-12,
+          "passed": true
+        },
+        "independentWitness": {
+          "id": "a1-1-expanded-projection-independent-boundary-witnesses.v1",
+          "witnessCount": 12,
+          "maximumIndependentNormalizedResidual": 6.139621386711707e-16,
+          "maximumReceptionSquaredDerivativeDifference": 6.369695881858206e-10,
+          "maximumEmissionSquaredDerivativeDifference": 2.7829294424464024e-10,
+          "normalizedResidualFloor": 1e-9,
+          "derivativeDifferenceTolerance": 0.000001,
+          "passed": true,
+          "rows": [
+            {
+              "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+              "alpha1": 0.875,
+              "alpha3": 1.125,
+              "epsilon": 0.4487989505128276,
+              "receptionPhase": 1.1269085732584998,
+              "delay": 0.6781096227456722,
+              "independentNormalizedResidual": 4.093080924474472e-17,
+              "finiteDifferenceReceptionSquaredDerivative": -0.4659451026818715,
+              "primaryReceptionSquaredDerivative": -0.46594510272008377,
+              "receptionSquaredDerivativeDifference": 3.821226668421218e-11,
+              "finiteDifferenceEmissionSquaredDerivative": -1.9771740019496065,
+              "primaryEmissionSquaredDerivative": -1.9771740019433914,
+              "emissionSquaredDerivativeDifference": 6.215028491851626e-12,
+              "passed": true
+            },
+            {
+              "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+              "alpha1": 0.9375,
+              "alpha3": 1.1875,
+              "epsilon": 3.5903916041026207,
+              "receptionPhase": 4.278385394266378,
+              "delay": 0.6879937901637576,
+              "independentNormalizedResidual": 2.017138527443865e-16,
+              "finiteDifferenceReceptionSquaredDerivative": -0.417685638734838,
+              "primaryReceptionSquaredDerivative": -0.4176856386929953,
+              "receptionSquaredDerivativeDifference": 4.1842695974736444e-11,
+              "finiteDifferenceEmissionSquaredDerivative": -2.027435399009846,
+              "primaryEmissionSquaredDerivative": -2.02743539902937,
+              "emissionSquaredDerivativeDifference": 1.9523938021848153e-11,
+              "passed": true
+            },
+            {
+              "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+              "alpha1": 0.9375,
+              "alpha3": 1.125,
+              "epsilon": 0.4487989505128276,
+              "receptionPhase": 1.7663211768213456,
+              "delay": 1.317522226308518,
+              "independentNormalizedResidual": 2.52797942028459e-16,
+              "finiteDifferenceReceptionSquaredDerivative": -2.6044191372347996,
+              "primaryReceptionSquaredDerivative": -2.6044191372264143,
+              "receptionSquaredDerivativeDifference": 8.385292460388882e-12,
+              "finiteDifferenceEmissionSquaredDerivative": -4.698441221262328,
+              "primaryEmissionSquaredDerivative": -4.698441221272868,
+              "emissionSquaredDerivativeDifference": 1.0540013306581386e-11,
+              "passed": true
+            },
+            {
+              "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+              "alpha1": 0.875,
+              "alpha3": 1.1875,
+              "epsilon": 3.5903916041026207,
+              "receptionPhase": 4.9158946864817725,
+              "delay": 1.3255030823791514,
+              "independentNormalizedResidual": -1.6751723015723392e-16,
+              "finiteDifferenceReceptionSquaredDerivative": -2.6196197324898094,
+              "primaryReceptionSquaredDerivative": -2.6196197327509902,
+              "receptionSquaredDerivativeDifference": 2.611808547214878e-10,
+              "finiteDifferenceEmissionSquaredDerivative": -4.680556197999977,
+              "primaryEmissionSquaredDerivative": -4.680556197967704,
+              "emissionSquaredDerivativeDifference": 3.227285105822375e-11,
+              "passed": true
+            },
+            {
+              "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2",
+              "alpha1": 0.875,
+              "alpha3": 1.125,
+              "epsilon": 0.4487989505128276,
+              "receptionPhase": 2.259654926509147,
+              "delay": 1.8108559759963194,
+              "independentNormalizedResidual": 0,
+              "finiteDifferenceReceptionSquaredDerivative": -3.7152328288648278,
+              "primaryReceptionSquaredDerivative": -3.715232828227858,
+              "receptionSquaredDerivativeDifference": 6.369695881858206e-10,
+              "finiteDifferenceEmissionSquaredDerivative": -2.106141691096127,
+              "primaryEmissionSquaredDerivative": -2.1061416913288573,
+              "emissionSquaredDerivativeDifference": 2.3273027949244351e-10,
+              "passed": true
+            },
+            {
+              "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2",
+              "alpha1": 0.9375,
+              "alpha3": 1.1875,
+              "epsilon": 3.5903916041026207,
+              "receptionPhase": 5.589435504470265,
+              "delay": 1.999043900367644,
+              "independentNormalizedResidual": -2.2215080407608367e-16,
+              "finiteDifferenceReceptionSquaredDerivative": -4.12601830996573,
+              "primaryReceptionSquaredDerivative": -4.126018310535672,
+              "receptionSquaredDerivativeDifference": 5.69942315564731e-10,
+              "finiteDifferenceEmissionSquaredDerivative": -2.578349703224376,
+              "primaryEmissionSquaredDerivative": -2.578349703502669,
+              "emissionSquaredDerivativeDifference": 2.7829294424464024e-10,
+              "passed": true
+            },
+            {
+              "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-2-endpoint-1",
+              "alpha1": 0.9375,
+              "alpha3": 1.125,
+              "epsilon": 0.4487989505128276,
+              "receptionPhase": 1.136792740676585,
+              "delay": 0.6879937901637574,
+              "independentNormalizedResidual": -2.0171385274438662e-16,
+              "finiteDifferenceReceptionSquaredDerivative": -0.4176856386475265,
+              "primaryReceptionSquaredDerivative": -0.41768563869299546,
+              "receptionSquaredDerivativeDifference": 4.546896192891836e-11,
+              "finiteDifferenceEmissionSquaredDerivative": -2.02743539903895,
+              "primaryEmissionSquaredDerivative": -2.027435399029369,
+              "emissionSquaredDerivativeDifference": 9.580780613305251e-12,
+              "passed": true
+            },
+            {
+              "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-2-endpoint-1",
+              "alpha1": 0.875,
+              "alpha3": 1.1875,
+              "epsilon": 3.5903916041026207,
+              "receptionPhase": 4.268501226848294,
+              "delay": 0.6781096227456724,
+              "independentNormalizedResidual": -6.139621386711707e-16,
+              "finiteDifferenceReceptionSquaredDerivative": -0.4659451026818715,
+              "primaryReceptionSquaredDerivative": -0.4659451027200833,
+              "receptionSquaredDerivativeDifference": 3.821182259500233e-11,
+              "finiteDifferenceEmissionSquaredDerivative": -1.9771740019496065,
+              "primaryEmissionSquaredDerivative": -1.977174001943391,
+              "emissionSquaredDerivativeDifference": 6.215472581061476e-12,
+              "passed": true
+            },
+            {
+              "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-1",
+              "alpha1": 0.875,
+              "alpha3": 1.125,
+              "epsilon": 0.4487989505128276,
+              "receptionPhase": 2.259654926509147,
+              "delay": 1.8108559759963194,
+              "independentNormalizedResidual": 0,
+              "finiteDifferenceReceptionSquaredDerivative": -3.7152328288648278,
+              "primaryReceptionSquaredDerivative": -3.715232828227858,
+              "receptionSquaredDerivativeDifference": 6.369695881858206e-10,
+              "finiteDifferenceEmissionSquaredDerivative": -2.106141691096127,
+              "primaryEmissionSquaredDerivative": -2.1061416913288573,
+              "emissionSquaredDerivativeDifference": 2.3273027949244351e-10,
+              "passed": true
+            },
+            {
+              "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-1",
+              "alpha1": 0.9375,
+              "alpha3": 1.1875,
+              "epsilon": 3.5903916041026207,
+              "receptionPhase": 5.589435504470265,
+              "delay": 1.999043900367644,
+              "independentNormalizedResidual": -2.2215080407608367e-16,
+              "finiteDifferenceReceptionSquaredDerivative": -4.12601830996573,
+              "primaryReceptionSquaredDerivative": -4.126018310535672,
+              "receptionSquaredDerivativeDifference": 5.69942315564731e-10,
+              "finiteDifferenceEmissionSquaredDerivative": -2.578349703224376,
+              "primaryEmissionSquaredDerivative": -2.578349703502669,
+              "emissionSquaredDerivativeDifference": 2.7829294424464024e-10,
+              "passed": true
+            },
+            {
+              "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-2",
+              "alpha1": 0.9375,
+              "alpha3": 1.125,
+              "epsilon": 0.4487989505128276,
+              "receptionPhase": 1.7663211768213456,
+              "delay": 1.317522226308518,
+              "independentNormalizedResidual": 2.52797942028459e-16,
+              "finiteDifferenceReceptionSquaredDerivative": -2.6044191372347996,
+              "primaryReceptionSquaredDerivative": -2.6044191372264143,
+              "receptionSquaredDerivativeDifference": 8.385292460388882e-12,
+              "finiteDifferenceEmissionSquaredDerivative": -4.698441221262328,
+              "primaryEmissionSquaredDerivative": -4.698441221272868,
+              "emissionSquaredDerivativeDifference": 1.0540013306581386e-11,
+              "passed": true
+            },
+            {
+              "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-2",
+              "alpha1": 0.875,
+              "alpha3": 1.1875,
+              "epsilon": 3.5903916041026207,
+              "receptionPhase": 4.9158946864817725,
+              "delay": 1.3255030823791514,
+              "independentNormalizedResidual": -1.6751723015723392e-16,
+              "finiteDifferenceReceptionSquaredDerivative": -2.6196197324898094,
+              "primaryReceptionSquaredDerivative": -2.6196197327509902,
+              "receptionSquaredDerivativeDifference": 2.611808547214878e-10,
+              "finiteDifferenceEmissionSquaredDerivative": -4.680556197999977,
+              "primaryEmissionSquaredDerivative": -4.680556197967704,
+              "emissionSquaredDerivativeDifference": 3.227285105822375e-11,
+              "passed": true
+            }
+          ]
+        }
+      }
+    },
+    "completeChannelAccounting": {
+      "id": "a1-1-expanded-complete-36-ordered-channel-accounting.v1",
+      "orderedChannelCount": 36,
+      "sameOrPartnerOrderedChannelCount": 12,
+      "interBinaryRepresentativeCount": 12,
+      "endpointInversionReusedChannelCount": 12,
+      "unresolvedChannelCount": 0,
+      "passed": true
+    }
+  },
+  "interBinaryRepresentativeSummaries": [
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-1",
+      "endpointInversionKey": "1:2:1",
+      "continuousRootCount": 1,
+      "rootCountInvariance": {
+        "theoremId": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+        "parameterDomainConnected": true,
+        "endpointRootsExcluded": true,
+        "phaseSeamIdentified": true,
+        "foldExcluded": true,
+        "anchorRootCountCertified": true,
+        "inferredRootCountAcrossParameterDomain": 1,
+        "claimGrade": "derived-within-declared-prescribed-path-diagnostic"
+      },
+      "foldExclusion": {
+        "status": "fold-excluded-diagnostic",
+        "method": "exact-sub-field-endpoint-coordinate-chart.v1",
+        "coordinateChart": {
+          "id": "a1-1-sub-field-endpoint-root-sheet-coordinate-charts.v1",
+          "chart": "emission-fixed",
+          "parameterPhase": "epsilon=(theta-delta)-modulo-two-pi",
+          "dependentVariable": "dimensionlessDelay",
+          "movingEndpointAtFixedPhase": "receiver",
+          "radiusUpperBound": 0.9375,
+          "causalResidualDerivativeUpperBound": -0.0625,
+          "squaredResidualFoldExcludedAtPositiveDelayRoots": true,
+          "domainCoverage": "bijection of the phase-circle times the declared delay interval",
+          "seamRule": "zero-and-two-pi-are-one-phase-circle-point",
+          "chartTransition": "(theta,delta)<->(epsilon=theta-delta modulo 2*pi,delta)"
+        },
+        "counts": {
+          "evaluatedBoxes": 0,
+          "rootFreeBoxes": 0,
+          "rootCapableNoFoldBoxes": 1,
+          "unresolvedBoxes": 0,
+          "maximumDepthReached": 0
+        },
+        "unresolvedCount": 0,
+        "rawLedgerHash": "f0c924e1031948aafe1fb7aa1ff18f3b41714b306bdc69e04b28509939146498"
+      },
+      "anchorRootInventory": {
+        "status": "anchor-root-count-certified",
+        "passed": true,
+        "observedCertifiedRootCount": 1,
+        "maximumIndependentNormalizedResidual": 1.273721267779951e-16,
+        "counts": {
+          "evaluatedBoxes": 32,
+          "rootFreeBoxes": 31,
+          "simpleRootBoxes": 1,
+          "unresolvedBoxes": 0
+        },
+        "rawLedgerHash": "764160ecc971b7b7e2eae356454c5a8fa8d625513c0a2fdd555bf46a6556abbc"
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+      "endpointInversionKey": "1:2:-1",
+      "continuousRootCount": 1,
+      "rootCountInvariance": {
+        "theoremId": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+        "parameterDomainConnected": true,
+        "endpointRootsExcluded": true,
+        "phaseSeamIdentified": true,
+        "foldExcluded": true,
+        "anchorRootCountCertified": true,
+        "inferredRootCountAcrossParameterDomain": 1,
+        "claimGrade": "derived-within-declared-prescribed-path-diagnostic"
+      },
+      "foldExclusion": {
+        "status": "fold-excluded-diagnostic",
+        "method": "exact-sub-field-endpoint-coordinate-chart.v1",
+        "coordinateChart": {
+          "id": "a1-1-sub-field-endpoint-root-sheet-coordinate-charts.v1",
+          "chart": "emission-fixed",
+          "parameterPhase": "epsilon=(theta-delta)-modulo-two-pi",
+          "dependentVariable": "dimensionlessDelay",
+          "movingEndpointAtFixedPhase": "receiver",
+          "radiusUpperBound": 0.9375,
+          "causalResidualDerivativeUpperBound": -0.0625,
+          "squaredResidualFoldExcludedAtPositiveDelayRoots": true,
+          "domainCoverage": "bijection of the phase-circle times the declared delay interval",
+          "seamRule": "zero-and-two-pi-are-one-phase-circle-point",
+          "chartTransition": "(theta,delta)<->(epsilon=theta-delta modulo 2*pi,delta)"
+        },
+        "counts": {
+          "evaluatedBoxes": 0,
+          "rootFreeBoxes": 0,
+          "rootCapableNoFoldBoxes": 1,
+          "unresolvedBoxes": 0,
+          "maximumDepthReached": 0
+        },
+        "unresolvedCount": 0,
+        "rawLedgerHash": "65d81333ccf0bf35e9f4dd39cc85d7c342e32a4852b17f36719138aa0fb31ed0"
+      },
+      "anchorRootInventory": {
+        "status": "anchor-root-count-certified",
+        "passed": true,
+        "observedCertifiedRootCount": 1,
+        "maximumIndependentNormalizedResidual": 1.2198070655093282e-16,
+        "counts": {
+          "evaluatedBoxes": 32,
+          "rootFreeBoxes": 31,
+          "simpleRootBoxes": 1,
+          "unresolvedBoxes": 0
+        },
+        "rawLedgerHash": "091cea175be4f4f3c25f211c881d7d1fc6b8f03e3c84f78fa9503082474785d4"
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+      "endpointInversionKey": "1:3:1",
+      "continuousRootCount": 1,
+      "rootCountInvariance": {
+        "theoremId": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+        "parameterDomainConnected": true,
+        "endpointRootsExcluded": true,
+        "phaseSeamIdentified": true,
+        "foldExcluded": true,
+        "anchorRootCountCertified": true,
+        "inferredRootCountAcrossParameterDomain": 1,
+        "claimGrade": "derived-within-declared-prescribed-path-diagnostic"
+      },
+      "foldExclusion": {
+        "status": "fold-excluded-diagnostic",
+        "method": "exact-sub-field-endpoint-coordinate-chart.v1",
+        "coordinateChart": {
+          "id": "a1-1-sub-field-endpoint-root-sheet-coordinate-charts.v1",
+          "chart": "emission-fixed",
+          "parameterPhase": "epsilon=(theta-delta)-modulo-two-pi",
+          "dependentVariable": "dimensionlessDelay",
+          "movingEndpointAtFixedPhase": "receiver",
+          "radiusUpperBound": 0.9375,
+          "causalResidualDerivativeUpperBound": -0.0625,
+          "squaredResidualFoldExcludedAtPositiveDelayRoots": true,
+          "domainCoverage": "bijection of the phase-circle times the declared delay interval",
+          "seamRule": "zero-and-two-pi-are-one-phase-circle-point",
+          "chartTransition": "(theta,delta)<->(epsilon=theta-delta modulo 2*pi,delta)"
+        },
+        "counts": {
+          "evaluatedBoxes": 0,
+          "rootFreeBoxes": 0,
+          "rootCapableNoFoldBoxes": 1,
+          "unresolvedBoxes": 0,
+          "maximumDepthReached": 0
+        },
+        "unresolvedCount": 0,
+        "rawLedgerHash": "5e8c61eb6dc5354424ea936c6d0ef53b6f21a82d18ab051a7bb58f009f0c03b8"
+      },
+      "anchorRootInventory": {
+        "status": "anchor-root-count-certified",
+        "passed": true,
+        "observedCertifiedRootCount": 1,
+        "maximumIndependentNormalizedResidual": 0,
+        "counts": {
+          "evaluatedBoxes": 32,
+          "rootFreeBoxes": 31,
+          "simpleRootBoxes": 1,
+          "unresolvedBoxes": 0
+        },
+        "rawLedgerHash": "bd089f9dea7fccfa417e8b48ed44e035ed1fa9692caaa83c1856d57f4e8a201d"
+      }
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2",
+      "endpointInversionKey": "1:3:-1",
+      "continuousRootCount": 1,
+      "rootCountInvariance": {
+        "theoremId": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+        "parameterDomainConnected": true,
+        "endpointRootsExcluded": true,
+        "phaseSeamIdentified": true,
+        "foldExcluded": true,
+        "anchorRootCountCertified": true,
+        "inferredRootCountAcrossParameterDomain": 1,
+        "claimGrade": "derived-within-declared-prescribed-path-diagnostic"
+      },
+      "foldExclusion": {
+        "status": "fold-excluded-diagnostic",
+        "method": "exact-sub-field-endpoint-coordinate-chart.v1",
+        "coordinateChart": {
+          "id": "a1-1-sub-field-endpoint-root-sheet-coordinate-charts.v1",
+          "chart": "emission-fixed",
+          "parameterPhase": "epsilon=(theta-delta)-modulo-two-pi",
+          "dependentVariable": "dimensionlessDelay",
+          "movingEndpointAtFixedPhase": "receiver",
+          "radiusUpperBound": 0.9375,
+          "causalResidualDerivativeUpperBound": -0.0625,
+          "squaredResidualFoldExcludedAtPositiveDelayRoots": true,
+          "domainCoverage": "bijection of the phase-circle times the declared delay interval",
+          "seamRule": "zero-and-two-pi-are-one-phase-circle-point",
+          "chartTransition": "(theta,delta)<->(epsilon=theta-delta modulo 2*pi,delta)"
+        },
+        "counts": {
+          "evaluatedBoxes": 0,
+          "rootFreeBoxes": 0,
+          "rootCapableNoFoldBoxes": 1,
+          "unresolvedBoxes": 0,
+          "maximumDepthReached": 0
+        },
+        "unresolvedCount": 0,
+        "rawLedgerHash": "0e3091fe25e71917906357d188b85729f2a43a1d0b5bf832ae3753c63fb486e3"
+      },
+      "anchorRootInventory": {
+        "status": "anchor-root-count-certified",
+        "passed": true,
+        "observedCertifiedRootCount": 1,
+        "maximumIndependentNormalizedResidual": 0,
+        "counts": {
+          "evaluatedBoxes": 32,
+          "rootFreeBoxes": 31,
+          "simpleRootBoxes": 1,
+          "unresolvedBoxes": 0
+        },
+        "rawLedgerHash": "550332a92f937c7528222a59dc88d138966bd115b056601e8d4d89abe01bc13f"
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-1-endpoint-1",
+      "endpointInversionKey": "2:1:1",
+      "continuousRootCount": 1,
+      "rootCountInvariance": {
+        "theoremId": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+        "parameterDomainConnected": true,
+        "endpointRootsExcluded": true,
+        "phaseSeamIdentified": true,
+        "foldExcluded": true,
+        "anchorRootCountCertified": true,
+        "inferredRootCountAcrossParameterDomain": 1,
+        "claimGrade": "derived-within-declared-prescribed-path-diagnostic"
+      },
+      "foldExclusion": {
+        "status": "fold-excluded-diagnostic",
+        "method": "exact-sub-field-endpoint-coordinate-chart.v1",
+        "coordinateChart": {
+          "id": "a1-1-sub-field-endpoint-root-sheet-coordinate-charts.v1",
+          "chart": "reception-fixed",
+          "parameterPhase": "theta",
+          "dependentVariable": "dimensionlessDelay",
+          "movingEndpointAtFixedPhase": "transmitter",
+          "radiusUpperBound": 0.9375,
+          "causalResidualDerivativeUpperBound": -0.0625,
+          "squaredResidualFoldExcludedAtPositiveDelayRoots": true,
+          "domainCoverage": "bijection of the phase-circle times the declared delay interval",
+          "seamRule": "zero-and-two-pi-are-one-phase-circle-point",
+          "chartTransition": "identity"
+        },
+        "counts": {
+          "evaluatedBoxes": 0,
+          "rootFreeBoxes": 0,
+          "rootCapableNoFoldBoxes": 1,
+          "unresolvedBoxes": 0,
+          "maximumDepthReached": 0
+        },
+        "unresolvedCount": 0,
+        "rawLedgerHash": "f01050f62afc1e745ebc39827b75614e872de14607bee21c58fc044ee63c8ae9"
+      },
+      "anchorRootInventory": {
+        "status": "anchor-root-count-certified",
+        "passed": true,
+        "observedCertifiedRootCount": 1,
+        "maximumIndependentNormalizedResidual": 2.1956957797622533e-16,
+        "counts": {
+          "evaluatedBoxes": 32,
+          "rootFreeBoxes": 31,
+          "simpleRootBoxes": 1,
+          "unresolvedBoxes": 0
+        },
+        "rawLedgerHash": "6aa9fa0c1b02e6d4aa857f2f15751b453f555b372c73e3310ed611e1587af2f5"
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-1-endpoint-2",
+      "endpointInversionKey": "2:1:-1",
+      "continuousRootCount": 1,
+      "rootCountInvariance": {
+        "theoremId": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+        "parameterDomainConnected": true,
+        "endpointRootsExcluded": true,
+        "phaseSeamIdentified": true,
+        "foldExcluded": true,
+        "anchorRootCountCertified": true,
+        "inferredRootCountAcrossParameterDomain": 1,
+        "claimGrade": "derived-within-declared-prescribed-path-diagnostic"
+      },
+      "foldExclusion": {
+        "status": "fold-excluded-diagnostic",
+        "method": "exact-sub-field-endpoint-coordinate-chart.v1",
+        "coordinateChart": {
+          "id": "a1-1-sub-field-endpoint-root-sheet-coordinate-charts.v1",
+          "chart": "reception-fixed",
+          "parameterPhase": "theta",
+          "dependentVariable": "dimensionlessDelay",
+          "movingEndpointAtFixedPhase": "transmitter",
+          "radiusUpperBound": 0.9375,
+          "causalResidualDerivativeUpperBound": -0.0625,
+          "squaredResidualFoldExcludedAtPositiveDelayRoots": true,
+          "domainCoverage": "bijection of the phase-circle times the declared delay interval",
+          "seamRule": "zero-and-two-pi-are-one-phase-circle-point",
+          "chartTransition": "identity"
+        },
+        "counts": {
+          "evaluatedBoxes": 0,
+          "rootFreeBoxes": 0,
+          "rootCapableNoFoldBoxes": 1,
+          "unresolvedBoxes": 0,
+          "maximumDepthReached": 0
+        },
+        "unresolvedCount": 0,
+        "rawLedgerHash": "6435a5994ae54823f52709b389c50857872f60dd1a706fa3e75c9db9a912039b"
+      },
+      "anchorRootInventory": {
+        "status": "anchor-root-count-certified",
+        "passed": true,
+        "observedCertifiedRootCount": 1,
+        "maximumIndependentNormalizedResidual": 1.2247292570539076e-16,
+        "counts": {
+          "evaluatedBoxes": 32,
+          "rootFreeBoxes": 31,
+          "simpleRootBoxes": 1,
+          "unresolvedBoxes": 0
+        },
+        "rawLedgerHash": "65f92d8afb0ab6b78bbd665a1eeb478de9ef547942251e4b9da426bccdf18b3a"
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-3-endpoint-1",
+      "endpointInversionKey": "2:3:1",
+      "continuousRootCount": 1,
+      "rootCountInvariance": {
+        "theoremId": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+        "parameterDomainConnected": true,
+        "endpointRootsExcluded": true,
+        "phaseSeamIdentified": true,
+        "foldExcluded": true,
+        "anchorRootCountCertified": true,
+        "inferredRootCountAcrossParameterDomain": 1,
+        "claimGrade": "derived-within-declared-prescribed-path-diagnostic"
+      },
+      "foldExclusion": {
+        "status": "fold-excluded-diagnostic",
+        "method": "interval-squared-residual-fold-exclusion.v1",
+        "coordinateChart": null,
+        "counts": {
+          "evaluatedBoxes": 144,
+          "rootFreeBoxes": 48,
+          "rootCapableNoFoldBoxes": 48,
+          "unresolvedBoxes": 0,
+          "maximumDepthReached": 1
+        },
+        "unresolvedCount": 0,
+        "rawLedgerHash": "5ad86b8a82b4d99d23a758d32e8d5382e25921bc0d6a5ff38ac34874484be291"
+      },
+      "anchorRootInventory": {
+        "status": "anchor-root-count-certified",
+        "passed": true,
+        "observedCertifiedRootCount": 1,
+        "maximumIndependentNormalizedResidual": 0,
+        "counts": {
+          "evaluatedBoxes": 32,
+          "rootFreeBoxes": 31,
+          "simpleRootBoxes": 1,
+          "unresolvedBoxes": 0
+        },
+        "rawLedgerHash": "95e61e23c6881f86d211565d70fd9a1be0674b481221c06984701d3608f63155"
+      }
+    },
+    {
+      "channelId": "a1-1-binary-2-endpoint-1<-a1-1-binary-3-endpoint-2",
+      "endpointInversionKey": "2:3:-1",
+      "continuousRootCount": 1,
+      "rootCountInvariance": {
+        "theoremId": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+        "parameterDomainConnected": true,
+        "endpointRootsExcluded": true,
+        "phaseSeamIdentified": true,
+        "foldExcluded": true,
+        "anchorRootCountCertified": true,
+        "inferredRootCountAcrossParameterDomain": 1,
+        "claimGrade": "derived-within-declared-prescribed-path-diagnostic"
+      },
+      "foldExclusion": {
+        "status": "fold-excluded-diagnostic",
+        "method": "interval-squared-residual-fold-exclusion.v1",
+        "coordinateChart": null,
+        "counts": {
+          "evaluatedBoxes": 4024,
+          "rootFreeBoxes": 1090,
+          "rootCapableNoFoldBoxes": 946,
+          "unresolvedBoxes": 0,
+          "maximumDepthReached": 12
+        },
+        "unresolvedCount": 0,
+        "rawLedgerHash": "edbc28a97df9bd05e8fd0b06ddeb7d2d49ea0e36f2744224ee8dee7f2bc1aae5"
+      },
+      "anchorRootInventory": {
+        "status": "anchor-root-count-certified",
+        "passed": true,
+        "observedCertifiedRootCount": 1,
+        "maximumIndependentNormalizedResidual": 2.0998902199412388e-16,
+        "counts": {
+          "evaluatedBoxes": 32,
+          "rootFreeBoxes": 31,
+          "simpleRootBoxes": 1,
+          "unresolvedBoxes": 0
+        },
+        "rawLedgerHash": "bf19f0d44cdc8f7d8331f727b92f379236bbda8218cd55b9bb2f377804cbba9a"
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-1-endpoint-1",
+      "endpointInversionKey": "3:1:1",
+      "continuousRootCount": 1,
+      "rootCountInvariance": {
+        "theoremId": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+        "parameterDomainConnected": true,
+        "endpointRootsExcluded": true,
+        "phaseSeamIdentified": true,
+        "foldExcluded": true,
+        "anchorRootCountCertified": true,
+        "inferredRootCountAcrossParameterDomain": 1,
+        "claimGrade": "derived-within-declared-prescribed-path-diagnostic"
+      },
+      "foldExclusion": {
+        "status": "fold-excluded-diagnostic",
+        "method": "exact-sub-field-endpoint-coordinate-chart.v1",
+        "coordinateChart": {
+          "id": "a1-1-sub-field-endpoint-root-sheet-coordinate-charts.v1",
+          "chart": "reception-fixed",
+          "parameterPhase": "theta",
+          "dependentVariable": "dimensionlessDelay",
+          "movingEndpointAtFixedPhase": "transmitter",
+          "radiusUpperBound": 0.9375,
+          "causalResidualDerivativeUpperBound": -0.0625,
+          "squaredResidualFoldExcludedAtPositiveDelayRoots": true,
+          "domainCoverage": "bijection of the phase-circle times the declared delay interval",
+          "seamRule": "zero-and-two-pi-are-one-phase-circle-point",
+          "chartTransition": "identity"
+        },
+        "counts": {
+          "evaluatedBoxes": 0,
+          "rootFreeBoxes": 0,
+          "rootCapableNoFoldBoxes": 1,
+          "unresolvedBoxes": 0,
+          "maximumDepthReached": 0
+        },
+        "unresolvedCount": 0,
+        "rawLedgerHash": "b0ac5e7c05aa5ee9ea21603a4b0ccad2716aa4c6886b049496d4a2a533a4d841"
+      },
+      "anchorRootInventory": {
+        "status": "anchor-root-count-certified",
+        "passed": true,
+        "observedCertifiedRootCount": 1,
+        "maximumIndependentNormalizedResidual": 1.3304468445038935e-16,
+        "counts": {
+          "evaluatedBoxes": 32,
+          "rootFreeBoxes": 31,
+          "simpleRootBoxes": 1,
+          "unresolvedBoxes": 0
+        },
+        "rawLedgerHash": "7976e16fad6d464b3f9d50335c1056fb7a2ba39b848e0f76c8429528b4eb14aa"
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-1-endpoint-2",
+      "endpointInversionKey": "3:1:-1",
+      "continuousRootCount": 1,
+      "rootCountInvariance": {
+        "theoremId": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+        "parameterDomainConnected": true,
+        "endpointRootsExcluded": true,
+        "phaseSeamIdentified": true,
+        "foldExcluded": true,
+        "anchorRootCountCertified": true,
+        "inferredRootCountAcrossParameterDomain": 1,
+        "claimGrade": "derived-within-declared-prescribed-path-diagnostic"
+      },
+      "foldExclusion": {
+        "status": "fold-excluded-diagnostic",
+        "method": "exact-sub-field-endpoint-coordinate-chart.v1",
+        "coordinateChart": {
+          "id": "a1-1-sub-field-endpoint-root-sheet-coordinate-charts.v1",
+          "chart": "reception-fixed",
+          "parameterPhase": "theta",
+          "dependentVariable": "dimensionlessDelay",
+          "movingEndpointAtFixedPhase": "transmitter",
+          "radiusUpperBound": 0.9375,
+          "causalResidualDerivativeUpperBound": -0.0625,
+          "squaredResidualFoldExcludedAtPositiveDelayRoots": true,
+          "domainCoverage": "bijection of the phase-circle times the declared delay interval",
+          "seamRule": "zero-and-two-pi-are-one-phase-circle-point",
+          "chartTransition": "identity"
+        },
+        "counts": {
+          "evaluatedBoxes": 0,
+          "rootFreeBoxes": 0,
+          "rootCapableNoFoldBoxes": 1,
+          "unresolvedBoxes": 0,
+          "maximumDepthReached": 0
+        },
+        "unresolvedCount": 0,
+        "rawLedgerHash": "ba25a7821711b92e3e4053b156d06d881b7d6abd045f5474568f32a7df796c8a"
+      },
+      "anchorRootInventory": {
+        "status": "anchor-root-count-certified",
+        "passed": true,
+        "observedCertifiedRootCount": 1,
+        "maximumIndependentNormalizedResidual": 4.878039150435902e-17,
+        "counts": {
+          "evaluatedBoxes": 32,
+          "rootFreeBoxes": 31,
+          "simpleRootBoxes": 1,
+          "unresolvedBoxes": 0
+        },
+        "rawLedgerHash": "e0139f8c4a78306e1b5a5907309d666b2c802308d336fa958a2c6f990d20206f"
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-2-endpoint-1",
+      "endpointInversionKey": "3:2:1",
+      "continuousRootCount": 1,
+      "rootCountInvariance": {
+        "theoremId": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+        "parameterDomainConnected": true,
+        "endpointRootsExcluded": true,
+        "phaseSeamIdentified": true,
+        "foldExcluded": true,
+        "anchorRootCountCertified": true,
+        "inferredRootCountAcrossParameterDomain": 1,
+        "claimGrade": "derived-within-declared-prescribed-path-diagnostic"
+      },
+      "foldExclusion": {
+        "status": "fold-excluded-diagnostic",
+        "method": "interval-squared-residual-fold-exclusion.v1",
+        "coordinateChart": null,
+        "counts": {
+          "evaluatedBoxes": 200,
+          "rootFreeBoxes": 48,
+          "rootCapableNoFoldBoxes": 76,
+          "unresolvedBoxes": 0,
+          "maximumDepthReached": 3
+        },
+        "unresolvedCount": 0,
+        "rawLedgerHash": "5bba5c7813df792beffd686558d9a8e37d5f53a4fb899121afd8e91f43cde5ac"
+      },
+      "anchorRootInventory": {
+        "status": "anchor-root-count-certified",
+        "passed": true,
+        "observedCertifiedRootCount": 1,
+        "maximumIndependentNormalizedResidual": 0,
+        "counts": {
+          "evaluatedBoxes": 32,
+          "rootFreeBoxes": 31,
+          "simpleRootBoxes": 1,
+          "unresolvedBoxes": 0
+        },
+        "rawLedgerHash": "f56da0edb023270143375a031a748255f3f6c683360e758aa29338a1f0905981"
+      }
+    },
+    {
+      "channelId": "a1-1-binary-3-endpoint-1<-a1-1-binary-2-endpoint-2",
+      "endpointInversionKey": "3:2:-1",
+      "continuousRootCount": 1,
+      "rootCountInvariance": {
+        "theoremId": "connected-parameter-domain/no-root-endpoint/no-fold-root-count-invariance.v1",
+        "parameterDomainConnected": true,
+        "endpointRootsExcluded": true,
+        "phaseSeamIdentified": true,
+        "foldExcluded": true,
+        "anchorRootCountCertified": true,
+        "inferredRootCountAcrossParameterDomain": 1,
+        "claimGrade": "derived-within-declared-prescribed-path-diagnostic"
+      },
+      "foldExclusion": {
+        "status": "fold-excluded-diagnostic",
+        "method": "interval-squared-residual-fold-exclusion.v1",
+        "coordinateChart": null,
+        "counts": {
+          "evaluatedBoxes": 1756,
+          "rootFreeBoxes": 668,
+          "rootCapableNoFoldBoxes": 234,
+          "unresolvedBoxes": 0,
+          "maximumDepthReached": 10
+        },
+        "unresolvedCount": 0,
+        "rawLedgerHash": "9af2dd848873ffd67a9530ae3f298bb6ab4a746ea19feda866ce1428b2cd227a"
+      },
+      "anchorRootInventory": {
+        "status": "anchor-root-count-certified",
+        "passed": true,
+        "observedCertifiedRootCount": 1,
+        "maximumIndependentNormalizedResidual": 1.526205390781198e-16,
+        "counts": {
+          "evaluatedBoxes": 32,
+          "rootFreeBoxes": 31,
+          "simpleRootBoxes": 1,
+          "unresolvedBoxes": 0
+        },
+        "rawLedgerHash": "84b4b1012297498214e9e9967f9a5add9fce83490ad2c54bbfa8e63ce3fb5fd0"
+      }
+    }
+  ],
+  "projectionRepresentativeRows": [
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+      "transmitterClass": "middleTransmitter",
+      "topologyRootCount": 1,
+      "positivePolynomialLowerBound": 0.015625,
+      "receptionSquaredDelayDerivativeUpperBound": -0.002717391304347826,
+      "emissionSquaredDelayDerivativeUpperBound": -0.0078125,
+      "receiverPhaseProjectionDerivativeEnclosure": [
+        0.0003619418178527802,
+        736
+      ],
+      "disposition": "certified-continuous-positive-projection-root-sheet"
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+      "transmitterClass": "outerTransmitter",
+      "topologyRootCount": 1,
+      "positivePolynomialLowerBound": 0.06243896484375,
+      "receptionSquaredDelayDerivativeUpperBound": -0.009640756936067552,
+      "emissionSquaredDelayDerivativeUpperBound": -0.015625,
+      "receiverPhaseProjectionDerivativeEnclosure": [
+        0.0011707940112112396,
+        414.5
+      ],
+      "disposition": "certified-continuous-positive-projection-root-sheet"
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2",
+      "transmitterClass": "outerTransmitter",
+      "topologyRootCount": 1,
+      "positivePolynomialLowerBound": 0.06243896484375,
+      "receptionSquaredDelayDerivativeUpperBound": -0.009640756936067552,
+      "emissionSquaredDelayDerivativeUpperBound": -0.015625,
+      "receiverPhaseProjectionDerivativeEnclosure": [
+        0.0011707940112112396,
+        414.5
+      ],
+      "disposition": "certified-continuous-positive-projection-root-sheet"
+    }
+  ],
+  "projectionTargetRows": [
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+      "representativeChannelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+      "reuse": false,
+      "topologyRootCount": 1,
+      "projectionDerivativeEnclosure": [
+        0.0003619418178527802,
+        736
+      ],
+      "disposition": "certified-continuous-positive-projection-root-sheet"
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+      "representativeChannelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+      "reuse": false,
+      "topologyRootCount": 1,
+      "projectionDerivativeEnclosure": [
+        0.0011707940112112396,
+        414.5
+      ],
+      "disposition": "certified-continuous-positive-projection-root-sheet"
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2",
+      "representativeChannelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2",
+      "reuse": false,
+      "topologyRootCount": 1,
+      "projectionDerivativeEnclosure": [
+        0.0011707940112112396,
+        414.5
+      ],
+      "disposition": "certified-continuous-positive-projection-root-sheet"
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-2-endpoint-1",
+      "representativeChannelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-2-endpoint-2",
+      "reuse": true,
+      "topologyRootCount": 1,
+      "projectionDerivativeEnclosure": [
+        0.0003619418178527802,
+        736
+      ],
+      "disposition": "certified-continuous-positive-projection-root-sheet"
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-1",
+      "representativeChannelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-2",
+      "reuse": true,
+      "topologyRootCount": 1,
+      "projectionDerivativeEnclosure": [
+        0.0011707940112112396,
+        414.5
+      ],
+      "disposition": "certified-continuous-positive-projection-root-sheet"
+    },
+    {
+      "channelId": "a1-1-binary-1-endpoint-2<-a1-1-binary-3-endpoint-2",
+      "representativeChannelId": "a1-1-binary-1-endpoint-1<-a1-1-binary-3-endpoint-1",
+      "reuse": true,
+      "topologyRootCount": 1,
+      "projectionDerivativeEnclosure": [
+        0.0011707940112112396,
+        414.5
+      ],
+      "disposition": "certified-continuous-positive-projection-root-sheet"
+    }
+  ],
+  "rawLedger": {
+    "location": "full result artifact bound by resultHash",
+    "interBinaryRepresentativeCount": 12,
+    "hash": "f5a9f189da0f5976354fd505fae5efa3f8297db3ccee41e4d27b1fbd17920469"
+  },
+  "claimBoundary": {
+    "prescribedPathAnalyticsOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "eomIntervalMachineryInvoked": false,
+    "eomCampaignInvoked": false,
+    "diagnosticOnly": true,
+    "score": null,
+    "candidateSelection": false,
+    "excludedClaims": [
+      "retention",
+      "stability",
+      "binding",
+      "physical-candidate-selection",
+      "physical-realization",
+      "physical-superluminal-transport",
+      "energy",
+      "action",
+      "angular-momentum-dynamics",
+      "radiation",
+      "pressure",
+      "general-relativity-recovery"
+    ]
+  },
+  "summaryHash": "a8c789f826ff286ef01f02f0a9aacc6faa72991e5e8535a436bc0531027eb23a"
+}

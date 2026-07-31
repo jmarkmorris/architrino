@@ -14,6 +14,8 @@ export * from "./A11ContinuousRootIntervalCertifier.mjs";
 export * from "./A11RootSheetMonotonicEnclosureCertifier.mjs";
 export * from "./A11PrescribedStructuralRootLedger.mjs";
 export * from "./A11ReceiverPhaseProjectionMonotonicityCertifier.mjs";
+export * from "./A11OuterRadiusBandExpansionDiagnostic.mjs";
+export * from "./A11HistoryPolicyExtensionIndependentVerifier.mjs";
 export * from "./A11IndependentResidualRecomputation.mjs";
 export * from "./database/IndependentAnalyticalAcceptance.mjs";
 export * from "./database/AnalyticalCampaignDatabase.mjs";
