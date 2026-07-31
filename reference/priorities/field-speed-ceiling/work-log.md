@@ -286,3 +286,40 @@
   carry the same status boundary. No canonical law, ceiling, event
   disposition, continuation, passage, rebound, conservation result, or
   closure score changed.
+
+## 2026-07-30 — FSC-004 arbitrary-precision provenance landed
+
+- Added a versioned $T=0$ six-path input specification and a separately
+  implemented Python/mpmath coordinate-space oracle at 100 decimal places.
+- Checked in a receipt binding the input, canonicalized specification, and
+  oracle source by SHA-256. The receipt records the reproduction command,
+  precision, mpmath version, all thirty distinct-label root residuals, every
+  $D_t,D_r$ pair, the same-label chord--arc certificate, and the four published
+  sign inequalities.
+- The reproduction returned thirty distinct-label roots, no positive-delay
+  same-label root under the exact chord--arc result, positive $D_t,D_r$, and a
+  maximum absolute residual of
+  $1.428734239102844\times10^{-101}$. All four sign inequalities were
+  reproduced.
+- Added a direct regression test for exact receipt reproduction, provenance
+  hashes, root inventory, regularity, residual bound, sign values, and
+  non-adoptive claim boundary.
+- This durable evidence remains an arbitrary-precision diagnostic for the
+  declared $T=0$ slice. It is not an interval proof, an all-time numerical
+  result, or evidence for a field-speed ceiling or boundary law.
+
+## 2026-07-30 — Bounded no-escape audit completed
+
+- Added the
+  [Field-Speed Ceiling No-Escape Audit](no-escape-houdini-audit.md), beginning
+  at canonical Euclidean void, absolute time, causal propagation, and ordinary
+  finite-ledger premises.
+- Traced each proposed, conditional, derived, and diagnostic step through its
+  operation, new rule or parameter, ordinary-chart reduction, root or event
+  ownership, and exact status.
+- Recorded negative guards that the strict-interior equation is unchanged,
+  ordinary roots are not silently deleted or reweighted, projection does not
+  classify equality or nonisolated contact, and no continuation, retention,
+  $H$, conservation, Planck-scale, or Lorentz result is assumed.
+- The artifact closes bookkeeping shortcuts only. It adds no law, selects no
+  event disposition, proves no continuation, and moves no closure score.

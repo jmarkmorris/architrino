@@ -1,0 +1,113 @@
+{
+  "schema": "field_speed_ceiling_t0_six_path_oracle_input/v1",
+  "scope": "T=0 prescribed six-path equal-radius geometry only",
+  "specification": {
+    "normalization": {
+      "c_f": "1",
+      "radius": "1",
+      "omega": "1",
+      "reception_time": "0",
+      "coupling_factor": "1",
+      "polarity_magnitude": "1"
+    },
+    "precision": {
+      "decimal_digits": 100,
+      "bisection_steps": 420
+    },
+    "geometry": {
+      "phase_rule": "pair_index * 2*pi/3",
+      "pair_indices": [
+        0,
+        1,
+        2
+      ],
+      "members": [
+        1,
+        -1
+      ],
+      "position_rules": [
+        "[0, member*cos(theta), member*sin(theta)]",
+        "[member*sin(theta), 0, member*cos(theta)]",
+        "[member*cos(theta), member*sin(theta), 0]"
+      ],
+      "velocity_rules": [
+        "[0, -member*sin(theta), member*cos(theta)]",
+        "[member*cos(theta), 0, -member*sin(theta)]",
+        "[-member*sin(theta), member*cos(theta), 0]"
+      ],
+      "delay_bracket": [
+        "0",
+        "2"
+      ]
+    },
+    "polarity_orientations": [
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        -1
+      ],
+      [
+        1,
+        -1,
+        1
+      ],
+      [
+        1,
+        -1,
+        -1
+      ]
+    ],
+    "sign_witnesses": [
+      {
+        "orientation": [
+          1,
+          1,
+          1
+        ],
+        "receiver": "1+",
+        "quantity": "V_dot_A0",
+        "relation": "<",
+        "threshold": "0"
+      },
+      {
+        "orientation": [
+          1,
+          1,
+          -1
+        ],
+        "receiver": "1+",
+        "quantity": "V_dot_A0",
+        "relation": "<",
+        "threshold": "0"
+      },
+      {
+        "orientation": [
+          1,
+          -1,
+          1
+        ],
+        "receiver": "1+",
+        "quantity": "b_dot_projected_A0",
+        "relation": ">",
+        "threshold": "0"
+      },
+      {
+        "orientation": [
+          1,
+          -1,
+          -1
+        ],
+        "receiver": "2+",
+        "quantity": "V_dot_A0",
+        "relation": "<",
+        "threshold": "0"
+      }
+    ]
+  },
+  "declared_reproduction_command": "VIRTUAL_ENV=\"${AAA_VENV:-../.venv}\" \"${AAA_VENV:-../.venv}/bin/python\" scripts/field-speed-ceiling/t0-six-path-mpmath-oracle.py --input scripts/field-speed-ceiling/t0-six-path-oracle-input.v1.json --write-receipt reference/priorities/field-speed-ceiling/fsc-004-t0-six-path-mpmath-receipt.v1.json"
+}

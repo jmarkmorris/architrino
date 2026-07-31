@@ -49,6 +49,10 @@ the exact unselected decision alternatives.
 The provisional coordinate-free framework is in
 [mathematics-geometry-dynamical-system.md](mathematics-geometry-dynamical-system.md).
 
+The bounded premise, operation, ownership, and negative-guard review is in the
+[Field-Speed Ceiling No-Escape Audit](no-escape-houdini-audit.md). It is an
+audit artifact, not a boundary law or continuation proof.
+
 ## Dependencies and Boundaries
 
 - [MEC-007](../master-equation-closure/mirror-close-approach-causal-root-boundary.md)

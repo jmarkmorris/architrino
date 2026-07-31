@@ -428,6 +428,22 @@ Plainly: the compatibility work is complete. The next step is a foundational
 choice, not another calculation pretending that the missing boundary law has
 already been chosen.
 
+## No-escape audit
+
+The separate
+[Field-Speed Ceiling No-Escape Audit](no-escape-houdini-audit.md) traces each
+canonical premise, proposed postulate, conditional input, derived result, and
+diagnostic through its operation, ordinary-chart reduction, and root or event
+ownership. Its negative guards verify that the candidate leaves the strict
+interior equation unchanged, preserves every ordinary root until after the
+complete raw sum is formed, does not infer equality or nonisolated contact from
+projection, and imports no desired continuation, retention, $H$, conservation,
+Planck-scale, or Lorentz result.
+
+Plainly: the audit closes argument shortcuts, not the dynamics. The missing
+contact-event law remains missing and no decision alternative gains support
+merely because its bookkeeping is explicit.
+
 ## Completion and claim boundary
 
 FSC-001 is complete as an evidence-bounded compatibility map:

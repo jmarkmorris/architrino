@@ -28,7 +28,7 @@ develops only a possible alternative model.
 | Straight collinear cap segment | `conditional hypothesis` | Assumes the MEC-007 input, the closed domain, the finite-ledger response, and the limited same-transmitter admission convention. |
 | Open-segment root census, finite accumulated old-partner row, partner-contact obstruction, and first transverse variation | `derived conditional result` | Derived only within the preceding hypothesis stack; none supplies post-contact continuation. |
 | Thirty-root inventory on the prescribed six-path geometry | `derived reference-path theorem` | Exact for the declared paths; not an evolved or retained braid. |
-| Sampled root margins and four-orientation vector-closure failure | `diagnostic` | Geometry-only numerical evidence. It does not select a boundary response or establish physical realization. |
+| Sampled root margins and four-orientation vector-closure failure | `diagnostic` | Geometry-only numerical evidence. The $T=0$ slice has a versioned 100-decimal-place Python/mpmath oracle and receipt; neither instrument selects a boundary response or establishes physical realization. |
 
 Plainly: the document uses canonical root geometry, two proposed regular-chart
 postulates, one limited admission convention, and one still-missing event law.
@@ -1094,8 +1094,8 @@ three necessary conditions are:
    \mathcal P_{\mathbf V}(\mathbf A^{(0)})$ is one positive constant for all
    six labels and all $T$, so one $\lambda$ can supply the required turning.
 
-An independently implemented 80-decimal coordinate-space calculation at
-$T=0$ gives the following counterexamples:
+A separately implemented 100-decimal-place Python/mpmath coordinate-space
+oracle at $T=0$ gives the following counterexamples:
 
 | Relative polarity orientation | Receiver | Failing component |
 | --- | --- | ---: |
@@ -1103,6 +1103,31 @@ $T=0$ gives the following counterexamples:
 | $(1,1,-1)$ | $1+$ | $\mathbf V\cdot\mathbf A^{(0)}=-0.3655392198715$ |
 | $(1,-1,1)$ | $1+$ | $\mathbf b\cdot\mathcal P_{\mathbf V}(\mathbf A^{(0)})=0.8925757279332$ |
 | $(1,-1,-1)$ | $2+$ | $\mathbf V\cdot\mathbf A^{(0)}=-0.3301014265762$ |
+
+The versioned
+[input specification](../../../scripts/field-speed-ceiling/t0-six-path-oracle-input.v1.json)
+binds the normalization, geometry, 100-decimal-place precision, bisection
+depth, orientations, and four sign inequalities. The
+[receipt](fsc-004-t0-six-path-mpmath-receipt.v1.json) records the input,
+canonicalized-specification, and oracle-source SHA-256 hashes, the exact
+reproduction command, mpmath version, all thirty root residuals, every
+$D_t,D_r$ pair, the same-label chord--arc certificate, and the four full
+precision sign values. Its maximum absolute residual is
+$1.428734239102844\times10^{-101}$.
+
+The
+[receipt test](../../../tests/test_field_speed_ceiling_t0_mpmath_oracle.py)
+checks exact receipt reproduction, all three hashes, the thirty-row inventory,
+positive $D_t,D_r$, the residual bound, the four published inequalities, and
+the non-adoptive claim boundary. That parity verifies durable provenance and
+determinism; the coordinate-space implementation is independent of the
+unchanged JavaScript time-scan instrument, while the exact theorem above—not
+either numerical implementation—owns the root-count proof.
+
+Plainly: the high-precision wording now points to a stored input, calculation,
+receipt, and test. The receipt is evidence only for the declared $T=0$ slice;
+the analytic theorem supplies the all-time root inventory on the prescribed
+paths.
 
 The JavaScript geometry instrument independently reproduces these signs and,
 over the declared time grid, reports failure of the necessary conditions for
@@ -1116,11 +1141,12 @@ architrino is slowed or pushed out of its required circular plane.
 
 Claim grade: `measured negative vector-closure result` on the prescribed paths
 and the minimal total-ledger response. The root topology is theorem-grade; the
-displayed vector values are high-precision diagnostics rather than
-outward-rounded interval certificates. The negative result is falsified by an
-independent same-record evaluation that reverses every listed nonzero sign, or
-by a separately adopted cap response that changes the vector equation. It does
-not test the unselected excess-wake redirection candidate.
+displayed vector values and the 100-decimal-place receipt are high-precision
+$T=0$ diagnostics rather than outward-rounded interval certificates. The
+negative result is falsified by an independent same-record evaluation that
+reverses every listed nonzero sign, or by a separately adopted cap response
+that changes the vector equation. It does not test the unselected excess-wake
+redirection candidate.
 
 ## Claim boundary
 
