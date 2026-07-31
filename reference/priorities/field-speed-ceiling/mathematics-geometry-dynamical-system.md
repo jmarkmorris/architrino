@@ -708,6 +708,33 @@ $$
 \text{when }\|\mathbf V\|=c_f.
 $$
 
+#### Kinematic tangent-sphere statement
+
+Independently of the proposed response map, let a differentiable path satisfy
+\(\|\mathbf V(T)\|=c_f\) at a boundary event.  Then
+
+$$
+\frac{d}{dT}\|\mathbf V\|^2
+=
+2\mathbf V\mathbin{\cdot}\mathbf A_{\mathrm{eff}}.
+$$
+
+Therefore a locally speed-preserving boundary motion satisfies
+
+$$
+\mathbf V\mathbin{\cdot}\mathbf A_{\mathrm{eff}}=0.
+$$
+
+Its acceleration is tangent to the velocity sphere
+\(\partial\mathcal B_{c_f}\).  A strictly inward component
+\(\mathbf V\mathbin{\cdot}\mathbf A_{\mathrm{eff}}<0\) decreases speed,
+while an outward component
+\(\mathbf V\mathbin{\cdot}\mathbf A_{\mathrm{eff}}>0\) is incompatible
+with remaining in the closed velocity ball.  This is kinematics of the state
+constraint only.  It supplies neither a transverse magnitude nor direction,
+does not select a physical-space circle or maximum turning rate, and does not
+define a contact continuation or adopt a response law.
+
 These are consequences of the complete proposed axiom. The Euclidean
 decomposition is coordinate-free, and no new numerical scale enters.
 
