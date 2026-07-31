@@ -22,6 +22,12 @@ The compact cross-agent startup map is generated at [../../../op/agent-startup-o
 | [corpus-promotion.md](corpus-promotion.md) | Aggressive-but-honest promotion pass: un-sequester high-quality priority/brainstorming/memory material into the corpus at honest claim grade, anticipating closure without claiming it. |
 | [brainstorming.md](brainstorming.md) | Capture-first cross-lane brainstorming session: engage each idea at its strongest defensible claim level and capture every insight to the priority lane or memory. |
 | [adjudication.md](adjudication.md) | Decision-hub session: judge finished work from parallel builder/analyst threads, hold claim levels honest, decide and parallelize next steps, and summarize for the operator in plain language. |
+| [luna-corpus-dragnet-pass.md](luna-corpus-dragnet-pass.md) | Bounded bridge from selected read-only Luna scout evidence to untriaged Corpus Dragnet recommendations when the execution has explicit lane-write authority. |
+| [luna-claim-boundary-scout.md](luna-claim-boundary-scout.md) | Read-only GPT-5.6 Luna scan for claim-boundary and status inconsistencies, with exact evidence and stronger-review routing. |
+| [luna-repository-hygiene-scout.md](luna-repository-hygiene-scout.md) | Read-only GPT-5.6 Luna scan for reference drift, stale paths, duplicates, and other repository hygiene candidates. |
+| [luna-validation-coverage-scout.md](luna-validation-coverage-scout.md) | Read-only GPT-5.6 Luna trace from declared obligations to tests, validators, and independent-oracle gaps. |
+| [luna-todo-blocker-scout.md](luna-todo-blocker-scout.md) | Read-only GPT-5.6 Luna clustering of TODOs, blockers, deferred items, and unresolved questions against live owners. |
+| [luna-source-corpus-evidence-scout.md](luna-source-corpus-evidence-scout.md) | Read-only GPT-5.6 Luna discovery of repository-local source and corpus evidence with provenance and claim limits. |
 
 ## Prompt-Like Files To Consider Consolidating
 
