@@ -169,3 +169,120 @@
 - The section defines only a kinematic reference. It explicitly leaves the
   causal-root ledger, all-label vector closure, phase lock, basin, and
   physical realization to subsequent calculation.
+
+## 2026-07-30 — FSC-004 started
+
+- Started the dimensionless causal-root geometry pass for the equal-radius,
+  three-pair, $120^\circ$ reference braid. The pass fixes $c_f=R=\omega=1$
+  only as coordinates and will establish root topology before evaluating any
+  wake-vector or cap-response balance.
+
+## 2026-07-30 — FSC-003 bounded analytic recheck completed
+
+- Independently rederived the straight cap-segment partner tube. Before
+  coincidence, each receiver has exactly one old ordinary partner root, no
+  older-history self root, no cap-emitted partner root, and one inactive
+  co-moving self-contact interval.
+- Although the old partner row becomes pointwise unbounded as $D_t\to0$, its
+  accumulated raw contribution on the open cap segment is finite; the
+  candidate projected contribution is zero there.
+- At coincidence, every partner emission on the cap interval becomes a
+  non-isolated positive-delay partner-contact interval with $D_t=0$. The
+  current isolated-crossing self-contact convention does not classify this
+  event, so continuation remains `Not advanced`.
+- An unaccelerated straight passage would immediately create a zero-range
+  regular partner row with a retained $1/\delta^2$ slowing contribution. This
+  rules out that prescribed history under the unchanged ordinary post-event
+  rule but does not select rebound, termination, or another update.
+
+## 2026-07-30 — First off-axis cap-segment linearization completed
+
+- Derived the first transverse variation of the total-ledger ceiling
+  projection. On the open collinear cap segment, the first-order effective
+  response contains the transverse partner-direction change and the change of
+  the velocity-sphere tangent plane; it has no first-order longitudinal
+  component while the base raw speed contribution remains strictly positive.
+- A curved unit-speed self history has no positive-delay same-path root on the
+  curved interval by strict chord-versus-arc inequality. Straight subintervals
+  retain the non-isolated co-moving self-contact family. This is a conditional
+  linearization, not a stability result.
+
+## 2026-07-30 — FSC-004 root inventory completed
+
+- Derived the twelve sign-reduced ordered cross-plane root equations and the
+  same-pair equations for the prescribed six-path geometry.
+- Proved that every ordered distinct-label channel has exactly one
+  positive-delay simple root with $D_t>0$ and $D_r>0$, while every same-label
+  channel has no positive-delay root. The exact inventory is thirty ordinary
+  roots at every reception time, with no transmitter-side fold.
+- The geometry-only instrument
+  `scripts/field-speed-ceiling/equal-radius-three-pair-root-geometry.mjs`
+  reproduced $86{,}430$ roots on $2{,}881$ reception-time samples. The scan is
+  diagnostic; the analytic monotonicity and common-sphere arguments establish
+  the root count and regularity.
+
+## 2026-07-30 — Reference-geometry vector closure returned negative
+
+- Tested all four inequivalent relative polarity orientations under the
+  minimal total-ledger ceiling response. Each has a counterexample already at
+  $T=0$: at least one receiver retains a speed-reducing component or has a
+  nonzero binormal component incompatible with its prescribed circle.
+- A separately implemented 80-decimal coordinate calculation reproduced the
+  displayed counterexample signs. The result is a measured negative
+  vector-closure diagnostic, not an interval-certified global theorem and not
+  a test of the unselected excess-wake redirection candidate.
+- Removed completed FSC-003 and FSC-004 from the live queue. FSC-001 remains
+  the discussion-scoped decision object; FSC-002 remains blocked behind its
+  ceiling and threshold semantics.
+
+## 2026-07-30 — FSC-001 compatibility decision completed
+
+- Added
+  [FSC-001 Field-Speed Ceiling Compatibility Decision](field-speed-ceiling-compatibility-decision.md)
+  as the single evidence-bounded decision packet.
+- Compared the canonical open, unbounded primitive velocity domain with the
+  proposed closed ball and found that a ceiling is incompatible as a clamp or
+  one-line amendment. A closed variant requires a successor model binding.
+- Integrated the collinear partner-contact obstruction, the half-open
+  local-existence verdict, the exact thirty-root reference theorem, and the
+  negative minimal-response vector-closure diagnostic.
+- Identified the minimum additional interface as a Typed Nonordinary Contact
+  Event Postulate. Its `inactive`, `terminal`, or `active-boundary-measure`
+  disposition remains unselected.
+- Enumerated affected canonical corpus, MEC, Braid, prescribed-diagnostic, EOM
+  contract, implementation, oracle, and test dependencies without editing any
+  of them.
+- Removed FSC-001 from the live queue. FSC-002 is now rank 1 but remains
+  blocked pending an explicit foundational selection among retaining the open
+  domain, a terminal closed model, one typed threshold event, or a changed
+  boundary update.
+- No ceiling, passage, rebound, sticking, redirection, conservation,
+  physical realization, MEC advancement, or closure-score movement was
+  adopted or claimed.
+
+## 2026-07-30 — Independent document-architecture audit integrated
+
+- Repaired
+  [mathematics-geometry-dynamical-system.md](mathematics-geometry-dynamical-system.md)
+  so its postulate budget now separates the closed velocity domain, the
+  finite-ordinary-ledger response, and nonordinary contact admission/event
+  semantics.
+- Marked the displayed constrained equations as a regular-chart partial model:
+  the same-transmitter co-moving rule is only a proposed limited convention,
+  and no general partner-contact or other nonordinary event disposition is
+  selected.
+- Added a compact provenance/status map distinguishing canonical premises,
+  proposed postulates, proposed admission conventions, missing event
+  semantics, conditional hypotheses, derived conditional results, exact
+  reference-path theorems, and diagnostics.
+- Corrected the Field-Speed lane's MEC-007 consumption boundary. MEC-007 is
+  `Awaiting verification`; its first-field-speed event, incoming partner row,
+  and sharp-law obstruction are conditional inputs here, not established
+  results.
+- Moved the transverse-redirection hypothesis into an alternate-response
+  appendix and the prescribed six-path braid calculation into a conditional
+  reference-geometry appendix.
+- Updated the FSC-001 compatibility packet and capped-collinear reanalysis to
+  carry the same status boundary. No canonical law, ceiling, event
+  disposition, continuation, passage, rebound, conservation result, or
+  closure score changed.

@@ -25,7 +25,7 @@ The lab asks whether the declared complete acceleration ledger cancels at every 
 - Render nearest-neighbor geometry with thin light-purple lines. These lines depict geometric adjacency, not physical bonds, wake paths, or acceleration vectors.
 - Every displayed case names its geometry, occupied sites, polarity rule, scale convention, and finite/infinite boundary treatment.
 - The visual presentation separates nearest-neighbor intuition from the complete declared acceleration ledger.
-- The learner sees a simple state: `reference configuration` or `modified configuration`. Each canned reference case is backed by an internal case record that states its actual scope and cancellation basis.
+- The first version shows curated reference configurations only. Each canned case is backed by an internal case record that states its actual scope and cancellation basis.
 - A zero residual at one selected site is not shown as an all-lattice result from the visible crop alone. A canned ideal infinite repeat may state an all-lattice result when its declared symmetry construction covers every site.
 - Exact rest at a declared initial state is distinct from delayed-dynamics stability under a displacement, defect, or altered history.
 - The app uses acceleration-first language throughout.
@@ -68,22 +68,22 @@ The single-page layout should center on a rotatable three-dimensional lattice vi
 - Draw thin light-purple nearest-neighbor geometry lines between visible sites. Clip each line to the surfaces of its endpoint spheres and apply normal depth occlusion, so no line visibly runs through a solid sphere to its center.
 - Show a selectable finite display region and repeated neighboring cells where helpful for reading periodicity.
 - Provide orbit/pan/zoom, plus named camera views such as cell, plane, shell, and selected-site views.
-- Keep a small fixed, labeled XYZ orientation tripod in a corner, a faint transparent unit-cell frame, and optional layer/slice planes as depth anchors.
-- Offer Front, Side, Top, and Reset camera actions.
+- Keep a small fixed, labeled XYZ orientation tripod in a corner; optional layer/slice planes may provide depth anchors. Do not draw a cube-like frame around the lattice or repeat-cell miniature.
+- Keep direct drag-orbit and wheel zoom on the canvas. Do not show named-view or reset presets.
 - Support cutaway, slice, and layer modes so users can inspect cubic planes, close-packed layers, and supercells.
 - Make the selected site visually unambiguous and preserve it while the user changes camera view.
 
 ### Case Panel
 
 - Name the lattice geometry and polarity construction.
-- State coordination number, nearest-neighbor distance convention, and red/blue population for the declared **polarity repeat cell**.
+- State coordination number and nearest-neighbor distance convention. Use the concise gallery statement that every curated geometry has equal numbers of electrinos and positrinos; keep raw population counts out of the primary panel.
 - State the geometric site density $n=C/d^3$ and, when helpful, the equal per-polarity density $n/2$.
 - State the boundary treatment explicitly: finite diagnostic, periodic visual repetition, or a named symmetry/exhaustion convention.
-- Show whether the learner is viewing the canned `reference configuration` or a `modified configuration`, plus a short plain-language scope note.
+- Identify the canned `reference configuration` and show a short plain-language scope note.
 
 ### Neighbor-Shell Fields
 
-The gallery table carries each case's local **neighbor-shell** fields: nearest shell, next local shell, and selected local total. Each canned case supplies the actual count and distance for those fields, plus red/blue counts where helpful. The total covers the declared local-shell depth only; it is not every site in the infinite pattern and is not created by the dotted display crop. The polarity repeat cell is the finite block that repeats both the lattice sites and their red/blue polarity pattern; it is distinct from a geometry-only unit cell and from the larger dotted display crop.
+The gallery table carries each case's local **neighbor-shell** fields: nearest shell, next local shell, and selected local total. Each canned case supplies the actual count and distance for those fields. The total covers the declared local-shell depth only; it is not every site in the infinite pattern and is not created by the dotted display crop. The polarity repeat cell is the minimal translational tile for both the occupied geometry and red/blue assignment. It may be skew or non-cubic. Each actual site has exactly one owned representative under a half-open fundamental-domain convention; periodic image spheres are display cues, not duplicate architrinos. The cell tiles space by translation only and is distinct from the larger dotted display crop.
 
 ### What You're Seeing
 
@@ -93,7 +93,7 @@ When a ledger result is available, the card should explain in plain language whe
 
 ### Lattice Primer
 
-Reserve the lower portion of the left rail for a collapsible **Lattice Primer**. It teaches the selected geometry independently of the active acceleration result.
+Reserve the lower portion of the left rail for an open, content-driven **Lattice Primer**. Its internal collapse control is disabled in the first version. It teaches the selected geometry independently of the active acceleration result.
 
 - Name the lattice or stacking classification in ordinary language and standard shorthand, such as simple cubic, BCC, FCC, HCP, `ABAB`, or `ABCABC` where applicable.
 - Explain the displayed unit cell, primitive versus conventional description when relevant, basis, coordination number, nearest-neighbor distance convention, and local coordination shape.
@@ -109,13 +109,12 @@ Reserve the lower portion of the left rail for a collapsible **Lattice Primer**.
 - Allow a user to isolate one shell, one polarity, a plane, or a local coordination polyhedron.
 - Report the displayed residual as a bounded diagnostic unless the case record states a stronger result.
 - Make omitted or unresolved contributions visible rather than silently treating them as zero.
-- When a permitted polarity edit changes the displayed residual, describe it as `cancellation broken: nonzero initial acceleration`, not as a stability verdict.
 
 ### Acceleration Ledger
 
-The lower-right ledger makes the displayed cancellation reasoning inspectable rather than merely visual.
+The lower-right ledger makes the displayed cancellation reasoning inspectable rather than merely visual. Its result-first hierarchy shows a large icon-plus-text status, normalized magnitude, vector, and one plain scoped sentence before two concise shell totals. For the certified checkerboard, that sentence is `In this ideal repeating pattern, matching pulls cancel at every site at release.` Exact assumptions remain in the canonical certificate rather than a learner-facing scope disclosure. Non-certified cases must instead state that acceleration is not established. Individual rows remain behind `Show calculation` so the result and both shell summaries are visible at the live narrow viewport.
 
-- Identify the selected receiver, active geometry/polarity case, and whether it is the reference or a modified configuration.
+- Identify the selected receiver and active reference geometry/polarity case.
 - Show the declared contribution groups or rows by shell/direction, polarity, contribution vector, and running displayed residual.
 - State the calculation's coverage and boundary treatment beside the result.
 - Keep unavailable, omitted, or unresolved rows visibly unavailable; never render them as a zero contribution.
@@ -123,16 +122,17 @@ The lower-right ledger makes the displayed cancellation reasoning inspectable ra
 
 ### Polarity Repeat Cell Miniature
 
-The miniature above the ledger shows the active case's polarity repeat cell: its red/blue sites, labeled cell outline, and repeat directions when useful. It shares the main canvas's camera rotation exactly, is never mirrored or flipped relative to that view, and has no independent orbit control. Both views therefore turn by the same amount and in the same direction; camera reset resets them together. It is a compact schematic and orientation aid, not a second full canvas, physical boundary, or replacement for the dotted display crop.
+The miniature above the ledger is headed **How This Pattern Repeats** and uses only the sentence `Copy this colored tile by translation to continue the pattern.` It shows the active case's owned repeat-cell sites and the complete nearest-neighbor incidence network for those sites, including solid light-purple relationships ending in immediate translated copies. Every displayed relationship is exactly the case's declared nearest-neighbor distance; no second-shell or decorative bridge is shown. Camera orbit is visual inspection, not a tiling operation. Dragging either canvas applies the same handed rotation to both views, and miniature wheel input zooms the full lattice, but these implementation instructions are not learner-facing copy. A default-off `Highlight repeat cell` control affects only the main canvas: it hides the ordinary relationship layer and thickens only the distance-qualified relationships incident to every owned site. It never changes sphere size or the miniature. In a compressed view, where the original axial relationships split into different Euclidean lengths, only the currently shortest transformed relationships are highlighted and the excluded longer reference incidences are stated explicitly.
 
 ## Exploratory Controls
 
 Potential controls, all subject to later requirements:
 
-- Case selector and reset-to-canonical-case action.
+- Curated reference-case selector.
+- One fixed-X uniaxial-compression slider with $0<\lambda\leq1$ applies to every curated case as a static geometry/view diagnostic. It transforms main and repeat-cell coordinates and nearest-neighbor lines while sphere markers remain fixed in screen size and red/blue counts remain unchanged. Only the simple-cubic checkerboard may show the existing positive all-site result, conditional on its declared inversion-pair check passing at the displayed $\lambda$. Every other case remains diagnostic-only unless a separately authored per-case transformed periodic cancellation check independently establishes a stronger result.
 - Geometry selector for simple cubic, BCC, FCC, HCP, diamond-style, and future candidates.
 - Canned gallery and named-variant selectors only; no free-form lattice or polarity-pattern authoring in the first version.
-- A neutrality-preserving polarity-swap interaction: choose site A, then choose an opposite-polarity site B; the moment B is selected, their polarities exchange. A one-site flip is unavailable because it would violate the Lab's exact 50/50 population rule.
+- Polarity editing is deferred. The first version provides no one-site flip, two-site swap, or other non-reference configuration interaction.
 - Red/blue visibility, neighbor-shell depth, vector, cell-boundary, layer, and polyhedron toggles.
 - Finite-cell versus repeated-cell visualization, with a prominent statement that visual repetition is not automatically a complete infinite-lattice calculation.
 - A comparison mode that places two declared cases side by side without implying a physical ranking.
@@ -154,9 +154,9 @@ Until then, the app may show a proposed arrangement and finite visual vectors la
 
 ## First Implementation Boundary
 
-The first build should be a static, display-only case viewer reached through the Applications scene for direct operator testing. The Applications-scene ring is ordered alphabetically by displayed app title, with Lattice Lab added as the fourteenth entry; its visual start position is a layout choice, not a title-order rule. Its guided order is simple-cubic checkerboard, BCC two-sublattice, FCC, then HCP. FCC and HCP remain adjacent so the `ABC` versus `AB` stacking comparison is immediate. Simple-cubic alternating planes and diamond-cubic remain later named variants. The build has a declared finite display region, polarity rendering, and the A-then-B swap interaction. It should not initially solve the full delayed Master Equation, simulate release, predict trajectories, or certify an infinite lattice.
+The first build should be a static, display-only case viewer reached through the Applications scene for direct operator testing. The Applications-scene ring is ordered alphabetically by displayed app title, with Lattice Lab added as the fourteenth entry; its visual start position is a layout choice, not a title-order rule. Its guided order is simple-cubic checkerboard, BCC two-sublattice, FCC, then HCP. FCC and HCP remain adjacent so the `ABC` versus `AB` stacking comparison is immediate. Simple-cubic alternating planes and diamond-cubic remain later named variants. The build has a declared finite display region, polarity rendering, and no polarity-editing interaction. It should not initially solve the full delayed Master Equation, simulate release, predict trajectories, or promote an uncertified gallery case to an infinite-lattice result.
 
-[LAT-001](simple-cubic-checkerboard-cancellation-certificate.md) selects the simple-cubic checkerboard as the first exact case. Its retained history is stationary, its numerical convention is $c_f=1$, and its infinite calculation boundary is a receiver-centered inversion-symmetric exhaustion. The certificate derives exact zero acceleration at release for every site under that declared exhaustion. The result does not extend to an arbitrary summation order, a modified polarity pattern, perturbative stability, or later EOM-solver evolution.
+[LAT-001](simple-cubic-checkerboard-cancellation-certificate.md) selects the simple-cubic checkerboard as the first exact case. Its retained history is stationary, its numerical convention is $c_f=1$, and its infinite calculation boundary is a receiver-centered inversion-symmetric exhaustion. The certificate derives exact zero acceleration at release for every site under that declared exhaustion. The result does not extend to an arbitrary summation order, another polarity pattern, perturbative stability, or later EOM-solver evolution.
 
 ## Visual Tuning After First Render
 
@@ -180,8 +180,8 @@ The first version should reuse established app behavior where that behavior fits
 | Reused surface | Source | Lattice Lab use |
 | --- | --- | --- |
 | Dotted spherical guide | Borg simulation-window guide | The display envelope around the visible lattice crop; it remains a display aid, not a physical boundary. |
-| Orthographic 3D camera interaction | Borg canvas runtime | Drag rotation, wheel zoom, named views, and Reset for the main canvas and the synchronized repeat-cell miniature. |
-| 3D picking | Borg canvas runtime | Site selection and the A-then-B polarity-swap interaction. |
+| Orthographic 3D camera interaction | Borg canvas runtime | Direct drag rotation and wheel zoom for the main canvas and synchronized repeat-cell miniature; no named-view or reset presets. |
+| 3D picking | Borg canvas runtime | Site selection for the neighbor-shell ledger. |
 | Fixed visible marker-size convention | Borg viewport convention | All architrino markers stay one on-screen size. Borg currently uses point sprites, while this Lab needs solid sphere markers, so the visual rule transfers but not the marker implementation unchanged. |
 | Left-panel collapse/expand treatment | Equation Mapping app | Reuse its established open/closed panel icon and behavior by extracting it into a shared runtime surface for Equation Mapping and Lattice Lab. |
 | Top-right five-control navigation strip | Borg and other standalone apps | Reuse the standard Table of Contents, Back, Forward, Home, and Search controls rather than creating app-specific navigation. |

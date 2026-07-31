@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#0d0a17" />
     <meta
       name="description"
-      content="Inspect a static, display-only simple-cubic checkerboard of red and blue architrinos."
+      content="Inspect a curated gallery of static lattice geometries and red/blue architrino polarity patterns."
     />
     <title>Architrino Lattice Lab</title>
     <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
@@ -17,7 +17,6 @@
       <aside id="lattice-lab-left-rail" class="lattice-lab-left-rail" aria-label="Lattice Lab controls">
         <header class="lattice-lab-rail-header">
           <div class="lattice-lab-title">
-            <span class="lattice-lab-kicker">Display-only core</span>
             <h1>Architrino Lattice Lab</h1>
           </div>
           <button
@@ -31,60 +30,70 @@
         </header>
 
         <div id="lattice-lab-panel-content" class="lattice-lab-panel-content">
+          <section
+            class="lattice-lab-case-selector-card"
+            aria-labelledby="lattice-lab-case-selector-title"
+          >
+            <label class="lattice-lab-case-selector" for="lattice-lab-case-select">
+              <span id="lattice-lab-case-selector-title" class="lattice-lab-card-kicker">
+                Curated case gallery
+              </span>
+              <select id="lattice-lab-case-select" aria-label="Choose a lattice case"></select>
+            </label>
+          </section>
+
           <section class="lattice-lab-card lattice-lab-seeing-card" aria-labelledby="lattice-lab-seeing-title">
             <span class="lattice-lab-card-kicker">What You’re Seeing</span>
-            <h2 id="lattice-lab-seeing-title">Simple-cubic checkerboard</h2>
+            <h2 id="lattice-lab-seeing-title"></h2>
             <p id="lattice-lab-what-seeing"></p>
           </section>
 
           <section class="lattice-lab-card" aria-labelledby="lattice-lab-case-title">
             <div class="lattice-lab-card-heading">
               <div>
-                <span class="lattice-lab-card-kicker">Guided case 1</span>
-                <h2 id="lattice-lab-case-title">Case record</h2>
+                <span class="lattice-lab-card-kicker">Active case record</span>
+                <h2 id="lattice-lab-case-title"></h2>
               </div>
               <span id="lattice-lab-configuration-state" class="lattice-lab-state-chip"></span>
             </div>
             <dl class="lattice-lab-facts">
               <div>
                 <dt>Geometry</dt>
-                <dd>Simple cubic; alternating parity</dd>
+                <dd id="lattice-lab-case-geometry"></dd>
               </div>
               <div>
                 <dt>Nearest shell</dt>
-                <dd>6 at distance d</dd>
+                <dd id="lattice-lab-case-nearest"></dd>
               </div>
               <div>
                 <dt>Next local shell</dt>
-                <dd>12 at distance √2d</dd>
+                <dd id="lattice-lab-case-next"></dd>
               </div>
               <div>
                 <dt>Displayed local total</dt>
-                <dd>18 geometry neighbors</dd>
+                <dd id="lattice-lab-case-local-total"></dd>
               </div>
               <div>
                 <dt>Geometric site density</dt>
-                <dd>n = 1/d³</dd>
+                <dd id="lattice-lab-case-density"></dd>
               </div>
               <div>
-                <dt>Population</dt>
-                <dd id="lattice-lab-population"></dd>
+                <dt>Equal-count gallery</dt>
+                <dd id="lattice-lab-population">
+                  Each curated geometry has equal numbers of electrinos and positrinos.
+                </dd>
               </div>
               <div>
                 <dt>Display shape</dt>
-                <dd>Spherical site-center crop</dd>
-              </div>
-              <div>
-                <dt>Selected site</dt>
-                <dd id="lattice-lab-selected-site"></dd>
+                <dd>Spherical crop</dd>
               </div>
               <div>
                 <dt>Boundary treatment</dt>
-                <dd>Every lattice site center within the dotted sphere; continuation not shown</dd>
+                <dd id="lattice-lab-case-boundary"></dd>
               </div>
               <div>
                 <dt>Calculation scope</dt>
-                <dd>Stationary ideal repeat; receiver-centered inversion-symmetric exhaustion</dd>
+                <dd id="lattice-lab-case-scope"></dd>
               </div>
             </dl>
             <p class="lattice-lab-scope-note">
@@ -92,41 +101,52 @@
             </p>
           </section>
 
-          <section class="lattice-lab-card" aria-labelledby="lattice-lab-edit-title">
-            <span class="lattice-lab-card-kicker">Neutrality-preserving edit</span>
-            <h2 id="lattice-lab-edit-title">Two-site polarity swap</h2>
-            <div class="lattice-lab-action-row">
-              <button id="lattice-lab-swap-button" class="lattice-lab-button" type="button" aria-pressed="false">
-                Start A–B swap
-              </button>
-              <button id="lattice-lab-reset-case" class="lattice-lab-button lattice-lab-button-secondary" type="button">
-                Reset case
-              </button>
+          <section
+            id="lattice-lab-compression-card"
+            class="lattice-lab-card lattice-lab-compression-card"
+            aria-labelledby="lattice-lab-compression-title"
+          >
+            <h2 id="lattice-lab-compression-title">Uniaxial compression</h2>
+            <div class="lattice-lab-compression-controls">
+              <label class="lattice-lab-compression-slider">
+                <input
+                  id="lattice-lab-compression-factor"
+                  type="range"
+                  min="0.01"
+                  max="1"
+                  step="0.01"
+                  value="1"
+                  aria-label="Uniaxial compression"
+                />
+                <output id="lattice-lab-compression-value" for="lattice-lab-compression-factor">
+                  λ = 1.00
+                </output>
+              </label>
             </div>
-            <p id="lattice-lab-swap-status" class="lattice-lab-status" role="status" aria-live="polite">
-              Choose A, then an opposite-polarity B; both sites exchange together.
-            </p>
+            <p id="lattice-lab-compression-status" class="lattice-lab-status" role="status" aria-live="polite"></p>
           </section>
 
-          <details class="lattice-lab-card lattice-lab-primer" open>
-            <summary>
+          <section
+            id="lattice-lab-primer"
+            class="lattice-lab-card lattice-lab-primer"
+            aria-labelledby="lattice-lab-primer-title"
+          >
+            <div class="lattice-lab-primer-heading">
               <span>
                 <span class="lattice-lab-card-kicker">Lattice Primer</span>
-                <strong>Simple cubic</strong>
+                <strong id="lattice-lab-primer-title"></strong>
               </span>
-            </summary>
-            <div class="lattice-lab-primer-body">
-              <p>
-                Equal rows of sites meet at right angles. Each interior site has six nearest neighbors: left, right, up, down, forward, and back.
-              </p>
-              <p>
-                The checkerboard polarity rule changes red to blue at every one-step move. Its smallest polarity pattern repeats every two site spacings. The main view includes every lattice site center that fits inside the dotted spherical crop.
-              </p>
-              <p>
-                The geometric density n = 1/d³ counts sites per volume for spacing d. It is not mass density and does not establish a physical medium.
-              </p>
+              <button
+                id="lattice-lab-primer-toggle"
+                class="lattice-lab-primer-toggle"
+                type="button"
+                aria-controls="lattice-lab-primer-body"
+                aria-expanded="true"
+                hidden
+              >Toggle primer</button>
             </div>
-          </details>
+            <div id="lattice-lab-primer-body" class="lattice-lab-primer-body"></div>
+          </section>
         </div>
       </aside>
 
@@ -134,8 +154,7 @@
         <canvas
           id="lattice-lab-canvas"
           tabindex="0"
-          aria-label="Rotatable three-dimensional simple-cubic checkerboard lattice"
-          aria-describedby="lattice-lab-display-crop-note"
+          aria-label="Rotatable three-dimensional lattice"
         ></canvas>
 
         <div
@@ -196,17 +215,6 @@
           </div>
         </div>
 
-        <div class="lattice-lab-view-controls" role="group" aria-label="Named lattice orientations">
-          <button type="button" data-lattice-view="cell">Cell</button>
-          <button type="button" data-lattice-view="plane">Plane</button>
-          <button type="button" data-lattice-view="shell">Shell</button>
-          <button type="button" data-lattice-view="selected">Selected</button>
-          <button type="button" data-lattice-view="front">Front</button>
-          <button type="button" data-lattice-view="side">Side</button>
-          <button type="button" data-lattice-view="top">Top</button>
-          <button type="button" data-lattice-view="reset">Reset</button>
-        </div>
-
         <svg
           id="lattice-lab-tripod"
           class="lattice-lab-tripod"
@@ -223,42 +231,56 @@
           <text data-axis-label="z" x="10" y="52">Z</text>
         </svg>
 
-        <p id="lattice-lab-display-crop-note" class="lattice-lab-display-crop-note">
-          Dotted sphere: visual display crop only · continuation not shown
-        </p>
-
         <aside class="lattice-lab-inspector-stack" aria-label="Selected-site inspection">
           <section class="lattice-lab-miniature-card" aria-labelledby="lattice-lab-miniature-title">
             <div>
-              <span>Polarity Repeat Cell</span>
-              <strong id="lattice-lab-miniature-title">Synchronized orientation</strong>
+              <span id="lattice-lab-miniature-kind">Polarity Repeat Cell</span>
+              <strong id="lattice-lab-miniature-title">How This Pattern Repeats</strong>
               <small id="lattice-lab-miniature-state"></small>
             </div>
             <canvas
               id="lattice-lab-miniature-canvas"
-              aria-label="Synchronized, non-interactive polarity repeat-cell miniature"
+              tabindex="0"
+              aria-label="Interactive repeat-cell view"
             ></canvas>
+            <div class="lattice-lab-repeat-rule" aria-labelledby="lattice-lab-repeat-rule-title">
+              <div class="lattice-lab-repeat-rule-heading">
+                <strong id="lattice-lab-repeat-rule-title">Translation rule</strong>
+                <label>
+                  <input id="lattice-lab-repeat-highlight" type="checkbox">
+                  Highlight repeat cell
+                </label>
+              </div>
+              <div
+                class="lattice-lab-repeat-vectors"
+                aria-label="One step along any translation vector places an adjacent cell without rotation"
+              >
+                <code id="lattice-lab-repeat-vector-a"></code>
+                <code id="lattice-lab-repeat-vector-b"></code>
+                <code id="lattice-lab-repeat-vector-c"></code>
+              </div>
+              <small
+                id="lattice-lab-repeat-highlight-state"
+                class="lattice-lab-repeat-highlight-state"
+              ></small>
+            </div>
           </section>
 
           <section class="lattice-lab-ledger" aria-labelledby="lattice-lab-ledger-title">
             <div class="lattice-lab-ledger-heading">
               <div>
                 <span>Selected-site ledger</span>
-                <h2 id="lattice-lab-ledger-title">Acceleration Cancellation Ledger</h2>
+                <h2 id="lattice-lab-ledger-title">Selected-Site Ledger</h2>
               </div>
-              <strong id="lattice-lab-ledger-state"></strong>
             </div>
-            <dl class="lattice-lab-ledger-meta">
+            <div id="lattice-lab-ledger-result" class="lattice-lab-ledger-result">
               <div>
-                <dt>Receiver</dt>
-                <dd id="lattice-lab-ledger-receiver"></dd>
+                <strong id="lattice-lab-ledger-state"></strong>
+                <output id="lattice-lab-ledger-magnitude"></output>
               </div>
-              <div>
-                <dt>Coverage</dt>
-                <dd id="lattice-lab-ledger-coverage"></dd>
-              </div>
-            </dl>
-            <p id="lattice-lab-ledger-unavailable" class="lattice-lab-ledger-warning"></p>
+              <code id="lattice-lab-ledger-vector"></code>
+              <small id="lattice-lab-ledger-result-scope"></small>
+            </div>
             <div id="lattice-lab-ledger-shells" class="lattice-lab-ledger-shells"></div>
             <p id="lattice-lab-ledger-residual" class="lattice-lab-ledger-residual"></p>
           </section>

@@ -1,5 +1,6 @@
 const ELECTRINO = "electrino";
 const POSITRINO = "positrino";
+export const SIMPLE_CUBIC_COMPRESSION_AXES = Object.freeze(["x", "y", "z"]);
 
 function deepFreeze(value) {
   if (!value || typeof value !== "object" || Object.isFrozen(value)) {
@@ -33,14 +34,45 @@ function canonicalOffsetKey(offset) {
   return canonical.join(",");
 }
 
+function normalizeCompression(compressionAxis = "x", compressionFactor = 1) {
+  if (!SIMPLE_CUBIC_COMPRESSION_AXES.includes(compressionAxis)) {
+    throw new RangeError("compressionAxis must be x, y, or z.");
+  }
+  const factor = Number(compressionFactor);
+  if (!Number.isFinite(factor) || !(factor > 0) || factor > 1) {
+    throw new RangeError("compressionFactor must satisfy 0 < lambda <= 1.");
+  }
+  return Object.freeze({
+    axis: compressionAxis,
+    axisIndex: SIMPLE_CUBIC_COMPRESSION_AXES.indexOf(compressionAxis),
+    factor,
+  });
+}
+
+export function transformSimpleCubicOffset(
+  offset,
+  compressionAxis = "x",
+  compressionFactor = 1,
+) {
+  assertGrid(offset, "offset");
+  const compression = normalizeCompression(
+    compressionAxis,
+    compressionFactor,
+  );
+  return Object.freeze(offset.map((value, index) =>
+    index === compression.axisIndex ? value * compression.factor : value
+  ));
+}
+
 export const SIMPLE_CUBIC_STATIONARY_CONTRACT = deepFreeze({
-  schema: "lattice-lab-stationary-case-contract/v1",
-  id: "simple-cubic-checkerboard-stationary-release-v1",
-  title: "Simple-cubic checkerboard stationary release",
+  schema: "lattice-lab-stationary-case-contract/v2",
+  id: "simple-cubic-checkerboard-stationary-release-v2",
+  title: "Simple-cubic checkerboard stationary release under uniaxial compression",
   claimGrade: "derived",
   normalizedWakeSpeed: 1,
   geometry: {
-    sites: "X_g(T) = d g for every g in Z^3",
+    sites:
+      "X_g(T) = d L_{axis,lambda} g for every g in Z^3, with L diagonal and 0 < lambda <= 1",
     nearestNeighborSpacing: "d > 0",
     polarity:
       "positrino when g_x + g_y + g_z is even; electrino when it is odd",
@@ -58,8 +90,16 @@ export const SIMPLE_CUBIC_STATIONARY_CONTRACT = deepFreeze({
   acceleration: {
     scale: "a_0 = kappa epsilon^2 / d^2",
     normalizedRow:
-      "A_n / a_0 = -sigma(n) n / ||n||^3",
+      "A_n / a_0 = -sigma(n) L n / ||L n||^3",
     polaritySign: "sigma(n) = (-1)^(n_x + n_y + n_z)",
+  },
+  uniaxialCompression: {
+    axes: "x, y, or z",
+    factor: "0 < lambda <= 1",
+    map:
+      "L_{axis,lambda} scales the selected coordinate by lambda and leaves the other two unchanged",
+    inversion:
+      "L(-n) = -L(n), with equal transformed separation and unchanged checkerboard polarity sign",
   },
   calculationBoundary: {
     kind: "receiver-centered inversion-symmetric exhaustion",
@@ -72,9 +112,9 @@ export const SIMPLE_CUBIC_STATIONARY_CONTRACT = deepFreeze({
   },
   result: {
     acceleration:
-      "exactly zero at every receiver for every finite admitted exhaustion and therefore for its declared exhaustion limit",
+      "exactly zero at every receiver for every finite admitted exhaustion, for every axis and every lambda > 0 through lambda <= 1, and therefore for its declared exhaustion limit",
     proofKey:
-      "sigma(-n) = sigma(n), so A_-n = -A_n for every partner row",
+      "sigma(-n) = sigma(n) and L(-n) = -L(n), so A_-n = -A_n for every transformed partner row",
   },
   nonClaims: [
     "no absolute-convergence or order-independent infinite-sum claim",
@@ -102,6 +142,8 @@ export function createStationarySimpleCubicAccelerationRow({
   transmitterGrid,
   receiverPolarity = simpleCubicCheckerboardPolarityAtGrid(receiverGrid),
   transmitterPolarity = simpleCubicCheckerboardPolarityAtGrid(transmitterGrid),
+  compressionAxis = "x",
+  compressionFactor = 1,
 }) {
   assertGrid(receiverGrid, "receiverGrid");
   assertGrid(transmitterGrid, "transmitterGrid");
@@ -110,7 +152,14 @@ export function createStationarySimpleCubicAccelerationRow({
   const relativeOffset = transmitterGrid.map(
     (value, index) => value - receiverGrid[index],
   );
-  const separationSquared = relativeOffset.reduce(
+  const compression = normalizeCompression(
+    compressionAxis,
+    compressionFactor,
+  );
+  const physicalOffsetInD = relativeOffset.map((value, index) =>
+    index === compression.axisIndex ? value * compression.factor : value
+  );
+  const separationSquared = physicalOffsetInD.reduce(
     (sum, value) => sum + value * value,
     0,
   );
@@ -119,7 +168,7 @@ export function createStationarySimpleCubicAccelerationRow({
   }
   const separationInD = Math.sqrt(separationSquared);
   const polaritySign = receiverPolarity === transmitterPolarity ? 1 : -1;
-  const accelerationNumerator = relativeOffset.map(
+  const accelerationNumerator = physicalOffsetInD.map(
     (value) => value === 0 ? 0 : -polaritySign * value,
   );
   const accelerationDenominator = separationSquared * separationInD;
@@ -131,6 +180,8 @@ export function createStationarySimpleCubicAccelerationRow({
     transmitterGrid: [...transmitterGrid],
     transmitterPolarity,
     relativeOffset,
+    physicalOffsetInD,
+    compression,
     separationSquared,
     separationInD,
     polaritySign,
@@ -139,7 +190,7 @@ export function createStationarySimpleCubicAccelerationRow({
     accelerationWeight: 1,
     accelerationScale: "kappa epsilon^2 / d^2",
     accelerationNumerator,
-    accelerationDenominatorForm: "||n||^3",
+    accelerationDenominatorForm: "||L n||^3",
     normalizedAcceleration: accelerationNumerator.map(
       (value) => value / accelerationDenominator,
     ),
@@ -150,6 +201,8 @@ export function createStationarySimpleCubicExhaustionLedger({
   receiverGrid = [0, 0, 0],
   cutoff = 2,
   shape = "cube",
+  compressionAxis = "x",
+  compressionFactor = 1,
 } = {}) {
   assertGrid(receiverGrid, "receiverGrid");
   if (!Number.isSafeInteger(cutoff) || cutoff < 1) {
@@ -158,6 +211,10 @@ export function createStationarySimpleCubicExhaustionLedger({
   if (shape !== "cube" && shape !== "sphere") {
     throw new RangeError("shape must be cube or sphere.");
   }
+  const compression = normalizeCompression(
+    compressionAxis,
+    compressionFactor,
+  );
 
   const rows = [];
   for (let nx = -cutoff; nx <= cutoff; nx += 1) {
@@ -176,6 +233,8 @@ export function createStationarySimpleCubicExhaustionLedger({
           transmitterGrid: receiverGrid.map(
             (value, index) => value + offset[index],
           ),
+          compressionAxis: compression.axis,
+          compressionFactor: compression.factor,
         }));
       }
     }
@@ -226,6 +285,7 @@ export function createStationarySimpleCubicExhaustionLedger({
     contractId: SIMPLE_CUBIC_STATIONARY_CONTRACT.id,
     receiverGrid: [...receiverGrid],
     receiverPolarity: simpleCubicCheckerboardPolarityAtGrid(receiverGrid),
+    compression,
     cutoff,
     shape,
     rowCount: rows.length,

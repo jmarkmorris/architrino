@@ -3,40 +3,40 @@
 ## Certificate
 
 - **Schema:** `lattice-lab-stationary-cancellation-certificate/v1`
-- **Case:** `simple-cubic-checkerboard-stationary-release-v1`
+- **Case:** `simple-cubic-checkerboard-stationary-release-v2`
 - **Claim grade:** derived
-- **Result:** exact zero initial acceleration at every lattice site under the declared receiver-centered inversion-symmetric exhaustion
+- **Result:** exact zero initial acceleration at every lattice site under the declared receiver-centered inversion-symmetric exhaustion, before or after any one-axis coordinate scaling $0<\lambda\leq1$
 - **Calculation boundary:** the ideal infinite repeat, exhausted by finite receiver-centered offset sets closed under $\mathbf n\mapsto-\mathbf n$
 - **Display boundary:** the dotted sphere is a visual crop only and has no role in the calculation
 - **Machine implementation:** `src/apps/lattice-lab/SimpleCubicStationaryLedger.js`
 - **Structural verifier:** `scripts/verify-lattice-lab-simple-cubic-checkerboard.mjs`
 - **Independent numerical oracle:** `tests/test_lattice_lab_stationary_oracle.py`, using the pre-existing high-precision EOM reference kernel without modifying that kernel
 
-Plainly: this certificate applies to one exact held checkerboard and one named way of taking its infinite sum. It does not infer a result from the spherical picture.
+Plainly: this certificate applies to one exact held checkerboard, including its static one-axis compressed geometry, and one named way of taking its infinite sum. It does not infer a result from the spherical picture.
 
 ## Declared Case
 
-Let the lattice sites be indexed by $\mathbf g=(g_x,g_y,g_z)\in\mathbb Z^3$ with spacing $d>0$:
+Let the lattice sites be indexed by $\mathbf g=(g_x,g_y,g_z)\in\mathbb Z^3$ with spacing $d>0$. Choose one axis $j\in\{x,y,z\}$ and a factor $0<\lambda\leq1$. Define the diagonal linear map $L_{j,\lambda}$ to multiply coordinate $j$ by $\lambda$ and leave the other two coordinates unchanged:
 
 $$
-\mathbf X_{\mathbf g}(T)=d\mathbf g,
+\mathbf X_{\mathbf g}(T)=dL_{j,\lambda}\mathbf g,
 \qquad
 \mathbf V_{\mathbf g}(T)=\mathbf 0
 $$
 
 for the complete retained history through the release time $T_r$. A site is a positrino when $g_x+g_y+g_z$ is even and an electrino when it is odd. Use normalized wake-speed units $c_f=1$, with equal polarity magnitude $\epsilon$.
 
-Plainly: every site has always been held still, and taking one lattice step changes its polarity.
+Plainly: every site has always been held still. The selected coordinate direction may be shortened, while taking one lattice-index step still changes the checkerboard polarity.
 
 For receiver $\mathbf g$ and transmitter $\mathbf g+\mathbf n$, where $\mathbf n\ne\mathbf0$, the stationary causal-root equation has the unique partner root
 
 $$
-T_t=T_r-d\|\mathbf n\|.
+T_t=T_r-d\|L_{j,\lambda}\mathbf n\|.
 $$
 
 The stationary transmitter has $D_t=1$ and therefore $W^{\mathrm{acc}}=1$. A stationary same-site history has no positive-delay self root; its only coordinate coincidence is the excluded endpoint $T_t=T_r$.
 
-Plainly: every other site contributes one delayed partner row, and the selected site contributes no self row.
+Plainly: every other site contributes one delayed partner row at its transformed distance, and the selected site contributes no self row.
 
 ## Generative Acceleration Ledger
 
@@ -57,10 +57,12 @@ Because the canonical line-of-action vector points from the transmitter to the r
 $$
 \frac{\mathbf A_{\mathbf n}}{a_0}
 =
--\sigma(\mathbf n)\frac{\mathbf n}{\|\mathbf n\|^3}.
+-\sigma(\mathbf n)
+\frac{L_{j,\lambda}\mathbf n}
+{\|L_{j,\lambda}\mathbf n\|^3}.
 $$
 
-Plainly: this equation generates the full partner ledger. Odd-step offsets attract and even-step offsets repel, with the canonical inverse-square magnitude.
+Plainly: this equation generates the full partner ledger from the transformed separation vector. The coordinate map changes distances and directions, but not the checkerboard polarity assignment.
 
 ## Inversion-Pair Theorem
 
@@ -87,9 +89,13 @@ The two rows also have the same separation, root delay, transmitter factor, acce
 $$
 \frac{\mathbf A_{-\mathbf n}}{a_0}
 =
--\sigma(-\mathbf n)\frac{-\mathbf n}{\|-\mathbf n\|^3}
+-\sigma(-\mathbf n)
+\frac{L_{j,\lambda}(-\mathbf n)}
+{\|L_{j,\lambda}(-\mathbf n)\|^3}
 =
-\sigma(\mathbf n)\frac{\mathbf n}{\|\mathbf n\|^3}
+\sigma(\mathbf n)
+\frac{L_{j,\lambda}\mathbf n}
+{\|L_{j,\lambda}\mathbf n\|^3}
 =
 -\frac{\mathbf A_{\mathbf n}}{a_0}.
 $$
@@ -104,11 +110,11 @@ $$
 
 The declared exhaustion limit is consequently zero at every receiver.
 
-Plainly: each source has an equally distant source on the opposite side with the same polarity relationship. Their acceleration rows are exact opposites, so every finite centered stage sums to zero.
+Plainly: a one-axis linear compression preserves every receiver-centered opposite pair. Each partner remains equally distant and has the same polarity relationship, so the two transformed acceleration rows are exact opposites.
 
 ## First Two Displayed Shells
 
-For an electrino receiver, the nearest shell contains six positrinos at $d$. It forms three inversion pairs. The next local shell contains twelve electrinos at $\sqrt2d$. It forms six inversion pairs. Each of the nine displayed pairs sums to zero separately.
+For an electrino receiver, the nearest shell contains six positrinos and forms three inversion pairs. At $\lambda<1$, two lie at $\lambda d$ along the compressed axis and four remain at $d$. The next local shell contains twelve electrinos and forms six inversion pairs: eight lie at $d\sqrt{1+\lambda^2}$ and four remain at $\sqrt2d$. Each of the nine local pairs sums to zero separately.
 
 These eighteen rows are an explanatory prefix of the generative infinite ledger. They do not establish the infinite result by themselves; the inversion-pair theorem supplies that result under the declared exhaustion.
 
@@ -116,9 +122,9 @@ Plainly: the app shows the first nine cancelling pairs, while the theorem explai
 
 ## Independent Checks
 
-The structural verifier reconstructs parity, polarity sign, coordinate offset, stationary root delay, and exact integer acceleration numerators independently of the app ledger helpers. It checks centered cube and centered lattice-ball exhaustions for four receivers, both receiver polarities, and cutoffs one through six. A tampered acceleration numerator is the mandatory negative control.
+The structural verifier reconstructs parity, polarity sign, the one-axis linear map, stationary root delay, and acceleration numerators independently of the app ledger helpers. It checks centered cube and centered lattice-ball exhaustions for four receivers, both receiver polarities, cutoffs one through six, all three axes, and factors down to $10^{-6}$. A tampered acceleration numerator is the mandatory negative control.
 
-The high-precision Python test reconstructs stationary histories directly with the pre-existing EOM oracle in `scripts/eom/oracle/reference_kernel.py`. It evaluates both displayed shells and centered cube exhaustions without importing the JavaScript implementation. The oracle verifies the stationary root, $W^{\mathrm{acc}}=1$, the per-hit acceleration vectors, and their zero sum.
+The high-precision Python test reconstructs transformed stationary histories directly with the pre-existing EOM oracle in `scripts/eom/oracle/reference_kernel.py`. It evaluates both displayed shells and centered cube and lattice-ball exhaustions without importing the JavaScript implementation. The oracle verifies the transformed stationary root, $W^{\mathrm{acc}}=1$, the per-hit acceleration vectors, and their zero sum.
 
 Plainly: one check audits the exact ledger structure, and a separately implemented EOM kernel recomputes the actual stationary contributions.
 
@@ -131,8 +137,9 @@ The certificate is overturned if any of the following occurs:
 1. a stationary partner offset has more or fewer than one admitted causal root;
 2. a stationary row has $W^{\mathrm{acc}}\ne1$;
 3. the checkerboard gives different polarity signs to $\mathbf n$ and $-\mathbf n$;
-4. an admitted inversion pair has unequal acceleration magnitude or a nonzero vector sum;
-5. a finite centered cube or lattice-ball exhaustion has a nonzero exact residual; or
-6. the independent high-precision oracle disagrees with the generative row.
+4. the declared coordinate map fails $L_{j,\lambda}(-\mathbf n)=-L_{j,\lambda}\mathbf n$;
+5. an admitted transformed inversion pair has unequal acceleration magnitude or a nonzero vector sum;
+6. a finite centered cube or lattice-ball exhaustion has a nonzero exact residual; or
+7. the independent high-precision oracle disagrees with the generative row.
 
 Plainly: these are direct, operator-checkable ways the result could fail. None licenses a stability or physical-medium claim even when the cancellation certificate passes.

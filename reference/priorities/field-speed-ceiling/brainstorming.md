@@ -358,3 +358,20 @@ has a zero transmitter-side root Jacobian, so the calculation does not by
 itself define the plateau contribution. A future ceiling model could test
 whether a causally derived maturity radius or boundary update supplies such a
 lower limit without deleting ordinary roots.
+
+## Guarded compact-object question
+
+Could a completed ceiling model admit a collective terminal contact or
+phase-closed compact configuration: a state in which further inward approach
+reaches a cap-state boundary rather than continuing to smaller internal
+separation? In informal terms, this is the proposed "hard clink" picture.
+
+The hypothesis is that an already maximally phase-closed interior cannot
+contract further; new incoming structure would instead have to join an outer
+boundary layer. This is a question for later calculation, not an implication
+of the present two-architrino result and not an identification with a
+supermassive black hole. It would require, at minimum: a finite collective
+geometry; a complete incoming causal-root ledger; a defined cap-state
+reception and transfer rule; an outgoing retained history; and a separately
+derived external observable signature. The speed ceiling and isolated
+co-moving self-contact rule alone establish none of those items.

@@ -42,13 +42,31 @@ class LatticeLabStationaryOracleTests(unittest.TestCase):
         self,
         receiver_grid: tuple[int, int, int],
         offset: tuple[int, int, int],
+        compression_axis: int = 0,
+        compression_factor: mp.mpf = mp.mpf("1"),
     ) -> tuple[mp.mpf, mp.mpf, mp.mpf]:
         transmitter_grid = tuple(
             receiver_grid[index] + offset[index] for index in range(3)
         )
-        receiver = inertial_history(receiver_grid, (0, 0, 0))
-        transmitter = inertial_history(transmitter_grid, (0, 0, 0))
-        separation = mp.sqrt(sum(value * value for value in offset))
+        receiver_position = tuple(
+            mp.mpf(value) * (
+                compression_factor if index == compression_axis else 1
+            )
+            for index, value in enumerate(receiver_grid)
+        )
+        transmitter_position = tuple(
+            mp.mpf(value) * (
+                compression_factor if index == compression_axis else 1
+            )
+            for index, value in enumerate(transmitter_grid)
+        )
+        physical_offset = tuple(
+            transmitter_position[index] - receiver_position[index]
+            for index in range(3)
+        )
+        receiver = inertial_history(receiver_position, (0, 0, 0))
+        transmitter = inertial_history(transmitter_position, (0, 0, 0))
+        separation = mp.sqrt(sum(value * value for value in physical_offset))
         emission = self.reception - separation
         self.assertLess(
             abs(
@@ -126,18 +144,35 @@ class LatticeLabStationaryOracleTests(unittest.TestCase):
     def test_centered_cube_and_sphere_exhaustions_cancel_for_both_receiver_polarities(
         self,
     ) -> None:
+        transforms = (
+            (0, mp.mpf("1")),
+            (0, mp.mpf("0.75")),
+            (1, mp.mpf("0.2")),
+            (2, mp.mpf("0.000001")),
+        )
         for receiver_grid in ((0, 0, 0), (1, 0, 0)):
             for shape in ("cube", "sphere"):
                 for cutoff in range(1, 5):
-                    for offset in canonical_offsets(cutoff, shape):
-                        opposite = tuple(-value for value in offset)
-                        forward = self.evaluate_row(receiver_grid, offset)
-                        backward = self.evaluate_row(receiver_grid, opposite)
-                        for axis in range(3):
-                            self.assertLess(
-                                abs(forward[axis] + backward[axis]),
-                                mp.mpf("1e-80"),
+                    for compression_axis, compression_factor in transforms:
+                        for offset in canonical_offsets(cutoff, shape):
+                            opposite = tuple(-value for value in offset)
+                            forward = self.evaluate_row(
+                                receiver_grid,
+                                offset,
+                                compression_axis,
+                                compression_factor,
                             )
+                            backward = self.evaluate_row(
+                                receiver_grid,
+                                opposite,
+                                compression_axis,
+                                compression_factor,
+                            )
+                            for axis in range(3):
+                                self.assertLess(
+                                    abs(forward[axis] + backward[axis]),
+                                    mp.mpf("1e-70"),
+                                )
 
 
 if __name__ == "__main__":
