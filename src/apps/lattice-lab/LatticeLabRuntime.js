@@ -19,6 +19,7 @@ import {
   createSelectedSiteLedger,
   getLatticeSite,
   isReferenceLatticeConfiguration,
+  selectShortestTransformedRepeatCellEdges,
 } from "./LatticeLabCase.js";
 import {
   createStationarySimpleCubicExhaustionLedger,
@@ -154,44 +155,28 @@ export function createNearestNeighborEdges(caseRecord) {
   return Object.freeze(edges);
 }
 
-export function selectShortestTransformedRelationships(
-  relationships,
+export function createRepeatCellDisplayGraph(
+  caseRecord,
   { compressionAxis = "x", compressionFactor = 1 } = {},
 ) {
-  const axisIndex = ["x", "y", "z"].indexOf(compressionAxis);
-  if (
-    axisIndex < 0 ||
-    !Number.isFinite(compressionFactor) ||
-    compressionFactor <= 0 ||
-    compressionFactor > 1
-  ) {
-    throw new Error("Invalid transformed-relationship selector.");
-  }
-  const rows = relationships.map((relationship) => {
-    const transform = (position) => position.map(
-      (value, index) => index === axisIndex
-        ? value * compressionFactor
-        : value,
-    );
-    const start = transform(relationship.fromPosition);
-    const end = transform(relationship.toPosition);
-    return Object.freeze({
-      relationship,
-      transformedDistance: Math.hypot(...end.map(
-        (value, index) => value - start[index],
-      )),
-    });
-  });
-  const nearestDistance = Math.min(...rows.map(
-    (row) => row.transformedDistance,
-  ));
+  const network = createRepeatCellNearestNeighborNetwork(caseRecord);
+  const candidateEdges =
+    caseRecord.repeatCell.contextPresentation === "continuation-markers"
+      ? network.edges.filter(
+        (edge) => !edge.startContinuation || !edge.endContinuation,
+      )
+      : network.edges;
+  const transformedSelection = selectShortestTransformedRepeatCellEdges(
+    candidateEdges,
+    { compressionAxis, compressionFactor },
+  );
   return Object.freeze({
-    nearestDistance,
-    selected: Object.freeze(rows.filter((row) =>
-      Math.abs(row.transformedDistance - nearestDistance) < 1e-7
-    )),
-    excluded: Object.freeze(rows.filter((row) =>
-      Math.abs(row.transformedDistance - nearestDistance) >= 1e-7
+    network,
+    nearestDistance: transformedSelection.nearestDistance,
+    edges: transformedSelection.selected,
+    excludedEdges: transformedSelection.excluded,
+    edgeIdentities: Object.freeze(transformedSelection.selected.map(
+      ({ edge }) => edge.id,
     )),
   });
 }
@@ -346,6 +331,15 @@ export function mountLatticeLab(options = {}) {
     depthTest: true,
     depthWrite: false,
   });
+  const continuationMarkerMaterial = new THREE.PointsMaterial({
+    color: GEOMETRY_LINE_COLOR,
+    size: 4,
+    sizeAttenuation: false,
+    transparent: true,
+    opacity: 0.72,
+    depthTest: true,
+    depthWrite: false,
+  });
   const highlightedNeighborMaterial = new THREE.MeshBasicMaterial({
     color: GEOMETRY_LINE_COLOR,
     transparent: true,
@@ -354,16 +348,6 @@ export function mountLatticeLab(options = {}) {
     depthWrite: false,
     toneMapped: false,
   });
-  const continuationRedMaterial = redMaterial.clone();
-  continuationRedMaterial.transparent = true;
-  continuationRedMaterial.opacity = 0.3;
-  continuationRedMaterial.depthWrite = false;
-  continuationRedMaterial.wireframe = true;
-  const continuationBlueMaterial = blueMaterial.clone();
-  continuationBlueMaterial.transparent = true;
-  continuationBlueMaterial.opacity = 0.3;
-  continuationBlueMaterial.depthWrite = false;
-  continuationBlueMaterial.wireframe = true;
 
   const siteMeshes = new Map();
   let edgeLines = [];
@@ -503,7 +487,7 @@ export function mountLatticeLab(options = {}) {
     )[0]?.sites ?? [];
   }
 
-  function rebuildRepeatCellHighlight() {
+  function rebuildRepeatCellHighlight(displayGraph) {
     const ownedSites = findCentralRepeatOwnedSites();
     if (ownedSites.length !== caseRecord.repeatCell.sites.length) {
       throw new Error(
@@ -513,35 +497,28 @@ export function mountLatticeLab(options = {}) {
     const offset = ownedSites[0].position.map(
       (value, index) => value - caseRecord.repeatCell.sites[0].position[index],
     );
-    const repeatNetwork = createRepeatCellNearestNeighborNetwork(caseRecord);
 
     const displayedPositionKeys = new Set(caseRecord.sites.map((site) =>
       site.position.map((value) => Number(value.toFixed(9))).join(",")
     ));
-    const transformedSelection = selectShortestTransformedRelationships(
-      repeatNetwork.relationships,
-      { compressionAxis, compressionFactor },
-    );
-    const relationshipRows = transformedSelection.selected.map(
-      ({ relationship, transformedDistance }) => {
-        const startPosition = relationship.fromPosition.map(
+    const edgeRows = displayGraph.edges.map(
+      ({ edge, transformedDistance }) => {
+        const startPosition = edge.start.map(
           (value, index) => value + offset[index],
         );
-        const endPosition = relationship.toPosition.map(
+        const endPosition = edge.end.map(
           (value, index) => value + offset[index],
         );
         return {
-          relationship,
+          edge,
           startPosition,
           endPosition,
           transformedDistance,
         };
       },
     );
-    const nearestDisplayedDistance = transformedSelection.nearestDistance;
-    const highlightedRelationships = relationshipRows;
-    highlightedRelationships.forEach((row) => {
-      const { relationship, startPosition, endPosition } = row;
+    edgeRows.forEach((row) => {
+      const { edge, startPosition, endPosition } = row;
       const startKey = startPosition
         .map((value) => Number(value.toFixed(9))).join(",");
       const endKey = endPosition
@@ -563,7 +540,8 @@ export function mountLatticeLab(options = {}) {
       highlight.userData.kind = "repeat-cell-highlight-neighbor";
       highlight.userData.startPosition = Object.freeze(startPosition);
       highlight.userData.endPosition = Object.freeze(endPosition);
-      highlight.userData.relationship = relationship;
+      highlight.userData.edge = edge;
+      highlight.userData.edgeIdentity = edge.id;
       highlight.userData.disposeGeometry = true;
       highlight.renderOrder = 3;
       repeatHighlightGroup.add(highlight);
@@ -571,86 +549,99 @@ export function mountLatticeLab(options = {}) {
     repeatHighlightGroup.userData.ownedSiteIds = Object.freeze(
       ownedSites.map((site) => site.id),
     );
-    repeatHighlightGroup.userData.incidenceCount =
-      repeatHighlightGroup.children.filter(
-        (object) =>
-          object.userData.kind === "repeat-cell-highlight-neighbor",
-      ).length;
-    const highlightedEdgeKeys = new Set(highlightedRelationships.map((row) =>
-      [row.startPosition, row.endPosition]
-        .map((position) =>
-          position.map((value) => Number(value.toFixed(9))).join(",")
-        )
-        .sort()
-        .join("|")
-    ));
-    repeatHighlightGroup.userData.uniqueLinkCount =
-      highlightedEdgeKeys.size;
-    dom.canvas.dataset.repeatHighlightIncidenceCount =
-      String(repeatHighlightGroup.userData.incidenceCount);
-    dom.canvas.dataset.repeatHighlightLinkCount =
-      String(repeatHighlightGroup.userData.uniqueLinkCount);
-    dom.canvas.dataset.repeatHighlightExcludedIncidenceCount =
-      String(transformedSelection.excluded.length);
+    repeatHighlightGroup.userData.edgeIdentities =
+      displayGraph.edgeIdentities;
+    dom.canvas.dataset.repeatHighlightEdgeCount =
+      String(displayGraph.edgeIdentities.length);
+    dom.canvas.dataset.repeatHighlightEdgeIdentities =
+      displayGraph.edgeIdentities.join(";");
+    dom.canvas.dataset.repeatHighlightExcludedEdgeCount =
+      String(displayGraph.excludedEdges.length);
     dom.repeatHighlightState.textContent = compressionFactor < 1
-      ? `Compressed distance scope: ${highlightedRelationships.length} ` +
-        `current nearest incidences at ${Number(nearestDisplayedDistance.toFixed(3))}d; ` +
-        `${transformedSelection.excluded.length} longer ` +
-        "deformed reference incidences are not highlighted."
-      : `${highlightedRelationships.length} nearest-neighbor incidences at d · ` +
-        `${highlightedEdgeKeys.size} unique links.`;
+      ? `Compressed distance scope: ${displayGraph.edges.length} current ` +
+        `shortest edges at ${Number(displayGraph.nearestDistance.toFixed(3))}d; ` +
+        `${displayGraph.excludedEdges.length} longer deformed reference ` +
+        "edges are not highlighted."
+      : caseRecord.repeatCell.contextPresentation === "continuation-markers"
+        ? `${displayGraph.edges.length} nearest-neighbor segments touch the ` +
+          "two sites in this tile at d. Purple endpoints continue into " +
+          "adjacent translated cells. Same-color square edges are the longer " +
+          "next shell at 2d/√3, so they are not drawn."
+        : `${displayGraph.edges.length} fixed-distance nearest-neighbor edges at d.`;
     lineGroup.visible = !repeatCellHighlighted;
   }
 
-  function rebuildMiniatureNetwork() {
-    const network = createRepeatCellNearestNeighborNetwork(caseRecord);
+  function rebuildMiniatureNetwork(displayGraph) {
+    const { network } = displayGraph;
     const rawPositions = [];
-    network.displaySites.forEach((site) => {
+    const contextAsMarkers =
+      caseRecord.repeatCell.contextPresentation === "continuation-markers";
+    const visibleSites = network.displaySites.filter(
+      (site) => !contextAsMarkers || !site.continuation,
+    );
+    visibleSites.forEach((site) => {
       const position = transformDisplayPosition(site.position);
       rawPositions.push(position);
-      const material = site.continuation
-        ? site.polarity === LATTICE_LAB_POLARITY.POSITRINO
-          ? continuationRedMaterial
-          : continuationBlueMaterial
-        : site.polarity === LATTICE_LAB_POLARITY.POSITRINO
-          ? redMaterial
-          : blueMaterial;
+      const material = site.polarity === LATTICE_LAB_POLARITY.POSITRINO
+        ? redMaterial
+        : blueMaterial;
       const miniatureMesh = new THREE.Mesh(sphereGeometry, material);
       miniatureMesh.position.fromArray(position);
-      miniatureMesh.scale.setScalar(site.continuation ? 0.075 : 0.13);
       miniatureMesh.userData.kind = site.continuation
         ? "repeat-cell-periodic-continuation"
         : "repeat-cell-site";
       miniatureRoot.add(miniatureMesh);
     });
 
-    network.edges.forEach((edge) => {
+    const continuationMarkerPositions = new Map();
+    displayGraph.edges.forEach(({ edge }) => {
       const start = transformDisplayPosition(edge.start);
       const end = transformDisplayPosition(edge.end);
       rawPositions.push(start, end);
-      const distance = Math.hypot(...end.map(
-        (value, index) => value - start[index],
-      ));
-      if (distance <= 0.26) {
-        return;
+      if (contextAsMarkers && edge.startContinuation) {
+        continuationMarkerPositions.set(
+          start.map((value) => Number(value.toFixed(9))).join(","),
+          start,
+        );
       }
-      const segment = createClippedNeighborSegment(
-        start,
-        end,
-        edge.startContinuation ? 0.075 : 0.13,
-        edge.endContinuation ? 0.075 : 0.13,
-      );
+      if (contextAsMarkers && edge.endContinuation) {
+        continuationMarkerPositions.set(
+          end.map((value) => Number(value.toFixed(9))).join(","),
+          end,
+        );
+      }
       const geometry = new THREE.BufferGeometry().setFromPoints([
-        new THREE.Vector3(...segment.start),
-        new THREE.Vector3(...segment.end),
+        new THREE.Vector3(...start),
+        new THREE.Vector3(...end),
       ]);
       const line = new THREE.Line(geometry, miniatureNeighborLineMaterial);
       line.userData.kind = edge.periodicContinuation
         ? "repeat-cell-periodic-neighbor"
         : "repeat-cell-neighbor";
+      line.userData.startPosition = Object.freeze(start);
+      line.userData.endPosition = Object.freeze(end);
+      line.userData.startHasSphere =
+        !contextAsMarkers || !edge.startContinuation;
+      line.userData.endHasSphere =
+        !contextAsMarkers || !edge.endContinuation;
+      line.userData.edgeIdentity = edge.id;
       line.userData.disposeGeometry = true;
       miniatureRoot.add(line);
     });
+    if (continuationMarkerPositions.size > 0) {
+      const markerGeometry = new THREE.BufferGeometry().setFromPoints(
+        [...continuationMarkerPositions.values()].map(
+          (position) => new THREE.Vector3(...position),
+        ),
+      );
+      const markers = new THREE.Points(
+        markerGeometry,
+        continuationMarkerMaterial,
+      );
+      markers.userData.kind = "repeat-cell-continuation-markers";
+      markers.userData.disposeGeometry = true;
+      miniatureRoot.add(markers);
+    }
 
     const bounds = rawPositions.reduce(
       (result, position) => ({
@@ -670,8 +661,7 @@ export function mountLatticeLab(options = {}) {
       (value, index) => (value + bounds.maximum[index]) / 2,
     );
     miniatureRoot.children.forEach((object) => {
-      object.position.sub(new THREE.Vector3(...center));
-      if (object.isLine) {
+      if (object.isLine || object.isPoints) {
         const position = object.geometry.getAttribute("position");
         for (let index = 0; index < position.count; index += 1) {
           position.setXYZ(
@@ -682,7 +672,21 @@ export function mountLatticeLab(options = {}) {
           );
         }
         position.needsUpdate = true;
+        if (object.isLine) {
+          object.userData.startPosition = Object.freeze(
+            object.userData.startPosition.map(
+              (value, index) => value - center[index],
+            ),
+          );
+          object.userData.endPosition = Object.freeze(
+            object.userData.endPosition.map(
+              (value, index) => value - center[index],
+            ),
+          );
+        }
         object.position.set(0, 0, 0);
+      } else {
+        object.position.sub(new THREE.Vector3(...center));
       }
     });
     const repeatRadius = Math.max(
@@ -695,12 +699,21 @@ export function mountLatticeLab(options = {}) {
     miniatureRoot.userData.relationshipCount = network.relationshipCount;
     miniatureRoot.userData.expectedRelationshipCount =
       network.expectedRelationshipCount;
+    miniatureRoot.userData.edgeIdentities = displayGraph.edgeIdentities;
     dom.miniatureCanvas.dataset.relationshipCount =
       String(network.relationshipCount);
     dom.miniatureCanvas.dataset.displayEdgeCount =
-      String(network.edges.length);
+      String(displayGraph.edgeIdentities.length);
+    dom.miniatureCanvas.dataset.displayEdgeIdentities =
+      displayGraph.edgeIdentities.join(";");
+    dom.miniatureCanvas.dataset.excludedEdgeCount =
+      String(displayGraph.excludedEdges.length);
     dom.miniatureCanvas.dataset.periodicContinuationCount =
       String(network.continuationSites.length);
+    dom.miniatureCanvas.dataset.visibleContextSiteCount =
+      String(visibleSites.filter((site) => site.continuation).length);
+    dom.miniatureCanvas.dataset.continuationMarkerCount =
+      String(continuationMarkerPositions.size);
   }
 
   function rebuildCaseScene() {
@@ -719,7 +732,11 @@ export function mountLatticeLab(options = {}) {
       siteMeshes.set(site.id, mesh);
     });
 
-    rebuildMiniatureNetwork();
+    const repeatCellDisplayGraph = createRepeatCellDisplayGraph(caseRecord, {
+      compressionAxis,
+      compressionFactor,
+    });
+    rebuildMiniatureNetwork(repeatCellDisplayGraph);
 
     edgeLines = createNearestNeighborEdges(caseRecord).map((edge) => {
       const geometry = new THREE.BufferGeometry().setFromPoints([
@@ -732,7 +749,7 @@ export function mountLatticeLab(options = {}) {
       lineGroup.add(line);
       return line;
     });
-    rebuildRepeatCellHighlight();
+    rebuildRepeatCellHighlight(repeatCellDisplayGraph);
     guideGroup.add(createDottedDisplayEnvelope(caseRecord.displayRadius));
   }
 
@@ -776,7 +793,8 @@ export function mountLatticeLab(options = {}) {
         if (
           object.userData.kind === "repeat-cell-highlight-neighbor"
         ) {
-          object.visible = repeatCellHighlighted;
+          object.visible =
+            repeatCellHighlighted && object.userData.segmentFits !== false;
         }
       });
       lineGroup.visible = !repeatCellHighlighted;
@@ -856,19 +874,12 @@ export function mountLatticeLab(options = {}) {
     );
   }
 
-  function updateCompressionPresentation(message = "") {
-    const available = compressionAvailable();
-    dom.compressionCard.dataset.available = String(available);
-    dom.compressionFactor.disabled = !available;
-    dom.compressionFactor.value = String(compressionFactor);
-    dom.compressionValue.value = `λ = ${compressionFactor.toFixed(2)}`;
-    dom.compressionValue.textContent = dom.compressionValue.value;
+  function activePeriodicCertificatePassed() {
     const reference = isReferenceLatticeConfiguration(
       caseRecord,
       polarityBySiteId,
     );
-    const certificatePassed =
-      caseRecord.id === LATTICE_LAB_CASE_ID && reference && [
+    return caseRecord.id === LATTICE_LAB_CASE_ID && reference && [
       [0, 0, 0],
       [1, 0, 0],
     ].every((receiverGrid) =>
@@ -882,6 +893,16 @@ export function mountLatticeLab(options = {}) {
         }).exactZero
       )
     );
+  }
+
+  function updateCompressionPresentation(message = "") {
+    const available = compressionAvailable();
+    dom.compressionCard.dataset.available = String(available);
+    dom.compressionFactor.disabled = !available;
+    dom.compressionFactor.value = String(compressionFactor);
+    dom.compressionValue.value = `λ = ${compressionFactor.toFixed(2)}`;
+    dom.compressionValue.textContent = dom.compressionValue.value;
+    const certificatePassed = activePeriodicCertificatePassed();
     dom.compressionCard.dataset.certificatePassed =
       String(certificatePassed);
     if (message) {
@@ -1243,11 +1264,10 @@ export function mountLatticeLab(options = {}) {
 
   function updateFixedMarkerSizes() {
     const viewportHeight = Math.max(1, dom.canvas.getBoundingClientRect().height);
-    markerWorldRadius = Math.min(
-      0.32,
-      MARKER_RADIUS_PX * (2 * cameraViewHalfHeight / viewportHeight),
-    );
+    markerWorldRadius =
+      MARKER_RADIUS_PX * (2 * cameraViewHalfHeight / viewportHeight);
     siteMeshes.forEach((mesh) => mesh.scale.setScalar(markerWorldRadius));
+    const clippedMainEdgeIdentities = [];
     edgeLines.forEach((line) => {
       const edge = line.userData.edge;
       const startSite = getLatticeSite(caseRecord, edge.fromSiteId);
@@ -1272,15 +1292,80 @@ export function mountLatticeLab(options = {}) {
       position.setXYZ(1, ...segment.end);
       position.needsUpdate = true;
       line.geometry.computeBoundingSphere();
+      clippedMainEdgeIdentities.push(
+        [edge.fromSiteId, edge.toSiteId].sort().join("|"),
+      );
     });
+    dom.canvas.dataset.clippedNearestEdgeCount =
+      String(clippedMainEdgeIdentities.length);
+    dom.canvas.dataset.clippedNearestEdgeIdentities =
+      clippedMainEdgeIdentities.join(";");
+    const miniatureViewportHeight = Math.max(
+      1,
+      dom.miniatureCanvas.getBoundingClientRect().height,
+    );
+    const miniatureWorldRadius =
+      MARKER_RADIUS_PX *
+      (2 * miniatureCamera.top / miniatureViewportHeight);
+    const miniatureLocalRadius =
+      miniatureWorldRadius / Math.max(1e-7, miniatureRoot.scale.x);
+    miniatureRoot.children
+      .filter((object) =>
+        object.userData.kind === "repeat-cell-site" ||
+        object.userData.kind === "repeat-cell-periodic-continuation"
+      )
+      .forEach((mesh) => mesh.scale.setScalar(miniatureLocalRadius));
+    const clippedMiniatureEdgeIdentities = [];
+    miniatureRoot.children
+      .filter((object) =>
+        object.userData.kind === "repeat-cell-neighbor" ||
+        object.userData.kind === "repeat-cell-periodic-neighbor"
+      )
+      .forEach((line) => {
+        const segment = createClippedNeighborSegment(
+          line.userData.startPosition,
+          line.userData.endPosition,
+          line.userData.startHasSphere ? miniatureLocalRadius : 0,
+          line.userData.endHasSphere ? miniatureLocalRadius : 0,
+        );
+        const position = line.geometry.getAttribute("position");
+        position.setXYZ(0, ...segment.start);
+        position.setXYZ(1, ...segment.end);
+        position.needsUpdate = true;
+        line.geometry.computeBoundingSphere();
+        clippedMiniatureEdgeIdentities.push(line.userData.edgeIdentity);
+      });
+    dom.miniatureCanvas.dataset.clippedEdgeCount =
+      String(clippedMiniatureEdgeIdentities.length);
+    dom.miniatureCanvas.dataset.clippedEdgeIdentities =
+      clippedMiniatureEdgeIdentities.join(";");
+    dom.canvas.dataset.sphereRadiusPx = String(MARKER_RADIUS_PX);
+    dom.miniatureCanvas.dataset.sphereRadiusPx = String(MARKER_RADIUS_PX);
+    const clippedHighlightEdgeIdentities = [];
     repeatHighlightGroup.children
       .filter((object) =>
         object.userData.kind === "repeat-cell-highlight-neighbor"
       )
       .forEach((highlight) => {
+        const transformedStart = transformDisplayPosition(
+          highlight.userData.startPosition,
+        );
+        const transformedEnd = transformDisplayPosition(
+          highlight.userData.endPosition,
+        );
+        const distance = Math.hypot(...transformedEnd.map(
+          (value, index) => value - transformedStart[index],
+        ));
+        if (distance <= 2 * markerWorldRadius) {
+          highlight.userData.segmentFits = false;
+          highlight.visible = false;
+          return;
+        }
+        highlight.userData.segmentFits = true;
+        highlight.visible = repeatCellHighlighted;
         const segment = createClippedNeighborSegment(
-          transformDisplayPosition(highlight.userData.startPosition),
-          transformDisplayPosition(highlight.userData.endPosition),
+          transformedStart,
+          transformedEnd,
           markerWorldRadius,
         );
         const start = new THREE.Vector3(...segment.start);
@@ -1293,7 +1378,14 @@ export function mountLatticeLab(options = {}) {
           direction.normalize(),
         );
         highlight.scale.set(1, length, 1);
+        clippedHighlightEdgeIdentities.push(
+          highlight.userData.edgeIdentity,
+        );
       });
+    dom.canvas.dataset.clippedRepeatHighlightEdgeCount =
+      String(clippedHighlightEdgeIdentities.length);
+    dom.canvas.dataset.clippedRepeatHighlightEdgeIdentities =
+      clippedHighlightEdgeIdentities.join(";");
   }
 
   function updateTripod() {
@@ -1379,9 +1471,8 @@ export function mountLatticeLab(options = {}) {
     selectedBlueMaterial.dispose();
     neighborLineMaterial.dispose();
     miniatureNeighborLineMaterial.dispose();
+    continuationMarkerMaterial.dispose();
     highlightedNeighborMaterial.dispose();
-    continuationRedMaterial.dispose();
-    continuationBlueMaterial.dispose();
     renderer.dispose();
     miniatureRenderer.dispose();
   }

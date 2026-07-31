@@ -1,9 +1,11 @@
 # Capped Collinear Endpoint Reanalysis
 
 **Date:** 2026-07-30
-**Status:** conditional bounded analytic recheck complete; proposed
-contact-state pass-through added; open post-contact continuation `Not advanced`
+**Status:** conditional bounded analytic recheck complete; proposed outgoing
+contact one-jet added; open post-contact continuation `Not advanced`
 **Scope:** stationary mirror-symmetric collinear release under the proposed closed primitive domain $\|\mathbf V\|\le c_f=1$.
+**Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md);
+[Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md).
 
 ## Conditional input through first field-speed arrival
 
@@ -197,42 +199,40 @@ for review:
 This is a proposed event postulate, not a consequence of the ordinary causal
 law, the point delta, or the speed constraint. It does not delete an ordinary
 row: no isolated positive-separation contact row exists at the event.
+Both labeled contact-time source measures remain nonzero. The zero velocity
+impulse is a proposed atomic event coefficient, not a cancellation or
+finite-part value of a receiver-side contact measure.
 
 Plainly: coincidence presents an entire nonordinary partner family. The new
 proposal books that family as one event and says the event gives neither label
 a velocity kick.
 
-Let
+For declared left traces
 
 $$
 \mathbf V_1(T_{\mathrm c}^{-})=c_f\mathbf e,
 \qquad
-\mathbf V_2(T_{\mathrm c}^{-})=-c_f\mathbf e.
+\mathbf V_2(T_{\mathrm c}^{-})=-c_f\mathbf e,
 $$
 
-With the proposed zero-impulse update and continuous velocity,
+the proposed reset returns only the velocity-preserving outgoing contact
+one-jets
 
 $$
+\left(
+\mathbf X_i(T_{\mathrm c}^{+}),
 \mathbf V_i(T_{\mathrm c}^{+})
+\right)
 =
-\mathbf V_i(T_{\mathrm c}^{-}),
+\left(
+\mathbf X_{\mathrm c},
+\mathbf V_i(T_{\mathrm c}^{-})
+\right).
 $$
 
-and therefore
-
-$$
-\mathbf X_1(T_{\mathrm c}+\delta)
-=
-\mathbf X_{\mathrm c}+c_f\delta\mathbf e+o(\delta),
-\qquad
-\mathbf X_2(T_{\mathrm c}+\delta)
-=
-\mathbf X_{\mathrm c}-c_f\delta\mathbf e+o(\delta).
-$$
-
-Thus the proposed event update yields labeled pass-through at the contact.
-This is a contact-state continuation only; it is not yet a solution on any
-open post-contact interval.
+This one-jet is position-and-one-sided-velocity data at the event. It does not
+assert a right-hand path expansion, labeled passage, separation, or a solution
+on any open post-contact interval.
 
 An unaccelerated straight passage is not a solution of the same ordinary
 post-event law. If both labels continue through coincidence at unit speed, the
@@ -252,10 +252,11 @@ D_{t,\mathrm p}=2,
 $$
 
 Its direction slows the separating receiver, so the ceiling projection retains
-it, and $\int_0^\varepsilon\delta^{-2}\,d\delta$ diverges. This rules out only
-an unaccelerated straight-passage history on an open post-contact interval. It
-does not contradict the proposed zero-impulse update at the single contact
-event, and it does not supply the later finite retained-history evolution.
+it, and $\int_0^\varepsilon\delta^{-2}\,d\delta$ diverges. This is a
+conditional obstruction for the prescribed unaccelerated straight separating
+right trace only. It is not a universal continuation no-go. It does not
+contradict the proposed zero-impulse reset at the single contact event, and it
+does not supply the later finite retained-history evolution.
 
 Claim grade: `derived conditional obstruction`. It is falsified by a
 same-record post-event census showing that the stated partner emission is not
@@ -265,20 +266,22 @@ boundary update that changes the event before this ordinary row is formed.
 ## Local existence and uniqueness verdict
 
 The proposed regular-chart partial model supplies a unique conditional history
-on $[T_\ast,T_{\mathrm c})$. The proposed contact postulate extends the
-velocity state uniquely through $T_{\mathrm c}$ and, with velocity continuity,
-selects the labeled pass-through trace there. It does not define a locally
-finite acceleration or retained-history update on any open interval
-$(T_{\mathrm c},T_{\mathrm c}+\varepsilon)$.
+on $[T_\ast,T_{\mathrm c})$. The proposed reset assigns a
+velocity-preserving outgoing contact one-jet at $T_{\mathrm c}$. It does not
+define a right-hand trace, locally finite acceleration, or retained-history
+update on any open interval $(T_{\mathrm c},T_{\mathrm c}+\varepsilon)$.
 
 Local existence and uniqueness after coincidence are therefore still not
-established. The first ordinary post-contact row in the unaccelerated
-pass-through trace has nonintegrable magnitude, and no accepted rule yet
-supplies a finite alternative evolution.
+established. The first ordinary post-contact row in the prescribed
+unaccelerated straight separating trace has nonintegrable magnitude, and no
+accepted rule yet supplies a finite alternative evolution. Whether the same
+$\delta^{-2}$ incompatibility holds for every sufficiently regular separating
+right trace is the queued
+[near-contact theorem target](near-contact-separating-trace-incompatibility-theorem-target.md),
+not a result of this reanalysis.
 
-Plainly: the new postulate determines the no-jump contact state and its
-pass-through ordering. The mathematics still runs out of a finite evolution
-law immediately afterward.
+Plainly: the new postulate determines the no-jump outgoing one-jet. The
+mathematics still supplies no right-hand path.
 
 ## Selected proposed event choice and remaining choices
 
@@ -289,8 +292,8 @@ law immediately afterward.
 2. **Not selected:** a general inactive, terminal, sticking,
    active-boundary-measure, rebound, or transverse event rule for other
    nonordinary contacts.
-3. **Not established:** a locally finite open post-contact root and
-   acceleration measure for the selected pass-through state.
+3. **Not established:** a compatible right-hand history or locally finite
+   post-contact root and acceleration measure for the outgoing one-jet.
 
 ## Required capped-model certificate
 
@@ -298,8 +301,9 @@ Any complete continuing model needs the existing incoming ledger, the proposed
 contact event record, proof of $u\le1$ and finite total acceleration variation,
 a unique retained-history state on an open post-contact interval, and a watch
 for later partner events with $D_t=0$. The calculation above verifies the open
-cap-segment ledger, its finite accumulated partner row, and the contact-state
-pass-through conditional on the new postulate. It does not supply the required
+cap-segment ledger, its finite accumulated partner row, and the
+velocity-preserving outgoing contact one-jet conditional on the new postulate.
+It does not supply the required
 finite post-contact ledger.
 
 ## Claim boundary
@@ -308,9 +312,9 @@ This analysis does not adopt a field-speed ceiling, establish a general or
 open-interval continuation, claim conservation or stability, establish
 physical realization, or advance MEC-002 through MEC-007. It establishes the
 conditional open-segment root inventory, the finite accumulated old-partner
-contribution, the partner-contact interval, the contact-state pass-through
-that follows from the proposed zero-impulse postulate and velocity continuity,
-and the unaccelerated open-passage obstruction. It is falsified by a
+contribution, the partner-contact interval, the velocity-preserving outgoing
+contact one-jet that follows from the proposed zero-impulse reset, and the
+conditional straight-trace obstruction. It is falsified by a
 capped-history root census that contradicts those bounded statements, by a
 nonzero contact velocity jump under the selected postulate, or by a complete
 canonical boundary evolution that resolves the stated equality conditions

@@ -7,6 +7,8 @@ partner-contact convention selected for review; no canonical adoption
 **Decision authority:** this packet does not change the canonical
 $\mathbb{A}\mathbb{A}\mathbb{A}$ velocity domain, Master Equation, EOM solver
 contract, or closure score.
+**Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md);
+[Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md).
 
 ## Decision question
 
@@ -56,7 +58,7 @@ finite sum at the boundary.
 | Can $\|\mathbf V\|\le c_f$ be added without changing the current model? | No. It contradicts the explicit open velocity domain and removes admitted super-field-speed retained histories. |
 | Does the closed domain remove the MEC-007 newborn sharp self-root? | Yes, conditionally. That root requires a continued history with $u>c_f$, which the closed domain does not admit. This is domain exclusion, not deletion of a root from an admitted history. |
 | Does the closed domain by itself define boundary evolution? | No. Conditional on the `Awaiting verification` MEC-007 input, the incoming ordinary partner row is finite and speed-increasing at first field-speed arrival. A state constraint alone does not select its response. |
-| Does the minimal total-ledger projection define the whole collinear continuation? | No. It defines a unique conditional half-open cap segment, then reaches a nonisolated partner-contact interval where the finite-ordinary-ledger premise fails. The separately proposed zero-impulse contact postulate gives an event-local pass-through state, not an open post-contact solution. |
+| Does the minimal total-ledger projection define the whole collinear continuation? | No. It defines a unique conditional half-open cap segment, then reaches a nonisolated partner-contact interval where the finite-ordinary-ledger premise fails. The separately proposed reset gives only a velocity-preserving outgoing contact one-jet, not a right-hand path. |
 | Does the exact thirty-root reference theorem support the ceiling? | No. It establishes regular root topology on one prescribed closed-domain geometry. It does not establish dynamical closure. |
 | Does the minimal-response vector diagnostic retain that reference braid? | No. All four relative polarity orientations have a counterexample at $T=0$. The diagnostic rejects that geometry under that response only. |
 | Is FSC-001 an adoption decision? | No. The operator has selected one narrow collinear event postulate for review inside this priority packet. Neither the ceiling nor that postulate is canonical. |
@@ -69,7 +71,7 @@ as positive evidence for the ceiling.
 Claim grades in this packet are:
 
 - `derived conditional` for the collinear ledger, contact obstruction,
-  straight-passage negative, and local-existence boundary;
+  prescribed straight-trace negative, and local-existence boundary;
 - `derived` for the exact thirty-root reference-path theorem;
 - `measured` for the high-precision vector-closure counterexamples;
 - `inferred` for the compatibility and dependency map, based on the live
@@ -113,17 +115,17 @@ results or conditional geometry theorems whose assumptions remain explicit.
    histories form a nonisolated positive-delay contact interval with $D_t=0$.
    The ordinary constrained Master Equation has no value there. This derived
    obstruction is unchanged by adding a separate event postulate.
-7. **Straight-passage negative.** Unmodified straight passage creates a
+7. **Conditional straight-trace negative.** A prescribed unaccelerated
+   straight separating right trace creates a
    regular post-contact partner row with magnitude proportional to
    $\delta^{-2}$. Its slowing direction is retained by the minimal projection,
-   and its integral diverges. This rejects that prescribed passage under the
-   unchanged ordinary rule; it does not contradict a zero-impulse update at
-   the single contact event and selects no finite later evolution.
-8. **Contact-state consequence.** Conditional on the proposed Minimal
-   Collinear Partner-Contact Postulate and continuous velocity, each label has
-   $\mathbf V_i(T_{\mathrm c}^{+})=\mathbf V_i(T_{\mathrm c}^{-})$, so the
-   labeled paths pass through the exact same-path coincidence. This is a
-   consequence of an explicit postulate, not a derived ordinary-law result.
+   and its integral diverges. This rejects that prescribed trace under the
+   unchanged ordinary law. It is not a universal continuation no-go.
+8. **Outgoing contact one-jet.** Conditional on the proposed Minimal
+   Collinear Partner-Contact reset, each label has
+   $\mathbf V_i(T_{\mathrm c}^{+})=\mathbf V_i(T_{\mathrm c}^{-})$. This is a
+   velocity-preserving outgoing contact one-jet, not a right-hand path, and is
+   a consequence of an explicit postulate rather than the ordinary law.
 9. **Local-existence verdict.** The candidate is locally defined and unique
    on the half-open cap segment, and the proposed event postulate selects the
    contact velocity state. No finite, unique solution on an open post-contact
@@ -232,11 +234,16 @@ postulate. The operator has selected this minimum convention for review:
 
 This postulate is selected only as proposed Field-Speed priority mathematics.
 It is not derived from the constrained-response axiom, positive-separation
-ordinary reception, or the source delta, and it is not canonical. With
-continuous velocity it gives
-$\mathbf V_i(T_{\mathrm c}^{+})=\mathbf V_i(T_{\mathrm c}^{-})$ and therefore
-labeled pass-through at the exact collinear contact. It does not set
-acceleration to zero on a positive post-contact interval.
+ordinary reception, or the source delta, and it is not canonical. Its reset
+gives
+$\mathbf V_i(T_{\mathrm c}^{+})=\mathbf V_i(T_{\mathrm c}^{-})$ as part of a
+velocity-preserving outgoing contact one-jet. It does not supply a right-hand
+path or set acceleration to zero on a positive post-contact interval.
+
+The contact-time source measures remain separately labeled and nonzero. The
+displayed zero is only the coefficient of the proposed receiver-time atomic
+velocity update. It is not a cancellation, principal value, finite part, or
+regulator-independent limit of the unresolved receiver-side contact measure.
 
 The proposed postulate is falsified as a viable collinear event rule by an
 accepted same-record contact law that produces a nonzero velocity impulse, a
@@ -256,9 +263,10 @@ needs the broader interface:
 > transmitter emission and limiting ordinary root without duplication. If the
 > disposition continues the history, the same record must define a unique
 > velocity and retained-history update, the outgoing emission record, and a
-> locally finite post-event root or boundary measure. Under a transverse
-> perturbation that restores isolated simple roots, the event accounting must
-> reduce to the ordinary causal-root ledger.
+> locally finite post-event receiver measure. Under a perturbation that
+> restores isolated simple roots, the source-provenanced receiver measures
+> must split and converge weak-* in a declared topology with uniform local
+> total variation, independently of parameterization.
 
 This broader interface remains a requirement, not a selected physical rule. It
 does not say which disposition is correct, how an active boundary measure
@@ -266,8 +274,8 @@ accelerates a receiver, or whether any noncollinear or otherwise nonordinary
 event produces holding, turning, passage, or rebound.
 
 Plainly: the selected narrow postulate books one exact collinear event once and
-gives it no velocity kick, which yields pass-through at the event when velocity
-is continuous. Other nonordinary contacts still need their own typed rule. The
+returns an outgoing contact one-jet with no velocity kick. Other nonordinary
+contacts still need their own typed rule. The
 partner-contact interval is positive-delay and positive-separation; its first
 ordinary-chart failure is nonisolated $D_t=0$ event ownership, not an ordinary
 inverse-square infinity that the constrained-response axiom can project.
@@ -290,10 +298,10 @@ speed-increasing component.
 
 This alternative supplies the conditional half-open cap segment. With the
 selected Minimal Collinear Partner-Contact Postulate, it also supplies a
-separately owned zero-impulse event and a continuous-velocity pass-through
-state at exact coincidence. It does not supply a finite solution on a positive
-post-contact interval. A terminal disposition remains a different possible
-general event choice.
+separately owned zero-impulse event and a velocity-preserving outgoing contact
+one-jet. It does not supply a right-hand path or a finite solution on a
+positive post-contact interval. A terminal disposition remains a different
+possible general event choice.
 
 Falsifiers and consistency checks:
 
@@ -303,12 +311,12 @@ Falsifiers and consistency checks:
 - a projected boundary acceleration with
   $\mathbf V\cdot\mathbf A_{\mathrm{eff}}>0$;
 - a root census contradicting the unique half-open cap-segment inventory; or
-- a claim that the contact-state pass-through establishes conservation,
+- a claim that the outgoing contact one-jet establishes continuation,
+  conservation,
   stability, physical realization, or all-time dynamics.
 
-Plainly: this is the smallest continuing contact-state option for the stated
-collinear event. It carries the labels through coincidence but does not yet
-carry the ordinary evolution through the interval after it.
+Plainly: this is the smallest outgoing one-jet option for the stated collinear
+event. It does not carry the ordinary evolution through the interval after it.
 
 ### Alternative B — one separately declared threshold root
 
@@ -444,12 +452,13 @@ Minimum successor validation includes:
 4. complete incoming partner ledger before total-ledger response;
 5. event localization for the collinear partner-contact interval;
 6. one uniquely owned collinear contact record with no ordinary contact row,
-   source-delta acceleration, or nonzero contact velocity impulse;
-7. exact continuous-velocity pass-through at that event;
+   source-delta partner acceleration, or nonzero contact velocity impulse;
+7. exact reset guard, left traces, velocity-preserving outgoing contact
+   one-jet, and codomain at that event;
 8. finite, unique outgoing history on an open interval for any claimed
    continuing disposition;
 9. timestep, precision, partition, and restart convergence;
-10. the unaccelerated straight-passage negative control; and
+10. the prescribed unaccelerated straight-trace negative control; and
 11. independent reproduction of the six-path root theorem and the
     minimal-response vector-closure negative.
 
@@ -461,8 +470,9 @@ solver and its tests remain the reference implementation of the open model.
 
 Inside FSC-001, the operator has selected the Minimal Collinear
 Partner-Contact Postulate as a proposed review target. That selection gives the
-exact mirror-collinear event a zero-impulse, continuous-velocity pass-through
-state. It does not select or adopt the closed velocity domain itself.
+exact mirror-collinear event a zero-impulse, velocity-preserving outgoing
+contact one-jet. It does not select a right-hand path or adopt the closed
+velocity domain itself.
 
 Four broader operator-level choices therefore remain:
 
@@ -485,9 +495,10 @@ selected collinear event postulate does not select rebound, sticking,
 transverse redirection, termination, a general passage rule, or an open
 post-contact solution.
 
-Plainly: the compatibility work is complete. The next step is a foundational
-review of the proposed axioms and their exact gap, not a claim that one narrow
-contact update has completed the dynamics.
+Plainly: the compatibility work is complete. The next step is FSC-006
+distributional formulation of the received contact measure, not a
+well-posedness review or a claim that one narrow event coefficient has
+completed the dynamics.
 
 ## No-escape audit
 
@@ -522,10 +533,13 @@ FSC-001 is complete as an evidence-bounded compatibility map:
   least-change total-ledger boundary response;
 - **selected proposed collinear event postulate:** no ordinary contact row,
   source bookkeeping rather than partner acceleration at the point delta, and
-  $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$, yielding event-local
-  pass-through under velocity continuity;
+  $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$, yielding only a
+  velocity-preserving outgoing contact one-jet;
 - **required general event-domain interface:** the Typed Nonordinary Contact
   Event Postulate for all contacts outside that exact collinear scope; and
+- **required distributional formulation:** source-provenanced receiver-side
+  contact and competing-stratum measures, a BV/Radon topology, and a
+  perturbative weak-limit theorem or counterexample before FSC-005; and
 - **decision choices:** retain the open model, choose a terminal closed model,
   extend typed event coverage, or derive a changed boundary update.
 
@@ -534,7 +548,6 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, establish a general or open-interval
 continuation, claim conservation or stability, establish physical realization,
 retain a braid, advance MEC, or move a closure score.
 
-Closure goal: submit the proposed constrained-response axiom and minimal
-collinear zero-impulse event postulate to narrow foundational-mathematics review
-while preserving the canonical open model and the unresolved open post-contact
-existence problem.
+Closure goal: complete FSC-006 and pass one narrow
+distributional-formulation review while preserving the canonical open model
+and the unresolved post-contact evolution problem.

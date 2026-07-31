@@ -2,14 +2,24 @@
 
 ## Ranked Next Objects
 
-1. `first_entourage_foundational_math_critique` — FSC-001 review. Status:
-   `ready / not dispatched`. The bounded packet and exact review questions are
-   in the
-   [First Entourage Review Readiness Check](first-entourage-review-readiness.md).
-   Review scope is the proposed constrained-response axiom, the minimal
-   collinear zero-impulse event postulate, and the contact-state/open-interval
-   distinction. Broader theory validation is out of scope.
-2. `equal_radius_phase_offset_braid_speed_domain` — FSC-002. Status:
+1. `contact_receiver_measure_weak_limit_formulation` — FSC-006. Status:
+   `distributional-formulation target / Not advanced`. Define the labeled
+   source, ordered receiver, contact-stratum, competing-stratum, and event
+   measures in the candidate BV/Radon topology. Prove or refute
+   parameterization-independent perturbative splitting and weak-* convergence
+   with uniform local total-variation control. The exact interface and
+   falsifiers are in the
+   [mathematics packet](mathematics-geometry-dynamical-system.md#typed-measures-and-unresolved-contact-decomposition).
+   Acceptance makes the packet ready only for a narrow
+   distributional-formulation review.
+2. `near_contact_separating_trace_incompatibility` — FSC-005. Status:
+   `deferred / blocked on FSC-006 / Not advanced`. After FSC-006, prove or
+   refute the limited two-channel BV/Radon $\delta^{-2}$ incompatibility under
+   the unchanged ordinary law, explicit sign hypotheses, competing-strata
+   routing, and complete-ledger no-leading-cancellation condition. The exact
+   target is in the
+   [theorem packet](near-contact-separating-trace-incompatibility-theorem-target.md).
+3. `equal_radius_phase_offset_braid_speed_domain` — FSC-002. Status:
    `deferred / blocked`. The selected collinear contact postulate does not
    define noncollinear or braid contact events, establish a retained
    closed-domain braid, or adopt the ceiling.
@@ -30,7 +40,7 @@
    - Nonclaims: no braid retention, angular-momentum derivation, quantization,
      conservation, Lorentz recovery, or physical realization.
 
-Plainly: FSC-001 now contains one proposed event choice for one exact
-collinear contact. That does not license FSC-002 to assign a closed-domain
-braid geometry. The next review object is ready, but it has not been sent to
-Entourage.
+Plainly: the Hale and Hörmander reviews are complete. The next object is the
+receiver-measure formulation, not a continuation calculation or
+well-posedness review. FSC-005 and FSC-002 remain blocked, and no successor
+reviewer has been contacted.

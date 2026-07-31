@@ -359,12 +359,13 @@
   point-emission delta is source bookkeeping rather than a partner
   acceleration contribution, and the separately owned contact event supplies
   $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$.
-- Derived the bounded consequence that continuous velocity preserves each
-  incoming labeled velocity through the contact, producing event-local
-  pass-through. This does not generalize to arbitrary nonordinary contact.
-- Preserved the unaccelerated straight-passage negative. The first ordinary
-  post-contact slowing row still scales as $\delta^{-2}$, so a finite, unique
-  solution on an open post-contact interval remains unproved.
+- Recorded the then-stated contact consequence as event-local pass-through.
+  Hale’s later review corrected that wording: zero impulse licenses only a
+  velocity-preserving outgoing contact one-jet, not a right-hand path.
+- Preserved the prescribed unaccelerated straight separating-trace negative.
+  The first ordinary post-contact slowing row still scales as
+  $\delta^{-2}$, so a finite, unique solution on an open post-contact interval
+  remains unproved.
 - Reconciled the mathematics packet, endpoint reanalysis, FSC-001
   compatibility decision, no-escape audit, priorities, and queue. FSC-002
   remains blocked because the narrow collinear postulate supplies no
@@ -376,3 +377,83 @@
 - No Entourage reviewer was contacted and nothing was published. No canonical
   prose, EOM solver contract, conservation or stability result, physical
   conclusion, MEC status, or closure score was changed.
+
+## 2026-07-31 — Jack K. Hale read-only review integrated
+
+- Captured the completed review in the
+  [Jack K. Hale Review and Response](jack-k-hale-review-response-2026-07-31.md)
+  under identifier `FSC-001-JKH-2026-07-31`. All nine substantive findings are
+  present and each has one explicit disposition.
+- Accepted and implemented Hale’s authority correction: tangent-cone and
+  projection algebra is derived only from the proposed Complete
+  Constrained-Response Axiom.
+- Made forward invariance conditional on an existing sufficiently regular
+  projected state-dependent-delay solution with complete finite ordinary
+  ledgers.
+- Preserved the no-ordinary-contact-row, source-delta-bookkeeping, and
+  zero-impulse statements as a proposed event postulate rather than a
+  derivation.
+- Formalized the extended-history state, collinear reset guard, declared left
+  traces, event ownership, reset map, outgoing-one-jet codomain, the unresolved
+  wake-semantics and receiver-measure slots, and the perturbative-reduction
+  obligation.
+- Removed every overstatement of labeled pass-through and both right-hand path
+  expansions. The exact reset consequence is now a
+  **velocity-preserving outgoing contact one-jet**.
+- Preserved the $\delta^{-2}$ calculation only for the prescribed
+  unaccelerated straight separating trace and removed universal no-go wording.
+- Recorded history-space topology, projected solution concept,
+  branch-finiteness, root separation, transversality, inactive-gap persistence,
+  and post-event history compatibility as unmet obligations.
+- Added FSC-005, the
+  [Near-Contact Separating-Trace Incompatibility Theorem Target](near-contact-separating-trace-incompatibility-theorem-target.md),
+  to prove or refute the general $\delta^{-2}$ claim. It is a queued theorem
+  target and remains `Not advanced`.
+- Updated the first-review readiness artifact, priorities, queue, compatibility
+  decision, endpoint reanalysis, mathematics packet, and no-escape audit.
+- No successor reviewer was contacted or started. No canonical AAA or EOM
+  source, theory status, general contact semantics, continuation,
+  conservation, stability, physical realization, MEC status, or closure score
+  changed.
+
+## 2026-07-31 — Lars Hörmander read-only review integrated
+
+- Captured the operator-supplied review text and complete response matrix in
+  the
+  [Lars Hörmander Review and Response](lars-hormander-review-response-2026-07-31.md)
+  under identifier `FSC-001-LH-2026-07-31`. All eight substantive findings are
+  present and each has one explicit disposition.
+- Preserved the derived classification that the nonisolated positive-delay
+  contact strata in both ordered channels lie outside ordinary isolated-root
+  coarea rows. This classification supplies no contact response measure.
+- Typed three separate objects: labeled spatial source point measures,
+  source-time ordinary receiver acceleration measures, and receiver-time
+  atomic velocity-update measures.
+- Recorded the zero atomic impulse only as the coefficient of the proposed
+  event-update measure. Both contact-time source records remain nonzero; no
+  cancellation, principal value, finite part, or regulator-independent limit
+  is claimed.
+- Strengthened the contact guard and ownership requirements with both ordered
+  channels, a half-open branch/event convention, separately retained source
+  labels, separate $s=T_{\mathrm c}$ and $s<T_{\mathrm c}$ records,
+  competing-strata routing, parameterization-independent aggregation, and a
+  complete outgoing record before any restart.
+- Added the unresolved receiver-side decomposition into ordinary,
+  contact-stratum, and competing-stratum measures. Corrected the packet to
+  state that wake semantics remain incomplete.
+- Specified a candidate trajectory-and-measure topology using BV velocities,
+  vector Radon derivatives, and labeled weak-* convergence. Queued proof or
+  refutation of perturbative splitting, uniform local total variation, and
+  weak convergence as FSC-006; root counts alone are insufficient.
+- Revised FSC-005 to distinguish the moving root $s_{i,\delta}$ from the
+  separately retained contact emission, cover both ordered channels, require
+  signed coefficients and complete-ledger no-leading-cancellation, route
+  competing strata, use a BV/Radon solution class, and state only the limited
+  incompatibility conclusion. FSC-005 is blocked on FSC-006.
+- Downgraded readiness. The packet is ready only for narrower
+  distributional-formulation work and is not ready for a Tao-style
+  well-posedness review as a posed evolution problem.
+- No Tao or successor review was contacted or started. No canonical AAA or
+  EOM source, ceiling or contact-law status, general contact semantics,
+  regulator independence, continuation, conservation, stability, physical
+  realization, MEC status, or closure score changed.

@@ -2,8 +2,8 @@
 
 ## Current
 
-- Status: `FSC-001 compatibility map complete; minimal collinear contact
-  postulate selected for review; no canonical adoption`
+- Status: `Hale and Hörmander read-only reviews integrated; FSC-006
+  distributional formulation ranked first; no canonical adoption`
 - Claim level: proposed foundational alternative; no change to the canonical
   Master Equation, ontology, EOM solver contract, or reader-facing corpus.
 - Operator proposal under examination: each architrino has an admissible speed
@@ -51,7 +51,7 @@ The completed evidence-bounded compatibility map is
 [FSC-001 Field-Speed Ceiling Compatibility Decision](field-speed-ceiling-compatibility-decision.md).
 It separates unchanged results, removed or reclassified open-domain material,
 the minimum new collinear boundary postulate, affected corpus and EOM
-dependencies, the selected event-local pass-through consequence, and the
+dependencies, the velocity-preserving outgoing contact one-jet, and the
 broader unselected decision alternatives.
 
 The provisional coordinate-free framework is in
@@ -63,8 +63,25 @@ audit artifact, not a boundary law or continuation proof.
 
 The first-review boundary is recorded in the
 [First Entourage Review Readiness Check](first-entourage-review-readiness.md).
-The packet is ready for a narrow foundational-mathematics critique and is not
-ready for broader theory validation. No review has been dispatched.
+Jack K. Hale completed that read-only review. The complete findings and
+dispositions are in the
+[Hale Review Response](jack-k-hale-review-response-2026-07-31.md).
+
+Lars Hörmander completed the next read-only distributional-formulation review.
+The preserved review text and complete dispositions are in the
+[Hörmander Review Response](lars-hormander-review-response-2026-07-31.md).
+
+The best next object is FSC-006: define the source-provenanced receiver-side
+contact and competing-stratum measures, then prove or refute
+parameterization-independent perturbative splitting and weak-* convergence in
+the stated BV/Radon topology. Only after that work passes a narrow
+distributional-formulation review can the
+[Near-Contact Separating-Trace Incompatibility Theorem Target](near-contact-separating-trace-incompatibility-theorem-target.md)
+proceed.
+
+The packet is not ready for a Tao-style well-posedness review as a posed
+evolution problem. FSC-005 and FSC-006 remain `Not advanced`, and no successor
+review has been dispatched.
 
 ## Dependencies and Boundaries
 
@@ -82,5 +99,6 @@ ready for broader theory validation. No review has been dispatched.
 
 Plainly: this is a dedicated place to ask whether a speed ceiling should become
 a foundational rule, and what else would have to change if it did. The
-compatibility map is complete and one narrow contact convention is ready for
-review, but nothing has been adopted.
+compatibility map is complete, but the contact measure has only a typed
+formulation target. Nothing has been adopted, and no evolution problem is yet
+posed for well-posedness review.

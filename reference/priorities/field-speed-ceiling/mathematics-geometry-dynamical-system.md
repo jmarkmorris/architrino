@@ -2,6 +2,8 @@
 
 **Status:** provisional regular-chart partial model for investigation.
 **Claim level:** no field-speed ceiling is adopted by this document.
+**Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md);
+[Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md).
 
 ## Purpose
 
@@ -23,10 +25,11 @@ develops only a possible alternative model.
 | First field-speed arrival, incoming simple partner root, and unchanged-sharp-law post-threshold obstruction in the stationary mirror encounter | `conditional input` | Owned by MEC-007, whose lifecycle status is `Awaiting verification`. This document may reason conditionally from that packet but does not treat its input as accepted or independently verified. |
 | Complete constrained-response axiom: closed primitive velocity ball, exact interior recovery, and least-change tangent-cone response after a complete finite ordinary net ledger is formed | `proposed foundational law` | One complete regular-chart axiom under discussion; not canonical and not adopted here. It introduces no new numerical scale and has no value when the ordinary net ledger is incomplete, nonordinary, or non-locally-finite. |
 | Isolated-crossing rule and inactive co-moving same-transmitter interval | `proposed admission convention` | Limited to the stated same-transmitter geometry. It does not classify partner contact, zero separation, folds, or a general $D_t=0$ event. |
-| Minimal collinear partner-contact convention: no ordinary row at exact coincidence, source delta only, and $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$ | `proposed event postulate` | Selected for review only for the stated exact same-path mirror-collinear partner coincidence. It is not derived, canonical, or a rule for arbitrary nonordinary contact. |
+| Minimal collinear partner-contact convention: no ordinary row at exact coincidence, separately retained source measures, and proposed event coefficient $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$ | `proposed event postulate` | Selected for review only for the stated exact same-path mirror-collinear partner coincidence. Zero event coefficient is not a distributional cancellation, finite-part value, or regulator-independent limit. Its reset returns only an outgoing contact one-jet. |
+| History phase space, projected state-dependent-delay solution concept, regular-root assumptions, post-event compatibility, receiver-side measure decomposition, and weak-limit topology | `unmet formulation and theorem obligations` | Required before perturbative reduction, forward invariance, existence, uniqueness, or continuation can be claimed for a solution rather than for the pointwise response algebra. |
 | Admission, ownership, update, and outgoing-history semantics for all other nonordinary contact families | `missing event-domain postulate` | No general event disposition is selected. Until this is supplied, the document is not a complete closed-domain dynamical system. |
 | Straight collinear cap segment | `conditional hypothesis` | Assumes the MEC-007 input, the complete constrained-response axiom, and the limited same-transmitter admission convention. |
-| Open-segment root census, finite accumulated old-partner row, partner-contact obstruction, contact-state pass-through, and first transverse variation | `derived conditional result` | The contact-state pass-through additionally assumes the proposed minimal collinear partner-contact postulate and velocity continuity. No open post-contact solution follows. |
+| Open-segment root census, finite accumulated old-partner row, partner-contact obstruction, velocity-preserving outgoing contact one-jet, and first transverse variation | `derived conditional result` | The outgoing one-jet additionally assumes the proposed minimal collinear partner-contact reset. No right-hand path or open post-contact solution follows. |
 | Thirty-root inventory on the prescribed six-path geometry | `derived reference-path theorem` | Exact for the declared paths; not an evolved or retained braid. |
 | Sampled root margins and four-orientation vector-closure failure | `diagnostic` | Geometry-only numerical evidence. The $T=0$ slice has a versioned 100-decimal-place Python/mpmath oracle and receipt; neither instrument selects a boundary response or establishes physical realization. |
 
@@ -61,10 +64,35 @@ the path is straight with constant velocity.
 
 ### Point emission, propagation, and causal reception
 
-At each emission time $T_t$, transmitter $t$ supplies a finite point-delta
-emission measure at $\mathbf X_t(T_t)$. Its labeled causal surface propagates
+At each emission time $s$, transmitter $j$ supplies the labeled spatial
+point-emission measure
+
+$$
+\mathsf E_{j,s}
+=
+q_j\,
+\delta_{\mathbf X_j(s)},
+\qquad
+q_j\ne0
+$$
+
+for an admitted emission. The label $j$, emission time $s$, position, and
+source strength remain part of its provenance. Its causal surface propagates
 through the fixed void at field speed $c_f$. At receiver event
 $(T_r,\mathbf X_r(T_r))$, define
+
+Over an emission-time interval $I$, the corresponding labeled source-history
+measure is
+
+$$
+\mathsf E_j\!\restriction_I(ds,d\mathbf x)
+=
+q_j\,
+\delta_{\mathbf X_j(s)}(d\mathbf x)\,ds.
+$$
+
+This measure keeps the source label as part of its typed carrier; labels are
+not summed before provenance and convergence are assessed.
 
 $$
 \mathbf r_{r\leftarrow t}(T_r,T_t)
@@ -139,10 +167,58 @@ factor $c_f/|D_t|$ is the transmitter-side density of those surfaces at the
 root. The canonical law treats both distinct-transmitter and admitted
 self-transmitter rows through this causal-root accounting.
 
+The corresponding ordinary receiver measure for ordered channel
+$i\leftarrow j$ at fixed reception time $T$ is the vector-valued source-time
+measure defined, for a compactly supported test function $\varphi$, by
+
+$$
+\left\langle
+\boldsymbol{\mathsf R}^{\mathrm{ord}}_{i\leftarrow j,T},
+\varphi
+\right\rangle
+=
+\int_{s<T}
+\varphi(s)\,
+\mathbf K_{ij}(T,s)\,
+\delta\!\left(g_{i\leftarrow j}(T,s)\right)\,ds,
+$$
+
+where
+
+$$
+\mathbf K_{ij}(T,s)
+=
+\kappa\,\sigma_{ji}\,|q_jq_i|
+\frac{c_f}{r_{i\leftarrow j}(T,s)^2}
+\hat{\mathbf r}_{i\leftarrow j}(T,s).
+$$
+
+On an isolated simple-root chart, the one-dimensional coarea identity gives
+
+$$
+\left\langle
+\boldsymbol{\mathsf R}^{\mathrm{ord}}_{i\leftarrow j,T},
+\varphi
+\right\rangle
+=
+\sum_{s_\alpha\in\mathcal C_{i\leftarrow j}(T)}
+\varphi(s_\alpha)
+\frac{\mathbf K_{ij}(T,s_\alpha)}
+{|D_t(T,s_\alpha)|}.
+$$
+
+This receiver measure is not the source measure $\mathsf E_{j,s}$. A
+nonisolated coincidence family is outside this ordinary coarea collapse even
+when every member has positive causal separation.
+
 This is the unbounded reference evolution. It supplies
 $\mathbf A_{\mathrm{raw}}$ only on a chart where its root set, root
 multiplicities, and regularity conditions are defined. It supplies neither a
 speed ceiling nor a rule for a nonordinary cap-state root family.
+
+Plainly: a source point measure records what was emitted. The receiver measure
+records how isolated causal intersections contribute to acceleration. Contact
+requires a third, separately typed object rather than identifying these two.
 
 ### Proposed regular-chart alteration
 
@@ -198,6 +274,225 @@ axiom. Its event record owns the nonisolated partner-contact family and the
 limiting incoming-root transition exactly once, while assigning neither an
 ordinary reception row nor an acceleration to the source delta at
 coincidence.
+
+### Required history and reset interface
+
+The delayed equation is not a finite-dimensional ordinary differential
+equation. A candidate state at reception time $T$ must include an extended
+retained history, not only instantaneous positions and velocities. Write the
+required state schematically as
+
+$$
+\mathfrak h_T
+=
+\left(
+\left\{\mathbf X_i,\mathbf V_i\right\}_{(-\infty,T]},
+\mathcal E_T,
+\mathcal L_T,
+\mathcal M_T
+\right),
+$$
+
+where $\mathcal E_T$ is the labeled emission history and $\mathcal L_T$ is the
+ordinary-root and nonordinary-event ownership ledger. The additional record
+$\mathcal M_T$ holds the typed receiver and event-update measures without
+identifying either with $\mathcal E_T$. The admissible history space
+$\mathfrak H$ and its topology are not yet constructed.
+
+A projected state-dependent-delay solution on an interval $I$ would need, at
+minimum:
+
+1. Lipschitz paths with velocities $\mathbf V_i\in BV_{\mathrm{loc}}(I)$, so
+   $D\mathbf V_i$ is a locally finite vector Radon measure, and locally
+   absolutely continuous velocities on every regular open subchart;
+2. a complete finite ordinary branch set at almost every reception time;
+3. branch separation and a transversality floor
+   $|D_t|\ge d_{\min}>0$ away from declared nonordinary events;
+4. an inactive-gap condition separating every recorded inactive family from
+   admitted ordinary branches;
+5. the complete ordinary ledger formed before the proposed tangent-cone
+   projection is applied; and
+6. post-event history compatibility sufficient to restart the root census
+   without losing, duplicating, or reweighting an emission or limiting branch.
+
+These are formulation and theorem obligations, not assumptions already proved
+for the candidate model.
+
+For the exact collinear partner event, let
+$\mathfrak G_{\mathrm{col}}\subset\mathfrak H^{-}$ be the proposed reset guard.
+Membership requires:
+
+- declared left traces
+  $\mathbf X_i(T_{\mathrm c}^{-})=\mathbf X_{\mathrm c}$ and
+  $\mathbf V_1(T_{\mathrm c}^{-})=c_f\mathbf e$,
+  $\mathbf V_2(T_{\mathrm c}^{-})=-c_f\mathbf e$;
+- the bounded pre-contact root censuses for both ordered channels
+  $1\leftarrow2$ and $2\leftarrow1$ from Section 12;
+- a half-open ownership convention: isolated ordinary branches own
+  $T<T_{\mathrm c}$, while the typed event owns only the contact stratum at
+  $T=T_{\mathrm c}$;
+- separately retained labeled source measures
+  $\mathsf E_{1,T_{\mathrm c}}$ and $\mathsf E_{2,T_{\mathrm c}}$;
+- separate records for the endpoint emissions $s=T_{\mathrm c}$ and for each
+  positive-delay family member $s<T_{\mathrm c}$;
+- the identified nonisolated partner-emission strata and limiting
+  incoming-root transitions in both ordered channels;
+- an explicit route for every competing ordinary, tangent, fold, diagonal, or
+  other nonordinary stratum; an unclassified competing stratum makes the
+  guard fail; and
+- geometric ownership records whose aggregate is invariant under any
+  orientation-preserving integration reparameterization used to describe the
+  same emission stratum without changing absolute time.
+
+The narrow reset is a map
+
+$$
+\mathcal R_{\mathrm{col}}
+:
+\mathfrak G_{\mathrm{col}}
+\longrightarrow
+\mathfrak J_{\mathrm{col}}^{+},
+$$
+
+whose codomain $\mathfrak J_{\mathrm{col}}^{+}$ contains only outgoing contact
+one-jets
+
+$$
+J_{i,+}^{1}
+=
+\left(
+\mathbf X_i(T_{\mathrm c}^{+}),
+\mathbf V_i(T_{\mathrm c}^{+})
+\right).
+$$
+
+The proposed reset assigns
+
+$$
+\mathbf X_i(T_{\mathrm c}^{+})=\mathbf X_{\mathrm c},
+\qquad
+\mathbf V_i(T_{\mathrm c}^{+})
+=
+\mathbf V_i(T_{\mathrm c}^{-}),
+\qquad
+\Delta\mathbf V_{i,\mathrm{contact}}=\mathbf0.
+$$
+
+It does not map into a right-hand retained history. The separately labeled
+source measures remain nonzero:
+
+$$
+\mathsf E_{1,T_{\mathrm c}}\ne0,
+\qquad
+\mathsf E_{2,T_{\mathrm c}}\ne0.
+$$
+
+They remain available to any later ordinary positive-separation reception and
+are not partner acceleration contributions at contact. The event update is the
+receiver-time atomic measure
+
+$$
+\boldsymbol{\mathsf J}^{\mathrm{evt}}_i
+=
+\Delta\mathbf V_{i,\mathrm{contact}}\,
+\delta_{T_{\mathrm c}},
+$$
+
+whose coefficient is set to zero by the proposed postulate. That zero
+coefficient is not a distributional cancellation, principal value, finite
+part, or regulator-independent limit of a receiver measure. The event record
+owns the declared contact strata once while preserving both source labels.
+
+Any restart claim would require the reset codomain to be extended with a
+compatible outgoing retained-history record, labeled source record, ownership
+ledger, and receiver-measure record. None is supplied by the outgoing
+one-jets.
+
+### Typed measures and unresolved contact decomposition
+
+The formulation keeps three objects distinct:
+
+| Object | Domain and codomain | Present status |
+| --- | --- | --- |
+| Source point-emission measure $\mathsf E_{j,s}$ | A labeled spatial Radon measure at fixed emission time $s$. | Canonical source provenance; nonzero at each admitted contact-time emission. |
+| Ordinary receiver measure $\boldsymbol{\mathsf R}^{\mathrm{ord}}_{i\leftarrow j,T}$ | A vector-valued source-time measure at fixed receiver event $(i,T)$, obtained by simple-root coarea collapse. | Canonical only on isolated positive-delay roots with $D_t\ne0$. |
+| Contact-event update $\boldsymbol{\mathsf J}^{\mathrm{evt}}_i$ | A vector-valued atomic measure in receiver time whose coefficient is $\Delta\mathbf V_{i,\mathrm{contact}}$. | Proposed coefficient zero for the narrow event; not a value of either preceding measure. |
+
+On a compact receiver-time neighborhood $U$ of $T_{\mathrm c}$, define the
+ordinary receiver-time measure where the regular rows are locally integrable:
+
+$$
+\boldsymbol{\mathsf M}^{\mathrm{ord}}_i(B)
+=
+\int_B
+\sum_j
+\boldsymbol{\mathsf R}^{\mathrm{ord}}_{i\leftarrow j,T}(1)\,dT,
+\qquad
+B\subset U.
+$$
+
+A distributional contact formulation must determine whether there is a
+parameterization-independent decomposition
+
+$$
+\boldsymbol{\mathsf M}^{\mathrm{rec}}_i
+=
+\boldsymbol{\mathsf M}^{\mathrm{ord}}_i
++
+\boldsymbol{\mathsf M}^{\mathrm{contact}}_i
++
+\boldsymbol{\mathsf M}^{\mathrm{comp}}_i,
+$$
+
+where $\boldsymbol{\mathsf M}^{\mathrm{contact}}_i$ owns the nonisolated
+partner-contact stratum and
+$\boldsymbol{\mathsf M}^{\mathrm{comp}}_i$ owns every separately typed
+competing stratum. Neither measure is presently defined. The response map from
+this received measure to $D\mathbf V_i$, and its relation to the separate
+event update $\boldsymbol{\mathsf J}^{\mathrm{evt}}_i$, are also unresolved.
+The packet therefore does not have complete wake semantics.
+
+For FSC-006, use the following candidate topology on $U$:
+
+1. $\mathbf X_i^{(n)}\to\mathbf X_i$ uniformly,
+   $\mathbf V_i^{(n)}\to\mathbf V_i$ in $L^1(U)$, and
+   $D\mathbf V_i^{(n)}\stackrel{*}{\rightharpoonup}D\mathbf V_i$ in the space
+   of finite vector Radon measures;
+2. each $\mathsf E_j^{(n)}\!\restriction_U$ converges weak-* in the finite
+   signed Radon measures on
+   $\{j\}\times U\times\mathbb R^3$, without merging source labels;
+3. each ordered receiver-time measure and each competing-stratum measure
+   converges weak-* in its labeled finite vector-Radon space; and
+4. event-update measures converge weak-* in receiver time as a separate typed
+   component.
+
+For a perturbation that splits the contact stratum into isolated simple roots,
+the required prove-or-refute statement is
+
+$$
+\boldsymbol{\mathsf M}^{\mathrm{ord},(n)}_i
+=
+\boldsymbol{\mathsf M}^{\mathrm{away},(n)}_i
++
+\boldsymbol{\mathsf M}^{\mathrm{split},(n)}_i,
+\qquad
+\boldsymbol{\mathsf M}^{\mathrm{split},(n)}_i
+\stackrel{*}{\rightharpoonup}
+\boldsymbol{\mathsf M}^{\mathrm{contact}}_i.
+$$
+
+A finite-Radon limit requires uniform local total-variation control. Failure
+of that bound, loss of source labels, parameterization-dependent aggregation,
+or different limits for admissible perturbation families refutes this
+candidate reduction. Convergence of root counts alone proves none of these
+measure statements.
+
+Plainly: Hörmander’s correction turns “the roots split correctly” into a real
+measure question. The source records, received acceleration, and velocity jump
+live in different spaces, and the missing contact measure cannot be set to
+zero by naming the jump coefficient zero. The reset still returns only
+position-and-velocity data at contact; constructing a compatible right-hand
+history remains a separate state-dependent-delay problem.
 
 A complete general closed-domain system still needs the broader commitment:
 
@@ -350,10 +645,13 @@ $$
 \le0.
 $$
 
-Hence, for a differentiable regular-history segment,
-$d\|\mathbf V\|/dT\le0$ at $\|\mathbf V\|=c_f$: the proposed axiom makes the
-closed velocity ball forward-invariant. This is a direct consequence of the
-axiom, not a separate postulate.
+Hence, along any differentiable projected state-dependent-delay solution that
+exists on a regular-history segment,
+$d\|\mathbf V\|/dT\le0$ at $\|\mathbf V\|=c_f$. Conditional on existence and
+the history, branch-finiteness, separation, and transversality obligations
+above, the pointwise response makes the closed velocity ball forward-invariant.
+The inequality is derived from the proposed axiom; existence of a solution to
+which it applies is not.
 
 This is a derived property of the proposed axiom, not a derivation or adoption
 of that axiom. It cannot be evaluated when $\mathbf A_{\mathrm{ord}}$ itself
@@ -534,7 +832,7 @@ admission, measure, ownership, and disposition rule—not a numerical cure for
 an infinite ordinary row.
 
 The zero-delay, zero-separation diagonal remains outside ordinary reception,
-and an assumed post-contact straight passage can separately generate a
+and a separately prescribed straight separating right trace can generate a
 zero-range divergent row. Those are different statements. Neither one assigns
 a disposition to the positive-delay nonisolated partner-contact family.
 
@@ -571,12 +869,17 @@ decide any other zero-Jacobian contact.
 1. State the complete constrained-response axiom on finite ordinary charts.
 2. Record the limited same-transmitter equality convention.
 3. Apply the proposed zero-impulse postulate at the exact mirror-collinear
-   partner contact and derive only its contact-state consequence.
-4. Define a locally finite post-contact root or boundary measure.
-5. Prove existence and uniqueness on an open post-contact interval.
-6. Extend event-domain admission and ownership to other nonordinary contacts.
-7. Recompute the complete root ledger and outgoing retained history.
-8. Only then test binary, braid, translating-assembly, and observer-level
+   partner contact and return only its outgoing contact one-jet.
+4. Define the source-provenanced receiver-side contact and competing-stratum
+   measures in the candidate Radon topology.
+5. Prove or refute parameterization-independent perturbative splitting,
+   uniform total-variation control, and weak-* convergence.
+6. Define a locally finite post-contact response measure and compatible
+   outgoing retained-history record.
+7. Prove existence and uniqueness on an open post-contact interval.
+8. Extend event-domain admission and ownership to other nonordinary contacts.
+9. Recompute the complete root ledger and outgoing retained history.
+10. Only then test binary, braid, translating-assembly, and observer-level
    Lorentz-recovery consequences.
 
 ## 7. Causal reception geometry
@@ -637,8 +940,8 @@ included in $\mathcal C_{\mathrm{ord}}(T)$ as an ordinary root. Other partner
 or non-collinear roots remain subject to the same normal root-admission and
 finite-ledger requirements.
 
-For this finite regular setting, the closed velocity ball is invariant. At its
-boundary,
+For any sufficiently regular projected solution on this finite ordinary chart,
+the boundary inequality is
 
 $$
 \frac{d}{dT}\|\mathbf V\|^2
@@ -647,8 +950,10 @@ $$
 \le0.
 $$
 
-Thus forward invariance is a consequence of the complete constrained-response
-axiom, rather than an after-the-fact velocity clamp.
+Thus forward invariance is conditional on the existence of the projected
+state-dependent-delay solution and its complete finite ordinary ledger. The
+pointwise inequality follows from the proposed axiom rather than an
+after-the-fact velocity clamp; it does not prove that such a solution exists.
 
 ## 9. First derived geometric consequences
 
@@ -792,7 +1097,7 @@ coincidence without the super-field self-root birth. At coincidence the next
 object is an entire partner contact family rather than one ordinary root, so
 the proposed collinear event postulate—not the ordinary ledger—owns it.
 
-### Proposed contact update and event-local pass-through
+### Proposed reset and outgoing contact one-jet
 
 Let the two incoming labeled velocities at coincidence be
 
@@ -815,7 +1120,7 @@ $$
 \mathbf0.
 $$
 
-Hence, under the stated continuous-velocity event interpretation,
+The reset therefore returns the velocity-preserving outgoing contact one-jet
 
 $$
 \mathbf V_i(T_{\mathrm c}^{+})
@@ -823,44 +1128,25 @@ $$
 \mathbf V_i(T_{\mathrm c}^{-}).
 $$
 
-The labeled paths therefore have the contact-local expansions
+This is the full consequence presently licensed by the postulate. A one-jet
+specifies position and one-sided velocity at $T_{\mathrm c}$; it does not imply
+a right-hand path expansion, separation, passage, or a solution on any interval
+$(T_{\mathrm c},T_{\mathrm c}+\varepsilon)$.
 
-$$
-\mathbf X_1(T_{\mathrm c}+\delta)
-=
-\mathbf X_{\mathrm c}+c_f\delta\mathbf e+o(\delta),
-\qquad
-\mathbf X_2(T_{\mathrm c}+\delta)
-=
-\mathbf X_{\mathrm c}-c_f\delta\mathbf e+o(\delta),
-\qquad
-\delta\downarrow0,
-$$
-
-so the labels pass through the same-path coincidence rather than rebound,
-stick, or terminate at the event.
-
-This conclusion is conditional on the proposed zero-impulse event postulate
-and velocity continuity. It is only the contact-state update. It does not set
-the ordinary acceleration to zero on any interval
-$(T_{\mathrm c},T_{\mathrm c}+\varepsilon)$ and does not prove a finite,
-unique post-contact retained history.
-
-Plainly: the new postulate chooses what happens at the instant of exact
-contact: neither label receives a velocity kick, so their incoming directions
-carry through the coincidence. The ordinary delayed-wake problem immediately
-after that instant remains a separate existence question.
+Plainly: the postulate supplies outgoing position-and-velocity data at the
+contact. It does not yet supply even a short path after the contact.
 
 The independent bounded recheck in
 [capped-collinear-endpoint-reanalysis.md](capped-collinear-endpoint-reanalysis.md)
 shows that the old partner row has finite accumulated raw contribution on the
 open segment even though its pointwise weight diverges at the endpoint. The
 candidate projected contribution is zero throughout that open segment. The
-same recheck also shows that an unaccelerated straight passage would produce a
-new zero-range partner row with a nonintegrable inverse-square contribution.
-Thus the proposed event postulate selects the contact-state passage but neither
-the finite open-segment integral nor the speed ceiling supplies a classical
-solution on an open post-contact interval.
+same recheck also shows that an explicitly prescribed unaccelerated straight
+separating right trace would produce a new zero-range partner row with a
+nonintegrable inverse-square contribution. This is a conditional obstruction
+for that trace, not a universal continuation no-go. The general near-contact
+question is the queued
+[separating-trace incompatibility theorem target](near-contact-separating-trace-incompatibility-theorem-target.md).
 
 ### First transverse linearization
 
@@ -939,13 +1225,13 @@ positive.
 
 This is a conditional calculation inside the proposed capped model. It does
 not prove or adopt the complete constrained-response axiom or the Minimal
-Collinear Partner-Contact Postulate, generalize the event rule, establish an
-open post-contact solution, or advance MEC-007. Conditional on the two proposed
-laws and velocity continuity, it establishes only the event-local pass-through
-state. The open-segment ledger is falsified if it develops an additional
-ordinary root or boundary before the stated coincidence event. The endpoint
-classification is falsified if a complete same-record census makes the
-partner-contact family ordinary and finite under an already accepted rule.
+Collinear Partner-Contact Postulate, generalize the event rule, establish a
+right-hand path, or advance MEC-007. Conditional on the two proposed laws, it
+establishes only the velocity-preserving outgoing contact one-jet. The
+open-segment ledger is falsified if it develops an additional ordinary root or
+boundary before the stated coincidence event. The endpoint classification is
+falsified if a complete same-record census makes the partner-contact family
+ordinary and finite under an already accepted rule.
 
 ## Appendix A — Alternate response hypothesis: transverse redirection
 
@@ -1355,12 +1641,15 @@ redirection candidate.
 ## Claim boundary
 
 This document is not a derivation of a speed ceiling, a general continuation
-law, a root regularization, an energy/momentum account, a Lorentz result, or a
-physical claim. It now establishes the conditional collinear open-segment
-ledger, its coincidence partner-contact obstruction, the contact-state
-pass-through consequence of one proposed zero-impulse event postulate, a first
+law, a root regularization, a regulator-independent contact measure, an
+energy/momentum account, a Lorentz result, or a physical claim. It now
+establishes the conditional collinear open-segment ledger, its coincidence
+partner-contact obstruction, the
+velocity-preserving outgoing contact one-jet from one proposed zero-impulse
+event postulate, a first
 transverse linearization, the exact root topology of one prescribed six-path
 reference geometry, and a measured negative vector-closure result for that
 geometry. None of those results adopts the ceiling, supplies a finite unique
-history on an open post-contact interval, retains a braid, or advances a
+history on an open post-contact interval, defines the receiver-side contact
+measure, proves perturbative weak convergence, retains a braid, or advances a
 closure score.

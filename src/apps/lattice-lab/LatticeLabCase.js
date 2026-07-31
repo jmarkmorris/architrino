@@ -91,6 +91,7 @@ function createRepeatCell(
     kind = "cell",
     minimal = true,
     originFractional = [0, 0, 0],
+    contextPresentation = "site-copies",
   } = {},
 ) {
   const frozenVectors = Object.freeze(vectors.map(freezeVector));
@@ -118,6 +119,7 @@ function createRepeatCell(
     kind,
     minimal,
     ownership: "half-open-fundamental-domain",
+    contextPresentation,
     originFractional: freezeVector(originFractional),
     vectors: frozenVectors,
     sites: Object.freeze(ownedSites.map((site, index) => Object.freeze({
@@ -410,7 +412,11 @@ function createBccCase() {
           : LATTICE_LAB_POLARITY.ELECTRINO,
       })),
       "minimal 2-site corner/body translation cell",
-      { kind: "cell", minimal: true },
+      {
+        kind: "cell",
+        minimal: true,
+        contextPresentation: "continuation-markers",
+      },
     ),
     metadata: {
       geometry: "body-centered cubic",
@@ -799,7 +805,12 @@ export function createRepeatCellNearestNeighborNetwork(caseRecord) {
       ) {
         return;
       }
+      const endpointKeys = [fromSite.position, toSite.position]
+        .map((position) => position
+          .map((value) => Number(value.toFixed(9))).join(","))
+        .sort();
       edges.push(Object.freeze({
+        id: endpointKeys.join("|"),
         fromSiteId: fromSite.id,
         toSiteId: toSite.id,
         start: fromSite.position,
@@ -819,6 +830,48 @@ export function createRepeatCellNearestNeighborNetwork(caseRecord) {
     edges: Object.freeze(edges),
     displaySites,
     continuationSites: Object.freeze(continuationSites),
+  });
+}
+
+export function selectShortestTransformedRepeatCellEdges(
+  edges,
+  { compressionAxis = "x", compressionFactor = 1 } = {},
+) {
+  const axisIndex = ["x", "y", "z"].indexOf(compressionAxis);
+  if (
+    axisIndex < 0 ||
+    !Number.isFinite(compressionFactor) ||
+    compressionFactor <= 0 ||
+    compressionFactor > 1
+  ) {
+    throw new Error("Invalid transformed repeat-cell edge selector.");
+  }
+  const transform = (position) => position.map(
+    (value, index) => index === axisIndex
+      ? value * compressionFactor
+      : value,
+  );
+  const rows = edges.map((edge) => {
+    const start = transform(edge.start);
+    const end = transform(edge.end);
+    return Object.freeze({
+      edge,
+      transformedDistance: Math.hypot(...end.map(
+        (value, index) => value - start[index],
+      )),
+    });
+  });
+  const nearestDistance = Math.min(...rows.map(
+    (row) => row.transformedDistance,
+  ));
+  return Object.freeze({
+    nearestDistance,
+    selected: Object.freeze(rows.filter((row) =>
+      Math.abs(row.transformedDistance - nearestDistance) < EPSILON
+    )),
+    excluded: Object.freeze(rows.filter((row) =>
+      Math.abs(row.transformedDistance - nearestDistance) >= EPSILON
+    )),
   });
 }
 

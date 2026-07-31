@@ -15,6 +15,7 @@ import {
   createSimpleCubicCheckerboardCase,
   createSimpleCubicPolarityRepeatCellSites,
   isReferenceLatticeConfiguration,
+  selectShortestTransformedRepeatCellEdges,
 } from "../src/apps/lattice-lab/LatticeLabCase.js";
 import {
   SIMPLE_CUBIC_STATIONARY_CONTRACT,
@@ -24,7 +25,7 @@ import {
 import {
   LATTICE_LAB_UI_FEATURES,
   createNearestNeighborEdges,
-  selectShortestTransformedRelationships,
+  createRepeatCellDisplayGraph,
 } from "../src/apps/lattice-lab/LatticeLabRuntime.js";
 import { createPanelCollapseIconSvg } from "../src/runtime/PanelCollapseIcons.js";
 import {
@@ -344,8 +345,38 @@ test("every miniature resolves the complete nearest-neighbor periodic network", 
 test("checkerboard periodic network rejects diagonal graph bridges", () => {
   const checkerboard = createSimpleCubicCheckerboardCase();
   const network = createRepeatCellNearestNeighborNetwork(checkerboard);
+  const expectedUncompressedEdgeIdentities = [
+    "-0.5,0,0|0.5,0,0",
+    "-0.5,0,0|-1.5,0,0",
+    "-0.5,-1,0|-0.5,0,0",
+    "-0.5,0,0|-0.5,0,1",
+    "-0.5,0,-1|-0.5,0,0",
+    "-0.5,0,0|-0.5,1,0",
+    "0.5,-1,0|0.5,0,0",
+    "0.5,0,0|0.5,0,1",
+    "0.5,0,-1|0.5,0,0",
+    "0.5,0,0|0.5,1,0",
+    "0.5,0,0|1.5,0,0",
+    "-0.5,-1,0|0.5,-1,0",
+    "-0.5,0,1|0.5,0,1",
+    "-0.5,0,-1|0.5,0,-1",
+    "-0.5,1,0|0.5,1,0",
+  ];
+  const expectedCompressedEdgeIdentities = [
+    "-0.5,0,0|0.5,0,0",
+    "-0.5,0,0|-1.5,0,0",
+    "0.5,0,0|1.5,0,0",
+    "-0.5,-1,0|0.5,-1,0",
+    "-0.5,0,1|0.5,0,1",
+    "-0.5,0,-1|0.5,0,-1",
+    "-0.5,1,0|0.5,1,0",
+  ];
   assert.equal(network.relationships.length, 12);
   assert.equal(network.edges.length, 15);
+  assert.deepEqual(
+    network.edges.map((edge) => edge.id),
+    expectedUncompressedEdgeIdentities,
+  );
   assert.equal(
     network.edges.filter(
       (edge) => edge.startContinuation && edge.endContinuation,
@@ -372,24 +403,63 @@ test("checkerboard periodic network rejects diagonal graph bridges", () => {
     ),
     false,
   );
-  const uncompressed = selectShortestTransformedRelationships(
-    network.relationships,
+  const uncompressed = selectShortestTransformedRepeatCellEdges(
+    network.edges,
   );
-  assert.equal(uncompressed.selected.length, 12);
+  assert.equal(uncompressed.selected.length, 15);
   assert.equal(uncompressed.excluded.length, 0);
   assert.equal(uncompressed.nearestDistance, 1);
-  const compressed = selectShortestTransformedRelationships(
-    network.relationships,
+  assert.deepEqual(
+    uncompressed.selected.map(({ edge }) => edge.id),
+    expectedUncompressedEdgeIdentities,
+  );
+  const compressed = selectShortestTransformedRepeatCellEdges(
+    network.edges,
     { compressionAxis: "x", compressionFactor: 0.4 },
   );
-  assert.equal(compressed.selected.length, 4);
+  assert.equal(compressed.selected.length, 7);
   assert.equal(compressed.excluded.length, 8);
   assert.ok(Math.abs(compressed.nearestDistance - 0.4) < 1e-12);
+  assert.deepEqual(
+    compressed.selected.map(({ edge }) => edge.id),
+    expectedCompressedEdgeIdentities,
+  );
   assert.equal(
     compressed.excluded.every((row) =>
       Math.abs(row.transformedDistance - 1) < 1e-12
     ),
     true,
+  );
+});
+
+test("checkerboard miniature and central highlight consume one canonical edge identity set", () => {
+  const checkerboard = createSimpleCubicCheckerboardCase();
+  [1, 0.4].forEach((compressionFactor) => {
+    const graph = createRepeatCellDisplayGraph(checkerboard, {
+      compressionAxis: "x",
+      compressionFactor,
+    });
+    assert.equal(
+      new Set(graph.edgeIdentities).size,
+      graph.edgeIdentities.length,
+    );
+    assert.deepEqual(
+      graph.edgeIdentities,
+      graph.edges.map(({ edge }) => edge.id),
+    );
+  });
+  const runtime = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
+  assert.match(
+    runtime,
+    /rebuildMiniatureNetwork\(repeatCellDisplayGraph\);[\s\S]*rebuildRepeatCellHighlight\(repeatCellDisplayGraph\);/u,
+  );
+  assert.match(
+    runtime,
+    /displayEdgeIdentities[\s\S]*displayGraph\.edgeIdentities\.join\(";"\)/u,
+  );
+  assert.match(
+    runtime,
+    /repeatHighlightEdgeIdentities[\s\S]*displayGraph\.edgeIdentities\.join\(";"\)/u,
   );
 });
 
@@ -763,12 +833,31 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   assert.match(runtime, /depthTest: true/u);
   assert.match(runtime, /miniatureRoot\.quaternion\.copy\(rootGroup\.quaternion\)/u);
   assert.match(runtime, /createRepeatCellNearestNeighborNetwork\(caseRecord\)/u);
-  assert.match(runtime, /function rebuildRepeatCellHighlight\(\)/u);
+  assert.match(
+    runtime,
+    /function rebuildRepeatCellHighlight\(displayGraph\)/u,
+  );
   assert.match(runtime, /repeatHighlightGroup/u);
   assert.doesNotMatch(runtime, /repeat-cell-highlight-frame/u);
   assert.match(runtime, /repeat-cell-highlight-neighbor/u);
   assert.match(runtime, /lineGroup\.visible = !repeatCellHighlighted/u);
-  assert.match(runtime, /repeatHighlightIncidenceCount/u);
+  assert.match(runtime, /repeatHighlightEdgeCount/u);
+  assert.match(
+    runtime,
+    /MARKER_RADIUS_PX \*[\s\S]*miniatureCamera\.top \/ miniatureViewportHeight/u,
+  );
+  assert.match(
+    runtime,
+    /mesh\.scale\.setScalar\(miniatureLocalRadius\)/u,
+  );
+  assert.doesNotMatch(
+    runtime,
+    /miniatureMesh\.scale\.setScalar\(site\.continuation/u,
+  );
+  assert.doesNotMatch(
+    runtime,
+    /continuationRedMaterial|continuationBlueMaterial/u,
+  );
   assert.doesNotMatch(runtime, /selectionHalo/u);
   assert.match(runtime, /emissiveIntensity: 0\.62/u);
   assert.match(runtime, /guideGroup\.add\(createDottedDisplayEnvelope\(caseRecord\.displayRadius\)\)/u);
@@ -839,7 +928,7 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
     /listen\(dom\.miniatureCanvas, "wheel", handleWheel/u,
   );
   assert.doesNotMatch(runtime, /LineDashedMaterial/u);
-  assert.match(runtime, /wireframe = true/u);
+  assert.doesNotMatch(runtime, /wireframe = true/u);
   assert.match(
     runtime,
     /Copy this colored tile by translation to continue the pattern\./u,
