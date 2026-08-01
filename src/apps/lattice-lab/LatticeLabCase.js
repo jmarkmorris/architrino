@@ -246,7 +246,6 @@ function createSimpleCubicCase({
   title,
   polarityAtGrid,
   polarityRule,
-  learnerOverview = null,
   evidenceStatus,
   calculationBoundaryTreatment,
   accelerationStatus,
@@ -341,14 +340,13 @@ function createSimpleCubicCase({
       vectors: conventionalVectors,
       basis: [{ fractional: [0, 0, 0] }],
     }),
-    learnerOverview,
   });
 }
 
 export function createSimpleCubicCheckerboardCase() {
   return createSimpleCubicCase({
     id: LATTICE_LAB_CASE_ID,
-    title: "Simple Cubic Checkerboard",
+    title: "Simple Cubic",
     polarityAtGrid: ([ix, iy, iz]) =>
       (ix + iy + iz) % 2 === 0
         ? LATTICE_LAB_POLARITY.POSITRINO
@@ -367,7 +365,7 @@ export function createSimpleCubicCheckerboardCase() {
         { position: [0, 0, 0], grid: [0, 0, 0] },
         { position: [1, 0, 0], grid: [1, 0, 0] },
       ],
-      label: "minimal 2-site checkerboard translation cell",
+      label: "minimal 2-site alternating-polarity translation cell",
       originFractional: [-0.25, -0.25, -0.75],
     },
   });
@@ -414,7 +412,13 @@ export function createRandomFiniteFiftyFiftyCase(
     idealSites: sites,
     defaultSiteId: defaultSite.id,
     repeatCell: null,
-    unpolarizedLatticePattern: null,
+    unpolarizedLatticePattern: createParallelepipedUnpolarizedPattern({
+      label: "Underlying simple cubic conventional cell",
+      vectors: [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+      basis: [{ fractional: [0, 0, 0] }],
+      nearestNeighborDistance: 1,
+      expectedRelationshipCount: 12,
+    }),
     periodic: false,
     calculationScope: "finite-nonperiodic",
     randomization: assignment,
@@ -430,9 +434,6 @@ export function createSimpleCubicAlternatingPlanesCase() {
         ? LATTICE_LAB_POLARITY.POSITRINO
         : LATTICE_LAB_POLARITY.ELECTRINO,
     polarityRule: "uniform square planes alternate polarity along Z",
-    learnerOverview:
-      "Four nearest neighbors lie in the same-polarity plane; two lie in " +
-      "the adjacent opposite-polarity planes.",
     evidenceStatus:
       "derived stationary-release cancellation under the declared periodic exhaustion",
     calculationBoundaryTreatment:
@@ -497,6 +498,8 @@ function createBccCase() {
       label: "Body-centered cubic conventional cell",
       vectors,
       basis,
+      nearestNeighborDistance: 1,
+      expectedRelationshipCount: 8,
     }),
     metadata: {
       geometry: "body-centered cubic",
@@ -516,9 +519,6 @@ function createBccCase() {
         LATTICE_LAB_PERIODIC_CERTIFICATES["bcc-two-sublattice-v1"],
       accelerationStatus:
         "derived exact zero at every site under the declared receiver-centered inversion-pair exhaustion",
-      learnerOverview:
-        "Each architrino has eight nearest neighbors along body-diagonal " +
-        "directions.",
     },
   });
 }
@@ -577,6 +577,8 @@ function createFccCase() {
       label: "Face-centered cubic conventional cell",
       vectors,
       basis,
+      nearestNeighborDistance: 1,
+      expectedRelationshipCount: 36,
     }),
     metadata: {
       geometry: "face-centered cubic",
@@ -596,9 +598,6 @@ function createFccCase() {
         LATTICE_LAB_PERIODIC_CERTIFICATES["fcc-alternating-planes-v1"],
       accelerationStatus:
         "derived exact zero at every site under the declared receiver-centered inversion-pair exhaustion",
-      learnerOverview:
-        "FCC places architrinos at cube corners and face centers; each " +
-        "architrino has twelve nearest neighbors.",
     },
   });
 }
@@ -645,6 +644,8 @@ function createHcpCase() {
     unpolarizedLatticePattern: createHcpUnpolarizedPattern({
       label: "Hexagonal close-packed conventional cell",
       vectors,
+      nearestNeighborDistance: 1,
+      expectedRelationshipCount: 45,
     }),
     metadata: {
       geometry: "hexagonal close-packed",
@@ -665,9 +666,6 @@ function createHcpCase() {
         LATTICE_LAB_PERIODIC_CERTIFICATES["hcp-abab-layers-v1"],
       accelerationStatus:
         "derived exact zero at every site at the undeformed baseline; static X deformation is not covered by this certificate",
-      learnerOverview:
-        "Each architrino has six nearest neighbors in its own triangular " +
-        "plane, three above, and three below.",
     },
   });
 }
@@ -740,6 +738,8 @@ function createDiamondCase() {
       label: "Diamond cubic conventional cell",
       vectors,
       basis,
+      nearestNeighborDistance: 1,
+      expectedRelationshipCount: 16,
     }),
     metadata: {
       geometry: "diamond cubic",
@@ -760,9 +760,6 @@ function createDiamondCase() {
         LATTICE_LAB_PERIODIC_CERTIFICATES["diamond-cubic-two-sublattice-v1"],
       accelerationStatus:
         "derived exact zero at every site under the declared receiver-centered twofold-rotation-orbit exhaustion",
-      learnerOverview:
-        "Each architrino has four nearest neighbors in a tetrahedral " +
-        "arrangement.",
     },
   });
 }

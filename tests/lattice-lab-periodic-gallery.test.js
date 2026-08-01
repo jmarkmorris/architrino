@@ -111,8 +111,8 @@ test("deterministic gallery calculations use periodic certificates, never displa
           assert.deepEqual(
             view.calculationRows.map(({ rowLabel }) => rowLabel),
             [
-              ...Array.from({ length: 12 }, () => "Nearest shell"),
-              ...Array.from({ length: 6 }, () => "Next shell"),
+              ...Array.from({ length: 12 }, () => "12 near neighbors"),
+              ...Array.from({ length: 6 }, () => "6 far neighbors"),
             ],
           );
           assert.equal(
@@ -123,10 +123,10 @@ test("deterministic gallery calculations use periodic certificates, never displa
           );
         }
         assert.equal(view.shellSummaries.length, 2, caseId);
-        assert.match(view.statement, /ideal repeating pattern/u);
-        assert.match(view.shellScopeNote, /separate certificate/u);
+        assert.equal("statement" in view, false);
+        assert.equal(view.shellScopeNote, null);
         assert.doesNotMatch(
-          `${view.statement} ${view.shellScopeNote}`,
+          `${view.outcomeLabel} ${view.shellScopeNote}`,
           /finite|display crop|motion|stability|energy|conservation/u,
           caseId,
         );
@@ -165,9 +165,10 @@ test("deformed HCP retains an exact periodic blocker without a green result", ()
   assert.equal(view.residualVector, null);
   assert.equal(view.calculationAvailable, false);
   assert.equal(view.calculationRows.length, 0);
-  assert.match(view.statement, /Periodic acceleration is not established/u);
-  assert.match(view.statement, /undeformed baseline/u);
-  assert.doesNotMatch(view.statement, /displayed finite|finite crop/u);
+  assert.match(view.outcomeLabel, /Periodic acceleration is not established/u);
+  assert.match(view.outcomeLabel, /undeformed baseline/u);
+  assert.doesNotMatch(view.outcomeLabel, /displayed finite|finite crop/u);
+  assert.equal("statement" in view, false);
 });
 
 test("HCP user-facing copy consistently describes ABAB stacking", () => {
@@ -179,15 +180,14 @@ test("HCP user-facing copy consistently describes ABAB stacking", () => {
     caseRecord.polarityRule,
     "opposite polarities alternate between A and B stacking positions",
   );
-  assert.match(caseRecord.learnerOverview, /triangular plane/u);
   assert.doesNotMatch(
     [
       caseRecord.title,
       caseRecord.polarityRule,
-      caseRecord.learnerOverview,
     ].join(" "),
     /\blayers?\b/u,
   );
+  assert.equal("learnerOverview" in caseRecord, false);
   const runtimeSource = readFileSync(
     new URL("../src/apps/lattice-lab/LatticeLabRuntime.js", import.meta.url),
     "utf8",
@@ -198,7 +198,7 @@ test("HCP user-facing copy consistently describes ABAB stacking", () => {
   );
   assert.match(
     runtimeSource,
-    /This X-axis deformation changes the pattern’s symmetry, so periodic ["'` +\n]*acceleration is not established at this setting\./u,
+    /The undeformed HCP certificate uses ["'` +\n]*threefold rotational symmetry, which this X-axis deformation does ["'` +\n]*not preserve\. A complete periodic acceleration result is therefore ["'` +\n]*not established at this setting\./u,
   );
   assert.doesNotMatch(
     runtimeSource,
@@ -234,5 +234,5 @@ test("Random 50/50 remains the sole finite nonperiodic calculation", () => {
   });
   assert.equal(view.scope, LATTICE_LAB_LEDGER_SCOPE.FINITE_NONPERIODIC);
   assert.equal(view.calculationRows.length, random.sites.length - 1);
-  assert.match(view.statement, /displayed finite configuration/u);
+  assert.equal("statement" in view, false);
 });

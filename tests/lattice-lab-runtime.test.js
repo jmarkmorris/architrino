@@ -184,6 +184,45 @@ test("certified ledger check outline matches the selected-site circle stroke", (
   );
 });
 
+test("Ledger residual readout uses the surrounding proportional typography", () => {
+  const css = readRepoFile("src/apps/lattice-lab/lattice-lab.css");
+  const residualRule = css.match(
+    /\.lattice-lab-ledger-residual \{([\s\S]*?)\n\}/u,
+  )?.[1] ?? "";
+  assert.match(residualRule, /font-family: inherit;/u);
+  assert.match(residualRule, /font-variant-numeric: normal;/u);
+  assert.match(residualRule, /font-weight: 400;/u);
+  assert.doesNotMatch(residualRule, /monospace|SFMono|Menlo|Consolas/u);
+});
+
+test("Ledger neighbor-group lines match the left-panel normal text size", () => {
+  const css = readRepoFile("src/apps/lattice-lab/lattice-lab.css");
+  const shellRule = css.match(
+    /\.lattice-lab-ledger-shell \{([\s\S]*?)\n\}/u,
+  )?.[1] ?? "";
+  const factValueRule = css.match(
+    /\.lattice-lab-facts dd \{([\s\S]*?)\n\}/u,
+  )?.[1] ?? "";
+  assert.match(shellRule, /font-size: 11px;/u);
+  assert.match(factValueRule, /font-size: 11px;/u);
+});
+
+test("collapsed Show calculation matches the left-panel normal text size", () => {
+  const css = readRepoFile("src/apps/lattice-lab/lattice-lab.css");
+  const summaryRule = css.match(
+    /\.lattice-lab-ledger-calculation summary \{([\s\S]*?)\n\}/u,
+  )?.[1] ?? "";
+  const scopeRule = css.match(
+    /\.lattice-lab-ledger-calculation-scope \{([\s\S]*?)\n\}/u,
+  )?.[1] ?? "";
+  const rowRule = [...css.matchAll(
+    /\.lattice-lab-ledger-calculation-row \{([\s\S]*?)\n\}/gu,
+  )].map((match) => match[1]).find((rule) => /font-size:/u.test(rule)) ?? "";
+  assert.match(summaryRule, /font-size: 11px;/u);
+  assert.match(scopeRule, /font-size: 9px;/u);
+  assert.match(rowRule, /font-size: 8px;/u);
+});
+
 test("uniaxial deformation changes only semantic X monotonically at every beta", () => {
   const position = [4, -3, 2];
   const samples = [0, 0.01, 0.25, 0.5, 0.75, 0.99, 1].map((beta) => {
@@ -263,14 +302,21 @@ test("maximum deformation aggregates coincident columns and partitions lines", (
 
 test("every deformation status uses the concise beta endpoint wording", () => {
   const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
+  const compressionPresentation = source.match(
+    /function updateCompressionPresentation\(message = ""\) \{([\s\S]*?)\n  function applyCompressionControls/u,
+  )?.[1] ?? "";
   assert.match(source, /β = 1 is the maximum deformation\./u);
   assert.doesNotMatch(
     source,
     /maximum supported non-?degenerate deformation|supported nondegenerate/u,
   );
-  assert.match(
-    source,
-    /else if \(certificatePassed\) \{[\s\S]*Net acceleration is zero at every architrino\./u,
+  assert.doesNotMatch(
+    compressionPresentation,
+    /Net acceleration is zero at every architrino\./u,
+  );
+  assert.doesNotMatch(
+    compressionPresentation,
+    /ledger recalculates every|included contribution for this displayed finite configuration/u,
   );
   assert.doesNotMatch(
     source,
@@ -282,26 +328,23 @@ test("every deformation status uses the concise beta endpoint wording", () => {
   );
 });
 
-test("checkerboard explanation states the all-architrino result without release copy", () => {
+test("Simple Cubic overview copy is not retained after the card removal", () => {
   const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
   const checkerboard = createSimpleCubicCheckerboardCase();
   assert.equal(
     checkerboard.polarityRule,
     "alternating polarity at every nearest-neighbor step",
   );
+  assert.equal(checkerboard.title, "Simple Cubic");
   assert.equal("primerTitle" in checkerboard, false);
   assert.equal("primerParagraphs" in checkerboard, false);
-  assert.match(
-    source,
-    /Every architrino has six nearest neighbors of the opposite polarity\.[\s\S]*The next local shell has twelve architrinos of the same polarity\.[\s\S]*Net acceleration is zero at every architrino\./u,
-  );
   assert.doesNotMatch(
     source,
-    /Each local shell has zero net acceleration in this configuration|The separate all-shell result applies to every site at release/u,
+    /What You Are Seeing|whatSeeing|seeingTitle|learnerOverview|Every architrino has six near neighbors of the opposite polarity\.|Every architrino has twelve far neighbors of the same polarity\./u,
   );
 });
 
-test("every case removes Calculation scope and retains an accurate local shell total", () => {
+test("every case uses near, far, and total neighbor facts without Calculation scope", () => {
   const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
   assert.match(
     source,
@@ -323,7 +366,15 @@ test("every case removes Calculation scope and retains an accurate local shell t
   );
   assert.match(
     html,
-    /<dt>Local total<\/dt>\s*<dd id="lattice-lab-case-local-total"><\/dd>/u,
+    /<dt>Near neighbors<\/dt>\s*<dd id="lattice-lab-case-nearest"><\/dd>[\s\S]*<dt>Far neighbors<\/dt>\s*<dd id="lattice-lab-case-next"><\/dd>[\s\S]*<dt>Total neighbors<\/dt>\s*<dd id="lattice-lab-case-local-total"><\/dd>/u,
+  );
+  assert.doesNotMatch(
+    html,
+    /<dt>(?:Nearest shell|Next local shell|Local total|Local total neighbors)<\/dt>/u,
+  );
+  assert.match(
+    source,
+    /String\(\s*caseRecord\.nearestShell\.count \+ caseRecord\.nextLocalShell\.count/u,
   );
   const gallery = createLatticeLabCaseGallery();
   gallery.forEach((caseRecord) => {
@@ -336,10 +387,11 @@ test("every case removes Calculation scope and retains an accurate local shell t
   assert.match(html, /id="lattice-lab-ledger-calculation-scope"/u);
 });
 
-test("checkerboard case facts use learner-facing shell values and an 18-neighbor total", () => {
+test("checkerboard case facts expose bare near, far, and total neighbor values", () => {
   const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
-  assert.match(source, /"6 neighbors at distance d"/u);
-  assert.match(source, /"12 neighbors at distance √2d"/u);
+  assert.match(source, /"6 at distance d"/u);
+  assert.match(source, /"12 at distance √2d"/u);
+  assert.doesNotMatch(source, /"(?:6|12) neighbors at distance/u);
   const checkerboard = createSimpleCubicCheckerboardCase();
   assert.equal(checkerboard.nearestShell.count, 6);
   assert.equal(checkerboard.nextLocalShell.count, 12);
@@ -349,25 +401,27 @@ test("checkerboard case facts use learner-facing shell values and an 18-neighbor
   );
 });
 
-test("deterministic cases expose canonical unpolarized conventional cells", () => {
+test("gallery cases expose canonical unpolarized conventional cells", () => {
   const gallery = createLatticeLabCaseGallery();
   const expected = new Map([
-    ["simple-cubic-checkerboard-v1", [8, 12, "conventional-parallelepiped"]],
-    ["bcc-two-sublattice-v1", [9, 12, "conventional-parallelepiped"]],
-    ["fcc-alternating-planes-v1", [14, 12, "conventional-parallelepiped"]],
-    ["hcp-abab-layers-v1", [17, 18, "conventional-hexagonal-prism"]],
-    ["simple-cubic-alternating-planes-v1", [8, 12, "conventional-parallelepiped"]],
-    ["diamond-cubic-two-sublattice-v1", [18, 12, "conventional-parallelepiped"]],
+    ["simple-cubic-checkerboard-v1", [8, 12, 0, "conventional-parallelepiped"]],
+    ["bcc-two-sublattice-v1", [9, 12, 8, "conventional-parallelepiped"]],
+    ["fcc-alternating-planes-v1", [14, 12, 36, "conventional-parallelepiped"]],
+    ["hcp-abab-layers-v1", [17, 18, 45, "conventional-hexagonal-prism"]],
+    ["simple-cubic-alternating-planes-v1", [8, 12, 0, "conventional-parallelepiped"]],
+    ["diamond-cubic-two-sublattice-v1", [18, 12, 16, "conventional-parallelepiped"]],
+    ["simple-cubic-random-finite-fifty-fifty-v1", [8, 12, 12, "conventional-parallelepiped"]],
   ]);
   gallery.forEach((caseRecord) => {
     const pattern = caseRecord.unpolarizedLatticePattern;
-    if (caseRecord.calculationScope === "finite-nonperiodic") {
-      assert.equal(pattern, null, caseRecord.id);
-      return;
-    }
     assert.ok(pattern, caseRecord.id);
     assert.deepEqual(
-      [pattern.sites.length, pattern.frameSegments.length, pattern.kind],
+      [
+        pattern.sites.length,
+        pattern.frameSegments.length,
+        pattern.relationshipSegments.length,
+        pattern.kind,
+      ],
       expected.get(caseRecord.id),
       caseRecord.id,
     );
@@ -379,6 +433,21 @@ test("deterministic cases expose canonical unpolarized conventional cells", () =
     pattern.frameSegments.forEach((segment) => {
       assert.equal(segment.start.length, 3);
       assert.equal(segment.end.length, 3);
+    });
+    const siteById = new Map(pattern.sites.map((site) => [site.id, site]));
+    const relationshipPairIds = new Set();
+    pattern.relationshipSegments.forEach((segment) => {
+      assert.ok(siteById.has(segment.fromSiteId), segment.id);
+      assert.ok(siteById.has(segment.toSiteId), segment.id);
+      assert.notEqual(segment.fromSiteId, segment.toSiteId, segment.id);
+      const pairId = [segment.fromSiteId, segment.toSiteId].sort().join("|");
+      assert.equal(relationshipPairIds.has(pairId), false, pairId);
+      relationshipPairIds.add(pairId);
+      const distance = Math.hypot(...segment.end.map(
+        (value, axis) => value - segment.start[axis],
+      ));
+      assert.ok(Math.abs(distance - 1) < 1e-7, `${segment.id}:${distance}`);
+      assert.ok(Math.abs(segment.canonicalDistance - 1) < 1e-7, segment.id);
     });
   });
   const patternFor = (caseId) => gallery.find(({ id }) => id === caseId)
@@ -421,45 +490,50 @@ test("deterministic cases expose canonical unpolarized conventional cells", () =
   );
 });
 
-test("Primer removal retains only case-distinct learner overviews", () => {
+test("unpolarized in-cell nearest-neighbor networks have exact honest degrees", () => {
+  const gallery = createLatticeLabCaseGallery();
+  const expected = new Map([
+    ["bcc-two-sublattice-v1", { count: 8, degrees: { 1: 8, 8: 1 }, overlaps: 0 }],
+    ["fcc-alternating-planes-v1", { count: 36, degrees: { 3: 8, 8: 6 }, overlaps: 0 }],
+    ["hcp-abab-layers-v1", { count: 45, degrees: { 4: 12, 8: 3, 9: 2 }, overlaps: 12 }],
+    ["diamond-cubic-two-sublattice-v1", { count: 16, degrees: { 0: 4, 1: 4, 2: 6, 4: 4 }, overlaps: 0 }],
+    ["simple-cubic-random-finite-fifty-fifty-v1", { count: 12, degrees: { 3: 8 }, overlaps: 12 }],
+  ]);
+  expected.forEach(({ count, degrees, overlaps }, caseId) => {
+    const pattern = gallery.find(({ id }) => id === caseId)
+      .unpolarizedLatticePattern;
+    const degreeBySiteId = new Map(pattern.sites.map(({ id }) => [id, 0]));
+    pattern.relationshipSegments.forEach(({ fromSiteId, toSiteId }) => {
+      degreeBySiteId.set(fromSiteId, degreeBySiteId.get(fromSiteId) + 1);
+      degreeBySiteId.set(toSiteId, degreeBySiteId.get(toSiteId) + 1);
+    });
+    const histogram = Object.fromEntries(
+      [...degreeBySiteId.values()].reduce((entries, degree) => {
+        entries.set(degree, (entries.get(degree) ?? 0) + 1);
+        return entries;
+      }, new Map()),
+    );
+    assert.equal(pattern.relationshipSegments.length, count, caseId);
+    assert.deepEqual(histogram, degrees, caseId);
+    assert.equal(pattern.relationshipFrameOverlapCount, overlaps, caseId);
+    assert.equal(pattern.relationshipCoverage, "represented-endpoints-only");
+  });
+});
+
+test("overview and Primer removal leaves no card-only content hooks", () => {
   const gallery = createLatticeLabCaseGallery();
   gallery.forEach((caseRecord) => {
     assert.equal("primerTitle" in caseRecord, false, caseRecord.id);
     assert.equal("primerParagraphs" in caseRecord, false, caseRecord.id);
     assert.equal("teachingNote" in caseRecord, false, caseRecord.id);
+    assert.equal("learnerOverview" in caseRecord, false, caseRecord.id);
   });
-  assert.deepEqual(
-    Object.fromEntries(gallery.map(({ id, learnerOverview }) => [
-      id,
-      learnerOverview ?? null,
-    ])),
-    {
-      "simple-cubic-checkerboard-v1": null,
-      "bcc-two-sublattice-v1":
-        "Each architrino has eight nearest neighbors along body-diagonal directions.",
-      "fcc-alternating-planes-v1":
-        "FCC places architrinos at cube corners and face centers; each architrino has twelve nearest neighbors.",
-      "hcp-abab-layers-v1":
-        "Each architrino has six nearest neighbors in its own triangular plane, three above, and three below.",
-      "simple-cubic-alternating-planes-v1":
-        "Four nearest neighbors lie in the same-polarity plane; two lie in the adjacent opposite-polarity planes.",
-      "diamond-cubic-two-sublattice-v1":
-        "Each architrino has four nearest neighbors in a tetrahedral arrangement.",
-      "simple-cubic-random-finite-fifty-fifty-v1": null,
-    },
-  );
-  const movedCopy = gallery.map(({ learnerOverview }) =>
-    learnerOverview ?? ""
-  ).join(" ");
-  assert.doesNotMatch(
-    movedCopy,
-    /density|certificate|exhaustion|zincblende|cesium|material identity|mass/u,
-  );
   const runtime = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
-  assert.match(
-    runtime,
-    /caseRecord\.id === "bcc-two-sublattice-v1"\s*\? ""\s*: " These local shell sums are zero/u,
-  );
+  const html = readRepoFile("lattice-lab.html");
+  const css = readRepoFile("src/apps/lattice-lab/lattice-lab.css");
+  assert.doesNotMatch(html, /What You Are Seeing|lattice-lab-seeing|lattice-lab-what-seeing/u);
+  assert.doesNotMatch(runtime, /seeingTitle|whatSeeing|learnerOverview/u);
+  assert.doesNotMatch(css, /lattice-lab-seeing/u);
 });
 
 test("endpoint highlight grouping suppresses aggregate bundles, not internal links", () => {
@@ -1448,6 +1522,16 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
     /class="lattice-lab-ledger"[\s\S]*aria-labelledby="lattice-lab-ledger-title"[\s\S]*<span id="lattice-lab-ledger-title">Ledger<\/span>/u,
   );
   assert.equal(html.match(/>Ledger</gu)?.length, 1);
+  assert.equal(html.match(/id="lattice-lab-ledger"/gu)?.length, 1);
+  assert.ok(
+    html.indexOf("lattice-lab-shared-conventions") <
+      html.indexOf('id="lattice-lab-ledger"'),
+  );
+  assert.ok(
+    html.indexOf('id="lattice-lab-ledger"') <
+      html.indexOf('<main class="lattice-lab-stage">'),
+  );
+  assert.doesNotMatch(html, /lattice-lab-ledger-statement/u);
   assert.doesNotMatch(html, /Site Ledger/u);
   assert.doesNotMatch(html, /<h2 id="lattice-lab-ledger-title">/u);
   assert.match(
@@ -1476,7 +1560,7 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
     html,
     /lattice-lab-case-scope|<dt>Calculation scope<\/dt>|Displayed local total/u,
   );
-  assert.equal(html.match(/<dt>Local total<\/dt>/gu)?.length, 1);
+  assert.equal(html.match(/<dt>Total neighbors<\/dt>/gu)?.length, 1);
   assert.match(
     html,
     /id="lattice-lab-shared-conventions"[\s\S]*aria-labelledby="lattice-lab-shared-conventions-title"[\s\S]*id="lattice-lab-shared-conventions-title"\s*class="lattice-lab-card-kicker"\s*>Shared Display Conventions<\/h2>/u,
@@ -1508,7 +1592,14 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
     /The sphere is a viewing crop of the shown configuration, not a physical boundary\./u,
   );
   assert.doesNotMatch(html, /calculation-exhaustion rule/u);
-  assert.match(html, /Light-purple lines show nearest-neighbor geometry/u);
+  assert.match(
+    html,
+    /Thicker lines show near-neighbor relationships; thinner lines show far-neighbor relationships\./u,
+  );
+  assert.doesNotMatch(
+    html,
+    /Light-purple lines show nearest-neighbor geometry|not bonds, wakes, or acceleration vectors/u,
+  );
   assert.equal(html.includes("lattice-lab-selected-site"), false);
   assert.equal(html.includes("Display-only core"), false);
   assert.equal(html.includes("lattice-lab-swap-button"), false);
@@ -1524,8 +1615,10 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
     html,
     /<h2 id="lattice-lab-case-title" class="lattice-lab-card-kicker"><\/h2>/u,
   );
-  assert.match(html, /What You Are Seeing/u);
-  assert.doesNotMatch(html, /What You’re Seeing/u);
+  assert.doesNotMatch(
+    html,
+    /What You Are Seeing|What You’re Seeing|lattice-lab-seeing|lattice-lab-what-seeing/u,
+  );
   assert.doesNotMatch(html, /Active case record/u);
   assert.match(
     html,
@@ -1533,16 +1626,12 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
   );
   assert.ok(
     html.indexOf("lattice-lab-case-selector-card") <
-      html.indexOf("lattice-lab-seeing-card"),
+      html.indexOf("lattice-lab-case-title"),
   );
   const runtime = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
   const css = readRepoFile("src/apps/lattice-lab/lattice-lab.css");
   assert.doesNotMatch(runtime, /primer|Primer/u);
   assert.doesNotMatch(css, /lattice-lab-primer/u);
-  assert.match(
-    runtime,
-    /Every architrino has six nearest neighbors of the opposite polarity\./u,
-  );
   assert.match(runtime, /siteSelectionExplicit = true/u);
   assert.match(runtime, /createLatticeLabLedgerViewModel/u);
   assert.match(runtime, /renderLatticeLabLedgerViewModel/u);
@@ -1574,10 +1663,7 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
     css,
     /\.lattice-lab-ledger-result\[hidden\] \{\s*display: none;/u,
   );
-  assert.match(
-    css,
-    /\.lattice-lab-card\.lattice-lab-seeing-card h2 \{[\s\S]*font-size: 14px;/u,
-  );
+  assert.doesNotMatch(css, /lattice-lab-seeing/u);
   assert.match(
     html,
     /id="lattice-lab-polarity-legend"[\s\S]*role="img"[\s\S]*aria-label="Polarity legend: red sphere, Positrino; blue sphere, Electrino"/u,
@@ -1602,6 +1688,22 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   assert.match(runtime, /createSceneLights\(swatchScene\)/u);
   assert.match(runtime, /main-canvas-shared-sphere-material-and-lights/u);
   assert.match(runtime, /canvas\.dataset\.highlightDirection = "above-right"/u);
+  assert.match(
+    runtime,
+    /updatePolarityLegendPlacement\(Boolean\(repeatCellDisplayGraph\)\)/u,
+  );
+  assert.match(
+    runtime,
+    /dom\.miniatureCanvas\.parentElement\.append\(dom\.polarityLegend\)[\s\S]*dataset\.placement = "polarized-repeat-pattern"/u,
+  );
+  assert.match(
+    runtime,
+    /dom\.inspectorStack\.parentElement\.insertBefore\([\s\S]*dom\.polarityLegend,[\s\S]*dom\.inspectorStack,[\s\S]*dataset\.placement = "main-canvas"/u,
+  );
+  assert.match(
+    css,
+    /\.lattice-lab-miniature-viewport > \.lattice-lab-polarity-legend \{[\s\S]*right: 8px;[\s\S]*bottom: 8px;/u,
+  );
   assert.match(runtime, /markerDiameterPx = String\(2 \* MARKER_RADIUS_PX\)/u);
   assert.match(
     runtime,
@@ -1712,11 +1814,11 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   );
   assert.match(
     css,
-    /\.lattice-lab-inspector-stack \{[\s\S]*top: 58px;[\s\S]*bottom: 16px;[\s\S]*grid-template-rows: auto auto auto;[\s\S]*width: min\(420px, calc\(100% - 32px\)\);[\s\S]*overflow-y: auto;/u,
+    /\.lattice-lab-inspector-stack \{[\s\S]*top: 58px;[\s\S]*bottom: 16px;[\s\S]*grid-template-rows: auto auto;[\s\S]*width: min\(420px, calc\(100% - 32px\)\);[\s\S]*overflow-y: auto;/u,
   );
   assert.match(
     css,
-    /\.lattice-lab-ledger \{[\s\S]*overflow: visible;/u,
+    /\.lattice-lab-ledger \{[\s\S]*display: flex;[\s\S]*width: 100%;[\s\S]*height: 360px;[\s\S]*min-height: 320px;[\s\S]*flex-direction: column;[\s\S]*overflow: hidden;/u,
   );
   assert.doesNotMatch(css, /\.lattice-lab-ledger \{[\s\S]*max-height: 450px;/u);
   assert.match(
@@ -1731,6 +1833,38 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   assert.match(css, /\.lattice-lab-ledger-outcome \{[\s\S]*font-size: 14px;/u);
   assert.match(css, /\.lattice-lab-ledger-shells \{[\s\S]*display: grid;/u);
   assert.match(css, /\.lattice-lab-ledger-calculation summary/u);
+  assert.match(
+    css,
+    /\.lattice-lab-ledger-calculation\[open\] \{[\s\S]*display: flex;[\s\S]*overflow: hidden;/u,
+  );
+  assert.match(
+    css,
+    /\.lattice-lab-ledger-calculation\[open\] \.lattice-lab-ledger-calculation-body \{[\s\S]*overflow-y: auto;[\s\S]*overscroll-behavior-y: auto;/u,
+  );
+  assert.match(
+    html,
+    /id="lattice-lab-ledger-calculation-body"[\s\S]*role="region"[\s\S]*aria-label="Calculation details"[\s\S]*tabindex="0"/u,
+  );
+  assert.match(
+    runtime,
+    /function resetLedgerDisclosure\(\) \{\s*dom\.ledgerCalculation\.open = false;\s*dom\.ledgerCalculationBody\.scrollTop = 0;\s*ledgerDisclosureScrollResetPending = true;\s*\}/u,
+  );
+  assert.match(
+    runtime,
+    /function selectCase\(caseId\) \{[\s\S]*if \(!nextCase \|\| nextCase === caseRecord\) \{[\s\S]*resetLedgerDisclosure\(\);[\s\S]*caseRecord = nextCase;/u,
+  );
+  assert.match(
+    runtime,
+    /function resetCase\(\) \{\s*resetLedgerDisclosure\(\);/u,
+  );
+  assert.match(
+    runtime,
+    /listen\(dom\.ledgerCalculationSummary, "keydown", \(event\) => \{[\s\S]*event\.key !== "Enter" && event\.key !== " "[\s\S]*event\.preventDefault\(\);[\s\S]*dom\.ledgerCalculation\.open = !dom\.ledgerCalculation\.open;/u,
+  );
+  assert.match(
+    runtime,
+    /listen\(dom\.ledgerCalculation, "toggle", \(\) => \{[\s\S]*ledgerDisclosureScrollResetPending[\s\S]*dom\.ledgerCalculationBody\.scrollTop = 0;[\s\S]*ledgerDisclosureScrollResetPending = false;/u,
+  );
   assert.doesNotMatch(css, /lattice-lab-ledger-pair|lattice-lab-shell-status/u);
   assert.match(css, /background-image: url\("data:image\/svg\+xml/u);
   assert.match(runtime, /function updateUsableCanvasCenter\(\)/u);
@@ -1785,11 +1919,18 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   );
   assert.match(runtime, /unpolarized-conventional-site/u);
   assert.match(runtime, /unpolarized-conventional-cell-frame/u);
+  assert.match(runtime, /unpolarized-nearest-neighbor-relationship/u);
   assert.match(
     runtime,
     /dom\.unpolarizedCanvas\.tabIndex = pattern \? 0 : -1;/u,
   );
-  assert.match(runtime, /dataset\.relationshipCount = "0"/u);
+  assert.match(runtime, /dataset\.relationshipCount = String/u);
+  assert.match(runtime, /dataset\.relationshipFrameOverlapCount = String/u);
+  assert.match(runtime, /dataset\.suppressedFrameUnderstrokeCount = String/u);
+  assert.match(
+    runtime,
+    /relationshipPairKeys\.has\(unpolarizedPairKey\(segment\.start, segment\.end\)\)/u,
+  );
   assert.match(runtime, /dataset\.polarityMarkerCount = "0"/u);
   assert.match(runtime, /dataset\.selectionRingCount = "0"/u);
   assert.match(runtime, /dataset\.repeatOverlayCount = "0"/u);

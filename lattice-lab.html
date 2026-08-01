@@ -42,12 +42,6 @@
             </label>
           </section>
 
-          <section class="lattice-lab-card lattice-lab-seeing-card" aria-labelledby="lattice-lab-seeing-title">
-            <span class="lattice-lab-card-kicker">What You Are Seeing</span>
-            <h2 id="lattice-lab-seeing-title"></h2>
-            <p id="lattice-lab-what-seeing"></p>
-          </section>
-
           <section class="lattice-lab-card" aria-labelledby="lattice-lab-case-title">
             <div class="lattice-lab-card-heading">
               <h2 id="lattice-lab-case-title" class="lattice-lab-card-kicker"></h2>
@@ -58,15 +52,15 @@
                 <dd id="lattice-lab-case-geometry"></dd>
               </div>
               <div>
-                <dt>Nearest shell</dt>
+                <dt>Near neighbors</dt>
                 <dd id="lattice-lab-case-nearest"></dd>
               </div>
               <div>
-                <dt>Next local shell</dt>
+                <dt>Far neighbors</dt>
                 <dd id="lattice-lab-case-next"></dd>
               </div>
               <div>
-                <dt>Local total</dt>
+                <dt>Total neighbors</dt>
                 <dd id="lattice-lab-case-local-total"></dd>
               </div>
               <div>
@@ -135,10 +129,67 @@
               <div>
                 <dt>Relationship lines</dt>
                 <dd>
-                  Light-purple lines show nearest-neighbor geometry, not bonds, wakes, or acceleration vectors.
+                  Thicker lines show near-neighbor relationships; thinner lines show far-neighbor relationships.
                 </dd>
               </div>
             </dl>
+          </section>
+
+          <section
+            id="lattice-lab-ledger"
+            class="lattice-lab-ledger"
+            aria-labelledby="lattice-lab-ledger-title"
+            aria-live="polite"
+          >
+            <div class="lattice-lab-ledger-heading">
+              <div>
+                <span id="lattice-lab-ledger-title">Ledger</span>
+              </div>
+              <button
+                id="lattice-lab-random-recalculate"
+                class="lattice-lab-random-recalculate"
+                type="button"
+                aria-label="Recalculate random configuration"
+                title="Recalculate random configuration"
+                hidden
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M18.7 7.1A8 8 0 1 0 19.8 15"></path>
+                  <path d="M18.7 3.6v3.5h-3.5"></path>
+                </svg>
+              </button>
+            </div>
+            <p id="lattice-lab-ledger-receiver" class="lattice-lab-ledger-receiver" hidden></p>
+            <div id="lattice-lab-ledger-result" class="lattice-lab-ledger-result">
+              <div class="lattice-lab-ledger-outcome">
+                <span id="lattice-lab-ledger-icon" class="lattice-lab-ledger-icon" aria-hidden="true"></span>
+                <strong id="lattice-lab-ledger-outcome"></strong>
+              </div>
+              <p id="lattice-lab-ledger-residual" class="lattice-lab-ledger-residual"></p>
+            </div>
+            <div id="lattice-lab-ledger-shells" class="lattice-lab-ledger-shells"></div>
+            <p id="lattice-lab-ledger-shell-scope" class="lattice-lab-ledger-shell-scope"></p>
+            <details id="lattice-lab-ledger-calculation" class="lattice-lab-ledger-calculation">
+              <summary>Show calculation</summary>
+              <div
+                id="lattice-lab-ledger-calculation-body"
+                class="lattice-lab-ledger-calculation-body"
+                role="region"
+                aria-label="Calculation details"
+                tabindex="0"
+              >
+                <p
+                  id="lattice-lab-ledger-calculation-scope"
+                  class="lattice-lab-ledger-calculation-scope"
+                  hidden
+                ></p>
+                <div class="lattice-lab-ledger-calculation-heading" aria-hidden="true">
+                  <span>Normalized contribution</span>
+                  <span>Running local sum</span>
+                </div>
+                <div id="lattice-lab-ledger-calculation-rows"></div>
+              </div>
+            </details>
           </section>
         </div>
       </aside>
@@ -289,56 +340,6 @@
                 Highlight repeat cell
               </label>
             </div>
-          </section>
-
-          <section
-            id="lattice-lab-ledger"
-            class="lattice-lab-ledger"
-            aria-labelledby="lattice-lab-ledger-title"
-            aria-live="polite"
-          >
-            <div class="lattice-lab-ledger-heading">
-              <div>
-                <span id="lattice-lab-ledger-title">Ledger</span>
-              </div>
-              <button
-                id="lattice-lab-random-recalculate"
-                class="lattice-lab-random-recalculate"
-                type="button"
-                aria-label="Recalculate random configuration"
-                title="Recalculate random configuration"
-                hidden
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M18.7 7.1A8 8 0 1 0 19.8 15"></path>
-                  <path d="M18.7 3.6v3.5h-3.5"></path>
-                </svg>
-              </button>
-            </div>
-            <p id="lattice-lab-ledger-receiver" class="lattice-lab-ledger-receiver" hidden></p>
-            <div id="lattice-lab-ledger-result" class="lattice-lab-ledger-result">
-              <div class="lattice-lab-ledger-outcome">
-                <span id="lattice-lab-ledger-icon" class="lattice-lab-ledger-icon" aria-hidden="true"></span>
-                <strong id="lattice-lab-ledger-outcome"></strong>
-              </div>
-              <p id="lattice-lab-ledger-residual" class="lattice-lab-ledger-residual"></p>
-            </div>
-            <p id="lattice-lab-ledger-statement" class="lattice-lab-ledger-statement"></p>
-            <div id="lattice-lab-ledger-shells" class="lattice-lab-ledger-shells"></div>
-            <p id="lattice-lab-ledger-shell-scope" class="lattice-lab-ledger-shell-scope"></p>
-            <details id="lattice-lab-ledger-calculation" class="lattice-lab-ledger-calculation">
-              <summary>Show calculation</summary>
-              <p
-                id="lattice-lab-ledger-calculation-scope"
-                class="lattice-lab-ledger-calculation-scope"
-                hidden
-              ></p>
-              <div class="lattice-lab-ledger-calculation-heading" aria-hidden="true">
-                <span>Normalized contribution</span>
-                <span>Running local sum</span>
-              </div>
-              <div id="lattice-lab-ledger-calculation-rows"></div>
-            </details>
           </section>
         </aside>
       </main>

@@ -49,15 +49,12 @@ test("certified checkerboard view starts with the exact periodic zero result", (
     viewModel.residualLineLabel,
     "Magnitude 0 · Vector ⟨0, 0, 0⟩",
   );
-  assert.equal(
-    viewModel.statement,
-    "In this ideal repeating pattern, matching pulls cancel at every site at release.",
-  );
+  assert.equal("statement" in viewModel, false);
   assert.deepEqual(
     viewModel.shellSummaries.map((shell) => shell.totalLabel),
     [
-      "Nearest shell: 6 contributions → 3 matching pairs → zero",
-      "Next shell: 12 contributions → 6 matching pairs → zero",
+      "6 near neighbors → 3 matching pairs → zero",
+      "12 far neighbors → 6 matching pairs → zero",
     ],
   );
   assert.equal(viewModel.calculationAvailable, true);
@@ -69,8 +66,11 @@ test("certified checkerboard view starts with the exact periodic zero result", (
   );
   assert.doesNotMatch(viewModel.calculationScopeDetail, /release|motion|stability|energy|conservation/u);
   assert.equal(viewModel.calculationRows.length, 18);
-  assert.match(viewModel.shellScopeNote, /local examples/u);
-  assert.match(viewModel.shellScopeNote, /separate certificate/u);
+  assert.equal(viewModel.shellScopeNote, null);
+  assert.deepEqual(
+    [...new Set(viewModel.calculationRows.map(({ rowLabel }) => rowLabel))],
+    ["6 near neighbors", "12 far neighbors"],
+  );
 });
 
 test("checkerboard never inherits a zero result when the periodic check is absent", () => {
@@ -87,7 +87,10 @@ test("checkerboard never inherits a zero result when the periodic check is absen
   );
   assert.equal(viewModel.outcome, "not-established");
   assert.equal(viewModel.icon, null);
-  assert.equal(viewModel.outcomeLabel, null);
+  assert.equal(
+    viewModel.outcomeLabel,
+    "Acceleration has not been calculated for this geometry.",
+  );
   assert.equal(viewModel.residualMagnitude, null);
   assert.equal(viewModel.residualMagnitudeLabel, null);
   assert.equal(viewModel.residualVector, null);
@@ -95,10 +98,7 @@ test("checkerboard never inherits a zero result when the periodic check is absen
   assert.equal(viewModel.residualLineLabel, null);
   assert.equal(viewModel.calculationAvailable, false);
   assert.deepEqual(viewModel.calculationRows, []);
-  assert.equal(
-    viewModel.statement,
-    "Acceleration has not been calculated for this geometry.",
-  );
+  assert.equal("statement" in viewModel, false);
 });
 
 test("BCC reports exact periodic zero only when its repeating-pattern certificate passes", () => {
@@ -121,12 +121,12 @@ test("BCC reports exact periodic zero only when its repeating-pattern certificat
   assert.equal(viewModel.calculationRows.length, 14);
   assert.equal(viewModel.receiverLabel, null);
   assert.equal(viewModel.shellSummaries.length, 2);
-  assert.match(viewModel.statement, /complete symmetry orbits/u);
-  assert.match(viewModel.shellScopeNote, /full declared repeating pattern/u);
+  assert.equal("statement" in viewModel, false);
+  assert.equal(viewModel.shellScopeNote, null);
   assert.doesNotMatch(JSON.stringify(viewModel), /displayed finite|finite crop/u);
 });
 
-test("alternating-planes Ledger uses learner-facing periodic zero copy", () => {
+test("alternating-planes Ledger keeps its periodic zero copy in the outcome", () => {
   const caseRecord = createLatticeLabCaseGallery().find(
     ({ id }) => id === "simple-cubic-alternating-planes-v1",
   );
@@ -142,10 +142,10 @@ test("alternating-planes Ledger uses learner-facing periodic zero copy", () => {
   });
 
   assert.equal(
-    viewModel.statement,
-    "In this ideal repeating pattern, net acceleration is zero at every architrino.",
+    viewModel.outcomeLabel,
+    "Net acceleration is zero at every architrino.",
   );
-  assert.doesNotMatch(viewModel.statement, /orbit|release/u);
+  assert.equal("statement" in viewModel, false);
 });
 
 test("finite nonperiodic state reports only its calculated finite residual", () => {
@@ -198,8 +198,7 @@ test("finite nonperiodic state reports only its calculated finite residual", () 
   );
   assert.equal(viewModel.residualMagnitudeLabel, "0.25");
   assert.equal(viewModel.residualVectorLabel, "⟨0.25, 0, 0⟩");
-  assert.match(viewModel.statement, /displayed finite configuration/u);
-  assert.doesNotMatch(viewModel.statement, /every site/u);
+  assert.equal("statement" in viewModel, false);
   assert.equal(
     viewModel.receiverLabel,
     "Calculation target · Selected electrino",
@@ -216,7 +215,7 @@ test("finite nonperiodic state reports only its calculated finite residual", () 
     viewModel.calculationRows.at(-1).runningResidual,
     [0.25, 0, 0],
   );
-  assert.match(viewModel.shellSummaries[0].totalLabel, /6 calculated contributions/u);
+  assert.match(viewModel.shellSummaries[0].totalLabel, /^6 near neighbors →/u);
 });
 
 test("periodic gallery method scope lives inside the calculation disclosure", () => {
@@ -297,7 +296,7 @@ test("finite nonperiodic zero is derived from included contribution rows only", 
   assert.equal(viewModel.calculationRows.length, 17);
   assert.equal(
     viewModel.shellSummaries[0].totalLabel.startsWith(
-      "Nearest shell: 5 calculated contributions",
+      "5 near neighbors →",
     ),
     true,
   );
@@ -322,6 +321,5 @@ test("finite nonperiodic exact zero uses finite-only outcome language", () => {
     viewModel.outcomeLabel,
     "Net acceleration is zero in this finite configuration.",
   );
-  assert.match(viewModel.statement, /displayed finite configuration only/u);
-  assert.doesNotMatch(viewModel.statement, /every site|repeating pattern/u);
+  assert.equal("statement" in viewModel, false);
 });

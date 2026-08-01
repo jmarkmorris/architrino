@@ -44,6 +44,7 @@ const GEOMETRY_LINE_OPACITY = 0.64;
 const GEOMETRY_LINE_WIDTH = 1;
 const REPEAT_CELL_HIGHLIGHT_COLOR = 0xb79cff;
 const REPEAT_CELL_HIGHLIGHT_RADIUS = 0.0176;
+const UNPOLARIZED_RELATIONSHIP_RADIUS_PX = 1.35;
 const DEFAULT_VIEW_HALF_HEIGHT = 4.4;
 const BASELINE_DISPLAY_RADIUS = 3.25;
 const MIN_VIEW_HALF_HEIGHT = 1.35;
@@ -323,32 +324,6 @@ function clamp(value, minimum, maximum) {
   return Math.max(minimum, Math.min(maximum, value));
 }
 
-function formatPolarityLabel(polarity) {
-  if (polarity === LATTICE_LAB_POLARITY.ELECTRINO) {
-    return "electrino";
-  }
-  if (polarity === LATTICE_LAB_POLARITY.POSITRINO) {
-    return "positrino";
-  }
-  return "unavailable";
-}
-
-function summarizeShellPolarities(shell) {
-  const counts = shell.rows.reduce(
-    (summary, position) => {
-      if (position.polarity) {
-        summary[position.polarity] += 1;
-      }
-      return summary;
-    },
-    { electrino: 0, positrino: 0 },
-  );
-  return [
-    counts.positrino ? `${counts.positrino} positrino${counts.positrino === 1 ? "" : "s"}` : null,
-    counts.electrino ? `${counts.electrino} electrino${counts.electrino === 1 ? "" : "s"}` : null,
-  ].filter(Boolean).join(" / ");
-}
-
 export function createZPolarDisplayEnvelopePoint(radius, theta, phi) {
   if (
     !Number.isFinite(radius) || radius <= 0 ||
@@ -614,7 +589,6 @@ export function mountLatticeLab(options = {}) {
     miniatureCard: queryRequiredElement(documentLike, "#lattice-lab-miniature-card"),
     miniatureCanvas: queryRequiredElement(documentLike, "#lattice-lab-miniature-canvas"),
     caseSelect: queryRequiredElement(documentLike, "#lattice-lab-case-select"),
-    seeingTitle: queryRequiredElement(documentLike, "#lattice-lab-seeing-title"),
     caseTitle: queryRequiredElement(documentLike, "#lattice-lab-case-title"),
     caseGeometry: queryRequiredElement(documentLike, "#lattice-lab-case-geometry"),
     caseNearest: queryRequiredElement(documentLike, "#lattice-lab-case-nearest"),
@@ -628,7 +602,6 @@ export function mountLatticeLab(options = {}) {
     deformationBeta: queryRequiredElement(documentLike, "#lattice-lab-deformation-beta"),
     compressionValue: queryRequiredElement(documentLike, "#lattice-lab-compression-value"),
     compressionStatus: queryRequiredElement(documentLike, "#lattice-lab-compression-status"),
-    whatSeeing: queryRequiredElement(documentLike, "#lattice-lab-what-seeing"),
     inspectorStack: queryRequiredElement(documentLike, ".lattice-lab-inspector-stack"),
     repeatHighlight: queryRequiredElement(documentLike, "#lattice-lab-repeat-highlight"),
     ledger: queryRequiredElement(documentLike, "#lattice-lab-ledger"),
@@ -641,10 +614,17 @@ export function mountLatticeLab(options = {}) {
     ledgerIcon: queryRequiredElement(documentLike, "#lattice-lab-ledger-icon"),
     ledgerOutcome: queryRequiredElement(documentLike, "#lattice-lab-ledger-outcome"),
     ledgerResidual: queryRequiredElement(documentLike, "#lattice-lab-ledger-residual"),
-    ledgerStatement: queryRequiredElement(documentLike, "#lattice-lab-ledger-statement"),
     ledgerShells: queryRequiredElement(documentLike, "#lattice-lab-ledger-shells"),
     ledgerShellScope: queryRequiredElement(documentLike, "#lattice-lab-ledger-shell-scope"),
     ledgerCalculation: queryRequiredElement(documentLike, "#lattice-lab-ledger-calculation"),
+    ledgerCalculationSummary: queryRequiredElement(
+      documentLike,
+      "#lattice-lab-ledger-calculation summary",
+    ),
+    ledgerCalculationBody: queryRequiredElement(
+      documentLike,
+      "#lattice-lab-ledger-calculation-body",
+    ),
     ledgerCalculationScope: queryRequiredElement(
       documentLike,
       "#lattice-lab-ledger-calculation-scope",
@@ -682,6 +662,7 @@ export function mountLatticeLab(options = {}) {
   let deformationBeta = 0;
   let compressionFactor = 1;
   let repeatCellHighlighted = false;
+  let ledgerDisclosureScrollResetPending = false;
   let dragging = false;
   let dragSource = null;
   let pointerId = null;
@@ -790,6 +771,14 @@ export function mountLatticeLab(options = {}) {
     linewidth: GEOMETRY_LINE_WIDTH,
     depthTest: true,
     depthWrite: false,
+  });
+  const unpolarizedRelationshipMaterial = new THREE.MeshBasicMaterial({
+    color: ENDPOINT_AGGREGATE_COLOR,
+    transparent: true,
+    opacity: 0.86,
+    depthTest: true,
+    depthWrite: false,
+    toneMapped: false,
   });
   const selectionCircleCanvas = documentLike.createElement("canvas");
   selectionCircleCanvas.width = SELECTION_CIRCLE_TEXTURE_SIZE_PX;
@@ -1045,6 +1034,8 @@ export function mountLatticeLab(options = {}) {
     if (!pattern) {
       dom.unpolarizedCanvas.dataset.siteCount = "0";
       dom.unpolarizedCanvas.dataset.frameEdgeCount = "0";
+      dom.unpolarizedCanvas.dataset.relationshipCount = "0";
+      dom.unpolarizedCanvas.dataset.relationshipIdentities = "";
       dom.unpolarizedCanvas.setAttribute(
         "aria-label",
         "Unpolarized repeat pattern is not available for this nonperiodic configuration.",
@@ -1076,6 +1067,18 @@ export function mountLatticeLab(options = {}) {
       (value, axis) => (value + bounds.maximum[axis]) / 2,
     );
     const displayCenter = transformDisplayPosition(referenceCenter);
+    const unpolarizedPositionKey = (position) => position.map(
+      (value) => Number(value.toFixed(9)),
+    ).join(",");
+    const unpolarizedPairKey = (start, end) => [
+      unpolarizedPositionKey(start),
+      unpolarizedPositionKey(end),
+    ].sort().join("|");
+    const relationshipPairKeys = new Set(
+      pattern.relationshipSegments.map(({ start, end }) =>
+        unpolarizedPairKey(start, end)
+      ),
+    );
     pattern.sites.forEach((site) => {
       const mesh = new THREE.Mesh(sphereGeometry, unpolarizedMaterial);
       mesh.position.fromArray(transformDisplayPosition(site.position).map(
@@ -1085,7 +1088,12 @@ export function mountLatticeLab(options = {}) {
       mesh.userData.siteId = site.id;
       unpolarizedRoot.add(mesh);
     });
+    let visibleFrameEdgeCount = 0;
     pattern.frameSegments.forEach((segment) => {
+      if (relationshipPairKeys.has(unpolarizedPairKey(segment.start, segment.end))) {
+        return;
+      }
+      visibleFrameEdgeCount += 1;
       const start = transformDisplayPosition(segment.start).map(
         (value, axis) => value - displayCenter[axis],
       );
@@ -1101,6 +1109,28 @@ export function mountLatticeLab(options = {}) {
       line.userData.disposeGeometry = true;
       unpolarizedRoot.add(line);
     });
+    pattern.relationshipSegments.forEach((segment) => {
+      const start = transformDisplayPosition(segment.start).map(
+        (value, axis) => value - displayCenter[axis],
+      );
+      const end = transformDisplayPosition(segment.end).map(
+        (value, axis) => value - displayCenter[axis],
+      );
+      const relationship = new THREE.Mesh(
+        new THREE.CylinderGeometry(1, 1, 1, 10),
+        unpolarizedRelationshipMaterial,
+      );
+      relationship.userData.kind = "unpolarized-nearest-neighbor-relationship";
+      relationship.userData.relationshipId = segment.id;
+      relationship.userData.fromSiteId = segment.fromSiteId;
+      relationship.userData.toSiteId = segment.toSiteId;
+      relationship.userData.canonicalDistance = segment.canonicalDistance;
+      relationship.userData.start = Object.freeze(start);
+      relationship.userData.end = Object.freeze(end);
+      relationship.userData.disposeGeometry = true;
+      relationship.renderOrder = 1;
+      unpolarizedRoot.add(relationship);
+    });
     const referenceRadius = Math.max(
       0.1,
       ...referencePositions.map((position) => Math.hypot(...position.map(
@@ -1112,7 +1142,38 @@ export function mountLatticeLab(options = {}) {
     dom.unpolarizedCanvas.dataset.frameEdgeCount = String(
       pattern.frameSegments.length,
     );
-    dom.unpolarizedCanvas.dataset.relationshipCount = "0";
+    dom.unpolarizedCanvas.dataset.visibleFrameEdgeCount = String(
+      visibleFrameEdgeCount,
+    );
+    dom.unpolarizedCanvas.dataset.suppressedFrameUnderstrokeCount = String(
+      pattern.relationshipFrameOverlapCount,
+    );
+    dom.unpolarizedCanvas.dataset.relationshipCount = String(
+      pattern.relationshipSegments.length,
+    );
+    dom.unpolarizedCanvas.dataset.relationshipIdentities =
+      pattern.relationshipSegments.map(({ id }) => id).join(";");
+    dom.unpolarizedCanvas.dataset.relationshipCanonicalDistances =
+      pattern.relationshipSegments.map(({ canonicalDistance }) =>
+        canonicalDistance.toFixed(9)
+      ).join(";");
+    dom.unpolarizedCanvas.dataset.relationshipFrameOverlapCount = String(
+      pattern.relationshipFrameOverlapCount,
+    );
+    dom.unpolarizedCanvas.dataset.relationshipColor = "neutral-purple";
+    dom.unpolarizedCanvas.dataset.relationshipOpacity = String(
+      unpolarizedRelationshipMaterial.opacity,
+    );
+    dom.unpolarizedCanvas.dataset.relationshipDiameterPx = String(
+      2 * UNPOLARIZED_RELATIONSHIP_RADIUS_PX,
+    );
+    dom.unpolarizedCanvas.dataset.frameOpacity = String(
+      unpolarizedFrameMaterial.opacity,
+    );
+    dom.unpolarizedCanvas.dataset.frameTreatment =
+      "thin-light-purple-conventional-cell-boundary";
+    dom.unpolarizedCanvas.dataset.polarityPatternRepeats =
+      caseRecord.calculationScope === "finite-nonperiodic" ? "false" : "true";
     dom.unpolarizedCanvas.dataset.polarityMarkerCount = "0";
     dom.unpolarizedCanvas.dataset.selectionRingCount = "0";
     dom.unpolarizedCanvas.dataset.repeatOverlayCount = "0";
@@ -1122,12 +1183,34 @@ export function mountLatticeLab(options = {}) {
     dom.unpolarizedCanvas.dataset.deformationAxis = compressionAxis;
     dom.unpolarizedCanvas.dataset.deformationFactor =
       compressionFactor.toFixed(6);
+    const relationshipDescription = pattern.relationshipSegments.length > 0
+      ? ` ${pattern.relationshipSegments.length} stronger neutral-purple ` +
+        "near-neighbor relationship segments are distinct from the thin " +
+        "light-purple conventional-cell boundary. Only relationships with " +
+        "both represented endpoints inside this conventional cell are shown; " +
+        "periodic continuation neighbors outside it are not drawn."
+      : " No relationship lines are shown.";
+    const overlapDescription = pattern.relationshipFrameOverlapCount > 0
+      ? ` ${pattern.relationshipFrameOverlapCount} of those relationship ` +
+        "segments coincide with cell-boundary edges because the same " +
+        "represented endpoint pairs are near neighbors; the stronger " +
+        "relationship treatment carries both roles without a duplicate thin " +
+        "under-stroke."
+      : "";
+    const randomScopeDescription =
+      caseRecord.calculationScope === "finite-nonperiodic"
+        ? " This is the underlying unpolarized simple-cubic geometry; the " +
+          "finite random polarity assignment does not repeat."
+        : "";
     dom.unpolarizedCanvas.setAttribute(
       "aria-label",
       `Rotatable unpolarized conventional lattice geometry for ${caseRecord.title}. ` +
         `${pattern.sites.length} uniform neutral purple Architrino markers ` +
-        `and a ${pattern.frameSegments.length}-edge conventional-cell frame. ` +
-        "No polarity, relationship lines, selection, or calculation claim is shown.",
+        `and a ${pattern.frameSegments.length}-edge conventional-cell frame.` +
+        relationshipDescription +
+        overlapDescription +
+        randomScopeDescription +
+        " No polarity, selection, or calculation claim is shown.",
     );
   }
 
@@ -1541,10 +1624,11 @@ export function mountLatticeLab(options = {}) {
       ? createRepeatCellDisplayGraph(caseRecord, {
         compressionAxis,
         compressionFactor,
-      })
+    })
       : null;
     dom.miniatureCard.hidden = !repeatCellDisplayGraph;
     dom.miniatureCanvas.tabIndex = repeatCellDisplayGraph ? 0 : -1;
+    updatePolarityLegendPlacement(Boolean(repeatCellDisplayGraph));
     if (repeatCellDisplayGraph) {
       rebuildMiniatureNetwork(repeatCellDisplayGraph);
     }
@@ -1587,11 +1671,32 @@ export function mountLatticeLab(options = {}) {
       "shared-lattice-root-quaternion";
   }
 
+  function updatePolarityLegendPlacement(hasPolarizedRepeatPattern) {
+    if (hasPolarizedRepeatPattern) {
+      dom.miniatureCanvas.parentElement.append(dom.polarityLegend);
+      dom.polarityLegend.dataset.placement = "polarized-repeat-pattern";
+      dom.polarityLegend.style.removeProperty("right");
+      return;
+    }
+    dom.inspectorStack.parentElement.insertBefore(
+      dom.polarityLegend,
+      dom.inspectorStack,
+    );
+    dom.polarityLegend.dataset.placement = "main-canvas";
+  }
+
+  function resetLedgerDisclosure() {
+    dom.ledgerCalculation.open = false;
+    dom.ledgerCalculationBody.scrollTop = 0;
+    ledgerDisclosureScrollResetPending = true;
+  }
+
   function selectCase(caseId) {
     const nextCase = caseRecords.find((record) => record.id === caseId);
     if (!nextCase || nextCase === caseRecord) {
       return Boolean(nextCase);
     }
+    resetLedgerDisclosure();
     caseRecord = nextCase;
     polarityBySiteId = createReferencePolarityState(caseRecord);
     selectedSiteId = caseRecord.defaultSiteId;
@@ -1661,6 +1766,20 @@ export function mountLatticeLab(options = {}) {
   function bindEvents() {
     listen(dom.caseSelect, "change", () => selectCase(dom.caseSelect.value));
     listen(dom.randomRecalculate, "click", recalculateRandomConfiguration);
+    listen(dom.ledgerCalculationSummary, "keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+      event.preventDefault();
+      dom.ledgerCalculation.open = !dom.ledgerCalculation.open;
+    });
+    listen(dom.ledgerCalculation, "toggle", () => {
+      if (!dom.ledgerCalculation.open || !ledgerDisclosureScrollResetPending) {
+        return;
+      }
+      dom.ledgerCalculationBody.scrollTop = 0;
+      ledgerDisclosureScrollResetPending = false;
+    });
     listen(dom.repeatHighlight, "change", () => {
       repeatCellHighlighted = dom.repeatHighlight.checked;
       repeatHighlightGroup.traverse((object) => {
@@ -1811,8 +1930,7 @@ export function mountLatticeLab(options = {}) {
       dom.compressionStatus.textContent =
         `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
         `${Number(compressionFactor.toFixed(6))}. ` +
-        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation. " +
-        "Net acceleration is zero at every architrino.";
+        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation.";
     } else if (caseRecord.id === LATTICE_LAB_CASE_ID) {
       dom.compressionStatus.textContent =
         `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
@@ -1824,9 +1942,7 @@ export function mountLatticeLab(options = {}) {
       dom.compressionStatus.textContent =
         `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
         `${Number(compressionFactor.toFixed(6))}. ` +
-        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation. " +
-        "The ledger recalculates every " +
-        "included contribution for this displayed finite configuration only.";
+        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation.";
     } else if (caseRecord.id === "hcp-abab-layers-v1") {
       dom.compressionStatus.textContent =
         `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
@@ -1876,6 +1992,7 @@ export function mountLatticeLab(options = {}) {
   }
 
   function resetCase() {
+    resetLedgerDisclosure();
     polarityBySiteId = createReferencePolarityState(caseRecord);
     selectedSiteId = caseRecord.defaultSiteId;
     siteSelectionExplicit = false;
@@ -1982,19 +2099,18 @@ export function mountLatticeLab(options = {}) {
         .map(([distance, count]) => `${count} at ${distance}d`)
         .join("; ");
     };
-    dom.seeingTitle.textContent = caseRecord.title;
     dom.caseTitle.textContent = caseRecord.title;
     dom.caseGeometry.textContent =
       `${caseRecord.geometryLabel}; ${caseRecord.polarityRule}`;
     dom.caseNearest.textContent = compressed
       ? summarizeTransformedDistances("nearest")
       : caseRecord.id === LATTICE_LAB_CASE_ID
-        ? "6 neighbors at distance d"
+        ? "6 at distance d"
         : `${caseRecord.nearestShell.count} at distance ${caseRecord.nearestShell.distance}`;
     dom.caseNext.textContent = compressed
       ? summarizeTransformedDistances("next-local")
       : caseRecord.id === LATTICE_LAB_CASE_ID
-        ? "12 neighbors at distance √2d"
+        ? "12 at distance √2d"
         : `${caseRecord.nextLocalShell.count} at distance ${caseRecord.nextLocalShell.distance}`;
     dom.caseLocalTotal.textContent = String(
       caseRecord.nearestShell.count + caseRecord.nextLocalShell.count,
@@ -2030,88 +2146,6 @@ export function mountLatticeLab(options = {}) {
         compressionFactor,
       },
     );
-    const nearestShell = ledger.shells.find((shell) => shell.id === "nearest");
-    const nextLocalShell = ledger.shells.find((shell) => shell.id === "next-local");
-    const receiverPolarity = formatPolarityLabel(ledger.receiverPolarity);
-    const learnerOverviewCopy = caseRecord.learnerOverview
-      ? `${caseRecord.learnerOverview} `
-      : "";
-    if (
-      ledger.certificateApplies && !siteSelectionExplicit &&
-      caseRecord.id === LATTICE_LAB_CASE_ID
-    ) {
-      dom.whatSeeing.textContent =
-        "Every architrino has six nearest neighbors of the opposite polarity. " +
-        "The next local shell has twelve architrinos of the same polarity. " +
-        "Net acceleration is zero at every architrino.";
-    } else if (ledger.certificateApplies && !siteSelectionExplicit) {
-      const certificateSummary = caseRecord.id === "bcc-two-sublattice-v1"
-        ? ""
-        : " These local shell sums are zero, and the separate " +
-          "repeating-pattern symmetry certificate covers every architrino " +
-          "at release.";
-      dom.whatSeeing.textContent =
-        `${caseRecord.title} shows ${caseRecord.polarityRule}. ` +
-        learnerOverviewCopy +
-        `The next local shell has ` +
-        `${caseRecord.nextLocalShell.count} at ` +
-        `${caseRecord.nextLocalShell.distance}.` +
-        certificateSummary;
-    } else if (ledger.certificateApplies) {
-      dom.whatSeeing.textContent =
-        learnerOverviewCopy +
-        `The selected ${receiverPolarity} has ` +
-        `${summarizeShellPolarities(nearestShell)} at ${nearestShell.distance} ` +
-        `and ${summarizeShellPolarities(nextLocalShell)} at ` +
-        `${nextLocalShell.distance}. Each shown local shell has zero net ` +
-        `acceleration in this configuration. Those are illustrative partial sums; ` +
-        `the separate repeating-pattern symmetry certificate gives exact zero ` +
-        `net acceleration at every architrino` +
-        (compressionFactor < 1
-          ? ` under this static ${compressionAxis.toUpperCase()}-axis β = ${deformationBeta} deformation (scale ${compressionFactor})`
-          : "") +
-        `.`;
-    } else if (caseRecord.calculationScope === "finite-nonperiodic") {
-      dom.whatSeeing.textContent =
-        "This is a random 50/50 equal-polarity population on simple-cubic " +
-        "site geometry. The assignment has exactly equal numbers of " +
-        "electrinos and positrinos, is finite and nonperiodic, and has no " +
-        "repeat cell; equal counts do not establish acceleration " +
-        `cancellation. The selected ${receiverPolarity} is the ledger target, ` +
-        "and the ledger includes every other site in this configuration " +
-        "once. The result is finite-case only and makes no motion, " +
-        "stability, energy, or conservation claim.";
-    } else if (
-      caseRecord.accelerationCertificate && !ledger.referenceConfiguration
-    ) {
-      dom.whatSeeing.textContent =
-        `The selected ${receiverPolarity} is in a ` +
-        `modified polarity configuration. The local rows below are a finite ` +
-        `diagnostic; the reference acceleration certificate does not apply.`;
-    } else if (
-      caseRecord.id === "hcp-abab-layers-v1" &&
-      ledger.certificateValidation && !ledger.certificateValidation.passed
-    ) {
-      dom.whatSeeing.textContent =
-        `${caseRecord.title} shows ${caseRecord.polarityRule}. ` +
-        learnerOverviewCopy +
-        "This X-axis deformation changes the pattern’s symmetry, so periodic " +
-        "acceleration is not established at this setting.";
-    } else {
-      dom.whatSeeing.textContent =
-        `${caseRecord.title} shows ${caseRecord.polarityRule}. ` +
-        learnerOverviewCopy +
-        `The selected ` +
-        `${receiverPolarity} has ` +
-        `${summarizeShellPolarities(nearestShell)} at ${nearestShell.distance} ` +
-        `and ${summarizeShellPolarities(nextLocalShell)} at ` +
-        `${nextLocalShell.distance} in the undeformed reference geometry. ` +
-        (compressionFactor < 1
-          ? `The display applies a static X-axis β = ${deformationBeta} deformation with scale ${compressionFactor}. `
-          : "") +
-        `This is a static geometry/reference case, ` +
-        `not an acceleration, all-lattice cancellation, stability, or evolution result.`;
-    }
     const ledgerViewModel = createLatticeLabLedgerViewModel({
       caseRecord,
       ledger,
@@ -2128,7 +2162,6 @@ export function mountLatticeLab(options = {}) {
         icon: dom.ledgerIcon,
         outcome: dom.ledgerOutcome,
         residual: dom.ledgerResidual,
-        statement: dom.ledgerStatement,
         shells: dom.ledgerShells,
         shellScope: dom.ledgerShellScope,
         calculation: dom.ledgerCalculation,
@@ -2179,10 +2212,12 @@ export function mountLatticeLab(options = {}) {
       pixelOffset * (2 * cameraViewHalfHeight / Math.max(1, canvasRect.height));
     dom.app.dataset.usableCanvasCenterX = targetCenterX.toFixed(2);
     dom.app.dataset.latticeLayoutOffsetX = layoutWorldOffsetX.toFixed(4);
-    const legendRight = inspectorOverlapsCanvas
-      ? Math.max(16, canvasRect.right - inspectorRect.left + 12)
-      : 16;
-    dom.polarityLegend.style.right = `${legendRight.toFixed(2)}px`;
+    if (dom.polarityLegend.dataset.placement === "main-canvas") {
+      const legendRight = inspectorOverlapsCanvas
+        ? Math.max(16, canvasRect.right - inspectorRect.left + 12)
+        : 16;
+      dom.polarityLegend.style.right = `${legendRight.toFixed(2)}px`;
+    }
     dom.polarityLegend.dataset.markerDiameterPx = String(2 * MARKER_RADIUS_PX);
     updateFocusedPosition();
   }
@@ -2361,6 +2396,50 @@ export function mountLatticeLab(options = {}) {
         object.userData.kind === "unpolarized-conventional-site"
       )
       .forEach((mesh) => mesh.scale.setScalar(unpolarizedLocalRadius));
+    const unpolarizedRelationshipWorldRadius =
+      UNPOLARIZED_RELATIONSHIP_RADIUS_PX *
+      (2 * unpolarizedCamera.top / unpolarizedViewportHeight);
+    const unpolarizedRelationshipLocalRadius =
+      unpolarizedRelationshipWorldRadius /
+      Math.max(1e-7, unpolarizedRoot.scale.x);
+    let visibleUnpolarizedRelationshipCount = 0;
+    unpolarizedRoot.children
+      .filter((object) =>
+        object.userData.kind === "unpolarized-nearest-neighbor-relationship"
+      )
+      .forEach((relationship) => {
+        const segmentDistance = Math.hypot(...relationship.userData.end.map(
+          (value, axis) => value - relationship.userData.start[axis],
+        ));
+        if (segmentDistance <= 2 * unpolarizedLocalRadius) {
+          relationship.visible = false;
+          return;
+        }
+        relationship.visible = true;
+        visibleUnpolarizedRelationshipCount += 1;
+        const segment = createClippedNeighborSegment(
+          relationship.userData.start,
+          relationship.userData.end,
+          unpolarizedLocalRadius,
+        );
+        const start = new THREE.Vector3(...segment.start);
+        const end = new THREE.Vector3(...segment.end);
+        const direction = end.clone().sub(start);
+        const length = direction.length();
+        relationship.position.copy(start).add(end).multiplyScalar(0.5);
+        relationship.quaternion.setFromUnitVectors(
+          new THREE.Vector3(0, 1, 0),
+          direction.normalize(),
+        );
+        relationship.scale.set(
+          unpolarizedRelationshipLocalRadius,
+          length,
+          unpolarizedRelationshipLocalRadius,
+        );
+      });
+    dom.unpolarizedCanvas.dataset.visibleRelationshipCount = String(
+      visibleUnpolarizedRelationshipCount,
+    );
     const unpolarizedRendererSiteDiameterPx =
       2 * unpolarizedLocalRadius * unpolarizedRoot.scale.x *
       unpolarizedViewportHeight / (2 * unpolarizedCamera.top);
@@ -2941,11 +3020,17 @@ export function mountLatticeLab(options = {}) {
         object.geometry?.dispose?.();
       }
     });
+    unpolarizedRoot.traverse((object) => {
+      if (object.userData.disposeGeometry) {
+        object.geometry?.dispose?.();
+      }
+    });
     sphereGeometry.dispose();
     redMaterial.dispose();
     blueMaterial.dispose();
     unpolarizedMaterial.dispose();
     unpolarizedFrameMaterial.dispose();
+    unpolarizedRelationshipMaterial.dispose();
     redSelectionCircleMaterial.dispose();
     blueSelectionCircleMaterial.dispose();
     endpointSelectionCircleMaterial.dispose();

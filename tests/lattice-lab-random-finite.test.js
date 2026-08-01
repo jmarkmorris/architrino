@@ -25,7 +25,7 @@ import {
 test("random finite case is the final gallery item after Diamond Cubic", () => {
   const gallery = createLatticeLabCaseGallery();
   assert.deepEqual(gallery.map(({ title }) => title), [
-    "Simple Cubic Checkerboard",
+    "Simple Cubic",
     "Body-Centered Cubic",
     "Face-Centered Cubic",
     "Hexagonal Close-Packed",
@@ -40,7 +40,11 @@ test("random finite case is the final gallery item after Diamond Cubic", () => {
   assert.equal(gallery.at(-1).title, "Simple Cubic Random 50/50");
   assert.equal("primerTitle" in gallery.at(-1), false);
   assert.equal(gallery.at(-1).repeatCell, null);
-  assert.equal(gallery.at(-1).unpolarizedLatticePattern, null);
+  assert.equal(gallery.at(-1).unpolarizedLatticePattern.sites.length, 8);
+  assert.equal(
+    gallery.at(-1).unpolarizedLatticePattern.relationshipSegments.length,
+    12,
+  );
 });
 
 test("seeded score ranking is reproducible and pins independently reviewable vectors", () => {
@@ -211,10 +215,11 @@ test("finite random ledger includes every other displayed site and no continuati
     viewModel.calculationRows.map((row) => row.rowLabel).join(" "),
     /remaining|finite crop|\bcontribution\b/u,
   );
-  assert.match(viewModel.statement, /displayed finite configuration/u);
-  assert.match(viewModel.shellScopeNote, /every other site/u);
+  assert.equal("statement" in viewModel, false);
+  assert.equal(viewModel.shellScopeNote, null);
+  assert.match(viewModel.calculationScopeDetail, /every other Architrino/u);
   assert.doesNotMatch(
-    `${viewModel.outcomeLabel} ${viewModel.statement} ${viewModel.shellScopeNote}`,
+    `${viewModel.outcomeLabel} ${viewModel.shellScopeNote}`,
     /every architrino|repeating pattern|stability|conservation|energy/u,
   );
 });
@@ -243,19 +248,17 @@ test("random action uses a custom accessible title-row asset without user-facing
   assert.equal("primerParagraphs" in randomCase, false);
 });
 
-test("Simple Cubic case identity remains explicit after Primer removal", () => {
+test("Simple Cubic case identity remains explicit after overview removal", () => {
   const checkerboard = createLatticeLabCaseGallery()[0];
-  assert.equal(checkerboard.title, "Simple Cubic Checkerboard");
+  assert.equal(checkerboard.title, "Simple Cubic");
   assert.equal("primerTitle" in checkerboard, false);
   assert.equal("primerParagraphs" in checkerboard, false);
-  const css = readFileSync(
-    new URL("../src/apps/lattice-lab/lattice-lab.css", import.meta.url),
+  assert.equal("learnerOverview" in checkerboard, false);
+  const html = readFileSync(
+    new URL("../lattice-lab.html", import.meta.url),
     "utf8",
   );
-  assert.match(
-    css,
-    /\.lattice-lab-card\.lattice-lab-seeing-card h2 \{\s*font-size: 14px;/u,
-  );
+  assert.doesNotMatch(html, /What You Are Seeing|lattice-lab-seeing/u);
 });
 
 test("gallery explanations use polarity language while color keys remain explicit", () => {
@@ -272,16 +275,12 @@ test("gallery explanations use polarity language while color keys remain explici
     bcc.polarityRule,
     "corner and body-center positions carry opposite polarities",
   );
-  assert.equal(
-    bcc.learnerOverview,
-    "Each architrino has eight nearest neighbors along body-diagonal directions.",
-  );
   assert.doesNotMatch(
-    [bcc.title, bcc.polarityRule, bcc.learnerOverview].join(" "),
+    [bcc.title, bcc.polarityRule].join(" "),
     /two-sublattice|sublattices?/u,
   );
   assert.doesNotMatch(
-    [bcc.title, bcc.polarityRule, bcc.learnerOverview].join(" "),
+    [bcc.title, bcc.polarityRule].join(" "),
     /CsCl|Cesium chloride|material identity|This is site counting, not mass density\./u,
   );
 

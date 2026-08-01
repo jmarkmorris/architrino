@@ -76,7 +76,11 @@ function summarizePolarities(rows) {
 
 function createCalculationRows(
   rows,
-  { conciseLabels = false, shellOnlyLabels = false } = {},
+  {
+    conciseLabels = false,
+    shellOnlyLabels = false,
+    neighborGroupLabels = new Map(),
+  } = {},
 ) {
   let runningResidual = [0, 0, 0];
   return Object.freeze(rows.map((row, rowIndex) => {
@@ -90,11 +94,9 @@ function createCalculationRows(
       shellId: row.shellId,
       shellLabel: row.shellLabel,
       polarity: row.polarity,
-      rowLabel: shellOnlyLabels
-        ? displayShellLabel(row)
-        : conciseLabels
+      rowLabel: conciseLabels
         ? `Contribution ${rowIndex + 1}`
-        : `${row.shellLabel} contribution ${rowIndex + 1}`,
+        : neighborGroupLabels.get(row.shellId) ?? row.shellLabel,
       showPolarityInLabel: !conciseLabels && !shellOnlyLabels,
       contribution,
       runningResidual,
@@ -102,13 +104,13 @@ function createCalculationRows(
   }));
 }
 
-function displayShellLabel(shell) {
+function displayNeighborGroupLabel(shell, count) {
   const shellId = shell.id ?? shell.shellId;
   return shellId === "nearest"
-    ? "Nearest shell"
+    ? `${count} near neighbors`
     : shellId === "next-local"
-      ? "Next shell"
-      : shell.label;
+      ? `${count} far neighbors`
+      : `${count} ${shell.label}`;
 }
 
 function createShellSummaries(ledger, scope, caseRecord) {
@@ -117,7 +119,6 @@ function createShellSummaries(ledger, scope, caseRecord) {
     const pairCount = shell.pairs.filter(
       (pair) => pair.accelerationCancelsExactly,
     ).length;
-    const label = displayShellLabel(shell);
     if (
       isFiniteCalculationScope(scope) &&
       includedRows.length === 0
@@ -132,19 +133,19 @@ function createShellSummaries(ledger, scope, caseRecord) {
     const count = isFiniteCalculationScope(scope)
       ? includedRows.length
       : shell.expectedCount;
+    const label = displayNeighborGroupLabel(shell, count);
     const inversionPairs = [
       "simple-cubic-checkerboard-v1",
       "simple-cubic-alternating-planes-v1",
     ].includes(caseRecord.id);
     const totalLabel = scope === LATTICE_LAB_LEDGER_SCOPE.CERTIFIED_PERIODIC
       ? inversionPairs
-        ? `${label}: ${count} contributions → ${pairCount} matching ` +
+        ? `${label} → ${pairCount} matching ` +
           `pair${pairCount === 1 ? "" : "s"} → zero`
-        : `${label}: ${count} contributions → symmetry-orbit sum → zero`
+        : `${label} → symmetry-orbit sum → zero`
       : isFiniteCalculationScope(scope)
-        ? `${label}: ${count} calculated contribution` +
-          `${count === 1 ? "" : "s"} → ${formatLedgerVector(vector)}`
-        : `${label}: ${count} sites at ${shell.distance}`;
+        ? `${label} → ${formatLedgerVector(vector)}`
+        : `${label} at distance ${shell.distance}`;
     return [Object.freeze({
       id: shell.id,
       label,
@@ -221,32 +222,23 @@ export function createLatticeLabLedgerViewModel({
       }
       : {
         icon: null,
-        label: null,
+        label: ledger.certificateValidation && !ledger.certificateValidation.passed
+          ? "Periodic acceleration is not established for this deformation: " +
+            `${ledger.certificateValidation.reason}.`
+          : "Acceleration has not been calculated for this geometry.",
       };
 
-  const statement = certifiedPeriodic
-    ? caseRecord.id === "simple-cubic-checkerboard-v1"
-      ? "In this ideal repeating pattern, matching pulls cancel at every site at release."
-      : caseRecord.id === "hcp-abab-layers-v1"
-        ? "At the undeformed baseline of this ideal repeating pattern, complete symmetry orbits cancel at every site at release."
-        : caseRecord.id === "simple-cubic-alternating-planes-v1"
-          ? "In this ideal repeating pattern, net acceleration is zero at every architrino."
-        : "In this ideal repeating pattern, complete symmetry orbits cancel at every site at release."
-    : finiteResidualAvailable
-      ? zeroResidual
-        ? "The calculated contributions cancel in this displayed finite configuration only."
-        : "The calculated contributions leave a nonzero initial acceleration residual in this displayed finite configuration."
-      : ledger.certificateValidation && !ledger.certificateValidation.passed
-        ? "Periodic acceleration is not established for this deformation: " +
-          `${ledger.certificateValidation.reason}.`
-        : "Acceleration has not been calculated for this geometry.";
+  const shellSummaries = createShellSummaries(ledger, scope, caseRecord);
+  const neighborGroupLabels = new Map(
+    shellSummaries.map(({ id, label }) => [id, label]),
+  );
+
   return Object.freeze({
     outcome,
     scope,
     icon: outcomeCopy.icon,
     outcomeLabel: outcomeCopy.label,
     receiverLabel,
-    statement,
     residualMagnitude,
     residualMagnitudeLabel: residualMagnitude === null
       ? null
@@ -256,7 +248,7 @@ export function createLatticeLabLedgerViewModel({
     residualLineLabel: residualVector
       ? `Magnitude ${formatNumber(residualMagnitude)} · Vector ${formatLedgerVector(residualVector)}`
       : null,
-    shellSummaries: createShellSummaries(ledger, scope, caseRecord),
+    shellSummaries,
     calculationAvailable: accelerationAvailable,
     calculationScopeDetail: certifiedPeriodic
       ? caseRecord.id === "simple-cubic-checkerboard-v1"
@@ -276,13 +268,10 @@ export function createLatticeLabLedgerViewModel({
       ? createCalculationRows(includedRows, {
         conciseLabels: Boolean(caseRecord.randomization),
         shellOnlyLabels: caseRecord.id === "hcp-abab-layers-v1",
+        neighborGroupLabels,
       })
       : Object.freeze([]),
-    shellScopeNote: certifiedPeriodic
-      ? "These two shell totals are local examples. The separate certificate covers the full declared repeating pattern."
-      : finiteResidualAvailable
-        ? "These are local-shell summaries. The disclosed calculation includes every other site in the displayed finite configuration."
-        : "Shell counts describe geometry only; they are not acceleration totals.",
+    shellScopeNote: null,
     caseTitle: caseRecord.title,
   });
 }
@@ -305,11 +294,12 @@ export function renderLatticeLabLedgerViewModel({
   dom.root.dataset.outcome = viewModel.outcome;
   dom.receiver.textContent = viewModel.receiverLabel ?? "";
   dom.receiver.hidden = !viewModel.receiverLabel;
-  dom.result.hidden = !calculationExists;
+  dom.result.hidden = !calculationExists && !viewModel.outcomeLabel;
   dom.icon.textContent = viewModel.icon ?? "";
+  dom.icon.hidden = !viewModel.icon;
   dom.outcome.textContent = viewModel.outcomeLabel ?? "";
   dom.residual.textContent = viewModel.residualLineLabel ?? "";
-  dom.statement.textContent = viewModel.statement;
+  dom.residual.hidden = !viewModel.residualLineLabel;
 
   const shellElements = viewModel.shellSummaries.map((shell) => {
     const row = documentLike.createElement("p");
@@ -319,10 +309,8 @@ export function renderLatticeLabLedgerViewModel({
   });
   replaceChildren(dom.shells, shellElements);
   dom.shells.hidden = shellElements.length === 0;
-  dom.shellScope.textContent = calculationExists
-    ? viewModel.shellScopeNote
-    : "";
-  dom.shellScope.hidden = !calculationExists;
+  dom.shellScope.textContent = viewModel.shellScopeNote ?? "";
+  dom.shellScope.hidden = !viewModel.shellScopeNote;
 
   dom.calculation.hidden = !calculationExists;
   if (!calculationExists) {

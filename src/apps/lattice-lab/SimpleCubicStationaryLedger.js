@@ -67,7 +67,7 @@ export function transformSimpleCubicOffset(
 export const SIMPLE_CUBIC_STATIONARY_CONTRACT = deepFreeze({
   schema: "lattice-lab-stationary-case-contract/v2",
   id: "simple-cubic-checkerboard-stationary-release-v2",
-  title: "Simple-cubic checkerboard stationary release under uniaxial compression",
+  title: "Simple-cubic alternating-polarity pattern under uniaxial deformation",
   claimGrade: "derived",
   normalizedWakeSpeed: 1,
   geometry: {
@@ -99,7 +99,7 @@ export const SIMPLE_CUBIC_STATIONARY_CONTRACT = deepFreeze({
     map:
       "L_{axis,lambda} scales the selected coordinate by lambda and leaves the other two unchanged",
     inversion:
-      "L(-n) = -L(n), with equal transformed separation and unchanged checkerboard polarity sign",
+      "L(-n) = -L(n), with equal transformed separation and unchanged alternating-polarity sign",
   },
   calculationBoundary: {
     kind: "receiver-centered inversion-symmetric exhaustion",

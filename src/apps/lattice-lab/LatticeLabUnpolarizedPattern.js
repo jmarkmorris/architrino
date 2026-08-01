@@ -27,6 +27,19 @@ function positionKey(position) {
   return position.map((value) => Number(value.toFixed(9))).join(",");
 }
 
+function undirectedPositionPairKey(start, end) {
+  return [positionKey(start), positionKey(end)].sort().join("|");
+}
+
+function countRelationshipFrameOverlaps(relationshipSegments, frameSegments) {
+  const frameKeys = new Set(frameSegments.map(({ start, end }) =>
+    undirectedPositionPairKey(start, end)
+  ));
+  return relationshipSegments.filter(({ start, end }) =>
+    frameKeys.has(undirectedPositionPairKey(start, end))
+  ).length;
+}
+
 function createParallelepipedFrame(vectors) {
   const center = scaleVector(addVectors(...vectors), 0.5);
   const corners = new Map();
@@ -62,10 +75,51 @@ function createParallelepipedFrame(vectors) {
   return Object.freeze(segments);
 }
 
+function createRepresentedNearestNeighborSegments(
+  sites,
+  nearestNeighborDistance,
+  expectedRelationshipCount,
+) {
+  if (nearestNeighborDistance == null) {
+    return Object.freeze([]);
+  }
+  const segments = [];
+  sites.forEach((fromSite, fromIndex) => {
+    sites.slice(fromIndex + 1).forEach((toSite) => {
+      const canonicalDistance = Math.hypot(...toSite.position.map(
+        (value, axis) => value - fromSite.position[axis],
+      ));
+      if (Math.abs(canonicalDistance - nearestNeighborDistance) >= EPSILON) {
+        return;
+      }
+      segments.push(Object.freeze({
+        id: `nearest-${fromSite.id}-${toSite.id}`,
+        fromSiteId: fromSite.id,
+        toSiteId: toSite.id,
+        start: fromSite.position,
+        end: toSite.position,
+        canonicalDistance,
+      }));
+    });
+  });
+  if (
+    Number.isInteger(expectedRelationshipCount) &&
+    segments.length !== expectedRelationshipCount
+  ) {
+    throw new Error(
+      `Expected ${expectedRelationshipCount} represented nearest-neighbor ` +
+        `segments, found ${segments.length}.`,
+    );
+  }
+  return Object.freeze(segments);
+}
+
 export function createParallelepipedUnpolarizedPattern({
   label,
   vectors,
   basis,
+  nearestNeighborDistance = null,
+  expectedRelationshipCount = null,
 }) {
   const frozenVectors = Object.freeze(vectors.map(freezeVector));
   const center = scaleVector(addVectors(...frozenVectors), 0.5);
@@ -97,16 +151,35 @@ export function createParallelepipedUnpolarizedPattern({
       id: `conventional-site-${index}`,
       position,
     }));
+  const relationshipSegments = createRepresentedNearestNeighborSegments(
+    sites,
+    nearestNeighborDistance,
+    expectedRelationshipCount,
+  );
+  const frameSegments = createParallelepipedFrame(frozenVectors);
   return Object.freeze({
     kind: "conventional-parallelepiped",
     label,
     geometrySource: "canonical-conventional-vectors-and-basis",
     sites: Object.freeze(sites),
-    frameSegments: createParallelepipedFrame(frozenVectors),
+    frameSegments,
+    relationshipSegments,
+    relationshipFrameOverlapCount: countRelationshipFrameOverlaps(
+      relationshipSegments,
+      frameSegments,
+    ),
+    relationshipCoverage: relationshipSegments.length > 0
+      ? "represented-endpoints-only"
+      : "none",
   });
 }
 
-export function createHcpUnpolarizedPattern({ label, vectors }) {
+export function createHcpUnpolarizedPattern({
+  label,
+  vectors,
+  nearestNeighborDistance = null,
+  expectedRelationshipCount = null,
+}) {
   const [a1, a2, cVector] = vectors.map(freezeVector);
   const cHalf = scaleVector(cVector, 0.5);
   const basalVertices = [
@@ -165,11 +238,26 @@ export function createHcpUnpolarizedPattern({ label, vectors }) {
       }),
     );
   }
+  const frozenSites = Object.freeze(sites);
+  const relationshipSegments = createRepresentedNearestNeighborSegments(
+    frozenSites,
+    nearestNeighborDistance,
+    expectedRelationshipCount,
+  );
+  const frozenFrameSegments = Object.freeze(frameSegments);
   return Object.freeze({
     kind: "conventional-hexagonal-prism",
     label,
     geometrySource: "canonical-hcp-vectors-and-basis",
-    sites: Object.freeze(sites),
-    frameSegments: Object.freeze(frameSegments),
+    sites: frozenSites,
+    frameSegments: frozenFrameSegments,
+    relationshipSegments,
+    relationshipFrameOverlapCount: countRelationshipFrameOverlaps(
+      relationshipSegments,
+      frozenFrameSegments,
+    ),
+    relationshipCoverage: relationshipSegments.length > 0
+      ? "represented-endpoints-only"
+      : "none",
   });
 }
