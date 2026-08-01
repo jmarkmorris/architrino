@@ -982,7 +982,9 @@ The tier-0 `root_ledger.json` must contain raw roots, active roots, excluded nea
 
 The tier-0 `branch_residuals.json` must contain every component of $\mathcal{R}_{\mathrm{branch}}$, its tolerance, its role, its pass/fail status, and the exact failure code for any failed component.
 
-A tier-1 artifact packet must contain the tier-0 packet hash, `run_metadata.json`, `u_now_provenance.csv` or `u_now_provenance.parquet`, `observables/phi_timeseries.csv`, `observables/grad_phi_timeseries.csv`, `convergence_table.csv`, `eta_ladder.csv`, `conservation_ledger.csv`, `cross_integrator_report.md`, `negative_control_report.md`, `failure_report.md`, and `promotion_lemma_check.md`.
+A tier-1 artifact packet must contain the tier-0 packet hash, `run_metadata.json`, `u_now_provenance.csv` or `u_now_provenance.parquet`, `observables/phi_timeseries.csv`, `observables/grad_phi_timeseries.csv`, `convergence_table.csv`, `eta_ladder.csv`, `conservation_ledger.csv`, `cross_integrator_report.md`, `independent_reference_report.md`, `negative_control_report.md`, `failure_report.md`, and `promotion_lemma_check.md`.
+
+A Tier 1 packet making a numerical-correctness claim must include `independent_reference_report.md`, naming the closed form, theorem, analytically known case, or separately authored instrument used as its oracle.
 
 The tier-1 plot contract requires `plots/convergence_phi.png`, `plots/convergence_grad_phi.png`, `plots/provenance_t_emit_distribution.png`, `plots/eta_ladder.png`, `plots/conservation_drift.png`, and one branch-ledger stability plot whose axes are the refinement level and matched active root count.
 
