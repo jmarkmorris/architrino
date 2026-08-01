@@ -20,6 +20,31 @@ The existing [Master Equation](../../../content/markdown/aaa/dynamics/master-equ
 remains the reference for the current unbounded velocity domain. This document
 develops only a possible alternative model.
 
+## Reading architecture
+
+The document has four mathematical layers.
+
+1. The compact foundation and Sections 1--4 define the proposed regular-chart
+   response, its coordinate-free geometry, and the ordinary-root domain on
+   which it acts.
+2. Sections 5--12 use the mirror-collinear encounter as a boundary stress
+   test. That chart exposes the still-unresolved nonordinary contact and
+   continuation obligations; it is not the model's constructive binary
+   branch.
+3. Section 13 gives the first exact non-contact field-speed binary
+   compatibility theorem. Sections 14--17 build the analytic three-binary
+   inverse problem, scale and frequency constraints, action-transfer target,
+   and cycle-account interface from that result.
+4. The appendices retain an unselected transverse-redirection law and one
+   dynamically rejected prescribed six-path geometry. Neither appendix is a
+   premise of the main construction.
+
+Plainly: the main constructive path now runs from the proposed response law to
+one exact field-speed binary and then to the equations a Noether braid must
+satisfy. The collinear material remains because it tests a different boundary
+of the same proposal, while unfinished alternate dynamics stay outside the
+main line.
+
 ## Provenance and status map
 
 | Material | Status in this document | Authority and boundary |
@@ -34,6 +59,9 @@ develops only a possible alternative model.
 | Admission, ownership, update, and outgoing-history semantics for all other nonordinary contact families | `missing event-domain postulate` | Positive-delay geometry is now classified per ordered channel, but no general disposition is selected for degenerate isolated roots, rigid characteristic intervals, their endpoints, the excluded diagonal, source-identity variants, or simultaneous cross-channel strata. Until these are supplied, the document is not a complete closed-domain dynamical system. |
 | Straight collinear cap segment | `conditional hypothesis` | Assumes the MEC-007 input, the complete constrained-response axiom, and the limited same-transmitter admission convention. |
 | Open-segment root census, finite accumulated old-partner row, partner-contact obstruction, velocity-preserving outgoing contact one-jet, and first transverse variation | `derived conditional result` | The outgoing one-jet additionally assumes the proposed minimal collinear partner-contact reset. No right-hand path or open post-contact solution follows. |
+| Exact opposite-polarity field-speed circular binary chart | `derived exact prescribed-chart compatibility theorem under the proposed foundational law` | At $\|\mathbf V_i\|=c_f$, the unique ordinary partner root has a radius-independent acute delay angle, an inward radial component, and a forward velocity-parallel component. The proposed complete-ledger response removes the latter and selects one positive compatible radius. This is a zero-residual periodic chart from its prescribed complete history, not existence in a declared projected delay-equation solution concept, adoption, capture, stability, or a physical binary claim. |
+| Three-binary field-speed inverse system, phase-return arithmetic, complete-ledger cap criterion, and homothetic scale-selection result | `derived analytic reduction and theorem target` | The finite-ledger periodic functional residual system and its necessary-and-sufficient pointwise cap criterion follow from the proposed response and prescribed regular circular histories. The isolated binary and scale-selection statements are derived; existence of a three-binary zero, finite harmonic reduction, spectral discreteness, and perturbative stability remain open. |
+| Closed-cycle action transfer, binary retuning, and per-revolution energy language | `typed closure target with conditional identities` | The packet distinguishes the candidate closed-cycle action unit $h_{\mathrm{act}}$ from observer-level $h$ and from memory depth. Endpoint retuning equations are stated, but no event transfers $h_{\mathrm{act}}$, no conserved account is claimed, and no primitive architrino energy is introduced. |
 | Thirty-root inventory on the prescribed six-path geometry | `derived reference-path theorem` | Exact for the declared labeled paths. Their primary topological object is a loop in collision-free configuration space, not a six-component spatial link; the paths are not evolved or retained dynamics. |
 | Sampled root margins and four-orientation vector-closure failure | `diagnostic` | Geometry-only numerical evidence. The $T=0$ slice has a versioned 100-decimal-place Python/mpmath oracle and receipt; neither instrument selects a boundary response or establishes physical realization. |
 
@@ -1569,8 +1597,10 @@ decide any other zero-Jacobian contact.
 9. Prove existence and uniqueness on an open post-contact interval.
 10. Extend event-domain admission and ownership to other nonordinary contacts.
 11. Recompute the complete root ledger and outgoing retained history.
-12. Only then test binary, braid, translating-assembly, and observer-level
-   Lorentz-recovery consequences.
+12. In parallel, exact non-contact regular charts may test binary
+   compatibility. Only after the preceding event and solution obligations are
+   closed may such a chart be generalized into binary, braid,
+   translating-assembly, or observer-level Lorentz-recovery consequences.
 
 ## 7. Causal reception geometry
 
@@ -1922,6 +1952,1418 @@ open-segment ledger is falsified if it develops an additional ordinary root or
 boundary before the stated coincidence event. The endpoint classification is
 falsified if a complete same-record census makes the partner-contact family
 ordinary and finite under an already accepted rule.
+
+## 13. Exact field-speed circular binary chart
+
+This section tests an isolated, non-translating, opposite-polarity two-label
+binary directly on the regular field-speed boundary. It uses the same
+uniform-circular geometry as the canonical
+[Master Equation circular benchmark](../../../content/markdown/aaa/dynamics/master-equation.md#sub-field-speed-two-body-uniform-circular-orbit),
+but derives the equality case $\|\mathbf V_i\|=c_f$ here rather than assuming
+that a strictly sub-field result automatically extends to the boundary.
+
+### Equal-time radius and delayed line of action
+
+Let
+
+$$
+\mathbf X_1(T)
+=
+R\mathbf e_r(T),
+\qquad
+\mathbf X_2(T)
+=
+-R\mathbf e_r(T),
+\qquad
+\mathbf e_r(T)
+=
+(\cos\omega T,\sin\omega T,0),
+$$
+
+with
+
+$$
+\mathbf e_\theta(T)
+=
+(-\sin\omega T,\cos\omega T,0),
+\qquad
+\omega R=c_f.
+$$
+
+The equal-time radius is the line from the fixed binary midpoint through the
+receiver's current position. The current velocity is
+$\mathbf V_1(T)=c_f\mathbf e_\theta(T)$, so it is perpendicular to that
+equal-time radius. The delayed line of action instead joins the partner's
+earlier transmission point $\mathbf X_2(S)$ to the receiver event
+$\mathbf X_1(T)$; it generally does not pass through the midpoint.
+
+Plainly: the architrino's velocity points sideways along the candidate circle.
+The received partner acceleration points along a different, delayed diagonal
+that can be split into an inward part and a forward part.
+
+### Radius-independent acute partner root
+
+Let $S=T-\Delta<T$ be a partner emission time and define
+
+$$
+\xi
+=
+\frac{\omega\Delta}{2}.
+$$
+
+For the root in $0<\xi<\pi/2$, the received range is
+
+$$
+r_{12}
+=
+\left\|
+\mathbf X_1(T)-\mathbf X_2(S)
+\right\|
+=
+2R\cos\xi.
+$$
+
+At field speed, the causal equation becomes
+
+$$
+2R\cos\xi
+=
+c_f\Delta
+=
+c_f\frac{2\xi}{\omega}
+=
+2R\xi,
+$$
+
+and hence
+
+$$
+\cos\xi=\xi.
+$$
+
+Any real solution of $x=\cos x$ lies in $[-1,1]$; no negative number in that
+interval can equal its positive cosine. The function $\cos x-x$ is strictly
+decreasing on $[0,1]$, changes sign there, and therefore has exactly one real
+root,
+
+$$
+\xi_0
+\approx
+0.7390851332151607.
+$$
+
+This constant is commonly called the **Dottie number**. Write
+
+$$
+D
+=
+\xi_0,
+\qquad
+D
+=
+\cos D.
+$$
+
+The equation $x=\cos x$ is the intrinsic exact definition used here: $D$ is
+its unique real solution. The symbol $D$ in this paragraph is the Dottie
+number and must not be confused with the separately indexed root factors
+$D_t$ and $D_r$.
+
+No conventional finite expression is known that reduces $D$ to familiar
+constants such as $\pi$, $e$, $\sqrt{2}$, the Euler--Mascheroni constant
+$\gamma$, or the golden ratio $\phi$, nor to the Lambert $W$ function or the
+standard elementary and classical special functions. This is a
+literature-status statement rather than a proved impossibility theorem. The
+notion of a closed form for an individual number has no single universal
+definition, and more elaborate inverse-function and convergent-series
+representations of $D$ are known. The present derivation therefore uses the
+fixed-point definition $D=\cos D$ and does not claim a universal
+nonrepresentability theorem.
+
+Plainly: the radius-independent binary angle is a named mathematical constant,
+not a new fitted parameter. Its defining equation is the clean exact form
+needed here; the decimal is only a numerical evaluation.
+
+If $\theta=2\xi_0$ denotes the full orbital phase delay, then in normalized
+wake-speed units $c_f=1$,
+
+$$
+\theta
+\approx
+1.4781702664303213\ \text{radians}
+\approx
+84.6929176682^\circ
+<
+90^\circ.
+$$
+
+Thus both the half-delay angle $\xi_0$ and the full phase delay $\theta$ are
+acute. The radius has cancelled from the root equation. The range and delay
+still scale with it:
+
+$$
+r_{12}
+=
+2R\xi_0,
+\qquad
+\Delta
+=
+\frac{2R\xi_0}{c_f}.
+$$
+
+Plainly: every field-speed circle has the same delayed angle and the same
+directional split. Making the circle larger stretches the received chord and
+delay by the same factor; making it smaller contracts both by that factor.
+
+The transmitter-side factor is
+
+$$
+D_t
+=
+c_f(1+\sin\xi_0)
+>
+0,
+$$
+
+so the partner root is ordinary and simple. It is the unique partner root on
+the complete circular history: for $\xi>1$, the causal distance
+$2R\xi$ already exceeds the maximum chord $2R$, while on $(0,1)$ the root
+function is strictly decreasing. There is no positive-delay same-transmitter
+root because every nontrivial circular chord is strictly shorter than the
+corresponding field-speed path length. Each receiver's complete ordinary
+two-label ledger therefore contains exactly one partner row and no self row.
+
+Plainly: this field-speed circle does not encounter the collinear contact
+problem. At every positive radius its only received ordinary acceleration row
+is the simple opposite-label partner row.
+
+### Forward wash-over leaves the inward component
+
+At the partner root,
+
+$$
+\hat{\mathbf r}_{12}
+=
+\cos\xi_0\,\mathbf e_r
+-
+\sin\xi_0\,\mathbf e_\theta.
+$$
+
+Let
+
+$$
+K
+=
+\kappa|q_1q_2|
+>
+0.
+$$
+
+Opposite polarity makes the partner acceleration point toward the transmission
+point:
+
+$$
+\mathbf A_{12}^{\mathrm{ord}}
+=
+-
+\frac{K}
+{4R^2\cos^2\xi_0(1+\sin\xi_0)}
+\left(
+\cos\xi_0\,\mathbf e_r
+-
+\sin\xi_0\,\mathbf e_\theta
+\right).
+$$
+
+Its current equal-time radial and velocity-parallel components are therefore
+
+$$
+a_r
+=
+-
+\frac{K}
+{4R^2\cos\xi_0(1+\sin\xi_0)}
+<
+0,
+$$
+
+and
+
+$$
+a_\theta
+=
+\frac{K\sin\xi_0}
+{4R^2\cos^2\xi_0(1+\sin\xi_0)}
+>
+0.
+$$
+
+Because $\mathbf V_1=c_f\mathbf e_\theta$, the tangential term is forward,
+parallel to the velocity. There is no backward component on this chart. The
+radial term points inward along the line through the receiver and the binary
+midpoint, and it is perpendicular to the velocity.
+
+The partner row is first retained as the complete ordinary net ledger. The
+proposed response is then applied once:
+
+$$
+\mathbf A_1^{\mathrm{eff}}
+=
+\mathcal P_{c_f\mathbf e_\theta}
+\left(
+\mathbf A_{12}^{\mathrm{ord}}
+\right)
+=
+a_r\mathbf e_r.
+$$
+
+The label-exchanged calculation gives the mirror result for receiver $2$.
+The forward term is removed rather than redirected; the surviving inward term
+was already present in the raw partner row.
+
+Plainly: causal delay gives the attractive row a forward slant. At field speed
+the proposed response removes that forward slant, leaving exactly the inward
+direction needed to bend each labeled path about the common midpoint.
+
+### Unique compatible radius
+
+A uniform circle of radius $R$ and speed $c_f$ has path acceleration
+
+$$
+\mathbf A_1^{\mathrm{path}}
+=
+-
+\frac{c_f^2}{R}\mathbf e_r.
+$$
+
+Using $\cos\xi_0=\xi_0$, exact compatibility with the projected partner row
+requires
+
+$$
+\frac{K}
+{4R^2\xi_0(1+\sin\xi_0)}
+=
+\frac{c_f^2}{R}.
+$$
+
+There is one positive compatible radius:
+
+$$
+R_\ast
+=
+\frac{K}
+{4c_f^2\xi_0(1+\sin\xi_0)}.
+$$
+
+In normalized wake-speed units $c_f=1$,
+
+$$
+R_\ast
+\approx
+0.20211137351526115\,K.
+$$
+
+Thus the causal angle and directional decomposition are scale-free at field
+speed, but the dynamics are not. The received inverse-square magnitude scales
+as $R^{-2}$, while the acceleration required by a field-speed circle scales
+as $R^{-1}$. Their intersection selects $R_\ast$.
+
+Equivalently,
+
+$$
+\frac{|a_r(R)|}{c_f^2/R}
+=
+\frac{R_\ast}{R}.
+$$
+
+For a prescribed circle with $R<R_\ast$, the projected inward acceleration is
+stronger than that circle requires and its instantaneous curvature radius is
+smaller than $R$. For $R>R_\ast$, it is weaker and the instantaneous curvature
+radius is larger than $R$. These are residual signs on the one-parameter
+circular family, not a radial stability theorem for perturbed retained
+histories.
+
+Plainly: the speed boundary fixes the speed, and the delayed geometry fixes the
+turning direction. The competition between inverse-square acceleration and
+the curvature required at that speed fixes the one compatible radius.
+
+### Small-radius boundary and claim grade
+
+For every fixed $R>0$, the partner range $2R\xi_0$ is positive and the root
+factor $D_t=c_f(1+\sin\xi_0)$ stays strictly positive. The ordinary chart has
+no separate finite ``very small radius'' threshold. As $R\to0^+$, however,
+the causal range tends to zero and the received acceleration grows as
+$R^{-2}$. At $R=0$, the positive-delay ordinary chart has ended at exact
+coincidence. A finite core, altered zero-range kernel, or additional contact
+rule would be new mathematical data and is not assumed here.
+
+Claim grade: `derived exact prescribed-chart compatibility theorem under the
+proposed foundational law`. With the complete periodic paths prescribed for
+all past times and $R=R_\ast$, both labeled paths have one complete simple
+partner row per receiver and zero pointwise residual in the proposed
+constrained regular Master Equation. Until the packet declares the projected
+delay-equation phase space and solution concept, this is not an existence
+claim for a solution in that missing class. It also does not establish capture
+from stationary data, attraction to $R_\ast$, radial or transverse stability,
+robustness to other labels or wakes, a finite contact limit, conservation,
+adoption of the ceiling, or physical realization.
+
+The result is falsified by any of the following on the identical two-label
+periodic history:
+
+1. a complete root census finds another ordinary partner or self row;
+2. the field-speed partner root is not simple, unique, or acute;
+3. the complete partner acceleration has a backward component or the proposed
+   post-summation response fails to leave the displayed inward vector;
+4. substitution of $R_\ast$ leaves a nonzero path-acceleration residual; or
+5. the stated ordinary inverse-square row ceases to be the declared regular
+   law at some positive $R$.
+
+Plainly: the prescribed circle passes the proposed regular boundary equation
+exactly. That does not yet prove that the delayed evolution admits this chart
+in its eventual solution class, that a naturally released binary reaches it,
+or that a perturbed binary remains near it.
+
+## 14. Analytic Noether-braid inverse problem
+
+The exact two-label chart makes a three-binary construction plausible in one
+specific mathematical sense: the proposed regular equation now has a known
+zero-residual circular building block at field speed. A Noether braid is not
+obtained by placing three independent copies beside one another, because every
+additional label changes every receiver's complete causal-root ledger before
+the response is applied. The constructive problem is therefore an inverse
+problem for the full six-label history.
+
+Claim grade: `derived analytic reduction and theorem target`. The equations in
+this section are necessary and sufficient for a prescribed regular
+field-speed circular chart to satisfy the proposed pointwise response. Their
+three-binary solution set, retained-history realization, and stability are not
+assumed.
+
+Plainly: one exact binary supplies a candidate component, not a superposition
+rule. The six paths must be solved together because each architrino receives
+wakes from all five other labels.
+
+### Three antipodal field-speed binaries
+
+Index the binaries by $a\in\{1,2,3\}$ and the two persistent members of each
+binary by $\epsilon\in\{+1,-1\}$. Choose for each binary a center
+$\mathbf C_a$, an oriented orthonormal plane frame
+$(\mathbf e_{a1},\mathbf e_{a2})$, a radius $R_a>0$, an angular frequency
+$\omega_a\ne0$, and a phase $\phi_a$. Define
+
+$$
+\vartheta_a(T)
+=
+\omega_aT+\phi_a,
+$$
+
+$$
+\hat{\boldsymbol\rho}_{a\epsilon}(T)
+=
+\epsilon
+\left(
+\cos\vartheta_a(T)\,\mathbf e_{a1}
++
+\sin\vartheta_a(T)\,\mathbf e_{a2}
+\right),
+$$
+
+and
+
+$$
+\mathbf X_{a\epsilon}(T)
+=
+\mathbf C_a
++
+R_a\hat{\boldsymbol\rho}_{a\epsilon}(T).
+$$
+
+The antipodal factor $\epsilon$ fixes the pair separation within each binary.
+The common-center case has
+$\mathbf C_1=\mathbf C_2=\mathbf C_3$; separated binary centers remain
+available because some declared Noether-braid families do not use one common
+center.
+
+Every constituent lies on the field-speed boundary exactly when
+
+$$
+R_a|\omega_a|=c_f,
+\qquad
+a\in\{1,2,3\}.
+$$
+
+Its unit velocity direction and prescribed path acceleration are
+
+$$
+\hat{\mathbf t}_{a\epsilon}(T)
+=
+\frac{\mathbf V_{a\epsilon}(T)}{c_f},
+\qquad
+\mathbf A_{a\epsilon}^{\mathrm{path}}(T)
+=
+-
+\frac{c_f^2}{R_a}
+\hat{\boldsymbol\rho}_{a\epsilon}(T).
+$$
+
+Plainly: at field speed the radius and angular frequency are not independent.
+Choosing one fixes the other, while the centers, plane orientations, and
+relative phases still control the cross-binary wake geometry.
+
+### Complete ordinary root and acceleration system
+
+Let $i=(a,\epsilon)$ be a receiver and $j=(b,\eta)$ a transmitter. A regular
+positive-delay root is a number $\tau_{i\leftarrow j}(T)>0$ satisfying
+
+$$
+\left\|
+\mathbf X_i(T)
+-
+\mathbf X_j(T-\tau_{i\leftarrow j}(T))
+\right\|
+=
+c_f\tau_{i\leftarrow j}(T).
+$$
+
+At each such root define
+
+$$
+\hat{\mathbf r}_{i\leftarrow j}(T)
+=
+\frac{
+\mathbf X_i(T)-\mathbf X_j(T-\tau_{i\leftarrow j}(T))
+}{c_f\tau_{i\leftarrow j}(T)},
+$$
+
+and
+
+$$
+D_{t,i\leftarrow j}(T)
+=
+c_f
+-
+\hat{\mathbf r}_{i\leftarrow j}(T)
+\mathbin{\cdot}
+\mathbf V_j(T-\tau_{i\leftarrow j}(T)).
+$$
+
+Restrict the first analytic attack to collision-free histories for which every
+admitted root is simple and uniformly separated from the nonordinary strata:
+
+$$
+\tau_{i\leftarrow j}(T)>0,
+\qquad
+r_{i\leftarrow j}(T)>0,
+\qquad
+D_{t,i\leftarrow j}(T)\ge d_0>0.
+$$
+
+The cap-domain root monotonicity theorem gives at most one ordinary root per
+ordered channel. A circular same-transmitter channel has no positive-delay
+root because a nontrivial chord is strictly shorter than its field-speed arc.
+The complete ordinary net acceleration for receiver $i$ is therefore
+
+$$
+\mathbf A_i^{\mathrm{ord}}(T)
+=
+\sum_{j\ne i\,:\,\tau_{i\leftarrow j}(T)\ \mathrm{exists}}
+\kappa\,\sigma_{ji}|q_jq_i|
+\frac{c_f}
+{r_{i\leftarrow j}(T)^2D_{t,i\leftarrow j}(T)}
+\hat{\mathbf r}_{i\leftarrow j}(T).
+$$
+
+Every row in this sum is retained with its source label and root time. No row
+is clipped, weakened, redirected, or projected separately.
+
+Plainly: the closed speed domain turns root enumeration into a finite
+per-channel problem on this regular chart. The difficult part is the vector
+sum: cross-binary rows can change both the turning direction and the net
+forward or backward component.
+
+### Necessary-and-sufficient field-speed braid criterion
+
+For each receiver define the completed net velocity-parallel scalar
+
+$$
+g_i(T)
+=
+\hat{\mathbf t}_i(T)
+\mathbin{\cdot}
+\mathbf A_i^{\mathrm{ord}}(T),
+$$
+
+and the completed net component perpendicular to the velocity,
+
+$$
+\mathbf B_i(T)
+=
+\left(
+\mathbf I
+-
+\hat{\mathbf t}_i(T)
+\hat{\mathbf t}_i(T)^{T}
+\right)
+\mathbf A_i^{\mathrm{ord}}(T).
+$$
+
+The prescribed six-path chart satisfies the proposed regular response
+pointwise if and only if, for every label $i=(a,\epsilon)$ and every time in
+the declared history,
+
+$$
+\boxed{
+g_i(T)\ge0
+}
+$$
+
+and
+
+$$
+\boxed{
+\mathbf B_i(T)
+=
+-
+\frac{c_f^2}{R_a}
+\hat{\boldsymbol\rho}_i(T).
+}
+$$
+
+Indeed, when $g_i\ge0$, the proposed response removes exactly
+$g_i\hat{\mathbf t}_i$ and leaves $\mathbf B_i$. If $g_i<0$, the backward
+component is retained and the effective acceleration cannot equal the purely
+velocity-perpendicular circular path acceleration. The vector equation also
+requires every out-of-plane component to vanish; an inward scalar balance
+alone is insufficient.
+
+Claim grade: `derived exact compatibility criterion under the proposed
+regular response`. It is falsified by one complete regular prescribed chart
+whose pointwise equation closes while either boxed condition fails, or by a
+chart satisfying both conditions whose projected residual is nonzero.
+
+Plainly: the ceiling does not need every individual wake to point forward.
+It needs the completed net parallel component of every architrino to be
+nonnegative. The response then caps that one net component, while the remaining
+two-dimensional perpendicular vector must supply exactly the required inward
+turn and no out-of-plane deflection.
+
+### Reverse solution rather than a universal-forward theorem
+
+The practical construction problem is to solve the boxed equality and
+inequality for
+
+$$
+\left(
+R_1,R_2,R_3,
+\omega_1,\omega_2,\omega_3,
+\phi_1,\phi_2,\phi_3,
+\mathbf C_1,\mathbf C_2,\mathbf C_3,
+\mathbf e_{a1},\mathbf e_{a2}
+\right),
+$$
+
+subject to $R_a|\omega_a|=c_f$, collision avoidance, simple-root floors, and
+the declared Noether-braid geometry. A theorem saying that every member of a
+broad geometric family automatically has $g_i\ge0$ would be stronger, but the
+existing negative six-path calculation shows that symmetry and clean roots do
+not automatically close the required vector response. The reverse problem is
+therefore the primary route: find the parameter tuples for which all twelve
+conditions---six scalar inequalities and six perpendicular vector
+equalities---hold for the entire return interval.
+
+Because the root functions and acceleration rows are analytic away from
+collisions and nonordinary strata, a periodic candidate can be tested by its
+Fourier residuals. If $T_{\mathrm{ret}}$ is a common return period and
+$\Omega=2\pi/T_{\mathrm{ret}}$, define
+
+$$
+\widehat{\mathbf Q}_{i,m}
+=
+\frac{1}{T_{\mathrm{ret}}}
+\int_0^{T_{\mathrm{ret}}}
+\left[
+\mathbf B_i(T)
++
+\frac{c_f^2}{R_a}
+\hat{\boldsymbol\rho}_i(T)
+\right]
+e^{-im\Omega T}\,dT.
+$$
+
+Exact circular closure requires
+
+$$
+\widehat{\mathbf Q}_{i,m}=\mathbf0
+\quad
+\text{for every }i\text{ and }m\in\mathbb Z,
+\qquad
+\min_T g_i(T)\ge0.
+$$
+
+Symmetry can reduce this infinite coefficient family to finitely many orbit
+representatives or harmonics only after that reduction is proved for the
+declared geometry.
+
+Plainly: the analytic search is a nonlinear spectrum problem. A numerical
+sample can reject a candidate, but an exact retained chart requires the whole
+periodic residual to vanish, not only a few phases or an average.
+
+### Frequency commensurability and phase data
+
+An unperturbed three-binary chart has one common return period only if there
+are nonzero integers $k_a$ such that
+
+$$
+\omega_aT_{\mathrm{ret}}
+=
+2\pi k_a,
+\qquad
+a\in\{1,2,3\}.
+$$
+
+Writing $\Omega=2\pi/T_{\mathrm{ret}}$ gives
+
+$$
+\omega_a=k_a\Omega,
+\qquad
+R_a
+=
+\frac{c_f}{|k_a|\Omega},
+$$
+
+and therefore
+
+$$
+\frac{R_a}{R_b}
+=
+\frac{|k_b|}{|k_a|}.
+$$
+
+Thus a periodic field-speed braid cannot choose three radii and three
+frequencies independently. A primitive winding triple
+$\mathbf k=(k_1,k_2,k_3)$ fixes the radius ratios; one common scale
+$\Omega^{-1}$ remains for the vector ledger to select.
+
+For fixed marked oriented plane frames, absolute-time translation changes the
+phase origins by
+$\phi_a\mapsto\phi_a+\omega_a\tau$. Let
+$\boldsymbol\ell^{(1)},\boldsymbol\ell^{(2)}$ be an integer basis of the
+primitive lattice
+
+$$
+\left\{
+\boldsymbol\ell\in\mathbb Z^3:
+\boldsymbol\ell\mathbin{\cdot}\mathbf k=0
+\right\}.
+$$
+
+Two global relative-phase coordinates on the quotient by absolute-time
+translation may then be chosen as
+
+$$
+\Psi_1
+=
+\boldsymbol\ell^{(1)}
+\mathbin{\cdot}
+\boldsymbol\phi,
+\qquad
+\Psi_2
+=
+\boldsymbol\ell^{(2)}
+\mathbin{\cdot}
+\boldsymbol\phi,
+$$
+
+with the appropriate $2\pi$ identifications. The tempting pair
+$k_1\phi_2-k_2\phi_1$ and $k_1\phi_3-k_3\phi_1$ is locally independent but
+need not separate all global phase sheets when $|k_1|>1$. For the primitive
+equal-frequency winding $\mathbf k=(1,1,1)$, a lattice basis gives the familiar
+relative phase differences $\phi_2-\phi_1$ and $\phi_3-\phi_1$.
+Incommensurate frequencies instead give a quasiperiodic phase torus and have
+no finite common return period; they require a separate almost-periodic closure
+definition.
+
+If the plane frames themselves vary, the parameterization has three additional
+representation redundancies:
+
+$$
+(\mathbf e_{a1},\mathbf e_{a2},\phi_a)
+\mapsto
+(\operatorname{Rot}_{\alpha_a}\mathbf e_{a1},
+ \operatorname{Rot}_{\alpha_a}\mathbf e_{a2},
+ \phi_a-\alpha_a).
+$$
+
+These triples describe the same path and must be fixed by a frame convention
+or quotiented before parameter counting. The sign of $k_a$ is likewise defined
+relative to the marked orientation of its plane frame.
+
+Claim grade: `derived kinematic phase-return arithmetic`. It does not show
+that any winding triple satisfies the complete wake ledger.
+
+Plainly: possible unperturbed periodic combinations are organized first by
+integer winding ratios, then by two genuine relative phases, plane geometry,
+and one overall scale. The causal-root and vector equations decide which of
+those combinations, if any, survive.
+
+## 15. Scale, radius, and frequency consequences
+
+### Homothetic scale-selection theorem
+
+Take a fixed collision-free dimensionless six-path shape
+$\overline{\mathbf X}_i(u)$ and form its homothetic family
+
+$$
+\mathbf X_i^{(L)}(T)
+=
+L\overline{\mathbf X}_i
+\left(
+\frac{c_fT}{L}
+\right),
+\qquad
+L>0.
+$$
+
+Assume the polarity and coupling coefficients are fixed, the same simple root
+topology persists, and every geometric length scales by $L$. Dimensionless
+root lags, directions, and normalized transmitter factors are then independent
+of $L$. The complete raw acceleration and prescribed path acceleration scale
+as
+
+$$
+\mathbf A_i^{\mathrm{ord},(L)}
+=
+L^{-2}\overline{\mathbf A}_i^{\mathrm{ord}},
+\qquad
+\mathbf A_i^{\mathrm{path},(L)}
+=
+\frac{c_f^2}{L}
+\overline{\mathbf X}_i''.
+$$
+
+Define the physical cap velocity on the dimensionless chart by
+
+$$
+\overline{\mathbf V}_i(u)
+=
+c_f\overline{\mathbf X}_i'(u).
+$$
+
+The proposed response is positively homogeneous, so exact compatibility is
+equivalent to
+
+$$
+\mathcal P_{\overline{\mathbf V}_i}
+\left(
+\overline{\mathbf A}_i^{\mathrm{ord}}(u)
+\right)
+=
+c_f^2L\overline{\mathbf X}_i''(u)
+$$
+
+for every label and phase. Hence a fixed noninertial dimensionless shape has
+at most one positive compatible scale unless the displayed vectors vanish or
+a degeneracy changes the root chart. Existence requires every label and phase
+to select the same scalar $L$ with the same vector direction.
+
+Claim grade: `derived homothetic scale-selection theorem` on the stated
+regular chart. It is falsified by two different positive scales with identical
+dimensionless paths, fixed couplings, identical root topology, and nonzero
+path curvature that both satisfy the proposed equation.
+
+Plainly: field-speed geometry can be scale-free while inverse-square dynamics
+is not. A successful braid shape does not come in arbitrary enlarged and
+shrunken copies; the acceleration equation selects one scale or rejects the
+shape.
+
+### Isolated field-speed binary frequency in normalized units
+
+For the exact binary of Section 13,
+
+$$
+R_\ast
+=
+\frac{K}
+{4c_f^2D(1+\sin D)},
+\qquad
+D=\cos D.
+$$
+
+Its angular frequency, cycle frequency, period, and partner delay are
+
+$$
+\omega_\ast
+=
+\frac{c_f}{R_\ast}
+=
+\frac{4c_f^3D(1+\sin D)}{K},
+$$
+
+$$
+f_\ast
+=
+\frac{\omega_\ast}{2\pi}
+=
+\frac{2c_f^3D(1+\sin D)}{\pi K},
+$$
+
+$$
+T_\ast
+=
+\frac{1}{f_\ast}
+=
+\frac{\pi K}{2c_f^3D(1+\sin D)},
+\qquad
+\Delta_\ast
+=
+\frac{2R_\ast D}{c_f}.
+$$
+
+In normalized wake-speed units $c_f=1$,
+
+$$
+R_\ast
+\approx
+0.20211137351526115K,
+$$
+
+$$
+\omega_\ast
+\approx
+\frac{4.9477670781574865}{K},
+\qquad
+f_\ast
+\approx
+\frac{0.7874615877561081}{K},
+$$
+
+and
+
+$$
+T_\ast
+\approx
+1.269903212484974K,
+\qquad
+\Delta_\ast
+\approx
+0.29875502283765176K.
+$$
+
+The delay occupies the radius-independent fraction
+
+$$
+\frac{\Delta_\ast}{T_\ast}
+=
+\frac{D}{\pi}
+\approx
+0.2352581046338496
+$$
+
+of one revolution.
+
+Plainly: ``the frequency of the $c_f=1$ binary'' is not an additional free
+number. Once the existing coupling scale $K$ is specified, the Dottie-number
+geometry fixes the radius, angular frequency, ordinary cycle frequency,
+period, and causal delay together.
+
+### Small-radius obstruction
+
+For the isolated pair, the ordinary partner root remains simple at every
+$R>0$, but its projected inward acceleration grows as $R^{-2}$ while the
+required field-speed curvature grows only as $R^{-1}$. The exact balance
+therefore occurs only at $R_\ast$.
+
+More generally, consider one field-speed binary inside a candidate braid and
+suppose all nonpartner received ranges remain above $r_0>0$ and all their
+transmitter factors remain above $d_0>0$ as $R_a\to0^+$. Those external rows
+are $O(1)$, while the internal partner row is $O(R_a^{-2})$ and the required
+curvature is $O(R_a^{-1})$. No sequence of exact circular solutions can then
+have $R_a\to0^+$.
+
+A small-radius solution sequence would require at least one of the following:
+
+1. another received range shrinking as $O(R_a)$ and contributing at
+   $O(R_a^{-2})$;
+2. a complete-ledger cancellation of the leading $R_a^{-2}$ coefficient that
+   leaves the required $R_a^{-1}$ term;
+3. a root-topology or event transition out of the declared regular chart; or
+4. a separately proposed change to the point inverse-square law.
+
+Claim grade: `derived conditional small-radius obstruction`. It supplies no
+universal minimum radius without the stated external-range and root-factor
+floors.
+
+Plainly: the speed ceiling alone does not install a hard core. It does make an
+isolated or externally well-separated field-speed binary too strongly curved
+as its radius approaches zero. A still-smaller braid layer would need another
+nearby row to cancel the leading singularity or would have to leave the
+ordinary chart.
+
+### Radius limits still to prove
+
+The current analytic results distinguish three questions.
+
+- **Exact isolated radius:** $R_\ast$ is proved for the two-label prescribed
+  field-speed chart.
+- **Scale of a fixed braid shape:** the homothetic theorem permits at most one
+  compatible overall scale.
+- **Global minimum and maximum over all braid shapes:** open. Proving either
+  requires compactness or coercivity of the admissible shape domain together
+  with collision, root-factor, and phase-return bounds.
+
+An admissible-radius theorem should therefore optimize over the exact residual
+set, not assume a preferred small scale:
+
+$$
+R_{\min}^{\mathrm{braid}}
+=
+\inf
+\left\{
+\min_aR_a:
+\text{all complete-ledger braid conditions hold}
+\right\},
+$$
+
+with an analogous supremum for $R_{\max}^{\mathrm{braid}}$. A positive value
+is a theorem only if the admissible set is nonempty and the small-radius escape
+routes above are excluded.
+
+Plainly: the first binary has a selected radius, but the smallest possible
+radius across every coupled braid geometry remains a genuine analytic
+optimization problem.
+
+## 16. Closed-cycle action transfer and binary retuning
+
+### Which $h$ is under discussion
+
+Use $h_{\mathrm{act}}$ for a candidate closed-cycle action unit carried by a
+retained braid. It is distinct from the finite-memory depth used elsewhere and
+is not identified here with the observer-level Planck constant $h$. That
+identification remains a separate action-scale recovery target.
+
+If the complete retained history and every typed root, wake, action, boundary,
+and event ledger return after one period without an intervening event stratum,
+the branch and action labels return to their initial values. This excludes a
+net inter-level transaction per cycle, but not an owned intra-cycle exchange.
+A repeating spatial geometry alone does not establish that ledger closure. A
+transfer is a transition between two admissible complete branch records, not a
+property of one stationary path picture.
+
+Plainly: the unperturbed mathematics can identify possible levels and their
+cycle data. Moving one action unit between levels is a separate event problem.
+
+### Endpoint equations for a one-unit transfer
+
+Collect one branch record into
+
+$$
+\mathbf z
+=
+\left(
+R_a,\omega_a,\phi_a,\mathbf C_a,
+\mathbf e_{a1},\mathbf e_{a2},
+\mathbf k,\mathcal L,\mathcal G
+\right),
+$$
+
+where $\mathcal L$ is the labeled causal-root ledger and $\mathcal G$ denotes
+the inter-binary wake-exchange record. Separate the equality residuals,
+inequality margins, and simple-root domain as
+
+$$
+\mathfrak F_{\mathrm{eq}}(\mathbf z)=0,
+\qquad
+\mathfrak G(\mathbf z)\ge\mathbf0,
+\qquad
+\mathbf z\in\mathfrak D_{\mathrm{simp}}.
+$$
+
+Here $\mathfrak F_{\mathrm{eq}}$ owns phase return and vector response,
+$\mathfrak G$ owns collision, cap, separation, and transversality margins, and
+$\mathfrak D_{\mathrm{simp}}$ owns the declared root topology. If an eventual
+action functional supplies a closed-cycle ledger
+$\mathcal A_{\mathrm{cyc}}(\mathbf z)$, a candidate one-unit transition from
+$\mathbf z^-$ to $\mathbf z^+$ must at minimum satisfy all three endpoint
+conditions:
+
+$$
+\mathfrak F_{\mathrm{eq}}(\mathbf z^-)=0,
+\qquad
+\mathfrak F_{\mathrm{eq}}(\mathbf z^+)=0,
+$$
+
+$$
+\mathfrak G(\mathbf z^-)\ge\mathbf0,
+\qquad
+\mathfrak G(\mathbf z^+)\ge\mathbf0,
+\qquad
+\mathbf z^\pm\in\mathfrak D_{\mathrm{simp}},
+$$
+
+and a typed action-account target. Define
+$\Delta\mathcal A_{\mathrm{cyc}}=
+\mathcal A_{\mathrm{cyc}}(\mathbf z^+)-
+\mathcal A_{\mathrm{cyc}}(\mathbf z^-)$, while
+$\Delta\mathcal A_{\mathrm{wake}}$ and
+$\Delta\mathcal A_{\partial}$ are respectively outgoing-minus-incoming action
+assigned to the owned wake and boundary ledgers. One candidate orientation is
+
+$$
+\Delta\mathcal A_{\mathrm{cyc}}
++
+\Delta\mathcal A_{\mathrm{wake}}
++
+\Delta\mathcal A_{\partial}
+=
+\mathcal A_{\mathrm{evt}},
+\qquad
+\mathcal A_{\mathrm{evt}}
+=
+s_{\mathrm{act}}h_{\mathrm{act}},
+\qquad
+s_{\mathrm{act}}\in\{+1,-1\}.
+$$
+
+The displayed orientation and event coefficient are proposed account data,
+not a conservation law derived from the acceleration equation. The event
+record must also own every root or nonordinary stratum that changes between
+$\mathcal L^-$ and $\mathcal L^+$ and must supply a compatible outgoing
+history.
+
+Plainly: both the old and new braid must independently satisfy the full
+dynamics. The transferred action cannot be assigned only to one binary while
+the other radii, phases, roots, and outgoing wake account are left unchanged
+by assumption.
+
+### How field-speed binaries must retune
+
+Any binary that remains on the field-speed boundary on both sides obeys
+
+$$
+R_a^-|\omega_a^-|
+=
+R_a^+|\omega_a^+|
+=
+c_f.
+$$
+
+The exact finite relation is
+
+$$
+\ln\frac{R_a^+}{R_a^-}
+=
+-
+\ln\frac{|\omega_a^+|}{|\omega_a^-|}.
+$$
+
+Along a smooth same-topology branch its differential form is
+
+$$
+d\ln R_a
+=
+-d\ln|\omega_a|.
+$$
+
+On a periodic branch with $\omega_a=k_a\Omega$, a same-winding retuning changes
+the common cadence $\Omega$ and therefore rescales all field-speed radii
+inversely. A change in any integer $k_a$ is a branch transition: the allowed
+radius ratios and phase invariants change discretely and the complete root
+ledger must be rebuilt.
+
+If exact periodic closure has first been proved equivalent to a finite
+symmetry-reduced equality-residual map, write that map as
+$\mathbf F(\mathbf y)$ in continuous branch coordinates $\mathbf y$. Until
+such a finite reduction is proved, the corresponding derivative is an
+operator on the full Fourier residual sequence rather than a finite matrix.
+Carry the cap inequalities as a separate margin vector
+$\mathbf G(\mathbf y)\ge\mathbf0$. For a differentiable family
+$\mathbf y(\varepsilon)$ through a point with strict cap margins, the
+same-chart tangent $\dot{\mathbf y}=d\mathbf y/d\varepsilon|_0$ must solve
+
+$$
+D\mathbf F(\mathbf y)[\dot{\mathbf y}]
+=
+\mathbf0,
+$$
+
+together with the infinitesimal account equation
+
+$$
+D\mathcal A_{\mathrm{cyc}}(\mathbf y)[\dot{\mathbf y}]
++
+\dot{\mathcal A}_{\mathrm{wake}}
++
+\dot{\mathcal A}_{\partial}
+=
+\dot{\mathcal A}_{\mathrm{evt}}.
+$$
+
+At an active cap margin, the corresponding first-order tangent inequality
+must also be imposed:
+
+$$
+D\mathbf G_{\mathrm{act}}(\mathbf y)[\dot{\mathbf y}]
+\ge
+\mathbf0.
+$$
+
+Such a boundary point is a complementarity problem, not an unconstrained
+smooth residual zero.
+
+Under invariant retained-history and boundary hypotheses, fix a slice
+transverse to the exact $E(3)\times\mathbb R$ symmetry-group orbit. These are
+symmetry directions, not presumed gauge redundancies. On that slice, local
+uniqueness requires the bordered derivative to be injective; in a square
+finite-dimensional reduction it must be nonsingular. The wake, boundary, and
+event-account rates must be prescribed or independently constrained rather
+than left free. Even then, the tangent system is only a local diagnostic. A
+finite one-unit transaction is governed by the endpoint equations and can
+cross a root or cap-margin boundary.
+
+Equivariance of the proposed Euclidean projection under the declared symmetry
+group supplies no Noether charge by itself because no generating variational
+action for that response has been established.
+
+Claim grade: `derived endpoint and tangent constraints conditional on an
+accepted action ledger`. No value of $h_{\mathrm{act}}$ or transfer map is
+derived here. A proposed transfer fails this interface if either endpoint is
+not an admissible residual zero, if any root or event account is duplicated or
+omitted, if the action balance changes under an allowed ledger
+reparameterization, or if the event supplies no compatible outgoing history.
+
+Plainly: a field-speed binary that tightens must speed up in angular cadence,
+and one that expands must slow down. Which binaries do which is determined by
+the full constrained residual and action account, not by fixed roles assigned
+to binary indices.
+
+### Exact missing event datum
+
+The proposed regular response supplies no event that transfers
+$h_{\mathrm{act}}$. Earlier super-field-speed click proposals relied on a
+same-transmitter root birth beyond the field-speed hinge; that route is not
+available inside the closed primitive velocity domain. A ceiling-compatible
+transfer would need a separately typed event, for example a finite-chord
+cross-label root transition or a Noether sea boundary exchange, together with
+its guard, reset, root ownership, wake account, and post-event history.
+
+This document does not select that event. Its analytic contribution is the
+endpoint manifold and retuning system against which any proposed transfer can
+be tested.
+
+Plainly: the ceiling sharpens the $h_{\mathrm{act}}$ question. It provides
+well-defined candidate levels, but it removes the previously imagined
+above-field self-hit click. The missing object is now a lawful transition
+between two complete field-speed braid records.
+
+## 17. Cycle diagnostics, energy interface, and persistence
+
+### Exact per-revolution acceleration-work diagnostic
+
+At the Master Equation level, acceleration is primitive and architrinos have
+no primitive mass. The quantity available directly from one periodic path is
+the velocity-squared cycle diagnostic
+
+$$
+\mathcal J_i^{\mathrm{raw}}
+=
+\int_0^{T_a}
+\mathbf V_i(T)
+\mathbin{\cdot}
+\mathbf A_i^{\mathrm{ord}}(T)
+\,dT,
+$$
+
+with the effective counterpart obtained by replacing
+$\mathbf A_i^{\mathrm{ord}}$ by $\mathbf A_i^{\mathrm{eff}}$. These are not
+energies; multiplying them by an effective response coefficient would be an
+additional assembly-level bookkeeping step.
+
+For one exact isolated field-speed binary, the raw forward component is
+constant. Each label has
+
+$$
+\mathcal J_{\mathrm{label}}^{\mathrm{raw}}
+=
+2\pi R_\ast a_\theta
+=
+2\pi c_f^2\frac{\sin D}{D},
+$$
+
+and the two-label binary has
+
+$$
+\mathcal J_{\mathrm{binary}}^{\mathrm{raw}}
+=
+4\pi c_f^2\frac{\sin D}{D}.
+$$
+
+In normalized units $c_f=1$,
+
+$$
+\mathcal J_{\mathrm{label}}^{\mathrm{raw}}
+\approx
+5.726578731318179,
+\qquad
+\mathcal J_{\mathrm{binary}}^{\mathrm{raw}}
+\approx
+11.453157462636359.
+$$
+
+The proposed response removes the completed forward term at every phase, so
+
+$$
+\mathcal J_{\mathrm{label}}^{\mathrm{eff}}
+=
+\mathcal J_{\mathrm{binary}}^{\mathrm{eff}}
+=
+0.
+$$
+
+This zero says that the exact circle has no effective speed change over a
+revolution. It does not say where the rejected raw forward account is stored,
+transferred, or conserved; the proposed normal-cone response still needs a
+compatible action or wake-update ledger for that statement.
+
+Claim grade: `derived exact cycle diagnostic under the proposed response`.
+It is not an energy or conservation result.
+
+Plainly: the raw delayed partner wake tries to increase the tangential speed
+on every revolution. The cap cancels that speed-changing effect, leaving zero
+effective speed gain. The mathematics has not yet identified the accounting
+destination of the cancelled raw contribution.
+
+### What ``energy stored per revolution'' can mean
+
+For a retained assembly with an accepted canonical cycle pair
+$(Q_a,\Pi_a)$, the closed-cycle action allocation would be
+
+$$
+\mathcal A_{\mathrm{cyc},a}
+=
+\oint_{\gamma_a}
+\Pi_a\,dQ_a.
+$$
+
+If a separately derived same-record identity supplies a constant binary
+energy readout $E_a$, a cycle frequency $f_a$, and the relation
+$\mathcal A_{\mathrm{cyc},a}=E_aT_a$, then
+
+$$
+\mathcal A_{\mathrm{cyc},a}
+=
+E_aT_a
+=
+\frac{E_a}{f_a},
+\qquad
+E_a
+=
+f_a\mathcal A_{\mathrm{cyc},a}.
+$$
+
+Under the additional candidate allocation
+$\mathcal A_{\mathrm{cyc},a}=N_ah_{\mathrm{act}}$ with
+$N_a\in\mathbb Z$, this becomes
+
+$$
+E_a
+=
+N_ah_{\mathrm{act}}f_a.
+$$
+
+For the isolated field-speed binary, substitution of the exact frequency
+would give the conditional readout
+
+$$
+E_\ast
+=
+N_ah_{\mathrm{act}}
+\frac{2c_f^3D(1+\sin D)}{\pi K}.
+$$
+
+None of these energy equations is licensed until the causal action or wake
+update defines $\Pi_a$, the cycle allocation, the wake and boundary terms, and
+the same-record energy account, including the branch-specific identity
+$\mathcal A_{\mathrm{cyc},a}=E_aT_a$. The phrase ``per revolution'' properly
+refers to closed-cycle action or transferred account. The displayed energy
+readout exists only on a branch for which that additional identity is derived.
+
+Claim grade: `typed conditional energy/action interface`, not a derived energy
+level and not an identification of $h_{\mathrm{act}}$ with observer-level
+Planck $h$. The readout is falsified if an accepted same-record action does not
+satisfy $\mathcal A_{\mathrm{cyc}}=ET$, if the cycle allocation is not integral
+in $h_{\mathrm{act}}$, or if the extracted unit changes across the declared
+equivalence class. Any such failure removes
+$E=N h_{\mathrm{act}}f$ without changing the orbital or acceleration-work
+results.
+
+Plainly: the current dynamics can calculate the orbit and its cycle-response
+diagnostic. A stored-energy number requires both a conjugate action ledger and
+the separately proved branch identity connecting that action to energy and
+period; neither has yet been supplied.
+
+### Self-sustaining versus stable
+
+A prescribed periodic chart that closes every root and vector residual
+reproduces its own unperturbed path pointwise. That earns the narrow statement
+that the chart is self-sustaining in the absence of perturbation, conditional
+on membership in the eventual solution class. It does not say what happens
+after a perturbation. That stronger robustness statement requires an
+orbital-stability theorem for the projected state-dependent-delay equation.
+
+After the history phase space and solution concept are declared, the correct
+linear test is the monodromy operator of the full-history return map. Fix a
+slice transverse to the full declared $E(3)\times\mathbb R$ symmetry orbit. A
+standard sufficient hyperbolic criterion for exponential orbital asymptotic
+stability modulo those symmetries is fully symmetry-reduced monodromy spectral
+radius strictly below one, together with collision, root-separation,
+cap-margin, and event-domain floors over the perturbation tube. Unit-modulus or
+nonhyperbolic modes require nonlinear return-map analysis. Orbital or
+Lyapunov stability and basin attraction are separate claims; neither follows
+from the displayed sufficient criterion alone.
+
+The proof order is strict:
+
+1. solve the exact complete-ledger braid residual;
+2. place that periodic chart in the declared delay-equation solution class;
+3. differentiate the history-to-root-to-ledger map on its simple-root tube;
+4. construct the fully symmetry-reduced monodromy operator; and
+5. prove or refute the multiplier bound.
+
+No stability spectrum may be computed about a nonzero-residual prescribed
+geometry. The rejected six-path appendix therefore cannot serve as a stability
+base point.
+
+Plainly: an exact repeating braid would establish unperturbed persistence.
+Survival after a small disturbance is a separate theorem, and it can be asked
+only after an exact braid has been found.
+
+### Current constructive conclusion
+
+The analytic status is now:
+
+1. one isolated field-speed binary has an exact zero-residual prescribed
+   circular chart and a selected radius and frequency;
+2. a periodic three-binary field-speed chart is reduced to integer winding
+   data, two relative phases, plane and center geometry, one overall scale,
+   finite per-phase simple-root equations, six net-forward inequalities, and
+   six perpendicular vector equations;
+3. fixed-shape scale freedom is removed by the homothetic theorem;
+4. small-radius escape is obstructed unless another near row or leading
+   cancellation enters;
+5. $h_{\mathrm{act}}$ transfer is reduced to a transition between two exact
+   residual zeros plus a separately typed event and action account; and
+6. the per-revolution acceleration-work diagnostic is exact, while stored
+   energy remains conditional on the missing action/update ledger.
+
+The construction is now an explicit regular-chart residual problem inside the
+proposed field-speed model. It is not evidence that the residual system has a
+three-binary zero, that any zero is stable, or that it recovers particle,
+conservation, Planck-action, or observer-level claims.
+
+Plainly: the idea has advanced from a picture to a testable analytic program.
+The next decisive result is an exact three-binary zero or a theorem excluding
+a declared geometry class.
 
 ## Appendix A — Alternate response hypothesis: transverse redirection
 
@@ -2392,9 +3834,20 @@ establishes the conditional collinear open-segment ledger, its coincidence
 partner-contact obstruction, the
 velocity-preserving outgoing contact one-jet from one proposed zero-impulse
 event postulate, a first
-transverse linearization, the exact root topology of one prescribed six-path
-reference geometry, and a measured negative vector-closure result for that
-geometry. None of those results adopts the ceiling, supplies a finite unique
-history on an open post-contact interval, defines the receiver-side contact
-measure, proves perturbative weak convergence, retains a braid, or advances a
-closure score.
+transverse linearization, one exact field-speed circular two-label
+prescribed-chart compatibility result under the proposed regular response
+law, its selected radius and frequency, the necessary-and-sufficient
+complete-ledger criterion for a prescribed regular field-speed braid, the
+periodic winding and relative-phase reduction, the homothetic scale-selection
+theorem, the conditional small-radius obstruction, and exact raw and effective
+per-revolution acceleration-work diagnostics. It also supplies only a typed
+endpoint interface for $h_{\mathrm{act}}$ transfer, binary retuning, and a
+possible energy readout: no action-transfer event, action functional, energy
+account, or conservation law has been derived. Finally, it establishes the
+exact root topology of one prescribed six-path reference geometry and a
+measured negative vector-closure result for that geometry. None of those
+results adopts the ceiling, supplies a finite unique history on an open
+post-contact interval, defines the receiver-side contact measure, proves
+perturbative weak convergence, finds or retains a three-binary braid, proves
+orbital stability, identifies $h_{\mathrm{act}}$ with observer-level Planck
+$h$, or advances a closure score.
