@@ -102,7 +102,7 @@ At the absolute level, any local neighborhood is crowded:
   $$
   The potential variance is infrared divergent, whereas the acceleration variance converges at large $R$ and is controlled by nearby sources. Because the master equation consumes acceleration contributions, the dynamically relevant screening claim belongs to the acceleration sum; the scalar potential remains a conditionally defined reconstruction unless a separate summation prescription is declared.
 
-"Stable" particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
+"Stable" particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are retained stable or metastable branch structures, not static beads; they qualify as attractor-basin structures only where reduced-flow contraction and exported-flux accounting have been established.
 
 #### Operational Picture
 
@@ -563,7 +563,7 @@ Its nearest companion notes are [Superposition Mechanism](../../../../markdown/a
 
 ### Purpose and Scope
 
-This document establishes the ontological status of the quantum wavefunction ($\psi$) and the fundamental operators of quantum mechanics within $\mathbb{A}\mathbb{A}\mathbb{A}$. It maps the standard quantum formalism, traditionally treated as axiomatic, to deterministic, non-Markovian dynamics governed by the master equation.
+This document states the ontological interpretation of the quantum wavefunction ($\psi$) within $\mathbb{A}\mathbb{A}\mathbb{A}$ and sets out an effective comparison mapping for the fundamental operators of quantum mechanics. The proposed mapping translates the standard quantum formalism, traditionally treated as axiomatic, into deterministic, non-Markovian dynamics governed by the master equation.
 
 The framework explicitly separates the **ontic reality** of architrino trajectories and causal wake surfaces from the **epistemic description** captured by the wavefunction. Reframing measurement as dynamical threshold resolution does not by itself complete the quantum closure program, but it relocates the measurement problem onto a mechanical basis involving uncertainty, superposition, and the standard particle-wave duality comparison.
 

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-30T01:29:15.750Z",
+  "generated_at": "2026-08-01T19:38:09.782Z",
   "total_links": 2092,
   "links": [
     {
@@ -2846,7 +2846,7 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/foundations/absolute-timespace.md#speed-symbols-and-their-levels",
+      "target": "../../../../markdown/aaa/foundations/absolute-timespace.md#speed-convention",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/foundations/absolute-timespace.md"
