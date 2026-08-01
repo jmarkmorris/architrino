@@ -1,15 +1,16 @@
 # Field-Speed Ceiling First Entourage Review Readiness
 
 **Date:** 2026-07-30; updated 2026-08-01
-**Status:** Hale, Hörmander, Thurston, and Einstein read-only reviews completed
-and integrated; ready only for narrower distributional-formulation and
-regular-chart theorem work
+**Status:** Hale, Hörmander, Thurston, and two Einstein read-only reviews
+completed and integrated; ready only for narrower distributional-formulation
+and regular-chart theorem work
 **Broader-theory status:** not ready for validation, adoption, or promotion
 **Claim level:** review-readiness assessment
 **Review provenance:** [complete Hale review and response matrix](jack-k-hale-review-response-2026-07-31.md);
 [complete Hörmander review and response matrix](lars-hormander-review-response-2026-07-31.md);
 [complete Thurston review and response matrix](bill-thurston-review-response-2026-08-01.md);
-[complete Einstein review and response matrix](albert-einstein-review-response-2026-08-01.md)
+[complete Einstein review and response matrix](albert-einstein-review-response-2026-08-01.md);
+[complete Einstein second review and response matrix](albert-einstein-second-review-response-2026-08-01.md)
 
 ## Readiness verdict
 
@@ -22,14 +23,18 @@ six-label carrier.
 Albert Einstein completed a read-only invariance and unification review of the
 regular response, capped root geometry, convergence proposal, strict sibling,
 and preferred-frame recovery burden.
+His second pass then reviewed the strengthened packet's finite response,
+Lipschitz root geometry, measure transfer, regular-chart proof program, and
+queue structure.
 
-All four responses are integrated. The packet is not ready for a Tao-style
+All five responses are integrated. The packet is not ready for a Tao-style
 well-posedness review as a posed evolution problem. It is ready only for the
-narrower FSC-006 distributional-formulation work: construct the
-source-provenanced receiver-side contact decomposition, prove or refute
-parameterization-independent weak-* convergence for cap-admissible
-single-root approaches to the characteristic interval, and establish or
-reject uniform local total-variation control. FSC-005 is blocked on that work.
+narrower FSC-006 distributional-formulation work. FSC-006a must first prove or
+refute the truncated far-part weak-* limit under explicit branch-collapse,
+receiver-trace, kernel, label, competing-stratum, and perturbation-family
+hypotheses. FSC-006b/FSC-005 then owns the zero-range raw-measure tail,
+complete-ledger sign, and projected remainder. No contact measure follows from
+root geometry or the transfer identity alone.
 The frozen-ledger constrained layer is now closed; FSC-007 separately owns the
 coupled regular history-to-ledger theorem and supplies no contact or post-event
 history.
@@ -44,8 +49,9 @@ Plainly: Hale reduced the reset to a one-jet. Hörmander showed that even this
 does not pose a contact evolution until the three measure types and their
 limit are connected. Thurston then separated regular from atomic dynamics and
 corrected the six-label topology from spatial links to configuration space.
-Einstein's valid reductions show that the regular cap response is not the
-remaining difficulty; the delayed ledger and characteristic contact are.
+Einstein's two passes show that the regular cap response and per-channel root
+catalogue are not the remaining difficulty; the moving-time measure limit,
+zero-range tail, delayed ledger, and event dispositions are.
 
 ## Included review artifacts
 
@@ -61,7 +67,8 @@ remaining difficulty; the delayed ledger and characteristic contact are.
 | [Hörmander Review Response](lars-hormander-review-response-2026-07-31.md) | Preserves the supplied review text and every Hörmander finding with its disposition. | Review integration record; no distributional limit or event coefficient is adopted. |
 | [Thurston Review Response](bill-thurston-review-response-2026-08-01.md) | Preserves every substantive Thurston finding and its disposition. | Review integration record; no topology, contact robustness, existence, or retention claim is adopted. |
 | [Einstein Review Response](albert-einstein-review-response-2026-08-01.md) | Preserves all eight Einstein findings, their corrected scopes, and the explicit quotient-lemma counterexample. | Review integration record; no quotient response, strict sibling, event selector, preferred-frame result, or Lorentz result is adopted. |
-| [Near-Contact Separating-Trace Theorem Target](near-contact-separating-trace-incompatibility-theorem-target.md) | States the limited two-channel BV/Radon prove-or-refute target. | FSC-005 is blocked on FSC-006; theorem target, not a result. |
+| [Einstein Second Review Response](albert-einstein-second-review-response-2026-08-01.md) | Preserves and independently disposes every second-pass theorem, program reformulation, and structural claim. | Review integration record; per-channel classification is not a global event law, the far-part limit remains a target, and MEC-007 is not an exclusive activation gate. |
+| [Near-Contact Separating-Trace Theorem Target](near-contact-separating-trace-incompatibility-theorem-target.md) | States the limited two-channel BV/Radon prove-or-refute target. | FSC-005 is blocked on FSC-006a/FSC-006b; theorem target, not a result. |
 
 ## Exact proposed foundation under review
 
@@ -170,12 +177,13 @@ are different mathematical records. Only the zero jump has a proposed value.
 8. **Candidate topology unproved.** The proposed BV/Radon and weak-* topology
    has not been shown sufficient, closed, or compatible with the delayed root
    construction.
-9. **Perturbative resolution unresolved.** Root monotonicity restricts one
-   cap-admissible ordered channel to a single simple root approaching a
-   characteristic interval. There is still no proof of uniform local total
-   variation, weak-* convergence, parameterization independence, or
-   perturbation-family independence for the source-provenanced receiver
-   measures.
+9. **FSC-006a far-part limit unproved.** Simple-branch total-variation
+   transfer is derived, and in the mirror chart it localizes divergence to the
+   zero-range endpoint. The proposed far-part atom still requires uniform
+   branch collapse, receiver left-trace and kernel convergence at collapsing
+   reception times, label retention, competing-stratum routing, and
+   perturbation-family independence. The current topology alone does not
+   prove those moving-time limits.
 10. **Guard ownership conditions unproved.** The half-open convention,
     two-channel ownership, endpoint/family separation, competing-strata
     routing, and outgoing restart record are declared requirements, not
@@ -188,17 +196,23 @@ are different mathematical records. Only the zero jump has a proposed value.
    phase space, history-to-ledger regularity, position coupling,
    inactive-gap persistence, fixed-point theorem, and post-event history
    compatibility remain formulation or theorem obligations.
-13. **FSC-005 blocked.** The prescribed straight trace has a
+13. **FSC-006b/FSC-005 blocked.** The prescribed straight trace has a
     $\delta^{-2}$ slowing row, but the limited two-channel BV/Radon theorem
-    requires FSC-006, signed leading coefficients, competing-strata routing,
-    and complete-ledger no-cancellation.
+    requires the zero-range receiver-measure tail, signed complete-leading
+    coefficients, competing-strata routing, and projected-remainder control.
+    Purely forward leading cancellation is necessary for that leading term to
+    vanish but is not sufficient for a finite effective Radon measure.
 14. **No open post-contact existence or uniqueness.** The selected reset gives
     an outgoing contact one-jet only.
 15. **Outgoing retained history unresolved.** No finite response measure and
     complete outgoing record carries the solution through a positive time
     interval after contact.
-16. **No perturbative or noncollinear extension.** The narrow postulate does not
-    classify tangent, offset, multi-partner, braid, or general $D_t=0$ events.
+16. **Per-channel geometry is not an event law.** Positive-delay geometry for
+    one cap-admissible ordered channel is now classified as empty, simple
+    singleton, degenerate singleton, or rigid characteristic interval. The
+    narrow postulate still does not assign general dispositions to the latter
+    two types, their endpoints, source-identity variants, the excluded
+    diagonal, or simultaneous cross-channel strata.
 17. **No same-update account or conservation theorem.** Zero contact impulse is
     not an energy, momentum, wake, or action account.
 18. **No stability or physical conclusion.** An outgoing contact one-jet does
@@ -217,10 +231,11 @@ are different mathematical records. Only the zero jump has a proposed value.
     spatial link, and the velocity ball and sphere have trivial fundamental
     groups. No retained Assembly Atlas record or topological protection is
     established.
-22. **FSC-007 not proved.** Only its supplied-ledger constrained layer is
-    closed. The regular-chart history norm, fixed branch chart, gap
-    persistence, Lipschitz complete-ledger functional, position coupling, and
-    local fixed-point theorem are queued obligations.
+22. **FSC-007 not proved.** Its supplied-ledger constrained layer, finite per-
+    channel root count, and simple-root stability estimate are derived. The
+    fixed active-channel set, bounded delay window, gap persistence, velocity-
+    history control, Lipschitz ledger-row gradient, position coupling, and
+    local contraction theorem remain queued obligations.
 23. **No divergent-ledger quotient law.** The Einstein review's scalar
     transverse-rate criterion is false by a rotating-vector counterexample.
     More fundamentally, the proposed response has no domain on an infinite
@@ -228,8 +243,9 @@ are different mathematical records. Only the zero jump has a proposed value.
     without a separately proposed nonordinary law.
 24. **No preferred-frame recovery result.** The strict-interior equations are
     identical on the same retained regular history, but MEC-007 does not prove
-    generic saturation. FSC-008 is deferred until FSC-006, FSC-007, and a
-    declared emergent boost comparison map exist.
+    generic saturation and is not the only possible cap-activation history.
+    FSC-008 is deferred until FSC-006, FSC-007, one verified activating
+    history, and a declared emergent boost comparison map exist.
 
 ## Exact next review gate
 
@@ -245,11 +261,13 @@ formulation that a narrow reviewer can assess against these conditions:
 5. aggregation is invariant under reparameterization of the same geometric
    stratum;
 6. a candidate topology and solution class are stated;
-7. cap-admissible single-root $D_t\to0^+$ resolution and weak-* convergence
-   are proved or refuted with uniform local total-variation evidence, without
-   applying the response to an infinite raw ledger; and
+7. FSC-006a proves or refutes the truncated far-part weak-* limit with uniform
+   branch collapse, receiver-trace and kernel convergence, label retention,
+   competing-stratum routing, and perturbation-family independence;
 8. any restart supplies a complete outgoing retained-history, source,
-   ownership, and receiver-measure record.
+   ownership, and receiver-measure record; and
+9. FSC-006b/FSC-005 separately states the zero-range tail and projected-
+   remainder problem without applying the response to an infinite raw ledger.
 
 Passing this gate would make the packet ready for one narrow
 distributional-formulation review. It would not yet make the packet ready for
@@ -276,11 +294,11 @@ being reviewed.
 
 ## Dispatch boundary
 
-The Hale, Hörmander, Thurston, and Einstein reviews are complete. No Tao review
-or other successor review has been contacted or started, and nothing has been
-published.
+The Hale, Hörmander, Thurston, and two Einstein reviews are complete. No Tao
+review or other successor review has been contacted or started, and nothing
+has been published.
 
-Closure goal: complete the cap-admissible FSC-006 raw receiver-measure limit
-and its narrow distributional review, then prove or refute the remaining
-coupled FSC-007 history-to-ledger theorem before posing any full
-well-posedness review.
+Closure goal: prove or refute FSC-006a's far-part limit under the added trace
+and collapse hypotheses, resolve the FSC-006b/FSC-005 zero-range tail, and
+then prove or refute FSC-007's regular history-to-ledger theorem before posing
+any full well-posedness review.

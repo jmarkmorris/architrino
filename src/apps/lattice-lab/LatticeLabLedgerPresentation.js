@@ -16,6 +16,21 @@ function vectorMagnitude(vector) {
   return Math.hypot(...vector);
 }
 
+function sumContributionRows(rows) {
+  return freezeVector(rows.reduce(
+    (sum, row) => sum.map(
+      (value, index) => value + row.accelerationRow.normalizedAcceleration[index],
+    ),
+    [0, 0, 0],
+  ));
+}
+
+function includedCalculationRows(ledger) {
+  return ledger.rows.filter((row) =>
+    row.accelerationRow && row.includedInCalculation !== false
+  );
+}
+
 function formatNumber(value) {
   if (Math.abs(value) < RESIDUAL_EPSILON) {
     return "0";
@@ -55,20 +70,9 @@ function summarizePolarities(rows) {
   ].filter(Boolean).join(" · ");
 }
 
-function createCalculationRows(ledger) {
+function createCalculationRows(rows) {
   let runningResidual = [0, 0, 0];
-  return Object.freeze(ledger.rows.map((row) => {
-    if (!row.accelerationRow) {
-      return Object.freeze({
-        shellId: row.shellId,
-        shellLabel: row.shellLabel,
-        polarity: row.polarity,
-        direction: row.geometryDirection,
-        contribution: null,
-        runningResidual: null,
-        availability: row.availability,
-      });
-    }
+  return Object.freeze(rows.map((row, rowIndex) => {
     const contribution = freezeVector(
       row.accelerationRow.normalizedAcceleration,
     );
@@ -79,38 +83,59 @@ function createCalculationRows(ledger) {
       shellId: row.shellId,
       shellLabel: row.shellLabel,
       polarity: row.polarity,
-      direction: row.geometryDirection,
+      rowLabel: `${row.shellLabel} contribution ${rowIndex + 1}`,
       contribution,
       runningResidual,
-      availability: row.availability,
     });
   }));
 }
 
-function createShellSummaries(ledger, accelerationAvailable) {
-  return Object.freeze(ledger.shells.map((shell) => {
+function displayShellLabel(shell) {
+  return shell.id === "nearest"
+    ? "Nearest shell"
+    : shell.id === "next-local"
+      ? "Next shell"
+      : shell.label;
+}
+
+function createShellSummaries(ledger, scope) {
+  return Object.freeze(ledger.shells.slice(0, 2).flatMap((shell) => {
+    const includedRows = includedCalculationRows({ rows: shell.rows });
     const pairCount = shell.pairs.filter(
       (pair) => pair.accelerationCancelsExactly,
     ).length;
-    const vector = accelerationAvailable
-      ? shell.normalizedAccelerationResidual
-      : null;
-    return Object.freeze({
+    const label = displayShellLabel(shell);
+    if (
+      scope === LATTICE_LAB_LEDGER_SCOPE.FINITE_NONPERIODIC &&
+      includedRows.length === 0
+    ) {
+      return [];
+    }
+    const vector = scope === LATTICE_LAB_LEDGER_SCOPE.CERTIFIED_PERIODIC
+      ? Object.freeze([0, 0, 0])
+      : scope === LATTICE_LAB_LEDGER_SCOPE.FINITE_NONPERIODIC
+        ? sumContributionRows(includedRows)
+        : null;
+    const count = scope === LATTICE_LAB_LEDGER_SCOPE.FINITE_NONPERIODIC
+      ? includedRows.length
+      : shell.expectedCount;
+    const totalLabel = scope === LATTICE_LAB_LEDGER_SCOPE.CERTIFIED_PERIODIC
+      ? `${label}: ${count} contributions → ${pairCount} matching ` +
+        `pair${pairCount === 1 ? "" : "s"} → zero`
+      : scope === LATTICE_LAB_LEDGER_SCOPE.FINITE_NONPERIODIC
+        ? `${label}: ${count} calculated contribution` +
+          `${count === 1 ? "" : "s"} → ${formatLedgerVector(vector)}`
+        : `${label}: ${count} sites at ${shell.distance}`;
+    return [Object.freeze({
       id: shell.id,
-      label: shell.label,
-      count: shell.expectedCount,
+      label,
+      count,
       distance: shell.distance,
       polarities: summarizePolarities(shell.rows),
       pairCount,
       vector,
-      totalLabel: vector
-        ? `${shell.expectedCount} contributions → ${pairCount} matching ` +
-          `pair${pairCount === 1 ? "" : "s"} → ${formatLedgerVector(vector)}`
-        : `${shell.expectedCount} sites at ${shell.distance}`,
-      meaning: vector
-        ? "Local shell sum"
-        : null,
-    });
+      totalLabel,
+    })];
   }));
 }
 
@@ -129,15 +154,16 @@ export function createLatticeLabLedgerViewModel({
     ledger.certificateApplies &&
     ledger.certifiedExactZero,
   );
+  const includedRows = includedCalculationRows(ledger);
   const finiteResidualAvailable = Boolean(
     finiteNonperiodic &&
     ledger.accelerationRowsAvailable &&
-    ledger.normalizedAccelerationResidual,
+    includedRows.length > 0,
   );
   const residualVector = certifiedPeriodic
     ? Object.freeze([0, 0, 0])
     : finiteResidualAvailable
-      ? freezeVector(ledger.normalizedAccelerationResidual)
+      ? sumContributionRows(includedRows)
       : null;
   const residualMagnitude = residualVector
     ? vectorMagnitude(residualVector)
@@ -152,9 +178,7 @@ export function createLatticeLabLedgerViewModel({
   const accelerationAvailable = certifiedPeriodic || finiteResidualAvailable;
   const receiverLabel = siteSelectionExplicit
     ? `Selected ${receiverPolarity}`
-    : certifiedPeriodic
-      ? "All sites in this case"
-      : `Reference ${receiverPolarity} site`;
+    : null;
   const outcome = scope === LATTICE_LAB_LEDGER_SCOPE.NOT_ESTABLISHED
     ? "not-established"
     : zeroResidual
@@ -165,22 +189,17 @@ export function createLatticeLabLedgerViewModel({
     ? {
       icon: "✓",
       label: certifiedPeriodic
-        ? "Zero residual — certified"
-        : "Zero residual in displayed finite scope",
-      scopeLabel: certifiedPeriodic
-        ? "Certified repeating pattern"
-        : "Displayed finite configuration",
+        ? "Net acceleration is zero at every site."
+        : "Net acceleration is zero in this finite configuration.",
     }
     : outcome === "nonzero"
       ? {
         icon: "!",
-        label: "Nonzero residual in displayed finite scope",
-        scopeLabel: "Displayed finite configuration",
+        label: "Nonzero in this finite configuration",
       }
       : {
         icon: null,
         label: null,
-        scopeLabel: "Geometry reference",
       };
 
   const statement = certifiedPeriodic
@@ -190,18 +209,11 @@ export function createLatticeLabLedgerViewModel({
         ? "The calculated contributions cancel in this displayed finite configuration only."
         : "The calculated contributions leave a nonzero initial acceleration residual in this displayed finite configuration."
       : "Acceleration has not been calculated for this geometry.";
-  const residualMeaning = certifiedPeriodic
-    ? "Zero means the declared repeating-pattern contributions cancel exactly."
-    : finiteResidualAvailable
-      ? "This dimensionless value is the magnitude of the calculated residual for the displayed finite configuration."
-      : null;
-
   return Object.freeze({
     outcome,
     scope,
     icon: outcomeCopy.icon,
     outcomeLabel: outcomeCopy.label,
-    scopeLabel: outcomeCopy.scopeLabel,
     receiverLabel,
     statement,
     residualMagnitude,
@@ -210,11 +222,13 @@ export function createLatticeLabLedgerViewModel({
       : formatNumber(residualMagnitude),
     residualVector,
     residualVectorLabel: formatLedgerVector(residualVector),
-    residualMeaning,
-    shellSummaries: createShellSummaries(ledger, accelerationAvailable),
+    residualLineLabel: residualVector
+      ? `Magnitude ${formatNumber(residualMagnitude)} · Vector ${formatLedgerVector(residualVector)}`
+      : null,
+    shellSummaries: createShellSummaries(ledger, scope),
     calculationAvailable: accelerationAvailable,
     calculationRows: accelerationAvailable
-      ? createCalculationRows(ledger)
+      ? createCalculationRows(includedRows)
       : Object.freeze([]),
     shellScopeNote: certifiedPeriodic
       ? "These two shell totals are local examples. The separate certificate covers the full declared repeating pattern."
@@ -223,4 +237,62 @@ export function createLatticeLabLedgerViewModel({
         : "Shell counts describe geometry only; they are not acceleration totals.",
     caseTitle: caseRecord.title,
   });
+}
+
+function replaceChildren(element, children) {
+  element.replaceChildren?.(...children);
+  if (!element.replaceChildren) {
+    element.textContent = "";
+    children.forEach((child) => element.append(child));
+  }
+}
+
+export function renderLatticeLabLedgerViewModel({
+  documentLike,
+  dom,
+  viewModel,
+}) {
+  const calculationExists = viewModel.calculationAvailable;
+  dom.root.dataset.scope = viewModel.scope;
+  dom.root.dataset.outcome = viewModel.outcome;
+  dom.receiver.textContent = viewModel.receiverLabel ?? "";
+  dom.receiver.hidden = !viewModel.receiverLabel;
+  dom.result.hidden = !calculationExists;
+  dom.icon.textContent = viewModel.icon ?? "";
+  dom.outcome.textContent = viewModel.outcomeLabel ?? "";
+  dom.residual.textContent = viewModel.residualLineLabel ?? "";
+  dom.statement.textContent = viewModel.statement;
+
+  const shellElements = viewModel.shellSummaries.map((shell) => {
+    const row = documentLike.createElement("p");
+    row.className = "lattice-lab-ledger-shell";
+    row.textContent = shell.totalLabel;
+    return row;
+  });
+  replaceChildren(dom.shells, shellElements);
+  dom.shells.hidden = shellElements.length === 0;
+  dom.shellScope.textContent = calculationExists
+    ? viewModel.shellScopeNote
+    : "";
+  dom.shellScope.hidden = !calculationExists;
+
+  dom.calculation.hidden = !calculationExists;
+  if (!calculationExists) {
+    dom.calculation.open = false;
+  }
+  const calculationRows = viewModel.calculationRows.map((row) => {
+    const rowElement = documentLike.createElement("div");
+    rowElement.className = "lattice-lab-ledger-calculation-row";
+
+    const label = documentLike.createElement("span");
+    label.className = "lattice-lab-ledger-calculation-label";
+    label.textContent = `${row.rowLabel} · ${row.polarity}`;
+
+    const values = documentLike.createElement("span");
+    values.className = "lattice-lab-ledger-calculation-values";
+    values.textContent = `${formatLedgerVector(row.contribution)} → ${formatLedgerVector(row.runningResidual)}`;
+    rowElement.append(label, values);
+    return rowElement;
+  });
+  replaceChildren(dom.calculationRows, calculationRows);
 }

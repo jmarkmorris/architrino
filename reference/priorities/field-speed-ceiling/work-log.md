@@ -534,3 +534,55 @@
   measure, continuation, regulator, conservation, stability, retained
   assembly, physical realization, MEC status, or closure score changed. No
   successor reviewer was contacted or started.
+
+## 2026-08-01 — Albert Einstein second read-only review integrated
+
+- Preserved the complete source review unchanged and recorded every theorem,
+  program reformulation, and structural finding with an independent
+  disposition in the
+  [Albert Einstein Second Review Response](albert-einstein-second-review-response-2026-08-01.md)
+  under identifier `FSC-001-AE2-2026-08-01`.
+- Accepted the exact finite-ledger response factorization and $1$-Lipschitz
+  estimate. Recorded that
+  $\mathcal P_{\mathbf V}(\mathbf b)=\mathbf0$ exactly on the closed forward
+  ray, while correcting the proposed FSC-005 corollary: leading
+  $\delta^{-2}$ cancellation alone does not prove the projected remainder is
+  a finite Radon measure.
+- Strengthened root monotonicity from differentiable to Lipschitz cap-
+  admissible paths using the reverse triangle inequality. Added the rigid
+  characteristic-interval theorem and the complete positive-delay geometry
+  catalogue for one ordered channel: empty, simple singleton, degenerate
+  singleton, or exact-aim straight characteristic interval.
+- Removed the quadratic fold from the closed-domain event catalogue and kept
+  it only as an open-domain negative control. A cap-admissible degenerate
+  isolated root is not called grazing; cubic order requires an additional
+  nonzero-third-derivative hypothesis, and higher odd or flat crossings remain
+  possible.
+- Added the projected-increment catching-up construction for the supplied-
+  ledger normal-cone evolution. Corrected the review's compactness wording:
+  $L^1$ input gives equi-absolute continuity, while bounded input gives equi-
+  Lipschitz approximants.
+- Derived the injective simple-branch total-variation transfer identity. With
+  positive range and $D_r$ floors, $D_t\to0^+$ alone does not cause integrated
+  divergence. In the mirror channel the unresolved divergence localizes to
+  the inverse-square zero-range endpoint.
+- Kept the proposed far-part weak-* statement as FSC-006a rather than a
+  theorem already proved. It still needs uniform branch collapse, receiver
+  left-trace and kernel convergence at collapsing times, label retention,
+  competing-stratum routing, and perturbation-family independence. FSC-006b
+  and FSC-005 jointly own the zero-range leading and remainder problem.
+- Accepted finite per-channel root count and the simple-root stability lemma
+  as FSC-007 inputs. Fixed active channels, inactive gaps, a bounded delay
+  window, velocity-history control, the ledger-row gradient, and contraction
+  closure remain unproved.
+- Rejected the review's global `complete classification` and `two event
+  dispositions` conclusions. The theorem classifies one positive-delay
+  ordered channel, not the excluded diagonal, interval endpoints, source-
+  identity variants, or simultaneous cross-channel ownership.
+- Kept MEC-007 as the current conditional sub-cap mirror activation test, not
+  the ceiling proposal's exclusive falsifiability gate. FSC-008 still requires
+  one verified activating history and an emergent boost comparison map.
+- No canonical AAA or EOM source, ceiling or contact-law status, event
+  disposition, contact measure, continuation, regulator, conservation,
+  stability, retained assembly, physical realization, MEC status, or closure
+  score changed. No successor reviewer was contacted or started.

@@ -377,6 +377,27 @@ button {
   overflow: visible;
 }
 
+.lattice-lab-shared-conventions {
+  display: grid;
+  gap: 8px;
+}
+
+.lattice-lab-shared-conventions h2.lattice-lab-card-kicker {
+  margin: 0;
+  color: #bdaeff;
+  font-size: 10px;
+}
+
+.lattice-lab-card h2.lattice-lab-card-kicker {
+  margin: 0;
+  color: #bdaeff;
+  font-size: 10px;
+}
+
+.lattice-lab-shared-conventions-facts dd {
+  line-height: 1.4;
+}
+
 .lattice-lab-primer[data-primer-collapsed="true"] .lattice-lab-primer-body {
   display: none;
 }
@@ -412,8 +433,8 @@ button {
   left: 16px;
   bottom: 18px;
   z-index: 4;
-  width: 72px;
-  height: 66px;
+  width: 144px;
+  height: 132px;
   padding: 5px;
   border: 1px solid rgba(198, 182, 255, 0.2);
   border-radius: 9px;
@@ -433,8 +454,55 @@ button {
 
 .lattice-lab-tripod text {
   fill: #f8f5ff;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
+  dominant-baseline: middle;
+}
+
+.lattice-lab-polarity-legend {
+  position: absolute;
+  right: 16px;
+  bottom: 18px;
+  z-index: 4;
+  display: grid;
+  gap: 7px;
+  padding: 9px 11px;
+  border: 1px solid rgba(198, 182, 255, 0.2);
+  border-radius: 9px;
+  background: rgba(8, 7, 14, 0.76);
+  color: #f8f5ff;
+  font-size: 11px;
+  font-weight: 720;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.lattice-lab-polarity-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.lattice-lab-polarity-swatch {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  border-radius: 50%;
+  box-shadow:
+    inset -3px -3px 4px rgba(0, 0, 0, 0.35),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.28),
+    0 0 5px currentColor;
+}
+
+.lattice-lab-polarity-swatch[data-polarity="electrino"] {
+  color: #0000ff;
+  background: #0000ff;
+}
+
+.lattice-lab-polarity-swatch[data-polarity="positrino"] {
+  color: #ff0000;
+  background: #ff0000;
 }
 
 .lattice-lab-inspector-stack {
@@ -489,12 +557,17 @@ button {
   line-height: 1.3;
 }
 
-#lattice-lab-miniature-canvas {
-  display: block;
+.lattice-lab-miniature-viewport {
+  position: relative;
   width: var(--miniature-size);
-  height: auto;
   aspect-ratio: 1;
   justify-self: center;
+}
+
+#lattice-lab-miniature-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
   border: 1px solid rgba(198, 182, 255, 0.14);
   border-radius: 8px;
   background: rgba(9, 7, 15, 0.46);
@@ -531,18 +604,26 @@ button {
   font-size: 11px;
 }
 
-.lattice-lab-repeat-rule-heading label {
+.lattice-lab-repeat-highlight-control {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 5px;
+  padding: 4px 6px;
+  border: 1px solid rgba(198, 182, 255, 0.2);
+  border-radius: 5px;
   color: #cfc6df;
+  background: rgba(8, 7, 14, 0.82);
   font-size: 10px;
   font-weight: 680;
   line-height: 1.2;
   cursor: pointer;
 }
 
-.lattice-lab-repeat-rule-heading input {
+.lattice-lab-repeat-highlight-control input {
   width: 13px;
   height: 13px;
   margin: 0;
@@ -580,15 +661,135 @@ button {
   background: rgba(18, 13, 30, 0.94);
 }
 
-.lattice-lab-ledger-placeholder {
-  margin: 10px 0 0;
-  padding: 12px;
-  border: 1px solid rgba(198, 182, 255, 0.14);
-  border-radius: 8px;
+.lattice-lab-ledger-receiver {
   color: #aaa0bc;
-  background: rgba(198, 182, 255, 0.035);
-  font-size: 12px;
-  line-height: 1.4;
+  font-size: 9px;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.lattice-lab-ledger-receiver {
+  margin: 9px 0 0;
+  color: #d8cfff;
+}
+
+.lattice-lab-ledger-result {
+  display: grid;
+  gap: 5px;
+  margin-top: 9px;
+}
+
+.lattice-lab-ledger-outcome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f8f5ff;
+  font-size: 14px;
+  line-height: 1.15;
+}
+
+.lattice-lab-ledger-icon {
+  display: grid;
+  width: 23px;
+  height: 23px;
+  flex: 0 0 23px;
+  place-items: center;
+  border: 1px solid rgba(127, 224, 167, 0.58);
+  border-radius: 50%;
+  color: #9aefbc;
+  background: rgba(83, 190, 126, 0.12);
+  font-size: 14px;
+}
+
+.lattice-lab-ledger[data-outcome="nonzero"] .lattice-lab-ledger-icon {
+  border-color: rgba(255, 130, 130, 0.58);
+  color: #ffaaaa;
+  background: rgba(218, 82, 82, 0.12);
+}
+
+.lattice-lab-ledger-residual,
+.lattice-lab-ledger-statement,
+.lattice-lab-ledger-shell,
+.lattice-lab-ledger-shell-scope {
+  margin: 0;
+  line-height: 1.35;
+}
+
+.lattice-lab-ledger-residual {
+  color: #dcd4eb;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10px;
+}
+
+.lattice-lab-ledger-statement {
+  margin-top: 8px;
+  color: #d9d2e5;
+  font-size: 11px;
+}
+
+.lattice-lab-ledger-shells {
+  display: grid;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.lattice-lab-ledger-shell {
+  padding: 6px 7px;
+  border: 1px solid rgba(198, 182, 255, 0.14);
+  border-radius: 6px;
+  color: #eee9f7;
+  background: rgba(198, 182, 255, 0.045);
+  font-size: 10px;
+}
+
+.lattice-lab-ledger-shell-scope {
+  margin-top: 6px;
+  color: #aaa0bc;
+  font-size: 9px;
+}
+
+.lattice-lab-ledger-calculation {
+  margin-top: 8px;
+  border-top: 1px solid rgba(198, 182, 255, 0.14);
+  padding-top: 7px;
+}
+
+.lattice-lab-ledger-calculation summary {
+  width: max-content;
+  color: #cfc4ff;
+  font-size: 10px;
+  font-weight: 760;
+  cursor: pointer;
+}
+
+.lattice-lab-ledger-calculation-heading,
+.lattice-lab-ledger-calculation-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.lattice-lab-ledger-calculation-heading {
+  margin-top: 8px;
+  color: #92879f;
+  font-size: 8px;
+  text-transform: uppercase;
+}
+
+.lattice-lab-ledger-calculation-row {
+  padding: 5px 0;
+  border-top: 1px solid rgba(198, 182, 255, 0.08);
+  color: #bdb3cb;
+  font-size: 8px;
+  line-height: 1.25;
+}
+
+.lattice-lab-ledger-calculation-values {
+  color: #ddd4ef;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  text-align: right;
 }
 
 .lattice-lab-boot-error {
@@ -636,8 +837,8 @@ button {
   }
 
   #lattice-lab-miniature-canvas {
-    width: var(--miniature-size);
-    height: auto;
+    width: 100%;
+    height: 100%;
   }
 }
 

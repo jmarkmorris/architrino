@@ -19,26 +19,211 @@ import {
   createSelectedSiteLedger,
   getLatticeSite,
   isReferenceLatticeConfiguration,
-  selectShortestTransformedRepeatCellEdges,
 } from "./LatticeLabCase.js";
 import {
   createStationarySimpleCubicExhaustionLedger,
 } from "./SimpleCubicStationaryLedger.js";
+import {
+  createLatticeLabLedgerViewModel,
+  renderLatticeLabLedgerViewModel,
+} from "./LatticeLabLedgerPresentation.js";
 
 const ELECTRINO_COLOR = 0x0000ff;
 const POSITRINO_COLOR = 0xff0000;
+const ENDPOINT_AGGREGATE_COLOR = 0x9f7cff;
 const GEOMETRY_LINE_COLOR = 0xc6b6ff;
+const REPEAT_CELL_HIGHLIGHT_COLOR = 0xb79cff;
+const REPEAT_CELL_HIGHLIGHT_RADIUS = 0.0176;
 const DEFAULT_VIEW_HALF_HEIGHT = 4.4;
 const MIN_VIEW_HALF_HEIGHT = 1.35;
 const MAX_VIEW_HALF_HEIGHT = 8.5;
 const CAMERA_DISTANCE = 12;
 const MARKER_RADIUS_PX = 8;
 const POINTER_CLICK_TRAVEL_PX = 7;
-const DEFAULT_ROTATION = Object.freeze([-0.44, 0.66, 0]);
+const DEFAULT_BASE_ROTATION = Object.freeze([-0.44, 0.66, 0]);
+const DEFAULT_Z_UP_SCREEN_ROLL = 1.0688619267721347;
+const TRIPOD_ORIGIN = Object.freeze({ x: 72, y: 66 });
+const TRIPOD_AXIS_RADIUS = 42;
+const TRIPOD_LABEL_GAP = 10;
+const MAX_COMPRESSION_SCALE = 0.01;
 
 export const LATTICE_LAB_UI_FEATURES = Object.freeze({
   primerCollapse: false,
 });
+
+export function xAxisScaleFromDeformationBeta(beta) {
+  if (!Number.isFinite(beta) || beta < 0 || beta > 1) {
+    throw new RangeError("Deformation beta must satisfy 0 <= beta <= 1.");
+  }
+  return Number(
+    (1 - beta * (1 - MAX_COMPRESSION_SCALE)).toFixed(12),
+  );
+}
+
+export function createUniaxialDeformedPosition(
+  position,
+  { axis = "x", factor = 1 } = {},
+) {
+  const axisIndex = ["x", "y", "z"].indexOf(axis);
+  if (
+    !Array.isArray(position) || position.length !== 3 ||
+    !position.every(Number.isFinite) || axisIndex < 0 ||
+    !Number.isFinite(factor) || factor <= 0 || factor > 1
+  ) {
+    throw new TypeError(
+      "Uniaxial deformation requires a finite 3D position, a semantic axis, " +
+      "and a factor in (0, 1].",
+    );
+  }
+  return Object.freeze(position.map(
+    (value, index) => index === axisIndex ? value * factor : value,
+  ));
+}
+
+export function createEndpointVisualAggregation(sites, edges, tolerance) {
+  if (
+    !Array.isArray(sites) || !Array.isArray(edges) ||
+    !Number.isFinite(tolerance) || tolerance <= 0 ||
+    sites.some((site) =>
+      typeof site?.id !== "string" || !Array.isArray(site.position) ||
+      site.position.length !== 3 || !site.position.every(Number.isFinite)
+    )
+  ) {
+    throw new TypeError("Endpoint aggregation requires finite positioned sites and a positive tolerance.");
+  }
+  const parent = new Map(sites.map(({ id }) => [id, id]));
+  const find = (id) => {
+    let root = id;
+    while (parent.get(root) !== root) {
+      root = parent.get(root);
+    }
+    let cursor = id;
+    while (parent.get(cursor) !== root) {
+      const next = parent.get(cursor);
+      parent.set(cursor, root);
+      cursor = next;
+    }
+    return root;
+  };
+  const unite = (left, right) => {
+    const leftRoot = find(left);
+    const rightRoot = find(right);
+    if (leftRoot !== rightRoot) {
+      parent.set(rightRoot, leftRoot);
+    }
+  };
+  sites.forEach((left, leftIndex) => {
+    sites.slice(leftIndex + 1).forEach((right) => {
+      const distance = Math.hypot(...right.position.map(
+        (value, index) => value - left.position[index],
+      ));
+      if (distance <= tolerance) {
+        unite(left.id, right.id);
+      }
+    });
+  });
+  const sitesByRoot = new Map();
+  sites.forEach((site) => {
+    const root = find(site.id);
+    sitesByRoot.set(root, [...(sitesByRoot.get(root) ?? []), site]);
+  });
+  const groups = [...sitesByRoot.values()].map((members, index) => {
+    const memberIds = Object.freeze(members.map(({ id }) => id).sort());
+    const position = Object.freeze([0, 1, 2].map((coordinate) =>
+      members.reduce((sum, site) => sum + site.position[coordinate], 0) /
+        members.length
+    ));
+    return Object.freeze({
+      id: `endpoint-group-${index}-${memberIds.join("+")}`,
+      memberIds,
+      position,
+      collapsed: members.length > 1,
+    });
+  });
+  const groupBySiteId = new Map();
+  groups.forEach((group) => group.memberIds.forEach(
+    (siteId) => groupBySiteId.set(siteId, group),
+  ));
+  const internalEdgeIds = [];
+  const externalEdges = [];
+  const seenGroupPairs = new Set();
+  const redundantExternalEdgeIds = [];
+  edges.forEach((edge) => {
+    const fromGroup = groupBySiteId.get(edge.fromSiteId);
+    const toGroup = groupBySiteId.get(edge.toSiteId);
+    if (!fromGroup || !toGroup) {
+      externalEdges.push(Object.freeze({ ...edge, fromGroup, toGroup }));
+      return;
+    }
+    if (fromGroup.id === toGroup.id) {
+      internalEdgeIds.push(edge.id);
+      return;
+    }
+    const groupPair = [fromGroup.id, toGroup.id].sort().join("|");
+    if (seenGroupPairs.has(groupPair)) {
+      redundantExternalEdgeIds.push(edge.id);
+      return;
+    }
+    seenGroupPairs.add(groupPair);
+    externalEdges.push(Object.freeze({ ...edge, fromGroup, toGroup }));
+  });
+  return Object.freeze({
+    groups: Object.freeze(groups),
+    collapsedGroups: Object.freeze(groups.filter(({ collapsed }) => collapsed)),
+    groupBySiteId,
+    internalEdgeIds: Object.freeze(internalEdgeIds),
+    externalEdges: Object.freeze(externalEdges),
+    redundantExternalEdgeIds: Object.freeze(redundantExternalEdgeIds),
+  });
+}
+
+export function createDefaultOrientationQuaternion() {
+  const base = new THREE.Quaternion().setFromEuler(
+    new THREE.Euler(...DEFAULT_BASE_ROTATION, "XYZ"),
+  );
+  const quaternion = new THREE.Quaternion()
+    .setFromAxisAngle(
+      new THREE.Vector3(0, 0, 1),
+      DEFAULT_Z_UP_SCREEN_ROLL,
+    )
+    .multiply(base)
+    .normalize();
+  return Object.freeze([
+    quaternion.x,
+    quaternion.y,
+    quaternion.z,
+    quaternion.w,
+  ]);
+}
+
+export function projectTrackballPoint(clientX, clientY, rect) {
+  const diameter = Math.max(1, Math.min(rect.width, rect.height));
+  let x = (2 * (clientX - rect.left - rect.width / 2)) / diameter;
+  let y = (-2 * (clientY - rect.top - rect.height / 2)) / diameter;
+  const radiusSquared = x * x + y * y;
+  let z = 0;
+  if (radiusSquared <= 1) {
+    z = Math.sqrt(1 - radiusSquared);
+  } else {
+    const inverseRadius = 1 / Math.sqrt(radiusSquared);
+    x *= inverseRadius;
+    y *= inverseRadius;
+  }
+  return Object.freeze([x, y, z]);
+}
+
+export function applyTrackballDragQuaternion(
+  currentQuaternion,
+  previousPoint,
+  nextPoint,
+) {
+  const previous = new THREE.Vector3(...previousPoint).normalize();
+  const next = new THREE.Vector3(...nextPoint).normalize();
+  const drag = new THREE.Quaternion().setFromUnitVectors(previous, next);
+  const current = new THREE.Quaternion(...currentQuaternion);
+  drag.multiply(current).normalize();
+  return Object.freeze([drag.x, drag.y, drag.z, drag.w]);
+}
 
 function queryRequiredElement(documentLike, selector) {
   const element = documentLike.querySelector(selector);
@@ -60,10 +245,6 @@ function formatTranslationVector(label, vector) {
     return String(Number(value.toFixed(3)));
   });
   return `${label} → ⟨${values.join(", ")}⟩d`;
-}
-
-function formatGridLabel(grid) {
-  return grid ? `(${grid.join(", ")})` : "unavailable";
 }
 
 function formatPolarityLabel(polarity) {
@@ -92,20 +273,33 @@ function summarizeShellPolarities(shell) {
   ].filter(Boolean).join(" / ");
 }
 
+export function createZPolarDisplayEnvelopePoint(radius, theta, phi) {
+  if (
+    !Number.isFinite(radius) || radius <= 0 ||
+    !Number.isFinite(theta) || !Number.isFinite(phi)
+  ) {
+    throw new TypeError(
+      "Display-envelope radius and angles must be finite, with radius positive.",
+    );
+  }
+  const ringRadius = Math.sin(theta) * radius;
+  return Object.freeze([
+    Math.cos(phi) * ringRadius,
+    Math.sin(phi) * ringRadius,
+    Math.cos(theta) * radius,
+  ]);
+}
+
 function createDottedDisplayEnvelope(radius) {
   const points = [];
   const latitudeCount = 19;
   const longitudeCount = 42;
   for (let latitudeIndex = 0; latitudeIndex < latitudeCount; latitudeIndex += 1) {
     const theta = (latitudeIndex / (latitudeCount - 1)) * Math.PI;
-    const y = Math.cos(theta) * radius;
-    const ringRadius = Math.sin(theta) * radius;
     for (let longitudeIndex = 0; longitudeIndex < longitudeCount; longitudeIndex += 1) {
       const phi = (longitudeIndex / longitudeCount) * Math.PI * 2;
       points.push(new THREE.Vector3(
-        Math.cos(phi) * ringRadius,
-        y,
-        Math.sin(phi) * ringRadius,
+        ...createZPolarDisplayEnvelopePoint(radius, theta, phi),
       ));
     }
   }
@@ -122,6 +316,7 @@ function createDottedDisplayEnvelope(radius) {
     material,
   );
   envelope.userData.kind = "display-envelope-visual-only";
+  envelope.userData.semanticPolarAxis = "z";
   return envelope;
 }
 
@@ -166,18 +361,69 @@ export function createRepeatCellDisplayGraph(
         (edge) => !edge.startContinuation || !edge.endContinuation,
       )
       : network.edges;
-  const transformedSelection = selectShortestTransformedRepeatCellEdges(
-    candidateEdges,
-    { compressionAxis, compressionFactor },
-  );
+  const axisIndex = ["x", "y", "z"].indexOf(compressionAxis);
+  const edges = candidateEdges.map((edge) => Object.freeze({
+    edge,
+    transformedDistance: Math.hypot(...edge.end.map(
+      (value, index) =>
+        (value - edge.start[index]) *
+        (index === axisIndex ? compressionFactor : 1),
+    )),
+  }));
   return Object.freeze({
     network,
-    nearestDistance: transformedSelection.nearestDistance,
-    edges: transformedSelection.selected,
-    excludedEdges: transformedSelection.excluded,
-    edgeIdentities: Object.freeze(transformedSelection.selected.map(
+    nearestDistance: Math.min(...edges.map(({ transformedDistance }) =>
+      transformedDistance
+    )),
+    edges: Object.freeze(edges),
+    excludedEdges: Object.freeze([]),
+    edgeIdentities: Object.freeze(edges.map(
       ({ edge }) => edge.id,
     )),
+  });
+}
+
+export function createTripodAxisLayout(axis, projectedVector) {
+  if (!["x", "y", "z"].includes(axis)) {
+    throw new TypeError("Tripod axis must be x, y, or z.");
+  }
+  if (
+    !Array.isArray(projectedVector) ||
+    projectedVector.length !== 2 ||
+    !projectedVector.every(Number.isFinite)
+  ) {
+    throw new TypeError("Projected tripod vector must contain two finite values.");
+  }
+  const screenDirection = [projectedVector[0], -projectedVector[1]];
+  const projectedLength = Math.hypot(...screenDirection);
+  const fallbackDirection = {
+    x: [1, 0],
+    y: [0, -1],
+    z: [-Math.SQRT1_2, Math.SQRT1_2],
+  }[axis];
+  const labelDirection = projectedLength > 1e-7
+    ? screenDirection.map((value) => value / projectedLength)
+    : fallbackDirection;
+  const negativeEndpoint = {
+    x: TRIPOD_ORIGIN.x - screenDirection[0] * TRIPOD_AXIS_RADIUS,
+    y: TRIPOD_ORIGIN.y - screenDirection[1] * TRIPOD_AXIS_RADIUS,
+  };
+  const positiveEndpoint = {
+    x: TRIPOD_ORIGIN.x + screenDirection[0] * TRIPOD_AXIS_RADIUS,
+    y: TRIPOD_ORIGIN.y + screenDirection[1] * TRIPOD_AXIS_RADIUS,
+  };
+  return Object.freeze({
+    negativeEndpoint: Object.freeze(negativeEndpoint),
+    positiveEndpoint: Object.freeze(positiveEndpoint),
+    labelPosition: Object.freeze({
+      x: positiveEndpoint.x + labelDirection[0] * TRIPOD_LABEL_GAP,
+      y: positiveEndpoint.y + labelDirection[1] * TRIPOD_LABEL_GAP,
+    }),
+    labelAnchor: Math.abs(labelDirection[0]) <= 0.35
+      ? "middle"
+      : labelDirection[0] > 0
+        ? "start"
+        : "end",
   });
 }
 
@@ -206,14 +452,11 @@ export function mountLatticeLab(options = {}) {
     caseBoundary: queryRequiredElement(documentLike, "#lattice-lab-case-boundary"),
     caseScope: queryRequiredElement(documentLike, "#lattice-lab-case-scope"),
     compressionCard: queryRequiredElement(documentLike, "#lattice-lab-compression-card"),
-    compressionFactor: queryRequiredElement(documentLike, "#lattice-lab-compression-factor"),
+    deformationBeta: queryRequiredElement(documentLike, "#lattice-lab-deformation-beta"),
     compressionValue: queryRequiredElement(documentLike, "#lattice-lab-compression-value"),
     compressionStatus: queryRequiredElement(documentLike, "#lattice-lab-compression-status"),
-    population: queryRequiredElement(documentLike, "#lattice-lab-population"),
     whatSeeing: queryRequiredElement(documentLike, "#lattice-lab-what-seeing"),
     inspectorStack: queryRequiredElement(documentLike, ".lattice-lab-inspector-stack"),
-    miniatureKind: queryRequiredElement(documentLike, "#lattice-lab-miniature-kind"),
-    miniatureState: queryRequiredElement(documentLike, "#lattice-lab-miniature-state"),
     repeatHighlight: queryRequiredElement(documentLike, "#lattice-lab-repeat-highlight"),
     repeatHighlightState: queryRequiredElement(documentLike, "#lattice-lab-repeat-highlight-state"),
     repeatVectorA: queryRequiredElement(documentLike, "#lattice-lab-repeat-vector-a"),
@@ -223,7 +466,22 @@ export function mountLatticeLab(options = {}) {
     primerToggle: queryRequiredElement(documentLike, "#lattice-lab-primer-toggle"),
     primerTitle: queryRequiredElement(documentLike, "#lattice-lab-primer-title"),
     primerBody: queryRequiredElement(documentLike, "#lattice-lab-primer-body"),
+    ledger: queryRequiredElement(documentLike, "#lattice-lab-ledger"),
+    ledgerReceiver: queryRequiredElement(documentLike, "#lattice-lab-ledger-receiver"),
+    ledgerResult: queryRequiredElement(documentLike, "#lattice-lab-ledger-result"),
+    ledgerIcon: queryRequiredElement(documentLike, "#lattice-lab-ledger-icon"),
+    ledgerOutcome: queryRequiredElement(documentLike, "#lattice-lab-ledger-outcome"),
+    ledgerResidual: queryRequiredElement(documentLike, "#lattice-lab-ledger-residual"),
+    ledgerStatement: queryRequiredElement(documentLike, "#lattice-lab-ledger-statement"),
+    ledgerShells: queryRequiredElement(documentLike, "#lattice-lab-ledger-shells"),
+    ledgerShellScope: queryRequiredElement(documentLike, "#lattice-lab-ledger-shell-scope"),
+    ledgerCalculation: queryRequiredElement(documentLike, "#lattice-lab-ledger-calculation"),
+    ledgerCalculationRows: queryRequiredElement(documentLike, "#lattice-lab-ledger-calculation-rows"),
     tripod: queryRequiredElement(documentLike, "#lattice-lab-tripod"),
+    polarityLegend: queryRequiredElement(
+      documentLike,
+      "#lattice-lab-polarity-legend",
+    ),
     tocButton: queryRequiredElement(documentLike, "#textbook-toc-button"),
     backButton: queryRequiredElement(documentLike, "#nav-up"),
     forwardButton: queryRequiredElement(documentLike, "#nav-forward"),
@@ -238,6 +496,7 @@ export function mountLatticeLab(options = {}) {
   let focusSelected = false;
   let markerWorldRadius = 0.1;
   const compressionAxis = "x";
+  let deformationBeta = 0;
   let compressionFactor = 1;
   let repeatCellHighlighted = false;
   let dragging = false;
@@ -245,6 +504,7 @@ export function mountLatticeLab(options = {}) {
   let pointerId = null;
   let pointerLastX = 0;
   let pointerLastY = 0;
+  let pointerLastTrackballPoint = Object.freeze([0, 0, 1]);
   let pointerTravel = 0;
   let layoutWorldOffsetX = 0;
   const listeners = [];
@@ -285,11 +545,19 @@ export function mountLatticeLab(options = {}) {
   const siteGroup = new THREE.Group();
   const lineGroup = new THREE.Group();
   const repeatHighlightGroup = new THREE.Group();
+  const endpointAggregateGroup = new THREE.Group();
   const guideGroup = new THREE.Group();
-  rootGroup.add(guideGroup, lineGroup, repeatHighlightGroup, siteGroup);
+  rootGroup.add(
+    guideGroup,
+    lineGroup,
+    repeatHighlightGroup,
+    siteGroup,
+    endpointAggregateGroup,
+  );
   scene.add(rootGroup);
 
   const miniatureRoot = new THREE.Group();
+  const miniatureEndpointAggregateGroup = new THREE.Group();
   miniatureScene.add(miniatureRoot);
 
   const sphereGeometry = new THREE.SphereGeometry(1, 24, 16);
@@ -317,6 +585,13 @@ export function mountLatticeLab(options = {}) {
     roughness: 0.3,
     metalness: 0.04,
   });
+  const endpointAggregateMaterial = new THREE.MeshStandardMaterial({
+    color: ENDPOINT_AGGREGATE_COLOR,
+    emissive: ENDPOINT_AGGREGATE_COLOR,
+    emissiveIntensity: 0.22,
+    roughness: 0.34,
+    metalness: 0.04,
+  });
   const neighborLineMaterial = new THREE.LineBasicMaterial({
     color: GEOMETRY_LINE_COLOR,
     transparent: true,
@@ -331,6 +606,14 @@ export function mountLatticeLab(options = {}) {
     depthTest: true,
     depthWrite: false,
   });
+  const miniatureOverlapLineMaterial = new THREE.LineBasicMaterial({
+    color: GEOMETRY_LINE_COLOR,
+    transparent: true,
+    opacity: 0.82,
+    depthTest: false,
+    depthWrite: false,
+    toneMapped: false,
+  });
   const continuationMarkerMaterial = new THREE.PointsMaterial({
     color: GEOMETRY_LINE_COLOR,
     size: 4,
@@ -341,7 +624,7 @@ export function mountLatticeLab(options = {}) {
     depthWrite: false,
   });
   const highlightedNeighborMaterial = new THREE.MeshBasicMaterial({
-    color: GEOMETRY_LINE_COLOR,
+    color: REPEAT_CELL_HIGHLIGHT_COLOR,
     transparent: true,
     opacity: 0.64,
     depthTest: false,
@@ -353,7 +636,7 @@ export function mountLatticeLab(options = {}) {
   let edgeLines = [];
   populateCaseSelector();
   rebuildCaseScene();
-  rootGroup.rotation.set(...DEFAULT_ROTATION);
+  rootGroup.quaternion.set(...createDefaultOrientationQuaternion());
 
   const raycaster = new THREE.Raycaster();
   const pointerNdc = new THREE.Vector2();
@@ -390,6 +673,7 @@ export function mountLatticeLab(options = {}) {
         focusSelected,
         layoutWorldOffsetX,
         compressionAxis,
+        deformationBeta,
         compressionFactor,
         rotation: Object.freeze([
           rootGroup.rotation.x,
@@ -424,10 +708,10 @@ export function mountLatticeLab(options = {}) {
     if (!compressionAvailable()) {
       return [...position];
     }
-    const axisIndex = ["x", "y", "z"].indexOf(compressionAxis);
-    return position.map((value, index) =>
-      index === axisIndex ? value * compressionFactor : value
-    );
+    return createUniaxialDeformedPosition(position, {
+      axis: compressionAxis,
+      factor: compressionFactor,
+    });
   }
 
   function removeCaseSceneObjects() {
@@ -442,6 +726,8 @@ export function mountLatticeLab(options = {}) {
         object.geometry?.dispose?.();
       }
     });
+    endpointAggregateGroup.clear();
+    miniatureEndpointAggregateGroup.clear();
     miniatureRoot.traverse((object) => {
       if (object.userData.disposeGeometry) {
         object.geometry?.dispose?.();
@@ -498,9 +784,10 @@ export function mountLatticeLab(options = {}) {
       (value, index) => value - caseRecord.repeatCell.sites[0].position[index],
     );
 
-    const displayedPositionKeys = new Set(caseRecord.sites.map((site) =>
-      site.position.map((value) => Number(value.toFixed(9))).join(",")
-    ));
+    const siteIdByPositionKey = new Map(caseRecord.sites.map((site) => [
+      site.position.map((value) => Number(value.toFixed(9))).join(","),
+      site.id,
+    ]));
     const edgeRows = displayGraph.edges.map(
       ({ edge, transformedDistance }) => {
         const startPosition = edge.start.map(
@@ -509,23 +796,33 @@ export function mountLatticeLab(options = {}) {
         const endPosition = edge.end.map(
           (value, index) => value + offset[index],
         );
+        const startKey = startPosition
+          .map((value) => Number(value.toFixed(9))).join(",");
+        const endKey = endPosition
+          .map((value) => Number(value.toFixed(9))).join(",");
+        const startSiteId = siteIdByPositionKey.get(startKey);
+        const endSiteId = siteIdByPositionKey.get(endKey);
         return {
           edge,
           startPosition,
           endPosition,
           transformedDistance,
+          mainEdgeIdentity: startSiteId && endSiteId
+            ? [startSiteId, endSiteId].sort().join("|")
+            : null,
         };
       },
     );
     edgeRows.forEach((row) => {
-      const { edge, startPosition, endPosition } = row;
+      const { edge, startPosition, endPosition, mainEdgeIdentity } = row;
       const startKey = startPosition
         .map((value) => Number(value.toFixed(9))).join(",");
       const endKey = endPosition
         .map((value) => Number(value.toFixed(9))).join(",");
       if (
-        !displayedPositionKeys.has(startKey) ||
-        !displayedPositionKeys.has(endKey)
+        !siteIdByPositionKey.has(startKey) ||
+        !siteIdByPositionKey.has(endKey) ||
+        !mainEdgeIdentity
       ) {
         throw new Error(
           `${caseRecord.title} central highlight is missing a displayed ` +
@@ -533,7 +830,12 @@ export function mountLatticeLab(options = {}) {
         );
       }
       const highlight = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.022, 0.022, 1, 10),
+        new THREE.CylinderGeometry(
+          REPEAT_CELL_HIGHLIGHT_RADIUS,
+          REPEAT_CELL_HIGHLIGHT_RADIUS,
+          1,
+          10,
+        ),
         highlightedNeighborMaterial,
       );
       highlight.visible = repeatCellHighlighted;
@@ -542,6 +844,7 @@ export function mountLatticeLab(options = {}) {
       highlight.userData.endPosition = Object.freeze(endPosition);
       highlight.userData.edge = edge;
       highlight.userData.edgeIdentity = edge.id;
+      highlight.userData.mainEdgeIdentity = mainEdgeIdentity;
       highlight.userData.disposeGeometry = true;
       highlight.renderOrder = 3;
       repeatHighlightGroup.add(highlight);
@@ -551,29 +854,34 @@ export function mountLatticeLab(options = {}) {
     );
     repeatHighlightGroup.userData.edgeIdentities =
       displayGraph.edgeIdentities;
+    repeatHighlightGroup.userData.mainEdgeIdentities = Object.freeze(
+      edgeRows.map(({ mainEdgeIdentity }) => mainEdgeIdentity),
+    );
     dom.canvas.dataset.repeatHighlightEdgeCount =
       String(displayGraph.edgeIdentities.length);
     dom.canvas.dataset.repeatHighlightEdgeIdentities =
       displayGraph.edgeIdentities.join(";");
+    dom.canvas.dataset.repeatHighlightMainEdgeCount =
+      String(edgeRows.length);
+    dom.canvas.dataset.repeatHighlightMainEdgeIdentities =
+      edgeRows.map(({ mainEdgeIdentity }) => mainEdgeIdentity).join(";");
     dom.canvas.dataset.repeatHighlightExcludedEdgeCount =
       String(displayGraph.excludedEdges.length);
     dom.repeatHighlightState.textContent = compressionFactor < 1
-      ? `Compressed distance scope: ${displayGraph.edges.length} current ` +
-        `shortest edges at ${Number(displayGraph.nearestDistance.toFixed(3))}d; ` +
-        `${displayGraph.excludedEdges.length} longer deformed reference ` +
-        "edges are not highlighted."
+      ? `${displayGraph.edges.length} canonical repeat relationships remain ` +
+        "visible at their deformed lengths."
       : caseRecord.repeatCell.contextPresentation === "continuation-markers"
         ? `${displayGraph.edges.length} nearest-neighbor segments touch the ` +
           "two sites in this tile at d. Purple endpoints continue into " +
           "adjacent translated cells. Same-color square edges are the longer " +
           "next shell at 2d/√3, so they are not drawn."
         : `${displayGraph.edges.length} fixed-distance nearest-neighbor edges at d.`;
-    lineGroup.visible = !repeatCellHighlighted;
   }
 
   function rebuildMiniatureNetwork(displayGraph) {
     const { network } = displayGraph;
     const rawPositions = [];
+    const referencePositions = [];
     const contextAsMarkers =
       caseRecord.repeatCell.contextPresentation === "continuation-markers";
     const visibleSites = network.displaySites.filter(
@@ -582,6 +890,7 @@ export function mountLatticeLab(options = {}) {
     visibleSites.forEach((site) => {
       const position = transformDisplayPosition(site.position);
       rawPositions.push(position);
+      referencePositions.push(site.position);
       const material = site.polarity === LATTICE_LAB_POLARITY.POSITRINO
         ? redMaterial
         : blueMaterial;
@@ -590,6 +899,7 @@ export function mountLatticeLab(options = {}) {
       miniatureMesh.userData.kind = site.continuation
         ? "repeat-cell-periodic-continuation"
         : "repeat-cell-site";
+      miniatureMesh.userData.siteId = site.id;
       miniatureRoot.add(miniatureMesh);
     });
 
@@ -598,6 +908,7 @@ export function mountLatticeLab(options = {}) {
       const start = transformDisplayPosition(edge.start);
       const end = transformDisplayPosition(edge.end);
       rawPositions.push(start, end);
+      referencePositions.push(edge.start, edge.end);
       if (contextAsMarkers && edge.startContinuation) {
         continuationMarkerPositions.set(
           start.map((value) => Number(value.toFixed(9))).join(","),
@@ -625,6 +936,8 @@ export function mountLatticeLab(options = {}) {
       line.userData.endHasSphere =
         !contextAsMarkers || !edge.endContinuation;
       line.userData.edgeIdentity = edge.id;
+      line.userData.fromSiteId = edge.fromSiteId;
+      line.userData.toSiteId = edge.toSiteId;
       line.userData.disposeGeometry = true;
       miniatureRoot.add(line);
     });
@@ -643,7 +956,7 @@ export function mountLatticeLab(options = {}) {
       miniatureRoot.add(markers);
     }
 
-    const bounds = rawPositions.reduce(
+    const referenceBounds = referencePositions.reduce(
       (result, position) => ({
         minimum: result.minimum.map(
           (value, index) => Math.min(value, position[index]),
@@ -657,9 +970,10 @@ export function mountLatticeLab(options = {}) {
         maximum: [-Infinity, -Infinity, -Infinity],
       },
     );
-    const center = bounds.minimum.map(
-      (value, index) => (value + bounds.maximum[index]) / 2,
+    const referenceCenter = referenceBounds.minimum.map(
+      (value, index) => (value + referenceBounds.maximum[index]) / 2,
     );
+    const center = transformDisplayPosition(referenceCenter);
     miniatureRoot.children.forEach((object) => {
       if (object.isLine || object.isPoints) {
         const position = object.geometry.getAttribute("position");
@@ -689,13 +1003,14 @@ export function mountLatticeLab(options = {}) {
         object.position.sub(new THREE.Vector3(...center));
       }
     });
-    const repeatRadius = Math.max(
+    const referenceRepeatRadius = Math.max(
       0.1,
-      ...rawPositions.map((position) => Math.hypot(...position.map(
-        (value, index) => value - center[index],
+      ...referencePositions.map((position) => Math.hypot(...position.map(
+        (value, index) => value - referenceCenter[index],
       ))),
     );
-    miniatureRoot.scale.setScalar(1.95 / repeatRadius);
+    miniatureRoot.scale.setScalar(1.95 / referenceRepeatRadius);
+    miniatureRoot.add(miniatureEndpointAggregateGroup);
     miniatureRoot.userData.relationshipCount = network.relationshipCount;
     miniatureRoot.userData.expectedRelationshipCount =
       network.expectedRelationshipCount;
@@ -714,6 +1029,11 @@ export function mountLatticeLab(options = {}) {
       String(visibleSites.filter((site) => site.continuation).length);
     dom.miniatureCanvas.dataset.continuationMarkerCount =
       String(continuationMarkerPositions.size);
+    dom.miniatureCanvas.dataset.deformationAxis = compressionAxis;
+    dom.miniatureCanvas.dataset.deformationFactor =
+      compressionFactor.toFixed(6);
+    dom.miniatureCanvas.dataset.referenceDisplayScale =
+      miniatureRoot.scale.x.toFixed(9);
   }
 
   function rebuildCaseScene() {
@@ -751,6 +1071,11 @@ export function mountLatticeLab(options = {}) {
     });
     rebuildRepeatCellHighlight(repeatCellDisplayGraph);
     guideGroup.add(createDottedDisplayEnvelope(caseRecord.displayRadius));
+    dom.canvas.dataset.deformationAxis = compressionAxis;
+    dom.canvas.dataset.deformationFactor = compressionFactor.toFixed(6);
+    dom.canvas.dataset.displayEnvelopePolarAxis = "z";
+    dom.canvas.dataset.displayEnvelopeOrientationSource =
+      "shared-lattice-root-quaternion";
   }
 
   function selectCase(caseId) {
@@ -763,10 +1088,11 @@ export function mountLatticeLab(options = {}) {
     selectedSiteId = caseRecord.defaultSiteId;
     siteSelectionExplicit = false;
     focusSelected = false;
+    deformationBeta = 0;
     compressionFactor = 1;
     cameraViewHalfHeight = DEFAULT_VIEW_HALF_HEIGHT;
     rootGroup.position.set(0, 0, 0);
-    rootGroup.rotation.set(...DEFAULT_ROTATION);
+    rootGroup.quaternion.set(...createDefaultOrientationQuaternion());
     dom.caseSelect.value = caseRecord.id;
     rebuildCaseScene();
     updateCaseRecordPresentation();
@@ -797,12 +1123,11 @@ export function mountLatticeLab(options = {}) {
             repeatCellHighlighted && object.userData.segmentFits !== false;
         }
       });
-      lineGroup.visible = !repeatCellHighlighted;
       updateFixedMarkerSizes();
       render();
     });
-    listen(dom.compressionFactor, "input", applyCompressionControls);
-    listen(dom.compressionFactor, "change", applyCompressionControls);
+    listen(dom.deformationBeta, "input", applyCompressionControls);
+    listen(dom.deformationBeta, "change", applyCompressionControls);
     if (LATTICE_LAB_UI_FEATURES.primerCollapse) {
       listen(dom.primerToggle, "click", () => {
         dom.primer.dataset.primerCollapsed =
@@ -898,10 +1223,19 @@ export function mountLatticeLab(options = {}) {
   function updateCompressionPresentation(message = "") {
     const available = compressionAvailable();
     dom.compressionCard.dataset.available = String(available);
-    dom.compressionFactor.disabled = !available;
-    dom.compressionFactor.value = String(compressionFactor);
-    dom.compressionValue.value = `λ = ${compressionFactor.toFixed(2)}`;
+    dom.deformationBeta.disabled = !available;
+    dom.deformationBeta.value = String(deformationBeta);
+    dom.compressionValue.value = `β = ${deformationBeta.toFixed(2)}`;
     dom.compressionValue.textContent = dom.compressionValue.value;
+    const endpointDescription = deformationBeta === 0
+      ? "undeformed baseline"
+      : deformationBeta === 1
+        ? "maximum supported nondegenerate deformation"
+        : `static X-axis scale ${compressionFactor.toFixed(3)}`;
+    dom.deformationBeta.setAttribute(
+      "aria-valuetext",
+      `β = ${deformationBeta.toFixed(2)}, ${endpointDescription}`,
+    );
     const certificatePassed = activePeriodicCertificatePassed();
     dom.compressionCard.dataset.certificatePassed =
       String(certificatePassed);
@@ -909,18 +1243,27 @@ export function mountLatticeLab(options = {}) {
       dom.compressionStatus.textContent = message;
     } else if (certificatePassed) {
       dom.compressionStatus.textContent =
-        `Fixed X-axis map at λ = ${Number(compressionFactor.toFixed(6))}. ` +
+        `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
+        `${Number(compressionFactor.toFixed(6))}. ` +
+        "β = 0 is the undeformed baseline; β = 1 is the maximum supported " +
+        "nondegenerate deformation. " +
         "The periodically tiled stationary checkerboard passes the exact " +
         "receiver-centered inversion-pair check for both polarity receiver " +
         "classes: net acceleration contribution is zero at every site.";
     } else if (caseRecord.id === LATTICE_LAB_CASE_ID) {
       dom.compressionStatus.textContent =
-        `Fixed X-axis map at λ = ${Number(compressionFactor.toFixed(6))}. ` +
+        `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
+        `${Number(compressionFactor.toFixed(6))}. ` +
+        "β = 0 is the undeformed baseline; β = 1 is the maximum supported " +
+        "nondegenerate deformation. " +
         "The reference tiled-pattern certificate is unavailable in this " +
         "modified polarity state; no all-site zero result is shown.";
     } else {
       dom.compressionStatus.textContent =
-        `Fixed X-axis map at λ = ${Number(compressionFactor.toFixed(6))}. ` +
+        `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
+        `${Number(compressionFactor.toFixed(6))}. ` +
+        "β = 0 is the undeformed baseline; β = 1 is the maximum supported " +
+        "nondegenerate deformation. " +
         "Static transformed geometry only. No independent per-case periodic " +
         "cancellation check is attached, so no zero result is shown.";
     }
@@ -931,18 +1274,19 @@ export function mountLatticeLab(options = {}) {
       updateCompressionPresentation();
       return false;
     }
-    const nextFactor = Number(dom.compressionFactor.value);
+    const nextBeta = Number(dom.deformationBeta.value);
     if (
-      !Number.isFinite(nextFactor) ||
-      !(nextFactor > 0) ||
-      nextFactor > 1
+      !Number.isFinite(nextBeta) ||
+      nextBeta < 0 ||
+      nextBeta > 1
     ) {
       updateCompressionPresentation(
-        "Enter a compression factor greater than 0 and no greater than 1.",
+        "Enter β from 0 (undeformed) to 1 (maximum supported deformation).",
       );
       return false;
     }
-    compressionFactor = nextFactor;
+    deformationBeta = nextBeta;
+    compressionFactor = xAxisScaleFromDeformationBeta(deformationBeta);
     rebuildCaseScene();
     updateCompressionPresentation();
     updateCaseRecordPresentation();
@@ -958,7 +1302,9 @@ export function mountLatticeLab(options = {}) {
     polarityBySiteId = createReferencePolarityState(caseRecord);
     selectedSiteId = caseRecord.defaultSiteId;
     siteSelectionExplicit = false;
+    deformationBeta = 0;
     compressionFactor = 1;
+    rootGroup.quaternion.set(...createDefaultOrientationQuaternion());
     rebuildCaseScene();
     updateCompressionPresentation();
     updateCaseRecordPresentation();
@@ -1017,7 +1363,7 @@ export function mountLatticeLab(options = {}) {
     dom.caseGeometry.textContent =
       `${caseRecord.geometryLabel}; ${caseRecord.polarityRule}` +
       (compressed
-        ? `; static ${compressionAxis.toUpperCase()} coordinates scaled by λ = ${compressionFactor}`
+        ? `; static ${compressionAxis.toUpperCase()} deformation at β = ${deformationBeta} (scale ${compressionFactor})`
         : "");
     dom.caseNearest.textContent = compressed
       ? summarizeTransformedDistances("nearest")
@@ -1031,9 +1377,9 @@ export function mountLatticeLab(options = {}) {
     dom.caseBoundary.textContent = caseRecord.boundaryTreatment;
     dom.caseScope.textContent = caseRecord.calculationBoundaryTreatment +
       (compressed && caseRecord.id === LATTICE_LAB_CASE_ID
-        ? `; the inversion-pair certificate remains exact for this static λ = ${compressionFactor} transform`
+        ? `; the inversion-pair certificate remains exact for this static β = ${deformationBeta} deformation (X-axis scale ${compressionFactor})`
         : compressed
-          ? `; static X-axis display transform at λ = ${compressionFactor}; no per-case periodic cancellation certificate is supplied`
+          ? `; static X-axis display deformation at β = ${deformationBeta} (scale ${compressionFactor}); no per-case periodic cancellation certificate is supplied`
         : "");
     dom.primerTitle.textContent = caseRecord.primerTitle;
     dom.primerBody.textContent = "";
@@ -1049,11 +1395,6 @@ export function mountLatticeLab(options = {}) {
   }
 
   function updateConfigurationPresentation() {
-    dom.population.textContent =
-      "Each curated geometry has equal numbers of electrinos and positrinos.";
-    dom.miniatureKind.textContent = "Polarity Repeat Cell";
-    dom.miniatureState.textContent =
-      "Copy this colored tile by translation to continue the pattern.";
     [
       [dom.repeatVectorA, "a", transformDisplayPosition(caseRecord.repeatCell.vectors[0])],
       [dom.repeatVectorB, "b", transformDisplayPosition(caseRecord.repeatCell.vectors[1])],
@@ -1094,7 +1435,7 @@ export function mountLatticeLab(options = {}) {
         `the separate all-shell inversion certificate gives exact zero initial ` +
         `acceleration at every site` +
         (compressionFactor < 1
-          ? ` under this static ${compressionAxis.toUpperCase()}-axis λ = ${compressionFactor} map`
+          ? ` under this static ${compressionAxis.toUpperCase()}-axis β = ${deformationBeta} deformation (scale ${compressionFactor})`
           : "") +
         `. Stability and evolution are untested.`;
     } else if (caseRecord.accelerationCertificate) {
@@ -1108,13 +1449,37 @@ export function mountLatticeLab(options = {}) {
         `${receiverPolarity} has ` +
         `${summarizeShellPolarities(nearestShell)} at ${nearestShell.distance} ` +
         `and ${summarizeShellPolarities(nextLocalShell)} at ` +
-        `${nextLocalShell.distance} in the uncompressed reference geometry. ` +
+        `${nextLocalShell.distance} in the undeformed reference geometry. ` +
         (compressionFactor < 1
-          ? `The display applies a static X-axis λ = ${compressionFactor} transform. `
+          ? `The display applies a static X-axis β = ${deformationBeta} deformation with scale ${compressionFactor}. `
           : "") +
         `This is a static geometry/reference case, ` +
         `not an acceleration, all-lattice cancellation, stability, or evolution result.`;
     }
+    const ledgerViewModel = createLatticeLabLedgerViewModel({
+      caseRecord,
+      ledger,
+      certificatePassed: activePeriodicCertificatePassed(),
+      finiteNonperiodic: caseRecord.calculationScope === "finite-nonperiodic",
+      siteSelectionExplicit,
+    });
+    renderLatticeLabLedgerViewModel({
+      documentLike,
+      dom: {
+        root: dom.ledger,
+        receiver: dom.ledgerReceiver,
+        result: dom.ledgerResult,
+        icon: dom.ledgerIcon,
+        outcome: dom.ledgerOutcome,
+        residual: dom.ledgerResidual,
+        statement: dom.ledgerStatement,
+        shells: dom.ledgerShells,
+        shellScope: dom.ledgerShellScope,
+        calculation: dom.ledgerCalculation,
+        calculationRows: dom.ledgerCalculationRows,
+      },
+      viewModel: ledgerViewModel,
+    });
     updatePolarityMaterials();
     updateFixedMarkerSizes();
   }
@@ -1157,6 +1522,11 @@ export function mountLatticeLab(options = {}) {
       pixelOffset * (2 * cameraViewHalfHeight / Math.max(1, canvasRect.height));
     dom.app.dataset.usableCanvasCenterX = targetCenterX.toFixed(2);
     dom.app.dataset.latticeLayoutOffsetX = layoutWorldOffsetX.toFixed(4);
+    const legendRight = inspectorOverlapsCanvas
+      ? Math.max(16, canvasRect.right - inspectorRect.left + 12)
+      : 16;
+    dom.polarityLegend.style.right = `${legendRight.toFixed(2)}px`;
+    dom.polarityLegend.dataset.markerDiameterPx = String(2 * MARKER_RADIUS_PX);
     updateFocusedPosition();
   }
 
@@ -1174,6 +1544,11 @@ export function mountLatticeLab(options = {}) {
     pointerId = event.pointerId;
     pointerLastX = event.clientX;
     pointerLastY = event.clientY;
+    pointerLastTrackballPoint = projectTrackballPoint(
+      event.clientX,
+      event.clientY,
+      target.getBoundingClientRect(),
+    );
     pointerTravel = 0;
     target.setPointerCapture?.(event.pointerId);
     target.focus();
@@ -1188,12 +1563,26 @@ export function mountLatticeLab(options = {}) {
     pointerLastX = event.clientX;
     pointerLastY = event.clientY;
     pointerTravel += Math.abs(deltaX) + Math.abs(deltaY);
-    rootGroup.rotation.y += deltaX * 0.007;
-    rootGroup.rotation.x = clamp(
-      rootGroup.rotation.x + deltaY * 0.005,
-      -1.25,
-      1.1,
+    const target = dragSource === "miniature"
+      ? dom.miniatureCanvas
+      : dom.canvas;
+    const nextTrackballPoint = projectTrackballPoint(
+      event.clientX,
+      event.clientY,
+      target.getBoundingClientRect(),
     );
+    const nextQuaternion = applyTrackballDragQuaternion(
+      [
+        rootGroup.quaternion.x,
+        rootGroup.quaternion.y,
+        rootGroup.quaternion.z,
+        rootGroup.quaternion.w,
+      ],
+      pointerLastTrackballPoint,
+      nextTrackballPoint,
+    );
+    rootGroup.quaternion.set(...nextQuaternion);
+    pointerLastTrackballPoint = nextTrackballPoint;
     updateFocusedPosition();
     render();
   }
@@ -1266,19 +1655,134 @@ export function mountLatticeLab(options = {}) {
     const viewportHeight = Math.max(1, dom.canvas.getBoundingClientRect().height);
     markerWorldRadius =
       MARKER_RADIUS_PX * (2 * cameraViewHalfHeight / viewportHeight);
-    siteMeshes.forEach((mesh) => mesh.scale.setScalar(markerWorldRadius));
+    const miniatureViewportHeight = Math.max(
+      1,
+      dom.miniatureCanvas.getBoundingClientRect().height,
+    );
+    const miniatureWorldRadius =
+      MARKER_RADIUS_PX *
+      (2 * miniatureCamera.top / miniatureViewportHeight);
+    const miniatureLocalRadius =
+      miniatureWorldRadius / Math.max(1e-7, miniatureRoot.scale.x);
+    const endpointActive = deformationBeta === 1;
+    endpointAggregateGroup.clear();
+    miniatureEndpointAggregateGroup.clear();
+
+    let mainEndpointAggregation = null;
+    let miniatureEndpointAggregation = null;
+    if (endpointActive) {
+      const mainEdges = edgeLines.map(({ userData: { edge } }) => ({
+        id: [edge.fromSiteId, edge.toSiteId].sort().join("|"),
+        fromSiteId: edge.fromSiteId,
+        toSiteId: edge.toSiteId,
+      }));
+      mainEndpointAggregation = createEndpointVisualAggregation(
+        caseRecord.sites.map((site) => ({
+          id: site.id,
+          position: transformDisplayPosition(site.position),
+        })),
+        mainEdges,
+        2 * markerWorldRadius + 1e-9,
+      );
+      mainEndpointAggregation.collapsedGroups.forEach((group) => {
+        const aggregate = new THREE.Mesh(
+          sphereGeometry,
+          endpointAggregateMaterial,
+        );
+        aggregate.position.fromArray(group.position);
+        aggregate.scale.setScalar(markerWorldRadius);
+        aggregate.userData.kind = "endpoint-collapsed-site-group";
+        aggregate.userData.memberSiteIds = group.memberIds;
+        endpointAggregateGroup.add(aggregate);
+      });
+
+      const miniatureSiteMeshes = miniatureRoot.children.filter((object) =>
+        object.userData.kind === "repeat-cell-site" ||
+        object.userData.kind === "repeat-cell-periodic-continuation"
+      );
+      const miniatureEdges = miniatureRoot.children
+        .filter((object) =>
+          object.userData.kind === "repeat-cell-neighbor" ||
+          object.userData.kind === "repeat-cell-periodic-neighbor"
+        )
+        .map((line) => ({
+          id: line.userData.edgeIdentity,
+          fromSiteId: line.userData.fromSiteId,
+          toSiteId: line.userData.toSiteId,
+        }));
+      miniatureEndpointAggregation = createEndpointVisualAggregation(
+        miniatureSiteMeshes.map((mesh) => ({
+          id: mesh.userData.siteId,
+          position: mesh.position.toArray(),
+        })),
+        miniatureEdges,
+        2 * miniatureLocalRadius + 1e-9,
+      );
+      miniatureEndpointAggregation.collapsedGroups.forEach((group) => {
+        const aggregate = new THREE.Mesh(
+          sphereGeometry,
+          endpointAggregateMaterial,
+        );
+        aggregate.position.fromArray(group.position);
+        aggregate.scale.setScalar(miniatureLocalRadius);
+        aggregate.userData.kind = "repeat-cell-endpoint-collapsed-site-group";
+        aggregate.userData.memberSiteIds = group.memberIds;
+        miniatureEndpointAggregateGroup.add(aggregate);
+      });
+    }
+
+    siteMeshes.forEach((mesh, siteId) => {
+      mesh.scale.setScalar(markerWorldRadius);
+      mesh.visible = !mainEndpointAggregation?.groupBySiteId.get(siteId)?.collapsed;
+    });
+    const mainEndpointExternalById = new Map(
+      mainEndpointAggregation?.externalEdges.map((edge) => [edge.id, edge]) ?? [],
+    );
+    const selectedMainEdgeIdentities = new Set(
+      repeatHighlightGroup.userData.mainEdgeIdentities ?? [],
+    );
     const clippedMainEdgeIdentities = [];
+    const suppressedMainEdgeIdentities = [];
+    const collapsedInternalMainEdgeIdentities = [];
+    const redundantEndpointMainEdgeIdentities = [];
     edgeLines.forEach((line) => {
       const edge = line.userData.edge;
+      const mainEdgeIdentity = [edge.fromSiteId, edge.toSiteId]
+        .sort().join("|");
       const startSite = getLatticeSite(caseRecord, edge.fromSiteId);
       const endSite = getLatticeSite(caseRecord, edge.toSiteId);
-      const start = transformDisplayPosition(startSite.position);
-      const end = transformDisplayPosition(endSite.position);
+      if (mainEndpointAggregation?.internalEdgeIds.includes(mainEdgeIdentity)) {
+        line.visible = false;
+        collapsedInternalMainEdgeIdentities.push(mainEdgeIdentity);
+        return;
+      }
+      if (
+        mainEndpointAggregation?.redundantExternalEdgeIds.includes(
+          mainEdgeIdentity,
+        )
+      ) {
+        line.visible = false;
+        redundantEndpointMainEdgeIdentities.push(mainEdgeIdentity);
+        return;
+      }
+      const endpointEdge = mainEndpointExternalById.get(mainEdgeIdentity);
+      const start = endpointEdge?.fromGroup?.position ??
+        transformDisplayPosition(startSite.position);
+      const end = endpointEdge?.toGroup?.position ??
+        transformDisplayPosition(endSite.position);
       const distance = Math.hypot(...end.map(
         (value, index) => value - start[index],
       ));
       if (distance <= 2 * markerWorldRadius) {
         line.visible = false;
+        return;
+      }
+      if (
+        repeatCellHighlighted &&
+        selectedMainEdgeIdentities.has(mainEdgeIdentity)
+      ) {
+        line.visible = false;
+        suppressedMainEdgeIdentities.push(mainEdgeIdentity);
         return;
       }
       line.visible = true;
@@ -1293,40 +1797,112 @@ export function mountLatticeLab(options = {}) {
       position.needsUpdate = true;
       line.geometry.computeBoundingSphere();
       clippedMainEdgeIdentities.push(
-        [edge.fromSiteId, edge.toSiteId].sort().join("|"),
+        mainEdgeIdentity,
       );
     });
     dom.canvas.dataset.clippedNearestEdgeCount =
       String(clippedMainEdgeIdentities.length);
     dom.canvas.dataset.clippedNearestEdgeIdentities =
       clippedMainEdgeIdentities.join(";");
-    const miniatureViewportHeight = Math.max(
-      1,
-      dom.miniatureCanvas.getBoundingClientRect().height,
+    dom.canvas.dataset.suppressedNearestEdgeCount =
+      String(suppressedMainEdgeIdentities.length);
+    dom.canvas.dataset.suppressedNearestEdgeIdentities =
+      suppressedMainEdgeIdentities.join(";");
+    dom.canvas.dataset.endpointAggregateGroupCount = String(
+      mainEndpointAggregation?.collapsedGroups.length ?? 0,
     );
-    const miniatureWorldRadius =
-      MARKER_RADIUS_PX *
-      (2 * miniatureCamera.top / miniatureViewportHeight);
-    const miniatureLocalRadius =
-      miniatureWorldRadius / Math.max(1e-7, miniatureRoot.scale.x);
+    dom.canvas.dataset.endpointAggregateSiteCount = String(
+      mainEndpointAggregation?.collapsedGroups.reduce(
+        (count, group) => count + group.memberIds.length,
+        0,
+      ) ?? 0,
+    );
+    dom.canvas.dataset.endpointInternalEdgeCount =
+      String(collapsedInternalMainEdgeIdentities.length);
+    dom.canvas.dataset.endpointRedundantExternalEdgeCount =
+      String(redundantEndpointMainEdgeIdentities.length);
     miniatureRoot.children
       .filter((object) =>
         object.userData.kind === "repeat-cell-site" ||
         object.userData.kind === "repeat-cell-periodic-continuation"
       )
-      .forEach((mesh) => mesh.scale.setScalar(miniatureLocalRadius));
+      .forEach((mesh) => {
+        mesh.scale.setScalar(miniatureLocalRadius);
+        mesh.visible = !miniatureEndpointAggregation?.groupBySiteId
+          .get(mesh.userData.siteId)?.collapsed;
+      });
     const clippedMiniatureEdgeIdentities = [];
+    const overlapMiniatureEdgeIdentities = [];
+    const collapsedInternalMiniatureEdgeIdentities = [];
+    const redundantEndpointMiniatureEdgeIdentities = [];
+    const miniatureEndpointExternalById = new Map(
+      miniatureEndpointAggregation?.externalEdges.map(
+        (edge) => [edge.id, edge],
+      ) ?? [],
+    );
     miniatureRoot.children
       .filter((object) =>
         object.userData.kind === "repeat-cell-neighbor" ||
         object.userData.kind === "repeat-cell-periodic-neighbor"
       )
       .forEach((line) => {
+        if (
+          miniatureEndpointAggregation?.internalEdgeIds.includes(
+            line.userData.edgeIdentity,
+          )
+        ) {
+          line.visible = false;
+          collapsedInternalMiniatureEdgeIdentities.push(
+            line.userData.edgeIdentity,
+          );
+          return;
+        }
+        if (
+          miniatureEndpointAggregation?.redundantExternalEdgeIds.includes(
+            line.userData.edgeIdentity,
+          )
+        ) {
+          line.visible = false;
+          redundantEndpointMiniatureEdgeIdentities.push(
+            line.userData.edgeIdentity,
+          );
+          return;
+        }
+        const endpointEdge = miniatureEndpointExternalById.get(
+          line.userData.edgeIdentity,
+        );
+        const startPosition = endpointEdge?.fromGroup?.position ??
+          line.userData.startPosition;
+        const endPosition = endpointEdge?.toGroup?.position ??
+          line.userData.endPosition;
+        const startRadius = line.userData.startHasSphere
+          ? miniatureLocalRadius
+          : 0;
+        const endRadius = line.userData.endHasSphere
+          ? miniatureLocalRadius
+          : 0;
+        const distance = Math.hypot(...endPosition.map(
+          (value, index) => value - startPosition[index],
+        ));
+        if (distance <= startRadius + endRadius) {
+          line.visible = true;
+          line.material = miniatureOverlapLineMaterial;
+          line.renderOrder = 4;
+          const position = line.geometry.getAttribute("position");
+          position.setXYZ(0, ...startPosition);
+          position.setXYZ(1, ...endPosition);
+          position.needsUpdate = true;
+          line.geometry.computeBoundingSphere();
+          clippedMiniatureEdgeIdentities.push(line.userData.edgeIdentity);
+          overlapMiniatureEdgeIdentities.push(line.userData.edgeIdentity);
+          return;
+        }
+        line.visible = true;
         const segment = createClippedNeighborSegment(
-          line.userData.startPosition,
-          line.userData.endPosition,
-          line.userData.startHasSphere ? miniatureLocalRadius : 0,
-          line.userData.endHasSphere ? miniatureLocalRadius : 0,
+          startPosition,
+          endPosition,
+          startRadius,
+          endRadius,
         );
         const position = line.geometry.getAttribute("position");
         position.setXYZ(0, ...segment.start);
@@ -1339,20 +1915,64 @@ export function mountLatticeLab(options = {}) {
       String(clippedMiniatureEdgeIdentities.length);
     dom.miniatureCanvas.dataset.clippedEdgeIdentities =
       clippedMiniatureEdgeIdentities.join(";");
+    dom.miniatureCanvas.dataset.overlapConnectorCount =
+      String(overlapMiniatureEdgeIdentities.length);
+    dom.miniatureCanvas.dataset.overlapConnectorIdentities =
+      overlapMiniatureEdgeIdentities.join(";");
+    dom.miniatureCanvas.dataset.endpointAggregateGroupCount = String(
+      miniatureEndpointAggregation?.collapsedGroups.length ?? 0,
+    );
+    dom.miniatureCanvas.dataset.endpointInternalEdgeCount =
+      String(collapsedInternalMiniatureEdgeIdentities.length);
+    dom.miniatureCanvas.dataset.endpointRedundantExternalEdgeCount =
+      String(redundantEndpointMiniatureEdgeIdentities.length);
     dom.canvas.dataset.sphereRadiusPx = String(MARKER_RADIUS_PX);
     dom.miniatureCanvas.dataset.sphereRadiusPx = String(MARKER_RADIUS_PX);
     const clippedHighlightEdgeIdentities = [];
+    const collapsedInternalHighlightEdgeIdentities = [];
+    const redundantEndpointHighlightEdgeIdentities = [];
+    const seenEndpointHighlightGroupPairs = new Set();
     repeatHighlightGroup.children
       .filter((object) =>
         object.userData.kind === "repeat-cell-highlight-neighbor"
       )
       .forEach((highlight) => {
-        const transformedStart = transformDisplayPosition(
+        let transformedStart = transformDisplayPosition(
           highlight.userData.startPosition,
         );
-        const transformedEnd = transformDisplayPosition(
+        let transformedEnd = transformDisplayPosition(
           highlight.userData.endPosition,
         );
+        if (mainEndpointAggregation) {
+          const [fromSiteId, toSiteId] =
+            highlight.userData.mainEdgeIdentity.split("|");
+          const fromGroup = mainEndpointAggregation.groupBySiteId.get(
+            fromSiteId,
+          );
+          const toGroup = mainEndpointAggregation.groupBySiteId.get(toSiteId);
+          if (fromGroup?.id === toGroup?.id) {
+            highlight.userData.segmentFits = false;
+            highlight.visible = false;
+            collapsedInternalHighlightEdgeIdentities.push(
+              highlight.userData.edgeIdentity,
+            );
+            return;
+          }
+          if (fromGroup && toGroup) {
+            const groupPair = [fromGroup.id, toGroup.id].sort().join("|");
+            if (seenEndpointHighlightGroupPairs.has(groupPair)) {
+              highlight.userData.segmentFits = false;
+              highlight.visible = false;
+              redundantEndpointHighlightEdgeIdentities.push(
+                highlight.userData.edgeIdentity,
+              );
+              return;
+            }
+            seenEndpointHighlightGroupPairs.add(groupPair);
+            transformedStart = fromGroup.position;
+            transformedEnd = toGroup.position;
+          }
+        }
         const distance = Math.hypot(...transformedEnd.map(
           (value, index) => value - transformedStart[index],
         ));
@@ -1386,10 +2006,13 @@ export function mountLatticeLab(options = {}) {
       String(clippedHighlightEdgeIdentities.length);
     dom.canvas.dataset.clippedRepeatHighlightEdgeIdentities =
       clippedHighlightEdgeIdentities.join(";");
+    dom.canvas.dataset.endpointInternalHighlightEdgeCount =
+      String(collapsedInternalHighlightEdgeIdentities.length);
+    dom.canvas.dataset.endpointRedundantHighlightEdgeCount =
+      String(redundantEndpointHighlightEdgeIdentities.length);
   }
 
   function updateTripod() {
-    const origin = { x: 31, y: 31 };
     const axes = [
       ["x", new THREE.Vector3(1, 0, 0)],
       ["y", new THREE.Vector3(0, 1, 0)],
@@ -1397,16 +2020,16 @@ export function mountLatticeLab(options = {}) {
     ];
     axes.forEach(([axis, vector]) => {
       vector.applyQuaternion(rootGroup.quaternion);
-      const endpoint = {
-        x: origin.x + vector.x * 21,
-        y: origin.y - vector.y * 21,
-      };
+      const layout = createTripodAxisLayout(axis, [vector.x, vector.y]);
       const line = dom.tripod.querySelector(`[data-axis-line="${axis}"]`);
       const label = dom.tripod.querySelector(`[data-axis-label="${axis}"]`);
-      line?.setAttribute("x2", endpoint.x.toFixed(2));
-      line?.setAttribute("y2", endpoint.y.toFixed(2));
-      label?.setAttribute("x", (endpoint.x + 3).toFixed(2));
-      label?.setAttribute("y", (endpoint.y + 3).toFixed(2));
+      line?.setAttribute("x1", layout.negativeEndpoint.x.toFixed(2));
+      line?.setAttribute("y1", layout.negativeEndpoint.y.toFixed(2));
+      line?.setAttribute("x2", layout.positiveEndpoint.x.toFixed(2));
+      line?.setAttribute("y2", layout.positiveEndpoint.y.toFixed(2));
+      label?.setAttribute("x", layout.labelPosition.x.toFixed(2));
+      label?.setAttribute("y", layout.labelPosition.y.toFixed(2));
+      label?.setAttribute("text-anchor", layout.labelAnchor);
     });
   }
 

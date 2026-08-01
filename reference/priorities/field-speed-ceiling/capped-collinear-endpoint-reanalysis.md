@@ -5,7 +5,8 @@
 contact one-jet added; open post-contact continuation `Not advanced`
 **Scope:** stationary mirror-symmetric collinear release under the proposed closed primitive domain $\|\mathbf V\|\le c_f=1$.
 **Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md);
-[Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md).
+[Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md);
+[Albert Einstein second read-only review, captured 2026-08-01](albert-einstein-second-review-response-2026-08-01.md).
 
 ## Conditional input through first field-speed arrival
 
@@ -262,6 +263,30 @@ Claim grade: `derived conditional obstruction`. It is falsified by a
 same-record post-event census showing that the stated partner emission is not
 admitted under the unchanged ordinary rule, or by an independently derived
 boundary update that changes the event before this ordinary row is formed.
+
+### One-sided zero-range comparison
+
+The two sides of the contact are not interchangeable:
+
+1. On the half-open incoming cap segment, every reception time
+   $T<T_{\mathrm c}$ still has one finite ordinary partner ledger. Its net
+   partner contribution is forward and speed-increasing, so the proposed
+   response removes it only after that finite ledger is formed.
+2. At $T=T_{\mathrm c}$, the positive-delay partner family is nonisolated and
+   no complete ordinary ledger exists. Only the separate proposed event reset
+   assigns the zero atomic velocity update.
+3. On the prescribed unaccelerated straight separating right trace, the first
+   positive-delay partner row is backward and proportional to $\delta^{-2}$,
+   so the proposed response retains it.
+
+The third statement has not been proved for every sufficiently regular
+separating trace. That extension, including both channels, competing strata,
+and the full leading and remainder response, is FSC-005.
+
+Plainly: before contact the cap removes a forward row at each ordinary time;
+at contact there is no ordinary row to cap; after contact the one prescribed
+straight path produces a backward row that the cap cannot remove. These three
+facts do not join themselves into a unique motion through contact.
 
 ## Local existence and uniqueness verdict
 

@@ -2,9 +2,8 @@
 
 ## Current
 
-- Status: `Hale, Hörmander, Thurston, and Einstein read-only reviews
-  integrated; FSC-006 distributional formulation ranked first; no canonical
-  adoption`
+- Status: `Hale, Hörmander, Thurston, and two Einstein read-only reviews
+  integrated; FSC-006a far-part theorem ranked first; no canonical adoption`
 - Claim level: proposed foundational alternative; no change to the canonical
   Master Equation, ontology, EOM solver contract, or reader-facing corpus.
 - Operator proposal under examination: each architrino has an admissible speed
@@ -92,14 +91,22 @@ proves per-channel cap-admissible root monotonicity, and rejects the proposed
 quotient-response lemma by counterexample. No contact measure or Lorentz
 result follows.
 
-The best next object is FSC-006: define the source-provenanced receiver-side
-contact and competing-stratum measures, then prove or refute the
-cap-admissible single-root $D_t\to0^+$ limit and
-parameterization-independent weak-* convergence in the stated BV/Radon
-topology. Only after that work passes a narrow
-distributional-formulation review can the
-[Near-Contact Separating-Trace Incompatibility Theorem Target](near-contact-separating-trace-incompatibility-theorem-target.md)
-proceed.
+Einstein's second read-only pass is preserved with independent dispositions in
+the
+[Einstein Second Review Response](albert-einstein-second-review-response-2026-08-01.md).
+It strengthens root monotonicity to Lipschitz histories, proves the rigid
+characteristic-interval classification and simple-branch total-variation
+transfer, adds a constructive frozen-ledger approximation, and narrows the
+FSC-006/FSC-005 queue. It does not turn per-channel geometry into a complete
+event law, prove the proposed far-part limit from the current topology, or
+make MEC-007 the only possible ceiling-activation test.
+
+The best next object is FSC-006a: prove or refute the truncated far-part weak-*
+limit under explicit branch-collapse, receiver-trace, kernel, label, competing-
+stratum, and perturbation-family hypotheses. FSC-006b/FSC-005 then owns the
+zero-range raw-measure tail, complete-ledger sign, and projected remainder.
+FSC-007 remains an independent regular-chart theorem track using the derived
+root-count and root-stability lemmas.
 
 The packet is not ready for a Tao-style well-posedness review as a posed
 evolution problem. FSC-005, FSC-006, FSC-007, and the deferred FSC-008
@@ -111,6 +118,8 @@ diagnostic remain `Not advanced`, and no successor review has been dispatched.
   owns the `Awaiting verification` first-field-speed input and unchanged
   sharp-law post-threshold obstruction. Field-Speed calculations may consume
   them only conditionally; MEC-007 does not select a ceiling rule.
+  It is the current sub-cap mirror activation test, not the exclusive way a
+  closed-domain proposal could reach or start on its boundary.
 - [MEC-002](../master-equation-closure/work-queue.md#mec-002--causal-wake-update-law),
   [MEC-003](../master-equation-closure/work-queue.md#mec-003--finite-coincident-same-transmitter-transition),
   [MEC-004](../master-equation-closure/work-queue.md#mec-004--same-update-conserved-accounts), and
@@ -122,10 +131,11 @@ diagnostic remain `Not advanced`, and no successor review has been dispatched.
 Plainly: this is a dedicated place to ask whether a speed ceiling should become
 a foundational rule, and what else would have to change if it did. The
 compatibility map is complete. The cap response is now well understood when
-its incoming ledger is supplied, but the contact measure and the coupled
-history-to-ledger evolution are still open. Nothing has been adopted, and no
-full evolution problem is yet posed for well-posedness review.
+its incoming ledger is supplied, and the per-channel exceptional geometries
+are finite and explicit. Their event dispositions, the contact measure, and
+the coupled history-to-ledger evolution remain open. Nothing has been adopted,
+and no full evolution problem is yet posed for well-posedness review.
 
-Closure goal: complete the raw receiver-measure limit in FSC-006, then close
-the coupled history-to-ledger theorem in FSC-007 without importing a quotient
-response or observer-level law.
+Closure goal: prove or refute FSC-006a's far-part weak-* limit, resolve the
+FSC-006b/FSC-005 zero-range tail, and close FSC-007's regular history-to-ledger
+theorem without importing a quotient response or observer-level law.

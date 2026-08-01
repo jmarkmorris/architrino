@@ -5,7 +5,8 @@
 **Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md);
 [Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md);
 [Bill Thurston read-only review, captured 2026-08-01](bill-thurston-review-response-2026-08-01.md);
-[Albert Einstein read-only review, captured 2026-08-01](albert-einstein-review-response-2026-08-01.md).
+[Albert Einstein read-only review, captured 2026-08-01](albert-einstein-review-response-2026-08-01.md);
+[Albert Einstein second read-only review, captured 2026-08-01](albert-einstein-second-review-response-2026-08-01.md).
 
 ## Purpose
 
@@ -26,11 +27,11 @@ develops only a possible alternative model.
 | Euclidean void, absolute time, persistent paths, causal wakes at $c_f$, ordinary positive-delay simple roots, and the regular Master Equation | `canonical premise` | Inherited unchanged from the canonical corpus. These premises do not imply a primitive speed ceiling. |
 | First field-speed arrival, incoming simple partner root, and unchanged-sharp-law post-threshold obstruction in the stationary mirror encounter | `conditional input` | Owned by MEC-007, whose lifecycle status is `Awaiting verification`. This document may reason conditionally from that packet but does not treat its input as accepted or independently verified. |
 | Complete constrained-response axiom: closed primitive velocity ball, absolutely continuous regular-chart velocity, radial normal-cone reaction, and response only after a complete finite ordinary net ledger is formed | `proposed foundational law` | One complete regular-chart axiom under discussion; not canonical and not adopted here. Its tangent-cone projection and least-change formula are derived a.e. from these clauses, not from the bare speed inequality. It introduces no new numerical scale and has no value when the ordinary net ledger is incomplete, nonordinary, or non-locally-finite. |
-| Frozen-ledger constrained evolution and cap-admissible per-channel root monotonicity | `derived regular-chart results` | For an externally supplied $L^1_{\mathrm{loc}}$ ledger, the normal-cone inclusion has one absolutely continuous velocity solution. On any cap-admissible retained transmitter history, one ordered channel has an empty, singleton, or characteristic-interval root set. Neither result constructs the coupled history-to-ledger map or a contact measure. |
+| Frozen-ledger constrained evolution, cap-admissible per-channel root classification, and simple-branch total-variation transfer | `derived regular-chart results` | For an externally supplied $L^1_{\mathrm{loc}}$ ledger, the normal-cone inclusion has one absolutely continuous velocity solution. On any Lipschitz cap-admissible retained transmitter history, one ordered channel is empty, has one simple or degenerate isolated root, or has one rigid characteristic interval. On an injective simple branch with $D_t,D_r>0$, receiver-time total variation transfers exactly to emission time. None of these results constructs the coupled history-to-ledger map, an event disposition, or the FSC-006 contact measure. |
 | Isolated-crossing rule and inactive co-moving same-transmitter interval | `proposed admission convention` | Limited to the stated same-transmitter geometry. It does not classify partner contact, zero separation, folds, or a general $D_t=0$ event. |
 | Minimal collinear partner-contact convention: no ordinary row at exact coincidence, separately retained source measures, and proposed event coefficient $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$ | `proposed event postulate` | Selected for review only for the stated exact same-path mirror-collinear partner coincidence. Zero event coefficient is not a distributional cancellation, finite-part value, or regulator-independent limit. Its reset returns only an outgoing contact one-jet. |
 | History phase space, projected state-dependent-delay solution concept, regular-root assumptions, post-event compatibility, receiver-side measure decomposition, and weak-limit topology | `unmet formulation and theorem obligations` | Required before perturbative reduction, forward invariance, existence, uniqueness, or continuation can be claimed for a solution rather than for the pointwise response algebra. |
-| Admission, ownership, update, and outgoing-history semantics for all other nonordinary contact families | `missing event-domain postulate` | No general event disposition is selected. Until this is supplied, the document is not a complete closed-domain dynamical system. |
+| Admission, ownership, update, and outgoing-history semantics for all other nonordinary contact families | `missing event-domain postulate` | Positive-delay geometry is now classified per ordered channel, but no general disposition is selected for degenerate isolated roots, rigid characteristic intervals, their endpoints, the excluded diagonal, source-identity variants, or simultaneous cross-channel strata. Until these are supplied, the document is not a complete closed-domain dynamical system. |
 | Straight collinear cap segment | `conditional hypothesis` | Assumes the MEC-007 input, the complete constrained-response axiom, and the limited same-transmitter admission convention. |
 | Open-segment root census, finite accumulated old-partner row, partner-contact obstruction, velocity-preserving outgoing contact one-jet, and first transverse variation | `derived conditional result` | The outgoing one-jet additionally assumes the proposed minimal collinear partner-contact reset. No right-hand path or open post-contact solution follows. |
 | Thirty-root inventory on the prescribed six-path geometry | `derived reference-path theorem` | Exact for the declared labeled paths. Their primary topological object is a loop in collision-free configuration space, not a six-component spatial link; the paths are not evolved or retained dynamics. |
@@ -38,9 +39,10 @@ develops only a possible alternative model.
 
 Plainly: the document uses canonical root geometry, one complete proposed
 regular-chart response law, one limited self-contact convention, and one
-newly selected but narrowly collinear partner-contact postulate. Two useful
-regular-chart consequences are now proved, but the coupled delayed-history
-problem and general nonordinary event law are still missing. The calculations
+newly selected but narrowly collinear partner-contact postulate. Several useful
+regular-chart consequences are now proved, including a finite per-channel
+geometry catalogue, but the coupled delayed-history problem and general
+nonordinary event law are still missing. The calculations
 therefore remain conditional tests of a partial model rather than an adopted
 ceiling dynamics.
 
@@ -493,12 +495,64 @@ or different limits for admissible perturbation families refutes this
 candidate reduction. Convergence of root counts alone proves none of these
 measure statements.
 
-The cap-admissible root-monotonicity theorem below implies that one ordered
-channel can have at most one isolated simple root. Thus FSC-006 must center on
-a single branch with $D_t\to0^+$ resolving a characteristic interval, while
-retaining label-separated competing channels. It may not use a quotient of an
-infinite raw ledger unless a new nonordinary response law is proposed: the
+The cap-admissible root-classification theorem below implies that one ordered
+channel can have at most one isolated simple root. FSC-006 therefore retains
+label-separated channels and studies a single simple branch approaching a
+characteristic interval or zero-range endpoint. It may not use a quotient of
+an infinite raw ledger unless a new nonordinary response law is proposed: the
 current foundational proposal forms a complete finite raw ledger first.
+
+#### Simple-branch total-variation transfer and zero-range localization
+
+Let $S(T)$ be an injective simple-root branch on a receiver-time set $B$, and
+assume $D_t,D_r>0$. Because
+
+$$
+\frac{dS}{dT}=\frac{D_r}{D_t},
+$$
+
+change of variables gives the exact identity
+
+$$
+\int_B
+\frac{\|\mathbf K(T,S(T))\|}{D_t(T,S(T))}\,dT
+=
+\int_{S(B)}
+\frac{\|\mathbf K(T(s),s)\|}{D_r(T(s),s)}\,ds.
+$$
+
+Consequently, positive range and $D_r$ floors give a uniform branch total-
+variation bound that is independent of a vanishing $D_t$ floor. This does not
+apply when $D_r$ also vanishes or when the branch ceases to be injective.
+
+In the declared mirror-contact channel,
+
+$$
+D_r=2c_f,
+\qquad
+r=c_f(T_{\mathrm c}-s),
+$$
+
+so the transferred density is proportional to
+$(T_{\mathrm c}-s)^{-2}$. Every truncated far part
+$s\le T_{\mathrm c}-\rho$ is finite; the total variation diverges as
+$\rho\downarrow0$. Claim grade: `derived for the simple-branch transfer and
+mirror localization`.
+
+FSC-006a must still prove or refute a parameterization-independent weak-*
+limit for the truncated far part. That theorem requires uniform branch
+collapse, receiver left-trace and kernel convergence along the collapsing
+reception times, label retention, competing-stratum routing, and independence
+from the admissible perturbation family. The current topology's uniform path
+and $L^1$-velocity convergence does not by itself supply those moving-time
+trace limits. FSC-006b and FSC-005 jointly own the remaining zero-range raw-
+measure tail, complete-ledger sign, and projected-remainder control.
+
+Plainly: a small transmitter Jacobian makes one instantaneous row large, but
+it also squeezes the receiver-time interval carrying that row. Away from zero
+range those effects cancel in integrated size. The mirror chart's unresolved
+singularity is the inverse-square endpoint, and even its finite far part still
+needs a theorem saying every admissible approximation gives the same limit.
 
 #### Open-domain fold total-variation negative control
 
@@ -555,10 +609,10 @@ perturbation in that class.
 
 Plainly: in the open model, one tangent root can split into two ordinary roots
 whose received measure grows without bound. The ceiling excludes that exact
-two-root pattern within one channel, but it does not make the remaining
-single-root approach to a characteristic interval finite. FSC-006 still has
-to test the raw labeled receiver measure; this calculation is not a contact
-law.
+two-root pattern within one channel. The transfer theorem makes a closed-
+channel simple branch finite away from zero range, but the mirror endpoint and
+its perturbation-independent limit remain unresolved. This fold calculation
+is not a contact law.
 
 Plainly: Hörmander’s correction turns “the roots split correctly” into a real
 measure question. The source records, received acceleration, and velocity jump
@@ -826,6 +880,28 @@ $$
 \int_{T_0}^{T}\|\mathbf f_1-\mathbf f_2\|\,dT'.
 $$
 
+A constructive catching-up scheme makes the existence route explicit. For a
+partition $T_0<T_1<\cdots<T_m$, set
+
+$$
+\mathbf F_k
+=
+\int_{T_k}^{T_{k+1}}\mathbf f(T)\,dT,
+\qquad
+\mathbf V_{k+1}
+=
+\Pi_{\mathcal B_{c_f}}\!\left(\mathbf V_k+\mathbf F_k\right).
+$$
+
+Nonexpansiveness of the projection gives
+$\|\mathbf V_{k+1}-\mathbf V_k\|\le\|\mathbf F_k\|$. The interpolants are
+therefore equi-absolutely-continuous for $L^1$ input; they are equi-Lipschitz
+when the input is bounded. The projection variational inequality supplies the
+discrete normal-cone reaction. Compactness and passage to that inequality
+give a subsequential solution, while the contraction estimate gives
+uniqueness and hence convergence of the full approximation family. General
+$L^1$ input follows by bounded or step-function approximation.
+
 Claim grade: `derived reduction`. This closes only the response layer with an
 externally supplied ledger. FSC-007 still has to place retained histories in
 a declared normed phase space, prove the complete ordinary ledger is locally
@@ -835,7 +911,9 @@ fixed-point argument.
 Plainly: once the incoming acceleration record is already known, the capped
 velocity equation has one stable regular solution. The hard part still open
 is proving that the delayed paths themselves produce a unique, sufficiently
-regular ledger while they evolve.
+regular ledger while they evolve. The projection scheme constructs the
+supplied-ledger solution without pretending that an integrable input is
+uniformly bounded.
 
 ## 3. Derived coordinate-free response geometry
 
@@ -864,6 +942,50 @@ $$
 
 It preserves all backward and transverse components at the boundary while
 removing only the forward speed-increasing component.
+
+For fixed boundary direction $\hat{\mathbf v}$, this finite-ledger response is
+$1$-Lipschitz in the raw net acceleration:
+
+$$
+\left\|
+\mathcal P_{\mathbf V}(\mathbf A)
+-
+\mathcal P_{\mathbf V}(\mathbf B)
+\right\|
+\le
+\|\mathbf A-\mathbf B\|.
+$$
+
+Indeed, writing
+$\mathbf A=a_\parallel\hat{\mathbf v}+\mathbf A_\perp$ gives
+
+$$
+\mathcal P_{\mathbf V}(\mathbf A)
+=
+\min(a_\parallel,0)\hat{\mathbf v}+\mathbf A_\perp,
+$$
+
+and $x\mapsto\min(x,0)$ is $1$-Lipschitz. If cap directions
+$\hat{\mathbf v}^{(n)}\to\hat{\mathbf v}$, the effective responses converge
+exactly when the corresponding global transverse vectors and retained
+backward scalars converge. In particular,
+
+$$
+\mathcal P_{\mathbf V}(\mathbf b)=\mathbf0
+\quad\Longleftrightarrow\quad
+\mathbf b=\lambda\hat{\mathbf v},
+\qquad
+\lambda\ge0.
+$$
+
+These are finite-ledger statements. They neither define the response on an
+infinite raw ledger nor make a projected subleading singular remainder
+locally integrable.
+
+Plainly: for legitimate finite inputs, small changes in the net acceleration
+produce no larger change in the capped response. A divergent leading term can
+vanish only when it points exactly forward, and that says nothing by itself
+about any smaller but still nonintegrable remainder.
 
 For every finite ordinary ledger at the boundary, the radial component is
 
@@ -1141,7 +1263,8 @@ This total-ledger ordering is part of the proposed axiom. A rule that applies
 a cap separately to each root row would be a different proposed Master
 Equation and is intentionally not assumed here. The axiom does not define a
 nonordinary, non-simple, or non-locally-finite cap-state root family; Section 4
-supplies only the working same-transmitter co-moving classification.
+classifies the possible positive-delay geometry per ordered channel but
+supplies only the working same-transmitter co-moving disposition.
 
 ## 4. Causal-wake interface: working equality admission
 
@@ -1156,11 +1279,11 @@ The ordinary and nonordinary geometries must remain typed separately:
 | Event stratum | Local condition | Current status and required disposition |
 | --- | --- | --- |
 | Regular isolated root | $g=0$, positive delay, and $D_t\ne0$. | Canonical ordinary acceleration contribution. |
-| Fold root | $g=0$, $D_t=0$, and a nonzero second emission-time derivative on the declared chart. | Nonordinary; requires a fold measure, transition, or terminal rule. |
-| Characteristic interval | $g(T_r,T_t)=0$ on an emission-time interval. | Nonordinary; requires interval ownership and a separately declared response. |
+| Degenerate isolated root | $g=0$, positive delay, $D_t=0$, and the zero is isolated. | Nonordinary. On a $C^2$ cap-admissible chart the quadratic fold coefficient vanishes. A cubic crossing is generic only with an additional $C^3$ nonzero-third-derivative hypothesis; higher odd order or flat crossings remain possible. |
+| Characteristic interval | $g(T_r,T_t)=0$ on a nondegenerate emission-time interval. | Nonordinary. The rigidity theorem below forces an exact-aim straight cap-speed chord, but geometry alone supplies no interval ownership, endpoint transition, or response. |
 | Zero-delay diagonal | $T_t=T_r$ and $r=0$. | Excluded from ordinary reception by the positive-delay domain and $H(0)=0$; any event semantics remain separately typed. |
-| Multiple-branch coincidence | Two or more root branches meet at one receiver event. | Each branch or event stratum needs unique ownership before aggregation. |
-| Root accumulation | Infinitely many roots occur in a compact emission-time interval. | Not a finite ordinary ledger; requires a locally finite measure law or a terminal disposition. |
+| Cross-channel simultaneity | Roots or nonordinary strata from two or more ordered channels occur at one receiver event. | Per-channel classification does not determine their joint ownership or aggregation. |
+| Open-domain quadratic fold | $g=0$, $D_t=0$, and a nonzero second emission-time derivative. | Impossible on a $C^2$ cap-admissible channel; retained below as a negative control for the canonical open model or a broader perturbation class. |
 
 There is no separate positive-delay zero-separation causal stratum under the
 declared root equation: $g=0$ and $T_t<T_r$ imply
@@ -1175,25 +1298,32 @@ ownership conventions in this packet.
 
 ### Root monotonicity under the ceiling
 
-Suppose the retained transmitter history is differentiable and
-$\|\mathbf V_t(s)\|\le c_f$ for every relevant emission time. At fixed
-receiver event,
+Suppose the retained transmitter path is Lipschitz with speed bounded by
+$c_f$. At a fixed receiver event, let
+$r(s)=\|\mathbf X_r(T_r)-\mathbf X_t(s)\|$. For $s_2>s_1$, the reverse
+triangle inequality and the speed bound give
 
 $$
-\partial_s g_{r\leftarrow t}(T_r,s)
+r(s_2)
+\ge
+r(s_1)-c_f(s_2-s_1).
+$$
+
+Therefore
+
+$$
+g(T_r,s_2)-g(T_r,s_1)
 =
-D_t
-=
-c_f-\hat{\mathbf r}\mathbin{\cdot}\mathbf V_t(s)
+r(s_2)-r(s_1)+c_f(s_2-s_1)
 \ge0.
 $$
 
-Therefore $s\mapsto g_{r\leftarrow t}(T_r,s)$ is nondecreasing. Its zero set
-in one ordered channel is empty, one point, or one connected characteristic
-interval. In particular, one cap-admissible ordered channel cannot contain
-two separated isolated roots or a transversal fold. Isolated-root
-accumulation outside a zero interval is also impossible. Simultaneous roots
-belonging to different ordered channels are not excluded by this theorem.
+Thus $s\mapsto g(T_r,s)$ is nondecreasing without requiring the range to be
+differentiable. Its zero set in one ordered channel is empty, one point, or
+one connected interval. A singleton is either simple or degenerate. One
+cap-admissible ordered channel cannot contain two separated isolated roots, a
+quadratic fold, or isolated-root accumulation outside a zero interval.
+Simultaneous strata belonging to different ordered channels are not excluded.
 
 For a simple root, $D_t>0$. If
 
@@ -1201,6 +1331,8 @@ $$
 D_r
 =
 c_f-\hat{\mathbf r}\mathbin{\cdot}\mathbf V_r(T_r)
+\ge
+c_f-\|\mathbf V_r(T_r)\|
 \ge0,
 $$
 
@@ -1213,22 +1345,92 @@ $$
 \ge0.
 $$
 
-This branch derivative is not defined on a characteristic interval. Claim
+This branch derivative is not defined on a characteristic interval. A
+strictly positive $D_r$ floor is an additional hypothesis whenever this map
+must be inverted or used for a uniform change-of-variable estimate. Claim
 grade: `derived under the proposed closed velocity domain`. The result is
-falsified by one cap-admissible differentiable retained history with two
-separated roots in the same ordered channel or a simple root with $D_t<0$.
+falsified by one cap-admissible Lipschitz retained history with two separated
+roots in the same ordered channel or a simple root with $D_t<0$.
+
+### Characteristic-interval rigidity and per-channel classification
+
+Let $g(T_r,s)=0$ for every $s\in[s_1,s_2]$, with $s_1<s_2<T_r$. Then
+
+$$
+r(s)=c_f(T_r-s),
+$$
+
+so $r(s_1)-r(s_2)=c_f(s_2-s_1)$. Equality holds in both the reverse-triangle
+estimate and the Lipschitz speed bound. Consequently the transmitter travels
+at speed $c_f$ almost everywhere on $[s_1,s_2]$ along the fixed exact-aim
+direction toward the receiver event. Equivalently, the interval is one
+straight characteristic chord. Conversely, such a chord gives
+$g(T_r,s)=0$ throughout the interval.
+
+Combining rigidity with monotonicity gives the complete positive-delay
+geometry catalogue for one ordered channel:
+
+1. no root;
+2. one simple isolated root;
+3. one degenerate isolated root; or
+4. one rigid characteristic interval.
+
+If the paths are $C^2$ and a degenerate isolated root occurs at an interior
+emission time, $D_t=g'=0$ is a local minimum of the nonnegative derivative,
+so $g''=0$ there. The first nonzero derivative of a smooth isolated crossing
+must therefore occur at odd order at least three; no finite-order assumption
+is made for a flat crossing.
+
+This is a per-channel geometry theorem, not a complete event classification.
+It does not assign dispositions to the degenerate root or interval, classify
+the excluded zero-delay diagonal, select interval-endpoint transitions,
+identify source-dependent rules, or aggregate simultaneous strata from
+different channels.
+
+Plainly: a whole interval of arriving emissions is possible only when the
+transmitter runs straight at exactly wake speed and aims exactly at the fixed
+receiver event. That greatly narrows the missing geometries, but it still does
+not say what either exceptional geometry does to the receiver.
+
+### Regular-root count and stability lemma for FSC-007
+
+For a finite $N$-architrino history, one receiver has at most $N-1$ ordinary
+distinct-transmitter roots at one time. A same-transmitter equality under the
+speed bound forces the straight characteristic interval just described, so it
+does not add a simple ordinary root.
+
+On a common delay chart, let two retained histories $\mathfrak h$ and
+$\mathfrak h'$ have roots $S$ and $S'$ in the same ordered channel. If the
+intervening roots remain simple with $D_t\ge d_{\min}>0$, then the mean-value
+estimate and the position sup norm give
+
+$$
+|S'-S|
+\le
+\frac{2}{d_{\min}}
+\|\mathfrak h'-\mathfrak h\|_\infty.
+$$
+
+The factor two allows both receiver and transmitter positions to move. This
+lemma controls an already matched branch. It does not prove a fixed active-
+channel set, inactive gaps, a bounded delay window, velocity-history control,
+a ledger-row gradient bound, or the contraction needed to close FSC-007.
+
+Plainly: the ceiling makes the number of regular roots automatically finite
+when the number of architrinos is finite, and a root moves continuously while
+it stays uniformly simple. It does not stop a channel from appearing,
+disappearing, or approaching a nonordinary event unless the remaining gap and
+transversality hypotheses are proved.
 
 Plainly: if no transmitter can outrun its wakes, one receiver cannot meet two
 separate wakefronts from that same transmitter at one instant. It can meet
 one front, ride alongside a whole family, or meet none. The whole-family case
 is exactly where the ordinary row formula still stops.
 
-Plainly: a fold, a whole interval of roots, the excluded same-time diagonal,
-and an infinite root accumulation are different mathematical events. A
-complete open-domain model must say which record owns each one and what
-response, if any, it produces. The closed candidate removes the per-channel
-fold and separated-root cases, but it does not classify a characteristic
-interval or simultaneous strata from different channels.
+Plainly: a degenerate isolated crossing, a rigid interval, the excluded same-
+time diagonal, and simultaneous strata from different channels are different
+mathematical events. The closed candidate classifies the possible geometry in
+one positive-delay channel, but it does not assign any general event response.
 
 For this provisional framework, use the following proposed working definition
 before forming the Master-Equation sum:
@@ -1355,15 +1557,19 @@ decide any other zero-Jacobian contact.
    partner contact and return only its outgoing contact one-jet.
 4. Define the source-provenanced receiver-side contact and competing-stratum
    measures in the candidate Radon topology.
-5. For cap-admissible perturbations, prove or refute the single-root
-   $D_t\to0^+$ receiver-measure limit, uniform total-variation control, and
-   parameterization-independent weak-* convergence.
-6. Define a locally finite post-contact response measure and compatible
+5. As FSC-006a, prove or refute the truncated far-part weak-* limit under
+   explicit branch-collapse, trace, kernel, label, and competing-stratum
+   hypotheses.
+6. As FSC-006b/FSC-005, resolve the mirror chart's zero-range raw-measure tail,
+   complete-ledger leading sign, and projected-remainder integrability.
+7. In parallel as FSC-007, use the root-count and root-stability lemmas to
+   prove the regular history-to-ledger gradient and contraction theorem.
+8. Define a locally finite post-contact response measure and compatible
    outgoing retained-history record.
-7. Prove existence and uniqueness on an open post-contact interval.
-8. Extend event-domain admission and ownership to other nonordinary contacts.
-9. Recompute the complete root ledger and outgoing retained history.
-10. Only then test binary, braid, translating-assembly, and observer-level
+9. Prove existence and uniqueness on an open post-contact interval.
+10. Extend event-domain admission and ownership to other nonordinary contacts.
+11. Recompute the complete root ledger and outgoing retained history.
+12. Only then test binary, braid, translating-assembly, and observer-level
    Lorentz-recovery consequences.
 
 ## 7. Causal reception geometry

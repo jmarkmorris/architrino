@@ -10,7 +10,8 @@ contract, or closure score.
 **Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md);
 [Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md);
 [Bill Thurston read-only review, captured 2026-08-01](bill-thurston-review-response-2026-08-01.md);
-[Albert Einstein read-only review, captured 2026-08-01](albert-einstein-review-response-2026-08-01.md).
+[Albert Einstein read-only review, captured 2026-08-01](albert-einstein-review-response-2026-08-01.md);
+[Albert Einstein second read-only review, captured 2026-08-01](albert-einstein-second-review-response-2026-08-01.md).
 
 ## Decision question
 
@@ -45,8 +46,10 @@ separately versioned model with:
    and response only after a complete finite ordinary net ledger is formed;
 2. the proposed Minimal Collinear Partner-Contact Postulate for the exact
    mirror-collinear coincidence; and
-3. a typed event rule for every other nonisolated or zero-Jacobian
-   boundary-contact family if a general closed-domain model is sought.
+3. typed event rules for the remaining finite per-channel exceptional
+   geometries, their endpoints, source-identity variants, the excluded
+   diagonal, and simultaneous cross-channel strata if a general closed-domain
+   model is sought.
 
 Plainly: the existing theory lets an architrino move faster than its wakes.
 A closed domain changes that theory. Preventing an outward velocity update is
@@ -103,41 +106,48 @@ results or conditional geometry theorems whose assumptions remain explicit.
    closed model must reproduce the canonical acceleration exactly. On the
    same retained regular history the two equations are therefore identical
    before saturation; model-level equivalence still requires uniqueness.
-3. **Cap-admissible root monotonicity.** For each ordered channel,
-   $D_t\ge c_f-\|\mathbf V_t\|\ge0$, so the emission-time root function is
-   nondecreasing. Its zero set is empty, one simple point, or one
-   characteristic interval. There are no two separated isolated roots or
-   transversal folds in one cap-admissible channel. This does not define the
-   characteristic interval or exclude simultaneous roots from different
-   channels.
-4. **MEC-007 conditional incoming branch.** MEC-007 remains
+3. **Cap-admissible root classification.** A direct Lipschitz estimate makes
+   the emission-time root function nondecreasing in each ordered channel. Its
+   positive-delay zero set is empty, one simple or degenerate isolated point,
+   or one characteristic interval. A nondegenerate interval is necessarily an
+   exact-aim straight cap-speed chord. This removes quadratic folds and
+   separated isolated roots from one cap-admissible channel, but assigns no
+   event disposition and does not exclude simultaneous cross-channel strata.
+4. **Simple-branch total-variation transfer.** On an injective simple branch
+   with $D_t,D_r>0$, receiver-time total variation transfers exactly to
+   emission time. Positive range and $D_r$ floors prevent $D_t\to0^+$ alone
+   from causing integrated divergence. In the mirror chart the remaining
+   divergence localizes to the zero-range inverse-square endpoint. FSC-006a's
+   proposed far-part limit still requires branch-collapse and moving-time
+   trace hypotheses.
+5. **MEC-007 conditional incoming branch.** MEC-007 remains
    `Awaiting verification`. Its proposed unique inward partner root, finite
    speed-increasing acceleration, and first field-speed arrival are retained
    unchanged as conditional inputs. MEC-007 does not supply the boundary rule.
-5. **Collinear open cap segment.** Conditional on the minimal total-ledger
+6. **Collinear open cap segment.** Conditional on the minimal total-ledger
    response, the history on $[T_\ast,T_{\mathrm c})$ is unique. Each receiver
    has one old ordinary partner root, no older self root, no cap-emitted
    partner root, and one recorded inactive co-moving self-contact interval.
-6. **Finite accumulated incoming row.** The old partner acceleration grows
+7. **Finite accumulated incoming row.** The old partner acceleration grows
    pointwise as $D_t\to0$, but its raw accumulated variation on the half-open
    cap segment is finite. The candidate projection removes its purely
    speed-increasing effect on that segment.
-7. **Partner-contact obstruction.** At $T_{\mathrm c}$ the cap-emitted partner
+8. **Partner-contact obstruction.** At $T_{\mathrm c}$ the cap-emitted partner
    histories form a nonisolated positive-delay contact interval with $D_t=0$.
    The ordinary constrained Master Equation has no value there. This derived
    obstruction is unchanged by adding a separate event postulate.
-8. **Conditional straight-trace negative.** A prescribed unaccelerated
+9. **Conditional straight-trace negative.** A prescribed unaccelerated
    straight separating right trace creates a
    regular post-contact partner row with magnitude proportional to
    $\delta^{-2}$. Its slowing direction is retained by the minimal projection,
    and its integral diverges. This rejects that prescribed trace under the
    unchanged ordinary law. It is not a universal continuation no-go.
-9. **Outgoing contact one-jet.** Conditional on the proposed Minimal
+10. **Outgoing contact one-jet.** Conditional on the proposed Minimal
    Collinear Partner-Contact reset, each label has
    $\mathbf V_i(T_{\mathrm c}^{+})=\mathbf V_i(T_{\mathrm c}^{-})$. This is a
    velocity-preserving outgoing contact one-jet, not a right-hand path, and is
    a consequence of an explicit postulate rather than the ordinary law.
-10. **Frozen-ledger and local-existence verdict.** With an externally supplied
+11. **Frozen-ledger and local-existence verdict.** With an externally supplied
    $L^1_{\mathrm{loc}}$ ledger, the constrained velocity layer has one
    absolutely continuous solution and a constant-one stability estimate. The
    candidate is locally defined and unique
@@ -145,13 +155,13 @@ results or conditional geometry theorems whose assumptions remain explicit.
    contact velocity state. No finite, unique solution on an open post-contact
    interval has been established, and the coupled regular history-to-ledger
    fixed point remains FSC-007.
-11. **Thirty-root theorem.** For the prescribed six-path, common-radius,
+12. **Thirty-root theorem.** For the prescribed six-path, common-radius,
    mutually orthogonal, $120^\circ$ phase reference with
    $c_f=R=\omega=1$, every distinct-label ordered channel has exactly one
    positive-delay simple root with $D_t>0$ and $D_r>0$, while each same-label
    channel has none. The exact inventory is thirty ordinary roots at every
    reception time, with no transmitter-side fold.
-12. **Negative vector diagnostic.** For all four inequivalent relative
+13. **Negative vector diagnostic.** For all four inequivalent relative
     polarity orientations, the minimal total-ledger response fails at least
     one necessary prescribed-circle closure condition at $T=0$: a receiver is
     slowed or receives a nonzero binormal component. This is a measured
@@ -542,6 +552,7 @@ FSC-001 is complete as an evidence-bounded compatibility map:
 
 - **unchanged:** primitive causal geometry, the regular interior Master
   Equation, the MEC-007 conditional incoming input, conditional cap segment,
+  per-channel root classification, simple-branch total-variation transfer,
   contact obstruction, frozen-ledger response theorem, local-existence
   verdict, exact thirty-root theorem, and negative minimal-response diagnostic;
 - **removed or reclassified under a closed model:** all admissible
@@ -556,11 +567,14 @@ FSC-001 is complete as an evidence-bounded compatibility map:
   source bookkeeping rather than partner acceleration at the point delta, and
   $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$, yielding only a
   velocity-preserving outgoing contact one-jet;
-- **required general event-domain interface:** the Typed Nonordinary Contact
-  Event Postulate for all contacts outside that exact collinear scope; and
+- **required general event-domain interface:** typed dispositions for
+  degenerate isolated roots, rigid characteristic intervals, their endpoints,
+  source identities, the excluded diagonal, and cross-channel combinations
+  outside that exact collinear scope;
 - **required distributional formulation:** source-provenanced receiver-side
-  contact and competing-stratum measures, a BV/Radon topology, and a
-  perturbative weak-limit theorem or counterexample before FSC-005; and
+  contact and competing-stratum measures; FSC-006a's far-part weak-* theorem
+  under explicit trace and branch-collapse assumptions; and FSC-006b/FSC-005's
+  zero-range leading and remainder analysis; and
 - **decision choices:** retain the open model, choose a terminal closed model,
   extend typed event coverage, or derive a changed boundary update.
 
@@ -569,6 +583,6 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, establish a general or open-interval
 continuation, claim conservation or stability, establish physical realization,
 retain a braid, advance MEC, or move a closure score.
 
-Closure goal: complete FSC-006 for cap-admissible single-root approaches and
-pass one narrow distributional-formulation review while preserving the
-canonical open model and the unresolved post-contact evolution problem.
+Closure goal: prove or refute FSC-006a's far-part limit, resolve the
+FSC-006b/FSC-005 zero-range tail, and preserve the canonical open model and the
+unresolved post-contact evolution problem.

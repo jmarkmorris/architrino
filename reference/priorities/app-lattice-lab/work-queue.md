@@ -11,7 +11,7 @@ This is the canonical execution ledger for the exploratory display-only workstre
 ### LAT-015 — Increasing-strength compression coordinate
 
 - **Status:** Next queued object after verified LAT-016; implementation not started
-- **Acceptance:** Replace the user-facing $\lambda$ slider with a dimensionless static display coordinate $0\leq\beta<1$, where $\beta=0$ is uncompressed and $\lambda=\sqrt{1-\beta^2}=1/\gamma$ is computed exactly once at the model boundary. Use a documented near-one interactive maximum so $\lambda$ never reaches zero. Preserve existing internal $\lambda$-based geometry, neighbor classification, and cancellation semantics; keep the ledger placeholder and design pause unchanged.
+- **Acceptance:** Replace the user-facing $\lambda$ slider with a dimensionless static display coordinate $0\leq\beta<1$, where $\beta=0$ is uncompressed and $\lambda=\sqrt{1-\beta^2}=1/\gamma$ is computed exactly once at the model boundary. Use a documented near-one interactive maximum so $\lambda$ never reaches zero. Preserve existing internal $\lambda$-based geometry, neighbor classification, cancellation semantics, and the implemented site-ledger evidence hierarchy.
 - **Checks:** Verify $\beta=0\mapsto\lambda=1$, monotone increasing compression, the near-one endpoint, and retained $\lambda$ outputs. The UI must not describe $\beta$ as physical motion or make an SR/GR claim.
 
 ### LAT-017 — Diamond-cubic projected-edge visual audit
@@ -25,14 +25,14 @@ This is the canonical execution ledger for the exploratory display-only workstre
 
 ### LAT-014 — Minimal owned-tile presentation
 
-- **Status:** Queued behind LAT-011; presentation correction only
+- **Status:** Queued presentation correction
 - **Acceptance issue:** A repeat-cell panel must not visually present its surrounding many-site periodic context as though that full context were the owned repeat cell. In FCC alternating planes, the owned tile is exactly two sites.
 - **Acceptance:** The default repeat-cell view shows the minimal translational owned tile. Any surrounding translated copies are either absent or unmistakably marked as non-owned context and are never counted as owned sites. The accepted canonical coordinates, nearest-neighbor identities, and unique half-open site ownership remain unchanged.
 - **Scope:** Do not alter the accepted neighbor geometry. Adjacent translated copies belong only in the separate optional LAT-013 teaching mode.
 
 ### LAT-013 — Visual tiling demonstration
 
-- **Status:** Queued behind LAT-011 and the LAT-014 default-view correction; design/prototype task only
+- **Status:** Queued behind the LAT-014 default-view correction; design/prototype task only
 - **Problem:** The current repeat-cell visualization correctly states translation tiling but still asks a learner to imagine how adjacent copies join.
 - **Standard object:** Use crystallographic primitive-cell notation: the owned basis/sites, three labeled primitive lattice vectors $\mathbf a_1,\mathbf a_2,\mathbf a_3$, and their parallelepiped fundamental domain. Distinguish that primitive translation tile from both a conventional high-symmetry cell and a Wigner-Seitz/Voronoi cell; the latter may explain local-neighbor geometry but is not necessarily the primitive translation tile.
 - **Goal:** Explore a restrained optional teaching view for at least the simple-cubic checkerboard, showing one adjacent translated copy with a clearly distinct but non-semantic treatment and the actual cross-boundary nearest-neighbor joins. Optional ghost copies may be generated only by integer combinations of the same three primitive vectors.
@@ -40,21 +40,223 @@ This is the canonical execution ledger for the exploratory display-only workstre
 - **Acceptance:** A learner can see how the selected primitive cell and one translated neighbor reproduce the pattern and relationships. This is a separate optional teaching mode or toggle, not the default repeat-cell view. The owned tile and adjacent copy are unmistakably distinct. The view uses translation only, reuses the canonical periodic coordinates and edge graph, preserves unique architrino ownership, avoids visual clutter and a false finite-universe claim, and does not alter the accepted graph.
 - **Scope:** Prototype/presentation work, not a validated mathematics claim. No rotation, color swapping, or ad hoc display cell.
 
+### LAT-031 — Remove `currently shown` from Polarity count copy
+
+- **Status:** Requested; implementation has not started or been reported
+- **Request:** In `Shared Display Conventions` under `Polarity count`, remove `currently shown` so the sentence begins exactly `Every configuration in this curated gallery has equal numbers`. Retain the existing electrino/positrino species wording that completes the sentence.
+- **Claim boundary:** Equal species counts are a configuration fact for the current curated gallery, not acceleration cancellation or balance. The copy must not imply that future random finite configurations inherit the same population rule.
+- **Acceptance:** The old `currently shown` wording is absent, the new sentence prefix is exact, and the existing species wording and claim-boundary copy remain intact. Focused copy/accessibility checks must confirm one readable `Polarity count` statement and preserved accessible structure; operator-viewport browser verification must confirm the revised sentence renders completely without truncation, duplication, or changed meaning.
+- **Scope:** Copy edit only. Do not change shared-panel contents, population data, calculations, gallery membership, styling, or evidence authority.
+
+### LAT-032 — Use the selected gallery title for the Active Case Record heading
+
+- **Status:** Requested; implementation has not started or been reported
+- **Request:** Replace the static `Active Case Record` heading with the currently selected gallery item's title, updating it whenever the selected case changes. For example, the simple-cubic checkerboard case displays `Simple Cubic Checkerboard` as the heading.
+- **Heading treatment:** The dynamic title must match the established comparable subpanel-heading treatment exactly: all-caps light purple with the same font size, weight, letter spacing, and casing behavior. Preserve one accessible heading/label for the panel and do not render a duplicate visible or accessible title.
+- **Acceptance:** Focused case-switch checks must select representative gallery cases and confirm that the heading always matches the active gallery item, changes immediately with the case, and never retains a stale or static `Active Case Record` label. Accessibility checks must confirm one nonduplicate panel label whose accessible name follows the selected case. Style-parity checks must compare the computed color, font size, weight, letter spacing, and casing treatment with the established subpanel heading. Operator-viewport browser verification must confirm the dynamic headings are legible, correctly styled, complete, and free of duplication or layout regression across case switches.
+- **Scope:** Heading copy, synchronization, style, and accessible labeling only. Do not change gallery titles, case data, selection behavior, panel contents, geometry, calculations, or evidence authority.
+
+### LAT-033 — Match the Uniaxial Deformation heading to subpanel typography
+
+- **Status:** Requested; implementation has not started or been reported
+- **Request:** Style the existing `Uniaxial Deformation` title with the exact established all-caps light-purple subpanel-heading treatment.
+- **Acceptance:** Preserve the approved visible wording `Uniaxial Deformation` and render exactly one visible and accessible title. Focused style-parity checks must confirm the same computed light-purple color, font size, weight, letter spacing, and casing treatment as comparable subpanel headings. Accessibility checks must confirm a single nonduplicate control-region label. Operator-viewport browser verification must confirm the title is legible, correctly styled, and free of duplication or layout regression.
+- **Scope:** Heading presentation and accessible labeling only. Do not change LAT-029's approved title wording, deformation paragraph, `β=0` undeformed and `β=1` maximum-supported-deformation semantics, β-only readout, clipping prerequisite, static-geometry boundary, or any broader behavior or claim.
+
 ## In progress
 
-### LAT-011 — Ledger visibility and hierarchy redesign
+### LAT-039 — Aggregate coincident site groups for the β=1 display
 
-- **Status:** Design awaiting operator acceptance; rendered mathematical content remains temporarily cleared
-- **Observed problems:** The prior ledger was a dense tight-text audit trail and did not meet the at-a-glance teaching goal at the live narrow viewport.
-- **Current safe state:** The rendered panel now says only `Site ledger is being redesigned.` It displays no mathematical zero, shell row, vector, magnitude, or stale certification status while the replacement is unfinished. The panel footprint remains stable.
-- **Design gate:** [site-ledger-presentation-design.md](site-ledger-presentation-design.md) maps the certified periodic, finite nonperiodic, and not-established states to a learner-facing hierarchy. Do not expose the replacement UI until the operator accepts that design.
-- **Acceptance:** Restore a large icon-plus-text outcome, relative magnitude and vector where available, and two readable shell summaries, with individual contributions behind `Show calculation`. Certified checkerboard may use `In this ideal repeating pattern, matching pulls cancel at every site at release.` Non-certified cases must not inherit that sentence or a zero result.
+- **Status:** In progress; the endpoint appearance is operator-accepted, but the reported grouping basis does not yet satisfy the durable endpoint-equivalence boundary and focused validation is unreported
+- **Implemented and accepted appearance:** The implementation worker reports that at `β=1` original markers in a display group become one purple marker, internal edges are suppressed, external group-to-group relationships are deduplicated, every source site ID remains in group metadata, and aggregation is disabled below the endpoint. The operator accepts that the endpoint is clearly aligned, legible under rotation, and contains no extra lines.
+- **Grouping-rule discrepancy:** The worker currently reports forming groups from transformed `β=1` distances relative to rendered sphere diameter. The durable acceptance requires a documented rule from endpoint deformation geometry or exact endpoint equivalence and rejects marker-radius or loose visual-proximity grouping. This discrepancy must be resolved before verification.
+- **Verification required:** Focused aggregation evidence must prove exact group membership; complete identity and polarity preservation; one purple marker per accepted group; suppression of all and only internal-group lines; correct deduplicated inter-group relationships; reversible ordinary markers and lines immediately below `β=1`; and Reset/reload behavior. The worker must also report the resolved endpoint-grouping rationale, fresh operator-viewport results, clean console, and `git diff --check` before `Verified`.
+- **Scope:** Maximum-endpoint display aggregation only. Do not merge, delete, recolor, or otherwise mutate underlying site identities or polarities; do not change canonical geometry, calculations, ledgers, relationship identities, evidence boundaries, or acceleration, motion, stability, conservation, energy, or broader-physics claims. Preserve LAT-029 and LAT-038 semantics and existing clipping safeguards.
+
+### LAT-041 — Add a lower-right canvas polarity legend
+
+- **Status:** In progress; canvas marker-size parity is operator-confirmed, but corrected order/color pairing and fresh focused/browser validation remain pending
+- **Implemented size evidence:** The implementation worker reports `16px` legend swatches tied to the renderer's `8px` site radius, and the operator confirms that the legend markers match the canvas marker size.
+- **Required order and pairing:** In the lower-right canvas legend, place the red sphere labeled `Positrino` on top and the blue sphere labeled `Electrino` below. Colors must remain correctly paired with those labels. The legend markers need not reproduce canvas highlight, lighting, or shading treatments; equal visible size and correct base color/label identity are the required parity.
+- **Verification required:** Focused checks must confirm the exact top-to-bottom order, red-`Positrino` and blue-`Electrino` pairing, equal `16px` marker dimensions tied to the site-radius convention, one accessible legend with correctly associated labels, and no change to rendered site identities or interaction data. Fresh responsive and operator-viewport verification must confirm the corrected legend remains fully inside the canvas, legible, and noncolliding with canvas content, controls, panels, captions, and other overlays across case changes, deformation, rotation, and representative narrow/resized layouts. Report a clean console and `git diff --check` before `Verified`.
+- **Scope:** Display legend only. Do not change polarity assignments, sphere materials used by actual sites, picking/render identities, calculations, geometry, evidence boundaries, or claims. Preserve LAT-039's maximum-deformation purple aggregation as a separate endpoint display state; the purple group marker is not a third polarity and this legend must not alter or replace it.
+
+### LAT-036 — Match Site Ledger outcome font size to the Lattice Primer case text
+
+- **Status:** In progress; visible parity is operator-accepted, but terminal focused computed-style and browser validation evidence is not yet reported
+- **Implemented result:** The implementation worker reports applying the Lattice Primer `Simple Cubic Checkerboard` text's explicit `14px` reference to the Site Ledger outcome while leaving its wording and green-check semantics unchanged. The operator accepts the visible font-size parity.
+- **Verification required:** Terminal focused computed-style evidence must use the Lattice Primer `Simple Cubic Checkerboard` element as the explicit reference, require exact font-size parity, and confirm that `Net acceleration is zero at every site.` remains one accessible statement with its established hierarchy and evidence boundary. Operator-viewport browser evidence must confirm the two text sizes match and the outcome remains legible, complete, correctly aligned with its green check, and free of layout regression. Report a clean console and `git diff --check` before verification.
+- **Scope:** Outcome font size only. Do not change the outcome copy, icon, calculation state, result hierarchy, residual or scope content, or any acceleration, motion, stability, conservation, energy, or broader-physics claim boundary.
+
+### LAT-029 — Uniaxial Deformation β control semantics
+
+- **Status:** In progress; the visible subpanel changes are operator-accepted, but terminal focused and browser validation evidence is not yet reported
+- **Implemented and accepted presentation:** The implementation worker reports the live title `Uniaxial Deformation`, a deformation/undeformed explanatory paragraph with no compression terminology, and the compact readout containing only `β =` plus the slider value from `0` through `1`, with no parenthesized secondary number. The operator accepts those visible subpanel changes.
+- **Required semantics:** The visible scale increases with deformation: `β=0` is the undeformed baseline, and `β=1` is the maximum supported nondegenerate X-axis deformation. The model boundary performs the visible-to-internal conversion exactly once.
+- **Parameter boundary:** `β` is a dimensionless display/control parameter for a static X-axis geometry deformation. It is not a physical velocity and does not establish a relativistic, motion, stability, conservation, energy, or broader physics claim.
+- **Clipping prerequisite:** Retain and validate the existing clipping correction through the full visible range, including the maximum supported endpoint and applicable narrow-resize/segment guards. Do not complete this item until the clipping fix is verified or if the semantic remap reintroduces clipped or invalid geometry.
+- **Verification required:** Terminal focused evidence must cover exact visible values `0` and `1`, their internal mappings, an intermediate monotonicity case, retained geometry/clipping outputs, reload/default behavior, and copy/accessibility exposure of the `Uniaxial Deformation` control name and current value. Operator-viewport browser evidence must confirm that moving from `0` toward `1` visibly increases X-axis deformation, both endpoints remain unclipped and valid, reload preserves the intended default, and the accepted title, paragraph, and compact readout remain unambiguous. Report a clean console and `git diff --check` before verification.
+- **Scope:** User-facing copy, scale direction, and boundary mapping only. Preserve accepted geometry, neighbor classification, ledger semantics, and claim boundaries. This remains distinct from LAT-015's broader coordinate implementation and from unfinished LAT-034 repeat-miniature rendering.
+
+### LAT-027 — Keep relationship lines visible when repeat-cell highlight is enabled
+
+- **Status:** In progress; corrected combined rendering is operator-accepted, but fresh terminal validation evidence for the LAT-028 correction is not yet reported
+- **Request:** Make `Highlight repeat cell` additive without erasing the spherical-crop canvas's overall relationship network.
+- **Implemented result:** The ordinary spherical-crop relationship group is decoupled from checkbox state, so the same ordinary network remains visible when the violet overlay is enabled. The checkbox remains accessible, default-off, and `8px` inside the bounded repeat-image viewport; canonical highlight identities are unchanged.
+- **Operator failure:** Thin ordinary relationship strokes remain visible through the centers of the wider violet selected edges. The additive behavior is therefore not accepted as rendered.
+- **Corrected live result:** The operator confirms that the selected violet edges no longer contain the thin ordinary under-stroke while the overall relationship network remains visible elsewhere.
+- **Evidence required:** LAT-027 remains unfinished until the implementation worker reports fresh focused off/on identity-partition checks, live selected-edge inspection, clean console, and diff hygiene for the LAT-028 correction.
+- **Scope:** Geometry, clipping, edge enumeration, selected repeat-cell identity, checkbox semantics, LAT-019 placement, LAT-024 styling, and evidence claims remain unchanged.
+
+### LAT-028 — Give highlighted edges visual precedence over ordinary lines
+
+- **Status:** In progress; corrected rendering is visibly operator-accepted, but fresh terminal focused validation evidence is not yet reported
+- **Operator failure:** The earlier LAT-027 additive rendering left thin ordinary relationship strokes visible through the centers of the wider violet highlighted edges. That live result was rejected.
+- **Request:** When `Highlight repeat cell` is enabled, retain ordinary relationship lines on every nonselected edge but suppress the ordinary line on each selected highlighted edge, so no thin light-purple or white center line runs through the wider violet highlight.
+- **Current implementation evidence:** The implementation worker changed ordinary relationship rendering at the edge-identity level so selected ordinary segments are excluded while nonselected ordinary segments remain. The operator confirms the live selected violet edges no longer show the thin under-stroke.
+- **Operator acceptance:** The corrected highlighted-edge appearance is accepted.
+- **Verification required:** Fresh focused tests must verify the off/on identity partition and reject both missing nonselected lines and dual-rendered selected lines. The implementation worker must report live inspection of every selected edge, exact selected identities, retained control placement/default, clean console, and `git diff --check` before this item can be verified.
+- **Scope:** Draw precedence only. Geometry, clipping, edge enumeration, selected repeat-cell identity, checkbox semantics, LAT-019 placement, LAT-024 styling, and evidence claims remain unchanged.
+
+### LAT-030 — Restore unrestricted synchronized three-dimensional rotation
+
+- **Status:** In progress; trackball implementation is live and operator-accepted, but focused full-3D and browser validation evidence is not yet reported
+- **Operator-reported defect:** The prior main-view interaction used only two Euler angles with clamped pitch, constraining Y to remain screen-vertical; the synchronized lower-left key faithfully mirrored that restricted quaternion.
+- **Implemented correction:** Drag now uses an incremental quaternion trackball rotation shared by the main lattice, repeat view, and XYZ key. The operator confirms the new trackball rotation works.
+- **Operator acceptance:** The corrected unrestricted trackball interaction is accepted.
+- **Verification required:** Focused rotation/camera checks must exercise independent rotations that tilt each projected axis, include a demonstrably nonvertical Y case, verify quaternion/orientation equality across synchronized consumers, and reject restoration of the old Euler/pitch constraint. Fresh operator-viewport evidence must confirm Y tilt, label separation, retained key dimensions and lower-left anchor, working drag/selection/highlight/wheel controls, clean console, and `git diff --check` before this item can be verified.
+- **Scope:** Rotation and camera interaction only. Lattice geometry, axis identity, key labels, key styling, repeat-cell synchronization, compression mapping, and evidence claims are unchanged.
 
 ## Awaiting verification
 
-No rows.
+### LAT-034 — Preserve repeat-miniature joining lines across deformation
+
+- **Status:** Awaiting verification; implementation and focused evidence are reported and the rendered result is operator-accepted, but the worker's fresh terminal browser evidence is still pending
+- **Operator-reported defect:** In the top-right `How This Pattern Repeats` image, intended joining/repeat lines disappeared at some supported `β` values.
+- **Implemented correction:** The implementation worker reports preserving the same canonical repeat-relationship identities at every `β` and using a draw-safe fallback for geometrically short connectors at the maximum endpoint, based on their actual deformed endpoints rather than invented replacement lines.
+- **Validation and acceptance:** The expanded focused suite passes `38/38`. It covers all `15` canonical repeat connectors at `β=0`, `β=0.5`, and `β=1` with no extra identities. The operator accepts that all intended lines remain shown throughout uniaxial deformation.
+- **Verification still required:** Before `Verified`, the worker must report its pending fresh operator-viewport pass at `β=0`, `β=0.5`, and `β=1`, including exact rendered identity counts, no missing or spurious connectors, continuously visible and correctly connected lines, clean console, and `git diff --check`.
+- **Scope:** Repeat-miniature line retention and rendering only. Preserve LAT-029's `β=0` undeformed baseline, `β=1` maximum supported nondegenerate X-axis deformation, monotone mapping, β-only presentation, static-geometry/no-broader-physics boundary, and all existing clipping and narrow-resize safeguards. Do not change canonical geometry or accepted line identities. Polar-cap work remains separate under LAT-037.
+
+### LAT-040 — Rename the second left-panel subpanel to `What You Are Seeing`
+
+- **Status:** Awaiting verification; the visible title is operator-accepted, but implementation-worker focused copy and accessibility evidence is not yet reported
+- **Accepted visible result:** The left panel's second subpanel displays exactly `What You Are Seeing`; the operator accepts the title correction.
+- **Verification still required:** Focused copy evidence must confirm the exact new title, absence of `What You’re Seeing`, and unchanged subpanel contents. Accessibility evidence must confirm the same single nonduplicate subpanel label exposes the new accessible name. The implementation worker must report operator-viewport typography/layout results, clean console, and `git diff --check` before this item can be Verified.
+- **Scope:** Title copy only. Preserve the established typography, accessible structure, subpanel order, contents, behavior, and evidence authority.
 
 ## Verified
+
+### LAT-038 — Keep uniaxial deformation on one fixed semantic axis
+
+- **Status:** Verified; operator accepted
+- **Verified result:** The underlying geometry deforms only semantic X monotonically across the supported `β` range. The repeat-cell miniature now retains its undeformed reference fit instead of recomputing a β-dependent bounding-sphere scale, so unchanged Y/Z dimensions no longer appear to stretch and the apparent deformation axis no longer switches.
+- **Validation:** The focused suite passed `40/40`, including component-wise fixed-semantic-X and retained-reference-scale checks across endpoint and intermediate values. The operator accepts that only X deforms from the start, with no early two-axis stretch or later axis switch.
+- **Scope:** Static display-transform and repeat-miniature fit correction only. `β=0` remains undeformed, `β=1` remains the maximum supported nondegenerate endpoint, and semantic model axes, canonical identities, evidence boundaries, and clipping safeguards are unchanged.
+- **Completion:** Satisfied.
+
+### LAT-035 — Make Z upward in the default display orientation
+
+- **Status:** Verified; operator accepted
+- **Verified result:** The positive semantic Z axis points upward in the default main lattice view and synchronized lower-left XYZ key. The same display quaternion is restored on initial load, case reset, and reload; unrestricted trackball rotation remains available afterward. Semantic X/Y/Z model definitions, key anchoring and labels, and existing controls are unchanged.
+- **Validation:** The focused suite passed `39/39`. The implementation worker reports live main-view/key synchronization through initial/default display, arbitrary trackball rotation, case reset, and reload. The operator accepts that Z is up in the default display.
+- **Scope:** Display-default orientation only; no coordinate relabeling or data remapping.
+- **Completion:** Satisfied.
+
+### LAT-037 — Align spherical overlay polar caps with semantic ±Z
+
+- **Status:** Verified; operator accepted
+- **Verified result:** The dotted spherical overlay is authored with its north and south caps on semantic `+Z` and `−Z`, replacing the prior semantic-±Y pole construction. The overlay already inherits the same root quaternion as the lattice and key, so all three now remain synchronized without relabeling model coordinates.
+- **Validation:** The `39/39` focused suite includes an explicit independent geometry check that the envelope poles are semantic `±Z`. The implementation worker reports live cap alignment and shared-quaternion behavior through trackball rotation, case reset, and reload. The operator accepts the polar axes as vertical in the Z-up default.
+- **Scope:** Spherical-overlay display basis only. Model coordinates, lattice data, trackball behavior, key anchoring and labels, overlay meaning, and controls are unchanged.
+- **Completion:** Satisfied.
+
+### LAT-023 — Shared Display Conventions subpanel
+
+- **Status:** Verified; operator accepted
+- **Verified result:** The bottom-left panel contains only facts audited as common to every current curated case: equal electrino/positrino population, spherical display crop, and light-purple relationship-line meaning. Case-specific facts remain in the Active Case Record. Equal population is explicitly a configuration fact, not acceleration cancellation or balance, and the panel is scoped to current curated-gallery conventions rather than future random finite configurations.
+- **Validation:** The accessible single-title structure and migration boundaries passed the `35/35` focused suite. At `1280 × 720`, card bounds `x=10..402.39`, `y=430.14..709.83` were fully inside the left panel; the console was clean. The independent stationary oracle passed `2/2`, and `git diff --check` passed.
+- **Operator acceptance:** The shared-conventions contents and panel are accepted.
+- **Scope:** Information architecture and wording only. This does not establish an acceleration result, change gallery geometry, or prescribe future random finite-configuration rules.
+- **Completion:** Satisfied.
+
+### LAT-024 — Refine spherical-crop repeat-cell highlight styling
+
+- **Status:** Verified; operator accepted
+- **Verified result:** The active highlight radius changed from `0.022` to `0.0176`, exactly `20%` thinner, and the color changed from `#c6b6ff` to the more-violet `#b79cff`. The accessible checkbox remains default-off and `8px` inside the bounded repeat-image viewport at the left and bottom. Enabled state retains all `15/15` canonical edge identities and includes `0` excluded identities.
+- **Validation:** Identity and control behavior passed the `35/35` focused suite and fresh `1280 × 720` browser check with a clean console. The independent stationary oracle passed `2/2`, and `git diff --check` passed.
+- **Operator acceptance:** The thinner, more-violet treatment is accepted.
+- **Scope:** Styling refinement only. Repeat-cell geometry, clipping, ownership, edge enumeration, and LAT-019 placement and interaction behavior are unchanged.
+- **Completion:** Satisfied.
+
+### LAT-026 — Style the Shared Display Conventions title
+
+- **Status:** Verified; operator accepted
+- **Verified result:** Exactly one accessible `Shared Display Conventions` title remains. At `1280 × 720`, its computed style matches the comparable Active Case Record heading: `rgb(189, 174, 255)`, `10px`, weight `780`, `0.8px` tracking, and uppercase. The rejected larger white title and duplicate subtitle are absent.
+- **Validation:** Title count and style parity passed the `35/35` focused suite and fresh browser check with a clean console. The independent stationary oracle passed `2/2`, and `git diff --check` passed.
+- **Operator acceptance:** The title's exact visual parity with comparable subpanel headings is accepted.
+- **Scope:** Title styling only; distinct from LAT-023's information architecture and migration audit.
+- **Completion:** Satisfied.
+
+### LAT-025 — Clarify Site Ledger zero-outcome language
+
+- **Status:** Verified; operator accepted
+- **Verified result:** The live certified-periodic Site Ledger displays exactly `Net acceleration is zero at every site.` while retaining the zero magnitude/vector and bounded evidence hierarchy. Focused finite-zero coverage remains finite-only; not-established states remain outcome-free and finite cases do not inherit the repeating-pattern all-site claim.
+- **Claim boundary:** The wording reports the calculated net acceleration in the declared configuration and scope. It does not establish force, later motion, stability, conservation, energy, or any broader physical conclusion.
+- **Validation:** The focused suite passed `35/35`, the independent stationary oracle passed `2/2`, `git diff --check` passed, and the fresh `1280 × 720` browser console had no warnings or errors.
+- **Operator acceptance:** The exact visible text `Net acceleration is zero at every site.` is accepted.
+- **Scope:** Learner-facing outcome wording only. Calculations, certificates, icons, selection semantics, and claim authority are unchanged.
+- **Completion:** Satisfied.
+
+### LAT-011 — Site-ledger presentation hierarchy
+
+- **Status:** Verified from reported focused checks and fresh operator-viewport browser evidence
+- **Verified result:** The certified view reports `Zero at every site`, the zero magnitude/vector, the repeating-pattern scope, and two compact local examples. `Show calculation` exposes 18 normalized rows ending at zero, selection identifies polarity without coordinates or changing the certified state, and BCC shows only the not-established presentation. Focused finite-case tests derive outcomes only from included rows and reject stale aggregate residuals; no live finite case is claimed while LAT-008 remains deferred.
+- **Viewport check:** At `1280 × 720`, the closed ledger occupied `y=373.8..613.8px` with no inspector scrolling. The browser console had no warnings or errors.
+- **Validation:** The focused Lattice Lab suite passed `35/35`, the independent stationary oracle passed `2/2`, and `git diff --check` passed.
+- **Scope:** Presentation and evidence hierarchy only. This does not advance LAT-008 or broaden any acceleration, stability, conservation, energy, or physical-medium claim.
+- **Completion:** Satisfied.
+
+### LAT-018 — Remove repeat-cell instructional sentence
+
+- **Status:** Verified
+- **Verified result:** `Copy this colored tile by translation to continue the pattern.` and its obsolete markup/runtime hook are absent; the repeat vectors remain and the rendered panel is compact.
+- **Validation:** Covered by the `35/35` focused Lattice Lab suite and the fresh `1280 × 720` browser pass with a clean console.
+- **Scope:** Presentation cleanup only; separate from LAT-011.
+- **Completion:** Satisfied.
+
+### LAT-019 — Relocate repeat-cell highlight control
+
+- **Status:** Verified; operator accepted
+- **Acceptance condition:** The existing `Highlight repeat cell` checkbox is a bottom-left overlay inside the bounded repeat-image/canvas subpanel itself; placement merely elsewhere in the larger repeat-cell card is insufficient.
+- **Verified result:** The same accessible checkbox defaults off and its bounds remain inside the repeat-image viewport with `8px` left and bottom insets at `1280 × 720`. When checked, the canonical and highlighted edge counts are both `15`, with exact edge-identity equality.
+- **Validation:** Covered by the `35/35` focused Lattice Lab suite and the fresh operator-viewport browser pass with a clean console.
+- **Operator acceptance:** Accepted on 2026-08-01 after the corrected canvas-overlay placement was shown.
+- **Completion:** Satisfied.
+
+### LAT-020 — Consolidate repeat-cell panel heading
+
+- **Status:** Verified
+- **Verified result:** The panel has one accessible `How This Pattern Repeats` heading in the prominent treatment; the old `Polarity Repeat Cell` heading and duplicate secondary line are absent.
+- **Validation:** Covered by the `35/35` focused Lattice Lab suite and the fresh `1280 × 720` browser pass with a clean console.
+- **Scope:** Heading consolidation only; separate from LAT-011, LAT-018, and LAT-019.
+- **Completion:** Satisfied.
+
+### LAT-021 — Enlarge and center the XYZ orientation key
+
+- **Status:** Verified; operator accepted
+- **Verified result:** The lower-left key renders at `144 × 132`, with `16px` left and `18px` bottom insets. All X/Y/Z endpoints are symmetric about `(72, 66)`. In the initial view and two dragged rotations, labels stayed approximately `10px` beyond their positive endpoints and no label/axis bounding boxes overlapped. The key consumes the same root quaternion used by the main and repeat views.
+- **Validation:** The centered-axis geometry test passed within the `35/35` focused Lattice Lab suite; the fresh `1280 × 720` browser rotation audit and console check passed.
+- **Operator acceptance:** Accepted on 2026-08-01; no further design iteration is required.
+- **Completion:** Satisfied.
+
+### LAT-022 — Remove duplicate Site Ledger subtitle
+
+- **Status:** Verified
+- **Verified result:** Exactly one visible all-caps `Site Ledger` heading remains as a `span`; the ledger region's `aria-labelledby` points to it, the duplicate `h2` is absent, and the operator viewport shows no layout regression.
+- **Validation:** Covered by the `35/35` focused Lattice Lab suite and the fresh `1280 × 720` browser pass with a clean console.
+- **Scope:** Heading cleanup only; its result and status remain distinct from LAT-011.
+- **Completion:** Satisfied.
 
 ### LAT-016 — BCC two-sublattice visual-neighbor audit
 
@@ -120,7 +322,8 @@ No rows.
 
 - **Status:** Deferred pending a declared and independently verified randomization rule
 - **Teaching / math goal:** Contrast the curated neutral translation cells with random finite, nonperiodic configurations at the same displayed site spacing.
-- **Request / acceptance:** Before implementation, define the finite randomization rule and whether it preserves equal red/blue population, then verify that rule independently. `Random configuration` is first in the gallery selector as the teaching starting point. Its ledger-adjacent `Randomize again` action creates a new finite, nonperiodic configuration; its repeat-cell panel states `Not applicable — this is not a repeating lattice.` The ledger computes the actual displayed finite-configuration acceleration contributions and residual, including a normalized vector magnitude with clear finite scope/units. Its status uses icon plus text and color: green `zero residual in stated scope` or red `nonzero residual in stated scope`. A nonzero residual means nonzero initial acceleration only under that displayed ledger. Do not infer an all-space result, animate motion, or claim stability or conservation. Keep population balance distinct from acceleration cancellation.
+- **Recalculation-control placement:** For the random 50/50 distribution only, place one custom curved/circular-arrow repeat icon on the same title row as `Site Ledger`. Give it an accessible recalculate label such as `Recalculate random configuration`. It is not a global action and must be absent or unavailable for deterministic curated cases. Placement approval does not satisfy the randomization-rule gate or make the task implementation-ready.
+- **Request / acceptance:** Before implementation, declare a reproducible finite 50/50-preserving randomization rule, independently verify its population and sampling behavior, and define what seed or provenance makes a displayed configuration reproducible. `Random configuration` is first in the gallery selector as the teaching starting point. Activating the Site Ledger title-row recalculate control creates a new finite, nonperiodic configuration under that verified rule; its repeat-cell panel states `Not applicable — this is not a repeating lattice.` The ledger computes the actual displayed finite-configuration acceleration contributions and residual, including a normalized vector magnitude with clear finite scope/units. Its status uses icon plus text and color: green `zero residual in stated scope` or red `nonzero residual in stated scope`. A nonzero residual means nonzero initial acceleration only under that displayed ledger. Do not infer an all-space result, animate motion, or claim stability or conservation. Keep population balance distinct from acceleration cancellation.
 
 ### LAT-009 — Polarity-edit interaction
 

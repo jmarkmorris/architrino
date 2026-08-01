@@ -43,17 +43,14 @@
           </section>
 
           <section class="lattice-lab-card lattice-lab-seeing-card" aria-labelledby="lattice-lab-seeing-title">
-            <span class="lattice-lab-card-kicker">What You’re Seeing</span>
+            <span class="lattice-lab-card-kicker">What You Are Seeing</span>
             <h2 id="lattice-lab-seeing-title"></h2>
             <p id="lattice-lab-what-seeing"></p>
           </section>
 
           <section class="lattice-lab-card" aria-labelledby="lattice-lab-case-title">
             <div class="lattice-lab-card-heading">
-              <div>
-                <span class="lattice-lab-card-kicker">Active case record</span>
-                <h2 id="lattice-lab-case-title"></h2>
-              </div>
+              <h2 id="lattice-lab-case-title" class="lattice-lab-card-kicker"></h2>
             </div>
             <dl class="lattice-lab-facts">
               <div>
@@ -77,16 +74,6 @@
                 <dd id="lattice-lab-case-density"></dd>
               </div>
               <div>
-                <dt>Equal-count gallery</dt>
-                <dd id="lattice-lab-population">
-                  Each curated geometry has equal numbers of electrinos and positrinos.
-                </dd>
-              </div>
-              <div>
-                <dt>Display shape</dt>
-                <dd>Spherical crop</dd>
-              </div>
-              <div>
                 <dt>Boundary treatment</dt>
                 <dd id="lattice-lab-case-boundary"></dd>
               </div>
@@ -95,9 +82,6 @@
                 <dd id="lattice-lab-case-scope"></dd>
               </div>
             </dl>
-            <p class="lattice-lab-scope-note">
-              The light-purple lines show nearest-neighbor geometry, not bonds, wakes, or acceleration vectors.
-            </p>
           </section>
 
           <section
@@ -105,20 +89,23 @@
             class="lattice-lab-card lattice-lab-compression-card"
             aria-labelledby="lattice-lab-compression-title"
           >
-            <h2 id="lattice-lab-compression-title">Uniaxial compression</h2>
+            <h2
+              id="lattice-lab-compression-title"
+              class="lattice-lab-card-kicker"
+            >Uniaxial Deformation</h2>
             <div class="lattice-lab-compression-controls">
               <label class="lattice-lab-compression-slider">
                 <input
-                  id="lattice-lab-compression-factor"
+                  id="lattice-lab-deformation-beta"
                   type="range"
-                  min="0.01"
+                  min="0"
                   max="1"
                   step="0.01"
-                  value="1"
-                  aria-label="Uniaxial compression"
+                  value="0"
+                  aria-label="Uniaxial deformation beta, 0 undeformed and 1 maximum"
                 />
-                <output id="lattice-lab-compression-value" for="lattice-lab-compression-factor">
-                  λ = 1.00
+                <output id="lattice-lab-compression-value" for="lattice-lab-deformation-beta">
+                  β = 0.00
                 </output>
               </label>
             </div>
@@ -145,6 +132,37 @@
               >Toggle primer</button>
             </div>
             <div id="lattice-lab-primer-body" class="lattice-lab-primer-body"></div>
+          </section>
+
+          <section
+            id="lattice-lab-shared-conventions"
+            class="lattice-lab-card lattice-lab-shared-conventions"
+            aria-labelledby="lattice-lab-shared-conventions-title"
+          >
+            <h2
+              id="lattice-lab-shared-conventions-title"
+              class="lattice-lab-card-kicker"
+            >Shared Display Conventions</h2>
+            <dl class="lattice-lab-facts lattice-lab-shared-conventions-facts">
+              <div>
+                <dt>Polarity counts</dt>
+                <dd>
+                  Every configuration in this curated gallery has equal numbers of electrinos and positrinos. This is a population fact; equal counts do not establish that acceleration contributions balance or cancel.
+                </dd>
+              </div>
+              <div>
+                <dt>Main display shape</dt>
+                <dd>
+                  The main view uses a spherical crop. It is a display boundary, not a physical boundary or a calculation-exhaustion rule.
+                </dd>
+              </div>
+              <div>
+                <dt>Relationship lines</dt>
+                <dd>
+                  Light-purple lines show nearest-neighbor geometry, not bonds, wakes, or acceleration vectors.
+                </dd>
+              </div>
+            </dl>
           </section>
         </div>
       </aside>
@@ -217,38 +235,54 @@
         <svg
           id="lattice-lab-tripod"
           class="lattice-lab-tripod"
-          viewBox="0 0 72 66"
+          viewBox="0 0 144 132"
           role="img"
           aria-label="XYZ orientation tripod"
         >
-          <circle cx="31" cy="31" r="2.2"></circle>
-          <line data-axis-line="x" x1="31" y1="31" x2="52" y2="31"></line>
-          <line data-axis-line="y" x1="31" y1="31" x2="31" y2="10"></line>
-          <line data-axis-line="z" x1="31" y1="31" x2="16" y2="46"></line>
-          <text data-axis-label="x" x="55" y="34">X</text>
-          <text data-axis-label="y" x="34" y="12">Y</text>
-          <text data-axis-label="z" x="10" y="52">Z</text>
+          <circle cx="72" cy="66" r="2.8"></circle>
+          <line data-axis-line="x" x1="30" y1="66" x2="114" y2="66"></line>
+          <line data-axis-line="y" x1="72" y1="108" x2="72" y2="24"></line>
+          <line data-axis-line="z" x1="42" y1="96" x2="102" y2="36"></line>
+          <text data-axis-label="x" x="124" y="66">X</text>
+          <text data-axis-label="y" x="72" y="14">Y</text>
+          <text data-axis-label="z" x="109" y="29">Z</text>
         </svg>
+
+        <div
+          id="lattice-lab-polarity-legend"
+          class="lattice-lab-polarity-legend"
+          role="img"
+          aria-label="Polarity legend: red sphere, Positrino; blue sphere, Electrino"
+        >
+          <span class="lattice-lab-polarity-legend-item">
+            <span class="lattice-lab-polarity-swatch" data-polarity="positrino" aria-hidden="true"></span>
+            <span>Positrino</span>
+          </span>
+          <span class="lattice-lab-polarity-legend-item">
+            <span class="lattice-lab-polarity-swatch" data-polarity="electrino" aria-hidden="true"></span>
+            <span>Electrino</span>
+          </span>
+        </div>
 
         <aside class="lattice-lab-inspector-stack" aria-label="Selected-site inspection">
           <section class="lattice-lab-miniature-card" aria-labelledby="lattice-lab-miniature-title">
             <div>
-              <span id="lattice-lab-miniature-kind">Polarity Repeat Cell</span>
-              <strong id="lattice-lab-miniature-title">How This Pattern Repeats</strong>
-              <small id="lattice-lab-miniature-state"></small>
+              <span id="lattice-lab-miniature-title">How This Pattern Repeats</span>
             </div>
-            <canvas
-              id="lattice-lab-miniature-canvas"
-              tabindex="0"
-              aria-label="Interactive repeat-cell view"
-            ></canvas>
+            <div class="lattice-lab-miniature-viewport">
+              <canvas
+                id="lattice-lab-miniature-canvas"
+                tabindex="0"
+                aria-label="Interactive repeat-cell view"
+              ></canvas>
+              <label class="lattice-lab-repeat-highlight-control">
+                <input id="lattice-lab-repeat-highlight" type="checkbox">
+                Highlight repeat cell
+              </label>
+            </div>
             <div class="lattice-lab-repeat-rule" aria-labelledby="lattice-lab-repeat-rule-title">
               <div class="lattice-lab-repeat-rule-heading">
                 <strong id="lattice-lab-repeat-rule-title">Translation rule</strong>
-                <label>
-                  <input id="lattice-lab-repeat-highlight" type="checkbox">
-                  Highlight repeat cell
-                </label>
               </div>
               <div
                 class="lattice-lab-repeat-vectors"
@@ -265,16 +299,36 @@
             </div>
           </section>
 
-          <section class="lattice-lab-ledger" aria-labelledby="lattice-lab-ledger-title">
+          <section
+            id="lattice-lab-ledger"
+            class="lattice-lab-ledger"
+            aria-labelledby="lattice-lab-ledger-title"
+            aria-live="polite"
+          >
             <div class="lattice-lab-ledger-heading">
               <div>
-                <span>Site ledger</span>
-                <h2 id="lattice-lab-ledger-title">Site Ledger</h2>
+                <span id="lattice-lab-ledger-title">Site Ledger</span>
               </div>
             </div>
-            <p class="lattice-lab-ledger-placeholder">
-              Site ledger is being redesigned.
-            </p>
+            <p id="lattice-lab-ledger-receiver" class="lattice-lab-ledger-receiver" hidden></p>
+            <div id="lattice-lab-ledger-result" class="lattice-lab-ledger-result">
+              <div class="lattice-lab-ledger-outcome">
+                <span id="lattice-lab-ledger-icon" class="lattice-lab-ledger-icon" aria-hidden="true"></span>
+                <strong id="lattice-lab-ledger-outcome"></strong>
+              </div>
+              <p id="lattice-lab-ledger-residual" class="lattice-lab-ledger-residual"></p>
+            </div>
+            <p id="lattice-lab-ledger-statement" class="lattice-lab-ledger-statement"></p>
+            <div id="lattice-lab-ledger-shells" class="lattice-lab-ledger-shells"></div>
+            <p id="lattice-lab-ledger-shell-scope" class="lattice-lab-ledger-shell-scope"></p>
+            <details id="lattice-lab-ledger-calculation" class="lattice-lab-ledger-calculation">
+              <summary>Show calculation</summary>
+              <div class="lattice-lab-ledger-calculation-heading" aria-hidden="true">
+                <span>Normalized contribution</span>
+                <span>Running local sum</span>
+              </div>
+              <div id="lattice-lab-ledger-calculation-rows"></div>
+            </details>
           </section>
         </aside>
       </main>

@@ -1,6 +1,6 @@
 # Site Ledger Presentation Design
 
-**Status:** Proposed; awaiting operator acceptance. The app retains the neutral redesign placeholder until this hierarchy is accepted.
+**Status:** Accepted by the operator and implemented in LAT-011 on 2026-08-01.
 
 ## Shared hierarchy
 
@@ -18,7 +18,7 @@ The first view does not show coordinates, implementation labels, running audit t
 
 ### Certified repeating pattern
 
-- **Outcome:** `Zero at every site`
+- **Outcome:** `Net acceleration is zero at every site.`
 - **Residual:** `Magnitude 0 · Vector ⟨0, 0, 0⟩`
 - **Scope sentence:** `In this ideal repeating pattern, matching pulls cancel at every site at release.`
 - **Shell summaries:** `Nearest shell: 6 contributions → 3 matching pairs → zero` and `Next shell: 12 contributions → 6 matching pairs → zero`
@@ -28,7 +28,7 @@ The two shell rows are labeled as local examples. The all-site result comes from
 
 ### Finite nonperiodic configuration
 
-- **Outcome:** `Zero in this finite configuration` or `Nonzero in this finite configuration`, determined from the actual displayed calculation.
+- **Outcome:** `Net acceleration is zero in this finite configuration.` or `Nonzero in this finite configuration`, determined from the actual displayed calculation.
 - **Residual:** Show the calculated dimensionless magnitude and vector.
 - **Scope sentence:** State that the result covers the displayed finite configuration only.
 - **Shell summaries and disclosure:** Show only rows actually included in that finite calculation.
@@ -49,4 +49,4 @@ Before a site is clicked, the certified checkerboard may state its pattern-wide 
 
 ## Acceptance gate
 
-Implementation may resume only after the operator accepts this hierarchy. Browser acceptance then requires the outcome, residual, scope sentence, and both shell summaries to be readable without opening the calculation disclosure at the operator viewport.
+Browser acceptance requires the outcome, residual, scope sentence, and both shell summaries to be readable without opening the calculation disclosure at the operator viewport.

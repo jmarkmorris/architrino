@@ -24,8 +24,16 @@ import {
 } from "../src/apps/lattice-lab/SimpleCubicStationaryLedger.js";
 import {
   LATTICE_LAB_UI_FEATURES,
+  applyTrackballDragQuaternion,
+  createDefaultOrientationQuaternion,
+  createEndpointVisualAggregation,
+  createUniaxialDeformedPosition,
+  createZPolarDisplayEnvelopePoint,
+  xAxisScaleFromDeformationBeta,
   createNearestNeighborEdges,
   createRepeatCellDisplayGraph,
+  createTripodAxisLayout,
+  projectTrackballPoint,
 } from "../src/apps/lattice-lab/LatticeLabRuntime.js";
 import { createPanelCollapseIconSvg } from "../src/runtime/PanelCollapseIcons.js";
 import {
@@ -39,6 +47,98 @@ import {
 function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
 }
+
+test("spherical display envelope uses semantic Z as its polar axis", () => {
+  const radius = 3.25;
+  assert.deepEqual(
+    createZPolarDisplayEnvelopePoint(radius, 0, 1.234),
+    [0, 0, radius],
+  );
+  const southPole = createZPolarDisplayEnvelopePoint(
+    radius,
+    Math.PI,
+    2.345,
+  );
+  assert.ok(Math.abs(southPole[0]) < 1e-12);
+  assert.ok(Math.abs(southPole[1]) < 1e-12);
+  assert.equal(southPole[2], -radius);
+
+  const equator = createZPolarDisplayEnvelopePoint(
+    radius,
+    Math.PI / 2,
+    Math.PI / 2,
+  );
+  assert.ok(Math.abs(equator[0]) < 1e-12);
+  assert.equal(equator[1], radius);
+  assert.ok(Math.abs(equator[2]) < 1e-12);
+
+  const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
+  assert.match(source, /semanticPolarAxis = "z"/u);
+  assert.match(source, /displayEnvelopeOrientationSource =\s*\n\s*"shared-lattice-root-quaternion"/u);
+});
+
+test("uniaxial deformation changes only semantic X monotonically at every beta", () => {
+  const position = [4, -3, 2];
+  const samples = [0, 0.01, 0.25, 0.5, 0.75, 0.99, 1].map((beta) => {
+    const factor = xAxisScaleFromDeformationBeta(beta);
+    return {
+      beta,
+      factor,
+      position: createUniaxialDeformedPosition(position, {
+        axis: "x",
+        factor,
+      }),
+    };
+  });
+  assert.deepEqual(samples[0].position, position);
+  assert.deepEqual(samples.at(-1).position, [0.04, -3, 2]);
+  samples.forEach(({ factor, position: deformed }) => {
+    assert.equal(deformed[0], position[0] * factor);
+    assert.equal(deformed[1], position[1]);
+    assert.equal(deformed[2], position[2]);
+  });
+  samples.slice(1).forEach((sample, index) => {
+    assert.ok(sample.factor < samples[index].factor);
+    assert.ok(Math.abs(sample.position[0]) < Math.abs(samples[index].position[0]));
+  });
+
+  const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
+  assert.match(source, /referenceDisplayScale/u);
+  assert.match(source, /referenceRepeatRadius/u);
+  assert.doesNotMatch(
+    source,
+    /miniatureRoot\.scale\.setScalar\(1\.95 \/ repeatRadius\)/u,
+  );
+});
+
+test("maximum deformation aggregates coincident columns and partitions lines", () => {
+  const sites = [
+    { id: "a", position: [0, 0, 0] },
+    { id: "b", position: [0.01, 0, 0] },
+    { id: "c", position: [0, 1, 0] },
+    { id: "d", position: [0.01, 1, 0] },
+  ];
+  const edges = [
+    { id: "ab", fromSiteId: "a", toSiteId: "b" },
+    { id: "cd", fromSiteId: "c", toSiteId: "d" },
+    { id: "ac", fromSiteId: "a", toSiteId: "c" },
+    { id: "bd", fromSiteId: "b", toSiteId: "d" },
+  ];
+  const aggregation = createEndpointVisualAggregation(sites, edges, 0.02);
+  assert.deepEqual(
+    aggregation.collapsedGroups.map(({ memberIds }) => memberIds),
+    [["a", "b"], ["c", "d"]],
+  );
+  assert.deepEqual(aggregation.internalEdgeIds, ["ab", "cd"]);
+  assert.deepEqual(aggregation.externalEdges.map(({ id }) => id), ["ac"]);
+  assert.deepEqual(aggregation.redundantExternalEdgeIds, ["bd"]);
+  assert.deepEqual(aggregation.collapsedGroups[0].position, [0.005, 0, 0]);
+
+  const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
+  assert.match(source, /const endpointActive = deformationBeta === 1/u);
+  assert.match(source, /endpoint-collapsed-site-group/u);
+  assert.match(source, /ENDPOINT_AGGREGATE_COLOR/u);
+});
 
 test("simple-cubic checkerboard fills the spherical crop with an exactly neutral population", () => {
   const caseRecord = createSimpleCubicCheckerboardCase();
@@ -158,6 +258,61 @@ test("one-axis compression preserves exact checkerboard inversion-pair cancellat
     }),
     /0 < lambda <= 1/u,
   );
+});
+
+test("deformation beta maps 0 to undeformed and 1 to maximum supported scale", () => {
+  assert.equal(xAxisScaleFromDeformationBeta(0), 1);
+  assert.equal(xAxisScaleFromDeformationBeta(1), 0.01);
+  assert.equal(xAxisScaleFromDeformationBeta(0.5), 0.505);
+  assert.throws(
+    () => xAxisScaleFromDeformationBeta(-0.01),
+    /0 <= beta <= 1/u,
+  );
+  assert.throws(
+    () => xAxisScaleFromDeformationBeta(1.01),
+    /0 <= beta <= 1/u,
+  );
+});
+
+test("trackball drag permits full 3D rotation and tilts the projected Y axis", () => {
+  const rect = { left: 0, top: 0, width: 400, height: 400 };
+  const center = projectTrackballPoint(200, 200, rect);
+  const first = projectTrackballPoint(300, 245, rect);
+  const second = projectTrackballPoint(245, 105, rect);
+  assert.deepEqual(center.map((value) => Math.abs(value)), [0, 0, 1]);
+  const firstQuaternion = applyTrackballDragQuaternion(
+    [0, 0, 0, 1],
+    center,
+    first,
+  );
+  const fullQuaternion = applyTrackballDragQuaternion(
+    firstQuaternion,
+    first,
+    second,
+  );
+  const magnitude = Math.hypot(...fullQuaternion);
+  assert.ok(Math.abs(magnitude - 1) < 1e-12);
+  assert.ok(Math.abs(fullQuaternion[2]) > 0.05, "trackball must permit roll");
+
+  const [qx, qy, qz, qw] = fullQuaternion;
+  const yAxis = [
+    2 * (qx * qy - qw * qz),
+    1 - 2 * (qx * qx + qz * qz),
+    2 * (qy * qz + qw * qx),
+  ];
+  assert.ok(Math.abs(yAxis[0]) > 0.05, "projected Y axis must be able to tilt");
+});
+
+test("default display orientation is Z-up without remapping model axes", () => {
+  const [qx, qy, qz, qw] = createDefaultOrientationQuaternion();
+  const projectedZ = [
+    2 * (qx * qz + qw * qy),
+    2 * (qy * qz - qw * qx),
+    1 - 2 * (qx * qx + qy * qy),
+  ];
+  assert.ok(Math.abs(projectedZ[0]) < 1e-12);
+  assert.ok(projectedZ[1] > 0.2);
+  assert.ok(Math.abs(projectedZ[2]) > 0.2);
 });
 
 test("independent structural verifier accepts the contract and rejects tampering", () => {
@@ -434,11 +589,14 @@ test("checkerboard periodic network rejects diagonal graph bridges", () => {
 
 test("checkerboard miniature and central highlight consume one canonical edge identity set", () => {
   const checkerboard = createSimpleCubicCheckerboardCase();
-  [1, 0.4].forEach((compressionFactor) => {
+  let referenceIdentities = null;
+  [1, 0.505, 0.01].forEach((compressionFactor) => {
     const graph = createRepeatCellDisplayGraph(checkerboard, {
       compressionAxis: "x",
       compressionFactor,
     });
+    assert.equal(graph.edgeIdentities.length, 15);
+    assert.equal(graph.excludedEdges.length, 0);
     assert.equal(
       new Set(graph.edgeIdentities).size,
       graph.edgeIdentities.length,
@@ -447,6 +605,8 @@ test("checkerboard miniature and central highlight consume one canonical edge id
       graph.edgeIdentities,
       graph.edges.map(({ edge }) => edge.id),
     );
+    referenceIdentities ??= graph.edgeIdentities;
+    assert.deepEqual(graph.edgeIdentities, referenceIdentities);
   });
   const runtime = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
   assert.match(
@@ -662,6 +822,11 @@ test("curated gallery follows the guided order and every spherical crop and repe
       true,
       `${caseRecord.id} spherical crop`,
     );
+    assert.match(
+      caseRecord.boundaryTreatment,
+      /finite spherical display crop/u,
+      caseRecord.id,
+    );
   });
 });
 
@@ -763,6 +928,52 @@ test("nearest-neighbor geometry segments terminate at both sphere surfaces", () 
   );
 });
 
+test("XYZ key uses centered symmetric unit axes with labels beyond positive endpoints", () => {
+  for (const [axis, projectedVector] of [
+    ["x", [1, 0]],
+    ["y", [0, 1]],
+    ["z", [-Math.SQRT1_2, Math.SQRT1_2]],
+    ["z", [0, 0]],
+  ]) {
+    const layout = createTripodAxisLayout(axis, projectedVector);
+    assert.deepEqual(
+      [
+        (layout.negativeEndpoint.x + layout.positiveEndpoint.x) / 2,
+        (layout.negativeEndpoint.y + layout.positiveEndpoint.y) / 2,
+      ],
+      [72, 66],
+      axis,
+    );
+    const positiveArm = [
+      layout.positiveEndpoint.x - 72,
+      layout.positiveEndpoint.y - 66,
+    ];
+    const negativeArm = [
+      layout.negativeEndpoint.x - 72,
+      layout.negativeEndpoint.y - 66,
+    ];
+    negativeArm.forEach((value, index) => {
+      assert.ok(Math.abs(value + positiveArm[index]) < 1e-10, axis);
+    });
+    const labelOffset = [
+      layout.labelPosition.x - layout.positiveEndpoint.x,
+      layout.labelPosition.y - layout.positiveEndpoint.y,
+    ];
+    assert.ok(Math.abs(Math.hypot(...labelOffset) - 10) < 1e-10, axis);
+    if (Math.hypot(...positiveArm) > 1e-7) {
+      assert.ok(
+        labelOffset[0] * positiveArm[0] +
+          labelOffset[1] * positiveArm[1] > 0,
+        axis,
+      );
+    }
+  }
+  assert.throws(
+    () => createTripodAxisLayout("q", [1, 0]),
+    /must be x, y, or z/u,
+  );
+});
+
 test("Lattice Lab page keeps the shared standalone navigation strip without Borg diagnostics", () => {
   const html = readRepoFile("lattice-lab.html");
   assert.match(
@@ -778,24 +989,85 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
   assert.match(html, /id="lattice-lab-miniature-canvas"/u);
   assert.match(
     html,
+    /id="lattice-lab-tripod"[\s\S]*viewBox="0 0 144 132"/u,
+  );
+  assert.match(
+    html,
     /id="lattice-lab-miniature-canvas"[\s\S]*tabindex="0"[\s\S]*aria-label="Interactive repeat-cell view"/u,
   );
   assert.match(html, /How This Pattern Repeats/u);
+  assert.equal(html.match(/How This Pattern Repeats/gu)?.length, 1);
+  assert.match(
+    html,
+    /class="lattice-lab-miniature-card" aria-labelledby="lattice-lab-miniature-title"[\s\S]*<span id="lattice-lab-miniature-title">How This Pattern Repeats<\/span>/u,
+  );
+  assert.doesNotMatch(html, /Polarity Repeat Cell|lattice-lab-miniature-kind/u);
   assert.match(html, /id="lattice-lab-repeat-highlight"[\s\S]*type="checkbox"/u);
+  assert.match(
+    html,
+    /<div class="lattice-lab-miniature-viewport">[\s\S]*id="lattice-lab-miniature-canvas"[\s\S]*<label class="lattice-lab-repeat-highlight-control">\s*<input id="lattice-lab-repeat-highlight" type="checkbox">[\s\S]*<\/div>\s*<div class="lattice-lab-repeat-rule"/u,
+  );
+  assert.doesNotMatch(
+    html,
+    /Copy this colored tile by translation to continue the pattern\.|lattice-lab-miniature-state/u,
+  );
+  assert.match(html, /id="lattice-lab-repeat-vector-a"/u);
+  assert.match(html, /id="lattice-lab-repeat-vector-b"/u);
+  assert.match(html, /id="lattice-lab-repeat-vector-c"/u);
   assert.equal(html.includes("lattice-lab-miniature-legend"), false);
   assert.equal(html.includes("Synchronized orientation"), false);
   assert.match(html, /id="lattice-lab-case-select"/u);
-  assert.match(html, /Site ledger is being redesigned\./u);
+  assert.doesNotMatch(html, /Site ledger is being redesigned\./u);
   assert.equal(html.includes("Selected-Site Ledger"), false);
-  assert.equal(html.includes("lattice-lab-ledger-result"), false);
-  assert.equal(html.includes("lattice-lab-ledger-shells"), false);
-  assert.equal(html.includes("Scope and calculation basis"), false);
-  assert.equal(html.includes("lattice-lab-configuration-state"), false);
+  assert.match(html, /id="lattice-lab-ledger-result"/u);
+  assert.match(html, /id="lattice-lab-ledger-shells"/u);
   assert.match(
     html,
-    /Each curated geometry has equal numbers of electrinos and positrinos\./u,
+    /class="lattice-lab-ledger"[\s\S]*aria-labelledby="lattice-lab-ledger-title"[\s\S]*<span id="lattice-lab-ledger-title">Site Ledger<\/span>/u,
   );
-  assert.match(html, />Spherical crop</u);
+  assert.equal(html.match(/>Site Ledger</gu)?.length, 1);
+  assert.doesNotMatch(html, /<h2 id="lattice-lab-ledger-title">/u);
+  assert.match(
+    html,
+    /id="lattice-lab-ledger-calculation"[\s\S]*<summary>Show calculation<\/summary>/u,
+  );
+  assert.match(html, /Normalized contribution/u);
+  assert.match(html, /Running local sum/u);
+  assert.equal(html.includes("Scope and calculation basis"), false);
+  assert.equal(html.includes("lattice-lab-configuration-state"), false);
+  const activeCaseRecord = html.slice(
+    html.indexOf('id="lattice-lab-case-title"'),
+    html.indexOf("lattice-lab-compression-card"),
+  );
+  assert.doesNotMatch(activeCaseRecord, /Equal-count gallery|Display shape/u);
+  assert.doesNotMatch(activeCaseRecord, /light-purple lines show/u);
+  assert.ok(
+    html.indexOf("lattice-lab-shared-conventions") >
+      html.indexOf("lattice-lab-primer"),
+  );
+  assert.match(
+    html,
+    /id="lattice-lab-shared-conventions"[\s\S]*aria-labelledby="lattice-lab-shared-conventions-title"[\s\S]*id="lattice-lab-shared-conventions-title"\s*class="lattice-lab-card-kicker"\s*>Shared Display Conventions<\/h2>/u,
+  );
+  const sharedConventionsCard = html.slice(
+    html.indexOf('id="lattice-lab-shared-conventions"'),
+    html.indexOf("</section>", html.indexOf('id="lattice-lab-shared-conventions"')),
+  );
+  assert.equal(sharedConventionsCard.match(/Shared Display Conventions/gu)?.length, 1);
+  assert.equal(sharedConventionsCard.match(/lattice-lab-card-kicker/gu)?.length, 1);
+  assert.doesNotMatch(sharedConventionsCard, /Current curated gallery/u);
+  assert.match(
+    html,
+    /Every configuration in this curated gallery has equal numbers of electrinos and positrinos\./u,
+  );
+  assert.doesNotMatch(html, /Every configuration currently shown/u);
+  assert.match(
+    html,
+    /population fact; equal counts do not establish that acceleration contributions balance or cancel\./u,
+  );
+  assert.match(html, /The main view uses a spherical crop\./u);
+  assert.match(html, /display boundary, not a physical boundary or a calculation-exhaustion rule/u);
+  assert.match(html, /Light-purple lines show nearest-neighbor geometry/u);
   assert.equal(html.includes("lattice-lab-selected-site"), false);
   assert.equal(html.includes("Display-only core"), false);
   assert.equal(html.includes("lattice-lab-swap-button"), false);
@@ -803,7 +1075,20 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
   assert.equal(html.includes("lattice-lab-compression-axis"), false);
   assert.match(
     html,
-    /id="lattice-lab-compression-factor"[\s\S]*type="range"[\s\S]*aria-label="Uniaxial compression"/u,
+    /id="lattice-lab-deformation-beta"[\s\S]*type="range"[\s\S]*min="0"[\s\S]*max="1"[\s\S]*value="0"[\s\S]*aria-label="Uniaxial deformation beta, 0 undeformed and 1 maximum"/u,
+  );
+  assert.doesNotMatch(html, /id="lattice-lab-compression-factor"|id="lattice-lab-compression-amount"/u);
+  assert.match(html, /β = 0\.00/u);
+  assert.match(
+    html,
+    /<h2 id="lattice-lab-case-title" class="lattice-lab-card-kicker"><\/h2>/u,
+  );
+  assert.match(html, /What You Are Seeing/u);
+  assert.doesNotMatch(html, /What You’re Seeing/u);
+  assert.doesNotMatch(html, /Active case record/u);
+  assert.match(
+    html,
+    /id="lattice-lab-compression-title"\s*class="lattice-lab-card-kicker"\s*>Uniaxial Deformation<\/h2>/u,
   );
   assert.ok(
     html.indexOf("lattice-lab-case-selector-card") <
@@ -817,9 +1102,12 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
     /Every site has six nearest neighbors of the opposite polarity\./u,
   );
   assert.match(runtime, /siteSelectionExplicit = true/u);
+  assert.match(runtime, /createLatticeLabLedgerViewModel/u);
+  assert.match(runtime, /renderLatticeLabLedgerViewModel/u);
 });
 
 test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-tested geometry", () => {
+  const html = readRepoFile("lattice-lab.html");
   const runtime = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
   const css = readRepoFile("src/apps/lattice-lab/lattice-lab.css");
   assert.match(runtime, /new THREE\.SphereGeometry\(1, 24, 16\)/u);
@@ -832,6 +1120,26 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   assert.match(runtime, /createClippedNeighborSegment/u);
   assert.match(runtime, /depthTest: true/u);
   assert.match(runtime, /miniatureRoot\.quaternion\.copy\(rootGroup\.quaternion\)/u);
+  assert.match(runtime, /createTripodAxisLayout\(axis, \[vector\.x, vector\.y\]\)/u);
+  assert.match(runtime, /applyTrackballDragQuaternion/u);
+  assert.doesNotMatch(runtime, /rootGroup\.rotation\.x = clamp/u);
+  assert.match(
+    runtime,
+    /rootGroup\.quaternion\.set\(\.\.\.createDefaultOrientationQuaternion\(\)\)/u,
+  );
+  assert.match(css, /\.lattice-lab-ledger-outcome \{[\s\S]*font-size: 14px;/u);
+  assert.match(css, /\.lattice-lab-primer-heading strong \{[\s\S]*font-size: 14px;/u);
+  assert.match(
+    html,
+    /id="lattice-lab-polarity-legend"[\s\S]*role="img"[\s\S]*aria-label="Polarity legend: red sphere, Positrino; blue sphere, Electrino"/u,
+  );
+  assert.match(html, /data-polarity="positrino"[\s\S]*Positrino/u);
+  assert.match(html, /data-polarity="electrino"[\s\S]*Electrino/u);
+  assert.ok(html.indexOf("data-polarity=\"positrino\"") <
+    html.indexOf("data-polarity=\"electrino\""));
+  assert.match(css, /\.lattice-lab-polarity-swatch \{[\s\S]*width: 16px;[\s\S]*height: 16px;/u);
+  assert.match(runtime, /markerDiameterPx = String\(2 \* MARKER_RADIUS_PX\)/u);
+  assert.match(runtime, /canvasRect\.right - inspectorRect\.left \+ 12/u);
   assert.match(runtime, /createRepeatCellNearestNeighborNetwork\(caseRecord\)/u);
   assert.match(
     runtime,
@@ -840,12 +1148,34 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   assert.match(runtime, /repeatHighlightGroup/u);
   assert.doesNotMatch(runtime, /repeat-cell-highlight-frame/u);
   assert.match(runtime, /repeat-cell-highlight-neighbor/u);
-  assert.match(runtime, /lineGroup\.visible = !repeatCellHighlighted/u);
+  assert.match(runtime, /const REPEAT_CELL_HIGHLIGHT_COLOR = 0xb79cff;/u);
+  assert.match(runtime, /const REPEAT_CELL_HIGHLIGHT_RADIUS = 0\.0176;/u);
+  assert.match(
+    runtime,
+    /new THREE\.CylinderGeometry\(\s*REPEAT_CELL_HIGHLIGHT_RADIUS,\s*REPEAT_CELL_HIGHLIGHT_RADIUS,/u,
+  );
+  assert.doesNotMatch(runtime, /new THREE\.CylinderGeometry\(0\.022, 0\.022, 1, 10\)/u);
+  assert.doesNotMatch(runtime, /lineGroup\.visible/u);
+  assert.match(
+    runtime,
+    /repeatCellHighlighted &&\s*selectedMainEdgeIdentities\.has\(mainEdgeIdentity\)[\s\S]*line\.visible = false;[\s\S]*suppressedMainEdgeIdentities\.push\(mainEdgeIdentity\)/u,
+  );
+  assert.match(runtime, /suppressedNearestEdgeIdentities/u);
+  assert.match(runtime, /repeatHighlightMainEdgeIdentities/u);
+  assert.match(
+    runtime,
+    /object\.visible =\s*repeatCellHighlighted && object\.userData\.segmentFits !== false/u,
+  );
   assert.match(runtime, /repeatHighlightEdgeCount/u);
   assert.match(
     runtime,
     /MARKER_RADIUS_PX \*[\s\S]*miniatureCamera\.top \/ miniatureViewportHeight/u,
   );
+  assert.match(
+    runtime,
+    /if \(distance <= startRadius \+ endRadius\) \{[\s\S]*line\.visible = true;[\s\S]*line\.material = miniatureOverlapLineMaterial;[\s\S]*overlapMiniatureEdgeIdentities\.push/u,
+  );
+  assert.match(runtime, /overlapConnectorIdentities/u);
   assert.match(
     runtime,
     /mesh\.scale\.setScalar\(miniatureLocalRadius\)/u,
@@ -868,7 +1198,7 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   );
   assert.match(
     css,
-    /#lattice-lab-miniature-canvas \{[\s\S]*width: var\(--miniature-size\);[\s\S]*height: auto;[\s\S]*aspect-ratio: 1;/u,
+    /\.lattice-lab-miniature-viewport \{[\s\S]*position: relative;[\s\S]*width: var\(--miniature-size\);[\s\S]*aspect-ratio: 1;/u,
   );
   assert.match(
     css,
@@ -881,6 +1211,10 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   assert.match(
     css,
     /#lattice-lab-app \{[\s\S]*--rail-width: 413\.4px;/u,
+  );
+  assert.match(
+    css,
+    /\.lattice-lab-tripod \{[\s\S]*left: 16px;[\s\S]*bottom: 18px;[\s\S]*width: 144px;[\s\S]*height: 132px;/u,
   );
   assert.match(
     css,
@@ -911,10 +1245,10 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
     css,
     /\.lattice-lab-case-selector select \{[\s\S]*appearance: none;[\s\S]*height: 36px;[\s\S]*font-size: 11px;[\s\S]*font-weight: 720;/u,
   );
-  assert.match(
-    css,
-    /\.lattice-lab-ledger-placeholder \{[\s\S]*font-size: 12px;/u,
-  );
+  assert.doesNotMatch(css, /lattice-lab-ledger-placeholder/u);
+  assert.match(css, /\.lattice-lab-ledger-outcome \{[\s\S]*font-size: 14px;/u);
+  assert.match(css, /\.lattice-lab-ledger-shells \{[\s\S]*display: grid;/u);
+  assert.match(css, /\.lattice-lab-ledger-calculation summary/u);
   assert.doesNotMatch(css, /lattice-lab-ledger-pair|lattice-lab-shell-status/u);
   assert.match(css, /background-image: url\("data:image\/svg\+xml/u);
   assert.match(runtime, /function updateUsableCanvasCenter\(\)/u);
@@ -929,9 +1263,9 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   );
   assert.doesNotMatch(runtime, /LineDashedMaterial/u);
   assert.doesNotMatch(runtime, /wireframe = true/u);
-  assert.match(
+  assert.doesNotMatch(
     runtime,
-    /Copy this colored tile by translation to continue the pattern\./u,
+    /miniatureState|lattice-lab-miniature-state|miniatureKind|lattice-lab-miniature-kind|dom\.population|lattice-lab-population/u,
   );
   assert.match(runtime, /function applyCompressionControls\(\)/u);
   assert.match(
@@ -942,6 +1276,19 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   assert.doesNotMatch(runtime, /swapOppositeLatticePolarities/u);
   assert.match(runtime, /transformDisplayPosition\(startSite\.position\)/u);
   assert.match(css, /\.lattice-lab-miniature-card \{[\s\S]*box-shadow: none;/u);
+  assert.match(
+    css,
+    /\.lattice-lab-shared-conventions h2\.lattice-lab-card-kicker \{[\s\S]*color: #bdaeff;[\s\S]*font-size: 10px;/u,
+  );
+  assert.match(
+    css,
+    /\.lattice-lab-card h2\.lattice-lab-card-kicker \{[\s\S]*color: #bdaeff;[\s\S]*font-size: 10px;/u,
+  );
+  assert.match(
+    css,
+    /\.lattice-lab-repeat-highlight-control \{[\s\S]*position: absolute;[\s\S]*left: 8px;[\s\S]*bottom: 8px;/u,
+  );
+  assert.doesNotMatch(css, /\.lattice-lab-repeat-rule-heading label/u);
 });
 
 test("shared panel collapse icon preserves the established open and closed treatment", () => {

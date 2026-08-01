@@ -1,13 +1,15 @@
 # Near-Contact Separating-Trace Incompatibility Theorem Target
 
 **Date:** 2026-07-31
-**Status:** queued prove-or-refute theorem target; blocked on FSC-006
-distributional formulation; no result claimed
+**Status:** queued prove-or-refute theorem target; blocked on FSC-006b
+zero-range formulation and FSC-006a provenance hypotheses; no result claimed
 **Claim level:** proposed theorem program
 **Origin:** finding 9 of the
 [Jack K. Hale review](jack-k-hale-review-response-2026-07-31.md), revised by
 finding 7 of the
-[Lars Hörmander review](lars-hormander-review-response-2026-07-31.md)
+[Lars Hörmander review](lars-hormander-review-response-2026-07-31.md), and
+narrowed by the
+[Albert Einstein second review](albert-einstein-second-review-response-2026-08-01.md)
 **Scope:** exact mirror-collinear partner contact under the unchanged ordinary
 positive-separation causal-root law, with normalized $c_f=1$
 
@@ -53,7 +55,8 @@ The initial theorem attack should use:
    admitted $s\in[0,T)$, including the nonzero contact-time record
    $\mathsf E_{j,0}$;
 5. no undeclared reset on $(0,\varepsilon]$;
-6. every competing ordinary, tangent, fold, diagonal, or nonordinary stratum
+6. every competing ordinary, degenerate isolated, characteristic-interval,
+   diagonal, or cross-channel stratum
    explicitly routed by the FSC-006 ownership interface; and
 7. the complete raw ledger, rather than a single selected row, satisfying the
    leading-asymptotic and sign hypotheses below.
@@ -146,6 +149,23 @@ $\mathbf p_i\ne\mathbf0$ and says that the proposed projection retains a
 speed-reducing leading term. This condition must be proved for both receivers;
 it cannot be inferred from one row or from root counts.
 
+For any finite ledger at a fixed cap direction,
+
+$$
+\mathcal P_{\mathbf V}(\mathbf b)=\mathbf0
+\quad\Longleftrightarrow\quad
+\mathbf b=\lambda\hat{\mathbf v},
+\qquad
+\lambda\ge0.
+$$
+
+Thus a nonzero transverse or backward leading coefficient is an exact leading-
+order obstruction. Conversely, a purely forward coefficient removes only the
+displayed leading term. It is not sufficient for a finite effective Radon
+measure: the projected $o(\delta^{-2})$ remainder may still be nonintegrable.
+The theorem or its refutation must therefore control the response direction
+and the remainder, not only $\mathbf b_i$.
+
 Under these hypotheses,
 
 $$
@@ -196,6 +216,10 @@ row by itself is not enough.
    no-leading-cancellation condition after competing-stratum routing.
 8. **BV/Radon contradiction.** Show that the retained leading term is
    incompatible with finite total variation of $D\mathbf V_i$.
+9. **Response-remainder lemma.** Use finite-ledger response continuity and
+   the cap-direction limit to justify the projected asymptotic. If the leading
+   coefficient is purely forward, prove or refute local integrability of the
+   projected remainder rather than declaring the response measure finite.
 
 ## Refutation routes
 
@@ -210,7 +234,8 @@ for which:
 - the complete ledger has a canonical leading cancellation before projection;
 - the source-provenanced receiver measures fail the FSC-006 weak-limit
   formulation;
-- the effective response nevertheless defines a finite vector Radon measure;
+- after a purely forward leading cancellation, the projected remainder
+  nevertheless defines a finite vector Radon measure;
   or
 - another declared reset occurs before the ordinary near-contact chart forms.
 
@@ -233,9 +258,9 @@ or establish a regulator-independent contact measure.
 
 ## Dependencies and acceptance boundary
 
-FSC-005 is blocked on FSC-006's typed receiver-measure decomposition,
-candidate topology, competing-stratum ownership, and perturbative weak-limit
-test in the
+FSC-005 is blocked on FSC-006a's source-provenanced far-part theorem and
+FSC-006b's typed zero-range receiver-measure decomposition, competing-stratum
+ownership, and perturbative weak-limit test in the
 [mathematics packet](mathematics-geometry-dynamical-system.md). It also uses
 the [endpoint reanalysis](capped-collinear-endpoint-reanalysis.md) only for the
 prescribed straight-trace calculation and MEC-007 only for the conditional
@@ -243,7 +268,7 @@ incoming threshold history.
 
 `Advanced` would require either:
 
-1. proofs of all eight lemmas with both ordered channels and the complete
+1. proofs of all nine lemmas with both ordered channels and the complete
    leading ledger explicit; or
 2. one complete counterexample satisfying the candidate trace, source,
    ownership, competing-stratum, and measure assumptions.
@@ -252,5 +277,6 @@ The prescribed straight trace, a sampled numerical trace, root-count
 convergence, or an argument from the outgoing one-jet alone remains
 `Not advanced`.
 
-Closure goal: complete FSC-006, then prove or refute the limited two-channel
-BV/Radon incompatibility without assuming a continuation outcome.
+Closure goal: complete FSC-006a and FSC-006b, then prove or refute the limited
+two-channel BV/Radon incompatibility with leading and remainder control and
+without assuming a continuation outcome.

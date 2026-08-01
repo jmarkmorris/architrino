@@ -37,11 +37,18 @@ test("certified checkerboard view starts with the exact periodic zero result", (
     LATTICE_LAB_LEDGER_SCOPE.CERTIFIED_PERIODIC,
   );
   assert.equal(viewModel.outcome, "zero");
-  assert.equal(viewModel.outcomeLabel, "Zero residual — certified");
+  assert.equal(
+    viewModel.outcomeLabel,
+    "Net acceleration is zero at every site.",
+  );
   assert.equal(viewModel.residualMagnitude, 0);
   assert.equal(viewModel.residualMagnitudeLabel, "0");
   assert.deepEqual(viewModel.residualVector, [0, 0, 0]);
   assert.equal(viewModel.residualVectorLabel, "⟨0, 0, 0⟩");
+  assert.equal(
+    viewModel.residualLineLabel,
+    "Magnitude 0 · Vector ⟨0, 0, 0⟩",
+  );
   assert.equal(
     viewModel.statement,
     "In this ideal repeating pattern, matching pulls cancel at every site at release.",
@@ -49,8 +56,8 @@ test("certified checkerboard view starts with the exact periodic zero result", (
   assert.deepEqual(
     viewModel.shellSummaries.map((shell) => shell.totalLabel),
     [
-      "6 contributions → 3 matching pairs → ⟨0, 0, 0⟩",
-      "12 contributions → 6 matching pairs → ⟨0, 0, 0⟩",
+      "Nearest shell: 6 contributions → 3 matching pairs → zero",
+      "Next shell: 12 contributions → 6 matching pairs → zero",
     ],
   );
   assert.equal(viewModel.calculationAvailable, true);
@@ -78,7 +85,7 @@ test("checkerboard never inherits a zero result when the periodic check is absen
   assert.equal(viewModel.residualMagnitudeLabel, null);
   assert.equal(viewModel.residualVector, null);
   assert.equal(viewModel.residualVectorLabel, null);
-  assert.equal(viewModel.residualMeaning, null);
+  assert.equal(viewModel.residualLineLabel, null);
   assert.equal(viewModel.calculationAvailable, false);
   assert.deepEqual(viewModel.calculationRows, []);
   assert.equal(
@@ -114,13 +121,13 @@ test("non-certified gallery cases expose geometry shells without acceleration ro
       {
         count: 8,
         distance: "d",
-        totalLabel: "8 sites at d",
+        totalLabel: "Nearest shell: 8 sites at d",
         vector: null,
       },
       {
         count: 6,
         distance: "2d/√3",
-        totalLabel: "6 sites at 2d/√3",
+        totalLabel: "Next shell: 6 sites at 2d/√3",
         vector: null,
       },
     ],
@@ -134,7 +141,7 @@ test("finite nonperiodic state reports only its calculated finite residual", () 
     ...ledger,
     certificateApplies: false,
     certifiedExactZero: false,
-    normalizedAccelerationResidual: [0.25, 0, 0],
+    normalizedAccelerationResidual: [99, 99, 99],
     shells: ledger.shells.map((shell, shellIndex) => ({
       ...shell,
       normalizedAccelerationResidual: shellIndex === 0
@@ -174,7 +181,7 @@ test("finite nonperiodic state reports only its calculated finite residual", () 
   assert.equal(viewModel.outcome, "nonzero");
   assert.equal(
     viewModel.outcomeLabel,
-    "Nonzero residual in displayed finite scope",
+    "Nonzero in this finite configuration",
   );
   assert.equal(viewModel.residualMagnitudeLabel, "0.25");
   assert.equal(viewModel.residualVectorLabel, "⟨0.25, 0, 0⟩");
@@ -182,4 +189,78 @@ test("finite nonperiodic state reports only its calculated finite residual", () 
   assert.doesNotMatch(viewModel.statement, /every site/u);
   assert.equal(viewModel.receiverLabel, "Selected electrino");
   assert.equal(viewModel.calculationAvailable, true);
+  assert.equal(viewModel.calculationRows.length, 18);
+  assert.deepEqual(
+    viewModel.calculationRows.at(-1).runningResidual,
+    [0.25, 0, 0],
+  );
+  assert.match(viewModel.shellSummaries[0].totalLabel, /6 calculated contributions/u);
+});
+
+test("finite nonperiodic zero is derived from included contribution rows only", () => {
+  const { caseRecord, ledger } = createCheckerboardLedger();
+  const excludedRow = {
+    ...ledger.rows[0],
+    includedInCalculation: false,
+    accelerationRow: {
+      ...ledger.rows[0].accelerationRow,
+      normalizedAcceleration: [500, 0, 0],
+    },
+  };
+  const finiteLedger = {
+    ...ledger,
+    certificateApplies: false,
+    certifiedExactZero: false,
+    rows: [excludedRow, ...ledger.rows.slice(1)],
+    shells: ledger.shells.map((shell, shellIndex) => ({
+      ...shell,
+      rows: shellIndex === 0
+        ? [excludedRow, ...shell.rows.slice(1)]
+        : shell.rows,
+    })),
+  };
+  const viewModel = createLatticeLabLedgerViewModel({
+    caseRecord,
+    ledger: finiteLedger,
+    finiteNonperiodic: true,
+  });
+
+  const expected = ledger.rows.slice(1).reduce(
+    (sum, row) => sum.map(
+      (value, index) => value + row.accelerationRow.normalizedAcceleration[index],
+    ),
+    [0, 0, 0],
+  );
+  assert.deepEqual(viewModel.residualVector, expected);
+  assert.equal(viewModel.outcome, "nonzero");
+  assert.equal(viewModel.calculationRows.length, 17);
+  assert.equal(
+    viewModel.shellSummaries[0].totalLabel.startsWith(
+      "Nearest shell: 5 calculated contributions",
+    ),
+    true,
+  );
+  assert.equal(JSON.stringify(viewModel).includes("500"), false);
+});
+
+test("finite nonperiodic exact zero uses finite-only outcome language", () => {
+  const { caseRecord, ledger } = createCheckerboardLedger();
+  const finiteLedger = {
+    ...ledger,
+    certificateApplies: false,
+    certifiedExactZero: false,
+  };
+  const viewModel = createLatticeLabLedgerViewModel({
+    caseRecord,
+    ledger: finiteLedger,
+    finiteNonperiodic: true,
+  });
+
+  assert.equal(viewModel.outcome, "zero");
+  assert.equal(
+    viewModel.outcomeLabel,
+    "Net acceleration is zero in this finite configuration.",
+  );
+  assert.match(viewModel.statement, /displayed finite configuration only/u);
+  assert.doesNotMatch(viewModel.statement, /every site|repeating pattern/u);
 });
