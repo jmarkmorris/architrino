@@ -1,16 +1,23 @@
 Closure goal: Locate repository hygiene and reference-drift candidates without changing the working tree, and return exact evidence for maintainers to verify.
 
+**Mandatory execution model:** Launch this prompt with `GPT-5.6 Luna` at `High` reasoning effort. This is an execution-model instruction, not a label.
+
 # GPT-5.6 Luna Repository Hygiene Scout
 
 Use this prompt for inexpensive, high-volume scans of links, names, paths, duplicated guidance, stale references, and canonical-owner drift. It identifies repair candidates; it does not perform cleanup.
 
 ## Scope
 
-**Targets:** [FILES OR DIRECTORIES]
+Perform a full dragnet over exactly these two corpus areas on every run:
 
-**Canonical owners or naming rules:** [KNOWN OWNERS, IF ANY]
+1. `content/markdown/aaa/`, the canonical textbook source directory;
+2. `reference/`, the behind-the-scenes development corpus.
 
-Read `AGENTS.md`, the target files, and the smallest relevant owner set. Work entirely read-only. Do not edit files, stage, commit, push, stash, reset, run a generator in write mode, or make any external change. Do not delete, rename, relink, or normalize anything.
+Inventory and scan both areas in full for links, names, paths, duplicated guidance, stale references, canonical-owner drift, orphaned indexes, mismatched filenames and titles, and generated-source declarations. Do not narrow the dragnet to a selected owner, queue row, workstream, cluster, subdirectory, or fallback. Do not add a third dragnet root. Follow a referenced endpoint outside these roots only when needed to verify a finding, and label that file as a verification endpoint rather than part of dragnet coverage.
+
+Treat an explicit source declaration, local README, architecture decision, generator header, or canonical terminology guide as an owner only after reading it. If either root contains no matching hygiene material, or a candidate's owner or endpoint is absent, return that exact condition as a numbered absence finding with the paths, checks, and zero-result searches; do not request input, halt, expand into theory review, or infer global hygiene from silence.
+
+Read `AGENTS.md`, both complete corpus roots, and the owner set needed to verify each candidate. Work entirely read-only. Do not edit files, stage, commit, push, stash, reset, run a generator in write mode, or make any external change. Do not delete, rename, relink, or normalize anything.
 
 ## Scout method
 
@@ -26,9 +33,9 @@ Preserve `derived`, `measured`, `inferred`, and `guessed` claim grades in any af
 
 ## Return
 
-Post the following user-readable report in the task's final output for the operator to review; do not return the result only to a coordinator.
+Post the following user-readable report in the task's final output and return the same report to the coordinator when a coordinator channel exists, so both can review and decide on the findings. Do not return the result only to a coordinator.
 
-Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If the scan yields none, state `No findings` explicitly.
+Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If a root contains no matching hygiene material, include a numbered `absence` finding for that root with the searches and coverage limits; do not return an empty list or ask for a target.
 
 For each finding give:
 

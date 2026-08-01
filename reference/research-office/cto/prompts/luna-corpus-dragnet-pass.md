@@ -1,30 +1,31 @@
 Closure goal: Run one bounded Corpus Dragnet pass that converts only evidenced cross-corpus or durable organization findings into human-triage-ready records while preserving all theory, status, acceptance, promotion, and reorganization decisions for their owners.
 
+**Mandatory execution model:** Launch this prompt with `GPT-5.6 Luna` at `High` reasoning effort. This is an execution-model instruction, not a label.
+
 # GPT-5.6 Luna Corpus Dragnet Pass
 
 Use this prompt to bridge the reusable Luna scouting methods into the durable Corpus Dragnet lane. The Dragnet remains the priority lane and human-triage ledger; the scouts are optional read-only methods for gathering and checking evidence.
 
 ## Pass declaration
 
-**Pass ID:** [CD-###]
+Perform a full dragnet over exactly these two corpus areas on every run:
 
-**Bounded question or relationship class:** [QUESTION OR FINDING CLASS]
+1. `content/markdown/aaa/`, the canonical textbook source directory;
+2. `reference/`, the behind-the-scenes development corpus.
 
-**Included roots:** [EXACT PATHS]
+Inventory and scan both areas in full for every relationship class allowed by the finding admission test below. Do not narrow the dragnet to a selected owner, queue row, workstream, topic family, subdirectory, or fallback. Do not add a third dragnet root. There are no launcher-supplied included or excluded roots. Resolve the live owner separately for each candidate, but never use an owner to reduce scan coverage.
 
-**Excluded roots:** [EXACT PATHS OR CATEGORIES]
+Derive a temporary report-only pass ID from the current UTC date plus the next unused same-day ordinal. A report-only ID does not reserve or advance a ledger ID. Read existing Corpus Dragnet owner files for format, authority, and prior-finding checks, not for scan selection. If either corpus root, the lane, or an expected owner file is absent, include that exact condition as a numbered absence finding and continue the full report-only scan; do not request input, halt, invent a lane, or substitute a fallback scope.
 
-**Live owners:** [CANONICAL, STATUS, QUEUE, CONTRACT, OR PROVENANCE OWNERS]
+**Execution authority:** `report-only` by default. Use `dragnet-ledger-write` only when that authority is expressly granted for the current execution.
 
-**Execution authority:** `report-only` | `dragnet-ledger-write`
-
-Read `AGENTS.md` and all owner files under `reference/priorities/corpus-dragnet/` before scanning. Read only the target material and nearby owners needed to interpret the evidence. Keep every inspected file outside `reference/priorities/corpus-dragnet/` read-only.
+Read `AGENTS.md` and all existing owner files under `reference/priorities/corpus-dragnet/` before scanning. Scan both declared corpus roots completely, then read any nearby owner needed to interpret evidence. Keep every inspected file outside `reference/priorities/corpus-dragnet/` read-only. If the lane directory or an expected owner file is missing, treat that as evidence to report, not permission to create or reconstruct it.
 
 `report-only` is the default and permits no file edits. `dragnet-ledger-write` must be expressly authorized for this execution and must name `recommendations.md` and `work-log.md` as the only writable files. Do not infer write authority from the use of this prompt, a queued pass, or a scout result.
 
 ## Scout selection
 
-Select only the methods relevant to the declared pass, and combine them only when their evidence boundaries remain visible:
+Apply all five scout methods across both complete corpus roots. Keep their evidence boundaries visible and record a numbered absence finding when a method has no matching material in either root:
 
 - [Claim-Boundary Scout](luna-claim-boundary-scout.md) for possible claim-grade or status mismatches;
 - [Repository Hygiene Scout](luna-repository-hygiene-scout.md) for reference drift, duplicates, stale paths, and canonical-owner problems;
@@ -68,12 +69,12 @@ Under `report-only` authority, make no durable write. Include the complete propo
 
 ## User-readable final output
 
-Post a user-readable report in the task's final output; do not return the result only to a coordinator. Include:
+Post a user-readable report in the task's final output and return the same report to the coordinator when a coordinator channel exists, so both can review and decide on the findings. Do not return the result only to a coordinator. Include:
 
-Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If the pass yields none, state `No findings` explicitly.
+Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If a root contains no admissible or candidate relationship, include a numbered `absence` finding for that root with the searches and coverage limits; do not return an empty list or ask for a pass declaration.
 
 1. pass ID, bounded scope, exclusions, execution authority, and files inspected;
-2. scout methods selected, why each was relevant, and searches or commands run;
+2. all scout methods used, their coverage in each root, and searches or commands run;
 3. live owners checked and the evidence boundary preserved from each method;
 4. each admitted finding with exact evidence, claim grade, evidence status, bounded significance, falsifier, and suggested human-triage route;
 5. candidates not admitted and the failed admission criterion;

@@ -1,16 +1,23 @@
 Closure goal: Find repository passages whose status or claim boundary may conflict with their live evidence, and return a precise read-only packet for a stronger reviewer.
 
+**Mandatory execution model:** Launch this prompt with `GPT-5.6 Luna` at `High` reasoning effort. This is an execution-model instruction, not a label.
+
 # GPT-5.6 Luna Claim-Boundary Scout
 
 Use this prompt for inexpensive, high-volume scouting. It locates candidate inconsistencies; it does not adjudicate theory, close proofs, or grant acceptance.
 
 ## Scope
 
-**Targets:** [FILES, DIRECTORIES, OR CLAIM FAMILY]
+Perform a full dragnet over exactly these two corpus areas on every run:
 
-**Live owners:** [KNOWN STATUS, CONTRACT, SCORECARD, OR PRIORITY OWNERS]
+1. `content/markdown/aaa/`, the canonical textbook source directory;
+2. `reference/`, the behind-the-scenes development corpus.
 
-Read `AGENTS.md`, the target files, and only the nearby live owners needed to check each claim. Work entirely read-only. Do not edit files, stage, commit, push, stash, reset, run a generator in write mode, or make any external change.
+Inventory and scan both areas in full for reader-facing claims, metadata, status tables, claim grades, evidence statements, contracts, scorecards, queue state, priority state, and their cross-references. Do not narrow the dragnet to a selected owner, queue row, workstream, claim family, subdirectory, or fallback. Do not add a third dragnet root. Follow an explicit corpus reference outside these roots only when needed to verify a finding, and label that file as a verification endpoint rather than part of dragnet coverage.
+
+Check each possible mismatch against its named live owner wherever that owner occurs within the two corpus areas. If either root contains no matching claim-boundary material, or a claim-to-owner bridge is missing, return that exact condition as a numbered absence finding with the paths and searches checked; do not request input, substitute a different scientific question, halt, or infer consistency from silence.
+
+Read `AGENTS.md`, both complete corpus roots, and every nearby live owner needed to check each claim. Work entirely read-only. Do not edit files, stage, commit, push, stash, reset, run a generator in write mode, or make any external change.
 
 ## Scout method
 
@@ -26,9 +33,9 @@ Do not select a mathematical law, propose contact continuation, declare a proof 
 
 ## Return
 
-Post the following user-readable report in the task's final output for the operator to review; do not return the result only to a coordinator.
+Post the following user-readable report in the task's final output and return the same report to the coordinator when a coordinator channel exists, so both can review and decide on the findings. Do not return the result only to a coordinator.
 
-Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If the scan yields none, state `No findings` explicitly.
+Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If a root contains no matching claim-boundary material, include a numbered `absence` finding for that root with the searches and coverage limits; do not return an empty list or ask for a target.
 
 Order findings by likely impact. For each finding give:
 

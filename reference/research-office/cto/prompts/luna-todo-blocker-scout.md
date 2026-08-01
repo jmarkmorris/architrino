@@ -1,16 +1,23 @@
 Closure goal: Cluster actionable TODOs, blockers, deferred items, and unresolved questions against their live owners, without changing status or proposing theory closure.
 
+**Mandatory execution model:** Launch this prompt with `GPT-5.6 Luna` at `High` reasoning effort. This is an execution-model instruction, not a label.
+
 # GPT-5.6 Luna TODO and Blocker Scout
 
 Use this prompt for inexpensive, high-volume backlog reconnaissance. It consolidates repository evidence into review packets; it does not reprioritize, resolve, or mutate the backlog.
 
 ## Scope
 
-**Targets:** [FILES, DIRECTORIES, OR WORKSTREAM]
+Perform a full dragnet over exactly these two corpus areas on every run:
 
-**Live queue or status owners:** [KNOWN OWNERS, IF ANY]
+1. `content/markdown/aaa/`, the canonical textbook source directory;
+2. `reference/`, the behind-the-scenes development corpus.
 
-Read `AGENTS.md`, the target files, and each located item's live owner before classifying it. Work entirely read-only. Do not edit files, stage, commit, push, stash, reset, change status, renumber priorities, run a generator in write mode, or make any external change.
+Inventory and scan both areas in full for explicit TODO, FIXME, blocker, deferred, unresolved, missing, follow-up, and open-question language. Do not narrow the dragnet to a selected owner, queue row, workstream, phrase family, subdirectory, or fallback. Do not add a third dragnet root. Follow an explicit corpus reference outside these roots only when needed to verify a finding, and label that file as a verification endpoint rather than part of dragnet coverage.
+
+Resolve the live queue, status, or canonical owner separately for every located item or cluster; owner lookup must not reduce scan coverage. If either root contains no matching material, or an item's owner or prerequisite is absent, return that exact condition as a numbered absence finding with the paths and searches checked; do not request input, choose an unrelated backlog, halt, or infer that an item is closed.
+
+Read `AGENTS.md`, both complete corpus roots, and each located item's live owner before classifying it. Work entirely read-only. Do not edit files, stage, commit, push, stash, reset, change status, renumber priorities, run a generator in write mode, or make any external change.
 
 ## Scout method
 
@@ -26,9 +33,9 @@ Preserve `derived`, `measured`, `inferred`, and `guessed` grades and every exist
 
 ## Return
 
-Post the following user-readable report in the task's final output for the operator to review; do not return the result only to a coordinator.
+Post the following user-readable report in the task's final output and return the same report to the coordinator when a coordinator channel exists, so both can review and decide on the findings. Do not return the result only to a coordinator.
 
-Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If the scan yields none, state `No findings` explicitly.
+Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If a root contains no matching TODO or blocker material, include a numbered `absence` finding for that root with the searches and coverage limits; do not return an empty list or ask for a target.
 
 For each item or cluster give:
 

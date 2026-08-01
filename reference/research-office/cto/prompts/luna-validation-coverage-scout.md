@@ -1,16 +1,23 @@
 Closure goal: Find test and validator coverage gaps by comparing declared obligations with the checks that can actually establish them, without editing or running mutating workflows.
 
+**Mandatory execution model:** Launch this prompt with `GPT-5.6 Luna` at `High` reasoning effort. This is an execution-model instruction, not a label.
+
 # GPT-5.6 Luna Validation-Coverage Scout
 
 Use this prompt for inexpensive, high-volume mapping of tests, validators, fixtures, contracts, and claims. It prepares coverage-gap packets; it does not implement tests or certify acceptance.
 
 ## Scope
 
-**Targets:** [CODE, CONTRACTS, TESTS, OR VALIDATORS]
+Perform a full dragnet over exactly these two corpus areas on every run:
 
-**Declared obligations:** [REQUIREMENTS OR CLAIMS TO TRACE]
+1. `content/markdown/aaa/`, the canonical textbook source directory;
+2. `reference/`, the behind-the-scenes development corpus.
 
-Read `AGENTS.md`, the target implementation, its declared contract, and the relevant test or validator entrypoints. Work entirely read-only. Do not edit files, stage, commit, push, stash, reset, update snapshots, regenerate fixtures, run a generator in write mode, or make any external change. Do not run tests that mutate repository or external state.
+Inventory and scan both areas in full for explicit requirements, contract clauses, acceptance conditions, current claim statements, and references to implementations, tests, validators, fixtures, or independent oracles. Do not narrow the dragnet to a selected owner, queue row, workstream, claim family, subdirectory, or fallback. Do not add a third dragnet root. Follow an explicit corpus reference to code or a check outside these roots only when needed to verify a finding, and label that file as a verification endpoint rather than part of dragnet coverage.
+
+Treat only explicit corpus statements as declared obligations; do not manufacture an obligation from nearby prose. If either root, a referenced owner, obligation, implementation path, or check surface is absent or internally inconsistent, return that exact condition as a numbered absence or gap finding and continue the full scan rather than requesting input or halting.
+
+Read `AGENTS.md`, both complete corpus roots, and every target implementation, declared contract, test, or validator entrypoint needed to verify a located obligation. Work entirely read-only. Do not edit files, stage, commit, push, stash, reset, update snapshots, regenerate fixtures, run a generator in write mode, or make any external change. Do not run tests that mutate repository or external state.
 
 ## Scout method
 
@@ -26,9 +33,9 @@ Preserve `derived`, `measured`, `inferred`, and `guessed` grades. Do not turn a 
 
 ## Return
 
-Post the following user-readable report in the task's final output for the operator to review; do not return the result only to a coordinator.
+Post the following user-readable report in the task's final output and return the same report to the coordinator when a coordinator channel exists, so both can review and decide on the findings. Do not return the result only to a coordinator.
 
-Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If the scan yields none, state `No findings` explicitly.
+Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If a root contains no matching obligation or coverage material, include a numbered `absence` finding for that root with the searches and coverage limits; do not return an empty list or ask for a target.
 
 For each finding give:
 
