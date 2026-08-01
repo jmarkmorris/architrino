@@ -3,7 +3,8 @@
 **Status:** provisional regular-chart partial model for investigation.
 **Claim level:** no field-speed ceiling is adopted by this document.
 **Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md);
-[Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md).
+[Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md);
+[Bill Thurston read-only review, captured 2026-08-01](bill-thurston-review-response-2026-08-01.md).
 
 ## Purpose
 
@@ -30,7 +31,7 @@ develops only a possible alternative model.
 | Admission, ownership, update, and outgoing-history semantics for all other nonordinary contact families | `missing event-domain postulate` | No general event disposition is selected. Until this is supplied, the document is not a complete closed-domain dynamical system. |
 | Straight collinear cap segment | `conditional hypothesis` | Assumes the MEC-007 input, the complete constrained-response axiom, and the limited same-transmitter admission convention. |
 | Open-segment root census, finite accumulated old-partner row, partner-contact obstruction, velocity-preserving outgoing contact one-jet, and first transverse variation | `derived conditional result` | The outgoing one-jet additionally assumes the proposed minimal collinear partner-contact reset. No right-hand path or open post-contact solution follows. |
-| Thirty-root inventory on the prescribed six-path geometry | `derived reference-path theorem` | Exact for the declared paths; not an evolved or retained braid. |
+| Thirty-root inventory on the prescribed six-path geometry | `derived reference-path theorem` | Exact for the declared labeled paths. Their primary topological object is a loop in collision-free configuration space, not a six-component spatial link; the paths are not evolved or retained dynamics. |
 | Sampled root margins and four-orientation vector-closure failure | `diagnostic` | Geometry-only numerical evidence. The $T=0$ slice has a versioned 100-decimal-place Python/mpmath oracle and receipt; neither instrument selects a boundary response or establishes physical realization. |
 
 Plainly: the document uses canonical root geometry, one complete proposed
@@ -487,12 +488,84 @@ or different limits for admissible perturbation families refutes this
 candidate reduction. Convergence of root counts alone proves none of these
 measure statements.
 
+#### Local fold total-variation obstruction
+
+One standard local fold chart already supplies a negative control. Let
+
+$$
+g_\varepsilon(s)
+=
+a(s-s_0)^2-\varepsilon,
+\qquad
+a>0,
+\qquad
+\varepsilon>0.
+$$
+
+Its two simple roots and absolute Jacobians are
+
+$$
+s_\pm
+=
+s_0\pm\sqrt{\frac{\varepsilon}{a}},
+\qquad
+\left|g_\varepsilon'(s_\pm)\right|
+=
+2\sqrt{a\varepsilon}.
+$$
+
+If the vector kernel remains bounded away from zero on this chart, the sum of
+the two absolute coarea weights is
+
+$$
+\frac{1}{\left|g_\varepsilon'(s_+)\right|}
++
+\frac{1}{\left|g_\varepsilon'(s_-)\right|}
+=
+\frac{1}{\sqrt{a\varepsilon}},
+$$
+
+so the local total variation diverges as $\varepsilon^{-1/2}$. The absolute
+$1/|D_t|$ weight supplies no orientation-sign cancellation. Special polarity
+or vector cancellation can reduce a particular net vector only if it is
+proved from the complete same-record ledger; it does not by itself bound the
+underlying total variation.
+
+Claim grade: `derived`. This is a conditional local obstruction. The
+calculation does not prove that every perturbation of the mirror-contact
+interval has this normal form, and it does not define the missing contact
+measure. It is falsified for a declared event class by a theorem that excludes
+this chart or proves uniform local total-variation bounds and one labeled
+weak-* limit for every admissible perturbation in that class.
+
+Plainly: when one tangent root splits into two ordinary roots, the canonical
+Jacobian can make their received measure grow without bound. This is evidence
+against assuming that the exact zero-impulse event is the smooth limit of
+nearby ordinary histories; it is not a contact law.
+
 Plainly: Hörmander’s correction turns “the roots split correctly” into a real
 measure question. The source records, received acceleration, and velocity jump
 live in different spaces, and the missing contact measure cannot be set to
 zero by naming the jump coefficient zero. The reset still returns only
 position-and-velocity data at contact; constructing a compatible right-hand
 history remains a separate state-dependent-delay problem.
+
+### Continuous response versus atomic event update
+
+The regular operator maps a completed finite ordinary acceleration ledger to
+the absolutely continuous velocity derivative
+$\mathbf A_{\mathrm{eff}}=d\mathbf V/dT$. The event operator is the separate
+reset $\mathcal R_{\mathrm{col}}$, whose output is an outgoing contact one-jet
+and whose proposed atomic coefficient is
+$\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$.
+
+A possible rule such as projecting an aggregated trial event increment into
+the velocity ball would be a different event postulate. No such rule is
+selected here, and the continuous tangent-cone projection does not imply it.
+
+Plainly: projecting an acceleration during regular motion and deciding a
+velocity jump at one event are different operations. The packet proposes a
+value only for the one narrow collinear event coefficient.
 
 A complete general closed-domain system still needs the broader commitment:
 
@@ -546,8 +619,25 @@ $$
 The boundary $\partial\mathcal B_{c_f}$ is the field-speed sphere. This is a
 geometric state constraint, not yet a causal-root rule.
 
+Neither the velocity ball nor its boundary supplies a discrete topological
+sector:
+
+$$
+\pi_1\!\left(\mathcal B_{c_f}\right)=0,
+\qquad
+\pi_1\!\left(\partial\mathcal B_{c_f}\right)
+=
+\pi_1(S^2)=0.
+$$
+
+Thus a loop of admissible velocities or boundary directions can contract
+unless another declared exclusion, separator, or framing prevents the
+contraction. The speed constraint alone supplies no braid retention,
+generation index, orbit protection, or stability result.
+
 Plainly: velocity may point in any direction, but its tip must stay inside or
-on a sphere of radius $c_f$.
+on a sphere of radius $c_f$. That sphere constrains speed but does not tie a
+topological knot in the motion.
 
 ## 2. Complete constrained-response axiom
 
@@ -599,9 +689,43 @@ foundational law. The velocity constraint alone would imply only
 $\mathbf V\mathbin{\cdot}\mathbf A_{\mathrm{eff}}\le0$ at the boundary and
 would leave infinitely many admissible response maps.
 
+Equivalently, with $N_{\mathcal B_{c_f}}(\mathbf V)$ the Euclidean normal cone,
+
+$$
+\mathbf A_{\mathrm{eff}}
++
+N_{\mathcal B_{c_f}}(\mathbf V)
+\ni
+\mathbf A_{\mathrm{ord}}.
+$$
+
+The bare inclusion is only packaging. It does not select the displayed
+least-change response, because an arbitrary normal reaction could remove more
+than the minimum outward component. The arg-min clause above, equivalently the
+orthogonal tangent/normal decomposition, is the constitutive selection.
+
+The operation order is part of the same proposal:
+
+$$
+\boxed{
+\text{admit ordinary roots}
+\longrightarrow
+\text{evaluate every acceleration contribution}
+\longrightarrow
+\text{sum at one receiver event}
+\longrightarrow
+\text{apply the response once}
+}.
+$$
+
+The arriving contributions need not share an emission time. The order is
+falsified by any implementation whose final response changes when the same
+complete ledger is reordered, repartitioned, or batched differently.
+
 Plainly: first calculate the canonical net acceleration. Then, and only at the
 field-speed boundary, choose the closest acceleration that does not point out
-of the allowed velocity ball.
+of the allowed velocity ball. The normal-cone notation does not replace that
+minimum-change choice.
 
 ## 3. Derived coordinate-free response geometry
 
@@ -707,6 +831,29 @@ $$
 \qquad
 \text{when }\|\mathbf V\|=c_f.
 $$
+
+On a cap-state segment with $\mathbf V=c_f\mathbf n$,
+$\|\mathbf n\|=1$, and $a_\parallel\ge0$, the proposed law gives
+
+$$
+c_f\frac{d\mathbf n}{dT}
+=
+\mathbf A_\perp,
+\qquad
+\kappa_{\mathrm{path}}
+=
+\frac{\|\mathbf A_\perp\|}{c_f^2}.
+$$
+
+A circular physical-space path follows only if this curvature is constant and
+the normal direction points consistently toward one fixed center. A tangent
+acceleration at one instant does not preserve the field-speed sphere by
+itself; the response must be applied at every boundary time along an existing
+regular solution.
+
+Plainly: the ceiling can permit turning, but the completed wake ledger must
+supply both the amount and direction of that turn. A circle is an additional
+geometric consequence to prove, not a consequence of touching the sphere.
 
 #### Proposed wash-over rule: three regular boundary cases
 
@@ -888,8 +1035,40 @@ supplies only the working same-transmitter co-moving classification.
 ## 4. Causal-wake interface: working equality admission
 
 The state constraint alone does not answer which causal roots are admitted at
-exact field speed. For this provisional framework, use the following proposed
-working definition before forming the Master-Equation sum:
+exact field speed. The catalogue below separates the root and event geometries
+that the packet must not conflate.
+
+### Event-stratum catalogue
+
+The ordinary and nonordinary geometries must remain typed separately:
+
+| Event stratum | Local condition | Current status and required disposition |
+| --- | --- | --- |
+| Regular isolated root | $g=0$, positive delay, and $D_t\ne0$. | Canonical ordinary acceleration contribution. |
+| Fold root | $g=0$, $D_t=0$, and a nonzero second emission-time derivative on the declared chart. | Nonordinary; requires a fold measure, transition, or terminal rule. |
+| Characteristic interval | $g(T_r,T_t)=0$ on an emission-time interval. | Nonordinary; requires interval ownership and a separately declared response. |
+| Zero-delay diagonal | $T_t=T_r$ and $r=0$. | Excluded from ordinary reception by the positive-delay domain and $H(0)=0$; any event semantics remain separately typed. |
+| Multiple-branch coincidence | Two or more root branches meet at one receiver event. | Each branch or event stratum needs unique ownership before aggregation. |
+| Root accumulation | Infinitely many roots occur in a compact emission-time interval. | Not a finite ordinary ledger; requires a locally finite measure law or a terminal disposition. |
+
+There is no separate positive-delay zero-separation causal stratum under the
+declared root equation: $g=0$ and $T_t<T_r$ imply
+$r=c_f(T_r-T_t)>0$. A zero-range limit can still be singular, but its exact
+endpoint lies on the excluded diagonal rather than at positive delay.
+
+The straight same-transmitter cap interval and the mirror-collinear partner
+interval are both characteristic geometries. Treating the former as inactive
+and the latter as a typed contact event is not a consequence of geometry
+alone; it comes from the two separately proposed source-identity and event-
+ownership conventions in this packet.
+
+Plainly: a fold, a whole interval of roots, the excluded same-time diagonal,
+and an infinite root accumulation are different mathematical events. A
+complete model must say which record owns each one and what response, if any,
+it produces.
+
+For this provisional framework, use the following proposed working definition
+before forming the Master-Equation sum:
 
 > **Isolated-crossing reception rule.** An active ordinary reception is an
 > isolated, positive-delay causal root with $D_t\ne0$. A same-transmitter
@@ -1433,11 +1612,11 @@ magnitude, provenance, and contact-event behavior are derived.
 
 ## Appendix B — Conditional prescribed six-path reference geometry
 
-This section defines a deliberately simple starting geometry for the capped
-braid questions. It uses no inherited program label and makes no claim that
-the geometry is a retained physical branch. It is placed in an appendix
-because its paths are prescribed tests of the regular-chart response, not
-solutions produced by the partial model.
+This section defines a deliberately simple six-label reference geometry for
+the capped-response questions. It uses no inherited program label and makes no
+claim that the geometry is a retained physical branch or a spatial link. It is
+placed in an appendix because its paths are prescribed tests of the
+regular-chart response, not solutions produced by the partial model.
 
 ### Reference conditions
 
@@ -1508,9 +1687,9 @@ planes, and their phase clocks are spaced evenly by one third of a turn.
 
 ### What the geometry must still earn
 
-This kinematic reference is not yet self-reinforcing. To become a capped braid
-solution, its complete delayed partner and self-root ledger must show, for
-every one of the six labels:
+This kinematic reference is not yet self-reinforcing. To become a retained
+six-worldline solution, its complete delayed partner and self-root ledger must
+show, for every one of the six labels:
 
 1. the required transverse turning $c_f^2/R$;
 2. zero net speed-changing component at the field-speed boundary under the
@@ -1661,6 +1840,57 @@ not for an evolved or retained braid. It is falsified by an exact
 positive-delay same-label root, a same-time distinct-label coincidence, or a
 positive-delay distinct-label root with $D_t=0$ on these paths.
 
+### Configuration-space status of the prescribed paths
+
+For each antipodal pair, the two labels traverse the same unparameterized
+circle with a half-period phase shift. The three mutually orthogonal carrier
+circles also intersect pairwise as spatial subsets. Their union is therefore
+not a six-component embedded spatial link, and ordinary link, knot, or writhe
+invariants are not defined for that union of traces.
+
+The exact no-equal-time-collision result above instead makes the periodic
+primary object the labeled configuration loop
+
+$$
+\Gamma
+:
+S_T^1
+\longrightarrow
+\operatorname{Conf}_6(\mathbb R^3),
+\qquad
+\Gamma(T)
+=
+\left(
+\mathbf X_1(T),\ldots,\mathbf X_6(T)
+\right).
+$$
+
+For freely moving labeled points in three dimensions, this configuration
+space does not supply the planar braid-group protection of a constrained
+two-dimensional braid. Any later Assembly Atlas classification must therefore
+retain the extra structures that are actually forbidden to change, such as a
+declared framing, carrier or separator constraints, polarity labels, the
+causal-root ledger, and event ownership. A schematic future record is
+
+$$
+\mathfrak A
+=
+\left[
+\Gamma;
+\mathfrak f;
+\mathcal L_{\mathrm{root}};
+\mathcal S_{\mathrm{sep}};
+\mathcal E_{\mathrm{event}}
+\right],
+$$
+
+but no such retained record is certified by this appendix.
+
+Plainly: the drawn circles cross or coincide as tracks, but the six labels do
+not occupy the same point at the same time. The legitimate object is their
+labeled motion plus any declared constraints and causal records, not a picture
+of six linked spatial loops.
+
 ### Reproducible numerical root inventory
 
 The independent theorem above supplies the root count. The geometry-only
@@ -1765,6 +1995,10 @@ over the declared time grid, reports failure of the necessary conditions for
 all four relative polarity orientations. Therefore this equal-radius,
 $120^\circ$, mutually orthogonal reference geometry is not an exact
 fixed-field-speed solution of the minimal total-ledger response.
+
+Its durable classification in this packet is: **regular-root-complete
+prescribed carrier; dynamically rejected under the minimal total-ledger
+ceiling response**. It is not a retained braid or a physical assembly.
 
 Plainly: the delayed wakes exist cleanly, but their vectors do not sustain the
 six prescribed circles. Depending on the polarity orientation, at least one

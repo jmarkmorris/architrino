@@ -1,26 +1,32 @@
 # Field-Speed Ceiling First Entourage Review Readiness
 
-**Date:** 2026-07-30; updated 2026-07-31
-**Status:** Hale and Hörmander read-only reviews completed and integrated;
-ready only for narrower distributional-formulation work
+**Date:** 2026-07-30; updated 2026-08-01
+**Status:** Hale, Hörmander, and Thurston read-only reviews completed and
+integrated; ready only for narrower distributional-formulation and
+regular-chart theorem work
 **Broader-theory status:** not ready for validation, adoption, or promotion
 **Claim level:** review-readiness assessment
 **Review provenance:** [complete Hale review and response matrix](jack-k-hale-review-response-2026-07-31.md);
-[complete Hörmander review and response matrix](lars-hormander-review-response-2026-07-31.md)
+[complete Hörmander review and response matrix](lars-hormander-review-response-2026-07-31.md);
+[complete Thurston review and response matrix](bill-thurston-review-response-2026-08-01.md)
 
 ## Readiness verdict
 
 Jack K. Hale completed the first read-only foundational-mathematics review.
 Lars Hörmander then completed a read-only distributional-formulation review of
 the contact strata, typed measures, ownership guard, and FSC-005 target.
+Bill Thurston completed a read-only geometry, topology, and dynamical-system
+review of the regular response, event strata, fold limits, and prescribed
+six-label carrier.
 
-Both responses are integrated. The packet is not ready for a Tao-style
+All three responses are integrated. The packet is not ready for a Tao-style
 well-posedness review as a posed evolution problem. It is ready only for the
 narrower FSC-006 distributional-formulation work: construct the
 source-provenanced receiver-side contact decomposition, prove or refute
 parameterization-independent perturbative splitting and weak-* convergence,
 and establish or reject uniform local total-variation control. FSC-005 is
-blocked on that work.
+blocked on that work. FSC-007 separately owns a regular-chart local
+well-posedness theorem; it supplies no contact or post-event history.
 
 The packet also does not derive or adopt a primitive speed ceiling, establish
 a finite solution on an open post-contact interval, generalize the contact
@@ -29,8 +35,9 @@ retained-assembly, $H$, Planck-scale, Lorentz, or physical realization
 results.
 
 Plainly: Hale reduced the reset to a one-jet. Hörmander showed that even this
-does not pose an evolution problem until the three measure types and their
-contact limit are mathematically connected.
+does not pose a contact evolution until the three measure types and their
+limit are connected. Thurston then separated regular from atomic dynamics and
+corrected the six-label topology from spatial links to configuration space.
 
 ## Included review artifacts
 
@@ -44,6 +51,7 @@ contact limit are mathematically connected.
 | [Priorities](priorities.md), [work queue](work-queue.md), and [work log](work-log.md) | Record live scope, the next review object, blockers, and chronology. | Operator-facing control artifacts; no theory authority. |
 | [Hale Review Response](jack-k-hale-review-response-2026-07-31.md) | Preserves every substantive Hale finding and its disposition. | Review integration record; reviewer findings are input, not theory authority. |
 | [Hörmander Review Response](lars-hormander-review-response-2026-07-31.md) | Preserves the supplied review text and every Hörmander finding with its disposition. | Review integration record; no distributional limit or event coefficient is adopted. |
+| [Thurston Review Response](bill-thurston-review-response-2026-08-01.md) | Preserves every substantive Thurston finding and its disposition. | Review integration record; no topology, contact robustness, existence, or retention claim is adopted. |
 | [Near-Contact Separating-Trace Theorem Target](near-contact-separating-trace-incompatibility-theorem-target.md) | States the limited two-channel BV/Radon prove-or-refute target. | FSC-005 is blocked on FSC-006; theorem target, not a result. |
 
 ## Exact proposed foundation under review
@@ -169,6 +177,18 @@ are different mathematical records. Only the zero jump has a proposed value.
 19. **No downstream recovery.** Nothing here establishes $H$ selection,
     quantization, Planck-scale structure, Lorentz recovery, or a closure-score
     advance.
+20. **Local fold obstruction is not contact closure.** The
+    $\varepsilon^{-1/2}$ fold total-variation calculation is conditional on
+    one local normal form and a nonvanishing kernel. It neither constructs the
+    mirror-contact measure nor proves a universal contact no-go.
+21. **No topology from the prescribed carriers or velocity sphere.** The
+    six-label object is a configuration-space loop, not a six-component
+    spatial link, and the velocity ball and sphere have trivial fundamental
+    groups. No retained Assembly Atlas record or topological protection is
+    established.
+22. **FSC-007 not proved.** The regular-chart history norm, fixed branch chart,
+    gap persistence, Lipschitz root functional, and projected local existence
+    and uniqueness theorem are queued obligations only.
 
 ## Exact next review gate
 
@@ -214,8 +234,10 @@ being reviewed.
 
 ## Dispatch boundary
 
-The Hale and Hörmander reviews are complete. No Tao review or other successor
-review has been contacted or started, and nothing has been published.
+The Hale, Hörmander, and Thurston reviews are complete. No Tao review or other
+successor review has been contacted or started, and nothing has been
+published.
 
-Closure goal: complete FSC-006 and pass one narrow distributional-formulation
-review before posing any well-posedness review.
+Closure goal: complete FSC-006 and its narrow distributional review, and prove
+or refute the separate FSC-007 regular-chart theorem, before posing any full
+well-posedness review.

@@ -2,7 +2,7 @@
 
 ## Current
 
-- Status: `Hale and Hörmander read-only reviews integrated; FSC-006
+- Status: `Hale, Hörmander, and Thurston read-only reviews integrated; FSC-006
   distributional formulation ranked first; no canonical adoption`
 - Claim level: proposed foundational alternative; no change to the canonical
   Master Equation, ontology, EOM solver contract, or reader-facing corpus.
@@ -71,6 +71,14 @@ Lars Hörmander completed the next read-only distributional-formulation review.
 The preserved review text and complete dispositions are in the
 [Hörmander Review Response](lars-hormander-review-response-2026-07-31.md).
 
+Bill Thurston completed a read-only geometry, topology, and dynamical-system
+review. The complete substantive finding record and dispositions are in the
+[Thurston Review Response](bill-thurston-review-response-2026-08-01.md). The
+response corrects the prescribed six-label object from a spatial-link reading
+to a labeled configuration-space loop, adds a bounded fold total-variation
+obstruction, and queues regular-chart local well-posedness as FSC-007 without
+claiming a contact continuation.
+
 The best next object is FSC-006: define the source-provenanced receiver-side
 contact and competing-stratum measures, then prove or refute
 parameterization-independent perturbative splitting and weak-* convergence in
@@ -80,8 +88,8 @@ distributional-formulation review can the
 proceed.
 
 The packet is not ready for a Tao-style well-posedness review as a posed
-evolution problem. FSC-005 and FSC-006 remain `Not advanced`, and no successor
-review has been dispatched.
+evolution problem. FSC-005, FSC-006, and FSC-007 remain `Not advanced`, and no
+successor review has been dispatched.
 
 ## Dependencies and Boundaries
 
@@ -100,5 +108,6 @@ review has been dispatched.
 Plainly: this is a dedicated place to ask whether a speed ceiling should become
 a foundational rule, and what else would have to change if it did. The
 compatibility map is complete, but the contact measure has only a typed
-formulation target. Nothing has been adopted, and no evolution problem is yet
-posed for well-posedness review.
+formulation target and the regular-chart existence theorem is only queued.
+Nothing has been adopted, and no full evolution problem is yet posed for
+well-posedness review.

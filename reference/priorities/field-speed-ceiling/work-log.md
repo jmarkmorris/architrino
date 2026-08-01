@@ -457,3 +457,42 @@
   EOM source, ceiling or contact-law status, general contact semantics,
   regulator independence, continuation, conservation, stability, physical
   realization, MEC status, or closure score changed.
+
+## 2026-08-01 — Bill Thurston read-only review integrated
+
+- Captured the complete substantive finding record and response matrix in the
+  [Bill Thurston Review and Response](bill-thurston-review-response-2026-08-01.md)
+  under identifier `FSC-001-BT-2026-08-01`. All fourteen findings have one
+  explicit disposition, including three partial acceptances.
+- Sharpened the proposed regular response with its normal-cone packaging,
+  minimum-reaction selection boundary, formal admit-evaluate-sum-respond
+  operation order, common-receiver-event wording, and ledger partition
+  invariance falsifier.
+- Added the cap-state curvature formula and preserved the distinction between
+  instantaneous tangency, continuous boundary response, and an actual circular
+  solution.
+- Added a typed event-stratum catalogue separating regular roots, folds,
+  characteristic intervals, the zero-delay diagonal, multiple-branch
+  coincidences, and root accumulations. Rejected a separate positive-delay
+  zero-separation stratum because the causal equality makes it empty.
+- Explicitly separated the continuous acceleration response from the atomic
+  event reset. No projected aggregate-jump law was selected.
+- Added the conditional local fold calculation showing
+  $\varepsilon^{-1/2}$ total-variation divergence for a nonvanishing kernel.
+  It is a bounded negative control, not a universal mirror-contact theorem,
+  contact measure, or FSC-006 advancement.
+- Corrected Appendix B: antipodal labels share carrier circles and the
+  orthogonal circles intersect as spatial traces, so the prescribed object is
+  a labeled loop in collision-free configuration space rather than a
+  six-component spatial link. The velocity ball and sphere also supply no
+  topological protection.
+- Classified the six-label diagnostic as a regular-root-complete prescribed
+  carrier dynamically rejected under the minimal total-ledger ceiling
+  response. It is not a retained braid or physical assembly.
+- Added FSC-007 as a queued regular-chart local well-posedness theorem target.
+  FSC-006 remains the immediate distributional-formulation gate; FSC-005 and
+  FSC-002 remain blocked.
+- No canonical AAA or EOM source, ceiling or event-law status, continuation,
+  finite contact measure, regulator independence, conservation, stability,
+  physical realization, MEC status, or closure score changed. No successor
+  reviewer was contacted or started.
