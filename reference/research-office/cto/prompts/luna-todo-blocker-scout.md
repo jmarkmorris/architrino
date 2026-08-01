@@ -13,11 +13,11 @@ Perform a full dragnet over exactly these two corpus areas on every run:
 1. `content/markdown/aaa/`, the canonical textbook source directory;
 2. `reference/`, the behind-the-scenes development corpus.
 
-Inventory and scan both areas in full for explicit TODO, FIXME, blocker, deferred, unresolved, missing, follow-up, and open-question language. Do not narrow the dragnet to a selected owner, queue row, workstream, phrase family, subdirectory, or fallback. Do not add a third dragnet root. Follow an explicit corpus reference outside these roots only when needed to verify a finding, and label that file as a verification endpoint rather than part of dragnet coverage.
+Inventory and scan every Markdown file (`*.md`) under both areas in full for explicit TODO, FIXME, blocker, deferred, unresolved, missing, follow-up, and open-question language. Do not narrow the dragnet to a selected owner, queue row, workstream, phrase family, subdirectory, or fallback. Do not add a third dragnet root. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file, even when a Markdown file cites it as a verification endpoint. Record the literal Markdown citation and mark the endpoint uninspected.
 
-Resolve the live queue, status, or canonical owner separately for every located item or cluster; owner lookup must not reduce scan coverage. If either root contains no matching material, or an item's owner or prerequisite is absent, return that exact condition as a numbered absence finding with the paths and searches checked; do not request input, choose an unrelated backlog, halt, or infer that an item is closed.
+Resolve the live Markdown queue, status, or canonical owner separately for every located item or cluster; owner lookup must not reduce scan coverage. If either root contains no matching material, an item's owner or prerequisite is absent, or the cited owner is outside the eligible Markdown set, return that exact condition as a numbered absence finding with the paths and searches checked; do not request input, choose an unrelated backlog, halt, or infer that an item is closed.
 
-Read `AGENTS.md`, both complete corpus roots, and each located item's live owner before classifying it. Work entirely read-only. Do not edit files, stage, commit, push, stash, reset, change status, renumber priorities, run a generator in write mode, or make any external change.
+After reading `AGENTS.md` for startup policy, inspect only Markdown files within the two declared corpus roots and each eligible Markdown live owner before classifying an item. Work entirely read-only. Do not inspect source code or any other non-Markdown file. Do not edit files, stage, commit, push, stash, reset, change status, renumber priorities, run a generator in write mode, or make any external change.
 
 ## Scout method
 
@@ -26,7 +26,7 @@ Find explicit TODO, FIXME, blocker, deferred, unresolved, missing, follow-up, an
 Assign every item or cluster one status:
 
 - `candidate`: likely active but not fully reconciled with its live owner;
-- `verified`: the live owner directly confirms the item remains open;
+- `verified`: an eligible live Markdown owner directly confirms the item remains open;
 - `stronger reviewer required`: proof status, physical meaning, acceptance, provenance, or priority judgment exceeds this scout.
 
 Preserve `derived`, `measured`, `inferred`, and `guessed` grades and every existing status boundary. Do not select a law, invent a prescription, propose contact continuation, claim proof closure, change a score, or make a physics verdict.

@@ -13,15 +13,15 @@ Perform a full dragnet over exactly these two corpus areas on every run:
 1. `content/markdown/aaa/`, the canonical textbook source directory;
 2. `reference/`, the behind-the-scenes development corpus.
 
-Inventory and scan both areas in full for links, names, paths, duplicated guidance, stale references, canonical-owner drift, orphaned indexes, mismatched filenames and titles, and generated-source declarations. Do not narrow the dragnet to a selected owner, queue row, workstream, cluster, subdirectory, or fallback. Do not add a third dragnet root. Follow a referenced endpoint outside these roots only when needed to verify a finding, and label that file as a verification endpoint rather than part of dragnet coverage.
+Inventory and scan every Markdown file (`*.md`) under both areas in full for links, names, paths, duplicated guidance, stale references, canonical-owner drift, orphaned indexes, mismatched filenames and titles, and generated-source declarations. Do not narrow the dragnet to a selected owner, queue row, workstream, cluster, subdirectory, or fallback. Do not add a third dragnet root. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file, even when a Markdown file cites it as a verification endpoint. Record the literal Markdown citation and mark the endpoint uninspected.
 
-Treat an explicit source declaration, local README, architecture decision, generator header, or canonical terminology guide as an owner only after reading it. If either root contains no matching hygiene material, or a candidate's owner or endpoint is absent, return that exact condition as a numbered absence finding with the paths, checks, and zero-result searches; do not request input, halt, expand into theory review, or infer global hygiene from silence.
+Treat an explicit Markdown source declaration, local README, architecture decision, generator header, or canonical terminology guide as an owner only after reading it within the two declared roots. If either root contains no matching hygiene material, a candidate's owner or endpoint is absent, or the cited endpoint lies outside the eligible Markdown set, return that exact condition as a numbered absence finding with the paths, checks, and zero-result searches; do not request input, halt, expand into theory review, or infer global hygiene from silence.
 
-Read `AGENTS.md`, both complete corpus roots, and the owner set needed to verify each candidate. Work entirely read-only. Do not edit files, stage, commit, push, stash, reset, run a generator in write mode, or make any external change. Do not delete, rename, relink, or normalize anything.
+After reading `AGENTS.md` for startup policy, inspect only Markdown files within the two declared corpus roots and eligible Markdown owners needed to verify each candidate. Work entirely read-only. Do not inspect source code or any other non-Markdown file. Do not edit files, stage, commit, push, stash, reset, run a generator in write mode, or make any external change. Do not delete, rename, relink, or normalize anything.
 
 ## Scout method
 
-Look for broken or stale relative links, moved-path references, contradictory duplicate guidance, obsolete terminology, orphaned indexes, mismatched filenames and titles, and generated-source drift. Distinguish a reference that is truly stale from a historical or compatibility reference that must remain literal.
+Look for broken or stale Markdown-to-Markdown relative links within the two roots, moved-path references, contradictory duplicate guidance, obsolete terminology, orphaned indexes, mismatched filenames and titles, and documented generated-source drift. Inventory references to non-Markdown endpoints from their Markdown source, but do not inspect the endpoint or classify it as broken. Distinguish a reference that is truly stale from a historical or compatibility reference that must remain literal.
 
 Assign every finding one status:
 
@@ -40,7 +40,7 @@ Start every substantive finding with a stable numbered label (`Finding 1`, `Find
 For each finding give:
 
 1. status and hygiene category;
-2. exact `path:line` evidence at every conflicting endpoint;
+2. exact Markdown `path:line` evidence at every eligible conflicting endpoint, or the literal citation and uninspected status of an ineligible endpoint;
 3. verified fact versus inference;
 4. likely canonical owner, if located;
 5. smallest candidate repair, described but not applied;

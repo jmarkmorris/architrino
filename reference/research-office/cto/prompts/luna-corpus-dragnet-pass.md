@@ -13,13 +13,13 @@ Perform a full dragnet over exactly these two corpus areas on every run:
 1. `content/markdown/aaa/`, the canonical textbook source directory;
 2. `reference/`, the behind-the-scenes development corpus.
 
-Inventory and scan both areas in full for every relationship class allowed by the finding admission test below. Do not narrow the dragnet to a selected owner, queue row, workstream, topic family, subdirectory, or fallback. Do not add a third dragnet root. There are no launcher-supplied included or excluded roots. Resolve the live owner separately for each candidate, but never use an owner to reduce scan coverage.
+Inventory and scan every Markdown file (`*.md`) under both areas in full for every relationship class allowed by the finding admission test below. Do not narrow the dragnet to a selected owner, queue row, workstream, topic family, subdirectory, or fallback. Do not add a third dragnet root. There are no launcher-supplied included or excluded roots. Resolve a Markdown live owner separately for each candidate when one exists, but never use an owner to reduce scan coverage. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file, even when a Markdown file cites it as a verification endpoint. Record the literal Markdown citation and mark the endpoint uninspected.
 
 Derive a temporary report-only pass ID from the current UTC date plus the next unused same-day ordinal. A report-only ID does not reserve or advance a ledger ID. Read existing Corpus Dragnet owner files for format, authority, and prior-finding checks, not for scan selection. If either corpus root, the lane, or an expected owner file is absent, include that exact condition as a numbered absence finding and continue the full report-only scan; do not request input, halt, invent a lane, or substitute a fallback scope.
 
 **Execution authority:** `report-only` by default. Use `dragnet-ledger-write` only when that authority is expressly granted for the current execution.
 
-Read `AGENTS.md` and all existing owner files under `reference/priorities/corpus-dragnet/` before scanning. Scan both declared corpus roots completely, then read any nearby owner needed to interpret evidence. Keep every inspected file outside `reference/priorities/corpus-dragnet/` read-only. If the lane directory or an expected owner file is missing, treat that as evidence to report, not permission to create or reconstruct it.
+After reading `AGENTS.md` for startup policy, read all existing Markdown owner files under `reference/priorities/corpus-dragnet/` before scanning. Scan every Markdown file under both declared corpus roots completely, then read only eligible Markdown owners within those roots to interpret evidence. Inspect no source code or other non-Markdown file. Keep every inspected file outside `reference/priorities/corpus-dragnet/` read-only. If the lane directory or an expected Markdown owner file is missing, treat that as evidence to report, not permission to create or reconstruct it.
 
 `report-only` is the default and permits no file edits. `dragnet-ledger-write` must be expressly authorized for this execution and must name `recommendations.md` and `work-log.md` as the only writable files. Do not infer write authority from the use of this prompt, a queued pass, or a scout result.
 
@@ -55,6 +55,7 @@ Do not admit a generic scout observation, keyword resemblance, isolated local de
 - Do not turn diagnostic, provider, prescribed, display-only, seed-grade, replay, local, or historical evidence into physical realization, retained-branch evidence, conservation, acceptance, release readiness, score movement, or global closure.
 - Do not treat agreement as independent evidence unless the two sides are independently sourced and that independence is named.
 - Do not browse, acquire external sources, make external changes, or run mutating tests, generators, or workflows.
+- Do not inspect or execute source code, tests, validators, data, fixtures, images, or any other non-Markdown file; a path cited by Markdown is not inspected evidence.
 - Do not stage, commit, push, stash, reset, or alter another priority lane.
 
 ## Durable records

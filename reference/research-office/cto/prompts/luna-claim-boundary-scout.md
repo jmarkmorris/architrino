@@ -13,17 +13,17 @@ Perform a full dragnet over exactly these two corpus areas on every run:
 1. `content/markdown/aaa/`, the canonical textbook source directory;
 2. `reference/`, the behind-the-scenes development corpus.
 
-Inventory and scan both areas in full for reader-facing claims, metadata, status tables, claim grades, evidence statements, contracts, scorecards, queue state, priority state, and their cross-references. Do not narrow the dragnet to a selected owner, queue row, workstream, claim family, subdirectory, or fallback. Do not add a third dragnet root. Follow an explicit corpus reference outside these roots only when needed to verify a finding, and label that file as a verification endpoint rather than part of dragnet coverage.
+Inventory and scan every Markdown file (`*.md`) under both areas in full for reader-facing claims, metadata, status tables, claim grades, evidence statements, contracts, scorecards, queue state, priority state, and their cross-references. Do not narrow the dragnet to a selected owner, queue row, workstream, claim family, subdirectory, or fallback. Do not add a third dragnet root. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file, even when a Markdown file cites it as a verification endpoint. Record the literal Markdown citation and mark the endpoint uninspected.
 
-Check each possible mismatch against its named live owner wherever that owner occurs within the two corpus areas. If either root contains no matching claim-boundary material, or a claim-to-owner bridge is missing, return that exact condition as a numbered absence finding with the paths and searches checked; do not request input, substitute a different scientific question, halt, or infer consistency from silence.
+Check each possible mismatch against its named live Markdown owner wherever that owner occurs within the two corpus areas. If either root contains no matching claim-boundary material, a claim-to-owner bridge is missing, or the named owner is outside the eligible Markdown set, return that exact condition as a numbered absence finding with the paths and searches checked; do not request input, substitute a different scientific question, halt, or infer consistency from silence.
 
-Read `AGENTS.md`, both complete corpus roots, and every nearby live owner needed to check each claim. Work entirely read-only. Do not edit files, stage, commit, push, stash, reset, run a generator in write mode, or make any external change.
+After reading `AGENTS.md` for startup policy, inspect only Markdown files within the two declared corpus roots, including eligible live owners needed to check each claim. Work entirely read-only. Do not inspect source code or any other non-Markdown file. Do not edit files, stage, commit, push, stash, reset, run a generator in write mode, or make any external change.
 
 ## Scout method
 
 Search for mismatches among prose, metadata, status tables, claim grades, and the evidence they cite. Preserve the distinction among `derived`, `measured`, `inferred`, and `guessed`. Do not upgrade diagnostic, provider, prescribed, display-only, seed-grade, local, or replay evidence into physical realization, retained-branch, acceptance, conservation, release, score movement, or global closure.
 
-For every finding, inspect the cited owner before assigning one status:
+For every finding, inspect the cited owner before assigning one status when that owner is a Markdown file within the two declared roots. Otherwise mark the owner uninspected and use `candidate` or `stronger reviewer required`:
 
 - `candidate`: plausible mismatch that has not been fully checked against all relevant owners;
 - `verified`: directly confirmed against the current target and named live owner, limited to that local fact;

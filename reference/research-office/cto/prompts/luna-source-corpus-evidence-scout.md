@@ -13,11 +13,11 @@ Perform a full dragnet over exactly these two corpus areas on every run:
 1. `content/markdown/aaa/`, the canonical textbook source directory;
 2. `reference/`, the behind-the-scenes development corpus.
 
-Inventory and scan both areas in full for source statements, equations, records, citations, provenance claims, prior evidence packets, current corpus uses, and conflicts or agreements among them. Do not narrow the dragnet to a selected owner, queue row, workstream, question, source family, subdirectory, or fallback. Do not add a third dragnet root, browse externally, or substitute a speculative research question.
+Inventory and scan every Markdown file (`*.md`) under both areas in full for source statements, equations, records, citations, provenance claims, prior evidence packets, current corpus uses, and conflicts or agreements among them. Do not narrow the dragnet to a selected owner, queue row, workstream, question, source family, subdirectory, or fallback. Do not add a third dragnet root, browse externally, or substitute a speculative research question. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file, even when a Markdown file cites it as a verification endpoint. Record the literal Markdown citation and mark the endpoint uninspected.
 
-Resolve provenance and the current canonical owner separately for every evidence item; owner lookup must not reduce scan coverage. If either root contains no matching source or corpus evidence, or an item's source identity, provenance owner, or current use is absent, return that exact condition as a numbered absence finding with the paths and searches checked; do not request input or halt.
+Resolve provenance and the current canonical Markdown owner separately for every evidence item; owner lookup must not reduce scan coverage. If either root contains no matching source or corpus evidence, an item's source identity, provenance owner, or current use is absent, or the cited owner lies outside the eligible Markdown set, return that exact condition as a numbered absence finding with the paths and searches checked; do not request input or halt.
 
-Read `AGENTS.md`, both complete corpus roots, and the provenance or canonical owners needed to interpret located evidence. Work entirely read-only and repository-local. Do not browse, download, contact external services, edit files, stage, commit, push, stash, reset, run a generator in write mode, or make any external change.
+After reading `AGENTS.md` for startup policy, inspect only Markdown files within the two declared corpus roots and eligible Markdown provenance or canonical owners needed to interpret located evidence. Work entirely read-only and repository-local. Do not inspect source code or any other non-Markdown file. Do not browse, download, contact external services, edit files, stage, commit, push, stash, reset, run a generator in write mode, or make any external change.
 
 ## Scout method
 
@@ -26,7 +26,7 @@ Search for passages, equations, records, citations, and prior packets that bear 
 Assign every evidence item one status:
 
 - `candidate`: relevant lead whose provenance, context, or current applicability is incomplete;
-- `verified`: the repository directly supports the quoted or paraphrased local fact and its provenance;
+- `verified`: eligible Markdown in the two corpus roots directly supports the quoted or paraphrased local fact and its provenance;
 - `stronger reviewer required`: mathematical use, theoretical compatibility, promotion, acceptance, or physical interpretation needs a domain reviewer.
 
 Preserve `derived`, `measured`, `inferred`, and `guessed` grades. Do not upgrade diagnostic, prescribed, provider, display-only, seed-grade, or historical material into proof, physical realization, acceptance, conservation, release readiness, or score movement. State no unsupported closure or physics claim.
