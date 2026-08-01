@@ -29,8 +29,8 @@ import {
   createDefaultOrientationQuaternion,
   createEndpointHighlightGroupPairIds,
   createEndpointVisualAggregation,
+  createMainDisplayVisibility,
   createUniaxialDeformedPosition,
-  createZPolarDisplayEnvelopePoint,
   defaultViewHalfHeightForDisplayRadius,
   xAxisScaleFromDeformationBeta,
   createNearestNeighborEdges,
@@ -53,35 +53,6 @@ import {
 function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
 }
-
-test("spherical display envelope uses semantic Z as its polar axis", () => {
-  const radius = 3.25;
-  assert.deepEqual(
-    createZPolarDisplayEnvelopePoint(radius, 0, 1.234),
-    [0, 0, radius],
-  );
-  const southPole = createZPolarDisplayEnvelopePoint(
-    radius,
-    Math.PI,
-    2.345,
-  );
-  assert.ok(Math.abs(southPole[0]) < 1e-12);
-  assert.ok(Math.abs(southPole[1]) < 1e-12);
-  assert.equal(southPole[2], -radius);
-
-  const equator = createZPolarDisplayEnvelopePoint(
-    radius,
-    Math.PI / 2,
-    Math.PI / 2,
-  );
-  assert.ok(Math.abs(equator[0]) < 1e-12);
-  assert.equal(equator[1], radius);
-  assert.ok(Math.abs(equator[2]) < 1e-12);
-
-  const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
-  assert.match(source, /semanticPolarAxis = "z"/u);
-  assert.match(source, /displayEnvelopeOrientationSource =\s*\n\s*"shared-lattice-root-quaternion"/u);
-});
 
 test("every gallery crop uses 2.75d while apparent diameter stays fixed", () => {
   assert.equal(LATTICE_LAB_DISPLAY_RADIUS, 2.75);
@@ -118,6 +89,71 @@ test("every gallery crop uses 2.75d while apparent diameter stays fixed", () => 
     defaultViewHalfHeightForDisplayRadius(2.75),
     4.4 * (2.75 / 3.25),
   );
+});
+
+test("main display hides only the authorized Simple Cubic cap members", () => {
+  const gallery = createLatticeLabCaseGallery();
+  const simpleCubicIds = new Set([
+    "simple-cubic-checkerboard-v1",
+    "simple-cubic-alternating-planes-v1",
+    "simple-cubic-random-finite-fifty-fifty-v1",
+  ]);
+  const simpleCubicHiddenIds = [
+    "site-1-3-3", "site-1-3-4", "site-1-4-3", "site-1-4-4",
+    "site-3-1-3", "site-3-1-4", "site-3-3-1", "site-3-3-6",
+    "site-3-4-1", "site-3-4-6", "site-3-6-3", "site-3-6-4",
+    "site-4-1-3", "site-4-1-4", "site-4-3-1", "site-4-3-6",
+    "site-4-4-1", "site-4-4-6", "site-4-6-3", "site-4-6-4",
+    "site-6-3-3", "site-6-3-4", "site-6-4-3", "site-6-4-4",
+  ].sort();
+  gallery.forEach((caseRecord) => {
+    const visibility = createMainDisplayVisibility(caseRecord);
+    const canonicalEdges = createNearestNeighborEdges(caseRecord);
+    if (simpleCubicIds.has(caseRecord.id)) {
+      assert.equal(caseRecord.sites.length, 88, caseRecord.id);
+      assert.equal(canonicalEdges.length, 192, caseRecord.id);
+      assert.deepEqual(
+        visibility.hiddenCapSiteIds,
+        simpleCubicHiddenIds,
+        caseRecord.id,
+      );
+      assert.equal(visibility.visibleSites.length, 64, caseRecord.id);
+      assert.equal(visibility.hiddenSites.length, 24, caseRecord.id);
+      assert.equal(visibility.visibleEdges.length, 144, caseRecord.id);
+      assert.equal(visibility.hiddenEdges.length, 48, caseRecord.id);
+      assert.equal(visibility.visibleSites.every((site) =>
+        site.position.every((coordinate) => Math.abs(coordinate) <= 1.5)
+      ), true, caseRecord.id);
+    } else {
+      assert.equal(visibility.visibleSites.length, caseRecord.sites.length);
+      assert.equal(visibility.visibleEdges.length, canonicalEdges.length);
+      assert.equal(visibility.hiddenSites.length, 0);
+      assert.equal(visibility.hiddenEdges.length, 0);
+      assert.deepEqual(visibility.hiddenCapSiteIds, [], caseRecord.id);
+      if (caseRecord.id === "bcc-two-sublattice-v1") {
+        assert.equal(visibility.visibleSites.length, 108);
+        assert.equal(visibility.visibleEdges.length, 311);
+      }
+    }
+    const visibleIds = new Set(visibility.visibleSites.map(({ id }) => id));
+    assert.equal(visibility.visibleEdges.every((edge) =>
+      visibleIds.has(edge.fromSiteId) && visibleIds.has(edge.toSiteId)
+    ), true, caseRecord.id);
+  });
+
+  const random = gallery.find(
+    ({ id }) => id === "simple-cubic-random-finite-fifty-fifty-v1",
+  );
+  const randomLedger = createSelectedSiteLedger(
+    random,
+    createReferencePolarityState(random),
+    random.defaultSiteId,
+  );
+  assert.equal(randomLedger.rows.length, 87);
+  assert.equal(randomLedger.rows.every(
+    ({ availability }) => availability === "finite-configuration-neighbor",
+  ), true);
+  assert.match(randomLedger.coverage, /87 of 87 other sites in the full canonical finite configuration included/u);
 });
 
 test("shared boundary treatment uses lowercase 2.75d with no stale prior radius", () => {
@@ -285,6 +321,11 @@ test("maximum deformation aggregates coincident columns and partitions lines", (
   assert.match(source, /endpoint-aggregate-site-group/u);
   assert.match(source, /ENDPOINT_AGGREGATE_COLOR/u);
   assert.match(source, /mainEndpointAggregation\.groups\.forEach/u);
+  assert.match(source, /\[\.\.\.siteMeshes\.keys\(\)\]\.map/u);
+  assert.doesNotMatch(
+    source,
+    /mainEndpointAggregation = createEndpointVisualAggregation\(\s*caseRecord\.sites/u,
+  );
   assert.match(source, /miniatureEndpointAggregation\.groups\.forEach/u);
   assert.match(source, /mesh\.visible = !endpointActive/u);
   assert.match(source, /selectionCircleColor = "purple"/u);
@@ -1453,6 +1494,7 @@ test("XYZ key uses centered symmetric unit axes with labels beyond positive endp
 
 test("Lattice Lab page keeps the shared standalone navigation strip without Borg diagnostics", () => {
   const html = readRepoFile("lattice-lab.html");
+  const css = readRepoFile("src/apps/lattice-lab/lattice-lab.css");
   assert.match(
     html,
     /id="scene-hud-tools"[\s\S]*id="textbook-toc-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="home-button"[\s\S]*id="scene-search-toggle"/u,
@@ -1513,6 +1555,14 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
   assert.equal(html.includes("lattice-lab-miniature-legend"), false);
   assert.equal(html.includes("Synchronized orientation"), false);
   assert.match(html, /id="lattice-lab-case-select"/u);
+  assert.equal(
+    html.match(/Exploring static architrino lattices\./gu)?.length,
+    1,
+  );
+  assert.match(
+    css,
+    /\.lattice-lab-title p \{[\s\S]*font-size: 11px;[\s\S]*white-space: nowrap;/u,
+  );
   assert.doesNotMatch(html, /Site ledger is being redesigned\./u);
   assert.equal(html.includes("Selected-Site Ledger"), false);
   assert.match(html, /id="lattice-lab-ledger-result"/u);
@@ -1629,7 +1679,6 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
       html.indexOf("lattice-lab-case-title"),
   );
   const runtime = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
-  const css = readRepoFile("src/apps/lattice-lab/lattice-lab.css");
   assert.doesNotMatch(runtime, /primer|Primer/u);
   assert.doesNotMatch(css, /lattice-lab-primer/u);
   assert.match(runtime, /siteSelectionExplicit = true/u);
@@ -1694,7 +1743,11 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   );
   assert.match(
     runtime,
-    /dom\.miniatureCanvas\.parentElement\.append\(dom\.polarityLegend\)[\s\S]*dataset\.placement = "polarized-repeat-pattern"/u,
+    /dom\.miniatureCard\.append\(dom\.polarityLegend\)[\s\S]*dataset\.placement = "polarized-repeat-pattern"/u,
+  );
+  assert.match(
+    runtime,
+    /dom\.miniatureCard\.dataset\.polarityLegendInside = "true"/u,
   );
   assert.match(
     runtime,
@@ -1702,7 +1755,15 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   );
   assert.match(
     css,
-    /\.lattice-lab-miniature-viewport > \.lattice-lab-polarity-legend \{[\s\S]*right: 8px;[\s\S]*bottom: 8px;/u,
+    /\.lattice-lab-miniature-card > \.lattice-lab-polarity-legend \{[\s\S]*right: 10px;[\s\S]*bottom: 10px;/u,
+  );
+  assert.match(
+    css,
+    /#lattice-lab-miniature-card\[data-polarity-legend-inside="true"\][\s\S]*\.lattice-lab-miniature-viewport \{[\s\S]*justify-self: start;/u,
+  );
+  assert.match(
+    css,
+    /\.lattice-lab-miniature-card > div:first-child > span,/u,
   );
   assert.match(runtime, /markerDiameterPx = String\(2 \* MARKER_RADIUS_PX\)/u);
   assert.match(
@@ -1774,7 +1835,14 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
     runtime,
     /selectionHalo|selectedRedMaterial|selectedBlueMaterial|emissiveIntensity: 0\.62|shadowBlur|AdditiveBlending/u,
   );
-  assert.match(runtime, /guideGroup\.add\(createDottedDisplayEnvelope\(caseRecord\.displayRadius\)\)/u);
+  assert.doesNotMatch(
+    runtime,
+    /createDottedDisplayEnvelope|createZPolarDisplayEnvelopePoint|display-envelope-visual-only|displayEnvelope/u,
+  );
+  assert.match(
+    runtime,
+    /const displayCropDiameterPx =[^;]+caseRecord\.displayRadius[\s\S]*dataset\.displayCropDiameterPx/u,
+  );
   assert.match(runtime, /miniatureRoot\.quaternion\.copy\(rootGroup\.quaternion\)/u);
   assert.match(
     css,
@@ -1842,6 +1910,18 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
     /\.lattice-lab-ledger-calculation\[open\] \.lattice-lab-ledger-calculation-body \{[\s\S]*overflow-y: auto;[\s\S]*overscroll-behavior-y: auto;/u,
   );
   assert.match(
+    runtime,
+    /dom\.ledger\.dataset\.randomConfiguration = randomization \? "true" : "false"/u,
+  );
+  assert.match(
+    css,
+    /\.lattice-lab-ledger-heading \{[\s\S]*position: relative;[\s\S]*z-index: 3;/u,
+  );
+  assert.match(
+    css,
+    /\.lattice-lab-ledger\[data-random-configuration="true"\][\s\S]*\.lattice-lab-ledger-calculation\[open\] \{[\s\S]*inset: 40px 11px 11px;/u,
+  );
+  assert.match(
     html,
     /id="lattice-lab-ledger-calculation-body"[\s\S]*role="region"[\s\S]*aria-label="Calculation details"[\s\S]*tabindex="0"/u,
   );
@@ -1894,7 +1974,7 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   assert.match(css, /\.lattice-lab-miniature-card \{[\s\S]*box-shadow: none;/u);
   assert.match(
     css,
-    /#lattice-lab-unpolarized-canvas,[\s\S]*#lattice-lab-miniature-canvas \{[\s\S]*width: 100%;[\s\S]*height: 100%;[\s\S]*border: 1px solid rgba\(198, 182, 255, 0\.14\);/u,
+    /#lattice-lab-unpolarized-canvas,[\s\S]*#lattice-lab-miniature-canvas \{[\s\S]*width: 100%;[\s\S]*height: 100%;[\s\S]*border: 0;[\s\S]*border-radius: 8px;/u,
   );
   assert.match(runtime, /unpolarizedRoot\.quaternion\.copy\(rootGroup\.quaternion\)/u);
   assert.match(runtime, /blockOrientationKeyInteraction/u);

@@ -384,11 +384,11 @@ export function createRandomFiniteFiftyFiftyCase(
     polarityRule:
       "seeded exact 50/50 assignment within this spherical crop",
     evidenceStatus:
-      "calculated stationary acceleration for one displayed finite nonperiodic configuration",
+      "calculated stationary acceleration for one canonical finite nonperiodic configuration",
     calculationBoundaryTreatment:
-      "all other displayed sites in this spherical configuration are included once; no continuation or repeating-pattern claim",
+      "all other sites in the full canonical finite configuration are included once; no continuation or repeating-pattern claim",
     accelerationStatus:
-      "calculated from every other displayed site in the finite crop using the normalized stationary acceleration row",
+      "calculated from every other site in the full canonical finite configuration using the normalized stationary acceleration row",
     displayRadius: LATTICE_LAB_RANDOM_FINITE_DISPLAY_RADIUS,
     repeatSpecification: {
       vectors: [[1, 1, 0], [1, 0, 1], [0, 1, 1]],
@@ -1194,7 +1194,7 @@ function createFiniteNonperiodicSiteLedger(
           (value) => value / separationInD,
         )),
         accelerationRow,
-        availability: "displayed-neighbor",
+        availability: "finite-configuration-neighbor",
         includedInCalculation: true,
         shellId: shellDefinition?.id ?? "displayed-finite-crop",
         shellLabel: shellDefinition?.label ?? "Remaining finite crop",
@@ -1284,7 +1284,9 @@ function createFiniteNonperiodicSiteLedger(
     receiverId: receiver.id,
     receiverPolarity: polarityBySiteId[receiver.id],
     shells: Object.freeze(shells),
-    coverage: `${rows.length} of ${rows.length} other displayed sites included`,
+    coverage:
+      `${rows.length} of ${rows.length} other sites in the full canonical ` +
+      "finite configuration included",
     rows: Object.freeze(rows),
     geometryResidual: freezeResidualVector(geometryResidual),
     normalizedAccelerationResidual: freezeResidualVector(

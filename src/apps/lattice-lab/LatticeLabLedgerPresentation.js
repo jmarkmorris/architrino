@@ -78,11 +78,12 @@ function createCalculationRows(
   rows,
   {
     conciseLabels = false,
-    shellOnlyLabels = false,
+    individualNeighborLabels = false,
     neighborGroupLabels = new Map(),
   } = {},
 ) {
   let runningResidual = [0, 0, 0];
+  const neighborOrdinals = new Map();
   return Object.freeze(rows.map((row, rowIndex) => {
     const contribution = freezeVector(
       row.accelerationRow.normalizedAcceleration,
@@ -90,14 +91,28 @@ function createCalculationRows(
     runningResidual = freezeVector(runningResidual.map(
       (value, index) => value + contribution[index],
     ));
+    const neighborKind = row.shellId === "nearest"
+      ? "Near neighbor"
+      : row.shellId === "next-local"
+        ? "Far neighbor"
+        : null;
+    const neighborOrdinal = individualNeighborLabels && neighborKind
+      ? (neighborOrdinals.get(row.shellId) ?? 0) + 1
+      : null;
+    if (neighborOrdinal !== null) {
+      neighborOrdinals.set(row.shellId, neighborOrdinal);
+    }
     return Object.freeze({
       shellId: row.shellId,
       shellLabel: row.shellLabel,
       polarity: row.polarity,
       rowLabel: conciseLabels
         ? `Contribution ${rowIndex + 1}`
+        : neighborOrdinal !== null
+          ? `${neighborKind} ${neighborOrdinal}`
         : neighborGroupLabels.get(row.shellId) ?? row.shellLabel,
-      showPolarityInLabel: !conciseLabels && !shellOnlyLabels,
+      showPolarityInLabel:
+        !conciseLabels && !individualNeighborLabels,
       contribution,
       runningResidual,
     });
@@ -267,7 +282,7 @@ export function createLatticeLabLedgerViewModel({
     calculationRows: accelerationAvailable
       ? createCalculationRows(includedRows, {
         conciseLabels: Boolean(caseRecord.randomization),
-        shellOnlyLabels: caseRecord.id === "hcp-abab-layers-v1",
+        individualNeighborLabels: certifiedPeriodic,
         neighborGroupLabels,
       })
       : Object.freeze([]),

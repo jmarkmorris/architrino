@@ -108,7 +108,7 @@ export const SIMPLE_CUBIC_STATIONARY_CONTRACT = deepFreeze({
     admittedExamples:
       "centered integer cubes and centered Euclidean lattice balls",
     displayCropRole:
-      "the dotted sphere is visual only and is not the calculation boundary",
+      "the spherical viewing crop is not the calculation boundary",
   },
   result: {
     acceleration:

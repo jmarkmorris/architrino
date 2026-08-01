@@ -324,53 +324,6 @@ function clamp(value, minimum, maximum) {
   return Math.max(minimum, Math.min(maximum, value));
 }
 
-export function createZPolarDisplayEnvelopePoint(radius, theta, phi) {
-  if (
-    !Number.isFinite(radius) || radius <= 0 ||
-    !Number.isFinite(theta) || !Number.isFinite(phi)
-  ) {
-    throw new TypeError(
-      "Display-envelope radius and angles must be finite, with radius positive.",
-    );
-  }
-  const ringRadius = Math.sin(theta) * radius;
-  return Object.freeze([
-    Math.cos(phi) * ringRadius,
-    Math.sin(phi) * ringRadius,
-    Math.cos(theta) * radius,
-  ]);
-}
-
-function createDottedDisplayEnvelope(radius) {
-  const points = [];
-  const latitudeCount = 19;
-  const longitudeCount = 42;
-  for (let latitudeIndex = 0; latitudeIndex < latitudeCount; latitudeIndex += 1) {
-    const theta = (latitudeIndex / (latitudeCount - 1)) * Math.PI;
-    for (let longitudeIndex = 0; longitudeIndex < longitudeCount; longitudeIndex += 1) {
-      const phi = (longitudeIndex / longitudeCount) * Math.PI * 2;
-      points.push(new THREE.Vector3(
-        ...createZPolarDisplayEnvelopePoint(radius, theta, phi),
-      ));
-    }
-  }
-  const material = new THREE.PointsMaterial({
-    color: 0xd7caff,
-    size: 2,
-    sizeAttenuation: false,
-    transparent: true,
-    opacity: 0.24,
-    depthWrite: false,
-  });
-  const envelope = new THREE.Points(
-    new THREE.BufferGeometry().setFromPoints(points),
-    material,
-  );
-  envelope.userData.kind = "display-envelope-visual-only";
-  envelope.userData.semanticPolarAxis = "z";
-  return envelope;
-}
-
 function createSceneLights(scene) {
   scene.add(new THREE.HemisphereLight(0xf4edff, 0x211a31, 1.5));
   const keyLight = new THREE.DirectionalLight(0xffffff, 1.7);
@@ -399,6 +352,70 @@ export function createNearestNeighborEdges(caseRecord) {
     });
   });
   return Object.freeze(edges);
+}
+
+export function createMainDisplayVisibility(caseRecord) {
+  const canonicalEdges = createNearestNeighborEdges(caseRecord);
+  const isSimpleCubic = caseRecord.geometry === "simple cubic";
+  if (!isSimpleCubic) {
+    return Object.freeze({
+      visibleSites: caseRecord.sites,
+      hiddenSites: Object.freeze([]),
+      visibleEdges: canonicalEdges,
+      hiddenEdges: Object.freeze([]),
+      hiddenCapSiteIds: Object.freeze([]),
+    });
+  }
+
+  const hiddenSiteIds = new Set();
+  for (let axis = 0; axis < 3; axis += 1) {
+    const coordinates = caseRecord.sites.map((site) => site.position[axis]);
+    for (const extremeCoordinate of [
+      Math.min(...coordinates),
+      Math.max(...coordinates),
+    ]) {
+      const faceSites = caseRecord.sites.filter((site) =>
+        Math.abs(site.position[axis] - extremeCoordinate) < 1e-9
+      );
+      if (faceSites.length !== 4) {
+        throw new Error(
+          `${caseRecord.id} expected 4 display-cap sites on face ` +
+          `${axis}:${extremeCoordinate}, found ${faceSites.length}.`,
+        );
+      }
+      faceSites.forEach((site) => hiddenSiteIds.add(site.id));
+    }
+  }
+  const expectedHiddenSiteCount = 24;
+  if (hiddenSiteIds.size !== expectedHiddenSiteCount) {
+    throw new Error(
+      `${caseRecord.id} expected ${expectedHiddenSiteCount} distinct ` +
+      `display-cap sites, ` +
+      `found ${hiddenSiteIds.size}.`,
+    );
+  }
+
+  const visibleSites = Object.freeze(caseRecord.sites.filter(
+    (site) => !hiddenSiteIds.has(site.id),
+  ));
+  const hiddenSites = Object.freeze(caseRecord.sites.filter(
+    (site) => hiddenSiteIds.has(site.id),
+  ));
+  const visibleEdges = Object.freeze(canonicalEdges.filter((edge) =>
+    !hiddenSiteIds.has(edge.fromSiteId) &&
+    !hiddenSiteIds.has(edge.toSiteId)
+  ));
+  const hiddenEdges = Object.freeze(canonicalEdges.filter((edge) =>
+    hiddenSiteIds.has(edge.fromSiteId) ||
+    hiddenSiteIds.has(edge.toSiteId)
+  ));
+  return Object.freeze({
+    visibleSites,
+    hiddenSites,
+    visibleEdges,
+    hiddenEdges,
+    hiddenCapSiteIds: Object.freeze([...hiddenSiteIds].sort()),
+  });
 }
 
 export function createRepeatCellDisplayGraph(
@@ -1606,7 +1623,8 @@ export function mountLatticeLab(options = {}) {
   function rebuildCaseScene() {
     removeCaseSceneObjects();
     rebuildUnpolarizedLatticePattern();
-    caseRecord.sites.forEach((site) => {
+    const mainDisplayVisibility = createMainDisplayVisibility(caseRecord);
+    mainDisplayVisibility.visibleSites.forEach((site) => {
       const mesh = new THREE.Mesh(
         sphereGeometry,
         site.polarity === LATTICE_LAB_POLARITY.POSITRINO
@@ -1633,7 +1651,7 @@ export function mountLatticeLab(options = {}) {
       rebuildMiniatureNetwork(repeatCellDisplayGraph);
     }
 
-    edgeLines = createNearestNeighborEdges(caseRecord).map((edge) => {
+    edgeLines = mainDisplayVisibility.visibleEdges.map((edge) => {
       const geometry = new THREE.BufferGeometry().setFromPoints([
         new THREE.Vector3(),
         new THREE.Vector3(),
@@ -1644,8 +1662,23 @@ export function mountLatticeLab(options = {}) {
       lineGroup.add(line);
       return line;
     });
-    dom.canvas.dataset.displaySiteCount = String(caseRecord.sites.length);
+    dom.canvas.dataset.canonicalSiteCount = String(caseRecord.sites.length);
+    dom.canvas.dataset.displaySiteCount = String(
+      mainDisplayVisibility.visibleSites.length,
+    );
     dom.canvas.dataset.displayEdgeCount = String(edgeLines.length);
+    dom.canvas.dataset.hiddenDisplayCapSiteCount = String(
+      mainDisplayVisibility.hiddenSites.length,
+    );
+    dom.canvas.dataset.hiddenDisplayCapSiteIds =
+      mainDisplayVisibility.hiddenCapSiteIds.join(",");
+    dom.canvas.dataset.hiddenDisplayCapEdgeCount = String(
+      mainDisplayVisibility.hiddenEdges.length,
+    );
+    dom.canvas.dataset.hiddenDisplayCapEdgeIdentities =
+      mainDisplayVisibility.hiddenEdges.map(
+        (edge) => `${edge.fromSiteId}::${edge.toSiteId}`,
+      ).join(",");
     dom.canvas.dataset.displayRadius = String(caseRecord.displayRadius);
     if (repeatCellDisplayGraph) {
       rebuildRepeatCellHighlight(repeatCellDisplayGraph);
@@ -1663,17 +1696,14 @@ export function mountLatticeLab(options = {}) {
       dom.canvas.dataset.repeatHighlightCroppedEdgeCount = "0";
       dom.canvas.dataset.repeatHighlightCroppedEdgeIdentities = "";
     }
-    guideGroup.add(createDottedDisplayEnvelope(caseRecord.displayRadius));
     dom.canvas.dataset.deformationAxis = compressionAxis;
     dom.canvas.dataset.deformationFactor = compressionFactor.toFixed(6);
-    dom.canvas.dataset.displayEnvelopePolarAxis = "z";
-    dom.canvas.dataset.displayEnvelopeOrientationSource =
-      "shared-lattice-root-quaternion";
   }
 
   function updatePolarityLegendPlacement(hasPolarizedRepeatPattern) {
     if (hasPolarizedRepeatPattern) {
-      dom.miniatureCanvas.parentElement.append(dom.polarityLegend);
+      dom.miniatureCard.append(dom.polarityLegend);
+      dom.miniatureCard.dataset.polarityLegendInside = "true";
       dom.polarityLegend.dataset.placement = "polarized-repeat-pattern";
       dom.polarityLegend.style.removeProperty("right");
       return;
@@ -1682,6 +1712,7 @@ export function mountLatticeLab(options = {}) {
       dom.polarityLegend,
       dom.inspectorStack,
     );
+    delete dom.miniatureCard.dataset.polarityLegendInside;
     dom.polarityLegend.dataset.placement = "main-canvas";
   }
 
@@ -2118,6 +2149,7 @@ export function mountLatticeLab(options = {}) {
     dom.caseDensity.textContent = caseRecord.geometricSiteDensity;
     const randomization = caseRecord.randomization ?? null;
     dom.randomRecalculate.hidden = !randomization;
+    dom.ledger.dataset.randomConfiguration = randomization ? "true" : "false";
     if (randomization) {
       dom.canvas.dataset.randomSeed = String(randomization.seed);
       dom.canvas.dataset.randomAssignmentFingerprint =
@@ -2373,13 +2405,13 @@ export function mountLatticeLab(options = {}) {
     );
     const rendererSiteDiameterPx =
       2 * markerWorldRadius * viewportHeight / (2 * cameraViewHalfHeight);
-    const displayEnvelopeDiameterPx =
+    const displayCropDiameterPx =
       2 * caseRecord.displayRadius * viewportHeight /
       (2 * cameraViewHalfHeight);
     dom.canvas.dataset.rendererSiteDiameterPx =
       rendererSiteDiameterPx.toFixed(4);
-    dom.canvas.dataset.displayEnvelopeDiameterPx =
-      displayEnvelopeDiameterPx.toFixed(4);
+    dom.canvas.dataset.displayCropDiameterPx =
+      displayCropDiameterPx.toFixed(4);
     dom.polarityLegend.dataset.rendererSiteDiameterPx =
       rendererSiteDiameterPx.toFixed(4);
     const unpolarizedViewportHeight = Math.max(
@@ -2478,10 +2510,13 @@ export function mountLatticeLab(options = {}) {
         toSiteId: edge.toSiteId,
       }));
       mainEndpointAggregation = createEndpointVisualAggregation(
-        caseRecord.sites.map((site) => ({
-          id: site.id,
-          position: transformDisplayPosition(site.position),
-        })),
+        [...siteMeshes.keys()].map((siteId) => {
+          const site = getLatticeSite(caseRecord, siteId);
+          return {
+            id: site.id,
+            position: transformDisplayPosition(site.position),
+          };
+        }),
         mainEdges,
         2 * markerWorldRadius + 1e-9,
       );

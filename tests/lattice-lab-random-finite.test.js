@@ -169,7 +169,7 @@ test("every gallery case uses one polarity circle for its exact ledger receiver"
   });
 });
 
-test("finite random ledger includes every other displayed site and no continuation", () => {
+test("finite random ledger includes every other canonical finite site and no continuation", () => {
   const caseRecord = createRandomFiniteFiftyFiftyCase();
   const state = createReferencePolarityState(caseRecord);
   const ledger = createSelectedSiteLedger(
@@ -179,7 +179,7 @@ test("finite random ledger includes every other displayed site and no continuati
   );
   assert.equal(ledger.rows.length, 87);
   assert.equal(ledger.rows.every((row) =>
-    row.availability === "displayed-neighbor" &&
+    row.availability === "finite-configuration-neighbor" &&
     row.includedInCalculation === true
   ), true);
   const independentResidual = ledger.rows.reduce(

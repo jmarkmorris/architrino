@@ -68,8 +68,23 @@ test("certified checkerboard view starts with the exact periodic zero result", (
   assert.equal(viewModel.calculationRows.length, 18);
   assert.equal(viewModel.shellScopeNote, null);
   assert.deepEqual(
-    [...new Set(viewModel.calculationRows.map(({ rowLabel }) => rowLabel))],
-    ["6 near neighbors", "12 far neighbors"],
+    viewModel.calculationRows.map(({ rowLabel }) => rowLabel),
+    [
+      ...Array.from({ length: 6 }, (_, index) => `Near neighbor ${index + 1}`),
+      ...Array.from({ length: 12 }, (_, index) => `Far neighbor ${index + 1}`),
+    ],
+  );
+  assert.equal(
+    viewModel.calculationRows.every(
+      ({ showPolarityInLabel }) => showPolarityInLabel === false,
+    ),
+    true,
+  );
+  assert.equal(
+    viewModel.calculationRows.every(({ polarity }) =>
+      polarity === "positrino" || polarity === "electrino"
+    ),
+    true,
   );
 });
 

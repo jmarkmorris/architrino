@@ -107,21 +107,29 @@ test("deterministic gallery calculations use periodic certificates, never displa
         assert.equal(view.residualLineLabel, "Magnitude 0 · Vector ⟨0, 0, 0⟩");
         assert.equal(view.calculationAvailable, true, caseId);
         assert.equal(view.calculationRows.length, expectation.rows, caseId);
-        if (caseId === "hcp-abab-layers-v1") {
-          assert.deepEqual(
-            view.calculationRows.map(({ rowLabel }) => rowLabel),
-            [
-              ...Array.from({ length: 12 }, () => "12 near neighbors"),
-              ...Array.from({ length: 6 }, () => "6 far neighbors"),
-            ],
-          );
-          assert.equal(
-            view.calculationRows.every(
-              ({ showPolarityInLabel }) => showPolarityInLabel === false,
+        const nearCount = caseRecord.shells[0].expectedCount;
+        const farCount = caseRecord.shells[1].expectedCount;
+        assert.deepEqual(
+          view.calculationRows.map(({ rowLabel }) => rowLabel),
+          [
+            ...Array.from(
+              { length: nearCount },
+              (_, index) => `Near neighbor ${index + 1}`,
             ),
-            true,
-          );
-        }
+            ...Array.from(
+              { length: farCount },
+              (_, index) => `Far neighbor ${index + 1}`,
+            ),
+          ],
+          caseId,
+        );
+        assert.equal(
+          view.calculationRows.every(
+            ({ showPolarityInLabel }) => showPolarityInLabel === false,
+          ),
+          true,
+          caseId,
+        );
         assert.equal(view.shellSummaries.length, 2, caseId);
         assert.equal("statement" in view, false);
         assert.equal(view.shellScopeNote, null);
