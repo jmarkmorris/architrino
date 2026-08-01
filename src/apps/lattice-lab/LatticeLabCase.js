@@ -3,9 +3,20 @@ import {
   createStationarySimpleCubicAccelerationRow,
   transformSimpleCubicOffset,
 } from "./SimpleCubicStationaryLedger.js";
+import {
+  LATTICE_LAB_RANDOM_DEFAULT_SEED,
+  LATTICE_LAB_RANDOM_FINITE_CASE_ID,
+  createLatticeLabRandomFiniteAssignment,
+} from "./LatticeLabRandomFinite.js";
+import {
+  LATTICE_LAB_PERIODIC_CERTIFICATES,
+  createStationaryPeriodicAccelerationRow,
+  validatePeriodicSymmetryCertificate,
+} from "./LatticeLabPeriodicStationary.js";
 
 export const LATTICE_LAB_CASE_ID = "simple-cubic-checkerboard-v1";
-export const LATTICE_LAB_DISPLAY_RADIUS = 3.25;
+export const LATTICE_LAB_DISPLAY_RADIUS = 3;
+export const LATTICE_LAB_RANDOM_FINITE_DISPLAY_RADIUS = 3.25;
 export const LATTICE_LAB_GRID_SPAN = 8;
 export const LATTICE_LAB_DEFAULT_SITE_ID = "site-3-3-3";
 
@@ -16,6 +27,7 @@ export const LATTICE_LAB_CASE_IDS = Object.freeze([
   "hcp-abab-layers-v1",
   "simple-cubic-alternating-planes-v1",
   "diamond-cubic-two-sublattice-v1",
+  LATTICE_LAB_RANDOM_FINITE_CASE_ID,
 ]);
 
 export const LATTICE_LAB_POLARITY = Object.freeze({
@@ -208,6 +220,9 @@ function createPeriodicCase(specification) {
     idealSites: Object.freeze(idealSites),
     defaultSiteId: defaultSite.id,
     repeatCell: specification.repeatCell,
+    calculationScope: specification.metadata.accelerationCertificate
+      ? "certified-periodic"
+      : null,
   });
 }
 
@@ -231,6 +246,8 @@ function createSimpleCubicCase({
   calculationBoundaryTreatment,
   accelerationStatus,
   accelerationCertificate = null,
+  calculationScope = null,
+  displayRadius = LATTICE_LAB_DISPLAY_RADIUS,
   repeatSpecification,
 }) {
   const sites = [];
@@ -258,7 +275,7 @@ function createSimpleCubicCase({
           ix < LATTICE_LAB_GRID_SPAN &&
           iy < LATTICE_LAB_GRID_SPAN &&
           iz < LATTICE_LAB_GRID_SPAN &&
-          Math.hypot(...position) <= LATTICE_LAB_DISPLAY_RADIUS
+          Math.hypot(...position) <= displayRadius
         ) {
           sites.push(site);
         }
@@ -283,12 +300,13 @@ function createSimpleCubicCase({
     selectedLocalTotal: 18,
     geometricSiteDensity: "n = 1/d³",
     boundaryTreatment:
-      "finite spherical display crop containing every simple-cubic site center within radius 3.25d; continuation is not shown",
+      `spherical display crop containing every simple-cubic site center within radius ${displayRadius}d; continuation is not shown`,
     calculationBoundaryTreatment,
     evidenceStatus,
     accelerationCertificate,
     accelerationStatus,
-    displayRadius: LATTICE_LAB_DISPLAY_RADIUS,
+    calculationScope,
+    displayRadius,
     shells: Object.freeze([
       createShell("nearest", "Nearest shell", 1, "d", 6),
       createShell("next-local", "Next local shell", Math.SQRT2, "√2d", 12),
@@ -318,17 +336,17 @@ function createSimpleCubicCase({
 export function createSimpleCubicCheckerboardCase() {
   return createSimpleCubicCase({
     id: LATTICE_LAB_CASE_ID,
-    title: "Simple-cubic checkerboard",
+    title: "Simple Cubic Checkerboard",
     polarityAtGrid: ([ix, iy, iz]) =>
       (ix + iy + iz) % 2 === 0
         ? LATTICE_LAB_POLARITY.POSITRINO
         : LATTICE_LAB_POLARITY.ELECTRINO,
     polarityRule: "alternating parity at every nearest-neighbor step",
-    primerTitle: "Simple cubic · checkerboard",
+    primerTitle: "Simple Cubic",
     primerParagraphs: [
       "Equal rows of sites meet at right angles. Each interior site has six nearest neighbors: left, right, up, down, forward, and back.",
-      "The checkerboard rule changes red to blue at every one-step move. Its minimal polarity-preserving translation cell has one red site, one blue site, and three skew repeat directions.",
-      "The geometric density n = 1/d³ counts sites per volume for spacing d. It is not mass density and does not establish a physical medium.",
+      "The checkerboard rule changes polarity at every one-step move.",
+      "Geometric density n = 1/d³ counts sites per volume for spacing d.",
     ],
     evidenceStatus:
       "derived stationary-release cancellation under the declared exhaustion",
@@ -349,26 +367,82 @@ export function createSimpleCubicCheckerboardCase() {
   });
 }
 
+export function createRandomFiniteFiftyFiftyCase(
+  seed = LATTICE_LAB_RANDOM_DEFAULT_SEED,
+) {
+  const base = createSimpleCubicCase({
+    id: LATTICE_LAB_RANDOM_FINITE_CASE_ID,
+    title: "Simple Cubic Random 50/50",
+    polarityAtGrid: ([ix, iy, iz]) =>
+      (ix + iy + iz) % 2 === 0
+        ? LATTICE_LAB_POLARITY.POSITRINO
+        : LATTICE_LAB_POLARITY.ELECTRINO,
+    polarityRule:
+      "seeded exact 50/50 assignment within this spherical crop",
+    primerTitle: "Simple Cubic Random 50/50",
+    primerParagraphs: [
+      "This case uses the displayed simple-cubic spherical crop as one finite, nonperiodic configuration. It does not repeat beyond the shown sites.",
+      "The ledger sums the stationary normalized acceleration contribution from every other displayed site to the selected receiver. Its result applies only to this finite configuration and makes no motion, stability, energy, or conservation claim.",
+    ],
+    evidenceStatus:
+      "calculated stationary acceleration for one displayed finite nonperiodic configuration",
+    calculationBoundaryTreatment:
+      "all other displayed sites in this spherical configuration are included once; no continuation or repeating-pattern claim",
+    accelerationStatus:
+      "calculated from every other displayed site in the finite crop using the normalized stationary acceleration row",
+    displayRadius: LATTICE_LAB_RANDOM_FINITE_DISPLAY_RADIUS,
+    repeatSpecification: {
+      vectors: [[1, 1, 0], [1, 0, 1], [0, 1, 1]],
+      sites: [
+        { position: [0, 0, 0], grid: [0, 0, 0] },
+        { position: [1, 0, 0], grid: [1, 0, 0] },
+      ],
+      label: "unused finite-case construction cell",
+      originFractional: [-0.25, -0.25, -0.75],
+    },
+  });
+  const assignment = createLatticeLabRandomFiniteAssignment(base.sites, seed);
+  const sites = Object.freeze(base.sites.map((site) => Object.freeze({
+    ...site,
+    polarity: assignment.polarityBySiteId[site.id],
+  })));
+  const defaultSite = nearestElectrinoToCenter(sites);
+  return Object.freeze({
+    ...base,
+    sites,
+    idealSites: sites,
+    defaultSiteId: defaultSite.id,
+    repeatCell: null,
+    periodic: false,
+    calculationScope: "finite-nonperiodic",
+    randomization: assignment,
+  });
+}
+
 export function createSimpleCubicAlternatingPlanesCase() {
   return createSimpleCubicCase({
     id: "simple-cubic-alternating-planes-v1",
-    title: "Simple-cubic alternating planes",
+    title: "Simple Cubic Alternating Planes",
     polarityAtGrid: ([, , iz]) =>
       Math.abs(iz % 2) === 0
         ? LATTICE_LAB_POLARITY.POSITRINO
         : LATTICE_LAB_POLARITY.ELECTRINO,
-    polarityRule: "uniform square planes alternate red and blue along Z",
-    primerTitle: "Simple cubic · alternating planes",
+    polarityRule: "uniform square planes alternate polarity along Z",
+    primerTitle: "Simple Cubic · Alternating Planes",
     primerParagraphs: [
       "The occupied sites are the same simple-cubic rows as the checkerboard case, with six nearest neighbors at d.",
-      "Here each XY plane has one polarity and the next plane has the other. Four nearest neighbors stay in the same-color plane; two lie in opposite-color planes.",
-      "This is a static geometry/reference case. Its visible symmetry is not an acceleration certificate or a stability result.",
+      "Here each XY plane has one polarity and the next plane has the other. Four nearest neighbors stay in the same-polarity plane; two lie in opposite-polarity planes.",
+      "A receiver-centered inversion-pair certificate gives zero net acceleration at every architrino in the ideal stationary repeat.",
     ],
-    evidenceStatus: "static geometry/reference case; no acceleration certificate",
+    evidenceStatus:
+      "derived stationary-release cancellation under the declared periodic exhaustion",
     calculationBoundaryTreatment:
-      "no infinite acceleration exhaustion supplied; finite geometry display only",
+      "ideal stationary infinite repeat with receiver-centered inversion-symmetric exhaustion; the spherical envelope is display only",
     accelerationStatus:
-      "acceleration rows are unavailable because this named polarity repeat has no independent acceleration certificate",
+      "derived exact zero at every site under the declared receiver-centered inversion-pair exhaustion",
+    accelerationCertificate:
+      LATTICE_LAB_PERIODIC_CERTIFICATES["simple-cubic-alternating-planes-v1"],
+    calculationScope: "certified-periodic",
     repeatSpecification: {
       vectors: [[1, 0, 0], [0, 1, 0], [0, 0, 2]],
       sites: [
@@ -389,7 +463,7 @@ function createBccCase() {
   ];
   return createPeriodicCase({
     id: "bcc-two-sublattice-v1",
-    title: "BCC two-sublattice",
+    title: "BCC Two-Sublattice",
     vectors,
     basis,
     cropCenter: [a / 4, a / 4, a / 4],
@@ -421,7 +495,7 @@ function createBccCase() {
     metadata: {
       geometry: "body-centered cubic",
       geometryLabel: "Body-centered cubic (BCC)",
-      polarityRule: "red corner sublattice and blue body-center sublattice",
+      polarityRule: "corner and body-center sublattices carry opposite polarities",
       nearestNeighborDistance: "d",
       coordinationNumber: 8,
       nearestShell: Object.freeze({ count: 8, distance: "d" }),
@@ -429,20 +503,22 @@ function createBccCase() {
       selectedLocalTotal: 14,
       geometricSiteDensity: "n = 3√3/(4d³)",
       boundaryTreatment:
-        "finite spherical display crop containing every BCC site center within radius 3.25d; continuation is not shown",
+        "spherical display crop containing every BCC site center within radius 3d; continuation is not shown",
       calculationBoundaryTreatment:
-        "no infinite acceleration exhaustion supplied; finite geometry display only",
-      evidenceStatus: "static geometry/reference case; no acceleration certificate",
-      accelerationCertificate: null,
+        "ideal stationary infinite repeat with receiver-centered inversion-symmetric exhaustion; the spherical envelope is display only",
+      evidenceStatus:
+        "derived stationary-release cancellation under the declared periodic exhaustion",
+      accelerationCertificate:
+        LATTICE_LAB_PERIODIC_CERTIFICATES["bcc-two-sublattice-v1"],
       accelerationStatus:
-        "acceleration rows are unavailable because this named case has no independent acceleration certificate",
-      primerTitle: "BCC · two sublattices",
+        "derived exact zero at every site under the declared receiver-centered inversion-pair exhaustion",
+      primerTitle: "BCC · Two Sublattices",
       primerParagraphs: Object.freeze([
         "A conventional cubic cell has corner sites plus one body-center site. Each site has eight nearest neighbors along body-diagonal directions.",
-        "The red and blue populations occupy the two interpenetrating simple-cubic sublattices. CsCl is the familiar teaching analogy for this two-sublattice ordering; no material identity is implied.",
-        "With nearest spacing d, the geometric site density is n = 3√3/(4d³). This is site counting, not mass density.",
+        "The two polarity populations occupy the interpenetrating simple-cubic sublattices.",
+        "With nearest spacing d, the geometric site density is n = 3√3/(4d³).",
       ]),
-      teachingNote: "CsCl-type ordering is a geometry teaching analogy only.",
+      teachingNote: null,
     },
   });
 }
@@ -467,7 +543,7 @@ function createFccCase() {
       : LATTICE_LAB_POLARITY.ELECTRINO;
   return createPeriodicCase({
     id: "fcc-alternating-planes-v1",
-    title: "FCC alternating planes",
+    title: "FCC Alternating Planes",
     vectors,
     basis,
     cropCenter: [a / 4, 0, a / 4],
@@ -491,12 +567,16 @@ function createFccCase() {
         },
       ],
       "minimal 2-site FCC alternating-plane translation cell",
-      { kind: "cell", minimal: true },
+      {
+        kind: "cell",
+        minimal: true,
+        contextPresentation: "secondary-site-copies",
+      },
     ),
     metadata: {
       geometry: "face-centered cubic",
       geometryLabel: "Face-centered cubic (FCC)",
-      polarityRule: "alternating red and blue (001) close-packed site planes",
+      polarityRule: "successive (001) close-packed site planes alternate polarity",
       nearestNeighborDistance: "d",
       coordinationNumber: 12,
       nearestShell: Object.freeze({ count: 12, distance: "d" }),
@@ -504,20 +584,22 @@ function createFccCase() {
       selectedLocalTotal: 18,
       geometricSiteDensity: "n = √2/d³",
       boundaryTreatment:
-        "finite spherical display crop containing every FCC site center within radius 3.25d; continuation is not shown",
+        "spherical display crop containing every FCC site center within radius 3d; continuation is not shown",
       calculationBoundaryTreatment:
-        "no infinite acceleration exhaustion supplied; finite geometry display only",
-      evidenceStatus: "static geometry/reference case; no acceleration certificate",
-      accelerationCertificate: null,
+        "ideal stationary infinite repeat with receiver-centered inversion-symmetric exhaustion; the spherical envelope is display only",
+      evidenceStatus:
+        "derived stationary-release cancellation under the declared periodic exhaustion",
+      accelerationCertificate:
+        LATTICE_LAB_PERIODIC_CERTIFICATES["fcc-alternating-planes-v1"],
       accelerationStatus:
-        "acceleration rows are unavailable because this named case has no independent acceleration certificate",
-      primerTitle: "FCC · alternating planes",
+        "derived exact zero at every site under the declared receiver-centered inversion-pair exhaustion",
+      primerTitle: "FCC · Alternating Planes",
       primerParagraphs: Object.freeze([
         "FCC places sites at cube corners and face centers. Each site has twelve nearest neighbors, and its close-packed layers follow an ABCABC stacking sequence.",
-        "This canned polarity variant alternates color between successive (001) site planes. Triangular nearest-neighbor loops prevent every nearest pair from being opposite polarity.",
-        "With nearest spacing d, the geometric site density is n = √2/d³. The shell table is geometric; it does not prove acceleration cancellation.",
+        "This canned polarity variant alternates polarity between successive (001) site planes. Triangular nearest-neighbor loops prevent every nearest pair from being opposite polarity.",
+        "With nearest spacing d, the geometric site density is n = √2/d³. The displayed shell rows are local examples; the separate periodic certificate covers the full repeat.",
       ]),
-      teachingNote: "ABCABC describes the close-packed geometry; the colors use (001) planes.",
+      teachingNote: "ABCABC describes the close-packed geometry; the polarity assignment uses (001) planes.",
     },
   });
 }
@@ -530,13 +612,13 @@ function createHcpCase() {
     [0, 0, c],
   ];
   const basis = [
-    { label: "A layer", fractional: [0, 0, 0] },
-    { label: "B layer", fractional: [1 / 3, 1 / 3, 0.5] },
+    { label: "A stacking position", fractional: [0, 0, 0] },
+    { label: "B stacking position", fractional: [1 / 3, 1 / 3, 0.5] },
   ];
   const basisB = fractionalToCartesian(basis[1].fractional, vectors);
   return createPeriodicCase({
     id: "hcp-abab-layers-v1",
-    title: "HCP ABAB layers",
+    title: "HCP ABAB Stacking",
     vectors,
     basis,
     cropCenter: scaleVector(basisB, 0.5),
@@ -564,7 +646,8 @@ function createHcpCase() {
     metadata: {
       geometry: "hexagonal close-packed",
       geometryLabel: "Hexagonal close-packed (HCP)",
-      polarityRule: "red A layers and blue B layers in ABAB stacking",
+      polarityRule:
+        "opposite polarities alternate between A and B stacking positions",
       nearestNeighborDistance: "d",
       coordinationNumber: 12,
       nearestShell: Object.freeze({ count: 12, distance: "d" }),
@@ -572,18 +655,20 @@ function createHcpCase() {
       selectedLocalTotal: 18,
       geometricSiteDensity: "n = √2/d³",
       boundaryTreatment:
-        "finite spherical display crop containing every ideal-HCP site center within radius 3.25d; continuation is not shown",
+        "spherical display crop containing every ideal-HCP site center within radius 3d; continuation is not shown",
       calculationBoundaryTreatment:
-        "no infinite acceleration exhaustion supplied; finite geometry display only",
-      evidenceStatus: "static geometry/reference case; no acceleration certificate",
-      accelerationCertificate: null,
+        "ideal stationary infinite repeat with complete threefold-rotation and basal-reflection symmetry-orbit exhaustion at the undeformed baseline; the spherical envelope is display only",
+      evidenceStatus:
+        "derived stationary-release cancellation at the undeformed baseline under the declared periodic exhaustion",
+      accelerationCertificate:
+        LATTICE_LAB_PERIODIC_CERTIFICATES["hcp-abab-layers-v1"],
       accelerationStatus:
-        "acceleration rows are unavailable because this named case has no independent acceleration certificate",
-      primerTitle: "HCP · ABAB stacking",
+        "derived exact zero at every site at the undeformed baseline; static X deformation is not covered by this certificate",
+      primerTitle: "HCP · ABAB Stacking",
       primerParagraphs: Object.freeze([
-        "Ideal HCP stacks triangular layers in an ABAB sequence. A site has six nearest neighbors in its own layer, three above, and three below.",
-        "This two-site primitive repeat colors A layers red and B layers blue. The miniature extends nearest-neighbor relationships across the periodic repeat without drawing a physical cell boundary.",
-        "At the ideal height ratio, n = √2/d³. The displayed local shells do not establish all-shell cancellation, stability, or later evolution.",
+        "Ideal HCP has triangular site planes in ABAB stacking. A site has six nearest neighbors in its own plane, three above, and three below.",
+        "This two-site primitive repeat assigns one polarity to A stacking positions and the other to B stacking positions. The miniature extends nearest-neighbor relationships across the periodic repeat without drawing a physical cell boundary.",
+        "At the ideal height ratio, n = √2/d³. The undeformed repeating pattern has a symmetry-orbit acceleration certificate; static X deformation is outside that certificate.",
       ]),
       teachingNote: "ABAB is the ideal close-packed stacking shown here.",
     },
@@ -622,7 +707,7 @@ function createDiamondCase() {
       : LATTICE_LAB_POLARITY.ELECTRINO;
   return createPeriodicCase({
     id: "diamond-cubic-two-sublattice-v1",
-    title: "Diamond-cubic two-sublattice",
+    title: "Diamond Cubic Two-Sublattice",
     vectors,
     basis,
     cropCenter: [a / 8, a / 8, a / 8],
@@ -657,7 +742,7 @@ function createDiamondCase() {
     metadata: {
       geometry: "diamond cubic",
       geometryLabel: "Diamond cubic",
-      polarityRule: "red and blue interpenetrating FCC sublattices",
+      polarityRule: "interpenetrating FCC sublattices carry opposite polarities",
       nearestNeighborDistance: "d",
       coordinationNumber: 4,
       nearestShell: Object.freeze({ count: 4, distance: "d" }),
@@ -665,18 +750,20 @@ function createDiamondCase() {
       selectedLocalTotal: 16,
       geometricSiteDensity: "n = 3√3/(8d³)",
       boundaryTreatment:
-        "finite spherical display crop containing every diamond-cubic site center within radius 3.25d; continuation is not shown",
+        "spherical display crop containing every diamond-cubic site center within radius 3d; continuation is not shown",
       calculationBoundaryTreatment:
-        "no infinite acceleration exhaustion supplied; finite geometry display only",
-      evidenceStatus: "static geometry/reference case; no acceleration certificate",
-      accelerationCertificate: null,
+        "ideal stationary infinite repeat with receiver-centered twofold-rotation symmetry-orbit exhaustion; the spherical envelope is display only",
+      evidenceStatus:
+        "derived stationary-release cancellation under the declared periodic exhaustion",
+      accelerationCertificate:
+        LATTICE_LAB_PERIODIC_CERTIFICATES["diamond-cubic-two-sublattice-v1"],
       accelerationStatus:
-        "acceleration rows are unavailable because this named case has no independent acceleration certificate",
-      primerTitle: "Diamond cubic · two sublattices",
+        "derived exact zero at every site under the declared receiver-centered twofold-rotation-orbit exhaustion",
+      primerTitle: "Diamond Cubic · Two Sublattices",
       primerParagraphs: Object.freeze([
         "Diamond cubic combines two interpenetrating FCC sublattices offset along a body diagonal. Each site has four nearest neighbors in a tetrahedral arrangement.",
-        "The two sublattices carry the red/blue polarity labels. Zincblende is the familiar two-sublattice teaching analogy; no material identity is implied.",
-        "With nearest spacing d, n = 3√3/(8d³). This static geometry case has no acceleration or stability certificate.",
+        "The two sublattices carry opposite polarity assignments. Zincblende is the familiar two-sublattice teaching analogy; no material identity is implied.",
+        "With nearest spacing d, n = 3√3/(8d³). A twofold-rotation-orbit certificate gives zero net acceleration throughout the ideal stationary repeat.",
       ]),
       teachingNote: "Zincblende-type ordering is a geometry teaching analogy only.",
     },
@@ -691,6 +778,7 @@ export function createLatticeLabCaseGallery() {
     createHcpCase(),
     createSimpleCubicAlternatingPlanesCase(),
     createDiamondCase(),
+    createRandomFiniteFiftyFiftyCase(),
   ];
   return Object.freeze(cases);
 }
@@ -943,13 +1031,17 @@ function findShellRows(
           compression.axis,
           compression.factor,
         )
-        : offset;
+        : offset.map((value, index) =>
+          index === ["x", "y", "z"].indexOf(compression.axis)
+            ? value * compression.factor
+            : value
+        );
       const displayDistance = Math.hypot(...displayOffset);
       const unitDirection = displayOffset.map(
         (value) => value / displayDistance,
       );
-      const accelerationRow =
-        caseRecord.id === LATTICE_LAB_CASE_ID && polarity
+      const accelerationRow = polarity && caseRecord.accelerationCertificate
+        ? caseRecord.id === LATTICE_LAB_CASE_ID
           ? createStationarySimpleCubicAccelerationRow({
             receiverGrid: receiver.grid,
             transmitterGrid: site.grid,
@@ -958,7 +1050,15 @@ function findShellRows(
             compressionAxis: compression.axis,
             compressionFactor: compression.factor,
           })
-          : null;
+          : createStationaryPeriodicAccelerationRow({
+            receiverPosition: receiver.position,
+            transmitterPosition: site.position,
+            receiverPolarity: polarityBySiteId[receiver.id],
+            transmitterPolarity: polarity,
+            deformationAxis: compression.axis,
+            deformationFactor: compression.factor,
+          })
+        : null;
       return Object.freeze({
         neighborId: displayedSite?.id ?? null,
         neighborGrid: site.grid,
@@ -1059,6 +1159,159 @@ function formatDirection(vector) {
   ).join(", ")}⟩`;
 }
 
+function createFiniteNonperiodicSiteLedger(
+  caseRecord,
+  polarityBySiteId,
+  receiver,
+  compression,
+) {
+  const displayedRows = caseRecord.sites
+    .filter((site) => site.id !== receiver.id)
+    .map((site) => {
+      const latticeOffset = site.grid.map(
+        (value, index) => value - receiver.grid[index],
+      );
+      const offset = transformSimpleCubicOffset(
+        latticeOffset,
+        compression.axis,
+        compression.factor,
+      );
+      const separationInD = Math.hypot(...offset);
+      const accelerationRow = createStationarySimpleCubicAccelerationRow({
+        receiverGrid: receiver.grid,
+        transmitterGrid: site.grid,
+        receiverPolarity: polarityBySiteId[receiver.id],
+        transmitterPolarity: polarityBySiteId[site.id],
+        compressionAxis: compression.axis,
+        compressionFactor: compression.factor,
+      });
+      const shellDefinition = caseRecord.shells.find((shell) =>
+        Math.abs(Math.hypot(...latticeOffset) - shell.distance) < EPSILON
+      );
+      return Object.freeze({
+        neighborId: site.id,
+        neighborGrid: site.grid,
+        neighborLabel: site.label,
+        polarity: polarityBySiteId[site.id],
+        latticeOffset: freezeVector(latticeOffset),
+        offset: freezeVector(offset),
+        separationInD,
+        unitDirection: freezeVector(offset.map(
+          (value) => value / separationInD,
+        )),
+        accelerationRow,
+        availability: "displayed-neighbor",
+        includedInCalculation: true,
+        shellId: shellDefinition?.id ?? "displayed-finite-crop",
+        shellLabel: shellDefinition?.label ?? "Remaining finite crop",
+      });
+    });
+  const shells = caseRecord.shells.map((shellDefinition) => {
+    const rows = displayedRows.filter(
+      (row) => row.shellId === shellDefinition.id,
+    );
+    const geometryResidual = rows.reduce(
+      (sum, row) => sum.map(
+        (value, index) => value + row.unitDirection[index],
+      ),
+      [0, 0, 0],
+    );
+    const normalizedAccelerationResidual = rows.reduce(
+      (sum, row) => sum.map(
+        (value, index) =>
+          value + row.accelerationRow.normalizedAcceleration[index],
+      ),
+      [0, 0, 0],
+    );
+    const pairs = pairAntipodalRows(rows, shellDefinition.distanceLabel);
+    return Object.freeze({
+      id: shellDefinition.id,
+      label: shellDefinition.label,
+      distance: shellDefinition.distanceLabel,
+      expectedCount: rows.length,
+      visibleCount: rows.length,
+      resolvedCount: rows.length,
+      coverage: `${rows.length} displayed positions included`,
+      rows: Object.freeze(rows),
+      pairs,
+      equalPolarityAntipodalPairs: pairs.filter(
+        (pair) => pair.availability === "resolved-antipodal-pair" &&
+          pair.equalPolarity,
+      ).length,
+      cancellingAccelerationPairs: pairs.filter(
+        (pair) => pair.accelerationCancelsExactly,
+      ).length,
+      geometryResidual: freezeResidualVector(geometryResidual),
+      normalizedAccelerationResidual: freezeResidualVector(
+        normalizedAccelerationResidual,
+      ),
+    });
+  });
+  const rows = displayedRows.map((row) => Object.freeze({
+    shellId: row.shellId,
+    shellLabel: row.shellLabel,
+    distance: row.separationInD,
+    neighborId: row.neighborId,
+    neighborGrid: row.neighborGrid,
+    neighborLabel: row.neighborLabel,
+    polarity: row.polarity,
+    latticeOffset: row.latticeOffset,
+    geometryDirection: row.unitDirection,
+    accelerationRow: row.accelerationRow,
+    availability: row.availability,
+    includedInCalculation: true,
+  }));
+  const normalizedAccelerationResidual = rows.reduce(
+    (sum, row) => sum.map(
+      (value, index) =>
+        value + row.accelerationRow.normalizedAcceleration[index],
+    ),
+    [0, 0, 0],
+  );
+  const geometryResidual = displayedRows.reduce(
+    (sum, row) => sum.map(
+      (value, index) => value + row.unitDirection[index],
+    ),
+    [0, 0, 0],
+  );
+  const expectedAntipodalPairs = shells.reduce(
+    (count, shell) => count + shell.pairs.length,
+    0,
+  );
+  const equalPolarityAntipodalPairs = shells.reduce(
+    (count, shell) => count + shell.equalPolarityAntipodalPairs,
+    0,
+  );
+  const cancellingAccelerationPairs = shells.reduce(
+    (count, shell) => count + shell.cancellingAccelerationPairs,
+    0,
+  );
+  return Object.freeze({
+    receiverId: receiver.id,
+    receiverPolarity: polarityBySiteId[receiver.id],
+    shells: Object.freeze(shells),
+    coverage: `${rows.length} of ${rows.length} other displayed sites included`,
+    rows: Object.freeze(rows),
+    geometryResidual: freezeResidualVector(geometryResidual),
+    normalizedAccelerationResidual: freezeResidualVector(
+      normalizedAccelerationResidual,
+    ),
+    equalPolarityAntipodalPairs,
+    expectedAntipodalPairs,
+    cancellingAccelerationPairs,
+    displayedCancellationPattern: false,
+    referenceConfiguration: isReferenceLatticeConfiguration(
+      caseRecord,
+      polarityBySiteId,
+    ),
+    certificateApplies: false,
+    certifiedExactZero: false,
+    accelerationRowsAvailable: true,
+    accelerationNote: caseRecord.accelerationStatus,
+    compression,
+  });
+}
+
 export function createSelectedSiteLedger(
   caseRecord,
   polarityBySiteId,
@@ -1077,6 +1330,14 @@ export function createSelectedSiteLedger(
     axis: options.compressionAxis ?? "x",
     factor: options.compressionFactor ?? 1,
   });
+  if (caseRecord.calculationScope === "finite-nonperiodic") {
+    return createFiniteNonperiodicSiteLedger(
+      caseRecord,
+      polarityBySiteId,
+      receiver,
+      compression,
+    );
+  }
   const shells = caseRecord.shells.map((shellDefinition) => {
     const rows = findShellRows(
       caseRecord,
@@ -1150,6 +1411,7 @@ export function createSelectedSiteLedger(
     neighborGrid: row.neighborGrid,
     neighborLabel: row.neighborLabel,
     polarity: row.polarity,
+    latticeOffset: row.latticeOffset,
     geometryDirection: row.unitDirection,
     accelerationRow: row.accelerationRow,
     availability: row.availability,
@@ -1197,8 +1459,15 @@ export function createSelectedSiteLedger(
   const accelerationRowsAvailable = Boolean(
     normalizedAccelerationResidual,
   );
+  const certificateValidation = caseRecord.id === LATTICE_LAB_CASE_ID
+    ? null
+    : validatePeriodicSymmetryCertificate(caseRecord, {
+      deformationAxis: compression.axis,
+      deformationFactor: compression.factor,
+    });
   const certificateApplies = Boolean(
-    referenceConfiguration && caseRecord.accelerationCertificate,
+    referenceConfiguration && caseRecord.accelerationCertificate &&
+    (caseRecord.id === LATTICE_LAB_CASE_ID || certificateValidation?.passed),
   );
 
   return Object.freeze({
@@ -1222,15 +1491,15 @@ export function createSelectedSiteLedger(
       cancellingAccelerationPairs === expectedAntipodalPairs,
     referenceConfiguration,
     certificateApplies,
-    certifiedExactZero: certificateApplies &&
-      caseRecord.accelerationCertificate?.result?.acceleration?.includes(
-        "exactly zero",
-      ),
+    certifiedExactZero: certificateApplies,
+    certificateValidation,
     accelerationRowsAvailable,
     accelerationNote: certificateApplies
       ? caseRecord.accelerationStatus
-      : caseRecord.accelerationCertificate
+      : !referenceConfiguration && caseRecord.accelerationCertificate
         ? "the reference certificate does not apply to a modified polarity configuration"
+        : certificateValidation && !certificateValidation.passed
+          ? certificateValidation.reason
         : caseRecord.accelerationStatus,
     compression,
   });

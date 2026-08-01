@@ -18,7 +18,7 @@ The first view does not show coordinates, implementation labels, running audit t
 
 ### Certified repeating pattern
 
-- **Outcome:** `Net acceleration is zero at every site.`
+- **Outcome:** `Net acceleration is zero at every architrino.`
 - **Residual:** `Magnitude 0 · Vector ⟨0, 0, 0⟩`
 - **Scope sentence:** `In this ideal repeating pattern, matching pulls cancel at every site at release.`
 - **Shell summaries:** `Nearest shell: 6 contributions → 3 matching pairs → zero` and `Next shell: 12 contributions → 6 matching pairs → zero`

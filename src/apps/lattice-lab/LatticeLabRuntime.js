@@ -12,8 +12,10 @@ import {
 import {
   LATTICE_LAB_CASE_ID,
   LATTICE_LAB_POLARITY,
+  LATTICE_LAB_RANDOM_FINITE_DISPLAY_RADIUS,
   createClippedNeighborSegment,
   createLatticeLabCaseGallery,
+  createRandomFiniteFiftyFiftyCase,
   createRepeatCellNearestNeighborNetwork,
   createReferencePolarityState,
   createSelectedSiteLedger,
@@ -21,12 +23,19 @@ import {
   isReferenceLatticeConfiguration,
 } from "./LatticeLabCase.js";
 import {
+  LATTICE_LAB_RANDOM_FINITE_CASE_ID,
+  nextLatticeLabRandomFiniteSeed,
+} from "./LatticeLabRandomFinite.js";
+import {
   createStationarySimpleCubicExhaustionLedger,
 } from "./SimpleCubicStationaryLedger.js";
 import {
   createLatticeLabLedgerViewModel,
   renderLatticeLabLedgerViewModel,
 } from "./LatticeLabLedgerPresentation.js";
+import {
+  validatePeriodicSymmetryCertificate,
+} from "./LatticeLabPeriodicStationary.js";
 
 const ELECTRINO_COLOR = 0x0000ff;
 const POSITRINO_COLOR = 0xff0000;
@@ -39,6 +48,11 @@ const MIN_VIEW_HALF_HEIGHT = 1.35;
 const MAX_VIEW_HALF_HEIGHT = 8.5;
 const CAMERA_DISTANCE = 12;
 const MARKER_RADIUS_PX = 8;
+const SELECTION_CIRCLE_OUTER_RADIUS_PX = 14;
+const SELECTION_CIRCLE_INNER_RADIUS_PX = 10;
+const SELECTION_CIRCLE_TEXTURE_SIZE_PX = 64;
+const SELECTION_CIRCLE_TEXTURE_STROKE_PX = 5;
+const SECONDARY_CONTEXT_MARKER_SCALE = 0.62;
 const POINTER_CLICK_TRAVEL_PX = 7;
 const DEFAULT_BASE_ROTATION = Object.freeze([-0.44, 0.66, 0]);
 const DEFAULT_Z_UP_SCREEN_ROLL = 1.0688619267721347;
@@ -47,9 +61,24 @@ const TRIPOD_AXIS_RADIUS = 42;
 const TRIPOD_LABEL_GAP = 10;
 const MAX_COMPRESSION_SCALE = 0.01;
 
+export function defaultViewHalfHeightForDisplayRadius(displayRadius) {
+  if (!Number.isFinite(displayRadius) || displayRadius <= 0) {
+    throw new RangeError("Display radius must be finite and positive.");
+  }
+  return DEFAULT_VIEW_HALF_HEIGHT * (
+    displayRadius / LATTICE_LAB_RANDOM_FINITE_DISPLAY_RADIUS
+  );
+}
+
 export const LATTICE_LAB_UI_FEATURES = Object.freeze({
   primerCollapse: false,
 });
+
+export const LATTICE_LAB_SELECTION_CIRCLE_STROKE_PX =
+  Math.round(
+    SELECTION_CIRCLE_TEXTURE_STROKE_PX *
+    (2 * SELECTION_CIRCLE_OUTER_RADIUS_PX / SELECTION_CIRCLE_TEXTURE_SIZE_PX),
+  );
 
 export function xAxisScaleFromDeformationBeta(beta) {
   if (!Number.isFinite(beta) || beta < 0 || beta > 1) {
@@ -78,6 +107,47 @@ export function createUniaxialDeformedPosition(
   return Object.freeze(position.map(
     (value, index) => index === axisIndex ? value * factor : value,
   ));
+}
+
+export function createSelectedSiteCircleDescriptor({
+  caseRecord,
+  polarityBySiteId,
+  selectedSiteId,
+  deformationAxis = "x",
+  deformationFactor = 1,
+}) {
+  const site = getLatticeSite(caseRecord, selectedSiteId);
+  const polarity = polarityBySiteId?.[selectedSiteId];
+  if (
+    !site ||
+    ![LATTICE_LAB_POLARITY.ELECTRINO, LATTICE_LAB_POLARITY.POSITRINO]
+      .includes(polarity)
+  ) {
+    throw new Error("Selection circle requires the selected ledger receiver.");
+  }
+  const colorName = polarity === LATTICE_LAB_POLARITY.POSITRINO
+    ? "red"
+    : "blue";
+  const polarityArticle = polarity === LATTICE_LAB_POLARITY.ELECTRINO ? "an" : "a";
+  return Object.freeze({
+    siteId: site.id,
+    polarity,
+    color: polarity === LATTICE_LAB_POLARITY.POSITRINO
+      ? POSITRINO_COLOR
+      : ELECTRINO_COLOR,
+    colorName,
+    position: createUniaxialDeformedPosition(site.position, {
+      axis: deformationAxis,
+      factor: deformationFactor,
+    }),
+    outerRadiusPx: SELECTION_CIRCLE_OUTER_RADIUS_PX,
+    innerRadiusPx: SELECTION_CIRCLE_INNER_RADIUS_PX,
+    accessibleLabel: caseRecord.id === LATTICE_LAB_RANDOM_FINITE_CASE_ID
+      ? `Selected calculation target is ${polarityArticle} ${polarity}, marked by a ` +
+        `${colorName} outer selection circle.`
+      : `Selected ledger site is ${polarityArticle} ${polarity}, marked by a ` +
+        `${colorName} outer selection circle.`,
+  });
 }
 
 export function createEndpointVisualAggregation(sites, edges, tolerance) {
@@ -237,16 +307,6 @@ function clamp(value, minimum, maximum) {
   return Math.max(minimum, Math.min(maximum, value));
 }
 
-function formatTranslationVector(label, vector) {
-  const values = vector.map((value) => {
-    if (Math.abs(value) < 1e-10) {
-      return "0";
-    }
-    return String(Number(value.toFixed(3)));
-  });
-  return `${label} → ⟨${values.join(", ")}⟩d`;
-}
-
 function formatPolarityLabel(polarity) {
   if (polarity === LATTICE_LAB_POLARITY.ELECTRINO) {
     return "electrino";
@@ -383,6 +443,93 @@ export function createRepeatCellDisplayGraph(
   });
 }
 
+export function createRepeatCellBoundarySegments(repeatCell) {
+  if (
+    !repeatCell?.vectors ||
+    repeatCell.vectors.length !== 3 ||
+    repeatCell.vectors.some(
+      (vector) => vector.length !== 3 || !vector.every(Number.isFinite),
+    )
+  ) {
+    throw new TypeError("Repeat-cell boundary requires three finite vectors.");
+  }
+  const centerOffset = repeatCell.vectors.reduce(
+    (sum, vector) => sum.map(
+      (value, axis) => value - vector[axis] / 2,
+    ),
+    [0, 0, 0],
+  );
+  const corners = new Map();
+  for (let i = 0; i <= 1; i += 1) {
+    for (let j = 0; j <= 1; j += 1) {
+      for (let k = 0; k <= 1; k += 1) {
+        const position = repeatCell.vectors.reduce(
+          (sum, vector, axis) => sum.map(
+            (value, coordinate) =>
+              value + vector[coordinate] * [i, j, k][axis],
+          ),
+          [...centerOffset],
+        );
+        corners.set(`${i}${j}${k}`, Object.freeze(position));
+      }
+    }
+  }
+  const segments = [];
+  corners.forEach((start, key) => {
+    [...key].forEach((bit, axis) => {
+      if (bit !== "0") {
+        return;
+      }
+      const endKey = [...key].map(
+        (value, index) => index === axis ? "1" : value,
+      ).join("");
+      segments.push(Object.freeze({
+        id: `${key}-${endKey}`,
+        start,
+        end: corners.get(endKey),
+      }));
+    });
+  });
+  return Object.freeze(segments);
+}
+
+export function createRepeatCellContinuationMarkerDescriptors(displayGraph) {
+  const siteById = new Map(
+    displayGraph.network.displaySites.map((site) => [site.id, site]),
+  );
+  const markerByPosition = new Map();
+  displayGraph.edges.forEach(({ edge }) => {
+    [
+      [edge.startContinuation, edge.fromSiteId],
+      [edge.endContinuation, edge.toSiteId],
+    ].forEach(([continuation, siteId]) => {
+      if (!continuation) {
+        return;
+      }
+      const site = siteById.get(siteId);
+      if (!site?.continuation) {
+        throw new Error(
+          `Repeat-cell continuation endpoint ${siteId} has no canonical site.`,
+        );
+      }
+      const positionKey = site.position
+        .map((value) => Number(value.toFixed(9))).join(",");
+      const existing = markerByPosition.get(positionKey);
+      if (existing && existing.polarity !== site.polarity) {
+        throw new Error(
+          `Repeat-cell continuation endpoint ${positionKey} has conflicting polarities.`,
+        );
+      }
+      markerByPosition.set(positionKey, Object.freeze({
+        id: site.id,
+        position: Object.freeze([...site.position]),
+        polarity: site.polarity,
+      }));
+    });
+  });
+  return Object.freeze([...markerByPosition.values()]);
+}
+
 export function createTripodAxisLayout(axis, projectedVector) {
   if (!["x", "y", "z"].includes(axis)) {
     throw new TypeError("Tripod axis must be x, y, or z.");
@@ -430,16 +577,17 @@ export function createTripodAxisLayout(axis, projectedVector) {
 export function mountLatticeLab(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
-  const caseRecords = options.caseRecords ??
+  let caseRecords = [...(options.caseRecords ??
     (options.caseRecord
       ? Object.freeze([options.caseRecord])
-      : createLatticeLabCaseGallery());
+      : createLatticeLabCaseGallery()))];
   let caseRecord = options.caseRecord ?? caseRecords[0];
   const dom = {
     app: queryRequiredElement(documentLike, "#lattice-lab-app"),
     rail: queryRequiredElement(documentLike, "#lattice-lab-left-rail"),
     collapseButton: queryRequiredElement(documentLike, "#lattice-lab-panel-collapse"),
     canvas: queryRequiredElement(documentLike, "#lattice-lab-canvas"),
+    miniatureCard: queryRequiredElement(documentLike, "#lattice-lab-miniature-card"),
     miniatureCanvas: queryRequiredElement(documentLike, "#lattice-lab-miniature-canvas"),
     caseSelect: queryRequiredElement(documentLike, "#lattice-lab-case-select"),
     seeingTitle: queryRequiredElement(documentLike, "#lattice-lab-seeing-title"),
@@ -458,15 +606,15 @@ export function mountLatticeLab(options = {}) {
     whatSeeing: queryRequiredElement(documentLike, "#lattice-lab-what-seeing"),
     inspectorStack: queryRequiredElement(documentLike, ".lattice-lab-inspector-stack"),
     repeatHighlight: queryRequiredElement(documentLike, "#lattice-lab-repeat-highlight"),
-    repeatHighlightState: queryRequiredElement(documentLike, "#lattice-lab-repeat-highlight-state"),
-    repeatVectorA: queryRequiredElement(documentLike, "#lattice-lab-repeat-vector-a"),
-    repeatVectorB: queryRequiredElement(documentLike, "#lattice-lab-repeat-vector-b"),
-    repeatVectorC: queryRequiredElement(documentLike, "#lattice-lab-repeat-vector-c"),
     primer: queryRequiredElement(documentLike, "#lattice-lab-primer"),
     primerToggle: queryRequiredElement(documentLike, "#lattice-lab-primer-toggle"),
     primerTitle: queryRequiredElement(documentLike, "#lattice-lab-primer-title"),
     primerBody: queryRequiredElement(documentLike, "#lattice-lab-primer-body"),
     ledger: queryRequiredElement(documentLike, "#lattice-lab-ledger"),
+    randomRecalculate: queryRequiredElement(
+      documentLike,
+      "#lattice-lab-random-recalculate",
+    ),
     ledgerReceiver: queryRequiredElement(documentLike, "#lattice-lab-ledger-receiver"),
     ledgerResult: queryRequiredElement(documentLike, "#lattice-lab-ledger-result"),
     ledgerIcon: queryRequiredElement(documentLike, "#lattice-lab-ledger-icon"),
@@ -482,6 +630,14 @@ export function mountLatticeLab(options = {}) {
       documentLike,
       "#lattice-lab-polarity-legend",
     ),
+    positrinoSwatch: queryRequiredElement(
+      documentLike,
+      "#lattice-lab-positrino-swatch",
+    ),
+    electrinoSwatch: queryRequiredElement(
+      documentLike,
+      "#lattice-lab-electrino-swatch",
+    ),
     tocButton: queryRequiredElement(documentLike, "#textbook-toc-button"),
     backButton: queryRequiredElement(documentLike, "#nav-up"),
     forwardButton: queryRequiredElement(documentLike, "#nav-forward"),
@@ -491,7 +647,9 @@ export function mountLatticeLab(options = {}) {
   let polarityBySiteId = createReferencePolarityState(caseRecord);
   let selectedSiteId = caseRecord.defaultSiteId;
   let siteSelectionExplicit = false;
-  let cameraViewHalfHeight = DEFAULT_VIEW_HALF_HEIGHT;
+  let cameraViewHalfHeight = defaultViewHalfHeightForDisplayRadius(
+    caseRecord.displayRadius,
+  );
   let cameraAspect = 1;
   let focusSelected = false;
   let markerWorldRadius = 0.1;
@@ -545,6 +703,7 @@ export function mountLatticeLab(options = {}) {
   const siteGroup = new THREE.Group();
   const lineGroup = new THREE.Group();
   const repeatHighlightGroup = new THREE.Group();
+  const selectionCircleGroup = new THREE.Group();
   const endpointAggregateGroup = new THREE.Group();
   const guideGroup = new THREE.Group();
   rootGroup.add(
@@ -552,6 +711,7 @@ export function mountLatticeLab(options = {}) {
     lineGroup,
     repeatHighlightGroup,
     siteGroup,
+    selectionCircleGroup,
     endpointAggregateGroup,
   );
   scene.add(rootGroup);
@@ -571,20 +731,62 @@ export function mountLatticeLab(options = {}) {
     roughness: 0.38,
     metalness: 0.04,
   });
-  const selectedRedMaterial = new THREE.MeshStandardMaterial({
-    color: POSITRINO_COLOR,
-    emissive: POSITRINO_COLOR,
-    emissiveIntensity: 0.62,
-    roughness: 0.3,
-    metalness: 0.04,
+  const continuationRedMaterial = redMaterial.clone();
+  continuationRedMaterial.transparent = true;
+  continuationRedMaterial.opacity = 0.38;
+  continuationRedMaterial.depthWrite = false;
+  const continuationBlueMaterial = blueMaterial.clone();
+  continuationBlueMaterial.transparent = true;
+  continuationBlueMaterial.opacity = 0.38;
+  continuationBlueMaterial.depthWrite = false;
+  const selectionCircleCanvas = documentLike.createElement("canvas");
+  selectionCircleCanvas.width = SELECTION_CIRCLE_TEXTURE_SIZE_PX;
+  selectionCircleCanvas.height = SELECTION_CIRCLE_TEXTURE_SIZE_PX;
+  const selectionCircleContext = selectionCircleCanvas.getContext("2d");
+  if (!selectionCircleContext) {
+    throw new Error("Selection circle requires a two-dimensional canvas context.");
+  }
+  selectionCircleContext.clearRect(
+    0,
+    0,
+    SELECTION_CIRCLE_TEXTURE_SIZE_PX,
+    SELECTION_CIRCLE_TEXTURE_SIZE_PX,
+  );
+  selectionCircleContext.beginPath();
+  selectionCircleContext.arc(
+    SELECTION_CIRCLE_TEXTURE_SIZE_PX / 2,
+    SELECTION_CIRCLE_TEXTURE_SIZE_PX / 2,
+    25,
+    0,
+    Math.PI * 2,
+  );
+  selectionCircleContext.strokeStyle = "rgba(255, 255, 255, 0.96)";
+  selectionCircleContext.lineWidth = SELECTION_CIRCLE_TEXTURE_STROKE_PX;
+  selectionCircleContext.stroke();
+  const selectionCircleTexture = new THREE.CanvasTexture(selectionCircleCanvas);
+  selectionCircleTexture.colorSpace = THREE.SRGBColorSpace;
+  const createSelectionCircleMaterial = (color) => new THREE.SpriteMaterial({
+    map: selectionCircleTexture,
+    color,
+    transparent: true,
+    opacity: 0.96,
+    depthTest: false,
+    depthWrite: false,
+    toneMapped: false,
   });
-  const selectedBlueMaterial = new THREE.MeshStandardMaterial({
-    color: ELECTRINO_COLOR,
-    emissive: ELECTRINO_COLOR,
-    emissiveIntensity: 0.62,
-    roughness: 0.3,
-    metalness: 0.04,
-  });
+  const redSelectionCircleMaterial =
+    createSelectionCircleMaterial(POSITRINO_COLOR);
+  const blueSelectionCircleMaterial =
+    createSelectionCircleMaterial(ELECTRINO_COLOR);
+  const endpointSelectionCircleMaterial =
+    createSelectionCircleMaterial(ENDPOINT_AGGREGATE_COLOR);
+  const selectedCalculationCircle =
+    new THREE.Sprite(blueSelectionCircleMaterial);
+  selectedCalculationCircle.visible = false;
+  selectedCalculationCircle.renderOrder = 10;
+  selectedCalculationCircle.userData.kind =
+    "selected-calculation-target-circle";
+  selectionCircleGroup.add(selectedCalculationCircle);
   const endpointAggregateMaterial = new THREE.MeshStandardMaterial({
     color: ENDPOINT_AGGREGATE_COLOR,
     emissive: ENDPOINT_AGGREGATE_COLOR,
@@ -592,6 +794,41 @@ export function mountLatticeLab(options = {}) {
     roughness: 0.34,
     metalness: 0.04,
   });
+  const createLegendSwatchRenderer = (canvas, material) => {
+    const swatchScene = new THREE.Scene();
+    const swatchCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.05, 100);
+    swatchCamera.position.set(0, 0, CAMERA_DISTANCE);
+    swatchCamera.lookAt(0, 0, 0);
+    createSceneLights(swatchScene);
+    swatchScene.add(new THREE.Mesh(sphereGeometry, material));
+    const swatchRenderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true,
+      preserveDrawingBuffer: true,
+    });
+    swatchRenderer.outputColorSpace = THREE.SRGBColorSpace;
+    swatchRenderer.setClearColor(0x000000, 0);
+    canvas.dataset.renderSource =
+      "main-canvas-shared-sphere-material-and-lights";
+    canvas.dataset.highlightDirection = "above-right";
+    return Object.freeze({
+      renderer: swatchRenderer,
+      scene: swatchScene,
+      camera: swatchCamera,
+    });
+  };
+  const legendSwatchRenderers = Object.freeze([
+    createLegendSwatchRenderer(dom.positrinoSwatch, redMaterial),
+    createLegendSwatchRenderer(dom.electrinoSwatch, blueMaterial),
+  ]);
+  function renderLegendSwatches() {
+    legendSwatchRenderers.forEach(({ renderer, scene: swatchScene, camera: swatchCamera }) => {
+      renderer.setPixelRatio(Math.min(2, windowLike.devicePixelRatio || 1));
+      renderer.setSize(16, 16, false);
+      renderer.render(swatchScene, swatchCamera);
+    });
+  }
   const neighborLineMaterial = new THREE.LineBasicMaterial({
     color: GEOMETRY_LINE_COLOR,
     transparent: true,
@@ -606,6 +843,20 @@ export function mountLatticeLab(options = {}) {
     depthTest: true,
     depthWrite: false,
   });
+  const miniatureContextLineMaterial = new THREE.LineBasicMaterial({
+    color: GEOMETRY_LINE_COLOR,
+    transparent: true,
+    opacity: 0.24,
+    depthTest: true,
+    depthWrite: false,
+  });
+  const miniatureOwnedCellBoundaryMaterial = new THREE.LineBasicMaterial({
+    color: REPEAT_CELL_HIGHLIGHT_COLOR,
+    transparent: true,
+    opacity: 0.86,
+    depthTest: false,
+    depthWrite: false,
+  });
   const miniatureOverlapLineMaterial = new THREE.LineBasicMaterial({
     color: GEOMETRY_LINE_COLOR,
     transparent: true,
@@ -613,15 +864,6 @@ export function mountLatticeLab(options = {}) {
     depthTest: false,
     depthWrite: false,
     toneMapped: false,
-  });
-  const continuationMarkerMaterial = new THREE.PointsMaterial({
-    color: GEOMETRY_LINE_COLOR,
-    size: 4,
-    sizeAttenuation: false,
-    transparent: true,
-    opacity: 0.72,
-    depthTest: true,
-    depthWrite: false,
   });
   const highlightedNeighborMaterial = new THREE.MeshBasicMaterial({
     color: REPEAT_CELL_HIGHLIGHT_COLOR,
@@ -662,6 +904,7 @@ export function mountLatticeLab(options = {}) {
       return caseRecord;
     },
     resetCase,
+    recalculateRandomConfiguration,
     selectSite,
     selectCase,
     dispose,
@@ -806,6 +1049,8 @@ export function mountLatticeLab(options = {}) {
           edge,
           startPosition,
           endPosition,
+          startSiteId,
+          endSiteId,
           transformedDistance,
           mainEdgeIdentity: startSiteId && endSiteId
             ? [startSiteId, endSiteId].sort().join("|")
@@ -814,7 +1059,14 @@ export function mountLatticeLab(options = {}) {
       },
     );
     edgeRows.forEach((row) => {
-      const { edge, startPosition, endPosition, mainEdgeIdentity } = row;
+      const {
+        edge,
+        startPosition,
+        endPosition,
+        startSiteId,
+        endSiteId,
+        mainEdgeIdentity,
+      } = row;
       const startKey = startPosition
         .map((value) => Number(value.toFixed(9))).join(",");
       const endKey = endPosition
@@ -845,6 +1097,8 @@ export function mountLatticeLab(options = {}) {
       highlight.userData.edge = edge;
       highlight.userData.edgeIdentity = edge.id;
       highlight.userData.mainEdgeIdentity = mainEdgeIdentity;
+      highlight.userData.mainFromSiteId = startSiteId;
+      highlight.userData.mainToSiteId = endSiteId;
       highlight.userData.disposeGeometry = true;
       highlight.renderOrder = 3;
       repeatHighlightGroup.add(highlight);
@@ -867,15 +1121,6 @@ export function mountLatticeLab(options = {}) {
       edgeRows.map(({ mainEdgeIdentity }) => mainEdgeIdentity).join(";");
     dom.canvas.dataset.repeatHighlightExcludedEdgeCount =
       String(displayGraph.excludedEdges.length);
-    dom.repeatHighlightState.textContent = compressionFactor < 1
-      ? `${displayGraph.edges.length} canonical repeat relationships remain ` +
-        "visible at their deformed lengths."
-      : caseRecord.repeatCell.contextPresentation === "continuation-markers"
-        ? `${displayGraph.edges.length} nearest-neighbor segments touch the ` +
-          "two sites in this tile at d. Purple endpoints continue into " +
-          "adjacent translated cells. Same-color square edges are the longer " +
-          "next shell at 2d/√3, so they are not drawn."
-        : `${displayGraph.edges.length} fixed-distance nearest-neighbor edges at d.`;
   }
 
   function rebuildMiniatureNetwork(displayGraph) {
@@ -884,6 +1129,11 @@ export function mountLatticeLab(options = {}) {
     const referencePositions = [];
     const contextAsMarkers =
       caseRecord.repeatCell.contextPresentation === "continuation-markers";
+    const secondarySiteCopies =
+      caseRecord.repeatCell.contextPresentation === "secondary-site-copies";
+    const continuationMarkers = contextAsMarkers
+      ? createRepeatCellContinuationMarkerDescriptors(displayGraph)
+      : Object.freeze([]);
     const visibleSites = network.displaySites.filter(
       (site) => !contextAsMarkers || !site.continuation,
     );
@@ -891,70 +1141,93 @@ export function mountLatticeLab(options = {}) {
       const position = transformDisplayPosition(site.position);
       rawPositions.push(position);
       referencePositions.push(site.position);
-      const material = site.polarity === LATTICE_LAB_POLARITY.POSITRINO
-        ? redMaterial
-        : blueMaterial;
+      const material = site.continuation && secondarySiteCopies
+        ? site.polarity === LATTICE_LAB_POLARITY.POSITRINO
+          ? continuationRedMaterial
+          : continuationBlueMaterial
+        : site.polarity === LATTICE_LAB_POLARITY.POSITRINO
+          ? redMaterial
+          : blueMaterial;
       const miniatureMesh = new THREE.Mesh(sphereGeometry, material);
       miniatureMesh.position.fromArray(position);
       miniatureMesh.userData.kind = site.continuation
         ? "repeat-cell-periodic-continuation"
         : "repeat-cell-site";
       miniatureMesh.userData.siteId = site.id;
+      miniatureMesh.userData.contextRole = site.continuation
+        ? "periodic-relationship-context"
+        : "owned-repeat-cell-site";
+      miniatureMesh.userData.secondaryContext = Boolean(
+        site.continuation && secondarySiteCopies,
+      );
+      miniatureMesh.renderOrder = site.continuation ? 1 : 2;
       miniatureRoot.add(miniatureMesh);
     });
 
-    const continuationMarkerPositions = new Map();
     displayGraph.edges.forEach(({ edge }) => {
       const start = transformDisplayPosition(edge.start);
       const end = transformDisplayPosition(edge.end);
       rawPositions.push(start, end);
       referencePositions.push(edge.start, edge.end);
-      if (contextAsMarkers && edge.startContinuation) {
-        continuationMarkerPositions.set(
-          start.map((value) => Number(value.toFixed(9))).join(","),
-          start,
-        );
-      }
-      if (contextAsMarkers && edge.endContinuation) {
-        continuationMarkerPositions.set(
-          end.map((value) => Number(value.toFixed(9))).join(","),
-          end,
-        );
-      }
       const geometry = new THREE.BufferGeometry().setFromPoints([
         new THREE.Vector3(...start),
         new THREE.Vector3(...end),
       ]);
-      const line = new THREE.Line(geometry, miniatureNeighborLineMaterial);
+      const line = new THREE.Line(
+        geometry,
+        secondarySiteCopies && edge.periodicContinuation
+          ? miniatureContextLineMaterial
+          : miniatureNeighborLineMaterial,
+      );
       line.userData.kind = edge.periodicContinuation
         ? "repeat-cell-periodic-neighbor"
         : "repeat-cell-neighbor";
       line.userData.startPosition = Object.freeze(start);
       line.userData.endPosition = Object.freeze(end);
-      line.userData.startHasSphere =
-        !contextAsMarkers || !edge.startContinuation;
-      line.userData.endHasSphere =
-        !contextAsMarkers || !edge.endContinuation;
+      line.userData.startHasSphere = true;
+      line.userData.endHasSphere = true;
       line.userData.edgeIdentity = edge.id;
       line.userData.fromSiteId = edge.fromSiteId;
       line.userData.toSiteId = edge.toSiteId;
       line.userData.disposeGeometry = true;
       miniatureRoot.add(line);
     });
-    if (continuationMarkerPositions.size > 0) {
-      const markerGeometry = new THREE.BufferGeometry().setFromPoints(
-        [...continuationMarkerPositions.values()].map(
-          (position) => new THREE.Vector3(...position),
-        ),
+    if (secondarySiteCopies) {
+      const boundarySegments = createRepeatCellBoundarySegments(
+        caseRecord.repeatCell,
       );
-      const markers = new THREE.Points(
-        markerGeometry,
-        continuationMarkerMaterial,
+      const boundaryGeometry = new THREE.BufferGeometry().setFromPoints(
+        boundarySegments.flatMap(({ start, end }) => [
+          new THREE.Vector3(...transformDisplayPosition(start)),
+          new THREE.Vector3(...transformDisplayPosition(end)),
+        ]),
       );
-      markers.userData.kind = "repeat-cell-continuation-markers";
-      markers.userData.disposeGeometry = true;
-      miniatureRoot.add(markers);
+      const boundary = new THREE.LineSegments(
+        boundaryGeometry,
+        miniatureOwnedCellBoundaryMaterial,
+      );
+      boundary.userData.kind = "repeat-cell-owned-boundary";
+      boundary.userData.edgeIdentities = Object.freeze(
+        boundarySegments.map(({ id }) => id),
+      );
+      boundary.userData.disposeGeometry = true;
+      boundary.renderOrder = 3;
+      miniatureRoot.add(boundary);
     }
+    continuationMarkers.forEach((marker) => {
+      const miniatureMesh = new THREE.Mesh(
+        sphereGeometry,
+        marker.polarity === LATTICE_LAB_POLARITY.POSITRINO
+          ? redMaterial
+          : blueMaterial,
+      );
+      miniatureMesh.position.fromArray(transformDisplayPosition(marker.position));
+      miniatureMesh.userData.kind = "repeat-cell-periodic-continuation";
+      miniatureMesh.userData.siteId = marker.id;
+      miniatureMesh.userData.polarity = marker.polarity;
+      miniatureMesh.userData.continuationEndpoint = true;
+      miniatureRoot.add(miniatureMesh);
+    });
 
     const referenceBounds = referencePositions.reduce(
       (result, position) => ({
@@ -986,7 +1259,11 @@ export function mountLatticeLab(options = {}) {
           );
         }
         position.needsUpdate = true;
-        if (object.isLine) {
+        if (
+          object.isLine &&
+          Array.isArray(object.userData.startPosition) &&
+          Array.isArray(object.userData.endPosition)
+        ) {
           object.userData.startPosition = Object.freeze(
             object.userData.startPosition.map(
               (value, index) => value - center[index],
@@ -1026,9 +1303,51 @@ export function mountLatticeLab(options = {}) {
     dom.miniatureCanvas.dataset.periodicContinuationCount =
       String(network.continuationSites.length);
     dom.miniatureCanvas.dataset.visibleContextSiteCount =
-      String(visibleSites.filter((site) => site.continuation).length);
+      String(contextAsMarkers
+        ? continuationMarkers.length
+        : network.continuationSites.length);
+    dom.miniatureCanvas.dataset.ownedSiteCount = String(
+      caseRecord.repeatCell.sites.length,
+    );
+    dom.miniatureCanvas.dataset.secondaryContextMarkerCount = String(
+      secondarySiteCopies ? network.continuationSites.length : 0,
+    );
+    dom.miniatureCanvas.dataset.secondaryContextMarkerScale = String(
+      secondarySiteCopies ? SECONDARY_CONTEXT_MARKER_SCALE : 1,
+    );
+    dom.miniatureCanvas.dataset.ownedCellBoundaryEdgeCount = String(
+      secondarySiteCopies ? 12 : 0,
+    );
+    dom.miniatureCanvas.dataset.contextHierarchy = secondarySiteCopies
+      ? "owned-primary-continuation-secondary"
+      : "uniform";
     dom.miniatureCanvas.dataset.continuationMarkerCount =
-      String(continuationMarkerPositions.size);
+      String(continuationMarkers.length);
+    dom.miniatureCanvas.dataset.continuationPositrinoMarkerCount = String(
+      continuationMarkers.filter(
+        ({ polarity }) => polarity === LATTICE_LAB_POLARITY.POSITRINO,
+      ).length,
+    );
+    dom.miniatureCanvas.dataset.continuationElectrinoMarkerCount = String(
+      continuationMarkers.filter(
+        ({ polarity }) => polarity === LATTICE_LAB_POLARITY.ELECTRINO,
+      ).length,
+    );
+    dom.miniatureCanvas.setAttribute(
+      "aria-label",
+      secondarySiteCopies
+        ? `Interactive repeat-cell view for ${caseRecord.title}. ` +
+          `${caseRecord.repeatCell.sites.length} full-size polarity-colored ` +
+          "Architrino markers are owned by the repeat cell inside its " +
+          `${12}-edge boundary; ${network.continuationSites.length} smaller ` +
+          "polarity-colored Architrino markers provide secondary periodic " +
+          "relationship context."
+        : continuationMarkers.length > 0
+        ? `Interactive repeat-cell view for ${caseRecord.title}. ` +
+          `${continuationMarkers.length} periodic relationship endpoints are ` +
+          "shown as polarity-colored Architrino markers."
+        : "Interactive repeat-cell view",
+    );
     dom.miniatureCanvas.dataset.deformationAxis = compressionAxis;
     dom.miniatureCanvas.dataset.deformationFactor =
       compressionFactor.toFixed(6);
@@ -1052,11 +1371,17 @@ export function mountLatticeLab(options = {}) {
       siteMeshes.set(site.id, mesh);
     });
 
-    const repeatCellDisplayGraph = createRepeatCellDisplayGraph(caseRecord, {
-      compressionAxis,
-      compressionFactor,
-    });
-    rebuildMiniatureNetwork(repeatCellDisplayGraph);
+    const repeatCellDisplayGraph = caseRecord.repeatCell
+      ? createRepeatCellDisplayGraph(caseRecord, {
+        compressionAxis,
+        compressionFactor,
+      })
+      : null;
+    dom.miniatureCard.hidden = !repeatCellDisplayGraph;
+    dom.miniatureCanvas.tabIndex = repeatCellDisplayGraph ? 0 : -1;
+    if (repeatCellDisplayGraph) {
+      rebuildMiniatureNetwork(repeatCellDisplayGraph);
+    }
 
     edgeLines = createNearestNeighborEdges(caseRecord).map((edge) => {
       const geometry = new THREE.BufferGeometry().setFromPoints([
@@ -1069,7 +1394,20 @@ export function mountLatticeLab(options = {}) {
       lineGroup.add(line);
       return line;
     });
-    rebuildRepeatCellHighlight(repeatCellDisplayGraph);
+    dom.canvas.dataset.displaySiteCount = String(caseRecord.sites.length);
+    dom.canvas.dataset.displayEdgeCount = String(edgeLines.length);
+    dom.canvas.dataset.displayRadius = String(caseRecord.displayRadius);
+    if (repeatCellDisplayGraph) {
+      rebuildRepeatCellHighlight(repeatCellDisplayGraph);
+    } else {
+      repeatCellHighlighted = false;
+      dom.repeatHighlight.checked = false;
+      dom.canvas.dataset.repeatHighlightEdgeCount = "0";
+      dom.canvas.dataset.repeatHighlightEdgeIdentities = "";
+      dom.canvas.dataset.repeatHighlightMainEdgeCount = "0";
+      dom.canvas.dataset.repeatHighlightMainEdgeIdentities = "";
+      dom.canvas.dataset.repeatHighlightExcludedEdgeCount = "0";
+    }
     guideGroup.add(createDottedDisplayEnvelope(caseRecord.displayRadius));
     dom.canvas.dataset.deformationAxis = compressionAxis;
     dom.canvas.dataset.deformationFactor = compressionFactor.toFixed(6);
@@ -1090,7 +1428,9 @@ export function mountLatticeLab(options = {}) {
     focusSelected = false;
     deformationBeta = 0;
     compressionFactor = 1;
-    cameraViewHalfHeight = DEFAULT_VIEW_HALF_HEIGHT;
+    cameraViewHalfHeight = defaultViewHalfHeightForDisplayRadius(
+      caseRecord.displayRadius,
+    );
     rootGroup.position.set(0, 0, 0);
     rootGroup.quaternion.set(...createDefaultOrientationQuaternion());
     dom.caseSelect.value = caseRecord.id;
@@ -1106,6 +1446,42 @@ export function mountLatticeLab(options = {}) {
     return true;
   }
 
+  function recalculateRandomConfiguration() {
+    if (
+      caseRecord.id !== LATTICE_LAB_RANDOM_FINITE_CASE_ID ||
+      !caseRecord.randomization
+    ) {
+      return false;
+    }
+    const nextSeed = nextLatticeLabRandomFiniteSeed(
+      caseRecord.sites,
+      caseRecord.randomization.seed,
+    );
+    const nextCase = createRandomFiniteFiftyFiftyCase(nextSeed);
+    caseRecords = caseRecords.map((record) =>
+      record.id === LATTICE_LAB_RANDOM_FINITE_CASE_ID ? nextCase : record
+    );
+    caseRecord = nextCase;
+    polarityBySiteId = createReferencePolarityState(caseRecord);
+    if (!getLatticeSite(caseRecord, selectedSiteId)) {
+      selectedSiteId = caseRecord.defaultSiteId;
+      siteSelectionExplicit = false;
+    }
+    rebuildCaseScene();
+    updateCaseRecordPresentation();
+    updateCompressionPresentation();
+    updateConfigurationPresentation();
+    updateSelectedPresentation();
+    updateUsableCanvasCenter();
+    updateFixedMarkerSizes();
+    render();
+    return Object.freeze({
+      seed: caseRecord.randomization.seed,
+      assignmentFingerprint:
+        caseRecord.randomization.assignmentFingerprint,
+    });
+  }
+
   function listen(target, type, handler, eventOptions) {
     target.addEventListener(type, handler, eventOptions);
     listeners.push(() => target.removeEventListener?.(type, handler, eventOptions));
@@ -1113,6 +1489,7 @@ export function mountLatticeLab(options = {}) {
 
   function bindEvents() {
     listen(dom.caseSelect, "change", () => selectCase(dom.caseSelect.value));
+    listen(dom.randomRecalculate, "click", recalculateRandomConfiguration);
     listen(dom.repeatHighlight, "change", () => {
       repeatCellHighlighted = dom.repeatHighlight.checked;
       repeatHighlightGroup.traverse((object) => {
@@ -1204,7 +1581,16 @@ export function mountLatticeLab(options = {}) {
       caseRecord,
       polarityBySiteId,
     );
-    return caseRecord.id === LATTICE_LAB_CASE_ID && reference && [
+    if (!reference) {
+      return false;
+    }
+    if (caseRecord.id !== LATTICE_LAB_CASE_ID) {
+      return validatePeriodicSymmetryCertificate(caseRecord, {
+        deformationAxis: compressionAxis,
+        deformationFactor: compressionFactor,
+      }).passed;
+    }
+    return [
       [0, 0, 0],
       [1, 0, 0],
     ].every((receiverGrid) =>
@@ -1247,9 +1633,9 @@ export function mountLatticeLab(options = {}) {
         `${Number(compressionFactor.toFixed(6))}. ` +
         "β = 0 is the undeformed baseline; β = 1 is the maximum supported " +
         "nondegenerate deformation. " +
-        "The periodically tiled stationary checkerboard passes the exact " +
-        "receiver-centered inversion-pair check for both polarity receiver " +
-        "classes: net acceleration contribution is zero at every site.";
+        "The declared repeating-pattern symmetry certificate covers every " +
+        "inequivalent receiver class at this setting: net acceleration is " +
+        "zero at every architrino.";
     } else if (caseRecord.id === LATTICE_LAB_CASE_ID) {
       dom.compressionStatus.textContent =
         `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
@@ -1258,6 +1644,22 @@ export function mountLatticeLab(options = {}) {
         "nondegenerate deformation. " +
         "The reference tiled-pattern certificate is unavailable in this " +
         "modified polarity state; no all-site zero result is shown.";
+    } else if (caseRecord.calculationScope === "finite-nonperiodic") {
+      dom.compressionStatus.textContent =
+        `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
+        `${Number(compressionFactor.toFixed(6))}. ` +
+        "β = 0 is the undeformed baseline; β = 1 is the maximum supported " +
+        "nondegenerate deformation. The ledger recalculates every " +
+        "included contribution for this displayed finite configuration only.";
+    } else if (caseRecord.id === "hcp-abab-layers-v1") {
+      dom.compressionStatus.textContent =
+        `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
+        `${Number(compressionFactor.toFixed(6))}. ` +
+        "β = 0 is the undeformed baseline; β = 1 is the maximum supported " +
+        "nondegenerate deformation. The undeformed HCP certificate uses " +
+        "threefold rotational symmetry, which this X-axis deformation does " +
+        "not preserve. A complete periodic acceleration result is therefore " +
+        "not established at this setting.";
     } else {
       dom.compressionStatus.textContent =
         `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
@@ -1304,6 +1706,10 @@ export function mountLatticeLab(options = {}) {
     siteSelectionExplicit = false;
     deformationBeta = 0;
     compressionFactor = 1;
+    cameraViewHalfHeight = defaultViewHalfHeightForDisplayRadius(
+      caseRecord.displayRadius,
+    );
+    rootGroup.position.set(0, 0, 0);
     rootGroup.quaternion.set(...createDefaultOrientationQuaternion());
     rebuildCaseScene();
     updateCompressionPresentation();
@@ -1311,6 +1717,9 @@ export function mountLatticeLab(options = {}) {
     updatePolarityMaterials();
     updateConfigurationPresentation();
     updateSelectedPresentation();
+    updateProjection();
+    updateUsableCanvasCenter();
+    updateFixedMarkerSizes();
     render();
   }
 
@@ -1328,10 +1737,50 @@ export function mountLatticeLab(options = {}) {
   function updatePolarityMaterials() {
     siteMeshes.forEach((mesh, siteId) => {
       const positrino = polarityBySiteId[siteId] === LATTICE_LAB_POLARITY.POSITRINO;
-      mesh.material = siteId === selectedSiteId
-        ? (positrino ? selectedRedMaterial : selectedBlueMaterial)
-        : (positrino ? redMaterial : blueMaterial);
+      mesh.material = positrino ? redMaterial : blueMaterial;
     });
+    const selectionCircle = createSelectedSiteCircleDescriptor({
+      caseRecord,
+      polarityBySiteId,
+      selectedSiteId,
+      deformationAxis: compressionAxis,
+      deformationFactor: compressionFactor,
+    });
+    selectedCalculationCircle.visible = Boolean(selectionCircle);
+    if (!selectionCircle) {
+      selectedCalculationCircle.userData.siteId = null;
+      delete dom.canvas.dataset.selectionCirclePolarity;
+      delete dom.canvas.dataset.selectionCircleColor;
+      delete dom.canvas.dataset.selectionCircleOuterRadiusPx;
+      delete dom.canvas.dataset.selectionCircleStrokePx;
+      dom.canvas.dataset.selectionCircleVisible = "false";
+      dom.canvas.setAttribute(
+        "aria-label",
+        `Rotatable three-dimensional ${caseRecord.title} lattice`,
+      );
+      return;
+    }
+    selectedCalculationCircle.position.fromArray(selectionCircle.position);
+    selectedCalculationCircle.material =
+      selectionCircle.polarity === LATTICE_LAB_POLARITY.POSITRINO
+        ? redSelectionCircleMaterial
+        : blueSelectionCircleMaterial;
+    selectedCalculationCircle.userData.siteId = selectionCircle.siteId;
+    selectedCalculationCircle.userData.polarity = selectionCircle.polarity;
+    dom.canvas.dataset.selectionCircleVisible = "true";
+    dom.canvas.dataset.selectionCirclePolarity = selectionCircle.polarity;
+    dom.canvas.dataset.selectionCircleColor = selectionCircle.colorName;
+    dom.canvas.dataset.selectionCircleOuterRadiusPx = String(
+      selectionCircle.outerRadiusPx,
+    );
+    dom.canvas.dataset.selectionCircleStrokePx = String(
+      LATTICE_LAB_SELECTION_CIRCLE_STROKE_PX,
+    );
+    dom.canvas.setAttribute(
+      "aria-label",
+      `Rotatable three-dimensional ${caseRecord.title} lattice. ` +
+        selectionCircle.accessibleLabel,
+    );
   }
 
   function updateCaseRecordPresentation() {
@@ -1375,12 +1824,27 @@ export function mountLatticeLab(options = {}) {
       `${caseRecord.selectedLocalTotal} declared geometry neighbors`;
     dom.caseDensity.textContent = caseRecord.geometricSiteDensity;
     dom.caseBoundary.textContent = caseRecord.boundaryTreatment;
+    const periodicCertificatePassed = activePeriodicCertificatePassed();
     dom.caseScope.textContent = caseRecord.calculationBoundaryTreatment +
-      (compressed && caseRecord.id === LATTICE_LAB_CASE_ID
-        ? `; the inversion-pair certificate remains exact for this static β = ${deformationBeta} deformation (X-axis scale ${compressionFactor})`
-        : compressed
-          ? `; static X-axis display deformation at β = ${deformationBeta} (scale ${compressionFactor}); no per-case periodic cancellation certificate is supplied`
+      (compressed && caseRecord.calculationScope === "finite-nonperiodic"
+          ? `; static X-axis display deformation at β = ${deformationBeta} (scale ${compressionFactor}); every other displayed finite site remains included`
+        : compressed && periodicCertificatePassed
+          ? `; the periodic symmetry certificate remains exact for this static β = ${deformationBeta} deformation (X-axis scale ${compressionFactor})`
+          : compressed && caseRecord.id === "hcp-abab-layers-v1"
+            ? `; the undeformed HCP symmetry certificate does not cover static β = ${deformationBeta} X-axis deformation (scale ${compressionFactor})`
+            : compressed
+              ? `; no periodic zero certificate applies to this static β = ${deformationBeta} deformation (X-axis scale ${compressionFactor})`
         : "");
+    const randomization = caseRecord.randomization ?? null;
+    dom.randomRecalculate.hidden = !randomization;
+    if (randomization) {
+      dom.canvas.dataset.randomSeed = String(randomization.seed);
+      dom.canvas.dataset.randomAssignmentFingerprint =
+        randomization.assignmentFingerprint;
+    } else {
+      delete dom.canvas.dataset.randomSeed;
+      delete dom.canvas.dataset.randomAssignmentFingerprint;
+    }
     dom.primerTitle.textContent = caseRecord.primerTitle;
     dom.primerBody.textContent = "";
     caseRecord.primerParagraphs.forEach((paragraph) => {
@@ -1395,13 +1859,6 @@ export function mountLatticeLab(options = {}) {
   }
 
   function updateConfigurationPresentation() {
-    [
-      [dom.repeatVectorA, "a", transformDisplayPosition(caseRecord.repeatCell.vectors[0])],
-      [dom.repeatVectorB, "b", transformDisplayPosition(caseRecord.repeatCell.vectors[1])],
-      [dom.repeatVectorC, "c", transformDisplayPosition(caseRecord.repeatCell.vectors[2])],
-    ].forEach(([element, label, vector]) => {
-      element.textContent = formatTranslationVector(label, vector);
-    });
     updateCompressionPresentation();
   }
 
@@ -1418,31 +1875,62 @@ export function mountLatticeLab(options = {}) {
     const nearestShell = ledger.shells.find((shell) => shell.id === "nearest");
     const nextLocalShell = ledger.shells.find((shell) => shell.id === "next-local");
     const receiverPolarity = formatPolarityLabel(ledger.receiverPolarity);
-    if (ledger.certificateApplies && !siteSelectionExplicit) {
+    if (
+      ledger.certificateApplies && !siteSelectionExplicit &&
+      caseRecord.id === LATTICE_LAB_CASE_ID
+    ) {
       dom.whatSeeing.textContent =
         "Every site has six nearest neighbors of the opposite polarity. " +
         "The next local shell has twelve sites of the same polarity. " +
-        "Each local shell has zero stationary acceleration sum; the separate " +
-        "all-shell result applies to every site at release. Stability and " +
-        "evolution are untested.";
+        "Each local shell has zero net acceleration in this configuration. " +
+        "The separate all-shell result applies to every site at release.";
+    } else if (ledger.certificateApplies && !siteSelectionExplicit) {
+      dom.whatSeeing.textContent =
+        `${caseRecord.title} shows ${caseRecord.polarityRule}. Its nearest ` +
+        `shell has ${caseRecord.nearestShell.count} sites at ` +
+        `${caseRecord.nearestShell.distance}; the next local shell has ` +
+        `${caseRecord.nextLocalShell.count} at ` +
+        `${caseRecord.nextLocalShell.distance}. These local shell sums are ` +
+        "zero, and the separate repeating-pattern symmetry certificate " +
+        "covers every architrino at release.";
     } else if (ledger.certificateApplies) {
       dom.whatSeeing.textContent =
         `The selected ${receiverPolarity} has ` +
         `${summarizeShellPolarities(nearestShell)} at ${nearestShell.distance} ` +
         `and ${summarizeShellPolarities(nextLocalShell)} at ` +
-        `${nextLocalShell.distance}. Each displayed local shell has zero ` +
-        `stationary acceleration sum. Those are illustrative partial sums; ` +
-        `the separate all-shell inversion certificate gives exact zero initial ` +
-        `acceleration at every site` +
+        `${nextLocalShell.distance}. Each shown local shell has zero net ` +
+        `acceleration in this configuration. Those are illustrative partial sums; ` +
+        `the separate repeating-pattern symmetry certificate gives exact zero ` +
+        `net acceleration at every architrino` +
         (compressionFactor < 1
           ? ` under this static ${compressionAxis.toUpperCase()}-axis β = ${deformationBeta} deformation (scale ${compressionFactor})`
           : "") +
-        `. Stability and evolution are untested.`;
-    } else if (caseRecord.accelerationCertificate) {
+        `.`;
+    } else if (caseRecord.calculationScope === "finite-nonperiodic") {
+      dom.whatSeeing.textContent =
+        "This is a random 50/50 equal-polarity population on simple-cubic " +
+        "site geometry. The assignment has exactly equal numbers of " +
+        "electrinos and positrinos, is finite and nonperiodic, and has no " +
+        "repeat cell; equal counts do not establish acceleration " +
+        `cancellation. The selected ${receiverPolarity} is the ledger target, ` +
+        "and the ledger includes every other site in this configuration " +
+        "once. The result is finite-case only and makes no motion, " +
+        "stability, energy, or conservation claim.";
+    } else if (
+      caseRecord.accelerationCertificate && !ledger.referenceConfiguration
+    ) {
       dom.whatSeeing.textContent =
         `The selected ${receiverPolarity} is in a ` +
         `modified polarity configuration. The local rows below are a finite ` +
         `diagnostic; the reference acceleration certificate does not apply.`;
+    } else if (
+      caseRecord.id === "hcp-abab-layers-v1" &&
+      ledger.certificateValidation && !ledger.certificateValidation.passed
+    ) {
+      dom.whatSeeing.textContent =
+        `${caseRecord.title} shows ${caseRecord.polarityRule}. ` +
+        "This X-axis deformation changes the pattern’s symmetry, so periodic " +
+        "acceleration is not established at this setting.";
     } else {
       dom.whatSeeing.textContent =
         `${caseRecord.title} shows ${caseRecord.polarityRule}. The selected ` +
@@ -1655,6 +2143,25 @@ export function mountLatticeLab(options = {}) {
     const viewportHeight = Math.max(1, dom.canvas.getBoundingClientRect().height);
     markerWorldRadius =
       MARKER_RADIUS_PX * (2 * cameraViewHalfHeight / viewportHeight);
+    const selectionCircleWorldDiameter =
+      2 * SELECTION_CIRCLE_OUTER_RADIUS_PX *
+      (2 * cameraViewHalfHeight / viewportHeight);
+    selectedCalculationCircle.scale.set(
+      selectionCircleWorldDiameter,
+      selectionCircleWorldDiameter,
+      1,
+    );
+    const rendererSiteDiameterPx =
+      2 * markerWorldRadius * viewportHeight / (2 * cameraViewHalfHeight);
+    const displayEnvelopeDiameterPx =
+      2 * caseRecord.displayRadius * viewportHeight /
+      (2 * cameraViewHalfHeight);
+    dom.canvas.dataset.rendererSiteDiameterPx =
+      rendererSiteDiameterPx.toFixed(4);
+    dom.canvas.dataset.displayEnvelopeDiameterPx =
+      displayEnvelopeDiameterPx.toFixed(4);
+    dom.polarityLegend.dataset.rendererSiteDiameterPx =
+      rendererSiteDiameterPx.toFixed(4);
     const miniatureViewportHeight = Math.max(
       1,
       dom.miniatureCanvas.getBoundingClientRect().height,
@@ -1684,14 +2191,14 @@ export function mountLatticeLab(options = {}) {
         mainEdges,
         2 * markerWorldRadius + 1e-9,
       );
-      mainEndpointAggregation.collapsedGroups.forEach((group) => {
+      mainEndpointAggregation.groups.forEach((group) => {
         const aggregate = new THREE.Mesh(
           sphereGeometry,
           endpointAggregateMaterial,
         );
         aggregate.position.fromArray(group.position);
         aggregate.scale.setScalar(markerWorldRadius);
-        aggregate.userData.kind = "endpoint-collapsed-site-group";
+        aggregate.userData.kind = "endpoint-aggregate-site-group";
         aggregate.userData.memberSiteIds = group.memberIds;
         endpointAggregateGroup.add(aggregate);
       });
@@ -1718,23 +2225,44 @@ export function mountLatticeLab(options = {}) {
         miniatureEdges,
         2 * miniatureLocalRadius + 1e-9,
       );
-      miniatureEndpointAggregation.collapsedGroups.forEach((group) => {
+      miniatureEndpointAggregation.groups.forEach((group) => {
         const aggregate = new THREE.Mesh(
           sphereGeometry,
           endpointAggregateMaterial,
         );
         aggregate.position.fromArray(group.position);
         aggregate.scale.setScalar(miniatureLocalRadius);
-        aggregate.userData.kind = "repeat-cell-endpoint-collapsed-site-group";
+        aggregate.userData.kind = "repeat-cell-endpoint-aggregate-site-group";
         aggregate.userData.memberSiteIds = group.memberIds;
         miniatureEndpointAggregateGroup.add(aggregate);
       });
     }
 
-    siteMeshes.forEach((mesh, siteId) => {
+    siteMeshes.forEach((mesh) => {
       mesh.scale.setScalar(markerWorldRadius);
-      mesh.visible = !mainEndpointAggregation?.groupBySiteId.get(siteId)?.collapsed;
+      mesh.visible = !endpointActive;
     });
+    if (endpointActive && mainEndpointAggregation) {
+      const selectedGroup = mainEndpointAggregation.groupBySiteId.get(
+        selectedSiteId,
+      );
+      if (selectedGroup) {
+        selectedCalculationCircle.position.fromArray(selectedGroup.position);
+        selectedCalculationCircle.material = endpointSelectionCircleMaterial;
+        selectedCalculationCircle.userData.endpointAggregated = true;
+        dom.canvas.dataset.selectionCircleColor = "purple";
+        dom.canvas.dataset.selectionCircleEndpointAggregate = "true";
+        dom.canvas.setAttribute(
+          "aria-label",
+          `Rotatable three-dimensional ${caseRecord.title} lattice. ` +
+            "The selected source architrino belongs to the purple endpoint " +
+            "aggregate marked by a purple outer selection circle.",
+        );
+      }
+    } else {
+      selectedCalculationCircle.userData.endpointAggregated = false;
+      dom.canvas.dataset.selectionCircleEndpointAggregate = "false";
+    }
     const mainEndpointExternalById = new Map(
       mainEndpointAggregation?.externalEdges.map((edge) => [edge.id, edge]) ?? [],
     );
@@ -1809,27 +2337,39 @@ export function mountLatticeLab(options = {}) {
     dom.canvas.dataset.suppressedNearestEdgeIdentities =
       suppressedMainEdgeIdentities.join(";");
     dom.canvas.dataset.endpointAggregateGroupCount = String(
+      mainEndpointAggregation?.groups.length ?? 0,
+    );
+    dom.canvas.dataset.endpointCollapsedGroupCount = String(
       mainEndpointAggregation?.collapsedGroups.length ?? 0,
     );
     dom.canvas.dataset.endpointAggregateSiteCount = String(
-      mainEndpointAggregation?.collapsedGroups.reduce(
+      mainEndpointAggregation?.groups.reduce(
         (count, group) => count + group.memberIds.length,
         0,
       ) ?? 0,
+    );
+    dom.canvas.dataset.endpointVisibleSourceMarkerCount = String(
+      endpointActive ? 0 : siteMeshes.size,
     );
     dom.canvas.dataset.endpointInternalEdgeCount =
       String(collapsedInternalMainEdgeIdentities.length);
     dom.canvas.dataset.endpointRedundantExternalEdgeCount =
       String(redundantEndpointMainEdgeIdentities.length);
+    const miniatureRadiusBySiteId = new Map();
     miniatureRoot.children
       .filter((object) =>
         object.userData.kind === "repeat-cell-site" ||
         object.userData.kind === "repeat-cell-periodic-continuation"
       )
       .forEach((mesh) => {
-        mesh.scale.setScalar(miniatureLocalRadius);
-        mesh.visible = !miniatureEndpointAggregation?.groupBySiteId
-          .get(mesh.userData.siteId)?.collapsed;
+        const radius = miniatureLocalRadius * (
+          mesh.userData.secondaryContext
+            ? SECONDARY_CONTEXT_MARKER_SCALE
+            : 1
+        );
+        mesh.scale.setScalar(radius);
+        miniatureRadiusBySiteId.set(mesh.userData.siteId, radius);
+        mesh.visible = !endpointActive;
       });
     const clippedMiniatureEdgeIdentities = [];
     const overlapMiniatureEdgeIdentities = [];
@@ -1876,10 +2416,16 @@ export function mountLatticeLab(options = {}) {
         const endPosition = endpointEdge?.toGroup?.position ??
           line.userData.endPosition;
         const startRadius = line.userData.startHasSphere
-          ? miniatureLocalRadius
+          ? endpointEdge
+            ? miniatureLocalRadius
+            : miniatureRadiusBySiteId.get(line.userData.fromSiteId) ??
+              miniatureLocalRadius
           : 0;
         const endRadius = line.userData.endHasSphere
-          ? miniatureLocalRadius
+          ? endpointEdge
+            ? miniatureLocalRadius
+            : miniatureRadiusBySiteId.get(line.userData.toSiteId) ??
+              miniatureLocalRadius
           : 0;
         const distance = Math.hypot(...endPosition.map(
           (value, index) => value - startPosition[index],
@@ -1920,8 +2466,25 @@ export function mountLatticeLab(options = {}) {
     dom.miniatureCanvas.dataset.overlapConnectorIdentities =
       overlapMiniatureEdgeIdentities.join(";");
     dom.miniatureCanvas.dataset.endpointAggregateGroupCount = String(
+      miniatureEndpointAggregation?.groups.length ?? 0,
+    );
+    dom.miniatureCanvas.dataset.endpointCollapsedGroupCount = String(
       miniatureEndpointAggregation?.collapsedGroups.length ?? 0,
     );
+    dom.miniatureCanvas.dataset.endpointVisibleSourceMarkerCount = String(
+      endpointActive ? 0 : miniatureRadiusBySiteId.size,
+    );
+    dom.miniatureCanvas.dataset.endpointDisplayTreatment = endpointActive
+      ? "purple-aggregate-only"
+      : "source-polarity-markers";
+    if (endpointActive) {
+      dom.miniatureCanvas.setAttribute(
+        "aria-label",
+        `Interactive repeat-cell view for ${caseRecord.title}. At maximum ` +
+          "deformation, source sites are represented only by purple endpoint " +
+          "aggregates; source identities and polarities remain unchanged.",
+      );
+    }
     dom.miniatureCanvas.dataset.endpointInternalEdgeCount =
       String(collapsedInternalMiniatureEdgeIdentities.length);
     dom.miniatureCanvas.dataset.endpointRedundantExternalEdgeCount =
@@ -1944,8 +2507,8 @@ export function mountLatticeLab(options = {}) {
           highlight.userData.endPosition,
         );
         if (mainEndpointAggregation) {
-          const [fromSiteId, toSiteId] =
-            highlight.userData.mainEdgeIdentity.split("|");
+          const fromSiteId = highlight.userData.mainFromSiteId;
+          const toSiteId = highlight.userData.mainToSiteId;
           const fromGroup = mainEndpointAggregation.groupBySiteId.get(
             fromSiteId,
           );
@@ -2010,6 +2573,10 @@ export function mountLatticeLab(options = {}) {
       String(collapsedInternalHighlightEdgeIdentities.length);
     dom.canvas.dataset.endpointRedundantHighlightEdgeCount =
       String(redundantEndpointHighlightEdgeIdentities.length);
+    dom.canvas.dataset.endpointRepeatHighlightVisible = "false";
+    dom.canvas.dataset.endpointRepeatHighlightBundleCount = "0";
+    dom.canvas.dataset.endpointRepeatHighlightCanonicalEdgeCount = "0";
+    dom.canvas.dataset.endpointRepeatHighlightEdgeIdentities = "";
   }
 
   function updateTripod() {
@@ -2055,6 +2622,7 @@ export function mountLatticeLab(options = {}) {
     miniatureCamera.top = miniHalfHeight;
     miniatureCamera.bottom = -miniHalfHeight;
     miniatureCamera.updateProjectionMatrix();
+    renderLegendSwatches();
     updateFixedMarkerSizes();
     render();
   }
@@ -2090,13 +2658,19 @@ export function mountLatticeLab(options = {}) {
     sphereGeometry.dispose();
     redMaterial.dispose();
     blueMaterial.dispose();
-    selectedRedMaterial.dispose();
-    selectedBlueMaterial.dispose();
+    continuationRedMaterial.dispose();
+    continuationBlueMaterial.dispose();
+    redSelectionCircleMaterial.dispose();
+    blueSelectionCircleMaterial.dispose();
+    endpointSelectionCircleMaterial.dispose();
+    selectionCircleTexture.dispose();
     neighborLineMaterial.dispose();
     miniatureNeighborLineMaterial.dispose();
-    continuationMarkerMaterial.dispose();
+    miniatureContextLineMaterial.dispose();
+    miniatureOwnedCellBoundaryMaterial.dispose();
     highlightedNeighborMaterial.dispose();
     renderer.dispose();
     miniatureRenderer.dispose();
+    legendSwatchRenderers.forEach(({ renderer }) => renderer.dispose());
   }
 }

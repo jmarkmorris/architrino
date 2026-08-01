@@ -6,6 +6,7 @@ import {
   createRepeatCellNearestNeighborNetwork,
 } from "../src/apps/lattice-lab/LatticeLabCase.js";
 import {
+  createRepeatCellContinuationMarkerDescriptors,
   createRepeatCellDisplayGraph,
 } from "../src/apps/lattice-lab/LatticeLabRuntime.js";
 
@@ -147,7 +148,7 @@ test("BCC top and bottom square perimeters are longer same-sublattice next-shell
   });
 });
 
-test("BCC default tile has no visible context sites at lambda 1 or extreme compression", () => {
+test("BCC continuation endpoints resolve to polarity-correct Architrino markers", () => {
   const { caseRecord, network } = createBccAudit();
   const expectedOwnedIncidentIdentities = network.edges
     .filter((edge) => !edge.startContinuation || !edge.endContinuation)
@@ -182,7 +183,8 @@ test("BCC default tile has no visible context sites at lambda 1 or extreme compr
   }
 
   const continuationEndpoints = new Set();
-  createRepeatCellDisplayGraph(caseRecord).edges.forEach(({ edge }) => {
+  const displayGraph = createRepeatCellDisplayGraph(caseRecord);
+  displayGraph.edges.forEach(({ edge }) => {
     if (edge.startContinuation) {
       continuationEndpoints.add(positionKey(edge.start));
     }
@@ -191,6 +193,27 @@ test("BCC default tile has no visible context sites at lambda 1 or extreme compr
     }
   });
   assert.equal(continuationEndpoints.size, 14);
+
+  const markers = createRepeatCellContinuationMarkerDescriptors(displayGraph);
+  assert.equal(markers.length, 14);
+  assert.equal(
+    markers.filter(({ polarity }) => polarity === "positrino").length,
+    7,
+  );
+  assert.equal(
+    markers.filter(({ polarity }) => polarity === "electrino").length,
+    7,
+  );
+  assert.deepEqual(
+    new Set(markers.map(({ position }) => positionKey(position))),
+    continuationEndpoints,
+  );
+  markers.forEach((marker) => {
+    const canonical = network.displaySites.find(({ id }) => id === marker.id);
+    assert.ok(canonical?.continuation);
+    assert.equal(marker.polarity, canonical.polarity);
+    assert.deepEqual(marker.position, canonical.position);
+  });
 });
 
 test("main highlight clipping uses the ordinary edge-length guard before drawing", async () => {
@@ -212,5 +235,13 @@ test("main highlight clipping uses the ordinary edge-length guard before drawing
   assert.match(
     source,
     /visibleContextSiteCount[\s\S]*continuationMarkerCount/u,
+  );
+  assert.doesNotMatch(
+    source,
+    /repeat-cell-continuation-markers|continuationMarkerMaterial/u,
+  );
+  assert.match(
+    source,
+    /continuationEndpoint = true[\s\S]*continuationPositrinoMarkerCount[\s\S]*continuationElectrinoMarkerCount/u,
   );
 });

@@ -23,6 +23,7 @@ import {
   createStationarySimpleCubicExhaustionLedger,
 } from "../src/apps/lattice-lab/SimpleCubicStationaryLedger.js";
 import {
+  LATTICE_LAB_SELECTION_CIRCLE_STROKE_PX,
   LATTICE_LAB_UI_FEATURES,
   applyTrackballDragQuaternion,
   createDefaultOrientationQuaternion,
@@ -75,6 +76,27 @@ test("spherical display envelope uses semantic Z as its polar axis", () => {
   const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
   assert.match(source, /semanticPolarAxis = "z"/u);
   assert.match(source, /displayEnvelopeOrientationSource =\s*\n\s*"shared-lattice-root-quaternion"/u);
+});
+
+test("certified ledger check outline matches the selected-site circle stroke", () => {
+  assert.equal(LATTICE_LAB_SELECTION_CIRCLE_STROKE_PX, 2);
+  const css = readRepoFile("src/apps/lattice-lab/lattice-lab.css");
+  assert.match(
+    css,
+    /\[data-outcome="zero"\] \.lattice-lab-ledger-icon \{\s*border-width: 2px;/u,
+  );
+  assert.match(
+    css,
+    /\[data-outcome="nonzero"\] \.lattice-lab-ledger-icon \{\s*border-width: 2px;/u,
+  );
+  assert.match(
+    css,
+    /\.lattice-lab-ledger-icon \{[\s\S]*?width: 23px;[\s\S]*?height: 23px;[\s\S]*?border: 1px solid/u,
+  );
+  assert.match(
+    css,
+    /\[data-outcome="nonzero"\] \.lattice-lab-ledger-icon \{\s*border-color:/u,
+  );
 });
 
 test("uniaxial deformation changes only semantic X monotonically at every beta", () => {
@@ -136,8 +158,22 @@ test("maximum deformation aggregates coincident columns and partitions lines", (
 
   const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
   assert.match(source, /const endpointActive = deformationBeta === 1/u);
-  assert.match(source, /endpoint-collapsed-site-group/u);
+  assert.match(source, /endpoint-aggregate-site-group/u);
   assert.match(source, /ENDPOINT_AGGREGATE_COLOR/u);
+  assert.match(source, /mainEndpointAggregation\.groups\.forEach/u);
+  assert.match(source, /miniatureEndpointAggregation\.groups\.forEach/u);
+  assert.match(source, /mesh\.visible = !endpointActive/u);
+  assert.match(source, /selectionCircleColor = "purple"/u);
+  assert.match(
+    source,
+    /purple endpoint ["'` +\n]*aggregate marked by a purple outer selection circle/u,
+  );
+  assert.match(source, /endpointDisplayTreatment = endpointActive/u);
+  assert.match(source, /endpointRepeatHighlightVisible/u);
+  assert.match(source, /endpointRepeatHighlightCanonicalEdgeCount/u);
+  assert.match(source, /endpointRepeatHighlightEdgeIdentities/u);
+  assert.doesNotMatch(source, /repeat-cell-endpoint-aggregate-highlight/u);
+  assert.doesNotMatch(source, /repeat-cell-endpoint-edge-bundle/u);
 });
 
 test("simple-cubic checkerboard fills the spherical crop with an exactly neutral population", () => {
@@ -160,7 +196,8 @@ test("simple-cubic checkerboard fills the spherical crop with an exactly neutral
     caseRecord.evidenceStatus,
     "derived stationary-release cancellation under the declared exhaustion",
   );
-  assert.match(caseRecord.boundaryTreatment, /finite spherical display crop/u);
+  assert.match(caseRecord.boundaryTreatment, /spherical display crop/u);
+  assert.doesNotMatch(caseRecord.boundaryTreatment, /finite spherical/u);
   assert.match(caseRecord.boundaryTreatment, /continuation is not shown/u);
   assert.match(
     caseRecord.calculationBoundaryTreatment,
@@ -452,7 +489,9 @@ test("the miniature uses the minimal neutral two-site checkerboard translation c
 });
 
 test("every miniature resolves the complete nearest-neighbor periodic network", () => {
-  createLatticeLabCaseGallery().forEach((caseRecord) => {
+  createLatticeLabCaseGallery()
+    .filter((caseRecord) => caseRecord.repeatCell)
+    .forEach((caseRecord) => {
     const network = createRepeatCellNearestNeighborNetwork(caseRecord);
     assert.equal(
       network.relationshipCount,
@@ -649,6 +688,10 @@ test("main and repeat-cell displays contain all and only nearest-neighbor links"
       `${caseRecord.id} main nearest-neighbor graph`,
     );
 
+    if (!caseRecord.repeatCell) {
+      return;
+    }
+
     const network = createRepeatCellNearestNeighborNetwork(caseRecord);
     const repeatExpected = new Set();
     caseRecord.repeatCell.sites.forEach((fromSite) => {
@@ -729,7 +772,9 @@ test("main and repeat-cell displays contain all and only nearest-neighbor links"
 });
 
 test("every named repeat object translates to tile the complete geometry and polarity pattern", () => {
-  createLatticeLabCaseGallery().forEach((caseRecord) => {
+  createLatticeLabCaseGallery()
+    .filter((caseRecord) => caseRecord.repeatCell)
+    .forEach((caseRecord) => {
     assert.equal(caseRecord.repeatCell.kind, "cell");
     assert.equal(caseRecord.repeatCell.minimal, true);
     assert.equal(
@@ -791,6 +836,7 @@ test("curated gallery follows the guided order and every spherical crop and repe
     "hcp-abab-layers-v1",
     "simple-cubic-alternating-planes-v1",
     "diamond-cubic-two-sublattice-v1",
+    "simple-cubic-random-finite-fifty-fifty-v1",
   ]);
   assert.deepEqual(gallery.map((caseRecord) => caseRecord.id), LATTICE_LAB_CASE_IDS);
 
@@ -803,18 +849,22 @@ test("curated gallery follows the guided order and every spherical crop and repe
       displayCounts.positrino,
       `${caseRecord.id} display crop`,
     );
-    const repeatCounts = caseRecord.repeatCell.sites.reduce(
-      (counts, site) => ({
-        ...counts,
-        [site.polarity]: counts[site.polarity] + 1,
-      }),
-      { electrino: 0, positrino: 0 },
-    );
-    assert.equal(
-      repeatCounts.electrino,
-      repeatCounts.positrino,
-      `${caseRecord.id} repeat cell`,
-    );
+    if (caseRecord.repeatCell) {
+      const repeatCounts = caseRecord.repeatCell.sites.reduce(
+        (counts, site) => ({
+          ...counts,
+          [site.polarity]: counts[site.polarity] + 1,
+        }),
+        { electrino: 0, positrino: 0 },
+      );
+      assert.equal(
+        repeatCounts.electrino,
+        repeatCounts.positrino,
+        `${caseRecord.id} repeat cell`,
+      );
+    } else {
+      assert.equal(caseRecord.calculationScope, "finite-nonperiodic");
+    }
     assert.equal(
       caseRecord.sites.every(
         (site) => Math.hypot(...site.position) <= caseRecord.displayRadius + 1e-9,
@@ -824,7 +874,12 @@ test("curated gallery follows the guided order and every spherical crop and repe
     );
     assert.match(
       caseRecord.boundaryTreatment,
-      /finite spherical display crop/u,
+      /spherical display crop/u,
+      caseRecord.id,
+    );
+    assert.doesNotMatch(
+      caseRecord.boundaryTreatment,
+      /finite spherical/u,
       caseRecord.id,
     );
   });
@@ -858,7 +913,9 @@ test("gallery neighbor shells are derived from the declared lattice coordinates"
     ],
   };
 
-  createLatticeLabCaseGallery().forEach((caseRecord) => {
+  createLatticeLabCaseGallery()
+    .filter((caseRecord) => expected[caseRecord.id])
+    .forEach((caseRecord) => {
     const ledger = createSelectedSiteLedger(
       caseRecord,
       createReferencePolarityState(caseRecord),
@@ -895,18 +952,30 @@ test("gallery neighbor shells are derived from the declared lattice coordinates"
   });
 });
 
-test("only the checkerboard case exposes an acceleration certificate", () => {
-  createLatticeLabCaseGallery().forEach((caseRecord, caseIndex) => {
+test("deterministic gallery cases use periodic certificates while Random remains finite", () => {
+  createLatticeLabCaseGallery().forEach((caseRecord) => {
+    const randomFinite = caseRecord.calculationScope === "finite-nonperiodic";
     const ledger = createSelectedSiteLedger(
       caseRecord,
       createReferencePolarityState(caseRecord),
       caseRecord.defaultSiteId,
     );
-    assert.equal(ledger.certificateApplies, caseIndex === 0, caseRecord.id);
-    assert.equal(ledger.accelerationRowsAvailable, caseIndex === 0, caseRecord.id);
-    if (caseIndex > 0) {
-      assert.match(caseRecord.evidenceStatus, /static geometry\/reference case/u);
-      assert.match(caseRecord.accelerationStatus, /unavailable/u);
+    assert.equal(ledger.certificateApplies, !randomFinite, caseRecord.id);
+    assert.equal(
+      ledger.accelerationRowsAvailable,
+      true,
+      caseRecord.id,
+    );
+    if (randomFinite) {
+      assert.equal(ledger.rows.length, caseRecord.sites.length - 1);
+      assert.equal(ledger.certificateApplies, false);
+    } else {
+      assert.doesNotMatch(
+        `${caseRecord.evidenceStatus} ${caseRecord.accelerationStatus} ` +
+          `${caseRecord.calculationBoundaryTreatment}`,
+        /displayed sites|finite spherical|finite-displayed/u,
+        caseRecord.id,
+      );
     }
   });
 });
@@ -1005,15 +1074,16 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
   assert.match(html, /id="lattice-lab-repeat-highlight"[\s\S]*type="checkbox"/u);
   assert.match(
     html,
-    /<div class="lattice-lab-miniature-viewport">[\s\S]*id="lattice-lab-miniature-canvas"[\s\S]*<label class="lattice-lab-repeat-highlight-control">\s*<input id="lattice-lab-repeat-highlight" type="checkbox">[\s\S]*<\/div>\s*<div class="lattice-lab-repeat-rule"/u,
+    /<div class="lattice-lab-miniature-viewport">[\s\S]*id="lattice-lab-miniature-canvas"[\s\S]*<label class="lattice-lab-repeat-highlight-control">\s*<input id="lattice-lab-repeat-highlight" type="checkbox">[\s\S]*<\/div>\s*<\/section>/u,
   );
   assert.doesNotMatch(
     html,
     /Copy this colored tile by translation to continue the pattern\.|lattice-lab-miniature-state/u,
   );
-  assert.match(html, /id="lattice-lab-repeat-vector-a"/u);
-  assert.match(html, /id="lattice-lab-repeat-vector-b"/u);
-  assert.match(html, /id="lattice-lab-repeat-vector-c"/u);
+  assert.doesNotMatch(
+    html,
+    /Translation rule|lattice-lab-repeat-rule|lattice-lab-repeat-vector-[abc]|fixed-distance nearest-neighbor edges/u,
+  );
   assert.equal(html.includes("lattice-lab-miniature-legend"), false);
   assert.equal(html.includes("Synchronized orientation"), false);
   assert.match(html, /id="lattice-lab-case-select"/u);
@@ -1023,9 +1093,10 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
   assert.match(html, /id="lattice-lab-ledger-shells"/u);
   assert.match(
     html,
-    /class="lattice-lab-ledger"[\s\S]*aria-labelledby="lattice-lab-ledger-title"[\s\S]*<span id="lattice-lab-ledger-title">Site Ledger<\/span>/u,
+    /class="lattice-lab-ledger"[\s\S]*aria-labelledby="lattice-lab-ledger-title"[\s\S]*<span id="lattice-lab-ledger-title">Ledger<\/span>/u,
   );
-  assert.equal(html.match(/>Site Ledger</gu)?.length, 1);
+  assert.equal(html.match(/>Ledger</gu)?.length, 1);
+  assert.doesNotMatch(html, /Site Ledger/u);
   assert.doesNotMatch(html, /<h2 id="lattice-lab-ledger-title">/u);
   assert.match(
     html,
@@ -1045,6 +1116,16 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
     html.indexOf("lattice-lab-shared-conventions") >
       html.indexOf("lattice-lab-primer"),
   );
+  assert.ok(
+    html.indexOf("lattice-lab-compression-card") >
+      html.indexOf("lattice-lab-primer"),
+  );
+  assert.ok(
+    html.indexOf("lattice-lab-compression-card") <
+      html.indexOf("lattice-lab-shared-conventions"),
+  );
+  assert.equal(html.match(/id="lattice-lab-compression-card"/gu)?.length, 1);
+  assert.equal(html.match(/id="lattice-lab-primer"/gu)?.length, 1);
   assert.match(
     html,
     /id="lattice-lab-shared-conventions"[\s\S]*aria-labelledby="lattice-lab-shared-conventions-title"[\s\S]*id="lattice-lab-shared-conventions-title"\s*class="lattice-lab-card-kicker"\s*>Shared Display Conventions<\/h2>/u,
@@ -1065,8 +1146,11 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
     html,
     /population fact; equal counts do not establish that acceleration contributions balance or cancel\./u,
   );
-  assert.match(html, /The main view uses a spherical crop\./u);
-  assert.match(html, /display boundary, not a physical boundary or a calculation-exhaustion rule/u);
+  assert.match(
+    html,
+    /The sphere is a viewing crop of the shown configuration, not a physical boundary\./u,
+  );
+  assert.doesNotMatch(html, /calculation-exhaustion rule/u);
   assert.match(html, /Light-purple lines show nearest-neighbor geometry/u);
   assert.equal(html.includes("lattice-lab-selected-site"), false);
   assert.equal(html.includes("Display-only core"), false);
@@ -1128,7 +1212,15 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
     /rootGroup\.quaternion\.set\(\.\.\.createDefaultOrientationQuaternion\(\)\)/u,
   );
   assert.match(css, /\.lattice-lab-ledger-outcome \{[\s\S]*font-size: 14px;/u);
+  assert.match(
+    css,
+    /\.lattice-lab-ledger-result\[hidden\] \{\s*display: none;/u,
+  );
   assert.match(css, /\.lattice-lab-primer-heading strong \{[\s\S]*font-size: 14px;/u);
+  assert.match(
+    css,
+    /\.lattice-lab-card\.lattice-lab-seeing-card h2 \{[\s\S]*font-size: 14px;/u,
+  );
   assert.match(
     html,
     /id="lattice-lab-polarity-legend"[\s\S]*role="img"[\s\S]*aria-label="Polarity legend: red sphere, Positrino; blue sphere, Electrino"/u,
@@ -1137,8 +1229,27 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
   assert.match(html, /data-polarity="electrino"[\s\S]*Electrino/u);
   assert.ok(html.indexOf("data-polarity=\"positrino\"") <
     html.indexOf("data-polarity=\"electrino\""));
+  assert.match(html, /data-material-reference="main-canvas-mesh-standard"/u);
+  assert.match(
+    html,
+    /id="lattice-lab-positrino-swatch"[\s\S]*data-polarity="positrino"[\s\S]*width="16"[\s\S]*height="16"/u,
+  );
+  assert.match(
+    html,
+    /id="lattice-lab-electrino-swatch"[\s\S]*data-polarity="electrino"[\s\S]*width="16"[\s\S]*height="16"/u,
+  );
   assert.match(css, /\.lattice-lab-polarity-swatch \{[\s\S]*width: 16px;[\s\S]*height: 16px;/u);
+  assert.doesNotMatch(css, /lattice-lab-polarity-swatch[\s\S]{0,500}radial-gradient/u);
+  assert.match(runtime, /createLegendSwatchRenderer\(dom\.positrinoSwatch, redMaterial\)/u);
+  assert.match(runtime, /createLegendSwatchRenderer\(dom\.electrinoSwatch, blueMaterial\)/u);
+  assert.match(runtime, /createSceneLights\(swatchScene\)/u);
+  assert.match(runtime, /main-canvas-shared-sphere-material-and-lights/u);
+  assert.match(runtime, /canvas\.dataset\.highlightDirection = "above-right"/u);
   assert.match(runtime, /markerDiameterPx = String\(2 \* MARKER_RADIUS_PX\)/u);
+  assert.match(
+    runtime,
+    /rendererSiteDiameterPx =\s*\n\s*2 \* markerWorldRadius \* viewportHeight \/ \(2 \* cameraViewHalfHeight\)/u,
+  );
   assert.match(runtime, /canvasRect\.right - inspectorRect\.left \+ 12/u);
   assert.match(runtime, /createRepeatCellNearestNeighborNetwork\(caseRecord\)/u);
   assert.match(
@@ -1176,20 +1287,20 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
     /if \(distance <= startRadius \+ endRadius\) \{[\s\S]*line\.visible = true;[\s\S]*line\.material = miniatureOverlapLineMaterial;[\s\S]*overlapMiniatureEdgeIdentities\.push/u,
   );
   assert.match(runtime, /overlapConnectorIdentities/u);
+  assert.match(runtime, /SECONDARY_CONTEXT_MARKER_SCALE = 0\.62/u);
+  assert.match(runtime, /continuationRedMaterial|continuationBlueMaterial/u);
+  assert.match(runtime, /repeat-cell-owned-boundary/u);
+  assert.match(runtime, /secondaryContextMarkerCount/u);
   assert.match(
     runtime,
-    /mesh\.scale\.setScalar\(miniatureLocalRadius\)/u,
+    /object\.isLine &&[\s\S]*Array\.isArray\(object\.userData\.startPosition\)[\s\S]*Array\.isArray\(object\.userData\.endPosition\)/u,
   );
+  assert.match(runtime, /selected-calculation-target-circle/u);
+  assert.match(runtime, /new THREE\.Sprite/u);
   assert.doesNotMatch(
     runtime,
-    /miniatureMesh\.scale\.setScalar\(site\.continuation/u,
+    /selectionHalo|selectedRedMaterial|selectedBlueMaterial|emissiveIntensity: 0\.62|shadowBlur|AdditiveBlending/u,
   );
-  assert.doesNotMatch(
-    runtime,
-    /continuationRedMaterial|continuationBlueMaterial/u,
-  );
-  assert.doesNotMatch(runtime, /selectionHalo/u);
-  assert.match(runtime, /emissiveIntensity: 0\.62/u);
   assert.match(runtime, /guideGroup\.add\(createDottedDisplayEnvelope\(caseRecord\.displayRadius\)\)/u);
   assert.match(runtime, /miniatureRoot\.quaternion\.copy\(rootGroup\.quaternion\)/u);
   assert.match(
@@ -1272,7 +1383,7 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
     runtime,
     /createStationarySimpleCubicExhaustionLedger\([\s\S]*\.exactZero/u,
   );
-  assert.match(runtime, /net acceleration contribution is zero at every site/u);
+  assert.match(runtime, /validatePeriodicSymmetryCertificate/u);
   assert.doesNotMatch(runtime, /swapOppositeLatticePolarities/u);
   assert.match(runtime, /transformDisplayPosition\(startSite\.position\)/u);
   assert.match(css, /\.lattice-lab-miniature-card \{[\s\S]*box-shadow: none;/u);
@@ -1288,7 +1399,14 @@ test("Lattice Lab rendering keeps solid spheres fixed on screen and clips depth-
     css,
     /\.lattice-lab-repeat-highlight-control \{[\s\S]*position: absolute;[\s\S]*left: 8px;[\s\S]*bottom: 8px;/u,
   );
-  assert.doesNotMatch(css, /\.lattice-lab-repeat-rule-heading label/u);
+  assert.doesNotMatch(
+    css,
+    /lattice-lab-repeat-rule|lattice-lab-repeat-vectors|lattice-lab-repeat-highlight-state/u,
+  );
+  assert.match(
+    css,
+    /\.lattice-lab-miniature-card\[hidden\] \{\s*display: none;/u,
+  );
 });
 
 test("shared panel collapse icon preserves the established open and closed treatment", () => {

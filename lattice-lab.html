@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#0d0a17" />
     <meta
       name="description"
-      content="Inspect a curated gallery of static lattice geometries and red/blue architrino polarity patterns."
+      content="Inspect a curated gallery of static lattice geometries and architrino polarity patterns."
     />
     <title>Architrino Lattice Lab</title>
     <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
@@ -85,6 +85,28 @@
           </section>
 
           <section
+            id="lattice-lab-primer"
+            class="lattice-lab-card lattice-lab-primer"
+            aria-labelledby="lattice-lab-primer-title"
+          >
+            <div class="lattice-lab-primer-heading">
+              <span>
+                <span class="lattice-lab-card-kicker">Lattice Primer</span>
+                <strong id="lattice-lab-primer-title"></strong>
+              </span>
+              <button
+                id="lattice-lab-primer-toggle"
+                class="lattice-lab-primer-toggle"
+                type="button"
+                aria-controls="lattice-lab-primer-body"
+                aria-expanded="true"
+                hidden
+              >Toggle primer</button>
+            </div>
+            <div id="lattice-lab-primer-body" class="lattice-lab-primer-body"></div>
+          </section>
+
+          <section
             id="lattice-lab-compression-card"
             class="lattice-lab-card lattice-lab-compression-card"
             aria-labelledby="lattice-lab-compression-title"
@@ -113,28 +135,6 @@
           </section>
 
           <section
-            id="lattice-lab-primer"
-            class="lattice-lab-card lattice-lab-primer"
-            aria-labelledby="lattice-lab-primer-title"
-          >
-            <div class="lattice-lab-primer-heading">
-              <span>
-                <span class="lattice-lab-card-kicker">Lattice Primer</span>
-                <strong id="lattice-lab-primer-title"></strong>
-              </span>
-              <button
-                id="lattice-lab-primer-toggle"
-                class="lattice-lab-primer-toggle"
-                type="button"
-                aria-controls="lattice-lab-primer-body"
-                aria-expanded="true"
-                hidden
-              >Toggle primer</button>
-            </div>
-            <div id="lattice-lab-primer-body" class="lattice-lab-primer-body"></div>
-          </section>
-
-          <section
             id="lattice-lab-shared-conventions"
             class="lattice-lab-card lattice-lab-shared-conventions"
             aria-labelledby="lattice-lab-shared-conventions-title"
@@ -153,7 +153,7 @@
               <div>
                 <dt>Main display shape</dt>
                 <dd>
-                  The main view uses a spherical crop. It is a display boundary, not a physical boundary or a calculation-exhaustion rule.
+                  The sphere is a viewing crop of the shown configuration, not a physical boundary.
                 </dd>
               </div>
               <div>
@@ -252,20 +252,35 @@
           id="lattice-lab-polarity-legend"
           class="lattice-lab-polarity-legend"
           role="img"
+          data-material-reference="main-canvas-mesh-standard"
           aria-label="Polarity legend: red sphere, Positrino; blue sphere, Electrino"
         >
           <span class="lattice-lab-polarity-legend-item">
-            <span class="lattice-lab-polarity-swatch" data-polarity="positrino" aria-hidden="true"></span>
+            <canvas
+              id="lattice-lab-positrino-swatch"
+              class="lattice-lab-polarity-swatch"
+              data-polarity="positrino"
+              width="16"
+              height="16"
+              aria-hidden="true"
+            ></canvas>
             <span>Positrino</span>
           </span>
           <span class="lattice-lab-polarity-legend-item">
-            <span class="lattice-lab-polarity-swatch" data-polarity="electrino" aria-hidden="true"></span>
+            <canvas
+              id="lattice-lab-electrino-swatch"
+              class="lattice-lab-polarity-swatch"
+              data-polarity="electrino"
+              width="16"
+              height="16"
+              aria-hidden="true"
+            ></canvas>
             <span>Electrino</span>
           </span>
         </div>
 
         <aside class="lattice-lab-inspector-stack" aria-label="Selected-site inspection">
-          <section class="lattice-lab-miniature-card" aria-labelledby="lattice-lab-miniature-title">
+          <section id="lattice-lab-miniature-card" class="lattice-lab-miniature-card" aria-labelledby="lattice-lab-miniature-title">
             <div>
               <span id="lattice-lab-miniature-title">How This Pattern Repeats</span>
             </div>
@@ -280,23 +295,6 @@
                 Highlight repeat cell
               </label>
             </div>
-            <div class="lattice-lab-repeat-rule" aria-labelledby="lattice-lab-repeat-rule-title">
-              <div class="lattice-lab-repeat-rule-heading">
-                <strong id="lattice-lab-repeat-rule-title">Translation rule</strong>
-              </div>
-              <div
-                class="lattice-lab-repeat-vectors"
-                aria-label="One step along any translation vector places an adjacent cell without rotation"
-              >
-                <code id="lattice-lab-repeat-vector-a"></code>
-                <code id="lattice-lab-repeat-vector-b"></code>
-                <code id="lattice-lab-repeat-vector-c"></code>
-              </div>
-              <small
-                id="lattice-lab-repeat-highlight-state"
-                class="lattice-lab-repeat-highlight-state"
-              ></small>
-            </div>
           </section>
 
           <section
@@ -307,8 +305,21 @@
           >
             <div class="lattice-lab-ledger-heading">
               <div>
-                <span id="lattice-lab-ledger-title">Site Ledger</span>
+                <span id="lattice-lab-ledger-title">Ledger</span>
               </div>
+              <button
+                id="lattice-lab-random-recalculate"
+                class="lattice-lab-random-recalculate"
+                type="button"
+                aria-label="Recalculate random configuration"
+                title="Recalculate random configuration"
+                hidden
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M18.7 7.1A8 8 0 1 0 19.8 15"></path>
+                  <path d="M18.7 3.6v3.5h-3.5"></path>
+                </svg>
+              </button>
             </div>
             <p id="lattice-lab-ledger-receiver" class="lattice-lab-ledger-receiver" hidden></p>
             <div id="lattice-lab-ledger-result" class="lattice-lab-ledger-result">

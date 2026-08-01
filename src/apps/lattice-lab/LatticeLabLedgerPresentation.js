@@ -6,6 +6,10 @@ export const LATTICE_LAB_LEDGER_SCOPE = Object.freeze({
   NOT_ESTABLISHED: "not-established",
 });
 
+function isFiniteCalculationScope(scope) {
+  return scope === LATTICE_LAB_LEDGER_SCOPE.FINITE_NONPERIODIC;
+}
+
 function freezeVector(vector) {
   return Object.freeze(vector.map((value) =>
     Math.abs(value) < RESIDUAL_EPSILON ? 0 : Number(value)
@@ -70,7 +74,10 @@ function summarizePolarities(rows) {
   ].filter(Boolean).join(" · ");
 }
 
-function createCalculationRows(rows) {
+function createCalculationRows(
+  rows,
+  { conciseLabels = false, shellOnlyLabels = false } = {},
+) {
   let runningResidual = [0, 0, 0];
   return Object.freeze(rows.map((row, rowIndex) => {
     const contribution = freezeVector(
@@ -83,7 +90,12 @@ function createCalculationRows(rows) {
       shellId: row.shellId,
       shellLabel: row.shellLabel,
       polarity: row.polarity,
-      rowLabel: `${row.shellLabel} contribution ${rowIndex + 1}`,
+      rowLabel: shellOnlyLabels
+        ? displayShellLabel(row)
+        : conciseLabels
+        ? `Contribution ${rowIndex + 1}`
+        : `${row.shellLabel} contribution ${rowIndex + 1}`,
+      showPolarityInLabel: !conciseLabels && !shellOnlyLabels,
       contribution,
       runningResidual,
     });
@@ -91,14 +103,15 @@ function createCalculationRows(rows) {
 }
 
 function displayShellLabel(shell) {
-  return shell.id === "nearest"
+  const shellId = shell.id ?? shell.shellId;
+  return shellId === "nearest"
     ? "Nearest shell"
-    : shell.id === "next-local"
+    : shellId === "next-local"
       ? "Next shell"
       : shell.label;
 }
 
-function createShellSummaries(ledger, scope) {
+function createShellSummaries(ledger, scope, caseRecord) {
   return Object.freeze(ledger.shells.slice(0, 2).flatMap((shell) => {
     const includedRows = includedCalculationRows({ rows: shell.rows });
     const pairCount = shell.pairs.filter(
@@ -106,23 +119,29 @@ function createShellSummaries(ledger, scope) {
     ).length;
     const label = displayShellLabel(shell);
     if (
-      scope === LATTICE_LAB_LEDGER_SCOPE.FINITE_NONPERIODIC &&
+      isFiniteCalculationScope(scope) &&
       includedRows.length === 0
     ) {
       return [];
     }
     const vector = scope === LATTICE_LAB_LEDGER_SCOPE.CERTIFIED_PERIODIC
       ? Object.freeze([0, 0, 0])
-      : scope === LATTICE_LAB_LEDGER_SCOPE.FINITE_NONPERIODIC
+      : isFiniteCalculationScope(scope)
         ? sumContributionRows(includedRows)
         : null;
-    const count = scope === LATTICE_LAB_LEDGER_SCOPE.FINITE_NONPERIODIC
+    const count = isFiniteCalculationScope(scope)
       ? includedRows.length
       : shell.expectedCount;
+    const inversionPairs = [
+      "simple-cubic-checkerboard-v1",
+      "simple-cubic-alternating-planes-v1",
+    ].includes(caseRecord.id);
     const totalLabel = scope === LATTICE_LAB_LEDGER_SCOPE.CERTIFIED_PERIODIC
-      ? `${label}: ${count} contributions → ${pairCount} matching ` +
-        `pair${pairCount === 1 ? "" : "s"} → zero`
-      : scope === LATTICE_LAB_LEDGER_SCOPE.FINITE_NONPERIODIC
+      ? inversionPairs
+        ? `${label}: ${count} contributions → ${pairCount} matching ` +
+          `pair${pairCount === 1 ? "" : "s"} → zero`
+        : `${label}: ${count} contributions → symmetry-orbit sum → zero`
+      : isFiniteCalculationScope(scope)
         ? `${label}: ${count} calculated contribution` +
           `${count === 1 ? "" : "s"} → ${formatLedgerVector(vector)}`
         : `${label}: ${count} sites at ${shell.distance}`;
@@ -155,8 +174,9 @@ export function createLatticeLabLedgerViewModel({
     ledger.certifiedExactZero,
   );
   const includedRows = includedCalculationRows(ledger);
+  const finiteCalculationRequested = finiteNonperiodic;
   const finiteResidualAvailable = Boolean(
-    finiteNonperiodic &&
+    finiteCalculationRequested &&
     ledger.accelerationRowsAvailable &&
     includedRows.length > 0,
   );
@@ -176,9 +196,11 @@ export function createLatticeLabLedgerViewModel({
       ? LATTICE_LAB_LEDGER_SCOPE.FINITE_NONPERIODIC
       : LATTICE_LAB_LEDGER_SCOPE.NOT_ESTABLISHED;
   const accelerationAvailable = certifiedPeriodic || finiteResidualAvailable;
-  const receiverLabel = siteSelectionExplicit
-    ? `Selected ${receiverPolarity}`
-    : null;
+  const receiverLabel = finiteCalculationRequested
+    ? `Calculation target · Selected ${receiverPolarity}`
+    : siteSelectionExplicit
+      ? `Selected ${receiverPolarity}`
+      : null;
   const outcome = scope === LATTICE_LAB_LEDGER_SCOPE.NOT_ESTABLISHED
     ? "not-established"
     : zeroResidual
@@ -189,13 +211,13 @@ export function createLatticeLabLedgerViewModel({
     ? {
       icon: "✓",
       label: certifiedPeriodic
-        ? "Net acceleration is zero at every site."
+        ? "Net acceleration is zero at every architrino."
         : "Net acceleration is zero in this finite configuration.",
     }
     : outcome === "nonzero"
       ? {
         icon: "!",
-        label: "Nonzero in this finite configuration",
+        label: "Non-zero acceleration in this configuration.",
       }
       : {
         icon: null,
@@ -203,12 +225,19 @@ export function createLatticeLabLedgerViewModel({
       };
 
   const statement = certifiedPeriodic
-    ? "In this ideal repeating pattern, matching pulls cancel at every site at release."
+    ? caseRecord.id === "simple-cubic-checkerboard-v1"
+      ? "In this ideal repeating pattern, matching pulls cancel at every site at release."
+      : caseRecord.id === "hcp-abab-layers-v1"
+        ? "At the undeformed baseline of this ideal repeating pattern, complete symmetry orbits cancel at every site at release."
+        : "In this ideal repeating pattern, complete symmetry orbits cancel at every site at release."
     : finiteResidualAvailable
       ? zeroResidual
         ? "The calculated contributions cancel in this displayed finite configuration only."
         : "The calculated contributions leave a nonzero initial acceleration residual in this displayed finite configuration."
-      : "Acceleration has not been calculated for this geometry.";
+      : ledger.certificateValidation && !ledger.certificateValidation.passed
+        ? "Periodic acceleration is not established for this deformation: " +
+          `${ledger.certificateValidation.reason}.`
+        : "Acceleration has not been calculated for this geometry.";
   return Object.freeze({
     outcome,
     scope,
@@ -225,15 +254,18 @@ export function createLatticeLabLedgerViewModel({
     residualLineLabel: residualVector
       ? `Magnitude ${formatNumber(residualMagnitude)} · Vector ${formatLedgerVector(residualVector)}`
       : null,
-    shellSummaries: createShellSummaries(ledger, scope),
+    shellSummaries: createShellSummaries(ledger, scope, caseRecord),
     calculationAvailable: accelerationAvailable,
     calculationRows: accelerationAvailable
-      ? createCalculationRows(includedRows)
+      ? createCalculationRows(includedRows, {
+        conciseLabels: Boolean(caseRecord.randomization),
+        shellOnlyLabels: caseRecord.id === "hcp-abab-layers-v1",
+      })
       : Object.freeze([]),
     shellScopeNote: certifiedPeriodic
       ? "These two shell totals are local examples. The separate certificate covers the full declared repeating pattern."
       : finiteResidualAvailable
-        ? "These totals cover the displayed finite configuration only."
+        ? "These are local-shell summaries. The disclosed calculation includes every other site in the displayed finite configuration."
         : "Shell counts describe geometry only; they are not acceleration totals.",
     caseTitle: caseRecord.title,
   });
@@ -286,7 +318,9 @@ export function renderLatticeLabLedgerViewModel({
 
     const label = documentLike.createElement("span");
     label.className = "lattice-lab-ledger-calculation-label";
-    label.textContent = `${row.rowLabel} · ${row.polarity}`;
+    label.textContent = row.showPolarityInLabel
+      ? `${row.rowLabel} · ${row.polarity}`
+      : row.rowLabel;
 
     const values = documentLike.createElement("span");
     values.className = "lattice-lab-ledger-calculation-values";
