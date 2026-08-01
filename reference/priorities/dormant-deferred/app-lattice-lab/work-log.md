@@ -2,6 +2,12 @@
 
 This file records dated planning, implementation status, validation evidence, failed paths, and handoffs for `app-lattice-lab`. Keep strategy and claim boundaries in [priorities.md](priorities.md), accepted executable work in [work-queue.md](work-queue.md), and provisional concepts in [brainstorming.md](brainstorming.md).
 
+### 2026-08-01 — Workstream Archived Dormant-Deferred
+
+- Moved the complete top-level priority owner packet into `reference/priorities/dormant-deferred/app-lattice-lab/` at the operator's direction.
+- Preserved the accepted executable app, focused tests, and independent validators in their canonical runtime paths; the archival move changes priority routing, not the deployed app or its evidence.
+- Closed the immediate implementation lane. The retained queue is parked and non-executable unless the operator explicitly reactivates this owner.
+
 ## Log Entries
 
 ### 2026-08-01 — Z-Up Envelope, Fixed-Axis Deformation, Endpoint Aggregation, and Polarity Legend
