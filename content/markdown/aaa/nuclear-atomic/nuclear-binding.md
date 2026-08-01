@@ -82,11 +82,11 @@ after the branch convention for $c_{\text{eff}}$ and the environment is declared
 
 Nuclear binding is the residual strong interaction between color-singlet nucleons. It arises when neighboring proton and neutron assemblies couple through the surrounding Noether sea and through meson-like exchange channels, lowering the total energy relative to separated nucleons.
 
-The word `residual` matters. The quarks have already closed into protons and neutrons. Nuclear binding starts after that closure, using nucleon source envelopes as its working objects.
+The word `residual` matters. The nuclear calculation starts from a declared interface in which quark records have been coarse-grained into proton and neutron source envelopes. It does not thereby claim that the native quark-to-nucleon closure has been derived.
 
 So the nuclear problem is already coarse-grained one level above quarks:
 
-- quarks close into nucleons,
+- quark records are coarse-grained into declared nucleon source envelopes,
 - nucleons couple through residual hadronic channels,
 - nuclei are multi-nucleon bound assemblies.
 

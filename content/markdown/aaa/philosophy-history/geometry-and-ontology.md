@@ -10,7 +10,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ is therefore not an anti-geometric theory. It i
 
 The working question is always: what job is this geometry doing? A geometry may define the container, encode a causal wake, describe an assembly, summarize medium response, or organize observer measurements. Those jobs are different, and the chapter exists to keep them from being merged into one all-purpose word.
 
-The technical owners remain [Euclidean Void](../foundations/euclidean-void.md), [Ontology](../foundations/ontology.md), [Master Equation](../dynamics/master-equation.md), [Noether sea](../spacetime/noether-sea.md), [Emergent Metric](../spacetime/emergent-metric.md), and [Spacetime Models and the Noether sea](theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
+The technical owners remain [Euclidean Void](../foundations/euclidean-void.md), [Ontology](../foundations/ontology.md), [Master Equation](../dynamics/master-equation.md), [Noether sea](../spacetime/noether-sea.md), [Emergent Metric](../spacetime/emergent-metric.md), and [Spacetime Models and the Noether Sea](theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
 
 ## The Geometry Question
 

@@ -465,7 +465,7 @@ $$
 \mathcal L_{\mathrm{strong}}^{uud}(T).
 $$
 
-For $q=e$, this is the stable Generation-I electronic-hydrogen inventory $\mathcal A_{\mathrm H}$. For $q=\mu$, the Generation-II muon branch replaces the electron, and the comparison is defined only over a declared muon-branch retention window $W_\mu$ on which $\mathcal A_\mu(T)$ remains an admitted assembly. The transient branch does not silently enlarge the Generation-I hydrogen ledger.
+For $q=e$, this is the working Generation-I electronic-hydrogen comparison inventory $\mathcal A_{\mathrm H}$; stability remains a theorem target. For $q=\mu$, the Generation-II muon branch replaces the electron, and the comparison is defined only over a declared muon-branch retention window $W_\mu$ on which $\mathcal A_\mu(T)$ remains an admitted assembly. The transient branch does not silently enlarge the Generation-I hydrogen ledger.
 
 $$
 \mathcal O_{p,q,X}

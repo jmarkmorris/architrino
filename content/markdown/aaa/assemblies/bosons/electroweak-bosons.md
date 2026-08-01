@@ -16,12 +16,12 @@ Accordingly, the planar-pair description, Gate A/B quantities, and every neutrin
 
 ## The Photon ($\gamma$): Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
 
-The photon is the canonical electromagnetic transport channel. Unlike Standard Model QFT, which posits a pre-existing gauge field ($A_\mu$), this framework treats the photon as a **propagating assembly of discrete action history**.
+The photon-channel construction is the canonical electromagnetic transport target. Unlike Standard Model QFT, which posits a pre-existing gauge field ($A_\mu$), this framework models that target as a **propagating assembly of discrete action history**.
 
 ### Ontological Status: No Separate Gauge Inventory
 *   **The Claim:** There is no abstract "electromagnetic field" separate from the particles.
 *   **The Reality:** The effective electromagnetic field is the aggregate path-history of constituent architrinos, coarse-grained from their causal wakes.
-*   **The Assembly:** A photon is a specific, coherent bundle of these historical influences (per-hit actions) organized into a stable planar-pair mode. Emission is not the excitation of a background field; it is the release of an accepted action ledger into a photon channel.
+*   **The Assembly Target:** A candidate photon channel is modeled as a specific, coherent bundle of these historical influences (per-hit actions), organized into a planar-pair mode whose retained stability remains to be established. In this construction, emission is not the excitation of a background field; it is the release of an action ledger into the candidate photon channel.
 
 ### Geometric Unit: The Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
 The nearest generic taxonomy chart is [C2](../../noether-braid/braid-family-c.md#c2), which defines the opposite-circulation composition of two complete B1 records. It becomes a photon coordinate skeleton only if both photon-side planar records are established as B1 components. The photon hypothesis is more restrictive: it additionally requires planarization, coaxial placement, propagation-axis alignment, polarity conjugation, and the closure properties developed below. Those extra requirements remain photon-channel claims rather than Family-C coordinates.
@@ -35,7 +35,7 @@ At the finest scale, the photon unit is a composite assembly:
 
 ### Relation To The Symmetry-Breaking Threshold
 
-The photon carrier is close to the planar geometry assigned to the Family-A flat endpoint $\lambda_A=1$. At a horizon interface the three Family-A binary axes are hypothesized to converge toward the group-translation direction while branch-derived speed rows approach $c_f$; in the photon channel, the carrier is already a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared prescribed geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
+The candidate photon carrier is close to the planar geometry assigned to the Family-A flat endpoint $\lambda_A=1$. At a horizon interface the three Family-A binary axes are hypothesized to converge toward the group-translation direction while branch-derived speed rows approach $c_f$; in the photon theorem target, the carrier is a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared prescribed geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
 
 The reduced bridge is the planar Noether braid chart. In that chart, the same three support-row ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating polarity-conjugate planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
 

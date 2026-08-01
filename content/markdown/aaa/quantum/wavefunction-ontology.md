@@ -6,7 +6,7 @@ Its nearest companion notes are [Superposition Mechanism](../philosophy-history/
 
 ## Purpose and Scope
 
-This document establishes the ontological status of the quantum wavefunction ($\psi$) and the fundamental operators of quantum mechanics within $\mathbb{A}\mathbb{A}\mathbb{A}$. It maps the standard quantum formalism, traditionally treated as axiomatic, to deterministic, non-Markovian dynamics governed by the master equation.
+This document states the ontological interpretation of the quantum wavefunction ($\psi$) within $\mathbb{A}\mathbb{A}\mathbb{A}$ and sets out an effective comparison mapping for the fundamental operators of quantum mechanics. The proposed mapping translates the standard quantum formalism, traditionally treated as axiomatic, into deterministic, non-Markovian dynamics governed by the master equation.
 
 The framework explicitly separates the **ontic reality** of architrino trajectories and causal wake surfaces from the **epistemic description** captured by the wavefunction. Reframing measurement as dynamical threshold resolution does not by itself complete the quantum closure program, but it relocates the measurement problem onto a mechanical basis involving uncertainty, superposition, and the standard particle-wave duality comparison.
 

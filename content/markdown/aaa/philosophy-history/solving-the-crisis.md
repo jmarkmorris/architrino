@@ -545,7 +545,7 @@ The arrow problem also separates dynamical relaxation from measure-based typical
 
 **Core non-closure.** Wave-particle language still mixes ontology with measurement vocabulary. A deeper theory must explain source, propagation, polarization, and detector response without treating the photon as a tiny classical bead or as a purely formal state.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Radiation is an event-ledger and path-history process. A photon is a stable radiation transaction with source, propagation, polarization, detector response, and energy-momentum accounting. The canonical candidate ontology is a coaxial contra-rotating polarity-conjugate planar pair, with channel details still under closure.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Radiation is an event-ledger and path-history process. At the effective record level, a photon is represented by a radiation transaction with source, propagation, polarization, detector response, and energy-momentum accounting. The candidate native carrier is a coaxial contra-rotating polarity-conjugate planar pair; its retained stability and channel details remain under closure.
 
 **Resolution tests.** Use double-slit/Mach-Zehnder, single-photon detection, Malus' law, blackbody spectra, atomic spectra, synchrotron/bremsstrahlung, and QED correction benchmarks. The source mechanism must remain separate from the carrier/channel family.
 
