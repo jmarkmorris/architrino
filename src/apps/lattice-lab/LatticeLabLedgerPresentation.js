@@ -229,6 +229,8 @@ export function createLatticeLabLedgerViewModel({
       ? "In this ideal repeating pattern, matching pulls cancel at every site at release."
       : caseRecord.id === "hcp-abab-layers-v1"
         ? "At the undeformed baseline of this ideal repeating pattern, complete symmetry orbits cancel at every site at release."
+        : caseRecord.id === "simple-cubic-alternating-planes-v1"
+          ? "In this ideal repeating pattern, net acceleration is zero at every architrino."
         : "In this ideal repeating pattern, complete symmetry orbits cancel at every site at release."
     : finiteResidualAvailable
       ? zeroResidual
@@ -256,6 +258,20 @@ export function createLatticeLabLedgerViewModel({
       : null,
     shellSummaries: createShellSummaries(ledger, scope, caseRecord),
     calculationAvailable: accelerationAvailable,
+    calculationScopeDetail: certifiedPeriodic
+      ? caseRecord.id === "simple-cubic-checkerboard-v1"
+        ? "Certificate method: across the ideal stationary repeating pattern, " +
+          "every contribution is paired with its receiver-centered inverse " +
+          "under an inversion-symmetric exhaustion."
+        : "Certificate method: the ideal repeating pattern is exhausted by " +
+          `${caseRecord.accelerationCertificate.cancellationKind}, covering ` +
+          "every inequivalent Architrino class at " +
+          `${caseRecord.accelerationCertificate.deformationCoverage}.`
+      : finiteResidualAvailable
+        ? "Finite calculation scope: every other Architrino in this displayed " +
+          "nonperiodic configuration is included once; there is no repeating " +
+          "continuation."
+        : null,
     calculationRows: accelerationAvailable
       ? createCalculationRows(includedRows, {
         conciseLabels: Boolean(caseRecord.randomization),
@@ -312,6 +328,8 @@ export function renderLatticeLabLedgerViewModel({
   if (!calculationExists) {
     dom.calculation.open = false;
   }
+  dom.calculationScope.textContent = viewModel.calculationScopeDetail ?? "";
+  dom.calculationScope.hidden = !viewModel.calculationScopeDetail;
   const calculationRows = viewModel.calculationRows.map((row) => {
     const rowElement = documentLike.createElement("div");
     rowElement.className = "lattice-lab-ledger-calculation-row";

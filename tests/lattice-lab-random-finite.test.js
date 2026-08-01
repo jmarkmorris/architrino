@@ -26,11 +26,11 @@ test("random finite case is the final gallery item after Diamond Cubic", () => {
   const gallery = createLatticeLabCaseGallery();
   assert.deepEqual(gallery.map(({ title }) => title), [
     "Simple Cubic Checkerboard",
-    "BCC Two-Sublattice",
-    "FCC Alternating Planes",
-    "HCP ABAB Stacking",
+    "Body-Centered Cubic",
+    "Face-Centered Cubic",
+    "Hexagonal Close-Packed",
     "Simple Cubic Alternating Planes",
-    "Diamond Cubic Two-Sublattice",
+    "Diamond Cubic",
     "Simple Cubic Random 50/50",
   ]);
   assert.deepEqual(gallery.slice(-2).map((record) => record.id), [
@@ -38,17 +38,18 @@ test("random finite case is the final gallery item after Diamond Cubic", () => {
     LATTICE_LAB_RANDOM_FINITE_CASE_ID,
   ]);
   assert.equal(gallery.at(-1).title, "Simple Cubic Random 50/50");
-  assert.equal(gallery.at(-1).primerTitle, "Simple Cubic Random 50/50");
+  assert.equal("primerTitle" in gallery.at(-1), false);
   assert.equal(gallery.at(-1).repeatCell, null);
+  assert.equal(gallery.at(-1).unpolarizedLatticePattern, null);
 });
 
 test("seeded score ranking is reproducible and pins independently reviewable vectors", () => {
   const baseSites = createRandomFiniteFiftyFiftyCase(0).sites;
   const expectedFingerprints = new Map([
-    [0, "deac82b5"],
-    [1, "87ab1e15"],
-    [20260801, "2c95e1ed"],
-    [20260802, "d700f6fd"],
+    [0, "3fbfb8e9"],
+    [1, "4294b573"],
+    [20260801, "c2d6ef0b"],
+    [20260802, "21490819"],
   ]);
   expectedFingerprints.forEach((fingerprint, seed) => {
     const first = createLatticeLabRandomFiniteAssignment(baseSites, seed);
@@ -58,8 +59,8 @@ test("seeded score ranking is reproducible and pins independently reviewable vec
     );
     assert.equal(first.assignmentFingerprint, fingerprint);
     assert.deepEqual(first.polarityBySiteId, second.polarityBySiteId);
-    assert.equal(first.positrinoCount, 68);
-    assert.equal(first.electrinoCount, 68);
+    assert.equal(first.positrinoCount, 44);
+    assert.equal(first.electrinoCount, 44);
   });
 });
 
@@ -76,8 +77,8 @@ test("recalculation advances to a provably distinct exact-50/50 assignment", () 
     current.randomization.assignmentFingerprint,
   );
   assert.deepEqual(countLatticePolarities(createReferencePolarityState(next)), {
-    electrino: 68,
-    positrino: 68,
+    electrino: 44,
+    positrino: 44,
   });
 });
 
@@ -172,7 +173,7 @@ test("finite random ledger includes every other displayed site and no continuati
     state,
     caseRecord.defaultSiteId,
   );
-  assert.equal(ledger.rows.length, 135);
+  assert.equal(ledger.rows.length, 87);
   assert.equal(ledger.rows.every((row) =>
     row.availability === "displayed-neighbor" &&
     row.includedInCalculation === true
@@ -195,12 +196,12 @@ test("finite random ledger includes every other displayed site and no continuati
     viewModel.receiverLabel,
     `Calculation target · Selected ${ledger.receiverPolarity}`,
   );
-  assert.equal(viewModel.calculationRows.length, 135);
+  assert.equal(viewModel.calculationRows.length, 87);
   assert.equal(viewModel.calculationRows[0].rowLabel, "Contribution 1");
-  assert.equal(viewModel.calculationRows.at(-1).rowLabel, "Contribution 135");
+  assert.equal(viewModel.calculationRows.at(-1).rowLabel, "Contribution 87");
   assert.deepEqual(
     viewModel.calculationRows.map((row) => row.rowLabel),
-    Array.from({ length: 135 }, (_, index) => `Contribution ${index + 1}`),
+    Array.from({ length: 87 }, (_, index) => `Contribution ${index + 1}`),
   );
   assert.equal(
     viewModel.calculationRows.every((row) => row.showPolarityInLabel === false),
@@ -238,42 +239,15 @@ test("random action uses a custom accessible title-row asset without user-facing
   assert.match(runtime, /dom\.randomRecalculate\.hidden = !randomization/u);
   assert.match(runtime, /listen\(dom\.randomRecalculate, "click", recalculateRandomConfiguration\)/u);
   const randomCase = createRandomFiniteFiftyFiftyCase();
-  assert.equal(randomCase.primerParagraphs.length, 2);
-  assert.match(
-    randomCase.primerParagraphs.at(1),
-    /^The ledger sums/u,
-  );
-  assert.doesNotMatch(randomCase.primerParagraphs.join(" "), /Site Ledger/u);
-  assert.doesNotMatch(
-    randomCase.primerParagraphs.join(" "),
-    /uint32|seed ranks|splitmix32-score-rank/u,
-  );
+  assert.equal("primerTitle" in randomCase, false);
+  assert.equal("primerParagraphs" in randomCase, false);
 });
 
-test("Simple Cubic naming separates case pattern from official lattice primer name", () => {
+test("Simple Cubic case identity remains explicit after Primer removal", () => {
   const checkerboard = createLatticeLabCaseGallery()[0];
   assert.equal(checkerboard.title, "Simple Cubic Checkerboard");
-  assert.equal(checkerboard.primerTitle, "Simple Cubic");
-  assert.equal(
-    checkerboard.primerParagraphs.at(0),
-    "Sites are evenly spaced along three directions that meet at right angles. Each interior site has six nearest neighbors: left, right, up, down, forward, and back.",
-  );
-  assert.equal(
-    checkerboard.primerParagraphs.at(1),
-    "The checkerboard rule changes polarity at every one-step move.",
-  );
-  assert.doesNotMatch(
-    checkerboard.primerParagraphs.at(1).split(".").at(0),
-    /red|blue/u,
-  );
-  assert.equal(
-    checkerboard.primerParagraphs.at(-1),
-    "Geometric density n = 1/d³ counts sites per volume for spacing d.",
-  );
-  assert.doesNotMatch(
-    checkerboard.primerParagraphs.join(" "),
-    /not mass density|physical medium/u,
-  );
+  assert.equal("primerTitle" in checkerboard, false);
+  assert.equal("primerParagraphs" in checkerboard, false);
   const css = readFileSync(
     new URL("../src/apps/lattice-lab/lattice-lab.css", import.meta.url),
     "utf8",
@@ -291,16 +265,23 @@ test("gallery explanations use polarity language while color keys remain explici
 
   const bcc = gallery.find((record) => record.id === "bcc-two-sublattice-v1");
   assert.equal(
-    bcc.primerParagraphs.at(-1),
-    "With nearest spacing d, the geometric site density is n = 3√3/(4d³).",
+    bcc.title,
+    "Body-Centered Cubic",
   );
   assert.equal(
-    bcc.primerParagraphs.at(1),
-    "The two polarity populations occupy the interpenetrating simple-cubic sublattices.",
+    bcc.polarityRule,
+    "corner and body-center positions carry opposite polarities",
   );
-  assert.equal(bcc.teachingNote, null);
+  assert.equal(
+    bcc.learnerOverview,
+    "Each architrino has eight nearest neighbors along body-diagonal directions.",
+  );
   assert.doesNotMatch(
-    JSON.stringify(bcc),
+    [bcc.title, bcc.polarityRule, bcc.learnerOverview].join(" "),
+    /two-sublattice|sublattices?/u,
+  );
+  assert.doesNotMatch(
+    [bcc.title, bcc.polarityRule, bcc.learnerOverview].join(" "),
     /CsCl|Cesium chloride|material identity|This is site counting, not mass density\./u,
   );
 

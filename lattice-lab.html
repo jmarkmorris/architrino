@@ -52,7 +52,7 @@
             <div class="lattice-lab-card-heading">
               <h2 id="lattice-lab-case-title" class="lattice-lab-card-kicker"></h2>
             </div>
-            <dl class="lattice-lab-facts">
+            <dl id="lattice-lab-case-facts" class="lattice-lab-facts">
               <div>
                 <dt>Geometry</dt>
                 <dd id="lattice-lab-case-geometry"></dd>
@@ -66,44 +66,14 @@
                 <dd id="lattice-lab-case-next"></dd>
               </div>
               <div>
-                <dt>Displayed local total</dt>
+                <dt>Local total</dt>
                 <dd id="lattice-lab-case-local-total"></dd>
               </div>
               <div>
                 <dt>Geometric site density</dt>
                 <dd id="lattice-lab-case-density"></dd>
               </div>
-              <div>
-                <dt>Boundary treatment</dt>
-                <dd id="lattice-lab-case-boundary"></dd>
-              </div>
-              <div>
-                <dt>Calculation scope</dt>
-                <dd id="lattice-lab-case-scope"></dd>
-              </div>
             </dl>
-          </section>
-
-          <section
-            id="lattice-lab-primer"
-            class="lattice-lab-card lattice-lab-primer"
-            aria-labelledby="lattice-lab-primer-title"
-          >
-            <div class="lattice-lab-primer-heading">
-              <span>
-                <span class="lattice-lab-card-kicker">Lattice Primer</span>
-                <strong id="lattice-lab-primer-title"></strong>
-              </span>
-              <button
-                id="lattice-lab-primer-toggle"
-                class="lattice-lab-primer-toggle"
-                type="button"
-                aria-controls="lattice-lab-primer-body"
-                aria-expanded="true"
-                hidden
-              >Toggle primer</button>
-            </div>
-            <div id="lattice-lab-primer-body" class="lattice-lab-primer-body"></div>
           </section>
 
           <section
@@ -148,6 +118,12 @@
                 <dt>Polarity counts</dt>
                 <dd>
                   Every configuration in this curated gallery has equal numbers of electrinos and positrinos. This is a population fact; equal counts do not establish that acceleration contributions balance or cancel.
+                </dd>
+              </div>
+              <div>
+                <dt>Boundary treatment</dt>
+                <dd>
+                  The main display includes site centers within a spherical radius of 2.75d.
                 </dd>
               </div>
               <div>
@@ -280,9 +256,27 @@
         </div>
 
         <aside class="lattice-lab-inspector-stack" aria-label="Selected-site inspection">
+          <section
+            id="lattice-lab-unpolarized-card"
+            class="lattice-lab-miniature-card lattice-lab-unpolarized-card"
+            aria-labelledby="lattice-lab-unpolarized-title"
+          >
+            <div>
+              <span id="lattice-lab-unpolarized-title">Unpolarized Repeat Pattern</span>
+            </div>
+            <div class="lattice-lab-miniature-viewport lattice-lab-unpolarized-viewport">
+              <canvas
+                id="lattice-lab-unpolarized-canvas"
+                role="img"
+                tabindex="0"
+                aria-label="Rotatable unpolarized conventional lattice geometry"
+              ></canvas>
+            </div>
+          </section>
+
           <section id="lattice-lab-miniature-card" class="lattice-lab-miniature-card" aria-labelledby="lattice-lab-miniature-title">
             <div>
-              <span id="lattice-lab-miniature-title">How This Pattern Repeats</span>
+              <span id="lattice-lab-miniature-title">Polarized Repeat Pattern</span>
             </div>
             <div class="lattice-lab-miniature-viewport">
               <canvas
@@ -334,6 +328,11 @@
             <p id="lattice-lab-ledger-shell-scope" class="lattice-lab-ledger-shell-scope"></p>
             <details id="lattice-lab-ledger-calculation" class="lattice-lab-ledger-calculation">
               <summary>Show calculation</summary>
+              <p
+                id="lattice-lab-ledger-calculation-scope"
+                class="lattice-lab-ledger-calculation-scope"
+                hidden
+              ></p>
               <div class="lattice-lab-ledger-calculation-heading" aria-hidden="true">
                 <span>Normalized contribution</span>
                 <span>Running local sum</span>

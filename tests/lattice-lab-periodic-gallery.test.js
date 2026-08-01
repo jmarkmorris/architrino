@@ -174,18 +174,17 @@ test("HCP user-facing copy consistently describes ABAB stacking", () => {
   const caseRecord = createLatticeLabCaseGallery().find(
     ({ id }) => id === "hcp-abab-layers-v1",
   );
-  assert.equal(caseRecord.title, "HCP ABAB Stacking");
-  assert.equal(caseRecord.primerTitle, "HCP · ABAB Stacking");
+  assert.equal(caseRecord.title, "Hexagonal Close-Packed");
   assert.equal(
     caseRecord.polarityRule,
     "opposite polarities alternate between A and B stacking positions",
   );
-  assert.match(caseRecord.primerParagraphs.join(" "), /ABAB stacking/u);
+  assert.match(caseRecord.learnerOverview, /triangular plane/u);
   assert.doesNotMatch(
     [
       caseRecord.title,
       caseRecord.polarityRule,
-      ...caseRecord.primerParagraphs,
+      caseRecord.learnerOverview,
     ].join(" "),
     /\blayers?\b/u,
   );

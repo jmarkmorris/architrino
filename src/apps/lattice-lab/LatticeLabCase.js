@@ -13,10 +13,15 @@ import {
   createStationaryPeriodicAccelerationRow,
   validatePeriodicSymmetryCertificate,
 } from "./LatticeLabPeriodicStationary.js";
+import {
+  createHcpUnpolarizedPattern,
+  createParallelepipedUnpolarizedPattern,
+} from "./LatticeLabUnpolarizedPattern.js";
 
 export const LATTICE_LAB_CASE_ID = "simple-cubic-checkerboard-v1";
-export const LATTICE_LAB_DISPLAY_RADIUS = 3;
-export const LATTICE_LAB_RANDOM_FINITE_DISPLAY_RADIUS = 3.25;
+export const LATTICE_LAB_DISPLAY_RADIUS = 2.75;
+export const LATTICE_LAB_RANDOM_FINITE_DISPLAY_RADIUS =
+  LATTICE_LAB_DISPLAY_RADIUS;
 export const LATTICE_LAB_GRID_SPAN = 8;
 export const LATTICE_LAB_DEFAULT_SITE_ID = "site-3-3-3";
 
@@ -220,6 +225,7 @@ function createPeriodicCase(specification) {
     idealSites: Object.freeze(idealSites),
     defaultSiteId: defaultSite.id,
     repeatCell: specification.repeatCell,
+    unpolarizedLatticePattern: specification.unpolarizedLatticePattern,
     calculationScope: specification.metadata.accelerationCertificate
       ? "certified-periodic"
       : null,
@@ -240,16 +246,18 @@ function createSimpleCubicCase({
   title,
   polarityAtGrid,
   polarityRule,
-  primerTitle,
-  primerParagraphs,
+  learnerOverview = null,
   evidenceStatus,
   calculationBoundaryTreatment,
   accelerationStatus,
   accelerationCertificate = null,
   calculationScope = null,
   displayRadius = LATTICE_LAB_DISPLAY_RADIUS,
+  defaultSiteId = LATTICE_LAB_DEFAULT_SITE_ID,
+  mainRepeatRepresentativeOffset = [0, 0, 0],
   repeatSpecification,
 }) {
+  const conventionalVectors = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
   const sites = [];
   const idealSites = [];
   const halfSpan = (LATTICE_LAB_GRID_SPAN - 1) / 2;
@@ -283,7 +291,7 @@ function createSimpleCubicCase({
     }
   }
   const defaultSite = sites.find(
-    (site) => site.id === LATTICE_LAB_DEFAULT_SITE_ID,
+    (site) => site.id === defaultSiteId,
   );
   return Object.freeze({
     schema: "lattice-lab-case/v2",
@@ -299,8 +307,6 @@ function createSimpleCubicCase({
     nextLocalShell: Object.freeze({ count: 12, distance: "√2d" }),
     selectedLocalTotal: 18,
     geometricSiteDensity: "n = 1/d³",
-    boundaryTreatment:
-      `spherical display crop containing every simple-cubic site center within radius ${displayRadius}d; continuation is not shown`,
     calculationBoundaryTreatment,
     evidenceStatus,
     accelerationCertificate,
@@ -314,6 +320,9 @@ function createSimpleCubicCase({
     sites: Object.freeze(sites),
     idealSites: Object.freeze(idealSites),
     defaultSiteId: defaultSite.id,
+    mainRepeatRepresentativeOffset: freezeVector(
+      mainRepeatRepresentativeOffset,
+    ),
     repeatCell: createRepeatCell(
       repeatSpecification.vectors,
       repeatSpecification.sites.map((site) => ({
@@ -327,9 +336,12 @@ function createSimpleCubicCase({
         originFractional: repeatSpecification.originFractional,
       },
     ),
-    primerTitle,
-    primerParagraphs: Object.freeze(primerParagraphs),
-    teachingNote: null,
+    unpolarizedLatticePattern: createParallelepipedUnpolarizedPattern({
+      label: "Simple cubic conventional cell",
+      vectors: conventionalVectors,
+      basis: [{ fractional: [0, 0, 0] }],
+    }),
+    learnerOverview,
   });
 }
 
@@ -341,13 +353,7 @@ export function createSimpleCubicCheckerboardCase() {
       (ix + iy + iz) % 2 === 0
         ? LATTICE_LAB_POLARITY.POSITRINO
         : LATTICE_LAB_POLARITY.ELECTRINO,
-    polarityRule: "alternating parity at every nearest-neighbor step",
-    primerTitle: "Simple Cubic",
-    primerParagraphs: [
-      "Sites are evenly spaced along three directions that meet at right angles. Each interior site has six nearest neighbors: left, right, up, down, forward, and back.",
-      "The checkerboard rule changes polarity at every one-step move.",
-      "Geometric density n = 1/d³ counts sites per volume for spacing d.",
-    ],
+    polarityRule: "alternating polarity at every nearest-neighbor step",
     evidenceStatus:
       "derived stationary-release cancellation under the declared exhaustion",
     calculationBoundaryTreatment:
@@ -379,11 +385,6 @@ export function createRandomFiniteFiftyFiftyCase(
         : LATTICE_LAB_POLARITY.ELECTRINO,
     polarityRule:
       "seeded exact 50/50 assignment within this spherical crop",
-    primerTitle: "Simple Cubic Random 50/50",
-    primerParagraphs: [
-      "This case uses the displayed simple-cubic spherical crop as one finite, nonperiodic configuration. It does not repeat beyond the shown sites.",
-      "The ledger sums the stationary normalized acceleration contribution from every other displayed site to the selected receiver. Its result applies only to this finite configuration and makes no motion, stability, energy, or conservation claim.",
-    ],
     evidenceStatus:
       "calculated stationary acceleration for one displayed finite nonperiodic configuration",
     calculationBoundaryTreatment:
@@ -413,6 +414,7 @@ export function createRandomFiniteFiftyFiftyCase(
     idealSites: sites,
     defaultSiteId: defaultSite.id,
     repeatCell: null,
+    unpolarizedLatticePattern: null,
     periodic: false,
     calculationScope: "finite-nonperiodic",
     randomization: assignment,
@@ -428,12 +430,9 @@ export function createSimpleCubicAlternatingPlanesCase() {
         ? LATTICE_LAB_POLARITY.POSITRINO
         : LATTICE_LAB_POLARITY.ELECTRINO,
     polarityRule: "uniform square planes alternate polarity along Z",
-    primerTitle: "Simple Cubic · Alternating Planes",
-    primerParagraphs: [
-      "The occupied sites are the same simple-cubic rows as the checkerboard case, with six nearest neighbors at d.",
-      "Here each XY plane has one polarity and the next plane has the other. Four nearest neighbors stay in the same-polarity plane; two lie in opposite-polarity planes.",
-      "A receiver-centered inversion-pair certificate gives zero net acceleration at every architrino in the ideal stationary repeat.",
-    ],
+    learnerOverview:
+      "Four nearest neighbors lie in the same-polarity plane; two lie in " +
+      "the adjacent opposite-polarity planes.",
     evidenceStatus:
       "derived stationary-release cancellation under the declared periodic exhaustion",
     calculationBoundaryTreatment:
@@ -443,6 +442,8 @@ export function createSimpleCubicAlternatingPlanesCase() {
     accelerationCertificate:
       LATTICE_LAB_PERIODIC_CERTIFICATES["simple-cubic-alternating-planes-v1"],
     calculationScope: "certified-periodic",
+    defaultSiteId: "site-3-3-4",
+    mainRepeatRepresentativeOffset: [0, 0, 1],
     repeatSpecification: {
       vectors: [[1, 0, 0], [0, 1, 0], [0, 0, 2]],
       sites: [
@@ -463,7 +464,7 @@ function createBccCase() {
   ];
   return createPeriodicCase({
     id: "bcc-two-sublattice-v1",
-    title: "BCC Two-Sublattice",
+    title: "Body-Centered Cubic",
     vectors,
     basis,
     cropCenter: [a / 4, a / 4, a / 4],
@@ -492,18 +493,21 @@ function createBccCase() {
         contextPresentation: "continuation-markers",
       },
     ),
+    unpolarizedLatticePattern: createParallelepipedUnpolarizedPattern({
+      label: "Body-centered cubic conventional cell",
+      vectors,
+      basis,
+    }),
     metadata: {
       geometry: "body-centered cubic",
       geometryLabel: "Body-centered cubic (BCC)",
-      polarityRule: "corner and body-center sublattices carry opposite polarities",
+      polarityRule: "corner and body-center positions carry opposite polarities",
       nearestNeighborDistance: "d",
       coordinationNumber: 8,
       nearestShell: Object.freeze({ count: 8, distance: "d" }),
       nextLocalShell: Object.freeze({ count: 6, distance: "2d/√3" }),
       selectedLocalTotal: 14,
       geometricSiteDensity: "n = 3√3/(4d³)",
-      boundaryTreatment:
-        "spherical display crop containing every BCC site center within radius 3d; continuation is not shown",
       calculationBoundaryTreatment:
         "ideal stationary infinite repeat with receiver-centered inversion-symmetric exhaustion; the spherical envelope is display only",
       evidenceStatus:
@@ -512,13 +516,9 @@ function createBccCase() {
         LATTICE_LAB_PERIODIC_CERTIFICATES["bcc-two-sublattice-v1"],
       accelerationStatus:
         "derived exact zero at every site under the declared receiver-centered inversion-pair exhaustion",
-      primerTitle: "BCC · Two Sublattices",
-      primerParagraphs: Object.freeze([
-        "A conventional cubic cell has corner sites plus one body-center site. Each site has eight nearest neighbors along body-diagonal directions.",
-        "The two polarity populations occupy the interpenetrating simple-cubic sublattices.",
-        "With nearest spacing d, the geometric site density is n = 3√3/(4d³).",
-      ]),
-      teachingNote: null,
+      learnerOverview:
+        "Each architrino has eight nearest neighbors along body-diagonal " +
+        "directions.",
     },
   });
 }
@@ -543,7 +543,7 @@ function createFccCase() {
       : LATTICE_LAB_POLARITY.ELECTRINO;
   return createPeriodicCase({
     id: "fcc-alternating-planes-v1",
-    title: "FCC Alternating Planes",
+    title: "Face-Centered Cubic",
     vectors,
     basis,
     cropCenter: [a / 4, 0, a / 4],
@@ -570,9 +570,14 @@ function createFccCase() {
       {
         kind: "cell",
         minimal: true,
-        contextPresentation: "secondary-site-copies",
+        contextPresentation: "owned-cell-with-continuation",
       },
     ),
+    unpolarizedLatticePattern: createParallelepipedUnpolarizedPattern({
+      label: "Face-centered cubic conventional cell",
+      vectors,
+      basis,
+    }),
     metadata: {
       geometry: "face-centered cubic",
       geometryLabel: "Face-centered cubic (FCC)",
@@ -583,8 +588,6 @@ function createFccCase() {
       nextLocalShell: Object.freeze({ count: 6, distance: "√2d" }),
       selectedLocalTotal: 18,
       geometricSiteDensity: "n = √2/d³",
-      boundaryTreatment:
-        "spherical display crop containing every FCC site center within radius 3d; continuation is not shown",
       calculationBoundaryTreatment:
         "ideal stationary infinite repeat with receiver-centered inversion-symmetric exhaustion; the spherical envelope is display only",
       evidenceStatus:
@@ -593,13 +596,9 @@ function createFccCase() {
         LATTICE_LAB_PERIODIC_CERTIFICATES["fcc-alternating-planes-v1"],
       accelerationStatus:
         "derived exact zero at every site under the declared receiver-centered inversion-pair exhaustion",
-      primerTitle: "FCC · Alternating Planes",
-      primerParagraphs: Object.freeze([
-        "FCC places sites at cube corners and face centers. Each site has twelve nearest neighbors, and its close-packed layers follow an ABCABC stacking sequence.",
-        "This canned polarity variant alternates polarity between successive (001) site planes. Triangular nearest-neighbor loops prevent every nearest pair from being opposite polarity.",
-        "With nearest spacing d, the geometric site density is n = √2/d³. The displayed shell rows are local examples; the separate periodic certificate covers the full repeat.",
-      ]),
-      teachingNote: "ABCABC describes the close-packed geometry; the polarity assignment uses (001) planes.",
+      learnerOverview:
+        "FCC places architrinos at cube corners and face centers; each " +
+        "architrino has twelve nearest neighbors.",
     },
   });
 }
@@ -618,7 +617,7 @@ function createHcpCase() {
   const basisB = fractionalToCartesian(basis[1].fractional, vectors);
   return createPeriodicCase({
     id: "hcp-abab-layers-v1",
-    title: "HCP ABAB Stacking",
+    title: "Hexagonal Close-Packed",
     vectors,
     basis,
     cropCenter: scaleVector(basisB, 0.5),
@@ -643,6 +642,10 @@ function createHcpCase() {
       "minimal 2-site ideal-HCP translation cell",
       { kind: "cell", minimal: true },
     ),
+    unpolarizedLatticePattern: createHcpUnpolarizedPattern({
+      label: "Hexagonal close-packed conventional cell",
+      vectors,
+    }),
     metadata: {
       geometry: "hexagonal close-packed",
       geometryLabel: "Hexagonal close-packed (HCP)",
@@ -654,8 +657,6 @@ function createHcpCase() {
       nextLocalShell: Object.freeze({ count: 6, distance: "√2d" }),
       selectedLocalTotal: 18,
       geometricSiteDensity: "n = √2/d³",
-      boundaryTreatment:
-        "spherical display crop containing every ideal-HCP site center within radius 3d; continuation is not shown",
       calculationBoundaryTreatment:
         "ideal stationary infinite repeat with complete threefold-rotation and basal-reflection symmetry-orbit exhaustion at the undeformed baseline; the spherical envelope is display only",
       evidenceStatus:
@@ -664,13 +665,9 @@ function createHcpCase() {
         LATTICE_LAB_PERIODIC_CERTIFICATES["hcp-abab-layers-v1"],
       accelerationStatus:
         "derived exact zero at every site at the undeformed baseline; static X deformation is not covered by this certificate",
-      primerTitle: "HCP · ABAB Stacking",
-      primerParagraphs: Object.freeze([
-        "Ideal HCP has triangular site planes in ABAB stacking. A site has six nearest neighbors in its own plane, three above, and three below.",
-        "This two-site primitive repeat assigns one polarity to A stacking positions and the other to B stacking positions. The miniature extends nearest-neighbor relationships across the periodic repeat without drawing a physical cell boundary.",
-        "At the ideal height ratio, n = √2/d³. The undeformed repeating pattern has a symmetry-orbit acceleration certificate; static X deformation is outside that certificate.",
-      ]),
-      teachingNote: "ABAB is the ideal close-packed stacking shown here.",
+      learnerOverview:
+        "Each architrino has six nearest neighbors in its own triangular " +
+        "plane, three above, and three below.",
     },
   });
 }
@@ -707,7 +704,7 @@ function createDiamondCase() {
       : LATTICE_LAB_POLARITY.ELECTRINO;
   return createPeriodicCase({
     id: "diamond-cubic-two-sublattice-v1",
-    title: "Diamond Cubic Two-Sublattice",
+    title: "Diamond Cubic",
     vectors,
     basis,
     cropCenter: [a / 8, a / 8, a / 8],
@@ -739,18 +736,22 @@ function createDiamondCase() {
       "minimal 2-site diamond translation cell",
       { kind: "cell", minimal: true },
     ),
+    unpolarizedLatticePattern: createParallelepipedUnpolarizedPattern({
+      label: "Diamond cubic conventional cell",
+      vectors,
+      basis,
+    }),
     metadata: {
       geometry: "diamond cubic",
       geometryLabel: "Diamond cubic",
-      polarityRule: "interpenetrating FCC sublattices carry opposite polarities",
+      polarityRule:
+        "two interpenetrating FCC site networks carry opposite polarities",
       nearestNeighborDistance: "d",
       coordinationNumber: 4,
       nearestShell: Object.freeze({ count: 4, distance: "d" }),
       nextLocalShell: Object.freeze({ count: 12, distance: "4d/√6" }),
       selectedLocalTotal: 16,
       geometricSiteDensity: "n = 3√3/(8d³)",
-      boundaryTreatment:
-        "spherical display crop containing every diamond-cubic site center within radius 3d; continuation is not shown",
       calculationBoundaryTreatment:
         "ideal stationary infinite repeat with receiver-centered twofold-rotation symmetry-orbit exhaustion; the spherical envelope is display only",
       evidenceStatus:
@@ -759,13 +760,9 @@ function createDiamondCase() {
         LATTICE_LAB_PERIODIC_CERTIFICATES["diamond-cubic-two-sublattice-v1"],
       accelerationStatus:
         "derived exact zero at every site under the declared receiver-centered twofold-rotation-orbit exhaustion",
-      primerTitle: "Diamond Cubic · Two Sublattices",
-      primerParagraphs: Object.freeze([
-        "Diamond cubic combines two interpenetrating FCC sublattices offset along a body diagonal. Each site has four nearest neighbors in a tetrahedral arrangement.",
-        "The two sublattices carry opposite polarity assignments. Zincblende is the familiar two-sublattice teaching analogy; no material identity is implied.",
-        "With nearest spacing d, n = 3√3/(8d³). A twofold-rotation-orbit certificate gives zero net acceleration throughout the ideal stationary repeat.",
-      ]),
-      teachingNote: "Zincblende-type ordering is a geometry teaching analogy only.",
+      learnerOverview:
+        "Each architrino has four nearest neighbors in a tetrahedral " +
+        "arrangement.",
     },
   });
 }

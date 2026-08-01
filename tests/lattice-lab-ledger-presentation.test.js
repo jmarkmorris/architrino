@@ -61,6 +61,13 @@ test("certified checkerboard view starts with the exact periodic zero result", (
     ],
   );
   assert.equal(viewModel.calculationAvailable, true);
+  assert.equal(
+    viewModel.calculationScopeDetail,
+    "Certificate method: across the ideal stationary repeating pattern, " +
+      "every contribution is paired with its receiver-centered inverse " +
+      "under an inversion-symmetric exhaustion.",
+  );
+  assert.doesNotMatch(viewModel.calculationScopeDetail, /release|motion|stability|energy|conservation/u);
   assert.equal(viewModel.calculationRows.length, 18);
   assert.match(viewModel.shellScopeNote, /local examples/u);
   assert.match(viewModel.shellScopeNote, /separate certificate/u);
@@ -117,6 +124,28 @@ test("BCC reports exact periodic zero only when its repeating-pattern certificat
   assert.match(viewModel.statement, /complete symmetry orbits/u);
   assert.match(viewModel.shellScopeNote, /full declared repeating pattern/u);
   assert.doesNotMatch(JSON.stringify(viewModel), /displayed finite|finite crop/u);
+});
+
+test("alternating-planes Ledger uses learner-facing periodic zero copy", () => {
+  const caseRecord = createLatticeLabCaseGallery().find(
+    ({ id }) => id === "simple-cubic-alternating-planes-v1",
+  );
+  const ledger = createSelectedSiteLedger(
+    caseRecord,
+    createReferencePolarityState(caseRecord),
+    caseRecord.defaultSiteId,
+  );
+  const viewModel = createLatticeLabLedgerViewModel({
+    caseRecord,
+    ledger,
+    certificatePassed: ledger.certificateApplies,
+  });
+
+  assert.equal(
+    viewModel.statement,
+    "In this ideal repeating pattern, net acceleration is zero at every architrino.",
+  );
+  assert.doesNotMatch(viewModel.statement, /orbit|release/u);
 });
 
 test("finite nonperiodic state reports only its calculated finite residual", () => {
@@ -176,12 +205,57 @@ test("finite nonperiodic state reports only its calculated finite residual", () 
     "Calculation target · Selected electrino",
   );
   assert.equal(viewModel.calculationAvailable, true);
+  assert.equal(
+    viewModel.calculationScopeDetail,
+    "Finite calculation scope: every other Architrino in this displayed " +
+      "nonperiodic configuration is included once; there is no repeating " +
+      "continuation.",
+  );
   assert.equal(viewModel.calculationRows.length, 18);
   assert.deepEqual(
     viewModel.calculationRows.at(-1).runningResidual,
     [0.25, 0, 0],
   );
   assert.match(viewModel.shellSummaries[0].totalLabel, /6 calculated contributions/u);
+});
+
+test("periodic gallery method scope lives inside the calculation disclosure", () => {
+  createLatticeLabCaseGallery()
+    .filter((caseRecord) =>
+      caseRecord.calculationScope === "certified-periodic" &&
+      caseRecord.id !== "simple-cubic-checkerboard-v1"
+    )
+    .forEach((caseRecord) => {
+      const ledger = createSelectedSiteLedger(
+        caseRecord,
+        createReferencePolarityState(caseRecord),
+        caseRecord.defaultSiteId,
+      );
+      const viewModel = createLatticeLabLedgerViewModel({
+        caseRecord,
+        ledger,
+        certificatePassed: ledger.certificateApplies,
+      });
+      if (!ledger.certificateApplies) {
+        assert.equal(viewModel.calculationScopeDetail, null, caseRecord.id);
+        return;
+      }
+      assert.match(
+        viewModel.calculationScopeDetail,
+        /^Certificate method: the ideal repeating pattern is exhausted by /u,
+        caseRecord.id,
+      );
+      assert.match(
+        viewModel.calculationScopeDetail,
+        /every inequivalent Architrino class/u,
+        caseRecord.id,
+      );
+      assert.doesNotMatch(
+        viewModel.calculationScopeDetail,
+        /release|motion|stability|energy|conservation/u,
+        caseRecord.id,
+      );
+    });
 });
 
 test("finite nonperiodic zero is derived from included contribution rows only", () => {

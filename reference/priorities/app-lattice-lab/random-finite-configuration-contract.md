@@ -2,9 +2,9 @@
 
 ## Scope
 
-The `Simple Cubic Random 50/50` gallery case is one finite, nonperiodic simple-cubic configuration shown with a spherical display crop. It has 136 displayed sites. Each generated configuration contains exactly 68 positrinos and 68 electrinos. Equal population is a configuration fact only; it does not establish acceleration cancellation or balance.
+The `Simple Cubic Random 50/50` gallery case is one finite, nonperiodic simple-cubic configuration containing every simple-cubic site center within a spherical radius of $2.75d$. It has 88 displayed sites. Each generated configuration contains exactly 44 positrinos and 44 electrinos. Equal population is a configuration fact only; it does not establish acceleration cancellation or balance.
 
-The Ledger calculation for a selected receiver includes each of the other 135 displayed sites exactly once. It reports the normalized stationary acceleration residual for that finite configuration only. It supplies no repeating-pattern, all-space, motion, stability, energy, or conservation claim.
+The Ledger calculation for a selected receiver includes each of the other 87 displayed sites exactly once. It reports the normalized stationary acceleration residual for that finite configuration only. It supplies no repeating-pattern, all-space, motion, stability, energy, or conservation claim.
 
 ## Reproducible assignment rule
 
@@ -21,9 +21,9 @@ The assignment identifier is `splitmix32-score-rank-fifty-fifty-v1`.
    - the score is $\operatorname{uint32}(z\mathbin{\mathtt{xor}}(z\!\gg\!15))$.
 
 5. Rank by unsigned score, breaking a score tie by the original ordinal.
-6. Assign the first 68 ranked sites as positrinos and the remaining 68 as electrinos.
+6. Assign the first 44 ranked sites as positrinos and the remaining 44 as electrinos.
 
-The default seed is `20260801`. A recalculation chooses the smallest succeeding uint32 seed whose assignment fingerprint differs from the current fingerprint. The displayed provenance records the seed, algorithm id, assignment fingerprint, and both population counts.
+The default seed is `20260801`. A recalculation chooses the smallest succeeding uint32 seed whose assignment fingerprint differs from the current fingerprint. The runtime contract records the seed, algorithm id, assignment fingerprint, and both population counts; those provenance fields are not exposed in the explanatory panels.
 
 ## Verification
 
