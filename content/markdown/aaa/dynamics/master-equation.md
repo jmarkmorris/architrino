@@ -3136,7 +3136,7 @@ The independently executable instrument `scripts/equation-mapping/analyze-circul
    $$
    and the radial equation selects $R/R_*\approx0.0869416735$. The partner-root Jacobian floor at this point is approximately $0.7071$.
 
-These are measured algebraic facts of the unregularized uniform-circular simple-root chart, not retained-branch or stability results. The null result for the restricted principal-partner ledger is not a theorem on $(1,\infty)$, while the first full-ledger zero already establishes numerical existence inside the searched interval. Promotion to a circular MCB requires the same finite singular-event convention for the folds that created the older roots, a retained-history certificate, wake-boundary closure, and a stable return map.
+These are measured algebraic facts of the unregularized uniform-circular simple-root chart, not retained-branch or stability results. The null result for the restricted principal-partner ledger is not a theorem on $(1,\infty)$, while the first full-ledger result establishes a numerical zero of the prescribed algebraic ledger inside the searched interval. Promotion to a circular MCB requires the same finite singular-event convention for the folds that created the older roots, a retained-history certificate, wake-boundary closure, and a stable return map.
 
 The line-of-action sensitivity can be recomputed without changing the causal-root measure. In the counterfactual inertially extrapolated construction, retain the actual roots, emission-site distance, and canonical transmitter-side acceleration weight, but replace the acceleration direction by
 $$

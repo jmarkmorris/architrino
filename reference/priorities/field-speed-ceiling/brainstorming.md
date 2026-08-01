@@ -375,3 +375,107 @@ geometry; a complete incoming causal-root ledger; a defined cap-state
 reception and transfer rule; an outgoing retained history; and a separately
 derived external observable signature. The speed ceiling and isolated
 co-moving self-contact rule alone establish none of those items.
+
+## Einstein-review alternates retained for investigation
+
+The complete finding dispositions are in the
+[Einstein Review Response](albert-einstein-review-response-2026-08-01.md).
+The alternatives below are deliberately outside the proposed foundational
+law and active theorem queue.
+
+### Strict sub-wake sibling
+
+Fix $\epsilon\in(0,1)$ and replace the exact field-speed ball by
+
+$$
+\|\mathbf V\|
+\le
+(1-\epsilon)c_f.
+$$
+
+For a distinct ordered channel with current separation $r_0>0$ and a complete
+retained past, this alternate domain gives one simple causal root,
+$D_t\ge\epsilon c_f$, no positive-delay self root, and
+
+$$
+T_r-S
+\le
+\frac{r_0}{\epsilon c_f},
+\qquad
+\frac{\epsilon}{2-\epsilon}
+\le
+\frac{dS}{dT_r}
+\le
+\frac{2-\epsilon}{\epsilon}.
+$$
+
+Claim grade: `derived alternate theorem` under the stated separation and
+complete-history assumptions. It introduces a new dimensionless parameter and
+does not uniformly control the inverse-square kernel as $r_0\to0$, close the
+coupled history-to-ledger map, or establish a meaningful $\epsilon\to0$
+limit. It is therefore mathematical scaffolding, not a selected regulator or
+physical ceiling.
+
+Plainly: a small strict gap between path speed and wake speed removes the
+zero-Jacobian root geometry, but close-range acceleration and the full delayed
+evolution can still fail for separate reasons.
+
+### Response-gain derivation target
+
+A broader candidate family decomposes the complete net ledger into radial and
+transverse parts and writes
+
+$$
+\mathbf A_{\mathrm{eff}}
+=
+\alpha_\parallel(\|\mathbf V\|,a_\parallel)\,
+a_\parallel\hat{\mathbf v}
++
+\alpha_\perp(\|\mathbf V\|)
+\mathbf A_\perp.
+$$
+
+For a positive bounded driving component, the scalar reachability test
+
+$$
+\int^{c_\star}\frac{dv}{\alpha_\parallel(v)}
+$$
+
+distinguishes a gain law that can reach its declared comparison speed
+$c_\star$ in finite time from one whose integral diverges and approaches that
+speed only asymptotically. Here $c_\star$ is deliberately not identified with
+primitive wake speed $c_f$. Any observer-level relativistic gain profile is a
+comparison or recovery target, not an architrino-level premise.
+
+The native derivation target is to compute any effective anisotropic gain from
+a declared entourage or assembly ledger. Until that calculation exists, this
+family neither replaces the hard-cap proposal nor establishes emergent
+inertia, Lorentz recovery, or an observer invariant speed.
+
+Plainly: different response laws can soften the approach to a limiting speed
+instead of creating an exact boundary event. The theory must derive such a
+law from its own wake bookkeeping before it can use that possibility.
+
+### Velocity-atom minimization candidate
+
+A possible event-selection principle is to minimize
+
+$$
+\sum_i\|\Delta\mathbf V_i\|
+$$
+
+over dispositions that already have a declared guard, remain inside the
+velocity domain, own every source and receiver stratum exactly once, and admit
+at least one compatible outgoing retained history. Event covariance under
+Euclidean isometries, absolute-time translation, and polarity-preserving
+label permutation is a separate proposed obligation.
+
+This candidate is not adopted. It does not derive the regular tangent-cone
+projection without the proposed radial-reaction and absolute-continuity law.
+At exact contact, a zero atom gives only a velocity-preserving outgoing
+contact one-jet; it cannot select a labeled pass-through or any right-hand
+path before existence and uniqueness of a compatible continuation are proved.
+
+Plainly: preferring the smallest velocity jump may rank event updates only
+after the possible continuations are known. It cannot manufacture the missing
+future history.

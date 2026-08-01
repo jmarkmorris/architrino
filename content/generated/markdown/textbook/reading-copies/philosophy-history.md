@@ -5287,11 +5287,11 @@ Each mature bridge should include:
 - [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)
 - [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md)
 - [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
-- [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md)
+- [Mapping the Planck Scale to the A1 Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md)
 - [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md)
 - [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md)
-- [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md)
+- [Spacetime Models and the Noether Sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md)
 - [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)
 - [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md)
 
@@ -14310,7 +14310,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ is therefore not an anti-geometric theory. It i
 
 The working question is always: what job is this geometry doing? A geometry may define the container, encode a causal wake, describe an assembly, summarize medium response, or organize observer measurements. Those jobs are different, and the chapter exists to keep them from being merged into one all-purpose word.
 
-The technical owners remain [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
+The technical owners remain [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Spacetime Models and the Noether Sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
 
 ### The Geometry Question
 
@@ -19120,7 +19120,7 @@ The arrow problem also separates dynamical relaxation from measure-based typical
 
 **Core non-closure.** Wave-particle language still mixes ontology with measurement vocabulary. A deeper theory must explain source, propagation, polarization, and detector response without treating the photon as a tiny classical bead or as a purely formal state.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Radiation is an event-ledger and path-history process. A photon is a stable radiation transaction with source, propagation, polarization, detector response, and energy-momentum accounting. The canonical candidate ontology is a coaxial contra-rotating polarity-conjugate planar pair, with channel details still under closure.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Radiation is an event-ledger and path-history process. At the effective record level, a photon is represented by a radiation transaction with source, propagation, polarization, detector response, and energy-momentum accounting. The candidate native carrier is a coaxial contra-rotating polarity-conjugate planar pair; its retained stability and channel details remain under closure.
 
 **Resolution tests.** Use double-slit/Mach-Zehnder, single-photon detection, Malus' law, blackbody spectra, atomic spectra, synchrotron/bremsstrahlung, and QED correction benchmarks. The source mechanism must remain separate from the carrier/channel family.
 

@@ -179,7 +179,7 @@ in the confining window. At the assembly level, this says that an open color cor
 
 ### The Color Singlet (White)
 
-A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md) and [Mesons](../mesons/mesons.md). This fixed assignment is a schematic component of the color-singlet state. The physical singlet is the fully antisymmetrized superposition over the $3!$ assignments to indexed sectors $a\in\{1,2,3\}$, with the Levi-Civita color tensor supplying the color-sector sign pattern.
+A proton candidate such as $(u_R,u_G,d_B)$ has a schematic color-singlet assignment in which the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md) and [Mesons](../mesons/mesons.md). This occupancy is necessary color-singlet bookkeeping, but it does not by itself certify a retained or stable proton branch. The physical singlet is the fully antisymmetrized superposition over the $3!$ assignments to indexed sectors $a\in\{1,2,3\}$, with the Levi-Civita color tensor supplying the color-sector sign pattern.
 
 1. Red: axis-1 exceptional
 2. Green: axis-2 exceptional

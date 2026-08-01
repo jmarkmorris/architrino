@@ -66,8 +66,10 @@
   dynamical model: retain the point-delta emission limit and ordinary
   inverse-square wake at every positive radius; do not introduce a maturity
   radius merely to manage the cap-state motion.
-- At field speed, a speed-increasing received contribution has zero effective
-  velocity-changing effect before it is accumulated into constrained motion.
+- At field speed, the desired zero effective impact from a speed-increasing
+  contribution was recorded provisionally. The later complete axiom clarifies
+  that this rule applies to the net forward component only after the full
+  canonical finite ordinary ledger is summed, not separately per reception.
   Full wake measure/provenance for later account claims remains open.
 
 ## 2026-07-30 — Geometry-to-dynamics buildout
@@ -323,3 +325,264 @@
   $H$, conservation, Planck-scale, or Lorentz result is assumed.
 - The artifact closes bookkeeping shortcuts only. It adds no law, selects no
   event disposition, proves no continuation, and moves no closure score.
+
+## 2026-07-30 — Complete constrained-response axiom made explicit
+
+- Reorganized the mathematics foundation around one complete proposed
+  regular-chart axiom: the closed velocity ball, exact recovery of the
+  canonical complete finite ordinary net ledger below $c_f$, and its
+  least-change tangent-cone projection at $\|\mathbf V\|=c_f$ after every
+  ordinary row has been summed at canonical weight.
+- Added the coordinate-free tangent-cone minimization formula and derived the
+  forward, transverse, and backward decomposition. The axiom introduces no new
+  numerical scale; its least-change and total-ledger ordering clauses are
+  proposed law, not consequences of the bare velocity inequality.
+- Reconciled the provenance/status map, FSC-001 axiom budget, and no-escape
+  audit so they treat the domain and finite-ledger response as clauses of one
+  proposed foundational law.
+- Kept the nonordinary partner-contact question separate. Its strict
+  positive-delay members have positive causal separation; the ordinary chart
+  fails because the family is nonisolated with $D_t=0$ and lacks event
+  admission, measure, ownership, and disposition. This is an event-domain
+  question, not an inverse-square infinity prescription.
+- No ceiling, event disposition, outgoing collinear history, conservation,
+  retention, $H$, Planck-scale, Lorentz-recovery, MEC, or closure-score claim
+  was adopted or advanced.
+
+## 2026-07-30 — Minimal collinear partner-contact postulate selected for review
+
+- Added the operator-selected Minimal Collinear Partner-Contact Postulate as a
+  proposed, noncanonical event law for the exact stated mirror-collinear
+  same-path coincidence.
+- The postulate declares that the ordinary positive-separation,
+  isolated-reception ledger has no contact row at the event, the zero-radius
+  point-emission delta is source bookkeeping rather than a partner
+  acceleration contribution, and the separately owned contact event supplies
+  $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$.
+- Recorded the then-stated contact consequence as event-local pass-through.
+  Hale’s later review corrected that wording: zero impulse licenses only a
+  velocity-preserving outgoing contact one-jet, not a right-hand path.
+- Preserved the prescribed unaccelerated straight separating-trace negative.
+  The first ordinary post-contact slowing row still scales as
+  $\delta^{-2}$, so a finite, unique solution on an open post-contact interval
+  remains unproved.
+- Reconciled the mathematics packet, endpoint reanalysis, FSC-001
+  compatibility decision, no-escape audit, priorities, and queue. FSC-002
+  remains blocked because the narrow collinear postulate supplies no
+  noncollinear or braid event law and adopts no ceiling.
+- Added the
+  [First Entourage Review Readiness Check](first-entourage-review-readiness.md).
+  The packet is ready for a narrow foundational-mathematics critique and is not
+  ready for broader theory validation.
+- No Entourage reviewer was contacted and nothing was published. No canonical
+  prose, EOM solver contract, conservation or stability result, physical
+  conclusion, MEC status, or closure score was changed.
+
+## 2026-07-31 — Jack K. Hale read-only review integrated
+
+- Captured the completed review in the
+  [Jack K. Hale Review and Response](jack-k-hale-review-response-2026-07-31.md)
+  under identifier `FSC-001-JKH-2026-07-31`. All nine substantive findings are
+  present and each has one explicit disposition.
+- Accepted and implemented Hale’s authority correction: tangent-cone and
+  projection algebra is derived only from the proposed Complete
+  Constrained-Response Axiom.
+- Made forward invariance conditional on an existing sufficiently regular
+  projected state-dependent-delay solution with complete finite ordinary
+  ledgers.
+- Preserved the no-ordinary-contact-row, source-delta-bookkeeping, and
+  zero-impulse statements as a proposed event postulate rather than a
+  derivation.
+- Formalized the extended-history state, collinear reset guard, declared left
+  traces, event ownership, reset map, outgoing-one-jet codomain, the unresolved
+  wake-semantics and receiver-measure slots, and the perturbative-reduction
+  obligation.
+- Removed every overstatement of labeled pass-through and both right-hand path
+  expansions. The exact reset consequence is now a
+  **velocity-preserving outgoing contact one-jet**.
+- Preserved the $\delta^{-2}$ calculation only for the prescribed
+  unaccelerated straight separating trace and removed universal no-go wording.
+- Recorded history-space topology, projected solution concept,
+  branch-finiteness, root separation, transversality, inactive-gap persistence,
+  and post-event history compatibility as unmet obligations.
+- Added FSC-005, the
+  [Near-Contact Separating-Trace Incompatibility Theorem Target](near-contact-separating-trace-incompatibility-theorem-target.md),
+  to prove or refute the general $\delta^{-2}$ claim. It is a queued theorem
+  target and remains `Not advanced`.
+- Updated the first-review readiness artifact, priorities, queue, compatibility
+  decision, endpoint reanalysis, mathematics packet, and no-escape audit.
+- No successor reviewer was contacted or started. No canonical AAA or EOM
+  source, theory status, general contact semantics, continuation,
+  conservation, stability, physical realization, MEC status, or closure score
+  changed.
+
+## 2026-07-31 — Lars Hörmander read-only review integrated
+
+- Captured the operator-supplied review text and complete response matrix in
+  the
+  [Lars Hörmander Review and Response](lars-hormander-review-response-2026-07-31.md)
+  under identifier `FSC-001-LH-2026-07-31`. All eight substantive findings are
+  present and each has one explicit disposition.
+- Preserved the derived classification that the nonisolated positive-delay
+  contact strata in both ordered channels lie outside ordinary isolated-root
+  coarea rows. This classification supplies no contact response measure.
+- Typed three separate objects: labeled spatial source point measures,
+  source-time ordinary receiver acceleration measures, and receiver-time
+  atomic velocity-update measures.
+- Recorded the zero atomic impulse only as the coefficient of the proposed
+  event-update measure. Both contact-time source records remain nonzero; no
+  cancellation, principal value, finite part, or regulator-independent limit
+  is claimed.
+- Strengthened the contact guard and ownership requirements with both ordered
+  channels, a half-open branch/event convention, separately retained source
+  labels, separate $s=T_{\mathrm c}$ and $s<T_{\mathrm c}$ records,
+  competing-strata routing, parameterization-independent aggregation, and a
+  complete outgoing record before any restart.
+- Added the unresolved receiver-side decomposition into ordinary,
+  contact-stratum, and competing-stratum measures. Corrected the packet to
+  state that wake semantics remain incomplete.
+- Specified a candidate trajectory-and-measure topology using BV velocities,
+  vector Radon derivatives, and labeled weak-* convergence. Queued proof or
+  refutation of perturbative splitting, uniform local total variation, and
+  weak convergence as FSC-006; root counts alone are insufficient.
+- Revised FSC-005 to distinguish the moving root $s_{i,\delta}$ from the
+  separately retained contact emission, cover both ordered channels, require
+  signed coefficients and complete-ledger no-leading-cancellation, route
+  competing strata, use a BV/Radon solution class, and state only the limited
+  incompatibility conclusion. FSC-005 is blocked on FSC-006.
+- Downgraded readiness. The packet is ready only for narrower
+  distributional-formulation work and is not ready for a Tao-style
+  well-posedness review as a posed evolution problem.
+- No Tao or successor review was contacted or started. No canonical AAA or
+  EOM source, ceiling or contact-law status, general contact semantics,
+  regulator independence, continuation, conservation, stability, physical
+  realization, MEC status, or closure score changed.
+
+## 2026-08-01 — Bill Thurston read-only review integrated
+
+- Captured the complete substantive finding record and response matrix in the
+  [Bill Thurston Review and Response](bill-thurston-review-response-2026-08-01.md)
+  under identifier `FSC-001-BT-2026-08-01`. All fourteen findings have one
+  explicit disposition, including three partial acceptances.
+- Sharpened the proposed regular response with its normal-cone packaging,
+  minimum-reaction selection boundary, formal admit-evaluate-sum-respond
+  operation order, common-receiver-event wording, and ledger partition
+  invariance falsifier.
+- Added the cap-state curvature formula and preserved the distinction between
+  instantaneous tangency, continuous boundary response, and an actual circular
+  solution.
+- Added a typed event-stratum catalogue separating regular roots, folds,
+  characteristic intervals, the zero-delay diagonal, multiple-branch
+  coincidences, and root accumulations. Rejected a separate positive-delay
+  zero-separation stratum because the causal equality makes it empty.
+- Explicitly separated the continuous acceleration response from the atomic
+  event reset. No projected aggregate-jump law was selected.
+- Added the conditional local fold calculation showing
+  $\varepsilon^{-1/2}$ total-variation divergence for a nonvanishing kernel.
+  It is a bounded negative control, not a universal mirror-contact theorem,
+  contact measure, or FSC-006 advancement.
+- Corrected Appendix B: antipodal labels share carrier circles and the
+  orthogonal circles intersect as spatial traces, so the prescribed object is
+  a labeled loop in collision-free configuration space rather than a
+  six-component spatial link. The velocity ball and sphere also supply no
+  topological protection.
+- Classified the six-label diagnostic as a regular-root-complete prescribed
+  carrier dynamically rejected under the minimal total-ledger ceiling
+  response. It is not a retained braid or physical assembly.
+- Added FSC-007 as a queued regular-chart local well-posedness theorem target.
+  FSC-006 remains the immediate distributional-formulation gate; FSC-005 and
+  FSC-002 remain blocked.
+- No canonical AAA or EOM source, ceiling or event-law status, continuation,
+  finite contact measure, regulator independence, conservation, stability,
+  physical realization, MEC status, or closure score changed. No successor
+  reviewer was contacted or started.
+
+## 2026-08-01 — Albert Einstein read-only review integrated
+
+- Preserved the complete source review and recorded every finding and
+  disposition in the
+  [Albert Einstein Review Response](albert-einstein-review-response-2026-08-01.md)
+  under identifier `FSC-001-AE-2026-08-01`.
+- Accepted the minimal-selection theorem with its exact authority boundary:
+  the closed ball, absolutely continuous regular velocity, radial normal-cone
+  reaction, and ledger-first order remain proposed; the least-change
+  projection follows a.e. under those clauses.
+- Accepted the frozen-ledger maximal-monotone reduction. The supplied-ledger
+  constrained velocity layer is unique and nonexpansive; FSC-007 still owns
+  the history-to-ledger regularity, position coupling, and fixed-point proof.
+- Proved per-channel root monotonicity for cap-admissible histories. One
+  ordered channel has an empty, singleton, or characteristic-interval root
+  set, so its two-root folds and separated roots are unavailable. Multiple
+  ordered channels may still coincide, and characteristic reception remains
+  undefined.
+- Reclassified the local two-root fold calculation as an open-domain negative
+  control and retargeted FSC-006 to the raw labeled receiver-measure limit for
+  one simple root with $D_t\to0^+$ approaching a characteristic interval.
+- Rejected the proposed divergent-ledger quotient lemma. A rotating
+  transverse-vector counterexample has convergent
+  $\lambda_n\|\mathbf u_n^\perp\|$ but no vector limit, and the quotient would
+  change the current finite-raw-ledger-first law.
+- Recorded the corrected strict sub-wake sibling theorem, generic
+  response-gain family, and velocity-atom selector only in brainstorming. The
+  sibling introduces $\epsilon$; observer-level gains remain recovery
+  comparisons; zero atom cannot select a right-hand path.
+- Added FSC-008 as a deferred drifting-mirror preferred-frame diagnostic after
+  FSC-006, FSC-007, and a declared emergent boost comparison map. MEC-007
+  remains `Awaiting verification`; no generic cap arrival or Lorentz result is
+  claimed.
+- No canonical AAA or EOM source, ceiling or contact-law status, contact
+  measure, continuation, regulator, conservation, stability, retained
+  assembly, physical realization, MEC status, or closure score changed. No
+  successor reviewer was contacted or started.
+
+## 2026-08-01 — Albert Einstein second read-only review integrated
+
+- Preserved the complete source review unchanged and recorded every theorem,
+  program reformulation, and structural finding with an independent
+  disposition in the
+  [Albert Einstein Second Review Response](albert-einstein-second-review-response-2026-08-01.md)
+  under identifier `FSC-001-AE2-2026-08-01`.
+- Accepted the exact finite-ledger response factorization and $1$-Lipschitz
+  estimate. Recorded that
+  $\mathcal P_{\mathbf V}(\mathbf b)=\mathbf0$ exactly on the closed forward
+  ray, while correcting the proposed FSC-005 corollary: leading
+  $\delta^{-2}$ cancellation alone does not prove the projected remainder is
+  a finite Radon measure.
+- Strengthened root monotonicity from differentiable to Lipschitz cap-
+  admissible paths using the reverse triangle inequality. Added the rigid
+  characteristic-interval theorem and the complete positive-delay geometry
+  catalogue for one ordered channel: empty, simple singleton, degenerate
+  singleton, or exact-aim straight characteristic interval.
+- Removed the quadratic fold from the closed-domain event catalogue and kept
+  it only as an open-domain negative control. A cap-admissible degenerate
+  isolated root is not called grazing; cubic order requires an additional
+  nonzero-third-derivative hypothesis, and higher odd or flat crossings remain
+  possible.
+- Added the projected-increment catching-up construction for the supplied-
+  ledger normal-cone evolution. Corrected the review's compactness wording:
+  $L^1$ input gives equi-absolute continuity, while bounded input gives equi-
+  Lipschitz approximants.
+- Derived the injective simple-branch total-variation transfer identity. With
+  positive range and $D_r$ floors, $D_t\to0^+$ alone does not cause integrated
+  divergence. In the mirror channel the unresolved divergence localizes to
+  the inverse-square zero-range endpoint.
+- Kept the proposed far-part weak-* statement as FSC-006a rather than a
+  theorem already proved. It still needs uniform branch collapse, receiver
+  left-trace and kernel convergence at collapsing times, label retention,
+  competing-stratum routing, and perturbation-family independence. FSC-006b
+  and FSC-005 jointly own the zero-range leading and remainder problem.
+- Accepted finite per-channel root count and the simple-root stability lemma
+  as FSC-007 inputs. Fixed active channels, inactive gaps, a bounded delay
+  window, velocity-history control, the ledger-row gradient, and contraction
+  closure remain unproved.
+- Rejected the review's global `complete classification` and `two event
+  dispositions` conclusions. The theorem classifies one positive-delay
+  ordered channel, not the excluded diagonal, interval endpoints, source-
+  identity variants, or simultaneous cross-channel ownership.
+- Kept MEC-007 as the current conditional sub-cap mirror activation test, not
+  the ceiling proposal's exclusive falsifiability gate. FSC-008 still requires
+  one verified activating history and an emergent boost comparison map.
+- No canonical AAA or EOM source, ceiling or contact-law status, event
+  disposition, contact measure, continuation, regulator, conservation,
+  stability, retained assembly, physical realization, MEC status, or closure
+  score changed. No successor reviewer was contacted or started.

@@ -85,13 +85,13 @@ The horizon question becomes clearer when compared against the main assembly sec
 | Sector | Pro/anti organization | Dimensional character | Why it matters here |
 | --- | --- | --- | --- |
 | Noether sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not predict a large universal imbalance |
-| Photon channel | coaxial contra-rotating polarity-conjugate planar pair; pro/anti orientation unassigned | planar / propagating pair | shows that polarity-conjugate pairing remains meaningful after the 3D order has collapsed |
+| Candidate photon channel (referent-pending) | coaxial contra-rotating polarity-conjugate planar pair; pro/anti orientation unassigned | planar / propagating pair target | shows that polarity-conjugate pairing remains meaningful after the 3D order has collapsed |
 | $2+2$ pro/anti cluster hypothesis | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-braid organization without collapsing to one sign |
 | Orientation-selective reaction channels | pro/anti encounters can open rapid reconfiguration channels without thereby being matter/antimatter events | mixed 3D and reaction geometry | tests whether ordered orientation changes reaction accessibility |
 
 This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed Family-A braid advertises its branch structure when driven into the strongest alignment regime.
 
-The photon row is also an interface to the radiation and cosmology stack. Because the photon carrier is already a moving planar pro/anti pair, it is the ordinary transport channel most naturally comparable to the flat symmetry-breaking state. That does not make every photon a horizon fragment, but it does make horizon-adjacent photon processing a serious candidate mechanism: the same planar branch logic can appear as free photon propagation, horizon-interface compression, strong-field blueshift, outward redshift, or release-channel conversion depending on the surrounding Noether sea record.
+The photon row is also an interface to the radiation and cosmology stack. Because the candidate photon-channel construction is modeled as a moving planar polarity-conjugate pair, it is the transport target most naturally comparable to the flat symmetry-breaking state. That does not make every photon a horizon fragment, but it does make horizon-adjacent photon processing a serious candidate mechanism: the same planar branch logic is proposed for free photon propagation, horizon-interface compression, strong-field blueshift, outward redshift, or release-channel conversion depending on the surrounding Noether sea record.
 
 ## Exterior Planar Angular-Momentum Basis
 

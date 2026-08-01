@@ -1,6 +1,6 @@
 # Nucleon Structure
 
-This chapter fixes the proton and neutron picture used by the nuclear branch. A nucleus does not usually need to reopen every quark-level detail, but it cannot treat a nucleon as a featureless dot either. The nucleon has to enter later nuclear and atomic chapters as one accepted color-singlet source envelope with retained mass, charge, spin, shielding, and corridor behavior.
+This chapter fixes the proton and neutron picture used by the nuclear branch. A nucleus does not usually need to reopen every quark-level detail, but it cannot treat a nucleon as a featureless dot either. The nucleon has to enter later nuclear and atomic chapters through one declared color-singlet source envelope carrying mass, charge, spin, shielding, and corridor behavior at that coarse-grained level.
 
 This is the baryon-side bridge between [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Mesons](../assemblies/mesons/mesons.md). Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time.
 
@@ -8,7 +8,7 @@ This is the baryon-side bridge between [Quarks](../assemblies/fermions/quarks.md
 
 This chapter fixes the canonical proton and neutron picture used by the nuclear branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is the coarse-grained baryon chapter: not a full QCD replacement, but a precise statement of what a nucleon is in assembly language and which geometric features matter most for nuclear physics.
 
-The guiding rule is level discipline. Quark branch structure matters inside the proton or neutron, but atomic and nuclear calculations should see one stable nucleon envelope unless the calculation is explicitly resolving the strong-sector interior.
+The guiding rule is level discipline. Quark branch structure matters inside the proton or neutron, but atomic and nuclear calculations should see one nucleon envelope that is stable at the observer level as a declared coarse-grained input unless the calculation is explicitly resolving the strong-sector interior. Here `stable` names the observer-level nucleon record to be recovered by the interface; it is not a certification of a retained architrino branch. Color-singlet occupancy is necessary bookkeeping, while retained-branch existence and strong-sector residual closure remain separate theorem targets.
 
 ## Core Claim
 
@@ -17,7 +17,7 @@ A nucleon is a confined three-quark color-singlet assembly built from three Gene
 - a **proton** is the ground-state `uud` color-singlet baryon assembly,
 - a **neutron** is the ground-state `udd` color-singlet baryon assembly.
 
-Each constituent quark is itself a Noether braid assembly with an axial layer of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md). The proton or neutron is not a bag of three independent quarks; it is the accepted branch formed when those three quark records close as one color-singlet assembly.
+Each constituent quark is itself a Noether braid assembly with an axial layer of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md). The proton or neutron is not a bag of three independent quarks; the native target is a retained branch in which those three quark records close as one color-singlet assembly.
 
 ## Constituents and Counting
 
@@ -72,7 +72,7 @@ In geometric language:
 - the three exceptional axes occur once each across the closed 9-axis braid,
 - the shared flux structure closes the baryon assembly into a singlet.
 
-That color closure is what makes the proton and neutron long-lived hadronic attractors rather than open-color transients. Later nuclear binding chapters can therefore use proton and neutron source envelopes without counting the three quark branches as free atomic or nuclear sources.
+Color closure is necessary for a proton or neutron to be a long-lived hadronic branch rather than an open-color transient, but the occupancy rule alone does not establish retained-branch stability or an attractor basin. Later nuclear binding chapters can use declared proton and neutron source envelopes without counting the three quark branches as free atomic or nuclear sources, provided they preserve that effective-interface boundary.
 
 ## Proton Source-Envelope Closure Target
 
@@ -88,7 +88,7 @@ s_{u_1},s_{u_2},s_d\in\{1,2,3\},
 \{1,2,3\}
 $$
 
-The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(T)$ denote the strong-sector corridor ledger that locks these three quark branches into one accepted proton branch. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is
+The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(T)$ denote the strong-sector corridor ledger required to lock these three quark branches into one candidate proton branch. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is
 
 $$
 \mathcal W_{p,X}^{\mathrm{locked}}
@@ -195,7 +195,7 @@ The source-envelope closure fails if any of the following occurs:
 
 The same source-envelope rule explains why the proton mass is not obtained by adding the Standard Model current-quark mass entries for two up quarks and one down quark. Those current-quark entries are comparison-layer parameters for quark fields inside the strong sector; they are not the observer-facing scalar masses of three isolated free quark branches. Free quarks are not accepted asymptotic branches.
 
-For the accepted proton branch, the mass-facing response must be computed after color-singlet closure and the proton-window projection. Schematically,
+For a proton branch admitted by this source-envelope interface, the mass-facing response must be computed after color-singlet closure and the proton-window projection. Schematically,
 
 $$
 \mathsf{I}_{p}^{ab}
@@ -219,7 +219,7 @@ $$
 
 Here $\mathsf{I}_{\mathrm{strong},uud}^{ab}$ denotes the closed color-corridor and flux contribution, $\mathsf{I}_{\mathrm{cross},uud}^{ab}$ denotes branch-cross terms created by locking the three quark records into one baryon, and $\mathsf{I}_{\mathrm{sea},uud}^{ab}$ denotes the retained local Noether sea response for the proton branch. This is hadronic composite closure, not a conversion of Generation-I quarks into higher-generation exposed cores. Strong-sector exchange may change color exceptionality and flux routing, but on the strong-interaction timescale it must preserve the generation tier unless a separate weak or high-energy branch-transition ledger is supplied.
 
-The proton-current-quark mass mismatch is therefore a required benchmark for the hadronic mass map: most of the proton's observed rest response should come from the accepted composite strong-sector ledger and its Noether sea response, not from isolated current-quark mass addition and not from ordinary nuclear binding. Nuclear binding starts one level higher, after proton and neutron source envelopes have already been accepted as nucleon branches.
+The proton-current-quark mass mismatch is therefore a required benchmark for the hadronic mass map: most of the proton's observed rest response should come from the declared composite strong-sector ledger and its Noether sea response, not from isolated current-quark mass addition and not from ordinary nuclear binding. Nuclear binding starts one level higher, after proton and neutron source envelopes have been admitted as coarse-grained nucleon interfaces.
 
 ### Proton Spin Budget
 
@@ -267,7 +267,7 @@ with the realized proton spin axis defined as $\hat{\mathbf J}_p=\mathbf J_p(Q)/
 
 ### Proton
 
-The proton is the lowest stable color-singlet baryon assembly with quark content `uud`.
+At the observer level, the proton is the stable ground-state color-singlet baryon target with quark content `uud`; native retained-branch stability remains a separate closure obligation.
 
 Using the current quark templates:
 
@@ -285,7 +285,7 @@ $$
 
 ### Neutron
 
-The neutron is the lowest stable color-singlet baryon assembly with quark content `udd`.
+At the observer level, the neutron is the ground-state color-singlet baryon target with quark content `udd`; its stability depends on the nuclear environment, and native retained-branch stability remains a separate closure obligation.
 
 Its total axial count is
 $$

@@ -1,8 +1,12 @@
 # Capped Collinear Endpoint Reanalysis
 
 **Date:** 2026-07-30
-**Status:** conditional bounded analytic recheck complete; continuation `Not advanced`
+**Status:** conditional bounded analytic recheck complete; proposed outgoing
+contact one-jet added; open post-contact continuation `Not advanced`
 **Scope:** stationary mirror-symmetric collinear release under the proposed closed primitive domain $\|\mathbf V\|\le c_f=1$.
+**Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md);
+[Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md);
+[Albert Einstein second read-only review, captured 2026-08-01](albert-einstein-second-review-response-2026-08-01.md).
 
 ## Conditional input through first field-speed arrival
 
@@ -176,20 +180,60 @@ new non-isolated positive-delay **partner-contact interval**, not an isolated
 ordinary row. The isolated-crossing self-contact convention does not classify
 this distinct-transmitter event.
 
-The current candidate constrained Master Equation is defined only after a
-complete finite ordinary root sum exists. It consequently has no value at this
-partner-contact interval. A continuing model must supply a separately declared
-event rule that states:
+The candidate constrained Master Equation is defined only after a complete
+finite ordinary root sum exists. It consequently has no ordinary value on this
+partner-contact interval. For this exact same-path mirror-collinear
+coincidence, the operator has selected the following narrow event convention
+for review:
 
-1. whether the interval is inactive, terminal, or an active boundary measure;
-2. how its emissions and limiting old root retain unique ledger ownership;
-3. the velocity and retained-history update at $T_{\mathrm c}$;
-4. the outgoing emission record; and
-5. a finite, unique post-event root and acceleration measure.
+> **Minimal Collinear Partner-Contact Postulate.** The ordinary
+> positive-separation, isolated-reception ledger has no contact row at exact
+> coincidence. The zero-radius point-emission delta is source bookkeeping, not
+> a partner acceleration contribution. One separately recorded contact event
+> owns the nonisolated partner family and limiting old-root transition, and it
+> contributes zero velocity impulse:
+>
+> $$
+> \Delta\mathbf V_{i,\mathrm{contact}}=\mathbf0.
+> $$
 
-Plainly: coincidence does not present one difficult root. It presents an
-entire partner contact family, and the current proposal contains no rule for
-that family.
+This is a proposed event postulate, not a consequence of the ordinary causal
+law, the point delta, or the speed constraint. It does not delete an ordinary
+row: no isolated positive-separation contact row exists at the event.
+Both labeled contact-time source measures remain nonzero. The zero velocity
+impulse is a proposed atomic event coefficient, not a cancellation or
+finite-part value of a receiver-side contact measure.
+
+Plainly: coincidence presents an entire nonordinary partner family. The new
+proposal books that family as one event and says the event gives neither label
+a velocity kick.
+
+For declared left traces
+
+$$
+\mathbf V_1(T_{\mathrm c}^{-})=c_f\mathbf e,
+\qquad
+\mathbf V_2(T_{\mathrm c}^{-})=-c_f\mathbf e,
+$$
+
+the proposed reset returns only the velocity-preserving outgoing contact
+one-jets
+
+$$
+\left(
+\mathbf X_i(T_{\mathrm c}^{+}),
+\mathbf V_i(T_{\mathrm c}^{+})
+\right)
+=
+\left(
+\mathbf X_{\mathrm c},
+\mathbf V_i(T_{\mathrm c}^{-})
+\right).
+$$
+
+This one-jet is position-and-one-sided-velocity data at the event. It does not
+assert a right-hand path expansion, labeled passage, separation, or a solution
+on any open post-contact interval.
 
 An unaccelerated straight passage is not a solution of the same ordinary
 post-event law. If both labels continue through coincidence at unit speed, the
@@ -209,56 +253,94 @@ D_{t,\mathrm p}=2,
 $$
 
 Its direction slows the separating receiver, so the ceiling projection retains
-it, and $\int_0^\varepsilon\delta^{-2}\,d\delta$ diverges. This rules out only
-the unmodified straight-passage history; it does not select rebound,
-termination, sticking, or another boundary update.
+it, and $\int_0^\varepsilon\delta^{-2}\,d\delta$ diverges. This is a
+conditional obstruction for the prescribed unaccelerated straight separating
+right trace only. It is not a universal continuation no-go. It does not
+contradict the proposed zero-impulse reset at the single contact event, and it
+does not supply the later finite retained-history evolution.
 
 Claim grade: `derived conditional obstruction`. It is falsified by a
 same-record post-event census showing that the stated partner emission is not
 admitted under the unchanged ordinary rule, or by an independently derived
 boundary update that changes the event before this ordinary row is formed.
 
+### One-sided zero-range comparison
+
+The two sides of the contact are not interchangeable:
+
+1. On the half-open incoming cap segment, every reception time
+   $T<T_{\mathrm c}$ still has one finite ordinary partner ledger. Its net
+   partner contribution is forward and speed-increasing, so the proposed
+   response removes it only after that finite ledger is formed.
+2. At $T=T_{\mathrm c}$, the positive-delay partner family is nonisolated and
+   no complete ordinary ledger exists. Only the separate proposed event reset
+   assigns the zero atomic velocity update.
+3. On the prescribed unaccelerated straight separating right trace, the first
+   positive-delay partner row is backward and proportional to $\delta^{-2}$,
+   so the proposed response retains it.
+
+The third statement has not been proved for every sufficiently regular
+separating trace. That extension, including both channels, competing strata,
+and the full leading and remainder response, is FSC-005.
+
+Plainly: before contact the cap removes a forward row at each ordinary time;
+at contact there is no ordinary row to cap; after contact the one prescribed
+straight path produces a backward row that the cap cannot remove. These three
+facts do not join themselves into a unique motion through contact.
+
 ## Local existence and uniqueness verdict
 
 The proposed regular-chart partial model supplies a unique conditional history
-on the half-open interval $[T_\ast,T_{\mathrm c})$. At $T_{\mathrm c}$,
-however, its declared right-hand side is not defined because the root ledger
-is a nonordinary partner-contact interval rather than a finite ordinary sum.
-Local existence and uniqueness after coincidence are therefore not false
-theorems of the current proposal; they are not yet well-posed claims.
+on $[T_\ast,T_{\mathrm c})$. The proposed reset assigns a
+velocity-preserving outgoing contact one-jet at $T_{\mathrm c}$. It does not
+define a right-hand trace, locally finite acceleration, or retained-history
+update on any open interval $(T_{\mathrm c},T_{\mathrm c}+\varepsilon)$.
 
-A theorem can be attempted only after one of the event choices below is made
-as an explicit model input and is shown to produce a finite outgoing ledger.
-The bounded encounter cannot select that input from the desired outcome.
+Local existence and uniqueness after coincidence are therefore still not
+established. The first ordinary post-contact row in the prescribed
+unaccelerated straight separating trace has nonintegrable magnitude, and no
+accepted rule yet supplies a finite alternative evolution. Whether the same
+$\delta^{-2}$ incompatibility holds for every sufficiently regular separating
+right trace is the queued
+[near-contact theorem target](near-contact-separating-trace-incompatibility-theorem-target.md),
+not a result of this reanalysis.
 
-Plainly: the mathematics determines the path up to coincidence and then runs
-out of law. More calculation with the same undefined event cannot decide which
-future path is correct.
+Plainly: the new postulate determines the no-jump outgoing one-jet. The
+mathematics still supplies no right-hand path.
 
-## Permitted model choices, none selected
+## Selected proposed event choice and remaining choices
 
-1. **Terminal boundary:** end the history at $T_\ast$ while retaining the regular partner row and excluded diagonal.
-2. **Constrained continuation:** add an explicit causal boundary evolution update that preserves the closed domain and books every regular root and boundary effect exactly once.
-3. **Distinct equality object:** declare a separately owned boundary event; it is not an ordinary self root because $R=0$, $D_t=0$, and strict positive delay fails.
-4. **Unit-speed sticking:** requires separate non-simple treatment for both
-   the self-contact and partner-contact continua.
+1. **Selected for this exact contact only:** a separately owned collinear
+   partner-contact event with no ordinary row, no partner acceleration from
+   the source delta, and
+   $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$.
+2. **Not selected:** a general inactive, terminal, sticking,
+   active-boundary-measure, rebound, or transverse event rule for other
+   nonordinary contacts.
+3. **Not established:** a compatible right-hand history or locally finite
+   post-contact root and acceleration measure for the outgoing one-jet.
 
 ## Required capped-model certificate
 
-Any continuing model needs the existing incoming ledger, a declared equality
-admission rule, one explicit boundary evolution map, proof of $u\le1$ and
-finite total acceleration variation, a unique outgoing retained-history state,
-and a watch for later partner events with $D_t=0$. The calculation above
-verifies the open cap-segment ledger and its finite accumulated partner row,
-but the coincidence event fails the finite-ordinary-ledger premise.
+Any complete continuing model needs the existing incoming ledger, the proposed
+contact event record, proof of $u\le1$ and finite total acceleration variation,
+a unique retained-history state on an open post-contact interval, and a watch
+for later partner events with $D_t=0$. The calculation above verifies the open
+cap-segment ledger, its finite accumulated partner row, and the
+velocity-preserving outgoing contact one-jet conditional on the new postulate.
+It does not supply the required
+finite post-contact ledger.
 
 ## Claim boundary
 
-This analysis does not adopt a field-speed ceiling or establish continuation,
-passage, rebound, conservation, physical realization, or advancement of
-MEC-002 through MEC-007. It establishes only the conditional open-segment root
-inventory, the finite accumulated old-partner contribution, the
-partner-contact interval at coincidence, and the straight-passage obstruction.
-It is falsified by a capped-history root census that contradicts those bounded
-statements or by a complete canonical boundary evolution that resolves the
-stated equality conditions differently.
+This analysis does not adopt a field-speed ceiling, establish a general or
+open-interval continuation, claim conservation or stability, establish
+physical realization, or advance MEC-002 through MEC-007. It establishes the
+conditional open-segment root inventory, the finite accumulated old-partner
+contribution, the partner-contact interval, the velocity-preserving outgoing
+contact one-jet that follows from the proposed zero-impulse reset, and the
+conditional straight-trace obstruction. It is falsified by a
+capped-history root census that contradicts those bounded statements, by a
+nonzero contact velocity jump under the selected postulate, or by a complete
+canonical boundary evolution that resolves the stated equality conditions
+differently.

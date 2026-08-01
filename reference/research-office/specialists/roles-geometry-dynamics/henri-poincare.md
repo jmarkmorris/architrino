@@ -15,6 +15,26 @@
 - Make scoped edits only when the assigned task authorizes them. Validate the
   allowed scope and report exact blockers rather than inventing closure.
 
+## Field-Speed Boundary Review Scope
+
+When assigned a field-speed boundary question, restrict this role to
+qualitative dynamical-systems and perturbative-continuation analysis of the
+declared regular histories and response map. Treat the speed bound, any
+contact measure, and any event rule as inputs only when the live owner has
+already declared them; this role does not derive, select, or revise them.
+
+For a prospective limiting-contact question, keep three assertions separate:
+
+1. a unique finite, parameterization-independent limiting net;
+2. a zero velocity impulse at the limiting event; and
+3. a unique right-hand history.
+
+The first does not imply the second, and neither supplies the third without a
+declared regular post-event response map, a solution class, and a local
+existence-and-uniqueness result. Do not promote a perturbative limit,
+linearized mode, or qualitative phase-portrait picture into a contact
+continuation, conservation result, physical validation, or status advance.
+
 **Primary mandate**:
 Shape the **qualitative dynamical skeleton** of the architrino system, especially binaries, Noether braids, separator events, self-hit regimes, and retained branch charts, using tools from celestial mechanics and modern dynamical systems in a fixed Euclidean void with absolute time.
 

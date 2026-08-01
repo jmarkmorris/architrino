@@ -67,7 +67,7 @@ export function transformSimpleCubicOffset(
 export const SIMPLE_CUBIC_STATIONARY_CONTRACT = deepFreeze({
   schema: "lattice-lab-stationary-case-contract/v2",
   id: "simple-cubic-checkerboard-stationary-release-v2",
-  title: "Simple-cubic checkerboard stationary release under uniaxial compression",
+  title: "Simple-cubic alternating-polarity pattern under uniaxial deformation",
   claimGrade: "derived",
   normalizedWakeSpeed: 1,
   geometry: {
@@ -99,7 +99,7 @@ export const SIMPLE_CUBIC_STATIONARY_CONTRACT = deepFreeze({
     map:
       "L_{axis,lambda} scales the selected coordinate by lambda and leaves the other two unchanged",
     inversion:
-      "L(-n) = -L(n), with equal transformed separation and unchanged checkerboard polarity sign",
+      "L(-n) = -L(n), with equal transformed separation and unchanged alternating-polarity sign",
   },
   calculationBoundary: {
     kind: "receiver-centered inversion-symmetric exhaustion",
@@ -108,7 +108,7 @@ export const SIMPLE_CUBIC_STATIONARY_CONTRACT = deepFreeze({
     admittedExamples:
       "centered integer cubes and centered Euclidean lattice balls",
     displayCropRole:
-      "the dotted sphere is visual only and is not the calculation boundary",
+      "the spherical viewing crop is not the calculation boundary",
   },
   result: {
     acceleration:
@@ -124,7 +124,7 @@ export const SIMPLE_CUBIC_STATIONARY_CONTRACT = deepFreeze({
   ],
   independentCheck: {
     theorem:
-      "reference/priorities/app-lattice-lab/simple-cubic-checkerboard-cancellation-certificate.md",
+      "reference/priorities/dormant-deferred/app-lattice-lab/simple-cubic-checkerboard-cancellation-certificate.md",
     highPrecisionOracle: "tests/test_lattice_lab_stationary_oracle.py",
     structuralVerifier:
       "scripts/verify-lattice-lab-simple-cubic-checkerboard.mjs",

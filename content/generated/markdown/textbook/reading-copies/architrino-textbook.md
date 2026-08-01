@@ -6382,7 +6382,7 @@ The independently executable instrument `scripts/equation-mapping/analyze-circul
    $$
    and the radial equation selects $R/R_*\approx0.0869416735$. The partner-root Jacobian floor at this point is approximately $0.7071$.
 
-These are measured algebraic facts of the unregularized uniform-circular simple-root chart, not retained-branch or stability results. The null result for the restricted principal-partner ledger is not a theorem on $(1,\infty)$, while the first full-ledger zero already establishes numerical existence inside the searched interval. Promotion to a circular MCB requires the same finite singular-event convention for the folds that created the older roots, a retained-history certificate, wake-boundary closure, and a stable return map.
+These are measured algebraic facts of the unregularized uniform-circular simple-root chart, not retained-branch or stability results. The null result for the restricted principal-partner ledger is not a theorem on $(1,\infty)$, while the first full-ledger result establishes a numerical zero of the prescribed algebraic ledger inside the searched interval. Promotion to a circular MCB requires the same finite singular-event convention for the folds that created the older roots, a retained-history certificate, wake-boundary closure, and a stable return map.
 
 The line-of-action sensitivity can be recomputed without changing the causal-root measure. In the counterfactual inertially extrapolated construction, retain the actual roots, emission-site distance, and canonical transmitter-side acceleration weight, but replace the acceleration direction by
 $$
@@ -9192,7 +9192,7 @@ $$
 Here:
 - $M_0$ is the assembly rest/internal invariant extracted at $v_{\text{CM}}=0$ in a locally homogeneous sea.
 - $E_{\text{CM}}$ and $p_{\text{CM}}$ are the total center-of-mass energy and momentum measured from trajectory dynamics.
-- $c_{\text{eff}}$ is the isotropic projection of the local Noether sea response-speed record. In weak-field homogeneous and neutral conditions that also pass the two-moment quietness condition above, $c_{\text{eff}}\to c_\infty$, with $c_\infty=c_0$ by observer calibration. The relation between $c_0$ and the primitive wake speed $c_f$ remains the declared hierarchy question in the [speed-role table](../../../../markdown/aaa/foundations/absolute-timespace.md#speed-symbols-and-their-levels); the active Bell route requires $c_f>c_0$ rather than silently identifying them.
+- $c_{\text{eff}}$ is the isotropic projection of the local Noether sea response-speed record. In weak-field homogeneous and neutral conditions that also pass the two-moment quietness condition above, $c_{\text{eff}}\to c_\infty$, with $c_\infty=c_0$ by observer calibration. The relation between $c_0$ and the primitive wake speed $c_f$ remains the declared hierarchy question in the [speed-role table](../../../../markdown/aaa/foundations/absolute-timespace.md#speed-convention); the active Bell route requires $c_f>c_0$ rather than silently identifying them.
 
 More precisely, the response-speed tensor may be written schematically as
 $$
@@ -21871,7 +21871,7 @@ The canonical metric bridge is [Emergent Metric](../../../../markdown/aaa/spacet
 
 #### Matter Coupling and Inertia
 
-Matter assemblies are not isolated objects moving through nothing. They are stable architrino assemblies embedded in the Noether sea.
+Matter assemblies are not isolated objects moving through nothing. They are architrino assemblies embedded in the Noether sea. Their stability is a local retained-branch property, conditional on the surrounding medium record and boundary residuals.
 
 Their observed inertia and mass are expected to depend on:
 
@@ -29677,13 +29677,13 @@ The horizon question becomes clearer when compared against the main assembly sec
 | Sector | Pro/anti organization | Dimensional character | Why it matters here |
 | --- | --- | --- | --- |
 | Noether sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not predict a large universal imbalance |
-| Photon channel | coaxial contra-rotating polarity-conjugate planar pair; pro/anti orientation unassigned | planar / propagating pair | shows that polarity-conjugate pairing remains meaningful after the 3D order has collapsed |
+| Candidate photon channel (referent-pending) | coaxial contra-rotating polarity-conjugate planar pair; pro/anti orientation unassigned | planar / propagating pair target | shows that polarity-conjugate pairing remains meaningful after the 3D order has collapsed |
 | $2+2$ pro/anti cluster hypothesis | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-braid organization without collapsing to one sign |
 | Orientation-selective reaction channels | pro/anti encounters can open rapid reconfiguration channels without thereby being matter/antimatter events | mixed 3D and reaction geometry | tests whether ordered orientation changes reaction accessibility |
 
 This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed Family-A braid advertises its branch structure when driven into the strongest alignment regime.
 
-The photon row is also an interface to the radiation and cosmology stack. Because the photon carrier is already a moving planar pro/anti pair, it is the ordinary transport channel most naturally comparable to the flat symmetry-breaking state. That does not make every photon a horizon fragment, but it does make horizon-adjacent photon processing a serious candidate mechanism: the same planar branch logic can appear as free photon propagation, horizon-interface compression, strong-field blueshift, outward redshift, or release-channel conversion depending on the surrounding Noether sea record.
+The photon row is also an interface to the radiation and cosmology stack. Because the candidate photon-channel construction is modeled as a moving planar polarity-conjugate pair, it is the transport target most naturally comparable to the flat symmetry-breaking state. That does not make every photon a horizon fragment, but it does make horizon-adjacent photon processing a serious candidate mechanism: the same planar branch logic is proposed for free photon propagation, horizon-interface compression, strong-field blueshift, outward redshift, or release-channel conversion depending on the surrounding Noether sea record.
 
 #### Exterior Planar Angular-Momentum Basis
 
@@ -34662,12 +34662,12 @@ Accordingly, the planar-pair description, Gate A/B quantities, and every neutrin
 
 #### The Photon ($\gamma$): Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
 
-The photon is the canonical electromagnetic transport channel. Unlike Standard Model QFT, which posits a pre-existing gauge field ($A_\mu$), this framework treats the photon as a **propagating assembly of discrete action history**.
+The photon-channel construction is the canonical electromagnetic transport target. Unlike Standard Model QFT, which posits a pre-existing gauge field ($A_\mu$), this framework models that target as a **propagating assembly of discrete action history**.
 
 ##### Ontological Status: No Separate Gauge Inventory
 *   **The Claim:** There is no abstract "electromagnetic field" separate from the particles.
 *   **The Reality:** The effective electromagnetic field is the aggregate path-history of constituent architrinos, coarse-grained from their causal wakes.
-*   **The Assembly:** A photon is a specific, coherent bundle of these historical influences (per-hit actions) organized into a stable planar-pair mode. Emission is not the excitation of a background field; it is the release of an accepted action ledger into a photon channel.
+*   **The Assembly Target:** A candidate photon channel is modeled as a specific, coherent bundle of these historical influences (per-hit actions), organized into a planar-pair mode whose retained stability remains to be established. In this construction, emission is not the excitation of a background field; it is the release of an action ledger into the candidate photon channel.
 
 ##### Geometric Unit: The Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
 The nearest generic taxonomy chart is [C2](../../../../markdown/aaa/noether-braid/braid-family-c.md#c2), which defines the opposite-circulation composition of two complete B1 records. It becomes a photon coordinate skeleton only if both photon-side planar records are established as B1 components. The photon hypothesis is more restrictive: it additionally requires planarization, coaxial placement, propagation-axis alignment, polarity conjugation, and the closure properties developed below. Those extra requirements remain photon-channel claims rather than Family-C coordinates.
@@ -34681,7 +34681,7 @@ At the finest scale, the photon unit is a composite assembly:
 
 ##### Relation To The Symmetry-Breaking Threshold
 
-The photon carrier is close to the planar geometry assigned to the Family-A flat endpoint $\lambda_A=1$. At a horizon interface the three Family-A binary axes are hypothesized to converge toward the group-translation direction while branch-derived speed rows approach $c_f$; in the photon channel, the carrier is already a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared prescribed geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
+The candidate photon carrier is close to the planar geometry assigned to the Family-A flat endpoint $\lambda_A=1$. At a horizon interface the three Family-A binary axes are hypothesized to converge toward the group-translation direction while branch-derived speed rows approach $c_f$; in the photon theorem target, the carrier is a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared prescribed geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
 
 The reduced bridge is the planar Noether braid chart. In that chart, the same three support-row ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating polarity-conjugate planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
 
@@ -35494,7 +35494,7 @@ in the confining window. At the assembly level, this says that an open color cor
 
 ##### The Color Singlet (White)
 
-A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md) and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md). This fixed assignment is a schematic component of the color-singlet state. The physical singlet is the fully antisymmetrized superposition over the $3!$ assignments to indexed sectors $a\in\{1,2,3\}$, with the Levi-Civita color tensor supplying the color-sector sign pattern.
+A proton candidate such as $(u_R,u_G,d_B)$ has a schematic color-singlet assignment in which the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md) and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md). This occupancy is necessary color-singlet bookkeeping, but it does not by itself certify a retained or stable proton branch. The physical singlet is the fully antisymmetrized superposition over the $3!$ assignments to indexed sectors $a\in\{1,2,3\}$, with the Levi-Civita color tensor supplying the color-sector sign pattern.
 
 1. Red: axis-1 exceptional
 2. Green: axis-2 exceptional
@@ -36237,7 +36237,7 @@ $$
 \mathcal L_{\mathrm{strong}}^{uud}(T).
 $$
 
-For $q=e$, this is the stable Generation-I electronic-hydrogen inventory $\mathcal A_{\mathrm H}$. For $q=\mu$, the Generation-II muon branch replaces the electron, and the comparison is defined only over a declared muon-branch retention window $W_\mu$ on which $\mathcal A_\mu(T)$ remains an admitted assembly. The transient branch does not silently enlarge the Generation-I hydrogen ledger.
+For $q=e$, this is the working Generation-I electronic-hydrogen comparison inventory $\mathcal A_{\mathrm H}$; stability remains a theorem target. For $q=\mu$, the Generation-II muon branch replaces the electron, and the comparison is defined only over a declared muon-branch retention window $W_\mu$ on which $\mathcal A_\mu(T)$ remains an admitted assembly. The transient branch does not silently enlarge the Generation-I hydrogen ledger.
 
 $$
 \mathcal O_{p,q,X}
@@ -36575,7 +36575,7 @@ tests azimuthal single-valuedness, $\Delta_{\Omega}$ tests the angular operator 
 
 ### Nucleon Structure
 
-This chapter fixes the proton and neutron picture used by the nuclear branch. A nucleus does not usually need to reopen every quark-level detail, but it cannot treat a nucleon as a featureless dot either. The nucleon has to enter later nuclear and atomic chapters as one accepted color-singlet source envelope with retained mass, charge, spin, shielding, and corridor behavior.
+This chapter fixes the proton and neutron picture used by the nuclear branch. A nucleus does not usually need to reopen every quark-level detail, but it cannot treat a nucleon as a featureless dot either. The nucleon has to enter later nuclear and atomic chapters through one declared color-singlet source envelope carrying mass, charge, spin, shielding, and corridor behavior at that coarse-grained level.
 
 This is the baryon-side bridge between [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md). Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time.
 
@@ -36583,7 +36583,7 @@ This is the baryon-side bridge between [Quarks](../../../../markdown/aaa/assembl
 
 This chapter fixes the canonical proton and neutron picture used by the nuclear branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is the coarse-grained baryon chapter: not a full QCD replacement, but a precise statement of what a nucleon is in assembly language and which geometric features matter most for nuclear physics.
 
-The guiding rule is level discipline. Quark branch structure matters inside the proton or neutron, but atomic and nuclear calculations should see one stable nucleon envelope unless the calculation is explicitly resolving the strong-sector interior.
+The guiding rule is level discipline. Quark branch structure matters inside the proton or neutron, but atomic and nuclear calculations should see one nucleon envelope that is stable at the observer level as a declared coarse-grained input unless the calculation is explicitly resolving the strong-sector interior. Here `stable` names the observer-level nucleon record to be recovered by the interface; it is not a certification of a retained architrino branch. Color-singlet occupancy is necessary bookkeeping, while retained-branch existence and strong-sector residual closure remain separate theorem targets.
 
 #### Core Claim
 
@@ -36592,7 +36592,7 @@ A nucleon is a confined three-quark color-singlet assembly built from three Gene
 - a **proton** is the ground-state `uud` color-singlet baryon assembly,
 - a **neutron** is the ground-state `udd` color-singlet baryon assembly.
 
-Each constituent quark is itself a Noether braid assembly with an axial layer of the kind cataloged in [quarks.md](../../../../markdown/aaa/assemblies/fermions/quarks.md). The proton or neutron is not a bag of three independent quarks; it is the accepted branch formed when those three quark records close as one color-singlet assembly.
+Each constituent quark is itself a Noether braid assembly with an axial layer of the kind cataloged in [quarks.md](../../../../markdown/aaa/assemblies/fermions/quarks.md). The proton or neutron is not a bag of three independent quarks; the native target is a retained branch in which those three quark records close as one color-singlet assembly.
 
 #### Constituents and Counting
 
@@ -36647,7 +36647,7 @@ In geometric language:
 - the three exceptional axes occur once each across the closed 9-axis braid,
 - the shared flux structure closes the baryon assembly into a singlet.
 
-That color closure is what makes the proton and neutron long-lived hadronic attractors rather than open-color transients. Later nuclear binding chapters can therefore use proton and neutron source envelopes without counting the three quark branches as free atomic or nuclear sources.
+Color closure is necessary for a proton or neutron to be a long-lived hadronic branch rather than an open-color transient, but the occupancy rule alone does not establish retained-branch stability or an attractor basin. Later nuclear binding chapters can use declared proton and neutron source envelopes without counting the three quark branches as free atomic or nuclear sources, provided they preserve that effective-interface boundary.
 
 #### Proton Source-Envelope Closure Target
 
@@ -36663,7 +36663,7 @@ s_{u_1},s_{u_2},s_d\in\{1,2,3\},
 \{1,2,3\}
 $$
 
-The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(T)$ denote the strong-sector corridor ledger that locks these three quark branches into one accepted proton branch. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is
+The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(T)$ denote the strong-sector corridor ledger required to lock these three quark branches into one candidate proton branch. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is
 
 $$
 \mathcal W_{p,X}^{\mathrm{locked}}
@@ -36770,7 +36770,7 @@ The source-envelope closure fails if any of the following occurs:
 
 The same source-envelope rule explains why the proton mass is not obtained by adding the Standard Model current-quark mass entries for two up quarks and one down quark. Those current-quark entries are comparison-layer parameters for quark fields inside the strong sector; they are not the observer-facing scalar masses of three isolated free quark branches. Free quarks are not accepted asymptotic branches.
 
-For the accepted proton branch, the mass-facing response must be computed after color-singlet closure and the proton-window projection. Schematically,
+For a proton branch admitted by this source-envelope interface, the mass-facing response must be computed after color-singlet closure and the proton-window projection. Schematically,
 
 $$
 \mathsf{I}_{p}^{ab}
@@ -36794,7 +36794,7 @@ $$
 
 Here $\mathsf{I}_{\mathrm{strong},uud}^{ab}$ denotes the closed color-corridor and flux contribution, $\mathsf{I}_{\mathrm{cross},uud}^{ab}$ denotes branch-cross terms created by locking the three quark records into one baryon, and $\mathsf{I}_{\mathrm{sea},uud}^{ab}$ denotes the retained local Noether sea response for the proton branch. This is hadronic composite closure, not a conversion of Generation-I quarks into higher-generation exposed cores. Strong-sector exchange may change color exceptionality and flux routing, but on the strong-interaction timescale it must preserve the generation tier unless a separate weak or high-energy branch-transition ledger is supplied.
 
-The proton-current-quark mass mismatch is therefore a required benchmark for the hadronic mass map: most of the proton's observed rest response should come from the accepted composite strong-sector ledger and its Noether sea response, not from isolated current-quark mass addition and not from ordinary nuclear binding. Nuclear binding starts one level higher, after proton and neutron source envelopes have already been accepted as nucleon branches.
+The proton-current-quark mass mismatch is therefore a required benchmark for the hadronic mass map: most of the proton's observed rest response should come from the declared composite strong-sector ledger and its Noether sea response, not from isolated current-quark mass addition and not from ordinary nuclear binding. Nuclear binding starts one level higher, after proton and neutron source envelopes have been admitted as coarse-grained nucleon interfaces.
 
 ##### Proton Spin Budget
 
@@ -36842,7 +36842,7 @@ with the realized proton spin axis defined as $\hat{\mathbf J}_p=\mathbf J_p(Q)/
 
 ##### Proton
 
-The proton is the lowest stable color-singlet baryon assembly with quark content `uud`.
+At the observer level, the proton is the stable ground-state color-singlet baryon target with quark content `uud`; native retained-branch stability remains a separate closure obligation.
 
 Using the current quark templates:
 
@@ -36860,7 +36860,7 @@ $$
 
 ##### Neutron
 
-The neutron is the lowest stable color-singlet baryon assembly with quark content `udd`.
+At the observer level, the neutron is the ground-state color-singlet baryon target with quark content `udd`; its stability depends on the nuclear environment, and native retained-branch stability remains a separate closure obligation.
 
 Its total axial count is
 $$
@@ -37144,11 +37144,11 @@ after the branch convention for $c_{\text{eff}}$ and the environment is declared
 
 Nuclear binding is the residual strong interaction between color-singlet nucleons. It arises when neighboring proton and neutron assemblies couple through the surrounding Noether sea and through meson-like exchange channels, lowering the total energy relative to separated nucleons.
 
-The word `residual` matters. The quarks have already closed into protons and neutrons. Nuclear binding starts after that closure, using nucleon source envelopes as its working objects.
+The word `residual` matters. The nuclear calculation starts from a declared interface in which quark records have been coarse-grained into proton and neutron source envelopes. It does not thereby claim that the native quark-to-nucleon closure has been derived.
 
 So the nuclear problem is already coarse-grained one level above quarks:
 
-- quarks close into nucleons,
+- quark records are coarse-grained into declared nucleon source envelopes,
 - nucleons couple through residual hadronic channels,
 - nuclei are multi-nucleon bound assemblies.
 
@@ -41896,7 +41896,7 @@ At the absolute level, any local neighborhood is crowded:
   $$
   The potential variance is infrared divergent, whereas the acceleration variance converges at large $R$ and is controlled by nearby sources. Because the master equation consumes acceleration contributions, the dynamically relevant screening claim belongs to the acceleration sum; the scalar potential remains a conditionally defined reconstruction unless a separate summation prescription is declared.
 
-"Stable" particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
+"Stable" particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are retained stable or metastable branch structures, not static beads; they qualify as attractor-basin structures only where reduced-flow contraction and exported-flux accounting have been established.
 
 ##### Operational Picture
 
@@ -42357,7 +42357,7 @@ Its nearest companion notes are [Superposition Mechanism](../../../../markdown/a
 
 #### Purpose and Scope
 
-This document establishes the ontological status of the quantum wavefunction ($\psi$) and the fundamental operators of quantum mechanics within $\mathbb{A}\mathbb{A}\mathbb{A}$. It maps the standard quantum formalism, traditionally treated as axiomatic, to deterministic, non-Markovian dynamics governed by the master equation.
+This document states the ontological interpretation of the quantum wavefunction ($\psi$) within $\mathbb{A}\mathbb{A}\mathbb{A}$ and sets out an effective comparison mapping for the fundamental operators of quantum mechanics. The proposed mapping translates the standard quantum formalism, traditionally treated as axiomatic, into deterministic, non-Markovian dynamics governed by the master equation.
 
 The framework explicitly separates the **ontic reality** of architrino trajectories and causal wake surfaces from the **epistemic description** captured by the wavefunction. Reframing measurement as dynamical threshold resolution does not by itself complete the quantum closure program, but it relocates the measurement problem onto a mechanical basis involving uncertainty, superposition, and the standard particle-wave duality comparison.
 
@@ -47066,7 +47066,7 @@ In the modular cosmology map, this page provides:
 
 ### Inflation Model
 
-This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), and the strong-field pages [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md).
+This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), and the strong-field pages [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Mapping the Planck Scale to the A1 Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md).
 
 #### Core Idea
 
@@ -50520,7 +50520,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, intracluster light is not dark matter
 
 ##### Baryonic Assemblies
 
-Baryons (protons, neutrons, and their composites) are Noether braid assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to photon-channel packets carried by coaxial contra-rotating polarity-conjugate planar pairs propagating through the Noether sea, producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
+Baryons (protons, neutrons, and their composites) are Noether braid assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. In this effective growth comparison, pre-recombination baryonic assemblies are modeled as tightly coupled to photon-channel packets represented by the referent-pending coaxial contra-rotating polarity-conjugate planar-pair construction, producing acoustic oscillations. After decoupling, baryons fall into potential wells attributed by the working comparison to the candidate dark sector.
 
 ##### Neutral Assemblies (Dark-Matter Candidates)
 
@@ -51956,8 +51956,8 @@ These quantities belong to Noether braid architecture, shielding, branch structu
 | G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open; compact finite-coordinate no-go recorded, branch-chart revision required before Tier 1 continuation | certificate packet tying the finite closure graph $\mathcal{G}_{A_0}$, active root ledger, quotient Floquet gap $\Delta_{\mathbf{k}}$, shielding extraction, and $\mathcal{M}_{\text{sea}}^{ab}$ response probe into one promotion sequence | [simulations/a0-branch-certificate-protocol.md](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
 | G1 | $R_1,R_2,R_3$ | Geometric closure target | Open | characteristic radii of the indexed A1 binary rows | [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md), [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics) |
 | G2 | $\omega_1,\omega_2,\omega_3$ | Geometric closure target | Open | characteristic frequencies of the indexed A1 binaries | [A1 Dynamics](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) |
-| G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | assembly-level alignment radius in the terminal Family-A map | [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md) |
-| G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md) |
+| G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | assembly-level alignment radius in the terminal Family-A map | [Mapping the Planck Scale to the A1 Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md) |
+| G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [Mapping the Planck Scale to the A1 Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md) |
 | G5 | $\zeta(A)$ | Geometric closure target | Open | shielding or leakage factor of assembly $A$, defined by far-field suppression relative to naive constituent exposure | [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
 | G6 | $\alpha$ | Geometric closure target | Open | axial-frame misalignment angle used in the weak-mixing / quark-geometry program | [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md) |
 | G7 | $\phi_c$ | Geometric closure target | Open | color-sector azimuth selecting the exceptional axial-frame orientation | [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md) |
@@ -51986,8 +51986,8 @@ These quantities are where closure is tested. They are not substrate inputs.
 | ID | Symbol | Class | Status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | O1 | $e$ | Observable benchmark | Derived target | elementary charge reconstructed from substrate charge and normalization map | [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md), [../assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md) |
-| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | full-cycle action quantum and radian-normalized angular-momentum quantum to be related to Family-A alignment, orbital closure, and any lower recordable basin-measure scale derived by quantum closure | [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md), [Architrino SI Base Units](../../../../markdown/aaa/validation/architrino-si-base-units.md) |
-| O3 | $G$ or $G_{\text{eff}}$ | Observable benchmark / constitutive target | Open | effective gravitational coupling emerging from medium compliance and alignment geometry | [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) |
+| O2 | $h,\hbar$ | Observable benchmark / geometric target | Open | full-cycle action quantum and radian-normalized angular-momentum quantum to be related to Family-A alignment, orbital closure, and any lower recordable basin-measure scale derived by quantum closure | [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale to the A1 Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md), [Architrino SI Base Units](../../../../markdown/aaa/validation/architrino-si-base-units.md) |
+| O3 | $G$ or $G_{\text{eff}}$ | Observable benchmark / constitutive target | Open | effective gravitational coupling emerging from medium compliance and alignment geometry | [Mapping the Planck Scale to the A1 Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) |
 | O4 | $m_{\text{inertial}}(A)$ | Derived output | Open | inertial mass of assembly $A$, extracted operationally from shielding and medium response | [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
 | O5 | $\theta_W^{\text{bare}}$ and $\theta_W$ | Geometric target / observable benchmark | Open | bare geometric weak-mixing increment and the measured electroweak mixing angle it must eventually inform | [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [../assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md) |
 | O6 | $(\alpha_1,\alpha_2,\alpha_3)$ | Observable benchmark | Open | standard PPN preferred-frame coefficients derived from $(\Xi_1,\Xi_2,\Xi_3)$ | [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
@@ -52212,7 +52212,7 @@ where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive se
 - [../dynamics/master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md)
 - [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md)
 - [../philosophy-history/theory-bridges/angular-momentum-and-spin.md](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md)
-- [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md)
+- [Mapping the Planck Scale to the A1 Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md)
 - [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md)
 - [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md)
 - [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md)
@@ -63883,11 +63883,11 @@ Each mature bridge should include:
 - [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)
 - [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md)
 - [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
-- [Mapping the Planck Scale to Family-A Alignment Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md)
+- [Mapping the Planck Scale to the A1 Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md)
 - [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md)
 - [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md)
-- [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md)
+- [Spacetime Models and the Noether Sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md)
 - [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)
 - [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md)
 
@@ -72906,7 +72906,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ is therefore not an anti-geometric theory. It i
 
 The working question is always: what job is this geometry doing? A geometry may define the container, encode a causal wake, describe an assembly, summarize medium response, or organize observer measurements. Those jobs are different, and the chapter exists to keep them from being merged into one all-purpose word.
 
-The technical owners remain [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
+The technical owners remain [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Spacetime Models and the Noether Sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
 
 #### The Geometry Question
 
@@ -77716,7 +77716,7 @@ The arrow problem also separates dynamical relaxation from measure-based typical
 
 **Core non-closure.** Wave-particle language still mixes ontology with measurement vocabulary. A deeper theory must explain source, propagation, polarization, and detector response without treating the photon as a tiny classical bead or as a purely formal state.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Radiation is an event-ledger and path-history process. A photon is a stable radiation transaction with source, propagation, polarization, detector response, and energy-momentum accounting. The canonical candidate ontology is a coaxial contra-rotating polarity-conjugate planar pair, with channel details still under closure.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Radiation is an event-ledger and path-history process. At the effective record level, a photon is represented by a radiation transaction with source, propagation, polarization, detector response, and energy-momentum accounting. The candidate native carrier is a coaxial contra-rotating polarity-conjugate planar pair; its retained stability and channel details remain under closure.
 
 **Resolution tests.** Use double-slit/Mach-Zehnder, single-photon detection, Malus' law, blackbody spectra, atomic spectra, synchrotron/bremsstrahlung, and QED correction benchmarks. The source mechanism must remain separate from the carrier/channel family.
 

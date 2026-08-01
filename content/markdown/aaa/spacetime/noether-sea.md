@@ -1014,7 +1014,7 @@ The canonical metric bridge is [Emergent Metric](emergent-metric.md). Clock extr
 
 ## Matter Coupling and Inertia
 
-Matter assemblies are not isolated objects moving through nothing. They are stable architrino assemblies embedded in the Noether sea.
+Matter assemblies are not isolated objects moving through nothing. They are architrino assemblies embedded in the Noether sea. Their stability is a local retained-branch property, conditional on the surrounding medium record and boundary residuals.
 
 Their observed inertia and mass are expected to depend on:
 
