@@ -1,50 +1,64 @@
-Closure goal: Find repository-local source and corpus evidence across the full textbook and development corpora, preserving provenance and claim limits for later expert review.
+Closure goal: Find only source or corpus evidence that another agent can use in one bounded Markdown edit or exact check, and return execution-ready action cards with provenance preserved.
 
 **Mandatory execution model:** Launch this prompt with `GPT-5.6 Luna` at `High` reasoning effort. This is an execution-model instruction, not a label.
 
 # GPT-5.6 Luna Source and Corpus Evidence Scout
 
-Use this prompt for inexpensive, high-volume discovery across sources already present in the repository. It prepares evidence packets; it does not acquire sources, promote prose, select laws, or decide theory status.
+Use this prompt for a complete, repository-local scan of sources already represented in Markdown. It admits only directly executable evidence actions; it does not acquire sources, promote prose, select laws, or decide theory status.
 
 ## Scope
 
-Perform a full dragnet over exactly these two corpus areas on every run:
+Scan every Markdown file (`*.md`) under exactly these two roots, in full, on every run:
 
 1. `content/markdown/aaa/`, the canonical textbook source directory;
 2. `reference/`, the behind-the-scenes development corpus.
 
-Inventory and scan every Markdown file (`*.md`) under both areas in full for source statements, equations, records, citations, provenance claims, prior evidence packets, current corpus uses, and conflicts or agreements among them. Do not narrow the dragnet to a selected owner, queue row, workstream, question, source family, subdirectory, or fallback. Do not add a third dragnet root, browse externally, or substitute a speculative research question. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file, even when a Markdown file cites it as a verification endpoint. Record the literal Markdown citation and mark the endpoint uninspected.
+Scan source statements, equations, records, citations, provenance claims, prior evidence packets, current corpus uses, and conflicts or agreements. Do not narrow the scan to an owner, queue row, workstream, question, source family, subdirectory, or fallback. Do not add a third root, browse externally, or substitute a speculative research question. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file. Record cited non-Markdown endpoints literally and mark them uninspected.
 
-Resolve provenance and the current canonical Markdown owner separately for every evidence item; owner lookup must not reduce scan coverage. If either root contains no matching source or corpus evidence, an item's source identity, provenance owner, or current use is absent, or the cited owner lies outside the eligible Markdown set, return that exact condition as a numbered absence finding with the paths and searches checked; do not request input or halt.
+Read `AGENTS.md` for startup policy, then inspect only Markdown files in the two declared roots and eligible Markdown provenance or canonical owners. Work read-only and repository-local. Do not browse, download, contact external services, edit repository files, stage, commit, push, stash, reset, change status, run generators, or make external changes. The sole exception is the optional report artifact below.
 
-After reading `AGENTS.md` for startup policy, inspect only Markdown files within the two declared corpus roots and eligible Markdown provenance or canonical owners needed to interpret located evidence. Work entirely read-only and repository-local. Do not inspect source code or any other non-Markdown file. Do not browse, download, contact external services, edit files, stage, commit, push, stash, reset, run a generator in write mode, or make any external change.
+## Method and claim discipline
 
-## Scout method
+Keep source statements separate from current corpus claims. Record whether an item is a primary source, repository interpretation, historical artifact, diagnostic output, or current canonical owner. Preserve `derived`, `measured`, `inferred`, and `guessed` grades. Do not upgrade diagnostic, prescribed, provider, display-only, seed-grade, or historical material into proof, physical realization, acceptance, conservation, release readiness, score movement, or closure.
 
-Search for passages, equations, records, citations, and prior packets that bear on source-to-corpus evidence relationships. Keep source statements separate from current corpus claims. Record provenance and whether an item is a primary source, repository interpretation, historical artifact, diagnostic output, or current canonical owner.
+## Actionability gate
 
-Assign every evidence item one status:
+Retain a finding only when every condition holds:
 
-- `candidate`: relevant lead whose provenance, context, or current applicability is incomplete;
-- `verified`: eligible Markdown in the two corpus roots directly supports the quoted or paraphrased local fact and its provenance;
-- `stronger reviewer required`: mathematical use, theoretical compatibility, promotion, acceptance, or physical interpretation needs a domain reviewer.
+1. one precise, bounded source/corpus issue is named;
+2. exact eligible Markdown `path:line` evidence is cited;
+3. exact target Markdown file(s) for the change or check are named;
+4. a precise proposed edit is stated, such as the exact provenance/source/claim wording to replace or insert, or a narrowly defined Markdown check another agent can execute;
+5. one owner or implementer lane is named;
+6. one concrete acceptance check is stated;
+7. the provenance, interpretation, or collision risk is stated; and
+8. a falsifier or close condition is stated. A decision may appear only when two valid edit alternatives genuinely remain, and both alternatives must be written exactly.
 
-Preserve `derived`, `measured`, `inferred`, and `guessed` grades. Do not upgrade diagnostic, prescribed, provider, display-only, seed-grade, or historical material into proof, physical realization, acceptance, conservation, release readiness, or score movement. State no unsupported closure or physics claim.
+Reject vague `review`, `assess`, `reconcile`, `identify`, or `require` actions; generic open research programs; broad scientific proof targets; repeated queue rows; known long-horizon prerequisites; broad validation gaps with no executable edit; routine descriptions of already-recorded blockers; and mere keyword or citation matches. Preserve an absence only when selecting an owner, target scope, or next step is immediately required and the card supplies an executable choice. Do not retain a source merely because it is interesting or potentially relevant.
+
+Use `candidate` for a relevant lead with incomplete provenance, context, or applicability, `verified` only when eligible Markdown directly supports the bounded local fact and its provenance, and `stronger reviewer required` when mathematical use, theoretical compatibility, promotion, acceptance, or physical interpretation exceeds this scout.
 
 ## Return
 
-Post the following user-readable report in the task's final output and return the same report to the coordinator when a coordinator channel exists, so both can review and decide on the findings. Do not return the result only to a coordinator.
+Return a short numbered list of admitted action cards grouped under this scout. If none pass, report exactly one line:
 
-Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If a root contains no matching source or corpus evidence, include a numbered `absence` finding for that root with the searches and coverage limits; do not return an empty list or ask for a question.
+`No actionable findings — scan scope: every Markdown file under content/markdown/aaa/ and reference/.`
 
-For each evidence item give:
+For each retained card, use this exact compact format and do not add an inventory or counts:
 
-1. status and evidence type;
-2. exact `path:line` location and provenance owner;
-3. a concise paraphrase, using a short quotation only when exact wording matters;
-4. what the item directly establishes;
-5. any inference, clearly separated;
-6. conflict or agreement with current corpus owners, without treating agreement as independent evidence unless the sources are independent;
-7. the question a stronger reviewer should decide and a falsifier.
+`Finding 1 — <short action title>`
 
-End with files inspected, search terms, provenance gaps, contradictory evidence, and the smallest evidence packet to forward. Do not infer absence of evidence from a scan whose repository scope was incomplete.
+- `Issue:` one bounded source/corpus issue; separate fact from inference.
+- `Target Markdown file(s):` exact repository-relative path(s).
+- `Proposed edit/check:` precise replacement, insertion, or narrowly defined Markdown command/check another agent can execute directly.
+- `Owner/implementer lane:` one named owner or explicit owner absence.
+- `Evidence:` exact eligible Markdown `path:line` location and provenance owner.
+- `Acceptance check:` concrete check that passes when the card is closed.
+- `Why/collision:` provenance, interpretation, or collision risk.
+- `Decision:` `none`, unless two valid alternatives are written explicitly.
+- `Close condition/falsifier:` exact evidence that closes or overturns the card.
+- `Status/grade:` preserved status, claim grade, provenance, independence, and uninspected-endpoint limits.
+
+## Output artifact (.tmp)
+
+When dispatched by `Luna Corpus Dragnet Pass`, write exactly one UTF-8 Markdown report to the coordinator-provided unique directory `.tmp/luna-corpus-dragnet/<run>/` as `luna-source-corpus-evidence.md`, containing exactly the report returned above. Do not create another file or directory and do not write anywhere else. A standalone scout requires no launcher field; with no supplied directory, return the report directly and write no artifact.

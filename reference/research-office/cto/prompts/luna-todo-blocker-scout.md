@@ -1,50 +1,62 @@
-Closure goal: Cluster actionable TODOs, blockers, deferred items, and unresolved questions against their live owners, without changing status or proposing theory closure.
+Closure goal: Find only active TODO or blocker items that another agent can execute as one bounded Markdown edit or exact check, and return execution-ready action cards.
 
 **Mandatory execution model:** Launch this prompt with `GPT-5.6 Luna` at `High` reasoning effort. This is an execution-model instruction, not a label.
 
 # GPT-5.6 Luna TODO and Blocker Scout
 
-Use this prompt for inexpensive, high-volume backlog reconnaissance. It consolidates repository evidence into review packets; it does not reprioritize, resolve, or mutate the backlog.
+Use this prompt for a complete, read-only scan of explicit TODO, FIXME, blocker, deferred, unresolved, missing, follow-up, and open-question language. It admits only directly executable actions; it does not reprioritize, resolve, or mutate the backlog.
 
 ## Scope
 
-Perform a full dragnet over exactly these two corpus areas on every run:
+Scan every Markdown file (`*.md`) under exactly these two roots, in full, on every run:
 
 1. `content/markdown/aaa/`, the canonical textbook source directory;
 2. `reference/`, the behind-the-scenes development corpus.
 
-Inventory and scan every Markdown file (`*.md`) under both areas in full for explicit TODO, FIXME, blocker, deferred, unresolved, missing, follow-up, and open-question language. Do not narrow the dragnet to a selected owner, queue row, workstream, phrase family, subdirectory, or fallback. Do not add a third dragnet root. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file, even when a Markdown file cites it as a verification endpoint. Record the literal Markdown citation and mark the endpoint uninspected.
+Do not narrow the scan to an owner, queue row, workstream, phrase family, subdirectory, or fallback. Do not add a third root. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file. Record cited non-Markdown endpoints literally and mark them uninspected.
 
-Resolve the live Markdown queue, status, or canonical owner separately for every located item or cluster; owner lookup must not reduce scan coverage. If either root contains no matching material, an item's owner or prerequisite is absent, or the cited owner is outside the eligible Markdown set, return that exact condition as a numbered absence finding with the paths and searches checked; do not request input, choose an unrelated backlog, halt, or infer that an item is closed.
+Read `AGENTS.md` for startup policy, then inspect only Markdown files in the two declared roots and eligible Markdown owners. Separate active obligations from historical notes, examples, completed items, and generated mirrors. Work read-only. Do not browse, edit repository files, stage, commit, push, stash, reset, change status, renumber priorities, run generators, or make external changes. The sole exception is the optional report artifact below.
 
-After reading `AGENTS.md` for startup policy, inspect only Markdown files within the two declared corpus roots and each eligible Markdown live owner before classifying an item. Work entirely read-only. Do not inspect source code or any other non-Markdown file. Do not edit files, stage, commit, push, stash, reset, change status, renumber priorities, run a generator in write mode, or make any external change.
+## Actionability gate
 
-## Scout method
+Retain a finding only when every condition holds:
 
-Find explicit TODO, FIXME, blocker, deferred, unresolved, missing, follow-up, and open-question language. Separate active obligations from historical notes, examples, completed items, and generated mirrors. Cluster only items that share the same owner and missing prerequisite; do not merge merely similar wording.
+1. one precise, bounded active issue is named;
+2. exact eligible Markdown `path:line` evidence is cited for the item and owner;
+3. exact target Markdown file(s) for the change or check are named;
+4. a precise proposed edit is stated, such as the exact TODO/status/owner/link phrasing to replace or insert, or a narrowly defined Markdown check another agent can execute;
+5. one owner or implementer lane is named;
+6. one concrete acceptance check is stated;
+7. the blocker consequence or collision risk is stated; and
+8. a falsifier or close condition is stated. A decision may appear only when two valid edit alternatives genuinely remain, and both alternatives must be written exactly.
 
-Assign every item or cluster one status:
+Reject vague `review`, `assess`, `reconcile`, `identify`, or `require` actions; generic open research programs; broad scientific proof targets; repeated queue rows; known long-horizon prerequisites; broad validation gaps with no executable edit; routine descriptions of already-recorded blockers; and mere keyword matches. A keyword hit alone is never an admitted finding. Preserve an absence only when selecting an owner, target scope, or next step is immediately required and the card supplies an executable choice.
 
-- `candidate`: likely active but not fully reconciled with its live owner;
-- `verified`: an eligible live Markdown owner directly confirms the item remains open;
-- `stronger reviewer required`: proof status, physical meaning, acceptance, provenance, or priority judgment exceeds this scout.
+Use `candidate` for an active-looking item not fully reconciled with its live Markdown owner, `verified` only when an eligible live owner directly confirms the bounded item remains open, and `stronger reviewer required` when proof status, physical meaning, acceptance, provenance, or priority judgment exceeds this scout.
 
 Preserve `derived`, `measured`, `inferred`, and `guessed` grades and every existing status boundary. Do not select a law, invent a prescription, propose contact continuation, claim proof closure, change a score, or make a physics verdict.
 
 ## Return
 
-Post the following user-readable report in the task's final output and return the same report to the coordinator when a coordinator channel exists, so both can review and decide on the findings. Do not return the result only to a coordinator.
+Return a short numbered list of admitted action cards grouped under this scout. If none pass, report exactly one line:
 
-Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If a root contains no matching TODO or blocker material, include a numbered `absence` finding for that root with the searches and coverage limits; do not return an empty list or ask for a target.
+`No actionable findings — scan scope: every Markdown file under content/markdown/aaa/ and reference/.`
 
-For each item or cluster give:
+For each retained card, use this exact compact format and do not add an inventory or counts:
 
-1. status and cluster label using existing repository terminology;
-2. exact `path:line` evidence for every member and its live owner;
-3. verified fact versus inference;
-4. owner, missing prerequisite, and collision risk with nearby active work;
-5. duplicates or stale mirrors, without deleting them;
-6. the question or evidence needed from a stronger reviewer;
-7. a falsifier that would show the item is closed or historical.
+`Finding 1 — <short action title>`
 
-End with counts by status, files inspected, scan limitations, and the smallest set of packets worth forwarding. Do not treat keyword absence as proof that no blockers exist.
+- `Issue:` one bounded active item; separate fact from inference.
+- `Target Markdown file(s):` exact repository-relative path(s).
+- `Proposed edit/check:` precise replacement, insertion, or narrowly defined Markdown command/check another agent can execute directly.
+- `Owner/implementer lane:` one named owner or explicit owner absence.
+- `Evidence:` exact eligible Markdown `path:line` evidence for item and owner.
+- `Acceptance check:` concrete check that passes when the card is closed.
+- `Why/collision:` blocker consequence or collision risk.
+- `Decision:` `none`, unless two valid alternatives are written explicitly.
+- `Close condition/falsifier:` exact evidence that closes or overturns the card.
+- `Status/grade:` preserved status, claim grade, provenance, and uninspected-endpoint limits.
+
+## Output artifact (.tmp)
+
+When dispatched by `Luna Corpus Dragnet Pass`, write exactly one UTF-8 Markdown report to the coordinator-provided unique directory `.tmp/luna-corpus-dragnet/<run>/` as `luna-todo-blocker.md`, containing exactly the report returned above. Do not create another file or directory and do not write anywhere else. A standalone scout requires no launcher field; with no supplied directory, return the report directly and write no artifact.

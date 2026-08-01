@@ -1,49 +1,64 @@
-Closure goal: Locate repository hygiene and reference-drift candidates without changing the working tree, and return exact evidence for maintainers to verify.
+Closure goal: Find only repository-hygiene defects that another agent can fix as one bounded Markdown edit or exact check, and return execution-ready action cards.
 
 **Mandatory execution model:** Launch this prompt with `GPT-5.6 Luna` at `High` reasoning effort. This is an execution-model instruction, not a label.
 
 # GPT-5.6 Luna Repository Hygiene Scout
 
-Use this prompt for inexpensive, high-volume scans of links, names, paths, duplicated guidance, stale references, and canonical-owner drift. It identifies repair candidates; it does not perform cleanup.
+Use this prompt for a complete, read-only scan that admits only directly executable link, naming, duplication, or owner-drift repairs. It does not perform cleanup.
 
 ## Scope
 
-Perform a full dragnet over exactly these two corpus areas on every run:
+Scan every Markdown file (`*.md`) under exactly these two roots, in full, on every run:
 
 1. `content/markdown/aaa/`, the canonical textbook source directory;
 2. `reference/`, the behind-the-scenes development corpus.
 
-Inventory and scan every Markdown file (`*.md`) under both areas in full for links, names, paths, duplicated guidance, stale references, canonical-owner drift, orphaned indexes, mismatched filenames and titles, and generated-source declarations. Do not narrow the dragnet to a selected owner, queue row, workstream, cluster, subdirectory, or fallback. Do not add a third dragnet root. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file, even when a Markdown file cites it as a verification endpoint. Record the literal Markdown citation and mark the endpoint uninspected.
+Do not narrow the scan to an owner, queue row, workstream, cluster, subdirectory, or fallback. Do not add a third root. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file, even when a Markdown file cites it. Record such citations literally and mark them uninspected.
 
-Treat an explicit Markdown source declaration, local README, architecture decision, generator header, or canonical terminology guide as an owner only after reading it within the two declared roots. If either root contains no matching hygiene material, a candidate's owner or endpoint is absent, or the cited endpoint lies outside the eligible Markdown set, return that exact condition as a numbered absence finding with the paths, checks, and zero-result searches; do not request input, halt, expand into theory review, or infer global hygiene from silence.
+Read `AGENTS.md` for startup policy, then inspect only Markdown files in the two declared roots and eligible Markdown owners needed to verify a candidate. Work read-only. Do not browse, contact external services, edit repository files, stage, commit, push, stash, reset, change status, run generators, or make external changes. The sole exception is the optional report artifact below.
 
-After reading `AGENTS.md` for startup policy, inspect only Markdown files within the two declared corpus roots and eligible Markdown owners needed to verify each candidate. Work entirely read-only. Do not inspect source code or any other non-Markdown file. Do not edit files, stage, commit, push, stash, reset, run a generator in write mode, or make any external change. Do not delete, rename, relink, or normalize anything.
+## Method and claim discipline
 
-## Scout method
+Search Markdown-to-Markdown links, names, paths, duplicated guidance, stale references, canonical-owner drift, orphaned indexes, mismatched filenames and titles, and generated-source declarations. Distinguish stale references from historical or compatibility literals. Preserve affected claim grades and do not infer theory closure, physical acceptance, conservation, release readiness, or score movement from hygiene evidence.
 
-Look for broken or stale Markdown-to-Markdown relative links within the two roots, moved-path references, contradictory duplicate guidance, obsolete terminology, orphaned indexes, mismatched filenames and titles, and documented generated-source drift. Inventory references to non-Markdown endpoints from their Markdown source, but do not inspect the endpoint or classify it as broken. Distinguish a reference that is truly stale from a historical or compatibility reference that must remain literal.
+## Actionability gate
 
-Assign every finding one status:
+Retain a finding only when every condition holds:
 
-- `candidate`: a suspicious reference or duplication not fully checked against its owner;
-- `verified`: the current repository directly confirms the local hygiene defect;
-- `stronger reviewer required`: intent, historical authority, generated ownership, or theory terminology requires a maintainer or domain reviewer.
+1. one precise, bounded hygiene issue is named;
+2. exact eligible Markdown `path:line` evidence is cited at each relevant endpoint;
+3. exact target Markdown file(s) for the change or check are named;
+4. a precise proposed edit is stated, such as the exact sentence, filename label, relative link, or owner declaration to replace or insert, or a narrowly defined Markdown check;
+5. one owner or implementer lane is named;
+6. one concrete acceptance check is stated;
+7. why it matters or the collision risk is stated; and
+8. a falsifier or close condition is stated. A decision may appear only when two valid edit alternatives genuinely remain, and both alternatives must be written exactly.
 
-Preserve `derived`, `measured`, `inferred`, and `guessed` claim grades in any affected prose. Do not infer theory closure, physical acceptance, conservation, release readiness, or score movement from a hygiene result.
+Reject vague `review`, `assess`, `reconcile`, `identify`, or `require` actions; generic cleanup programs; broad scientific proof targets; repeated queue rows; known long-horizon prerequisites; broad validation gaps with no executable edit; routine descriptions of already-recorded blockers; and mere keyword or link matches. Preserve an absence only when selecting an owner, target scope, or next step is immediately required and the card supplies an executable choice.
+
+Use `candidate` for a suspicious reference or duplication not fully checked against its owner, `verified` only for the bounded local hygiene defect directly confirmed in eligible Markdown, and `stronger reviewer required` when intent, historical authority, generated ownership, or theory terminology exceeds this scout.
 
 ## Return
 
-Post the following user-readable report in the task's final output and return the same report to the coordinator when a coordinator channel exists, so both can review and decide on the findings. Do not return the result only to a coordinator.
+Return a short numbered list of admitted action cards grouped under this scout. If none pass, report exactly one line:
 
-Start every substantive finding with a stable numbered label (`Finding 1`, `Finding 2`, and so on). If a root contains no matching hygiene material, include a numbered `absence` finding for that root with the searches and coverage limits; do not return an empty list or ask for a target.
+`No actionable findings — scan scope: every Markdown file under content/markdown/aaa/ and reference/.`
 
-For each finding give:
+For each retained card, use this exact compact format and do not add an inventory or counts:
 
-1. status and hygiene category;
-2. exact Markdown `path:line` evidence at every eligible conflicting endpoint, or the literal citation and uninspected status of an ineligible endpoint;
-3. verified fact versus inference;
-4. likely canonical owner, if located;
-5. smallest candidate repair, described but not applied;
-6. falsifier or follow-up check.
+`Finding 1 — <short action title>`
 
-Group repeated instances only when each path and line is listed. End with files inspected, commands or searches run, scan limitations, and a short cluster summary. Do not claim absence of drift when the scan did not cover the relevant owner set.
+- `Issue:` one bounded defect; separate fact from inference.
+- `Target Markdown file(s):` exact repository-relative path(s).
+- `Proposed edit/check:` precise replacement, insertion, link/status change, or narrowly defined Markdown command/check another agent can execute directly.
+- `Owner/implementer lane:` one named owner or explicit owner absence.
+- `Evidence:` exact eligible Markdown `path:line` evidence.
+- `Acceptance check:` concrete check that passes when the card is closed.
+- `Why/collision:` significance or collision risk.
+- `Decision:` `none`, unless two valid alternatives are written explicitly.
+- `Close condition/falsifier:` exact evidence that closes or overturns the card.
+- `Status/grade:` preserved status, claim grade, provenance, independence, and uninspected-endpoint limits.
+
+## Output artifact (.tmp)
+
+When dispatched by `Luna Corpus Dragnet Pass`, write exactly one UTF-8 Markdown report to the coordinator-provided unique directory `.tmp/luna-corpus-dragnet/<run>/` as `luna-repository-hygiene.md`, containing exactly the report returned above. Do not create another file or directory and do not write anywhere else. A standalone scout requires no launcher field; with no supplied directory, return the report directly and write no artifact.
