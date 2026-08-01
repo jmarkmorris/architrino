@@ -1,61 +1,32 @@
-Closure goal: Find only active TODO or blocker items in the main AAA textbook corpus that another agent can execute as one bounded Markdown edit or exact check, and return execution-ready action cards.
-
-**Mandatory execution model:** Launch this prompt with `GPT-5.6 Luna` at `High` reasoning effort. This is an execution-model instruction, not a label.
+Closure goal: Find every concrete active TODO or blocker task in the main AAA textbook corpus, including stale blockers and missing next-action rows.
 
 # GPT-5.6 Luna TODO and Blocker Scout
 
-Use this prompt for a complete, read-only scan of explicit TODO, FIXME, blocker, deferred, unresolved, missing, follow-up, and open-question language. It admits only directly executable actions; it does not reprioritize, resolve, or mutate the backlog.
+Read and follow [`luna-scout-common.md`](luna-scout-common.md) in full before scanning. Its shared scope, exhaustive action-backlog contract, Markdown-only evidence rules, claim/status safeguards, card format, and artifact protocol are binding.
 
-## Scope
+## Distinct purpose
 
-Scan every Markdown file (`*.md`) under exactly one root, in full, on every run:
+Own only active task language and blocker hygiene: TODO/FIXME/deferred/unresolved/missing/follow-up/open-question passages, stale blocker statements, and missing or unclear next-action rows. Do not reprioritize work, resolve the underlying theory or implementation, or turn a generic open question into a task without a bounded Markdown change/check.
 
-1. `content/markdown/aaa/`, the main AAA textbook corpus.
+## TODO-and-blocker scan rubric
 
-This is the complete scan boundary. Do not scan, inspect, parse, or use any file outside this root, including priority or work-queue material. Do not narrow the scan to an owner, queue row, workstream, phrase family, subdirectory, or fallback. Do not add a second root. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file. Record cited non-Markdown endpoints literally and mark them uninspected. If a source or owner detail is unavailable within the corpus, report no action; do not seek it outside the corpus or preserve an absence record.
+Search every eligible corpus Markdown file for:
 
-Apply the repository startup policy already supplied to this prompt, then inspect only Markdown files in the declared corpus root and eligible corpus Markdown owners. Separate active obligations from historical notes, examples, completed items, and generated mirrors. Work read-only. Do not browse, edit repository files, stage, commit, push, stash, reset, change status, renumber priorities, run generators, or make external changes. The sole exception is the optional report artifact below.
+- `TODO`, `FIXME`, blocker, deferred, unresolved, missing, follow-up, next action, open question, pending, or equivalent task language;
+- status rows or prose that describe an item as active while nearby corpus evidence marks it completed, superseded, historical, or generated;
+- active items with a concrete next step implied by their surrounding section but no explicit next-action row or check;
+- mixed TODOs that combine multiple bounded tasks and therefore obscure separate acceptance checks;
+- stale blocker phrasing that remains current-facing after a later corpus passage records its superseding result; and
+- vague task wording that names a real corpus defect but omits the exact Markdown edit, check, or bounded investigation needed to advance it.
 
-## Actionability gate
+Compare the task passage with adjacent status, evidence, completion, and next-action passages. Separate active obligations from historical notes, examples, completed items, and generated mirrors. For a `needs-wording` card, write the exact TODO/status sentence that needs a bounded rewrite. For a `needs-review` card, identify the two corpus passages whose dates/status or next actions must be reconciled and state the Markdown check that decides the result. Do not change priorities or status during the scan.
 
-Retain a finding only when every condition holds:
+## In-scope examples
 
-1. one precise, bounded active issue is named;
-2. exact eligible corpus Markdown `path:line` evidence is cited for the item and owner;
-3. exact target Markdown file(s), all under `content/markdown/aaa/`, for the change or check are named;
-4. a precise proposed edit is stated, such as the exact TODO/status/owner/link phrasing to replace or insert, or a narrowly defined Markdown check another agent can execute;
-5. one owner or implementer lane is identified within eligible corpus Markdown;
-6. one concrete acceptance check on the corpus target is stated;
-7. the blocker consequence or collision risk is stated; and
-8. a falsifier or close condition is stated. A decision may appear only when two valid edit alternatives genuinely remain, and both alternatives must be written exactly.
+Retain a task to rewrite “TODO: fix this” as an exact Markdown next-action row with a target and acceptance check; mark a blocker stale when a later corpus passage establishes the superseding result; add a missing next-action row beside an active obligation; correct an unresolved status phrase; or split one mixed TODO into two bounded Markdown tasks with separate checks.
 
-Reject vague `review`, `assess`, `reconcile`, `identify`, or `require` actions; generic open research programs; broad scientific proof targets; repeated queue rows; known long-horizon prerequisites; broad validation gaps with no executable edit; routine descriptions of already-recorded blockers; and mere keyword matches. A keyword hit alone is never an admitted finding. If the source, owner, target, or acceptance detail is unavailable within eligible corpus Markdown, return no actionable finding; do not search outside the corpus or preserve an absence record.
+## Out-of-scope examples
 
-Use `candidate` for an active-looking item not fully reconciled with its live Markdown owner, `verified` only when an eligible live owner directly confirms the bounded item remains open, and `stronger reviewer required` when proof status, physical meaning, acceptance, provenance, or priority judgment exceeds this scout.
+Do not retain a generic backlog review, a request to reprioritize, a historical TODO with no current-facing defect, a physics question requiring new research, or an item whose resolution requires inspecting code, tests, data, or any non-Markdown artifact.
 
-Preserve `derived`, `measured`, `inferred`, and `guessed` grades and every existing status boundary. Do not select a law, invent a prescription, propose contact continuation, claim proof closure, change a score, or make a physics verdict.
-
-## Return
-
-Return a short numbered list of admitted action cards grouped under this scout. If none pass, report exactly one line:
-
-`No actionable findings — scan scope: every Markdown file under content/markdown/aaa/.`
-
-For each retained card, use this exact compact format and do not add an inventory or counts:
-
-`Finding 1 — <short action title>`
-
-- `Issue:` one bounded active item; separate fact from inference.
-- `Target Markdown file(s):` exact repository-relative path(s), all under `content/markdown/aaa/`.
-- `Proposed edit/check:` precise replacement, insertion, or narrowly defined Markdown command/check another agent can execute directly.
-- `Owner/implementer lane:` one named owner or implementer lane identified within the corpus.
-- `Evidence:` exact eligible corpus Markdown `path:line` evidence for item and owner.
-- `Acceptance check:` concrete check on the corpus target that passes when the card is closed.
-- `Why/collision:` blocker consequence or collision risk.
-- `Decision:` `none`, unless two valid alternatives are written explicitly.
-- `Close condition/falsifier:` exact evidence that closes or overturns the card.
-- `Status/grade:` preserved status, claim grade, provenance, and uninspected-endpoint limits.
-
-## Output artifact (.tmp)
-
-When dispatched by `Luna Corpus Dragnet Pass`, write exactly one UTF-8 Markdown report to the coordinator-provided unique directory `.tmp/luna-corpus-dragnet/<run>/` as `luna-todo-blocker.md`, containing exactly the report returned above. Do not create another file or directory and do not write anywhere else. A standalone scout requires no launcher field; with no supplied directory, return the report directly and write no artifact.
+Stable report filename: `luna-todo-blocker.md`.

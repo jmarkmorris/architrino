@@ -1,63 +1,33 @@
-Closure goal: Find only repository-hygiene defects in the main AAA textbook corpus that another agent can fix as one bounded Markdown edit or exact check, and return execution-ready action cards.
-
-**Mandatory execution model:** Launch this prompt with `GPT-5.6 Luna` at `High` reasoning effort. This is an execution-model instruction, not a label.
+Closure goal: Find every concrete corpus-hygiene task involving links, paths, titles, duplicates, indexes, or canonical-source drift in the main AAA textbook corpus.
 
 # GPT-5.6 Luna Repository Hygiene Scout
 
-Use this prompt for a complete, read-only scan that admits only directly executable link, naming, duplication, or owner-drift repairs. It does not perform cleanup.
+Read and follow [`luna-scout-common.md`](luna-scout-common.md) in full before scanning. Its shared scope, exhaustive action-backlog contract, Markdown-only evidence rules, claim/status safeguards, card format, and artifact protocol are binding.
 
-## Scope
+## Distinct purpose
 
-Scan every Markdown file (`*.md`) under exactly one root, in full, on every run:
+Own only structural Markdown hygiene: navigation, relative links, names, headings, duplicate passages, indexes, and declarations of canonical corpus sources. Do not adjudicate claim strength, source provenance, validation sufficiency, or TODO priority unless a concrete structural defect is the issue.
 
-1. `content/markdown/aaa/`, the main AAA textbook corpus.
+## Repository-hygiene scan rubric
 
-This is the complete scan boundary. Do not scan, inspect, parse, or use any file outside this root, including priority or work-queue material. Do not narrow the scan to an owner, queue row, workstream, cluster, subdirectory, or fallback. Do not add a second root. Do not read, parse, inspect, execute, or use source code or any other non-Markdown file, even when a corpus Markdown file cites it. Record such citations literally and mark them uninspected. If a source or owner detail is unavailable within the corpus, report no action; do not seek it outside the corpus or preserve an absence record.
+Search every eligible corpus Markdown file for:
 
-Apply the repository startup policy already supplied to this prompt, then inspect only Markdown files in the declared corpus root and eligible corpus Markdown owners needed to verify a candidate. Work read-only. Do not browse, contact external services, edit repository files, stage, commit, push, stash, reset, change status, run generators, or make external changes. The sole exception is the optional report artifact below.
+- Markdown links and path literals whose relative target is absent, misdirected, stale, or inconsistent with the target's actual corpus filename;
+- index, contents, scene, chapter, or navigation entries whose label, heading, or destination does not match the linked corpus Markdown file;
+- repeated guidance or copied sections that have diverged, with exact source occurrences and a clear surviving target;
+- orphaned corpus Markdown files that are omitted from an index where the index's own rules require inclusion;
+- headings or filename labels that disagree with the document title and create an actual navigation or identity defect;
+- a corpus declaration of the canonical source that conflicts with another current corpus copy or generated-source statement; and
+- stale links or old names that are presented as live navigation, distinguishing them from historical or compatibility literals.
 
-## Method and claim discipline
+Compare each link's source passage with the target file's path and heading, each index row with neighboring rows and its inclusion rule, and each duplicate passage with the exact corpus locations where it appears. If exact wording or the surviving duplicate is uncertain, use `needs-wording` or `needs-review` and state the next bounded comparison/edit. Keep every distinct source occurrence when the same hygiene issue appears in multiple locations; do not collapse evidence prematurely.
 
-Search corpus Markdown-to-Markdown links, names, paths, duplicated guidance, stale links, canonical-owner drift, orphaned indexes, mismatched filenames and titles, and generated-source declarations. Distinguish stale links from historical or compatibility literals. Preserve affected claim grades and do not infer theory closure, physical acceptance, conservation, release readiness, or score movement from hygiene evidence.
+## In-scope examples
 
-## Actionability gate
+Retain a task to change a broken relative link to the exact existing corpus path; correct an index label to match its target heading; add a missing chapter entry required by the index's own list; consolidate two divergent copies while naming the surviving corpus passage; or repair a canonical-source declaration that points to the wrong corpus Markdown file.
 
-Retain a finding only when every condition holds:
+## Out-of-scope examples
 
-1. one precise, bounded hygiene issue is named;
-2. exact eligible corpus Markdown `path:line` evidence is cited at each relevant endpoint;
-3. exact target Markdown file(s), all under `content/markdown/aaa/`, for the change or check are named;
-4. a precise proposed edit is stated, such as the exact sentence, filename label, relative link, or owner declaration to replace or insert, or a narrowly defined Markdown check;
-5. one owner or implementer lane is identified within eligible corpus Markdown;
-6. one concrete acceptance check on the corpus target is stated;
-7. why it matters or the collision risk is stated; and
-8. a falsifier or close condition is stated. A decision may appear only when two valid edit alternatives genuinely remain, and both alternatives must be written exactly.
+Do not retain a general repository cleanup, a link to a non-Markdown endpoint that cannot be checked under the common scope, a historical path literal not used for live navigation, a claim-boundary disagreement with no structural defect, or a request to inspect generated files or source code.
 
-Reject vague `review`, `assess`, `reconcile`, `identify`, or `require` actions; generic cleanup programs; broad scientific proof targets; repeated queue rows; known long-horizon prerequisites; broad validation gaps with no executable edit; routine descriptions of already-recorded blockers; and mere keyword or link matches. If the source, owner, target, or acceptance detail is unavailable within eligible corpus Markdown, return no actionable finding; do not search outside the corpus or preserve an absence record.
-
-Use `candidate` for a suspicious reference or duplication not fully checked against its owner, `verified` only for the bounded local hygiene defect directly confirmed in eligible Markdown, and `stronger reviewer required` when intent, historical authority, generated ownership, or theory terminology exceeds this scout.
-
-## Return
-
-Return a short numbered list of admitted action cards grouped under this scout. If none pass, report exactly one line:
-
-`No actionable findings — scan scope: every Markdown file under content/markdown/aaa/.`
-
-For each retained card, use this exact compact format and do not add an inventory or counts:
-
-`Finding 1 — <short action title>`
-
-- `Issue:` one bounded defect; separate fact from inference.
-- `Target Markdown file(s):` exact repository-relative path(s), all under `content/markdown/aaa/`.
-- `Proposed edit/check:` precise replacement, insertion, link/status change, or narrowly defined Markdown command/check another agent can execute directly.
-- `Owner/implementer lane:` one named owner or implementer lane identified within the corpus.
-- `Evidence:` exact eligible corpus Markdown `path:line` evidence.
-- `Acceptance check:` concrete check on the corpus target that passes when the card is closed.
-- `Why/collision:` significance or collision risk.
-- `Decision:` `none`, unless two valid alternatives are written explicitly.
-- `Close condition/falsifier:` exact evidence that closes or overturns the card.
-- `Status/grade:` preserved status, claim grade, provenance, independence, and uninspected-endpoint limits.
-
-## Output artifact (.tmp)
-
-When dispatched by `Luna Corpus Dragnet Pass`, write exactly one UTF-8 Markdown report to the coordinator-provided unique directory `.tmp/luna-corpus-dragnet/<run>/` as `luna-repository-hygiene.md`, containing exactly the report returned above. Do not create another file or directory and do not write anywhere else. A standalone scout requires no launcher field; with no supplied directory, return the report directly and write no artifact.
+Stable report filename: `luna-repository-hygiene.md`.
