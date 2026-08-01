@@ -344,7 +344,7 @@ export function createSimpleCubicCheckerboardCase() {
     polarityRule: "alternating parity at every nearest-neighbor step",
     primerTitle: "Simple Cubic",
     primerParagraphs: [
-      "Equal rows of sites meet at right angles. Each interior site has six nearest neighbors: left, right, up, down, forward, and back.",
+      "Sites are evenly spaced along three directions that meet at right angles. Each interior site has six nearest neighbors: left, right, up, down, forward, and back.",
       "The checkerboard rule changes polarity at every one-step move.",
       "Geometric density n = 1/d³ counts sites per volume for spacing d.",
     ],

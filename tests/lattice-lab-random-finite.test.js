@@ -255,6 +255,10 @@ test("Simple Cubic naming separates case pattern from official lattice primer na
   assert.equal(checkerboard.title, "Simple Cubic Checkerboard");
   assert.equal(checkerboard.primerTitle, "Simple Cubic");
   assert.equal(
+    checkerboard.primerParagraphs.at(0),
+    "Sites are evenly spaced along three directions that meet at right angles. Each interior site has six nearest neighbors: left, right, up, down, forward, and back.",
+  );
+  assert.equal(
     checkerboard.primerParagraphs.at(1),
     "The checkerboard rule changes polarity at every one-step move.",
   );

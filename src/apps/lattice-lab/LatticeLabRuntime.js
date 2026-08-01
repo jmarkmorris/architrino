@@ -1616,7 +1616,7 @@ export function mountLatticeLab(options = {}) {
     const endpointDescription = deformationBeta === 0
       ? "undeformed baseline"
       : deformationBeta === 1
-        ? "maximum supported nondegenerate deformation"
+        ? "maximum deformation"
         : `static X-axis scale ${compressionFactor.toFixed(3)}`;
     dom.deformationBeta.setAttribute(
       "aria-valuetext",
@@ -1631,8 +1631,7 @@ export function mountLatticeLab(options = {}) {
       dom.compressionStatus.textContent =
         `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
         `${Number(compressionFactor.toFixed(6))}. ` +
-        "β = 0 is the undeformed baseline; β = 1 is the maximum supported " +
-        "nondegenerate deformation. " +
+        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation. " +
         "The declared repeating-pattern symmetry certificate covers every " +
         "inequivalent receiver class at this setting: net acceleration is " +
         "zero at every architrino.";
@@ -1640,23 +1639,22 @@ export function mountLatticeLab(options = {}) {
       dom.compressionStatus.textContent =
         `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
         `${Number(compressionFactor.toFixed(6))}. ` +
-        "β = 0 is the undeformed baseline; β = 1 is the maximum supported " +
-        "nondegenerate deformation. " +
+        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation. " +
         "The reference tiled-pattern certificate is unavailable in this " +
         "modified polarity state; no all-site zero result is shown.";
     } else if (caseRecord.calculationScope === "finite-nonperiodic") {
       dom.compressionStatus.textContent =
         `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
         `${Number(compressionFactor.toFixed(6))}. ` +
-        "β = 0 is the undeformed baseline; β = 1 is the maximum supported " +
-        "nondegenerate deformation. The ledger recalculates every " +
+        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation. " +
+        "The ledger recalculates every " +
         "included contribution for this displayed finite configuration only.";
     } else if (caseRecord.id === "hcp-abab-layers-v1") {
       dom.compressionStatus.textContent =
         `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
         `${Number(compressionFactor.toFixed(6))}. ` +
-        "β = 0 is the undeformed baseline; β = 1 is the maximum supported " +
-        "nondegenerate deformation. The undeformed HCP certificate uses " +
+        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation. " +
+        "The undeformed HCP certificate uses " +
         "threefold rotational symmetry, which this X-axis deformation does " +
         "not preserve. A complete periodic acceleration result is therefore " +
         "not established at this setting.";
@@ -1664,8 +1662,7 @@ export function mountLatticeLab(options = {}) {
       dom.compressionStatus.textContent =
         `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
         `${Number(compressionFactor.toFixed(6))}. ` +
-        "β = 0 is the undeformed baseline; β = 1 is the maximum supported " +
-        "nondegenerate deformation. " +
+        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation. " +
         "Static transformed geometry only. No independent per-case periodic " +
         "cancellation check is attached, so no zero result is shown.";
     }

@@ -6,6 +6,7 @@ import {
   LATTICE_LAB_DEFAULT_SITE_ID,
   LATTICE_LAB_CASE_IDS,
   LATTICE_LAB_DISPLAY_RADIUS,
+  LATTICE_LAB_RANDOM_FINITE_DISPLAY_RADIUS,
   countLatticePolarities,
   createClippedNeighborSegment,
   createLatticeLabCaseGallery,
@@ -30,6 +31,7 @@ import {
   createEndpointVisualAggregation,
   createUniaxialDeformedPosition,
   createZPolarDisplayEnvelopePoint,
+  defaultViewHalfHeightForDisplayRadius,
   xAxisScaleFromDeformationBeta,
   createNearestNeighborEdges,
   createRepeatCellDisplayGraph,
@@ -40,6 +42,9 @@ import { createPanelCollapseIconSvg } from "../src/runtime/PanelCollapseIcons.js
 import {
   verifySimpleCubicStationaryLedger,
 } from "../scripts/verify-lattice-lab-simple-cubic-checkerboard.mjs";
+import {
+  verifyLatticeLabDisplayCrop,
+} from "../scripts/verify-lattice-lab-display-crop.mjs";
 import {
   getStandaloneAppPathForScene,
   resolveStandaloneAppHrefForScene,
@@ -76,6 +81,43 @@ test("spherical display envelope uses semantic Z as its polar axis", () => {
   const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
   assert.match(source, /semanticPolarAxis = "z"/u);
   assert.match(source, /displayEnvelopeOrientationSource =\s*\n\s*"shared-lattice-root-quaternion"/u);
+});
+
+test("deterministic crops tighten to 3d while Random and apparent diameter stay fixed", () => {
+  assert.equal(LATTICE_LAB_DISPLAY_RADIUS, 3);
+  assert.equal(LATTICE_LAB_RANDOM_FINITE_DISPLAY_RADIUS, 3.25);
+  const verification = verifyLatticeLabDisplayCrop();
+  assert.equal(verification.ok, true);
+  assert.deepEqual(
+    verification.cases.map((caseRecord) => [
+      caseRecord.id,
+      caseRecord.beforeIncludedSites.length,
+      caseRecord.afterIncludedSites.length,
+      caseRecord.beforeRelationships.length,
+      caseRecord.afterRelationships.length,
+    ]),
+    [
+      ["simple-cubic-checkerboard-v1", 136, 136, 312, 312],
+      ["bcc-two-sublattice-v1", 180, 156, 557, 473],
+      ["fcc-alternating-planes-v1", 194, 158, 895, 709],
+      ["hcp-abab-layers-v1", 200, 156, 923, 701],
+      ["simple-cubic-alternating-planes-v1", 136, 136, 312, 312],
+      ["diamond-cubic-two-sublattice-v1", 86, 74, 133, 109],
+      ["simple-cubic-random-finite-fifty-fifty-v1", 136, 136, 312, 312],
+    ],
+  );
+  const baselineRatio = 3.25 / 4.4;
+  verification.cases.forEach((caseRecord) => {
+    assert.ok(
+      Math.abs(caseRecord.apparentDiameterRatio - baselineRatio) < 1e-12,
+      caseRecord.id,
+    );
+  });
+  assert.equal(defaultViewHalfHeightForDisplayRadius(3.25), 4.4);
+  assert.equal(
+    defaultViewHalfHeightForDisplayRadius(3),
+    4.4 * (3 / 3.25),
+  );
 });
 
 test("certified ledger check outline matches the selected-site circle stroke", () => {
@@ -174,6 +216,15 @@ test("maximum deformation aggregates coincident columns and partitions lines", (
   assert.match(source, /endpointRepeatHighlightEdgeIdentities/u);
   assert.doesNotMatch(source, /repeat-cell-endpoint-aggregate-highlight/u);
   assert.doesNotMatch(source, /repeat-cell-endpoint-edge-bundle/u);
+});
+
+test("every deformation status uses the concise beta endpoint wording", () => {
+  const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
+  assert.match(source, /β = 1 is the maximum deformation\./u);
+  assert.doesNotMatch(
+    source,
+    /maximum supported non-?degenerate deformation|supported nondegenerate/u,
+  );
 });
 
 test("simple-cubic checkerboard fills the spherical crop with an exactly neutral population", () => {
