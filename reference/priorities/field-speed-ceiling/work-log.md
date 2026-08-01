@@ -496,3 +496,41 @@
   finite contact measure, regulator independence, conservation, stability,
   physical realization, MEC status, or closure score changed. No successor
   reviewer was contacted or started.
+
+## 2026-08-01 — Albert Einstein read-only review integrated
+
+- Preserved the complete source review and recorded every finding and
+  disposition in the
+  [Albert Einstein Review Response](albert-einstein-review-response-2026-08-01.md)
+  under identifier `FSC-001-AE-2026-08-01`.
+- Accepted the minimal-selection theorem with its exact authority boundary:
+  the closed ball, absolutely continuous regular velocity, radial normal-cone
+  reaction, and ledger-first order remain proposed; the least-change
+  projection follows a.e. under those clauses.
+- Accepted the frozen-ledger maximal-monotone reduction. The supplied-ledger
+  constrained velocity layer is unique and nonexpansive; FSC-007 still owns
+  the history-to-ledger regularity, position coupling, and fixed-point proof.
+- Proved per-channel root monotonicity for cap-admissible histories. One
+  ordered channel has an empty, singleton, or characteristic-interval root
+  set, so its two-root folds and separated roots are unavailable. Multiple
+  ordered channels may still coincide, and characteristic reception remains
+  undefined.
+- Reclassified the local two-root fold calculation as an open-domain negative
+  control and retargeted FSC-006 to the raw labeled receiver-measure limit for
+  one simple root with $D_t\to0^+$ approaching a characteristic interval.
+- Rejected the proposed divergent-ledger quotient lemma. A rotating
+  transverse-vector counterexample has convergent
+  $\lambda_n\|\mathbf u_n^\perp\|$ but no vector limit, and the quotient would
+  change the current finite-raw-ledger-first law.
+- Recorded the corrected strict sub-wake sibling theorem, generic
+  response-gain family, and velocity-atom selector only in brainstorming. The
+  sibling introduces $\epsilon$; observer-level gains remain recovery
+  comparisons; zero atom cannot select a right-hand path.
+- Added FSC-008 as a deferred drifting-mirror preferred-frame diagnostic after
+  FSC-006, FSC-007, and a declared emergent boost comparison map. MEC-007
+  remains `Awaiting verification`; no generic cap arrival or Lorentz result is
+  claimed.
+- No canonical AAA or EOM source, ceiling or contact-law status, contact
+  measure, continuation, regulator, conservation, stability, retained
+  assembly, physical realization, MEC status, or closure score changed. No
+  successor reviewer was contacted or started.

@@ -8,7 +8,9 @@ partner-contact convention selected for review; no canonical adoption
 $\mathbb{A}\mathbb{A}\mathbb{A}$ velocity domain, Master Equation, EOM solver
 contract, or closure score.
 **Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md);
-[Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md).
+[Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md);
+[Bill Thurston read-only review, captured 2026-08-01](bill-thurston-review-response-2026-08-01.md);
+[Albert Einstein read-only review, captured 2026-08-01](albert-einstein-review-response-2026-08-01.md).
 
 ## Decision question
 
@@ -39,8 +41,8 @@ one-line bound or numerical clamp. It is conditionally compatible only as a
 separately versioned model with:
 
 1. one complete constrained-response axiom containing the closed domain,
-   exact interior recovery, and least-change response to a complete finite
-   ordinary net ledger; and
+   absolutely continuous regular-chart velocity, radial normal-cone reaction,
+   and response only after a complete finite ordinary net ledger is formed;
 2. the proposed Minimal Collinear Partner-Contact Postulate for the exact
    mirror-collinear coincidence; and
 3. a typed event rule for every other nonisolated or zero-Jacobian
@@ -58,7 +60,7 @@ finite sum at the boundary.
 | Can $\|\mathbf V\|\le c_f$ be added without changing the current model? | No. It contradicts the explicit open velocity domain and removes admitted super-field-speed retained histories. |
 | Does the closed domain remove the MEC-007 newborn sharp self-root? | Yes, conditionally. That root requires a continued history with $u>c_f$, which the closed domain does not admit. This is domain exclusion, not deletion of a root from an admitted history. |
 | Does the closed domain by itself define boundary evolution? | No. Conditional on the `Awaiting verification` MEC-007 input, the incoming ordinary partner row is finite and speed-increasing at first field-speed arrival. A state constraint alone does not select its response. |
-| Does the minimal total-ledger projection define the whole collinear continuation? | No. It defines a unique conditional half-open cap segment, then reaches a nonisolated partner-contact interval where the finite-ordinary-ledger premise fails. The separately proposed reset gives only a velocity-preserving outgoing contact one-jet, not a right-hand path. |
+| Does the derived minimal total-ledger projection define the whole collinear continuation? | No. Under the proposed regular solution law it defines a unique conditional half-open cap segment, then reaches a nonisolated partner-contact interval where the finite-ordinary-ledger premise fails. The separately proposed reset gives only a velocity-preserving outgoing contact one-jet, not a right-hand path. |
 | Does the exact thirty-root reference theorem support the ceiling? | No. It establishes regular root topology on one prescribed closed-domain geometry. It does not establish dynamical closure. |
 | Does the minimal-response vector diagnostic retain that reference braid? | No. All four relative polarity orientations have a counterexample at $T=0$. The diagnostic rejects that geometry under that response only. |
 | Is FSC-001 an adoption decision? | No. The operator has selected one narrow collinear event postulate for review inside this priority packet. Neither the ceiling nor that postulate is canonical. |
@@ -98,45 +100,58 @@ results or conditional geometry theorems whose assumptions remain explicit.
    $W^{\mathrm{acc}}=c_f/|D_t|$ are unchanged.
 2. **Interior Master Equation.** On every admitted history segment with
    $\|\mathbf V\|<c_f$ and a complete finite ordinary root ledger, the proposed
-   closed model must reproduce the canonical acceleration exactly.
-3. **MEC-007 conditional incoming branch.** MEC-007 remains
+   closed model must reproduce the canonical acceleration exactly. On the
+   same retained regular history the two equations are therefore identical
+   before saturation; model-level equivalence still requires uniqueness.
+3. **Cap-admissible root monotonicity.** For each ordered channel,
+   $D_t\ge c_f-\|\mathbf V_t\|\ge0$, so the emission-time root function is
+   nondecreasing. Its zero set is empty, one simple point, or one
+   characteristic interval. There are no two separated isolated roots or
+   transversal folds in one cap-admissible channel. This does not define the
+   characteristic interval or exclude simultaneous roots from different
+   channels.
+4. **MEC-007 conditional incoming branch.** MEC-007 remains
    `Awaiting verification`. Its proposed unique inward partner root, finite
    speed-increasing acceleration, and first field-speed arrival are retained
    unchanged as conditional inputs. MEC-007 does not supply the boundary rule.
-4. **Collinear open cap segment.** Conditional on the minimal total-ledger
+5. **Collinear open cap segment.** Conditional on the minimal total-ledger
    response, the history on $[T_\ast,T_{\mathrm c})$ is unique. Each receiver
    has one old ordinary partner root, no older self root, no cap-emitted
    partner root, and one recorded inactive co-moving self-contact interval.
-5. **Finite accumulated incoming row.** The old partner acceleration grows
+6. **Finite accumulated incoming row.** The old partner acceleration grows
    pointwise as $D_t\to0$, but its raw accumulated variation on the half-open
    cap segment is finite. The candidate projection removes its purely
    speed-increasing effect on that segment.
-6. **Partner-contact obstruction.** At $T_{\mathrm c}$ the cap-emitted partner
+7. **Partner-contact obstruction.** At $T_{\mathrm c}$ the cap-emitted partner
    histories form a nonisolated positive-delay contact interval with $D_t=0$.
    The ordinary constrained Master Equation has no value there. This derived
    obstruction is unchanged by adding a separate event postulate.
-7. **Conditional straight-trace negative.** A prescribed unaccelerated
+8. **Conditional straight-trace negative.** A prescribed unaccelerated
    straight separating right trace creates a
    regular post-contact partner row with magnitude proportional to
    $\delta^{-2}$. Its slowing direction is retained by the minimal projection,
    and its integral diverges. This rejects that prescribed trace under the
    unchanged ordinary law. It is not a universal continuation no-go.
-8. **Outgoing contact one-jet.** Conditional on the proposed Minimal
+9. **Outgoing contact one-jet.** Conditional on the proposed Minimal
    Collinear Partner-Contact reset, each label has
    $\mathbf V_i(T_{\mathrm c}^{+})=\mathbf V_i(T_{\mathrm c}^{-})$. This is a
    velocity-preserving outgoing contact one-jet, not a right-hand path, and is
    a consequence of an explicit postulate rather than the ordinary law.
-9. **Local-existence verdict.** The candidate is locally defined and unique
+10. **Frozen-ledger and local-existence verdict.** With an externally supplied
+   $L^1_{\mathrm{loc}}$ ledger, the constrained velocity layer has one
+   absolutely continuous solution and a constant-one stability estimate. The
+   candidate is locally defined and unique
    on the half-open cap segment, and the proposed event postulate selects the
    contact velocity state. No finite, unique solution on an open post-contact
-   interval has been established.
-10. **Thirty-root theorem.** For the prescribed six-path, common-radius,
+   interval has been established, and the coupled regular history-to-ledger
+   fixed point remains FSC-007.
+11. **Thirty-root theorem.** For the prescribed six-path, common-radius,
    mutually orthogonal, $120^\circ$ phase reference with
    $c_f=R=\omega=1$, every distinct-label ordered channel has exactly one
    positive-delay simple root with $D_t>0$ and $D_r>0$, while each same-label
    channel has none. The exact inventory is thirty ordinary roots at every
    reception time, with no transmitter-side fold.
-11. **Negative vector diagnostic.** For all four inequivalent relative
+12. **Negative vector diagnostic.** For all four inequivalent relative
     polarity orientations, the minimal total-ledger response fails at least
     one necessary prescribed-circle closure condition at $T=0$: a receiver is
     slowed or receives a nonzero binormal component. This is a measured
@@ -163,9 +178,11 @@ closed-domain mechanism.
 - The persistent-memory statement that an architrino can later receive a
   self-hit emitted during an earlier super-field-speed interval is unavailable
   for histories generated wholly by the closed model.
-- General claims that curved super-field-speed motion can open multiple
-  self-hit or partner-hit roots become comparison statements, not closed-model
-  mechanisms.
+- Same-channel multiple-root, fold, backward-playback, and self-hit mechanisms
+  produced by super-field-speed line-of-sight motion become open-model
+  comparisons. In a cap-admissible history one ordered channel has an empty,
+  singleton, or characteristic-interval zero set; any dependent assembly
+  mechanism must be rederived from that reduced root geometry.
 - The current MCB and super-field-speed binary root-ledger hypotheses lose
   their proposed self-hit barrier unless a new boundary event supplies a
   separately derived replacement. The replacement cannot inherit the old
@@ -202,17 +219,19 @@ with the open model that generated or prescribed them.
 ## Proposed regular-chart axiom and collinear event postulate
 
 A closed variant first requires one **Complete Constrained-Response Axiom**.
-It places primitive velocity in the closed ball, leaves the canonical complete
-finite ordinary net ledger exactly unchanged below $c_f$, and at the boundary
-selects its Euclidean least-change tangent-cone projection after the complete
-net sum is formed. The net forward speed-increasing component has zero
-effective impact, the transverse component turns, and the backward component
-slows.
+It places primitive velocity in the closed ball, requires absolutely
+continuous regular-chart velocity, permits only a radial normal-cone reaction,
+and applies that reaction after the canonical complete finite ordinary net
+ledger is formed. These proposed clauses derive the Euclidean least-change
+tangent-cone projection a.e. The net forward speed-increasing component then
+has zero effective impact, the transverse component turns, and the backward
+component slows.
 
-This is one complete proposed foundational law, not a response derived from
-the bare velocity inequality. It introduces no new numerical scale and does
-not delete, clip, or reweight any ordinary row before summation. A different
-response would belong to Alternative C below.
+This is one complete proposed foundational law. Its projection formula is
+derived under that law, not from the bare velocity inequality or a pointwise
+inclusion at one isolated instant. It introduces no new numerical scale and
+does not delete, clip, or reweight any ordinary row before summation. A
+different response would belong to Alternative C below.
 
 The complete axiom is sufficient only while the ordinary root sum is complete
 and finite. The derived conditional collinear partner-contact obstruction
@@ -412,9 +431,9 @@ currently used to motivate self-hit and several candidate assembly branches.
 | --- | --- | --- |
 | [MEC-007](../master-equation-closure/mirror-close-approach-causal-root-boundary.md) | Records an `Awaiting verification` first-field-speed input and unchanged-sharp-law obstruction. | Both remain conditional inputs. The closed model conditionally excludes the newborn super-field self root but must not claim MEC-007 acceptance, continuation, or closure. |
 | [MEC-002 through MEC-005](../master-equation-closure/work-queue.md) | Own the causal wake update, finite contact transition, same-update accounts, and complete root-ledger proof obligations. | The new boundary postulate creates additional consumers of these obligations; it advances none of them. |
-| [Topological causal-root ledger target](../master-equation-closure/topological-causal-root-ledger-proof-target.md) | Tracks root ownership, folds, and self-root history. | Must acquire typed boundary-event ownership and a perturbative reduction theorem before any closed event can enter the ledger. |
+| [Topological causal-root ledger target](../master-equation-closure/topological-causal-root-ledger-proof-target.md) | Tracks root ownership, folds, and self-root history. | Preserve folds and multiple roots as open-model strata. In the closed candidate, use the per-channel monotonicity theorem and acquire typed characteristic-interval ownership plus a perturbative reduction theorem before any closed event can enter the ledger. |
 | [Braid configuration chart](../braid-program/configuration-chart.md) and [A1.1 frequency-step action ledger](../braid-program/a1-1-frequency-step-action-ledger.md) | Use a prescribed outer super-field circular layer at diagnostic-only grade. | Existing records stay open-model prescribed diagnostics; the closed model requires a new geometry and a new full root census. |
-| [Braid priorities](../braid-program/priorities.md) and [work queue](../braid-program/work-queue.md) | Include at/above-field binary and fold-root stages. | Split equality-event work from inadmissible above-field work; do not infer braid retention from the FSC reference theorem. |
+| [Braid priorities](../braid-program/priorities.md) and [work queue](../braid-program/work-queue.md) | Include at/above-field binary, multiple-root, and fold-root stages. | Split equality-event work from inadmissible above-field work; rederive every same-channel multiple-root mechanism under the monotone closed geometry; do not infer braid retention from the FSC reference theorem. |
 | [Application simulation protocol](../app-simulation/simulations.md) | Requires below, equality, and above-field scan rows, including explicit `not-admitted` rows. | Keep all rows and bind each to its model; omission of above-field controls remains invalid. |
 | [Compact prescribed campaign diagnostics](../braid-program/evidence/2026-07-23-compact-monte-carlo-runner-benchmark.md) | Accept super-field prescribed inputs for event-specific root evaluation. | Retain provenance and diagnostic grade; do not treat those rows as closed-domain evolution evidence. |
 
@@ -434,7 +453,7 @@ fixtures.
 | Contract and application boundary | [EOM priorities](../app-solver/priorities.md), [Evolution Contract v1](../app-solver/contracts/evolution-contract-v1.md), [Application and Engine Contract](../app-solver/contracts/application-and-engine-contract.md), [Master EOM Binding v1](../app-solver/contracts/master-eom-binding-v1.md), [Independent Dynamical Acceptance Oracle](../app-solver/contracts/independent-dynamical-acceptance-oracle.md) | Add a new contract/model-binding id, closed-domain initial-data rule, threshold-event schema, and independent acceptance obligations. Preserve v1 unchanged. |
 | Request, run identity, and persistence | [`CoupledEvolution.hpp`](../../../src/eom/include/architrino/eom/CoupledEvolution.hpp), [`Checkpoint.cpp`](../../../src/eom/src/Checkpoint.cpp) | Bind the selected boundary law and event disposition into request identity, hashes, checkpoints, restart state, and output provenance. |
 | Retained-history representation | [`History.hpp`](../../../src/eom/include/architrino/eom/History.hpp), [`History.cpp`](../../../src/eom/src/History.cpp) | Validate closed-domain initial history for the successor binding and represent boundary events and outgoing histories without rewriting legacy histories. |
-| Root isolation and completeness | [`CertifiedTraversal.hpp`](../../../src/eom/include/architrino/eom/CertifiedTraversal.hpp), [`CertifiedTraversal.cpp`](../../../src/eom/src/CertifiedTraversal.cpp), [`ExactPairBatch.hpp`](../../../src/eom/include/architrino/eom/ExactPairBatch.hpp), [`ExactPairBatch.cpp`](../../../src/eom/src/ExactPairBatch.cpp), [`BlockExclusion.hpp`](../../../src/eom/include/architrino/eom/BlockExclusion.hpp), [`BlockExclusion.cpp`](../../../src/eom/src/BlockExclusion.cpp) | Preserve all ordinary roots; detect nonisolated contact families; prevent exclusion shortcuts from hiding event members; certify ordinary-to-event reduction under perturbation. |
+| Root isolation and completeness | [`CertifiedTraversal.hpp`](../../../src/eom/include/architrino/eom/CertifiedTraversal.hpp), [`CertifiedTraversal.cpp`](../../../src/eom/src/CertifiedTraversal.cpp), [`ExactPairBatch.hpp`](../../../src/eom/include/architrino/eom/ExactPairBatch.hpp), [`ExactPairBatch.cpp`](../../../src/eom/src/ExactPairBatch.cpp), [`BlockExclusion.hpp`](../../../src/eom/include/architrino/eom/BlockExclusion.hpp), [`BlockExclusion.cpp`](../../../src/eom/src/BlockExclusion.cpp) | Preserve all ordinary roots and all open-model multiple-root/fold controls. A closed successor may use per-channel monotonicity to certify at most one isolated root, but must detect characteristic intervals, prevent exclusion shortcuts from hiding their members, and certify the ordinary-to-event limit under perturbation. |
 | Acceleration construction | [`CertifiedAcceleration.hpp`](../../../src/eom/include/architrino/eom/CertifiedAcceleration.hpp), [`CertifiedAcceleration.cpp`](../../../src/eom/src/CertifiedAcceleration.cpp), [`MultiprecisionAcceleration.hpp`](../../../src/eom/include/architrino/eom/MultiprecisionAcceleration.hpp), [`MultiprecisionAcceleration.cpp`](../../../src/eom/src/MultiprecisionAcceleration.cpp), [`JointAccelerationSnapshot.cpp`](../../../src/eom/src/JointAccelerationSnapshot.cpp), [`JointSharpRow.hpp`](../../../src/eom/include/architrino/eom/JointSharpRow.hpp), [`JointSharpRow.cpp`](../../../src/eom/src/JointSharpRow.cpp), [`DelayedRootSensitivity.hpp`](../../../src/eom/include/architrino/eom/DelayedRootSensitivity.hpp), [`DelayedRootSensitivity.cpp`](../../../src/eom/src/DelayedRootSensitivity.cpp), [`SharpAccelerationSensitivity.hpp`](../../../src/eom/include/architrino/eom/SharpAccelerationSensitivity.hpp), [`SharpAccelerationSensitivity.cpp`](../../../src/eom/src/SharpAccelerationSensitivity.cpp) | Form the complete raw ordinary ledger first, then apply the selected total-ledger response; add boundary-event contributions only with unique ownership and independent sensitivity checks. |
 | Coupled evolution and acceptance | [`CoupledEvolution.cpp`](../../../src/eom/src/CoupledEvolution.cpp) | Add field-speed event localization, candidate rejection before domain escape, deterministic event/update handling, finite outgoing history, restart parity, and atomic acceptance. No per-row clamp is admissible. |
 | Display-only regime reporting | [`DisplayEvaluation.cpp`](../../../src/eom/src/DisplayEvaluation.cpp) | Preserve open-model speed labels and add explicit model-binding display. Display classification cannot decide event admission or evidence status. |
@@ -523,14 +542,16 @@ FSC-001 is complete as an evidence-bounded compatibility map:
 
 - **unchanged:** primitive causal geometry, the regular interior Master
   Equation, the MEC-007 conditional incoming input, conditional cap segment,
-  contact obstruction, local-existence verdict, exact thirty-root theorem,
-  and negative minimal-response diagnostic;
+  contact obstruction, frozen-ledger response theorem, local-existence
+  verdict, exact thirty-root theorem, and negative minimal-response diagnostic;
 - **removed or reclassified under a closed model:** all admissible
-  super-field histories, their self-hit-memory mechanisms, dependent
-  branch hypotheses, and their use as closed-model diagnostics;
+  super-field histories, their same-channel root multiplicity, fold,
+  backward-playback, and self-hit-memory mechanisms, dependent branch
+  hypotheses, and their use as closed-model diagnostics;
 - **proposed regular-chart foundation:** one Complete Constrained-Response
-  Axiom containing the closed domain, exact interior identity, and
-  least-change total-ledger boundary response;
+  Axiom containing the closed domain, absolutely continuous regular velocity,
+  radial normal-cone reaction, and total-ledger order; the least-change
+  boundary projection follows a.e. under those proposed clauses;
 - **selected proposed collinear event postulate:** no ordinary contact row,
   source bookkeeping rather than partner acceleration at the point delta, and
   $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$, yielding only a
@@ -548,6 +569,6 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, establish a general or open-interval
 continuation, claim conservation or stability, establish physical realization,
 retain a braid, advance MEC, or move a closure score.
 
-Closure goal: complete FSC-006 and pass one narrow
-distributional-formulation review while preserving the canonical open model
-and the unresolved post-contact evolution problem.
+Closure goal: complete FSC-006 for cap-admissible single-root approaches and
+pass one narrow distributional-formulation review while preserving the
+canonical open model and the unresolved post-contact evolution problem.

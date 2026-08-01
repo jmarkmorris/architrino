@@ -4,7 +4,8 @@
 **Claim level:** no field-speed ceiling is adopted by this document.
 **Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md);
 [Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md);
-[Bill Thurston read-only review, captured 2026-08-01](bill-thurston-review-response-2026-08-01.md).
+[Bill Thurston read-only review, captured 2026-08-01](bill-thurston-review-response-2026-08-01.md);
+[Albert Einstein read-only review, captured 2026-08-01](albert-einstein-review-response-2026-08-01.md).
 
 ## Purpose
 
@@ -24,7 +25,8 @@ develops only a possible alternative model.
 | --- | --- | --- |
 | Euclidean void, absolute time, persistent paths, causal wakes at $c_f$, ordinary positive-delay simple roots, and the regular Master Equation | `canonical premise` | Inherited unchanged from the canonical corpus. These premises do not imply a primitive speed ceiling. |
 | First field-speed arrival, incoming simple partner root, and unchanged-sharp-law post-threshold obstruction in the stationary mirror encounter | `conditional input` | Owned by MEC-007, whose lifecycle status is `Awaiting verification`. This document may reason conditionally from that packet but does not treat its input as accepted or independently verified. |
-| Complete constrained-response axiom: closed primitive velocity ball, exact interior recovery, and least-change tangent-cone response after a complete finite ordinary net ledger is formed | `proposed foundational law` | One complete regular-chart axiom under discussion; not canonical and not adopted here. It introduces no new numerical scale and has no value when the ordinary net ledger is incomplete, nonordinary, or non-locally-finite. |
+| Complete constrained-response axiom: closed primitive velocity ball, absolutely continuous regular-chart velocity, radial normal-cone reaction, and response only after a complete finite ordinary net ledger is formed | `proposed foundational law` | One complete regular-chart axiom under discussion; not canonical and not adopted here. Its tangent-cone projection and least-change formula are derived a.e. from these clauses, not from the bare speed inequality. It introduces no new numerical scale and has no value when the ordinary net ledger is incomplete, nonordinary, or non-locally-finite. |
+| Frozen-ledger constrained evolution and cap-admissible per-channel root monotonicity | `derived regular-chart results` | For an externally supplied $L^1_{\mathrm{loc}}$ ledger, the normal-cone inclusion has one absolutely continuous velocity solution. On any cap-admissible retained transmitter history, one ordered channel has an empty, singleton, or characteristic-interval root set. Neither result constructs the coupled history-to-ledger map or a contact measure. |
 | Isolated-crossing rule and inactive co-moving same-transmitter interval | `proposed admission convention` | Limited to the stated same-transmitter geometry. It does not classify partner contact, zero separation, folds, or a general $D_t=0$ event. |
 | Minimal collinear partner-contact convention: no ordinary row at exact coincidence, separately retained source measures, and proposed event coefficient $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$ | `proposed event postulate` | Selected for review only for the stated exact same-path mirror-collinear partner coincidence. Zero event coefficient is not a distributional cancellation, finite-part value, or regulator-independent limit. Its reset returns only an outgoing contact one-jet. |
 | History phase space, projected state-dependent-delay solution concept, regular-root assumptions, post-event compatibility, receiver-side measure decomposition, and weak-limit topology | `unmet formulation and theorem obligations` | Required before perturbative reduction, forward invariance, existence, uniqueness, or continuation can be claimed for a solution rather than for the pointwise response algebra. |
@@ -35,10 +37,12 @@ develops only a possible alternative model.
 | Sampled root margins and four-orientation vector-closure failure | `diagnostic` | Geometry-only numerical evidence. The $T=0$ slice has a versioned 100-decimal-place Python/mpmath oracle and receipt; neither instrument selects a boundary response or establishes physical realization. |
 
 Plainly: the document uses canonical root geometry, one complete proposed
-regular-chart response axiom, one limited self-contact convention, and one
-newly selected but narrowly collinear partner-contact postulate. A general
-nonordinary event law is still missing, so the calculations remain
-conditional tests of a partial model rather than an adopted ceiling dynamics.
+regular-chart response law, one limited self-contact convention, and one
+newly selected but narrowly collinear partner-contact postulate. Two useful
+regular-chart consequences are now proved, but the coupled delayed-history
+problem and general nonordinary event law are still missing. The calculations
+therefore remain conditional tests of a partial model rather than an adopted
+ceiling dynamics.
 
 ## Compact mathematical foundation
 
@@ -226,10 +230,10 @@ requires a third, separately typed object rather than identifying these two.
 The field-speed-ceiling investigation changes none of the preceding geometry,
 emission, propagation, or ordinary regular-root contribution. It proposes one
 complete constrained-response axiom for regular charts: a closed velocity
-domain, exact recovery of the canonical equation in the interior, and a
-least-change response to the completed finite ordinary net ledger at the
-boundary. That axiom does not supply general nonordinary contact admission or
-event evolution.
+domain, absolutely continuous regular velocity, radial normal-cone reaction,
+and response only after the completed finite ordinary net ledger is formed.
+Its least-change boundary formula follows a.e. under those clauses. The axiom
+does not supply general nonordinary contact admission or event evolution.
 
 ## Proposed axiom budget and partial-model boundary
 
@@ -241,17 +245,18 @@ causal-root law is regular.
 The smallest proposed regular-chart foundation is one complete law:
 
 > **Complete Constrained-Response Axiom.** Every architrino velocity lies in
-> the closed ball $\mathcal B_{c_f}$. At every receiver event where the
-> canonical causal-root construction supplies a complete finite ordinary net
-> ledger, the effective acceleration is the Euclidean least-change admissible
-> acceleration: it equals the canonical net acceleration below $c_f$; at
-> $\|\mathbf V\|=c_f$, it removes exactly the net forward speed-increasing
-> component while retaining the transverse and backward components.
+> the closed ball $\mathcal B_{c_f}$. On a regular chart its velocity is
+> absolutely continuous, and after the canonical causal-root construction
+> supplies a complete finite ordinary net ledger, its constraint reaction lies
+> in the radial Euclidean normal cone. The response is applied once, after the
+> complete net sum is formed.
 
 The axiom acts only after every ordinary root has been admitted, evaluated at
 its canonical weight, and included in the finite net sum. It introduces no new
-numerical scale. Its least-change response is part of the proposed law; it is
-not derived from the bare inequality $\|\mathbf V\|\le c_f$.
+numerical scale. The minimal-selection theorem in Section 2 derives the
+least-change tangent-cone response a.e. from these proposed solution-form
+clauses. It is not derived from the bare inequality
+$\|\mathbf V\|\le c_f$.
 
 A complete closed-domain dynamical system also needs event-domain
 commitments. For the exact mirror-collinear encounter studied in Section 12,
@@ -467,8 +472,8 @@ For FSC-006, use the following candidate topology on $U$:
 4. event-update measures converge weak-* in receiver time as a separate typed
    component.
 
-For a perturbation that splits the contact stratum into isolated simple roots,
-the required prove-or-refute statement is
+For a cap-admissible perturbation that resolves the contact stratum into
+ordinary isolated simple roots, the required prove-or-refute statement is
 
 $$
 \boldsymbol{\mathsf M}^{\mathrm{ord},(n)}_i
@@ -488,7 +493,14 @@ or different limits for admissible perturbation families refutes this
 candidate reduction. Convergence of root counts alone proves none of these
 measure statements.
 
-#### Local fold total-variation obstruction
+The cap-admissible root-monotonicity theorem below implies that one ordered
+channel can have at most one isolated simple root. Thus FSC-006 must center on
+a single branch with $D_t\to0^+$ resolving a characteristic interval, while
+retaining label-separated competing channels. It may not use a quotient of an
+infinite raw ledger unless a new nonordinary response law is proposed: the
+current foundational proposal forms a complete finite raw ledger first.
+
+#### Open-domain fold total-variation negative control
 
 One standard local fold chart already supplies a negative control. Let
 
@@ -534,14 +546,19 @@ underlying total variation.
 Claim grade: `derived`. This is a conditional local obstruction. The
 calculation does not prove that every perturbation of the mirror-contact
 interval has this normal form, and it does not define the missing contact
-measure. It is falsified for a declared event class by a theorem that excludes
-this chart or proves uniform local total-variation bounds and one labeled
-weak-* limit for every admissible perturbation in that class.
+measure. The fold chart is not cap-admissible because its two-root geometry
+requires $D_t$ to change sign. It remains a negative control for the canonical
+open model and for any broader perturbation class. It is falsified for a
+declared event class by a theorem that excludes this chart or proves uniform
+local total-variation bounds and one labeled weak-* limit for every admissible
+perturbation in that class.
 
-Plainly: when one tangent root splits into two ordinary roots, the canonical
-Jacobian can make their received measure grow without bound. This is evidence
-against assuming that the exact zero-impulse event is the smooth limit of
-nearby ordinary histories; it is not a contact law.
+Plainly: in the open model, one tangent root can split into two ordinary roots
+whose received measure grows without bound. The ceiling excludes that exact
+two-root pattern within one channel, but it does not make the remaining
+single-root approach to a characteristic interval finite. FSC-006 still has
+to test the raw labeled receiver measure; this calculation is not a contact
+law.
 
 Plainly: Hörmander’s correction turns “the roots split correctly” into a real
 measure question. The source records, received acceleration, and velocity jump
@@ -665,14 +682,47 @@ T_{\mathcal B_{c_f}}(\mathbf V)
 \end{cases}
 $$
 
-The proposed axiom is
+Define the Euclidean normal cone by
+
+$$
+N_{\mathcal B_{c_f}}(\mathbf V)
+=
+\begin{cases}
+\{\mathbf0\}, & \|\mathbf V\|<c_f,\\[4pt]
+\{\lambda\hat{\mathbf v}:\lambda\ge0\},
+& \|\mathbf V\|=c_f.
+\end{cases}
+$$
+
+The proposed regular-chart solution law is:
+
+1. $\mathbf V\in AC(I;\mathcal B_{c_f})$;
+2. after the complete finite ordinary ledger is formed, there is a radial
+   reaction $\mathbf n(T)\in N_{\mathcal B_{c_f}}(\mathbf V(T))$ such that
+
+$$
+\dot{\mathbf V}
+=
+\mathbf A_{\mathrm{ord}}-\mathbf n
+\qquad\text{a.e. on }I;
+$$
+
+3. the admit-evaluate-sum-respond operation order below is retained.
+
+The closed ball, absolute continuity, radial reaction, and ledger-first order
+are clauses of one proposed foundational law. The bare speed inequality still
+does not select an acceleration response at one isolated instant.
+
+### Minimal-selection theorem
+
+Under the proposed regular-chart solution law,
 
 $$
 \boxed{
-\mathbf A_{\mathrm{eff}}
+\dot{\mathbf V}
 =
 \mathcal P_{\mathbf V}\!\left(\mathbf A_{\mathrm{ord}}\right)
-\equiv
+=
 \Pi_{T_{\mathcal B_{c_f}}(\mathbf V)}
 \!\left(\mathbf A_{\mathrm{ord}}\right)
 =
@@ -680,29 +730,52 @@ $$
 \mathbf a\in T_{\mathcal B_{c_f}}(\mathbf V)
 }{\operatorname{arg\,min}}
 \left\|\mathbf a-\mathbf A_{\mathrm{ord}}\right\|^2
-}.
+}
+\qquad\text{a.e.}
 $$
 
-The Euclidean least-change clause makes the admissible response unique on
-every complete finite ordinary chart. It is part of this proposed
-foundational law. The velocity constraint alone would imply only
-$\mathbf V\mathbin{\cdot}\mathbf A_{\mathrm{eff}}\le0$ at the boundary and
-would leave infinitely many admissible response maps.
-
-Equivalently, with $N_{\mathcal B_{c_f}}(\mathbf V)$ the Euclidean normal cone,
+Indeed, the result is immediate in the interior because the normal cone is
+$\{\mathbf0\}$. On the boundary level set
+$E=\{T:\|\mathbf V(T)\|=c_f\}$, absolute continuity gives
 
 $$
-\mathbf A_{\mathrm{eff}}
-+
-N_{\mathcal B_{c_f}}(\mathbf V)
-\ni
-\mathbf A_{\mathrm{ord}}.
+\frac{d}{dT}\|\mathbf V\|^2=0
+\qquad\text{for a.e. }T\in E.
 $$
 
-The bare inclusion is only packaging. It does not select the displayed
-least-change response, because an arbitrary normal reaction could remove more
-than the minimum outward component. The arg-min clause above, equivalently the
-orthogonal tangent/normal decomposition, is the constitutive selection.
+Writing $\mathbf n=\lambda\hat{\mathbf v}$ at such a time therefore gives
+
+$$
+0
+=
+\hat{\mathbf v}\mathbin{\cdot}\mathbf A_{\mathrm{ord}}-\lambda.
+$$
+
+Because $\lambda\ge0$, boundary times at which the raw radial component is
+strictly inward have measure zero; a.e. on $E$,
+
+$$
+\lambda
+=
+\bigl(\hat{\mathbf v}\mathbin{\cdot}\mathbf A_{\mathrm{ord}}\bigr)_+.
+$$
+
+This is exactly the Euclidean tangent-cone projection and its least-change
+arg-min formula. Claim grade: `derived under the proposed foundational law`.
+It is falsified by an absolutely continuous ball-valued solution satisfying
+the radial normal-cone law whose derivative differs from the displayed
+projection on a set of positive measure.
+
+Every rotation-invariant inner product on this velocity space is a positive
+scalar multiple of the Euclidean one, so it has the same radial normal line
+and the same projection. No robustness claim is made for a more general
+state-dependent or anisotropic metric.
+
+Plainly: the proposed law says that regular velocity cannot jump and that the
+constraint can react only along the boundary radius. Along an actual regular
+solution those clauses force the smallest inward correction almost
+everywhere. They do not turn the speed inequality itself into a response law,
+and they do not determine an atomic contact update.
 
 The operation order is part of the same proposal:
 
@@ -724,8 +797,45 @@ complete ledger is reordered, repartitioned, or batched differently.
 
 Plainly: first calculate the canonical net acceleration. Then, and only at the
 field-speed boundary, choose the closest acceleration that does not point out
-of the allowed velocity ball. The normal-cone notation does not replace that
-minimum-change choice.
+of the allowed velocity ball. The closest-response formula is now a theorem
+of the proposed regular solution law rather than a separate independent
+clause.
+
+### Frozen-ledger constrained layer
+
+For a supplied input $\mathbf f\in L^1_{\mathrm{loc}}(I;\mathbb R^3)$ and
+$\mathbf V(T_0)\in\mathcal B_{c_f}$, the fixed-set evolution inclusion
+
+$$
+\dot{\mathbf V}
++
+N_{\mathcal B_{c_f}}(\mathbf V)
+\ni
+\mathbf f
+$$
+
+has one absolutely continuous ball-valued solution. The normal cone of a
+closed convex set is maximal monotone. Thus, for two supplied ledgers and
+initial data, its standard contraction estimate is
+
+$$
+\|\mathbf V_1(T)-\mathbf V_2(T)\|
+\le
+\|\mathbf V_1(T_0)-\mathbf V_2(T_0)\|
++
+\int_{T_0}^{T}\|\mathbf f_1-\mathbf f_2\|\,dT'.
+$$
+
+Claim grade: `derived reduction`. This closes only the response layer with an
+externally supplied ledger. FSC-007 still has to place retained histories in
+a declared normed phase space, prove the complete ordinary ledger is locally
+Lipschitz on a fixed regular chart, integrate position, and close the coupled
+fixed-point argument.
+
+Plainly: once the incoming acceleration record is already known, the capped
+velocity equation has one stable regular solution. The hard part still open
+is proving that the delayed paths themselves produce a unique, sufficiently
+regular ledger while they evolve.
 
 ## 3. Derived coordinate-free response geometry
 
@@ -737,7 +847,8 @@ $$
 (z)_+=\max(z,0).
 $$
 
-The orthogonal projection in the proposed axiom evaluates to
+The orthogonal projection derived from the proposed regular solution law
+evaluates to
 
 $$
 \mathbf A_{\mathrm{eff}}
@@ -869,8 +980,8 @@ $$
 
 the **wash-over rule**: the positive outward longitudinal part washes over the
 velocity boundary, while no transverse or inward part is removed. This is only
-another name for the proposed tangent-cone projection above; it is not a
-second axiom or a geometry-derived rule.
+another name for the tangent-cone projection derived above; it is not a
+second axiom or a rule derived from the bare speed inequality.
 
 - **Pure forward.** If
   $\mathbf A_{\mathrm{ord}}=a_+\hat{\mathbf v}$ with $a_+>0$, then
@@ -1062,10 +1173,62 @@ and the latter as a typed contact event is not a consequence of geometry
 alone; it comes from the two separately proposed source-identity and event-
 ownership conventions in this packet.
 
+### Root monotonicity under the ceiling
+
+Suppose the retained transmitter history is differentiable and
+$\|\mathbf V_t(s)\|\le c_f$ for every relevant emission time. At fixed
+receiver event,
+
+$$
+\partial_s g_{r\leftarrow t}(T_r,s)
+=
+D_t
+=
+c_f-\hat{\mathbf r}\mathbin{\cdot}\mathbf V_t(s)
+\ge0.
+$$
+
+Therefore $s\mapsto g_{r\leftarrow t}(T_r,s)$ is nondecreasing. Its zero set
+in one ordered channel is empty, one point, or one connected characteristic
+interval. In particular, one cap-admissible ordered channel cannot contain
+two separated isolated roots or a transversal fold. Isolated-root
+accumulation outside a zero interval is also impossible. Simultaneous roots
+belonging to different ordered channels are not excluded by this theorem.
+
+For a simple root, $D_t>0$. If
+
+$$
+D_r
+=
+c_f-\hat{\mathbf r}\mathbin{\cdot}\mathbf V_r(T_r)
+\ge0,
+$$
+
+then implicit differentiation gives
+
+$$
+\frac{dS}{dT_r}
+=
+\frac{D_r}{D_t}
+\ge0.
+$$
+
+This branch derivative is not defined on a characteristic interval. Claim
+grade: `derived under the proposed closed velocity domain`. The result is
+falsified by one cap-admissible differentiable retained history with two
+separated roots in the same ordered channel or a simple root with $D_t<0$.
+
+Plainly: if no transmitter can outrun its wakes, one receiver cannot meet two
+separate wakefronts from that same transmitter at one instant. It can meet
+one front, ride alongside a whole family, or meet none. The whole-family case
+is exactly where the ordinary row formula still stops.
+
 Plainly: a fold, a whole interval of roots, the excluded same-time diagonal,
 and an infinite root accumulation are different mathematical events. A
-complete model must say which record owns each one and what response, if any,
-it produces.
+complete open-domain model must say which record owns each one and what
+response, if any, it produces. The closed candidate removes the per-channel
+fold and separated-root cases, but it does not classify a characteristic
+interval or simultaneous strata from different channels.
 
 For this provisional framework, use the following proposed working definition
 before forming the Master-Equation sum:
@@ -1192,8 +1355,9 @@ decide any other zero-Jacobian contact.
    partner contact and return only its outgoing contact one-jet.
 4. Define the source-provenanced receiver-side contact and competing-stratum
    measures in the candidate Radon topology.
-5. Prove or refute parameterization-independent perturbative splitting,
-   uniform total-variation control, and weak-* convergence.
+5. For cap-admissible perturbations, prove or refute the single-root
+   $D_t\to0^+$ receiver-measure limit, uniform total-variation control, and
+   parameterization-independent weak-* convergence.
 6. Define a locally finite post-contact response measure and compatible
    outgoing retained-history record.
 7. Prove existence and uniqueness on an open post-contact interval.

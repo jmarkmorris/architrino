@@ -1,14 +1,15 @@
 # Field-Speed Ceiling First Entourage Review Readiness
 
 **Date:** 2026-07-30; updated 2026-08-01
-**Status:** Hale, Hörmander, and Thurston read-only reviews completed and
-integrated; ready only for narrower distributional-formulation and
+**Status:** Hale, Hörmander, Thurston, and Einstein read-only reviews completed
+and integrated; ready only for narrower distributional-formulation and
 regular-chart theorem work
 **Broader-theory status:** not ready for validation, adoption, or promotion
 **Claim level:** review-readiness assessment
 **Review provenance:** [complete Hale review and response matrix](jack-k-hale-review-response-2026-07-31.md);
 [complete Hörmander review and response matrix](lars-hormander-review-response-2026-07-31.md);
-[complete Thurston review and response matrix](bill-thurston-review-response-2026-08-01.md)
+[complete Thurston review and response matrix](bill-thurston-review-response-2026-08-01.md);
+[complete Einstein review and response matrix](albert-einstein-review-response-2026-08-01.md)
 
 ## Readiness verdict
 
@@ -18,15 +19,20 @@ the contact strata, typed measures, ownership guard, and FSC-005 target.
 Bill Thurston completed a read-only geometry, topology, and dynamical-system
 review of the regular response, event strata, fold limits, and prescribed
 six-label carrier.
+Albert Einstein completed a read-only invariance and unification review of the
+regular response, capped root geometry, convergence proposal, strict sibling,
+and preferred-frame recovery burden.
 
-All three responses are integrated. The packet is not ready for a Tao-style
+All four responses are integrated. The packet is not ready for a Tao-style
 well-posedness review as a posed evolution problem. It is ready only for the
 narrower FSC-006 distributional-formulation work: construct the
 source-provenanced receiver-side contact decomposition, prove or refute
-parameterization-independent perturbative splitting and weak-* convergence,
-and establish or reject uniform local total-variation control. FSC-005 is
-blocked on that work. FSC-007 separately owns a regular-chart local
-well-posedness theorem; it supplies no contact or post-event history.
+parameterization-independent weak-* convergence for cap-admissible
+single-root approaches to the characteristic interval, and establish or
+reject uniform local total-variation control. FSC-005 is blocked on that work.
+The frozen-ledger constrained layer is now closed; FSC-007 separately owns the
+coupled regular history-to-ledger theorem and supplies no contact or post-event
+history.
 
 The packet also does not derive or adopt a primitive speed ceiling, establish
 a finite solution on an open post-contact interval, generalize the contact
@@ -38,6 +44,8 @@ Plainly: Hale reduced the reset to a one-jet. Hörmander showed that even this
 does not pose a contact evolution until the three measure types and their
 limit are connected. Thurston then separated regular from atomic dynamics and
 corrected the six-label topology from spatial links to configuration space.
+Einstein's valid reductions show that the regular cap response is not the
+remaining difficulty; the delayed ledger and characteristic contact are.
 
 ## Included review artifacts
 
@@ -52,23 +60,40 @@ corrected the six-label topology from spatial links to configuration space.
 | [Hale Review Response](jack-k-hale-review-response-2026-07-31.md) | Preserves every substantive Hale finding and its disposition. | Review integration record; reviewer findings are input, not theory authority. |
 | [Hörmander Review Response](lars-hormander-review-response-2026-07-31.md) | Preserves the supplied review text and every Hörmander finding with its disposition. | Review integration record; no distributional limit or event coefficient is adopted. |
 | [Thurston Review Response](bill-thurston-review-response-2026-08-01.md) | Preserves every substantive Thurston finding and its disposition. | Review integration record; no topology, contact robustness, existence, or retention claim is adopted. |
+| [Einstein Review Response](albert-einstein-review-response-2026-08-01.md) | Preserves all eight Einstein findings, their corrected scopes, and the explicit quotient-lemma counterexample. | Review integration record; no quotient response, strict sibling, event selector, preferred-frame result, or Lorentz result is adopted. |
 | [Near-Contact Separating-Trace Theorem Target](near-contact-separating-trace-incompatibility-theorem-target.md) | States the limited two-channel BV/Radon prove-or-refute target. | FSC-005 is blocked on FSC-006; theorem target, not a result. |
 
 ## Exact proposed foundation under review
 
-The first proposed law acts only after the canonical construction has formed a
-complete finite ordinary net ledger:
+The first proposed law requires
+$\mathbf V\in AC(I;\mathcal B_{c_f})$ and acts only after the canonical
+construction has formed a complete finite ordinary net ledger:
 
 $$
-\mathbf A_{\mathrm{eff}}
+\dot{\mathbf V}
++
+\mathbf n
+=
+\mathbf A_{\mathrm{ord}},
+\qquad
+\mathbf n\in N_{\mathcal B_{c_f}}(\mathbf V)
+\quad\text{a.e.}
+$$
+
+Under those proposed solution-form clauses, the minimal-selection theorem
+derives
+
+$$
+\dot{\mathbf V}
 =
 \Pi_{T_{\mathcal B_{c_f}}(\mathbf V)}
-\left(\mathbf A_{\mathrm{ord}}\right).
+\left(\mathbf A_{\mathrm{ord}}\right)
+\quad\text{a.e.}
 $$
 
 It is the identity below $c_f$. At $\|\mathbf V\|=c_f$, it removes only the net
 forward speed-increasing component and retains transverse and backward
-components.
+components. The derivation does not follow from the bare speed inequality.
 
 The second proposed law applies only at the exact stated mirror-collinear
 partner coincidence:
@@ -122,9 +147,10 @@ are different mathematical records. Only the zero jump has a proposed value.
 
 1. **Primitive ceiling not derived.** No canonical premise proves
    $\|\mathbf V\|\le c_f$ for an architrino.
-2. **Least-change response not derived.** The Euclidean tangent-cone
-   projection and ledger-first operation order are clauses of the proposed
-   foundational law.
+2. **Regular response law remains proposed.** The closed ball, absolute
+   continuity, radial normal-cone reaction, and ledger-first operation order
+   are proposed clauses. The Euclidean least-change projection follows a.e.
+   from those clauses, but not from the bare speed inequality.
 3. **MEC-007 input unverified.** First field-speed arrival, the incoming
    partner root, and the unchanged-sharp-law obstruction remain
    `Awaiting verification`.
@@ -144,9 +170,11 @@ are different mathematical records. Only the zero jump has a proposed value.
 8. **Candidate topology unproved.** The proposed BV/Radon and weak-* topology
    has not been shown sufficient, closed, or compatible with the delayed root
    construction.
-9. **Perturbative splitting unresolved.** There is no proof of uniform local
-   total variation, weak-* convergence, parameterization independence, or
-   perturbation-family independence for split source-provenanced receiver
+9. **Perturbative resolution unresolved.** Root monotonicity restricts one
+   cap-admissible ordered channel to a single simple root approaching a
+   characteristic interval. There is still no proof of uniform local total
+   variation, weak-* convergence, parameterization independence, or
+   perturbation-family independence for the source-provenanced receiver
    measures.
 10. **Guard ownership conditions unproved.** The half-open convention,
     two-channel ownership, endpoint/family separation, competing-strata
@@ -155,10 +183,11 @@ are different mathematical records. Only the zero jump has a proposed value.
 11. **No independent contact oracle.** The arbitrary-precision FSC-004 oracle
    tests a different prescribed six-path geometry and does not validate the
    contact update.
-12. **Solution framework unconstructed.** The topology of the history phase
-   space, projected state-dependent-delay solution concept, branch-finiteness,
-   root-separation, transversality, inactive-gap persistence, and post-event
-   history compatibility remain formulation or theorem obligations.
+12. **Coupled solution framework unconstructed.** The frozen-ledger
+   normal-cone response is uniquely solvable, but the topology of the history
+   phase space, history-to-ledger regularity, position coupling,
+   inactive-gap persistence, fixed-point theorem, and post-event history
+   compatibility remain formulation or theorem obligations.
 13. **FSC-005 blocked.** The prescribed straight trace has a
     $\delta^{-2}$ slowing row, but the limited two-channel BV/Radon theorem
     requires FSC-006, signed leading coefficients, competing-strata routing,
@@ -177,18 +206,30 @@ are different mathematical records. Only the zero jump has a proposed value.
 19. **No downstream recovery.** Nothing here establishes $H$ selection,
     quantization, Planck-scale structure, Lorentz recovery, or a closure-score
     advance.
-20. **Local fold obstruction is not contact closure.** The
-    $\varepsilon^{-1/2}$ fold total-variation calculation is conditional on
-    one local normal form and a nonvanishing kernel. It neither constructs the
-    mirror-contact measure nor proves a universal contact no-go.
+20. **Open-domain fold obstruction is not contact closure.** The
+   $\varepsilon^{-1/2}$ fold total-variation calculation is conditional on
+   one local normal form and a nonvanishing kernel. Root monotonicity excludes
+   that two-root fold within one cap-admissible channel. The calculation
+   remains an open-domain negative control; it neither constructs the
+   mirror-contact measure nor proves a universal contact no-go.
 21. **No topology from the prescribed carriers or velocity sphere.** The
     six-label object is a configuration-space loop, not a six-component
     spatial link, and the velocity ball and sphere have trivial fundamental
     groups. No retained Assembly Atlas record or topological protection is
     established.
-22. **FSC-007 not proved.** The regular-chart history norm, fixed branch chart,
-    gap persistence, Lipschitz root functional, and projected local existence
-    and uniqueness theorem are queued obligations only.
+22. **FSC-007 not proved.** Only its supplied-ledger constrained layer is
+    closed. The regular-chart history norm, fixed branch chart, gap
+    persistence, Lipschitz complete-ledger functional, position coupling, and
+    local fixed-point theorem are queued obligations.
+23. **No divergent-ledger quotient law.** The Einstein review's scalar
+    transverse-rate criterion is false by a rotating-vector counterexample.
+    More fundamentally, the proposed response has no domain on an infinite
+    raw ledger. FSC-006 cannot project first or quotient away raw divergence
+    without a separately proposed nonordinary law.
+24. **No preferred-frame recovery result.** The strict-interior equations are
+    identical on the same retained regular history, but MEC-007 does not prove
+    generic saturation. FSC-008 is deferred until FSC-006, FSC-007, and a
+    declared emergent boost comparison map exist.
 
 ## Exact next review gate
 
@@ -204,8 +245,9 @@ formulation that a narrow reviewer can assess against these conditions:
 5. aggregation is invariant under reparameterization of the same geometric
    stratum;
 6. a candidate topology and solution class are stated;
-7. perturbative splitting and weak-* convergence are proved or refuted with
-   uniform local total-variation evidence; and
+7. cap-admissible single-root $D_t\to0^+$ resolution and weak-* convergence
+   are proved or refuted with uniform local total-variation evidence, without
+   applying the response to an infinite raw ledger; and
 8. any restart supplies a complete outgoing retained-history, source,
    ownership, and receiver-measure record.
 
@@ -234,10 +276,11 @@ being reviewed.
 
 ## Dispatch boundary
 
-The Hale, Hörmander, and Thurston reviews are complete. No Tao review or other
-successor review has been contacted or started, and nothing has been
+The Hale, Hörmander, Thurston, and Einstein reviews are complete. No Tao review
+or other successor review has been contacted or started, and nothing has been
 published.
 
-Closure goal: complete FSC-006 and its narrow distributional review, and prove
-or refute the separate FSC-007 regular-chart theorem, before posing any full
+Closure goal: complete the cap-admissible FSC-006 raw receiver-measure limit
+and its narrow distributional review, then prove or refute the remaining
+coupled FSC-007 history-to-ledger theorem before posing any full
 well-posedness review.

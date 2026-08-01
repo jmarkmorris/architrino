@@ -2,15 +2,17 @@
 
 ## Current
 
-- Status: `Hale, Hörmander, and Thurston read-only reviews integrated; FSC-006
-  distributional formulation ranked first; no canonical adoption`
+- Status: `Hale, Hörmander, Thurston, and Einstein read-only reviews
+  integrated; FSC-006 distributional formulation ranked first; no canonical
+  adoption`
 - Claim level: proposed foundational alternative; no change to the canonical
   Master Equation, ontology, EOM solver contract, or reader-facing corpus.
 - Operator proposal under examination: each architrino has an admissible speed
-  domain $\|\mathbf V\|\le c_f$; the canonical finite ordinary net ledger is
-  unchanged below $c_f$; and at the boundary its least-change admissible
-  response removes only the net forward component after the full sum is
-  formed. At the stated exact mirror-collinear partner coincidence, a separate
+  domain $\|\mathbf V\|\le c_f$; regular velocity is absolutely continuous;
+  the canonical finite ordinary net ledger is formed before a radial
+  normal-cone reaction; and the least-change boundary projection follows a.e.
+  under those proposed clauses. At the stated exact mirror-collinear partner
+  coincidence, a separate
   proposed event owns the nonordinary family, supplies no ordinary contact row
   or source-delta partner acceleration, and sets
   $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$.
@@ -29,8 +31,9 @@ conservation, or a physical realization.
 The investigation must distinguish two layers:
 
 1. one complete proposed constrained-response axiom combining the admissible
-   velocity domain, exact interior recovery, and least-change response to a
-   complete finite ordinary net ledger; and
+   velocity domain, absolutely continuous regular velocity, radial normal-cone
+   reaction, and response only after a complete finite ordinary net ledger is
+   formed; and
 2. exact nonordinary event-domain admission, ownership, and disposition,
    including the excluded diagonal and positive-delay $D_t=0$ contact
    families. The exact mirror-collinear event now has one proposed
@@ -75,21 +78,32 @@ Bill Thurston completed a read-only geometry, topology, and dynamical-system
 review. The complete substantive finding record and dispositions are in the
 [Thurston Review Response](bill-thurston-review-response-2026-08-01.md). The
 response corrects the prescribed six-label object from a spatial-link reading
-to a labeled configuration-space loop, adds a bounded fold total-variation
-obstruction, and queues regular-chart local well-posedness as FSC-007 without
-claiming a contact continuation.
+to a labeled configuration-space loop, records a bounded fold total-variation
+negative control, and queues regular-chart local well-posedness as FSC-007
+without claiming a contact continuation. The later cap-monotonicity theorem
+restricts that fold control to the open model or a broader perturbation class.
+
+Albert Einstein completed a read-only invariance and unification review. The
+complete review and independent dispositions are in the
+[Einstein Review Response](albert-einstein-review-response-2026-08-01.md). The
+response derives least-change projection from the proposed radial-reaction and
+absolute-continuity law, closes only the frozen-ledger constrained layer,
+proves per-channel cap-admissible root monotonicity, and rejects the proposed
+quotient-response lemma by counterexample. No contact measure or Lorentz
+result follows.
 
 The best next object is FSC-006: define the source-provenanced receiver-side
-contact and competing-stratum measures, then prove or refute
-parameterization-independent perturbative splitting and weak-* convergence in
-the stated BV/Radon topology. Only after that work passes a narrow
+contact and competing-stratum measures, then prove or refute the
+cap-admissible single-root $D_t\to0^+$ limit and
+parameterization-independent weak-* convergence in the stated BV/Radon
+topology. Only after that work passes a narrow
 distributional-formulation review can the
 [Near-Contact Separating-Trace Incompatibility Theorem Target](near-contact-separating-trace-incompatibility-theorem-target.md)
 proceed.
 
 The packet is not ready for a Tao-style well-posedness review as a posed
-evolution problem. FSC-005, FSC-006, and FSC-007 remain `Not advanced`, and no
-successor review has been dispatched.
+evolution problem. FSC-005, FSC-006, FSC-007, and the deferred FSC-008
+diagnostic remain `Not advanced`, and no successor review has been dispatched.
 
 ## Dependencies and Boundaries
 
@@ -107,7 +121,11 @@ successor review has been dispatched.
 
 Plainly: this is a dedicated place to ask whether a speed ceiling should become
 a foundational rule, and what else would have to change if it did. The
-compatibility map is complete, but the contact measure has only a typed
-formulation target and the regular-chart existence theorem is only queued.
-Nothing has been adopted, and no full evolution problem is yet posed for
-well-posedness review.
+compatibility map is complete. The cap response is now well understood when
+its incoming ledger is supplied, but the contact measure and the coupled
+history-to-ledger evolution are still open. Nothing has been adopted, and no
+full evolution problem is yet posed for well-posedness review.
+
+Closure goal: complete the raw receiver-measure limit in FSC-006, then close
+the coupled history-to-ledger theorem in FSC-007 without importing a quotient
+response or observer-level law.
