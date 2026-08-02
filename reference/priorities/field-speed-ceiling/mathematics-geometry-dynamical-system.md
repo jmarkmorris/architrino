@@ -374,7 +374,7 @@ this received measure to $D\mathbf V_i$, and its relation to the separate
 event update $\boldsymbol{\mathsf J}^{\mathrm{evt}}_i$, are also unresolved.
 The packet therefore does not have complete wake semantics.
 
-For FSC-006, use the following candidate topology on $U$:
+For the proposed receiver-time measure analysis, use the following candidate topology on $U$:
 
 1. $\mathbf X_i^{(n)}\to\mathbf X_i$ uniformly,
    $\mathbf V_i^{(n)}\to\mathbf V_i$ in $L^1(U)$, and
@@ -410,7 +410,7 @@ candidate reduction. Convergence of root counts alone proves none of these
 measure statements.
 
 The cap-admissible root-classification theorem below implies that one ordered
-channel can have at most one isolated simple root. FSC-006 therefore retains
+channel can have at most one isolated simple root. The analysis therefore retains
 label-separated channels and studies a single simple branch approaching a
 characteristic interval or zero-range endpoint. It may not use a quotient of
 an infinite raw ledger unless a new nonordinary response law is proposed: the
@@ -453,14 +453,14 @@ $s\le T_{\mathrm c}-\rho$ is finite; the total variation diverges as
 $\rho\downarrow0$. Claim grade: `derived for the simple-branch transfer and
 mirror localization`.
 
-FSC-006a must still prove or refute a parameterization-independent weak-*
-limit for the truncated far part. That theorem requires uniform branch
+A remaining theorem must prove or refute a parameterization-independent weak-*
+limit for the truncated far part. It requires uniform branch
 collapse, receiver left-trace and kernel convergence along the collapsing
 reception times, label retention, competing-stratum routing, and independence
 from the admissible perturbation family. The current topology's uniform path
 and $L^1$-velocity convergence does not by itself supply those moving-time
-trace limits. FSC-006b and FSC-005 jointly own the remaining zero-range raw-
-measure tail, complete-ledger sign, and projected-remainder control.
+trace limits. The remaining issue is the zero-range raw-measure tail, complete-ledger sign,
+and projected-remainder control.
 
 Plainly: a small transmitter Jacobian makes one instantaneous row large, but
 it also squeezes the receiver-time interval carrying that row. Away from zero
@@ -817,7 +817,7 @@ uniqueness and hence convergence of the full approximation family. General
 $L^1$ input follows by bounded or step-function approximation.
 
 Claim grade: `derived reduction`. This closes only the response layer with an
-externally supplied ledger. FSC-007 still has to place retained histories in
+externally supplied ledger. A remaining history-to-ledger theorem must place retained histories in
 a declared normed phase space, prove the complete ordinary ledger is locally
 Lipschitz on a fixed regular chart, integrate position, and close the coupled
 fixed-point argument.
@@ -1306,7 +1306,7 @@ transmitter runs straight at exactly wake speed and aims exactly at the fixed
 receiver event. That greatly narrows the missing geometries, but it still does
 not say what either exceptional geometry does to the receiver.
 
-### Regular-root count and stability lemma for FSC-007
+### Regular-root count and stability lemma
 
 For a finite $N$-architrino history, one receiver has at most $N-1$ ordinary
 distinct-transmitter roots at one time. A same-transmitter equality under the
@@ -1328,7 +1328,7 @@ $$
 The factor two allows both receiver and transmitter positions to move. This
 lemma controls an already matched branch. It does not prove a fixed active-
 channel set, inactive gaps, a bounded delay window, velocity-history control,
-a ledger-row gradient bound, or the contraction needed to close FSC-007.
+a ledger-row gradient bound, or the contraction needed to close the history-to-ledger theorem.
 
 Plainly: the ceiling makes the number of regular roots automatically finite
 when the number of architrinos is finite, and a root moves continuously while
@@ -1382,7 +1382,8 @@ wake has an ordinary, finite inverse-square value; as the local spatial or
 time increment tends to zero, the emission is represented by its finite delta
 measure at the origin.
 
-For any artificially declared positive lower radius $r_0$, the old-shell tail
+For any artificially declared positive lower radius $r_0$, the tail from
+distant earlier wakefronts
 also has finite geometric weight:
 
 $$
@@ -1394,7 +1395,8 @@ $$
 \quad\text{as }R\to\infty.
 $$
 
-Thus arbitrarily old shells need not create an infinite inverse-square tail.
+Thus arbitrarily distant earlier wakefronts need not create an infinite
+inverse-square tail.
 For the exact co-moving self family, however, this integral is not an ordinary
 Master-Equation calculation: the working equality rule classifies the family
 as noncrossing and inactive before an ordinary row weight is assigned. Its
@@ -1586,12 +1588,12 @@ decide any other zero-Jacobian event.
    partner coincidence and return only its outgoing coincidence one-jet.
 4. Define the source-provenanced receiver-side coincidence and competing-stratum
    measures in the candidate Radon topology.
-5. As FSC-006a, prove or refute the truncated far-part weak-* limit under
+5. Prove or refute the truncated far-part weak-* limit under
    explicit branch-collapse, trace, kernel, label, and competing-stratum
    hypotheses.
-6. As FSC-006b/FSC-005, resolve the mirror chart's zero-range raw-measure tail,
+6. Resolve the mirror chart's zero-range raw-measure tail,
    complete-ledger leading sign, and projected-remainder integrability.
-7. In parallel as FSC-007, use the root-count and root-stability lemmas to
+7. In parallel, use the root-count and root-stability lemmas to
    prove the regular history-to-ledger gradient and contraction theorem.
 8. Define a locally finite post-coincidence response measure and compatible
    outgoing retained-history record.
