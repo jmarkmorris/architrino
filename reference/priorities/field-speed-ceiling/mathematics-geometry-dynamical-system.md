@@ -2670,6 +2670,13 @@ ownership for every returned self and partner branch, and then form the full
 ordinary ledger before applying the proposed response. No such higher-speed
 binary result is derived here.
 
+This is the same class of mathematical problem exposed by the coincidence
+analysis: geometry can present returned, repeated, or co-moving causal roots
+without itself deciding which ones are active receptions or how their ledger is
+owned. In the coincidence chart the issue concentrates at one nonordinary
+event. Above wake speed it can arise across an open interval of otherwise
+positive-range motion, so it is broader than the frozen-root case.
+
 Plainly: allowing a path to outrun a wake reopens the causal-root geometries
 that the at-or-below-wake analysis avoided. A finite higher ceiling lets us
 study that return in a bounded setting; no ceiling is the limiting unrestricted
