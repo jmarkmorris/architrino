@@ -28,7 +28,7 @@ The document has four mathematical layers.
    response, its coordinate-free geometry, and the ordinary-root domain on
    which it acts.
 2. Sections 5--12 use the mirror-collinear encounter as a boundary stress
-   test. That chart exposes the still-unresolved nonordinary contact and
+   test. That chart exposes the still-unresolved nonordinary event and
    continuation obligations; it is not the model's constructive binary
    branch.
 3. The path-speed-ceiling regimes and Section 13 isolate the binary program:
@@ -45,28 +45,33 @@ boundary of the same proposal.
 
 ## Provenance and status map
 
-| Material | Status in this document | Authority and boundary |
-| --- | --- | --- |
-| Existing causal-wake setting: Euclidean void, absolute time, persistent paths, wakes at $c_f$, ordinary simple delayed roots, and the regular Master Equation | `canonical premise` | These are inherited unchanged. They do not themselves impose an Architrino speed limit. |
-| Candidate Architrino path-speed ceiling $c_a$, compared with wake speed $c_f$ | `investigation parameter` | The current canonical path domain has no finite maximum speed. This document investigates three alternatives: $c_a<c_f$, $c_a=c_f$, and $c_a>c_f$. Each needs its own root, ledger, and binary analysis; none is adopted here. |
-| First arrival at the proposed speed boundary in the mirror encounter | `conditional input` | MEC-007 supplies this only as an unverified input. It is an idealized, isolated, mirror-symmetric head-on encounter with no external asymmetry, in which the two paths approach the same point at the same absolute time. It is not a general contact solution. |
-| Proposed speed-limit response: form the full ordinary wake ledger, then prevent only the part of net acceleration that would exceed the speed limit | `proposed foundational law` | This is the proposed change to the Master Equation. It applies only where the ordinary ledger is complete and finite; it does not define what happens at coincidence, tangency, or any other nonordinary event. |
-| Results on already-supplied, well-behaved wake ledgers and ordinary simple roots | `derived regular-chart results` | Given a finite ordinary ledger, the proposed speed-limit response has one regular velocity evolution. These results classify ordinary root channels and transfer variation along a simple root branch. They do not construct the coupled delayed history, decide an event, or solve contact. |
-| Limited rule for an isolated same-transmitter crossing | `proposed admission convention` | This applies only to that one stated geometry. It does not decide partner contact, zero separation, folds, or general tangent-root events. |
-| Proposed rule at the exact head-on partner coincidence: no ordinary wake row and no velocity jump | `proposed event postulate` | This is only for the idealized mirror-collinear coincidence. It does not cancel a singularity or define a general limiting value; it supplies only the immediate outgoing velocity direction. |
-| A full delayed-history state space, solution definition, and rules for carrying history through an event | `unmet formulation and theorem obligations` | These are needed before claiming existence, uniqueness, continuation, or stability for the actual delayed system rather than for the pointwise response formula. |
-| A general rule for every other kind of nonordinary contact or tangent root | `missing event-domain postulate` | The ordinary positive-delay geometry is classified, but the document does not yet say how to admit, assign, update, or retain histories for all exceptional cases. Until it does, this is not a complete dynamical system. |
-| Assumed straight head-on motion after first reaching the proposed speed limit | `conditional hypothesis` | This uses the unverified MEC-007 arrival input, the proposed speed-limit response, and the limited self-crossing rule. |
-| What the document can calculate on the open approach before head-on coincidence | `derived conditional result` | It counts the ordinary roots, shows the old partner contribution has finite total effect on the open segment, identifies the contact obstruction, and gives an immediate no-jump velocity direction. It does not produce a path beyond contact. |
-| Exact prescribed circular binary at path speed $c_f$ | `derived exact prescribed-chart compatibility theorem under the proposed foundational law` | The two-member circular history has one ordinary partner wake, a radius-independent delay angle, and the required inward turning component after the proposed response removes its forward speed-increasing part. This selects one radius for that prescribed chart. It does not prove capture, retained dynamics, stability, or a physical binary. |
-| Equations a three-binary periodic candidate must satisfy | `derived analytic reduction and theorem target` | The document reduces a candidate braid to its root ledger, phase-return arithmetic, speed-limit condition, and scale equations. It has not found a complete three-binary solution or proved that one is stable. |
-| Possible action transfer, binary retuning, and energy language | `typed closure target with conditional identities` | The packet states what an eventual action account would have to connect, but it has not derived an event, conservation rule, primitive Architrino energy, or a relation to observer-level Planck $h$. |
-| Exact root count for one prescribed six-path reference geometry | `derived reference-path theorem` | The result is exact for those chosen paths. It describes a loop of six labeled positions that never coincide at equal time; it is not an evolved or retained braid. |
-| Numerical checks of root margins and four polarity choices for the prescribed six-path geometry | `diagnostic` | These calculations test that one chosen geometry and find vector-closure failures. They do not choose a speed-limit response or establish a physical object. |
+| Material | Status in this document | $c_a$ regime | Authority and boundary |
+| --- | --- | --- | --- |
+| **Scope and speed regimes** | — | — | — |
+| Existing causal-wake setting: Euclidean void, absolute time, persistent paths, wakes at $c_f$, ordinary simple delayed roots, and the regular Master Equation | `canonical premise` | Canonical, unbounded | These are inherited unchanged. They do not themselves impose an Architrino path-speed ceiling. |
+| Candidate Architrino path-speed ceiling $c_a$, compared with wake speed $c_f$ | `investigation parameter` | All three cases | The current canonical path domain has no finite maximum speed. This document investigates three alternatives: $c_a<c_f$, $c_a=c_f$, and $c_a>c_f$. Each needs its own root, ledger, and binary analysis; none is adopted here. |
+| **Proposed ceiling law and regular-domain limits** | — | — | — |
+| First arrival at the proposed path-speed-ceiling boundary in the mirror encounter | `conditional input` | $c_a=c_f$ only | MEC-007 supplies this only as an unverified input. It is an idealized, isolated, mirror-symmetric head-on encounter with no external asymmetry, in which the two paths approach the same point at the same absolute time. It is not a general contact solution. |
+| Proposed path-speed-ceiling response: form the full ordinary wake ledger, then prevent only the part of net acceleration that would exceed the ceiling | `proposed foundational law` | All constrained cases | This is the proposed change to the Master Equation. It applies only where the ordinary ledger is complete and finite; it does not define what happens at coincidence, tangency, or any other nonordinary event. For $c_a<c_f$, the path-speed gap excludes transmitter-side tangency, but it does not by itself resolve coincidence or other exceptional events. |
+| Results on already-supplied, well-behaved wake ledgers and ordinary simple roots | `derived regular-chart results` | All constrained cases | Given a finite ordinary ledger, the proposed path-speed-ceiling response has one regular velocity evolution. These results classify ordinary root channels and transfer variation along a simple root branch. They do not construct the coupled delayed history, decide an event, or solve contact. |
+| Limited rule for an isolated same-transmitter crossing | `proposed admission convention` | $c_a>c_f$ only | This applies only to that one stated geometry. For $c_a<c_f$, a positive-delay same-transmitter crossing is excluded by the speed gap. For $c_a=c_f$, equality can occur only on a rigid co-moving interval, not as an isolated crossing. An isolated self-crossing is therefore relevant only if the path domain permits motion above $c_f$. It does not decide partner contact, zero separation, folds, or general tangent-root events. |
+| Proposed rule at the exact head-on partner coincidence: no ordinary wake row and no velocity jump | `proposed event postulate` | $c_a=c_f$ only | This is only for the idealized mirror-collinear coincidence. It does not cancel a singularity or define a general limiting value; it supplies only the immediate outgoing velocity direction. |
+| A full delayed-history state space, solution definition, and rules for carrying history through an event | `unmet formulation and theorem obligations` | All constrained cases | These are needed before claiming existence, uniqueness, continuation, or stability for the actual delayed system rather than for the pointwise response formula. |
+| A general rule for every other kind of nonordinary event or tangent root | `missing event-domain postulate` | All constrained cases | The ordinary positive-delay geometry is classified, but the document does not yet say how to admit, assign, update, or retain histories for all exceptional cases. Until it does, this is not a complete dynamical system. |
+| **Idealized collinear stress test** | — | — | — |
+| Assumed straight head-on motion after first reaching the proposed path-speed ceiling | `conditional hypothesis` | $c_a=c_f$ only | This uses the unverified MEC-007 arrival input, the proposed path-speed-ceiling response, and the limited self-crossing rule. |
+| What the document can calculate on the open approach before head-on coincidence | `derived conditional result` | $c_a=c_f$ only | It counts the ordinary roots, shows the old partner contribution has finite total effect on the open segment, identifies the contact obstruction, and gives an immediate no-jump velocity direction. It does not produce a path beyond contact. |
+| **Constructive binary program** | — | — | — |
+| Exact prescribed circular binary at path speed $c_f$ | `derived exact prescribed-chart compatibility theorem under the proposed foundational law` | $c_a=c_f$ only | The two-member circular history has one ordinary partner wake, a radius-independent delay angle, and the required inward turning component after the proposed response removes its forward speed-increasing part. This selects one radius for that prescribed chart. It does not prove capture, retained dynamics, stability, or a physical binary. |
+| **Braid, action, and reference geometry** | — | — | — |
+| Equations a three-binary periodic candidate must satisfy | `derived analytic reduction and theorem target` | $c_a=c_f$ only | The document reduces a candidate braid to its root ledger, phase-return arithmetic, path-speed-ceiling condition, and scale equations. It has not found a complete three-binary solution or proved that one is stable. |
+| Possible action transfer, binary retuning, and energy language | `typed closure target with conditional identities` | $c_a=c_f$ only | The packet states what an eventual action account would have to connect, but it has not derived an event, conservation rule, primitive Architrino energy, or a relation to observer-level Planck $h$. |
+| Exact root count for one prescribed six-path reference geometry | `derived reference-path theorem` | $c_a=c_f$ only | The result is exact for those chosen paths. It describes a loop of six labeled positions that never coincide at equal time; it is not an evolved or retained braid. |
+| Numerical checks of root margins and four polarity choices for the prescribed six-path geometry | `diagnostic` | $c_a=c_f$ only | These calculations test that one chosen geometry and find vector-closure failures. They do not choose a path-speed-ceiling response or establish a physical object. |
 
 Plainly: the document keeps the existing causal geometry and tests one proposed
-speed-limit response. It can calculate several ordinary, well-behaved cases,
-but it still lacks a general rule for contact events and for carrying the full
+path-speed-ceiling response. It can calculate several ordinary, well-behaved cases,
+but it still lacks a general rule for coincidence events and for carrying the full
 delayed history through them. The work is therefore a conditional partial model,
 not adopted ceiling dynamics.
 
@@ -251,16 +256,6 @@ Plainly: a source point measure records what was emitted. The receiver measure
 records how isolated causal intersections contribute to acceleration. Contact
 requires a third, separately typed object rather than identifying these two.
 
-### Proposed regular-chart alteration
-
-The field-speed-ceiling investigation changes none of the preceding geometry,
-emission, propagation, or ordinary regular-root contribution. It proposes one
-complete constrained-response axiom for regular charts: a closed velocity
-domain, absolutely continuous regular velocity, radial normal-cone reaction,
-and response only after the completed finite ordinary net ledger is formed.
-Its least-change boundary formula follows a.e. under those clauses. The axiom
-does not supply general nonordinary contact admission or event evolution.
-
 ## Proposed axiom budget and partial-model boundary
 
 The compact foundation above supplies Euclidean void, absolute time,
@@ -268,31 +263,39 @@ persistent architrino paths, point-delta emission, causal wake propagation at
 $c_f$, and ordinary inverse-square wake dilution wherever the current
 causal-root law is regular.
 
+The field-speed-ceiling investigation changes none of that preceding geometry,
+emission, propagation, or ordinary regular-root contribution. It instead
+proposes one complete path-speed-ceiling response for regular charts. Its
+least-change boundary formula holds almost everywhere; here and below, that
+means it may exclude exceptional event times of measure zero. The proposed
+axiom does not supply a general rule for coincidence events or their continuation.
+
 The smallest proposed regular-chart foundation is one complete law:
 
 > **Complete Constrained-Response Axiom.** Every architrino velocity lies in
-> the closed ball $\mathcal B_{c_f}$. On a regular chart its velocity is
+> the closed ball $\mathcal B_{c_a}$. On a regular chart its velocity is
 > absolutely continuous, and after the canonical causal-root construction
 > supplies a complete finite ordinary net ledger, its constraint reaction lies
 > in the radial Euclidean normal cone. The response is applied once, after the
 > complete net sum is formed.
 
 The axiom acts only after every ordinary root has been admitted, evaluated at
-its canonical weight, and included in the finite net sum. It introduces no new
-numerical scale. The minimal-selection theorem in Section 2 derives the
-least-change tangent-cone response a.e. from these proposed solution-form
+its canonical weight, and included in the finite net sum. It takes the candidate
+ceiling $c_a$ as its one investigation parameter and introduces no additional
+response scale. The minimal-selection theorem in Section 2 derives the
+least-change tangent-cone response almost everywhere from these proposed solution-form
 clauses. It is not derived from the bare inequality
-$\|\mathbf V\|\le c_f$.
+$\|\mathbf V\|\le c_a$.
 
 A complete closed-domain dynamical system also needs event-domain
 commitments. For the exact mirror-collinear encounter studied in Section 12,
 the operator has selected this minimum convention for review:
 
-> **Minimal Collinear Partner-Contact Postulate.** At the exact same-path
+> **Minimal Collinear Partner-Coincidence Postulate.** At the exact same-path
 > coincidence of the two labeled partners, the ordinary
-> positive-separation, isolated-reception ledger contains no contact row. The
+> positive-separation, isolated-reception ledger contains no coincidence row. The
 > zero-radius point-emission delta is source bookkeeping and is not a partner
-> acceleration contribution. The separately recorded contact event contributes
+> acceleration contribution. The separately recorded coincidence event contributes
 > zero velocity impulse:
 >
 > $$
@@ -302,7 +305,7 @@ the operator has selected this minimum convention for review:
 
 This is a proposed event law, not a result derived from the point-emission
 delta, the positive-separation ordinary domain, or the constrained-response
-axiom. Its event record owns the nonisolated partner-contact family and the
+axiom. Its event record owns the nonisolated partner-coincidence family and the
 limiting incoming-root transition exactly once, while assigning neither an
 ordinary reception row nor an acceleration to the source delta at
 coincidence.
@@ -358,10 +361,10 @@ Membership requires:
   $\mathbf X_i(T_{\mathrm c}^{-})=\mathbf X_{\mathrm c}$ and
   $\mathbf V_1(T_{\mathrm c}^{-})=c_f\mathbf e$,
   $\mathbf V_2(T_{\mathrm c}^{-})=-c_f\mathbf e$;
-- the bounded pre-contact root censuses for both ordered channels
+- the bounded pre-coincidence root censuses for both ordered channels
   $1\leftarrow2$ and $2\leftarrow1$ from Section 12;
 - a half-open ownership convention: isolated ordinary branches own
-  $T<T_{\mathrm c}$, while the typed event owns only the contact stratum at
+  $T<T_{\mathrm c}$, while the typed event owns only the coincidence stratum at
   $T=T_{\mathrm c}$;
 - separately retained labeled source measures
   $\mathsf E_{1,T_{\mathrm c}}$ and $\mathsf E_{2,T_{\mathrm c}}$;
@@ -420,7 +423,7 @@ $$
 $$
 
 They remain available to any later ordinary positive-separation reception and
-are not partner acceleration contributions at contact. The event update is the
+are not partner acceleration contributions at coincidence. The event update is the
 receiver-time atomic measure
 
 $$
@@ -433,7 +436,7 @@ $$
 whose coefficient is set to zero by the proposed postulate. That zero
 coefficient is not a distributional cancellation, principal value, finite
 part, or regulator-independent limit of a receiver measure. The event record
-owns the declared contact strata once while preserving both source labels.
+owns the declared coincidence strata once while preserving both source labels.
 
 Any restart claim would require the reset codomain to be extended with a
 compatible outgoing retained-history record, labeled source record, ownership
@@ -477,7 +480,7 @@ $$
 $$
 
 where $\boldsymbol{\mathsf M}^{\mathrm{contact}}_i$ owns the nonisolated
-partner-contact stratum and
+partner-coincidence stratum and
 $\boldsymbol{\mathsf M}^{\mathrm{comp}}_i$ owns every separately typed
 competing stratum. Neither measure is presently defined. The response map from
 this received measure to $D\mathbf V_i$, and its relation to the separate
@@ -498,7 +501,7 @@ For FSC-006, use the following candidate topology on $U$:
 4. event-update measures converge weak-* in receiver time as a separate typed
    component.
 
-For a cap-admissible perturbation that resolves the contact stratum into
+For a cap-admissible perturbation that resolves the coincidence stratum into
 ordinary isolated simple roots, the required prove-or-refute statement is
 
 $$
@@ -549,7 +552,7 @@ Consequently, positive range and $D_r$ floors give a uniform branch total-
 variation bound that is independent of a vanishing $D_t$ floor. This does not
 apply when $D_r$ also vanishes or when the branch ceases to be injective.
 
-In the declared mirror-contact channel,
+In the declared mirror-coincidence channel,
 
 $$
 D_r=2c_f,
@@ -622,7 +625,7 @@ proved from the complete same-record ledger; it does not by itself bound the
 underlying total variation.
 
 Claim grade: `derived`. This is a conditional local obstruction. The
-calculation does not prove that every perturbation of the mirror-contact
+calculation does not prove that every perturbation of the mirror-coincidence
 interval has this normal form, and it does not define the missing contact
 measure. The fold chart is not cap-admissible because its two-root geometry
 requires $D_t$ to change sign. It remains a negative control for the canonical
@@ -640,9 +643,9 @@ is not a contact law.
 
 Plainly: Hörmander’s correction turns “the roots split correctly” into a real
 measure question. The source records, received acceleration, and velocity jump
-live in different spaces, and the missing contact measure cannot be set to
+live in different spaces, and the missing coincidence measure cannot be set to
 zero by naming the jump coefficient zero. The reset still returns only
-position-and-velocity data at contact; constructing a compatible right-hand
+position-and-velocity data at coincidence; constructing a compatible right-hand
 history remains a separate state-dependent-delay problem.
 
 ### Continuous response versus atomic event update
@@ -650,7 +653,7 @@ history remains a separate state-dependent-delay problem.
 The regular operator maps a completed finite ordinary acceleration ledger to
 the absolutely continuous velocity derivative
 $\mathbf A_{\mathrm{eff}}=d\mathbf V/dT$. The event operator is the separate
-reset $\mathcal R_{\mathrm{col}}$, whose output is an outgoing contact one-jet
+reset $\mathcal R_{\mathrm{col}}$, whose output is an outgoing coincidence one-jet
 and whose proposed atomic coefficient is
 $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$.
 
@@ -665,15 +668,15 @@ value only for the one narrow collinear event coefficient.
 A complete general closed-domain system still needs the broader commitment:
 
 > **Nonordinary Contact Admission and Event Postulate.** Every nonisolated,
-> zero-Jacobian, zero-separation, or otherwise nonordinary contact family
+> zero-Jacobian, zero-separation, or otherwise nonordinary coincidence family
 > needs declared admission, unique root or event ownership, a finite response
 > or terminal disposition, and—if continuation is selected—a unique velocity,
 > retained-history, and outgoing-emission update.
 
 Section 4 adds a limited same-transmitter admission convention, and Section 12
-applies the proposed minimal partner-contact postulate only to the exact
+applies the proposed minimal partner-coincidence postulate only to the exact
 mirror-collinear event. No general form or disposition is selected for other
-nonordinary contacts. The displayed equations therefore define a
+nonordinary events. The displayed equations therefore define a
 **regular-chart partial model with one declared collinear event update**: they
 apply while the ordinary root ledger is complete and finite, plus at that one
 typed event.
@@ -688,7 +691,7 @@ remaining transverse or backward component.
 Plainly: the proposed response axiom says where velocity may lie and how a
 finite ordinary net acceleration is made admissible. The separate collinear
 event postulate says only that one exact partner coincidence adds no velocity
-jump. Other nonordinary contacts remain open.
+jump. Other nonordinary events remain open.
 
 ## 1. Kinematic state
 
@@ -782,7 +785,7 @@ $$
 \dot{\mathbf V}
 =
 \mathbf A_{\mathrm{ord}}-\mathbf n
-\qquad\text{a.e. on }I;
+\qquad\text{almost everywhere on }I;
 $$
 
 3. the admit-evaluate-sum-respond operation order below is retained.
@@ -809,7 +812,7 @@ $$
 }{\operatorname{arg\,min}}
 \left\|\mathbf a-\mathbf A_{\mathrm{ord}}\right\|^2
 }
-\qquad\text{a.e.}
+\qquad\text{almost everywhere}.
 $$
 
 Indeed, the result is immediate in the interior because the normal cone is
@@ -818,7 +821,7 @@ $E=\{T:\|\mathbf V(T)\|=c_f\}$, absolute continuity gives
 
 $$
 \frac{d}{dT}\|\mathbf V\|^2=0
-\qquad\text{for a.e. }T\in E.
+\qquad\text{for almost every }T\in E.
 $$
 
 Writing $\mathbf n=\lambda\hat{\mathbf v}$ at such a time therefore gives
@@ -830,7 +833,7 @@ $$
 $$
 
 Because $\lambda\ge0$, boundary times at which the raw radial component is
-strictly inward have measure zero; a.e. on $E$,
+strictly inward have measure zero; almost everywhere on $E$,
 
 $$
 \lambda
@@ -853,7 +856,7 @@ Plainly: the proposed law says that regular velocity cannot jump and that the
 constraint can react only along the boundary radius. Along an actual regular
 solution those clauses force the smallest inward correction almost
 everywhere. They do not turn the speed inequality itself into a response law,
-and they do not determine an atomic contact update.
+and they do not determine an atomic coincidence update.
 
 The operation order is part of the same proposal:
 
@@ -1316,7 +1319,7 @@ endpoint lies on the excluded diagonal rather than at positive delay.
 
 The straight same-transmitter cap interval and the mirror-collinear partner
 interval are both characteristic geometries. Treating the former as inactive
-and the latter as a typed contact event is not a consequence of geometry
+and the latter as a typed coincidence event is not a consequence of geometry
 alone; it comes from the two separately proposed source-identity and event-
 ownership conventions in this packet.
 
@@ -1516,7 +1519,7 @@ cancellation, or a cap applied to a divergent raw self sum.
 This is a provisional admission convention. A later complete wake/account law
 must still state its measure and provenance, especially for mixed-direction or
 transverse cap-state contributions. The convention does not erase an emission;
-it records a nonordinary self-contact family while assigning it no ordinary
+it records a nonordinary self-coincidence family while assigning it no ordinary
 reception row.
 
 ### Event-domain boundary, not an infinity prescription
@@ -1526,7 +1529,7 @@ ordinary root construction has produced a complete finite net ledger. It does
 not turn an undefined root family into the zero vector.
 
 This distinction is decisive at partner contact. For every strict
-positive-delay member $S<T$ of a co-moving contact family, the causal equality
+positive-delay member $S<T$ of a co-moving coincidence family, the causal equality
 gives
 
 $$
@@ -1543,11 +1546,11 @@ an infinite ordinary row.
 The zero-delay, zero-separation diagonal remains outside ordinary reception,
 and a separately prescribed straight separating right trace can generate a
 zero-range divergent row. Those are different statements. Neither one assigns
-a disposition to the positive-delay nonisolated partner-contact family.
+a disposition to the positive-delay nonisolated partner-coincidence family.
 
 For the exact mirror-collinear event only, the proposed Minimal Collinear
-Partner-Contact Postulate supplies that missing disposition: the family is
-owned by one contact event, contributes no ordinary row, and gives
+Partner-Coincidence Postulate supplies that missing disposition: the family is
+owned by one coincidence event, contributes no ordinary row, and gives
 $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$. This is an added event law. It
 does not follow from projecting a vector, and it does not change any ordinary
 positive-separation isolated row before or after the event.
@@ -1578,7 +1581,7 @@ decide any other zero-Jacobian contact.
 1. State the complete constrained-response axiom on finite ordinary charts.
 2. Record the limited same-transmitter equality convention.
 3. Apply the proposed zero-impulse postulate at the exact mirror-collinear
-   partner contact and return only its outgoing contact one-jet.
+   partner contact and return only its outgoing coincidence one-jet.
 4. Define the source-provenanced receiver-side contact and competing-stratum
    measures in the candidate Radon topology.
 5. As FSC-006a, prove or refute the truncated far-part weak-* limit under
@@ -1588,10 +1591,10 @@ decide any other zero-Jacobian contact.
    complete-ledger leading sign, and projected-remainder integrability.
 7. In parallel as FSC-007, use the root-count and root-stability lemmas to
    prove the regular history-to-ledger gradient and contraction theorem.
-8. Define a locally finite post-contact response measure and compatible
+8. Define a locally finite post-coincidence response measure and compatible
    outgoing retained-history record.
-9. Prove existence and uniqueness on an open post-contact interval.
-10. Extend event-domain admission and ownership to other nonordinary contacts.
+9. Prove existence and uniqueness on an open post-coincidence interval.
+10. Extend event-domain admission and ownership to other nonordinary events.
 11. Recompute the complete root ledger and outgoing retained history.
 12. In parallel, exact non-contact regular charts may test binary
    compatibility. Only after the preceding event and solution obligations are
@@ -1625,7 +1628,7 @@ every earlier point on that same segment satisfies $g_{ii}(T,S)=0$, but none
 is an isolated crossing. The derivative in the emission-time direction is
 zero. The proposed cap-state interpretation is therefore: this co-moving
 same-characteristic family is not an ordinary active self-reception. It is a
-geometric contact family, not a sequence of independent impacts.
+geometric coincidence family, not a sequence of independent impacts.
 
 This is the precise mathematical version of the operator observation that an
 architrino travelling with its own wake cannot be overtaken by that wake.
@@ -1651,7 +1654,7 @@ $$
 $$
 
 where $\mathcal P_{\mathbf V}$ is the finite-ledger tangent-cone response map
-in Section 3. The cap-state co-moving contact family from Section 7 is not
+in Section 3. The cap-state co-moving coincidence family from Section 7 is not
 included in $\mathcal C_{\mathrm{ord}}(T)$ as an ordinary root. Other partner
 or non-collinear roots remain subject to the same normal root-admission and
 finite-ledger requirements.
@@ -1783,7 +1786,7 @@ straight segment.
 ### What this establishes, conditionally
 
 Before that coincidence time, the cap-state model has the old partner row and
-the non-isolated co-moving same-transmitter contact family. The latter is not
+the non-isolated co-moving same-transmitter coincidence family. The latter is not
 an ordinary self-hit under Section 7; the forward partner row is
 speed-increasing and has zero effective contribution under the proposed
 cap-response map. Hence the assumed straight field-speed segment is internally
@@ -1803,17 +1806,17 @@ T_\ast+q_\ast-s,
 T_\ast\le s<T_\ast+q_\ast.
 $$
 
-This is a non-isolated positive-delay partner-contact interval with $D_t=0$,
+This is a non-isolated positive-delay partner-coincidence interval with $D_t=0$,
 not an ordinary partner reception. The working same-transmitter
 self-contact convention does not classify it.
 
 Plainly: conditional on the MEC-007 input and the regular-chart response, the
 pair can travel at field speed from the assumed first boundary to coordinate
 coincidence without the super-field self-root birth. At coincidence the next
-object is an entire partner contact family rather than one ordinary root, so
+object is an entire partner coincidence family rather than one ordinary root, so
 the proposed collinear event postulate—not the ordinary ledger—owns it.
 
-### Proposed reset and outgoing contact one-jet
+### Proposed reset and outgoing coincidence one-jet
 
 Let the two incoming labeled velocities at coincidence be
 
@@ -1823,7 +1826,7 @@ $$
 \mathbf V_2(T_{\mathrm c}^{-})=-c_f\mathbf e.
 $$
 
-The Minimal Collinear Partner-Contact Postulate declares no ordinary contact
+The Minimal Collinear Partner-Coincidence Postulate declares no ordinary contact
 row and
 
 $$
@@ -1836,7 +1839,7 @@ $$
 \mathbf0.
 $$
 
-The reset therefore returns the velocity-preserving outgoing contact one-jet
+The reset therefore returns the velocity-preserving outgoing coincidence one-jet
 
 $$
 \mathbf V_i(T_{\mathrm c}^{+})
@@ -1850,7 +1853,7 @@ a right-hand path expansion, separation, passage, or a solution on any interval
 $(T_{\mathrm c},T_{\mathrm c}+\varepsilon)$.
 
 Plainly: the postulate supplies outgoing position-and-velocity data at the
-contact. It does not yet supply even a short path after the contact.
+contact. It does not yet supply even a short path after the coincidence.
 
 The independent bounded recheck in
 [capped-collinear-endpoint-reanalysis.md](capped-collinear-endpoint-reanalysis.md)
@@ -1860,9 +1863,9 @@ candidate projected contribution is zero throughout that open segment. The
 same recheck also shows that an explicitly prescribed unaccelerated straight
 separating right trace would produce a new zero-range partner row with a
 nonintegrable inverse-square contribution. This is a conditional obstruction
-for that trace, not a universal continuation no-go. The general near-contact
+for that trace, not a universal continuation no-go. The general near-coincidence
 question is the queued
-[separating-trace incompatibility theorem target](near-contact-separating-trace-incompatibility-theorem-target.md).
+[separating-trace incompatibility theorem target](near-coincidence-separating-trace-incompatibility-theorem-target.md).
 
 ### First transverse linearization
 
@@ -1927,7 +1930,7 @@ $$
 Equality holds only when the velocity direction is constant almost everywhere
 on the segment. Therefore a genuinely curved cap-state perturbation has no
 positive-delay same-path root on that curved interval; a straight subinterval
-retains the non-isolated co-moving self-contact family. This statement concerns
+retains the non-isolated co-moving self-coincidence family. This statement concerns
 same-path geometry only and does not exclude a new partner root or another
 boundary event.
 
@@ -1941,12 +1944,12 @@ positive.
 
 This is a conditional calculation inside the proposed capped model. It does
 not prove or adopt the complete constrained-response axiom or the Minimal
-Collinear Partner-Contact Postulate, generalize the event rule, establish a
+Collinear Partner-Coincidence Postulate, generalize the event rule, establish a
 right-hand path, or advance MEC-007. Conditional on the two proposed laws, it
-establishes only the velocity-preserving outgoing contact one-jet. The
+establishes only the velocity-preserving outgoing coincidence one-jet. The
 open-segment ledger is falsified if it develops an additional ordinary root or
 boundary before the stated coincidence event. The endpoint classification is
-falsified if a complete same-record census makes the partner-contact family
+falsified if a complete same-record census makes the partner-coincidence family
 ordinary and finite under an already accepted rule.
 
 ## Path-speed-ceiling regimes
@@ -3485,11 +3488,11 @@ a declared geometry class.
 ## Claim boundary
 
 This document is not a derivation of a speed ceiling, a general continuation
-law, a root regularization, a regulator-independent contact measure, an
+law, a root regularization, a regulator-independent coincidence measure, an
 energy/momentum account, a Lorentz result, or a physical claim. It now
 establishes the conditional collinear open-segment ledger, its coincidence
-partner-contact obstruction, the
-velocity-preserving outgoing contact one-jet from one proposed zero-impulse
+partner-coincidence obstruction, the
+velocity-preserving outgoing coincidence one-jet from one proposed zero-impulse
 event postulate, a first
 transverse linearization, one exact field-speed circular two-label
 prescribed-chart compatibility result under the proposed regular response
@@ -3501,7 +3504,7 @@ per-revolution acceleration-work diagnostics. It also supplies only a typed
 endpoint interface for $h_{\mathrm{act}}$ transfer, binary retuning, and a
 possible energy readout: no action-transfer event, action functional, energy
 account, or conservation law has been derived. It does not adopt the ceiling, supply a finite unique history on an open
-post-contact interval, define the receiver-side contact measure, prove
+post-coincidence interval, define the receiver-side coincidence measure, prove
 perturbative weak convergence, find or retain a three-binary braid, prove
 orbital stability, identify $h_{\mathrm{act}}$ with observer-level Planck
 $h$, or advance a closure score.
