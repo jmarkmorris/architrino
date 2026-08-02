@@ -1948,6 +1948,61 @@ boundary before the stated coincidence event. The endpoint classification is
 falsified if a complete same-record census makes the partner-contact family
 ordinary and finite under an already accepted rule.
 
+## Path-speed-ceiling regimes
+
+### Alternative Architrino path-speed ceiling
+
+The regular-chart analysis above identifies the Architrino path-speed ceiling
+with the wake speed $c_f$. A broader proposed family would instead declare a
+universal Architrino ceiling $c_a>0$, while wakes continue to propagate at
+$c_f$. This is a parameter-regime question, not an additional result of the
+present model.
+
+For a circular path on the lower boundary $0<c_a<c_f$, write
+
+$$
+\lambda=\frac{c_a}{c_f},
+\qquad
+R|\omega|=c_a.
+$$
+
+The same delayed-chord construction gives the modified half-delay equation
+
+$$
+\xi=\lambda\cos\xi.
+$$
+
+It has one positive root. The Dottie-number relation $\xi=\cos\xi$ is the
+special equal-speed case $c_a=c_f$. Thus a lower path-speed ceiling does not
+remove the circular-binary question; it changes its delay angle and requires a
+new complete-ledger radial-balance derivation.
+
+The three regimes have different regularity consequences:
+
+1. **$c_a=c_f$.** This is the current packet's exact prescribed field-speed
+   chart. It has the derived radius-independent Dottie angle and one selected
+   compatible radius under the proposed response.
+2. **$0<c_a<c_f$.** Every ordinary transmitter factor has the uniform bound
+   $D_t\ge c_f-c_a>0$. Positive-delay same-transmitter roots are excluded by
+   the strict path-speed gap. A lower-speed circular binary is therefore a
+   regular-chart theorem target, not yet a derived compatible or stable
+   binary.
+3. **$c_a>c_f$.** The path domain again permits the additional causal-root and
+   self-contact families associated with above-wake-speed motion. The present
+   regular theory does not supply their admission, ownership, continuation, or
+   response law.
+
+Claim grade: \`parameter-regime reduction and theorem target\`. The modified
+delay equation and the lower-speed root-factor floor are derived from the
+declared circular kinematics. No regime here proves a retained history,
+binary stability, a selected lower-speed radius, or a reason that the
+universe chooses one ceiling value.
+
+Plainly: a maximum Architrino speed below the wake speed would give a different
+but potentially cleaner binary problem. Equality with wake speed is the
+special boundary case already solved as a prescribed chart; a higher ceiling
+reopens the difficult root families.
+
 ## 13. Exact field-speed circular binary chart
 
 This section tests an isolated, non-translating, opposite-polarity two-label
