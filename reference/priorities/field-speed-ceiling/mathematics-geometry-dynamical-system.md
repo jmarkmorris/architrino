@@ -8,7 +8,7 @@
 [Albert Einstein read-only review, captured 2026-08-01](albert-einstein-review-response-2026-08-01.md);
 [Albert Einstein second read-only review, captured 2026-08-01](albert-einstein-second-review-response-2026-08-01.md).
 
-## Purpose
+## 1. Purpose
 
 Build the proposed field-speed-ceiling model from its smallest mathematical
 objects before using special encounter charts. The question is whether one can
@@ -20,22 +20,22 @@ The existing [Master Equation](../../../content/markdown/aaa/dynamics/master-equ
 remains the reference for the current unbounded velocity domain. This document
 develops only a possible alternative model.
 
-## Reading architecture
+## 2. Reading architecture
 
 The document has four mathematical layers.
 
-1. The compact foundation and Sections 1--4 define the proposed regular-chart
+1. The compact foundation and Sections 6--9 define the proposed regular-chart
    response, its coordinate-free geometry, and the ordinary-root domain on
    which it acts.
-2. Sections 5--12 use the mirror-collinear encounter as a boundary stress
+2. Section 10 uses the mirror-collinear encounter as a boundary stress
    test. That chart exposes the still-unresolved nonordinary event and
    continuation obligations; it is not the model's constructive binary
    branch.
-3. The path-speed-ceiling regimes and Section 13 isolate the binary program:
+3. Section 11 and Section 12 isolate the binary program:
    they compare a possible Architrino ceiling $c_a$ with wake speed $c_f$ and
    then derive the exact regular circular chart for the selected
    equal-speed case $c_a=c_f$.
-4. Sections 14--17 begin only after that binary result. They develop the
+4. Sections 13--16 begin only after that binary result. They develop the
    analytic three-binary inverse problem, mixed-frequency and scale
    constraints, action-transfer target, and cycle-account interface.
 Plainly: the main constructive path now runs from the proposed response law to
@@ -43,7 +43,7 @@ one exact field-speed binary and then, separately, to the equations a Noether
 braid must satisfy. The collinear material remains because it tests a different
 boundary of the same proposal.
 
-## Provenance and status map
+## 3. Provenance and status map
 
 | Material | Status in this document | $c_a$ regime | Authority and boundary |
 | --- | --- | --- | --- |
@@ -75,7 +75,7 @@ but it still lacks a general rule for coincidence events and for carrying the fu
 delayed history through them. The work is therefore a conditional partial model,
 not adopted ceiling dynamics.
 
-## Compact mathematical foundation
+## 4. Compact mathematical foundation
 
 This section states the minimum existing geometry and dynamics used below. It
 is a compact restatement for this investigation, not a replacement for the
@@ -256,7 +256,7 @@ Plainly: a source point measure records what was emitted. The receiver measure
 records how isolated causal intersections contribute to acceleration. A coincidence
 requires a third, separately typed object rather than identifying these two.
 
-## Proposed axiom budget and partial-model boundary
+## 5. Proposed axiom budget and partial-model boundary
 
 The compact foundation above supplies Euclidean void, absolute time,
 persistent architrino paths, point-delta emission, causal wake propagation at
@@ -560,7 +560,7 @@ A complete general closed-domain system still needs the broader commitment:
 > or terminal disposition, and—if continuation is selected—a unique velocity,
 > retained-history, and outgoing-emission update.
 
-Section 4 adds a limited same-transmitter admission convention, and Section 12
+Section 9 adds a limited same-transmitter admission convention, and Section 10.7
 applies the proposed minimal partner-coincidence postulate only to the exact
 mirror-collinear event. No general form or disposition is selected for other
 nonordinary events. The displayed equations therefore define a
@@ -580,7 +580,7 @@ finite ordinary net acceleration is made admissible. The separate collinear
 event postulate says only that one exact partner coincidence adds no velocity
 jump. Other nonordinary events remain open.
 
-## 1. Kinematic state
+## 6. Kinematic state
 
 Let an architrino path in Euclidean void be
 
@@ -624,7 +624,7 @@ Plainly: velocity may point in any direction, but its tip must stay inside or
 on a sphere of radius $c_f$. That sphere constrains speed but does not tie a
 topological knot in the motion.
 
-## 2. Complete constrained-response axiom
+## 7. Complete constrained-response axiom
 
 Let the canonical construction first supply the complete finite ordinary net
 ledger
@@ -829,7 +829,7 @@ regular ledger while they evolve. The projection scheme constructs the
 supplied-ledger solution without pretending that an integrable input is
 uniformly bounded.
 
-## 3. Derived coordinate-free response geometry
+## 8. Derived coordinate-free response geometry
 
 For $\mathbf V\ne\mathbf0$, write
 
@@ -1180,7 +1180,7 @@ nonordinary, non-simple, or non-locally-finite cap-state root family; Section 4
 classifies the possible positive-delay geometry per ordered channel but
 supplies only the working same-transmitter co-moving disposition.
 
-## 4. Causal-wake interface: working equality admission
+## 9. Causal-wake interface: working equality admission
 
 The state constraint alone does not answer which causal roots are admitted at
 exact field speed. The catalogue below separates the root and event geometries
@@ -1446,12 +1446,12 @@ partner coincidence there is no ordinary list to project. The proposed collinear
 postulate separately declares what the exact event does, without calling its
 nonordinary family an infinite ordinary acceleration.
 
-## 5. Collinear chart as a special case
+## 10. Collinear stress test
 
 ### Collinear coincidence guard and proposed reset
 
 A complete closed-domain dynamical system also needs event-domain
-commitments. For the exact mirror-collinear encounter studied in Section 12,
+commitments. For the exact mirror-collinear encounter studied in Section 10.7,
 the operator has selected this minimum convention for review:
 
 > **Minimal Collinear Partner-Coincidence Postulate.** At the exact same-path
@@ -1482,7 +1482,7 @@ Membership requires:
   $\mathbf V_1(T_{\mathrm c}^{-})=c_f\mathbf e$,
   $\mathbf V_2(T_{\mathrm c}^{-})=-c_f\mathbf e$;
 - the bounded pre-coincidence root censuses for both ordered channels
-  $1\leftarrow2$ and $2\leftarrow1$ from Section 12;
+  $1\leftarrow2$ and $2\leftarrow1$ from Section 10.7;
 - a half-open ownership convention: isolated ordinary branches own
   $T<T_{\mathrm c}$, while the typed event owns only the coincidence stratum at
   $T=T_{\mathrm c}$;
@@ -1578,7 +1578,7 @@ as inactive rather than as ordinary roots. The inverse-square tail observation
 is finite from a separately given positive radius, but it does not by itself
 decide any other zero-Jacobian event.
 
-## 6. Mathematical sequence
+### 10.1 Mathematical sequence
 
 1. State the complete constrained-response axiom on finite ordinary charts.
 2. Record the limited same-transmitter equality convention.
@@ -1603,7 +1603,7 @@ decide any other zero-Jacobian event.
    closed may such a chart be generalized into binary, braid,
    translating-assembly, or observer-level Lorentz-recovery consequences.
 
-## 7. Causal reception geometry
+### 10.2 Causal reception geometry
 
 For a receiver event $(i,T)$ and an emission from path $j$ at $S<T$, define the
 causal-surface function
@@ -1635,7 +1635,7 @@ geometric coincidence family, not a sequence of independent impacts.
 This is the precise mathematical version of the operator observation that an
 architrino travelling with its own wake cannot be overtaken by that wake.
 
-## 8. Finite-ledger constrained evolution
+### 10.3 Finite-ledger constrained evolution
 
 On a chart with a finite set of ordinary, finite causal receptions, write the
 complete ordinary net ledger acceleration as
@@ -1676,22 +1676,22 @@ state-dependent-delay solution and its complete finite ordinary ledger. The
 pointwise inequality follows from the proposed axiom rather than an
 after-the-fact velocity clamp; it does not prove that such a solution exists.
 
-## 9. First derived geometric consequences
+### 10.4 First derived geometric consequences
 
-### Interior recovery
+#### Interior recovery
 
 While $\|\mathbf V\|<c_f$, $\mathcal P_{\mathbf V}$ is the identity. The capped
 model agrees with the ordinary finite-root acceleration law until the first
 field-speed boundary event.
 
-### Boundary decomposition
+#### Boundary decomposition
 
 At $\|\mathbf V\|=c_f$, a positive speed-changing component is removed;
 negative speed-changing and transverse components remain. Hence the cap may
 hold speed fixed, reduce it, or bend the trajectory, without any coordinate
 choice or collinearity assumption.
 
-### Straight cap-state special case
+#### Straight cap-state special case
 
 If the finite ordinary ledger has only components parallel to $\mathbf V$ and
 all are speed-increasing, then every effective contribution is zero. The
@@ -1700,14 +1700,14 @@ or a boundary event changes the ledger. This is the proposed interpretation of
 the stationary collinear mirror chart after first arrival at field speed; it is
 not yet a proved outgoing history.
 
-### Re-entry into the interior
+#### Re-entry into the interior
 
 Once a retained effective contribution has a component opposite $\mathbf V$,
 the speed can fall below $c_f$. The response map becomes the identity again,
 and ordinary finite-root dynamics resumes. The time and geometry of such a
 re-entry must be calculated from the actual outgoing retained history.
 
-## 10. Immediate calculation ladder
+### 10.5 Immediate calculation ladder
 
 1. Recheck the stationary collinear mirror release through its conditional
    MEC-007 first boundary, now using the finite-ledger capped operator.
@@ -1719,7 +1719,7 @@ re-entry must be calculated from the actual outgoing retained history.
 4. Only after those local charts are controlled, calculate equal-radius
    phase-offset braid geometry and translating-assembly velocity composition.
 
-## 11. Full-geometry target
+### 10.6 Full-geometry target
 
 The desired end state is one delayed constrained dynamical system containing:
 
@@ -1733,7 +1733,7 @@ The test is not whether a cap can be stated. The test is whether this single
 system yields finite, unique histories and useful geometry without adding
 case-specific rules for collinear pairs, Braids, or translating assemblies.
 
-## 12. First conditional calculation: stationary mirror cap segment
+### 10.7 First conditional calculation: stationary mirror cap segment
 
 This section applies the proposed partial model only to the conditional
 stationary, mirror-symmetric collinear incoming chart. Let $q(T)>0$ be the
@@ -1747,7 +1747,7 @@ $$
 
 and one simple partner root emitted at $s<T_\ast$.
 
-### Conditional cap segment
+#### Conditional cap segment
 
 Assume the alternative model's straight cap-state consequence applies after
 $T_\ast$ until the first new ledger boundary. Then
@@ -1785,7 +1785,7 @@ $$
 which is exactly the coordinate-coincidence time $q(T)=0$ of this conditional
 straight segment.
 
-### What this establishes, conditionally
+#### What this establishes, conditionally
 
 Before that coincidence time, the cap-state model has the old partner row and
 the non-isolated co-moving same-transmitter coincidence family. The latter is not
@@ -1818,7 +1818,7 @@ coincidence without the super-field self-root birth. At coincidence the next
 object is an entire partner coincidence family rather than one ordinary root, so
 the proposed collinear event postulate—not the ordinary ledger—owns it.
 
-### Proposed reset and outgoing coincidence one-jet
+#### Proposed reset and outgoing coincidence one-jet
 
 Let the two incoming labeled velocities at coincidence be
 
@@ -1869,7 +1869,7 @@ for that trace, not a universal continuation no-go. The general near-coincidence
 question is the queued
 [separating-trace incompatibility theorem target](near-coincidence-separating-trace-incompatibility-theorem-target.md).
 
-### First transverse linearization
+#### First transverse linearization
 
 Fix the right receiver on the open cap segment, with
 
@@ -1942,7 +1942,7 @@ the same root and total-ledger projection that produces a nonzero first-order
 longitudinal term while the base raw speed component remains strictly
 positive.
 
-### Claim boundary
+#### 17. Claim boundary
 
 This is a conditional calculation inside the proposed capped model. It does
 not prove or adopt the complete constrained-response axiom or the Minimal
@@ -1954,7 +1954,7 @@ boundary before the stated coincidence event. The endpoint classification is
 falsified if a complete same-record census makes the partner-root family
 ordinary and finite under an already accepted rule.
 
-## Path-speed-ceiling regimes
+## 11. Path-speed-ceiling regimes
 
 ### Alternative Architrino path-speed ceiling
 
@@ -2009,7 +2009,7 @@ but potentially cleaner binary problem. Equality with wake speed is the
 special boundary case already solved as a prescribed chart; a higher ceiling
 reopens the difficult root families.
 
-## 13. Exact field-speed circular binary chart
+## 12. Exact circular binary at $c_a=c_f$
 
 This section tests an isolated, non-translating, opposite-polarity two-label
 binary directly on the regular field-speed boundary. It uses the same
@@ -2380,7 +2380,7 @@ exactly. That does not yet prove that the delayed evolution admits this chart
 in its eventual solution class, that a naturally released binary reaches it,
 or that a perturbed binary remains near it.
 
-## 14. Analytic Noether-braid inverse problem
+## 13. Analytic Noether-braid inverse problem
 
 The exact two-label chart makes a three-binary construction plausible in one
 specific mathematical sense: the proposed regular equation now has a known
@@ -2769,7 +2769,7 @@ integer winding ratios, then by two genuine relative phases, plane geometry,
 and one overall scale. The causal-root and vector equations decide which of
 those combinations, if any, survive.
 
-## 15. Scale, radius, and frequency consequences
+## 14. Scale, radius, and frequency consequences
 
 ### Homothetic scale-selection theorem
 
@@ -2841,7 +2841,7 @@ shape.
 
 ### Isolated field-speed binary frequency in normalized units
 
-For the exact binary of Section 13,
+For the exact binary of Section 12,
 
 $$
 R_\ast
@@ -2995,7 +2995,7 @@ Plainly: the first binary has a selected radius, but the smallest possible
 radius across every coupled braid geometry remains a genuine analytic
 optimization problem.
 
-## 16. Closed-cycle action transfer and binary retuning
+## 15. Closed-cycle action transfer and binary retuning
 
 ### Which $h$ is under discussion
 
@@ -3262,7 +3262,7 @@ well-defined candidate levels, but it removes the previously imagined
 above-field self-hit click. The missing object is now a lawful transition
 between two complete field-speed braid records.
 
-## 17. Cycle diagnostics, energy interface, and persistence
+## 16. Cycle diagnostics, energy interface, and persistence
 
 ### Exact per-revolution acceleration-work diagnostic
 
@@ -3487,7 +3487,7 @@ Plainly: the idea has advanced from a picture to a testable analytic program.
 The next decisive result is an exact three-binary zero or a theorem excluding
 a declared geometry class.
 
-## Claim boundary
+## 17. Claim boundary
 
 This document is not a derivation of a speed ceiling, a general continuation
 law, a root regularization, a regulator-independent nonordinary-event measure, an
