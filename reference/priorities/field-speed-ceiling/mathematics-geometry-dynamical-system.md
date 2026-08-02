@@ -31,8 +31,9 @@ The document has four mathematical layers.
    test. That chart exposes the still-unresolved nonordinary event and
    continuation obligations; it is not the model's constructive binary
    branch.
-3. Section 11 derives the exact regular circular chart for the selected
-   equal-speed case $c_a=c_f$.
+3. Section 11 organizes circular binaries by path-speed-ceiling regime;
+   Section 11.2 derives the exact regular chart for the selected equal-speed
+   case $c_a=c_f$.
 4. Sections 12--15 begin only after that binary result. They develop the
    analytic three-binary inverse problem, mixed-frequency and scale
    constraints, action-transfer target, and cycle-account interface.
@@ -2042,6 +2043,11 @@ is presently a derived continuation law.
   The external wake can supply a differential input, but the current theory
   does not decide whether the pair's coincident source records remain separate
   or form a neutral event source for later receptions.
+- **A noncoincidence restriction.** Requiring only $r_{ij}(T)>0$ forbids the
+  exact event but still permits arbitrarily close approach and does not bound
+  the inverse-square term. Requiring $r_{ij}(T)\ge\ell>0$ removes that
+  near-zero divergence, but introduces a minimum-separation scale $\ell$ that
+  must be derived or explicitly postulated.
 - **Transverse or non-collinear escape.** External asymmetry can generically
   break the ideal mirror-collinear configuration, but no theorem yet excludes
   exact coincidence in every multi-architrino history.
@@ -2053,7 +2059,11 @@ task is to prove or refute the leading complete-ledger asymptotics for a
 declared outgoing solution class, or to derive a new nonordinary event law
 that supplies the missing retained history.
 
-## 11. Exact circular binary at $c_a=c_f$
+## 11. Circular binaries
+
+### 11.1 Lower path-speed ceiling: $0<c_a<c_f$
+
+### 11.2 Exact circular binary at $c_a=c_f$
 
 This section tests an isolated, non-translating, opposite-polarity two-label
 binary directly on the regular field-speed boundary. It uses the same
@@ -2062,7 +2072,7 @@ uniform-circular geometry as the canonical
 but derives the equality case $\|\mathbf V_i\|=c_f$ here rather than assuming
 that a strictly sub-field result automatically extends to the boundary.
 
-### Equal-time radius and delayed line of action
+#### Equal-time radius and delayed line of action
 
 Let
 
@@ -2101,7 +2111,7 @@ Plainly: the architrino's velocity points sideways along the candidate circle.
 The received partner acceleration points along a different, delayed diagonal
 that can be split into an inward part and a forward part.
 
-### Radius-independent acute partner root
+#### Radius-independent acute partner root
 
 Let $S=T-\Delta<T$ be a partner emission time and define
 
@@ -2237,7 +2247,7 @@ Plainly: this field-speed circle does not encounter the collinear coincidence
 problem. At every positive radius its only received ordinary acceleration row
 is the simple opposite-label partner row.
 
-### The post-summation response retains the inward component
+#### The post-summation response retains the inward component
 
 At the partner root,
 
@@ -2325,7 +2335,7 @@ Plainly: causal delay gives the attractive row a forward slant. At field speed
 the proposed response removes that forward slant, leaving exactly the inward
 direction needed to bend each labeled path about the common midpoint.
 
-### Unique compatible radius
+#### Unique compatible radius
 
 A uniform circle of radius $R$ and speed $c_f$ has path acceleration
 
@@ -2387,7 +2397,7 @@ Plainly: the speed boundary fixes the speed, and the delayed geometry fixes the
 turning direction. The competition between inverse-square acceleration and
 the curvature required at that speed fixes the one compatible radius.
 
-### Small-radius boundary and claim grade
+#### Small-radius boundary and claim grade
 
 For every fixed $R>0$, the partner range $2R\xi_0$ is positive and the root
 factor $D_t=c_f(1+\sin\xi_0)$ stays strictly positive. The ordinary chart has
@@ -2423,6 +2433,8 @@ Plainly: the prescribed circle passes the proposed regular boundary equation
 exactly. That does not yet prove that the delayed evolution admits this chart
 in its eventual solution class, that a naturally released binary reaches it,
 or that a perturbed binary remains near it.
+
+### 11.3 Higher path-speed ceiling: $c_a>c_f$
 
 ## 12. Analytic Noether-braid inverse problem
 
@@ -2885,7 +2897,7 @@ shape.
 
 ### Isolated field-speed binary frequency in normalized units
 
-For the exact binary of Section 11,
+For the exact binary of Section 11.2,
 
 $$
 R_\ast
