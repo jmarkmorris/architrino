@@ -1,0 +1,59 @@
+{
+  "schema": "field_speed_ceiling_circular_binary_all_root_mpmath_receipt/v1",
+  "authority": "reproducible arbitrary-precision normalized Dottie-endpoint numerical witness",
+  "scope": "numeric witness for c_f=c_a=K=1 only; analytic packet supplies the all-lambda proof",
+  "provenance": {
+    "input_path": "scripts/field-speed-ceiling/circular-binary-all-root-certificate-input.v1.json",
+    "input_sha256": "1bafec36bd46a06e7713654b76e754652c1069fbde086cd631648966286fd3df",
+    "specification_sha256": "580245f41eca0d2749b2cf1c7eb6ea984560b1338fe708f444e543cc96fd6ce7",
+    "oracle_path": "scripts/field-speed-ceiling/circular-binary-all-root-mpmath-oracle.py",
+    "oracle_sha256": "8e81bc1bc58c5cb37df7423baf903a809a9d5ba35cb9f119470a8b7ca42849c8",
+    "mpmath_version": "1.3.0",
+    "decimal_digits": 100,
+    "bisection_steps": 420,
+    "declared_reproduction_command": "VIRTUAL_ENV=\"${AAA_VENV:-../.venv}\" \"${AAA_VENV:-../.venv}/bin/python\" scripts/field-speed-ceiling/circular-binary-all-root-mpmath-oracle.py --input scripts/field-speed-ceiling/circular-binary-all-root-certificate-input.v1.json --write-receipt reference/priorities/field-speed-ceiling/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json"
+  },
+  "dottie_root_bracket": {
+    "equation": "xi - cos(xi) = 0",
+    "lower": "0.7390851332151606",
+    "upper": "0.7390851332151608",
+    "lower_sign": "-0.00000000000000006971483138931196682895030858993016858108608684715534107621149976055374653296433841073111622332062824",
+    "upper_sign": "0.0000000000000002650075744473310048639371721654796199708892871915853488165893057590347964845493233318362636171355083",
+    "bisection_midpoint": "0.7390851332151606416553120876738734040134117589007574649656806357732846548835475945993761069317665318",
+    "midpoint_residual": "-7.143671195514218638848647176908380996574437467642491632594536520172703974417113722971550136626075185e-102",
+    "analytic_uniqueness": "xi - cos(xi) is strictly increasing on [0, 1]"
+  },
+  "reported_numerical_bounds": {
+    "D_t_equals_D_r_lower": "1.673612029183214784555924082260986462023599160429163955638098494705088213880614245758864172607820176",
+    "D_t_equals_D_r_upper": "1.673612029183214932372950725293106932749293358525853180373884380161518319207906792050654868875798783",
+    "D_times_one_plus_sin_D_lower": "1.236941769539371548777359499249687479089634438385351788749025300019676573312529829099866102426810402",
+    "D_times_one_plus_sin_D_upper": "1.236941769539371992749132163827012377788878659677981040210214717810087590776768656829790188203219846",
+    "compatible_radius_lower": "0.2021113735152610775081761020625794773781855580423424797050692630013981626660044634796616147316327068",
+    "compatible_radius_upper": "0.2021113735152611500514008398434362302132396320771509577480153917222348188357735370086908125116819418",
+    "angular_frequency_lower": "4.947767078157486195109437996998749916358537753541407154996101200078706293250119316399464409707241608",
+    "angular_frequency_upper": "4.947767078157487970996528655308049511155514638711924160840858871240350363107074627319160752812879386",
+    "raw_tangential_acceleration_lower": "4.509460780174171964498078038337728544347346523515244521437276622262844917175892176154790245538698804",
+    "compatible_radius_midpoint": "0.2021113735152611349423475083508060766944931884765710052989372166407353817021613922628705652999644995",
+    "raw_radial_acceleration_midpoint": "-4.947767078157486564985092966214033150867504483659880033920873335565068951243917617667642495649155171",
+    "required_radial_acceleration_midpoint": "-4.947767078157486564985092966214033150867504483659880033920873335565068951243917617667642495649155171",
+    "radial_balance_residual_midpoint": "-5.714936956411374911078917741526704797259549974113993306075629216138163179533690978377240109300860148e-101"
+  },
+  "analytic_certificate": {
+    "partner_root": "one positive root for each lambda in (0,1], from xi=lambda*cos(xi) on [0,lambda]",
+    "root_factors": "D_t=D_r=c_f*(1+lambda*sin(xi_lambda))>0",
+    "same_transmitter": "no positive-delay self root: eta=lambda*abs(sin(eta)) implies 0<eta<=lambda<=1 and eta>lambda*sin(eta)",
+    "response": "the complete two-label raw ledger has inward radial and forward tangential components; post-sum ceiling response removes the forward component",
+    "balance": "R=K/[4*c_a^2*cos(xi_lambda)*(1+lambda*sin(xi_lambda))], abs(omega)=c_a/R"
+  },
+  "claim_boundary": {
+    "does_not_establish": [
+      "a coupled delayed-history solution",
+      "capture",
+      "stability",
+      "conservation",
+      "action transfer",
+      "a retained braid",
+      "adoption of a path-speed ceiling"
+    ]
+  }
+}

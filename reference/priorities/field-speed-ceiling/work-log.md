@@ -586,3 +586,93 @@
   disposition, contact measure, continuation, regulator, conservation,
   stability, retained assembly, physical realization, MEC status, or closure
   score changed. No successor reviewer was contacted or started.
+
+## 2026-08-02 — Second-round review reconciliation and queue ownership
+
+- Reconciled the Cartan review and six-specialist geometry panel into the
+  mathematics packet without treating review proposals as theory authority.
+- Kept FSC-006b/FSC-005 as the joint owner of the inherited partner
+  characteristic-family disposition at mirror coincidence.
+- Assigned FSC-009 to the swept-source reception formulation, FSC-010 to the
+  prescribed circular-binary all-root certificate, and FSC-011 to the
+  dependent local circular-binary existence/contraction theorem.
+- FSC-011 remains blocked on FSC-010 and FSC-007. FSC-009 remains proposed and
+  unadopted. No identifier assignment advances a theorem or event law.
+- No canonical Master Equation, ceiling adoption, event-family disposition,
+  continuation, stability, conservation, retained braid, or physical claim
+  changed.
+
+## 2026-08-02 — Inherited-family disposition and FSC-010 completed
+
+- Derived the retained partner-cap incidence theorem for the exact mirror cap.
+  The whole partner cap interval is a nonordinary family at coincidence. On
+  the prescribed straight-through right trace, only the coincidence endpoint
+  remains as a receiver-side frozen root; on the exact maximum-speed rebound
+  ray, the whole older partner cap remains as a $D_t=D_r=0$ characteristic
+  interval; a generic right trace need retain neither.
+- Corrected the packet's former blanket statement that the older partner cap
+  necessarily persists after coincidence. The remaining FSC-006b/FSC-005
+  object is an event-family completion that selects and constructs a right
+  trace and classifies any characteristic interval produced by that trace.
+- Preserved the separate event-measure result: the current receiver-indexed
+  vector kernel supplies no finite ordinary cap-family event measure, and the
+  proposed raw-event cancellation still requires a defined raw wake,
+  aggregation map, matched vector pairing, and zero-preserving event response.
+- Completed FSC-010 for the declared all-past two-label circular chart. The
+  analytic proof covers every $0<c_a\le c_f$: one simple partner root per
+  receiver, no positive-delay self root, complete ordinary ledger, and the
+  compatible radius and frequency under the proposed post-sum response.
+- Restricted FSC-010's `mpmath` receipt to its correct evidence grade: it is a
+  reproducible arbitrary-precision equal-speed endpoint witness, not an
+  independent directed-rounding interval certificate. Corrected its reported
+  positive tangential lower bound to use the monotone compatible-radius
+  identity $4\sin D(1+\sin D)$.
+- FSC-011 is no longer blocked on FSC-010. It still requires FSC-007's
+  history-to-ledger estimates or a specialized proof of the same Lipschitz and
+  contraction bounds. No circular-history existence, stability, capture,
+  conservation, action transfer, or retained braid is claimed.
+
+## 2026-08-02 — Complete collinear ceiling-segment integral
+
+- Integrated the unique ordinary partner row over the complete conditional
+  ceiling-speed segment from $(\mathbf x_1,t_1)$ at first ceiling arrival to
+  the coincidence limit $(\mathbf x_2,t_2)$. The exact raw coefficient is
+  $K\int_{s_0}^{T_\ast}R_{\mathrm p}(s)^{-2}ds/2$, is finite because
+  $R_{\mathrm p}\ge q_\ast>0$, and depends on the retained pre-ceiling history.
+- Proved that the proposed post-sum ceiling response makes the effective
+  accumulated velocity increment on that open segment exactly zero because
+  the complete ordinary partner row is purely forward.
+- Separately integrated the simultaneous cap-family candidate at coincidence.
+  A one-label source-swept coefficient with cutoff $\varepsilon$ is
+  $K(\varepsilon^{-1}-q_\ast^{-1})/2$ and diverges. Under the proposed common
+  raw-event carrier and matched vector identity, the two-label combined
+  integrand is zero for every cutoff and therefore has zero integral before a
+  zero-preserving event response is applied.
+- This calculation supports the proposed zero event update only conditionally.
+  It neither derives the raw-vector pairing from the receiver kernel nor
+  selects or constructs the post-coincidence trace.
+
+## 2026-08-02 — Raw event carrier and canonical vector-pairing decision
+
+- Defined the exact mirror event-incidence carrier as cap lookback time crossed
+  with the two retained source labels, marked by source polarity and arrival
+  direction.
+- Proved the scalar label-forgetting identity $q_1+q_2=0$, but refuted the
+  corresponding canonical radial-vector identity:
+  $q_1\mathbf n_1+q_2\mathbf n_2=2q\mathbf e\ne\mathbf0$. Mirror symmetry
+  reverses both polarity and direction, so the oriented factors reinforce.
+- Verified the same sign directly in the receiver kernel. The two cap
+  contributions reinforce in each receiver's complete local ledger and cancel
+  only after adding totals belonging to two different receivers, which the
+  Master Equation does not use to update either path.
+- Retired raw vector cancellation as a derivable zero-event route. A different
+  construction survives: truncate the cap family, form each complete finite
+  local vector sum, and apply a candidate event extension of the boundary
+  projection once.
+- Proved that this projected effective value is zero for every label-preserving
+  positive exhaustion and is unchanged by orientation-preserving carrier
+  reparameterization. Adopting that exhaustion as the nonordinary-event owner
+  and specifying its outgoing retained history and right trace remain open.
+- No event law, zero impulse, outgoing history, right trace, continuation,
+  rebound, breather, conservation statement, or field-speed ceiling was
+  adopted by this decision.

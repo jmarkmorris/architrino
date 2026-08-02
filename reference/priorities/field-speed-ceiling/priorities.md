@@ -2,10 +2,10 @@
 
 ## Current
 
-- Status: `post-review mathematics packet retargeted; local coincidence
-  convergence/residue, characteristic-family disposition, regular
-  history-to-ledger, and circular-binary certificate tracks queued; no
-  canonical adoption`
+- Status: `post-review mathematics packet retargeted; partner cap-family
+  incidence and prescribed circular-binary certificate derived; coincidence
+  event completion, local convergence/residue, regular history-to-ledger, and
+  local circular continuation remain queued; no canonical adoption`
 - Claim level: proposed foundational alternative; no change to the canonical
   Master Equation, ontology, EOM solver contract, or reader-facing corpus.
 - Operator proposal under examination: each architrino has a candidate
@@ -18,8 +18,11 @@
   proposed event classifies the exact nonordinary coincidence instant, supplies
   no ordinary coincidence row or source-delta partner acceleration, and sets
   $\Delta\mathbf V_{\mathrm{coincidence}}=\mathbf0$.
-  The inherited partner characteristic family on an outgoing interval remains
-  unassigned.
+  The incoming partner cap is now classified as a whole event family at
+  coincidence. Its right-hand presence is trace-dependent: the prescribed
+  straight-through trace retains only the frozen endpoint front, whereas the
+  exact maximum-speed rebound retains the full $D_t=D_r=0$ partner interval.
+  The event law still does not select or construct an outgoing trace.
 
 ## Objective
 
@@ -121,26 +124,38 @@ object. Under its stated exact-chart consistency hypothesis, it has a divergent
 endpoint variation and cannot produce a finite Radon limit on a closed
 neighborhood. FSC-006a now owns local convergence on the open approach
 interval together with an endpoint-residue consistency test. FSC-006b/FSC-005
-owns the still-unresolved inherited partner characteristic-family disposition,
-complete raw-wake census, and any separating-trace consequence. FSC-007 remains
-an independent regular history-to-ledger theorem track.
+owns the remaining exact-event family completion, right-trace selection,
+complete local-ledger census, and any separating-trace consequence. The retained
+partner-cap incidence itself is now derived: whole interval at coincidence,
+only the frozen endpoint on straight-through motion, and the whole
+$D_t=D_r=0$ interval on exact rebound. FSC-007 remains an independent regular
+history-to-ledger theorem track.
 
 Two proposed-law tracks are deliberately separate from those theorem targets.
-Swept-source reception proposes a source-history crossing account that is
+FSC-009 owns swept-source reception as a source-history crossing account that is
 identical to the ordinary row on regular $D_t,D_r>0$ branches and gives a
-proposed frozen-root disposition at $c_a=c_f$. Exact-coincidence raw-wake
-superposition proposes how the matching incoming cap pile-up might be
-represented at the exact event. It does not assign the inherited family on an
-outgoing interval. Neither proposal is adopted, defines its required event atom
-or outgoing retained history, or establishes free passage for the actual cap
-history.
+proposed frozen-root disposition at $c_a=c_f$. The exact-coincidence raw
+carrier is now defined and its canonical vector pairing has been decided: the
+scalar signed source pushforward cancels, but the radial vectors reinforce in
+each receiver's local ledger. Raw vector cancellation is therefore not an
+available derived route. A complete finite local sum is nevertheless purely
+forward, so a candidate event extension of the boundary projection maps every
+label-preserving positive exhaustion to the same zero effective limit. The remaining event-law
+target is whether to adopt that projected exhaustion as the nonordinary-event
+owner and what retained history and right trace it supplies. Neither
+that proposal nor swept-source reception is adopted, selects the
+outgoing trace, classifies a $D_t=D_r=0$ characteristic interval produced by a
+selected trace, or establishes a selected or unique free-passage continuation.
 
-The circular-binary program now has a prior prescribed-chart task: certify the
-complete two-label root census and compatible radius for the at-or-below-wake
-circle. Only after that certificate, and alongside rather than in place of
-FSC-007, may the local binary existence/contraction theorem be posed. Neither
-track establishes stability, retention, action, conservation, or braid
-realization.
+The circular-binary program has completed its prescribed-chart prerequisite,
+[FSC-010](circular-binary-all-root-certificate.md): the analytic certificate
+proves the complete two-label root census and compatible radius for the
+at-or-below-wake all-past circle. Its numerical companion is a reproducible
+endpoint witness, not an independent interval proof. FSC-011 may now consume
+that chart, but it still requires FSC-007's history-to-ledger estimates or a
+specialized proof of the same bounds before a local contraction theorem can be
+posed. Neither track establishes stability, retention, action, conservation,
+or braid realization.
 
 The packet is not ready for a Tao-style well-posedness review as a posed
 evolution problem. FSC-005, FSC-006, FSC-007, and the deferred FSC-008
@@ -170,6 +185,7 @@ and the circular prescribed chart without confusing any of them with an adopted
 event law, a retained binary, or a full delayed evolution.
 
 Closure goal: establish local open-interval convergence and its endpoint
-residue, decide the inherited partner characteristic-family disposition, close
-FSC-007's regular history-to-ledger theorem, then certify and locally continue
-the prescribed circular binary without importing an observer-level law.
+residue, supply the exact-event family completion and right-trace selection,
+close FSC-007's regular history-to-ledger theorem, then use the completed
+FSC-010 chart to prove or refute local circular continuation without importing
+an observer-level law.
