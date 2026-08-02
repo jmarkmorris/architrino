@@ -3713,6 +3713,35 @@ well-defined candidate levels, but it removes the previously imagined
 above-field same-transmitter root birth. The missing object is now a lawful transition
 between two complete field-speed braid records.
 
+### 12.4 Volumetric braid assemblies and the Noether-sea interface
+
+The finite three-binary problem is not yet a Noether sea. A sea would be a
+volumetric collection of braid records with additional geometry and causal
+accounting; it cannot be obtained by placing independently solved finite
+braids beside one another. Each added braid changes the complete wake ledger
+of every receiver in its causal domain.
+
+The required construction has five parts:
+
+1. define the local braid record, its center, orientation, phase, winding, and
+   density over a region of the Euclidean void;
+2. specify a locally finite or otherwise controlled many-braid causal-root
+   ledger, including the treatment of distant earlier wakefronts;
+3. derive the collective response from that ledger rather than postulating a
+   background medium or an averaged binding rule;
+4. define boundary and exchange records for a finite region, including any
+   proposed transfer between a braid and the surrounding sea; and
+5. prove the relevant speed-ceiling, root-separation, and persistence bounds
+   for the resulting many-braid history.
+
+No density law, sea equilibrium, constitutive response, or exchange mechanism
+is derived here. This subsection is an interface and derivation program, not a
+claim that the finite braid already extends to a volumetric sea.
+
+Plainly: a Noether sea needs a rule for how many braids occupy a volume and how
+all of their wakes add up. The finite-braid equations are a possible building
+block, but they are not the sea itself.
+
 ## 13. Cycle diagnostics, energy interface, and persistence
 
 ### Exact per-revolution acceleration-work diagnostic
