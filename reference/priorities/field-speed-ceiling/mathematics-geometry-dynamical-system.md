@@ -2640,6 +2640,12 @@ frequencies independently. A primitive winding triple
 $\mathbf k=(k_1,k_2,k_3)$ fixes the radius ratios; one common scale
 $\Omega^{-1}$ remains for the vector ledger to select.
 
+Equal frequency is only the primitive case $\mathbf k=(1,1,1)$.  Triples such
+as $(1,2,3)$ and $(1,2,4)$ are equally legitimate periodic kinematic
+candidates, with inverse radius ratios.  This arithmetic classifies possible
+common-return charts; it does not assert that any such triple has a complete
+ledger zero, remains in orthogonal planes, or is stable.
+
 For fixed marked oriented plane frames, absolute-time translation changes the
 phase origins by
 $\phi_a\mapsto\phi_a+\omega_a\tau$. Let
@@ -2947,6 +2953,50 @@ property of one stationary path picture.
 
 Plainly: the unperturbed mathematics can identify possible levels and their
 cycle data. Moving one action unit between levels is a separate event problem.
+
+### Proposed symmetric sub-field-speed retuning event
+
+The following is a proposed event mechanism, not a consequence of the regular
+response law.  It gives a concrete target for a transition from one candidate
+field-speed binary record to a tighter one.  A typed event acts symmetrically
+on both members of an opposite-polarity binary and supplies a finite
+backward-plus-inward chord.  Immediately after the event, both path speeds are
+strictly below $c_f$ and their equal-time radius is decreasing.  During that
+sub-field-speed segment, the complete ordinary causal-root ledger must be
+recomputed; its forward and inward components may respectively restore speed
+and turn the paths.  The proposed outgoing endpoint is a smaller-radius
+circular record at field speed.
+
+For two field-speed endpoints, the kinematic relation is
+
+$$
+R^-|\omega^-|=R^+|\omega^+|=c_f,
+\qquad
+R^+<R^-
+\Longrightarrow
+|\omega^+|>|\omega^-|.
+$$
+
+The event coefficient need not be postulated to be one.  A one-unit, five-unit,
+or larger transaction becomes meaningful only after an action and event-account
+law defines what the coefficient counts.
+
+The mechanism requires all of the following before it can be promoted beyond a
+proposal: a symmetric event guard and reset, a lawful sub-field-speed update,
+complete root and boundary ownership through the chord, a rebuilt outgoing
+retained history, and independently admissible complete-ledger endpoint
+records.  Symmetry is essential: otherwise the event may introduce center
+motion, phase mismatch, or plane drift rather than a binary retuning.
+
+Claim grade: `proposed event mechanism and closure target`.  It does not prove
+that a backward-plus-inward event exists, that either endpoint is an evolved
+solution, that a radius--frequency ladder is discrete or unbounded, or that an
+energy, action, or Planck-scale quantity is transferred.
+
+Plainly: an inward row can turn a field-speed path without increasing its speed.
+The proposed backward chord creates room for a temporarily slower, inward-moving
+transition; the missing mathematics is the event and history law that would
+carry it onto a new field-speed circle.
 
 ### Endpoint equations for a one-unit transfer
 
@@ -3275,6 +3325,22 @@ E_\ast
 N_ah_{\mathrm{act}}
 \frac{2c_f^3D(1+\sin D)}{\pi K}.
 $$
+
+For two candidate records, a frequency-step expression is available only under
+the same additional identity and allocation assumptions:
+
+$$
+\Delta E_a
+=
+N_a^+h_{\mathrm{act}}f_a^+
+-
+N_a^-h_{\mathrm{act}}f_a^-.
+$$
+
+This is a conditional interface, not a calculated energy gap.  In particular,
+there is presently no derived tightest binary, minimum admissible radius,
+terminal frequency, potential-zero convention, or identification of
+$h_{\mathrm{act}}$ with observer-level $h$ or $\hbar$.
 
 None of these energy equations is licensed until the causal action or wake
 update defines $\Pi_a$, the cycle allocation, the wake and boundary terms, and
