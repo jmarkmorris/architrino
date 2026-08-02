@@ -287,29 +287,6 @@ least-change tangent-cone response almost everywhere from these proposed solutio
 clauses. It is not derived from the bare inequality
 $\|\mathbf V\|\le c_a$.
 
-A complete closed-domain dynamical system also needs event-domain
-commitments. For the exact mirror-collinear encounter studied in Section 12,
-the operator has selected this minimum convention for review:
-
-> **Minimal Collinear Partner-Coincidence Postulate.** At the exact same-path
-> coincidence of the two labeled partners, the ordinary
-> positive-separation, isolated-reception ledger contains no coincidence row. The
-> zero-radius point-emission delta is source bookkeeping and is not a partner
-> acceleration contribution. The separately recorded coincidence event contributes
-> zero velocity impulse:
->
-> $$
-> \Delta\mathbf V_{i,\mathrm{coincidence}}=\mathbf0
-> \qquad\text{for each participating label }i.
-> $$
-
-This is a proposed event law, not a result derived from the point-emission
-delta, the positive-separation ordinary domain, or the constrained-response
-axiom. Its event record owns the nonisolated partner-root family and the
-limiting incoming-root transition exactly once, while assigning neither an
-ordinary reception row nor an acceleration to the source delta at
-coincidence.
-
 ### Required history and reset interface
 
 The delayed equation is not a finite-dimensional ordinary differential
@@ -352,96 +329,6 @@ minimum:
 
 These are formulation and theorem obligations, not assumptions already proved
 for the candidate model.
-
-For the exact collinear partner event, let
-$\mathfrak G_{\mathrm{col}}\subset\mathfrak H^{-}$ be the proposed reset guard.
-Membership requires:
-
-- declared left traces
-  $\mathbf X_i(T_{\mathrm c}^{-})=\mathbf X_{\mathrm c}$ and
-  $\mathbf V_1(T_{\mathrm c}^{-})=c_f\mathbf e$,
-  $\mathbf V_2(T_{\mathrm c}^{-})=-c_f\mathbf e$;
-- the bounded pre-coincidence root censuses for both ordered channels
-  $1\leftarrow2$ and $2\leftarrow1$ from Section 12;
-- a half-open ownership convention: isolated ordinary branches own
-  $T<T_{\mathrm c}$, while the typed event owns only the coincidence stratum at
-  $T=T_{\mathrm c}$;
-- separately retained labeled source measures
-  $\mathsf E_{1,T_{\mathrm c}}$ and $\mathsf E_{2,T_{\mathrm c}}$;
-- separate records for the endpoint emissions $s=T_{\mathrm c}$ and for each
-  positive-delay family member $s<T_{\mathrm c}$;
-- the identified nonisolated partner-emission strata and limiting
-  incoming-root transitions in both ordered channels;
-- an explicit route for every competing ordinary, tangent, fold, diagonal, or
-  other nonordinary stratum; an unclassified competing stratum makes the
-  guard fail; and
-- geometric ownership records whose aggregate is invariant under any
-  orientation-preserving integration reparameterization used to describe the
-  same emission stratum without changing absolute time.
-
-The narrow reset is a map
-
-$$
-\mathcal R_{\mathrm{col}}
-:
-\mathfrak G_{\mathrm{col}}
-\longrightarrow
-\mathfrak J_{\mathrm{col}}^{+},
-$$
-
-whose codomain $\mathfrak J_{\mathrm{col}}^{+}$ contains only outgoing coincidence
-one-jets
-
-$$
-J_{i,+}^{1}
-=
-\left(
-\mathbf X_i(T_{\mathrm c}^{+}),
-\mathbf V_i(T_{\mathrm c}^{+})
-\right).
-$$
-
-The proposed reset assigns
-
-$$
-\mathbf X_i(T_{\mathrm c}^{+})=\mathbf X_{\mathrm c},
-\qquad
-\mathbf V_i(T_{\mathrm c}^{+})
-=
-\mathbf V_i(T_{\mathrm c}^{-}),
-\qquad
-\Delta\mathbf V_{i,\mathrm{coincidence}}=\mathbf0.
-$$
-
-It does not map into a right-hand retained history. The separately labeled
-source measures remain nonzero:
-
-$$
-\mathsf E_{1,T_{\mathrm c}}\ne0,
-\qquad
-\mathsf E_{2,T_{\mathrm c}}\ne0.
-$$
-
-They remain available to any later ordinary positive-separation reception and
-are not partner acceleration contributions at coincidence. The event update is the
-receiver-time atomic measure
-
-$$
-\boldsymbol{\mathsf J}^{\mathrm{evt}}_i
-=
-\Delta\mathbf V_{i,\mathrm{coincidence}}\,
-\delta_{T_{\mathrm c}},
-$$
-
-whose coefficient is set to zero by the proposed postulate. That zero
-coefficient is not a distributional cancellation, principal value, finite
-part, or regulator-independent limit of a receiver measure. The event record
-owns the declared coincidence strata once while preserving both source labels.
-
-Any restart claim would require the reset codomain to be extended with a
-compatible outgoing retained-history record, labeled source record, ownership
-ledger, and receiver-measure record. None is supplied by the outgoing
-one-jets.
 
 ### Typed measures and unresolved nonordinary-event decomposition
 
@@ -1560,6 +1447,122 @@ postulate separately declares what the exact event does, without calling its
 nonordinary family an infinite ordinary acceleration.
 
 ## 5. Collinear chart as a special case
+
+### Collinear coincidence guard and proposed reset
+
+A complete closed-domain dynamical system also needs event-domain
+commitments. For the exact mirror-collinear encounter studied in Section 12,
+the operator has selected this minimum convention for review:
+
+> **Minimal Collinear Partner-Coincidence Postulate.** At the exact same-path
+> coincidence of the two labeled partners, the ordinary
+> positive-separation, isolated-reception ledger contains no coincidence row. The
+> zero-radius point-emission delta is source bookkeeping and is not a partner
+> acceleration contribution. The separately recorded coincidence event contributes
+> zero velocity impulse:
+>
+> $$
+> \Delta\mathbf V_{i,\mathrm{coincidence}}=\mathbf0
+> \qquad\text{for each participating label }i.
+> $$
+
+This is a proposed event law, not a result derived from the point-emission
+delta, the positive-separation ordinary domain, or the constrained-response
+axiom. Its event record owns the nonisolated partner-root family and the
+limiting incoming-root transition exactly once, while assigning neither an
+ordinary reception row nor an acceleration to the source delta at
+coincidence.
+
+For the exact collinear partner event, let
+$\mathfrak G_{\mathrm{col}}\subset\mathfrak H^{-}$ be the proposed reset guard.
+Membership requires:
+
+- declared left traces
+  $\mathbf X_i(T_{\mathrm c}^{-})=\mathbf X_{\mathrm c}$ and
+  $\mathbf V_1(T_{\mathrm c}^{-})=c_f\mathbf e$,
+  $\mathbf V_2(T_{\mathrm c}^{-})=-c_f\mathbf e$;
+- the bounded pre-coincidence root censuses for both ordered channels
+  $1\leftarrow2$ and $2\leftarrow1$ from Section 12;
+- a half-open ownership convention: isolated ordinary branches own
+  $T<T_{\mathrm c}$, while the typed event owns only the coincidence stratum at
+  $T=T_{\mathrm c}$;
+- separately retained labeled source measures
+  $\mathsf E_{1,T_{\mathrm c}}$ and $\mathsf E_{2,T_{\mathrm c}}$;
+- separate records for the endpoint emissions $s=T_{\mathrm c}$ and for each
+  positive-delay family member $s<T_{\mathrm c}$;
+- the identified nonisolated partner-emission strata and limiting
+  incoming-root transitions in both ordered channels;
+- an explicit route for every competing ordinary, tangent, fold, diagonal, or
+  other nonordinary stratum; an unclassified competing stratum makes the
+  guard fail; and
+- geometric ownership records whose aggregate is invariant under any
+  orientation-preserving integration reparameterization used to describe the
+  same emission stratum without changing absolute time.
+
+The narrow reset is a map
+
+$$
+\mathcal R_{\mathrm{col}}
+:
+\mathfrak G_{\mathrm{col}}
+\longrightarrow
+\mathfrak J_{\mathrm{col}}^{+},
+$$
+
+whose codomain $\mathfrak J_{\mathrm{col}}^{+}$ contains only outgoing coincidence
+one-jets
+
+$$
+J_{i,+}^{1}
+=
+\left(
+\mathbf X_i(T_{\mathrm c}^{+}),
+\mathbf V_i(T_{\mathrm c}^{+})
+\right).
+$$
+
+The proposed reset assigns
+
+$$
+\mathbf X_i(T_{\mathrm c}^{+})=\mathbf X_{\mathrm c},
+\qquad
+\mathbf V_i(T_{\mathrm c}^{+})
+=
+\mathbf V_i(T_{\mathrm c}^{-}),
+\qquad
+\Delta\mathbf V_{i,\mathrm{coincidence}}=\mathbf0.
+$$
+
+It does not map into a right-hand retained history. The separately labeled
+source measures remain nonzero:
+
+$$
+\mathsf E_{1,T_{\mathrm c}}\ne0,
+\qquad
+\mathsf E_{2,T_{\mathrm c}}\ne0.
+$$
+
+They remain available to any later ordinary positive-separation reception and
+are not partner acceleration contributions at coincidence. The event update is the
+receiver-time atomic measure
+
+$$
+\boldsymbol{\mathsf J}^{\mathrm{evt}}_i
+=
+\Delta\mathbf V_{i,\mathrm{coincidence}}\,
+\delta_{T_{\mathrm c}},
+$$
+
+whose coefficient is set to zero by the proposed postulate. That zero
+coefficient is not a distributional cancellation, principal value, finite
+part, or regulator-independent limit of a receiver measure. The event record
+owns the declared coincidence strata once while preserving both source labels.
+
+Any restart claim would require the reset codomain to be extended with a
+compatible outgoing retained-history record, labeled source record, ownership
+ledger, and receiver-measure record. None is supplied by the outgoing
+one-jets.
+
 
 For the mirror-symmetric collinear encounter, the velocity-sphere condition
 reduces to the scalar statement that the signed speed cannot increase beyond
