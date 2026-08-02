@@ -321,9 +321,9 @@ The three regimes have different regularity consequences:
    compatible radius under the proposed response.
 2. **$0<c_a<c_f$.** Every ordinary transmitter factor has the uniform bound
    $D_t\ge c_f-c_a>0$. Positive-delay same-transmitter roots are excluded by
-   the strict path-speed gap. A lower-speed circular binary is therefore a
-   regular-chart theorem target, not yet a derived compatible or stable
-   binary.
+   the strict path-speed gap. Section 11.1 derives the compatible radius of
+   the prescribed all-past two-label circular chart. That is neither a
+   retained-history existence result nor a stability result.
 3. **$c_a>c_f$.** The path domain again permits the additional causal-root and
    same-transmitter root families associated with above-wake-speed motion. The
    present regular theory does not supply their admission, ownership,
@@ -1228,9 +1228,9 @@ $$
 \right].
 $$
 
-Below field speed, $\mathcal P_{\mathbf V_r}$ is the identity, so this is
-exactly the existing regular Master Equation. At field speed, the axiom first
-forms the complete ordinary root sum and then removes only its net
+Strictly below the path-speed ceiling, $\mathcal P_{\mathbf V_r}$ is the
+identity, so this is exactly the existing regular Master Equation. At the
+path-speed ceiling, the axiom first forms the complete ordinary root sum and then removes only its net
 speed-increasing component. It does not license omission, deletion, or
 reweighting of any admitted regular root.
 
@@ -2220,6 +2220,12 @@ it does not by itself give a repeated approach-and-separation motion.
 
 ### 11.1 Circular binary at or below wake speed: $0<c_a\le c_f$
 
+This is a ceiling-boundary-speed family: the candidate circle runs at
+$\|\mathbf V_i\|=R|\omega|=c_a$, not at an arbitrary speed below $c_a$.
+Assume the two labeled antipodal circular paths are prescribed for all past
+times and that no other labels are present. The result below concerns this
+complete two-label periodic history only.
+
 Set
 
 $$
@@ -2228,35 +2234,63 @@ $$
 R|\omega|=c_a.
 $$
 
-Use the same isolated, non-translating, opposite-polarity antipodal circular
-paths as the equality chart below. The common delayed partner geometry is
-controlled by the unique positive root
+Use the isolated, non-translating, opposite-polarity antipodal circular paths
+of the equality chart below. Put $\xi=|\omega|\Delta/2$. The full positive-delay
+partner equation is
+
+$$
+\xi=\lambda|\cos\xi|.
+$$
+
+Because $\xi\le\lambda\le1<\pi/2$, every such root has $\cos\xi>0$.
+It therefore reduces to the unique positive root
 
 $$
 \boxed{\xi_\lambda=\lambda\cos\xi_\lambda.}
 $$
 
-Indeed, $\xi-\lambda\cos\xi$ is strictly increasing on $[0,\infty)$,
+Indeed, $\xi-\lambda\cos\xi$ is strictly increasing on $[0,\lambda]$,
 negative at zero, and positive at $\lambda$. Thus
 $\xi_\lambda\in(0,\lambda)$. The corresponding partner range, delay, and
-transmitter factor are
+root factors are
 
 $$
 r_{12}=2R\cos\xi_\lambda,
 \qquad
 \Delta=\frac{2R\xi_\lambda}{c_a},
 \qquad
-D_t=c_f(1+\lambda\sin\xi_\lambda)>0.
+D_t=D_r=c_f(1+\lambda\sin\xi_\lambda)>0.
 $$
 
 For $0<c_a<c_f$, the strict speed gap gives
-$D_t,D_r\ge c_f-c_a>0$ on every speed-admissible history and excludes every
+$D_t,D_r\ge c_f-c_a>0$ at every positive-range ordinary root of a
+speed-admissible history and excludes every
 positive-delay same-transmitter root. At equality, the same circular chart
 has one simple partner root and no positive-delay same-transmitter root by the
 separate equality calculation below.
 
-With $K=\kappa|q_1q_2|>0$, the common prescribed-chart response has the
-selected radius and angular frequency
+With $K=\kappa|q_1q_2|>0$, choose $\omega>0$ without loss of generality; the
+opposite orientation is obtained by reversing $\mathbf e_\theta$. The complete
+two-label ordinary ledger then consists of one partner row per receiver,
+
+$$
+\mathbf A_{12}^{\mathrm{ord}}
+=
+-
+\frac{K}
+{4R^2\cos^2\xi_\lambda(1+\lambda\sin\xi_\lambda)}
+\left(
+\cos\xi_\lambda\,\mathbf e_r
+-
+\sin\xi_\lambda\,\mathbf e_\theta
+\right).
+$$
+
+Its radial component is inward and its tangential component is forward. The
+proposed response is applied once to that complete ordinary ledger, removing
+the forward component and retaining the inward component. Matching that
+inward acceleration to $c_a^2/R$ gives the unique radius compatible with this
+prescribed uniform circle and its angular-frequency magnitude
 
 $$
 R_{\ast,\lambda}
@@ -2264,15 +2298,37 @@ R_{\ast,\lambda}
 \frac{K}
 {4c_a^2\cos\xi_\lambda(1+\lambda\sin\xi_\lambda)},
 \qquad
-\omega_{\ast,\lambda}
+|\omega_{\ast,\lambda}|
 =
 \frac{4c_a^3\cos\xi_\lambda(1+\lambda\sin\xi_\lambda)}{K}.
 $$
 
-The ordinary partner row has an inward component and a forward tangential
-component. Conditional on the proposed post-summation response, the forward
-component is removed after the complete ordinary ledger is formed, leaving
-the inward component that balances $c_a^2/R$.
+For fixed $K$ and $c_f$, this compatible-radius family is strictly decreasing
+as $\lambda$ rises through $(0,1]$. Indeed,
+
+$$
+\lambda=\frac{\xi_\lambda}{\cos\xi_\lambda},
+\qquad
+c_a^2\cos\xi_\lambda(1+\lambda\sin\xi_\lambda)
+=
+c_f^2\,
+\frac{\xi_\lambda^2}{\cos\xi_\lambda}
+\left(1+\xi_\lambda\tan\xi_\lambda\right).
+$$
+
+Both $\lambda$ and the right-hand denominator factor increase strictly with
+$\xi_\lambda\in(0,D]$. Hence $R_{\ast,\lambda}$ decreases strictly and its
+parameter-family endpoint minimum occurs at $\lambda=1$, where
+$\xi_\lambda=D=\cos D$:
+
+$$
+R_{\ast,\min}^{\mathrm{chart}}
+=
+\frac{K}{4c_f^2D(1+\sin D)}.
+$$
+
+This is a minimum only over the fixed-$K$, prescribed at-or-below-wake-speed
+circular family. It is not a universal minimum radius or a retuning result.
 
 Claim grade: `derived prescribed-chart compatibility theorem under the
 proposed constrained-response law`. This does not establish a realized
@@ -2285,13 +2341,17 @@ is special because its angle is the Dottie number.
 #### 11.1.1 Equal-speed specialization: $c_a=c_f$
 
 This section tests an isolated, non-translating, opposite-polarity two-label
-binary directly on the regular field-speed boundary. It uses the same
+binary with a fixed absolute-space midpoint directly on the regular field-speed
+boundary. It uses the same
 uniform-circular geometry as the canonical
 [Master Equation circular benchmark](../../../content/markdown/aaa/dynamics/master-equation.md#sub-field-speed-two-body-uniform-circular-orbit),
 but derives the equality case $\|\mathbf V_i\|=c_f$ here rather than assuming
 that a strictly sub-field result automatically extends to the boundary.
 
 ##### Equal-time radius and delayed line of action
+
+Choose the positive orientation $\omega>0$; reversing it exchanges the
+orientation of $\mathbf e_\theta$ and gives the counterpart chart.
 
 Let
 
@@ -2652,6 +2712,105 @@ Plainly: the prescribed circle passes the proposed regular boundary equation
 exactly. That does not yet prove that the delayed evolution admits this chart
 in its eventual solution class, that a naturally released binary reaches it,
 or that a perturbed binary remains near it.
+
+#### 11.1.2 Orthogonally translating equal-speed circular-binary ansatz
+
+The preceding chart has no common translation: its binary midpoint is fixed in
+absolute space. The next ansatz asks whether that midpoint can translate at
+constant speed $u$ along an axis $mathbf e_z$ orthogonal to the rotation
+plane. Let
+
+$$
+\mathbf X_1(T)=uT\mathbf e_z+R\mathbf e_r(T),
+\qquad
+\mathbf X_2(T)=uT\mathbf e_z-R\mathbf e_r(T),
+$$
+
+and write $v=R\omega>0$ for the in-plane orbital speed. The equal-speed
+ceiling condition is
+
+$$
+u^2+v^2=c_f^2.
+$$
+
+This is a helical absolute-space path for each label. The delayed partner
+range satisfies
+
+$$
+c_f^2\Delta^2
+=
+u^2\Delta^2+4R^2\cos^2\xi,
+\qquad
+\xi=\frac{\omega\Delta}{2}.
+$$
+
+Using $v=R\omega$ and $c_f^2-u^2=v^2$ reduces this equation to
+
+$$
+\xi=\cos\xi.
+$$
+
+Thus the positive delayed partner root again has the Dottie angle
+$\xi=D$. On that root, direct differentiation gives
+
+$$
+D_t=D_r=\frac{v^2}{c_f}(1+\sin D)>0.
+$$
+
+The delayed partner direction has an axial component,
+
+$$
+\hat{\mathbf r}
+=
+\frac{v}{c_f}
+\left(D\mathbf e_r-\sin D\,\mathbf e_\theta\right)
++
+\frac{u}{c_f}\mathbf e_z.
+$$
+
+For the attractive two-label partner row write
+$\mathbf A_{12}^{\mathrm{ord}}=-C\hat{\mathbf r}$ with $C>0$. Its axial
+component is $-Cu/c_f$. The raw velocity-parallel component is
+
+$$
+\mathbf A_{12}^{\mathrm{ord}}\mathbin{\cdot}\mathbf V_1
+=
+\frac{C}{c_f}\left(v^2\sin D-u^2\right).
+$$
+
+The proposed path-speed-ceiling response can remove only a positive component
+parallel to the full velocity. Its effective axial component is therefore
+
+$$
+\left(\mathbf A_{12}^{\mathrm{eff}}\right)_z
+=
+-\frac{Cu}{c_f}
+-
+\frac{u}{c_f^2}
+\max\!\left\{
+\frac{C}{c_f}\left(v^2\sin D-u^2\right),0
+\right\}
+<0
+\qquad (u>0).
+$$
+
+A uniform translating helix requires zero axial path acceleration, whereas
+the complete isolated two-label ordinary ledger retains a backward axial
+residual. Therefore this particular constant-translation ansatz has no
+zero-residual solution for $u>0$ under the proposed response. This does not
+exclude a binary with other labels, a nonuniform midpoint path, or a different
+event or response law.
+
+Claim grade: `derived negative prescribed-ansatz result under the proposed
+constrained-response law`. It is falsified by an omitted ordinary root that
+changes the complete two-label ledger, an error in the delayed partner
+direction or root factors, or a ceiling response that removes the displayed
+backward axial component.
+
+Plainly: translating the whole binary uses part of the available path speed,
+but the delayed partner is also behind in the translation direction. Its wake
+therefore slows the common translation. The Dottie angle survives, yet a
+steady helix does not pass the proposed two-label acceleration equation.
 
 ### 11.2 Higher path-speed ceiling: $c_a>c_f$
 
