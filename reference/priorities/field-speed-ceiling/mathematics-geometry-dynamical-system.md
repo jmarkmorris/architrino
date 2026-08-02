@@ -28,12 +28,13 @@ The document has four mathematical layers.
    ceiling law, its parameter regimes, coordinate-free response geometry, and
    the ordinary-root domain on which it acts.
 2. Section 10 uses the mirror-collinear encounter as a boundary stress
-   test. That chart exposes the still-unresolved nonordinary event and
-   continuation obligations; it is not the model's constructive binary
-   branch.
+   test. Its leading proposed resolution is swept-source reception: a
+   receiver-side frozen root is recorded but does not create a repeated
+   ordinary row. The required event-atom and retained-history laws remain
+   unresolved; this is not the model's constructive binary branch.
 3. Section 11 organizes circular binaries by path-speed-ceiling regime;
-   Section 11.2 derives the exact regular chart for the selected equal-speed
-   case $c_a=c_f$.
+   Section 11.1 derives the shared at-or-below-wake-speed chart and gives the
+   equal-speed Dottie specialization.
 4. Sections 12--15 begin only after that binary result. They develop the
    analytic three-binary inverse problem, mixed-frequency and scale
    constraints, action-transfer target, and cycle-account interface.
@@ -60,6 +61,7 @@ boundary of the same proposal.
 | **Idealized collinear stress test** | — | — | — |
 | Assumed straight head-on motion after first reaching the proposed path-speed ceiling | `conditional hypothesis` | $c_a=c_f$ only | This uses the unverified conditional mirror-encounter input, the proposed path-speed-ceiling response, and the limited same-transmitter crossing rule. |
 | What the document can calculate on the open approach before head-on coincidence | `derived conditional result` | $c_a=c_f$ only | It counts the ordinary roots, shows the incoming partner contribution has finite total effect on the open segment, identifies the nonordinary-event obstruction, and gives an immediate no-jump velocity direction. It does not produce a path beyond coincidence. |
+| Receiver-side frozen root and swept-source reception | `proposed foundational refinement with derived regular-chart equivalence` | $c_a=c_f$ boundary only | A receiver can remain on one partner wakefront while its received-emission time stays constant. The proposal records that branch as inactive rather than repeatedly adding an ordinary row. Where $D_t,D_r>0$, it reproduces the canonical ordinary measure exactly. It does not yet define event atoms, a complete outgoing history, or a general continuation theorem. |
 | **Constructive binary program** | — | — | — |
 | Exact prescribed circular binary at path speed $c_f$ | `derived exact prescribed-chart compatibility theorem under the proposed foundational law` | $c_a=c_f$ only | The two-member circular history has one ordinary partner wake, a radius-independent delay angle, and the required inward turning component after the proposed response removes its forward speed-increasing part. This selects one radius for that prescribed chart. It does not prove capture, retained dynamics, stability, or a physical binary. |
 | **Braid, action, and reference geometry** | — | — | — |
@@ -326,6 +328,13 @@ The three regimes have different regularity consequences:
    same-transmitter root families associated with above-wake-speed motion. The
    present regular theory does not supply their admission, ownership,
    continuation, or response law.
+
+The receiver-side frozen-root stratum is available only at the equality
+boundary: for $c_a<c_f$, $D_r\ge c_f-c_a>0$, so a simple incoming front crosses
+the receiver rather than remaining frozen. Thus the swept-source proposal does
+not remove the lower-speed coincidence obstruction. It is a candidate
+resolution only for an equality-boundary history whose full outgoing root
+census actually contains a frozen branch.
 
 Claim grade: `parameter-regime reduction and theorem target`. The modified
 delay equation and the lower-speed root-factor floor are derived from the
@@ -1245,6 +1254,7 @@ The ordinary and nonordinary geometries must remain typed separately:
 | Event stratum | Local condition | Current status and required disposition |
 | --- | --- | --- |
 | Regular isolated root | $g=0$, positive delay, and $D_t\ne0$. | Canonical ordinary acceleration contribution. |
+| Receiver-side frozen root | $g=0$, positive delay, $D_t\ne0$, $D_r=0$, and the selected emission time is locally constant as receiver time advances. | Not classified by the canonical ordinary-row wording. It is a proposed nonordinary stratum: the receiver rides one already-received wakefront rather than receiving newly swept source history. Its proposed disposition is given in Section 10.9. |
 | Degenerate isolated root | $g=0$, positive delay, $D_t=0$, and the zero is isolated. | Nonordinary. On a $C^2$ ceiling-admissible chart the quadratic fold coefficient vanishes. A cubic crossing is generic only with an additional $C^3$ nonzero-third-derivative hypothesis; higher odd order or flat crossings remain possible. |
 | Characteristic interval | $g(T_r,T_t)=0$ on a nondegenerate emission-time interval. | Nonordinary. The rigidity theorem below forces an exact-aim straight ceiling-speed chord, but geometry alone supplies no interval ownership, endpoint transition, or response. |
 | Zero-delay diagonal | $T_t=T_r$ and $r=0$. | Excluded from ordinary reception by the positive-delay domain and $H(0)=0$; any event semantics remain separately typed. |
@@ -1333,8 +1343,8 @@ direction toward the receiver event. Equivalently, the interval is one
 straight characteristic chord. Conversely, such a chord gives
 $g(T_r,s)=0$ throughout the interval.
 
-Combining rigidity with monotonicity gives the complete positive-delay
-geometry catalogue for one ordered channel:
+Combining rigidity with monotonicity gives the complete transmitter-side
+positive-delay geometry catalogue for one ordered channel:
 
 1. no root;
 2. one simple isolated root;
@@ -1417,8 +1427,9 @@ The family must nevertheless be recorded as an **inactive co-moving
 same-transmitter root interval**, with its transmitter/receiver identity and time
 interval. This preserves provenance without treating its members as omitted,
 deleted, or reweighted ordinary roots. The rule addresses only the exact
-same-transmitter co-moving case. A tangent partner event, a mixed-direction path-speed-ceiling boundary-state event, or any other non-simple event remains a separately defined
-boundary chart.
+same-transmitter co-moving case. A tangent partner event, a receiver-side
+frozen partner root, a mixed-direction path-speed-ceiling boundary-state event,
+or any other non-simple event remains a separately defined boundary chart.
 
 Every retained ordinary partner and self root still requires unique ledger
 ownership, and any constrained continuation must emit a declared outgoing
@@ -1535,7 +1546,7 @@ Membership requires:
   $\mathbf X_i(T_{\mathrm c}^{-})=\mathbf X_{\mathrm c}$ and
   $\mathbf V_1(T_{\mathrm c}^{-})=c_f\mathbf e$,
   $\mathbf V_2(T_{\mathrm c}^{-})=-c_f\mathbf e$;
-- the bounded pre-coincidence root count and classificationes for both ordered channels
+- the bounded pre-coincidence root count and classifications for both ordered channels
   $1\leftarrow2$ and $2\leftarrow1$ from Section 10.7;
 - a half-open ownership convention: isolated ordinary branches own
   $T<T_{\mathrm c}$, while the typed event owns only the coincidence stratum at
@@ -1564,7 +1575,7 @@ $$
 $$
 
 whose codomain $\mathfrak J_{\mathrm{col}}^{+}$ contains only outgoing coincidence
-immediate position-and-velocity datas
+immediate position-and-velocity data
 
 $$
 J_{i,+}^{1}
@@ -1814,7 +1825,7 @@ u(T)=1,
 q(T)=q_\ast-(T-T_\ast).
 $$
 
-The persistent pre-threshincoming partner emission $s(T)<T_\ast$ is governed by
+The persistent pre-threshold incoming partner emission $s(T)<T_\ast$ is governed by
 
 $$
 F_T(s)=q(T)+q(s)-(T-s)=0,
@@ -1866,7 +1877,7 @@ $$
 
 This is a non-isolated positive-delay partner-root interval with $D_t=0$,
 not an ordinary partner reception. The working same-transmitter
-same-transmitter root convention does not classify it.
+root convention does not classify it.
 
 Plainly: conditional on the mirror-encounter input and the regular-chart response, the
 pair can travel at field speed from the assumed first boundary to coordinate
@@ -1905,7 +1916,7 @@ $$
 \mathbf V_i(T_{\mathrm c}^{-}).
 $$
 
-This is the full consequence presently licensed by the postulate. A immediate position-and-velocity data
+This is the full consequence presently licensed by the postulate. An immediate position-and-velocity data record
 specifies position and one-sided velocity at $T_{\mathrm c}$; it does not imply
 a right-hand path expansion, separation, passage, or a solution on any interval
 $(T_{\mathrm c},T_{\mathrm c}+\varepsilon)$.
@@ -1923,7 +1934,7 @@ separating right trace would produce a new zero-range partner row with a
 nonintegrable inverse-square contribution. This is a conditional obstruction
 for that trace, not a universal continuation no-go. The general near-coincidence
 question is formulated in the
-[separating-trace incompatibility theorem target](near-coincidence-separating-trace-incompatibility-theorem-target.md).
+[separating-trace incompatibility theorem target](near-contact-separating-trace-incompatibility-theorem-target.md).
 
 #### First transverse linearization
 
@@ -2016,14 +2027,22 @@ The preceding calculation resolves neither passage nor rebound after the
 idealized coincidence. The following alternatives have been considered. None
 is presently a derived continuation law.
 
-- **Ordinary straight-through passage.** The no-impulse postulate preserves
-  the incoming velocities at the coincidence instant, but it supplies no
-  right-hand retained history. A prescribed separating trace can generate a
-  zero-range partner contribution with nonintegrable inverse-square scaling.
+- **Ordinary straight-through passage under the current row wording.** The
+  no-impulse postulate preserves the incoming velocities at the coincidence
+  instant, but it supplies no right-hand retained history. If the frozen
+  partner root is booked as an ordinary row merely because $D_t\ne0$, a
+  prescribed separating trace generates a zero-range partner contribution with
+  nonintegrable inverse-square scaling.
+- **Swept-source reception.** The leading proposed resolution is to classify a
+  frozen partner root by receiver-side crossing, not transmitter-side root
+  isolation alone. Section 10.9 states the proposed law. It is compatible with
+  every regular chart where $D_r>0$, but it is new foundational data on the
+  frozen stratum and does not yet supply a general event law.
 - **Cancellation between the approaching and separating singular terms.** A
   symmetric principal-value cancellation is not an ordinary receiver-time
-  integral. It would require a separately stated event or distributional rule
-  that joins the two sides and assigns their histories together.
+  integral. Within the declared bounded-variation class, cancellation on
+  disjoint time supports cannot cure divergent total variation. A different
+  event or distributional solution class would be new foundational data.
 - **A finite short-range cutoff.** Replacing the inverse-square factor by a
   bounded kernel introduces a new length or density scale. The finite total
   wake amount on every nonzero sphere does not determine that scale.
@@ -2059,11 +2078,211 @@ task is to prove or refute the leading complete-ledger asymptotics for a
 declared outgoing solution class, or to derive a new nonordinary event law
 that supplies the missing retained history.
 
+### 10.9 Proposed swept-source reception: the frozen-root resolution
+
+The receiver-side factor
+
+$$
+D_r=c_f-\hat{\mathbf r}\mathbin{\cdot}\mathbf V_r
+$$
+
+answers a different question from $D_t$. The latter tests whether the causal
+equation selects an isolated emission time when a receiver event is fixed. The
+former tests whether the corresponding wakefront sweeps across the receiver as
+receiver time advances. On a simple branch $s=S(T)$,
+
+$$
+\frac{dS}{dT}=\frac{D_r}{D_t}.
+$$
+
+Thus $D_t\ne0$ does not by itself establish that newly emitted source history
+is reaching the receiver.
+
+For the prescribed mirror straight-through trace after coincidence, normalized
+by $c_f=1$ and with coincidence at $T=0$,
+
+$$
+\mathbf X_1(T)=T\mathbf e,
+\qquad
+\mathbf X_2(T)=-T\mathbf e,
+\qquad T>0,
+$$
+
+the partner root is $S(T)=0$ for every $T>0$. Its factors are
+
+$$
+g(T,s)=2s,
+\qquad
+D_t=2,
+\qquad
+D_r=0,
+\qquad
+\frac{dS}{dT}=0.
+$$
+
+The partner's coincidence-time wakefront expands at the same speed as the
+receiver departs. The receiver therefore remains on that one front. Later
+partner emissions begin farther away and do not catch the receiver in this
+ideal chart. This is the receiver-side frozen-root stratum introduced in
+Section 9.
+
+> **Swept-Source Reception Law (proposed).** For each ordered channel, count
+> source history only while its causal wakefront crosses the receiver. On a
+> simple branch with $D_t>0$ and $D_r>0$, use the source-swept receiver measure
+>
+> $$
+> \boldsymbol{\mathsf R}^{\mathrm{sweep}}(dT)
+> =
+> \frac{\mathbf K(T,S(T))}{D_r(T,S(T))}\,dS(T).
+> $$
+>
+> On a receiver-side frozen branch, where $S$ is locally constant, record the
+> branch as inactive and add no ordinary receiver row. A jump or singular
+> component of the received-history clock is a separately typed nonordinary
+> event and has no general disposition under this proposal.
+
+The displayed measure formula is asserted only where $D_r>0$. It must not be
+read as a cancellation of $dS=0$ against a zero denominator at a frozen root.
+The frozen-branch disposition is the new part of the proposal.
+
+On a regular branch with $D_t,D_r>0$,
+
+$$
+\frac{dS}{D_r}=\frac{dT}{D_t},
+$$
+
+so the swept-source measure is exactly the canonical ordinary receiver
+measure. The proposal therefore changes no regular sub-ceiling chart, where a
+strict speed gap gives $D_r>0$. Its only immediate change is the treatment of
+receiver-side noncrossing strata at the ceiling.
+
+For the ideal mirror coincidence, this law makes straight-through passage a
+candidate rather than an ordinary-row obstruction: the persistent partner root
+is frozen and therefore inactive. It does not by itself establish a complete
+outgoing retained history, a coincidence atom, a zero-impulse theorem,
+uniqueness, stability, causal decoupling in perturbed histories, or any action
+or conservation account. Those require separate proofs and, for an event atom,
+an explicitly completed event-response law.
+
+#### Candidate coincidence-atom completion
+
+One further proposed completion is worth isolating because it would connect
+the swept-source accounting to the existing zero-impulse postulate. Suppose a
+complete mirror-event census proves that the source-history clock has one
+coincidence atom and that its complete acceleration contribution is purely
+forward, along the incoming boundary velocity. A proposed extension of the
+path-speed-ceiling response would then assign that forward event contribution
+no velocity increase at the boundary. Under those two additional conditions,
+the coincidence update would be
+
+$$
+\Delta\mathbf V_{i,\mathrm{coincidence}}=\mathbf0.
+$$
+
+This is a candidate derivation route for the existing zero-impulse postulate,
+not a derivation in this document. It still needs the complete source-family
+census, a finite or explicitly completed event-measure construction, and a
+rule for how an event update supplies an outgoing retained history. A
+backward, transverse, or otherwise mixed event contribution is not covered by
+this proposed completion.
+
+Plainly: if the full coincidence event only tries to make an already
+ceiling-speed path go faster in its current direction, the ceiling would leave
+its velocity unchanged. We have not yet proved that the complete event really
+has that simple forward form.
+
+Claim grade: `proposed foundational refinement with derived regular-chart
+equivalence`. The equivalence is falsified by one simple branch with
+$D_t,D_r>0$ on which the two displayed receiver measures differ. The
+frozen-root disposition is falsified only by an adopted alternative reception
+law or a derived source-to-receiver measure that assigns a nonzero ordinary row
+to a noncrossing front.
+
+Plainly: ordinary reception means that new wake history reaches the receiver.
+If the receiver merely rides one front forever, the proposal records that fact
+but does not bill it again at every later time. This applies neutrally to a
+self wake or a partner wake; source identity is not the reason for the rule.
+
+This resolution does not turn the ideal mirror encounter into a breather. The
+paths can remain geometrically mirror-symmetric through coincidence while their
+causal histories are asymmetric: before coincidence, incoming source history
+reaches the pair; after straight-through passage, each receiver rides only the
+coincidence-time partner front and later partner fronts cannot catch it. There
+is therefore no derived restoring acceleration on the exact outgoing chart. A
+breather would require a separate, lawful slowdown below $c_f$, a return
+mechanism, and a disposition for the resulting ceiling-exit self-wake event.
+
+Plainly: swept-source reception can remove the repeated outgoing row without
+creating a pull back toward the partner. It gives a clean candidate escape;
+it does not by itself give a repeated approach-and-separation motion.
+
 ## 11. Circular binaries
 
-### 11.1 Lower path-speed ceiling: $0<c_a<c_f$
+### 11.1 Circular binary at or below wake speed: $0<c_a\le c_f$
 
-### 11.2 Exact circular binary at $c_a=c_f$
+Set
+
+$$
+\lambda=\frac{c_a}{c_f}\in(0,1],
+\qquad
+R|\omega|=c_a.
+$$
+
+Use the same isolated, non-translating, opposite-polarity antipodal circular
+paths as the equality chart below. The common delayed partner geometry is
+controlled by the unique positive root
+
+$$
+\boxed{\xi_\lambda=\lambda\cos\xi_\lambda.}
+$$
+
+Indeed, $\xi-\lambda\cos\xi$ is strictly increasing on $[0,\infty)$,
+negative at zero, and positive at $\lambda$. Thus
+$\xi_\lambda\in(0,\lambda)$. The corresponding partner range, delay, and
+transmitter factor are
+
+$$
+r_{12}=2R\cos\xi_\lambda,
+\qquad
+\Delta=\frac{2R\xi_\lambda}{c_a},
+\qquad
+D_t=c_f(1+\lambda\sin\xi_\lambda)>0.
+$$
+
+For $0<c_a<c_f$, the strict speed gap gives
+$D_t,D_r\ge c_f-c_a>0$ on every speed-admissible history and excludes every
+positive-delay same-transmitter root. At equality, the same circular chart
+has one simple partner root and no positive-delay same-transmitter root by the
+separate equality calculation below.
+
+With $K=\kappa|q_1q_2|>0$, the common prescribed-chart response has the
+selected radius and angular frequency
+
+$$
+R_{\ast,\lambda}
+=
+\frac{K}
+{4c_a^2\cos\xi_\lambda(1+\lambda\sin\xi_\lambda)},
+\qquad
+\omega_{\ast,\lambda}
+=
+\frac{4c_a^3\cos\xi_\lambda(1+\lambda\sin\xi_\lambda)}{K}.
+$$
+
+The ordinary partner row has an inward component and a forward tangential
+component. Conditional on the proposed post-summation response, the forward
+component is removed after the complete ordinary ledger is formed, leaving
+the inward component that balances $c_a^2/R$.
+
+Claim grade: `derived prescribed-chart compatibility theorem under the
+proposed constrained-response law`. This does not establish a realized
+history, capture, stability, conservation, or selection of $c_a$.
+
+Plainly: the lower-speed and equal-speed circles are one family. The path-speed
+ratio changes the delayed angle and the selected scale; the equal-speed case
+is special because its angle is the Dottie number.
+
+#### 11.1.1 Equal-speed specialization: $c_a=c_f$
 
 This section tests an isolated, non-translating, opposite-polarity two-label
 binary directly on the regular field-speed boundary. It uses the same
@@ -2072,7 +2291,7 @@ uniform-circular geometry as the canonical
 but derives the equality case $\|\mathbf V_i\|=c_f$ here rather than assuming
 that a strictly sub-field result automatically extends to the boundary.
 
-#### Equal-time radius and delayed line of action
+##### Equal-time radius and delayed line of action
 
 Let
 
@@ -2111,7 +2330,7 @@ Plainly: the architrino's velocity points sideways along the candidate circle.
 The received partner acceleration points along a different, delayed diagonal
 that can be split into an inward part and a forward part.
 
-#### Radius-independent acute partner root
+##### Radius-independent acute partner root
 
 Let $S=T-\Delta<T$ be a partner emission time and define
 
@@ -2247,7 +2466,7 @@ Plainly: this field-speed circle does not encounter the collinear coincidence
 problem. At every positive radius its only received ordinary acceleration row
 is the simple opposite-label partner row.
 
-#### The post-summation response retains the inward component
+##### The post-summation response retains the inward component
 
 At the partner root,
 
@@ -2335,7 +2554,7 @@ Plainly: causal delay gives the attractive row a forward slant. At field speed
 the proposed response removes that forward slant, leaving exactly the inward
 direction needed to bend each labeled path about the common midpoint.
 
-#### Unique compatible radius
+##### Unique compatible radius
 
 A uniform circle of radius $R$ and speed $c_f$ has path acceleration
 
@@ -2397,7 +2616,7 @@ Plainly: the speed boundary fixes the speed, and the delayed geometry fixes the
 turning direction. The competition between inverse-square acceleration and
 the curvature required at that speed fixes the one compatible radius.
 
-#### Small-radius boundary and claim grade
+##### Small-radius boundary and claim grade
 
 For every fixed $R>0$, the partner range $2R\xi_0$ is positive and the root
 factor $D_t=c_f(1+\sin\xi_0)$ stays strictly positive. The ordinary chart has
@@ -2434,7 +2653,27 @@ exactly. That does not yet prove that the delayed evolution admits this chart
 in its eventual solution class, that a naturally released binary reaches it,
 or that a perturbed binary remains near it.
 
-### 11.3 Higher path-speed ceiling: $c_a>c_f$
+### 11.2 Higher path-speed ceiling: $c_a>c_f$
+
+This regime is the controlled bridge from a finite path-speed ceiling to the
+canonical unrestricted path domain. A finite $c_a>c_f$ still bounds every
+path, but it permits above-wake-speed segments. As the permitted ceiling is
+raised, the same additional partner-root and same-transmitter-root families
+remain admissible over a larger path domain. Removing the ceiling altogether
+removes the speed-bound argument used in Section 9 to make one ordered
+channel's emission-time root set monotone.
+
+Accordingly, the regular at-or-below-wake circular derivation cannot simply be
+continued into this regime. Before a higher-speed circular binary can be
+claimed, the analysis must give a complete root census, define admission and
+ownership for every returned self and partner branch, and then form the full
+ordinary ledger before applying the proposed response. No such higher-speed
+binary result is derived here.
+
+Plainly: allowing a path to outrun a wake reopens the causal-root geometries
+that the at-or-below-wake analysis avoided. A finite higher ceiling lets us
+study that return in a bounded setting; no ceiling is the limiting unrestricted
+case, not a consequence of the circular-binary result.
 
 ## 12. Analytic Noether-braid inverse problem
 
@@ -2897,7 +3136,7 @@ shape.
 
 ### Isolated field-speed binary frequency in normalized units
 
-For the exact binary of Section 11.2,
+For the exact binary of Section 11.1.1,
 
 $$
 R_\ast
