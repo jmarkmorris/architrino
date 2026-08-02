@@ -35,9 +35,10 @@ The document has four mathematical layers.
 3. Section 11 organizes circular binaries by path-speed-ceiling regime;
    Section 11.1 derives the shared at-or-below-wake-speed chart and gives the
    equal-speed Dottie specialization.
-4. Sections 12--15 begin only after that binary result. They develop the
-   analytic three-binary inverse problem, mixed-frequency and scale
-   constraints, action-transfer target, and cycle-account interface.
+4. Section 12 begins only after that binary result. It develops the analytic
+   three-binary inverse problem, mixed-frequency and scale constraints, and
+   the action-transfer target. Section 13 then gives the cycle diagnostics,
+   conditional energy interface, and persistence questions.
 Plainly: the main constructive path now runs from the proposed response law to
 one exact field-speed binary and then, separately, to the equations a Noether
 braid must satisfy. The collinear material remains because it tests a different
@@ -2812,6 +2813,37 @@ but the delayed partner is also behind in the translation direction. Its wake
 therefore slows the common translation. The Dottie angle survives, yet a
 steady helix does not pass the proposed two-label acceleration equation.
 
+#### 11.1.3 Proposed binary-retuning transition
+
+The exact circular charts above do not provide a transition between radii. The
+following is a proposed binary event mechanism, not a consequence of the
+regular response law. It acts symmetrically on both members of an
+opposite-polarity binary and supplies a finite backward-plus-inward chord.
+Immediately after the event, both path speeds are strictly below $c_f$ and
+their equal-time radius is decreasing. During that sub-field-speed segment the
+complete ordinary causal-root ledger must be recomputed. The proposed endpoint
+is a smaller-radius circular record at field speed.
+
+For two field-speed endpoints,
+
+$$
+R^-|\omega^-|=R^+|\omega^+|=c_f,
+\qquad
+R^+<R^-
+\Longrightarrow
+|\omega^+|>|\omega^-|.
+$$
+
+The event requires a symmetric guard and reset, lawful sub-field-speed root
+and boundary ownership through the chord, a rebuilt outgoing retained history,
+and independently admissible complete-ledger endpoint records. It does not
+prove that such an event exists, that a radius--frequency ladder is discrete or
+unbounded, or that action, energy, or a Planck-scale quantity is transferred.
+
+Plainly: a tighter field-speed circle has a faster angular cadence. The missing
+mathematics is not that endpoint relation; it is the lawful event and history
+update that could carry one binary from one endpoint to the other.
+
 ### 11.2 Higher path-speed ceiling: $c_a>c_f$
 
 This regime is the controlled bridge from a finite path-speed ceiling to the
@@ -2841,7 +2873,9 @@ that the at-or-below-wake analysis avoided. A finite higher ceiling lets us
 study that return in a bounded setting; no ceiling is the limiting unrestricted
 case, not a consequence of the circular-binary result.
 
-## 12. Analytic Noether-braid inverse problem
+## 12. Noether braid
+
+### 12.1 Analytic inverse problem
 
 The exact two-label chart makes a three-binary construction plausible in one
 specific mathematical sense: the proposed regular equation now has a known
@@ -2861,7 +2895,7 @@ Plainly: one exact binary supplies a candidate component, not a superposition
 rule. The six paths must be solved together because each architrino receives
 wakes from all five other labels.
 
-### Three antipodal field-speed binaries
+#### Three antipodal field-speed binaries
 
 Index the binaries by $a\in\{1,2,3\}$ and the two persistent members of each
 binary by $\epsilon\in\{+1,-1\}$. Choose for each binary a center
@@ -2928,7 +2962,7 @@ Plainly: at field speed the radius and angular frequency are not independent.
 Choosing one fixes the other, while the centers, plane orientations, and
 relative phases still control the cross-binary wake geometry.
 
-### Complete ordinary root and acceleration system
+#### Complete ordinary root and acceleration system
 
 Let $i=(a,\epsilon)$ be a receiver and $j=(b,\eta)$ a transmitter. A regular
 positive-delay root is a number $\tau_{i\leftarrow j}(T)>0$ satisfying
@@ -2999,7 +3033,7 @@ per-channel problem on this regular chart. The difficult part is the vector
 sum: cross-binary rows can change both the turning direction and the net
 forward or backward component.
 
-### Necessary-and-sufficient field-speed braid criterion
+#### Necessary-and-sufficient field-speed braid criterion
 
 For each receiver define the completed net velocity-parallel scalar
 
@@ -3065,7 +3099,7 @@ nonnegative. The response then caps that one net component, while the remaining
 two-dimensional perpendicular vector must supply exactly the required inward
 turn and no out-of-plane deflection.
 
-### Reverse solution rather than a universal-forward theorem
+#### Reverse solution rather than a universal-forward theorem
 
 The practical construction problem is to solve the boxed equality and
 inequality for
@@ -3126,7 +3160,7 @@ Plainly: the analytic search is a nonlinear spectrum problem. A numerical
 sample can reject a candidate, but an exact retained chart requires the whole
 periodic residual to vanish, not only a few phases or an average.
 
-### Frequency commensurability and phase data
+#### Frequency commensurability and phase data
 
 An unperturbed three-binary chart has one common return period only if there
 are nonzero integers $k_a$ such that
@@ -3230,9 +3264,9 @@ integer winding ratios, then by two genuine relative phases, plane geometry,
 and one overall scale. The causal-root and vector equations decide which of
 those combinations, if any, survive.
 
-## 13. Scale, radius, and frequency consequences
+### 12.2 Scale, radius, and frequency consequences
 
-### Homothetic scale-selection theorem
+#### Homothetic scale-selection theorem
 
 Take a fixed collision-free dimensionless six-path shape
 $\overline{\mathbf X}_i(u)$ and form its homothetic family
@@ -3300,7 +3334,7 @@ is not. A successful braid shape does not come in arbitrary enlarged and
 shrunken copies; the acceleration equation selects one scale or rejects the
 shape.
 
-### Isolated field-speed binary frequency in normalized units
+#### Isolated field-speed binary frequency in normalized units
 
 For the exact binary of Section 11.1.1,
 
@@ -3390,7 +3424,7 @@ number. Once the existing coupling scale $K$ is specified, the Dottie-number
 geometry fixes the radius, angular frequency, ordinary cycle frequency,
 period, and causal delay together.
 
-### Small-radius obstruction
+#### Small-radius obstruction
 
 For the isolated pair, the ordinary partner root remains simple at every
 $R>0$, but its projected inward acceleration grows as $R^{-2}$ while the
@@ -3423,7 +3457,7 @@ as its radius approaches zero. A still-smaller braid layer would need another
 nearby row to cancel the leading singularity or would have to leave the
 ordinary chart.
 
-### Radius limits still to prove
+#### Radius limits still to prove
 
 The current analytic results distinguish three questions.
 
@@ -3456,9 +3490,9 @@ Plainly: the first binary has a selected radius, but the smallest possible
 radius across every coupled braid geometry remains a genuine analytic
 optimization problem.
 
-## 14. Closed-cycle action transfer and binary retuning
+### 12.3 Closed-cycle action transfer
 
-### Which $h$ is under discussion
+#### Which $h$ is under discussion
 
 Use $h_{\mathrm{act}}$ for a candidate closed-cycle action unit carried by a
 retained braid. It is distinct from the finite-memory depth used elsewhere and
@@ -3476,51 +3510,7 @@ property of one stationary path configuration.
 Plainly: the unperturbed mathematics can identify possible levels and their
 cycle data. Moving one action unit between levels is a separate event problem.
 
-### Proposed symmetric sub-field-speed retuning event
-
-The following is a proposed event mechanism, not a consequence of the regular
-response law.  It gives a concrete target for a transition from one candidate
-field-speed binary record to a tighter one.  A typed event acts symmetrically
-on both members of an opposite-polarity binary and supplies a finite
-backward-plus-inward chord.  Immediately after the event, both path speeds are
-strictly below $c_f$ and their equal-time radius is decreasing.  During that
-sub-field-speed segment, the complete ordinary causal-root ledger must be
-recomputed; its forward and inward components may respectively restore speed
-and turn the paths.  The proposed outgoing endpoint is a smaller-radius
-circular record at field speed.
-
-For two field-speed endpoints, the kinematic relation is
-
-$$
-R^-|\omega^-|=R^+|\omega^+|=c_f,
-\qquad
-R^+<R^-
-\Longrightarrow
-|\omega^+|>|\omega^-|.
-$$
-
-The event coefficient need not be postulated to be one.  A one-unit, five-unit,
-or larger transaction becomes meaningful only after an action and event-account
-law defines what the coefficient counts.
-
-The mechanism requires all of the following before it can be promoted beyond a
-proposal: a symmetric event guard and reset, a lawful sub-field-speed update,
-complete root and boundary ownership through the chord, a rebuilt outgoing
-retained history, and independently admissible complete-ledger endpoint
-records.  Symmetry is essential: otherwise the event may introduce center
-motion, phase mismatch, or plane drift rather than a binary retuning.
-
-Claim grade: `proposed event mechanism and closure target`.  It does not prove
-that a backward-plus-inward event exists, that either endpoint is an evolved
-solution, that a radius--frequency ladder is discrete or unbounded, or that an
-energy, action, or Planck-scale quantity is transferred.
-
-Plainly: an inward row can turn a field-speed path without increasing its speed.
-The proposed backward chord creates room for a temporarily slower, inward-moving
-transition; the missing mathematics is the event and history law that would
-carry it onto a new field-speed circle.
-
-### Endpoint equations for a one-unit transfer
+#### Endpoint equations for a one-unit transfer
 
 Collect one branch record into
 
@@ -3603,7 +3593,7 @@ dynamics. The transferred action cannot be assigned only to one binary while
 the other radii, phases, roots, and outgoing wake account are left unchanged
 by assumption.
 
-### How field-speed binaries must retune
+#### How field-speed binaries must retune
 
 Any binary that remains on the field-speed boundary on both sides obeys
 
@@ -3704,7 +3694,7 @@ and one that expands must slow down. Which binaries do which is determined by
 the full constrained residual and action account, not by fixed roles assigned
 to binary indices.
 
-### Exact missing event datum
+#### Exact missing event datum
 
 The proposed regular response supplies no event that transfers
 $h_{\mathrm{act}}$. Earlier above-field-speed root-birth proposals relied on a
@@ -3723,7 +3713,7 @@ well-defined candidate levels, but it removes the previously imagined
 above-field same-transmitter root birth. The missing object is now a lawful transition
 between two complete field-speed braid records.
 
-## 15. Cycle diagnostics, energy interface, and persistence
+## 13. Cycle diagnostics, energy interface, and persistence
 
 ### Exact per-revolution acceleration-work diagnostic
 
@@ -3948,7 +3938,7 @@ Plainly: the proposal is now expressed as a testable analytic program.
 The next decisive result is an exact three-binary zero or a theorem excluding
 a declared geometry class.
 
-## 16. Claim boundary
+## 14. Claim boundary
 
 This document is not a derivation of a speed ceiling, a general continuation
 law, a root regularization, a regulator-independent nonordinary-event measure, an
