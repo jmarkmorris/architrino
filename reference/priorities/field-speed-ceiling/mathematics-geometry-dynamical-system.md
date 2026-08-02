@@ -2718,7 +2718,7 @@ or that a perturbed binary remains near it.
 
 The preceding chart has no common translation: its binary midpoint is fixed in
 absolute space. The next ansatz asks whether that midpoint can translate at
-constant speed $u$ along an axis $mathbf e_z$ orthogonal to the rotation
+constant speed $u$ along an axis $\mathbf e_z$ orthogonal to the rotation
 plane. Let
 
 $$
