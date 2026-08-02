@@ -24,18 +24,16 @@ develops only a possible alternative model.
 
 The document has four mathematical layers.
 
-1. The compact foundation and Sections 6--9 define the proposed regular-chart
-   response, its coordinate-free geometry, and the ordinary-root domain on
-   which it acts.
+1. The compact foundation, Section 5, and Sections 6--9 define the proposed
+   ceiling law, its parameter regimes, coordinate-free response geometry, and
+   the ordinary-root domain on which it acts.
 2. Section 10 uses the mirror-collinear encounter as a boundary stress
    test. That chart exposes the still-unresolved nonordinary event and
    continuation obligations; it is not the model's constructive binary
    branch.
-3. Section 11 and Section 12 isolate the binary program:
-   they compare a possible Architrino ceiling $c_a$ with wake speed $c_f$ and
-   then derive the exact regular circular chart for the selected
+3. Section 11 derives the exact regular circular chart for the selected
    equal-speed case $c_a=c_f$.
-4. Sections 13--16 begin only after that binary result. They develop the
+4. Sections 12--15 begin only after that binary result. They develop the
    analytic three-binary inverse problem, mixed-frequency and scale
    constraints, action-transfer target, and cycle-account interface.
 Plainly: the main constructive path now runs from the proposed response law to
@@ -48,8 +46,8 @@ boundary of the same proposal.
 | Material | Status in this document | $c_a$ regime | Authority and boundary |
 | --- | --- | --- | --- |
 | **Scope and speed regimes** | — | — | — |
-| Existing causal-wake setting: Euclidean void, absolute time, persistent paths, wakes at $c_f$, ordinary simple delayed roots, and the regular Master Equation | `canonical premise` | Canonical, unbounded | These are inherited unchanged. They do not themselves impose an Architrino path-speed ceiling. |
-| Candidate Architrino path-speed ceiling $c_a$, compared with wake speed $c_f$ | `investigation parameter` | All three cases | The current canonical path domain has no finite maximum speed. This document investigates three alternatives: $c_a<c_f$, $c_a=c_f$, and $c_a>c_f$. Each needs its own root, ledger, and binary analysis; none is adopted here. |
+| Existing causal-wake setting: Euclidean void, absolute time, persistent paths, wakes at $c_f$, ordinary simple delayed roots, and the regular Master Equation | `canonical premise` | Canonical, unbounded | These are inherited unchanged. They do not themselves impose an architrino path-speed ceiling. |
+| Candidate architrino path-speed ceiling $c_a$, compared with wake speed $c_f$ | `investigation parameter` | All three cases | The current canonical path domain has no finite maximum speed. This document investigates three alternatives: $c_a<c_f$, $c_a=c_f$, and $c_a>c_f$. Each needs its own root, ledger, and binary analysis; none is adopted here. |
 | **Proposed ceiling law and regular-domain limits** | — | — | — |
 | First arrival at the proposed path-speed-ceiling boundary in the mirror encounter | `conditional input` | $c_a=c_f$ only | This is an unverified conditional mirror-encounter input. It is an idealized, isolated, mirror-symmetric head-on encounter with no external asymmetry, in which the two paths approach the same point at the same absolute time. It is not a general nonordinary-event solution. |
 | Proposed path-speed-ceiling response: form the full ordinary wake ledger, then prevent only the part of net acceleration that would exceed the ceiling | `proposed foundational law` | All constrained cases | This is the proposed change to the Master Equation. It applies only where the ordinary ledger is complete and finite; it does not define what happens at coincidence, tangency, or any other nonordinary event. For $c_a<c_f$, the path-speed gap excludes transmitter-side tangency, but it does not by itself resolve coincidence or other exceptional events. |
@@ -65,7 +63,7 @@ boundary of the same proposal.
 | Exact prescribed circular binary at path speed $c_f$ | `derived exact prescribed-chart compatibility theorem under the proposed foundational law` | $c_a=c_f$ only | The two-member circular history has one ordinary partner wake, a radius-independent delay angle, and the required inward turning component after the proposed response removes its forward speed-increasing part. This selects one radius for that prescribed chart. It does not prove capture, retained dynamics, stability, or a physical binary. |
 | **Braid, action, and reference geometry** | — | — | — |
 | Equations a three-binary periodic candidate must satisfy | `derived analytic reduction and theorem target` | $c_a=c_f$ only | The document reduces a candidate braid to its root ledger, phase-return arithmetic, path-speed-ceiling condition, and scale equations. It has not found a complete three-binary solution or proved that one is stable. |
-| Possible action transfer, binary retuning, and energy language | `typed closure target with conditional identities` | $c_a=c_f$ only | This document states what an eventual action account would have to connect, but it has not derived an event, conservation rule, primitive Architrino energy, or a relation to observer-level Planck $h$. |
+| Possible action transfer, binary retuning, and energy language | `typed closure target with conditional identities` | $c_a=c_f$ only | This document states what an eventual action account would have to connect, but it has not derived an event, conservation rule, primitive architrino energy, or a relation to observer-level Planck $h$. |
 | Exact root count for one prescribed six-path reference geometry | `derived reference-path theorem` | $c_a=c_f$ only | The result is exact for those chosen paths. It describes a loop of six labeled positions that never coincide at equal time; it is not an evolved or retained braid. |
 | Numerical checks of root margins and four polarity choices for the prescribed six-path geometry | `diagnostic` | $c_a=c_f$ only | These calculations test that one chosen geometry and find vector-closure failures. They do not choose a path-speed-ceiling response or establish a physical object. |
 
@@ -282,10 +280,62 @@ The smallest proposed regular-chart foundation is one complete law:
 The axiom acts only after every ordinary root has been admitted, evaluated at
 its canonical weight, and included in the finite net sum. It takes the candidate
 ceiling $c_a$ as its one investigation parameter and introduces no additional
-response scale. The minimal-selection theorem in Section 2 derives the
+response scale. The minimal-selection theorem in Section 7 derives the
 least-change tangent-cone response almost everywhere from these proposed solution-form
 clauses. It is not derived from the bare inequality
 $\|\mathbf V\|\le c_a$.
+
+### Path-speed-ceiling regimes
+
+The proposed ceiling $c_a$ is distinct from wake speed $c_f$. This document
+therefore considers three parameter regimes before specializing any geometry:
+$0<c_a<c_f$, $c_a=c_f$, and $c_a>c_f$. It does not select one of them.
+
+For a circular path on the lower boundary $0<c_a<c_f$, write
+
+$$
+\lambda=\frac{c_a}{c_f},
+\qquad
+R|\omega|=c_a.
+$$
+
+The delayed-chord construction developed for the circular binary later in the
+document gives the modified half-delay equation
+
+$$
+\xi=\lambda\cos\xi.
+$$
+
+It has one positive root. The Dottie-number relation $\xi=\cos\xi$ is the
+special equal-speed case $c_a=c_f$. Thus a lower path-speed ceiling does not
+remove the circular-binary question; it changes its delay angle and requires a
+new complete-ledger radial-balance derivation.
+
+The three regimes have different regularity consequences:
+
+1. **$c_a=c_f$.** This is the document's current exact prescribed field-speed
+   chart. It has the derived radius-independent Dottie angle and one selected
+   compatible radius under the proposed response.
+2. **$0<c_a<c_f$.** Every ordinary transmitter factor has the uniform bound
+   $D_t\ge c_f-c_a>0$. Positive-delay same-transmitter roots are excluded by
+   the strict path-speed gap. A lower-speed circular binary is therefore a
+   regular-chart theorem target, not yet a derived compatible or stable
+   binary.
+3. **$c_a>c_f$.** The path domain again permits the additional causal-root and
+   same-transmitter root families associated with above-wake-speed motion. The
+   present regular theory does not supply their admission, ownership,
+   continuation, or response law.
+
+Claim grade: `parameter-regime reduction and theorem target`. The modified
+delay equation and the lower-speed root-factor floor are derived from the
+declared circular kinematics. No regime here proves a retained history,
+binary stability, a selected lower-speed radius, or a reason that the
+universe chooses one ceiling value.
+
+Plainly: a maximum architrino speed below the wake speed would give a different
+but potentially cleaner binary problem. Equality with wake speed is the
+special boundary case developed later as a prescribed chart; a higher ceiling
+reopens the difficult root families.
 
 ### Required history and reset interface
 
@@ -388,7 +438,7 @@ For the proposed receiver-time measure analysis, use the following candidate top
 4. event-update measures converge weak-* in receiver time as a separate typed
    component.
 
-For a cap-admissible perturbation that resolves the coincidence stratum into
+For a ceiling-admissible perturbation that resolves the coincidence stratum into
 ordinary isolated simple roots, the required prove-or-refute statement is
 
 $$
@@ -409,7 +459,7 @@ or different limits for admissible perturbation families refutes this
 candidate reduction. Convergence of root counts alone proves none of these
 measure statements.
 
-The cap-admissible root-classification theorem below implies that one ordered
+The ceiling-admissible root-classification theorem below implies that one ordered
 channel can have at most one isolated simple root. The analysis therefore retains
 label-separated channels and studies a single simple branch approaching a
 characteristic interval or zero-range endpoint. It may not use a quotient of
@@ -514,7 +564,7 @@ underlying total variation.
 Claim grade: `derived`. This is a conditional local obstruction. The
 calculation does not prove that every perturbation of the mirror-coincidence
 interval has this normal form, and it does not define the missing coincidence
-measure. The fold chart is not cap-admissible because its two-root geometry
+measure. The fold chart is not ceiling-admissible because its two-root geometry
 requires $D_t$ to change sign. It remains a negative control for the canonical
 open model and for any broader perturbation class. It is falsified for a
 declared event class by a theorem that excludes this chart or proves uniform
@@ -540,7 +590,7 @@ history remains a separate state-dependent-delay problem.
 The regular operator maps a completed finite ordinary acceleration ledger to
 the absolutely continuous velocity derivative
 $\mathbf A_{\mathrm{eff}}=d\mathbf V/dT$. The event operator is the separate
-reset $\mathcal R_{\mathrm{col}}$, whose output is an outgoing coincidence immediate position-and-velocity data
+reset $\mathcal R_{\mathrm{col}}$, whose output is the immediate position-and-velocity data at the outgoing coincidence
 and whose proposed atomic coefficient is
 $\Delta\mathbf V_{\mathrm{coincidence}}=\mathbf0$.
 
@@ -570,7 +620,7 @@ typed event.
 
 Within that partial model, the following are consequences of the complete
 axiom rather than additional postulates: no super-field-speed history; zero
-effective impact from the net forward component at the cap; transverse
+effective impact from the net forward component at the ceiling; transverse
 turning at fixed speed; speed reduction under a backward component; and
 straight constant-speed motion for a path-speed-ceiling boundary-state collinear case with no
 remaining transverse or backward component.
@@ -593,24 +643,24 @@ $$
 The proposal replaces the present open velocity domain with the closed ball
 
 $$
-\mathcal B_{c_f}
+\mathcal B_{c_a}
 =
 \left\{
 \mathbf V\in\mathbb R^3:
-\|\mathbf V\|\le c_f
+\|\mathbf V\|\le c_a
 \right\}.
 $$
 
-The boundary $\partial\mathcal B_{c_f}$ is the field-speed sphere. This is a
+The boundary $\partial\mathcal B_{c_a}$ is the path-speed-ceiling sphere. This is a
 geometric state constraint, not yet a causal-root rule.
 
 Neither the velocity ball nor its boundary supplies a discrete topological
 sector:
 
 $$
-\pi_1\!\left(\mathcal B_{c_f}\right)=0,
+\pi_1\!\left(\mathcal B_{c_a}\right)=0,
 \qquad
-\pi_1\!\left(\partial\mathcal B_{c_f}\right)
+\pi_1\!\left(\partial\mathcal B_{c_a}\right)
 =
 \pi_1(S^2)=0.
 $$
@@ -621,7 +671,7 @@ contraction. The speed constraint alone supplies no braid retention,
 generation index, orbit protection, or stability result.
 
 Plainly: velocity may point in any direction, but its tip must stay inside or
-on a sphere of radius $c_f$. That sphere constrains speed but does not tie a
+on a sphere of radius $c_a$. That sphere constrains speed but does not tie a
 topological knot in the motion.
 
 ## 7. Complete constrained-response axiom
@@ -640,33 +690,33 @@ No $\mathbf a_\alpha$ is clipped, deleted, duplicated, or reweighted. For the
 closed velocity ball, define its tangent cone by
 
 $$
-T_{\mathcal B_{c_f}}(\mathbf V)
+T_{\mathcal B_{c_a}}(\mathbf V)
 =
 \begin{cases}
-\mathbb R^3, & \|\mathbf V\|<c_f,\\[4pt]
+\mathbb R^3, & \|\mathbf V\|<c_a,\\[4pt]
 \left\{\mathbf a\in\mathbb R^3:
 \mathbf V\mathbin{\cdot}\mathbf a\le0\right\},
-& \|\mathbf V\|=c_f.
+& \|\mathbf V\|=c_a.
 \end{cases}
 $$
 
 Define the Euclidean normal cone by
 
 $$
-N_{\mathcal B_{c_f}}(\mathbf V)
+N_{\mathcal B_{c_a}}(\mathbf V)
 =
 \begin{cases}
-\{\mathbf0\}, & \|\mathbf V\|<c_f,\\[4pt]
+\{\mathbf0\}, & \|\mathbf V\|<c_a,\\[4pt]
 \{\lambda\hat{\mathbf v}:\lambda\ge0\},
-& \|\mathbf V\|=c_f.
+& \|\mathbf V\|=c_a.
 \end{cases}
 $$
 
 The proposed regular-chart solution law is:
 
-1. $\mathbf V\in AC(I;\mathcal B_{c_f})$;
+1. $\mathbf V\in AC(I;\mathcal B_{c_a})$;
 2. after the complete finite ordinary ledger is formed, there is a radial
-   reaction $\mathbf n(T)\in N_{\mathcal B_{c_f}}(\mathbf V(T))$ such that
+   reaction $\mathbf n(T)\in N_{\mathcal B_{c_a}}(\mathbf V(T))$ such that
 
 $$
 \dot{\mathbf V}
@@ -691,11 +741,11 @@ $$
 =
 \mathcal P_{\mathbf V}\!\left(\mathbf A_{\mathrm{ord}}\right)
 =
-\Pi_{T_{\mathcal B_{c_f}}(\mathbf V)}
+\Pi_{T_{\mathcal B_{c_a}}(\mathbf V)}
 \!\left(\mathbf A_{\mathrm{ord}}\right)
 =
 \underset{
-\mathbf a\in T_{\mathcal B_{c_f}}(\mathbf V)
+\mathbf a\in T_{\mathcal B_{c_a}}(\mathbf V)
 }{\operatorname{arg\,min}}
 \left\|\mathbf a-\mathbf A_{\mathrm{ord}}\right\|^2
 }
@@ -704,7 +754,7 @@ $$
 
 Indeed, the result is immediate in the interior because the normal cone is
 $\{\mathbf0\}$. On the boundary level set
-$E=\{T:\|\mathbf V(T)\|=c_f\}$, absolute continuity gives
+$E=\{T:\|\mathbf V(T)\|=c_a\}$, absolute continuity gives
 
 $$
 \frac{d}{dT}\|\mathbf V\|^2=0
@@ -764,7 +814,7 @@ falsified by any implementation whose final response changes when the same
 complete ledger is reordered, repartitioned, or batched differently.
 
 Plainly: first calculate the canonical net acceleration. Then, and only at the
-field-speed boundary, choose the closest acceleration that does not point out
+path-speed-ceiling boundary, choose the closest acceleration that does not point out
 of the allowed velocity ball. The closest-response formula is now a theorem
 of the proposed regular solution law rather than a separate independent
 clause.
@@ -772,12 +822,12 @@ clause.
 ### Frozen-ledger constrained layer
 
 For a supplied input $\mathbf f\in L^1_{\mathrm{loc}}(I;\mathbb R^3)$ and
-$\mathbf V(T_0)\in\mathcal B_{c_f}$, the fixed-set evolution inclusion
+$\mathbf V(T_0)\in\mathcal B_{c_a}$, the fixed-set evolution inclusion
 
 $$
 \dot{\mathbf V}
 +
-N_{\mathcal B_{c_f}}(\mathbf V)
+N_{\mathcal B_{c_a}}(\mathbf V)
 \ni
 \mathbf f
 $$
@@ -804,7 +854,7 @@ $$
 \qquad
 \mathbf V_{k+1}
 =
-\Pi_{\mathcal B_{c_f}}\!\left(\mathbf V_k+\mathbf F_k\right).
+\Pi_{\mathcal B_{c_a}}\!\left(\mathbf V_k+\mathbf F_k\right).
 $$
 
 Nonexpansiveness of the projection gives
@@ -822,7 +872,8 @@ a declared normed phase space, prove the complete ordinary ledger is locally
 Lipschitz on a fixed regular chart, integrate position, and close the coupled
 fixed-point argument.
 
-Plainly: once the incoming acceleration record is already known, the capped
+Plainly: once the incoming acceleration record is already known, the
+path-speed-ceiling
 velocity equation has one stable regular solution. The hard part still open
 is proving that the delayed paths themselves produce a unique, sufficiently
 regular ledger while they evolve. The projection scheme constructs the
@@ -846,11 +897,11 @@ $$
 \mathbf A_{\mathrm{eff}}
 =
 \begin{cases}
-\mathbf A_{\mathrm{ord}}, & \|\mathbf V\|<c_f,\\[4pt]
+\mathbf A_{\mathrm{ord}}, & \|\mathbf V\|<c_a,\\[4pt]
 \mathbf A_{\mathrm{ord}}
 -
 \bigl(\hat{\mathbf v}\mathbin{\cdot}\mathbf A_{\mathrm{ord}}\bigr)_+
-\hat{\mathbf v}, & \|\mathbf V\|=c_f.
+\hat{\mathbf v}, & \|\mathbf V\|=c_a.
 \end{cases}
 $$
 
@@ -879,7 +930,7 @@ $$
 \min(a_\parallel,0)\hat{\mathbf v}+\mathbf A_\perp,
 $$
 
-and $x\mapsto\min(x,0)$ is $1$-Lipschitz. If cap directions
+and $x\mapsto\min(x,0)$ is $1$-Lipschitz. If boundary directions
 $\hat{\mathbf v}^{(n)}\to\hat{\mathbf v}$, the effective responses converge
 exactly when the corresponding global transverse vectors and retained
 backward scalars converge. In particular,
@@ -897,7 +948,7 @@ infinite raw ledger nor make a projected subleading singular remainder
 locally integrable.
 
 Plainly: for legitimate finite inputs, small changes in the net acceleration
-produce no larger change in the capped response. A divergent leading term can
+produce no larger change in the ceiling response. A divergent leading term can
 vanish only when it points exactly forward, and that says nothing by itself
 about any smaller but still nonintegrable remainder.
 
@@ -918,7 +969,7 @@ $$
 
 Hence, along any differentiable projected state-dependent-delay solution that
 exists on a regular-history segment,
-$d\|\mathbf V\|/dT\le0$ at $\|\mathbf V\|=c_f$. Conditional on existence and
+$d\|\mathbf V\|/dT\le0$ at $\|\mathbf V\|=c_a$. Conditional on existence and
 the history, branch-finiteness, separation, and transversality obligations
 above, the pointwise response makes the closed velocity ball forward-invariant.
 The inequality is derived from the proposed axiom; existence of a solution to
@@ -976,20 +1027,20 @@ $$
 \min(a_\parallel,0)
 \le0
 \qquad
-\text{when }\|\mathbf V\|=c_f.
+\text{when }\|\mathbf V\|=c_a.
 $$
 
-On a path-speed-ceiling boundary-state segment with $\mathbf V=c_f\mathbf n$,
+On a path-speed-ceiling boundary-state segment with $\mathbf V=c_a\mathbf n$,
 $\|\mathbf n\|=1$, and $a_\parallel\ge0$, the proposed law gives
 
 $$
-c_f\frac{d\mathbf n}{dT}
+c_a\frac{d\mathbf n}{dT}
 =
 \mathbf A_\perp,
 \qquad
 \kappa_{\mathrm{path}}
 =
-\frac{\|\mathbf A_\perp\|}{c_f^2}.
+\frac{\|\mathbf A_\perp\|}{c_a^2}.
 $$
 
 A circular physical-space path follows only if this curvature is constant and
@@ -1052,7 +1103,7 @@ about how tightly it turns or what happens at a nonordinary event.
 Take a receiver at the field-speed boundary with
 
 $$
-\mathbf V=c_f\mathbf e_x,
+\mathbf V=c_a\mathbf e_x,
 \qquad
 a_0>0,
 $$
@@ -1119,7 +1170,7 @@ combined sideways part.
 #### Kinematic tangent-sphere statement
 
 Independently of the proposed response map, let a differentiable path satisfy
-\(\|\mathbf V(T)\|=c_f\) at a boundary event.  Then
+\(\|\mathbf V(T)\|=c_a\) at a boundary event.  Then
 
 $$
 \frac{d}{dT}\|\mathbf V\|^2
@@ -1134,7 +1185,7 @@ $$
 $$
 
 Its acceleration is tangent to the velocity sphere
-\(\partial\mathcal B_{c_f}\).  A strictly inward component
+\(\partial\mathcal B_{c_a}\).  A strictly inward component
 \(\mathbf V\mathbin{\cdot}\mathbf A_{\mathrm{eff}}<0\) decreases speed,
 while an outward component
 \(\mathbf V\mathbin{\cdot}\mathbf A_{\mathrm{eff}}>0\) is incompatible
@@ -1147,7 +1198,7 @@ These are consequences of the complete proposed axiom. The Euclidean
 decomposition is coordinate-free, and no new numerical scale enters.
 
 In the strictly collinear mirror chart, there is no transverse component. If
-the only finite raw row is forward and speed-increasing, the cap gives zero
+the only finite raw row is forward and speed-increasing, the ceiling response gives zero
 effective acceleration and straight constant-speed motion. That is a special
 case of the three-dimensional geometry, not the general rule.
 
@@ -1174,7 +1225,7 @@ speed-increasing component. It does not license omission, deletion, or
 reweighting of any admitted regular root.
 
 This total-ledger ordering is part of the proposed axiom. A rule that applies
-a cap separately to each root row would be a different proposed Master
+a ceiling response separately to each root row would be a different proposed Master
 Equation and is intentionally not assumed here. The axiom does not define a
 nonordinary, non-simple, or non-locally-finite path-speed-ceiling boundary-state root family; Section 4
 classifies the possible positive-delay geometry per ordered channel but
@@ -1193,18 +1244,18 @@ The ordinary and nonordinary geometries must remain typed separately:
 | Event stratum | Local condition | Current status and required disposition |
 | --- | --- | --- |
 | Regular isolated root | $g=0$, positive delay, and $D_t\ne0$. | Canonical ordinary acceleration contribution. |
-| Degenerate isolated root | $g=0$, positive delay, $D_t=0$, and the zero is isolated. | Nonordinary. On a $C^2$ cap-admissible chart the quadratic fold coefficient vanishes. A cubic crossing is generic only with an additional $C^3$ nonzero-third-derivative hypothesis; higher odd order or flat crossings remain possible. |
-| Characteristic interval | $g(T_r,T_t)=0$ on a nondegenerate emission-time interval. | Nonordinary. The rigidity theorem below forces an exact-aim straight cap-speed chord, but geometry alone supplies no interval ownership, endpoint transition, or response. |
+| Degenerate isolated root | $g=0$, positive delay, $D_t=0$, and the zero is isolated. | Nonordinary. On a $C^2$ ceiling-admissible chart the quadratic fold coefficient vanishes. A cubic crossing is generic only with an additional $C^3$ nonzero-third-derivative hypothesis; higher odd order or flat crossings remain possible. |
+| Characteristic interval | $g(T_r,T_t)=0$ on a nondegenerate emission-time interval. | Nonordinary. The rigidity theorem below forces an exact-aim straight ceiling-speed chord, but geometry alone supplies no interval ownership, endpoint transition, or response. |
 | Zero-delay diagonal | $T_t=T_r$ and $r=0$. | Excluded from ordinary reception by the positive-delay domain and $H(0)=0$; any event semantics remain separately typed. |
 | Cross-channel simultaneity | Roots or nonordinary strata from two or more ordered channels occur at one receiver event. | Per-channel classification does not determine their joint ownership or aggregation. |
-| Open-domain quadratic fold | $g=0$, $D_t=0$, and a nonzero second emission-time derivative. | Impossible on a $C^2$ cap-admissible channel; retained below as a negative control for the canonical open model or a broader perturbation class. |
+| Open-domain quadratic fold | $g=0$, $D_t=0$, and a nonzero second emission-time derivative. | Impossible on a $C^2$ ceiling-admissible channel; retained below as a negative control for the canonical open model or a broader perturbation class. |
 
 There is no separate positive-delay zero-separation causal stratum under the
 declared root equation: $g=0$ and $T_t<T_r$ imply
 $r=c_f(T_r-T_t)>0$. A zero-range limit can still be singular, but its exact
 endpoint lies on the excluded diagonal rather than at positive delay.
 
-The straight same-transmitter cap interval and the mirror-collinear partner
+The straight same-transmitter ceiling interval and the mirror-collinear partner
 interval are both characteristic geometries. Treating the former as inactive
 and the latter as a typed coincidence event is not a consequence of geometry
 alone; it comes from the two separately proposed source-identity and event-
@@ -1235,7 +1286,7 @@ $$
 Thus $s\mapsto g(T_r,s)$ is nondecreasing without requiring the range to be
 differentiable. Its zero set in one ordered channel is empty, one point, or
 one connected interval. A singleton is either simple or degenerate. One
-cap-admissible ordered channel cannot contain two separated isolated roots, a
+ceiling-admissible ordered channel cannot contain two separated isolated roots, a
 quadratic fold, or isolated-root accumulation outside a zero interval.
 Simultaneous strata belonging to different ordered channels are not excluded.
 
@@ -1263,7 +1314,7 @@ This branch derivative is not defined on a characteristic interval. A
 strictly positive $D_r$ floor is an additional hypothesis whenever this map
 must be inverted or used for a uniform change-of-variable estimate. Claim
 grade: `derived under the proposed closed velocity domain`. The result is
-falsified by one cap-admissible Lipschitz retained history with two separated
+falsified by one ceiling-admissible Lipschitz retained history with two separated
 roots in the same ordered channel or a simple root with $D_t<0$.
 
 ### Characteristic-interval rigidity and per-channel classification
@@ -1402,7 +1453,7 @@ Master-Equation calculation: the working equality rule classifies the family
 as noncrossing and inactive before an ordinary row weight is assigned. Its
 zero ordinary self row therefore comes from the proposed event-domain
 classification informed by reception geometry, not from a cutoff, a
-cancellation, or a cap applied to a divergent raw self sum.
+cancellation, or a ceiling response applied to a divergent raw self sum.
 
 This is a provisional admission convention. A later complete wake/account law
 must still state its measure and provenance, especially for mixed-direction or
@@ -1454,7 +1505,7 @@ nonordinary family an infinite ordinary acceleration.
 
 A complete closed-domain dynamical system also needs event-domain
 commitments. For the exact mirror-collinear encounter studied in Section 10.7,
-the operator has selected this minimum convention for review:
+the analysis examines the following minimum convention:
 
 > **Minimal Collinear Partner-Coincidence Postulate.** At the exact same-path
 > coincidence of the two labeled partners, the ordinary
@@ -1563,12 +1614,12 @@ owns the declared coincidence strata once while preserving both source labels.
 Any restart claim would require the reset codomain to be extended with a
 compatible outgoing retained-history record, labeled source record, ownership
 ledger, and receiver-measure record. None is supplied by the outgoing
-immediate position-and-velocity datas.
+immediate position-and-velocity data.
 
 
 For the mirror-symmetric collinear encounter, the velocity-sphere condition
 reduces to the scalar statement that the signed speed cannot increase beyond
-$c_f$. Conditional on the unverified mirror-encounter input, the
+$c_a$. Conditional on the unverified mirror-encounter input, the
 first arrival at that sphere occurs at positive separation. This is an input
 hypothesis here, not an accepted theorem. It does not decide whether the
 constrained path turns, has a boundary event, or travels along the boundary.
@@ -1634,8 +1685,8 @@ zero. The proposed path-speed-ceiling boundary-state interpretation is therefore
 same-characteristic family is not an ordinary active self-reception. It is a
 geometric coincidence family, not a sequence of independent impacts.
 
-This is the precise mathematical version of the operator observation that an
-architrino travelling with its own wake cannot be overtaken by that wake.
+This expresses the geometric observation that an architrino travelling with
+its own wake cannot be overtaken by that wake.
 
 ### 10.3 Finite-ledger constrained evolution
 
@@ -1682,14 +1733,15 @@ after-the-fact velocity clamp; it does not prove that such a solution exists.
 
 #### Interior recovery
 
-While $\|\mathbf V\|<c_f$, $\mathcal P_{\mathbf V}$ is the identity. The capped
+While $\|\mathbf V\|<c_f$, $\mathcal P_{\mathbf V}$ is the identity. The
+path-speed-ceiling
 model agrees with the ordinary finite-root acceleration law until the first
 field-speed boundary event.
 
 #### Boundary decomposition
 
 At $\|\mathbf V\|=c_f$, a positive speed-changing component is removed;
-negative speed-changing and transverse components remain. Hence the cap may
+negative speed-changing and transverse components remain. Hence the ceiling response may
 hold speed fixed, reduce it, or bend the trajectory, without any coordinate
 choice or collinearity assumption.
 
@@ -1732,11 +1784,11 @@ The desired end state is one delayed constrained dynamical system containing:
 - a finite-ledger tangent-cone response; and
 - an event rule for any nonordinary root or retained-history boundary.
 
-The test is not whether a cap can be stated. The test is whether this single
+The test is not whether a ceiling can be stated. The test is whether this single
 system yields finite, unique histories and useful geometry without adding
 case-specific rules for collinear pairs, Braids, or translating assemblies.
 
-### 10.7 First conditional calculation: stationary mirror cap segment
+### 10.7 First conditional calculation: stationary mirror ceiling segment
 
 This section applies the proposed partial model only to the conditional
 stationary, mirror-symmetric collinear incoming chart. Let $q(T)>0$ be the
@@ -1750,7 +1802,7 @@ $$
 
 and one simple partner root emitted at $s<T_\ast$.
 
-#### Conditional cap segment
+#### Conditional ceiling segment
 
 Assume the alternative model's straight path-speed-ceiling boundary-state consequence applies after
 $T_\ast$ until the first new ledger boundary. Then
@@ -1770,7 +1822,7 @@ F_T(s)=q(T)+q(s)-(T-s)=0,
 $$
 
 It remains a unique ordinary partner root while $s<T_\ast$. Differentiating
-the root equation on the cap segment gives
+the root equation on the ceiling segment gives
 
 $$
 \frac{ds}{dT}
@@ -1794,12 +1846,12 @@ Before that coincidence time, the path-speed-ceiling boundary-state model has th
 the non-isolated co-moving same-transmitter coincidence family. The latter is not
 an ordinary same-transmitter root under Section 7; the forward partner row is
 speed-increasing and has zero effective contribution under the proposed
-cap-response map. Hence the assumed straight field-speed segment is internally
+ceiling-response map. Hence the assumed straight field-speed segment is internally
 consistent on this finite open interval at the level of effective motion.
 
 At coordinate coincidence, the incoming partner row itself reaches the
 non-transverse boundary $s=T_\ast$ with $1-u(s)\to0$. More strongly, every
-partner emission on the cap interval satisfies the causal equality:
+partner emission on the ceiling interval satisfies the causal equality:
 
 $$
 \left\|
@@ -1869,12 +1921,12 @@ same recheck also shows that an explicitly prescribed unaccelerated straight
 separating right trace would produce a new zero-range partner row with a
 nonintegrable inverse-square contribution. This is a conditional obstruction
 for that trace, not a universal continuation no-go. The general near-coincidence
-question is the queued
+question is formulated in the
 [separating-trace incompatibility theorem target](near-coincidence-separating-trace-incompatibility-theorem-target.md).
 
 #### First transverse linearization
 
-Fix the right receiver on the open cap segment, with
+Fix the right receiver on the open ceiling segment, with
 
 $$
 \hat{\mathbf v}_r=-\mathbf e_x,
@@ -1939,15 +1991,15 @@ retains the non-isolated co-moving same-transmitter root family. This statement 
 same-path geometry only and does not exclude a new partner root or another
 boundary event.
 
-Claim grade: `derived first-order conditional result` on the open cap segment.
+Claim grade: `derived first-order conditional result` on the open ceiling segment.
 It is not a stability result. It is falsified by a direct first variation of
 the same root and total-ledger projection that produces a nonzero first-order
 longitudinal term while the base raw speed component remains strictly
 positive.
 
-#### 17. Claim boundary
+#### Claim boundary
 
-This is a conditional calculation inside the proposed capped model. It does
+This is a conditional calculation inside the proposed ceiling model. It does
 not prove or adopt the complete constrained-response axiom or the Minimal
 Collinear Partner-Coincidence Postulate, generalize the event rule, establish a
 right-hand path, or establish the mirror encounter. Conditional on the two proposed laws, it
@@ -1957,62 +2009,51 @@ boundary before the stated coincidence event. The endpoint classification is
 falsified if a complete same-record census makes the partner-root family
 ordinary and finite under an already accepted rule.
 
-## 11. Path-speed-ceiling regimes
+### 10.8 Coincidence-continuation alternatives: current disposition
 
-### Alternative Architrino path-speed ceiling
+The preceding calculation resolves neither passage nor rebound after the
+idealized coincidence. The following alternatives have been considered. None
+is presently a derived continuation law.
 
-The regular-chart analysis above identifies the Architrino path-speed ceiling
-with the wake speed $c_f$. A broader proposed family would instead declare a
-universal Architrino ceiling $c_a>0$, while wakes continue to propagate at
-$c_f$. This is a parameter-regime question, not an additional result of the
-present model.
+- **Ordinary straight-through passage.** The no-impulse postulate preserves
+  the incoming velocities at the coincidence instant, but it supplies no
+  right-hand retained history. A prescribed separating trace can generate a
+  zero-range partner contribution with nonintegrable inverse-square scaling.
+- **Cancellation between the approaching and separating singular terms.** A
+  symmetric principal-value cancellation is not an ordinary receiver-time
+  integral. It would require a separately stated event or distributional rule
+  that joins the two sides and assigns their histories together.
+- **A finite short-range cutoff.** Replacing the inverse-square factor by a
+  bounded kernel introduces a new length or density scale. The finite total
+  wake amount on every nonzero sphere does not determine that scale.
+- **A finite coincidence interval.** A transition that skips a nonzero time
+  or distance interval requires entry and exit data, an outgoing retained
+  history, and an account of the wake records during the interval. It is a new
+  event law, not a consequence of the ordinary formula.
+- **A cancellation or redirection from the complete ledger.** This remains a
+  theorem target. It must classify every same-order contribution at each
+  receiver before the post-summation response is applied; pairwise symmetry
+  alone does not cancel a receiver's local ledger.
+- **Co-moving same-transmitter wake geometry.** A path that has travelled at
+  field speed and then stops can encounter a characteristic interval of its
+  own earlier emissions. The ordinary isolated-root rule does not aggregate
+  that interval or define its response.
+- **A third architrino that starts a coincident opposite-polarity pair moving.**
+  The external wake can supply a differential input, but the current theory
+  does not decide whether the pair's coincident source records remain separate
+  or form a neutral event source for later receptions.
+- **Transverse or non-collinear escape.** External asymmetry can generically
+  break the ideal mirror-collinear configuration, but no theorem yet excludes
+  exact coincidence in every multi-architrino history.
 
-For a circular path on the lower boundary $0<c_a<c_f$, write
+Plainly: the ordinary approach chart and the proposed no-impulse rule cover
+only the approach and the exact instant. They do not yet identify a lawful
+route through the first open interval after coincidence. The next mathematical
+task is to prove or refute the leading complete-ledger asymptotics for a
+declared outgoing solution class, or to derive a new nonordinary event law
+that supplies the missing retained history.
 
-$$
-\lambda=\frac{c_a}{c_f},
-\qquad
-R|\omega|=c_a.
-$$
-
-The same delayed-chord construction gives the modified half-delay equation
-
-$$
-\xi=\lambda\cos\xi.
-$$
-
-It has one positive root. The Dottie-number relation $\xi=\cos\xi$ is the
-special equal-speed case $c_a=c_f$. Thus a lower path-speed ceiling does not
-remove the circular-binary question; it changes its delay angle and requires a
-new complete-ledger radial-balance derivation.
-
-The three regimes have different regularity consequences:
-
-1. **$c_a=c_f$.** This is the document's current exact prescribed field-speed
-   chart. It has the derived radius-independent Dottie angle and one selected
-   compatible radius under the proposed response.
-2. **$0<c_a<c_f$.** Every ordinary transmitter factor has the uniform bound
-   $D_t\ge c_f-c_a>0$. Positive-delay same-transmitter roots are excluded by
-   the strict path-speed gap. A lower-speed circular binary is therefore a
-   regular-chart theorem target, not yet a derived compatible or stable
-   binary.
-3. **$c_a>c_f$.** The path domain again permits the additional causal-root and
-   same-transmitter root families associated with above-wake-speed motion. The present
-   regular theory does not supply their admission, ownership, continuation, or
-   response law.
-
-Claim grade: \`parameter-regime reduction and theorem target\`. The modified
-delay equation and the lower-speed root-factor floor are derived from the
-declared circular kinematics. No regime here proves a retained history,
-binary stability, a selected lower-speed radius, or a reason that the
-universe chooses one ceiling value.
-
-Plainly: a maximum Architrino speed below the wake speed would give a different
-but potentially cleaner binary problem. Equality with wake speed is the
-special boundary case already solved as a prescribed chart; a higher ceiling
-reopens the difficult root families.
-
-## 12. Exact circular binary at $c_a=c_f$
+## 11. Exact circular binary at $c_a=c_f$
 
 This section tests an isolated, non-translating, opposite-polarity two-label
 binary directly on the regular field-speed boundary. It uses the same
@@ -2383,7 +2424,7 @@ exactly. That does not yet prove that the delayed evolution admits this chart
 in its eventual solution class, that a naturally released binary reaches it,
 or that a perturbed binary remains near it.
 
-## 13. Analytic Noether-braid inverse problem
+## 12. Analytic Noether-braid inverse problem
 
 The exact two-label chart makes a three-binary construction plausible in one
 specific mathematical sense: the proposed regular equation now has a known
@@ -2518,7 +2559,7 @@ r_{i\leftarrow j}(T)>0,
 D_{t,i\leftarrow j}(T)\ge d_0>0.
 $$
 
-The cap-domain root monotonicity theorem gives at most one ordinary root per
+The ceiling-domain root monotonicity theorem gives at most one ordinary root per
 ordered channel. A circular same-transmitter channel has no positive-delay
 root because a nontrivial chord is strictly shorter than its field-speed arc.
 The complete ordinary net acceleration for receiver $i$ is therefore
@@ -2772,7 +2813,7 @@ integer winding ratios, then by two genuine relative phases, plane geometry,
 and one overall scale. The causal-root and vector equations decide which of
 those combinations, if any, survive.
 
-## 14. Scale, radius, and frequency consequences
+## 13. Scale, radius, and frequency consequences
 
 ### Homothetic scale-selection theorem
 
@@ -2807,7 +2848,7 @@ L^{-2}\overline{\mathbf A}_i^{\mathrm{ord}},
 \overline{\mathbf X}_i''.
 $$
 
-Define the physical cap velocity on the dimensionless chart by
+Define the physical ceiling velocity on the dimensionless chart by
 
 $$
 \overline{\mathbf V}_i(u)
@@ -2844,7 +2885,7 @@ shape.
 
 ### Isolated field-speed binary frequency in normalized units
 
-For the exact binary of Section 12,
+For the exact binary of Section 11,
 
 $$
 R_\ast
@@ -2998,7 +3039,7 @@ Plainly: the first binary has a selected radius, but the smallest possible
 radius across every coupled braid geometry remains a genuine analytic
 optimization problem.
 
-## 15. Closed-cycle action transfer and binary retuning
+## 14. Closed-cycle action transfer and binary retuning
 
 ### Which $h$ is under discussion
 
@@ -3013,7 +3054,7 @@ the branch and action labels return to their initial values. This excludes a
 net inter-level transaction per cycle, but not an owned intra-cycle exchange.
 A repeating spatial geometry alone does not establish that ledger closure. A
 transfer is a transition between two admissible complete branch records, not a
-property of one stationary path picture.
+property of one stationary path configuration.
 
 Plainly: the unperturbed mathematics can identify possible levels and their
 cycle data. Moving one action unit between levels is a separate event problem.
@@ -3089,7 +3130,7 @@ $$
 $$
 
 Here $\mathfrak F_{\mathrm{eq}}$ owns phase return and vector response,
-$\mathfrak G$ owns collision, cap, separation, and transversality margins, and
+$\mathfrak G$ owns collision, speed-ceiling, separation, and transversality margins, and
 $\mathfrak D_{\mathrm{simp}}$ owns the declared root topology. If an eventual
 action functional supplies a closed-cycle ledger
 $\mathcal A_{\mathrm{cyc}}(\mathbf z)$, a candidate one-unit transition from
@@ -3185,9 +3226,9 @@ symmetry-reduced equality-residual map, write that map as
 $\mathbf F(\mathbf y)$ in continuous branch coordinates $\mathbf y$. Until
 such a finite reduction is proved, the corresponding derivative is an
 operator on the full Fourier residual sequence rather than a finite matrix.
-Carry the cap inequalities as a separate margin vector
+Carry the speed-ceiling inequalities as a separate margin vector
 $\mathbf G(\mathbf y)\ge\mathbf0$. For a differentiable family
-$\mathbf y(\varepsilon)$ through a point with strict cap margins, the
+$\mathbf y(\varepsilon)$ through a point with strict speed-ceiling margins, the
 same-chart tangent $\dot{\mathbf y}=d\mathbf y/d\varepsilon|_0$ must solve
 
 $$
@@ -3208,7 +3249,7 @@ D\mathcal A_{\mathrm{cyc}}(\mathbf y)[\dot{\mathbf y}]
 \dot{\mathcal A}_{\mathrm{evt}}.
 $$
 
-At an active cap margin, the corresponding first-order tangent inequality
+At an active speed-ceiling margin, the corresponding first-order tangent inequality
 must also be imposed:
 
 $$
@@ -3228,7 +3269,7 @@ finite-dimensional reduction it must be nonsingular. The wake, boundary, and
 event-account rates must be prescribed or independently constrained rather
 than left free. Even then, the tangent system is only a local diagnostic. A
 finite one-unit transaction is governed by the endpoint equations and can
-cross a root or cap-margin boundary.
+cross a root or speed-ceiling-margin boundary.
 
 Equivariance of the proposed Euclidean projection under the declared symmetry
 group supplies no Noether charge by itself because no generating variational
@@ -3265,7 +3306,7 @@ well-defined candidate levels, but it removes the previously imagined
 above-field same-transmitter root birth. The missing object is now a lawful transition
 between two complete field-speed braid records.
 
-## 16. Cycle diagnostics, energy interface, and persistence
+## 15. Cycle diagnostics, energy interface, and persistence
 
 ### Exact per-revolution acceleration-work diagnostic
 
@@ -3338,7 +3379,7 @@ Claim grade: `derived exact cycle diagnostic under the proposed response`.
 It is not an energy or conservation result.
 
 Plainly: the raw delayed partner wake tries to increase the tangential speed
-on every revolution. The cap cancels that speed-changing effect, leaving zero
+on every revolution. The ceiling response cancels that speed-changing effect, leaving zero
 effective speed gain. The mathematics has not yet identified the accounting
 destination of the cancelled raw contribution.
 
@@ -3442,7 +3483,7 @@ slice transverse to the full declared $E(3)\times\mathbb R$ symmetry orbit. A
 standard sufficient hyperbolic criterion for exponential orbital asymptotic
 stability modulo those symmetries is fully symmetry-reduced monodromy spectral
 radius strictly below one, together with collision, root-separation,
-cap-margin, and event-domain floors over the perturbation tube. Unit-modulus or
+speed-ceiling-margin, and event-domain floors over the perturbation tube. Unit-modulus or
 nonhyperbolic modes require nonlinear return-map analysis. Orbital or
 Lyapunov stability and basin attraction are separate claims; neither follows
 from the displayed sufficient criterion alone.
@@ -3486,11 +3527,11 @@ proposed field-speed model. It is not evidence that the residual system has a
 three-binary zero, that any zero is stable, or that it recovers particle,
 conservation, Planck-action, or observer-level claims.
 
-Plainly: the idea has advanced from a picture to a testable analytic program.
+Plainly: the proposal is now expressed as a testable analytic program.
 The next decisive result is an exact three-binary zero or a theorem excluding
 a declared geometry class.
 
-## 17. Claim boundary
+## 16. Claim boundary
 
 This document is not a derivation of a speed ceiling, a general continuation
 law, a root regularization, a regulator-independent nonordinary-event measure, an
