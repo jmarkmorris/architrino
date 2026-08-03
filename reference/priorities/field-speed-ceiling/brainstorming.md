@@ -422,6 +422,74 @@ spread out like evenly spaced mile markers. A trailing receiver meets one new
 sphere after another. It does not see the many-emission pile-up that exists at
 the leading point.
 
+### Three-dimensional completion and academic classification
+
+Claim grade: `derived geometry`; the academic names below are comparisons,
+not imported dynamical premises. At fixed $T$, parameterize the spherical
+front emitted at $s<T$ by $\boldsymbol\omega\in S^2$:
+
+$$
+\Phi_T(s,\boldsymbol\omega)
+=
+c_fs\mathbf e_x+c_f(T-s)\boldsymbol\omega.
+$$
+
+Up to the ordinary angular-coordinate factor, the spatial Jacobian is
+
+$$
+\left|\det D\Phi_T\right|
+=
+r^2\left(c_f-\boldsymbol\omega\mathbin{\cdot}\mathbf V(s)\right)
+=
+r^2D_t.
+$$
+
+Plainly: $D_t$ is not only a root-list denominator here. It is the factor that
+decides whether source time plus direction give ordinary local coordinates in
+space.
+
+At the forward direction $\boldsymbol\omega=\mathbf e_x$, the source-time
+column of $D\Phi_T$ vanishes and every $s<T$ maps to the single current point
+$c_fT\mathbf e_x$. The map has a positive-dimensional fibre and rank two there.
+At the trailing direction $\boldsymbol\omega=-\mathbf e_x$, the source-time
+column is $2c_f\mathbf e_x$; together with the two angular columns it has full
+rank, and each rear-axis point has one ordinary preimage.
+
+The axis statement extends to the whole rear half-space. Put
+$\mathbf y=\mathbf x-c_fT\mathbf e_x$ and $\tau=T-s>0$. The front condition is
+
+$$
+\left\lVert\mathbf y+c_f\tau\mathbf e_x\right\rVert=c_f\tau,
+$$
+
+so, whenever $y_x<0$,
+
+$$
+\tau=-\frac{\lVert\mathbf y\rVert^2}{2c_fy_x}
+$$
+
+is the unique emission age. No point with $y_x>0$ is reached; on the boundary
+plane $y_x=0$, only $\mathbf y=0$ is reached, and that point is reached by every
+emission time.
+
+Plainly: the tangent wake spheres foliate the entire open region behind the
+architrino exactly once, while their whole source-time family collapses at the
+one leading tip.
+
+In classical inversive geometry the equal-time sphere family is a parabolic
+pencil of mutually tangent spheres. In wavefront and singularity geometry the
+leading tip is a critical value, or caustic, of the front projection. It is more
+degenerate than a generic fold because a continuum of preimages collapses,
+rather than a finite pair of roots merging. In microlocal language, the
+ordinary delta/coarea collapse is licensed on the rear foliation where the map
+is a submersion and is not licensed at the leading fibre without an additional
+distributional extension.
+
+This classification establishes the geometry, not an infinite potential,
+finite atom, acceleration, or response. `Nonordinary buildup` is justified as
+a continuum of coincident fronts; the receiver-side measure and its magnitude
+remain separate mathematical data.
+
 Assumptions and boundary: this census uses exact straight translation at
 $c_f$, spherical propagation at $c_f$, and the ordinary positive-delay root
 law. It does not assign an ordinary self-response at the leading pile-up,
@@ -430,8 +498,8 @@ contact or boundary event law.
 
 Promotion target: the straight-path wake-geometry discussion in the
 field-speed mathematics packet. Next artifact: extend the axis census to the
-three-dimensional rear half-space and state the corresponding source-measure
-pushforward versus the leading characteristic measure.
+source-measure pushforward versus the leading characteristic measure, using
+the three-dimensional foliation above as the geometric lemma.
 
 ## Guarded compact-object question
 
