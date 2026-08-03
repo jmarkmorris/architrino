@@ -209,7 +209,7 @@ button {
 
 .topo-range-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 66px;
+  grid-template-columns: minmax(0, 1fr) 82px;
   align-items: center;
   gap: 12px;
 }
@@ -279,6 +279,16 @@ button {
   font-variant-numeric: tabular-nums;
   font-weight: 760;
   text-align: right;
+}
+
+.topo-range-note {
+  display: block;
+  margin-top: -2px;
+  color: var(--ui-text-muted);
+  font-size: 10px;
+  font-weight: var(--ui-body-weight);
+  letter-spacing: 0.01em;
+  line-height: 1.35;
 }
 
 .topo-compact-facts {

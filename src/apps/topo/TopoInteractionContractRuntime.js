@@ -1,19 +1,20 @@
 import { createPanelCollapseIconSvg } from "../../runtime/PanelCollapseIcons.js";
 import {
-  TOPO_DEFAULT_CONTOUR_LEVELS,
-  TOPO_DEFAULT_TRANSFORM,
+  TOPO_DISPLAY_MAPPING_ID,
   TOPO_DISPLAY_CLIP_MAGNITUDE,
   TOPO_FIELD_COLOR_GAIN,
+  TOPO_INVERSE_SQUARE_SCALE,
   TOPO_REFERENCE_SCALE,
   TOPO_SOURCE_POSITION,
+  TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE,
   TOPO_TRANSLATION_AXIS,
   applyTopoScenarioPolarity,
   createTopoSequentialContourStyle,
   createTopoSyntheticContourRenderPlan,
-  createTopoContourThresholds,
   createTopoSyntheticRawSampler,
   normalizeTopoFieldColorValue,
   resolveTopoCanvasPixelSize,
+  topoContourRangeDecades,
   topoWorldPointForCanvasPixel,
 } from "./TopoInteractionContract.js";
 import {
@@ -55,16 +56,6 @@ function hexToRgb(hexColor) {
   ];
 }
 
-function formatValue(value) {
-  if (!Number.isFinite(value)) {
-    return "unavailable";
-  }
-  if (Math.abs(value) >= 100 || (Math.abs(value) > 0 && Math.abs(value) < 0.001)) {
-    return value.toExponential(4);
-  }
-  return value.toFixed(4);
-}
-
 function formatPercentage(normalizedValue) {
   const percentage = normalizedValue * 100;
   return (Number.isInteger(percentage) ? percentage.toFixed(0) : percentage.toFixed(1)) + "%";
@@ -87,11 +78,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
       documentLike,
       "#topo-contour-visibility-output",
     ),
-    transform: requireElement(documentLike, "#topo-transform"),
     canvas: requireElement(documentLike, "#topo-canvas"),
     contourCanvas: requireElement(documentLike, "#topo-contour-canvas"),
     status: requireElement(documentLike, "#topo-status"),
-    legendTransform: requireElement(documentLike, "#topo-legend-transform"),
+    legendMapping: requireElement(documentLike, "#topo-legend-mapping"),
     legendTicks: requireElement(documentLike, "#topo-legend-ticks"),
     home: requireElement(documentLike, "#home-button"),
     back: requireElement(documentLike, "#nav-up"),
@@ -170,7 +160,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
       precision highp float;
       uniform vec2 u_size;
       uniform float u_beta;
-      uniform float u_transform;
       uniform float u_gain;
       uniform vec3 u_zero;
       uniform vec3 u_endpoint;
@@ -206,13 +195,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
           );
           causalDelay = radiusSquared / (lambda - u_beta * sourceRelativeX);
         }
-        float magnitude = exp(-16.0 * causalDelay);
-        float normalized;
-        if (u_transform < 0.5) {
-          normalized = magnitude;
-        } else {
-          normalized = log(1.0 + 16.0 * magnitude) / log(17.0);
-        }
+        float magnitude = radiusSquared <= 0.000000000001
+          ? 64.0
+          : min(64.0, ${TOPO_INVERSE_SQUARE_SCALE.toPrecision(12)} /
+            max(causalDelay * causalDelay, 0.000000000001));
+        float normalized = log(1.0 + magnitude / 4.0) / log(17.0);
         float calibrated = arsinh(u_gain * normalized) / arsinh(u_gain);
         vec3 color = mix(u_zero, u_endpoint, clamp(calibrated, 0.0, 1.0));
         gl_FragColor = vec4(color, 1.0);
@@ -240,7 +227,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
       uniforms: Object.fromEntries([
         "u_size",
         "u_beta",
-        "u_transform",
         "u_gain",
         "u_zero",
         "u_endpoint",
@@ -336,7 +322,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
       beta: Number(dom.beta.value),
       contourDensity: Number(dom.contours.value) / 100,
       contourVisibility: Number(dom.contourVisibility.value) / 100,
-      transformId: dom.transform.value,
     }, dom.scenario.value);
   }
 
@@ -363,8 +348,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
       "β = " + state.beta.toFixed(2) +
       (state.beta === 1 ? ", exact field-speed endpoint" : ", sub-field-speed preview"),
     );
-    dom.contoursOutput.value = formatPercentage(state.contourDensity);
+    const rangeText = topoContourRangeDecades(state.contourDensity).toFixed(1) +
+      " decades";
+    dom.contoursOutput.value = rangeText;
     dom.contoursOutput.textContent = dom.contoursOutput.value;
+    dom.contours.setAttribute(
+      "aria-valuetext",
+      rangeText + ", three logarithmic intensity levels per decade",
+    );
     dom.contourVisibilityOutput.value = formatPercentage(
       state.contourVisibility,
     );
@@ -372,26 +363,19 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   function updateLegend() {
-    const state = getState();
-    const thresholds = createTopoContourThresholds(
-      TOPO_DEFAULT_CONTOUR_LEVELS,
-      state.transformId,
-    );
-    const quarter = Math.floor(thresholds.length / 4);
-    const selected = [
-      thresholds[0],
-      thresholds[quarter],
-      thresholds[Math.floor(thresholds.length / 2)],
-      thresholds[thresholds.length - quarter - 1],
-      thresholds.at(-1),
+    dom.legendMapping.textContent =
+      "Signed base-10 logarithmic color · orders of magnitude · z* = " +
+      TOPO_REFERENCE_SCALE;
+    const labels = [
+      "−" + TOPO_DISPLAY_CLIP_MAGNITUDE,
+      "−" + TOPO_REFERENCE_SCALE,
+      "0",
+      "+" + TOPO_REFERENCE_SCALE,
+      "+" + TOPO_DISPLAY_CLIP_MAGNITUDE,
     ];
-    dom.legendTransform.textContent =
-      dom.transform.selectedOptions[0]?.textContent +
-      " · z* = " + TOPO_REFERENCE_SCALE +
-      " · raw clip ±" + TOPO_DISPLAY_CLIP_MAGNITUDE;
-    dom.legendTicks.replaceChildren(...selected.map((threshold) => {
+    dom.legendTicks.replaceChildren(...labels.map((label) => {
       const span = documentLike.createElement("span");
-      span.textContent = formatValue(threshold.raw);
+      span.textContent = label;
       return span;
     }));
   }
@@ -473,12 +457,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
       fieldGl.uniform2f(uniforms.u_size, width, height);
       fieldGl.uniform1f(uniforms.u_beta, state.beta);
       fieldGl.uniform1f(
-        uniforms.u_transform,
-        state.transformId === "linear" ? 0 : 1,
-      );
-      fieldGl.uniform1f(
         uniforms.u_gain,
-        TOPO_FIELD_COLOR_GAIN[state.transformId],
+        TOPO_FIELD_COLOR_GAIN,
       );
       fieldGl.uniform3fv(
         uniforms.u_zero,
@@ -585,7 +565,68 @@ export function mountTopoInteractionContractPreview(options = {}) {
     targetContext.restore();
   }
 
-  function writeDisplayPixel(data, index, rawValue, styles, transformId) {
+  function drawMajorDecadeLabels(
+    targetContext,
+    circles,
+    width,
+    height,
+    pixelRatio,
+    state,
+  ) {
+    const cssWidth = width / pixelRatio;
+    const compact = cssWidth < 520;
+    const commonScale = Math.max(1, height - 1);
+    const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
+    const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) * commonScale;
+    const labels = [];
+    targetContext.save();
+    targetContext.fillStyle =
+      "rgb(" + [WHITE.r, WHITE.g, WHITE.b].join(",") + ")";
+    const fontFamily = windowLike.getComputedStyle?.(dom.app)?.fontFamily ||
+      "Helvetica Neue, Arial, sans-serif";
+    targetContext.font = 9 * pixelRatio + "px " + fontFamily;
+    targetContext.textAlign = "right";
+    targetContext.textBaseline = "bottom";
+    const occupied = [];
+    const positions = [];
+    circles.forEach((circle) => {
+      if (!circle.majorDecade || circle.revealWeight < 0.25) {
+        return;
+      }
+      const centerX = sourcePixelX - state.beta * circle.radius * commonScale;
+      const intersectionX = centerX - circle.radius * commonScale;
+      const minimumLabelX = (compact ? 82 : 28) * pixelRatio;
+      const labelX = Math.min(
+        width - 16 * pixelRatio,
+        Math.max(minimumLabelX, intersectionX - 7 * pixelRatio),
+      );
+      let tier = 0;
+      while (occupied.some((position) =>
+        position.tier === tier &&
+        Math.abs(position.x - labelX) < 30 * pixelRatio)) {
+        tier += 1;
+      }
+      const labelY = sourcePixelY - (8 + tier * (compact ? 10 : 11)) * pixelRatio;
+      targetContext.globalAlpha = 0.82 * circle.revealWeight;
+      targetContext.fillText(
+        circle.majorDecadeLabel,
+        labelX,
+        labelY,
+      );
+      labels.push(circle.majorDecadeLabel);
+      occupied.push({ x: labelX, tier });
+      positions.push(
+        circle.majorDecadeLabel + "@" +
+        Math.round(labelX / pixelRatio) + "," +
+        Math.round(labelY / pixelRatio),
+      );
+    });
+    targetContext.restore();
+    dom.app.dataset.majorDecadeLabels = labels.join(",");
+    dom.app.dataset.majorDecadeLabelPositions = positions.join(";");
+  }
+
+  function writeDisplayPixel(data, index, rawValue, styles) {
     if (Number.isNaN(rawValue)) {
       const sourceRgb = styles.polaritySign < 0
         ? styles.negativeRgb
@@ -600,7 +641,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
     } else {
       const normalized = normalizeTopoFieldColorValue(
         rawValue * styles.polaritySign,
-        transformId,
       );
       const endpoint = normalized < 0
         ? styles.negativeRgb
@@ -666,7 +706,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
           (pixelY * previewWidth + pixelX) * 4,
           rawValue,
           styles,
-          state.transformId,
         );
       }
     }
@@ -749,7 +788,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   async function buildDisplayImage(rawFrame, pixelRatio, state, styles, revision) {
-    const displayKey = state.transformId + ":" + state.polaritySign;
+    const displayKey = TOPO_DISPLAY_MAPPING_ID + ":" + state.polaritySign;
     const cached = rawFrame.displays.get(displayKey);
     if (cached) {
       dom.app.dataset.lastColorRemapMs = "0";
@@ -769,7 +808,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
             index * 4,
             rawFrame.raw[index],
             styles,
-            state.transformId,
           );
         }
         row += 1;
@@ -830,6 +868,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
       height,
       circles.map(({ causalDelay }) => causalDelay.toFixed(8)).join(","),
     ].join(":");
+    dom.app.dataset.contourRangeDecades = topoContourRangeDecades(
+      state.contourDensity,
+    ).toFixed(3);
+    dom.app.dataset.contourRadii = circles
+      .map(({ causalDelay }) => causalDelay.toFixed(10))
+      .join(",");
     dom.app.dataset.contourRenderCount = String(
       Number(dom.app.dataset.contourRenderCount ?? 0) + 1,
     );
@@ -860,7 +904,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const commonScale = Math.max(1, height - 1);
     const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
     const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) * commonScale;
-    circles.forEach((circle, index) => {
+    circles.forEach((circle) => {
       if (!(circle.radius > 0)) {
         return;
       }
@@ -875,8 +919,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         return;
       }
       const contourStyle = createTopoSequentialContourStyle({
-        index,
-        count: circles.length,
+        index: circle.latticeIndex,
+        count: TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE.masterCount,
         visibility: state.contourVisibility,
       });
       const contourRgb = sourceContourRgb.map((channel, index) => Math.round(
@@ -894,7 +938,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
       );
       contourStagingContext.strokeStyle =
         "rgb(" + contourRgb.join(",") + ")";
-      contourStagingContext.globalAlpha = contourStyle.opacity;
+      contourStagingContext.globalAlpha =
+        contourStyle.opacity * circle.revealWeight;
       contourStagingContext.lineWidth =
         pixelRatio * contourStyle.widthCss;
       contourStagingContext.lineCap = "round";
@@ -902,6 +947,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
       contourStagingContext.stroke();
       contourStagingContext.restore();
     });
+    drawMajorDecadeLabels(
+      contourStagingContext,
+      circles,
+      width,
+      height,
+      pixelRatio,
+      state,
+    );
     drawSourceOverlay(
       contourStagingContext,
       width,
@@ -1094,10 +1147,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
     beginRender({ finalDelay: 90 });
   }
 
-  function scheduleTransformChange() {
-    beginRender({ finalDelay: 0, redrawContours: false });
-  }
-
   function scheduleContourChange() {
     const interactionStarted = windowLike.performance?.now?.() ?? Date.now();
     frameRevision += 1;
@@ -1169,7 +1218,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
   });
   listen(dom.contours, "input", scheduleContourChange);
   listen(dom.contourVisibility, "input", scheduleContourChange);
-  listen(dom.transform, "change", scheduleTransformChange);
   listen(dom.home, "click", () => {
     navigateStandaloneAppHome(
       windowLike.location,

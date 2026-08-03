@@ -3,22 +3,19 @@ export const TOPO_SYNTHETIC_SURFACE_ID = "topo_synthetic_causal_envelope/v1";
 export const TOPO_SOURCE_POSITION = Object.freeze({ x: 2 / 3, y: 1 / 2 });
 export const TOPO_REFERENCE_SCALE = 4;
 export const TOPO_DISPLAY_CLIP_MAGNITUDE = 64;
-export const TOPO_DEFAULT_CONTOUR_LEVELS = 24;
 export const TOPO_DEFAULT_CONTOUR_DENSITY = 0.4;
 export const TOPO_DEFAULT_CONTOUR_VISIBILITY = 0.75;
-export const TOPO_CONTOUR_LEVEL_RANGE = Object.freeze({ min: 8, max: 48 });
 export const TOPO_DISPLAY_MAPPING_ID = "signed-log10";
 export const TOPO_FIELD_COLOR_GAIN = 70;
 export const TOPO_FIELD_PERCEPTIBILITY_THRESHOLD = 0.3;
 export const TOPO_FIRST_CONTOUR_BUDGET_MS = 34;
-export const TOPO_SYNTHETIC_DECAY_RATE = 16;
 export const TOPO_MAX_CANVAS_DIMENSION = 4096;
 export const TOPO_MAX_CANVAS_PIXELS = 12 * 1024 * 1024;
 export const TOPO_WORLD_CHART_ID = "topo_canvas_height_euclidean/v1";
 export const TOPO_TRANSLATION_AXIS = Object.freeze({
   startX: 0.1,
   endX: 0.9,
-  opacity: 0.18,
+  opacity: 0.52,
   widthCss: 1,
   dashCss: 5,
   arrowCss: 5,
@@ -31,6 +28,9 @@ export const TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE = Object.freeze({
   intervalsPerIntensityDecade: 3,
   masterCount: 10,
 });
+export const TOPO_INVERSE_SQUARE_SCALE =
+  TOPO_DISPLAY_CLIP_MAGNITUDE *
+  TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE.anchor ** 2;
 
 export function applyTopoScenarioPolarity(state, scenarioId) {
   const scenario = String(scenarioId ?? "").trim().toLowerCase();
@@ -131,28 +131,6 @@ export function measureTopoCenterlineColorFootprint({
   });
 }
 
-export function createTopoContourThresholds(
-  contourLevels = TOPO_DEFAULT_CONTOUR_LEVELS,
-) {
-  const levels = Math.round(requireFiniteNumber(contourLevels, "contourLevels"));
-  if (
-    levels < TOPO_CONTOUR_LEVEL_RANGE.min ||
-    levels > TOPO_CONTOUR_LEVEL_RANGE.max
-  ) {
-    throw new RangeError("contourLevels is outside the Topo v1 range.");
-  }
-  const thresholds = [];
-  for (let index = 0; index <= levels; index += 1) {
-    const normalized = -1 + (2 * index) / levels;
-    const transformedLimit = transformTopoValue(TOPO_DISPLAY_CLIP_MAGNITUDE);
-    thresholds.push(Object.freeze({
-      normalized,
-      raw: inverseTopoTransform(normalized * transformedLimit),
-    }));
-  }
-  return Object.freeze(thresholds);
-}
-
 export function createTopoContourEmphasis(
   visibility = TOPO_DEFAULT_CONTOUR_VISIBILITY,
 ) {
@@ -216,6 +194,8 @@ export function createTopoSyntheticContourRenderPlan({
     latticeIndex: selection[index].latticeIndex,
     revealWeight: selection[index].revealWeight,
     majorDecade: selection[index].majorDecade,
+    majorDecadeIndex: selection[index].majorDecadeIndex,
+    majorDecadeLabel: selection[index].majorDecadeLabel,
   })));
 }
 
@@ -259,6 +239,16 @@ export function createTopoSyntheticContourSelection(
       causalDelay,
       revealWeight: index < fullCount ? 1 : fractionalWeight,
       majorDecade: index % range.intervalsPerIntensityDecade === 0,
+      majorDecadeIndex:
+        index % range.intervalsPerIntensityDecade === 0
+          ? index / range.intervalsPerIntensityDecade
+          : null,
+      majorDecadeLabel:
+        index % range.intervalsPerIntensityDecade === 0
+          ? "10" + ["⁰", "⁻¹", "⁻²", "⁻³"][
+            index / range.intervalsPerIntensityDecade
+          ]
+          : null,
     })));
 }
 
@@ -275,16 +265,13 @@ export function createTopoSyntheticContourCircles({
     if (!(causalDelay > 0)) {
       throw new RangeError("Synthetic contour delays must be positive.");
     }
-    const syntheticMagnitude = TOPO_DISPLAY_CLIP_MAGNITUDE * Math.exp(
-      -TOPO_SYNTHETIC_DECAY_RATE * causalDelay,
-    );
     const inverseSquareIntensity = 1 / causalDelay ** 2;
+    const rawMagnitude = TOPO_INVERSE_SQUARE_SCALE * inverseSquareIntensity;
     return Object.freeze({
       index,
-      level: inverseSquareIntensity,
-      rawMagnitude: inverseSquareIntensity,
+      level: rawMagnitude,
+      rawMagnitude,
       inverseSquareIntensity,
-      syntheticMagnitude,
       causalDelay,
       center: Object.freeze({
         x: TOPO_SOURCE_POSITION.x - normalizedBeta * causalDelay,
@@ -356,7 +343,6 @@ export function createTopoAnalyticFieldRgbAtCanvasPixel({
   height,
   beta = 0.5,
   polaritySign = -1,
-  transformId = TOPO_DEFAULT_TRANSFORM,
 } = {}) {
   const point = topoWorldPointForCanvasPixel({
     pixelX,
@@ -368,7 +354,7 @@ export function createTopoAnalyticFieldRgbAtCanvasPixel({
     beta,
     polaritySign,
   })(point.x, point.y);
-  return createTopoSampleRgb(rawValue, { transformId, polaritySign });
+  return createTopoSampleRgb(rawValue, { polaritySign });
 }
 
 export function syntheticTopoCausalDelay({
@@ -423,9 +409,10 @@ export function syntheticTopoSignedValue({
     y: normalizedY,
     beta: normalizedBeta,
   });
-  return sign * TOPO_DISPLAY_CLIP_MAGNITUDE * Math.exp(
-    -TOPO_SYNTHETIC_DECAY_RATE * causalDelay,
-  );
+  if (causalDelay === 0) {
+    return sign * Number.POSITIVE_INFINITY;
+  }
+  return sign * TOPO_INVERSE_SQUARE_SCALE / causalDelay ** 2;
 }
 
 function evaluateTopoPreviewRawUnchecked(
@@ -451,9 +438,7 @@ function evaluateTopoPreviewRawUnchecked(
         offsetX ** 2 + (1 - normalizedBeta ** 2) * offsetY ** 2,
       ) - normalizedBeta * offsetX
     );
-  return polaritySign * TOPO_DISPLAY_CLIP_MAGNITUDE * Math.exp(
-    -TOPO_SYNTHETIC_DECAY_RATE * causalDelay,
-  );
+  return polaritySign * TOPO_INVERSE_SQUARE_SCALE / causalDelay ** 2;
 }
 
 export function createTopoSyntheticRawSampler({
@@ -703,7 +688,6 @@ export function createTopoSignedRgb(
 export function createTopoSampleRgb(
   rawValue,
   {
-    transformId = TOPO_DEFAULT_TRANSFORM,
     polaritySign = -1,
     negative = "#2563eb",
     zero = "#8f00ff",
@@ -717,7 +701,7 @@ export function createTopoSampleRgb(
     return Object.freeze(parseHexColor(zero));
   }
   return createTopoSignedRgb(
-    normalizeTopoFieldColorValue(rawValue, transformId),
+    normalizeTopoFieldColorValue(rawValue),
     { negative, zero, positive },
   );
 }

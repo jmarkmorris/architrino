@@ -40,12 +40,12 @@ The initial controls are:
 | --- | --- |
 | Scenario | `Electrostatic: single electrino`; `Electrostatic: single positrino` |
 | $\beta=v/c_f$ | range $0\leq\beta\leq1$; the exact ordinary, unavailable, and nonordinary endpoint regions are fixed by TOPO-001 |
-| Contour density | continuous display percentage; default $40\%$; progressively fades valid isolines from the minimum-density subset through the fixed $48$-level geometry without moving contour locations |
+| Contour range | continuous $1.0$ through $3.0$ intensity decades; default $2.0$ decades at the $40\%$ slider position; preserves the fixed $T_n=T_0 10^{n/6}$ lattice and cross-fades only the next outward level without moving existing circles |
 | Contour visibility | display-only global contour-emphasis percent from $0$ through $100$ in one-point keyboard steps; default $75$; scales the deterministic sequential inner-to-outer fade without altering field color, contour geometry, or raw values |
-| Scale transform | `Linear` and `Signed log2`; interim default `Signed log2` while contour-spacing semantics remain open |
+| Color mapping | one zero-safe signed base-10 logarithmic mapping with $z_*=4$ and symmetric clip at $|z|=64$; no transform selector |
 | Overlay | faint dashed positive-$x$ reference axis behind the exact analytic contour circles, plus one solid polarity disk with the canonical thin white border and small centered white origin dot; direction remains textual in the scenario facts |
 
-The source position, contour density, contour visibility, transform choice, and color limits belong to view state. The chosen species, $\beta$, observable identity, time slice, domain, and scientific-kernel version belong to the reproducible scenario record.
+The source position, contour range, contour visibility, and color limits belong to view state. The chosen species, $\beta$, observable identity, time slice, domain, and scientific-kernel version belong to the reproducible scenario record.
 
 ## Shared Application-Shell Contract
 
@@ -74,7 +74,7 @@ app-local navigation or panel language.
 - Scenario and $\beta$ are local scientific controls in the left panel. The
   $\beta$ slider reuses the established Architrino slider interaction and
   keyboard pattern while retaining Topo's own exact $0\leq\beta\leq1$
-  scientific contract. Contour density, transform, and legend
+  scientific contract. Contour range, contour visibility, and legend
   remain nearby display controls rather than being hidden in global
   navigation. The default contour visibility is $75\%$.
 - Mobile layout collapses the left panel before reducing shared icon hit
@@ -129,17 +129,22 @@ $$
 
 Plainly: positrino-positive and electrino-negative maps use the same legend. Selecting the other species reverses the sign of the declared observable without changing the geometry or color semantics.
 
-Legend ticks are uniform in the selected transformed display coordinate and expose corresponding raw values. Contours instead use one transform-independent causal-delay master set so scale changes cannot add, remove, or move circles. TOPO-002 fixes $z_*=4$, an ordinary display-clip magnitude of $64$, and these transforms:
+Legend ticks expose the fixed signed base-10 display coordinate and its raw reference values. Contours use one fixed causal-delay lattice so view state cannot add arbitrary levels, move circles, or re-anchor decade identities. TOPO-002 fixes $z_*=4$, an ordinary display-clip magnitude of $64$, and the one mapping
 
 $$
-C_{\mathrm{linear}}(z)=z/z_*,
+C_{10}(z)=\operatorname{sgn}(z)\log_{10}\!\left(1+\frac{|z|}{z_*}\right).
 $$
 
+The contour display uses $I(T)=K/T^2$ and
+
 $$
-C_{\log_2}(z)=\operatorname{sgn}(z)\log_2\!\left(1+\frac{|z|}{z_*}\right),
+T_n=T_0 10^{n/6},
+\qquad T_0=0.025,
 $$
 
-Plainly: plain $\log_2|z|$ fails at zero. The signed `log2(1 + magnitude)` form remains defined there and is the interim default while the operator chooses the independent contour-spacing semantics.
+which supplies three equal log-intensity intervals per decade and fixed major anchors at $n=0,3,6,9$. `Contour range` exposes one through three decades by retaining the fixed prefix and smoothly revealing the next outward level.
+
+Plainly: the color and circle architecture now speaks one orders-of-magnitude language. The range control shows more outer decades without sliding the logarithmic ruler.
 
 [TOPO-002](topo-interaction-and-color-contract-v1.md) records the comparison against one declared synthetic signed surface and its falsifier. Quantile coloring is not a v1 candidate because it would make the same color mean different raw values in different frames.
 
@@ -169,7 +174,7 @@ The first release is acceptable only when:
 4. slider changes produce fresh, deterministic map identities and never mix frames;
 5. raw equal-distance leading/trailing samples are recorded before display transformation;
 6. singular and unavailable points remain distinct from zero and clipped display values;
-7. contour density and transform change only the visualization, not the raw map;
+7. contour range and visibility change only the visualization, not the raw map;
 8. $c_f=1$ is used in all numerical fixtures; and
 9. the shared top-right application controls, dark neutral-purple stage,
    collapsible left-panel behavior, focus states, reduced-motion behavior, and

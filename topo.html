@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#0d0a17" />
     <meta
       name="description"
-      content="Preview the Topo interaction and signed-color contract before the scientific reference surface is connected."
+      content="Explore a theoretical two-dimensional view of signed wake intensity around a prescribed electrino or positrino."
     />
     <title>Architrino Wake Intensity Map</title>
     <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
@@ -75,7 +75,7 @@
           <section class="topo-card" aria-labelledby="topo-display-title">
             <h2 id="topo-display-title">Display</h2>
             <label class="topo-range-field" for="topo-contours">
-              <span>Contour density</span>
+              <span>Contour range</span>
               <span class="topo-range-row">
                 <input
                   id="topo-contours"
@@ -85,10 +85,11 @@
                   step="0.1"
                   value="40"
                   data-keyboard-step="1"
-                  aria-label="Contour line density"
+                  aria-label="Contour logarithmic range"
                 />
-                <output id="topo-contours-output" for="topo-contours">40%</output>
+                <output id="topo-contours-output" for="topo-contours">2.0 decades</output>
               </span>
+              <small class="topo-range-note">3 levels / decade · I ∝ 1/r²</small>
             </label>
             <label class="topo-range-field" for="topo-contour-visibility">
               <span>Contour visibility</span>
@@ -109,18 +110,11 @@
                 >75%</output>
               </span>
             </label>
-            <label class="topo-field" for="topo-transform">
-              <span>Scale transform</span>
-              <select id="topo-transform">
-                <option value="linear">Linear</option>
-                <option value="signed-log2" selected>Signed log2</option>
-              </select>
-            </label>
           </section>
 
           <section class="topo-card topo-legend" aria-labelledby="topo-legend-title">
             <h2 id="topo-legend-title">Signed ordinary values</h2>
-            <p id="topo-legend-transform" class="topo-card-note"></p>
+            <p id="topo-legend-mapping" class="topo-card-note"></p>
             <div
               class="topo-legend-gradient"
               role="img"
@@ -136,7 +130,7 @@
         <canvas
           id="topo-canvas"
           tabindex="0"
-          aria-label="Synthetic signed causal envelope around one fixed polarity-colored source marker, with a faint dashed horizontal reference axis pointing toward positive x"
+          aria-label="Theoretical signed inverse-square wake intensity around one fixed polarity-colored source marker, with exact logarithmic contours and a faint dashed horizontal reference axis pointing toward positive x"
         ></canvas>
         <canvas id="topo-contour-canvas" aria-hidden="true"></canvas>
         <div class="topo-loading-veil" aria-hidden="true">

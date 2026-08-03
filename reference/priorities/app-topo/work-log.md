@@ -4,6 +4,18 @@ This file is the chronological work log for the `app-topo` priority area. Use [p
 
 ## Log Entries
 
+### 2026-08-03 — TOPO-002 Signed-Logarithmic Architecture Frozen
+
+- Replaced the transform comparison with one zero-safe signed base-10 mapping, $\operatorname{sgn}(z)\log_{10}(1+|z|/z_*)$, at the established $z_*=4$ reference and $|z|=64$ symmetric display clip. Removed the Scale transform selector and its state, shader branch, cache key, event, accessibility, and test paths.
+- Fixed the declared synthetic comparison magnitude to $I(T)=K/T^2$ with $T_0=0.025$ and $K=64T_0^2=0.04$. This remains a TOPO-002 theoretical display model rather than the TOPO-001 scientific renderer.
+- Replaced arbitrary contour counts with the anchored lattice $T_n=T_0 10^{n/6}$. Adjacent radii have ratio $10^{1/6}$, adjacent intensities have ratio $10^{-1/3}$, and major decade identities stay fixed at lattice indices $0$, $3$, $6$, and $9$.
+- Renamed `Contour density` to `Contour range`. Its continuous display maps from $1.0$ through $3.0$ intensity decades, reads $2.0$ decades at the existing $40\%$ default position, preserves all prior radii, and cross-fades only the next outward valid level.
+- Added the compact theory cue `3 levels / decade · I ∝ 1/r²` and major labels $10^0$ through $10^{-3}$ at the trailing axis intersections. Labels use a physical offset above and outside the dashed axis/ring crossing plus collision tiers on narrow layouts, rather than relying on opacity or hiding labels.
+- Increased the existing one-CSS-pixel dashed positive-$x$ reference axis and arrow to $52\%$ canonical-white opacity while keeping them subordinate to the contour overlay and source marker.
+- Kept the exact-circle Canvas2D overlay, $75\%$ default contour visibility, canonical source marker, Electric Purple zero and endpoint display, polarity-only scenario switching, WebGL analytic field with CPU fallback/watchdog, and Applications organization unchanged.
+
+Plainly: Topo now has one orders-of-magnitude architecture. The slider reveals more fixed logarithmic distance range; it does not slide the ruler or compare alternative color transforms.
+
 ### 2026-08-02 — TOPO-002 Interaction And Color Contract Closed
 
 - Added [the TOPO-002 contract](topo-interaction-and-color-contract-v1.md) and an explicitly labeled synthetic interaction preview at `topo.html`.
