@@ -359,6 +359,80 @@ itself define the plateau contribution. A future ceiling model could test
 whether a causally derived maturity radius or boundary update supplies such a
 lower limit without deleting ordinary roots.
 
+## Straight field-speed wake: leading pile-up and trailing foliation
+
+Claim grade: `derived geometry` on a prescribed eternal straight path at
+speed $c_f$. Let
+
+$$
+\mathbf X(s)=c_fs\mathbf e_x.
+$$
+
+At observation time $T$, the wake emitted at $s<T$ intersects the translation
+axis at
+
+$$
+x_+(T;s)=c_fT,
+\qquad
+x_-(T;s)=2c_fs-c_fT.
+$$
+
+Every forward endpoint is therefore the current architrino position,
+independent of $s$. That is the leading characteristic pile-up; there is no
+past wake ahead of $x=c_fT$. The rear endpoints do not pile up. The map
+$s\mapsto x_-$ has derivative $2c_f$, so it spreads successive emissions
+uniformly down the trailing line.
+
+For a point a distance $d=c_fT-x>0$ behind the architrino, there is exactly one
+emission time,
+
+$$
+s=T-\frac{d}{2c_f},
+\qquad
+T-s=\frac{d}{2c_f},
+\qquad
+r=\frac d2.
+$$
+
+Its direction is $-\mathbf e_x$ and its transmitter factor is regular:
+
+$$
+D_t
+=
+c_f-(-\mathbf e_x)\mathbin{\cdot}(c_f\mathbf e_x)
+=
+2c_f.
+$$
+
+Thus the trailing line is foliated by simple ordinary fronts, one emission per
+point, rather than carrying the front caustic. With a finite retained source
+history $s\ge s_0$, the occupied trailing interval begins at
+$x=2c_fs_0-c_fT$; an eternal history fills the whole rear ray.
+
+A second architrino co-moving a fixed distance $L$ behind receives the unique
+emission $s=T-L/(2c_f)$. Here $dS/dT=1$ and
+$D_t=D_r=2c_f$: new source history crosses the receiver continually rather
+than one frozen front being billed repeatedly. For the ordinary inverse-square
+row, the magnitude scales as $2K/L^2$ before its polarity sign is applied.
+This grows as $L\to0^+$ because the range $L/2$ vanishes, not because rear
+roots accumulate.
+
+Plainly: all old wake spheres share one leading tip, but their rear tips are
+spread out like evenly spaced mile markers. A trailing receiver meets one new
+sphere after another. It does not see the many-emission pile-up that exists at
+the leading point.
+
+Assumptions and boundary: this census uses exact straight translation at
+$c_f$, spherical propagation at $c_f$, and the ordinary positive-delay root
+law. It does not assign an ordinary self-response at the leading pile-up,
+where the emission family is nonisolated and $D_t=0$, and it does not select a
+contact or boundary event law.
+
+Promotion target: the straight-path wake-geometry discussion in the
+field-speed mathematics packet. Next artifact: extend the axis census to the
+three-dimensional rear half-space and state the corresponding source-measure
+pushforward versus the leading characteristic measure.
+
 ## Guarded compact-object question
 
 Could a completed ceiling model admit a collective terminal contact or

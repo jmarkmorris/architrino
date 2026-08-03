@@ -137,7 +137,8 @@ selection, complete local-ledger census, and any separating-trace consequence.
 The retained partner-cap incidence itself is now derived: whole interval at
 coincidence, only the frozen endpoint on straight-through motion, and the whole
 $D_t=D_r=0$ interval on exact rebound. FSC-007 remains an independent regular
-history-to-ledger theorem track.
+history-to-ledger theorem track, but its positive inactive-gap setting does not
+contain the margin-zero exact-mirror right chart.
 
 Two proposed-law tracks are deliberately separate from those theorem targets.
 FSC-009 owns swept-source reception as a source-history crossing account that is
@@ -151,11 +152,16 @@ other wake contribution unchanged. The
 [proposed exact-mirror restart](mirror-event-family-completion-and-right-trace.md)
 now consumes that aggregation within its narrow scope, preserves continuous
 position and velocity, splices both labeled histories, books the noncrossing
-event family once, and restarts from the complete untouched remainder ledger.
-The isolated straight trace then has a zero post-event ledger and is exactly
-compatible; immediate rebound is excluded because it requires a nonzero
-velocity jump. This construction is pending delayed-history and measure review
-and does not yet prove local uniqueness or adopt a general event law. Swept-
+event family once, and restarts from the complete classified ledger. The
+completed [third Hale review](jack-k-hale-third-review-2026-08-02.md) proves an
+owned-family permanence lemma, replaces the cap-window assumption with a
+checkable event coverage condition, and confirms exact straight-trace
+compatibility. It also identifies a margin-zero trailing-front activation
+boundary and a reduced delayed-braking candidate. The construction therefore
+remains open on the
+[trailing-front activation dichotomy](trailing-front-activation-dichotomy.md)
+and independent measure review; it does not yet prove local uniqueness or
+adopt a general event law or activation floor. Swept-
 source reception remains a separate unadopted foundational track.
 
 The circular-binary program has completed its prescribed-chart prerequisite,

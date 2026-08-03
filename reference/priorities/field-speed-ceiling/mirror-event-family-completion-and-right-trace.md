@@ -1,7 +1,9 @@
 # Mirror event-family completion and right-trace construction
 
-**Status:** proposed exact-mirror restart law constructed; isolated right-trace
-compatibility derived; pending independent delayed-history and measure review.
+**Status:** proposed exact-mirror event map constructed; isolated straight-trace
+compatibility derived; delayed-history review complete; continuation selection
+open pending the trailing-front activation dichotomy and independent measure
+review.
 **Claim grade:** proposed nonordinary event law with derived consequences inside
 the declared exact mirror class. It is not an adopted canonical law and does
 not establish general delayed-system existence or uniqueness.
@@ -50,17 +52,29 @@ $$
 $$
 
 Let $\mathcal H_i^-$ denote the complete labeled retained history of source
-$i$ through $T_{\mathrm c}$. Let $\boldsymbol{\mathsf R}_i$ denote every wake
-contribution other than the exactly matched impulse-event pair: ordinary rows,
-external sources, and any separately admitted regular stratum. Any emission
-older than the displayed cap window that can reach a post-event receiver is
-also part of this remainder accounting. Nothing in this construction alters
-$\boldsymbol{\mathsf R}_i$.
+$i$ through $T_{\mathrm c}$. For each candidate outgoing history, let
+$\boldsymbol{\mathsf R}_i(\mathcal H^+;T)$ denote every wake contribution
+other than the exactly matched impulse-event pair: ordinary rows, external
+sources, and any separately admitted regular stratum. Any emission older than
+the displayed cap window that can reach a post-event receiver is also part of
+this remainder accounting. Nothing in this construction alters those
+contributions.
 
-The narrow event guard requires that no additional unclassified atomic event
-stratum occur at $E$. A separately defined simultaneous event atom would have
-to be added to the event update before the velocity trace is known; this note
-does not silently set such an atom to zero.
+The narrow event guard is checked on the incoming state. It requires:
+
+1. exact mirror data at $E$: coincident positions, velocities
+   $\pm c_f\mathbf e$, and matched equal-magnitude opposite-polarity cap
+   records;
+2. a classified incoming census for every other ordered channel; and
+3. no incoming remainder-measure atom at $T_{\mathrm c}$,
+   $\boldsymbol{\mathsf R}_i(\mathcal H^-;\{T_{\mathrm c}\})=\mathbf0$.
+
+A separately defined simultaneous event atom would have to be added to the
+event update before the velocity trace is known; this note does not silently
+set such an atom to zero. Within the proposed solution class, every atom of
+$D\mathbf V_i$ must be owned by a declared event and have that event's declared
+coefficient; on regular open charts, $D\mathbf V_i$ is absolutely continuous
+with respect to $dT$.
 
 ## Selected exact-mirror event completion
 
@@ -117,7 +131,16 @@ velocity trace. Every earlier emission remains attached to its original
 source label and absolute emission time. New emissions for $T>T_{\mathrm c}$
 are appended normally.
 
-### 4. Book the collapsed family once, but do not suppress a later crossing
+Here $\mathcal H_i^\pm$ denotes the full extended state: paths and velocities
+with one-sided traces, labeled emission records, the ownership ledger including
+the event-family annotation and inactive-family records, received-history
+clocks with their plateau status, and the typed measure record including the
+zero-coefficient event atom at $E$. It does not mean the path-and-velocity
+trace alone. The event map returns the immediate data and these bookkeeping
+records; the full outgoing history belongs to the separate continuation
+relation defined by clause 5.
+
+### 4. Book the collapsed family once
 
 The incoming matched cap family is owned once by the exact event. On the
 right-hand interval, any part of that same family that remains frozen or
@@ -130,16 +153,57 @@ neither an ordinary row nor a second event row. This includes:
   produced.
 
 This is a single-ownership rule for a noncrossing event family, not deletion of
-its wakes. If a retained emission later becomes an isolated positive-delay
-root with $D_t,D_r>0$, it is again an ordinary reception and is evaluated by
-the unchanged ordinary law.
+its wakes. In fact, let $s_0\le T_{\mathrm c}$ be an owned emission and define
+
+$$
+\gamma(T)
+=
+c_f(T-s_0)
+-
+\left\|\mathbf X_i(T)-\mathbf X_j(s_0)\right\|.
+$$
+
+At the event, $\gamma(T_{\mathrm c})=0$. For any ceiling-admissible right
+trace, the triangle inequality gives
+
+$$
+\gamma(T_2)-\gamma(T_1)
+\ge
+c_f(T_2-T_1)
+-
+\left\|\mathbf X_i(T_2)-\mathbf X_i(T_1)\right\|
+\ge0.
+$$
+
+Therefore an owned front is either ridden on a rigid maximum-speed ray or lies
+strictly behind the receiver forever; it cannot re-enter as an isolated root.
+This **owned-family permanence lemma** makes double booking structurally
+impossible. A later isolated positive-delay root with $D_t,D_r>0$ is ordinary
+only when it comes from an unowned post-event or third-party emission.
 
 ### 5. Restart from the complete remainder ledger
 
 Let $\mathbf A_i^{\mathrm{rest}}(\mathcal H^+;T)$ be the complete ledger
-formed from $\boldsymbol{\mathsf R}_i$, new ordinary roots, and every other
-admitted contribution, excluding only the already-owned noncrossing event-
-family component described in clause 4. The outgoing trace must solve
+formed from $\boldsymbol{\mathsf R}_i(\mathcal H^+;T)$, new ordinary roots,
+and every other admitted contribution, excluding only the already-owned
+noncrossing event-family component described in clause 4. Each remainder
+stratum must be classified on the candidate trace and the resulting ledger
+must be locally integrable.
+
+Formally, the outgoing velocity solves the Section 7 evolution inclusion
+
+$$
+\dot{\mathbf V}_i^+
++
+N_{\mathcal B_{c_a}}(\mathbf V_i^+)
+\ni
+\mathbf A_i^{\mathrm{rest}}(\mathcal H^+;\cdot),
+\qquad
+\mathbf V_i^+(T_{\mathrm c})=\mathbf V_i(T_{\mathrm c}^-),
+$$
+
+on the declared census-admissible candidate class. Its absolutely continuous
+solutions satisfy the following integral relation almost everywhere:
 
 $$
 \boxed{
@@ -167,17 +231,31 @@ The full ledger is formed before the response is applied once. This equation
 is the right-trace construction, not a prescribed geometric outcome.
 
 Plainly: after the one zero impulse has been booked, the architrinos react to
-whatever wakes remain. If the rest of the universe pushes them, that input is
-still present. If nothing else reaches them, there is nothing left to bend or
-slow them.
+whatever wakes remain. The event map supplies the immediate state and ledger
+annotations; the delayed restart equation determines a set of compatible
+futures. It has not yet been proved that this set contains only one future.
 
 ## Isolated mirror calculation
 
-Now specialize to the idealized isolated two-label mirror case, so
-$\boldsymbol{\mathsf R}_i=0$, there are no external sources, and the declared
-cap window contains every retained emission capable of a post-event reception.
-An arbitrary all-past history is not covered by this zero-remainder
-specialization. Normalize $T_{\mathrm c}=0$ and
+Now specialize to the idealized isolated two-label mirror case, so the
+remainder ledger vanishes on the trial trace and there are no external
+sources. Define
+
+$$
+g_{i\leftarrow j}(T,s)
+=
+\left\|\mathbf X_i(T)-\mathbf X_j(s)\right\|
+-
+c_f(T-s).
+$$
+
+The checkable zero-remainder coverage condition is that every retained
+emission satisfies $g(T_{\mathrm c},s)\le0$, with equality exactly on the
+owned matched family. An emission with $g(T_{\mathrm c},s)<0$ has already
+passed and cannot return under the ceiling; an emission with
+$g(T_{\mathrm c},s)>0$ remains unarrived and belongs to the remainder ledger.
+This condition replaces the future-dependent cap-window wording and applies
+equally to an all-past history. Normalize $T_{\mathrm c}=0$ and
 $\mathbf x_{\mathrm c}=\mathbf0$. Test the trace
 
 $$
@@ -255,9 +333,35 @@ trace satisfies the restart equation exactly.
 
 Claim grade: `derived exact right-trace compatibility under the proposed
 event completion`. This proves that straight passage is a solution of the
-declared isolated restart problem. It does not yet prove uniqueness among all
-nearby delayed histories; that broader result requires a local history-to-
-ledger theorem or an equivalent no-Zeno census-stability argument.
+declared isolated restart problem. It does not select that solution uniquely.
+
+### Trailing-front activation boundary
+
+On the straight trace, a post-event partner emission $s>0$ has the inactive
+margin
+
+$$
+g(T,s)=2c_fs.
+$$
+
+Each front remains unreceived, but these margins have infimum zero as
+$s\downarrow0$. Thus the straight trace has no uniform inactive-gap
+neighborhood, and the regular FSC-007 census-stability theorem cannot by
+itself supply uniqueness here. A symmetric slowdown would change the root
+condition to
+
+$$
+2c_fs=E(T)+E(s),
+\qquad
+E(T)=\int_0^T(c_f-v(u))\,du,
+$$
+
+allowing a new, unowned post-event partner root to detach from the endpoint.
+The [trailing-front activation dichotomy](trailing-front-activation-dichotomy.md)
+records a reduced-system delayed-braking branch and the remaining full-system
+proof burden. Uniqueness now requires either refuting that branch or adopting
+an activation selection clause as new foundational data. Neither disposition
+is selected here.
 
 Plainly: free passage was not put into the event instruction. It appears in
 the isolated calculation because the event supplies no velocity jump and the
@@ -281,10 +385,11 @@ $$
 \Delta\mathbf V_2=+2c_f\mathbf e.
 $$
 
-These contradict clause 2 and the zero event impulse. Therefore immediate
-maximum-speed rebound is not an admissible output of this event law. A later
-turnaround is not excluded: it may occur continuously if the untouched
-remainder ledger supplies the required acceleration.
+These contradict clause 2, the zero event impulse, and the declared ownership
+of all velocity atoms. Therefore immediate maximum-speed rebound is not an
+admissible output of this event law. A later turnaround is not excluded: it
+may occur continuously if the untouched remainder ledger or newly activated
+post-event ordinary roots supply the required acceleration.
 
 Plainly: zero impulse cannot secretly reverse a velocity. Rebound can happen
 later only if actual remaining wakes turn the paths around.
@@ -303,21 +408,22 @@ It selects only:
 5. ordinary post-event evolution from the complete remainder ledger.
 
 A general local existence and uniqueness theorem for this history-dependent
-restart is not proved here. The regular atom-free part is owned by FSC-007;
-event-adjacent census stability and possible immediately active external rows
-must be declared before that theorem can be applied.
+restart is not proved here. FSC-007 still owns genuinely regular atom-free
+charts, but its positive inactive-gap hypotheses exclude this margin-zero
+mirror chart. The exact-mirror continuation remains a possibly multivalued
+relation until the trailing-front activation dichotomy is disposed.
 
 ## Review obligations
 
-An independent delayed-history review should test:
+The completed Jack K. Hale delayed-history review is recorded in
+[FSC-006b-JKH3](jack-k-hale-third-review-2026-08-02.md). Remaining review and
+proof obligations are:
 
-1. whether the splice $\mathcal H^-\sqcup_E\mathcal H^+$ is a sufficient
-   state for the restart map;
-2. whether clause 4 prevents double booking without suppressing a later
-   transverse reception;
-3. whether the isolated trace census is complete; and
-4. what additional no-Zeno or census-stability hypothesis would upgrade exact
-   compatibility to local uniqueness.
+1. an independent measure-typing review of the event map, ownership record,
+   and remainder ledger;
+2. a proof or refutation of the delayed-ignition branch at full-system rigor;
+3. the event-adjacent no-cascade estimate for thin activation sets; and
+4. a decision on activation selection only if the branch is confirmed.
 
 An independent measure review should test that the divergent ordinary
 positive-range approach measure, the finite common event measure, and the

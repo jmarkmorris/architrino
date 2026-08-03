@@ -723,3 +723,30 @@
 - Kept the queue item open pending a Jack K. Hale delayed-history review and a
   Lars Hörmander measure-typing check. General local existence and uniqueness,
   stability, breather behavior, and canonical adoption remain unproved.
+
+## 2026-08-02 — Third Hale restart review integrated
+
+- Integrated all nine safe wording and formulation corrections from
+  `FSC-006b-JKH3-2026-08-02` without promoting its reduced numerical branch to
+  a full-system theorem.
+- Expanded the restart state to carry received-history clocks, ownership, and
+  typed measure records; made the event guard checkable on incoming data; and
+  declared that every velocity atom must be owned by a declared event.
+- Restated the right-trace problem as the Section 7 normal-cone inclusion, with
+  the displayed projected integral equation retained as its almost-everywhere
+  consequence.
+- Added the owned-family permanence lemma. Under $c_a\le c_f$, an owned front's
+  causal gap is nondecreasing, so it can only be rigidly ridden or remain
+  strictly behind; it cannot be re-billed as an isolated root.
+- Replaced the future-dependent cap-window assumption with the event-time
+  coverage test $g(T_{\mathrm c},s)\le0$, with equality exactly on the owned
+  family.
+- Recorded the margin-zero post-event partner family and created the focused
+  [trailing-front activation dichotomy](trailing-front-activation-dichotomy.md).
+  The reduced delayed-braking branch remains a plausible counterexample to
+  uniqueness pending an ignition-instant existence proof and full-system
+  embedding or exclusion.
+- Corrected the queue dependency: FSC-007 remains the regular-chart theorem but
+  cannot close the exact-mirror chart because its uniform inactive-gap
+  hypothesis fails there. Independent measure review and the event-adjacent
+  no-cascade estimate also remain open.

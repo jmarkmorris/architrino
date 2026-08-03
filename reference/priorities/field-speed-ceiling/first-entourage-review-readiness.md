@@ -35,8 +35,11 @@ far parts converge locally in total variation, have exact residue
 $K/(2c_f^2)$, and admit no finite closed-endpoint Radon limit. FSC-006b/FSC-005
 now has a constructed proposed exact-mirror event-family restart, complete-
 ledger ownership rule, retained-history splice, and isolated compatible right
-trace. It remains pending delayed-history and measure review and does not yet
-prove local uniqueness. No event response follows from the positive-range
+trace. The delayed-history review is complete: the owned family cannot be
+re-billed, but the straight chart has no uniform inactive margin and a reduced
+delayed-braking continuation is a live candidate. The restart remains pending
+the activation dichotomy and independent measure review and does not yet prove
+local uniqueness. No event response follows from the positive-range
 theorem alone.
 The frozen-ledger constrained layer is now closed; FSC-007 separately owns the
 coupled regular history-to-ledger theorem and supplies no contact or post-event
@@ -72,7 +75,8 @@ zero-range tail, delayed ledger, and event dispositions are.
 | [Einstein Review Response](albert-einstein-review-response-2026-08-01.md) | Preserves all eight Einstein findings, their corrected scopes, and the explicit quotient-lemma counterexample. | Review integration record; no quotient response, strict sibling, event selector, preferred-frame result, or Lorentz result is adopted. |
 | [Einstein Second Review Response](albert-einstein-second-review-response-2026-08-01.md) | Preserves and independently disposes every second-pass theorem, program reformulation, and structural claim. | Historical review integration record; the later FSC-006a artifact completes the conditional far-part theorem, while per-channel classification is still not a global event law and MEC-007 is not an exclusive activation gate. |
 | [Coincidence Open-Interval Convergence and Endpoint Residue](coincidence-open-interval-convergence-and-endpoint-residue.md) | Proves the labeled positive-range convergence theorem, fixed-far-part receiver atom, exact mirror residue, and no-finite-Radon endpoint theorem under explicit moving-trace hypotheses. | Completed FSC-006a prerequisite; supplies no event response, outgoing history, or right trace. |
-| [Mirror Event-Family Completion and Right-Trace Construction](mirror-event-family-completion-and-right-trace.md) | Constructs the proposed exact-mirror event ownership, retained-history splice, remainder-driven restart equation, and isolated compatible trace. | FSC-006b construction pending Hale delayed-history and Hörmander measure review; no general existence or uniqueness. |
+| [Mirror Event-Family Completion and Right-Trace Construction](mirror-event-family-completion-and-right-trace.md) | Constructs the proposed exact-mirror event ownership, retained-history splice, classified-ledger restart relation, and isolated compatible trace. | Hale delayed-history review complete; activation dichotomy and Hörmander measure review pending; no general existence or uniqueness. |
+| [Trailing-Front Activation Dichotomy](trailing-front-activation-dichotomy.md) | States the reduced delayed-ignition equations and the full-system prove-or-refute target. | Focused FSC-006b/FSC-005 theorem target; no branch existence, multivalued law, or activation floor adopted. |
 | [Near-Contact Separating-Trace Theorem Target](near-contact-separating-trace-incompatibility-theorem-target.md) | States the limited two-channel BV/Radon prove-or-refute target. | FSC-006a prerequisite complete; FSC-005 remains blocked on FSC-006b; theorem target, not a result. |
 
 ## Exact proposed foundation under review
@@ -200,13 +204,16 @@ are different mathematical records. Only the zero jump has a proposed value.
    phase space, history-to-ledger regularity, position coupling,
    inactive-gap persistence, fixed-point theorem, and post-event history
    compatibility remain formulation or theorem obligations.
-13. **FSC-006b/FSC-005 construction pending review.** The exact-mirror restart
-    now books the matched family once, preserves both labeled histories, and
-    restarts from the complete remainder ledger. The earlier projected-
-    remainder incompatibility target remains a separate theorem question.
+13. **FSC-006b/FSC-005 continuation selection open.** The exact-mirror event
+    map books the matched family once, preserves both labeled histories, and
+    restarts from the complete classified ledger. The owned-family permanence
+    lemma closes re-billing, while the margin-zero trailing-front activation
+    dichotomy now owns the continuation question.
 14. **General open post-coincidence existence or uniqueness unproved.** The
-    isolated straight trace is exactly compatible, but a no-Zeno census-
-    stability or history-to-ledger theorem is still required for uniqueness.
+    isolated straight trace is exactly compatible, but ordinary census
+    stability is false on this margin-zero chart. Uniqueness requires a full-
+    system refutation of delayed ignition or a separately adopted activation
+    selection clause.
 15. **Outgoing retained history constructed only in the narrow proposal.** The
     labeled splice and restart equation are explicit for the exact mirror
     event; broader event classes and non-isolated existence remain unresolved.

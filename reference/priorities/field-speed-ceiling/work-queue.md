@@ -3,20 +3,25 @@
 ## Ranked Next Objects
 
 1. `mirror_event_family_completion_and_right_trace_selection` —
-   FSC-006b/FSC-005. Status: `constructed proposed exact-mirror restart /
-   pending independent review`. The
+   FSC-006b/FSC-005. Status: `constructed proposed exact-mirror event map /
+   delayed-history review complete / continuation selection open`. The
    [restart construction](mirror-event-family-completion-and-right-trace.md)
    consumes the completed approach, retained-cap incidence, and common
    impulse-event results. It books the matched family once, preserves position,
    velocity, and both labeled histories, silences only a noncrossing frozen or
    characteristic continuation of that already-owned family, and restarts
-   from the complete untouched remainder ledger. The isolated straight trace
-   has a zero post-event ledger and is exactly compatible; immediate rebound
-   is excluded by zero impulse. A Jack K. Hale delayed-history review and Lars
-   Hörmander measure-typing check must dispose the restart state, double-
-   booking guard, census, and missing local-uniqueness hypothesis before this
-   item moves to completed prerequisites. It is not a general coincidence law,
-   a unique continuation theorem, or a canonical adoption.
+   from the complete classified ledger. The owned-family permanence lemma
+   proves that no owned emission can be re-billed. The isolated straight trace
+   is exactly compatible and immediate rebound is excluded, but post-event
+   partner margins accumulate at zero. The
+   [third Hale review](jack-k-hale-third-review-2026-08-02.md) therefore replaces
+   the former census-stability upgrade with the
+   [trailing-front activation dichotomy](trailing-front-activation-dichotomy.md):
+   verify or refute the reduced delayed-ignition family at full-system rigor.
+   Also complete the Lars Hörmander measure-typing check and the event-adjacent
+   no-cascade estimate. FSC-007 alone cannot close this chart. It is not a
+   general coincidence law, a unique continuation theorem, a selected
+   activation floor, or a canonical adoption.
 2. `regular_chart_local_history_to_ledger_existence_and_uniqueness` — FSC-007.
    Status: `queued theorem target / Not advanced`. Work in an atom-free,
    finite-delay $W^{2,\infty}$ neighborhood with a fixed two-channel census,
@@ -143,9 +148,11 @@
 Plainly: the ordinary positive-range approach is now settled conditionally:
 the rows converge locally before coincidence, their endpoint strength is
 $K/(2c_f^2)$, and they cannot become one finite ordinary measure at the closed
-endpoint. The queue head now has a constructed exact-mirror event-family and
-right-trace restart awaiting independent review and a local-uniqueness
-upgrade. In parallel, the certified circular chart is available
+endpoint. The queue head now has a constructed exact-mirror event map, a
+compatible straight trace, and a live delayed-ignition counterexample
+candidate. The next decision is a proof: either confirm that braking
+continuation or identify the lawful estimate that excludes it. In parallel,
+the certified circular chart is available
 for a quantified census-stability neighborhood and the independent regular
 history-to-ledger theorem. The local binary theorem comes only after both.
 Verified numerics and the Sections 12--14 review then gate the three-binary
