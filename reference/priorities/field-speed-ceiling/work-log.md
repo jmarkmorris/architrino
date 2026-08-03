@@ -644,35 +644,82 @@
   the complete ordinary partner row is purely forward.
 - Separately integrated the simultaneous cap-family candidate at coincidence.
   A one-label source-swept coefficient with cutoff $\varepsilon$ is
-  $K(\varepsilon^{-1}-q_\ast^{-1})/2$ and diverges. Under the proposed common
-  raw-event carrier and matched vector identity, the two-label combined
-  integrand is zero for every cutoff and therefore has zero integral before a
-  zero-preserving event response is applied.
-- This calculation supports the proposed zero event update only conditionally.
-  It neither derives the raw-vector pairing from the receiver kernel nor
-  selects or constructs the post-coincidence trace.
+  $K(\varepsilon^{-1}-q_\ast^{-1})/2$ and diverges. Classified this as an
+  invalid ordinary-kernel extrapolation onto a $D_t=0$ family, not the raw
+  impulse-event measure.
+- The finite raw event object is instead the pushforward of the labeled source-
+  history measure. Under the proposed common aggregation, the exact mirror
+  pair cancels before an event response is assigned. The outgoing trace remains
+  unselected.
 
-## 2026-08-02 — Raw event carrier and canonical vector-pairing decision
+## 2026-08-02 — Common impulse-event measure and mirror cancellation
 
-- Defined the exact mirror event-incidence carrier as cap lookback time crossed
-  with the two retained source labels, marked by source polarity and arrival
-  direction.
-- Proved the scalar label-forgetting identity $q_1+q_2=0$, but refuted the
-  corresponding canonical radial-vector identity:
-  $q_1\mathbf n_1+q_2\mathbf n_2=2q\mathbf e\ne\mathbf0$. Mirror symmetry
-  reverses both polarity and direction, so the oriented factors reinforce.
-- Verified the same sign directly in the receiver kernel. The two cap
-  contributions reinforce in each receiver's complete local ledger and cancel
-  only after adding totals belonging to two different receivers, which the
-  Master Equation does not use to update either path.
-- Retired raw vector cancellation as a derivable zero-event route. A different
-  construction survives: truncate the cap family, form each complete finite
-  local vector sum, and apply a candidate event extension of the boundary
-  projection once.
-- Proved that this projected effective value is zero for every label-preserving
-  positive exhaustion and is unchanged by orientation-preserving carrier
-  reparameterization. Adopting that exhaustion as the nonordinary-event owner
-  and specifying its outgoing retained history and right trace remain open.
-- No event law, zero impulse, outgoing history, right trace, continuation,
-  rebound, breather, conservation statement, or field-speed ceiling was
-  adopted by this decision.
+- Defined the common labeled carrier as cap lookback time crossed with the two
+  retained source labels and defined the event aggregation map to the shared
+  absolute-time and Euclidean-position event.
+- Proved that exact mirror symmetry gives finite event pushforwards
+  $+q\nu(I)\delta_E$ and $-q\nu(I)\delta_E$, whose aggregate is zero while both
+  labeled provenance records remain intact.
+- Defined one common linear event-to-acceleration map applied after aggregation
+  and proved $\mathbf J_{i,-}=-\mathbf J_{i,+}$, so the matched pair gives zero
+  impulse to either receiver.
+- Kept the remainder universe-wide wake measure explicit. Ordinary continuous
+  rows, unmatched event components, and all other wakes remain in the net
+  acceleration sum unchanged.
+- Demoted the earlier radial-vector reinforcement calculation to an invalid
+  operation-order extrapolation: the ordinary inverse-square coarea row is
+  undefined on the $D_t=0$ cap family and does not own the impulse event.
+- The common aggregation law remains proposed. No outgoing history, right
+  trace, passage, rebound, breather, conservation statement, or field-speed
+  ceiling was adopted.
+
+## 2026-08-02 — FSC-006a open-interval convergence and endpoint residue
+
+- Completed a conditional theorem for one labeled injective simple-root
+  resolution under explicit eventual branch coverage, uniform branch
+  collapse, moving-time kernel convergence, positive and convergent $D_r$,
+  retained labels and polarities, and separate competing-stratum ownership.
+- Proved local total-variation convergence of the source-clock ordinary
+  measures on every compact subset of $s<T_{\mathrm c}$. This is stronger
+  than local weak-* convergence and does not follow from the earlier uniform-
+  path plus $L^1$-velocity topology without the new moving-trace hypotheses.
+- Proved that every fixed positive-range far part, pushed back to receiver
+  time, converges to its labeled vector coefficient times
+  $\delta_{T_{\mathrm c}}$.
+- Derived the exact mirror total variation
+  $K(1/\rho-1/\rho_0)/(2c_f^2)$ and the parameterization-independent endpoint
+  residue $K/(2c_f^2)$, with the required order $n\to\infty$ before
+  $\rho\downarrow0$.
+- Proved that no finite vector-Radon ordinary measure can be the weak-* limit
+  on a closed neighborhood containing the endpoint.
+- Kept the divergent ordinary approach measure separate from the proposed
+  finite common impulse-event aggregation. No endpoint response, outgoing
+  history, right trace, passage, rebound, or conservation law was adopted.
+- Moved FSC-006a to completed prerequisites. The event-family completion and
+  right-trace selection is now the ranked queue head.
+
+## 2026-08-02 — Exact-mirror event-family restart constructed
+
+- Constructed one proposed exact-mirror event law that consumes the common
+  zero-impulse aggregation without adopting a general coincidence law.
+- Preserved continuous position and velocity traces and spliced both complete
+  labeled incoming histories to the outgoing histories. No emission, source
+  label, or unmatched wake contribution is deleted.
+- Added a single-ownership rule: the collapsed cap family is booked once at
+  coincidence and adds no repeated row while it remains frozen or
+  characteristic without sweeping new source history across the receiver. A
+  later isolated transverse reception returns to the ordinary ledger.
+- Defined the outgoing trace by an integral restart equation driven by the
+  complete untouched remainder ledger, with the full sum formed before the
+  proposed response is applied once.
+- Verified the complete isolated mirror post-event census. Older partner cap
+  times are absent, the coincidence endpoint is frozen, new partner emissions
+  cannot catch either receiver, and the same-transmitter family remains
+  co-moving and inactive. The resulting zero ledger makes the straight trace
+  exactly compatible.
+- Excluded immediate exact rebound because it requires velocity jumps of
+  magnitude $2c_f$, contradicting the zero event impulse. A later turnaround
+  remains possible if the remainder universe-wide wake ledger supplies it.
+- Kept the queue item open pending a Jack K. Hale delayed-history review and a
+  Lars Hörmander measure-typing check. General local existence and uniqueness,
+  stability, breather behavior, and canonical adoption remain unproved.

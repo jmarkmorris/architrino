@@ -28,13 +28,16 @@ Lipschitz root geometry, measure transfer, regular-chart proof program, and
 queue structure.
 
 All five responses are integrated. The packet is not ready for a Tao-style
-well-posedness review as a posed evolution problem. It is ready only for the
-narrower FSC-006 distributional-formulation work. FSC-006a must first prove or
-refute the truncated far-part weak-* limit under explicit branch-collapse,
-receiver-trace, kernel, label, competing-stratum, and perturbation-family
-hypotheses. FSC-006b/FSC-005 then owns the zero-range raw-measure tail,
-complete-ledger sign, and projected remainder. No contact measure follows from
-root geometry or the transfer identity alone.
+well-posedness review as a posed evolution problem. The narrower FSC-006a
+distributional theorem is now complete: under explicit branch-collapse,
+receiver-trace, kernel, label, and competing-stratum hypotheses, the ordinary
+far parts converge locally in total variation, have exact residue
+$K/(2c_f^2)$, and admit no finite closed-endpoint Radon limit. FSC-006b/FSC-005
+now has a constructed proposed exact-mirror event-family restart, complete-
+ledger ownership rule, retained-history splice, and isolated compatible right
+trace. It remains pending delayed-history and measure review and does not yet
+prove local uniqueness. No event response follows from the positive-range
+theorem alone.
 The frozen-ledger constrained layer is now closed; FSC-007 separately owns the
 coupled regular history-to-ledger theorem and supplies no contact or post-event
 history.
@@ -67,8 +70,10 @@ zero-range tail, delayed ledger, and event dispositions are.
 | [Hörmander Review Response](lars-hormander-review-response-2026-07-31.md) | Preserves the supplied review text and every Hörmander finding with its disposition. | Review integration record; no distributional limit or event coefficient is adopted. |
 | [Thurston Review Response](bill-thurston-review-response-2026-08-01.md) | Preserves every substantive Thurston finding and its disposition. | Review integration record; no topology, contact robustness, existence, or retention claim is adopted. |
 | [Einstein Review Response](albert-einstein-review-response-2026-08-01.md) | Preserves all eight Einstein findings, their corrected scopes, and the explicit quotient-lemma counterexample. | Review integration record; no quotient response, strict sibling, event selector, preferred-frame result, or Lorentz result is adopted. |
-| [Einstein Second Review Response](albert-einstein-second-review-response-2026-08-01.md) | Preserves and independently disposes every second-pass theorem, program reformulation, and structural claim. | Review integration record; per-channel classification is not a global event law, the far-part limit remains a target, and MEC-007 is not an exclusive activation gate. |
-| [Near-Contact Separating-Trace Theorem Target](near-contact-separating-trace-incompatibility-theorem-target.md) | States the limited two-channel BV/Radon prove-or-refute target. | FSC-005 is blocked on FSC-006a/FSC-006b; theorem target, not a result. |
+| [Einstein Second Review Response](albert-einstein-second-review-response-2026-08-01.md) | Preserves and independently disposes every second-pass theorem, program reformulation, and structural claim. | Historical review integration record; the later FSC-006a artifact completes the conditional far-part theorem, while per-channel classification is still not a global event law and MEC-007 is not an exclusive activation gate. |
+| [Coincidence Open-Interval Convergence and Endpoint Residue](coincidence-open-interval-convergence-and-endpoint-residue.md) | Proves the labeled positive-range convergence theorem, fixed-far-part receiver atom, exact mirror residue, and no-finite-Radon endpoint theorem under explicit moving-trace hypotheses. | Completed FSC-006a prerequisite; supplies no event response, outgoing history, or right trace. |
+| [Mirror Event-Family Completion and Right-Trace Construction](mirror-event-family-completion-and-right-trace.md) | Constructs the proposed exact-mirror event ownership, retained-history splice, remainder-driven restart equation, and isolated compatible trace. | FSC-006b construction pending Hale delayed-history and Hörmander measure review; no general existence or uniqueness. |
+| [Near-Contact Separating-Trace Theorem Target](near-contact-separating-trace-incompatibility-theorem-target.md) | States the limited two-channel BV/Radon prove-or-refute target. | FSC-006a prerequisite complete; FSC-005 remains blocked on FSC-006b; theorem target, not a result. |
 
 ## Exact proposed foundation under review
 
@@ -177,13 +182,12 @@ are different mathematical records. Only the zero jump has a proposed value.
 8. **Candidate topology unproved.** The proposed BV/Radon and weak-* topology
    has not been shown sufficient, closed, or compatible with the delayed root
    construction.
-9. **FSC-006a far-part limit unproved.** Simple-branch total-variation
-   transfer is derived, and in the mirror chart it localizes divergence to the
-   zero-range endpoint. The proposed far-part atom still requires uniform
-   branch collapse, receiver left-trace and kernel convergence at collapsing
-   reception times, label retention, competing-stratum routing, and
-   perturbation-family independence. The current topology alone does not
-   prove those moving-time limits.
+9. **FSC-006a far-part theorem completed conditionally.** Simple-branch
+   total-variation transfer and the explicit branch-collapse, receiver
+   left-trace, kernel, label, and competing-stratum hypotheses now yield local
+   total-variation convergence, the exact endpoint residue, and the
+   no-finite-Radon endpoint theorem. The earlier topology alone still does not
+   imply those moving-time hypotheses.
 10. **Guard ownership conditions unproved.** The half-open convention,
     two-channel ownership, endpoint/family separation, competing-strata
     routing, and outgoing restart record are declared requirements, not
@@ -196,17 +200,16 @@ are different mathematical records. Only the zero jump has a proposed value.
    phase space, history-to-ledger regularity, position coupling,
    inactive-gap persistence, fixed-point theorem, and post-event history
    compatibility remain formulation or theorem obligations.
-13. **FSC-006b/FSC-005 blocked.** The prescribed straight trace has a
-    $\delta^{-2}$ slowing row, but the limited two-channel BV/Radon theorem
-    requires the zero-range receiver-measure tail, signed complete-leading
-    coefficients, competing-strata routing, and projected-remainder control.
-    Purely forward leading cancellation is necessary for that leading term to
-    vanish but is not sufficient for a finite effective Radon measure.
-14. **No open post-contact existence or uniqueness.** The selected reset gives
-    an outgoing contact one-jet only.
-15. **Outgoing retained history unresolved.** No finite response measure and
-    complete outgoing record carries the solution through a positive time
-    interval after contact.
+13. **FSC-006b/FSC-005 construction pending review.** The exact-mirror restart
+    now books the matched family once, preserves both labeled histories, and
+    restarts from the complete remainder ledger. The earlier projected-
+    remainder incompatibility target remains a separate theorem question.
+14. **General open post-coincidence existence or uniqueness unproved.** The
+    isolated straight trace is exactly compatible, but a no-Zeno census-
+    stability or history-to-ledger theorem is still required for uniqueness.
+15. **Outgoing retained history constructed only in the narrow proposal.** The
+    labeled splice and restart equation are explicit for the exact mirror
+    event; broader event classes and non-isolated existence remain unresolved.
 16. **Per-channel geometry is not an event law.** Positive-delay geometry for
     one cap-admissible ordered channel is now classified as empty, simple
     singleton, degenerate singleton, or rigid characteristic interval. The
@@ -261,13 +264,14 @@ formulation that a narrow reviewer can assess against these conditions:
 5. aggregation is invariant under reparameterization of the same geometric
    stratum;
 6. a candidate topology and solution class are stated;
-7. FSC-006a proves or refutes the truncated far-part weak-* limit with uniform
-   branch collapse, receiver-trace and kernel convergence, label retention,
-   competing-stratum routing, and perturbation-family independence;
-8. any restart supplies a complete outgoing retained-history, source,
-   ownership, and receiver-measure record; and
-9. FSC-006b/FSC-005 separately states the zero-range tail and projected-
-   remainder problem without applying the response to an infinite raw ledger.
+7. the completed FSC-006a theorem is consumed with its uniform branch
+   collapse, receiver-trace and kernel convergence, label retention, and
+   competing-stratum routing hypotheses;
+8. the constructed exact-mirror restart's outgoing retained-history, source,
+   ownership, and receiver-measure record passes independent review; and
+9. FSC-006b/FSC-005 keeps the ordinary approach, finite event aggregate, and
+   projected-remainder questions separately typed without applying the
+   response to an infinite raw ledger.
 
 Passing this gate would make the packet ready for one narrow
 distributional-formulation review. It would not yet make the packet ready for
@@ -298,7 +302,7 @@ The Hale, Hörmander, Thurston, and two Einstein reviews are complete. No Tao
 review or other successor review has been contacted or started, and nothing
 has been published.
 
-Closure goal: prove or refute FSC-006a's far-part limit under the added trace
-and collapse hypotheses, resolve the FSC-006b/FSC-005 zero-range tail, and
-then prove or refute FSC-007's regular history-to-ledger theorem before posing
-any full well-posedness review.
+Closure goal: independently review and reconcile the constructed
+FSC-006b/FSC-005 exact-event family and right trace, then prove or refute
+FSC-007's regular history-to-ledger theorem before posing any full
+well-posedness review.

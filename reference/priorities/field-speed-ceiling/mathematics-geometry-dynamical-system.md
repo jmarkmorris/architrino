@@ -66,14 +66,16 @@ boundary of the same proposal.
 | Proposed path-speed-ceiling response: form the full ordinary wake ledger, then prevent only the part of net acceleration that would exceed the ceiling | `proposed foundational law` | All constrained cases | This is the proposed change to the Master Equation. It applies only where the ordinary ledger is complete and finite; it does not define what happens at coincidence, tangency, or any other nonordinary event. For $c_a<c_f$, the path-speed gap excludes transmitter-side tangency, but it does not by itself resolve coincidence or other exceptional events. |
 | Results on already-supplied, well-behaved wake ledgers and ordinary simple roots | `derived regular-chart results` | All constrained cases | Given a finite ordinary ledger, the proposed path-speed-ceiling response has one regular velocity evolution. These results classify ordinary root channels and transfer variation along a simple root branch. They do not construct the coupled delayed history, decide an event, or solve coincidence. |
 | Limited rule for an isolated same-transmitter crossing | `proposed admission convention` | $c_a>c_f$ only | This applies only to that one stated geometry. For $c_a<c_f$, a positive-delay same-transmitter crossing is excluded by the speed gap. For $c_a=c_f$, equality can occur only on a rigid co-moving interval, not as an isolated crossing. An isolated self-crossing is therefore relevant only if the path domain permits motion above $c_f$. It does not decide partner coincidence, zero separation, folds, or general tangent-root events. |
-| Immediate zero-impulse outcome at the exact head-on partner coincidence | `proposed event postulate; derived algebraic value for a candidate projected-exhaustion event extension` | $c_a=c_f$ only | The minimal postulate is limited to the idealized mirror-collinear instant and supplies only immediate outgoing position--velocity data. The canonical radial vector kernel does not give equal-and-opposite raw vectors: they reinforce in each local receiver ledger. A candidate event extension of the boundary projection gives zero after every complete finite local truncation, independently of the label-preserving positive exhaustion or orientation-preserving carrier parameterization. Adopting that extension and assigning an outgoing history remain separate law choices. |
+| Immediate zero-impulse outcome at the exact head-on partner coincidence | `proposed event postulate; derived consequence of the proposed common impulse-event law under exact mirror matching` | $c_a=c_f$ only | The minimal postulate is limited to the idealized mirror-collinear instant and supplies only immediate outgoing position--velocity data. On the proposed common event carrier, the two finite raw source-history atoms have equal unsigned measure, opposite polarity, and common support. Their aggregate is zero, and any common linear event-to-acceleration map gives $\mathbf J_{i,-}=-\mathbf J_{i,+}$. Every other wake contribution remains in the net acceleration sum. Assigning an outgoing history remains a separate law choice. |
 | A full delayed-history state space, solution definition, and rules for carrying history through an event | `unmet formulation and theorem obligations` | All constrained cases | These are needed before claiming existence, uniqueness, continuation, or stability for the actual delayed system rather than for the pointwise response formula. |
 | A general rule for every other kind of nonordinary event or tangent root | `missing event-domain postulate` | All constrained cases | The ordinary positive-delay geometry is classified, but the document does not yet say how to admit, assign, update, or retain histories for all exceptional cases. Until it does, this is not a complete dynamical system. |
 | **Idealized collinear stress test** | — | — | — |
 | Assumed straight head-on motion after first reaching the proposed path-speed ceiling | `conditional hypothesis` | $c_a=c_f$ only | This uses the unverified conditional mirror-encounter input, the proposed path-speed-ceiling response, and the limited same-transmitter crossing rule. |
 | What the document can calculate on the open approach before head-on coincidence | `derived conditional result` | $c_a=c_f$ only | It counts the ordinary roots, gives the exact complete-interval raw acceleration integral and proves that it is finite, shows that the proposed ceiling response makes the corresponding effective increment zero, identifies the nonordinary-event obstruction, and gives an immediate no-jump velocity direction. It does not produce a path beyond coincidence. |
+| Open-interval receiver-measure limit and endpoint residue | `derived conditional distributional theorem` | $c_a=c_f$ mirror approach | On each labeled injective simple-root resolution satisfying the declared branch-collapse, moving-trace, kernel, positive-$D_r$, and ownership hypotheses, the pulled-back ordinary measures converge locally in total variation before coincidence. The exact mirror endpoint residue is $K/(2c_f^2)$, and no finite vector-Radon ordinary measure exists on a closed endpoint neighborhood. This supplies no endpoint event measure or continuation. |
 | Receiver-side frozen root and swept-source reception | `proposed foundational refinement with derived regular-chart equivalence` | $c_a=c_f$ boundary only | A receiver can remain on one partner wakefront while its received-emission time stays constant. The proposal records that branch as inactive rather than repeatedly adding an ordinary row. Where $D_t,D_r>0$, it reproduces the canonical ordinary measure exactly. It does not yet define event atoms, select a complete outgoing history, or classify a $D_t=D_r=0$ characteristic interval if the selected trace produces one. |
-| Exact-coincidence raw event carrier and vector-pairing test | `derived canonical radial-vector no-go and projected-exhaustion algebra; event extension remains proposed` | Exact equal-magnitude, opposite-polarity mirror coincidence only | On the label-preserving cap carrier, the scalar source pushforward is zero, but the canonical oriented factors satisfy $q_1\mathbf n_1+q_2\mathbf n_2=2q\mathbf e\ne\mathbf0$. The corresponding vectors reinforce in each receiver's local ledger and cancel only after summing across different receivers, which the Master Equation does not do. A candidate event extension of the boundary projection maps every complete finite local exhaustion to zero. Using that extension as the nonordinary-event update remains a new law choice and is not raw vector cancellation. |
+| Common impulse-event measure and exact mirror cancellation | `proposed nonordinary-event aggregation law with derived matched cancellation theorem` | Exact equal-magnitude, opposite-polarity mirror coincidence only | Retain both source histories on the common cap carrier and push their equal unsigned, opposite-signed raw measures to the shared event before assigning a response. The event aggregate is zero, and a common linear event map proves $\mathbf J_{i,-}=-\mathbf J_{i,+}$. This does not make wakes interact, delete provenance, alter the remaining universe-wide wake sum, or select an outgoing history. |
+| Exact-mirror event-family completion and right-trace restart | `constructed proposed event law with derived isolated-trace compatibility; pending review` | Exact isolated mirror event, $c_a=c_f$ | Book the matched family once, preserve position, velocity, and both labeled histories, silence only a noncrossing frozen or characteristic continuation of that already-owned family, and restart from the complete untouched remainder ledger. The isolated straight trace has a zero post-event ledger and is compatible; immediate rebound is excluded by zero impulse. General existence, uniqueness, and non-isolated outcomes remain unproved. |
 | **Constructive binary program** | — | — | — |
 | Prescribed circular binary family at path speed $c_a$ | `derived prescribed-chart compatibility theorem under the proposed foundational law` | $0<c_a\le c_f$ | On the isolated two-label periodic chart, the unique partner angle satisfies $\xi_\lambda=\lambda\cos\xi_\lambda$, with $\lambda=c_a/c_f$, and the radius and frequency are selected by the displayed Section 11.1 formulas. This does not establish a realized history, capture, stability, conservation, or selection of $c_a$. The $c_a=c_f$ endpoint is the separate Dottie specialization below. |
 | Exact prescribed circular binary at path speed $c_f$ | `derived exact prescribed-chart compatibility theorem under the proposed foundational law` | $c_a=c_f$ only | The two-member circular history has one ordinary partner wake, a radius-independent delay angle, and the required inward turning component after the proposed response removes its forward speed-increasing part. This selects one radius for that prescribed chart. It does not prove capture, retained dynamics, stability, or a physical binary. |
@@ -482,20 +484,22 @@ function one is an admissible global test function.
    component.
 
 For a ceiling-admissible perturbation that resolves the coincidence stratum
-into ordinary isolated simple roots, the immediately meaningful target is
-local weak-* convergence on compact subsets of the open source-time interval
-$s<T_{\mathrm c}$, under an explicit delay-window, trace, kernel, and
-label-preservation hypothesis. No finite vector-Radon endpoint measure at
-$s=T_{\mathrm c}$ is asserted here.
+into an injective ordinary simple-root branch, the
+[open-interval convergence theorem](coincidence-open-interval-convergence-and-endpoint-residue.md)
+now proves local total-variation, hence local weak-*, convergence on compact
+subsets of the open source-time interval $s<T_{\mathrm c}$. Its hypotheses
+explicitly require eventual branch coverage, uniform branch collapse,
+moving-time kernel convergence, a positive and convergent $D_r$, retained
+labels and polarities, and separate routing of competing strata. The preceding
+candidate topology alone does not imply those moving-trace hypotheses.
 
-For the exact mirror chart, the separately calculated endpoint variation has
-the residue $K/(2c_f^2)$. Matching that residue across perturbation families is
-a proposed consistency target, not an invariant theorem: it requires uniform
-asymptotics and an explicitly ordered limiting procedure. Failure of local
-variation control, loss of source labels, parameterization-dependent
-aggregation, or different admissible-family residues refutes the candidate
-reduction. Convergence of root counts alone proves none of these measure
-statements.
+For the exact mirror chart, the theorem also proves the parameterization-
+independent endpoint variation residue $K/(2c_f^2)$ with the ordered limit
+$n\to\infty$ on each positive-range truncation followed by
+$\rho\downarrow0$. It simultaneously proves that no finite vector-Radon
+ordinary measure can own a closed neighborhood of $s=T_{\mathrm c}$.
+Convergence of root counts alone proves none of these measure statements, and
+the theorem supplies no endpoint event datum.
 
 The ceiling-admissible root-classification theorem below implies that one ordered
 channel can have at most one isolated simple root. The analysis therefore retains
@@ -552,20 +556,74 @@ $|dr|=c_f|ds|$). The radial inverse-square tail and the corresponding
 emission-time tail are therefore the same calculation under this change of
 variables; changing the parameter does not create additional emitted measure.
 
-A remaining theorem must prove or refute a parameterization-independent weak-*
-limit for the truncated far part. It requires uniform branch
-collapse, receiver left-trace and kernel convergence along the collapsing
-reception times, label retention, competing-stratum routing, and independence
-from the admissible perturbation family. The current topology's uniform path
-and $L^1$-velocity convergence does not by itself supply those moving-time
-trace limits. The remaining issue is the zero-range raw-measure tail, complete-ledger sign,
-and projected-remainder control.
+The parameterization-independent far-part theorem is now complete under those
+explicit hypotheses. Write
+
+$$
+d\boldsymbol\mu_n(s)
+=
+\delta_{(i\leftarrow j)}\otimes
+\frac{\mathbf K_n(T_n(s),s)}{D_{r,n}(T_n(s),s)}\,ds.
+$$
+
+On every compact $J\Subset(-\infty,T_{\mathrm c})$, convergence of the moving
+kernel in $L^1(J)$, uniform convergence of $D_{r,n}$ with a positive floor,
+and retention of the channel label give
+
+$$
+\left\|
+\boldsymbol\mu_n-\boldsymbol\mu_\ast
+\right\|_{\mathrm{TV}(J)}
+\longrightarrow0.
+$$
+
+If the inverse branches satisfy $T_n(s)\to T_{\mathrm c}$ uniformly on $J$,
+their receiver-time pushforwards converge to
+
+$$
+\left(\int_J
+\frac{\mathbf K_\ast(T_{\mathrm c},s)}
+{D_{r,\ast}(T_{\mathrm c},s)}\,ds\right)
+\delta_{T_{\mathrm c}}.
+$$
+
+For the exact mirror channel and
+$J_{\rho,\rho_0}=[T_{\mathrm c}-\rho_0,T_{\mathrm c}-\rho]$,
+
+$$
+|\boldsymbol\mu_\ast|(J_{\rho,\rho_0})
+=
+\frac{K}{2c_f^2}
+\left(\frac1\rho-\frac1{\rho_0}\right),
+$$
+
+so
+
+$$
+\boxed{
+\lim_{\rho\downarrow0}
+\rho\left[
+\lim_{n\to\infty}
+|\boldsymbol\mu_n|(J_{\rho,\rho_0})
+\right]
+=
+\frac{K}{2c_f^2}.
+}
+$$
+
+This residue uses absolute lookback time, equivalently causal range divided by
+$c_f$, and is invariant under injective reparameterization of the same
+branch. The divergent right side before multiplication by $\rho$ rules out a
+finite vector-Radon weak-* limit on any closed endpoint neighborhood. The
+remaining issue is the separately typed exact event, complete-ledger
+ownership, and right-trace selection.
 
 Plainly: a small transmitter Jacobian makes one instantaneous row large, but
 it also squeezes the receiver-time interval carrying that row. Away from zero
-range those effects cancel in integrated size. The mirror chart's unresolved
-singularity is the inverse-square endpoint, and even its finite far part still
-needs a theorem saying every admissible approximation gives the same limit.
+range those effects cancel in integrated size. Under the theorem's explicit
+moving-trace hypotheses, every resolving family has the same finite far-part
+limit and the same endpoint strength. The endpoint itself remains outside the
+ordinary finite-measure law.
 
 #### Open-domain fold total-variation negative control
 
@@ -1822,9 +1880,9 @@ decide any other zero-Jacobian event.
    partner coincidence and return only its outgoing coincidence immediate position-and-velocity data.
 4. Define the source-provenanced receiver-side coincidence and competing-stratum
    measures in the candidate Radon topology.
-5. Prove or refute local weak-* convergence on the open source-time interval,
-   together with the exact-chart endpoint residue, under explicit
-   branch-collapse, trace, kernel, label, and competing-stratum hypotheses.
+5. Consume the completed local total-variation convergence theorem and exact
+   $K/(2c_f^2)$ endpoint residue under its explicit branch-collapse, trace,
+   kernel, label, and competing-stratum hypotheses.
 6. Resolve the mirror chart's zero-range raw-measure tail,
    complete-ledger leading sign, and projected-remainder integrability.
 7. In parallel, use the root-count and root-stability lemmas to
@@ -2161,92 +2219,81 @@ which diverges as $\varepsilon\downarrow0$. Thus the complete cap-family
 pile-up does not acquire a finite individual impulse merely by integrating the
 current inverse-square kernel over the continuous interval.
 
-Place the two mirror cap histories on the label-preserving carrier
+That divergent source-swept coefficient is not the raw impulse-event measure.
+It is what results from extending the inverse-square ordinary receiver kernel
+onto a $D_t=0$ family where the ordinary coarea row is unavailable. The common
+raw carrier instead uses the finite source-history measure. Put
 
 $$
-\mathcal C_{\mathrm{event}}
-=
-(0,q_\ast]\times\{1,2\},
+\mathcal C_E=(0,q_\ast]\times\{+,-\},
 $$
 
-with polarity and arrival-direction marks
+and let $\pi_E$ send every carrier point to the shared event
+$E=(T_{\mathrm c},\mathbf x_{\mathrm c})$. Exact mirror symmetry gives
 
 $$
-(q_1,\mathbf n_1)=(q,\mathbf e),
+d\mathsf M_+=+q\,d\tau\otimes\delta_+,
 \qquad
-(q_2,\mathbf n_2)=(-q,-\mathbf e).
+d\mathsf M_-=-q\,d\tau\otimes\delta_-.
 $$
 
-Forgetting the labels and directions gives the exact scalar identity
-$q_1+q_2=0$. The canonical radial vectorization does not give the formerly
-proposed matched identity. Instead,
+Their event pushforwards are finite and exactly opposite:
 
 $$
-q_1\mathbf n_1+q_2\mathbf n_2
+(\pi_E)_\#\mathsf M_+
 =
-q\mathbf e+(-q)(-\mathbf e)
++qq_\ast\delta_E,
+\qquad
+(\pi_E)_\#\mathsf M_-
 =
-2q\mathbf e
-\ne\mathbf0.
+-qq_\ast\delta_E.
 $$
 
-Thus mirror reflection reverses both source polarity and arrival direction;
-the two reversals make the oriented contributions equal rather than opposite.
-The direct receiver-kernel calculation gives the same result. At receiver
-label $1$, both truncated cap contributions lie on $+\mathbf e$; at receiver
-label $2$, both lie on $-\mathbf e$. They cancel only after adding the totals
-of two different receivers, whereas the Master Equation forms one complete
-local ledger for each receiver.
-
-Plainly: the positive and negative source amounts cancel as scalars, but the
-arrows do not. The negative wake arrives from the opposite side, so its minus
-sign reverses its already reversed direction. Each architrino therefore has a
-forward pile-up in its own ledger.
-
-The desired raw-vector identity is consequently refuted for the current
-source polarity, radial geometry, and receiver kernel. The full proof is given
-in the [raw event carrier and vector-pairing test](raw-event-carrier-vector-pairing-no-go.md).
-For every positive cutoff, however, each receiver's complete truncated local
-vector is finite and purely forward. Section 10.9 proves the stronger fact that
-the same statement holds for every label-preserving positive carrier
-exhaustion. If a nonordinary event completion is declared to
-
-1. truncate the cap family at $\tau\ge\varepsilon$;
-2. form the complete local vector sum for one receiver;
-3. apply the candidate event extension of the boundary projection once to that
-   complete finite sum; and
-4. take the effective limit as $\varepsilon\downarrow0$,
-
-then every truncated effective vector is zero and the effective limit is
+Therefore
 
 $$
-\lim_{\varepsilon\downarrow0}
-\mathcal P_{\mathbf V_i}
+\boxed{
+(\pi_E)_\#(\mathsf M_++\mathsf M_-)=0.
+}
+$$
+
+For any common linear event-to-acceleration map $\mathcal L_{i,E}$ applied
+after this aggregation, define formal matched coefficients by
+
+$$
+\mathbf J_{i,\pm}\delta_E
+=
+\mathcal L_{i,E}
 \!\left(
-\int_{\varepsilon}^{q_\ast}
-d\boldsymbol\mu_{i,\mathrm{local}}(\tau)
-\right)
-=
-\mathbf0.
+\pm qq_\ast\delta_E
+\right).
 $$
 
-Cutoff-shape and orientation-preserving parameterization independence are
-derived because these choices change only the nonnegative magnitude of the
-finite forward vector, which $\mathcal P_{\mathbf V_i}$ always removes. The
-remaining issue is a law choice: applying that projection to an aggregated
-event increment is not implied by the regular ceiling response, which is
-defined for complete finite ordinary acceleration ledgers. Adopting the
-projected exhaustion as the event-family completion must also preserve the
-rule that the event projection acts after the complete local sum, never row by
-row.
+Linearity proves
 
-Plainly: doing the full integral helps in two ways. It proves that the open
-travel segment causes no effective speed change, and it shows exactly why the
-coincidence pile-up cannot be removed by claiming that its two canonical
-vectors cancel. The zero effective exhaustion value is proved for the
-candidate event extension of the boundary projection, but using that extension
-as the event update is new event-law data and does not select a path after
-coincidence.
+$$
+\boxed{
+\mathbf J_{i,-}=-\mathbf J_{i,+},
+\qquad
+\mathbf J_i^{\mathrm{imp}}=\mathbf0.
+}
+$$
+
+The event operation aggregates first and applies the map once. It does not
+give two successive kicks. Every other ordinary, continuous, or unmatched
+wake contribution remains in the universe-wide wake sum and continues to
+determine the net acceleration.
+
+Plainly: the open travel integral and the coincidence impulse are different
+objects. The regular partner contribution is finite and projected away on the
+open segment. At coincidence, the two matched finite source-history atoms
+have equal magnitude and opposite sign on one common event carrier, so their
+impulse entries add to zero. Nothing happens to any other wake in the sum.
+
+The full definition and proof are given in the
+[common impulse-event measure and exact mirror cancellation](common-impulse-event-measure-and-mirror-cancellation.md).
+The aggregation law remains proposed nonordinary-event data and does not
+select a path after coincidence.
 
 #### What this establishes, conditionally
 
@@ -2317,14 +2364,13 @@ specifies position and one-sided velocity at $T_{\mathrm c}$; it does not imply
 a right-hand path expansion, separation, passage, or a solution on any interval
 $(T_{\mathrm c},T_{\mathrm c}+\varepsilon)$.
 
-Section 10.9 gives the exact raw-carrier pairing test. It proves that the
-canonical radial vectors reinforce in each local receiver ledger rather than
-cancel. It also identifies a different candidate route to the same zero
-velocity update: apply a candidate event extension of the boundary projection
-to each complete finite forward cutoff sum. The resulting zero effective limit
-and its positive-exhaustion independence are derived, but that event-family
-completion is not yet adopted and does not enlarge these immediate data into a
-continuation.
+Section 10.9 defines the proposed common impulse-event carrier. Under exact
+mirror matching, the two finite raw source-history pushforwards are equal and
+opposite, and a common linear event-to-acceleration map proves
+$\mathbf J_{i,-}=-\mathbf J_{i,+}$. This gives an event-level derivation of
+the same zero velocity update while leaving every other wake contribution in
+the net acceleration sum. The aggregation law is not yet adopted and does not
+enlarge these immediate data into a continuation.
 
 Plainly: the postulate supplies outgoing position-and-velocity data at the
 coincidence. It does not yet supply even a short path after the coincidence.
@@ -2453,15 +2499,15 @@ is presently a derived continuation law.
   singular terms.** A symmetric principal-value cancellation is not an
   ordinary receiver-time integral. Within the declared bounded-variation
   class, cancellation on disjoint time supports cannot cure divergent total
-  variation. Exact-coincidence scalar source amounts cancel after a
-  label-forgetting pushforward, but Section 10.9 proves that the canonical
-  radial vectors reinforce in each receiver's local ledger.
-- **Complete-local-ledger forward-ray cutoff completion.** For every positive
-  cutoff, each receiver's cap-family vector sum is finite and purely forward,
-  so the proposed ceiling response removes it. Taking the effective limit as
-  the cutoff vanishes is the leading event-law target. It still requires a
-  proof of cutoff and parameterization independence and an extension of the
-  response from finite ordinary ledgers to this nonordinary family.
+  variation. This is different from Section 10.9's common impulse-event
+  measure, which pairs equal-and-opposite finite raw source-history atoms on
+  the same event carrier before any receiver-time impulse is assigned.
+- **Common impulse-event superposition.** Section 10.9 defines the leading
+  proposed event law. It preserves the two labeled histories, aggregates their
+  exactly matched opposite-signed raw measures on the common event carrier,
+  proves $\mathbf J_{i,-}=-\mathbf J_{i,+}$ under one common linear event map,
+  and leaves the remaining wake sum untouched. It does not select or construct
+  the outgoing history.
 - **A finite short-range cutoff.** Replacing the inverse-square factor by a
   bounded kernel introduces a new length or density scale. The finite total
   wake amount on every nonzero sphere does not determine that scale.
@@ -2638,174 +2684,129 @@ prescribed-history verification, not a selected or unique continuation. The
 present law also lacks a general coincidence atom, stability, causal
 decoupling under perturbation, and any action or conservation account.
 
-#### Raw event carrier and canonical vector-pairing test
+#### Common impulse-event measure and exact mirror cancellation
 
-Put the shared incidence event at $(T_{\mathrm c},\mathbf x_{\mathrm c})$
-and use cap lookback time $\tau=T_{\mathrm c}-s\in(0,L]$. The smallest
-label-preserving event carrier supported by the current model is
-
-$$
-\mathcal C_{\mathrm{event}}
-=
-(0,L]\times\{1,2\},
-$$
-
-with source-polarity and arrival-direction marks
+Put the shared event at $E=(T_{\mathrm c},\mathbf x_{\mathrm c})$, use cap
+lookback time $\tau=T_{\mathrm c}-s\in I=(0,L]$, and retain source labels on
 
 $$
-q_1=+q,
+\mathcal C_E=I\times\{+,-\}.
+$$
+
+Let $\nu$ be the common finite positive raw wake measure on $I$. Exact mirror
+symmetry means that the two cap histories have the same unsigned measure and
+common event support, with opposite polarity:
+
+$$
+d\mathsf M_+=+q\,d\nu\otimes\delta_+,
 \qquad
-q_2=-q,
-\qquad
-\mathbf n_1=+\mathbf e,
-\qquad
-\mathbf n_2=-\mathbf e.
+d\mathsf M_-=-q\,d\nu\otimes\delta_-.
 $$
 
-If labels and directions are forgotten, the scalar signed pushforward is
-zero: $(q_1+q_2)d\tau=0$. That is an exact scalar source identity. It is not a
-vector wake or a receiver acceleration.
-
-Plainly: the carrier records which source emitted each part of the cap, its
-positive or negative polarity, and the side from which its front reaches the
-common event. If those directions are discarded, the positive and negative
-amounts cancel.
-
-For any receiver-independent radial vectorization compatible with the current
-line-of-action geometry, the oriented factor is proportional to
-$q_j\mathbf n_j$. Mirror symmetry sends
-$(q_1,\mathbf n_1)$ to $(-q_1,-\mathbf n_1)$, and therefore
+Let $\pi_E$ send all matched carrier points to $E$. Then
 
 $$
-q_2\mathbf n_2
+(\pi_E)_\#\mathsf M_+
 =
-(-q_1)(-\mathbf n_1)
++q\nu(I)\delta_E,
+\qquad
+(\pi_E)_\#\mathsf M_-
 =
-q_1\mathbf n_1,
+-q\nu(I)\delta_E,
 $$
 
-so
+and hence
 
 $$
 \boxed{
-q_1\mathbf n_1+q_2\mathbf n_2
+\mathsf M_E^{\mathrm{imp}}
+:=
+(\pi_E)_\#(\mathsf M_++\mathsf M_-)
 =
-2q\mathbf e
-\ne\mathbf0.
+0.
 }
 $$
 
-This is the canonical radial-vector pairing no-go theorem. The desired
-equal-and-opposite matched vector identity is false for the current polarity
-and propagation geometry. It could hold only under an additional event law
-with transformation behavior different from the present radial kernel.
+The two labeled histories remain in the provenance record. Only their
+response aggregate is zero.
 
-Plainly: the mirror operation flips the polarity and the arrow. Those two
-minus signs multiply to a plus, so the two oriented contributions reinforce.
+Plainly: the wakes pass through one another and remain recorded. Superposition
+does not make them interact; it adds their equal-and-opposite impulse entries
+on the common event carrier. That pair contributes zero to the acceleration
+bookkeeping.
 
-The direct receiver-kernel audit reaches the same conclusion. With
-$r=c_f\tau$, receiver label $1$ has
+For each receiver label $i$, let $\mathcal L_{i,E}$ be the proposed common
+linear event-to-acceleration map, applied after aggregation and without using
+the source label to choose different maps for the two matched members. Define
 
 $$
-\mathbf K_{1\leftarrow1}
+\mathbf J_{i,\pm}\delta_E
 =
-\mathbf K_{1\leftarrow2}
-=
-+\frac{\kappa q^2}{c_f\tau^2}\mathbf e,
+\mathcal L_{i,E}
+\!\left(
+\pm q\nu(I)\delta_E
+\right).
 $$
 
-while receiver label $2$ has
-
-$$
-\mathbf K_{2\leftarrow1}
-=
-\mathbf K_{2\leftarrow2}
-=
--\frac{\kappa q^2}{c_f\tau^2}\mathbf e.
-$$
-
-The two receiver-indexed totals cancel only if one adds across different
-receivers. The Master Equation does not use that aggregate to update either
-path; it forms one complete local ledger for each receiver and then applies
-that receiver's response. Because $D_t=0$ on the cap interval, these formulas
-are a direction-and-sign audit rather than finite ordinary rows.
-
-Plainly: the pair's two total vectors are mirror opposites, but each
-architrino's own ledger contains two forward contributions. A cancellation
-between the two architrinos cannot determine either architrino's response.
-
-The detailed proof is recorded in the
-[raw event carrier and vector-pairing test](raw-event-carrier-vector-pairing-no-go.md).
-It refutes the proposed raw-vector cancellation route. It does not refute a
-different nonordinary event completion.
-
-#### Candidate complete-local-ledger forward-ray completion
-
-Write
-
-$$
-\hat{\mathbf v}_1=\mathbf e,
-\qquad
-\hat{\mathbf v}_2=-\mathbf e.
-$$
-
-Let $E\subset(0,L]$ be any measurable carrier truncation bounded away from
-zero. The complete two-source local vector at receiver $i$ is
-
-$$
-\mathbf A_{i,E}
-=
-\alpha_E\hat{\mathbf v}_i,
-\qquad
-\alpha_E
-=
-\frac{2\kappa q^2}{c_f}
-\int_E\frac{d\tau}{\tau^2}
-\ge0.
-$$
-
-The candidate event extension of the proposed boundary projection therefore
-gives
+Linearity proves the matched vector identity
 
 $$
 \boxed{
-\mathcal P_{\mathbf V_i}(\mathbf A_{i,E})
+\mathbf J_{i,-}=-\mathbf J_{i,+},
+\qquad
+\mathbf J_i^{\mathrm{imp}}=\mathbf0.
+}
+$$
+
+Operationally, the event law aggregates first and applies the map once:
+
+$$
+\mathcal L_{i,E}
+\!\left(\mathsf M_E^{\mathrm{imp}}\right)
+=
+\mathcal L_{i,E}(0)
 =
 \mathbf0.
-}
 $$
 
-For every label-preserving positive exhaustion $E_n\uparrow(0,L]$,
+The formal split into $\mathbf J_{i,+}$ and $\mathbf J_{i,-}$ proves the
+identity; it does not assign two successive kicks.
+
+Plainly: neither architrino responds separately to the two impulses. The
+complete matched impulse is zero before response, so this pair supplies no
+velocity jump.
+
+Let $\boldsymbol{\mathsf R}_i$ contain every other wake contribution reaching
+receiver $i$, including ordinary continuous rows and unmatched event
+components. The universe-wide wake total is
 
 $$
-\boxed{
-\lim_{n\to\infty}
-\mathcal P_{\mathbf V_i}(\mathbf A_{i,E_n})
+\boldsymbol{\mathsf A}_i
 =
-\mathbf0.
-}
+\boldsymbol{\mathsf R}_i
++
+(\mathbf J_{i,+}+\mathbf J_{i,-})\delta_E
+=
+\boldsymbol{\mathsf R}_i.
 $$
 
-This effective value is independent of exhaustion shape and of any
-orientation-preserving reparameterization of the carrier. Those choices alter
-only the nonnegative coefficient $\alpha_E$, and the boundary response removes
-every finite nonnegative multiple of $\hat{\mathbf v}_i$.
+Thus only the exactly matched impulse pair disappears from the sum. No other
+wake is altered or ignored.
 
-Claim grade: `derived algebraic theorem for the candidate event extension of
-the proposed boundary projection`. The zero effective exhaustion value is
-proved within that extension. The model does not yet adopt the rule that this
-exhaustion owns the nonordinary event: the regular response is currently
-declared only for complete finite ordinary ledgers.
-Any adoption must retain both source labels, apply the response only after the
-complete local sum, and separately specify the outgoing retained history and
-right trace. It must not project individual wakes separately.
+The detailed definition and proof are recorded in the
+[common impulse-event measure and exact mirror cancellation](common-impulse-event-measure-and-mirror-cancellation.md).
 
-Plainly: take any finite portion of the pile-up, add every contribution seen by
-one architrino, and only then apply the speed-ceiling rule. The result is always
-zero because the complete vector points only forward. This remains true for
-every lawful positive exhaustion. The remaining question is whether the model
-adopts this limiting procedure as its event rule and what outgoing history
-that rule supplies.
+The ordinary inverse-square radial kernel does not contradict this result. On
+the cap family $D_t=0$, so the ordinary simple-root coarea row is undefined.
+Applying that radial kernel separately before event aggregation is an
+operation-order negative control, not the nonordinary impulse-event measure.
+
+**Common impulse-event claim grade:** `proposed nonordinary-event aggregation
+law with derived exact mirror cancellation`. The cancellation theorem is
+falsified by an exactly matched cap pair whose two raw source-history
+pushforwards have unequal support or unsigned weight, or by a declared common
+linear event map for which $\mathcal L_{i,E}(-\mu)\ne-\mathcal L_{i,E}(\mu)$.
+It supplies no outgoing retained history or right-trace selection.
 
 **Swept-source reception claim grade:** `proposed foundational refinement with
 derived regular-chart equivalence`. The equivalence is falsified by one simple
@@ -2813,21 +2814,6 @@ branch with $D_t,D_r>0$ on which the two displayed receiver measures differ.
 The frozen-root disposition is falsified only by an adopted alternative
 reception law or a derived source-to-receiver measure that assigns a nonzero
 ordinary row to a noncrossing front.
-
-**Raw-vector pairing claim grade:** `derived no-go theorem for the canonical
-radial kernel`. It is falsified by a sign- and direction-preserving derivation
-from the current Master Equation for which one mirror-matched pair satisfies
-$\mathsf W_++\mathsf W_-=\mathbf0$ in the same local receiver ledger. Scalar
-source cancellation or cancellation across different receivers does not meet
-that falsifier.
-
-**Forward-ray projected-exhaustion claim grade:** `derived algebraic theorem
-for a candidate event extension of the proposed boundary projection;
-nonordinary-event ownership remains proposed`. The zero-limit theorem is
-refuted by one label-preserving positive
-exhaustion for which the complete local vector is not a finite forward vector
-before projection or the post-sum effective limit is nonzero. It supplies no
-outgoing retained history or right-trace selection.
 
 Plainly: ordinary reception means that new wake history reaches the receiver.
 If the receiver merely rides one front forever, the proposal records that fact
@@ -2845,9 +2831,113 @@ mechanism, and a disposition for the resulting ceiling-exit self-wake event.
 
 Plainly: swept-source reception can remove the repeated $s=0$ outgoing row
 without creating a pull back toward the partner. The full cap census is
-consistent with straight-through free flight, but the missing event law still
-has to choose and construct that outgoing history. Nothing here gives a
-repeated approach-and-separation motion.
+consistent with straight-through free flight, but does not itself select an
+outgoing history. The next subsection supplies one proposed restart law and
+tests the trace it produces. Nothing here gives a repeated
+approach-and-separation motion.
+
+### 10.10 Proposed exact-mirror event completion and right-trace restart
+
+The
+[exact-mirror restart construction](mirror-event-family-completion-and-right-trace.md)
+combines the completed positive-range theorem, retained-cap incidence theorem,
+and common zero-impulse proposal. It selects the following narrow event law:
+
+1. aggregate the exactly matched cap family once at coincidence;
+2. preserve the position and velocity traces because the matched impulse is
+   zero;
+3. splice both complete labeled incoming histories to the outgoing histories;
+4. do not bill the already-owned family again while it remains frozen or
+   characteristic without sweeping new source history across the receiver;
+   and
+5. resume motion from the complete remainder ledger, including every external,
+   unmatched, and newly ordinary wake contribution.
+
+The fourth clause does not delete a wake. A retained emission that later
+becomes an isolated positive-delay root with $D_t,D_r>0$ returns to the
+ordinary ledger. The narrow guard admits no additional unclassified atomic
+event stratum at the same event; any such atom needs its own event law and
+cannot be silently set to zero. Ordinary continuous external wakes remain in
+the remainder ledger.
+
+Let $\mathbf A_i^{\mathrm{rest}}(\mathcal H^+;T)$ denote that complete
+post-event ledger. The right trace is defined by the restart equation
+
+$$
+\boxed{
+\begin{aligned}
+\mathbf V_i^+(T)
+&=
+\mathbf V_i(T_{\mathrm c}^-)
++
+\int_{T_{\mathrm c}}^T
+\mathcal P_{\mathbf V_i^+(u)}
+\left(
+\mathbf A_i^{\mathrm{rest}}(\mathcal H^+;u)
+\right)du,
+\\
+\mathbf X_i^+(T)
+&=
+\mathbf x_{\mathrm c}
++
+\int_{T_{\mathrm c}}^T\mathbf V_i^+(u)\,du.
+\end{aligned}
+}
+$$
+
+This is outcome-neutral: the event supplies no forward or backward kick, and
+the remaining universe-wide wake sum determines subsequent acceleration.
+
+For the strictly isolated two-label mirror chart, the trace
+
+$$
+\mathbf X_1^+(T)=+c_f(T-T_{\mathrm c})\mathbf e,
+\qquad
+\mathbf X_2^+(T)=-c_f(T-T_{\mathrm c})\mathbf e
+$$
+
+passes the complete post-event census. The older partner cap has no root, the
+coincidence endpoint is a frozen noncrossing branch, new partner emissions
+cannot catch either receiver, and the same-transmitter history is the already
+classified co-moving characteristic family. Therefore
+
+$$
+\mathbf A_1^{\mathrm{rest}}
+=
+\mathbf A_2^{\mathrm{rest}}
+=
+\mathbf0,
+$$
+
+and the displayed trace solves the restart equation exactly. Straight passage
+is thus a derived compatibility result under the proposed event completion,
+not an event instruction. This zero-ledger specialization assumes that the
+declared cap window contains every retained emission capable of a post-event
+reception; any older all-past contribution belongs to the untouched remainder
+ledger and is not silently excluded.
+
+An immediate exact rebound would instead require
+
+$$
+\Delta\mathbf V_1=-2c_f\mathbf e,
+\qquad
+\Delta\mathbf V_2=+2c_f\mathbf e,
+$$
+
+contradicting the zero event impulse and continuous velocity trace. A later
+turnaround remains possible if the untouched remainder ledger supplies it.
+
+Plainly: the event does not decide “go through” or “bounce.” It preserves the
+incoming velocities and resumes the complete wake calculation. In the
+artificially isolated case, that calculation contains no active post-event
+row, so the straight trace works. In a universe with other wakes, those wakes
+remain free to bend, slow, or eventually reverse the paths.
+
+**Restart claim grade:** `constructed proposed exact-mirror event law with
+derived isolated right-trace compatibility`. The construction does not yet
+prove local uniqueness among all nearby delayed histories. That upgrade needs
+a no-Zeno census-stability lemma or the regular history-to-ledger theorem, and
+the construction is pending an independent delayed-history and measure review.
 
 ## 11. Circular binaries
 

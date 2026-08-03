@@ -1,0 +1,276 @@
+# AAA Core Architecture v0
+
+## Status
+
+- Architecture id: `aaa_core/v0`
+- Stage: `first-draft`
+- Implementation authority: none
+- Contract status: proposed
+- Primary consumer: [Potential](../app-potential/priorities.md)
+- Forward solver: [EOM solver](../app-solver/priorities.md)
+
+## Mission
+
+AAA Core is the shared path factory and service substrate for the application ecosystem. It accepts path-related inputs from solvers, authored studies, imports, and existing products; validates and normalizes their contracts; stores and indexes them; converts them into purpose-appropriate encodings; exposes reproducible queries and transforms; schedules shared CPU/GPU work; and publishes versioned outputs for applications.
+
+`Factory` describes the flow of durable products through focused stations. It does not mean one central class, process, database, or executable owns every responsibility.
+
+## Governing Boundaries
+
+| Area | AAA Core owns | AAA Core does not own |
+| --- | --- | --- |
+| Paths | Logical model, validation, construction tools, representations, chunks, indices, streams, queries, transforms, and publication | Whether a candidate future path is dynamically realized |
+| Codecs | Interchange envelope, codec interface and registry, capability negotiation, conformance tests, common codecs, and authority/error propagation | Requiring every domain-specific encoder or decoder to live in Core or forcing every consumer through one encoding |
+| EOM | Request/response adapter, accepted-history ingestion, storage, routing, and progress propagation | Master EOM, root logic, integration, or acceptance decisions |
+| Scientific computation | Kernel registry, version binding, resource dispatch, input/output envelopes, caching, and provenance | Unreviewed equations or the scientific meaning of an observable |
+| Applications | Reusable clients and services | App-specific controls, visual grammar, or product composition |
+| Experiments | Import envelopes, calibration and uncertainty carriers, coordinate transforms, and source provenance | Reclassifying observer-level tracks as substrate histories |
+| Evidence | Authority propagation, source closure, error metadata, and failure preservation | Promotion of a diagnostic, display, or comparison into theory evidence |
+
+Plainly: Core moves and processes path information; it does not decide what nature does, what the EOM accepts, or what an experiment proves.
+
+## Factory Pipeline
+
+```mermaid
+flowchart LR
+    IN["EOM, authored, or experimental input"]
+    VALIDATE["Validate identity, coverage, scale, precision, and provenance"]
+    STORE["Encode, chunk, store, and index"]
+    QUERY["Select, filter, transform, and resample"]
+    COMPUTE["Dispatch versioned CPU or GPU kernels"]
+    PUBLISH["Publish streams and derived products"]
+    APPS["Potential and other applications"]
+
+    IN --> VALIDATE --> STORE --> QUERY --> COMPUTE --> PUBLISH --> APPS
+    STORE --> PUBLISH
+    QUERY --> PUBLISH
+```
+
+Plainly: every input passes through explicit checks before it becomes reusable, and every output remains traceable to the path records and operations that produced it.
+
+## Logical Product Family
+
+The first contract should define these conceptual product classes. Names are provisional until `aaa_core_path_interchange/v0` is ratified.
+
+| Product | Purpose |
+| --- | --- |
+| Path-set manifest | Binds path membership, semantics, frames, units, scale map, coverage, numeric policy, provenance, authority, chunks, and indices |
+| Path chunk | Immutable path segments for a declared membership and time slab, with representation and error metadata |
+| Codec capability | Identifies a versioned codec provider, its logical input/output types, representation profile, precision and error contract, access pattern, device layout, and permitted consumers |
+| Stream envelope | Orders accepted chunks or other products and carries predecessor, watermark, completion, halt, and replay state |
+| Query manifest | Selects paths, time, space, provenance, scale, uncertainty, or other declared fields without mutating sources |
+| Transform manifest | Records an ordered shaping or coordinate-transform pipeline with parameters and error/authority effects |
+| Kernel request | Binds a versioned scientific or analytical kernel to exact inputs, domain, numeric policy, and resource posture |
+| Derived-product manifest | Binds maps, summaries, ledgers, optimized candidates, or comparison outputs to complete source and operation provenance |
+| Resource profile | Declares latency, throughput, memory, storage, backend, precision, and failure limits |
+
+Plainly: applications exchange durable records with stable identities, not undocumented arrays whose meaning depends on which app happened to create them.
+
+## Canonical Logical Path Model
+
+A logical path record must be able to express:
+
+- stable dataset, path, segment, chunk, and version identities;
+- path semantics and source authority;
+- absolute-time coverage and a stable epoch-plus-offset or equivalent representation;
+- spatial coordinates, derivatives required by declared consumers, and coordinate frame;
+- normalized units and explicit scale maps, with $c_f=1$ in new numerical fixtures;
+- interpolant or segment basis and its domain;
+- numeric representation, precision, rounding or enclosure policy, and nonfinite behavior;
+- approximation, interpolation, source, and measurement uncertainty without conflating them;
+- event, discontinuity, branch, or topology markers that a codec may not smear across;
+- predecessor, content hash, provenance, and compatibility information;
+- indices and summaries that can be regenerated from the immutable source.
+
+Plainly: the logical model says what a path means. A codec says how that same meaning is stored and moved for a particular job.
+
+## Representation Profiles
+
+AAA Core should expose one logical model through at least three profiles:
+
+1. **Authoritative history:** lossless or certification-preserving, continuation-safe, and able to retain strict numeric and event information.
+2. **Precision-bounded analysis:** adaptive approximation accepted against a declared path or observable error budget.
+3. **Display stream:** multiresolution, low-latency, and GPU-ready, but prohibited as solver continuation input or stronger evidence.
+
+The profile selection is part of the request and output manifest. Core may transcode between profiles only when the target profile's error, provenance, event, and authority requirements can be met. Failure to meet them returns an exact refusal rather than a silently weaker product.
+
+Plainly: the same run can have a large authoritative record, a compact analysis record, and a very fast visual stream, while every consumer can tell which one it received.
+
+## Codec Placement And Extensibility
+
+AAA Core owns the codec control plane, not every codec implementation. The control plane defines the common interchange envelope, codec-provider interface, registry, version negotiation, source and output identities, error and authority rules, and conformance fixtures. Concrete encoder and decoder providers are placed according to the semantics they own:
+
+1. **Core interchange codecs:** common path chunks, manifests, streams, indices, and broadly reusable representation profiles live with AAA Core.
+2. **Domain or application codec providers:** EOM accepted-history codecs, Potential map-tile codecs, detector-family decoders, and other purpose-specific representations live with their owning solver, application, or import package and register capabilities with Core.
+3. **Private transient layouts:** an app-only vertex buffer, texture, or ephemeral cache may remain entirely inside the app when it is never published or treated as interchange. Once a second process or application consumes it, it must use a registered interchange contract.
+
+A registered codec capability must declare its logical input and output types, supported representation profiles, numeric and error behavior, event/branch preservation, streaming and random-access properties, CPU/GPU decode layout, deterministic version, authority effects, permitted consumers, and exact refusal cases. Capability negotiation selects a compatible provider; it may not silently weaken precision, coverage, provenance, or authority.
+
+Plainly: Core supplies the loading dock rules and provider catalog. The EOM solver, Potential, and experiment adapters can each build specialized loading equipment, but anything crossing the dock has a common label, measured limits, and a reproducible version.
+
+### Experimental Source And Derived Paths
+
+An experimental adapter first stores the source-native measurement payload without reinterpretation, together with detector schema, calibration, timing basis, uncertainty, selection history, reconstruction provenance, and content identity. Decoding or normalization then creates a new derived path product that references the immutable source payload and records every transform. Alternate experiment-specific path variants may coexist as siblings; none overwrites or masquerades as the raw measurement.
+
+Plainly: the original instrument record stays intact. A cleaned track, calibrated path, filtered signal, or model-coordinate view is a traceable derivative, so a later study can reproduce the conversion or choose a different one.
+
+## Service Modules
+
+The first draft separates these services behind contracts:
+
+1. **Path construction and validation:** build declared prescribed or imported paths, validate EOM histories, and reject incomplete semantics.
+2. **Manifest and identity:** content hashes, version compatibility, predecessor closure, authority, and source provenance.
+3. **Codec registry and negotiation:** common envelopes, provider discovery, capability matching, compatibility, conformance, and exact refusal behavior.
+4. **Shared codec providers:** broadly reusable encoding, decoding, adaptive chunking, and device-ready layouts; domain-specific providers remain with their owners.
+5. **Storage:** source-native evidence, authoritative and derived products, local and remote stores, caching, retention, and garbage-collection reachability.
+6. **Index and selection:** temporal, spatial, identity, provenance, event, and scale-aware random access.
+7. **Stream broker:** accepted-through watermarks, subscriptions, replay, reconnect, backpressure, halt propagation, and sealing.
+8. **Query and transform:** immutable filters, coordinate transforms, resampling, shaping, and derived-view cache identity.
+9. **Kernel registry and compute dispatch:** versioned scientific kernels, CPU reference routes, GPU bulk queues, difficult-row return, precision escalation, and bounded reductions.
+10. **Publication and catalog:** provisional and sealed products, discovery, source closure, retention, and application subscriptions.
+11. **Application client:** thin typed access to the same contracts without app-local path logic.
+
+These are responsibility boundaries, not yet deployment boundaries. Several may begin in one process, but they should not merge their contracts or data ownership.
+
+Plainly: Core can start small without becoming tangled; services can later split across processes or machines without changing what their data means.
+
+## Real-Time Data Plane
+
+For an accepted EOM stream, Core should perform this sequence:
+
+1. receive and validate an immutable accepted history chunk;
+2. verify stream identity, predecessor closure, content hash, scale map, and numeric policy;
+3. commit it to the authoritative store and advance the source watermark atomically;
+4. update indices and schedule subscribed queries or kernels;
+5. transcode only the products required by active consumers;
+6. publish derived chunks with source, consumer, and product-completion watermarks;
+7. preserve replay and exact halt state.
+
+Applications may prioritize low-latency provisional products, but a product becomes sealed only when its declared source and output coverage are complete. No cache miss, dropped message, or unavailable device is interpreted as zero contribution or absent data.
+
+Plainly: a live app can update continuously while still showing exactly how much accepted history it has processed and which parts of its current result remain incomplete.
+
+## Query, Filters, And Shaping
+
+A query selects source material without changing it. A transform creates a derived product and records its ordered operations. Candidate operations include:
+
+- path and group selection;
+- time interval and spatial region selection;
+- provenance, authority, uncertainty, and source-class filters;
+- scale-band, contribution, event, or diagnostic selection;
+- coordinate and observer-chart transforms;
+- resampling and level-of-detail construction;
+- experiment-specific masking, weighting, or shaping;
+- composition of saved query and transform manifests.
+
+Equivalent requests should have stable cache identity. Reordering noncommuting transforms changes identity. Every transform declares its effect on precision, uncertainty, coverage, and authority.
+
+Plainly: an experiment can ask for exactly the part of a signal it needs, and another researcher can reproduce the selection and shaping from the saved manifest.
+
+## Heterogeneous Compute
+
+Root finding makes the accelerator boundary especially strict. Causal-root workloads can have different root counts, root births or mergers, branch continuation, variable iteration counts, near-degenerate derivatives, and precision escalation. One receiver-transmitter pair per long-lived GPU thread would therefore diverge badly and would make discrete root completeness hard to audit.
+
+The scientific owner remains responsible for the root equation, bracketing rules, continuation identity, completeness criterion, and acceptance. In particular, EOM root logic remains in the EOM solver. AAA Core provides reusable queue, data-movement, codec, and resource-dispatch machinery without becoming another root solver.
+
+Plainly: Core can run the factory floor, but the EOM solver still owns the instructions that decide which causal roots exist and whether a step is accepted.
+
+The proposed root-capable execution pipeline is:
+
+1. place immutable history chunks in structure-of-arrays device buffers with local time and coordinate origins;
+2. run regular interval bounds or other conservative candidate screens in large GPU batches;
+3. compact surviving candidates with prefix sums rather than carrying empty work forward;
+4. isolate brackets in batches, preserving pair, interval, and branch identity;
+5. bucket refinement work by conditioning, precision, and expected iteration count;
+6. return ambiguous, near-degenerate, or precision-exhausted rows to a stricter GPU queue or CPU binary64, extended-precision, arbitrary-precision, or enclosure service;
+7. perform deterministic receiver-owned accumulation and publish complete/disjoint accounting for accepted, rejected, deferred, and failed work.
+
+Plainly: the GPU repeatedly handles uniform batches. Hard cases leave the batch with their identities intact, so they can receive slower mathematics without stalling or weakening every easy case.
+
+More generally, Core should treat accelerator execution as a queue architecture:
+
+- regular decode, sampling, indexing, and kernel rows enter GPU-ready structure-of-arrays batches;
+- irregular or ill-conditioned rows are compacted into explicit difficult-work queues;
+- stricter GPU, CPU extended-precision, arbitrary-precision, or enclosure services resolve difficult work;
+- deterministic or bounded reductions combine results;
+- output records retain backend, precision, fallback, timing, and error metadata.
+
+This is a proposed architecture, not a performance result. Its falsifier is an end-to-end workload profile showing that decoding, transfer, divergence, fallback, or synchronization eliminates the expected gain or violates the required error and replay contracts.
+
+Plainly: GPUs do the large regular batches; unusual rows leave the fast lane rather than forcing the GPU either to guess or to stall every row.
+
+The dated hardware and cloud-cost alternatives are recorded in [Root GPU and operations options](root-gpu-and-operations-options-2026-08-02.md). No backend is promoted until an end-to-end root workload establishes correctness, difficult-row rate, data-movement cost, memory residency, latency, and total spend.
+
+## Deployment Postures
+
+The same logical contracts should support:
+
+1. in-process calls for small local applications;
+2. local shared-memory or memory-mapped exchange for high-throughput app/compute separation;
+3. file and content-addressed chunk exchange for durable studies;
+4. local or remote streams for live applications;
+5. distributed storage and compute for large path populations.
+
+Transport-specific metadata must not redefine path semantics. A path set means the same thing whether it crosses a function boundary, shared memory, a file, or a network stream.
+
+Plainly: deployment can change with scale without creating a new data model for every machine arrangement.
+
+## Application Relationship
+
+The intended first application relationships are:
+
+- **Potential:** consumes live or stored histories, requests versioned potential sampling, and publishes spatial or timespace maps.
+- **Borg:** consumes EOM runs and sealed assembly records without reconstructing missing physics.
+- **Photon:** consumes shared path/history analysis while retaining its candidate and diagnostic boundaries.
+- **Future Path Studio:** constructs, imports, inspects, filters, transforms, and exports path products.
+- **Future Reaction app:** composes initial histories, EOM results, event/interaction ledgers, optimization records, potential maps, and experimental comparisons.
+- **Future experimental app:** imports and compares observer-level reconstructed tracks with explicit uncertainty and mapping.
+
+No application is the private transport layer for another application. Applications meet through AAA Core contracts.
+
+## First Vertical Slice
+
+The first implementation slice should be deliberately small:
+
+1. create one synthetic path set with known analytical interpolation;
+2. encode it as an authoritative chunk and a display-stream chunk;
+3. verify semantic round-trip and declared error behavior;
+4. stream a sequence of accepted chunks through predecessor and watermark checks;
+5. run one independently defined potential reference sampler;
+6. publish one fixed-$T$ spatial slice and one small timespace map;
+7. replay the stream and reproduce the same sealed product;
+8. reject negative cases for missing chunks, incompatible scale, unsupported precision, incomplete source coverage, and authority escalation.
+
+This slice proves contract composition and failure behavior only. It does not establish production throughput, full EOM integration, GPU promotion, or physical acceptance of a studied configuration.
+
+Plainly: the first build should prove that one trustworthy path can travel through the whole factory and emerge as a reproducible Potential product before scaling to millions of paths.
+
+## Open Decisions
+
+1. Exact schema language and binary envelope.
+2. Canonical source-code homes for the logical model, Core codec registry and common providers, domain-owned codec providers, service orchestration, and accelerator kernels.
+3. Whether the first transport is in-process, memory-mapped, or streamed over a local service boundary.
+4. First common and domain-specific codec providers for each representation profile.
+5. Kernel plug-in and versioning mechanism.
+6. Cache and retention policy for authoritative versus derived products.
+7. Authentication and authorization requirements once services leave one trusted local machine.
+8. First real experimental dataset and observer-to-model comparison mapping.
+9. Measured latency, throughput, memory, storage, and energy/cost targets for each representative workload.
+
+## Eventual Application Migration
+
+AAA Core does not commit the suite to the current application list, names, or internal structures. Existing applications are useful consumer evidence and may supply temporary adapters, but they are not the target product taxonomy.
+
+Before adopting a migration plan, the suite needs an explicit application portfolio review: identify the enduring user problems, decide which products should exist, choose their reader-facing names, and assign each product a bounded responsibility. `Borg`, for example, is a current EOM-facing and assembly-view surface, not a commitment to an eventual product name or final application shape.
+
+Migration should then proceed contract-first and product-by-product:
+
+1. classify each existing application as retain, reshape, split, merge, replace, or retire;
+2. map its durable inputs and outputs to ratified AAA Core contracts, retaining explicit provenance and authority boundaries;
+3. replace private path transport, caching, and reusable compute only after the shared equivalent has conformance fixtures;
+4. keep app-specific interaction, visual language, and product composition local to the application;
+5. decommission a legacy route only after its successor reproduces its declared user-facing capability and preserves any required replay or record access.
+
+The first portfolio review should consider the current Potential, Borg, Photon, authoring and path-inspection surfaces, and planned reaction and experimental-comparison work. It should not pre-approve all of them as permanent products or force them into a single interface.
+
+Plainly: first decide which applications people should ultimately use. Then move each one onto shared contracts at a pace that preserves its useful behavior, rather than preserving today’s app names or private plumbing.

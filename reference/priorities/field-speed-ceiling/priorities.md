@@ -119,15 +119,23 @@ Moore reviews. Those documents are review inputs, not adopted authority; the
 mathematics packet records the accepted, narrowed, or still-open disposition
 of their findings.
 
-The closed-endpoint finite-Radon weak-* target is no longer the immediate
-object. Under its stated exact-chart consistency hypothesis, it has a divergent
-endpoint variation and cannot produce a finite Radon limit on a closed
-neighborhood. FSC-006a now owns local convergence on the open approach
-interval together with an endpoint-residue consistency test. FSC-006b/FSC-005
-owns the remaining exact-event family completion, right-trace selection,
-complete local-ledger census, and any separating-trace consequence. The retained
-partner-cap incidence itself is now derived: whole interval at coincidence,
-only the frozen endpoint on straight-through motion, and the whole
+The closed-endpoint finite-Radon weak-* target has been resolved negatively,
+and the retargeted
+[FSC-006a theorem](coincidence-open-interval-convergence-and-endpoint-residue.md)
+is complete. On every labeled injective simple-root resolution satisfying the
+explicit branch-collapse, moving-trace, kernel, positive-$D_r$, and ownership
+hypotheses, the ordinary source-clock measures converge locally in total
+variation on the open approach interval. Their fixed positive-range
+receiver-time pushforwards collapse to a labeled atom at $T_{\mathrm c}$, the
+exact mirror endpoint residue is $K/(2c_f^2)$, and the divergent variation
+rules out a finite vector-Radon ordinary measure on a closed endpoint
+neighborhood. This is a conditional theorem, not a claim that the earlier path
+topology automatically supplies its moving-trace hypotheses.
+
+FSC-006b/FSC-005 owns the remaining exact-event family completion, right-trace
+selection, complete local-ledger census, and any separating-trace consequence.
+The retained partner-cap incidence itself is now derived: whole interval at
+coincidence, only the frozen endpoint on straight-through motion, and the whole
 $D_t=D_r=0$ interval on exact rebound. FSC-007 remains an independent regular
 history-to-ledger theorem track.
 
@@ -135,17 +143,20 @@ Two proposed-law tracks are deliberately separate from those theorem targets.
 FSC-009 owns swept-source reception as a source-history crossing account that is
 identical to the ordinary row on regular $D_t,D_r>0$ branches and gives a
 proposed frozen-root disposition at $c_a=c_f$. The exact-coincidence raw
-carrier is now defined and its canonical vector pairing has been decided: the
-scalar signed source pushforward cancels, but the radial vectors reinforce in
-each receiver's local ledger. Raw vector cancellation is therefore not an
-available derived route. A complete finite local sum is nevertheless purely
-forward, so a candidate event extension of the boundary projection maps every
-label-preserving positive exhaustion to the same zero effective limit. The remaining event-law
-target is whether to adopt that projected exhaustion as the nonordinary-event
-owner and what retained history and right trace it supplies. Neither
-that proposal nor swept-source reception is adopted, selects the
-outgoing trace, classifies a $D_t=D_r=0$ characteristic interval produced by a
-selected trace, or establishes a selected or unique free-passage continuation.
+carrier is now defined by a finite labeled source-history measure. Under exact
+mirror matching, its two event pushforwards have equal unsigned weight,
+opposite polarity, and common support. A common linear event-to-acceleration
+map therefore proves $\mathbf J_{i,-}=-\mathbf J_{i,+}$ while leaving every
+other wake contribution unchanged. The
+[proposed exact-mirror restart](mirror-event-family-completion-and-right-trace.md)
+now consumes that aggregation within its narrow scope, preserves continuous
+position and velocity, splices both labeled histories, books the noncrossing
+event family once, and restarts from the complete untouched remainder ledger.
+The isolated straight trace then has a zero post-event ledger and is exactly
+compatible; immediate rebound is excluded because it requires a nonzero
+velocity jump. This construction is pending delayed-history and measure review
+and does not yet prove local uniqueness or adopt a general event law. Swept-
+source reception remains a separate unadopted foundational track.
 
 The circular-binary program has completed its prescribed-chart prerequisite,
 [FSC-010](circular-binary-all-root-certificate.md): the analytic certificate

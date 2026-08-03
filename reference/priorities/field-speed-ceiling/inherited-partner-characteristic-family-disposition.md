@@ -212,30 +212,26 @@ along. It disappears from the partner root set on the straight-through ray and
 survives only on the exact maximum-speed rebound ray, where it survives as a
 whole nonordinary family.
 
-## What the raw-event carrier resolves, and what it does not
+## What the common impulse-event carrier resolves, and what it does not
 
-The exact mirror raw-event carrier is now defined and its canonical radial
-vector pairing is decided in the
-[raw event carrier and vector-pairing test](raw-event-carrier-vector-pairing-no-go.md).
-The scalar signed source pushforward is zero, but the canonical oriented
-factors reinforce because mirror reflection reverses both polarity and arrival
-direction. Raw vector cancellation therefore does not assign a zero
-acceleration impulse under the current kernel.
+The exact mirror impulse-event carrier is defined in the
+[common impulse-event measure and exact mirror cancellation](common-impulse-event-measure-and-mirror-cancellation.md).
+The two cap histories retain separate labeled source records, while their
+finite raw source-history measures push forward to the same event with equal
+unsigned weight and opposite polarity. A common linear event-to-acceleration
+map therefore proves $\mathbf J_{i,-}=-\mathbf J_{i,+}$ and gives zero matched
+impulse without altering any other wake contribution.
 
-A different candidate event completion remains open: truncate the cap family,
-form the complete finite local vector sum for each receiver, apply the candidate
-event extension of the boundary projection once, and take the effective cutoff
-limit. The candidate
-value is zero because every truncated local total is forward. Its independence
-from label-preserving positive exhaustion and orientation-preserving
-parameterization is derived for the candidate event extension of the boundary
-projection. Adopting that extension for this nonordinary family remains open. Neither route deletes
-source labels or retained source records.
+The
+[proposed exact-mirror restart law](mirror-event-family-completion-and-right-trace.md)
+now selects that aggregation within its narrow event scope. The ordinary
+inverse-square radial row does not decide the event because $D_t=0$ on the cap
+family. The selected proposal does not delete source labels or retained source
+records and is not a canonical adoption.
 
 The geometric dichotomy above shows that the post-event partner family depends
 on the right trace. A selected continuation cannot be inferred from the event
-carrier, swept-source reception, the candidate projected-cutoff completion, or
-the zero-impulse data alone. In
+carrier, swept-source reception, or the zero-impulse data alone. In
 particular:
 
 - the endpoint $s=0$ on the straight-through trial is a receiver-side frozen
@@ -245,36 +241,36 @@ particular:
   $D_t=D_r=0$, which swept-source reception does not classify; and
 - a generic right trace need not retain an old-cap partner root at all.
 
-## Minimum missing event-family datum
+## Event-family datum now supplied by the proposed restart
 
-To turn the immediate coincidence data into a delayed-system continuation, an
-event-family completion must at minimum specify:
+The proposed restart supplies the previously missing data:
 
-1. the right-hand retained history record for each source label;
-2. which candidate right traces are admissible after the event; and
-3. the ownership and acceleration disposition of a retained characteristic
-   interval if a selected right trace produces one.
+1. each right-hand history is spliced to its complete labeled incoming
+   history with continuous position and velocity;
+2. the right trace solves the post-event integral equation driven by the
+   complete untouched remainder ledger; and
+3. the matched cap family is booked once at the event and contributes no
+   repeated row while it remains frozen or characteristic without sweeping
+   new source history across the receiver.
 
-If it permits the exact rebound ray, it must assign the $D_t=D_r=0$ partner
-family as a nonordinary interval. If it selects straight-through motion, the
-old partner cap has no right-hand root, but the completion must still provide
-that selected history rather than infer it from the zero impulse alone.
-
-No pairwise cancellation of separately receiver-indexed vector contributions
-is used here.
+A later isolated transverse reception from a retained emission returns to the
+ordinary ledger. Thus the rule disposes of a $D_t=D_r=0$ rebound family without
+deleting its source history or selecting rebound. The isolated straight trace
+then has a zero complete post-event ledger and satisfies the restart equation;
+immediate exact rebound is excluded because it would require a nonzero velocity
+jump.
 
 ## Claim boundary
 
-This note does not prove a continuation, free passage, rebound, a breather,
-event uniqueness, or a finite event measure. It does not adopt the proposed
-forward-ray cutoff completion. It corrects only the causal
-incidence statement: the inherited partner cap is a characteristic family at
-exact coincidence, and its right-hand presence is trace-dependent rather than
-automatic.
+This note proves only the causal incidence statement: the inherited partner
+cap is a characteristic family at exact coincidence, and its right-hand
+presence is trace-dependent rather than automatic. The separate restart
+artifact proposes an event law and proves isolated straight-trace
+compatibility, but not general continuation, local uniqueness, rebound, a
+breather, or a general event-measure law beyond the exactly matched mirror
+pair.
 
 ## Closure goal
 
-State and test one event-family completion that supplies a right-hand retained
-history and a disposition for a $D_t=D_r=0$ inherited partner characteristic
-interval, if that interval is present. Then prove or refute local continuation
-within that declared class.
+Review the constructed exact-mirror restart, then prove or refute local
+uniqueness within its declared event-adjacent class.
