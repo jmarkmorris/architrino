@@ -5,7 +5,9 @@ export const TOPO_REFERENCE_SCALE = 4;
 export const TOPO_DISPLAY_CLIP_MAGNITUDE = 64;
 export const TOPO_DEFAULT_CONTOUR_LEVELS = 24;
 export const TOPO_DEFAULT_CONTOUR_DENSITY = 0.4;
-export const TOPO_DEFAULT_CONTOUR_VISIBILITY = 0.6;
+export const TOPO_DEFAULT_CONTOUR_VISIBILITY = 0.75;
+export const TOPO_CONTOUR_PROMINENCE_REFERENCE_DELAY = 0.08;
+export const TOPO_CONTOUR_PROMINENCE_FLOOR = 0.22;
 export const TOPO_CONTOUR_LEVEL_RANGE = Object.freeze({ min: 8, max: 48 });
 export const TOPO_TRANSFORMS = Object.freeze(["linear", "signed-log2", "asinh"]);
 export const TOPO_DEFAULT_TRANSFORM = "asinh";
@@ -238,6 +240,30 @@ export function createTopoContourEmphasis(
   });
 }
 
+export function createTopoContourStyleProfile({
+  causalDelay,
+  visibility = TOPO_DEFAULT_CONTOUR_VISIBILITY,
+} = {}) {
+  const delay = Math.max(0, requireFiniteNumber(causalDelay, "causalDelay"));
+  const emphasis = createTopoContourEmphasis(visibility);
+  const reference = TOPO_CONTOUR_PROMINENCE_REFERENCE_DELAY;
+  const prominence = Math.min(
+    1,
+    (reference / Math.max(delay, reference)) ** 2,
+  );
+  const readableProminence = Math.max(
+    TOPO_CONTOUR_PROMINENCE_FLOOR,
+    prominence,
+  );
+  return Object.freeze({
+    prominence,
+    readableProminence,
+    opacity: emphasis.opacity * readableProminence,
+    whiteMix: emphasis.whiteMix * (0.4 + 0.6 * readableProminence),
+    widthCss: emphasis.widthCss * (0.72 + 0.28 * readableProminence),
+  });
+}
+
 export function createTopoSyntheticContourCircles({
   beta = 0.5,
   transformId = TOPO_DEFAULT_TRANSFORM,
@@ -329,6 +355,28 @@ export function topoWorldPointForCanvasPixel({
     x: TOPO_SOURCE_POSITION.x + (x - sourcePixelX) / commonScale,
     y: TOPO_SOURCE_POSITION.y + (sourcePixelY - y) / commonScale,
   });
+}
+
+export function createTopoAnalyticFieldRgbAtCanvasPixel({
+  pixelX,
+  pixelY,
+  width,
+  height,
+  beta = 0.5,
+  polaritySign = -1,
+  transformId = TOPO_DEFAULT_TRANSFORM,
+} = {}) {
+  const point = topoWorldPointForCanvasPixel({
+    pixelX,
+    pixelY,
+    width,
+    height,
+  });
+  const rawValue = createTopoSyntheticRawSampler({
+    beta,
+    polaritySign,
+  })(point.x, point.y);
+  return createTopoSampleRgb(rawValue, { transformId, polaritySign });
 }
 
 export function syntheticTopoCausalDelay({

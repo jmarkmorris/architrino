@@ -355,6 +355,7 @@ button {
 
 #topo-canvas {
   cursor: crosshair;
+  background: var(--ui-color-electric-purple);
 }
 
 #topo-contour-canvas {

@@ -7,6 +7,8 @@ import {
   TOPO_DEFAULT_CONTOUR_LEVELS,
   TOPO_DEFAULT_CONTOUR_VISIBILITY,
   TOPO_DEFAULT_TRANSFORM,
+  TOPO_CONTOUR_PROMINENCE_FLOOR,
+  TOPO_CONTOUR_PROMINENCE_REFERENCE_DELAY,
   TOPO_DISPLAY_CLIP_MAGNITUDE,
   TOPO_FIELD_COLOR_GAIN,
   TOPO_FIELD_PERCEPTIBILITY_THRESHOLD,
@@ -17,7 +19,10 @@ import {
   applyTopoScenarioPolarity,
   createTopoContourDensityPlan,
   createTopoContourEmphasis,
+  createTopoContourStyleProfile,
   createTopoContourThresholds,
+  createTopoAnalyticFieldRgbAtCanvasPixel,
+  createTopoSyntheticContourCircles,
   createTopoPreviewFrameIdentity,
   createTopoSampleRgb,
   createTopoSignedRgb,
@@ -56,7 +61,7 @@ test("TOPO-002 freezes the transform defaults and exact inverse pairs", () => {
   assert.equal(TOPO_DISPLAY_CLIP_MAGNITUDE, 64);
   assert.equal(TOPO_DEFAULT_CONTOUR_LEVELS, 24);
   assert.equal(TOPO_DEFAULT_CONTOUR_DENSITY, 0.4);
-  assert.equal(TOPO_DEFAULT_CONTOUR_VISIBILITY, 0.6);
+  assert.equal(TOPO_DEFAULT_CONTOUR_VISIBILITY, 0.75);
   assert.deepEqual(TOPO_FIELD_COLOR_GAIN, {
     linear: 900,
     "signed-log2": 70,
@@ -162,11 +167,98 @@ test("contour visibility continuously reaches one crisp canonical-white stroke",
     whiteMix: 0.6,
     widthCss: 1.52,
   });
+  assert.deepEqual(createTopoContourEmphasis(), {
+    opacity: 0.75,
+    whiteMix: 0.75,
+    widthCss: 1.7,
+  });
   assert.deepEqual(createTopoContourEmphasis(1), {
     opacity: 1,
     whiteMix: 1,
     widthCss: 2,
   });
+});
+
+test("contour style applies one inverse-square prominence per exact circle", () => {
+  assert.equal(TOPO_CONTOUR_PROMINENCE_REFERENCE_DELAY, 0.08);
+  assert.equal(TOPO_CONTOUR_PROMINENCE_FLOOR, 0.22);
+  const delays = [0.04, 0.08, 0.1, 0.12, 0.16, 0.24];
+  const styles = delays.map((causalDelay) =>
+    createTopoContourStyleProfile({ causalDelay, visibility: 0.75 }));
+  for (let index = 1; index < styles.length; index += 1) {
+    assert.ok(styles[index].prominence <= styles[index - 1].prominence);
+    assert.ok(styles[index].opacity <= styles[index - 1].opacity);
+    assert.ok(styles[index].whiteMix <= styles[index - 1].whiteMix);
+    assert.ok(styles[index].widthCss <= styles[index - 1].widthCss);
+  }
+  closeTo(styles[2].prominence, (0.08 / 0.1) ** 2);
+  closeTo(styles[3].prominence, (0.08 / 0.12) ** 2);
+  closeTo(
+    styles[2].prominence / styles[3].prominence,
+    (0.12 / 0.1) ** 2,
+  );
+  const defaultInner = createTopoContourStyleProfile({
+    causalDelay: 0.04,
+    visibility: 0.75,
+  });
+  assert.deepEqual(defaultInner, {
+    prominence: 1,
+    readableProminence: 1,
+    opacity: 0.75,
+    whiteMix: 0.75,
+    widthCss: 1.7,
+  });
+  const maximumOuter = createTopoContourStyleProfile({
+    causalDelay: 0.24,
+    visibility: 1,
+  });
+  assert.equal(maximumOuter.prominence < 1, true);
+  assert.equal(maximumOuter.opacity < 1, true);
+  assert.equal(maximumOuter.whiteMix < 1, true);
+  assert.equal(maximumOuter.widthCss < 2, true);
+  assert.equal(
+    createTopoContourStyleProfile({ causalDelay: 0.1, visibility: 0 }).opacity,
+    0,
+  );
+});
+
+test("analytic synthetic contours are exact complete causal-delay circles", () => {
+  const normalizedLevels = [0.125, 0.25, 0.5, 0.75];
+  for (const beta of [0, 0.5, 1]) {
+    const circles = createTopoSyntheticContourCircles({
+      beta,
+      transformId: "asinh",
+      normalizedLevels,
+    });
+    assert.deepEqual(circles.map(({ level }) => level), normalizedLevels);
+    for (const circle of circles) {
+      closeTo(circle.center.x, TOPO_SOURCE_POSITION.x - beta * circle.radius);
+      closeTo(circle.center.y, TOPO_SOURCE_POSITION.y);
+      assert.ok(circle.radius > 0);
+      if (beta === 0) {
+        closeTo(circle.center.x, TOPO_SOURCE_POSITION.x);
+      }
+      if (beta === 1) {
+        closeTo(circle.center.x + circle.radius, TOPO_SOURCE_POSITION.x);
+      }
+      for (let index = 0; index < 32; index += 1) {
+        if (beta === 1 && index === 0) {
+          continue;
+        }
+        const angle = index * Math.PI * 2 / 32;
+        const point = {
+          x: circle.center.x + circle.radius * Math.cos(angle),
+          y: circle.center.y + circle.radius * Math.sin(angle),
+        };
+        closeTo(syntheticTopoCausalDelay({ ...point, beta }), circle.causalDelay, 1e-10);
+        closeTo(
+          Math.abs(syntheticTopoSignedValue({ ...point, beta, polaritySign: -1 })),
+          circle.rawMagnitude,
+          1e-9,
+        );
+      }
+    }
+  }
 });
 
 test("beta zero raw values use one Euclidean pixel scale on a wide canvas", () => {
@@ -192,6 +284,31 @@ test("beta zero raw values use one Euclidean pixel scale on a wide canvas", () =
     syntheticTopoSignedValue({ ...horizontal, beta: 0, polaritySign: -1 }),
     syntheticTopoSignedValue({ ...vertical, beta: 0, polaritySign: -1 }),
   );
+});
+
+test("analytic display-pixel reference stays deterministic across field states", () => {
+  const sample = { pixelX: 210, pixelY: 357, width: 916, height: 720 };
+  for (const beta of [0, 0.5, 0.83, 1]) {
+    for (const transformId of ["linear", "signed-log2", "asinh"]) {
+      const electrino = createTopoAnalyticFieldRgbAtCanvasPixel({
+        ...sample,
+        beta,
+        transformId,
+        polaritySign: -1,
+      });
+      const positrino = createTopoAnalyticFieldRgbAtCanvasPixel({
+        ...sample,
+        beta,
+        transformId,
+        polaritySign: 1,
+      });
+      assert.equal(electrino.length, 3);
+      assert.equal(positrino.length, 3);
+      assert.equal(electrino.every(Number.isInteger), true);
+      assert.equal(positrino.every(Number.isInteger), true);
+      assert.notDeepEqual(electrino, positrino);
+    }
+  }
 });
 
 test("TOPO-002 contour thresholds are uniform in transformed display space", () => {
@@ -416,7 +533,7 @@ test("Topo preview uses shared shell primitives and preserves Home behavior", ()
   assert.match(runtime, /panelContent\.inert = collapsed/u);
   assert.match(runtime, /aria-hidden/u);
   assert.match(runtime, /resolveTopoCanvasPixelSize/u);
-  assert.match(runtime, /forEachTopoContourSegment/u);
+  assert.match(runtime, /createTopoSyntheticContourCircles/u);
   assert.match(runtime, /targetContext\.arc\(x, y, radius, 0, Math\.PI \* 2\)/u);
   assert.match(runtime, /ARCHITRINO_BODY_OUTLINE_WIDTH \* pixelRatio/u);
   assert.match(runtime, /\[WHITE\.r, WHITE\.g, WHITE\.b\]/u);
@@ -427,8 +544,10 @@ test("Topo preview uses shared shell primitives and preserves Home behavior", ()
   assert.match(runtime, /rawFrameCache/u);
   assert.match(runtime, /rawFrameCaches/u);
   assert.match(runtime, /displays: new Map\(\)/u);
-  assert.match(runtime, /contours: new Map\(\)/u);
-  assert.match(runtime, /drawFastContourPreview/u);
+  assert.doesNotMatch(runtime, /drawFastContourPreview|drawSmoothContours/u);
+  assert.match(runtime, /contourStagingContext\.arc\(/u);
+  assert.match(runtime, /fieldRenderer = analyticFieldRenderer/u);
+  assert.match(runtime, /getContext\("webgl"/u);
   assert.match(runtime, /contourContext\.drawImage\(contourStagingCanvas/u);
   assert.match(runtime, /lastFirstContourLatencyMs/u);
   assert.match(runtime, /Updating contour lines from the cached field/u);
@@ -443,6 +562,7 @@ test("Topo preview uses shared shell primitives and preserves Home behavior", ()
   assert.match(html, /id="topo-contours"[\s\S]*step="0\.1"[\s\S]*data-keyboard-step="1"/u);
   assert.match(html, /id="topo-contour-visibility"[\s\S]*aria-label="Contour line visibility"/u);
   assert.match(html, /id="topo-contour-visibility-output"/u);
+  assert.match(html, /id="topo-contour-visibility"[\s\S]*value="75"/u);
   assert.match(html, /id="topo-contour-canvas" aria-hidden="true"/u);
   assert.doesNotMatch(html, /Midpoint purple|Temporary comparison|topo-zero-/u);
   assert.doesNotMatch(html, /topo-state-key|Nonnumeric state legend/u);

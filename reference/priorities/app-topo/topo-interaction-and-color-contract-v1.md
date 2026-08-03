@@ -12,7 +12,7 @@
 - Reference scale: $z_*=4$
 - Ordinary display-clip magnitude: $z_{\max}=64$
 - Contour density: percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $40$
-- Contour visibility: percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $60$
+- Contour visibility: percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$
 
 The companion `topo.html` surface is an interaction preview. It uses a synthetic signed function so that color, contour, panel, and state behavior can be inspected before TOPO-003 connects the TOPO-001 provider. The preview labels that boundary persistently in its left-panel description.
 
@@ -22,9 +22,9 @@ Plainly: the preview is a ruler for the interface. Its colored values are not me
 
 The later scientific frame identity contains the scenario identity, source species, $\beta$, observable identity, reception slice, domain, and scientific-kernel version. Display state contains the contour density, contour visibility, transform, color scale, panel state, and viewport.
 
-Changing scenario or $\beta$ requests a new raw frame. Changing contour density, contour visibility, transform, or panel state reuses the same raw frame and must not change any raw sample.
+Changing $\beta$ changes the unsigned synthetic geometry. Changing scenario reverses polarity over that same geometry. Contour density, contour visibility, transform, and panel state are display-only and must not change any raw magnitude sample.
 
-Plainly: the speed and species choose the data request. The contour and color controls only change how already supplied numbers are shown.
+Plainly: speed chooses the synthetic geometry. Species changes its sign, while the contour and color controls only change how the same geometry is shown.
 
 The TOPO-002 preview uses the accepted prescribed causal-root geometry to place
 one explicitly non-scientific comparison envelope around the displayed source.
@@ -81,9 +81,9 @@ x=\frac23+\frac{p_x-(2/3)W}{H},
 y=\frac12+\frac{(1/2)H-p_y}{H}.
 $$
 
-The source therefore remains at two-thirds canvas width and vertical center, while equal horizontal and vertical pixel offsets represent equal Euclidean distances. Raster sampling, the raw-frame cache, contour extraction, and resize handling all use this same chart. Canvas width and height are part of the raw-cache key.
+The source therefore remains at two-thirds canvas width and vertical center, while equal horizontal and vertical pixel offsets represent equal Euclidean distances. The deterministic CPU reference, analytic display renderer, exact contour arcs, and resize handling all use this same chart. Canvas width and height are part of the display geometry identity.
 
-The blocking control is $\beta=0$: every constant-value contour must have equal screen-pixel width and height at every supported aspect ratio. A horizontal and vertical pixel displacement of the same magnitude from the source must return the same raw synthetic value. At $\beta>0$, causal leading/trailing asymmetry remains and is not forced into circles.
+The blocking control is $\beta=0$: every constant-value contour must have equal screen-pixel width and height at every supported aspect ratio. A horizontal and vertical pixel displacement of the same magnitude from the source must return the same raw synthetic value. At $\beta>0$, each synthetic constant-delay circle shifts trailing by $\beta T$ and therefore preserves the causal leading/trailing asymmetry.
 
 Plainly: a wide screen reveals more world space left and right; it does not stretch circles into ellipses.
 
@@ -91,12 +91,12 @@ Plainly: a wide screen reveals more world space left and right; it does not stre
 
 | Control | Location | Accepted behavior |
 | --- | --- | --- |
-| Scenario | Left panel, first control | `Electrostatic: single electrino`; `Electrostatic: single positrino`; changing it creates a fresh raw-frame identity by reversing polarity only. Beta, contour density, contour visibility, and transform remain unchanged, and cached contour geometry is reused with the new polarity color. |
+| Scenario | Left panel, first control | `Electrostatic: single electrino`; `Electrostatic: single positrino`; changing it reverses polarity only. Beta, contour density, contour visibility, and transform remain unchanged, and the same analytic geometry is immediately restyled with the new polarity color. |
 | $\beta=v/c_f$ | Left panel below scenario | Range $0\leq\beta\leq1$, step $0.01$, keyboard-operable, with visible numeric output and `aria-valuetext`; changing it creates a fresh raw-frame identity. |
 | Contour density | Left panel, display section | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $40$. A fixed set of valid isolines is cached: the minimum-density subset remains present, and additional valid isolines fade in progressively in a spatially balanced order. No contour location is interpolated or moved. |
-| Contour visibility | Left panel, display section | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $60$; continuously changes a single anti-aliased stroke's opacity, canonical-white mix, and width. At $0$ the line is hidden; at $100$ it is fully opaque canonical white and $2$ CSS pixels wide. Device-pixel scaling preserves that apparent width. Arrow keys change one percentage point and Home/End select the endpoints. It does not change contour geometry, field pixels, raw values, states, or source. |
+| Contour visibility | Left panel, display section | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$; continuously applies global opacity, canonical-white mix, and width gain to the contour profile. Inner contours retain the accepted strong treatment, while each outer circle receives one uniform clamped inverse-square prominence based on its causal delay. At $0$ the set is hidden; at $100$ the innermost treatment reaches canonical white and $2$ CSS pixels while relative outward falloff remains. Device-pixel scaling preserves apparent width. |
 | Scale transform | Left panel, display section | `Linear`, `Signed log2`, `Asinh`; default `Asinh`; changes transformed coordinates only. |
-| Legend | Left panel near display controls | Always visible while the panel is open; names transform, $z_*$, raw clip values, zero, and nonnumeric state keys. |
+| Legend | Left panel near display controls | Always visible while the panel is open; names transform, $z_*$, raw clip values, and zero. No visible nonnumeric-state row or raw-probe panel is retained. |
 | Panel toggle | Persistent left rail | Uses `PanelCollapseIcons.js`, updates name and `aria-expanded`, preserves the reopen control, and makes closed content hidden and inert. |
 | Shared chrome | Top-right safe area | Stable order is `Home`, `Back`, `Forward`, `Search`, then any declared Notes/Documents and Settings controls. TOPO-002 declares only the first four. Home retains the shared Applications-return behavior. |
 
@@ -135,15 +135,29 @@ Contour thresholds are equally spaced in $\widehat C$. The legend applies the ex
 
 Plainly: every transform sees the same raw numbers and the same fixed endpoints. The colors never silently rescale themselves to each frame.
 
-## Raster And Contour Rendering Contract
+## Analytic Field And Contour Rendering Contract
 
-The canvas requests the available device-pixel density. A safety ceiling limits either dimension to $4096$ device pixels and total area to $12{,}582{,}912$ device pixels; below those limits the preview does not deliberately undersample. Ordinary field color is evaluated continuously from the raw synthetic provider and then transformed for display. Contours are interpolated from that same transformed display frame with marching squares and drawn as anti-aliased vector strokes.
+The canvas requests the available device-pixel density. A safety ceiling limits either dimension to $4096$ device pixels and total area to $12{,}582{,}912$ device pixels. The preferred synthetic-provider path evaluates the accepted causal-delay formula per display fragment in an offscreen WebGL surface, then atomically copies the complete result to the visible canvas. Beta, transform, polarity, midpoint, and display-range calibration are uniforms. A deterministic interruptible Canvas2D implementation remains the boot fallback and CPU reference. The visible canvas is initialized to Electric Purple and retains its last valid frame if either path fails; a watchdog stops indefinite refinement without blanking the usable preview.
 
-Interaction first paints a small, smoothly enlarged preview, then replaces it with the full-density frame. The full-density raw field is evaluated in interruptible main-thread slices and cached by canvas size, scenario, and $\beta$. Display transforms reuse that raw cache; transformed image frames are cached separately by transform. The fixed valid-isoline geometry is cached separately by transform. Contour-density changes adjust only per-line fade weights and contour-visibility changes adjust only line color, both over cached field pixels. New interaction cancels stale refinement work.
+For every positive selected constant delay $T$, the synthetic provider has the exact isoline
 
-Neither the continuous color interpolation nor contour stroke smoothing writes back to the raw provider, frame identity, or state classification. A future TOPO-001 provider can replace the synthetic provider without changing this boundary.
+$$
+(u+\beta T)^2+w^2=T^2.
+$$
 
-Plainly: the browser may smooth the picture, but it does not smooth, average, or manufacture the provider values.
+Topo therefore draws one direct Canvas2D arc centered at $(2/3-\beta T,1/2)$ with radius $T$. The immediate and final contour paths are the same atomic vector overlay: no marching-squares extraction, partial batches, low-resolution tessellation, or delayed refinement runs for this provider. Clipping occurs only at the canvas boundary. The renderer computes $T$ by inverting the selected transform and the declared exponential synthetic decay; it does not move an isoline or change its raw threshold.
+
+Contour styling is uniform around each circle. With fixed reference delay $T_{\mathrm{ref}}=0.08$, its raw prominence is
+
+$$
+p(T)=\min\left(1,\left(\frac{T_{\mathrm{ref}}}{\max(T,T_{\mathrm{ref}})}\right)^2\right).
+$$
+
+Opacity uses $\max(0.22,p)$ as a readability floor; whiteness and width use monotone blends of that same per-circle factor. Density only fades valid circles in or out, and visibility remains the global gain. A circle never changes style around its own path.
+
+Neither fragment evaluation nor vector contour styling writes back to the raw provider, geometry, frame identity, or state classification. A future sampled TOPO-001 provider may use a separate general contour implementation without weakening this boundary.
+
+Plainly: the synthetic formula is evaluated sharply at the screen, and its contours are complete mathematical circles. Display falloff changes only how strongly each whole circle is drawn.
 
 ## Transform Comparison And Default
 
@@ -173,15 +187,15 @@ Interpolation is piecewise linear in sRGB between `--ui-data-negative`, `--ui-da
 
 Plainly: blue always means negative, purple means zero, and red means positive. A reader can still determine the state without relying on color perception.
 
-## Nonnumeric And Lifecycle States
+## Private Nonnumeric And Lifecycle Guards
 
 | State | Visual treatment | Accessible treatment |
 | --- | --- | --- |
-| `ordinary` | Signed blue-purple-red fill and contours | Probe announces `ordinary` plus raw and transformed values. |
+| `ordinary` | Signed blue-purple-red fill and contours | Private numeric value remains available to the renderer. |
 | `ordinary:display_clipped` | Endpoint color | Preserved private raw value and internal clipped qualifier. |
-| `singular:endpoint_source` | One compact canonical architrino disk: standard blue electrino or standard red positrino with the established thin centered white body stroke. Masked display pixels beneath it use the same-polarity field endpoint color so no second object-like underlay appears. | Probe announces `singular`; no raw number. |
+| `singular:endpoint_source` | One compact canonical architrino disk: standard blue electrino or standard red positrino with the established thin centered white body stroke and small canonical white origin dot. Masked display pixels beneath it use the same-polarity field endpoint color so no second object-like underlay appears. | Private state remains singular; no raw number is fabricated. |
 | `unavailable:no_positive_causal_root` | Electric Purple neutral midpoint with no boundary, texture, tint, or region ornament; this is display-only and does not supply a raw zero | Private state remains `unavailable`; no raw number. |
-| `nonordinary:degenerate_root_family` | The same compact canonical architrino disk | Probe announces `nonordinary`; no raw number. |
+| `nonordinary:degenerate_root_family` | The same compact canonical architrino disk | Private state remains nonordinary; no raw number is fabricated. |
 | `unresolved:numeric_failure` | Dark error hatch reserved for TOPO-003 | Polite live status announces calculation failure; no raw number. |
 | `loading` | Reserved neutral veil before any current preview exists | Polite live region announces that the initial frame is computing. |
 | `refining` | A current low-density interaction preview remains visible while interruptible work replaces it with the full-density frame | Polite live region announces that full-density refinement continues. |
@@ -198,7 +212,7 @@ Plainly: the endpoint void and numeric zero share a neutral display color, while
 - The stage and shell consume the shared semantic tokens from `ui-tokens.css`; Topo adds no app-local shell palette.
 - The left panel opens at a desktop width near $360$ pixels and collapses to a persistent $58$-pixel rail.
 - Below $820$ pixels, the panel begins collapsed and expands as an overlay over the stage. The shared top-right controls retain $32\times32$ hit targets.
-- The single compact source marker remains anchored at normalized $(2/3,1/2)$ in every viewport. It reuses the repository's standard solid blue electrino and solid red positrino semantics with the same thin centered white circular stroke as the Causal Delay Feedback body marker. No backing shape, glow, shadow, inset, or direction ornament is permitted; direction is reported in the scenario facts.
+- The single compact source marker remains anchored at normalized $(2/3,1/2)$ in every viewport. It reuses the repository's standard solid blue electrino and solid red positrino semantics with the same thin centered white circular stroke and small centered white origin dot as the Causal Delay Feedback marker treatment. No backing shape, glow, shadow, inset, or direction ornament is permitted; direction is reported in the scenario facts.
 - Every form control has a visible label, every icon button has an accessible name, and all focusable controls receive a visible focus treatment.
 - Range controls keep a fixed five-pixel visual track and fixed-size thumb in default, hover, focus, active, and drag states. Their larger transparent interaction lane does not render; keyboard focus is shown only around the thumb.
 - Closed panel content is hidden, `aria-hidden`, and inert. The reopen control stays focusable.

@@ -41,9 +41,9 @@ The initial controls are:
 | Scenario | `Electrostatic: single electrino`; `Electrostatic: single positrino` |
 | $\beta=v/c_f$ | range $0\leq\beta\leq1$; the exact ordinary, unavailable, and nonordinary endpoint regions are fixed by TOPO-001 |
 | Contour density | continuous display percentage; default $40\%$; progressively fades valid isolines from the minimum-density subset through the fixed $48$-level geometry without moving contour locations |
-| Contour visibility | display-only line-brightness percent from $0$ through $100$ in one-point steps; default $60$; does not alter field color, contour geometry, or raw values |
+| Contour visibility | display-only global contour-emphasis percent from $0$ through $100$ in one-point keyboard steps; default $75$; scales the fixed outward inverse-square style profile without altering field color, contour geometry, or raw values |
 | Scale transform | `Linear`, `Signed log2`, and `Asinh`; default `Asinh` |
-| Overlay | single polarity-colored source marker, contour legend, zero marker, singular/unavailable mask; direction remains textual in the scenario facts |
+| Overlay | exact analytic contour circles plus one solid polarity disk with the canonical thin white border and small centered white origin dot; direction remains textual in the scenario facts |
 
 The source position, contour density, contour visibility, transform choice, and color limits belong to view state. The chosen species, $\beta$, observable identity, time slice, domain, and scientific-kernel version belong to the reproducible scenario record.
 
@@ -76,7 +76,7 @@ app-local navigation or panel language.
   keyboard pattern while retaining Topo's own exact $0\leq\beta\leq1$
   scientific contract. Contour density, transform, and legend
   remain nearby display controls rather than being hidden in global
-  navigation.
+  navigation. The default contour visibility is $75\%$.
 - Mobile layout collapses the left panel before reducing shared icon hit
   targets and keeps the top-right controls clear of the map legend and source
   marker.
