@@ -178,6 +178,16 @@ The compact representation must still support the causal-root and acceleration d
 
 Plainly: a study may be large because it has many paths, a long past, fine local detail, hard causal geometry, many viewers, or a very fast data source. The system must say which pressure it is handling and what information a speed or storage trade leaves out.
 
+## Localized Keyhole Study Profiles
+
+AAA Core must support a localized keyhole study profile for simulations and analysis that need fine spacetime resolution around a selected assembly, release, encounter, or other bounded event while handling the wider exterior through a separately declared representation. A keyhole request identifies the focal region and interval, focal paths or assemblies, requested local resolution and precision, initial and boundary inputs, exterior coverage, and the treatment of any incoming or outgoing path products.
+
+The EOM solver remains the only forward-evolution instrument for any simulated future in the focal region. Core may schedule fine local history and root work there while storing or serving wider exterior histories at a coarser declared representation, by certified exclusion, through a separately defined boundary input, or as a plainly labeled approximation. A local window may not silently omit a history or exterior contribution that can affect its declared causal result.
+
+Keyhole products must record the focal geometry, source and boundary closure, exterior representation policy, precision and scale policy, all crossings or unresolved boundary conditions, accepted-through coverage, and every approximation or failure. This lets a user inject or release a selected assembly into a local study, compare variations, and visualize the detailed result without claiming that a short local window stands in for an unrepresented universal history.
+
+Plainly: a user can zoom computation onto an important interaction, while the system states exactly what surrounds that window and whether the outside has been resolved, bounded, modeled, or left open.
+
 ## Path Representation Optimization
 
 AAA Core must support a governed ecosystem of path-representation and optimization providers. A provider may propose a compact functional segment, adaptive approximation, multiresolution hierarchy, root-search index, experimental reconstruction encoding, or accelerator-oriented layout for a particular path class or consumer need. It must not become an unexamined application-local shortcut.
