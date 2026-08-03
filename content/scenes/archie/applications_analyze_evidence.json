@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__applications__analyze_evidence",
+    "title": "Analyze Evidence",
+    "type": "Scene-Index",
+    "units": "relative",
+    "layout": {
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
+    },
+    "wrapLabels": true,
+    "children": [
+      { "nodeId": "braid_search", "scenePath": "content/scenes/archie/braid_search.json" },
+      { "nodeId": "equation_mapping", "scenePath": "content/scenes/archie/equation_mapping.json" }
+    ]
+  },
+  "objects": [
+    { "id": "braid_search", "title": "Braid Search", "radius": 2.2, "color": "#0e7490", "labelTitle": "Braid Search", "labelBadge": "" },
+    { "id": "equation_mapping", "title": "Equation Mapping", "radius": 2.2, "color": "#146c74", "labelTitle": "Equation Mapping", "labelBadge": "" }
+  ]
+}

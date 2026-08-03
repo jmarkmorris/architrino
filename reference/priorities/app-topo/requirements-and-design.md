@@ -2,12 +2,13 @@
 
 ## Status
 
-- Stage: `initial-priority-design`
-- Implementation: `not-started`
+- Stage: `interaction-contract-complete`
+- Implementation: `TOPO-002 synthetic preview complete; TOPO-003 reference surface not started`
 - Application authority: display-only prescribed-path exploration
 - Forward-evolution authority: EOM solver only
 - Potential-product authority: [Potential](../app-potential/priorities.md)
 - First observable: [TOPO-001 signed ordinary wake intensity](topo-observable-and-reference-geometry-v1.md)
+- Interaction contract: [TOPO-002 interaction and color contract v1](topo-interaction-and-color-contract-v1.md)
 - Numerical convention: normalized wake-speed units with $c_f=1$
 
 ## Product Definition
@@ -20,17 +21,18 @@ Plainly: `static` describes the picture, not the source's absolute-frame motion.
 
 ## Initial Coordinate And Control Contract
 
-The normalized display domain is provisionally
+For a canvas with pixel width $W$ and height $H$, the Euclidean display chart is
 
 $$
-\Omega=[0,1]\times[0,1],
+\Omega_{W,H}=
+\left[\frac23-\frac{2W}{3H},\frac23+\frac{W}{3H}\right]\times[0,1],
 \qquad
 \mathbf x_0=(2/3,1/2),
 \qquad
 \widehat{\mathbf v}=\mathbf e_x.
 $$
 
-Plainly: the map is one unit wide and high, the architrino sits two-thirds of the way across and halfway up, and its represented motion points to the right.
+Plainly: one world unit is always one canvas-height, so equal horizontal and vertical distances occupy equal pixels. The architrino stays two-thirds of the way across and halfway up, and its represented motion points to the right.
 
 The initial controls are:
 
@@ -38,11 +40,12 @@ The initial controls are:
 | --- | --- |
 | Scenario | `Electrostatic: single electrino`; `Electrostatic: single positrino` |
 | $\beta=v/c_f$ | range $0\leq\beta\leq1$; the exact ordinary, unavailable, and nonordinary endpoint regions are fixed by TOPO-001 |
-| Contour levels | integer display variable; provisional default $24$, tunable after visual review |
-| Scale transform | `Linear`, `Signed log2`, and `Asinh`; final default unresolved |
-| Overlay | source marker, motion arrow, contour legend, zero marker, singular/unavailable mask |
+| Contour density | continuous display percentage; default $40\%$; progressively fades valid isolines from the minimum-density subset through the fixed $48$-level geometry without moving contour locations |
+| Contour visibility | display-only line-brightness percent from $0$ through $100$ in one-point steps; default $60$; does not alter field color, contour geometry, or raw values |
+| Scale transform | `Linear`, `Signed log2`, and `Asinh`; default `Asinh` |
+| Overlay | single polarity-colored source marker, contour legend, zero marker, singular/unavailable mask; direction remains textual in the scenario facts |
 
-The source position, contour count, transform choice, and color limits belong to view state. The chosen species, $\beta$, observable identity, time slice, domain, and scientific-kernel version belong to the reproducible scenario record.
+The source position, contour density, contour visibility, transform choice, and color limits belong to view state. The chosen species, $\beta$, observable identity, time slice, domain, and scientific-kernel version belong to the reproducible scenario record.
 
 ## Shared Application-Shell Contract
 
@@ -51,7 +54,11 @@ app-local navigation or panel language.
 
 - The canvas uses the shared dark neutral-purple stage and translucent dark
   panel surfaces. The colors must come from shared semantic UI tokens; Topo
-  must not introduce another nearly matching hard-coded purple palette.
+  must not introduce another nearly matching hard-coded purple palette. Signed
+  data zero uses the accepted shared Electric Purple (`#8F00FF`) semantic
+  token. At the beta endpoint, the leading region uses the same neutral display
+  midpoint without receiving a fabricated raw value; the shell itself keeps
+  the dark shared stage token.
 - The shared application controls occupy the top-right safe area in the
   established order: `Home`, `Back`, `Forward`, `Search`, `Notes` or
   `Documents`, and `Settings`, omitting only a control that has no declared
@@ -67,7 +74,7 @@ app-local navigation or panel language.
 - Scenario and $\beta$ are local scientific controls in the left panel. The
   $\beta$ slider reuses the established Architrino slider interaction and
   keyboard pattern while retaining Topo's own exact $0\leq\beta\leq1$
-  scientific contract. Contour count, transform, legend, and raw-value probe
+  scientific contract. Contour density, transform, and legend
   remain nearby display controls rather than being hidden in global
   navigation.
 - Mobile layout collapses the left panel before reducing shared icon hit
@@ -117,12 +124,12 @@ The signed palette is ordered
 $$
 \text{large negative}\longrightarrow\text{zero}\longrightarrow\text{large positive}
 \quad=
-\quad\text{blue}\longrightarrow\text{purple}\longrightarrow\text{red}.
+\quad\text{blue}\longrightarrow\text{Electric Purple}\longrightarrow\text{red}.
 $$
 
 Plainly: positrino-positive and electrino-negative maps use the same legend. Selecting the other species reverses the sign of the declared observable without changing the geometry or color semantics.
 
-Contour thresholds should be uniform in the selected transformed display coordinate, while the legend exposes corresponding raw values. Three initial transform candidates are:
+Contour thresholds are uniform in the selected transformed display coordinate, while the legend exposes corresponding raw values. TOPO-002 fixes $z_*=4$, an ordinary display-clip magnitude of $64$, and these transforms:
 
 $$
 C_{\mathrm{linear}}(z)=z/z_*,
@@ -138,9 +145,9 @@ $$
 C_{\operatorname{asinh}}(z)=\operatorname{asinh}(z/z_*).
 $$
 
-Plainly: plain $\log_2|z|$ fails at zero. The signed `log2(1 + magnitude)` form remains defined there, while `asinh` is nearly linear near neutral and logarithmic at large magnitude. `Asinh` is the leading default candidate, not yet an accepted visual result.
+Plainly: plain $\log_2|z|$ fails at zero. The signed `log2(1 + magnitude)` form remains defined there, while `asinh` is nearly linear near neutral and logarithmic at large magnitude. `Asinh` is the accepted v1 default.
 
-The comparison must use the same scenario and explicit reference scale $z_*$. It must judge near-zero readability, leading/trailing structure, high-magnitude compression, contour crowding, accessibility, and stability while $\beta$ moves. Quantile coloring is not a default candidate because it would make the same color mean different raw values in different frames; it may be offered later as an explicitly relative exploration mode.
+[TOPO-002](topo-interaction-and-color-contract-v1.md) records the comparison against one declared synthetic signed surface and its falsifier. Quantile coloring is not a v1 candidate because it would make the same color mean different raw values in different frames.
 
 ## Singular And Endpoint Behavior
 
@@ -168,7 +175,7 @@ The first release is acceptable only when:
 4. slider changes produce fresh, deterministic map identities and never mix frames;
 5. raw equal-distance leading/trailing samples are recorded before display transformation;
 6. singular and unavailable points remain distinct from zero and clipped display values;
-7. contour count and transform change only the visualization, not the raw map;
+7. contour density and transform change only the visualization, not the raw map;
 8. $c_f=1$ is used in all numerical fixtures; and
 9. the shared top-right application controls, dark neutral-purple stage,
    collapsible left-panel behavior, focus states, reduced-motion behavior, and
@@ -178,7 +185,5 @@ The first release is acceptable only when:
 ## Open Decisions
 
 1. Whether and when a separately defined true scalar-potential product from Potential becomes a second map mode.
-2. Final contour count range and default.
-3. Final transform default after the linear, signed-log2, and asinh visual comparison.
-4. Map resolution, recomputation budget, and progressive-rendering policy.
-5. Whether the source stays at $(2/3,1/2)$ for every later scenario or becomes scenario metadata.
+2. Map resolution, recomputation budget, and progressive-rendering policy.
+3. Whether the source stays at $(2/3,1/2)$ for every later scenario or becomes scenario metadata.

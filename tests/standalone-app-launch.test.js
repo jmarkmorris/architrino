@@ -49,6 +49,7 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
   assert.equal(getStandaloneAppPathForScene("equation-mapping"), "equation-mapping.html");
   assert.equal(getStandaloneAppPathForScene("greek-letter-match"), "greek-letter-match.html");
   assert.equal(getStandaloneAppPathForScene("lattice-lab"), "lattice-lab.html");
+  assert.equal(getStandaloneAppPathForScene("topo"), "topo.html");
   assert.equal(getStandaloneAppPathForScene("animator"), "animator.html");
   assert.equal(getStandaloneAppPathForScene("borg"), "borg.html");
   assert.equal(getStandaloneAppPathForScene("braid-search"), "braid-search.html");
@@ -71,6 +72,10 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
   assert.equal(
     getStandaloneAppPathForScene("content/scenes/archie/lattice_lab.json"),
     "lattice-lab.html"
+  );
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/archie/topo.json"),
+    "topo.html"
   );
   assert.equal(getStandaloneAppPathForScene("content/scenes/archie/animator.json"), "animator.html");
   assert.equal(getStandaloneAppPathForScene("content/scenes/archie/borg.json"), "borg.html");
@@ -105,6 +110,13 @@ test("standalone app scene mappings resolve to standalone app paths", () => {
       "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Flattice_lab.json"
     ),
     "http://127.0.0.1:5173/lattice-lab.html"
+  );
+  assert.equal(
+    resolveStandaloneAppHrefForScene(
+      "content/scenes/archie/topo.json",
+      "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Ftopo.json"
+    ),
+    "http://127.0.0.1:5173/topo.html"
   );
   assert.equal(
     resolveStandaloneAppHrefForScene(
@@ -251,6 +263,9 @@ test("standalone app home controls avoid bare index navigation", () => {
 
 test("Applications scene does not expose Assembly Explorer", () => {
   const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
+  const categoryPaths = applicationsScene.scene.children.map((child) => child.scenePath);
+  const categoryScenes = categoryPaths.map((scenePath) =>
+    JSON.parse(readRepoFile(scenePath)));
 
   assert.equal(
     applicationsScene.scene.children.some((child) => child.nodeId === "assembly_explorer"),
@@ -260,10 +275,17 @@ test("Applications scene does not expose Assembly Explorer", () => {
     applicationsScene.objects.some((object) => object.id === "assembly_explorer"),
     false
   );
+  assert.equal(
+    categoryScenes.some((scene) =>
+      scene.scene.children.some((child) => child.nodeId === "assembly_explorer")),
+    false
+  );
 });
 
 test("Applications scene exposes Equation Mapping as a standalone app scene", () => {
-  const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
+  const applicationsScene = JSON.parse(
+    readRepoFile("content/scenes/archie/applications_analyze_evidence.json"),
+  );
   const equationMappingScene = JSON.parse(readRepoFile("content/scenes/archie/equation_mapping.json"));
 
   assert.equal(equationMappingScene.scene.id, "equation-mapping");
@@ -282,7 +304,9 @@ test("Applications scene exposes Equation Mapping as a standalone app scene", ()
 });
 
 test("Applications scene exposes It's Greek to Me! as a standalone app scene", () => {
-  const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
+  const applicationsScene = JSON.parse(
+    readRepoFile("content/scenes/archie/applications_learn_reference.json"),
+  );
   const greekMatchScene = JSON.parse(readRepoFile("content/scenes/archie/greek_letter_match.json"));
 
   assert.equal(greekMatchScene.scene.id, "greek-letter-match");
@@ -307,7 +331,9 @@ test("Applications scene exposes It's Greek to Me! as a standalone app scene", (
 });
 
 test("Applications scene exposes Braid Search as a standalone app scene", () => {
-  const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
+  const applicationsScene = JSON.parse(
+    readRepoFile("content/scenes/archie/applications_analyze_evidence.json"),
+  );
   const braidSearchScene = JSON.parse(readRepoFile("content/scenes/archie/braid_search.json"));
 
   assert.equal(braidSearchScene.scene.id, "braid-search");
@@ -339,7 +365,9 @@ test("pdgedit scene no longer resolves to a standalone app path from the main we
 });
 
 test("Lorentz Geometry display name preserves the ideal-braid scene and route contracts", () => {
-  const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
+  const applicationsScene = JSON.parse(
+    readRepoFile("content/scenes/archie/applications_explore_models.json"),
+  );
   assert.equal(
     applicationsScene.objects.find((object) => object.id === "ideal_braid")?.labelTitle,
     "Lorentz Geometry"

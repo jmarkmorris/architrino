@@ -4,6 +4,33 @@ This file is the chronological work log for the `app-topo` priority area. Use [p
 
 ## Log Entries
 
+### 2026-08-02 — TOPO-002 Interaction And Color Contract Closed
+
+- Added [the TOPO-002 contract](topo-interaction-and-color-contract-v1.md) and an explicitly labeled synthetic interaction preview at `topo.html`.
+- Fixed `Asinh` as the v1 default, with $z_*=4$, a symmetric ordinary display clip at $|z|=64$, and $24$ contour levels adjustable from $8$ through $48$.
+- Kept scenario and $\beta$ in raw-frame identity while contour count, transform, panel state, and probe position remain display-only state.
+- Bound Topo to the shared semantic shell tokens, shared panel icon, existing Applications-return behavior, global search runtime, keyboard focus, reduced-motion treatment, and responsive $58$-pixel collapse rail.
+- Defined distinct signed ordinary, clipped, singular, unavailable, nonordinary, unresolved, loading, and complete presentation states. The preview uses no TOPO-001 raw values.
+- Refined the preview to one source-anchored synthetic causal envelope, a single compact polarity-colored source marker, continuous full-density field color, and anti-aliased interpolated contours. The canvas uses available device-pixel density up to an explicit safety ceiling; raw probe values remain provider outputs rather than smoothed display samples.
+- Aligned both native dropdowns and their option text with the shared left-panel typography while retaining native selection, focus, and responsive behavior.
+- Split rendering into an immediate coalesced interaction preview and interruptible full-density refinement. Raw frames are cached only by scenario, $\beta$, and pixel size; transform and contour changes reuse that raw field, and stale refinement is cancelled so sliders do not block behind obsolete work.
+- At the exact $\beta=1$ endpoint, retained unavailable product typing and raw-probe semantics while replacing the large diagonal hatch and later dark void with the Electric Purple neutral display midpoint. The front carries no special region ornament and no sample receives a fabricated raw number.
+- Replaced the custom source glyph with the repository's canonical architrino semantics: a solid standard-blue electrino disk or solid standard-red positrino disk with the established thin centered white body stroke, and no backing shape, glow, shadow, inset, tail, or direction ornament.
+- Made scenario switching polarity-only: non-default beta, contour density, contour visibility, transform, and probe state persist, while the opposite-polarity raw cache and contour-level mapping are derived from the current synthetic frame so visible contours recolor immediately without a provider rebuild.
+- Added a display-only Contour visibility slider with a legible $60\%$ default. It mixes only the anti-aliased contour stroke toward shared white, while reusing cached raw and field frames so field color, contour geometry, source, states, and probe values remain unchanged.
+- Recast Contour levels as continuous Contour density. The control fades a fixed set of valid isolines in and out at tenth-percent pointer resolution while retaining one-percent keyboard steps; no fractional line count is shown and no isoline is displaced.
+- Kept every range track at a fixed thin visual thickness through hover, focus, active, and drag states. A transparent larger interaction lane preserves touch use, and keyboard focus is localized to the fixed-size thumb rather than outlining the whole track.
+- Corrected the canvas-to-world chart to use one canvas-height per Euclidean world unit on both axes. Raw sampling, caches, contours, probes, and resizing now share that mapping, making the $\beta=0$ control circular on wide and mobile canvases without removing $\beta>0$ causal asymmetry.
+- Removed the object-like dark oval created by the singular display mask beneath the canonical source disk. The mask remains nonnumeric in provider/probe semantics but composites with the same-polarity field endpoint color, leaving exactly one visible architrino object.
+- Removed both lower-corner canvas text boxes. The left-panel Interaction Contract Preview and probe identity retain the synthetic-data disclosure, while runtime completion updates remain available through an offscreen polite live region.
+- Removed the visible Singular / Unavailable / Loading state-key row from the Signed ordinary values card and deleted its dedicated markup and styling. Typed renderer guards, the raw probe, and offscreen status remain intact.
+- Removed the visible Source marker and Frame rows from the Scenario record while retaining source placement and frame identity in internal state, raw-probe identity, tests, and accessible runtime diagnostics.
+- Compared the shared Electric Purple (`#8F00FF`) and Pure Purple (`#800080`) midpoint candidates through a temporary display-only control, then removed that control after the user selected Electric Purple. The locked midpoint changes signed-field interpolation and the legend only; the dark shared stage remains the shell and beta-endpoint empty-space color, so unavailable samples are not painted as numeric zero.
+- Reorganized Applications into Learn & Reference, Explore Models, Analyze Evidence, and Build & Simulate child scenes. All existing app scene paths remain direct, and Topo is the fifteenth app under Explore Models.
+- Removed TOPO-002 from the live queue. TOPO-003 is now the top queued object and must replace the synthetic provider with independently checked TOPO-001 raw values.
+
+Plainly: the app now has a fixed interface and a safe preview, while the real scientific map remains the next task.
+
 ### 2026-08-02 — TOPO-001 Observable And Reference Geometry Closed
 
 - Added [the TOPO-001 contract](topo-observable-and-reference-geometry-v1.md) for the prescribed uniformly translating single-source geometry with $c_f=1$.

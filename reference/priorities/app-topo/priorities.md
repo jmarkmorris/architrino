@@ -3,18 +3,19 @@
 ## Workstream Metadata
 
 - Kind: `priority-app-candidate`
-- Status: `design-open`
+- Status: `interaction-contract-closed`
 - Claim level: `priority-design`
 - App name: `Topo`
 - Priority directory: `app-topo`
 - Execution ledger: [work queue](work-queue.md)
 - Requirements packet: [requirements and design](requirements-and-design.md)
 - Observable contract: [TOPO-001 observable and reference geometry v1](topo-observable-and-reference-geometry-v1.md)
+- Interaction contract: [TOPO-002 interaction and color contract v1](topo-interaction-and-color-contract-v1.md)
 - Exploratory notes: [brainstorming](brainstorming.md)
 - Chronological record: [work log](work-log.md)
 - Potential-product owner: [Potential](../app-potential/priorities.md)
 - Shared platform: [AAA Core](../app-aaa-core/priorities.md)
-- Ranking: pending the interaction contract and a reference-surface estimate
+- Ranking: pending a reference-surface estimate
 
 ## Objective
 
@@ -34,10 +35,13 @@ The first release is a static single-time visualization only. It does not evolve
 6. The first release is a prescribed-path, fixed-time map. Dynamics are deferred to a separately owned later phase.
 7. Contours use a signed diverging palette: large positive values are red, zero is purple, and large negative values are blue.
 8. Contour-level count is a user-adjustable display parameter, not a scientific parameter.
-9. Linear, signed-logarithmic, and inverse-hyperbolic-sine display transforms will be compared before the default is frozen.
+9. Linear, signed-logarithmic, and inverse-hyperbolic-sine display transforms remain available, with inverse hyperbolic sine (`Asinh`) fixed as the v1 default by TOPO-002.
 10. A singular source neighborhood is shown as masked or unavailable. Display masking must not be described as a physical core or a change to the wake law.
 11. Topo renders declared potential products supplied through [Potential](../app-potential/priorities.md); it does not establish a competing app-local path-to-potential law.
 12. The first raw map product is `Signed ordinary wake intensity`, not potential. It uses the canonical inverse-square distance factor and transmitter-side ordinary-root weight on the prescribed path, as fixed by [TOPO-001](topo-observable-and-reference-geometry-v1.md).
+13. TOPO-002 fixes `Asinh` as the default transform with $z_*=4$, a symmetric ordinary display clip at $|z|=64$, and $24$ contour levels adjustable from $8$ through $48$.
+14. The TOPO-002 route is an explicitly labeled synthetic interaction preview. It supplies no TOPO-001 raw values and is not the TOPO-003 reference surface.
+15. Applications is organized through four category scenes—Learn & Reference, Explore Models, Analyze Evidence, and Build & Simulate—and Topo is the fifteenth app under Explore Models.
 
 ## Current Scientific Status
 
@@ -46,6 +50,10 @@ The first release is a static single-time visualization only. It does not evolve
 The canon does not yet supply a completed pointwise scalar-potential formula for this map. A later potential mode therefore remains routed to [Potential](../app-potential/priorities.md) and must be separately named, versioned, and validated.
 
 Plainly: the first colored pixel now has an exact wake-intensity meaning. A true potential remains a different, still-open product rather than a second name for the same numbers.
+
+[TOPO-002](topo-interaction-and-color-contract-v1.md) closes the display transform, scale, contour, signed-color, nonnumeric-state, panel, shared-chrome, accessibility, and responsive-layout decisions. The companion preview uses only the declared synthetic comparison surface. TOPO-003 is now unblocked and remains responsible for independently checked TOPO-001 raw values.
+
+Plainly: the interface rules are fixed, but the scientific map has not yet been implemented.
 
 ## Promotion Boundary
 
