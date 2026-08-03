@@ -8,17 +8,24 @@ import {
   TOPO_DEFAULT_CONTOUR_VISIBILITY,
   TOPO_DEFAULT_TRANSFORM,
   TOPO_DISPLAY_CLIP_MAGNITUDE,
+  TOPO_FIELD_COLOR_GAIN,
+  TOPO_FIELD_PERCEPTIBILITY_THRESHOLD,
+  TOPO_FIRST_CONTOUR_BUDGET_MS,
   TOPO_INTERACTION_CONTRACT_ID,
   TOPO_REFERENCE_SCALE,
   TOPO_SOURCE_POSITION,
   applyTopoScenarioPolarity,
   createTopoContourDensityPlan,
+  createTopoContourEmphasis,
   createTopoContourThresholds,
   createTopoPreviewFrameIdentity,
+  createTopoSampleRgb,
   createTopoSignedRgb,
   createTopoSyntheticRawSampler,
   forEachTopoContourSegment,
   inverseTopoTransform,
+  measureTopoCenterlineColorFootprint,
+  normalizeTopoFieldColorValue,
   normalizeTopoDisplayValue,
   resolveTopoCanvasPixelSize,
   syntheticTopoCausalDelay,
@@ -50,6 +57,13 @@ test("TOPO-002 freezes the transform defaults and exact inverse pairs", () => {
   assert.equal(TOPO_DEFAULT_CONTOUR_LEVELS, 24);
   assert.equal(TOPO_DEFAULT_CONTOUR_DENSITY, 0.4);
   assert.equal(TOPO_DEFAULT_CONTOUR_VISIBILITY, 0.6);
+  assert.deepEqual(TOPO_FIELD_COLOR_GAIN, {
+    linear: 900,
+    "signed-log2": 70,
+    asinh: 90,
+  });
+  assert.equal(TOPO_FIELD_PERCEPTIBILITY_THRESHOLD, 0.3);
+  assert.ok(TOPO_FIRST_CONTOUR_BUDGET_MS <= 34);
 
   for (const transformId of ["linear", "signed-log2", "asinh"]) {
     for (const rawValue of [-64, -4, -0.25, 0, 0.25, 4, 64]) {
@@ -62,6 +76,55 @@ test("TOPO-002 freezes the transform defaults and exact inverse pairs", () => {
       );
     }
   }
+});
+
+test("field-color calibration broadens every transform without changing zero or sign", () => {
+  assert.deepEqual(createTopoSampleRgb(0), [143, 0, 255]);
+  assert.deepEqual(createTopoSampleRgb(Number.POSITIVE_INFINITY), [143, 0, 255]);
+
+  for (const transformId of ["linear", "signed-log2", "asinh"]) {
+    closeTo(normalizeTopoFieldColorValue(0, transformId), 0);
+    for (const magnitude of [0.001, 0.01, 0.1, 1, 4, 16, 64]) {
+      closeTo(
+        normalizeTopoFieldColorValue(-magnitude, transformId),
+        -normalizeTopoFieldColorValue(magnitude, transformId),
+      );
+    }
+    const monotone = [0, 0.001, 0.01, 0.1, 1, 4, 16, 64].map(
+      (rawValue) => normalizeTopoFieldColorValue(rawValue, transformId),
+    );
+    assert.equal(
+      monotone.every((value, index) => index === 0 || value > monotone[index - 1]),
+      true,
+    );
+    const baseline = measureTopoCenterlineColorFootprint({
+      transformId,
+      calibrated: false,
+    });
+    const calibrated = measureTopoCenterlineColorFootprint({ transformId });
+    assert.ok(calibrated.start <= 0.25, transformId + " reaches x <= 0.25");
+    assert.ok(calibrated.end >= 0.8, transformId + " reaches x >= 0.80");
+    assert.ok(
+      calibrated.width >= 2 * baseline.width,
+      transformId + " footprint is at least twice the baseline width",
+    );
+  }
+});
+
+test("beta-one leading pixels use neutral Electric Purple without fabricating raw zero", () => {
+  const sampler = createTopoSyntheticRawSampler({ beta: 1, polaritySign: -1 });
+  const leading = sampler(0.82, TOPO_SOURCE_POSITION.y);
+  assert.equal(leading, Number.POSITIVE_INFINITY);
+  assert.deepEqual(createTopoSampleRgb(leading), [143, 0, 255]);
+  assert.equal(
+    topoPreviewResultAt({
+      x: 0.82,
+      y: TOPO_SOURCE_POSITION.y,
+      beta: 1,
+      polaritySign: -1,
+    }).rawValue,
+    null,
+  );
 });
 
 test("contour density fades valid fixed isolines without moving them", () => {
@@ -86,6 +149,24 @@ test("contour density fades valid fixed isolines without moving them", () => {
     middle.every(({ weight }, index) => weight >= minimum[index].weight),
     true,
   );
+});
+
+test("contour visibility continuously reaches one crisp canonical-white stroke", () => {
+  assert.deepEqual(createTopoContourEmphasis(0), {
+    opacity: 0,
+    whiteMix: 0,
+    widthCss: 0.8,
+  });
+  assert.deepEqual(createTopoContourEmphasis(0.6), {
+    opacity: 0.6,
+    whiteMix: 0.6,
+    widthCss: 1.52,
+  });
+  assert.deepEqual(createTopoContourEmphasis(1), {
+    opacity: 1,
+    whiteMix: 1,
+    widthCss: 2,
+  });
 });
 
 test("beta zero raw values use one Euclidean pixel scale on a wide canvas", () => {
@@ -336,7 +417,7 @@ test("Topo preview uses shared shell primitives and preserves Home behavior", ()
   assert.match(runtime, /aria-hidden/u);
   assert.match(runtime, /resolveTopoCanvasPixelSize/u);
   assert.match(runtime, /forEachTopoContourSegment/u);
-  assert.match(runtime, /context\.arc\(x, y, radius, 0, Math\.PI \* 2\)/u);
+  assert.match(runtime, /targetContext\.arc\(x, y, radius, 0, Math\.PI \* 2\)/u);
   assert.match(runtime, /ARCHITRINO_BODY_OUTLINE_WIDTH \* pixelRatio/u);
   assert.match(runtime, /\[WHITE\.r, WHITE\.g, WHITE\.b\]/u);
   assert.doesNotMatch(runtime, /upperJoinAngle/u);
@@ -344,16 +425,25 @@ test("Topo preview uses shared shell primitives and preserves Home behavior", ()
   assert.doesNotMatch(runtime, /960 \/ requestedWidth|720 \/ requestedHeight/u);
   assert.match(runtime, /PHOTON_CHARGE_COLORS\.electrino/u);
   assert.match(runtime, /rawFrameCache/u);
-  assert.match(runtime, /deriveRawFrameForPolarity/u);
+  assert.match(runtime, /rawFrameCaches/u);
   assert.match(runtime, /displays: new Map\(\)/u);
   assert.match(runtime, /contours: new Map\(\)/u);
+  assert.match(runtime, /drawFastContourPreview/u);
+  assert.match(runtime, /contourContext\.drawImage\(contourStagingCanvas/u);
+  assert.match(runtime, /lastFirstContourLatencyMs/u);
   assert.match(runtime, /Updating contour lines from the cached field/u);
   assert.match(html, /id="home-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="scene-search"/u);
-  assert.match(html, /Synthetic interaction surface/u);
-  assert.match(html, /does not render the TOPO-001[\s\S]*wake-intensity product/u);
+  assert.match(html, /<title>Architrino Wake Intensity Map<\/title>/u);
+  assert.match(html, /<h1>Wake Intensity Map<\/h1>/u);
+  assert.match(html, /Two-dimensional prescribed-motion slice/u);
+  assert.doesNotMatch(html, /TOPO-002 preview/u);
+  assert.match(html, /<h2 id="topo-about-title">About this view<\/h2>/u);
+  assert.match(html, /Explore a theoretical two-dimensional view of signed wake intensity around a prescribed electrino or positrino\./u);
+  assert.doesNotMatch(html, /Interaction contract preview|TOPO-001|synthetic causal envelope/u);
   assert.match(html, /id="topo-contours"[\s\S]*step="0\.1"[\s\S]*data-keyboard-step="1"/u);
   assert.match(html, /id="topo-contour-visibility"[\s\S]*aria-label="Contour line visibility"/u);
   assert.match(html, /id="topo-contour-visibility-output"/u);
+  assert.match(html, /id="topo-contour-canvas" aria-hidden="true"/u);
   assert.doesNotMatch(html, /Midpoint purple|Temporary comparison|topo-zero-/u);
   assert.doesNotMatch(html, /topo-state-key|Nonnumeric state legend/u);
   assert.doesNotMatch(html, /topo-probe|Raw probe|Raw synthetic/u);
@@ -362,6 +452,9 @@ test("Topo preview uses shared shell primitives and preserves Home behavior", ()
   assert.doesNotMatch(html, /<dt>Source marker<\/dt>|<dt>Frame<\/dt>|topo-frame-identity/u);
   assert.match(css, /@media \(max-width: 820px\)/u);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/u);
+  assert.match(css, /input::-webkit-slider-runnable-track \{[\s\S]*height: 5px;/u);
+  assert.match(css, /input:focus-visible::-webkit-slider-thumb/u);
+  assert.match(css, /\.topo-range-field input:focus-visible \{\s*outline: none;\s*\}/u);
   assert.match(css, /var\(--ui-stage\)/u);
   assert.match(css, /\.topo-status \{[\s\S]*clip: rect\(0, 0, 0, 0\);/u);
   assert.match(tokens, /--ui-data-negative: #2563eb;/u);

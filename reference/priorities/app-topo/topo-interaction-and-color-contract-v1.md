@@ -94,7 +94,7 @@ Plainly: a wide screen reveals more world space left and right; it does not stre
 | Scenario | Left panel, first control | `Electrostatic: single electrino`; `Electrostatic: single positrino`; changing it creates a fresh raw-frame identity by reversing polarity only. Beta, contour density, contour visibility, and transform remain unchanged, and cached contour geometry is reused with the new polarity color. |
 | $\beta=v/c_f$ | Left panel below scenario | Range $0\leq\beta\leq1$, step $0.01$, keyboard-operable, with visible numeric output and `aria-valuetext`; changing it creates a fresh raw-frame identity. |
 | Contour density | Left panel, display section | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $40$. A fixed set of valid isolines is cached: the minimum-density subset remains present, and additional valid isolines fade in progressively in a spatially balanced order. No contour location is interpolated or moved. |
-| Contour visibility | Left panel, display section | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $60$; changes only how far the anti-aliased contour stroke color is mixed from its polarity color toward shared white text. Arrow keys change one percentage point and Home/End select the endpoints. It does not change contour geometry, field pixels, raw values, states, or source. |
+| Contour visibility | Left panel, display section | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $60$; continuously changes a single anti-aliased stroke's opacity, canonical-white mix, and width. At $0$ the line is hidden; at $100$ it is fully opaque canonical white and $2$ CSS pixels wide. Device-pixel scaling preserves that apparent width. Arrow keys change one percentage point and Home/End select the endpoints. It does not change contour geometry, field pixels, raw values, states, or source. |
 | Scale transform | Left panel, display section | `Linear`, `Signed log2`, `Asinh`; default `Asinh`; changes transformed coordinates only. |
 | Legend | Left panel near display controls | Always visible while the panel is open; names transform, $z_*$, raw clip values, zero, and nonnumeric state keys. |
 | Panel toggle | Persistent left rail | Uses `PanelCollapseIcons.js`, updates name and `aria-expanded`, preserves the reopen control, and makes closed content hidden and inert. |
@@ -131,7 +131,7 @@ $$
 \qquad z_{\max}=64.
 $$
 
-Contour thresholds are equally spaced in $\widehat C$. The legend applies the exact inverse transform to expose the corresponding raw values. A value with $|z|>z_{\max}$ remains available in the probe as a preserved raw value and receives the state qualifier `ordinary:display_clipped`.
+Contour thresholds are equally spaced in $\widehat C$. The legend applies the exact inverse transform to expose the corresponding raw values. A value with $|z|>z_{\max}$ retains its private raw value and receives the internal state qualifier `ordinary:display_clipped`.
 
 Plainly: every transform sees the same raw numbers and the same fixed endpoints. The colors never silently rescale themselves to each frame.
 
@@ -141,9 +141,9 @@ The canvas requests the available device-pixel density. A safety ceiling limits 
 
 Interaction first paints a small, smoothly enlarged preview, then replaces it with the full-density frame. The full-density raw field is evaluated in interruptible main-thread slices and cached by canvas size, scenario, and $\beta$. Display transforms reuse that raw cache; transformed image frames are cached separately by transform. The fixed valid-isoline geometry is cached separately by transform. Contour-density changes adjust only per-line fade weights and contour-visibility changes adjust only line color, both over cached field pixels. New interaction cancels stale refinement work.
 
-Neither the continuous color interpolation nor contour stroke smoothing writes back to the raw provider, probe value, frame identity, or state classification. A future TOPO-001 provider can replace the synthetic provider without changing this boundary.
+Neither the continuous color interpolation nor contour stroke smoothing writes back to the raw provider, frame identity, or state classification. A future TOPO-001 provider can replace the synthetic provider without changing this boundary.
 
-Plainly: the browser may smooth the picture, but it does not smooth, average, or manufacture the numbers reported by the probe.
+Plainly: the browser may smooth the picture, but it does not smooth, average, or manufacture the provider values.
 
 ## Transform Comparison And Default
 
@@ -178,21 +178,23 @@ Plainly: blue always means negative, purple means zero, and red means positive. 
 | State | Visual treatment | Accessible treatment |
 | --- | --- | --- |
 | `ordinary` | Signed blue-purple-red fill and contours | Probe announces `ordinary` plus raw and transformed values. |
-| `ordinary:display_clipped` | Endpoint color with a clipped indicator in the probe | Preserved raw value and explicit clipped qualifier. |
+| `ordinary:display_clipped` | Endpoint color | Preserved private raw value and internal clipped qualifier. |
 | `singular:endpoint_source` | One compact canonical architrino disk: standard blue electrino or standard red positrino with the established thin centered white body stroke. Masked display pixels beneath it use the same-polarity field endpoint color so no second object-like underlay appears. | Probe announces `singular`; no raw number. |
-| `unavailable:no_positive_causal_root` | Electric Purple neutral midpoint with no boundary, texture, tint, or region ornament; this is display-only and does not supply a raw zero | Probe announces that the Signed ordinary wake-intensity product is `unavailable`; no raw number. |
+| `unavailable:no_positive_causal_root` | Electric Purple neutral midpoint with no boundary, texture, tint, or region ornament; this is display-only and does not supply a raw zero | Private state remains `unavailable`; no raw number. |
 | `nonordinary:degenerate_root_family` | The same compact canonical architrino disk | Probe announces `nonordinary`; no raw number. |
-| `unresolved:numeric_failure` | Dark error hatch reserved for TOPO-003 | Live status and probe announce calculation failure; no raw number. |
+| `unresolved:numeric_failure` | Dark error hatch reserved for TOPO-003 | Polite live status announces calculation failure; no raw number. |
 | `loading` | Reserved neutral veil before any current preview exists | Polite live region announces that the initial frame is computing. |
 | `refining` | A current low-density interaction preview remains visible while interruptible work replaces it with the full-density frame | Polite live region announces that full-density refinement continues. |
 | `complete` | Loading veil removed only after the matching frame is ready | Polite live region announces the matching frame identity is complete. |
 
 At $\beta=1$, the preview demonstrates the TOPO-001 state layout without evaluating its raw ordinary formula: the strict trailing half-plane remains available for the synthetic comparison surface, while the leading half-plane and off-source transverse line use the Electric Purple neutral display midpoint and the Signed ordinary wake-intensity product reports unavailable with no raw number. The source uses the nonordinary treatment.
 
-Plainly: the endpoint void and numeric zero share a neutral display color, but the raw probe still distinguishes no value from zero.
+Plainly: the endpoint void and numeric zero share a neutral display color, while the private typed state still distinguishes no value from zero.
 
 ## Layout And Accessibility Contract
 
+- The user-facing header is `Wake Intensity Map` with the subtitle `Two-dimensional prescribed-motion slice`; internal TOPO work-item/version labels do not appear in that header.
+- The first information card is titled `About this view` and says exactly: `Explore a theoretical two-dimensional view of signed wake intensity around a prescribed electrino or positrino.` Internal preview, validation, and work-item language does not appear in the visible card.
 - The stage and shell consume the shared semantic tokens from `ui-tokens.css`; Topo adds no app-local shell palette.
 - The left panel opens at a desktop width near $360$ pixels and collapses to a persistent $58$-pixel rail.
 - Below $820$ pixels, the panel begins collapsed and expands as an overlay over the stage. The shared top-right controls retain $32\times32$ hit targets.
@@ -201,13 +203,12 @@ Plainly: the endpoint void and numeric zero share a neutral display color, but t
 - Range controls keep a fixed five-pixel visual track and fixed-size thumb in default, hover, focus, active, and drag states. Their larger transparent interaction lane does not render; keyboard focus is shown only around the thumb.
 - Closed panel content is hidden, `aria-hidden`, and inert. The reopen control stays focusable.
 - Under `prefers-reduced-motion: reduce`, panel and control transitions are removed; state changes remain immediate and complete.
-- Canvas probe updates are announced only through the dedicated status output, avoiding per-pointer-move live-region noise.
 
 Plainly: the same controls work by touch, pointer, and keyboard, and motion preferences change animation rather than functionality.
 
 ## TOPO-003 Handoff
 
-TOPO-003 may replace only the synthetic surface provider and preview labels. It must retain this contract's state split, fixed transform definitions, fixed scale, palette semantics, contour range, raw-probe fields, shell behavior, navigation order, endpoint treatments, and accessibility behavior unless a separately reviewed contract supersedes them.
+TOPO-003 may replace only the synthetic surface provider and preview labels. It must retain this contract's state split, fixed transform definitions, fixed scale, palette semantics, contour range, shell behavior, navigation order, endpoint treatments, and accessibility behavior unless a separately reviewed contract supersedes them.
 
 The TOPO-003 implementation is accepted only when independent analytical references verify its raw TOPO-001 samples. Agreement with this synthetic preview is not scientific evidence.
 

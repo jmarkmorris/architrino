@@ -9,6 +9,13 @@ export const TOPO_DEFAULT_CONTOUR_VISIBILITY = 0.6;
 export const TOPO_CONTOUR_LEVEL_RANGE = Object.freeze({ min: 8, max: 48 });
 export const TOPO_TRANSFORMS = Object.freeze(["linear", "signed-log2", "asinh"]);
 export const TOPO_DEFAULT_TRANSFORM = "asinh";
+export const TOPO_FIELD_COLOR_GAIN = Object.freeze({
+  linear: 900,
+  "signed-log2": 70,
+  asinh: 90,
+});
+export const TOPO_FIELD_PERCEPTIBILITY_THRESHOLD = 0.3;
+export const TOPO_FIRST_CONTOUR_BUDGET_MS = 34;
 export const TOPO_SYNTHETIC_DECAY_RATE = 16;
 export const TOPO_MAX_CANVAS_DIMENSION = 4096;
 export const TOPO_MAX_CANVAS_PIXELS = 12 * 1024 * 1024;
@@ -98,6 +105,57 @@ export function normalizeTopoDisplayValue(
   return clamp(transformed / transformedLimit, -1, 1);
 }
 
+export function normalizeTopoFieldColorValue(
+  rawValue,
+  transformId = TOPO_DEFAULT_TRANSFORM,
+) {
+  const transform = normalizeTransformId(transformId);
+  const normalized = normalizeTopoDisplayValue(rawValue, transform);
+  const gain = TOPO_FIELD_COLOR_GAIN[transform];
+  return Math.sign(normalized) * Math.asinh(gain * Math.abs(normalized)) /
+    Math.asinh(gain);
+}
+
+export function measureTopoCenterlineColorFootprint({
+  transformId = TOPO_DEFAULT_TRANSFORM,
+  beta = 0.5,
+  threshold = TOPO_FIELD_PERCEPTIBILITY_THRESHOLD,
+  samples = 10_001,
+  calibrated = true,
+} = {}) {
+  const transform = normalizeTransformId(transformId);
+  const sampleCount = Math.max(101, Math.round(requireFiniteNumber(samples, "samples")));
+  const visible = [];
+  for (let index = 0; index < sampleCount; index += 1) {
+    const x = index / (sampleCount - 1);
+    if (Math.abs(x - TOPO_SOURCE_POSITION.x) <= 0.01) {
+      continue;
+    }
+    const rawValue = syntheticTopoSignedValue({
+      x,
+      y: TOPO_SOURCE_POSITION.y,
+      beta,
+      polaritySign: -1,
+    });
+    const normalized = calibrated
+      ? normalizeTopoFieldColorValue(rawValue, transform)
+      : normalizeTopoDisplayValue(rawValue, transform);
+    if (Math.abs(normalized) >= threshold) {
+      visible.push(x);
+    }
+  }
+  const start = visible[0] ?? null;
+  const end = visible.at(-1) ?? null;
+  return Object.freeze({
+    transformId: transform,
+    beta,
+    threshold,
+    start,
+    end,
+    width: start == null || end == null ? 0 : end - start,
+  });
+}
+
 export function createTopoContourThresholds(
   contourLevels = TOPO_DEFAULT_CONTOUR_LEVELS,
   transformId = TOPO_DEFAULT_TRANSFORM,
@@ -163,6 +221,60 @@ export function createTopoContourDensityPlan(density = TOPO_DEFAULT_CONTOUR_DENS
     normalized: -1 + (2 * index) / maximum,
     weight: weights.get(index) ?? 0,
   })));
+}
+
+export function createTopoContourEmphasis(
+  visibility = TOPO_DEFAULT_CONTOUR_VISIBILITY,
+) {
+  const normalized = clamp(
+    requireFiniteNumber(visibility, "visibility"),
+    0,
+    1,
+  );
+  return Object.freeze({
+    opacity: normalized,
+    whiteMix: normalized,
+    widthCss: 0.8 + 1.2 * normalized,
+  });
+}
+
+export function createTopoSyntheticContourCircles({
+  beta = 0.5,
+  transformId = TOPO_DEFAULT_TRANSFORM,
+  normalizedLevels = [],
+} = {}) {
+  const normalizedBeta = requireFiniteNumber(beta, "beta");
+  if (normalizedBeta < 0 || normalizedBeta > 1) {
+    throw new RangeError("beta must lie in [0, 1].");
+  }
+  const transform = normalizeTransformId(transformId);
+  const transformedLimit = transformTopoValue(
+    TOPO_DISPLAY_CLIP_MAGNITUDE,
+    transform,
+  );
+  return Object.freeze(normalizedLevels.map((candidate) => {
+    const level = requireFiniteNumber(candidate, "normalizedLevel");
+    if (!(level > 0 && level < 1)) {
+      throw new RangeError("Synthetic contour levels must lie strictly in (0, 1).");
+    }
+    const rawMagnitude = inverseTopoTransform(
+      level * transformedLimit,
+      transform,
+    );
+    const causalDelay = -Math.log(
+      rawMagnitude / TOPO_DISPLAY_CLIP_MAGNITUDE,
+    ) / TOPO_SYNTHETIC_DECAY_RATE;
+    return Object.freeze({
+      level,
+      rawMagnitude,
+      causalDelay,
+      center: Object.freeze({
+        x: TOPO_SOURCE_POSITION.x - normalizedBeta * causalDelay,
+        y: TOPO_SOURCE_POSITION.y,
+      }),
+      radius: causalDelay,
+    });
+  }));
 }
 
 export function resolveTopoCanvasPixelSize({
@@ -565,7 +677,7 @@ export function createTopoSampleRgb(
     return Object.freeze(parseHexColor(zero));
   }
   return createTopoSignedRgb(
-    normalizeTopoDisplayValue(rawValue, transformId),
+    normalizeTopoFieldColorValue(rawValue, transformId),
     { negative, zero, positive },
   );
 }

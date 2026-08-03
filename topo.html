@@ -8,18 +8,21 @@
       name="description"
       content="Preview the Topo interaction and signed-color contract before the scientific reference surface is connected."
     />
-    <title>architrino topo</title>
+    <title>Architrino Wake Intensity Map</title>
     <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
     <link rel="stylesheet" href="./src/apps/topo/topo.css" />
   </head>
   <body>
     <div id="topo-app" data-panel-collapsed="false" data-frame-state="loading">
-      <aside id="topo-left-rail" class="topo-left-rail" aria-label="Topo controls">
+      <aside
+        id="topo-left-rail"
+        class="topo-left-rail"
+        aria-label="Wake Intensity Map controls"
+      >
         <header class="topo-rail-header">
           <div class="topo-title">
-            <span>TOPO-002 preview</span>
-            <h1>Topo</h1>
-            <p>Synthetic interaction surface</p>
+            <h1>Wake Intensity Map</h1>
+            <p>Two-dimensional prescribed-motion slice</p>
           </div>
           <button
             id="topo-panel-collapse"
@@ -27,18 +30,14 @@
             type="button"
             aria-controls="topo-panel-content"
             aria-expanded="true"
-            aria-label="Collapse Topo controls"
+            aria-label="Collapse Wake Intensity Map controls"
           ></button>
         </header>
 
         <div id="topo-panel-content" class="topo-panel-content">
-          <section class="topo-notice" aria-labelledby="topo-preview-title">
-            <h2 id="topo-preview-title">Interaction contract preview</h2>
-            <p>
-              This page uses one source-anchored synthetic causal envelope to
-              compare display behavior. It does not render the TOPO-001
-              wake-intensity product.
-            </p>
+          <section class="topo-notice" aria-labelledby="topo-about-title">
+            <h2 id="topo-about-title">About this view</h2>
+            <p>Explore a theoretical two-dimensional view of signed wake intensity around a prescribed electrino or positrino.</p>
           </section>
 
           <section class="topo-card" aria-labelledby="topo-scenario-title">

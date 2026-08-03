@@ -7,11 +7,12 @@ import {
   TOPO_SOURCE_POSITION,
   applyTopoScenarioPolarity,
   createTopoContourDensityPlan,
+  createTopoContourEmphasis,
   createTopoContourThresholds,
-  createTopoSampleRgb,
+  createTopoSyntheticContourCircles,
   createTopoSyntheticRawSampler,
-  forEachTopoContourSegment,
   normalizeTopoDisplayValue,
+  normalizeTopoFieldColorValue,
   resolveTopoCanvasPixelSize,
   topoWorldPointForCanvasPixel,
 } from "./TopoInteractionContract.js";
@@ -50,11 +51,6 @@ function hexToRgb(hexColor) {
     Number.parseInt(normalized.slice(2, 4), 16),
     Number.parseInt(normalized.slice(4, 6), 16),
   ];
-}
-
-function mixRgb(start, end, amount) {
-  return start.map((channel, index) =>
-    Math.round(channel + (end[index] - channel) * amount));
 }
 
 function formatValue(value) {
@@ -119,6 +115,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   let frameRevision = 0;
   let resizeObserver = null;
   let rawFrameCache = null;
+  const rawFrameCaches = new Map();
   const previewCanvas = documentLike.createElement("canvas");
   const previewContext = previewCanvas.getContext("2d", { alpha: false });
   if (!previewContext) {
@@ -128,6 +125,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
   const contourStagingContext = contourStagingCanvas.getContext("2d");
   if (!contourStagingContext) {
     throw new Error("Topo interaction preview requires a contour staging context.");
+  }
+  const fieldRasterCanvas = documentLike.createElement("canvas");
+  const fieldRasterContext = fieldRasterCanvas.getContext("2d", { alpha: false });
+  if (!fieldRasterContext) {
+    throw new Error("Topo interaction preview requires a field raster context.");
   }
 
   function listen(target, eventName, handler, eventOptions) {
@@ -217,8 +219,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.collapse.innerHTML = createPanelCollapseIconSvg(collapsed);
     dom.collapse.setAttribute("aria-expanded", String(!collapsed));
     const accessibleName = collapsed
-      ? "Expand Topo controls"
-      : "Collapse Topo controls";
+      ? "Expand Wake Intensity Map controls"
+      : "Collapse Wake Intensity Map controls";
     dom.collapse.setAttribute("aria-label", accessibleName);
     dom.collapse.title = accessibleName;
     dom.panelContent.hidden = collapsed;
@@ -277,6 +279,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
     });
   }
 
+  function rawGridSize() {
+    const bounds = dom.canvas.getBoundingClientRect();
+    return {
+      width: Math.max(1, Math.ceil(bounds.width)),
+      height: Math.max(1, Math.ceil(bounds.height)),
+    };
+  }
+
   function readStyles(state = null) {
     const styles = {
       negative: readHexToken(
@@ -297,13 +307,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
         "--ui-data-positive",
         "#dc2626",
       ),
-      text: readHexToken(windowLike, dom.app, "--ui-text", "#f8f5ff"),
       polaritySign: state?.polaritySign ?? -1,
     };
     styles.negativeRgb = hexToRgb(styles.negative);
     styles.zeroRgb = hexToRgb(styles.zero);
     styles.positiveRgb = hexToRgb(styles.positive);
-    styles.textRgb = hexToRgb(styles.text);
     return styles;
   }
 
@@ -347,16 +355,33 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   function writeDisplayPixel(data, index, rawValue, styles, transformId) {
-    const rgb = createTopoSampleRgb(rawValue, {
-      transformId,
-      polaritySign: styles.polaritySign,
-      negative: styles.negative,
-      zero: styles.zero,
-      positive: styles.positive,
-    });
-    data[index] = rgb[0];
-    data[index + 1] = rgb[1];
-    data[index + 2] = rgb[2];
+    if (Number.isNaN(rawValue)) {
+      const sourceRgb = styles.polaritySign < 0
+        ? styles.negativeRgb
+        : styles.positiveRgb;
+      data[index] = sourceRgb[0];
+      data[index + 1] = sourceRgb[1];
+      data[index + 2] = sourceRgb[2];
+    } else if (!Number.isFinite(rawValue)) {
+      data[index] = styles.zeroRgb[0];
+      data[index + 1] = styles.zeroRgb[1];
+      data[index + 2] = styles.zeroRgb[2];
+    } else {
+      const normalized = normalizeTopoFieldColorValue(
+        rawValue * styles.polaritySign,
+        transformId,
+      );
+      const endpoint = normalized < 0
+        ? styles.negativeRgb
+        : styles.positiveRgb;
+      const amount = Math.abs(normalized);
+      for (let channel = 0; channel < 3; channel += 1) {
+        data[index + channel] = Math.round(
+          styles.zeroRgb[channel] +
+          (endpoint[channel] - styles.zeroRgb[channel]) * amount,
+        );
+      }
+    }
     data[index + 3] = 255;
   }
 
@@ -390,7 +415,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
         return cachedRawFrame.raw[sourceY * cachedRawFrame.width + sourceX];
       }
       : null;
-    const providerSample = sampleRaw ?? createTopoSyntheticRawSampler(state);
+    const providerSample = sampleRaw ?? createTopoSyntheticRawSampler({
+      ...state,
+      polaritySign: 1,
+    });
     for (let pixelY = 0; pixelY < previewHeight; pixelY += 1) {
       for (let pixelX = 0; pixelX < previewWidth; pixelX += 1) {
         const worldPoint = topoWorldPointForCanvasPixel({
@@ -433,56 +461,24 @@ export function mountTopoInteractionContractPreview(options = {}) {
       width,
       height,
       state.beta.toFixed(4),
-      state.polaritySign,
     ].join(":");
-  }
-
-  function deriveRawFrameForPolarity(width, height, state) {
-    if (
-      !rawFrameCache ||
-      rawFrameCache.width !== width ||
-      rawFrameCache.height !== height ||
-      rawFrameCache.beta !== state.beta ||
-      rawFrameCache.polaritySign === state.polaritySign
-    ) {
-      return;
-    }
-    const started = windowLike.performance?.now?.() ?? Date.now();
-    const raw = new Float32Array(rawFrameCache.raw.length);
-    for (let index = 0; index < raw.length; index += 1) {
-      const value = rawFrameCache.raw[index];
-      raw[index] = Number.isFinite(value) ? -value : value;
-    }
-    const contours = new Map();
-    rawFrameCache.contours.forEach((segmentsByLevel, geometryKey) => {
-      const entries = [...segmentsByLevel.entries()];
-      contours.set(geometryKey, new Map(entries.map(([level], index) => [
-        level,
-        entries[entries.length - index - 1][1],
-      ])));
-    });
-    rawFrameCache = {
-      key: createRawFrameKey(width, height, state),
-      width,
-      height,
-      beta: state.beta,
-      polaritySign: state.polaritySign,
-      raw,
-      displays: new Map(),
-      contours,
-    };
-    dom.app.dataset.lastPolarityDerivationLatencyMs = String(Math.round(
-      (windowLike.performance?.now?.() ?? Date.now()) - started,
-    ));
   }
 
   async function buildRawFrame(width, height, state, revision) {
     const key = createRawFrameKey(width, height, state);
-    if (rawFrameCache?.key === key) {
-      return rawFrameCache;
+    const cached = rawFrameCaches.get(key);
+    if (cached) {
+      rawFrameCache = cached;
+      dom.app.dataset.lastRawProviderMs = "0";
+      dom.app.dataset.lastRawProviderCacheHit = "true";
+      return cached;
     }
+    const providerStarted = windowLike.performance?.now?.() ?? Date.now();
     const raw = new Float32Array(width * height);
-    const sampleRaw = createTopoSyntheticRawSampler(state);
+    const sampleRaw = createTopoSyntheticRawSampler({
+      ...state,
+      polaritySign: 1,
+    });
     let row = 0;
     while (row < height) {
       const started = windowLike.performance?.now?.() ?? Date.now();
@@ -514,19 +510,30 @@ export function mountTopoInteractionContractPreview(options = {}) {
       width,
       height,
       beta: state.beta,
-      polaritySign: state.polaritySign,
       raw,
       displays: new Map(),
       contours: new Map(),
     };
+    rawFrameCaches.set(key, rawFrameCache);
+    while (rawFrameCaches.size > 4) {
+      rawFrameCaches.delete(rawFrameCaches.keys().next().value);
+    }
+    dom.app.dataset.lastRawProviderMs = String(Math.round(
+      (windowLike.performance?.now?.() ?? Date.now()) - providerStarted,
+    ));
+    dom.app.dataset.lastRawProviderCacheHit = "false";
     return rawFrameCache;
   }
 
   async function buildDisplayImage(rawFrame, pixelRatio, state, styles, revision) {
-    const cached = rawFrame.displays.get(state.transformId);
+    const displayKey = state.transformId + ":" + state.polaritySign;
+    const cached = rawFrame.displays.get(displayKey);
     if (cached) {
+      dom.app.dataset.lastColorRemapMs = "0";
+      dom.app.dataset.lastColorRemapCacheHit = "true";
       return cached;
     }
+    const remapStarted = windowLike.performance?.now?.() ?? Date.now();
     const image = context.createImageData(rawFrame.width, rawFrame.height);
     let row = 0;
     while (row < rawFrame.height) {
@@ -552,12 +559,207 @@ export function mountTopoInteractionContractPreview(options = {}) {
       }
       await nextTask();
     }
-    rawFrame.displays.set(state.transformId, image);
+    rawFrame.displays.set(displayKey, image);
+    dom.app.dataset.lastColorRemapMs = String(Math.round(
+      (windowLike.performance?.now?.() ?? Date.now()) - remapStarted,
+    ));
+    dom.app.dataset.lastColorRemapCacheHit = "false";
     return image;
+  }
+
+  function paintFieldImage(image, rawFrame, width, height) {
+    const started = windowLike.performance?.now?.() ?? Date.now();
+    if (
+      fieldRasterCanvas.width !== rawFrame.width ||
+      fieldRasterCanvas.height !== rawFrame.height
+    ) {
+      fieldRasterCanvas.width = rawFrame.width;
+      fieldRasterCanvas.height = rawFrame.height;
+    }
+    fieldRasterContext.putImageData(image, 0, 0);
+    context.clearRect(0, 0, width, height);
+    context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = "high";
+    context.drawImage(fieldRasterCanvas, 0, 0, width, height);
+    dom.app.dataset.lastFieldPaintMs = String(Math.round(
+      (windowLike.performance?.now?.() ?? Date.now()) - started,
+    ));
+  }
+
+  function createContourRenderPlan(contourDensity) {
+    const weightByLevel = new Map();
+    createTopoContourDensityPlan(contourDensity).forEach((entry) => {
+      const level = Math.abs(entry.normalized);
+      if (level > 0) {
+        weightByLevel.set(
+          level,
+          Math.max(weightByLevel.get(level) ?? 0, entry.weight),
+        );
+      }
+    });
+    return {
+      levels: [...weightByLevel.keys()].sort((left, right) => left - right),
+      weightByLevel,
+    };
+  }
+
+  function publishContourSegments({
+    segmentsByLevel,
+    columns,
+    rows,
+    width,
+    height,
+    pixelRatio,
+    state,
+    styles,
+    revision,
+    weightByLevel,
+  }) {
+    const paintStarted = windowLike.performance?.now?.() ?? Date.now();
+    const contourEmphasis = createTopoContourEmphasis(
+      state.contourVisibility,
+    );
+    const sourceContourRgb = state.polaritySign < 0
+      ? styles.negativeRgb
+      : styles.positiveRgb;
+    const canonicalWhiteRgb = [WHITE.r, WHITE.g, WHITE.b];
+    const contourRgb = sourceContourRgb.map((channel, index) => Math.round(
+      channel +
+      (canonicalWhiteRgb[index] - channel) * contourEmphasis.whiteMix,
+    ));
+    const contourColor = "rgb(" + contourRgb.join(",") + ")";
+    if (
+      contourStagingCanvas.width !== width ||
+      contourStagingCanvas.height !== height
+    ) {
+      contourStagingCanvas.width = width;
+      contourStagingCanvas.height = height;
+    } else {
+      contourStagingContext.clearRect(0, 0, width, height);
+    }
+    segmentsByLevel.forEach((segments, level) => {
+      const densityWeight = weightByLevel.get(level) ?? 0;
+      if (!segments.length || densityWeight <= 0) {
+        return;
+      }
+      contourStagingContext.save();
+      contourStagingContext.beginPath();
+      segments.forEach(({ start, end }) => {
+        contourStagingContext.moveTo(
+          (start.x / (columns - 1)) * width,
+          (start.y / (rows - 1)) * height,
+        );
+        contourStagingContext.lineTo(
+          (end.x / (columns - 1)) * width,
+          (end.y / (rows - 1)) * height,
+        );
+      });
+      contourStagingContext.strokeStyle = contourColor;
+      contourStagingContext.globalAlpha =
+        densityWeight * contourEmphasis.opacity;
+      contourStagingContext.lineWidth =
+        pixelRatio * contourEmphasis.widthCss;
+      contourStagingContext.lineCap = "round";
+      contourStagingContext.lineJoin = "round";
+      contourStagingContext.stroke();
+      contourStagingContext.restore();
+    });
+    drawSourceOverlay(
+      contourStagingContext,
+      width,
+      height,
+      pixelRatio,
+      state.polaritySign,
+    );
+    if (revision !== frameRevision) {
+      return false;
+    }
+    contourContext.clearRect(0, 0, width, height);
+    contourContext.drawImage(contourStagingCanvas, 0, 0);
+    dom.app.dataset.lastContourPaintMs = String(Math.round(
+      (windowLike.performance?.now?.() ?? Date.now()) - paintStarted,
+    ));
+    return true;
+  }
+
+  function drawFastContourPreview(
+    width,
+    height,
+    pixelRatio,
+    state,
+    styles,
+    revision,
+    interactionStarted,
+  ) {
+    const pathStarted = windowLike.performance?.now?.() ?? Date.now();
+    const bounds = dom.canvas.getBoundingClientRect();
+    const columns = Math.max(72, Math.min(112, Math.ceil(bounds.width / 10) + 1));
+    const rows = Math.max(54, Math.min(84, Math.ceil(bounds.height / 10) + 1));
+    const { levels, weightByLevel } = createContourRenderPlan(
+      state.contourDensity,
+    );
+    const values = new Float32Array(columns * rows);
+    values.fill(Number.NaN);
+    const sampleRaw = createTopoSyntheticRawSampler({
+      ...state,
+      polaritySign: 1,
+    });
+    for (let row = 0; row < rows; row += 1) {
+      const pixelY = row * (height - 1) / (rows - 1);
+      for (let column = 0; column < columns; column += 1) {
+        const pixelX = column * (width - 1) / (columns - 1);
+        const worldPoint = topoWorldPointForCanvasPixel({
+          pixelX,
+          pixelY,
+          width,
+          height,
+        });
+        const rawValue = sampleRaw(worldPoint.x, worldPoint.y);
+        if (Number.isFinite(rawValue)) {
+          values[row * columns + column] = normalizeTopoDisplayValue(
+            rawValue,
+            state.transformId,
+          );
+        }
+      }
+    }
+    const segmentsByLevel = new Map(levels.map((level) => [level, []]));
+    forEachTopoContourSegment({
+      values,
+      columns,
+      rows,
+      levels,
+      onSegment(start, end, level) {
+        segmentsByLevel.get(level)?.push({ start, end });
+      },
+    });
+    dom.app.dataset.lastContourPathMs = String(Math.round(
+      (windowLike.performance?.now?.() ?? Date.now()) - pathStarted,
+    ));
+    const published = publishContourSegments({
+      segmentsByLevel,
+      columns,
+      rows,
+      width,
+      height,
+      pixelRatio,
+      state,
+      styles,
+      revision,
+      weightByLevel,
+    });
+    if (published) {
+      dom.app.dataset.lastFirstContourLatencyMs = String(Math.round(
+        (windowLike.performance?.now?.() ?? Date.now()) - interactionStarted,
+      ));
+    }
+    return published;
   }
 
   async function drawSmoothContours(
     rawFrame,
+    width,
+    height,
     pixelRatio,
     state,
     styles,
@@ -566,15 +768,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const bounds = dom.canvas.getBoundingClientRect();
     const columns = Math.max(96, Math.min(360, Math.ceil(bounds.width / 3) + 1));
     const rows = Math.max(72, Math.min(260, Math.ceil(bounds.height / 3) + 1));
-    const densityPlan = createTopoContourDensityPlan(state.contourDensity);
-    const weightByLevel = new Map(densityPlan.map((entry) => [
-      entry.normalized,
-      entry.weight,
-    ]));
+    const { levels, weightByLevel } = createContourRenderPlan(
+      state.contourDensity,
+    );
     const geometryKey = [state.transformId, columns, rows]
       .join(":");
     let segmentsByLevel = rawFrame.contours.get(geometryKey);
     if (!segmentsByLevel) {
+      const pathStarted = windowLike.performance?.now?.() ?? Date.now();
       const values = new Float32Array(columns * rows);
       values.fill(Number.NaN);
       for (let row = 0; row < rows; row += 1) {
@@ -598,7 +799,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
           await nextTask();
         }
       }
-      const levels = densityPlan.map((entry) => entry.normalized);
       segmentsByLevel = new Map(levels.map((level) => [level, []]));
       for (let row = 0; row < rows - 1; row += 12) {
         forEachTopoContourSegment({
@@ -618,66 +818,26 @@ export function mountTopoInteractionContractPreview(options = {}) {
         await nextTask();
       }
       rawFrame.contours.set(geometryKey, segmentsByLevel);
-    }
-    const sourceContourRgb = state.polaritySign < 0
-      ? styles.negativeRgb
-      : styles.positiveRgb;
-    const contourRgb = sourceContourRgb.map((channel, index) => Math.round(
-      channel + (styles.textRgb[index] - channel) * state.contourVisibility,
-    ));
-    const contourColor = "rgb(" + contourRgb.join(",") + ")";
-    if (
-      contourStagingCanvas.width !== rawFrame.width ||
-      contourStagingCanvas.height !== rawFrame.height
-    ) {
-      contourStagingCanvas.width = rawFrame.width;
-      contourStagingCanvas.height = rawFrame.height;
+      dom.app.dataset.lastContourPathMs = String(Math.round(
+        (windowLike.performance?.now?.() ?? Date.now()) - pathStarted,
+      ));
+      dom.app.dataset.lastContourPathCacheHit = "false";
     } else {
-      contourStagingContext.clearRect(0, 0, rawFrame.width, rawFrame.height);
+      dom.app.dataset.lastContourPathMs = "0";
+      dom.app.dataset.lastContourPathCacheHit = "true";
     }
-    segmentsByLevel.forEach((segments, level) => {
-      const densityWeight = weightByLevel.get(level) ?? 0;
-      if (!segments.length || densityWeight <= 0) {
-        return;
-      }
-      const emphasis = Math.abs(level);
-      contourStagingContext.save();
-      contourStagingContext.beginPath();
-      segments.forEach(({ start, end }) => {
-        contourStagingContext.moveTo(
-          (start.x / (columns - 1)) * rawFrame.width,
-          (start.y / (rows - 1)) * rawFrame.height,
-        );
-        contourStagingContext.lineTo(
-          (end.x / (columns - 1)) * rawFrame.width,
-          (end.y / (rows - 1)) * rawFrame.height,
-        );
-      });
-      contourStagingContext.strokeStyle = contourColor;
-      contourStagingContext.globalAlpha =
-        densityWeight * (0.07 + 0.5 * emphasis ** 1.3);
-      contourStagingContext.lineWidth = Math.max(
-        0.8,
-        pixelRatio * (0.6 + 0.32 * emphasis),
-      );
-      contourStagingContext.lineCap = "round";
-      contourStagingContext.lineJoin = "round";
-      contourStagingContext.stroke();
-      contourStagingContext.restore();
-    });
-    drawSourceOverlay(
-      contourStagingContext,
-      rawFrame.width,
-      rawFrame.height,
+    return publishContourSegments({
+      segmentsByLevel,
+      columns,
+      rows,
+      width,
+      height,
       pixelRatio,
-      state.polaritySign,
-    );
-    if (revision !== frameRevision) {
-      return false;
-    }
-    contourContext.clearRect(0, 0, rawFrame.width, rawFrame.height);
-    contourContext.drawImage(contourStagingCanvas, 0, 0);
-    return true;
+      state,
+      styles,
+      revision,
+      weightByLevel,
+    });
   }
 
   async function renderFinal(
@@ -689,7 +849,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
     revision,
     interactionStarted,
   ) {
-    const rawFrame = await buildRawFrame(width, height, state, revision);
+    const grid = rawGridSize();
+    const rawFrame = await buildRawFrame(
+      grid.width,
+      grid.height,
+      state,
+      revision,
+    );
     if (!rawFrame || revision !== frameRevision) {
       return;
     }
@@ -703,9 +869,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
     if (!image || revision !== frameRevision) {
       return;
     }
-    context.putImageData(image, 0, 0);
+    paintFieldImage(image, rawFrame, width, height);
     const contoursComplete = await drawSmoothContours(
       rawFrame,
+      width,
+      height,
       pixelRatio,
       state,
       styles,
@@ -728,8 +896,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
     frameRevision += 1;
     const revision = frameRevision;
     const state = getState();
-    const requestedSize = canvasSize();
-    deriveRawFrameForPolarity(requestedSize.width, requestedSize.height, state);
     updateControlPresentation();
     updateLegend();
     dom.app.dataset.frameState = "refining";
@@ -755,10 +921,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
       }
       const pixelRatio = effectivePixelRatio(width, height);
       const styles = readStyles(state);
-      const cachedRawFrame = rawFrameCache?.key ===
-        createRawFrameKey(width, height, state)
-        ? rawFrameCache
-        : null;
+      const grid = rawGridSize();
+      const cachedRawFrame = rawFrameCaches.get(
+        createRawFrameKey(grid.width, grid.height, state),
+      ) ?? null;
       drawImmediatePreview(
         width,
         height,
@@ -767,9 +933,20 @@ export function mountTopoInteractionContractPreview(options = {}) {
         styles,
         cachedRawFrame,
       );
+      drawFastContourPreview(
+        width,
+        height,
+        pixelRatio,
+        state,
+        styles,
+        revision,
+        interactionStarted,
+      );
       if (cachedRawFrame?.contours.size) {
         void drawSmoothContours(
           cachedRawFrame,
+          width,
+          height,
           pixelRatio,
           state,
           styles,
@@ -819,17 +996,16 @@ export function mountTopoInteractionContractPreview(options = {}) {
         return;
       }
       const { width, height } = canvasSize();
-      const rawFrame = rawFrameCache?.key === createRawFrameKey(width, height, state)
-        ? rawFrameCache
-        : null;
-      const image = rawFrame?.displays.get(state.transformId);
-      if (!rawFrame || !image) {
+      const grid = rawGridSize();
+      const rawFrame = rawFrameCaches.get(
+        createRawFrameKey(grid.width, grid.height, state),
+      ) ?? null;
+      if (!rawFrame) {
         beginRender({ frameChanged: false, finalDelay: 0 });
         return;
       }
       const pixelRatio = effectivePixelRatio(width, height);
       const styles = readStyles(state);
-      context.putImageData(image, 0, 0);
       dom.app.dataset.lastPreviewLatencyMs = String(Math.round(
         (windowLike.performance?.now?.() ?? Date.now()) - interactionStarted,
       ));
@@ -837,6 +1013,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
       dom.status.textContent = "Updating contour lines from the cached field.";
       void drawSmoothContours(
         rawFrame,
+        width,
+        height,
         pixelRatio,
         state,
         styles,
