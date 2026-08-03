@@ -41,9 +41,9 @@ The initial controls are:
 | Scenario | `Electrostatic: single electrino`; `Electrostatic: single positrino` |
 | $\beta=v/c_f$ | range $0\leq\beta\leq1$; the exact ordinary, unavailable, and nonordinary endpoint regions are fixed by TOPO-001 |
 | Contour density | continuous display percentage; default $40\%$; progressively fades valid isolines from the minimum-density subset through the fixed $48$-level geometry without moving contour locations |
-| Contour visibility | display-only global contour-emphasis percent from $0$ through $100$ in one-point keyboard steps; default $75$; scales the fixed outward inverse-square style profile without altering field color, contour geometry, or raw values |
-| Scale transform | `Linear`, `Signed log2`, and `Asinh`; default `Asinh` |
-| Overlay | exact analytic contour circles plus one solid polarity disk with the canonical thin white border and small centered white origin dot; direction remains textual in the scenario facts |
+| Contour visibility | display-only global contour-emphasis percent from $0$ through $100$ in one-point keyboard steps; default $75$; scales the deterministic sequential inner-to-outer fade without altering field color, contour geometry, or raw values |
+| Scale transform | `Linear` and `Signed log2`; interim default `Signed log2` while contour-spacing semantics remain open |
+| Overlay | faint dashed positive-$x$ reference axis behind the exact analytic contour circles, plus one solid polarity disk with the canonical thin white border and small centered white origin dot; direction remains textual in the scenario facts |
 
 The source position, contour density, contour visibility, transform choice, and color limits belong to view state. The chosen species, $\beta$, observable identity, time slice, domain, and scientific-kernel version belong to the reproducible scenario record.
 
@@ -129,7 +129,7 @@ $$
 
 Plainly: positrino-positive and electrino-negative maps use the same legend. Selecting the other species reverses the sign of the declared observable without changing the geometry or color semantics.
 
-Contour thresholds are uniform in the selected transformed display coordinate, while the legend exposes corresponding raw values. TOPO-002 fixes $z_*=4$, an ordinary display-clip magnitude of $64$, and these transforms:
+Legend ticks are uniform in the selected transformed display coordinate and expose corresponding raw values. Contours instead use one transform-independent causal-delay master set so scale changes cannot add, remove, or move circles. TOPO-002 fixes $z_*=4$, an ordinary display-clip magnitude of $64$, and these transforms:
 
 $$
 C_{\mathrm{linear}}(z)=z/z_*,
@@ -139,13 +139,7 @@ $$
 C_{\log_2}(z)=\operatorname{sgn}(z)\log_2\!\left(1+\frac{|z|}{z_*}\right),
 $$
 
-and
-
-$$
-C_{\operatorname{asinh}}(z)=\operatorname{asinh}(z/z_*).
-$$
-
-Plainly: plain $\log_2|z|$ fails at zero. The signed `log2(1 + magnitude)` form remains defined there, while `asinh` is nearly linear near neutral and logarithmic at large magnitude. `Asinh` is the accepted v1 default.
+Plainly: plain $\log_2|z|$ fails at zero. The signed `log2(1 + magnitude)` form remains defined there and is the interim default while the operator chooses the independent contour-spacing semantics.
 
 [TOPO-002](topo-interaction-and-color-contract-v1.md) records the comparison against one declared synthetic signed surface and its falsifier. Quantile coloring is not a v1 candidate because it would make the same color mean different raw values in different frames.
 

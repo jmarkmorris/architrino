@@ -8,7 +8,7 @@
 - Preview input: declared synthetic signed surface only
 - Scientific input: none
 - Scientific authority: none beyond preserving TOPO-001 result states and raw values supplied later
-- Default transform: `Asinh`
+- Interim default transform: `Signed log2`
 - Reference scale: $z_*=4$
 - Ordinary display-clip magnitude: $z_{\max}=64$
 - Contour density: percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $40$
@@ -94,8 +94,8 @@ Plainly: a wide screen reveals more world space left and right; it does not stre
 | Scenario | Left panel, first control | `Electrostatic: single electrino`; `Electrostatic: single positrino`; changing it reverses polarity only. Beta, contour density, contour visibility, and transform remain unchanged, and the same analytic geometry is immediately restyled with the new polarity color. |
 | $\beta=v/c_f$ | Left panel below scenario | Range $0\leq\beta\leq1$, step $0.01$, keyboard-operable, with visible numeric output and `aria-valuetext`; changing it creates a fresh raw-frame identity. |
 | Contour density | Left panel, display section | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $40$. A fixed set of valid isolines is cached: the minimum-density subset remains present, and additional valid isolines fade in progressively in a spatially balanced order. No contour location is interpolated or moved. |
-| Contour visibility | Left panel, display section | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$; continuously applies global opacity, canonical-white mix, and width gain to the contour profile. Inner contours retain the accepted strong treatment, while each outer circle receives one uniform clamped inverse-square prominence based on its causal delay. At $0$ the set is hidden; at $100$ the innermost treatment reaches canonical white and $2$ CSS pixels while relative outward falloff remains. Device-pixel scaling preserves apparent width. |
-| Scale transform | Left panel, display section | `Linear`, `Signed log2`, `Asinh`; default `Asinh`; changes transformed coordinates only. |
+| Contour visibility | Left panel, display section | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$; continuously applies global opacity, canonical-white mix, and width gain to the contour profile. The complete selected set is sorted by causal radius, then receives one deterministic linear fade from the clearly bright inner treatment to a visible outer floor. At $0$ the set is hidden; at $100$ the innermost treatment reaches canonical white and $2$ CSS pixels while the sequential outward fade remains. Device-pixel scaling preserves apparent width. |
+| Scale transform | Left panel, display section | `Linear`, `Signed log2`; interim default `Signed log2`; changes only field-color mapping and legend labels. It never changes contour count, radii, order, paths, or styles. |
 | Legend | Left panel near display controls | Always visible while the panel is open; names transform, $z_*$, raw clip values, and zero. No visible nonnumeric-state row or raw-probe panel is retained. |
 | Panel toggle | Persistent left rail | Uses `PanelCollapseIcons.js`, updates name and `aria-expanded`, preserves the reopen control, and makes closed content hidden and inert. |
 | Shared chrome | Top-right safe area | Stable order is `Home`, `Back`, `Forward`, `Search`, then any declared Notes/Documents and Settings controls. TOPO-002 declares only the first four. Home retains the shared Applications-return behavior. |
@@ -114,12 +114,6 @@ $$
 C_{\log_2}(z)=\operatorname{sgn}(z)\log_2\!\left(1+\frac{|z|}{z_*}\right),
 $$
 
-and
-
-$$
-C_{\operatorname{asinh}}(z)=\operatorname{asinh}(z/z_*).
-$$
-
 The display normalization is symmetric. For the selected transform $C$, ordinary colors and thresholds use
 
 $$
@@ -131,7 +125,7 @@ $$
 \qquad z_{\max}=64.
 $$
 
-Contour thresholds are equally spaced in $\widehat C$. The legend applies the exact inverse transform to expose the corresponding raw values. A value with $|z|>z_{\max}$ retains its private raw value and receives the internal state qualifier `ordinary:display_clipped`.
+Legend ticks are equally spaced in $\widehat C$ and apply the exact inverse transform to expose corresponding raw values. Contour selection is independent: it uses one fixed causal-delay master set from $T=0.025$ through $T=0.300$, with each legitimate raw isovalue $64e^{-16T}$. Density selects $8$ through $24$ evenly distributed members of that set. A value with $|z|>z_{\max}$ retains its private raw value and receives the internal state qualifier `ordinary:display_clipped`.
 
 Plainly: every transform sees the same raw numbers and the same fixed endpoints. The colors never silently rescale themselves to each frame.
 
@@ -145,33 +139,26 @@ $$
 (u+\beta T)^2+w^2=T^2.
 $$
 
-Topo therefore draws one direct Canvas2D arc centered at $(2/3-\beta T,1/2)$ with radius $T$. The immediate and final contour paths are the same atomic vector overlay: no marching-squares extraction, partial batches, low-resolution tessellation, or delayed refinement runs for this provider. Clipping occurs only at the canvas boundary. The renderer computes $T$ by inverting the selected transform and the declared exponential synthetic decay; it does not move an isoline or change its raw threshold.
+Topo therefore draws one direct Canvas2D arc centered at $(2/3-\beta T,1/2)$ with radius $T$. The immediate and final contour paths are the same atomic vector overlay: no marching-squares extraction, partial batches, low-resolution tessellation, or delayed refinement runs for this provider. Clipping occurs only at the canvas boundary. The renderer selects $T$ directly from the fixed raw-domain master set; transform changes leave the existing contour overlay untouched.
 
-Contour styling is uniform around each circle. With fixed reference delay $T_{\mathrm{ref}}=0.08$, its raw prominence is
-
-$$
-p(T)=\min\left(1,\left(\frac{T_{\mathrm{ref}}}{\max(T,T_{\mathrm{ref}})}\right)^2\right).
-$$
-
-Opacity uses $\max(0.22,p)$ as a readability floor; whiteness and width use monotone blends of that same per-circle factor. Density only fades valid circles in or out, and visibility remains the global gain. A circle never changes style around its own path.
+Contour styling is uniform around each circle. The complete active set is sorted by increasing causal delay $T$, with normalized sequential position $p=i/(N-1)$, or $p=0$ for one circle. Opacity is multiplied by $1-0.60p$, canonical-white mix by $1-0.55p$, and width by $1-0.25p$. The resulting outer floors remain visible at the $75\%$ default. Density selects a new complete set and resamples this same ordered profile; visibility remains the global gain. No level sign, polarity, transform, draw order, or cache timing perturbs the sequence, and a circle never changes style around its own path.
 
 Neither fragment evaluation nor vector contour styling writes back to the raw provider, geometry, frame identity, or state classification. A future sampled TOPO-001 provider may use a separate general contour implementation without weakening this boundary.
 
-Plainly: the synthetic formula is evaluated sharply at the screen, and its contours are complete mathematical circles. Display falloff changes only how strongly each whole circle is drawn.
+Plainly: the synthetic formula is evaluated sharply at the screen, and its contours are complete mathematical circles. Every selected circle appears once, fading steadily from the inside outward.
 
-## Transform Comparison And Default
+## Transform Comparison And Interim Default
 
-The three candidates were compared against the same declared synthetic surface at both source-polarity signs and at $\beta=0$, $0.5$, and $1$. This is a design comparison, not scientific evidence.
+The two retained transforms were compared against the same declared synthetic surface at both source-polarity signs and at $\beta=0$, $0.5$, and $1$. This is a design comparison, not scientific evidence.
 
 | Transform | Near-zero structure | High-magnitude structure | Contour behavior | Decision |
 | --- | --- | --- | --- | --- |
 | Linear | Continuous, but visually compressed by the fixed $|z|=64$ extent | Dominates most available color range | Crowds useful midrange contours near neutral | Available alternate |
-| Signed log2 | Preserves sign and remains defined at zero | Strong compression | Separates orders of magnitude, but produces less direct near-zero spacing than the accepted default | Available alternate |
-| Asinh | Smooth and approximately linear near zero | Logarithmic compression at large magnitude | Preserves a legible neutral neighborhood while retaining high-magnitude structure | Accepted default |
+| Signed log2 | Preserves sign and remains defined at zero | Strong compression | Field-only mapping; contour spacing remains independent | Interim default |
 
-`Asinh` is accepted as the v1 default because it is odd, smooth through zero, locally linear, and compressive at large magnitude. The falsifier is a focused browser comparison showing that the fixed `Asinh` view hides a required raw-reference feature or fails the contrast and state-distinction checks while another candidate passes them under the same surface and scale.
+`Signed log2` is the interim default while the operator chooses between equal logarithmic intensity ratios and equal radius increments for the independent contour master set. No contour spacing decision is inferred from this display-transform default.
 
-Plainly: `Asinh` gives the neutral neighborhood room without sacrificing the peaks. The other transforms remain available for direct comparison.
+Plainly: the selector currently compares two field-color mappings. It does not decide where circles belong.
 
 ## Signed Color Contract
 
@@ -213,6 +200,7 @@ Plainly: the endpoint void and numeric zero share a neutral display color, while
 - The left panel opens at a desktop width near $360$ pixels and collapses to a persistent $58$-pixel rail.
 - Below $820$ pixels, the panel begins collapsed and expands as an overlay over the stage. The shared top-right controls retain $32\times32$ hit targets.
 - The single compact source marker remains anchored at normalized $(2/3,1/2)$ in every viewport. It reuses the repository's standard solid blue electrino and solid red positrino semantics with the same thin centered white circular stroke and small centered white origin dot as the Causal Delay Feedback marker treatment. No backing shape, glow, shadow, inset, or direction ornament is permitted; direction is reported in the scenario facts.
+- A noninteractive prescribed-translation reference axis runs horizontally through the source from normalized canvas $x=0.10$ to $x=0.90$. It is a one-CSS-pixel canonical-white dashed stroke at $18\%$ opacity with a five-CSS-pixel far-right arrowhead. It is painted above the field but below every contour and the source marker, and its canvas description identifies it as a positive-$x$ reference rather than a trajectory or wake boundary.
 - Every form control has a visible label, every icon button has an accessible name, and all focusable controls receive a visible focus treatment.
 - Range controls keep a fixed five-pixel visual track and fixed-size thumb in default, hover, focus, active, and drag states. Their larger transparent interaction lane does not render; keyboard focus is shown only around the thumb.
 - Closed panel content is hidden, `aria-hidden`, and inert. The reopen control stays focusable.

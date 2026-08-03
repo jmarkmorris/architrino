@@ -6,11 +6,11 @@ import {
   TOPO_FIELD_COLOR_GAIN,
   TOPO_REFERENCE_SCALE,
   TOPO_SOURCE_POSITION,
+  TOPO_TRANSLATION_AXIS,
   applyTopoScenarioPolarity,
-  createTopoContourDensityPlan,
-  createTopoContourStyleProfile,
+  createTopoSequentialContourStyle,
+  createTopoSyntheticContourRenderPlan,
   createTopoContourThresholds,
-  createTopoSyntheticContourCircles,
   createTopoSyntheticRawSampler,
   normalizeTopoFieldColorValue,
   resolveTopoCanvasPixelSize,
@@ -118,6 +118,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   let frameRevision = 0;
   let resizeObserver = null;
   let rawFrameCache = null;
+  let lastContourPresentationKey = null;
   const rawFrameCaches = new Map();
   const previewCanvas = documentLike.createElement("canvas");
   const previewContext = previewCanvas.getContext("2d", { alpha: false });
@@ -209,10 +210,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         float normalized;
         if (u_transform < 0.5) {
           normalized = magnitude;
-        } else if (u_transform < 1.5) {
-          normalized = log(1.0 + 16.0 * magnitude) / log(17.0);
         } else {
-          normalized = arsinh(16.0 * magnitude) / arsinh(16.0);
+          normalized = log(1.0 + 16.0 * magnitude) / log(17.0);
         }
         float calibrated = arsinh(u_gain * normalized) / arsinh(u_gain);
         vec3 color = mix(u_zero, u_endpoint, clamp(calibrated, 0.0, 1.0));
@@ -475,9 +474,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       fieldGl.uniform1f(uniforms.u_beta, state.beta);
       fieldGl.uniform1f(
         uniforms.u_transform,
-        state.transformId === "linear"
-          ? 0
-          : state.transformId === "signed-log2" ? 1 : 2,
+        state.transformId === "linear" ? 0 : 1,
       );
       fieldGl.uniform1f(
         uniforms.u_gain,
@@ -556,6 +553,35 @@ export function mountTopoInteractionContractPreview(options = {}) {
       Math.PI * 2,
     );
     targetContext.fill();
+    targetContext.restore();
+  }
+
+  function drawTranslationAxis(targetContext, width, height, pixelRatio) {
+    const y = (1 - TOPO_SOURCE_POSITION.y) * Math.max(1, height - 1);
+    const startX = TOPO_TRANSLATION_AXIS.startX * Math.max(1, width - 1);
+    const endX = TOPO_TRANSLATION_AXIS.endX * Math.max(1, width - 1);
+    const arrow = TOPO_TRANSLATION_AXIS.arrowCss * pixelRatio;
+    targetContext.save();
+    targetContext.globalAlpha = TOPO_TRANSLATION_AXIS.opacity;
+    targetContext.strokeStyle =
+      "rgb(" + [WHITE.r, WHITE.g, WHITE.b].join(",") + ")";
+    targetContext.lineWidth = TOPO_TRANSLATION_AXIS.widthCss * pixelRatio;
+    targetContext.lineCap = "butt";
+    targetContext.lineJoin = "miter";
+    targetContext.setLineDash([
+      TOPO_TRANSLATION_AXIS.dashCss * pixelRatio,
+      TOPO_TRANSLATION_AXIS.dashCss * pixelRatio,
+    ]);
+    targetContext.beginPath();
+    targetContext.moveTo(startX, y);
+    targetContext.lineTo(endX, y);
+    targetContext.stroke();
+    targetContext.setLineDash([]);
+    targetContext.beginPath();
+    targetContext.moveTo(endX - arrow, y - arrow * 0.65);
+    targetContext.lineTo(endX, y);
+    targetContext.lineTo(endX - arrow, y + arrow * 0.65);
+    targetContext.stroke();
     targetContext.restore();
   }
 
@@ -783,23 +809,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
     ));
   }
 
-  function createContourRenderPlan(contourDensity) {
-    const weightByLevel = new Map();
-    createTopoContourDensityPlan(contourDensity).forEach((entry) => {
-      const level = Math.abs(entry.normalized);
-      if (level > 0) {
-        weightByLevel.set(
-          level,
-          Math.max(weightByLevel.get(level) ?? 0, entry.weight),
-        );
-      }
-    });
-    return {
-      levels: [...weightByLevel.keys()].sort((left, right) => left - right),
-      weightByLevel,
-    };
-  }
-
   function drawSyntheticContours({
     width,
     height,
@@ -810,14 +819,20 @@ export function mountTopoInteractionContractPreview(options = {}) {
     interactionStarted = null,
   }) {
     const pathStarted = windowLike.performance?.now?.() ?? Date.now();
-    const { levels, weightByLevel } = createContourRenderPlan(
-      state.contourDensity,
-    );
-    const circles = createTopoSyntheticContourCircles({
+    const circles = createTopoSyntheticContourRenderPlan({
       beta: state.beta,
-      transformId: state.transformId,
-      normalizedLevels: levels,
+      contourDensity: state.contourDensity,
     });
+    dom.app.dataset.contourGeometryKey = [
+      state.beta.toFixed(4),
+      state.contourDensity.toFixed(4),
+      width,
+      height,
+      circles.map(({ causalDelay }) => causalDelay.toFixed(8)).join(","),
+    ].join(":");
+    dom.app.dataset.contourRenderCount = String(
+      Number(dom.app.dataset.contourRenderCount ?? 0) + 1,
+    );
     dom.app.dataset.lastContourPathMs = String(Math.round(
       (windowLike.performance?.now?.() ?? Date.now()) - pathStarted,
     ));
@@ -836,12 +851,17 @@ export function mountTopoInteractionContractPreview(options = {}) {
     } else {
       contourStagingContext.clearRect(0, 0, width, height);
     }
+    drawTranslationAxis(
+      contourStagingContext,
+      width,
+      height,
+      pixelRatio,
+    );
     const commonScale = Math.max(1, height - 1);
     const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
     const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) * commonScale;
-    circles.forEach((circle) => {
-      const densityWeight = weightByLevel.get(circle.level) ?? 0;
-      if (densityWeight <= 0 || !(circle.radius > 0)) {
+    circles.forEach((circle, index) => {
+      if (!(circle.radius > 0)) {
         return;
       }
       const centerX = sourcePixelX - state.beta * circle.radius * commonScale;
@@ -854,8 +874,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
       ) {
         return;
       }
-      const contourStyle = createTopoContourStyleProfile({
-        causalDelay: circle.causalDelay,
+      const contourStyle = createTopoSequentialContourStyle({
+        index,
+        count: circles.length,
         visibility: state.contourVisibility,
       });
       const contourRgb = sourceContourRgb.map((channel, index) => Math.round(
@@ -873,8 +894,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       );
       contourStagingContext.strokeStyle =
         "rgb(" + contourRgb.join(",") + ")";
-      contourStagingContext.globalAlpha =
-        densityWeight * contourStyle.opacity;
+      contourStagingContext.globalAlpha = contourStyle.opacity;
       contourStagingContext.lineWidth =
         pixelRatio * contourStyle.widthCss;
       contourStagingContext.lineCap = "round";
@@ -894,6 +914,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
     }
     contourContext.clearRect(0, 0, width, height);
     contourContext.drawImage(contourStagingCanvas, 0, 0);
+    lastContourPresentationKey = [
+      width,
+      height,
+      state.beta.toFixed(4),
+      state.contourDensity.toFixed(4),
+      state.contourVisibility.toFixed(4),
+      state.polaritySign,
+    ].join(":");
     dom.app.dataset.lastContourPaintMs = String(Math.round(
       (windowLike.performance?.now?.() ?? Date.now()) - paintStarted,
     ));
@@ -945,7 +973,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       : "One-source full-density synthetic frame complete. No TOPO-001 values are shown.";
   }
 
-  function beginRender({ finalDelay = 0 } = {}) {
+  function beginRender({ finalDelay = 0, redrawContours = true } = {}) {
     const interactionStarted = windowLike.performance?.now?.() ?? Date.now();
     frameRevision += 1;
     const revision = frameRevision;
@@ -978,12 +1006,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
         dom.canvas.height = height;
         fieldResized = true;
       }
+      let contourResized = false;
       if (
         dom.contourCanvas.width !== width ||
         dom.contourCanvas.height !== height
       ) {
         dom.contourCanvas.width = width;
         dom.contourCanvas.height = height;
+        contourResized = true;
       }
       const pixelRatio = effectivePixelRatio(width, height);
       const styles = readStyles(state);
@@ -1011,15 +1041,29 @@ export function mountTopoInteractionContractPreview(options = {}) {
           cachedRawFrame,
         );
       }
-      drawSyntheticContours({
+      const contourPresentationKey = [
         width,
         height,
-        pixelRatio,
-        state,
-        styles,
-        revision,
-        interactionStarted,
-      });
+        state.beta.toFixed(4),
+        state.contourDensity.toFixed(4),
+        state.contourVisibility.toFixed(4),
+        state.polaritySign,
+      ].join(":");
+      if (
+        redrawContours ||
+        contourResized ||
+        lastContourPresentationKey !== contourPresentationKey
+      ) {
+        drawSyntheticContours({
+          width,
+          height,
+          pixelRatio,
+          state,
+          styles,
+          revision,
+          interactionStarted,
+        });
+      }
       dom.app.dataset.lastPreviewLatencyMs = String(Math.round(
         (windowLike.performance?.now?.() ?? Date.now()) - interactionStarted,
       ));
@@ -1050,8 +1094,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
     beginRender({ finalDelay: 90 });
   }
 
-  function scheduleDisplayChange() {
-    beginRender({ finalDelay: 0 });
+  function scheduleTransformChange() {
+    beginRender({ finalDelay: 0, redrawContours: false });
   }
 
   function scheduleContourChange() {
@@ -1095,7 +1139,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   function render() {
-    scheduleDisplayChange();
+    beginRender({ finalDelay: 0, redrawContours: true });
   }
 
   function initializeResponsivePanel() {
@@ -1125,7 +1169,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   });
   listen(dom.contours, "input", scheduleContourChange);
   listen(dom.contourVisibility, "input", scheduleContourChange);
-  listen(dom.transform, "change", scheduleDisplayChange);
+  listen(dom.transform, "change", scheduleTransformChange);
   listen(dom.home, "click", () => {
     navigateStandaloneAppHome(
       windowLike.location,
