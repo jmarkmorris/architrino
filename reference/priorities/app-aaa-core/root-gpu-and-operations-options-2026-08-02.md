@@ -48,6 +48,18 @@ Plainly: raw floating-point speed is only one requirement. The system also has t
 
 The EOM solver continues to own its root equation, isolation rules, continuation semantics, completeness criterion, and step acceptance. AAA Core owns reusable codec, queue, resource-dispatch, and accounting services. An application-specific analytical kernel similarly retains its own scientific owner.
 
+## Many-To-Many History Memory Architecture
+
+Advancing the present-time state has a many-to-many shape: receiver path events must be checked against the relevant retained histories of possible transmitters, including declared self-history routes. The full logical obligation is larger than a simple $M\times N$ pair count because each ordered pair may require search across multiple history intervals and may yield zero, one, or several causal roots. Complete logical accounting is required even when later stages prove most candidate intervals inactive.
+
+The architecture must therefore avoid materializing a global pair-by-history matrix. It should tile receivers, transmitters, and retained-time intervals into bounded work units; arrange immutable history chunks in structure-of-arrays layouts; retain reusable chunks on the selected accelerator where possible; and use conservative whole-tile or whole-interval bounds before detailed root refinement. Surviving pair-interval candidates are compacted, bucketed, refined, and reduced with their identities intact.
+
+This makes device memory capacity, sustained memory bandwidth, locality, cache behavior, host-device transfer, and the cost of repeatedly reloading history chunks first-class selection criteria. High-bandwidth HBM accelerators are strong candidates for the regular tiled stages, while Apple unified memory is attractive where avoiding an explicit copy and sharing a large local working set matters. Neither characteristic alone resolves irregular root multiplicity, branch changes, precision fallback, or complete deterministic accounting.
+
+The benchmark must separately report total logical pairs and history intervals, tiles conservatively excluded, surviving candidates, device residency and reload rate, bytes transferred, memory occupancy, divergence, precision-fallback rate, and end-to-end wall time and cost. This identifies whether the workload is limited by bandwidth, capacity, candidate density, irregularity, precision, or data movement rather than attributing all cost to pair count.
+
+Plainly: the solver must be answerable for every relevant path interaction, but it should not build an impossibly large table. It repeatedly reuses compact history blocks, rules out safe regions in bulk, and spends detailed work only on candidates that remain possible.
+
 ## Hardware Capability Snapshot
 
 | Option | Public capability relevant to this study | Best proposed role | Important limitation |
@@ -62,6 +74,22 @@ The EOM solver continues to own its root equation, isolation rules, continuation
 Sources: [Apple Mac Studio specifications](https://www.apple.com/mac-studio/), [Apple Mac Studio store](https://www.apple.com/shop/buy-mac/mac-studio), [Metal Shading Language specification](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf), [NVIDIA H100 product brief](https://www.nvidia.com/content/dam/en-zz/Solutions/gtcs22/data-center/h100/PB-11133-001_v01.pdf), [NVIDIA H200 technical overview](https://developer.nvidia.com/blog/taking-computational-fluid-dynamics-to-the-next-level-with-the-nvidia-h200-tensor-core-gpu/), [AMD MI300X specifications](https://www.amd.com/en/products/accelerators/instinct/mi300/mi300x.html), and [NVIDIA RTX PRO 6000 specifications](https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000/).
 
 Plainly: an Apple Studio is a strong local application and data machine, especially because CPU and GPU share memory. It is not a substitute for an H100-class FP64 experiment when the root calculation itself needs hardware binary64 on the GPU.
+
+## Ranked Cloud Candidates For The First Deployment Path
+
+These rankings are for the declared AAA Core workload rather than generic AI training. They favor a strict FP64-capable root route, sufficient device memory for retained-history chunks, checkpointable batch campaigns, and a credible path from one-GPU qualification to large-scale deployment. They do not establish application performance or constitute a vendor commitment.
+
+| Rank | Provider and current public offer | Why it fits AAA Core | Best first use | Main reservation |
+| --- | --- | --- | --- | --- |
+| 1 | **RunPod** — H100 PCIe, 80 GB at about $2.89/GPU-hour; H200, 141 GB at about $4.39/GPU-hour | Lowest-cost published single-GPU entry for CUDA root-queue qualification; H200 supplies a direct memory-capacity test | Versioned, checkpointed single-GPU H100 benchmark, then an H200 comparison only if 80 GB is measured as a constraint | Capacity, surrounding host resources, and operational guarantees must be checked for the selected region; this is not yet the production-serving recommendation |
+| 2 | **AWS Capacity Blocks** — one H100 at $5.191/GPU-hour or eight H200 at $5.97/GPU-hour in listed regions | Reserved, scheduled capacity gives controlled repeatability for planned campaigns and a clear route to managed multi-GPU operations | Scheduled correctness, replay, and multi-GPU scaling campaigns after the single-GPU route is qualified | Reservation terms and surrounding AWS services raise the total cost; use only after the workload and run cadence are known |
+| 3 | **CoreWeave** — eight H100s at $49.24/hour on demand or $19.71/hour spot; eight H200s at $50.44/hour on demand or $20.93/hour spot | Published H100/H200 eight-GPU configurations make it a strong candidate for the later distributed queue and deployment study | Sealed-input scale tests, with spot only for idempotent checkpointed batches | The current public offers are eight-GPU shapes, so it is not the first place to discover the single-GPU algorithm; spot interruption must be part of the run contract |
+
+Google Cloud remains a credible fourth comparison candidate because its A3 family supplies H100 80 GB and A3 Ultra supplies H200. It is not in the initial three because the immediate plan benefits more from a low-friction single-GPU qualification, explicitly schedulable campaign capacity, and a published eight-GPU deployment candidate. Re-rank all providers when the workload matrix records the required region, availability, data-governance terms, runtime model, and measured device-memory envelope.
+
+Sources: [RunPod GPU pricing](https://www.runpod.io/pricing), [AWS Capacity Blocks pricing](https://aws.amazon.com/ec2/capacityblocks/pricing/), [CoreWeave pricing](https://coreweave.com/pricing), and [Google Cloud GPU machine types](https://cloud.google.com/compute/docs/gpus).
+
+Plainly: RunPod is the most economical way to discover whether a CUDA root queue helps. AWS is the controlled option when the campaign needs reserved capacity. CoreWeave is the first large-scale deployment candidate once the algorithm already works on one GPU.
 
 ## Current Cloud Price Alternatives
 
@@ -103,9 +131,9 @@ Plainly: a base M4 Max costs about the same cash as roughly 669 hours at one quo
 
 ### Phase 1 — Local Reference And Product Work
 
-Use a Mac Studio M4 Max as the default new local option if an operations machine is needed, with 64–128 GB chosen from measured resident data rather than aspiration. Use its CPU for binary64 and arbitrary-precision reference or difficult rows, and Metal for float32-conforming screening, decoding, indexing, map construction, and display. Choose an M3 Ultra only if profiling shows that more than 128 GB of unified resident history/maps materially changes the workload; its larger memory does not solve GPU FP64.
+Keep the contracts portable, but design the data plane around the many-to-many history workload. A Mac Studio M4 Max is one local option for interactive development, CPU reference work, Metal-safe screening, decoding, indexing, map construction, and display; it is not a required purchase. A cloud environment may be the lower-cost development posture if its interactive latency, data-transfer, persistence, and engineering workflow meet the measured needs. Choose a local M4 Max, M3 Ultra, cloud-only posture, or hybrid only after the representative workload establishes the cost and responsiveness of the full path-and-wake pipeline. If a local Mac is selected, choose 64–128 GB from measured resident data rather than aspiration and reserve the M3 Ultra for a demonstrated need beyond 128 GB; its larger memory does not solve GPU FP64.
 
-Plainly: the M4 Max is the cost-conscious operations recommendation. The M3 Ultra is a memory-capacity decision, not the automatic “serious compute” choice.
+Plainly: the Mac is an option for a responsive local workbench, not the architecture. Cloud can be the better development choice when the measured whole workflow is cheaper and good enough to use interactively.
 
 ### Phase 2 — Rent The Missing Capability
 

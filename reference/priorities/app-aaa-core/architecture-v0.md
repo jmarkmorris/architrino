@@ -15,6 +15,18 @@ AAA Core is the shared path factory and service substrate for the application ec
 
 `Factory` describes the flow of durable products through focused stations. It does not mean one central class, process, database, or executable owns every responsibility.
 
+## Science Workbench Vision
+
+AAA Core is the shared scientific environment for causal path-based inquiry. Its purpose is larger than supplying common services to a collection of applications: it enables a reproducible and inspectable route from source paths and declared rules through study design, EOM evolution where eligible, transforms, derived products, comparison, revision, and publication.
+
+The environment must let a user bring in observations or reconstructed records; author hypotheses, initial histories, transforms, and study pipelines; run declared computations; inspect potentials, assemblies, events, and maps; compare simulation products with observational products; and preserve the assumptions, representations, failures, revisions, and results needed for another user to review or rerun the study.
+
+Applications are working surfaces for this environment, not separate private worlds. The EOM solver remains its only forward-evolution instrument. AAA Core provides the path, study, provenance, storage, and compute substrate through which applications can interoperate without inventing another solver or obscuring the lineage of a result.
+
+Visual resemblance, a convenient representation, or a successful pipeline does not itself establish scientific agreement. The workbench must keep the route from input to conclusion visible enough to test, challenge, and improve.
+
+Plainly: this is a place to formulate, run, compare, revise, and share causal-path studies. It keeps the evidence trail visible so a useful picture or result cannot be mistaken for a proof by itself.
+
 ## Governing Boundaries
 
 | Area | AAA Core owns | AAA Core does not own |
@@ -150,6 +162,34 @@ Applications may prioritize low-latency provisional products, but a product beco
 
 Plainly: a live app can update continuously while still showing exactly how much accepted history it has processed and which parts of its current result remain incomplete.
 
+## Multi-Axis Scalability
+
+AAA Core must not describe scale as path count alone. A workload can become difficult through any combination of active path identities, retained-history duration and depth, time and spatial scale span, path curvature and event density, causal-root multiplicity and conditioning, precision escalation rate, query fan-out, stream arrival rate, consumer latency tolerance, storage footprint, network transfer, and the number of concurrent studies or users.
+
+The platform must record these dimensions in representative workload manifests and expose them in resource profiles. A consumer may trade lower latency, coarser derived representation, delayed delivery, bounded spatial or time coverage, or a partial provisional product against resource use, but the chosen trade must be declared. In particular, a consumer or upstream instrument may not silently discard, decimate, or replace source material while presenting the resulting product as complete source coverage.
+
+Stream subscriptions therefore need negotiated representation profiles, flow control, replay, and explicit coverage and loss state. A slow consumer may receive a purpose-appropriate lower-rate or coarser derived stream, then retrieve authoritative or higher-detail products later; it must be able to tell which source interval, scale range, uncertainty, and events are absent, delayed, or approximated.
+
+Different scaling pressures can require different platform responses: history indexing and storage for long-delay work; adaptive segmentation and stricter arithmetic for difficult roots; GPU queues for regular bulk rows; CPU or enclosure services for hard rows; progressive tiles for real-time visualization; and quotas, caching, and scheduling for many concurrent cloud workspaces. No one response is presumed to solve every scaling axis.
+
+A single assembly may itself contain strongly separated time scales. For example, a study may contain components whose characteristic frequencies differ by factors such as $1$, $10^2$, and $10^4$, or by a larger measured span. A fine evolution window around the fastest component must not require a uniform dense record of every slow component. Subject to the EOM solver's completeness and error obligations, slower or well-behaved history intervals should be carried as compact certified segments, declared analytical representations, or separately indexed coarser views; local refinement occurs only where the causal geometry, requested analysis, or error budget requires it.
+
+The compact representation must still support the causal-root and acceleration decisions for which it is offered. A slow component that is visually unchanging is not automatically irrelevant to a fast receiver, and a display simplification cannot replace retained solver history. Every multirate representation therefore declares its coverage, approximation or enclosure behavior, scale range, and permitted consumers.
+
+Plainly: a study may be large because it has many paths, a long past, fine local detail, hard causal geometry, many viewers, or a very fast data source. The system must say which pressure it is handling and what information a speed or storage trade leaves out.
+
+## Path Representation Optimization
+
+AAA Core must support a governed ecosystem of path-representation and optimization providers. A provider may propose a compact functional segment, adaptive approximation, multiresolution hierarchy, root-search index, experimental reconstruction encoding, or accelerator-oriented layout for a particular path class or consumer need. It must not become an unexamined application-local shortcut.
+
+Every provider and produced representation must declare: its logical input and output types; covered path class, time and spatial domain; preserved state and event semantics; interpolation or reconstruction rule; error, uncertainty, or enclosure behavior; root-search and acceleration obligations it can support; precision limits; random-access and indexing behavior; storage and decode cost; device layout; permitted consumers; authority effect; compatibility version; and exact refusal or fallback behavior. A provider that cannot preserve a required causal-root, branch, coverage, or uncertainty obligation must refuse that use or route the request to a stricter representation.
+
+Core conformance fixtures must test each proposed optimization against a separately authored reference or analytical case where one exists. The tests distinguish semantic round-trip, purpose-specific error behavior, root-search suitability, and measured end-to-end resource behavior. Agreement with the provider's own input or a golden record derived from the same implementation establishes deterministic replay only; it does not independently validate the optimization rule.
+
+The Study Pipeline Workbench should let a user compare qualified representations for a selected source interval, see their declared tradeoffs, choose one for a permitted consumer, and record the choice in the study manifest. This supports future specialist contributions without letting a compact display curve silently become an authoritative solver input.
+
+Plainly: creative compression and indexing ideas are welcome, but each one must say what it keeps, what it loses, when it is safe to use, and how its claims are checked.
+
 ## Query, Filters, And Shaping
 
 A query selects source material without changing it. A transform creates a derived product and records its ordered operations. Candidate operations include:
@@ -166,6 +206,26 @@ A query selects source material without changing it. A transform creates a deriv
 Equivalent requests should have stable cache identity. Reordering noncommuting transforms changes identity. Every transform declares its effect on precision, uncertainty, coverage, and authority.
 
 Plainly: an experiment can ask for exactly the part of a signal it needs, and another researcher can reproduce the selection and shaping from the saved manifest.
+
+## Study Pipeline Workbench
+
+AAA Core must eventually provide a study-workbench user interface for designing and inspecting a study pipeline. The workbench composes declared source products, queries, transforms, codec or representation choices, kernel requests, resource profiles, publications, and optional EOM requests without embedding their private semantics in the interface.
+
+For every pipeline stage, the workbench must show its exact inputs, declared output type, coverage, scale range, numeric policy, uncertainty or error behavior, provenance, authority effect, supported consumers, and failure conditions. Before execution, it should surface compatibility failures, missing source coverage, unsupported precision or codec capabilities, expected provisional versus sealed state, and the resource/cost envelope supplied by the selected profile. After execution, it must preserve the immutable manifest, result, logs, and exact failure record needed to replay or audit the study.
+
+The interface may help a user author or transform a path, compare representations, choose a lower-rate stream, or prepare an EOM request. It does not make a transformation scientifically valid, turn a display product into evidence, or allow a prescribed future to appear as an EOM-evolved result.
+
+Plainly: the workbench lets people see and design the full route from a known input to a declared output before they spend compute, while keeping every trade and limitation visible.
+
+## Study Revision And Archival
+
+A study pipeline is a durable executable specification, not a disposable UI session. AAA Core must preserve versioned study definitions, immutable run manifests, named revisions, parent and successor relationships, comparison records, release or publication state, and reproducible rerun parameters. A user must be able to branch a study, vary a declared parameter or representation choice, compare the resulting products, and retain the exact lineage of each result.
+
+The platform should support export to and integration with Git, Git-hosting services, or an equivalent archival and change-management system for human-readable study definitions, manifests, review records, and release notes. Large path chunks, recordings, and derived binary products should normally reside in immutable content-addressed storage, with the revision record carrying their identities, integrity hashes, retention policy, and access controls rather than duplicating bulk data in a source-control repository.
+
+Every archived revision must bind the source inputs, transform order, implementation and kernel versions, numeric policy, resource profile, output identities, authority state, and exact failure or completion record. A rerun is a new recorded execution even when it intentionally uses the same study revision.
+
+Plainly: a study should be as reviewable and repeatable as code. Its design history lives in a change record, while its large data remains safely stored and precisely referenced.
 
 ## Heterogeneous Compute
 
@@ -215,11 +275,38 @@ Transport-specific metadata must not redefine path semantics. A path set means t
 
 Plainly: deployment can change with scale without creating a new data model for every machine arrangement.
 
+## Cloud Platform Components
+
+The cloud deployment should be a layered path-and-product laboratory rather than a single compute server:
+
+1. **Web workbench and application services:** browser-facing study design, path inspection, Potential and other application views, sharing, and administration.
+2. **Identity and control plane:** accounts, workspaces, permissions, quotas, budgets, study revisions, publication rules, audit records, and job scheduling.
+3. **Path and product data plane:** immutable path chunks, manifests, indexes, stream watermarks, queries, transforms, codec registration, and product discovery.
+4. **Compute fabric:** CPU reference, orchestration, and difficult-row services alongside scheduled GPU workers for regular tiled screening, decoding, sampling, and map work.
+5. **Tiered storage:** fast local or network-attached storage for active chunks, cache, and device staging; durable object storage for immutable products; and lower-cost archive tiers for sealed history and reproducibility artifacts.
+6. **API, stream, and observability services:** request APIs, accepted-history and progressive-product brokers, asynchronous workers, checkpoint/recovery support, and telemetry for coverage, queue depth, memory, transfer, cost, failures, and replay.
+
+A compute job receives a bounded immutable working set selected through the data plane, executes under a declared resource and numeric policy, and publishes a separately identified result or exact failure record. Device-local memory and worker caches are performance resources, never the sole durable location of a path product or study state.
+
+Plainly: paths, wakes, potential products, and other derived results move through one durable environment. GPUs accelerate bounded jobs, while the platform keeps the records, permissions, history, and recovery state safe around them.
+
+## User-Owned Study Workspaces
+
+When AAA Core operates in a cloud environment, an account may own a private or intentionally shared study workspace. A workspace can retain imported records, authored or analytical paths, saved queries, reproducible transforms, derived products, and their manifests. Users may create, modify, transform, and store these products under their account without making them global application state.
+
+Every workspace product remains immutable once published: a modification creates a successor with explicit parent identities, ordered transform records, numeric policy, provenance, authority, access policy, and retention state. Workspace ownership and sharing control who may read, run, or publish a product; they do not alter its scientific or solver authority.
+
+An authored or transformed workspace path may support study, visualization, comparison, or a declared EOM input-history request. It may not present a prescribed future as an EOM-evolved extension. Only an accepted EOM result can publish a simulated future path product.
+
+Initial cloud design must therefore include account and workspace identity, access control, quotas, storage lifecycle, cost attribution, audit records, reproducible export, and controlled publication. The exact authentication and authorization mechanism remains an open deployment decision until Core leaves one trusted local machine.
+
+Plainly: people can build and keep their own studies in the cloud, share them when they choose, and reproduce the work later. Their changes create traceable new products; they do not overwrite the source record or acquire solver authority.
+
 ## Application Relationship
 
 The intended first application relationships are:
 
-- **Potential:** consumes live or stored histories, requests versioned potential sampling, and publishes spatial or timespace maps.
+- **Potential:** is the sole shared product route from selected path histories to declared potential products. It requests versioned sampling through AAA Core and publishes exportable potential samples, spatial or timespace maps, volumes, and progressive views for other applications. Applications may render or query those products, but do not independently recreate the path-to-potential conversion.
 - **Borg:** consumes EOM runs and sealed assembly records without reconstructing missing physics.
 - **Photon:** consumes shared path/history analysis while retaining its candidate and diagnostic boundaries.
 - **Future Path Studio:** constructs, imports, inspects, filters, transforms, and exports path products.

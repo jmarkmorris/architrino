@@ -22,11 +22,41 @@ The phrase `potential background` is visual shorthand. The display does not intr
 | Logical path-interchange model, codec registry, and common providers | [AAA Core](../app-aaa-core/priorities.md) |
 | Potential-specific published map/tile codec provider | `app-potential`, registered through the AAA Core codec contract |
 | Live accepted-history transport and stream sequencing | AAA Core stream service bound to the EOM output contract |
-| Potential observable definition and production sampler | Shared analytical capability with explicit scientific ownership; exact location pending |
+| Potential observable definition and production sampler | A versioned scientific kernel with explicit scientific ownership; Potential is the sole shared product route that invokes the declared conversion and publishes its products |
 | Slice/volume selection, timespace tiling, progressive map assembly, publication, filters, color mapping, camera, and interaction | `app-potential` |
 | Experimental-record provenance and observer-to-model transforms | Import adapter plus the scientific lane that owns the comparison |
 
-The app may request, cache, decode, filter, sample, and display. It may not evolve future paths, repair missing source history, infer undeclared units, or substitute a display approximation for an accepted numerical result.
+The app may request, cache, decode, filter, sample, and display. It is the sole shared route for converting selected path products through a declared potential kernel and publishing reusable potential products. Other applications request or render those products through AAA Core; they do not recreate the conversion locally. Potential may not evolve future paths, repair missing source history, infer undeclared units, or substitute a display approximation for an accepted numerical result.
+
+## Cross-Application Potential Product Contract
+
+An application that needs a potential background, a three-dimensional potential view, a fixed-time slice, a timespace map, or a point or region sample must request a Potential product through AAA Core. The request binds:
+
+1. immutable input path-set, chunk, or stream identities and an optional saved Core query;
+2. the versioned potential-kernel identity and its declared scientific owner;
+3. the requested absolute-time point or interval, spatial domain, coordinate chart, resolution, tile or sample geometry, and representation profile;
+4. numeric policy, precision requirement, permitted provisional behavior, and declared consumer purpose; and
+5. requested output type: point samples, a slice, a volume, a timespace map, contribution records where supported, or a progressive stream.
+
+AAA Core validates the source identities, coverage, authority, scale, numeric-policy and capability requirements, then routes the request to Potential's product service. Potential invokes the declared kernel, constructs the requested map or sample product, and publishes a versioned manifest through Core. The manifest binds the input and query identities, kernel and implementation version, ordered transforms, output geometry, completed and source watermarks, precision/error behavior, authority, cache identity, backend and fallback records, and the exact first failure or incomplete-coverage state.
+
+An application may subscribe to the resulting product, query an existing product, or render a registered map, tile, volume, or sample representation in its own two- or three-dimensional interface. It may export or share that product only with its manifest and source closure intact. A consumer may request a lower-resolution progressive view while a higher-detail product is still computing, but must expose whether it is provisional, what source history has been processed, which tiles or intervals are missing, and whether it is a display-grade or analysis-grade representation.
+
+Potential is the only shared path-to-potential conversion route. An application may hold transient graphics buffers or apply its own camera, color mapping, clipping, and interaction, but it may not calculate a competing potential from paths, relabel a cached display texture as a potential product, or turn missing source coverage into a zero-valued region. EOM continues to determine causal roots and accepted path extensions; Potential consumes the declared histories and kernel outputs required for its products.
+
+Plainly: any application can show the same potential world in its own view, including 3D, but it gets the values from one traceable Potential product. The app changes how that product is explored, not how paths are converted into potential.
+
+## Scale-Aware Potential Representations
+
+A potential product over two spatial dimensions, three spatial dimensions, or space and time need not have one universal grid, tile size, sampling cadence, or encoding. Potential must support registered multiscale representations such as spatial or time pyramids, adaptive tiles, declared scale-band products, compact functional or coefficient representations, sparse features, and consumer-specific display derivatives. These are separately identified products or views bound to the same source path/query and declared potential-kernel result.
+
+Every representation or scale transform must declare its input product, output domain and coordinate chart, spatial resolution, temporal cadence, scale-band or filtering rule, interpolation or reconstruction behavior, error or uncertainty effect, event and coverage behavior, permitted consumers, and whether it is analysis-grade or display-grade. A large-scale view may intentionally suppress finer variation; a high-detail local view may reveal variation that the coarse product does not resolve. Neither view may be presented as the other, and a color scale, camera choice, clipping rule, or visual smoothing is a display operation rather than a new potential result.
+
+Potential should publish progressive products from coarse coverage to refined tiles or intervals when a consumer needs real-time interaction. Every stage must retain source and completion watermarks, missing-tile or missing-interval state, and a stable identity for the selected scale policy. A user must be able to recover the higher-detail product where it exists, compare scale policies, and reproduce the chosen representation from the saved manifest.
+
+Temporal sampling and video playback are explicit consumer profiles, not implicit display behavior. A video-derived potential product must declare frame times or cadence, time-window exposure where relevant, source accepted-through and map-completed-through coverage, spatial level of detail, frame interpolation or hold rule, playback rate, and every omitted, delayed, or synthesized frame. A renderer may drop presentation frames to remain responsive, but it must not relabel that display behavior as missing physics or as a fully sampled potential sequence.
+
+Plainly: a wide view can show the large pattern while a close, fast-time view shows finer variation. Both are useful, but the system must say exactly how each was sampled or filtered and what detail it leaves out.
 
 A Potential-specific GPU texture or vertex layout may remain private while it is only a transient render buffer. A map or tile encoding intended for replay, publication, another process, or another application is a registered codec provider with declared precision, completeness, source binding, version, and refusal behavior.
 
