@@ -41,24 +41,64 @@ Plainly: this is a place to formulate, run, compare, revise, and share causal-pa
 
 Plainly: Core moves and processes path information; it does not decide what nature does, what the EOM accepts, or what an experiment proves.
 
-## Factory Pipeline
+## Core Shared-Service Map
 
 ```mermaid
+---
+config:
+  markdownAutoWrap: true
+  flowchart:
+    wrappingWidth: 200
+---
 flowchart LR
-    IN["EOM, authored, or experimental input"]
-    VALIDATE["Validate identity, coverage, scale, precision, and provenance"]
-    STORE["Encode, chunk, store, and index"]
-    QUERY["Select, filter, transform, and resample"]
-    COMPUTE["Dispatch versioned CPU or GPU kernels"]
-    PUBLISH["Publish streams and derived products"]
-    APPS["Potential and other applications"]
+    EOM["`**EOM solver**
+Sole forward-evolution and acceptance authority`"]
+    APPS["`Potential and other applications`"]
 
-    IN --> VALIDATE --> STORE --> QUERY --> COMPUTE --> PUBLISH --> APPS
-    STORE --> PUBLISH
-    QUERY --> PUBLISH
+    subgraph CORE["AAA Core reusable shared services"]
+        direction TB
+        INTAKE["`Intake and validation`"]
+        STORAGE["`Path storage and indexing`"]
+        QUERY["`Queries and transforms`"]
+        KERNEL["`Kernel dispatch`"]
+        PUBLISH["`Stream and derived-product publication`"]
+    end
+
+    EOM <-->|Versioned service exchange| CORE
+    CORE <-->|Versioned service exchange| APPS
 ```
 
-Plainly: every input passes through explicit checks before it becomes reusable, and every output remains traceable to the path records and operations that produced it.
+Plainly: Core offers composable capabilities rather than a required processing sequence. The EOM solver, Potential, and other applications use those shared services as needed, but only the EOM solver advances the forward state and decides whether an evolved step is accepted.
+
+## EOM Solver Setup Flow
+
+```mermaid
+---
+config:
+  markdownAutoWrap: true
+  flowchart:
+    wrappingWidth: 200
+---
+flowchart TB
+    EOM["`**EOM solver**`"]
+    AUTHORED["`Authored path history`"]
+    FIRST["`First forward calculation at t = now`"]
+
+    subgraph CORE["AAA Core shared services"]
+        direction LR
+        INTAKE["`Intake and validation`"]
+        STORAGE["`Path storage and indexing`"]
+        INTAKE -->|3. Uses| STORAGE
+    end
+
+    EOM ~~~ AUTHORED
+    AUTHORED -->|1. Supplies history| EOM
+    EOM -->|2. Invokes| INTAKE
+    STORAGE -->|4. Paths loaded; initial state ready| EOM
+    EOM -->|5. Only after readiness| FIRST
+```
+
+Plainly: authored path history reaches the EOM solver before evolution begins. The EOM solver uses Core to validate and load the paths through Core-owned storage and indexing; Core returns readiness but performs no forward evolution. Only the EOM solver may then perform and accept the first forward calculation at t = now.
 
 ## Logical Product Family
 

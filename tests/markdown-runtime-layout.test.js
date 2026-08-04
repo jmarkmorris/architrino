@@ -12,6 +12,10 @@ const requiredKatexAssetNames = [
   "katex.min.css",
   "katex.min.js",
 ];
+const requiredMermaidAssetNames = [
+  "src/runtime/markdown-mermaid.css",
+  "vendor/mermaid/mermaid.min.js",
+];
 
 function collectHtmlFiles(directory = repoRoot) {
   const htmlFiles = [];
@@ -359,6 +363,26 @@ test("markdown document HTML entrypoints load local KaTeX assets", () => {
 
   const missingAssets = markdownEntrypoints.flatMap(({ file, html }) =>
     requiredKatexAssetNames
+      .filter((assetName) => !html.includes(assetName))
+      .map((assetName) => `${file}: missing ${assetName}`)
+  );
+
+  assert.deepEqual(missingAssets, []);
+});
+
+test("markdown document HTML entrypoints load local Mermaid assets", () => {
+  const markdownEntrypoints = collectHtmlFiles()
+    .map((file) => {
+      const html = readFileSync(file, "utf8");
+      return {
+        file: relative(repoRoot, file),
+        html,
+      };
+    })
+    .filter(({ html }) => usesMarkdownDocumentSurface(html));
+
+  const missingAssets = markdownEntrypoints.flatMap(({ file, html }) =>
+    requiredMermaidAssetNames
       .filter((assetName) => !html.includes(assetName))
       .map((assetName) => `${file}: missing ${assetName}`)
   );

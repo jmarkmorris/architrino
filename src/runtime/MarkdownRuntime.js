@@ -1,3 +1,5 @@
+import { createMermaidMarkdownRuntime } from "./MermaidMarkdownRuntime.js";
+
 export function createMarkdownRuntime(deps) {
   const {
     markdownPanel,
@@ -6,6 +8,7 @@ export function createMarkdownRuntime(deps) {
     markdownBody,
     markdownLayoutToggle,
     markdownRenderer,
+    mermaidRenderer,
     markdownCache,
     markdownSectionCache,
     extractMarkdownSection,
@@ -15,6 +18,11 @@ export function createMarkdownRuntime(deps) {
     eventSignal,
   } = deps;
   const markdownContent = providedMarkdownContent ?? markdownBody?.parentElement ?? null;
+  const mermaidRuntime = createMermaidMarkdownRuntime({
+    markdownBody,
+    mermaidRenderer,
+    documentLike,
+  });
 
   let activeMarkdownPath = null;
   let activeMarkdownSourcePath = null;
@@ -771,6 +779,7 @@ export function createMarkdownRuntime(deps) {
     setMarkdownKind(markdownPath);
     decorateMarkdownImages();
     decorateLocalAssetLinks();
+    void mermaidRuntime.renderDiagrams();
     applyMarkdownLayout();
     typesetMarkdownWithRetry(startTypesetRetryCycle());
     decorateTextbookToc();
