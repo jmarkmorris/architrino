@@ -65,6 +65,7 @@ boundary of the same proposal.
 | First arrival at the proposed path-speed-ceiling boundary in the mirror encounter | `conditional input` | $c_a=c_f$ only | This is an unverified conditional mirror-encounter input. It is an idealized, isolated, mirror-symmetric head-on encounter with no external asymmetry, in which the two paths approach the same point at the same absolute time. It is not a general nonordinary-event solution. |
 | Proposed path-speed-ceiling response: form the full ordinary wake ledger, then prevent only the part of net acceleration that would exceed the ceiling | `proposed foundational law` | All constrained cases | This is the proposed change to the Master Equation. It applies only where the ordinary ledger is complete and finite; it does not define what happens at coincidence, tangency, or any other nonordinary event. For $c_a<c_f$, the path-speed gap excludes transmitter-side tangency, but it does not by itself resolve coincidence or other exceptional events. |
 | Results on already-supplied, well-behaved wake ledgers and ordinary simple roots | `derived regular-chart results` | All constrained cases | Given a finite ordinary ledger, the proposed path-speed-ceiling response has one regular velocity evolution. These results classify ordinary root channels and transfer variation along a simple root branch. They do not construct the coupled delayed history, decide an event, or solve coincidence. |
+| Uniform-translation spatial receiver-measure boundary | `derived exact boundary-measure theorem` | $\beta\uparrow1$ with $c_f=1$ | The complete all-past source-provenanced spatial measure for one uniformly translating source converges in local total variation to the exact-speed ordinary trailing measure. The singular residual is zero. This is a spatial marginal theorem, not a point-receiver value, self-action rule, contact measure, or ceiling adoption. |
 | Limited rule for an isolated same-transmitter crossing | `proposed admission convention` | $c_a>c_f$ only | This applies only to that one stated geometry. For $c_a<c_f$, a positive-delay same-transmitter crossing is excluded by the speed gap. For $c_a=c_f$, equality can occur only on a rigid co-moving interval, not as an isolated crossing. An isolated self-crossing is therefore relevant only if the path domain permits motion above $c_f$. It does not decide partner coincidence, zero separation, folds, or general tangent-root events. |
 | Immediate zero-impulse outcome at the exact head-on partner coincidence | `proposed event postulate; derived consequence of the proposed common impulse-event law under exact mirror matching` | $c_a=c_f$ only | The minimal postulate is limited to the idealized mirror-collinear instant and supplies only immediate outgoing position--velocity data. On the proposed common event carrier, the two finite raw source-history atoms have equal unsigned measure, opposite polarity, and common support. Their aggregate is zero, and any common linear event-to-acceleration map gives $\mathbf J_{i,-}=-\mathbf J_{i,+}$. Every other wake contribution remains in the net acceleration sum. Assigning an outgoing history remains a separate law choice. |
 | A full delayed-history state space, solution definition, and rules for carrying history through an event | `unmet formulation and theorem obligations` | All constrained cases | These are needed before claiming existence, uniqueness, continuation, or stability for the actual delayed system rather than for the pointwise response formula. |
@@ -263,6 +264,19 @@ $$
 This receiver measure is not the source measure $\mathsf E_{j,s}$. A
 nonisolated coincidence family is outside this ordinary coarea collapse even
 when every member has positive causal separation.
+
+For the separate all-past straight-translation boundary test, the
+[FSC-018 spatial receiver-measure theorem](uniform-translation-spatial-receiver-measure-limit.md)
+forms the source-time-and-direction carrier before taking its spatial marginal.
+It proves local total-variation convergence as $\beta\uparrow1$ to the exact
+ordinary trailing measure and proves that the singular residual is zero. That
+three-dimensional spatial result does not assign a value to a point receiver
+on the degenerate source fibre or settle any coincidence-event measure.
+
+Plainly: the complete straight-path field around all possible receiver
+locations has a locally finite exact-speed boundary measure with no hidden
+atom. Its eternal-history total over all space is infinite. A receiver sitting
+at the exceptional source point remains a different typed question.
 
 This is the unbounded reference evolution. It supplies
 $\mathbf A_{\mathrm{raw}}$ only on a chart where its root set, root

@@ -3,9 +3,10 @@
 ## Current
 
 - Status: `post-review mathematics packet retargeted; partner cap-family
-  incidence and prescribed circular-binary certificate derived; coincidence
-  event completion, local convergence/residue, regular history-to-ledger, and
-  local circular continuation remain queued; no canonical adoption`
+  incidence, prescribed circular-binary certificate, and uniform-translation
+  spatial boundary measure derived; coincidence event completion, regular
+  history-to-ledger, and local circular continuation remain queued; no
+  canonical adoption`
 - Claim level: proposed foundational alternative; no change to the canonical
   Master Equation, ontology, EOM solver contract, or reader-facing corpus.
 - Operator proposal under examination: each architrino has a candidate
@@ -132,6 +133,16 @@ rules out a finite vector-Radon ordinary measure on a closed endpoint
 neighborhood. This is a conditional theorem, not a claim that the earlier path
 topology automatically supplies its moving-trace hypotheses.
 
+The independent straight-path weak-limit target is also complete. The
+[FSC-018 uniform-translation theorem](uniform-translation-spatial-receiver-measure-limit.md)
+forms the canonical all-past source-time-and-direction carrier for one
+uniformly translating labeled source and takes its three-dimensional spatial
+marginal. As $\beta\uparrow1$, that vector measure converges in local total
+variation to the exact ordinary trailing measure, with zero singular residual.
+This sequence-independent result is limited to the declared uniform path and
+fixed canonical source measure; it supplies no point-source self-action,
+contact measure, continuation, or ceiling adoption.
+
 FSC-006b/FSC-005 owns the remaining exact-event family completion, right-trace
 selection, complete local-ledger census, and any separating-trace consequence.
 The retained partner-cap incidence itself is now derived: whole interval at
@@ -198,11 +209,12 @@ Plainly: this is a dedicated place to ask whether a speed ceiling should become
 a foundational rule, and what else would have to change if it did. The cap
 response is understood only when a complete ordinary ledger is supplied. The
 reviewed packet identifies the endpoint divergence, the frozen-root proposal,
-and the circular prescribed chart without confusing any of them with an adopted
-event law, a retained binary, or a full delayed evolution.
+the uniform-path spatial boundary measure, and the circular prescribed chart
+without confusing any of them with an adopted event law, a retained binary, or
+a full delayed evolution.
 
-Closure goal: establish local open-interval convergence and its endpoint
-residue, supply the exact-event family completion and right-trace selection,
+Closure goal: use the completed FSC-006a and FSC-018 measure theorems as typed
+inputs, supply the exact-event family completion and right-trace selection,
 close FSC-007's regular history-to-ledger theorem, then use the completed
 FSC-010 chart to prove or refute local circular continuation without importing
 an observer-level law.

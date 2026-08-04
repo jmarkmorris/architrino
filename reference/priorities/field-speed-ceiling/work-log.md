@@ -750,3 +750,22 @@
   cannot close the exact-mirror chart because its uniform inactive-gap
   hypothesis fails there. Independent measure review and the event-adjacent
   no-cascade estimate also remain open.
+
+## 2026-08-03 — FSC-018 uniform-translation boundary measure
+
+- Formed the complete labeled all-past source-time-and-direction carrier for
+  one uniformly translating source and derived its three-dimensional spatial
+  receiver marginal directly from the canonical inverse-square delta kernel.
+- Proved exact equivalence with the unique isolated-root ordinary ledger for
+  every $0\leq\beta<1$.
+- Proved that the scalar-envelope mass of every source-centered ball is
+  $4\pi R$, independent of $\beta$, and used almost-everywhere density
+  convergence plus Scheffé's lemma to obtain local total-variation convergence
+  of the vector measures as $\beta\uparrow1$.
+- Identified the limit as the exact ordinary trailing measure and proved that
+  the plane-, line-, and point-supported singular residual is zero. The
+  nonisolated source fibre has zero carrier measure because it occupies one
+  zero-area propagation direction.
+- Kept the theorem separate from the two-dimensional Topo slice, point-source
+  evaluation, self-action, contact-event measures, nonuniform paths,
+  continuation, and adoption of a field-speed ceiling.

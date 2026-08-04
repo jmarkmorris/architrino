@@ -100,6 +100,15 @@
 
 ## Completed Prerequisites
 
+- `uniform_translation_spatial_receiver_measure_boundary` — FSC-018. Status:
+  `completed exact boundary-measure theorem`. The
+  [uniform-translation theorem](uniform-translation-spatial-receiver-measure-limit.md)
+  proves that the complete all-past source-provenanced spatial receiver measure
+  converges in local total variation as $\beta\uparrow1$ to the exact ordinary
+  trailing measure. Its singular residual is zero. The result is independent
+  of the speed sequence within the declared uniform-path family and supplies no
+  point-source value, self-action, contact law, continuation, or ceiling
+  adoption.
 - `coincidence_open_interval_convergence_and_endpoint_residue` — FSC-006a.
   Status: `completed conditional distributional theorem`. The
   [open-interval theorem](coincidence-open-interval-convergence-and-endpoint-residue.md)
