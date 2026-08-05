@@ -7,7 +7,6 @@ import {
   TOPO_DEFAULT_CONTOUR_VISIBILITY,
   TOPO_DISPLAY_CLIP_MAGNITUDE,
   TOPO_DISPLAY_MAPPING_ID,
-  TOPO_FIELD_COLOR_GAIN,
   TOPO_FIRST_CONTOUR_BUDGET_MS,
   TOPO_INTERACTION_CONTRACT_ID,
   TOPO_INVERSE_SQUARE_SCALE,
@@ -38,6 +37,16 @@ import {
   transformTopoValue,
 } from "../src/apps/topo/TopoInteractionContract.js";
 import {
+  TOPO_COLLINEAR_PAIR_PLAYBACK_SECONDS,
+  TOPO_COLLINEAR_PAIR_REFERENCE_BETA,
+  TOPO_COLLINEAR_PAIR_SCENARIO_ID,
+  TOPO_COLLINEAR_PAIR_START,
+  createTopoCollinearPairFrame,
+  createTopoCollinearPairRawSampler,
+  resolveTopoCollinearPairPlaybackSeconds,
+  topoCollinearPairWorldXForScreenFraction,
+} from "../src/apps/topo/TopoCollinearPairScenario.js";
+import {
   getStandaloneAppPathForScene,
 } from "../src/apps/navigator/StandaloneAppLaunchRuntime.js";
 
@@ -57,7 +66,6 @@ test("TOPO-002 freezes one zero-safe signed base-10 display mapping", () => {
   assert.equal(TOPO_DISPLAY_MAPPING_ID, "signed-log10");
   assert.equal(TOPO_REFERENCE_SCALE, 4);
   assert.equal(TOPO_DISPLAY_CLIP_MAGNITUDE, 64);
-  assert.equal(TOPO_FIELD_COLOR_GAIN, 70);
   assert.equal(TOPO_DEFAULT_CONTOUR_DENSITY, 0.4);
   assert.equal(TOPO_DEFAULT_CONTOUR_VISIBILITY, 0.75);
   assert.ok(TOPO_FIRST_CONTOUR_BUDGET_MS <= 34);
@@ -68,6 +76,10 @@ test("TOPO-002 freezes one zero-safe signed base-10 display mapping", () => {
   closeTo(transformTopoValue(0), 0);
   for (const magnitude of [0.001, 0.01, 0.1, 1, 4, 16, 64]) {
     closeTo(transformTopoValue(-magnitude), -transformTopoValue(magnitude));
+    closeTo(
+      normalizeTopoFieldColorValue(magnitude),
+      normalizeTopoDisplayValue(magnitude),
+    );
     closeTo(
       normalizeTopoFieldColorValue(-magnitude),
       -normalizeTopoFieldColorValue(magnitude),
@@ -308,6 +320,105 @@ test("scenario polarity changes preserve beta, range, and visibility", () => {
   });
 });
 
+test("collinear pair follows finite prescribed paths between 20% and 80%", () => {
+  assert.equal(
+    TOPO_COLLINEAR_PAIR_SCENARIO_ID,
+    "approaching-collinear-electrino-positrino",
+  );
+  assert.equal(TOPO_COLLINEAR_PAIR_PLAYBACK_SECONDS, 21.6);
+  assert.equal(TOPO_COLLINEAR_PAIR_REFERENCE_BETA, 0.5);
+  closeTo(resolveTopoCollinearPairPlaybackSeconds(0.25), 43.2);
+  closeTo(resolveTopoCollinearPairPlaybackSeconds(0.5), 21.6);
+  closeTo(resolveTopoCollinearPairPlaybackSeconds(1), 10.8);
+  assert.equal(
+    resolveTopoCollinearPairPlaybackSeconds(0),
+    Number.POSITIVE_INFINITY,
+  );
+  assert.deepEqual(TOPO_COLLINEAR_PAIR_START, {
+    electrino: { x: 1 / 5, y: 1 / 2 },
+    positrino: { x: 4 / 5, y: 1 / 2 },
+  });
+
+  const start = createTopoCollinearPairFrame({ beta: 0.5, phase: 0 });
+  const crossing = createTopoCollinearPairFrame({ beta: 0.5, phase: 0.5 });
+  const finish = createTopoCollinearPairFrame({ beta: 0.5, phase: 1 });
+  closeTo(start.sources[0].position.x, 1 / 5);
+  closeTo(start.sources[1].position.x, 4 / 5);
+  closeTo(crossing.observationTime, 3 / 5);
+  crossing.sources.forEach((source) => closeTo(source.position.x, 1 / 2));
+  closeTo(finish.sources[0].position.x, 4 / 5);
+  closeTo(finish.sources[1].position.x, 1 / 5);
+  finish.sources.forEach((source) => closeTo(
+    source.position.x,
+    source.start.x + source.velocityBeta * finish.observationTime,
+  ));
+
+  const stationary = createTopoCollinearPairFrame({ beta: 0, phase: 1 });
+  assert.equal(stationary.phase, 0);
+  assert.equal(stationary.observationTime, 0);
+  closeTo(stationary.sources[0].position.x, 1 / 5);
+  closeTo(stationary.sources[1].position.x, 4 / 5);
+
+  const wideSpan = 16 / 9;
+  const wideStart = createTopoCollinearPairFrame({
+    beta: 0.5,
+    phase: 0,
+    horizontalWorldSpan: wideSpan,
+  });
+  const wideFinish = createTopoCollinearPairFrame({
+    beta: 0.5,
+    phase: 1,
+    horizontalWorldSpan: wideSpan,
+  });
+  closeTo(wideStart.sources[0].screenPosition.x, 1 / 5);
+  closeTo(wideStart.sources[1].screenPosition.x, 4 / 5);
+  closeTo(wideFinish.sources[0].screenPosition.x, 4 / 5);
+  closeTo(wideFinish.sources[1].screenPosition.x, 1 / 5);
+  closeTo(
+    wideStart.sources[0].position.x,
+    topoCollinearPairWorldXForScreenFraction(1 / 5, wideSpan),
+  );
+  closeTo(
+    wideStart.sources[1].position.x,
+    topoCollinearPairWorldXForScreenFraction(4 / 5, wideSpan),
+  );
+  closeTo(
+    wideFinish.sources[0].position.x,
+    topoCollinearPairWorldXForScreenFraction(4 / 5, wideSpan),
+  );
+  closeTo(
+    wideFinish.sources[1].position.x,
+    topoCollinearPairWorldXForScreenFraction(1 / 5, wideSpan),
+  );
+});
+
+test("collinear pair superposes admitted path-history contributions before display", () => {
+  const initialSampler = createTopoCollinearPairRawSampler({
+    beta: 0.5,
+    phase: 0,
+    sourceMaskRadius: 0,
+  });
+  closeTo(initialSampler(0.5, 0.6), 0);
+
+  const approachingSampler = createTopoCollinearPairRawSampler({
+    beta: 0.5,
+    phase: 0.25,
+    sourceMaskRadius: 0,
+  });
+  const leftValue = approachingSampler(0.38, 0.5);
+  const rightValue = approachingSampler(0.62, 0.5);
+  assert.ok(leftValue < 0);
+  assert.ok(rightValue > 0);
+  closeTo(leftValue, -rightValue, 1e-9);
+
+  const crossingSampler = createTopoCollinearPairRawSampler({
+    beta: 0.5,
+    phase: 0.5,
+    sourceMaskRadius: 0,
+  });
+  closeTo(crossingSampler(0.5, 0.6), 0);
+});
+
 test("private provider states remain distinct from visible neutral color", () => {
   const sampler = createTopoSyntheticRawSampler({ beta: 1, polaritySign: -1 });
   assert.equal(Number.isNaN(sampler(...Object.values(TOPO_SOURCE_POSITION))), true);
@@ -376,15 +487,24 @@ test("Topo UI exposes the fixed logarithmic architecture and preserves Home", ()
   assert.match(runtime, /contourStagingContext\.arc\(/u);
   assert.match(runtime, /drawMajorDecadeLabels/u);
   assert.match(runtime, /compact = cssWidth < 520/u);
-  assert.match(runtime, /intersectionX - 7 \* pixelRatio/u);
+  assert.match(runtime, /intersectionX - direction \* 7 \* pixelRatio/u);
   assert.match(runtime, /minimumLabelX = \(compact \? 82 : 28\) \* pixelRatio/u);
   assert.match(runtime, /globalAlpha = 0\.82 \* circle\.revealWeight/u);
-  assert.match(runtime, /sourcePixelY - \(8 \+ tier \* \(compact \? 10 : 11\)\) \* pixelRatio/u);
+  assert.match(runtime, /centerY - \(8 \+ tier \* \(compact \? 10 : 11\)\) \* pixelRatio/u);
   assert.match(runtime, /Math\.abs\(position\.x - labelX\) < 30 \* pixelRatio/u);
   assert.doesNotMatch(runtime, /suppressed-responsive/u);
   assert.match(runtime, /contourRadii/u);
   assert.match(runtime, /TOPO_INVERSE_SQUARE_SCALE/u);
-  assert.match(runtime, /log\(1\.0 \+ magnitude \/ 4\.0\) \/ log\(17\.0\)/u);
+  assert.match(runtime, /createTopoCollinearPairRawSampler/u);
+  assert.doesNotMatch(runtime, /createTopoCollinearPairContourRenderPlan/u);
+  assert.match(runtime, /const circles = state\.pairMode[\s\S]*\? \[\]/u);
+  assert.match(runtime, /sourceContribution/u);
+  assert.match(runtime, /finiteHistory/u);
+  assert.match(runtime, /setTransportControlButtonPresentation/u);
+  assert.match(runtime, /TRANSPORT_CONTROL_ICON\.RESET/u);
+  assert.doesNotMatch(runtime, /float magnitude = min\(/u);
+  assert.match(runtime, /log\(1\.0 \+ abs\(rawValue\) \/ 4\.0\) \/ log\(17\.0\)/u);
+  assert.doesNotMatch(runtime, /asinh|arsinh|u_gain|TOPO_FIELD_COLOR_GAIN/iu);
   assert.doesNotMatch(runtime, /transformId|u_transform|scheduleTransformChange|dom\.transform/u);
 
   assert.match(html, /<title>Architrino Wake Intensity Map<\/title>/u);
@@ -392,6 +512,9 @@ test("Topo UI exposes the fixed logarithmic architecture and preserves Home", ()
   assert.match(html, /Two-dimensional prescribed-motion slice/u);
   assert.match(html, /<h2 id="topo-about-title">About this view<\/h2>/u);
   assert.match(html, /<span>Contour range<\/span>/u);
+  assert.match(html, />Approaching collinear electrino and positrino<\/option>/u);
+  assert.match(html, /id="topo-pair-play"/u);
+  assert.match(html, /id="topo-pair-replay"/u);
   assert.match(html, />2\.0 decades<\/output>/u);
   assert.match(html, /3 levels \/ decade · I ∝ 1\/r²/u);
   assert.match(html, /id="topo-legend-mapping"/u);
@@ -400,6 +523,7 @@ test("Topo UI exposes the fixed logarithmic architecture and preserves Home", ()
   assert.match(html, /id="home-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="scene-search"/u);
 
   assert.match(css, /\.topo-range-note/u);
+  assert.match(css, /\.topo-pair-transport/u);
   assert.match(css, /@media \(max-width: 820px\)/u);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/u);
   assert.match(css, /input::-webkit-slider-runnable-track \{[\s\S]*height: 5px;/u);

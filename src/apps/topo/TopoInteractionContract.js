@@ -6,7 +6,6 @@ export const TOPO_DISPLAY_CLIP_MAGNITUDE = 64;
 export const TOPO_DEFAULT_CONTOUR_DENSITY = 0.4;
 export const TOPO_DEFAULT_CONTOUR_VISIBILITY = 0.75;
 export const TOPO_DISPLAY_MAPPING_ID = "signed-log10";
-export const TOPO_FIELD_COLOR_GAIN = 70;
 export const TOPO_FIELD_PERCEPTIBILITY_THRESHOLD = 0.3;
 export const TOPO_FIRST_CONTOUR_BUDGET_MS = 34;
 export const TOPO_MAX_CANVAS_DIMENSION = 4096;
@@ -87,10 +86,7 @@ export function normalizeTopoDisplayValue(rawValue) {
 }
 
 export function normalizeTopoFieldColorValue(rawValue) {
-  const normalized = normalizeTopoDisplayValue(rawValue);
-  return Math.sign(normalized) *
-    Math.asinh(TOPO_FIELD_COLOR_GAIN * Math.abs(normalized)) /
-    Math.asinh(TOPO_FIELD_COLOR_GAIN);
+  return normalizeTopoDisplayValue(rawValue);
 }
 
 export function measureTopoCenterlineColorFootprint({

@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#0d0a17" />
     <meta
       name="description"
-      content="Explore a theoretical two-dimensional view of signed wake intensity around a prescribed electrino or positrino."
+      content="Explore theoretical two-dimensional views of signed wake intensity around prescribed one-source and collinear two-source paths."
     />
     <title>Architrino Wake Intensity Map</title>
     <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
@@ -37,7 +37,7 @@
         <div id="topo-panel-content" class="topo-panel-content">
           <section class="topo-notice" aria-labelledby="topo-about-title">
             <h2 id="topo-about-title">About this view</h2>
-            <p>Explore a theoretical two-dimensional view of signed wake intensity around a prescribed electrino or positrino.</p>
+            <p>Explore theoretical two-dimensional views of signed wake intensity around prescribed one-source and collinear two-source paths.</p>
           </section>
 
           <section class="topo-card" aria-labelledby="topo-scenario-title">
@@ -47,6 +47,7 @@
               <select id="topo-scenario">
                 <option value="electrino">Electrostatic: single electrino</option>
                 <option value="positrino">Electrostatic: single positrino</option>
+                <option value="approaching-collinear-electrino-positrino">Approaching collinear electrino and positrino</option>
               </select>
             </label>
             <label class="topo-range-field" for="topo-beta">
@@ -67,7 +68,7 @@
             <dl class="topo-compact-facts">
               <div>
                 <dt>Direction</dt>
-                <dd>Positive x</dd>
+                <dd id="topo-direction">Positive x</dd>
               </div>
             </dl>
           </section>
@@ -130,12 +131,34 @@
         <canvas
           id="topo-canvas"
           tabindex="0"
-          aria-label="Theoretical signed inverse-square wake intensity around one fixed polarity-colored source marker, with exact logarithmic contours and a faint dashed horizontal reference axis pointing toward positive x"
+          aria-label="Theoretical signed inverse-square wake intensity for the selected prescribed-motion scenario, with scenario-specific contour display and a faint dashed horizontal reference axis"
         ></canvas>
         <canvas id="topo-contour-canvas" aria-hidden="true"></canvas>
         <div class="topo-loading-veil" aria-hidden="true">
           <span></span>
           <b>Preparing matching frame</b>
+        </div>
+
+        <div
+          id="topo-pair-transport"
+          class="topo-pair-transport"
+          role="group"
+          aria-label="Collinear pair replay controls"
+          hidden
+        >
+          <button
+            id="topo-pair-play"
+            class="topo-icon-button topo-transport-button"
+            type="button"
+            aria-label="Play collinear replay"
+          ></button>
+          <button
+            id="topo-pair-replay"
+            class="topo-icon-button topo-transport-button"
+            type="button"
+            aria-label="Replay collinear crossing"
+          ></button>
+          <output id="topo-pair-progress" aria-live="off">0%</output>
         </div>
 
         <div
