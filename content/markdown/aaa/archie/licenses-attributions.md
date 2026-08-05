@@ -38,6 +38,8 @@ This page is the public receipt drawer for third-party material and project-owne
 
 - `markdown-it` runtime: MIT license (see header in [vendor/markdown-it/markdown-it.min.js](../../../../vendor/markdown-it/markdown-it.min.js)).
 
+- Mermaid 11.16.0 diagram runtime: MIT License, Copyright (c) 2014-2022 Knut Sveidqvist; see the bundled [Mermaid LICENSE.txt](../../../../vendor/mermaid/LICENSE.txt), the local [version and package-integrity record](../../../../vendor/mermaid/SOURCE.md), and the [upstream license](https://github.com/mermaid-js/mermaid/blob/mermaid%4011.16.0/LICENSE).
+
 - KaTeX runtime loaded by the web and reader surfaces: MIT License, Copyright (c) 2013-2020 Khan Academy and other contributors; see the bundled [KaTeX LICENSE.txt](../../../../apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/LICENSE.txt) and the [upstream license](https://github.com/KaTeX/KaTeX/blob/main/LICENSE).
 
 - Periodic Table data source used by the project: [Bowserinator/Periodic-Table-JSON](https://github.com/Bowserinator/Periodic-Table-JSON), licensed under [CC BY-SA 3.0 Unported](https://github.com/Bowserinator/Periodic-Table-JSON/blob/master/LICENSE.md). Redistributions and adaptations must preserve attribution and the ShareAlike terms.

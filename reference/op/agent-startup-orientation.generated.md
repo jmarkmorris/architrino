@@ -99,7 +99,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md](../research-office/cto/prompts/core-geometry-theorem-reviewer.md) | 59 | `fef7b4e05ccc9501` |
 | [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md) | 79 | `b003a1d04dc09176` |
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 392 | `004b5725dabe1fa1` |
-| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 307 | `6456d57b3e321d64` |
-| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 148 | `dacde5354c51c55e` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 594 | `35b76ef57b4bad0a` |
+| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 307 | `7888bf61937e3bfd` |
+| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 148 | `0ac922c03749862a` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 600 | `86e16b7f8907266c` |
 | [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 176 | `c22e1fd268c66e4f` |

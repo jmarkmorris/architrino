@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d0a17" />
+    <meta
+      name="description"
+      content="Explore a theoretical two-dimensional view of signed wake intensity around a prescribed electrino or positrino."
+    />
+    <title>Architrino Wake Intensity Map</title>
+    <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
+    <link rel="stylesheet" href="./src/apps/topo/topo.css" />
+  </head>
+  <body>
+    <div id="topo-app" data-panel-collapsed="false" data-frame-state="loading">
+      <aside
+        id="topo-left-rail"
+        class="topo-left-rail"
+        aria-label="Wake Intensity Map controls"
+      >
+        <header class="topo-rail-header">
+          <div class="topo-title">
+            <h1>Wake Intensity Map</h1>
+            <p>Two-dimensional prescribed-motion slice</p>
+          </div>
+          <button
+            id="topo-panel-collapse"
+            class="topo-icon-button topo-panel-collapse"
+            type="button"
+            aria-controls="topo-panel-content"
+            aria-expanded="true"
+            aria-label="Collapse Wake Intensity Map controls"
+          ></button>
+        </header>
+
+        <div id="topo-panel-content" class="topo-panel-content">
+          <section class="topo-notice" aria-labelledby="topo-about-title">
+            <h2 id="topo-about-title">About this view</h2>
+            <p>Explore a theoretical two-dimensional view of signed wake intensity around a prescribed electrino or positrino.</p>
+          </section>
+
+          <section class="topo-card" aria-labelledby="topo-scenario-title">
+            <h2 id="topo-scenario-title">Scenario record</h2>
+            <label class="topo-field" for="topo-scenario">
+              <span>Scenario</span>
+              <select id="topo-scenario">
+                <option value="electrino">Electrostatic: single electrino</option>
+                <option value="positrino">Electrostatic: single positrino</option>
+              </select>
+            </label>
+            <label class="topo-range-field" for="topo-beta">
+              <span>Prescribed speed</span>
+              <span class="topo-range-row">
+                <input
+                  id="topo-beta"
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="0.50"
+                  aria-label="Beta, prescribed speed divided by wake speed"
+                />
+                <output id="topo-beta-output" for="topo-beta">β = 0.50</output>
+              </span>
+            </label>
+            <dl class="topo-compact-facts">
+              <div>
+                <dt>Direction</dt>
+                <dd>Positive x</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="topo-card" aria-labelledby="topo-display-title">
+            <h2 id="topo-display-title">Display</h2>
+            <label class="topo-range-field" for="topo-contours">
+              <span>Contour range</span>
+              <span class="topo-range-row">
+                <input
+                  id="topo-contours"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  value="40"
+                  data-keyboard-step="1"
+                  aria-label="Contour logarithmic range"
+                />
+                <output id="topo-contours-output" for="topo-contours">2.0 decades</output>
+              </span>
+              <small class="topo-range-note">3 levels / decade · I ∝ 1/r²</small>
+            </label>
+            <label class="topo-range-field" for="topo-contour-visibility">
+              <span>Contour visibility</span>
+              <span class="topo-range-row">
+                <input
+                  id="topo-contour-visibility"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  value="75"
+                  data-keyboard-step="1"
+                  aria-label="Contour line visibility"
+                />
+                <output
+                  id="topo-contour-visibility-output"
+                  for="topo-contour-visibility"
+                >75%</output>
+              </span>
+            </label>
+          </section>
+
+          <section class="topo-card topo-legend" aria-labelledby="topo-legend-title">
+            <h2 id="topo-legend-title">Signed ordinary values</h2>
+            <p id="topo-legend-mapping" class="topo-card-note"></p>
+            <div
+              class="topo-legend-gradient"
+              role="img"
+              aria-label="Negative values blue, zero purple, positive values red"
+            ></div>
+            <div id="topo-legend-ticks" class="topo-legend-ticks" aria-hidden="true"></div>
+          </section>
+
+        </div>
+      </aside>
+
+      <main class="topo-stage">
+        <canvas
+          id="topo-canvas"
+          tabindex="0"
+          aria-label="Theoretical signed inverse-square wake intensity around one fixed polarity-colored source marker, with exact logarithmic contours and a faint dashed horizontal reference axis pointing toward positive x"
+        ></canvas>
+        <canvas id="topo-contour-canvas" aria-hidden="true"></canvas>
+        <div class="topo-loading-veil" aria-hidden="true">
+          <span></span>
+          <b>Preparing matching frame</b>
+        </div>
+
+        <div
+          id="scene-hud-tools"
+          class="standalone-app-navigation topo-navigation"
+          aria-label="Webapp navigation"
+        >
+          <button
+            id="home-button"
+            class="standalone-app-nav-icon-button"
+            type="button"
+            aria-label="Go to Applications"
+            title="Applications"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"></path>
+            </svg>
+          </button>
+          <div
+            id="scene-nav-history"
+            class="standalone-app-nav-history"
+            role="group"
+            aria-label="Browser history"
+          >
+            <button
+              id="nav-up"
+              class="standalone-app-nav-icon-button"
+              type="button"
+              aria-label="Go back"
+              title="Back"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <polyline points="15 5 8 12 15 19"></polyline>
+              </svg>
+            </button>
+            <button
+              id="nav-forward"
+              class="standalone-app-nav-icon-button"
+              type="button"
+              aria-label="Go forward"
+              title="Forward"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <polyline points="9 5 16 12 9 19"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div id="scene-search" class="standalone-app-scene-search">
+            <button
+              id="scene-search-toggle"
+              class="standalone-app-nav-icon-button standalone-app-scene-search-toggle"
+              type="button"
+              aria-label="Search scenes"
+              aria-controls="scene-search-panel"
+              aria-expanded="false"
+              title="Search"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5"></circle>
+                <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+              </svg>
+            </button>
+            <div
+              id="scene-search-panel"
+              class="standalone-app-scene-search-panel"
+              aria-hidden="true"
+              inert
+            >
+              <input
+                id="scene-search-input"
+                class="standalone-app-scene-search-input"
+                type="search"
+                placeholder="Search scenes"
+                autocomplete="off"
+                aria-label="Search scenes"
+              />
+              <div
+                id="scene-search-results"
+                class="standalone-app-scene-search-results"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <p id="topo-status" class="topo-status" role="status" aria-live="polite">
+          Preparing synthetic interaction frame.
+        </p>
+      </main>
+    </div>
+    <script type="module" src="./src/apps/topo/main.js"></script>
+  </body>
+</html>

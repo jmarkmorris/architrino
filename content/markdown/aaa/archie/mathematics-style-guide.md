@@ -260,7 +260,7 @@ Plain language: With slightly thick causal wake surfaces, the optional force-boo
 
 - Core dynamics chapters set primitive causal-wake speed to $c_f=1$.
 - In spacetime closure chapters, keep $c_f$ explicit and use $v$ for drift speed only through channel-subscripted ratios such as $\beta_f=v/c_f$, $\beta_{\text{eff}}=v/c_{\text{eff}}$, or $\beta_\star=v/c_\star$; the paired Lorentz factor inherits the same subscript. Reserve bare $\beta$ and $\gamma$ for quoted standard-physics benchmark formulas.
-- $\epsilon = |e|/6$ is the potential polarity-unit magnitude in observer-level electric bookkeeping; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
+- $\epsilon = |e|/6$ is the potential polarity-unit magnitude in observer-level electric bookkeeping; electrino $q=-\epsilon$, positrino $q=+\epsilon$.
 - In axial-inventory and weak-coupling-triad counts, write signed polarity units as $\epsilon_+$ and $\epsilon_-$, for example $5\epsilon_+ + 1\epsilon_-$. Do not use initial-letter polarity shorthand for these inventories.
 - $\kappa>0$ universal coupling.
 - $\eta>0$ mollifier width (regularization parameter).

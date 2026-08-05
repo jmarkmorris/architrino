@@ -1,0 +1,47 @@
+.markdown-mermaid {
+  column-span: all;
+  break-inside: avoid;
+  margin: 16px 0 20px;
+  padding: 14px;
+  border: 1px solid rgba(213, 220, 255, 0.24);
+  border-radius: 8px;
+  background: rgba(10, 12, 24, 0.72);
+}
+
+.markdown-mermaid-diagram {
+  overflow-x: auto;
+  padding: 4px;
+}
+
+.markdown-mermaid-diagram svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.markdown-mermaid-status {
+  margin: 0;
+  color: rgba(232, 236, 255, 0.9);
+}
+
+.markdown-mermaid.has-render-error .markdown-mermaid-status {
+  color: #ffd2d2;
+}
+
+.markdown-mermaid-source {
+  margin-top: 10px;
+}
+
+.markdown-mermaid-source summary {
+  width: fit-content;
+  cursor: pointer;
+  color: rgba(219, 226, 255, 0.88);
+  font-size: 0.82rem;
+}
+
+.markdown-mermaid-source-block {
+  margin: 10px 0 0;
+  max-height: 22rem;
+  overflow: auto;
+}

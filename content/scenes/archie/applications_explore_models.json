@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__applications__explore_models",
+    "title": "Explore Models",
+    "type": "Scene-Index",
+    "units": "relative",
+    "layout": {
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
+    },
+    "wrapLabels": true,
+    "children": [
+      { "nodeId": "lattice_lab", "scenePath": "content/scenes/archie/lattice_lab.json" },
+      { "nodeId": "ideal_braid", "scenePath": "content/scenes/archie/ideal_braid.json" },
+      { "nodeId": "molecule", "scenePath": "content/scenes/archie/molecule.json" },
+      { "nodeId": "photon", "scenePath": "content/scenes/archie/photon.json" },
+      { "nodeId": "topo", "scenePath": "content/scenes/archie/topo.json" }
+    ]
+  },
+  "objects": [
+    { "id": "lattice_lab", "title": "Lattice Lab", "radius": 2.2, "color": "#6946b8", "labelTitle": "Lattice Lab", "labelBadge": "" },
+    { "id": "ideal_braid", "title": "Lorentz Geometry", "radius": 2.2, "color": "#0f766e", "labelTitle": "Lorentz Geometry", "labelBadge": "" },
+    { "id": "molecule", "title": "Molecule Visualization", "radius": 2.2, "color": "#6d28d9", "labelTitle": "Molecule" },
+    { "id": "photon", "title": "Photon and Polarization Visualization", "radius": 2.2, "color": "#2563eb", "labelTitle": "Photon", "labelBadge": "" },
+    { "id": "topo", "title": "Topo", "radius": 2.2, "color": "#7c3aed", "labelTitle": "Topo", "labelBadge": "preview" }
+  ]
+}

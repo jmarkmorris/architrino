@@ -117,9 +117,10 @@ results or conditional geometry theorems whose assumptions remain explicit.
    with $D_t,D_r>0$, receiver-time total variation transfers exactly to
    emission time. Positive range and $D_r$ floors prevent $D_t\to0^+$ alone
    from causing integrated divergence. In the mirror chart the remaining
-   divergence localizes to the zero-range inverse-square endpoint. FSC-006a's
-   proposed far-part limit still requires branch-collapse and moving-time
-   trace hypotheses.
+   divergence localizes to the zero-range inverse-square endpoint. FSC-006a
+   now proves the conditional far-part limit under explicit branch-collapse
+   and moving-time trace hypotheses, derives the residue $K/(2c_f^2)$, and
+   rules out a finite vector-Radon ordinary endpoint measure.
 5. **MEC-007 conditional incoming branch.** MEC-007 remains
    `Awaiting verification`. Its proposed unique inward partner root, finite
    speed-increasing acceleration, and first field-speed arrival are retained
@@ -532,7 +533,7 @@ completed the dynamics.
 ## No-escape audit
 
 The separate
-[Field-Speed Ceiling No-Escape Audit](no-escape-houdini-audit.md) traces each
+[Field-Speed Ceiling No-Escape Audit](no-escape-audit.md) traces each
 canonical premise, the complete proposed constrained-response axiom,
 conditional input, derived result, and diagnostic through its operation,
 ordinary-chart reduction, and root or event ownership. Its negative guards
@@ -571,10 +572,11 @@ FSC-001 is complete as an evidence-bounded compatibility map:
   degenerate isolated roots, rigid characteristic intervals, their endpoints,
   source identities, the excluded diagonal, and cross-channel combinations
   outside that exact collinear scope;
-- **required distributional formulation:** source-provenanced receiver-side
-  contact and competing-stratum measures; FSC-006a's far-part weak-* theorem
-  under explicit trace and branch-collapse assumptions; and FSC-006b/FSC-005's
-  zero-range leading and remainder analysis; and
+- **required distributional formulation:** consume FSC-006a's completed
+  conditional far-part theorem and exact residue while retaining
+  source-provenanced receiver-side and competing-stratum measures; independently
+  review FSC-006b/FSC-005's constructed exact-mirror event family, ownership,
+  and right-trace restart; and
 - **decision choices:** retain the open model, choose a terminal closed model,
   extend typed event coverage, or derive a changed boundary update.
 
@@ -583,6 +585,6 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, establish a general or open-interval
 continuation, claim conservation or stability, establish physical realization,
 retain a braid, advance MEC, or move a closure score.
 
-Closure goal: prove or refute FSC-006a's far-part limit, resolve the
-FSC-006b/FSC-005 zero-range tail, and preserve the canonical open model and the
-unresolved post-contact evolution problem.
+Closure goal: reconcile the constructed FSC-006b/FSC-005 exact-event family
+and right trace, and preserve the canonical open model and the unresolved
+general post-coincidence evolution problem.

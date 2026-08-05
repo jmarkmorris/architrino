@@ -313,7 +313,7 @@
 ## 2026-07-30 — Bounded no-escape audit completed
 
 - Added the
-  [Field-Speed Ceiling No-Escape Audit](no-escape-houdini-audit.md), beginning
+  [Field-Speed Ceiling No-Escape Audit](no-escape-audit.md), beginning
   at canonical Euclidean void, absolute time, causal propagation, and ordinary
   finite-ledger premises.
 - Traced each proposed, conditional, derived, and diagnostic step through its
@@ -586,3 +586,186 @@
   disposition, contact measure, continuation, regulator, conservation,
   stability, retained assembly, physical realization, MEC status, or closure
   score changed. No successor reviewer was contacted or started.
+
+## 2026-08-02 — Second-round review reconciliation and queue ownership
+
+- Reconciled the Cartan review and six-specialist geometry panel into the
+  mathematics packet without treating review proposals as theory authority.
+- Kept FSC-006b/FSC-005 as the joint owner of the inherited partner
+  characteristic-family disposition at mirror coincidence.
+- Assigned FSC-009 to the swept-source reception formulation, FSC-010 to the
+  prescribed circular-binary all-root certificate, and FSC-011 to the
+  dependent local circular-binary existence/contraction theorem.
+- FSC-011 remains blocked on FSC-010 and FSC-007. FSC-009 remains proposed and
+  unadopted. No identifier assignment advances a theorem or event law.
+- No canonical Master Equation, ceiling adoption, event-family disposition,
+  continuation, stability, conservation, retained braid, or physical claim
+  changed.
+
+## 2026-08-02 — Inherited-family disposition and FSC-010 completed
+
+- Derived the retained partner-cap incidence theorem for the exact mirror cap.
+  The whole partner cap interval is a nonordinary family at coincidence. On
+  the prescribed straight-through right trace, only the coincidence endpoint
+  remains as a receiver-side frozen root; on the exact maximum-speed rebound
+  ray, the whole older partner cap remains as a $D_t=D_r=0$ characteristic
+  interval; a generic right trace need retain neither.
+- Corrected the packet's former blanket statement that the older partner cap
+  necessarily persists after coincidence. The remaining FSC-006b/FSC-005
+  object is an event-family completion that selects and constructs a right
+  trace and classifies any characteristic interval produced by that trace.
+- Preserved the separate event-measure result: the current receiver-indexed
+  vector kernel supplies no finite ordinary cap-family event measure, and the
+  proposed raw-event cancellation still requires a defined raw wake,
+  aggregation map, matched vector pairing, and zero-preserving event response.
+- Completed FSC-010 for the declared all-past two-label circular chart. The
+  analytic proof covers every $0<c_a\le c_f$: one simple partner root per
+  receiver, no positive-delay self root, complete ordinary ledger, and the
+  compatible radius and frequency under the proposed post-sum response.
+- Restricted FSC-010's `mpmath` receipt to its correct evidence grade: it is a
+  reproducible arbitrary-precision equal-speed endpoint witness, not an
+  independent directed-rounding interval certificate. Corrected its reported
+  positive tangential lower bound to use the monotone compatible-radius
+  identity $4\sin D(1+\sin D)$.
+- FSC-011 is no longer blocked on FSC-010. It still requires FSC-007's
+  history-to-ledger estimates or a specialized proof of the same Lipschitz and
+  contraction bounds. No circular-history existence, stability, capture,
+  conservation, action transfer, or retained braid is claimed.
+
+## 2026-08-02 — Complete collinear ceiling-segment integral
+
+- Integrated the unique ordinary partner row over the complete conditional
+  ceiling-speed segment from $(\mathbf x_1,t_1)$ at first ceiling arrival to
+  the coincidence limit $(\mathbf x_2,t_2)$. The exact raw coefficient is
+  $K\int_{s_0}^{T_\ast}R_{\mathrm p}(s)^{-2}ds/2$, is finite because
+  $R_{\mathrm p}\ge q_\ast>0$, and depends on the retained pre-ceiling history.
+- Proved that the proposed post-sum ceiling response makes the effective
+  accumulated velocity increment on that open segment exactly zero because
+  the complete ordinary partner row is purely forward.
+- Separately integrated the simultaneous cap-family candidate at coincidence.
+  A one-label source-swept coefficient with cutoff $\varepsilon$ is
+  $K(\varepsilon^{-1}-q_\ast^{-1})/2$ and diverges. Classified this as an
+  invalid ordinary-kernel extrapolation onto a $D_t=0$ family, not the raw
+  impulse-event measure.
+- The finite raw event object is instead the pushforward of the labeled source-
+  history measure. Under the proposed common aggregation, the exact mirror
+  pair cancels before an event response is assigned. The outgoing trace remains
+  unselected.
+
+## 2026-08-02 — Common impulse-event measure and mirror cancellation
+
+- Defined the common labeled carrier as cap lookback time crossed with the two
+  retained source labels and defined the event aggregation map to the shared
+  absolute-time and Euclidean-position event.
+- Proved that exact mirror symmetry gives finite event pushforwards
+  $+q\nu(I)\delta_E$ and $-q\nu(I)\delta_E$, whose aggregate is zero while both
+  labeled provenance records remain intact.
+- Defined one common linear event-to-acceleration map applied after aggregation
+  and proved $\mathbf J_{i,-}=-\mathbf J_{i,+}$, so the matched pair gives zero
+  impulse to either receiver.
+- Kept the remainder universe-wide wake measure explicit. Ordinary continuous
+  rows, unmatched event components, and all other wakes remain in the net
+  acceleration sum unchanged.
+- Demoted the earlier radial-vector reinforcement calculation to an invalid
+  operation-order extrapolation: the ordinary inverse-square coarea row is
+  undefined on the $D_t=0$ cap family and does not own the impulse event.
+- The common aggregation law remains proposed. No outgoing history, right
+  trace, passage, rebound, breather, conservation statement, or field-speed
+  ceiling was adopted.
+
+## 2026-08-02 — FSC-006a open-interval convergence and endpoint residue
+
+- Completed a conditional theorem for one labeled injective simple-root
+  resolution under explicit eventual branch coverage, uniform branch
+  collapse, moving-time kernel convergence, positive and convergent $D_r$,
+  retained labels and polarities, and separate competing-stratum ownership.
+- Proved local total-variation convergence of the source-clock ordinary
+  measures on every compact subset of $s<T_{\mathrm c}$. This is stronger
+  than local weak-* convergence and does not follow from the earlier uniform-
+  path plus $L^1$-velocity topology without the new moving-trace hypotheses.
+- Proved that every fixed positive-range far part, pushed back to receiver
+  time, converges to its labeled vector coefficient times
+  $\delta_{T_{\mathrm c}}$.
+- Derived the exact mirror total variation
+  $K(1/\rho-1/\rho_0)/(2c_f^2)$ and the parameterization-independent endpoint
+  residue $K/(2c_f^2)$, with the required order $n\to\infty$ before
+  $\rho\downarrow0$.
+- Proved that no finite vector-Radon ordinary measure can be the weak-* limit
+  on a closed neighborhood containing the endpoint.
+- Kept the divergent ordinary approach measure separate from the proposed
+  finite common impulse-event aggregation. No endpoint response, outgoing
+  history, right trace, passage, rebound, or conservation law was adopted.
+- Moved FSC-006a to completed prerequisites. The event-family completion and
+  right-trace selection is now the ranked queue head.
+
+## 2026-08-02 — Exact-mirror event-family restart constructed
+
+- Constructed one proposed exact-mirror event law that consumes the common
+  zero-impulse aggregation without adopting a general coincidence law.
+- Preserved continuous position and velocity traces and spliced both complete
+  labeled incoming histories to the outgoing histories. No emission, source
+  label, or unmatched wake contribution is deleted.
+- Added a single-ownership rule: the collapsed cap family is booked once at
+  coincidence and adds no repeated row while it remains frozen or
+  characteristic without sweeping new source history across the receiver. A
+  later isolated transverse reception returns to the ordinary ledger.
+- Defined the outgoing trace by an integral restart equation driven by the
+  complete untouched remainder ledger, with the full sum formed before the
+  proposed response is applied once.
+- Verified the complete isolated mirror post-event census. Older partner cap
+  times are absent, the coincidence endpoint is frozen, new partner emissions
+  cannot catch either receiver, and the same-transmitter family remains
+  co-moving and inactive. The resulting zero ledger makes the straight trace
+  exactly compatible.
+- Excluded immediate exact rebound because it requires velocity jumps of
+  magnitude $2c_f$, contradicting the zero event impulse. A later turnaround
+  remains possible if the remainder universe-wide wake ledger supplies it.
+- Kept the queue item open pending a Jack K. Hale delayed-history review and a
+  Lars Hörmander measure-typing check. General local existence and uniqueness,
+  stability, breather behavior, and canonical adoption remain unproved.
+
+## 2026-08-02 — Third Hale restart review integrated
+
+- Integrated all nine safe wording and formulation corrections from
+  `FSC-006b-JKH3-2026-08-02` without promoting its reduced numerical branch to
+  a full-system theorem.
+- Expanded the restart state to carry received-history clocks, ownership, and
+  typed measure records; made the event guard checkable on incoming data; and
+  declared that every velocity atom must be owned by a declared event.
+- Restated the right-trace problem as the Section 7 normal-cone inclusion, with
+  the displayed projected integral equation retained as its almost-everywhere
+  consequence.
+- Added the owned-family permanence lemma. Under $c_a\le c_f$, an owned front's
+  causal gap is nondecreasing, so it can only be rigidly ridden or remain
+  strictly behind; it cannot be re-billed as an isolated root.
+- Replaced the future-dependent cap-window assumption with the event-time
+  coverage test $g(T_{\mathrm c},s)\le0$, with equality exactly on the owned
+  family.
+- Recorded the margin-zero post-event partner family and created the focused
+  [trailing-front activation dichotomy](trailing-front-activation-dichotomy.md).
+  The reduced delayed-braking branch remains a plausible counterexample to
+  uniqueness pending an ignition-instant existence proof and full-system
+  embedding or exclusion.
+- Corrected the queue dependency: FSC-007 remains the regular-chart theorem but
+  cannot close the exact-mirror chart because its uniform inactive-gap
+  hypothesis fails there. Independent measure review and the event-adjacent
+  no-cascade estimate also remain open.
+
+## 2026-08-03 — FSC-018 uniform-translation boundary measure
+
+- Formed the complete labeled all-past source-time-and-direction carrier for
+  one uniformly translating source and derived its three-dimensional spatial
+  receiver marginal directly from the canonical inverse-square delta kernel.
+- Proved exact equivalence with the unique isolated-root ordinary ledger for
+  every $0\leq\beta<1$.
+- Proved that the scalar-envelope mass of every source-centered ball is
+  $4\pi R$, independent of $\beta$, and used almost-everywhere density
+  convergence plus Scheffé's lemma to obtain local total-variation convergence
+  of the vector measures as $\beta\uparrow1$.
+- Identified the limit as the exact ordinary trailing measure and proved that
+  the plane-, line-, and point-supported singular residual is zero. The
+  nonisolated source fibre has zero carrier measure because it occupies one
+  zero-area propagation direction.
+- Kept the theorem separate from the two-dimensional Topo slice, point-source
+  evaluation, self-action, contact-event measures, nonuniform paths,
+  continuation, and adoption of a field-speed ceiling.

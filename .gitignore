@@ -5,6 +5,7 @@ __pycache__/
 .tmp/
 tmp/
 .codex/
+node_modules/
 
 # Local analytical-campaign SQLite runtime data
 /.local-data/braid-analysis/

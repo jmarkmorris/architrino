@@ -2,52 +2,147 @@
 
 ## Ranked Next Objects
 
-1. `contact_far_part_weak_limit` — FSC-006a. Status:
-   `distributional theorem target / Not advanced`. On each labeled injective
-   simple branch with $D_t,D_r>0$, use the derived total-variation transfer to
-   truncate the mirror-contact source times at
-   $s\le T_{\mathrm c}-\rho$. Prove or refute one parameterization-independent
-   weak-* far-part limit under uniform branch collapse, receiver left-trace
-   and kernel convergence, label retention, competing-stratum routing, and
-   perturbation-family independence. The current uniform-path/$L^1$-velocity
-   topology alone does not prove the moving-time trace limit. Acceptance
-   supplies a narrow distributional theorem, not a contact law.
-2. `contact_zero_range_tail_and_separating_trace` — FSC-006b/FSC-005. Status:
-   `joint theorem target / Not advanced`. Resolve the mirror chart's
-   $(T_{\mathrm c}-s)^{-2}$ zero-range raw-measure tail in both ordered
-   channels, including competing strata, complete-ledger leading sign, and
-   the projected remainder. A purely forward leading coefficient cancels
-   under the finite-ledger response but does not by itself make the remainder
-   a finite Radon measure. The exact prove-or-refute target is in the
-   [theorem packet](near-contact-separating-trace-incompatibility-theorem-target.md).
-3. `regular_chart_local_well_posedness` — FSC-007. Status:
-   `queued theorem target / Not advanced`. On one open chart with a fixed
-   active-channel set, common $D_t$ floor, positive root and inactive gaps,
-   bounded delay window, bounded/Lipschitz completed net acceleration, no
-   event-guard crossing, and a declared history norm, prove or refute local
-   existence and uniqueness for the coupled position-history equation. The
-   finite per-channel root count and root-stability estimate are derived, but
-   the row-gradient, velocity-history control, and fixed-point contraction are
-   not. This theorem is regular-chart only and supplies no contact
-   continuation or system-wide well-posedness review.
-4. `equal_radius_phase_offset_braid_speed_domain` — FSC-002. Status:
-   `deferred / blocked`. The selected collinear contact postulate does not
-   define noncollinear or braid contact events, establish a retained
+1. `mirror_event_family_completion_and_right_trace_selection` —
+   FSC-006b/FSC-005. Status: `constructed proposed exact-mirror event map /
+   delayed-history review complete / continuation selection open`. The
+   [restart construction](mirror-event-family-completion-and-right-trace.md)
+   consumes the completed approach, retained-cap incidence, and common
+   impulse-event results. It books the matched family once, preserves position,
+   velocity, and both labeled histories, silences only a noncrossing frozen or
+   characteristic continuation of that already-owned family, and restarts
+   from the complete classified ledger. The owned-family permanence lemma
+   proves that no owned emission can be re-billed. The isolated straight trace
+   is exactly compatible and immediate rebound is excluded, but post-event
+   partner margins accumulate at zero. The
+   [third Hale review](jack-k-hale-third-review-2026-08-02.md) therefore replaces
+   the former census-stability upgrade with the
+   [trailing-front activation dichotomy](trailing-front-activation-dichotomy.md):
+   verify or refute the reduced delayed-ignition family at full-system rigor.
+   Also complete the Lars Hörmander measure-typing check and the event-adjacent
+   no-cascade estimate. FSC-007 alone cannot close this chart. It is not a
+   general coincidence law, a unique continuation theorem, a selected
+   activation floor, or a canonical adoption.
+2. `regular_chart_local_history_to_ledger_existence_and_uniqueness` — FSC-007.
+   Status: `queued theorem target / Not advanced`. Work in an atom-free,
+   finite-delay $W^{2,\infty}$ neighborhood with a fixed two-channel census,
+   positive range, delay, $D_t$, and $D_r$ floors, declared left and right
+   traces, and no event-guard crossing. Prove the ledger Lipschitz bound in the
+   declared history norm, then prove or refute local existence and uniqueness
+   by contraction. This regular-chart theorem supplies no coincidence
+   continuation, stability, capture, or system-wide well-posedness result.
+3. `swept_source_reception_formulation` — FSC-009. Status:
+   `proposed foundational refinement / Not
+   adopted`. Specify the received-source clock, its regular pushforward
+   equivalence with the canonical row, frozen-branch disposition, and the
+   typing of jump or singular components. It must remain separate from the
+   exact-coincidence common impulse-event aggregation. It must not claim an
+   outgoing retained history, right-trace selection, or a unique free-passage
+   continuation for the actual cap history.
+4. `complete_event_stratum_atlas` — FSC-012. Status: `queued classification
+   theorem target / Not advanced`. Extend the current one-channel catalogue to
+   endpoint and corner strata, local-finiteness failures, cross-channel
+   simultaneity, symmetry breaking, received-clock jumps, and
+   singular-continuous clock components. State the geometric and measure type
+   of each stratum without assigning event behavior merely from that
+   classification. This atlas consumes FSC-009's typed clock decomposition but
+   does not adopt swept-source reception or an event law.
+5. `binary_census_stability_neighborhood` — FSC-013. Status: `queued local
+   geometry theorem target / Not advanced`. Quantify a $W^{2,\infty}$
+   neighborhood of the FSC-010 circular chart in which the simple partner root
+   persists, the positive range, delay, $D_t$, and $D_r$ margins remain
+   uniform, and positive-delay self-root exclusion remains structural. This is
+   the bridge from the prescribed all-root certificate to FSC-011; it does not
+   prove a delayed-system solution or stability of the binary.
+6. `local_circular_binary_existence_and_contraction` — FSC-011. Status:
+   `FSC-010 prerequisite complete / blocked on FSC-007 or a specialized proof
+   of the same ledger bounds, and on FSC-013`. On the census-stable
+   neighborhood, prove or refute the projected local contraction for the
+   circular delayed-history system. This is a local solution theorem target
+   only; it is not a stability, capture, or retained-binary result.
+7. `complete_numerical_contract` — FSC-014. Status: `queued verified-numerics
+   target / blocked on the declared FSC-007/FSC-011 theorem setting`. Add
+   independently checkable root isolation, quadrature and roundoff bounds, the
+   discrete contraction lemma, a declared convergence order, breaking-point
+   detection, and replayable directed-rounding interval certificates. The
+   present FSC-010 `mpmath` receipt is a reproducibility witness, not this
+   contract.
+8. `sections_12_14_independent_review` — FSC-016. Status: `queued review gate /
+   Not advanced`. Conduct an independent review of the braid inverse problem,
+   action-transfer interface, cycle diagnostics, energy interface, stability
+   program, and Noether-sea subsection. The six-expert panel covered only
+   Sections 1--11; Sections 12--14 must not be described as reconciled until
+   this review is independently disposed.
+9. `secondary_binary_advances` — FSC-015. Status: `queued theorem bundle /
+    independent subclaims`. Prove or dispose the boundary-only character of
+    uniform circular motion, class-completeness of the orthogonally translating
+    helix exclusion, the small-$\lambda$ expansion, the $D_t=D_r$
+    chord-exchange symmetry diagnostic, and conditioning plus
+    interval-Newton-ready forms for the general-$\lambda$ equations. Grade and
+    falsify each subclaim separately; none is a stability or capture result.
+10. `three_binary_constructive_milestone` — FSC-017. Status: `blocked on
+    FSC-011 and the Section 12--14 review; verified-numerics route also consumes
+    FSC-014`. For one precisely declared three-binary geometry class, seek
+    either an exact certified complete-ledger residual zero or an exclusion
+    theorem. A residual zero remains a prescribed-chart result unless a
+    separate retained-history and stability theorem is proved.
+11. `equal_radius_phase_offset_braid_speed_domain` — FSC-002. Status:
+   `deferred / blocked`. The selected collinear coincidence postulate does not
+   define noncollinear or braid coincidence events, establish a retained
    closed-domain braid, or adopt the ceiling.
-5. `drifting_mirror_preferred_frame_residual` — FSC-008. Status:
-   `deferred / blocked on FSC-006 and FSC-007 / Not advanced`. After the
-   contact formulation, regular coupled theorem, and one verified cap-
+12. `drifting_mirror_preferred_frame_residual` — FSC-008. Status:
+   `deferred / blocked on FSC-006b and FSC-007 / Not advanced`. After the
+   coincidence formulation, regular coupled theorem, and one verified cap-
    activating history exist, declare the emergent boost comparison map and
    compare a drifting encounter with its mapped rest encounter. MEC-007's
    `Awaiting verification` mirror threshold is the current conditional
    activation test, not the only possible activating history. A residual is a
    recovery diagnostic, not a Lorentz premise or result.
 
-## Deferred / Blocked
+## Completed Prerequisites
+
+- `uniform_translation_spatial_receiver_measure_boundary` — FSC-018. Status:
+  `completed exact boundary-measure theorem`. The
+  [uniform-translation theorem](uniform-translation-spatial-receiver-measure-limit.md)
+  proves that the complete all-past source-provenanced spatial receiver measure
+  converges in local total variation as $\beta\uparrow1$ to the exact ordinary
+  trailing measure. Its singular residual is zero. The result is independent
+  of the speed sequence within the declared uniform-path family and supplies no
+  point-source value, self-action, contact law, continuation, or ceiling
+  adoption.
+- `coincidence_open_interval_convergence_and_endpoint_residue` — FSC-006a.
+  Status: `completed conditional distributional theorem`. The
+  [open-interval theorem](coincidence-open-interval-convergence-and-endpoint-residue.md)
+  proves local total-variation convergence for every labeled injective
+  simple-root resolution satisfying its explicit branch-collapse,
+  moving-trace, kernel, positive-$D_r$, and competing-stratum separation
+  hypotheses. It proves the exact mirror residue $K/(2c_f^2)$ and rules out a
+  finite vector-Radon ordinary measure on a closed endpoint neighborhood. It
+  supplies no endpoint event measure, event response, outgoing history, or
+  right trace.
+- `inherited_partner_characteristic_family_disposition` — FSC-006b/FSC-005.
+  Status: `completed retained-history incidence theorem`. The
+  [disposition theorem](inherited-partner-characteristic-family-disposition.md)
+  proves that the incoming partner cap is a whole nonordinary family at
+  coincidence; straight-through motion retains only the frozen endpoint;
+  exact maximum-speed rebound retains the full $D_t=D_r=0$ interval; and a
+  generic right trace need retain neither. It does not select or construct the
+  right trace or supply an event response.
+- `circular_binary_all_root_certificate` — FSC-010. Status: `completed
+  prescribed-chart certificate`. The
+  [analytic certificate](circular-binary-all-root-certificate.md) proves, for
+  the declared all-past two-label circle and every $0<c_a\le c_f$, one simple
+  partner root per receiver, no positive-delay self root, the complete
+  ordinary ledger, and the compatible radius and frequency under the proposed
+  post-sum response. Its checked-in `mpmath` receipt is a reproducible
+  equal-speed endpoint witness, not an independent interval proof. FSC-010
+  establishes no coupled delayed-history solution, stability, capture,
+  conservation, action transfer, or braid realization.
+
+## Deferred Detail for Rank 11
 
 1. **FSC-002 — equal-radius phase-offset braid speed-domain calculation**
    - Status: `deferred / blocked` pending a broader foundational decision and
-     noncollinear event law after FSC-001 review.
+     noncollinear coincidence event law after FSC-001 review.
    - Request: On one explicitly declared common-radius, phase-offset braid
      geometry, calculate every constituent's Euclidean speed from its internal
      motion and any declared assembly translation. Compare it with the closed
@@ -59,12 +154,21 @@
    - Nonclaims: no braid retention, angular-momentum derivation, quantization,
      conservation, Lorentz recovery, or physical realization.
 
-Plainly: the Hale, Hörmander, Thurston, and two Einstein reviews are complete.
-The immediate object is now the finite far-part receiver-measure theorem. The
-zero-range tail remains joint FSC-006b/FSC-005 work, while FSC-007 can proceed
-as an independent regular-chart theorem track. Nothing in this queue selects
-an event disposition, and no successor reviewer has been contacted.
+Plainly: the ordinary positive-range approach is now settled conditionally:
+the rows converge locally before coincidence, their endpoint strength is
+$K/(2c_f^2)$, and they cannot become one finite ordinary measure at the closed
+endpoint. The queue head now has a constructed exact-mirror event map, a
+compatible straight trace, and a live delayed-ignition counterexample
+candidate. The next decision is a proof: either confirm that braking
+continuation or identify the lawful estimate that excludes it. In parallel,
+the certified circular chart is available
+for a quantified census-stability neighborhood and the independent regular
+history-to-ledger theorem. The local binary theorem comes only after both.
+Verified numerics and the Sections 12--14 review then gate the three-binary
+milestone. Nothing in this queue adopts SSR, an event response, free passage,
+conservation, stability, or braid retention.
 
-Closure goal: prove or refute FSC-006a's far-part weak-* limit under explicit
-trace and branch-collapse hypotheses, then resolve the FSC-006b/FSC-005 zero-
-range tail while FSC-007 closes the regular history-to-ledger fixed point.
+Closure goal: close the ranked event and regular-chart foundations, prove the
+FSC-013 census-stability neighborhood, and use it with FSC-007 to prove or
+refute FSC-011; then complete the verified-numerics and independent-review
+gates before attempting the FSC-017 three-binary milestone.

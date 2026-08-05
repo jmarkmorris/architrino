@@ -2043,42 +2043,50 @@ test("shared panel collapse icon preserves the established open and closed treat
   assert.match(equationRuntime, /createPanelCollapseIconSvg\(this\.indexCollapsed\)/u);
 });
 
-test("Lattice Lab is the fourteenth Applications entry and the authored ring is catalog-alphabetical", () => {
+test("Applications groups fifteen apps and keeps Explore Models catalog-alphabetical", () => {
   const applications = JSON.parse(
     readRepoFile("content/scenes/archie/applications.json"),
   );
-  const expectedOrder = [
-    "animator",
-    "atom",
-    "borg",
-    "braid_search",
-    "causal_delay_feedback",
-    "equation_mapping",
-    "greek_letter_match",
-    "hyde_periodic_table",
+  const exploreModels = JSON.parse(
+    readRepoFile("content/scenes/archie/applications_explore_models.json"),
+  );
+  const expectedCategories = [
+    "learn_reference",
+    "explore_models",
+    "analyze_evidence",
+    "build_simulate",
+  ];
+  const expectedExploreOrder = [
     "lattice_lab",
     "ideal_braid",
     "molecule",
-    "periodic_table",
     "photon",
-    "standard_model",
+    "topo",
   ];
 
   assert.equal(applications.scene.layout.type, "rings");
   assert.equal(applications.scene.layout.order, "objects");
-  assert.equal(applications.scene.children.length, 14);
-  assert.equal(applications.objects.length, 14);
+  assert.equal(applications.scene.children.length, 4);
+  assert.equal(applications.objects.length, 4);
   assert.deepEqual(
     applications.scene.children.map((entry) => entry.nodeId),
-    expectedOrder,
+    expectedCategories,
   );
   assert.deepEqual(
     applications.objects.map((entry) => entry.id),
-    expectedOrder,
+    expectedCategories,
+  );
+  assert.deepEqual(
+    exploreModels.scene.children.map((entry) => entry.nodeId),
+    expectedExploreOrder,
+  );
+  assert.deepEqual(
+    exploreModels.objects.map((entry) => entry.id),
+    expectedExploreOrder,
   );
   assert.equal(
-    applications.objects.find((entry) => entry.id === "greek_letter_match")?.labelTitle,
-    "It's Greek to Me!",
+    exploreModels.objects.find((entry) => entry.id === "lattice_lab")?.labelTitle,
+    "Lattice Lab",
   );
 });
 

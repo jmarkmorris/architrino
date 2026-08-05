@@ -6,4 +6,22 @@
   --ui-label-size: 12px;
   --ui-label-weight: 700;
   --ui-label-line-height: 1.25;
+  --ui-stage: #0d0a17;
+  --ui-surface-strong: rgba(18, 13, 30, 0.98);
+  --ui-surface: rgba(27, 20, 43, 0.88);
+  --ui-surface-control: rgba(10, 8, 18, 0.82);
+  --ui-border: rgba(198, 182, 255, 0.22);
+  --ui-border-strong: rgba(224, 216, 255, 0.7);
+  --ui-text: #f8f5ff;
+  --ui-text-muted: #aaa0bc;
+  --ui-accent: #8873dd;
+  --ui-accent-soft: #bdaeff;
+  --ui-focus: rgba(226, 219, 255, 0.78);
+  --ui-color-electric-purple: #8f00ff;
+  --ui-data-negative: #2563eb;
+  --ui-data-zero: var(--ui-color-electric-purple);
+  --ui-data-positive: #dc2626;
+  --ui-state-singular: #f6c453;
+  --ui-state-unavailable: #8b91a3;
+  --ui-state-loading: #67e8f9;
 }

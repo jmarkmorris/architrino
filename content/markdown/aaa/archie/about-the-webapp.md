@@ -123,6 +123,7 @@ The current webapp stack includes:
 - Three.js for WebGL rendering and CSS2D overlays,
 - KaTeX for TeX and LaTeX rendering,
 - `markdown-it` for markdown parsing and rendering,
+- Mermaid for rendering diagrams authored in fenced Mermaid blocks,
 - PubChem PUG REST for molecule formula lookup, compound names, CIDs, and SDF structure retrieval in session molecule workflows.
 - local PDG-oriented Python tooling for curated reaction-data ingestion and generated review artifacts.
 

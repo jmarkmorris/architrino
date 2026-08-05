@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-08-01T19:38:09.782Z",
+  "generated_at": "2026-08-05T03:14:18.312Z",
   "package_version": "1.0.0-fdec147b",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -196,16 +196,16 @@
       "sourcePath": "__generated__/reading-copies/cosmology.html",
       "role": "chapter",
       "type": "html",
-      "size": 5755822,
-      "sha256": "dbb2318064eca5301dc4a4d5f50e2227c0f4039cebc4e885f63deded4e233cdf"
+      "size": 5764687,
+      "sha256": "ccd4d810daa7829863e0ccb4c2412e99e8405a42b71cf015de0f523e41795824"
     },
     {
       "path": "reading-copies/cosmology.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 434283,
-      "sha256": "76c84a5c7b8dfd63411b88d6d3d7a3ea8f1deb2f4fa7ab37a7cd449fb1419ab2"
+      "size": 435525,
+      "sha256": "fc697517ee4240426e3f5c620ee6c085f931342b5916becaa88593e7f3aff889"
     },
     {
       "path": "reading-copies/dynamics.html",
@@ -389,7 +389,7 @@
       "role": "reference",
       "type": "html",
       "size": 342383,
-      "sha256": "b1706ebd7284a6292dc3724b6f193e44856563502e00e4abfecb76127e19e112"
+      "sha256": "e6aa843f8314a076e07d504d3a3e0c6eb2991ef29eed6d467f790dade37c6227"
     },
     {
       "path": "references/mathematics-style-guide.md",
@@ -397,7 +397,7 @@
       "role": "reference",
       "type": "markdown",
       "size": 17975,
-      "sha256": "6456d57b3e321d6486b1fc69f3e9bac0a36fc800a273c87cbe284378fbe34c60"
+      "sha256": "7888bf61937e3bfd4d231b025caac0d88a7f361ba8535cc0cc774622e90af1bd"
     },
     {
       "path": "references/mathematics-terminology.html",
@@ -405,7 +405,7 @@
       "role": "reference",
       "type": "html",
       "size": 643053,
-      "sha256": "b8527230c357dea2c9f5f1f96260de6c545b50b2e6635988994d0207c22457de"
+      "sha256": "b78aec500fb40c1c656aed0ea16fba4d531ca4017bdaa859d7372119c8b2b96f"
     },
     {
       "path": "references/mathematics-terminology.md",
@@ -413,31 +413,31 @@
       "role": "reference",
       "type": "markdown",
       "size": 45604,
-      "sha256": "dacde5354c51c55e744f909f850830164fcb607d546c074cf3514381ca0232d5"
+      "sha256": "0ac922c03749862a4e973fee89ab186fe75a335366234e89825a78a6ca6f71af"
     },
     {
       "path": "references/terminology-usage.html",
       "sourcePath": "__generated__/references/terminology-usage.html",
       "role": "reference",
       "type": "html",
-      "size": 213855,
-      "sha256": "bcfae1d508d5fba8b9ee426e380b7a1b7a0d7dacd1122ffd214508bca8220975"
+      "size": 214244,
+      "sha256": "bd87295a0e18a1eb109eaaced5de90a2bb2c0463e141330e854035fa9eaedece"
     },
     {
       "path": "references/terminology-usage.md",
       "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
       "role": "reference",
       "type": "markdown",
-      "size": 66725,
-      "sha256": "35b76ef57b4bad0add132487d57988e095fa3f3d5f57f7b1ae47f2d52f371251"
+      "size": 67052,
+      "sha256": "86e16b7f8907266c595cea491b62e6d60212fbd95958bd20b7386bcf474f47fa"
     },
     {
       "path": "textbook_bundle_search_index.json",
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8754467,
-      "sha256": "0844676db990c6a672b8addd1b6024100cfe2e28faaffb5c59ee540b04335c71"
+      "size": 8755583,
+      "sha256": "f1ba7ed8eb070faf797f10b55fafb78b1318493202435ed7f1c8e38224c1a8c3"
     }
   ],
   "links": []

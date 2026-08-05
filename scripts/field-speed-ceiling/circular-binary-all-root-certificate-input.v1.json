@@ -1,0 +1,19 @@
+{
+  "schema": "field_speed_ceiling_circular_binary_all_root_certificate_input/v1",
+  "specification": {
+    "normalization": {
+      "c_f": "1",
+      "c_a": "1",
+      "K": "1"
+    },
+    "root_equation": "xi - cos(xi) = 0 on [0, 1]",
+    "dottie_bracket": [
+      "0.7390851332151606",
+      "0.7390851332151608"
+    ],
+    "precision": {
+      "decimal_digits": "100",
+      "bisection_steps": "420"
+    }
+  }
+}

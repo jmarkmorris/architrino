@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-01T19:38:09.782Z",
-  "total_links": 2092,
+  "generated_at": "2026-08-05T03:14:18.312Z",
+  "total_links": 2094,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -2430,6 +2430,14 @@
     {
       "sourceChapterId": "cosmology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "https://arxiv.org/abs/2503.14738",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "target": "https://arxiv.org/abs/2603.06479",
       "kind": "external",
       "status": "external",
@@ -2439,6 +2447,14 @@
       "sourceChapterId": "cosmology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "target": "https://arxiv.org/abs/2604.14327",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "https://arxiv.org/abs/2605.27221",
       "kind": "external",
       "status": "external",
       "targetBundlePath": ""

@@ -359,6 +359,202 @@ itself define the plateau contribution. A future ceiling model could test
 whether a causally derived maturity radius or boundary update supplies such a
 lower limit without deleting ordinary roots.
 
+## Straight field-speed wake: leading pile-up and trailing foliation
+
+Claim grade: `derived geometry` on a prescribed eternal straight path at
+speed $c_f$. Let
+
+$$
+\mathbf X(s)=c_fs\mathbf e_x.
+$$
+
+At observation time $T$, the wake emitted at $s<T$ intersects the translation
+axis at
+
+$$
+x_+(T;s)=c_fT,
+\qquad
+x_-(T;s)=2c_fs-c_fT.
+$$
+
+Every forward endpoint is therefore the current architrino position,
+independent of $s$. That is the leading characteristic pile-up; there is no
+past wake ahead of $x=c_fT$. The rear endpoints do not pile up. The map
+$s\mapsto x_-$ has derivative $2c_f$, so it spreads successive emissions
+uniformly down the trailing line.
+
+For a point a distance $d=c_fT-x>0$ behind the architrino, there is exactly one
+emission time,
+
+$$
+s=T-\frac{d}{2c_f},
+\qquad
+T-s=\frac{d}{2c_f},
+\qquad
+r=\frac d2.
+$$
+
+Its direction is $-\mathbf e_x$ and its transmitter factor is regular:
+
+$$
+D_t
+=
+c_f-(-\mathbf e_x)\mathbin{\cdot}(c_f\mathbf e_x)
+=
+2c_f.
+$$
+
+Thus the trailing line is foliated by simple ordinary fronts, one emission per
+point, rather than carrying the front caustic. With a finite retained source
+history $s\ge s_0$, the occupied trailing interval begins at
+$x=2c_fs_0-c_fT$; an eternal history fills the whole rear ray.
+
+A second architrino co-moving a fixed distance $L$ behind receives the unique
+emission $s=T-L/(2c_f)$. Here $dS/dT=1$ and
+$D_t=D_r=2c_f$: new source history crosses the receiver continually rather
+than one frozen front being billed repeatedly. For the ordinary inverse-square
+row, the magnitude scales as $2K/L^2$ before its polarity sign is applied.
+This grows as $L\to0^+$ because the range $L/2$ vanishes, not because rear
+roots accumulate.
+
+Plainly: all old wake spheres share one leading tip, but their rear tips are
+spread out like evenly spaced mile markers. A trailing receiver meets one new
+sphere after another. It does not see the many-emission pile-up that exists at
+the leading point.
+
+### Three-dimensional completion and academic classification
+
+Claim grade: `derived geometry`; the academic names below are comparisons,
+not imported dynamical premises. At fixed $T$, parameterize the spherical
+front emitted at $s<T$ by $\boldsymbol\omega\in S^2$:
+
+$$
+\Phi_T(s,\boldsymbol\omega)
+=
+c_fs\mathbf e_x+c_f(T-s)\boldsymbol\omega.
+$$
+
+Up to the ordinary angular-coordinate factor, the spatial Jacobian is
+
+$$
+\left|\det D\Phi_T\right|
+=
+r^2\left(c_f-\boldsymbol\omega\mathbin{\cdot}\mathbf V(s)\right)
+=
+r^2D_t.
+$$
+
+Plainly: $D_t$ is not only a root-list denominator here. It is the factor that
+decides whether source time plus direction give ordinary local coordinates in
+space.
+
+At the forward direction $\boldsymbol\omega=\mathbf e_x$, the source-time
+column of $D\Phi_T$ vanishes and every $s<T$ maps to the single current point
+$c_fT\mathbf e_x$. The map has a positive-dimensional fibre and rank two there.
+At the trailing direction $\boldsymbol\omega=-\mathbf e_x$, the source-time
+column is $2c_f\mathbf e_x$; together with the two angular columns it has full
+rank, and each rear-axis point has one ordinary preimage.
+
+The axis statement extends to the whole rear half-space. Put
+$\mathbf y=\mathbf x-c_fT\mathbf e_x$ and $\tau=T-s>0$. The front condition is
+
+$$
+\left\lVert\mathbf y+c_f\tau\mathbf e_x\right\rVert=c_f\tau,
+$$
+
+so, whenever $y_x<0$,
+
+$$
+\tau=-\frac{\lVert\mathbf y\rVert^2}{2c_fy_x}
+$$
+
+is the unique emission age. No point with $y_x>0$ is reached; on the boundary
+plane $y_x=0$, only $\mathbf y=0$ is reached, and that point is reached by every
+emission time.
+
+Plainly: the tangent wake spheres foliate the entire open region behind the
+architrino exactly once, while their whole source-time family collapses at the
+one leading tip.
+
+In classical inversive geometry the equal-time sphere family is a parabolic
+pencil of mutually tangent spheres. In wavefront and singularity geometry the
+leading tip is a critical value, or caustic, of the front projection. It is more
+degenerate than a generic fold because a continuum of preimages collapses,
+rather than a finite pair of roots merging. In microlocal language, the
+ordinary delta/coarea collapse is licensed on the rear foliation where the map
+is a submersion and is not licensed at the leading fibre without an additional
+distributional extension.
+
+This classification establishes the geometry, not an infinite potential,
+finite atom, acceleration, or response. `Nonordinary buildup` is justified as
+a continuum of coincident fronts; the receiver-side measure and its magnitude
+remain separate mathematical data.
+
+### Azzurli-Lechner comparison: exact characteristic geometry versus weak limit
+
+Claim grade: `external mathematical-physics comparison and method-transfer
+candidate`; no Maxwell equation, Minkowski metric, gauge field, electric-flux
+law, or lightlike-particle ontology is imported into the substrate model.
+
+Azzurli and Lechner, *Electromagnetic fields and potentials generated by
+massless charged particles* (2014), prove within classical Maxwell theory that
+the ordinary pointwise causal potential for a uniformly light-speed point
+source is not a distribution. They regularize by uniformly moving sub-light-
+speed source paths, take the limit in the space of distributions, and obtain a
+well-defined field supported as a delta-like plane travelling with the source.
+For accelerated paths they obtain additional principal-part and delta-like
+terms supported on a source-attached characteristic string or surface. Their
+result depends on Maxwell's tensor equations, gauge freedom, and global path
+class, including bounded versus unbounded history.
+
+Plainly: the paper does not repair a bad denominator by assigning it a very
+large ordinary value. It changes mathematical charts and asks whether the
+complete regular fields converge when tested against smooth regions.
+
+The methodological relevance is direct. At exact field speed, the present
+wake geometry gives ordinary roots throughout the strict trailing half-space,
+no positive-delay root in the leading half-space, and a nonisolated $D_t=0$
+family at the source point. That direct exact-speed census need not equal the
+weak limit of the complete sub-field-speed receiver measures as
+$\beta\uparrow1$. A weak limit can retain a singular measure on a set where
+the pointwise ordinary chart has no value, just as the Maxwell comparison's
+plane-supported shock is not recovered by inserting the exact light-speed
+trajectory into its naive pointwise potential.
+
+This does not imply that the Architrino limit is a plane shock. The canonical
+wake kernel is an acceleration-first inverse-square causal-surface law in
+Euclidean space and absolute time; it has no Maxwell tensor, gauge
+equivalence, or field-equation cancellation that would license the paper's
+answer. It also does not imply a ceiling, a leading impulse, an infinity, or a
+particular response.
+
+That closure test is now complete for the declared eternal, uniform,
+straight-path family. The
+[FSC-018 theorem](uniform-translation-spatial-receiver-measure-limit.md) forms
+the canonical source-time-and-direction carrier, takes its three-dimensional
+spatial receiver marginal, and proves local total-variation convergence as
+$\beta\uparrow1$. The limit is exactly the ordinary trailing measure and the
+singular residual is zero. The result holds for every speed sequence within
+that fixed family.
+
+The result does not extend automatically to accelerated paths, changing
+retained-history windows, altered source weights, or point-receiver contact
+events. Those changes would require separately typed limits. In particular,
+the theorem's three-dimensional density is locally integrable even though its
+two-dimensional display-plane restriction is not locally integrable at the
+source.
+
+Assumptions and boundary: this census uses exact straight translation at
+$c_f$, spherical propagation at $c_f$, and the ordinary positive-delay root
+law. It does not assign an ordinary self-response at the leading pile-up,
+where the emission family is nonisolated and $D_t=0$, and it does not select a
+contact or boundary event law.
+
+Promotion target: the straight-path wake-geometry discussion in the
+field-speed mathematics packet. Next artifact: extend the axis census to the
+source-measure pushforward versus the leading characteristic measure, using
+the three-dimensional foliation above as the geometric lemma.
+
 ## Guarded compact-object question
 
 Could a completed ceiling model admit a collective terminal contact or

@@ -1,8 +1,10 @@
 # Near-Contact Separating-Trace Incompatibility Theorem Target
 
 **Date:** 2026-07-31
-**Status:** queued prove-or-refute theorem target; blocked on FSC-006b
-zero-range formulation and FSC-006a provenance hypotheses; no result claimed
+**Status:** queued prove-or-refute theorem target; FSC-006a provenance and
+positive-range convergence prerequisite complete; consumes the constructed
+FSC-006b exact-event restart but remains blocked on its independent review and
+local-uniqueness boundary; no result claimed
 **Claim level:** proposed theorem program
 **Origin:** finding 9 of the
 [Jack K. Hale review](jack-k-hale-review-response-2026-07-31.md), revised by
@@ -258,9 +260,9 @@ or establish a regulator-independent contact measure.
 
 ## Dependencies and acceptance boundary
 
-FSC-005 is blocked on FSC-006a's source-provenanced far-part theorem and
-FSC-006b's typed zero-range receiver-measure decomposition, competing-stratum
-ownership, and perturbative weak-limit test in the
+FSC-005 now consumes FSC-006a's completed source-provenanced far-part theorem
+and exact endpoint residue. FSC-006b now supplies a proposed typed exact-event
+family, competing-stratum ownership rule, and right-trace restart in the
 [mathematics packet](mathematics-geometry-dynamical-system.md). It also uses
 the [endpoint reanalysis](capped-collinear-endpoint-reanalysis.md) only for the
 prescribed straight-trace calculation and MEC-007 only for the conditional
@@ -277,6 +279,6 @@ The prescribed straight trace, a sampled numerical trace, root-count
 convergence, or an argument from the outgoing one-jet alone remains
 `Not advanced`.
 
-Closure goal: complete FSC-006a and FSC-006b, then prove or refute the limited
-two-channel BV/Radon incompatibility with leading and remainder control and
-without assuming a continuation outcome.
+Closure goal: reconcile the constructed FSC-006b restart, then prove or refute
+the limited two-channel BV/Radon incompatibility with leading and remainder
+control and without assuming a continuation outcome.

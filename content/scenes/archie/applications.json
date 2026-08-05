@@ -17,171 +17,51 @@
     },
     "children": [
       {
-        "nodeId": "animator",
-        "scenePath": "content/scenes/archie/animator.json"
+        "nodeId": "learn_reference",
+        "scenePath": "content/scenes/archie/applications_learn_reference.json"
       },
       {
-        "nodeId": "atom",
-        "scenePath": "content/scenes/nuclear/atom.json"
+        "nodeId": "explore_models",
+        "scenePath": "content/scenes/archie/applications_explore_models.json"
       },
       {
-        "nodeId": "borg",
-        "scenePath": "content/scenes/archie/borg.json"
+        "nodeId": "analyze_evidence",
+        "scenePath": "content/scenes/archie/applications_analyze_evidence.json"
       },
       {
-        "nodeId": "braid_search",
-        "scenePath": "content/scenes/archie/braid_search.json"
-      },
-      {
-        "nodeId": "causal_delay_feedback",
-        "scenePath": "content/scenes/archie/causal_delay_feedback.json"
-      },
-      {
-        "nodeId": "equation_mapping",
-        "scenePath": "content/scenes/archie/equation_mapping.json"
-      },
-      {
-        "nodeId": "greek_letter_match",
-        "scenePath": "content/scenes/archie/greek_letter_match.json"
-      },
-      {
-        "nodeId": "hyde_periodic_table",
-        "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json"
-      },
-      {
-        "nodeId": "lattice_lab",
-        "scenePath": "content/scenes/archie/lattice_lab.json"
-      },
-      {
-        "nodeId": "ideal_braid",
-        "scenePath": "content/scenes/archie/ideal_braid.json"
-      },
-      {
-        "nodeId": "molecule",
-        "scenePath": "content/scenes/archie/molecule.json"
-      },
-      {
-        "nodeId": "periodic_table",
-        "scenePath": "content/scenes/chemistry/periodic_table_scene.json"
-      },
-      {
-        "nodeId": "photon",
-        "scenePath": "content/scenes/archie/photon.json"
-      },
-      {
-        "nodeId": "standard_model",
-        "scenePath": "content/scenes/standard-model-particles/standard_model.json"
+        "nodeId": "build_simulate",
+        "scenePath": "content/scenes/archie/applications_build_simulate.json"
       }
     ]
   },
   "objects": [
     {
-      "id": "animator",
-      "title": "Animator",
-      "radius": 2.2,
-      "color": "#7c3aed",
-      "labelTitle": "Animator",
-      "labelBadge": ""
-    },
-    {
-      "id": "atom",
-      "title": "Atom",
-      "radius": 2.2,
-      "color": "#a50041",
-      "labelTitle": "Atom"
-    },
-    {
-      "id": "borg",
-      "title": "Borg",
-      "radius": 2.2,
-      "color": "#5f7a4d",
-      "labelTitle": "Borg",
-      "labelBadge": ""
-    },
-    {
-      "id": "braid_search",
-      "title": "Braid Search",
-      "radius": 2.2,
-      "color": "#0e7490",
-      "labelTitle": "Braid Search",
-      "labelBadge": ""
-    },
-    {
-      "id": "causal_delay_feedback",
-      "title": "Causal Delay Feedback",
-      "radius": 2.2,
-      "color": "#8b5cf6",
-      "labelTitle": "Causal Delay",
-      "labelBadge": ""
-    },
-    {
-      "id": "equation_mapping",
-      "title": "Equation Mapping",
-      "radius": 2.2,
-      "color": "#146c74",
-      "labelTitle": "Equation Mapping",
-      "labelBadge": ""
-    },
-    {
-      "id": "greek_letter_match",
-      "title": "It's Greek to Me!",
-      "radius": 2.2,
-      "color": "#0f3a8a",
-      "labelTitle": "It's Greek to Me!",
-      "labelSubtitle": "Alpha to Omega",
-      "labelBadge": ""
-    },
-    {
-      "id": "hyde_periodic_table",
-      "title": "Hyde Periodic Table",
-      "radius": 2.2,
-      "color": "#7a5a2f",
-      "labelTitle": "Hyde Periodic Table"
-    },
-    {
-      "id": "lattice_lab",
-      "title": "Lattice Lab",
-      "radius": 2.2,
-      "color": "#6946b8",
-      "labelTitle": "Lattice Lab",
-      "labelBadge": ""
-    },
-    {
-      "id": "ideal_braid",
-      "title": "Lorentz Geometry",
-      "radius": 2.2,
-      "color": "#0f766e",
-      "labelTitle": "Lorentz Geometry",
-      "labelBadge": ""
-    },
-    {
-      "id": "molecule",
-      "title": "Molecule Visualization",
-      "radius": 2.2,
-      "color": "#6d28d9",
-      "labelTitle": "Molecule"
-    },
-    {
-      "id": "periodic_table",
-      "title": "Periodic Table",
-      "radius": 2.2,
-      "color": "#4f7b3a",
-      "labelTitle": "Periodic Table"
-    },
-    {
-      "id": "photon",
-      "title": "Photon and Polarization Visualization",
-      "radius": 2.2,
-      "color": "#2563eb",
-      "labelTitle": "Photon",
-      "labelBadge": ""
-    },
-    {
-      "id": "standard_model",
-      "title": "Standard Model",
-      "radius": 2.2,
+      "id": "learn_reference",
+      "title": "Learn & Reference",
+      "radius": 2.8,
       "color": "#4b0082",
-      "labelTitle": "Standard Model"
+      "labelTitle": "Learn & Reference"
+    },
+    {
+      "id": "explore_models",
+      "title": "Explore Models",
+      "radius": 2.8,
+      "color": "#6946b8",
+      "labelTitle": "Explore Models"
+    },
+    {
+      "id": "analyze_evidence",
+      "title": "Analyze Evidence",
+      "radius": 2.8,
+      "color": "#146c74",
+      "labelTitle": "Analyze Evidence"
+    },
+    {
+      "id": "build_simulate",
+      "title": "Build & Simulate",
+      "radius": 2.8,
+      "color": "#5f7a4d",
+      "labelTitle": "Build & Simulate"
     }
   ]
 }

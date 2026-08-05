@@ -122,6 +122,12 @@ This distinction carries more than descriptive neatness. `Axial` names the organ
 
 At the architrino level, the ontological term is not `charge`. The primitive is an `architrino` with definite `polarity`.
 
+Capitalization rule: write `architrino`, `electrino`, and `positrino` in
+lowercase in ordinary prose, mathematical prose, table cells, captions, and
+non-title link text. Capitalize only at the beginning of a sentence or title,
+or when the word is part of an established proper name such as `Architrino
+Assembly Architecture`.
+
 | When you mean... | Prefer | Keep `charge` only when... | Example |
 | --- | --- | --- | --- |
 | the basic entity | `architrino`, `electrino`, `positrino` | not applicable | "The architrino is a transceiver of potential." |
@@ -131,7 +137,7 @@ At the architrino level, the ontological term is not `charge`. The primitive is 
 
 Polarity notation rule:
 
-- Use full words, `Electrino` and `Positrino`, when naming the entity species.
+- Use full words, `electrino` and `positrino`, when naming the entity species.
 - Use $\epsilon_+$ and $\epsilon_-$ when writing compact polarity inventories, axial-inventory counts, weak-coupling-triad inventories, or neutral Noether braid content.
 - Prefer count expressions such as $5\epsilon_+ + 1\epsilon_-$ or $A_{\Sigma}=3\epsilon_-$.
 - Avoid initial-letter polarity shorthand such as `6E`, `5P,1E`, `P/E`, `P+`, or `P-`. Those collide with electron/proton language, energy $E$, parity/probability/pressure $P$, and Standard Model notation.

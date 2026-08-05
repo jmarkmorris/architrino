@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__applications__build_simulate",
+    "title": "Build & Simulate",
+    "type": "Scene-Index",
+    "units": "relative",
+    "layout": {
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
+    },
+    "wrapLabels": true,
+    "children": [
+      { "nodeId": "animator", "scenePath": "content/scenes/archie/animator.json" },
+      { "nodeId": "borg", "scenePath": "content/scenes/archie/borg.json" }
+    ]
+  },
+  "objects": [
+    { "id": "animator", "title": "Animator", "radius": 2.2, "color": "#7c3aed", "labelTitle": "Animator", "labelBadge": "" },
+    { "id": "borg", "title": "Borg", "radius": 2.2, "color": "#5f7a4d", "labelTitle": "Borg", "labelBadge": "" }
+  ]
+}

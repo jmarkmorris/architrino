@@ -3,9 +3,10 @@
 import { spawn, spawnSync } from "node:child_process";
 import crypto from "node:crypto";
 import fs from "node:fs";
-import { createRequire } from "node:module";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+
+import { loadVendoredCommonJsBundle } from "./load-vendored-commonjs-bundle.mjs";
 
 const TEXTBOOK_TOC_PATH = "content/graph/textbook_toc.json";
 const READING_COPY_DIR = "content/generated/markdown/textbook/reading-copies";
@@ -37,9 +38,12 @@ const DEFAULT_BROWSER_PATHS = [
 const args = parseArgs(process.argv.slice(2));
 const mode = args.write ? "write" : "check";
 const rootDir = process.cwd();
-const require = createRequire(import.meta.url);
-const MarkdownIt = require(path.join(rootDir, READER_ASSET_DIR, "markdown-it.min.js"));
-const katex = require(path.join(rootDir, READER_ASSET_DIR, "katex/katex.min.js"));
+const MarkdownIt = loadVendoredCommonJsBundle(
+  path.join(rootDir, READER_ASSET_DIR, "markdown-it.min.js"),
+);
+const katex = loadVendoredCommonJsBundle(
+  path.join(rootDir, READER_ASSET_DIR, "katex/katex.min.js"),
+);
 const markdownParser = MarkdownIt({
   html: true,
   breaks: true,

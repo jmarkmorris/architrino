@@ -2,19 +2,28 @@
 
 ## Current
 
-- Status: `Hale, Hörmander, Thurston, and two Einstein read-only reviews
-  integrated; FSC-006a far-part theorem ranked first; no canonical adoption`
+- Status: `post-review mathematics packet retargeted; partner cap-family
+  incidence, prescribed circular-binary certificate, and uniform-translation
+  spatial boundary measure derived; coincidence event completion, regular
+  history-to-ledger, and local circular continuation remain queued; no
+  canonical adoption`
 - Claim level: proposed foundational alternative; no change to the canonical
   Master Equation, ontology, EOM solver contract, or reader-facing corpus.
-- Operator proposal under examination: each architrino has an admissible speed
-  domain $\|\mathbf V\|\le c_f$; regular velocity is absolutely continuous;
+- Operator proposal under examination: each architrino has a candidate
+  admissible path-speed domain $\|\mathbf V\|\le c_a$; regular velocity is absolutely continuous;
   the canonical finite ordinary net ledger is formed before a radial
   normal-cone reaction; and the least-change boundary projection follows a.e.
-  under those proposed clauses. At the stated exact mirror-collinear partner
+  under those proposed clauses. The $c_a=c_f$ mirror branch is a specialized
+  chart, not the general premise. At the stated exact mirror-collinear partner
   coincidence, a separate
-  proposed event owns the nonordinary family, supplies no ordinary contact row
-  or source-delta partner acceleration, and sets
-  $\Delta\mathbf V_{\mathrm{contact}}=\mathbf0$.
+  proposed event classifies the exact nonordinary coincidence instant, supplies
+  no ordinary coincidence row or source-delta partner acceleration, and sets
+  $\Delta\mathbf V_{\mathrm{coincidence}}=\mathbf0$.
+  The incoming partner cap is now classified as a whole event family at
+  coincidence. Its right-hand presence is trace-dependent: the prescribed
+  straight-through trace retains only the frozen endpoint front, whereas the
+  exact maximum-speed rebound retains the full $D_t=D_r=0$ partner interval.
+  The event law still does not select or construct an outgoing trace.
 
 ## Objective
 
@@ -34,9 +43,10 @@ The investigation must distinguish two layers:
    reaction, and response only after a complete finite ordinary net ledger is
    formed; and
 2. exact nonordinary event-domain admission, ownership, and disposition,
-   including the excluded diagonal and positive-delay $D_t=0$ contact
-   families. The exact mirror-collinear event now has one proposed
-   zero-impulse convention; every broader contact class remains open.
+   including the excluded diagonal, positive-delay $D_t=0$ coincidence
+   families, receiver-side frozen roots, and inherited partner characteristic
+   families. The exact mirror-collinear event has one proposed zero-impulse
+   convention; every broader coincidence class remains open.
 
 It must map corpus, solver, Braid, and MEC consequences before any foundational
 adoption. It may not silently clamp, delete, reweight, or book a causal root;
@@ -53,14 +63,15 @@ The completed evidence-bounded compatibility map is
 [FSC-001 Field-Speed Ceiling Compatibility Decision](field-speed-ceiling-compatibility-decision.md).
 It separates unchanged results, removed or reclassified open-domain material,
 the minimum new collinear boundary postulate, affected corpus and EOM
-dependencies, the velocity-preserving outgoing contact one-jet, and the
+dependencies, the velocity-preserving outgoing coincidence immediate
+position-and-velocity data, and the
 broader unselected decision alternatives.
 
 The provisional coordinate-free framework is in
 [mathematics-geometry-dynamical-system.md](mathematics-geometry-dynamical-system.md).
 
 The bounded premise, operation, ownership, and negative-guard review is in the
-[Field-Speed Ceiling No-Escape Audit](no-escape-houdini-audit.md). It is an
+[Field-Speed Ceiling No-Escape Audit](no-escape-audit.md). It is an
 audit artifact, not a boundary law or continuation proof.
 
 The first-review boundary is recorded in the
@@ -79,7 +90,7 @@ review. The complete substantive finding record and dispositions are in the
 response corrects the prescribed six-label object from a spatial-link reading
 to a labeled configuration-space loop, records a bounded fold total-variation
 negative control, and queues regular-chart local well-posedness as FSC-007
-without claiming a contact continuation. The later cap-monotonicity theorem
+without claiming a coincidence continuation. The later cap-monotonicity theorem
 restricts that fold control to the open model or a broader perturbation class.
 
 Albert Einstein completed a read-only invariance and unification review. The
@@ -88,7 +99,7 @@ complete review and independent dispositions are in the
 response derives least-change projection from the proposed radial-reaction and
 absolute-continuity law, closes only the frozen-ledger constrained layer,
 proves per-channel cap-admissible root monotonicity, and rejects the proposed
-quotient-response lemma by counterexample. No contact measure or Lorentz
+quotient-response lemma by counterexample. No coincidence measure or Lorentz
 result follows.
 
 Einstein's second read-only pass is preserved with independent dispositions in
@@ -101,12 +112,78 @@ FSC-006/FSC-005 queue. It does not turn per-channel geometry into a complete
 event law, prove the proposed far-part limit from the current topology, or
 make MEC-007 the only possible ceiling-activation test.
 
-The best next object is FSC-006a: prove or refute the truncated far-part weak-*
-limit under explicit branch-collapse, receiver-trace, kernel, label, competing-
-stratum, and perturbation-family hypotheses. FSC-006b/FSC-005 then owns the
-zero-range raw-measure tail, complete-ledger sign, and projected remainder.
-FSC-007 remains an independent regular-chart theorem track using the derived
-root-count and root-stability lemmas.
+The subsequent coincidence proposal and Sections 1--11 were reviewed in the
+[Élie Cartan review](elie-cartan-review-2026-08-02.md) and the
+[six-specialist geometry-panel collation](geometry-panel-collation-2026-08-02.md),
+which links the individual Thurston, Dahlquist, Whitney, Hale, Hörmander, and
+Moore reviews. Those documents are review inputs, not adopted authority; the
+mathematics packet records the accepted, narrowed, or still-open disposition
+of their findings.
+
+The closed-endpoint finite-Radon weak-* target has been resolved negatively,
+and the retargeted
+[FSC-006a theorem](coincidence-open-interval-convergence-and-endpoint-residue.md)
+is complete. On every labeled injective simple-root resolution satisfying the
+explicit branch-collapse, moving-trace, kernel, positive-$D_r$, and ownership
+hypotheses, the ordinary source-clock measures converge locally in total
+variation on the open approach interval. Their fixed positive-range
+receiver-time pushforwards collapse to a labeled atom at $T_{\mathrm c}$, the
+exact mirror endpoint residue is $K/(2c_f^2)$, and the divergent variation
+rules out a finite vector-Radon ordinary measure on a closed endpoint
+neighborhood. This is a conditional theorem, not a claim that the earlier path
+topology automatically supplies its moving-trace hypotheses.
+
+The independent straight-path weak-limit target is also complete. The
+[FSC-018 uniform-translation theorem](uniform-translation-spatial-receiver-measure-limit.md)
+forms the canonical all-past source-time-and-direction carrier for one
+uniformly translating labeled source and takes its three-dimensional spatial
+marginal. As $\beta\uparrow1$, that vector measure converges in local total
+variation to the exact ordinary trailing measure, with zero singular residual.
+This sequence-independent result is limited to the declared uniform path and
+fixed canonical source measure; it supplies no point-source self-action,
+contact measure, continuation, or ceiling adoption.
+
+FSC-006b/FSC-005 owns the remaining exact-event family completion, right-trace
+selection, complete local-ledger census, and any separating-trace consequence.
+The retained partner-cap incidence itself is now derived: whole interval at
+coincidence, only the frozen endpoint on straight-through motion, and the whole
+$D_t=D_r=0$ interval on exact rebound. FSC-007 remains an independent regular
+history-to-ledger theorem track, but its positive inactive-gap setting does not
+contain the margin-zero exact-mirror right chart.
+
+Two proposed-law tracks are deliberately separate from those theorem targets.
+FSC-009 owns swept-source reception as a source-history crossing account that is
+identical to the ordinary row on regular $D_t,D_r>0$ branches and gives a
+proposed frozen-root disposition at $c_a=c_f$. The exact-coincidence raw
+carrier is now defined by a finite labeled source-history measure. Under exact
+mirror matching, its two event pushforwards have equal unsigned weight,
+opposite polarity, and common support. A common linear event-to-acceleration
+map therefore proves $\mathbf J_{i,-}=-\mathbf J_{i,+}$ while leaving every
+other wake contribution unchanged. The
+[proposed exact-mirror restart](mirror-event-family-completion-and-right-trace.md)
+now consumes that aggregation within its narrow scope, preserves continuous
+position and velocity, splices both labeled histories, books the noncrossing
+event family once, and restarts from the complete classified ledger. The
+completed [third Hale review](jack-k-hale-third-review-2026-08-02.md) proves an
+owned-family permanence lemma, replaces the cap-window assumption with a
+checkable event coverage condition, and confirms exact straight-trace
+compatibility. It also identifies a margin-zero trailing-front activation
+boundary and a reduced delayed-braking candidate. The construction therefore
+remains open on the
+[trailing-front activation dichotomy](trailing-front-activation-dichotomy.md)
+and independent measure review; it does not yet prove local uniqueness or
+adopt a general event law or activation floor. Swept-
+source reception remains a separate unadopted foundational track.
+
+The circular-binary program has completed its prescribed-chart prerequisite,
+[FSC-010](circular-binary-all-root-certificate.md): the analytic certificate
+proves the complete two-label root census and compatible radius for the
+at-or-below-wake all-past circle. Its numerical companion is a reproducible
+endpoint witness, not an independent interval proof. FSC-011 may now consume
+that chart, but it still requires FSC-007's history-to-ledger estimates or a
+specialized proof of the same bounds before a local contraction theorem can be
+posed. Neither track establishes stability, retention, action, conservation,
+or braid realization.
 
 The packet is not ready for a Tao-style well-posedness review as a posed
 evolution problem. FSC-005, FSC-006, FSC-007, and the deferred FSC-008
@@ -129,13 +206,15 @@ diagnostic remain `Not advanced`, and no successor review has been dispatched.
   diagnostics are existing scope, not evidence for or against this proposal.
 
 Plainly: this is a dedicated place to ask whether a speed ceiling should become
-a foundational rule, and what else would have to change if it did. The
-compatibility map is complete. The cap response is now well understood when
-its incoming ledger is supplied, and the per-channel exceptional geometries
-are finite and explicit. Their event dispositions, the contact measure, and
-the coupled history-to-ledger evolution remain open. Nothing has been adopted,
-and no full evolution problem is yet posed for well-posedness review.
+a foundational rule, and what else would have to change if it did. The cap
+response is understood only when a complete ordinary ledger is supplied. The
+reviewed packet identifies the endpoint divergence, the frozen-root proposal,
+the uniform-path spatial boundary measure, and the circular prescribed chart
+without confusing any of them with an adopted event law, a retained binary, or
+a full delayed evolution.
 
-Closure goal: prove or refute FSC-006a's far-part weak-* limit, resolve the
-FSC-006b/FSC-005 zero-range tail, and close FSC-007's regular history-to-ledger
-theorem without importing a quotient response or observer-level law.
+Closure goal: use the completed FSC-006a and FSC-018 measure theorems as typed
+inputs, supply the exact-event family completion and right-trace selection,
+close FSC-007's regular history-to-ledger theorem, then use the completed
+FSC-010 chart to prove or refute local circular continuation without importing
+an observer-level law.
