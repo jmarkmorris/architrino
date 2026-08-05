@@ -4,6 +4,18 @@ This file is the chronological work log for the `app-topo` priority area. Use [p
 
 ## Log Entries
 
+### 2026-08-05 — Prescribed Circular Binary Integrated
+
+- Added `Orbiting binary electrino and positrino` beside the existing single-source and approaching-collinear scenarios, preserving each scenario's independent renderer, controls, and transport behavior.
+- Added an accessible orbital-radius slider over $0.01\leq R\leq0.45$ with $R=0.3$ as the original default. Both sources stay antipodal and the prescribed history uses $|\omega|=\beta/R$, so tangential speed remains $\beta$ while period and separation change. Overlapping endpoint markers are split at their perpendicular bisector so both source identities remain visible.
+- Applied one shared $50\%$ source-marker radius, including the centered origin mark, across all four Topo scenarios while retaining polarity fill and the established white outline. No raw field, history, or playback calculation changed for this marker consolidation.
+- Replaced the binary axes option with a checked-by-default thin solid circular guide that follows the selected $R$. It adapts from pale lavender on the Electric Purple neutral background to restrained Electric Purple on White and remains a prescribed reference path distinct from disabled field contours.
+- Added Counterclockwise and Clockwise native radio controls. The default positive angular rate and the reversed negative angular rate propagate through warm-up, replay, marker positions, causal roots, shader evaluation, and frame identity while $\beta$ stays nonnegative.
+- Corrected the $\beta=1$ source-adjacent artifact by replacing the stale fixed $0.012$ shader mask with a resolution-derived mask contained to $75\%$ of the now-smaller visible marker radius. This preserves fail-closed root handling and legitimate wake color outside the marker.
+- Made Purple and White selections show option-colored checked indicators with contrast and focus, and made Space toggle the same play/pause actions for both moving scenarios without intercepting native controls, disabled $\beta=0$ state, or repeated keydown events.
+
+Plainly: the binary now supports very close and wide authored separations, either authored direction, and both neutral backgrounds while keeping the same mathematical sampling rule. The smaller dots, solid ring, and corrected display mask change legibility only.
+
 ### 2026-08-03 — TOPO-002 Signed-Logarithmic Architecture Frozen
 
 - Replaced the transform comparison with one zero-safe signed base-10 mapping, $\operatorname{sgn}(z)\log_{10}(1+|z|/z_*)$, at the established $z_*=4$ reference and $|z|=64$ symmetric display clip. Removed the Scale transform selector and its state, shader branch, cache key, event, accessibility, and test paths.

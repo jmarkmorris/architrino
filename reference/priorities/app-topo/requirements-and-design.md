@@ -9,6 +9,7 @@
 - Potential-product authority: [Potential](../app-potential/priorities.md)
 - First observable: [TOPO-001 signed ordinary wake intensity](topo-observable-and-reference-geometry-v1.md)
 - Interaction contract: [TOPO-002 interaction and color contract v1](topo-interaction-and-color-contract-v1.md)
+- Circular-binary contract: [prescribed circular binary v1](topo-circular-binary-prescribed-history-v1.md)
 - Numerical convention: normalized wake-speed units with $c_f=1$
 
 ## Product Definition
@@ -38,12 +39,12 @@ The initial controls are:
 
 | Control | Initial contract |
 | --- | --- |
-| Scenario | `Electrostatic: single electrino`; `Electrostatic: single positrino` |
+| Scenario | single electrino; single positrino; approaching collinear electrino and positrino; orbiting binary electrino and positrino |
 | $\beta=v/c_f$ | range $0\leq\beta\leq1$; the exact ordinary, unavailable, and nonordinary endpoint regions are fixed by TOPO-001 |
 | Contour range | continuous $1.0$ through $3.0$ intensity decades; default $2.0$ decades at the $40\%$ slider position; preserves the fixed $T_n=T_0 10^{n/6}$ lattice and cross-fades only the next outward level without moving existing circles |
 | Contour visibility | display-only global contour-emphasis percent from $0$ through $100$ in one-point keyboard steps; default $75$; scales the deterministic sequential inner-to-outer fade without altering field color, contour geometry, or raw values |
 | Color mapping | one zero-safe signed base-10 logarithmic mapping with $z_*=4$ and symmetric clip at $|z|=64$; no transform selector |
-| Overlay | faint dashed positive-$x$ reference axis behind the exact analytic contour circles, plus one solid polarity disk with the canonical thin white border and small centered white origin dot; direction remains textual in the scenario facts |
+| Overlay | scenario-specific reference geometry plus source polarity disks using one shared half-size radius, canonical thin white border, and half-size centered white origin dot |
 
 The source position, contour range, contour visibility, and color limits belong to view state. The chosen species, $\beta$, observable identity, time slice, domain, and scientific-kernel version belong to the reproducible scenario record.
 
@@ -80,6 +81,10 @@ app-local navigation or panel language.
 - Mobile layout collapses the left panel before reducing shared icon hit
   targets and keeps the top-right controls clear of the map legend and source
   marker.
+- Space invokes the same play/pause action as the visible transport button for
+  the moving collinear and circular-binary scenarios. The shortcut is inert at
+  $\beta=0$, ignores repeat events, and leaves Space to focused inputs, selects,
+  buttons, links, and editable content.
 
 Plainly: Topo should feel like another Architrino application immediately.
 The map is new; its navigation, slider behavior, panel toggle, colors, focus
@@ -102,6 +107,16 @@ $$
 $$
 
 Plainly: for every pixel, the provider looks backward along the architrino's left-to-right path for the emission whose outward-moving wake arrives at that pixel at the displayed instant.
+
+## Prescribed Circular-Binary Geometry
+
+The `Orbiting binary electrino and positrino` scenario uses equal-scale world coordinates centered at $(1/2,1/2)$. Its shared orbital radius $R$ ranges from $0.01$ through $0.45$ visible-width units and defaults to $0.3$, reproducing the initial $(0.2,0.5)$ and $(0.8,0.5)$ positions. The sources stay antipodal and use $|\omega|=\beta/R$, so the slider changes source separation and period without changing the selected nonnegative tangential-speed magnitude $\beta$. Counterclockwise uses positive $\omega$ and remains the default; Clockwise uses negative $\omega$ consistently in warm-up, replay, source placement, root evaluation, and frame identity.
+
+The binary display hides the single-source contour controls and shows only the signed heatmap, shared half-size polarity markers, one optional thin solid orbit guide, playback progress, direction and radius controls, and shared play/pause/replay controls. The guide follows $R$ in the same equal-scale chart and is explicitly a prescribed path reference, not an equal-intensity contour. It is pale lavender on the Electric Purple neutral background and restrained Electric Purple on White. Each background radio uses its option color for the checked indicator while retaining native radio semantics, focus, and keyboard behavior.
+
+At the $1\%$ radius endpoint, marker disks can overlap on narrow canvases. The overlay clips the two marker drawings at their perpendicular bisector so both source identities remain visible deterministically; it does not merge, reorder, or hide either source. The source display mask is $75\%$ of the visible marker radius in world units, replacing the stale fixed $0.012$ mask that extended beyond the smaller marker at $\beta=1$. Root failure remains fail-closed, and the mask changes no ordinary value outside the marker.
+
+Plainly: the radius slider moves the two authored circles closer together or farther apart. The solid ring helps the eye follow that authored path, the direction radios reverse only the authored motion, and overlapping colored marker halves still show both sources. None supplies dynamics or a physical orbit.
 
 This geometry and its first raw scalar are now fixed by [TOPO-001](topo-observable-and-reference-geometry-v1.md). On an ordinary root, v1 plots the source-polarity sign times the canonical inverse-square distance factor times the transmitter-side ordinary-root weight. The contract also fixes aggregation, the static and axis controls, the punctured regular domain, and the $\beta=1$ unavailable and nonordinary regions.
 

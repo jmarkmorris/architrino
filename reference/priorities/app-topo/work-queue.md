@@ -53,7 +53,12 @@ No rows.
 
 ## Verified
 
-No rows.
+### TOPO-006 — Prescribed circular binary display
+
+- **Status:** Verified
+- **Priority object:** `topo_prescribed_circular_binary`
+- **Result:** Added the prescribed circular binary, finite-history signed superposition, 1%-to-45% orbital-radius control, both angular directions, shared half-size source markers, adaptive solid prescribed-orbit guide, option-colored background comparison, contained source masking, and one-orbit accessible transport under [the v1 contract](topo-circular-binary-prescribed-history-v1.md).
+- **Boundary:** Display-only prescribed paths; no EOM evolution, binding, stability, conservation, potential, or acceptance claim.
 
 ## Superseded / withdrawn
 

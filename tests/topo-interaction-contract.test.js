@@ -49,6 +49,12 @@ import {
 import {
   getStandaloneAppPathForScene,
 } from "../src/apps/navigator/StandaloneAppLaunchRuntime.js";
+import {
+  TOPO_SOURCE_MARKER_RADIUS_SCALE,
+  TOPO_SOURCE_MASK_MARKER_RATIO,
+  resolveTopoSourceMarkerRadius,
+  resolveTopoSourceMaskRadius,
+} from "../src/apps/topo/TopoInteractionContractRuntime.js";
 
 function readRepoFile(relativePath) {
   return readFileSync(new URL("../" + relativePath, import.meta.url), "utf8");
@@ -469,6 +475,47 @@ test("accepted palette, axis, and frame identity remain fixed", () => {
     createTopoPreviewFrameIdentity({ beta: 0.5, polaritySign: -1 }),
     "topo_synthetic_causal_envelope/v1:electrino:beta=0.50",
   );
+});
+
+test("all four scenarios share the half-size marker and contained source mask", () => {
+  assert.equal(TOPO_SOURCE_MARKER_RADIUS_SCALE, 0.5);
+  assert.equal(TOPO_SOURCE_MASK_MARKER_RATIO, 0.75);
+  closeTo(resolveTopoSourceMarkerRadius({
+    width: 1000,
+    height: 800,
+    pixelRatio: 1,
+  }), 5);
+  closeTo(resolveTopoSourceMarkerRadius({
+    width: 400,
+    height: 300,
+    pixelRatio: 2,
+  }), 9);
+  const markerWorldRadius = resolveTopoSourceMarkerRadius({
+    width: 1000,
+    height: 800,
+    pixelRatio: 1,
+  }) / 999;
+  const maskWorldRadius = resolveTopoSourceMaskRadius({
+    width: 1000,
+    height: 800,
+    pixelRatio: 1,
+  });
+  closeTo(maskWorldRadius, markerWorldRadius * 0.75);
+  assert.ok(maskWorldRadius < markerWorldRadius);
+
+  const html = readRepoFile("topo.html");
+  const optionValues = Array.from(html.matchAll(/<option value="([^"]+)"/gu))
+    .map((match) => match[1]);
+  assert.deepEqual(optionValues, [
+    "electrino",
+    "positrino",
+    "approaching-collinear-electrino-positrino",
+    "orbiting-binary",
+  ]);
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  assert.match(runtime, /function drawSourceMarker/u);
+  assert.match(runtime, /sourceOverlayGeometry[\s\S]*resolveTopoSourceMarkerRadius/u);
+  assert.doesNotMatch(runtime, /drawCircularBinarySourceMarker/u);
 });
 
 test("Topo UI exposes the fixed logarithmic architecture and preserves Home", () => {

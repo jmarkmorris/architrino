@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#0d0a17" />
     <meta
       name="description"
-      content="Explore theoretical two-dimensional views of signed wake intensity around prescribed one-source and collinear two-source paths."
+      content="Explore theoretical two-dimensional views of signed wake intensity around prescribed one-source, collinear-pair, and circular-binary paths."
     />
     <title>Architrino Wake Intensity Map</title>
     <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
@@ -37,7 +37,7 @@
         <div id="topo-panel-content" class="topo-panel-content">
           <section class="topo-notice" aria-labelledby="topo-about-title">
             <h2 id="topo-about-title">About this view</h2>
-            <p>Explore theoretical two-dimensional views of signed wake intensity around prescribed one-source and collinear two-source paths.</p>
+            <p>Explore theoretical two-dimensional views of signed wake intensity around prescribed one-source, collinear-pair, and circular-binary paths.</p>
           </section>
 
           <section class="topo-card" aria-labelledby="topo-scenario-title">
@@ -48,7 +48,30 @@
                 <option value="electrino">Electrostatic: single electrino</option>
                 <option value="positrino">Electrostatic: single positrino</option>
                 <option value="approaching-collinear-electrino-positrino">Approaching collinear electrino and positrino</option>
+                <option value="orbiting-binary">Orbiting binary electrino and positrino</option>
               </select>
+            </label>
+            <label
+              id="topo-binary-radius-control"
+              class="topo-range-field"
+              for="topo-binary-radius"
+              hidden
+            >
+              <span>Orbital radius</span>
+              <span class="topo-range-row">
+                <input
+                  id="topo-binary-radius"
+                  type="range"
+                  min="0.01"
+                  max="0.45"
+                  step="0.01"
+                  value="0.30"
+                  data-keyboard-step="0.01"
+                  aria-label="Circular binary orbital radius as a fraction of visible width"
+                />
+                <output id="topo-binary-radius-output" for="topo-binary-radius">30% width</output>
+              </span>
+              <small class="topo-range-note">Antipodal separation = 2 × orbital radius</small>
             </label>
             <label class="topo-range-field" for="topo-beta">
               <span>Prescribed speed</span>
@@ -66,15 +89,27 @@
               </span>
             </label>
             <dl class="topo-compact-facts">
-              <div>
+              <div id="topo-direction-fact">
                 <dt>Direction</dt>
                 <dd id="topo-direction">Positive x</dd>
               </div>
             </dl>
+            <fieldset id="topo-binary-direction-control" class="topo-radio-field" hidden>
+              <legend>Orbit direction</legend>
+              <label>
+                <input type="radio" name="topo-binary-direction" value="counterclockwise" checked />
+                <span>Counterclockwise</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-binary-direction" value="clockwise" />
+                <span>Clockwise</span>
+              </label>
+            </fieldset>
           </section>
 
           <section class="topo-card" aria-labelledby="topo-display-title">
             <h2 id="topo-display-title">Display</h2>
+            <div id="topo-contour-controls">
             <label class="topo-range-field" for="topo-contours">
               <span>Contour range</span>
               <span class="topo-range-row">
@@ -111,12 +146,32 @@
                 >75%</output>
               </span>
             </label>
+            </div>
+            <div id="topo-binary-orbit-guide-control" class="topo-check-field-group" hidden>
+              <label class="topo-check-field" for="topo-binary-orbit-guide">
+                <input id="topo-binary-orbit-guide" type="checkbox" checked />
+                <span>Show solid orbit guide</span>
+              </label>
+              <small class="topo-range-note">Prescribed reference path only</small>
+            </div>
+            <fieldset id="topo-background-control" class="topo-radio-field">
+              <legend>Neutral background</legend>
+              <label>
+                <input type="radio" name="topo-background" value="purple" checked />
+                <span>Purple</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-background" value="white" />
+                <span>White</span>
+              </label>
+            </fieldset>
           </section>
 
           <section class="topo-card topo-legend" aria-labelledby="topo-legend-title">
             <h2 id="topo-legend-title">Signed ordinary values</h2>
             <p id="topo-legend-mapping" class="topo-card-note"></p>
             <div
+              id="topo-legend-gradient"
               class="topo-legend-gradient"
               role="img"
               aria-label="Negative values blue, zero purple, positive values red"
@@ -159,6 +214,41 @@
             aria-label="Replay collinear crossing"
           ></button>
           <output id="topo-pair-progress" aria-live="off">0%</output>
+        </div>
+
+        <div
+          id="topo-binary-transport"
+          class="topo-binary-transport"
+          role="group"
+          aria-label="Orbit playback"
+          hidden
+        >
+          <button
+            id="topo-binary-play"
+            class="topo-icon-button topo-transport-button"
+            type="button"
+            aria-label="Play"
+            aria-keyshortcuts="Space"
+          ></button>
+          <button
+            id="topo-binary-replay"
+            class="topo-icon-button topo-transport-button"
+            type="button"
+            aria-label="Replay"
+          ></button>
+          <div
+            id="topo-binary-progress"
+            class="topo-binary-progress"
+            role="progressbar"
+            aria-label="Orbit progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            aria-valuetext="0% of one orbit"
+          >
+            <span></span>
+          </div>
+          <output id="topo-binary-progress-output" for="topo-binary-progress">0%</output>
         </div>
 
         <div
@@ -244,7 +334,7 @@
         </div>
 
         <p id="topo-status" class="topo-status" role="status" aria-live="polite">
-          Preparing synthetic interaction frame.
+          Preparing prescribed interaction frame.
         </p>
       </main>
     </div>

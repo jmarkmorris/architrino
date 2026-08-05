@@ -11,6 +11,8 @@
 - Requirements packet: [requirements and design](requirements-and-design.md)
 - Observable contract: [TOPO-001 observable and reference geometry v1](topo-observable-and-reference-geometry-v1.md)
 - Interaction contract: [TOPO-002 interaction and color contract v1](topo-interaction-and-color-contract-v1.md)
+- Circular-binary contract: [prescribed circular binary v1](topo-circular-binary-prescribed-history-v1.md)
+- Dynamic-contour recommendation: [canonical sampled-field path](dynamic-contour-rendering-recommendation.md)
 - Exploratory notes: [brainstorming](brainstorming.md)
 - Chronological record: [work log](work-log.md)
 - Potential-product owner: [Potential](../app-potential/priorities.md)
@@ -23,7 +25,7 @@ Build a focused two-dimensional planar application that displays a topographic m
 
 Plainly: the view follows the architrino so the marker stays still, while the changing contour pattern shows the effect of changing its prescribed left-to-right speed.
 
-The first release is a static single-time visualization only. It does not evolve a path, integrate an equation of motion, or infer a trajectory. Its initial scenario menu contains a single electrino and a single positrino; the menu structure remains extensible to later declared scenarios.
+Topo now exposes four prescribed display scenarios: a single electrino, a single positrino, an approaching collinear pair, and an orbiting binary. None evolves an EOM solver path, infers binding or stability, or upgrades a prescribed display to physical dynamics.
 
 ## Accepted Product Decisions
 
@@ -42,6 +44,9 @@ The first release is a static single-time visualization only. It does not evolve
 13. TOPO-002 fixes the signed base-10 mapping with $z_*=4$, a symmetric ordinary display clip at $|z|=64$, $r_0=0.025$, a $10^{1/6}$ adjacent-radius ratio, a $2.0$-decade default contour range, and $75\%$ contour visibility.
 14. The TOPO-002 route is an explicitly labeled synthetic interaction preview. It supplies no TOPO-001 raw values and is not the TOPO-003 reference surface.
 15. Applications is organized through four category scenes—Learn & Reference, Explore Models, Analyze Evidence, and Build & Simulate—and Topo is the fifteenth app under Explore Models.
+16. `Approaching collinear electrino and positrino` remains an independent prescribed-path scenario with its own finite-history replay and controls.
+17. `Orbiting binary electrino and positrino` is a heatmap-only prescribed circular display. Its default orbital radius is $0.3$ visible-width units, its accessible radius range is $0.01$ through $0.45$, and $|\omega|=\beta/R$ preserves tangential speed. Sources remain antipodal about $(1/2,1/2)$; Counterclockwise is the default and Clockwise reverses the angular-rate sign.
+18. All four scenarios use one shared half-size source-marker contract while retaining polarity fill, centered white origin, and outline. The binary's optional thin solid guide is pale lavender on the Electric Purple neutral background and restrained Electric Purple on White; it is a prescribed reference path, not a field contour or physical trajectory claim.
 
 ## Current Scientific Status
 
@@ -54,6 +59,10 @@ Plainly: the first colored pixel now has an exact wake-intensity meaning. A true
 [TOPO-002](topo-interaction-and-color-contract-v1.md) closes the single display mapping, scale, logarithmic contour lattice, signed color, private nonnumeric state, panel, shared-chrome, accessibility, and responsive-layout decisions. The companion preview uses only the declared synthetic comparison surface. TOPO-003 is now unblocked and remains responsible for independently checked TOPO-001 raw values.
 
 Plainly: the interface rules are fixed, but the scientific map has not yet been implemented.
+
+The prescribed circular-binary display is implemented under its own conditional contract. It solves both finite path-history roots per sample, superposes the signed equal-wake-intensity contributions before direct base-10 display mapping, and exposes orbital radius without turning the authored circle into EOM evolution. Dynamic field contours remain disabled; the documented preferred future route is one canonical sampled-field frame shared by heatmap and marching-squares consumers.
+
+Plainly: the binary controls change an authored comparison path and its display. They do not establish binding, stability, conservation, potential, or a physical orbit.
 
 ## Promotion Boundary
 

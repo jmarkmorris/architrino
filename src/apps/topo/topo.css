@@ -143,6 +143,15 @@ button {
   display: none;
 }
 
+#topo-contour-controls[hidden],
+#topo-binary-radius-control[hidden],
+#topo-direction-fact[hidden],
+.topo-check-field-group[hidden],
+.topo-radio-field[hidden],
+.topo-binary-transport[hidden] {
+  display: none;
+}
+
 .topo-card,
 .topo-notice {
   padding: 12px;
@@ -289,6 +298,109 @@ button {
   font-weight: var(--ui-body-weight);
   letter-spacing: 0.01em;
   line-height: 1.35;
+}
+
+.topo-check-field-group {
+  margin-top: 12px;
+}
+
+.topo-check-field {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 34px;
+  color: var(--ui-text);
+  font-size: 11px;
+  font-weight: 720;
+}
+
+.topo-check-field input {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  accent-color: var(--ui-accent);
+}
+
+.topo-check-field input:focus-visible,
+.topo-radio-field input:focus-visible {
+  outline: 2px solid var(--ui-focus);
+  outline-offset: 3px;
+}
+
+.topo-radio-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  margin: 10px 0 0;
+  padding: 10px 0 0;
+  border: 0;
+  border-top: 1px solid var(--ui-border);
+}
+
+.topo-radio-field legend {
+  float: left;
+  margin: 0 4px 0 0;
+  padding: 0;
+  color: var(--ui-text-muted);
+  font-size: 10px;
+  font-weight: 720;
+  line-height: 1.35;
+}
+
+.topo-radio-field label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--ui-text);
+  font-size: 10px;
+  font-weight: 720;
+}
+
+.topo-radio-field input {
+  appearance: none;
+  display: grid;
+  place-content: center;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  border: 1.5px solid var(--ui-border-strong, var(--ui-text-muted));
+  border-radius: 50%;
+  background: var(--ui-surface-control);
+}
+
+.topo-radio-field input::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  content: "";
+  transform: scale(0);
+}
+
+.topo-radio-field input:checked::before {
+  transform: scale(1);
+}
+
+.topo-radio-field input[value="purple"]:checked,
+.topo-radio-field input[value="counterclockwise"]:checked,
+.topo-radio-field input[value="clockwise"]:checked {
+  border-color: var(--ui-color-electric-purple);
+}
+
+.topo-radio-field input[value="purple"]:checked::before,
+.topo-radio-field input[value="counterclockwise"]:checked::before,
+.topo-radio-field input[value="clockwise"]:checked::before {
+  background: var(--ui-color-electric-purple);
+}
+
+.topo-radio-field input[value="white"]:checked {
+  border-color: var(--ui-color-electric-purple);
+  background: var(--ui-surface-control);
+}
+
+.topo-radio-field input[value="white"]:checked::before {
+  border: 1px solid var(--ui-color-electric-purple);
+  background: #ffffff;
 }
 
 .topo-compact-facts {
@@ -443,7 +555,28 @@ button {
   display: none;
 }
 
+.topo-binary-transport {
+  position: absolute;
+  z-index: 4;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  left: 50%;
+  display: grid;
+  grid-template-columns: 36px 36px minmax(120px, 240px) 42px;
+  align-items: center;
+  gap: 8px;
+  width: min(430px, calc(100% - 28px));
+  padding: 8px;
+  border: 1px solid var(--ui-border);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--ui-surface-strong) 92%, transparent);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
+  transform: translateX(-50%);
+}
+
 .topo-transport-button {
+  display: inline-grid;
+  place-items: center;
   width: 36px;
   height: 36px;
 }
@@ -451,6 +584,35 @@ button {
 .topo-transport-button .transport-control-icon {
   width: 18px;
   height: 18px;
+}
+
+.topo-transport-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.topo-binary-progress {
+  position: relative;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--ui-border);
+}
+
+.topo-binary-progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ui-accent);
+}
+
+.topo-binary-transport output {
+  color: var(--ui-text);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 760;
+  text-align: right;
 }
 
 #topo-pair-progress {
@@ -500,6 +662,23 @@ button {
     flex-direction: column;
   }
 
+  .topo-binary-transport {
+    right: 10px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    left: auto;
+    grid-template-columns: 36px 36px minmax(72px, 1fr) 38px;
+    width: min(360px, calc(100% - 68px));
+    transform: none;
+  }
+
+}
+
+@media (max-width: 520px) {
+  .topo-binary-transport {
+    grid-template-columns: 36px 36px minmax(54px, 1fr) 34px;
+    gap: 6px;
+    width: calc(100% - 72px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
