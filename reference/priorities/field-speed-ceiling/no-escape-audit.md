@@ -1,4 +1,4 @@
-# Field-Speed Ceiling No-Escape ("Houdini") Audit
+# Field-Speed Ceiling No-Escape Audit
 
 **Date:** 2026-07-30
 **Status:** review artifact aligned; proposed axiom and narrow collinear event

@@ -533,7 +533,7 @@ completed the dynamics.
 ## No-escape audit
 
 The separate
-[Field-Speed Ceiling No-Escape Audit](no-escape-houdini-audit.md) traces each
+[Field-Speed Ceiling No-Escape Audit](no-escape-audit.md) traces each
 canonical premise, the complete proposed constrained-response axiom,
 conditional input, derived result, and diagnostic through its operation,
 ordinary-chart reduction, and root or event ownership. Its negative guards

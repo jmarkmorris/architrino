@@ -313,7 +313,7 @@
 ## 2026-07-30 — Bounded no-escape audit completed
 
 - Added the
-  [Field-Speed Ceiling No-Escape Audit](no-escape-houdini-audit.md), beginning
+  [Field-Speed Ceiling No-Escape Audit](no-escape-audit.md), beginning
   at canonical Euclidean void, absolute time, causal propagation, and ordinary
   finite-ledger premises.
 - Traced each proposed, conditional, derived, and diagnostic step through its
