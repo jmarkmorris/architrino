@@ -2,8 +2,9 @@
 
 import crypto from "node:crypto";
 import fs from "node:fs";
-import { createRequire } from "node:module";
 import path from "node:path";
+
+import { loadVendoredCommonJsBundle } from "./load-vendored-commonjs-bundle.mjs";
 
 const ROOT_DIR = process.cwd();
 const TEXTBOOK_TOC_PATH = "content/graph/textbook_toc.json";
@@ -72,9 +73,12 @@ const ASSET_EXTENSIONS = new Set([
   ".webp",
 ]);
 
-const require = createRequire(import.meta.url);
-const MarkdownIt = require(path.join(ROOT_DIR, READER_ASSET_DIR, "markdown-it.min.js"));
-const katex = require(path.join(ROOT_DIR, READER_ASSET_DIR, "katex/katex.min.js"));
+const MarkdownIt = loadVendoredCommonJsBundle(
+  path.join(ROOT_DIR, READER_ASSET_DIR, "markdown-it.min.js"),
+);
+const katex = loadVendoredCommonJsBundle(
+  path.join(ROOT_DIR, READER_ASSET_DIR, "katex/katex.min.js"),
+);
 const renderedMarkdownParser = MarkdownIt({
   html: true,
   breaks: true,
