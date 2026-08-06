@@ -6,6 +6,11 @@ export const TOPO_DISPLAY_CLIP_MAGNITUDE = 64;
 export const TOPO_DEFAULT_CONTOUR_RANGE_DECADES = 3;
 export const TOPO_DEFAULT_CONTOUR_VISIBILITY = 0.75;
 export const TOPO_DISPLAY_MAPPING_ID = "signed-log10";
+export const TOPO_HEATMAP_MODE = Object.freeze({
+  PHYSICAL_MAGNITUDE: "physical-magnitude",
+  ENHANCED_DECADE_CONTRAST: "enhanced-decade-contrast",
+});
+export const TOPO_DEFAULT_HEATMAP_MODE = TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE;
 export const TOPO_FIELD_PERCEPTIBILITY_THRESHOLD = 0.3;
 export const TOPO_FIRST_CONTOUR_BUDGET_MS = 34;
 export const TOPO_MAX_CANVAS_DIMENSION = 4096;
@@ -78,17 +83,39 @@ export function inverseTopoTransform(
   return Math.sign(transformed) * scale * (10 ** Math.abs(transformed) - 1);
 }
 
-export function normalizeTopoDisplayValue(rawValue) {
-  const transformed = transformTopoValue(rawValue);
-  const transformedLimit = transformTopoValue(TOPO_DISPLAY_CLIP_MAGNITUDE);
-  return clamp(transformed / transformedLimit, -1, 1);
+export function topoWakeIntensityExponent(
+  rawValue,
+  referenceMagnitude = TOPO_DISPLAY_CLIP_MAGNITUDE,
+) {
+  const raw = requireFiniteNumber(rawValue, "rawValue");
+  const reference = requireFiniteNumber(
+    referenceMagnitude,
+    "referenceMagnitude",
+  );
+  if (!(reference > 0)) {
+    throw new RangeError("referenceMagnitude must be positive.");
+  }
+  return raw === 0
+    ? Number.NEGATIVE_INFINITY
+    : Math.log10(Math.abs(raw) / reference);
 }
 
-export function normalizeTopoFieldColorValue(rawValue) {
-  return normalizeTopoDisplayValue(rawValue);
+export function normalizeTopoPhysicalMagnitudeValue(
+  rawValue,
+  referenceMagnitude = TOPO_DISPLAY_CLIP_MAGNITUDE,
+) {
+  const raw = requireFiniteNumber(rawValue, "rawValue");
+  const reference = requireFiniteNumber(
+    referenceMagnitude,
+    "referenceMagnitude",
+  );
+  if (!(reference > 0)) {
+    throw new RangeError("referenceMagnitude must be positive.");
+  }
+  return Math.sign(raw) * clamp(Math.abs(raw) / reference, 0, 1);
 }
 
-export function normalizeTopoExponentRadiusColorValue(
+export function normalizeTopoDisplayValue(
   rawValue,
   { span = TOPO_DEFAULT_CONTOUR_RANGE_DECADES } = {},
 ) {
@@ -97,15 +124,45 @@ export function normalizeTopoExponentRadiusColorValue(
     return 0;
   }
   const selectedSpan = topoContourRangeDecades(span);
-  const exponent = Math.log10(
-    Math.abs(raw) / TOPO_DISPLAY_CLIP_MAGNITUDE,
-  );
-  const strength = clamp(
-    (exponent + selectedSpan) / (2 * selectedSpan),
+  const exponent = topoWakeIntensityExponent(raw);
+  const clippedExponent = clamp(exponent, -selectedSpan, selectedSpan);
+  const lowerDecade = Math.floor(clippedExponent);
+  const withinDecade = clippedExponent - lowerDecade;
+  const decadeTone = lowerDecade + withinDecade ** 2 *
+    (3 - 2 * withinDecade);
+  const linearStrength = clamp(
+    (decadeTone + selectedSpan) / (2 * selectedSpan),
     0,
     1,
   );
+  const strength = linearStrength ** 0.72;
   return Math.sign(raw) * strength;
+}
+
+export function normalizeTopoFieldColorValue(
+  rawValue,
+  {
+    mode = TOPO_DEFAULT_HEATMAP_MODE,
+    span = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
+  } = {},
+) {
+  if (mode === TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE) {
+    return normalizeTopoPhysicalMagnitudeValue(rawValue);
+  }
+  if (mode === TOPO_HEATMAP_MODE.ENHANCED_DECADE_CONTRAST) {
+    return normalizeTopoDisplayValue(rawValue, { span });
+  }
+  throw new RangeError("Unknown Topo heatmap mode: " + mode);
+}
+
+export function normalizeTopoExponentRadiusColorValue(
+  rawValue,
+  {
+    mode = TOPO_DEFAULT_HEATMAP_MODE,
+    span = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
+  } = {},
+) {
+  return normalizeTopoFieldColorValue(rawValue, { mode, span });
 }
 
 export function measureTopoCenterlineColorFootprint({
@@ -192,18 +249,6 @@ export function topoContourRangeDecades(
   return clamp(Math.round(decades), 1, 4);
 }
 
-function topoSuperscriptInteger(value) {
-  const digits = Object.freeze({
-    "-": "⁻",
-    "0": "⁰",
-    "1": "¹",
-    "2": "²",
-    "3": "³",
-    "4": "⁴",
-  });
-  return String(value).split("").map((character) => digits[character]).join("");
-}
-
 export function createTopoContourMagnitudeSchedule({
   contourRangeDecades = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
   referenceMagnitude = TOPO_DISPLAY_CLIP_MAGNITUDE,
@@ -222,7 +267,7 @@ export function createTopoContourMagnitudeSchedule({
         rawDecade,
         referenceLevel: rawDecade === 0,
         levelIdentity: "raw-decade:" + rawDecade + ":" + magnitude,
-        majorDecadeLabel: "10" + topoSuperscriptInteger(rawDecade),
+        majorDecadeLabel: "e=" + rawDecade,
       });
     }),
   );
@@ -490,8 +535,6 @@ export function createTopoAnalyticFieldRgbAtCanvasPixel({
   beta = 0.5,
   polaritySign = -1,
   contourRangeDecades = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
-  pixelRatio = 1,
-  sourceMarkerRadiusPixels = 4.5,
 } = {}) {
   const point = topoWorldPointForCanvasPixel({
     pixelX,
@@ -499,36 +542,14 @@ export function createTopoAnalyticFieldRgbAtCanvasPixel({
     width,
     height,
   });
-  const physicalPoint = beta === 0
-    ? topoExponentRadiusPhysicalPointForCanvasPixel({
-      pixelX,
-      pixelY,
-      width,
-      height,
-      chart: createTopoExponentRadiusChart({
-        width,
-        height,
-        pixelRatio,
-        sourceMarkerRadiusPixels,
-        contourRangeDecades,
-      }),
-    }).physicalPoint
-    : point;
-  if (!physicalPoint) {
-    return createTopoSampleRgb(Number.POSITIVE_INFINITY, { polaritySign });
-  }
   const rawValue = createTopoSyntheticRawSampler({
     beta,
     polaritySign,
     sourceMaskRadius: 0,
-  })(physicalPoint.x, physicalPoint.y);
-  if (beta === 0) {
-    return createTopoSignedRgb(normalizeTopoExponentRadiusColorValue(
-      rawValue,
-      { span: contourRangeDecades },
-    ));
-  }
-  return createTopoSampleRgb(rawValue, { polaritySign });
+  })(point.x, point.y);
+  return createTopoSignedRgb(normalizeTopoFieldColorValue(rawValue, {
+    span: contourRangeDecades,
+  }));
 }
 
 export function syntheticTopoCausalDelay({

@@ -98,6 +98,29 @@
               </span>
             </label>
             <p id="topo-coordinate-mode" class="topo-range-note" aria-live="polite">Display coordinates: linear Euclidean</p>
+            <fieldset id="topo-view-control" class="topo-radio-field">
+              <legend>View</legend>
+              <label>
+                <input type="radio" name="topo-view" value="source-local" />
+                <span>Source-local decades</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-view" value="combined" checked />
+                <span>Combined wake</span>
+              </label>
+            </fieldset>
+            <fieldset id="topo-heatmap-mode-control" class="topo-radio-field">
+              <legend>Heatmap</legend>
+              <label>
+                <input type="radio" name="topo-heatmap-mode" value="physical-magnitude" checked />
+                <span>Physical magnitude</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-heatmap-mode" value="enhanced-decade-contrast" />
+                <span>Enhanced decade contrast</span>
+              </label>
+            </fieldset>
+            <p id="topo-heatmap-note" class="topo-range-note" aria-live="polite">Physical magnitude: isolated wake intensity falls rapidly; each lower decade contributes one tenth as much fill. Contours remain visible.</p>
             <fieldset id="topo-binary-direction-control" class="topo-radio-field" hidden>
               <legend>Orbit direction</legend>
               <label>
@@ -125,7 +148,7 @@
                 />
                 <output id="topo-contours-output" for="topo-contours">±3 decades</output>
               </span>
-              <small class="topo-range-note">One contour per raw factor of 10 inward and outward</small>
+              <small class="topo-range-note">One contour per factor of 10 in wake intensity</small>
             </label>
             <label class="topo-range-field" for="topo-contour-visibility">
               <span>Contour visibility</span>

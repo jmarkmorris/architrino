@@ -1,6 +1,6 @@
 import {
   TOPO_INVERSE_SQUARE_SCALE,
-  normalizeTopoDisplayValue,
+  normalizeTopoFieldColorValue,
 } from "./TopoInteractionContract.js";
 
 export const TOPO_CIRCULAR_BINARY_SCENARIO_ID = "orbiting-binary";
@@ -408,7 +408,7 @@ export function sampleTopoCircularBinaryWake({
   return Object.freeze({
     state: "ordinary",
     rawValue,
-    displayCoordinate: normalizeTopoDisplayValue(rawValue),
+    displayCoordinate: normalizeTopoFieldColorValue(rawValue),
     roots: Object.freeze(roots),
     playback,
   });

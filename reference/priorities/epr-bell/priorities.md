@@ -32,6 +32,34 @@ loophole-controlled experiments, finite-influence-speed bounds, the Bancal
 obstruction, apparatus effects, and live corpus claim status separate enough
 that no comparison model is mistaken for a derived mechanism.
 
+## Complete Open-Issue Index
+
+The canonical queue now exposes every unresolved Bell action identified by
+the original seven-part audit, the two Tim Maudlin mining passes, and the live
+corpus recheck:
+
+1. decide the exact local-response and setting-independence scope of
+   “decided at entanglement” (`EPRB-001`);
+2. create the actual route decision and reconcile contradictory corpus
+   language without treating a working proposal as canon (`EPRB-002`);
+3. test any finite-speed live channel against Bancal's multipartite premises
+   and observer no-signaling (`EPRB-003`);
+4. convert every detector, clock, setting-source, trial-selection, memory, and
+   shared-sea objection into an explicit mechanism (`EPRB-004`);
+5. keep the primary-source experiment frontier current by category rather
+   than naming one universally strongest test (`EPRB-005`);
+6. construct the forward-causal measurement-dependence comparator with a
+   quantitative pair--setting dependence and experimental signature
+   (`EPRB-006`);
+7. specify the finite-$c_f$ reach, fallback, degradation, influence-speed
+   identification, and any separate dispersion claim (`EPRB-007`); and
+8. maintain the negative-control and assumption-map interface to Quantum
+   Closure's detector, pair-measure, Bell-gate, and rewrite objects
+   (`EPRB-008`).
+
+Plainly: the lane has one discussion decision and seven explicitly blocked
+follow-ons. No unresolved mechanism is now left only as an informal paragraph.
+
 ## Ownership Boundary
 
 This lane owns:
@@ -68,11 +96,23 @@ remains an observer-level benchmark map, not the route-decision owner.
 - [Quantum Closure work queue](../quantum-closure/work-queue.md)
 - [Pair-provenance scope decision](../quantum-closure/pair-provenance-local-compliance-scope-decision.md)
 
+The complete retained-insight and disposition inventory lives in the
+[discussion record](brainstorming.md#complete-insight-and-open-issue-coverage-audit--2026-08-05).
+The two focused source maps remain the
+[2026 EPR lecture packet](../source-mining/tim-maudlin-epr-bell-video-source-mining.md)
+and the
+[2022 Bell-foundations interview packet](../source-mining/tim-maudlin-bell-foundations-2022-video-source-mining.md).
+
 ## Hard Guards
 
 - Do not use “local realism” as a substitute for separately stating Bell
   factorization, measurement independence, sampling/trial validity,
   spacelike-event mapping, and statistical-test assumptions.
+- Do not write $E(\theta)=-\cos\theta$ as a universal Bell-correlation law.
+  State that $E$ is the expectation value of the product of two binary
+  outcomes, identify $\theta$ as the angle between spin-measurement axes, and
+  distinguish the spin-singlet law from the doubled-angle convention used
+  for linear-polarization analyzers.
 - Do not describe “decided at entanglement” as closed without naming the local
   response, measurement-independence, and sampling conditions.
 - Do not treat a conditional lower bound on a hypothetical influence speed as

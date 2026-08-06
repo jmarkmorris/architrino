@@ -5,9 +5,8 @@ import {
 } from "../../runtime/TransportControlIcons.js";
 import {
   TOPO_DISPLAY_MAPPING_ID,
-  TOPO_DISPLAY_CLIP_MAGNITUDE,
+  TOPO_HEATMAP_MODE,
   TOPO_INVERSE_SQUARE_SCALE,
-  TOPO_REFERENCE_SCALE,
   TOPO_SOURCE_POSITION,
   TOPO_TRANSLATION_AXIS,
   applyTopoScenarioPolarity,
@@ -15,8 +14,6 @@ import {
   createTopoSequentialContourStyle,
   createTopoSyntheticContourRenderPlan,
   createTopoSyntheticRawSampler,
-  normalizeTopoDisplayValue,
-  normalizeTopoExponentRadiusColorValue,
   normalizeTopoFieldColorValue,
   resolveTopoCanvasPixelSize,
   topoContourRangeDecades,
@@ -165,6 +162,18 @@ export function mountTopoInteractionContractPreview(options = {}) {
     scenarioInputs: Array.from(documentLike.querySelectorAll(
       'input[name="topo-scenario"]',
     )),
+    viewControl: requireElement(documentLike, "#topo-view-control"),
+    viewInputs: Array.from(documentLike.querySelectorAll(
+      'input[name="topo-view"]',
+    )),
+    heatmapModeControl: requireElement(
+      documentLike,
+      "#topo-heatmap-mode-control",
+    ),
+    heatmapModeInputs: Array.from(documentLike.querySelectorAll(
+      'input[name="topo-heatmap-mode"]',
+    )),
+    heatmapNote: requireElement(documentLike, "#topo-heatmap-note"),
     beta: requireElement(documentLike, "#topo-beta"),
     betaOutput: requireElement(documentLike, "#topo-beta-output"),
     coordinateMode: requireElement(documentLike, "#topo-coordinate-mode"),
@@ -253,6 +262,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
   let pairPlaybackCompleted = false;
   let pairPlaybackPreviousTimestamp = null;
   let scenarioPointerActivation = false;
+  let viewFallbackNotice = "";
+  let viewFallbackTimer = 0;
   let binaryProgress = 0;
   let binaryPlaying = false;
   let binaryPlaybackStartedAt = null;
@@ -318,10 +329,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
       uniform float u_positrino_x;
       uniform float u_source_mask_radius;
       uniform float u_polarity_sign;
-      uniform float u_exponent_radius_mode;
-      uniform float u_exponent_inner_radius;
-      uniform float u_exponent_outer_radius;
       uniform float u_exponent_span;
+      uniform float u_enhanced_decade_contrast;
+      uniform float u_source_local_mode;
+      uniform float u_source_local_inner_radius;
+      uniform float u_source_local_outer_radius;
+      uniform float u_source_local_reference_radius;
       uniform vec3 u_zero;
       uniform vec3 u_negative;
       uniform vec3 u_positive;
@@ -371,28 +384,24 @@ export function mountTopoInteractionContractPreview(options = {}) {
           (2.0 / 3.0) + (pixel.x - sourceX) / commonScale,
           pixel.y / commonScale
         );
-        float exponentDisplay = 0.0;
-        if (u_exponent_radius_mode > 0.5) {
-          vec2 source = vec2(2.0 / 3.0, 0.5);
-          vec2 displayOffset = worldPoint - source;
+        if (u_source_local_mode > 0.5) {
+          vec2 displayOffset = worldPoint - vec2(2.0 / 3.0, 0.5);
           float displayRadius = length(displayOffset);
           if (
-            displayRadius < u_exponent_inner_radius ||
-            displayRadius > u_exponent_outer_radius
+            displayRadius < u_source_local_inner_radius ||
+            displayRadius > u_source_local_outer_radius
           ) {
             gl_FragColor = vec4(u_zero, 1.0);
             return;
           }
-          exponentDisplay = u_exponent_span -
-            (displayRadius - u_exponent_inner_radius) *
+          float exponent = u_exponent_span -
+            (displayRadius - u_source_local_inner_radius) *
             (2.0 * u_exponent_span) /
-            (u_exponent_outer_radius - u_exponent_inner_radius);
-          float physicalRadius = 0.025 * pow(
-            10.0,
-            -0.5 * exponentDisplay
-          );
-          worldPoint = source + displayOffset *
-            (physicalRadius / displayRadius);
+            (u_source_local_outer_radius - u_source_local_inner_radius);
+          float physicalRadius = u_source_local_reference_radius *
+            pow(10.0, -0.5 * exponent);
+          worldPoint = vec2(2.0 / 3.0, 0.5) +
+            displayOffset * (physicalRadius / displayRadius);
         }
         if (u_pair_mode > 0.5 && (
           distance(worldPoint, vec2(u_electrino_x, 0.5)) <= u_source_mask_radius ||
@@ -428,15 +437,31 @@ export function mountTopoInteractionContractPreview(options = {}) {
             0.0
           );
         }
-        float normalized = u_exponent_radius_mode > 0.5
-          ? sign(rawValue) * clamp(
-            (exponentDisplay + u_exponent_span) /
-              (2.0 * u_exponent_span),
-            0.0,
-            1.0
-          )
-          : sign(rawValue) *
-            log(1.0 + abs(rawValue) / 4.0) / log(17.0);
+        float exponent = rawValue == 0.0
+          ? -u_exponent_span
+          : log(abs(rawValue) / 64.0) / log(10.0);
+        float clippedExponent = clamp(
+          exponent,
+          -u_exponent_span,
+          u_exponent_span
+        );
+        float lowerDecade = floor(clippedExponent);
+        float withinDecade = clippedExponent - lowerDecade;
+        float decadeTone = lowerDecade + withinDecade * withinDecade *
+          (3.0 - 2.0 * withinDecade);
+        float linearStrength = clamp(
+          (decadeTone + u_exponent_span) / (2.0 * u_exponent_span),
+          0.0,
+          1.0
+        );
+        float enhancedStrength = pow(linearStrength, 0.72);
+        float physicalStrength = clamp(abs(rawValue) / 64.0, 0.0, 1.0);
+        float strength = mix(
+          physicalStrength,
+          enhancedStrength,
+          u_enhanced_decade_contrast
+        );
+        float normalized = sign(rawValue) * strength;
         vec3 endpoint = normalized < 0.0 ? u_negative : u_positive;
         vec3 color = mix(u_zero, endpoint, clamp(abs(normalized), 0.0, 1.0));
         gl_FragColor = vec4(color, 1.0);
@@ -470,10 +495,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
         "u_positrino_x",
         "u_source_mask_radius",
         "u_polarity_sign",
-        "u_exponent_radius_mode",
-        "u_exponent_inner_radius",
-        "u_exponent_outer_radius",
         "u_exponent_span",
+        "u_enhanced_decade_contrast",
+        "u_source_local_mode",
+        "u_source_local_inner_radius",
+        "u_source_local_outer_radius",
+        "u_source_local_reference_radius",
         "u_zero",
         "u_negative",
         "u_positive",
@@ -500,12 +527,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
       uniform float u_radius;
       uniform float u_direction_sign;
       uniform float u_source_mask_radius;
+      uniform float u_exponent_span;
+      uniform float u_enhanced_decade_contrast;
       uniform vec3 u_negative;
       uniform vec3 u_zero;
       uniform vec3 u_positive;
 
-      const float referenceScale = ${TOPO_REFERENCE_SCALE.toPrecision(12)};
-      const float displayLimit = ${TOPO_DISPLAY_CLIP_MAGNITUDE.toPrecision(12)};
       vec2 sourcePosition(float sourcePhase, float time, float omega) {
         float phase = sourcePhase + omega * time;
         return vec2(0.5, 0.5) + u_radius * vec2(cos(phase), sin(phase));
@@ -572,11 +599,31 @@ export function mountTopoInteractionContractPreview(options = {}) {
         }
         float rawValue = -u_kappa / (negativeDelay * negativeDelay) +
           u_kappa / (positiveDelay * positiveDelay);
-        float transformed = sign(rawValue) *
-          log(1.0 + abs(rawValue) / referenceScale) / log(10.0);
-        float transformedLimit =
-          log(1.0 + displayLimit / referenceScale) / log(10.0);
-        float normalized = clamp(transformed / transformedLimit, -1.0, 1.0);
+        float exponent = rawValue == 0.0
+          ? -u_exponent_span
+          : log(abs(rawValue) / 64.0) / log(10.0);
+        float clippedExponent = clamp(
+          exponent,
+          -u_exponent_span,
+          u_exponent_span
+        );
+        float lowerDecade = floor(clippedExponent);
+        float withinDecade = clippedExponent - lowerDecade;
+        float decadeTone = lowerDecade + withinDecade * withinDecade *
+          (3.0 - 2.0 * withinDecade);
+        float linearStrength = clamp(
+          (decadeTone + u_exponent_span) / (2.0 * u_exponent_span),
+          0.0,
+          1.0
+        );
+        float enhancedStrength = pow(linearStrength, 0.72);
+        float physicalStrength = clamp(abs(rawValue) / 64.0, 0.0, 1.0);
+        float strength = mix(
+          physicalStrength,
+          enhancedStrength,
+          u_enhanced_decade_contrast
+        );
+        float normalized = sign(rawValue) * strength;
         vec3 endpoint = normalized < 0.0 ? u_negative : u_positive;
         gl_FragColor = vec4(mix(u_zero, endpoint, abs(normalized)), 1.0);
       }
@@ -609,6 +656,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         "u_radius",
         "u_direction_sign",
         "u_source_mask_radius",
+        "u_exponent_span",
+        "u_enhanced_decade_contrast",
         "u_negative",
         "u_zero",
         "u_positive",
@@ -709,6 +758,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
   function getState() {
     const baseState = {
       beta: Number(dom.beta.value),
+      viewMode: dom.viewInputs.find((input) => input.checked)?.value ===
+        "source-local" ? "source-local" : "combined",
+      heatmapMode: dom.heatmapModeInputs.find((input) => input.checked)
+        ?.value === TOPO_HEATMAP_MODE.ENHANCED_DECADE_CONTRAST
+        ? TOPO_HEATMAP_MODE.ENHANCED_DECADE_CONTRAST
+        : TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE,
       contourRangeDecades: Number(dom.contours.value),
       contourVisibility: Number(dom.contourVisibility.value) / 100,
       backgroundMode:
@@ -751,6 +806,55 @@ export function mountTopoInteractionContractPreview(options = {}) {
     return applyTopoScenarioPolarity(baseState, selectedScenarioId());
   }
 
+  function sourceLocalViewRequested(state) {
+    return state.viewMode === "source-local";
+  }
+
+  function sourceLocalViewAvailable(state) {
+    return sourceLocalViewRequested(state) &&
+      !state.pairMode && !state.binary && state.beta === 0;
+  }
+
+  function enforceAvailableView({ announce = false } = {}) {
+    const state = getState();
+    if (!sourceLocalViewRequested(state) || sourceLocalViewAvailable(state)) {
+      return false;
+    }
+    const combinedInput = dom.viewInputs.find((input) =>
+      input.value === "combined");
+    if (combinedInput) {
+      combinedInput.checked = true;
+    }
+    if (announce) {
+      viewFallbackNotice =
+        "View switched to Combined wake because Source-local decades does not yet have an accepted causal-history chart for moving or multi-source scenes.";
+      windowLike.clearTimeout?.(viewFallbackTimer);
+      viewFallbackTimer = windowLike.setTimeout?.(() => {
+        viewFallbackNotice = "";
+        updateControlPresentation();
+        updateLegend();
+      }, 4_000) ?? 0;
+    }
+    return true;
+  }
+
+  function createSourceLocalChart(width, height, pixelRatio, state) {
+    if (!sourceLocalViewAvailable(state)) {
+      return null;
+    }
+    return createTopoExponentRadiusChart({
+      width,
+      height,
+      pixelRatio,
+      sourceMarkerRadiusPixels: resolveTopoSourceMarkerRadius({
+        width,
+        height,
+        pixelRatio,
+      }),
+      contourRangeDecades: state.contourRangeDecades,
+    });
+  }
+
   function updatePanelPresentation() {
     const collapsed = dom.app.dataset.panelCollapsed === "true";
     dom.collapse.innerHTML = createPanelCollapseIconSvg(collapsed);
@@ -779,10 +883,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const state = getState();
     const pairMode = state.pairMode === true;
     const binaryMode = state.binary === true;
-    const exponentRadiusMode = !pairMode && !binaryMode && state.beta === 0;
     dom.app.dataset.scenarioId = state.scenarioId;
     dom.app.dataset.scenario = state.scenarioId;
     dom.app.dataset.neutralBackground = state.backgroundMode;
+    dom.app.dataset.heatmapMode = state.heatmapMode;
     dom.app.dataset.sourceMarkerRadiusScale = String(
       TOPO_SOURCE_MARKER_RADIUS_SCALE,
     );
@@ -801,12 +905,18 @@ export function mountTopoInteractionContractPreview(options = {}) {
             ? ", sub-field-speed prescribed circular path"
             : ", sub-field-speed preview"),
     );
-    dom.coordinateMode.textContent = exponentRadiusMode
-      ? "Display coordinates: exponent radius at β = 0 (display-only; equal radial steps are integer e = log10(|W| / 64))"
-      : "Display coordinates: linear Euclidean; contours remain global raw exponent levels";
-    dom.app.dataset.coordinateMode = exponentRadiusMode
-      ? "display-only-exponent-radius"
-      : "linear-euclidean";
+    const localAvailable = sourceLocalViewAvailable(state);
+    const localUnavailable = sourceLocalViewRequested(state) && !localAvailable;
+    dom.coordinateMode.textContent = viewFallbackNotice || (localAvailable
+      ? "Source-local display chart: equal radial steps are equal wake-strength exponent steps; the center mask is display-only"
+      : localUnavailable
+        ? "Source-local decades are not yet available for moving or multi-source scenes; choose Combined wake"
+        : "Combined absolute-space wake: linear Euclidean x-y with calculated signed contributions");
+    dom.app.dataset.coordinateMode = localAvailable
+      ? "source-local-exponent-decades"
+      : localUnavailable
+        ? "source-local-unavailable"
+        : "combined-absolute-space";
     dom.binaryDirectionControl.hidden = !binaryMode;
     dom.binaryDirectionControl.inert = !binaryMode;
     const selectedRange = topoContourRangeDecades(state.contourRangeDecades);
@@ -814,18 +924,22 @@ export function mountTopoInteractionContractPreview(options = {}) {
       (selectedRange === 1 ? " decade" : " decades");
     dom.contoursOutput.value = rangeText;
     dom.contoursOutput.textContent = dom.contoursOutput.value;
+    dom.heatmapNote.textContent = state.heatmapMode ===
+      TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE
+      ? "Physical magnitude: isolated wake intensity falls rapidly; each lower decade contributes one tenth as much fill. Contours remain visible."
+      : "Enhanced decade contrast is display-only; raw field values, contour locations, and frame identity do not change.";
     dom.contours.disabled = false;
     dom.contours.setAttribute(
       "aria-valuetext",
-      rangeText + " around the reference; one contour per raw factor of ten",
+      rangeText + " around the reference; one contour per factor of 10 in wake intensity",
     );
     dom.contourVisibilityOutput.value = state.contourVisibility === 0
       ? "Hidden"
       : formatPercentage(state.contourVisibility);
     dom.contourVisibilityOutput.textContent = dom.contourVisibilityOutput.value;
     dom.contourVisibility.disabled = false;
-    dom.contourControls.hidden = binaryMode;
-    dom.contourControls.inert = binaryMode;
+    dom.contourControls.hidden = binaryMode || localUnavailable;
+    dom.contourControls.inert = binaryMode || localUnavailable;
     dom.binaryRadiusControl.hidden = !binaryMode;
     dom.binaryRadiusControl.inert = !binaryMode;
     dom.binaryOrbitGuideControl.hidden = !binaryMode;
@@ -859,16 +973,22 @@ export function mountTopoInteractionContractPreview(options = {}) {
       "% of visible width; antipodal source separation " +
       (radiusPercent * 2) + "%",
     );
-    dom.legendTitle.textContent = binaryMode
-      ? "Signed equal-wake intensity"
-      : "Signed ordinary values";
+    dom.legendTitle.textContent = localAvailable
+      ? "Source-local wake-strength exponent"
+      : binaryMode
+        ? "Signed equal-wake intensity"
+        : "Signed ordinary values";
     dom.canvas.setAttribute(
       "aria-label",
-      binaryMode
+      localAvailable
+        ? "Source-local wake-strength exponent chart for one stationary " +
+          (state.polaritySign < 0 ? "electrino" : "positrino") +
+          "; equal integer exponent changes use equal radial display steps, and the source center uses a display-only mask"
+        : localUnavailable
+          ? "Source-local decades are not yet available for this prescribed moving or multi-source scene"
+          : binaryMode
         ? "Signed equal-wake-intensity heatmap for prescribed antipodal circular electrino and positrino paths on a linear Euclidean plane, with an optional prescribed-orbit guide and no contour overlay"
-        : exponentRadiusMode
-          ? "Wake Topological Map: beta-zero single-source signed inverse-square wake intensity on a display-only exponent-radius chart; radial labels are integer e = log10 of absolute W over 64"
-          : "Wake Topological Map: theoretical signed inverse-square wake intensity on a linear Euclidean chart, with global contours at integer e = log10 of absolute W over 64",
+        : "Combined absolute-space Wake Topological Map: theoretical signed inverse-square wake intensity on a linear Euclidean chart, with contours at integer wake-strength exponents",
     );
     updateBinaryTransportVisibility(state);
     updateBinaryTransportPresentation(state);
@@ -913,6 +1033,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       : "stationary-disabled";
     dom.app.dataset.binaryProgress = state.playback.progress.toFixed(6);
     dom.app.dataset.neutralBackground = state.backgroundMode;
+    dom.app.dataset.heatmapMode = state.heatmapMode;
     dom.app.dataset.binaryBackground = state.binary ? state.backgroundMode : "";
     dom.app.dataset.binaryOrbitalRadius = state.orbitalRadius.toFixed(2);
     dom.app.dataset.binaryDirection = state.direction;
@@ -929,38 +1050,49 @@ export function mountTopoInteractionContractPreview(options = {}) {
   function updateLegend() {
     const state = getState();
     const styles = readStyles(state);
-    const exponentRadiusMode = !state.binary && !state.pairMode &&
-      state.beta === 0;
     const span = topoContourRangeDecades(state.contourRangeDecades);
-    dom.legendMapping.textContent =
-      "Signed wake intensity · e = log10(|W| / 64) · e from " +
-      span + " to −" + span +
-      " · " + styles.backgroundMode + " neutral" +
+    const localAvailable = sourceLocalViewAvailable(state);
+    const localUnavailable = sourceLocalViewRequested(state) && !localAvailable;
+    const heatmapDescription = state.heatmapMode ===
+      TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE
+      ? "physical magnitude fill; each lower exponent decade contributes one tenth as much color"
+      : "enhanced decade contrast; display-only analytical transfer";
+    dom.legendMapping.textContent = localAvailable
+      ? "Source-local wake-strength exponent · equal integer exponent steps use equal radial display steps · center mask is display-only · e from " +
+        span + " to −" + span + " · " + heatmapDescription
+      : localUnavailable
+        ? "Source-local decades are not yet available here; Combined wake preserves the absolute-space calculated map"
+        : "Combined absolute-space wake · one contour per factor of 10 in wake intensity; sign is shown by color · e from " +
+      span + " to −" +
+      span + " · " + heatmapDescription + " · " +
+      styles.backgroundMode + " neutral" +
       (state.binary
         ? " · linear plane · heatmap only" + (state.showOrbitGuide
             ? " · solid circle = prescribed orbit"
             : "")
-        : exponentRadiusMode
-          ? " · display-only exponent radius"
-          : " · linear plane · global exponent contours");
-    dom.legendGradient.style.background =
-      "linear-gradient(90deg, " + styles.negative + ", " +
-      styles.zero + ", " + styles.positive + ")";
+        : " · linear plane · integer-e iso-value contours");
+    dom.legendGradient.style.background = state.pairMode || state.binary
+      ? "linear-gradient(90deg, " + styles.negative + ", " +
+        styles.zero + ", " + styles.positive + ")"
+      : "linear-gradient(90deg, " +
+        (state.polaritySign < 0 ? styles.negative : styles.positive) + ", " +
+        styles.zero + ")";
     dom.legendGradient.setAttribute(
       "aria-label",
-      "Negative values blue, neutral " + styles.backgroundMode +
-      ", positive values red" +
+      (localAvailable ? "Source-local " : "Combined wake ") +
+      "wake-intensity exponent magnitude runs from e equals " + span +
+      " to e equals minus " + span +
+      "; heatmap mode is " + heatmapDescription +
+      "; negative values are blue, neutral is " + styles.backgroundMode +
+      ", and positive values are red" +
       (state.binary && state.showOrbitGuide
         ? "; solid circle marks the prescribed orbit"
         : ""),
     );
-    const labels = [
-      "−" + TOPO_DISPLAY_CLIP_MAGNITUDE,
-      "−" + TOPO_REFERENCE_SCALE,
-      "0",
-      "+" + TOPO_REFERENCE_SCALE,
-      "+" + TOPO_DISPLAY_CLIP_MAGNITUDE,
-    ];
+    const labels = Array.from(
+      { length: 2 * span + 1 },
+      (_, index) => "e=" + (span - index),
+    );
     dom.legendTicks.replaceChildren(...labels.map((label) => {
       const span = documentLike.createElement("span");
       span.textContent = label;
@@ -1012,6 +1144,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
       pairMode: state?.pairMode === true,
       binary: state?.binary === true,
       backgroundMode: whiteBackground ? "white" : "purple",
+      exponentSpan: topoContourRangeDecades(state?.contourRangeDecades),
+      heatmapMode: state?.heatmapMode ?? TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE,
     };
     styles.negativeRgb = hexToRgb(styles.negative);
     styles.zeroRgb = hexToRgb(styles.zero);
@@ -1071,6 +1205,16 @@ export function mountTopoInteractionContractPreview(options = {}) {
       fieldGl.uniform1f(
         uniforms.u_source_mask_radius,
         sourceMaskRadius,
+      );
+      fieldGl.uniform1f(
+        uniforms.u_exponent_span,
+        topoContourRangeDecades(state.contourRangeDecades),
+      );
+      fieldGl.uniform1f(
+        uniforms.u_enhanced_decade_contrast,
+        state.heatmapMode === TOPO_HEATMAP_MODE.ENHANCED_DECADE_CONTRAST
+          ? 1
+          : 0,
       );
       dom.app.dataset.binarySourceMarkerWorldRadius =
         sourceMarkerWorldRadius.toFixed(9);
@@ -1174,39 +1318,47 @@ export function mountTopoInteractionContractPreview(options = {}) {
         ? pairSourceMaskRadius.toFixed(9)
         : "";
       fieldGl.uniform1f(uniforms.u_polarity_sign, state.polaritySign);
-      const exponentChart = !state.pairMode && state.beta === 0
-        ? createTopoExponentRadiusChart({
-          width,
-          height,
-          pixelRatio: effectivePixelRatio(width, height),
-          sourceMarkerRadiusPixels: resolveTopoSourceMarkerRadius({
-            width,
-            height,
-            pixelRatio: effectivePixelRatio(width, height),
-          }),
-          contourRangeDecades: state.contourRangeDecades,
-        })
-        : null;
-      const commonScale = Math.max(1, height - 1);
-      fieldGl.uniform1f(
-        uniforms.u_exponent_radius_mode,
-        exponentChart ? 1 : 0,
-      );
-      fieldGl.uniform1f(
-        uniforms.u_exponent_inner_radius,
-        exponentChart ? exponentChart.innerRadiusPixels / commonScale : 0,
-      );
-      fieldGl.uniform1f(
-        uniforms.u_exponent_outer_radius,
-        exponentChart ? exponentChart.outerRadiusPixels / commonScale : 1,
-      );
       fieldGl.uniform1f(
         uniforms.u_exponent_span,
-        exponentChart?.span ?? 1,
+        topoContourRangeDecades(state.contourRangeDecades),
       );
-      dom.app.dataset.coordinateChart = exponentChart
-        ? exponentChart.chartId
-        : "linear-euclidean";
+      fieldGl.uniform1f(
+        uniforms.u_enhanced_decade_contrast,
+        state.heatmapMode === TOPO_HEATMAP_MODE.ENHANCED_DECADE_CONTRAST
+          ? 1
+          : 0,
+      );
+      const sourceLocalChart = createSourceLocalChart(
+        width,
+        height,
+        effectivePixelRatio(width, height),
+        state,
+      );
+      const commonScale = Math.max(1, height - 1);
+      fieldGl.uniform1f(
+        uniforms.u_source_local_mode,
+        sourceLocalChart ? 1 : 0,
+      );
+      fieldGl.uniform1f(
+        uniforms.u_source_local_inner_radius,
+        sourceLocalChart ? sourceLocalChart.innerRadiusPixels / commonScale : 0,
+      );
+      fieldGl.uniform1f(
+        uniforms.u_source_local_outer_radius,
+        sourceLocalChart ? sourceLocalChart.outerRadiusPixels / commonScale : 1,
+      );
+      fieldGl.uniform1f(
+        uniforms.u_source_local_reference_radius,
+        sourceLocalChart?.referencePhysicalRadius ?? 1,
+      );
+      dom.app.dataset.coordinateChart = sourceLocalChart?.chartId ??
+        "linear-euclidean";
+      if (sourceLocalChart) {
+        dom.app.dataset.exponentRadiusStepPixels =
+          sourceLocalChart.radialStepPixels.toFixed(4);
+      } else {
+        delete dom.app.dataset.exponentRadiusStepPixels;
+      }
       fieldGl.uniform3fv(
         uniforms.u_zero,
         styles.zeroRgb.map((channel) => channel / 255),
@@ -1521,6 +1673,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.app.dataset.binaryMarkerRadiusScale = String(
       TOPO_SOURCE_MARKER_RADIUS_SCALE,
     );
+    dom.app.dataset.coordinateChart = "linear-euclidean";
+    delete dom.app.dataset.exponentRadiusStepPixels;
     dom.app.dataset.contourGeometryKey = "disabled:orbiting-binary";
     dom.app.dataset.contourRadii = "";
     dom.app.dataset.contourRangeDecades = "";
@@ -1589,47 +1743,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
     targetContext.restore();
   }
 
-  function drawExponentRadiusAxis(
-    targetContext,
-    chart,
-    pixelRatio,
-    styles,
-  ) {
-    const color = styles.backgroundMode === "white"
-      ? readHexToken(
-        windowLike,
-        dom.app,
-        "--ui-color-electric-purple",
-        "#8f00ff",
-      )
-      : "rgb(" + [WHITE.r, WHITE.g, WHITE.b].join(",") + ")";
-    targetContext.save();
-    targetContext.strokeStyle = color;
-    targetContext.globalAlpha = 0.62;
-    targetContext.lineWidth = Math.max(1, pixelRatio);
-    targetContext.setLineDash([3 * pixelRatio, 3 * pixelRatio]);
-    targetContext.beginPath();
-    targetContext.moveTo(
-      chart.sourcePixelX - chart.innerRadiusPixels,
-      chart.sourcePixelY,
-    );
-    targetContext.lineTo(
-      chart.sourcePixelX - chart.outerRadiusPixels,
-      chart.sourcePixelY,
-    );
-    targetContext.stroke();
-    targetContext.setLineDash([]);
-    for (let exponent = chart.span; exponent >= -chart.span; exponent -= 1) {
-      const radius = topoExponentDisplayRadiusForExponent({ exponent, chart });
-      const x = chart.sourcePixelX - radius;
-      targetContext.beginPath();
-      targetContext.moveTo(x, chart.sourcePixelY - 3 * pixelRatio);
-      targetContext.lineTo(x, chart.sourcePixelY + 3 * pixelRatio);
-      targetContext.stroke();
-    }
-    targetContext.restore();
-  }
-
   function drawMajorDecadeLabels(
     targetContext,
     circles,
@@ -1643,10 +1756,16 @@ export function mountTopoInteractionContractPreview(options = {}) {
       dom.app.dataset.majorDecadeLabelPositions = "";
       return;
     }
-    const cssWidth = width / pixelRatio;
-    const compact = cssWidth < 520;
     const commonScale = Math.max(1, height - 1);
     const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
+    const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) * commonScale;
+    const markerRadius = resolveTopoSourceMarkerRadius({
+      width,
+      height,
+      pixelRatio,
+    });
+    const edgeInset = 8 * pixelRatio;
+    const labelGap = 5 * pixelRatio;
     const labels = [];
     targetContext.save();
     targetContext.fillStyle = state.backgroundMode === "white"
@@ -1660,7 +1779,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const fontFamily = windowLike.getComputedStyle?.(dom.app)?.fontFamily ||
       "Helvetica Neue, Arial, sans-serif";
     targetContext.font = 9 * pixelRatio + "px " + fontFamily;
-    targetContext.textBaseline = "bottom";
+    targetContext.textAlign = "center";
+    targetContext.textBaseline = "middle";
     const occupied = [];
     const positions = [];
     circles.forEach((circle) => {
@@ -1670,35 +1790,65 @@ export function mountTopoInteractionContractPreview(options = {}) {
       const centerX = sourcePixelX +
         (circle.center.x - TOPO_SOURCE_POSITION.x) * commonScale;
       const centerY = (1 - circle.center.y) * commonScale;
-      const velocityBeta = circle.velocityBeta ?? state.beta;
-      const direction = velocityBeta < 0 ? -1 : 1;
-      const intersectionX = centerX -
-        direction * circle.radius * commonScale;
-      const minimumLabelX = (compact ? 82 : 28) * pixelRatio;
-      const labelX = Math.min(
-        width - 16 * pixelRatio,
-        Math.max(
-          minimumLabelX,
-          intersectionX - direction * 7 * pixelRatio,
-        ),
-      );
-      let tier = 0;
-      while (occupied.some((position) =>
-        position.tier === tier &&
-        Math.abs(position.x - labelX) < 30 * pixelRatio)) {
-        tier += 1;
-      }
-      const labelY = centerY - (8 + tier * (compact ? 10 : 11)) * pixelRatio;
+      const radius = circle.radius * commonScale;
       targetContext.globalAlpha = 0.82 * circle.revealWeight;
-      targetContext.textAlign = direction > 0 ? "right" : "left";
       const label = circle.signedMajorDecadeLabel ?? circle.majorDecadeLabel;
+      const textWidth = targetContext.measureText(label).width;
+      const boxWidth = textWidth + 8 * pixelRatio;
+      const boxHeight = 13 * pixelRatio;
+      if (radius <= markerRadius + 16 * pixelRatio) {
+        return;
+      }
+      const candidates = [
+        { x: centerX, y: centerY - radius - labelGap },
+        { x: centerX - radius - labelGap, y: centerY },
+        { x: centerX + radius + labelGap, y: centerY },
+        { x: centerX, y: centerY + radius + labelGap },
+      ];
+      const candidate = candidates.find(({ x, y }) => {
+        const box = {
+          left: x - boxWidth / 2,
+          right: x + boxWidth / 2,
+          top: y - boxHeight / 2,
+          bottom: y + boxHeight / 2,
+        };
+        if (
+          box.left < edgeInset || box.right > width - edgeInset ||
+          box.top < edgeInset || box.bottom > height - edgeInset
+        ) {
+          return false;
+        }
+        const distanceFromSource = Math.hypot(
+          x - sourcePixelX,
+          y - sourcePixelY,
+        );
+        if (distanceFromSource <= markerRadius + boxWidth / 2 + labelGap) {
+          return false;
+        }
+        return !occupied.some((other) => !(
+          box.right + labelGap < other.left ||
+          box.left - labelGap > other.right ||
+          box.bottom + labelGap < other.top ||
+          box.top - labelGap > other.bottom
+        ));
+      });
+      if (!candidate) {
+        return;
+      }
+      const labelX = candidate.x;
+      const labelY = candidate.y;
       targetContext.fillText(
         label,
         labelX,
         labelY,
       );
       labels.push(label);
-      occupied.push({ x: labelX, tier });
+      occupied.push({
+        left: labelX - boxWidth / 2,
+        right: labelX + boxWidth / 2,
+        top: labelY - boxHeight / 2,
+        bottom: labelY + boxHeight / 2,
+      });
       positions.push(
         label + "@" +
         Math.round(labelX / pixelRatio) + "," +
@@ -1715,7 +1865,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
     index,
     rawValue,
     styles,
-    exponentRadiusSpan = null,
   ) {
     if (Number.isNaN(rawValue)) {
       const sourceRgb = styles.pairMode || styles.binary
@@ -1734,13 +1883,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
       const signedRawValue = styles.binary
         ? rawValue
         : rawValue * styles.polaritySign;
-      const normalized = exponentRadiusSpan == null
-        ? styles.binary
-          ? normalizeTopoDisplayValue(signedRawValue)
-          : normalizeTopoFieldColorValue(signedRawValue)
-        : normalizeTopoExponentRadiusColorValue(signedRawValue, {
-          span: exponentRadiusSpan,
-        });
+      const normalized = normalizeTopoFieldColorValue(signedRawValue, {
+        mode: styles.heatmapMode,
+        span: styles.exponentSpan,
+      });
       const endpoint = normalized < 0
         ? styles.negativeRgb
         : styles.positiveRgb;
@@ -1753,23 +1899,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
       }
     }
     data[index + 3] = 255;
-  }
-
-  function createExponentChartForCanvas(width, height, pixelRatio, state) {
-    if (state.binary || state.pairMode || state.beta !== 0) {
-      return null;
-    }
-    return createTopoExponentRadiusChart({
-      width,
-      height,
-      pixelRatio,
-      sourceMarkerRadiusPixels: resolveTopoSourceMarkerRadius({
-        width,
-        height,
-        pixelRatio,
-      }),
-      contourRangeDecades: state.contourRangeDecades,
-    });
   }
 
   function createRawSamplerForState(state, width, height) {
@@ -1838,39 +1967,38 @@ export function mountTopoInteractionContractPreview(options = {}) {
       previewWidth,
       previewHeight,
     );
-    const exponentChart = sampleRaw ? null : createExponentChartForCanvas(
-      width,
-      height,
-      pixelRatio,
+    const sourceLocalChart = createSourceLocalChart(
+      previewWidth,
+      previewHeight,
+      1,
       state,
     );
     for (let pixelY = 0; pixelY < previewHeight; pixelY += 1) {
       for (let pixelX = 0; pixelX < previewWidth; pixelX += 1) {
-        const fullPixelX = pixelX * Math.max(1, width - 1) /
-          Math.max(1, previewWidth - 1);
-        const fullPixelY = pixelY * Math.max(1, height - 1) /
-          Math.max(1, previewHeight - 1);
-        const worldPoint = state.binary
+        const sourceLocalSample = sourceLocalChart
+          ? topoExponentRadiusPhysicalPointForCanvasPixel({
+            pixelX,
+            pixelY,
+            width: previewWidth,
+            height: previewHeight,
+            chart: sourceLocalChart,
+          })
+          : null;
+        const worldPoint = sourceLocalChart
+          ? sourceLocalSample.physicalPoint
+          : state.binary
           ? topoCircularBinaryWorldPointForCanvasPixel({
             pixelX,
             pixelY,
             width: previewWidth,
             height: previewHeight,
           })
-          : exponentChart
-            ? topoExponentRadiusPhysicalPointForCanvasPixel({
-              pixelX: fullPixelX,
-              pixelY: fullPixelY,
-              width,
-              height,
-              chart: exponentChart,
-            }).physicalPoint
-            : topoWorldPointForCanvasPixel({
-              pixelX,
-              pixelY,
-              width: previewWidth,
-              height: previewHeight,
-            });
+          : topoWorldPointForCanvasPixel({
+            pixelX,
+            pixelY,
+            width: previewWidth,
+            height: previewHeight,
+          });
         const rawValue = sampleRaw
           ? providerSample(pixelX, pixelY)
           : worldPoint
@@ -1881,7 +2009,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
           (pixelY * previewWidth + pixelX) * 4,
           rawValue,
           styles,
-          exponentChart ? state.contourRangeDecades : null,
         );
       }
     }
@@ -1906,9 +2033,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
           state.orbitalRadius.toFixed(2) + ":" + state.direction
         : state.pairMode
           ? state.pairPhase.toFixed(5)
-          : state.beta === 0
-            ? "exponent-radius-span=" +
-              topoContourRangeDecades(state.contourRangeDecades).toFixed(0)
+          : sourceLocalViewAvailable(state)
+            ? "source-local:" +
+              topoContourRangeDecades(state.contourRangeDecades)
             : "linear",
     ].join(":");
   }
@@ -1926,38 +2053,36 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const raw = new Float32Array(width * height);
     const sampleStates = new Uint8Array(width * height);
     const sampleRaw = createRawSamplerForState(state, width, height);
-    const exponentChart = createExponentChartForCanvas(
-      width,
-      height,
-      1,
-      state,
-    );
+    const sourceLocalChart = createSourceLocalChart(width, height, 1, state);
     let row = 0;
     while (row < height) {
       const started = windowLike.performance?.now?.() ?? Date.now();
       do {
         for (let pixelX = 0; pixelX < width; pixelX += 1) {
-          const worldPoint = state.binary
+          const sourceLocalSample = sourceLocalChart
+            ? topoExponentRadiusPhysicalPointForCanvasPixel({
+              pixelX,
+              pixelY: row,
+              width,
+              height,
+              chart: sourceLocalChart,
+            })
+            : null;
+          const worldPoint = sourceLocalChart
+            ? sourceLocalSample.physicalPoint
+            : state.binary
             ? topoCircularBinaryWorldPointForCanvasPixel({
               pixelX,
               pixelY: row,
               width,
               height,
             })
-            : exponentChart
-              ? topoExponentRadiusPhysicalPointForCanvasPixel({
-                pixelX,
-                pixelY: row,
-                width,
-                height,
-                chart: exponentChart,
-              }).physicalPoint
-              : topoWorldPointForCanvasPixel({
-                pixelX,
-                pixelY: row,
-                width,
-                height,
-              });
+            : topoWorldPointForCanvasPixel({
+              pixelX,
+              pixelY: row,
+              width,
+              height,
+            });
           const sampleIndex = row * width + pixelX;
           const value = worldPoint
             ? sampleRaw(worldPoint.x, worldPoint.y)
@@ -2003,8 +2128,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   async function buildDisplayImage(rawFrame, pixelRatio, state, styles, revision) {
-    const displayKey = TOPO_DISPLAY_MAPPING_ID + ":" + state.polaritySign +
-      ":" + state.backgroundMode;
+    const displayKey = TOPO_DISPLAY_MAPPING_ID + ":" + state.heatmapMode +
+      ":" + topoContourRangeDecades(state.contourRangeDecades) +
+      ":" + state.polaritySign + ":" + state.backgroundMode;
     const cached = rawFrame.displays.get(displayKey);
     if (cached) {
       dom.app.dataset.lastColorRemapMs = "0";
@@ -2024,9 +2150,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
             index * 4,
             rawFrame.raw[index],
             styles,
-            !state.binary && !state.pairMode && state.beta === 0
-              ? state.contourRangeDecades
-              : null,
           );
         }
         row += 1;
@@ -2076,6 +2199,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
     interactionStarted = null,
   }) {
     const paintStarted = windowLike.performance?.now?.() ?? Date.now();
+    dom.app.dataset.coordinateChart = "linear-euclidean";
+    delete dom.app.dataset.exponentRadiusStepPixels;
     if (
       contourStagingCanvas.width !== width ||
       contourStagingCanvas.height !== height
@@ -2085,14 +2210,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
     } else {
       contourStagingContext.clearRect(0, 0, width, height);
     }
-    drawTranslationAxis(
-      contourStagingContext,
-      width,
-      height,
-      pixelRatio,
-      true,
-      styles,
-    );
     const expectedKey = rawFrame
       ? createRawFrameKey(rawFrame.width, rawFrame.height, state)
       : null;
@@ -2135,8 +2252,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
         for (const levelValue of levelValues) {
           const segments = familySegments.filter((segment) =>
             segment.value === levelValue);
-          const rawDecade = segments[0]?.rawDecade ?? 0;
-          const highIntensity = rawDecade >= 0;
           const foreground = family === "zero"
             ? styles.backgroundMode === "white"
               ? readHexToken(
@@ -2147,12 +2262,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
                 )
               : "#f2e6ff"
             : family === "positive"
-              ? highIntensity
-                ? "#fff0f2"
-                : styles.backgroundMode === "white" ? "#a00024" : "#ff9cad"
-              : highIntensity
-                ? "#f0f5ff"
-                : styles.backgroundMode === "white" ? "#003a9e" : "#9ebcff";
+              ? styles.backgroundMode === "white" ? "#a00024" : "#ffb3c1"
+              : styles.backgroundMode === "white" ? "#003a9e" : "#adc6ff";
           contourStagingContext.save();
           contourStagingContext.beginPath();
           for (const segment of segments) {
@@ -2271,30 +2382,60 @@ export function mountTopoInteractionContractPreview(options = {}) {
       beta: state.beta,
       contourRangeDecades: state.contourRangeDecades,
     });
-    const exponentChart = createExponentChartForCanvas(
+    const commonScale = Math.max(1, height - 1);
+    const sourceLocalChart = createSourceLocalChart(
       width,
       height,
       pixelRatio,
       state,
     );
-    const commonScale = Math.max(1, height - 1);
-    const circles = exponentChart
-      ? physicalCircles.map((circle) => Object.freeze({
+    const circles = sourceLocalChart
+      ? physicalCircles.map((circle) => ({
         ...circle,
-        physicalCenter: circle.center,
-        physicalRadius: circle.radius,
         center: TOPO_SOURCE_POSITION,
         radius: topoExponentDisplayRadiusForExponent({
           exponent: circle.rawDecade,
-          chart: exponentChart,
+          chart: sourceLocalChart,
         }) / commonScale,
-        majorDecadeLabel: String(circle.rawDecade),
       }))
       : physicalCircles;
+    const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
+    const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) * commonScale;
+    const markerRadius = resolveTopoSourceMarkerRadius({
+      width,
+      height,
+      pixelRatio,
+    });
+    const visibleCircles = circles.filter((circle) => {
+      const centerX = sourcePixelX +
+        (circle.center.x - TOPO_SOURCE_POSITION.x) * commonScale;
+      const centerY = (1 - circle.center.y) * commonScale;
+      const radius = circle.radius * commonScale;
+      const minDx = centerX < 0
+        ? -centerX
+        : centerX > width ? centerX - width : 0;
+      const minDy = centerY < 0
+        ? -centerY
+        : centerY > height ? centerY - height : 0;
+      const minDistance = Math.hypot(minDx, minDy);
+      const maxDistance = Math.max(
+        Math.hypot(centerX, centerY),
+        Math.hypot(centerX - width, centerY),
+        Math.hypot(centerX, centerY - height),
+        Math.hypot(centerX - width, centerY - height),
+      );
+      const sourceDistance = Math.hypot(
+        centerX - sourcePixelX,
+        centerY - sourcePixelY,
+      );
+      return radius >= minDistance && radius <= maxDistance &&
+        sourceDistance + radius > markerRadius + pixelRatio;
+    });
     dom.app.dataset.contourGeometryKey = [
       state.beta.toFixed(4),
       state.pairMode ? state.pairPhase.toFixed(5) : "static",
       state.contourRangeDecades.toFixed(0),
+      state.viewMode,
       width,
       height,
       circles.map(({ causalDelay }) => causalDelay.toFixed(8)).join(","),
@@ -2310,12 +2451,21 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.app.dataset.contourPhysicalRadii = physicalCircles
       .map(({ radius }) => radius.toFixed(10))
       .join(",");
-    dom.app.dataset.coordinateChart = exponentChart
-      ? exponentChart.chartId
-      : "linear-euclidean";
-    dom.app.dataset.exponentRadiusStepPixels = exponentChart
-      ? exponentChart.radialStepPixels.toFixed(6)
-      : "";
+    dom.app.dataset.visibleContourExponents = visibleCircles
+      .map(({ rawDecade }) => rawDecade)
+      .join(",");
+    dom.app.dataset.coordinateChart = sourceLocalChart?.chartId ??
+      "linear-euclidean";
+    delete dom.app.dataset.logRadiusStepPixels;
+    delete dom.app.dataset.radiusDecadeLabels;
+    delete dom.app.dataset.radiusDecadeRadii;
+    delete dom.app.dataset.logRadiusReference;
+    if (sourceLocalChart) {
+      dom.app.dataset.exponentRadiusStepPixels =
+        sourceLocalChart.radialStepPixels.toFixed(4);
+    } else {
+      delete dom.app.dataset.exponentRadiusStepPixels;
+    }
     dom.app.dataset.contourRenderCount = String(
       Number(dom.app.dataset.contourRenderCount ?? 0) + 1,
     );
@@ -2324,7 +2474,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
     ));
     dom.app.dataset.lastContourPathCacheHit = "analytic";
     const paintStarted = windowLike.performance?.now?.() ?? Date.now();
-    const canonicalWhiteRgb = [WHITE.r, WHITE.g, WHITE.b];
     if (
       contourStagingCanvas.width !== width ||
       contourStagingCanvas.height !== height
@@ -2334,25 +2483,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     } else {
       contourStagingContext.clearRect(0, 0, width, height);
     }
-    if (exponentChart) {
-      drawExponentRadiusAxis(
-        contourStagingContext,
-        exponentChart,
-        pixelRatio,
-        styles,
-      );
-    } else {
-      drawTranslationAxis(
-        contourStagingContext,
-        width,
-        height,
-        pixelRatio,
-        state.pairMode,
-        styles,
-      );
-    }
-    const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
-    circles.forEach((circle, circleIndex) => {
+    visibleCircles.forEach((circle) => {
       if (!(circle.radius > 0)) {
         return;
       }
@@ -2360,27 +2491,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
         (circle.center.x - TOPO_SOURCE_POSITION.x) * commonScale;
       const centerY = (1 - circle.center.y) * commonScale;
       const radius = circle.radius * commonScale;
-      if (
-        centerX + radius < 0 ||
-        centerX - radius > width ||
-        centerY + radius < 0 ||
-        centerY - radius > height
-      ) {
-        return;
-      }
       const circlePolaritySign = circle.polaritySign ?? state.polaritySign;
-      const sourceContourRgb = circlePolaritySign < 0
-        ? styles.negativeRgb
-        : styles.positiveRgb;
       const contourStyle = createTopoSequentialContourStyle({
-        index: circleIndex,
-        count: circles.length,
+        index: 0,
+        count: 1,
         visibility: state.contourVisibility,
       });
-      const contourRgb = sourceContourRgb.map((channel, index) => Math.round(
-        channel +
-        (canonicalWhiteRgb[index] - channel) * contourStyle.whiteMix,
-      ));
       contourStagingContext.save();
       contourStagingContext.beginPath();
       contourStagingContext.arc(
@@ -2390,14 +2506,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
         0,
         Math.PI * 2,
       );
-      const highIntensity = circle.rawDecade >= 0;
       const contourForeground = circlePolaritySign < 0
-        ? highIntensity
-          ? "#f0f5ff"
-          : styles.backgroundMode === "white" ? "#003a9e" : "#9ebcff"
-        : highIntensity
-          ? "#fff0f2"
-          : styles.backgroundMode === "white" ? "#a00024" : "#ff9cad";
+        ? styles.backgroundMode === "white" ? "#003a9e" : "#adc6ff"
+        : styles.backgroundMode === "white" ? "#a00024" : "#ffb3c1";
       contourStagingContext.lineCap = "round";
       contourStagingContext.lineJoin = "round";
       contourStagingContext.strokeStyle = contourForeground;
@@ -2410,7 +2521,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     });
     drawMajorDecadeLabels(
       contourStagingContext,
-      circles,
+      visibleCircles,
       width,
       height,
       pixelRatio,
@@ -2451,6 +2562,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       state.contourRangeDecades.toFixed(0),
       state.contourVisibility.toFixed(4),
       state.polaritySign,
+      state.viewMode,
     ].join(":");
     dom.app.dataset.lastContourPaintMs = String(Math.round(
       (windowLike.performance?.now?.() ?? Date.now()) - paintStarted,
@@ -2521,6 +2633,32 @@ export function mountTopoInteractionContractPreview(options = {}) {
         : "One-source full-density synthetic frame complete. No TOPO-001 values are shown.";
   }
 
+  function paintUnavailableSourceLocalView(width, height, pixelRatio, styles) {
+    context.save();
+    context.fillStyle = styles.zero;
+    context.fillRect(0, 0, width, height);
+    context.fillStyle = styles.backgroundMode === "white"
+      ? "#3a2352"
+      : "#f2e6ff";
+    context.font = 600 + " " + 14 * pixelRatio +
+      "px Helvetica Neue, Arial, sans-serif";
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.fillText(
+      "Source-local decades are not yet available for this scene",
+      width / 2,
+      height / 2,
+      width - 40 * pixelRatio,
+    );
+    context.restore();
+    contourContext.clearRect(0, 0, width, height);
+    dom.app.dataset.coordinateChart = "unavailable:source-local";
+    delete dom.app.dataset.exponentRadiusStepPixels;
+    dom.app.dataset.contourRenderCount = "0";
+    dom.app.dataset.majorDecadeLabels = "";
+    dom.app.dataset.majorDecadeLabelPositions = "";
+  }
+
   function beginRender({ finalDelay = 0, redrawContours = true } = {}) {
     const interactionStarted = windowLike.performance?.now?.() ?? Date.now();
     frameRevision += 1;
@@ -2569,6 +2707,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
         context.fillStyle = styles.zero;
         context.fillRect(0, 0, width, height);
       }
+      if (sourceLocalViewRequested(state) && !sourceLocalViewAvailable(state)) {
+        paintUnavailableSourceLocalView(width, height, pixelRatio, styles);
+        windowLike.clearTimeout?.(renderWatchdogTimer);
+        dom.app.dataset.frameState = "complete";
+        dom.status.textContent =
+          "Source-local decades are not yet available for moving or multi-source scenes. Combined wake remains available.";
+        return;
+      }
       const grid = rawGridSize();
       const cachedRawFrame = rawFrameCaches.get(
         createRawFrameKey(grid.width, grid.height, state),
@@ -2602,7 +2748,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         state.binary ? state.showOrbitGuide : state.contourVisibility.toFixed(4),
         state.binary
           ? state.backgroundMode + ":" + state.direction
-          : state.polaritySign + ":" + state.backgroundMode,
+          : state.polaritySign + ":" + state.backgroundMode + ":" +
+            state.viewMode,
       ].join(":");
       if (
         redrawContours ||
@@ -2896,6 +3043,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     }
     const handFocusToStage = scenarioPointerActivation;
     scenarioPointerActivation = false;
+    enforceAvailableView({ announce: true });
     resetPairPlayback();
     stopBinaryPlayback();
     binaryProgress = 0;
@@ -2929,6 +3077,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   dom.scenarioInputs.forEach((input) =>
     listen(input, "change", handleScenarioChange));
   listen(dom.beta, "input", () => {
+    enforceAvailableView({ announce: true });
     stopBinaryPlayback();
     binaryProgress = 0;
     if (selectedScenarioId() === TOPO_COLLINEAR_PAIR_SCENARIO_ID) {
@@ -2958,6 +3107,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
     }));
   dom.backgroundInputs.forEach((input) =>
     listen(input, "change", scheduleFrameChange));
+  dom.viewInputs.forEach((input) =>
+    listen(input, "change", () => {
+      enforceAvailableView({ announce: true });
+      scheduleFrameChange();
+    }));
+  dom.heatmapModeInputs.forEach((input) =>
+    listen(input, "change", scheduleFrameChange));
   listen(dom.binaryPlay, "click", toggleBinaryPlayback);
   listen(dom.binaryReplay, "click", () => startBinaryPlayback({ replay: true }));
   listen(documentLike, "keydown", (event) => {
@@ -2978,14 +3134,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       toggleBinaryPlayback();
     }
   });
-  listen(dom.contours, "input", () => {
-    const state = getState();
-    if (!state.binary && !state.pairMode && state.beta === 0) {
-      scheduleFrameChange();
-    } else {
-      scheduleContourChange();
-    }
-  });
+  listen(dom.contours, "input", scheduleContourChange);
   listen(dom.contourVisibility, "input", scheduleContourChange);
   listen(dom.home, "click", () => {
     navigateStandaloneAppHome(
@@ -3019,6 +3168,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       windowLike.cancelAnimationFrame?.(renderRequest);
       windowLike.clearTimeout?.(finalRenderTimer);
       windowLike.clearTimeout?.(renderWatchdogTimer);
+      windowLike.clearTimeout?.(viewFallbackTimer);
       resizeObserver?.disconnect?.();
       listeners.splice(0).forEach((remove) => remove());
       sceneSearchRuntime.destroy();

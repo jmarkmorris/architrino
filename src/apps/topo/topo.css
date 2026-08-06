@@ -408,12 +408,16 @@ button {
 }
 
 .topo-radio-field input[value="purple"]:checked,
+.topo-radio-field input[name="topo-view"]:checked,
+.topo-radio-field input[name="topo-heatmap-mode"]:checked,
 .topo-radio-field input[value="counterclockwise"]:checked,
 .topo-radio-field input[value="clockwise"]:checked {
   border-color: var(--ui-color-electric-purple);
 }
 
 .topo-radio-field input[value="purple"]:checked::before,
+.topo-radio-field input[name="topo-view"]:checked::before,
+.topo-radio-field input[name="topo-heatmap-mode"]:checked::before,
 .topo-radio-field input[value="counterclockwise"]:checked::before,
 .topo-radio-field input[value="clockwise"]:checked::before {
   background: var(--ui-color-electric-purple);

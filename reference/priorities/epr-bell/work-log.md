@@ -7,6 +7,68 @@ adjudications, and handoffs. Detailed reasoning belongs in
 
 ## Log Entries
 
+### 2026-08-05 — Prediction-to-assembly recovery map captured
+
+The operator clarified that the Bell program must directly address the
+observer-level predictions and relate them to $\mathbb{A}\mathbb{A}\mathbb{A}$
+assemblies rather than stop at assumption adjudication. A route-neutral map
+was added to the discussion record. It packages the spin-singlet target as a
+four-outcome joint table, defines an assembly pushforward from prepared
+pair-provenance and unresolved detector states into persistent joint record
+basins, and maps binary outcomes, matched-axis anticorrelation, the cosine
+curve, local marginals, CHSH, no-signaling, preferred-time ordering, the
+Tsirelson ceiling, and photon polarization to their required assembly objects
+and failure diagnostics.
+
+The map does not create a new gate or accept the existing threshold fixture
+as a derivation. The concrete next artifact is a
+`spin_singlet_assembly_export` record family generated from accepted source
+histories and accepted Stern--Gerlach response kernels, with all Bell
+diagnostics calculated from the same records under Quantum Closure QC-005 and
+QC-006.
+
+### 2026-08-05 — Complete lane capture audit
+
+The operator requested that every action item, open issue, and retained
+insight from the Bell discussion and both Tim Maudlin mining passes be captured
+inside the EPR--Bell lane. The audit compared the original seven-part closure
+request, both focused source packets, the 2026-07-28 primary-source evidence
+review, the live corpus decision reconstruction, and the Quantum Closure
+interface against all four canonical lane files.
+
+Three execution gaps were found and added without creating new gates:
+`EPRB-006` now owns the quantitative measurement-dependence comparator;
+`EPRB-007` owns the finite-$c_f$ reach, fallback, degradation,
+influence-to-wake identification, and separate dispersion burden; and
+`EPRB-008` owns the negative-control and assumption-verdict interface to
+Quantum Closure. A cross-lane dependency table prevents detector kernels,
+pair measures, PBR, Born, GHZ, Hardy, Tsirelson, and rewrite work from being
+lost or duplicated.
+
+The discussion record now contains a complete insight inventory and an
+open-issue-to-action coverage table. No route was selected, no existing claim
+grade was promoted, and no reader-facing corpus, source history, or generated
+artifact was changed.
+
+### 2026-08-05 — Conversation insights consolidated
+
+The operator requested that the durable insights from the Bell discussion be
+captured in the EPR--Bell lane. The discussion record already retained the
+EPR-sympathetic discovery path—Bell first rehabilitated the hidden-variable
+program, then deliberately found the obstruction for its local branch—and
+the exact assumption scope of “decided at entanglement.”
+
+The remaining explanatory gap was closed by adding a worked account of
+$E(\theta)$: $E$ is the expectation value of the product of two binary
+records, $\theta$ is the angle between spin-measurement axes, singlet
+rotational symmetry and perfect same-axis anticorrelation give
+$E(\theta)=-\cos\theta$, and linear-polarization analyzers generally use a
+doubled-angle law. The result is classified as an observer-level quantum
+recovery target, not an Architrino premise. A matching hard guard was added
+to prevent the spin and polarization formulas from being presented as one
+universal law. No new gate, route decision, corpus promotion, or generated
+artifact was introduced.
+
 ### 2026-08-05 — Lane created from Bell discussion
 
 The operator authorized creation of a standalone EPR--Bell priority lane and

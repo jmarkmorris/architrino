@@ -35,22 +35,24 @@ $$
 
 Plainly: one world unit is always one canvas-height, so equal horizontal and vertical distances occupy equal pixels. The architrino stays two-thirds of the way across and halfway up, and its represented motion points to the right.
 
-This Euclidean chart remains authoritative for all multi-source scenes and for single-source frames with $\beta>0$. At $\beta=0$ only, either radially symmetric single-source scene uses the display-only exponent radius $e=\log_{10}(|W|/64)$. Span $N$ maps $e=+N$ to the source-marker edge and $e=-N$ to the largest complete equal-scale circle, with every intervening integer exponent at an equal radial display step. The inner and outer regions are neutral-masked or clipped rather than clamped, and the heatmap and contours share the same coordinate map. Heatmap color also advances uniformly from neutral at $e=-N$ to the signed endpoint at $e=+N$ so the fixed linear-chart clip cannot create a saturated inner bloom. The raw inverse-square calculation remains unchanged.
+The `Combined wake` view uses this Euclidean chart for every scenario and is the default. A separate `Source-local decades` view is available only for either radially symmetric single-source scene at $\beta=0$. Its display-only exponent radius is $e=\log_{10}(|W|/64)$. Span $N$ maps $e=+N$ to the source-marker edge and $e=-N$ to the largest complete equal-scale circle, with every intervening integer exponent at an equal radial display step. The inner and outer regions are neutral-masked or clipped rather than clamped, and the heatmap and contours share the same coordinate map. Heatmap color defaults to physical magnitude relative to $|W|=64$: $e=0,-1,-2,-3$ contributes $1,0.1,0.01,0.001$ of the polarity color over the selected neutral background. An optional Enhanced decade contrast mode applies the established perceptual transfer for analysis only. The raw inverse-square calculation, contours, and frame identity remain unchanged.
 
-Plainly: only a stationary one-source view has one honest radial exponent axis. The pair and binary keep their ordinary linear plane.
+Plainly: the View radios keep the two meanings separate. Combined wake always uses absolute-space x-y. Source-local decades is a portable one-source display chart, available only where radial symmetry makes it unambiguous.
 
 The initial controls are:
 
 | Control | Initial contract |
 | --- | --- |
 | Scenario | single electrino; single positrino; approaching collinear electrino and positrino; orbiting binary electrino and positrino |
+| View | native radio group: Source-local decades; Combined wake (default). Source-local is available only for $\beta=0$ single-source scenes; choosing an unsupported moving or multi-source scene atomically returns to Combined wake with a brief accessible explanation, preserving focus and preventing an unavailable canvas |
 | $\beta=v/c_f$ | range $0\leq\beta\leq1$; the exact ordinary, unavailable, and nonordinary endpoint regions are fixed by TOPO-001 |
+| Heatmap | native radio group: Physical magnitude (default); Enhanced decade contrast. Physical magnitude blends $|W|/64$ toward the selected neutral background, clipped only at full endpoint color; every lower exponent decade contributes one tenth as much fill. Enhanced contrast is display-only. Neither mode changes raw values, contours, histories, or frame identity |
 | Contour span | integer $1$ through $4$; default $3$; span $N$ selects integer exponents $+N$ through $-N$, one raw factor-of-ten level per exponent, includes the reference once per sign, and retains explicit zero; changing span preserves every shared level and topology in linear scenes and changes only the display-radius endpoints in beta-zero single-source scenes |
 | Contour visibility | display-only global contour-emphasis percent from $0$ through $100$ in one-point keyboard steps; default $75$; changes line opacity only; zero reads `Hidden`; equal nonzero widths and the single adaptive zero stroke do not alter field color, contour geometry, or raw values |
-| Color mapping | one zero-safe signed base-10 logarithmic mapping with $z_*=4$ and symmetric clip at $|z|=64$; no transform selector |
+| Color mapping | both views default to physical-magnitude blending relative to $|W|=64$; the optional enhanced mode uses a declared signed decade/perceptual transfer. Contour levels remain integer exponents and stay visible independently of either fill transfer |
 | Overlay | scenario-specific reference geometry plus source polarity disks using one shared half-size radius, canonical thin white border, and half-size centered white origin dot |
 
-The source position, contour range, contour visibility, and color limits belong to view state. The chosen species, $\beta$, observable identity, time slice, domain, and scientific-kernel version belong to the reproducible scenario record.
+The selected View, heatmap mode, source position, contour range, contour visibility, and color limits belong to display state. The chosen species, $\beta$, observable identity, time slice, domain, and scientific-kernel version belong to the reproducible scenario record.
 
 ## Shared Application-Shell Contract
 
@@ -150,11 +152,13 @@ $$
 
 Plainly: positrino-positive and electrino-negative maps use the same legend. Selecting the other species reverses the sign of the declared observable without changing the geometry or color semantics.
 
-Legend ticks expose the fixed signed base-10 display coordinate and its raw reference values. Contours use one fixed causal-delay lattice so view state cannot add arbitrary levels, move circles, or re-anchor decade identities. TOPO-002 fixes $z_*=4$, an ordinary display-clip magnitude of $64$, and the one mapping
+Legend ticks expose integer wake-intensity exponents relative to $|W|=64$. The default physical-magnitude fill is
 
 $$
-C_{10}(z)=\operatorname{sgn}(z)\log_{10}\!\left(1+\frac{|z|}{z_*}\right).
+P(z)=\operatorname{sgn}(z)\min\!\left(1,\frac{|z|}{64}\right).
 $$
+
+Therefore $e=0,-1,-2,-3$ maps to visible polarity contributions $1,0.1,0.01,0.001$. The optional Enhanced decade contrast mode reuses the fixed within-decade smoothstep and perceptual transfer solely to make weak structure easier to inspect. Contours remain separately visible in both modes and keep their raw levels and geometry.
 
 The contour display uses $I(T)=K/T^2$ and
 
@@ -164,7 +168,7 @@ T_m=T_0 10^{-m/2},
 \qquad m\in\{-N,\ldots,N\},
 $$
 
-so each integer exponent step changes magnitude by exactly a factor of ten. `Contour span` is the integer set $1,2,3,4$ and defaults to $3$; span $N$ retains integer exponents $+N$ through $-N$ around the single reference level. On linear charts, single-source inverse-square physical radii crowd inward by $1/\sqrt{10}$ and expand outward by $\sqrt{10}$. On the beta-zero single-source exponent-radius chart, those same physical radii appear at equal display-radius steps.
+so each integer exponent step changes magnitude by exactly a factor of ten. `Contour span` is the integer set $1,2,3,4$ and defaults to $3$; span $N$ retains integer exponents $+N$ through $-N$ around the single reference level. In Combined wake, single-source inverse-square physical radii crowd inward by $1/\sqrt{10}$ and expand outward by $\sqrt{10}$. In Source-local decades for a beta-zero single, those same physical radii appear at equal display-radius steps.
 
 Plainly: each contour still marks a tenfold raw wake-intensity change. The stationary single-source view warps only its declared radial display coordinate; moving and multi-source maps do not warp space.
 

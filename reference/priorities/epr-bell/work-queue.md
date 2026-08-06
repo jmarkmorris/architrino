@@ -15,6 +15,12 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
    `Deferred / blocked`.
 5. `bell_primary_source_evidence_refresh` — EPRB-005. Status:
    `Deferred / blocked`.
+6. `measurement_dependence_comparator` — EPRB-006. Status:
+   `Deferred / blocked`.
+7. `finite_cf_reach_and_identification_contract` — EPRB-007. Status:
+   `Deferred / blocked`.
+8. `quantum_closure_bell_interface` — EPRB-008. Status:
+   `Deferred / blocked`.
 
 ## Discussion-scoped
 
@@ -100,6 +106,78 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
 - **Completion:** A dated evidence table cites every numerical result and
   states each experiment's mapping and sampling assumptions without declaring
   one universally strongest test.
+
+### EPRB-006 — Build the measurement-dependence comparator
+
+- **Status:** Deferred / blocked on EPRB-001 and retention of measurement
+  dependence as an active comparison route
+- **Priority object:** `measurement_dependence_comparator`
+- **Request / acceptance:** Declare a forward-causal joint law
+  $P(\lambda,x,y)$ or an equivalent physical source/setting model, quantify
+  the departure from measurement independence without treating information
+  measures as substrate ontology, reproduce the target Bell table and its
+  one-wing marginals, and predict how the dependence changes with setting
+  source, setting rate, baseline, orientation, or Noether sea state. Compare
+  the mechanism with stellar and quasar setting controls without claiming
+  that those experiments logically eliminate superdeterminism.
+- **Completion:** A physically declared common-past mechanism either produces
+  a quantitatively adequate and independently testable setting--pair
+  correlation or is rejected as an unspecified correlation claim.
+
+### EPRB-007 — Specify finite-$c_f$ reach, fallback, and identification
+
+- **Status:** Deferred / blocked on EPRB-001, completion of EPRB-003, and
+  retention of the live-channel route
+- **Priority object:** `finite_cf_reach_and_identification_contract`
+- **Request / acceptance:** Declare the preferred frame, baseline,
+  setting-availability events, outcome-closure events, propagation and
+  detector latencies, timing uncertainty, directional reach, and
+  setting-specific reachable fractions. Supply the reachable law $P_1$, the
+  unreachable fallback law $P_0$, and the resulting predicted dependence of
+  the Bell statistic without assuming $S_0=2$. Keep measured
+  finite-influence-speed bounds separate from the model-dependent
+  identification of that influence with primitive wakes or $c_f$. Treat any
+  photon-dispersion or frequency-crossover claim as a separate constitutive
+  profile requiring its own equation and evidence.
+- **Completion:** The route yields an operator-checkable degradation function
+  across baseline and timing, with a falsifier and explicit model bridge to
+  $c_f$, or the claimed finite-$c_f$ prediction is withdrawn as
+  under-specified.
+
+### EPRB-008 — Maintain the Quantum Closure Bell interface
+
+- **Status:** Deferred / blocked on EPRB-001 and Quantum Closure `QC-001`,
+  `QC-005`, and `QC-006`
+- **Priority object:** `quantum_closure_bell_interface`
+- **Request / acceptance:** Keep the Bell-local, measurement-independent
+  shared-record model as the required negative control; map Quantum Closure's
+  source measure, detector-response kernels, trial-selection rule, and joint
+  record table onto factorization, measurement independence, no-signaling,
+  ordering, Tsirelson, GHZ/Hardy, and preferred-frame diagnostics. Record any
+  failed assumption without rewriting the Bell bridge or selecting a route
+  in advance of `QC-007`. The first positive execution artifact is one
+  `spin_singlet_assembly_export` record family derived from accepted source
+  histories and accepted Stern--Gerlach kernels. From those same records,
+  compute the full angular joint table, $E(\theta)$, one-wing marginals, CHSH,
+  product screening, measurement independence, preferred-time ordering, and
+  the Tsirelson residual rather than fitting separate tables to each target.
+- **Completion:** One cross-lane interface receipt states which calculations
+  Quantum Closure owns, which assumption verdict this lane owns, and whether
+  the negative control and selected candidate route pass or fail the same
+  declared trial model.
+
+## Cross-Lane Dependencies, Not Duplicate EPR--Bell Tasks
+
+| External owner object | EPR--Bell consumer | Boundary |
+| --- | --- | --- |
+| Quantum Closure `QC-001`, detector-response kernel acceptance | EPRB-004 and EPRB-008 | This lane audits the Bell assumption changed by the kernel; it does not derive the apparatus kernel. |
+| Quantum Closure `QC-005`, pair-provenance measure | EPRB-008 | This lane requires a complete declared $\lambda$ or pair state; it does not fit the source measure. |
+| Quantum Closure `QC-006`, Bell gate | EPRB-003, EPRB-007, and EPRB-008 | This lane supplies premise and route diagnostics; Quantum Closure computes Bell, no-signaling, ordering, Tsirelson, GHZ, and Hardy outputs. |
+| Quantum Closure `QC-007`, Bell rewrite handoff | EPRB-002 and EPRB-008 | Reader-facing Bell prose changes only after the decision record and computed gate result agree. |
+| No-go-theorem PBR preparation-independence row | Adjacent insight only | PBR constrains wavefunction ontology and preparation measures; it does not select the Bell route or create a duplicate EPR--Bell gate. |
+
+Plainly: these objects remain visible here because they block Bell closure,
+but their mathematics stays with its existing owner.
 
 ## In progress
 

@@ -5,12 +5,14 @@ import { readFileSync } from "node:fs";
 import {
   TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
   TOPO_DEFAULT_CONTOUR_VISIBILITY,
+  TOPO_DEFAULT_HEATMAP_MODE,
   TOPO_DISPLAY_CLIP_MAGNITUDE,
   TOPO_DISPLAY_MAPPING_ID,
   TOPO_EXPONENT_RADIUS_CHART_ID,
   TOPO_EXPONENT_RADIUS_MARKER_GAP_CSS,
   TOPO_FIRST_CONTOUR_BUDGET_MS,
   TOPO_INTERACTION_CONTRACT_ID,
+  TOPO_HEATMAP_MODE,
   TOPO_INVERSE_SQUARE_SCALE,
   TOPO_REFERENCE_SCALE,
   TOPO_SOURCE_POSITION,
@@ -33,6 +35,7 @@ import {
   normalizeTopoDisplayValue,
   normalizeTopoExponentRadiusColorValue,
   normalizeTopoFieldColorValue,
+  normalizeTopoPhysicalMagnitudeValue,
   resolveTopoCanvasPixelSize,
   syntheticTopoCausalDelay,
   syntheticTopoSignedValue,
@@ -75,9 +78,10 @@ function closeTo(actual, expected, tolerance = 1e-12) {
   );
 }
 
-test("TOPO-002 freezes one zero-safe signed base-10 display mapping", () => {
+test("physical magnitude is the default and enhanced decade contrast is optional", () => {
   assert.equal(TOPO_INTERACTION_CONTRACT_ID, "topo_interaction_and_color/v1");
   assert.equal(TOPO_DISPLAY_MAPPING_ID, "signed-log10");
+  assert.equal(TOPO_DEFAULT_HEATMAP_MODE, TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE);
   assert.equal(TOPO_REFERENCE_SCALE, 4);
   assert.equal(TOPO_DISPLAY_CLIP_MAGNITUDE, 64);
   assert.equal(TOPO_DEFAULT_CONTOUR_RANGE_DECADES, 3);
@@ -88,10 +92,26 @@ test("TOPO-002 freezes one zero-safe signed base-10 display mapping", () => {
     closeTo(inverseTopoTransform(transformTopoValue(rawValue)), rawValue);
   }
   closeTo(transformTopoValue(0), 0);
+  for (const polaritySign of [-1, 1]) {
+    let prior = null;
+    for (const exponent of [-3, -2, -1, 0]) {
+      const raw = polaritySign * 64 * 10 ** exponent;
+      const physical = normalizeTopoFieldColorValue(raw);
+      closeTo(physical, polaritySign * 10 ** exponent);
+      closeTo(physical, normalizeTopoPhysicalMagnitudeValue(raw));
+      if (prior != null) {
+        closeTo(Math.abs(physical / prior), 10);
+      }
+      prior = physical;
+    }
+  }
+  closeTo(normalizeTopoFieldColorValue(640), 1);
+  closeTo(normalizeTopoFieldColorValue(-640), -1);
   for (const magnitude of [0.001, 0.01, 0.1, 1, 4, 16, 64]) {
-    closeTo(transformTopoValue(-magnitude), -transformTopoValue(magnitude));
     closeTo(
-      normalizeTopoFieldColorValue(magnitude),
+      normalizeTopoFieldColorValue(magnitude, {
+        mode: TOPO_HEATMAP_MODE.ENHANCED_DECADE_CONTRAST,
+      }),
       normalizeTopoDisplayValue(magnitude),
     );
     closeTo(
@@ -99,11 +119,9 @@ test("TOPO-002 freezes one zero-safe signed base-10 display mapping", () => {
       -normalizeTopoFieldColorValue(magnitude),
     );
   }
-  const monotone = [0, 0.001, 0.01, 0.1, 1, 4, 16, 64]
-    .map(normalizeTopoDisplayValue);
-  assert.equal(
-    monotone.every((value, index) => index === 0 || value > monotone[index - 1]),
-    true,
+  assert.throws(
+    () => normalizeTopoFieldColorValue(1, { mode: "unknown" }),
+    /Unknown Topo heatmap mode/u,
   );
 });
 
@@ -156,7 +174,7 @@ test("Contour span selects exact inward and outward raw decades without duplicat
   assert.deepEqual(selections.map((selection) => selection.length), [3, 5, 7, 9]);
   assert.deepEqual(
     selections[3].map(({ majorDecadeLabel }) => majorDecadeLabel),
-    ["10⁴", "10³", "10²", "10¹", "10⁰", "10⁻¹", "10⁻²", "10⁻³", "10⁻⁴"],
+    ["e=4", "e=3", "e=2", "e=1", "e=0", "e=-1", "e=-2", "e=-3", "e=-4"],
   );
   assert.equal(
     selections[3].filter(({ referenceLevel }) => referenceLevel).length,
@@ -220,7 +238,17 @@ test("contour span preserves the raw kernel, frame identity, polarity, and movin
   );
   const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
   assert.match(runtime, /state\.beta === 0/u);
-  assert.match(runtime, /display-only exponent radius/u);
+  assert.match(runtime, /state\.viewMode === "source-local"/u);
+  assert.match(runtime, /sourceLocalViewAvailable/u);
+  assert.match(runtime, /source-local-unavailable/u);
+  assert.match(runtime, /enforceAvailableView/u);
+  assert.match(runtime, /View switched to Combined wake/u);
+  const rawFrameKeySource = runtime.slice(
+    runtime.indexOf("function createRawFrameKey"),
+    runtime.indexOf("async function buildRawFrame"),
+  );
+  assert.doesNotMatch(rawFrameKeySource, /heatmapMode/u);
+  assert.match(runtime, /const displayKey = TOPO_DISPLAY_MAPPING_ID[\s\S]*state\.heatmapMode[\s\S]*state\.contourRangeDecades/u);
 });
 
 test("beta-zero single-source exponent radius maps integer exponents to equal display steps", () => {
@@ -287,34 +315,30 @@ test("beta-zero single-source exponent radius maps integer exponents to equal di
   }).state, "clipped:outside_exponent_radius");
 });
 
-test("beta-zero exponent-radius pixel profile is smooth, signed, and unsaturated across the annulus", () => {
+test("source-local heatmap supports physical magnitude and enhanced contrast without changing exponent geometry", () => {
   for (const span of [1, 2, 3, 4]) {
-    const priorByPolarity = new Map();
     for (let exponent = -span; exponent <= span; exponent += 1) {
       const magnitude = 64 * 10 ** exponent;
-      const expectedStrength = (exponent + span) / (2 * span);
+      const expectedPhysical = Math.min(1, 10 ** exponent);
+      const expectedEnhanced = ((exponent + span) / (2 * span)) ** 0.72;
       for (const polaritySign of [-1, 1]) {
-        const normalized = normalizeTopoExponentRadiusColorValue(
-          polaritySign * magnitude,
-          { span },
+        closeTo(
+          normalizeTopoExponentRadiusColorValue(
+            polaritySign * magnitude,
+            { span },
+          ),
+          polaritySign * expectedPhysical,
         );
-        closeTo(normalized, polaritySign * expectedStrength);
-        const rgb = createTopoSignedRgb(normalized);
-        const zero = [143, 0, 255];
-        const endpoint = polaritySign < 0
-          ? [37, 99, 235]
-          : [220, 38, 38];
-        rgb.forEach((channel, index) => {
-          assert.ok(channel >= Math.min(zero[index], endpoint[index]));
-          assert.ok(channel <= Math.max(zero[index], endpoint[index]));
-        });
-        const prior = priorByPolarity.get(polaritySign);
-        if (prior) {
-          const distance = rgb.reduce((sum, channel, index) =>
-            sum + Math.abs(channel - prior[index]), 0);
-          assert.ok(distance > 0);
-        }
-        priorByPolarity.set(polaritySign, rgb);
+        closeTo(
+          normalizeTopoExponentRadiusColorValue(
+            polaritySign * magnitude,
+            {
+              span,
+              mode: TOPO_HEATMAP_MODE.ENHANCED_DECADE_CONTRAST,
+            },
+          ),
+          polaritySign * expectedEnhanced,
+        );
       }
     }
   }
@@ -682,7 +706,7 @@ test("all four scenarios share the half-size marker and contained source mask", 
   assert.doesNotMatch(runtime, /drawCircularBinarySourceMarker/u);
 });
 
-test("Topo UI exposes the fixed logarithmic architecture and preserves Home", () => {
+test("Topo UI exposes the approved two-view logarithmic architecture and preserves Home", () => {
   const html = readRepoFile("topo.html");
   const css = readRepoFile("src/apps/topo/topo.css");
   const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
@@ -701,10 +725,7 @@ test("Topo UI exposes the fixed logarithmic architecture and preserves Home", ()
     runtime,
     /state\.contourVisibility === 0[\s\S]*majorDecadeLabels = ""[\s\S]*majorDecadeLabelPositions = ""/u,
   );
-  assert.match(
-    runtime,
-    /listen\(dom\.contours, "input",[\s\S]*scheduleFrameChange\(\)[\s\S]*scheduleContourChange\(\)/u,
-  );
+  assert.match(runtime, /listen\(dom\.contours, "input", scheduleContourChange\)/u);
   assert.match(
     runtime,
     /listen\(dom\.contourVisibility, "input", scheduleContourChange\)/u,
@@ -713,9 +734,17 @@ test("Topo UI exposes the fixed logarithmic architecture and preserves Home", ()
     runtime,
     /state\.contourVisibility === 0[\s\S]*\? "Hidden"/u,
   );
-  assert.match(runtime, /drawExponentRadiusAxis/u);
   assert.match(runtime, /createTopoExponentRadiusChart/u);
-  assert.match(runtime, /display-only exponent radius/u);
+  assert.match(runtime, /sourceLocalViewRequested/u);
+  assert.match(runtime, /sourceLocalViewAvailable/u);
+  assert.match(runtime, /topoExponentRadiusPhysicalPointForCanvasPixel/u);
+  assert.match(runtime, /Source-local display chart/u);
+  assert.match(runtime, /Combined absolute-space wake/u);
+  assert.match(runtime, /Source-local decades are not yet available/u);
+  assert.match(runtime, /TOPO_HEATMAP_MODE\.PHYSICAL_MAGNITUDE/u);
+  assert.match(runtime, /u_enhanced_decade_contrast/u);
+  assert.match(runtime, /physicalStrength = clamp\(abs\(rawValue\) \/ 64\.0, 0\.0, 1\.0\)/u);
+  assert.match(runtime, /heatmapModeInputs[\s\S]*listen\(input, "change", scheduleFrameChange\)/u);
   assert.match(runtime, /state\.backgroundMode === "white"[\s\S]*--ui-color-electric-purple/u);
   const markerSource = runtime.slice(
     runtime.indexOf("function drawSourceMarker"),
@@ -723,13 +752,11 @@ test("Topo UI exposes the fixed logarithmic architecture and preserves Home", ()
   );
   assert.doesNotMatch(markerSource, /state\./u);
   assert.match(markerSource, /WHITE\.r/u);
-  assert.match(runtime, /exponentDisplay \+ u_exponent_span/u);
-  assert.match(runtime, /compact = cssWidth < 520/u);
-  assert.match(runtime, /intersectionX - direction \* 7 \* pixelRatio/u);
-  assert.match(runtime, /minimumLabelX = \(compact \? 82 : 28\) \* pixelRatio/u);
+  assert.match(runtime, /u_source_local_mode/u);
+  assert.match(runtime, /displayRadius - u_source_local_inner_radius/u);
+  assert.match(runtime, /radius <= markerRadius \+ 16 \* pixelRatio/u);
   assert.match(runtime, /globalAlpha = 0\.82 \* circle\.revealWeight/u);
-  assert.match(runtime, /centerY - \(8 \+ tier \* \(compact \? 10 : 11\)\) \* pixelRatio/u);
-  assert.match(runtime, /Math\.abs\(position\.x - labelX\) < 30 \* pixelRatio/u);
+  assert.match(runtime, /!occupied\.some/u);
   assert.doesNotMatch(runtime, /suppressed-responsive/u);
   assert.match(runtime, /contourRadii/u);
   assert.match(runtime, /TOPO_INVERSE_SQUARE_SCALE/u);
@@ -743,7 +770,7 @@ test("Topo UI exposes the fixed logarithmic architecture and preserves Home", ()
   assert.match(runtime, /setTransportControlButtonPresentation/u);
   assert.match(runtime, /TRANSPORT_CONTROL_ICON\.RESET/u);
   assert.doesNotMatch(runtime, /float magnitude = min\(/u);
-  assert.match(runtime, /log\(1\.0 \+ abs\(rawValue\) \/ 4\.0\) \/ log\(17\.0\)/u);
+  assert.match(runtime, /log\(abs\(rawValue\) \/ 64\.0\) \/ log\(10\.0\)/u);
   assert.doesNotMatch(runtime, /asinh|arsinh|u_gain|TOPO_FIELD_COLOR_GAIN/iu);
   assert.doesNotMatch(runtime, /transformId|u_transform|scheduleTransformChange|dom\.transform/u);
 
@@ -753,17 +780,28 @@ test("Topo UI exposes the fixed logarithmic architecture and preserves Home", ()
   assert.match(html, /<h2 id="topo-about-title">About this view<\/h2>/u);
   assert.match(html, /<span>Contour span<\/span>/u);
   assert.match(html, /id="topo-coordinate-mode"[^>]*aria-live="polite"/u);
+  assert.match(html, /<legend>View<\/legend>/u);
+  assert.match(html, /<legend>Heatmap<\/legend>/u);
+  assert.match(html, /name="topo-heatmap-mode" value="physical-magnitude" checked/u);
+  assert.match(html, /<span>Physical magnitude<\/span>/u);
+  assert.match(html, /name="topo-heatmap-mode" value="enhanced-decade-contrast"/u);
+  assert.match(html, /<span>Enhanced decade contrast<\/span>/u);
+  assert.match(html, /name="topo-view" value="source-local"/u);
+  assert.match(html, /<span>Source-local decades<\/span>/u);
+  assert.match(html, /name="topo-view" value="combined" checked/u);
+  assert.match(html, /<span>Combined wake<\/span>/u);
   assert.match(html, />Approaching collinear electrino and positrino<\/span>/u);
   assert.match(html, /id="topo-pair-play"/u);
   assert.match(html, /id="topo-pair-replay"/u);
   assert.match(html, />±3 decades<\/output>/u);
-  assert.match(html, /One contour per raw factor of 10 inward and outward/u);
+  assert.match(html, /One contour per factor of 10 in wake intensity/u);
   assert.match(html, /id="topo-legend-mapping"/u);
   assert.doesNotMatch(html, /Scale transform|topo-transform|Linear|Signed log2|Asinh/u);
   assert.doesNotMatch(html, /Raw probe|Nonnumeric state legend|topo-stage-caption/u);
   assert.match(html, /id="home-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="scene-search"/u);
 
   assert.match(css, /\.topo-range-note/u);
+  assert.match(css, /input\[name="topo-heatmap-mode"\]:checked/u);
   assert.match(css, /\.topo-pair-transport/u);
   assert.match(css, /@media \(max-width: 820px\)/u);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/u);

@@ -25,7 +25,7 @@ import {
   topoCircularBinaryWorldPointForCanvasPixel,
 } from "../src/apps/topo/TopoCircularBinaryScenario.js";
 import {
-  normalizeTopoDisplayValue,
+  normalizeTopoFieldColorValue,
 } from "../src/apps/topo/TopoInteractionContract.js";
 import {
   evaluatePrescribedSourceWake,
@@ -344,7 +344,7 @@ test("selected moving samples agree with the separately authored prescribed-path
   }
 });
 
-test("stationary, superposition, source masking, and direct signed-log mapping stay explicit", () => {
+test("stationary, superposition, source masking, and physical-magnitude display mapping stays explicit", () => {
   const point = { x: 0.1, y: 0.5 };
   const stationary = sampleTopoCircularBinaryWake({ point, beta: 0, progress: 0 });
   const negativeDistance = Math.hypot(point.x - 0.2, point.y - 0.5);
@@ -352,7 +352,7 @@ test("stationary, superposition, source masking, and direct signed-log mapping s
   const expected = -TOPO_CIRCULAR_BINARY_KAPPA / negativeDistance ** 2 +
     TOPO_CIRCULAR_BINARY_KAPPA / positiveDistance ** 2;
   closeTo(stationary.rawValue, expected, 1e-8);
-  closeTo(stationary.displayCoordinate, normalizeTopoDisplayValue(expected));
+  closeTo(stationary.displayCoordinate, normalizeTopoFieldColorValue(expected));
 
   for (const beta of [0, 0.4, 1]) {
     const center = sampleTopoCircularBinaryWake({
