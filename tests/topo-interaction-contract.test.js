@@ -3,10 +3,12 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 import {
-  TOPO_DEFAULT_CONTOUR_DENSITY,
+  TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
   TOPO_DEFAULT_CONTOUR_VISIBILITY,
   TOPO_DISPLAY_CLIP_MAGNITUDE,
   TOPO_DISPLAY_MAPPING_ID,
+  TOPO_EXPONENT_RADIUS_CHART_ID,
+  TOPO_EXPONENT_RADIUS_MARKER_GAP_CSS,
   TOPO_FIRST_CONTOUR_BUDGET_MS,
   TOPO_INTERACTION_CONTRACT_ID,
   TOPO_INVERSE_SQUARE_SCALE,
@@ -17,6 +19,8 @@ import {
   applyTopoScenarioPolarity,
   createTopoAnalyticFieldRgbAtCanvasPixel,
   createTopoContourEmphasis,
+  createTopoContourMagnitudeSchedule,
+  createTopoExponentRadiusChart,
   createTopoPreviewFrameIdentity,
   createTopoSampleRgb,
   createTopoSequentialContourStyle,
@@ -27,11 +31,15 @@ import {
   createTopoSyntheticRawSampler,
   inverseTopoTransform,
   normalizeTopoDisplayValue,
+  normalizeTopoExponentRadiusColorValue,
   normalizeTopoFieldColorValue,
   resolveTopoCanvasPixelSize,
   syntheticTopoCausalDelay,
   syntheticTopoSignedValue,
   topoContourRangeDecades,
+  topoExponentDisplayRadiusForExponent,
+  topoExponentRadiusPhysicalPointForCanvasPixel,
+  topoPhysicalRadiusForWakeExponent,
   topoPreviewResultAt,
   topoWorldPointForCanvasPixel,
   transformTopoValue,
@@ -72,7 +80,7 @@ test("TOPO-002 freezes one zero-safe signed base-10 display mapping", () => {
   assert.equal(TOPO_DISPLAY_MAPPING_ID, "signed-log10");
   assert.equal(TOPO_REFERENCE_SCALE, 4);
   assert.equal(TOPO_DISPLAY_CLIP_MAGNITUDE, 64);
-  assert.equal(TOPO_DEFAULT_CONTOUR_DENSITY, 0.4);
+  assert.equal(TOPO_DEFAULT_CONTOUR_RANGE_DECADES, 3);
   assert.equal(TOPO_DEFAULT_CONTOUR_VISIBILITY, 0.75);
   assert.ok(TOPO_FIRST_CONTOUR_BUDGET_MS <= 34);
 
@@ -134,99 +142,239 @@ test("beta-one leading pixels use neutral Electric Purple without fabricated zer
   }).rawValue, null);
 });
 
-test("Contour range maps continuously from one to three decades", () => {
-  closeTo(topoContourRangeDecades(0), 1);
-  closeTo(topoContourRangeDecades(0.4), 2);
-  closeTo(topoContourRangeDecades(1), 3);
-  closeTo(topoContourRangeDecades(0.2), 1.5);
-  closeTo(topoContourRangeDecades(0.7), 2.5);
+test("Contour span selects exact inward and outward raw decades without duplicates", () => {
+  assert.equal(topoContourRangeDecades(0), 1);
+  assert.equal(topoContourRangeDecades(1), 1);
+  assert.equal(topoContourRangeDecades(2), 2);
+  assert.equal(topoContourRangeDecades(3), 3);
+  assert.equal(topoContourRangeDecades(4), 4);
+  assert.equal(topoContourRangeDecades(5), 4);
 
-  const minimum = createTopoSyntheticContourSelection(0);
-  const partial = createTopoSyntheticContourSelection(0.2);
-  const normal = createTopoSyntheticContourSelection(0.4);
-  const maximum = createTopoSyntheticContourSelection(1);
-  assert.deepEqual([minimum.length, normal.length, maximum.length], [4, 7, 10]);
-  assert.equal(partial.length, 6);
-  closeTo(partial.at(-1).revealWeight, 0.5);
-  assert.equal(partial.slice(0, -1).every(({ revealWeight }) => revealWeight === 1), true);
+  const schedules = [1, 2, 3, 4].map((contourRangeDecades) =>
+    createTopoContourMagnitudeSchedule({ contourRangeDecades }));
+  const selections = [1, 2, 3, 4].map(createTopoSyntheticContourSelection);
+  assert.deepEqual(selections.map((selection) => selection.length), [3, 5, 7, 9]);
   assert.deepEqual(
-    minimum.map(({ causalDelay }) => causalDelay),
-    partial.slice(0, minimum.length).map(({ causalDelay }) => causalDelay),
+    selections[3].map(({ majorDecadeLabel }) => majorDecadeLabel),
+    ["10⁴", "10³", "10²", "10¹", "10⁰", "10⁻¹", "10⁻²", "10⁻³", "10⁻⁴"],
   );
+  assert.equal(
+    selections[3].filter(({ referenceLevel }) => referenceLevel).length,
+    1,
+  );
+  assert.equal(new Set(
+    selections[3].map(({ rawMagnitude, magnitude }) => rawMagnitude ?? magnitude),
+  ).size, selections[3].length);
   assert.deepEqual(
-    normal.map(({ causalDelay }) => causalDelay),
-    maximum.slice(0, normal.length).map(({ causalDelay }) => causalDelay),
+    schedules[1].filter(({ rawDecade }) => Math.abs(rawDecade) <= 1),
+    schedules[0],
   );
-  assert.deepEqual(
-    maximum.filter(({ majorDecade }) => majorDecade).map(({ latticeIndex }) => latticeIndex),
-    [0, 3, 6, 9],
-  );
-  assert.deepEqual(
-    maximum.filter(({ majorDecade }) => majorDecade).map(({ majorDecadeLabel }) => majorDecadeLabel),
-    ["10⁰", "10⁻¹", "10⁻²", "10⁻³"],
-  );
-});
-
-test("three logarithmic intensity levels per decade keep fixed anchors", () => {
-  const selection = createTopoSyntheticContourSelection(1);
-  assert.equal(selection.length, TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE.masterCount);
-  closeTo(selection[0].causalDelay, 0.025);
-  for (let index = 1; index < selection.length; index += 1) {
+  for (let index = 1; index < selections[3].length; index += 1) {
     closeTo(
-      selection[index].causalDelay / selection[index - 1].causalDelay,
-      10 ** (1 / 6),
+      selections[3][index].causalDelay / selections[3][index - 1].causalDelay,
+      Math.sqrt(10),
     );
     const currentIntensity = TOPO_INVERSE_SQUARE_SCALE /
-      selection[index].causalDelay ** 2;
+      selections[3][index].causalDelay ** 2;
     const priorIntensity = TOPO_INVERSE_SQUARE_SCALE /
-      selection[index - 1].causalDelay ** 2;
-    closeTo(currentIntensity / priorIntensity, 10 ** (-1 / 3));
-  }
-  for (const majorIndex of [0, 3, 6, 9]) {
-    closeTo(
-      selection[majorIndex].causalDelay / selection[0].causalDelay,
-      10 ** (majorIndex / 6),
-    );
+      selections[3][index - 1].causalDelay ** 2;
+    closeTo(currentIntensity / priorIntensity, 0.1);
   }
 });
 
-test("contour visibility and sequential fade stay monotone during reveal", () => {
-  assert.deepEqual(createTopoContourEmphasis(0), {
-    opacity: 0,
-    whiteMix: 0,
-    widthCss: 0.8,
+test("contour span preserves the raw kernel, frame identity, polarity, and moving linear geometry", () => {
+  const sample = {
+    x: TOPO_SOURCE_POSITION.x - 0.08,
+    y: TOPO_SOURCE_POSITION.y + 0.03,
+    beta: 0.5,
+  };
+  const rawBefore = syntheticTopoSignedValue({ ...sample, polaritySign: -1 });
+  const frameBefore = createTopoPreviewFrameIdentity({
+    beta: sample.beta,
+    polaritySign: -1,
   });
-  assert.deepEqual(createTopoContourEmphasis(), {
-    opacity: 0.75,
-    whiteMix: 0.75,
-    widthCss: 1.7,
+  const narrow = createTopoSyntheticContourRenderPlan({
+    beta: sample.beta,
+    contourRangeDecades: 1,
   });
-  assert.deepEqual(createTopoContourEmphasis(1), {
-    opacity: 1,
-    whiteMix: 1,
-    widthCss: 2,
+  const wide = createTopoSyntheticContourRenderPlan({
+    beta: sample.beta,
+    contourRangeDecades: 4,
   });
+  assert.deepEqual(
+    wide.filter(({ rawDecade }) => Math.abs(rawDecade) <= 1)
+      .map(({ center, radius, rawMagnitude }) => ({ center, radius, rawMagnitude })),
+    narrow.map(({ center, radius, rawMagnitude }) => ({ center, radius, rawMagnitude })),
+  );
+  closeTo(
+    syntheticTopoSignedValue({ ...sample, polaritySign: -1 }),
+    rawBefore,
+  );
+  assert.equal(createTopoPreviewFrameIdentity({
+    beta: sample.beta,
+    polaritySign: -1,
+  }), frameBefore);
+  closeTo(
+    syntheticTopoSignedValue({ ...sample, polaritySign: 1 }),
+    -rawBefore,
+  );
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  assert.match(runtime, /state\.beta === 0/u);
+  assert.match(runtime, /display-only exponent radius/u);
+});
 
-  const count = TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE.masterCount;
+test("beta-zero single-source exponent radius maps integer exponents to equal display steps", () => {
+  const width = 916;
+  const height = 720;
+  const markerRadius = 4.5;
+  const chart = createTopoExponentRadiusChart({
+    width,
+    height,
+    pixelRatio: 1,
+    sourceMarkerRadiusPixels: markerRadius,
+    contourRangeDecades: 3,
+  });
+  assert.equal(chart.chartId, TOPO_EXPONENT_RADIUS_CHART_ID);
+  assert.equal(chart.span, 3);
+  assert.equal(chart.referenceMagnitude, 64);
+  assert.equal(chart.outsidePolicy, "neutral-clip-no-clamp");
+  assert.equal(TOPO_EXPONENT_RADIUS_MARKER_GAP_CSS, 0);
+
+  const exponents = [3, 2, 1, 0, -1, -2, -3];
+  const radii = exponents.map((exponent) =>
+    topoExponentDisplayRadiusForExponent({ exponent, chart }));
+  for (let index = 1; index < radii.length; index += 1) {
+    closeTo(radii[index] - radii[index - 1], chart.radialStepPixels);
+  }
+  closeTo(radii[0], chart.innerRadiusPixels);
+  closeTo(radii.at(-1), chart.outerRadiusPixels);
+
+  for (const exponent of exponents) {
+    const radius = topoExponentDisplayRadiusForExponent({ exponent, chart });
+    const mapped = topoExponentRadiusPhysicalPointForCanvasPixel({
+      pixelX: chart.sourcePixelX - radius,
+      pixelY: chart.sourcePixelY,
+      width,
+      height,
+      chart,
+    });
+    assert.equal(mapped.state, "ordinary");
+    closeTo(mapped.exponent, exponent);
+    closeTo(mapped.physicalRadius, topoPhysicalRadiusForWakeExponent(exponent));
+    for (const polaritySign of [-1, 1]) {
+      const raw = syntheticTopoSignedValue({
+        ...mapped.physicalPoint,
+        beta: 0,
+        polaritySign,
+      });
+      closeTo(raw, polaritySign * 64 * 10 ** exponent, Math.abs(raw) * 1e-12);
+    }
+  }
+
+  assert.equal(topoExponentRadiusPhysicalPointForCanvasPixel({
+    pixelX: chart.sourcePixelX + chart.innerRadiusPixels - 0.25,
+    pixelY: chart.sourcePixelY,
+    width,
+    height,
+    chart,
+  }).state, "masked:inside_exponent_radius");
+  assert.equal(topoExponentRadiusPhysicalPointForCanvasPixel({
+    pixelX: chart.sourcePixelX + chart.outerRadiusPixels + 0.25,
+    pixelY: chart.sourcePixelY,
+    width,
+    height,
+    chart,
+  }).state, "clipped:outside_exponent_radius");
+});
+
+test("beta-zero exponent-radius pixel profile is smooth, signed, and unsaturated across the annulus", () => {
+  for (const span of [1, 2, 3, 4]) {
+    const priorByPolarity = new Map();
+    for (let exponent = -span; exponent <= span; exponent += 1) {
+      const magnitude = 64 * 10 ** exponent;
+      const expectedStrength = (exponent + span) / (2 * span);
+      for (const polaritySign of [-1, 1]) {
+        const normalized = normalizeTopoExponentRadiusColorValue(
+          polaritySign * magnitude,
+          { span },
+        );
+        closeTo(normalized, polaritySign * expectedStrength);
+        const rgb = createTopoSignedRgb(normalized);
+        const zero = [143, 0, 255];
+        const endpoint = polaritySign < 0
+          ? [37, 99, 235]
+          : [220, 38, 38];
+        rgb.forEach((channel, index) => {
+          assert.ok(channel >= Math.min(zero[index], endpoint[index]));
+          assert.ok(channel <= Math.max(zero[index], endpoint[index]));
+        });
+        const prior = priorByPolarity.get(polaritySign);
+        if (prior) {
+          const distance = rgb.reduce((sum, channel, index) =>
+            sum + Math.abs(channel - prior[index]), 0);
+          assert.ok(distance > 0);
+        }
+        priorByPolarity.set(polaritySign, rgb);
+      }
+    }
+  }
+});
+
+test("exponent-radius resize changes display spacing without changing raw exponent values", () => {
+  for (const { width, height } of [
+    { width: 1440, height: 600 },
+    { width: 390, height: 844 },
+  ]) {
+    const chart = createTopoExponentRadiusChart({
+      width,
+      height,
+      pixelRatio: 1,
+      sourceMarkerRadiusPixels: 4.5,
+      contourRangeDecades: 4,
+    });
+    for (const exponent of [4, 0, -4]) {
+      const radius = topoExponentDisplayRadiusForExponent({ exponent, chart });
+      const mapped = topoExponentRadiusPhysicalPointForCanvasPixel({
+        pixelX: chart.sourcePixelX,
+        pixelY: chart.sourcePixelY - radius,
+        width,
+        height,
+        chart,
+      });
+      closeTo(mapped.exponent, exponent);
+      closeTo(
+        Math.abs(syntheticTopoSignedValue({
+          ...mapped.physicalPoint,
+          beta: 0,
+          polaritySign: 1,
+        })),
+        64 * 10 ** exponent,
+        64 * 10 ** exponent * 1e-12,
+      );
+    }
+  }
+});
+
+test("contour visibility changes opacity only and keeps equal scientific styling", () => {
+  for (const visibility of [0, 0.75, 1]) {
+    assert.deepEqual(createTopoContourEmphasis(visibility), {
+      opacity: visibility,
+      whiteMix: 0,
+      widthCss: 1.15,
+    });
+  }
+  const count = 4;
   const styles = Array.from({ length: count }, (_, index) =>
     createTopoSequentialContourStyle({ index, count, visibility: 0.75 }));
-  for (let index = 1; index < styles.length; index += 1) {
-    assert.ok(styles[index].opacity <= styles[index - 1].opacity);
-    assert.ok(styles[index].whiteMix <= styles[index - 1].whiteMix);
-    assert.ok(styles[index].widthCss <= styles[index - 1].widthCss);
-  }
+  assert.equal(styles.every(({ opacity }) => opacity === 0.75), true);
+  assert.equal(styles.every(({ whiteMix }) => whiteMix === 0), true);
+  assert.equal(styles.every(({ widthCss }) => widthCss === 1.15), true);
   const plan = createTopoSyntheticContourRenderPlan({
     beta: 0.5,
-    contourDensity: 0.2,
+    contourRangeDecades: 3,
   });
-  const effectiveOpacities = plan.map((circle) =>
-    createTopoSequentialContourStyle({
-      index: circle.latticeIndex,
-      count,
-      visibility: 0.75,
-    }).opacity * circle.revealWeight);
-  assert.equal(effectiveOpacities.every((opacity, index) =>
-    index === 0 || opacity <= effectiveOpacities[index - 1]), true);
+  assert.equal(plan.length, 7);
+  assert.equal(plan.every(({ revealWeight }) => revealWeight === 1), true);
 });
 
 test("analytic contours are exact complete causal-delay circles and raw isolines", () => {
@@ -288,8 +436,24 @@ test("true x-y chart maps equal pixel distances to equal beta-zero values", () =
 });
 
 test("analytic display-pixel reference is deterministic for both polarities", () => {
-  const sample = { pixelX: 210, pixelY: 357, width: 916, height: 720 };
+  const width = 916;
+  const height = 720;
+  const chart = createTopoExponentRadiusChart({
+    width,
+    height,
+    sourceMarkerRadiusPixels: 4.5,
+    contourRangeDecades: 3,
+  });
   for (const beta of [0, 0.5, 0.83, 1]) {
+    const sample = beta === 0
+      ? {
+        pixelX: chart.sourcePixelX -
+          topoExponentDisplayRadiusForExponent({ exponent: 0, chart }),
+        pixelY: chart.sourcePixelY,
+        width,
+        height,
+      }
+      : { pixelX: 210, pixelY: 357, width, height };
     const electrino = createTopoAnalyticFieldRgbAtCanvasPixel({
       ...sample,
       beta,
@@ -309,7 +473,7 @@ test("analytic display-pixel reference is deterministic for both polarities", ()
 test("scenario polarity changes preserve beta, range, and visibility", () => {
   const configured = {
     beta: 0.73,
-    contourDensity: 0.418,
+    contourRangeDecades: 0.418,
     contourVisibility: 0.867,
   };
   const positrino = applyTopoScenarioPolarity(configured, "positrino");
@@ -504,7 +668,7 @@ test("all four scenarios share the half-size marker and contained source mask", 
   assert.ok(maskWorldRadius < markerWorldRadius);
 
   const html = readRepoFile("topo.html");
-  const optionValues = Array.from(html.matchAll(/<option value="([^"]+)"/gu))
+  const optionValues = Array.from(html.matchAll(/name="topo-scenario" value="([^"]+)"/gu))
     .map((match) => match[1]);
   assert.deepEqual(optionValues, [
     "electrino",
@@ -533,6 +697,33 @@ test("Topo UI exposes the fixed logarithmic architecture and preserves Home", ()
   assert.match(runtime, /createTopoSyntheticContourRenderPlan/u);
   assert.match(runtime, /contourStagingContext\.arc\(/u);
   assert.match(runtime, /drawMajorDecadeLabels/u);
+  assert.match(
+    runtime,
+    /state\.contourVisibility === 0[\s\S]*majorDecadeLabels = ""[\s\S]*majorDecadeLabelPositions = ""/u,
+  );
+  assert.match(
+    runtime,
+    /listen\(dom\.contours, "input",[\s\S]*scheduleFrameChange\(\)[\s\S]*scheduleContourChange\(\)/u,
+  );
+  assert.match(
+    runtime,
+    /listen\(dom\.contourVisibility, "input", scheduleContourChange\)/u,
+  );
+  assert.match(
+    runtime,
+    /state\.contourVisibility === 0[\s\S]*\? "Hidden"/u,
+  );
+  assert.match(runtime, /drawExponentRadiusAxis/u);
+  assert.match(runtime, /createTopoExponentRadiusChart/u);
+  assert.match(runtime, /display-only exponent radius/u);
+  assert.match(runtime, /state\.backgroundMode === "white"[\s\S]*--ui-color-electric-purple/u);
+  const markerSource = runtime.slice(
+    runtime.indexOf("function drawSourceMarker"),
+    runtime.indexOf("function drawSourceOverlay"),
+  );
+  assert.doesNotMatch(markerSource, /state\./u);
+  assert.match(markerSource, /WHITE\.r/u);
+  assert.match(runtime, /exponentDisplay \+ u_exponent_span/u);
   assert.match(runtime, /compact = cssWidth < 520/u);
   assert.match(runtime, /intersectionX - direction \* 7 \* pixelRatio/u);
   assert.match(runtime, /minimumLabelX = \(compact \? 82 : 28\) \* pixelRatio/u);
@@ -544,7 +735,9 @@ test("Topo UI exposes the fixed logarithmic architecture and preserves Home", ()
   assert.match(runtime, /TOPO_INVERSE_SQUARE_SCALE/u);
   assert.match(runtime, /createTopoCollinearPairRawSampler/u);
   assert.doesNotMatch(runtime, /createTopoCollinearPairContourRenderPlan/u);
-  assert.match(runtime, /const circles = state\.pairMode[\s\S]*\? \[\]/u);
+  assert.match(runtime, /extractTopoSampledFieldContourSegments/u);
+  assert.match(runtime, /drawSampledPairContours/u);
+  assert.match(runtime, /rawFrame: cachedRawFrame/u);
   assert.match(runtime, /sourceContribution/u);
   assert.match(runtime, /finiteHistory/u);
   assert.match(runtime, /setTransportControlButtonPresentation/u);
@@ -554,16 +747,17 @@ test("Topo UI exposes the fixed logarithmic architecture and preserves Home", ()
   assert.doesNotMatch(runtime, /asinh|arsinh|u_gain|TOPO_FIELD_COLOR_GAIN/iu);
   assert.doesNotMatch(runtime, /transformId|u_transform|scheduleTransformChange|dom\.transform/u);
 
-  assert.match(html, /<title>Architrino Wake Intensity Map<\/title>/u);
-  assert.match(html, /<h1>Wake Intensity Map<\/h1>/u);
-  assert.match(html, /Two-dimensional prescribed-motion slice/u);
+  assert.match(html, /<title>Architrino Wake Topological Map<\/title>/u);
+  assert.match(html, /<h1>Wake Topological Map<\/h1>/u);
+  assert.match(html, /Two-dimensional prescribed motion/u);
   assert.match(html, /<h2 id="topo-about-title">About this view<\/h2>/u);
-  assert.match(html, /<span>Contour range<\/span>/u);
-  assert.match(html, />Approaching collinear electrino and positrino<\/option>/u);
+  assert.match(html, /<span>Contour span<\/span>/u);
+  assert.match(html, /id="topo-coordinate-mode"[^>]*aria-live="polite"/u);
+  assert.match(html, />Approaching collinear electrino and positrino<\/span>/u);
   assert.match(html, /id="topo-pair-play"/u);
   assert.match(html, /id="topo-pair-replay"/u);
-  assert.match(html, />2\.0 decades<\/output>/u);
-  assert.match(html, /3 levels \/ decade · I ∝ 1\/r²/u);
+  assert.match(html, />±3 decades<\/output>/u);
+  assert.match(html, /One contour per raw factor of 10 inward and outward/u);
   assert.match(html, /id="topo-legend-mapping"/u);
   assert.doesNotMatch(html, /Scale transform|topo-transform|Linear|Signed log2|Asinh/u);
   assert.doesNotMatch(html, /Raw probe|Nonnumeric state legend|topo-stage-caption/u);

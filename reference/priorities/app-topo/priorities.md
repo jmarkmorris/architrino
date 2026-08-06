@@ -36,12 +36,12 @@ Topo now exposes four prescribed display scenarios: a single electrino, a single
 5. The initial scenario choices are `Single electrino` and `Single positrino`.
 6. The first release is a prescribed-path, fixed-time map. Dynamics are deferred to a separately owned later phase.
 7. Contours use a signed diverging palette: large positive values are red, zero is purple, and large negative values are blue.
-8. Contours use one fixed inverse-square logarithmic lattice, $r_n=r_0 10^{n/6}$, with three equal log-intensity intervals per decade and fixed major decade anchors. `Contour range` reveals one through three decades without moving or re-anchoring an existing circle.
+8. Contours use one fixed raw-decade lattice with exactly one raw magnitude per factor of ten per sign plus explicit zero. Integer `Contour span` values $1$ through $4$ select the same number of inward and outward decades around the reference, which appears once; the unchanged inverse-square geometry places single-source radii at $r_m=r_0 10^{-m/2}$ without spatial warping or movement of shared levels.
 9. The field uses one zero-safe signed base-10 logarithmic color mapping. No alternate transform selector or transform-dependent contour geometry remains.
 10. A singular source neighborhood is shown as masked or unavailable. Display masking must not be described as a physical core or a change to the wake law.
 11. Topo renders declared potential products supplied through [Potential](../app-potential/priorities.md); it does not establish a competing app-local path-to-potential law.
 12. The first raw map product is `Signed ordinary wake intensity`, not potential. It uses the canonical inverse-square distance factor and transmitter-side ordinary-root weight on the prescribed path, as fixed by [TOPO-001](topo-observable-and-reference-geometry-v1.md).
-13. TOPO-002 fixes the signed base-10 mapping with $z_*=4$, a symmetric ordinary display clip at $|z|=64$, $r_0=0.025$, a $10^{1/6}$ adjacent-radius ratio, a $2.0$-decade default contour range, and $75\%$ contour visibility.
+13. TOPO-002 fixes the signed base-10 mapping with $z_*=4$, a symmetric ordinary display clip at $|z|=64$, $r_0=0.025$, a $10^{1/2}$ adjacent-radius ratio, a $3$-decade default contour range, and $75\%$ contour visibility.
 14. The TOPO-002 route is an explicitly labeled synthetic interaction preview. It supplies no TOPO-001 raw values and is not the TOPO-003 reference surface.
 15. Applications is organized through four category scenes—Learn & Reference, Explore Models, Analyze Evidence, and Build & Simulate—and Topo is the fifteenth app under Explore Models.
 16. `Approaching collinear electrino and positrino` remains an independent prescribed-path scenario with its own finite-history replay and controls.

@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#0d0a17" />
     <meta
       name="description"
-      content="Explore theoretical two-dimensional views of signed wake intensity around prescribed one-source, collinear-pair, and circular-binary paths."
+      content="Explore theoretical two-dimensional views of signed wake intensity around prescribed path scenarios."
     />
-    <title>Architrino Wake Intensity Map</title>
+    <title>Architrino Wake Topological Map</title>
     <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
     <link rel="stylesheet" href="./src/apps/topo/topo.css" />
   </head>
@@ -17,12 +17,12 @@
       <aside
         id="topo-left-rail"
         class="topo-left-rail"
-        aria-label="Wake Intensity Map controls"
+        aria-label="Wake Topological Map controls"
       >
         <header class="topo-rail-header">
           <div class="topo-title">
-            <h1>Wake Intensity Map</h1>
-            <p>Two-dimensional prescribed-motion slice</p>
+            <h1>Wake Topological Map</h1>
+            <p>Two-dimensional prescribed motion</p>
           </div>
           <button
             id="topo-panel-collapse"
@@ -30,27 +30,36 @@
             type="button"
             aria-controls="topo-panel-content"
             aria-expanded="true"
-            aria-label="Collapse Wake Intensity Map controls"
+            aria-label="Collapse Wake Topological Map controls"
           ></button>
         </header>
 
         <div id="topo-panel-content" class="topo-panel-content">
           <section class="topo-notice" aria-labelledby="topo-about-title">
             <h2 id="topo-about-title">About this view</h2>
-            <p>Explore theoretical two-dimensional views of signed wake intensity around prescribed one-source, collinear-pair, and circular-binary paths.</p>
+            <p>Explore theoretical two-dimensional views of signed wake intensity around prescribed path scenarios.</p>
           </section>
 
           <section class="topo-card" aria-labelledby="topo-scenario-title">
-            <h2 id="topo-scenario-title">Scenario record</h2>
-            <label class="topo-field" for="topo-scenario">
-              <span>Scenario</span>
-              <select id="topo-scenario">
-                <option value="electrino">Electrostatic: single electrino</option>
-                <option value="positrino">Electrostatic: single positrino</option>
-                <option value="approaching-collinear-electrino-positrino">Approaching collinear electrino and positrino</option>
-                <option value="orbiting-binary">Orbiting binary electrino and positrino</option>
-              </select>
-            </label>
+            <fieldset id="topo-scenario-control" class="topo-scenario-options">
+              <legend id="topo-scenario-title">Scenario</legend>
+              <label>
+                <input type="radio" name="topo-scenario" value="electrino" checked />
+                <span>Electrostatic: single electrino</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-scenario" value="positrino" />
+                <span>Electrostatic: single positrino</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-scenario" value="approaching-collinear-electrino-positrino" />
+                <span>Approaching collinear electrino and positrino</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-scenario" value="orbiting-binary" />
+                <span>Orbiting binary electrino and positrino</span>
+              </label>
+            </fieldset>
             <label
               id="topo-binary-radius-control"
               class="topo-range-field"
@@ -88,12 +97,7 @@
                 <output id="topo-beta-output" for="topo-beta">β = 0.50</output>
               </span>
             </label>
-            <dl class="topo-compact-facts">
-              <div id="topo-direction-fact">
-                <dt>Direction</dt>
-                <dd id="topo-direction">Positive x</dd>
-              </div>
-            </dl>
+            <p id="topo-coordinate-mode" class="topo-range-note" aria-live="polite">Display coordinates: linear Euclidean</p>
             <fieldset id="topo-binary-direction-control" class="topo-radio-field" hidden>
               <legend>Orbit direction</legend>
               <label>
@@ -105,27 +109,23 @@
                 <span>Clockwise</span>
               </label>
             </fieldset>
-          </section>
-
-          <section class="topo-card" aria-labelledby="topo-display-title">
-            <h2 id="topo-display-title">Display</h2>
             <div id="topo-contour-controls">
             <label class="topo-range-field" for="topo-contours">
-              <span>Contour range</span>
+              <span>Contour span</span>
               <span class="topo-range-row">
                 <input
                   id="topo-contours"
                   type="range"
-                  min="0"
-                  max="100"
-                  step="0.1"
-                  value="40"
+                  min="1"
+                  max="4"
+                  step="1"
+                  value="3"
                   data-keyboard-step="1"
-                  aria-label="Contour logarithmic range"
+                  aria-label="Symmetric raw-decade contour span around the reference level"
                 />
-                <output id="topo-contours-output" for="topo-contours">2.0 decades</output>
+                <output id="topo-contours-output" for="topo-contours">±3 decades</output>
               </span>
-              <small class="topo-range-note">3 levels / decade · I ∝ 1/r²</small>
+              <small class="topo-range-note">One contour per raw factor of 10 inward and outward</small>
             </label>
             <label class="topo-range-field" for="topo-contour-visibility">
               <span>Contour visibility</span>
@@ -186,7 +186,7 @@
         <canvas
           id="topo-canvas"
           tabindex="0"
-          aria-label="Theoretical signed inverse-square wake intensity for the selected prescribed-motion scenario, with scenario-specific contour display and a faint dashed horizontal reference axis"
+          aria-label="Wake Topological Map: theoretical signed inverse-square wake intensity on a linear Euclidean chart, with scenario-specific reference overlays"
         ></canvas>
         <canvas id="topo-contour-canvas" aria-hidden="true"></canvas>
         <div class="topo-loading-veil" aria-hidden="true">
@@ -206,6 +206,7 @@
             class="topo-icon-button topo-transport-button"
             type="button"
             aria-label="Play collinear replay"
+            aria-keyshortcuts="Space"
           ></button>
           <button
             id="topo-pair-replay"

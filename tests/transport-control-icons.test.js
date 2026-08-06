@@ -90,6 +90,39 @@ test("transport presentation keeps icon, accessible name, title, and pressed sta
   assert.equal(button.dataset.tooltip, "Pause replay");
 });
 
+test("unchanged transport presentation preserves the live icon node", () => {
+  let writes = 0;
+  const liveIcon = { dataset: { transportIcon: "pause" } };
+  const container = {
+    querySelector() {
+      return liveIcon;
+    },
+    set innerHTML(_value) {
+      writes += 1;
+    },
+  };
+  const attributes = {};
+  const button = {
+    dataset: {},
+    querySelector() {
+      return container;
+    },
+    setAttribute(name, value) {
+      attributes[name] = value;
+    },
+    removeAttribute(name) {
+      delete attributes[name];
+    },
+  };
+  setTransportControlButtonPresentation(button, {
+    kind: TRANSPORT_CONTROL_ICON.PAUSE,
+    label: "Pause replay",
+    pressed: true,
+  });
+  assert.equal(writes, 0);
+  assert.equal(attributes["aria-pressed"], "true");
+});
+
 test("unknown transport kinds do not advance", () => {
   assert.throws(() => getTransportControlIconMarkup("skip"), /Unknown transport-control icon/);
 });

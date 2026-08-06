@@ -119,7 +119,7 @@ export function createTopoCollinearPairFrame({
   });
 }
 
-function causalDelayForPrescribedSource(x, y, source) {
+export function solveTopoCollinearPairCausalDelay(x, y, source) {
   const offsetX = x - source.position.x;
   const offsetY = y - source.position.y;
   const radiusSquared = offsetX ** 2 + offsetY ** 2;
@@ -137,6 +137,59 @@ function causalDelayForPrescribedSource(x, y, source) {
     offsetX ** 2 + (1 - velocityBeta ** 2) * offsetY ** 2,
   );
   return radiusSquared / (lambda - velocityBeta * offsetX);
+}
+
+export function createTopoCollinearPartnerCharacteristicDiagnostic({
+  phase = 0.517,
+  observerId = "electrino",
+  horizontalWorldSpan = 1,
+} = {}) {
+  const frame = createTopoCollinearPairFrame({
+    beta: 1,
+    phase,
+    horizontalWorldSpan,
+  });
+  const observer = frame.sources.find((source) => source.id === observerId);
+  const partner = frame.sources.find((source) => source.id !== observerId);
+  if (!observer || !partner) {
+    throw new RangeError("observerId must identify one of the prescribed sources.");
+  }
+  const causalDelay = solveTopoCollinearPairCausalDelay(
+    observer.position.x,
+    observer.position.y,
+    partner,
+  );
+  const ordinaryRoot = causalDelay != null && causalDelay > 0 &&
+    causalDelay <= frame.observationTime + 1e-12;
+  const emissionTime = ordinaryRoot
+    ? frame.observationTime - causalDelay
+    : null;
+  const emissionLocation = ordinaryRoot
+    ? Object.freeze({
+      x: partner.start.x + partner.velocityBeta * emissionTime,
+      y: partner.start.y,
+    })
+    : null;
+  const characteristicDirection = ordinaryRoot
+    ? Math.sign(observer.position.x - emissionLocation.x)
+    : 0;
+  return Object.freeze({
+    frame,
+    observer,
+    partner,
+    ordinaryRoot,
+    causalDelay,
+    emissionTime,
+    emissionLocation,
+    characteristicDirection,
+    partnerCharacteristic: ordinaryRoot &&
+      characteristicDirection === -Math.sign(partner.velocityBeta)
+      ? "trailing"
+      : "leading",
+    partnerWakeValue: ordinaryRoot
+      ? partner.polaritySign * TOPO_INVERSE_SQUARE_SCALE / causalDelay ** 2
+      : null,
+  });
 }
 
 export function createTopoCollinearPairRawSampler({
@@ -163,7 +216,7 @@ export function createTopoCollinearPairRawSampler({
     }
     let signedSum = 0;
     for (const source of frame.sources) {
-      const causalDelay = causalDelayForPrescribedSource(x, y, source);
+      const causalDelay = solveTopoCollinearPairCausalDelay(x, y, source);
       if (
         causalDelay == null ||
         causalDelay <= 0 ||

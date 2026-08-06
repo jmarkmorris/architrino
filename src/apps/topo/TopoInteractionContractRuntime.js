@@ -9,16 +9,19 @@ import {
   TOPO_INVERSE_SQUARE_SCALE,
   TOPO_REFERENCE_SCALE,
   TOPO_SOURCE_POSITION,
-  TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE,
   TOPO_TRANSLATION_AXIS,
   applyTopoScenarioPolarity,
+  createTopoExponentRadiusChart,
   createTopoSequentialContourStyle,
   createTopoSyntheticContourRenderPlan,
   createTopoSyntheticRawSampler,
   normalizeTopoDisplayValue,
+  normalizeTopoExponentRadiusColorValue,
   normalizeTopoFieldColorValue,
   resolveTopoCanvasPixelSize,
   topoContourRangeDecades,
+  topoExponentDisplayRadiusForExponent,
+  topoExponentRadiusPhysicalPointForCanvasPixel,
   topoWorldPointForCanvasPixel,
 } from "./TopoInteractionContract.js";
 import {
@@ -27,6 +30,11 @@ import {
   createTopoCollinearPairRawSampler,
   resolveTopoCollinearPairPlaybackSeconds,
 } from "./TopoCollinearPairScenario.js";
+import {
+  createTopoSignedContourLevels,
+  extractTopoSampledFieldContourSegments,
+  TOPO_SAMPLED_FIELD_STATE,
+} from "./TopoSampledFieldContours.js";
 import {
   TOPO_CIRCULAR_BINARY_CENTER,
   TOPO_CIRCULAR_BINARY_DEFAULT_RADIUS,
@@ -85,6 +93,17 @@ function formatPercentage(normalizedValue) {
   return (Number.isInteger(percentage) ? percentage.toFixed(0) : percentage.toFixed(1)) + "%";
 }
 
+export function topoGlobalTransportOwnsSpace(event) {
+  if (event?.code !== "Space" || event?.repeat || event?.target?.isContentEditable) {
+    return false;
+  }
+  const tagName = String(event?.target?.tagName ?? "").toUpperCase();
+  if (tagName === "INPUT") {
+    return String(event.target?.type ?? "").toLowerCase() === "range";
+  }
+  return !/^(SELECT|TEXTAREA|BUTTON|A)$/u.test(tagName);
+}
+
 export const TOPO_SOURCE_MARKER_RADIUS_SCALE = 0.5;
 export const TOPO_SOURCE_MASK_MARKER_RATIO = 0.75;
 
@@ -122,6 +141,19 @@ export function resolveTopoSourceMaskRadius({
   }) / Math.max(1, canvasWidth - 1);
 }
 
+export function resolveTopoCollinearSourceMaskRadius({
+  width,
+  height,
+  pixelRatio = 1,
+} = {}) {
+  const canvasHeight = Math.max(1, Number(height));
+  return TOPO_SOURCE_MASK_MARKER_RATIO * resolveTopoSourceMarkerRadius({
+    width,
+    height: canvasHeight,
+    pixelRatio,
+  }) / Math.max(1, canvasHeight - 1);
+}
+
 export function mountTopoInteractionContractPreview(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
@@ -129,11 +161,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
     app: requireElement(documentLike, "#topo-app"),
     panelContent: requireElement(documentLike, "#topo-panel-content"),
     collapse: requireElement(documentLike, "#topo-panel-collapse"),
-    scenario: requireElement(documentLike, "#topo-scenario"),
+    scenarioControl: requireElement(documentLike, "#topo-scenario-control"),
+    scenarioInputs: Array.from(documentLike.querySelectorAll(
+      'input[name="topo-scenario"]',
+    )),
     beta: requireElement(documentLike, "#topo-beta"),
     betaOutput: requireElement(documentLike, "#topo-beta-output"),
-    direction: requireElement(documentLike, "#topo-direction"),
-    directionFact: requireElement(documentLike, "#topo-direction-fact"),
+    coordinateMode: requireElement(documentLike, "#topo-coordinate-mode"),
     contours: requireElement(documentLike, "#topo-contours"),
     contoursOutput: requireElement(documentLike, "#topo-contours-output"),
     contourVisibility: requireElement(documentLike, "#topo-contour-visibility"),
@@ -163,12 +197,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
     binaryDirectionInputs: Array.from(documentLike.querySelectorAll(
       'input[name="topo-binary-direction"]',
     )),
-    binaryBackgroundControl: requireElement(
+    backgroundControl: requireElement(
       documentLike,
-      "#topo-binary-background-control",
+      "#topo-background-control",
     ),
-    binaryBackgroundInputs: Array.from(documentLike.querySelectorAll(
-      'input[name="topo-binary-background"]',
+    backgroundInputs: Array.from(documentLike.querySelectorAll(
+      'input[name="topo-background"]',
     )),
     canvas: requireElement(documentLike, "#topo-canvas"),
     contourCanvas: requireElement(documentLike, "#topo-contour-canvas"),
@@ -218,6 +252,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   let pairPlaybackPlaying = false;
   let pairPlaybackCompleted = false;
   let pairPlaybackPreviousTimestamp = null;
+  let scenarioPointerActivation = false;
   let binaryProgress = 0;
   let binaryPlaying = false;
   let binaryPlaybackStartedAt = null;
@@ -226,6 +261,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   let rawFrameCache = null;
   let lastContourPresentationKey = null;
   const rawFrameCaches = new Map();
+  const sampledContourCaches = new Map();
   const previewCanvas = documentLike.createElement("canvas");
   const previewContext = previewCanvas.getContext("2d", { alpha: false });
   if (!previewContext) {
@@ -280,7 +316,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
       uniform float u_pair_time;
       uniform float u_electrino_x;
       uniform float u_positrino_x;
+      uniform float u_source_mask_radius;
       uniform float u_polarity_sign;
+      uniform float u_exponent_radius_mode;
+      uniform float u_exponent_inner_radius;
+      uniform float u_exponent_outer_radius;
+      uniform float u_exponent_span;
       uniform vec3 u_zero;
       uniform vec3 u_negative;
       uniform vec3 u_positive;
@@ -330,6 +371,36 @@ export function mountTopoInteractionContractPreview(options = {}) {
           (2.0 / 3.0) + (pixel.x - sourceX) / commonScale,
           pixel.y / commonScale
         );
+        float exponentDisplay = 0.0;
+        if (u_exponent_radius_mode > 0.5) {
+          vec2 source = vec2(2.0 / 3.0, 0.5);
+          vec2 displayOffset = worldPoint - source;
+          float displayRadius = length(displayOffset);
+          if (
+            displayRadius < u_exponent_inner_radius ||
+            displayRadius > u_exponent_outer_radius
+          ) {
+            gl_FragColor = vec4(u_zero, 1.0);
+            return;
+          }
+          exponentDisplay = u_exponent_span -
+            (displayRadius - u_exponent_inner_radius) *
+            (2.0 * u_exponent_span) /
+            (u_exponent_outer_radius - u_exponent_inner_radius);
+          float physicalRadius = 0.025 * pow(
+            10.0,
+            -0.5 * exponentDisplay
+          );
+          worldPoint = source + displayOffset *
+            (physicalRadius / displayRadius);
+        }
+        if (u_pair_mode > 0.5 && (
+          distance(worldPoint, vec2(u_electrino_x, 0.5)) <= u_source_mask_radius ||
+          distance(worldPoint, vec2(u_positrino_x, 0.5)) <= u_source_mask_radius
+        )) {
+          gl_FragColor = vec4(u_zero, 1.0);
+          return;
+        }
         float rawValue;
         if (u_pair_mode > 0.5) {
           rawValue = sourceContribution(
@@ -357,8 +428,15 @@ export function mountTopoInteractionContractPreview(options = {}) {
             0.0
           );
         }
-        float normalized = sign(rawValue) *
-          log(1.0 + abs(rawValue) / 4.0) / log(17.0);
+        float normalized = u_exponent_radius_mode > 0.5
+          ? sign(rawValue) * clamp(
+            (exponentDisplay + u_exponent_span) /
+              (2.0 * u_exponent_span),
+            0.0,
+            1.0
+          )
+          : sign(rawValue) *
+            log(1.0 + abs(rawValue) / 4.0) / log(17.0);
         vec3 endpoint = normalized < 0.0 ? u_negative : u_positive;
         vec3 color = mix(u_zero, endpoint, clamp(abs(normalized), 0.0, 1.0));
         gl_FragColor = vec4(color, 1.0);
@@ -390,7 +468,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
         "u_pair_time",
         "u_electrino_x",
         "u_positrino_x",
+        "u_source_mask_radius",
         "u_polarity_sign",
+        "u_exponent_radius_mode",
+        "u_exponent_inner_radius",
+        "u_exponent_outer_radius",
+        "u_exponent_span",
         "u_zero",
         "u_negative",
         "u_positive",
@@ -618,13 +701,22 @@ export function mountTopoInteractionContractPreview(options = {}) {
     });
   }
 
+  function selectedScenarioId() {
+    return dom.scenarioInputs.find((input) => input.checked)?.value ??
+      "electrino";
+  }
+
   function getState() {
     const baseState = {
       beta: Number(dom.beta.value),
-      contourDensity: Number(dom.contours.value) / 100,
+      contourRangeDecades: Number(dom.contours.value),
       contourVisibility: Number(dom.contourVisibility.value) / 100,
+      backgroundMode:
+        dom.backgroundInputs.find((input) => input.checked)?.value === "white"
+          ? "white"
+          : "purple",
     };
-    if (dom.scenario.value === TOPO_COLLINEAR_PAIR_SCENARIO_ID) {
+    if (selectedScenarioId() === TOPO_COLLINEAR_PAIR_SCENARIO_ID) {
       return Object.freeze({
         ...baseState,
         scenarioId: TOPO_COLLINEAR_PAIR_SCENARIO_ID,
@@ -633,7 +725,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         polaritySign: 1,
       });
     }
-    if (dom.scenario.value === TOPO_CIRCULAR_BINARY_SCENARIO_ID) {
+    if (selectedScenarioId() === TOPO_CIRCULAR_BINARY_SCENARIO_ID) {
       const orbitalRadius = Number(dom.binaryRadius.value);
       const direction = dom.binaryDirectionInputs.find((input) => input.checked)
         ?.value === TOPO_CIRCULAR_BINARY_DIRECTION.CLOCKWISE
@@ -654,13 +746,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
         playback,
         polaritySign: 0,
         showOrbitGuide: dom.binaryOrbitGuide.checked,
-        backgroundMode:
-          dom.binaryBackgroundInputs.find((input) => input.checked)?.value === "white"
-            ? "white"
-            : "purple",
       });
     }
-    return applyTopoScenarioPolarity(baseState, dom.scenario.value);
+    return applyTopoScenarioPolarity(baseState, selectedScenarioId());
   }
 
   function updatePanelPresentation() {
@@ -668,8 +756,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.collapse.innerHTML = createPanelCollapseIconSvg(collapsed);
     dom.collapse.setAttribute("aria-expanded", String(!collapsed));
     const accessibleName = collapsed
-      ? "Expand Wake Intensity Map controls"
-      : "Collapse Wake Intensity Map controls";
+      ? "Expand Wake Topological Map controls"
+      : "Collapse Wake Topological Map controls";
     dom.collapse.setAttribute("aria-label", accessibleName);
     dom.collapse.title = accessibleName;
     dom.panelContent.hidden = collapsed;
@@ -691,8 +779,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const state = getState();
     const pairMode = state.pairMode === true;
     const binaryMode = state.binary === true;
+    const exponentRadiusMode = !pairMode && !binaryMode && state.beta === 0;
     dom.app.dataset.scenarioId = state.scenarioId;
     dom.app.dataset.scenario = state.scenarioId;
+    dom.app.dataset.neutralBackground = state.backgroundMode;
     dom.app.dataset.sourceMarkerRadiusScale = String(
       TOPO_SOURCE_MARKER_RADIUS_SCALE,
     );
@@ -711,34 +801,35 @@ export function mountTopoInteractionContractPreview(options = {}) {
             ? ", sub-field-speed prescribed circular path"
             : ", sub-field-speed preview"),
     );
-    dom.direction.textContent = pairMode
-        ? "Toward center · pass-through"
-        : "Positive x";
-    dom.directionFact.hidden = binaryMode;
+    dom.coordinateMode.textContent = exponentRadiusMode
+      ? "Display coordinates: exponent radius at β = 0 (display-only; equal radial steps are integer e = log10(|W| / 64))"
+      : "Display coordinates: linear Euclidean; contours remain global raw exponent levels";
+    dom.app.dataset.coordinateMode = exponentRadiusMode
+      ? "display-only-exponent-radius"
+      : "linear-euclidean";
     dom.binaryDirectionControl.hidden = !binaryMode;
     dom.binaryDirectionControl.inert = !binaryMode;
-    const rangeText = topoContourRangeDecades(state.contourDensity).toFixed(1) +
-      " decades";
+    const selectedRange = topoContourRangeDecades(state.contourRangeDecades);
+    const rangeText = "±" + selectedRange +
+      (selectedRange === 1 ? " decade" : " decades");
     dom.contoursOutput.value = rangeText;
     dom.contoursOutput.textContent = dom.contoursOutput.value;
-    dom.contours.disabled = pairMode;
+    dom.contours.disabled = false;
     dom.contours.setAttribute(
       "aria-valuetext",
-      rangeText + ", three logarithmic intensity levels per decade",
+      rangeText + " around the reference; one contour per raw factor of ten",
     );
-    dom.contourVisibilityOutput.value = formatPercentage(
-      state.contourVisibility,
-    );
+    dom.contourVisibilityOutput.value = state.contourVisibility === 0
+      ? "Hidden"
+      : formatPercentage(state.contourVisibility);
     dom.contourVisibilityOutput.textContent = dom.contourVisibilityOutput.value;
-    dom.contourVisibility.disabled = pairMode;
+    dom.contourVisibility.disabled = false;
     dom.contourControls.hidden = binaryMode;
     dom.contourControls.inert = binaryMode;
     dom.binaryRadiusControl.hidden = !binaryMode;
     dom.binaryRadiusControl.inert = !binaryMode;
     dom.binaryOrbitGuideControl.hidden = !binaryMode;
     dom.binaryOrbitGuideControl.inert = !binaryMode;
-    dom.binaryBackgroundControl.hidden = !binaryMode;
-    dom.binaryBackgroundControl.inert = !binaryMode;
     dom.pairTransport.hidden = !pairMode;
     dom.pairProgress.value = formatPercentage(pairPlaybackPhase);
     dom.pairProgress.textContent = dom.pairProgress.value;
@@ -774,8 +865,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.canvas.setAttribute(
       "aria-label",
       binaryMode
-        ? "Signed equal-wake-intensity heatmap for prescribed antipodal circular electrino and positrino paths, with smaller polarity markers, an optional solid prescribed-orbit guide, and no contour overlay"
-        : "Theoretical signed inverse-square wake intensity for the selected prescribed-motion scenario, with scenario-specific contour display and a faint dashed horizontal reference axis",
+        ? "Signed equal-wake-intensity heatmap for prescribed antipodal circular electrino and positrino paths on a linear Euclidean plane, with an optional prescribed-orbit guide and no contour overlay"
+        : exponentRadiusMode
+          ? "Wake Topological Map: beta-zero single-source signed inverse-square wake intensity on a display-only exponent-radius chart; radial labels are integer e = log10 of absolute W over 64"
+          : "Wake Topological Map: theoretical signed inverse-square wake intensity on a linear Euclidean chart, with global contours at integer e = log10 of absolute W over 64",
     );
     updateBinaryTransportVisibility(state);
     updateBinaryTransportPresentation(state);
@@ -819,7 +912,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
       ? (binaryPlaying ? "playing" : state.playback.complete ? "complete" : "paused")
       : "stationary-disabled";
     dom.app.dataset.binaryProgress = state.playback.progress.toFixed(6);
-    dom.app.dataset.binaryBackground = state.backgroundMode;
+    dom.app.dataset.neutralBackground = state.backgroundMode;
+    dom.app.dataset.binaryBackground = state.binary ? state.backgroundMode : "";
     dom.app.dataset.binaryOrbitalRadius = state.orbitalRadius.toFixed(2);
     dom.app.dataset.binaryDirection = state.direction;
     dom.app.dataset.binaryAngularVelocity = state.playback.angularVelocity.toFixed(9);
@@ -835,15 +929,20 @@ export function mountTopoInteractionContractPreview(options = {}) {
   function updateLegend() {
     const state = getState();
     const styles = readStyles(state);
+    const exponentRadiusMode = !state.binary && !state.pairMode &&
+      state.beta === 0;
+    const span = topoContourRangeDecades(state.contourRangeDecades);
     dom.legendMapping.textContent =
-      "Signed base-10 logarithmic color · orders of magnitude · z* = " +
-      TOPO_REFERENCE_SCALE +
+      "Signed wake intensity · e = log10(|W| / 64) · e from " +
+      span + " to −" + span +
+      " · " + styles.backgroundMode + " neutral" +
       (state.binary
-        ? " · " + styles.backgroundMode + " neutral" +
-          (state.showOrbitGuide
+        ? " · linear plane · heatmap only" + (state.showOrbitGuide
             ? " · solid circle = prescribed orbit"
             : "")
-        : "");
+        : exponentRadiusMode
+          ? " · display-only exponent radius"
+          : " · linear plane · global exponent contours");
     dom.legendGradient.style.background =
       "linear-gradient(90deg, " + styles.negative + ", " +
       styles.zero + ", " + styles.positive + ")";
@@ -887,7 +986,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   function readStyles(state = null) {
-    const binaryWhite = state?.binary === true && state.backgroundMode === "white";
+    const whiteBackground = state?.backgroundMode === "white";
     const styles = {
       negative: readHexToken(
         windowLike,
@@ -895,7 +994,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         "--ui-data-negative",
         "#2563eb",
       ),
-      zero: binaryWhite
+      zero: whiteBackground
         ? "#ffffff"
         : readHexToken(
           windowLike,
@@ -912,7 +1011,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       polaritySign: state?.polaritySign ?? -1,
       pairMode: state?.pairMode === true,
       binary: state?.binary === true,
-      backgroundMode: binaryWhite ? "white" : "purple",
+      backgroundMode: whiteBackground ? "white" : "purple",
     };
     styles.negativeRgb = hexToRgb(styles.negative);
     styles.zeroRgb = hexToRgb(styles.zero);
@@ -1062,7 +1161,52 @@ export function mountTopoInteractionContractPreview(options = {}) {
         uniforms.u_positrino_x,
         pairFrame?.sources[1].position.x ?? 2 / 3,
       );
+      const pairSourceMaskRadius = resolveTopoCollinearSourceMaskRadius({
+        width,
+        height,
+        pixelRatio: effectivePixelRatio(width, height),
+      });
+      fieldGl.uniform1f(
+        uniforms.u_source_mask_radius,
+        state.pairMode ? pairSourceMaskRadius : 0,
+      );
+      dom.app.dataset.pairSourceMaskWorldRadius = state.pairMode
+        ? pairSourceMaskRadius.toFixed(9)
+        : "";
       fieldGl.uniform1f(uniforms.u_polarity_sign, state.polaritySign);
+      const exponentChart = !state.pairMode && state.beta === 0
+        ? createTopoExponentRadiusChart({
+          width,
+          height,
+          pixelRatio: effectivePixelRatio(width, height),
+          sourceMarkerRadiusPixels: resolveTopoSourceMarkerRadius({
+            width,
+            height,
+            pixelRatio: effectivePixelRatio(width, height),
+          }),
+          contourRangeDecades: state.contourRangeDecades,
+        })
+        : null;
+      const commonScale = Math.max(1, height - 1);
+      fieldGl.uniform1f(
+        uniforms.u_exponent_radius_mode,
+        exponentChart ? 1 : 0,
+      );
+      fieldGl.uniform1f(
+        uniforms.u_exponent_inner_radius,
+        exponentChart ? exponentChart.innerRadiusPixels / commonScale : 0,
+      );
+      fieldGl.uniform1f(
+        uniforms.u_exponent_outer_radius,
+        exponentChart ? exponentChart.outerRadiusPixels / commonScale : 1,
+      );
+      fieldGl.uniform1f(
+        uniforms.u_exponent_span,
+        exponentChart?.span ?? 1,
+      );
+      dom.app.dataset.coordinateChart = exponentChart
+        ? exponentChart.chartId
+        : "linear-euclidean";
       fieldGl.uniform3fv(
         uniforms.u_zero,
         styles.zeroRgb.map((channel) => channel / 255),
@@ -1402,6 +1546,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     height,
     pixelRatio,
     pairMode = false,
+    styles = { backgroundMode: "purple" },
   ) {
     const y = (1 - TOPO_SOURCE_POSITION.y) * Math.max(1, height - 1);
     const startX = TOPO_TRANSLATION_AXIS.startX * Math.max(1, width - 1);
@@ -1409,8 +1554,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const arrow = TOPO_TRANSLATION_AXIS.arrowCss * pixelRatio;
     targetContext.save();
     targetContext.globalAlpha = TOPO_TRANSLATION_AXIS.opacity;
-    targetContext.strokeStyle =
-      "rgb(" + [WHITE.r, WHITE.g, WHITE.b].join(",") + ")";
+    targetContext.strokeStyle = styles.backgroundMode === "white"
+      ? readHexToken(
+        windowLike,
+        dom.app,
+        "--ui-color-electric-purple",
+        "#8f00ff",
+      )
+      : "rgb(" + [WHITE.r, WHITE.g, WHITE.b].join(",") + ")";
     targetContext.lineWidth = TOPO_TRANSLATION_AXIS.widthCss * pixelRatio;
     targetContext.lineCap = "butt";
     targetContext.lineJoin = "miter";
@@ -1438,6 +1589,47 @@ export function mountTopoInteractionContractPreview(options = {}) {
     targetContext.restore();
   }
 
+  function drawExponentRadiusAxis(
+    targetContext,
+    chart,
+    pixelRatio,
+    styles,
+  ) {
+    const color = styles.backgroundMode === "white"
+      ? readHexToken(
+        windowLike,
+        dom.app,
+        "--ui-color-electric-purple",
+        "#8f00ff",
+      )
+      : "rgb(" + [WHITE.r, WHITE.g, WHITE.b].join(",") + ")";
+    targetContext.save();
+    targetContext.strokeStyle = color;
+    targetContext.globalAlpha = 0.62;
+    targetContext.lineWidth = Math.max(1, pixelRatio);
+    targetContext.setLineDash([3 * pixelRatio, 3 * pixelRatio]);
+    targetContext.beginPath();
+    targetContext.moveTo(
+      chart.sourcePixelX - chart.innerRadiusPixels,
+      chart.sourcePixelY,
+    );
+    targetContext.lineTo(
+      chart.sourcePixelX - chart.outerRadiusPixels,
+      chart.sourcePixelY,
+    );
+    targetContext.stroke();
+    targetContext.setLineDash([]);
+    for (let exponent = chart.span; exponent >= -chart.span; exponent -= 1) {
+      const radius = topoExponentDisplayRadiusForExponent({ exponent, chart });
+      const x = chart.sourcePixelX - radius;
+      targetContext.beginPath();
+      targetContext.moveTo(x, chart.sourcePixelY - 3 * pixelRatio);
+      targetContext.lineTo(x, chart.sourcePixelY + 3 * pixelRatio);
+      targetContext.stroke();
+    }
+    targetContext.restore();
+  }
+
   function drawMajorDecadeLabels(
     targetContext,
     circles,
@@ -1446,14 +1638,25 @@ export function mountTopoInteractionContractPreview(options = {}) {
     pixelRatio,
     state,
   ) {
+    if (state.contourVisibility === 0) {
+      dom.app.dataset.majorDecadeLabels = "";
+      dom.app.dataset.majorDecadeLabelPositions = "";
+      return;
+    }
     const cssWidth = width / pixelRatio;
     const compact = cssWidth < 520;
     const commonScale = Math.max(1, height - 1);
     const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
     const labels = [];
     targetContext.save();
-    targetContext.fillStyle =
-      "rgb(" + [WHITE.r, WHITE.g, WHITE.b].join(",") + ")";
+    targetContext.fillStyle = state.backgroundMode === "white"
+      ? readHexToken(
+        windowLike,
+        dom.app,
+        "--ui-color-electric-purple",
+        "#8f00ff",
+      )
+      : "rgb(" + [WHITE.r, WHITE.g, WHITE.b].join(",") + ")";
     const fontFamily = windowLike.getComputedStyle?.(dom.app)?.fontFamily ||
       "Helvetica Neue, Arial, sans-serif";
     targetContext.font = 9 * pixelRatio + "px " + fontFamily;
@@ -1507,7 +1710,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.app.dataset.majorDecadeLabelPositions = positions.join(";");
   }
 
-  function writeDisplayPixel(data, index, rawValue, styles) {
+  function writeDisplayPixel(
+    data,
+    index,
+    rawValue,
+    styles,
+    exponentRadiusSpan = null,
+  ) {
     if (Number.isNaN(rawValue)) {
       const sourceRgb = styles.pairMode || styles.binary
         ? styles.zeroRgb
@@ -1522,9 +1731,16 @@ export function mountTopoInteractionContractPreview(options = {}) {
       data[index + 1] = styles.zeroRgb[1];
       data[index + 2] = styles.zeroRgb[2];
     } else {
-      const normalized = styles.binary
-        ? normalizeTopoDisplayValue(rawValue)
-        : normalizeTopoFieldColorValue(rawValue * styles.polaritySign);
+      const signedRawValue = styles.binary
+        ? rawValue
+        : rawValue * styles.polaritySign;
+      const normalized = exponentRadiusSpan == null
+        ? styles.binary
+          ? normalizeTopoDisplayValue(signedRawValue)
+          : normalizeTopoFieldColorValue(signedRawValue)
+        : normalizeTopoExponentRadiusColorValue(signedRawValue, {
+          span: exponentRadiusSpan,
+        });
       const endpoint = normalized < 0
         ? styles.negativeRgb
         : styles.positiveRgb;
@@ -1537,6 +1753,23 @@ export function mountTopoInteractionContractPreview(options = {}) {
       }
     }
     data[index + 3] = 255;
+  }
+
+  function createExponentChartForCanvas(width, height, pixelRatio, state) {
+    if (state.binary || state.pairMode || state.beta !== 0) {
+      return null;
+    }
+    return createTopoExponentRadiusChart({
+      width,
+      height,
+      pixelRatio,
+      sourceMarkerRadiusPixels: resolveTopoSourceMarkerRadius({
+        width,
+        height,
+        pixelRatio,
+      }),
+      contourRangeDecades: state.contourRangeDecades,
+    });
   }
 
   function createRawSamplerForState(state, width, height) {
@@ -1558,6 +1791,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
         beta: state.beta,
         phase: state.pairPhase,
         horizontalWorldSpan: horizontalWorldSpanForCanvas(width, height),
+        sourceMaskRadius: resolveTopoCollinearSourceMaskRadius({
+          width,
+          height,
+          pixelRatio: 1,
+        }),
       })
       : createTopoSyntheticRawSampler({
         ...state,
@@ -1600,8 +1838,18 @@ export function mountTopoInteractionContractPreview(options = {}) {
       previewWidth,
       previewHeight,
     );
+    const exponentChart = sampleRaw ? null : createExponentChartForCanvas(
+      width,
+      height,
+      pixelRatio,
+      state,
+    );
     for (let pixelY = 0; pixelY < previewHeight; pixelY += 1) {
       for (let pixelX = 0; pixelX < previewWidth; pixelX += 1) {
+        const fullPixelX = pixelX * Math.max(1, width - 1) /
+          Math.max(1, previewWidth - 1);
+        const fullPixelY = pixelY * Math.max(1, height - 1) /
+          Math.max(1, previewHeight - 1);
         const worldPoint = state.binary
           ? topoCircularBinaryWorldPointForCanvasPixel({
             pixelX,
@@ -1609,20 +1857,31 @@ export function mountTopoInteractionContractPreview(options = {}) {
             width: previewWidth,
             height: previewHeight,
           })
-          : topoWorldPointForCanvasPixel({
-            pixelX,
-            pixelY,
-            width: previewWidth,
-            height: previewHeight,
-          });
+          : exponentChart
+            ? topoExponentRadiusPhysicalPointForCanvasPixel({
+              pixelX: fullPixelX,
+              pixelY: fullPixelY,
+              width,
+              height,
+              chart: exponentChart,
+            }).physicalPoint
+            : topoWorldPointForCanvasPixel({
+              pixelX,
+              pixelY,
+              width: previewWidth,
+              height: previewHeight,
+            });
         const rawValue = sampleRaw
           ? providerSample(pixelX, pixelY)
-          : providerSample(worldPoint.x, worldPoint.y);
+          : worldPoint
+            ? providerSample(worldPoint.x, worldPoint.y)
+            : Number.POSITIVE_INFINITY;
         writeDisplayPixel(
           image.data,
           (pixelY * previewWidth + pixelX) * 4,
           rawValue,
           styles,
+          exponentChart ? state.contourRangeDecades : null,
         );
       }
     }
@@ -1647,7 +1906,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
           state.orbitalRadius.toFixed(2) + ":" + state.direction
         : state.pairMode
           ? state.pairPhase.toFixed(5)
-          : "static",
+          : state.beta === 0
+            ? "exponent-radius-span=" +
+              topoContourRangeDecades(state.contourRangeDecades).toFixed(0)
+            : "linear",
     ].join(":");
   }
 
@@ -1662,7 +1924,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
     }
     const providerStarted = windowLike.performance?.now?.() ?? Date.now();
     const raw = new Float32Array(width * height);
+    const sampleStates = new Uint8Array(width * height);
     const sampleRaw = createRawSamplerForState(state, width, height);
+    const exponentChart = createExponentChartForCanvas(
+      width,
+      height,
+      1,
+      state,
+    );
     let row = 0;
     while (row < height) {
       const started = windowLike.performance?.now?.() ?? Date.now();
@@ -1675,16 +1944,30 @@ export function mountTopoInteractionContractPreview(options = {}) {
               width,
               height,
             })
-            : topoWorldPointForCanvasPixel({
-              pixelX,
-              pixelY: row,
-              width,
-              height,
-            });
-          raw[row * width + pixelX] = sampleRaw(
-            worldPoint.x,
-            worldPoint.y,
-          );
+            : exponentChart
+              ? topoExponentRadiusPhysicalPointForCanvasPixel({
+                pixelX,
+                pixelY: row,
+                width,
+                height,
+                chart: exponentChart,
+              }).physicalPoint
+              : topoWorldPointForCanvasPixel({
+                pixelX,
+                pixelY: row,
+                width,
+                height,
+              });
+          const sampleIndex = row * width + pixelX;
+          const value = worldPoint
+            ? sampleRaw(worldPoint.x, worldPoint.y)
+            : Number.POSITIVE_INFINITY;
+          raw[sampleIndex] = value;
+          sampleStates[sampleIndex] = Number.isNaN(value)
+            ? TOPO_SAMPLED_FIELD_STATE.MASKED
+            : Number.isFinite(value)
+              ? TOPO_SAMPLED_FIELD_STATE.VALID
+              : TOPO_SAMPLED_FIELD_STATE.UNAVAILABLE;
         }
         row += 1;
       } while (
@@ -1705,6 +1988,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       pairPhase: state.pairPhase ?? null,
       orbitalRadius: state.orbitalRadius ?? null,
       raw,
+      sampleStates,
       displays: new Map(),
     };
     rawFrameCaches.set(key, rawFrameCache);
@@ -1720,7 +2004,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
 
   async function buildDisplayImage(rawFrame, pixelRatio, state, styles, revision) {
     const displayKey = TOPO_DISPLAY_MAPPING_ID + ":" + state.polaritySign +
-      ":" + (state.binary ? state.backgroundMode : "purple");
+      ":" + state.backgroundMode;
     const cached = rawFrame.displays.get(displayKey);
     if (cached) {
       dom.app.dataset.lastColorRemapMs = "0";
@@ -1740,6 +2024,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
             index * 4,
             rawFrame.raw[index],
             styles,
+            !state.binary && !state.pairMode && state.beta === 0
+              ? state.contourRangeDecades
+              : null,
           );
         }
         row += 1;
@@ -1778,6 +2065,175 @@ export function mountTopoInteractionContractPreview(options = {}) {
       (windowLike.performance?.now?.() ?? Date.now()) - started,
     ));
   }
+  function drawSampledPairContours({
+    width,
+    height,
+    pixelRatio,
+    state,
+    styles,
+    revision,
+    rawFrame,
+    interactionStarted = null,
+  }) {
+    const paintStarted = windowLike.performance?.now?.() ?? Date.now();
+    if (
+      contourStagingCanvas.width !== width ||
+      contourStagingCanvas.height !== height
+    ) {
+      contourStagingCanvas.width = width;
+      contourStagingCanvas.height = height;
+    } else {
+      contourStagingContext.clearRect(0, 0, width, height);
+    }
+    drawTranslationAxis(
+      contourStagingContext,
+      width,
+      height,
+      pixelRatio,
+      true,
+      styles,
+    );
+    const expectedKey = rawFrame
+      ? createRawFrameKey(rawFrame.width, rawFrame.height, state)
+      : null;
+    const matchingFrame = !pairPlaybackPlaying && rawFrame?.key === expectedKey
+      ? rawFrame
+      : null;
+    const rangeDecades = topoContourRangeDecades(state.contourRangeDecades);
+    const contourKey = matchingFrame
+      ? matchingFrame.key + ":range=" + rangeDecades.toFixed(3)
+      : "pending";
+    let extracted = matchingFrame ? sampledContourCaches.get(contourKey) : null;
+    const pathStarted = windowLike.performance?.now?.() ?? Date.now();
+    if (!extracted && matchingFrame) {
+      extracted = extractTopoSampledFieldContourSegments({
+        raw: matchingFrame.raw,
+        sampleStates: matchingFrame.sampleStates,
+        width: matchingFrame.width,
+        height: matchingFrame.height,
+        levels: createTopoSignedContourLevels({ rangeDecades }),
+      });
+      sampledContourCaches.set(contourKey, extracted);
+      while (sampledContourCaches.size > 8) {
+        sampledContourCaches.delete(sampledContourCaches.keys().next().value);
+      }
+    }
+    const familyCounts = { negative: 0, positive: 0, zero: 0 };
+    if (extracted && state.contourVisibility > 0) {
+      const scaleX = Math.max(1, width - 1) /
+        Math.max(1, matchingFrame.width - 1);
+      const scaleY = Math.max(1, height - 1) /
+        Math.max(1, matchingFrame.height - 1);
+      const families = ["negative", "positive", "zero"];
+      for (const family of families) {
+        const familySegments = extracted.segments.filter((segment) =>
+          segment.family === family);
+        familyCounts[family] = familySegments.length;
+        const levelValues = [...new Set(
+          familySegments.map((segment) => segment.value),
+        )];
+        for (const levelValue of levelValues) {
+          const segments = familySegments.filter((segment) =>
+            segment.value === levelValue);
+          const rawDecade = segments[0]?.rawDecade ?? 0;
+          const highIntensity = rawDecade >= 0;
+          const foreground = family === "zero"
+            ? styles.backgroundMode === "white"
+              ? readHexToken(
+                  windowLike,
+                  dom.app,
+                  "--ui-color-electric-purple",
+                  "#8f00ff",
+                )
+              : "#f2e6ff"
+            : family === "positive"
+              ? highIntensity
+                ? "#fff0f2"
+                : styles.backgroundMode === "white" ? "#a00024" : "#ff9cad"
+              : highIntensity
+                ? "#f0f5ff"
+                : styles.backgroundMode === "white" ? "#003a9e" : "#9ebcff";
+          contourStagingContext.save();
+          contourStagingContext.beginPath();
+          for (const segment of segments) {
+            contourStagingContext.moveTo(
+              segment.x1 * scaleX,
+              segment.y1 * scaleY,
+            );
+            contourStagingContext.lineTo(
+              segment.x2 * scaleX,
+              segment.y2 * scaleY,
+            );
+          }
+          contourStagingContext.lineCap = "round";
+          contourStagingContext.lineJoin = "round";
+          contourStagingContext.strokeStyle = foreground;
+          contourStagingContext.globalAlpha = state.contourVisibility;
+          contourStagingContext.lineWidth = pixelRatio *
+            (family === "zero" ? 1.55 : 1.15);
+          contourStagingContext.stroke();
+          contourStagingContext.restore();
+        }
+      }
+    }
+    const pairFrame = createTopoCollinearPairFrame({
+      beta: state.beta,
+      phase: state.pairPhase,
+      horizontalWorldSpan: horizontalWorldSpanForCanvas(width, height),
+    });
+    drawPairSourceOverlays(
+      contourStagingContext,
+      width,
+      height,
+      pixelRatio,
+      pairFrame.sources,
+    );
+    if (revision !== frameRevision) {
+      return false;
+    }
+    contourContext.clearRect(0, 0, width, height);
+    contourContext.drawImage(contourStagingCanvas, 0, 0);
+    dom.app.dataset.contourGeometryKey = contourKey;
+    dom.app.dataset.contourFrameKey = matchingFrame?.key ?? "pending";
+    dom.app.dataset.contourRangeDecades = rangeDecades.toFixed(0);
+    dom.app.dataset.contourLevelPolicy =
+      "signed-raw-decades-inward-and-outward-plus-zero";
+    dom.app.dataset.contourSegmentCount = String(
+      extracted?.segments.length ?? 0,
+    );
+    dom.app.dataset.contourNegativeSegmentCount = String(familyCounts.negative);
+    dom.app.dataset.contourPositiveSegmentCount = String(familyCounts.positive);
+    dom.app.dataset.contourZeroSegmentCount = String(familyCounts.zero);
+    dom.app.dataset.contourInvalidCellCount = String(
+      extracted?.invalidCellCount ?? 0,
+    );
+    dom.app.dataset.lastContourPathCacheHit = matchingFrame
+      ? sampledContourCaches.get(contourKey) === extracted ? "canonical-grid" : "false"
+      : "pending";
+    dom.app.dataset.lastContourPathMs = String(Math.round(
+      (windowLike.performance?.now?.() ?? Date.now()) - pathStarted,
+    ));
+    dom.app.dataset.lastContourPaintMs = String(Math.round(
+      (windowLike.performance?.now?.() ?? Date.now()) - paintStarted,
+    ));
+    lastContourPresentationKey = [
+      width,
+      height,
+      state.beta.toFixed(4),
+      state.pairPhase.toFixed(5),
+      state.contourRangeDecades.toFixed(0),
+      state.contourVisibility.toFixed(4),
+      state.backgroundMode,
+      contourKey,
+    ].join(":");
+    if (interactionStarted !== null) {
+      dom.app.dataset.lastFirstContourLatencyMs = String(Math.round(
+        (windowLike.performance?.now?.() ?? Date.now()) - interactionStarted,
+      ));
+    }
+    return true;
+  }
+
 
   function drawSyntheticContours({
     width,
@@ -1787,6 +2243,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     styles,
     revision,
     interactionStarted = null,
+    rawFrame = null,
   }) {
     const pathStarted = windowLike.performance?.now?.() ?? Date.now();
     if (state.binary) {
@@ -1798,26 +2255,67 @@ export function mountTopoInteractionContractPreview(options = {}) {
         revision,
       });
     }
-    const circles = state.pairMode
-      ? []
-      : createTopoSyntheticContourRenderPlan({
-        beta: state.beta,
-        contourDensity: state.contourDensity,
+    if (state.pairMode) {
+      return drawSampledPairContours({
+        width,
+        height,
+        pixelRatio,
+        state,
+        styles,
+        revision,
+        rawFrame,
+        interactionStarted,
       });
+    }
+    const physicalCircles = createTopoSyntheticContourRenderPlan({
+      beta: state.beta,
+      contourRangeDecades: state.contourRangeDecades,
+    });
+    const exponentChart = createExponentChartForCanvas(
+      width,
+      height,
+      pixelRatio,
+      state,
+    );
+    const commonScale = Math.max(1, height - 1);
+    const circles = exponentChart
+      ? physicalCircles.map((circle) => Object.freeze({
+        ...circle,
+        physicalCenter: circle.center,
+        physicalRadius: circle.radius,
+        center: TOPO_SOURCE_POSITION,
+        radius: topoExponentDisplayRadiusForExponent({
+          exponent: circle.rawDecade,
+          chart: exponentChart,
+        }) / commonScale,
+        majorDecadeLabel: String(circle.rawDecade),
+      }))
+      : physicalCircles;
     dom.app.dataset.contourGeometryKey = [
       state.beta.toFixed(4),
       state.pairMode ? state.pairPhase.toFixed(5) : "static",
-      state.contourDensity.toFixed(4),
+      state.contourRangeDecades.toFixed(0),
       width,
       height,
       circles.map(({ causalDelay }) => causalDelay.toFixed(8)).join(","),
     ].join(":");
     dom.app.dataset.contourRangeDecades = topoContourRangeDecades(
-      state.contourDensity,
-    ).toFixed(3);
+      state.contourRangeDecades,
+    ).toFixed(0);
+    dom.app.dataset.contourSpanPolicy =
+      "symmetric-inward-outward-raw-decades";
     dom.app.dataset.contourRadii = circles
-      .map(({ causalDelay }) => causalDelay.toFixed(10))
+      .map(({ radius }) => radius.toFixed(10))
       .join(",");
+    dom.app.dataset.contourPhysicalRadii = physicalCircles
+      .map(({ radius }) => radius.toFixed(10))
+      .join(",");
+    dom.app.dataset.coordinateChart = exponentChart
+      ? exponentChart.chartId
+      : "linear-euclidean";
+    dom.app.dataset.exponentRadiusStepPixels = exponentChart
+      ? exponentChart.radialStepPixels.toFixed(6)
+      : "";
     dom.app.dataset.contourRenderCount = String(
       Number(dom.app.dataset.contourRenderCount ?? 0) + 1,
     );
@@ -1836,16 +2334,25 @@ export function mountTopoInteractionContractPreview(options = {}) {
     } else {
       contourStagingContext.clearRect(0, 0, width, height);
     }
-    drawTranslationAxis(
-      contourStagingContext,
-      width,
-      height,
-      pixelRatio,
-      state.pairMode,
-    );
-    const commonScale = Math.max(1, height - 1);
+    if (exponentChart) {
+      drawExponentRadiusAxis(
+        contourStagingContext,
+        exponentChart,
+        pixelRatio,
+        styles,
+      );
+    } else {
+      drawTranslationAxis(
+        contourStagingContext,
+        width,
+        height,
+        pixelRatio,
+        state.pairMode,
+        styles,
+      );
+    }
     const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
-    circles.forEach((circle) => {
+    circles.forEach((circle, circleIndex) => {
       if (!(circle.radius > 0)) {
         return;
       }
@@ -1866,8 +2373,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         ? styles.negativeRgb
         : styles.positiveRgb;
       const contourStyle = createTopoSequentialContourStyle({
-        index: circle.latticeIndex,
-        count: TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE.masterCount,
+        index: circleIndex,
+        count: circles.length,
         visibility: state.contourVisibility,
       });
       const contourRgb = sourceContourRgb.map((channel, index) => Math.round(
@@ -1883,14 +2390,21 @@ export function mountTopoInteractionContractPreview(options = {}) {
         0,
         Math.PI * 2,
       );
-      contourStagingContext.strokeStyle =
-        "rgb(" + contourRgb.join(",") + ")";
+      const highIntensity = circle.rawDecade >= 0;
+      const contourForeground = circlePolaritySign < 0
+        ? highIntensity
+          ? "#f0f5ff"
+          : styles.backgroundMode === "white" ? "#003a9e" : "#9ebcff"
+        : highIntensity
+          ? "#fff0f2"
+          : styles.backgroundMode === "white" ? "#a00024" : "#ff9cad";
+      contourStagingContext.lineCap = "round";
+      contourStagingContext.lineJoin = "round";
+      contourStagingContext.strokeStyle = contourForeground;
       contourStagingContext.globalAlpha =
         contourStyle.opacity * circle.revealWeight;
       contourStagingContext.lineWidth =
         pixelRatio * contourStyle.widthCss;
-      contourStagingContext.lineCap = "round";
-      contourStagingContext.lineJoin = "round";
       contourStagingContext.stroke();
       contourStagingContext.restore();
     });
@@ -1934,7 +2448,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       height,
       state.beta.toFixed(4),
       state.pairMode ? state.pairPhase.toFixed(5) : "static",
-      state.contourDensity.toFixed(4),
+      state.contourRangeDecades.toFixed(0),
       state.contourVisibility.toFixed(4),
       state.polaritySign,
     ].join(":");
@@ -1979,6 +2493,18 @@ export function mountTopoInteractionContractPreview(options = {}) {
       return;
     }
     paintFieldImage(image, rawFrame, width, height);
+    if (state.pairMode) {
+      drawSyntheticContours({
+        width,
+        height,
+        pixelRatio,
+        state,
+        styles,
+        revision,
+        rawFrame,
+        interactionStarted,
+      });
+    }
     windowLike.clearTimeout?.(renderWatchdogTimer);
     dom.app.dataset.frameState = "complete";
     dom.app.dataset.lastFullDensityLatencyMs = String(Math.round(
@@ -2072,11 +2598,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
           : state.pairMode
             ? state.pairPhase.toFixed(5)
             : "static",
-        state.binary ? state.orbitalRadius.toFixed(2) : state.contourDensity.toFixed(4),
+        state.binary ? state.orbitalRadius.toFixed(2) : state.contourRangeDecades.toFixed(0),
         state.binary ? state.showOrbitGuide : state.contourVisibility.toFixed(4),
         state.binary
           ? state.backgroundMode + ":" + state.direction
-          : state.polaritySign,
+          : state.polaritySign + ":" + state.backgroundMode,
       ].join(":");
       if (
         redrawContours ||
@@ -2091,12 +2617,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
           styles,
           revision,
           interactionStarted,
+          rawFrame: cachedRawFrame,
         });
       }
       dom.app.dataset.lastPreviewLatencyMs = String(Math.round(
         (windowLike.performance?.now?.() ?? Date.now()) - interactionStarted,
       ));
-      if (analyticFieldPainted) {
+      if (analyticFieldPainted && !state.pairMode) {
         windowLike.clearTimeout?.(renderWatchdogTimer);
         dom.app.dataset.frameState = "complete";
         dom.app.dataset.lastFullDensityLatencyMs = String(Math.round(
@@ -2104,9 +2631,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
         ));
         dom.status.textContent = state.binary
           ? "Prescribed circular-binary heatmap frame complete; solid circle is a reference orbit only."
-          : state.pairMode
-            ? "Analytic two-source finite-history superposition complete; contour lines are hidden for this scenario."
-            : "Analytic synthetic field and contours complete.";
+          : "Analytic synthetic field and contours complete.";
+      } else if (state.pairMode && pairPlaybackPlaying) {
+        windowLike.clearTimeout?.(renderWatchdogTimer);
+        dom.app.dataset.frameState = "playback-preview";
+        dom.status.textContent =
+          "Prescribed collinear playback preview; canonical contours settle from the shared field frame when paused.";
       } else {
         finalRenderTimer = windowLike.setTimeout(() => {
           void renderFinal(
@@ -2144,6 +2674,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
       const { width, height } = canvasSize();
       const pixelRatio = effectivePixelRatio(width, height);
       const styles = readStyles(state);
+      const grid = rawGridSize();
+      const cachedRawFrame = rawFrameCaches.get(
+        createRawFrameKey(grid.width, grid.height, state),
+      ) ?? null;
+      if (state.pairMode && !cachedRawFrame) {
+        beginRender({ finalDelay: 0, redrawContours: true });
+        return;
+      }
       dom.app.dataset.lastPreviewLatencyMs = String(Math.round(
         (windowLike.performance?.now?.() ?? Date.now()) - interactionStarted,
       ));
@@ -2156,6 +2694,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         state,
         styles,
         revision,
+        rawFrame: cachedRawFrame,
       });
       if (complete && revision === frameRevision) {
         dom.app.dataset.lastFullDensityLatencyMs = String(Math.round(
@@ -2178,7 +2717,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   function requestPairPlaybackFrame() {
-    cancelPairPlaybackFrame();
+    if (pairPlaybackRequest) {
+      return;
+    }
     pairPlaybackRequest = windowLike.requestAnimationFrame?.(
       advancePairPlayback,
     ) ?? windowLike.setTimeout?.(() => {
@@ -2204,8 +2745,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   function startPairPlayback({ restart = false } = {}) {
+    if (pairPlaybackPlaying && !restart) {
+      return;
+    }
     if (
-      dom.scenario.value !== TOPO_COLLINEAR_PAIR_SCENARIO_ID ||
+      selectedScenarioId() !== TOPO_COLLINEAR_PAIR_SCENARIO_ID ||
       Number(dom.beta.value) <= 0
     ) {
       updateControlPresentation();
@@ -2234,7 +2778,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     pairPlaybackRequest = 0;
     if (
       !pairPlaybackPlaying ||
-      dom.scenario.value !== TOPO_COLLINEAR_PAIR_SCENARIO_ID
+      selectedScenarioId() !== TOPO_COLLINEAR_PAIR_SCENARIO_ID
     ) {
       return;
     }
@@ -2276,7 +2820,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   function runBinaryPlaybackFrame(timestamp) {
-    if (!binaryPlaying || dom.scenario.value !== TOPO_CIRCULAR_BINARY_SCENARIO_ID) {
+    if (!binaryPlaying || selectedScenarioId() !== TOPO_CIRCULAR_BINARY_SCENARIO_ID) {
       return;
     }
     if (binaryPlaybackStartedAt == null) {
@@ -2346,7 +2890,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
   installRangeInteraction(dom.contours);
   installRangeInteraction(dom.contourVisibility);
   installRangeInteraction(dom.binaryRadius);
-  listen(dom.scenario, "change", () => {
+  function handleScenarioChange(event) {
+    if (event && event.target?.checked !== true) {
+      return;
+    }
+    const handFocusToStage = scenarioPointerActivation;
+    scenarioPointerActivation = false;
     resetPairPlayback();
     stopBinaryPlayback();
     binaryProgress = 0;
@@ -2354,7 +2903,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       "(prefers-reduced-motion: reduce)",
     )?.matches === true;
     if (
-      dom.scenario.value === TOPO_COLLINEAR_PAIR_SCENARIO_ID &&
+      selectedScenarioId() === TOPO_COLLINEAR_PAIR_SCENARIO_ID &&
       Number(dom.beta.value) > 0 &&
       !reducedMotion
     ) {
@@ -2362,11 +2911,27 @@ export function mountTopoInteractionContractPreview(options = {}) {
     } else {
       scheduleFrameChange();
     }
+    if (handFocusToStage) {
+      windowLike.requestAnimationFrame?.(() => {
+        dom.canvas.focus?.({ preventScroll: true });
+      });
+    }
+  }
+  listen(dom.scenarioControl, "pointerdown", () => {
+    scenarioPointerActivation = true;
   });
+  listen(dom.scenarioControl, "keydown", () => {
+    scenarioPointerActivation = false;
+  });
+  listen(dom.scenarioControl, "pointercancel", () => {
+    scenarioPointerActivation = false;
+  });
+  dom.scenarioInputs.forEach((input) =>
+    listen(input, "change", handleScenarioChange));
   listen(dom.beta, "input", () => {
     stopBinaryPlayback();
     binaryProgress = 0;
-    if (dom.scenario.value === TOPO_COLLINEAR_PAIR_SCENARIO_ID) {
+    if (selectedScenarioId() === TOPO_COLLINEAR_PAIR_SCENARIO_ID) {
       resetPairPlayback();
     } else {
       updateControlPresentation();
@@ -2391,34 +2956,36 @@ export function mountTopoInteractionContractPreview(options = {}) {
       binaryProgress = 0;
       scheduleFrameChange();
     }));
-  dom.binaryBackgroundInputs.forEach((input) =>
+  dom.backgroundInputs.forEach((input) =>
     listen(input, "change", scheduleFrameChange));
   listen(dom.binaryPlay, "click", toggleBinaryPlayback);
   listen(dom.binaryReplay, "click", () => startBinaryPlayback({ replay: true }));
   listen(documentLike, "keydown", (event) => {
-    if (
-      event.code !== "Space" ||
-      event.repeat ||
-      /^(INPUT|SELECT|TEXTAREA|BUTTON|A)$/u.test(event.target?.tagName ?? "") ||
-      event.target?.isContentEditable
-    ) {
+    if (!topoGlobalTransportOwnsSpace(event)) {
       return;
     }
     if (
-      dom.scenario.value === TOPO_COLLINEAR_PAIR_SCENARIO_ID &&
+      selectedScenarioId() === TOPO_COLLINEAR_PAIR_SCENARIO_ID &&
       Number(dom.beta.value) > 0
     ) {
       event.preventDefault();
       togglePairPlayback();
     } else if (
-      dom.scenario.value === TOPO_CIRCULAR_BINARY_SCENARIO_ID &&
+      selectedScenarioId() === TOPO_CIRCULAR_BINARY_SCENARIO_ID &&
       getState().playback.playbackEnabled
     ) {
       event.preventDefault();
       toggleBinaryPlayback();
     }
   });
-  listen(dom.contours, "input", scheduleContourChange);
+  listen(dom.contours, "input", () => {
+    const state = getState();
+    if (!state.binary && !state.pairMode && state.beta === 0) {
+      scheduleFrameChange();
+    } else {
+      scheduleContourChange();
+    }
+  });
   listen(dom.contourVisibility, "input", scheduleContourChange);
   listen(dom.home, "click", () => {
     navigateStandaloneAppHome(

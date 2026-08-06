@@ -2,13 +2,15 @@
 
 ## Decision Boundary
 
-The current circular binary remains heatmap-only. This note evaluates future
-dynamic contours but grants no implementation authority for them. The sampled
-binary scalar is `signed equal-wake intensity`, not potential. A potential
-contour mode requires an established $\mathbb{A}\mathbb{A}\mathbb{A}$ potential
-product with its own versioned kernel and claim boundary.
+The current circular binary remains heatmap-only. Dynamic contours are now an
+authorized implementation target, but activation remains gated on the
+canonical sampled-frame, parity, topology, and latency obligations below. The
+sampled binary scalar is `signed equal-wake intensity`, not potential. A
+potential contour mode still requires an established
+$\mathbb{A}\mathbb{A}\mathbb{A}$ potential product with its own versioned kernel
+and claim boundary.
 
-Plainly: contours are being designed, not switched on. The present colors compare equal-wake intensity from prescribed paths and do not become potential lines merely because a contour algorithm exists.
+Plainly: binary contours are approved as the next bounded implementation, but they are not switched on through a second or approximate field path. The present colors compare equal-wake intensity from prescribed paths and do not become potential lines merely because a contour algorithm exists.
 
 ## Compared Paths
 
@@ -58,6 +60,51 @@ The initial implementation plan is:
 
 Plainly: the plan first locks the shared data contract, then extracts curves, then styles them. Performance promotion waits for measurements rather than assuming that a smaller grid is automatically cheaper enough or visually safe.
 
+## Current Collinear Adoption And Follow-on
+
+The approaching-collinear scenario now uses the canonical sampled raw frame for
+both its paused heatmap and marching-squares contours. The published frame
+carries raw values and an explicit scientific-state buffer so valid zero,
+masked, unavailable, unresolved, and singular samples are not overloaded.
+Contours remain hidden during motion and appear only when the heatmap and
+contour identities match. Range $1$ through $4$ filters the same fixed lattice;
+the ambiguous-cell decider is keyed by raw level value rather than array index.
+
+The circular binary remains heatmap-only because its WebGL heatmap does not yet
+consume this canonical sampled-frame parity contract. Authorization therefore
+changes the next work item, not the current rendered claim.
+
+Live QA at the tested desktop viewport measured about $300$ ms from pause to the
+first matching contour overlay and observed main-thread long tasks as high as
+about $538$ ms during full sampled-frame generation. Those measurements are
+diagnostic warnings for this machine and viewport, not portable browser budgets
+or release-performance claims.
+
+The bounded binary implementation is:
+
+1. Promote the circular provider to one versioned immutable sampled-field frame
+   with separate raw, scientific-state, and display-mask buffers; preserve the
+   existing finite-history roots and signed superposition unchanged.
+2. Paint the binary heatmap from that frame, or from a parity-verified texture
+   derived from it, and add independent selected-node CPU fixtures plus texture
+   readback for both directions, radius endpoints, and beta endpoints.
+3. Extract the fixed integer exponent levels
+   $e=\log_{10}(|W|/64)$ for both signs plus explicit zero with the existing
+   raw-level-keyed marching-squares policy. Invalid cells terminate curves.
+4. Move production and extraction to a cancelable module worker that returns
+   typed raw buffers and joined component records keyed by exact field,
+   display, and contour identities.
+5. Hide contours during playback and atomically reveal only a heatmap and
+   contour overlay from the same paused frame. Range filters cached level
+   identities; visibility only repaints.
+6. Enable the binary controls only after responsive topology fixtures,
+   CPU/GPU/reference parity, console checks, and measured pause-to-contour and
+   long-task budgets pass at the $1\%$ and $45\%$ radius endpoints.
+
+Plainly: the current pair path establishes one owner and correct paused-frame
+identity. The binary now has a concrete six-step route to the same ownership;
+until it passes, its contour controls remain absent.
+
 ## Levels, Zero, And Topology
 
 Contour levels should be explicit raw values bound to a `levelSetId`; they must
@@ -71,7 +118,7 @@ Plainly: a red-blue boundary is a zero contour only when actual signed samples c
 
 Marching-squares saddle cells should use one declared asymptotic decider based
 on the bilinear cell interpolant, with stable tie-breaking bound to cell index
-and level identity. Segment joining should retain component identity, closed or
+and raw level value. Segment joining should retain component identity, closed or
 open status, viewport clipping, and the source/invalid-mask boundaries that
 terminate a curve. A topology summary should report component count and
 birth/death changes between matched frames.
@@ -96,6 +143,26 @@ spacing. Device-pixel density may change raster sharpness but must not change
 the raw grid or level identities.
 
 Plainly: resizing changes what portion of the world is visible, not the scientific meaning of a level or the circle's shape.
+
+## Future Swept-source Comparison Mode
+
+The active collinear and circular-pair kernels remain their existing signed
+ordinary/equal-wake constructions, including the pair sum
+$\sum_s\sigma_s\kappa/\tau_s^2$. They are not silently replaced here.
+
+A future separately versioned comparison mode may implement the direct
+finite-pixel swept-source measure: conservatively deposit equal-emission-time,
+equal-solid-angle spherical carrier into receiver cells without solving causal
+roots, then compare an optimized regular-root reduction
+$\sum_s\sigma_s\kappa/(\tau_s^2|1-\mathbf n\cdot\mathbf v_s|)$
+against that independent ledger. At $\beta=1$, absent, simple,
+zero-Jacobian, and root-interval cases require explicit classification;
+nonordinary cells route to the direct measure or fail closed. No clipping,
+division by zero, or invented event atom is permitted.
+
+This comparison mode requires a new kernel identity, legend name, oracle,
+selected-node fixtures, and explicit user promotion decision across scenarios.
+It does not turn either scalar into potential, force, binding, or dynamics.
 
 ## Parity, Vector Needs, And Promotion Gate
 

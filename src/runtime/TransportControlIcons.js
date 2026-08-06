@@ -40,6 +40,10 @@ export function setTransportControlIcon(container, kind) {
   if (!container) {
     return;
   }
+  const currentIcon = container.querySelector?.("[data-transport-icon]");
+  if (currentIcon?.dataset?.transportIcon === kind) {
+    return;
+  }
   container.innerHTML = getTransportControlIconMarkup(kind);
 }
 

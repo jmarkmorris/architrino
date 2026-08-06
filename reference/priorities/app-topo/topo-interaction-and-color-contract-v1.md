@@ -8,10 +8,10 @@
 - Preview input: declared synthetic signed surface only
 - Scientific input: none
 - Scientific authority: none beyond preserving TOPO-001 result states and raw values supplied later
-- Display mapping: one zero-safe signed base-10 logarithmic mapping
+- Display mapping: one zero-safe signed base-10 logarithmic mapping on linear charts; the beta-zero single-source exponent-radius chart linearly normalizes the same signed base-10 exponent across its selected finite annulus
 - Reference scale: $z_*=4$
 - Ordinary display-clip magnitude: $z_{\max}=64$
-- Contour range: continuous $1.0$ through $3.0$ intensity decades, pointer step $0.1$ percent, keyboard step $1$ percent, default $2.0$ decades at the $40%$ slider position
+- Contour span: integer $1$ through $4$, step $1$, default $3$; span $N$ selects one raw factor-of-ten level at each of $N$ decades inward and $N$ decades outward from the reference, includes the reference exactly once per sign, and retains explicit zero where defined
 - Contour visibility: percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$
 
 The companion `topo.html` surface is an interaction preview. It uses a declared synthetic signed inverse-square function so that color, contour, panel, and state behavior can be inspected before TOPO-003 connects the TOPO-001 provider. Its visible information card frames the view as a theoretical model without claiming TOPO-001 scientific authority.
@@ -20,11 +20,11 @@ Plainly: the preview is a ruler for the interface. Its colored values are not me
 
 ## Reproducible State Split
 
-The later scientific frame identity contains the scenario identity, source species, $\beta$, observable identity, reception slice, domain, and scientific-kernel version. Display state contains the contour range, contour visibility, fixed color scale, panel state, and viewport.
+The later scientific frame identity contains the scenario identity, source species, $\beta$, observable identity, reception slice, domain, and scientific-kernel version. Display state contains the contour span, contour visibility, coordinate chart, fixed color scale, panel state, and viewport.
 
-Changing $\beta$ changes the unsigned synthetic geometry. Changing scenario reverses polarity over that same geometry. Contour range, contour visibility, and panel state are display-only and must not change any raw magnitude sample.
+Changing $\beta$ changes the unsigned synthetic geometry. Changing scenario reverses polarity over that same geometry. Contour span, contour visibility, and panel state are display-only and must not change the inverse-square kernel or the raw magnitude assigned to a physical point. At $\beta=0$ in either single-source scenario, contour span also selects the endpoints of the display-only exponent-radius chart and therefore changes the pixel-to-physical-coordinate map; the resulting display frame key changes while the scientific kernel identity does not.
 
-Plainly: speed chooses the synthetic geometry. Species changes its sign, while the contour and color controls only change how the same geometry is shown.
+Plainly: speed chooses the synthetic geometry. Species changes its sign. At beta zero, widening the contour span stretches the same exponent ruler across the available radius; it does not change the inverse-square calculation.
 
 The TOPO-002 preview uses the accepted prescribed causal-root geometry to place
 one explicitly non-scientific comparison envelope around the displayed source.
@@ -67,7 +67,7 @@ where $\varsigma_q=-1$ for the electrino preview and $+1$ for the positrino prev
 
 Plainly: there is one marker, one causal center, and one signed inverse-square comparison surface. It tests the settled display architecture without presenting itself as the independently checked scientific renderer.
 
-## Aspect-Correct Euclidean Chart
+## Coordinate Charts
 
 For canvas pixel coordinates $(p_x,p_y)$, width $W$, and height $H$, provider coordinates use one common scale $H$:
 
@@ -77,9 +77,22 @@ x=\frac23+\frac{p_x-(2/3)W}{H},
 y=\frac12+\frac{(1/2)H-p_y}{H}.
 $$
 
-The source therefore remains at two-thirds canvas width and vertical center, while equal horizontal and vertical pixel offsets represent equal Euclidean distances. The deterministic CPU reference, analytic display renderer, exact contour arcs, and resize handling all use this same chart. Canvas width and height are part of the display geometry identity.
+This linear Euclidean chart remains authoritative for every single-source frame with $\beta>0$, for the approaching collinear pair, and for the orbiting binary. The source remains at two-thirds canvas width and vertical center, while equal horizontal and vertical pixel offsets represent equal Euclidean distances. Canvas width and height are part of the display geometry identity.
 
-The blocking control is $\beta=0$: every constant-value contour must have equal screen-pixel width and height at every supported aspect ratio. A horizontal and vertical pixel displacement of the same magnitude from the source must return the same raw synthetic value. At $\beta>0$, each synthetic constant-delay circle shifts trailing by $\beta T$ and therefore preserves the causal leading/trailing asymmetry.
+At $\beta=0$ only, radial symmetry permits a distinct display-only exponent-radius chart for either single-source polarity. Define
+
+$$
+e=\log_{10}(|z|/64),
+\qquad
+r_{\rm phys}(e)=T_0 10^{-e/2},
+\qquad T_0=0.025.
+$$
+
+For selected span $N$, $e=+N$ maps to the finite source-marker edge, $e=-N$ maps to the largest complete equal-scale circle inset two CSS pixels from the stage boundary, and all integer exponents between them map affinely to equally spaced display radii. Values inside the inner boundary are masked beneath the opaque source marker and values outside the outer boundary are neutral-clipped; neither region is clamped to an endpoint. Heatmap sampling and contour placement use the same inverse/forward map. Plain integer labels $N,\ldots,0,\ldots,-N$ identify the radial exponent axis.
+
+Plainly: stationary single-source circles use exponent as screen radius, like a radial logarithmic chart. Moving and multi-source scenes stay on the ordinary linear plane because they do not have one unambiguous radial center.
+
+The blocking control is radial symmetry: every $\beta=0$ constant-value contour must have equal screen-pixel width and height at every supported aspect ratio, and consecutive integer exponent circles must have equal radial pixel spacing. At $\beta>0$, each synthetic constant-delay circle shifts trailing by $\beta T$ on the linear chart and therefore preserves the causal leading/trailing asymmetry.
 
 Plainly: a wide screen reveals more world space left and right; it does not stretch circles into ellipses.
 
@@ -89,8 +102,8 @@ Plainly: a wide screen reveals more world space left and right; it does not stre
 | --- | --- | --- |
 | Scenario | Left panel, first control | `Electrostatic: single electrino`; `Electrostatic: single positrino`; changing it reverses polarity only. Beta, contour range, and contour visibility remain unchanged, and the same analytic geometry is immediately restyled with the new polarity color. |
 | $\beta=v/c_f$ | Left panel below scenario | Range $0\leq\beta\leq1$, step $0.01$, keyboard-operable, with visible numeric output and `aria-valuetext`; changing it creates a fresh raw-frame identity. |
-| Contour range | Left panel, display section | Continuous $1.0$ through $3.0$ intensity decades, shown to one decimal; default $2.0$ decades at slider position $40\%$. The fixed lattice has three equal log-intensity intervals per decade. Moving the control retains every existing radius and cross-fades only the next outward valid level; no contour moves or re-anchors. The compact cue reads `3 levels / decade · I ∝ 1/r²`. |
-| Contour visibility | Left panel, display section | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$; continuously applies global opacity, canonical-white mix, and width gain to the contour profile. The complete selected set is sorted by causal radius, then receives one deterministic linear fade from the clearly bright inner treatment to a visible outer floor. At $0$ the set is hidden; at $100$ the innermost treatment reaches canonical white and $2$ CSS pixels while the sequential outward fade remains. Device-pixel scaling preserves apparent width. |
+| Contour span | Unified left Scenario panel | Integer $1$ through $4$, step $1$, default $3$. Span $N$ selects integer exponents $+N$ through $-N$, one line per raw factor of ten, the reference included once, symmetric signed families, and explicit zero where defined. In linear scenes shared levels retain exact world positions and topology. In a $\beta=0$ single-source scene, $N$ selects the exponent-radius endpoints and the same levels occupy equal radial display steps. The cue reads `One contour per raw factor of 10 inward and outward`. |
+| Contour visibility | Unified left Scenario panel | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$; changes opacity only. At $0$ the output reads `Hidden`. Nonzero decade lines have equal width and opacity with one adaptive high-contrast family-colored stroke; zero is slightly thicker. Device-pixel scaling preserves apparent width. |
 | Legend | Left panel near display controls | Always visible while the panel is open; names the signed base-10 logarithmic mapping, $z_*$, decade-oriented raw reference values, and zero. No visible nonnumeric-state row or raw-probe panel is retained. |
 | Panel toggle | Persistent left rail | Uses `PanelCollapseIcons.js`, updates name and `aria-expanded`, preserves the reopen control, and makes closed content hidden and inert. |
 | Shared chrome | Top-right safe area | Stable order is `Home`, `Back`, `Forward`, `Search`, then any declared Notes/Documents and Settings controls. TOPO-002 declares only the first four. Home retains the shared Applications-return behavior. |
@@ -119,34 +132,46 @@ $$
 The contour lattice is fixed independently of viewport, polarity, interaction, and color mapping. With $T_0=0.025$, every level is
 
 $$
-T_n=T_0 10^{n/6},
+T_m=T_0 10^{-m/2},
 \qquad
-I_n=\frac{K}{T_n^2},
+I_m=\frac{K}{T_m^2}=64\,10^m,
 \qquad
-\frac{I_{n+1}}{I_n}=10^{-1/3}.
+m\in\{-N,\ldots,0,\ldots,N\}.
 $$
 
-Thus each outward step is one third of an intensity decade, major decade anchors occur at $n=0,3,6,9$, and the fixed labels are $10^0$, $10^{-1}$, $10^{-2}$, and $10^{-3}$. The range control reveals a prefix of this lattice from one through three decades and uses the next level's opacity as the continuous fractional state. A value with $|z|>z_{\max}$ retains its private raw value and receives the internal state qualifier `ordinary:display_clipped`.
+For selected span $N$, positive $m$ gives the higher-magnitude inward family and negative $m$ gives the lower-magnitude outward family. The reference $m=0$ appears exactly once. Consecutive raw levels differ by a factor of ten. On linear charts, inverse-square geometry places consecutive single-source physical radii at the true ratio $1/\sqrt{10}$ inward or $\sqrt{10}$ outward. On the $\beta=0$ single-source exponent-radius chart, those same physical radii map to equal display-radius steps. Visibility changes opacity only. A value with $|z|>z_{\max}$ retains its private raw value and receives the internal state qualifier `ordinary:display_clipped`.
 
-Plainly: the colors use one orders-of-magnitude mapping, and the circles use one fixed three-steps-per-decade ruler. Neither changes its meaning from frame to frame.
+Plainly: every line still means one tenfold change in raw signed wake intensity. Only the stationary single-source chart spaces those exponents evenly on screen; all other charts keep linear physical coordinates.
+
+Within the finite beta-zero single-source exponent-radius annulus, heatmap color uses the same exponent coordinate rather than the linear chart's fixed $|z|=64$ color clip:
+
+$$
+\widehat C_{\rm exp}(z;N)
+=\operatorname{sgn}(z)\operatorname{clip}
+\left(\frac{\log_{10}(|z|/64)+N}{2N},0,1\right).
+$$
+
+Thus $e=-N$ is the selected neutral outer endpoint, $e=+N$ is the signed-color inner endpoint, and every equal radial exponent step receives an equal color step. This is a display-only normalization over the already selected finite annulus; it changes neither $z$, the inverse-square law, nor the physical radius associated with any exponent. Linear charts retain the zero-safe fixed signed mapping $C_{10}$ above.
+
+Plainly: the stationary radial chart no longer paints every exponent above zero as one saturated blob. Its color changes smoothly with the same exponent ruler used by the rings.
 
 ## Analytic Field And Contour Rendering Contract
 
 The canvas requests the available device-pixel density. A safety ceiling limits either dimension to $4096$ device pixels and total area to $12{,}582{,}912$ device pixels. The preferred synthetic-provider path evaluates the causal-delay, inverse-square magnitude, and signed base-10 color mapping per display fragment in an offscreen WebGL surface, then atomically copies the complete result to the visible canvas. Beta, polarity, midpoint, and display-range calibration are uniforms. A deterministic interruptible Canvas2D implementation remains the boot fallback and CPU reference. The visible canvas is initialized to Electric Purple and retains its last valid frame if either path fails; a watchdog stops indefinite refinement without blanking the usable preview.
 
-For every positive selected constant delay $T$, the synthetic provider has the exact isoline
+For every positive selected constant delay $T$, the synthetic provider has the exact physical isoline
 
 $$
 (u+\beta T)^2+w^2=T^2.
 $$
 
-Topo therefore draws one direct Canvas2D arc centered at $(2/3-\beta T,1/2)$ with radius $T$. The immediate and final contour paths are the same atomic vector overlay: no marching-squares extraction, partial batches, low-resolution tessellation, or delayed refinement runs for this provider. Clipping occurs only at the canvas boundary. Major-decade labels appear at the trailing intersection with the faint positive-$x$ axis when space allows and are suppressed on narrow viewports.
+At $\beta>0$, Topo draws one direct Canvas2D arc centered at $(2/3-\beta T,1/2)$ with physical radius $T$ on the linear chart. At $\beta=0$, it maps that circle through the exponent-radius chart and draws the corresponding display-radius circle, using the same map as the heatmap. The immediate and final contour paths are the same atomic vector overlay: no marching-squares extraction, partial batches, low-resolution tessellation, or delayed refinement runs for this provider. Clipping occurs only at the declared chart boundary. Plain exponent labels appear on the radial exponent axis when space allows and are collision-suppressed on narrow viewports.
 
-Contour styling is uniform around each circle. The complete lattice is sorted by increasing causal delay $T$, with normalized sequential position $p=i/(N-1)$ over the fixed ten-member lattice. Opacity is multiplied by $1-0.60p$, canonical-white mix by $1-0.55p$, and width by $1-0.25p$. The resulting outer floors remain visible at the $75\%$ default. Contour range cross-fades only the next outward level; visibility remains the global gain. No level sign, polarity, draw order, cache timing, or range interaction perturbs existing radii or their sequential profile.
+Contour styling is uniform around every nonzero level: equal width and opacity with one adaptive high-contrast family-colored stroke. The explicit zero contour is slightly thicker and uses pale lavender on Purple or Electric Purple on White. Visibility is the only opacity gain, and range only filters fixed level identities. No level sign, polarity, draw order, cache timing, or range interaction perturbs existing radii or topology.
 
 Neither fragment evaluation nor vector contour styling writes back to the raw provider, geometry, frame identity, or state classification. A future sampled TOPO-001 provider may use a separate general contour implementation without weakening this boundary.
 
-Plainly: the synthetic formula is evaluated sharply at the screen, and its contours are complete mathematical circles. Every selected circle appears once, fading steadily from the inside outward.
+Plainly: the synthetic formula is evaluated sharply at the screen, and its contours are complete mathematical circles. Stationary singles show exact raw exponents on a declared logarithmic radial display; moving singles show their true linear-world positions.
 
 ## Signed Color Contract
 
@@ -182,13 +207,13 @@ Plainly: the endpoint void and numeric zero share a neutral display color, while
 
 ## Layout And Accessibility Contract
 
-- The user-facing header is `Wake Intensity Map` with the subtitle `Two-dimensional prescribed-motion slice`; internal TOPO work-item/version labels do not appear in that header.
-- The first information card is titled `About this view` and says exactly: `Explore a theoretical two-dimensional view of signed wake intensity around a prescribed electrino or positrino.` Internal preview, validation, and work-item language does not appear in the visible card.
+- The user-facing header is `Wake Topological Map` with the subtitle `Two-dimensional prescribed motion`; internal TOPO work-item/version labels do not appear in that header.
+- The first information card is titled `About this view` and says exactly: `Explore theoretical two-dimensional views of signed wake intensity around prescribed path scenarios.` Internal preview, validation, and work-item language does not appear in the visible card.
 - The stage and shell consume the shared semantic tokens from `ui-tokens.css`; Topo adds no app-local shell palette.
 - The left panel opens at a desktop width near $360$ pixels and collapses to a persistent $58$-pixel rail.
 - Below $820$ pixels, the panel begins collapsed and expands as an overlay over the stage. The shared top-right controls retain $32\times32$ hit targets.
 - The single compact source marker remains anchored at normalized $(2/3,1/2)$ in every viewport. It reuses the repository's standard solid blue electrino and solid red positrino semantics with the same thin centered white circular stroke and small centered white origin dot as the Causal Delay Feedback marker treatment. No backing shape, glow, shadow, inset, or direction ornament is permitted; direction is reported in the scenario facts.
-- A noninteractive prescribed-translation reference axis runs horizontally through the source from normalized canvas $x=0.10$ to $x=0.90$. It is a one-CSS-pixel canonical-white dashed stroke at $52\%$ opacity with a five-CSS-pixel far-right arrowhead. It is painted above the field but below every contour and the source marker, and its canvas description identifies it as a positive-$x$ reference rather than a trajectory or wake boundary. Major-decade labels sit above and outside their trailing axis/ring intersections so neither the dashed line nor the contour stroke crosses a character; narrow layouts retain the same nine-CSS-pixel type, clamp labels beyond the persistent collapse rail, and use collision tiers before any label suppression.
+- At $\beta>0$, a noninteractive prescribed-translation reference axis runs horizontally through the source from normalized canvas $x=0.10$ to $x=0.90$. At $\beta=0$, it is replaced by a radial exponent axis from the finite inner boundary to the outer boundary, with equal integer-exponent ticks. Both are one-CSS-pixel subordinate reference layers above the field but below contours and the source marker. Labels avoid contour strokes and controls, use collision tiers, and may be suppressed on narrow layouts.
 - Every form control has a visible label, every icon button has an accessible name, and all focusable controls receive a visible focus treatment.
 - Range controls keep a fixed five-pixel visual track and fixed-size thumb in default, hover, focus, active, and drag states. Their larger transparent interaction lane does not render; keyboard focus is shown only around the thumb.
 - Closed panel content is hidden, `aria-hidden`, and inert. The reopen control stays focusable.
@@ -198,7 +223,7 @@ Plainly: the same controls work by touch, pointer, and keyboard, and motion pref
 
 ## TOPO-003 Handoff
 
-TOPO-003 may replace only the synthetic surface provider and internal provenance. It must retain this contract's state split, one signed base-10 mapping, fixed scale, inverse-square logarithmic contour lattice, palette semantics, contour range, shell behavior, navigation order, endpoint treatments, and accessibility behavior unless a separately reviewed contract supersedes them.
+TOPO-003 may replace only the synthetic surface provider and internal provenance. It must retain this contract's state split, one signed base-10 mapping, fixed scale, symmetric inward/outward raw-decade contour lattice, palette semantics, contour span, shell behavior, navigation order, endpoint treatments, and accessibility behavior unless a separately reviewed contract supersedes them.
 
 The TOPO-003 implementation is accepted only when independent analytical references verify its raw TOPO-001 samples. Agreement with this synthetic preview is not scientific evidence.
 

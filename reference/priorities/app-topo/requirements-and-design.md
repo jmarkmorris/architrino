@@ -35,14 +35,18 @@ $$
 
 Plainly: one world unit is always one canvas-height, so equal horizontal and vertical distances occupy equal pixels. The architrino stays two-thirds of the way across and halfway up, and its represented motion points to the right.
 
+This Euclidean chart remains authoritative for all multi-source scenes and for single-source frames with $\beta>0$. At $\beta=0$ only, either radially symmetric single-source scene uses the display-only exponent radius $e=\log_{10}(|W|/64)$. Span $N$ maps $e=+N$ to the source-marker edge and $e=-N$ to the largest complete equal-scale circle, with every intervening integer exponent at an equal radial display step. The inner and outer regions are neutral-masked or clipped rather than clamped, and the heatmap and contours share the same coordinate map. Heatmap color also advances uniformly from neutral at $e=-N$ to the signed endpoint at $e=+N$ so the fixed linear-chart clip cannot create a saturated inner bloom. The raw inverse-square calculation remains unchanged.
+
+Plainly: only a stationary one-source view has one honest radial exponent axis. The pair and binary keep their ordinary linear plane.
+
 The initial controls are:
 
 | Control | Initial contract |
 | --- | --- |
 | Scenario | single electrino; single positrino; approaching collinear electrino and positrino; orbiting binary electrino and positrino |
 | $\beta=v/c_f$ | range $0\leq\beta\leq1$; the exact ordinary, unavailable, and nonordinary endpoint regions are fixed by TOPO-001 |
-| Contour range | continuous $1.0$ through $3.0$ intensity decades; default $2.0$ decades at the $40\%$ slider position; preserves the fixed $T_n=T_0 10^{n/6}$ lattice and cross-fades only the next outward level without moving existing circles |
-| Contour visibility | display-only global contour-emphasis percent from $0$ through $100$ in one-point keyboard steps; default $75$; scales the deterministic sequential inner-to-outer fade without altering field color, contour geometry, or raw values |
+| Contour span | integer $1$ through $4$; default $3$; span $N$ selects integer exponents $+N$ through $-N$, one raw factor-of-ten level per exponent, includes the reference once per sign, and retains explicit zero; changing span preserves every shared level and topology in linear scenes and changes only the display-radius endpoints in beta-zero single-source scenes |
+| Contour visibility | display-only global contour-emphasis percent from $0$ through $100$ in one-point keyboard steps; default $75$; changes line opacity only; zero reads `Hidden`; equal nonzero widths and the single adaptive zero stroke do not alter field color, contour geometry, or raw values |
 | Color mapping | one zero-safe signed base-10 logarithmic mapping with $z_*=4$ and symmetric clip at $|z|=64$; no transform selector |
 | Overlay | scenario-specific reference geometry plus source polarity disks using one shared half-size radius, canonical thin white border, and half-size centered white origin dot |
 
@@ -75,7 +79,7 @@ app-local navigation or panel language.
 - Scenario and $\beta$ are local scientific controls in the left panel. The
   $\beta$ slider reuses the established Architrino slider interaction and
   keyboard pattern while retaining Topo's own exact $0\leq\beta\leq1$
-  scientific contract. Contour range, contour visibility, and legend
+  scientific contract. Contour span, contour visibility, and legend
   remain nearby display controls rather than being hidden in global
   navigation. The default contour visibility is $75\%$.
 - Mobile layout collapses the left panel before reducing shared icon hit
@@ -83,8 +87,10 @@ app-local navigation or panel language.
   marker.
 - Space invokes the same play/pause action as the visible transport button for
   the moving collinear and circular-binary scenarios. The shortcut is inert at
-  $\beta=0$, ignores repeat events, and leaves Space to focused inputs, selects,
-  buttons, links, and editable content.
+  $\beta=0$, ignores repeat events, and leaves Space to buttons, radios,
+  checkboxes, selects, links, text entry, and editable content. A focused range
+  slider does not suppress the global shortcut because Space has no native
+  range adjustment meaning; arrow, Home, and End behavior remains native.
 
 Plainly: Topo should feel like another Architrino application immediately.
 The map is new; its navigation, slider behavior, panel toggle, colors, focus
@@ -112,7 +118,7 @@ Plainly: for every pixel, the provider looks backward along the architrino's lef
 
 The `Orbiting binary electrino and positrino` scenario uses equal-scale world coordinates centered at $(1/2,1/2)$. Its shared orbital radius $R$ ranges from $0.01$ through $0.45$ visible-width units and defaults to $0.3$, reproducing the initial $(0.2,0.5)$ and $(0.8,0.5)$ positions. The sources stay antipodal and use $|\omega|=\beta/R$, so the slider changes source separation and period without changing the selected nonnegative tangential-speed magnitude $\beta$. Counterclockwise uses positive $\omega$ and remains the default; Clockwise uses negative $\omega$ consistently in warm-up, replay, source placement, root evaluation, and frame identity.
 
-The binary display hides the single-source contour controls and shows only the signed heatmap, shared half-size polarity markers, one optional thin solid orbit guide, playback progress, direction and radius controls, and shared play/pause/replay controls. The guide follows $R$ in the same equal-scale chart and is explicitly a prescribed path reference, not an equal-intensity contour. It is pale lavender on the Electric Purple neutral background and restrained Electric Purple on White. Each background radio uses its option color for the checked indicator while retaining native radio semantics, focus, and keyboard behavior.
+The current binary display hides contour controls and shows the signed heatmap, shared half-size polarity markers, one optional thin solid orbit guide, playback progress, direction and radius controls, and shared play/pause/replay controls. The guide follows $R$ in the same equal-scale chart and is explicitly a prescribed path reference, not an equal-intensity contour. It is pale lavender on the Electric Purple neutral background and restrained Electric Purple on White. Each background radio uses its option color for the checked indicator while retaining native radio semantics, focus, and keyboard behavior. Binary contours are now an authorized follow-on, but stay disabled until the heatmap consumes one canonical immutable sampled raw frame with explicit scientific states and passes the parity and frame-identity gates recorded in the dynamic-contour recommendation.
 
 At the $1\%$ radius endpoint, marker disks can overlap on narrow canvases. The overlay clips the two marker drawings at their perpendicular bisector so both source identities remain visible deterministically; it does not merge, reorder, or hide either source. The source display mask is $75\%$ of the visible marker radius in world units, replacing the stale fixed $0.012$ mask that extended beyond the smaller marker at $\beta=1$. Root failure remains fail-closed, and the mask changes no ordinary value outside the marker.
 
@@ -153,13 +159,37 @@ $$
 The contour display uses $I(T)=K/T^2$ and
 
 $$
-T_n=T_0 10^{n/6},
+T_m=T_0 10^{-m/2},
 \qquad T_0=0.025,
+\qquad m\in\{-N,\ldots,N\},
 $$
 
-which supplies three equal log-intensity intervals per decade and fixed major anchors at $n=0,3,6,9$. `Contour range` exposes one through three decades by retaining the fixed prefix and smoothly revealing the next outward level.
+so each integer exponent step changes magnitude by exactly a factor of ten. `Contour span` is the integer set $1,2,3,4$ and defaults to $3$; span $N$ retains integer exponents $+N$ through $-N$ around the single reference level. On linear charts, single-source inverse-square physical radii crowd inward by $1/\sqrt{10}$ and expand outward by $\sqrt{10}$. On the beta-zero single-source exponent-radius chart, those same physical radii appear at equal display-radius steps.
 
-Plainly: the color and circle architecture now speaks one orders-of-magnitude language. The range control shows more outer decades without sliding the logarithmic ruler.
+Plainly: each contour still marks a tenfold raw wake-intensity change. The stationary single-source view warps only its declared radial display coordinate; moving and multi-source maps do not warp space.
+
+The approaching-collinear scenario obtains positive, negative, and explicit
+zero contours from the same immutable full-resolution raw frame used to paint
+its heatmap. Levels are symmetric signed raw powers of ten across the selected inward/outward span, include the fixed reference exactly once per sign, and retain an explicit zero level. Marching squares linearly interpolates only within finite cells,
+uses the bilinear-cell determinant with a stable cell/raw-level-value tie-break for saddle
+topology, and never crosses a source mask or unavailable sample. `Contour
+visibility` multiplies only line opacity from hidden at zero through legible at
+one; `Contour span` changes only the retained signed decade levels. During
+active replay the WebGL path supplies the responsive heatmap preview, and the
+canonical heatmap-plus-contour frame settles immediately when playback pauses.
+
+Plainly: the pair contours follow the sampled field in world space. The
+logarithm chooses raw contour values, not pixel positions, and missing samples
+cannot masquerade as a cancellation line.
+
+One native `Purple` / `White` neutral-background radio group appears in the
+common unified Scenario panel for all four scenarios. Its checked value persists when
+the scenario changes and affects only the neutral display color and reference
+overlay contrast. Raw-frame keys, prescribed histories, solver state, timing,
+and frame identities exclude it.
+
+Plainly: changing the background changes the paper behind the signed colors,
+not the numbers or motion being shown.
 
 [TOPO-002](topo-interaction-and-color-contract-v1.md) records the comparison against one declared synthetic signed surface and its falsifier. Quantile coloring is not a v1 candidate because it would make the same color mean different raw values in different frames.
 
