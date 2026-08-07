@@ -8,6 +8,7 @@ import {
   TOPO_DISPLAY_MAPPING_ID,
   TOPO_HEATMAP_MODE,
   TOPO_INVERSE_SQUARE_SCALE,
+  TOPO_PHYSICAL_TONE_POWER,
   TOPO_SOURCE_POSITION,
   TOPO_TRANSLATION_AXIS,
   applyTopoScenarioPolarity,
@@ -506,7 +507,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
           1.0
         );
         float enhancedStrength = pow(linearStrength, 0.72);
-        float physicalStrength = clamp(abs(rawValue) / 64.0, 0.0, 1.0);
+        float physicalStrength = pow(
+          clamp(abs(rawValue) / 64.0, 0.0, 1.0),
+          ${TOPO_PHYSICAL_TONE_POWER.toPrecision(12)}
+        );
         float sourceLocalLegendStrength = clamp(
           (clippedExponent + u_exponent_span) / (2.0 * u_exponent_span),
           0.0,
@@ -681,7 +685,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
           1.0
         );
         float enhancedStrength = pow(linearStrength, 0.72);
-        float physicalStrength = clamp(abs(rawValue) / 64.0, 0.0, 1.0);
+        float physicalStrength = pow(
+          clamp(abs(rawValue) / 64.0, 0.0, 1.0),
+          ${TOPO_PHYSICAL_TONE_POWER.toPrecision(12)}
+        );
         float strength = mix(
           physicalStrength,
           enhancedStrength,
@@ -928,8 +935,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
     }
     if (announce) {
       viewFallbackNotice = equalRadiusUnavailable
-        ? "View switched to Combined wake because Equal-radius exponents is only a stationary single-source display chart. Moving and multi-source scenes use contours from their combined raw wake field."
-        : "View switched to Combined wake because Source-local decades does not yet have an accepted causal-history chart for moving or multi-source scenes.";
+        ? "View switched to Combined wake because Equal-radius levels is only a stationary single-source display chart. Moving and multi-source scenes use contours from their combined raw wake field."
+        : "View switched to Combined wake because Source-local levels does not yet have an accepted causal-history chart for moving or multi-source scenes.";
       windowLike.clearTimeout?.(viewFallbackTimer);
       viewFallbackTimer = windowLike.setTimeout?.(() => {
         viewFallbackNotice = "";
@@ -1131,13 +1138,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
       );
     }
     dom.coordinateMode.textContent = viewFallbackNotice || (equalRadius
-      ? "Equal-radius exponent chart: e=0 is one display step from the " +
+      ? "Equal-radius level chart: the reference contour is one display step from the " +
         state.scenarioId +
-        " and each +1 exponent adds the same step; only e≥0 rings are shown. This stationary single-source chart is a display convention, not a global physical-coordinate transform."
+        " and each selected higher-magnitude contour adds the same step. This stationary single-source chart is a display convention, not a global physical-coordinate transform."
       : localAvailable
-      ? "Source-local display chart: equal radial steps are equal wake-strength exponent steps; the center mask is display-only"
+      ? "Source-local level chart: equal radial steps represent successive tenfold wake-strength changes; the center mask is display-only"
       : localUnavailable
-        ? "Source-local decades are not yet available for moving or multi-source scenes; choose Combined wake"
+        ? "Source-local levels are not yet available for moving or multi-source scenes; choose Combined wake"
         : pairMode
           ? "Combined absolute-space wake: linear Euclidean x-y with calculated signed contributions from constant-velocity prescribed incoming prehistory"
           : "Combined absolute-space wake: linear Euclidean x-y with calculated signed contributions");
@@ -1151,18 +1158,18 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.binaryDirectionControl.hidden = !binaryMode;
     dom.binaryDirectionControl.inert = !binaryMode;
     const selectedRange = topoContourRangeDecades(state.contourRangeDecades);
-    const rangeText = "±" + selectedRange +
-      (selectedRange === 1 ? " decade" : " decades");
+    const rangeText = selectedRange +
+      (selectedRange === 1 ? " step each side" : " steps each side");
     dom.contoursOutput.value = rangeText;
     dom.contoursOutput.textContent = dom.contoursOutput.value;
     dom.heatmapNote.textContent = state.heatmapMode ===
       TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE
-      ? "Physical magnitude: isolated wake intensity falls rapidly; each lower decade contributes one tenth as much fill. Contours remain visible."
-      : "Enhanced decade contrast is display-only; raw field values, contour locations, and frame identity do not change.";
+      ? "Physical magnitude uses a display-only gradual tone curve that keeps successive tenfold changes visibly distinct. Raw values, ordering, and contours do not change."
+      : "Enhanced tenfold contrast is display-only; raw field values, contour locations, and frame identity do not change.";
     dom.contours.disabled = false;
     dom.contours.setAttribute(
       "aria-valuetext",
-      rangeText + " around the reference; one contour per factor of 10 in wake intensity",
+      rangeText + " of the reference; one contour per factor of 10 in wake intensity",
     );
     dom.contourVisibilityOutput.value = state.contourVisibility === 0
       ? "Hidden"
@@ -1205,21 +1212,25 @@ export function mountTopoInteractionContractPreview(options = {}) {
       (radiusPercent * 2) + "%",
     );
     dom.legendTitle.textContent = localAvailable
-      ? "Source-local wake-strength exponent"
+      ? "Source-local wake-strength levels"
       : binaryMode
         ? "Signed equal-wake intensity"
         : "Signed ordinary values";
     dom.canvas.setAttribute(
       "aria-label",
-      localAvailable
-        ? "Source-local wake-strength exponent chart for one stationary " +
+      equalRadius
+        ? "Equal-radius level chart for one stationary " +
           (state.polaritySign < 0 ? "electrino" : "positrino") +
-          "; equal integer exponent changes use equal radial display steps, and the source center uses a display-only mask"
+          "; the reference contour and selected higher-magnitude contours use equal radial display steps"
+        : localAvailable
+        ? "Source-local wake-strength level chart for one stationary " +
+          (state.polaritySign < 0 ? "electrino" : "positrino") +
+          "; successive tenfold wake-strength changes use equal radial display steps, and the source center uses a display-only mask"
         : localUnavailable
-          ? "Source-local decades are not yet available for this prescribed moving or multi-source scene"
+          ? "Source-local levels are not yet available for this prescribed moving or multi-source scene"
           : binaryMode
         ? "Signed equal-wake-intensity heatmap for prescribed antipodal circular electrino and positrino paths on a linear Euclidean plane, with an optional prescribed-orbit guide and no contour overlay"
-        : "Combined absolute-space Wake Topological Map: theoretical signed inverse-square wake intensity on a linear Euclidean chart, with contours at integer wake-strength exponents",
+        : "Combined absolute-space Wake Topological Map: theoretical signed inverse-square wake intensity on a linear Euclidean chart, with contours at successive factor-of-10 wake-strength levels",
     );
     updateBinaryTransportVisibility(state);
     updateBinaryTransportPresentation(state);
@@ -1287,25 +1298,25 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const equalRadius = equalRadiusViewAvailable(state);
     const heatmapDescription = state.heatmapMode ===
       TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE
-      ? "physical magnitude fill; each lower exponent decade contributes one tenth as much color"
-      : "enhanced decade contrast; display-only analytical transfer";
+      ? "physical magnitude with a gradual display-only tone curve; successive tenfold changes remain distinct and higher absolute wake strength always has stronger color"
+      : "enhanced tenfold contrast; display-only analytical transfer";
     dom.legendMapping.textContent = equalRadius
-      ? "Stationary single-source display chart · nonnegative exponent rings e=0 to e=" +
-        span + " · radius R(e)=(e+1)r · field values and physical radii unchanged · not a global physical-coordinate transform"
+      ? "Stationary single-source display chart · the reference contour plus " +
+        span + " selected higher-magnitude contour" + (span === 1 ? "" : "s") +
+        " use fixed equal radial steps · field values and physical radii unchanged · not a global physical-coordinate transform"
       : localAvailable
-      ? "Source-local wake-strength exponent · equal integer exponent steps use equal radial display steps · center mask is display-only · e from " +
-        span + " to −" + span + " · " + heatmapDescription
+      ? "Source-local wake-strength levels · equal tenfold changes use equal radial display steps · center mask is display-only · " +
+        span + " steps on either side of the reference · " + heatmapDescription
       : localUnavailable
-        ? "Source-local decades are not yet available here; Combined wake preserves the absolute-space calculated map"
-        : "Combined absolute-space wake · one contour per factor of 10 in wake intensity; sign is shown by color · e from " +
-      span + " to −" +
-      span + " · " + heatmapDescription + " · " +
+        ? "Source-local levels are not yet available here; Combined wake preserves the absolute-space calculated map"
+        : "Combined absolute-space wake · one contour per factor of 10 in wake intensity; sign is shown by color · " +
+      span + " steps on either side of the reference · " + heatmapDescription + " · " +
       styles.backgroundMode + " neutral" +
       (state.binary
         ? " · linear plane · heatmap only" + (state.showOrbitGuide
             ? " · solid circle = prescribed orbit"
             : "")
-        : " · linear plane · integer-e iso-value contours");
+        : " · linear plane · factor-of-10 iso-value contours");
     dom.legendGradient.style.background = state.pairMode || state.binary
       ? "linear-gradient(90deg, " + styles.negative + ", " +
         styles.zero + ", " + styles.positive + ")"
@@ -1317,9 +1328,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
       (equalRadius
         ? "Equal-radius selected-source display chart "
         : localAvailable ? "Source-local " : "Combined wake ") +
-      "wake-intensity exponent magnitude runs from " +
-      (equalRadius ? "e equals zero to e equals " + span :
-        "e equals " + span + " to e equals minus " + span) +
+      (equalRadius
+        ? "shows the reference contour and selected higher-magnitude contours"
+        : "covers " + span + " factor-of-10 steps on either side of the reference") +
       "; heatmap mode is " + heatmapDescription +
       "; negative values are blue, neutral is " + styles.backgroundMode +
       ", and positive values are red" +
@@ -1327,17 +1338,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         ? "; solid circle marks the prescribed orbit"
         : ""),
     );
-    const labels = equalRadius
-      ? Array.from({ length: span + 1 }, (_, index) => "e=" + index)
-      : Array.from(
-        { length: 2 * span + 1 },
-        (_, index) => "e=" + (span - index),
-      );
-    dom.legendTicks.replaceChildren(...labels.map((label) => {
-      const span = documentLike.createElement("span");
-      span.textContent = label;
-      return span;
-    }));
+    dom.legendTicks.replaceChildren();
   }
 
   function canvasLayoutSize() {
@@ -2011,128 +2012,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
     targetContext.restore();
   }
 
-  function drawMajorDecadeLabels(
-    targetContext,
-    circles,
-    width,
-    height,
-    pixelRatio,
-    state,
-    sourcePixelPosition = null,
-  ) {
-    if (state.contourVisibility === 0) {
-      dom.app.dataset.majorDecadeLabels = "";
-      dom.app.dataset.majorDecadeLabelPositions = "";
-      return;
-    }
-    const commonScale = Math.max(1, height - 1) * state.displayScale;
-    const sourcePixelX = sourcePixelPosition?.x ??
-      TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
-    const sourcePixelY = sourcePixelPosition?.y ??
-      (1 - TOPO_SOURCE_POSITION.y) * Math.max(1, height - 1);
-    const markerRadius = resolveTopoSourceMarkerRadius({
-      width,
-      height,
-      pixelRatio,
-    }) * state.displayScale;
-    const edgeInset = 8 * pixelRatio;
-    const labelGap = 5 * pixelRatio;
-    const labels = [];
-    targetContext.save();
-    targetContext.fillStyle = state.backgroundMode === "white"
-      ? readHexToken(
-        windowLike,
-        dom.app,
-        "--ui-color-electric-purple",
-        "#8f00ff",
-      )
-      : "rgb(" + [WHITE.r, WHITE.g, WHITE.b].join(",") + ")";
-    const fontFamily = windowLike.getComputedStyle?.(dom.app)?.fontFamily ||
-      "Helvetica Neue, Arial, sans-serif";
-    targetContext.font = 9 * pixelRatio + "px " + fontFamily;
-    targetContext.textAlign = "center";
-    targetContext.textBaseline = "middle";
-    const occupied = [];
-    const positions = [];
-    circles.forEach((circle) => {
-      if (!circle.majorDecade || circle.revealWeight < 0.25) {
-        return;
-      }
-      const centerX = sourcePixelX +
-        (circle.center.x - TOPO_SOURCE_POSITION.x) * commonScale;
-      const centerY = sourcePixelY -
-        (circle.center.y - TOPO_SOURCE_POSITION.y) * commonScale;
-      const radius = circle.radius * commonScale;
-      targetContext.globalAlpha = 0.82 * circle.revealWeight;
-      const label = circle.signedMajorDecadeLabel ?? circle.majorDecadeLabel;
-      const textWidth = targetContext.measureText(label).width;
-      const boxWidth = textWidth + 8 * pixelRatio;
-      const boxHeight = 13 * pixelRatio;
-      if (radius <= markerRadius + 16 * pixelRatio) {
-        return;
-      }
-      const candidates = [
-        { x: centerX, y: centerY - radius - labelGap },
-        {
-          x: centerX - radius - labelGap - boxWidth / 2,
-          y: centerY,
-        },
-        { x: centerX + radius + labelGap, y: centerY },
-        { x: centerX, y: centerY + radius + labelGap },
-      ];
-      const candidate = candidates.find(({ x, y }) => {
-        const box = {
-          left: x - boxWidth / 2,
-          right: x + boxWidth / 2,
-          top: y - boxHeight / 2,
-          bottom: y + boxHeight / 2,
-        };
-        if (
-          box.left < edgeInset || box.right > width - edgeInset ||
-          box.top < edgeInset || box.bottom > height - edgeInset
-        ) {
-          return false;
-        }
-        const distanceFromSource = Math.hypot(
-          x - sourcePixelX,
-          y - sourcePixelY,
-        );
-        if (distanceFromSource <= markerRadius + boxWidth / 2 + labelGap) {
-          return false;
-        }
-        return !occupied.some((other) => !(
-          box.right + labelGap < other.left ||
-          box.left - labelGap > other.right ||
-          box.bottom + labelGap < other.top ||
-          box.top - labelGap > other.bottom
-        ));
-      });
-      if (!candidate) {
-        return;
-      }
-      const labelX = candidate.x;
-      const labelY = candidate.y;
-      targetContext.fillText(
-        label,
-        labelX,
-        labelY,
-      );
-      labels.push(label);
-      occupied.push({
-        left: labelX - boxWidth / 2,
-        right: labelX + boxWidth / 2,
-        top: labelY - boxHeight / 2,
-        bottom: labelY + boxHeight / 2,
-      });
-      positions.push(
-        label + "@" +
-        Math.round(labelX / pixelRatio) + "," +
-        Math.round(labelY / pixelRatio),
-      );
-    });
-    targetContext.restore();
-    dom.app.dataset.majorDecadeLabels = labels.join(",");
-    dom.app.dataset.majorDecadeLabelPositions = positions.join(";");
+  function clearContourMapLabels() {
+    dom.app.dataset.majorDecadeLabels = "";
+    dom.app.dataset.majorDecadeLabelPositions = "";
   }
 
   function writeDisplayPixel(
@@ -2767,27 +2649,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         contourStagingContext.restore();
       });
     }
-    const commonScale = Math.max(1, height - 1) * state.displayScale;
-    const labelCenter = topoWorldPointForCanvasPixel({
-      pixelX: anchor.pixelX,
-      pixelY: anchor.pixelY,
-      width,
-      height,
-      displayScale: state.displayScale,
-    });
-    drawMajorDecadeLabels(
-      contourStagingContext,
-      selectedCircles.map((circle) => Object.freeze({
-        ...circle,
-        center: labelCenter,
-        radius: circle.displayRadiusPixels / commonScale,
-      })),
-      width,
-      height,
-      pixelRatio,
-      state,
-      { x: anchor.pixelX, y: anchor.pixelY },
-    );
+    clearContourMapLabels();
     if (state.binary) {
       const centerX = TOPO_CIRCULAR_BINARY_CENTER.x * Math.max(1, width - 1);
       const centerY = Math.max(1, height - 1) / 2;
@@ -3108,14 +2970,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       contourStagingContext.stroke();
       contourStagingContext.restore();
     });
-    drawMajorDecadeLabels(
-      contourStagingContext,
-      visibleCircles,
-      width,
-      height,
-      pixelRatio,
-      state,
-    );
+    clearContourMapLabels();
     if (state.pairMode) {
       const pairFrame = createTopoCollinearPairFrame({
         beta: state.beta,
@@ -3216,9 +3071,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
       (windowLike.performance?.now?.() ?? Date.now()) - interactionStarted,
     ));
     dom.status.textContent = equalRadiusViewAvailable(state)
-      ? "Equal-radius exponent chart complete. Rings e=0 through e=" +
+      ? "Equal-radius level chart complete. The reference contour and " +
         topoContourRangeDecades(state.contourRangeDecades) +
-        " use fixed display-radius steps around the selected source at the displayed time; calculated field values and physical radii are unchanged."
+        " selected higher-magnitude contours use fixed display-radius steps around the selected source at the displayed time; calculated field values and physical radii are unchanged."
       : state.binary
       ? "Prescribed circular-binary heatmap complete. The solid orbit is a reference path only; no dynamics, binding, or stability claim is attached."
       : state.beta === 1
@@ -3242,7 +3097,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     context.textAlign = "center";
     context.textBaseline = "middle";
     context.fillText(
-      "Source-local decades are not yet available for this scene",
+      "Source-local levels are not yet available for this scene",
       width / 2,
       height / 2,
       width - 40 * pixelRatio,
@@ -3310,7 +3165,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         windowLike.clearTimeout?.(renderWatchdogTimer);
         dom.app.dataset.frameState = "complete";
         dom.status.textContent =
-          "Source-local decades are not yet available for moving or multi-source scenes. Combined wake remains available.";
+          "Source-local levels are not yet available for moving or multi-source scenes. Combined wake remains available.";
         return;
       }
       const grid = rawGridSize();
@@ -3379,7 +3234,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
           (windowLike.performance?.now?.() ?? Date.now()) - interactionStarted,
         ));
         dom.status.textContent = equalRadiusViewAvailable(state)
-          ? "Equal-radius exponent chart complete; e=0 is the first positive display radius and only nonnegative rings are shown."
+          ? "Equal-radius level chart complete; the reference contour and selected higher-magnitude contours use fixed equal radial steps."
           : state.binary
           ? "Prescribed circular-binary heatmap frame complete; solid circle is a reference orbit only."
           : "Analytic synthetic field and contours complete.";

@@ -102,11 +102,11 @@
               <legend>View</legend>
               <label>
                 <input type="radio" name="topo-view" value="source-local" />
-                <span>Source-local decades</span>
+                <span>Source-local levels</span>
               </label>
               <label>
                 <input type="radio" name="topo-view" value="equal-radius" />
-                <span>Equal-radius exponents (stationary source)</span>
+                <span>Equal-radius levels (stationary source)</span>
               </label>
               <label>
                 <input type="radio" name="topo-view" value="combined" checked />
@@ -121,10 +121,10 @@
               </label>
               <label>
                 <input type="radio" name="topo-heatmap-mode" value="enhanced-decade-contrast" />
-                <span>Enhanced decade contrast</span>
+                <span>Enhanced tenfold contrast</span>
               </label>
             </fieldset>
-            <p id="topo-heatmap-note" class="topo-range-note" aria-live="polite">Physical magnitude: isolated wake intensity falls rapidly; each lower decade contributes one tenth as much fill. Contours remain visible.</p>
+            <p id="topo-heatmap-note" class="topo-range-note" aria-live="polite">Physical magnitude uses a display-only gradual tone curve that keeps successive tenfold changes visibly distinct. Raw values, ordering, and contours do not change.</p>
             <fieldset id="topo-binary-direction-control" class="topo-radio-field" hidden>
               <legend>Orbit direction</legend>
               <label>
@@ -148,9 +148,9 @@
                   step="1"
                   value="3"
                   data-keyboard-step="1"
-                  aria-label="Symmetric raw-decade contour span around the reference level"
+                  aria-label="Symmetric contour-level span around the reference level"
                 />
-                <output id="topo-contours-output" for="topo-contours">±3 decades</output>
+                <output id="topo-contours-output" for="topo-contours">3 steps each side</output>
               </span>
               <small class="topo-range-note">One contour per factor of 10 in wake intensity</small>
             </label>

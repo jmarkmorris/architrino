@@ -310,6 +310,24 @@ test("pointer scenario selection hands focus to the stage while keyboard radios 
   assert.match(runtime, /listen\(dom\.scenarioControl, "keydown"[\s\S]*scenarioPointerActivation = false/u);
 });
 
+test("custom radio controls keep a non-shrinking circular border box", () => {
+  const css = readFileSync(new URL(
+    "../src/apps/topo/topo.css",
+    import.meta.url,
+  ), "utf8");
+  const radioRule = css.match(
+    /\.topo-radio-field input \{([\s\S]*?)\n\}/u,
+  )?.[1] ?? "";
+  assert.notEqual(radioRule, "");
+  assert.match(radioRule, /appearance: none/u);
+  assert.match(radioRule, /flex: 0 0 15px/u);
+  assert.match(radioRule, /width: 15px/u);
+  assert.match(radioRule, /height: 15px/u);
+  assert.match(radioRule, /border-radius: 50%/u);
+  assert.match(css, /\.topo-radio-field label \{[\s\S]*display: inline-flex[\s\S]*align-items: center/u);
+  assert.match(css, /\.topo-radio-field input:focus-visible \{[\s\S]*outline: 2px solid/u);
+});
+
 test("one native Purple/White control persists across all four display-only scenarios", () => {
   const html = readFileSync(new URL("../topo.html", import.meta.url), "utf8");
   const runtime = readFileSync(new URL(

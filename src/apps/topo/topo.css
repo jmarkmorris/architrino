@@ -387,6 +387,7 @@ button {
   appearance: none;
   display: grid;
   place-content: center;
+  flex: 0 0 15px;
   width: 15px;
   height: 15px;
   margin: 0;

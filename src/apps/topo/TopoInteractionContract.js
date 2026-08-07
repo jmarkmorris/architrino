@@ -3,6 +3,7 @@ export const TOPO_SYNTHETIC_SURFACE_ID = "topo_synthetic_causal_envelope/v1";
 export const TOPO_SOURCE_POSITION = Object.freeze({ x: 2 / 3, y: 1 / 2 });
 export const TOPO_REFERENCE_SCALE = 4;
 export const TOPO_DISPLAY_CLIP_MAGNITUDE = 64;
+export const TOPO_PHYSICAL_TONE_POWER = 1 / 3;
 export const TOPO_DEFAULT_CONTOUR_RANGE_DECADES = 3;
 export const TOPO_DEFAULT_CONTOUR_VISIBILITY = 0.75;
 export const TOPO_DEFAULT_DISPLAY_SCALE = 1;
@@ -131,7 +132,8 @@ export function normalizeTopoPhysicalMagnitudeValue(
   if (!(reference > 0)) {
     throw new RangeError("referenceMagnitude must be positive.");
   }
-  return Math.sign(raw) * clamp(Math.abs(raw) / reference, 0, 1);
+  const clippedStrength = clamp(Math.abs(raw) / reference, 0, 1);
+  return Math.sign(raw) * clippedStrength ** TOPO_PHYSICAL_TONE_POWER;
 }
 
 export function normalizeTopoDisplayValue(

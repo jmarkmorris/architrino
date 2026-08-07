@@ -19,6 +19,7 @@ import {
   TOPO_INVERSE_SQUARE_SCALE,
   TOPO_MAX_DISPLAY_SCALE,
   TOPO_MIN_DISPLAY_SCALE,
+  TOPO_PHYSICAL_TONE_POWER,
   TOPO_REFERENCE_SCALE,
   TOPO_SOURCE_POSITION,
   TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE,
@@ -152,6 +153,7 @@ test("physical magnitude is the default and enhanced decade contrast is optional
   assert.equal(TOPO_DEFAULT_HEATMAP_MODE, TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE);
   assert.equal(TOPO_REFERENCE_SCALE, 4);
   assert.equal(TOPO_DISPLAY_CLIP_MAGNITUDE, 64);
+  assert.equal(TOPO_PHYSICAL_TONE_POWER, 1 / 3);
   assert.equal(TOPO_DEFAULT_CONTOUR_RANGE_DECADES, 3);
   assert.equal(TOPO_DEFAULT_CONTOUR_VISIBILITY, 0.75);
   assert.ok(TOPO_FIRST_CONTOUR_BUDGET_MS <= 34);
@@ -165,14 +167,17 @@ test("physical magnitude is the default and enhanced decade contrast is optional
     for (const exponent of [-3, -2, -1, 0]) {
       const raw = polaritySign * 64 * 10 ** exponent;
       const physical = normalizeTopoFieldColorValue(raw);
-      closeTo(physical, polaritySign * 10 ** exponent);
+      const expectedStrength = Math.min(Math.abs(raw) / 64, 1) **
+        TOPO_PHYSICAL_TONE_POWER;
+      closeTo(physical, polaritySign * expectedStrength);
       closeTo(physical, normalizeTopoPhysicalMagnitudeValue(raw));
       if (prior != null) {
-        closeTo(Math.abs(physical / prior), 10);
+        assert.ok(Math.abs(physical) > Math.abs(prior));
       }
       prior = physical;
     }
   }
+  closeTo(normalizeTopoFieldColorValue(0), 0);
   closeTo(normalizeTopoFieldColorValue(640), 1);
   closeTo(normalizeTopoFieldColorValue(-640), -1);
   for (const magnitude of [0.001, 0.01, 0.1, 1, 4, 16, 64]) {
@@ -191,6 +196,26 @@ test("physical magnitude is the default and enhanced decade contrast is optional
     () => normalizeTopoFieldColorValue(1, { mode: "unknown" }),
     /Unknown Topo heatmap mode/u,
   );
+});
+
+test("physical magnitude uses a signed monotonic gradual tone curve", () => {
+  const magnitudes = [0, 0.064, 0.64, 6.4, 64, 640];
+  const strengths = magnitudes.map((magnitude) =>
+    normalizeTopoPhysicalMagnitudeValue(magnitude));
+  for (let index = 1; index < strengths.length; index += 1) {
+    assert.ok(strengths[index] >= strengths[index - 1]);
+  }
+  for (let index = 0; index < magnitudes.length; index += 1) {
+    const clipped = Math.min(magnitudes[index], 64);
+    const expected = (clipped / 64) ** TOPO_PHYSICAL_TONE_POWER;
+    closeTo(strengths[index], expected);
+    closeTo(
+      normalizeTopoPhysicalMagnitudeValue(-magnitudes[index]),
+      -expected,
+    );
+  }
+  assert.ok(strengths[2] > 0.05);
+  closeTo(strengths.at(-1), 1);
 });
 
 test("inverse-square wake magnitude is anchored at the first contour", () => {
@@ -893,10 +918,10 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.match(runtime, /getContext\("webgl"/u);
   assert.match(runtime, /createTopoSyntheticContourRenderPlan/u);
   assert.match(runtime, /contourStagingContext\.arc\(/u);
-  assert.match(runtime, /drawMajorDecadeLabels/u);
+  assert.doesNotMatch(runtime, /drawMajorDecadeLabels/u);
   assert.match(
     runtime,
-    /state\.contourVisibility === 0[\s\S]*majorDecadeLabels = ""[\s\S]*majorDecadeLabelPositions = ""/u,
+    /function clearContourMapLabels\(\)[\s\S]*majorDecadeLabels = ""[\s\S]*majorDecadeLabelPositions = ""/u,
   );
   assert.match(runtime, /listen\(dom\.contours, "input", scheduleContourChange\)/u);
   assert.match(
@@ -911,12 +936,15 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.match(runtime, /sourceLocalViewRequested/u);
   assert.match(runtime, /sourceLocalViewAvailable/u);
   assert.match(runtime, /topoExponentRadiusPhysicalPointForCanvasPixel/u);
-  assert.match(runtime, /Source-local display chart/u);
+  assert.match(runtime, /Source-local level chart/u);
   assert.match(runtime, /Combined absolute-space wake/u);
-  assert.match(runtime, /Source-local decades are not yet available/u);
+  assert.match(runtime, /Source-local levels are not yet available/u);
   assert.match(runtime, /TOPO_HEATMAP_MODE\.PHYSICAL_MAGNITUDE/u);
   assert.match(runtime, /u_enhanced_decade_contrast/u);
-  assert.match(runtime, /physicalStrength = clamp\(abs\(rawValue\) \/ 64\.0, 0\.0, 1\.0\)/u);
+  assert.equal(
+    runtime.match(/physicalStrength = pow\([\s\S]*?clamp\(abs\(rawValue\) \/ 64\.0, 0\.0, 1\.0\),[\s\S]*?\$\{TOPO_PHYSICAL_TONE_POWER\.toPrecision\(12\)\}[\s\S]*?\);/gu)?.length,
+    2,
+  );
   assert.match(runtime, /heatmapModeInputs[\s\S]*listen\(input, "change", scheduleFrameChange\)/u);
   assert.match(runtime, /state\.backgroundMode === "white"[\s\S]*--ui-color-electric-purple/u);
   const markerSource = runtime.slice(
@@ -927,9 +955,7 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.match(markerSource, /WHITE\.r/u);
   assert.match(runtime, /u_source_local_mode/u);
   assert.match(runtime, /displayRadius - u_source_local_inner_radius/u);
-  assert.match(runtime, /radius <= markerRadius \+ 16 \* pixelRatio/u);
-  assert.match(runtime, /globalAlpha = 0\.82 \* circle\.revealWeight/u);
-  assert.match(runtime, /!occupied\.some/u);
+  assert.doesNotMatch(runtime, /fillText\(\s*label/u);
   assert.doesNotMatch(runtime, /suppressed-responsive/u);
   assert.match(runtime, /contourRadii/u);
   assert.match(runtime, /TOPO_INVERSE_SQUARE_SCALE/u);
@@ -960,21 +986,29 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.match(html, /<legend>Heatmap<\/legend>/u);
   assert.match(html, /name="topo-heatmap-mode" value="physical-magnitude" checked/u);
   assert.match(html, /<span>Physical magnitude<\/span>/u);
+  assert.match(
+    html,
+    /Physical magnitude uses a display-only gradual tone curve that keeps successive tenfold changes visibly distinct/u,
+  );
   assert.match(html, /name="topo-heatmap-mode" value="enhanced-decade-contrast"/u);
-  assert.match(html, /<span>Enhanced decade contrast<\/span>/u);
+  assert.match(html, /<span>Enhanced tenfold contrast<\/span>/u);
   assert.match(html, /name="topo-view" value="source-local"/u);
-  assert.match(html, /<span>Source-local decades<\/span>/u);
+  assert.match(html, /<span>Source-local levels<\/span>/u);
   assert.match(html, /name="topo-view" value="equal-radius"/u);
-  assert.match(html, /<span>Equal-radius exponents \(stationary source\)<\/span>/u);
+  assert.match(html, /<span>Equal-radius levels \(stationary source\)<\/span>/u);
   assert.doesNotMatch(html, /topo-chart-anchor/u);
   assert.match(html, /name="topo-view" value="combined" checked/u);
   assert.match(html, /<span>Combined wake<\/span>/u);
   assert.match(html, />Approaching collinear electrino and positrino<\/span>/u);
   assert.match(html, /id="topo-pair-play"/u);
   assert.match(html, /id="topo-pair-replay"/u);
-  assert.match(html, />±3 decades<\/output>/u);
+  assert.match(html, />3 steps each side<\/output>/u);
   assert.match(html, /One contour per factor of 10 in wake intensity/u);
   assert.match(html, /id="topo-legend-mapping"/u);
+  assert.match(
+    runtime,
+    /higher absolute wake strength always has stronger color/u,
+  );
   assert.doesNotMatch(html, /Scale transform|topo-transform|Linear|Signed log2|Asinh/u);
   assert.doesNotMatch(html, /Raw probe|Nonnumeric state legend|topo-stage-caption/u);
   assert.match(runtime, /R\(e\)=\(e\+1\)r/u);
@@ -993,6 +1027,33 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.match(css, /input:focus-visible::-webkit-slider-thumb/u);
   assert.match(tokens, /--ui-color-electric-purple: #8f00ff;/u);
   assert.match(tokens, /--ui-data-zero: var\(--ui-color-electric-purple\);/u);
+});
+
+test("Topo rendered copy does not expose exponent terminology", () => {
+  const html = readRepoFile("topo.html");
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  const renderedHtml = [
+    ...html.matchAll(/>([^<]+)</gu),
+    ...html.matchAll(/(?:aria-label|aria-description|aria-valuetext|title)="([^"]+)"/gu),
+  ].map((match) => match[1]).join("\n");
+  assert.doesNotMatch(
+    renderedHtml,
+    /\b(?:exponent|decade)s?\b|\be\s*(?:=|equals|≥)|R\(e\)|integer-e/iu,
+  );
+  assert.doesNotMatch(runtime, /drawMajorDecadeLabels/u);
+  assert.match(runtime, /dom\.legendTicks\.replaceChildren\(\)/u);
+  for (const formerCopy of [
+    "Equal-radius exponent",
+    "Source-local decades",
+    "Enhanced decade contrast",
+    "wake-strength exponent",
+    "wake-intensity exponent",
+    "e equals",
+    "e≥",
+    "integer-e",
+  ]) {
+    assert.equal(runtime.includes(formerCopy), false, formerCopy);
+  }
 });
 
 test("Applications retains four category scenes and all fifteen direct app routes", () => {
