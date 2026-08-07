@@ -12,7 +12,7 @@ adjudications, and handoffs. Detailed reasoning belongs in
 The 2024 substantive revision of Wayne Myrvold, Marco Genovese, and Abner
 Shimony's Stanford Encyclopedia of Philosophy entry, *Bell's Theorem*, was
 mined as expert synthesis and a primary-source lead map. The focused
-[source-mining packet](../source-mining/stanford-encyclopedia-bell-theorem-source-mining.md)
+[source-mining packet](./stanford-encyclopedia-bell-theorem-source-mining.md)
 records the source artifact, section map, authority boundary, retained
 assembly insights, primary leads, and discard decisions.
 
@@ -114,7 +114,7 @@ The operator requested a best-practice source-mining pass over Curt
 Jaimungal's October 10, 2022 Tim Maudlin interview, *Why Bell's Theorem
 Changes Everything*. Creator-supplied English captions, metadata, chapters,
 and primary-source leads were inspected. A focused
-[source-mining packet](../source-mining/tim-maudlin-bell-foundations-2022-video-source-mining.md)
+[source-mining packet](./tim-maudlin-bell-foundations-2022-video-source-mining.md)
 records the timestamped map, Maudlin's position, the corrected EPR-to-Bell
 metaphor, detector-selection mechanism, claim grades, and discard decisions.
 
@@ -136,7 +136,7 @@ The operator requested a best-practice source-mining pass over Curt
 Jaimungal's July 27, 2026 Tim Maudlin lecture, *Quantum Mechanics Explained
 FROM SCRATCH*. Creator-supplied English captions, metadata, chapters, and
 linked sources were inspected. A focused
-[source-mining packet](../source-mining/tim-maudlin-epr-bell-video-source-mining.md)
+[source-mining packet](./tim-maudlin-epr-bell-video-source-mining.md)
 records the timestamped source map, claim grades, discard decisions, and
 corpus routing.
 

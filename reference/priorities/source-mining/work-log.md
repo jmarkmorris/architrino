@@ -11,7 +11,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 The Stanford Encyclopedia of Philosophy entry, *Bell's Theorem*, substantive
 revision January 25, 2024, was captured and mined as expert synthesis and a
 source-discovery map. The focused
-[source-mining packet](stanford-encyclopedia-bell-theorem-source-mining.md)
+[source-mining packet](../epr-bell/stanford-encyclopedia-bell-theorem-source-mining.md)
 records its section map, factorization decomposition, outcome-closure issue,
 control-access distinction, native-measure requirement for measurement
 dependence, apparatus-mechanism example, source leads, and authority limits.
@@ -27,7 +27,7 @@ status, or generated artifact was changed.
 The October 10, 2022 Curt Jaimungal interview with Tim Maudlin was mined from
 creator-supplied English captions, metadata, chapters, description, and
 primary-source leads. The focused
-[source-mining packet](tim-maudlin-bell-foundations-2022-video-source-mining.md)
+[source-mining packet](../epr-bell/tim-maudlin-bell-foundations-2022-video-source-mining.md)
 records Maudlin's locality-first interpretation, the EPR-to-Bell metaphor,
 the selection-conditioned detector mechanism, the separation of determinism
 from measurement dependence, PBR's preparation-independence boundary, and
@@ -47,7 +47,7 @@ the obstruction for the local branch.
 The July 27, 2026 Curt Jaimungal video featuring Tim Maudlin was re-mined from
 creator-supplied English captions, metadata, chapters, description, and linked
 primary-source leads. The focused
-[source-mining packet](tim-maudlin-epr-bell-video-source-mining.md) records the
+[source-mining packet](../epr-bell/tim-maudlin-epr-bell-video-source-mining.md) records the
 source boundary, timestamped signal map, claim classifications, mathematical
 diagnostics, corpus routing, and discard decisions.
 

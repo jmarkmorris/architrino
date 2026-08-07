@@ -5,7 +5,7 @@
 - Mode: edit batch, priority-only capture
 - Source status: explanatory lecture and primary-source lead map
 - Claim authority: no $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism or Bell route is established here
-- Owning theory lane: [EPR--Bell Closure](../epr-bell/priorities.md)
+- Owning theory lane: [EPR--Bell Closure](./priorities.md)
 - Corpus promotion: deferred while EPRB-001 and the live Bell-route contradiction remain unresolved
 
 This packet captures the useful content of Tim Maudlin's lecture while keeping
@@ -298,11 +298,11 @@ existing assumption ledger, not an additional acceptance hurdle.
 
 | Destination | Finding | Action |
 | --- | --- | --- |
-| [EPR--Bell brainstorming](../epr-bell/brainstorming.md) | The source supplies a useful one-particle/two-wing scope guard, conservation warning, and conditional-independence map. | Add a concise source-intake section and link this packet. |
-| [EPR--Bell work queue](../epr-bell/work-queue.md) | EPRB-001 and EPRB-004 can be sharpened without adding queue objects. | Amend their evidence and request text. |
-| [EPR--Bell work log](../epr-bell/work-log.md) | The re-mining event and non-promotion decision require a durable receipt. | Add a dated entry. |
-| [Source-mining priorities](priorities.md) | The focused packet should be discoverable from the source-mining lane. | Add it to the comparison-packet list. |
-| [Source-mining history](source-mining-history.md) | The August 2 duplicate disposition is superseded by focused priority capture. | Update the existing source row rather than add a duplicate row. |
+| [EPR--Bell brainstorming](./brainstorming.md) | The source supplies a useful one-particle/two-wing scope guard, conservation warning, and conditional-independence map. | Add a concise source-intake section and link this packet. |
+| [EPR--Bell work queue](./work-queue.md) | EPRB-001 and EPRB-004 can be sharpened without adding queue objects. | Amend their evidence and request text. |
+| [EPR--Bell work log](./work-log.md) | The re-mining event and non-promotion decision require a durable receipt. | Add a dated entry. |
+| [Source-mining priorities](../source-mining/priorities.md) | The focused packet should be discoverable from the source-mining lane. | Add it to the comparison-packet list. |
+| [Source-mining history](../source-mining/source-mining-history.md) | The August 2 duplicate disposition is superseded by focused priority capture. | Update the existing source row rather than add a duplicate row. |
 | Bell and entanglement bridge pages | Their settled live-$c_f$ route wording conflicts with the owning EPR--Bell lane's `discussion-scoped` status. | No edit in this pass. Retain as decision debt for EPRB-002 after EPRB-001 is answered. |
 | Measurement and wavefunction pages | Most historical and ontic/epistemic distinctions already exist. | No duplicate reader-facing prose. |
 

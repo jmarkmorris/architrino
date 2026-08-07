@@ -7,7 +7,7 @@
 - Claim authority: the entry organizes theorem interpretations, experiment
   history, and philosophical options; Bell, CHSH, theorem papers, and official
   experiment papers remain the authorities for exact results
-- Owning theory lane: [EPR--Bell Closure](../epr-bell/priorities.md)
+- Owning theory lane: [EPR--Bell Closure](./priorities.md)
 - Reader-facing corpus promotion: none in this pass
 
 This packet mines the Stanford Encyclopedia of Philosophy entry for

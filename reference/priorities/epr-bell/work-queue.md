@@ -40,9 +40,9 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
   independently selected setting pairs. Determinism and “realism” do not add
   separate mathematical premises, and a deterministic setting generator does
   not by itself violate measurement independence. See the focused
-  [Maudlin EPR source-mining packet](../source-mining/tim-maudlin-epr-bell-video-source-mining.md),
-  [Maudlin Bell-foundations packet](../source-mining/tim-maudlin-bell-foundations-2022-video-source-mining.md),
-  and [Stanford Encyclopedia Bell-theorem packet](../source-mining/stanford-encyclopedia-bell-theorem-source-mining.md).
+  [Maudlin EPR source-mining packet](./tim-maudlin-epr-bell-video-source-mining.md),
+  [Maudlin Bell-foundations packet](./tim-maudlin-bell-foundations-2022-video-source-mining.md),
+  and [Stanford Encyclopedia Bell-theorem packet](./stanford-encyclopedia-bell-theorem-source-mining.md).
   Parameter independence and outcome independence may be recorded as
   diagnostics, but they do not replace the question's factorization and
   measurement-independence conditions.

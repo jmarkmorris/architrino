@@ -5,7 +5,7 @@
 - Mode: edit batch, priority-only capture
 - Source status: expert interview, conceptual synthesis, and primary-source lead map
 - Claim authority: Maudlin's arguments are comparison material; the linked theorem papers and experiments remain the authorities for technical claims
-- Owning theory lane: [EPR--Bell Closure](../epr-bell/priorities.md)
+- Owning theory lane: [EPR--Bell Closure](./priorities.md)
 - Corpus promotion: none in this pass
 
 This packet mines Tim Maudlin's 2022 interview for its strongest Bell,
@@ -322,11 +322,11 @@ another checklist layer.
 
 | Destination | Finding | Action |
 | --- | --- | --- |
-| [EPR--Bell brainstorming](../epr-bell/brainstorming.md) | Maudlin's locality-first reading and the corrected EPR-to-Bell metaphor sharpen the unresolved route discussion. | Add a concise source-intake summary and packet link. |
-| [EPR--Bell work queue](../epr-bell/work-queue.md) | EPRB-001, EPRB-002, and EPRB-004 can be made more mechanism-specific without new objects. | Amend existing evidence and acceptance text. |
-| [EPR--Bell work log](../epr-bell/work-log.md) | The mining event and non-promotion decision require a durable receipt. | Add a dated entry. |
-| [Source-mining priorities](priorities.md) | The focused packet should be discoverable beside the 2026 EPR lecture packet. | Add it to the comparison-packet list. |
-| [Source-mining history](source-mining-history.md) | This is a previously unmined source. | Add one dated row with source and disposition. |
+| [EPR--Bell brainstorming](./brainstorming.md) | Maudlin's locality-first reading and the corrected EPR-to-Bell metaphor sharpen the unresolved route discussion. | Add a concise source-intake summary and packet link. |
+| [EPR--Bell work queue](./work-queue.md) | EPRB-001, EPRB-002, and EPRB-004 can be made more mechanism-specific without new objects. | Amend existing evidence and acceptance text. |
+| [EPR--Bell work log](./work-log.md) | The mining event and non-promotion decision require a durable receipt. | Add a dated entry. |
+| [Source-mining priorities](../source-mining/priorities.md) | The focused packet should be discoverable beside the 2026 EPR lecture packet. | Add it to the comparison-packet list. |
+| [Source-mining history](../source-mining/source-mining-history.md) | This is a previously unmined source. | Add one dated row with source and disposition. |
 | [The Treasure Physics Overlooked](../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) | Its Maudlin chapter already captures the ontology, law, measurement, Bell, and time program. | No duplicate reader-facing edit. |
 | [No-Go Theorems](../../../content/markdown/aaa/validation/no-go-theorems.md) | It already states PBR's preparation-independence and ontic-overlap boundaries. | No duplicate reader-facing edit. |
 

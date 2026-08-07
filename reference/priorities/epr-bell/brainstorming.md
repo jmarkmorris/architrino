@@ -14,7 +14,7 @@ Bancal burden, not an approved or irrevocable solution.
 
 ## Tim Maudlin Video Source Intake — 2026-08-05
 
-The focused [source-mining packet](../source-mining/tim-maudlin-epr-bell-video-source-mining.md)
+The focused [source-mining packet](./tim-maudlin-epr-bell-video-source-mining.md)
 captures Tim Maudlin's July 27, 2026 EPR lecture. The source is useful for the
 EPR setup and measurement-ontology distinctions, but it explicitly stops
 before deriving Bell's theorem. Bell 1964, CHSH 1969, and primary experiments
@@ -73,7 +73,7 @@ No new gate is created. These diagnostics sharpen EPRB-001 and EPRB-004.
 ## Tim Maudlin Bell-Foundations Interview Intake — 2026-08-05
 
 The focused
-[source-mining packet](../source-mining/tim-maudlin-bell-foundations-2022-video-source-mining.md)
+[source-mining packet](./tim-maudlin-bell-foundations-2022-video-source-mining.md)
 captures Maudlin's October 10, 2022 interview. His central position is that
 Bell rules out locality, not reality or determinism, once statistical
 independence is retained. He treats Bohmian mechanics as proof of concept for
@@ -991,7 +991,7 @@ different assumption or ontology change.
 ## Stanford Encyclopedia Bell-Theorem Mining — 2026-08-07
 
 The focused
-[source-mining packet](../source-mining/stanford-encyclopedia-bell-theorem-source-mining.md)
+[source-mining packet](./stanford-encyclopedia-bell-theorem-source-mining.md)
 uses the 2024 substantive revision of the Stanford Encyclopedia of Philosophy
 entry as an expert synthesis and primary-source map, not as theorem or
 experimental authority. Exact experiment values remain controlled by official
